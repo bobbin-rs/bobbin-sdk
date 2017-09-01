@@ -416,12 +416,12 @@ impl Dmabmr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if SR != 0"]
     #[inline] pub fn test_sr(&self) -> bool {
         self.sr() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the SR field."]
     #[inline] pub fn set_sr<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -435,12 +435,12 @@ impl Dmabmr {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if DA != 0"]
     #[inline] pub fn test_da(&self) -> bool {
         self.da() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the DA field."]
     #[inline] pub fn set_da<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -454,12 +454,12 @@ impl Dmabmr {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1f) as u8) } // [6:2]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if DSL != 0"]
     #[inline] pub fn test_dsl(&self) -> bool {
         self.dsl() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the DSL field."]
     #[inline] pub fn set_dsl<V: Into<bits::U5>>(mut self, value: V) -> Self {
         let value: bits::U5 = value.into();
         let value: u32 = value.into();
@@ -473,12 +473,12 @@ impl Dmabmr {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if EDFE != 0"]
     #[inline] pub fn test_edfe(&self) -> bool {
         self.edfe() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the EDFE field."]
     #[inline] pub fn set_edfe<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -492,12 +492,12 @@ impl Dmabmr {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x3f) as u8) } // [13:8]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if PBL != 0"]
     #[inline] pub fn test_pbl(&self) -> bool {
         self.pbl() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the PBL field."]
     #[inline] pub fn set_pbl<V: Into<bits::U6>>(mut self, value: V) -> Self {
         let value: bits::U6 = value.into();
         let value: u32 = value.into();
@@ -511,12 +511,12 @@ impl Dmabmr {
         unsafe { ::core::mem::transmute(((self.0 >> 14) & 0x3) as u8) } // [15:14]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if RTPR != 0"]
     #[inline] pub fn test_rtpr(&self) -> bool {
         self.rtpr() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the RTPR field."]
     #[inline] pub fn set_rtpr<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -530,12 +530,12 @@ impl Dmabmr {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1) as u8) } // [16]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if FB != 0"]
     #[inline] pub fn test_fb(&self) -> bool {
         self.fb() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the FB field."]
     #[inline] pub fn set_fb<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -549,12 +549,12 @@ impl Dmabmr {
         unsafe { ::core::mem::transmute(((self.0 >> 17) & 0x3f) as u8) } // [22:17]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if RDP != 0"]
     #[inline] pub fn test_rdp(&self) -> bool {
         self.rdp() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the RDP field."]
     #[inline] pub fn set_rdp<V: Into<bits::U6>>(mut self, value: V) -> Self {
         let value: bits::U6 = value.into();
         let value: u32 = value.into();
@@ -568,12 +568,12 @@ impl Dmabmr {
         unsafe { ::core::mem::transmute(((self.0 >> 23) & 0x1) as u8) } // [23]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if USP != 0"]
     #[inline] pub fn test_usp(&self) -> bool {
         self.usp() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the USP field."]
     #[inline] pub fn set_usp<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -587,12 +587,12 @@ impl Dmabmr {
         unsafe { ::core::mem::transmute(((self.0 >> 24) & 0x1) as u8) } // [24]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if FPM != 0"]
     #[inline] pub fn test_fpm(&self) -> bool {
         self.fpm() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the FPM field."]
     #[inline] pub fn set_fpm<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -606,12 +606,12 @@ impl Dmabmr {
         unsafe { ::core::mem::transmute(((self.0 >> 25) & 0x1) as u8) } // [25]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if AAB != 0"]
     #[inline] pub fn test_aab(&self) -> bool {
         self.aab() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the AAB field."]
     #[inline] pub fn set_aab<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -625,12 +625,12 @@ impl Dmabmr {
         unsafe { ::core::mem::transmute(((self.0 >> 26) & 0x1) as u8) } // [26]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if MB != 0"]
     #[inline] pub fn test_mb(&self) -> bool {
         self.mb() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the MB field."]
     #[inline] pub fn set_mb<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -683,12 +683,12 @@ impl Dmatpdr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffffffff) as u32) } // [31:0]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if TPD != 0"]
     #[inline] pub fn test_tpd(&self) -> bool {
         self.tpd() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the TPD field."]
     #[inline] pub fn set_tpd<V: Into<bits::U32>>(mut self, value: V) -> Self {
         let value: bits::U32 = value.into();
         let value: u32 = value.into();
@@ -729,12 +729,12 @@ impl Dmarpdr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffffffff) as u32) } // [31:0]
     }
 
-    #[doc="RPD"]
+    #[doc="Returns true if RPD != 0"]
     #[inline] pub fn test_rpd(&self) -> bool {
         self.rpd() != 0
     }
 
-    #[doc="RPD"]
+    #[doc="Sets the RPD field."]
     #[inline] pub fn set_rpd<V: Into<bits::U32>>(mut self, value: V) -> Self {
         let value: bits::U32 = value.into();
         let value: u32 = value.into();
@@ -775,12 +775,12 @@ impl Dmardlar {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffffffff) as u32) } // [31:0]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if SRL != 0"]
     #[inline] pub fn test_srl(&self) -> bool {
         self.srl() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the SRL field."]
     #[inline] pub fn set_srl<V: Into<bits::U32>>(mut self, value: V) -> Self {
         let value: bits::U32 = value.into();
         let value: u32 = value.into();
@@ -821,12 +821,12 @@ impl Dmatdlar {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffffffff) as u32) } // [31:0]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if STL != 0"]
     #[inline] pub fn test_stl(&self) -> bool {
         self.stl() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the STL field."]
     #[inline] pub fn set_stl<V: Into<bits::U32>>(mut self, value: V) -> Self {
         let value: bits::U32 = value.into();
         let value: u32 = value.into();
@@ -867,12 +867,12 @@ impl Dmasr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if TS != 0"]
     #[inline] pub fn test_ts(&self) -> bool {
         self.ts() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the TS field."]
     #[inline] pub fn set_ts<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -886,12 +886,12 @@ impl Dmasr {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if TPSS != 0"]
     #[inline] pub fn test_tpss(&self) -> bool {
         self.tpss() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the TPSS field."]
     #[inline] pub fn set_tpss<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -905,12 +905,12 @@ impl Dmasr {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if TBUS != 0"]
     #[inline] pub fn test_tbus(&self) -> bool {
         self.tbus() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the TBUS field."]
     #[inline] pub fn set_tbus<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -924,12 +924,12 @@ impl Dmasr {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if TJTS != 0"]
     #[inline] pub fn test_tjts(&self) -> bool {
         self.tjts() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the TJTS field."]
     #[inline] pub fn set_tjts<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -943,12 +943,12 @@ impl Dmasr {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if ROS != 0"]
     #[inline] pub fn test_ros(&self) -> bool {
         self.ros() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the ROS field."]
     #[inline] pub fn set_ros<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -962,12 +962,12 @@ impl Dmasr {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if TUS != 0"]
     #[inline] pub fn test_tus(&self) -> bool {
         self.tus() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the TUS field."]
     #[inline] pub fn set_tus<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -981,12 +981,12 @@ impl Dmasr {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if RS != 0"]
     #[inline] pub fn test_rs(&self) -> bool {
         self.rs() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the RS field."]
     #[inline] pub fn set_rs<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1000,12 +1000,12 @@ impl Dmasr {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if RBUS != 0"]
     #[inline] pub fn test_rbus(&self) -> bool {
         self.rbus() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the RBUS field."]
     #[inline] pub fn set_rbus<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1019,12 +1019,12 @@ impl Dmasr {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if RPSS != 0"]
     #[inline] pub fn test_rpss(&self) -> bool {
         self.rpss() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the RPSS field."]
     #[inline] pub fn set_rpss<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1038,12 +1038,12 @@ impl Dmasr {
         unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if PWTS != 0"]
     #[inline] pub fn test_pwts(&self) -> bool {
         self.pwts() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the PWTS field."]
     #[inline] pub fn set_pwts<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1057,12 +1057,12 @@ impl Dmasr {
         unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x1) as u8) } // [10]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if ETS != 0"]
     #[inline] pub fn test_ets(&self) -> bool {
         self.ets() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the ETS field."]
     #[inline] pub fn set_ets<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1076,12 +1076,12 @@ impl Dmasr {
         unsafe { ::core::mem::transmute(((self.0 >> 13) & 0x1) as u8) } // [13]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if FBES != 0"]
     #[inline] pub fn test_fbes(&self) -> bool {
         self.fbes() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the FBES field."]
     #[inline] pub fn set_fbes<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1095,12 +1095,12 @@ impl Dmasr {
         unsafe { ::core::mem::transmute(((self.0 >> 14) & 0x1) as u8) } // [14]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if ERS != 0"]
     #[inline] pub fn test_ers(&self) -> bool {
         self.ers() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the ERS field."]
     #[inline] pub fn set_ers<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1114,12 +1114,12 @@ impl Dmasr {
         unsafe { ::core::mem::transmute(((self.0 >> 15) & 0x1) as u8) } // [15]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if AIS != 0"]
     #[inline] pub fn test_ais(&self) -> bool {
         self.ais() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the AIS field."]
     #[inline] pub fn set_ais<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1133,12 +1133,12 @@ impl Dmasr {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1) as u8) } // [16]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if NIS != 0"]
     #[inline] pub fn test_nis(&self) -> bool {
         self.nis() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the NIS field."]
     #[inline] pub fn set_nis<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1152,12 +1152,12 @@ impl Dmasr {
         unsafe { ::core::mem::transmute(((self.0 >> 17) & 0x7) as u8) } // [19:17]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if RPS != 0"]
     #[inline] pub fn test_rps(&self) -> bool {
         self.rps() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the RPS field."]
     #[inline] pub fn set_rps<V: Into<bits::U3>>(mut self, value: V) -> Self {
         let value: bits::U3 = value.into();
         let value: u32 = value.into();
@@ -1171,12 +1171,12 @@ impl Dmasr {
         unsafe { ::core::mem::transmute(((self.0 >> 20) & 0x7) as u8) } // [22:20]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if TPS != 0"]
     #[inline] pub fn test_tps(&self) -> bool {
         self.tps() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the TPS field."]
     #[inline] pub fn set_tps<V: Into<bits::U3>>(mut self, value: V) -> Self {
         let value: bits::U3 = value.into();
         let value: u32 = value.into();
@@ -1190,12 +1190,12 @@ impl Dmasr {
         unsafe { ::core::mem::transmute(((self.0 >> 23) & 0x7) as u8) } // [25:23]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if EBS != 0"]
     #[inline] pub fn test_ebs(&self) -> bool {
         self.ebs() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the EBS field."]
     #[inline] pub fn set_ebs<V: Into<bits::U3>>(mut self, value: V) -> Self {
         let value: bits::U3 = value.into();
         let value: u32 = value.into();
@@ -1209,12 +1209,12 @@ impl Dmasr {
         unsafe { ::core::mem::transmute(((self.0 >> 27) & 0x1) as u8) } // [27]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if MMCS != 0"]
     #[inline] pub fn test_mmcs(&self) -> bool {
         self.mmcs() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the MMCS field."]
     #[inline] pub fn set_mmcs<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1228,12 +1228,12 @@ impl Dmasr {
         unsafe { ::core::mem::transmute(((self.0 >> 28) & 0x1) as u8) } // [28]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if PMTS != 0"]
     #[inline] pub fn test_pmts(&self) -> bool {
         self.pmts() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the PMTS field."]
     #[inline] pub fn set_pmts<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1247,12 +1247,12 @@ impl Dmasr {
         unsafe { ::core::mem::transmute(((self.0 >> 29) & 0x1) as u8) } // [29]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if TSTS != 0"]
     #[inline] pub fn test_tsts(&self) -> bool {
         self.tsts() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the TSTS field."]
     #[inline] pub fn set_tsts<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1314,12 +1314,12 @@ impl Dmaomr {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="SR"]
+    #[doc="Returns true if SR != 0"]
     #[inline] pub fn test_sr(&self) -> bool {
         self.sr() != 0
     }
 
-    #[doc="SR"]
+    #[doc="Sets the SR field."]
     #[inline] pub fn set_sr<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1333,12 +1333,12 @@ impl Dmaomr {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="OSF"]
+    #[doc="Returns true if OSF != 0"]
     #[inline] pub fn test_osf(&self) -> bool {
         self.osf() != 0
     }
 
-    #[doc="OSF"]
+    #[doc="Sets the OSF field."]
     #[inline] pub fn set_osf<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1352,12 +1352,12 @@ impl Dmaomr {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x3) as u8) } // [4:3]
     }
 
-    #[doc="RTC"]
+    #[doc="Returns true if RTC != 0"]
     #[inline] pub fn test_rtc(&self) -> bool {
         self.rtc() != 0
     }
 
-    #[doc="RTC"]
+    #[doc="Sets the RTC field."]
     #[inline] pub fn set_rtc<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -1371,12 +1371,12 @@ impl Dmaomr {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="FUGF"]
+    #[doc="Returns true if FUGF != 0"]
     #[inline] pub fn test_fugf(&self) -> bool {
         self.fugf() != 0
     }
 
-    #[doc="FUGF"]
+    #[doc="Sets the FUGF field."]
     #[inline] pub fn set_fugf<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1390,12 +1390,12 @@ impl Dmaomr {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="FEF"]
+    #[doc="Returns true if FEF != 0"]
     #[inline] pub fn test_fef(&self) -> bool {
         self.fef() != 0
     }
 
-    #[doc="FEF"]
+    #[doc="Sets the FEF field."]
     #[inline] pub fn set_fef<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1409,12 +1409,12 @@ impl Dmaomr {
         unsafe { ::core::mem::transmute(((self.0 >> 13) & 0x1) as u8) } // [13]
     }
 
-    #[doc="ST"]
+    #[doc="Returns true if ST != 0"]
     #[inline] pub fn test_st(&self) -> bool {
         self.st() != 0
     }
 
-    #[doc="ST"]
+    #[doc="Sets the ST field."]
     #[inline] pub fn set_st<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1428,12 +1428,12 @@ impl Dmaomr {
         unsafe { ::core::mem::transmute(((self.0 >> 14) & 0x7) as u8) } // [16:14]
     }
 
-    #[doc="TTC"]
+    #[doc="Returns true if TTC != 0"]
     #[inline] pub fn test_ttc(&self) -> bool {
         self.ttc() != 0
     }
 
-    #[doc="TTC"]
+    #[doc="Sets the TTC field."]
     #[inline] pub fn set_ttc<V: Into<bits::U3>>(mut self, value: V) -> Self {
         let value: bits::U3 = value.into();
         let value: u32 = value.into();
@@ -1447,12 +1447,12 @@ impl Dmaomr {
         unsafe { ::core::mem::transmute(((self.0 >> 20) & 0x1) as u8) } // [20]
     }
 
-    #[doc="FTF"]
+    #[doc="Returns true if FTF != 0"]
     #[inline] pub fn test_ftf(&self) -> bool {
         self.ftf() != 0
     }
 
-    #[doc="FTF"]
+    #[doc="Sets the FTF field."]
     #[inline] pub fn set_ftf<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1466,12 +1466,12 @@ impl Dmaomr {
         unsafe { ::core::mem::transmute(((self.0 >> 21) & 0x1) as u8) } // [21]
     }
 
-    #[doc="TSF"]
+    #[doc="Returns true if TSF != 0"]
     #[inline] pub fn test_tsf(&self) -> bool {
         self.tsf() != 0
     }
 
-    #[doc="TSF"]
+    #[doc="Sets the TSF field."]
     #[inline] pub fn set_tsf<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1485,12 +1485,12 @@ impl Dmaomr {
         unsafe { ::core::mem::transmute(((self.0 >> 24) & 0x1) as u8) } // [24]
     }
 
-    #[doc="DFRF"]
+    #[doc="Returns true if DFRF != 0"]
     #[inline] pub fn test_dfrf(&self) -> bool {
         self.dfrf() != 0
     }
 
-    #[doc="DFRF"]
+    #[doc="Sets the DFRF field."]
     #[inline] pub fn set_dfrf<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1504,12 +1504,12 @@ impl Dmaomr {
         unsafe { ::core::mem::transmute(((self.0 >> 25) & 0x1) as u8) } // [25]
     }
 
-    #[doc="RSF"]
+    #[doc="Returns true if RSF != 0"]
     #[inline] pub fn test_rsf(&self) -> bool {
         self.rsf() != 0
     }
 
-    #[doc="RSF"]
+    #[doc="Sets the RSF field."]
     #[inline] pub fn set_rsf<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1523,12 +1523,12 @@ impl Dmaomr {
         unsafe { ::core::mem::transmute(((self.0 >> 26) & 0x1) as u8) } // [26]
     }
 
-    #[doc="DTCEFD"]
+    #[doc="Returns true if DTCEFD != 0"]
     #[inline] pub fn test_dtcefd(&self) -> bool {
         self.dtcefd() != 0
     }
 
-    #[doc="DTCEFD"]
+    #[doc="Sets the DTCEFD field."]
     #[inline] pub fn set_dtcefd<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1581,12 +1581,12 @@ impl Dmaier {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if TIE != 0"]
     #[inline] pub fn test_tie(&self) -> bool {
         self.tie() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the TIE field."]
     #[inline] pub fn set_tie<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1600,12 +1600,12 @@ impl Dmaier {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if TPSIE != 0"]
     #[inline] pub fn test_tpsie(&self) -> bool {
         self.tpsie() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the TPSIE field."]
     #[inline] pub fn set_tpsie<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1619,12 +1619,12 @@ impl Dmaier {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if TBUIE != 0"]
     #[inline] pub fn test_tbuie(&self) -> bool {
         self.tbuie() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the TBUIE field."]
     #[inline] pub fn set_tbuie<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1638,12 +1638,12 @@ impl Dmaier {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if TJTIE != 0"]
     #[inline] pub fn test_tjtie(&self) -> bool {
         self.tjtie() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the TJTIE field."]
     #[inline] pub fn set_tjtie<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1657,12 +1657,12 @@ impl Dmaier {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if ROIE != 0"]
     #[inline] pub fn test_roie(&self) -> bool {
         self.roie() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the ROIE field."]
     #[inline] pub fn set_roie<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1676,12 +1676,12 @@ impl Dmaier {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if TUIE != 0"]
     #[inline] pub fn test_tuie(&self) -> bool {
         self.tuie() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the TUIE field."]
     #[inline] pub fn set_tuie<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1695,12 +1695,12 @@ impl Dmaier {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if RIE != 0"]
     #[inline] pub fn test_rie(&self) -> bool {
         self.rie() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the RIE field."]
     #[inline] pub fn set_rie<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1714,12 +1714,12 @@ impl Dmaier {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if RBUIE != 0"]
     #[inline] pub fn test_rbuie(&self) -> bool {
         self.rbuie() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the RBUIE field."]
     #[inline] pub fn set_rbuie<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1733,12 +1733,12 @@ impl Dmaier {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if RPSIE != 0"]
     #[inline] pub fn test_rpsie(&self) -> bool {
         self.rpsie() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the RPSIE field."]
     #[inline] pub fn set_rpsie<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1752,12 +1752,12 @@ impl Dmaier {
         unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if RWTIE != 0"]
     #[inline] pub fn test_rwtie(&self) -> bool {
         self.rwtie() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the RWTIE field."]
     #[inline] pub fn set_rwtie<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1771,12 +1771,12 @@ impl Dmaier {
         unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x1) as u8) } // [10]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if ETIE != 0"]
     #[inline] pub fn test_etie(&self) -> bool {
         self.etie() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the ETIE field."]
     #[inline] pub fn set_etie<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1790,12 +1790,12 @@ impl Dmaier {
         unsafe { ::core::mem::transmute(((self.0 >> 13) & 0x1) as u8) } // [13]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if FBEIE != 0"]
     #[inline] pub fn test_fbeie(&self) -> bool {
         self.fbeie() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the FBEIE field."]
     #[inline] pub fn set_fbeie<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1809,12 +1809,12 @@ impl Dmaier {
         unsafe { ::core::mem::transmute(((self.0 >> 14) & 0x1) as u8) } // [14]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if ERIE != 0"]
     #[inline] pub fn test_erie(&self) -> bool {
         self.erie() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the ERIE field."]
     #[inline] pub fn set_erie<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1828,12 +1828,12 @@ impl Dmaier {
         unsafe { ::core::mem::transmute(((self.0 >> 15) & 0x1) as u8) } // [15]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if AISE != 0"]
     #[inline] pub fn test_aise(&self) -> bool {
         self.aise() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the AISE field."]
     #[inline] pub fn set_aise<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1847,12 +1847,12 @@ impl Dmaier {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1) as u8) } // [16]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if NISE != 0"]
     #[inline] pub fn test_nise(&self) -> bool {
         self.nise() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the NISE field."]
     #[inline] pub fn set_nise<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1908,12 +1908,12 @@ impl Dmamfbocr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffff) as u16) } // [15:0]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if MFC != 0"]
     #[inline] pub fn test_mfc(&self) -> bool {
         self.mfc() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the MFC field."]
     #[inline] pub fn set_mfc<V: Into<bits::U16>>(mut self, value: V) -> Self {
         let value: bits::U16 = value.into();
         let value: u32 = value.into();
@@ -1927,12 +1927,12 @@ impl Dmamfbocr {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1) as u8) } // [16]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if OMFC != 0"]
     #[inline] pub fn test_omfc(&self) -> bool {
         self.omfc() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the OMFC field."]
     #[inline] pub fn set_omfc<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1946,12 +1946,12 @@ impl Dmamfbocr {
         unsafe { ::core::mem::transmute(((self.0 >> 17) & 0x7ff) as u16) } // [27:17]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if MFA != 0"]
     #[inline] pub fn test_mfa(&self) -> bool {
         self.mfa() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the MFA field."]
     #[inline] pub fn set_mfa<V: Into<bits::U11>>(mut self, value: V) -> Self {
         let value: bits::U11 = value.into();
         let value: u32 = value.into();
@@ -1965,12 +1965,12 @@ impl Dmamfbocr {
         unsafe { ::core::mem::transmute(((self.0 >> 28) & 0x1) as u8) } // [28]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if OFOC != 0"]
     #[inline] pub fn test_ofoc(&self) -> bool {
         self.ofoc() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the OFOC field."]
     #[inline] pub fn set_ofoc<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2015,12 +2015,12 @@ impl Dmarswtr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
-    #[doc="RSWTC"]
+    #[doc="Returns true if RSWTC != 0"]
     #[inline] pub fn test_rswtc(&self) -> bool {
         self.rswtc() != 0
     }
 
-    #[doc="RSWTC"]
+    #[doc="Sets the RSWTC field."]
     #[inline] pub fn set_rswtc<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -2062,12 +2062,12 @@ impl Dmachtdr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffffffff) as u32) } // [31:0]
     }
 
-    #[doc="HTDAP"]
+    #[doc="Returns true if HTDAP != 0"]
     #[inline] pub fn test_htdap(&self) -> bool {
         self.htdap() != 0
     }
 
-    #[doc="HTDAP"]
+    #[doc="Sets the HTDAP field."]
     #[inline] pub fn set_htdap<V: Into<bits::U32>>(mut self, value: V) -> Self {
         let value: bits::U32 = value.into();
         let value: u32 = value.into();
@@ -2108,12 +2108,12 @@ impl Dmachrdr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffffffff) as u32) } // [31:0]
     }
 
-    #[doc="HRDAP"]
+    #[doc="Returns true if HRDAP != 0"]
     #[inline] pub fn test_hrdap(&self) -> bool {
         self.hrdap() != 0
     }
 
-    #[doc="HRDAP"]
+    #[doc="Sets the HRDAP field."]
     #[inline] pub fn set_hrdap<V: Into<bits::U32>>(mut self, value: V) -> Self {
         let value: bits::U32 = value.into();
         let value: u32 = value.into();
@@ -2154,12 +2154,12 @@ impl Dmachtbar {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffffffff) as u32) } // [31:0]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if HTBAP != 0"]
     #[inline] pub fn test_htbap(&self) -> bool {
         self.htbap() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the HTBAP field."]
     #[inline] pub fn set_htbap<V: Into<bits::U32>>(mut self, value: V) -> Self {
         let value: bits::U32 = value.into();
         let value: u32 = value.into();
@@ -2200,12 +2200,12 @@ impl Dmachrbar {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffffffff) as u32) } // [31:0]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if HRBAP != 0"]
     #[inline] pub fn test_hrbap(&self) -> bool {
         self.hrbap() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the HRBAP field."]
     #[inline] pub fn set_hrbap<V: Into<bits::U32>>(mut self, value: V) -> Self {
         let value: bits::U32 = value.into();
         let value: u32 = value.into();

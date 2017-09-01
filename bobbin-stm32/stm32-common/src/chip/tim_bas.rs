@@ -267,12 +267,12 @@ impl Cr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Counter enable"]
+    #[doc="Returns true if CEN != 0"]
     #[inline] pub fn test_cen(&self) -> bool {
         self.cen() != 0
     }
 
-    #[doc="Counter enable"]
+    #[doc="Sets the CEN field."]
     #[inline] pub fn set_cen<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -286,12 +286,12 @@ impl Cr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="Update disable"]
+    #[doc="Returns true if UDIS != 0"]
     #[inline] pub fn test_udis(&self) -> bool {
         self.udis() != 0
     }
 
-    #[doc="Update disable"]
+    #[doc="Sets the UDIS field."]
     #[inline] pub fn set_udis<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -305,12 +305,12 @@ impl Cr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="Update request source"]
+    #[doc="Returns true if URS != 0"]
     #[inline] pub fn test_urs(&self) -> bool {
         self.urs() != 0
     }
 
-    #[doc="Update request source"]
+    #[doc="Sets the URS field."]
     #[inline] pub fn set_urs<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -324,12 +324,12 @@ impl Cr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="One-pulse mode"]
+    #[doc="Returns true if OPM != 0"]
     #[inline] pub fn test_opm(&self) -> bool {
         self.opm() != 0
     }
 
-    #[doc="One-pulse mode"]
+    #[doc="Sets the OPM field."]
     #[inline] pub fn set_opm<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -343,12 +343,12 @@ impl Cr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="Auto-reload preload enable"]
+    #[doc="Returns true if ARPE != 0"]
     #[inline] pub fn test_arpe(&self) -> bool {
         self.arpe() != 0
     }
 
-    #[doc="Auto-reload preload enable"]
+    #[doc="Sets the ARPE field."]
     #[inline] pub fn set_arpe<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -362,12 +362,12 @@ impl Cr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 11) & 0x1) as u8) } // [11]
     }
 
-    #[doc="UIF status bit remapping"]
+    #[doc="Returns true if UIFREMAP != 0"]
     #[inline] pub fn test_uifremap(&self) -> bool {
         self.uifremap() != 0
     }
 
-    #[doc="UIF status bit remapping"]
+    #[doc="Sets the UIFREMAP field."]
     #[inline] pub fn set_uifremap<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -414,12 +414,12 @@ impl Cr2 {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x7) as u8) } // [6:4]
     }
 
-    #[doc="Master mode selection"]
+    #[doc="Returns true if MMS != 0"]
     #[inline] pub fn test_mms(&self) -> bool {
         self.mms() != 0
     }
 
-    #[doc="Master mode selection"]
+    #[doc="Sets the MMS field."]
     #[inline] pub fn set_mms<V: Into<bits::U3>>(mut self, value: V) -> Self {
         let value: bits::U3 = value.into();
         let value: u32 = value.into();
@@ -461,12 +461,12 @@ impl Dier {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
     }
 
-    #[doc="Update DMA request enable"]
+    #[doc="Returns true if UDE != 0"]
     #[inline] pub fn test_ude(&self) -> bool {
         self.ude() != 0
     }
 
-    #[doc="Update DMA request enable"]
+    #[doc="Sets the UDE field."]
     #[inline] pub fn set_ude<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -480,12 +480,12 @@ impl Dier {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Update interrupt enable"]
+    #[doc="Returns true if UIE != 0"]
     #[inline] pub fn test_uie(&self) -> bool {
         self.uie() != 0
     }
 
-    #[doc="Update interrupt enable"]
+    #[doc="Sets the UIE field."]
     #[inline] pub fn set_uie<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -528,12 +528,12 @@ impl Sr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Update interrupt flag"]
+    #[doc="Returns true if UIF != 0"]
     #[inline] pub fn test_uif(&self) -> bool {
         self.uif() != 0
     }
 
-    #[doc="Update interrupt flag"]
+    #[doc="Sets the UIF field."]
     #[inline] pub fn set_uif<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -575,12 +575,12 @@ impl Egr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Update generation"]
+    #[doc="Returns true if UG != 0"]
     #[inline] pub fn test_ug(&self) -> bool {
         self.ug() != 0
     }
 
-    #[doc="Update generation"]
+    #[doc="Sets the UG field."]
     #[inline] pub fn set_ug<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -622,12 +622,12 @@ impl Cnt {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffff) as u16) } // [15:0]
     }
 
-    #[doc="Low counter value"]
+    #[doc="Returns true if CNT != 0"]
     #[inline] pub fn test_cnt(&self) -> bool {
         self.cnt() != 0
     }
 
-    #[doc="Low counter value"]
+    #[doc="Sets the CNT field."]
     #[inline] pub fn set_cnt<V: Into<bits::U16>>(mut self, value: V) -> Self {
         let value: bits::U16 = value.into();
         let value: u32 = value.into();
@@ -641,12 +641,12 @@ impl Cnt {
         unsafe { ::core::mem::transmute(((self.0 >> 31) & 0x1) as u8) } // [31]
     }
 
-    #[doc="UIF Copy"]
+    #[doc="Returns true if UIFCPY != 0"]
     #[inline] pub fn test_uifcpy(&self) -> bool {
         self.uifcpy() != 0
     }
 
-    #[doc="UIF Copy"]
+    #[doc="Sets the UIFCPY field."]
     #[inline] pub fn set_uifcpy<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -689,12 +689,12 @@ impl Psc {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffff) as u16) } // [15:0]
     }
 
-    #[doc="Prescaler value"]
+    #[doc="Returns true if PSC != 0"]
     #[inline] pub fn test_psc(&self) -> bool {
         self.psc() != 0
     }
 
-    #[doc="Prescaler value"]
+    #[doc="Sets the PSC field."]
     #[inline] pub fn set_psc<V: Into<bits::U16>>(mut self, value: V) -> Self {
         let value: bits::U16 = value.into();
         let value: u32 = value.into();
@@ -736,12 +736,12 @@ impl Arr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffff) as u16) } // [15:0]
     }
 
-    #[doc="Low Auto-reload value"]
+    #[doc="Returns true if ARR != 0"]
     #[inline] pub fn test_arr(&self) -> bool {
         self.arr() != 0
     }
 
-    #[doc="Low Auto-reload value"]
+    #[doc="Sets the ARR field."]
     #[inline] pub fn set_arr<V: Into<bits::U16>>(mut self, value: V) -> Self {
         let value: bits::U16 = value.into();
         let value: u32 = value.into();

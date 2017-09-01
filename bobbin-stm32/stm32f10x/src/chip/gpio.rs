@@ -219,12 +219,12 @@ impl Crl {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x3) as u8) } // [1:0]
     }
 
-    #[doc="Port n.m mode bits"]
+    #[doc="Returns true if MODE != 0"]
     #[inline] pub fn test_mode<I: Into<bits::R8>>(&self, index: I) -> bool{
         self.mode(index) != 0
     }
 
-    #[doc="Port n.m mode bits"]
+    #[doc="Sets the MODE field."]
     #[inline] pub fn set_mode<I: Into<bits::R8>, V: Into<bits::U2>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U2 = value.into();
@@ -242,12 +242,12 @@ impl Crl {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x3) as u8) } // [3:2]
     }
 
-    #[doc="Port n.m configuration bits"]
+    #[doc="Returns true if CNF != 0"]
     #[inline] pub fn test_cnf<I: Into<bits::R8>>(&self, index: I) -> bool{
         self.cnf(index) != 0
     }
 
-    #[doc="Port n.m configuration bits"]
+    #[doc="Sets the CNF field."]
     #[inline] pub fn set_cnf<I: Into<bits::R8>, V: Into<bits::U2>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U2 = value.into();
@@ -308,12 +308,12 @@ impl Crh {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x3) as u8) } // [1:0]
     }
 
-    #[doc="Port n.m mode bits"]
+    #[doc="Returns true if MODE != 0"]
     #[inline] pub fn test_mode<I: Into<bits::R8>>(&self, index: I) -> bool{
         self.mode(index) != 0
     }
 
-    #[doc="Port n.m mode bits"]
+    #[doc="Sets the MODE field."]
     #[inline] pub fn set_mode<I: Into<bits::R8>, V: Into<bits::U2>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U2 = value.into();
@@ -331,12 +331,12 @@ impl Crh {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x3) as u8) } // [3:2]
     }
 
-    #[doc="Port n.m configuration bits"]
+    #[doc="Returns true if CNF != 0"]
     #[inline] pub fn test_cnf<I: Into<bits::R8>>(&self, index: I) -> bool{
         self.cnf(index) != 0
     }
 
-    #[doc="Port n.m configuration bits"]
+    #[doc="Sets the CNF field."]
     #[inline] pub fn set_cnf<I: Into<bits::R8>, V: Into<bits::U2>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U2 = value.into();
@@ -397,12 +397,12 @@ impl Idr {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Port input data"]
+    #[doc="Returns true if IDR != 0"]
     #[inline] pub fn test_idr<I: Into<bits::R16>>(&self, index: I) -> bool{
         self.idr(index) != 0
     }
 
-    #[doc="Port input data"]
+    #[doc="Sets the IDR field."]
     #[inline] pub fn set_idr<I: Into<bits::R16>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -463,12 +463,12 @@ impl Odr {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Port output data"]
+    #[doc="Returns true if ODR != 0"]
     #[inline] pub fn test_odr<I: Into<bits::R16>>(&self, index: I) -> bool{
         self.odr(index) != 0
     }
 
-    #[doc="Port output data"]
+    #[doc="Sets the ODR field."]
     #[inline] pub fn set_odr<I: Into<bits::R16>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -529,12 +529,12 @@ impl Bsrr {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Set bit n"]
+    #[doc="Returns true if BS != 0"]
     #[inline] pub fn test_bs<I: Into<bits::R16>>(&self, index: I) -> bool{
         self.bs(index) != 0
     }
 
-    #[doc="Set bit n"]
+    #[doc="Sets the BS field."]
     #[inline] pub fn set_bs<I: Into<bits::R16>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -552,12 +552,12 @@ impl Bsrr {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [16]
     }
 
-    #[doc="Reset bit n"]
+    #[doc="Returns true if BR != 0"]
     #[inline] pub fn test_br<I: Into<bits::R16>>(&self, index: I) -> bool{
         self.br(index) != 0
     }
 
-    #[doc="Reset bit n"]
+    #[doc="Sets the BR field."]
     #[inline] pub fn set_br<I: Into<bits::R16>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -634,12 +634,12 @@ impl Brr {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Reset bit n"]
+    #[doc="Returns true if BR != 0"]
     #[inline] pub fn test_br<I: Into<bits::R16>>(&self, index: I) -> bool{
         self.br(index) != 0
     }
 
-    #[doc="Reset bit n"]
+    #[doc="Sets the BR field."]
     #[inline] pub fn set_br<I: Into<bits::R16>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -700,12 +700,12 @@ impl Lckr {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Port Lock bit n"]
+    #[doc="Returns true if LCK0 != 0"]
     #[inline] pub fn test_lck0<I: Into<bits::R16>>(&self, index: I) -> bool{
         self.lck0(index) != 0
     }
 
-    #[doc="Port Lock bit n"]
+    #[doc="Sets the LCK0 field."]
     #[inline] pub fn set_lck0<I: Into<bits::R16>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -721,12 +721,12 @@ impl Lckr {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1) as u8) } // [16]
     }
 
-    #[doc="Lock key"]
+    #[doc="Returns true if LCKK != 0"]
     #[inline] pub fn test_lckk(&self) -> bool {
         self.lckk() != 0
     }
 
-    #[doc="Lock key"]
+    #[doc="Sets the LCKK field."]
     #[inline] pub fn set_lckk<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();

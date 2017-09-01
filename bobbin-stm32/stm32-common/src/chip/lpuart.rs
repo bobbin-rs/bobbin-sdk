@@ -253,12 +253,12 @@ impl Cr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 28) & 0x1) as u8) } // [28]
     }
 
-    #[doc="Word length"]
+    #[doc="Returns true if M1 != 0"]
     #[inline] pub fn test_m1(&self) -> bool {
         self.m1() != 0
     }
 
-    #[doc="Word length"]
+    #[doc="Sets the M1 field."]
     #[inline] pub fn set_m1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -272,12 +272,12 @@ impl Cr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 25) & 0x1) as u8) } // [25]
     }
 
-    #[doc="Driver Enable assertion time"]
+    #[doc="Returns true if DEAT4 != 0"]
     #[inline] pub fn test_deat4(&self) -> bool {
         self.deat4() != 0
     }
 
-    #[doc="Driver Enable assertion time"]
+    #[doc="Sets the DEAT4 field."]
     #[inline] pub fn set_deat4<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -291,12 +291,12 @@ impl Cr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 24) & 0x1) as u8) } // [24]
     }
 
-    #[doc="DEAT3"]
+    #[doc="Returns true if DEAT3 != 0"]
     #[inline] pub fn test_deat3(&self) -> bool {
         self.deat3() != 0
     }
 
-    #[doc="DEAT3"]
+    #[doc="Sets the DEAT3 field."]
     #[inline] pub fn set_deat3<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -310,12 +310,12 @@ impl Cr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 23) & 0x1) as u8) } // [23]
     }
 
-    #[doc="DEAT2"]
+    #[doc="Returns true if DEAT2 != 0"]
     #[inline] pub fn test_deat2(&self) -> bool {
         self.deat2() != 0
     }
 
-    #[doc="DEAT2"]
+    #[doc="Sets the DEAT2 field."]
     #[inline] pub fn set_deat2<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -329,12 +329,12 @@ impl Cr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 22) & 0x1) as u8) } // [22]
     }
 
-    #[doc="DEAT1"]
+    #[doc="Returns true if DEAT1 != 0"]
     #[inline] pub fn test_deat1(&self) -> bool {
         self.deat1() != 0
     }
 
-    #[doc="DEAT1"]
+    #[doc="Sets the DEAT1 field."]
     #[inline] pub fn set_deat1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -348,12 +348,12 @@ impl Cr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 21) & 0x1) as u8) } // [21]
     }
 
-    #[doc="DEAT0"]
+    #[doc="Returns true if DEAT0 != 0"]
     #[inline] pub fn test_deat0(&self) -> bool {
         self.deat0() != 0
     }
 
-    #[doc="DEAT0"]
+    #[doc="Sets the DEAT0 field."]
     #[inline] pub fn set_deat0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -367,12 +367,12 @@ impl Cr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 20) & 0x1) as u8) } // [20]
     }
 
-    #[doc="Driver Enable de-assertion time"]
+    #[doc="Returns true if DEDT4 != 0"]
     #[inline] pub fn test_dedt4(&self) -> bool {
         self.dedt4() != 0
     }
 
-    #[doc="Driver Enable de-assertion time"]
+    #[doc="Sets the DEDT4 field."]
     #[inline] pub fn set_dedt4<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -386,12 +386,12 @@ impl Cr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 19) & 0x1) as u8) } // [19]
     }
 
-    #[doc="DEDT3"]
+    #[doc="Returns true if DEDT3 != 0"]
     #[inline] pub fn test_dedt3(&self) -> bool {
         self.dedt3() != 0
     }
 
-    #[doc="DEDT3"]
+    #[doc="Sets the DEDT3 field."]
     #[inline] pub fn set_dedt3<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -405,12 +405,12 @@ impl Cr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 18) & 0x1) as u8) } // [18]
     }
 
-    #[doc="DEDT2"]
+    #[doc="Returns true if DEDT2 != 0"]
     #[inline] pub fn test_dedt2(&self) -> bool {
         self.dedt2() != 0
     }
 
-    #[doc="DEDT2"]
+    #[doc="Sets the DEDT2 field."]
     #[inline] pub fn set_dedt2<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -424,12 +424,12 @@ impl Cr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 17) & 0x1) as u8) } // [17]
     }
 
-    #[doc="DEDT1"]
+    #[doc="Returns true if DEDT1 != 0"]
     #[inline] pub fn test_dedt1(&self) -> bool {
         self.dedt1() != 0
     }
 
-    #[doc="DEDT1"]
+    #[doc="Sets the DEDT1 field."]
     #[inline] pub fn set_dedt1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -443,12 +443,12 @@ impl Cr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1) as u8) } // [16]
     }
 
-    #[doc="DEDT0"]
+    #[doc="Returns true if DEDT0 != 0"]
     #[inline] pub fn test_dedt0(&self) -> bool {
         self.dedt0() != 0
     }
 
-    #[doc="DEDT0"]
+    #[doc="Sets the DEDT0 field."]
     #[inline] pub fn set_dedt0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -462,12 +462,12 @@ impl Cr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 14) & 0x1) as u8) } // [14]
     }
 
-    #[doc="Character match interrupt enable"]
+    #[doc="Returns true if CMIE != 0"]
     #[inline] pub fn test_cmie(&self) -> bool {
         self.cmie() != 0
     }
 
-    #[doc="Character match interrupt enable"]
+    #[doc="Sets the CMIE field."]
     #[inline] pub fn set_cmie<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -481,12 +481,12 @@ impl Cr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 13) & 0x1) as u8) } // [13]
     }
 
-    #[doc="Mute mode enable"]
+    #[doc="Returns true if MME != 0"]
     #[inline] pub fn test_mme(&self) -> bool {
         self.mme() != 0
     }
 
-    #[doc="Mute mode enable"]
+    #[doc="Sets the MME field."]
     #[inline] pub fn set_mme<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -500,12 +500,12 @@ impl Cr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 12) & 0x1) as u8) } // [12]
     }
 
-    #[doc="Word length"]
+    #[doc="Returns true if M0 != 0"]
     #[inline] pub fn test_m0(&self) -> bool {
         self.m0() != 0
     }
 
-    #[doc="Word length"]
+    #[doc="Sets the M0 field."]
     #[inline] pub fn set_m0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -519,12 +519,12 @@ impl Cr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 11) & 0x1) as u8) } // [11]
     }
 
-    #[doc="Receiver wakeup method"]
+    #[doc="Returns true if WAKE != 0"]
     #[inline] pub fn test_wake(&self) -> bool {
         self.wake() != 0
     }
 
-    #[doc="Receiver wakeup method"]
+    #[doc="Sets the WAKE field."]
     #[inline] pub fn set_wake<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -538,12 +538,12 @@ impl Cr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x1) as u8) } // [10]
     }
 
-    #[doc="Parity control enable"]
+    #[doc="Returns true if PCE != 0"]
     #[inline] pub fn test_pce(&self) -> bool {
         self.pce() != 0
     }
 
-    #[doc="Parity control enable"]
+    #[doc="Sets the PCE field."]
     #[inline] pub fn set_pce<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -557,12 +557,12 @@ impl Cr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
     }
 
-    #[doc="Parity selection"]
+    #[doc="Returns true if PS != 0"]
     #[inline] pub fn test_ps(&self) -> bool {
         self.ps() != 0
     }
 
-    #[doc="Parity selection"]
+    #[doc="Sets the PS field."]
     #[inline] pub fn set_ps<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -576,12 +576,12 @@ impl Cr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
     }
 
-    #[doc="PE interrupt enable"]
+    #[doc="Returns true if PEIE != 0"]
     #[inline] pub fn test_peie(&self) -> bool {
         self.peie() != 0
     }
 
-    #[doc="PE interrupt enable"]
+    #[doc="Sets the PEIE field."]
     #[inline] pub fn set_peie<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -595,12 +595,12 @@ impl Cr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="interrupt enable"]
+    #[doc="Returns true if TXEIE != 0"]
     #[inline] pub fn test_txeie(&self) -> bool {
         self.txeie() != 0
     }
 
-    #[doc="interrupt enable"]
+    #[doc="Sets the TXEIE field."]
     #[inline] pub fn set_txeie<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -614,12 +614,12 @@ impl Cr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="Transmission complete interrupt enable"]
+    #[doc="Returns true if TCIE != 0"]
     #[inline] pub fn test_tcie(&self) -> bool {
         self.tcie() != 0
     }
 
-    #[doc="Transmission complete interrupt enable"]
+    #[doc="Sets the TCIE field."]
     #[inline] pub fn set_tcie<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -633,12 +633,12 @@ impl Cr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="RXNE interrupt enable"]
+    #[doc="Returns true if RXNEIE != 0"]
     #[inline] pub fn test_rxneie(&self) -> bool {
         self.rxneie() != 0
     }
 
-    #[doc="RXNE interrupt enable"]
+    #[doc="Sets the RXNEIE field."]
     #[inline] pub fn set_rxneie<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -652,12 +652,12 @@ impl Cr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="IDLE interrupt enable"]
+    #[doc="Returns true if IDLEIE != 0"]
     #[inline] pub fn test_idleie(&self) -> bool {
         self.idleie() != 0
     }
 
-    #[doc="IDLE interrupt enable"]
+    #[doc="Sets the IDLEIE field."]
     #[inline] pub fn set_idleie<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -671,12 +671,12 @@ impl Cr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="Transmitter enable"]
+    #[doc="Returns true if TE != 0"]
     #[inline] pub fn test_te(&self) -> bool {
         self.te() != 0
     }
 
-    #[doc="Transmitter enable"]
+    #[doc="Sets the TE field."]
     #[inline] pub fn set_te<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -690,12 +690,12 @@ impl Cr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="Receiver enable"]
+    #[doc="Returns true if RE != 0"]
     #[inline] pub fn test_re(&self) -> bool {
         self.re() != 0
     }
 
-    #[doc="Receiver enable"]
+    #[doc="Sets the RE field."]
     #[inline] pub fn set_re<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -709,12 +709,12 @@ impl Cr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="USART enable in Stop mode"]
+    #[doc="Returns true if UESM != 0"]
     #[inline] pub fn test_uesm(&self) -> bool {
         self.uesm() != 0
     }
 
-    #[doc="USART enable in Stop mode"]
+    #[doc="Sets the UESM field."]
     #[inline] pub fn set_uesm<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -728,12 +728,12 @@ impl Cr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="USART enable"]
+    #[doc="Returns true if UE != 0"]
     #[inline] pub fn test_ue(&self) -> bool {
         self.ue() != 0
     }
 
-    #[doc="USART enable"]
+    #[doc="Sets the UE field."]
     #[inline] pub fn set_ue<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -800,12 +800,12 @@ impl Cr2 {
         unsafe { ::core::mem::transmute(((self.0 >> 28) & 0xf) as u8) } // [31:28]
     }
 
-    #[doc="Address of the USART node"]
+    #[doc="Returns true if ADD4_7 != 0"]
     #[inline] pub fn test_add4_7(&self) -> bool {
         self.add4_7() != 0
     }
 
-    #[doc="Address of the USART node"]
+    #[doc="Sets the ADD4_7 field."]
     #[inline] pub fn set_add4_7<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -819,12 +819,12 @@ impl Cr2 {
         unsafe { ::core::mem::transmute(((self.0 >> 24) & 0xf) as u8) } // [27:24]
     }
 
-    #[doc="Address of the USART node"]
+    #[doc="Returns true if ADD0_3 != 0"]
     #[inline] pub fn test_add0_3(&self) -> bool {
         self.add0_3() != 0
     }
 
-    #[doc="Address of the USART node"]
+    #[doc="Sets the ADD0_3 field."]
     #[inline] pub fn set_add0_3<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -838,12 +838,12 @@ impl Cr2 {
         unsafe { ::core::mem::transmute(((self.0 >> 19) & 0x1) as u8) } // [19]
     }
 
-    #[doc="Most significant bit first"]
+    #[doc="Returns true if MSBFIRST != 0"]
     #[inline] pub fn test_msbfirst(&self) -> bool {
         self.msbfirst() != 0
     }
 
-    #[doc="Most significant bit first"]
+    #[doc="Sets the MSBFIRST field."]
     #[inline] pub fn set_msbfirst<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -857,12 +857,12 @@ impl Cr2 {
         unsafe { ::core::mem::transmute(((self.0 >> 18) & 0x1) as u8) } // [18]
     }
 
-    #[doc="Binary data inversion"]
+    #[doc="Returns true if TAINV != 0"]
     #[inline] pub fn test_tainv(&self) -> bool {
         self.tainv() != 0
     }
 
-    #[doc="Binary data inversion"]
+    #[doc="Sets the TAINV field."]
     #[inline] pub fn set_tainv<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -876,12 +876,12 @@ impl Cr2 {
         unsafe { ::core::mem::transmute(((self.0 >> 17) & 0x1) as u8) } // [17]
     }
 
-    #[doc="TX pin active level inversion"]
+    #[doc="Returns true if TXINV != 0"]
     #[inline] pub fn test_txinv(&self) -> bool {
         self.txinv() != 0
     }
 
-    #[doc="TX pin active level inversion"]
+    #[doc="Sets the TXINV field."]
     #[inline] pub fn set_txinv<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -895,12 +895,12 @@ impl Cr2 {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1) as u8) } // [16]
     }
 
-    #[doc="RX pin active level inversion"]
+    #[doc="Returns true if RXINV != 0"]
     #[inline] pub fn test_rxinv(&self) -> bool {
         self.rxinv() != 0
     }
 
-    #[doc="RX pin active level inversion"]
+    #[doc="Sets the RXINV field."]
     #[inline] pub fn set_rxinv<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -914,12 +914,12 @@ impl Cr2 {
         unsafe { ::core::mem::transmute(((self.0 >> 15) & 0x1) as u8) } // [15]
     }
 
-    #[doc="Swap TX/RX pins"]
+    #[doc="Returns true if SWAP != 0"]
     #[inline] pub fn test_swap(&self) -> bool {
         self.swap() != 0
     }
 
-    #[doc="Swap TX/RX pins"]
+    #[doc="Sets the SWAP field."]
     #[inline] pub fn set_swap<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -933,12 +933,12 @@ impl Cr2 {
         unsafe { ::core::mem::transmute(((self.0 >> 12) & 0x3) as u8) } // [13:12]
     }
 
-    #[doc="STOP bits"]
+    #[doc="Returns true if STOP != 0"]
     #[inline] pub fn test_stop(&self) -> bool {
         self.stop() != 0
     }
 
-    #[doc="STOP bits"]
+    #[doc="Sets the STOP field."]
     #[inline] pub fn set_stop<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -952,12 +952,12 @@ impl Cr2 {
         unsafe { ::core::mem::transmute(((self.0 >> 11) & 0x1) as u8) } // [11]
     }
 
-    #[doc="Clock enable"]
+    #[doc="Returns true if CLKEN != 0"]
     #[inline] pub fn test_clken(&self) -> bool {
         self.clken() != 0
     }
 
-    #[doc="Clock enable"]
+    #[doc="Sets the CLKEN field."]
     #[inline] pub fn set_clken<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -971,12 +971,12 @@ impl Cr2 {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="7-bit Address Detection/4-bit Address Detection"]
+    #[doc="Returns true if ADDM7 != 0"]
     #[inline] pub fn test_addm7(&self) -> bool {
         self.addm7() != 0
     }
 
-    #[doc="7-bit Address Detection/4-bit Address Detection"]
+    #[doc="Sets the ADDM7 field."]
     #[inline] pub fn set_addm7<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1027,12 +1027,12 @@ impl Cr3 {
         unsafe { ::core::mem::transmute(((self.0 >> 22) & 0x1) as u8) } // [22]
     }
 
-    #[doc="Wakeup from Stop mode interrupt enable"]
+    #[doc="Returns true if WUFIE != 0"]
     #[inline] pub fn test_wufie(&self) -> bool {
         self.wufie() != 0
     }
 
-    #[doc="Wakeup from Stop mode interrupt enable"]
+    #[doc="Sets the WUFIE field."]
     #[inline] pub fn set_wufie<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1046,12 +1046,12 @@ impl Cr3 {
         unsafe { ::core::mem::transmute(((self.0 >> 20) & 0x3) as u8) } // [21:20]
     }
 
-    #[doc="Wakeup from Stop mode interrupt flag selection"]
+    #[doc="Returns true if WUS != 0"]
     #[inline] pub fn test_wus(&self) -> bool {
         self.wus() != 0
     }
 
-    #[doc="Wakeup from Stop mode interrupt flag selection"]
+    #[doc="Sets the WUS field."]
     #[inline] pub fn set_wus<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -1065,12 +1065,12 @@ impl Cr3 {
         unsafe { ::core::mem::transmute(((self.0 >> 15) & 0x1) as u8) } // [15]
     }
 
-    #[doc="Driver enable polarity selection"]
+    #[doc="Returns true if DEP != 0"]
     #[inline] pub fn test_dep(&self) -> bool {
         self.dep() != 0
     }
 
-    #[doc="Driver enable polarity selection"]
+    #[doc="Sets the DEP field."]
     #[inline] pub fn set_dep<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1084,12 +1084,12 @@ impl Cr3 {
         unsafe { ::core::mem::transmute(((self.0 >> 14) & 0x1) as u8) } // [14]
     }
 
-    #[doc="Driver enable mode"]
+    #[doc="Returns true if DEM != 0"]
     #[inline] pub fn test_dem(&self) -> bool {
         self.dem() != 0
     }
 
-    #[doc="Driver enable mode"]
+    #[doc="Sets the DEM field."]
     #[inline] pub fn set_dem<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1103,12 +1103,12 @@ impl Cr3 {
         unsafe { ::core::mem::transmute(((self.0 >> 13) & 0x1) as u8) } // [13]
     }
 
-    #[doc="DMA Disable on Reception Error"]
+    #[doc="Returns true if DDRE != 0"]
     #[inline] pub fn test_ddre(&self) -> bool {
         self.ddre() != 0
     }
 
-    #[doc="DMA Disable on Reception Error"]
+    #[doc="Sets the DDRE field."]
     #[inline] pub fn set_ddre<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1122,12 +1122,12 @@ impl Cr3 {
         unsafe { ::core::mem::transmute(((self.0 >> 12) & 0x1) as u8) } // [12]
     }
 
-    #[doc="Overrun Disable"]
+    #[doc="Returns true if OVRDIS != 0"]
     #[inline] pub fn test_ovrdis(&self) -> bool {
         self.ovrdis() != 0
     }
 
-    #[doc="Overrun Disable"]
+    #[doc="Sets the OVRDIS field."]
     #[inline] pub fn set_ovrdis<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1141,12 +1141,12 @@ impl Cr3 {
         unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x1) as u8) } // [10]
     }
 
-    #[doc="CTS interrupt enable"]
+    #[doc="Returns true if CTSIE != 0"]
     #[inline] pub fn test_ctsie(&self) -> bool {
         self.ctsie() != 0
     }
 
-    #[doc="CTS interrupt enable"]
+    #[doc="Sets the CTSIE field."]
     #[inline] pub fn set_ctsie<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1160,12 +1160,12 @@ impl Cr3 {
         unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
     }
 
-    #[doc="CTS enable"]
+    #[doc="Returns true if CTSE != 0"]
     #[inline] pub fn test_ctse(&self) -> bool {
         self.ctse() != 0
     }
 
-    #[doc="CTS enable"]
+    #[doc="Sets the CTSE field."]
     #[inline] pub fn set_ctse<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1179,12 +1179,12 @@ impl Cr3 {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
     }
 
-    #[doc="RTS enable"]
+    #[doc="Returns true if RTSE != 0"]
     #[inline] pub fn test_rtse(&self) -> bool {
         self.rtse() != 0
     }
 
-    #[doc="RTS enable"]
+    #[doc="Sets the RTSE field."]
     #[inline] pub fn set_rtse<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1198,12 +1198,12 @@ impl Cr3 {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="DMA enable transmitter"]
+    #[doc="Returns true if DMAT != 0"]
     #[inline] pub fn test_dmat(&self) -> bool {
         self.dmat() != 0
     }
 
-    #[doc="DMA enable transmitter"]
+    #[doc="Sets the DMAT field."]
     #[inline] pub fn set_dmat<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1217,12 +1217,12 @@ impl Cr3 {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="DMA enable receiver"]
+    #[doc="Returns true if DMAR != 0"]
     #[inline] pub fn test_dmar(&self) -> bool {
         self.dmar() != 0
     }
 
-    #[doc="DMA enable receiver"]
+    #[doc="Sets the DMAR field."]
     #[inline] pub fn set_dmar<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1236,12 +1236,12 @@ impl Cr3 {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="Half-duplex selection"]
+    #[doc="Returns true if HDSEL != 0"]
     #[inline] pub fn test_hdsel(&self) -> bool {
         self.hdsel() != 0
     }
 
-    #[doc="Half-duplex selection"]
+    #[doc="Sets the HDSEL field."]
     #[inline] pub fn set_hdsel<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1255,12 +1255,12 @@ impl Cr3 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Error interrupt enable"]
+    #[doc="Returns true if EIE != 0"]
     #[inline] pub fn test_eie(&self) -> bool {
         self.eie() != 0
     }
 
-    #[doc="Error interrupt enable"]
+    #[doc="Sets the EIE field."]
     #[inline] pub fn set_eie<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1314,12 +1314,12 @@ impl Brr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xfffff) as u32) } // [19:0]
     }
 
-    #[doc="BRR"]
+    #[doc="Returns true if BRR != 0"]
     #[inline] pub fn test_brr(&self) -> bool {
         self.brr() != 0
     }
 
-    #[doc="BRR"]
+    #[doc="Sets the BRR field."]
     #[inline] pub fn set_brr<V: Into<bits::U20>>(mut self, value: V) -> Self {
         let value: bits::U20 = value.into();
         let value: u32 = value.into();
@@ -1361,12 +1361,12 @@ impl Rqr {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="Receive data flush request"]
+    #[doc="Returns true if RXFRQ != 0"]
     #[inline] pub fn test_rxfrq(&self) -> bool {
         self.rxfrq() != 0
     }
 
-    #[doc="Receive data flush request"]
+    #[doc="Sets the RXFRQ field."]
     #[inline] pub fn set_rxfrq<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1380,12 +1380,12 @@ impl Rqr {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="Mute mode request"]
+    #[doc="Returns true if MMRQ != 0"]
     #[inline] pub fn test_mmrq(&self) -> bool {
         self.mmrq() != 0
     }
 
-    #[doc="Mute mode request"]
+    #[doc="Sets the MMRQ field."]
     #[inline] pub fn set_mmrq<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1399,12 +1399,12 @@ impl Rqr {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="Send break request"]
+    #[doc="Returns true if SBKRQ != 0"]
     #[inline] pub fn test_sbkrq(&self) -> bool {
         self.sbkrq() != 0
     }
 
-    #[doc="Send break request"]
+    #[doc="Sets the SBKRQ field."]
     #[inline] pub fn set_sbkrq<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1448,12 +1448,12 @@ impl Isr {
         unsafe { ::core::mem::transmute(((self.0 >> 22) & 0x1) as u8) } // [22]
     }
 
-    #[doc="REACK"]
+    #[doc="Returns true if REACK != 0"]
     #[inline] pub fn test_reack(&self) -> bool {
         self.reack() != 0
     }
 
-    #[doc="REACK"]
+    #[doc="Sets the REACK field."]
     #[inline] pub fn set_reack<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1467,12 +1467,12 @@ impl Isr {
         unsafe { ::core::mem::transmute(((self.0 >> 21) & 0x1) as u8) } // [21]
     }
 
-    #[doc="TEACK"]
+    #[doc="Returns true if TEACK != 0"]
     #[inline] pub fn test_teack(&self) -> bool {
         self.teack() != 0
     }
 
-    #[doc="TEACK"]
+    #[doc="Sets the TEACK field."]
     #[inline] pub fn set_teack<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1486,12 +1486,12 @@ impl Isr {
         unsafe { ::core::mem::transmute(((self.0 >> 20) & 0x1) as u8) } // [20]
     }
 
-    #[doc="WUF"]
+    #[doc="Returns true if WUF != 0"]
     #[inline] pub fn test_wuf(&self) -> bool {
         self.wuf() != 0
     }
 
-    #[doc="WUF"]
+    #[doc="Sets the WUF field."]
     #[inline] pub fn set_wuf<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1505,12 +1505,12 @@ impl Isr {
         unsafe { ::core::mem::transmute(((self.0 >> 19) & 0x1) as u8) } // [19]
     }
 
-    #[doc="RWU"]
+    #[doc="Returns true if RWU != 0"]
     #[inline] pub fn test_rwu(&self) -> bool {
         self.rwu() != 0
     }
 
-    #[doc="RWU"]
+    #[doc="Sets the RWU field."]
     #[inline] pub fn set_rwu<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1524,12 +1524,12 @@ impl Isr {
         unsafe { ::core::mem::transmute(((self.0 >> 18) & 0x1) as u8) } // [18]
     }
 
-    #[doc="SBKF"]
+    #[doc="Returns true if SBKF != 0"]
     #[inline] pub fn test_sbkf(&self) -> bool {
         self.sbkf() != 0
     }
 
-    #[doc="SBKF"]
+    #[doc="Sets the SBKF field."]
     #[inline] pub fn set_sbkf<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1543,12 +1543,12 @@ impl Isr {
         unsafe { ::core::mem::transmute(((self.0 >> 17) & 0x1) as u8) } // [17]
     }
 
-    #[doc="CMF"]
+    #[doc="Returns true if CMF != 0"]
     #[inline] pub fn test_cmf(&self) -> bool {
         self.cmf() != 0
     }
 
-    #[doc="CMF"]
+    #[doc="Sets the CMF field."]
     #[inline] pub fn set_cmf<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1562,12 +1562,12 @@ impl Isr {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1) as u8) } // [16]
     }
 
-    #[doc="BUSY"]
+    #[doc="Returns true if BUSY != 0"]
     #[inline] pub fn test_busy(&self) -> bool {
         self.busy() != 0
     }
 
-    #[doc="BUSY"]
+    #[doc="Sets the BUSY field."]
     #[inline] pub fn set_busy<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1581,12 +1581,12 @@ impl Isr {
         unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x1) as u8) } // [10]
     }
 
-    #[doc="CTS"]
+    #[doc="Returns true if CTS != 0"]
     #[inline] pub fn test_cts(&self) -> bool {
         self.cts() != 0
     }
 
-    #[doc="CTS"]
+    #[doc="Sets the CTS field."]
     #[inline] pub fn set_cts<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1600,12 +1600,12 @@ impl Isr {
         unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
     }
 
-    #[doc="CTSIF"]
+    #[doc="Returns true if CTSIF != 0"]
     #[inline] pub fn test_ctsif(&self) -> bool {
         self.ctsif() != 0
     }
 
-    #[doc="CTSIF"]
+    #[doc="Sets the CTSIF field."]
     #[inline] pub fn set_ctsif<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1619,12 +1619,12 @@ impl Isr {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="TXE"]
+    #[doc="Returns true if TXE != 0"]
     #[inline] pub fn test_txe(&self) -> bool {
         self.txe() != 0
     }
 
-    #[doc="TXE"]
+    #[doc="Sets the TXE field."]
     #[inline] pub fn set_txe<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1638,12 +1638,12 @@ impl Isr {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="TC"]
+    #[doc="Returns true if TC != 0"]
     #[inline] pub fn test_tc(&self) -> bool {
         self.tc() != 0
     }
 
-    #[doc="TC"]
+    #[doc="Sets the TC field."]
     #[inline] pub fn set_tc<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1657,12 +1657,12 @@ impl Isr {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="RXNE"]
+    #[doc="Returns true if RXNE != 0"]
     #[inline] pub fn test_rxne(&self) -> bool {
         self.rxne() != 0
     }
 
-    #[doc="RXNE"]
+    #[doc="Sets the RXNE field."]
     #[inline] pub fn set_rxne<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1676,12 +1676,12 @@ impl Isr {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="IDLE"]
+    #[doc="Returns true if IDLE != 0"]
     #[inline] pub fn test_idle(&self) -> bool {
         self.idle() != 0
     }
 
-    #[doc="IDLE"]
+    #[doc="Sets the IDLE field."]
     #[inline] pub fn set_idle<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1695,12 +1695,12 @@ impl Isr {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="ORE"]
+    #[doc="Returns true if ORE != 0"]
     #[inline] pub fn test_ore(&self) -> bool {
         self.ore() != 0
     }
 
-    #[doc="ORE"]
+    #[doc="Sets the ORE field."]
     #[inline] pub fn set_ore<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1714,12 +1714,12 @@ impl Isr {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="NF"]
+    #[doc="Returns true if NF != 0"]
     #[inline] pub fn test_nf(&self) -> bool {
         self.nf() != 0
     }
 
-    #[doc="NF"]
+    #[doc="Sets the NF field."]
     #[inline] pub fn set_nf<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1733,12 +1733,12 @@ impl Isr {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="FE"]
+    #[doc="Returns true if FE != 0"]
     #[inline] pub fn test_fe(&self) -> bool {
         self.fe() != 0
     }
 
-    #[doc="FE"]
+    #[doc="Sets the FE field."]
     #[inline] pub fn set_fe<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1752,12 +1752,12 @@ impl Isr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="PE"]
+    #[doc="Returns true if PE != 0"]
     #[inline] pub fn test_pe(&self) -> bool {
         self.pe() != 0
     }
 
-    #[doc="PE"]
+    #[doc="Sets the PE field."]
     #[inline] pub fn set_pe<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1815,12 +1815,12 @@ impl Icr {
         unsafe { ::core::mem::transmute(((self.0 >> 20) & 0x1) as u8) } // [20]
     }
 
-    #[doc="Wakeup from Stop mode clear flag"]
+    #[doc="Returns true if WUCF != 0"]
     #[inline] pub fn test_wucf(&self) -> bool {
         self.wucf() != 0
     }
 
-    #[doc="Wakeup from Stop mode clear flag"]
+    #[doc="Sets the WUCF field."]
     #[inline] pub fn set_wucf<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1834,12 +1834,12 @@ impl Icr {
         unsafe { ::core::mem::transmute(((self.0 >> 17) & 0x1) as u8) } // [17]
     }
 
-    #[doc="Character match clear flag"]
+    #[doc="Returns true if CMCF != 0"]
     #[inline] pub fn test_cmcf(&self) -> bool {
         self.cmcf() != 0
     }
 
-    #[doc="Character match clear flag"]
+    #[doc="Sets the CMCF field."]
     #[inline] pub fn set_cmcf<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1853,12 +1853,12 @@ impl Icr {
         unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
     }
 
-    #[doc="CTS clear flag"]
+    #[doc="Returns true if CTSCF != 0"]
     #[inline] pub fn test_ctscf(&self) -> bool {
         self.ctscf() != 0
     }
 
-    #[doc="CTS clear flag"]
+    #[doc="Sets the CTSCF field."]
     #[inline] pub fn set_ctscf<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1872,12 +1872,12 @@ impl Icr {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="Transmission complete clear flag"]
+    #[doc="Returns true if TCCF != 0"]
     #[inline] pub fn test_tccf(&self) -> bool {
         self.tccf() != 0
     }
 
-    #[doc="Transmission complete clear flag"]
+    #[doc="Sets the TCCF field."]
     #[inline] pub fn set_tccf<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1891,12 +1891,12 @@ impl Icr {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="Idle line detected clear flag"]
+    #[doc="Returns true if IDLECF != 0"]
     #[inline] pub fn test_idlecf(&self) -> bool {
         self.idlecf() != 0
     }
 
-    #[doc="Idle line detected clear flag"]
+    #[doc="Sets the IDLECF field."]
     #[inline] pub fn set_idlecf<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1910,12 +1910,12 @@ impl Icr {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="Overrun error clear flag"]
+    #[doc="Returns true if ORECF != 0"]
     #[inline] pub fn test_orecf(&self) -> bool {
         self.orecf() != 0
     }
 
-    #[doc="Overrun error clear flag"]
+    #[doc="Sets the ORECF field."]
     #[inline] pub fn set_orecf<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1929,12 +1929,12 @@ impl Icr {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="Noise detected clear flag"]
+    #[doc="Returns true if NCF != 0"]
     #[inline] pub fn test_ncf(&self) -> bool {
         self.ncf() != 0
     }
 
-    #[doc="Noise detected clear flag"]
+    #[doc="Sets the NCF field."]
     #[inline] pub fn set_ncf<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1948,12 +1948,12 @@ impl Icr {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="Framing error clear flag"]
+    #[doc="Returns true if FECF != 0"]
     #[inline] pub fn test_fecf(&self) -> bool {
         self.fecf() != 0
     }
 
-    #[doc="Framing error clear flag"]
+    #[doc="Sets the FECF field."]
     #[inline] pub fn set_fecf<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1967,12 +1967,12 @@ impl Icr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Parity error clear flag"]
+    #[doc="Returns true if PECF != 0"]
     #[inline] pub fn test_pecf(&self) -> bool {
         self.pecf() != 0
     }
 
-    #[doc="Parity error clear flag"]
+    #[doc="Sets the PECF field."]
     #[inline] pub fn set_pecf<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2022,12 +2022,12 @@ impl Rdr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1ff) as u16) } // [8:0]
     }
 
-    #[doc="Receive data value"]
+    #[doc="Returns true if RDR != 0"]
     #[inline] pub fn test_rdr(&self) -> bool {
         self.rdr() != 0
     }
 
-    #[doc="Receive data value"]
+    #[doc="Sets the RDR field."]
     #[inline] pub fn set_rdr<V: Into<bits::U9>>(mut self, value: V) -> Self {
         let value: bits::U9 = value.into();
         let value: u32 = value.into();
@@ -2069,12 +2069,12 @@ impl Tdr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1ff) as u16) } // [8:0]
     }
 
-    #[doc="Transmit data value"]
+    #[doc="Returns true if TDR != 0"]
     #[inline] pub fn test_tdr(&self) -> bool {
         self.tdr() != 0
     }
 
-    #[doc="Transmit data value"]
+    #[doc="Sets the TDR field."]
     #[inline] pub fn set_tdr<V: Into<bits::U9>>(mut self, value: V) -> Self {
         let value: bits::U9 = value.into();
         let value: u32 = value.into();

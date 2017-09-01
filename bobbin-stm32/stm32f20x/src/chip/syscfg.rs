@@ -233,12 +233,12 @@ impl Memrm {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x3) as u8) } // [1:0]
     }
 
-    #[doc="MEM_MODE"]
+    #[doc="Returns true if MEM_MODE != 0"]
     #[inline] pub fn test_mem_mode(&self) -> bool {
         self.mem_mode() != 0
     }
 
-    #[doc="MEM_MODE"]
+    #[doc="Sets the MEM_MODE field."]
     #[inline] pub fn set_mem_mode<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -280,12 +280,12 @@ impl Pmc {
         unsafe { ::core::mem::transmute(((self.0 >> 23) & 0x1) as u8) } // [23]
     }
 
-    #[doc="Ethernet PHY interface selection"]
+    #[doc="Returns true if MII_RMII_SEL != 0"]
     #[inline] pub fn test_mii_rmii_sel(&self) -> bool {
         self.mii_rmii_sel() != 0
     }
 
-    #[doc="Ethernet PHY interface selection"]
+    #[doc="Sets the MII_RMII_SEL field."]
     #[inline] pub fn set_mii_rmii_sel<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -327,12 +327,12 @@ impl Exticr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 12) & 0xf) as u8) } // [15:12]
     }
 
-    #[doc="EXTI x configuration (x = 0 to 3)"]
+    #[doc="Returns true if EXTI3 != 0"]
     #[inline] pub fn test_exti3(&self) -> bool {
         self.exti3() != 0
     }
 
-    #[doc="EXTI x configuration (x = 0 to 3)"]
+    #[doc="Sets the EXTI3 field."]
     #[inline] pub fn set_exti3<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -346,12 +346,12 @@ impl Exticr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0xf) as u8) } // [11:8]
     }
 
-    #[doc="EXTI x configuration (x = 0 to 3)"]
+    #[doc="Returns true if EXTI2 != 0"]
     #[inline] pub fn test_exti2(&self) -> bool {
         self.exti2() != 0
     }
 
-    #[doc="EXTI x configuration (x = 0 to 3)"]
+    #[doc="Sets the EXTI2 field."]
     #[inline] pub fn set_exti2<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -365,12 +365,12 @@ impl Exticr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0xf) as u8) } // [7:4]
     }
 
-    #[doc="EXTI x configuration (x = 0 to 3)"]
+    #[doc="Returns true if EXTI1 != 0"]
     #[inline] pub fn test_exti1(&self) -> bool {
         self.exti1() != 0
     }
 
-    #[doc="EXTI x configuration (x = 0 to 3)"]
+    #[doc="Sets the EXTI1 field."]
     #[inline] pub fn set_exti1<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -384,12 +384,12 @@ impl Exticr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xf) as u8) } // [3:0]
     }
 
-    #[doc="EXTI x configuration (x = 0 to 3)"]
+    #[doc="Returns true if EXTI0 != 0"]
     #[inline] pub fn test_exti0(&self) -> bool {
         self.exti0() != 0
     }
 
-    #[doc="EXTI x configuration (x = 0 to 3)"]
+    #[doc="Sets the EXTI0 field."]
     #[inline] pub fn set_exti0<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -434,12 +434,12 @@ impl Exticr2 {
         unsafe { ::core::mem::transmute(((self.0 >> 12) & 0xf) as u8) } // [15:12]
     }
 
-    #[doc="EXTI x configuration (x = 4 to 7)"]
+    #[doc="Returns true if EXTI7 != 0"]
     #[inline] pub fn test_exti7(&self) -> bool {
         self.exti7() != 0
     }
 
-    #[doc="EXTI x configuration (x = 4 to 7)"]
+    #[doc="Sets the EXTI7 field."]
     #[inline] pub fn set_exti7<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -453,12 +453,12 @@ impl Exticr2 {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0xf) as u8) } // [11:8]
     }
 
-    #[doc="EXTI x configuration (x = 4 to 7)"]
+    #[doc="Returns true if EXTI6 != 0"]
     #[inline] pub fn test_exti6(&self) -> bool {
         self.exti6() != 0
     }
 
-    #[doc="EXTI x configuration (x = 4 to 7)"]
+    #[doc="Sets the EXTI6 field."]
     #[inline] pub fn set_exti6<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -472,12 +472,12 @@ impl Exticr2 {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0xf) as u8) } // [7:4]
     }
 
-    #[doc="EXTI x configuration (x = 4 to 7)"]
+    #[doc="Returns true if EXTI5 != 0"]
     #[inline] pub fn test_exti5(&self) -> bool {
         self.exti5() != 0
     }
 
-    #[doc="EXTI x configuration (x = 4 to 7)"]
+    #[doc="Sets the EXTI5 field."]
     #[inline] pub fn set_exti5<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -491,12 +491,12 @@ impl Exticr2 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xf) as u8) } // [3:0]
     }
 
-    #[doc="EXTI x configuration (x = 4 to 7)"]
+    #[doc="Returns true if EXTI4 != 0"]
     #[inline] pub fn test_exti4(&self) -> bool {
         self.exti4() != 0
     }
 
-    #[doc="EXTI x configuration (x = 4 to 7)"]
+    #[doc="Sets the EXTI4 field."]
     #[inline] pub fn set_exti4<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -541,12 +541,12 @@ impl Exticr3 {
         unsafe { ::core::mem::transmute(((self.0 >> 12) & 0xf) as u8) } // [15:12]
     }
 
-    #[doc="EXTI x configuration (x = 8 to 11)"]
+    #[doc="Returns true if EXTI11 != 0"]
     #[inline] pub fn test_exti11(&self) -> bool {
         self.exti11() != 0
     }
 
-    #[doc="EXTI x configuration (x = 8 to 11)"]
+    #[doc="Sets the EXTI11 field."]
     #[inline] pub fn set_exti11<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -560,12 +560,12 @@ impl Exticr3 {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0xf) as u8) } // [11:8]
     }
 
-    #[doc="EXTI10"]
+    #[doc="Returns true if EXTI10 != 0"]
     #[inline] pub fn test_exti10(&self) -> bool {
         self.exti10() != 0
     }
 
-    #[doc="EXTI10"]
+    #[doc="Sets the EXTI10 field."]
     #[inline] pub fn set_exti10<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -579,12 +579,12 @@ impl Exticr3 {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0xf) as u8) } // [7:4]
     }
 
-    #[doc="EXTI x configuration (x = 8 to 11)"]
+    #[doc="Returns true if EXTI9 != 0"]
     #[inline] pub fn test_exti9(&self) -> bool {
         self.exti9() != 0
     }
 
-    #[doc="EXTI x configuration (x = 8 to 11)"]
+    #[doc="Sets the EXTI9 field."]
     #[inline] pub fn set_exti9<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -598,12 +598,12 @@ impl Exticr3 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xf) as u8) } // [3:0]
     }
 
-    #[doc="EXTI x configuration (x = 8 to 11)"]
+    #[doc="Returns true if EXTI8 != 0"]
     #[inline] pub fn test_exti8(&self) -> bool {
         self.exti8() != 0
     }
 
-    #[doc="EXTI x configuration (x = 8 to 11)"]
+    #[doc="Sets the EXTI8 field."]
     #[inline] pub fn set_exti8<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -648,12 +648,12 @@ impl Exticr4 {
         unsafe { ::core::mem::transmute(((self.0 >> 12) & 0xf) as u8) } // [15:12]
     }
 
-    #[doc="EXTI x configuration (x = 12 to 15)"]
+    #[doc="Returns true if EXTI15 != 0"]
     #[inline] pub fn test_exti15(&self) -> bool {
         self.exti15() != 0
     }
 
-    #[doc="EXTI x configuration (x = 12 to 15)"]
+    #[doc="Sets the EXTI15 field."]
     #[inline] pub fn set_exti15<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -667,12 +667,12 @@ impl Exticr4 {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0xf) as u8) } // [11:8]
     }
 
-    #[doc="EXTI x configuration (x = 12 to 15)"]
+    #[doc="Returns true if EXTI14 != 0"]
     #[inline] pub fn test_exti14(&self) -> bool {
         self.exti14() != 0
     }
 
-    #[doc="EXTI x configuration (x = 12 to 15)"]
+    #[doc="Sets the EXTI14 field."]
     #[inline] pub fn set_exti14<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -686,12 +686,12 @@ impl Exticr4 {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0xf) as u8) } // [7:4]
     }
 
-    #[doc="EXTI x configuration (x = 12 to 15)"]
+    #[doc="Returns true if EXTI13 != 0"]
     #[inline] pub fn test_exti13(&self) -> bool {
         self.exti13() != 0
     }
 
-    #[doc="EXTI x configuration (x = 12 to 15)"]
+    #[doc="Sets the EXTI13 field."]
     #[inline] pub fn set_exti13<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -705,12 +705,12 @@ impl Exticr4 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xf) as u8) } // [3:0]
     }
 
-    #[doc="EXTI x configuration (x = 12 to 15)"]
+    #[doc="Returns true if EXTI12 != 0"]
     #[inline] pub fn test_exti12(&self) -> bool {
         self.exti12() != 0
     }
 
-    #[doc="EXTI x configuration (x = 12 to 15)"]
+    #[doc="Sets the EXTI12 field."]
     #[inline] pub fn set_exti12<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -755,12 +755,12 @@ impl Cmpcr {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
     }
 
-    #[doc="READY"]
+    #[doc="Returns true if READY != 0"]
     #[inline] pub fn test_ready(&self) -> bool {
         self.ready() != 0
     }
 
-    #[doc="READY"]
+    #[doc="Sets the READY field."]
     #[inline] pub fn set_ready<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -774,12 +774,12 @@ impl Cmpcr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Compensation cell power-down"]
+    #[doc="Returns true if CMP_PD != 0"]
     #[inline] pub fn test_cmp_pd(&self) -> bool {
         self.cmp_pd() != 0
     }
 
-    #[doc="Compensation cell power-down"]
+    #[doc="Sets the CMP_PD field."]
     #[inline] pub fn set_cmp_pd<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();

@@ -152,12 +152,12 @@ impl Kr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffff) as u16) } // [15:0]
     }
 
-    #[doc="Key value (write only, read 0x0000)"]
+    #[doc="Returns true if KEY != 0"]
     #[inline] pub fn test_key(&self) -> bool {
         self.key() != 0
     }
 
-    #[doc="Key value (write only, read 0x0000)"]
+    #[doc="Sets the KEY field."]
     #[inline] pub fn set_key<V: Into<bits::U16>>(mut self, value: V) -> Self {
         let value: bits::U16 = value.into();
         let value: u32 = value.into();
@@ -199,12 +199,12 @@ impl Pr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x7) as u8) } // [2:0]
     }
 
-    #[doc="Prescaler divider"]
+    #[doc="Returns true if PR != 0"]
     #[inline] pub fn test_pr(&self) -> bool {
         self.pr() != 0
     }
 
-    #[doc="Prescaler divider"]
+    #[doc="Sets the PR field."]
     #[inline] pub fn set_pr<V: Into<bits::U3>>(mut self, value: V) -> Self {
         let value: bits::U3 = value.into();
         let value: u32 = value.into();
@@ -246,12 +246,12 @@ impl Rlr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xfff) as u16) } // [11:0]
     }
 
-    #[doc="Watchdog counter reload value"]
+    #[doc="Returns true if RL != 0"]
     #[inline] pub fn test_rl(&self) -> bool {
         self.rl() != 0
     }
 
-    #[doc="Watchdog counter reload value"]
+    #[doc="Sets the RL field."]
     #[inline] pub fn set_rl<V: Into<bits::U12>>(mut self, value: V) -> Self {
         let value: bits::U12 = value.into();
         let value: u32 = value.into();
@@ -293,12 +293,12 @@ impl Sr {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="Watchdog counter window value update"]
+    #[doc="Returns true if WVU != 0"]
     #[inline] pub fn test_wvu(&self) -> bool {
         self.wvu() != 0
     }
 
-    #[doc="Watchdog counter window value update"]
+    #[doc="Sets the WVU field."]
     #[inline] pub fn set_wvu<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -312,12 +312,12 @@ impl Sr {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="Watchdog counter reload value update"]
+    #[doc="Returns true if RVU != 0"]
     #[inline] pub fn test_rvu(&self) -> bool {
         self.rvu() != 0
     }
 
-    #[doc="Watchdog counter reload value update"]
+    #[doc="Sets the RVU field."]
     #[inline] pub fn set_rvu<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -331,12 +331,12 @@ impl Sr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Watchdog prescaler value update"]
+    #[doc="Returns true if PVU != 0"]
     #[inline] pub fn test_pvu(&self) -> bool {
         self.pvu() != 0
     }
 
-    #[doc="Watchdog prescaler value update"]
+    #[doc="Sets the PVU field."]
     #[inline] pub fn set_pvu<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -380,12 +380,12 @@ impl Winr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xfff) as u16) } // [11:0]
     }
 
-    #[doc="Watchdog counter window value"]
+    #[doc="Returns true if WIN != 0"]
     #[inline] pub fn test_win(&self) -> bool {
         self.win() != 0
     }
 
-    #[doc="Watchdog counter window value"]
+    #[doc="Sets the WIN field."]
     #[inline] pub fn set_win<V: Into<bits::U12>>(mut self, value: V) -> Self {
         let value: bits::U12 = value.into();
         let value: u32 = value.into();

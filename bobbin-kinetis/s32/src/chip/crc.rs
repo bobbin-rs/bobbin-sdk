@@ -315,12 +315,12 @@ impl Data {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
-    #[doc="CRC Low Lower Byte"]
+    #[doc="Returns true if LL != 0"]
     #[inline] pub fn test_ll(&self) -> bool {
         self.ll() != 0
     }
 
-    #[doc="CRC Low Lower Byte"]
+    #[doc="Sets the LL field."]
     #[inline] pub fn set_ll<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -334,12 +334,12 @@ impl Data {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0xff) as u8) } // [15:8]
     }
 
-    #[doc="CRC Low Upper Byte"]
+    #[doc="Returns true if LU != 0"]
     #[inline] pub fn test_lu(&self) -> bool {
         self.lu() != 0
     }
 
-    #[doc="CRC Low Upper Byte"]
+    #[doc="Sets the LU field."]
     #[inline] pub fn set_lu<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -353,12 +353,12 @@ impl Data {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xff) as u8) } // [23:16]
     }
 
-    #[doc="CRC High Lower Byte"]
+    #[doc="Returns true if HL != 0"]
     #[inline] pub fn test_hl(&self) -> bool {
         self.hl() != 0
     }
 
-    #[doc="CRC High Lower Byte"]
+    #[doc="Sets the HL field."]
     #[inline] pub fn set_hl<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -372,12 +372,12 @@ impl Data {
         unsafe { ::core::mem::transmute(((self.0 >> 24) & 0xff) as u8) } // [31:24]
     }
 
-    #[doc="CRC High Upper Byte"]
+    #[doc="Returns true if HU != 0"]
     #[inline] pub fn test_hu(&self) -> bool {
         self.hu() != 0
     }
 
-    #[doc="CRC High Upper Byte"]
+    #[doc="Sets the HU field."]
     #[inline] pub fn set_hu<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -422,12 +422,12 @@ impl Datal {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffff) as u16) } // [15:0]
     }
 
-    #[doc="DATAL stores the lower 16 bits of the 16/32 bit CRC"]
+    #[doc="Returns true if DATAL != 0"]
     #[inline] pub fn test_datal(&self) -> bool {
         self.datal() != 0
     }
 
-    #[doc="DATAL stores the lower 16 bits of the 16/32 bit CRC"]
+    #[doc="Sets the DATAL field."]
     #[inline] pub fn set_datal<V: Into<bits::U16>>(mut self, value: V) -> Self {
         let value: bits::U16 = value.into();
         let value: u16 = value.into();
@@ -469,12 +469,12 @@ impl Datall {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
-    #[doc="CRCLL stores the first 8 bits of the 32 bit DATA"]
+    #[doc="Returns true if DATALL != 0"]
     #[inline] pub fn test_datall(&self) -> bool {
         self.datall() != 0
     }
 
-    #[doc="CRCLL stores the first 8 bits of the 32 bit DATA"]
+    #[doc="Sets the DATALL field."]
     #[inline] pub fn set_datall<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u8 = value.into();
@@ -516,12 +516,12 @@ impl Datalu {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
-    #[doc="DATALL stores the second 8 bits of the 32 bit CRC"]
+    #[doc="Returns true if DATALU != 0"]
     #[inline] pub fn test_datalu(&self) -> bool {
         self.datalu() != 0
     }
 
-    #[doc="DATALL stores the second 8 bits of the 32 bit CRC"]
+    #[doc="Sets the DATALU field."]
     #[inline] pub fn set_datalu<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u8 = value.into();
@@ -563,12 +563,12 @@ impl Datah {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffff) as u16) } // [15:0]
     }
 
-    #[doc="DATAH stores the high 16 bits of the 16/32 bit CRC"]
+    #[doc="Returns true if DATAH != 0"]
     #[inline] pub fn test_datah(&self) -> bool {
         self.datah() != 0
     }
 
-    #[doc="DATAH stores the high 16 bits of the 16/32 bit CRC"]
+    #[doc="Sets the DATAH field."]
     #[inline] pub fn set_datah<V: Into<bits::U16>>(mut self, value: V) -> Self {
         let value: bits::U16 = value.into();
         let value: u16 = value.into();
@@ -610,12 +610,12 @@ impl Datahl {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
-    #[doc="DATAHL stores the third 8 bits of the 32 bit CRC"]
+    #[doc="Returns true if DATAHL != 0"]
     #[inline] pub fn test_datahl(&self) -> bool {
         self.datahl() != 0
     }
 
-    #[doc="DATAHL stores the third 8 bits of the 32 bit CRC"]
+    #[doc="Sets the DATAHL field."]
     #[inline] pub fn set_datahl<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u8 = value.into();
@@ -657,12 +657,12 @@ impl Datahu {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
-    #[doc="DATAHU stores the fourth 8 bits of the 32 bit CRC"]
+    #[doc="Returns true if DATAHU != 0"]
     #[inline] pub fn test_datahu(&self) -> bool {
         self.datahu() != 0
     }
 
-    #[doc="DATAHU stores the fourth 8 bits of the 32 bit CRC"]
+    #[doc="Sets the DATAHU field."]
     #[inline] pub fn set_datahu<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u8 = value.into();
@@ -704,12 +704,12 @@ impl Gpoly {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffff) as u16) } // [15:0]
     }
 
-    #[doc="Low Polynominal Half-word"]
+    #[doc="Returns true if LOW != 0"]
     #[inline] pub fn test_low(&self) -> bool {
         self.low() != 0
     }
 
-    #[doc="Low Polynominal Half-word"]
+    #[doc="Sets the LOW field."]
     #[inline] pub fn set_low<V: Into<bits::U16>>(mut self, value: V) -> Self {
         let value: bits::U16 = value.into();
         let value: u32 = value.into();
@@ -723,12 +723,12 @@ impl Gpoly {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xffff) as u16) } // [31:16]
     }
 
-    #[doc="High Polynominal Half-word"]
+    #[doc="Returns true if HIGH != 0"]
     #[inline] pub fn test_high(&self) -> bool {
         self.high() != 0
     }
 
-    #[doc="High Polynominal Half-word"]
+    #[doc="Sets the HIGH field."]
     #[inline] pub fn set_high<V: Into<bits::U16>>(mut self, value: V) -> Self {
         let value: bits::U16 = value.into();
         let value: u32 = value.into();
@@ -771,12 +771,12 @@ impl Ctrl {
         unsafe { ::core::mem::transmute(((self.0 >> 24) & 0x1) as u8) } // [24]
     }
 
-    #[doc="TCRC"]
+    #[doc="Returns true if TCRC != 0"]
     #[inline] pub fn test_tcrc(&self) -> bool {
         self.tcrc() != 0
     }
 
-    #[doc="TCRC"]
+    #[doc="Sets the TCRC field."]
     #[inline] pub fn set_tcrc<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -790,12 +790,12 @@ impl Ctrl {
         unsafe { ::core::mem::transmute(((self.0 >> 25) & 0x1) as u8) } // [25]
     }
 
-    #[doc="Write CRC Data Register As Seed"]
+    #[doc="Returns true if WAS != 0"]
     #[inline] pub fn test_was(&self) -> bool {
         self.was() != 0
     }
 
-    #[doc="Write CRC Data Register As Seed"]
+    #[doc="Sets the WAS field."]
     #[inline] pub fn set_was<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -809,12 +809,12 @@ impl Ctrl {
         unsafe { ::core::mem::transmute(((self.0 >> 26) & 0x1) as u8) } // [26]
     }
 
-    #[doc="Complement Read Of CRC Data Register"]
+    #[doc="Returns true if FXOR != 0"]
     #[inline] pub fn test_fxor(&self) -> bool {
         self.fxor() != 0
     }
 
-    #[doc="Complement Read Of CRC Data Register"]
+    #[doc="Sets the FXOR field."]
     #[inline] pub fn set_fxor<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -828,12 +828,12 @@ impl Ctrl {
         unsafe { ::core::mem::transmute(((self.0 >> 28) & 0x3) as u8) } // [29:28]
     }
 
-    #[doc="Type Of Transpose For Read"]
+    #[doc="Returns true if TOTR != 0"]
     #[inline] pub fn test_totr(&self) -> bool {
         self.totr() != 0
     }
 
-    #[doc="Type Of Transpose For Read"]
+    #[doc="Sets the TOTR field."]
     #[inline] pub fn set_totr<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -847,12 +847,12 @@ impl Ctrl {
         unsafe { ::core::mem::transmute(((self.0 >> 30) & 0x3) as u8) } // [31:30]
     }
 
-    #[doc="Type Of Transpose For Writes"]
+    #[doc="Returns true if TOT != 0"]
     #[inline] pub fn test_tot(&self) -> bool {
         self.tot() != 0
     }
 
-    #[doc="Type Of Transpose For Writes"]
+    #[doc="Sets the TOT field."]
     #[inline] pub fn set_tot<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();

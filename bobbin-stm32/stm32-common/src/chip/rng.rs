@@ -101,12 +101,12 @@ impl Cr {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="Interrupt enable"]
+    #[doc="Returns true if IE != 0"]
     #[inline] pub fn test_ie(&self) -> bool {
         self.ie() != 0
     }
 
-    #[doc="Interrupt enable"]
+    #[doc="Sets the IE field."]
     #[inline] pub fn set_ie<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -120,12 +120,12 @@ impl Cr {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="Random number generator enable"]
+    #[doc="Returns true if RNGEN != 0"]
     #[inline] pub fn test_rngen(&self) -> bool {
         self.rngen() != 0
     }
 
-    #[doc="Random number generator enable"]
+    #[doc="Sets the RNGEN field."]
     #[inline] pub fn set_rngen<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -168,12 +168,12 @@ impl Sr {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="Seed error interrupt status"]
+    #[doc="Returns true if SEIS != 0"]
     #[inline] pub fn test_seis(&self) -> bool {
         self.seis() != 0
     }
 
-    #[doc="Seed error interrupt status"]
+    #[doc="Sets the SEIS field."]
     #[inline] pub fn set_seis<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -187,12 +187,12 @@ impl Sr {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="Clock error interrupt status"]
+    #[doc="Returns true if CEIS != 0"]
     #[inline] pub fn test_ceis(&self) -> bool {
         self.ceis() != 0
     }
 
-    #[doc="Clock error interrupt status"]
+    #[doc="Sets the CEIS field."]
     #[inline] pub fn set_ceis<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -206,12 +206,12 @@ impl Sr {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="Seed error current status"]
+    #[doc="Returns true if SECS != 0"]
     #[inline] pub fn test_secs(&self) -> bool {
         self.secs() != 0
     }
 
-    #[doc="Seed error current status"]
+    #[doc="Sets the SECS field."]
     #[inline] pub fn set_secs<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -225,12 +225,12 @@ impl Sr {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="Clock error current status"]
+    #[doc="Returns true if CECS != 0"]
     #[inline] pub fn test_cecs(&self) -> bool {
         self.cecs() != 0
     }
 
-    #[doc="Clock error current status"]
+    #[doc="Sets the CECS field."]
     #[inline] pub fn set_cecs<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -244,12 +244,12 @@ impl Sr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Data ready"]
+    #[doc="Returns true if DRDY != 0"]
     #[inline] pub fn test_drdy(&self) -> bool {
         self.drdy() != 0
     }
 
-    #[doc="Data ready"]
+    #[doc="Sets the DRDY field."]
     #[inline] pub fn set_drdy<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -295,12 +295,12 @@ impl Dr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffffffff) as u32) } // [31:0]
     }
 
-    #[doc="Random data"]
+    #[doc="Returns true if RNDATA != 0"]
     #[inline] pub fn test_rndata(&self) -> bool {
         self.rndata() != 0
     }
 
-    #[doc="Random data"]
+    #[doc="Sets the RNDATA field."]
     #[inline] pub fn set_rndata<V: Into<bits::U32>>(mut self, value: V) -> Self {
         let value: bits::U32 = value.into();
         let value: u32 = value.into();

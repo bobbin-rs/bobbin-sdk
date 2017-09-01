@@ -251,12 +251,12 @@ impl Clear {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
-    #[doc="Watchdog Clear"]
+    #[doc="Returns true if CLEAR != 0"]
     #[inline] pub fn test_clear(&self) -> bool {
         self.clear() != 0
     }
 
-    #[doc="Watchdog Clear"]
+    #[doc="Sets the CLEAR field."]
     #[inline] pub fn set_clear<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u8 = value.into();
@@ -298,12 +298,12 @@ impl Config {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xf) as u8) } // [3:0]
     }
 
-    #[doc="Time-Out Period"]
+    #[doc="Returns true if PER != 0"]
     #[inline] pub fn test_per(&self) -> bool {
         self.per() != 0
     }
 
-    #[doc="Time-Out Period"]
+    #[doc="Sets the PER field."]
     #[inline] pub fn set_per<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u8 = value.into();
@@ -317,12 +317,12 @@ impl Config {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0xf) as u8) } // [7:4]
     }
 
-    #[doc="Window Mode Time-Out Period"]
+    #[doc="Returns true if WINDOW != 0"]
     #[inline] pub fn test_window(&self) -> bool {
         self.window() != 0
     }
 
-    #[doc="Window Mode Time-Out Period"]
+    #[doc="Sets the WINDOW field."]
     #[inline] pub fn set_window<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u8 = value.into();
@@ -365,12 +365,12 @@ impl Ctrl {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="Enable"]
+    #[doc="Returns true if ENABLE != 0"]
     #[inline] pub fn test_enable(&self) -> bool {
         self.enable() != 0
     }
 
-    #[doc="Enable"]
+    #[doc="Sets the ENABLE field."]
     #[inline] pub fn set_enable<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -384,12 +384,12 @@ impl Ctrl {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="Watchdog Timer Window Mode Enable"]
+    #[doc="Returns true if WEN != 0"]
     #[inline] pub fn test_wen(&self) -> bool {
         self.wen() != 0
     }
 
-    #[doc="Watchdog Timer Window Mode Enable"]
+    #[doc="Sets the WEN field."]
     #[inline] pub fn set_wen<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -403,12 +403,12 @@ impl Ctrl {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="Always-On"]
+    #[doc="Returns true if ALWAYSON != 0"]
     #[inline] pub fn test_alwayson(&self) -> bool {
         self.alwayson() != 0
     }
 
-    #[doc="Always-On"]
+    #[doc="Sets the ALWAYSON field."]
     #[inline] pub fn set_alwayson<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -452,12 +452,12 @@ impl Ewctrl {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xf) as u8) } // [3:0]
     }
 
-    #[doc="Early Warning Interrupt Time Offset"]
+    #[doc="Returns true if EWOFFSET != 0"]
     #[inline] pub fn test_ewoffset(&self) -> bool {
         self.ewoffset() != 0
     }
 
-    #[doc="Early Warning Interrupt Time Offset"]
+    #[doc="Sets the EWOFFSET field."]
     #[inline] pub fn set_ewoffset<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u8 = value.into();
@@ -499,12 +499,12 @@ impl Intenclr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Early Warning Interrupt Enable"]
+    #[doc="Returns true if EW != 0"]
     #[inline] pub fn test_ew(&self) -> bool {
         self.ew() != 0
     }
 
-    #[doc="Early Warning Interrupt Enable"]
+    #[doc="Sets the EW field."]
     #[inline] pub fn set_ew<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -546,12 +546,12 @@ impl Intenset {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Early Warning Interrupt Enable"]
+    #[doc="Returns true if EW != 0"]
     #[inline] pub fn test_ew(&self) -> bool {
         self.ew() != 0
     }
 
-    #[doc="Early Warning Interrupt Enable"]
+    #[doc="Sets the EW field."]
     #[inline] pub fn set_ew<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -593,12 +593,12 @@ impl Intflag {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Early Warning"]
+    #[doc="Returns true if EW != 0"]
     #[inline] pub fn test_ew(&self) -> bool {
         self.ew() != 0
     }
 
-    #[doc="Early Warning"]
+    #[doc="Sets the EW field."]
     #[inline] pub fn set_ew<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -640,12 +640,12 @@ impl Status {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="Synchronization Busy"]
+    #[doc="Returns true if SYNCBUSY != 0"]
     #[inline] pub fn test_syncbusy(&self) -> bool {
         self.syncbusy() != 0
     }
 
-    #[doc="Synchronization Busy"]
+    #[doc="Sets the SYNCBUSY field."]
     #[inline] pub fn set_syncbusy<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();

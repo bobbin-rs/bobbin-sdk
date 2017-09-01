@@ -257,12 +257,12 @@ impl Iser {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Interrupt set-enable bits"]
+    #[doc="Returns true if SETENA != 0"]
     #[inline] pub fn test_setena<I: Into<bits::R32>>(&self, index: I) -> bool{
         self.setena(index) != 0
     }
 
-    #[doc="Interrupt set-enable bits"]
+    #[doc="Sets the SETENA field."]
     #[inline] pub fn set_setena<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -339,12 +339,12 @@ impl Icer {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Interrupt clear-enable bits"]
+    #[doc="Returns true if CLRENA != 0"]
     #[inline] pub fn test_clrena<I: Into<bits::R32>>(&self, index: I) -> bool{
         self.clrena(index) != 0
     }
 
-    #[doc="Interrupt clear-enable bits"]
+    #[doc="Sets the CLRENA field."]
     #[inline] pub fn set_clrena<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -421,12 +421,12 @@ impl Ispr {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Interrupt set-pending bits"]
+    #[doc="Returns true if SETPEND != 0"]
     #[inline] pub fn test_setpend<I: Into<bits::R32>>(&self, index: I) -> bool{
         self.setpend(index) != 0
     }
 
-    #[doc="Interrupt set-pending bits"]
+    #[doc="Sets the SETPEND field."]
     #[inline] pub fn set_setpend<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -503,12 +503,12 @@ impl Icpr {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Interrupt clear-pending bits"]
+    #[doc="Returns true if CLRPEND != 0"]
     #[inline] pub fn test_clrpend<I: Into<bits::R32>>(&self, index: I) -> bool{
         self.clrpend(index) != 0
     }
 
-    #[doc="Interrupt clear-pending bits"]
+    #[doc="Sets the CLRPEND field."]
     #[inline] pub fn set_clrpend<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -585,12 +585,12 @@ impl Iabr {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Interrupt clear-pending bits"]
+    #[doc="Returns true if ACTIVE != 0"]
     #[inline] pub fn test_active<I: Into<bits::R32>>(&self, index: I) -> bool{
         self.active(index) != 0
     }
 
-    #[doc="Interrupt clear-pending bits"]
+    #[doc="Sets the ACTIVE field."]
     #[inline] pub fn set_active<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -667,12 +667,12 @@ impl Ipr {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0xff) as u8) } // [7:0]
     }
 
-    #[doc="Interrupt Priority"]
+    #[doc="Returns true if PRI != 0"]
     #[inline] pub fn test_pri<I: Into<bits::R4>>(&self, index: I) -> bool{
         self.pri(index) != 0
     }
 
-    #[doc="Interrupt Priority"]
+    #[doc="Sets the PRI field."]
     #[inline] pub fn set_pri<I: Into<bits::R4>, V: Into<bits::U8>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U8 = value.into();
@@ -719,12 +719,12 @@ impl Stir {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
-    #[doc="Interrupt ID of the interrupt to trigger, in the range 0-239."]
+    #[doc="Returns true if INTID != 0"]
     #[inline] pub fn test_intid(&self) -> bool {
         self.intid() != 0
     }
 
-    #[doc="Interrupt ID of the interrupt to trigger, in the range 0-239."]
+    #[doc="Sets the INTID field."]
     #[inline] pub fn set_intid<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();

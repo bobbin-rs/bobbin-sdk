@@ -303,12 +303,12 @@ impl Verid {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffff) as u16) } // [15:0]
     }
 
-    #[doc="Feature Number"]
+    #[doc="Returns true if FEATURE != 0"]
     #[inline] pub fn test_feature(&self) -> bool {
         self.feature() != 0
     }
 
-    #[doc="Feature Number"]
+    #[doc="Sets the FEATURE field."]
     #[inline] pub fn set_feature<V: Into<bits::U16>>(mut self, value: V) -> Self {
         let value: bits::U16 = value.into();
         let value: u32 = value.into();
@@ -322,12 +322,12 @@ impl Verid {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xff) as u8) } // [23:16]
     }
 
-    #[doc="Minor Version Number"]
+    #[doc="Returns true if MINOR != 0"]
     #[inline] pub fn test_minor(&self) -> bool {
         self.minor() != 0
     }
 
-    #[doc="Minor Version Number"]
+    #[doc="Sets the MINOR field."]
     #[inline] pub fn set_minor<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -341,12 +341,12 @@ impl Verid {
         unsafe { ::core::mem::transmute(((self.0 >> 24) & 0xff) as u8) } // [31:24]
     }
 
-    #[doc="Major Version Number"]
+    #[doc="Returns true if MAJOR != 0"]
     #[inline] pub fn test_major(&self) -> bool {
         self.major() != 0
     }
 
-    #[doc="Major Version Number"]
+    #[doc="Sets the MAJOR field."]
     #[inline] pub fn set_major<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -390,12 +390,12 @@ impl Param {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
-    #[doc="Number of Timer Channels"]
+    #[doc="Returns true if CHANNEL != 0"]
     #[inline] pub fn test_channel(&self) -> bool {
         self.channel() != 0
     }
 
-    #[doc="Number of Timer Channels"]
+    #[doc="Sets the CHANNEL field."]
     #[inline] pub fn set_channel<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -409,12 +409,12 @@ impl Param {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0xff) as u8) } // [15:8]
     }
 
-    #[doc="Number of External Trigger Inputs"]
+    #[doc="Returns true if EXT_TRIG != 0"]
     #[inline] pub fn test_ext_trig(&self) -> bool {
         self.ext_trig() != 0
     }
 
-    #[doc="Number of External Trigger Inputs"]
+    #[doc="Sets the EXT_TRIG field."]
     #[inline] pub fn set_ext_trig<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -457,12 +457,12 @@ impl Mcr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Module Clock Enable"]
+    #[doc="Returns true if M_CEN != 0"]
     #[inline] pub fn test_m_cen(&self) -> bool {
         self.m_cen() != 0
     }
 
-    #[doc="Module Clock Enable"]
+    #[doc="Sets the M_CEN field."]
     #[inline] pub fn set_m_cen<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -476,12 +476,12 @@ impl Mcr {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="Software Reset Bit"]
+    #[doc="Returns true if SW_RST != 0"]
     #[inline] pub fn test_sw_rst(&self) -> bool {
         self.sw_rst() != 0
     }
 
-    #[doc="Software Reset Bit"]
+    #[doc="Sets the SW_RST field."]
     #[inline] pub fn set_sw_rst<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -495,12 +495,12 @@ impl Mcr {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="DOZE Mode Enable Bit"]
+    #[doc="Returns true if DOZE_EN != 0"]
     #[inline] pub fn test_doze_en(&self) -> bool {
         self.doze_en() != 0
     }
 
-    #[doc="DOZE Mode Enable Bit"]
+    #[doc="Sets the DOZE_EN field."]
     #[inline] pub fn set_doze_en<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -514,12 +514,12 @@ impl Mcr {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="Debug Enable Bit"]
+    #[doc="Returns true if DBG_EN != 0"]
     #[inline] pub fn test_dbg_en(&self) -> bool {
         self.dbg_en() != 0
     }
 
-    #[doc="Debug Enable Bit"]
+    #[doc="Sets the DBG_EN field."]
     #[inline] pub fn set_dbg_en<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -566,12 +566,12 @@ impl Msr {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Channel n Timer Interrupt Flag"]
+    #[doc="Returns true if TIF != 0"]
     #[inline] pub fn test_tif<I: Into<bits::R4>>(&self, index: I) -> bool{
         self.tif(index) != 0
     }
 
-    #[doc="Channel n Timer Interrupt Flag"]
+    #[doc="Sets the TIF field."]
     #[inline] pub fn set_tif<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -620,12 +620,12 @@ impl Mier {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Channel n Timer Interrupt Enable"]
+    #[doc="Returns true if TIE != 0"]
     #[inline] pub fn test_tie<I: Into<bits::R4>>(&self, index: I) -> bool{
         self.tie(index) != 0
     }
 
-    #[doc="Channel n Timer Interrupt Enable"]
+    #[doc="Sets the TIE field."]
     #[inline] pub fn set_tie<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -674,12 +674,12 @@ impl Setten {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Set Timer n Enable"]
+    #[doc="Returns true if SET_T_EN != 0"]
     #[inline] pub fn test_set_t_en<I: Into<bits::R4>>(&self, index: I) -> bool{
         self.set_t_en(index) != 0
     }
 
-    #[doc="Set Timer n Enable"]
+    #[doc="Sets the SET_T_EN field."]
     #[inline] pub fn set_set_t_en<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -728,12 +728,12 @@ impl Clrten {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Clear Timer n Enable"]
+    #[doc="Returns true if CLR_T_EN != 0"]
     #[inline] pub fn test_clr_t_en<I: Into<bits::R4>>(&self, index: I) -> bool{
         self.clr_t_en(index) != 0
     }
 
-    #[doc="Clear Timer n Enable"]
+    #[doc="Sets the CLR_T_EN field."]
     #[inline] pub fn set_clr_t_en<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -780,12 +780,12 @@ impl Tval {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffffffff) as u32) } // [31:0]
     }
 
-    #[doc="Timer Value"]
+    #[doc="Returns true if TMR_VAL != 0"]
     #[inline] pub fn test_tmr_val(&self) -> bool {
         self.tmr_val() != 0
     }
 
-    #[doc="Timer Value"]
+    #[doc="Sets the TMR_VAL field."]
     #[inline] pub fn set_tmr_val<V: Into<bits::U32>>(mut self, value: V) -> Self {
         let value: bits::U32 = value.into();
         let value: u32 = value.into();
@@ -826,12 +826,12 @@ impl Cval {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffffffff) as u32) } // [31:0]
     }
 
-    #[doc="Current Timer Value"]
+    #[doc="Returns true if TMR_CUR_VAL != 0"]
     #[inline] pub fn test_tmr_cur_val(&self) -> bool {
         self.tmr_cur_val() != 0
     }
 
-    #[doc="Current Timer Value"]
+    #[doc="Sets the TMR_CUR_VAL field."]
     #[inline] pub fn set_tmr_cur_val<V: Into<bits::U32>>(mut self, value: V) -> Self {
         let value: bits::U32 = value.into();
         let value: u32 = value.into();
@@ -872,12 +872,12 @@ impl Tctrl {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Timer Enable"]
+    #[doc="Returns true if T_EN != 0"]
     #[inline] pub fn test_t_en(&self) -> bool {
         self.t_en() != 0
     }
 
-    #[doc="Timer Enable"]
+    #[doc="Sets the T_EN field."]
     #[inline] pub fn set_t_en<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -891,12 +891,12 @@ impl Tctrl {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="Chain Channel"]
+    #[doc="Returns true if CHAIN != 0"]
     #[inline] pub fn test_chain(&self) -> bool {
         self.chain() != 0
     }
 
-    #[doc="Chain Channel"]
+    #[doc="Sets the CHAIN field."]
     #[inline] pub fn set_chain<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -910,12 +910,12 @@ impl Tctrl {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x3) as u8) } // [3:2]
     }
 
-    #[doc="Timer Operation Mode"]
+    #[doc="Returns true if MODE != 0"]
     #[inline] pub fn test_mode(&self) -> bool {
         self.mode() != 0
     }
 
-    #[doc="Timer Operation Mode"]
+    #[doc="Sets the MODE field."]
     #[inline] pub fn set_mode<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -929,12 +929,12 @@ impl Tctrl {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1) as u8) } // [16]
     }
 
-    #[doc="Timer Start On Trigger"]
+    #[doc="Returns true if TSOT != 0"]
     #[inline] pub fn test_tsot(&self) -> bool {
         self.tsot() != 0
     }
 
-    #[doc="Timer Start On Trigger"]
+    #[doc="Sets the TSOT field."]
     #[inline] pub fn set_tsot<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -948,12 +948,12 @@ impl Tctrl {
         unsafe { ::core::mem::transmute(((self.0 >> 17) & 0x1) as u8) } // [17]
     }
 
-    #[doc="Timer Stop On Interrupt"]
+    #[doc="Returns true if TSOI != 0"]
     #[inline] pub fn test_tsoi(&self) -> bool {
         self.tsoi() != 0
     }
 
-    #[doc="Timer Stop On Interrupt"]
+    #[doc="Sets the TSOI field."]
     #[inline] pub fn set_tsoi<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -967,12 +967,12 @@ impl Tctrl {
         unsafe { ::core::mem::transmute(((self.0 >> 18) & 0x1) as u8) } // [18]
     }
 
-    #[doc="Timer Reload On Trigger"]
+    #[doc="Returns true if TROT != 0"]
     #[inline] pub fn test_trot(&self) -> bool {
         self.trot() != 0
     }
 
-    #[doc="Timer Reload On Trigger"]
+    #[doc="Sets the TROT field."]
     #[inline] pub fn set_trot<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -986,12 +986,12 @@ impl Tctrl {
         unsafe { ::core::mem::transmute(((self.0 >> 23) & 0x1) as u8) } // [23]
     }
 
-    #[doc="Trigger Source"]
+    #[doc="Returns true if TRG_SRC != 0"]
     #[inline] pub fn test_trg_src(&self) -> bool {
         self.trg_src() != 0
     }
 
-    #[doc="Trigger Source"]
+    #[doc="Sets the TRG_SRC field."]
     #[inline] pub fn set_trg_src<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1005,12 +1005,12 @@ impl Tctrl {
         unsafe { ::core::mem::transmute(((self.0 >> 24) & 0xf) as u8) } // [27:24]
     }
 
-    #[doc="Trigger Select"]
+    #[doc="Returns true if TRG_SEL != 0"]
     #[inline] pub fn test_trg_sel(&self) -> bool {
         self.trg_sel() != 0
     }
 
-    #[doc="Trigger Select"]
+    #[doc="Sets the TRG_SEL field."]
     #[inline] pub fn set_trg_sel<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();

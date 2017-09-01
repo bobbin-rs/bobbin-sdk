@@ -317,12 +317,12 @@ impl Ptptscr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if TSE != 0"]
     #[inline] pub fn test_tse(&self) -> bool {
         self.tse() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the TSE field."]
     #[inline] pub fn set_tse<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -336,12 +336,12 @@ impl Ptptscr {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if TSFCU != 0"]
     #[inline] pub fn test_tsfcu(&self) -> bool {
         self.tsfcu() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the TSFCU field."]
     #[inline] pub fn set_tsfcu<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -355,12 +355,12 @@ impl Ptptscr {
         unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x1) as u8) } // [10]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if TSPTPPSV2E != 0"]
     #[inline] pub fn test_tsptppsv2e(&self) -> bool {
         self.tsptppsv2e() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the TSPTPPSV2E field."]
     #[inline] pub fn set_tsptppsv2e<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -374,12 +374,12 @@ impl Ptptscr {
         unsafe { ::core::mem::transmute(((self.0 >> 11) & 0x1) as u8) } // [11]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if TSSPTPOEFE != 0"]
     #[inline] pub fn test_tssptpoefe(&self) -> bool {
         self.tssptpoefe() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the TSSPTPOEFE field."]
     #[inline] pub fn set_tssptpoefe<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -393,12 +393,12 @@ impl Ptptscr {
         unsafe { ::core::mem::transmute(((self.0 >> 12) & 0x1) as u8) } // [12]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if TSSIPV6FE != 0"]
     #[inline] pub fn test_tssipv6fe(&self) -> bool {
         self.tssipv6fe() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the TSSIPV6FE field."]
     #[inline] pub fn set_tssipv6fe<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -412,12 +412,12 @@ impl Ptptscr {
         unsafe { ::core::mem::transmute(((self.0 >> 13) & 0x1) as u8) } // [13]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if TSSIPV4FE != 0"]
     #[inline] pub fn test_tssipv4fe(&self) -> bool {
         self.tssipv4fe() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the TSSIPV4FE field."]
     #[inline] pub fn set_tssipv4fe<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -431,12 +431,12 @@ impl Ptptscr {
         unsafe { ::core::mem::transmute(((self.0 >> 14) & 0x1) as u8) } // [14]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if TSSEME != 0"]
     #[inline] pub fn test_tsseme(&self) -> bool {
         self.tsseme() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the TSSEME field."]
     #[inline] pub fn set_tsseme<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -450,12 +450,12 @@ impl Ptptscr {
         unsafe { ::core::mem::transmute(((self.0 >> 15) & 0x1) as u8) } // [15]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if TSSMRME != 0"]
     #[inline] pub fn test_tssmrme(&self) -> bool {
         self.tssmrme() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the TSSMRME field."]
     #[inline] pub fn set_tssmrme<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -469,12 +469,12 @@ impl Ptptscr {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x3) as u8) } // [17:16]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if TSCNT != 0"]
     #[inline] pub fn test_tscnt(&self) -> bool {
         self.tscnt() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the TSCNT field."]
     #[inline] pub fn set_tscnt<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -488,12 +488,12 @@ impl Ptptscr {
         unsafe { ::core::mem::transmute(((self.0 >> 18) & 0x1) as u8) } // [18]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if TSPFFMAE != 0"]
     #[inline] pub fn test_tspffmae(&self) -> bool {
         self.tspffmae() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the TSPFFMAE field."]
     #[inline] pub fn set_tspffmae<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -507,12 +507,12 @@ impl Ptptscr {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if TSSTI != 0"]
     #[inline] pub fn test_tssti(&self) -> bool {
         self.tssti() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the TSSTI field."]
     #[inline] pub fn set_tssti<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -526,12 +526,12 @@ impl Ptptscr {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if TSSTU != 0"]
     #[inline] pub fn test_tsstu(&self) -> bool {
         self.tsstu() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the TSSTU field."]
     #[inline] pub fn set_tsstu<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -545,12 +545,12 @@ impl Ptptscr {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if TSITE != 0"]
     #[inline] pub fn test_tsite(&self) -> bool {
         self.tsite() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the TSITE field."]
     #[inline] pub fn set_tsite<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -564,12 +564,12 @@ impl Ptptscr {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if TTSARU != 0"]
     #[inline] pub fn test_ttsaru(&self) -> bool {
         self.ttsaru() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the TTSARU field."]
     #[inline] pub fn set_ttsaru<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -583,12 +583,12 @@ impl Ptptscr {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if TSSARFE != 0"]
     #[inline] pub fn test_tssarfe(&self) -> bool {
         self.tssarfe() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the TSSARFE field."]
     #[inline] pub fn set_tssarfe<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -602,12 +602,12 @@ impl Ptptscr {
         unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if TSSSR != 0"]
     #[inline] pub fn test_tsssr(&self) -> bool {
         self.tsssr() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the TSSSR field."]
     #[inline] pub fn set_tsssr<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -664,12 +664,12 @@ impl Ptpssir {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if STSSI != 0"]
     #[inline] pub fn test_stssi(&self) -> bool {
         self.stssi() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the STSSI field."]
     #[inline] pub fn set_stssi<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -711,12 +711,12 @@ impl Ptptshr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffffffff) as u32) } // [31:0]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if STS != 0"]
     #[inline] pub fn test_sts(&self) -> bool {
         self.sts() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the STS field."]
     #[inline] pub fn set_sts<V: Into<bits::U32>>(mut self, value: V) -> Self {
         let value: bits::U32 = value.into();
         let value: u32 = value.into();
@@ -757,12 +757,12 @@ impl Ptptslr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x7fffffff) as u32) } // [30:0]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if STSS != 0"]
     #[inline] pub fn test_stss(&self) -> bool {
         self.stss() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the STSS field."]
     #[inline] pub fn set_stss<V: Into<bits::U31>>(mut self, value: V) -> Self {
         let value: bits::U31 = value.into();
         let value: u32 = value.into();
@@ -776,12 +776,12 @@ impl Ptptslr {
         unsafe { ::core::mem::transmute(((self.0 >> 31) & 0x1) as u8) } // [31]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if STPNS != 0"]
     #[inline] pub fn test_stpns(&self) -> bool {
         self.stpns() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the STPNS field."]
     #[inline] pub fn set_stpns<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -824,12 +824,12 @@ impl Ptptshur {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffffffff) as u32) } // [31:0]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if TSUS != 0"]
     #[inline] pub fn test_tsus(&self) -> bool {
         self.tsus() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the TSUS field."]
     #[inline] pub fn set_tsus<V: Into<bits::U32>>(mut self, value: V) -> Self {
         let value: bits::U32 = value.into();
         let value: u32 = value.into();
@@ -870,12 +870,12 @@ impl Ptptslur {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x7fffffff) as u32) } // [30:0]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if TSUSS != 0"]
     #[inline] pub fn test_tsuss(&self) -> bool {
         self.tsuss() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the TSUSS field."]
     #[inline] pub fn set_tsuss<V: Into<bits::U31>>(mut self, value: V) -> Self {
         let value: bits::U31 = value.into();
         let value: u32 = value.into();
@@ -889,12 +889,12 @@ impl Ptptslur {
         unsafe { ::core::mem::transmute(((self.0 >> 31) & 0x1) as u8) } // [31]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if TSUPNS != 0"]
     #[inline] pub fn test_tsupns(&self) -> bool {
         self.tsupns() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the TSUPNS field."]
     #[inline] pub fn set_tsupns<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -937,12 +937,12 @@ impl Ptptsar {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffffffff) as u32) } // [31:0]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if TSA != 0"]
     #[inline] pub fn test_tsa(&self) -> bool {
         self.tsa() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the TSA field."]
     #[inline] pub fn set_tsa<V: Into<bits::U32>>(mut self, value: V) -> Self {
         let value: bits::U32 = value.into();
         let value: u32 = value.into();
@@ -983,12 +983,12 @@ impl Ptptthr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffffffff) as u32) } // [31:0]
     }
 
-    #[doc="0"]
+    #[doc="Returns true if TTSH != 0"]
     #[inline] pub fn test_ttsh(&self) -> bool {
         self.ttsh() != 0
     }
 
-    #[doc="0"]
+    #[doc="Sets the TTSH field."]
     #[inline] pub fn set_ttsh<V: Into<bits::U32>>(mut self, value: V) -> Self {
         let value: bits::U32 = value.into();
         let value: u32 = value.into();
@@ -1029,12 +1029,12 @@ impl Ptpttlr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffffffff) as u32) } // [31:0]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if TTSL != 0"]
     #[inline] pub fn test_ttsl(&self) -> bool {
         self.ttsl() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the TTSL field."]
     #[inline] pub fn set_ttsl<V: Into<bits::U32>>(mut self, value: V) -> Self {
         let value: bits::U32 = value.into();
         let value: u32 = value.into();
@@ -1075,12 +1075,12 @@ impl Ptptssr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if TSSO != 0"]
     #[inline] pub fn test_tsso(&self) -> bool {
         self.tsso() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the TSSO field."]
     #[inline] pub fn set_tsso<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1094,12 +1094,12 @@ impl Ptptssr {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if TSTTR != 0"]
     #[inline] pub fn test_tsttr(&self) -> bool {
         self.tsttr() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the TSTTR field."]
     #[inline] pub fn set_tsttr<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1142,12 +1142,12 @@ impl Ptpppscr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="TSSO"]
+    #[doc="Returns true if TSSO != 0"]
     #[inline] pub fn test_tsso(&self) -> bool {
         self.tsso() != 0
     }
 
-    #[doc="TSSO"]
+    #[doc="Sets the TSSO field."]
     #[inline] pub fn set_tsso<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1161,12 +1161,12 @@ impl Ptpppscr {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="TSTTR"]
+    #[doc="Returns true if TSTTR != 0"]
     #[inline] pub fn test_tsttr(&self) -> bool {
         self.tsttr() != 0
     }
 
-    #[doc="TSTTR"]
+    #[doc="Sets the TSTTR field."]
     #[inline] pub fn set_tsttr<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();

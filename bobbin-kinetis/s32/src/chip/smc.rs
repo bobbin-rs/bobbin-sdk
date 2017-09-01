@@ -168,12 +168,12 @@ impl Verid {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffff) as u16) } // [15:0]
     }
 
-    #[doc="Feature Specification Number"]
+    #[doc="Returns true if FEATURE != 0"]
     #[inline] pub fn test_feature(&self) -> bool {
         self.feature() != 0
     }
 
-    #[doc="Feature Specification Number"]
+    #[doc="Sets the FEATURE field."]
     #[inline] pub fn set_feature<V: Into<bits::U16>>(mut self, value: V) -> Self {
         let value: bits::U16 = value.into();
         let value: u32 = value.into();
@@ -187,12 +187,12 @@ impl Verid {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xff) as u8) } // [23:16]
     }
 
-    #[doc="Minor Version Number"]
+    #[doc="Returns true if MINOR != 0"]
     #[inline] pub fn test_minor(&self) -> bool {
         self.minor() != 0
     }
 
-    #[doc="Minor Version Number"]
+    #[doc="Sets the MINOR field."]
     #[inline] pub fn set_minor<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -206,12 +206,12 @@ impl Verid {
         unsafe { ::core::mem::transmute(((self.0 >> 24) & 0xff) as u8) } // [31:24]
     }
 
-    #[doc="Major Version Number"]
+    #[doc="Returns true if MAJOR != 0"]
     #[inline] pub fn test_major(&self) -> bool {
         self.major() != 0
     }
 
-    #[doc="Major Version Number"]
+    #[doc="Sets the MAJOR field."]
     #[inline] pub fn set_major<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -255,12 +255,12 @@ impl Param {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Existence of HSRUN feature"]
+    #[doc="Returns true if EHSRUN != 0"]
     #[inline] pub fn test_ehsrun(&self) -> bool {
         self.ehsrun() != 0
     }
 
-    #[doc="Existence of HSRUN feature"]
+    #[doc="Sets the EHSRUN field."]
     #[inline] pub fn set_ehsrun<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -274,12 +274,12 @@ impl Param {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="Existence of LLS feature"]
+    #[doc="Returns true if ELLS != 0"]
     #[inline] pub fn test_ells(&self) -> bool {
         self.ells() != 0
     }
 
-    #[doc="Existence of LLS feature"]
+    #[doc="Sets the ELLS field."]
     #[inline] pub fn set_ells<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -293,12 +293,12 @@ impl Param {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="Existence of LLS2 feature"]
+    #[doc="Returns true if ELLS2 != 0"]
     #[inline] pub fn test_ells2(&self) -> bool {
         self.ells2() != 0
     }
 
-    #[doc="Existence of LLS2 feature"]
+    #[doc="Sets the ELLS2 field."]
     #[inline] pub fn set_ells2<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -312,12 +312,12 @@ impl Param {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="Existence of VLLS0 feature"]
+    #[doc="Returns true if EVLLS0 != 0"]
     #[inline] pub fn test_evlls0(&self) -> bool {
         self.evlls0() != 0
     }
 
-    #[doc="Existence of VLLS0 feature"]
+    #[doc="Sets the EVLLS0 field."]
     #[inline] pub fn set_evlls0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -362,12 +362,12 @@ impl Pmprot {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="Allow Very-Low-Power Modes"]
+    #[doc="Returns true if AVLP != 0"]
     #[inline] pub fn test_avlp(&self) -> bool {
         self.avlp() != 0
     }
 
-    #[doc="Allow Very-Low-Power Modes"]
+    #[doc="Sets the AVLP field."]
     #[inline] pub fn set_avlp<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -381,12 +381,12 @@ impl Pmprot {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="Allow High Speed Run mode"]
+    #[doc="Returns true if AHSRUN != 0"]
     #[inline] pub fn test_ahsrun(&self) -> bool {
         self.ahsrun() != 0
     }
 
-    #[doc="Allow High Speed Run mode"]
+    #[doc="Sets the AHSRUN field."]
     #[inline] pub fn set_ahsrun<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -429,12 +429,12 @@ impl Pmctrl {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x7) as u8) } // [2:0]
     }
 
-    #[doc="Stop Mode Control"]
+    #[doc="Returns true if STOPM != 0"]
     #[inline] pub fn test_stopm(&self) -> bool {
         self.stopm() != 0
     }
 
-    #[doc="Stop Mode Control"]
+    #[doc="Sets the STOPM field."]
     #[inline] pub fn set_stopm<V: Into<bits::U3>>(mut self, value: V) -> Self {
         let value: bits::U3 = value.into();
         let value: u32 = value.into();
@@ -448,12 +448,12 @@ impl Pmctrl {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="Very Low Power Stop Aborted"]
+    #[doc="Returns true if VLPSA != 0"]
     #[inline] pub fn test_vlpsa(&self) -> bool {
         self.vlpsa() != 0
     }
 
-    #[doc="Very Low Power Stop Aborted"]
+    #[doc="Sets the VLPSA field."]
     #[inline] pub fn set_vlpsa<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -467,12 +467,12 @@ impl Pmctrl {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x3) as u8) } // [6:5]
     }
 
-    #[doc="Run Mode Control"]
+    #[doc="Returns true if RUNM != 0"]
     #[inline] pub fn test_runm(&self) -> bool {
         self.runm() != 0
     }
 
-    #[doc="Run Mode Control"]
+    #[doc="Sets the RUNM field."]
     #[inline] pub fn set_runm<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -516,12 +516,12 @@ impl Stopctrl {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x3) as u8) } // [7:6]
     }
 
-    #[doc="Stop Option"]
+    #[doc="Returns true if STOPO != 0"]
     #[inline] pub fn test_stopo(&self) -> bool {
         self.stopo() != 0
     }
 
-    #[doc="Stop Option"]
+    #[doc="Sets the STOPO field."]
     #[inline] pub fn set_stopo<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -563,12 +563,12 @@ impl Pmstat {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
-    #[doc="Power Mode Status"]
+    #[doc="Returns true if PMSTAT != 0"]
     #[inline] pub fn test_pmstat(&self) -> bool {
         self.pmstat() != 0
     }
 
-    #[doc="Power Mode Status"]
+    #[doc="Sets the PMSTAT field."]
     #[inline] pub fn set_pmstat<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();

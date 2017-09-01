@@ -121,12 +121,12 @@ impl Pcr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Pull Select"]
+    #[doc="Returns true if PS != 0"]
     #[inline] pub fn test_ps(&self) -> bool {
         self.ps() != 0
     }
 
-    #[doc="Pull Select"]
+    #[doc="Sets the PS field."]
     #[inline] pub fn set_ps<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -140,12 +140,12 @@ impl Pcr {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="Pull Enable"]
+    #[doc="Returns true if PE != 0"]
     #[inline] pub fn test_pe(&self) -> bool {
         self.pe() != 0
     }
 
-    #[doc="Pull Enable"]
+    #[doc="Sets the PE field."]
     #[inline] pub fn set_pe<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -159,12 +159,12 @@ impl Pcr {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="Slew Rate Enable"]
+    #[doc="Returns true if SRE != 0"]
     #[inline] pub fn test_sre(&self) -> bool {
         self.sre() != 0
     }
 
-    #[doc="Slew Rate Enable"]
+    #[doc="Sets the SRE field."]
     #[inline] pub fn set_sre<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -178,12 +178,12 @@ impl Pcr {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="Passive Filter Enable"]
+    #[doc="Returns true if PFE != 0"]
     #[inline] pub fn test_pfe(&self) -> bool {
         self.pfe() != 0
     }
 
-    #[doc="Passive Filter Enable"]
+    #[doc="Sets the PFE field."]
     #[inline] pub fn set_pfe<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -197,12 +197,12 @@ impl Pcr {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="Open Drain Enable"]
+    #[doc="Returns true if ODE != 0"]
     #[inline] pub fn test_ode(&self) -> bool {
         self.ode() != 0
     }
 
-    #[doc="Open Drain Enable"]
+    #[doc="Sets the ODE field."]
     #[inline] pub fn set_ode<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -216,12 +216,12 @@ impl Pcr {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="Drive Strength Enable"]
+    #[doc="Returns true if DSE != 0"]
     #[inline] pub fn test_dse(&self) -> bool {
         self.dse() != 0
     }
 
-    #[doc="Drive Strength Enable"]
+    #[doc="Sets the DSE field."]
     #[inline] pub fn set_dse<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -235,12 +235,12 @@ impl Pcr {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x7) as u8) } // [10:8]
     }
 
-    #[doc="Pin Mux Control"]
+    #[doc="Returns true if MUX != 0"]
     #[inline] pub fn test_mux(&self) -> bool {
         self.mux() != 0
     }
 
-    #[doc="Pin Mux Control"]
+    #[doc="Sets the MUX field."]
     #[inline] pub fn set_mux<V: Into<bits::U3>>(mut self, value: V) -> Self {
         let value: bits::U3 = value.into();
         let value: u32 = value.into();
@@ -254,12 +254,12 @@ impl Pcr {
         unsafe { ::core::mem::transmute(((self.0 >> 15) & 0x1) as u8) } // [15]
     }
 
-    #[doc="Lock Register"]
+    #[doc="Returns true if LK != 0"]
     #[inline] pub fn test_lk(&self) -> bool {
         self.lk() != 0
     }
 
-    #[doc="Lock Register"]
+    #[doc="Sets the LK field."]
     #[inline] pub fn set_lk<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -273,12 +273,12 @@ impl Pcr {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xf) as u8) } // [19:16]
     }
 
-    #[doc="Interrupt Configuration"]
+    #[doc="Returns true if IRQC != 0"]
     #[inline] pub fn test_irqc(&self) -> bool {
         self.irqc() != 0
     }
 
-    #[doc="Interrupt Configuration"]
+    #[doc="Sets the IRQC field."]
     #[inline] pub fn set_irqc<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -292,12 +292,12 @@ impl Pcr {
         unsafe { ::core::mem::transmute(((self.0 >> 24) & 0x1) as u8) } // [24]
     }
 
-    #[doc="Interrupt Status Flag"]
+    #[doc="Returns true if ISF != 0"]
     #[inline] pub fn test_isf(&self) -> bool {
         self.isf() != 0
     }
 
-    #[doc="Interrupt Status Flag"]
+    #[doc="Sets the ISF field."]
     #[inline] pub fn set_isf<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -348,12 +348,12 @@ impl Gpclr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffff) as u16) } // [15:0]
     }
 
-    #[doc="Global Pin Write Data"]
+    #[doc="Returns true if GPWD != 0"]
     #[inline] pub fn test_gpwd(&self) -> bool {
         self.gpwd() != 0
     }
 
-    #[doc="Global Pin Write Data"]
+    #[doc="Sets the GPWD field."]
     #[inline] pub fn set_gpwd<V: Into<bits::U16>>(mut self, value: V) -> Self {
         let value: bits::U16 = value.into();
         let value: u32 = value.into();
@@ -367,12 +367,12 @@ impl Gpclr {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xffff) as u16) } // [31:16]
     }
 
-    #[doc="Global Pin Write Enable"]
+    #[doc="Returns true if GPWE != 0"]
     #[inline] pub fn test_gpwe(&self) -> bool {
         self.gpwe() != 0
     }
 
-    #[doc="Global Pin Write Enable"]
+    #[doc="Sets the GPWE field."]
     #[inline] pub fn set_gpwe<V: Into<bits::U16>>(mut self, value: V) -> Self {
         let value: bits::U16 = value.into();
         let value: u32 = value.into();
@@ -415,12 +415,12 @@ impl Gpchr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffff) as u16) } // [15:0]
     }
 
-    #[doc="Global Pin Write Data"]
+    #[doc="Returns true if GPWD != 0"]
     #[inline] pub fn test_gpwd(&self) -> bool {
         self.gpwd() != 0
     }
 
-    #[doc="Global Pin Write Data"]
+    #[doc="Sets the GPWD field."]
     #[inline] pub fn set_gpwd<V: Into<bits::U16>>(mut self, value: V) -> Self {
         let value: bits::U16 = value.into();
         let value: u32 = value.into();
@@ -434,12 +434,12 @@ impl Gpchr {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xffff) as u16) } // [31:16]
     }
 
-    #[doc="Global Pin Write Enable"]
+    #[doc="Returns true if GPWE != 0"]
     #[inline] pub fn test_gpwe(&self) -> bool {
         self.gpwe() != 0
     }
 
-    #[doc="Global Pin Write Enable"]
+    #[doc="Sets the GPWE field."]
     #[inline] pub fn set_gpwe<V: Into<bits::U16>>(mut self, value: V) -> Self {
         let value: bits::U16 = value.into();
         let value: u32 = value.into();
@@ -484,12 +484,12 @@ impl Isfr {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Interrupt Status Flag"]
+    #[doc="Returns true if ISF != 0"]
     #[inline] pub fn test_isf<I: Into<bits::R32>>(&self, index: I) -> bool{
         self.isf(index) != 0
     }
 
-    #[doc="Interrupt Status Flag"]
+    #[doc="Sets the ISF field."]
     #[inline] pub fn set_isf<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();

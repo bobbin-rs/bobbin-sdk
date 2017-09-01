@@ -322,12 +322,12 @@ impl Lisr {
         unsafe { ::core::mem::transmute(((self.0 >> 27) & 0x1) as u8) } // [27]
     }
 
-    #[doc="Stream x transfer complete interrupt flag (x = 3..0)"]
+    #[doc="Returns true if TCIF3 != 0"]
     #[inline] pub fn test_tcif3(&self) -> bool {
         self.tcif3() != 0
     }
 
-    #[doc="Stream x transfer complete interrupt flag (x = 3..0)"]
+    #[doc="Sets the TCIF3 field."]
     #[inline] pub fn set_tcif3<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -341,12 +341,12 @@ impl Lisr {
         unsafe { ::core::mem::transmute(((self.0 >> 26) & 0x1) as u8) } // [26]
     }
 
-    #[doc="Stream x half transfer interrupt flag (x=3..0)"]
+    #[doc="Returns true if HTIF3 != 0"]
     #[inline] pub fn test_htif3(&self) -> bool {
         self.htif3() != 0
     }
 
-    #[doc="Stream x half transfer interrupt flag (x=3..0)"]
+    #[doc="Sets the HTIF3 field."]
     #[inline] pub fn set_htif3<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -360,12 +360,12 @@ impl Lisr {
         unsafe { ::core::mem::transmute(((self.0 >> 25) & 0x1) as u8) } // [25]
     }
 
-    #[doc="Stream x transfer error interrupt flag (x=3..0)"]
+    #[doc="Returns true if TEIF3 != 0"]
     #[inline] pub fn test_teif3(&self) -> bool {
         self.teif3() != 0
     }
 
-    #[doc="Stream x transfer error interrupt flag (x=3..0)"]
+    #[doc="Sets the TEIF3 field."]
     #[inline] pub fn set_teif3<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -379,12 +379,12 @@ impl Lisr {
         unsafe { ::core::mem::transmute(((self.0 >> 24) & 0x1) as u8) } // [24]
     }
 
-    #[doc="Stream x direct mode error interrupt flag (x=3..0)"]
+    #[doc="Returns true if DMEIF3 != 0"]
     #[inline] pub fn test_dmeif3(&self) -> bool {
         self.dmeif3() != 0
     }
 
-    #[doc="Stream x direct mode error interrupt flag (x=3..0)"]
+    #[doc="Sets the DMEIF3 field."]
     #[inline] pub fn set_dmeif3<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -398,12 +398,12 @@ impl Lisr {
         unsafe { ::core::mem::transmute(((self.0 >> 22) & 0x1) as u8) } // [22]
     }
 
-    #[doc="Stream x FIFO error interrupt flag (x=3..0)"]
+    #[doc="Returns true if FEIF3 != 0"]
     #[inline] pub fn test_feif3(&self) -> bool {
         self.feif3() != 0
     }
 
-    #[doc="Stream x FIFO error interrupt flag (x=3..0)"]
+    #[doc="Sets the FEIF3 field."]
     #[inline] pub fn set_feif3<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -417,12 +417,12 @@ impl Lisr {
         unsafe { ::core::mem::transmute(((self.0 >> 21) & 0x1) as u8) } // [21]
     }
 
-    #[doc="Stream x transfer complete interrupt flag (x = 3..0)"]
+    #[doc="Returns true if TCIF2 != 0"]
     #[inline] pub fn test_tcif2(&self) -> bool {
         self.tcif2() != 0
     }
 
-    #[doc="Stream x transfer complete interrupt flag (x = 3..0)"]
+    #[doc="Sets the TCIF2 field."]
     #[inline] pub fn set_tcif2<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -436,12 +436,12 @@ impl Lisr {
         unsafe { ::core::mem::transmute(((self.0 >> 20) & 0x1) as u8) } // [20]
     }
 
-    #[doc="Stream x half transfer interrupt flag (x=3..0)"]
+    #[doc="Returns true if HTIF2 != 0"]
     #[inline] pub fn test_htif2(&self) -> bool {
         self.htif2() != 0
     }
 
-    #[doc="Stream x half transfer interrupt flag (x=3..0)"]
+    #[doc="Sets the HTIF2 field."]
     #[inline] pub fn set_htif2<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -455,12 +455,12 @@ impl Lisr {
         unsafe { ::core::mem::transmute(((self.0 >> 19) & 0x1) as u8) } // [19]
     }
 
-    #[doc="Stream x transfer error interrupt flag (x=3..0)"]
+    #[doc="Returns true if TEIF2 != 0"]
     #[inline] pub fn test_teif2(&self) -> bool {
         self.teif2() != 0
     }
 
-    #[doc="Stream x transfer error interrupt flag (x=3..0)"]
+    #[doc="Sets the TEIF2 field."]
     #[inline] pub fn set_teif2<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -474,12 +474,12 @@ impl Lisr {
         unsafe { ::core::mem::transmute(((self.0 >> 18) & 0x1) as u8) } // [18]
     }
 
-    #[doc="Stream x direct mode error interrupt flag (x=3..0)"]
+    #[doc="Returns true if DMEIF2 != 0"]
     #[inline] pub fn test_dmeif2(&self) -> bool {
         self.dmeif2() != 0
     }
 
-    #[doc="Stream x direct mode error interrupt flag (x=3..0)"]
+    #[doc="Sets the DMEIF2 field."]
     #[inline] pub fn set_dmeif2<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -493,12 +493,12 @@ impl Lisr {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1) as u8) } // [16]
     }
 
-    #[doc="Stream x FIFO error interrupt flag (x=3..0)"]
+    #[doc="Returns true if FEIF2 != 0"]
     #[inline] pub fn test_feif2(&self) -> bool {
         self.feif2() != 0
     }
 
-    #[doc="Stream x FIFO error interrupt flag (x=3..0)"]
+    #[doc="Sets the FEIF2 field."]
     #[inline] pub fn set_feif2<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -512,12 +512,12 @@ impl Lisr {
         unsafe { ::core::mem::transmute(((self.0 >> 11) & 0x1) as u8) } // [11]
     }
 
-    #[doc="Stream x transfer complete interrupt flag (x = 3..0)"]
+    #[doc="Returns true if TCIF1 != 0"]
     #[inline] pub fn test_tcif1(&self) -> bool {
         self.tcif1() != 0
     }
 
-    #[doc="Stream x transfer complete interrupt flag (x = 3..0)"]
+    #[doc="Sets the TCIF1 field."]
     #[inline] pub fn set_tcif1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -531,12 +531,12 @@ impl Lisr {
         unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x1) as u8) } // [10]
     }
 
-    #[doc="Stream x half transfer interrupt flag (x=3..0)"]
+    #[doc="Returns true if HTIF1 != 0"]
     #[inline] pub fn test_htif1(&self) -> bool {
         self.htif1() != 0
     }
 
-    #[doc="Stream x half transfer interrupt flag (x=3..0)"]
+    #[doc="Sets the HTIF1 field."]
     #[inline] pub fn set_htif1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -550,12 +550,12 @@ impl Lisr {
         unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
     }
 
-    #[doc="Stream x transfer error interrupt flag (x=3..0)"]
+    #[doc="Returns true if TEIF1 != 0"]
     #[inline] pub fn test_teif1(&self) -> bool {
         self.teif1() != 0
     }
 
-    #[doc="Stream x transfer error interrupt flag (x=3..0)"]
+    #[doc="Sets the TEIF1 field."]
     #[inline] pub fn set_teif1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -569,12 +569,12 @@ impl Lisr {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
     }
 
-    #[doc="Stream x direct mode error interrupt flag (x=3..0)"]
+    #[doc="Returns true if DMEIF1 != 0"]
     #[inline] pub fn test_dmeif1(&self) -> bool {
         self.dmeif1() != 0
     }
 
-    #[doc="Stream x direct mode error interrupt flag (x=3..0)"]
+    #[doc="Sets the DMEIF1 field."]
     #[inline] pub fn set_dmeif1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -588,12 +588,12 @@ impl Lisr {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="Stream x FIFO error interrupt flag (x=3..0)"]
+    #[doc="Returns true if FEIF1 != 0"]
     #[inline] pub fn test_feif1(&self) -> bool {
         self.feif1() != 0
     }
 
-    #[doc="Stream x FIFO error interrupt flag (x=3..0)"]
+    #[doc="Sets the FEIF1 field."]
     #[inline] pub fn set_feif1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -607,12 +607,12 @@ impl Lisr {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="Stream x transfer complete interrupt flag (x = 3..0)"]
+    #[doc="Returns true if TCIF0 != 0"]
     #[inline] pub fn test_tcif0(&self) -> bool {
         self.tcif0() != 0
     }
 
-    #[doc="Stream x transfer complete interrupt flag (x = 3..0)"]
+    #[doc="Sets the TCIF0 field."]
     #[inline] pub fn set_tcif0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -626,12 +626,12 @@ impl Lisr {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="Stream x half transfer interrupt flag (x=3..0)"]
+    #[doc="Returns true if HTIF0 != 0"]
     #[inline] pub fn test_htif0(&self) -> bool {
         self.htif0() != 0
     }
 
-    #[doc="Stream x half transfer interrupt flag (x=3..0)"]
+    #[doc="Sets the HTIF0 field."]
     #[inline] pub fn set_htif0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -645,12 +645,12 @@ impl Lisr {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="Stream x transfer error interrupt flag (x=3..0)"]
+    #[doc="Returns true if TEIF0 != 0"]
     #[inline] pub fn test_teif0(&self) -> bool {
         self.teif0() != 0
     }
 
-    #[doc="Stream x transfer error interrupt flag (x=3..0)"]
+    #[doc="Sets the TEIF0 field."]
     #[inline] pub fn set_teif0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -664,12 +664,12 @@ impl Lisr {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="Stream x direct mode error interrupt flag (x=3..0)"]
+    #[doc="Returns true if DMEIF0 != 0"]
     #[inline] pub fn test_dmeif0(&self) -> bool {
         self.dmeif0() != 0
     }
 
-    #[doc="Stream x direct mode error interrupt flag (x=3..0)"]
+    #[doc="Sets the DMEIF0 field."]
     #[inline] pub fn set_dmeif0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -683,12 +683,12 @@ impl Lisr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Stream x FIFO error interrupt flag (x=3..0)"]
+    #[doc="Returns true if FEIF0 != 0"]
     #[inline] pub fn test_feif0(&self) -> bool {
         self.feif0() != 0
     }
 
-    #[doc="Stream x FIFO error interrupt flag (x=3..0)"]
+    #[doc="Sets the FEIF0 field."]
     #[inline] pub fn set_feif0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -749,12 +749,12 @@ impl Hisr {
         unsafe { ::core::mem::transmute(((self.0 >> 27) & 0x1) as u8) } // [27]
     }
 
-    #[doc="Stream x transfer complete interrupt flag (x=7..4)"]
+    #[doc="Returns true if TCIF7 != 0"]
     #[inline] pub fn test_tcif7(&self) -> bool {
         self.tcif7() != 0
     }
 
-    #[doc="Stream x transfer complete interrupt flag (x=7..4)"]
+    #[doc="Sets the TCIF7 field."]
     #[inline] pub fn set_tcif7<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -768,12 +768,12 @@ impl Hisr {
         unsafe { ::core::mem::transmute(((self.0 >> 26) & 0x1) as u8) } // [26]
     }
 
-    #[doc="Stream x half transfer interrupt flag (x=7..4)"]
+    #[doc="Returns true if HTIF7 != 0"]
     #[inline] pub fn test_htif7(&self) -> bool {
         self.htif7() != 0
     }
 
-    #[doc="Stream x half transfer interrupt flag (x=7..4)"]
+    #[doc="Sets the HTIF7 field."]
     #[inline] pub fn set_htif7<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -787,12 +787,12 @@ impl Hisr {
         unsafe { ::core::mem::transmute(((self.0 >> 25) & 0x1) as u8) } // [25]
     }
 
-    #[doc="Stream x transfer error interrupt flag (x=7..4)"]
+    #[doc="Returns true if TEIF7 != 0"]
     #[inline] pub fn test_teif7(&self) -> bool {
         self.teif7() != 0
     }
 
-    #[doc="Stream x transfer error interrupt flag (x=7..4)"]
+    #[doc="Sets the TEIF7 field."]
     #[inline] pub fn set_teif7<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -806,12 +806,12 @@ impl Hisr {
         unsafe { ::core::mem::transmute(((self.0 >> 24) & 0x1) as u8) } // [24]
     }
 
-    #[doc="Stream x direct mode error interrupt flag (x=7..4)"]
+    #[doc="Returns true if DMEIF7 != 0"]
     #[inline] pub fn test_dmeif7(&self) -> bool {
         self.dmeif7() != 0
     }
 
-    #[doc="Stream x direct mode error interrupt flag (x=7..4)"]
+    #[doc="Sets the DMEIF7 field."]
     #[inline] pub fn set_dmeif7<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -825,12 +825,12 @@ impl Hisr {
         unsafe { ::core::mem::transmute(((self.0 >> 22) & 0x1) as u8) } // [22]
     }
 
-    #[doc="Stream x FIFO error interrupt flag (x=7..4)"]
+    #[doc="Returns true if FEIF7 != 0"]
     #[inline] pub fn test_feif7(&self) -> bool {
         self.feif7() != 0
     }
 
-    #[doc="Stream x FIFO error interrupt flag (x=7..4)"]
+    #[doc="Sets the FEIF7 field."]
     #[inline] pub fn set_feif7<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -844,12 +844,12 @@ impl Hisr {
         unsafe { ::core::mem::transmute(((self.0 >> 21) & 0x1) as u8) } // [21]
     }
 
-    #[doc="Stream x transfer complete interrupt flag (x=7..4)"]
+    #[doc="Returns true if TCIF6 != 0"]
     #[inline] pub fn test_tcif6(&self) -> bool {
         self.tcif6() != 0
     }
 
-    #[doc="Stream x transfer complete interrupt flag (x=7..4)"]
+    #[doc="Sets the TCIF6 field."]
     #[inline] pub fn set_tcif6<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -863,12 +863,12 @@ impl Hisr {
         unsafe { ::core::mem::transmute(((self.0 >> 20) & 0x1) as u8) } // [20]
     }
 
-    #[doc="Stream x half transfer interrupt flag (x=7..4)"]
+    #[doc="Returns true if HTIF6 != 0"]
     #[inline] pub fn test_htif6(&self) -> bool {
         self.htif6() != 0
     }
 
-    #[doc="Stream x half transfer interrupt flag (x=7..4)"]
+    #[doc="Sets the HTIF6 field."]
     #[inline] pub fn set_htif6<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -882,12 +882,12 @@ impl Hisr {
         unsafe { ::core::mem::transmute(((self.0 >> 19) & 0x1) as u8) } // [19]
     }
 
-    #[doc="Stream x transfer error interrupt flag (x=7..4)"]
+    #[doc="Returns true if TEIF6 != 0"]
     #[inline] pub fn test_teif6(&self) -> bool {
         self.teif6() != 0
     }
 
-    #[doc="Stream x transfer error interrupt flag (x=7..4)"]
+    #[doc="Sets the TEIF6 field."]
     #[inline] pub fn set_teif6<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -901,12 +901,12 @@ impl Hisr {
         unsafe { ::core::mem::transmute(((self.0 >> 18) & 0x1) as u8) } // [18]
     }
 
-    #[doc="Stream x direct mode error interrupt flag (x=7..4)"]
+    #[doc="Returns true if DMEIF6 != 0"]
     #[inline] pub fn test_dmeif6(&self) -> bool {
         self.dmeif6() != 0
     }
 
-    #[doc="Stream x direct mode error interrupt flag (x=7..4)"]
+    #[doc="Sets the DMEIF6 field."]
     #[inline] pub fn set_dmeif6<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -920,12 +920,12 @@ impl Hisr {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1) as u8) } // [16]
     }
 
-    #[doc="Stream x FIFO error interrupt flag (x=7..4)"]
+    #[doc="Returns true if FEIF6 != 0"]
     #[inline] pub fn test_feif6(&self) -> bool {
         self.feif6() != 0
     }
 
-    #[doc="Stream x FIFO error interrupt flag (x=7..4)"]
+    #[doc="Sets the FEIF6 field."]
     #[inline] pub fn set_feif6<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -939,12 +939,12 @@ impl Hisr {
         unsafe { ::core::mem::transmute(((self.0 >> 11) & 0x1) as u8) } // [11]
     }
 
-    #[doc="Stream x transfer complete interrupt flag (x=7..4)"]
+    #[doc="Returns true if TCIF5 != 0"]
     #[inline] pub fn test_tcif5(&self) -> bool {
         self.tcif5() != 0
     }
 
-    #[doc="Stream x transfer complete interrupt flag (x=7..4)"]
+    #[doc="Sets the TCIF5 field."]
     #[inline] pub fn set_tcif5<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -958,12 +958,12 @@ impl Hisr {
         unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x1) as u8) } // [10]
     }
 
-    #[doc="Stream x half transfer interrupt flag (x=7..4)"]
+    #[doc="Returns true if HTIF5 != 0"]
     #[inline] pub fn test_htif5(&self) -> bool {
         self.htif5() != 0
     }
 
-    #[doc="Stream x half transfer interrupt flag (x=7..4)"]
+    #[doc="Sets the HTIF5 field."]
     #[inline] pub fn set_htif5<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -977,12 +977,12 @@ impl Hisr {
         unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
     }
 
-    #[doc="Stream x transfer error interrupt flag (x=7..4)"]
+    #[doc="Returns true if TEIF5 != 0"]
     #[inline] pub fn test_teif5(&self) -> bool {
         self.teif5() != 0
     }
 
-    #[doc="Stream x transfer error interrupt flag (x=7..4)"]
+    #[doc="Sets the TEIF5 field."]
     #[inline] pub fn set_teif5<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -996,12 +996,12 @@ impl Hisr {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
     }
 
-    #[doc="Stream x direct mode error interrupt flag (x=7..4)"]
+    #[doc="Returns true if DMEIF5 != 0"]
     #[inline] pub fn test_dmeif5(&self) -> bool {
         self.dmeif5() != 0
     }
 
-    #[doc="Stream x direct mode error interrupt flag (x=7..4)"]
+    #[doc="Sets the DMEIF5 field."]
     #[inline] pub fn set_dmeif5<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1015,12 +1015,12 @@ impl Hisr {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="Stream x FIFO error interrupt flag (x=7..4)"]
+    #[doc="Returns true if FEIF5 != 0"]
     #[inline] pub fn test_feif5(&self) -> bool {
         self.feif5() != 0
     }
 
-    #[doc="Stream x FIFO error interrupt flag (x=7..4)"]
+    #[doc="Sets the FEIF5 field."]
     #[inline] pub fn set_feif5<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1034,12 +1034,12 @@ impl Hisr {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="Stream x transfer complete interrupt flag (x=7..4)"]
+    #[doc="Returns true if TCIF4 != 0"]
     #[inline] pub fn test_tcif4(&self) -> bool {
         self.tcif4() != 0
     }
 
-    #[doc="Stream x transfer complete interrupt flag (x=7..4)"]
+    #[doc="Sets the TCIF4 field."]
     #[inline] pub fn set_tcif4<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1053,12 +1053,12 @@ impl Hisr {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="Stream x half transfer interrupt flag (x=7..4)"]
+    #[doc="Returns true if HTIF4 != 0"]
     #[inline] pub fn test_htif4(&self) -> bool {
         self.htif4() != 0
     }
 
-    #[doc="Stream x half transfer interrupt flag (x=7..4)"]
+    #[doc="Sets the HTIF4 field."]
     #[inline] pub fn set_htif4<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1072,12 +1072,12 @@ impl Hisr {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="Stream x transfer error interrupt flag (x=7..4)"]
+    #[doc="Returns true if TEIF4 != 0"]
     #[inline] pub fn test_teif4(&self) -> bool {
         self.teif4() != 0
     }
 
-    #[doc="Stream x transfer error interrupt flag (x=7..4)"]
+    #[doc="Sets the TEIF4 field."]
     #[inline] pub fn set_teif4<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1091,12 +1091,12 @@ impl Hisr {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="Stream x direct mode error interrupt flag (x=7..4)"]
+    #[doc="Returns true if DMEIF4 != 0"]
     #[inline] pub fn test_dmeif4(&self) -> bool {
         self.dmeif4() != 0
     }
 
-    #[doc="Stream x direct mode error interrupt flag (x=7..4)"]
+    #[doc="Sets the DMEIF4 field."]
     #[inline] pub fn set_dmeif4<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1110,12 +1110,12 @@ impl Hisr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Stream x FIFO error interrupt flag (x=7..4)"]
+    #[doc="Returns true if FEIF4 != 0"]
     #[inline] pub fn test_feif4(&self) -> bool {
         self.feif4() != 0
     }
 
-    #[doc="Stream x FIFO error interrupt flag (x=7..4)"]
+    #[doc="Sets the FEIF4 field."]
     #[inline] pub fn set_feif4<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1176,12 +1176,12 @@ impl Lifcr {
         unsafe { ::core::mem::transmute(((self.0 >> 27) & 0x1) as u8) } // [27]
     }
 
-    #[doc="Stream x clear transfer complete interrupt flag (x = 3..0)"]
+    #[doc="Returns true if CTCIF3 != 0"]
     #[inline] pub fn test_ctcif3(&self) -> bool {
         self.ctcif3() != 0
     }
 
-    #[doc="Stream x clear transfer complete interrupt flag (x = 3..0)"]
+    #[doc="Sets the CTCIF3 field."]
     #[inline] pub fn set_ctcif3<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1195,12 +1195,12 @@ impl Lifcr {
         unsafe { ::core::mem::transmute(((self.0 >> 26) & 0x1) as u8) } // [26]
     }
 
-    #[doc="Stream x clear half transfer interrupt flag (x = 3..0)"]
+    #[doc="Returns true if CHTIF3 != 0"]
     #[inline] pub fn test_chtif3(&self) -> bool {
         self.chtif3() != 0
     }
 
-    #[doc="Stream x clear half transfer interrupt flag (x = 3..0)"]
+    #[doc="Sets the CHTIF3 field."]
     #[inline] pub fn set_chtif3<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1214,12 +1214,12 @@ impl Lifcr {
         unsafe { ::core::mem::transmute(((self.0 >> 25) & 0x1) as u8) } // [25]
     }
 
-    #[doc="Stream x clear transfer error interrupt flag (x = 3..0)"]
+    #[doc="Returns true if CTEIF3 != 0"]
     #[inline] pub fn test_cteif3(&self) -> bool {
         self.cteif3() != 0
     }
 
-    #[doc="Stream x clear transfer error interrupt flag (x = 3..0)"]
+    #[doc="Sets the CTEIF3 field."]
     #[inline] pub fn set_cteif3<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1233,12 +1233,12 @@ impl Lifcr {
         unsafe { ::core::mem::transmute(((self.0 >> 24) & 0x1) as u8) } // [24]
     }
 
-    #[doc="Stream x clear direct mode error interrupt flag (x = 3..0)"]
+    #[doc="Returns true if CDMEIF3 != 0"]
     #[inline] pub fn test_cdmeif3(&self) -> bool {
         self.cdmeif3() != 0
     }
 
-    #[doc="Stream x clear direct mode error interrupt flag (x = 3..0)"]
+    #[doc="Sets the CDMEIF3 field."]
     #[inline] pub fn set_cdmeif3<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1252,12 +1252,12 @@ impl Lifcr {
         unsafe { ::core::mem::transmute(((self.0 >> 22) & 0x1) as u8) } // [22]
     }
 
-    #[doc="Stream x clear FIFO error interrupt flag (x = 3..0)"]
+    #[doc="Returns true if CFEIF3 != 0"]
     #[inline] pub fn test_cfeif3(&self) -> bool {
         self.cfeif3() != 0
     }
 
-    #[doc="Stream x clear FIFO error interrupt flag (x = 3..0)"]
+    #[doc="Sets the CFEIF3 field."]
     #[inline] pub fn set_cfeif3<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1271,12 +1271,12 @@ impl Lifcr {
         unsafe { ::core::mem::transmute(((self.0 >> 21) & 0x1) as u8) } // [21]
     }
 
-    #[doc="Stream x clear transfer complete interrupt flag (x = 3..0)"]
+    #[doc="Returns true if CTCIF2 != 0"]
     #[inline] pub fn test_ctcif2(&self) -> bool {
         self.ctcif2() != 0
     }
 
-    #[doc="Stream x clear transfer complete interrupt flag (x = 3..0)"]
+    #[doc="Sets the CTCIF2 field."]
     #[inline] pub fn set_ctcif2<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1290,12 +1290,12 @@ impl Lifcr {
         unsafe { ::core::mem::transmute(((self.0 >> 20) & 0x1) as u8) } // [20]
     }
 
-    #[doc="Stream x clear half transfer interrupt flag (x = 3..0)"]
+    #[doc="Returns true if CHTIF2 != 0"]
     #[inline] pub fn test_chtif2(&self) -> bool {
         self.chtif2() != 0
     }
 
-    #[doc="Stream x clear half transfer interrupt flag (x = 3..0)"]
+    #[doc="Sets the CHTIF2 field."]
     #[inline] pub fn set_chtif2<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1309,12 +1309,12 @@ impl Lifcr {
         unsafe { ::core::mem::transmute(((self.0 >> 19) & 0x1) as u8) } // [19]
     }
 
-    #[doc="Stream x clear transfer error interrupt flag (x = 3..0)"]
+    #[doc="Returns true if CTEIF2 != 0"]
     #[inline] pub fn test_cteif2(&self) -> bool {
         self.cteif2() != 0
     }
 
-    #[doc="Stream x clear transfer error interrupt flag (x = 3..0)"]
+    #[doc="Sets the CTEIF2 field."]
     #[inline] pub fn set_cteif2<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1328,12 +1328,12 @@ impl Lifcr {
         unsafe { ::core::mem::transmute(((self.0 >> 18) & 0x1) as u8) } // [18]
     }
 
-    #[doc="Stream x clear direct mode error interrupt flag (x = 3..0)"]
+    #[doc="Returns true if CDMEIF2 != 0"]
     #[inline] pub fn test_cdmeif2(&self) -> bool {
         self.cdmeif2() != 0
     }
 
-    #[doc="Stream x clear direct mode error interrupt flag (x = 3..0)"]
+    #[doc="Sets the CDMEIF2 field."]
     #[inline] pub fn set_cdmeif2<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1347,12 +1347,12 @@ impl Lifcr {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1) as u8) } // [16]
     }
 
-    #[doc="Stream x clear FIFO error interrupt flag (x = 3..0)"]
+    #[doc="Returns true if CFEIF2 != 0"]
     #[inline] pub fn test_cfeif2(&self) -> bool {
         self.cfeif2() != 0
     }
 
-    #[doc="Stream x clear FIFO error interrupt flag (x = 3..0)"]
+    #[doc="Sets the CFEIF2 field."]
     #[inline] pub fn set_cfeif2<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1366,12 +1366,12 @@ impl Lifcr {
         unsafe { ::core::mem::transmute(((self.0 >> 11) & 0x1) as u8) } // [11]
     }
 
-    #[doc="Stream x clear transfer complete interrupt flag (x = 3..0)"]
+    #[doc="Returns true if CTCIF1 != 0"]
     #[inline] pub fn test_ctcif1(&self) -> bool {
         self.ctcif1() != 0
     }
 
-    #[doc="Stream x clear transfer complete interrupt flag (x = 3..0)"]
+    #[doc="Sets the CTCIF1 field."]
     #[inline] pub fn set_ctcif1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1385,12 +1385,12 @@ impl Lifcr {
         unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x1) as u8) } // [10]
     }
 
-    #[doc="Stream x clear half transfer interrupt flag (x = 3..0)"]
+    #[doc="Returns true if CHTIF1 != 0"]
     #[inline] pub fn test_chtif1(&self) -> bool {
         self.chtif1() != 0
     }
 
-    #[doc="Stream x clear half transfer interrupt flag (x = 3..0)"]
+    #[doc="Sets the CHTIF1 field."]
     #[inline] pub fn set_chtif1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1404,12 +1404,12 @@ impl Lifcr {
         unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
     }
 
-    #[doc="Stream x clear transfer error interrupt flag (x = 3..0)"]
+    #[doc="Returns true if CTEIF1 != 0"]
     #[inline] pub fn test_cteif1(&self) -> bool {
         self.cteif1() != 0
     }
 
-    #[doc="Stream x clear transfer error interrupt flag (x = 3..0)"]
+    #[doc="Sets the CTEIF1 field."]
     #[inline] pub fn set_cteif1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1423,12 +1423,12 @@ impl Lifcr {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
     }
 
-    #[doc="Stream x clear direct mode error interrupt flag (x = 3..0)"]
+    #[doc="Returns true if CDMEIF1 != 0"]
     #[inline] pub fn test_cdmeif1(&self) -> bool {
         self.cdmeif1() != 0
     }
 
-    #[doc="Stream x clear direct mode error interrupt flag (x = 3..0)"]
+    #[doc="Sets the CDMEIF1 field."]
     #[inline] pub fn set_cdmeif1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1442,12 +1442,12 @@ impl Lifcr {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="Stream x clear FIFO error interrupt flag (x = 3..0)"]
+    #[doc="Returns true if CFEIF1 != 0"]
     #[inline] pub fn test_cfeif1(&self) -> bool {
         self.cfeif1() != 0
     }
 
-    #[doc="Stream x clear FIFO error interrupt flag (x = 3..0)"]
+    #[doc="Sets the CFEIF1 field."]
     #[inline] pub fn set_cfeif1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1461,12 +1461,12 @@ impl Lifcr {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="Stream x clear transfer complete interrupt flag (x = 3..0)"]
+    #[doc="Returns true if CTCIF0 != 0"]
     #[inline] pub fn test_ctcif0(&self) -> bool {
         self.ctcif0() != 0
     }
 
-    #[doc="Stream x clear transfer complete interrupt flag (x = 3..0)"]
+    #[doc="Sets the CTCIF0 field."]
     #[inline] pub fn set_ctcif0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1480,12 +1480,12 @@ impl Lifcr {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="Stream x clear half transfer interrupt flag (x = 3..0)"]
+    #[doc="Returns true if CHTIF0 != 0"]
     #[inline] pub fn test_chtif0(&self) -> bool {
         self.chtif0() != 0
     }
 
-    #[doc="Stream x clear half transfer interrupt flag (x = 3..0)"]
+    #[doc="Sets the CHTIF0 field."]
     #[inline] pub fn set_chtif0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1499,12 +1499,12 @@ impl Lifcr {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="Stream x clear transfer error interrupt flag (x = 3..0)"]
+    #[doc="Returns true if CTEIF0 != 0"]
     #[inline] pub fn test_cteif0(&self) -> bool {
         self.cteif0() != 0
     }
 
-    #[doc="Stream x clear transfer error interrupt flag (x = 3..0)"]
+    #[doc="Sets the CTEIF0 field."]
     #[inline] pub fn set_cteif0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1518,12 +1518,12 @@ impl Lifcr {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="Stream x clear direct mode error interrupt flag (x = 3..0)"]
+    #[doc="Returns true if CDMEIF0 != 0"]
     #[inline] pub fn test_cdmeif0(&self) -> bool {
         self.cdmeif0() != 0
     }
 
-    #[doc="Stream x clear direct mode error interrupt flag (x = 3..0)"]
+    #[doc="Sets the CDMEIF0 field."]
     #[inline] pub fn set_cdmeif0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1537,12 +1537,12 @@ impl Lifcr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Stream x clear FIFO error interrupt flag (x = 3..0)"]
+    #[doc="Returns true if CFEIF0 != 0"]
     #[inline] pub fn test_cfeif0(&self) -> bool {
         self.cfeif0() != 0
     }
 
-    #[doc="Stream x clear FIFO error interrupt flag (x = 3..0)"]
+    #[doc="Sets the CFEIF0 field."]
     #[inline] pub fn set_cfeif0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1603,12 +1603,12 @@ impl Hifcr {
         unsafe { ::core::mem::transmute(((self.0 >> 27) & 0x1) as u8) } // [27]
     }
 
-    #[doc="Stream x clear transfer complete interrupt flag (x = 7..4)"]
+    #[doc="Returns true if CTCIF7 != 0"]
     #[inline] pub fn test_ctcif7(&self) -> bool {
         self.ctcif7() != 0
     }
 
-    #[doc="Stream x clear transfer complete interrupt flag (x = 7..4)"]
+    #[doc="Sets the CTCIF7 field."]
     #[inline] pub fn set_ctcif7<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1622,12 +1622,12 @@ impl Hifcr {
         unsafe { ::core::mem::transmute(((self.0 >> 26) & 0x1) as u8) } // [26]
     }
 
-    #[doc="Stream x clear half transfer interrupt flag (x = 7..4)"]
+    #[doc="Returns true if CHTIF7 != 0"]
     #[inline] pub fn test_chtif7(&self) -> bool {
         self.chtif7() != 0
     }
 
-    #[doc="Stream x clear half transfer interrupt flag (x = 7..4)"]
+    #[doc="Sets the CHTIF7 field."]
     #[inline] pub fn set_chtif7<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1641,12 +1641,12 @@ impl Hifcr {
         unsafe { ::core::mem::transmute(((self.0 >> 25) & 0x1) as u8) } // [25]
     }
 
-    #[doc="Stream x clear transfer error interrupt flag (x = 7..4)"]
+    #[doc="Returns true if CTEIF7 != 0"]
     #[inline] pub fn test_cteif7(&self) -> bool {
         self.cteif7() != 0
     }
 
-    #[doc="Stream x clear transfer error interrupt flag (x = 7..4)"]
+    #[doc="Sets the CTEIF7 field."]
     #[inline] pub fn set_cteif7<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1660,12 +1660,12 @@ impl Hifcr {
         unsafe { ::core::mem::transmute(((self.0 >> 24) & 0x1) as u8) } // [24]
     }
 
-    #[doc="Stream x clear direct mode error interrupt flag (x = 7..4)"]
+    #[doc="Returns true if CDMEIF7 != 0"]
     #[inline] pub fn test_cdmeif7(&self) -> bool {
         self.cdmeif7() != 0
     }
 
-    #[doc="Stream x clear direct mode error interrupt flag (x = 7..4)"]
+    #[doc="Sets the CDMEIF7 field."]
     #[inline] pub fn set_cdmeif7<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1679,12 +1679,12 @@ impl Hifcr {
         unsafe { ::core::mem::transmute(((self.0 >> 22) & 0x1) as u8) } // [22]
     }
 
-    #[doc="Stream x clear FIFO error interrupt flag (x = 7..4)"]
+    #[doc="Returns true if CFEIF7 != 0"]
     #[inline] pub fn test_cfeif7(&self) -> bool {
         self.cfeif7() != 0
     }
 
-    #[doc="Stream x clear FIFO error interrupt flag (x = 7..4)"]
+    #[doc="Sets the CFEIF7 field."]
     #[inline] pub fn set_cfeif7<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1698,12 +1698,12 @@ impl Hifcr {
         unsafe { ::core::mem::transmute(((self.0 >> 21) & 0x1) as u8) } // [21]
     }
 
-    #[doc="Stream x clear transfer complete interrupt flag (x = 7..4)"]
+    #[doc="Returns true if CTCIF6 != 0"]
     #[inline] pub fn test_ctcif6(&self) -> bool {
         self.ctcif6() != 0
     }
 
-    #[doc="Stream x clear transfer complete interrupt flag (x = 7..4)"]
+    #[doc="Sets the CTCIF6 field."]
     #[inline] pub fn set_ctcif6<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1717,12 +1717,12 @@ impl Hifcr {
         unsafe { ::core::mem::transmute(((self.0 >> 20) & 0x1) as u8) } // [20]
     }
 
-    #[doc="Stream x clear half transfer interrupt flag (x = 7..4)"]
+    #[doc="Returns true if CHTIF6 != 0"]
     #[inline] pub fn test_chtif6(&self) -> bool {
         self.chtif6() != 0
     }
 
-    #[doc="Stream x clear half transfer interrupt flag (x = 7..4)"]
+    #[doc="Sets the CHTIF6 field."]
     #[inline] pub fn set_chtif6<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1736,12 +1736,12 @@ impl Hifcr {
         unsafe { ::core::mem::transmute(((self.0 >> 19) & 0x1) as u8) } // [19]
     }
 
-    #[doc="Stream x clear transfer error interrupt flag (x = 7..4)"]
+    #[doc="Returns true if CTEIF6 != 0"]
     #[inline] pub fn test_cteif6(&self) -> bool {
         self.cteif6() != 0
     }
 
-    #[doc="Stream x clear transfer error interrupt flag (x = 7..4)"]
+    #[doc="Sets the CTEIF6 field."]
     #[inline] pub fn set_cteif6<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1755,12 +1755,12 @@ impl Hifcr {
         unsafe { ::core::mem::transmute(((self.0 >> 18) & 0x1) as u8) } // [18]
     }
 
-    #[doc="Stream x clear direct mode error interrupt flag (x = 7..4)"]
+    #[doc="Returns true if CDMEIF6 != 0"]
     #[inline] pub fn test_cdmeif6(&self) -> bool {
         self.cdmeif6() != 0
     }
 
-    #[doc="Stream x clear direct mode error interrupt flag (x = 7..4)"]
+    #[doc="Sets the CDMEIF6 field."]
     #[inline] pub fn set_cdmeif6<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1774,12 +1774,12 @@ impl Hifcr {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1) as u8) } // [16]
     }
 
-    #[doc="Stream x clear FIFO error interrupt flag (x = 7..4)"]
+    #[doc="Returns true if CFEIF6 != 0"]
     #[inline] pub fn test_cfeif6(&self) -> bool {
         self.cfeif6() != 0
     }
 
-    #[doc="Stream x clear FIFO error interrupt flag (x = 7..4)"]
+    #[doc="Sets the CFEIF6 field."]
     #[inline] pub fn set_cfeif6<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1793,12 +1793,12 @@ impl Hifcr {
         unsafe { ::core::mem::transmute(((self.0 >> 11) & 0x1) as u8) } // [11]
     }
 
-    #[doc="Stream x clear transfer complete interrupt flag (x = 7..4)"]
+    #[doc="Returns true if CTCIF5 != 0"]
     #[inline] pub fn test_ctcif5(&self) -> bool {
         self.ctcif5() != 0
     }
 
-    #[doc="Stream x clear transfer complete interrupt flag (x = 7..4)"]
+    #[doc="Sets the CTCIF5 field."]
     #[inline] pub fn set_ctcif5<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1812,12 +1812,12 @@ impl Hifcr {
         unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x1) as u8) } // [10]
     }
 
-    #[doc="Stream x clear half transfer interrupt flag (x = 7..4)"]
+    #[doc="Returns true if CHTIF5 != 0"]
     #[inline] pub fn test_chtif5(&self) -> bool {
         self.chtif5() != 0
     }
 
-    #[doc="Stream x clear half transfer interrupt flag (x = 7..4)"]
+    #[doc="Sets the CHTIF5 field."]
     #[inline] pub fn set_chtif5<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1831,12 +1831,12 @@ impl Hifcr {
         unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
     }
 
-    #[doc="Stream x clear transfer error interrupt flag (x = 7..4)"]
+    #[doc="Returns true if CTEIF5 != 0"]
     #[inline] pub fn test_cteif5(&self) -> bool {
         self.cteif5() != 0
     }
 
-    #[doc="Stream x clear transfer error interrupt flag (x = 7..4)"]
+    #[doc="Sets the CTEIF5 field."]
     #[inline] pub fn set_cteif5<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1850,12 +1850,12 @@ impl Hifcr {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
     }
 
-    #[doc="Stream x clear direct mode error interrupt flag (x = 7..4)"]
+    #[doc="Returns true if CDMEIF5 != 0"]
     #[inline] pub fn test_cdmeif5(&self) -> bool {
         self.cdmeif5() != 0
     }
 
-    #[doc="Stream x clear direct mode error interrupt flag (x = 7..4)"]
+    #[doc="Sets the CDMEIF5 field."]
     #[inline] pub fn set_cdmeif5<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1869,12 +1869,12 @@ impl Hifcr {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="Stream x clear FIFO error interrupt flag (x = 7..4)"]
+    #[doc="Returns true if CFEIF5 != 0"]
     #[inline] pub fn test_cfeif5(&self) -> bool {
         self.cfeif5() != 0
     }
 
-    #[doc="Stream x clear FIFO error interrupt flag (x = 7..4)"]
+    #[doc="Sets the CFEIF5 field."]
     #[inline] pub fn set_cfeif5<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1888,12 +1888,12 @@ impl Hifcr {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="Stream x clear transfer complete interrupt flag (x = 7..4)"]
+    #[doc="Returns true if CTCIF4 != 0"]
     #[inline] pub fn test_ctcif4(&self) -> bool {
         self.ctcif4() != 0
     }
 
-    #[doc="Stream x clear transfer complete interrupt flag (x = 7..4)"]
+    #[doc="Sets the CTCIF4 field."]
     #[inline] pub fn set_ctcif4<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1907,12 +1907,12 @@ impl Hifcr {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="Stream x clear half transfer interrupt flag (x = 7..4)"]
+    #[doc="Returns true if CHTIF4 != 0"]
     #[inline] pub fn test_chtif4(&self) -> bool {
         self.chtif4() != 0
     }
 
-    #[doc="Stream x clear half transfer interrupt flag (x = 7..4)"]
+    #[doc="Sets the CHTIF4 field."]
     #[inline] pub fn set_chtif4<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1926,12 +1926,12 @@ impl Hifcr {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="Stream x clear transfer error interrupt flag (x = 7..4)"]
+    #[doc="Returns true if CTEIF4 != 0"]
     #[inline] pub fn test_cteif4(&self) -> bool {
         self.cteif4() != 0
     }
 
-    #[doc="Stream x clear transfer error interrupt flag (x = 7..4)"]
+    #[doc="Sets the CTEIF4 field."]
     #[inline] pub fn set_cteif4<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1945,12 +1945,12 @@ impl Hifcr {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="Stream x clear direct mode error interrupt flag (x = 7..4)"]
+    #[doc="Returns true if CDMEIF4 != 0"]
     #[inline] pub fn test_cdmeif4(&self) -> bool {
         self.cdmeif4() != 0
     }
 
-    #[doc="Stream x clear direct mode error interrupt flag (x = 7..4)"]
+    #[doc="Sets the CDMEIF4 field."]
     #[inline] pub fn set_cdmeif4<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1964,12 +1964,12 @@ impl Hifcr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Stream x clear FIFO error interrupt flag (x = 7..4)"]
+    #[doc="Returns true if CFEIF4 != 0"]
     #[inline] pub fn test_cfeif4(&self) -> bool {
         self.cfeif4() != 0
     }
 
-    #[doc="Stream x clear FIFO error interrupt flag (x = 7..4)"]
+    #[doc="Sets the CFEIF4 field."]
     #[inline] pub fn set_cfeif4<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2030,12 +2030,12 @@ impl Scr {
         unsafe { ::core::mem::transmute(((self.0 >> 25) & 0x7) as u8) } // [27:25]
     }
 
-    #[doc="Channel selection"]
+    #[doc="Returns true if CHSEL != 0"]
     #[inline] pub fn test_chsel(&self) -> bool {
         self.chsel() != 0
     }
 
-    #[doc="Channel selection"]
+    #[doc="Sets the CHSEL field."]
     #[inline] pub fn set_chsel<V: Into<bits::U3>>(mut self, value: V) -> Self {
         let value: bits::U3 = value.into();
         let value: u32 = value.into();
@@ -2049,12 +2049,12 @@ impl Scr {
         unsafe { ::core::mem::transmute(((self.0 >> 23) & 0x3) as u8) } // [24:23]
     }
 
-    #[doc="Memory burst transfer configuration"]
+    #[doc="Returns true if MBURST != 0"]
     #[inline] pub fn test_mburst(&self) -> bool {
         self.mburst() != 0
     }
 
-    #[doc="Memory burst transfer configuration"]
+    #[doc="Sets the MBURST field."]
     #[inline] pub fn set_mburst<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -2068,12 +2068,12 @@ impl Scr {
         unsafe { ::core::mem::transmute(((self.0 >> 21) & 0x3) as u8) } // [22:21]
     }
 
-    #[doc="Peripheral burst transfer configuration"]
+    #[doc="Returns true if PBURST != 0"]
     #[inline] pub fn test_pburst(&self) -> bool {
         self.pburst() != 0
     }
 
-    #[doc="Peripheral burst transfer configuration"]
+    #[doc="Sets the PBURST field."]
     #[inline] pub fn set_pburst<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -2087,12 +2087,12 @@ impl Scr {
         unsafe { ::core::mem::transmute(((self.0 >> 19) & 0x1) as u8) } // [19]
     }
 
-    #[doc="Current target (only in double buffer mode)"]
+    #[doc="Returns true if CT != 0"]
     #[inline] pub fn test_ct(&self) -> bool {
         self.ct() != 0
     }
 
-    #[doc="Current target (only in double buffer mode)"]
+    #[doc="Sets the CT field."]
     #[inline] pub fn set_ct<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2106,12 +2106,12 @@ impl Scr {
         unsafe { ::core::mem::transmute(((self.0 >> 18) & 0x1) as u8) } // [18]
     }
 
-    #[doc="Double buffer mode"]
+    #[doc="Returns true if DBM != 0"]
     #[inline] pub fn test_dbm(&self) -> bool {
         self.dbm() != 0
     }
 
-    #[doc="Double buffer mode"]
+    #[doc="Sets the DBM field."]
     #[inline] pub fn set_dbm<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2125,12 +2125,12 @@ impl Scr {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x3) as u8) } // [17:16]
     }
 
-    #[doc="Priority level"]
+    #[doc="Returns true if PL != 0"]
     #[inline] pub fn test_pl(&self) -> bool {
         self.pl() != 0
     }
 
-    #[doc="Priority level"]
+    #[doc="Sets the PL field."]
     #[inline] pub fn set_pl<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -2144,12 +2144,12 @@ impl Scr {
         unsafe { ::core::mem::transmute(((self.0 >> 15) & 0x1) as u8) } // [15]
     }
 
-    #[doc="Peripheral increment offset size"]
+    #[doc="Returns true if PINCOS != 0"]
     #[inline] pub fn test_pincos(&self) -> bool {
         self.pincos() != 0
     }
 
-    #[doc="Peripheral increment offset size"]
+    #[doc="Sets the PINCOS field."]
     #[inline] pub fn set_pincos<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2163,12 +2163,12 @@ impl Scr {
         unsafe { ::core::mem::transmute(((self.0 >> 13) & 0x3) as u8) } // [14:13]
     }
 
-    #[doc="Memory data size"]
+    #[doc="Returns true if MSIZE != 0"]
     #[inline] pub fn test_msize(&self) -> bool {
         self.msize() != 0
     }
 
-    #[doc="Memory data size"]
+    #[doc="Sets the MSIZE field."]
     #[inline] pub fn set_msize<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -2182,12 +2182,12 @@ impl Scr {
         unsafe { ::core::mem::transmute(((self.0 >> 11) & 0x3) as u8) } // [12:11]
     }
 
-    #[doc="Peripheral data size"]
+    #[doc="Returns true if PSIZE != 0"]
     #[inline] pub fn test_psize(&self) -> bool {
         self.psize() != 0
     }
 
-    #[doc="Peripheral data size"]
+    #[doc="Sets the PSIZE field."]
     #[inline] pub fn set_psize<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -2201,12 +2201,12 @@ impl Scr {
         unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x1) as u8) } // [10]
     }
 
-    #[doc="Memory increment mode"]
+    #[doc="Returns true if MINC != 0"]
     #[inline] pub fn test_minc(&self) -> bool {
         self.minc() != 0
     }
 
-    #[doc="Memory increment mode"]
+    #[doc="Sets the MINC field."]
     #[inline] pub fn set_minc<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2220,12 +2220,12 @@ impl Scr {
         unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
     }
 
-    #[doc="Peripheral increment mode"]
+    #[doc="Returns true if PINC != 0"]
     #[inline] pub fn test_pinc(&self) -> bool {
         self.pinc() != 0
     }
 
-    #[doc="Peripheral increment mode"]
+    #[doc="Sets the PINC field."]
     #[inline] pub fn set_pinc<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2239,12 +2239,12 @@ impl Scr {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
     }
 
-    #[doc="Circular mode"]
+    #[doc="Returns true if CIRC != 0"]
     #[inline] pub fn test_circ(&self) -> bool {
         self.circ() != 0
     }
 
-    #[doc="Circular mode"]
+    #[doc="Sets the CIRC field."]
     #[inline] pub fn set_circ<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2258,12 +2258,12 @@ impl Scr {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x3) as u8) } // [7:6]
     }
 
-    #[doc="Data transfer direction"]
+    #[doc="Returns true if DIR != 0"]
     #[inline] pub fn test_dir(&self) -> bool {
         self.dir() != 0
     }
 
-    #[doc="Data transfer direction"]
+    #[doc="Sets the DIR field."]
     #[inline] pub fn set_dir<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -2277,12 +2277,12 @@ impl Scr {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="Peripheral flow controller"]
+    #[doc="Returns true if PFCTRL != 0"]
     #[inline] pub fn test_pfctrl(&self) -> bool {
         self.pfctrl() != 0
     }
 
-    #[doc="Peripheral flow controller"]
+    #[doc="Sets the PFCTRL field."]
     #[inline] pub fn set_pfctrl<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2296,12 +2296,12 @@ impl Scr {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="Transfer complete interrupt enable"]
+    #[doc="Returns true if TCIE != 0"]
     #[inline] pub fn test_tcie(&self) -> bool {
         self.tcie() != 0
     }
 
-    #[doc="Transfer complete interrupt enable"]
+    #[doc="Sets the TCIE field."]
     #[inline] pub fn set_tcie<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2315,12 +2315,12 @@ impl Scr {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="Half transfer interrupt enable"]
+    #[doc="Returns true if HTIE != 0"]
     #[inline] pub fn test_htie(&self) -> bool {
         self.htie() != 0
     }
 
-    #[doc="Half transfer interrupt enable"]
+    #[doc="Sets the HTIE field."]
     #[inline] pub fn set_htie<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2334,12 +2334,12 @@ impl Scr {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="Transfer error interrupt enable"]
+    #[doc="Returns true if TEIE != 0"]
     #[inline] pub fn test_teie(&self) -> bool {
         self.teie() != 0
     }
 
-    #[doc="Transfer error interrupt enable"]
+    #[doc="Sets the TEIE field."]
     #[inline] pub fn set_teie<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2353,12 +2353,12 @@ impl Scr {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="Direct mode error interrupt enable"]
+    #[doc="Returns true if DMEIE != 0"]
     #[inline] pub fn test_dmeie(&self) -> bool {
         self.dmeie() != 0
     }
 
-    #[doc="Direct mode error interrupt enable"]
+    #[doc="Sets the DMEIE field."]
     #[inline] pub fn set_dmeie<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2372,12 +2372,12 @@ impl Scr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Stream enable / flag stream ready when read low"]
+    #[doc="Returns true if EN != 0"]
     #[inline] pub fn test_en(&self) -> bool {
         self.en() != 0
     }
 
-    #[doc="Stream enable / flag stream ready when read low"]
+    #[doc="Sets the EN field."]
     #[inline] pub fn set_en<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2437,12 +2437,12 @@ impl Sndtr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffff) as u16) } // [15:0]
     }
 
-    #[doc="Number of data items to transfer"]
+    #[doc="Returns true if NDT != 0"]
     #[inline] pub fn test_ndt(&self) -> bool {
         self.ndt() != 0
     }
 
-    #[doc="Number of data items to transfer"]
+    #[doc="Sets the NDT field."]
     #[inline] pub fn set_ndt<V: Into<bits::U16>>(mut self, value: V) -> Self {
         let value: bits::U16 = value.into();
         let value: u32 = value.into();
@@ -2484,12 +2484,12 @@ impl Spar {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffffffff) as u32) } // [31:0]
     }
 
-    #[doc="Peripheral address"]
+    #[doc="Returns true if PA != 0"]
     #[inline] pub fn test_pa(&self) -> bool {
         self.pa() != 0
     }
 
-    #[doc="Peripheral address"]
+    #[doc="Sets the PA field."]
     #[inline] pub fn set_pa<V: Into<bits::U32>>(mut self, value: V) -> Self {
         let value: bits::U32 = value.into();
         let value: u32 = value.into();
@@ -2530,12 +2530,12 @@ impl Sm0ar {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffffffff) as u32) } // [31:0]
     }
 
-    #[doc="Memory 0 address"]
+    #[doc="Returns true if M0A != 0"]
     #[inline] pub fn test_m0a(&self) -> bool {
         self.m0a() != 0
     }
 
-    #[doc="Memory 0 address"]
+    #[doc="Sets the M0A field."]
     #[inline] pub fn set_m0a<V: Into<bits::U32>>(mut self, value: V) -> Self {
         let value: bits::U32 = value.into();
         let value: u32 = value.into();
@@ -2576,12 +2576,12 @@ impl Sm1ar {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffffffff) as u32) } // [31:0]
     }
 
-    #[doc="Memory 1 address (used in case of Double buffer mode)"]
+    #[doc="Returns true if M1A != 0"]
     #[inline] pub fn test_m1a(&self) -> bool {
         self.m1a() != 0
     }
 
-    #[doc="Memory 1 address (used in case of Double buffer mode)"]
+    #[doc="Sets the M1A field."]
     #[inline] pub fn set_m1a<V: Into<bits::U32>>(mut self, value: V) -> Self {
         let value: bits::U32 = value.into();
         let value: u32 = value.into();
@@ -2622,12 +2622,12 @@ impl Sfcr {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="FIFO error interrupt enable"]
+    #[doc="Returns true if FEIE != 0"]
     #[inline] pub fn test_feie(&self) -> bool {
         self.feie() != 0
     }
 
-    #[doc="FIFO error interrupt enable"]
+    #[doc="Sets the FEIE field."]
     #[inline] pub fn set_feie<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2641,12 +2641,12 @@ impl Sfcr {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x7) as u8) } // [5:3]
     }
 
-    #[doc="FIFO status"]
+    #[doc="Returns true if FS != 0"]
     #[inline] pub fn test_fs(&self) -> bool {
         self.fs() != 0
     }
 
-    #[doc="FIFO status"]
+    #[doc="Sets the FS field."]
     #[inline] pub fn set_fs<V: Into<bits::U3>>(mut self, value: V) -> Self {
         let value: bits::U3 = value.into();
         let value: u32 = value.into();
@@ -2660,12 +2660,12 @@ impl Sfcr {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="Direct mode disable"]
+    #[doc="Returns true if DMDIS != 0"]
     #[inline] pub fn test_dmdis(&self) -> bool {
         self.dmdis() != 0
     }
 
-    #[doc="Direct mode disable"]
+    #[doc="Sets the DMDIS field."]
     #[inline] pub fn set_dmdis<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2679,12 +2679,12 @@ impl Sfcr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x3) as u8) } // [1:0]
     }
 
-    #[doc="FIFO threshold selection"]
+    #[doc="Returns true if FTH != 0"]
     #[inline] pub fn test_fth(&self) -> bool {
         self.fth() != 0
     }
 
-    #[doc="FIFO threshold selection"]
+    #[doc="Sets the FTH field."]
     #[inline] pub fn set_fth<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();

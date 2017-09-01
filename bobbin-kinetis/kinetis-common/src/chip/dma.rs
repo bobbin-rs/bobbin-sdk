@@ -188,12 +188,12 @@ impl Sar {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffffffff) as u32) } // [31:0]
     }
 
-    #[doc="Each SAR contains the byte address used by the DMA controller to read data"]
+    #[doc="Returns true if SAR != 0"]
     #[inline] pub fn test_sar(&self) -> bool {
         self.sar() != 0
     }
 
-    #[doc="Each SAR contains the byte address used by the DMA controller to read data"]
+    #[doc="Sets the SAR field."]
     #[inline] pub fn set_sar<V: Into<bits::U32>>(mut self, value: V) -> Self {
         let value: bits::U32 = value.into();
         let value: u32 = value.into();
@@ -234,12 +234,12 @@ impl Dar {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffffffff) as u32) } // [31:0]
     }
 
-    #[doc="Each DAR contains the byte address used by the DMA controller to write data"]
+    #[doc="Returns true if DAR != 0"]
     #[inline] pub fn test_dar(&self) -> bool {
         self.dar() != 0
     }
 
-    #[doc="Each DAR contains the byte address used by the DMA controller to write data"]
+    #[doc="Sets the DAR field."]
     #[inline] pub fn set_dar<V: Into<bits::U32>>(mut self, value: V) -> Self {
         let value: bits::U32 = value.into();
         let value: u32 = value.into();
@@ -280,12 +280,12 @@ impl DsrBcr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffffff) as u32) } // [23:0]
     }
 
-    #[doc="This field contains the number of bytes yet to be transferred for a given block"]
+    #[doc="Returns true if BCR != 0"]
     #[inline] pub fn test_bcr(&self) -> bool {
         self.bcr() != 0
     }
 
-    #[doc="This field contains the number of bytes yet to be transferred for a given block"]
+    #[doc="Sets the BCR field."]
     #[inline] pub fn set_bcr<V: Into<bits::U24>>(mut self, value: V) -> Self {
         let value: bits::U24 = value.into();
         let value: u32 = value.into();
@@ -299,12 +299,12 @@ impl DsrBcr {
         unsafe { ::core::mem::transmute(((self.0 >> 24) & 0x1) as u8) } // [24]
     }
 
-    #[doc="Transactions Done"]
+    #[doc="Returns true if DONE != 0"]
     #[inline] pub fn test_done(&self) -> bool {
         self.done() != 0
     }
 
-    #[doc="Transactions Done"]
+    #[doc="Sets the DONE field."]
     #[inline] pub fn set_done<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -318,12 +318,12 @@ impl DsrBcr {
         unsafe { ::core::mem::transmute(((self.0 >> 25) & 0x1) as u8) } // [25]
     }
 
-    #[doc="Busy"]
+    #[doc="Returns true if BSY != 0"]
     #[inline] pub fn test_bsy(&self) -> bool {
         self.bsy() != 0
     }
 
-    #[doc="Busy"]
+    #[doc="Sets the BSY field."]
     #[inline] pub fn set_bsy<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -337,12 +337,12 @@ impl DsrBcr {
         unsafe { ::core::mem::transmute(((self.0 >> 26) & 0x1) as u8) } // [26]
     }
 
-    #[doc="Request"]
+    #[doc="Returns true if REQ != 0"]
     #[inline] pub fn test_req(&self) -> bool {
         self.req() != 0
     }
 
-    #[doc="Request"]
+    #[doc="Sets the REQ field."]
     #[inline] pub fn set_req<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -356,12 +356,12 @@ impl DsrBcr {
         unsafe { ::core::mem::transmute(((self.0 >> 28) & 0x1) as u8) } // [28]
     }
 
-    #[doc="Bus Error on Destination"]
+    #[doc="Returns true if BED != 0"]
     #[inline] pub fn test_bed(&self) -> bool {
         self.bed() != 0
     }
 
-    #[doc="Bus Error on Destination"]
+    #[doc="Sets the BED field."]
     #[inline] pub fn set_bed<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -375,12 +375,12 @@ impl DsrBcr {
         unsafe { ::core::mem::transmute(((self.0 >> 29) & 0x1) as u8) } // [29]
     }
 
-    #[doc="Bus Error on Source"]
+    #[doc="Returns true if BES != 0"]
     #[inline] pub fn test_bes(&self) -> bool {
         self.bes() != 0
     }
 
-    #[doc="Bus Error on Source"]
+    #[doc="Sets the BES field."]
     #[inline] pub fn set_bes<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -394,12 +394,12 @@ impl DsrBcr {
         unsafe { ::core::mem::transmute(((self.0 >> 30) & 0x1) as u8) } // [30]
     }
 
-    #[doc="Configuration Error"]
+    #[doc="Returns true if CE != 0"]
     #[inline] pub fn test_ce(&self) -> bool {
         self.ce() != 0
     }
 
-    #[doc="Configuration Error"]
+    #[doc="Sets the CE field."]
     #[inline] pub fn set_ce<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -474,12 +474,12 @@ impl Dcr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x3) as u8) } // [1:0]
     }
 
-    #[doc="Link Channel 2"]
+    #[doc="Returns true if LCH2 != 0"]
     #[inline] pub fn test_lch2(&self) -> bool {
         self.lch2() != 0
     }
 
-    #[doc="Link Channel 2"]
+    #[doc="Sets the LCH2 field."]
     #[inline] pub fn set_lch2<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -493,12 +493,12 @@ impl Dcr {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x3) as u8) } // [3:2]
     }
 
-    #[doc="Link Channel 1"]
+    #[doc="Returns true if LCH1 != 0"]
     #[inline] pub fn test_lch1(&self) -> bool {
         self.lch1() != 0
     }
 
-    #[doc="Link Channel 1"]
+    #[doc="Sets the LCH1 field."]
     #[inline] pub fn set_lch1<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -512,12 +512,12 @@ impl Dcr {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x3) as u8) } // [5:4]
     }
 
-    #[doc="Link Channel Control"]
+    #[doc="Returns true if LINKCC != 0"]
     #[inline] pub fn test_linkcc(&self) -> bool {
         self.linkcc() != 0
     }
 
-    #[doc="Link Channel Control"]
+    #[doc="Sets the LINKCC field."]
     #[inline] pub fn set_linkcc<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -531,12 +531,12 @@ impl Dcr {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="Disable Request"]
+    #[doc="Returns true if D_REQ != 0"]
     #[inline] pub fn test_d_req(&self) -> bool {
         self.d_req() != 0
     }
 
-    #[doc="Disable Request"]
+    #[doc="Sets the D_REQ field."]
     #[inline] pub fn set_d_req<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -550,12 +550,12 @@ impl Dcr {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0xf) as u8) } // [11:8]
     }
 
-    #[doc="Destination Address Modulo"]
+    #[doc="Returns true if DMOD != 0"]
     #[inline] pub fn test_dmod(&self) -> bool {
         self.dmod() != 0
     }
 
-    #[doc="Destination Address Modulo"]
+    #[doc="Sets the DMOD field."]
     #[inline] pub fn set_dmod<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -569,12 +569,12 @@ impl Dcr {
         unsafe { ::core::mem::transmute(((self.0 >> 12) & 0xf) as u8) } // [15:12]
     }
 
-    #[doc="Source Address Modulo"]
+    #[doc="Returns true if SMOD != 0"]
     #[inline] pub fn test_smod(&self) -> bool {
         self.smod() != 0
     }
 
-    #[doc="Source Address Modulo"]
+    #[doc="Sets the SMOD field."]
     #[inline] pub fn set_smod<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -588,12 +588,12 @@ impl Dcr {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1) as u8) } // [16]
     }
 
-    #[doc="Start Transfer"]
+    #[doc="Returns true if START != 0"]
     #[inline] pub fn test_start(&self) -> bool {
         self.start() != 0
     }
 
-    #[doc="Start Transfer"]
+    #[doc="Sets the START field."]
     #[inline] pub fn set_start<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -607,12 +607,12 @@ impl Dcr {
         unsafe { ::core::mem::transmute(((self.0 >> 17) & 0x3) as u8) } // [18:17]
     }
 
-    #[doc="Destination Size"]
+    #[doc="Returns true if DSIZE != 0"]
     #[inline] pub fn test_dsize(&self) -> bool {
         self.dsize() != 0
     }
 
-    #[doc="Destination Size"]
+    #[doc="Sets the DSIZE field."]
     #[inline] pub fn set_dsize<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -626,12 +626,12 @@ impl Dcr {
         unsafe { ::core::mem::transmute(((self.0 >> 19) & 0x1) as u8) } // [19]
     }
 
-    #[doc="Destination Increment"]
+    #[doc="Returns true if DINC != 0"]
     #[inline] pub fn test_dinc(&self) -> bool {
         self.dinc() != 0
     }
 
-    #[doc="Destination Increment"]
+    #[doc="Sets the DINC field."]
     #[inline] pub fn set_dinc<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -645,12 +645,12 @@ impl Dcr {
         unsafe { ::core::mem::transmute(((self.0 >> 20) & 0x3) as u8) } // [21:20]
     }
 
-    #[doc="Source Size"]
+    #[doc="Returns true if SSIZE != 0"]
     #[inline] pub fn test_ssize(&self) -> bool {
         self.ssize() != 0
     }
 
-    #[doc="Source Size"]
+    #[doc="Sets the SSIZE field."]
     #[inline] pub fn set_ssize<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -664,12 +664,12 @@ impl Dcr {
         unsafe { ::core::mem::transmute(((self.0 >> 22) & 0x1) as u8) } // [22]
     }
 
-    #[doc="Source Increment"]
+    #[doc="Returns true if SINC != 0"]
     #[inline] pub fn test_sinc(&self) -> bool {
         self.sinc() != 0
     }
 
-    #[doc="Source Increment"]
+    #[doc="Sets the SINC field."]
     #[inline] pub fn set_sinc<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -683,12 +683,12 @@ impl Dcr {
         unsafe { ::core::mem::transmute(((self.0 >> 23) & 0x1) as u8) } // [23]
     }
 
-    #[doc="Enable asynchronous DMA requests"]
+    #[doc="Returns true if EADREQ != 0"]
     #[inline] pub fn test_eadreq(&self) -> bool {
         self.eadreq() != 0
     }
 
-    #[doc="Enable asynchronous DMA requests"]
+    #[doc="Sets the EADREQ field."]
     #[inline] pub fn set_eadreq<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -702,12 +702,12 @@ impl Dcr {
         unsafe { ::core::mem::transmute(((self.0 >> 28) & 0x1) as u8) } // [28]
     }
 
-    #[doc="Auto-align"]
+    #[doc="Returns true if AA != 0"]
     #[inline] pub fn test_aa(&self) -> bool {
         self.aa() != 0
     }
 
-    #[doc="Auto-align"]
+    #[doc="Sets the AA field."]
     #[inline] pub fn set_aa<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -721,12 +721,12 @@ impl Dcr {
         unsafe { ::core::mem::transmute(((self.0 >> 29) & 0x1) as u8) } // [29]
     }
 
-    #[doc="Cycle Steal"]
+    #[doc="Returns true if CS != 0"]
     #[inline] pub fn test_cs(&self) -> bool {
         self.cs() != 0
     }
 
-    #[doc="Cycle Steal"]
+    #[doc="Sets the CS field."]
     #[inline] pub fn set_cs<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -740,12 +740,12 @@ impl Dcr {
         unsafe { ::core::mem::transmute(((self.0 >> 30) & 0x1) as u8) } // [30]
     }
 
-    #[doc="Enable Peripheral Request"]
+    #[doc="Returns true if ERQ != 0"]
     #[inline] pub fn test_erq(&self) -> bool {
         self.erq() != 0
     }
 
-    #[doc="Enable Peripheral Request"]
+    #[doc="Sets the ERQ field."]
     #[inline] pub fn set_erq<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -759,12 +759,12 @@ impl Dcr {
         unsafe { ::core::mem::transmute(((self.0 >> 31) & 0x1) as u8) } // [31]
     }
 
-    #[doc="Enable Interrupt on Completion of Transfer"]
+    #[doc="Returns true if EINT != 0"]
     #[inline] pub fn test_eint(&self) -> bool {
         self.eint() != 0
     }
 
-    #[doc="Enable Interrupt on Completion of Transfer"]
+    #[doc="Sets the EINT field."]
     #[inline] pub fn set_eint<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();

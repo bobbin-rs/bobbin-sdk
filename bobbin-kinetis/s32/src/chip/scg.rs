@@ -597,12 +597,12 @@ impl Verid {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffffffff) as u32) } // [31:0]
     }
 
-    #[doc="SCG Version Number"]
+    #[doc="Returns true if VERSION != 0"]
     #[inline] pub fn test_version(&self) -> bool {
         self.version() != 0
     }
 
-    #[doc="SCG Version Number"]
+    #[doc="Sets the VERSION field."]
     #[inline] pub fn set_version<V: Into<bits::U32>>(mut self, value: V) -> Self {
         let value: bits::U32 = value.into();
         let value: u32 = value.into();
@@ -643,12 +643,12 @@ impl Param {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
-    #[doc="Clock Present"]
+    #[doc="Returns true if CLKPRES != 0"]
     #[inline] pub fn test_clkpres(&self) -> bool {
         self.clkpres() != 0
     }
 
-    #[doc="Clock Present"]
+    #[doc="Sets the CLKPRES field."]
     #[inline] pub fn set_clkpres<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -662,12 +662,12 @@ impl Param {
         unsafe { ::core::mem::transmute(((self.0 >> 27) & 0x1f) as u8) } // [31:27]
     }
 
-    #[doc="Divider Present"]
+    #[doc="Returns true if DIVPRES != 0"]
     #[inline] pub fn test_divpres(&self) -> bool {
         self.divpres() != 0
     }
 
-    #[doc="Divider Present"]
+    #[doc="Sets the DIVPRES field."]
     #[inline] pub fn set_divpres<V: Into<bits::U5>>(mut self, value: V) -> Self {
         let value: bits::U5 = value.into();
         let value: u32 = value.into();
@@ -710,12 +710,12 @@ impl Csr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xf) as u8) } // [3:0]
     }
 
-    #[doc="Slow Clock Divide Ratio"]
+    #[doc="Returns true if DIVSLOW != 0"]
     #[inline] pub fn test_divslow(&self) -> bool {
         self.divslow() != 0
     }
 
-    #[doc="Slow Clock Divide Ratio"]
+    #[doc="Sets the DIVSLOW field."]
     #[inline] pub fn set_divslow<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -729,12 +729,12 @@ impl Csr {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0xf) as u8) } // [7:4]
     }
 
-    #[doc="Bus Clock Divide Ratio"]
+    #[doc="Returns true if DIVBUS != 0"]
     #[inline] pub fn test_divbus(&self) -> bool {
         self.divbus() != 0
     }
 
-    #[doc="Bus Clock Divide Ratio"]
+    #[doc="Sets the DIVBUS field."]
     #[inline] pub fn set_divbus<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -748,12 +748,12 @@ impl Csr {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xf) as u8) } // [19:16]
     }
 
-    #[doc="Core Clock Divide Ratio"]
+    #[doc="Returns true if DIVCORE != 0"]
     #[inline] pub fn test_divcore(&self) -> bool {
         self.divcore() != 0
     }
 
-    #[doc="Core Clock Divide Ratio"]
+    #[doc="Sets the DIVCORE field."]
     #[inline] pub fn set_divcore<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -767,12 +767,12 @@ impl Csr {
         unsafe { ::core::mem::transmute(((self.0 >> 24) & 0xf) as u8) } // [27:24]
     }
 
-    #[doc="System Clock Source"]
+    #[doc="Returns true if SCS != 0"]
     #[inline] pub fn test_scs(&self) -> bool {
         self.scs() != 0
     }
 
-    #[doc="System Clock Source"]
+    #[doc="Sets the SCS field."]
     #[inline] pub fn set_scs<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -817,12 +817,12 @@ impl Rccr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xf) as u8) } // [3:0]
     }
 
-    #[doc="Slow Clock Divide Ratio"]
+    #[doc="Returns true if DIVSLOW != 0"]
     #[inline] pub fn test_divslow(&self) -> bool {
         self.divslow() != 0
     }
 
-    #[doc="Slow Clock Divide Ratio"]
+    #[doc="Sets the DIVSLOW field."]
     #[inline] pub fn set_divslow<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -836,12 +836,12 @@ impl Rccr {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0xf) as u8) } // [7:4]
     }
 
-    #[doc="Bus Clock Divide Ratio"]
+    #[doc="Returns true if DIVBUS != 0"]
     #[inline] pub fn test_divbus(&self) -> bool {
         self.divbus() != 0
     }
 
-    #[doc="Bus Clock Divide Ratio"]
+    #[doc="Sets the DIVBUS field."]
     #[inline] pub fn set_divbus<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -855,12 +855,12 @@ impl Rccr {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xf) as u8) } // [19:16]
     }
 
-    #[doc="Core Clock Divide Ratio"]
+    #[doc="Returns true if DIVCORE != 0"]
     #[inline] pub fn test_divcore(&self) -> bool {
         self.divcore() != 0
     }
 
-    #[doc="Core Clock Divide Ratio"]
+    #[doc="Sets the DIVCORE field."]
     #[inline] pub fn set_divcore<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -874,12 +874,12 @@ impl Rccr {
         unsafe { ::core::mem::transmute(((self.0 >> 24) & 0xf) as u8) } // [27:24]
     }
 
-    #[doc="System Clock Source"]
+    #[doc="Returns true if SCS != 0"]
     #[inline] pub fn test_scs(&self) -> bool {
         self.scs() != 0
     }
 
-    #[doc="System Clock Source"]
+    #[doc="Sets the SCS field."]
     #[inline] pub fn set_scs<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -924,12 +924,12 @@ impl Vccr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xf) as u8) } // [3:0]
     }
 
-    #[doc="Slow Clock Divide Ratio"]
+    #[doc="Returns true if DIVSLOW != 0"]
     #[inline] pub fn test_divslow(&self) -> bool {
         self.divslow() != 0
     }
 
-    #[doc="Slow Clock Divide Ratio"]
+    #[doc="Sets the DIVSLOW field."]
     #[inline] pub fn set_divslow<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -943,12 +943,12 @@ impl Vccr {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0xf) as u8) } // [7:4]
     }
 
-    #[doc="Bus Clock Divide Ratio"]
+    #[doc="Returns true if DIVBUS != 0"]
     #[inline] pub fn test_divbus(&self) -> bool {
         self.divbus() != 0
     }
 
-    #[doc="Bus Clock Divide Ratio"]
+    #[doc="Sets the DIVBUS field."]
     #[inline] pub fn set_divbus<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -962,12 +962,12 @@ impl Vccr {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xf) as u8) } // [19:16]
     }
 
-    #[doc="Core Clock Divide Ratio"]
+    #[doc="Returns true if DIVCORE != 0"]
     #[inline] pub fn test_divcore(&self) -> bool {
         self.divcore() != 0
     }
 
-    #[doc="Core Clock Divide Ratio"]
+    #[doc="Sets the DIVCORE field."]
     #[inline] pub fn set_divcore<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -981,12 +981,12 @@ impl Vccr {
         unsafe { ::core::mem::transmute(((self.0 >> 24) & 0xf) as u8) } // [27:24]
     }
 
-    #[doc="System Clock Source"]
+    #[doc="Returns true if SCS != 0"]
     #[inline] pub fn test_scs(&self) -> bool {
         self.scs() != 0
     }
 
-    #[doc="System Clock Source"]
+    #[doc="Sets the SCS field."]
     #[inline] pub fn set_scs<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -1031,12 +1031,12 @@ impl Hccr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xf) as u8) } // [3:0]
     }
 
-    #[doc="Slow Clock Divide Ratio"]
+    #[doc="Returns true if DIVSLOW != 0"]
     #[inline] pub fn test_divslow(&self) -> bool {
         self.divslow() != 0
     }
 
-    #[doc="Slow Clock Divide Ratio"]
+    #[doc="Sets the DIVSLOW field."]
     #[inline] pub fn set_divslow<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -1050,12 +1050,12 @@ impl Hccr {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0xf) as u8) } // [7:4]
     }
 
-    #[doc="Bus Clock Divide Ratio"]
+    #[doc="Returns true if DIVBUS != 0"]
     #[inline] pub fn test_divbus(&self) -> bool {
         self.divbus() != 0
     }
 
-    #[doc="Bus Clock Divide Ratio"]
+    #[doc="Sets the DIVBUS field."]
     #[inline] pub fn set_divbus<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -1069,12 +1069,12 @@ impl Hccr {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xf) as u8) } // [19:16]
     }
 
-    #[doc="Core Clock Divide Ratio"]
+    #[doc="Returns true if DIVCORE != 0"]
     #[inline] pub fn test_divcore(&self) -> bool {
         self.divcore() != 0
     }
 
-    #[doc="Core Clock Divide Ratio"]
+    #[doc="Sets the DIVCORE field."]
     #[inline] pub fn set_divcore<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -1088,12 +1088,12 @@ impl Hccr {
         unsafe { ::core::mem::transmute(((self.0 >> 24) & 0xf) as u8) } // [27:24]
     }
 
-    #[doc="System Clock Source"]
+    #[doc="Returns true if SCS != 0"]
     #[inline] pub fn test_scs(&self) -> bool {
         self.scs() != 0
     }
 
-    #[doc="System Clock Source"]
+    #[doc="Sets the SCS field."]
     #[inline] pub fn set_scs<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -1138,12 +1138,12 @@ impl Clkoutcnfg {
         unsafe { ::core::mem::transmute(((self.0 >> 24) & 0xf) as u8) } // [27:24]
     }
 
-    #[doc="SCG Clkout Select"]
+    #[doc="Returns true if CLKOUTSEL != 0"]
     #[inline] pub fn test_clkoutsel(&self) -> bool {
         self.clkoutsel() != 0
     }
 
-    #[doc="SCG Clkout Select"]
+    #[doc="Sets the CLKOUTSEL field."]
     #[inline] pub fn set_clkoutsel<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -1185,12 +1185,12 @@ impl Sosccsr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="System OSC Enable"]
+    #[doc="Returns true if SOSCEN != 0"]
     #[inline] pub fn test_soscen(&self) -> bool {
         self.soscen() != 0
     }
 
-    #[doc="System OSC Enable"]
+    #[doc="Sets the SOSCEN field."]
     #[inline] pub fn set_soscen<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1204,12 +1204,12 @@ impl Sosccsr {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1) as u8) } // [16]
     }
 
-    #[doc="System OSC Clock Monitor"]
+    #[doc="Returns true if SOSCCM != 0"]
     #[inline] pub fn test_sosccm(&self) -> bool {
         self.sosccm() != 0
     }
 
-    #[doc="System OSC Clock Monitor"]
+    #[doc="Sets the SOSCCM field."]
     #[inline] pub fn set_sosccm<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1223,12 +1223,12 @@ impl Sosccsr {
         unsafe { ::core::mem::transmute(((self.0 >> 17) & 0x1) as u8) } // [17]
     }
 
-    #[doc="System OSC Clock Monitor Reset Enable"]
+    #[doc="Returns true if SOSCCMRE != 0"]
     #[inline] pub fn test_sosccmre(&self) -> bool {
         self.sosccmre() != 0
     }
 
-    #[doc="System OSC Clock Monitor Reset Enable"]
+    #[doc="Sets the SOSCCMRE field."]
     #[inline] pub fn set_sosccmre<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1242,12 +1242,12 @@ impl Sosccsr {
         unsafe { ::core::mem::transmute(((self.0 >> 23) & 0x1) as u8) } // [23]
     }
 
-    #[doc="Lock Register"]
+    #[doc="Returns true if LK != 0"]
     #[inline] pub fn test_lk(&self) -> bool {
         self.lk() != 0
     }
 
-    #[doc="Lock Register"]
+    #[doc="Sets the LK field."]
     #[inline] pub fn set_lk<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1261,12 +1261,12 @@ impl Sosccsr {
         unsafe { ::core::mem::transmute(((self.0 >> 24) & 0x1) as u8) } // [24]
     }
 
-    #[doc="System OSC Valid"]
+    #[doc="Returns true if SOSCVLD != 0"]
     #[inline] pub fn test_soscvld(&self) -> bool {
         self.soscvld() != 0
     }
 
-    #[doc="System OSC Valid"]
+    #[doc="Sets the SOSCVLD field."]
     #[inline] pub fn set_soscvld<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1280,12 +1280,12 @@ impl Sosccsr {
         unsafe { ::core::mem::transmute(((self.0 >> 25) & 0x1) as u8) } // [25]
     }
 
-    #[doc="System OSC Selected"]
+    #[doc="Returns true if SOSCSEL != 0"]
     #[inline] pub fn test_soscsel(&self) -> bool {
         self.soscsel() != 0
     }
 
-    #[doc="System OSC Selected"]
+    #[doc="Sets the SOSCSEL field."]
     #[inline] pub fn set_soscsel<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1299,12 +1299,12 @@ impl Sosccsr {
         unsafe { ::core::mem::transmute(((self.0 >> 26) & 0x1) as u8) } // [26]
     }
 
-    #[doc="System OSC Clock Error"]
+    #[doc="Returns true if SOSCERR != 0"]
     #[inline] pub fn test_soscerr(&self) -> bool {
         self.soscerr() != 0
     }
 
-    #[doc="System OSC Clock Error"]
+    #[doc="Sets the SOSCERR field."]
     #[inline] pub fn set_soscerr<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1352,12 +1352,12 @@ impl Soscdiv {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x7) as u8) } // [2:0]
     }
 
-    #[doc="System OSC Clock Divide 1"]
+    #[doc="Returns true if SOSCDIV1 != 0"]
     #[inline] pub fn test_soscdiv1(&self) -> bool {
         self.soscdiv1() != 0
     }
 
-    #[doc="System OSC Clock Divide 1"]
+    #[doc="Sets the SOSCDIV1 field."]
     #[inline] pub fn set_soscdiv1<V: Into<bits::U3>>(mut self, value: V) -> Self {
         let value: bits::U3 = value.into();
         let value: u32 = value.into();
@@ -1371,12 +1371,12 @@ impl Soscdiv {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x7) as u8) } // [10:8]
     }
 
-    #[doc="System OSC Clock Divide 2"]
+    #[doc="Returns true if SOSCDIV2 != 0"]
     #[inline] pub fn test_soscdiv2(&self) -> bool {
         self.soscdiv2() != 0
     }
 
-    #[doc="System OSC Clock Divide 2"]
+    #[doc="Sets the SOSCDIV2 field."]
     #[inline] pub fn set_soscdiv2<V: Into<bits::U3>>(mut self, value: V) -> Self {
         let value: bits::U3 = value.into();
         let value: u32 = value.into();
@@ -1419,12 +1419,12 @@ impl Sosccfg {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="External Reference Select"]
+    #[doc="Returns true if EREFS != 0"]
     #[inline] pub fn test_erefs(&self) -> bool {
         self.erefs() != 0
     }
 
-    #[doc="External Reference Select"]
+    #[doc="Sets the EREFS field."]
     #[inline] pub fn set_erefs<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1438,12 +1438,12 @@ impl Sosccfg {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="High Gain Oscillator Select"]
+    #[doc="Returns true if HGO != 0"]
     #[inline] pub fn test_hgo(&self) -> bool {
         self.hgo() != 0
     }
 
-    #[doc="High Gain Oscillator Select"]
+    #[doc="Sets the HGO field."]
     #[inline] pub fn set_hgo<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1457,12 +1457,12 @@ impl Sosccfg {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x3) as u8) } // [5:4]
     }
 
-    #[doc="System OSC Range Select"]
+    #[doc="Returns true if RANGE != 0"]
     #[inline] pub fn test_range(&self) -> bool {
         self.range() != 0
     }
 
-    #[doc="System OSC Range Select"]
+    #[doc="Sets the RANGE field."]
     #[inline] pub fn set_range<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -1506,12 +1506,12 @@ impl Sirccsr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Slow IRC Enable"]
+    #[doc="Returns true if SIRCEN != 0"]
     #[inline] pub fn test_sircen(&self) -> bool {
         self.sircen() != 0
     }
 
-    #[doc="Slow IRC Enable"]
+    #[doc="Sets the SIRCEN field."]
     #[inline] pub fn set_sircen<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1525,12 +1525,12 @@ impl Sirccsr {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="Slow IRC Stop Enable"]
+    #[doc="Returns true if SIRCSTEN != 0"]
     #[inline] pub fn test_sircsten(&self) -> bool {
         self.sircsten() != 0
     }
 
-    #[doc="Slow IRC Stop Enable"]
+    #[doc="Sets the SIRCSTEN field."]
     #[inline] pub fn set_sircsten<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1544,12 +1544,12 @@ impl Sirccsr {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="Slow IRC Low Power Enable"]
+    #[doc="Returns true if SIRCLPEN != 0"]
     #[inline] pub fn test_sirclpen(&self) -> bool {
         self.sirclpen() != 0
     }
 
-    #[doc="Slow IRC Low Power Enable"]
+    #[doc="Sets the SIRCLPEN field."]
     #[inline] pub fn set_sirclpen<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1563,12 +1563,12 @@ impl Sirccsr {
         unsafe { ::core::mem::transmute(((self.0 >> 23) & 0x1) as u8) } // [23]
     }
 
-    #[doc="Lock Register"]
+    #[doc="Returns true if LK != 0"]
     #[inline] pub fn test_lk(&self) -> bool {
         self.lk() != 0
     }
 
-    #[doc="Lock Register"]
+    #[doc="Sets the LK field."]
     #[inline] pub fn set_lk<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1582,12 +1582,12 @@ impl Sirccsr {
         unsafe { ::core::mem::transmute(((self.0 >> 24) & 0x1) as u8) } // [24]
     }
 
-    #[doc="Slow IRC Valid"]
+    #[doc="Returns true if SIRCVLD != 0"]
     #[inline] pub fn test_sircvld(&self) -> bool {
         self.sircvld() != 0
     }
 
-    #[doc="Slow IRC Valid"]
+    #[doc="Sets the SIRCVLD field."]
     #[inline] pub fn set_sircvld<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1601,12 +1601,12 @@ impl Sirccsr {
         unsafe { ::core::mem::transmute(((self.0 >> 25) & 0x1) as u8) } // [25]
     }
 
-    #[doc="Slow IRC Selected"]
+    #[doc="Returns true if SIRCSEL != 0"]
     #[inline] pub fn test_sircsel(&self) -> bool {
         self.sircsel() != 0
     }
 
-    #[doc="Slow IRC Selected"]
+    #[doc="Sets the SIRCSEL field."]
     #[inline] pub fn set_sircsel<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1653,12 +1653,12 @@ impl Sircdiv {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x7) as u8) } // [2:0]
     }
 
-    #[doc="Slow IRC Clock Divide 1"]
+    #[doc="Returns true if SIRCDIV1 != 0"]
     #[inline] pub fn test_sircdiv1(&self) -> bool {
         self.sircdiv1() != 0
     }
 
-    #[doc="Slow IRC Clock Divide 1"]
+    #[doc="Sets the SIRCDIV1 field."]
     #[inline] pub fn set_sircdiv1<V: Into<bits::U3>>(mut self, value: V) -> Self {
         let value: bits::U3 = value.into();
         let value: u32 = value.into();
@@ -1672,12 +1672,12 @@ impl Sircdiv {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x7) as u8) } // [10:8]
     }
 
-    #[doc="Slow IRC Clock Divide 2"]
+    #[doc="Returns true if SIRCDIV2 != 0"]
     #[inline] pub fn test_sircdiv2(&self) -> bool {
         self.sircdiv2() != 0
     }
 
-    #[doc="Slow IRC Clock Divide 2"]
+    #[doc="Sets the SIRCDIV2 field."]
     #[inline] pub fn set_sircdiv2<V: Into<bits::U3>>(mut self, value: V) -> Self {
         let value: bits::U3 = value.into();
         let value: u32 = value.into();
@@ -1720,12 +1720,12 @@ impl Sirccfg {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Frequency Range"]
+    #[doc="Returns true if RANGE != 0"]
     #[inline] pub fn test_range(&self) -> bool {
         self.range() != 0
     }
 
-    #[doc="Frequency Range"]
+    #[doc="Sets the RANGE field."]
     #[inline] pub fn set_range<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1767,12 +1767,12 @@ impl Firccsr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Fast IRC Enable"]
+    #[doc="Returns true if FIRCEN != 0"]
     #[inline] pub fn test_fircen(&self) -> bool {
         self.fircen() != 0
     }
 
-    #[doc="Fast IRC Enable"]
+    #[doc="Sets the FIRCEN field."]
     #[inline] pub fn set_fircen<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1786,12 +1786,12 @@ impl Firccsr {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="Fast IRC Regulator Enable"]
+    #[doc="Returns true if FIRCREGOFF != 0"]
     #[inline] pub fn test_fircregoff(&self) -> bool {
         self.fircregoff() != 0
     }
 
-    #[doc="Fast IRC Regulator Enable"]
+    #[doc="Sets the FIRCREGOFF field."]
     #[inline] pub fn set_fircregoff<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1805,12 +1805,12 @@ impl Firccsr {
         unsafe { ::core::mem::transmute(((self.0 >> 23) & 0x1) as u8) } // [23]
     }
 
-    #[doc="Lock Register"]
+    #[doc="Returns true if LK != 0"]
     #[inline] pub fn test_lk(&self) -> bool {
         self.lk() != 0
     }
 
-    #[doc="Lock Register"]
+    #[doc="Sets the LK field."]
     #[inline] pub fn set_lk<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1824,12 +1824,12 @@ impl Firccsr {
         unsafe { ::core::mem::transmute(((self.0 >> 24) & 0x1) as u8) } // [24]
     }
 
-    #[doc="Fast IRC Valid status"]
+    #[doc="Returns true if FIRCVLD != 0"]
     #[inline] pub fn test_fircvld(&self) -> bool {
         self.fircvld() != 0
     }
 
-    #[doc="Fast IRC Valid status"]
+    #[doc="Sets the FIRCVLD field."]
     #[inline] pub fn set_fircvld<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1843,12 +1843,12 @@ impl Firccsr {
         unsafe { ::core::mem::transmute(((self.0 >> 25) & 0x1) as u8) } // [25]
     }
 
-    #[doc="Fast IRC Selected status"]
+    #[doc="Returns true if FIRCSEL != 0"]
     #[inline] pub fn test_fircsel(&self) -> bool {
         self.fircsel() != 0
     }
 
-    #[doc="Fast IRC Selected status"]
+    #[doc="Sets the FIRCSEL field."]
     #[inline] pub fn set_fircsel<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1862,12 +1862,12 @@ impl Firccsr {
         unsafe { ::core::mem::transmute(((self.0 >> 26) & 0x1) as u8) } // [26]
     }
 
-    #[doc="Fast IRC Clock Error"]
+    #[doc="Returns true if FIRCERR != 0"]
     #[inline] pub fn test_fircerr(&self) -> bool {
         self.fircerr() != 0
     }
 
-    #[doc="Fast IRC Clock Error"]
+    #[doc="Sets the FIRCERR field."]
     #[inline] pub fn set_fircerr<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1914,12 +1914,12 @@ impl Fircdiv {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x7) as u8) } // [2:0]
     }
 
-    #[doc="Fast IRC Clock Divide 1"]
+    #[doc="Returns true if FIRCDIV1 != 0"]
     #[inline] pub fn test_fircdiv1(&self) -> bool {
         self.fircdiv1() != 0
     }
 
-    #[doc="Fast IRC Clock Divide 1"]
+    #[doc="Sets the FIRCDIV1 field."]
     #[inline] pub fn set_fircdiv1<V: Into<bits::U3>>(mut self, value: V) -> Self {
         let value: bits::U3 = value.into();
         let value: u32 = value.into();
@@ -1933,12 +1933,12 @@ impl Fircdiv {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x7) as u8) } // [10:8]
     }
 
-    #[doc="Fast IRC Clock Divide 2"]
+    #[doc="Returns true if FIRCDIV2 != 0"]
     #[inline] pub fn test_fircdiv2(&self) -> bool {
         self.fircdiv2() != 0
     }
 
-    #[doc="Fast IRC Clock Divide 2"]
+    #[doc="Sets the FIRCDIV2 field."]
     #[inline] pub fn set_fircdiv2<V: Into<bits::U3>>(mut self, value: V) -> Self {
         let value: bits::U3 = value.into();
         let value: u32 = value.into();
@@ -1981,12 +1981,12 @@ impl Firccfg {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x3) as u8) } // [1:0]
     }
 
-    #[doc="Frequency Range"]
+    #[doc="Returns true if RANGE != 0"]
     #[inline] pub fn test_range(&self) -> bool {
         self.range() != 0
     }
 
-    #[doc="Frequency Range"]
+    #[doc="Sets the RANGE field."]
     #[inline] pub fn set_range<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -2028,12 +2028,12 @@ impl Spllcsr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="System PLL Enable"]
+    #[doc="Returns true if SPLLEN != 0"]
     #[inline] pub fn test_spllen(&self) -> bool {
         self.spllen() != 0
     }
 
-    #[doc="System PLL Enable"]
+    #[doc="Sets the SPLLEN field."]
     #[inline] pub fn set_spllen<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2047,12 +2047,12 @@ impl Spllcsr {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1) as u8) } // [16]
     }
 
-    #[doc="System PLL Clock Monitor"]
+    #[doc="Returns true if SPLLCM != 0"]
     #[inline] pub fn test_spllcm(&self) -> bool {
         self.spllcm() != 0
     }
 
-    #[doc="System PLL Clock Monitor"]
+    #[doc="Sets the SPLLCM field."]
     #[inline] pub fn set_spllcm<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2066,12 +2066,12 @@ impl Spllcsr {
         unsafe { ::core::mem::transmute(((self.0 >> 17) & 0x1) as u8) } // [17]
     }
 
-    #[doc="System PLL Clock Monitor Reset Enable"]
+    #[doc="Returns true if SPLLCMRE != 0"]
     #[inline] pub fn test_spllcmre(&self) -> bool {
         self.spllcmre() != 0
     }
 
-    #[doc="System PLL Clock Monitor Reset Enable"]
+    #[doc="Sets the SPLLCMRE field."]
     #[inline] pub fn set_spllcmre<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2085,12 +2085,12 @@ impl Spllcsr {
         unsafe { ::core::mem::transmute(((self.0 >> 23) & 0x1) as u8) } // [23]
     }
 
-    #[doc="Lock Register"]
+    #[doc="Returns true if LK != 0"]
     #[inline] pub fn test_lk(&self) -> bool {
         self.lk() != 0
     }
 
-    #[doc="Lock Register"]
+    #[doc="Sets the LK field."]
     #[inline] pub fn set_lk<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2104,12 +2104,12 @@ impl Spllcsr {
         unsafe { ::core::mem::transmute(((self.0 >> 24) & 0x1) as u8) } // [24]
     }
 
-    #[doc="System PLL Valid"]
+    #[doc="Returns true if SPLLVLD != 0"]
     #[inline] pub fn test_spllvld(&self) -> bool {
         self.spllvld() != 0
     }
 
-    #[doc="System PLL Valid"]
+    #[doc="Sets the SPLLVLD field."]
     #[inline] pub fn set_spllvld<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2123,12 +2123,12 @@ impl Spllcsr {
         unsafe { ::core::mem::transmute(((self.0 >> 25) & 0x1) as u8) } // [25]
     }
 
-    #[doc="System PLL Selected"]
+    #[doc="Returns true if SPLLSEL != 0"]
     #[inline] pub fn test_spllsel(&self) -> bool {
         self.spllsel() != 0
     }
 
-    #[doc="System PLL Selected"]
+    #[doc="Sets the SPLLSEL field."]
     #[inline] pub fn set_spllsel<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2142,12 +2142,12 @@ impl Spllcsr {
         unsafe { ::core::mem::transmute(((self.0 >> 26) & 0x1) as u8) } // [26]
     }
 
-    #[doc="System PLL Clock Error"]
+    #[doc="Returns true if SPLLERR != 0"]
     #[inline] pub fn test_spllerr(&self) -> bool {
         self.spllerr() != 0
     }
 
-    #[doc="System PLL Clock Error"]
+    #[doc="Sets the SPLLERR field."]
     #[inline] pub fn set_spllerr<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2195,12 +2195,12 @@ impl Splldiv {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x7) as u8) } // [2:0]
     }
 
-    #[doc="System PLL Clock Divide 1"]
+    #[doc="Returns true if SPLLDIV1 != 0"]
     #[inline] pub fn test_splldiv1(&self) -> bool {
         self.splldiv1() != 0
     }
 
-    #[doc="System PLL Clock Divide 1"]
+    #[doc="Sets the SPLLDIV1 field."]
     #[inline] pub fn set_splldiv1<V: Into<bits::U3>>(mut self, value: V) -> Self {
         let value: bits::U3 = value.into();
         let value: u32 = value.into();
@@ -2214,12 +2214,12 @@ impl Splldiv {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x7) as u8) } // [10:8]
     }
 
-    #[doc="System PLL Clock Divide 2"]
+    #[doc="Returns true if SPLLDIV2 != 0"]
     #[inline] pub fn test_splldiv2(&self) -> bool {
         self.splldiv2() != 0
     }
 
-    #[doc="System PLL Clock Divide 2"]
+    #[doc="Sets the SPLLDIV2 field."]
     #[inline] pub fn set_splldiv2<V: Into<bits::U3>>(mut self, value: V) -> Self {
         let value: bits::U3 = value.into();
         let value: u32 = value.into();
@@ -2262,12 +2262,12 @@ impl Spllcfg {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x7) as u8) } // [10:8]
     }
 
-    #[doc="PLL Reference Clock Divider"]
+    #[doc="Returns true if PREDIV != 0"]
     #[inline] pub fn test_prediv(&self) -> bool {
         self.prediv() != 0
     }
 
-    #[doc="PLL Reference Clock Divider"]
+    #[doc="Sets the PREDIV field."]
     #[inline] pub fn set_prediv<V: Into<bits::U3>>(mut self, value: V) -> Self {
         let value: bits::U3 = value.into();
         let value: u32 = value.into();
@@ -2281,12 +2281,12 @@ impl Spllcfg {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1f) as u8) } // [20:16]
     }
 
-    #[doc="System PLL Multiplier"]
+    #[doc="Returns true if MULT != 0"]
     #[inline] pub fn test_mult(&self) -> bool {
         self.mult() != 0
     }
 
-    #[doc="System PLL Multiplier"]
+    #[doc="Sets the MULT field."]
     #[inline] pub fn set_mult<V: Into<bits::U5>>(mut self, value: V) -> Self {
         let value: bits::U5 = value.into();
         let value: u32 = value.into();

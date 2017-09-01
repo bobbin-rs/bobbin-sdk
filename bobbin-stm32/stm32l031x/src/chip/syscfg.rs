@@ -249,12 +249,12 @@ impl Cfgr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x3) as u8) } // [9:8]
     }
 
-    #[doc="Boot mode selected by the boot pins status bits"]
+    #[doc="Returns true if BOOT_MODE != 0"]
     #[inline] pub fn test_boot_mode(&self) -> bool {
         self.boot_mode() != 0
     }
 
-    #[doc="Boot mode selected by the boot pins status bits"]
+    #[doc="Sets the BOOT_MODE field."]
     #[inline] pub fn set_boot_mode<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -268,12 +268,12 @@ impl Cfgr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x3) as u8) } // [1:0]
     }
 
-    #[doc="Memory mapping selection bits"]
+    #[doc="Returns true if MEM_MODE != 0"]
     #[inline] pub fn test_mem_mode(&self) -> bool {
         self.mem_mode() != 0
     }
 
-    #[doc="Memory mapping selection bits"]
+    #[doc="Sets the MEM_MODE field."]
     #[inline] pub fn set_mem_mode<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -316,12 +316,12 @@ impl Cfgr2 {
         unsafe { ::core::mem::transmute(((self.0 >> 13) & 0x1) as u8) } // [13]
     }
 
-    #[doc="I2C2 Fm+ drive capability enable bit"]
+    #[doc="Returns true if I2C2_FMP != 0"]
     #[inline] pub fn test_i2c2_fmp(&self) -> bool {
         self.i2c2_fmp() != 0
     }
 
-    #[doc="I2C2 Fm+ drive capability enable bit"]
+    #[doc="Sets the I2C2_FMP field."]
     #[inline] pub fn set_i2c2_fmp<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -335,12 +335,12 @@ impl Cfgr2 {
         unsafe { ::core::mem::transmute(((self.0 >> 12) & 0x1) as u8) } // [12]
     }
 
-    #[doc="I2C1 Fm+ drive capability enable bit"]
+    #[doc="Returns true if I2C1_FMP != 0"]
     #[inline] pub fn test_i2c1_fmp(&self) -> bool {
         self.i2c1_fmp() != 0
     }
 
-    #[doc="I2C1 Fm+ drive capability enable bit"]
+    #[doc="Sets the I2C1_FMP field."]
     #[inline] pub fn set_i2c1_fmp<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -354,12 +354,12 @@ impl Cfgr2 {
         unsafe { ::core::mem::transmute(((self.0 >> 11) & 0x1) as u8) } // [11]
     }
 
-    #[doc="Fm+ drive capability on PB9 enable bit"]
+    #[doc="Returns true if I2C_PB9_FMP != 0"]
     #[inline] pub fn test_i2c_pb9_fmp(&self) -> bool {
         self.i2c_pb9_fmp() != 0
     }
 
-    #[doc="Fm+ drive capability on PB9 enable bit"]
+    #[doc="Sets the I2C_PB9_FMP field."]
     #[inline] pub fn set_i2c_pb9_fmp<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -373,12 +373,12 @@ impl Cfgr2 {
         unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x1) as u8) } // [10]
     }
 
-    #[doc="Fm+ drive capability on PB8 enable bit"]
+    #[doc="Returns true if I2C_PB8_FMP != 0"]
     #[inline] pub fn test_i2c_pb8_fmp(&self) -> bool {
         self.i2c_pb8_fmp() != 0
     }
 
-    #[doc="Fm+ drive capability on PB8 enable bit"]
+    #[doc="Sets the I2C_PB8_FMP field."]
     #[inline] pub fn set_i2c_pb8_fmp<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -392,12 +392,12 @@ impl Cfgr2 {
         unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
     }
 
-    #[doc="Fm+ drive capability on PB7 enable bit"]
+    #[doc="Returns true if I2C_PB7_FMP != 0"]
     #[inline] pub fn test_i2c_pb7_fmp(&self) -> bool {
         self.i2c_pb7_fmp() != 0
     }
 
-    #[doc="Fm+ drive capability on PB7 enable bit"]
+    #[doc="Sets the I2C_PB7_FMP field."]
     #[inline] pub fn set_i2c_pb7_fmp<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -411,12 +411,12 @@ impl Cfgr2 {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
     }
 
-    #[doc="Fm+ drive capability on PB6 enable bit"]
+    #[doc="Returns true if I2C_PB6_FMP != 0"]
     #[inline] pub fn test_i2c_pb6_fmp(&self) -> bool {
         self.i2c_pb6_fmp() != 0
     }
 
-    #[doc="Fm+ drive capability on PB6 enable bit"]
+    #[doc="Sets the I2C_PB6_FMP field."]
     #[inline] pub fn set_i2c_pb6_fmp<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -430,12 +430,12 @@ impl Cfgr2 {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x7) as u8) } // [3:1]
     }
 
-    #[doc="Configuration of internal VLCD rail connection to optional external capacitor"]
+    #[doc="Returns true if CAPA != 0"]
     #[inline] pub fn test_capa(&self) -> bool {
         self.capa() != 0
     }
 
-    #[doc="Configuration of internal VLCD rail connection to optional external capacitor"]
+    #[doc="Sets the CAPA field."]
     #[inline] pub fn set_capa<V: Into<bits::U3>>(mut self, value: V) -> Self {
         let value: bits::U3 = value.into();
         let value: u32 = value.into();
@@ -449,12 +449,12 @@ impl Cfgr2 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Firewall disable bit"]
+    #[doc="Returns true if FWDISEN != 0"]
     #[inline] pub fn test_fwdisen(&self) -> bool {
         self.fwdisen() != 0
     }
 
-    #[doc="Firewall disable bit"]
+    #[doc="Sets the FWDISEN field."]
     #[inline] pub fn set_fwdisen<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -503,12 +503,12 @@ impl Exticr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 12) & 0xf) as u8) } // [15:12]
     }
 
-    #[doc="EXTI x configuration (x = 0 to 3)"]
+    #[doc="Returns true if EXTI3 != 0"]
     #[inline] pub fn test_exti3(&self) -> bool {
         self.exti3() != 0
     }
 
-    #[doc="EXTI x configuration (x = 0 to 3)"]
+    #[doc="Sets the EXTI3 field."]
     #[inline] pub fn set_exti3<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -522,12 +522,12 @@ impl Exticr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0xf) as u8) } // [11:8]
     }
 
-    #[doc="EXTI x configuration (x = 0 to 3)"]
+    #[doc="Returns true if EXTI2 != 0"]
     #[inline] pub fn test_exti2(&self) -> bool {
         self.exti2() != 0
     }
 
-    #[doc="EXTI x configuration (x = 0 to 3)"]
+    #[doc="Sets the EXTI2 field."]
     #[inline] pub fn set_exti2<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -541,12 +541,12 @@ impl Exticr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0xf) as u8) } // [7:4]
     }
 
-    #[doc="EXTI x configuration (x = 0 to 3)"]
+    #[doc="Returns true if EXTI1 != 0"]
     #[inline] pub fn test_exti1(&self) -> bool {
         self.exti1() != 0
     }
 
-    #[doc="EXTI x configuration (x = 0 to 3)"]
+    #[doc="Sets the EXTI1 field."]
     #[inline] pub fn set_exti1<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -560,12 +560,12 @@ impl Exticr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xf) as u8) } // [3:0]
     }
 
-    #[doc="EXTI x configuration (x = 0 to 3)"]
+    #[doc="Returns true if EXTI0 != 0"]
     #[inline] pub fn test_exti0(&self) -> bool {
         self.exti0() != 0
     }
 
-    #[doc="EXTI x configuration (x = 0 to 3)"]
+    #[doc="Sets the EXTI0 field."]
     #[inline] pub fn set_exti0<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -610,12 +610,12 @@ impl Exticr2 {
         unsafe { ::core::mem::transmute(((self.0 >> 12) & 0xf) as u8) } // [15:12]
     }
 
-    #[doc="EXTI x configuration (x = 4 to 7)"]
+    #[doc="Returns true if EXTI7 != 0"]
     #[inline] pub fn test_exti7(&self) -> bool {
         self.exti7() != 0
     }
 
-    #[doc="EXTI x configuration (x = 4 to 7)"]
+    #[doc="Sets the EXTI7 field."]
     #[inline] pub fn set_exti7<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -629,12 +629,12 @@ impl Exticr2 {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0xf) as u8) } // [11:8]
     }
 
-    #[doc="EXTI x configuration (x = 4 to 7)"]
+    #[doc="Returns true if EXTI6 != 0"]
     #[inline] pub fn test_exti6(&self) -> bool {
         self.exti6() != 0
     }
 
-    #[doc="EXTI x configuration (x = 4 to 7)"]
+    #[doc="Sets the EXTI6 field."]
     #[inline] pub fn set_exti6<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -648,12 +648,12 @@ impl Exticr2 {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0xf) as u8) } // [7:4]
     }
 
-    #[doc="EXTI x configuration (x = 4 to 7)"]
+    #[doc="Returns true if EXTI5 != 0"]
     #[inline] pub fn test_exti5(&self) -> bool {
         self.exti5() != 0
     }
 
-    #[doc="EXTI x configuration (x = 4 to 7)"]
+    #[doc="Sets the EXTI5 field."]
     #[inline] pub fn set_exti5<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -667,12 +667,12 @@ impl Exticr2 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xf) as u8) } // [3:0]
     }
 
-    #[doc="EXTI x configuration (x = 4 to 7)"]
+    #[doc="Returns true if EXTI4 != 0"]
     #[inline] pub fn test_exti4(&self) -> bool {
         self.exti4() != 0
     }
 
-    #[doc="EXTI x configuration (x = 4 to 7)"]
+    #[doc="Sets the EXTI4 field."]
     #[inline] pub fn set_exti4<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -717,12 +717,12 @@ impl Exticr3 {
         unsafe { ::core::mem::transmute(((self.0 >> 12) & 0xf) as u8) } // [15:12]
     }
 
-    #[doc="EXTI x configuration (x = 8 to 11)"]
+    #[doc="Returns true if EXTI11 != 0"]
     #[inline] pub fn test_exti11(&self) -> bool {
         self.exti11() != 0
     }
 
-    #[doc="EXTI x configuration (x = 8 to 11)"]
+    #[doc="Sets the EXTI11 field."]
     #[inline] pub fn set_exti11<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -736,12 +736,12 @@ impl Exticr3 {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0xf) as u8) } // [11:8]
     }
 
-    #[doc="EXTI10"]
+    #[doc="Returns true if EXTI10 != 0"]
     #[inline] pub fn test_exti10(&self) -> bool {
         self.exti10() != 0
     }
 
-    #[doc="EXTI10"]
+    #[doc="Sets the EXTI10 field."]
     #[inline] pub fn set_exti10<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -755,12 +755,12 @@ impl Exticr3 {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0xf) as u8) } // [7:4]
     }
 
-    #[doc="EXTI x configuration (x = 8 to 11)"]
+    #[doc="Returns true if EXTI9 != 0"]
     #[inline] pub fn test_exti9(&self) -> bool {
         self.exti9() != 0
     }
 
-    #[doc="EXTI x configuration (x = 8 to 11)"]
+    #[doc="Sets the EXTI9 field."]
     #[inline] pub fn set_exti9<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -774,12 +774,12 @@ impl Exticr3 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xf) as u8) } // [3:0]
     }
 
-    #[doc="EXTI x configuration (x = 8 to 11)"]
+    #[doc="Returns true if EXTI8 != 0"]
     #[inline] pub fn test_exti8(&self) -> bool {
         self.exti8() != 0
     }
 
-    #[doc="EXTI x configuration (x = 8 to 11)"]
+    #[doc="Sets the EXTI8 field."]
     #[inline] pub fn set_exti8<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -824,12 +824,12 @@ impl Exticr4 {
         unsafe { ::core::mem::transmute(((self.0 >> 12) & 0xf) as u8) } // [15:12]
     }
 
-    #[doc="EXTI x configuration (x = 12 to 15)"]
+    #[doc="Returns true if EXTI15 != 0"]
     #[inline] pub fn test_exti15(&self) -> bool {
         self.exti15() != 0
     }
 
-    #[doc="EXTI x configuration (x = 12 to 15)"]
+    #[doc="Sets the EXTI15 field."]
     #[inline] pub fn set_exti15<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -843,12 +843,12 @@ impl Exticr4 {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0xf) as u8) } // [11:8]
     }
 
-    #[doc="EXTI14"]
+    #[doc="Returns true if EXTI14 != 0"]
     #[inline] pub fn test_exti14(&self) -> bool {
         self.exti14() != 0
     }
 
-    #[doc="EXTI14"]
+    #[doc="Sets the EXTI14 field."]
     #[inline] pub fn set_exti14<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -862,12 +862,12 @@ impl Exticr4 {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0xf) as u8) } // [7:4]
     }
 
-    #[doc="EXTI13"]
+    #[doc="Returns true if EXTI13 != 0"]
     #[inline] pub fn test_exti13(&self) -> bool {
         self.exti13() != 0
     }
 
-    #[doc="EXTI13"]
+    #[doc="Sets the EXTI13 field."]
     #[inline] pub fn set_exti13<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -881,12 +881,12 @@ impl Exticr4 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xf) as u8) } // [3:0]
     }
 
-    #[doc="EXTI12"]
+    #[doc="Returns true if EXTI12 != 0"]
     #[inline] pub fn test_exti12(&self) -> bool {
         self.exti12() != 0
     }
 
-    #[doc="EXTI12"]
+    #[doc="Sets the EXTI12 field."]
     #[inline] pub fn set_exti12<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -931,12 +931,12 @@ impl Cfgr3 {
         unsafe { ::core::mem::transmute(((self.0 >> 31) & 0x1) as u8) } // [31]
     }
 
-    #[doc="REF_CTRL lock bit"]
+    #[doc="Returns true if REF_LOCK != 0"]
     #[inline] pub fn test_ref_lock(&self) -> bool {
         self.ref_lock() != 0
     }
 
-    #[doc="REF_CTRL lock bit"]
+    #[doc="Sets the REF_LOCK field."]
     #[inline] pub fn set_ref_lock<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -950,12 +950,12 @@ impl Cfgr3 {
         unsafe { ::core::mem::transmute(((self.0 >> 30) & 0x1) as u8) } // [30]
     }
 
-    #[doc="VREFINT ready flag"]
+    #[doc="Returns true if VREFINT_RDYF != 0"]
     #[inline] pub fn test_vrefint_rdyf(&self) -> bool {
         self.vrefint_rdyf() != 0
     }
 
-    #[doc="VREFINT ready flag"]
+    #[doc="Sets the VREFINT_RDYF field."]
     #[inline] pub fn set_vrefint_rdyf<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -969,12 +969,12 @@ impl Cfgr3 {
         unsafe { ::core::mem::transmute(((self.0 >> 29) & 0x1) as u8) } // [29]
     }
 
-    #[doc="VREFINT for comparator ready flag"]
+    #[doc="Returns true if VREFINT_COMP_RDYF != 0"]
     #[inline] pub fn test_vrefint_comp_rdyf(&self) -> bool {
         self.vrefint_comp_rdyf() != 0
     }
 
-    #[doc="VREFINT for comparator ready flag"]
+    #[doc="Sets the VREFINT_COMP_RDYF field."]
     #[inline] pub fn set_vrefint_comp_rdyf<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -988,12 +988,12 @@ impl Cfgr3 {
         unsafe { ::core::mem::transmute(((self.0 >> 28) & 0x1) as u8) } // [28]
     }
 
-    #[doc="VREFINT for ADC ready flag"]
+    #[doc="Returns true if VREFINT_ADC_RDYF != 0"]
     #[inline] pub fn test_vrefint_adc_rdyf(&self) -> bool {
         self.vrefint_adc_rdyf() != 0
     }
 
-    #[doc="VREFINT for ADC ready flag"]
+    #[doc="Sets the VREFINT_ADC_RDYF field."]
     #[inline] pub fn set_vrefint_adc_rdyf<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1007,12 +1007,12 @@ impl Cfgr3 {
         unsafe { ::core::mem::transmute(((self.0 >> 27) & 0x1) as u8) } // [27]
     }
 
-    #[doc="Sensor for ADC ready flag"]
+    #[doc="Returns true if SENSOR_ADC_RDYF != 0"]
     #[inline] pub fn test_sensor_adc_rdyf(&self) -> bool {
         self.sensor_adc_rdyf() != 0
     }
 
-    #[doc="Sensor for ADC ready flag"]
+    #[doc="Sets the SENSOR_ADC_RDYF field."]
     #[inline] pub fn set_sensor_adc_rdyf<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1026,12 +1026,12 @@ impl Cfgr3 {
         unsafe { ::core::mem::transmute(((self.0 >> 26) & 0x1) as u8) } // [26]
     }
 
-    #[doc="VREFINT for 48 MHz RC oscillator ready flag"]
+    #[doc="Returns true if REF_RC48MHz_RDYF != 0"]
     #[inline] pub fn test_ref_rc48mhz_rdyf(&self) -> bool {
         self.ref_rc48mhz_rdyf() != 0
     }
 
-    #[doc="VREFINT for 48 MHz RC oscillator ready flag"]
+    #[doc="Sets the REF_RC48MHz_RDYF field."]
     #[inline] pub fn set_ref_rc48mhz_rdyf<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1045,12 +1045,12 @@ impl Cfgr3 {
         unsafe { ::core::mem::transmute(((self.0 >> 13) & 0x1) as u8) } // [13]
     }
 
-    #[doc="VREFINT reference for 48 MHz RC oscillator enable bit"]
+    #[doc="Returns true if ENREF_RC48MHz != 0"]
     #[inline] pub fn test_enref_rc48mhz(&self) -> bool {
         self.enref_rc48mhz() != 0
     }
 
-    #[doc="VREFINT reference for 48 MHz RC oscillator enable bit"]
+    #[doc="Sets the ENREF_RC48MHz field."]
     #[inline] pub fn set_enref_rc48mhz<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1064,12 +1064,12 @@ impl Cfgr3 {
         unsafe { ::core::mem::transmute(((self.0 >> 12) & 0x1) as u8) } // [12]
     }
 
-    #[doc="VREFINT reference for comparator 2 enable bit"]
+    #[doc="Returns true if ENBUF_VREFINT_COMP != 0"]
     #[inline] pub fn test_enbuf_vrefint_comp(&self) -> bool {
         self.enbuf_vrefint_comp() != 0
     }
 
-    #[doc="VREFINT reference for comparator 2 enable bit"]
+    #[doc="Sets the ENBUF_VREFINT_COMP field."]
     #[inline] pub fn set_enbuf_vrefint_comp<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1083,12 +1083,12 @@ impl Cfgr3 {
         unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
     }
 
-    #[doc="Sensor reference for ADC enable bit"]
+    #[doc="Returns true if ENBUF_SENSOR_ADC != 0"]
     #[inline] pub fn test_enbuf_sensor_adc(&self) -> bool {
         self.enbuf_sensor_adc() != 0
     }
 
-    #[doc="Sensor reference for ADC enable bit"]
+    #[doc="Sets the ENBUF_SENSOR_ADC field."]
     #[inline] pub fn set_enbuf_sensor_adc<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1102,12 +1102,12 @@ impl Cfgr3 {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
     }
 
-    #[doc="VREFINT reference for ADC enable bit"]
+    #[doc="Returns true if ENBUF_BGAP_ADC != 0"]
     #[inline] pub fn test_enbuf_bgap_adc(&self) -> bool {
         self.enbuf_bgap_adc() != 0
     }
 
-    #[doc="VREFINT reference for ADC enable bit"]
+    #[doc="Sets the ENBUF_BGAP_ADC field."]
     #[inline] pub fn set_enbuf_bgap_adc<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1121,12 +1121,12 @@ impl Cfgr3 {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x3) as u8) } // [5:4]
     }
 
-    #[doc="BGAP_ADC connection bit"]
+    #[doc="Returns true if SEL_VREF_OUT != 0"]
     #[inline] pub fn test_sel_vref_out(&self) -> bool {
         self.sel_vref_out() != 0
     }
 
-    #[doc="BGAP_ADC connection bit"]
+    #[doc="Sets the SEL_VREF_OUT field."]
     #[inline] pub fn set_sel_vref_out<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -1140,12 +1140,12 @@ impl Cfgr3 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Vref Enable bit"]
+    #[doc="Returns true if EN_BGAP != 0"]
     #[inline] pub fn test_en_bgap(&self) -> bool {
         self.en_bgap() != 0
     }
 
-    #[doc="Vref Enable bit"]
+    #[doc="Sets the EN_BGAP field."]
     #[inline] pub fn set_en_bgap<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();

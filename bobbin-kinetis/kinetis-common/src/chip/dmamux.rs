@@ -52,12 +52,12 @@ impl Chcfg {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x3f) as u8) } // [5:0]
     }
 
-    #[doc="DMA Channel Source (Slot)"]
+    #[doc="Returns true if SOURCE != 0"]
     #[inline] pub fn test_source(&self) -> bool {
         self.source() != 0
     }
 
-    #[doc="DMA Channel Source (Slot)"]
+    #[doc="Sets the SOURCE field."]
     #[inline] pub fn set_source<V: Into<bits::U6>>(mut self, value: V) -> Self {
         let value: bits::U6 = value.into();
         let value: u8 = value.into();
@@ -71,12 +71,12 @@ impl Chcfg {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="DMA Channel Trigger Enable"]
+    #[doc="Returns true if TRIG != 0"]
     #[inline] pub fn test_trig(&self) -> bool {
         self.trig() != 0
     }
 
-    #[doc="DMA Channel Trigger Enable"]
+    #[doc="Sets the TRIG field."]
     #[inline] pub fn set_trig<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -90,12 +90,12 @@ impl Chcfg {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="DMA Channel Enable"]
+    #[doc="Returns true if ENBL != 0"]
     #[inline] pub fn test_enbl(&self) -> bool {
         self.enbl() != 0
     }
 
-    #[doc="DMA Channel Enable"]
+    #[doc="Sets the ENBL field."]
     #[inline] pub fn set_enbl<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();

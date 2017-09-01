@@ -315,12 +315,12 @@ impl Addr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x3fffff) as u32) } // [21:0]
     }
 
-    #[doc="NVM Address"]
+    #[doc="Returns true if ADDR != 0"]
     #[inline] pub fn test_addr(&self) -> bool {
         self.addr() != 0
     }
 
-    #[doc="NVM Address"]
+    #[doc="Sets the ADDR field."]
     #[inline] pub fn set_addr<V: Into<bits::U22>>(mut self, value: V) -> Self {
         let value: bits::U22 = value.into();
         let value: u32 = value.into();
@@ -362,12 +362,12 @@ impl Ctrla {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x7f) as u8) } // [6:0]
     }
 
-    #[doc="Command"]
+    #[doc="Returns true if CMD != 0"]
     #[inline] pub fn test_cmd(&self) -> bool {
         self.cmd() != 0
     }
 
-    #[doc="Command"]
+    #[doc="Sets the CMD field."]
     #[inline] pub fn set_cmd<V: Into<bits::U7>>(mut self, value: V) -> Self {
         let value: bits::U7 = value.into();
         let value: u16 = value.into();
@@ -381,12 +381,12 @@ impl Ctrla {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0xff) as u8) } // [15:8]
     }
 
-    #[doc="Command Execution"]
+    #[doc="Returns true if CMDEX != 0"]
     #[inline] pub fn test_cmdex(&self) -> bool {
         self.cmdex() != 0
     }
 
-    #[doc="Command Execution"]
+    #[doc="Sets the CMDEX field."]
     #[inline] pub fn set_cmdex<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u16 = value.into();
@@ -429,12 +429,12 @@ impl Ctrlb {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0xf) as u8) } // [4:1]
     }
 
-    #[doc="NVM Read Wait States"]
+    #[doc="Returns true if RWS != 0"]
     #[inline] pub fn test_rws(&self) -> bool {
         self.rws() != 0
     }
 
-    #[doc="NVM Read Wait States"]
+    #[doc="Sets the RWS field."]
     #[inline] pub fn set_rws<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -448,12 +448,12 @@ impl Ctrlb {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="Manual Write"]
+    #[doc="Returns true if MANW != 0"]
     #[inline] pub fn test_manw(&self) -> bool {
         self.manw() != 0
     }
 
-    #[doc="Manual Write"]
+    #[doc="Sets the MANW field."]
     #[inline] pub fn set_manw<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -467,12 +467,12 @@ impl Ctrlb {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x3) as u8) } // [9:8]
     }
 
-    #[doc="Power Reduction Mode during Sleep"]
+    #[doc="Returns true if SLEEPPRM != 0"]
     #[inline] pub fn test_sleepprm(&self) -> bool {
         self.sleepprm() != 0
     }
 
-    #[doc="Power Reduction Mode during Sleep"]
+    #[doc="Sets the SLEEPPRM field."]
     #[inline] pub fn set_sleepprm<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -486,12 +486,12 @@ impl Ctrlb {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x3) as u8) } // [17:16]
     }
 
-    #[doc="NVMCTRL Read Mode"]
+    #[doc="Returns true if READMODE != 0"]
     #[inline] pub fn test_readmode(&self) -> bool {
         self.readmode() != 0
     }
 
-    #[doc="NVMCTRL Read Mode"]
+    #[doc="Sets the READMODE field."]
     #[inline] pub fn set_readmode<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -505,12 +505,12 @@ impl Ctrlb {
         unsafe { ::core::mem::transmute(((self.0 >> 18) & 0x1) as u8) } // [18]
     }
 
-    #[doc="Cache Disable"]
+    #[doc="Returns true if CACHEDIS != 0"]
     #[inline] pub fn test_cachedis(&self) -> bool {
         self.cachedis() != 0
     }
 
-    #[doc="Cache Disable"]
+    #[doc="Sets the CACHEDIS field."]
     #[inline] pub fn set_cachedis<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -556,12 +556,12 @@ impl Intenclr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="NVM Ready Interrupt Enable"]
+    #[doc="Returns true if READY != 0"]
     #[inline] pub fn test_ready(&self) -> bool {
         self.ready() != 0
     }
 
-    #[doc="NVM Ready Interrupt Enable"]
+    #[doc="Sets the READY field."]
     #[inline] pub fn set_ready<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -575,12 +575,12 @@ impl Intenclr {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="Error Interrupt Enable"]
+    #[doc="Returns true if ERROR != 0"]
     #[inline] pub fn test_error(&self) -> bool {
         self.error() != 0
     }
 
-    #[doc="Error Interrupt Enable"]
+    #[doc="Sets the ERROR field."]
     #[inline] pub fn set_error<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -623,12 +623,12 @@ impl Intenset {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="NVM Ready Interrupt Enable"]
+    #[doc="Returns true if READY != 0"]
     #[inline] pub fn test_ready(&self) -> bool {
         self.ready() != 0
     }
 
-    #[doc="NVM Ready Interrupt Enable"]
+    #[doc="Sets the READY field."]
     #[inline] pub fn set_ready<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -642,12 +642,12 @@ impl Intenset {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="Error Interrupt Enable"]
+    #[doc="Returns true if ERROR != 0"]
     #[inline] pub fn test_error(&self) -> bool {
         self.error() != 0
     }
 
-    #[doc="Error Interrupt Enable"]
+    #[doc="Sets the ERROR field."]
     #[inline] pub fn set_error<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -690,12 +690,12 @@ impl Intflag {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="NVM Ready"]
+    #[doc="Returns true if READY != 0"]
     #[inline] pub fn test_ready(&self) -> bool {
         self.ready() != 0
     }
 
-    #[doc="NVM Ready"]
+    #[doc="Sets the READY field."]
     #[inline] pub fn set_ready<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -709,12 +709,12 @@ impl Intflag {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="Error"]
+    #[doc="Returns true if ERROR != 0"]
     #[inline] pub fn test_error(&self) -> bool {
         self.error() != 0
     }
 
-    #[doc="Error"]
+    #[doc="Sets the ERROR field."]
     #[inline] pub fn set_error<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -757,12 +757,12 @@ impl Lock {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffff) as u16) } // [15:0]
     }
 
-    #[doc="Region Lock Bits"]
+    #[doc="Returns true if LOCK != 0"]
     #[inline] pub fn test_lock(&self) -> bool {
         self.lock() != 0
     }
 
-    #[doc="Region Lock Bits"]
+    #[doc="Sets the LOCK field."]
     #[inline] pub fn set_lock<V: Into<bits::U16>>(mut self, value: V) -> Self {
         let value: bits::U16 = value.into();
         let value: u16 = value.into();
@@ -804,12 +804,12 @@ impl Param {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffff) as u16) } // [15:0]
     }
 
-    #[doc="NVM Pages"]
+    #[doc="Returns true if NVMP != 0"]
     #[inline] pub fn test_nvmp(&self) -> bool {
         self.nvmp() != 0
     }
 
-    #[doc="NVM Pages"]
+    #[doc="Sets the NVMP field."]
     #[inline] pub fn set_nvmp<V: Into<bits::U16>>(mut self, value: V) -> Self {
         let value: bits::U16 = value.into();
         let value: u32 = value.into();
@@ -823,12 +823,12 @@ impl Param {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x7) as u8) } // [18:16]
     }
 
-    #[doc="Page Size"]
+    #[doc="Returns true if PSZ != 0"]
     #[inline] pub fn test_psz(&self) -> bool {
         self.psz() != 0
     }
 
-    #[doc="Page Size"]
+    #[doc="Sets the PSZ field."]
     #[inline] pub fn set_psz<V: Into<bits::U3>>(mut self, value: V) -> Self {
         let value: bits::U3 = value.into();
         let value: u32 = value.into();
@@ -871,12 +871,12 @@ impl Status {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Power Reduction Mode"]
+    #[doc="Returns true if PRM != 0"]
     #[inline] pub fn test_prm(&self) -> bool {
         self.prm() != 0
     }
 
-    #[doc="Power Reduction Mode"]
+    #[doc="Sets the PRM field."]
     #[inline] pub fn set_prm<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u16 = value.into();
@@ -890,12 +890,12 @@ impl Status {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="NVM Page Buffer Active Loading"]
+    #[doc="Returns true if LOAD != 0"]
     #[inline] pub fn test_load(&self) -> bool {
         self.load() != 0
     }
 
-    #[doc="NVM Page Buffer Active Loading"]
+    #[doc="Sets the LOAD field."]
     #[inline] pub fn set_load<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u16 = value.into();
@@ -909,12 +909,12 @@ impl Status {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="Programming Error Status"]
+    #[doc="Returns true if PROGE != 0"]
     #[inline] pub fn test_proge(&self) -> bool {
         self.proge() != 0
     }
 
-    #[doc="Programming Error Status"]
+    #[doc="Sets the PROGE field."]
     #[inline] pub fn set_proge<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u16 = value.into();
@@ -928,12 +928,12 @@ impl Status {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="Lock Error Status"]
+    #[doc="Returns true if LOCKE != 0"]
     #[inline] pub fn test_locke(&self) -> bool {
         self.locke() != 0
     }
 
-    #[doc="Lock Error Status"]
+    #[doc="Sets the LOCKE field."]
     #[inline] pub fn set_locke<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u16 = value.into();
@@ -947,12 +947,12 @@ impl Status {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="NVM Error"]
+    #[doc="Returns true if NVME != 0"]
     #[inline] pub fn test_nvme(&self) -> bool {
         self.nvme() != 0
     }
 
-    #[doc="NVM Error"]
+    #[doc="Sets the NVME field."]
     #[inline] pub fn set_nvme<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u16 = value.into();
@@ -966,12 +966,12 @@ impl Status {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
     }
 
-    #[doc="Security Bit Status"]
+    #[doc="Returns true if SB != 0"]
     #[inline] pub fn test_sb(&self) -> bool {
         self.sb() != 0
     }
 
-    #[doc="Security Bit Status"]
+    #[doc="Sets the SB field."]
     #[inline] pub fn set_sb<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u16 = value.into();

@@ -89,12 +89,12 @@ impl Csr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="ADDRDY_MST"]
+    #[doc="Returns true if ADDRDY_MST != 0"]
     #[inline] pub fn test_addrdy_mst(&self) -> bool {
         self.addrdy_mst() != 0
     }
 
-    #[doc="ADDRDY_MST"]
+    #[doc="Sets the ADDRDY_MST field."]
     #[inline] pub fn set_addrdy_mst<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -108,12 +108,12 @@ impl Csr {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="EOSMP_MST"]
+    #[doc="Returns true if EOSMP_MST != 0"]
     #[inline] pub fn test_eosmp_mst(&self) -> bool {
         self.eosmp_mst() != 0
     }
 
-    #[doc="EOSMP_MST"]
+    #[doc="Sets the EOSMP_MST field."]
     #[inline] pub fn set_eosmp_mst<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -127,12 +127,12 @@ impl Csr {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="EOC_MST"]
+    #[doc="Returns true if EOC_MST != 0"]
     #[inline] pub fn test_eoc_mst(&self) -> bool {
         self.eoc_mst() != 0
     }
 
-    #[doc="EOC_MST"]
+    #[doc="Sets the EOC_MST field."]
     #[inline] pub fn set_eoc_mst<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -146,12 +146,12 @@ impl Csr {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="EOS_MST"]
+    #[doc="Returns true if EOS_MST != 0"]
     #[inline] pub fn test_eos_mst(&self) -> bool {
         self.eos_mst() != 0
     }
 
-    #[doc="EOS_MST"]
+    #[doc="Sets the EOS_MST field."]
     #[inline] pub fn set_eos_mst<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -165,12 +165,12 @@ impl Csr {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="OVR_MST"]
+    #[doc="Returns true if OVR_MST != 0"]
     #[inline] pub fn test_ovr_mst(&self) -> bool {
         self.ovr_mst() != 0
     }
 
-    #[doc="OVR_MST"]
+    #[doc="Sets the OVR_MST field."]
     #[inline] pub fn set_ovr_mst<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -184,12 +184,12 @@ impl Csr {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="JEOC_MST"]
+    #[doc="Returns true if JEOC_MST != 0"]
     #[inline] pub fn test_jeoc_mst(&self) -> bool {
         self.jeoc_mst() != 0
     }
 
-    #[doc="JEOC_MST"]
+    #[doc="Sets the JEOC_MST field."]
     #[inline] pub fn set_jeoc_mst<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -203,12 +203,12 @@ impl Csr {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="JEOS_MST"]
+    #[doc="Returns true if JEOS_MST != 0"]
     #[inline] pub fn test_jeos_mst(&self) -> bool {
         self.jeos_mst() != 0
     }
 
-    #[doc="JEOS_MST"]
+    #[doc="Sets the JEOS_MST field."]
     #[inline] pub fn set_jeos_mst<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -222,12 +222,12 @@ impl Csr {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="AWD1_MST"]
+    #[doc="Returns true if AWD1_MST != 0"]
     #[inline] pub fn test_awd1_mst(&self) -> bool {
         self.awd1_mst() != 0
     }
 
-    #[doc="AWD1_MST"]
+    #[doc="Sets the AWD1_MST field."]
     #[inline] pub fn set_awd1_mst<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -241,12 +241,12 @@ impl Csr {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
     }
 
-    #[doc="AWD2_MST"]
+    #[doc="Returns true if AWD2_MST != 0"]
     #[inline] pub fn test_awd2_mst(&self) -> bool {
         self.awd2_mst() != 0
     }
 
-    #[doc="AWD2_MST"]
+    #[doc="Sets the AWD2_MST field."]
     #[inline] pub fn set_awd2_mst<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -260,12 +260,12 @@ impl Csr {
         unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
     }
 
-    #[doc="AWD3_MST"]
+    #[doc="Returns true if AWD3_MST != 0"]
     #[inline] pub fn test_awd3_mst(&self) -> bool {
         self.awd3_mst() != 0
     }
 
-    #[doc="AWD3_MST"]
+    #[doc="Sets the AWD3_MST field."]
     #[inline] pub fn set_awd3_mst<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -279,12 +279,12 @@ impl Csr {
         unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x1) as u8) } // [10]
     }
 
-    #[doc="JQOVF_MST"]
+    #[doc="Returns true if JQOVF_MST != 0"]
     #[inline] pub fn test_jqovf_mst(&self) -> bool {
         self.jqovf_mst() != 0
     }
 
-    #[doc="JQOVF_MST"]
+    #[doc="Sets the JQOVF_MST field."]
     #[inline] pub fn set_jqovf_mst<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -298,12 +298,12 @@ impl Csr {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1) as u8) } // [16]
     }
 
-    #[doc="ADRDY_SLV"]
+    #[doc="Returns true if ADRDY_SLV != 0"]
     #[inline] pub fn test_adrdy_slv(&self) -> bool {
         self.adrdy_slv() != 0
     }
 
-    #[doc="ADRDY_SLV"]
+    #[doc="Sets the ADRDY_SLV field."]
     #[inline] pub fn set_adrdy_slv<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -317,12 +317,12 @@ impl Csr {
         unsafe { ::core::mem::transmute(((self.0 >> 17) & 0x1) as u8) } // [17]
     }
 
-    #[doc="EOSMP_SLV"]
+    #[doc="Returns true if EOSMP_SLV != 0"]
     #[inline] pub fn test_eosmp_slv(&self) -> bool {
         self.eosmp_slv() != 0
     }
 
-    #[doc="EOSMP_SLV"]
+    #[doc="Sets the EOSMP_SLV field."]
     #[inline] pub fn set_eosmp_slv<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -336,12 +336,12 @@ impl Csr {
         unsafe { ::core::mem::transmute(((self.0 >> 18) & 0x1) as u8) } // [18]
     }
 
-    #[doc="End of regular conversion of the slave ADC"]
+    #[doc="Returns true if EOC_SLV != 0"]
     #[inline] pub fn test_eoc_slv(&self) -> bool {
         self.eoc_slv() != 0
     }
 
-    #[doc="End of regular conversion of the slave ADC"]
+    #[doc="Sets the EOC_SLV field."]
     #[inline] pub fn set_eoc_slv<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -355,12 +355,12 @@ impl Csr {
         unsafe { ::core::mem::transmute(((self.0 >> 19) & 0x1) as u8) } // [19]
     }
 
-    #[doc="End of regular sequence flag of the slave ADC"]
+    #[doc="Returns true if EOS_SLV != 0"]
     #[inline] pub fn test_eos_slv(&self) -> bool {
         self.eos_slv() != 0
     }
 
-    #[doc="End of regular sequence flag of the slave ADC"]
+    #[doc="Sets the EOS_SLV field."]
     #[inline] pub fn set_eos_slv<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -374,12 +374,12 @@ impl Csr {
         unsafe { ::core::mem::transmute(((self.0 >> 20) & 0x1) as u8) } // [20]
     }
 
-    #[doc="Overrun flag of the slave ADC"]
+    #[doc="Returns true if OVR_SLV != 0"]
     #[inline] pub fn test_ovr_slv(&self) -> bool {
         self.ovr_slv() != 0
     }
 
-    #[doc="Overrun flag of the slave ADC"]
+    #[doc="Sets the OVR_SLV field."]
     #[inline] pub fn set_ovr_slv<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -393,12 +393,12 @@ impl Csr {
         unsafe { ::core::mem::transmute(((self.0 >> 21) & 0x1) as u8) } // [21]
     }
 
-    #[doc="End of injected conversion flag of the slave ADC"]
+    #[doc="Returns true if JEOC_SLV != 0"]
     #[inline] pub fn test_jeoc_slv(&self) -> bool {
         self.jeoc_slv() != 0
     }
 
-    #[doc="End of injected conversion flag of the slave ADC"]
+    #[doc="Sets the JEOC_SLV field."]
     #[inline] pub fn set_jeoc_slv<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -412,12 +412,12 @@ impl Csr {
         unsafe { ::core::mem::transmute(((self.0 >> 22) & 0x1) as u8) } // [22]
     }
 
-    #[doc="End of injected sequence flag of the slave ADC"]
+    #[doc="Returns true if JEOS_SLV != 0"]
     #[inline] pub fn test_jeos_slv(&self) -> bool {
         self.jeos_slv() != 0
     }
 
-    #[doc="End of injected sequence flag of the slave ADC"]
+    #[doc="Sets the JEOS_SLV field."]
     #[inline] pub fn set_jeos_slv<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -431,12 +431,12 @@ impl Csr {
         unsafe { ::core::mem::transmute(((self.0 >> 23) & 0x1) as u8) } // [23]
     }
 
-    #[doc="Analog watchdog 1 flag of the slave ADC"]
+    #[doc="Returns true if AWD1_SLV != 0"]
     #[inline] pub fn test_awd1_slv(&self) -> bool {
         self.awd1_slv() != 0
     }
 
-    #[doc="Analog watchdog 1 flag of the slave ADC"]
+    #[doc="Sets the AWD1_SLV field."]
     #[inline] pub fn set_awd1_slv<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -450,12 +450,12 @@ impl Csr {
         unsafe { ::core::mem::transmute(((self.0 >> 24) & 0x1) as u8) } // [24]
     }
 
-    #[doc="Analog watchdog 2 flag of the slave ADC"]
+    #[doc="Returns true if AWD2_SLV != 0"]
     #[inline] pub fn test_awd2_slv(&self) -> bool {
         self.awd2_slv() != 0
     }
 
-    #[doc="Analog watchdog 2 flag of the slave ADC"]
+    #[doc="Sets the AWD2_SLV field."]
     #[inline] pub fn set_awd2_slv<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -469,12 +469,12 @@ impl Csr {
         unsafe { ::core::mem::transmute(((self.0 >> 25) & 0x1) as u8) } // [25]
     }
 
-    #[doc="Analog watchdog 3 flag of the slave ADC"]
+    #[doc="Returns true if AWD3_SLV != 0"]
     #[inline] pub fn test_awd3_slv(&self) -> bool {
         self.awd3_slv() != 0
     }
 
-    #[doc="Analog watchdog 3 flag of the slave ADC"]
+    #[doc="Sets the AWD3_SLV field."]
     #[inline] pub fn set_awd3_slv<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -488,12 +488,12 @@ impl Csr {
         unsafe { ::core::mem::transmute(((self.0 >> 26) & 0x1) as u8) } // [26]
     }
 
-    #[doc="Injected Context Queue Overflow flag of the slave ADC"]
+    #[doc="Returns true if JQOVF_SLV != 0"]
     #[inline] pub fn test_jqovf_slv(&self) -> bool {
         self.jqovf_slv() != 0
     }
 
-    #[doc="Injected Context Queue Overflow flag of the slave ADC"]
+    #[doc="Sets the JQOVF_SLV field."]
     #[inline] pub fn set_jqovf_slv<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -556,12 +556,12 @@ impl Ccr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1f) as u8) } // [4:0]
     }
 
-    #[doc="Multi ADC mode selection"]
+    #[doc="Returns true if MULT != 0"]
     #[inline] pub fn test_mult(&self) -> bool {
         self.mult() != 0
     }
 
-    #[doc="Multi ADC mode selection"]
+    #[doc="Sets the MULT field."]
     #[inline] pub fn set_mult<V: Into<bits::U5>>(mut self, value: V) -> Self {
         let value: bits::U5 = value.into();
         let value: u32 = value.into();
@@ -575,12 +575,12 @@ impl Ccr {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0xf) as u8) } // [11:8]
     }
 
-    #[doc="Delay between 2 sampling phases"]
+    #[doc="Returns true if DELAY != 0"]
     #[inline] pub fn test_delay(&self) -> bool {
         self.delay() != 0
     }
 
-    #[doc="Delay between 2 sampling phases"]
+    #[doc="Sets the DELAY field."]
     #[inline] pub fn set_delay<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -594,12 +594,12 @@ impl Ccr {
         unsafe { ::core::mem::transmute(((self.0 >> 13) & 0x1) as u8) } // [13]
     }
 
-    #[doc="DMA configuration (for multi-ADC mode)"]
+    #[doc="Returns true if DMACFG != 0"]
     #[inline] pub fn test_dmacfg(&self) -> bool {
         self.dmacfg() != 0
     }
 
-    #[doc="DMA configuration (for multi-ADC mode)"]
+    #[doc="Sets the DMACFG field."]
     #[inline] pub fn set_dmacfg<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -613,12 +613,12 @@ impl Ccr {
         unsafe { ::core::mem::transmute(((self.0 >> 14) & 0x3) as u8) } // [15:14]
     }
 
-    #[doc="Direct memory access mode for multi ADC mode"]
+    #[doc="Returns true if MDMA != 0"]
     #[inline] pub fn test_mdma(&self) -> bool {
         self.mdma() != 0
     }
 
-    #[doc="Direct memory access mode for multi ADC mode"]
+    #[doc="Sets the MDMA field."]
     #[inline] pub fn set_mdma<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -632,12 +632,12 @@ impl Ccr {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x3) as u8) } // [17:16]
     }
 
-    #[doc="ADC clock mode"]
+    #[doc="Returns true if CKMODE != 0"]
     #[inline] pub fn test_ckmode(&self) -> bool {
         self.ckmode() != 0
     }
 
-    #[doc="ADC clock mode"]
+    #[doc="Sets the CKMODE field."]
     #[inline] pub fn set_ckmode<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -651,12 +651,12 @@ impl Ccr {
         unsafe { ::core::mem::transmute(((self.0 >> 22) & 0x1) as u8) } // [22]
     }
 
-    #[doc="VREFINT enable"]
+    #[doc="Returns true if VREFEN != 0"]
     #[inline] pub fn test_vrefen(&self) -> bool {
         self.vrefen() != 0
     }
 
-    #[doc="VREFINT enable"]
+    #[doc="Sets the VREFEN field."]
     #[inline] pub fn set_vrefen<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -670,12 +670,12 @@ impl Ccr {
         unsafe { ::core::mem::transmute(((self.0 >> 23) & 0x1) as u8) } // [23]
     }
 
-    #[doc="Temperature sensor enable"]
+    #[doc="Returns true if TSEN != 0"]
     #[inline] pub fn test_tsen(&self) -> bool {
         self.tsen() != 0
     }
 
-    #[doc="Temperature sensor enable"]
+    #[doc="Sets the TSEN field."]
     #[inline] pub fn set_tsen<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -689,12 +689,12 @@ impl Ccr {
         unsafe { ::core::mem::transmute(((self.0 >> 24) & 0x1) as u8) } // [24]
     }
 
-    #[doc="VBAT enable"]
+    #[doc="Returns true if VBATEN != 0"]
     #[inline] pub fn test_vbaten(&self) -> bool {
         self.vbaten() != 0
     }
 
-    #[doc="VBAT enable"]
+    #[doc="Sets the VBATEN field."]
     #[inline] pub fn set_vbaten<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -743,12 +743,12 @@ impl Cdr {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xffff) as u16) } // [31:16]
     }
 
-    #[doc="Regular data of the slave ADC"]
+    #[doc="Returns true if RDATA_SLV != 0"]
     #[inline] pub fn test_rdata_slv(&self) -> bool {
         self.rdata_slv() != 0
     }
 
-    #[doc="Regular data of the slave ADC"]
+    #[doc="Sets the RDATA_SLV field."]
     #[inline] pub fn set_rdata_slv<V: Into<bits::U16>>(mut self, value: V) -> Self {
         let value: bits::U16 = value.into();
         let value: u32 = value.into();
@@ -762,12 +762,12 @@ impl Cdr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffff) as u16) } // [15:0]
     }
 
-    #[doc="Regular data of the master ADC"]
+    #[doc="Returns true if RDATA_MST != 0"]
     #[inline] pub fn test_rdata_mst(&self) -> bool {
         self.rdata_mst() != 0
     }
 
-    #[doc="Regular data of the master ADC"]
+    #[doc="Sets the RDATA_MST field."]
     #[inline] pub fn set_rdata_mst<V: Into<bits::U16>>(mut self, value: V) -> Self {
         let value: bits::U16 = value.into();
         let value: u32 = value.into();

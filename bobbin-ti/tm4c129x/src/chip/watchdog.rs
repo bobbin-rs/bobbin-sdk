@@ -271,12 +271,12 @@ impl Load {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffffffff) as u32) } // [31:0]
     }
 
-    #[doc="Watchdog Load Value"]
+    #[doc="Returns true if LOAD != 0"]
     #[inline] pub fn test_load(&self) -> bool {
         self.load() != 0
     }
 
-    #[doc="Watchdog Load Value"]
+    #[doc="Sets the LOAD field."]
     #[inline] pub fn set_load<V: Into<bits::U32>>(mut self, value: V) -> Self {
         let value: bits::U32 = value.into();
         let value: u32 = value.into();
@@ -317,12 +317,12 @@ impl Value {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffffffff) as u32) } // [31:0]
     }
 
-    #[doc="Watchdog Value"]
+    #[doc="Returns true if VALUE != 0"]
     #[inline] pub fn test_value(&self) -> bool {
         self.value() != 0
     }
 
-    #[doc="Watchdog Value"]
+    #[doc="Sets the VALUE field."]
     #[inline] pub fn set_value<V: Into<bits::U32>>(mut self, value: V) -> Self {
         let value: bits::U32 = value.into();
         let value: u32 = value.into();
@@ -363,12 +363,12 @@ impl Ctl {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Watchdog Interrupt Enable"]
+    #[doc="Returns true if INTEN != 0"]
     #[inline] pub fn test_inten(&self) -> bool {
         self.inten() != 0
     }
 
-    #[doc="Watchdog Interrupt Enable"]
+    #[doc="Sets the INTEN field."]
     #[inline] pub fn set_inten<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -382,12 +382,12 @@ impl Ctl {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="Watchdog Reset Enable"]
+    #[doc="Returns true if RESEN != 0"]
     #[inline] pub fn test_resen(&self) -> bool {
         self.resen() != 0
     }
 
-    #[doc="Watchdog Reset Enable"]
+    #[doc="Sets the RESEN field."]
     #[inline] pub fn set_resen<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -401,12 +401,12 @@ impl Ctl {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="Watchdog Interrupt Type"]
+    #[doc="Returns true if INTTYPE != 0"]
     #[inline] pub fn test_inttype(&self) -> bool {
         self.inttype() != 0
     }
 
-    #[doc="Watchdog Interrupt Type"]
+    #[doc="Sets the INTTYPE field."]
     #[inline] pub fn set_inttype<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -420,12 +420,12 @@ impl Ctl {
         unsafe { ::core::mem::transmute(((self.0 >> 31) & 0x1) as u8) } // [31]
     }
 
-    #[doc="Write Complete"]
+    #[doc="Returns true if WRC != 0"]
     #[inline] pub fn test_wrc(&self) -> bool {
         self.wrc() != 0
     }
 
-    #[doc="Write Complete"]
+    #[doc="Sets the WRC field."]
     #[inline] pub fn set_wrc<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -470,12 +470,12 @@ impl Icr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffffffff) as u32) } // [31:0]
     }
 
-    #[doc="Watchdog Interrupt Clear"]
+    #[doc="Returns true if ICR != 0"]
     #[inline] pub fn test_icr(&self) -> bool {
         self.icr() != 0
     }
 
-    #[doc="Watchdog Interrupt Clear"]
+    #[doc="Sets the ICR field."]
     #[inline] pub fn set_icr<V: Into<bits::U32>>(mut self, value: V) -> Self {
         let value: bits::U32 = value.into();
         let value: u32 = value.into();
@@ -516,12 +516,12 @@ impl Ris {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Watchdog Raw Interrupt Status"]
+    #[doc="Returns true if WDTRIS != 0"]
     #[inline] pub fn test_wdtris(&self) -> bool {
         self.wdtris() != 0
     }
 
-    #[doc="Watchdog Raw Interrupt Status"]
+    #[doc="Sets the WDTRIS field."]
     #[inline] pub fn set_wdtris<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -563,12 +563,12 @@ impl Mis {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Watchdog Masked Interrupt Status"]
+    #[doc="Returns true if WDTMIS != 0"]
     #[inline] pub fn test_wdtmis(&self) -> bool {
         self.wdtmis() != 0
     }
 
-    #[doc="Watchdog Masked Interrupt Status"]
+    #[doc="Sets the WDTMIS field."]
     #[inline] pub fn set_wdtmis<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -610,12 +610,12 @@ impl Test {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
     }
 
-    #[doc="Watchdog Stall Enable"]
+    #[doc="Returns true if STALL != 0"]
     #[inline] pub fn test_stall(&self) -> bool {
         self.stall() != 0
     }
 
-    #[doc="Watchdog Stall Enable"]
+    #[doc="Sets the STALL field."]
     #[inline] pub fn set_stall<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -657,12 +657,12 @@ impl Lock {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffffffff) as u32) } // [31:0]
     }
 
-    #[doc="Watchdog Lock"]
+    #[doc="Returns true if LOCK != 0"]
     #[inline] pub fn test_lock(&self) -> bool {
         self.lock() != 0
     }
 
-    #[doc="Watchdog Lock"]
+    #[doc="Sets the LOCK field."]
     #[inline] pub fn set_lock<V: Into<bits::U32>>(mut self, value: V) -> Self {
         let value: bits::U32 = value.into();
         let value: u32 = value.into();

@@ -994,12 +994,12 @@ impl Data {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="GPIO Data"]
+    #[doc="Returns true if DATA != 0"]
     #[inline] pub fn test_data<I: Into<bits::R8>>(&self, index: I) -> bool{
         self.data(index) != 0
     }
 
-    #[doc="GPIO Data"]
+    #[doc="Sets the DATA field."]
     #[inline] pub fn set_data<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -1052,12 +1052,12 @@ impl Dir {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="GPIO Direction"]
+    #[doc="Returns true if DIR != 0"]
     #[inline] pub fn test_dir<I: Into<bits::R8>>(&self, index: I) -> bool{
         self.dir(index) != 0
     }
 
-    #[doc="GPIO Direction"]
+    #[doc="Sets the DIR field."]
     #[inline] pub fn set_dir<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -1110,12 +1110,12 @@ impl Is {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="GPIO Interrupt Sense"]
+    #[doc="Returns true if IS != 0"]
     #[inline] pub fn test_is<I: Into<bits::R8>>(&self, index: I) -> bool{
         self.is(index) != 0
     }
 
-    #[doc="GPIO Interrupt Sense"]
+    #[doc="Sets the IS field."]
     #[inline] pub fn set_is<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -1168,12 +1168,12 @@ impl Ibe {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="GPIO Interrupt Both Edges"]
+    #[doc="Returns true if IBE != 0"]
     #[inline] pub fn test_ibe<I: Into<bits::R8>>(&self, index: I) -> bool{
         self.ibe(index) != 0
     }
 
-    #[doc="GPIO Interrupt Both Edges"]
+    #[doc="Sets the IBE field."]
     #[inline] pub fn set_ibe<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -1226,12 +1226,12 @@ impl Iev {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="GPIO Interrupt Event"]
+    #[doc="Returns true if IEV != 0"]
     #[inline] pub fn test_iev<I: Into<bits::R8>>(&self, index: I) -> bool{
         self.iev(index) != 0
     }
 
-    #[doc="GPIO Interrupt Event"]
+    #[doc="Sets the IEV field."]
     #[inline] pub fn set_iev<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -1284,12 +1284,12 @@ impl Im {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="GPIO Interrupt Mask"]
+    #[doc="Returns true if IM != 0"]
     #[inline] pub fn test_im<I: Into<bits::R8>>(&self, index: I) -> bool{
         self.im(index) != 0
     }
 
-    #[doc="GPIO Interrupt Mask"]
+    #[doc="Sets the IM field."]
     #[inline] pub fn set_im<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -1305,12 +1305,12 @@ impl Im {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
     }
 
-    #[doc="GPIO uDMA Done Interrupt Mask Enable"]
+    #[doc="Returns true if DMAIME != 0"]
     #[inline] pub fn test_dmaime(&self) -> bool {
         self.dmaime() != 0
     }
 
-    #[doc="GPIO uDMA Done Interrupt Mask Enable"]
+    #[doc="Sets the DMAIME field."]
     #[inline] pub fn set_dmaime<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1362,12 +1362,12 @@ impl Ris {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="GPIO Raw Interrupt Status"]
+    #[doc="Returns true if RIS != 0"]
     #[inline] pub fn test_ris<I: Into<bits::R8>>(&self, index: I) -> bool{
         self.ris(index) != 0
     }
 
-    #[doc="GPIO Raw Interrupt Status"]
+    #[doc="Sets the RIS field."]
     #[inline] pub fn set_ris<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -1383,12 +1383,12 @@ impl Ris {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
     }
 
-    #[doc="GPIO uDMA Done Interrupt Raw Status"]
+    #[doc="Returns true if DMARIS != 0"]
     #[inline] pub fn test_dmaris(&self) -> bool {
         self.dmaris() != 0
     }
 
-    #[doc="GPIO uDMA Done Interrupt Raw Status"]
+    #[doc="Sets the DMARIS field."]
     #[inline] pub fn set_dmaris<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1440,12 +1440,12 @@ impl Mis {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="GPIO Masked Interrupt Status"]
+    #[doc="Returns true if MIS != 0"]
     #[inline] pub fn test_mis<I: Into<bits::R8>>(&self, index: I) -> bool{
         self.mis(index) != 0
     }
 
-    #[doc="GPIO Masked Interrupt Status"]
+    #[doc="Sets the MIS field."]
     #[inline] pub fn set_mis<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -1461,12 +1461,12 @@ impl Mis {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
     }
 
-    #[doc="GPIO uDMA Done Interrupt Masked Status"]
+    #[doc="Returns true if DMAMIS != 0"]
     #[inline] pub fn test_dmamis(&self) -> bool {
         self.dmamis() != 0
     }
 
-    #[doc="GPIO uDMA Done Interrupt Masked Status"]
+    #[doc="Sets the DMAMIS field."]
     #[inline] pub fn set_dmamis<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1518,12 +1518,12 @@ impl Icr {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="GPIO Interrupt Clear"]
+    #[doc="Returns true if ICR != 0"]
     #[inline] pub fn test_icr<I: Into<bits::R8>>(&self, index: I) -> bool{
         self.icr(index) != 0
     }
 
-    #[doc="GPIO Interrupt Clear"]
+    #[doc="Sets the ICR field."]
     #[inline] pub fn set_icr<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -1539,12 +1539,12 @@ impl Icr {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
     }
 
-    #[doc="GPIO uDMA Done Interrupt Clear"]
+    #[doc="Returns true if DMAMIC != 0"]
     #[inline] pub fn test_dmamic(&self) -> bool {
         self.dmamic() != 0
     }
 
-    #[doc="GPIO uDMA Done Interrupt Clear"]
+    #[doc="Sets the DMAMIC field."]
     #[inline] pub fn set_dmamic<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1596,12 +1596,12 @@ impl Afsel {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="GPIO Alternate Function Select"]
+    #[doc="Returns true if AFSEL != 0"]
     #[inline] pub fn test_afsel<I: Into<bits::R8>>(&self, index: I) -> bool{
         self.afsel(index) != 0
     }
 
-    #[doc="GPIO Alternate Function Select"]
+    #[doc="Sets the AFSEL field."]
     #[inline] pub fn set_afsel<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -1654,12 +1654,12 @@ impl Dr2r {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="GPIO 2-mA Drive Enable"]
+    #[doc="Returns true if DRV2 != 0"]
     #[inline] pub fn test_drv2<I: Into<bits::R8>>(&self, index: I) -> bool{
         self.drv2(index) != 0
     }
 
-    #[doc="GPIO 2-mA Drive Enable"]
+    #[doc="Sets the DRV2 field."]
     #[inline] pub fn set_drv2<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -1712,12 +1712,12 @@ impl Dr4r {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="GPIO 4-mA Drive Enable"]
+    #[doc="Returns true if DRV4 != 0"]
     #[inline] pub fn test_drv4<I: Into<bits::R8>>(&self, index: I) -> bool{
         self.drv4(index) != 0
     }
 
-    #[doc="GPIO 4-mA Drive Enable"]
+    #[doc="Sets the DRV4 field."]
     #[inline] pub fn set_drv4<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -1770,12 +1770,12 @@ impl Dr8r {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="GPIO 8-mA Drive Enable"]
+    #[doc="Returns true if DRV8 != 0"]
     #[inline] pub fn test_drv8<I: Into<bits::R8>>(&self, index: I) -> bool{
         self.drv8(index) != 0
     }
 
-    #[doc="GPIO 8-mA Drive Enable"]
+    #[doc="Sets the DRV8 field."]
     #[inline] pub fn set_drv8<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -1828,12 +1828,12 @@ impl Odr {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="GPIO Open Drain Enable"]
+    #[doc="Returns true if ODE != 0"]
     #[inline] pub fn test_ode<I: Into<bits::R8>>(&self, index: I) -> bool{
         self.ode(index) != 0
     }
 
-    #[doc="GPIO Open Drain Enable"]
+    #[doc="Sets the ODE field."]
     #[inline] pub fn set_ode<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -1886,12 +1886,12 @@ impl Pur {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="GPIO Pull-Up Enable"]
+    #[doc="Returns true if PUE != 0"]
     #[inline] pub fn test_pue<I: Into<bits::R8>>(&self, index: I) -> bool{
         self.pue(index) != 0
     }
 
-    #[doc="GPIO Pull-Up Enable"]
+    #[doc="Sets the PUE field."]
     #[inline] pub fn set_pue<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -1944,12 +1944,12 @@ impl Pdr {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="GPIO Pull-Down Enable"]
+    #[doc="Returns true if PDE != 0"]
     #[inline] pub fn test_pde<I: Into<bits::R8>>(&self, index: I) -> bool{
         self.pde(index) != 0
     }
 
-    #[doc="GPIO Pull-Down Enable"]
+    #[doc="Sets the PDE field."]
     #[inline] pub fn set_pde<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -2002,12 +2002,12 @@ impl Slr {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="GPIO Slew Rate Limit Enable"]
+    #[doc="Returns true if SLR != 0"]
     #[inline] pub fn test_slr<I: Into<bits::R8>>(&self, index: I) -> bool{
         self.slr(index) != 0
     }
 
-    #[doc="GPIO Slew Rate Limit Enable"]
+    #[doc="Sets the SLR field."]
     #[inline] pub fn set_slr<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -2060,12 +2060,12 @@ impl Den {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="GPIO Digital Enable"]
+    #[doc="Returns true if DEN != 0"]
     #[inline] pub fn test_den<I: Into<bits::R8>>(&self, index: I) -> bool{
         self.den(index) != 0
     }
 
-    #[doc="GPIO Digital Enable"]
+    #[doc="Sets the DEN field."]
     #[inline] pub fn set_den<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -2116,12 +2116,12 @@ impl Lock {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffffffff) as u32) } // [31:0]
     }
 
-    #[doc="GPIO Lock"]
+    #[doc="Returns true if GPIO_LOCK != 0"]
     #[inline] pub fn test_gpio_lock(&self) -> bool {
         self.gpio_lock() != 0
     }
 
-    #[doc="GPIO Lock"]
+    #[doc="Sets the GPIO_LOCK field."]
     #[inline] pub fn set_gpio_lock<V: Into<bits::U32>>(mut self, value: V) -> Self {
         let value: bits::U32 = value.into();
         let value: u32 = value.into();
@@ -2164,12 +2164,12 @@ impl Cr {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="GPIO Commit"]
+    #[doc="Returns true if CR != 0"]
     #[inline] pub fn test_cr<I: Into<bits::R8>>(&self, index: I) -> bool{
         self.cr(index) != 0
     }
 
-    #[doc="GPIO Commit"]
+    #[doc="Sets the CR field."]
     #[inline] pub fn set_cr<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -2222,12 +2222,12 @@ impl Amsel {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="GPIO Analog Mode Select"]
+    #[doc="Returns true if GPIOAMSEL != 0"]
     #[inline] pub fn test_gpioamsel<I: Into<bits::R8>>(&self, index: I) -> bool{
         self.gpioamsel(index) != 0
     }
 
-    #[doc="GPIO Analog Mode Select"]
+    #[doc="Sets the GPIOAMSEL field."]
     #[inline] pub fn set_gpioamsel<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -2280,12 +2280,12 @@ impl Pctl {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0xf) as u8) } // [3:0]
     }
 
-    #[doc="GPIO Port Mux Control"]
+    #[doc="Returns true if PMC != 0"]
     #[inline] pub fn test_pmc<I: Into<bits::R8>>(&self, index: I) -> bool{
         self.pmc(index) != 0
     }
 
-    #[doc="GPIO Port Mux Control"]
+    #[doc="Sets the PMC field."]
     #[inline] pub fn set_pmc<I: Into<bits::R8>, V: Into<bits::U4>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U4 = value.into();
@@ -2338,12 +2338,12 @@ impl Adcctl {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="ADC Trigger Enable"]
+    #[doc="Returns true if ADCEN != 0"]
     #[inline] pub fn test_adcen<I: Into<bits::R8>>(&self, index: I) -> bool{
         self.adcen(index) != 0
     }
 
-    #[doc="ADC Trigger Enable"]
+    #[doc="Sets the ADCEN field."]
     #[inline] pub fn set_adcen<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -2396,12 +2396,12 @@ impl Dmactl {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="uDMA Trigger Enable"]
+    #[doc="Returns true if DMAEN != 0"]
     #[inline] pub fn test_dmaen<I: Into<bits::R8>>(&self, index: I) -> bool{
         self.dmaen(index) != 0
     }
 
-    #[doc="uDMA Trigger Enable"]
+    #[doc="Sets the DMAEN field."]
     #[inline] pub fn set_dmaen<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -2454,12 +2454,12 @@ impl Gpiosi {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Summary Interrupt"]
+    #[doc="Returns true if SUM != 0"]
     #[inline] pub fn test_sum<I: Into<bits::R8>>(&self, index: I) -> bool{
         self.sum(index) != 0
     }
 
-    #[doc="Summary Interrupt"]
+    #[doc="Sets the SUM field."]
     #[inline] pub fn set_sum<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -2512,12 +2512,12 @@ impl Gpiodr12r {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="12-mA Drive Enable"]
+    #[doc="Returns true if DRV12 != 0"]
     #[inline] pub fn test_drv12<I: Into<bits::R8>>(&self, index: I) -> bool{
         self.drv12(index) != 0
     }
 
-    #[doc="12-mA Drive Enable"]
+    #[doc="Sets the DRV12 field."]
     #[inline] pub fn set_drv12<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -2568,12 +2568,12 @@ impl Gpiowakepen {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="K[7] Wake Enable"]
+    #[doc="Returns true if WAKEP7 != 0"]
     #[inline] pub fn test_wakep7(&self) -> bool {
         self.wakep7() != 0
     }
 
-    #[doc="K[7] Wake Enable"]
+    #[doc="Sets the WAKEP7 field."]
     #[inline] pub fn set_wakep7<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2587,12 +2587,12 @@ impl Gpiowakepen {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="K[6] Wake Enable"]
+    #[doc="Returns true if WAKEP6 != 0"]
     #[inline] pub fn test_wakep6(&self) -> bool {
         self.wakep6() != 0
     }
 
-    #[doc="K[6] Wake Enable"]
+    #[doc="Sets the WAKEP6 field."]
     #[inline] pub fn set_wakep6<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2606,12 +2606,12 @@ impl Gpiowakepen {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="K[5] Wake Enable"]
+    #[doc="Returns true if WAKEP5 != 0"]
     #[inline] pub fn test_wakep5(&self) -> bool {
         self.wakep5() != 0
     }
 
-    #[doc="K[5] Wake Enable"]
+    #[doc="Sets the WAKEP5 field."]
     #[inline] pub fn set_wakep5<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2625,12 +2625,12 @@ impl Gpiowakepen {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="K[4] Wake Enable"]
+    #[doc="Returns true if WAKEP4 != 0"]
     #[inline] pub fn test_wakep4(&self) -> bool {
         self.wakep4() != 0
     }
 
-    #[doc="K[4] Wake Enable"]
+    #[doc="Sets the WAKEP4 field."]
     #[inline] pub fn set_wakep4<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2675,12 +2675,12 @@ impl Gpiowakelvl {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="K[7] Wake Level"]
+    #[doc="Returns true if WAKELVL7 != 0"]
     #[inline] pub fn test_wakelvl7(&self) -> bool {
         self.wakelvl7() != 0
     }
 
-    #[doc="K[7] Wake Level"]
+    #[doc="Sets the WAKELVL7 field."]
     #[inline] pub fn set_wakelvl7<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2694,12 +2694,12 @@ impl Gpiowakelvl {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="K[6] Wake Level"]
+    #[doc="Returns true if WAKELVL6 != 0"]
     #[inline] pub fn test_wakelvl6(&self) -> bool {
         self.wakelvl6() != 0
     }
 
-    #[doc="K[6] Wake Level"]
+    #[doc="Sets the WAKELVL6 field."]
     #[inline] pub fn set_wakelvl6<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2713,12 +2713,12 @@ impl Gpiowakelvl {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="K[5] Wake Level"]
+    #[doc="Returns true if WAKELVL5 != 0"]
     #[inline] pub fn test_wakelvl5(&self) -> bool {
         self.wakelvl5() != 0
     }
 
-    #[doc="K[5] Wake Level"]
+    #[doc="Sets the WAKELVL5 field."]
     #[inline] pub fn set_wakelvl5<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2732,12 +2732,12 @@ impl Gpiowakelvl {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="K[4] Wake Level"]
+    #[doc="Returns true if WAKELVL4 != 0"]
     #[inline] pub fn test_wakelvl4(&self) -> bool {
         self.wakelvl4() != 0
     }
 
-    #[doc="K[4] Wake Level"]
+    #[doc="Sets the WAKELVL4 field."]
     #[inline] pub fn set_wakelvl4<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2782,12 +2782,12 @@ impl Gpiowakestat {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="K[7] Wake Status"]
+    #[doc="Returns true if WAKESTAT7 != 0"]
     #[inline] pub fn test_wakestat7(&self) -> bool {
         self.wakestat7() != 0
     }
 
-    #[doc="K[7] Wake Status"]
+    #[doc="Sets the WAKESTAT7 field."]
     #[inline] pub fn set_wakestat7<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2801,12 +2801,12 @@ impl Gpiowakestat {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="K[6] Wake Status"]
+    #[doc="Returns true if WAKESTAT6 != 0"]
     #[inline] pub fn test_wakestat6(&self) -> bool {
         self.wakestat6() != 0
     }
 
-    #[doc="K[6] Wake Status"]
+    #[doc="Sets the WAKESTAT6 field."]
     #[inline] pub fn set_wakestat6<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2820,12 +2820,12 @@ impl Gpiowakestat {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="K[5] Wake Status"]
+    #[doc="Returns true if WAKESTAT5 != 0"]
     #[inline] pub fn test_wakestat5(&self) -> bool {
         self.wakestat5() != 0
     }
 
-    #[doc="K[5] Wake Status"]
+    #[doc="Sets the WAKESTAT5 field."]
     #[inline] pub fn set_wakestat5<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2839,12 +2839,12 @@ impl Gpiowakestat {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="K[4] Wake Status"]
+    #[doc="Returns true if WAKESTAT4 != 0"]
     #[inline] pub fn test_wakestat4(&self) -> bool {
         self.wakestat4() != 0
     }
 
-    #[doc="K[4] Wake Status"]
+    #[doc="Sets the WAKESTAT4 field."]
     #[inline] pub fn set_wakestat4<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();

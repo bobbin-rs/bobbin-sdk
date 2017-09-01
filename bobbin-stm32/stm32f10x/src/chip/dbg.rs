@@ -68,12 +68,12 @@ impl Idcode {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xfff) as u16) } // [11:0]
     }
 
-    #[doc="DEV_ID"]
+    #[doc="Returns true if DEV_ID != 0"]
     #[inline] pub fn test_dev_id(&self) -> bool {
         self.dev_id() != 0
     }
 
-    #[doc="DEV_ID"]
+    #[doc="Sets the DEV_ID field."]
     #[inline] pub fn set_dev_id<V: Into<bits::U12>>(mut self, value: V) -> Self {
         let value: bits::U12 = value.into();
         let value: u32 = value.into();
@@ -87,12 +87,12 @@ impl Idcode {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xffff) as u16) } // [31:16]
     }
 
-    #[doc="REV_ID"]
+    #[doc="Returns true if REV_ID != 0"]
     #[inline] pub fn test_rev_id(&self) -> bool {
         self.rev_id() != 0
     }
 
-    #[doc="REV_ID"]
+    #[doc="Sets the REV_ID field."]
     #[inline] pub fn set_rev_id<V: Into<bits::U16>>(mut self, value: V) -> Self {
         let value: bits::U16 = value.into();
         let value: u32 = value.into();
@@ -135,12 +135,12 @@ impl Cr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="DBG_SLEEP"]
+    #[doc="Returns true if DBG_SLEEP != 0"]
     #[inline] pub fn test_dbg_sleep(&self) -> bool {
         self.dbg_sleep() != 0
     }
 
-    #[doc="DBG_SLEEP"]
+    #[doc="Sets the DBG_SLEEP field."]
     #[inline] pub fn set_dbg_sleep<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -154,12 +154,12 @@ impl Cr {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="DBG_STOP"]
+    #[doc="Returns true if DBG_STOP != 0"]
     #[inline] pub fn test_dbg_stop(&self) -> bool {
         self.dbg_stop() != 0
     }
 
-    #[doc="DBG_STOP"]
+    #[doc="Sets the DBG_STOP field."]
     #[inline] pub fn set_dbg_stop<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -173,12 +173,12 @@ impl Cr {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="DBG_STANDBY"]
+    #[doc="Returns true if DBG_STANDBY != 0"]
     #[inline] pub fn test_dbg_standby(&self) -> bool {
         self.dbg_standby() != 0
     }
 
-    #[doc="DBG_STANDBY"]
+    #[doc="Sets the DBG_STANDBY field."]
     #[inline] pub fn set_dbg_standby<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -192,12 +192,12 @@ impl Cr {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="TRACE_IOEN"]
+    #[doc="Returns true if TRACE_IOEN != 0"]
     #[inline] pub fn test_trace_ioen(&self) -> bool {
         self.trace_ioen() != 0
     }
 
-    #[doc="TRACE_IOEN"]
+    #[doc="Sets the TRACE_IOEN field."]
     #[inline] pub fn set_trace_ioen<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -211,12 +211,12 @@ impl Cr {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x3) as u8) } // [7:6]
     }
 
-    #[doc="TRACE_MODE"]
+    #[doc="Returns true if TRACE_MODE != 0"]
     #[inline] pub fn test_trace_mode(&self) -> bool {
         self.trace_mode() != 0
     }
 
-    #[doc="TRACE_MODE"]
+    #[doc="Sets the TRACE_MODE field."]
     #[inline] pub fn set_trace_mode<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -230,12 +230,12 @@ impl Cr {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
     }
 
-    #[doc="DBG_IWDG_STOP"]
+    #[doc="Returns true if DBG_IWDG_STOP != 0"]
     #[inline] pub fn test_dbg_iwdg_stop(&self) -> bool {
         self.dbg_iwdg_stop() != 0
     }
 
-    #[doc="DBG_IWDG_STOP"]
+    #[doc="Sets the DBG_IWDG_STOP field."]
     #[inline] pub fn set_dbg_iwdg_stop<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -249,12 +249,12 @@ impl Cr {
         unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
     }
 
-    #[doc="DBG_WWDG_STOP"]
+    #[doc="Returns true if DBG_WWDG_STOP != 0"]
     #[inline] pub fn test_dbg_wwdg_stop(&self) -> bool {
         self.dbg_wwdg_stop() != 0
     }
 
-    #[doc="DBG_WWDG_STOP"]
+    #[doc="Sets the DBG_WWDG_STOP field."]
     #[inline] pub fn set_dbg_wwdg_stop<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -268,12 +268,12 @@ impl Cr {
         unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x1) as u8) } // [10]
     }
 
-    #[doc="DBG_TIM1_STOP"]
+    #[doc="Returns true if DBG_TIM1_STOP != 0"]
     #[inline] pub fn test_dbg_tim1_stop(&self) -> bool {
         self.dbg_tim1_stop() != 0
     }
 
-    #[doc="DBG_TIM1_STOP"]
+    #[doc="Sets the DBG_TIM1_STOP field."]
     #[inline] pub fn set_dbg_tim1_stop<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -287,12 +287,12 @@ impl Cr {
         unsafe { ::core::mem::transmute(((self.0 >> 11) & 0x1) as u8) } // [11]
     }
 
-    #[doc="DBG_TIM2_STOP"]
+    #[doc="Returns true if DBG_TIM2_STOP != 0"]
     #[inline] pub fn test_dbg_tim2_stop(&self) -> bool {
         self.dbg_tim2_stop() != 0
     }
 
-    #[doc="DBG_TIM2_STOP"]
+    #[doc="Sets the DBG_TIM2_STOP field."]
     #[inline] pub fn set_dbg_tim2_stop<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -306,12 +306,12 @@ impl Cr {
         unsafe { ::core::mem::transmute(((self.0 >> 12) & 0x1) as u8) } // [12]
     }
 
-    #[doc="DBG_TIM3_STOP"]
+    #[doc="Returns true if DBG_TIM3_STOP != 0"]
     #[inline] pub fn test_dbg_tim3_stop(&self) -> bool {
         self.dbg_tim3_stop() != 0
     }
 
-    #[doc="DBG_TIM3_STOP"]
+    #[doc="Sets the DBG_TIM3_STOP field."]
     #[inline] pub fn set_dbg_tim3_stop<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -325,12 +325,12 @@ impl Cr {
         unsafe { ::core::mem::transmute(((self.0 >> 13) & 0x1) as u8) } // [13]
     }
 
-    #[doc="DBG_TIM4_STOP"]
+    #[doc="Returns true if DBG_TIM4_STOP != 0"]
     #[inline] pub fn test_dbg_tim4_stop(&self) -> bool {
         self.dbg_tim4_stop() != 0
     }
 
-    #[doc="DBG_TIM4_STOP"]
+    #[doc="Sets the DBG_TIM4_STOP field."]
     #[inline] pub fn set_dbg_tim4_stop<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -344,12 +344,12 @@ impl Cr {
         unsafe { ::core::mem::transmute(((self.0 >> 14) & 0x1) as u8) } // [14]
     }
 
-    #[doc="DBG_CAN1_STOP"]
+    #[doc="Returns true if DBG_CAN1_STOP != 0"]
     #[inline] pub fn test_dbg_can1_stop(&self) -> bool {
         self.dbg_can1_stop() != 0
     }
 
-    #[doc="DBG_CAN1_STOP"]
+    #[doc="Sets the DBG_CAN1_STOP field."]
     #[inline] pub fn set_dbg_can1_stop<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -363,12 +363,12 @@ impl Cr {
         unsafe { ::core::mem::transmute(((self.0 >> 15) & 0x1) as u8) } // [15]
     }
 
-    #[doc="DBG_I2C1_SMBUS_TIMEOUT"]
+    #[doc="Returns true if DBG_I2C1_SMBUS_TIMEOUT != 0"]
     #[inline] pub fn test_dbg_i2c1_smbus_timeout(&self) -> bool {
         self.dbg_i2c1_smbus_timeout() != 0
     }
 
-    #[doc="DBG_I2C1_SMBUS_TIMEOUT"]
+    #[doc="Sets the DBG_I2C1_SMBUS_TIMEOUT field."]
     #[inline] pub fn set_dbg_i2c1_smbus_timeout<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -382,12 +382,12 @@ impl Cr {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1) as u8) } // [16]
     }
 
-    #[doc="DBG_I2C2_SMBUS_TIMEOUT"]
+    #[doc="Returns true if DBG_I2C2_SMBUS_TIMEOUT != 0"]
     #[inline] pub fn test_dbg_i2c2_smbus_timeout(&self) -> bool {
         self.dbg_i2c2_smbus_timeout() != 0
     }
 
-    #[doc="DBG_I2C2_SMBUS_TIMEOUT"]
+    #[doc="Sets the DBG_I2C2_SMBUS_TIMEOUT field."]
     #[inline] pub fn set_dbg_i2c2_smbus_timeout<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -401,12 +401,12 @@ impl Cr {
         unsafe { ::core::mem::transmute(((self.0 >> 17) & 0x1) as u8) } // [17]
     }
 
-    #[doc="DBG_TIM8_STOP"]
+    #[doc="Returns true if DBG_TIM8_STOP != 0"]
     #[inline] pub fn test_dbg_tim8_stop(&self) -> bool {
         self.dbg_tim8_stop() != 0
     }
 
-    #[doc="DBG_TIM8_STOP"]
+    #[doc="Sets the DBG_TIM8_STOP field."]
     #[inline] pub fn set_dbg_tim8_stop<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -420,12 +420,12 @@ impl Cr {
         unsafe { ::core::mem::transmute(((self.0 >> 18) & 0x1) as u8) } // [18]
     }
 
-    #[doc="DBG_TIM5_STOP"]
+    #[doc="Returns true if DBG_TIM5_STOP != 0"]
     #[inline] pub fn test_dbg_tim5_stop(&self) -> bool {
         self.dbg_tim5_stop() != 0
     }
 
-    #[doc="DBG_TIM5_STOP"]
+    #[doc="Sets the DBG_TIM5_STOP field."]
     #[inline] pub fn set_dbg_tim5_stop<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -439,12 +439,12 @@ impl Cr {
         unsafe { ::core::mem::transmute(((self.0 >> 19) & 0x1) as u8) } // [19]
     }
 
-    #[doc="DBG_TIM6_STOP"]
+    #[doc="Returns true if DBG_TIM6_STOP != 0"]
     #[inline] pub fn test_dbg_tim6_stop(&self) -> bool {
         self.dbg_tim6_stop() != 0
     }
 
-    #[doc="DBG_TIM6_STOP"]
+    #[doc="Sets the DBG_TIM6_STOP field."]
     #[inline] pub fn set_dbg_tim6_stop<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -458,12 +458,12 @@ impl Cr {
         unsafe { ::core::mem::transmute(((self.0 >> 20) & 0x1) as u8) } // [20]
     }
 
-    #[doc="DBG_TIM7_STOP"]
+    #[doc="Returns true if DBG_TIM7_STOP != 0"]
     #[inline] pub fn test_dbg_tim7_stop(&self) -> bool {
         self.dbg_tim7_stop() != 0
     }
 
-    #[doc="DBG_TIM7_STOP"]
+    #[doc="Sets the DBG_TIM7_STOP field."]
     #[inline] pub fn set_dbg_tim7_stop<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -477,12 +477,12 @@ impl Cr {
         unsafe { ::core::mem::transmute(((self.0 >> 21) & 0x1) as u8) } // [21]
     }
 
-    #[doc="DBG_CAN2_STOP"]
+    #[doc="Returns true if DBG_CAN2_STOP != 0"]
     #[inline] pub fn test_dbg_can2_stop(&self) -> bool {
         self.dbg_can2_stop() != 0
     }
 
-    #[doc="DBG_CAN2_STOP"]
+    #[doc="Sets the DBG_CAN2_STOP field."]
     #[inline] pub fn set_dbg_can2_stop<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();

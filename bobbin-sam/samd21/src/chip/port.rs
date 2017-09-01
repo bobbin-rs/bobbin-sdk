@@ -423,12 +423,12 @@ impl Ctrl {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffffffff) as u32) } // [31:0]
     }
 
-    #[doc="Input Sampling Mode"]
+    #[doc="Returns true if SAMPLING != 0"]
     #[inline] pub fn test_sampling(&self) -> bool {
         self.sampling() != 0
     }
 
-    #[doc="Input Sampling Mode"]
+    #[doc="Sets the SAMPLING field."]
     #[inline] pub fn set_sampling<V: Into<bits::U32>>(mut self, value: V) -> Self {
         let value: bits::U32 = value.into();
         let value: u32 = value.into();
@@ -471,12 +471,12 @@ impl Dir {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Port Data Direction"]
+    #[doc="Returns true if DIR != 0"]
     #[inline] pub fn test_dir<I: Into<bits::R32>>(&self, index: I) -> bool{
         self.dir(index) != 0
     }
 
-    #[doc="Port Data Direction"]
+    #[doc="Sets the DIR field."]
     #[inline] pub fn set_dir<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -553,12 +553,12 @@ impl Dirclr {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Port Data Direction Clear"]
+    #[doc="Returns true if DIRCLR != 0"]
     #[inline] pub fn test_dirclr<I: Into<bits::R32>>(&self, index: I) -> bool{
         self.dirclr(index) != 0
     }
 
-    #[doc="Port Data Direction Clear"]
+    #[doc="Sets the DIRCLR field."]
     #[inline] pub fn set_dirclr<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -635,12 +635,12 @@ impl Dirset {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Port Data Direction Set"]
+    #[doc="Returns true if DIRSET != 0"]
     #[inline] pub fn test_dirset<I: Into<bits::R32>>(&self, index: I) -> bool{
         self.dirset(index) != 0
     }
 
-    #[doc="Port Data Direction Set"]
+    #[doc="Sets the DIRSET field."]
     #[inline] pub fn set_dirset<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -717,12 +717,12 @@ impl Dirtgl {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Port Data Direction Toggle"]
+    #[doc="Returns true if DIRTGL != 0"]
     #[inline] pub fn test_dirtgl<I: Into<bits::R32>>(&self, index: I) -> bool{
         self.dirtgl(index) != 0
     }
 
-    #[doc="Port Data Direction Toggle"]
+    #[doc="Sets the DIRTGL field."]
     #[inline] pub fn set_dirtgl<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -799,12 +799,12 @@ impl In {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Port Data Input Value"]
+    #[doc="Returns true if IN != 0"]
     #[inline] pub fn test_in<I: Into<bits::R32>>(&self, index: I) -> bool{
         self._in(index) != 0
     }
 
-    #[doc="Port Data Input Value"]
+    #[doc="Sets the IN field."]
     #[inline] pub fn set_in<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -881,12 +881,12 @@ impl Out {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Port Data Output Value"]
+    #[doc="Returns true if OUT != 0"]
     #[inline] pub fn test_out<I: Into<bits::R32>>(&self, index: I) -> bool{
         self.out(index) != 0
     }
 
-    #[doc="Port Data Output Value"]
+    #[doc="Sets the OUT field."]
     #[inline] pub fn set_out<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -963,12 +963,12 @@ impl Outclr {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Port Data Output Value Clear"]
+    #[doc="Returns true if OUTCLR != 0"]
     #[inline] pub fn test_outclr<I: Into<bits::R32>>(&self, index: I) -> bool{
         self.outclr(index) != 0
     }
 
-    #[doc="Port Data Output Value Clear"]
+    #[doc="Sets the OUTCLR field."]
     #[inline] pub fn set_outclr<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -1045,12 +1045,12 @@ impl Outset {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Port Data Output Value Set"]
+    #[doc="Returns true if OUTSET != 0"]
     #[inline] pub fn test_outset<I: Into<bits::R32>>(&self, index: I) -> bool{
         self.outset(index) != 0
     }
 
-    #[doc="Port Data Output Value Set"]
+    #[doc="Sets the OUTSET field."]
     #[inline] pub fn set_outset<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -1127,12 +1127,12 @@ impl Outtgl {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Port Data Output Value Toggle"]
+    #[doc="Returns true if OUTTGL != 0"]
     #[inline] pub fn test_outtgl<I: Into<bits::R32>>(&self, index: I) -> bool{
         self.outtgl(index) != 0
     }
 
-    #[doc="Port Data Output Value Toggle"]
+    #[doc="Sets the OUTTGL field."]
     #[inline] pub fn set_outtgl<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -1207,12 +1207,12 @@ impl Pincfg {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Peripheral Multiplexer Enable"]
+    #[doc="Returns true if PMUXEN != 0"]
     #[inline] pub fn test_pmuxen(&self) -> bool {
         self.pmuxen() != 0
     }
 
-    #[doc="Peripheral Multiplexer Enable"]
+    #[doc="Sets the PMUXEN field."]
     #[inline] pub fn set_pmuxen<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -1226,12 +1226,12 @@ impl Pincfg {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="Input Enable"]
+    #[doc="Returns true if INEN != 0"]
     #[inline] pub fn test_inen(&self) -> bool {
         self.inen() != 0
     }
 
-    #[doc="Input Enable"]
+    #[doc="Sets the INEN field."]
     #[inline] pub fn set_inen<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -1245,12 +1245,12 @@ impl Pincfg {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="Pull Enable"]
+    #[doc="Returns true if PULLEN != 0"]
     #[inline] pub fn test_pullen(&self) -> bool {
         self.pullen() != 0
     }
 
-    #[doc="Pull Enable"]
+    #[doc="Sets the PULLEN field."]
     #[inline] pub fn set_pullen<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -1264,12 +1264,12 @@ impl Pincfg {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="Output Driver Strength Selection"]
+    #[doc="Returns true if DRVSTR != 0"]
     #[inline] pub fn test_drvstr(&self) -> bool {
         self.drvstr() != 0
     }
 
-    #[doc="Output Driver Strength Selection"]
+    #[doc="Sets the DRVSTR field."]
     #[inline] pub fn set_drvstr<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -1316,12 +1316,12 @@ impl Pmux {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0xf) as u8) } // [3:0]
     }
 
-    #[doc="Peripheral Multiplexing Even"]
+    #[doc="Returns true if PMUX != 0"]
     #[inline] pub fn test_pmux<I: Into<bits::R2>>(&self, index: I) -> bool{
         self.pmux(index) != 0
     }
 
-    #[doc="Peripheral Multiplexing Even"]
+    #[doc="Sets the PMUX field."]
     #[inline] pub fn set_pmux<I: Into<bits::R2>, V: Into<bits::U4>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U4 = value.into();
@@ -1366,12 +1366,12 @@ impl Wrconfig {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffff) as u16) } // [15:0]
     }
 
-    #[doc="Pin Mask for Multiple Pin Configuration"]
+    #[doc="Returns true if PINMASK != 0"]
     #[inline] pub fn test_pinmask(&self) -> bool {
         self.pinmask() != 0
     }
 
-    #[doc="Pin Mask for Multiple Pin Configuration"]
+    #[doc="Sets the PINMASK field."]
     #[inline] pub fn set_pinmask<V: Into<bits::U16>>(mut self, value: V) -> Self {
         let value: bits::U16 = value.into();
         let value: u32 = value.into();
@@ -1385,12 +1385,12 @@ impl Wrconfig {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1) as u8) } // [16]
     }
 
-    #[doc="Peripheral Multiplexer Enable"]
+    #[doc="Returns true if PMUXEN != 0"]
     #[inline] pub fn test_pmuxen(&self) -> bool {
         self.pmuxen() != 0
     }
 
-    #[doc="Peripheral Multiplexer Enable"]
+    #[doc="Sets the PMUXEN field."]
     #[inline] pub fn set_pmuxen<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1404,12 +1404,12 @@ impl Wrconfig {
         unsafe { ::core::mem::transmute(((self.0 >> 17) & 0x1) as u8) } // [17]
     }
 
-    #[doc="Input Enable"]
+    #[doc="Returns true if INEN != 0"]
     #[inline] pub fn test_inen(&self) -> bool {
         self.inen() != 0
     }
 
-    #[doc="Input Enable"]
+    #[doc="Sets the INEN field."]
     #[inline] pub fn set_inen<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1423,12 +1423,12 @@ impl Wrconfig {
         unsafe { ::core::mem::transmute(((self.0 >> 18) & 0x1) as u8) } // [18]
     }
 
-    #[doc="Pull Enable"]
+    #[doc="Returns true if PULLEN != 0"]
     #[inline] pub fn test_pullen(&self) -> bool {
         self.pullen() != 0
     }
 
-    #[doc="Pull Enable"]
+    #[doc="Sets the PULLEN field."]
     #[inline] pub fn set_pullen<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1442,12 +1442,12 @@ impl Wrconfig {
         unsafe { ::core::mem::transmute(((self.0 >> 22) & 0x1) as u8) } // [22]
     }
 
-    #[doc="Output Driver Strength Selection"]
+    #[doc="Returns true if DRVSTR != 0"]
     #[inline] pub fn test_drvstr(&self) -> bool {
         self.drvstr() != 0
     }
 
-    #[doc="Output Driver Strength Selection"]
+    #[doc="Sets the DRVSTR field."]
     #[inline] pub fn set_drvstr<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1461,12 +1461,12 @@ impl Wrconfig {
         unsafe { ::core::mem::transmute(((self.0 >> 24) & 0xf) as u8) } // [27:24]
     }
 
-    #[doc="Peripheral Multiplexing"]
+    #[doc="Returns true if PMUX != 0"]
     #[inline] pub fn test_pmux(&self) -> bool {
         self.pmux() != 0
     }
 
-    #[doc="Peripheral Multiplexing"]
+    #[doc="Sets the PMUX field."]
     #[inline] pub fn set_pmux<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -1480,12 +1480,12 @@ impl Wrconfig {
         unsafe { ::core::mem::transmute(((self.0 >> 28) & 0x1) as u8) } // [28]
     }
 
-    #[doc="Write PMUX"]
+    #[doc="Returns true if WRPMUX != 0"]
     #[inline] pub fn test_wrpmux(&self) -> bool {
         self.wrpmux() != 0
     }
 
-    #[doc="Write PMUX"]
+    #[doc="Sets the WRPMUX field."]
     #[inline] pub fn set_wrpmux<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1499,12 +1499,12 @@ impl Wrconfig {
         unsafe { ::core::mem::transmute(((self.0 >> 30) & 0x1) as u8) } // [30]
     }
 
-    #[doc="Write PINCFG"]
+    #[doc="Returns true if WRPINCFG != 0"]
     #[inline] pub fn test_wrpincfg(&self) -> bool {
         self.wrpincfg() != 0
     }
 
-    #[doc="Write PINCFG"]
+    #[doc="Sets the WRPINCFG field."]
     #[inline] pub fn set_wrpincfg<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1518,12 +1518,12 @@ impl Wrconfig {
         unsafe { ::core::mem::transmute(((self.0 >> 31) & 0x1) as u8) } // [31]
     }
 
-    #[doc="Half-Word Select"]
+    #[doc="Returns true if HWSEL != 0"]
     #[inline] pub fn test_hwsel(&self) -> bool {
         self.hwsel() != 0
     }
 
-    #[doc="Half-Word Select"]
+    #[doc="Sets the HWSEL field."]
     #[inline] pub fn set_hwsel<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();

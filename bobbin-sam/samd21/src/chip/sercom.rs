@@ -451,12 +451,12 @@ impl Addr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x7ff) as u16) } // [10:0]
     }
 
-    #[doc="Address Value"]
+    #[doc="Returns true if ADDR != 0"]
     #[inline] pub fn test_addr(&self) -> bool {
         self.addr() != 0
     }
 
-    #[doc="Address Value"]
+    #[doc="Sets the ADDR field."]
     #[inline] pub fn set_addr<V: Into<bits::U11>>(mut self, value: V) -> Self {
         let value: bits::U11 = value.into();
         let value: u32 = value.into();
@@ -470,12 +470,12 @@ impl Addr {
         unsafe { ::core::mem::transmute(((self.0 >> 13) & 0x1) as u8) } // [13]
     }
 
-    #[doc="Length Enable"]
+    #[doc="Returns true if LENEN != 0"]
     #[inline] pub fn test_lenen(&self) -> bool {
         self.lenen() != 0
     }
 
-    #[doc="Length Enable"]
+    #[doc="Sets the LENEN field."]
     #[inline] pub fn set_lenen<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -489,12 +489,12 @@ impl Addr {
         unsafe { ::core::mem::transmute(((self.0 >> 14) & 0x1) as u8) } // [14]
     }
 
-    #[doc="High Speed Mode"]
+    #[doc="Returns true if HS != 0"]
     #[inline] pub fn test_hs(&self) -> bool {
         self.hs() != 0
     }
 
-    #[doc="High Speed Mode"]
+    #[doc="Sets the HS field."]
     #[inline] pub fn set_hs<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -508,12 +508,12 @@ impl Addr {
         unsafe { ::core::mem::transmute(((self.0 >> 15) & 0x1) as u8) } // [15]
     }
 
-    #[doc="Ten Bit Addressing Enable"]
+    #[doc="Returns true if TENBITEN != 0"]
     #[inline] pub fn test_tenbiten(&self) -> bool {
         self.tenbiten() != 0
     }
 
-    #[doc="Ten Bit Addressing Enable"]
+    #[doc="Sets the TENBITEN field."]
     #[inline] pub fn set_tenbiten<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -527,12 +527,12 @@ impl Addr {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xff) as u8) } // [23:16]
     }
 
-    #[doc="Length"]
+    #[doc="Returns true if LEN != 0"]
     #[inline] pub fn test_len(&self) -> bool {
         self.len() != 0
     }
 
-    #[doc="Length"]
+    #[doc="Sets the LEN field."]
     #[inline] pub fn set_len<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -578,12 +578,12 @@ impl Baud {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
-    #[doc="Baud Rate Value"]
+    #[doc="Returns true if BAUD != 0"]
     #[inline] pub fn test_baud(&self) -> bool {
         self.baud() != 0
     }
 
-    #[doc="Baud Rate Value"]
+    #[doc="Sets the BAUD field."]
     #[inline] pub fn set_baud<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -597,12 +597,12 @@ impl Baud {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0xff) as u8) } // [15:8]
     }
 
-    #[doc="Baud Rate Value Low"]
+    #[doc="Returns true if BAUDLOW != 0"]
     #[inline] pub fn test_baudlow(&self) -> bool {
         self.baudlow() != 0
     }
 
-    #[doc="Baud Rate Value Low"]
+    #[doc="Sets the BAUDLOW field."]
     #[inline] pub fn set_baudlow<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -616,12 +616,12 @@ impl Baud {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xff) as u8) } // [23:16]
     }
 
-    #[doc="High Speed Baud Rate Value"]
+    #[doc="Returns true if HSBAUD != 0"]
     #[inline] pub fn test_hsbaud(&self) -> bool {
         self.hsbaud() != 0
     }
 
-    #[doc="High Speed Baud Rate Value"]
+    #[doc="Sets the HSBAUD field."]
     #[inline] pub fn set_hsbaud<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -635,12 +635,12 @@ impl Baud {
         unsafe { ::core::mem::transmute(((self.0 >> 24) & 0xff) as u8) } // [31:24]
     }
 
-    #[doc="High Speed Baud Rate Value Low"]
+    #[doc="Returns true if HSBAUDLOW != 0"]
     #[inline] pub fn test_hsbaudlow(&self) -> bool {
         self.hsbaudlow() != 0
     }
 
-    #[doc="High Speed Baud Rate Value Low"]
+    #[doc="Sets the HSBAUDLOW field."]
     #[inline] pub fn set_hsbaudlow<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -685,12 +685,12 @@ impl Ctrla {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Software Reset"]
+    #[doc="Returns true if SWRST != 0"]
     #[inline] pub fn test_swrst(&self) -> bool {
         self.swrst() != 0
     }
 
-    #[doc="Software Reset"]
+    #[doc="Sets the SWRST field."]
     #[inline] pub fn set_swrst<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -704,12 +704,12 @@ impl Ctrla {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="Enable"]
+    #[doc="Returns true if ENABLE != 0"]
     #[inline] pub fn test_enable(&self) -> bool {
         self.enable() != 0
     }
 
-    #[doc="Enable"]
+    #[doc="Sets the ENABLE field."]
     #[inline] pub fn set_enable<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -723,12 +723,12 @@ impl Ctrla {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x7) as u8) } // [4:2]
     }
 
-    #[doc="Operating Mode"]
+    #[doc="Returns true if MODE != 0"]
     #[inline] pub fn test_mode(&self) -> bool {
         self.mode() != 0
     }
 
-    #[doc="Operating Mode"]
+    #[doc="Sets the MODE field."]
     #[inline] pub fn set_mode<V: Into<bits::U3>>(mut self, value: V) -> Self {
         let value: bits::U3 = value.into();
         let value: u32 = value.into();
@@ -742,12 +742,12 @@ impl Ctrla {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="Run in Standby"]
+    #[doc="Returns true if RUNSTDBY != 0"]
     #[inline] pub fn test_runstdby(&self) -> bool {
         self.runstdby() != 0
     }
 
-    #[doc="Run in Standby"]
+    #[doc="Sets the RUNSTDBY field."]
     #[inline] pub fn set_runstdby<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -761,12 +761,12 @@ impl Ctrla {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1) as u8) } // [16]
     }
 
-    #[doc="Pin Usage"]
+    #[doc="Returns true if PINOUT != 0"]
     #[inline] pub fn test_pinout(&self) -> bool {
         self.pinout() != 0
     }
 
-    #[doc="Pin Usage"]
+    #[doc="Sets the PINOUT field."]
     #[inline] pub fn set_pinout<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -780,12 +780,12 @@ impl Ctrla {
         unsafe { ::core::mem::transmute(((self.0 >> 20) & 0x3) as u8) } // [21:20]
     }
 
-    #[doc="SDA Hold Time"]
+    #[doc="Returns true if SDAHOLD != 0"]
     #[inline] pub fn test_sdahold(&self) -> bool {
         self.sdahold() != 0
     }
 
-    #[doc="SDA Hold Time"]
+    #[doc="Sets the SDAHOLD field."]
     #[inline] pub fn set_sdahold<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -799,12 +799,12 @@ impl Ctrla {
         unsafe { ::core::mem::transmute(((self.0 >> 22) & 0x1) as u8) } // [22]
     }
 
-    #[doc="Master SCL Low Extend Timeout"]
+    #[doc="Returns true if MEXTTOEN != 0"]
     #[inline] pub fn test_mexttoen(&self) -> bool {
         self.mexttoen() != 0
     }
 
-    #[doc="Master SCL Low Extend Timeout"]
+    #[doc="Sets the MEXTTOEN field."]
     #[inline] pub fn set_mexttoen<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -818,12 +818,12 @@ impl Ctrla {
         unsafe { ::core::mem::transmute(((self.0 >> 23) & 0x1) as u8) } // [23]
     }
 
-    #[doc="Slave SCL Low Extend Timeout"]
+    #[doc="Returns true if SEXTTOEN != 0"]
     #[inline] pub fn test_sexttoen(&self) -> bool {
         self.sexttoen() != 0
     }
 
-    #[doc="Slave SCL Low Extend Timeout"]
+    #[doc="Sets the SEXTTOEN field."]
     #[inline] pub fn set_sexttoen<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -837,12 +837,12 @@ impl Ctrla {
         unsafe { ::core::mem::transmute(((self.0 >> 24) & 0x3) as u8) } // [25:24]
     }
 
-    #[doc="Transfer Speed"]
+    #[doc="Returns true if SPEED != 0"]
     #[inline] pub fn test_speed(&self) -> bool {
         self.speed() != 0
     }
 
-    #[doc="Transfer Speed"]
+    #[doc="Sets the SPEED field."]
     #[inline] pub fn set_speed<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -856,12 +856,12 @@ impl Ctrla {
         unsafe { ::core::mem::transmute(((self.0 >> 27) & 0x1) as u8) } // [27]
     }
 
-    #[doc="SCL Clock Stretch Mode"]
+    #[doc="Returns true if SCLSM != 0"]
     #[inline] pub fn test_sclsm(&self) -> bool {
         self.sclsm() != 0
     }
 
-    #[doc="SCL Clock Stretch Mode"]
+    #[doc="Sets the SCLSM field."]
     #[inline] pub fn set_sclsm<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -875,12 +875,12 @@ impl Ctrla {
         unsafe { ::core::mem::transmute(((self.0 >> 28) & 0x3) as u8) } // [29:28]
     }
 
-    #[doc="Inactive Time-Out"]
+    #[doc="Returns true if INACTOUT != 0"]
     #[inline] pub fn test_inactout(&self) -> bool {
         self.inactout() != 0
     }
 
-    #[doc="Inactive Time-Out"]
+    #[doc="Sets the INACTOUT field."]
     #[inline] pub fn set_inactout<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -894,12 +894,12 @@ impl Ctrla {
         unsafe { ::core::mem::transmute(((self.0 >> 30) & 0x1) as u8) } // [30]
     }
 
-    #[doc="SCL Low Timeout Enable"]
+    #[doc="Returns true if LOWTOUTEN != 0"]
     #[inline] pub fn test_lowtouten(&self) -> bool {
         self.lowtouten() != 0
     }
 
-    #[doc="SCL Low Timeout Enable"]
+    #[doc="Sets the LOWTOUTEN field."]
     #[inline] pub fn set_lowtouten<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -952,12 +952,12 @@ impl Ctrlb {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
     }
 
-    #[doc="Smart Mode Enable"]
+    #[doc="Returns true if SMEN != 0"]
     #[inline] pub fn test_smen(&self) -> bool {
         self.smen() != 0
     }
 
-    #[doc="Smart Mode Enable"]
+    #[doc="Sets the SMEN field."]
     #[inline] pub fn set_smen<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -971,12 +971,12 @@ impl Ctrlb {
         unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
     }
 
-    #[doc="Quick Command Enable"]
+    #[doc="Returns true if QCEN != 0"]
     #[inline] pub fn test_qcen(&self) -> bool {
         self.qcen() != 0
     }
 
-    #[doc="Quick Command Enable"]
+    #[doc="Sets the QCEN field."]
     #[inline] pub fn set_qcen<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -990,12 +990,12 @@ impl Ctrlb {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x3) as u8) } // [17:16]
     }
 
-    #[doc="Command"]
+    #[doc="Returns true if CMD != 0"]
     #[inline] pub fn test_cmd(&self) -> bool {
         self.cmd() != 0
     }
 
-    #[doc="Command"]
+    #[doc="Sets the CMD field."]
     #[inline] pub fn set_cmd<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -1009,12 +1009,12 @@ impl Ctrlb {
         unsafe { ::core::mem::transmute(((self.0 >> 18) & 0x1) as u8) } // [18]
     }
 
-    #[doc="Acknowledge Action"]
+    #[doc="Returns true if ACKACT != 0"]
     #[inline] pub fn test_ackact(&self) -> bool {
         self.ackact() != 0
     }
 
-    #[doc="Acknowledge Action"]
+    #[doc="Sets the ACKACT field."]
     #[inline] pub fn set_ackact<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1059,12 +1059,12 @@ impl Data {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
-    #[doc="Data Value"]
+    #[doc="Returns true if DATA != 0"]
     #[inline] pub fn test_data(&self) -> bool {
         self.data() != 0
     }
 
-    #[doc="Data Value"]
+    #[doc="Sets the DATA field."]
     #[inline] pub fn set_data<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u8 = value.into();
@@ -1106,12 +1106,12 @@ impl Dbgctrl {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Debug Mode"]
+    #[doc="Returns true if DBGSTOP != 0"]
     #[inline] pub fn test_dbgstop(&self) -> bool {
         self.dbgstop() != 0
     }
 
-    #[doc="Debug Mode"]
+    #[doc="Sets the DBGSTOP field."]
     #[inline] pub fn set_dbgstop<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -1153,12 +1153,12 @@ impl Intenclr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Master On Bus Interrupt Disable"]
+    #[doc="Returns true if MB != 0"]
     #[inline] pub fn test_mb(&self) -> bool {
         self.mb() != 0
     }
 
-    #[doc="Master On Bus Interrupt Disable"]
+    #[doc="Sets the MB field."]
     #[inline] pub fn set_mb<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -1172,12 +1172,12 @@ impl Intenclr {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="Slave On Bus Interrupt Disable"]
+    #[doc="Returns true if SB != 0"]
     #[inline] pub fn test_sb(&self) -> bool {
         self.sb() != 0
     }
 
-    #[doc="Slave On Bus Interrupt Disable"]
+    #[doc="Sets the SB field."]
     #[inline] pub fn set_sb<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -1191,12 +1191,12 @@ impl Intenclr {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="Combined Error Interrupt Disable"]
+    #[doc="Returns true if ERROR != 0"]
     #[inline] pub fn test_error(&self) -> bool {
         self.error() != 0
     }
 
-    #[doc="Combined Error Interrupt Disable"]
+    #[doc="Sets the ERROR field."]
     #[inline] pub fn set_error<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -1240,12 +1240,12 @@ impl Intenset {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Master On Bus Interrupt Enable"]
+    #[doc="Returns true if MB != 0"]
     #[inline] pub fn test_mb(&self) -> bool {
         self.mb() != 0
     }
 
-    #[doc="Master On Bus Interrupt Enable"]
+    #[doc="Sets the MB field."]
     #[inline] pub fn set_mb<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -1259,12 +1259,12 @@ impl Intenset {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="Slave On Bus Interrupt Enable"]
+    #[doc="Returns true if SB != 0"]
     #[inline] pub fn test_sb(&self) -> bool {
         self.sb() != 0
     }
 
-    #[doc="Slave On Bus Interrupt Enable"]
+    #[doc="Sets the SB field."]
     #[inline] pub fn set_sb<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -1278,12 +1278,12 @@ impl Intenset {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="Combined Error Interrupt Enable"]
+    #[doc="Returns true if ERROR != 0"]
     #[inline] pub fn test_error(&self) -> bool {
         self.error() != 0
     }
 
-    #[doc="Combined Error Interrupt Enable"]
+    #[doc="Sets the ERROR field."]
     #[inline] pub fn set_error<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -1327,12 +1327,12 @@ impl Intflag {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Master On Bus Interrupt"]
+    #[doc="Returns true if MB != 0"]
     #[inline] pub fn test_mb(&self) -> bool {
         self.mb() != 0
     }
 
-    #[doc="Master On Bus Interrupt"]
+    #[doc="Sets the MB field."]
     #[inline] pub fn set_mb<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -1346,12 +1346,12 @@ impl Intflag {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="Slave On Bus Interrupt"]
+    #[doc="Returns true if SB != 0"]
     #[inline] pub fn test_sb(&self) -> bool {
         self.sb() != 0
     }
 
-    #[doc="Slave On Bus Interrupt"]
+    #[doc="Sets the SB field."]
     #[inline] pub fn set_sb<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -1365,12 +1365,12 @@ impl Intflag {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="Combined Error Interrupt"]
+    #[doc="Returns true if ERROR != 0"]
     #[inline] pub fn test_error(&self) -> bool {
         self.error() != 0
     }
 
-    #[doc="Combined Error Interrupt"]
+    #[doc="Sets the ERROR field."]
     #[inline] pub fn set_error<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -1414,12 +1414,12 @@ impl Status {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Bus Error"]
+    #[doc="Returns true if BUSERR != 0"]
     #[inline] pub fn test_buserr(&self) -> bool {
         self.buserr() != 0
     }
 
-    #[doc="Bus Error"]
+    #[doc="Sets the BUSERR field."]
     #[inline] pub fn set_buserr<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u16 = value.into();
@@ -1433,12 +1433,12 @@ impl Status {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="Arbitration Lost"]
+    #[doc="Returns true if ARBLOST != 0"]
     #[inline] pub fn test_arblost(&self) -> bool {
         self.arblost() != 0
     }
 
-    #[doc="Arbitration Lost"]
+    #[doc="Sets the ARBLOST field."]
     #[inline] pub fn set_arblost<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u16 = value.into();
@@ -1452,12 +1452,12 @@ impl Status {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="Received Not Acknowledge"]
+    #[doc="Returns true if RXNACK != 0"]
     #[inline] pub fn test_rxnack(&self) -> bool {
         self.rxnack() != 0
     }
 
-    #[doc="Received Not Acknowledge"]
+    #[doc="Sets the RXNACK field."]
     #[inline] pub fn set_rxnack<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u16 = value.into();
@@ -1471,12 +1471,12 @@ impl Status {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x3) as u8) } // [5:4]
     }
 
-    #[doc="Bus State"]
+    #[doc="Returns true if BUSSTATE != 0"]
     #[inline] pub fn test_busstate(&self) -> bool {
         self.busstate() != 0
     }
 
-    #[doc="Bus State"]
+    #[doc="Sets the BUSSTATE field."]
     #[inline] pub fn set_busstate<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u16 = value.into();
@@ -1490,12 +1490,12 @@ impl Status {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="SCL Low Timeout"]
+    #[doc="Returns true if LOWTOUT != 0"]
     #[inline] pub fn test_lowtout(&self) -> bool {
         self.lowtout() != 0
     }
 
-    #[doc="SCL Low Timeout"]
+    #[doc="Sets the LOWTOUT field."]
     #[inline] pub fn set_lowtout<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u16 = value.into();
@@ -1509,12 +1509,12 @@ impl Status {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="Clock Hold"]
+    #[doc="Returns true if CLKHOLD != 0"]
     #[inline] pub fn test_clkhold(&self) -> bool {
         self.clkhold() != 0
     }
 
-    #[doc="Clock Hold"]
+    #[doc="Sets the CLKHOLD field."]
     #[inline] pub fn set_clkhold<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u16 = value.into();
@@ -1528,12 +1528,12 @@ impl Status {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
     }
 
-    #[doc="Master SCL Low Extend Timeout"]
+    #[doc="Returns true if MEXTTOUT != 0"]
     #[inline] pub fn test_mexttout(&self) -> bool {
         self.mexttout() != 0
     }
 
-    #[doc="Master SCL Low Extend Timeout"]
+    #[doc="Sets the MEXTTOUT field."]
     #[inline] pub fn set_mexttout<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u16 = value.into();
@@ -1547,12 +1547,12 @@ impl Status {
         unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
     }
 
-    #[doc="Slave SCL Low Extend Timeout"]
+    #[doc="Returns true if SEXTTOUT != 0"]
     #[inline] pub fn test_sexttout(&self) -> bool {
         self.sexttout() != 0
     }
 
-    #[doc="Slave SCL Low Extend Timeout"]
+    #[doc="Sets the SEXTTOUT field."]
     #[inline] pub fn set_sexttout<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u16 = value.into();
@@ -1566,12 +1566,12 @@ impl Status {
         unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x1) as u8) } // [10]
     }
 
-    #[doc="Length Error"]
+    #[doc="Returns true if LENERR != 0"]
     #[inline] pub fn test_lenerr(&self) -> bool {
         self.lenerr() != 0
     }
 
-    #[doc="Length Error"]
+    #[doc="Sets the LENERR field."]
     #[inline] pub fn set_lenerr<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u16 = value.into();
@@ -1621,12 +1621,12 @@ impl Syncbusy {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Software Reset Synchronization Busy"]
+    #[doc="Returns true if SWRST != 0"]
     #[inline] pub fn test_swrst(&self) -> bool {
         self.swrst() != 0
     }
 
-    #[doc="Software Reset Synchronization Busy"]
+    #[doc="Sets the SWRST field."]
     #[inline] pub fn set_swrst<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1640,12 +1640,12 @@ impl Syncbusy {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="SERCOM Enable Synchronization Busy"]
+    #[doc="Returns true if ENABLE != 0"]
     #[inline] pub fn test_enable(&self) -> bool {
         self.enable() != 0
     }
 
-    #[doc="SERCOM Enable Synchronization Busy"]
+    #[doc="Sets the ENABLE field."]
     #[inline] pub fn set_enable<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1659,12 +1659,12 @@ impl Syncbusy {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="System Operation Synchronization Busy"]
+    #[doc="Returns true if SYSOP != 0"]
     #[inline] pub fn test_sysop(&self) -> bool {
         self.sysop() != 0
     }
 
-    #[doc="System Operation Synchronization Busy"]
+    #[doc="Sets the SYSOP field."]
     #[inline] pub fn set_sysop<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2034,12 +2034,12 @@ impl Addr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="General Call Address Enable"]
+    #[doc="Returns true if GENCEN != 0"]
     #[inline] pub fn test_gencen(&self) -> bool {
         self.gencen() != 0
     }
 
-    #[doc="General Call Address Enable"]
+    #[doc="Sets the GENCEN field."]
     #[inline] pub fn set_gencen<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2053,12 +2053,12 @@ impl Addr {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x3ff) as u16) } // [10:1]
     }
 
-    #[doc="Address Value"]
+    #[doc="Returns true if ADDR != 0"]
     #[inline] pub fn test_addr(&self) -> bool {
         self.addr() != 0
     }
 
-    #[doc="Address Value"]
+    #[doc="Sets the ADDR field."]
     #[inline] pub fn set_addr<V: Into<bits::U10>>(mut self, value: V) -> Self {
         let value: bits::U10 = value.into();
         let value: u32 = value.into();
@@ -2072,12 +2072,12 @@ impl Addr {
         unsafe { ::core::mem::transmute(((self.0 >> 15) & 0x1) as u8) } // [15]
     }
 
-    #[doc="Ten Bit Addressing Enable"]
+    #[doc="Returns true if TENBITEN != 0"]
     #[inline] pub fn test_tenbiten(&self) -> bool {
         self.tenbiten() != 0
     }
 
-    #[doc="Ten Bit Addressing Enable"]
+    #[doc="Sets the TENBITEN field."]
     #[inline] pub fn set_tenbiten<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2091,12 +2091,12 @@ impl Addr {
         unsafe { ::core::mem::transmute(((self.0 >> 17) & 0x3ff) as u16) } // [26:17]
     }
 
-    #[doc="Address Mask"]
+    #[doc="Returns true if ADDRMASK != 0"]
     #[inline] pub fn test_addrmask(&self) -> bool {
         self.addrmask() != 0
     }
 
-    #[doc="Address Mask"]
+    #[doc="Sets the ADDRMASK field."]
     #[inline] pub fn set_addrmask<V: Into<bits::U10>>(mut self, value: V) -> Self {
         let value: bits::U10 = value.into();
         let value: u32 = value.into();
@@ -2141,12 +2141,12 @@ impl Ctrla {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Software Reset"]
+    #[doc="Returns true if SWRST != 0"]
     #[inline] pub fn test_swrst(&self) -> bool {
         self.swrst() != 0
     }
 
-    #[doc="Software Reset"]
+    #[doc="Sets the SWRST field."]
     #[inline] pub fn set_swrst<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2160,12 +2160,12 @@ impl Ctrla {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="Enable"]
+    #[doc="Returns true if ENABLE != 0"]
     #[inline] pub fn test_enable(&self) -> bool {
         self.enable() != 0
     }
 
-    #[doc="Enable"]
+    #[doc="Sets the ENABLE field."]
     #[inline] pub fn set_enable<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2179,12 +2179,12 @@ impl Ctrla {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x7) as u8) } // [4:2]
     }
 
-    #[doc="Operating Mode"]
+    #[doc="Returns true if MODE != 0"]
     #[inline] pub fn test_mode(&self) -> bool {
         self.mode() != 0
     }
 
-    #[doc="Operating Mode"]
+    #[doc="Sets the MODE field."]
     #[inline] pub fn set_mode<V: Into<bits::U3>>(mut self, value: V) -> Self {
         let value: bits::U3 = value.into();
         let value: u32 = value.into();
@@ -2198,12 +2198,12 @@ impl Ctrla {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="Run during Standby"]
+    #[doc="Returns true if RUNSTDBY != 0"]
     #[inline] pub fn test_runstdby(&self) -> bool {
         self.runstdby() != 0
     }
 
-    #[doc="Run during Standby"]
+    #[doc="Sets the RUNSTDBY field."]
     #[inline] pub fn set_runstdby<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2217,12 +2217,12 @@ impl Ctrla {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1) as u8) } // [16]
     }
 
-    #[doc="Pin Usage"]
+    #[doc="Returns true if PINOUT != 0"]
     #[inline] pub fn test_pinout(&self) -> bool {
         self.pinout() != 0
     }
 
-    #[doc="Pin Usage"]
+    #[doc="Sets the PINOUT field."]
     #[inline] pub fn set_pinout<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2236,12 +2236,12 @@ impl Ctrla {
         unsafe { ::core::mem::transmute(((self.0 >> 20) & 0x3) as u8) } // [21:20]
     }
 
-    #[doc="SDA Hold Time"]
+    #[doc="Returns true if SDAHOLD != 0"]
     #[inline] pub fn test_sdahold(&self) -> bool {
         self.sdahold() != 0
     }
 
-    #[doc="SDA Hold Time"]
+    #[doc="Sets the SDAHOLD field."]
     #[inline] pub fn set_sdahold<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -2255,12 +2255,12 @@ impl Ctrla {
         unsafe { ::core::mem::transmute(((self.0 >> 23) & 0x1) as u8) } // [23]
     }
 
-    #[doc="Slave SCL Low Extend Timeout"]
+    #[doc="Returns true if SEXTTOEN != 0"]
     #[inline] pub fn test_sexttoen(&self) -> bool {
         self.sexttoen() != 0
     }
 
-    #[doc="Slave SCL Low Extend Timeout"]
+    #[doc="Sets the SEXTTOEN field."]
     #[inline] pub fn set_sexttoen<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2274,12 +2274,12 @@ impl Ctrla {
         unsafe { ::core::mem::transmute(((self.0 >> 24) & 0x3) as u8) } // [25:24]
     }
 
-    #[doc="Transfer Speed"]
+    #[doc="Returns true if SPEED != 0"]
     #[inline] pub fn test_speed(&self) -> bool {
         self.speed() != 0
     }
 
-    #[doc="Transfer Speed"]
+    #[doc="Sets the SPEED field."]
     #[inline] pub fn set_speed<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -2293,12 +2293,12 @@ impl Ctrla {
         unsafe { ::core::mem::transmute(((self.0 >> 27) & 0x1) as u8) } // [27]
     }
 
-    #[doc="SCL Clock Stretch Mode"]
+    #[doc="Returns true if SCLSM != 0"]
     #[inline] pub fn test_sclsm(&self) -> bool {
         self.sclsm() != 0
     }
 
-    #[doc="SCL Clock Stretch Mode"]
+    #[doc="Sets the SCLSM field."]
     #[inline] pub fn set_sclsm<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2312,12 +2312,12 @@ impl Ctrla {
         unsafe { ::core::mem::transmute(((self.0 >> 30) & 0x1) as u8) } // [30]
     }
 
-    #[doc="SCL Low Timeout Enable"]
+    #[doc="Returns true if LOWTOUTEN != 0"]
     #[inline] pub fn test_lowtouten(&self) -> bool {
         self.lowtouten() != 0
     }
 
-    #[doc="SCL Low Timeout Enable"]
+    #[doc="Sets the LOWTOUTEN field."]
     #[inline] pub fn set_lowtouten<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2368,12 +2368,12 @@ impl Ctrlb {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
     }
 
-    #[doc="Smart Mode Enable"]
+    #[doc="Returns true if SMEN != 0"]
     #[inline] pub fn test_smen(&self) -> bool {
         self.smen() != 0
     }
 
-    #[doc="Smart Mode Enable"]
+    #[doc="Sets the SMEN field."]
     #[inline] pub fn set_smen<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2387,12 +2387,12 @@ impl Ctrlb {
         unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
     }
 
-    #[doc="PMBus Group Command"]
+    #[doc="Returns true if GCMD != 0"]
     #[inline] pub fn test_gcmd(&self) -> bool {
         self.gcmd() != 0
     }
 
-    #[doc="PMBus Group Command"]
+    #[doc="Sets the GCMD field."]
     #[inline] pub fn set_gcmd<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2406,12 +2406,12 @@ impl Ctrlb {
         unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x1) as u8) } // [10]
     }
 
-    #[doc="Automatic Address Acknowledge"]
+    #[doc="Returns true if AACKEN != 0"]
     #[inline] pub fn test_aacken(&self) -> bool {
         self.aacken() != 0
     }
 
-    #[doc="Automatic Address Acknowledge"]
+    #[doc="Sets the AACKEN field."]
     #[inline] pub fn set_aacken<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2425,12 +2425,12 @@ impl Ctrlb {
         unsafe { ::core::mem::transmute(((self.0 >> 14) & 0x3) as u8) } // [15:14]
     }
 
-    #[doc="Address Mode"]
+    #[doc="Returns true if AMODE != 0"]
     #[inline] pub fn test_amode(&self) -> bool {
         self.amode() != 0
     }
 
-    #[doc="Address Mode"]
+    #[doc="Sets the AMODE field."]
     #[inline] pub fn set_amode<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -2444,12 +2444,12 @@ impl Ctrlb {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x3) as u8) } // [17:16]
     }
 
-    #[doc="Command"]
+    #[doc="Returns true if CMD != 0"]
     #[inline] pub fn test_cmd(&self) -> bool {
         self.cmd() != 0
     }
 
-    #[doc="Command"]
+    #[doc="Sets the CMD field."]
     #[inline] pub fn set_cmd<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -2463,12 +2463,12 @@ impl Ctrlb {
         unsafe { ::core::mem::transmute(((self.0 >> 18) & 0x1) as u8) } // [18]
     }
 
-    #[doc="Acknowledge Action"]
+    #[doc="Returns true if ACKACT != 0"]
     #[inline] pub fn test_ackact(&self) -> bool {
         self.ackact() != 0
     }
 
-    #[doc="Acknowledge Action"]
+    #[doc="Sets the ACKACT field."]
     #[inline] pub fn set_ackact<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2515,12 +2515,12 @@ impl Data {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
-    #[doc="Data Value"]
+    #[doc="Returns true if DATA != 0"]
     #[inline] pub fn test_data(&self) -> bool {
         self.data() != 0
     }
 
-    #[doc="Data Value"]
+    #[doc="Sets the DATA field."]
     #[inline] pub fn set_data<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u8 = value.into();
@@ -2562,12 +2562,12 @@ impl Dbgctrl {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Debug Mode"]
+    #[doc="Returns true if DBGSTOP != 0"]
     #[inline] pub fn test_dbgstop(&self) -> bool {
         self.dbgstop() != 0
     }
 
-    #[doc="Debug Mode"]
+    #[doc="Sets the DBGSTOP field."]
     #[inline] pub fn set_dbgstop<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -2609,12 +2609,12 @@ impl Intenclr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Stop Received Interrupt Disable"]
+    #[doc="Returns true if PREC != 0"]
     #[inline] pub fn test_prec(&self) -> bool {
         self.prec() != 0
     }
 
-    #[doc="Stop Received Interrupt Disable"]
+    #[doc="Sets the PREC field."]
     #[inline] pub fn set_prec<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -2628,12 +2628,12 @@ impl Intenclr {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="Address Match Interrupt Disable"]
+    #[doc="Returns true if AMATCH != 0"]
     #[inline] pub fn test_amatch(&self) -> bool {
         self.amatch() != 0
     }
 
-    #[doc="Address Match Interrupt Disable"]
+    #[doc="Sets the AMATCH field."]
     #[inline] pub fn set_amatch<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -2647,12 +2647,12 @@ impl Intenclr {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="Data Interrupt Disable"]
+    #[doc="Returns true if DRDY != 0"]
     #[inline] pub fn test_drdy(&self) -> bool {
         self.drdy() != 0
     }
 
-    #[doc="Data Interrupt Disable"]
+    #[doc="Sets the DRDY field."]
     #[inline] pub fn set_drdy<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -2666,12 +2666,12 @@ impl Intenclr {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="Combined Error Interrupt Disable"]
+    #[doc="Returns true if ERROR != 0"]
     #[inline] pub fn test_error(&self) -> bool {
         self.error() != 0
     }
 
-    #[doc="Combined Error Interrupt Disable"]
+    #[doc="Sets the ERROR field."]
     #[inline] pub fn set_error<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -2716,12 +2716,12 @@ impl Intenset {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Stop Received Interrupt Enable"]
+    #[doc="Returns true if PREC != 0"]
     #[inline] pub fn test_prec(&self) -> bool {
         self.prec() != 0
     }
 
-    #[doc="Stop Received Interrupt Enable"]
+    #[doc="Sets the PREC field."]
     #[inline] pub fn set_prec<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -2735,12 +2735,12 @@ impl Intenset {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="Address Match Interrupt Enable"]
+    #[doc="Returns true if AMATCH != 0"]
     #[inline] pub fn test_amatch(&self) -> bool {
         self.amatch() != 0
     }
 
-    #[doc="Address Match Interrupt Enable"]
+    #[doc="Sets the AMATCH field."]
     #[inline] pub fn set_amatch<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -2754,12 +2754,12 @@ impl Intenset {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="Data Interrupt Enable"]
+    #[doc="Returns true if DRDY != 0"]
     #[inline] pub fn test_drdy(&self) -> bool {
         self.drdy() != 0
     }
 
-    #[doc="Data Interrupt Enable"]
+    #[doc="Sets the DRDY field."]
     #[inline] pub fn set_drdy<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -2773,12 +2773,12 @@ impl Intenset {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="Combined Error Interrupt Enable"]
+    #[doc="Returns true if ERROR != 0"]
     #[inline] pub fn test_error(&self) -> bool {
         self.error() != 0
     }
 
-    #[doc="Combined Error Interrupt Enable"]
+    #[doc="Sets the ERROR field."]
     #[inline] pub fn set_error<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -2823,12 +2823,12 @@ impl Intflag {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Stop Received Interrupt"]
+    #[doc="Returns true if PREC != 0"]
     #[inline] pub fn test_prec(&self) -> bool {
         self.prec() != 0
     }
 
-    #[doc="Stop Received Interrupt"]
+    #[doc="Sets the PREC field."]
     #[inline] pub fn set_prec<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -2842,12 +2842,12 @@ impl Intflag {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="Address Match Interrupt"]
+    #[doc="Returns true if AMATCH != 0"]
     #[inline] pub fn test_amatch(&self) -> bool {
         self.amatch() != 0
     }
 
-    #[doc="Address Match Interrupt"]
+    #[doc="Sets the AMATCH field."]
     #[inline] pub fn set_amatch<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -2861,12 +2861,12 @@ impl Intflag {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="Data Interrupt"]
+    #[doc="Returns true if DRDY != 0"]
     #[inline] pub fn test_drdy(&self) -> bool {
         self.drdy() != 0
     }
 
-    #[doc="Data Interrupt"]
+    #[doc="Sets the DRDY field."]
     #[inline] pub fn set_drdy<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -2880,12 +2880,12 @@ impl Intflag {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="Combined Error Interrupt"]
+    #[doc="Returns true if ERROR != 0"]
     #[inline] pub fn test_error(&self) -> bool {
         self.error() != 0
     }
 
-    #[doc="Combined Error Interrupt"]
+    #[doc="Sets the ERROR field."]
     #[inline] pub fn set_error<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -2930,12 +2930,12 @@ impl Status {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Bus Error"]
+    #[doc="Returns true if BUSERR != 0"]
     #[inline] pub fn test_buserr(&self) -> bool {
         self.buserr() != 0
     }
 
-    #[doc="Bus Error"]
+    #[doc="Sets the BUSERR field."]
     #[inline] pub fn set_buserr<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u16 = value.into();
@@ -2949,12 +2949,12 @@ impl Status {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="Transmit Collision"]
+    #[doc="Returns true if COLL != 0"]
     #[inline] pub fn test_coll(&self) -> bool {
         self.coll() != 0
     }
 
-    #[doc="Transmit Collision"]
+    #[doc="Sets the COLL field."]
     #[inline] pub fn set_coll<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u16 = value.into();
@@ -2968,12 +2968,12 @@ impl Status {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="Received Not Acknowledge"]
+    #[doc="Returns true if RXNACK != 0"]
     #[inline] pub fn test_rxnack(&self) -> bool {
         self.rxnack() != 0
     }
 
-    #[doc="Received Not Acknowledge"]
+    #[doc="Sets the RXNACK field."]
     #[inline] pub fn set_rxnack<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u16 = value.into();
@@ -2987,12 +2987,12 @@ impl Status {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="Read/Write Direction"]
+    #[doc="Returns true if DIR != 0"]
     #[inline] pub fn test_dir(&self) -> bool {
         self.dir() != 0
     }
 
-    #[doc="Read/Write Direction"]
+    #[doc="Sets the DIR field."]
     #[inline] pub fn set_dir<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u16 = value.into();
@@ -3006,12 +3006,12 @@ impl Status {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="Repeated Start"]
+    #[doc="Returns true if SR != 0"]
     #[inline] pub fn test_sr(&self) -> bool {
         self.sr() != 0
     }
 
-    #[doc="Repeated Start"]
+    #[doc="Sets the SR field."]
     #[inline] pub fn set_sr<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u16 = value.into();
@@ -3025,12 +3025,12 @@ impl Status {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="SCL Low Timeout"]
+    #[doc="Returns true if LOWTOUT != 0"]
     #[inline] pub fn test_lowtout(&self) -> bool {
         self.lowtout() != 0
     }
 
-    #[doc="SCL Low Timeout"]
+    #[doc="Sets the LOWTOUT field."]
     #[inline] pub fn set_lowtout<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u16 = value.into();
@@ -3044,12 +3044,12 @@ impl Status {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="Clock Hold"]
+    #[doc="Returns true if CLKHOLD != 0"]
     #[inline] pub fn test_clkhold(&self) -> bool {
         self.clkhold() != 0
     }
 
-    #[doc="Clock Hold"]
+    #[doc="Sets the CLKHOLD field."]
     #[inline] pub fn set_clkhold<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u16 = value.into();
@@ -3063,12 +3063,12 @@ impl Status {
         unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
     }
 
-    #[doc="Slave SCL Low Extend Timeout"]
+    #[doc="Returns true if SEXTTOUT != 0"]
     #[inline] pub fn test_sexttout(&self) -> bool {
         self.sexttout() != 0
     }
 
-    #[doc="Slave SCL Low Extend Timeout"]
+    #[doc="Sets the SEXTTOUT field."]
     #[inline] pub fn set_sexttout<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u16 = value.into();
@@ -3082,12 +3082,12 @@ impl Status {
         unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x1) as u8) } // [10]
     }
 
-    #[doc="High Speed"]
+    #[doc="Returns true if HS != 0"]
     #[inline] pub fn test_hs(&self) -> bool {
         self.hs() != 0
     }
 
-    #[doc="High Speed"]
+    #[doc="Sets the HS field."]
     #[inline] pub fn set_hs<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u16 = value.into();
@@ -3137,12 +3137,12 @@ impl Syncbusy {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Software Reset Synchronization Busy"]
+    #[doc="Returns true if SWRST != 0"]
     #[inline] pub fn test_swrst(&self) -> bool {
         self.swrst() != 0
     }
 
-    #[doc="Software Reset Synchronization Busy"]
+    #[doc="Sets the SWRST field."]
     #[inline] pub fn set_swrst<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -3156,12 +3156,12 @@ impl Syncbusy {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="SERCOM Enable Synchronization Busy"]
+    #[doc="Returns true if ENABLE != 0"]
     #[inline] pub fn test_enable(&self) -> bool {
         self.enable() != 0
     }
 
-    #[doc="SERCOM Enable Synchronization Busy"]
+    #[doc="Sets the ENABLE field."]
     #[inline] pub fn set_enable<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -3563,12 +3563,12 @@ impl Addr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
-    #[doc="Address Value"]
+    #[doc="Returns true if ADDR != 0"]
     #[inline] pub fn test_addr(&self) -> bool {
         self.addr() != 0
     }
 
-    #[doc="Address Value"]
+    #[doc="Sets the ADDR field."]
     #[inline] pub fn set_addr<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -3582,12 +3582,12 @@ impl Addr {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xff) as u8) } // [23:16]
     }
 
-    #[doc="Address Mask"]
+    #[doc="Returns true if ADDRMASK != 0"]
     #[inline] pub fn test_addrmask(&self) -> bool {
         self.addrmask() != 0
     }
 
-    #[doc="Address Mask"]
+    #[doc="Sets the ADDRMASK field."]
     #[inline] pub fn set_addrmask<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -3630,12 +3630,12 @@ impl Baud {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
-    #[doc="Baud Rate Value"]
+    #[doc="Returns true if BAUD != 0"]
     #[inline] pub fn test_baud(&self) -> bool {
         self.baud() != 0
     }
 
-    #[doc="Baud Rate Value"]
+    #[doc="Sets the BAUD field."]
     #[inline] pub fn set_baud<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u8 = value.into();
@@ -3677,12 +3677,12 @@ impl Ctrla {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Software Reset"]
+    #[doc="Returns true if SWRST != 0"]
     #[inline] pub fn test_swrst(&self) -> bool {
         self.swrst() != 0
     }
 
-    #[doc="Software Reset"]
+    #[doc="Sets the SWRST field."]
     #[inline] pub fn set_swrst<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -3696,12 +3696,12 @@ impl Ctrla {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="Enable"]
+    #[doc="Returns true if ENABLE != 0"]
     #[inline] pub fn test_enable(&self) -> bool {
         self.enable() != 0
     }
 
-    #[doc="Enable"]
+    #[doc="Sets the ENABLE field."]
     #[inline] pub fn set_enable<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -3715,12 +3715,12 @@ impl Ctrla {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x7) as u8) } // [4:2]
     }
 
-    #[doc="Operating Mode"]
+    #[doc="Returns true if MODE != 0"]
     #[inline] pub fn test_mode(&self) -> bool {
         self.mode() != 0
     }
 
-    #[doc="Operating Mode"]
+    #[doc="Sets the MODE field."]
     #[inline] pub fn set_mode<V: Into<bits::U3>>(mut self, value: V) -> Self {
         let value: bits::U3 = value.into();
         let value: u32 = value.into();
@@ -3734,12 +3734,12 @@ impl Ctrla {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="Run during Standby"]
+    #[doc="Returns true if RUNSTDBY != 0"]
     #[inline] pub fn test_runstdby(&self) -> bool {
         self.runstdby() != 0
     }
 
-    #[doc="Run during Standby"]
+    #[doc="Sets the RUNSTDBY field."]
     #[inline] pub fn set_runstdby<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -3753,12 +3753,12 @@ impl Ctrla {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
     }
 
-    #[doc="Immediate Buffer Overflow Notification"]
+    #[doc="Returns true if IBON != 0"]
     #[inline] pub fn test_ibon(&self) -> bool {
         self.ibon() != 0
     }
 
-    #[doc="Immediate Buffer Overflow Notification"]
+    #[doc="Sets the IBON field."]
     #[inline] pub fn set_ibon<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -3772,12 +3772,12 @@ impl Ctrla {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x3) as u8) } // [17:16]
     }
 
-    #[doc="Data Out Pinout"]
+    #[doc="Returns true if DOPO != 0"]
     #[inline] pub fn test_dopo(&self) -> bool {
         self.dopo() != 0
     }
 
-    #[doc="Data Out Pinout"]
+    #[doc="Sets the DOPO field."]
     #[inline] pub fn set_dopo<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -3791,12 +3791,12 @@ impl Ctrla {
         unsafe { ::core::mem::transmute(((self.0 >> 20) & 0x3) as u8) } // [21:20]
     }
 
-    #[doc="Data In Pinout"]
+    #[doc="Returns true if DIPO != 0"]
     #[inline] pub fn test_dipo(&self) -> bool {
         self.dipo() != 0
     }
 
-    #[doc="Data In Pinout"]
+    #[doc="Sets the DIPO field."]
     #[inline] pub fn set_dipo<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -3810,12 +3810,12 @@ impl Ctrla {
         unsafe { ::core::mem::transmute(((self.0 >> 24) & 0xf) as u8) } // [27:24]
     }
 
-    #[doc="Frame Format"]
+    #[doc="Returns true if FORM != 0"]
     #[inline] pub fn test_form(&self) -> bool {
         self.form() != 0
     }
 
-    #[doc="Frame Format"]
+    #[doc="Sets the FORM field."]
     #[inline] pub fn set_form<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -3829,12 +3829,12 @@ impl Ctrla {
         unsafe { ::core::mem::transmute(((self.0 >> 28) & 0x1) as u8) } // [28]
     }
 
-    #[doc="Clock Phase"]
+    #[doc="Returns true if CPHA != 0"]
     #[inline] pub fn test_cpha(&self) -> bool {
         self.cpha() != 0
     }
 
-    #[doc="Clock Phase"]
+    #[doc="Sets the CPHA field."]
     #[inline] pub fn set_cpha<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -3848,12 +3848,12 @@ impl Ctrla {
         unsafe { ::core::mem::transmute(((self.0 >> 29) & 0x1) as u8) } // [29]
     }
 
-    #[doc="Clock Polarity"]
+    #[doc="Returns true if CPOL != 0"]
     #[inline] pub fn test_cpol(&self) -> bool {
         self.cpol() != 0
     }
 
-    #[doc="Clock Polarity"]
+    #[doc="Sets the CPOL field."]
     #[inline] pub fn set_cpol<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -3867,12 +3867,12 @@ impl Ctrla {
         unsafe { ::core::mem::transmute(((self.0 >> 30) & 0x1) as u8) } // [30]
     }
 
-    #[doc="Data Order"]
+    #[doc="Returns true if DORD != 0"]
     #[inline] pub fn test_dord(&self) -> bool {
         self.dord() != 0
     }
 
-    #[doc="Data Order"]
+    #[doc="Sets the DORD field."]
     #[inline] pub fn set_dord<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -3924,12 +3924,12 @@ impl Ctrlb {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x7) as u8) } // [2:0]
     }
 
-    #[doc="Character Size"]
+    #[doc="Returns true if CHSIZE != 0"]
     #[inline] pub fn test_chsize(&self) -> bool {
         self.chsize() != 0
     }
 
-    #[doc="Character Size"]
+    #[doc="Sets the CHSIZE field."]
     #[inline] pub fn set_chsize<V: Into<bits::U3>>(mut self, value: V) -> Self {
         let value: bits::U3 = value.into();
         let value: u32 = value.into();
@@ -3943,12 +3943,12 @@ impl Ctrlb {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="Data Preload Enable"]
+    #[doc="Returns true if PLOADEN != 0"]
     #[inline] pub fn test_ploaden(&self) -> bool {
         self.ploaden() != 0
     }
 
-    #[doc="Data Preload Enable"]
+    #[doc="Sets the PLOADEN field."]
     #[inline] pub fn set_ploaden<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -3962,12 +3962,12 @@ impl Ctrlb {
         unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
     }
 
-    #[doc="Slave Select Low Detect Enable"]
+    #[doc="Returns true if SSDE != 0"]
     #[inline] pub fn test_ssde(&self) -> bool {
         self.ssde() != 0
     }
 
-    #[doc="Slave Select Low Detect Enable"]
+    #[doc="Sets the SSDE field."]
     #[inline] pub fn set_ssde<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -3981,12 +3981,12 @@ impl Ctrlb {
         unsafe { ::core::mem::transmute(((self.0 >> 13) & 0x1) as u8) } // [13]
     }
 
-    #[doc="Master Slave Select Enable"]
+    #[doc="Returns true if MSSEN != 0"]
     #[inline] pub fn test_mssen(&self) -> bool {
         self.mssen() != 0
     }
 
-    #[doc="Master Slave Select Enable"]
+    #[doc="Sets the MSSEN field."]
     #[inline] pub fn set_mssen<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -4000,12 +4000,12 @@ impl Ctrlb {
         unsafe { ::core::mem::transmute(((self.0 >> 14) & 0x3) as u8) } // [15:14]
     }
 
-    #[doc="Address Mode"]
+    #[doc="Returns true if AMODE != 0"]
     #[inline] pub fn test_amode(&self) -> bool {
         self.amode() != 0
     }
 
-    #[doc="Address Mode"]
+    #[doc="Sets the AMODE field."]
     #[inline] pub fn set_amode<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -4019,12 +4019,12 @@ impl Ctrlb {
         unsafe { ::core::mem::transmute(((self.0 >> 17) & 0x1) as u8) } // [17]
     }
 
-    #[doc="Receiver Enable"]
+    #[doc="Returns true if RXEN != 0"]
     #[inline] pub fn test_rxen(&self) -> bool {
         self.rxen() != 0
     }
 
-    #[doc="Receiver Enable"]
+    #[doc="Sets the RXEN field."]
     #[inline] pub fn set_rxen<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -4071,12 +4071,12 @@ impl Data {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1ff) as u16) } // [8:0]
     }
 
-    #[doc="Data Value"]
+    #[doc="Returns true if DATA != 0"]
     #[inline] pub fn test_data(&self) -> bool {
         self.data() != 0
     }
 
-    #[doc="Data Value"]
+    #[doc="Sets the DATA field."]
     #[inline] pub fn set_data<V: Into<bits::U9>>(mut self, value: V) -> Self {
         let value: bits::U9 = value.into();
         let value: u32 = value.into();
@@ -4118,12 +4118,12 @@ impl Dbgctrl {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Debug Mode"]
+    #[doc="Returns true if DBGSTOP != 0"]
     #[inline] pub fn test_dbgstop(&self) -> bool {
         self.dbgstop() != 0
     }
 
-    #[doc="Debug Mode"]
+    #[doc="Sets the DBGSTOP field."]
     #[inline] pub fn set_dbgstop<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -4165,12 +4165,12 @@ impl Intenclr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Data Register Empty Interrupt Disable"]
+    #[doc="Returns true if DRE != 0"]
     #[inline] pub fn test_dre(&self) -> bool {
         self.dre() != 0
     }
 
-    #[doc="Data Register Empty Interrupt Disable"]
+    #[doc="Sets the DRE field."]
     #[inline] pub fn set_dre<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -4184,12 +4184,12 @@ impl Intenclr {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="Transmit Complete Interrupt Disable"]
+    #[doc="Returns true if TXC != 0"]
     #[inline] pub fn test_txc(&self) -> bool {
         self.txc() != 0
     }
 
-    #[doc="Transmit Complete Interrupt Disable"]
+    #[doc="Sets the TXC field."]
     #[inline] pub fn set_txc<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -4203,12 +4203,12 @@ impl Intenclr {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="Receive Complete Interrupt Disable"]
+    #[doc="Returns true if RXC != 0"]
     #[inline] pub fn test_rxc(&self) -> bool {
         self.rxc() != 0
     }
 
-    #[doc="Receive Complete Interrupt Disable"]
+    #[doc="Sets the RXC field."]
     #[inline] pub fn set_rxc<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -4222,12 +4222,12 @@ impl Intenclr {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="Slave Select Low Interrupt Disable"]
+    #[doc="Returns true if SSL != 0"]
     #[inline] pub fn test_ssl(&self) -> bool {
         self.ssl() != 0
     }
 
-    #[doc="Slave Select Low Interrupt Disable"]
+    #[doc="Sets the SSL field."]
     #[inline] pub fn set_ssl<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -4241,12 +4241,12 @@ impl Intenclr {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="Combined Error Interrupt Disable"]
+    #[doc="Returns true if ERROR != 0"]
     #[inline] pub fn test_error(&self) -> bool {
         self.error() != 0
     }
 
-    #[doc="Combined Error Interrupt Disable"]
+    #[doc="Sets the ERROR field."]
     #[inline] pub fn set_error<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -4292,12 +4292,12 @@ impl Intenset {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Data Register Empty Interrupt Enable"]
+    #[doc="Returns true if DRE != 0"]
     #[inline] pub fn test_dre(&self) -> bool {
         self.dre() != 0
     }
 
-    #[doc="Data Register Empty Interrupt Enable"]
+    #[doc="Sets the DRE field."]
     #[inline] pub fn set_dre<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -4311,12 +4311,12 @@ impl Intenset {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="Transmit Complete Interrupt Enable"]
+    #[doc="Returns true if TXC != 0"]
     #[inline] pub fn test_txc(&self) -> bool {
         self.txc() != 0
     }
 
-    #[doc="Transmit Complete Interrupt Enable"]
+    #[doc="Sets the TXC field."]
     #[inline] pub fn set_txc<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -4330,12 +4330,12 @@ impl Intenset {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="Receive Complete Interrupt Enable"]
+    #[doc="Returns true if RXC != 0"]
     #[inline] pub fn test_rxc(&self) -> bool {
         self.rxc() != 0
     }
 
-    #[doc="Receive Complete Interrupt Enable"]
+    #[doc="Sets the RXC field."]
     #[inline] pub fn set_rxc<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -4349,12 +4349,12 @@ impl Intenset {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="Slave Select Low Interrupt Enable"]
+    #[doc="Returns true if SSL != 0"]
     #[inline] pub fn test_ssl(&self) -> bool {
         self.ssl() != 0
     }
 
-    #[doc="Slave Select Low Interrupt Enable"]
+    #[doc="Sets the SSL field."]
     #[inline] pub fn set_ssl<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -4368,12 +4368,12 @@ impl Intenset {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="Combined Error Interrupt Enable"]
+    #[doc="Returns true if ERROR != 0"]
     #[inline] pub fn test_error(&self) -> bool {
         self.error() != 0
     }
 
-    #[doc="Combined Error Interrupt Enable"]
+    #[doc="Sets the ERROR field."]
     #[inline] pub fn set_error<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -4419,12 +4419,12 @@ impl Intflag {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Data Register Empty Interrupt"]
+    #[doc="Returns true if DRE != 0"]
     #[inline] pub fn test_dre(&self) -> bool {
         self.dre() != 0
     }
 
-    #[doc="Data Register Empty Interrupt"]
+    #[doc="Sets the DRE field."]
     #[inline] pub fn set_dre<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -4438,12 +4438,12 @@ impl Intflag {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="Transmit Complete Interrupt"]
+    #[doc="Returns true if TXC != 0"]
     #[inline] pub fn test_txc(&self) -> bool {
         self.txc() != 0
     }
 
-    #[doc="Transmit Complete Interrupt"]
+    #[doc="Sets the TXC field."]
     #[inline] pub fn set_txc<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -4457,12 +4457,12 @@ impl Intflag {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="Receive Complete Interrupt"]
+    #[doc="Returns true if RXC != 0"]
     #[inline] pub fn test_rxc(&self) -> bool {
         self.rxc() != 0
     }
 
-    #[doc="Receive Complete Interrupt"]
+    #[doc="Sets the RXC field."]
     #[inline] pub fn set_rxc<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -4476,12 +4476,12 @@ impl Intflag {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="Slave Select Low Interrupt Flag"]
+    #[doc="Returns true if SSL != 0"]
     #[inline] pub fn test_ssl(&self) -> bool {
         self.ssl() != 0
     }
 
-    #[doc="Slave Select Low Interrupt Flag"]
+    #[doc="Sets the SSL field."]
     #[inline] pub fn set_ssl<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -4495,12 +4495,12 @@ impl Intflag {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="Combined Error Interrupt"]
+    #[doc="Returns true if ERROR != 0"]
     #[inline] pub fn test_error(&self) -> bool {
         self.error() != 0
     }
 
-    #[doc="Combined Error Interrupt"]
+    #[doc="Sets the ERROR field."]
     #[inline] pub fn set_error<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -4546,12 +4546,12 @@ impl Status {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="Buffer Overflow"]
+    #[doc="Returns true if BUFOVF != 0"]
     #[inline] pub fn test_bufovf(&self) -> bool {
         self.bufovf() != 0
     }
 
-    #[doc="Buffer Overflow"]
+    #[doc="Sets the BUFOVF field."]
     #[inline] pub fn set_bufovf<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u16 = value.into();
@@ -4593,12 +4593,12 @@ impl Syncbusy {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Software Reset Synchronization Busy"]
+    #[doc="Returns true if SWRST != 0"]
     #[inline] pub fn test_swrst(&self) -> bool {
         self.swrst() != 0
     }
 
-    #[doc="Software Reset Synchronization Busy"]
+    #[doc="Sets the SWRST field."]
     #[inline] pub fn set_swrst<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -4612,12 +4612,12 @@ impl Syncbusy {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="SERCOM Enable Synchronization Busy"]
+    #[doc="Returns true if ENABLE != 0"]
     #[inline] pub fn test_enable(&self) -> bool {
         self.enable() != 0
     }
 
-    #[doc="SERCOM Enable Synchronization Busy"]
+    #[doc="Sets the ENABLE field."]
     #[inline] pub fn set_enable<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -4631,12 +4631,12 @@ impl Syncbusy {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="CTRLB Synchronization Busy"]
+    #[doc="Returns true if CTRLB != 0"]
     #[inline] pub fn test_ctrlb(&self) -> bool {
         self.ctrlb() != 0
     }
 
-    #[doc="CTRLB Synchronization Busy"]
+    #[doc="Sets the CTRLB field."]
     #[inline] pub fn set_ctrlb<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -5039,12 +5039,12 @@ impl Baud {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1fff) as u16) } // [12:0]
     }
 
-    #[doc="Baud Rate Value"]
+    #[doc="Returns true if BAUD != 0"]
     #[inline] pub fn test_baud(&self) -> bool {
         self.baud() != 0
     }
 
-    #[doc="Baud Rate Value"]
+    #[doc="Sets the BAUD field."]
     #[inline] pub fn set_baud<V: Into<bits::U13>>(mut self, value: V) -> Self {
         let value: bits::U13 = value.into();
         let value: u16 = value.into();
@@ -5058,12 +5058,12 @@ impl Baud {
         unsafe { ::core::mem::transmute(((self.0 >> 13) & 0x7) as u8) } // [15:13]
     }
 
-    #[doc="Fractional Part"]
+    #[doc="Returns true if FP != 0"]
     #[inline] pub fn test_fp(&self) -> bool {
         self.fp() != 0
     }
 
-    #[doc="Fractional Part"]
+    #[doc="Sets the FP field."]
     #[inline] pub fn set_fp<V: Into<bits::U3>>(mut self, value: V) -> Self {
         let value: bits::U3 = value.into();
         let value: u16 = value.into();
@@ -5106,12 +5106,12 @@ impl Ctrla {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Software Reset"]
+    #[doc="Returns true if SWRST != 0"]
     #[inline] pub fn test_swrst(&self) -> bool {
         self.swrst() != 0
     }
 
-    #[doc="Software Reset"]
+    #[doc="Sets the SWRST field."]
     #[inline] pub fn set_swrst<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -5125,12 +5125,12 @@ impl Ctrla {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="Enable"]
+    #[doc="Returns true if ENABLE != 0"]
     #[inline] pub fn test_enable(&self) -> bool {
         self.enable() != 0
     }
 
-    #[doc="Enable"]
+    #[doc="Sets the ENABLE field."]
     #[inline] pub fn set_enable<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -5144,12 +5144,12 @@ impl Ctrla {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x7) as u8) } // [4:2]
     }
 
-    #[doc="Operating Mode"]
+    #[doc="Returns true if MODE != 0"]
     #[inline] pub fn test_mode(&self) -> bool {
         self.mode() != 0
     }
 
-    #[doc="Operating Mode"]
+    #[doc="Sets the MODE field."]
     #[inline] pub fn set_mode<V: Into<bits::U3>>(mut self, value: V) -> Self {
         let value: bits::U3 = value.into();
         let value: u32 = value.into();
@@ -5163,12 +5163,12 @@ impl Ctrla {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="Run during Standby"]
+    #[doc="Returns true if RUNSTDBY != 0"]
     #[inline] pub fn test_runstdby(&self) -> bool {
         self.runstdby() != 0
     }
 
-    #[doc="Run during Standby"]
+    #[doc="Sets the RUNSTDBY field."]
     #[inline] pub fn set_runstdby<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -5182,12 +5182,12 @@ impl Ctrla {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
     }
 
-    #[doc="Immediate Buffer Overflow Notification"]
+    #[doc="Returns true if IBON != 0"]
     #[inline] pub fn test_ibon(&self) -> bool {
         self.ibon() != 0
     }
 
-    #[doc="Immediate Buffer Overflow Notification"]
+    #[doc="Sets the IBON field."]
     #[inline] pub fn set_ibon<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -5201,12 +5201,12 @@ impl Ctrla {
         unsafe { ::core::mem::transmute(((self.0 >> 13) & 0x7) as u8) } // [15:13]
     }
 
-    #[doc="Sample"]
+    #[doc="Returns true if SAMPR != 0"]
     #[inline] pub fn test_sampr(&self) -> bool {
         self.sampr() != 0
     }
 
-    #[doc="Sample"]
+    #[doc="Sets the SAMPR field."]
     #[inline] pub fn set_sampr<V: Into<bits::U3>>(mut self, value: V) -> Self {
         let value: bits::U3 = value.into();
         let value: u32 = value.into();
@@ -5220,12 +5220,12 @@ impl Ctrla {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x3) as u8) } // [17:16]
     }
 
-    #[doc="Transmit Data Pinout"]
+    #[doc="Returns true if TXPO != 0"]
     #[inline] pub fn test_txpo(&self) -> bool {
         self.txpo() != 0
     }
 
-    #[doc="Transmit Data Pinout"]
+    #[doc="Sets the TXPO field."]
     #[inline] pub fn set_txpo<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -5239,12 +5239,12 @@ impl Ctrla {
         unsafe { ::core::mem::transmute(((self.0 >> 20) & 0x3) as u8) } // [21:20]
     }
 
-    #[doc="Receive Data Pinout"]
+    #[doc="Returns true if RXPO != 0"]
     #[inline] pub fn test_rxpo(&self) -> bool {
         self.rxpo() != 0
     }
 
-    #[doc="Receive Data Pinout"]
+    #[doc="Sets the RXPO field."]
     #[inline] pub fn set_rxpo<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -5258,12 +5258,12 @@ impl Ctrla {
         unsafe { ::core::mem::transmute(((self.0 >> 22) & 0x3) as u8) } // [23:22]
     }
 
-    #[doc="Sample Adjustment"]
+    #[doc="Returns true if SAMPA != 0"]
     #[inline] pub fn test_sampa(&self) -> bool {
         self.sampa() != 0
     }
 
-    #[doc="Sample Adjustment"]
+    #[doc="Sets the SAMPA field."]
     #[inline] pub fn set_sampa<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -5277,12 +5277,12 @@ impl Ctrla {
         unsafe { ::core::mem::transmute(((self.0 >> 24) & 0xf) as u8) } // [27:24]
     }
 
-    #[doc="Frame Format"]
+    #[doc="Returns true if FORM != 0"]
     #[inline] pub fn test_form(&self) -> bool {
         self.form() != 0
     }
 
-    #[doc="Frame Format"]
+    #[doc="Sets the FORM field."]
     #[inline] pub fn set_form<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -5296,12 +5296,12 @@ impl Ctrla {
         unsafe { ::core::mem::transmute(((self.0 >> 28) & 0x1) as u8) } // [28]
     }
 
-    #[doc="Communication Mode"]
+    #[doc="Returns true if CMODE != 0"]
     #[inline] pub fn test_cmode(&self) -> bool {
         self.cmode() != 0
     }
 
-    #[doc="Communication Mode"]
+    #[doc="Sets the CMODE field."]
     #[inline] pub fn set_cmode<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -5315,12 +5315,12 @@ impl Ctrla {
         unsafe { ::core::mem::transmute(((self.0 >> 29) & 0x1) as u8) } // [29]
     }
 
-    #[doc="Clock Polarity"]
+    #[doc="Returns true if CPOL != 0"]
     #[inline] pub fn test_cpol(&self) -> bool {
         self.cpol() != 0
     }
 
-    #[doc="Clock Polarity"]
+    #[doc="Sets the CPOL field."]
     #[inline] pub fn set_cpol<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -5334,12 +5334,12 @@ impl Ctrla {
         unsafe { ::core::mem::transmute(((self.0 >> 30) & 0x1) as u8) } // [30]
     }
 
-    #[doc="Data Order"]
+    #[doc="Returns true if DORD != 0"]
     #[inline] pub fn test_dord(&self) -> bool {
         self.dord() != 0
     }
 
-    #[doc="Data Order"]
+    #[doc="Sets the DORD field."]
     #[inline] pub fn set_dord<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -5393,12 +5393,12 @@ impl Ctrlb {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x7) as u8) } // [2:0]
     }
 
-    #[doc="Character Size"]
+    #[doc="Returns true if CHSIZE != 0"]
     #[inline] pub fn test_chsize(&self) -> bool {
         self.chsize() != 0
     }
 
-    #[doc="Character Size"]
+    #[doc="Sets the CHSIZE field."]
     #[inline] pub fn set_chsize<V: Into<bits::U3>>(mut self, value: V) -> Self {
         let value: bits::U3 = value.into();
         let value: u32 = value.into();
@@ -5412,12 +5412,12 @@ impl Ctrlb {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="Stop Bit Mode"]
+    #[doc="Returns true if SBMODE != 0"]
     #[inline] pub fn test_sbmode(&self) -> bool {
         self.sbmode() != 0
     }
 
-    #[doc="Stop Bit Mode"]
+    #[doc="Sets the SBMODE field."]
     #[inline] pub fn set_sbmode<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -5431,12 +5431,12 @@ impl Ctrlb {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
     }
 
-    #[doc="Collision Detection Enable"]
+    #[doc="Returns true if COLDEN != 0"]
     #[inline] pub fn test_colden(&self) -> bool {
         self.colden() != 0
     }
 
-    #[doc="Collision Detection Enable"]
+    #[doc="Sets the COLDEN field."]
     #[inline] pub fn set_colden<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -5450,12 +5450,12 @@ impl Ctrlb {
         unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
     }
 
-    #[doc="Start of Frame Detection Enable"]
+    #[doc="Returns true if SFDE != 0"]
     #[inline] pub fn test_sfde(&self) -> bool {
         self.sfde() != 0
     }
 
-    #[doc="Start of Frame Detection Enable"]
+    #[doc="Sets the SFDE field."]
     #[inline] pub fn set_sfde<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -5469,12 +5469,12 @@ impl Ctrlb {
         unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x1) as u8) } // [10]
     }
 
-    #[doc="Encoding Format"]
+    #[doc="Returns true if ENC != 0"]
     #[inline] pub fn test_enc(&self) -> bool {
         self.enc() != 0
     }
 
-    #[doc="Encoding Format"]
+    #[doc="Sets the ENC field."]
     #[inline] pub fn set_enc<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -5488,12 +5488,12 @@ impl Ctrlb {
         unsafe { ::core::mem::transmute(((self.0 >> 13) & 0x1) as u8) } // [13]
     }
 
-    #[doc="Parity Mode"]
+    #[doc="Returns true if PMODE != 0"]
     #[inline] pub fn test_pmode(&self) -> bool {
         self.pmode() != 0
     }
 
-    #[doc="Parity Mode"]
+    #[doc="Sets the PMODE field."]
     #[inline] pub fn set_pmode<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -5507,12 +5507,12 @@ impl Ctrlb {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1) as u8) } // [16]
     }
 
-    #[doc="Transmitter Enable"]
+    #[doc="Returns true if TXEN != 0"]
     #[inline] pub fn test_txen(&self) -> bool {
         self.txen() != 0
     }
 
-    #[doc="Transmitter Enable"]
+    #[doc="Sets the TXEN field."]
     #[inline] pub fn set_txen<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -5526,12 +5526,12 @@ impl Ctrlb {
         unsafe { ::core::mem::transmute(((self.0 >> 17) & 0x1) as u8) } // [17]
     }
 
-    #[doc="Receiver Enable"]
+    #[doc="Returns true if RXEN != 0"]
     #[inline] pub fn test_rxen(&self) -> bool {
         self.rxen() != 0
     }
 
-    #[doc="Receiver Enable"]
+    #[doc="Sets the RXEN field."]
     #[inline] pub fn set_rxen<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -5580,12 +5580,12 @@ impl Data {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1ff) as u16) } // [8:0]
     }
 
-    #[doc="Data Value"]
+    #[doc="Returns true if DATA != 0"]
     #[inline] pub fn test_data(&self) -> bool {
         self.data() != 0
     }
 
-    #[doc="Data Value"]
+    #[doc="Sets the DATA field."]
     #[inline] pub fn set_data<V: Into<bits::U9>>(mut self, value: V) -> Self {
         let value: bits::U9 = value.into();
         let value: u16 = value.into();
@@ -5627,12 +5627,12 @@ impl Dbgctrl {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Debug Mode"]
+    #[doc="Returns true if DBGSTOP != 0"]
     #[inline] pub fn test_dbgstop(&self) -> bool {
         self.dbgstop() != 0
     }
 
-    #[doc="Debug Mode"]
+    #[doc="Sets the DBGSTOP field."]
     #[inline] pub fn set_dbgstop<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -5674,12 +5674,12 @@ impl Intenclr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Data Register Empty Interrupt Disable"]
+    #[doc="Returns true if DRE != 0"]
     #[inline] pub fn test_dre(&self) -> bool {
         self.dre() != 0
     }
 
-    #[doc="Data Register Empty Interrupt Disable"]
+    #[doc="Sets the DRE field."]
     #[inline] pub fn set_dre<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -5693,12 +5693,12 @@ impl Intenclr {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="Transmit Complete Interrupt Disable"]
+    #[doc="Returns true if TXC != 0"]
     #[inline] pub fn test_txc(&self) -> bool {
         self.txc() != 0
     }
 
-    #[doc="Transmit Complete Interrupt Disable"]
+    #[doc="Sets the TXC field."]
     #[inline] pub fn set_txc<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -5712,12 +5712,12 @@ impl Intenclr {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="Receive Complete Interrupt Disable"]
+    #[doc="Returns true if RXC != 0"]
     #[inline] pub fn test_rxc(&self) -> bool {
         self.rxc() != 0
     }
 
-    #[doc="Receive Complete Interrupt Disable"]
+    #[doc="Sets the RXC field."]
     #[inline] pub fn set_rxc<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -5731,12 +5731,12 @@ impl Intenclr {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="Receive Start Interrupt Disable"]
+    #[doc="Returns true if RXS != 0"]
     #[inline] pub fn test_rxs(&self) -> bool {
         self.rxs() != 0
     }
 
-    #[doc="Receive Start Interrupt Disable"]
+    #[doc="Sets the RXS field."]
     #[inline] pub fn set_rxs<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -5750,12 +5750,12 @@ impl Intenclr {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="Clear To Send Input Change Interrupt Disable"]
+    #[doc="Returns true if CTSIC != 0"]
     #[inline] pub fn test_ctsic(&self) -> bool {
         self.ctsic() != 0
     }
 
-    #[doc="Clear To Send Input Change Interrupt Disable"]
+    #[doc="Sets the CTSIC field."]
     #[inline] pub fn set_ctsic<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -5769,12 +5769,12 @@ impl Intenclr {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="Break Received Interrupt Disable"]
+    #[doc="Returns true if RXBRK != 0"]
     #[inline] pub fn test_rxbrk(&self) -> bool {
         self.rxbrk() != 0
     }
 
-    #[doc="Break Received Interrupt Disable"]
+    #[doc="Sets the RXBRK field."]
     #[inline] pub fn set_rxbrk<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -5788,12 +5788,12 @@ impl Intenclr {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="Combined Error Interrupt Disable"]
+    #[doc="Returns true if ERROR != 0"]
     #[inline] pub fn test_error(&self) -> bool {
         self.error() != 0
     }
 
-    #[doc="Combined Error Interrupt Disable"]
+    #[doc="Sets the ERROR field."]
     #[inline] pub fn set_error<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -5841,12 +5841,12 @@ impl Intenset {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Data Register Empty Interrupt Enable"]
+    #[doc="Returns true if DRE != 0"]
     #[inline] pub fn test_dre(&self) -> bool {
         self.dre() != 0
     }
 
-    #[doc="Data Register Empty Interrupt Enable"]
+    #[doc="Sets the DRE field."]
     #[inline] pub fn set_dre<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -5860,12 +5860,12 @@ impl Intenset {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="Transmit Complete Interrupt Enable"]
+    #[doc="Returns true if TXC != 0"]
     #[inline] pub fn test_txc(&self) -> bool {
         self.txc() != 0
     }
 
-    #[doc="Transmit Complete Interrupt Enable"]
+    #[doc="Sets the TXC field."]
     #[inline] pub fn set_txc<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -5879,12 +5879,12 @@ impl Intenset {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="Receive Complete Interrupt Enable"]
+    #[doc="Returns true if RXC != 0"]
     #[inline] pub fn test_rxc(&self) -> bool {
         self.rxc() != 0
     }
 
-    #[doc="Receive Complete Interrupt Enable"]
+    #[doc="Sets the RXC field."]
     #[inline] pub fn set_rxc<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -5898,12 +5898,12 @@ impl Intenset {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="Receive Start Interrupt Enable"]
+    #[doc="Returns true if RXS != 0"]
     #[inline] pub fn test_rxs(&self) -> bool {
         self.rxs() != 0
     }
 
-    #[doc="Receive Start Interrupt Enable"]
+    #[doc="Sets the RXS field."]
     #[inline] pub fn set_rxs<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -5917,12 +5917,12 @@ impl Intenset {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="Clear To Send Input Change Interrupt Enable"]
+    #[doc="Returns true if CTSIC != 0"]
     #[inline] pub fn test_ctsic(&self) -> bool {
         self.ctsic() != 0
     }
 
-    #[doc="Clear To Send Input Change Interrupt Enable"]
+    #[doc="Sets the CTSIC field."]
     #[inline] pub fn set_ctsic<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -5936,12 +5936,12 @@ impl Intenset {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="Break Received Interrupt Enable"]
+    #[doc="Returns true if RXBRK != 0"]
     #[inline] pub fn test_rxbrk(&self) -> bool {
         self.rxbrk() != 0
     }
 
-    #[doc="Break Received Interrupt Enable"]
+    #[doc="Sets the RXBRK field."]
     #[inline] pub fn set_rxbrk<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -5955,12 +5955,12 @@ impl Intenset {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="Combined Error Interrupt Enable"]
+    #[doc="Returns true if ERROR != 0"]
     #[inline] pub fn test_error(&self) -> bool {
         self.error() != 0
     }
 
-    #[doc="Combined Error Interrupt Enable"]
+    #[doc="Sets the ERROR field."]
     #[inline] pub fn set_error<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -6008,12 +6008,12 @@ impl Intflag {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Data Register Empty Interrupt"]
+    #[doc="Returns true if DRE != 0"]
     #[inline] pub fn test_dre(&self) -> bool {
         self.dre() != 0
     }
 
-    #[doc="Data Register Empty Interrupt"]
+    #[doc="Sets the DRE field."]
     #[inline] pub fn set_dre<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -6027,12 +6027,12 @@ impl Intflag {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="Transmit Complete Interrupt"]
+    #[doc="Returns true if TXC != 0"]
     #[inline] pub fn test_txc(&self) -> bool {
         self.txc() != 0
     }
 
-    #[doc="Transmit Complete Interrupt"]
+    #[doc="Sets the TXC field."]
     #[inline] pub fn set_txc<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -6046,12 +6046,12 @@ impl Intflag {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="Receive Complete Interrupt"]
+    #[doc="Returns true if RXC != 0"]
     #[inline] pub fn test_rxc(&self) -> bool {
         self.rxc() != 0
     }
 
-    #[doc="Receive Complete Interrupt"]
+    #[doc="Sets the RXC field."]
     #[inline] pub fn set_rxc<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -6065,12 +6065,12 @@ impl Intflag {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="Receive Start Interrupt"]
+    #[doc="Returns true if RXS != 0"]
     #[inline] pub fn test_rxs(&self) -> bool {
         self.rxs() != 0
     }
 
-    #[doc="Receive Start Interrupt"]
+    #[doc="Sets the RXS field."]
     #[inline] pub fn set_rxs<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -6084,12 +6084,12 @@ impl Intflag {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="Clear To Send Input Change Interrupt"]
+    #[doc="Returns true if CTSIC != 0"]
     #[inline] pub fn test_ctsic(&self) -> bool {
         self.ctsic() != 0
     }
 
-    #[doc="Clear To Send Input Change Interrupt"]
+    #[doc="Sets the CTSIC field."]
     #[inline] pub fn set_ctsic<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -6103,12 +6103,12 @@ impl Intflag {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="Break Received Interrupt"]
+    #[doc="Returns true if RXBRK != 0"]
     #[inline] pub fn test_rxbrk(&self) -> bool {
         self.rxbrk() != 0
     }
 
-    #[doc="Break Received Interrupt"]
+    #[doc="Sets the RXBRK field."]
     #[inline] pub fn set_rxbrk<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -6122,12 +6122,12 @@ impl Intflag {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="Combined Error Interrupt"]
+    #[doc="Returns true if ERROR != 0"]
     #[inline] pub fn test_error(&self) -> bool {
         self.error() != 0
     }
 
-    #[doc="Combined Error Interrupt"]
+    #[doc="Sets the ERROR field."]
     #[inline] pub fn set_error<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -6175,12 +6175,12 @@ impl Rxpl {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
-    #[doc="Receive Pulse Length"]
+    #[doc="Returns true if RXPL != 0"]
     #[inline] pub fn test_rxpl(&self) -> bool {
         self.rxpl() != 0
     }
 
-    #[doc="Receive Pulse Length"]
+    #[doc="Sets the RXPL field."]
     #[inline] pub fn set_rxpl<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u8 = value.into();
@@ -6222,12 +6222,12 @@ impl Status {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Parity Error"]
+    #[doc="Returns true if PERR != 0"]
     #[inline] pub fn test_perr(&self) -> bool {
         self.perr() != 0
     }
 
-    #[doc="Parity Error"]
+    #[doc="Sets the PERR field."]
     #[inline] pub fn set_perr<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u16 = value.into();
@@ -6241,12 +6241,12 @@ impl Status {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="Frame Error"]
+    #[doc="Returns true if FERR != 0"]
     #[inline] pub fn test_ferr(&self) -> bool {
         self.ferr() != 0
     }
 
-    #[doc="Frame Error"]
+    #[doc="Sets the FERR field."]
     #[inline] pub fn set_ferr<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u16 = value.into();
@@ -6260,12 +6260,12 @@ impl Status {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="Buffer Overflow"]
+    #[doc="Returns true if BUFOVF != 0"]
     #[inline] pub fn test_bufovf(&self) -> bool {
         self.bufovf() != 0
     }
 
-    #[doc="Buffer Overflow"]
+    #[doc="Sets the BUFOVF field."]
     #[inline] pub fn set_bufovf<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u16 = value.into();
@@ -6279,12 +6279,12 @@ impl Status {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="Clear To Send"]
+    #[doc="Returns true if CTS != 0"]
     #[inline] pub fn test_cts(&self) -> bool {
         self.cts() != 0
     }
 
-    #[doc="Clear To Send"]
+    #[doc="Sets the CTS field."]
     #[inline] pub fn set_cts<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u16 = value.into();
@@ -6298,12 +6298,12 @@ impl Status {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="Inconsistent Sync Field"]
+    #[doc="Returns true if ISF != 0"]
     #[inline] pub fn test_isf(&self) -> bool {
         self.isf() != 0
     }
 
-    #[doc="Inconsistent Sync Field"]
+    #[doc="Sets the ISF field."]
     #[inline] pub fn set_isf<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u16 = value.into();
@@ -6317,12 +6317,12 @@ impl Status {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="Collision Detected"]
+    #[doc="Returns true if COLL != 0"]
     #[inline] pub fn test_coll(&self) -> bool {
         self.coll() != 0
     }
 
-    #[doc="Collision Detected"]
+    #[doc="Sets the COLL field."]
     #[inline] pub fn set_coll<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u16 = value.into();
@@ -6369,12 +6369,12 @@ impl Syncbusy {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Software Reset Synchronization Busy"]
+    #[doc="Returns true if SWRST != 0"]
     #[inline] pub fn test_swrst(&self) -> bool {
         self.swrst() != 0
     }
 
-    #[doc="Software Reset Synchronization Busy"]
+    #[doc="Sets the SWRST field."]
     #[inline] pub fn set_swrst<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -6388,12 +6388,12 @@ impl Syncbusy {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="SERCOM Enable Synchronization Busy"]
+    #[doc="Returns true if ENABLE != 0"]
     #[inline] pub fn test_enable(&self) -> bool {
         self.enable() != 0
     }
 
-    #[doc="SERCOM Enable Synchronization Busy"]
+    #[doc="Sets the ENABLE field."]
     #[inline] pub fn set_enable<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -6407,12 +6407,12 @@ impl Syncbusy {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="CTRLB Synchronization Busy"]
+    #[doc="Returns true if CTRLB != 0"]
     #[inline] pub fn test_ctrlb(&self) -> bool {
         self.ctrlb() != 0
     }
 
-    #[doc="CTRLB Synchronization Busy"]
+    #[doc="Sets the CTRLB field."]
     #[inline] pub fn set_ctrlb<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();

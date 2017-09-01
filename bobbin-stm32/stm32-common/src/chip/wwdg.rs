@@ -117,12 +117,12 @@ impl Cr {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="Activation bit"]
+    #[doc="Returns true if WDGA != 0"]
     #[inline] pub fn test_wdga(&self) -> bool {
         self.wdga() != 0
     }
 
-    #[doc="Activation bit"]
+    #[doc="Sets the WDGA field."]
     #[inline] pub fn set_wdga<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -136,12 +136,12 @@ impl Cr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x7f) as u8) } // [6:0]
     }
 
-    #[doc="7-bit counter (MSB to LSB)"]
+    #[doc="Returns true if T != 0"]
     #[inline] pub fn test_t(&self) -> bool {
         self.t() != 0
     }
 
-    #[doc="7-bit counter (MSB to LSB)"]
+    #[doc="Sets the T field."]
     #[inline] pub fn set_t<V: Into<bits::U7>>(mut self, value: V) -> Self {
         let value: bits::U7 = value.into();
         let value: u32 = value.into();
@@ -184,12 +184,12 @@ impl Cfr {
         unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
     }
 
-    #[doc="Early wakeup interrupt"]
+    #[doc="Returns true if EWI != 0"]
     #[inline] pub fn test_ewi(&self) -> bool {
         self.ewi() != 0
     }
 
-    #[doc="Early wakeup interrupt"]
+    #[doc="Sets the EWI field."]
     #[inline] pub fn set_ewi<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -203,12 +203,12 @@ impl Cfr {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x3) as u8) } // [8:7]
     }
 
-    #[doc="Timer base"]
+    #[doc="Returns true if WDGTB != 0"]
     #[inline] pub fn test_wdgtb(&self) -> bool {
         self.wdgtb() != 0
     }
 
-    #[doc="Timer base"]
+    #[doc="Sets the WDGTB field."]
     #[inline] pub fn set_wdgtb<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -222,12 +222,12 @@ impl Cfr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x7f) as u8) } // [6:0]
     }
 
-    #[doc="7-bit window value"]
+    #[doc="Returns true if W != 0"]
     #[inline] pub fn test_w(&self) -> bool {
         self.w() != 0
     }
 
-    #[doc="7-bit window value"]
+    #[doc="Sets the W field."]
     #[inline] pub fn set_w<V: Into<bits::U7>>(mut self, value: V) -> Self {
         let value: bits::U7 = value.into();
         let value: u32 = value.into();
@@ -271,12 +271,12 @@ impl Sr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Early wakeup interrupt flag"]
+    #[doc="Returns true if EWIF != 0"]
     #[inline] pub fn test_ewif(&self) -> bool {
         self.ewif() != 0
     }
 
-    #[doc="Early wakeup interrupt flag"]
+    #[doc="Sets the EWIF field."]
     #[inline] pub fn set_ewif<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();

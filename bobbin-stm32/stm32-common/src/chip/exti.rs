@@ -218,12 +218,12 @@ impl Imr {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Interrupt Mask on line n = 0..32"]
+    #[doc="Returns true if MR != 0"]
     #[inline] pub fn test_mr<I: Into<bits::R32>>(&self, index: I) -> bool{
         self.mr(index) != 0
     }
 
-    #[doc="Interrupt Mask on line n = 0..32"]
+    #[doc="Sets the MR field."]
     #[inline] pub fn set_mr<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -300,12 +300,12 @@ impl Emr {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Event Mask on line n = 0..32"]
+    #[doc="Returns true if MR != 0"]
     #[inline] pub fn test_mr<I: Into<bits::R32>>(&self, index: I) -> bool{
         self.mr(index) != 0
     }
 
-    #[doc="Event Mask on line n = 0..32"]
+    #[doc="Sets the MR field."]
     #[inline] pub fn set_mr<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -382,12 +382,12 @@ impl Rtsr {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Rising trigger event configuration of line n = 0..32"]
+    #[doc="Returns true if TR != 0"]
     #[inline] pub fn test_tr<I: Into<bits::R32>>(&self, index: I) -> bool{
         self.tr(index) != 0
     }
 
-    #[doc="Rising trigger event configuration of line n = 0..32"]
+    #[doc="Sets the TR field."]
     #[inline] pub fn set_tr<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -464,12 +464,12 @@ impl Ftsr {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Falling trigger event configuration of line n = 0..32"]
+    #[doc="Returns true if TR != 0"]
     #[inline] pub fn test_tr<I: Into<bits::R32>>(&self, index: I) -> bool{
         self.tr(index) != 0
     }
 
-    #[doc="Falling trigger event configuration of line n = 0..32"]
+    #[doc="Sets the TR field."]
     #[inline] pub fn set_tr<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -546,12 +546,12 @@ impl Swier {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Software Interrupt on line n = 0..32"]
+    #[doc="Returns true if SWI != 0"]
     #[inline] pub fn test_swi<I: Into<bits::R32>>(&self, index: I) -> bool{
         self.swi(index) != 0
     }
 
-    #[doc="Software Interrupt on line n = 0..32"]
+    #[doc="Sets the SWI field."]
     #[inline] pub fn set_swi<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -628,12 +628,12 @@ impl Pr {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Pending Interrupt bit n = 0..32"]
+    #[doc="Returns true if PR != 0"]
     #[inline] pub fn test_pr<I: Into<bits::R32>>(&self, index: I) -> bool{
         self.pr(index) != 0
     }
 
-    #[doc="Pending Interrupt bit n = 0..32"]
+    #[doc="Sets the PR field."]
     #[inline] pub fn set_pr<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();

@@ -414,12 +414,12 @@ impl Stctrlh {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Enables or disables the WDOG\'s operation"]
+    #[doc="Returns true if WDOGEN != 0"]
     #[inline] pub fn test_wdogen(&self) -> bool {
         self.wdogen() != 0
     }
 
-    #[doc="Enables or disables the WDOG\'s operation"]
+    #[doc="Sets the WDOGEN field."]
     #[inline] pub fn set_wdogen<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u16 = value.into();
@@ -433,12 +433,12 @@ impl Stctrlh {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="Selects clock source for the WDOG timer and other internal timing operations."]
+    #[doc="Returns true if CLKSRC != 0"]
     #[inline] pub fn test_clksrc(&self) -> bool {
         self.clksrc() != 0
     }
 
-    #[doc="Selects clock source for the WDOG timer and other internal timing operations."]
+    #[doc="Sets the CLKSRC field."]
     #[inline] pub fn set_clksrc<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u16 = value.into();
@@ -452,12 +452,12 @@ impl Stctrlh {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="Used to enable the debug breadcrumbs feature"]
+    #[doc="Returns true if IRQRSTEN != 0"]
     #[inline] pub fn test_irqrsten(&self) -> bool {
         self.irqrsten() != 0
     }
 
-    #[doc="Used to enable the debug breadcrumbs feature"]
+    #[doc="Sets the IRQRSTEN field."]
     #[inline] pub fn set_irqrsten<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u16 = value.into();
@@ -471,12 +471,12 @@ impl Stctrlh {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="Enables Windowing mode."]
+    #[doc="Returns true if WINEN != 0"]
     #[inline] pub fn test_winen(&self) -> bool {
         self.winen() != 0
     }
 
-    #[doc="Enables Windowing mode."]
+    #[doc="Sets the WINEN field."]
     #[inline] pub fn set_winen<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u16 = value.into();
@@ -490,12 +490,12 @@ impl Stctrlh {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="Enables updates to watchdog write-once registers, after the reset-triggered initial configuration window (WCT) closes, through unlock sequence"]
+    #[doc="Returns true if ALLOWUPDATE != 0"]
     #[inline] pub fn test_allowupdate(&self) -> bool {
         self.allowupdate() != 0
     }
 
-    #[doc="Enables updates to watchdog write-once registers, after the reset-triggered initial configuration window (WCT) closes, through unlock sequence"]
+    #[doc="Sets the ALLOWUPDATE field."]
     #[inline] pub fn set_allowupdate<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u16 = value.into();
@@ -509,12 +509,12 @@ impl Stctrlh {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="Enables or disables WDOG in Debug mode."]
+    #[doc="Returns true if DBGEN != 0"]
     #[inline] pub fn test_dbgen(&self) -> bool {
         self.dbgen() != 0
     }
 
-    #[doc="Enables or disables WDOG in Debug mode."]
+    #[doc="Sets the DBGEN field."]
     #[inline] pub fn set_dbgen<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u16 = value.into();
@@ -528,12 +528,12 @@ impl Stctrlh {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="Enables or disables WDOG in Stop mode."]
+    #[doc="Returns true if STOPEN != 0"]
     #[inline] pub fn test_stopen(&self) -> bool {
         self.stopen() != 0
     }
 
-    #[doc="Enables or disables WDOG in Stop mode."]
+    #[doc="Sets the STOPEN field."]
     #[inline] pub fn set_stopen<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u16 = value.into();
@@ -547,12 +547,12 @@ impl Stctrlh {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="Enables or disables WDOG in Wait mode."]
+    #[doc="Returns true if WAITEN != 0"]
     #[inline] pub fn test_waiten(&self) -> bool {
         self.waiten() != 0
     }
 
-    #[doc="Enables or disables WDOG in Wait mode."]
+    #[doc="Sets the WAITEN field."]
     #[inline] pub fn set_waiten<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u16 = value.into();
@@ -566,12 +566,12 @@ impl Stctrlh {
         unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x1) as u8) } // [10]
     }
 
-    #[doc="Puts the watchdog in the functional test mode"]
+    #[doc="Returns true if TESTWDOG != 0"]
     #[inline] pub fn test_testwdog(&self) -> bool {
         self.testwdog() != 0
     }
 
-    #[doc="Puts the watchdog in the functional test mode"]
+    #[doc="Sets the TESTWDOG field."]
     #[inline] pub fn set_testwdog<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u16 = value.into();
@@ -585,12 +585,12 @@ impl Stctrlh {
         unsafe { ::core::mem::transmute(((self.0 >> 11) & 0x1) as u8) } // [11]
     }
 
-    #[doc="Effective only if TESTWDOG is set. Selects the test to be run on the watchdog timer."]
+    #[doc="Returns true if TESTSEL != 0"]
     #[inline] pub fn test_testsel(&self) -> bool {
         self.testsel() != 0
     }
 
-    #[doc="Effective only if TESTWDOG is set. Selects the test to be run on the watchdog timer."]
+    #[doc="Sets the TESTSEL field."]
     #[inline] pub fn set_testsel<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u16 = value.into();
@@ -604,12 +604,12 @@ impl Stctrlh {
         unsafe { ::core::mem::transmute(((self.0 >> 12) & 0x3) as u8) } // [13:12]
     }
 
-    #[doc="This 2-bit field selects the byte to be tested when the watchdog is in the byte test mode."]
+    #[doc="Returns true if BYTESEL != 0"]
     #[inline] pub fn test_bytesel(&self) -> bool {
         self.bytesel() != 0
     }
 
-    #[doc="This 2-bit field selects the byte to be tested when the watchdog is in the byte test mode."]
+    #[doc="Sets the BYTESEL field."]
     #[inline] pub fn set_bytesel<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u16 = value.into();
@@ -623,12 +623,12 @@ impl Stctrlh {
         unsafe { ::core::mem::transmute(((self.0 >> 14) & 0x1) as u8) } // [14]
     }
 
-    #[doc="Allows the WDOG\'s functional test mode to be disabled permanently"]
+    #[doc="Returns true if DISTESTWDOG != 0"]
     #[inline] pub fn test_distestwdog(&self) -> bool {
         self.distestwdog() != 0
     }
 
-    #[doc="Allows the WDOG\'s functional test mode to be disabled permanently"]
+    #[doc="Sets the DISTESTWDOG field."]
     #[inline] pub fn set_distestwdog<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u16 = value.into();
@@ -681,12 +681,12 @@ impl Stctrll {
         unsafe { ::core::mem::transmute(((self.0 >> 15) & 0x1) as u8) } // [15]
     }
 
-    #[doc="Interrupt flag"]
+    #[doc="Returns true if INTFLG != 0"]
     #[inline] pub fn test_intflg(&self) -> bool {
         self.intflg() != 0
     }
 
-    #[doc="Interrupt flag"]
+    #[doc="Sets the INTFLG field."]
     #[inline] pub fn set_intflg<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u16 = value.into();
@@ -728,12 +728,12 @@ impl Tovalh {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffff) as u16) } // [15:0]
     }
 
-    #[doc="Defines the upper 16 bits of the 32-bit time-out value for the watchdog timer"]
+    #[doc="Returns true if TOVALHIGH != 0"]
     #[inline] pub fn test_tovalhigh(&self) -> bool {
         self.tovalhigh() != 0
     }
 
-    #[doc="Defines the upper 16 bits of the 32-bit time-out value for the watchdog timer"]
+    #[doc="Sets the TOVALHIGH field."]
     #[inline] pub fn set_tovalhigh<V: Into<bits::U16>>(mut self, value: V) -> Self {
         let value: bits::U16 = value.into();
         let value: u16 = value.into();
@@ -775,12 +775,12 @@ impl Tovall {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffff) as u16) } // [15:0]
     }
 
-    #[doc="Defines the lower 16 bits of the 32-bit time-out value for the watchdog timer"]
+    #[doc="Returns true if TOVALLOW != 0"]
     #[inline] pub fn test_tovallow(&self) -> bool {
         self.tovallow() != 0
     }
 
-    #[doc="Defines the lower 16 bits of the 32-bit time-out value for the watchdog timer"]
+    #[doc="Sets the TOVALLOW field."]
     #[inline] pub fn set_tovallow<V: Into<bits::U16>>(mut self, value: V) -> Self {
         let value: bits::U16 = value.into();
         let value: u16 = value.into();
@@ -822,12 +822,12 @@ impl Winh {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffff) as u16) } // [15:0]
     }
 
-    #[doc="Defines the upper 16 bits of the 32-bit window for the windowed mode of operation of the watchdog"]
+    #[doc="Returns true if WINHIGH != 0"]
     #[inline] pub fn test_winhigh(&self) -> bool {
         self.winhigh() != 0
     }
 
-    #[doc="Defines the upper 16 bits of the 32-bit window for the windowed mode of operation of the watchdog"]
+    #[doc="Sets the WINHIGH field."]
     #[inline] pub fn set_winhigh<V: Into<bits::U16>>(mut self, value: V) -> Self {
         let value: bits::U16 = value.into();
         let value: u16 = value.into();
@@ -869,12 +869,12 @@ impl Winl {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffff) as u16) } // [15:0]
     }
 
-    #[doc="Defines the lower 16 bits of the 32-bit window for the windowed mode of operation of the watchdog"]
+    #[doc="Returns true if WINLOW != 0"]
     #[inline] pub fn test_winlow(&self) -> bool {
         self.winlow() != 0
     }
 
-    #[doc="Defines the lower 16 bits of the 32-bit window for the windowed mode of operation of the watchdog"]
+    #[doc="Sets the WINLOW field."]
     #[inline] pub fn set_winlow<V: Into<bits::U16>>(mut self, value: V) -> Self {
         let value: bits::U16 = value.into();
         let value: u16 = value.into();
@@ -916,12 +916,12 @@ impl Refresh {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffff) as u16) } // [15:0]
     }
 
-    #[doc="Watchdog refresh register"]
+    #[doc="Returns true if WDOGREFRESH != 0"]
     #[inline] pub fn test_wdogrefresh(&self) -> bool {
         self.wdogrefresh() != 0
     }
 
-    #[doc="Watchdog refresh register"]
+    #[doc="Sets the WDOGREFRESH field."]
     #[inline] pub fn set_wdogrefresh<V: Into<bits::U16>>(mut self, value: V) -> Self {
         let value: bits::U16 = value.into();
         let value: u16 = value.into();
@@ -963,12 +963,12 @@ impl Unlock {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffff) as u16) } // [15:0]
     }
 
-    #[doc="Writing the unlock sequence values to this register to makes the watchdog write-once registers writable again"]
+    #[doc="Returns true if WDOGUNLOCK != 0"]
     #[inline] pub fn test_wdogunlock(&self) -> bool {
         self.wdogunlock() != 0
     }
 
-    #[doc="Writing the unlock sequence values to this register to makes the watchdog write-once registers writable again"]
+    #[doc="Sets the WDOGUNLOCK field."]
     #[inline] pub fn set_wdogunlock<V: Into<bits::U16>>(mut self, value: V) -> Self {
         let value: bits::U16 = value.into();
         let value: u16 = value.into();
@@ -1010,12 +1010,12 @@ impl Tmrouth {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffff) as u16) } // [15:0]
     }
 
-    #[doc="Shows the value of the upper 16 bits of the watchdog timer."]
+    #[doc="Returns true if TIMEROUTHIGH != 0"]
     #[inline] pub fn test_timerouthigh(&self) -> bool {
         self.timerouthigh() != 0
     }
 
-    #[doc="Shows the value of the upper 16 bits of the watchdog timer."]
+    #[doc="Sets the TIMEROUTHIGH field."]
     #[inline] pub fn set_timerouthigh<V: Into<bits::U16>>(mut self, value: V) -> Self {
         let value: bits::U16 = value.into();
         let value: u16 = value.into();
@@ -1057,12 +1057,12 @@ impl Tmroutl {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffff) as u16) } // [15:0]
     }
 
-    #[doc="Shows the value of the lower 16 bits of the watchdog timer."]
+    #[doc="Returns true if TIMEROUTLOW != 0"]
     #[inline] pub fn test_timeroutlow(&self) -> bool {
         self.timeroutlow() != 0
     }
 
-    #[doc="Shows the value of the lower 16 bits of the watchdog timer."]
+    #[doc="Sets the TIMEROUTLOW field."]
     #[inline] pub fn set_timeroutlow<V: Into<bits::U16>>(mut self, value: V) -> Self {
         let value: bits::U16 = value.into();
         let value: u16 = value.into();
@@ -1104,12 +1104,12 @@ impl Rstcnt {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffff) as u16) } // [15:0]
     }
 
-    #[doc="Counts the number of times the watchdog resets the system"]
+    #[doc="Returns true if RSTCNT != 0"]
     #[inline] pub fn test_rstcnt(&self) -> bool {
         self.rstcnt() != 0
     }
 
-    #[doc="Counts the number of times the watchdog resets the system"]
+    #[doc="Sets the RSTCNT field."]
     #[inline] pub fn set_rstcnt<V: Into<bits::U16>>(mut self, value: V) -> Self {
         let value: bits::U16 = value.into();
         let value: u16 = value.into();
@@ -1151,12 +1151,12 @@ impl Presc {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x7) as u8) } // [10:8]
     }
 
-    #[doc="3-bit prescaler for the watchdog clock source"]
+    #[doc="Returns true if PRESCVAL != 0"]
     #[inline] pub fn test_prescval(&self) -> bool {
         self.prescval() != 0
     }
 
-    #[doc="3-bit prescaler for the watchdog clock source"]
+    #[doc="Sets the PRESCVAL field."]
     #[inline] pub fn set_prescval<V: Into<bits::U3>>(mut self, value: V) -> Self {
         let value: bits::U3 = value.into();
         let value: u16 = value.into();

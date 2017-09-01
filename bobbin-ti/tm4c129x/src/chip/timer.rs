@@ -719,12 +719,12 @@ impl Cfg {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x7) as u8) } // [2:0]
     }
 
-    #[doc="GPTM Configuration"]
+    #[doc="Returns true if CFG != 0"]
     #[inline] pub fn test_cfg(&self) -> bool {
         self.cfg() != 0
     }
 
-    #[doc="GPTM Configuration"]
+    #[doc="Sets the CFG field."]
     #[inline] pub fn set_cfg<V: Into<bits::U3>>(mut self, value: V) -> Self {
         let value: bits::U3 = value.into();
         let value: u32 = value.into();
@@ -766,12 +766,12 @@ impl Tmr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x3) as u8) } // [1:0]
     }
 
-    #[doc="GPTM Timer n Mode"]
+    #[doc="Returns true if TMR != 0"]
     #[inline] pub fn test_tmr(&self) -> bool {
         self.tmr() != 0
     }
 
-    #[doc="GPTM Timer n Mode"]
+    #[doc="Sets the TMR field."]
     #[inline] pub fn set_tmr<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -785,12 +785,12 @@ impl Tmr {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="GPTM Timer n Capture Mode"]
+    #[doc="Returns true if TCMR != 0"]
     #[inline] pub fn test_tcmr(&self) -> bool {
         self.tcmr() != 0
     }
 
-    #[doc="GPTM Timer n Capture Mode"]
+    #[doc="Sets the TCMR field."]
     #[inline] pub fn set_tcmr<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -804,12 +804,12 @@ impl Tmr {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="GPTM Timer n Alternate Mode Select"]
+    #[doc="Returns true if TAMS != 0"]
     #[inline] pub fn test_tams(&self) -> bool {
         self.tams() != 0
     }
 
-    #[doc="GPTM Timer n Alternate Mode Select"]
+    #[doc="Sets the TAMS field."]
     #[inline] pub fn set_tams<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -823,12 +823,12 @@ impl Tmr {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="GPTM Timer n Count Direction"]
+    #[doc="Returns true if TCDIR != 0"]
     #[inline] pub fn test_tcdir(&self) -> bool {
         self.tcdir() != 0
     }
 
-    #[doc="GPTM Timer n Count Direction"]
+    #[doc="Sets the TCDIR field."]
     #[inline] pub fn set_tcdir<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -842,12 +842,12 @@ impl Tmr {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="GPTM Timer n Match Interrupt Enable"]
+    #[doc="Returns true if TMIE != 0"]
     #[inline] pub fn test_tmie(&self) -> bool {
         self.tmie() != 0
     }
 
-    #[doc="GPTM Timer n Match Interrupt Enable"]
+    #[doc="Sets the TMIE field."]
     #[inline] pub fn set_tmie<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -861,12 +861,12 @@ impl Tmr {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="GPTM Timer n Wait-on-Trigger"]
+    #[doc="Returns true if TWOT != 0"]
     #[inline] pub fn test_twot(&self) -> bool {
         self.twot() != 0
     }
 
-    #[doc="GPTM Timer n Wait-on-Trigger"]
+    #[doc="Sets the TWOT field."]
     #[inline] pub fn set_twot<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -880,12 +880,12 @@ impl Tmr {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="GPTM Timer n Snap-Shot Mode"]
+    #[doc="Returns true if TSNAPS != 0"]
     #[inline] pub fn test_tsnaps(&self) -> bool {
         self.tsnaps() != 0
     }
 
-    #[doc="GPTM Timer n Snap-Shot Mode"]
+    #[doc="Sets the TSNAPS field."]
     #[inline] pub fn set_tsnaps<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -899,12 +899,12 @@ impl Tmr {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
     }
 
-    #[doc="GPTM Timer n Interval Load Write"]
+    #[doc="Returns true if TILD != 0"]
     #[inline] pub fn test_tild(&self) -> bool {
         self.tild() != 0
     }
 
-    #[doc="GPTM Timer n Interval Load Write"]
+    #[doc="Sets the TILD field."]
     #[inline] pub fn set_tild<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -918,12 +918,12 @@ impl Tmr {
         unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
     }
 
-    #[doc="GPTM Timer n PWM Interrupt Enable"]
+    #[doc="Returns true if TPWMIE != 0"]
     #[inline] pub fn test_tpwmie(&self) -> bool {
         self.tpwmie() != 0
     }
 
-    #[doc="GPTM Timer n PWM Interrupt Enable"]
+    #[doc="Sets the TPWMIE field."]
     #[inline] pub fn set_tpwmie<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -937,12 +937,12 @@ impl Tmr {
         unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x1) as u8) } // [10]
     }
 
-    #[doc="GPTM Timer n Match Register Update"]
+    #[doc="Returns true if TMRSU != 0"]
     #[inline] pub fn test_tmrsu(&self) -> bool {
         self.tmrsu() != 0
     }
 
-    #[doc="GPTM Timer n Match Register Update"]
+    #[doc="Sets the TMRSU field."]
     #[inline] pub fn set_tmrsu<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -956,12 +956,12 @@ impl Tmr {
         unsafe { ::core::mem::transmute(((self.0 >> 11) & 0x1) as u8) } // [11]
     }
 
-    #[doc="GPTM Timer n PWM Legacy Operation"]
+    #[doc="Returns true if TPLO != 0"]
     #[inline] pub fn test_tplo(&self) -> bool {
         self.tplo() != 0
     }
 
-    #[doc="GPTM Timer n PWM Legacy Operation"]
+    #[doc="Sets the TPLO field."]
     #[inline] pub fn set_tplo<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -975,12 +975,12 @@ impl Tmr {
         unsafe { ::core::mem::transmute(((self.0 >> 12) & 0x1) as u8) } // [12]
     }
 
-    #[doc="One-shot/Periodic Interrupt Disable"]
+    #[doc="Returns true if TCINTD != 0"]
     #[inline] pub fn test_tcintd(&self) -> bool {
         self.tcintd() != 0
     }
 
-    #[doc="One-shot/Periodic Interrupt Disable"]
+    #[doc="Sets the TCINTD field."]
     #[inline] pub fn set_tcintd<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -994,12 +994,12 @@ impl Tmr {
         unsafe { ::core::mem::transmute(((self.0 >> 13) & 0x7) as u8) } // [15:13]
     }
 
-    #[doc="Timer Compare Action Select"]
+    #[doc="Returns true if TCACT != 0"]
     #[inline] pub fn test_tcact(&self) -> bool {
         self.tcact() != 0
     }
 
-    #[doc="Timer Compare Action Select"]
+    #[doc="Sets the TCACT field."]
     #[inline] pub fn set_tcact<V: Into<bits::U3>>(mut self, value: V) -> Self {
         let value: bits::U3 = value.into();
         let value: u32 = value.into();
@@ -1055,12 +1055,12 @@ impl Ctl {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="GPTM Timer n Enable"]
+    #[doc="Returns true if TEN != 0"]
     #[inline] pub fn test_ten<I: Into<bits::R2>>(&self, index: I) -> bool{
         self.ten(index) != 0
     }
 
-    #[doc="GPTM Timer n Enable"]
+    #[doc="Sets the TEN field."]
     #[inline] pub fn set_ten<I: Into<bits::R2>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -1078,12 +1078,12 @@ impl Ctl {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [1]
     }
 
-    #[doc="GPTM Timer n Stall Enable"]
+    #[doc="Returns true if TSTALL != 0"]
     #[inline] pub fn test_tstall<I: Into<bits::R2>>(&self, index: I) -> bool{
         self.tstall(index) != 0
     }
 
-    #[doc="GPTM Timer n Stall Enable"]
+    #[doc="Sets the TSTALL field."]
     #[inline] pub fn set_tstall<I: Into<bits::R2>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -1101,12 +1101,12 @@ impl Ctl {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x3) as u8) } // [3:2]
     }
 
-    #[doc="GPTM Timer n Event Mode"]
+    #[doc="Returns true if TEVENT != 0"]
     #[inline] pub fn test_tevent<I: Into<bits::R2>>(&self, index: I) -> bool{
         self.tevent(index) != 0
     }
 
-    #[doc="GPTM Timer n Event Mode"]
+    #[doc="Sets the TEVENT field."]
     #[inline] pub fn set_tevent<I: Into<bits::R2>, V: Into<bits::U2>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U2 = value.into();
@@ -1122,12 +1122,12 @@ impl Ctl {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="GPTM RTC Stall Enable"]
+    #[doc="Returns true if RTCEN != 0"]
     #[inline] pub fn test_rtcen(&self) -> bool {
         self.rtcen() != 0
     }
 
-    #[doc="GPTM RTC Stall Enable"]
+    #[doc="Sets the RTCEN field."]
     #[inline] pub fn set_rtcen<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1143,12 +1143,12 @@ impl Ctl {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [5]
     }
 
-    #[doc="GPTM Timer n Output Trigger Enable"]
+    #[doc="Returns true if TOTE != 0"]
     #[inline] pub fn test_tote<I: Into<bits::R2>>(&self, index: I) -> bool{
         self.tote(index) != 0
     }
 
-    #[doc="GPTM Timer n Output Trigger Enable"]
+    #[doc="Sets the TOTE field."]
     #[inline] pub fn set_tote<I: Into<bits::R2>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -1166,12 +1166,12 @@ impl Ctl {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [6]
     }
 
-    #[doc="GPTM Timer n PWM Output Level"]
+    #[doc="Returns true if TPWML != 0"]
     #[inline] pub fn test_tpwml<I: Into<bits::R2>>(&self, index: I) -> bool{
         self.tpwml(index) != 0
     }
 
-    #[doc="GPTM Timer n PWM Output Level"]
+    #[doc="Sets the TPWML field."]
     #[inline] pub fn set_tpwml<I: Into<bits::R2>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -1227,12 +1227,12 @@ impl Sync {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x3) as u8) } // [1:0]
     }
 
-    #[doc="Synchronize GPTM Timer n"]
+    #[doc="Returns true if SYNCT != 0"]
     #[inline] pub fn test_synct<I: Into<bits::R8>>(&self, index: I) -> bool{
         self.synct(index) != 0
     }
 
-    #[doc="Synchronize GPTM Timer n"]
+    #[doc="Sets the SYNCT field."]
     #[inline] pub fn set_synct<I: Into<bits::R8>, V: Into<bits::U2>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U2 = value.into();
@@ -1285,12 +1285,12 @@ impl Imr {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="GPTM Timer n Time-Out Interrupt Mask"]
+    #[doc="Returns true if TTOIM != 0"]
     #[inline] pub fn test_ttoim<I: Into<bits::R2>>(&self, index: I) -> bool{
         self.ttoim(index) != 0
     }
 
-    #[doc="GPTM Timer n Time-Out Interrupt Mask"]
+    #[doc="Sets the TTOIM field."]
     #[inline] pub fn set_ttoim<I: Into<bits::R2>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -1308,12 +1308,12 @@ impl Imr {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [1]
     }
 
-    #[doc="GPTM Timer n Capture Mode Match Interrupt Mask"]
+    #[doc="Returns true if CMIM != 0"]
     #[inline] pub fn test_cmim<I: Into<bits::R2>>(&self, index: I) -> bool{
         self.cmim(index) != 0
     }
 
-    #[doc="GPTM Timer n Capture Mode Match Interrupt Mask"]
+    #[doc="Sets the CMIM field."]
     #[inline] pub fn set_cmim<I: Into<bits::R2>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -1331,12 +1331,12 @@ impl Imr {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [2]
     }
 
-    #[doc="GPTM Timer n Capture Mode Event Interrupt Mask"]
+    #[doc="Returns true if CEIM != 0"]
     #[inline] pub fn test_ceim<I: Into<bits::R2>>(&self, index: I) -> bool{
         self.ceim(index) != 0
     }
 
-    #[doc="GPTM Timer n Capture Mode Event Interrupt Mask"]
+    #[doc="Sets the CEIM field."]
     #[inline] pub fn set_ceim<I: Into<bits::R2>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -1352,12 +1352,12 @@ impl Imr {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="GPTM RTC Interrupt Mask"]
+    #[doc="Returns true if RTCIM != 0"]
     #[inline] pub fn test_rtcim(&self) -> bool {
         self.rtcim() != 0
     }
 
-    #[doc="GPTM RTC Interrupt Mask"]
+    #[doc="Sets the RTCIM field."]
     #[inline] pub fn set_rtcim<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1373,12 +1373,12 @@ impl Imr {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [4]
     }
 
-    #[doc="GPTM Timer n Match Interrupt Mask"]
+    #[doc="Returns true if TMIM != 0"]
     #[inline] pub fn test_tmim<I: Into<bits::R2>>(&self, index: I) -> bool{
         self.tmim(index) != 0
     }
 
-    #[doc="GPTM Timer n Match Interrupt Mask"]
+    #[doc="Sets the TMIM field."]
     #[inline] pub fn set_tmim<I: Into<bits::R2>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -1396,12 +1396,12 @@ impl Imr {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [5]
     }
 
-    #[doc="GPTM Timer n DMA Done Interrupt Mask"]
+    #[doc="Returns true if DMAIM != 0"]
     #[inline] pub fn test_dmaim<I: Into<bits::R2>>(&self, index: I) -> bool{
         self.dmaim(index) != 0
     }
 
-    #[doc="GPTM Timer n DMA Done Interrupt Mask"]
+    #[doc="Sets the DMAIM field."]
     #[inline] pub fn set_dmaim<I: Into<bits::R2>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -1457,12 +1457,12 @@ impl Ris {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="GPTM Timer n Time-Out Raw Interrupt"]
+    #[doc="Returns true if TTORIS != 0"]
     #[inline] pub fn test_ttoris<I: Into<bits::R2>>(&self, index: I) -> bool{
         self.ttoris(index) != 0
     }
 
-    #[doc="GPTM Timer n Time-Out Raw Interrupt"]
+    #[doc="Sets the TTORIS field."]
     #[inline] pub fn set_ttoris<I: Into<bits::R2>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -1480,12 +1480,12 @@ impl Ris {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [1]
     }
 
-    #[doc="GPTM Timer n Capture Mode Match Raw Interrupt"]
+    #[doc="Returns true if CMRIS != 0"]
     #[inline] pub fn test_cmris<I: Into<bits::R2>>(&self, index: I) -> bool{
         self.cmris(index) != 0
     }
 
-    #[doc="GPTM Timer n Capture Mode Match Raw Interrupt"]
+    #[doc="Sets the CMRIS field."]
     #[inline] pub fn set_cmris<I: Into<bits::R2>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -1503,12 +1503,12 @@ impl Ris {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [2]
     }
 
-    #[doc="GPTM Timer n Capture Mode Event Raw Interrupt"]
+    #[doc="Returns true if CERIS != 0"]
     #[inline] pub fn test_ceris<I: Into<bits::R2>>(&self, index: I) -> bool{
         self.ceris(index) != 0
     }
 
-    #[doc="GPTM Timer n Capture Mode Event Raw Interrupt"]
+    #[doc="Sets the CERIS field."]
     #[inline] pub fn set_ceris<I: Into<bits::R2>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -1524,12 +1524,12 @@ impl Ris {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="GPTM RTC Raw Interrupt"]
+    #[doc="Returns true if RTCRIS != 0"]
     #[inline] pub fn test_rtcris(&self) -> bool {
         self.rtcris() != 0
     }
 
-    #[doc="GPTM RTC Raw Interrupt"]
+    #[doc="Sets the RTCRIS field."]
     #[inline] pub fn set_rtcris<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1543,12 +1543,12 @@ impl Ris {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="GPTM Timer A Match Raw Interrupt"]
+    #[doc="Returns true if TAMRIS != 0"]
     #[inline] pub fn test_tamris(&self) -> bool {
         self.tamris() != 0
     }
 
-    #[doc="GPTM Timer A Match Raw Interrupt"]
+    #[doc="Sets the TAMRIS field."]
     #[inline] pub fn set_tamris<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1564,12 +1564,12 @@ impl Ris {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [5]
     }
 
-    #[doc="GPTM Timer n DMA Done Raw Interrupt Status"]
+    #[doc="Returns true if DMARIS != 0"]
     #[inline] pub fn test_dmaris<I: Into<bits::R2>>(&self, index: I) -> bool{
         self.dmaris(index) != 0
     }
 
-    #[doc="GPTM Timer n DMA Done Raw Interrupt Status"]
+    #[doc="Sets the DMARIS field."]
     #[inline] pub fn set_dmaris<I: Into<bits::R2>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -1585,12 +1585,12 @@ impl Ris {
         unsafe { ::core::mem::transmute(((self.0 >> 11) & 0x1) as u8) } // [11]
     }
 
-    #[doc="GPTM Timer B Match Raw Interrupt"]
+    #[doc="Returns true if TBMRIS != 0"]
     #[inline] pub fn test_tbmris(&self) -> bool {
         self.tbmris() != 0
     }
 
-    #[doc="GPTM Timer B Match Raw Interrupt"]
+    #[doc="Sets the TBMRIS field."]
     #[inline] pub fn set_tbmris<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1644,12 +1644,12 @@ impl Mis {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="GPTM Timer n Time-Out Masked Interrupt"]
+    #[doc="Returns true if TTOMIS != 0"]
     #[inline] pub fn test_ttomis<I: Into<bits::R2>>(&self, index: I) -> bool{
         self.ttomis(index) != 0
     }
 
-    #[doc="GPTM Timer n Time-Out Masked Interrupt"]
+    #[doc="Sets the TTOMIS field."]
     #[inline] pub fn set_ttomis<I: Into<bits::R2>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -1667,12 +1667,12 @@ impl Mis {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [1]
     }
 
-    #[doc="GPTM Timer n Capture Mode Match Masked Interrupt"]
+    #[doc="Returns true if CMMIS != 0"]
     #[inline] pub fn test_cmmis<I: Into<bits::R2>>(&self, index: I) -> bool{
         self.cmmis(index) != 0
     }
 
-    #[doc="GPTM Timer n Capture Mode Match Masked Interrupt"]
+    #[doc="Sets the CMMIS field."]
     #[inline] pub fn set_cmmis<I: Into<bits::R2>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -1690,12 +1690,12 @@ impl Mis {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [2]
     }
 
-    #[doc="GPTM Timer n Capture Mode Event Masked Interrupt"]
+    #[doc="Returns true if CEMIS != 0"]
     #[inline] pub fn test_cemis<I: Into<bits::R2>>(&self, index: I) -> bool{
         self.cemis(index) != 0
     }
 
-    #[doc="GPTM Timer n Capture Mode Event Masked Interrupt"]
+    #[doc="Sets the CEMIS field."]
     #[inline] pub fn set_cemis<I: Into<bits::R2>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -1711,12 +1711,12 @@ impl Mis {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="GPTM RTC Masked Interrupt"]
+    #[doc="Returns true if RTCMIS != 0"]
     #[inline] pub fn test_rtcmis(&self) -> bool {
         self.rtcmis() != 0
     }
 
-    #[doc="GPTM RTC Masked Interrupt"]
+    #[doc="Sets the RTCMIS field."]
     #[inline] pub fn set_rtcmis<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1730,12 +1730,12 @@ impl Mis {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="GPTM Timer A Match Masked Interrupt"]
+    #[doc="Returns true if TAMMIS != 0"]
     #[inline] pub fn test_tammis(&self) -> bool {
         self.tammis() != 0
     }
 
-    #[doc="GPTM Timer A Match Masked Interrupt"]
+    #[doc="Sets the TAMMIS field."]
     #[inline] pub fn set_tammis<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1751,12 +1751,12 @@ impl Mis {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [5]
     }
 
-    #[doc="GPTM Timer n DMA Done Masked Interrupt"]
+    #[doc="Returns true if DMAMIS != 0"]
     #[inline] pub fn test_dmamis<I: Into<bits::R2>>(&self, index: I) -> bool{
         self.dmamis(index) != 0
     }
 
-    #[doc="GPTM Timer n DMA Done Masked Interrupt"]
+    #[doc="Sets the DMAMIS field."]
     #[inline] pub fn set_dmamis<I: Into<bits::R2>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -1772,12 +1772,12 @@ impl Mis {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="GPTM Timer B Match Masked Interrupt"]
+    #[doc="Returns true if TBMMIS != 0"]
     #[inline] pub fn test_tbmmis(&self) -> bool {
         self.tbmmis() != 0
     }
 
-    #[doc="GPTM Timer B Match Masked Interrupt"]
+    #[doc="Sets the TBMMIS field."]
     #[inline] pub fn set_tbmmis<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1831,12 +1831,12 @@ impl Icr {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="GPTM Timer n Time-Out Raw Interrupt"]
+    #[doc="Returns true if TTOCINT != 0"]
     #[inline] pub fn test_ttocint<I: Into<bits::R2>>(&self, index: I) -> bool{
         self.ttocint(index) != 0
     }
 
-    #[doc="GPTM Timer n Time-Out Raw Interrupt"]
+    #[doc="Sets the TTOCINT field."]
     #[inline] pub fn set_ttocint<I: Into<bits::R2>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -1854,12 +1854,12 @@ impl Icr {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [1]
     }
 
-    #[doc="GPTM Timer n Capture Mode Match Interrupt Clear"]
+    #[doc="Returns true if CMCINT != 0"]
     #[inline] pub fn test_cmcint<I: Into<bits::R2>>(&self, index: I) -> bool{
         self.cmcint(index) != 0
     }
 
-    #[doc="GPTM Timer n Capture Mode Match Interrupt Clear"]
+    #[doc="Sets the CMCINT field."]
     #[inline] pub fn set_cmcint<I: Into<bits::R2>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -1877,12 +1877,12 @@ impl Icr {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [2]
     }
 
-    #[doc="GPTM Timer n Capture Mode Event Interrupt Clear"]
+    #[doc="Returns true if CECINT != 0"]
     #[inline] pub fn test_cecint<I: Into<bits::R2>>(&self, index: I) -> bool{
         self.cecint(index) != 0
     }
 
-    #[doc="GPTM Timer n Capture Mode Event Interrupt Clear"]
+    #[doc="Sets the CECINT field."]
     #[inline] pub fn set_cecint<I: Into<bits::R2>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -1898,12 +1898,12 @@ impl Icr {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="GPTM RTC Interrupt Clear"]
+    #[doc="Returns true if RTCCINT != 0"]
     #[inline] pub fn test_rtccint(&self) -> bool {
         self.rtccint() != 0
     }
 
-    #[doc="GPTM RTC Interrupt Clear"]
+    #[doc="Sets the RTCCINT field."]
     #[inline] pub fn set_rtccint<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1917,12 +1917,12 @@ impl Icr {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="GPTM Timer A Match Interrupt Clear"]
+    #[doc="Returns true if TAMCINT != 0"]
     #[inline] pub fn test_tamcint(&self) -> bool {
         self.tamcint() != 0
     }
 
-    #[doc="GPTM Timer A Match Interrupt Clear"]
+    #[doc="Sets the TAMCINT field."]
     #[inline] pub fn set_tamcint<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1938,12 +1938,12 @@ impl Icr {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [5]
     }
 
-    #[doc="GPTM Timer n DMA Done Interrupt Clear"]
+    #[doc="Returns true if DMAINT != 0"]
     #[inline] pub fn test_dmaint<I: Into<bits::R2>>(&self, index: I) -> bool{
         self.dmaint(index) != 0
     }
 
-    #[doc="GPTM Timer n DMA Done Interrupt Clear"]
+    #[doc="Sets the DMAINT field."]
     #[inline] pub fn set_dmaint<I: Into<bits::R2>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -1959,12 +1959,12 @@ impl Icr {
         unsafe { ::core::mem::transmute(((self.0 >> 11) & 0x1) as u8) } // [11]
     }
 
-    #[doc="GPTM Timer B Match Interrupt Clear"]
+    #[doc="Returns true if TBMCINT != 0"]
     #[inline] pub fn test_tbmcint(&self) -> bool {
         self.tbmcint() != 0
     }
 
-    #[doc="GPTM Timer B Match Interrupt Clear"]
+    #[doc="Sets the TBMCINT field."]
     #[inline] pub fn set_tbmcint<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2011,14 +2011,17 @@ impl ::core::fmt::Debug for Icr {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Tilr(pub u32);
 impl Tilr {
+    #[doc="Gets the TILR field."]
     #[inline] pub fn tilr(&self) -> bits::U32 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffffffff) as u32) } // [31:0]
     }
 
+    #[doc="Returns true if TILR != 0"]
     #[inline] pub fn test_tilr(&self) -> bool {
         self.tilr() != 0
     }
 
+    #[doc="Sets the TILR field."]
     #[inline] pub fn set_tilr<V: Into<bits::U32>>(mut self, value: V) -> Self {
         let value: bits::U32 = value.into();
         let value: u32 = value.into();
@@ -2054,14 +2057,17 @@ impl ::core::fmt::Debug for Tilr {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Tmtchr(pub u32);
 impl Tmtchr {
+    #[doc="Gets the TMTCHR field."]
     #[inline] pub fn tmtchr(&self) -> bits::U32 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffffffff) as u32) } // [31:0]
     }
 
+    #[doc="Returns true if TMTCHR != 0"]
     #[inline] pub fn test_tmtchr(&self) -> bool {
         self.tmtchr() != 0
     }
 
+    #[doc="Sets the TMTCHR field."]
     #[inline] pub fn set_tmtchr<V: Into<bits::U32>>(mut self, value: V) -> Self {
         let value: bits::U32 = value.into();
         let value: u32 = value.into();
@@ -2102,12 +2108,12 @@ impl Tpr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
-    #[doc="GPTM Timer n Prescale"]
+    #[doc="Returns true if TPSR != 0"]
     #[inline] pub fn test_tpsr(&self) -> bool {
         self.tpsr() != 0
     }
 
-    #[doc="GPTM Timer n Prescale"]
+    #[doc="Sets the TPSR field."]
     #[inline] pub fn set_tpsr<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -2149,12 +2155,12 @@ impl Tpmr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
-    #[doc="GPTM Timer n Prescale Match"]
+    #[doc="Returns true if TPSMR != 0"]
     #[inline] pub fn test_tpsmr(&self) -> bool {
         self.tpsmr() != 0
     }
 
-    #[doc="GPTM Timer n Prescale Match"]
+    #[doc="Sets the TPSMR field."]
     #[inline] pub fn set_tpsmr<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -2191,14 +2197,17 @@ impl ::core::fmt::Debug for Tpmr {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Tr(pub u32);
 impl Tr {
+    #[doc="Gets the TR field."]
     #[inline] pub fn tr(&self) -> bits::U32 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffffffff) as u32) } // [31:0]
     }
 
+    #[doc="Returns true if TR != 0"]
     #[inline] pub fn test_tr(&self) -> bool {
         self.tr() != 0
     }
 
+    #[doc="Sets the TR field."]
     #[inline] pub fn set_tr<V: Into<bits::U32>>(mut self, value: V) -> Self {
         let value: bits::U32 = value.into();
         let value: u32 = value.into();
@@ -2234,14 +2243,17 @@ impl ::core::fmt::Debug for Tr {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Tv(pub u32);
 impl Tv {
+    #[doc="Gets the TV field."]
     #[inline] pub fn tv(&self) -> bits::U32 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffffffff) as u32) } // [31:0]
     }
 
+    #[doc="Returns true if TV != 0"]
     #[inline] pub fn test_tv(&self) -> bool {
         self.tv() != 0
     }
 
+    #[doc="Sets the TV field."]
     #[inline] pub fn set_tv<V: Into<bits::U32>>(mut self, value: V) -> Self {
         let value: bits::U32 = value.into();
         let value: u32 = value.into();
@@ -2282,12 +2294,12 @@ impl Rtcpd {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffff) as u16) } // [15:0]
     }
 
-    #[doc="RTC Predivide Counter Value"]
+    #[doc="Returns true if RTCPD != 0"]
     #[inline] pub fn test_rtcpd(&self) -> bool {
         self.rtcpd() != 0
     }
 
-    #[doc="RTC Predivide Counter Value"]
+    #[doc="Sets the RTCPD field."]
     #[inline] pub fn set_rtcpd<V: Into<bits::U16>>(mut self, value: V) -> Self {
         let value: bits::U16 = value.into();
         let value: u32 = value.into();
@@ -2329,12 +2341,12 @@ impl Tps {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffff) as u16) } // [15:0]
     }
 
-    #[doc="GPTM Timer n Prescaler Snapshot"]
+    #[doc="Returns true if PSS != 0"]
     #[inline] pub fn test_pss(&self) -> bool {
         self.pss() != 0
     }
 
-    #[doc="GPTM Timer n Prescaler Snapshot"]
+    #[doc="Sets the PSS field."]
     #[inline] pub fn set_pss<V: Into<bits::U16>>(mut self, value: V) -> Self {
         let value: bits::U16 = value.into();
         let value: u32 = value.into();
@@ -2378,12 +2390,12 @@ impl Dmaev {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="GPTM n Time-Out Event DMA Trigger Enable"]
+    #[doc="Returns true if TTODMAEN != 0"]
     #[inline] pub fn test_ttodmaen<I: Into<bits::R2>>(&self, index: I) -> bool{
         self.ttodmaen(index) != 0
     }
 
-    #[doc="GPTM n Time-Out Event DMA Trigger Enable"]
+    #[doc="Sets the TTODMAEN field."]
     #[inline] pub fn set_ttodmaen<I: Into<bits::R2>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -2401,12 +2413,12 @@ impl Dmaev {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [1]
     }
 
-    #[doc="GPTM n Capture Match Event DMA Trigger Enable"]
+    #[doc="Returns true if CMDMAEN != 0"]
     #[inline] pub fn test_cmdmaen<I: Into<bits::R2>>(&self, index: I) -> bool{
         self.cmdmaen(index) != 0
     }
 
-    #[doc="GPTM n Capture Match Event DMA Trigger Enable"]
+    #[doc="Sets the CMDMAEN field."]
     #[inline] pub fn set_cmdmaen<I: Into<bits::R2>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -2424,12 +2436,12 @@ impl Dmaev {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [2]
     }
 
-    #[doc="GPTM n Capture Event DMA Trigger Enable"]
+    #[doc="Returns true if CEDMAEN != 0"]
     #[inline] pub fn test_cedmaen<I: Into<bits::R2>>(&self, index: I) -> bool{
         self.cedmaen(index) != 0
     }
 
-    #[doc="GPTM n Capture Event DMA Trigger Enable"]
+    #[doc="Sets the CEDMAEN field."]
     #[inline] pub fn set_cedmaen<I: Into<bits::R2>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -2445,12 +2457,12 @@ impl Dmaev {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="GPTM RTC Match Event DMA Trigger Enable"]
+    #[doc="Returns true if RTCDMAEN != 0"]
     #[inline] pub fn test_rtcdmaen(&self) -> bool {
         self.rtcdmaen() != 0
     }
 
-    #[doc="GPTM RTC Match Event DMA Trigger Enable"]
+    #[doc="Sets the RTCDMAEN field."]
     #[inline] pub fn set_rtcdmaen<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2466,12 +2478,12 @@ impl Dmaev {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [4]
     }
 
-    #[doc="GPTM n Mode Match Event DMA Trigger Enable"]
+    #[doc="Returns true if TMDMAEN != 0"]
     #[inline] pub fn test_tmdmaen<I: Into<bits::R2>>(&self, index: I) -> bool{
         self.tmdmaen(index) != 0
     }
 
-    #[doc="GPTM n Mode Match Event DMA Trigger Enable"]
+    #[doc="Sets the TMDMAEN field."]
     #[inline] pub fn set_tmdmaen<I: Into<bits::R2>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -2525,12 +2537,12 @@ impl Adcev {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="GPTM n Time-Out Event ADC Trigger Enable"]
+    #[doc="Returns true if TTOADCEN != 0"]
     #[inline] pub fn test_ttoadcen<I: Into<bits::R2>>(&self, index: I) -> bool{
         self.ttoadcen(index) != 0
     }
 
-    #[doc="GPTM n Time-Out Event ADC Trigger Enable"]
+    #[doc="Sets the TTOADCEN field."]
     #[inline] pub fn set_ttoadcen<I: Into<bits::R2>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -2548,12 +2560,12 @@ impl Adcev {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [1]
     }
 
-    #[doc="GPTM n Capture Match Event ADC Trigger Enable"]
+    #[doc="Returns true if CMADCEN != 0"]
     #[inline] pub fn test_cmadcen<I: Into<bits::R2>>(&self, index: I) -> bool{
         self.cmadcen(index) != 0
     }
 
-    #[doc="GPTM n Capture Match Event ADC Trigger Enable"]
+    #[doc="Sets the CMADCEN field."]
     #[inline] pub fn set_cmadcen<I: Into<bits::R2>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -2571,12 +2583,12 @@ impl Adcev {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [2]
     }
 
-    #[doc="GPTM Capture Event ADC Trigger Enable"]
+    #[doc="Returns true if CEADCEN != 0"]
     #[inline] pub fn test_ceadcen<I: Into<bits::R2>>(&self, index: I) -> bool{
         self.ceadcen(index) != 0
     }
 
-    #[doc="GPTM Capture Event ADC Trigger Enable"]
+    #[doc="Sets the CEADCEN field."]
     #[inline] pub fn set_ceadcen<I: Into<bits::R2>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -2592,12 +2604,12 @@ impl Adcev {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="GPTM RTC Match Event ADC Trigger Enable"]
+    #[doc="Returns true if RTCADCEN != 0"]
     #[inline] pub fn test_rtcadcen(&self) -> bool {
         self.rtcadcen() != 0
     }
 
-    #[doc="GPTM RTC Match Event ADC Trigger Enable"]
+    #[doc="Sets the RTCADCEN field."]
     #[inline] pub fn set_rtcadcen<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2613,12 +2625,12 @@ impl Adcev {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [4]
     }
 
-    #[doc="GPTM n Mode Match Event ADC Trigger Enable"]
+    #[doc="Returns true if TMADCEN != 0"]
     #[inline] pub fn test_tmadcen<I: Into<bits::R2>>(&self, index: I) -> bool{
         self.tmadcen(index) != 0
     }
 
-    #[doc="GPTM n Mode Match Event ADC Trigger Enable"]
+    #[doc="Sets the TMADCEN field."]
     #[inline] pub fn set_tmadcen<I: Into<bits::R2>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -2670,12 +2682,12 @@ impl Pp {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xf) as u8) } // [3:0]
     }
 
-    #[doc="Count Size"]
+    #[doc="Returns true if SIZE != 0"]
     #[inline] pub fn test_size(&self) -> bool {
         self.size() != 0
     }
 
-    #[doc="Count Size"]
+    #[doc="Sets the SIZE field."]
     #[inline] pub fn set_size<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -2689,12 +2701,12 @@ impl Pp {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="Chain with Other Timers"]
+    #[doc="Returns true if CHAIN != 0"]
     #[inline] pub fn test_chain(&self) -> bool {
         self.chain() != 0
     }
 
-    #[doc="Chain with Other Timers"]
+    #[doc="Sets the CHAIN field."]
     #[inline] pub fn set_chain<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2708,12 +2720,12 @@ impl Pp {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="Synchronize Start"]
+    #[doc="Returns true if SYNCCNT != 0"]
     #[inline] pub fn test_synccnt(&self) -> bool {
         self.synccnt() != 0
     }
 
-    #[doc="Synchronize Start"]
+    #[doc="Sets the SYNCCNT field."]
     #[inline] pub fn set_synccnt<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2727,12 +2739,12 @@ impl Pp {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="Alternate Clock Source"]
+    #[doc="Returns true if ALTCLK != 0"]
     #[inline] pub fn test_altclk(&self) -> bool {
         self.altclk() != 0
     }
 
-    #[doc="Alternate Clock Source"]
+    #[doc="Sets the ALTCLK field."]
     #[inline] pub fn set_altclk<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2777,12 +2789,12 @@ impl Cc {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Alternate Clock Source"]
+    #[doc="Returns true if ALTCLK != 0"]
     #[inline] pub fn test_altclk(&self) -> bool {
         self.altclk() != 0
     }
 
-    #[doc="Alternate Clock Source"]
+    #[doc="Sets the ALTCLK field."]
     #[inline] pub fn set_altclk<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();

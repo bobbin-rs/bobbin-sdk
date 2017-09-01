@@ -150,12 +150,12 @@ impl Csr {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1) as u8) } // [16]
     }
 
-    #[doc="Returns 1 if timer counted to 0 since last time this was read."]
+    #[doc="Returns true if COUNTFLAG != 0"]
     #[inline] pub fn test_countflag(&self) -> bool {
         self.countflag() != 0
     }
 
-    #[doc="Returns 1 if timer counted to 0 since last time this was read."]
+    #[doc="Sets the COUNTFLAG field."]
     #[inline] pub fn set_countflag<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -169,12 +169,12 @@ impl Csr {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="Indicates the clock source: 0 = external clock, 1 = processor clock."]
+    #[doc="Returns true if CLKSOURCE != 0"]
     #[inline] pub fn test_clksource(&self) -> bool {
         self.clksource() != 0
     }
 
-    #[doc="Indicates the clock source: 0 = external clock, 1 = processor clock."]
+    #[doc="Sets the CLKSOURCE field."]
     #[inline] pub fn set_clksource<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -188,12 +188,12 @@ impl Csr {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="Enables SysTick exception request: 0 = counting down to zero does not assert the SysTick exception request, 1 = counting down to zero asserts the SysTick exception request."]
+    #[doc="Returns true if TICKINT != 0"]
     #[inline] pub fn test_tickint(&self) -> bool {
         self.tickint() != 0
     }
 
-    #[doc="Enables SysTick exception request: 0 = counting down to zero does not assert the SysTick exception request, 1 = counting down to zero asserts the SysTick exception request."]
+    #[doc="Sets the TICKINT field."]
     #[inline] pub fn set_tickint<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -207,12 +207,12 @@ impl Csr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Enables the counter: 0 = counter disabled, 1 = counter enabled."]
+    #[doc="Returns true if ENABLE != 0"]
     #[inline] pub fn test_enable(&self) -> bool {
         self.enable() != 0
     }
 
-    #[doc="Enables the counter: 0 = counter disabled, 1 = counter enabled."]
+    #[doc="Sets the ENABLE field."]
     #[inline] pub fn set_enable<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -257,12 +257,12 @@ impl Rvr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffffff) as u32) } // [23:0]
     }
 
-    #[doc="Value to load into the SYST_CVR register when the counter is enabled and when it reaches 0"]
+    #[doc="Returns true if RELOAD != 0"]
     #[inline] pub fn test_reload(&self) -> bool {
         self.reload() != 0
     }
 
-    #[doc="Value to load into the SYST_CVR register when the counter is enabled and when it reaches 0"]
+    #[doc="Sets the RELOAD field."]
     #[inline] pub fn set_reload<V: Into<bits::U24>>(mut self, value: V) -> Self {
         let value: bits::U24 = value.into();
         let value: u32 = value.into();
@@ -304,12 +304,12 @@ impl Cvr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffffff) as u32) } // [23:0]
     }
 
-    #[doc="Reads return the current value of the SysTick counter. A write of any value clears the field to 0, and also clears the SYST_CSR COUNTFLAG bit to 0."]
+    #[doc="Returns true if CURRENT != 0"]
     #[inline] pub fn test_current(&self) -> bool {
         self.current() != 0
     }
 
-    #[doc="Reads return the current value of the SysTick counter. A write of any value clears the field to 0, and also clears the SYST_CSR COUNTFLAG bit to 0."]
+    #[doc="Sets the CURRENT field."]
     #[inline] pub fn set_current<V: Into<bits::U24>>(mut self, value: V) -> Self {
         let value: bits::U24 = value.into();
         let value: u32 = value.into();
@@ -351,12 +351,12 @@ impl Calib {
         unsafe { ::core::mem::transmute(((self.0 >> 31) & 0x1) as u8) } // [31]
     }
 
-    #[doc="Indicates whether the device provides a reference clock to the processor"]
+    #[doc="Returns true if NOREF != 0"]
     #[inline] pub fn test_noref(&self) -> bool {
         self.noref() != 0
     }
 
-    #[doc="Indicates whether the device provides a reference clock to the processor"]
+    #[doc="Sets the NOREF field."]
     #[inline] pub fn set_noref<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -370,12 +370,12 @@ impl Calib {
         unsafe { ::core::mem::transmute(((self.0 >> 30) & 0x1) as u8) } // [30]
     }
 
-    #[doc="Indicates whether the TENMS value is exact: 0 = TENMS value is exact, 1 = TENMS value is inexact, or not given."]
+    #[doc="Returns true if SKEW != 0"]
     #[inline] pub fn test_skew(&self) -> bool {
         self.skew() != 0
     }
 
-    #[doc="Indicates whether the TENMS value is exact: 0 = TENMS value is exact, 1 = TENMS value is inexact, or not given."]
+    #[doc="Sets the SKEW field."]
     #[inline] pub fn set_skew<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -389,12 +389,12 @@ impl Calib {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffffff) as u32) } // [23:0]
     }
 
-    #[doc="Reload value for 10ms (100Hz) timing, subject to system clock skew errors."]
+    #[doc="Returns true if TENMS != 0"]
     #[inline] pub fn test_tenms(&self) -> bool {
         self.tenms() != 0
     }
 
-    #[doc="Reload value for 10ms (100Hz) timing, subject to system clock skew errors."]
+    #[doc="Sets the TENMS field."]
     #[inline] pub fn set_tenms<V: Into<bits::U24>>(mut self, value: V) -> Self {
         let value: bits::U24 = value.into();
         let value: u32 = value.into();

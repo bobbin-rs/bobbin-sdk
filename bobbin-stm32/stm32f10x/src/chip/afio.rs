@@ -249,12 +249,12 @@ impl Evcr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xf) as u8) } // [3:0]
     }
 
-    #[doc="Pin selection"]
+    #[doc="Returns true if PIN != 0"]
     #[inline] pub fn test_pin(&self) -> bool {
         self.pin() != 0
     }
 
-    #[doc="Pin selection"]
+    #[doc="Sets the PIN field."]
     #[inline] pub fn set_pin<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -268,12 +268,12 @@ impl Evcr {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x7) as u8) } // [6:4]
     }
 
-    #[doc="Port selection"]
+    #[doc="Returns true if PORT != 0"]
     #[inline] pub fn test_port(&self) -> bool {
         self.port() != 0
     }
 
-    #[doc="Port selection"]
+    #[doc="Sets the PORT field."]
     #[inline] pub fn set_port<V: Into<bits::U3>>(mut self, value: V) -> Self {
         let value: bits::U3 = value.into();
         let value: u32 = value.into();
@@ -287,12 +287,12 @@ impl Evcr {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="Event Output Enable"]
+    #[doc="Returns true if EVOE != 0"]
     #[inline] pub fn test_evoe(&self) -> bool {
         self.evoe() != 0
     }
 
-    #[doc="Event Output Enable"]
+    #[doc="Sets the EVOE field."]
     #[inline] pub fn set_evoe<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -336,12 +336,12 @@ impl Mapr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="SPI1 remapping"]
+    #[doc="Returns true if SPI1_REMAP != 0"]
     #[inline] pub fn test_spi1_remap(&self) -> bool {
         self.spi1_remap() != 0
     }
 
-    #[doc="SPI1 remapping"]
+    #[doc="Sets the SPI1_REMAP field."]
     #[inline] pub fn set_spi1_remap<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -355,12 +355,12 @@ impl Mapr {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="I2C1 remapping"]
+    #[doc="Returns true if I2C1_REMAP != 0"]
     #[inline] pub fn test_i2c1_remap(&self) -> bool {
         self.i2c1_remap() != 0
     }
 
-    #[doc="I2C1 remapping"]
+    #[doc="Sets the I2C1_REMAP field."]
     #[inline] pub fn set_i2c1_remap<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -374,12 +374,12 @@ impl Mapr {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="USART1 remapping"]
+    #[doc="Returns true if USART1_REMAP != 0"]
     #[inline] pub fn test_usart1_remap(&self) -> bool {
         self.usart1_remap() != 0
     }
 
-    #[doc="USART1 remapping"]
+    #[doc="Sets the USART1_REMAP field."]
     #[inline] pub fn set_usart1_remap<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -393,12 +393,12 @@ impl Mapr {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="USART2 remapping"]
+    #[doc="Returns true if USART2_REMAP != 0"]
     #[inline] pub fn test_usart2_remap(&self) -> bool {
         self.usart2_remap() != 0
     }
 
-    #[doc="USART2 remapping"]
+    #[doc="Sets the USART2_REMAP field."]
     #[inline] pub fn set_usart2_remap<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -412,12 +412,12 @@ impl Mapr {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x3) as u8) } // [5:4]
     }
 
-    #[doc="USART3 remapping"]
+    #[doc="Returns true if USART3_REMAP != 0"]
     #[inline] pub fn test_usart3_remap(&self) -> bool {
         self.usart3_remap() != 0
     }
 
-    #[doc="USART3 remapping"]
+    #[doc="Sets the USART3_REMAP field."]
     #[inline] pub fn set_usart3_remap<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -431,12 +431,12 @@ impl Mapr {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x3) as u8) } // [7:6]
     }
 
-    #[doc="TIM1 remapping"]
+    #[doc="Returns true if TIM1_REMAP != 0"]
     #[inline] pub fn test_tim1_remap(&self) -> bool {
         self.tim1_remap() != 0
     }
 
-    #[doc="TIM1 remapping"]
+    #[doc="Sets the TIM1_REMAP field."]
     #[inline] pub fn set_tim1_remap<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -450,12 +450,12 @@ impl Mapr {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x3) as u8) } // [9:8]
     }
 
-    #[doc="TIM2 remapping"]
+    #[doc="Returns true if TIM2_REMAP != 0"]
     #[inline] pub fn test_tim2_remap(&self) -> bool {
         self.tim2_remap() != 0
     }
 
-    #[doc="TIM2 remapping"]
+    #[doc="Sets the TIM2_REMAP field."]
     #[inline] pub fn set_tim2_remap<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -469,12 +469,12 @@ impl Mapr {
         unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x3) as u8) } // [11:10]
     }
 
-    #[doc="TIM3 remapping"]
+    #[doc="Returns true if TIM3_REMAP != 0"]
     #[inline] pub fn test_tim3_remap(&self) -> bool {
         self.tim3_remap() != 0
     }
 
-    #[doc="TIM3 remapping"]
+    #[doc="Sets the TIM3_REMAP field."]
     #[inline] pub fn set_tim3_remap<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -488,12 +488,12 @@ impl Mapr {
         unsafe { ::core::mem::transmute(((self.0 >> 12) & 0x1) as u8) } // [12]
     }
 
-    #[doc="TIM4 remapping"]
+    #[doc="Returns true if TIM4_REMAP != 0"]
     #[inline] pub fn test_tim4_remap(&self) -> bool {
         self.tim4_remap() != 0
     }
 
-    #[doc="TIM4 remapping"]
+    #[doc="Sets the TIM4_REMAP field."]
     #[inline] pub fn set_tim4_remap<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -507,12 +507,12 @@ impl Mapr {
         unsafe { ::core::mem::transmute(((self.0 >> 13) & 0x3) as u8) } // [14:13]
     }
 
-    #[doc="CAN1 remapping"]
+    #[doc="Returns true if CAN_REMAP != 0"]
     #[inline] pub fn test_can_remap(&self) -> bool {
         self.can_remap() != 0
     }
 
-    #[doc="CAN1 remapping"]
+    #[doc="Sets the CAN_REMAP field."]
     #[inline] pub fn set_can_remap<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -526,12 +526,12 @@ impl Mapr {
         unsafe { ::core::mem::transmute(((self.0 >> 15) & 0x1) as u8) } // [15]
     }
 
-    #[doc="Port D0/Port D1 mapping on OSCIN/OSCOUT"]
+    #[doc="Returns true if PD01_REMAP != 0"]
     #[inline] pub fn test_pd01_remap(&self) -> bool {
         self.pd01_remap() != 0
     }
 
-    #[doc="Port D0/Port D1 mapping on OSCIN/OSCOUT"]
+    #[doc="Sets the PD01_REMAP field."]
     #[inline] pub fn set_pd01_remap<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -545,12 +545,12 @@ impl Mapr {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1) as u8) } // [16]
     }
 
-    #[doc="Set and cleared by software"]
+    #[doc="Returns true if TIM5CH4_IREMAP != 0"]
     #[inline] pub fn test_tim5ch4_iremap(&self) -> bool {
         self.tim5ch4_iremap() != 0
     }
 
-    #[doc="Set and cleared by software"]
+    #[doc="Sets the TIM5CH4_IREMAP field."]
     #[inline] pub fn set_tim5ch4_iremap<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -564,12 +564,12 @@ impl Mapr {
         unsafe { ::core::mem::transmute(((self.0 >> 17) & 0x1) as u8) } // [17]
     }
 
-    #[doc="ADC 1 External trigger injected conversion remapping"]
+    #[doc="Returns true if ADC1_ETRGINJ_REMAP != 0"]
     #[inline] pub fn test_adc1_etrginj_remap(&self) -> bool {
         self.adc1_etrginj_remap() != 0
     }
 
-    #[doc="ADC 1 External trigger injected conversion remapping"]
+    #[doc="Sets the ADC1_ETRGINJ_REMAP field."]
     #[inline] pub fn set_adc1_etrginj_remap<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -583,12 +583,12 @@ impl Mapr {
         unsafe { ::core::mem::transmute(((self.0 >> 18) & 0x1) as u8) } // [18]
     }
 
-    #[doc="ADC 1 external trigger regular conversion remapping"]
+    #[doc="Returns true if ADC1_ETRGREG_REMAP != 0"]
     #[inline] pub fn test_adc1_etrgreg_remap(&self) -> bool {
         self.adc1_etrgreg_remap() != 0
     }
 
-    #[doc="ADC 1 external trigger regular conversion remapping"]
+    #[doc="Sets the ADC1_ETRGREG_REMAP field."]
     #[inline] pub fn set_adc1_etrgreg_remap<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -602,12 +602,12 @@ impl Mapr {
         unsafe { ::core::mem::transmute(((self.0 >> 19) & 0x1) as u8) } // [19]
     }
 
-    #[doc="ADC 2 external trigger injected conversion remapping"]
+    #[doc="Returns true if ADC2_ETRGINJ_REMAP != 0"]
     #[inline] pub fn test_adc2_etrginj_remap(&self) -> bool {
         self.adc2_etrginj_remap() != 0
     }
 
-    #[doc="ADC 2 external trigger injected conversion remapping"]
+    #[doc="Sets the ADC2_ETRGINJ_REMAP field."]
     #[inline] pub fn set_adc2_etrginj_remap<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -621,12 +621,12 @@ impl Mapr {
         unsafe { ::core::mem::transmute(((self.0 >> 20) & 0x1) as u8) } // [20]
     }
 
-    #[doc="ADC 2 external trigger regular conversion remapping"]
+    #[doc="Returns true if ADC2_ETRGREG_REMAP != 0"]
     #[inline] pub fn test_adc2_etrgreg_remap(&self) -> bool {
         self.adc2_etrgreg_remap() != 0
     }
 
-    #[doc="ADC 2 external trigger regular conversion remapping"]
+    #[doc="Sets the ADC2_ETRGREG_REMAP field."]
     #[inline] pub fn set_adc2_etrgreg_remap<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -640,12 +640,12 @@ impl Mapr {
         unsafe { ::core::mem::transmute(((self.0 >> 24) & 0x7) as u8) } // [26:24]
     }
 
-    #[doc="Serial wire JTAG configuration"]
+    #[doc="Returns true if SWJ_CFG != 0"]
     #[inline] pub fn test_swj_cfg(&self) -> bool {
         self.swj_cfg() != 0
     }
 
-    #[doc="Serial wire JTAG configuration"]
+    #[doc="Sets the SWJ_CFG field."]
     #[inline] pub fn set_swj_cfg<V: Into<bits::U3>>(mut self, value: V) -> Self {
         let value: bits::U3 = value.into();
         let value: u32 = value.into();
@@ -703,12 +703,12 @@ impl Exticr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xf) as u8) } // [3:0]
     }
 
-    #[doc="EXTI0 configuration"]
+    #[doc="Returns true if EXTI0 != 0"]
     #[inline] pub fn test_exti0(&self) -> bool {
         self.exti0() != 0
     }
 
-    #[doc="EXTI0 configuration"]
+    #[doc="Sets the EXTI0 field."]
     #[inline] pub fn set_exti0<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -722,12 +722,12 @@ impl Exticr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0xf) as u8) } // [7:4]
     }
 
-    #[doc="EXTI1 configuration"]
+    #[doc="Returns true if EXTI1 != 0"]
     #[inline] pub fn test_exti1(&self) -> bool {
         self.exti1() != 0
     }
 
-    #[doc="EXTI1 configuration"]
+    #[doc="Sets the EXTI1 field."]
     #[inline] pub fn set_exti1<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -741,12 +741,12 @@ impl Exticr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0xf) as u8) } // [11:8]
     }
 
-    #[doc="EXTI2 configuration"]
+    #[doc="Returns true if EXTI2 != 0"]
     #[inline] pub fn test_exti2(&self) -> bool {
         self.exti2() != 0
     }
 
-    #[doc="EXTI2 configuration"]
+    #[doc="Sets the EXTI2 field."]
     #[inline] pub fn set_exti2<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -760,12 +760,12 @@ impl Exticr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 12) & 0xf) as u8) } // [15:12]
     }
 
-    #[doc="EXTI3 configuration"]
+    #[doc="Returns true if EXTI3 != 0"]
     #[inline] pub fn test_exti3(&self) -> bool {
         self.exti3() != 0
     }
 
-    #[doc="EXTI3 configuration"]
+    #[doc="Sets the EXTI3 field."]
     #[inline] pub fn set_exti3<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -810,12 +810,12 @@ impl Exticr2 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xf) as u8) } // [3:0]
     }
 
-    #[doc="EXTI4 configuration"]
+    #[doc="Returns true if EXTI4 != 0"]
     #[inline] pub fn test_exti4(&self) -> bool {
         self.exti4() != 0
     }
 
-    #[doc="EXTI4 configuration"]
+    #[doc="Sets the EXTI4 field."]
     #[inline] pub fn set_exti4<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -829,12 +829,12 @@ impl Exticr2 {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0xf) as u8) } // [7:4]
     }
 
-    #[doc="EXTI5 configuration"]
+    #[doc="Returns true if EXTI5 != 0"]
     #[inline] pub fn test_exti5(&self) -> bool {
         self.exti5() != 0
     }
 
-    #[doc="EXTI5 configuration"]
+    #[doc="Sets the EXTI5 field."]
     #[inline] pub fn set_exti5<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -848,12 +848,12 @@ impl Exticr2 {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0xf) as u8) } // [11:8]
     }
 
-    #[doc="EXTI6 configuration"]
+    #[doc="Returns true if EXTI6 != 0"]
     #[inline] pub fn test_exti6(&self) -> bool {
         self.exti6() != 0
     }
 
-    #[doc="EXTI6 configuration"]
+    #[doc="Sets the EXTI6 field."]
     #[inline] pub fn set_exti6<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -867,12 +867,12 @@ impl Exticr2 {
         unsafe { ::core::mem::transmute(((self.0 >> 12) & 0xf) as u8) } // [15:12]
     }
 
-    #[doc="EXTI7 configuration"]
+    #[doc="Returns true if EXTI7 != 0"]
     #[inline] pub fn test_exti7(&self) -> bool {
         self.exti7() != 0
     }
 
-    #[doc="EXTI7 configuration"]
+    #[doc="Sets the EXTI7 field."]
     #[inline] pub fn set_exti7<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -917,12 +917,12 @@ impl Exticr3 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xf) as u8) } // [3:0]
     }
 
-    #[doc="EXTI8 configuration"]
+    #[doc="Returns true if EXTI8 != 0"]
     #[inline] pub fn test_exti8(&self) -> bool {
         self.exti8() != 0
     }
 
-    #[doc="EXTI8 configuration"]
+    #[doc="Sets the EXTI8 field."]
     #[inline] pub fn set_exti8<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -936,12 +936,12 @@ impl Exticr3 {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0xf) as u8) } // [7:4]
     }
 
-    #[doc="EXTI9 configuration"]
+    #[doc="Returns true if EXTI9 != 0"]
     #[inline] pub fn test_exti9(&self) -> bool {
         self.exti9() != 0
     }
 
-    #[doc="EXTI9 configuration"]
+    #[doc="Sets the EXTI9 field."]
     #[inline] pub fn set_exti9<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -955,12 +955,12 @@ impl Exticr3 {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0xf) as u8) } // [11:8]
     }
 
-    #[doc="EXTI10 configuration"]
+    #[doc="Returns true if EXTI10 != 0"]
     #[inline] pub fn test_exti10(&self) -> bool {
         self.exti10() != 0
     }
 
-    #[doc="EXTI10 configuration"]
+    #[doc="Sets the EXTI10 field."]
     #[inline] pub fn set_exti10<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -974,12 +974,12 @@ impl Exticr3 {
         unsafe { ::core::mem::transmute(((self.0 >> 12) & 0xf) as u8) } // [15:12]
     }
 
-    #[doc="EXTI11 configuration"]
+    #[doc="Returns true if EXTI11 != 0"]
     #[inline] pub fn test_exti11(&self) -> bool {
         self.exti11() != 0
     }
 
-    #[doc="EXTI11 configuration"]
+    #[doc="Sets the EXTI11 field."]
     #[inline] pub fn set_exti11<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -1024,12 +1024,12 @@ impl Exticr4 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xf) as u8) } // [3:0]
     }
 
-    #[doc="EXTI12 configuration"]
+    #[doc="Returns true if EXTI12 != 0"]
     #[inline] pub fn test_exti12(&self) -> bool {
         self.exti12() != 0
     }
 
-    #[doc="EXTI12 configuration"]
+    #[doc="Sets the EXTI12 field."]
     #[inline] pub fn set_exti12<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -1043,12 +1043,12 @@ impl Exticr4 {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0xf) as u8) } // [7:4]
     }
 
-    #[doc="EXTI13 configuration"]
+    #[doc="Returns true if EXTI13 != 0"]
     #[inline] pub fn test_exti13(&self) -> bool {
         self.exti13() != 0
     }
 
-    #[doc="EXTI13 configuration"]
+    #[doc="Sets the EXTI13 field."]
     #[inline] pub fn set_exti13<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -1062,12 +1062,12 @@ impl Exticr4 {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0xf) as u8) } // [11:8]
     }
 
-    #[doc="EXTI14 configuration"]
+    #[doc="Returns true if EXTI14 != 0"]
     #[inline] pub fn test_exti14(&self) -> bool {
         self.exti14() != 0
     }
 
-    #[doc="EXTI14 configuration"]
+    #[doc="Sets the EXTI14 field."]
     #[inline] pub fn set_exti14<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -1081,12 +1081,12 @@ impl Exticr4 {
         unsafe { ::core::mem::transmute(((self.0 >> 12) & 0xf) as u8) } // [15:12]
     }
 
-    #[doc="EXTI15 configuration"]
+    #[doc="Returns true if EXTI15 != 0"]
     #[inline] pub fn test_exti15(&self) -> bool {
         self.exti15() != 0
     }
 
-    #[doc="EXTI15 configuration"]
+    #[doc="Sets the EXTI15 field."]
     #[inline] pub fn set_exti15<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -1131,12 +1131,12 @@ impl Mapr2 {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="TIM9 remapping"]
+    #[doc="Returns true if TIM9_REMAP != 0"]
     #[inline] pub fn test_tim9_remap(&self) -> bool {
         self.tim9_remap() != 0
     }
 
-    #[doc="TIM9 remapping"]
+    #[doc="Sets the TIM9_REMAP field."]
     #[inline] pub fn set_tim9_remap<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1150,12 +1150,12 @@ impl Mapr2 {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="TIM10 remapping"]
+    #[doc="Returns true if TIM10_REMAP != 0"]
     #[inline] pub fn test_tim10_remap(&self) -> bool {
         self.tim10_remap() != 0
     }
 
-    #[doc="TIM10 remapping"]
+    #[doc="Sets the TIM10_REMAP field."]
     #[inline] pub fn set_tim10_remap<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1169,12 +1169,12 @@ impl Mapr2 {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="TIM11 remapping"]
+    #[doc="Returns true if TIM11_REMAP != 0"]
     #[inline] pub fn test_tim11_remap(&self) -> bool {
         self.tim11_remap() != 0
     }
 
-    #[doc="TIM11 remapping"]
+    #[doc="Sets the TIM11_REMAP field."]
     #[inline] pub fn set_tim11_remap<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1188,12 +1188,12 @@ impl Mapr2 {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
     }
 
-    #[doc="TIM13 remapping"]
+    #[doc="Returns true if TIM13_REMAP != 0"]
     #[inline] pub fn test_tim13_remap(&self) -> bool {
         self.tim13_remap() != 0
     }
 
-    #[doc="TIM13 remapping"]
+    #[doc="Sets the TIM13_REMAP field."]
     #[inline] pub fn set_tim13_remap<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1207,12 +1207,12 @@ impl Mapr2 {
         unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
     }
 
-    #[doc="TIM14 remapping"]
+    #[doc="Returns true if TIM14_REMAP != 0"]
     #[inline] pub fn test_tim14_remap(&self) -> bool {
         self.tim14_remap() != 0
     }
 
-    #[doc="TIM14 remapping"]
+    #[doc="Sets the TIM14_REMAP field."]
     #[inline] pub fn set_tim14_remap<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1226,12 +1226,12 @@ impl Mapr2 {
         unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x1) as u8) } // [10]
     }
 
-    #[doc="NADV connect/disconnect"]
+    #[doc="Returns true if FSMC_NADV != 0"]
     #[inline] pub fn test_fsmc_nadv(&self) -> bool {
         self.fsmc_nadv() != 0
     }
 
-    #[doc="NADV connect/disconnect"]
+    #[doc="Sets the FSMC_NADV field."]
     #[inline] pub fn set_fsmc_nadv<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();

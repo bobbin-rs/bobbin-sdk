@@ -235,12 +235,12 @@ impl Isr {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="Counter direction change up to down"]
+    #[doc="Returns true if DOWN != 0"]
     #[inline] pub fn test_down(&self) -> bool {
         self.down() != 0
     }
 
-    #[doc="Counter direction change up to down"]
+    #[doc="Sets the DOWN field."]
     #[inline] pub fn set_down<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -254,12 +254,12 @@ impl Isr {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="Counter direction change down to up"]
+    #[doc="Returns true if UP != 0"]
     #[inline] pub fn test_up(&self) -> bool {
         self.up() != 0
     }
 
-    #[doc="Counter direction change down to up"]
+    #[doc="Sets the UP field."]
     #[inline] pub fn set_up<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -273,12 +273,12 @@ impl Isr {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="Autoreload register update OK"]
+    #[doc="Returns true if ARROK != 0"]
     #[inline] pub fn test_arrok(&self) -> bool {
         self.arrok() != 0
     }
 
-    #[doc="Autoreload register update OK"]
+    #[doc="Sets the ARROK field."]
     #[inline] pub fn set_arrok<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -292,12 +292,12 @@ impl Isr {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="Compare register update OK"]
+    #[doc="Returns true if CMPOK != 0"]
     #[inline] pub fn test_cmpok(&self) -> bool {
         self.cmpok() != 0
     }
 
-    #[doc="Compare register update OK"]
+    #[doc="Sets the CMPOK field."]
     #[inline] pub fn set_cmpok<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -311,12 +311,12 @@ impl Isr {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="External trigger edge event"]
+    #[doc="Returns true if EXTTRIG != 0"]
     #[inline] pub fn test_exttrig(&self) -> bool {
         self.exttrig() != 0
     }
 
-    #[doc="External trigger edge event"]
+    #[doc="Sets the EXTTRIG field."]
     #[inline] pub fn set_exttrig<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -330,12 +330,12 @@ impl Isr {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="Autoreload match"]
+    #[doc="Returns true if ARRM != 0"]
     #[inline] pub fn test_arrm(&self) -> bool {
         self.arrm() != 0
     }
 
-    #[doc="Autoreload match"]
+    #[doc="Sets the ARRM field."]
     #[inline] pub fn set_arrm<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -349,12 +349,12 @@ impl Isr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Compare match"]
+    #[doc="Returns true if CMPM != 0"]
     #[inline] pub fn test_cmpm(&self) -> bool {
         self.cmpm() != 0
     }
 
-    #[doc="Compare match"]
+    #[doc="Sets the CMPM field."]
     #[inline] pub fn set_cmpm<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -402,12 +402,12 @@ impl Icr {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="Direction change to down Clear Flag"]
+    #[doc="Returns true if DOWNCF != 0"]
     #[inline] pub fn test_downcf(&self) -> bool {
         self.downcf() != 0
     }
 
-    #[doc="Direction change to down Clear Flag"]
+    #[doc="Sets the DOWNCF field."]
     #[inline] pub fn set_downcf<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -421,12 +421,12 @@ impl Icr {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="Direction change to UP Clear Flag"]
+    #[doc="Returns true if UPCF != 0"]
     #[inline] pub fn test_upcf(&self) -> bool {
         self.upcf() != 0
     }
 
-    #[doc="Direction change to UP Clear Flag"]
+    #[doc="Sets the UPCF field."]
     #[inline] pub fn set_upcf<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -440,12 +440,12 @@ impl Icr {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="Autoreload register update OK Clear Flag"]
+    #[doc="Returns true if ARROKCF != 0"]
     #[inline] pub fn test_arrokcf(&self) -> bool {
         self.arrokcf() != 0
     }
 
-    #[doc="Autoreload register update OK Clear Flag"]
+    #[doc="Sets the ARROKCF field."]
     #[inline] pub fn set_arrokcf<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -459,12 +459,12 @@ impl Icr {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="Compare register update OK Clear Flag"]
+    #[doc="Returns true if CMPOKCF != 0"]
     #[inline] pub fn test_cmpokcf(&self) -> bool {
         self.cmpokcf() != 0
     }
 
-    #[doc="Compare register update OK Clear Flag"]
+    #[doc="Sets the CMPOKCF field."]
     #[inline] pub fn set_cmpokcf<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -478,12 +478,12 @@ impl Icr {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="External trigger valid edge Clear Flag"]
+    #[doc="Returns true if EXTTRIGCF != 0"]
     #[inline] pub fn test_exttrigcf(&self) -> bool {
         self.exttrigcf() != 0
     }
 
-    #[doc="External trigger valid edge Clear Flag"]
+    #[doc="Sets the EXTTRIGCF field."]
     #[inline] pub fn set_exttrigcf<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -497,12 +497,12 @@ impl Icr {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="Autoreload match Clear Flag"]
+    #[doc="Returns true if ARRMCF != 0"]
     #[inline] pub fn test_arrmcf(&self) -> bool {
         self.arrmcf() != 0
     }
 
-    #[doc="Autoreload match Clear Flag"]
+    #[doc="Sets the ARRMCF field."]
     #[inline] pub fn set_arrmcf<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -516,12 +516,12 @@ impl Icr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="compare match Clear Flag"]
+    #[doc="Returns true if CMPMCF != 0"]
     #[inline] pub fn test_cmpmcf(&self) -> bool {
         self.cmpmcf() != 0
     }
 
-    #[doc="compare match Clear Flag"]
+    #[doc="Sets the CMPMCF field."]
     #[inline] pub fn set_cmpmcf<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -569,12 +569,12 @@ impl Ier {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="Direction change to down Interrupt Enable"]
+    #[doc="Returns true if DOWNIE != 0"]
     #[inline] pub fn test_downie(&self) -> bool {
         self.downie() != 0
     }
 
-    #[doc="Direction change to down Interrupt Enable"]
+    #[doc="Sets the DOWNIE field."]
     #[inline] pub fn set_downie<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -588,12 +588,12 @@ impl Ier {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="Direction change to UP Interrupt Enable"]
+    #[doc="Returns true if UPIE != 0"]
     #[inline] pub fn test_upie(&self) -> bool {
         self.upie() != 0
     }
 
-    #[doc="Direction change to UP Interrupt Enable"]
+    #[doc="Sets the UPIE field."]
     #[inline] pub fn set_upie<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -607,12 +607,12 @@ impl Ier {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="Autoreload register update OK Interrupt Enable"]
+    #[doc="Returns true if ARROKIE != 0"]
     #[inline] pub fn test_arrokie(&self) -> bool {
         self.arrokie() != 0
     }
 
-    #[doc="Autoreload register update OK Interrupt Enable"]
+    #[doc="Sets the ARROKIE field."]
     #[inline] pub fn set_arrokie<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -626,12 +626,12 @@ impl Ier {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="Compare register update OK Interrupt Enable"]
+    #[doc="Returns true if CMPOKIE != 0"]
     #[inline] pub fn test_cmpokie(&self) -> bool {
         self.cmpokie() != 0
     }
 
-    #[doc="Compare register update OK Interrupt Enable"]
+    #[doc="Sets the CMPOKIE field."]
     #[inline] pub fn set_cmpokie<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -645,12 +645,12 @@ impl Ier {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="External trigger valid edge Interrupt Enable"]
+    #[doc="Returns true if EXTTRIGIE != 0"]
     #[inline] pub fn test_exttrigie(&self) -> bool {
         self.exttrigie() != 0
     }
 
-    #[doc="External trigger valid edge Interrupt Enable"]
+    #[doc="Sets the EXTTRIGIE field."]
     #[inline] pub fn set_exttrigie<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -664,12 +664,12 @@ impl Ier {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="Autoreload match Interrupt Enable"]
+    #[doc="Returns true if ARRMIE != 0"]
     #[inline] pub fn test_arrmie(&self) -> bool {
         self.arrmie() != 0
     }
 
-    #[doc="Autoreload match Interrupt Enable"]
+    #[doc="Sets the ARRMIE field."]
     #[inline] pub fn set_arrmie<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -683,12 +683,12 @@ impl Ier {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Compare match Interrupt Enable"]
+    #[doc="Returns true if CMPMIE != 0"]
     #[inline] pub fn test_cmpmie(&self) -> bool {
         self.cmpmie() != 0
     }
 
-    #[doc="Compare match Interrupt Enable"]
+    #[doc="Sets the CMPMIE field."]
     #[inline] pub fn set_cmpmie<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -736,12 +736,12 @@ impl Cfgr {
         unsafe { ::core::mem::transmute(((self.0 >> 24) & 0x1) as u8) } // [24]
     }
 
-    #[doc="Encoder mode enable"]
+    #[doc="Returns true if ENC != 0"]
     #[inline] pub fn test_enc(&self) -> bool {
         self.enc() != 0
     }
 
-    #[doc="Encoder mode enable"]
+    #[doc="Sets the ENC field."]
     #[inline] pub fn set_enc<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -755,12 +755,12 @@ impl Cfgr {
         unsafe { ::core::mem::transmute(((self.0 >> 23) & 0x1) as u8) } // [23]
     }
 
-    #[doc="counter mode enabled"]
+    #[doc="Returns true if COUNTMODE != 0"]
     #[inline] pub fn test_countmode(&self) -> bool {
         self.countmode() != 0
     }
 
-    #[doc="counter mode enabled"]
+    #[doc="Sets the COUNTMODE field."]
     #[inline] pub fn set_countmode<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -774,12 +774,12 @@ impl Cfgr {
         unsafe { ::core::mem::transmute(((self.0 >> 22) & 0x1) as u8) } // [22]
     }
 
-    #[doc="Registers update mode"]
+    #[doc="Returns true if PRELOAD != 0"]
     #[inline] pub fn test_preload(&self) -> bool {
         self.preload() != 0
     }
 
-    #[doc="Registers update mode"]
+    #[doc="Sets the PRELOAD field."]
     #[inline] pub fn set_preload<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -793,12 +793,12 @@ impl Cfgr {
         unsafe { ::core::mem::transmute(((self.0 >> 21) & 0x1) as u8) } // [21]
     }
 
-    #[doc="Waveform shape polarity"]
+    #[doc="Returns true if WAVPOL != 0"]
     #[inline] pub fn test_wavpol(&self) -> bool {
         self.wavpol() != 0
     }
 
-    #[doc="Waveform shape polarity"]
+    #[doc="Sets the WAVPOL field."]
     #[inline] pub fn set_wavpol<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -812,12 +812,12 @@ impl Cfgr {
         unsafe { ::core::mem::transmute(((self.0 >> 20) & 0x1) as u8) } // [20]
     }
 
-    #[doc="Waveform shape"]
+    #[doc="Returns true if WAVE != 0"]
     #[inline] pub fn test_wave(&self) -> bool {
         self.wave() != 0
     }
 
-    #[doc="Waveform shape"]
+    #[doc="Sets the WAVE field."]
     #[inline] pub fn set_wave<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -831,12 +831,12 @@ impl Cfgr {
         unsafe { ::core::mem::transmute(((self.0 >> 19) & 0x1) as u8) } // [19]
     }
 
-    #[doc="Timeout enable"]
+    #[doc="Returns true if TIMOUT != 0"]
     #[inline] pub fn test_timout(&self) -> bool {
         self.timout() != 0
     }
 
-    #[doc="Timeout enable"]
+    #[doc="Sets the TIMOUT field."]
     #[inline] pub fn set_timout<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -850,12 +850,12 @@ impl Cfgr {
         unsafe { ::core::mem::transmute(((self.0 >> 17) & 0x3) as u8) } // [18:17]
     }
 
-    #[doc="Trigger enable and polarity"]
+    #[doc="Returns true if TRIGEN != 0"]
     #[inline] pub fn test_trigen(&self) -> bool {
         self.trigen() != 0
     }
 
-    #[doc="Trigger enable and polarity"]
+    #[doc="Sets the TRIGEN field."]
     #[inline] pub fn set_trigen<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -869,12 +869,12 @@ impl Cfgr {
         unsafe { ::core::mem::transmute(((self.0 >> 13) & 0x7) as u8) } // [15:13]
     }
 
-    #[doc="Trigger selector"]
+    #[doc="Returns true if TRIGSEL != 0"]
     #[inline] pub fn test_trigsel(&self) -> bool {
         self.trigsel() != 0
     }
 
-    #[doc="Trigger selector"]
+    #[doc="Sets the TRIGSEL field."]
     #[inline] pub fn set_trigsel<V: Into<bits::U3>>(mut self, value: V) -> Self {
         let value: bits::U3 = value.into();
         let value: u32 = value.into();
@@ -888,12 +888,12 @@ impl Cfgr {
         unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x7) as u8) } // [11:9]
     }
 
-    #[doc="Clock prescaler"]
+    #[doc="Returns true if PRESC != 0"]
     #[inline] pub fn test_presc(&self) -> bool {
         self.presc() != 0
     }
 
-    #[doc="Clock prescaler"]
+    #[doc="Sets the PRESC field."]
     #[inline] pub fn set_presc<V: Into<bits::U3>>(mut self, value: V) -> Self {
         let value: bits::U3 = value.into();
         let value: u32 = value.into();
@@ -907,12 +907,12 @@ impl Cfgr {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x3) as u8) } // [7:6]
     }
 
-    #[doc="Configurable digital filter for trigger"]
+    #[doc="Returns true if TRGFLT != 0"]
     #[inline] pub fn test_trgflt(&self) -> bool {
         self.trgflt() != 0
     }
 
-    #[doc="Configurable digital filter for trigger"]
+    #[doc="Sets the TRGFLT field."]
     #[inline] pub fn set_trgflt<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -926,12 +926,12 @@ impl Cfgr {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x3) as u8) } // [4:3]
     }
 
-    #[doc="Configurable digital filter for external clock"]
+    #[doc="Returns true if CKFLT != 0"]
     #[inline] pub fn test_ckflt(&self) -> bool {
         self.ckflt() != 0
     }
 
-    #[doc="Configurable digital filter for external clock"]
+    #[doc="Sets the CKFLT field."]
     #[inline] pub fn set_ckflt<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -945,12 +945,12 @@ impl Cfgr {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x3) as u8) } // [2:1]
     }
 
-    #[doc="Clock Polarity"]
+    #[doc="Returns true if CKPOL != 0"]
     #[inline] pub fn test_ckpol(&self) -> bool {
         self.ckpol() != 0
     }
 
-    #[doc="Clock Polarity"]
+    #[doc="Sets the CKPOL field."]
     #[inline] pub fn set_ckpol<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -964,12 +964,12 @@ impl Cfgr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Clock selector"]
+    #[doc="Returns true if CKSEL != 0"]
     #[inline] pub fn test_cksel(&self) -> bool {
         self.cksel() != 0
     }
 
-    #[doc="Clock selector"]
+    #[doc="Sets the CKSEL field."]
     #[inline] pub fn set_cksel<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1023,12 +1023,12 @@ impl Cr {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="Timer start in continuous mode"]
+    #[doc="Returns true if CNTSTRT != 0"]
     #[inline] pub fn test_cntstrt(&self) -> bool {
         self.cntstrt() != 0
     }
 
-    #[doc="Timer start in continuous mode"]
+    #[doc="Sets the CNTSTRT field."]
     #[inline] pub fn set_cntstrt<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1042,12 +1042,12 @@ impl Cr {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="LPTIM start in single mode"]
+    #[doc="Returns true if SNGSTRT != 0"]
     #[inline] pub fn test_sngstrt(&self) -> bool {
         self.sngstrt() != 0
     }
 
-    #[doc="LPTIM start in single mode"]
+    #[doc="Sets the SNGSTRT field."]
     #[inline] pub fn set_sngstrt<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1061,12 +1061,12 @@ impl Cr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="LPTIM Enable"]
+    #[doc="Returns true if ENABLE != 0"]
     #[inline] pub fn test_enable(&self) -> bool {
         self.enable() != 0
     }
 
-    #[doc="LPTIM Enable"]
+    #[doc="Sets the ENABLE field."]
     #[inline] pub fn set_enable<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1110,12 +1110,12 @@ impl Cmp {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffff) as u16) } // [15:0]
     }
 
-    #[doc="Compare value."]
+    #[doc="Returns true if CMP != 0"]
     #[inline] pub fn test_cmp(&self) -> bool {
         self.cmp() != 0
     }
 
-    #[doc="Compare value."]
+    #[doc="Sets the CMP field."]
     #[inline] pub fn set_cmp<V: Into<bits::U16>>(mut self, value: V) -> Self {
         let value: bits::U16 = value.into();
         let value: u32 = value.into();
@@ -1157,12 +1157,12 @@ impl Arr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffff) as u16) } // [15:0]
     }
 
-    #[doc="Auto reload value."]
+    #[doc="Returns true if ARR != 0"]
     #[inline] pub fn test_arr(&self) -> bool {
         self.arr() != 0
     }
 
-    #[doc="Auto reload value."]
+    #[doc="Sets the ARR field."]
     #[inline] pub fn set_arr<V: Into<bits::U16>>(mut self, value: V) -> Self {
         let value: bits::U16 = value.into();
         let value: u32 = value.into();
@@ -1204,12 +1204,12 @@ impl Cnt {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffff) as u16) } // [15:0]
     }
 
-    #[doc="Counter value."]
+    #[doc="Returns true if CNT != 0"]
     #[inline] pub fn test_cnt(&self) -> bool {
         self.cnt() != 0
     }
 
-    #[doc="Counter value."]
+    #[doc="Sets the CNT field."]
     #[inline] pub fn set_cnt<V: Into<bits::U16>>(mut self, value: V) -> Self {
         let value: bits::U16 = value.into();
         let value: u32 = value.into();

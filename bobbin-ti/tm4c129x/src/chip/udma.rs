@@ -641,12 +641,12 @@ impl Stat {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Master Enable Status"]
+    #[doc="Returns true if MASTEN != 0"]
     #[inline] pub fn test_masten(&self) -> bool {
         self.masten() != 0
     }
 
-    #[doc="Master Enable Status"]
+    #[doc="Sets the MASTEN field."]
     #[inline] pub fn set_masten<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -660,12 +660,12 @@ impl Stat {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0xf) as u8) } // [7:4]
     }
 
-    #[doc="Control State Machine Status"]
+    #[doc="Returns true if STATE != 0"]
     #[inline] pub fn test_state(&self) -> bool {
         self.state() != 0
     }
 
-    #[doc="Control State Machine Status"]
+    #[doc="Sets the STATE field."]
     #[inline] pub fn set_state<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -679,12 +679,12 @@ impl Stat {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1f) as u8) } // [20:16]
     }
 
-    #[doc="Available uDMA Channels Minus 1"]
+    #[doc="Returns true if DMACHANS != 0"]
     #[inline] pub fn test_dmachans(&self) -> bool {
         self.dmachans() != 0
     }
 
-    #[doc="Available uDMA Channels Minus 1"]
+    #[doc="Sets the DMACHANS field."]
     #[inline] pub fn set_dmachans<V: Into<bits::U5>>(mut self, value: V) -> Self {
         let value: bits::U5 = value.into();
         let value: u32 = value.into();
@@ -728,12 +728,12 @@ impl Cfg {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Controller Master Enable"]
+    #[doc="Returns true if MASTEN != 0"]
     #[inline] pub fn test_masten(&self) -> bool {
         self.masten() != 0
     }
 
-    #[doc="Controller Master Enable"]
+    #[doc="Sets the MASTEN field."]
     #[inline] pub fn set_masten<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -775,12 +775,12 @@ impl Ctlbase {
         unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x3fffff) as u32) } // [31:10]
     }
 
-    #[doc="Channel Control Base Address"]
+    #[doc="Returns true if ADDR != 0"]
     #[inline] pub fn test_addr(&self) -> bool {
         self.addr() != 0
     }
 
-    #[doc="Channel Control Base Address"]
+    #[doc="Sets the ADDR field."]
     #[inline] pub fn set_addr<V: Into<bits::U22>>(mut self, value: V) -> Self {
         let value: bits::U22 = value.into();
         let value: u32 = value.into();
@@ -822,12 +822,12 @@ impl Altbase {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffffffff) as u32) } // [31:0]
     }
 
-    #[doc="Alternate Channel Address Pointer"]
+    #[doc="Returns true if ADDR != 0"]
     #[inline] pub fn test_addr(&self) -> bool {
         self.addr() != 0
     }
 
-    #[doc="Alternate Channel Address Pointer"]
+    #[doc="Sets the ADDR field."]
     #[inline] pub fn set_addr<V: Into<bits::U32>>(mut self, value: V) -> Self {
         let value: bits::U32 = value.into();
         let value: u32 = value.into();
@@ -870,12 +870,12 @@ impl Waitstat {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Channel [n] Wait Status"]
+    #[doc="Returns true if WAITREQ != 0"]
     #[inline] pub fn test_waitreq<I: Into<bits::R32>>(&self, index: I) -> bool{
         self.waitreq(index) != 0
     }
 
-    #[doc="Channel [n] Wait Status"]
+    #[doc="Sets the WAITREQ field."]
     #[inline] pub fn set_waitreq<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -952,12 +952,12 @@ impl Swreq {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Channel [n] Software Request"]
+    #[doc="Returns true if SWREQ != 0"]
     #[inline] pub fn test_swreq<I: Into<bits::R32>>(&self, index: I) -> bool{
         self.swreq(index) != 0
     }
 
-    #[doc="Channel [n] Software Request"]
+    #[doc="Sets the SWREQ field."]
     #[inline] pub fn set_swreq<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -1034,12 +1034,12 @@ impl Useburstset {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Channel [n] Useburst Set"]
+    #[doc="Returns true if SET != 0"]
     #[inline] pub fn test_set<I: Into<bits::R32>>(&self, index: I) -> bool{
         self.set(index) != 0
     }
 
-    #[doc="Channel [n] Useburst Set"]
+    #[doc="Sets the SET field."]
     #[inline] pub fn set_set<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -1116,12 +1116,12 @@ impl Useburstclr {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Channel [n] Useburst Clear"]
+    #[doc="Returns true if CLR != 0"]
     #[inline] pub fn test_clr<I: Into<bits::R32>>(&self, index: I) -> bool{
         self.clr(index) != 0
     }
 
-    #[doc="Channel [n] Useburst Clear"]
+    #[doc="Sets the CLR field."]
     #[inline] pub fn set_clr<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -1198,12 +1198,12 @@ impl Reqmaskset {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Channel [n] Request Mask Set"]
+    #[doc="Returns true if SET != 0"]
     #[inline] pub fn test_set<I: Into<bits::R32>>(&self, index: I) -> bool{
         self.set(index) != 0
     }
 
-    #[doc="Channel [n] Request Mask Set"]
+    #[doc="Sets the SET field."]
     #[inline] pub fn set_set<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -1280,12 +1280,12 @@ impl Reqmaskclr {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Channel [n] Request Mask Clear"]
+    #[doc="Returns true if CLR != 0"]
     #[inline] pub fn test_clr<I: Into<bits::R32>>(&self, index: I) -> bool{
         self.clr(index) != 0
     }
 
-    #[doc="Channel [n] Request Mask Clear"]
+    #[doc="Sets the CLR field."]
     #[inline] pub fn set_clr<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -1362,12 +1362,12 @@ impl Enaset {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Channel [n] Enable Set"]
+    #[doc="Returns true if SET != 0"]
     #[inline] pub fn test_set<I: Into<bits::R32>>(&self, index: I) -> bool{
         self.set(index) != 0
     }
 
-    #[doc="Channel [n] Enable Set"]
+    #[doc="Sets the SET field."]
     #[inline] pub fn set_set<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -1444,12 +1444,12 @@ impl Enaclr {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Clear Channel [n] Enable Clear"]
+    #[doc="Returns true if CLR != 0"]
     #[inline] pub fn test_clr<I: Into<bits::R32>>(&self, index: I) -> bool{
         self.clr(index) != 0
     }
 
-    #[doc="Clear Channel [n] Enable Clear"]
+    #[doc="Sets the CLR field."]
     #[inline] pub fn set_clr<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -1526,12 +1526,12 @@ impl Altset {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Channel [n] Alternate Set"]
+    #[doc="Returns true if SET != 0"]
     #[inline] pub fn test_set<I: Into<bits::R32>>(&self, index: I) -> bool{
         self.set(index) != 0
     }
 
-    #[doc="Channel [n] Alternate Set"]
+    #[doc="Sets the SET field."]
     #[inline] pub fn set_set<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -1608,12 +1608,12 @@ impl Altclr {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Channel [n] Alternate Clear"]
+    #[doc="Returns true if CLR != 0"]
     #[inline] pub fn test_clr<I: Into<bits::R32>>(&self, index: I) -> bool{
         self.clr(index) != 0
     }
 
-    #[doc="Channel [n] Alternate Clear"]
+    #[doc="Sets the CLR field."]
     #[inline] pub fn set_clr<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -1690,12 +1690,12 @@ impl Prioset {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Channel [n] Priority Set"]
+    #[doc="Returns true if SET != 0"]
     #[inline] pub fn test_set<I: Into<bits::R32>>(&self, index: I) -> bool{
         self.set(index) != 0
     }
 
-    #[doc="Channel [n] Priority Set"]
+    #[doc="Sets the SET field."]
     #[inline] pub fn set_set<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -1772,12 +1772,12 @@ impl Prioclr {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Channel [n] Priority Clear"]
+    #[doc="Returns true if CLR != 0"]
     #[inline] pub fn test_clr<I: Into<bits::R32>>(&self, index: I) -> bool{
         self.clr(index) != 0
     }
 
-    #[doc="Channel [n] Priority Clear"]
+    #[doc="Sets the CLR field."]
     #[inline] pub fn set_clr<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -1854,12 +1854,12 @@ impl Errclr {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="uDMA Bus Error Status"]
+    #[doc="Returns true if ERRCLR != 0"]
     #[inline] pub fn test_errclr<I: Into<bits::R32>>(&self, index: I) -> bool{
         self.errclr(index) != 0
     }
 
-    #[doc="uDMA Bus Error Status"]
+    #[doc="Sets the ERRCLR field."]
     #[inline] pub fn set_errclr<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -1936,12 +1936,12 @@ impl Chasgn {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Channel [n] Assignment Select"]
+    #[doc="Returns true if CHASGN != 0"]
     #[inline] pub fn test_chasgn<I: Into<bits::R32>>(&self, index: I) -> bool{
         self.chasgn(index) != 0
     }
 
-    #[doc="Channel [n] Assignment Select"]
+    #[doc="Sets the CHASGN field."]
     #[inline] pub fn set_chasgn<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -2018,12 +2018,12 @@ impl Chmap0 {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0xf) as u8) } // [3:0]
     }
 
-    #[doc="uDMA Channel n Source Select"]
+    #[doc="Returns true if CHSEL != 0"]
     #[inline] pub fn test_chsel<I: Into<bits::R8>>(&self, index: I) -> bool{
         self.chsel(index) != 0
     }
 
-    #[doc="uDMA Channel n Source Select"]
+    #[doc="Sets the CHSEL field."]
     #[inline] pub fn set_chsel<I: Into<bits::R8>, V: Into<bits::U4>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U4 = value.into();
@@ -2076,12 +2076,12 @@ impl Chmap1 {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0xf) as u8) } // [3:0]
     }
 
-    #[doc="uDMA Channel n Source Select"]
+    #[doc="Returns true if CHSEL != 0"]
     #[inline] pub fn test_chsel<I: Into<bits::R8>>(&self, index: I) -> bool{
         self.chsel(index) != 0
     }
 
-    #[doc="uDMA Channel n Source Select"]
+    #[doc="Sets the CHSEL field."]
     #[inline] pub fn set_chsel<I: Into<bits::R8>, V: Into<bits::U4>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U4 = value.into();
@@ -2134,12 +2134,12 @@ impl Chmap2 {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0xf) as u8) } // [3:0]
     }
 
-    #[doc="uDMA Channel n Source Select"]
+    #[doc="Returns true if CHSEL != 0"]
     #[inline] pub fn test_chsel<I: Into<bits::R8>>(&self, index: I) -> bool{
         self.chsel(index) != 0
     }
 
-    #[doc="uDMA Channel n Source Select"]
+    #[doc="Sets the CHSEL field."]
     #[inline] pub fn set_chsel<I: Into<bits::R8>, V: Into<bits::U4>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U4 = value.into();
@@ -2192,12 +2192,12 @@ impl Chmap3 {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0xf) as u8) } // [3:0]
     }
 
-    #[doc="uDMA Channel n Source Select"]
+    #[doc="Returns true if CHSEL != 0"]
     #[inline] pub fn test_chsel<I: Into<bits::R8>>(&self, index: I) -> bool{
         self.chsel(index) != 0
     }
 
-    #[doc="uDMA Channel n Source Select"]
+    #[doc="Sets the CHSEL field."]
     #[inline] pub fn set_chsel<I: Into<bits::R8>, V: Into<bits::U4>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U4 = value.into();
@@ -2327,12 +2327,12 @@ impl Srcendp {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffffffff) as u32) } // [31:0]
     }
 
-    #[doc="Source Address End Pointer. This field points to the last address of the μDMA transfer source (inclusive). If the source address is not incrementing (the SRCINC field in the DMACHCTL register is 0x3), then this field points at the source location itself (such as a peripheral data register)."]
+    #[doc="Returns true if ADDR != 0"]
     #[inline] pub fn test_addr(&self) -> bool {
         self.addr() != 0
     }
 
-    #[doc="Source Address End Pointer. This field points to the last address of the μDMA transfer source (inclusive). If the source address is not incrementing (the SRCINC field in the DMACHCTL register is 0x3), then this field points at the source location itself (such as a peripheral data register)."]
+    #[doc="Sets the ADDR field."]
     #[inline] pub fn set_addr<V: Into<bits::U32>>(mut self, value: V) -> Self {
         let value: bits::U32 = value.into();
         let value: u32 = value.into();
@@ -2373,12 +2373,12 @@ impl Dstendp {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffffffff) as u32) } // [31:0]
     }
 
-    #[doc="Destination Address End Pointer. This field points to the last address of the μDMA transfer destination (inclusive). If the destination address is not incrementing (the DSTINC field in the DMACHCTL register is 0x3), then this field points at the destination location itself (such as a peripheral data register)."]
+    #[doc="Returns true if ADDR != 0"]
     #[inline] pub fn test_addr(&self) -> bool {
         self.addr() != 0
     }
 
-    #[doc="Destination Address End Pointer. This field points to the last address of the μDMA transfer destination (inclusive). If the destination address is not incrementing (the DSTINC field in the DMACHCTL register is 0x3), then this field points at the destination location itself (such as a peripheral data register)."]
+    #[doc="Sets the ADDR field."]
     #[inline] pub fn set_addr<V: Into<bits::U32>>(mut self, value: V) -> Self {
         let value: bits::U32 = value.into();
         let value: u32 = value.into();
@@ -2419,12 +2419,12 @@ impl Chctl {
         unsafe { ::core::mem::transmute(((self.0 >> 30) & 0x3) as u8) } // [31:30]
     }
 
-    #[doc="Destination Address Increment. This field configures the destination address increment. The address increment value must be equal or greater than the value of the destination size (DSTSIZE)."]
+    #[doc="Returns true if DSTINC != 0"]
     #[inline] pub fn test_dstinc(&self) -> bool {
         self.dstinc() != 0
     }
 
-    #[doc="Destination Address Increment. This field configures the destination address increment. The address increment value must be equal or greater than the value of the destination size (DSTSIZE)."]
+    #[doc="Sets the DSTINC field."]
     #[inline] pub fn set_dstinc<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -2438,12 +2438,12 @@ impl Chctl {
         unsafe { ::core::mem::transmute(((self.0 >> 28) & 0x3) as u8) } // [29:28]
     }
 
-    #[doc="Destination Data Size. This field configures the destination item data size."]
+    #[doc="Returns true if DSTSIZE != 0"]
     #[inline] pub fn test_dstsize(&self) -> bool {
         self.dstsize() != 0
     }
 
-    #[doc="Destination Data Size. This field configures the destination item data size."]
+    #[doc="Sets the DSTSIZE field."]
     #[inline] pub fn set_dstsize<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -2457,12 +2457,12 @@ impl Chctl {
         unsafe { ::core::mem::transmute(((self.0 >> 26) & 0x3) as u8) } // [27:26]
     }
 
-    #[doc="Source Address Increment. This field configures the source address increment. The address increment value must be equal or greater than the value of the source size (SRCSIZE)."]
+    #[doc="Returns true if SRCINC != 0"]
     #[inline] pub fn test_srcinc(&self) -> bool {
         self.srcinc() != 0
     }
 
-    #[doc="Source Address Increment. This field configures the source address increment. The address increment value must be equal or greater than the value of the source size (SRCSIZE)."]
+    #[doc="Sets the SRCINC field."]
     #[inline] pub fn set_srcinc<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -2476,12 +2476,12 @@ impl Chctl {
         unsafe { ::core::mem::transmute(((self.0 >> 24) & 0x3) as u8) } // [25:24]
     }
 
-    #[doc="Source Data Size. This field configures the source item data size."]
+    #[doc="Returns true if SRCSIZE != 0"]
     #[inline] pub fn test_srcsize(&self) -> bool {
         self.srcsize() != 0
     }
 
-    #[doc="Source Data Size. This field configures the source item data size."]
+    #[doc="Sets the SRCSIZE field."]
     #[inline] pub fn set_srcsize<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -2495,12 +2495,12 @@ impl Chctl {
         unsafe { ::core::mem::transmute(((self.0 >> 21) & 0x1) as u8) } // [21]
     }
 
-    #[doc="Destination Privilege Access. This bit controls the privilege access protection for destination data writes."]
+    #[doc="Returns true if DSTPROTO != 0"]
     #[inline] pub fn test_dstproto(&self) -> bool {
         self.dstproto() != 0
     }
 
-    #[doc="Destination Privilege Access. This bit controls the privilege access protection for destination data writes."]
+    #[doc="Sets the DSTPROTO field."]
     #[inline] pub fn set_dstproto<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2514,12 +2514,12 @@ impl Chctl {
         unsafe { ::core::mem::transmute(((self.0 >> 18) & 0x1) as u8) } // [18]
     }
 
-    #[doc="Source Privilege Access. This bit controls the privilege access protection for source data reads."]
+    #[doc="Returns true if SRCPROTO != 0"]
     #[inline] pub fn test_srcproto(&self) -> bool {
         self.srcproto() != 0
     }
 
-    #[doc="Source Privilege Access. This bit controls the privilege access protection for source data reads."]
+    #[doc="Sets the SRCPROTO field."]
     #[inline] pub fn set_srcproto<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2533,12 +2533,12 @@ impl Chctl {
         unsafe { ::core::mem::transmute(((self.0 >> 14) & 0xf) as u8) } // [17:14]
     }
 
-    #[doc="Arbitration Size. This field configures the number of transfers that can occur before the μDMA controller re-arbitrates."]
+    #[doc="Returns true if ARBSIZE != 0"]
     #[inline] pub fn test_arbsize(&self) -> bool {
         self.arbsize() != 0
     }
 
-    #[doc="Arbitration Size. This field configures the number of transfers that can occur before the μDMA controller re-arbitrates."]
+    #[doc="Sets the ARBSIZE field."]
     #[inline] pub fn set_arbsize<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -2552,12 +2552,12 @@ impl Chctl {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x3ff) as u16) } // [13:4]
     }
 
-    #[doc="Transfer Size (minus 1). This field configures the total number of items to transfer. The value of this field is 1 less than the number to transfer (value 0 means transfer 1 item). The maximum value for this 10-bit field is 1023 which represents a transfer size of 1024 items."]
+    #[doc="Returns true if XFERSIZE != 0"]
     #[inline] pub fn test_xfersize(&self) -> bool {
         self.xfersize() != 0
     }
 
-    #[doc="Transfer Size (minus 1). This field configures the total number of items to transfer. The value of this field is 1 less than the number to transfer (value 0 means transfer 1 item). The maximum value for this 10-bit field is 1023 which represents a transfer size of 1024 items."]
+    #[doc="Sets the XFERSIZE field."]
     #[inline] pub fn set_xfersize<V: Into<bits::U10>>(mut self, value: V) -> Self {
         let value: bits::U10 = value.into();
         let value: u32 = value.into();
@@ -2571,12 +2571,12 @@ impl Chctl {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="Next Useburst. This field controls whether the Useburst SET[n] bit is automatically set for the last transfer of a peripheral scatter-gather operation. Normally, for the last transfer, if the number of remaining items to transfer is less than the arbitration size, the μDMA controller uses single transfers to complete the transaction. If this bit is set, then the controller uses a burst transfer to complete the last transfer."]
+    #[doc="Returns true if NXTUSEBURST != 0"]
     #[inline] pub fn test_nxtuseburst(&self) -> bool {
         self.nxtuseburst() != 0
     }
 
-    #[doc="Next Useburst. This field controls whether the Useburst SET[n] bit is automatically set for the last transfer of a peripheral scatter-gather operation. Normally, for the last transfer, if the number of remaining items to transfer is less than the arbitration size, the μDMA controller uses single transfers to complete the transaction. If this bit is set, then the controller uses a burst transfer to complete the last transfer."]
+    #[doc="Sets the NXTUSEBURST field."]
     #[inline] pub fn set_nxtuseburst<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2590,12 +2590,12 @@ impl Chctl {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x7) as u8) } // [2:0]
     }
 
-    #[doc="μDMA Transfer Mode. This field configures the operating mode of the μDMA cycle. Refer to “Transfer Modes” on page 685 for a detailed explanation of transfer modes. Because this register is in system RAM, it has no reset value. Therefore, this field should be initialized to 0 before the channel is enabled."]
+    #[doc="Returns true if XFERMODE != 0"]
     #[inline] pub fn test_xfermode(&self) -> bool {
         self.xfermode() != 0
     }
 
-    #[doc="μDMA Transfer Mode. This field configures the operating mode of the μDMA cycle. Refer to “Transfer Modes” on page 685 for a detailed explanation of transfer modes. Because this register is in system RAM, it has no reset value. Therefore, this field should be initialized to 0 before the channel is enabled."]
+    #[doc="Sets the XFERMODE field."]
     #[inline] pub fn set_xfermode<V: Into<bits::U3>>(mut self, value: V) -> Self {
         let value: bits::U3 = value.into();
         let value: u32 = value.into();

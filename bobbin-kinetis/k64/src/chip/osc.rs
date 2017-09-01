@@ -51,12 +51,12 @@ impl Cr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Oscillator 16 pF Capacitor Load Configure"]
+    #[doc="Returns true if SC16P != 0"]
     #[inline] pub fn test_sc16p(&self) -> bool {
         self.sc16p() != 0
     }
 
-    #[doc="Oscillator 16 pF Capacitor Load Configure"]
+    #[doc="Sets the SC16P field."]
     #[inline] pub fn set_sc16p<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -70,12 +70,12 @@ impl Cr {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="Oscillator 8 pF Capacitor Load Configure"]
+    #[doc="Returns true if SC8P != 0"]
     #[inline] pub fn test_sc8p(&self) -> bool {
         self.sc8p() != 0
     }
 
-    #[doc="Oscillator 8 pF Capacitor Load Configure"]
+    #[doc="Sets the SC8P field."]
     #[inline] pub fn set_sc8p<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -89,12 +89,12 @@ impl Cr {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="Oscillator 4 pF Capacitor Load Configure"]
+    #[doc="Returns true if SC4P != 0"]
     #[inline] pub fn test_sc4p(&self) -> bool {
         self.sc4p() != 0
     }
 
-    #[doc="Oscillator 4 pF Capacitor Load Configure"]
+    #[doc="Sets the SC4P field."]
     #[inline] pub fn set_sc4p<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -108,12 +108,12 @@ impl Cr {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="Oscillator 2 pF Capacitor Load Configure"]
+    #[doc="Returns true if SC2P != 0"]
     #[inline] pub fn test_sc2p(&self) -> bool {
         self.sc2p() != 0
     }
 
-    #[doc="Oscillator 2 pF Capacitor Load Configure"]
+    #[doc="Sets the SC2P field."]
     #[inline] pub fn set_sc2p<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -127,12 +127,12 @@ impl Cr {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="External Reference Stop Enable"]
+    #[doc="Returns true if EREFSTEN != 0"]
     #[inline] pub fn test_erefsten(&self) -> bool {
         self.erefsten() != 0
     }
 
-    #[doc="External Reference Stop Enable"]
+    #[doc="Sets the EREFSTEN field."]
     #[inline] pub fn set_erefsten<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -146,12 +146,12 @@ impl Cr {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="External Reference Enable"]
+    #[doc="Returns true if ERCLKEN != 0"]
     #[inline] pub fn test_erclken(&self) -> bool {
         self.erclken() != 0
     }
 
-    #[doc="External Reference Enable"]
+    #[doc="Sets the ERCLKEN field."]
     #[inline] pub fn set_erclken<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();

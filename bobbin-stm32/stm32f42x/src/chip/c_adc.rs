@@ -85,12 +85,12 @@ impl Csr {
         unsafe { ::core::mem::transmute(((self.0 >> 21) & 0x1) as u8) } // [21]
     }
 
-    #[doc="Overrun flag of ADC3"]
+    #[doc="Returns true if OVR3 != 0"]
     #[inline] pub fn test_ovr3(&self) -> bool {
         self.ovr3() != 0
     }
 
-    #[doc="Overrun flag of ADC3"]
+    #[doc="Sets the OVR3 field."]
     #[inline] pub fn set_ovr3<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -104,12 +104,12 @@ impl Csr {
         unsafe { ::core::mem::transmute(((self.0 >> 20) & 0x1) as u8) } // [20]
     }
 
-    #[doc="Regular channel Start flag of ADC 3"]
+    #[doc="Returns true if STRT3 != 0"]
     #[inline] pub fn test_strt3(&self) -> bool {
         self.strt3() != 0
     }
 
-    #[doc="Regular channel Start flag of ADC 3"]
+    #[doc="Sets the STRT3 field."]
     #[inline] pub fn set_strt3<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -123,12 +123,12 @@ impl Csr {
         unsafe { ::core::mem::transmute(((self.0 >> 19) & 0x1) as u8) } // [19]
     }
 
-    #[doc="Injected channel Start flag of ADC 3"]
+    #[doc="Returns true if JSTRT3 != 0"]
     #[inline] pub fn test_jstrt3(&self) -> bool {
         self.jstrt3() != 0
     }
 
-    #[doc="Injected channel Start flag of ADC 3"]
+    #[doc="Sets the JSTRT3 field."]
     #[inline] pub fn set_jstrt3<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -142,12 +142,12 @@ impl Csr {
         unsafe { ::core::mem::transmute(((self.0 >> 18) & 0x1) as u8) } // [18]
     }
 
-    #[doc="Injected channel end of conversion of ADC 3"]
+    #[doc="Returns true if JEOC3 != 0"]
     #[inline] pub fn test_jeoc3(&self) -> bool {
         self.jeoc3() != 0
     }
 
-    #[doc="Injected channel end of conversion of ADC 3"]
+    #[doc="Sets the JEOC3 field."]
     #[inline] pub fn set_jeoc3<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -161,12 +161,12 @@ impl Csr {
         unsafe { ::core::mem::transmute(((self.0 >> 17) & 0x1) as u8) } // [17]
     }
 
-    #[doc="End of conversion of ADC 3"]
+    #[doc="Returns true if EOC3 != 0"]
     #[inline] pub fn test_eoc3(&self) -> bool {
         self.eoc3() != 0
     }
 
-    #[doc="End of conversion of ADC 3"]
+    #[doc="Sets the EOC3 field."]
     #[inline] pub fn set_eoc3<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -180,12 +180,12 @@ impl Csr {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1) as u8) } // [16]
     }
 
-    #[doc="Analog watchdog flag of ADC 3"]
+    #[doc="Returns true if AWD3 != 0"]
     #[inline] pub fn test_awd3(&self) -> bool {
         self.awd3() != 0
     }
 
-    #[doc="Analog watchdog flag of ADC 3"]
+    #[doc="Sets the AWD3 field."]
     #[inline] pub fn set_awd3<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -199,12 +199,12 @@ impl Csr {
         unsafe { ::core::mem::transmute(((self.0 >> 13) & 0x1) as u8) } // [13]
     }
 
-    #[doc="Overrun flag of ADC 2"]
+    #[doc="Returns true if OVR2 != 0"]
     #[inline] pub fn test_ovr2(&self) -> bool {
         self.ovr2() != 0
     }
 
-    #[doc="Overrun flag of ADC 2"]
+    #[doc="Sets the OVR2 field."]
     #[inline] pub fn set_ovr2<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -218,12 +218,12 @@ impl Csr {
         unsafe { ::core::mem::transmute(((self.0 >> 12) & 0x1) as u8) } // [12]
     }
 
-    #[doc="Regular channel Start flag of ADC 2"]
+    #[doc="Returns true if STRT2 != 0"]
     #[inline] pub fn test_strt2(&self) -> bool {
         self.strt2() != 0
     }
 
-    #[doc="Regular channel Start flag of ADC 2"]
+    #[doc="Sets the STRT2 field."]
     #[inline] pub fn set_strt2<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -237,12 +237,12 @@ impl Csr {
         unsafe { ::core::mem::transmute(((self.0 >> 11) & 0x1) as u8) } // [11]
     }
 
-    #[doc="Injected channel Start flag of ADC 2"]
+    #[doc="Returns true if JSTRT2 != 0"]
     #[inline] pub fn test_jstrt2(&self) -> bool {
         self.jstrt2() != 0
     }
 
-    #[doc="Injected channel Start flag of ADC 2"]
+    #[doc="Sets the JSTRT2 field."]
     #[inline] pub fn set_jstrt2<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -256,12 +256,12 @@ impl Csr {
         unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x1) as u8) } // [10]
     }
 
-    #[doc="Injected channel end of conversion of ADC 2"]
+    #[doc="Returns true if JEOC2 != 0"]
     #[inline] pub fn test_jeoc2(&self) -> bool {
         self.jeoc2() != 0
     }
 
-    #[doc="Injected channel end of conversion of ADC 2"]
+    #[doc="Sets the JEOC2 field."]
     #[inline] pub fn set_jeoc2<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -275,12 +275,12 @@ impl Csr {
         unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
     }
 
-    #[doc="End of conversion of ADC 2"]
+    #[doc="Returns true if EOC2 != 0"]
     #[inline] pub fn test_eoc2(&self) -> bool {
         self.eoc2() != 0
     }
 
-    #[doc="End of conversion of ADC 2"]
+    #[doc="Sets the EOC2 field."]
     #[inline] pub fn set_eoc2<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -294,12 +294,12 @@ impl Csr {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
     }
 
-    #[doc="Analog watchdog flag of ADC 2"]
+    #[doc="Returns true if AWD2 != 0"]
     #[inline] pub fn test_awd2(&self) -> bool {
         self.awd2() != 0
     }
 
-    #[doc="Analog watchdog flag of ADC 2"]
+    #[doc="Sets the AWD2 field."]
     #[inline] pub fn set_awd2<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -313,12 +313,12 @@ impl Csr {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="Overrun flag of ADC 1"]
+    #[doc="Returns true if OVR1 != 0"]
     #[inline] pub fn test_ovr1(&self) -> bool {
         self.ovr1() != 0
     }
 
-    #[doc="Overrun flag of ADC 1"]
+    #[doc="Sets the OVR1 field."]
     #[inline] pub fn set_ovr1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -332,12 +332,12 @@ impl Csr {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="Regular channel Start flag of ADC 1"]
+    #[doc="Returns true if STRT1 != 0"]
     #[inline] pub fn test_strt1(&self) -> bool {
         self.strt1() != 0
     }
 
-    #[doc="Regular channel Start flag of ADC 1"]
+    #[doc="Sets the STRT1 field."]
     #[inline] pub fn set_strt1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -351,12 +351,12 @@ impl Csr {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="Injected channel Start flag of ADC 1"]
+    #[doc="Returns true if JSTRT1 != 0"]
     #[inline] pub fn test_jstrt1(&self) -> bool {
         self.jstrt1() != 0
     }
 
-    #[doc="Injected channel Start flag of ADC 1"]
+    #[doc="Sets the JSTRT1 field."]
     #[inline] pub fn set_jstrt1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -370,12 +370,12 @@ impl Csr {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="Injected channel end of conversion of ADC 1"]
+    #[doc="Returns true if JEOC1 != 0"]
     #[inline] pub fn test_jeoc1(&self) -> bool {
         self.jeoc1() != 0
     }
 
-    #[doc="Injected channel end of conversion of ADC 1"]
+    #[doc="Sets the JEOC1 field."]
     #[inline] pub fn set_jeoc1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -389,12 +389,12 @@ impl Csr {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="End of conversion of ADC 1"]
+    #[doc="Returns true if EOC1 != 0"]
     #[inline] pub fn test_eoc1(&self) -> bool {
         self.eoc1() != 0
     }
 
-    #[doc="End of conversion of ADC 1"]
+    #[doc="Sets the EOC1 field."]
     #[inline] pub fn set_eoc1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -408,12 +408,12 @@ impl Csr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Analog watchdog flag of ADC 1"]
+    #[doc="Returns true if AWD1 != 0"]
     #[inline] pub fn test_awd1(&self) -> bool {
         self.awd1() != 0
     }
 
-    #[doc="Analog watchdog flag of ADC 1"]
+    #[doc="Sets the AWD1 field."]
     #[inline] pub fn set_awd1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -472,12 +472,12 @@ impl Ccr {
         unsafe { ::core::mem::transmute(((self.0 >> 23) & 0x1) as u8) } // [23]
     }
 
-    #[doc="Temperature sensor and VREFINT enable"]
+    #[doc="Returns true if TSVREFE != 0"]
     #[inline] pub fn test_tsvrefe(&self) -> bool {
         self.tsvrefe() != 0
     }
 
-    #[doc="Temperature sensor and VREFINT enable"]
+    #[doc="Sets the TSVREFE field."]
     #[inline] pub fn set_tsvrefe<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -491,12 +491,12 @@ impl Ccr {
         unsafe { ::core::mem::transmute(((self.0 >> 22) & 0x1) as u8) } // [22]
     }
 
-    #[doc="VBAT enable"]
+    #[doc="Returns true if VBATE != 0"]
     #[inline] pub fn test_vbate(&self) -> bool {
         self.vbate() != 0
     }
 
-    #[doc="VBAT enable"]
+    #[doc="Sets the VBATE field."]
     #[inline] pub fn set_vbate<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -510,12 +510,12 @@ impl Ccr {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x3) as u8) } // [17:16]
     }
 
-    #[doc="ADC prescaler"]
+    #[doc="Returns true if ADCPRE != 0"]
     #[inline] pub fn test_adcpre(&self) -> bool {
         self.adcpre() != 0
     }
 
-    #[doc="ADC prescaler"]
+    #[doc="Sets the ADCPRE field."]
     #[inline] pub fn set_adcpre<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -529,12 +529,12 @@ impl Ccr {
         unsafe { ::core::mem::transmute(((self.0 >> 14) & 0x3) as u8) } // [15:14]
     }
 
-    #[doc="Direct memory access mode for multi ADC mode"]
+    #[doc="Returns true if DMA != 0"]
     #[inline] pub fn test_dma(&self) -> bool {
         self.dma() != 0
     }
 
-    #[doc="Direct memory access mode for multi ADC mode"]
+    #[doc="Sets the DMA field."]
     #[inline] pub fn set_dma<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -548,12 +548,12 @@ impl Ccr {
         unsafe { ::core::mem::transmute(((self.0 >> 13) & 0x1) as u8) } // [13]
     }
 
-    #[doc="DMA disable selection for multi-ADC mode"]
+    #[doc="Returns true if DDS != 0"]
     #[inline] pub fn test_dds(&self) -> bool {
         self.dds() != 0
     }
 
-    #[doc="DMA disable selection for multi-ADC mode"]
+    #[doc="Sets the DDS field."]
     #[inline] pub fn set_dds<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -567,12 +567,12 @@ impl Ccr {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0xf) as u8) } // [11:8]
     }
 
-    #[doc="Delay between 2 sampling phases"]
+    #[doc="Returns true if DELAY != 0"]
     #[inline] pub fn test_delay(&self) -> bool {
         self.delay() != 0
     }
 
-    #[doc="Delay between 2 sampling phases"]
+    #[doc="Sets the DELAY field."]
     #[inline] pub fn set_delay<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -586,12 +586,12 @@ impl Ccr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1f) as u8) } // [4:0]
     }
 
-    #[doc="Multi ADC mode selection"]
+    #[doc="Returns true if MULT != 0"]
     #[inline] pub fn test_mult(&self) -> bool {
         self.mult() != 0
     }
 
-    #[doc="Multi ADC mode selection"]
+    #[doc="Sets the MULT field."]
     #[inline] pub fn set_mult<V: Into<bits::U5>>(mut self, value: V) -> Self {
         let value: bits::U5 = value.into();
         let value: u32 = value.into();
@@ -639,12 +639,12 @@ impl Cdr {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xffff) as u16) } // [31:16]
     }
 
-    #[doc="2nd data item of a pair of regular conversions"]
+    #[doc="Returns true if DATA2 != 0"]
     #[inline] pub fn test_data2(&self) -> bool {
         self.data2() != 0
     }
 
-    #[doc="2nd data item of a pair of regular conversions"]
+    #[doc="Sets the DATA2 field."]
     #[inline] pub fn set_data2<V: Into<bits::U16>>(mut self, value: V) -> Self {
         let value: bits::U16 = value.into();
         let value: u32 = value.into();
@@ -658,12 +658,12 @@ impl Cdr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffff) as u16) } // [15:0]
     }
 
-    #[doc="1st data item of a pair of regular conversions"]
+    #[doc="Returns true if DATA1 != 0"]
     #[inline] pub fn test_data1(&self) -> bool {
         self.data1() != 0
     }
 
-    #[doc="1st data item of a pair of regular conversions"]
+    #[doc="Sets the DATA1 field."]
     #[inline] pub fn set_data1<V: Into<bits::U16>>(mut self, value: V) -> Self {
         let value: bits::U16 = value.into();
         let value: u32 = value.into();

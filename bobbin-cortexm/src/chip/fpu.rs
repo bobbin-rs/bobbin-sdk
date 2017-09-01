@@ -150,12 +150,12 @@ impl Cpacr {
         unsafe { ::core::mem::transmute(((self.0 >> 20) & 0x3) as u8) } // [21:20]
     }
 
-    #[doc="CP10 Access privileges"]
+    #[doc="Returns true if CP10 != 0"]
     #[inline] pub fn test_cp10(&self) -> bool {
         self.cp10() != 0
     }
 
-    #[doc="CP10 Access privileges"]
+    #[doc="Sets the CP10 field."]
     #[inline] pub fn set_cp10<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -169,12 +169,12 @@ impl Cpacr {
         unsafe { ::core::mem::transmute(((self.0 >> 22) & 0x3) as u8) } // [23:22]
     }
 
-    #[doc="CP11 Access privileges"]
+    #[doc="Returns true if CP11 != 0"]
     #[inline] pub fn test_cp11(&self) -> bool {
         self.cp11() != 0
     }
 
-    #[doc="CP11 Access privileges"]
+    #[doc="Sets the CP11 field."]
     #[inline] pub fn set_cp11<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -212,14 +212,17 @@ impl ::core::fmt::Debug for Cpacr {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Fpccr(pub u32);
 impl Fpccr {
+    #[doc="Gets the ASPEN field."]
     #[inline] pub fn aspen(&self) -> bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 31) & 0x1) as u8) } // [31]
     }
 
+    #[doc="Returns true if ASPEN != 0"]
     #[inline] pub fn test_aspen(&self) -> bool {
         self.aspen() != 0
     }
 
+    #[doc="Sets the ASPEN field."]
     #[inline] pub fn set_aspen<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -228,14 +231,17 @@ impl Fpccr {
         self
     }
 
+    #[doc="Gets the LSPEN field."]
     #[inline] pub fn lspen(&self) -> bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 30) & 0x1) as u8) } // [30]
     }
 
+    #[doc="Returns true if LSPEN != 0"]
     #[inline] pub fn test_lspen(&self) -> bool {
         self.lspen() != 0
     }
 
+    #[doc="Sets the LSPEN field."]
     #[inline] pub fn set_lspen<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -244,14 +250,17 @@ impl Fpccr {
         self
     }
 
+    #[doc="Gets the MONRDY field."]
     #[inline] pub fn monrdy(&self) -> bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
     }
 
+    #[doc="Returns true if MONRDY != 0"]
     #[inline] pub fn test_monrdy(&self) -> bool {
         self.monrdy() != 0
     }
 
+    #[doc="Sets the MONRDY field."]
     #[inline] pub fn set_monrdy<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -260,14 +269,17 @@ impl Fpccr {
         self
     }
 
+    #[doc="Gets the BFRDY field."]
     #[inline] pub fn bfrdy(&self) -> bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
+    #[doc="Returns true if BFRDY != 0"]
     #[inline] pub fn test_bfrdy(&self) -> bool {
         self.bfrdy() != 0
     }
 
+    #[doc="Sets the BFRDY field."]
     #[inline] pub fn set_bfrdy<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -276,14 +288,17 @@ impl Fpccr {
         self
     }
 
+    #[doc="Gets the MMRDY field."]
     #[inline] pub fn mmrdy(&self) -> bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
+    #[doc="Returns true if MMRDY != 0"]
     #[inline] pub fn test_mmrdy(&self) -> bool {
         self.mmrdy() != 0
     }
 
+    #[doc="Sets the MMRDY field."]
     #[inline] pub fn set_mmrdy<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -292,14 +307,17 @@ impl Fpccr {
         self
     }
 
+    #[doc="Gets the HFRDY field."]
     #[inline] pub fn hfrdy(&self) -> bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
+    #[doc="Returns true if HFRDY != 0"]
     #[inline] pub fn test_hfrdy(&self) -> bool {
         self.hfrdy() != 0
     }
 
+    #[doc="Sets the HFRDY field."]
     #[inline] pub fn set_hfrdy<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -308,14 +326,17 @@ impl Fpccr {
         self
     }
 
+    #[doc="Gets the THREAD field."]
     #[inline] pub fn thread(&self) -> bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
+    #[doc="Returns true if THREAD != 0"]
     #[inline] pub fn test_thread(&self) -> bool {
         self.thread() != 0
     }
 
+    #[doc="Sets the THREAD field."]
     #[inline] pub fn set_thread<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -324,14 +345,17 @@ impl Fpccr {
         self
     }
 
+    #[doc="Gets the USER field."]
     #[inline] pub fn user(&self) -> bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
+    #[doc="Returns true if USER != 0"]
     #[inline] pub fn test_user(&self) -> bool {
         self.user() != 0
     }
 
+    #[doc="Sets the USER field."]
     #[inline] pub fn set_user<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -340,14 +364,17 @@ impl Fpccr {
         self
     }
 
+    #[doc="Gets the LSPACT field."]
     #[inline] pub fn lspact(&self) -> bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
+    #[doc="Returns true if LSPACT != 0"]
     #[inline] pub fn test_lspact(&self) -> bool {
         self.lspact() != 0
     }
 
+    #[doc="Sets the LSPACT field."]
     #[inline] pub fn set_lspact<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -392,14 +419,17 @@ impl ::core::fmt::Debug for Fpccr {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Fpcar(pub u32);
 impl Fpcar {
+    #[doc="Gets the ADDRESS field."]
     #[inline] pub fn address(&self) -> bits::U29 {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1fffffff) as u32) } // [31:3]
     }
 
+    #[doc="Returns true if ADDRESS != 0"]
     #[inline] pub fn test_address(&self) -> bool {
         self.address() != 0
     }
 
+    #[doc="Sets the ADDRESS field."]
     #[inline] pub fn set_address<V: Into<bits::U29>>(mut self, value: V) -> Self {
         let value: bits::U29 = value.into();
         let value: u32 = value.into();
@@ -436,14 +466,17 @@ impl ::core::fmt::Debug for Fpcar {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Fpdscr(pub u32);
 impl Fpdscr {
+    #[doc="Gets the AHP field."]
     #[inline] pub fn ahp(&self) -> bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 26) & 0x1) as u8) } // [26]
     }
 
+    #[doc="Returns true if AHP != 0"]
     #[inline] pub fn test_ahp(&self) -> bool {
         self.ahp() != 0
     }
 
+    #[doc="Sets the AHP field."]
     #[inline] pub fn set_ahp<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -452,14 +485,17 @@ impl Fpdscr {
         self
     }
 
+    #[doc="Gets the DN field."]
     #[inline] pub fn dn(&self) -> bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 25) & 0x1) as u8) } // [25]
     }
 
+    #[doc="Returns true if DN != 0"]
     #[inline] pub fn test_dn(&self) -> bool {
         self.dn() != 0
     }
 
+    #[doc="Sets the DN field."]
     #[inline] pub fn set_dn<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -468,14 +504,17 @@ impl Fpdscr {
         self
     }
 
+    #[doc="Gets the FZ field."]
     #[inline] pub fn fz(&self) -> bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 24) & 0x1) as u8) } // [24]
     }
 
+    #[doc="Returns true if FZ != 0"]
     #[inline] pub fn test_fz(&self) -> bool {
         self.fz() != 0
     }
 
+    #[doc="Sets the FZ field."]
     #[inline] pub fn set_fz<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -484,14 +523,17 @@ impl Fpdscr {
         self
     }
 
+    #[doc="Gets the RMODE field."]
     #[inline] pub fn rmode(&self) -> bits::U2 {
         unsafe { ::core::mem::transmute(((self.0 >> 22) & 0x3) as u8) } // [23:22]
     }
 
+    #[doc="Returns true if RMODE != 0"]
     #[inline] pub fn test_rmode(&self) -> bool {
         self.rmode() != 0
     }
 
+    #[doc="Sets the RMODE field."]
     #[inline] pub fn set_rmode<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();

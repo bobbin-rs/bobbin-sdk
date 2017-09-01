@@ -183,12 +183,12 @@ impl Dr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffffffff) as u32) } // [31:0]
     }
 
-    #[doc="Data register bits"]
+    #[doc="Returns true if DR != 0"]
     #[inline] pub fn test_dr(&self) -> bool {
         self.dr() != 0
     }
 
-    #[doc="Data register bits"]
+    #[doc="Sets the DR field."]
     #[inline] pub fn set_dr<V: Into<bits::U32>>(mut self, value: V) -> Self {
         let value: bits::U32 = value.into();
         let value: u32 = value.into();
@@ -229,12 +229,12 @@ impl Idr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
-    #[doc="General-purpose 8-bit data register bits"]
+    #[doc="Returns true if IDR != 0"]
     #[inline] pub fn test_idr(&self) -> bool {
         self.idr() != 0
     }
 
-    #[doc="General-purpose 8-bit data register bits"]
+    #[doc="Sets the IDR field."]
     #[inline] pub fn set_idr<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -276,12 +276,12 @@ impl Cr {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="Reverse output data"]
+    #[doc="Returns true if REV_OUT != 0"]
     #[inline] pub fn test_rev_out(&self) -> bool {
         self.rev_out() != 0
     }
 
-    #[doc="Reverse output data"]
+    #[doc="Sets the REV_OUT field."]
     #[inline] pub fn set_rev_out<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -295,12 +295,12 @@ impl Cr {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x3) as u8) } // [6:5]
     }
 
-    #[doc="Reverse input data"]
+    #[doc="Returns true if REV_IN != 0"]
     #[inline] pub fn test_rev_in(&self) -> bool {
         self.rev_in() != 0
     }
 
-    #[doc="Reverse input data"]
+    #[doc="Sets the REV_IN field."]
     #[inline] pub fn set_rev_in<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -314,12 +314,12 @@ impl Cr {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x3) as u8) } // [4:3]
     }
 
-    #[doc="Polynomial size"]
+    #[doc="Returns true if POLYSIZE != 0"]
     #[inline] pub fn test_polysize(&self) -> bool {
         self.polysize() != 0
     }
 
-    #[doc="Polynomial size"]
+    #[doc="Sets the POLYSIZE field."]
     #[inline] pub fn set_polysize<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -333,12 +333,12 @@ impl Cr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="RESET bit"]
+    #[doc="Returns true if RESET != 0"]
     #[inline] pub fn test_reset(&self) -> bool {
         self._reset() != 0
     }
 
-    #[doc="RESET bit"]
+    #[doc="Sets the RESET field."]
     #[inline] pub fn set_reset<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -383,12 +383,12 @@ impl Init {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffffffff) as u32) } // [31:0]
     }
 
-    #[doc="Programmable initial CRC value"]
+    #[doc="Returns true if INIT != 0"]
     #[inline] pub fn test_init(&self) -> bool {
         self.init() != 0
     }
 
-    #[doc="Programmable initial CRC value"]
+    #[doc="Sets the INIT field."]
     #[inline] pub fn set_init<V: Into<bits::U32>>(mut self, value: V) -> Self {
         let value: bits::U32 = value.into();
         let value: u32 = value.into();
@@ -429,12 +429,12 @@ impl Pol {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffffffff) as u32) } // [31:0]
     }
 
-    #[doc="Programmable polynomial"]
+    #[doc="Returns true if POL != 0"]
     #[inline] pub fn test_pol(&self) -> bool {
         self.pol() != 0
     }
 
-    #[doc="Programmable polynomial"]
+    #[doc="Sets the POL field."]
     #[inline] pub fn set_pol<V: Into<bits::U32>>(mut self, value: V) -> Self {
         let value: bits::U32 = value.into();
         let value: u32 = value.into();

@@ -256,12 +256,12 @@ impl Backkey3 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
-    #[doc="Backdoor Comparison Key."]
+    #[doc="Returns true if KEY != 0"]
     #[inline] pub fn test_key(&self) -> bool {
         self.key() != 0
     }
 
-    #[doc="Backdoor Comparison Key."]
+    #[doc="Sets the KEY field."]
     #[inline] pub fn set_key<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u8 = value.into();
@@ -303,12 +303,12 @@ impl Backkey2 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
-    #[doc="Backdoor Comparison Key."]
+    #[doc="Returns true if KEY != 0"]
     #[inline] pub fn test_key(&self) -> bool {
         self.key() != 0
     }
 
-    #[doc="Backdoor Comparison Key."]
+    #[doc="Sets the KEY field."]
     #[inline] pub fn set_key<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u8 = value.into();
@@ -350,12 +350,12 @@ impl Backkey1 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
-    #[doc="Backdoor Comparison Key."]
+    #[doc="Returns true if KEY != 0"]
     #[inline] pub fn test_key(&self) -> bool {
         self.key() != 0
     }
 
-    #[doc="Backdoor Comparison Key."]
+    #[doc="Sets the KEY field."]
     #[inline] pub fn set_key<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u8 = value.into();
@@ -397,12 +397,12 @@ impl Backkey0 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
-    #[doc="Backdoor Comparison Key."]
+    #[doc="Returns true if KEY != 0"]
     #[inline] pub fn test_key(&self) -> bool {
         self.key() != 0
     }
 
-    #[doc="Backdoor Comparison Key."]
+    #[doc="Sets the KEY field."]
     #[inline] pub fn set_key<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u8 = value.into();
@@ -444,12 +444,12 @@ impl Backkey7 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
-    #[doc="Backdoor Comparison Key."]
+    #[doc="Returns true if KEY != 0"]
     #[inline] pub fn test_key(&self) -> bool {
         self.key() != 0
     }
 
-    #[doc="Backdoor Comparison Key."]
+    #[doc="Sets the KEY field."]
     #[inline] pub fn set_key<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u8 = value.into();
@@ -491,12 +491,12 @@ impl Backkey6 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
-    #[doc="Backdoor Comparison Key."]
+    #[doc="Returns true if KEY != 0"]
     #[inline] pub fn test_key(&self) -> bool {
         self.key() != 0
     }
 
-    #[doc="Backdoor Comparison Key."]
+    #[doc="Sets the KEY field."]
     #[inline] pub fn set_key<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u8 = value.into();
@@ -538,12 +538,12 @@ impl Backkey5 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
-    #[doc="Backdoor Comparison Key."]
+    #[doc="Returns true if KEY != 0"]
     #[inline] pub fn test_key(&self) -> bool {
         self.key() != 0
     }
 
-    #[doc="Backdoor Comparison Key."]
+    #[doc="Sets the KEY field."]
     #[inline] pub fn set_key<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u8 = value.into();
@@ -585,12 +585,12 @@ impl Backkey4 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
-    #[doc="Backdoor Comparison Key."]
+    #[doc="Returns true if KEY != 0"]
     #[inline] pub fn test_key(&self) -> bool {
         self.key() != 0
     }
 
-    #[doc="Backdoor Comparison Key."]
+    #[doc="Sets the KEY field."]
     #[inline] pub fn set_key<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u8 = value.into();
@@ -632,12 +632,12 @@ impl Fprot3 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
-    #[doc="P-Flash Region Protect"]
+    #[doc="Returns true if PROT != 0"]
     #[inline] pub fn test_prot(&self) -> bool {
         self.prot() != 0
     }
 
-    #[doc="P-Flash Region Protect"]
+    #[doc="Sets the PROT field."]
     #[inline] pub fn set_prot<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u8 = value.into();
@@ -679,12 +679,12 @@ impl Fprot2 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
-    #[doc="P-Flash Region Protect"]
+    #[doc="Returns true if PROT != 0"]
     #[inline] pub fn test_prot(&self) -> bool {
         self.prot() != 0
     }
 
-    #[doc="P-Flash Region Protect"]
+    #[doc="Sets the PROT field."]
     #[inline] pub fn set_prot<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u8 = value.into();
@@ -726,12 +726,12 @@ impl Fprot1 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
-    #[doc="P-Flash Region Protect"]
+    #[doc="Returns true if PROT != 0"]
     #[inline] pub fn test_prot(&self) -> bool {
         self.prot() != 0
     }
 
-    #[doc="P-Flash Region Protect"]
+    #[doc="Sets the PROT field."]
     #[inline] pub fn set_prot<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u8 = value.into();
@@ -773,12 +773,12 @@ impl Fprot0 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
-    #[doc="P-Flash Region Protect"]
+    #[doc="Returns true if PROT != 0"]
     #[inline] pub fn test_prot(&self) -> bool {
         self.prot() != 0
     }
 
-    #[doc="P-Flash Region Protect"]
+    #[doc="Sets the PROT field."]
     #[inline] pub fn set_prot<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u8 = value.into();
@@ -820,12 +820,12 @@ impl Fsec {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x3) as u8) } // [1:0]
     }
 
-    #[doc="Flash Security"]
+    #[doc="Returns true if SEC != 0"]
     #[inline] pub fn test_sec(&self) -> bool {
         self.sec() != 0
     }
 
-    #[doc="Flash Security"]
+    #[doc="Sets the SEC field."]
     #[inline] pub fn set_sec<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u8 = value.into();
@@ -839,12 +839,12 @@ impl Fsec {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x3) as u8) } // [3:2]
     }
 
-    #[doc="Freescale Failure Analysis Access Code"]
+    #[doc="Returns true if FSLACC != 0"]
     #[inline] pub fn test_fslacc(&self) -> bool {
         self.fslacc() != 0
     }
 
-    #[doc="Freescale Failure Analysis Access Code"]
+    #[doc="Sets the FSLACC field."]
     #[inline] pub fn set_fslacc<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u8 = value.into();
@@ -858,12 +858,12 @@ impl Fsec {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x3) as u8) } // [5:4]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if MEEN != 0"]
     #[inline] pub fn test_meen(&self) -> bool {
         self.meen() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the MEEN field."]
     #[inline] pub fn set_meen<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u8 = value.into();
@@ -877,12 +877,12 @@ impl Fsec {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x3) as u8) } // [7:6]
     }
 
-    #[doc="Backdoor Key Security Enable"]
+    #[doc="Returns true if KEYEN != 0"]
     #[inline] pub fn test_keyen(&self) -> bool {
         self.keyen() != 0
     }
 
-    #[doc="Backdoor Key Security Enable"]
+    #[doc="Sets the KEYEN field."]
     #[inline] pub fn set_keyen<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u8 = value.into();
@@ -927,12 +927,12 @@ impl Fopt {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if LPBOOT0 != 0"]
     #[inline] pub fn test_lpboot0(&self) -> bool {
         self.lpboot0() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the LPBOOT0 field."]
     #[inline] pub fn set_lpboot0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -946,12 +946,12 @@ impl Fopt {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if NMI_DIS != 0"]
     #[inline] pub fn test_nmi_dis(&self) -> bool {
         self.nmi_dis() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the NMI_DIS field."]
     #[inline] pub fn set_nmi_dis<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -965,12 +965,12 @@ impl Fopt {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if RESET_PIN_CFG != 0"]
     #[inline] pub fn test_reset_pin_cfg(&self) -> bool {
         self.reset_pin_cfg() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the RESET_PIN_CFG field."]
     #[inline] pub fn set_reset_pin_cfg<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -984,12 +984,12 @@ impl Fopt {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if LPBOOT1 != 0"]
     #[inline] pub fn test_lpboot1(&self) -> bool {
         self.lpboot1() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the LPBOOT1 field."]
     #[inline] pub fn set_lpboot1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -1003,12 +1003,12 @@ impl Fopt {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="no description available"]
+    #[doc="Returns true if FAST_INIT != 0"]
     #[inline] pub fn test_fast_init(&self) -> bool {
         self.fast_init() != 0
     }
 
-    #[doc="no description available"]
+    #[doc="Sets the FAST_INIT field."]
     #[inline] pub fn set_fast_init<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();

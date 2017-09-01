@@ -249,14 +249,17 @@ impl Itm {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Stim(pub u32);
 impl Stim {
+    #[doc="Gets the DATA field."]
     #[inline] pub fn data(&self) -> bits::U32 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffffffff) as u32) } // [31:0]
     }
 
+    #[doc="Returns true if DATA != 0"]
     #[inline] pub fn test_data(&self) -> bool {
         self.data() != 0
     }
 
+    #[doc="Sets the DATA field."]
     #[inline] pub fn set_data<V: Into<bits::U32>>(mut self, value: V) -> Self {
         let value: bits::U32 = value.into();
         let value: u32 = value.into();
@@ -292,14 +295,17 @@ impl ::core::fmt::Debug for Stim {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Stim16(pub u16);
 impl Stim16 {
+    #[doc="Gets the DATA field."]
     #[inline] pub fn data(&self) -> bits::U16 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffff) as u16) } // [15:0]
     }
 
+    #[doc="Returns true if DATA != 0"]
     #[inline] pub fn test_data(&self) -> bool {
         self.data() != 0
     }
 
+    #[doc="Sets the DATA field."]
     #[inline] pub fn set_data<V: Into<bits::U16>>(mut self, value: V) -> Self {
         let value: bits::U16 = value.into();
         let value: u16 = value.into();
@@ -336,14 +342,17 @@ impl ::core::fmt::Debug for Stim16 {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Stim8(pub u8);
 impl Stim8 {
+    #[doc="Gets the DATA field."]
     #[inline] pub fn data(&self) -> bits::U8 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
+    #[doc="Returns true if DATA != 0"]
     #[inline] pub fn test_data(&self) -> bool {
         self.data() != 0
     }
 
+    #[doc="Sets the DATA field."]
     #[inline] pub fn set_data<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u8 = value.into();
@@ -387,12 +396,12 @@ impl Ter {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Bit mask to enable tracing on ITM stimulus ports. One bit per stimulus port."]
+    #[doc="Returns true if ENA != 0"]
     #[inline] pub fn test_ena<I: Into<bits::R32>>(&self, index: I) -> bool{
         self.ena(index) != 0
     }
 
-    #[doc="Bit mask to enable tracing on ITM stimulus ports. One bit per stimulus port."]
+    #[doc="Sets the ENA field."]
     #[inline] pub fn set_ena<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -469,12 +478,12 @@ impl Tpr {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Bit mask to enable tracing on ITM stimulus ports: bit [0] = stimulus ports [7:0], bit [1] = stimulus ports [15:8], bit [2] = stimulus ports [23:16], bit [3] = stimulus ports [31:24]"]
+    #[doc="Returns true if TPR != 0"]
     #[inline] pub fn test_tpr<I: Into<bits::R4>>(&self, index: I) -> bool{
         self.tpr(index) != 0
     }
 
-    #[doc="Bit mask to enable tracing on ITM stimulus ports: bit [0] = stimulus ports [7:0], bit [1] = stimulus ports [15:8], bit [2] = stimulus ports [23:16], bit [3] = stimulus ports [31:24]"]
+    #[doc="Sets the TPR field."]
     #[inline] pub fn set_tpr<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -521,12 +530,12 @@ impl Tcr {
         unsafe { ::core::mem::transmute(((self.0 >> 23) & 0x1) as u8) } // [23]
     }
 
-    #[doc="Set when ITM events present and being drained"]
+    #[doc="Returns true if BUSY != 0"]
     #[inline] pub fn test_busy(&self) -> bool {
         self.busy() != 0
     }
 
-    #[doc="Set when ITM events present and being drained"]
+    #[doc="Sets the BUSY field."]
     #[inline] pub fn set_busy<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -540,12 +549,12 @@ impl Tcr {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x7f) as u8) } // [22:16]
     }
 
-    #[doc="ATB ID for CoreSight System"]
+    #[doc="Returns true if ATBID != 0"]
     #[inline] pub fn test_atbid(&self) -> bool {
         self.atbid() != 0
     }
 
-    #[doc="ATB ID for CoreSight System"]
+    #[doc="Sets the ATBID field."]
     #[inline] pub fn set_atbid<V: Into<bits::U7>>(mut self, value: V) -> Self {
         let value: bits::U7 = value.into();
         let value: u32 = value.into();
@@ -559,12 +568,12 @@ impl Tcr {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x3) as u8) } // [9:8]
     }
 
-    #[doc="Timestamp prescaler: 0b00 = no prescaling, 0b01 = divide by 4, 0b10 = divide by 16, 0b11 = divide by 64."]
+    #[doc="Returns true if TSPRESCALE != 0"]
     #[inline] pub fn test_tsprescale(&self) -> bool {
         self.tsprescale() != 0
     }
 
-    #[doc="Timestamp prescaler: 0b00 = no prescaling, 0b01 = divide by 4, 0b10 = divide by 16, 0b11 = divide by 64."]
+    #[doc="Sets the TSPRESCALE field."]
     #[inline] pub fn set_tsprescale<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -578,12 +587,12 @@ impl Tcr {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="Enable SWV behavior – count on TPIUEMIT and TPIUBAUD."]
+    #[doc="Returns true if SWOENA != 0"]
     #[inline] pub fn test_swoena(&self) -> bool {
         self.swoena() != 0
     }
 
-    #[doc="Enable SWV behavior – count on TPIUEMIT and TPIUBAUD."]
+    #[doc="Sets the SWOENA field."]
     #[inline] pub fn set_swoena<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -597,12 +606,12 @@ impl Tcr {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="Enables the DWT stimulus."]
+    #[doc="Returns true if DWTENA != 0"]
     #[inline] pub fn test_dwtena(&self) -> bool {
         self.dwtena() != 0
     }
 
-    #[doc="Enables the DWT stimulus."]
+    #[doc="Sets the DWTENA field."]
     #[inline] pub fn set_dwtena<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -616,12 +625,12 @@ impl Tcr {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="Enables sync packets for TPIU."]
+    #[doc="Returns true if SYNCENA != 0"]
     #[inline] pub fn test_syncena(&self) -> bool {
         self.syncena() != 0
     }
 
-    #[doc="Enables sync packets for TPIU."]
+    #[doc="Sets the SYNCENA field."]
     #[inline] pub fn set_syncena<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -635,12 +644,12 @@ impl Tcr {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="Enables differential timestamps. Differential timestamps are emitted when a packet is written to the FIFO with a non-zero timestamp counter, and when the timestamp counter overflows. Timestamps are emitted during idle times after a fixed number of cycles. This provides a time reference for packets and inter-packet gaps."]
+    #[doc="Returns true if TSENA != 0"]
     #[inline] pub fn test_tsena(&self) -> bool {
         self.tsena() != 0
     }
 
-    #[doc="Enables differential timestamps. Differential timestamps are emitted when a packet is written to the FIFO with a non-zero timestamp counter, and when the timestamp counter overflows. Timestamps are emitted during idle times after a fixed number of cycles. This provides a time reference for packets and inter-packet gaps."]
+    #[doc="Sets the TSENA field."]
     #[inline] pub fn set_tsena<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -654,12 +663,12 @@ impl Tcr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Enable ITM. This is the master enable, and must be set before ITM Stimulus and Trace Enable registers can be written."]
+    #[doc="Returns true if ITMENA != 0"]
     #[inline] pub fn test_itmena(&self) -> bool {
         self.itmena() != 0
     }
 
-    #[doc="Enable ITM. This is the master enable, and must be set before ITM Stimulus and Trace Enable registers can be written."]
+    #[doc="Sets the ITMENA field."]
     #[inline] pub fn set_itmena<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -708,12 +717,12 @@ impl Lar {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffffffff) as u32) } // [31:0]
     }
 
-    #[doc="A privileged write of 0xC5ACCE55 enables more write access to Control Register 0xE00::0xFFC. An invalid write removes write access."]
+    #[doc="Returns true if ACCESS != 0"]
     #[inline] pub fn test_access(&self) -> bool {
         self.access() != 0
     }
 
-    #[doc="A privileged write of 0xC5ACCE55 enables more write access to Control Register 0xE00::0xFFC. An invalid write removes write access."]
+    #[doc="Sets the ACCESS field."]
     #[inline] pub fn set_access<V: Into<bits::U32>>(mut self, value: V) -> Self {
         let value: bits::U32 = value.into();
         let value: u32 = value.into();
@@ -754,12 +763,12 @@ impl Lsr {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="You cannot implement 8-bit lock accesses."]
+    #[doc="Returns true if BYTEACC != 0"]
     #[inline] pub fn test_byteacc(&self) -> bool {
         self.byteacc() != 0
     }
 
-    #[doc="You cannot implement 8-bit lock accesses."]
+    #[doc="Sets the BYTEACC field."]
     #[inline] pub fn set_byteacc<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -773,12 +782,12 @@ impl Lsr {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="Write access to component is blocked. All writes are ignored, reads are permitted."]
+    #[doc="Returns true if ACCESS != 0"]
     #[inline] pub fn test_access(&self) -> bool {
         self.access() != 0
     }
 
-    #[doc="Write access to component is blocked. All writes are ignored, reads are permitted."]
+    #[doc="Sets the ACCESS field."]
     #[inline] pub fn set_access<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -792,12 +801,12 @@ impl Lsr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Indicates that a lock mechanism exists for this component."]
+    #[doc="Returns true if PRESENT != 0"]
     #[inline] pub fn test_present(&self) -> bool {
         self.present() != 0
     }
 
-    #[doc="Indicates that a lock mechanism exists for this component."]
+    #[doc="Sets the PRESENT field."]
     #[inline] pub fn set_present<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();

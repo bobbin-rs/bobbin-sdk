@@ -84,12 +84,12 @@ impl Cr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Low Power Deep Sleep"]
+    #[doc="Returns true if LPDS != 0"]
     #[inline] pub fn test_lpds(&self) -> bool {
         self.lpds() != 0
     }
 
-    #[doc="Low Power Deep Sleep"]
+    #[doc="Sets the LPDS field."]
     #[inline] pub fn set_lpds<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -103,12 +103,12 @@ impl Cr {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="Power Down Deep Sleep"]
+    #[doc="Returns true if PDDS != 0"]
     #[inline] pub fn test_pdds(&self) -> bool {
         self.pdds() != 0
     }
 
-    #[doc="Power Down Deep Sleep"]
+    #[doc="Sets the PDDS field."]
     #[inline] pub fn set_pdds<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -122,12 +122,12 @@ impl Cr {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="Clear Wake-up Flag"]
+    #[doc="Returns true if CWUF != 0"]
     #[inline] pub fn test_cwuf(&self) -> bool {
         self.cwuf() != 0
     }
 
-    #[doc="Clear Wake-up Flag"]
+    #[doc="Sets the CWUF field."]
     #[inline] pub fn set_cwuf<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -141,12 +141,12 @@ impl Cr {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="Clear STANDBY Flag"]
+    #[doc="Returns true if CSBF != 0"]
     #[inline] pub fn test_csbf(&self) -> bool {
         self.csbf() != 0
     }
 
-    #[doc="Clear STANDBY Flag"]
+    #[doc="Sets the CSBF field."]
     #[inline] pub fn set_csbf<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -160,12 +160,12 @@ impl Cr {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="Power Voltage Detector Enable"]
+    #[doc="Returns true if PVDE != 0"]
     #[inline] pub fn test_pvde(&self) -> bool {
         self.pvde() != 0
     }
 
-    #[doc="Power Voltage Detector Enable"]
+    #[doc="Sets the PVDE field."]
     #[inline] pub fn set_pvde<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -179,12 +179,12 @@ impl Cr {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x7) as u8) } // [7:5]
     }
 
-    #[doc="PVD Level Selection"]
+    #[doc="Returns true if PLS != 0"]
     #[inline] pub fn test_pls(&self) -> bool {
         self.pls() != 0
     }
 
-    #[doc="PVD Level Selection"]
+    #[doc="Sets the PLS field."]
     #[inline] pub fn set_pls<V: Into<bits::U3>>(mut self, value: V) -> Self {
         let value: bits::U3 = value.into();
         let value: u32 = value.into();
@@ -198,12 +198,12 @@ impl Cr {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
     }
 
-    #[doc="Disable Backup Domain write protection"]
+    #[doc="Returns true if DBP != 0"]
     #[inline] pub fn test_dbp(&self) -> bool {
         self.dbp() != 0
     }
 
-    #[doc="Disable Backup Domain write protection"]
+    #[doc="Sets the DBP field."]
     #[inline] pub fn set_dbp<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -251,12 +251,12 @@ impl Csr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Wake-Up Flag"]
+    #[doc="Returns true if WUF != 0"]
     #[inline] pub fn test_wuf(&self) -> bool {
         self.wuf() != 0
     }
 
-    #[doc="Wake-Up Flag"]
+    #[doc="Sets the WUF field."]
     #[inline] pub fn set_wuf<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -270,12 +270,12 @@ impl Csr {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="STANDBY Flag"]
+    #[doc="Returns true if SBF != 0"]
     #[inline] pub fn test_sbf(&self) -> bool {
         self.sbf() != 0
     }
 
-    #[doc="STANDBY Flag"]
+    #[doc="Sets the SBF field."]
     #[inline] pub fn set_sbf<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -289,12 +289,12 @@ impl Csr {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="PVD Output"]
+    #[doc="Returns true if PVDO != 0"]
     #[inline] pub fn test_pvdo(&self) -> bool {
         self.pvdo() != 0
     }
 
-    #[doc="PVD Output"]
+    #[doc="Sets the PVDO field."]
     #[inline] pub fn set_pvdo<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -308,12 +308,12 @@ impl Csr {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
     }
 
-    #[doc="Enable WKUP pin"]
+    #[doc="Returns true if EWUP != 0"]
     #[inline] pub fn test_ewup(&self) -> bool {
         self.ewup() != 0
     }
 
-    #[doc="Enable WKUP pin"]
+    #[doc="Sets the EWUP field."]
     #[inline] pub fn set_ewup<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();

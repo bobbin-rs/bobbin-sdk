@@ -1387,12 +1387,12 @@ impl Mcr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x7f) as u8) } // [6:0]
     }
 
-    #[doc="Number Of The Last Message Buffer"]
+    #[doc="Returns true if MAXMB != 0"]
     #[inline] pub fn test_maxmb(&self) -> bool {
         self.maxmb() != 0
     }
 
-    #[doc="Number Of The Last Message Buffer"]
+    #[doc="Sets the MAXMB field."]
     #[inline] pub fn set_maxmb<V: Into<bits::U7>>(mut self, value: V) -> Self {
         let value: bits::U7 = value.into();
         let value: u32 = value.into();
@@ -1406,12 +1406,12 @@ impl Mcr {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x3) as u8) } // [9:8]
     }
 
-    #[doc="ID Acceptance Mode"]
+    #[doc="Returns true if IDAM != 0"]
     #[inline] pub fn test_idam(&self) -> bool {
         self.idam() != 0
     }
 
-    #[doc="ID Acceptance Mode"]
+    #[doc="Sets the IDAM field."]
     #[inline] pub fn set_idam<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -1425,12 +1425,12 @@ impl Mcr {
         unsafe { ::core::mem::transmute(((self.0 >> 11) & 0x1) as u8) } // [11]
     }
 
-    #[doc="CAN FD operation enable"]
+    #[doc="Returns true if FDEN != 0"]
     #[inline] pub fn test_fden(&self) -> bool {
         self.fden() != 0
     }
 
-    #[doc="CAN FD operation enable"]
+    #[doc="Sets the FDEN field."]
     #[inline] pub fn set_fden<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1444,12 +1444,12 @@ impl Mcr {
         unsafe { ::core::mem::transmute(((self.0 >> 12) & 0x1) as u8) } // [12]
     }
 
-    #[doc="Abort Enable"]
+    #[doc="Returns true if AEN != 0"]
     #[inline] pub fn test_aen(&self) -> bool {
         self.aen() != 0
     }
 
-    #[doc="Abort Enable"]
+    #[doc="Sets the AEN field."]
     #[inline] pub fn set_aen<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1463,12 +1463,12 @@ impl Mcr {
         unsafe { ::core::mem::transmute(((self.0 >> 13) & 0x1) as u8) } // [13]
     }
 
-    #[doc="Local Priority Enable"]
+    #[doc="Returns true if LPRIOEN != 0"]
     #[inline] pub fn test_lprioen(&self) -> bool {
         self.lprioen() != 0
     }
 
-    #[doc="Local Priority Enable"]
+    #[doc="Sets the LPRIOEN field."]
     #[inline] pub fn set_lprioen<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1482,12 +1482,12 @@ impl Mcr {
         unsafe { ::core::mem::transmute(((self.0 >> 14) & 0x1) as u8) } // [14]
     }
 
-    #[doc="Pretended Networking Enable"]
+    #[doc="Returns true if PNET_EN != 0"]
     #[inline] pub fn test_pnet_en(&self) -> bool {
         self.pnet_en() != 0
     }
 
-    #[doc="Pretended Networking Enable"]
+    #[doc="Sets the PNET_EN field."]
     #[inline] pub fn set_pnet_en<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1501,12 +1501,12 @@ impl Mcr {
         unsafe { ::core::mem::transmute(((self.0 >> 15) & 0x1) as u8) } // [15]
     }
 
-    #[doc="DMA Enable"]
+    #[doc="Returns true if DMA != 0"]
     #[inline] pub fn test_dma(&self) -> bool {
         self.dma() != 0
     }
 
-    #[doc="DMA Enable"]
+    #[doc="Sets the DMA field."]
     #[inline] pub fn set_dma<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1520,12 +1520,12 @@ impl Mcr {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1) as u8) } // [16]
     }
 
-    #[doc="Individual Rx Masking And Queue Enable"]
+    #[doc="Returns true if IRMQ != 0"]
     #[inline] pub fn test_irmq(&self) -> bool {
         self.irmq() != 0
     }
 
-    #[doc="Individual Rx Masking And Queue Enable"]
+    #[doc="Sets the IRMQ field."]
     #[inline] pub fn set_irmq<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1539,12 +1539,12 @@ impl Mcr {
         unsafe { ::core::mem::transmute(((self.0 >> 17) & 0x1) as u8) } // [17]
     }
 
-    #[doc="Self Reception Disable"]
+    #[doc="Returns true if SRXDIS != 0"]
     #[inline] pub fn test_srxdis(&self) -> bool {
         self.srxdis() != 0
     }
 
-    #[doc="Self Reception Disable"]
+    #[doc="Sets the SRXDIS field."]
     #[inline] pub fn set_srxdis<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1558,12 +1558,12 @@ impl Mcr {
         unsafe { ::core::mem::transmute(((self.0 >> 20) & 0x1) as u8) } // [20]
     }
 
-    #[doc="Low-Power Mode Acknowledge"]
+    #[doc="Returns true if LPMACK != 0"]
     #[inline] pub fn test_lpmack(&self) -> bool {
         self.lpmack() != 0
     }
 
-    #[doc="Low-Power Mode Acknowledge"]
+    #[doc="Sets the LPMACK field."]
     #[inline] pub fn set_lpmack<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1577,12 +1577,12 @@ impl Mcr {
         unsafe { ::core::mem::transmute(((self.0 >> 21) & 0x1) as u8) } // [21]
     }
 
-    #[doc="Warning Interrupt Enable"]
+    #[doc="Returns true if WRNEN != 0"]
     #[inline] pub fn test_wrnen(&self) -> bool {
         self.wrnen() != 0
     }
 
-    #[doc="Warning Interrupt Enable"]
+    #[doc="Sets the WRNEN field."]
     #[inline] pub fn set_wrnen<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1596,12 +1596,12 @@ impl Mcr {
         unsafe { ::core::mem::transmute(((self.0 >> 23) & 0x1) as u8) } // [23]
     }
 
-    #[doc="Supervisor Mode"]
+    #[doc="Returns true if SUPV != 0"]
     #[inline] pub fn test_supv(&self) -> bool {
         self.supv() != 0
     }
 
-    #[doc="Supervisor Mode"]
+    #[doc="Sets the SUPV field."]
     #[inline] pub fn set_supv<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1615,12 +1615,12 @@ impl Mcr {
         unsafe { ::core::mem::transmute(((self.0 >> 24) & 0x1) as u8) } // [24]
     }
 
-    #[doc="Freeze Mode Acknowledge"]
+    #[doc="Returns true if FRZACK != 0"]
     #[inline] pub fn test_frzack(&self) -> bool {
         self.frzack() != 0
     }
 
-    #[doc="Freeze Mode Acknowledge"]
+    #[doc="Sets the FRZACK field."]
     #[inline] pub fn set_frzack<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1634,12 +1634,12 @@ impl Mcr {
         unsafe { ::core::mem::transmute(((self.0 >> 25) & 0x1) as u8) } // [25]
     }
 
-    #[doc="Soft Reset"]
+    #[doc="Returns true if SOFTRST != 0"]
     #[inline] pub fn test_softrst(&self) -> bool {
         self.softrst() != 0
     }
 
-    #[doc="Soft Reset"]
+    #[doc="Sets the SOFTRST field."]
     #[inline] pub fn set_softrst<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1653,12 +1653,12 @@ impl Mcr {
         unsafe { ::core::mem::transmute(((self.0 >> 27) & 0x1) as u8) } // [27]
     }
 
-    #[doc="FlexCAN Not Ready"]
+    #[doc="Returns true if NOTRDY != 0"]
     #[inline] pub fn test_notrdy(&self) -> bool {
         self.notrdy() != 0
     }
 
-    #[doc="FlexCAN Not Ready"]
+    #[doc="Sets the NOTRDY field."]
     #[inline] pub fn set_notrdy<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1672,12 +1672,12 @@ impl Mcr {
         unsafe { ::core::mem::transmute(((self.0 >> 28) & 0x1) as u8) } // [28]
     }
 
-    #[doc="Halt FlexCAN"]
+    #[doc="Returns true if HALT != 0"]
     #[inline] pub fn test_halt(&self) -> bool {
         self.halt() != 0
     }
 
-    #[doc="Halt FlexCAN"]
+    #[doc="Sets the HALT field."]
     #[inline] pub fn set_halt<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1691,12 +1691,12 @@ impl Mcr {
         unsafe { ::core::mem::transmute(((self.0 >> 29) & 0x1) as u8) } // [29]
     }
 
-    #[doc="Rx FIFO Enable"]
+    #[doc="Returns true if RFEN != 0"]
     #[inline] pub fn test_rfen(&self) -> bool {
         self.rfen() != 0
     }
 
-    #[doc="Rx FIFO Enable"]
+    #[doc="Sets the RFEN field."]
     #[inline] pub fn set_rfen<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1710,12 +1710,12 @@ impl Mcr {
         unsafe { ::core::mem::transmute(((self.0 >> 30) & 0x1) as u8) } // [30]
     }
 
-    #[doc="Freeze Enable"]
+    #[doc="Returns true if FRZ != 0"]
     #[inline] pub fn test_frz(&self) -> bool {
         self.frz() != 0
     }
 
-    #[doc="Freeze Enable"]
+    #[doc="Sets the FRZ field."]
     #[inline] pub fn set_frz<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1729,12 +1729,12 @@ impl Mcr {
         unsafe { ::core::mem::transmute(((self.0 >> 31) & 0x1) as u8) } // [31]
     }
 
-    #[doc="Module Disable"]
+    #[doc="Returns true if MDIS != 0"]
     #[inline] pub fn test_mdis(&self) -> bool {
         self.mdis() != 0
     }
 
-    #[doc="Module Disable"]
+    #[doc="Sets the MDIS field."]
     #[inline] pub fn set_mdis<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1794,12 +1794,12 @@ impl Ctrl1 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x7) as u8) } // [2:0]
     }
 
-    #[doc="Propagation Segment"]
+    #[doc="Returns true if PROPSEG != 0"]
     #[inline] pub fn test_propseg(&self) -> bool {
         self.propseg() != 0
     }
 
-    #[doc="Propagation Segment"]
+    #[doc="Sets the PROPSEG field."]
     #[inline] pub fn set_propseg<V: Into<bits::U3>>(mut self, value: V) -> Self {
         let value: bits::U3 = value.into();
         let value: u32 = value.into();
@@ -1813,12 +1813,12 @@ impl Ctrl1 {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="Listen-Only Mode"]
+    #[doc="Returns true if LOM != 0"]
     #[inline] pub fn test_lom(&self) -> bool {
         self.lom() != 0
     }
 
-    #[doc="Listen-Only Mode"]
+    #[doc="Sets the LOM field."]
     #[inline] pub fn set_lom<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1832,12 +1832,12 @@ impl Ctrl1 {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="Lowest Buffer Transmitted First"]
+    #[doc="Returns true if LBUF != 0"]
     #[inline] pub fn test_lbuf(&self) -> bool {
         self.lbuf() != 0
     }
 
-    #[doc="Lowest Buffer Transmitted First"]
+    #[doc="Sets the LBUF field."]
     #[inline] pub fn set_lbuf<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1851,12 +1851,12 @@ impl Ctrl1 {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="Timer Sync"]
+    #[doc="Returns true if TSYN != 0"]
     #[inline] pub fn test_tsyn(&self) -> bool {
         self.tsyn() != 0
     }
 
-    #[doc="Timer Sync"]
+    #[doc="Sets the TSYN field."]
     #[inline] pub fn set_tsyn<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1870,12 +1870,12 @@ impl Ctrl1 {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="Bus Off Recovery"]
+    #[doc="Returns true if BOFFREC != 0"]
     #[inline] pub fn test_boffrec(&self) -> bool {
         self.boffrec() != 0
     }
 
-    #[doc="Bus Off Recovery"]
+    #[doc="Sets the BOFFREC field."]
     #[inline] pub fn set_boffrec<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1889,12 +1889,12 @@ impl Ctrl1 {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="CAN Bit Sampling"]
+    #[doc="Returns true if SMP != 0"]
     #[inline] pub fn test_smp(&self) -> bool {
         self.smp() != 0
     }
 
-    #[doc="CAN Bit Sampling"]
+    #[doc="Sets the SMP field."]
     #[inline] pub fn set_smp<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1908,12 +1908,12 @@ impl Ctrl1 {
         unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x1) as u8) } // [10]
     }
 
-    #[doc="Rx Warning Interrupt Mask"]
+    #[doc="Returns true if RWRNMSK != 0"]
     #[inline] pub fn test_rwrnmsk(&self) -> bool {
         self.rwrnmsk() != 0
     }
 
-    #[doc="Rx Warning Interrupt Mask"]
+    #[doc="Sets the RWRNMSK field."]
     #[inline] pub fn set_rwrnmsk<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1927,12 +1927,12 @@ impl Ctrl1 {
         unsafe { ::core::mem::transmute(((self.0 >> 11) & 0x1) as u8) } // [11]
     }
 
-    #[doc="Tx Warning Interrupt Mask"]
+    #[doc="Returns true if TWRNMSK != 0"]
     #[inline] pub fn test_twrnmsk(&self) -> bool {
         self.twrnmsk() != 0
     }
 
-    #[doc="Tx Warning Interrupt Mask"]
+    #[doc="Sets the TWRNMSK field."]
     #[inline] pub fn set_twrnmsk<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1946,12 +1946,12 @@ impl Ctrl1 {
         unsafe { ::core::mem::transmute(((self.0 >> 12) & 0x1) as u8) } // [12]
     }
 
-    #[doc="Loop Back Mode"]
+    #[doc="Returns true if LPB != 0"]
     #[inline] pub fn test_lpb(&self) -> bool {
         self.lpb() != 0
     }
 
-    #[doc="Loop Back Mode"]
+    #[doc="Sets the LPB field."]
     #[inline] pub fn set_lpb<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1965,12 +1965,12 @@ impl Ctrl1 {
         unsafe { ::core::mem::transmute(((self.0 >> 13) & 0x1) as u8) } // [13]
     }
 
-    #[doc="CAN Engine Clock Source"]
+    #[doc="Returns true if CLKSRC != 0"]
     #[inline] pub fn test_clksrc(&self) -> bool {
         self.clksrc() != 0
     }
 
-    #[doc="CAN Engine Clock Source"]
+    #[doc="Sets the CLKSRC field."]
     #[inline] pub fn set_clksrc<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1984,12 +1984,12 @@ impl Ctrl1 {
         unsafe { ::core::mem::transmute(((self.0 >> 14) & 0x1) as u8) } // [14]
     }
 
-    #[doc="Error Interrupt Mask"]
+    #[doc="Returns true if ERRMSK != 0"]
     #[inline] pub fn test_errmsk(&self) -> bool {
         self.errmsk() != 0
     }
 
-    #[doc="Error Interrupt Mask"]
+    #[doc="Sets the ERRMSK field."]
     #[inline] pub fn set_errmsk<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2003,12 +2003,12 @@ impl Ctrl1 {
         unsafe { ::core::mem::transmute(((self.0 >> 15) & 0x1) as u8) } // [15]
     }
 
-    #[doc="Bus Off Interrupt Mask"]
+    #[doc="Returns true if BOFFMSK != 0"]
     #[inline] pub fn test_boffmsk(&self) -> bool {
         self.boffmsk() != 0
     }
 
-    #[doc="Bus Off Interrupt Mask"]
+    #[doc="Sets the BOFFMSK field."]
     #[inline] pub fn set_boffmsk<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2022,12 +2022,12 @@ impl Ctrl1 {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x7) as u8) } // [18:16]
     }
 
-    #[doc="Phase Segment 2"]
+    #[doc="Returns true if PSEG2 != 0"]
     #[inline] pub fn test_pseg2(&self) -> bool {
         self.pseg2() != 0
     }
 
-    #[doc="Phase Segment 2"]
+    #[doc="Sets the PSEG2 field."]
     #[inline] pub fn set_pseg2<V: Into<bits::U3>>(mut self, value: V) -> Self {
         let value: bits::U3 = value.into();
         let value: u32 = value.into();
@@ -2041,12 +2041,12 @@ impl Ctrl1 {
         unsafe { ::core::mem::transmute(((self.0 >> 19) & 0x7) as u8) } // [21:19]
     }
 
-    #[doc="Phase Segment 1"]
+    #[doc="Returns true if PSEG1 != 0"]
     #[inline] pub fn test_pseg1(&self) -> bool {
         self.pseg1() != 0
     }
 
-    #[doc="Phase Segment 1"]
+    #[doc="Sets the PSEG1 field."]
     #[inline] pub fn set_pseg1<V: Into<bits::U3>>(mut self, value: V) -> Self {
         let value: bits::U3 = value.into();
         let value: u32 = value.into();
@@ -2060,12 +2060,12 @@ impl Ctrl1 {
         unsafe { ::core::mem::transmute(((self.0 >> 22) & 0x3) as u8) } // [23:22]
     }
 
-    #[doc="Resync Jump Width"]
+    #[doc="Returns true if RJW != 0"]
     #[inline] pub fn test_rjw(&self) -> bool {
         self.rjw() != 0
     }
 
-    #[doc="Resync Jump Width"]
+    #[doc="Sets the RJW field."]
     #[inline] pub fn set_rjw<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -2079,12 +2079,12 @@ impl Ctrl1 {
         unsafe { ::core::mem::transmute(((self.0 >> 24) & 0xff) as u8) } // [31:24]
     }
 
-    #[doc="Prescaler Division Factor"]
+    #[doc="Returns true if PRESDIV != 0"]
     #[inline] pub fn test_presdiv(&self) -> bool {
         self.presdiv() != 0
     }
 
-    #[doc="Prescaler Division Factor"]
+    #[doc="Sets the PRESDIV field."]
     #[inline] pub fn set_presdiv<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -2141,12 +2141,12 @@ impl Timer {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffff) as u16) } // [15:0]
     }
 
-    #[doc="Timer Value"]
+    #[doc="Returns true if TIMER != 0"]
     #[inline] pub fn test_timer(&self) -> bool {
         self.timer() != 0
     }
 
-    #[doc="Timer Value"]
+    #[doc="Sets the TIMER field."]
     #[inline] pub fn set_timer<V: Into<bits::U16>>(mut self, value: V) -> Self {
         let value: bits::U16 = value.into();
         let value: u32 = value.into();
@@ -2188,12 +2188,12 @@ impl Rxmgmask {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffffffff) as u32) } // [31:0]
     }
 
-    #[doc="Rx Mailboxes Global Mask Bits"]
+    #[doc="Returns true if MG != 0"]
     #[inline] pub fn test_mg(&self) -> bool {
         self.mg() != 0
     }
 
-    #[doc="Rx Mailboxes Global Mask Bits"]
+    #[doc="Sets the MG field."]
     #[inline] pub fn set_mg<V: Into<bits::U32>>(mut self, value: V) -> Self {
         let value: bits::U32 = value.into();
         let value: u32 = value.into();
@@ -2234,12 +2234,12 @@ impl Rx14mask {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffffffff) as u32) } // [31:0]
     }
 
-    #[doc="Rx Buffer 14 Mask Bits"]
+    #[doc="Returns true if RX14M != 0"]
     #[inline] pub fn test_rx14m(&self) -> bool {
         self.rx14m() != 0
     }
 
-    #[doc="Rx Buffer 14 Mask Bits"]
+    #[doc="Sets the RX14M field."]
     #[inline] pub fn set_rx14m<V: Into<bits::U32>>(mut self, value: V) -> Self {
         let value: bits::U32 = value.into();
         let value: u32 = value.into();
@@ -2280,12 +2280,12 @@ impl Rx15mask {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffffffff) as u32) } // [31:0]
     }
 
-    #[doc="Rx Buffer 15 Mask Bits"]
+    #[doc="Returns true if RX15M != 0"]
     #[inline] pub fn test_rx15m(&self) -> bool {
         self.rx15m() != 0
     }
 
-    #[doc="Rx Buffer 15 Mask Bits"]
+    #[doc="Sets the RX15M field."]
     #[inline] pub fn set_rx15m<V: Into<bits::U32>>(mut self, value: V) -> Self {
         let value: bits::U32 = value.into();
         let value: u32 = value.into();
@@ -2326,12 +2326,12 @@ impl Ecr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
-    #[doc="Transmit Error Counter"]
+    #[doc="Returns true if TXERRCNT != 0"]
     #[inline] pub fn test_txerrcnt(&self) -> bool {
         self.txerrcnt() != 0
     }
 
-    #[doc="Transmit Error Counter"]
+    #[doc="Sets the TXERRCNT field."]
     #[inline] pub fn set_txerrcnt<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -2345,12 +2345,12 @@ impl Ecr {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0xff) as u8) } // [15:8]
     }
 
-    #[doc="Receive Error Counter"]
+    #[doc="Returns true if RXERRCNT != 0"]
     #[inline] pub fn test_rxerrcnt(&self) -> bool {
         self.rxerrcnt() != 0
     }
 
-    #[doc="Receive Error Counter"]
+    #[doc="Sets the RXERRCNT field."]
     #[inline] pub fn set_rxerrcnt<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -2364,12 +2364,12 @@ impl Ecr {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xff) as u8) } // [23:16]
     }
 
-    #[doc="Transmit Error Counter for fast bits"]
+    #[doc="Returns true if TXERRCNT_FAST != 0"]
     #[inline] pub fn test_txerrcnt_fast(&self) -> bool {
         self.txerrcnt_fast() != 0
     }
 
-    #[doc="Transmit Error Counter for fast bits"]
+    #[doc="Sets the TXERRCNT_FAST field."]
     #[inline] pub fn set_txerrcnt_fast<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -2383,12 +2383,12 @@ impl Ecr {
         unsafe { ::core::mem::transmute(((self.0 >> 24) & 0xff) as u8) } // [31:24]
     }
 
-    #[doc="Receive Error Counter for fast bits"]
+    #[doc="Returns true if RXERRCNT_FAST != 0"]
     #[inline] pub fn test_rxerrcnt_fast(&self) -> bool {
         self.rxerrcnt_fast() != 0
     }
 
-    #[doc="Receive Error Counter for fast bits"]
+    #[doc="Sets the RXERRCNT_FAST field."]
     #[inline] pub fn set_rxerrcnt_fast<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -2433,12 +2433,12 @@ impl Esr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="Error Interrupt"]
+    #[doc="Returns true if ERRINT != 0"]
     #[inline] pub fn test_errint(&self) -> bool {
         self.errint() != 0
     }
 
-    #[doc="Error Interrupt"]
+    #[doc="Sets the ERRINT field."]
     #[inline] pub fn set_errint<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2452,12 +2452,12 @@ impl Esr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="Bus Off Interrupt"]
+    #[doc="Returns true if BOFFINT != 0"]
     #[inline] pub fn test_boffint(&self) -> bool {
         self.boffint() != 0
     }
 
-    #[doc="Bus Off Interrupt"]
+    #[doc="Sets the BOFFINT field."]
     #[inline] pub fn set_boffint<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2471,12 +2471,12 @@ impl Esr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="FlexCAN In Reception"]
+    #[doc="Returns true if RX != 0"]
     #[inline] pub fn test_rx(&self) -> bool {
         self.rx() != 0
     }
 
-    #[doc="FlexCAN In Reception"]
+    #[doc="Sets the RX field."]
     #[inline] pub fn set_rx<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2490,12 +2490,12 @@ impl Esr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x3) as u8) } // [5:4]
     }
 
-    #[doc="Fault Confinement State"]
+    #[doc="Returns true if FLTCONF != 0"]
     #[inline] pub fn test_fltconf(&self) -> bool {
         self.fltconf() != 0
     }
 
-    #[doc="Fault Confinement State"]
+    #[doc="Sets the FLTCONF field."]
     #[inline] pub fn set_fltconf<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -2509,12 +2509,12 @@ impl Esr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="FlexCAN In Transmission"]
+    #[doc="Returns true if TX != 0"]
     #[inline] pub fn test_tx(&self) -> bool {
         self.tx() != 0
     }
 
-    #[doc="FlexCAN In Transmission"]
+    #[doc="Sets the TX field."]
     #[inline] pub fn set_tx<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2528,12 +2528,12 @@ impl Esr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="IDLE"]
+    #[doc="Returns true if IDLE != 0"]
     #[inline] pub fn test_idle(&self) -> bool {
         self.idle() != 0
     }
 
-    #[doc="IDLE"]
+    #[doc="Sets the IDLE field."]
     #[inline] pub fn set_idle<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2547,12 +2547,12 @@ impl Esr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
     }
 
-    #[doc="Rx Error Warning"]
+    #[doc="Returns true if RXWRN != 0"]
     #[inline] pub fn test_rxwrn(&self) -> bool {
         self.rxwrn() != 0
     }
 
-    #[doc="Rx Error Warning"]
+    #[doc="Sets the RXWRN field."]
     #[inline] pub fn set_rxwrn<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2566,12 +2566,12 @@ impl Esr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
     }
 
-    #[doc="TX Error Warning"]
+    #[doc="Returns true if TXWRN != 0"]
     #[inline] pub fn test_txwrn(&self) -> bool {
         self.txwrn() != 0
     }
 
-    #[doc="TX Error Warning"]
+    #[doc="Sets the TXWRN field."]
     #[inline] pub fn set_txwrn<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2585,12 +2585,12 @@ impl Esr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x1) as u8) } // [10]
     }
 
-    #[doc="Stuffing Error"]
+    #[doc="Returns true if STFERR != 0"]
     #[inline] pub fn test_stferr(&self) -> bool {
         self.stferr() != 0
     }
 
-    #[doc="Stuffing Error"]
+    #[doc="Sets the STFERR field."]
     #[inline] pub fn set_stferr<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2604,12 +2604,12 @@ impl Esr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 11) & 0x1) as u8) } // [11]
     }
 
-    #[doc="Form Error"]
+    #[doc="Returns true if FRMERR != 0"]
     #[inline] pub fn test_frmerr(&self) -> bool {
         self.frmerr() != 0
     }
 
-    #[doc="Form Error"]
+    #[doc="Sets the FRMERR field."]
     #[inline] pub fn set_frmerr<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2623,12 +2623,12 @@ impl Esr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 12) & 0x1) as u8) } // [12]
     }
 
-    #[doc="Cyclic Redundancy Check Error"]
+    #[doc="Returns true if CRCERR != 0"]
     #[inline] pub fn test_crcerr(&self) -> bool {
         self.crcerr() != 0
     }
 
-    #[doc="Cyclic Redundancy Check Error"]
+    #[doc="Sets the CRCERR field."]
     #[inline] pub fn set_crcerr<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2642,12 +2642,12 @@ impl Esr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 13) & 0x1) as u8) } // [13]
     }
 
-    #[doc="Acknowledge Error"]
+    #[doc="Returns true if ACKERR != 0"]
     #[inline] pub fn test_ackerr(&self) -> bool {
         self.ackerr() != 0
     }
 
-    #[doc="Acknowledge Error"]
+    #[doc="Sets the ACKERR field."]
     #[inline] pub fn set_ackerr<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2661,12 +2661,12 @@ impl Esr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 14) & 0x1) as u8) } // [14]
     }
 
-    #[doc="Bit0 Error"]
+    #[doc="Returns true if BIT0ERR != 0"]
     #[inline] pub fn test_bit0err(&self) -> bool {
         self.bit0err() != 0
     }
 
-    #[doc="Bit0 Error"]
+    #[doc="Sets the BIT0ERR field."]
     #[inline] pub fn set_bit0err<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2680,12 +2680,12 @@ impl Esr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 15) & 0x1) as u8) } // [15]
     }
 
-    #[doc="Bit1 Error"]
+    #[doc="Returns true if BIT1ERR != 0"]
     #[inline] pub fn test_bit1err(&self) -> bool {
         self.bit1err() != 0
     }
 
-    #[doc="Bit1 Error"]
+    #[doc="Sets the BIT1ERR field."]
     #[inline] pub fn set_bit1err<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2699,12 +2699,12 @@ impl Esr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1) as u8) } // [16]
     }
 
-    #[doc="Rx Warning Interrupt Flag"]
+    #[doc="Returns true if RWRNINT != 0"]
     #[inline] pub fn test_rwrnint(&self) -> bool {
         self.rwrnint() != 0
     }
 
-    #[doc="Rx Warning Interrupt Flag"]
+    #[doc="Sets the RWRNINT field."]
     #[inline] pub fn set_rwrnint<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2718,12 +2718,12 @@ impl Esr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 17) & 0x1) as u8) } // [17]
     }
 
-    #[doc="Tx Warning Interrupt Flag"]
+    #[doc="Returns true if TWRNINT != 0"]
     #[inline] pub fn test_twrnint(&self) -> bool {
         self.twrnint() != 0
     }
 
-    #[doc="Tx Warning Interrupt Flag"]
+    #[doc="Sets the TWRNINT field."]
     #[inline] pub fn set_twrnint<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2737,12 +2737,12 @@ impl Esr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 18) & 0x1) as u8) } // [18]
     }
 
-    #[doc="CAN Synchronization Status"]
+    #[doc="Returns true if SYNCH != 0"]
     #[inline] pub fn test_synch(&self) -> bool {
         self.synch() != 0
     }
 
-    #[doc="CAN Synchronization Status"]
+    #[doc="Sets the SYNCH field."]
     #[inline] pub fn set_synch<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2756,12 +2756,12 @@ impl Esr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 19) & 0x1) as u8) } // [19]
     }
 
-    #[doc="Bus Off Done Interrupt"]
+    #[doc="Returns true if BOFFDONEINT != 0"]
     #[inline] pub fn test_boffdoneint(&self) -> bool {
         self.boffdoneint() != 0
     }
 
-    #[doc="Bus Off Done Interrupt"]
+    #[doc="Sets the BOFFDONEINT field."]
     #[inline] pub fn set_boffdoneint<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2775,12 +2775,12 @@ impl Esr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 20) & 0x1) as u8) } // [20]
     }
 
-    #[doc="Error Interrupt for errors detected in the Data Phase of CAN FD frames with the BRS bit set"]
+    #[doc="Returns true if ERRINT_FAST != 0"]
     #[inline] pub fn test_errint_fast(&self) -> bool {
         self.errint_fast() != 0
     }
 
-    #[doc="Error Interrupt for errors detected in the Data Phase of CAN FD frames with the BRS bit set"]
+    #[doc="Sets the ERRINT_FAST field."]
     #[inline] pub fn set_errint_fast<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2794,12 +2794,12 @@ impl Esr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 21) & 0x1) as u8) } // [21]
     }
 
-    #[doc="Error Overrun bit"]
+    #[doc="Returns true if ERROVR != 0"]
     #[inline] pub fn test_errovr(&self) -> bool {
         self.errovr() != 0
     }
 
-    #[doc="Error Overrun bit"]
+    #[doc="Sets the ERROVR field."]
     #[inline] pub fn set_errovr<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2813,12 +2813,12 @@ impl Esr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 26) & 0x1) as u8) } // [26]
     }
 
-    #[doc="Stuffing Error in the Data Phase of CAN FD frames with the BRS bit set"]
+    #[doc="Returns true if STFERR_FAST != 0"]
     #[inline] pub fn test_stferr_fast(&self) -> bool {
         self.stferr_fast() != 0
     }
 
-    #[doc="Stuffing Error in the Data Phase of CAN FD frames with the BRS bit set"]
+    #[doc="Sets the STFERR_FAST field."]
     #[inline] pub fn set_stferr_fast<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2832,12 +2832,12 @@ impl Esr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 27) & 0x1) as u8) } // [27]
     }
 
-    #[doc="Form Error in the Data Phase of CAN FD frames with the BRS bit set"]
+    #[doc="Returns true if FRMERR_FAST != 0"]
     #[inline] pub fn test_frmerr_fast(&self) -> bool {
         self.frmerr_fast() != 0
     }
 
-    #[doc="Form Error in the Data Phase of CAN FD frames with the BRS bit set"]
+    #[doc="Sets the FRMERR_FAST field."]
     #[inline] pub fn set_frmerr_fast<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2851,12 +2851,12 @@ impl Esr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 28) & 0x1) as u8) } // [28]
     }
 
-    #[doc="Cyclic Redundancy Check Error in the CRC field of CAN FD frames with the BRS bit set"]
+    #[doc="Returns true if CRCERR_FAST != 0"]
     #[inline] pub fn test_crcerr_fast(&self) -> bool {
         self.crcerr_fast() != 0
     }
 
-    #[doc="Cyclic Redundancy Check Error in the CRC field of CAN FD frames with the BRS bit set"]
+    #[doc="Sets the CRCERR_FAST field."]
     #[inline] pub fn set_crcerr_fast<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2870,12 +2870,12 @@ impl Esr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 30) & 0x1) as u8) } // [30]
     }
 
-    #[doc="Bit0 Error in the Data Phase of CAN FD frames with the BRS bit set"]
+    #[doc="Returns true if BIT0ERR_FAST != 0"]
     #[inline] pub fn test_bit0err_fast(&self) -> bool {
         self.bit0err_fast() != 0
     }
 
-    #[doc="Bit0 Error in the Data Phase of CAN FD frames with the BRS bit set"]
+    #[doc="Sets the BIT0ERR_FAST field."]
     #[inline] pub fn set_bit0err_fast<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2889,12 +2889,12 @@ impl Esr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 31) & 0x1) as u8) } // [31]
     }
 
-    #[doc="Bit1 Error in the Data Phase of CAN FD frames with the BRS bit set"]
+    #[doc="Returns true if BIT1ERR_FAST != 0"]
     #[inline] pub fn test_bit1err_fast(&self) -> bool {
         self.bit1err_fast() != 0
     }
 
-    #[doc="Bit1 Error in the Data Phase of CAN FD frames with the BRS bit set"]
+    #[doc="Sets the BIT1ERR_FAST field."]
     #[inline] pub fn set_bit1err_fast<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -2960,12 +2960,12 @@ impl Imask1 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffffffff) as u32) } // [31:0]
     }
 
-    #[doc="Buffer MB i Mask"]
+    #[doc="Returns true if BUF31TO0M != 0"]
     #[inline] pub fn test_buf31to0m(&self) -> bool {
         self.buf31to0m() != 0
     }
 
-    #[doc="Buffer MB i Mask"]
+    #[doc="Sets the BUF31TO0M field."]
     #[inline] pub fn set_buf31to0m<V: Into<bits::U32>>(mut self, value: V) -> Self {
         let value: bits::U32 = value.into();
         let value: u32 = value.into();
@@ -3008,12 +3008,12 @@ impl Iflag1 {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Buffer MB Interrupt"]
+    #[doc="Returns true if BUFI != 0"]
     #[inline] pub fn test_bufi<I: Into<bits::R32>>(&self, index: I) -> bool{
         self.bufi(index) != 0
     }
 
-    #[doc="Buffer MB Interrupt"]
+    #[doc="Sets the BUFI field."]
     #[inline] pub fn set_bufi<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -3088,12 +3088,12 @@ impl Ctrl2 {
         unsafe { ::core::mem::transmute(((self.0 >> 11) & 0x1) as u8) } // [11]
     }
 
-    #[doc="Edge Filter Disable"]
+    #[doc="Returns true if EDFLTDIS != 0"]
     #[inline] pub fn test_edfltdis(&self) -> bool {
         self.edfltdis() != 0
     }
 
-    #[doc="Edge Filter Disable"]
+    #[doc="Sets the EDFLTDIS field."]
     #[inline] pub fn set_edfltdis<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -3107,12 +3107,12 @@ impl Ctrl2 {
         unsafe { ::core::mem::transmute(((self.0 >> 12) & 0x1) as u8) } // [12]
     }
 
-    #[doc="ISO CAN FD Enable"]
+    #[doc="Returns true if ISOCANFDEN != 0"]
     #[inline] pub fn test_isocanfden(&self) -> bool {
         self.isocanfden() != 0
     }
 
-    #[doc="ISO CAN FD Enable"]
+    #[doc="Sets the ISOCANFDEN field."]
     #[inline] pub fn set_isocanfden<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -3126,12 +3126,12 @@ impl Ctrl2 {
         unsafe { ::core::mem::transmute(((self.0 >> 14) & 0x1) as u8) } // [14]
     }
 
-    #[doc="Protocol Exception Enable"]
+    #[doc="Returns true if PREXCEN != 0"]
     #[inline] pub fn test_prexcen(&self) -> bool {
         self.prexcen() != 0
     }
 
-    #[doc="Protocol Exception Enable"]
+    #[doc="Sets the PREXCEN field."]
     #[inline] pub fn set_prexcen<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -3145,12 +3145,12 @@ impl Ctrl2 {
         unsafe { ::core::mem::transmute(((self.0 >> 15) & 0x1) as u8) } // [15]
     }
 
-    #[doc="Timer Source"]
+    #[doc="Returns true if TIMER_SRC != 0"]
     #[inline] pub fn test_timer_src(&self) -> bool {
         self.timer_src() != 0
     }
 
-    #[doc="Timer Source"]
+    #[doc="Sets the TIMER_SRC field."]
     #[inline] pub fn set_timer_src<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -3164,12 +3164,12 @@ impl Ctrl2 {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1) as u8) } // [16]
     }
 
-    #[doc="Entire Frame Arbitration Field Comparison Enable For Rx Mailboxes"]
+    #[doc="Returns true if EACEN != 0"]
     #[inline] pub fn test_eacen(&self) -> bool {
         self.eacen() != 0
     }
 
-    #[doc="Entire Frame Arbitration Field Comparison Enable For Rx Mailboxes"]
+    #[doc="Sets the EACEN field."]
     #[inline] pub fn set_eacen<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -3183,12 +3183,12 @@ impl Ctrl2 {
         unsafe { ::core::mem::transmute(((self.0 >> 17) & 0x1) as u8) } // [17]
     }
 
-    #[doc="Remote Request Storing"]
+    #[doc="Returns true if RRS != 0"]
     #[inline] pub fn test_rrs(&self) -> bool {
         self.rrs() != 0
     }
 
-    #[doc="Remote Request Storing"]
+    #[doc="Sets the RRS field."]
     #[inline] pub fn set_rrs<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -3202,12 +3202,12 @@ impl Ctrl2 {
         unsafe { ::core::mem::transmute(((self.0 >> 18) & 0x1) as u8) } // [18]
     }
 
-    #[doc="Mailboxes Reception Priority"]
+    #[doc="Returns true if MRP != 0"]
     #[inline] pub fn test_mrp(&self) -> bool {
         self.mrp() != 0
     }
 
-    #[doc="Mailboxes Reception Priority"]
+    #[doc="Sets the MRP field."]
     #[inline] pub fn set_mrp<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -3221,12 +3221,12 @@ impl Ctrl2 {
         unsafe { ::core::mem::transmute(((self.0 >> 19) & 0x1f) as u8) } // [23:19]
     }
 
-    #[doc="Tx Arbitration Start Delay"]
+    #[doc="Returns true if TASD != 0"]
     #[inline] pub fn test_tasd(&self) -> bool {
         self.tasd() != 0
     }
 
-    #[doc="Tx Arbitration Start Delay"]
+    #[doc="Sets the TASD field."]
     #[inline] pub fn set_tasd<V: Into<bits::U5>>(mut self, value: V) -> Self {
         let value: bits::U5 = value.into();
         let value: u32 = value.into();
@@ -3240,12 +3240,12 @@ impl Ctrl2 {
         unsafe { ::core::mem::transmute(((self.0 >> 24) & 0xf) as u8) } // [27:24]
     }
 
-    #[doc="Number Of Rx FIFO Filters"]
+    #[doc="Returns true if RFFN != 0"]
     #[inline] pub fn test_rffn(&self) -> bool {
         self.rffn() != 0
     }
 
-    #[doc="Number Of Rx FIFO Filters"]
+    #[doc="Sets the RFFN field."]
     #[inline] pub fn set_rffn<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -3259,12 +3259,12 @@ impl Ctrl2 {
         unsafe { ::core::mem::transmute(((self.0 >> 30) & 0x1) as u8) } // [30]
     }
 
-    #[doc="Bus Off Done Interrupt Mask"]
+    #[doc="Returns true if BOFFDONEMSK != 0"]
     #[inline] pub fn test_boffdonemsk(&self) -> bool {
         self.boffdonemsk() != 0
     }
 
-    #[doc="Bus Off Done Interrupt Mask"]
+    #[doc="Sets the BOFFDONEMSK field."]
     #[inline] pub fn set_boffdonemsk<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -3278,12 +3278,12 @@ impl Ctrl2 {
         unsafe { ::core::mem::transmute(((self.0 >> 31) & 0x1) as u8) } // [31]
     }
 
-    #[doc="Error Interrupt Mask for errors detected in the Data Phase of fast CAN FD frames"]
+    #[doc="Returns true if ERRMSK_FAST != 0"]
     #[inline] pub fn test_errmsk_fast(&self) -> bool {
         self.errmsk_fast() != 0
     }
 
-    #[doc="Error Interrupt Mask for errors detected in the Data Phase of fast CAN FD frames"]
+    #[doc="Sets the ERRMSK_FAST field."]
     #[inline] pub fn set_errmsk_fast<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -3335,12 +3335,12 @@ impl Esr2 {
         unsafe { ::core::mem::transmute(((self.0 >> 13) & 0x1) as u8) } // [13]
     }
 
-    #[doc="Inactive Mailbox"]
+    #[doc="Returns true if IMB != 0"]
     #[inline] pub fn test_imb(&self) -> bool {
         self.imb() != 0
     }
 
-    #[doc="Inactive Mailbox"]
+    #[doc="Sets the IMB field."]
     #[inline] pub fn set_imb<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -3354,12 +3354,12 @@ impl Esr2 {
         unsafe { ::core::mem::transmute(((self.0 >> 14) & 0x1) as u8) } // [14]
     }
 
-    #[doc="Valid Priority Status"]
+    #[doc="Returns true if VPS != 0"]
     #[inline] pub fn test_vps(&self) -> bool {
         self.vps() != 0
     }
 
-    #[doc="Valid Priority Status"]
+    #[doc="Sets the VPS field."]
     #[inline] pub fn set_vps<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -3373,12 +3373,12 @@ impl Esr2 {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x7f) as u8) } // [22:16]
     }
 
-    #[doc="Lowest Priority Tx Mailbox"]
+    #[doc="Returns true if LPTM != 0"]
     #[inline] pub fn test_lptm(&self) -> bool {
         self.lptm() != 0
     }
 
-    #[doc="Lowest Priority Tx Mailbox"]
+    #[doc="Sets the LPTM field."]
     #[inline] pub fn set_lptm<V: Into<bits::U7>>(mut self, value: V) -> Self {
         let value: bits::U7 = value.into();
         let value: u32 = value.into();
@@ -3422,12 +3422,12 @@ impl Crcr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x7fff) as u16) } // [14:0]
     }
 
-    #[doc="Transmitted CRC value"]
+    #[doc="Returns true if TXCRC != 0"]
     #[inline] pub fn test_txcrc(&self) -> bool {
         self.txcrc() != 0
     }
 
-    #[doc="Transmitted CRC value"]
+    #[doc="Sets the TXCRC field."]
     #[inline] pub fn set_txcrc<V: Into<bits::U15>>(mut self, value: V) -> Self {
         let value: bits::U15 = value.into();
         let value: u32 = value.into();
@@ -3441,12 +3441,12 @@ impl Crcr {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x7f) as u8) } // [22:16]
     }
 
-    #[doc="CRC Mailbox"]
+    #[doc="Returns true if MBCRC != 0"]
     #[inline] pub fn test_mbcrc(&self) -> bool {
         self.mbcrc() != 0
     }
 
-    #[doc="CRC Mailbox"]
+    #[doc="Sets the MBCRC field."]
     #[inline] pub fn set_mbcrc<V: Into<bits::U7>>(mut self, value: V) -> Self {
         let value: bits::U7 = value.into();
         let value: u32 = value.into();
@@ -3489,12 +3489,12 @@ impl Rxfgmask {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffffffff) as u32) } // [31:0]
     }
 
-    #[doc="Rx FIFO Global Mask Bits"]
+    #[doc="Returns true if FGM != 0"]
     #[inline] pub fn test_fgm(&self) -> bool {
         self.fgm() != 0
     }
 
-    #[doc="Rx FIFO Global Mask Bits"]
+    #[doc="Sets the FGM field."]
     #[inline] pub fn set_fgm<V: Into<bits::U32>>(mut self, value: V) -> Self {
         let value: bits::U32 = value.into();
         let value: u32 = value.into();
@@ -3535,12 +3535,12 @@ impl Rxfir {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1ff) as u16) } // [8:0]
     }
 
-    #[doc="Identifier Acceptance Filter Hit Indicator"]
+    #[doc="Returns true if IDHIT != 0"]
     #[inline] pub fn test_idhit(&self) -> bool {
         self.idhit() != 0
     }
 
-    #[doc="Identifier Acceptance Filter Hit Indicator"]
+    #[doc="Sets the IDHIT field."]
     #[inline] pub fn set_idhit<V: Into<bits::U9>>(mut self, value: V) -> Self {
         let value: bits::U9 = value.into();
         let value: u32 = value.into();
@@ -3582,12 +3582,12 @@ impl Cbt {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1f) as u8) } // [4:0]
     }
 
-    #[doc="Extended Phase Segment 2"]
+    #[doc="Returns true if EPSEG2 != 0"]
     #[inline] pub fn test_epseg2(&self) -> bool {
         self.epseg2() != 0
     }
 
-    #[doc="Extended Phase Segment 2"]
+    #[doc="Sets the EPSEG2 field."]
     #[inline] pub fn set_epseg2<V: Into<bits::U5>>(mut self, value: V) -> Self {
         let value: bits::U5 = value.into();
         let value: u32 = value.into();
@@ -3601,12 +3601,12 @@ impl Cbt {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1f) as u8) } // [9:5]
     }
 
-    #[doc="Extended Phase Segment 1"]
+    #[doc="Returns true if EPSEG1 != 0"]
     #[inline] pub fn test_epseg1(&self) -> bool {
         self.epseg1() != 0
     }
 
-    #[doc="Extended Phase Segment 1"]
+    #[doc="Sets the EPSEG1 field."]
     #[inline] pub fn set_epseg1<V: Into<bits::U5>>(mut self, value: V) -> Self {
         let value: bits::U5 = value.into();
         let value: u32 = value.into();
@@ -3620,12 +3620,12 @@ impl Cbt {
         unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x3f) as u8) } // [15:10]
     }
 
-    #[doc="Extended Propagation Segment"]
+    #[doc="Returns true if EPROPSEG != 0"]
     #[inline] pub fn test_epropseg(&self) -> bool {
         self.epropseg() != 0
     }
 
-    #[doc="Extended Propagation Segment"]
+    #[doc="Sets the EPROPSEG field."]
     #[inline] pub fn set_epropseg<V: Into<bits::U6>>(mut self, value: V) -> Self {
         let value: bits::U6 = value.into();
         let value: u32 = value.into();
@@ -3639,12 +3639,12 @@ impl Cbt {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1f) as u8) } // [20:16]
     }
 
-    #[doc="Extended Resync Jump Width"]
+    #[doc="Returns true if ERJW != 0"]
     #[inline] pub fn test_erjw(&self) -> bool {
         self.erjw() != 0
     }
 
-    #[doc="Extended Resync Jump Width"]
+    #[doc="Sets the ERJW field."]
     #[inline] pub fn set_erjw<V: Into<bits::U5>>(mut self, value: V) -> Self {
         let value: bits::U5 = value.into();
         let value: u32 = value.into();
@@ -3658,12 +3658,12 @@ impl Cbt {
         unsafe { ::core::mem::transmute(((self.0 >> 21) & 0x3ff) as u16) } // [30:21]
     }
 
-    #[doc="Extended Prescaler Division Factor"]
+    #[doc="Returns true if EPRESDIV != 0"]
     #[inline] pub fn test_epresdiv(&self) -> bool {
         self.epresdiv() != 0
     }
 
-    #[doc="Extended Prescaler Division Factor"]
+    #[doc="Sets the EPRESDIV field."]
     #[inline] pub fn set_epresdiv<V: Into<bits::U10>>(mut self, value: V) -> Self {
         let value: bits::U10 = value.into();
         let value: u32 = value.into();
@@ -3677,12 +3677,12 @@ impl Cbt {
         unsafe { ::core::mem::transmute(((self.0 >> 31) & 0x1) as u8) } // [31]
     }
 
-    #[doc="Bit Timing Format Enable"]
+    #[doc="Returns true if BTF != 0"]
     #[inline] pub fn test_btf(&self) -> bool {
         self.btf() != 0
     }
 
-    #[doc="Bit Timing Format Enable"]
+    #[doc="Sets the BTF field."]
     #[inline] pub fn set_btf<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -3731,12 +3731,12 @@ impl Ram {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0xff) as u8) } // [7:0]
     }
 
-    #[doc="Data byte 3 of Rx/Tx frame."]
+    #[doc="Returns true if BYTE != 0"]
     #[inline] pub fn test_byte<I: Into<bits::R4>>(&self, index: I) -> bool{
         self.byte(index) != 0
     }
 
-    #[doc="Data byte 3 of Rx/Tx frame."]
+    #[doc="Sets the BYTE field."]
     #[inline] pub fn set_byte<I: Into<bits::R4>, V: Into<bits::U8>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U8 = value.into();
@@ -3778,14 +3778,17 @@ impl ::core::fmt::Debug for Ram {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Mb8h0(pub u32);
 impl Mb8h0 {
+    #[doc="Gets the EDL field."]
     #[inline] pub fn edl(&self) -> bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 31) & 0x1) as u8) } // [31]
     }
 
+    #[doc="Returns true if EDL != 0"]
     #[inline] pub fn test_edl(&self) -> bool {
         self.edl() != 0
     }
 
+    #[doc="Sets the EDL field."]
     #[inline] pub fn set_edl<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -3794,14 +3797,17 @@ impl Mb8h0 {
         self
     }
 
+    #[doc="Gets the BRS field."]
     #[inline] pub fn brs(&self) -> bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 30) & 0x1) as u8) } // [30]
     }
 
+    #[doc="Returns true if BRS != 0"]
     #[inline] pub fn test_brs(&self) -> bool {
         self.brs() != 0
     }
 
+    #[doc="Sets the BRS field."]
     #[inline] pub fn set_brs<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -3810,14 +3816,17 @@ impl Mb8h0 {
         self
     }
 
+    #[doc="Gets the ESI field."]
     #[inline] pub fn esi(&self) -> bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 29) & 0x1) as u8) } // [29]
     }
 
+    #[doc="Returns true if ESI != 0"]
     #[inline] pub fn test_esi(&self) -> bool {
         self.esi() != 0
     }
 
+    #[doc="Sets the ESI field."]
     #[inline] pub fn set_esi<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -3826,14 +3835,17 @@ impl Mb8h0 {
         self
     }
 
+    #[doc="Gets the CODE field."]
     #[inline] pub fn code(&self) -> bits::U4 {
         unsafe { ::core::mem::transmute(((self.0 >> 24) & 0xf) as u8) } // [27:24]
     }
 
+    #[doc="Returns true if CODE != 0"]
     #[inline] pub fn test_code(&self) -> bool {
         self.code() != 0
     }
 
+    #[doc="Sets the CODE field."]
     #[inline] pub fn set_code<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -3842,14 +3854,17 @@ impl Mb8h0 {
         self
     }
 
+    #[doc="Gets the SRR field."]
     #[inline] pub fn srr(&self) -> bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 22) & 0x1) as u8) } // [22]
     }
 
+    #[doc="Returns true if SRR != 0"]
     #[inline] pub fn test_srr(&self) -> bool {
         self.srr() != 0
     }
 
+    #[doc="Sets the SRR field."]
     #[inline] pub fn set_srr<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -3858,14 +3873,17 @@ impl Mb8h0 {
         self
     }
 
+    #[doc="Gets the IDE field."]
     #[inline] pub fn ide(&self) -> bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 21) & 0x1) as u8) } // [21]
     }
 
+    #[doc="Returns true if IDE != 0"]
     #[inline] pub fn test_ide(&self) -> bool {
         self.ide() != 0
     }
 
+    #[doc="Sets the IDE field."]
     #[inline] pub fn set_ide<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -3874,14 +3892,17 @@ impl Mb8h0 {
         self
     }
 
+    #[doc="Gets the RTR field."]
     #[inline] pub fn rtr(&self) -> bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 20) & 0x1) as u8) } // [20]
     }
 
+    #[doc="Returns true if RTR != 0"]
     #[inline] pub fn test_rtr(&self) -> bool {
         self.rtr() != 0
     }
 
+    #[doc="Sets the RTR field."]
     #[inline] pub fn set_rtr<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -3890,14 +3911,17 @@ impl Mb8h0 {
         self
     }
 
+    #[doc="Gets the DLC field."]
     #[inline] pub fn dlc(&self) -> bits::U4 {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xf) as u8) } // [19:16]
     }
 
+    #[doc="Returns true if DLC != 0"]
     #[inline] pub fn test_dlc(&self) -> bool {
         self.dlc() != 0
     }
 
+    #[doc="Sets the DLC field."]
     #[inline] pub fn set_dlc<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -3906,14 +3930,17 @@ impl Mb8h0 {
         self
     }
 
+    #[doc="Gets the TIME_STAMP field."]
     #[inline] pub fn time_stamp(&self) -> bits::U16 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffff) as u16) } // [15:0]
     }
 
+    #[doc="Returns true if TIME_STAMP != 0"]
     #[inline] pub fn test_time_stamp(&self) -> bool {
         self.time_stamp() != 0
     }
 
+    #[doc="Sets the TIME_STAMP field."]
     #[inline] pub fn set_time_stamp<V: Into<bits::U16>>(mut self, value: V) -> Self {
         let value: bits::U16 = value.into();
         let value: u32 = value.into();
@@ -3958,14 +3985,17 @@ impl ::core::fmt::Debug for Mb8h0 {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Mb8h1(pub u32);
 impl Mb8h1 {
+    #[doc="Gets the PRIO field."]
     #[inline] pub fn prio(&self) -> bits::U3 {
         unsafe { ::core::mem::transmute(((self.0 >> 29) & 0x7) as u8) } // [31:29]
     }
 
+    #[doc="Returns true if PRIO != 0"]
     #[inline] pub fn test_prio(&self) -> bool {
         self.prio() != 0
     }
 
+    #[doc="Sets the PRIO field."]
     #[inline] pub fn set_prio<V: Into<bits::U3>>(mut self, value: V) -> Self {
         let value: bits::U3 = value.into();
         let value: u32 = value.into();
@@ -3974,14 +4004,17 @@ impl Mb8h1 {
         self
     }
 
+    #[doc="Gets the ID_STD field."]
     #[inline] pub fn id_std(&self) -> bits::U11 {
         unsafe { ::core::mem::transmute(((self.0 >> 18) & 0x7ff) as u16) } // [28:18]
     }
 
+    #[doc="Returns true if ID_STD != 0"]
     #[inline] pub fn test_id_std(&self) -> bool {
         self.id_std() != 0
     }
 
+    #[doc="Sets the ID_STD field."]
     #[inline] pub fn set_id_std<V: Into<bits::U11>>(mut self, value: V) -> Self {
         let value: bits::U11 = value.into();
         let value: u32 = value.into();
@@ -3990,14 +4023,17 @@ impl Mb8h1 {
         self
     }
 
+    #[doc="Gets the ID_EXT field."]
     #[inline] pub fn id_ext(&self) -> bits::U29 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1fffffff) as u32) } // [28:0]
     }
 
+    #[doc="Returns true if ID_EXT != 0"]
     #[inline] pub fn test_id_ext(&self) -> bool {
         self.id_ext() != 0
     }
 
+    #[doc="Sets the ID_EXT field."]
     #[inline] pub fn set_id_ext<V: Into<bits::U29>>(mut self, value: V) -> Self {
         let value: bits::U29 = value.into();
         let value: u32 = value.into();
@@ -4036,16 +4072,19 @@ impl ::core::fmt::Debug for Mb8h1 {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Mb8d0(pub u32);
 impl Mb8d0 {
+    #[doc="Gets the BYTE field."]
     #[inline] pub fn byte<I: Into<bits::R4>>(&self, index: I) -> bits::U8 {
         let index: usize = index.into().value() as usize;
         let shift: usize = 0 + index;
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0xff) as u8) } // [7:0]
     }
 
+    #[doc="Returns true if BYTE != 0"]
     #[inline] pub fn test_byte<I: Into<bits::R4>>(&self, index: I) -> bool{
         self.byte(index) != 0
     }
 
+    #[doc="Sets the BYTE field."]
     #[inline] pub fn set_byte<I: Into<bits::R4>, V: Into<bits::U8>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U8 = value.into();
@@ -4087,16 +4126,19 @@ impl ::core::fmt::Debug for Mb8d0 {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Mb8d1(pub u32);
 impl Mb8d1 {
+    #[doc="Gets the BYTE field."]
     #[inline] pub fn byte<I: Into<bits::R4>>(&self, index: I) -> bits::U8 {
         let index: usize = index.into().value() as usize;
         let shift: usize = 0 + index;
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0xff) as u8) } // [7:0]
     }
 
+    #[doc="Returns true if BYTE != 0"]
     #[inline] pub fn test_byte<I: Into<bits::R4>>(&self, index: I) -> bool{
         self.byte(index) != 0
     }
 
+    #[doc="Sets the BYTE field."]
     #[inline] pub fn set_byte<I: Into<bits::R4>, V: Into<bits::U8>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U8 = value.into();
@@ -4143,12 +4185,12 @@ impl Rximr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffffffff) as u32) } // [31:0]
     }
 
-    #[doc="Individual Mask Bits"]
+    #[doc="Returns true if MI != 0"]
     #[inline] pub fn test_mi(&self) -> bool {
         self.mi() != 0
     }
 
-    #[doc="Individual Mask Bits"]
+    #[doc="Sets the MI field."]
     #[inline] pub fn set_mi<V: Into<bits::U32>>(mut self, value: V) -> Self {
         let value: bits::U32 = value.into();
         let value: u32 = value.into();
@@ -4189,12 +4231,12 @@ impl Ctrl1Pn {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x3) as u8) } // [1:0]
     }
 
-    #[doc="Filtering Combination Selection"]
+    #[doc="Returns true if FCS != 0"]
     #[inline] pub fn test_fcs(&self) -> bool {
         self.fcs() != 0
     }
 
-    #[doc="Filtering Combination Selection"]
+    #[doc="Sets the FCS field."]
     #[inline] pub fn set_fcs<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -4208,12 +4250,12 @@ impl Ctrl1Pn {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x3) as u8) } // [3:2]
     }
 
-    #[doc="ID Filtering Selection"]
+    #[doc="Returns true if IDFS != 0"]
     #[inline] pub fn test_idfs(&self) -> bool {
         self.idfs() != 0
     }
 
-    #[doc="ID Filtering Selection"]
+    #[doc="Sets the IDFS field."]
     #[inline] pub fn set_idfs<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -4227,12 +4269,12 @@ impl Ctrl1Pn {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x3) as u8) } // [5:4]
     }
 
-    #[doc="Payload Filtering Selection"]
+    #[doc="Returns true if PLFS != 0"]
     #[inline] pub fn test_plfs(&self) -> bool {
         self.plfs() != 0
     }
 
-    #[doc="Payload Filtering Selection"]
+    #[doc="Sets the PLFS field."]
     #[inline] pub fn set_plfs<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -4246,12 +4288,12 @@ impl Ctrl1Pn {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0xff) as u8) } // [15:8]
     }
 
-    #[doc="Number of Messages Matching the Same Filtering Criteria"]
+    #[doc="Returns true if NMATCH != 0"]
     #[inline] pub fn test_nmatch(&self) -> bool {
         self.nmatch() != 0
     }
 
-    #[doc="Number of Messages Matching the Same Filtering Criteria"]
+    #[doc="Sets the NMATCH field."]
     #[inline] pub fn set_nmatch<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -4265,12 +4307,12 @@ impl Ctrl1Pn {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1) as u8) } // [16]
     }
 
-    #[doc="Wake Up by Match Flag Mask Bit"]
+    #[doc="Returns true if WUMF_MSK != 0"]
     #[inline] pub fn test_wumf_msk(&self) -> bool {
         self.wumf_msk() != 0
     }
 
-    #[doc="Wake Up by Match Flag Mask Bit"]
+    #[doc="Sets the WUMF_MSK field."]
     #[inline] pub fn set_wumf_msk<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -4284,12 +4326,12 @@ impl Ctrl1Pn {
         unsafe { ::core::mem::transmute(((self.0 >> 17) & 0x1) as u8) } // [17]
     }
 
-    #[doc="Wake Up by Timeout Flag Mask Bit"]
+    #[doc="Returns true if WTOF_MSK != 0"]
     #[inline] pub fn test_wtof_msk(&self) -> bool {
         self.wtof_msk() != 0
     }
 
-    #[doc="Wake Up by Timeout Flag Mask Bit"]
+    #[doc="Sets the WTOF_MSK field."]
     #[inline] pub fn set_wtof_msk<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -4336,12 +4378,12 @@ impl Ctrl2Pn {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffff) as u16) } // [15:0]
     }
 
-    #[doc="Timeout for No Message Matching the Filtering Criteria"]
+    #[doc="Returns true if MATCHTO != 0"]
     #[inline] pub fn test_matchto(&self) -> bool {
         self.matchto() != 0
     }
 
-    #[doc="Timeout for No Message Matching the Filtering Criteria"]
+    #[doc="Sets the MATCHTO field."]
     #[inline] pub fn set_matchto<V: Into<bits::U16>>(mut self, value: V) -> Self {
         let value: bits::U16 = value.into();
         let value: u32 = value.into();
@@ -4383,12 +4425,12 @@ impl WuMtc {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0xff) as u8) } // [15:8]
     }
 
-    #[doc="Number of Matches while in Pretended Networking"]
+    #[doc="Returns true if MCOUNTER != 0"]
     #[inline] pub fn test_mcounter(&self) -> bool {
         self.mcounter() != 0
     }
 
-    #[doc="Number of Matches while in Pretended Networking"]
+    #[doc="Sets the MCOUNTER field."]
     #[inline] pub fn set_mcounter<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -4402,12 +4444,12 @@ impl WuMtc {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1) as u8) } // [16]
     }
 
-    #[doc="Wake Up by Match Flag Bit"]
+    #[doc="Returns true if WUMF != 0"]
     #[inline] pub fn test_wumf(&self) -> bool {
         self.wumf() != 0
     }
 
-    #[doc="Wake Up by Match Flag Bit"]
+    #[doc="Sets the WUMF field."]
     #[inline] pub fn set_wumf<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -4421,12 +4463,12 @@ impl WuMtc {
         unsafe { ::core::mem::transmute(((self.0 >> 17) & 0x1) as u8) } // [17]
     }
 
-    #[doc="Wake Up by Timeout Flag Bit"]
+    #[doc="Returns true if WTOF != 0"]
     #[inline] pub fn test_wtof(&self) -> bool {
         self.wtof() != 0
     }
 
-    #[doc="Wake Up by Timeout Flag Bit"]
+    #[doc="Sets the WTOF field."]
     #[inline] pub fn set_wtof<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -4470,12 +4512,12 @@ impl FltId1 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1fffffff) as u32) } // [28:0]
     }
 
-    #[doc="ID Filter 1 for Pretended Networking filtering"]
+    #[doc="Returns true if FLT_ID1 != 0"]
     #[inline] pub fn test_flt_id1(&self) -> bool {
         self.flt_id1() != 0
     }
 
-    #[doc="ID Filter 1 for Pretended Networking filtering"]
+    #[doc="Sets the FLT_ID1 field."]
     #[inline] pub fn set_flt_id1<V: Into<bits::U29>>(mut self, value: V) -> Self {
         let value: bits::U29 = value.into();
         let value: u32 = value.into();
@@ -4489,12 +4531,12 @@ impl FltId1 {
         unsafe { ::core::mem::transmute(((self.0 >> 29) & 0x1) as u8) } // [29]
     }
 
-    #[doc="Remote Transmission Request Filter"]
+    #[doc="Returns true if FLT_RTR != 0"]
     #[inline] pub fn test_flt_rtr(&self) -> bool {
         self.flt_rtr() != 0
     }
 
-    #[doc="Remote Transmission Request Filter"]
+    #[doc="Sets the FLT_RTR field."]
     #[inline] pub fn set_flt_rtr<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -4508,12 +4550,12 @@ impl FltId1 {
         unsafe { ::core::mem::transmute(((self.0 >> 30) & 0x1) as u8) } // [30]
     }
 
-    #[doc="ID Extended Filter"]
+    #[doc="Returns true if FLT_IDE != 0"]
     #[inline] pub fn test_flt_ide(&self) -> bool {
         self.flt_ide() != 0
     }
 
-    #[doc="ID Extended Filter"]
+    #[doc="Sets the FLT_IDE field."]
     #[inline] pub fn set_flt_ide<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -4557,12 +4599,12 @@ impl FltDlc {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xf) as u8) } // [3:0]
     }
 
-    #[doc="Upper Limit for Length of Data Bytes Filter"]
+    #[doc="Returns true if FLT_DLC_HI != 0"]
     #[inline] pub fn test_flt_dlc_hi(&self) -> bool {
         self.flt_dlc_hi() != 0
     }
 
-    #[doc="Upper Limit for Length of Data Bytes Filter"]
+    #[doc="Sets the FLT_DLC_HI field."]
     #[inline] pub fn set_flt_dlc_hi<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -4576,12 +4618,12 @@ impl FltDlc {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xf) as u8) } // [19:16]
     }
 
-    #[doc="Lower Limit for Length of Data Bytes Filter"]
+    #[doc="Returns true if FLT_DLC_LO != 0"]
     #[inline] pub fn test_flt_dlc_lo(&self) -> bool {
         self.flt_dlc_lo() != 0
     }
 
-    #[doc="Lower Limit for Length of Data Bytes Filter"]
+    #[doc="Sets the FLT_DLC_LO field."]
     #[inline] pub fn set_flt_dlc_lo<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -4624,12 +4666,12 @@ impl Pl1Lo {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
-    #[doc="Payload Filter 1 low order bits for Pretended Networking payload filtering corresponding to the data byte 3."]
+    #[doc="Returns true if Data_byte_3 != 0"]
     #[inline] pub fn test_data_byte_3(&self) -> bool {
         self.data_byte_3() != 0
     }
 
-    #[doc="Payload Filter 1 low order bits for Pretended Networking payload filtering corresponding to the data byte 3."]
+    #[doc="Sets the Data_byte_3 field."]
     #[inline] pub fn set_data_byte_3<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -4643,12 +4685,12 @@ impl Pl1Lo {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0xff) as u8) } // [15:8]
     }
 
-    #[doc="Payload Filter 1 low order bits for Pretended Networking payload filtering corresponding to the data byte 2."]
+    #[doc="Returns true if Data_byte_2 != 0"]
     #[inline] pub fn test_data_byte_2(&self) -> bool {
         self.data_byte_2() != 0
     }
 
-    #[doc="Payload Filter 1 low order bits for Pretended Networking payload filtering corresponding to the data byte 2."]
+    #[doc="Sets the Data_byte_2 field."]
     #[inline] pub fn set_data_byte_2<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -4662,12 +4704,12 @@ impl Pl1Lo {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xff) as u8) } // [23:16]
     }
 
-    #[doc="Payload Filter 1 low order bits for Pretended Networking payload filtering corresponding to the data byte 1."]
+    #[doc="Returns true if Data_byte_1 != 0"]
     #[inline] pub fn test_data_byte_1(&self) -> bool {
         self.data_byte_1() != 0
     }
 
-    #[doc="Payload Filter 1 low order bits for Pretended Networking payload filtering corresponding to the data byte 1."]
+    #[doc="Sets the Data_byte_1 field."]
     #[inline] pub fn set_data_byte_1<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -4681,12 +4723,12 @@ impl Pl1Lo {
         unsafe { ::core::mem::transmute(((self.0 >> 24) & 0xff) as u8) } // [31:24]
     }
 
-    #[doc="Payload Filter 1 low order bits for Pretended Networking payload filtering corresponding to the data byte 0."]
+    #[doc="Returns true if Data_byte_0 != 0"]
     #[inline] pub fn test_data_byte_0(&self) -> bool {
         self.data_byte_0() != 0
     }
 
-    #[doc="Payload Filter 1 low order bits for Pretended Networking payload filtering corresponding to the data byte 0."]
+    #[doc="Sets the Data_byte_0 field."]
     #[inline] pub fn set_data_byte_0<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -4731,12 +4773,12 @@ impl Pl1Hi {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
-    #[doc="Payload Filter 1 high order bits for Pretended Networking payload filtering corresponding to the data byte 7."]
+    #[doc="Returns true if Data_byte_7 != 0"]
     #[inline] pub fn test_data_byte_7(&self) -> bool {
         self.data_byte_7() != 0
     }
 
-    #[doc="Payload Filter 1 high order bits for Pretended Networking payload filtering corresponding to the data byte 7."]
+    #[doc="Sets the Data_byte_7 field."]
     #[inline] pub fn set_data_byte_7<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -4750,12 +4792,12 @@ impl Pl1Hi {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0xff) as u8) } // [15:8]
     }
 
-    #[doc="Payload Filter 1 high order bits for Pretended Networking payload filtering corresponding to the data byte 6."]
+    #[doc="Returns true if Data_byte_6 != 0"]
     #[inline] pub fn test_data_byte_6(&self) -> bool {
         self.data_byte_6() != 0
     }
 
-    #[doc="Payload Filter 1 high order bits for Pretended Networking payload filtering corresponding to the data byte 6."]
+    #[doc="Sets the Data_byte_6 field."]
     #[inline] pub fn set_data_byte_6<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -4769,12 +4811,12 @@ impl Pl1Hi {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xff) as u8) } // [23:16]
     }
 
-    #[doc="Payload Filter 1 high order bits for Pretended Networking payload filtering corresponding to the data byte 5."]
+    #[doc="Returns true if Data_byte_5 != 0"]
     #[inline] pub fn test_data_byte_5(&self) -> bool {
         self.data_byte_5() != 0
     }
 
-    #[doc="Payload Filter 1 high order bits for Pretended Networking payload filtering corresponding to the data byte 5."]
+    #[doc="Sets the Data_byte_5 field."]
     #[inline] pub fn set_data_byte_5<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -4788,12 +4830,12 @@ impl Pl1Hi {
         unsafe { ::core::mem::transmute(((self.0 >> 24) & 0xff) as u8) } // [31:24]
     }
 
-    #[doc="Payload Filter 1 high order bits for Pretended Networking payload filtering corresponding to the data byte 4."]
+    #[doc="Returns true if Data_byte_4 != 0"]
     #[inline] pub fn test_data_byte_4(&self) -> bool {
         self.data_byte_4() != 0
     }
 
-    #[doc="Payload Filter 1 high order bits for Pretended Networking payload filtering corresponding to the data byte 4."]
+    #[doc="Sets the Data_byte_4 field."]
     #[inline] pub fn set_data_byte_4<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -4838,12 +4880,12 @@ impl FltId2Idmask {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1fffffff) as u32) } // [28:0]
     }
 
-    #[doc="ID Filter 2 for Pretended Networking Filtering / ID Mask Bits for Pretended Networking ID Filtering"]
+    #[doc="Returns true if FLT_ID2_IDMASK != 0"]
     #[inline] pub fn test_flt_id2_idmask(&self) -> bool {
         self.flt_id2_idmask() != 0
     }
 
-    #[doc="ID Filter 2 for Pretended Networking Filtering / ID Mask Bits for Pretended Networking ID Filtering"]
+    #[doc="Sets the FLT_ID2_IDMASK field."]
     #[inline] pub fn set_flt_id2_idmask<V: Into<bits::U29>>(mut self, value: V) -> Self {
         let value: bits::U29 = value.into();
         let value: u32 = value.into();
@@ -4857,12 +4899,12 @@ impl FltId2Idmask {
         unsafe { ::core::mem::transmute(((self.0 >> 29) & 0x1) as u8) } // [29]
     }
 
-    #[doc="Remote Transmission Request Mask Bit"]
+    #[doc="Returns true if RTR_MSK != 0"]
     #[inline] pub fn test_rtr_msk(&self) -> bool {
         self.rtr_msk() != 0
     }
 
-    #[doc="Remote Transmission Request Mask Bit"]
+    #[doc="Sets the RTR_MSK field."]
     #[inline] pub fn set_rtr_msk<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -4876,12 +4918,12 @@ impl FltId2Idmask {
         unsafe { ::core::mem::transmute(((self.0 >> 30) & 0x1) as u8) } // [30]
     }
 
-    #[doc="ID Extended Mask Bit"]
+    #[doc="Returns true if IDE_MSK != 0"]
     #[inline] pub fn test_ide_msk(&self) -> bool {
         self.ide_msk() != 0
     }
 
-    #[doc="ID Extended Mask Bit"]
+    #[doc="Sets the IDE_MSK field."]
     #[inline] pub fn set_ide_msk<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -4925,12 +4967,12 @@ impl Pl2PlmaskLo {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
-    #[doc="Payload Filter 2 low order bits / Payload Mask low order bits for Pretended Networking payload filtering corresponding to the data byte 3."]
+    #[doc="Returns true if Data_byte_3 != 0"]
     #[inline] pub fn test_data_byte_3(&self) -> bool {
         self.data_byte_3() != 0
     }
 
-    #[doc="Payload Filter 2 low order bits / Payload Mask low order bits for Pretended Networking payload filtering corresponding to the data byte 3."]
+    #[doc="Sets the Data_byte_3 field."]
     #[inline] pub fn set_data_byte_3<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -4944,12 +4986,12 @@ impl Pl2PlmaskLo {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0xff) as u8) } // [15:8]
     }
 
-    #[doc="Payload Filter 2 low order bits / Payload Mask low order bits for Pretended Networking payload filtering corresponding to the data byte 2."]
+    #[doc="Returns true if Data_byte_2 != 0"]
     #[inline] pub fn test_data_byte_2(&self) -> bool {
         self.data_byte_2() != 0
     }
 
-    #[doc="Payload Filter 2 low order bits / Payload Mask low order bits for Pretended Networking payload filtering corresponding to the data byte 2."]
+    #[doc="Sets the Data_byte_2 field."]
     #[inline] pub fn set_data_byte_2<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -4963,12 +5005,12 @@ impl Pl2PlmaskLo {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xff) as u8) } // [23:16]
     }
 
-    #[doc="Payload Filter 2 low order bits / Payload Mask low order bits for Pretended Networking payload filtering corresponding to the data byte 1."]
+    #[doc="Returns true if Data_byte_1 != 0"]
     #[inline] pub fn test_data_byte_1(&self) -> bool {
         self.data_byte_1() != 0
     }
 
-    #[doc="Payload Filter 2 low order bits / Payload Mask low order bits for Pretended Networking payload filtering corresponding to the data byte 1."]
+    #[doc="Sets the Data_byte_1 field."]
     #[inline] pub fn set_data_byte_1<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -4982,12 +5024,12 @@ impl Pl2PlmaskLo {
         unsafe { ::core::mem::transmute(((self.0 >> 24) & 0xff) as u8) } // [31:24]
     }
 
-    #[doc="Payload Filter 2 low order bits / Payload Mask low order bits for Pretended Networking payload filtering corresponding to the data byte 0."]
+    #[doc="Returns true if Data_byte_0 != 0"]
     #[inline] pub fn test_data_byte_0(&self) -> bool {
         self.data_byte_0() != 0
     }
 
-    #[doc="Payload Filter 2 low order bits / Payload Mask low order bits for Pretended Networking payload filtering corresponding to the data byte 0."]
+    #[doc="Sets the Data_byte_0 field."]
     #[inline] pub fn set_data_byte_0<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -5032,12 +5074,12 @@ impl Pl2PlmaskHi {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
-    #[doc="Payload Filter 2 high order bits / Payload Mask high order bits for Pretended Networking payload filtering corresponding to the data byte 7."]
+    #[doc="Returns true if Data_byte_7 != 0"]
     #[inline] pub fn test_data_byte_7(&self) -> bool {
         self.data_byte_7() != 0
     }
 
-    #[doc="Payload Filter 2 high order bits / Payload Mask high order bits for Pretended Networking payload filtering corresponding to the data byte 7."]
+    #[doc="Sets the Data_byte_7 field."]
     #[inline] pub fn set_data_byte_7<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -5051,12 +5093,12 @@ impl Pl2PlmaskHi {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0xff) as u8) } // [15:8]
     }
 
-    #[doc="Payload Filter 2 high order bits / Payload Mask high order bits for Pretended Networking payload filtering corresponding to the data byte 6."]
+    #[doc="Returns true if Data_byte_6 != 0"]
     #[inline] pub fn test_data_byte_6(&self) -> bool {
         self.data_byte_6() != 0
     }
 
-    #[doc="Payload Filter 2 high order bits / Payload Mask high order bits for Pretended Networking payload filtering corresponding to the data byte 6."]
+    #[doc="Sets the Data_byte_6 field."]
     #[inline] pub fn set_data_byte_6<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -5070,12 +5112,12 @@ impl Pl2PlmaskHi {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xff) as u8) } // [23:16]
     }
 
-    #[doc="Payload Filter 2 high order bits / Payload Mask high order bits for Pretended Networking payload filtering corresponding to the data byte 5."]
+    #[doc="Returns true if Data_byte_5 != 0"]
     #[inline] pub fn test_data_byte_5(&self) -> bool {
         self.data_byte_5() != 0
     }
 
-    #[doc="Payload Filter 2 high order bits / Payload Mask high order bits for Pretended Networking payload filtering corresponding to the data byte 5."]
+    #[doc="Sets the Data_byte_5 field."]
     #[inline] pub fn set_data_byte_5<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -5089,12 +5131,12 @@ impl Pl2PlmaskHi {
         unsafe { ::core::mem::transmute(((self.0 >> 24) & 0xff) as u8) } // [31:24]
     }
 
-    #[doc="Payload Filter 2 high order bits / Payload Mask high order bits for Pretended Networking payload filtering corresponding to the data byte 4."]
+    #[doc="Returns true if Data_byte_4 != 0"]
     #[inline] pub fn test_data_byte_4(&self) -> bool {
         self.data_byte_4() != 0
     }
 
-    #[doc="Payload Filter 2 high order bits / Payload Mask high order bits for Pretended Networking payload filtering corresponding to the data byte 4."]
+    #[doc="Sets the Data_byte_4 field."]
     #[inline] pub fn set_data_byte_4<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -5139,12 +5181,12 @@ impl Wmb0Cs {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xf) as u8) } // [19:16]
     }
 
-    #[doc="Length of Data in Bytes"]
+    #[doc="Returns true if DLC != 0"]
     #[inline] pub fn test_dlc(&self) -> bool {
         self.dlc() != 0
     }
 
-    #[doc="Length of Data in Bytes"]
+    #[doc="Sets the DLC field."]
     #[inline] pub fn set_dlc<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -5158,12 +5200,12 @@ impl Wmb0Cs {
         unsafe { ::core::mem::transmute(((self.0 >> 20) & 0x1) as u8) } // [20]
     }
 
-    #[doc="Remote Transmission Request Bit"]
+    #[doc="Returns true if RTR != 0"]
     #[inline] pub fn test_rtr(&self) -> bool {
         self.rtr() != 0
     }
 
-    #[doc="Remote Transmission Request Bit"]
+    #[doc="Sets the RTR field."]
     #[inline] pub fn set_rtr<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -5177,12 +5219,12 @@ impl Wmb0Cs {
         unsafe { ::core::mem::transmute(((self.0 >> 21) & 0x1) as u8) } // [21]
     }
 
-    #[doc="ID Extended Bit"]
+    #[doc="Returns true if IDE != 0"]
     #[inline] pub fn test_ide(&self) -> bool {
         self.ide() != 0
     }
 
-    #[doc="ID Extended Bit"]
+    #[doc="Sets the IDE field."]
     #[inline] pub fn set_ide<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -5196,12 +5238,12 @@ impl Wmb0Cs {
         unsafe { ::core::mem::transmute(((self.0 >> 22) & 0x1) as u8) } // [22]
     }
 
-    #[doc="Substitute Remote Request"]
+    #[doc="Returns true if SRR != 0"]
     #[inline] pub fn test_srr(&self) -> bool {
         self.srr() != 0
     }
 
-    #[doc="Substitute Remote Request"]
+    #[doc="Sets the SRR field."]
     #[inline] pub fn set_srr<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -5246,12 +5288,12 @@ impl Wmb0Id {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1fffffff) as u32) } // [28:0]
     }
 
-    #[doc="Received ID under Pretended Networking mode"]
+    #[doc="Returns true if ID != 0"]
     #[inline] pub fn test_id(&self) -> bool {
         self.id() != 0
     }
 
-    #[doc="Received ID under Pretended Networking mode"]
+    #[doc="Sets the ID field."]
     #[inline] pub fn set_id<V: Into<bits::U29>>(mut self, value: V) -> Self {
         let value: bits::U29 = value.into();
         let value: u32 = value.into();
@@ -5293,12 +5335,12 @@ impl Wmb0D03 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
-    #[doc="Received payload corresponding to the data byte 3 under Pretended Networking mode"]
+    #[doc="Returns true if Data_byte_3 != 0"]
     #[inline] pub fn test_data_byte_3(&self) -> bool {
         self.data_byte_3() != 0
     }
 
-    #[doc="Received payload corresponding to the data byte 3 under Pretended Networking mode"]
+    #[doc="Sets the Data_byte_3 field."]
     #[inline] pub fn set_data_byte_3<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -5312,12 +5354,12 @@ impl Wmb0D03 {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0xff) as u8) } // [15:8]
     }
 
-    #[doc="Received payload corresponding to the data byte 2 under Pretended Networking mode"]
+    #[doc="Returns true if Data_byte_2 != 0"]
     #[inline] pub fn test_data_byte_2(&self) -> bool {
         self.data_byte_2() != 0
     }
 
-    #[doc="Received payload corresponding to the data byte 2 under Pretended Networking mode"]
+    #[doc="Sets the Data_byte_2 field."]
     #[inline] pub fn set_data_byte_2<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -5331,12 +5373,12 @@ impl Wmb0D03 {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xff) as u8) } // [23:16]
     }
 
-    #[doc="Received payload corresponding to the data byte 1 under Pretended Networking mode"]
+    #[doc="Returns true if Data_byte_1 != 0"]
     #[inline] pub fn test_data_byte_1(&self) -> bool {
         self.data_byte_1() != 0
     }
 
-    #[doc="Received payload corresponding to the data byte 1 under Pretended Networking mode"]
+    #[doc="Sets the Data_byte_1 field."]
     #[inline] pub fn set_data_byte_1<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -5350,12 +5392,12 @@ impl Wmb0D03 {
         unsafe { ::core::mem::transmute(((self.0 >> 24) & 0xff) as u8) } // [31:24]
     }
 
-    #[doc="Received payload corresponding to the data byte 0 under Pretended Networking mode"]
+    #[doc="Returns true if Data_byte_0 != 0"]
     #[inline] pub fn test_data_byte_0(&self) -> bool {
         self.data_byte_0() != 0
     }
 
-    #[doc="Received payload corresponding to the data byte 0 under Pretended Networking mode"]
+    #[doc="Sets the Data_byte_0 field."]
     #[inline] pub fn set_data_byte_0<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -5400,12 +5442,12 @@ impl Wmb0D47 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
-    #[doc="Received payload corresponding to the data byte 7 under Pretended Networking mode"]
+    #[doc="Returns true if Data_byte_7 != 0"]
     #[inline] pub fn test_data_byte_7(&self) -> bool {
         self.data_byte_7() != 0
     }
 
-    #[doc="Received payload corresponding to the data byte 7 under Pretended Networking mode"]
+    #[doc="Sets the Data_byte_7 field."]
     #[inline] pub fn set_data_byte_7<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -5419,12 +5461,12 @@ impl Wmb0D47 {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0xff) as u8) } // [15:8]
     }
 
-    #[doc="Received payload corresponding to the data byte 6 under Pretended Networking mode"]
+    #[doc="Returns true if Data_byte_6 != 0"]
     #[inline] pub fn test_data_byte_6(&self) -> bool {
         self.data_byte_6() != 0
     }
 
-    #[doc="Received payload corresponding to the data byte 6 under Pretended Networking mode"]
+    #[doc="Sets the Data_byte_6 field."]
     #[inline] pub fn set_data_byte_6<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -5438,12 +5480,12 @@ impl Wmb0D47 {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xff) as u8) } // [23:16]
     }
 
-    #[doc="Received payload corresponding to the data byte 5 under Pretended Networking mode"]
+    #[doc="Returns true if Data_byte_5 != 0"]
     #[inline] pub fn test_data_byte_5(&self) -> bool {
         self.data_byte_5() != 0
     }
 
-    #[doc="Received payload corresponding to the data byte 5 under Pretended Networking mode"]
+    #[doc="Sets the Data_byte_5 field."]
     #[inline] pub fn set_data_byte_5<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -5457,12 +5499,12 @@ impl Wmb0D47 {
         unsafe { ::core::mem::transmute(((self.0 >> 24) & 0xff) as u8) } // [31:24]
     }
 
-    #[doc="Received payload corresponding to the data byte 4 under Pretended Networking mode"]
+    #[doc="Returns true if Data_byte_4 != 0"]
     #[inline] pub fn test_data_byte_4(&self) -> bool {
         self.data_byte_4() != 0
     }
 
-    #[doc="Received payload corresponding to the data byte 4 under Pretended Networking mode"]
+    #[doc="Sets the Data_byte_4 field."]
     #[inline] pub fn set_data_byte_4<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -5507,12 +5549,12 @@ impl Wmb1Cs {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xf) as u8) } // [19:16]
     }
 
-    #[doc="Length of Data in Bytes"]
+    #[doc="Returns true if DLC != 0"]
     #[inline] pub fn test_dlc(&self) -> bool {
         self.dlc() != 0
     }
 
-    #[doc="Length of Data in Bytes"]
+    #[doc="Sets the DLC field."]
     #[inline] pub fn set_dlc<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -5526,12 +5568,12 @@ impl Wmb1Cs {
         unsafe { ::core::mem::transmute(((self.0 >> 20) & 0x1) as u8) } // [20]
     }
 
-    #[doc="Remote Transmission Request Bit"]
+    #[doc="Returns true if RTR != 0"]
     #[inline] pub fn test_rtr(&self) -> bool {
         self.rtr() != 0
     }
 
-    #[doc="Remote Transmission Request Bit"]
+    #[doc="Sets the RTR field."]
     #[inline] pub fn set_rtr<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -5545,12 +5587,12 @@ impl Wmb1Cs {
         unsafe { ::core::mem::transmute(((self.0 >> 21) & 0x1) as u8) } // [21]
     }
 
-    #[doc="ID Extended Bit"]
+    #[doc="Returns true if IDE != 0"]
     #[inline] pub fn test_ide(&self) -> bool {
         self.ide() != 0
     }
 
-    #[doc="ID Extended Bit"]
+    #[doc="Sets the IDE field."]
     #[inline] pub fn set_ide<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -5564,12 +5606,12 @@ impl Wmb1Cs {
         unsafe { ::core::mem::transmute(((self.0 >> 22) & 0x1) as u8) } // [22]
     }
 
-    #[doc="Substitute Remote Request"]
+    #[doc="Returns true if SRR != 0"]
     #[inline] pub fn test_srr(&self) -> bool {
         self.srr() != 0
     }
 
-    #[doc="Substitute Remote Request"]
+    #[doc="Sets the SRR field."]
     #[inline] pub fn set_srr<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -5614,12 +5656,12 @@ impl Wmb1Id {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1fffffff) as u32) } // [28:0]
     }
 
-    #[doc="Received ID under Pretended Networking mode"]
+    #[doc="Returns true if ID != 0"]
     #[inline] pub fn test_id(&self) -> bool {
         self.id() != 0
     }
 
-    #[doc="Received ID under Pretended Networking mode"]
+    #[doc="Sets the ID field."]
     #[inline] pub fn set_id<V: Into<bits::U29>>(mut self, value: V) -> Self {
         let value: bits::U29 = value.into();
         let value: u32 = value.into();
@@ -5661,12 +5703,12 @@ impl Wmb1D03 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
-    #[doc="Received payload corresponding to the data byte 3 under Pretended Networking mode"]
+    #[doc="Returns true if Data_byte_3 != 0"]
     #[inline] pub fn test_data_byte_3(&self) -> bool {
         self.data_byte_3() != 0
     }
 
-    #[doc="Received payload corresponding to the data byte 3 under Pretended Networking mode"]
+    #[doc="Sets the Data_byte_3 field."]
     #[inline] pub fn set_data_byte_3<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -5680,12 +5722,12 @@ impl Wmb1D03 {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0xff) as u8) } // [15:8]
     }
 
-    #[doc="Received payload corresponding to the data byte 2 under Pretended Networking mode"]
+    #[doc="Returns true if Data_byte_2 != 0"]
     #[inline] pub fn test_data_byte_2(&self) -> bool {
         self.data_byte_2() != 0
     }
 
-    #[doc="Received payload corresponding to the data byte 2 under Pretended Networking mode"]
+    #[doc="Sets the Data_byte_2 field."]
     #[inline] pub fn set_data_byte_2<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -5699,12 +5741,12 @@ impl Wmb1D03 {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xff) as u8) } // [23:16]
     }
 
-    #[doc="Received payload corresponding to the data byte 1 under Pretended Networking mode"]
+    #[doc="Returns true if Data_byte_1 != 0"]
     #[inline] pub fn test_data_byte_1(&self) -> bool {
         self.data_byte_1() != 0
     }
 
-    #[doc="Received payload corresponding to the data byte 1 under Pretended Networking mode"]
+    #[doc="Sets the Data_byte_1 field."]
     #[inline] pub fn set_data_byte_1<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -5718,12 +5760,12 @@ impl Wmb1D03 {
         unsafe { ::core::mem::transmute(((self.0 >> 24) & 0xff) as u8) } // [31:24]
     }
 
-    #[doc="Received payload corresponding to the data byte 0 under Pretended Networking mode"]
+    #[doc="Returns true if Data_byte_0 != 0"]
     #[inline] pub fn test_data_byte_0(&self) -> bool {
         self.data_byte_0() != 0
     }
 
-    #[doc="Received payload corresponding to the data byte 0 under Pretended Networking mode"]
+    #[doc="Sets the Data_byte_0 field."]
     #[inline] pub fn set_data_byte_0<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -5768,12 +5810,12 @@ impl Wmb1D47 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
-    #[doc="Received payload corresponding to the data byte 7 under Pretended Networking mode"]
+    #[doc="Returns true if Data_byte_7 != 0"]
     #[inline] pub fn test_data_byte_7(&self) -> bool {
         self.data_byte_7() != 0
     }
 
-    #[doc="Received payload corresponding to the data byte 7 under Pretended Networking mode"]
+    #[doc="Sets the Data_byte_7 field."]
     #[inline] pub fn set_data_byte_7<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -5787,12 +5829,12 @@ impl Wmb1D47 {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0xff) as u8) } // [15:8]
     }
 
-    #[doc="Received payload corresponding to the data byte 6 under Pretended Networking mode"]
+    #[doc="Returns true if Data_byte_6 != 0"]
     #[inline] pub fn test_data_byte_6(&self) -> bool {
         self.data_byte_6() != 0
     }
 
-    #[doc="Received payload corresponding to the data byte 6 under Pretended Networking mode"]
+    #[doc="Sets the Data_byte_6 field."]
     #[inline] pub fn set_data_byte_6<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -5806,12 +5848,12 @@ impl Wmb1D47 {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xff) as u8) } // [23:16]
     }
 
-    #[doc="Received payload corresponding to the data byte 5 under Pretended Networking mode"]
+    #[doc="Returns true if Data_byte_5 != 0"]
     #[inline] pub fn test_data_byte_5(&self) -> bool {
         self.data_byte_5() != 0
     }
 
-    #[doc="Received payload corresponding to the data byte 5 under Pretended Networking mode"]
+    #[doc="Sets the Data_byte_5 field."]
     #[inline] pub fn set_data_byte_5<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -5825,12 +5867,12 @@ impl Wmb1D47 {
         unsafe { ::core::mem::transmute(((self.0 >> 24) & 0xff) as u8) } // [31:24]
     }
 
-    #[doc="Received payload corresponding to the data byte 4 under Pretended Networking mode"]
+    #[doc="Returns true if Data_byte_4 != 0"]
     #[inline] pub fn test_data_byte_4(&self) -> bool {
         self.data_byte_4() != 0
     }
 
-    #[doc="Received payload corresponding to the data byte 4 under Pretended Networking mode"]
+    #[doc="Sets the Data_byte_4 field."]
     #[inline] pub fn set_data_byte_4<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -5875,12 +5917,12 @@ impl Wmb2Cs {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xf) as u8) } // [19:16]
     }
 
-    #[doc="Length of Data in Bytes"]
+    #[doc="Returns true if DLC != 0"]
     #[inline] pub fn test_dlc(&self) -> bool {
         self.dlc() != 0
     }
 
-    #[doc="Length of Data in Bytes"]
+    #[doc="Sets the DLC field."]
     #[inline] pub fn set_dlc<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -5894,12 +5936,12 @@ impl Wmb2Cs {
         unsafe { ::core::mem::transmute(((self.0 >> 20) & 0x1) as u8) } // [20]
     }
 
-    #[doc="Remote Transmission Request Bit"]
+    #[doc="Returns true if RTR != 0"]
     #[inline] pub fn test_rtr(&self) -> bool {
         self.rtr() != 0
     }
 
-    #[doc="Remote Transmission Request Bit"]
+    #[doc="Sets the RTR field."]
     #[inline] pub fn set_rtr<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -5913,12 +5955,12 @@ impl Wmb2Cs {
         unsafe { ::core::mem::transmute(((self.0 >> 21) & 0x1) as u8) } // [21]
     }
 
-    #[doc="ID Extended Bit"]
+    #[doc="Returns true if IDE != 0"]
     #[inline] pub fn test_ide(&self) -> bool {
         self.ide() != 0
     }
 
-    #[doc="ID Extended Bit"]
+    #[doc="Sets the IDE field."]
     #[inline] pub fn set_ide<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -5932,12 +5974,12 @@ impl Wmb2Cs {
         unsafe { ::core::mem::transmute(((self.0 >> 22) & 0x1) as u8) } // [22]
     }
 
-    #[doc="Substitute Remote Request"]
+    #[doc="Returns true if SRR != 0"]
     #[inline] pub fn test_srr(&self) -> bool {
         self.srr() != 0
     }
 
-    #[doc="Substitute Remote Request"]
+    #[doc="Sets the SRR field."]
     #[inline] pub fn set_srr<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -5982,12 +6024,12 @@ impl Wmb2Id {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1fffffff) as u32) } // [28:0]
     }
 
-    #[doc="Received ID under Pretended Networking mode"]
+    #[doc="Returns true if ID != 0"]
     #[inline] pub fn test_id(&self) -> bool {
         self.id() != 0
     }
 
-    #[doc="Received ID under Pretended Networking mode"]
+    #[doc="Sets the ID field."]
     #[inline] pub fn set_id<V: Into<bits::U29>>(mut self, value: V) -> Self {
         let value: bits::U29 = value.into();
         let value: u32 = value.into();
@@ -6029,12 +6071,12 @@ impl Wmb2D03 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
-    #[doc="Received payload corresponding to the data byte 3 under Pretended Networking mode"]
+    #[doc="Returns true if Data_byte_3 != 0"]
     #[inline] pub fn test_data_byte_3(&self) -> bool {
         self.data_byte_3() != 0
     }
 
-    #[doc="Received payload corresponding to the data byte 3 under Pretended Networking mode"]
+    #[doc="Sets the Data_byte_3 field."]
     #[inline] pub fn set_data_byte_3<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -6048,12 +6090,12 @@ impl Wmb2D03 {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0xff) as u8) } // [15:8]
     }
 
-    #[doc="Received payload corresponding to the data byte 2 under Pretended Networking mode"]
+    #[doc="Returns true if Data_byte_2 != 0"]
     #[inline] pub fn test_data_byte_2(&self) -> bool {
         self.data_byte_2() != 0
     }
 
-    #[doc="Received payload corresponding to the data byte 2 under Pretended Networking mode"]
+    #[doc="Sets the Data_byte_2 field."]
     #[inline] pub fn set_data_byte_2<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -6067,12 +6109,12 @@ impl Wmb2D03 {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xff) as u8) } // [23:16]
     }
 
-    #[doc="Received payload corresponding to the data byte 1 under Pretended Networking mode"]
+    #[doc="Returns true if Data_byte_1 != 0"]
     #[inline] pub fn test_data_byte_1(&self) -> bool {
         self.data_byte_1() != 0
     }
 
-    #[doc="Received payload corresponding to the data byte 1 under Pretended Networking mode"]
+    #[doc="Sets the Data_byte_1 field."]
     #[inline] pub fn set_data_byte_1<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -6086,12 +6128,12 @@ impl Wmb2D03 {
         unsafe { ::core::mem::transmute(((self.0 >> 24) & 0xff) as u8) } // [31:24]
     }
 
-    #[doc="Received payload corresponding to the data byte 0 under Pretended Networking mode"]
+    #[doc="Returns true if Data_byte_0 != 0"]
     #[inline] pub fn test_data_byte_0(&self) -> bool {
         self.data_byte_0() != 0
     }
 
-    #[doc="Received payload corresponding to the data byte 0 under Pretended Networking mode"]
+    #[doc="Sets the Data_byte_0 field."]
     #[inline] pub fn set_data_byte_0<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -6136,12 +6178,12 @@ impl Wmb2D47 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
-    #[doc="Received payload corresponding to the data byte 7 under Pretended Networking mode"]
+    #[doc="Returns true if Data_byte_7 != 0"]
     #[inline] pub fn test_data_byte_7(&self) -> bool {
         self.data_byte_7() != 0
     }
 
-    #[doc="Received payload corresponding to the data byte 7 under Pretended Networking mode"]
+    #[doc="Sets the Data_byte_7 field."]
     #[inline] pub fn set_data_byte_7<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -6155,12 +6197,12 @@ impl Wmb2D47 {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0xff) as u8) } // [15:8]
     }
 
-    #[doc="Received payload corresponding to the data byte 6 under Pretended Networking mode"]
+    #[doc="Returns true if Data_byte_6 != 0"]
     #[inline] pub fn test_data_byte_6(&self) -> bool {
         self.data_byte_6() != 0
     }
 
-    #[doc="Received payload corresponding to the data byte 6 under Pretended Networking mode"]
+    #[doc="Sets the Data_byte_6 field."]
     #[inline] pub fn set_data_byte_6<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -6174,12 +6216,12 @@ impl Wmb2D47 {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xff) as u8) } // [23:16]
     }
 
-    #[doc="Received payload corresponding to the data byte 5 under Pretended Networking mode"]
+    #[doc="Returns true if Data_byte_5 != 0"]
     #[inline] pub fn test_data_byte_5(&self) -> bool {
         self.data_byte_5() != 0
     }
 
-    #[doc="Received payload corresponding to the data byte 5 under Pretended Networking mode"]
+    #[doc="Sets the Data_byte_5 field."]
     #[inline] pub fn set_data_byte_5<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -6193,12 +6235,12 @@ impl Wmb2D47 {
         unsafe { ::core::mem::transmute(((self.0 >> 24) & 0xff) as u8) } // [31:24]
     }
 
-    #[doc="Received payload corresponding to the data byte 4 under Pretended Networking mode"]
+    #[doc="Returns true if Data_byte_4 != 0"]
     #[inline] pub fn test_data_byte_4(&self) -> bool {
         self.data_byte_4() != 0
     }
 
-    #[doc="Received payload corresponding to the data byte 4 under Pretended Networking mode"]
+    #[doc="Sets the Data_byte_4 field."]
     #[inline] pub fn set_data_byte_4<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -6243,12 +6285,12 @@ impl Wmb3Cs {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xf) as u8) } // [19:16]
     }
 
-    #[doc="Length of Data in Bytes"]
+    #[doc="Returns true if DLC != 0"]
     #[inline] pub fn test_dlc(&self) -> bool {
         self.dlc() != 0
     }
 
-    #[doc="Length of Data in Bytes"]
+    #[doc="Sets the DLC field."]
     #[inline] pub fn set_dlc<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -6262,12 +6304,12 @@ impl Wmb3Cs {
         unsafe { ::core::mem::transmute(((self.0 >> 20) & 0x1) as u8) } // [20]
     }
 
-    #[doc="Remote Transmission Request Bit"]
+    #[doc="Returns true if RTR != 0"]
     #[inline] pub fn test_rtr(&self) -> bool {
         self.rtr() != 0
     }
 
-    #[doc="Remote Transmission Request Bit"]
+    #[doc="Sets the RTR field."]
     #[inline] pub fn set_rtr<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -6281,12 +6323,12 @@ impl Wmb3Cs {
         unsafe { ::core::mem::transmute(((self.0 >> 21) & 0x1) as u8) } // [21]
     }
 
-    #[doc="ID Extended Bit"]
+    #[doc="Returns true if IDE != 0"]
     #[inline] pub fn test_ide(&self) -> bool {
         self.ide() != 0
     }
 
-    #[doc="ID Extended Bit"]
+    #[doc="Sets the IDE field."]
     #[inline] pub fn set_ide<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -6300,12 +6342,12 @@ impl Wmb3Cs {
         unsafe { ::core::mem::transmute(((self.0 >> 22) & 0x1) as u8) } // [22]
     }
 
-    #[doc="Substitute Remote Request"]
+    #[doc="Returns true if SRR != 0"]
     #[inline] pub fn test_srr(&self) -> bool {
         self.srr() != 0
     }
 
-    #[doc="Substitute Remote Request"]
+    #[doc="Sets the SRR field."]
     #[inline] pub fn set_srr<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -6350,12 +6392,12 @@ impl Wmb3Id {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1fffffff) as u32) } // [28:0]
     }
 
-    #[doc="Received ID under Pretended Networking mode"]
+    #[doc="Returns true if ID != 0"]
     #[inline] pub fn test_id(&self) -> bool {
         self.id() != 0
     }
 
-    #[doc="Received ID under Pretended Networking mode"]
+    #[doc="Sets the ID field."]
     #[inline] pub fn set_id<V: Into<bits::U29>>(mut self, value: V) -> Self {
         let value: bits::U29 = value.into();
         let value: u32 = value.into();
@@ -6397,12 +6439,12 @@ impl Wmb3D03 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
-    #[doc="Received payload corresponding to the data byte 3 under Pretended Networking mode"]
+    #[doc="Returns true if Data_byte_3 != 0"]
     #[inline] pub fn test_data_byte_3(&self) -> bool {
         self.data_byte_3() != 0
     }
 
-    #[doc="Received payload corresponding to the data byte 3 under Pretended Networking mode"]
+    #[doc="Sets the Data_byte_3 field."]
     #[inline] pub fn set_data_byte_3<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -6416,12 +6458,12 @@ impl Wmb3D03 {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0xff) as u8) } // [15:8]
     }
 
-    #[doc="Received payload corresponding to the data byte 2 under Pretended Networking mode"]
+    #[doc="Returns true if Data_byte_2 != 0"]
     #[inline] pub fn test_data_byte_2(&self) -> bool {
         self.data_byte_2() != 0
     }
 
-    #[doc="Received payload corresponding to the data byte 2 under Pretended Networking mode"]
+    #[doc="Sets the Data_byte_2 field."]
     #[inline] pub fn set_data_byte_2<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -6435,12 +6477,12 @@ impl Wmb3D03 {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xff) as u8) } // [23:16]
     }
 
-    #[doc="Received payload corresponding to the data byte 1 under Pretended Networking mode"]
+    #[doc="Returns true if Data_byte_1 != 0"]
     #[inline] pub fn test_data_byte_1(&self) -> bool {
         self.data_byte_1() != 0
     }
 
-    #[doc="Received payload corresponding to the data byte 1 under Pretended Networking mode"]
+    #[doc="Sets the Data_byte_1 field."]
     #[inline] pub fn set_data_byte_1<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -6454,12 +6496,12 @@ impl Wmb3D03 {
         unsafe { ::core::mem::transmute(((self.0 >> 24) & 0xff) as u8) } // [31:24]
     }
 
-    #[doc="Received payload corresponding to the data byte 0 under Pretended Networking mode"]
+    #[doc="Returns true if Data_byte_0 != 0"]
     #[inline] pub fn test_data_byte_0(&self) -> bool {
         self.data_byte_0() != 0
     }
 
-    #[doc="Received payload corresponding to the data byte 0 under Pretended Networking mode"]
+    #[doc="Sets the Data_byte_0 field."]
     #[inline] pub fn set_data_byte_0<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -6504,12 +6546,12 @@ impl Wmb3D47 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
-    #[doc="Received payload corresponding to the data byte 7 under Pretended Networking mode"]
+    #[doc="Returns true if Data_byte_7 != 0"]
     #[inline] pub fn test_data_byte_7(&self) -> bool {
         self.data_byte_7() != 0
     }
 
-    #[doc="Received payload corresponding to the data byte 7 under Pretended Networking mode"]
+    #[doc="Sets the Data_byte_7 field."]
     #[inline] pub fn set_data_byte_7<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -6523,12 +6565,12 @@ impl Wmb3D47 {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0xff) as u8) } // [15:8]
     }
 
-    #[doc="Received payload corresponding to the data byte 6 under Pretended Networking mode"]
+    #[doc="Returns true if Data_byte_6 != 0"]
     #[inline] pub fn test_data_byte_6(&self) -> bool {
         self.data_byte_6() != 0
     }
 
-    #[doc="Received payload corresponding to the data byte 6 under Pretended Networking mode"]
+    #[doc="Sets the Data_byte_6 field."]
     #[inline] pub fn set_data_byte_6<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -6542,12 +6584,12 @@ impl Wmb3D47 {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xff) as u8) } // [23:16]
     }
 
-    #[doc="Received payload corresponding to the data byte 5 under Pretended Networking mode"]
+    #[doc="Returns true if Data_byte_5 != 0"]
     #[inline] pub fn test_data_byte_5(&self) -> bool {
         self.data_byte_5() != 0
     }
 
-    #[doc="Received payload corresponding to the data byte 5 under Pretended Networking mode"]
+    #[doc="Sets the Data_byte_5 field."]
     #[inline] pub fn set_data_byte_5<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -6561,12 +6603,12 @@ impl Wmb3D47 {
         unsafe { ::core::mem::transmute(((self.0 >> 24) & 0xff) as u8) } // [31:24]
     }
 
-    #[doc="Received payload corresponding to the data byte 4 under Pretended Networking mode"]
+    #[doc="Returns true if Data_byte_4 != 0"]
     #[inline] pub fn test_data_byte_4(&self) -> bool {
         self.data_byte_4() != 0
     }
 
-    #[doc="Received payload corresponding to the data byte 4 under Pretended Networking mode"]
+    #[doc="Sets the Data_byte_4 field."]
     #[inline] pub fn set_data_byte_4<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -6611,12 +6653,12 @@ impl Fdctrl {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x3f) as u8) } // [5:0]
     }
 
-    #[doc="Transceiver Delay Compensation Value"]
+    #[doc="Returns true if TDCVAL != 0"]
     #[inline] pub fn test_tdcval(&self) -> bool {
         self.tdcval() != 0
     }
 
-    #[doc="Transceiver Delay Compensation Value"]
+    #[doc="Sets the TDCVAL field."]
     #[inline] pub fn set_tdcval<V: Into<bits::U6>>(mut self, value: V) -> Self {
         let value: bits::U6 = value.into();
         let value: u32 = value.into();
@@ -6630,12 +6672,12 @@ impl Fdctrl {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1f) as u8) } // [12:8]
     }
 
-    #[doc="Transceiver Delay Compensation Offset"]
+    #[doc="Returns true if TDCOFF != 0"]
     #[inline] pub fn test_tdcoff(&self) -> bool {
         self.tdcoff() != 0
     }
 
-    #[doc="Transceiver Delay Compensation Offset"]
+    #[doc="Sets the TDCOFF field."]
     #[inline] pub fn set_tdcoff<V: Into<bits::U5>>(mut self, value: V) -> Self {
         let value: bits::U5 = value.into();
         let value: u32 = value.into();
@@ -6649,12 +6691,12 @@ impl Fdctrl {
         unsafe { ::core::mem::transmute(((self.0 >> 14) & 0x1) as u8) } // [14]
     }
 
-    #[doc="Transceiver Delay Compensation Fail"]
+    #[doc="Returns true if TDCFAIL != 0"]
     #[inline] pub fn test_tdcfail(&self) -> bool {
         self.tdcfail() != 0
     }
 
-    #[doc="Transceiver Delay Compensation Fail"]
+    #[doc="Sets the TDCFAIL field."]
     #[inline] pub fn set_tdcfail<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -6668,12 +6710,12 @@ impl Fdctrl {
         unsafe { ::core::mem::transmute(((self.0 >> 15) & 0x1) as u8) } // [15]
     }
 
-    #[doc="Transceiver Delay Compensation Enable"]
+    #[doc="Returns true if TDCEN != 0"]
     #[inline] pub fn test_tdcen(&self) -> bool {
         self.tdcen() != 0
     }
 
-    #[doc="Transceiver Delay Compensation Enable"]
+    #[doc="Sets the TDCEN field."]
     #[inline] pub fn set_tdcen<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -6687,12 +6729,12 @@ impl Fdctrl {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x3) as u8) } // [17:16]
     }
 
-    #[doc="Message Buffer Data Size for Region 0"]
+    #[doc="Returns true if MBDSR0 != 0"]
     #[inline] pub fn test_mbdsr0(&self) -> bool {
         self.mbdsr0() != 0
     }
 
-    #[doc="Message Buffer Data Size for Region 0"]
+    #[doc="Sets the MBDSR0 field."]
     #[inline] pub fn set_mbdsr0<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -6706,12 +6748,12 @@ impl Fdctrl {
         unsafe { ::core::mem::transmute(((self.0 >> 31) & 0x1) as u8) } // [31]
     }
 
-    #[doc="Bit Rate Switch Enable"]
+    #[doc="Returns true if FDRATE != 0"]
     #[inline] pub fn test_fdrate(&self) -> bool {
         self.fdrate() != 0
     }
 
-    #[doc="Bit Rate Switch Enable"]
+    #[doc="Sets the FDRATE field."]
     #[inline] pub fn set_fdrate<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -6758,12 +6800,12 @@ impl Fdcbt {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x7) as u8) } // [2:0]
     }
 
-    #[doc="Fast Phase Segment 2"]
+    #[doc="Returns true if FPSEG2 != 0"]
     #[inline] pub fn test_fpseg2(&self) -> bool {
         self.fpseg2() != 0
     }
 
-    #[doc="Fast Phase Segment 2"]
+    #[doc="Sets the FPSEG2 field."]
     #[inline] pub fn set_fpseg2<V: Into<bits::U3>>(mut self, value: V) -> Self {
         let value: bits::U3 = value.into();
         let value: u32 = value.into();
@@ -6777,12 +6819,12 @@ impl Fdcbt {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x7) as u8) } // [7:5]
     }
 
-    #[doc="Fast Phase Segment 1"]
+    #[doc="Returns true if FPSEG1 != 0"]
     #[inline] pub fn test_fpseg1(&self) -> bool {
         self.fpseg1() != 0
     }
 
-    #[doc="Fast Phase Segment 1"]
+    #[doc="Sets the FPSEG1 field."]
     #[inline] pub fn set_fpseg1<V: Into<bits::U3>>(mut self, value: V) -> Self {
         let value: bits::U3 = value.into();
         let value: u32 = value.into();
@@ -6796,12 +6838,12 @@ impl Fdcbt {
         unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x1f) as u8) } // [14:10]
     }
 
-    #[doc="Fast Propagation Segment"]
+    #[doc="Returns true if FPROPSEG != 0"]
     #[inline] pub fn test_fpropseg(&self) -> bool {
         self.fpropseg() != 0
     }
 
-    #[doc="Fast Propagation Segment"]
+    #[doc="Sets the FPROPSEG field."]
     #[inline] pub fn set_fpropseg<V: Into<bits::U5>>(mut self, value: V) -> Self {
         let value: bits::U5 = value.into();
         let value: u32 = value.into();
@@ -6815,12 +6857,12 @@ impl Fdcbt {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x7) as u8) } // [18:16]
     }
 
-    #[doc="Fast Resync Jump Width"]
+    #[doc="Returns true if FRJW != 0"]
     #[inline] pub fn test_frjw(&self) -> bool {
         self.frjw() != 0
     }
 
-    #[doc="Fast Resync Jump Width"]
+    #[doc="Sets the FRJW field."]
     #[inline] pub fn set_frjw<V: Into<bits::U3>>(mut self, value: V) -> Self {
         let value: bits::U3 = value.into();
         let value: u32 = value.into();
@@ -6834,12 +6876,12 @@ impl Fdcbt {
         unsafe { ::core::mem::transmute(((self.0 >> 20) & 0x3ff) as u16) } // [29:20]
     }
 
-    #[doc="Fast Prescaler Division Factor"]
+    #[doc="Returns true if FPRESDIV != 0"]
     #[inline] pub fn test_fpresdiv(&self) -> bool {
         self.fpresdiv() != 0
     }
 
-    #[doc="Fast Prescaler Division Factor"]
+    #[doc="Sets the FPRESDIV field."]
     #[inline] pub fn set_fpresdiv<V: Into<bits::U10>>(mut self, value: V) -> Self {
         let value: bits::U10 = value.into();
         let value: u32 = value.into();
@@ -6885,12 +6927,12 @@ impl Fdcrc {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1fffff) as u32) } // [20:0]
     }
 
-    #[doc="Extended Transmitted CRC value"]
+    #[doc="Returns true if FD_TXCRC != 0"]
     #[inline] pub fn test_fd_txcrc(&self) -> bool {
         self.fd_txcrc() != 0
     }
 
-    #[doc="Extended Transmitted CRC value"]
+    #[doc="Sets the FD_TXCRC field."]
     #[inline] pub fn set_fd_txcrc<V: Into<bits::U21>>(mut self, value: V) -> Self {
         let value: bits::U21 = value.into();
         let value: u32 = value.into();
@@ -6904,12 +6946,12 @@ impl Fdcrc {
         unsafe { ::core::mem::transmute(((self.0 >> 24) & 0x7f) as u8) } // [30:24]
     }
 
-    #[doc="CRC Mailbox Number for FD_TXCRC"]
+    #[doc="Returns true if FD_MBCRC != 0"]
     #[inline] pub fn test_fd_mbcrc(&self) -> bool {
         self.fd_mbcrc() != 0
     }
 
-    #[doc="CRC Mailbox Number for FD_TXCRC"]
+    #[doc="Sets the FD_MBCRC field."]
     #[inline] pub fn set_fd_mbcrc<V: Into<bits::U7>>(mut self, value: V) -> Self {
         let value: bits::U7 = value.into();
         let value: u32 = value.into();

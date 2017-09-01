@@ -150,12 +150,12 @@ impl Csr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Timer Enable"]
+    #[doc="Returns true if TEN != 0"]
     #[inline] pub fn test_ten(&self) -> bool {
         self.ten() != 0
     }
 
-    #[doc="Timer Enable"]
+    #[doc="Sets the TEN field."]
     #[inline] pub fn set_ten<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -169,12 +169,12 @@ impl Csr {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="Timer Mode Select"]
+    #[doc="Returns true if TMS != 0"]
     #[inline] pub fn test_tms(&self) -> bool {
         self.tms() != 0
     }
 
-    #[doc="Timer Mode Select"]
+    #[doc="Sets the TMS field."]
     #[inline] pub fn set_tms<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -188,12 +188,12 @@ impl Csr {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="Timer Free-Running Counter"]
+    #[doc="Returns true if TFC != 0"]
     #[inline] pub fn test_tfc(&self) -> bool {
         self.tfc() != 0
     }
 
-    #[doc="Timer Free-Running Counter"]
+    #[doc="Sets the TFC field."]
     #[inline] pub fn set_tfc<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -207,12 +207,12 @@ impl Csr {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="Timer Pin Polarity"]
+    #[doc="Returns true if TPP != 0"]
     #[inline] pub fn test_tpp(&self) -> bool {
         self.tpp() != 0
     }
 
-    #[doc="Timer Pin Polarity"]
+    #[doc="Sets the TPP field."]
     #[inline] pub fn set_tpp<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -226,12 +226,12 @@ impl Csr {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x3) as u8) } // [5:4]
     }
 
-    #[doc="Timer Pin Select"]
+    #[doc="Returns true if TPS != 0"]
     #[inline] pub fn test_tps(&self) -> bool {
         self.tps() != 0
     }
 
-    #[doc="Timer Pin Select"]
+    #[doc="Sets the TPS field."]
     #[inline] pub fn set_tps<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -245,12 +245,12 @@ impl Csr {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="Timer Interrupt Enable"]
+    #[doc="Returns true if TIE != 0"]
     #[inline] pub fn test_tie(&self) -> bool {
         self.tie() != 0
     }
 
-    #[doc="Timer Interrupt Enable"]
+    #[doc="Sets the TIE field."]
     #[inline] pub fn set_tie<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -264,12 +264,12 @@ impl Csr {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="Timer Compare Flag"]
+    #[doc="Returns true if TCF != 0"]
     #[inline] pub fn test_tcf(&self) -> bool {
         self.tcf() != 0
     }
 
-    #[doc="Timer Compare Flag"]
+    #[doc="Sets the TCF field."]
     #[inline] pub fn set_tcf<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -317,12 +317,12 @@ impl Psr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x3) as u8) } // [1:0]
     }
 
-    #[doc="Prescaler Clock Select"]
+    #[doc="Returns true if PCS != 0"]
     #[inline] pub fn test_pcs(&self) -> bool {
         self.pcs() != 0
     }
 
-    #[doc="Prescaler Clock Select"]
+    #[doc="Sets the PCS field."]
     #[inline] pub fn set_pcs<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -336,12 +336,12 @@ impl Psr {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="Prescaler Bypass"]
+    #[doc="Returns true if PBYP != 0"]
     #[inline] pub fn test_pbyp(&self) -> bool {
         self.pbyp() != 0
     }
 
-    #[doc="Prescaler Bypass"]
+    #[doc="Sets the PBYP field."]
     #[inline] pub fn set_pbyp<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -355,12 +355,12 @@ impl Psr {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0xf) as u8) } // [6:3]
     }
 
-    #[doc="Prescale Value"]
+    #[doc="Returns true if PRESCALE != 0"]
     #[inline] pub fn test_prescale(&self) -> bool {
         self.prescale() != 0
     }
 
-    #[doc="Prescale Value"]
+    #[doc="Sets the PRESCALE field."]
     #[inline] pub fn set_prescale<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -404,12 +404,12 @@ impl Cmr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffff) as u16) } // [15:0]
     }
 
-    #[doc="Compare Value"]
+    #[doc="Returns true if COMPARE != 0"]
     #[inline] pub fn test_compare(&self) -> bool {
         self.compare() != 0
     }
 
-    #[doc="Compare Value"]
+    #[doc="Sets the COMPARE field."]
     #[inline] pub fn set_compare<V: Into<bits::U16>>(mut self, value: V) -> Self {
         let value: bits::U16 = value.into();
         let value: u32 = value.into();
@@ -451,12 +451,12 @@ impl Cnr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffff) as u16) } // [15:0]
     }
 
-    #[doc="Counter Value"]
+    #[doc="Returns true if COUNTER != 0"]
     #[inline] pub fn test_counter(&self) -> bool {
         self.counter() != 0
     }
 
-    #[doc="Counter Value"]
+    #[doc="Sets the COUNTER field."]
     #[inline] pub fn set_counter<V: Into<bits::U16>>(mut self, value: V) -> Self {
         let value: bits::U16 = value.into();
         let value: u32 = value.into();

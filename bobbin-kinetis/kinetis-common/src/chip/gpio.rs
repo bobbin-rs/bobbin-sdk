@@ -157,12 +157,12 @@ impl Pdor {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Port Data Output"]
+    #[doc="Returns true if PDO != 0"]
     #[inline] pub fn test_pdo<I: Into<bits::R32>>(&self, index: I) -> bool{
         self.pdo(index) != 0
     }
 
-    #[doc="Port Data Output"]
+    #[doc="Sets the PDO field."]
     #[inline] pub fn set_pdo<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -239,12 +239,12 @@ impl Psor {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Port Set Output"]
+    #[doc="Returns true if PTSO != 0"]
     #[inline] pub fn test_ptso<I: Into<bits::R32>>(&self, index: I) -> bool{
         self.ptso(index) != 0
     }
 
-    #[doc="Port Set Output"]
+    #[doc="Sets the PTSO field."]
     #[inline] pub fn set_ptso<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -321,12 +321,12 @@ impl Pcor {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Port Clear Output"]
+    #[doc="Returns true if PTCO != 0"]
     #[inline] pub fn test_ptco<I: Into<bits::R32>>(&self, index: I) -> bool{
         self.ptco(index) != 0
     }
 
-    #[doc="Port Clear Output"]
+    #[doc="Sets the PTCO field."]
     #[inline] pub fn set_ptco<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -403,12 +403,12 @@ impl Ptor {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Port Toggle Output"]
+    #[doc="Returns true if PTTO != 0"]
     #[inline] pub fn test_ptto<I: Into<bits::R32>>(&self, index: I) -> bool{
         self.ptto(index) != 0
     }
 
-    #[doc="Port Toggle Output"]
+    #[doc="Sets the PTTO field."]
     #[inline] pub fn set_ptto<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -485,12 +485,12 @@ impl Pdir {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Port Data Input"]
+    #[doc="Returns true if PDI != 0"]
     #[inline] pub fn test_pdi<I: Into<bits::R32>>(&self, index: I) -> bool{
         self.pdi(index) != 0
     }
 
-    #[doc="Port Data Input"]
+    #[doc="Sets the PDI field."]
     #[inline] pub fn set_pdi<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
@@ -567,12 +567,12 @@ impl Pddr {
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Port Data Direction"]
+    #[doc="Returns true if PDD != 0"]
     #[inline] pub fn test_pdd<I: Into<bits::R32>>(&self, index: I) -> bool{
         self.pdd(index) != 0
     }
 
-    #[doc="Port Data Direction"]
+    #[doc="Sets the PDD field."]
     #[inline] pub fn set_pdd<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();

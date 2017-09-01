@@ -249,12 +249,12 @@ impl Cfgr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x3) as u8) } // [1:0]
     }
 
-    #[doc="Memory mapping selection bits"]
+    #[doc="Returns true if MEM_MODE != 0"]
     #[inline] pub fn test_mem_mode(&self) -> bool {
         self.mem_mode() != 0
     }
 
-    #[doc="Memory mapping selection bits"]
+    #[doc="Sets the MEM_MODE field."]
     #[inline] pub fn set_mem_mode<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -268,12 +268,12 @@ impl Cfgr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="USB interrupt remap"]
+    #[doc="Returns true if USB_IT_RMP != 0"]
     #[inline] pub fn test_usb_it_rmp(&self) -> bool {
         self.usb_it_rmp() != 0
     }
 
-    #[doc="USB interrupt remap"]
+    #[doc="Sets the USB_IT_RMP field."]
     #[inline] pub fn set_usb_it_rmp<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -287,12 +287,12 @@ impl Cfgr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="Timer 1 ITR3 selection"]
+    #[doc="Returns true if TIM1_ITR_RMP != 0"]
     #[inline] pub fn test_tim1_itr_rmp(&self) -> bool {
         self.tim1_itr_rmp() != 0
     }
 
-    #[doc="Timer 1 ITR3 selection"]
+    #[doc="Sets the TIM1_ITR_RMP field."]
     #[inline] pub fn set_tim1_itr_rmp<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -306,12 +306,12 @@ impl Cfgr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="DAC trigger remap (when TSEL = 001)"]
+    #[doc="Returns true if DAC_TRIG_RMP != 0"]
     #[inline] pub fn test_dac_trig_rmp(&self) -> bool {
         self.dac_trig_rmp() != 0
     }
 
-    #[doc="DAC trigger remap (when TSEL = 001)"]
+    #[doc="Sets the DAC_TRIG_RMP field."]
     #[inline] pub fn set_dac_trig_rmp<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -325,12 +325,12 @@ impl Cfgr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
     }
 
-    #[doc="ADC24 DMA remapping bit"]
+    #[doc="Returns true if ADC24_DMA_RMP != 0"]
     #[inline] pub fn test_adc24_dma_rmp(&self) -> bool {
         self.adc24_dma_rmp() != 0
     }
 
-    #[doc="ADC24 DMA remapping bit"]
+    #[doc="Sets the ADC24_DMA_RMP field."]
     #[inline] pub fn set_adc24_dma_rmp<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -344,12 +344,12 @@ impl Cfgr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 11) & 0x1) as u8) } // [11]
     }
 
-    #[doc="TIM16 DMA request remapping bit"]
+    #[doc="Returns true if TIM16_DMA_RMP != 0"]
     #[inline] pub fn test_tim16_dma_rmp(&self) -> bool {
         self.tim16_dma_rmp() != 0
     }
 
-    #[doc="TIM16 DMA request remapping bit"]
+    #[doc="Sets the TIM16_DMA_RMP field."]
     #[inline] pub fn set_tim16_dma_rmp<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -363,12 +363,12 @@ impl Cfgr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 12) & 0x1) as u8) } // [12]
     }
 
-    #[doc="TIM17 DMA request remapping bit"]
+    #[doc="Returns true if TIM17_DMA_RMP != 0"]
     #[inline] pub fn test_tim17_dma_rmp(&self) -> bool {
         self.tim17_dma_rmp() != 0
     }
 
-    #[doc="TIM17 DMA request remapping bit"]
+    #[doc="Sets the TIM17_DMA_RMP field."]
     #[inline] pub fn set_tim17_dma_rmp<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -382,12 +382,12 @@ impl Cfgr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 13) & 0x1) as u8) } // [13]
     }
 
-    #[doc="TIM6 and DAC1 DMA request remapping bit"]
+    #[doc="Returns true if TIM6_DAC1_DMA_RMP != 0"]
     #[inline] pub fn test_tim6_dac1_dma_rmp(&self) -> bool {
         self.tim6_dac1_dma_rmp() != 0
     }
 
-    #[doc="TIM6 and DAC1 DMA request remapping bit"]
+    #[doc="Sets the TIM6_DAC1_DMA_RMP field."]
     #[inline] pub fn set_tim6_dac1_dma_rmp<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -401,12 +401,12 @@ impl Cfgr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 14) & 0x1) as u8) } // [14]
     }
 
-    #[doc="TIM7 and DAC2 DMA request remapping bit"]
+    #[doc="Returns true if TIM7_DAC2_DMA_RMP != 0"]
     #[inline] pub fn test_tim7_dac2_dma_rmp(&self) -> bool {
         self.tim7_dac2_dma_rmp() != 0
     }
 
-    #[doc="TIM7 and DAC2 DMA request remapping bit"]
+    #[doc="Sets the TIM7_DAC2_DMA_RMP field."]
     #[inline] pub fn set_tim7_dac2_dma_rmp<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -420,12 +420,12 @@ impl Cfgr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1) as u8) } // [16]
     }
 
-    #[doc="Fast Mode Plus (FM+) driving capability activation bits."]
+    #[doc="Returns true if I2C_PB6_FM != 0"]
     #[inline] pub fn test_i2c_pb6_fm(&self) -> bool {
         self.i2c_pb6_fm() != 0
     }
 
-    #[doc="Fast Mode Plus (FM+) driving capability activation bits."]
+    #[doc="Sets the I2C_PB6_FM field."]
     #[inline] pub fn set_i2c_pb6_fm<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -439,12 +439,12 @@ impl Cfgr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 17) & 0x1) as u8) } // [17]
     }
 
-    #[doc="Fast Mode Plus (FM+) driving capability activation bits."]
+    #[doc="Returns true if I2C_PB7_FM != 0"]
     #[inline] pub fn test_i2c_pb7_fm(&self) -> bool {
         self.i2c_pb7_fm() != 0
     }
 
-    #[doc="Fast Mode Plus (FM+) driving capability activation bits."]
+    #[doc="Sets the I2C_PB7_FM field."]
     #[inline] pub fn set_i2c_pb7_fm<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -458,12 +458,12 @@ impl Cfgr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 18) & 0x1) as u8) } // [18]
     }
 
-    #[doc="Fast Mode Plus (FM+) driving capability activation bits."]
+    #[doc="Returns true if I2C_PB8_FM != 0"]
     #[inline] pub fn test_i2c_pb8_fm(&self) -> bool {
         self.i2c_pb8_fm() != 0
     }
 
-    #[doc="Fast Mode Plus (FM+) driving capability activation bits."]
+    #[doc="Sets the I2C_PB8_FM field."]
     #[inline] pub fn set_i2c_pb8_fm<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -477,12 +477,12 @@ impl Cfgr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 19) & 0x1) as u8) } // [19]
     }
 
-    #[doc="Fast Mode Plus (FM+) driving capability activation bits."]
+    #[doc="Returns true if I2C_PB9_FM != 0"]
     #[inline] pub fn test_i2c_pb9_fm(&self) -> bool {
         self.i2c_pb9_fm() != 0
     }
 
-    #[doc="Fast Mode Plus (FM+) driving capability activation bits."]
+    #[doc="Sets the I2C_PB9_FM field."]
     #[inline] pub fn set_i2c_pb9_fm<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -496,12 +496,12 @@ impl Cfgr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 20) & 0x1) as u8) } // [20]
     }
 
-    #[doc="I2C1 Fast Mode Plus"]
+    #[doc="Returns true if I2C1_FM != 0"]
     #[inline] pub fn test_i2c1_fm(&self) -> bool {
         self.i2c1_fm() != 0
     }
 
-    #[doc="I2C1 Fast Mode Plus"]
+    #[doc="Sets the I2C1_FM field."]
     #[inline] pub fn set_i2c1_fm<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -515,12 +515,12 @@ impl Cfgr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 21) & 0x1) as u8) } // [21]
     }
 
-    #[doc="I2C2 Fast Mode Plus"]
+    #[doc="Returns true if I2C2_FM != 0"]
     #[inline] pub fn test_i2c2_fm(&self) -> bool {
         self.i2c2_fm() != 0
     }
 
-    #[doc="I2C2 Fast Mode Plus"]
+    #[doc="Sets the I2C2_FM field."]
     #[inline] pub fn set_i2c2_fm<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -534,12 +534,12 @@ impl Cfgr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 22) & 0x3) as u8) } // [23:22]
     }
 
-    #[doc="Encoder mode"]
+    #[doc="Returns true if ENCODER_MODE != 0"]
     #[inline] pub fn test_encoder_mode(&self) -> bool {
         self.encoder_mode() != 0
     }
 
-    #[doc="Encoder mode"]
+    #[doc="Sets the ENCODER_MODE field."]
     #[inline] pub fn set_encoder_mode<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -553,12 +553,12 @@ impl Cfgr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 26) & 0x3f) as u8) } // [31:26]
     }
 
-    #[doc="Interrupt enable bits from FPU"]
+    #[doc="Returns true if FPU_IT != 0"]
     #[inline] pub fn test_fpu_it(&self) -> bool {
         self.fpu_it() != 0
     }
 
-    #[doc="Interrupt enable bits from FPU"]
+    #[doc="Sets the FPU_IT field."]
     #[inline] pub fn set_fpu_it<V: Into<bits::U6>>(mut self, value: V) -> Self {
         let value: bits::U6 = value.into();
         let value: u32 = value.into();
@@ -616,12 +616,12 @@ impl Exticr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 12) & 0xf) as u8) } // [15:12]
     }
 
-    #[doc="EXTI 3 configuration bits"]
+    #[doc="Returns true if EXTI3 != 0"]
     #[inline] pub fn test_exti3(&self) -> bool {
         self.exti3() != 0
     }
 
-    #[doc="EXTI 3 configuration bits"]
+    #[doc="Sets the EXTI3 field."]
     #[inline] pub fn set_exti3<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -635,12 +635,12 @@ impl Exticr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0xf) as u8) } // [11:8]
     }
 
-    #[doc="EXTI 2 configuration bits"]
+    #[doc="Returns true if EXTI2 != 0"]
     #[inline] pub fn test_exti2(&self) -> bool {
         self.exti2() != 0
     }
 
-    #[doc="EXTI 2 configuration bits"]
+    #[doc="Sets the EXTI2 field."]
     #[inline] pub fn set_exti2<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -654,12 +654,12 @@ impl Exticr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0xf) as u8) } // [7:4]
     }
 
-    #[doc="EXTI 1 configuration bits"]
+    #[doc="Returns true if EXTI1 != 0"]
     #[inline] pub fn test_exti1(&self) -> bool {
         self.exti1() != 0
     }
 
-    #[doc="EXTI 1 configuration bits"]
+    #[doc="Sets the EXTI1 field."]
     #[inline] pub fn set_exti1<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -673,12 +673,12 @@ impl Exticr1 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xf) as u8) } // [3:0]
     }
 
-    #[doc="EXTI 0 configuration bits"]
+    #[doc="Returns true if EXTI0 != 0"]
     #[inline] pub fn test_exti0(&self) -> bool {
         self.exti0() != 0
     }
 
-    #[doc="EXTI 0 configuration bits"]
+    #[doc="Sets the EXTI0 field."]
     #[inline] pub fn set_exti0<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -723,12 +723,12 @@ impl Exticr2 {
         unsafe { ::core::mem::transmute(((self.0 >> 12) & 0xf) as u8) } // [15:12]
     }
 
-    #[doc="EXTI 7 configuration bits"]
+    #[doc="Returns true if EXTI7 != 0"]
     #[inline] pub fn test_exti7(&self) -> bool {
         self.exti7() != 0
     }
 
-    #[doc="EXTI 7 configuration bits"]
+    #[doc="Sets the EXTI7 field."]
     #[inline] pub fn set_exti7<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -742,12 +742,12 @@ impl Exticr2 {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0xf) as u8) } // [11:8]
     }
 
-    #[doc="EXTI 6 configuration bits"]
+    #[doc="Returns true if EXTI6 != 0"]
     #[inline] pub fn test_exti6(&self) -> bool {
         self.exti6() != 0
     }
 
-    #[doc="EXTI 6 configuration bits"]
+    #[doc="Sets the EXTI6 field."]
     #[inline] pub fn set_exti6<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -761,12 +761,12 @@ impl Exticr2 {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0xf) as u8) } // [7:4]
     }
 
-    #[doc="EXTI 5 configuration bits"]
+    #[doc="Returns true if EXTI5 != 0"]
     #[inline] pub fn test_exti5(&self) -> bool {
         self.exti5() != 0
     }
 
-    #[doc="EXTI 5 configuration bits"]
+    #[doc="Sets the EXTI5 field."]
     #[inline] pub fn set_exti5<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -780,12 +780,12 @@ impl Exticr2 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xf) as u8) } // [3:0]
     }
 
-    #[doc="EXTI 4 configuration bits"]
+    #[doc="Returns true if EXTI4 != 0"]
     #[inline] pub fn test_exti4(&self) -> bool {
         self.exti4() != 0
     }
 
-    #[doc="EXTI 4 configuration bits"]
+    #[doc="Sets the EXTI4 field."]
     #[inline] pub fn set_exti4<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -830,12 +830,12 @@ impl Exticr3 {
         unsafe { ::core::mem::transmute(((self.0 >> 12) & 0xf) as u8) } // [15:12]
     }
 
-    #[doc="EXTI 11 configuration bits"]
+    #[doc="Returns true if EXTI11 != 0"]
     #[inline] pub fn test_exti11(&self) -> bool {
         self.exti11() != 0
     }
 
-    #[doc="EXTI 11 configuration bits"]
+    #[doc="Sets the EXTI11 field."]
     #[inline] pub fn set_exti11<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -849,12 +849,12 @@ impl Exticr3 {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0xf) as u8) } // [11:8]
     }
 
-    #[doc="EXTI 10 configuration bits"]
+    #[doc="Returns true if EXTI10 != 0"]
     #[inline] pub fn test_exti10(&self) -> bool {
         self.exti10() != 0
     }
 
-    #[doc="EXTI 10 configuration bits"]
+    #[doc="Sets the EXTI10 field."]
     #[inline] pub fn set_exti10<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -868,12 +868,12 @@ impl Exticr3 {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0xf) as u8) } // [7:4]
     }
 
-    #[doc="EXTI 9 configuration bits"]
+    #[doc="Returns true if EXTI9 != 0"]
     #[inline] pub fn test_exti9(&self) -> bool {
         self.exti9() != 0
     }
 
-    #[doc="EXTI 9 configuration bits"]
+    #[doc="Sets the EXTI9 field."]
     #[inline] pub fn set_exti9<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -887,12 +887,12 @@ impl Exticr3 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xf) as u8) } // [3:0]
     }
 
-    #[doc="EXTI 8 configuration bits"]
+    #[doc="Returns true if EXTI8 != 0"]
     #[inline] pub fn test_exti8(&self) -> bool {
         self.exti8() != 0
     }
 
-    #[doc="EXTI 8 configuration bits"]
+    #[doc="Sets the EXTI8 field."]
     #[inline] pub fn set_exti8<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -937,12 +937,12 @@ impl Exticr4 {
         unsafe { ::core::mem::transmute(((self.0 >> 12) & 0xf) as u8) } // [15:12]
     }
 
-    #[doc="EXTI 15 configuration bits"]
+    #[doc="Returns true if EXTI15 != 0"]
     #[inline] pub fn test_exti15(&self) -> bool {
         self.exti15() != 0
     }
 
-    #[doc="EXTI 15 configuration bits"]
+    #[doc="Sets the EXTI15 field."]
     #[inline] pub fn set_exti15<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -956,12 +956,12 @@ impl Exticr4 {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0xf) as u8) } // [11:8]
     }
 
-    #[doc="EXTI 14 configuration bits"]
+    #[doc="Returns true if EXTI14 != 0"]
     #[inline] pub fn test_exti14(&self) -> bool {
         self.exti14() != 0
     }
 
-    #[doc="EXTI 14 configuration bits"]
+    #[doc="Sets the EXTI14 field."]
     #[inline] pub fn set_exti14<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -975,12 +975,12 @@ impl Exticr4 {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0xf) as u8) } // [7:4]
     }
 
-    #[doc="EXTI 13 configuration bits"]
+    #[doc="Returns true if EXTI13 != 0"]
     #[inline] pub fn test_exti13(&self) -> bool {
         self.exti13() != 0
     }
 
-    #[doc="EXTI 13 configuration bits"]
+    #[doc="Sets the EXTI13 field."]
     #[inline] pub fn set_exti13<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -994,12 +994,12 @@ impl Exticr4 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xf) as u8) } // [3:0]
     }
 
-    #[doc="EXTI 12 configuration bits"]
+    #[doc="Returns true if EXTI12 != 0"]
     #[inline] pub fn test_exti12(&self) -> bool {
         self.exti12() != 0
     }
 
-    #[doc="EXTI 12 configuration bits"]
+    #[doc="Sets the EXTI12 field."]
     #[inline] pub fn set_exti12<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -1044,12 +1044,12 @@ impl Cfgr2 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Cortex-M0 LOCKUP bit enable bit"]
+    #[doc="Returns true if LOCUP_LOCK != 0"]
     #[inline] pub fn test_locup_lock(&self) -> bool {
         self.locup_lock() != 0
     }
 
-    #[doc="Cortex-M0 LOCKUP bit enable bit"]
+    #[doc="Sets the LOCUP_LOCK field."]
     #[inline] pub fn set_locup_lock<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1063,12 +1063,12 @@ impl Cfgr2 {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="SRAM parity lock bit"]
+    #[doc="Returns true if SRAM_PARITY_LOCK != 0"]
     #[inline] pub fn test_sram_parity_lock(&self) -> bool {
         self.sram_parity_lock() != 0
     }
 
-    #[doc="SRAM parity lock bit"]
+    #[doc="Sets the SRAM_PARITY_LOCK field."]
     #[inline] pub fn set_sram_parity_lock<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1082,12 +1082,12 @@ impl Cfgr2 {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="PVD lock enable bit"]
+    #[doc="Returns true if PVD_LOCK != 0"]
     #[inline] pub fn test_pvd_lock(&self) -> bool {
         self.pvd_lock() != 0
     }
 
-    #[doc="PVD lock enable bit"]
+    #[doc="Sets the PVD_LOCK field."]
     #[inline] pub fn set_pvd_lock<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1101,12 +1101,12 @@ impl Cfgr2 {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="Bypass address bit 29 in parity calculation"]
+    #[doc="Returns true if BYP_ADD_PAR != 0"]
     #[inline] pub fn test_byp_add_par(&self) -> bool {
         self.byp_add_par() != 0
     }
 
-    #[doc="Bypass address bit 29 in parity calculation"]
+    #[doc="Sets the BYP_ADD_PAR field."]
     #[inline] pub fn set_byp_add_par<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1120,12 +1120,12 @@ impl Cfgr2 {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
     }
 
-    #[doc="SRAM parity flag"]
+    #[doc="Returns true if SRAM_PEF != 0"]
     #[inline] pub fn test_sram_pef(&self) -> bool {
         self.sram_pef() != 0
     }
 
-    #[doc="SRAM parity flag"]
+    #[doc="Sets the SRAM_PEF field."]
     #[inline] pub fn set_sram_pef<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1171,12 +1171,12 @@ impl Rcr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="CCM SRAM page write protection bit"]
+    #[doc="Returns true if PAGE0_WP != 0"]
     #[inline] pub fn test_page0_wp(&self) -> bool {
         self.page0_wp() != 0
     }
 
-    #[doc="CCM SRAM page write protection bit"]
+    #[doc="Sets the PAGE0_WP field."]
     #[inline] pub fn set_page0_wp<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1190,12 +1190,12 @@ impl Rcr {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="CCM SRAM page write protection bit"]
+    #[doc="Returns true if PAGE1_WP != 0"]
     #[inline] pub fn test_page1_wp(&self) -> bool {
         self.page1_wp() != 0
     }
 
-    #[doc="CCM SRAM page write protection bit"]
+    #[doc="Sets the PAGE1_WP field."]
     #[inline] pub fn set_page1_wp<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1209,12 +1209,12 @@ impl Rcr {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="CCM SRAM page write protection bit"]
+    #[doc="Returns true if PAGE2_WP != 0"]
     #[inline] pub fn test_page2_wp(&self) -> bool {
         self.page2_wp() != 0
     }
 
-    #[doc="CCM SRAM page write protection bit"]
+    #[doc="Sets the PAGE2_WP field."]
     #[inline] pub fn set_page2_wp<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1228,12 +1228,12 @@ impl Rcr {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="CCM SRAM page write protection bit"]
+    #[doc="Returns true if PAGE3_WP != 0"]
     #[inline] pub fn test_page3_wp(&self) -> bool {
         self.page3_wp() != 0
     }
 
-    #[doc="CCM SRAM page write protection bit"]
+    #[doc="Sets the PAGE3_WP field."]
     #[inline] pub fn set_page3_wp<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1247,12 +1247,12 @@ impl Rcr {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="CCM SRAM page write protection bit"]
+    #[doc="Returns true if PAGE4_WP != 0"]
     #[inline] pub fn test_page4_wp(&self) -> bool {
         self.page4_wp() != 0
     }
 
-    #[doc="CCM SRAM page write protection bit"]
+    #[doc="Sets the PAGE4_WP field."]
     #[inline] pub fn set_page4_wp<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1266,12 +1266,12 @@ impl Rcr {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="CCM SRAM page write protection bit"]
+    #[doc="Returns true if PAGE5_WP != 0"]
     #[inline] pub fn test_page5_wp(&self) -> bool {
         self.page5_wp() != 0
     }
 
-    #[doc="CCM SRAM page write protection bit"]
+    #[doc="Sets the PAGE5_WP field."]
     #[inline] pub fn set_page5_wp<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1285,12 +1285,12 @@ impl Rcr {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="CCM SRAM page write protection bit"]
+    #[doc="Returns true if PAGE6_WP != 0"]
     #[inline] pub fn test_page6_wp(&self) -> bool {
         self.page6_wp() != 0
     }
 
-    #[doc="CCM SRAM page write protection bit"]
+    #[doc="Sets the PAGE6_WP field."]
     #[inline] pub fn set_page6_wp<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1304,12 +1304,12 @@ impl Rcr {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="CCM SRAM page write protection bit"]
+    #[doc="Returns true if PAGE7_WP != 0"]
     #[inline] pub fn test_page7_wp(&self) -> bool {
         self.page7_wp() != 0
     }
 
-    #[doc="CCM SRAM page write protection bit"]
+    #[doc="Sets the PAGE7_WP field."]
     #[inline] pub fn set_page7_wp<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();

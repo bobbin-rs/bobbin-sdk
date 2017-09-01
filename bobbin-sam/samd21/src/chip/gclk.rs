@@ -266,12 +266,12 @@ impl Clkctrl {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x3f) as u8) } // [5:0]
     }
 
-    #[doc="Generic Clock Selection ID"]
+    #[doc="Returns true if ID != 0"]
     #[inline] pub fn test_id(&self) -> bool {
         self.id() != 0
     }
 
-    #[doc="Generic Clock Selection ID"]
+    #[doc="Sets the ID field."]
     #[inline] pub fn set_id<V: Into<bits::U6>>(mut self, value: V) -> Self {
         let value: bits::U6 = value.into();
         let value: u16 = value.into();
@@ -285,12 +285,12 @@ impl Clkctrl {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0xf) as u8) } // [11:8]
     }
 
-    #[doc="Generic Clock Generator"]
+    #[doc="Returns true if GEN != 0"]
     #[inline] pub fn test_gen(&self) -> bool {
         self.gen() != 0
     }
 
-    #[doc="Generic Clock Generator"]
+    #[doc="Sets the GEN field."]
     #[inline] pub fn set_gen<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u16 = value.into();
@@ -304,12 +304,12 @@ impl Clkctrl {
         unsafe { ::core::mem::transmute(((self.0 >> 14) & 0x1) as u8) } // [14]
     }
 
-    #[doc="Clock Enable"]
+    #[doc="Returns true if CLKEN != 0"]
     #[inline] pub fn test_clken(&self) -> bool {
         self.clken() != 0
     }
 
-    #[doc="Clock Enable"]
+    #[doc="Sets the CLKEN field."]
     #[inline] pub fn set_clken<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u16 = value.into();
@@ -323,12 +323,12 @@ impl Clkctrl {
         unsafe { ::core::mem::transmute(((self.0 >> 15) & 0x1) as u8) } // [15]
     }
 
-    #[doc="Write Lock"]
+    #[doc="Returns true if WRTLOCK != 0"]
     #[inline] pub fn test_wrtlock(&self) -> bool {
         self.wrtlock() != 0
     }
 
-    #[doc="Write Lock"]
+    #[doc="Sets the WRTLOCK field."]
     #[inline] pub fn set_wrtlock<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u16 = value.into();
@@ -373,12 +373,12 @@ impl ClkctrlId {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x3f) as u8) } // [5:0]
     }
 
-    #[doc="Generic Clock Selection ID"]
+    #[doc="Returns true if ID != 0"]
     #[inline] pub fn test_id(&self) -> bool {
         self.id() != 0
     }
 
-    #[doc="Generic Clock Selection ID"]
+    #[doc="Sets the ID field."]
     #[inline] pub fn set_id<V: Into<bits::U6>>(mut self, value: V) -> Self {
         let value: bits::U6 = value.into();
         let value: u8 = value.into();
@@ -420,12 +420,12 @@ impl Ctrl {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Software Reset"]
+    #[doc="Returns true if SWRST != 0"]
     #[inline] pub fn test_swrst(&self) -> bool {
         self.swrst() != 0
     }
 
-    #[doc="Software Reset"]
+    #[doc="Sets the SWRST field."]
     #[inline] pub fn set_swrst<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();
@@ -467,12 +467,12 @@ impl Genctrl {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xf) as u8) } // [3:0]
     }
 
-    #[doc="Generic Clock Generator Selection"]
+    #[doc="Returns true if ID != 0"]
     #[inline] pub fn test_id(&self) -> bool {
         self.id() != 0
     }
 
-    #[doc="Generic Clock Generator Selection"]
+    #[doc="Sets the ID field."]
     #[inline] pub fn set_id<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -486,12 +486,12 @@ impl Genctrl {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1f) as u8) } // [12:8]
     }
 
-    #[doc="Source Select"]
+    #[doc="Returns true if SRC != 0"]
     #[inline] pub fn test_src(&self) -> bool {
         self.src() != 0
     }
 
-    #[doc="Source Select"]
+    #[doc="Sets the SRC field."]
     #[inline] pub fn set_src<V: Into<bits::U5>>(mut self, value: V) -> Self {
         let value: bits::U5 = value.into();
         let value: u32 = value.into();
@@ -505,12 +505,12 @@ impl Genctrl {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1) as u8) } // [16]
     }
 
-    #[doc="Generic Clock Generator Enable"]
+    #[doc="Returns true if GENEN != 0"]
     #[inline] pub fn test_genen(&self) -> bool {
         self.genen() != 0
     }
 
-    #[doc="Generic Clock Generator Enable"]
+    #[doc="Sets the GENEN field."]
     #[inline] pub fn set_genen<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -524,12 +524,12 @@ impl Genctrl {
         unsafe { ::core::mem::transmute(((self.0 >> 17) & 0x1) as u8) } // [17]
     }
 
-    #[doc="Improve Duty Cycle"]
+    #[doc="Returns true if IDC != 0"]
     #[inline] pub fn test_idc(&self) -> bool {
         self.idc() != 0
     }
 
-    #[doc="Improve Duty Cycle"]
+    #[doc="Sets the IDC field."]
     #[inline] pub fn set_idc<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -543,12 +543,12 @@ impl Genctrl {
         unsafe { ::core::mem::transmute(((self.0 >> 18) & 0x1) as u8) } // [18]
     }
 
-    #[doc="Output Off Value"]
+    #[doc="Returns true if OOV != 0"]
     #[inline] pub fn test_oov(&self) -> bool {
         self.oov() != 0
     }
 
-    #[doc="Output Off Value"]
+    #[doc="Sets the OOV field."]
     #[inline] pub fn set_oov<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -562,12 +562,12 @@ impl Genctrl {
         unsafe { ::core::mem::transmute(((self.0 >> 19) & 0x1) as u8) } // [19]
     }
 
-    #[doc="Output Enable"]
+    #[doc="Returns true if OE != 0"]
     #[inline] pub fn test_oe(&self) -> bool {
         self.oe() != 0
     }
 
-    #[doc="Output Enable"]
+    #[doc="Sets the OE field."]
     #[inline] pub fn set_oe<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -581,12 +581,12 @@ impl Genctrl {
         unsafe { ::core::mem::transmute(((self.0 >> 20) & 0x1) as u8) } // [20]
     }
 
-    #[doc="Divide Selection"]
+    #[doc="Returns true if DIVSEL != 0"]
     #[inline] pub fn test_divsel(&self) -> bool {
         self.divsel() != 0
     }
 
-    #[doc="Divide Selection"]
+    #[doc="Sets the DIVSEL field."]
     #[inline] pub fn set_divsel<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -600,12 +600,12 @@ impl Genctrl {
         unsafe { ::core::mem::transmute(((self.0 >> 21) & 0x1) as u8) } // [21]
     }
 
-    #[doc="Run in Standby"]
+    #[doc="Returns true if RUNSTDBY != 0"]
     #[inline] pub fn test_runstdby(&self) -> bool {
         self.runstdby() != 0
     }
 
-    #[doc="Run in Standby"]
+    #[doc="Sets the RUNSTDBY field."]
     #[inline] pub fn set_runstdby<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -654,12 +654,12 @@ impl GenctrlId {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xf) as u8) } // [3:0]
     }
 
-    #[doc="Generic Clock Generator Selection"]
+    #[doc="Returns true if ID != 0"]
     #[inline] pub fn test_id(&self) -> bool {
         self.id() != 0
     }
 
-    #[doc="Generic Clock Generator Selection"]
+    #[doc="Sets the ID field."]
     #[inline] pub fn set_id<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u8 = value.into();
@@ -701,12 +701,12 @@ impl Gendiv {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xf) as u8) } // [3:0]
     }
 
-    #[doc="Generic Clock Generator Selection"]
+    #[doc="Returns true if ID != 0"]
     #[inline] pub fn test_id(&self) -> bool {
         self.id() != 0
     }
 
-    #[doc="Generic Clock Generator Selection"]
+    #[doc="Sets the ID field."]
     #[inline] pub fn set_id<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -720,12 +720,12 @@ impl Gendiv {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0xffff) as u16) } // [23:8]
     }
 
-    #[doc="Division Factor"]
+    #[doc="Returns true if DIV != 0"]
     #[inline] pub fn test_div(&self) -> bool {
         self.div() != 0
     }
 
-    #[doc="Division Factor"]
+    #[doc="Sets the DIV field."]
     #[inline] pub fn set_div<V: Into<bits::U16>>(mut self, value: V) -> Self {
         let value: bits::U16 = value.into();
         let value: u32 = value.into();
@@ -768,12 +768,12 @@ impl GendivId {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xf) as u8) } // [3:0]
     }
 
-    #[doc="Generic Clock Generator Selection"]
+    #[doc="Returns true if ID != 0"]
     #[inline] pub fn test_id(&self) -> bool {
         self.id() != 0
     }
 
-    #[doc="Generic Clock Generator Selection"]
+    #[doc="Sets the ID field."]
     #[inline] pub fn set_id<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u8 = value.into();
@@ -815,12 +815,12 @@ impl Status {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="Synchronization Busy Status"]
+    #[doc="Returns true if SYNCBUSY != 0"]
     #[inline] pub fn test_syncbusy(&self) -> bool {
         self.syncbusy() != 0
     }
 
-    #[doc="Synchronization Busy Status"]
+    #[doc="Sets the SYNCBUSY field."]
     #[inline] pub fn set_syncbusy<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u8 = value.into();

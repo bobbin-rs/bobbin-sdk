@@ -168,12 +168,12 @@ impl Verid {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffff) as u16) } // [15:0]
     }
 
-    #[doc="Feature Specification Number"]
+    #[doc="Returns true if FEATURE != 0"]
     #[inline] pub fn test_feature(&self) -> bool {
         self.feature() != 0
     }
 
-    #[doc="Feature Specification Number"]
+    #[doc="Sets the FEATURE field."]
     #[inline] pub fn set_feature<V: Into<bits::U16>>(mut self, value: V) -> Self {
         let value: bits::U16 = value.into();
         let value: u32 = value.into();
@@ -187,12 +187,12 @@ impl Verid {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xff) as u8) } // [23:16]
     }
 
-    #[doc="Minor Version Number"]
+    #[doc="Returns true if MINOR != 0"]
     #[inline] pub fn test_minor(&self) -> bool {
         self.minor() != 0
     }
 
-    #[doc="Minor Version Number"]
+    #[doc="Sets the MINOR field."]
     #[inline] pub fn set_minor<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -206,12 +206,12 @@ impl Verid {
         unsafe { ::core::mem::transmute(((self.0 >> 24) & 0xff) as u8) } // [31:24]
     }
 
-    #[doc="Major Version Number"]
+    #[doc="Returns true if MAJOR != 0"]
     #[inline] pub fn test_major(&self) -> bool {
         self.major() != 0
     }
 
-    #[doc="Major Version Number"]
+    #[doc="Sets the MAJOR field."]
     #[inline] pub fn set_major<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -255,12 +255,12 @@ impl Param {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Existence of SRS[WAKEUP] status indication feature"]
+    #[doc="Returns true if EWAKEUP != 0"]
     #[inline] pub fn test_ewakeup(&self) -> bool {
         self.ewakeup() != 0
     }
 
-    #[doc="Existence of SRS[WAKEUP] status indication feature"]
+    #[doc="Sets the EWAKEUP field."]
     #[inline] pub fn set_ewakeup<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -274,12 +274,12 @@ impl Param {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="Existence of SRS[LVD] status indication feature"]
+    #[doc="Returns true if ELVD != 0"]
     #[inline] pub fn test_elvd(&self) -> bool {
         self.elvd() != 0
     }
 
-    #[doc="Existence of SRS[LVD] status indication feature"]
+    #[doc="Sets the ELVD field."]
     #[inline] pub fn set_elvd<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -293,12 +293,12 @@ impl Param {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="Existence of SRS[LOC] status indication feature"]
+    #[doc="Returns true if ELOC != 0"]
     #[inline] pub fn test_eloc(&self) -> bool {
         self.eloc() != 0
     }
 
-    #[doc="Existence of SRS[LOC] status indication feature"]
+    #[doc="Sets the ELOC field."]
     #[inline] pub fn set_eloc<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -312,12 +312,12 @@ impl Param {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="Existence of SRS[LOL] status indication feature"]
+    #[doc="Returns true if ELOL != 0"]
     #[inline] pub fn test_elol(&self) -> bool {
         self.elol() != 0
     }
 
-    #[doc="Existence of SRS[LOL] status indication feature"]
+    #[doc="Sets the ELOL field."]
     #[inline] pub fn set_elol<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -331,12 +331,12 @@ impl Param {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="Existence of SRS[WDOG] status indication feature"]
+    #[doc="Returns true if EWDOG != 0"]
     #[inline] pub fn test_ewdog(&self) -> bool {
         self.ewdog() != 0
     }
 
-    #[doc="Existence of SRS[WDOG] status indication feature"]
+    #[doc="Sets the EWDOG field."]
     #[inline] pub fn set_ewdog<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -350,12 +350,12 @@ impl Param {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="Existence of SRS[PIN] status indication feature"]
+    #[doc="Returns true if EPIN != 0"]
     #[inline] pub fn test_epin(&self) -> bool {
         self.epin() != 0
     }
 
-    #[doc="Existence of SRS[PIN] status indication feature"]
+    #[doc="Sets the EPIN field."]
     #[inline] pub fn set_epin<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -369,12 +369,12 @@ impl Param {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="Existence of SRS[POR] status indication feature"]
+    #[doc="Returns true if EPOR != 0"]
     #[inline] pub fn test_epor(&self) -> bool {
         self.epor() != 0
     }
 
-    #[doc="Existence of SRS[POR] status indication feature"]
+    #[doc="Sets the EPOR field."]
     #[inline] pub fn set_epor<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -388,12 +388,12 @@ impl Param {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
     }
 
-    #[doc="Existence of SRS[JTAG] status indication feature"]
+    #[doc="Returns true if EJTAG != 0"]
     #[inline] pub fn test_ejtag(&self) -> bool {
         self.ejtag() != 0
     }
 
-    #[doc="Existence of SRS[JTAG] status indication feature"]
+    #[doc="Sets the EJTAG field."]
     #[inline] pub fn set_ejtag<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -407,12 +407,12 @@ impl Param {
         unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
     }
 
-    #[doc="Existence of SRS[LOCKUP] status indication feature"]
+    #[doc="Returns true if ELOCKUP != 0"]
     #[inline] pub fn test_elockup(&self) -> bool {
         self.elockup() != 0
     }
 
-    #[doc="Existence of SRS[LOCKUP] status indication feature"]
+    #[doc="Sets the ELOCKUP field."]
     #[inline] pub fn set_elockup<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -426,12 +426,12 @@ impl Param {
         unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x1) as u8) } // [10]
     }
 
-    #[doc="Existence of SRS[SW] status indication feature"]
+    #[doc="Returns true if ESW != 0"]
     #[inline] pub fn test_esw(&self) -> bool {
         self.esw() != 0
     }
 
-    #[doc="Existence of SRS[SW] status indication feature"]
+    #[doc="Sets the ESW field."]
     #[inline] pub fn set_esw<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -445,12 +445,12 @@ impl Param {
         unsafe { ::core::mem::transmute(((self.0 >> 11) & 0x1) as u8) } // [11]
     }
 
-    #[doc="Existence of SRS[MDM_AP] status indication feature"]
+    #[doc="Returns true if EMDM_AP != 0"]
     #[inline] pub fn test_emdm_ap(&self) -> bool {
         self.emdm_ap() != 0
     }
 
-    #[doc="Existence of SRS[MDM_AP] status indication feature"]
+    #[doc="Sets the EMDM_AP field."]
     #[inline] pub fn set_emdm_ap<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -464,12 +464,12 @@ impl Param {
         unsafe { ::core::mem::transmute(((self.0 >> 13) & 0x1) as u8) } // [13]
     }
 
-    #[doc="Existence of SRS[SACKERR] status indication feature"]
+    #[doc="Returns true if ESACKERR != 0"]
     #[inline] pub fn test_esackerr(&self) -> bool {
         self.esackerr() != 0
     }
 
-    #[doc="Existence of SRS[SACKERR] status indication feature"]
+    #[doc="Sets the ESACKERR field."]
     #[inline] pub fn set_esackerr<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -483,12 +483,12 @@ impl Param {
         unsafe { ::core::mem::transmute(((self.0 >> 15) & 0x1) as u8) } // [15]
     }
 
-    #[doc="Existence of SRS[TAMPER] status indication feature"]
+    #[doc="Returns true if ETAMPER != 0"]
     #[inline] pub fn test_etamper(&self) -> bool {
         self.etamper() != 0
     }
 
-    #[doc="Existence of SRS[TAMPER] status indication feature"]
+    #[doc="Sets the ETAMPER field."]
     #[inline] pub fn set_etamper<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -502,12 +502,12 @@ impl Param {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1) as u8) } // [16]
     }
 
-    #[doc="Existence of SRS[CORE1] status indication feature"]
+    #[doc="Returns true if ECORE1 != 0"]
     #[inline] pub fn test_ecore1(&self) -> bool {
         self.ecore1() != 0
     }
 
-    #[doc="Existence of SRS[CORE1] status indication feature"]
+    #[doc="Sets the ECORE1 field."]
     #[inline] pub fn set_ecore1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -562,12 +562,12 @@ impl Srs {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="Low-Voltage Detect Reset or High-Voltage Detect Reset"]
+    #[doc="Returns true if LVD != 0"]
     #[inline] pub fn test_lvd(&self) -> bool {
         self.lvd() != 0
     }
 
-    #[doc="Low-Voltage Detect Reset or High-Voltage Detect Reset"]
+    #[doc="Sets the LVD field."]
     #[inline] pub fn set_lvd<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -581,12 +581,12 @@ impl Srs {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="Loss-of-Clock Reset"]
+    #[doc="Returns true if LOC != 0"]
     #[inline] pub fn test_loc(&self) -> bool {
         self.loc() != 0
     }
 
-    #[doc="Loss-of-Clock Reset"]
+    #[doc="Sets the LOC field."]
     #[inline] pub fn set_loc<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -600,12 +600,12 @@ impl Srs {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="Loss-of-Lock Reset"]
+    #[doc="Returns true if LOL != 0"]
     #[inline] pub fn test_lol(&self) -> bool {
         self.lol() != 0
     }
 
-    #[doc="Loss-of-Lock Reset"]
+    #[doc="Sets the LOL field."]
     #[inline] pub fn set_lol<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -619,12 +619,12 @@ impl Srs {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="Watchdog"]
+    #[doc="Returns true if WDOG != 0"]
     #[inline] pub fn test_wdog(&self) -> bool {
         self.wdog() != 0
     }
 
-    #[doc="Watchdog"]
+    #[doc="Sets the WDOG field."]
     #[inline] pub fn set_wdog<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -638,12 +638,12 @@ impl Srs {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="External Reset Pin"]
+    #[doc="Returns true if PIN != 0"]
     #[inline] pub fn test_pin(&self) -> bool {
         self.pin() != 0
     }
 
-    #[doc="External Reset Pin"]
+    #[doc="Sets the PIN field."]
     #[inline] pub fn set_pin<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -657,12 +657,12 @@ impl Srs {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="Power-On Reset"]
+    #[doc="Returns true if POR != 0"]
     #[inline] pub fn test_por(&self) -> bool {
         self.por() != 0
     }
 
-    #[doc="Power-On Reset"]
+    #[doc="Sets the POR field."]
     #[inline] pub fn set_por<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -676,12 +676,12 @@ impl Srs {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
     }
 
-    #[doc="JTAG generated reset"]
+    #[doc="Returns true if JTAG != 0"]
     #[inline] pub fn test_jtag(&self) -> bool {
         self.jtag() != 0
     }
 
-    #[doc="JTAG generated reset"]
+    #[doc="Sets the JTAG field."]
     #[inline] pub fn set_jtag<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -695,12 +695,12 @@ impl Srs {
         unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
     }
 
-    #[doc="Core Lockup"]
+    #[doc="Returns true if LOCKUP != 0"]
     #[inline] pub fn test_lockup(&self) -> bool {
         self.lockup() != 0
     }
 
-    #[doc="Core Lockup"]
+    #[doc="Sets the LOCKUP field."]
     #[inline] pub fn set_lockup<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -714,12 +714,12 @@ impl Srs {
         unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x1) as u8) } // [10]
     }
 
-    #[doc="Software"]
+    #[doc="Returns true if SW != 0"]
     #[inline] pub fn test_sw(&self) -> bool {
         self.sw() != 0
     }
 
-    #[doc="Software"]
+    #[doc="Sets the SW field."]
     #[inline] pub fn set_sw<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -733,12 +733,12 @@ impl Srs {
         unsafe { ::core::mem::transmute(((self.0 >> 11) & 0x1) as u8) } // [11]
     }
 
-    #[doc="MDM-AP System Reset Request"]
+    #[doc="Returns true if MDM_AP != 0"]
     #[inline] pub fn test_mdm_ap(&self) -> bool {
         self.mdm_ap() != 0
     }
 
-    #[doc="MDM-AP System Reset Request"]
+    #[doc="Sets the MDM_AP field."]
     #[inline] pub fn set_mdm_ap<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -752,12 +752,12 @@ impl Srs {
         unsafe { ::core::mem::transmute(((self.0 >> 13) & 0x1) as u8) } // [13]
     }
 
-    #[doc="Stop Acknowledge Error"]
+    #[doc="Returns true if SACKERR != 0"]
     #[inline] pub fn test_sackerr(&self) -> bool {
         self.sackerr() != 0
     }
 
-    #[doc="Stop Acknowledge Error"]
+    #[doc="Sets the SACKERR field."]
     #[inline] pub fn set_sackerr<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -809,12 +809,12 @@ impl Rpc {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x3) as u8) } // [1:0]
     }
 
-    #[doc="Reset Pin Filter Select in Run and Wait Modes"]
+    #[doc="Returns true if RSTFLTSRW != 0"]
     #[inline] pub fn test_rstfltsrw(&self) -> bool {
         self.rstfltsrw() != 0
     }
 
-    #[doc="Reset Pin Filter Select in Run and Wait Modes"]
+    #[doc="Sets the RSTFLTSRW field."]
     #[inline] pub fn set_rstfltsrw<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -828,12 +828,12 @@ impl Rpc {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="Reset Pin Filter Select in Stop Mode"]
+    #[doc="Returns true if RSTFLTSS != 0"]
     #[inline] pub fn test_rstfltss(&self) -> bool {
         self.rstfltss() != 0
     }
 
-    #[doc="Reset Pin Filter Select in Stop Mode"]
+    #[doc="Sets the RSTFLTSS field."]
     #[inline] pub fn set_rstfltss<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -847,12 +847,12 @@ impl Rpc {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1f) as u8) } // [12:8]
     }
 
-    #[doc="Reset Pin Filter Bus Clock Select"]
+    #[doc="Returns true if RSTFLTSEL != 0"]
     #[inline] pub fn test_rstfltsel(&self) -> bool {
         self.rstfltsel() != 0
     }
 
-    #[doc="Reset Pin Filter Bus Clock Select"]
+    #[doc="Sets the RSTFLTSEL field."]
     #[inline] pub fn set_rstfltsel<V: Into<bits::U5>>(mut self, value: V) -> Self {
         let value: bits::U5 = value.into();
         let value: u32 = value.into();
@@ -896,12 +896,12 @@ impl Ssrs {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="Sticky Low-Voltage Detect Reset"]
+    #[doc="Returns true if SLVD != 0"]
     #[inline] pub fn test_slvd(&self) -> bool {
         self.slvd() != 0
     }
 
-    #[doc="Sticky Low-Voltage Detect Reset"]
+    #[doc="Sets the SLVD field."]
     #[inline] pub fn set_slvd<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -915,12 +915,12 @@ impl Ssrs {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="Sticky Loss-of-Clock Reset"]
+    #[doc="Returns true if SLOC != 0"]
     #[inline] pub fn test_sloc(&self) -> bool {
         self.sloc() != 0
     }
 
-    #[doc="Sticky Loss-of-Clock Reset"]
+    #[doc="Sets the SLOC field."]
     #[inline] pub fn set_sloc<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -934,12 +934,12 @@ impl Ssrs {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="Sticky Loss-of-Lock Reset"]
+    #[doc="Returns true if SLOL != 0"]
     #[inline] pub fn test_slol(&self) -> bool {
         self.slol() != 0
     }
 
-    #[doc="Sticky Loss-of-Lock Reset"]
+    #[doc="Sets the SLOL field."]
     #[inline] pub fn set_slol<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -953,12 +953,12 @@ impl Ssrs {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="Sticky Watchdog"]
+    #[doc="Returns true if SWDOG != 0"]
     #[inline] pub fn test_swdog(&self) -> bool {
         self.swdog() != 0
     }
 
-    #[doc="Sticky Watchdog"]
+    #[doc="Sets the SWDOG field."]
     #[inline] pub fn set_swdog<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -972,12 +972,12 @@ impl Ssrs {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="Sticky External Reset Pin"]
+    #[doc="Returns true if SPIN != 0"]
     #[inline] pub fn test_spin(&self) -> bool {
         self.spin() != 0
     }
 
-    #[doc="Sticky External Reset Pin"]
+    #[doc="Sets the SPIN field."]
     #[inline] pub fn set_spin<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -991,12 +991,12 @@ impl Ssrs {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="Sticky Power-On Reset"]
+    #[doc="Returns true if SPOR != 0"]
     #[inline] pub fn test_spor(&self) -> bool {
         self.spor() != 0
     }
 
-    #[doc="Sticky Power-On Reset"]
+    #[doc="Sets the SPOR field."]
     #[inline] pub fn set_spor<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1010,12 +1010,12 @@ impl Ssrs {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
     }
 
-    #[doc="Sticky JTAG generated reset"]
+    #[doc="Returns true if SJTAG != 0"]
     #[inline] pub fn test_sjtag(&self) -> bool {
         self.sjtag() != 0
     }
 
-    #[doc="Sticky JTAG generated reset"]
+    #[doc="Sets the SJTAG field."]
     #[inline] pub fn set_sjtag<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1029,12 +1029,12 @@ impl Ssrs {
         unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
     }
 
-    #[doc="Sticky Core Lockup"]
+    #[doc="Returns true if SLOCKUP != 0"]
     #[inline] pub fn test_slockup(&self) -> bool {
         self.slockup() != 0
     }
 
-    #[doc="Sticky Core Lockup"]
+    #[doc="Sets the SLOCKUP field."]
     #[inline] pub fn set_slockup<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1048,12 +1048,12 @@ impl Ssrs {
         unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x1) as u8) } // [10]
     }
 
-    #[doc="Sticky Software"]
+    #[doc="Returns true if SSW != 0"]
     #[inline] pub fn test_ssw(&self) -> bool {
         self.ssw() != 0
     }
 
-    #[doc="Sticky Software"]
+    #[doc="Sets the SSW field."]
     #[inline] pub fn set_ssw<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1067,12 +1067,12 @@ impl Ssrs {
         unsafe { ::core::mem::transmute(((self.0 >> 11) & 0x1) as u8) } // [11]
     }
 
-    #[doc="Sticky MDM-AP System Reset Request"]
+    #[doc="Returns true if SMDM_AP != 0"]
     #[inline] pub fn test_smdm_ap(&self) -> bool {
         self.smdm_ap() != 0
     }
 
-    #[doc="Sticky MDM-AP System Reset Request"]
+    #[doc="Sets the SMDM_AP field."]
     #[inline] pub fn set_smdm_ap<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1086,12 +1086,12 @@ impl Ssrs {
         unsafe { ::core::mem::transmute(((self.0 >> 13) & 0x1) as u8) } // [13]
     }
 
-    #[doc="Sticky Stop Acknowledge Error"]
+    #[doc="Returns true if SSACKERR != 0"]
     #[inline] pub fn test_ssackerr(&self) -> bool {
         self.ssackerr() != 0
     }
 
-    #[doc="Sticky Stop Acknowledge Error"]
+    #[doc="Sets the SSACKERR field."]
     #[inline] pub fn set_ssackerr<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1143,12 +1143,12 @@ impl Srie {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x3) as u8) } // [1:0]
     }
 
-    #[doc="Reset Delay Time"]
+    #[doc="Returns true if DELAY != 0"]
     #[inline] pub fn test_delay(&self) -> bool {
         self.delay() != 0
     }
 
-    #[doc="Reset Delay Time"]
+    #[doc="Sets the DELAY field."]
     #[inline] pub fn set_delay<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -1162,12 +1162,12 @@ impl Srie {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="Loss-of-Clock Interrupt"]
+    #[doc="Returns true if LOC != 0"]
     #[inline] pub fn test_loc(&self) -> bool {
         self.loc() != 0
     }
 
-    #[doc="Loss-of-Clock Interrupt"]
+    #[doc="Sets the LOC field."]
     #[inline] pub fn set_loc<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1181,12 +1181,12 @@ impl Srie {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="Loss-of-Lock Interrupt"]
+    #[doc="Returns true if LOL != 0"]
     #[inline] pub fn test_lol(&self) -> bool {
         self.lol() != 0
     }
 
-    #[doc="Loss-of-Lock Interrupt"]
+    #[doc="Sets the LOL field."]
     #[inline] pub fn set_lol<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1200,12 +1200,12 @@ impl Srie {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="Watchdog Interrupt"]
+    #[doc="Returns true if WDOG != 0"]
     #[inline] pub fn test_wdog(&self) -> bool {
         self.wdog() != 0
     }
 
-    #[doc="Watchdog Interrupt"]
+    #[doc="Sets the WDOG field."]
     #[inline] pub fn set_wdog<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1219,12 +1219,12 @@ impl Srie {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="External Reset Pin Interrupt"]
+    #[doc="Returns true if PIN != 0"]
     #[inline] pub fn test_pin(&self) -> bool {
         self.pin() != 0
     }
 
-    #[doc="External Reset Pin Interrupt"]
+    #[doc="Sets the PIN field."]
     #[inline] pub fn set_pin<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1238,12 +1238,12 @@ impl Srie {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="Global Interrupt Enable"]
+    #[doc="Returns true if GIE != 0"]
     #[inline] pub fn test_gie(&self) -> bool {
         self.gie() != 0
     }
 
-    #[doc="Global Interrupt Enable"]
+    #[doc="Sets the GIE field."]
     #[inline] pub fn set_gie<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1257,12 +1257,12 @@ impl Srie {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
     }
 
-    #[doc="JTAG generated reset"]
+    #[doc="Returns true if JTAG != 0"]
     #[inline] pub fn test_jtag(&self) -> bool {
         self.jtag() != 0
     }
 
-    #[doc="JTAG generated reset"]
+    #[doc="Sets the JTAG field."]
     #[inline] pub fn set_jtag<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1276,12 +1276,12 @@ impl Srie {
         unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
     }
 
-    #[doc="Core Lockup Interrupt"]
+    #[doc="Returns true if LOCKUP != 0"]
     #[inline] pub fn test_lockup(&self) -> bool {
         self.lockup() != 0
     }
 
-    #[doc="Core Lockup Interrupt"]
+    #[doc="Sets the LOCKUP field."]
     #[inline] pub fn set_lockup<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1295,12 +1295,12 @@ impl Srie {
         unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x1) as u8) } // [10]
     }
 
-    #[doc="Software Interrupt"]
+    #[doc="Returns true if SW != 0"]
     #[inline] pub fn test_sw(&self) -> bool {
         self.sw() != 0
     }
 
-    #[doc="Software Interrupt"]
+    #[doc="Sets the SW field."]
     #[inline] pub fn set_sw<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1314,12 +1314,12 @@ impl Srie {
         unsafe { ::core::mem::transmute(((self.0 >> 11) & 0x1) as u8) } // [11]
     }
 
-    #[doc="MDM-AP System Reset Request"]
+    #[doc="Returns true if MDM_AP != 0"]
     #[inline] pub fn test_mdm_ap(&self) -> bool {
         self.mdm_ap() != 0
     }
 
-    #[doc="MDM-AP System Reset Request"]
+    #[doc="Sets the MDM_AP field."]
     #[inline] pub fn set_mdm_ap<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1333,12 +1333,12 @@ impl Srie {
         unsafe { ::core::mem::transmute(((self.0 >> 13) & 0x1) as u8) } // [13]
     }
 
-    #[doc="Stop Acknowledge Error Interrupt"]
+    #[doc="Returns true if SACKERR != 0"]
     #[inline] pub fn test_sackerr(&self) -> bool {
         self.sackerr() != 0
     }
 
-    #[doc="Stop Acknowledge Error Interrupt"]
+    #[doc="Sets the SACKERR field."]
     #[inline] pub fn set_sackerr<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();

@@ -5727,12 +5727,12 @@ impl Did0 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
-    #[doc="Minor Revision"]
+    #[doc="Returns true if MIN != 0"]
     #[inline] pub fn test_min(&self) -> bool {
         self.min() != 0
     }
 
-    #[doc="Minor Revision"]
+    #[doc="Sets the MIN field."]
     #[inline] pub fn set_min<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -5746,12 +5746,12 @@ impl Did0 {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0xff) as u8) } // [15:8]
     }
 
-    #[doc="Major Revision"]
+    #[doc="Returns true if MAJ != 0"]
     #[inline] pub fn test_maj(&self) -> bool {
         self.maj() != 0
     }
 
-    #[doc="Major Revision"]
+    #[doc="Sets the MAJ field."]
     #[inline] pub fn set_maj<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -5765,12 +5765,12 @@ impl Did0 {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xff) as u8) } // [23:16]
     }
 
-    #[doc="Device Class"]
+    #[doc="Returns true if CLASS != 0"]
     #[inline] pub fn test_class(&self) -> bool {
         self.class() != 0
     }
 
-    #[doc="Device Class"]
+    #[doc="Sets the CLASS field."]
     #[inline] pub fn set_class<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -5784,12 +5784,12 @@ impl Did0 {
         unsafe { ::core::mem::transmute(((self.0 >> 28) & 0x7) as u8) } // [30:28]
     }
 
-    #[doc="DID0 Version"]
+    #[doc="Returns true if VER != 0"]
     #[inline] pub fn test_ver(&self) -> bool {
         self.ver() != 0
     }
 
-    #[doc="DID0 Version"]
+    #[doc="Sets the VER field."]
     #[inline] pub fn set_ver<V: Into<bits::U3>>(mut self, value: V) -> Self {
         let value: bits::U3 = value.into();
         let value: u32 = value.into();
@@ -5834,12 +5834,12 @@ impl Did1 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x3) as u8) } // [1:0]
     }
 
-    #[doc="Qualification Status"]
+    #[doc="Returns true if QUAL != 0"]
     #[inline] pub fn test_qual(&self) -> bool {
         self.qual() != 0
     }
 
-    #[doc="Qualification Status"]
+    #[doc="Sets the QUAL field."]
     #[inline] pub fn set_qual<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -5853,12 +5853,12 @@ impl Did1 {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="RoHS-Compliance"]
+    #[doc="Returns true if ROHS != 0"]
     #[inline] pub fn test_rohs(&self) -> bool {
         self.rohs() != 0
     }
 
-    #[doc="RoHS-Compliance"]
+    #[doc="Sets the ROHS field."]
     #[inline] pub fn set_rohs<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -5872,12 +5872,12 @@ impl Did1 {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x3) as u8) } // [4:3]
     }
 
-    #[doc="Package Type"]
+    #[doc="Returns true if PKG != 0"]
     #[inline] pub fn test_pkg(&self) -> bool {
         self.pkg() != 0
     }
 
-    #[doc="Package Type"]
+    #[doc="Sets the PKG field."]
     #[inline] pub fn set_pkg<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -5891,12 +5891,12 @@ impl Did1 {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x7) as u8) } // [7:5]
     }
 
-    #[doc="Temperature Range"]
+    #[doc="Returns true if TEMP != 0"]
     #[inline] pub fn test_temp(&self) -> bool {
         self.temp() != 0
     }
 
-    #[doc="Temperature Range"]
+    #[doc="Sets the TEMP field."]
     #[inline] pub fn set_temp<V: Into<bits::U3>>(mut self, value: V) -> Self {
         let value: bits::U3 = value.into();
         let value: u32 = value.into();
@@ -5910,12 +5910,12 @@ impl Did1 {
         unsafe { ::core::mem::transmute(((self.0 >> 13) & 0x7) as u8) } // [15:13]
     }
 
-    #[doc="Package Pin Count"]
+    #[doc="Returns true if PINCNT != 0"]
     #[inline] pub fn test_pincnt(&self) -> bool {
         self.pincnt() != 0
     }
 
-    #[doc="Package Pin Count"]
+    #[doc="Sets the PINCNT field."]
     #[inline] pub fn set_pincnt<V: Into<bits::U3>>(mut self, value: V) -> Self {
         let value: bits::U3 = value.into();
         let value: u32 = value.into();
@@ -5929,12 +5929,12 @@ impl Did1 {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xff) as u8) } // [23:16]
     }
 
-    #[doc="Part Number"]
+    #[doc="Returns true if PRTNO != 0"]
     #[inline] pub fn test_prtno(&self) -> bool {
         self.prtno() != 0
     }
 
-    #[doc="Part Number"]
+    #[doc="Sets the PRTNO field."]
     #[inline] pub fn set_prtno<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -5948,12 +5948,12 @@ impl Did1 {
         unsafe { ::core::mem::transmute(((self.0 >> 24) & 0xf) as u8) } // [27:24]
     }
 
-    #[doc="Family"]
+    #[doc="Returns true if FAM != 0"]
     #[inline] pub fn test_fam(&self) -> bool {
         self.fam() != 0
     }
 
-    #[doc="Family"]
+    #[doc="Sets the FAM field."]
     #[inline] pub fn set_fam<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -5967,12 +5967,12 @@ impl Did1 {
         unsafe { ::core::mem::transmute(((self.0 >> 28) & 0xf) as u8) } // [31:28]
     }
 
-    #[doc="DID1 Version"]
+    #[doc="Returns true if VER != 0"]
     #[inline] pub fn test_ver(&self) -> bool {
         self.ver() != 0
     }
 
-    #[doc="DID1 Version"]
+    #[doc="Sets the VER field."]
     #[inline] pub fn set_ver<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -6021,12 +6021,12 @@ impl Ptboctl {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x3) as u8) } // [1:0]
     }
 
-    #[doc="VDD (VDDS) under BOR Event Action"]
+    #[doc="Returns true if VDD_UBOR != 0"]
     #[inline] pub fn test_vdd_ubor(&self) -> bool {
         self.vdd_ubor() != 0
     }
 
-    #[doc="VDD (VDDS) under BOR Event Action"]
+    #[doc="Sets the VDD_UBOR field."]
     #[inline] pub fn set_vdd_ubor<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -6040,12 +6040,12 @@ impl Ptboctl {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x3) as u8) } // [9:8]
     }
 
-    #[doc="VDDA under BOR Event Action"]
+    #[doc="Returns true if VDDA_UBOR != 0"]
     #[inline] pub fn test_vdda_ubor(&self) -> bool {
         self.vdda_ubor() != 0
     }
 
-    #[doc="VDDA under BOR Event Action"]
+    #[doc="Sets the VDDA_UBOR field."]
     #[inline] pub fn set_vdda_ubor<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -6088,12 +6088,12 @@ impl Ris {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="Brown-Out Reset Raw Interrupt Status"]
+    #[doc="Returns true if BORRIS != 0"]
     #[inline] pub fn test_borris(&self) -> bool {
         self.borris() != 0
     }
 
-    #[doc="Brown-Out Reset Raw Interrupt Status"]
+    #[doc="Sets the BORRIS field."]
     #[inline] pub fn set_borris<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -6107,12 +6107,12 @@ impl Ris {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="Main Oscillator Failure Raw Interrupt Status"]
+    #[doc="Returns true if MOFRIS != 0"]
     #[inline] pub fn test_mofris(&self) -> bool {
         self.mofris() != 0
     }
 
-    #[doc="Main Oscillator Failure Raw Interrupt Status"]
+    #[doc="Sets the MOFRIS field."]
     #[inline] pub fn set_mofris<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -6126,12 +6126,12 @@ impl Ris {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="PLL Lock Raw Interrupt Status"]
+    #[doc="Returns true if PLLLRIS != 0"]
     #[inline] pub fn test_plllris(&self) -> bool {
         self.plllris() != 0
     }
 
-    #[doc="PLL Lock Raw Interrupt Status"]
+    #[doc="Sets the PLLLRIS field."]
     #[inline] pub fn set_plllris<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -6145,12 +6145,12 @@ impl Ris {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
     }
 
-    #[doc="MOSC Power Up Raw Interrupt Status"]
+    #[doc="Returns true if MOSCPUPRIS != 0"]
     #[inline] pub fn test_moscpupris(&self) -> bool {
         self.moscpupris() != 0
     }
 
-    #[doc="MOSC Power Up Raw Interrupt Status"]
+    #[doc="Sets the MOSCPUPRIS field."]
     #[inline] pub fn set_moscpupris<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -6195,12 +6195,12 @@ impl Imc {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="Brown-Out Reset Interrupt Mask"]
+    #[doc="Returns true if BORIM != 0"]
     #[inline] pub fn test_borim(&self) -> bool {
         self.borim() != 0
     }
 
-    #[doc="Brown-Out Reset Interrupt Mask"]
+    #[doc="Sets the BORIM field."]
     #[inline] pub fn set_borim<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -6214,12 +6214,12 @@ impl Imc {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="Main Oscillator Failure Interrupt Mask"]
+    #[doc="Returns true if MOFIM != 0"]
     #[inline] pub fn test_mofim(&self) -> bool {
         self.mofim() != 0
     }
 
-    #[doc="Main Oscillator Failure Interrupt Mask"]
+    #[doc="Sets the MOFIM field."]
     #[inline] pub fn set_mofim<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -6233,12 +6233,12 @@ impl Imc {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="PLL Lock Interrupt Mask"]
+    #[doc="Returns true if PLLLIM != 0"]
     #[inline] pub fn test_plllim(&self) -> bool {
         self.plllim() != 0
     }
 
-    #[doc="PLL Lock Interrupt Mask"]
+    #[doc="Sets the PLLLIM field."]
     #[inline] pub fn set_plllim<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -6252,12 +6252,12 @@ impl Imc {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
     }
 
-    #[doc="MOSC Power Up Interrupt Mask"]
+    #[doc="Returns true if MOSCPUPIM != 0"]
     #[inline] pub fn test_moscpupim(&self) -> bool {
         self.moscpupim() != 0
     }
 
-    #[doc="MOSC Power Up Interrupt Mask"]
+    #[doc="Sets the MOSCPUPIM field."]
     #[inline] pub fn set_moscpupim<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -6302,12 +6302,12 @@ impl Misc {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="BOR Masked Interrupt Status"]
+    #[doc="Returns true if BORMIS != 0"]
     #[inline] pub fn test_bormis(&self) -> bool {
         self.bormis() != 0
     }
 
-    #[doc="BOR Masked Interrupt Status"]
+    #[doc="Sets the BORMIS field."]
     #[inline] pub fn set_bormis<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -6321,12 +6321,12 @@ impl Misc {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="Main Oscillator Failure Masked Interrupt Status"]
+    #[doc="Returns true if MOFMIS != 0"]
     #[inline] pub fn test_mofmis(&self) -> bool {
         self.mofmis() != 0
     }
 
-    #[doc="Main Oscillator Failure Masked Interrupt Status"]
+    #[doc="Sets the MOFMIS field."]
     #[inline] pub fn set_mofmis<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -6340,12 +6340,12 @@ impl Misc {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="PLL Lock Masked Interrupt Status"]
+    #[doc="Returns true if PLLLMIS != 0"]
     #[inline] pub fn test_plllmis(&self) -> bool {
         self.plllmis() != 0
     }
 
-    #[doc="PLL Lock Masked Interrupt Status"]
+    #[doc="Sets the PLLLMIS field."]
     #[inline] pub fn set_plllmis<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -6359,12 +6359,12 @@ impl Misc {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
     }
 
-    #[doc="MOSC Power Up Masked Interrupt Status"]
+    #[doc="Returns true if MOSCPUPMIS != 0"]
     #[inline] pub fn test_moscpupmis(&self) -> bool {
         self.moscpupmis() != 0
     }
 
-    #[doc="MOSC Power Up Masked Interrupt Status"]
+    #[doc="Sets the MOSCPUPMIS field."]
     #[inline] pub fn set_moscpupmis<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -6409,12 +6409,12 @@ impl Resc {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="External Reset"]
+    #[doc="Returns true if EXT != 0"]
     #[inline] pub fn test_ext(&self) -> bool {
         self.ext() != 0
     }
 
-    #[doc="External Reset"]
+    #[doc="Sets the EXT field."]
     #[inline] pub fn set_ext<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -6428,12 +6428,12 @@ impl Resc {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="Power-On Reset"]
+    #[doc="Returns true if POR != 0"]
     #[inline] pub fn test_por(&self) -> bool {
         self.por() != 0
     }
 
-    #[doc="Power-On Reset"]
+    #[doc="Sets the POR field."]
     #[inline] pub fn set_por<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -6447,12 +6447,12 @@ impl Resc {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="Brown-Out Reset"]
+    #[doc="Returns true if BOR != 0"]
     #[inline] pub fn test_bor(&self) -> bool {
         self.bor() != 0
     }
 
-    #[doc="Brown-Out Reset"]
+    #[doc="Sets the BOR field."]
     #[inline] pub fn set_bor<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -6466,12 +6466,12 @@ impl Resc {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="Watchdog Timer 0 Reset"]
+    #[doc="Returns true if WDT0 != 0"]
     #[inline] pub fn test_wdt0(&self) -> bool {
         self.wdt0() != 0
     }
 
-    #[doc="Watchdog Timer 0 Reset"]
+    #[doc="Sets the WDT0 field."]
     #[inline] pub fn set_wdt0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -6485,12 +6485,12 @@ impl Resc {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="Software Reset"]
+    #[doc="Returns true if SW != 0"]
     #[inline] pub fn test_sw(&self) -> bool {
         self.sw() != 0
     }
 
-    #[doc="Software Reset"]
+    #[doc="Sets the SW field."]
     #[inline] pub fn set_sw<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -6504,12 +6504,12 @@ impl Resc {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="Watchdog Timer 1 Reset"]
+    #[doc="Returns true if WDT1 != 0"]
     #[inline] pub fn test_wdt1(&self) -> bool {
         self.wdt1() != 0
     }
 
-    #[doc="Watchdog Timer 1 Reset"]
+    #[doc="Sets the WDT1 field."]
     #[inline] pub fn set_wdt1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -6523,12 +6523,12 @@ impl Resc {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="HIB Reset"]
+    #[doc="Returns true if HIB != 0"]
     #[inline] pub fn test_hib(&self) -> bool {
         self.hib() != 0
     }
 
-    #[doc="HIB Reset"]
+    #[doc="Sets the HIB field."]
     #[inline] pub fn set_hib<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -6542,12 +6542,12 @@ impl Resc {
         unsafe { ::core::mem::transmute(((self.0 >> 12) & 0x1) as u8) } // [12]
     }
 
-    #[doc="HSSR Reset"]
+    #[doc="Returns true if HSSR != 0"]
     #[inline] pub fn test_hssr(&self) -> bool {
         self.hssr() != 0
     }
 
-    #[doc="HSSR Reset"]
+    #[doc="Sets the HSSR field."]
     #[inline] pub fn set_hssr<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -6561,12 +6561,12 @@ impl Resc {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1) as u8) } // [16]
     }
 
-    #[doc="MOSC Failure Reset"]
+    #[doc="Returns true if MOSCFAIL != 0"]
     #[inline] pub fn test_moscfail(&self) -> bool {
         self.moscfail() != 0
     }
 
-    #[doc="MOSC Failure Reset"]
+    #[doc="Sets the MOSCFAIL field."]
     #[inline] pub fn set_moscfail<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -6616,12 +6616,12 @@ impl Pwrtc {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="VDD Under BOR Status"]
+    #[doc="Returns true if VDD_UBOR != 0"]
     #[inline] pub fn test_vdd_ubor(&self) -> bool {
         self.vdd_ubor() != 0
     }
 
-    #[doc="VDD Under BOR Status"]
+    #[doc="Sets the VDD_UBOR field."]
     #[inline] pub fn set_vdd_ubor<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -6635,12 +6635,12 @@ impl Pwrtc {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="VDDA Under BOR Status"]
+    #[doc="Returns true if VDDA_UBOR != 0"]
     #[inline] pub fn test_vdda_ubor(&self) -> bool {
         self.vdda_ubor() != 0
     }
 
-    #[doc="VDDA Under BOR Status"]
+    #[doc="Sets the VDDA_UBOR field."]
     #[inline] pub fn set_vdda_ubor<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -6683,12 +6683,12 @@ impl Nmic {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="External Pin NMI"]
+    #[doc="Returns true if EXTERNAL != 0"]
     #[inline] pub fn test_external(&self) -> bool {
         self.external() != 0
     }
 
-    #[doc="External Pin NMI"]
+    #[doc="Sets the EXTERNAL field."]
     #[inline] pub fn set_external<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -6702,12 +6702,12 @@ impl Nmic {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="Power/Brown Out Event NMI"]
+    #[doc="Returns true if POWER != 0"]
     #[inline] pub fn test_power(&self) -> bool {
         self.power() != 0
     }
 
-    #[doc="Power/Brown Out Event NMI"]
+    #[doc="Sets the POWER field."]
     #[inline] pub fn set_power<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -6721,12 +6721,12 @@ impl Nmic {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="Watch Dog Timer (WDT) 0 NMI"]
+    #[doc="Returns true if WDT0 != 0"]
     #[inline] pub fn test_wdt0(&self) -> bool {
         self.wdt0() != 0
     }
 
-    #[doc="Watch Dog Timer (WDT) 0 NMI"]
+    #[doc="Sets the WDT0 field."]
     #[inline] pub fn set_wdt0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -6740,12 +6740,12 @@ impl Nmic {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="Watch Dog Timer (WDT) 1 NMI"]
+    #[doc="Returns true if WDT1 != 0"]
     #[inline] pub fn test_wdt1(&self) -> bool {
         self.wdt1() != 0
     }
 
-    #[doc="Watch Dog Timer (WDT) 1 NMI"]
+    #[doc="Sets the WDT1 field."]
     #[inline] pub fn set_wdt1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -6759,12 +6759,12 @@ impl Nmic {
         unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
     }
 
-    #[doc="Tamper Event NMI"]
+    #[doc="Returns true if TAMPER != 0"]
     #[inline] pub fn test_tamper(&self) -> bool {
         self.tamper() != 0
     }
 
-    #[doc="Tamper Event NMI"]
+    #[doc="Sets the TAMPER field."]
     #[inline] pub fn set_tamper<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -6778,12 +6778,12 @@ impl Nmic {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1) as u8) } // [16]
     }
 
-    #[doc="MOSC Failure NMI"]
+    #[doc="Returns true if MOSCFAIL != 0"]
     #[inline] pub fn test_moscfail(&self) -> bool {
         self.moscfail() != 0
     }
 
-    #[doc="MOSC Failure NMI"]
+    #[doc="Sets the MOSCFAIL field."]
     #[inline] pub fn set_moscfail<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -6830,12 +6830,12 @@ impl Moscctl {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Clock Validation for MOSC"]
+    #[doc="Returns true if CVAL != 0"]
     #[inline] pub fn test_cval(&self) -> bool {
         self.cval() != 0
     }
 
-    #[doc="Clock Validation for MOSC"]
+    #[doc="Sets the CVAL field."]
     #[inline] pub fn set_cval<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -6849,12 +6849,12 @@ impl Moscctl {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="MOSC Failure Action"]
+    #[doc="Returns true if MOSCIM != 0"]
     #[inline] pub fn test_moscim(&self) -> bool {
         self.moscim() != 0
     }
 
-    #[doc="MOSC Failure Action"]
+    #[doc="Sets the MOSCIM field."]
     #[inline] pub fn set_moscim<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -6868,12 +6868,12 @@ impl Moscctl {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="No Crystal Connected"]
+    #[doc="Returns true if NOXTAL != 0"]
     #[inline] pub fn test_noxtal(&self) -> bool {
         self.noxtal() != 0
     }
 
-    #[doc="No Crystal Connected"]
+    #[doc="Sets the NOXTAL field."]
     #[inline] pub fn set_noxtal<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -6887,12 +6887,12 @@ impl Moscctl {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="Power Down"]
+    #[doc="Returns true if PWRDN != 0"]
     #[inline] pub fn test_pwrdn(&self) -> bool {
         self.pwrdn() != 0
     }
 
-    #[doc="Power Down"]
+    #[doc="Sets the PWRDN field."]
     #[inline] pub fn set_pwrdn<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -6906,12 +6906,12 @@ impl Moscctl {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="Oscillator Range"]
+    #[doc="Returns true if OSCRNG != 0"]
     #[inline] pub fn test_oscrng(&self) -> bool {
         self.oscrng() != 0
     }
 
-    #[doc="Oscillator Range"]
+    #[doc="Sets the OSCRNG field."]
     #[inline] pub fn set_oscrng<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -6957,12 +6957,12 @@ impl Rsclkcfg {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x3ff) as u16) } // [9:0]
     }
 
-    #[doc="PLL System Clock Divisor"]
+    #[doc="Returns true if PSYSDIV != 0"]
     #[inline] pub fn test_psysdiv(&self) -> bool {
         self.psysdiv() != 0
     }
 
-    #[doc="PLL System Clock Divisor"]
+    #[doc="Sets the PSYSDIV field."]
     #[inline] pub fn set_psysdiv<V: Into<bits::U10>>(mut self, value: V) -> Self {
         let value: bits::U10 = value.into();
         let value: u32 = value.into();
@@ -6976,12 +6976,12 @@ impl Rsclkcfg {
         unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x3ff) as u16) } // [19:10]
     }
 
-    #[doc="Oscillator System Clock Divisor"]
+    #[doc="Returns true if OSYSDIV != 0"]
     #[inline] pub fn test_osysdiv(&self) -> bool {
         self.osysdiv() != 0
     }
 
-    #[doc="Oscillator System Clock Divisor"]
+    #[doc="Sets the OSYSDIV field."]
     #[inline] pub fn set_osysdiv<V: Into<bits::U10>>(mut self, value: V) -> Self {
         let value: bits::U10 = value.into();
         let value: u32 = value.into();
@@ -6995,12 +6995,12 @@ impl Rsclkcfg {
         unsafe { ::core::mem::transmute(((self.0 >> 20) & 0xf) as u8) } // [23:20]
     }
 
-    #[doc="Oscillator Source"]
+    #[doc="Returns true if OSCSRC != 0"]
     #[inline] pub fn test_oscsrc(&self) -> bool {
         self.oscsrc() != 0
     }
 
-    #[doc="Oscillator Source"]
+    #[doc="Sets the OSCSRC field."]
     #[inline] pub fn set_oscsrc<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -7014,12 +7014,12 @@ impl Rsclkcfg {
         unsafe { ::core::mem::transmute(((self.0 >> 24) & 0xf) as u8) } // [27:24]
     }
 
-    #[doc="PLL Source"]
+    #[doc="Returns true if PLLSRC != 0"]
     #[inline] pub fn test_pllsrc(&self) -> bool {
         self.pllsrc() != 0
     }
 
-    #[doc="PLL Source"]
+    #[doc="Sets the PLLSRC field."]
     #[inline] pub fn set_pllsrc<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -7033,12 +7033,12 @@ impl Rsclkcfg {
         unsafe { ::core::mem::transmute(((self.0 >> 28) & 0x1) as u8) } // [28]
     }
 
-    #[doc="Use PLL"]
+    #[doc="Returns true if USEPLL != 0"]
     #[inline] pub fn test_usepll(&self) -> bool {
         self.usepll() != 0
     }
 
-    #[doc="Use PLL"]
+    #[doc="Sets the USEPLL field."]
     #[inline] pub fn set_usepll<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -7052,12 +7052,12 @@ impl Rsclkcfg {
         unsafe { ::core::mem::transmute(((self.0 >> 29) & 0x1) as u8) } // [29]
     }
 
-    #[doc="Auto Clock Gating"]
+    #[doc="Returns true if ACG != 0"]
     #[inline] pub fn test_acg(&self) -> bool {
         self.acg() != 0
     }
 
-    #[doc="Auto Clock Gating"]
+    #[doc="Sets the ACG field."]
     #[inline] pub fn set_acg<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -7071,12 +7071,12 @@ impl Rsclkcfg {
         unsafe { ::core::mem::transmute(((self.0 >> 30) & 0x1) as u8) } // [30]
     }
 
-    #[doc="New PLLFREQ Accept"]
+    #[doc="Returns true if NEWFREQ != 0"]
     #[inline] pub fn test_newfreq(&self) -> bool {
         self.newfreq() != 0
     }
 
-    #[doc="New PLLFREQ Accept"]
+    #[doc="Sets the NEWFREQ field."]
     #[inline] pub fn set_newfreq<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -7090,12 +7090,12 @@ impl Rsclkcfg {
         unsafe { ::core::mem::transmute(((self.0 >> 31) & 0x1) as u8) } // [31]
     }
 
-    #[doc="Memory Timing Register Update"]
+    #[doc="Returns true if MEMTIMU != 0"]
     #[inline] pub fn test_memtimu(&self) -> bool {
         self.memtimu() != 0
     }
 
-    #[doc="Memory Timing Register Update"]
+    #[doc="Sets the MEMTIMU field."]
     #[inline] pub fn set_memtimu<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -7144,12 +7144,12 @@ impl Memtim0 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xf) as u8) } // [3:0]
     }
 
-    #[doc="Flash Wait State"]
+    #[doc="Returns true if FWS != 0"]
     #[inline] pub fn test_fws(&self) -> bool {
         self.fws() != 0
     }
 
-    #[doc="Flash Wait State"]
+    #[doc="Sets the FWS field."]
     #[inline] pub fn set_fws<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -7163,12 +7163,12 @@ impl Memtim0 {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="Flash Bank Clock Edge"]
+    #[doc="Returns true if FBCE != 0"]
     #[inline] pub fn test_fbce(&self) -> bool {
         self.fbce() != 0
     }
 
-    #[doc="Flash Bank Clock Edge"]
+    #[doc="Sets the FBCE field."]
     #[inline] pub fn set_fbce<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -7182,12 +7182,12 @@ impl Memtim0 {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0xf) as u8) } // [9:6]
     }
 
-    #[doc="Flash Bank Clock High Time"]
+    #[doc="Returns true if FBCHT != 0"]
     #[inline] pub fn test_fbcht(&self) -> bool {
         self.fbcht() != 0
     }
 
-    #[doc="Flash Bank Clock High Time"]
+    #[doc="Sets the FBCHT field."]
     #[inline] pub fn set_fbcht<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -7201,12 +7201,12 @@ impl Memtim0 {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xf) as u8) } // [19:16]
     }
 
-    #[doc="EEPROM Wait States"]
+    #[doc="Returns true if EWS != 0"]
     #[inline] pub fn test_ews(&self) -> bool {
         self.ews() != 0
     }
 
-    #[doc="EEPROM Wait States"]
+    #[doc="Sets the EWS field."]
     #[inline] pub fn set_ews<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -7220,12 +7220,12 @@ impl Memtim0 {
         unsafe { ::core::mem::transmute(((self.0 >> 21) & 0x1) as u8) } // [21]
     }
 
-    #[doc="EEPROM Bank Clock Edge"]
+    #[doc="Returns true if EBCE != 0"]
     #[inline] pub fn test_ebce(&self) -> bool {
         self.ebce() != 0
     }
 
-    #[doc="EEPROM Bank Clock Edge"]
+    #[doc="Sets the EBCE field."]
     #[inline] pub fn set_ebce<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -7239,12 +7239,12 @@ impl Memtim0 {
         unsafe { ::core::mem::transmute(((self.0 >> 22) & 0xf) as u8) } // [25:22]
     }
 
-    #[doc="EEPROM Clock High Time"]
+    #[doc="Returns true if EBCHT != 0"]
     #[inline] pub fn test_ebcht(&self) -> bool {
         self.ebcht() != 0
     }
 
-    #[doc="EEPROM Clock High Time"]
+    #[doc="Sets the EBCHT field."]
     #[inline] pub fn set_ebcht<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -7291,12 +7291,12 @@ impl Altclkcfg {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xf) as u8) } // [3:0]
     }
 
-    #[doc="Alternate Clock Source"]
+    #[doc="Returns true if ALTCLK != 0"]
     #[inline] pub fn test_altclk(&self) -> bool {
         self.altclk() != 0
     }
 
-    #[doc="Alternate Clock Source"]
+    #[doc="Sets the ALTCLK field."]
     #[inline] pub fn set_altclk<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -7338,12 +7338,12 @@ impl Dsclkcfg {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x3ff) as u16) } // [9:0]
     }
 
-    #[doc="Deep Sleep Clock Divisor"]
+    #[doc="Returns true if DSSYSDIV != 0"]
     #[inline] pub fn test_dssysdiv(&self) -> bool {
         self.dssysdiv() != 0
     }
 
-    #[doc="Deep Sleep Clock Divisor"]
+    #[doc="Sets the DSSYSDIV field."]
     #[inline] pub fn set_dssysdiv<V: Into<bits::U10>>(mut self, value: V) -> Self {
         let value: bits::U10 = value.into();
         let value: u32 = value.into();
@@ -7357,12 +7357,12 @@ impl Dsclkcfg {
         unsafe { ::core::mem::transmute(((self.0 >> 20) & 0xf) as u8) } // [23:20]
     }
 
-    #[doc="Deep Sleep Oscillator Source"]
+    #[doc="Returns true if DSOSCSRC != 0"]
     #[inline] pub fn test_dsoscsrc(&self) -> bool {
         self.dsoscsrc() != 0
     }
 
-    #[doc="Deep Sleep Oscillator Source"]
+    #[doc="Sets the DSOSCSRC field."]
     #[inline] pub fn set_dsoscsrc<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
@@ -7376,12 +7376,12 @@ impl Dsclkcfg {
         unsafe { ::core::mem::transmute(((self.0 >> 30) & 0x1) as u8) } // [30]
     }
 
-    #[doc="MOSC Disable Power Down"]
+    #[doc="Returns true if MOSCDPD != 0"]
     #[inline] pub fn test_moscdpd(&self) -> bool {
         self.moscdpd() != 0
     }
 
-    #[doc="MOSC Disable Power Down"]
+    #[doc="Sets the MOSCDPD field."]
     #[inline] pub fn set_moscdpd<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -7395,12 +7395,12 @@ impl Dsclkcfg {
         unsafe { ::core::mem::transmute(((self.0 >> 31) & 0x1) as u8) } // [31]
     }
 
-    #[doc="PIOSC Power Down"]
+    #[doc="Returns true if PIOSCPD != 0"]
     #[inline] pub fn test_pioscpd(&self) -> bool {
         self.pioscpd() != 0
     }
 
-    #[doc="PIOSC Power Down"]
+    #[doc="Sets the PIOSCPD field."]
     #[inline] pub fn set_pioscpd<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -7445,12 +7445,12 @@ impl Divsclk {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
-    #[doc="Divisor Value"]
+    #[doc="Returns true if DIV != 0"]
     #[inline] pub fn test_div(&self) -> bool {
         self.div() != 0
     }
 
-    #[doc="Divisor Value"]
+    #[doc="Sets the DIV field."]
     #[inline] pub fn set_div<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -7464,12 +7464,12 @@ impl Divsclk {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x3) as u8) } // [17:16]
     }
 
-    #[doc="Clock Source"]
+    #[doc="Returns true if SRC != 0"]
     #[inline] pub fn test_src(&self) -> bool {
         self.src() != 0
     }
 
-    #[doc="Clock Source"]
+    #[doc="Sets the SRC field."]
     #[inline] pub fn set_src<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -7483,12 +7483,12 @@ impl Divsclk {
         unsafe { ::core::mem::transmute(((self.0 >> 31) & 0x1) as u8) } // [31]
     }
 
-    #[doc="DIVSCLK Enable"]
+    #[doc="Returns true if EN != 0"]
     #[inline] pub fn test_en(&self) -> bool {
         self.en() != 0
     }
 
-    #[doc="DIVSCLK Enable"]
+    #[doc="Sets the EN field."]
     #[inline] pub fn set_en<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -7532,12 +7532,12 @@ impl Sysprop {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="FPU Present"]
+    #[doc="Returns true if FPU != 0"]
     #[inline] pub fn test_fpu(&self) -> bool {
         self.fpu() != 0
     }
 
-    #[doc="FPU Present"]
+    #[doc="Sets the FPU field."]
     #[inline] pub fn set_fpu<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -7579,12 +7579,12 @@ impl Piosccal {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x7f) as u8) } // [6:0]
     }
 
-    #[doc="User Trim Value"]
+    #[doc="Returns true if UT != 0"]
     #[inline] pub fn test_ut(&self) -> bool {
         self.ut() != 0
     }
 
-    #[doc="User Trim Value"]
+    #[doc="Sets the UT field."]
     #[inline] pub fn set_ut<V: Into<bits::U7>>(mut self, value: V) -> Self {
         let value: bits::U7 = value.into();
         let value: u32 = value.into();
@@ -7598,12 +7598,12 @@ impl Piosccal {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
     }
 
-    #[doc="Update Trim"]
+    #[doc="Returns true if UPDATE != 0"]
     #[inline] pub fn test_update(&self) -> bool {
         self.update() != 0
     }
 
-    #[doc="Update Trim"]
+    #[doc="Sets the UPDATE field."]
     #[inline] pub fn set_update<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -7617,12 +7617,12 @@ impl Piosccal {
         unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
     }
 
-    #[doc="Start Calibration"]
+    #[doc="Returns true if CAL != 0"]
     #[inline] pub fn test_cal(&self) -> bool {
         self.cal() != 0
     }
 
-    #[doc="Start Calibration"]
+    #[doc="Sets the CAL field."]
     #[inline] pub fn set_cal<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -7636,12 +7636,12 @@ impl Piosccal {
         unsafe { ::core::mem::transmute(((self.0 >> 31) & 0x1) as u8) } // [31]
     }
 
-    #[doc="Use User Trim Value"]
+    #[doc="Returns true if UTEN != 0"]
     #[inline] pub fn test_uten(&self) -> bool {
         self.uten() != 0
     }
 
-    #[doc="Use User Trim Value"]
+    #[doc="Sets the UTEN field."]
     #[inline] pub fn set_uten<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -7686,12 +7686,12 @@ impl Pioscstat {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x7f) as u8) } // [6:0]
     }
 
-    #[doc="Calibration Trim Value"]
+    #[doc="Returns true if CT != 0"]
     #[inline] pub fn test_ct(&self) -> bool {
         self.ct() != 0
     }
 
-    #[doc="Calibration Trim Value"]
+    #[doc="Sets the CT field."]
     #[inline] pub fn set_ct<V: Into<bits::U7>>(mut self, value: V) -> Self {
         let value: bits::U7 = value.into();
         let value: u32 = value.into();
@@ -7705,12 +7705,12 @@ impl Pioscstat {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x3) as u8) } // [9:8]
     }
 
-    #[doc="Calibration Result"]
+    #[doc="Returns true if CR != 0"]
     #[inline] pub fn test_cr(&self) -> bool {
         self.cr() != 0
     }
 
-    #[doc="Calibration Result"]
+    #[doc="Sets the CR field."]
     #[inline] pub fn set_cr<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -7724,12 +7724,12 @@ impl Pioscstat {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x7f) as u8) } // [22:16]
     }
 
-    #[doc="Default Trim Value"]
+    #[doc="Returns true if DT != 0"]
     #[inline] pub fn test_dt(&self) -> bool {
         self.dt() != 0
     }
 
-    #[doc="Default Trim Value"]
+    #[doc="Sets the DT field."]
     #[inline] pub fn set_dt<V: Into<bits::U7>>(mut self, value: V) -> Self {
         let value: bits::U7 = value.into();
         let value: u32 = value.into();
@@ -7773,12 +7773,12 @@ impl Pllfreq0 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x3ff) as u16) } // [9:0]
     }
 
-    #[doc="PLL M Integer Value"]
+    #[doc="Returns true if MINT != 0"]
     #[inline] pub fn test_mint(&self) -> bool {
         self.mint() != 0
     }
 
-    #[doc="PLL M Integer Value"]
+    #[doc="Sets the MINT field."]
     #[inline] pub fn set_mint<V: Into<bits::U10>>(mut self, value: V) -> Self {
         let value: bits::U10 = value.into();
         let value: u32 = value.into();
@@ -7792,12 +7792,12 @@ impl Pllfreq0 {
         unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x3ff) as u16) } // [19:10]
     }
 
-    #[doc="PLL M Fractional Value"]
+    #[doc="Returns true if MFRAC != 0"]
     #[inline] pub fn test_mfrac(&self) -> bool {
         self.mfrac() != 0
     }
 
-    #[doc="PLL M Fractional Value"]
+    #[doc="Sets the MFRAC field."]
     #[inline] pub fn set_mfrac<V: Into<bits::U10>>(mut self, value: V) -> Self {
         let value: bits::U10 = value.into();
         let value: u32 = value.into();
@@ -7811,12 +7811,12 @@ impl Pllfreq0 {
         unsafe { ::core::mem::transmute(((self.0 >> 23) & 0x1) as u8) } // [23]
     }
 
-    #[doc="PLL Power"]
+    #[doc="Returns true if PLLPWR != 0"]
     #[inline] pub fn test_pllpwr(&self) -> bool {
         self.pllpwr() != 0
     }
 
-    #[doc="PLL Power"]
+    #[doc="Sets the PLLPWR field."]
     #[inline] pub fn set_pllpwr<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -7860,12 +7860,12 @@ impl Pllfreq1 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1f) as u8) } // [4:0]
     }
 
-    #[doc="PLL N Value"]
+    #[doc="Returns true if N != 0"]
     #[inline] pub fn test_n(&self) -> bool {
         self.n() != 0
     }
 
-    #[doc="PLL N Value"]
+    #[doc="Sets the N field."]
     #[inline] pub fn set_n<V: Into<bits::U5>>(mut self, value: V) -> Self {
         let value: bits::U5 = value.into();
         let value: u32 = value.into();
@@ -7879,12 +7879,12 @@ impl Pllfreq1 {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1f) as u8) } // [12:8]
     }
 
-    #[doc="PLL Q Value"]
+    #[doc="Returns true if Q != 0"]
     #[inline] pub fn test_q(&self) -> bool {
         self.q() != 0
     }
 
-    #[doc="PLL Q Value"]
+    #[doc="Sets the Q field."]
     #[inline] pub fn set_q<V: Into<bits::U5>>(mut self, value: V) -> Self {
         let value: bits::U5 = value.into();
         let value: u32 = value.into();
@@ -7927,12 +7927,12 @@ impl Pllstat {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="PLL Lock"]
+    #[doc="Returns true if LOCK != 0"]
     #[inline] pub fn test_lock(&self) -> bool {
         self.lock() != 0
     }
 
-    #[doc="PLL Lock"]
+    #[doc="Sets the LOCK field."]
     #[inline] pub fn set_lock<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -7974,12 +7974,12 @@ impl Slppwrcfg {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x3) as u8) } // [1:0]
     }
 
-    #[doc="SRAM Power Modes"]
+    #[doc="Returns true if SRAMPM != 0"]
     #[inline] pub fn test_srampm(&self) -> bool {
         self.srampm() != 0
     }
 
-    #[doc="SRAM Power Modes"]
+    #[doc="Sets the SRAMPM field."]
     #[inline] pub fn set_srampm<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -7993,12 +7993,12 @@ impl Slppwrcfg {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x3) as u8) } // [5:4]
     }
 
-    #[doc="Flash Power Modes"]
+    #[doc="Returns true if FLASHPM != 0"]
     #[inline] pub fn test_flashpm(&self) -> bool {
         self.flashpm() != 0
     }
 
-    #[doc="Flash Power Modes"]
+    #[doc="Sets the FLASHPM field."]
     #[inline] pub fn set_flashpm<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -8041,12 +8041,12 @@ impl Dslppwrcfg {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x3) as u8) } // [1:0]
     }
 
-    #[doc="SRAM Power Modes"]
+    #[doc="Returns true if SRAMPM != 0"]
     #[inline] pub fn test_srampm(&self) -> bool {
         self.srampm() != 0
     }
 
-    #[doc="SRAM Power Modes"]
+    #[doc="Sets the SRAMPM field."]
     #[inline] pub fn set_srampm<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -8060,12 +8060,12 @@ impl Dslppwrcfg {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x3) as u8) } // [5:4]
     }
 
-    #[doc="Flash Power Modes"]
+    #[doc="Returns true if FLASHPM != 0"]
     #[inline] pub fn test_flashpm(&self) -> bool {
         self.flashpm() != 0
     }
 
-    #[doc="Flash Power Modes"]
+    #[doc="Sets the FLASHPM field."]
     #[inline] pub fn set_flashpm<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -8079,12 +8079,12 @@ impl Dslppwrcfg {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
     }
 
-    #[doc="Temperature Sense Power Down"]
+    #[doc="Returns true if TSPD != 0"]
     #[inline] pub fn test_tspd(&self) -> bool {
         self.tspd() != 0
     }
 
-    #[doc="Temperature Sense Power Down"]
+    #[doc="Sets the TSPD field."]
     #[inline] pub fn set_tspd<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -8098,12 +8098,12 @@ impl Dslppwrcfg {
         unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
     }
 
-    #[doc="LDO Sleep Mode"]
+    #[doc="Returns true if LDOSM != 0"]
     #[inline] pub fn test_ldosm(&self) -> bool {
         self.ldosm() != 0
     }
 
-    #[doc="LDO Sleep Mode"]
+    #[doc="Sets the LDOSM field."]
     #[inline] pub fn set_ldosm<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -8148,12 +8148,12 @@ impl Nvmstat {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="32 Word Flash Write Buffer Available"]
+    #[doc="Returns true if FWB != 0"]
     #[inline] pub fn test_fwb(&self) -> bool {
         self.fwb() != 0
     }
 
-    #[doc="32 Word Flash Write Buffer Available"]
+    #[doc="Sets the FWB field."]
     #[inline] pub fn set_fwb<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -8195,12 +8195,12 @@ impl Ldospctl {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
-    #[doc="LDO Output Voltage"]
+    #[doc="Returns true if VLDO != 0"]
     #[inline] pub fn test_vldo(&self) -> bool {
         self.vldo() != 0
     }
 
-    #[doc="LDO Output Voltage"]
+    #[doc="Sets the VLDO field."]
     #[inline] pub fn set_vldo<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -8214,12 +8214,12 @@ impl Ldospctl {
         unsafe { ::core::mem::transmute(((self.0 >> 31) & 0x1) as u8) } // [31]
     }
 
-    #[doc="Voltage Adjust Enable"]
+    #[doc="Returns true if VADJEN != 0"]
     #[inline] pub fn test_vadjen(&self) -> bool {
         self.vadjen() != 0
     }
 
-    #[doc="Voltage Adjust Enable"]
+    #[doc="Sets the VADJEN field."]
     #[inline] pub fn set_vadjen<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -8262,12 +8262,12 @@ impl Ldodpctl {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
-    #[doc="LDO Output Voltage"]
+    #[doc="Returns true if VLDO != 0"]
     #[inline] pub fn test_vldo(&self) -> bool {
         self.vldo() != 0
     }
 
-    #[doc="LDO Output Voltage"]
+    #[doc="Sets the VLDO field."]
     #[inline] pub fn set_vldo<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -8281,12 +8281,12 @@ impl Ldodpctl {
         unsafe { ::core::mem::transmute(((self.0 >> 31) & 0x1) as u8) } // [31]
     }
 
-    #[doc="Voltage Adjust Enable"]
+    #[doc="Returns true if VADJEN != 0"]
     #[inline] pub fn test_vadjen(&self) -> bool {
         self.vadjen() != 0
     }
 
-    #[doc="Voltage Adjust Enable"]
+    #[doc="Sets the VADJEN field."]
     #[inline] pub fn set_vadjen<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -8329,12 +8329,12 @@ impl Resbehavctl {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x3) as u8) } // [1:0]
     }
 
-    #[doc="External RST Pin Operation"]
+    #[doc="Returns true if EXTRES != 0"]
     #[inline] pub fn test_extres(&self) -> bool {
         self.extres() != 0
     }
 
-    #[doc="External RST Pin Operation"]
+    #[doc="Sets the EXTRES field."]
     #[inline] pub fn set_extres<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -8348,12 +8348,12 @@ impl Resbehavctl {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x3) as u8) } // [3:2]
     }
 
-    #[doc="BOR Reset operation"]
+    #[doc="Returns true if BOR != 0"]
     #[inline] pub fn test_bor(&self) -> bool {
         self.bor() != 0
     }
 
-    #[doc="BOR Reset operation"]
+    #[doc="Sets the BOR field."]
     #[inline] pub fn set_bor<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -8367,12 +8367,12 @@ impl Resbehavctl {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x3) as u8) } // [5:4]
     }
 
-    #[doc="Watchdog 0 Reset Operation"]
+    #[doc="Returns true if WDOG0 != 0"]
     #[inline] pub fn test_wdog0(&self) -> bool {
         self.wdog0() != 0
     }
 
-    #[doc="Watchdog 0 Reset Operation"]
+    #[doc="Sets the WDOG0 field."]
     #[inline] pub fn set_wdog0<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -8386,12 +8386,12 @@ impl Resbehavctl {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x3) as u8) } // [7:6]
     }
 
-    #[doc="Watchdog 1 Reset Operation"]
+    #[doc="Returns true if WDOG1 != 0"]
     #[inline] pub fn test_wdog1(&self) -> bool {
         self.wdog1() != 0
     }
 
-    #[doc="Watchdog 1 Reset Operation"]
+    #[doc="Sets the WDOG1 field."]
     #[inline] pub fn set_wdog1<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -8436,12 +8436,12 @@ impl Hssr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffffff) as u32) } // [23:0]
     }
 
-    #[doc="Command Descriptor Pointer"]
+    #[doc="Returns true if CDOFF != 0"]
     #[inline] pub fn test_cdoff(&self) -> bool {
         self.cdoff() != 0
     }
 
-    #[doc="Command Descriptor Pointer"]
+    #[doc="Sets the CDOFF field."]
     #[inline] pub fn set_cdoff<V: Into<bits::U24>>(mut self, value: V) -> Self {
         let value: bits::U24 = value.into();
         let value: u32 = value.into();
@@ -8455,12 +8455,12 @@ impl Hssr {
         unsafe { ::core::mem::transmute(((self.0 >> 24) & 0xff) as u8) } // [31:24]
     }
 
-    #[doc="Write Key"]
+    #[doc="Returns true if KEY != 0"]
     #[inline] pub fn test_key(&self) -> bool {
         self.key() != 0
     }
 
-    #[doc="Write Key"]
+    #[doc="Sets the KEY field."]
     #[inline] pub fn set_key<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -8503,12 +8503,12 @@ impl Usbpds {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x3) as u8) } // [1:0]
     }
 
-    #[doc="Power Domain Status"]
+    #[doc="Returns true if PWRSTAT != 0"]
     #[inline] pub fn test_pwrstat(&self) -> bool {
         self.pwrstat() != 0
     }
 
-    #[doc="Power Domain Status"]
+    #[doc="Sets the PWRSTAT field."]
     #[inline] pub fn set_pwrstat<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -8522,12 +8522,12 @@ impl Usbpds {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x3) as u8) } // [3:2]
     }
 
-    #[doc="Memory Array Power Status"]
+    #[doc="Returns true if MEMSTAT != 0"]
     #[inline] pub fn test_memstat(&self) -> bool {
         self.memstat() != 0
     }
 
-    #[doc="Memory Array Power Status"]
+    #[doc="Sets the MEMSTAT field."]
     #[inline] pub fn set_memstat<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -8570,12 +8570,12 @@ impl Usbmpc {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x3) as u8) } // [1:0]
     }
 
-    #[doc="Memory Array Power Control"]
+    #[doc="Returns true if PWRCTL != 0"]
     #[inline] pub fn test_pwrctl(&self) -> bool {
         self.pwrctl() != 0
     }
 
-    #[doc="Memory Array Power Control"]
+    #[doc="Sets the PWRCTL field."]
     #[inline] pub fn set_pwrctl<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -8617,12 +8617,12 @@ impl Emacpds {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x3) as u8) } // [1:0]
     }
 
-    #[doc="Power Domain Status"]
+    #[doc="Returns true if PWRSTAT != 0"]
     #[inline] pub fn test_pwrstat(&self) -> bool {
         self.pwrstat() != 0
     }
 
-    #[doc="Power Domain Status"]
+    #[doc="Sets the PWRSTAT field."]
     #[inline] pub fn set_pwrstat<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -8636,12 +8636,12 @@ impl Emacpds {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x3) as u8) } // [3:2]
     }
 
-    #[doc="Memory Array Power Status"]
+    #[doc="Returns true if MEMSTAT != 0"]
     #[inline] pub fn test_memstat(&self) -> bool {
         self.memstat() != 0
     }
 
-    #[doc="Memory Array Power Status"]
+    #[doc="Sets the MEMSTAT field."]
     #[inline] pub fn set_memstat<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -8684,12 +8684,12 @@ impl Emacmpc {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x3) as u8) } // [1:0]
     }
 
-    #[doc="Memory Array Power Control"]
+    #[doc="Returns true if PWRCTL != 0"]
     #[inline] pub fn test_pwrctl(&self) -> bool {
         self.pwrctl() != 0
     }
 
-    #[doc="Memory Array Power Control"]
+    #[doc="Sets the PWRCTL field."]
     #[inline] pub fn set_pwrctl<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
@@ -8731,12 +8731,12 @@ impl Ppwd {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Watchdog Timer 0 Present"]
+    #[doc="Returns true if P0 != 0"]
     #[inline] pub fn test_p0(&self) -> bool {
         self.p0() != 0
     }
 
-    #[doc="Watchdog Timer 0 Present"]
+    #[doc="Sets the P0 field."]
     #[inline] pub fn set_p0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -8750,12 +8750,12 @@ impl Ppwd {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="Watchdog Timer 1 Present"]
+    #[doc="Returns true if P1 != 0"]
     #[inline] pub fn test_p1(&self) -> bool {
         self.p1() != 0
     }
 
-    #[doc="Watchdog Timer 1 Present"]
+    #[doc="Sets the P1 field."]
     #[inline] pub fn set_p1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -8798,12 +8798,12 @@ impl Pptimer {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 0 Present"]
+    #[doc="Returns true if P0 != 0"]
     #[inline] pub fn test_p0(&self) -> bool {
         self.p0() != 0
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 0 Present"]
+    #[doc="Sets the P0 field."]
     #[inline] pub fn set_p0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -8817,12 +8817,12 @@ impl Pptimer {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 1 Present"]
+    #[doc="Returns true if P1 != 0"]
     #[inline] pub fn test_p1(&self) -> bool {
         self.p1() != 0
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 1 Present"]
+    #[doc="Sets the P1 field."]
     #[inline] pub fn set_p1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -8836,12 +8836,12 @@ impl Pptimer {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 2 Present"]
+    #[doc="Returns true if P2 != 0"]
     #[inline] pub fn test_p2(&self) -> bool {
         self.p2() != 0
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 2 Present"]
+    #[doc="Sets the P2 field."]
     #[inline] pub fn set_p2<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -8855,12 +8855,12 @@ impl Pptimer {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 3 Present"]
+    #[doc="Returns true if P3 != 0"]
     #[inline] pub fn test_p3(&self) -> bool {
         self.p3() != 0
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 3 Present"]
+    #[doc="Sets the P3 field."]
     #[inline] pub fn set_p3<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -8874,12 +8874,12 @@ impl Pptimer {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 4 Present"]
+    #[doc="Returns true if P4 != 0"]
     #[inline] pub fn test_p4(&self) -> bool {
         self.p4() != 0
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 4 Present"]
+    #[doc="Sets the P4 field."]
     #[inline] pub fn set_p4<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -8893,12 +8893,12 @@ impl Pptimer {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 5 Present"]
+    #[doc="Returns true if P5 != 0"]
     #[inline] pub fn test_p5(&self) -> bool {
         self.p5() != 0
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 5 Present"]
+    #[doc="Sets the P5 field."]
     #[inline] pub fn set_p5<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -8912,12 +8912,12 @@ impl Pptimer {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 6 Present"]
+    #[doc="Returns true if P6 != 0"]
     #[inline] pub fn test_p6(&self) -> bool {
         self.p6() != 0
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 6 Present"]
+    #[doc="Sets the P6 field."]
     #[inline] pub fn set_p6<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -8931,12 +8931,12 @@ impl Pptimer {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 7 Present"]
+    #[doc="Returns true if P7 != 0"]
     #[inline] pub fn test_p7(&self) -> bool {
         self.p7() != 0
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 7 Present"]
+    #[doc="Sets the P7 field."]
     #[inline] pub fn set_p7<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -8985,12 +8985,12 @@ impl Ppgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="GPIO Port A Present"]
+    #[doc="Returns true if P0 != 0"]
     #[inline] pub fn test_p0(&self) -> bool {
         self.p0() != 0
     }
 
-    #[doc="GPIO Port A Present"]
+    #[doc="Sets the P0 field."]
     #[inline] pub fn set_p0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -9004,12 +9004,12 @@ impl Ppgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="GPIO Port B Present"]
+    #[doc="Returns true if P1 != 0"]
     #[inline] pub fn test_p1(&self) -> bool {
         self.p1() != 0
     }
 
-    #[doc="GPIO Port B Present"]
+    #[doc="Sets the P1 field."]
     #[inline] pub fn set_p1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -9023,12 +9023,12 @@ impl Ppgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="GPIO Port C Present"]
+    #[doc="Returns true if P2 != 0"]
     #[inline] pub fn test_p2(&self) -> bool {
         self.p2() != 0
     }
 
-    #[doc="GPIO Port C Present"]
+    #[doc="Sets the P2 field."]
     #[inline] pub fn set_p2<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -9042,12 +9042,12 @@ impl Ppgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="GPIO Port D Present"]
+    #[doc="Returns true if P3 != 0"]
     #[inline] pub fn test_p3(&self) -> bool {
         self.p3() != 0
     }
 
-    #[doc="GPIO Port D Present"]
+    #[doc="Sets the P3 field."]
     #[inline] pub fn set_p3<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -9061,12 +9061,12 @@ impl Ppgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="GPIO Port E Present"]
+    #[doc="Returns true if P4 != 0"]
     #[inline] pub fn test_p4(&self) -> bool {
         self.p4() != 0
     }
 
-    #[doc="GPIO Port E Present"]
+    #[doc="Sets the P4 field."]
     #[inline] pub fn set_p4<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -9080,12 +9080,12 @@ impl Ppgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="GPIO Port F Present"]
+    #[doc="Returns true if P5 != 0"]
     #[inline] pub fn test_p5(&self) -> bool {
         self.p5() != 0
     }
 
-    #[doc="GPIO Port F Present"]
+    #[doc="Sets the P5 field."]
     #[inline] pub fn set_p5<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -9099,12 +9099,12 @@ impl Ppgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="GPIO Port G Present"]
+    #[doc="Returns true if P6 != 0"]
     #[inline] pub fn test_p6(&self) -> bool {
         self.p6() != 0
     }
 
-    #[doc="GPIO Port G Present"]
+    #[doc="Sets the P6 field."]
     #[inline] pub fn set_p6<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -9118,12 +9118,12 @@ impl Ppgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="GPIO Port H Present"]
+    #[doc="Returns true if P7 != 0"]
     #[inline] pub fn test_p7(&self) -> bool {
         self.p7() != 0
     }
 
-    #[doc="GPIO Port H Present"]
+    #[doc="Sets the P7 field."]
     #[inline] pub fn set_p7<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -9137,12 +9137,12 @@ impl Ppgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
     }
 
-    #[doc="GPIO Port J Present"]
+    #[doc="Returns true if P8 != 0"]
     #[inline] pub fn test_p8(&self) -> bool {
         self.p8() != 0
     }
 
-    #[doc="GPIO Port J Present"]
+    #[doc="Sets the P8 field."]
     #[inline] pub fn set_p8<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -9156,12 +9156,12 @@ impl Ppgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
     }
 
-    #[doc="GPIO Port K Present"]
+    #[doc="Returns true if P9 != 0"]
     #[inline] pub fn test_p9(&self) -> bool {
         self.p9() != 0
     }
 
-    #[doc="GPIO Port K Present"]
+    #[doc="Sets the P9 field."]
     #[inline] pub fn set_p9<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -9175,12 +9175,12 @@ impl Ppgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x1) as u8) } // [10]
     }
 
-    #[doc="GPIO Port L Present"]
+    #[doc="Returns true if P10 != 0"]
     #[inline] pub fn test_p10(&self) -> bool {
         self.p10() != 0
     }
 
-    #[doc="GPIO Port L Present"]
+    #[doc="Sets the P10 field."]
     #[inline] pub fn set_p10<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -9194,12 +9194,12 @@ impl Ppgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 11) & 0x1) as u8) } // [11]
     }
 
-    #[doc="GPIO Port M Present"]
+    #[doc="Returns true if P11 != 0"]
     #[inline] pub fn test_p11(&self) -> bool {
         self.p11() != 0
     }
 
-    #[doc="GPIO Port M Present"]
+    #[doc="Sets the P11 field."]
     #[inline] pub fn set_p11<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -9213,12 +9213,12 @@ impl Ppgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 12) & 0x1) as u8) } // [12]
     }
 
-    #[doc="GPIO Port N Present"]
+    #[doc="Returns true if P12 != 0"]
     #[inline] pub fn test_p12(&self) -> bool {
         self.p12() != 0
     }
 
-    #[doc="GPIO Port N Present"]
+    #[doc="Sets the P12 field."]
     #[inline] pub fn set_p12<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -9232,12 +9232,12 @@ impl Ppgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 13) & 0x1) as u8) } // [13]
     }
 
-    #[doc="GPIO Port P Present"]
+    #[doc="Returns true if P13 != 0"]
     #[inline] pub fn test_p13(&self) -> bool {
         self.p13() != 0
     }
 
-    #[doc="GPIO Port P Present"]
+    #[doc="Sets the P13 field."]
     #[inline] pub fn set_p13<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -9251,12 +9251,12 @@ impl Ppgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 14) & 0x1) as u8) } // [14]
     }
 
-    #[doc="GPIO Port Q Present"]
+    #[doc="Returns true if P14 != 0"]
     #[inline] pub fn test_p14(&self) -> bool {
         self.p14() != 0
     }
 
-    #[doc="GPIO Port Q Present"]
+    #[doc="Sets the P14 field."]
     #[inline] pub fn set_p14<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -9312,12 +9312,12 @@ impl Ppdma {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="uDMA Module Present"]
+    #[doc="Returns true if P0 != 0"]
     #[inline] pub fn test_p0(&self) -> bool {
         self.p0() != 0
     }
 
-    #[doc="uDMA Module Present"]
+    #[doc="Sets the P0 field."]
     #[inline] pub fn set_p0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -9359,12 +9359,12 @@ impl Ppepi {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="EPI Module Present"]
+    #[doc="Returns true if P0 != 0"]
     #[inline] pub fn test_p0(&self) -> bool {
         self.p0() != 0
     }
 
-    #[doc="EPI Module Present"]
+    #[doc="Sets the P0 field."]
     #[inline] pub fn set_p0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -9406,12 +9406,12 @@ impl Pphib {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Hibernation Module Present"]
+    #[doc="Returns true if P0 != 0"]
     #[inline] pub fn test_p0(&self) -> bool {
         self.p0() != 0
     }
 
-    #[doc="Hibernation Module Present"]
+    #[doc="Sets the P0 field."]
     #[inline] pub fn set_p0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -9453,12 +9453,12 @@ impl Ppuart {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="UART Module 0 Present"]
+    #[doc="Returns true if P0 != 0"]
     #[inline] pub fn test_p0(&self) -> bool {
         self.p0() != 0
     }
 
-    #[doc="UART Module 0 Present"]
+    #[doc="Sets the P0 field."]
     #[inline] pub fn set_p0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -9472,12 +9472,12 @@ impl Ppuart {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="UART Module 1 Present"]
+    #[doc="Returns true if P1 != 0"]
     #[inline] pub fn test_p1(&self) -> bool {
         self.p1() != 0
     }
 
-    #[doc="UART Module 1 Present"]
+    #[doc="Sets the P1 field."]
     #[inline] pub fn set_p1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -9491,12 +9491,12 @@ impl Ppuart {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="UART Module 2 Present"]
+    #[doc="Returns true if P2 != 0"]
     #[inline] pub fn test_p2(&self) -> bool {
         self.p2() != 0
     }
 
-    #[doc="UART Module 2 Present"]
+    #[doc="Sets the P2 field."]
     #[inline] pub fn set_p2<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -9510,12 +9510,12 @@ impl Ppuart {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="UART Module 3 Present"]
+    #[doc="Returns true if P3 != 0"]
     #[inline] pub fn test_p3(&self) -> bool {
         self.p3() != 0
     }
 
-    #[doc="UART Module 3 Present"]
+    #[doc="Sets the P3 field."]
     #[inline] pub fn set_p3<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -9529,12 +9529,12 @@ impl Ppuart {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="UART Module 4 Present"]
+    #[doc="Returns true if P4 != 0"]
     #[inline] pub fn test_p4(&self) -> bool {
         self.p4() != 0
     }
 
-    #[doc="UART Module 4 Present"]
+    #[doc="Sets the P4 field."]
     #[inline] pub fn set_p4<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -9548,12 +9548,12 @@ impl Ppuart {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="UART Module 5 Present"]
+    #[doc="Returns true if P5 != 0"]
     #[inline] pub fn test_p5(&self) -> bool {
         self.p5() != 0
     }
 
-    #[doc="UART Module 5 Present"]
+    #[doc="Sets the P5 field."]
     #[inline] pub fn set_p5<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -9567,12 +9567,12 @@ impl Ppuart {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="UART Module 6 Present"]
+    #[doc="Returns true if P6 != 0"]
     #[inline] pub fn test_p6(&self) -> bool {
         self.p6() != 0
     }
 
-    #[doc="UART Module 6 Present"]
+    #[doc="Sets the P6 field."]
     #[inline] pub fn set_p6<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -9586,12 +9586,12 @@ impl Ppuart {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="UART Module 7 Present"]
+    #[doc="Returns true if P7 != 0"]
     #[inline] pub fn test_p7(&self) -> bool {
         self.p7() != 0
     }
 
-    #[doc="UART Module 7 Present"]
+    #[doc="Sets the P7 field."]
     #[inline] pub fn set_p7<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -9640,12 +9640,12 @@ impl Ppssi {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="SSI Module 0 Present"]
+    #[doc="Returns true if P0 != 0"]
     #[inline] pub fn test_p0(&self) -> bool {
         self.p0() != 0
     }
 
-    #[doc="SSI Module 0 Present"]
+    #[doc="Sets the P0 field."]
     #[inline] pub fn set_p0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -9659,12 +9659,12 @@ impl Ppssi {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="SSI Module 1 Present"]
+    #[doc="Returns true if P1 != 0"]
     #[inline] pub fn test_p1(&self) -> bool {
         self.p1() != 0
     }
 
-    #[doc="SSI Module 1 Present"]
+    #[doc="Sets the P1 field."]
     #[inline] pub fn set_p1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -9678,12 +9678,12 @@ impl Ppssi {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="SSI Module 2 Present"]
+    #[doc="Returns true if P2 != 0"]
     #[inline] pub fn test_p2(&self) -> bool {
         self.p2() != 0
     }
 
-    #[doc="SSI Module 2 Present"]
+    #[doc="Sets the P2 field."]
     #[inline] pub fn set_p2<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -9697,12 +9697,12 @@ impl Ppssi {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="SSI Module 3 Present"]
+    #[doc="Returns true if P3 != 0"]
     #[inline] pub fn test_p3(&self) -> bool {
         self.p3() != 0
     }
 
-    #[doc="SSI Module 3 Present"]
+    #[doc="Sets the P3 field."]
     #[inline] pub fn set_p3<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -9747,12 +9747,12 @@ impl Ppi2c {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="I2C Module 0 Present"]
+    #[doc="Returns true if P0 != 0"]
     #[inline] pub fn test_p0(&self) -> bool {
         self.p0() != 0
     }
 
-    #[doc="I2C Module 0 Present"]
+    #[doc="Sets the P0 field."]
     #[inline] pub fn set_p0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -9766,12 +9766,12 @@ impl Ppi2c {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="I2C Module 1 Present"]
+    #[doc="Returns true if P1 != 0"]
     #[inline] pub fn test_p1(&self) -> bool {
         self.p1() != 0
     }
 
-    #[doc="I2C Module 1 Present"]
+    #[doc="Sets the P1 field."]
     #[inline] pub fn set_p1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -9785,12 +9785,12 @@ impl Ppi2c {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="I2C Module 2 Present"]
+    #[doc="Returns true if P2 != 0"]
     #[inline] pub fn test_p2(&self) -> bool {
         self.p2() != 0
     }
 
-    #[doc="I2C Module 2 Present"]
+    #[doc="Sets the P2 field."]
     #[inline] pub fn set_p2<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -9804,12 +9804,12 @@ impl Ppi2c {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="I2C Module 3 Present"]
+    #[doc="Returns true if P3 != 0"]
     #[inline] pub fn test_p3(&self) -> bool {
         self.p3() != 0
     }
 
-    #[doc="I2C Module 3 Present"]
+    #[doc="Sets the P3 field."]
     #[inline] pub fn set_p3<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -9823,12 +9823,12 @@ impl Ppi2c {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="I2C Module 4 Present"]
+    #[doc="Returns true if P4 != 0"]
     #[inline] pub fn test_p4(&self) -> bool {
         self.p4() != 0
     }
 
-    #[doc="I2C Module 4 Present"]
+    #[doc="Sets the P4 field."]
     #[inline] pub fn set_p4<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -9842,12 +9842,12 @@ impl Ppi2c {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="I2C Module 5 Present"]
+    #[doc="Returns true if P5 != 0"]
     #[inline] pub fn test_p5(&self) -> bool {
         self.p5() != 0
     }
 
-    #[doc="I2C Module 5 Present"]
+    #[doc="Sets the P5 field."]
     #[inline] pub fn set_p5<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -9861,12 +9861,12 @@ impl Ppi2c {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="I2C Module 6 Present"]
+    #[doc="Returns true if P6 != 0"]
     #[inline] pub fn test_p6(&self) -> bool {
         self.p6() != 0
     }
 
-    #[doc="I2C Module 6 Present"]
+    #[doc="Sets the P6 field."]
     #[inline] pub fn set_p6<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -9880,12 +9880,12 @@ impl Ppi2c {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="I2C Module 7 Present"]
+    #[doc="Returns true if P7 != 0"]
     #[inline] pub fn test_p7(&self) -> bool {
         self.p7() != 0
     }
 
-    #[doc="I2C Module 7 Present"]
+    #[doc="Sets the P7 field."]
     #[inline] pub fn set_p7<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -9899,12 +9899,12 @@ impl Ppi2c {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
     }
 
-    #[doc="I2C Module 8 Present"]
+    #[doc="Returns true if P8 != 0"]
     #[inline] pub fn test_p8(&self) -> bool {
         self.p8() != 0
     }
 
-    #[doc="I2C Module 8 Present"]
+    #[doc="Sets the P8 field."]
     #[inline] pub fn set_p8<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -9918,12 +9918,12 @@ impl Ppi2c {
         unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
     }
 
-    #[doc="I2C Module 9 Present"]
+    #[doc="Returns true if P9 != 0"]
     #[inline] pub fn test_p9(&self) -> bool {
         self.p9() != 0
     }
 
-    #[doc="I2C Module 9 Present"]
+    #[doc="Sets the P9 field."]
     #[inline] pub fn set_p9<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -9974,12 +9974,12 @@ impl Ppusb {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="USB Module Present"]
+    #[doc="Returns true if P0 != 0"]
     #[inline] pub fn test_p0(&self) -> bool {
         self.p0() != 0
     }
 
-    #[doc="USB Module Present"]
+    #[doc="Sets the P0 field."]
     #[inline] pub fn set_p0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -10021,12 +10021,12 @@ impl Ppephy {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Ethernet PHY Module Present"]
+    #[doc="Returns true if P0 != 0"]
     #[inline] pub fn test_p0(&self) -> bool {
         self.p0() != 0
     }
 
-    #[doc="Ethernet PHY Module Present"]
+    #[doc="Sets the P0 field."]
     #[inline] pub fn set_p0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -10068,12 +10068,12 @@ impl Ppcan {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="CAN Module 0 Present"]
+    #[doc="Returns true if P0 != 0"]
     #[inline] pub fn test_p0(&self) -> bool {
         self.p0() != 0
     }
 
-    #[doc="CAN Module 0 Present"]
+    #[doc="Sets the P0 field."]
     #[inline] pub fn set_p0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -10087,12 +10087,12 @@ impl Ppcan {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="CAN Module 1 Present"]
+    #[doc="Returns true if P1 != 0"]
     #[inline] pub fn test_p1(&self) -> bool {
         self.p1() != 0
     }
 
-    #[doc="CAN Module 1 Present"]
+    #[doc="Sets the P1 field."]
     #[inline] pub fn set_p1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -10135,12 +10135,12 @@ impl Ppadc {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="ADC Module 0 Present"]
+    #[doc="Returns true if P0 != 0"]
     #[inline] pub fn test_p0(&self) -> bool {
         self.p0() != 0
     }
 
-    #[doc="ADC Module 0 Present"]
+    #[doc="Sets the P0 field."]
     #[inline] pub fn set_p0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -10154,12 +10154,12 @@ impl Ppadc {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="ADC Module 1 Present"]
+    #[doc="Returns true if P1 != 0"]
     #[inline] pub fn test_p1(&self) -> bool {
         self.p1() != 0
     }
 
-    #[doc="ADC Module 1 Present"]
+    #[doc="Sets the P1 field."]
     #[inline] pub fn set_p1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -10202,12 +10202,12 @@ impl Ppacmp {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Analog Comparator Module Present"]
+    #[doc="Returns true if P0 != 0"]
     #[inline] pub fn test_p0(&self) -> bool {
         self.p0() != 0
     }
 
-    #[doc="Analog Comparator Module Present"]
+    #[doc="Sets the P0 field."]
     #[inline] pub fn set_p0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -10249,12 +10249,12 @@ impl Pppwm {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="PWM Module 0 Present"]
+    #[doc="Returns true if P0 != 0"]
     #[inline] pub fn test_p0(&self) -> bool {
         self.p0() != 0
     }
 
-    #[doc="PWM Module 0 Present"]
+    #[doc="Sets the P0 field."]
     #[inline] pub fn set_p0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -10296,12 +10296,12 @@ impl Ppqei {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="QEI Module 0 Present"]
+    #[doc="Returns true if P0 != 0"]
     #[inline] pub fn test_p0(&self) -> bool {
         self.p0() != 0
     }
 
-    #[doc="QEI Module 0 Present"]
+    #[doc="Sets the P0 field."]
     #[inline] pub fn set_p0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -10343,12 +10343,12 @@ impl Pplpc {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="LPC Module Present"]
+    #[doc="Returns true if P0 != 0"]
     #[inline] pub fn test_p0(&self) -> bool {
         self.p0() != 0
     }
 
-    #[doc="LPC Module Present"]
+    #[doc="Sets the P0 field."]
     #[inline] pub fn set_p0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -10390,12 +10390,12 @@ impl Pppeci {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="PECI Module Present"]
+    #[doc="Returns true if P0 != 0"]
     #[inline] pub fn test_p0(&self) -> bool {
         self.p0() != 0
     }
 
-    #[doc="PECI Module Present"]
+    #[doc="Sets the P0 field."]
     #[inline] pub fn set_p0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -10437,12 +10437,12 @@ impl Ppfan {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="FAN Module 0 Present"]
+    #[doc="Returns true if P0 != 0"]
     #[inline] pub fn test_p0(&self) -> bool {
         self.p0() != 0
     }
 
-    #[doc="FAN Module 0 Present"]
+    #[doc="Sets the P0 field."]
     #[inline] pub fn set_p0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -10484,12 +10484,12 @@ impl Ppeeprom {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="EEPROM Module Present"]
+    #[doc="Returns true if P0 != 0"]
     #[inline] pub fn test_p0(&self) -> bool {
         self.p0() != 0
     }
 
-    #[doc="EEPROM Module Present"]
+    #[doc="Sets the P0 field."]
     #[inline] pub fn set_p0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -10531,12 +10531,12 @@ impl Ppwtimer {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="32/64-Bit Wide General-Purpose Timer 0 Present"]
+    #[doc="Returns true if P0 != 0"]
     #[inline] pub fn test_p0(&self) -> bool {
         self.p0() != 0
     }
 
-    #[doc="32/64-Bit Wide General-Purpose Timer 0 Present"]
+    #[doc="Sets the P0 field."]
     #[inline] pub fn set_p0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -10578,12 +10578,12 @@ impl Pprts {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="RTS Module Present"]
+    #[doc="Returns true if P0 != 0"]
     #[inline] pub fn test_p0(&self) -> bool {
         self.p0() != 0
     }
 
-    #[doc="RTS Module Present"]
+    #[doc="Sets the P0 field."]
     #[inline] pub fn set_p0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -10625,12 +10625,12 @@ impl Ppccm {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="CRC and Cryptographic Modules Present"]
+    #[doc="Returns true if P0 != 0"]
     #[inline] pub fn test_p0(&self) -> bool {
         self.p0() != 0
     }
 
-    #[doc="CRC and Cryptographic Modules Present"]
+    #[doc="Sets the P0 field."]
     #[inline] pub fn set_p0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -10672,12 +10672,12 @@ impl Pplcd {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="LCD Module Present"]
+    #[doc="Returns true if P0 != 0"]
     #[inline] pub fn test_p0(&self) -> bool {
         self.p0() != 0
     }
 
-    #[doc="LCD Module Present"]
+    #[doc="Sets the P0 field."]
     #[inline] pub fn set_p0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -10719,12 +10719,12 @@ impl Ppowire {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="1-Wire Module Present"]
+    #[doc="Returns true if P0 != 0"]
     #[inline] pub fn test_p0(&self) -> bool {
         self.p0() != 0
     }
 
-    #[doc="1-Wire Module Present"]
+    #[doc="Sets the P0 field."]
     #[inline] pub fn set_p0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -10766,12 +10766,12 @@ impl Ppemac {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Ethernet Controller Module Present"]
+    #[doc="Returns true if P0 != 0"]
     #[inline] pub fn test_p0(&self) -> bool {
         self.p0() != 0
     }
 
-    #[doc="Ethernet Controller Module Present"]
+    #[doc="Sets the P0 field."]
     #[inline] pub fn set_p0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -10813,12 +10813,12 @@ impl Pphim {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="HIM Module Present"]
+    #[doc="Returns true if P0 != 0"]
     #[inline] pub fn test_p0(&self) -> bool {
         self.p0() != 0
     }
 
-    #[doc="HIM Module Present"]
+    #[doc="Sets the P0 field."]
     #[inline] pub fn set_p0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -10860,12 +10860,12 @@ impl Srwd {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Watchdog Timer 0 Software Reset"]
+    #[doc="Returns true if R0 != 0"]
     #[inline] pub fn test_r0(&self) -> bool {
         self.r0() != 0
     }
 
-    #[doc="Watchdog Timer 0 Software Reset"]
+    #[doc="Sets the R0 field."]
     #[inline] pub fn set_r0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -10879,12 +10879,12 @@ impl Srwd {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="Watchdog Timer 1 Software Reset"]
+    #[doc="Returns true if R1 != 0"]
     #[inline] pub fn test_r1(&self) -> bool {
         self.r1() != 0
     }
 
-    #[doc="Watchdog Timer 1 Software Reset"]
+    #[doc="Sets the R1 field."]
     #[inline] pub fn set_r1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -10927,12 +10927,12 @@ impl Srtimer {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 0 Software Reset"]
+    #[doc="Returns true if R0 != 0"]
     #[inline] pub fn test_r0(&self) -> bool {
         self.r0() != 0
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 0 Software Reset"]
+    #[doc="Sets the R0 field."]
     #[inline] pub fn set_r0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -10946,12 +10946,12 @@ impl Srtimer {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 1 Software Reset"]
+    #[doc="Returns true if R1 != 0"]
     #[inline] pub fn test_r1(&self) -> bool {
         self.r1() != 0
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 1 Software Reset"]
+    #[doc="Sets the R1 field."]
     #[inline] pub fn set_r1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -10965,12 +10965,12 @@ impl Srtimer {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 2 Software Reset"]
+    #[doc="Returns true if R2 != 0"]
     #[inline] pub fn test_r2(&self) -> bool {
         self.r2() != 0
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 2 Software Reset"]
+    #[doc="Sets the R2 field."]
     #[inline] pub fn set_r2<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -10984,12 +10984,12 @@ impl Srtimer {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 3 Software Reset"]
+    #[doc="Returns true if R3 != 0"]
     #[inline] pub fn test_r3(&self) -> bool {
         self.r3() != 0
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 3 Software Reset"]
+    #[doc="Sets the R3 field."]
     #[inline] pub fn set_r3<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -11003,12 +11003,12 @@ impl Srtimer {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 4 Software Reset"]
+    #[doc="Returns true if R4 != 0"]
     #[inline] pub fn test_r4(&self) -> bool {
         self.r4() != 0
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 4 Software Reset"]
+    #[doc="Sets the R4 field."]
     #[inline] pub fn set_r4<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -11022,12 +11022,12 @@ impl Srtimer {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 5 Software Reset"]
+    #[doc="Returns true if R5 != 0"]
     #[inline] pub fn test_r5(&self) -> bool {
         self.r5() != 0
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 5 Software Reset"]
+    #[doc="Sets the R5 field."]
     #[inline] pub fn set_r5<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -11041,12 +11041,12 @@ impl Srtimer {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 6 Software Reset"]
+    #[doc="Returns true if R6 != 0"]
     #[inline] pub fn test_r6(&self) -> bool {
         self.r6() != 0
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 6 Software Reset"]
+    #[doc="Sets the R6 field."]
     #[inline] pub fn set_r6<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -11060,12 +11060,12 @@ impl Srtimer {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 7 Software Reset"]
+    #[doc="Returns true if R7 != 0"]
     #[inline] pub fn test_r7(&self) -> bool {
         self.r7() != 0
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 7 Software Reset"]
+    #[doc="Sets the R7 field."]
     #[inline] pub fn set_r7<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -11114,12 +11114,12 @@ impl Srgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="GPIO Port A Software Reset"]
+    #[doc="Returns true if R0 != 0"]
     #[inline] pub fn test_r0(&self) -> bool {
         self.r0() != 0
     }
 
-    #[doc="GPIO Port A Software Reset"]
+    #[doc="Sets the R0 field."]
     #[inline] pub fn set_r0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -11133,12 +11133,12 @@ impl Srgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="GPIO Port B Software Reset"]
+    #[doc="Returns true if R1 != 0"]
     #[inline] pub fn test_r1(&self) -> bool {
         self.r1() != 0
     }
 
-    #[doc="GPIO Port B Software Reset"]
+    #[doc="Sets the R1 field."]
     #[inline] pub fn set_r1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -11152,12 +11152,12 @@ impl Srgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="GPIO Port C Software Reset"]
+    #[doc="Returns true if R2 != 0"]
     #[inline] pub fn test_r2(&self) -> bool {
         self.r2() != 0
     }
 
-    #[doc="GPIO Port C Software Reset"]
+    #[doc="Sets the R2 field."]
     #[inline] pub fn set_r2<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -11171,12 +11171,12 @@ impl Srgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="GPIO Port D Software Reset"]
+    #[doc="Returns true if R3 != 0"]
     #[inline] pub fn test_r3(&self) -> bool {
         self.r3() != 0
     }
 
-    #[doc="GPIO Port D Software Reset"]
+    #[doc="Sets the R3 field."]
     #[inline] pub fn set_r3<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -11190,12 +11190,12 @@ impl Srgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="GPIO Port E Software Reset"]
+    #[doc="Returns true if R4 != 0"]
     #[inline] pub fn test_r4(&self) -> bool {
         self.r4() != 0
     }
 
-    #[doc="GPIO Port E Software Reset"]
+    #[doc="Sets the R4 field."]
     #[inline] pub fn set_r4<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -11209,12 +11209,12 @@ impl Srgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="GPIO Port F Software Reset"]
+    #[doc="Returns true if R5 != 0"]
     #[inline] pub fn test_r5(&self) -> bool {
         self.r5() != 0
     }
 
-    #[doc="GPIO Port F Software Reset"]
+    #[doc="Sets the R5 field."]
     #[inline] pub fn set_r5<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -11228,12 +11228,12 @@ impl Srgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="GPIO Port G Software Reset"]
+    #[doc="Returns true if R6 != 0"]
     #[inline] pub fn test_r6(&self) -> bool {
         self.r6() != 0
     }
 
-    #[doc="GPIO Port G Software Reset"]
+    #[doc="Sets the R6 field."]
     #[inline] pub fn set_r6<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -11247,12 +11247,12 @@ impl Srgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="GPIO Port H Software Reset"]
+    #[doc="Returns true if R7 != 0"]
     #[inline] pub fn test_r7(&self) -> bool {
         self.r7() != 0
     }
 
-    #[doc="GPIO Port H Software Reset"]
+    #[doc="Sets the R7 field."]
     #[inline] pub fn set_r7<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -11266,12 +11266,12 @@ impl Srgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
     }
 
-    #[doc="GPIO Port J Software Reset"]
+    #[doc="Returns true if R8 != 0"]
     #[inline] pub fn test_r8(&self) -> bool {
         self.r8() != 0
     }
 
-    #[doc="GPIO Port J Software Reset"]
+    #[doc="Sets the R8 field."]
     #[inline] pub fn set_r8<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -11285,12 +11285,12 @@ impl Srgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
     }
 
-    #[doc="GPIO Port K Software Reset"]
+    #[doc="Returns true if R9 != 0"]
     #[inline] pub fn test_r9(&self) -> bool {
         self.r9() != 0
     }
 
-    #[doc="GPIO Port K Software Reset"]
+    #[doc="Sets the R9 field."]
     #[inline] pub fn set_r9<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -11304,12 +11304,12 @@ impl Srgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x1) as u8) } // [10]
     }
 
-    #[doc="GPIO Port L Software Reset"]
+    #[doc="Returns true if R10 != 0"]
     #[inline] pub fn test_r10(&self) -> bool {
         self.r10() != 0
     }
 
-    #[doc="GPIO Port L Software Reset"]
+    #[doc="Sets the R10 field."]
     #[inline] pub fn set_r10<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -11323,12 +11323,12 @@ impl Srgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 11) & 0x1) as u8) } // [11]
     }
 
-    #[doc="GPIO Port M Software Reset"]
+    #[doc="Returns true if R11 != 0"]
     #[inline] pub fn test_r11(&self) -> bool {
         self.r11() != 0
     }
 
-    #[doc="GPIO Port M Software Reset"]
+    #[doc="Sets the R11 field."]
     #[inline] pub fn set_r11<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -11342,12 +11342,12 @@ impl Srgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 12) & 0x1) as u8) } // [12]
     }
 
-    #[doc="GPIO Port N Software Reset"]
+    #[doc="Returns true if R12 != 0"]
     #[inline] pub fn test_r12(&self) -> bool {
         self.r12() != 0
     }
 
-    #[doc="GPIO Port N Software Reset"]
+    #[doc="Sets the R12 field."]
     #[inline] pub fn set_r12<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -11361,12 +11361,12 @@ impl Srgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 13) & 0x1) as u8) } // [13]
     }
 
-    #[doc="GPIO Port P Software Reset"]
+    #[doc="Returns true if R13 != 0"]
     #[inline] pub fn test_r13(&self) -> bool {
         self.r13() != 0
     }
 
-    #[doc="GPIO Port P Software Reset"]
+    #[doc="Sets the R13 field."]
     #[inline] pub fn set_r13<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -11380,12 +11380,12 @@ impl Srgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 14) & 0x1) as u8) } // [14]
     }
 
-    #[doc="GPIO Port Q Software Reset"]
+    #[doc="Returns true if R14 != 0"]
     #[inline] pub fn test_r14(&self) -> bool {
         self.r14() != 0
     }
 
-    #[doc="GPIO Port Q Software Reset"]
+    #[doc="Sets the R14 field."]
     #[inline] pub fn set_r14<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -11441,12 +11441,12 @@ impl Srdma {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="uDMA Module Software Reset"]
+    #[doc="Returns true if R0 != 0"]
     #[inline] pub fn test_r0(&self) -> bool {
         self.r0() != 0
     }
 
-    #[doc="uDMA Module Software Reset"]
+    #[doc="Sets the R0 field."]
     #[inline] pub fn set_r0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -11488,12 +11488,12 @@ impl Srepi {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="EPI Module Software Reset"]
+    #[doc="Returns true if R0 != 0"]
     #[inline] pub fn test_r0(&self) -> bool {
         self.r0() != 0
     }
 
-    #[doc="EPI Module Software Reset"]
+    #[doc="Sets the R0 field."]
     #[inline] pub fn set_r0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -11535,12 +11535,12 @@ impl Srhib {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Hibernation Module Software Reset"]
+    #[doc="Returns true if R0 != 0"]
     #[inline] pub fn test_r0(&self) -> bool {
         self.r0() != 0
     }
 
-    #[doc="Hibernation Module Software Reset"]
+    #[doc="Sets the R0 field."]
     #[inline] pub fn set_r0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -11582,12 +11582,12 @@ impl Sruart {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="UART Module 0 Software Reset"]
+    #[doc="Returns true if R0 != 0"]
     #[inline] pub fn test_r0(&self) -> bool {
         self.r0() != 0
     }
 
-    #[doc="UART Module 0 Software Reset"]
+    #[doc="Sets the R0 field."]
     #[inline] pub fn set_r0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -11601,12 +11601,12 @@ impl Sruart {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="UART Module 1 Software Reset"]
+    #[doc="Returns true if R1 != 0"]
     #[inline] pub fn test_r1(&self) -> bool {
         self.r1() != 0
     }
 
-    #[doc="UART Module 1 Software Reset"]
+    #[doc="Sets the R1 field."]
     #[inline] pub fn set_r1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -11620,12 +11620,12 @@ impl Sruart {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="UART Module 2 Software Reset"]
+    #[doc="Returns true if R2 != 0"]
     #[inline] pub fn test_r2(&self) -> bool {
         self.r2() != 0
     }
 
-    #[doc="UART Module 2 Software Reset"]
+    #[doc="Sets the R2 field."]
     #[inline] pub fn set_r2<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -11639,12 +11639,12 @@ impl Sruart {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="UART Module 3 Software Reset"]
+    #[doc="Returns true if R3 != 0"]
     #[inline] pub fn test_r3(&self) -> bool {
         self.r3() != 0
     }
 
-    #[doc="UART Module 3 Software Reset"]
+    #[doc="Sets the R3 field."]
     #[inline] pub fn set_r3<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -11658,12 +11658,12 @@ impl Sruart {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="UART Module 4 Software Reset"]
+    #[doc="Returns true if R4 != 0"]
     #[inline] pub fn test_r4(&self) -> bool {
         self.r4() != 0
     }
 
-    #[doc="UART Module 4 Software Reset"]
+    #[doc="Sets the R4 field."]
     #[inline] pub fn set_r4<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -11677,12 +11677,12 @@ impl Sruart {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="UART Module 5 Software Reset"]
+    #[doc="Returns true if R5 != 0"]
     #[inline] pub fn test_r5(&self) -> bool {
         self.r5() != 0
     }
 
-    #[doc="UART Module 5 Software Reset"]
+    #[doc="Sets the R5 field."]
     #[inline] pub fn set_r5<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -11696,12 +11696,12 @@ impl Sruart {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="UART Module 6 Software Reset"]
+    #[doc="Returns true if R6 != 0"]
     #[inline] pub fn test_r6(&self) -> bool {
         self.r6() != 0
     }
 
-    #[doc="UART Module 6 Software Reset"]
+    #[doc="Sets the R6 field."]
     #[inline] pub fn set_r6<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -11715,12 +11715,12 @@ impl Sruart {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="UART Module 7 Software Reset"]
+    #[doc="Returns true if R7 != 0"]
     #[inline] pub fn test_r7(&self) -> bool {
         self.r7() != 0
     }
 
-    #[doc="UART Module 7 Software Reset"]
+    #[doc="Sets the R7 field."]
     #[inline] pub fn set_r7<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -11769,12 +11769,12 @@ impl Srssi {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="SSI Module 0 Software Reset"]
+    #[doc="Returns true if R0 != 0"]
     #[inline] pub fn test_r0(&self) -> bool {
         self.r0() != 0
     }
 
-    #[doc="SSI Module 0 Software Reset"]
+    #[doc="Sets the R0 field."]
     #[inline] pub fn set_r0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -11788,12 +11788,12 @@ impl Srssi {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="SSI Module 1 Software Reset"]
+    #[doc="Returns true if R1 != 0"]
     #[inline] pub fn test_r1(&self) -> bool {
         self.r1() != 0
     }
 
-    #[doc="SSI Module 1 Software Reset"]
+    #[doc="Sets the R1 field."]
     #[inline] pub fn set_r1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -11807,12 +11807,12 @@ impl Srssi {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="SSI Module 2 Software Reset"]
+    #[doc="Returns true if R2 != 0"]
     #[inline] pub fn test_r2(&self) -> bool {
         self.r2() != 0
     }
 
-    #[doc="SSI Module 2 Software Reset"]
+    #[doc="Sets the R2 field."]
     #[inline] pub fn set_r2<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -11826,12 +11826,12 @@ impl Srssi {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="SSI Module 3 Software Reset"]
+    #[doc="Returns true if R3 != 0"]
     #[inline] pub fn test_r3(&self) -> bool {
         self.r3() != 0
     }
 
-    #[doc="SSI Module 3 Software Reset"]
+    #[doc="Sets the R3 field."]
     #[inline] pub fn set_r3<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -11876,12 +11876,12 @@ impl Sri2c {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="I2C Module 0 Software Reset"]
+    #[doc="Returns true if R0 != 0"]
     #[inline] pub fn test_r0(&self) -> bool {
         self.r0() != 0
     }
 
-    #[doc="I2C Module 0 Software Reset"]
+    #[doc="Sets the R0 field."]
     #[inline] pub fn set_r0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -11895,12 +11895,12 @@ impl Sri2c {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="I2C Module 1 Software Reset"]
+    #[doc="Returns true if R1 != 0"]
     #[inline] pub fn test_r1(&self) -> bool {
         self.r1() != 0
     }
 
-    #[doc="I2C Module 1 Software Reset"]
+    #[doc="Sets the R1 field."]
     #[inline] pub fn set_r1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -11914,12 +11914,12 @@ impl Sri2c {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="I2C Module 2 Software Reset"]
+    #[doc="Returns true if R2 != 0"]
     #[inline] pub fn test_r2(&self) -> bool {
         self.r2() != 0
     }
 
-    #[doc="I2C Module 2 Software Reset"]
+    #[doc="Sets the R2 field."]
     #[inline] pub fn set_r2<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -11933,12 +11933,12 @@ impl Sri2c {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="I2C Module 3 Software Reset"]
+    #[doc="Returns true if R3 != 0"]
     #[inline] pub fn test_r3(&self) -> bool {
         self.r3() != 0
     }
 
-    #[doc="I2C Module 3 Software Reset"]
+    #[doc="Sets the R3 field."]
     #[inline] pub fn set_r3<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -11952,12 +11952,12 @@ impl Sri2c {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="I2C Module 4 Software Reset"]
+    #[doc="Returns true if R4 != 0"]
     #[inline] pub fn test_r4(&self) -> bool {
         self.r4() != 0
     }
 
-    #[doc="I2C Module 4 Software Reset"]
+    #[doc="Sets the R4 field."]
     #[inline] pub fn set_r4<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -11971,12 +11971,12 @@ impl Sri2c {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="I2C Module 5 Software Reset"]
+    #[doc="Returns true if R5 != 0"]
     #[inline] pub fn test_r5(&self) -> bool {
         self.r5() != 0
     }
 
-    #[doc="I2C Module 5 Software Reset"]
+    #[doc="Sets the R5 field."]
     #[inline] pub fn set_r5<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -11990,12 +11990,12 @@ impl Sri2c {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="I2C Module 6 Software Reset"]
+    #[doc="Returns true if R6 != 0"]
     #[inline] pub fn test_r6(&self) -> bool {
         self.r6() != 0
     }
 
-    #[doc="I2C Module 6 Software Reset"]
+    #[doc="Sets the R6 field."]
     #[inline] pub fn set_r6<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -12009,12 +12009,12 @@ impl Sri2c {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="I2C Module 7 Software Reset"]
+    #[doc="Returns true if R7 != 0"]
     #[inline] pub fn test_r7(&self) -> bool {
         self.r7() != 0
     }
 
-    #[doc="I2C Module 7 Software Reset"]
+    #[doc="Sets the R7 field."]
     #[inline] pub fn set_r7<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -12028,12 +12028,12 @@ impl Sri2c {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
     }
 
-    #[doc="I2C Module 8 Software Reset"]
+    #[doc="Returns true if R8 != 0"]
     #[inline] pub fn test_r8(&self) -> bool {
         self.r8() != 0
     }
 
-    #[doc="I2C Module 8 Software Reset"]
+    #[doc="Sets the R8 field."]
     #[inline] pub fn set_r8<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -12047,12 +12047,12 @@ impl Sri2c {
         unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
     }
 
-    #[doc="I2C Module 9 Software Reset"]
+    #[doc="Returns true if R9 != 0"]
     #[inline] pub fn test_r9(&self) -> bool {
         self.r9() != 0
     }
 
-    #[doc="I2C Module 9 Software Reset"]
+    #[doc="Sets the R9 field."]
     #[inline] pub fn set_r9<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -12103,12 +12103,12 @@ impl Srusb {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="USB Module Software Reset"]
+    #[doc="Returns true if R0 != 0"]
     #[inline] pub fn test_r0(&self) -> bool {
         self.r0() != 0
     }
 
-    #[doc="USB Module Software Reset"]
+    #[doc="Sets the R0 field."]
     #[inline] pub fn set_r0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -12150,12 +12150,12 @@ impl Srephy {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Ethernet PHY Module Software Reset"]
+    #[doc="Returns true if R0 != 0"]
     #[inline] pub fn test_r0(&self) -> bool {
         self.r0() != 0
     }
 
-    #[doc="Ethernet PHY Module Software Reset"]
+    #[doc="Sets the R0 field."]
     #[inline] pub fn set_r0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -12197,12 +12197,12 @@ impl Srcan {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="CAN Module 0 Software Reset"]
+    #[doc="Returns true if R0 != 0"]
     #[inline] pub fn test_r0(&self) -> bool {
         self.r0() != 0
     }
 
-    #[doc="CAN Module 0 Software Reset"]
+    #[doc="Sets the R0 field."]
     #[inline] pub fn set_r0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -12216,12 +12216,12 @@ impl Srcan {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="CAN Module 1 Software Reset"]
+    #[doc="Returns true if R1 != 0"]
     #[inline] pub fn test_r1(&self) -> bool {
         self.r1() != 0
     }
 
-    #[doc="CAN Module 1 Software Reset"]
+    #[doc="Sets the R1 field."]
     #[inline] pub fn set_r1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -12264,12 +12264,12 @@ impl Sradc {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="ADC Module 0 Software Reset"]
+    #[doc="Returns true if R0 != 0"]
     #[inline] pub fn test_r0(&self) -> bool {
         self.r0() != 0
     }
 
-    #[doc="ADC Module 0 Software Reset"]
+    #[doc="Sets the R0 field."]
     #[inline] pub fn set_r0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -12283,12 +12283,12 @@ impl Sradc {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="ADC Module 1 Software Reset"]
+    #[doc="Returns true if R1 != 0"]
     #[inline] pub fn test_r1(&self) -> bool {
         self.r1() != 0
     }
 
-    #[doc="ADC Module 1 Software Reset"]
+    #[doc="Sets the R1 field."]
     #[inline] pub fn set_r1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -12331,12 +12331,12 @@ impl Sracmp {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Analog Comparator Module 0 Software Reset"]
+    #[doc="Returns true if R0 != 0"]
     #[inline] pub fn test_r0(&self) -> bool {
         self.r0() != 0
     }
 
-    #[doc="Analog Comparator Module 0 Software Reset"]
+    #[doc="Sets the R0 field."]
     #[inline] pub fn set_r0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -12378,12 +12378,12 @@ impl Srpwm {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="PWM Module 0 Software Reset"]
+    #[doc="Returns true if R0 != 0"]
     #[inline] pub fn test_r0(&self) -> bool {
         self.r0() != 0
     }
 
-    #[doc="PWM Module 0 Software Reset"]
+    #[doc="Sets the R0 field."]
     #[inline] pub fn set_r0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -12425,12 +12425,12 @@ impl Srqei {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="QEI Module 0 Software Reset"]
+    #[doc="Returns true if R0 != 0"]
     #[inline] pub fn test_r0(&self) -> bool {
         self.r0() != 0
     }
 
-    #[doc="QEI Module 0 Software Reset"]
+    #[doc="Sets the R0 field."]
     #[inline] pub fn set_r0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -12472,12 +12472,12 @@ impl Sreeprom {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="EEPROM Module Software Reset"]
+    #[doc="Returns true if R0 != 0"]
     #[inline] pub fn test_r0(&self) -> bool {
         self.r0() != 0
     }
 
-    #[doc="EEPROM Module Software Reset"]
+    #[doc="Sets the R0 field."]
     #[inline] pub fn set_r0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -12519,12 +12519,12 @@ impl Srccm {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="CRC and Cryptographic Modules Software Reset"]
+    #[doc="Returns true if R0 != 0"]
     #[inline] pub fn test_r0(&self) -> bool {
         self.r0() != 0
     }
 
-    #[doc="CRC and Cryptographic Modules Software Reset"]
+    #[doc="Sets the R0 field."]
     #[inline] pub fn set_r0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -12566,12 +12566,12 @@ impl Sremac {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Ethernet Controller MAC Module 0 Software Reset"]
+    #[doc="Returns true if R0 != 0"]
     #[inline] pub fn test_r0(&self) -> bool {
         self.r0() != 0
     }
 
-    #[doc="Ethernet Controller MAC Module 0 Software Reset"]
+    #[doc="Sets the R0 field."]
     #[inline] pub fn set_r0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -12613,12 +12613,12 @@ impl Rcgcwd {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Watchdog Timer 0 Run Mode Clock Gating Control"]
+    #[doc="Returns true if R0 != 0"]
     #[inline] pub fn test_r0(&self) -> bool {
         self.r0() != 0
     }
 
-    #[doc="Watchdog Timer 0 Run Mode Clock Gating Control"]
+    #[doc="Sets the R0 field."]
     #[inline] pub fn set_r0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -12632,12 +12632,12 @@ impl Rcgcwd {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="Watchdog Timer 1 Run Mode Clock Gating Control"]
+    #[doc="Returns true if R1 != 0"]
     #[inline] pub fn test_r1(&self) -> bool {
         self.r1() != 0
     }
 
-    #[doc="Watchdog Timer 1 Run Mode Clock Gating Control"]
+    #[doc="Sets the R1 field."]
     #[inline] pub fn set_r1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -12680,12 +12680,12 @@ impl Rcgctimer {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 0 Run Mode Clock Gating Control"]
+    #[doc="Returns true if R0 != 0"]
     #[inline] pub fn test_r0(&self) -> bool {
         self.r0() != 0
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 0 Run Mode Clock Gating Control"]
+    #[doc="Sets the R0 field."]
     #[inline] pub fn set_r0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -12699,12 +12699,12 @@ impl Rcgctimer {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 1 Run Mode Clock Gating Control"]
+    #[doc="Returns true if R1 != 0"]
     #[inline] pub fn test_r1(&self) -> bool {
         self.r1() != 0
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 1 Run Mode Clock Gating Control"]
+    #[doc="Sets the R1 field."]
     #[inline] pub fn set_r1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -12718,12 +12718,12 @@ impl Rcgctimer {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 2 Run Mode Clock Gating Control"]
+    #[doc="Returns true if R2 != 0"]
     #[inline] pub fn test_r2(&self) -> bool {
         self.r2() != 0
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 2 Run Mode Clock Gating Control"]
+    #[doc="Sets the R2 field."]
     #[inline] pub fn set_r2<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -12737,12 +12737,12 @@ impl Rcgctimer {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 3 Run Mode Clock Gating Control"]
+    #[doc="Returns true if R3 != 0"]
     #[inline] pub fn test_r3(&self) -> bool {
         self.r3() != 0
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 3 Run Mode Clock Gating Control"]
+    #[doc="Sets the R3 field."]
     #[inline] pub fn set_r3<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -12756,12 +12756,12 @@ impl Rcgctimer {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 4 Run Mode Clock Gating Control"]
+    #[doc="Returns true if R4 != 0"]
     #[inline] pub fn test_r4(&self) -> bool {
         self.r4() != 0
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 4 Run Mode Clock Gating Control"]
+    #[doc="Sets the R4 field."]
     #[inline] pub fn set_r4<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -12775,12 +12775,12 @@ impl Rcgctimer {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 5 Run Mode Clock Gating Control"]
+    #[doc="Returns true if R5 != 0"]
     #[inline] pub fn test_r5(&self) -> bool {
         self.r5() != 0
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 5 Run Mode Clock Gating Control"]
+    #[doc="Sets the R5 field."]
     #[inline] pub fn set_r5<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -12794,12 +12794,12 @@ impl Rcgctimer {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 6 Run Mode Clock Gating Control"]
+    #[doc="Returns true if R6 != 0"]
     #[inline] pub fn test_r6(&self) -> bool {
         self.r6() != 0
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 6 Run Mode Clock Gating Control"]
+    #[doc="Sets the R6 field."]
     #[inline] pub fn set_r6<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -12813,12 +12813,12 @@ impl Rcgctimer {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 7 Run Mode Clock Gating Control"]
+    #[doc="Returns true if R7 != 0"]
     #[inline] pub fn test_r7(&self) -> bool {
         self.r7() != 0
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 7 Run Mode Clock Gating Control"]
+    #[doc="Sets the R7 field."]
     #[inline] pub fn set_r7<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -12867,12 +12867,12 @@ impl Rcgcgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="GPIO Port A Run Mode Clock Gating Control"]
+    #[doc="Returns true if R0 != 0"]
     #[inline] pub fn test_r0(&self) -> bool {
         self.r0() != 0
     }
 
-    #[doc="GPIO Port A Run Mode Clock Gating Control"]
+    #[doc="Sets the R0 field."]
     #[inline] pub fn set_r0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -12886,12 +12886,12 @@ impl Rcgcgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="GPIO Port B Run Mode Clock Gating Control"]
+    #[doc="Returns true if R1 != 0"]
     #[inline] pub fn test_r1(&self) -> bool {
         self.r1() != 0
     }
 
-    #[doc="GPIO Port B Run Mode Clock Gating Control"]
+    #[doc="Sets the R1 field."]
     #[inline] pub fn set_r1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -12905,12 +12905,12 @@ impl Rcgcgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="GPIO Port C Run Mode Clock Gating Control"]
+    #[doc="Returns true if R2 != 0"]
     #[inline] pub fn test_r2(&self) -> bool {
         self.r2() != 0
     }
 
-    #[doc="GPIO Port C Run Mode Clock Gating Control"]
+    #[doc="Sets the R2 field."]
     #[inline] pub fn set_r2<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -12924,12 +12924,12 @@ impl Rcgcgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="GPIO Port D Run Mode Clock Gating Control"]
+    #[doc="Returns true if R3 != 0"]
     #[inline] pub fn test_r3(&self) -> bool {
         self.r3() != 0
     }
 
-    #[doc="GPIO Port D Run Mode Clock Gating Control"]
+    #[doc="Sets the R3 field."]
     #[inline] pub fn set_r3<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -12943,12 +12943,12 @@ impl Rcgcgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="GPIO Port E Run Mode Clock Gating Control"]
+    #[doc="Returns true if R4 != 0"]
     #[inline] pub fn test_r4(&self) -> bool {
         self.r4() != 0
     }
 
-    #[doc="GPIO Port E Run Mode Clock Gating Control"]
+    #[doc="Sets the R4 field."]
     #[inline] pub fn set_r4<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -12962,12 +12962,12 @@ impl Rcgcgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="GPIO Port F Run Mode Clock Gating Control"]
+    #[doc="Returns true if R5 != 0"]
     #[inline] pub fn test_r5(&self) -> bool {
         self.r5() != 0
     }
 
-    #[doc="GPIO Port F Run Mode Clock Gating Control"]
+    #[doc="Sets the R5 field."]
     #[inline] pub fn set_r5<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -12981,12 +12981,12 @@ impl Rcgcgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="GPIO Port G Run Mode Clock Gating Control"]
+    #[doc="Returns true if R6 != 0"]
     #[inline] pub fn test_r6(&self) -> bool {
         self.r6() != 0
     }
 
-    #[doc="GPIO Port G Run Mode Clock Gating Control"]
+    #[doc="Sets the R6 field."]
     #[inline] pub fn set_r6<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -13000,12 +13000,12 @@ impl Rcgcgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="GPIO Port H Run Mode Clock Gating Control"]
+    #[doc="Returns true if R7 != 0"]
     #[inline] pub fn test_r7(&self) -> bool {
         self.r7() != 0
     }
 
-    #[doc="GPIO Port H Run Mode Clock Gating Control"]
+    #[doc="Sets the R7 field."]
     #[inline] pub fn set_r7<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -13019,12 +13019,12 @@ impl Rcgcgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
     }
 
-    #[doc="GPIO Port J Run Mode Clock Gating Control"]
+    #[doc="Returns true if R8 != 0"]
     #[inline] pub fn test_r8(&self) -> bool {
         self.r8() != 0
     }
 
-    #[doc="GPIO Port J Run Mode Clock Gating Control"]
+    #[doc="Sets the R8 field."]
     #[inline] pub fn set_r8<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -13038,12 +13038,12 @@ impl Rcgcgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
     }
 
-    #[doc="GPIO Port K Run Mode Clock Gating Control"]
+    #[doc="Returns true if R9 != 0"]
     #[inline] pub fn test_r9(&self) -> bool {
         self.r9() != 0
     }
 
-    #[doc="GPIO Port K Run Mode Clock Gating Control"]
+    #[doc="Sets the R9 field."]
     #[inline] pub fn set_r9<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -13057,12 +13057,12 @@ impl Rcgcgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x1) as u8) } // [10]
     }
 
-    #[doc="GPIO Port L Run Mode Clock Gating Control"]
+    #[doc="Returns true if R10 != 0"]
     #[inline] pub fn test_r10(&self) -> bool {
         self.r10() != 0
     }
 
-    #[doc="GPIO Port L Run Mode Clock Gating Control"]
+    #[doc="Sets the R10 field."]
     #[inline] pub fn set_r10<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -13076,12 +13076,12 @@ impl Rcgcgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 11) & 0x1) as u8) } // [11]
     }
 
-    #[doc="GPIO Port M Run Mode Clock Gating Control"]
+    #[doc="Returns true if R11 != 0"]
     #[inline] pub fn test_r11(&self) -> bool {
         self.r11() != 0
     }
 
-    #[doc="GPIO Port M Run Mode Clock Gating Control"]
+    #[doc="Sets the R11 field."]
     #[inline] pub fn set_r11<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -13095,12 +13095,12 @@ impl Rcgcgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 12) & 0x1) as u8) } // [12]
     }
 
-    #[doc="GPIO Port N Run Mode Clock Gating Control"]
+    #[doc="Returns true if R12 != 0"]
     #[inline] pub fn test_r12(&self) -> bool {
         self.r12() != 0
     }
 
-    #[doc="GPIO Port N Run Mode Clock Gating Control"]
+    #[doc="Sets the R12 field."]
     #[inline] pub fn set_r12<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -13114,12 +13114,12 @@ impl Rcgcgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 13) & 0x1) as u8) } // [13]
     }
 
-    #[doc="GPIO Port P Run Mode Clock Gating Control"]
+    #[doc="Returns true if R13 != 0"]
     #[inline] pub fn test_r13(&self) -> bool {
         self.r13() != 0
     }
 
-    #[doc="GPIO Port P Run Mode Clock Gating Control"]
+    #[doc="Sets the R13 field."]
     #[inline] pub fn set_r13<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -13133,12 +13133,12 @@ impl Rcgcgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 14) & 0x1) as u8) } // [14]
     }
 
-    #[doc="GPIO Port Q Run Mode Clock Gating Control"]
+    #[doc="Returns true if R14 != 0"]
     #[inline] pub fn test_r14(&self) -> bool {
         self.r14() != 0
     }
 
-    #[doc="GPIO Port Q Run Mode Clock Gating Control"]
+    #[doc="Sets the R14 field."]
     #[inline] pub fn set_r14<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -13194,12 +13194,12 @@ impl Rcgcdma {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="uDMA Module Run Mode Clock Gating Control"]
+    #[doc="Returns true if R0 != 0"]
     #[inline] pub fn test_r0(&self) -> bool {
         self.r0() != 0
     }
 
-    #[doc="uDMA Module Run Mode Clock Gating Control"]
+    #[doc="Sets the R0 field."]
     #[inline] pub fn set_r0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -13241,12 +13241,12 @@ impl Rcgcepi {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="EPI Module Run Mode Clock Gating Control"]
+    #[doc="Returns true if R0 != 0"]
     #[inline] pub fn test_r0(&self) -> bool {
         self.r0() != 0
     }
 
-    #[doc="EPI Module Run Mode Clock Gating Control"]
+    #[doc="Sets the R0 field."]
     #[inline] pub fn set_r0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -13288,12 +13288,12 @@ impl Rcgchib {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Hibernation Module Run Mode Clock Gating Control"]
+    #[doc="Returns true if R0 != 0"]
     #[inline] pub fn test_r0(&self) -> bool {
         self.r0() != 0
     }
 
-    #[doc="Hibernation Module Run Mode Clock Gating Control"]
+    #[doc="Sets the R0 field."]
     #[inline] pub fn set_r0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -13335,12 +13335,12 @@ impl Rcgcuart {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="UART Module 0 Run Mode Clock Gating Control"]
+    #[doc="Returns true if R0 != 0"]
     #[inline] pub fn test_r0(&self) -> bool {
         self.r0() != 0
     }
 
-    #[doc="UART Module 0 Run Mode Clock Gating Control"]
+    #[doc="Sets the R0 field."]
     #[inline] pub fn set_r0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -13354,12 +13354,12 @@ impl Rcgcuart {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="UART Module 1 Run Mode Clock Gating Control"]
+    #[doc="Returns true if R1 != 0"]
     #[inline] pub fn test_r1(&self) -> bool {
         self.r1() != 0
     }
 
-    #[doc="UART Module 1 Run Mode Clock Gating Control"]
+    #[doc="Sets the R1 field."]
     #[inline] pub fn set_r1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -13373,12 +13373,12 @@ impl Rcgcuart {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="UART Module 2 Run Mode Clock Gating Control"]
+    #[doc="Returns true if R2 != 0"]
     #[inline] pub fn test_r2(&self) -> bool {
         self.r2() != 0
     }
 
-    #[doc="UART Module 2 Run Mode Clock Gating Control"]
+    #[doc="Sets the R2 field."]
     #[inline] pub fn set_r2<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -13392,12 +13392,12 @@ impl Rcgcuart {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="UART Module 3 Run Mode Clock Gating Control"]
+    #[doc="Returns true if R3 != 0"]
     #[inline] pub fn test_r3(&self) -> bool {
         self.r3() != 0
     }
 
-    #[doc="UART Module 3 Run Mode Clock Gating Control"]
+    #[doc="Sets the R3 field."]
     #[inline] pub fn set_r3<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -13411,12 +13411,12 @@ impl Rcgcuart {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="UART Module 4 Run Mode Clock Gating Control"]
+    #[doc="Returns true if R4 != 0"]
     #[inline] pub fn test_r4(&self) -> bool {
         self.r4() != 0
     }
 
-    #[doc="UART Module 4 Run Mode Clock Gating Control"]
+    #[doc="Sets the R4 field."]
     #[inline] pub fn set_r4<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -13430,12 +13430,12 @@ impl Rcgcuart {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="UART Module 5 Run Mode Clock Gating Control"]
+    #[doc="Returns true if R5 != 0"]
     #[inline] pub fn test_r5(&self) -> bool {
         self.r5() != 0
     }
 
-    #[doc="UART Module 5 Run Mode Clock Gating Control"]
+    #[doc="Sets the R5 field."]
     #[inline] pub fn set_r5<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -13449,12 +13449,12 @@ impl Rcgcuart {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="UART Module 6 Run Mode Clock Gating Control"]
+    #[doc="Returns true if R6 != 0"]
     #[inline] pub fn test_r6(&self) -> bool {
         self.r6() != 0
     }
 
-    #[doc="UART Module 6 Run Mode Clock Gating Control"]
+    #[doc="Sets the R6 field."]
     #[inline] pub fn set_r6<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -13468,12 +13468,12 @@ impl Rcgcuart {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="UART Module 7 Run Mode Clock Gating Control"]
+    #[doc="Returns true if R7 != 0"]
     #[inline] pub fn test_r7(&self) -> bool {
         self.r7() != 0
     }
 
-    #[doc="UART Module 7 Run Mode Clock Gating Control"]
+    #[doc="Sets the R7 field."]
     #[inline] pub fn set_r7<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -13522,12 +13522,12 @@ impl Rcgcssi {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="SSI Module 0 Run Mode Clock Gating Control"]
+    #[doc="Returns true if R0 != 0"]
     #[inline] pub fn test_r0(&self) -> bool {
         self.r0() != 0
     }
 
-    #[doc="SSI Module 0 Run Mode Clock Gating Control"]
+    #[doc="Sets the R0 field."]
     #[inline] pub fn set_r0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -13541,12 +13541,12 @@ impl Rcgcssi {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="SSI Module 1 Run Mode Clock Gating Control"]
+    #[doc="Returns true if R1 != 0"]
     #[inline] pub fn test_r1(&self) -> bool {
         self.r1() != 0
     }
 
-    #[doc="SSI Module 1 Run Mode Clock Gating Control"]
+    #[doc="Sets the R1 field."]
     #[inline] pub fn set_r1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -13560,12 +13560,12 @@ impl Rcgcssi {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="SSI Module 2 Run Mode Clock Gating Control"]
+    #[doc="Returns true if R2 != 0"]
     #[inline] pub fn test_r2(&self) -> bool {
         self.r2() != 0
     }
 
-    #[doc="SSI Module 2 Run Mode Clock Gating Control"]
+    #[doc="Sets the R2 field."]
     #[inline] pub fn set_r2<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -13579,12 +13579,12 @@ impl Rcgcssi {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="SSI Module 3 Run Mode Clock Gating Control"]
+    #[doc="Returns true if R3 != 0"]
     #[inline] pub fn test_r3(&self) -> bool {
         self.r3() != 0
     }
 
-    #[doc="SSI Module 3 Run Mode Clock Gating Control"]
+    #[doc="Sets the R3 field."]
     #[inline] pub fn set_r3<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -13629,12 +13629,12 @@ impl Rcgci2c {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="I2C Module 0 Run Mode Clock Gating Control"]
+    #[doc="Returns true if R0 != 0"]
     #[inline] pub fn test_r0(&self) -> bool {
         self.r0() != 0
     }
 
-    #[doc="I2C Module 0 Run Mode Clock Gating Control"]
+    #[doc="Sets the R0 field."]
     #[inline] pub fn set_r0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -13648,12 +13648,12 @@ impl Rcgci2c {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="I2C Module 1 Run Mode Clock Gating Control"]
+    #[doc="Returns true if R1 != 0"]
     #[inline] pub fn test_r1(&self) -> bool {
         self.r1() != 0
     }
 
-    #[doc="I2C Module 1 Run Mode Clock Gating Control"]
+    #[doc="Sets the R1 field."]
     #[inline] pub fn set_r1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -13667,12 +13667,12 @@ impl Rcgci2c {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="I2C Module 2 Run Mode Clock Gating Control"]
+    #[doc="Returns true if R2 != 0"]
     #[inline] pub fn test_r2(&self) -> bool {
         self.r2() != 0
     }
 
-    #[doc="I2C Module 2 Run Mode Clock Gating Control"]
+    #[doc="Sets the R2 field."]
     #[inline] pub fn set_r2<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -13686,12 +13686,12 @@ impl Rcgci2c {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="I2C Module 3 Run Mode Clock Gating Control"]
+    #[doc="Returns true if R3 != 0"]
     #[inline] pub fn test_r3(&self) -> bool {
         self.r3() != 0
     }
 
-    #[doc="I2C Module 3 Run Mode Clock Gating Control"]
+    #[doc="Sets the R3 field."]
     #[inline] pub fn set_r3<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -13705,12 +13705,12 @@ impl Rcgci2c {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="I2C Module 4 Run Mode Clock Gating Control"]
+    #[doc="Returns true if R4 != 0"]
     #[inline] pub fn test_r4(&self) -> bool {
         self.r4() != 0
     }
 
-    #[doc="I2C Module 4 Run Mode Clock Gating Control"]
+    #[doc="Sets the R4 field."]
     #[inline] pub fn set_r4<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -13724,12 +13724,12 @@ impl Rcgci2c {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="I2C Module 5 Run Mode Clock Gating Control"]
+    #[doc="Returns true if R5 != 0"]
     #[inline] pub fn test_r5(&self) -> bool {
         self.r5() != 0
     }
 
-    #[doc="I2C Module 5 Run Mode Clock Gating Control"]
+    #[doc="Sets the R5 field."]
     #[inline] pub fn set_r5<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -13743,12 +13743,12 @@ impl Rcgci2c {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="I2C Module 6 Run Mode Clock Gating Control"]
+    #[doc="Returns true if R6 != 0"]
     #[inline] pub fn test_r6(&self) -> bool {
         self.r6() != 0
     }
 
-    #[doc="I2C Module 6 Run Mode Clock Gating Control"]
+    #[doc="Sets the R6 field."]
     #[inline] pub fn set_r6<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -13762,12 +13762,12 @@ impl Rcgci2c {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="I2C Module 7 Run Mode Clock Gating Control"]
+    #[doc="Returns true if R7 != 0"]
     #[inline] pub fn test_r7(&self) -> bool {
         self.r7() != 0
     }
 
-    #[doc="I2C Module 7 Run Mode Clock Gating Control"]
+    #[doc="Sets the R7 field."]
     #[inline] pub fn set_r7<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -13781,12 +13781,12 @@ impl Rcgci2c {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
     }
 
-    #[doc="I2C Module 8 Run Mode Clock Gating Control"]
+    #[doc="Returns true if R8 != 0"]
     #[inline] pub fn test_r8(&self) -> bool {
         self.r8() != 0
     }
 
-    #[doc="I2C Module 8 Run Mode Clock Gating Control"]
+    #[doc="Sets the R8 field."]
     #[inline] pub fn set_r8<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -13800,12 +13800,12 @@ impl Rcgci2c {
         unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
     }
 
-    #[doc="I2C Module 9 Run Mode Clock Gating Control"]
+    #[doc="Returns true if R9 != 0"]
     #[inline] pub fn test_r9(&self) -> bool {
         self.r9() != 0
     }
 
-    #[doc="I2C Module 9 Run Mode Clock Gating Control"]
+    #[doc="Sets the R9 field."]
     #[inline] pub fn set_r9<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -13856,12 +13856,12 @@ impl Rcgcusb {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="USB Module Run Mode Clock Gating Control"]
+    #[doc="Returns true if R0 != 0"]
     #[inline] pub fn test_r0(&self) -> bool {
         self.r0() != 0
     }
 
-    #[doc="USB Module Run Mode Clock Gating Control"]
+    #[doc="Sets the R0 field."]
     #[inline] pub fn set_r0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -13903,12 +13903,12 @@ impl Rcgcephy {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Ethernet PHY Module Run Mode Clock Gating Control"]
+    #[doc="Returns true if R0 != 0"]
     #[inline] pub fn test_r0(&self) -> bool {
         self.r0() != 0
     }
 
-    #[doc="Ethernet PHY Module Run Mode Clock Gating Control"]
+    #[doc="Sets the R0 field."]
     #[inline] pub fn set_r0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -13950,12 +13950,12 @@ impl Rcgccan {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="CAN Module 0 Run Mode Clock Gating Control"]
+    #[doc="Returns true if R0 != 0"]
     #[inline] pub fn test_r0(&self) -> bool {
         self.r0() != 0
     }
 
-    #[doc="CAN Module 0 Run Mode Clock Gating Control"]
+    #[doc="Sets the R0 field."]
     #[inline] pub fn set_r0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -13969,12 +13969,12 @@ impl Rcgccan {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="CAN Module 1 Run Mode Clock Gating Control"]
+    #[doc="Returns true if R1 != 0"]
     #[inline] pub fn test_r1(&self) -> bool {
         self.r1() != 0
     }
 
-    #[doc="CAN Module 1 Run Mode Clock Gating Control"]
+    #[doc="Sets the R1 field."]
     #[inline] pub fn set_r1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -14017,12 +14017,12 @@ impl Rcgcadc {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="ADC Module 0 Run Mode Clock Gating Control"]
+    #[doc="Returns true if R0 != 0"]
     #[inline] pub fn test_r0(&self) -> bool {
         self.r0() != 0
     }
 
-    #[doc="ADC Module 0 Run Mode Clock Gating Control"]
+    #[doc="Sets the R0 field."]
     #[inline] pub fn set_r0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -14036,12 +14036,12 @@ impl Rcgcadc {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="ADC Module 1 Run Mode Clock Gating Control"]
+    #[doc="Returns true if R1 != 0"]
     #[inline] pub fn test_r1(&self) -> bool {
         self.r1() != 0
     }
 
-    #[doc="ADC Module 1 Run Mode Clock Gating Control"]
+    #[doc="Sets the R1 field."]
     #[inline] pub fn set_r1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -14084,12 +14084,12 @@ impl Rcgcacmp {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Analog Comparator Module 0 Run Mode Clock Gating Control"]
+    #[doc="Returns true if R0 != 0"]
     #[inline] pub fn test_r0(&self) -> bool {
         self.r0() != 0
     }
 
-    #[doc="Analog Comparator Module 0 Run Mode Clock Gating Control"]
+    #[doc="Sets the R0 field."]
     #[inline] pub fn set_r0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -14131,12 +14131,12 @@ impl Rcgcpwm {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="PWM Module 0 Run Mode Clock Gating Control"]
+    #[doc="Returns true if R0 != 0"]
     #[inline] pub fn test_r0(&self) -> bool {
         self.r0() != 0
     }
 
-    #[doc="PWM Module 0 Run Mode Clock Gating Control"]
+    #[doc="Sets the R0 field."]
     #[inline] pub fn set_r0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -14178,12 +14178,12 @@ impl Rcgcqei {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="QEI Module 0 Run Mode Clock Gating Control"]
+    #[doc="Returns true if R0 != 0"]
     #[inline] pub fn test_r0(&self) -> bool {
         self.r0() != 0
     }
 
-    #[doc="QEI Module 0 Run Mode Clock Gating Control"]
+    #[doc="Sets the R0 field."]
     #[inline] pub fn set_r0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -14225,12 +14225,12 @@ impl Rcgceeprom {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="EEPROM Module Run Mode Clock Gating Control"]
+    #[doc="Returns true if R0 != 0"]
     #[inline] pub fn test_r0(&self) -> bool {
         self.r0() != 0
     }
 
-    #[doc="EEPROM Module Run Mode Clock Gating Control"]
+    #[doc="Sets the R0 field."]
     #[inline] pub fn set_r0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -14272,12 +14272,12 @@ impl Rcgcccm {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="CRC and Cryptographic Modules Run Mode Clock Gating Control"]
+    #[doc="Returns true if R0 != 0"]
     #[inline] pub fn test_r0(&self) -> bool {
         self.r0() != 0
     }
 
-    #[doc="CRC and Cryptographic Modules Run Mode Clock Gating Control"]
+    #[doc="Sets the R0 field."]
     #[inline] pub fn set_r0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -14319,12 +14319,12 @@ impl Rcgcemac {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Ethernet MAC Module 0 Run Mode Clock Gating Control"]
+    #[doc="Returns true if R0 != 0"]
     #[inline] pub fn test_r0(&self) -> bool {
         self.r0() != 0
     }
 
-    #[doc="Ethernet MAC Module 0 Run Mode Clock Gating Control"]
+    #[doc="Sets the R0 field."]
     #[inline] pub fn set_r0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -14366,12 +14366,12 @@ impl Scgcwd {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Watchdog Timer 0 Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if S0 != 0"]
     #[inline] pub fn test_s0(&self) -> bool {
         self.s0() != 0
     }
 
-    #[doc="Watchdog Timer 0 Sleep Mode Clock Gating Control"]
+    #[doc="Sets the S0 field."]
     #[inline] pub fn set_s0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -14385,12 +14385,12 @@ impl Scgcwd {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="Watchdog Timer 1 Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if S1 != 0"]
     #[inline] pub fn test_s1(&self) -> bool {
         self.s1() != 0
     }
 
-    #[doc="Watchdog Timer 1 Sleep Mode Clock Gating Control"]
+    #[doc="Sets the S1 field."]
     #[inline] pub fn set_s1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -14433,12 +14433,12 @@ impl Scgctimer {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 0 Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if S0 != 0"]
     #[inline] pub fn test_s0(&self) -> bool {
         self.s0() != 0
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 0 Sleep Mode Clock Gating Control"]
+    #[doc="Sets the S0 field."]
     #[inline] pub fn set_s0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -14452,12 +14452,12 @@ impl Scgctimer {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 1 Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if S1 != 0"]
     #[inline] pub fn test_s1(&self) -> bool {
         self.s1() != 0
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 1 Sleep Mode Clock Gating Control"]
+    #[doc="Sets the S1 field."]
     #[inline] pub fn set_s1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -14471,12 +14471,12 @@ impl Scgctimer {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 2 Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if S2 != 0"]
     #[inline] pub fn test_s2(&self) -> bool {
         self.s2() != 0
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 2 Sleep Mode Clock Gating Control"]
+    #[doc="Sets the S2 field."]
     #[inline] pub fn set_s2<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -14490,12 +14490,12 @@ impl Scgctimer {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 3 Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if S3 != 0"]
     #[inline] pub fn test_s3(&self) -> bool {
         self.s3() != 0
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 3 Sleep Mode Clock Gating Control"]
+    #[doc="Sets the S3 field."]
     #[inline] pub fn set_s3<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -14509,12 +14509,12 @@ impl Scgctimer {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 4 Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if S4 != 0"]
     #[inline] pub fn test_s4(&self) -> bool {
         self.s4() != 0
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 4 Sleep Mode Clock Gating Control"]
+    #[doc="Sets the S4 field."]
     #[inline] pub fn set_s4<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -14528,12 +14528,12 @@ impl Scgctimer {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 5 Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if S5 != 0"]
     #[inline] pub fn test_s5(&self) -> bool {
         self.s5() != 0
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 5 Sleep Mode Clock Gating Control"]
+    #[doc="Sets the S5 field."]
     #[inline] pub fn set_s5<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -14547,12 +14547,12 @@ impl Scgctimer {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 6 Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if S6 != 0"]
     #[inline] pub fn test_s6(&self) -> bool {
         self.s6() != 0
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 6 Sleep Mode Clock Gating Control"]
+    #[doc="Sets the S6 field."]
     #[inline] pub fn set_s6<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -14566,12 +14566,12 @@ impl Scgctimer {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 7 Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if S7 != 0"]
     #[inline] pub fn test_s7(&self) -> bool {
         self.s7() != 0
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 7 Sleep Mode Clock Gating Control"]
+    #[doc="Sets the S7 field."]
     #[inline] pub fn set_s7<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -14620,12 +14620,12 @@ impl Scgcgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="GPIO Port A Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if S0 != 0"]
     #[inline] pub fn test_s0(&self) -> bool {
         self.s0() != 0
     }
 
-    #[doc="GPIO Port A Sleep Mode Clock Gating Control"]
+    #[doc="Sets the S0 field."]
     #[inline] pub fn set_s0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -14639,12 +14639,12 @@ impl Scgcgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="GPIO Port B Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if S1 != 0"]
     #[inline] pub fn test_s1(&self) -> bool {
         self.s1() != 0
     }
 
-    #[doc="GPIO Port B Sleep Mode Clock Gating Control"]
+    #[doc="Sets the S1 field."]
     #[inline] pub fn set_s1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -14658,12 +14658,12 @@ impl Scgcgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="GPIO Port C Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if S2 != 0"]
     #[inline] pub fn test_s2(&self) -> bool {
         self.s2() != 0
     }
 
-    #[doc="GPIO Port C Sleep Mode Clock Gating Control"]
+    #[doc="Sets the S2 field."]
     #[inline] pub fn set_s2<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -14677,12 +14677,12 @@ impl Scgcgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="GPIO Port D Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if S3 != 0"]
     #[inline] pub fn test_s3(&self) -> bool {
         self.s3() != 0
     }
 
-    #[doc="GPIO Port D Sleep Mode Clock Gating Control"]
+    #[doc="Sets the S3 field."]
     #[inline] pub fn set_s3<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -14696,12 +14696,12 @@ impl Scgcgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="GPIO Port E Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if S4 != 0"]
     #[inline] pub fn test_s4(&self) -> bool {
         self.s4() != 0
     }
 
-    #[doc="GPIO Port E Sleep Mode Clock Gating Control"]
+    #[doc="Sets the S4 field."]
     #[inline] pub fn set_s4<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -14715,12 +14715,12 @@ impl Scgcgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="GPIO Port F Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if S5 != 0"]
     #[inline] pub fn test_s5(&self) -> bool {
         self.s5() != 0
     }
 
-    #[doc="GPIO Port F Sleep Mode Clock Gating Control"]
+    #[doc="Sets the S5 field."]
     #[inline] pub fn set_s5<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -14734,12 +14734,12 @@ impl Scgcgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="GPIO Port G Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if S6 != 0"]
     #[inline] pub fn test_s6(&self) -> bool {
         self.s6() != 0
     }
 
-    #[doc="GPIO Port G Sleep Mode Clock Gating Control"]
+    #[doc="Sets the S6 field."]
     #[inline] pub fn set_s6<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -14753,12 +14753,12 @@ impl Scgcgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="GPIO Port H Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if S7 != 0"]
     #[inline] pub fn test_s7(&self) -> bool {
         self.s7() != 0
     }
 
-    #[doc="GPIO Port H Sleep Mode Clock Gating Control"]
+    #[doc="Sets the S7 field."]
     #[inline] pub fn set_s7<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -14772,12 +14772,12 @@ impl Scgcgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
     }
 
-    #[doc="GPIO Port J Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if S8 != 0"]
     #[inline] pub fn test_s8(&self) -> bool {
         self.s8() != 0
     }
 
-    #[doc="GPIO Port J Sleep Mode Clock Gating Control"]
+    #[doc="Sets the S8 field."]
     #[inline] pub fn set_s8<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -14791,12 +14791,12 @@ impl Scgcgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
     }
 
-    #[doc="GPIO Port K Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if S9 != 0"]
     #[inline] pub fn test_s9(&self) -> bool {
         self.s9() != 0
     }
 
-    #[doc="GPIO Port K Sleep Mode Clock Gating Control"]
+    #[doc="Sets the S9 field."]
     #[inline] pub fn set_s9<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -14810,12 +14810,12 @@ impl Scgcgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x1) as u8) } // [10]
     }
 
-    #[doc="GPIO Port L Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if S10 != 0"]
     #[inline] pub fn test_s10(&self) -> bool {
         self.s10() != 0
     }
 
-    #[doc="GPIO Port L Sleep Mode Clock Gating Control"]
+    #[doc="Sets the S10 field."]
     #[inline] pub fn set_s10<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -14829,12 +14829,12 @@ impl Scgcgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 11) & 0x1) as u8) } // [11]
     }
 
-    #[doc="GPIO Port M Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if S11 != 0"]
     #[inline] pub fn test_s11(&self) -> bool {
         self.s11() != 0
     }
 
-    #[doc="GPIO Port M Sleep Mode Clock Gating Control"]
+    #[doc="Sets the S11 field."]
     #[inline] pub fn set_s11<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -14848,12 +14848,12 @@ impl Scgcgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 12) & 0x1) as u8) } // [12]
     }
 
-    #[doc="GPIO Port N Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if S12 != 0"]
     #[inline] pub fn test_s12(&self) -> bool {
         self.s12() != 0
     }
 
-    #[doc="GPIO Port N Sleep Mode Clock Gating Control"]
+    #[doc="Sets the S12 field."]
     #[inline] pub fn set_s12<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -14867,12 +14867,12 @@ impl Scgcgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 13) & 0x1) as u8) } // [13]
     }
 
-    #[doc="GPIO Port P Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if S13 != 0"]
     #[inline] pub fn test_s13(&self) -> bool {
         self.s13() != 0
     }
 
-    #[doc="GPIO Port P Sleep Mode Clock Gating Control"]
+    #[doc="Sets the S13 field."]
     #[inline] pub fn set_s13<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -14886,12 +14886,12 @@ impl Scgcgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 14) & 0x1) as u8) } // [14]
     }
 
-    #[doc="GPIO Port Q Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if S14 != 0"]
     #[inline] pub fn test_s14(&self) -> bool {
         self.s14() != 0
     }
 
-    #[doc="GPIO Port Q Sleep Mode Clock Gating Control"]
+    #[doc="Sets the S14 field."]
     #[inline] pub fn set_s14<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -14947,12 +14947,12 @@ impl Scgcdma {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="uDMA Module Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if S0 != 0"]
     #[inline] pub fn test_s0(&self) -> bool {
         self.s0() != 0
     }
 
-    #[doc="uDMA Module Sleep Mode Clock Gating Control"]
+    #[doc="Sets the S0 field."]
     #[inline] pub fn set_s0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -14994,12 +14994,12 @@ impl Scgcepi {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="EPI Module Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if S0 != 0"]
     #[inline] pub fn test_s0(&self) -> bool {
         self.s0() != 0
     }
 
-    #[doc="EPI Module Sleep Mode Clock Gating Control"]
+    #[doc="Sets the S0 field."]
     #[inline] pub fn set_s0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -15041,12 +15041,12 @@ impl Scgchib {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Hibernation Module Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if S0 != 0"]
     #[inline] pub fn test_s0(&self) -> bool {
         self.s0() != 0
     }
 
-    #[doc="Hibernation Module Sleep Mode Clock Gating Control"]
+    #[doc="Sets the S0 field."]
     #[inline] pub fn set_s0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -15088,12 +15088,12 @@ impl Scgcuart {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="UART Module 0 Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if S0 != 0"]
     #[inline] pub fn test_s0(&self) -> bool {
         self.s0() != 0
     }
 
-    #[doc="UART Module 0 Sleep Mode Clock Gating Control"]
+    #[doc="Sets the S0 field."]
     #[inline] pub fn set_s0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -15107,12 +15107,12 @@ impl Scgcuart {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="UART Module 1 Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if S1 != 0"]
     #[inline] pub fn test_s1(&self) -> bool {
         self.s1() != 0
     }
 
-    #[doc="UART Module 1 Sleep Mode Clock Gating Control"]
+    #[doc="Sets the S1 field."]
     #[inline] pub fn set_s1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -15126,12 +15126,12 @@ impl Scgcuart {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="UART Module 2 Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if S2 != 0"]
     #[inline] pub fn test_s2(&self) -> bool {
         self.s2() != 0
     }
 
-    #[doc="UART Module 2 Sleep Mode Clock Gating Control"]
+    #[doc="Sets the S2 field."]
     #[inline] pub fn set_s2<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -15145,12 +15145,12 @@ impl Scgcuart {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="UART Module 3 Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if S3 != 0"]
     #[inline] pub fn test_s3(&self) -> bool {
         self.s3() != 0
     }
 
-    #[doc="UART Module 3 Sleep Mode Clock Gating Control"]
+    #[doc="Sets the S3 field."]
     #[inline] pub fn set_s3<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -15164,12 +15164,12 @@ impl Scgcuart {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="UART Module 4 Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if S4 != 0"]
     #[inline] pub fn test_s4(&self) -> bool {
         self.s4() != 0
     }
 
-    #[doc="UART Module 4 Sleep Mode Clock Gating Control"]
+    #[doc="Sets the S4 field."]
     #[inline] pub fn set_s4<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -15183,12 +15183,12 @@ impl Scgcuart {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="UART Module 5 Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if S5 != 0"]
     #[inline] pub fn test_s5(&self) -> bool {
         self.s5() != 0
     }
 
-    #[doc="UART Module 5 Sleep Mode Clock Gating Control"]
+    #[doc="Sets the S5 field."]
     #[inline] pub fn set_s5<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -15202,12 +15202,12 @@ impl Scgcuart {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="UART Module 6 Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if S6 != 0"]
     #[inline] pub fn test_s6(&self) -> bool {
         self.s6() != 0
     }
 
-    #[doc="UART Module 6 Sleep Mode Clock Gating Control"]
+    #[doc="Sets the S6 field."]
     #[inline] pub fn set_s6<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -15221,12 +15221,12 @@ impl Scgcuart {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="UART Module 7 Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if S7 != 0"]
     #[inline] pub fn test_s7(&self) -> bool {
         self.s7() != 0
     }
 
-    #[doc="UART Module 7 Sleep Mode Clock Gating Control"]
+    #[doc="Sets the S7 field."]
     #[inline] pub fn set_s7<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -15275,12 +15275,12 @@ impl Scgcssi {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="SSI Module 0 Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if S0 != 0"]
     #[inline] pub fn test_s0(&self) -> bool {
         self.s0() != 0
     }
 
-    #[doc="SSI Module 0 Sleep Mode Clock Gating Control"]
+    #[doc="Sets the S0 field."]
     #[inline] pub fn set_s0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -15294,12 +15294,12 @@ impl Scgcssi {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="SSI Module 1 Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if S1 != 0"]
     #[inline] pub fn test_s1(&self) -> bool {
         self.s1() != 0
     }
 
-    #[doc="SSI Module 1 Sleep Mode Clock Gating Control"]
+    #[doc="Sets the S1 field."]
     #[inline] pub fn set_s1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -15313,12 +15313,12 @@ impl Scgcssi {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="SSI Module 2 Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if S2 != 0"]
     #[inline] pub fn test_s2(&self) -> bool {
         self.s2() != 0
     }
 
-    #[doc="SSI Module 2 Sleep Mode Clock Gating Control"]
+    #[doc="Sets the S2 field."]
     #[inline] pub fn set_s2<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -15332,12 +15332,12 @@ impl Scgcssi {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="SSI Module 3 Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if S3 != 0"]
     #[inline] pub fn test_s3(&self) -> bool {
         self.s3() != 0
     }
 
-    #[doc="SSI Module 3 Sleep Mode Clock Gating Control"]
+    #[doc="Sets the S3 field."]
     #[inline] pub fn set_s3<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -15382,12 +15382,12 @@ impl Scgci2c {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="I2C Module 0 Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if S0 != 0"]
     #[inline] pub fn test_s0(&self) -> bool {
         self.s0() != 0
     }
 
-    #[doc="I2C Module 0 Sleep Mode Clock Gating Control"]
+    #[doc="Sets the S0 field."]
     #[inline] pub fn set_s0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -15401,12 +15401,12 @@ impl Scgci2c {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="I2C Module 1 Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if S1 != 0"]
     #[inline] pub fn test_s1(&self) -> bool {
         self.s1() != 0
     }
 
-    #[doc="I2C Module 1 Sleep Mode Clock Gating Control"]
+    #[doc="Sets the S1 field."]
     #[inline] pub fn set_s1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -15420,12 +15420,12 @@ impl Scgci2c {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="I2C Module 2 Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if S2 != 0"]
     #[inline] pub fn test_s2(&self) -> bool {
         self.s2() != 0
     }
 
-    #[doc="I2C Module 2 Sleep Mode Clock Gating Control"]
+    #[doc="Sets the S2 field."]
     #[inline] pub fn set_s2<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -15439,12 +15439,12 @@ impl Scgci2c {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="I2C Module 3 Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if S3 != 0"]
     #[inline] pub fn test_s3(&self) -> bool {
         self.s3() != 0
     }
 
-    #[doc="I2C Module 3 Sleep Mode Clock Gating Control"]
+    #[doc="Sets the S3 field."]
     #[inline] pub fn set_s3<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -15458,12 +15458,12 @@ impl Scgci2c {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="I2C Module 4 Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if S4 != 0"]
     #[inline] pub fn test_s4(&self) -> bool {
         self.s4() != 0
     }
 
-    #[doc="I2C Module 4 Sleep Mode Clock Gating Control"]
+    #[doc="Sets the S4 field."]
     #[inline] pub fn set_s4<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -15477,12 +15477,12 @@ impl Scgci2c {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="I2C Module 5 Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if S5 != 0"]
     #[inline] pub fn test_s5(&self) -> bool {
         self.s5() != 0
     }
 
-    #[doc="I2C Module 5 Sleep Mode Clock Gating Control"]
+    #[doc="Sets the S5 field."]
     #[inline] pub fn set_s5<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -15496,12 +15496,12 @@ impl Scgci2c {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="I2C Module 6 Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if S6 != 0"]
     #[inline] pub fn test_s6(&self) -> bool {
         self.s6() != 0
     }
 
-    #[doc="I2C Module 6 Sleep Mode Clock Gating Control"]
+    #[doc="Sets the S6 field."]
     #[inline] pub fn set_s6<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -15515,12 +15515,12 @@ impl Scgci2c {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="I2C Module 7 Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if S7 != 0"]
     #[inline] pub fn test_s7(&self) -> bool {
         self.s7() != 0
     }
 
-    #[doc="I2C Module 7 Sleep Mode Clock Gating Control"]
+    #[doc="Sets the S7 field."]
     #[inline] pub fn set_s7<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -15534,12 +15534,12 @@ impl Scgci2c {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
     }
 
-    #[doc="I2C Module 8 Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if S8 != 0"]
     #[inline] pub fn test_s8(&self) -> bool {
         self.s8() != 0
     }
 
-    #[doc="I2C Module 8 Sleep Mode Clock Gating Control"]
+    #[doc="Sets the S8 field."]
     #[inline] pub fn set_s8<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -15553,12 +15553,12 @@ impl Scgci2c {
         unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
     }
 
-    #[doc="I2C Module 9 Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if S9 != 0"]
     #[inline] pub fn test_s9(&self) -> bool {
         self.s9() != 0
     }
 
-    #[doc="I2C Module 9 Sleep Mode Clock Gating Control"]
+    #[doc="Sets the S9 field."]
     #[inline] pub fn set_s9<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -15609,12 +15609,12 @@ impl Scgcusb {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="USB Module Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if S0 != 0"]
     #[inline] pub fn test_s0(&self) -> bool {
         self.s0() != 0
     }
 
-    #[doc="USB Module Sleep Mode Clock Gating Control"]
+    #[doc="Sets the S0 field."]
     #[inline] pub fn set_s0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -15656,12 +15656,12 @@ impl Scgcephy {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="PHY Module Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if S0 != 0"]
     #[inline] pub fn test_s0(&self) -> bool {
         self.s0() != 0
     }
 
-    #[doc="PHY Module Sleep Mode Clock Gating Control"]
+    #[doc="Sets the S0 field."]
     #[inline] pub fn set_s0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -15703,12 +15703,12 @@ impl Scgccan {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="CAN Module 0 Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if S0 != 0"]
     #[inline] pub fn test_s0(&self) -> bool {
         self.s0() != 0
     }
 
-    #[doc="CAN Module 0 Sleep Mode Clock Gating Control"]
+    #[doc="Sets the S0 field."]
     #[inline] pub fn set_s0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -15722,12 +15722,12 @@ impl Scgccan {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="CAN Module 1 Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if S1 != 0"]
     #[inline] pub fn test_s1(&self) -> bool {
         self.s1() != 0
     }
 
-    #[doc="CAN Module 1 Sleep Mode Clock Gating Control"]
+    #[doc="Sets the S1 field."]
     #[inline] pub fn set_s1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -15770,12 +15770,12 @@ impl Scgcadc {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="ADC Module 0 Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if S0 != 0"]
     #[inline] pub fn test_s0(&self) -> bool {
         self.s0() != 0
     }
 
-    #[doc="ADC Module 0 Sleep Mode Clock Gating Control"]
+    #[doc="Sets the S0 field."]
     #[inline] pub fn set_s0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -15789,12 +15789,12 @@ impl Scgcadc {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="ADC Module 1 Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if S1 != 0"]
     #[inline] pub fn test_s1(&self) -> bool {
         self.s1() != 0
     }
 
-    #[doc="ADC Module 1 Sleep Mode Clock Gating Control"]
+    #[doc="Sets the S1 field."]
     #[inline] pub fn set_s1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -15837,12 +15837,12 @@ impl Scgcacmp {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Analog Comparator Module 0 Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if S0 != 0"]
     #[inline] pub fn test_s0(&self) -> bool {
         self.s0() != 0
     }
 
-    #[doc="Analog Comparator Module 0 Sleep Mode Clock Gating Control"]
+    #[doc="Sets the S0 field."]
     #[inline] pub fn set_s0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -15884,12 +15884,12 @@ impl Scgcpwm {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="PWM Module 0 Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if S0 != 0"]
     #[inline] pub fn test_s0(&self) -> bool {
         self.s0() != 0
     }
 
-    #[doc="PWM Module 0 Sleep Mode Clock Gating Control"]
+    #[doc="Sets the S0 field."]
     #[inline] pub fn set_s0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -15931,12 +15931,12 @@ impl Scgcqei {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="QEI Module 0 Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if S0 != 0"]
     #[inline] pub fn test_s0(&self) -> bool {
         self.s0() != 0
     }
 
-    #[doc="QEI Module 0 Sleep Mode Clock Gating Control"]
+    #[doc="Sets the S0 field."]
     #[inline] pub fn set_s0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -15978,12 +15978,12 @@ impl Scgceeprom {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="EEPROM Module Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if S0 != 0"]
     #[inline] pub fn test_s0(&self) -> bool {
         self.s0() != 0
     }
 
-    #[doc="EEPROM Module Sleep Mode Clock Gating Control"]
+    #[doc="Sets the S0 field."]
     #[inline] pub fn set_s0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -16025,12 +16025,12 @@ impl Scgcccm {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="CRC and Cryptographic Modules Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if S0 != 0"]
     #[inline] pub fn test_s0(&self) -> bool {
         self.s0() != 0
     }
 
-    #[doc="CRC and Cryptographic Modules Sleep Mode Clock Gating Control"]
+    #[doc="Sets the S0 field."]
     #[inline] pub fn set_s0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -16072,12 +16072,12 @@ impl Scgcemac {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Ethernet MAC Module 0 Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if S0 != 0"]
     #[inline] pub fn test_s0(&self) -> bool {
         self.s0() != 0
     }
 
-    #[doc="Ethernet MAC Module 0 Sleep Mode Clock Gating Control"]
+    #[doc="Sets the S0 field."]
     #[inline] pub fn set_s0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -16119,12 +16119,12 @@ impl Dcgcwd {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Watchdog Timer 0 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if D0 != 0"]
     #[inline] pub fn test_d0(&self) -> bool {
         self.d0() != 0
     }
 
-    #[doc="Watchdog Timer 0 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Sets the D0 field."]
     #[inline] pub fn set_d0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -16138,12 +16138,12 @@ impl Dcgcwd {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="Watchdog Timer 1 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if D1 != 0"]
     #[inline] pub fn test_d1(&self) -> bool {
         self.d1() != 0
     }
 
-    #[doc="Watchdog Timer 1 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Sets the D1 field."]
     #[inline] pub fn set_d1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -16186,12 +16186,12 @@ impl Dcgctimer {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 0 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if D0 != 0"]
     #[inline] pub fn test_d0(&self) -> bool {
         self.d0() != 0
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 0 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Sets the D0 field."]
     #[inline] pub fn set_d0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -16205,12 +16205,12 @@ impl Dcgctimer {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 1 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if D1 != 0"]
     #[inline] pub fn test_d1(&self) -> bool {
         self.d1() != 0
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 1 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Sets the D1 field."]
     #[inline] pub fn set_d1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -16224,12 +16224,12 @@ impl Dcgctimer {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 2 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if D2 != 0"]
     #[inline] pub fn test_d2(&self) -> bool {
         self.d2() != 0
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 2 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Sets the D2 field."]
     #[inline] pub fn set_d2<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -16243,12 +16243,12 @@ impl Dcgctimer {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 3 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if D3 != 0"]
     #[inline] pub fn test_d3(&self) -> bool {
         self.d3() != 0
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 3 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Sets the D3 field."]
     #[inline] pub fn set_d3<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -16262,12 +16262,12 @@ impl Dcgctimer {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 4 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if D4 != 0"]
     #[inline] pub fn test_d4(&self) -> bool {
         self.d4() != 0
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 4 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Sets the D4 field."]
     #[inline] pub fn set_d4<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -16281,12 +16281,12 @@ impl Dcgctimer {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 5 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if D5 != 0"]
     #[inline] pub fn test_d5(&self) -> bool {
         self.d5() != 0
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 5 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Sets the D5 field."]
     #[inline] pub fn set_d5<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -16300,12 +16300,12 @@ impl Dcgctimer {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 6 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if D6 != 0"]
     #[inline] pub fn test_d6(&self) -> bool {
         self.d6() != 0
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 6 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Sets the D6 field."]
     #[inline] pub fn set_d6<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -16319,12 +16319,12 @@ impl Dcgctimer {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 7 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if D7 != 0"]
     #[inline] pub fn test_d7(&self) -> bool {
         self.d7() != 0
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 7 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Sets the D7 field."]
     #[inline] pub fn set_d7<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -16373,12 +16373,12 @@ impl Dcgcgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="GPIO Port A Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if D0 != 0"]
     #[inline] pub fn test_d0(&self) -> bool {
         self.d0() != 0
     }
 
-    #[doc="GPIO Port A Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Sets the D0 field."]
     #[inline] pub fn set_d0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -16392,12 +16392,12 @@ impl Dcgcgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="GPIO Port B Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if D1 != 0"]
     #[inline] pub fn test_d1(&self) -> bool {
         self.d1() != 0
     }
 
-    #[doc="GPIO Port B Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Sets the D1 field."]
     #[inline] pub fn set_d1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -16411,12 +16411,12 @@ impl Dcgcgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="GPIO Port C Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if D2 != 0"]
     #[inline] pub fn test_d2(&self) -> bool {
         self.d2() != 0
     }
 
-    #[doc="GPIO Port C Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Sets the D2 field."]
     #[inline] pub fn set_d2<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -16430,12 +16430,12 @@ impl Dcgcgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="GPIO Port D Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if D3 != 0"]
     #[inline] pub fn test_d3(&self) -> bool {
         self.d3() != 0
     }
 
-    #[doc="GPIO Port D Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Sets the D3 field."]
     #[inline] pub fn set_d3<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -16449,12 +16449,12 @@ impl Dcgcgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="GPIO Port E Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if D4 != 0"]
     #[inline] pub fn test_d4(&self) -> bool {
         self.d4() != 0
     }
 
-    #[doc="GPIO Port E Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Sets the D4 field."]
     #[inline] pub fn set_d4<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -16468,12 +16468,12 @@ impl Dcgcgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="GPIO Port F Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if D5 != 0"]
     #[inline] pub fn test_d5(&self) -> bool {
         self.d5() != 0
     }
 
-    #[doc="GPIO Port F Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Sets the D5 field."]
     #[inline] pub fn set_d5<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -16487,12 +16487,12 @@ impl Dcgcgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="GPIO Port G Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if D6 != 0"]
     #[inline] pub fn test_d6(&self) -> bool {
         self.d6() != 0
     }
 
-    #[doc="GPIO Port G Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Sets the D6 field."]
     #[inline] pub fn set_d6<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -16506,12 +16506,12 @@ impl Dcgcgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="GPIO Port H Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if D7 != 0"]
     #[inline] pub fn test_d7(&self) -> bool {
         self.d7() != 0
     }
 
-    #[doc="GPIO Port H Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Sets the D7 field."]
     #[inline] pub fn set_d7<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -16525,12 +16525,12 @@ impl Dcgcgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
     }
 
-    #[doc="GPIO Port J Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if D8 != 0"]
     #[inline] pub fn test_d8(&self) -> bool {
         self.d8() != 0
     }
 
-    #[doc="GPIO Port J Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Sets the D8 field."]
     #[inline] pub fn set_d8<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -16544,12 +16544,12 @@ impl Dcgcgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
     }
 
-    #[doc="GPIO Port K Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if D9 != 0"]
     #[inline] pub fn test_d9(&self) -> bool {
         self.d9() != 0
     }
 
-    #[doc="GPIO Port K Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Sets the D9 field."]
     #[inline] pub fn set_d9<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -16563,12 +16563,12 @@ impl Dcgcgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x1) as u8) } // [10]
     }
 
-    #[doc="GPIO Port L Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if D10 != 0"]
     #[inline] pub fn test_d10(&self) -> bool {
         self.d10() != 0
     }
 
-    #[doc="GPIO Port L Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Sets the D10 field."]
     #[inline] pub fn set_d10<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -16582,12 +16582,12 @@ impl Dcgcgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 11) & 0x1) as u8) } // [11]
     }
 
-    #[doc="GPIO Port M Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if D11 != 0"]
     #[inline] pub fn test_d11(&self) -> bool {
         self.d11() != 0
     }
 
-    #[doc="GPIO Port M Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Sets the D11 field."]
     #[inline] pub fn set_d11<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -16601,12 +16601,12 @@ impl Dcgcgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 12) & 0x1) as u8) } // [12]
     }
 
-    #[doc="GPIO Port N Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if D12 != 0"]
     #[inline] pub fn test_d12(&self) -> bool {
         self.d12() != 0
     }
 
-    #[doc="GPIO Port N Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Sets the D12 field."]
     #[inline] pub fn set_d12<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -16620,12 +16620,12 @@ impl Dcgcgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 13) & 0x1) as u8) } // [13]
     }
 
-    #[doc="GPIO Port P Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if D13 != 0"]
     #[inline] pub fn test_d13(&self) -> bool {
         self.d13() != 0
     }
 
-    #[doc="GPIO Port P Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Sets the D13 field."]
     #[inline] pub fn set_d13<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -16639,12 +16639,12 @@ impl Dcgcgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 14) & 0x1) as u8) } // [14]
     }
 
-    #[doc="GPIO Port Q Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if D14 != 0"]
     #[inline] pub fn test_d14(&self) -> bool {
         self.d14() != 0
     }
 
-    #[doc="GPIO Port Q Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Sets the D14 field."]
     #[inline] pub fn set_d14<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -16700,12 +16700,12 @@ impl Dcgcdma {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="uDMA Module Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if D0 != 0"]
     #[inline] pub fn test_d0(&self) -> bool {
         self.d0() != 0
     }
 
-    #[doc="uDMA Module Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Sets the D0 field."]
     #[inline] pub fn set_d0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -16747,12 +16747,12 @@ impl Dcgcepi {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="EPI Module Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if D0 != 0"]
     #[inline] pub fn test_d0(&self) -> bool {
         self.d0() != 0
     }
 
-    #[doc="EPI Module Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Sets the D0 field."]
     #[inline] pub fn set_d0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -16794,12 +16794,12 @@ impl Dcgchib {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Hibernation Module Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if D0 != 0"]
     #[inline] pub fn test_d0(&self) -> bool {
         self.d0() != 0
     }
 
-    #[doc="Hibernation Module Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Sets the D0 field."]
     #[inline] pub fn set_d0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -16841,12 +16841,12 @@ impl Dcgcuart {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="UART Module 0 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if D0 != 0"]
     #[inline] pub fn test_d0(&self) -> bool {
         self.d0() != 0
     }
 
-    #[doc="UART Module 0 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Sets the D0 field."]
     #[inline] pub fn set_d0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -16860,12 +16860,12 @@ impl Dcgcuart {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="UART Module 1 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if D1 != 0"]
     #[inline] pub fn test_d1(&self) -> bool {
         self.d1() != 0
     }
 
-    #[doc="UART Module 1 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Sets the D1 field."]
     #[inline] pub fn set_d1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -16879,12 +16879,12 @@ impl Dcgcuart {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="UART Module 2 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if D2 != 0"]
     #[inline] pub fn test_d2(&self) -> bool {
         self.d2() != 0
     }
 
-    #[doc="UART Module 2 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Sets the D2 field."]
     #[inline] pub fn set_d2<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -16898,12 +16898,12 @@ impl Dcgcuart {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="UART Module 3 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if D3 != 0"]
     #[inline] pub fn test_d3(&self) -> bool {
         self.d3() != 0
     }
 
-    #[doc="UART Module 3 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Sets the D3 field."]
     #[inline] pub fn set_d3<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -16917,12 +16917,12 @@ impl Dcgcuart {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="UART Module 4 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if D4 != 0"]
     #[inline] pub fn test_d4(&self) -> bool {
         self.d4() != 0
     }
 
-    #[doc="UART Module 4 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Sets the D4 field."]
     #[inline] pub fn set_d4<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -16936,12 +16936,12 @@ impl Dcgcuart {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="UART Module 5 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if D5 != 0"]
     #[inline] pub fn test_d5(&self) -> bool {
         self.d5() != 0
     }
 
-    #[doc="UART Module 5 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Sets the D5 field."]
     #[inline] pub fn set_d5<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -16955,12 +16955,12 @@ impl Dcgcuart {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="UART Module 6 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if D6 != 0"]
     #[inline] pub fn test_d6(&self) -> bool {
         self.d6() != 0
     }
 
-    #[doc="UART Module 6 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Sets the D6 field."]
     #[inline] pub fn set_d6<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -16974,12 +16974,12 @@ impl Dcgcuart {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="UART Module 7 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if D7 != 0"]
     #[inline] pub fn test_d7(&self) -> bool {
         self.d7() != 0
     }
 
-    #[doc="UART Module 7 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Sets the D7 field."]
     #[inline] pub fn set_d7<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -17028,12 +17028,12 @@ impl Dcgcssi {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="SSI Module 0 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if D0 != 0"]
     #[inline] pub fn test_d0(&self) -> bool {
         self.d0() != 0
     }
 
-    #[doc="SSI Module 0 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Sets the D0 field."]
     #[inline] pub fn set_d0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -17047,12 +17047,12 @@ impl Dcgcssi {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="SSI Module 1 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if D1 != 0"]
     #[inline] pub fn test_d1(&self) -> bool {
         self.d1() != 0
     }
 
-    #[doc="SSI Module 1 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Sets the D1 field."]
     #[inline] pub fn set_d1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -17066,12 +17066,12 @@ impl Dcgcssi {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="SSI Module 2 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if D2 != 0"]
     #[inline] pub fn test_d2(&self) -> bool {
         self.d2() != 0
     }
 
-    #[doc="SSI Module 2 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Sets the D2 field."]
     #[inline] pub fn set_d2<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -17085,12 +17085,12 @@ impl Dcgcssi {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="SSI Module 3 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if D3 != 0"]
     #[inline] pub fn test_d3(&self) -> bool {
         self.d3() != 0
     }
 
-    #[doc="SSI Module 3 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Sets the D3 field."]
     #[inline] pub fn set_d3<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -17135,12 +17135,12 @@ impl Dcgci2c {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="I2C Module 0 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if D0 != 0"]
     #[inline] pub fn test_d0(&self) -> bool {
         self.d0() != 0
     }
 
-    #[doc="I2C Module 0 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Sets the D0 field."]
     #[inline] pub fn set_d0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -17154,12 +17154,12 @@ impl Dcgci2c {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="I2C Module 1 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if D1 != 0"]
     #[inline] pub fn test_d1(&self) -> bool {
         self.d1() != 0
     }
 
-    #[doc="I2C Module 1 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Sets the D1 field."]
     #[inline] pub fn set_d1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -17173,12 +17173,12 @@ impl Dcgci2c {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="I2C Module 2 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if D2 != 0"]
     #[inline] pub fn test_d2(&self) -> bool {
         self.d2() != 0
     }
 
-    #[doc="I2C Module 2 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Sets the D2 field."]
     #[inline] pub fn set_d2<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -17192,12 +17192,12 @@ impl Dcgci2c {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="I2C Module 3 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if D3 != 0"]
     #[inline] pub fn test_d3(&self) -> bool {
         self.d3() != 0
     }
 
-    #[doc="I2C Module 3 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Sets the D3 field."]
     #[inline] pub fn set_d3<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -17211,12 +17211,12 @@ impl Dcgci2c {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="I2C Module 4 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if D4 != 0"]
     #[inline] pub fn test_d4(&self) -> bool {
         self.d4() != 0
     }
 
-    #[doc="I2C Module 4 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Sets the D4 field."]
     #[inline] pub fn set_d4<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -17230,12 +17230,12 @@ impl Dcgci2c {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="I2C Module 5 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if D5 != 0"]
     #[inline] pub fn test_d5(&self) -> bool {
         self.d5() != 0
     }
 
-    #[doc="I2C Module 5 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Sets the D5 field."]
     #[inline] pub fn set_d5<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -17249,12 +17249,12 @@ impl Dcgci2c {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="I2C Module 6 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if D6 != 0"]
     #[inline] pub fn test_d6(&self) -> bool {
         self.d6() != 0
     }
 
-    #[doc="I2C Module 6 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Sets the D6 field."]
     #[inline] pub fn set_d6<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -17268,12 +17268,12 @@ impl Dcgci2c {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="I2C Module 7 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if D7 != 0"]
     #[inline] pub fn test_d7(&self) -> bool {
         self.d7() != 0
     }
 
-    #[doc="I2C Module 7 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Sets the D7 field."]
     #[inline] pub fn set_d7<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -17287,12 +17287,12 @@ impl Dcgci2c {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
     }
 
-    #[doc="I2C Module 8 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if D8 != 0"]
     #[inline] pub fn test_d8(&self) -> bool {
         self.d8() != 0
     }
 
-    #[doc="I2C Module 8 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Sets the D8 field."]
     #[inline] pub fn set_d8<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -17306,12 +17306,12 @@ impl Dcgci2c {
         unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
     }
 
-    #[doc="I2C Module 9 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if D9 != 0"]
     #[inline] pub fn test_d9(&self) -> bool {
         self.d9() != 0
     }
 
-    #[doc="I2C Module 9 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Sets the D9 field."]
     #[inline] pub fn set_d9<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -17362,12 +17362,12 @@ impl Dcgcusb {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="USB Module Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if D0 != 0"]
     #[inline] pub fn test_d0(&self) -> bool {
         self.d0() != 0
     }
 
-    #[doc="USB Module Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Sets the D0 field."]
     #[inline] pub fn set_d0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -17409,12 +17409,12 @@ impl Dcgcephy {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="PHY Module Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if D0 != 0"]
     #[inline] pub fn test_d0(&self) -> bool {
         self.d0() != 0
     }
 
-    #[doc="PHY Module Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Sets the D0 field."]
     #[inline] pub fn set_d0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -17456,12 +17456,12 @@ impl Dcgccan {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="CAN Module 0 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if D0 != 0"]
     #[inline] pub fn test_d0(&self) -> bool {
         self.d0() != 0
     }
 
-    #[doc="CAN Module 0 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Sets the D0 field."]
     #[inline] pub fn set_d0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -17475,12 +17475,12 @@ impl Dcgccan {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="CAN Module 1 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if D1 != 0"]
     #[inline] pub fn test_d1(&self) -> bool {
         self.d1() != 0
     }
 
-    #[doc="CAN Module 1 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Sets the D1 field."]
     #[inline] pub fn set_d1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -17523,12 +17523,12 @@ impl Dcgcadc {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="ADC Module 0 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if D0 != 0"]
     #[inline] pub fn test_d0(&self) -> bool {
         self.d0() != 0
     }
 
-    #[doc="ADC Module 0 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Sets the D0 field."]
     #[inline] pub fn set_d0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -17542,12 +17542,12 @@ impl Dcgcadc {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="ADC Module 1 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if D1 != 0"]
     #[inline] pub fn test_d1(&self) -> bool {
         self.d1() != 0
     }
 
-    #[doc="ADC Module 1 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Sets the D1 field."]
     #[inline] pub fn set_d1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -17590,12 +17590,12 @@ impl Dcgcacmp {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Analog Comparator Module 0 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if D0 != 0"]
     #[inline] pub fn test_d0(&self) -> bool {
         self.d0() != 0
     }
 
-    #[doc="Analog Comparator Module 0 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Sets the D0 field."]
     #[inline] pub fn set_d0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -17637,12 +17637,12 @@ impl Dcgcpwm {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="PWM Module 0 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if D0 != 0"]
     #[inline] pub fn test_d0(&self) -> bool {
         self.d0() != 0
     }
 
-    #[doc="PWM Module 0 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Sets the D0 field."]
     #[inline] pub fn set_d0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -17684,12 +17684,12 @@ impl Dcgcqei {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="QEI Module 0 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if D0 != 0"]
     #[inline] pub fn test_d0(&self) -> bool {
         self.d0() != 0
     }
 
-    #[doc="QEI Module 0 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Sets the D0 field."]
     #[inline] pub fn set_d0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -17731,12 +17731,12 @@ impl Dcgceeprom {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="EEPROM Module Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if D0 != 0"]
     #[inline] pub fn test_d0(&self) -> bool {
         self.d0() != 0
     }
 
-    #[doc="EEPROM Module Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Sets the D0 field."]
     #[inline] pub fn set_d0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -17778,12 +17778,12 @@ impl Dcgcccm {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="CRC and Cryptographic Modules Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if D0 != 0"]
     #[inline] pub fn test_d0(&self) -> bool {
         self.d0() != 0
     }
 
-    #[doc="CRC and Cryptographic Modules Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Sets the D0 field."]
     #[inline] pub fn set_d0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -17825,12 +17825,12 @@ impl Dcgcemac {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Ethernet MAC Module 0 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Returns true if D0 != 0"]
     #[inline] pub fn test_d0(&self) -> bool {
         self.d0() != 0
     }
 
-    #[doc="Ethernet MAC Module 0 Deep-Sleep Mode Clock Gating Control"]
+    #[doc="Sets the D0 field."]
     #[inline] pub fn set_d0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -17872,12 +17872,12 @@ impl Pcwd {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Watchdog Timer 0 Power Control"]
+    #[doc="Returns true if P0 != 0"]
     #[inline] pub fn test_p0(&self) -> bool {
         self.p0() != 0
     }
 
-    #[doc="Watchdog Timer 0 Power Control"]
+    #[doc="Sets the P0 field."]
     #[inline] pub fn set_p0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -17891,12 +17891,12 @@ impl Pcwd {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="Watchdog Timer 1 Power Control"]
+    #[doc="Returns true if P1 != 0"]
     #[inline] pub fn test_p1(&self) -> bool {
         self.p1() != 0
     }
 
-    #[doc="Watchdog Timer 1 Power Control"]
+    #[doc="Sets the P1 field."]
     #[inline] pub fn set_p1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -17939,12 +17939,12 @@ impl Pctimer {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="General-Purpose Timer 0 Power Control"]
+    #[doc="Returns true if P0 != 0"]
     #[inline] pub fn test_p0(&self) -> bool {
         self.p0() != 0
     }
 
-    #[doc="General-Purpose Timer 0 Power Control"]
+    #[doc="Sets the P0 field."]
     #[inline] pub fn set_p0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -17958,12 +17958,12 @@ impl Pctimer {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="General-Purpose Timer 1 Power Control"]
+    #[doc="Returns true if P1 != 0"]
     #[inline] pub fn test_p1(&self) -> bool {
         self.p1() != 0
     }
 
-    #[doc="General-Purpose Timer 1 Power Control"]
+    #[doc="Sets the P1 field."]
     #[inline] pub fn set_p1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -17977,12 +17977,12 @@ impl Pctimer {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="General-Purpose Timer 2 Power Control"]
+    #[doc="Returns true if P2 != 0"]
     #[inline] pub fn test_p2(&self) -> bool {
         self.p2() != 0
     }
 
-    #[doc="General-Purpose Timer 2 Power Control"]
+    #[doc="Sets the P2 field."]
     #[inline] pub fn set_p2<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -17996,12 +17996,12 @@ impl Pctimer {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="General-Purpose Timer 3 Power Control"]
+    #[doc="Returns true if P3 != 0"]
     #[inline] pub fn test_p3(&self) -> bool {
         self.p3() != 0
     }
 
-    #[doc="General-Purpose Timer 3 Power Control"]
+    #[doc="Sets the P3 field."]
     #[inline] pub fn set_p3<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -18015,12 +18015,12 @@ impl Pctimer {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="General-Purpose Timer 4 Power Control"]
+    #[doc="Returns true if P4 != 0"]
     #[inline] pub fn test_p4(&self) -> bool {
         self.p4() != 0
     }
 
-    #[doc="General-Purpose Timer 4 Power Control"]
+    #[doc="Sets the P4 field."]
     #[inline] pub fn set_p4<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -18034,12 +18034,12 @@ impl Pctimer {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="General-Purpose Timer 5 Power Control"]
+    #[doc="Returns true if P5 != 0"]
     #[inline] pub fn test_p5(&self) -> bool {
         self.p5() != 0
     }
 
-    #[doc="General-Purpose Timer 5 Power Control"]
+    #[doc="Sets the P5 field."]
     #[inline] pub fn set_p5<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -18053,12 +18053,12 @@ impl Pctimer {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="General-Purpose Timer 6 Power Control"]
+    #[doc="Returns true if P6 != 0"]
     #[inline] pub fn test_p6(&self) -> bool {
         self.p6() != 0
     }
 
-    #[doc="General-Purpose Timer 6 Power Control"]
+    #[doc="Sets the P6 field."]
     #[inline] pub fn set_p6<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -18072,12 +18072,12 @@ impl Pctimer {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="General-Purpose Timer 7 Power Control"]
+    #[doc="Returns true if P7 != 0"]
     #[inline] pub fn test_p7(&self) -> bool {
         self.p7() != 0
     }
 
-    #[doc="General-Purpose Timer 7 Power Control"]
+    #[doc="Sets the P7 field."]
     #[inline] pub fn set_p7<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -18126,12 +18126,12 @@ impl Pcgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="GPIO Port A Power Control"]
+    #[doc="Returns true if P0 != 0"]
     #[inline] pub fn test_p0(&self) -> bool {
         self.p0() != 0
     }
 
-    #[doc="GPIO Port A Power Control"]
+    #[doc="Sets the P0 field."]
     #[inline] pub fn set_p0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -18145,12 +18145,12 @@ impl Pcgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="GPIO Port B Power Control"]
+    #[doc="Returns true if P1 != 0"]
     #[inline] pub fn test_p1(&self) -> bool {
         self.p1() != 0
     }
 
-    #[doc="GPIO Port B Power Control"]
+    #[doc="Sets the P1 field."]
     #[inline] pub fn set_p1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -18164,12 +18164,12 @@ impl Pcgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="GPIO Port C Power Control"]
+    #[doc="Returns true if P2 != 0"]
     #[inline] pub fn test_p2(&self) -> bool {
         self.p2() != 0
     }
 
-    #[doc="GPIO Port C Power Control"]
+    #[doc="Sets the P2 field."]
     #[inline] pub fn set_p2<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -18183,12 +18183,12 @@ impl Pcgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="GPIO Port D Power Control"]
+    #[doc="Returns true if P3 != 0"]
     #[inline] pub fn test_p3(&self) -> bool {
         self.p3() != 0
     }
 
-    #[doc="GPIO Port D Power Control"]
+    #[doc="Sets the P3 field."]
     #[inline] pub fn set_p3<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -18202,12 +18202,12 @@ impl Pcgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="GPIO Port E Power Control"]
+    #[doc="Returns true if P4 != 0"]
     #[inline] pub fn test_p4(&self) -> bool {
         self.p4() != 0
     }
 
-    #[doc="GPIO Port E Power Control"]
+    #[doc="Sets the P4 field."]
     #[inline] pub fn set_p4<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -18221,12 +18221,12 @@ impl Pcgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="GPIO Port F Power Control"]
+    #[doc="Returns true if P5 != 0"]
     #[inline] pub fn test_p5(&self) -> bool {
         self.p5() != 0
     }
 
-    #[doc="GPIO Port F Power Control"]
+    #[doc="Sets the P5 field."]
     #[inline] pub fn set_p5<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -18240,12 +18240,12 @@ impl Pcgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="GPIO Port G Power Control"]
+    #[doc="Returns true if P6 != 0"]
     #[inline] pub fn test_p6(&self) -> bool {
         self.p6() != 0
     }
 
-    #[doc="GPIO Port G Power Control"]
+    #[doc="Sets the P6 field."]
     #[inline] pub fn set_p6<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -18259,12 +18259,12 @@ impl Pcgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="GPIO Port H Power Control"]
+    #[doc="Returns true if P7 != 0"]
     #[inline] pub fn test_p7(&self) -> bool {
         self.p7() != 0
     }
 
-    #[doc="GPIO Port H Power Control"]
+    #[doc="Sets the P7 field."]
     #[inline] pub fn set_p7<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -18278,12 +18278,12 @@ impl Pcgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
     }
 
-    #[doc="GPIO Port J Power Control"]
+    #[doc="Returns true if P8 != 0"]
     #[inline] pub fn test_p8(&self) -> bool {
         self.p8() != 0
     }
 
-    #[doc="GPIO Port J Power Control"]
+    #[doc="Sets the P8 field."]
     #[inline] pub fn set_p8<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -18297,12 +18297,12 @@ impl Pcgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
     }
 
-    #[doc="GPIO Port K Power Control"]
+    #[doc="Returns true if P9 != 0"]
     #[inline] pub fn test_p9(&self) -> bool {
         self.p9() != 0
     }
 
-    #[doc="GPIO Port K Power Control"]
+    #[doc="Sets the P9 field."]
     #[inline] pub fn set_p9<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -18316,12 +18316,12 @@ impl Pcgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x1) as u8) } // [10]
     }
 
-    #[doc="GPIO Port L Power Control"]
+    #[doc="Returns true if P10 != 0"]
     #[inline] pub fn test_p10(&self) -> bool {
         self.p10() != 0
     }
 
-    #[doc="GPIO Port L Power Control"]
+    #[doc="Sets the P10 field."]
     #[inline] pub fn set_p10<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -18335,12 +18335,12 @@ impl Pcgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 11) & 0x1) as u8) } // [11]
     }
 
-    #[doc="GPIO Port M Power Control"]
+    #[doc="Returns true if P11 != 0"]
     #[inline] pub fn test_p11(&self) -> bool {
         self.p11() != 0
     }
 
-    #[doc="GPIO Port M Power Control"]
+    #[doc="Sets the P11 field."]
     #[inline] pub fn set_p11<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -18354,12 +18354,12 @@ impl Pcgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 12) & 0x1) as u8) } // [12]
     }
 
-    #[doc="GPIO Port N Power Control"]
+    #[doc="Returns true if P12 != 0"]
     #[inline] pub fn test_p12(&self) -> bool {
         self.p12() != 0
     }
 
-    #[doc="GPIO Port N Power Control"]
+    #[doc="Sets the P12 field."]
     #[inline] pub fn set_p12<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -18373,12 +18373,12 @@ impl Pcgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 13) & 0x1) as u8) } // [13]
     }
 
-    #[doc="GPIO Port P Power Control"]
+    #[doc="Returns true if P13 != 0"]
     #[inline] pub fn test_p13(&self) -> bool {
         self.p13() != 0
     }
 
-    #[doc="GPIO Port P Power Control"]
+    #[doc="Sets the P13 field."]
     #[inline] pub fn set_p13<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -18392,12 +18392,12 @@ impl Pcgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 14) & 0x1) as u8) } // [14]
     }
 
-    #[doc="GPIO Port Q Power Control"]
+    #[doc="Returns true if P14 != 0"]
     #[inline] pub fn test_p14(&self) -> bool {
         self.p14() != 0
     }
 
-    #[doc="GPIO Port Q Power Control"]
+    #[doc="Sets the P14 field."]
     #[inline] pub fn set_p14<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -18453,12 +18453,12 @@ impl Pcdma {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="uDMA Module Power Control"]
+    #[doc="Returns true if P0 != 0"]
     #[inline] pub fn test_p0(&self) -> bool {
         self.p0() != 0
     }
 
-    #[doc="uDMA Module Power Control"]
+    #[doc="Sets the P0 field."]
     #[inline] pub fn set_p0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -18500,12 +18500,12 @@ impl Pcepi {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="EPI Module Power Control"]
+    #[doc="Returns true if P0 != 0"]
     #[inline] pub fn test_p0(&self) -> bool {
         self.p0() != 0
     }
 
-    #[doc="EPI Module Power Control"]
+    #[doc="Sets the P0 field."]
     #[inline] pub fn set_p0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -18547,12 +18547,12 @@ impl Pchib {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Hibernation Module Power Control"]
+    #[doc="Returns true if P0 != 0"]
     #[inline] pub fn test_p0(&self) -> bool {
         self.p0() != 0
     }
 
-    #[doc="Hibernation Module Power Control"]
+    #[doc="Sets the P0 field."]
     #[inline] pub fn set_p0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -18594,12 +18594,12 @@ impl Pcuart {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="UART Module 0 Power Control"]
+    #[doc="Returns true if P0 != 0"]
     #[inline] pub fn test_p0(&self) -> bool {
         self.p0() != 0
     }
 
-    #[doc="UART Module 0 Power Control"]
+    #[doc="Sets the P0 field."]
     #[inline] pub fn set_p0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -18613,12 +18613,12 @@ impl Pcuart {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="UART Module 1 Power Control"]
+    #[doc="Returns true if P1 != 0"]
     #[inline] pub fn test_p1(&self) -> bool {
         self.p1() != 0
     }
 
-    #[doc="UART Module 1 Power Control"]
+    #[doc="Sets the P1 field."]
     #[inline] pub fn set_p1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -18632,12 +18632,12 @@ impl Pcuart {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="UART Module 2 Power Control"]
+    #[doc="Returns true if P2 != 0"]
     #[inline] pub fn test_p2(&self) -> bool {
         self.p2() != 0
     }
 
-    #[doc="UART Module 2 Power Control"]
+    #[doc="Sets the P2 field."]
     #[inline] pub fn set_p2<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -18651,12 +18651,12 @@ impl Pcuart {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="UART Module 3 Power Control"]
+    #[doc="Returns true if P3 != 0"]
     #[inline] pub fn test_p3(&self) -> bool {
         self.p3() != 0
     }
 
-    #[doc="UART Module 3 Power Control"]
+    #[doc="Sets the P3 field."]
     #[inline] pub fn set_p3<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -18670,12 +18670,12 @@ impl Pcuart {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="UART Module 4 Power Control"]
+    #[doc="Returns true if P4 != 0"]
     #[inline] pub fn test_p4(&self) -> bool {
         self.p4() != 0
     }
 
-    #[doc="UART Module 4 Power Control"]
+    #[doc="Sets the P4 field."]
     #[inline] pub fn set_p4<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -18689,12 +18689,12 @@ impl Pcuart {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="UART Module 5 Power Control"]
+    #[doc="Returns true if P5 != 0"]
     #[inline] pub fn test_p5(&self) -> bool {
         self.p5() != 0
     }
 
-    #[doc="UART Module 5 Power Control"]
+    #[doc="Sets the P5 field."]
     #[inline] pub fn set_p5<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -18708,12 +18708,12 @@ impl Pcuart {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="UART Module 6 Power Control"]
+    #[doc="Returns true if P6 != 0"]
     #[inline] pub fn test_p6(&self) -> bool {
         self.p6() != 0
     }
 
-    #[doc="UART Module 6 Power Control"]
+    #[doc="Sets the P6 field."]
     #[inline] pub fn set_p6<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -18727,12 +18727,12 @@ impl Pcuart {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="UART Module 7 Power Control"]
+    #[doc="Returns true if P7 != 0"]
     #[inline] pub fn test_p7(&self) -> bool {
         self.p7() != 0
     }
 
-    #[doc="UART Module 7 Power Control"]
+    #[doc="Sets the P7 field."]
     #[inline] pub fn set_p7<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -18781,12 +18781,12 @@ impl Pcssi {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="SSI Module 0 Power Control"]
+    #[doc="Returns true if P0 != 0"]
     #[inline] pub fn test_p0(&self) -> bool {
         self.p0() != 0
     }
 
-    #[doc="SSI Module 0 Power Control"]
+    #[doc="Sets the P0 field."]
     #[inline] pub fn set_p0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -18800,12 +18800,12 @@ impl Pcssi {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="SSI Module 1 Power Control"]
+    #[doc="Returns true if P1 != 0"]
     #[inline] pub fn test_p1(&self) -> bool {
         self.p1() != 0
     }
 
-    #[doc="SSI Module 1 Power Control"]
+    #[doc="Sets the P1 field."]
     #[inline] pub fn set_p1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -18819,12 +18819,12 @@ impl Pcssi {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="SSI Module 2 Power Control"]
+    #[doc="Returns true if P2 != 0"]
     #[inline] pub fn test_p2(&self) -> bool {
         self.p2() != 0
     }
 
-    #[doc="SSI Module 2 Power Control"]
+    #[doc="Sets the P2 field."]
     #[inline] pub fn set_p2<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -18838,12 +18838,12 @@ impl Pcssi {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="SSI Module 3 Power Control"]
+    #[doc="Returns true if P3 != 0"]
     #[inline] pub fn test_p3(&self) -> bool {
         self.p3() != 0
     }
 
-    #[doc="SSI Module 3 Power Control"]
+    #[doc="Sets the P3 field."]
     #[inline] pub fn set_p3<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -18888,12 +18888,12 @@ impl Pci2c {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="I2C Module 0 Power Control"]
+    #[doc="Returns true if P0 != 0"]
     #[inline] pub fn test_p0(&self) -> bool {
         self.p0() != 0
     }
 
-    #[doc="I2C Module 0 Power Control"]
+    #[doc="Sets the P0 field."]
     #[inline] pub fn set_p0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -18907,12 +18907,12 @@ impl Pci2c {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="I2C Module 1 Power Control"]
+    #[doc="Returns true if P1 != 0"]
     #[inline] pub fn test_p1(&self) -> bool {
         self.p1() != 0
     }
 
-    #[doc="I2C Module 1 Power Control"]
+    #[doc="Sets the P1 field."]
     #[inline] pub fn set_p1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -18926,12 +18926,12 @@ impl Pci2c {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="I2C Module 2 Power Control"]
+    #[doc="Returns true if P2 != 0"]
     #[inline] pub fn test_p2(&self) -> bool {
         self.p2() != 0
     }
 
-    #[doc="I2C Module 2 Power Control"]
+    #[doc="Sets the P2 field."]
     #[inline] pub fn set_p2<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -18945,12 +18945,12 @@ impl Pci2c {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="I2C Module 3 Power Control"]
+    #[doc="Returns true if P3 != 0"]
     #[inline] pub fn test_p3(&self) -> bool {
         self.p3() != 0
     }
 
-    #[doc="I2C Module 3 Power Control"]
+    #[doc="Sets the P3 field."]
     #[inline] pub fn set_p3<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -18964,12 +18964,12 @@ impl Pci2c {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="I2C Module 4 Power Control"]
+    #[doc="Returns true if P4 != 0"]
     #[inline] pub fn test_p4(&self) -> bool {
         self.p4() != 0
     }
 
-    #[doc="I2C Module 4 Power Control"]
+    #[doc="Sets the P4 field."]
     #[inline] pub fn set_p4<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -18983,12 +18983,12 @@ impl Pci2c {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="I2C Module 5 Power Control"]
+    #[doc="Returns true if P5 != 0"]
     #[inline] pub fn test_p5(&self) -> bool {
         self.p5() != 0
     }
 
-    #[doc="I2C Module 5 Power Control"]
+    #[doc="Sets the P5 field."]
     #[inline] pub fn set_p5<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -19002,12 +19002,12 @@ impl Pci2c {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="I2C Module 6 Power Control"]
+    #[doc="Returns true if P6 != 0"]
     #[inline] pub fn test_p6(&self) -> bool {
         self.p6() != 0
     }
 
-    #[doc="I2C Module 6 Power Control"]
+    #[doc="Sets the P6 field."]
     #[inline] pub fn set_p6<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -19021,12 +19021,12 @@ impl Pci2c {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="I2C Module 7 Power Control"]
+    #[doc="Returns true if P7 != 0"]
     #[inline] pub fn test_p7(&self) -> bool {
         self.p7() != 0
     }
 
-    #[doc="I2C Module 7 Power Control"]
+    #[doc="Sets the P7 field."]
     #[inline] pub fn set_p7<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -19040,12 +19040,12 @@ impl Pci2c {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
     }
 
-    #[doc="I2C Module 8 Power Control"]
+    #[doc="Returns true if P8 != 0"]
     #[inline] pub fn test_p8(&self) -> bool {
         self.p8() != 0
     }
 
-    #[doc="I2C Module 8 Power Control"]
+    #[doc="Sets the P8 field."]
     #[inline] pub fn set_p8<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -19059,12 +19059,12 @@ impl Pci2c {
         unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
     }
 
-    #[doc="I2C Module 9 Power Control"]
+    #[doc="Returns true if P9 != 0"]
     #[inline] pub fn test_p9(&self) -> bool {
         self.p9() != 0
     }
 
-    #[doc="I2C Module 9 Power Control"]
+    #[doc="Sets the P9 field."]
     #[inline] pub fn set_p9<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -19115,12 +19115,12 @@ impl Pcusb {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="USB Module Power Control"]
+    #[doc="Returns true if P0 != 0"]
     #[inline] pub fn test_p0(&self) -> bool {
         self.p0() != 0
     }
 
-    #[doc="USB Module Power Control"]
+    #[doc="Sets the P0 field."]
     #[inline] pub fn set_p0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -19162,12 +19162,12 @@ impl Pcephy {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Ethernet PHY Module Power Control"]
+    #[doc="Returns true if P0 != 0"]
     #[inline] pub fn test_p0(&self) -> bool {
         self.p0() != 0
     }
 
-    #[doc="Ethernet PHY Module Power Control"]
+    #[doc="Sets the P0 field."]
     #[inline] pub fn set_p0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -19209,12 +19209,12 @@ impl Pccan {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="CAN Module 0 Power Control"]
+    #[doc="Returns true if P0 != 0"]
     #[inline] pub fn test_p0(&self) -> bool {
         self.p0() != 0
     }
 
-    #[doc="CAN Module 0 Power Control"]
+    #[doc="Sets the P0 field."]
     #[inline] pub fn set_p0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -19228,12 +19228,12 @@ impl Pccan {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="CAN Module 1 Power Control"]
+    #[doc="Returns true if P1 != 0"]
     #[inline] pub fn test_p1(&self) -> bool {
         self.p1() != 0
     }
 
-    #[doc="CAN Module 1 Power Control"]
+    #[doc="Sets the P1 field."]
     #[inline] pub fn set_p1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -19276,12 +19276,12 @@ impl Pcadc {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="ADC Module 0 Power Control"]
+    #[doc="Returns true if P0 != 0"]
     #[inline] pub fn test_p0(&self) -> bool {
         self.p0() != 0
     }
 
-    #[doc="ADC Module 0 Power Control"]
+    #[doc="Sets the P0 field."]
     #[inline] pub fn set_p0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -19295,12 +19295,12 @@ impl Pcadc {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="ADC Module 1 Power Control"]
+    #[doc="Returns true if P1 != 0"]
     #[inline] pub fn test_p1(&self) -> bool {
         self.p1() != 0
     }
 
-    #[doc="ADC Module 1 Power Control"]
+    #[doc="Sets the P1 field."]
     #[inline] pub fn set_p1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -19343,12 +19343,12 @@ impl Pcacmp {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Analog Comparator Module 0 Power Control"]
+    #[doc="Returns true if P0 != 0"]
     #[inline] pub fn test_p0(&self) -> bool {
         self.p0() != 0
     }
 
-    #[doc="Analog Comparator Module 0 Power Control"]
+    #[doc="Sets the P0 field."]
     #[inline] pub fn set_p0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -19390,12 +19390,12 @@ impl Pcpwm {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="PWM Module 0 Power Control"]
+    #[doc="Returns true if P0 != 0"]
     #[inline] pub fn test_p0(&self) -> bool {
         self.p0() != 0
     }
 
-    #[doc="PWM Module 0 Power Control"]
+    #[doc="Sets the P0 field."]
     #[inline] pub fn set_p0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -19437,12 +19437,12 @@ impl Pcqei {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="QEI Module 0 Power Control"]
+    #[doc="Returns true if P0 != 0"]
     #[inline] pub fn test_p0(&self) -> bool {
         self.p0() != 0
     }
 
-    #[doc="QEI Module 0 Power Control"]
+    #[doc="Sets the P0 field."]
     #[inline] pub fn set_p0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -19484,12 +19484,12 @@ impl Pceeprom {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="EEPROM Module 0 Power Control"]
+    #[doc="Returns true if P0 != 0"]
     #[inline] pub fn test_p0(&self) -> bool {
         self.p0() != 0
     }
 
-    #[doc="EEPROM Module 0 Power Control"]
+    #[doc="Sets the P0 field."]
     #[inline] pub fn set_p0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -19531,12 +19531,12 @@ impl Pcccm {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="CRC and Cryptographic Modules Power Control"]
+    #[doc="Returns true if P0 != 0"]
     #[inline] pub fn test_p0(&self) -> bool {
         self.p0() != 0
     }
 
-    #[doc="CRC and Cryptographic Modules Power Control"]
+    #[doc="Sets the P0 field."]
     #[inline] pub fn set_p0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -19578,12 +19578,12 @@ impl Pcemac {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Ethernet MAC Module 0 Power Control"]
+    #[doc="Returns true if P0 != 0"]
     #[inline] pub fn test_p0(&self) -> bool {
         self.p0() != 0
     }
 
-    #[doc="Ethernet MAC Module 0 Power Control"]
+    #[doc="Sets the P0 field."]
     #[inline] pub fn set_p0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -19625,12 +19625,12 @@ impl Prwd {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Watchdog Timer 0 Peripheral Ready"]
+    #[doc="Returns true if R0 != 0"]
     #[inline] pub fn test_r0(&self) -> bool {
         self.r0() != 0
     }
 
-    #[doc="Watchdog Timer 0 Peripheral Ready"]
+    #[doc="Sets the R0 field."]
     #[inline] pub fn set_r0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -19644,12 +19644,12 @@ impl Prwd {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="Watchdog Timer 1 Peripheral Ready"]
+    #[doc="Returns true if R1 != 0"]
     #[inline] pub fn test_r1(&self) -> bool {
         self.r1() != 0
     }
 
-    #[doc="Watchdog Timer 1 Peripheral Ready"]
+    #[doc="Sets the R1 field."]
     #[inline] pub fn set_r1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -19692,12 +19692,12 @@ impl Prtimer {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 0 Peripheral Ready"]
+    #[doc="Returns true if R0 != 0"]
     #[inline] pub fn test_r0(&self) -> bool {
         self.r0() != 0
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 0 Peripheral Ready"]
+    #[doc="Sets the R0 field."]
     #[inline] pub fn set_r0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -19711,12 +19711,12 @@ impl Prtimer {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 1 Peripheral Ready"]
+    #[doc="Returns true if R1 != 0"]
     #[inline] pub fn test_r1(&self) -> bool {
         self.r1() != 0
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 1 Peripheral Ready"]
+    #[doc="Sets the R1 field."]
     #[inline] pub fn set_r1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -19730,12 +19730,12 @@ impl Prtimer {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 2 Peripheral Ready"]
+    #[doc="Returns true if R2 != 0"]
     #[inline] pub fn test_r2(&self) -> bool {
         self.r2() != 0
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 2 Peripheral Ready"]
+    #[doc="Sets the R2 field."]
     #[inline] pub fn set_r2<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -19749,12 +19749,12 @@ impl Prtimer {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 3 Peripheral Ready"]
+    #[doc="Returns true if R3 != 0"]
     #[inline] pub fn test_r3(&self) -> bool {
         self.r3() != 0
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 3 Peripheral Ready"]
+    #[doc="Sets the R3 field."]
     #[inline] pub fn set_r3<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -19768,12 +19768,12 @@ impl Prtimer {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 4 Peripheral Ready"]
+    #[doc="Returns true if R4 != 0"]
     #[inline] pub fn test_r4(&self) -> bool {
         self.r4() != 0
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 4 Peripheral Ready"]
+    #[doc="Sets the R4 field."]
     #[inline] pub fn set_r4<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -19787,12 +19787,12 @@ impl Prtimer {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 5 Peripheral Ready"]
+    #[doc="Returns true if R5 != 0"]
     #[inline] pub fn test_r5(&self) -> bool {
         self.r5() != 0
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 5 Peripheral Ready"]
+    #[doc="Sets the R5 field."]
     #[inline] pub fn set_r5<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -19806,12 +19806,12 @@ impl Prtimer {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 6 Peripheral Ready"]
+    #[doc="Returns true if R6 != 0"]
     #[inline] pub fn test_r6(&self) -> bool {
         self.r6() != 0
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 6 Peripheral Ready"]
+    #[doc="Sets the R6 field."]
     #[inline] pub fn set_r6<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -19825,12 +19825,12 @@ impl Prtimer {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 7 Peripheral Ready"]
+    #[doc="Returns true if R7 != 0"]
     #[inline] pub fn test_r7(&self) -> bool {
         self.r7() != 0
     }
 
-    #[doc="16/32-Bit General-Purpose Timer 7 Peripheral Ready"]
+    #[doc="Sets the R7 field."]
     #[inline] pub fn set_r7<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -19879,12 +19879,12 @@ impl Prgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="GPIO Port A Peripheral Ready"]
+    #[doc="Returns true if R0 != 0"]
     #[inline] pub fn test_r0(&self) -> bool {
         self.r0() != 0
     }
 
-    #[doc="GPIO Port A Peripheral Ready"]
+    #[doc="Sets the R0 field."]
     #[inline] pub fn set_r0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -19898,12 +19898,12 @@ impl Prgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="GPIO Port B Peripheral Ready"]
+    #[doc="Returns true if R1 != 0"]
     #[inline] pub fn test_r1(&self) -> bool {
         self.r1() != 0
     }
 
-    #[doc="GPIO Port B Peripheral Ready"]
+    #[doc="Sets the R1 field."]
     #[inline] pub fn set_r1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -19917,12 +19917,12 @@ impl Prgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="GPIO Port C Peripheral Ready"]
+    #[doc="Returns true if R2 != 0"]
     #[inline] pub fn test_r2(&self) -> bool {
         self.r2() != 0
     }
 
-    #[doc="GPIO Port C Peripheral Ready"]
+    #[doc="Sets the R2 field."]
     #[inline] pub fn set_r2<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -19936,12 +19936,12 @@ impl Prgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="GPIO Port D Peripheral Ready"]
+    #[doc="Returns true if R3 != 0"]
     #[inline] pub fn test_r3(&self) -> bool {
         self.r3() != 0
     }
 
-    #[doc="GPIO Port D Peripheral Ready"]
+    #[doc="Sets the R3 field."]
     #[inline] pub fn set_r3<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -19955,12 +19955,12 @@ impl Prgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="GPIO Port E Peripheral Ready"]
+    #[doc="Returns true if R4 != 0"]
     #[inline] pub fn test_r4(&self) -> bool {
         self.r4() != 0
     }
 
-    #[doc="GPIO Port E Peripheral Ready"]
+    #[doc="Sets the R4 field."]
     #[inline] pub fn set_r4<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -19974,12 +19974,12 @@ impl Prgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="GPIO Port F Peripheral Ready"]
+    #[doc="Returns true if R5 != 0"]
     #[inline] pub fn test_r5(&self) -> bool {
         self.r5() != 0
     }
 
-    #[doc="GPIO Port F Peripheral Ready"]
+    #[doc="Sets the R5 field."]
     #[inline] pub fn set_r5<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -19993,12 +19993,12 @@ impl Prgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="GPIO Port G Peripheral Ready"]
+    #[doc="Returns true if R6 != 0"]
     #[inline] pub fn test_r6(&self) -> bool {
         self.r6() != 0
     }
 
-    #[doc="GPIO Port G Peripheral Ready"]
+    #[doc="Sets the R6 field."]
     #[inline] pub fn set_r6<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -20012,12 +20012,12 @@ impl Prgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="GPIO Port H Peripheral Ready"]
+    #[doc="Returns true if R7 != 0"]
     #[inline] pub fn test_r7(&self) -> bool {
         self.r7() != 0
     }
 
-    #[doc="GPIO Port H Peripheral Ready"]
+    #[doc="Sets the R7 field."]
     #[inline] pub fn set_r7<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -20031,12 +20031,12 @@ impl Prgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
     }
 
-    #[doc="GPIO Port J Peripheral Ready"]
+    #[doc="Returns true if R8 != 0"]
     #[inline] pub fn test_r8(&self) -> bool {
         self.r8() != 0
     }
 
-    #[doc="GPIO Port J Peripheral Ready"]
+    #[doc="Sets the R8 field."]
     #[inline] pub fn set_r8<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -20050,12 +20050,12 @@ impl Prgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
     }
 
-    #[doc="GPIO Port K Peripheral Ready"]
+    #[doc="Returns true if R9 != 0"]
     #[inline] pub fn test_r9(&self) -> bool {
         self.r9() != 0
     }
 
-    #[doc="GPIO Port K Peripheral Ready"]
+    #[doc="Sets the R9 field."]
     #[inline] pub fn set_r9<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -20069,12 +20069,12 @@ impl Prgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x1) as u8) } // [10]
     }
 
-    #[doc="GPIO Port L Peripheral Ready"]
+    #[doc="Returns true if R10 != 0"]
     #[inline] pub fn test_r10(&self) -> bool {
         self.r10() != 0
     }
 
-    #[doc="GPIO Port L Peripheral Ready"]
+    #[doc="Sets the R10 field."]
     #[inline] pub fn set_r10<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -20088,12 +20088,12 @@ impl Prgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 11) & 0x1) as u8) } // [11]
     }
 
-    #[doc="GPIO Port M Peripheral Ready"]
+    #[doc="Returns true if R11 != 0"]
     #[inline] pub fn test_r11(&self) -> bool {
         self.r11() != 0
     }
 
-    #[doc="GPIO Port M Peripheral Ready"]
+    #[doc="Sets the R11 field."]
     #[inline] pub fn set_r11<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -20107,12 +20107,12 @@ impl Prgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 12) & 0x1) as u8) } // [12]
     }
 
-    #[doc="GPIO Port N Peripheral Ready"]
+    #[doc="Returns true if R12 != 0"]
     #[inline] pub fn test_r12(&self) -> bool {
         self.r12() != 0
     }
 
-    #[doc="GPIO Port N Peripheral Ready"]
+    #[doc="Sets the R12 field."]
     #[inline] pub fn set_r12<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -20126,12 +20126,12 @@ impl Prgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 13) & 0x1) as u8) } // [13]
     }
 
-    #[doc="GPIO Port P Peripheral Ready"]
+    #[doc="Returns true if R13 != 0"]
     #[inline] pub fn test_r13(&self) -> bool {
         self.r13() != 0
     }
 
-    #[doc="GPIO Port P Peripheral Ready"]
+    #[doc="Sets the R13 field."]
     #[inline] pub fn set_r13<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -20145,12 +20145,12 @@ impl Prgpio {
         unsafe { ::core::mem::transmute(((self.0 >> 14) & 0x1) as u8) } // [14]
     }
 
-    #[doc="GPIO Port Q Peripheral Ready"]
+    #[doc="Returns true if R14 != 0"]
     #[inline] pub fn test_r14(&self) -> bool {
         self.r14() != 0
     }
 
-    #[doc="GPIO Port Q Peripheral Ready"]
+    #[doc="Sets the R14 field."]
     #[inline] pub fn set_r14<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -20206,12 +20206,12 @@ impl Prdma {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="uDMA Module Peripheral Ready"]
+    #[doc="Returns true if R0 != 0"]
     #[inline] pub fn test_r0(&self) -> bool {
         self.r0() != 0
     }
 
-    #[doc="uDMA Module Peripheral Ready"]
+    #[doc="Sets the R0 field."]
     #[inline] pub fn set_r0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -20253,12 +20253,12 @@ impl Prepi {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="EPI Module Peripheral Ready"]
+    #[doc="Returns true if R0 != 0"]
     #[inline] pub fn test_r0(&self) -> bool {
         self.r0() != 0
     }
 
-    #[doc="EPI Module Peripheral Ready"]
+    #[doc="Sets the R0 field."]
     #[inline] pub fn set_r0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -20300,12 +20300,12 @@ impl Prhib {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Hibernation Module Peripheral Ready"]
+    #[doc="Returns true if R0 != 0"]
     #[inline] pub fn test_r0(&self) -> bool {
         self.r0() != 0
     }
 
-    #[doc="Hibernation Module Peripheral Ready"]
+    #[doc="Sets the R0 field."]
     #[inline] pub fn set_r0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -20347,12 +20347,12 @@ impl Pruart {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="UART Module 0 Peripheral Ready"]
+    #[doc="Returns true if R0 != 0"]
     #[inline] pub fn test_r0(&self) -> bool {
         self.r0() != 0
     }
 
-    #[doc="UART Module 0 Peripheral Ready"]
+    #[doc="Sets the R0 field."]
     #[inline] pub fn set_r0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -20366,12 +20366,12 @@ impl Pruart {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="UART Module 1 Peripheral Ready"]
+    #[doc="Returns true if R1 != 0"]
     #[inline] pub fn test_r1(&self) -> bool {
         self.r1() != 0
     }
 
-    #[doc="UART Module 1 Peripheral Ready"]
+    #[doc="Sets the R1 field."]
     #[inline] pub fn set_r1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -20385,12 +20385,12 @@ impl Pruart {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="UART Module 2 Peripheral Ready"]
+    #[doc="Returns true if R2 != 0"]
     #[inline] pub fn test_r2(&self) -> bool {
         self.r2() != 0
     }
 
-    #[doc="UART Module 2 Peripheral Ready"]
+    #[doc="Sets the R2 field."]
     #[inline] pub fn set_r2<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -20404,12 +20404,12 @@ impl Pruart {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="UART Module 3 Peripheral Ready"]
+    #[doc="Returns true if R3 != 0"]
     #[inline] pub fn test_r3(&self) -> bool {
         self.r3() != 0
     }
 
-    #[doc="UART Module 3 Peripheral Ready"]
+    #[doc="Sets the R3 field."]
     #[inline] pub fn set_r3<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -20423,12 +20423,12 @@ impl Pruart {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="UART Module 4 Peripheral Ready"]
+    #[doc="Returns true if R4 != 0"]
     #[inline] pub fn test_r4(&self) -> bool {
         self.r4() != 0
     }
 
-    #[doc="UART Module 4 Peripheral Ready"]
+    #[doc="Sets the R4 field."]
     #[inline] pub fn set_r4<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -20442,12 +20442,12 @@ impl Pruart {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="UART Module 5 Peripheral Ready"]
+    #[doc="Returns true if R5 != 0"]
     #[inline] pub fn test_r5(&self) -> bool {
         self.r5() != 0
     }
 
-    #[doc="UART Module 5 Peripheral Ready"]
+    #[doc="Sets the R5 field."]
     #[inline] pub fn set_r5<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -20461,12 +20461,12 @@ impl Pruart {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="UART Module 6 Peripheral Ready"]
+    #[doc="Returns true if R6 != 0"]
     #[inline] pub fn test_r6(&self) -> bool {
         self.r6() != 0
     }
 
-    #[doc="UART Module 6 Peripheral Ready"]
+    #[doc="Sets the R6 field."]
     #[inline] pub fn set_r6<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -20480,12 +20480,12 @@ impl Pruart {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="UART Module 7 Peripheral Ready"]
+    #[doc="Returns true if R7 != 0"]
     #[inline] pub fn test_r7(&self) -> bool {
         self.r7() != 0
     }
 
-    #[doc="UART Module 7 Peripheral Ready"]
+    #[doc="Sets the R7 field."]
     #[inline] pub fn set_r7<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -20534,12 +20534,12 @@ impl Prssi {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="SSI Module 0 Peripheral Ready"]
+    #[doc="Returns true if R0 != 0"]
     #[inline] pub fn test_r0(&self) -> bool {
         self.r0() != 0
     }
 
-    #[doc="SSI Module 0 Peripheral Ready"]
+    #[doc="Sets the R0 field."]
     #[inline] pub fn set_r0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -20553,12 +20553,12 @@ impl Prssi {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="SSI Module 1 Peripheral Ready"]
+    #[doc="Returns true if R1 != 0"]
     #[inline] pub fn test_r1(&self) -> bool {
         self.r1() != 0
     }
 
-    #[doc="SSI Module 1 Peripheral Ready"]
+    #[doc="Sets the R1 field."]
     #[inline] pub fn set_r1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -20572,12 +20572,12 @@ impl Prssi {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="SSI Module 2 Peripheral Ready"]
+    #[doc="Returns true if R2 != 0"]
     #[inline] pub fn test_r2(&self) -> bool {
         self.r2() != 0
     }
 
-    #[doc="SSI Module 2 Peripheral Ready"]
+    #[doc="Sets the R2 field."]
     #[inline] pub fn set_r2<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -20591,12 +20591,12 @@ impl Prssi {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="SSI Module 3 Peripheral Ready"]
+    #[doc="Returns true if R3 != 0"]
     #[inline] pub fn test_r3(&self) -> bool {
         self.r3() != 0
     }
 
-    #[doc="SSI Module 3 Peripheral Ready"]
+    #[doc="Sets the R3 field."]
     #[inline] pub fn set_r3<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -20641,12 +20641,12 @@ impl Pri2c {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="I2C Module 0 Peripheral Ready"]
+    #[doc="Returns true if R0 != 0"]
     #[inline] pub fn test_r0(&self) -> bool {
         self.r0() != 0
     }
 
-    #[doc="I2C Module 0 Peripheral Ready"]
+    #[doc="Sets the R0 field."]
     #[inline] pub fn set_r0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -20660,12 +20660,12 @@ impl Pri2c {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="I2C Module 1 Peripheral Ready"]
+    #[doc="Returns true if R1 != 0"]
     #[inline] pub fn test_r1(&self) -> bool {
         self.r1() != 0
     }
 
-    #[doc="I2C Module 1 Peripheral Ready"]
+    #[doc="Sets the R1 field."]
     #[inline] pub fn set_r1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -20679,12 +20679,12 @@ impl Pri2c {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="I2C Module 2 Peripheral Ready"]
+    #[doc="Returns true if R2 != 0"]
     #[inline] pub fn test_r2(&self) -> bool {
         self.r2() != 0
     }
 
-    #[doc="I2C Module 2 Peripheral Ready"]
+    #[doc="Sets the R2 field."]
     #[inline] pub fn set_r2<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -20698,12 +20698,12 @@ impl Pri2c {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="I2C Module 3 Peripheral Ready"]
+    #[doc="Returns true if R3 != 0"]
     #[inline] pub fn test_r3(&self) -> bool {
         self.r3() != 0
     }
 
-    #[doc="I2C Module 3 Peripheral Ready"]
+    #[doc="Sets the R3 field."]
     #[inline] pub fn set_r3<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -20717,12 +20717,12 @@ impl Pri2c {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="I2C Module 4 Peripheral Ready"]
+    #[doc="Returns true if R4 != 0"]
     #[inline] pub fn test_r4(&self) -> bool {
         self.r4() != 0
     }
 
-    #[doc="I2C Module 4 Peripheral Ready"]
+    #[doc="Sets the R4 field."]
     #[inline] pub fn set_r4<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -20736,12 +20736,12 @@ impl Pri2c {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="I2C Module 5 Peripheral Ready"]
+    #[doc="Returns true if R5 != 0"]
     #[inline] pub fn test_r5(&self) -> bool {
         self.r5() != 0
     }
 
-    #[doc="I2C Module 5 Peripheral Ready"]
+    #[doc="Sets the R5 field."]
     #[inline] pub fn set_r5<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -20755,12 +20755,12 @@ impl Pri2c {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="I2C Module 6 Peripheral Ready"]
+    #[doc="Returns true if R6 != 0"]
     #[inline] pub fn test_r6(&self) -> bool {
         self.r6() != 0
     }
 
-    #[doc="I2C Module 6 Peripheral Ready"]
+    #[doc="Sets the R6 field."]
     #[inline] pub fn set_r6<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -20774,12 +20774,12 @@ impl Pri2c {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="I2C Module 7 Peripheral Ready"]
+    #[doc="Returns true if R7 != 0"]
     #[inline] pub fn test_r7(&self) -> bool {
         self.r7() != 0
     }
 
-    #[doc="I2C Module 7 Peripheral Ready"]
+    #[doc="Sets the R7 field."]
     #[inline] pub fn set_r7<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -20793,12 +20793,12 @@ impl Pri2c {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
     }
 
-    #[doc="I2C Module 8 Peripheral Ready"]
+    #[doc="Returns true if R8 != 0"]
     #[inline] pub fn test_r8(&self) -> bool {
         self.r8() != 0
     }
 
-    #[doc="I2C Module 8 Peripheral Ready"]
+    #[doc="Sets the R8 field."]
     #[inline] pub fn set_r8<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -20812,12 +20812,12 @@ impl Pri2c {
         unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
     }
 
-    #[doc="I2C Module 9 Peripheral Ready"]
+    #[doc="Returns true if R9 != 0"]
     #[inline] pub fn test_r9(&self) -> bool {
         self.r9() != 0
     }
 
-    #[doc="I2C Module 9 Peripheral Ready"]
+    #[doc="Sets the R9 field."]
     #[inline] pub fn set_r9<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -20868,12 +20868,12 @@ impl Prusb {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="USB Module Peripheral Ready"]
+    #[doc="Returns true if R0 != 0"]
     #[inline] pub fn test_r0(&self) -> bool {
         self.r0() != 0
     }
 
-    #[doc="USB Module Peripheral Ready"]
+    #[doc="Sets the R0 field."]
     #[inline] pub fn set_r0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -20915,12 +20915,12 @@ impl Prephy {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Ethernet PHY Module Peripheral Ready"]
+    #[doc="Returns true if R0 != 0"]
     #[inline] pub fn test_r0(&self) -> bool {
         self.r0() != 0
     }
 
-    #[doc="Ethernet PHY Module Peripheral Ready"]
+    #[doc="Sets the R0 field."]
     #[inline] pub fn set_r0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -20962,12 +20962,12 @@ impl Prcan {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="CAN Module 0 Peripheral Ready"]
+    #[doc="Returns true if R0 != 0"]
     #[inline] pub fn test_r0(&self) -> bool {
         self.r0() != 0
     }
 
-    #[doc="CAN Module 0 Peripheral Ready"]
+    #[doc="Sets the R0 field."]
     #[inline] pub fn set_r0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -20981,12 +20981,12 @@ impl Prcan {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="CAN Module 1 Peripheral Ready"]
+    #[doc="Returns true if R1 != 0"]
     #[inline] pub fn test_r1(&self) -> bool {
         self.r1() != 0
     }
 
-    #[doc="CAN Module 1 Peripheral Ready"]
+    #[doc="Sets the R1 field."]
     #[inline] pub fn set_r1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -21029,12 +21029,12 @@ impl Pradc {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="ADC Module 0 Peripheral Ready"]
+    #[doc="Returns true if R0 != 0"]
     #[inline] pub fn test_r0(&self) -> bool {
         self.r0() != 0
     }
 
-    #[doc="ADC Module 0 Peripheral Ready"]
+    #[doc="Sets the R0 field."]
     #[inline] pub fn set_r0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -21048,12 +21048,12 @@ impl Pradc {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="ADC Module 1 Peripheral Ready"]
+    #[doc="Returns true if R1 != 0"]
     #[inline] pub fn test_r1(&self) -> bool {
         self.r1() != 0
     }
 
-    #[doc="ADC Module 1 Peripheral Ready"]
+    #[doc="Sets the R1 field."]
     #[inline] pub fn set_r1<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -21096,12 +21096,12 @@ impl Pracmp {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Analog Comparator Module 0 Peripheral Ready"]
+    #[doc="Returns true if R0 != 0"]
     #[inline] pub fn test_r0(&self) -> bool {
         self.r0() != 0
     }
 
-    #[doc="Analog Comparator Module 0 Peripheral Ready"]
+    #[doc="Sets the R0 field."]
     #[inline] pub fn set_r0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -21143,12 +21143,12 @@ impl Prpwm {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="PWM Module 0 Peripheral Ready"]
+    #[doc="Returns true if R0 != 0"]
     #[inline] pub fn test_r0(&self) -> bool {
         self.r0() != 0
     }
 
-    #[doc="PWM Module 0 Peripheral Ready"]
+    #[doc="Sets the R0 field."]
     #[inline] pub fn set_r0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -21190,12 +21190,12 @@ impl Prqei {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="QEI Module 0 Peripheral Ready"]
+    #[doc="Returns true if R0 != 0"]
     #[inline] pub fn test_r0(&self) -> bool {
         self.r0() != 0
     }
 
-    #[doc="QEI Module 0 Peripheral Ready"]
+    #[doc="Sets the R0 field."]
     #[inline] pub fn set_r0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -21237,12 +21237,12 @@ impl Preeprom {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="EEPROM Module Peripheral Ready"]
+    #[doc="Returns true if R0 != 0"]
     #[inline] pub fn test_r0(&self) -> bool {
         self.r0() != 0
     }
 
-    #[doc="EEPROM Module Peripheral Ready"]
+    #[doc="Sets the R0 field."]
     #[inline] pub fn set_r0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -21284,12 +21284,12 @@ impl Prccm {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="CRC and Cryptographic Modules Peripheral Ready"]
+    #[doc="Returns true if R0 != 0"]
     #[inline] pub fn test_r0(&self) -> bool {
         self.r0() != 0
     }
 
-    #[doc="CRC and Cryptographic Modules Peripheral Ready"]
+    #[doc="Sets the R0 field."]
     #[inline] pub fn set_r0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -21331,12 +21331,12 @@ impl Premac {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Ethernet MAC Module 0 Peripheral Ready"]
+    #[doc="Returns true if R0 != 0"]
     #[inline] pub fn test_r0(&self) -> bool {
         self.r0() != 0
     }
 
-    #[doc="Ethernet MAC Module 0 Peripheral Ready"]
+    #[doc="Sets the R0 field."]
     #[inline] pub fn set_r0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
