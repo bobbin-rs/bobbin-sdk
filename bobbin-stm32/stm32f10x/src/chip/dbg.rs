@@ -8,54 +8,51 @@ periph!(DBG, Dbg, 0xe0042000);
 pub struct Dbg(pub usize);
 impl Dbg {
     #[doc="Get the *const pointer for the IDCODE register."]
-    #[inline] pub fn idcode_ptr(&self) -> *const u32 { 
-        ((self.0 as usize) + 0x0) as *const u32
+    #[inline] pub fn idcode_ptr(&self) -> *const Idcode { 
+        (self.0 + 0x0) as *const Idcode
     }
 
     #[doc="Get the *mut pointer for the IDCODE register."]
-    #[inline] pub fn idcode_mut(&self) -> *mut u32 { 
-        ((self.0 as usize) + 0x0) as *mut u32
+    #[inline] pub fn idcode_mut(&self) -> *mut Idcode { 
+        (self.0 + 0x0) as *mut Idcode
     }
 
     #[doc="Read the IDCODE register."]
     #[inline] pub fn idcode(&self) -> Idcode { 
         unsafe {
-            Idcode(read_volatile((self.0 + 0x0) as *const u32))
+            read_volatile((self.0 + 0x0) as *const Idcode)
         }
     }
 
     #[doc="Get the *const pointer for the CR register."]
-    #[inline] pub fn cr_ptr(&self) -> *const u32 { 
-        ((self.0 as usize) + 0x4) as *const u32
+    #[inline] pub fn cr_ptr(&self) -> *const Cr { 
+        (self.0 + 0x4) as *const Cr
     }
 
     #[doc="Get the *mut pointer for the CR register."]
-    #[inline] pub fn cr_mut(&self) -> *mut u32 { 
-        ((self.0 as usize) + 0x4) as *mut u32
+    #[inline] pub fn cr_mut(&self) -> *mut Cr { 
+        (self.0 + 0x4) as *mut Cr
     }
 
     #[doc="Read the CR register."]
     #[inline] pub fn cr(&self) -> Cr { 
         unsafe {
-            Cr(read_volatile((self.0 + 0x4) as *const u32))
+            read_volatile((self.0 + 0x4) as *const Cr)
         }
     }
 
     #[doc="Write the CR register."]
     #[inline] pub fn set_cr<F: FnOnce(Cr) -> Cr>(&self, f: F) -> &Self {
-        let value = f(Cr(0));
         unsafe {
-            write_volatile((self.0 + 0x4) as *mut u32, value.0);
+            write_volatile((self.0 + 0x4) as *mut Cr, f(Cr(0)));
         }
         self
     }
 
     #[doc="Modify the CR register."]
     #[inline] pub fn with_cr<F: FnOnce(Cr) -> Cr>(&self, f: F) -> &Self {
-        let tmp = self.cr();
-        let value = f(tmp);
         unsafe {
-            write_volatile((self.0 + 0x4) as *mut u32, value.0);
+            write_volatile((self.0 + 0x4) as *mut Cr, f(self.cr()));
         }
         self
     }

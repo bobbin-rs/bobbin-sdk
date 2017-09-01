@@ -8,126 +8,117 @@ periph!(DBG, Dbg, 0xe0042000);
 pub struct Dbg(pub usize);
 impl Dbg {
     #[doc="Get the *const pointer for the DBGMCU_IDCODE register."]
-    #[inline] pub fn dbgmcu_idcode_ptr(&self) -> *const u32 { 
-        ((self.0 as usize) + 0x0) as *const u32
+    #[inline] pub fn dbgmcu_idcode_ptr(&self) -> *const DbgmcuIdcode { 
+        (self.0 + 0x0) as *const DbgmcuIdcode
     }
 
     #[doc="Get the *mut pointer for the DBGMCU_IDCODE register."]
-    #[inline] pub fn dbgmcu_idcode_mut(&self) -> *mut u32 { 
-        ((self.0 as usize) + 0x0) as *mut u32
+    #[inline] pub fn dbgmcu_idcode_mut(&self) -> *mut DbgmcuIdcode { 
+        (self.0 + 0x0) as *mut DbgmcuIdcode
     }
 
     #[doc="Read the DBGMCU_IDCODE register."]
     #[inline] pub fn dbgmcu_idcode(&self) -> DbgmcuIdcode { 
         unsafe {
-            DbgmcuIdcode(read_volatile((self.0 + 0x0) as *const u32))
+            read_volatile((self.0 + 0x0) as *const DbgmcuIdcode)
         }
     }
 
     #[doc="Get the *const pointer for the DBGMCU_CR register."]
-    #[inline] pub fn dbgmcu_cr_ptr(&self) -> *const u32 { 
-        ((self.0 as usize) + 0x4) as *const u32
+    #[inline] pub fn dbgmcu_cr_ptr(&self) -> *const DbgmcuCr { 
+        (self.0 + 0x4) as *const DbgmcuCr
     }
 
     #[doc="Get the *mut pointer for the DBGMCU_CR register."]
-    #[inline] pub fn dbgmcu_cr_mut(&self) -> *mut u32 { 
-        ((self.0 as usize) + 0x4) as *mut u32
+    #[inline] pub fn dbgmcu_cr_mut(&self) -> *mut DbgmcuCr { 
+        (self.0 + 0x4) as *mut DbgmcuCr
     }
 
     #[doc="Read the DBGMCU_CR register."]
     #[inline] pub fn dbgmcu_cr(&self) -> DbgmcuCr { 
         unsafe {
-            DbgmcuCr(read_volatile((self.0 + 0x4) as *const u32))
+            read_volatile((self.0 + 0x4) as *const DbgmcuCr)
         }
     }
 
     #[doc="Write the DBGMCU_CR register."]
     #[inline] pub fn set_dbgmcu_cr<F: FnOnce(DbgmcuCr) -> DbgmcuCr>(&self, f: F) -> &Self {
-        let value = f(DbgmcuCr(0));
         unsafe {
-            write_volatile((self.0 + 0x4) as *mut u32, value.0);
+            write_volatile((self.0 + 0x4) as *mut DbgmcuCr, f(DbgmcuCr(0)));
         }
         self
     }
 
     #[doc="Modify the DBGMCU_CR register."]
     #[inline] pub fn with_dbgmcu_cr<F: FnOnce(DbgmcuCr) -> DbgmcuCr>(&self, f: F) -> &Self {
-        let tmp = self.dbgmcu_cr();
-        let value = f(tmp);
         unsafe {
-            write_volatile((self.0 + 0x4) as *mut u32, value.0);
+            write_volatile((self.0 + 0x4) as *mut DbgmcuCr, f(self.dbgmcu_cr()));
         }
         self
     }
 
     #[doc="Get the *const pointer for the DBGMCU_APB1_FZ register."]
-    #[inline] pub fn dbgmcu_apb1_fz_ptr(&self) -> *const u32 { 
-        ((self.0 as usize) + 0x8) as *const u32
+    #[inline] pub fn dbgmcu_apb1_fz_ptr(&self) -> *const DbgmcuApb1Fz { 
+        (self.0 + 0x8) as *const DbgmcuApb1Fz
     }
 
     #[doc="Get the *mut pointer for the DBGMCU_APB1_FZ register."]
-    #[inline] pub fn dbgmcu_apb1_fz_mut(&self) -> *mut u32 { 
-        ((self.0 as usize) + 0x8) as *mut u32
+    #[inline] pub fn dbgmcu_apb1_fz_mut(&self) -> *mut DbgmcuApb1Fz { 
+        (self.0 + 0x8) as *mut DbgmcuApb1Fz
     }
 
     #[doc="Read the DBGMCU_APB1_FZ register."]
     #[inline] pub fn dbgmcu_apb1_fz(&self) -> DbgmcuApb1Fz { 
         unsafe {
-            DbgmcuApb1Fz(read_volatile((self.0 + 0x8) as *const u32))
+            read_volatile((self.0 + 0x8) as *const DbgmcuApb1Fz)
         }
     }
 
     #[doc="Write the DBGMCU_APB1_FZ register."]
     #[inline] pub fn set_dbgmcu_apb1_fz<F: FnOnce(DbgmcuApb1Fz) -> DbgmcuApb1Fz>(&self, f: F) -> &Self {
-        let value = f(DbgmcuApb1Fz(0));
         unsafe {
-            write_volatile((self.0 + 0x8) as *mut u32, value.0);
+            write_volatile((self.0 + 0x8) as *mut DbgmcuApb1Fz, f(DbgmcuApb1Fz(0)));
         }
         self
     }
 
     #[doc="Modify the DBGMCU_APB1_FZ register."]
     #[inline] pub fn with_dbgmcu_apb1_fz<F: FnOnce(DbgmcuApb1Fz) -> DbgmcuApb1Fz>(&self, f: F) -> &Self {
-        let tmp = self.dbgmcu_apb1_fz();
-        let value = f(tmp);
         unsafe {
-            write_volatile((self.0 + 0x8) as *mut u32, value.0);
+            write_volatile((self.0 + 0x8) as *mut DbgmcuApb1Fz, f(self.dbgmcu_apb1_fz()));
         }
         self
     }
 
     #[doc="Get the *const pointer for the DBGMCU_APB2_FZ register."]
-    #[inline] pub fn dbgmcu_apb2_fz_ptr(&self) -> *const u32 { 
-        ((self.0 as usize) + 0xc) as *const u32
+    #[inline] pub fn dbgmcu_apb2_fz_ptr(&self) -> *const DbgmcuApb2Fz { 
+        (self.0 + 0xc) as *const DbgmcuApb2Fz
     }
 
     #[doc="Get the *mut pointer for the DBGMCU_APB2_FZ register."]
-    #[inline] pub fn dbgmcu_apb2_fz_mut(&self) -> *mut u32 { 
-        ((self.0 as usize) + 0xc) as *mut u32
+    #[inline] pub fn dbgmcu_apb2_fz_mut(&self) -> *mut DbgmcuApb2Fz { 
+        (self.0 + 0xc) as *mut DbgmcuApb2Fz
     }
 
     #[doc="Read the DBGMCU_APB2_FZ register."]
     #[inline] pub fn dbgmcu_apb2_fz(&self) -> DbgmcuApb2Fz { 
         unsafe {
-            DbgmcuApb2Fz(read_volatile((self.0 + 0xc) as *const u32))
+            read_volatile((self.0 + 0xc) as *const DbgmcuApb2Fz)
         }
     }
 
     #[doc="Write the DBGMCU_APB2_FZ register."]
     #[inline] pub fn set_dbgmcu_apb2_fz<F: FnOnce(DbgmcuApb2Fz) -> DbgmcuApb2Fz>(&self, f: F) -> &Self {
-        let value = f(DbgmcuApb2Fz(0));
         unsafe {
-            write_volatile((self.0 + 0xc) as *mut u32, value.0);
+            write_volatile((self.0 + 0xc) as *mut DbgmcuApb2Fz, f(DbgmcuApb2Fz(0)));
         }
         self
     }
 
     #[doc="Modify the DBGMCU_APB2_FZ register."]
     #[inline] pub fn with_dbgmcu_apb2_fz<F: FnOnce(DbgmcuApb2Fz) -> DbgmcuApb2Fz>(&self, f: F) -> &Self {
-        let tmp = self.dbgmcu_apb2_fz();
-        let value = f(tmp);
         unsafe {
-            write_volatile((self.0 + 0xc) as *mut u32, value.0);
+            write_volatile((self.0 + 0xc) as *mut DbgmcuApb2Fz, f(self.dbgmcu_apb2_fz()));
         }
         self
     }

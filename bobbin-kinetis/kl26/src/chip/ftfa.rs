@@ -8,240 +8,240 @@ periph!(FTFA, Ftfa, 0x00000400);
 pub struct Ftfa(pub usize);
 impl Ftfa {
     #[doc="Get the *const pointer for the BACKKEY3 register."]
-    #[inline] pub fn backkey3_ptr(&self) -> *const u8 { 
-        ((self.0 as usize) + 0x0) as *const u8
+    #[inline] pub fn backkey3_ptr(&self) -> *const Backkey3 { 
+        (self.0 + 0x0) as *const Backkey3
     }
 
     #[doc="Get the *mut pointer for the BACKKEY3 register."]
-    #[inline] pub fn backkey3_mut(&self) -> *mut u8 { 
-        ((self.0 as usize) + 0x0) as *mut u8
+    #[inline] pub fn backkey3_mut(&self) -> *mut Backkey3 { 
+        (self.0 + 0x0) as *mut Backkey3
     }
 
     #[doc="Read the BACKKEY3 register."]
     #[inline] pub fn backkey3(&self) -> Backkey3 { 
         unsafe {
-            Backkey3(read_volatile((self.0 + 0x0) as *const u8))
+            read_volatile((self.0 + 0x0) as *const Backkey3)
         }
     }
 
     #[doc="Get the *const pointer for the BACKKEY2 register."]
-    #[inline] pub fn backkey2_ptr(&self) -> *const u8 { 
-        ((self.0 as usize) + 0x1) as *const u8
+    #[inline] pub fn backkey2_ptr(&self) -> *const Backkey2 { 
+        (self.0 + 0x1) as *const Backkey2
     }
 
     #[doc="Get the *mut pointer for the BACKKEY2 register."]
-    #[inline] pub fn backkey2_mut(&self) -> *mut u8 { 
-        ((self.0 as usize) + 0x1) as *mut u8
+    #[inline] pub fn backkey2_mut(&self) -> *mut Backkey2 { 
+        (self.0 + 0x1) as *mut Backkey2
     }
 
     #[doc="Read the BACKKEY2 register."]
     #[inline] pub fn backkey2(&self) -> Backkey2 { 
         unsafe {
-            Backkey2(read_volatile((self.0 + 0x1) as *const u8))
+            read_volatile((self.0 + 0x1) as *const Backkey2)
         }
     }
 
     #[doc="Get the *const pointer for the BACKKEY1 register."]
-    #[inline] pub fn backkey1_ptr(&self) -> *const u8 { 
-        ((self.0 as usize) + 0x2) as *const u8
+    #[inline] pub fn backkey1_ptr(&self) -> *const Backkey1 { 
+        (self.0 + 0x2) as *const Backkey1
     }
 
     #[doc="Get the *mut pointer for the BACKKEY1 register."]
-    #[inline] pub fn backkey1_mut(&self) -> *mut u8 { 
-        ((self.0 as usize) + 0x2) as *mut u8
+    #[inline] pub fn backkey1_mut(&self) -> *mut Backkey1 { 
+        (self.0 + 0x2) as *mut Backkey1
     }
 
     #[doc="Read the BACKKEY1 register."]
     #[inline] pub fn backkey1(&self) -> Backkey1 { 
         unsafe {
-            Backkey1(read_volatile((self.0 + 0x2) as *const u8))
+            read_volatile((self.0 + 0x2) as *const Backkey1)
         }
     }
 
     #[doc="Get the *const pointer for the BACKKEY0 register."]
-    #[inline] pub fn backkey0_ptr(&self) -> *const u8 { 
-        ((self.0 as usize) + 0x3) as *const u8
+    #[inline] pub fn backkey0_ptr(&self) -> *const Backkey0 { 
+        (self.0 + 0x3) as *const Backkey0
     }
 
     #[doc="Get the *mut pointer for the BACKKEY0 register."]
-    #[inline] pub fn backkey0_mut(&self) -> *mut u8 { 
-        ((self.0 as usize) + 0x3) as *mut u8
+    #[inline] pub fn backkey0_mut(&self) -> *mut Backkey0 { 
+        (self.0 + 0x3) as *mut Backkey0
     }
 
     #[doc="Read the BACKKEY0 register."]
     #[inline] pub fn backkey0(&self) -> Backkey0 { 
         unsafe {
-            Backkey0(read_volatile((self.0 + 0x3) as *const u8))
+            read_volatile((self.0 + 0x3) as *const Backkey0)
         }
     }
 
     #[doc="Get the *const pointer for the BACKKEY7 register."]
-    #[inline] pub fn backkey7_ptr(&self) -> *const u8 { 
-        ((self.0 as usize) + 0x4) as *const u8
+    #[inline] pub fn backkey7_ptr(&self) -> *const Backkey7 { 
+        (self.0 + 0x4) as *const Backkey7
     }
 
     #[doc="Get the *mut pointer for the BACKKEY7 register."]
-    #[inline] pub fn backkey7_mut(&self) -> *mut u8 { 
-        ((self.0 as usize) + 0x4) as *mut u8
+    #[inline] pub fn backkey7_mut(&self) -> *mut Backkey7 { 
+        (self.0 + 0x4) as *mut Backkey7
     }
 
     #[doc="Read the BACKKEY7 register."]
     #[inline] pub fn backkey7(&self) -> Backkey7 { 
         unsafe {
-            Backkey7(read_volatile((self.0 + 0x4) as *const u8))
+            read_volatile((self.0 + 0x4) as *const Backkey7)
         }
     }
 
     #[doc="Get the *const pointer for the BACKKEY6 register."]
-    #[inline] pub fn backkey6_ptr(&self) -> *const u8 { 
-        ((self.0 as usize) + 0x5) as *const u8
+    #[inline] pub fn backkey6_ptr(&self) -> *const Backkey6 { 
+        (self.0 + 0x5) as *const Backkey6
     }
 
     #[doc="Get the *mut pointer for the BACKKEY6 register."]
-    #[inline] pub fn backkey6_mut(&self) -> *mut u8 { 
-        ((self.0 as usize) + 0x5) as *mut u8
+    #[inline] pub fn backkey6_mut(&self) -> *mut Backkey6 { 
+        (self.0 + 0x5) as *mut Backkey6
     }
 
     #[doc="Read the BACKKEY6 register."]
     #[inline] pub fn backkey6(&self) -> Backkey6 { 
         unsafe {
-            Backkey6(read_volatile((self.0 + 0x5) as *const u8))
+            read_volatile((self.0 + 0x5) as *const Backkey6)
         }
     }
 
     #[doc="Get the *const pointer for the BACKKEY5 register."]
-    #[inline] pub fn backkey5_ptr(&self) -> *const u8 { 
-        ((self.0 as usize) + 0x6) as *const u8
+    #[inline] pub fn backkey5_ptr(&self) -> *const Backkey5 { 
+        (self.0 + 0x6) as *const Backkey5
     }
 
     #[doc="Get the *mut pointer for the BACKKEY5 register."]
-    #[inline] pub fn backkey5_mut(&self) -> *mut u8 { 
-        ((self.0 as usize) + 0x6) as *mut u8
+    #[inline] pub fn backkey5_mut(&self) -> *mut Backkey5 { 
+        (self.0 + 0x6) as *mut Backkey5
     }
 
     #[doc="Read the BACKKEY5 register."]
     #[inline] pub fn backkey5(&self) -> Backkey5 { 
         unsafe {
-            Backkey5(read_volatile((self.0 + 0x6) as *const u8))
+            read_volatile((self.0 + 0x6) as *const Backkey5)
         }
     }
 
     #[doc="Get the *const pointer for the BACKKEY4 register."]
-    #[inline] pub fn backkey4_ptr(&self) -> *const u8 { 
-        ((self.0 as usize) + 0x7) as *const u8
+    #[inline] pub fn backkey4_ptr(&self) -> *const Backkey4 { 
+        (self.0 + 0x7) as *const Backkey4
     }
 
     #[doc="Get the *mut pointer for the BACKKEY4 register."]
-    #[inline] pub fn backkey4_mut(&self) -> *mut u8 { 
-        ((self.0 as usize) + 0x7) as *mut u8
+    #[inline] pub fn backkey4_mut(&self) -> *mut Backkey4 { 
+        (self.0 + 0x7) as *mut Backkey4
     }
 
     #[doc="Read the BACKKEY4 register."]
     #[inline] pub fn backkey4(&self) -> Backkey4 { 
         unsafe {
-            Backkey4(read_volatile((self.0 + 0x7) as *const u8))
+            read_volatile((self.0 + 0x7) as *const Backkey4)
         }
     }
 
     #[doc="Get the *const pointer for the FPROT3 register."]
-    #[inline] pub fn fprot3_ptr(&self) -> *const u8 { 
-        ((self.0 as usize) + 0x8) as *const u8
+    #[inline] pub fn fprot3_ptr(&self) -> *const Fprot3 { 
+        (self.0 + 0x8) as *const Fprot3
     }
 
     #[doc="Get the *mut pointer for the FPROT3 register."]
-    #[inline] pub fn fprot3_mut(&self) -> *mut u8 { 
-        ((self.0 as usize) + 0x8) as *mut u8
+    #[inline] pub fn fprot3_mut(&self) -> *mut Fprot3 { 
+        (self.0 + 0x8) as *mut Fprot3
     }
 
     #[doc="Read the FPROT3 register."]
     #[inline] pub fn fprot3(&self) -> Fprot3 { 
         unsafe {
-            Fprot3(read_volatile((self.0 + 0x8) as *const u8))
+            read_volatile((self.0 + 0x8) as *const Fprot3)
         }
     }
 
     #[doc="Get the *const pointer for the FPROT2 register."]
-    #[inline] pub fn fprot2_ptr(&self) -> *const u8 { 
-        ((self.0 as usize) + 0x9) as *const u8
+    #[inline] pub fn fprot2_ptr(&self) -> *const Fprot2 { 
+        (self.0 + 0x9) as *const Fprot2
     }
 
     #[doc="Get the *mut pointer for the FPROT2 register."]
-    #[inline] pub fn fprot2_mut(&self) -> *mut u8 { 
-        ((self.0 as usize) + 0x9) as *mut u8
+    #[inline] pub fn fprot2_mut(&self) -> *mut Fprot2 { 
+        (self.0 + 0x9) as *mut Fprot2
     }
 
     #[doc="Read the FPROT2 register."]
     #[inline] pub fn fprot2(&self) -> Fprot2 { 
         unsafe {
-            Fprot2(read_volatile((self.0 + 0x9) as *const u8))
+            read_volatile((self.0 + 0x9) as *const Fprot2)
         }
     }
 
     #[doc="Get the *const pointer for the FPROT1 register."]
-    #[inline] pub fn fprot1_ptr(&self) -> *const u8 { 
-        ((self.0 as usize) + 0xa) as *const u8
+    #[inline] pub fn fprot1_ptr(&self) -> *const Fprot1 { 
+        (self.0 + 0xa) as *const Fprot1
     }
 
     #[doc="Get the *mut pointer for the FPROT1 register."]
-    #[inline] pub fn fprot1_mut(&self) -> *mut u8 { 
-        ((self.0 as usize) + 0xa) as *mut u8
+    #[inline] pub fn fprot1_mut(&self) -> *mut Fprot1 { 
+        (self.0 + 0xa) as *mut Fprot1
     }
 
     #[doc="Read the FPROT1 register."]
     #[inline] pub fn fprot1(&self) -> Fprot1 { 
         unsafe {
-            Fprot1(read_volatile((self.0 + 0xa) as *const u8))
+            read_volatile((self.0 + 0xa) as *const Fprot1)
         }
     }
 
     #[doc="Get the *const pointer for the FPROT0 register."]
-    #[inline] pub fn fprot0_ptr(&self) -> *const u8 { 
-        ((self.0 as usize) + 0xb) as *const u8
+    #[inline] pub fn fprot0_ptr(&self) -> *const Fprot0 { 
+        (self.0 + 0xb) as *const Fprot0
     }
 
     #[doc="Get the *mut pointer for the FPROT0 register."]
-    #[inline] pub fn fprot0_mut(&self) -> *mut u8 { 
-        ((self.0 as usize) + 0xb) as *mut u8
+    #[inline] pub fn fprot0_mut(&self) -> *mut Fprot0 { 
+        (self.0 + 0xb) as *mut Fprot0
     }
 
     #[doc="Read the FPROT0 register."]
     #[inline] pub fn fprot0(&self) -> Fprot0 { 
         unsafe {
-            Fprot0(read_volatile((self.0 + 0xb) as *const u8))
+            read_volatile((self.0 + 0xb) as *const Fprot0)
         }
     }
 
     #[doc="Get the *const pointer for the FSEC register."]
-    #[inline] pub fn fsec_ptr(&self) -> *const u8 { 
-        ((self.0 as usize) + 0xc) as *const u8
+    #[inline] pub fn fsec_ptr(&self) -> *const Fsec { 
+        (self.0 + 0xc) as *const Fsec
     }
 
     #[doc="Get the *mut pointer for the FSEC register."]
-    #[inline] pub fn fsec_mut(&self) -> *mut u8 { 
-        ((self.0 as usize) + 0xc) as *mut u8
+    #[inline] pub fn fsec_mut(&self) -> *mut Fsec { 
+        (self.0 + 0xc) as *mut Fsec
     }
 
     #[doc="Read the FSEC register."]
     #[inline] pub fn fsec(&self) -> Fsec { 
         unsafe {
-            Fsec(read_volatile((self.0 + 0xc) as *const u8))
+            read_volatile((self.0 + 0xc) as *const Fsec)
         }
     }
 
     #[doc="Get the *const pointer for the FOPT register."]
-    #[inline] pub fn fopt_ptr(&self) -> *const u8 { 
-        ((self.0 as usize) + 0xd) as *const u8
+    #[inline] pub fn fopt_ptr(&self) -> *const Fopt { 
+        (self.0 + 0xd) as *const Fopt
     }
 
     #[doc="Get the *mut pointer for the FOPT register."]
-    #[inline] pub fn fopt_mut(&self) -> *mut u8 { 
-        ((self.0 as usize) + 0xd) as *mut u8
+    #[inline] pub fn fopt_mut(&self) -> *mut Fopt { 
+        (self.0 + 0xd) as *mut Fopt
     }
 
     #[doc="Read the FOPT register."]
     #[inline] pub fn fopt(&self) -> Fopt { 
         unsafe {
-            Fopt(read_volatile((self.0 + 0xd) as *const u8))
+            read_volatile((self.0 + 0xd) as *const Fopt)
         }
     }
 

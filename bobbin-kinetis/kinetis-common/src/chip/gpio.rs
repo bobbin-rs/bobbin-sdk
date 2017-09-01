@@ -8,147 +8,138 @@ pub struct GpioPeriph(pub usize);
 
 impl GpioPeriph {
     #[doc="Get the *const pointer for the PDOR register."]
-    #[inline] pub fn pdor_ptr(&self) -> *const u32 { 
-        ((self.0 as usize) + 0x0) as *const u32
+    #[inline] pub fn pdor_ptr(&self) -> *const Pdor { 
+        (self.0 + 0x0) as *const Pdor
     }
 
     #[doc="Get the *mut pointer for the PDOR register."]
-    #[inline] pub fn pdor_mut(&self) -> *mut u32 { 
-        ((self.0 as usize) + 0x0) as *mut u32
+    #[inline] pub fn pdor_mut(&self) -> *mut Pdor { 
+        (self.0 + 0x0) as *mut Pdor
     }
 
     #[doc="Read the PDOR register."]
     #[inline] pub fn pdor(&self) -> Pdor { 
         unsafe {
-            Pdor(read_volatile((self.0 + 0x0) as *const u32))
+            read_volatile((self.0 + 0x0) as *const Pdor)
         }
     }
 
     #[doc="Write the PDOR register."]
     #[inline] pub fn set_pdor<F: FnOnce(Pdor) -> Pdor>(&self, f: F) -> &Self {
-        let value = f(Pdor(0));
         unsafe {
-            write_volatile((self.0 + 0x0) as *mut u32, value.0);
+            write_volatile((self.0 + 0x0) as *mut Pdor, f(Pdor(0)));
         }
         self
     }
 
     #[doc="Modify the PDOR register."]
     #[inline] pub fn with_pdor<F: FnOnce(Pdor) -> Pdor>(&self, f: F) -> &Self {
-        let tmp = self.pdor();
-        let value = f(tmp);
         unsafe {
-            write_volatile((self.0 + 0x0) as *mut u32, value.0);
+            write_volatile((self.0 + 0x0) as *mut Pdor, f(self.pdor()));
         }
         self
     }
 
     #[doc="Get the *const pointer for the PSOR register."]
-    #[inline] pub fn psor_ptr(&self) -> *const u32 { 
-        ((self.0 as usize) + 0x4) as *const u32
+    #[inline] pub fn psor_ptr(&self) -> *const Psor { 
+        (self.0 + 0x4) as *const Psor
     }
 
     #[doc="Get the *mut pointer for the PSOR register."]
-    #[inline] pub fn psor_mut(&self) -> *mut u32 { 
-        ((self.0 as usize) + 0x4) as *mut u32
+    #[inline] pub fn psor_mut(&self) -> *mut Psor { 
+        (self.0 + 0x4) as *mut Psor
     }
 
     #[doc="Write the PSOR register."]
     #[inline] pub fn set_psor<F: FnOnce(Psor) -> Psor>(&self, f: F) -> &Self {
-        let value = f(Psor(0));
         unsafe {
-            write_volatile((self.0 + 0x4) as *mut u32, value.0);
+            write_volatile((self.0 + 0x4) as *mut Psor, f(Psor(0)));
         }
         self
     }
 
     #[doc="Get the *const pointer for the PCOR register."]
-    #[inline] pub fn pcor_ptr(&self) -> *const u32 { 
-        ((self.0 as usize) + 0x8) as *const u32
+    #[inline] pub fn pcor_ptr(&self) -> *const Pcor { 
+        (self.0 + 0x8) as *const Pcor
     }
 
     #[doc="Get the *mut pointer for the PCOR register."]
-    #[inline] pub fn pcor_mut(&self) -> *mut u32 { 
-        ((self.0 as usize) + 0x8) as *mut u32
+    #[inline] pub fn pcor_mut(&self) -> *mut Pcor { 
+        (self.0 + 0x8) as *mut Pcor
     }
 
     #[doc="Write the PCOR register."]
     #[inline] pub fn set_pcor<F: FnOnce(Pcor) -> Pcor>(&self, f: F) -> &Self {
-        let value = f(Pcor(0));
         unsafe {
-            write_volatile((self.0 + 0x8) as *mut u32, value.0);
+            write_volatile((self.0 + 0x8) as *mut Pcor, f(Pcor(0)));
         }
         self
     }
 
     #[doc="Get the *const pointer for the PTOR register."]
-    #[inline] pub fn ptor_ptr(&self) -> *const u32 { 
-        ((self.0 as usize) + 0xc) as *const u32
+    #[inline] pub fn ptor_ptr(&self) -> *const Ptor { 
+        (self.0 + 0xc) as *const Ptor
     }
 
     #[doc="Get the *mut pointer for the PTOR register."]
-    #[inline] pub fn ptor_mut(&self) -> *mut u32 { 
-        ((self.0 as usize) + 0xc) as *mut u32
+    #[inline] pub fn ptor_mut(&self) -> *mut Ptor { 
+        (self.0 + 0xc) as *mut Ptor
     }
 
     #[doc="Write the PTOR register."]
     #[inline] pub fn set_ptor<F: FnOnce(Ptor) -> Ptor>(&self, f: F) -> &Self {
-        let value = f(Ptor(0));
         unsafe {
-            write_volatile((self.0 + 0xc) as *mut u32, value.0);
+            write_volatile((self.0 + 0xc) as *mut Ptor, f(Ptor(0)));
         }
         self
     }
 
     #[doc="Get the *const pointer for the PDIR register."]
-    #[inline] pub fn pdir_ptr(&self) -> *const u32 { 
-        ((self.0 as usize) + 0x10) as *const u32
+    #[inline] pub fn pdir_ptr(&self) -> *const Pdir { 
+        (self.0 + 0x10) as *const Pdir
     }
 
     #[doc="Get the *mut pointer for the PDIR register."]
-    #[inline] pub fn pdir_mut(&self) -> *mut u32 { 
-        ((self.0 as usize) + 0x10) as *mut u32
+    #[inline] pub fn pdir_mut(&self) -> *mut Pdir { 
+        (self.0 + 0x10) as *mut Pdir
     }
 
     #[doc="Read the PDIR register."]
     #[inline] pub fn pdir(&self) -> Pdir { 
         unsafe {
-            Pdir(read_volatile((self.0 + 0x10) as *const u32))
+            read_volatile((self.0 + 0x10) as *const Pdir)
         }
     }
 
     #[doc="Get the *const pointer for the PDDR register."]
-    #[inline] pub fn pddr_ptr(&self) -> *const u32 { 
-        ((self.0 as usize) + 0x14) as *const u32
+    #[inline] pub fn pddr_ptr(&self) -> *const Pddr { 
+        (self.0 + 0x14) as *const Pddr
     }
 
     #[doc="Get the *mut pointer for the PDDR register."]
-    #[inline] pub fn pddr_mut(&self) -> *mut u32 { 
-        ((self.0 as usize) + 0x14) as *mut u32
+    #[inline] pub fn pddr_mut(&self) -> *mut Pddr { 
+        (self.0 + 0x14) as *mut Pddr
     }
 
     #[doc="Read the PDDR register."]
     #[inline] pub fn pddr(&self) -> Pddr { 
         unsafe {
-            Pddr(read_volatile((self.0 + 0x14) as *const u32))
+            read_volatile((self.0 + 0x14) as *const Pddr)
         }
     }
 
     #[doc="Write the PDDR register."]
     #[inline] pub fn set_pddr<F: FnOnce(Pddr) -> Pddr>(&self, f: F) -> &Self {
-        let value = f(Pddr(0));
         unsafe {
-            write_volatile((self.0 + 0x14) as *mut u32, value.0);
+            write_volatile((self.0 + 0x14) as *mut Pddr, f(Pddr(0)));
         }
         self
     }
 
     #[doc="Modify the PDDR register."]
     #[inline] pub fn with_pddr<F: FnOnce(Pddr) -> Pddr>(&self, f: F) -> &Self {
-        let tmp = self.pddr();
-        let value = f(tmp);
         unsafe {
-            write_volatile((self.0 + 0x14) as *mut u32, value.0);
+            write_volatile((self.0 + 0x14) as *mut Pddr, f(self.pddr()));
         }
         self
     }
@@ -161,8 +152,7 @@ pub struct Pdor(pub u32);
 impl Pdor {
     #[doc="Port Data Output"]
     #[inline] pub fn pdo<I: Into<bits::R32>>(&self, index: I) -> bits::U1 {
-        let index: bits::R32 = index.into();
-        let index: usize = index.value();
+        let index: usize = index.into().value() as usize;
         let shift: usize = 0 + index;
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
@@ -174,8 +164,7 @@ impl Pdor {
 
     #[doc="Port Data Output"]
     #[inline] pub fn set_pdo<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
-        let index: bits::R32 = index.into();
-        let index: usize = index.value();
+        let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
         let shift: usize = 0 + index;
@@ -245,8 +234,7 @@ pub struct Psor(pub u32);
 impl Psor {
     #[doc="Port Set Output"]
     #[inline] pub fn ptso<I: Into<bits::R32>>(&self, index: I) -> bits::U1 {
-        let index: bits::R32 = index.into();
-        let index: usize = index.value();
+        let index: usize = index.into().value() as usize;
         let shift: usize = 0 + index;
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
@@ -258,8 +246,7 @@ impl Psor {
 
     #[doc="Port Set Output"]
     #[inline] pub fn set_ptso<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
-        let index: bits::R32 = index.into();
-        let index: usize = index.value();
+        let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
         let shift: usize = 0 + index;
@@ -329,8 +316,7 @@ pub struct Pcor(pub u32);
 impl Pcor {
     #[doc="Port Clear Output"]
     #[inline] pub fn ptco<I: Into<bits::R32>>(&self, index: I) -> bits::U1 {
-        let index: bits::R32 = index.into();
-        let index: usize = index.value();
+        let index: usize = index.into().value() as usize;
         let shift: usize = 0 + index;
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
@@ -342,8 +328,7 @@ impl Pcor {
 
     #[doc="Port Clear Output"]
     #[inline] pub fn set_ptco<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
-        let index: bits::R32 = index.into();
-        let index: usize = index.value();
+        let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
         let shift: usize = 0 + index;
@@ -413,8 +398,7 @@ pub struct Ptor(pub u32);
 impl Ptor {
     #[doc="Port Toggle Output"]
     #[inline] pub fn ptto<I: Into<bits::R32>>(&self, index: I) -> bits::U1 {
-        let index: bits::R32 = index.into();
-        let index: usize = index.value();
+        let index: usize = index.into().value() as usize;
         let shift: usize = 0 + index;
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
@@ -426,8 +410,7 @@ impl Ptor {
 
     #[doc="Port Toggle Output"]
     #[inline] pub fn set_ptto<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
-        let index: bits::R32 = index.into();
-        let index: usize = index.value();
+        let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
         let shift: usize = 0 + index;
@@ -497,8 +480,7 @@ pub struct Pdir(pub u32);
 impl Pdir {
     #[doc="Port Data Input"]
     #[inline] pub fn pdi<I: Into<bits::R32>>(&self, index: I) -> bits::U1 {
-        let index: bits::R32 = index.into();
-        let index: usize = index.value();
+        let index: usize = index.into().value() as usize;
         let shift: usize = 0 + index;
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
@@ -510,8 +492,7 @@ impl Pdir {
 
     #[doc="Port Data Input"]
     #[inline] pub fn set_pdi<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
-        let index: bits::R32 = index.into();
-        let index: usize = index.value();
+        let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
         let shift: usize = 0 + index;
@@ -581,8 +562,7 @@ pub struct Pddr(pub u32);
 impl Pddr {
     #[doc="Port Data Direction"]
     #[inline] pub fn pdd<I: Into<bits::R32>>(&self, index: I) -> bits::U1 {
-        let index: bits::R32 = index.into();
-        let index: usize = index.value();
+        let index: usize = index.into().value() as usize;
         let shift: usize = 0 + index;
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
@@ -594,8 +574,7 @@ impl Pddr {
 
     #[doc="Port Data Direction"]
     #[inline] pub fn set_pdd<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
-        let index: bits::R32 = index.into();
-        let index: usize = index.value();
+        let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
         let shift: usize = 0 + index;

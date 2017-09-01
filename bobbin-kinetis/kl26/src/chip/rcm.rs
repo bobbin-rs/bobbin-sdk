@@ -8,107 +8,101 @@ periph!(RCM, Rcm, 0x4007f000);
 pub struct Rcm(pub usize);
 impl Rcm {
     #[doc="Get the *const pointer for the SRS0 register."]
-    #[inline] pub fn srs0_ptr(&self) -> *const u8 { 
-        ((self.0 as usize) + 0x0) as *const u8
+    #[inline] pub fn srs0_ptr(&self) -> *const Srs0 { 
+        (self.0 + 0x0) as *const Srs0
     }
 
     #[doc="Get the *mut pointer for the SRS0 register."]
-    #[inline] pub fn srs0_mut(&self) -> *mut u8 { 
-        ((self.0 as usize) + 0x0) as *mut u8
+    #[inline] pub fn srs0_mut(&self) -> *mut Srs0 { 
+        (self.0 + 0x0) as *mut Srs0
     }
 
     #[doc="Read the SRS0 register."]
     #[inline] pub fn srs0(&self) -> Srs0 { 
         unsafe {
-            Srs0(read_volatile((self.0 + 0x0) as *const u8))
+            read_volatile((self.0 + 0x0) as *const Srs0)
         }
     }
 
     #[doc="Get the *const pointer for the SRS1 register."]
-    #[inline] pub fn srs1_ptr(&self) -> *const u8 { 
-        ((self.0 as usize) + 0x1) as *const u8
+    #[inline] pub fn srs1_ptr(&self) -> *const Srs1 { 
+        (self.0 + 0x1) as *const Srs1
     }
 
     #[doc="Get the *mut pointer for the SRS1 register."]
-    #[inline] pub fn srs1_mut(&self) -> *mut u8 { 
-        ((self.0 as usize) + 0x1) as *mut u8
+    #[inline] pub fn srs1_mut(&self) -> *mut Srs1 { 
+        (self.0 + 0x1) as *mut Srs1
     }
 
     #[doc="Read the SRS1 register."]
     #[inline] pub fn srs1(&self) -> Srs1 { 
         unsafe {
-            Srs1(read_volatile((self.0 + 0x1) as *const u8))
+            read_volatile((self.0 + 0x1) as *const Srs1)
         }
     }
 
     #[doc="Get the *const pointer for the RPFC register."]
-    #[inline] pub fn rpfc_ptr(&self) -> *const u8 { 
-        ((self.0 as usize) + 0x4) as *const u8
+    #[inline] pub fn rpfc_ptr(&self) -> *const Rpfc { 
+        (self.0 + 0x4) as *const Rpfc
     }
 
     #[doc="Get the *mut pointer for the RPFC register."]
-    #[inline] pub fn rpfc_mut(&self) -> *mut u8 { 
-        ((self.0 as usize) + 0x4) as *mut u8
+    #[inline] pub fn rpfc_mut(&self) -> *mut Rpfc { 
+        (self.0 + 0x4) as *mut Rpfc
     }
 
     #[doc="Read the RPFC register."]
     #[inline] pub fn rpfc(&self) -> Rpfc { 
         unsafe {
-            Rpfc(read_volatile((self.0 + 0x4) as *const u8))
+            read_volatile((self.0 + 0x4) as *const Rpfc)
         }
     }
 
     #[doc="Write the RPFC register."]
     #[inline] pub fn set_rpfc<F: FnOnce(Rpfc) -> Rpfc>(&self, f: F) -> &Self {
-        let value = f(Rpfc(0));
         unsafe {
-            write_volatile((self.0 + 0x4) as *mut u8, value.0);
+            write_volatile((self.0 + 0x4) as *mut Rpfc, f(Rpfc(0)));
         }
         self
     }
 
     #[doc="Modify the RPFC register."]
     #[inline] pub fn with_rpfc<F: FnOnce(Rpfc) -> Rpfc>(&self, f: F) -> &Self {
-        let tmp = self.rpfc();
-        let value = f(tmp);
         unsafe {
-            write_volatile((self.0 + 0x4) as *mut u8, value.0);
+            write_volatile((self.0 + 0x4) as *mut Rpfc, f(self.rpfc()));
         }
         self
     }
 
     #[doc="Get the *const pointer for the RPFW register."]
-    #[inline] pub fn rpfw_ptr(&self) -> *const u8 { 
-        ((self.0 as usize) + 0x5) as *const u8
+    #[inline] pub fn rpfw_ptr(&self) -> *const Rpfw { 
+        (self.0 + 0x5) as *const Rpfw
     }
 
     #[doc="Get the *mut pointer for the RPFW register."]
-    #[inline] pub fn rpfw_mut(&self) -> *mut u8 { 
-        ((self.0 as usize) + 0x5) as *mut u8
+    #[inline] pub fn rpfw_mut(&self) -> *mut Rpfw { 
+        (self.0 + 0x5) as *mut Rpfw
     }
 
     #[doc="Read the RPFW register."]
     #[inline] pub fn rpfw(&self) -> Rpfw { 
         unsafe {
-            Rpfw(read_volatile((self.0 + 0x5) as *const u8))
+            read_volatile((self.0 + 0x5) as *const Rpfw)
         }
     }
 
     #[doc="Write the RPFW register."]
     #[inline] pub fn set_rpfw<F: FnOnce(Rpfw) -> Rpfw>(&self, f: F) -> &Self {
-        let value = f(Rpfw(0));
         unsafe {
-            write_volatile((self.0 + 0x5) as *mut u8, value.0);
+            write_volatile((self.0 + 0x5) as *mut Rpfw, f(Rpfw(0)));
         }
         self
     }
 
     #[doc="Modify the RPFW register."]
     #[inline] pub fn with_rpfw<F: FnOnce(Rpfw) -> Rpfw>(&self, f: F) -> &Self {
-        let tmp = self.rpfw();
-        let value = f(tmp);
         unsafe {
-            write_volatile((self.0 + 0x5) as *mut u8, value.0);
+            write_volatile((self.0 + 0x5) as *mut Rpfw, f(self.rpfw()));
         }
         self
     }

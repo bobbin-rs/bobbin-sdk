@@ -8,161 +8,152 @@ periph!(SMC, Smc, 0x4007e000);
 pub struct Smc(pub usize);
 impl Smc {
     #[doc="Get the *const pointer for the VERID register."]
-    #[inline] pub fn verid_ptr(&self) -> *const u32 { 
-        ((self.0 as usize) + 0x0) as *const u32
+    #[inline] pub fn verid_ptr(&self) -> *const Verid { 
+        (self.0 + 0x0) as *const Verid
     }
 
     #[doc="Get the *mut pointer for the VERID register."]
-    #[inline] pub fn verid_mut(&self) -> *mut u32 { 
-        ((self.0 as usize) + 0x0) as *mut u32
+    #[inline] pub fn verid_mut(&self) -> *mut Verid { 
+        (self.0 + 0x0) as *mut Verid
     }
 
     #[doc="Read the VERID register."]
     #[inline] pub fn verid(&self) -> Verid { 
         unsafe {
-            Verid(read_volatile((self.0 + 0x0) as *const u32))
+            read_volatile((self.0 + 0x0) as *const Verid)
         }
     }
 
     #[doc="Get the *const pointer for the PARAM register."]
-    #[inline] pub fn param_ptr(&self) -> *const u32 { 
-        ((self.0 as usize) + 0x4) as *const u32
+    #[inline] pub fn param_ptr(&self) -> *const Param { 
+        (self.0 + 0x4) as *const Param
     }
 
     #[doc="Get the *mut pointer for the PARAM register."]
-    #[inline] pub fn param_mut(&self) -> *mut u32 { 
-        ((self.0 as usize) + 0x4) as *mut u32
+    #[inline] pub fn param_mut(&self) -> *mut Param { 
+        (self.0 + 0x4) as *mut Param
     }
 
     #[doc="Read the PARAM register."]
     #[inline] pub fn param(&self) -> Param { 
         unsafe {
-            Param(read_volatile((self.0 + 0x4) as *const u32))
+            read_volatile((self.0 + 0x4) as *const Param)
         }
     }
 
     #[doc="Get the *const pointer for the PMPROT register."]
-    #[inline] pub fn pmprot_ptr(&self) -> *const u32 { 
-        ((self.0 as usize) + 0x8) as *const u32
+    #[inline] pub fn pmprot_ptr(&self) -> *const Pmprot { 
+        (self.0 + 0x8) as *const Pmprot
     }
 
     #[doc="Get the *mut pointer for the PMPROT register."]
-    #[inline] pub fn pmprot_mut(&self) -> *mut u32 { 
-        ((self.0 as usize) + 0x8) as *mut u32
+    #[inline] pub fn pmprot_mut(&self) -> *mut Pmprot { 
+        (self.0 + 0x8) as *mut Pmprot
     }
 
     #[doc="Read the PMPROT register."]
     #[inline] pub fn pmprot(&self) -> Pmprot { 
         unsafe {
-            Pmprot(read_volatile((self.0 + 0x8) as *const u32))
+            read_volatile((self.0 + 0x8) as *const Pmprot)
         }
     }
 
     #[doc="Write the PMPROT register."]
     #[inline] pub fn set_pmprot<F: FnOnce(Pmprot) -> Pmprot>(&self, f: F) -> &Self {
-        let value = f(Pmprot(0));
         unsafe {
-            write_volatile((self.0 + 0x8) as *mut u32, value.0);
+            write_volatile((self.0 + 0x8) as *mut Pmprot, f(Pmprot(0)));
         }
         self
     }
 
     #[doc="Modify the PMPROT register."]
     #[inline] pub fn with_pmprot<F: FnOnce(Pmprot) -> Pmprot>(&self, f: F) -> &Self {
-        let tmp = self.pmprot();
-        let value = f(tmp);
         unsafe {
-            write_volatile((self.0 + 0x8) as *mut u32, value.0);
+            write_volatile((self.0 + 0x8) as *mut Pmprot, f(self.pmprot()));
         }
         self
     }
 
     #[doc="Get the *const pointer for the PMCTRL register."]
-    #[inline] pub fn pmctrl_ptr(&self) -> *const u32 { 
-        ((self.0 as usize) + 0xc) as *const u32
+    #[inline] pub fn pmctrl_ptr(&self) -> *const Pmctrl { 
+        (self.0 + 0xc) as *const Pmctrl
     }
 
     #[doc="Get the *mut pointer for the PMCTRL register."]
-    #[inline] pub fn pmctrl_mut(&self) -> *mut u32 { 
-        ((self.0 as usize) + 0xc) as *mut u32
+    #[inline] pub fn pmctrl_mut(&self) -> *mut Pmctrl { 
+        (self.0 + 0xc) as *mut Pmctrl
     }
 
     #[doc="Read the PMCTRL register."]
     #[inline] pub fn pmctrl(&self) -> Pmctrl { 
         unsafe {
-            Pmctrl(read_volatile((self.0 + 0xc) as *const u32))
+            read_volatile((self.0 + 0xc) as *const Pmctrl)
         }
     }
 
     #[doc="Write the PMCTRL register."]
     #[inline] pub fn set_pmctrl<F: FnOnce(Pmctrl) -> Pmctrl>(&self, f: F) -> &Self {
-        let value = f(Pmctrl(0));
         unsafe {
-            write_volatile((self.0 + 0xc) as *mut u32, value.0);
+            write_volatile((self.0 + 0xc) as *mut Pmctrl, f(Pmctrl(0)));
         }
         self
     }
 
     #[doc="Modify the PMCTRL register."]
     #[inline] pub fn with_pmctrl<F: FnOnce(Pmctrl) -> Pmctrl>(&self, f: F) -> &Self {
-        let tmp = self.pmctrl();
-        let value = f(tmp);
         unsafe {
-            write_volatile((self.0 + 0xc) as *mut u32, value.0);
+            write_volatile((self.0 + 0xc) as *mut Pmctrl, f(self.pmctrl()));
         }
         self
     }
 
     #[doc="Get the *const pointer for the STOPCTRL register."]
-    #[inline] pub fn stopctrl_ptr(&self) -> *const u32 { 
-        ((self.0 as usize) + 0x10) as *const u32
+    #[inline] pub fn stopctrl_ptr(&self) -> *const Stopctrl { 
+        (self.0 + 0x10) as *const Stopctrl
     }
 
     #[doc="Get the *mut pointer for the STOPCTRL register."]
-    #[inline] pub fn stopctrl_mut(&self) -> *mut u32 { 
-        ((self.0 as usize) + 0x10) as *mut u32
+    #[inline] pub fn stopctrl_mut(&self) -> *mut Stopctrl { 
+        (self.0 + 0x10) as *mut Stopctrl
     }
 
     #[doc="Read the STOPCTRL register."]
     #[inline] pub fn stopctrl(&self) -> Stopctrl { 
         unsafe {
-            Stopctrl(read_volatile((self.0 + 0x10) as *const u32))
+            read_volatile((self.0 + 0x10) as *const Stopctrl)
         }
     }
 
     #[doc="Write the STOPCTRL register."]
     #[inline] pub fn set_stopctrl<F: FnOnce(Stopctrl) -> Stopctrl>(&self, f: F) -> &Self {
-        let value = f(Stopctrl(0));
         unsafe {
-            write_volatile((self.0 + 0x10) as *mut u32, value.0);
+            write_volatile((self.0 + 0x10) as *mut Stopctrl, f(Stopctrl(0)));
         }
         self
     }
 
     #[doc="Modify the STOPCTRL register."]
     #[inline] pub fn with_stopctrl<F: FnOnce(Stopctrl) -> Stopctrl>(&self, f: F) -> &Self {
-        let tmp = self.stopctrl();
-        let value = f(tmp);
         unsafe {
-            write_volatile((self.0 + 0x10) as *mut u32, value.0);
+            write_volatile((self.0 + 0x10) as *mut Stopctrl, f(self.stopctrl()));
         }
         self
     }
 
     #[doc="Get the *const pointer for the PMSTAT register."]
-    #[inline] pub fn pmstat_ptr(&self) -> *const u32 { 
-        ((self.0 as usize) + 0x14) as *const u32
+    #[inline] pub fn pmstat_ptr(&self) -> *const Pmstat { 
+        (self.0 + 0x14) as *const Pmstat
     }
 
     #[doc="Get the *mut pointer for the PMSTAT register."]
-    #[inline] pub fn pmstat_mut(&self) -> *mut u32 { 
-        ((self.0 as usize) + 0x14) as *mut u32
+    #[inline] pub fn pmstat_mut(&self) -> *mut Pmstat { 
+        (self.0 + 0x14) as *mut Pmstat
     }
 
     #[doc="Read the PMSTAT register."]
     #[inline] pub fn pmstat(&self) -> Pmstat { 
         unsafe {
-            Pmstat(read_volatile((self.0 + 0x14) as *const u32))
+            read_volatile((self.0 + 0x14) as *const Pmstat)
         }
     }
 

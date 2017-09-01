@@ -8,325 +8,298 @@ periph!(CRC, Crc, 0x40032000);
 pub struct Crc(pub usize);
 impl Crc {
     #[doc="Get the *const pointer for the DATA register."]
-    #[inline] pub fn data_ptr(&self) -> *const u32 { 
-        ((self.0 as usize) + 0x0) as *const u32
+    #[inline] pub fn data_ptr(&self) -> *const Data { 
+        (self.0 + 0x0) as *const Data
     }
 
     #[doc="Get the *mut pointer for the DATA register."]
-    #[inline] pub fn data_mut(&self) -> *mut u32 { 
-        ((self.0 as usize) + 0x0) as *mut u32
+    #[inline] pub fn data_mut(&self) -> *mut Data { 
+        (self.0 + 0x0) as *mut Data
     }
 
     #[doc="Read the DATA register."]
     #[inline] pub fn data(&self) -> Data { 
         unsafe {
-            Data(read_volatile((self.0 + 0x0) as *const u32))
+            read_volatile((self.0 + 0x0) as *const Data)
         }
     }
 
     #[doc="Write the DATA register."]
     #[inline] pub fn set_data<F: FnOnce(Data) -> Data>(&self, f: F) -> &Self {
-        let value = f(Data(0));
         unsafe {
-            write_volatile((self.0 + 0x0) as *mut u32, value.0);
+            write_volatile((self.0 + 0x0) as *mut Data, f(Data(0)));
         }
         self
     }
 
     #[doc="Modify the DATA register."]
     #[inline] pub fn with_data<F: FnOnce(Data) -> Data>(&self, f: F) -> &Self {
-        let tmp = self.data();
-        let value = f(tmp);
         unsafe {
-            write_volatile((self.0 + 0x0) as *mut u32, value.0);
+            write_volatile((self.0 + 0x0) as *mut Data, f(self.data()));
         }
         self
     }
 
     #[doc="Get the *const pointer for the DATAL register."]
-    #[inline] pub fn datal_ptr(&self) -> *const u16 { 
-        ((self.0 as usize) + 0x0) as *const u16
+    #[inline] pub fn datal_ptr(&self) -> *const Datal { 
+        (self.0 + 0x0) as *const Datal
     }
 
     #[doc="Get the *mut pointer for the DATAL register."]
-    #[inline] pub fn datal_mut(&self) -> *mut u16 { 
-        ((self.0 as usize) + 0x0) as *mut u16
+    #[inline] pub fn datal_mut(&self) -> *mut Datal { 
+        (self.0 + 0x0) as *mut Datal
     }
 
     #[doc="Read the DATAL register."]
     #[inline] pub fn datal(&self) -> Datal { 
         unsafe {
-            Datal(read_volatile((self.0 + 0x0) as *const u16))
+            read_volatile((self.0 + 0x0) as *const Datal)
         }
     }
 
     #[doc="Write the DATAL register."]
     #[inline] pub fn set_datal<F: FnOnce(Datal) -> Datal>(&self, f: F) -> &Self {
-        let value = f(Datal(0));
         unsafe {
-            write_volatile((self.0 + 0x0) as *mut u16, value.0);
+            write_volatile((self.0 + 0x0) as *mut Datal, f(Datal(0)));
         }
         self
     }
 
     #[doc="Modify the DATAL register."]
     #[inline] pub fn with_datal<F: FnOnce(Datal) -> Datal>(&self, f: F) -> &Self {
-        let tmp = self.datal();
-        let value = f(tmp);
         unsafe {
-            write_volatile((self.0 + 0x0) as *mut u16, value.0);
+            write_volatile((self.0 + 0x0) as *mut Datal, f(self.datal()));
         }
         self
     }
 
     #[doc="Get the *const pointer for the DATALL register."]
-    #[inline] pub fn datall_ptr(&self) -> *const u8 { 
-        ((self.0 as usize) + 0x0) as *const u8
+    #[inline] pub fn datall_ptr(&self) -> *const Datall { 
+        (self.0 + 0x0) as *const Datall
     }
 
     #[doc="Get the *mut pointer for the DATALL register."]
-    #[inline] pub fn datall_mut(&self) -> *mut u8 { 
-        ((self.0 as usize) + 0x0) as *mut u8
+    #[inline] pub fn datall_mut(&self) -> *mut Datall { 
+        (self.0 + 0x0) as *mut Datall
     }
 
     #[doc="Read the DATALL register."]
     #[inline] pub fn datall(&self) -> Datall { 
         unsafe {
-            Datall(read_volatile((self.0 + 0x0) as *const u8))
+            read_volatile((self.0 + 0x0) as *const Datall)
         }
     }
 
     #[doc="Write the DATALL register."]
     #[inline] pub fn set_datall<F: FnOnce(Datall) -> Datall>(&self, f: F) -> &Self {
-        let value = f(Datall(0));
         unsafe {
-            write_volatile((self.0 + 0x0) as *mut u8, value.0);
+            write_volatile((self.0 + 0x0) as *mut Datall, f(Datall(0)));
         }
         self
     }
 
     #[doc="Modify the DATALL register."]
     #[inline] pub fn with_datall<F: FnOnce(Datall) -> Datall>(&self, f: F) -> &Self {
-        let tmp = self.datall();
-        let value = f(tmp);
         unsafe {
-            write_volatile((self.0 + 0x0) as *mut u8, value.0);
+            write_volatile((self.0 + 0x0) as *mut Datall, f(self.datall()));
         }
         self
     }
 
     #[doc="Get the *const pointer for the DATALU register."]
-    #[inline] pub fn datalu_ptr(&self) -> *const u8 { 
-        ((self.0 as usize) + 0x1) as *const u8
+    #[inline] pub fn datalu_ptr(&self) -> *const Datalu { 
+        (self.0 + 0x1) as *const Datalu
     }
 
     #[doc="Get the *mut pointer for the DATALU register."]
-    #[inline] pub fn datalu_mut(&self) -> *mut u8 { 
-        ((self.0 as usize) + 0x1) as *mut u8
+    #[inline] pub fn datalu_mut(&self) -> *mut Datalu { 
+        (self.0 + 0x1) as *mut Datalu
     }
 
     #[doc="Read the DATALU register."]
     #[inline] pub fn datalu(&self) -> Datalu { 
         unsafe {
-            Datalu(read_volatile((self.0 + 0x1) as *const u8))
+            read_volatile((self.0 + 0x1) as *const Datalu)
         }
     }
 
     #[doc="Write the DATALU register."]
     #[inline] pub fn set_datalu<F: FnOnce(Datalu) -> Datalu>(&self, f: F) -> &Self {
-        let value = f(Datalu(0));
         unsafe {
-            write_volatile((self.0 + 0x1) as *mut u8, value.0);
+            write_volatile((self.0 + 0x1) as *mut Datalu, f(Datalu(0)));
         }
         self
     }
 
     #[doc="Modify the DATALU register."]
     #[inline] pub fn with_datalu<F: FnOnce(Datalu) -> Datalu>(&self, f: F) -> &Self {
-        let tmp = self.datalu();
-        let value = f(tmp);
         unsafe {
-            write_volatile((self.0 + 0x1) as *mut u8, value.0);
+            write_volatile((self.0 + 0x1) as *mut Datalu, f(self.datalu()));
         }
         self
     }
 
     #[doc="Get the *const pointer for the DATAH register."]
-    #[inline] pub fn datah_ptr(&self) -> *const u16 { 
-        ((self.0 as usize) + 0x2) as *const u16
+    #[inline] pub fn datah_ptr(&self) -> *const Datah { 
+        (self.0 + 0x2) as *const Datah
     }
 
     #[doc="Get the *mut pointer for the DATAH register."]
-    #[inline] pub fn datah_mut(&self) -> *mut u16 { 
-        ((self.0 as usize) + 0x2) as *mut u16
+    #[inline] pub fn datah_mut(&self) -> *mut Datah { 
+        (self.0 + 0x2) as *mut Datah
     }
 
     #[doc="Read the DATAH register."]
     #[inline] pub fn datah(&self) -> Datah { 
         unsafe {
-            Datah(read_volatile((self.0 + 0x2) as *const u16))
+            read_volatile((self.0 + 0x2) as *const Datah)
         }
     }
 
     #[doc="Write the DATAH register."]
     #[inline] pub fn set_datah<F: FnOnce(Datah) -> Datah>(&self, f: F) -> &Self {
-        let value = f(Datah(0));
         unsafe {
-            write_volatile((self.0 + 0x2) as *mut u16, value.0);
+            write_volatile((self.0 + 0x2) as *mut Datah, f(Datah(0)));
         }
         self
     }
 
     #[doc="Modify the DATAH register."]
     #[inline] pub fn with_datah<F: FnOnce(Datah) -> Datah>(&self, f: F) -> &Self {
-        let tmp = self.datah();
-        let value = f(tmp);
         unsafe {
-            write_volatile((self.0 + 0x2) as *mut u16, value.0);
+            write_volatile((self.0 + 0x2) as *mut Datah, f(self.datah()));
         }
         self
     }
 
     #[doc="Get the *const pointer for the DATAHL register."]
-    #[inline] pub fn datahl_ptr(&self) -> *const u8 { 
-        ((self.0 as usize) + 0x2) as *const u8
+    #[inline] pub fn datahl_ptr(&self) -> *const Datahl { 
+        (self.0 + 0x2) as *const Datahl
     }
 
     #[doc="Get the *mut pointer for the DATAHL register."]
-    #[inline] pub fn datahl_mut(&self) -> *mut u8 { 
-        ((self.0 as usize) + 0x2) as *mut u8
+    #[inline] pub fn datahl_mut(&self) -> *mut Datahl { 
+        (self.0 + 0x2) as *mut Datahl
     }
 
     #[doc="Read the DATAHL register."]
     #[inline] pub fn datahl(&self) -> Datahl { 
         unsafe {
-            Datahl(read_volatile((self.0 + 0x2) as *const u8))
+            read_volatile((self.0 + 0x2) as *const Datahl)
         }
     }
 
     #[doc="Write the DATAHL register."]
     #[inline] pub fn set_datahl<F: FnOnce(Datahl) -> Datahl>(&self, f: F) -> &Self {
-        let value = f(Datahl(0));
         unsafe {
-            write_volatile((self.0 + 0x2) as *mut u8, value.0);
+            write_volatile((self.0 + 0x2) as *mut Datahl, f(Datahl(0)));
         }
         self
     }
 
     #[doc="Modify the DATAHL register."]
     #[inline] pub fn with_datahl<F: FnOnce(Datahl) -> Datahl>(&self, f: F) -> &Self {
-        let tmp = self.datahl();
-        let value = f(tmp);
         unsafe {
-            write_volatile((self.0 + 0x2) as *mut u8, value.0);
+            write_volatile((self.0 + 0x2) as *mut Datahl, f(self.datahl()));
         }
         self
     }
 
     #[doc="Get the *const pointer for the DATAHU register."]
-    #[inline] pub fn datahu_ptr(&self) -> *const u8 { 
-        ((self.0 as usize) + 0x3) as *const u8
+    #[inline] pub fn datahu_ptr(&self) -> *const Datahu { 
+        (self.0 + 0x3) as *const Datahu
     }
 
     #[doc="Get the *mut pointer for the DATAHU register."]
-    #[inline] pub fn datahu_mut(&self) -> *mut u8 { 
-        ((self.0 as usize) + 0x3) as *mut u8
+    #[inline] pub fn datahu_mut(&self) -> *mut Datahu { 
+        (self.0 + 0x3) as *mut Datahu
     }
 
     #[doc="Read the DATAHU register."]
     #[inline] pub fn datahu(&self) -> Datahu { 
         unsafe {
-            Datahu(read_volatile((self.0 + 0x3) as *const u8))
+            read_volatile((self.0 + 0x3) as *const Datahu)
         }
     }
 
     #[doc="Write the DATAHU register."]
     #[inline] pub fn set_datahu<F: FnOnce(Datahu) -> Datahu>(&self, f: F) -> &Self {
-        let value = f(Datahu(0));
         unsafe {
-            write_volatile((self.0 + 0x3) as *mut u8, value.0);
+            write_volatile((self.0 + 0x3) as *mut Datahu, f(Datahu(0)));
         }
         self
     }
 
     #[doc="Modify the DATAHU register."]
     #[inline] pub fn with_datahu<F: FnOnce(Datahu) -> Datahu>(&self, f: F) -> &Self {
-        let tmp = self.datahu();
-        let value = f(tmp);
         unsafe {
-            write_volatile((self.0 + 0x3) as *mut u8, value.0);
+            write_volatile((self.0 + 0x3) as *mut Datahu, f(self.datahu()));
         }
         self
     }
 
     #[doc="Get the *const pointer for the GPOLY register."]
-    #[inline] pub fn gpoly_ptr(&self) -> *const u32 { 
-        ((self.0 as usize) + 0x4) as *const u32
+    #[inline] pub fn gpoly_ptr(&self) -> *const Gpoly { 
+        (self.0 + 0x4) as *const Gpoly
     }
 
     #[doc="Get the *mut pointer for the GPOLY register."]
-    #[inline] pub fn gpoly_mut(&self) -> *mut u32 { 
-        ((self.0 as usize) + 0x4) as *mut u32
+    #[inline] pub fn gpoly_mut(&self) -> *mut Gpoly { 
+        (self.0 + 0x4) as *mut Gpoly
     }
 
     #[doc="Read the GPOLY register."]
     #[inline] pub fn gpoly(&self) -> Gpoly { 
         unsafe {
-            Gpoly(read_volatile((self.0 + 0x4) as *const u32))
+            read_volatile((self.0 + 0x4) as *const Gpoly)
         }
     }
 
     #[doc="Write the GPOLY register."]
     #[inline] pub fn set_gpoly<F: FnOnce(Gpoly) -> Gpoly>(&self, f: F) -> &Self {
-        let value = f(Gpoly(0));
         unsafe {
-            write_volatile((self.0 + 0x4) as *mut u32, value.0);
+            write_volatile((self.0 + 0x4) as *mut Gpoly, f(Gpoly(0)));
         }
         self
     }
 
     #[doc="Modify the GPOLY register."]
     #[inline] pub fn with_gpoly<F: FnOnce(Gpoly) -> Gpoly>(&self, f: F) -> &Self {
-        let tmp = self.gpoly();
-        let value = f(tmp);
         unsafe {
-            write_volatile((self.0 + 0x4) as *mut u32, value.0);
+            write_volatile((self.0 + 0x4) as *mut Gpoly, f(self.gpoly()));
         }
         self
     }
 
     #[doc="Get the *const pointer for the CTRL register."]
-    #[inline] pub fn ctrl_ptr(&self) -> *const u32 { 
-        ((self.0 as usize) + 0x8) as *const u32
+    #[inline] pub fn ctrl_ptr(&self) -> *const Ctrl { 
+        (self.0 + 0x8) as *const Ctrl
     }
 
     #[doc="Get the *mut pointer for the CTRL register."]
-    #[inline] pub fn ctrl_mut(&self) -> *mut u32 { 
-        ((self.0 as usize) + 0x8) as *mut u32
+    #[inline] pub fn ctrl_mut(&self) -> *mut Ctrl { 
+        (self.0 + 0x8) as *mut Ctrl
     }
 
     #[doc="Read the CTRL register."]
     #[inline] pub fn ctrl(&self) -> Ctrl { 
         unsafe {
-            Ctrl(read_volatile((self.0 + 0x8) as *const u32))
+            read_volatile((self.0 + 0x8) as *const Ctrl)
         }
     }
 
     #[doc="Write the CTRL register."]
     #[inline] pub fn set_ctrl<F: FnOnce(Ctrl) -> Ctrl>(&self, f: F) -> &Self {
-        let value = f(Ctrl(0));
         unsafe {
-            write_volatile((self.0 + 0x8) as *mut u32, value.0);
+            write_volatile((self.0 + 0x8) as *mut Ctrl, f(Ctrl(0)));
         }
         self
     }
 
     #[doc="Modify the CTRL register."]
     #[inline] pub fn with_ctrl<F: FnOnce(Ctrl) -> Ctrl>(&self, f: F) -> &Self {
-        let tmp = self.ctrl();
-        let value = f(tmp);
         unsafe {
-            write_volatile((self.0 + 0x8) as *mut u32, value.0);
+            write_volatile((self.0 + 0x8) as *mut Ctrl, f(self.ctrl()));
         }
         self
     }

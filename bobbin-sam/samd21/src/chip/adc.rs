@@ -51,683 +51,629 @@ impl super::sig::SignalAin<super::sig::Ain19> for AdcCh19 {}
 
 impl AdcPeriph {
     #[doc="Get the *const pointer for the AVGCTRL register."]
-    #[inline] pub fn avgctrl_ptr(&self) -> *const u8 { 
-        ((self.0 as usize) + 0x2) as *const u8
+    #[inline] pub fn avgctrl_ptr(&self) -> *const Avgctrl { 
+        (self.0 + 0x2) as *const Avgctrl
     }
 
     #[doc="Get the *mut pointer for the AVGCTRL register."]
-    #[inline] pub fn avgctrl_mut(&self) -> *mut u8 { 
-        ((self.0 as usize) + 0x2) as *mut u8
+    #[inline] pub fn avgctrl_mut(&self) -> *mut Avgctrl { 
+        (self.0 + 0x2) as *mut Avgctrl
     }
 
     #[doc="Read the AVGCTRL register."]
     #[inline] pub fn avgctrl(&self) -> Avgctrl { 
         unsafe {
-            Avgctrl(read_volatile((self.0 + 0x2) as *const u8))
+            read_volatile((self.0 + 0x2) as *const Avgctrl)
         }
     }
 
     #[doc="Write the AVGCTRL register."]
     #[inline] pub fn set_avgctrl<F: FnOnce(Avgctrl) -> Avgctrl>(&self, f: F) -> &Self {
-        let value = f(Avgctrl(0));
         unsafe {
-            write_volatile((self.0 + 0x2) as *mut u8, value.0);
+            write_volatile((self.0 + 0x2) as *mut Avgctrl, f(Avgctrl(0)));
         }
         self
     }
 
     #[doc="Modify the AVGCTRL register."]
     #[inline] pub fn with_avgctrl<F: FnOnce(Avgctrl) -> Avgctrl>(&self, f: F) -> &Self {
-        let tmp = self.avgctrl();
-        let value = f(tmp);
         unsafe {
-            write_volatile((self.0 + 0x2) as *mut u8, value.0);
+            write_volatile((self.0 + 0x2) as *mut Avgctrl, f(self.avgctrl()));
         }
         self
     }
 
     #[doc="Get the *const pointer for the CALIB register."]
-    #[inline] pub fn calib_ptr(&self) -> *const u16 { 
-        ((self.0 as usize) + 0x28) as *const u16
+    #[inline] pub fn calib_ptr(&self) -> *const Calib { 
+        (self.0 + 0x28) as *const Calib
     }
 
     #[doc="Get the *mut pointer for the CALIB register."]
-    #[inline] pub fn calib_mut(&self) -> *mut u16 { 
-        ((self.0 as usize) + 0x28) as *mut u16
+    #[inline] pub fn calib_mut(&self) -> *mut Calib { 
+        (self.0 + 0x28) as *mut Calib
     }
 
     #[doc="Read the CALIB register."]
     #[inline] pub fn calib(&self) -> Calib { 
         unsafe {
-            Calib(read_volatile((self.0 + 0x28) as *const u16))
+            read_volatile((self.0 + 0x28) as *const Calib)
         }
     }
 
     #[doc="Write the CALIB register."]
     #[inline] pub fn set_calib<F: FnOnce(Calib) -> Calib>(&self, f: F) -> &Self {
-        let value = f(Calib(0));
         unsafe {
-            write_volatile((self.0 + 0x28) as *mut u16, value.0);
+            write_volatile((self.0 + 0x28) as *mut Calib, f(Calib(0)));
         }
         self
     }
 
     #[doc="Modify the CALIB register."]
     #[inline] pub fn with_calib<F: FnOnce(Calib) -> Calib>(&self, f: F) -> &Self {
-        let tmp = self.calib();
-        let value = f(tmp);
         unsafe {
-            write_volatile((self.0 + 0x28) as *mut u16, value.0);
+            write_volatile((self.0 + 0x28) as *mut Calib, f(self.calib()));
         }
         self
     }
 
     #[doc="Get the *const pointer for the CTRLA register."]
-    #[inline] pub fn ctrla_ptr(&self) -> *const u8 { 
-        ((self.0 as usize) + 0x0) as *const u8
+    #[inline] pub fn ctrla_ptr(&self) -> *const Ctrla { 
+        (self.0 + 0x0) as *const Ctrla
     }
 
     #[doc="Get the *mut pointer for the CTRLA register."]
-    #[inline] pub fn ctrla_mut(&self) -> *mut u8 { 
-        ((self.0 as usize) + 0x0) as *mut u8
+    #[inline] pub fn ctrla_mut(&self) -> *mut Ctrla { 
+        (self.0 + 0x0) as *mut Ctrla
     }
 
     #[doc="Read the CTRLA register."]
     #[inline] pub fn ctrla(&self) -> Ctrla { 
         unsafe {
-            Ctrla(read_volatile((self.0 + 0x0) as *const u8))
+            read_volatile((self.0 + 0x0) as *const Ctrla)
         }
     }
 
     #[doc="Write the CTRLA register."]
     #[inline] pub fn set_ctrla<F: FnOnce(Ctrla) -> Ctrla>(&self, f: F) -> &Self {
-        let value = f(Ctrla(0));
         unsafe {
-            write_volatile((self.0 + 0x0) as *mut u8, value.0);
+            write_volatile((self.0 + 0x0) as *mut Ctrla, f(Ctrla(0)));
         }
         self
     }
 
     #[doc="Modify the CTRLA register."]
     #[inline] pub fn with_ctrla<F: FnOnce(Ctrla) -> Ctrla>(&self, f: F) -> &Self {
-        let tmp = self.ctrla();
-        let value = f(tmp);
         unsafe {
-            write_volatile((self.0 + 0x0) as *mut u8, value.0);
+            write_volatile((self.0 + 0x0) as *mut Ctrla, f(self.ctrla()));
         }
         self
     }
 
     #[doc="Get the *const pointer for the CTRLB register."]
-    #[inline] pub fn ctrlb_ptr(&self) -> *const u16 { 
-        ((self.0 as usize) + 0x4) as *const u16
+    #[inline] pub fn ctrlb_ptr(&self) -> *const Ctrlb { 
+        (self.0 + 0x4) as *const Ctrlb
     }
 
     #[doc="Get the *mut pointer for the CTRLB register."]
-    #[inline] pub fn ctrlb_mut(&self) -> *mut u16 { 
-        ((self.0 as usize) + 0x4) as *mut u16
+    #[inline] pub fn ctrlb_mut(&self) -> *mut Ctrlb { 
+        (self.0 + 0x4) as *mut Ctrlb
     }
 
     #[doc="Read the CTRLB register."]
     #[inline] pub fn ctrlb(&self) -> Ctrlb { 
         unsafe {
-            Ctrlb(read_volatile((self.0 + 0x4) as *const u16))
+            read_volatile((self.0 + 0x4) as *const Ctrlb)
         }
     }
 
     #[doc="Write the CTRLB register."]
     #[inline] pub fn set_ctrlb<F: FnOnce(Ctrlb) -> Ctrlb>(&self, f: F) -> &Self {
-        let value = f(Ctrlb(0));
         unsafe {
-            write_volatile((self.0 + 0x4) as *mut u16, value.0);
+            write_volatile((self.0 + 0x4) as *mut Ctrlb, f(Ctrlb(0)));
         }
         self
     }
 
     #[doc="Modify the CTRLB register."]
     #[inline] pub fn with_ctrlb<F: FnOnce(Ctrlb) -> Ctrlb>(&self, f: F) -> &Self {
-        let tmp = self.ctrlb();
-        let value = f(tmp);
         unsafe {
-            write_volatile((self.0 + 0x4) as *mut u16, value.0);
+            write_volatile((self.0 + 0x4) as *mut Ctrlb, f(self.ctrlb()));
         }
         self
     }
 
     #[doc="Get the *const pointer for the DBGCTRL register."]
-    #[inline] pub fn dbgctrl_ptr(&self) -> *const u8 { 
-        ((self.0 as usize) + 0x2a) as *const u8
+    #[inline] pub fn dbgctrl_ptr(&self) -> *const Dbgctrl { 
+        (self.0 + 0x2a) as *const Dbgctrl
     }
 
     #[doc="Get the *mut pointer for the DBGCTRL register."]
-    #[inline] pub fn dbgctrl_mut(&self) -> *mut u8 { 
-        ((self.0 as usize) + 0x2a) as *mut u8
+    #[inline] pub fn dbgctrl_mut(&self) -> *mut Dbgctrl { 
+        (self.0 + 0x2a) as *mut Dbgctrl
     }
 
     #[doc="Read the DBGCTRL register."]
     #[inline] pub fn dbgctrl(&self) -> Dbgctrl { 
         unsafe {
-            Dbgctrl(read_volatile((self.0 + 0x2a) as *const u8))
+            read_volatile((self.0 + 0x2a) as *const Dbgctrl)
         }
     }
 
     #[doc="Write the DBGCTRL register."]
     #[inline] pub fn set_dbgctrl<F: FnOnce(Dbgctrl) -> Dbgctrl>(&self, f: F) -> &Self {
-        let value = f(Dbgctrl(0));
         unsafe {
-            write_volatile((self.0 + 0x2a) as *mut u8, value.0);
+            write_volatile((self.0 + 0x2a) as *mut Dbgctrl, f(Dbgctrl(0)));
         }
         self
     }
 
     #[doc="Modify the DBGCTRL register."]
     #[inline] pub fn with_dbgctrl<F: FnOnce(Dbgctrl) -> Dbgctrl>(&self, f: F) -> &Self {
-        let tmp = self.dbgctrl();
-        let value = f(tmp);
         unsafe {
-            write_volatile((self.0 + 0x2a) as *mut u8, value.0);
+            write_volatile((self.0 + 0x2a) as *mut Dbgctrl, f(self.dbgctrl()));
         }
         self
     }
 
     #[doc="Get the *const pointer for the EVCTRL register."]
-    #[inline] pub fn evctrl_ptr(&self) -> *const u8 { 
-        ((self.0 as usize) + 0x14) as *const u8
+    #[inline] pub fn evctrl_ptr(&self) -> *const Evctrl { 
+        (self.0 + 0x14) as *const Evctrl
     }
 
     #[doc="Get the *mut pointer for the EVCTRL register."]
-    #[inline] pub fn evctrl_mut(&self) -> *mut u8 { 
-        ((self.0 as usize) + 0x14) as *mut u8
+    #[inline] pub fn evctrl_mut(&self) -> *mut Evctrl { 
+        (self.0 + 0x14) as *mut Evctrl
     }
 
     #[doc="Read the EVCTRL register."]
     #[inline] pub fn evctrl(&self) -> Evctrl { 
         unsafe {
-            Evctrl(read_volatile((self.0 + 0x14) as *const u8))
+            read_volatile((self.0 + 0x14) as *const Evctrl)
         }
     }
 
     #[doc="Write the EVCTRL register."]
     #[inline] pub fn set_evctrl<F: FnOnce(Evctrl) -> Evctrl>(&self, f: F) -> &Self {
-        let value = f(Evctrl(0));
         unsafe {
-            write_volatile((self.0 + 0x14) as *mut u8, value.0);
+            write_volatile((self.0 + 0x14) as *mut Evctrl, f(Evctrl(0)));
         }
         self
     }
 
     #[doc="Modify the EVCTRL register."]
     #[inline] pub fn with_evctrl<F: FnOnce(Evctrl) -> Evctrl>(&self, f: F) -> &Self {
-        let tmp = self.evctrl();
-        let value = f(tmp);
         unsafe {
-            write_volatile((self.0 + 0x14) as *mut u8, value.0);
+            write_volatile((self.0 + 0x14) as *mut Evctrl, f(self.evctrl()));
         }
         self
     }
 
     #[doc="Get the *const pointer for the GAINCORR register."]
-    #[inline] pub fn gaincorr_ptr(&self) -> *const u16 { 
-        ((self.0 as usize) + 0x24) as *const u16
+    #[inline] pub fn gaincorr_ptr(&self) -> *const Gaincorr { 
+        (self.0 + 0x24) as *const Gaincorr
     }
 
     #[doc="Get the *mut pointer for the GAINCORR register."]
-    #[inline] pub fn gaincorr_mut(&self) -> *mut u16 { 
-        ((self.0 as usize) + 0x24) as *mut u16
+    #[inline] pub fn gaincorr_mut(&self) -> *mut Gaincorr { 
+        (self.0 + 0x24) as *mut Gaincorr
     }
 
     #[doc="Read the GAINCORR register."]
     #[inline] pub fn gaincorr(&self) -> Gaincorr { 
         unsafe {
-            Gaincorr(read_volatile((self.0 + 0x24) as *const u16))
+            read_volatile((self.0 + 0x24) as *const Gaincorr)
         }
     }
 
     #[doc="Write the GAINCORR register."]
     #[inline] pub fn set_gaincorr<F: FnOnce(Gaincorr) -> Gaincorr>(&self, f: F) -> &Self {
-        let value = f(Gaincorr(0));
         unsafe {
-            write_volatile((self.0 + 0x24) as *mut u16, value.0);
+            write_volatile((self.0 + 0x24) as *mut Gaincorr, f(Gaincorr(0)));
         }
         self
     }
 
     #[doc="Modify the GAINCORR register."]
     #[inline] pub fn with_gaincorr<F: FnOnce(Gaincorr) -> Gaincorr>(&self, f: F) -> &Self {
-        let tmp = self.gaincorr();
-        let value = f(tmp);
         unsafe {
-            write_volatile((self.0 + 0x24) as *mut u16, value.0);
+            write_volatile((self.0 + 0x24) as *mut Gaincorr, f(self.gaincorr()));
         }
         self
     }
 
     #[doc="Get the *const pointer for the INPUTCTRL register."]
-    #[inline] pub fn inputctrl_ptr(&self) -> *const u32 { 
-        ((self.0 as usize) + 0x10) as *const u32
+    #[inline] pub fn inputctrl_ptr(&self) -> *const Inputctrl { 
+        (self.0 + 0x10) as *const Inputctrl
     }
 
     #[doc="Get the *mut pointer for the INPUTCTRL register."]
-    #[inline] pub fn inputctrl_mut(&self) -> *mut u32 { 
-        ((self.0 as usize) + 0x10) as *mut u32
+    #[inline] pub fn inputctrl_mut(&self) -> *mut Inputctrl { 
+        (self.0 + 0x10) as *mut Inputctrl
     }
 
     #[doc="Read the INPUTCTRL register."]
     #[inline] pub fn inputctrl(&self) -> Inputctrl { 
         unsafe {
-            Inputctrl(read_volatile((self.0 + 0x10) as *const u32))
+            read_volatile((self.0 + 0x10) as *const Inputctrl)
         }
     }
 
     #[doc="Write the INPUTCTRL register."]
     #[inline] pub fn set_inputctrl<F: FnOnce(Inputctrl) -> Inputctrl>(&self, f: F) -> &Self {
-        let value = f(Inputctrl(0));
         unsafe {
-            write_volatile((self.0 + 0x10) as *mut u32, value.0);
+            write_volatile((self.0 + 0x10) as *mut Inputctrl, f(Inputctrl(0)));
         }
         self
     }
 
     #[doc="Modify the INPUTCTRL register."]
     #[inline] pub fn with_inputctrl<F: FnOnce(Inputctrl) -> Inputctrl>(&self, f: F) -> &Self {
-        let tmp = self.inputctrl();
-        let value = f(tmp);
         unsafe {
-            write_volatile((self.0 + 0x10) as *mut u32, value.0);
+            write_volatile((self.0 + 0x10) as *mut Inputctrl, f(self.inputctrl()));
         }
         self
     }
 
     #[doc="Get the *const pointer for the INTENCLR register."]
-    #[inline] pub fn intenclr_ptr(&self) -> *const u8 { 
-        ((self.0 as usize) + 0x16) as *const u8
+    #[inline] pub fn intenclr_ptr(&self) -> *const Intenclr { 
+        (self.0 + 0x16) as *const Intenclr
     }
 
     #[doc="Get the *mut pointer for the INTENCLR register."]
-    #[inline] pub fn intenclr_mut(&self) -> *mut u8 { 
-        ((self.0 as usize) + 0x16) as *mut u8
+    #[inline] pub fn intenclr_mut(&self) -> *mut Intenclr { 
+        (self.0 + 0x16) as *mut Intenclr
     }
 
     #[doc="Read the INTENCLR register."]
     #[inline] pub fn intenclr(&self) -> Intenclr { 
         unsafe {
-            Intenclr(read_volatile((self.0 + 0x16) as *const u8))
+            read_volatile((self.0 + 0x16) as *const Intenclr)
         }
     }
 
     #[doc="Write the INTENCLR register."]
     #[inline] pub fn set_intenclr<F: FnOnce(Intenclr) -> Intenclr>(&self, f: F) -> &Self {
-        let value = f(Intenclr(0));
         unsafe {
-            write_volatile((self.0 + 0x16) as *mut u8, value.0);
+            write_volatile((self.0 + 0x16) as *mut Intenclr, f(Intenclr(0)));
         }
         self
     }
 
     #[doc="Modify the INTENCLR register."]
     #[inline] pub fn with_intenclr<F: FnOnce(Intenclr) -> Intenclr>(&self, f: F) -> &Self {
-        let tmp = self.intenclr();
-        let value = f(tmp);
         unsafe {
-            write_volatile((self.0 + 0x16) as *mut u8, value.0);
+            write_volatile((self.0 + 0x16) as *mut Intenclr, f(self.intenclr()));
         }
         self
     }
 
     #[doc="Get the *const pointer for the INTENSET register."]
-    #[inline] pub fn intenset_ptr(&self) -> *const u8 { 
-        ((self.0 as usize) + 0x17) as *const u8
+    #[inline] pub fn intenset_ptr(&self) -> *const Intenset { 
+        (self.0 + 0x17) as *const Intenset
     }
 
     #[doc="Get the *mut pointer for the INTENSET register."]
-    #[inline] pub fn intenset_mut(&self) -> *mut u8 { 
-        ((self.0 as usize) + 0x17) as *mut u8
+    #[inline] pub fn intenset_mut(&self) -> *mut Intenset { 
+        (self.0 + 0x17) as *mut Intenset
     }
 
     #[doc="Read the INTENSET register."]
     #[inline] pub fn intenset(&self) -> Intenset { 
         unsafe {
-            Intenset(read_volatile((self.0 + 0x17) as *const u8))
+            read_volatile((self.0 + 0x17) as *const Intenset)
         }
     }
 
     #[doc="Write the INTENSET register."]
     #[inline] pub fn set_intenset<F: FnOnce(Intenset) -> Intenset>(&self, f: F) -> &Self {
-        let value = f(Intenset(0));
         unsafe {
-            write_volatile((self.0 + 0x17) as *mut u8, value.0);
+            write_volatile((self.0 + 0x17) as *mut Intenset, f(Intenset(0)));
         }
         self
     }
 
     #[doc="Modify the INTENSET register."]
     #[inline] pub fn with_intenset<F: FnOnce(Intenset) -> Intenset>(&self, f: F) -> &Self {
-        let tmp = self.intenset();
-        let value = f(tmp);
         unsafe {
-            write_volatile((self.0 + 0x17) as *mut u8, value.0);
+            write_volatile((self.0 + 0x17) as *mut Intenset, f(self.intenset()));
         }
         self
     }
 
     #[doc="Get the *const pointer for the INTFLAG register."]
-    #[inline] pub fn intflag_ptr(&self) -> *const u8 { 
-        ((self.0 as usize) + 0x18) as *const u8
+    #[inline] pub fn intflag_ptr(&self) -> *const Intflag { 
+        (self.0 + 0x18) as *const Intflag
     }
 
     #[doc="Get the *mut pointer for the INTFLAG register."]
-    #[inline] pub fn intflag_mut(&self) -> *mut u8 { 
-        ((self.0 as usize) + 0x18) as *mut u8
+    #[inline] pub fn intflag_mut(&self) -> *mut Intflag { 
+        (self.0 + 0x18) as *mut Intflag
     }
 
     #[doc="Read the INTFLAG register."]
     #[inline] pub fn intflag(&self) -> Intflag { 
         unsafe {
-            Intflag(read_volatile((self.0 + 0x18) as *const u8))
+            read_volatile((self.0 + 0x18) as *const Intflag)
         }
     }
 
     #[doc="Write the INTFLAG register."]
     #[inline] pub fn set_intflag<F: FnOnce(Intflag) -> Intflag>(&self, f: F) -> &Self {
-        let value = f(Intflag(0));
         unsafe {
-            write_volatile((self.0 + 0x18) as *mut u8, value.0);
+            write_volatile((self.0 + 0x18) as *mut Intflag, f(Intflag(0)));
         }
         self
     }
 
     #[doc="Modify the INTFLAG register."]
     #[inline] pub fn with_intflag<F: FnOnce(Intflag) -> Intflag>(&self, f: F) -> &Self {
-        let tmp = self.intflag();
-        let value = f(tmp);
         unsafe {
-            write_volatile((self.0 + 0x18) as *mut u8, value.0);
+            write_volatile((self.0 + 0x18) as *mut Intflag, f(self.intflag()));
         }
         self
     }
 
     #[doc="Get the *const pointer for the OFFSETCORR register."]
-    #[inline] pub fn offsetcorr_ptr(&self) -> *const u16 { 
-        ((self.0 as usize) + 0x26) as *const u16
+    #[inline] pub fn offsetcorr_ptr(&self) -> *const Offsetcorr { 
+        (self.0 + 0x26) as *const Offsetcorr
     }
 
     #[doc="Get the *mut pointer for the OFFSETCORR register."]
-    #[inline] pub fn offsetcorr_mut(&self) -> *mut u16 { 
-        ((self.0 as usize) + 0x26) as *mut u16
+    #[inline] pub fn offsetcorr_mut(&self) -> *mut Offsetcorr { 
+        (self.0 + 0x26) as *mut Offsetcorr
     }
 
     #[doc="Read the OFFSETCORR register."]
     #[inline] pub fn offsetcorr(&self) -> Offsetcorr { 
         unsafe {
-            Offsetcorr(read_volatile((self.0 + 0x26) as *const u16))
+            read_volatile((self.0 + 0x26) as *const Offsetcorr)
         }
     }
 
     #[doc="Write the OFFSETCORR register."]
     #[inline] pub fn set_offsetcorr<F: FnOnce(Offsetcorr) -> Offsetcorr>(&self, f: F) -> &Self {
-        let value = f(Offsetcorr(0));
         unsafe {
-            write_volatile((self.0 + 0x26) as *mut u16, value.0);
+            write_volatile((self.0 + 0x26) as *mut Offsetcorr, f(Offsetcorr(0)));
         }
         self
     }
 
     #[doc="Modify the OFFSETCORR register."]
     #[inline] pub fn with_offsetcorr<F: FnOnce(Offsetcorr) -> Offsetcorr>(&self, f: F) -> &Self {
-        let tmp = self.offsetcorr();
-        let value = f(tmp);
         unsafe {
-            write_volatile((self.0 + 0x26) as *mut u16, value.0);
+            write_volatile((self.0 + 0x26) as *mut Offsetcorr, f(self.offsetcorr()));
         }
         self
     }
 
     #[doc="Get the *const pointer for the REFCTRL register."]
-    #[inline] pub fn refctrl_ptr(&self) -> *const u8 { 
-        ((self.0 as usize) + 0x1) as *const u8
+    #[inline] pub fn refctrl_ptr(&self) -> *const Refctrl { 
+        (self.0 + 0x1) as *const Refctrl
     }
 
     #[doc="Get the *mut pointer for the REFCTRL register."]
-    #[inline] pub fn refctrl_mut(&self) -> *mut u8 { 
-        ((self.0 as usize) + 0x1) as *mut u8
+    #[inline] pub fn refctrl_mut(&self) -> *mut Refctrl { 
+        (self.0 + 0x1) as *mut Refctrl
     }
 
     #[doc="Read the REFCTRL register."]
     #[inline] pub fn refctrl(&self) -> Refctrl { 
         unsafe {
-            Refctrl(read_volatile((self.0 + 0x1) as *const u8))
+            read_volatile((self.0 + 0x1) as *const Refctrl)
         }
     }
 
     #[doc="Write the REFCTRL register."]
     #[inline] pub fn set_refctrl<F: FnOnce(Refctrl) -> Refctrl>(&self, f: F) -> &Self {
-        let value = f(Refctrl(0));
         unsafe {
-            write_volatile((self.0 + 0x1) as *mut u8, value.0);
+            write_volatile((self.0 + 0x1) as *mut Refctrl, f(Refctrl(0)));
         }
         self
     }
 
     #[doc="Modify the REFCTRL register."]
     #[inline] pub fn with_refctrl<F: FnOnce(Refctrl) -> Refctrl>(&self, f: F) -> &Self {
-        let tmp = self.refctrl();
-        let value = f(tmp);
         unsafe {
-            write_volatile((self.0 + 0x1) as *mut u8, value.0);
+            write_volatile((self.0 + 0x1) as *mut Refctrl, f(self.refctrl()));
         }
         self
     }
 
     #[doc="Get the *const pointer for the RESULT register."]
-    #[inline] pub fn result_ptr(&self) -> *const u16 { 
-        ((self.0 as usize) + 0x1a) as *const u16
+    #[inline] pub fn result_ptr(&self) -> *const Result { 
+        (self.0 + 0x1a) as *const Result
     }
 
     #[doc="Get the *mut pointer for the RESULT register."]
-    #[inline] pub fn result_mut(&self) -> *mut u16 { 
-        ((self.0 as usize) + 0x1a) as *mut u16
+    #[inline] pub fn result_mut(&self) -> *mut Result { 
+        (self.0 + 0x1a) as *mut Result
     }
 
     #[doc="Read the RESULT register."]
     #[inline] pub fn result(&self) -> Result { 
         unsafe {
-            Result(read_volatile((self.0 + 0x1a) as *const u16))
+            read_volatile((self.0 + 0x1a) as *const Result)
         }
     }
 
     #[doc="Get the *const pointer for the SAMPCTRL register."]
-    #[inline] pub fn sampctrl_ptr(&self) -> *const u8 { 
-        ((self.0 as usize) + 0x3) as *const u8
+    #[inline] pub fn sampctrl_ptr(&self) -> *const Sampctrl { 
+        (self.0 + 0x3) as *const Sampctrl
     }
 
     #[doc="Get the *mut pointer for the SAMPCTRL register."]
-    #[inline] pub fn sampctrl_mut(&self) -> *mut u8 { 
-        ((self.0 as usize) + 0x3) as *mut u8
+    #[inline] pub fn sampctrl_mut(&self) -> *mut Sampctrl { 
+        (self.0 + 0x3) as *mut Sampctrl
     }
 
     #[doc="Read the SAMPCTRL register."]
     #[inline] pub fn sampctrl(&self) -> Sampctrl { 
         unsafe {
-            Sampctrl(read_volatile((self.0 + 0x3) as *const u8))
+            read_volatile((self.0 + 0x3) as *const Sampctrl)
         }
     }
 
     #[doc="Write the SAMPCTRL register."]
     #[inline] pub fn set_sampctrl<F: FnOnce(Sampctrl) -> Sampctrl>(&self, f: F) -> &Self {
-        let value = f(Sampctrl(0));
         unsafe {
-            write_volatile((self.0 + 0x3) as *mut u8, value.0);
+            write_volatile((self.0 + 0x3) as *mut Sampctrl, f(Sampctrl(0)));
         }
         self
     }
 
     #[doc="Modify the SAMPCTRL register."]
     #[inline] pub fn with_sampctrl<F: FnOnce(Sampctrl) -> Sampctrl>(&self, f: F) -> &Self {
-        let tmp = self.sampctrl();
-        let value = f(tmp);
         unsafe {
-            write_volatile((self.0 + 0x3) as *mut u8, value.0);
+            write_volatile((self.0 + 0x3) as *mut Sampctrl, f(self.sampctrl()));
         }
         self
     }
 
     #[doc="Get the *const pointer for the STATUS register."]
-    #[inline] pub fn status_ptr(&self) -> *const u8 { 
-        ((self.0 as usize) + 0x19) as *const u8
+    #[inline] pub fn status_ptr(&self) -> *const Status { 
+        (self.0 + 0x19) as *const Status
     }
 
     #[doc="Get the *mut pointer for the STATUS register."]
-    #[inline] pub fn status_mut(&self) -> *mut u8 { 
-        ((self.0 as usize) + 0x19) as *mut u8
+    #[inline] pub fn status_mut(&self) -> *mut Status { 
+        (self.0 + 0x19) as *mut Status
     }
 
     #[doc="Read the STATUS register."]
     #[inline] pub fn status(&self) -> Status { 
         unsafe {
-            Status(read_volatile((self.0 + 0x19) as *const u8))
+            read_volatile((self.0 + 0x19) as *const Status)
         }
     }
 
     #[doc="Get the *const pointer for the SWTRIG register."]
-    #[inline] pub fn swtrig_ptr(&self) -> *const u8 { 
-        ((self.0 as usize) + 0xc) as *const u8
+    #[inline] pub fn swtrig_ptr(&self) -> *const Swtrig { 
+        (self.0 + 0xc) as *const Swtrig
     }
 
     #[doc="Get the *mut pointer for the SWTRIG register."]
-    #[inline] pub fn swtrig_mut(&self) -> *mut u8 { 
-        ((self.0 as usize) + 0xc) as *mut u8
+    #[inline] pub fn swtrig_mut(&self) -> *mut Swtrig { 
+        (self.0 + 0xc) as *mut Swtrig
     }
 
     #[doc="Read the SWTRIG register."]
     #[inline] pub fn swtrig(&self) -> Swtrig { 
         unsafe {
-            Swtrig(read_volatile((self.0 + 0xc) as *const u8))
+            read_volatile((self.0 + 0xc) as *const Swtrig)
         }
     }
 
     #[doc="Write the SWTRIG register."]
     #[inline] pub fn set_swtrig<F: FnOnce(Swtrig) -> Swtrig>(&self, f: F) -> &Self {
-        let value = f(Swtrig(0));
         unsafe {
-            write_volatile((self.0 + 0xc) as *mut u8, value.0);
+            write_volatile((self.0 + 0xc) as *mut Swtrig, f(Swtrig(0)));
         }
         self
     }
 
     #[doc="Modify the SWTRIG register."]
     #[inline] pub fn with_swtrig<F: FnOnce(Swtrig) -> Swtrig>(&self, f: F) -> &Self {
-        let tmp = self.swtrig();
-        let value = f(tmp);
         unsafe {
-            write_volatile((self.0 + 0xc) as *mut u8, value.0);
+            write_volatile((self.0 + 0xc) as *mut Swtrig, f(self.swtrig()));
         }
         self
     }
 
     #[doc="Get the *const pointer for the WINCTRL register."]
-    #[inline] pub fn winctrl_ptr(&self) -> *const u8 { 
-        ((self.0 as usize) + 0x8) as *const u8
+    #[inline] pub fn winctrl_ptr(&self) -> *const Winctrl { 
+        (self.0 + 0x8) as *const Winctrl
     }
 
     #[doc="Get the *mut pointer for the WINCTRL register."]
-    #[inline] pub fn winctrl_mut(&self) -> *mut u8 { 
-        ((self.0 as usize) + 0x8) as *mut u8
+    #[inline] pub fn winctrl_mut(&self) -> *mut Winctrl { 
+        (self.0 + 0x8) as *mut Winctrl
     }
 
     #[doc="Read the WINCTRL register."]
     #[inline] pub fn winctrl(&self) -> Winctrl { 
         unsafe {
-            Winctrl(read_volatile((self.0 + 0x8) as *const u8))
+            read_volatile((self.0 + 0x8) as *const Winctrl)
         }
     }
 
     #[doc="Write the WINCTRL register."]
     #[inline] pub fn set_winctrl<F: FnOnce(Winctrl) -> Winctrl>(&self, f: F) -> &Self {
-        let value = f(Winctrl(0));
         unsafe {
-            write_volatile((self.0 + 0x8) as *mut u8, value.0);
+            write_volatile((self.0 + 0x8) as *mut Winctrl, f(Winctrl(0)));
         }
         self
     }
 
     #[doc="Modify the WINCTRL register."]
     #[inline] pub fn with_winctrl<F: FnOnce(Winctrl) -> Winctrl>(&self, f: F) -> &Self {
-        let tmp = self.winctrl();
-        let value = f(tmp);
         unsafe {
-            write_volatile((self.0 + 0x8) as *mut u8, value.0);
+            write_volatile((self.0 + 0x8) as *mut Winctrl, f(self.winctrl()));
         }
         self
     }
 
     #[doc="Get the *const pointer for the WINLT register."]
-    #[inline] pub fn winlt_ptr(&self) -> *const u16 { 
-        ((self.0 as usize) + 0x1c) as *const u16
+    #[inline] pub fn winlt_ptr(&self) -> *const Winlt { 
+        (self.0 + 0x1c) as *const Winlt
     }
 
     #[doc="Get the *mut pointer for the WINLT register."]
-    #[inline] pub fn winlt_mut(&self) -> *mut u16 { 
-        ((self.0 as usize) + 0x1c) as *mut u16
+    #[inline] pub fn winlt_mut(&self) -> *mut Winlt { 
+        (self.0 + 0x1c) as *mut Winlt
     }
 
     #[doc="Read the WINLT register."]
     #[inline] pub fn winlt(&self) -> Winlt { 
         unsafe {
-            Winlt(read_volatile((self.0 + 0x1c) as *const u16))
+            read_volatile((self.0 + 0x1c) as *const Winlt)
         }
     }
 
     #[doc="Write the WINLT register."]
     #[inline] pub fn set_winlt<F: FnOnce(Winlt) -> Winlt>(&self, f: F) -> &Self {
-        let value = f(Winlt(0));
         unsafe {
-            write_volatile((self.0 + 0x1c) as *mut u16, value.0);
+            write_volatile((self.0 + 0x1c) as *mut Winlt, f(Winlt(0)));
         }
         self
     }
 
     #[doc="Modify the WINLT register."]
     #[inline] pub fn with_winlt<F: FnOnce(Winlt) -> Winlt>(&self, f: F) -> &Self {
-        let tmp = self.winlt();
-        let value = f(tmp);
         unsafe {
-            write_volatile((self.0 + 0x1c) as *mut u16, value.0);
+            write_volatile((self.0 + 0x1c) as *mut Winlt, f(self.winlt()));
         }
         self
     }
 
     #[doc="Get the *const pointer for the WINUT register."]
-    #[inline] pub fn winut_ptr(&self) -> *const u16 { 
-        ((self.0 as usize) + 0x20) as *const u16
+    #[inline] pub fn winut_ptr(&self) -> *const Winut { 
+        (self.0 + 0x20) as *const Winut
     }
 
     #[doc="Get the *mut pointer for the WINUT register."]
-    #[inline] pub fn winut_mut(&self) -> *mut u16 { 
-        ((self.0 as usize) + 0x20) as *mut u16
+    #[inline] pub fn winut_mut(&self) -> *mut Winut { 
+        (self.0 + 0x20) as *mut Winut
     }
 
     #[doc="Read the WINUT register."]
     #[inline] pub fn winut(&self) -> Winut { 
         unsafe {
-            Winut(read_volatile((self.0 + 0x20) as *const u16))
+            read_volatile((self.0 + 0x20) as *const Winut)
         }
     }
 
     #[doc="Write the WINUT register."]
     #[inline] pub fn set_winut<F: FnOnce(Winut) -> Winut>(&self, f: F) -> &Self {
-        let value = f(Winut(0));
         unsafe {
-            write_volatile((self.0 + 0x20) as *mut u16, value.0);
+            write_volatile((self.0 + 0x20) as *mut Winut, f(Winut(0)));
         }
         self
     }
 
     #[doc="Modify the WINUT register."]
     #[inline] pub fn with_winut<F: FnOnce(Winut) -> Winut>(&self, f: F) -> &Self {
-        let tmp = self.winut();
-        let value = f(tmp);
         unsafe {
-            write_volatile((self.0 + 0x20) as *mut u16, value.0);
+            write_volatile((self.0 + 0x20) as *mut Winut, f(self.winut()));
         }
         self
     }
