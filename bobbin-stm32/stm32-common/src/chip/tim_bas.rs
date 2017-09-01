@@ -400,6 +400,13 @@ impl Cr1 {
 
 }
 
+impl From<u32> for Cr1 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Cr1(other)
+    }
+}
+
 impl ::core::fmt::Display for Cr1 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -443,6 +450,13 @@ impl Cr2 {
         self
     }
 
+}
+
+impl From<u32> for Cr2 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Cr2(other)
+    }
 }
 
 impl ::core::fmt::Display for Cr2 {
@@ -504,6 +518,13 @@ impl Dier {
 
 }
 
+impl From<u32> for Dier {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Dier(other)
+    }
+}
+
 impl ::core::fmt::Display for Dier {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -545,6 +566,13 @@ impl Sr {
 
 }
 
+impl From<u32> for Sr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Sr(other)
+    }
+}
+
 impl ::core::fmt::Display for Sr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -583,6 +611,13 @@ impl Egr {
         self
     }
 
+}
+
+impl From<u32> for Egr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Egr(other)
+    }
 }
 
 impl ::core::fmt::Display for Egr {
@@ -644,6 +679,13 @@ impl Cnt {
 
 }
 
+impl From<u32> for Cnt {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Cnt(other)
+    }
+}
+
 impl ::core::fmt::Display for Cnt {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -685,6 +727,13 @@ impl Psc {
 
 }
 
+impl From<u32> for Psc {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Psc(other)
+    }
+}
+
 impl ::core::fmt::Display for Psc {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -723,6 +772,13 @@ impl Arr {
         self
     }
 
+}
+
+impl From<u32> for Arr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Arr(other)
+    }
 }
 
 impl ::core::fmt::Display for Arr {

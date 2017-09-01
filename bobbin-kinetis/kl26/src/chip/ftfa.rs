@@ -272,6 +272,13 @@ impl Backkey3 {
 
 }
 
+impl From<u8> for Backkey3 {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Backkey3(other)
+    }
+}
+
 impl ::core::fmt::Display for Backkey3 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -310,6 +317,13 @@ impl Backkey2 {
         self
     }
 
+}
+
+impl From<u8> for Backkey2 {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Backkey2(other)
+    }
 }
 
 impl ::core::fmt::Display for Backkey2 {
@@ -352,6 +366,13 @@ impl Backkey1 {
 
 }
 
+impl From<u8> for Backkey1 {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Backkey1(other)
+    }
+}
+
 impl ::core::fmt::Display for Backkey1 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -390,6 +411,13 @@ impl Backkey0 {
         self
     }
 
+}
+
+impl From<u8> for Backkey0 {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Backkey0(other)
+    }
 }
 
 impl ::core::fmt::Display for Backkey0 {
@@ -432,6 +460,13 @@ impl Backkey7 {
 
 }
 
+impl From<u8> for Backkey7 {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Backkey7(other)
+    }
+}
+
 impl ::core::fmt::Display for Backkey7 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -470,6 +505,13 @@ impl Backkey6 {
         self
     }
 
+}
+
+impl From<u8> for Backkey6 {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Backkey6(other)
+    }
 }
 
 impl ::core::fmt::Display for Backkey6 {
@@ -512,6 +554,13 @@ impl Backkey5 {
 
 }
 
+impl From<u8> for Backkey5 {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Backkey5(other)
+    }
+}
+
 impl ::core::fmt::Display for Backkey5 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -550,6 +599,13 @@ impl Backkey4 {
         self
     }
 
+}
+
+impl From<u8> for Backkey4 {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Backkey4(other)
+    }
 }
 
 impl ::core::fmt::Display for Backkey4 {
@@ -592,6 +648,13 @@ impl Fprot3 {
 
 }
 
+impl From<u8> for Fprot3 {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Fprot3(other)
+    }
+}
+
 impl ::core::fmt::Display for Fprot3 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -630,6 +693,13 @@ impl Fprot2 {
         self
     }
 
+}
+
+impl From<u8> for Fprot2 {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Fprot2(other)
+    }
 }
 
 impl ::core::fmt::Display for Fprot2 {
@@ -672,6 +742,13 @@ impl Fprot1 {
 
 }
 
+impl From<u8> for Fprot1 {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Fprot1(other)
+    }
+}
+
 impl ::core::fmt::Display for Fprot1 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -710,6 +787,13 @@ impl Fprot0 {
         self
     }
 
+}
+
+impl From<u8> for Fprot0 {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Fprot0(other)
+    }
 }
 
 impl ::core::fmt::Display for Fprot0 {
@@ -807,6 +891,13 @@ impl Fsec {
         self
     }
 
+}
+
+impl From<u8> for Fsec {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Fsec(other)
+    }
 }
 
 impl ::core::fmt::Display for Fsec {
@@ -926,6 +1017,13 @@ impl Fopt {
         self
     }
 
+}
+
+impl From<u8> for Fopt {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Fopt(other)
+    }
 }
 
 impl ::core::fmt::Display for Fopt {

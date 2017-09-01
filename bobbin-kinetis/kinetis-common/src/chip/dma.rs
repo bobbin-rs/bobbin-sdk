@@ -264,6 +264,13 @@ impl Sar {
 
 }
 
+impl From<u32> for Sar {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Sar(other)
+    }
+}
+
 impl ::core::fmt::Display for Sar {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -301,6 +308,13 @@ impl Dar {
         self
     }
 
+}
+
+impl From<u32> for Dar {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Dar(other)
+    }
 }
 
 impl ::core::fmt::Display for Dar {
@@ -456,6 +470,13 @@ impl DsrBcr {
 
 }
 
+impl From<u32> for DsrBcr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         DsrBcr(other)
+    }
+}
+
 impl ::core::fmt::Display for DsrBcr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -481,6 +502,13 @@ impl ::core::fmt::Debug for DsrBcr {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Dsr(pub u8);
 impl Dsr {
+}
+
+impl From<u8> for Dsr {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Dsr(other)
+    }
 }
 
 impl ::core::fmt::Display for Dsr {
@@ -805,6 +833,13 @@ impl Dcr {
         self
     }
 
+}
+
+impl From<u32> for Dcr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Dcr(other)
+    }
 }
 
 impl ::core::fmt::Display for Dcr {

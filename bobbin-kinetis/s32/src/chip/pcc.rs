@@ -4191,6 +4191,13 @@ pub struct Pccdummy0(pub u32);
 impl Pccdummy0 {
 }
 
+impl From<u32> for Pccdummy0 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy0(other)
+    }
+}
+
 impl ::core::fmt::Display for Pccdummy0 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -4209,6 +4216,13 @@ impl ::core::fmt::Debug for Pccdummy0 {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy1(pub u32);
 impl Pccdummy1 {
+}
+
+impl From<u32> for Pccdummy1 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy1(other)
+    }
 }
 
 impl ::core::fmt::Display for Pccdummy1 {
@@ -4231,6 +4245,13 @@ pub struct Pccdummy2(pub u32);
 impl Pccdummy2 {
 }
 
+impl From<u32> for Pccdummy2 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy2(other)
+    }
+}
+
 impl ::core::fmt::Display for Pccdummy2 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -4249,6 +4270,13 @@ impl ::core::fmt::Debug for Pccdummy2 {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy3(pub u32);
 impl Pccdummy3 {
+}
+
+impl From<u32> for Pccdummy3 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy3(other)
+    }
 }
 
 impl ::core::fmt::Display for Pccdummy3 {
@@ -4271,6 +4299,13 @@ pub struct Pccdummy4(pub u32);
 impl Pccdummy4 {
 }
 
+impl From<u32> for Pccdummy4 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy4(other)
+    }
+}
+
 impl ::core::fmt::Display for Pccdummy4 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -4289,6 +4324,13 @@ impl ::core::fmt::Debug for Pccdummy4 {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy5(pub u32);
 impl Pccdummy5 {
+}
+
+impl From<u32> for Pccdummy5 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy5(other)
+    }
 }
 
 impl ::core::fmt::Display for Pccdummy5 {
@@ -4311,6 +4353,13 @@ pub struct Pccdummy6(pub u32);
 impl Pccdummy6 {
 }
 
+impl From<u32> for Pccdummy6 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy6(other)
+    }
+}
+
 impl ::core::fmt::Display for Pccdummy6 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -4329,6 +4378,13 @@ impl ::core::fmt::Debug for Pccdummy6 {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy7(pub u32);
 impl Pccdummy7 {
+}
+
+impl From<u32> for Pccdummy7 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy7(other)
+    }
 }
 
 impl ::core::fmt::Display for Pccdummy7 {
@@ -4351,6 +4407,13 @@ pub struct Pccdummy8(pub u32);
 impl Pccdummy8 {
 }
 
+impl From<u32> for Pccdummy8 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy8(other)
+    }
+}
+
 impl ::core::fmt::Display for Pccdummy8 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -4369,6 +4432,13 @@ impl ::core::fmt::Debug for Pccdummy8 {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy9(pub u32);
 impl Pccdummy9 {
+}
+
+impl From<u32> for Pccdummy9 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy9(other)
+    }
 }
 
 impl ::core::fmt::Display for Pccdummy9 {
@@ -4391,6 +4461,13 @@ pub struct Pccdummy10(pub u32);
 impl Pccdummy10 {
 }
 
+impl From<u32> for Pccdummy10 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy10(other)
+    }
+}
+
 impl ::core::fmt::Display for Pccdummy10 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -4409,6 +4486,13 @@ impl ::core::fmt::Debug for Pccdummy10 {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy11(pub u32);
 impl Pccdummy11 {
+}
+
+impl From<u32> for Pccdummy11 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy11(other)
+    }
 }
 
 impl ::core::fmt::Display for Pccdummy11 {
@@ -4431,6 +4515,13 @@ pub struct Pccdummy12(pub u32);
 impl Pccdummy12 {
 }
 
+impl From<u32> for Pccdummy12 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy12(other)
+    }
+}
+
 impl ::core::fmt::Display for Pccdummy12 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -4449,6 +4540,13 @@ impl ::core::fmt::Debug for Pccdummy12 {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy13(pub u32);
 impl Pccdummy13 {
+}
+
+impl From<u32> for Pccdummy13 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy13(other)
+    }
 }
 
 impl ::core::fmt::Display for Pccdummy13 {
@@ -4471,6 +4569,13 @@ pub struct Pccdummy14(pub u32);
 impl Pccdummy14 {
 }
 
+impl From<u32> for Pccdummy14 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy14(other)
+    }
+}
+
 impl ::core::fmt::Display for Pccdummy14 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -4489,6 +4594,13 @@ impl ::core::fmt::Debug for Pccdummy14 {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy15(pub u32);
 impl Pccdummy15 {
+}
+
+impl From<u32> for Pccdummy15 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy15(other)
+    }
 }
 
 impl ::core::fmt::Display for Pccdummy15 {
@@ -4511,6 +4623,13 @@ pub struct Pccdummy16(pub u32);
 impl Pccdummy16 {
 }
 
+impl From<u32> for Pccdummy16 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy16(other)
+    }
+}
+
 impl ::core::fmt::Display for Pccdummy16 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -4529,6 +4648,13 @@ impl ::core::fmt::Debug for Pccdummy16 {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy17(pub u32);
 impl Pccdummy17 {
+}
+
+impl From<u32> for Pccdummy17 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy17(other)
+    }
 }
 
 impl ::core::fmt::Display for Pccdummy17 {
@@ -4551,6 +4677,13 @@ pub struct Pccdummy18(pub u32);
 impl Pccdummy18 {
 }
 
+impl From<u32> for Pccdummy18 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy18(other)
+    }
+}
+
 impl ::core::fmt::Display for Pccdummy18 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -4569,6 +4702,13 @@ impl ::core::fmt::Debug for Pccdummy18 {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy19(pub u32);
 impl Pccdummy19 {
+}
+
+impl From<u32> for Pccdummy19 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy19(other)
+    }
 }
 
 impl ::core::fmt::Display for Pccdummy19 {
@@ -4591,6 +4731,13 @@ pub struct Pccdummy20(pub u32);
 impl Pccdummy20 {
 }
 
+impl From<u32> for Pccdummy20 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy20(other)
+    }
+}
+
 impl ::core::fmt::Display for Pccdummy20 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -4609,6 +4756,13 @@ impl ::core::fmt::Debug for Pccdummy20 {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy21(pub u32);
 impl Pccdummy21 {
+}
+
+impl From<u32> for Pccdummy21 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy21(other)
+    }
 }
 
 impl ::core::fmt::Display for Pccdummy21 {
@@ -4631,6 +4785,13 @@ pub struct Pccdummy22(pub u32);
 impl Pccdummy22 {
 }
 
+impl From<u32> for Pccdummy22 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy22(other)
+    }
+}
+
 impl ::core::fmt::Display for Pccdummy22 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -4649,6 +4810,13 @@ impl ::core::fmt::Debug for Pccdummy22 {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy23(pub u32);
 impl Pccdummy23 {
+}
+
+impl From<u32> for Pccdummy23 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy23(other)
+    }
 }
 
 impl ::core::fmt::Display for Pccdummy23 {
@@ -4671,6 +4839,13 @@ pub struct Pccdummy24(pub u32);
 impl Pccdummy24 {
 }
 
+impl From<u32> for Pccdummy24 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy24(other)
+    }
+}
+
 impl ::core::fmt::Display for Pccdummy24 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -4689,6 +4864,13 @@ impl ::core::fmt::Debug for Pccdummy24 {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy25(pub u32);
 impl Pccdummy25 {
+}
+
+impl From<u32> for Pccdummy25 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy25(other)
+    }
 }
 
 impl ::core::fmt::Display for Pccdummy25 {
@@ -4711,6 +4893,13 @@ pub struct Pccdummy26(pub u32);
 impl Pccdummy26 {
 }
 
+impl From<u32> for Pccdummy26 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy26(other)
+    }
+}
+
 impl ::core::fmt::Display for Pccdummy26 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -4729,6 +4918,13 @@ impl ::core::fmt::Debug for Pccdummy26 {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy27(pub u32);
 impl Pccdummy27 {
+}
+
+impl From<u32> for Pccdummy27 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy27(other)
+    }
 }
 
 impl ::core::fmt::Display for Pccdummy27 {
@@ -4751,6 +4947,13 @@ pub struct Pccdummy28(pub u32);
 impl Pccdummy28 {
 }
 
+impl From<u32> for Pccdummy28 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy28(other)
+    }
+}
+
 impl ::core::fmt::Display for Pccdummy28 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -4769,6 +4972,13 @@ impl ::core::fmt::Debug for Pccdummy28 {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy29(pub u32);
 impl Pccdummy29 {
+}
+
+impl From<u32> for Pccdummy29 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy29(other)
+    }
 }
 
 impl ::core::fmt::Display for Pccdummy29 {
@@ -4791,6 +5001,13 @@ pub struct Pccdummy30(pub u32);
 impl Pccdummy30 {
 }
 
+impl From<u32> for Pccdummy30 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy30(other)
+    }
+}
+
 impl ::core::fmt::Display for Pccdummy30 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -4809,6 +5026,13 @@ impl ::core::fmt::Debug for Pccdummy30 {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy31(pub u32);
 impl Pccdummy31 {
+}
+
+impl From<u32> for Pccdummy31 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy31(other)
+    }
 }
 
 impl ::core::fmt::Display for Pccdummy31 {
@@ -4867,6 +5091,13 @@ impl Ftfc {
         self
     }
 
+}
+
+impl From<u32> for Ftfc {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Ftfc(other)
+    }
 }
 
 impl ::core::fmt::Display for Ftfc {
@@ -4929,6 +5160,13 @@ impl Dmamux {
 
 }
 
+impl From<u32> for Dmamux {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Dmamux(other)
+    }
+}
+
 impl ::core::fmt::Display for Dmamux {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -4951,6 +5189,13 @@ pub struct Pccdummy34(pub u32);
 impl Pccdummy34 {
 }
 
+impl From<u32> for Pccdummy34 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy34(other)
+    }
+}
+
 impl ::core::fmt::Display for Pccdummy34 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -4969,6 +5214,13 @@ impl ::core::fmt::Debug for Pccdummy34 {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy35(pub u32);
 impl Pccdummy35 {
+}
+
+impl From<u32> for Pccdummy35 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy35(other)
+    }
 }
 
 impl ::core::fmt::Display for Pccdummy35 {
@@ -5029,6 +5281,13 @@ impl Flexcan0 {
 
 }
 
+impl From<u32> for Flexcan0 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Flexcan0(other)
+    }
+}
+
 impl ::core::fmt::Display for Flexcan0 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -5087,6 +5346,13 @@ impl Flexcan1 {
         self
     }
 
+}
+
+impl From<u32> for Flexcan1 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Flexcan1(other)
+    }
 }
 
 impl ::core::fmt::Display for Flexcan1 {
@@ -5166,6 +5432,13 @@ impl Ftm3 {
         self
     }
 
+}
+
+impl From<u32> for Ftm3 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Ftm3(other)
+    }
 }
 
 impl ::core::fmt::Display for Ftm3 {
@@ -5248,6 +5521,13 @@ impl Adc1 {
 
 }
 
+impl From<u32> for Adc1 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Adc1(other)
+    }
+}
+
 impl ::core::fmt::Display for Adc1 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -5271,6 +5551,13 @@ pub struct Pccdummy40(pub u32);
 impl Pccdummy40 {
 }
 
+impl From<u32> for Pccdummy40 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy40(other)
+    }
+}
+
 impl ::core::fmt::Display for Pccdummy40 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -5291,6 +5578,13 @@ pub struct Pccdummy41(pub u32);
 impl Pccdummy41 {
 }
 
+impl From<u32> for Pccdummy41 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy41(other)
+    }
+}
+
 impl ::core::fmt::Display for Pccdummy41 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -5309,6 +5603,13 @@ impl ::core::fmt::Debug for Pccdummy41 {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy42(pub u32);
 impl Pccdummy42 {
+}
+
+impl From<u32> for Pccdummy42 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy42(other)
+    }
 }
 
 impl ::core::fmt::Display for Pccdummy42 {
@@ -5367,6 +5668,13 @@ impl Flexcan2 {
         self
     }
 
+}
+
+impl From<u32> for Flexcan2 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Flexcan2(other)
+    }
 }
 
 impl ::core::fmt::Display for Flexcan2 {
@@ -5446,6 +5754,13 @@ impl Lpspi0 {
         self
     }
 
+}
+
+impl From<u32> for Lpspi0 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Lpspi0(other)
+    }
 }
 
 impl ::core::fmt::Display for Lpspi0 {
@@ -5528,6 +5843,13 @@ impl Lpspi1 {
 
 }
 
+impl From<u32> for Lpspi1 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Lpspi1(other)
+    }
+}
+
 impl ::core::fmt::Display for Lpspi1 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -5608,6 +5930,13 @@ impl Lpspi2 {
 
 }
 
+impl From<u32> for Lpspi2 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Lpspi2(other)
+    }
+}
+
 impl ::core::fmt::Display for Lpspi2 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -5631,6 +5960,13 @@ pub struct Pccdummy47(pub u32);
 impl Pccdummy47 {
 }
 
+impl From<u32> for Pccdummy47 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy47(other)
+    }
+}
+
 impl ::core::fmt::Display for Pccdummy47 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -5649,6 +5985,13 @@ impl ::core::fmt::Debug for Pccdummy47 {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy48(pub u32);
 impl Pccdummy48 {
+}
+
+impl From<u32> for Pccdummy48 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy48(other)
+    }
 }
 
 impl ::core::fmt::Display for Pccdummy48 {
@@ -5707,6 +6050,13 @@ impl Pdb1 {
         self
     }
 
+}
+
+impl From<u32> for Pdb1 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pdb1(other)
+    }
 }
 
 impl ::core::fmt::Display for Pdb1 {
@@ -5769,6 +6119,13 @@ impl Crc {
 
 }
 
+impl From<u32> for Crc {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Crc(other)
+    }
+}
+
 impl ::core::fmt::Display for Crc {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -5791,6 +6148,13 @@ pub struct Pccdummy51(pub u32);
 impl Pccdummy51 {
 }
 
+impl From<u32> for Pccdummy51 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy51(other)
+    }
+}
+
 impl ::core::fmt::Display for Pccdummy51 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -5811,6 +6175,13 @@ pub struct Pccdummy52(pub u32);
 impl Pccdummy52 {
 }
 
+impl From<u32> for Pccdummy52 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy52(other)
+    }
+}
+
 impl ::core::fmt::Display for Pccdummy52 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -5829,6 +6200,13 @@ impl ::core::fmt::Debug for Pccdummy52 {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy53(pub u32);
 impl Pccdummy53 {
+}
+
+impl From<u32> for Pccdummy53 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy53(other)
+    }
 }
 
 impl ::core::fmt::Display for Pccdummy53 {
@@ -5887,6 +6265,13 @@ impl Pdb0 {
         self
     }
 
+}
+
+impl From<u32> for Pdb0 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pdb0(other)
+    }
 }
 
 impl ::core::fmt::Display for Pdb0 {
@@ -5966,6 +6351,13 @@ impl Lpit {
         self
     }
 
+}
+
+impl From<u32> for Lpit {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Lpit(other)
+    }
 }
 
 impl ::core::fmt::Display for Lpit {
@@ -6048,6 +6440,13 @@ impl Ftm0 {
 
 }
 
+impl From<u32> for Ftm0 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Ftm0(other)
+    }
+}
+
 impl ::core::fmt::Display for Ftm0 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -6126,6 +6525,13 @@ impl Ftm1 {
         self
     }
 
+}
+
+impl From<u32> for Ftm1 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Ftm1(other)
+    }
 }
 
 impl ::core::fmt::Display for Ftm1 {
@@ -6208,6 +6614,13 @@ impl Ftm2 {
 
 }
 
+impl From<u32> for Ftm2 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Ftm2(other)
+    }
+}
+
 impl ::core::fmt::Display for Ftm2 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -6288,6 +6701,13 @@ impl Adc0 {
 
 }
 
+impl From<u32> for Adc0 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Adc0(other)
+    }
+}
+
 impl ::core::fmt::Display for Adc0 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -6309,6 +6729,13 @@ impl ::core::fmt::Debug for Adc0 {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy60(pub u32);
 impl Pccdummy60 {
+}
+
+impl From<u32> for Pccdummy60 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy60(other)
+    }
 }
 
 impl ::core::fmt::Display for Pccdummy60 {
@@ -6369,6 +6796,13 @@ impl Rtc {
 
 }
 
+impl From<u32> for Rtc {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Rtc(other)
+    }
+}
+
 impl ::core::fmt::Display for Rtc {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -6391,6 +6825,13 @@ pub struct Pccdummy62(pub u32);
 impl Pccdummy62 {
 }
 
+impl From<u32> for Pccdummy62 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy62(other)
+    }
+}
+
 impl ::core::fmt::Display for Pccdummy62 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -6409,6 +6850,13 @@ impl ::core::fmt::Debug for Pccdummy62 {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy63(pub u32);
 impl Pccdummy63 {
+}
+
+impl From<u32> for Pccdummy63 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy63(other)
+    }
 }
 
 impl ::core::fmt::Display for Pccdummy63 {
@@ -6526,6 +6974,13 @@ impl Lptmr0 {
 
 }
 
+impl From<u32> for Lptmr0 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Lptmr0(other)
+    }
+}
+
 impl ::core::fmt::Display for Lptmr0 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -6551,6 +7006,13 @@ pub struct Pccdummy65(pub u32);
 impl Pccdummy65 {
 }
 
+impl From<u32> for Pccdummy65 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy65(other)
+    }
+}
+
 impl ::core::fmt::Display for Pccdummy65 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -6569,6 +7031,13 @@ impl ::core::fmt::Debug for Pccdummy65 {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy66(pub u32);
 impl Pccdummy66 {
+}
+
+impl From<u32> for Pccdummy66 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy66(other)
+    }
 }
 
 impl ::core::fmt::Display for Pccdummy66 {
@@ -6591,6 +7060,13 @@ pub struct Pccdummy67(pub u32);
 impl Pccdummy67 {
 }
 
+impl From<u32> for Pccdummy67 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy67(other)
+    }
+}
+
 impl ::core::fmt::Display for Pccdummy67 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -6609,6 +7085,13 @@ impl ::core::fmt::Debug for Pccdummy67 {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy68(pub u32);
 impl Pccdummy68 {
+}
+
+impl From<u32> for Pccdummy68 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy68(other)
+    }
 }
 
 impl ::core::fmt::Display for Pccdummy68 {
@@ -6631,6 +7114,13 @@ pub struct Pccdummy69(pub u32);
 impl Pccdummy69 {
 }
 
+impl From<u32> for Pccdummy69 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy69(other)
+    }
+}
+
 impl ::core::fmt::Display for Pccdummy69 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -6649,6 +7139,13 @@ impl ::core::fmt::Debug for Pccdummy69 {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy70(pub u32);
 impl Pccdummy70 {
+}
+
+impl From<u32> for Pccdummy70 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy70(other)
+    }
 }
 
 impl ::core::fmt::Display for Pccdummy70 {
@@ -6671,6 +7168,13 @@ pub struct Pccdummy71(pub u32);
 impl Pccdummy71 {
 }
 
+impl From<u32> for Pccdummy71 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy71(other)
+    }
+}
+
 impl ::core::fmt::Display for Pccdummy71 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -6689,6 +7193,13 @@ impl ::core::fmt::Debug for Pccdummy71 {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy72(pub u32);
 impl Pccdummy72 {
+}
+
+impl From<u32> for Pccdummy72 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy72(other)
+    }
 }
 
 impl ::core::fmt::Display for Pccdummy72 {
@@ -6747,6 +7258,13 @@ impl Porta {
         self
     }
 
+}
+
+impl From<u32> for Porta {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Porta(other)
+    }
 }
 
 impl ::core::fmt::Display for Porta {
@@ -6809,6 +7327,13 @@ impl Portb {
 
 }
 
+impl From<u32> for Portb {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Portb(other)
+    }
+}
+
 impl ::core::fmt::Display for Portb {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -6867,6 +7392,13 @@ impl Portc {
         self
     }
 
+}
+
+impl From<u32> for Portc {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Portc(other)
+    }
 }
 
 impl ::core::fmt::Display for Portc {
@@ -6929,6 +7461,13 @@ impl Portd {
 
 }
 
+impl From<u32> for Portd {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Portd(other)
+    }
+}
+
 impl ::core::fmt::Display for Portd {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -6989,6 +7528,13 @@ impl Porte {
 
 }
 
+impl From<u32> for Porte {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Porte(other)
+    }
+}
+
 impl ::core::fmt::Display for Porte {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -7011,6 +7557,13 @@ pub struct Pccdummy78(pub u32);
 impl Pccdummy78 {
 }
 
+impl From<u32> for Pccdummy78 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy78(other)
+    }
+}
+
 impl ::core::fmt::Display for Pccdummy78 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -7029,6 +7582,13 @@ impl ::core::fmt::Debug for Pccdummy78 {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy79(pub u32);
 impl Pccdummy79 {
+}
+
+impl From<u32> for Pccdummy79 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy79(other)
+    }
 }
 
 impl ::core::fmt::Display for Pccdummy79 {
@@ -7051,6 +7611,13 @@ pub struct Pccdummy80(pub u32);
 impl Pccdummy80 {
 }
 
+impl From<u32> for Pccdummy80 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy80(other)
+    }
+}
+
 impl ::core::fmt::Display for Pccdummy80 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -7069,6 +7636,13 @@ impl ::core::fmt::Debug for Pccdummy80 {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy81(pub u32);
 impl Pccdummy81 {
+}
+
+impl From<u32> for Pccdummy81 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy81(other)
+    }
 }
 
 impl ::core::fmt::Display for Pccdummy81 {
@@ -7091,6 +7665,13 @@ pub struct Pccdummy82(pub u32);
 impl Pccdummy82 {
 }
 
+impl From<u32> for Pccdummy82 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy82(other)
+    }
+}
+
 impl ::core::fmt::Display for Pccdummy82 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -7109,6 +7690,13 @@ impl ::core::fmt::Debug for Pccdummy82 {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy83(pub u32);
 impl Pccdummy83 {
+}
+
+impl From<u32> for Pccdummy83 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy83(other)
+    }
 }
 
 impl ::core::fmt::Display for Pccdummy83 {
@@ -7131,6 +7719,13 @@ pub struct Pccdummy84(pub u32);
 impl Pccdummy84 {
 }
 
+impl From<u32> for Pccdummy84 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy84(other)
+    }
+}
+
 impl ::core::fmt::Display for Pccdummy84 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -7149,6 +7744,13 @@ impl ::core::fmt::Debug for Pccdummy84 {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy85(pub u32);
 impl Pccdummy85 {
+}
+
+impl From<u32> for Pccdummy85 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy85(other)
+    }
 }
 
 impl ::core::fmt::Display for Pccdummy85 {
@@ -7171,6 +7773,13 @@ pub struct Pccdummy86(pub u32);
 impl Pccdummy86 {
 }
 
+impl From<u32> for Pccdummy86 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy86(other)
+    }
+}
+
 impl ::core::fmt::Display for Pccdummy86 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -7189,6 +7798,13 @@ impl ::core::fmt::Debug for Pccdummy86 {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy87(pub u32);
 impl Pccdummy87 {
+}
+
+impl From<u32> for Pccdummy87 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy87(other)
+    }
 }
 
 impl ::core::fmt::Display for Pccdummy87 {
@@ -7211,6 +7827,13 @@ pub struct Pccdummy88(pub u32);
 impl Pccdummy88 {
 }
 
+impl From<u32> for Pccdummy88 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy88(other)
+    }
+}
+
 impl ::core::fmt::Display for Pccdummy88 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -7229,6 +7852,13 @@ impl ::core::fmt::Debug for Pccdummy88 {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy89(pub u32);
 impl Pccdummy89 {
+}
+
+impl From<u32> for Pccdummy89 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy89(other)
+    }
 }
 
 impl ::core::fmt::Display for Pccdummy89 {
@@ -7308,6 +7938,13 @@ impl Flexio {
 
 }
 
+impl From<u32> for Flexio {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Flexio(other)
+    }
+}
+
 impl ::core::fmt::Display for Flexio {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -7331,6 +7968,13 @@ pub struct Pccdummy91(pub u32);
 impl Pccdummy91 {
 }
 
+impl From<u32> for Pccdummy91 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy91(other)
+    }
+}
+
 impl ::core::fmt::Display for Pccdummy91 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -7349,6 +7993,13 @@ impl ::core::fmt::Debug for Pccdummy91 {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy92(pub u32);
 impl Pccdummy92 {
+}
+
+impl From<u32> for Pccdummy92 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy92(other)
+    }
 }
 
 impl ::core::fmt::Display for Pccdummy92 {
@@ -7371,6 +8022,13 @@ pub struct Pccdummy93(pub u32);
 impl Pccdummy93 {
 }
 
+impl From<u32> for Pccdummy93 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy93(other)
+    }
+}
+
 impl ::core::fmt::Display for Pccdummy93 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -7389,6 +8047,13 @@ impl ::core::fmt::Debug for Pccdummy93 {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy94(pub u32);
 impl Pccdummy94 {
+}
+
+impl From<u32> for Pccdummy94 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy94(other)
+    }
 }
 
 impl ::core::fmt::Display for Pccdummy94 {
@@ -7411,6 +8076,13 @@ pub struct Pccdummy95(pub u32);
 impl Pccdummy95 {
 }
 
+impl From<u32> for Pccdummy95 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy95(other)
+    }
+}
+
 impl ::core::fmt::Display for Pccdummy95 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -7429,6 +8101,13 @@ impl ::core::fmt::Debug for Pccdummy95 {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy96(pub u32);
 impl Pccdummy96 {
+}
+
+impl From<u32> for Pccdummy96 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy96(other)
+    }
 }
 
 impl ::core::fmt::Display for Pccdummy96 {
@@ -7489,6 +8168,13 @@ impl Ewm {
 
 }
 
+impl From<u32> for Ewm {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Ewm(other)
+    }
+}
+
 impl ::core::fmt::Display for Ewm {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -7511,6 +8197,13 @@ pub struct Pccdummy98(pub u32);
 impl Pccdummy98 {
 }
 
+impl From<u32> for Pccdummy98 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy98(other)
+    }
+}
+
 impl ::core::fmt::Display for Pccdummy98 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -7529,6 +8222,13 @@ impl ::core::fmt::Debug for Pccdummy98 {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy99(pub u32);
 impl Pccdummy99 {
+}
+
+impl From<u32> for Pccdummy99 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy99(other)
+    }
 }
 
 impl ::core::fmt::Display for Pccdummy99 {
@@ -7551,6 +8251,13 @@ pub struct Pccdummy100(pub u32);
 impl Pccdummy100 {
 }
 
+impl From<u32> for Pccdummy100 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy100(other)
+    }
+}
+
 impl ::core::fmt::Display for Pccdummy100 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -7569,6 +8276,13 @@ impl ::core::fmt::Debug for Pccdummy100 {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy101(pub u32);
 impl Pccdummy101 {
+}
+
+impl From<u32> for Pccdummy101 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy101(other)
+    }
 }
 
 impl ::core::fmt::Display for Pccdummy101 {
@@ -7648,6 +8362,13 @@ impl Lpi2c0 {
 
 }
 
+impl From<u32> for Lpi2c0 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Lpi2c0(other)
+    }
+}
+
 impl ::core::fmt::Display for Lpi2c0 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -7671,6 +8392,13 @@ pub struct Pccdummy103(pub u32);
 impl Pccdummy103 {
 }
 
+impl From<u32> for Pccdummy103 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy103(other)
+    }
+}
+
 impl ::core::fmt::Display for Pccdummy103 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -7691,6 +8419,13 @@ pub struct Pccdummy104(pub u32);
 impl Pccdummy104 {
 }
 
+impl From<u32> for Pccdummy104 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy104(other)
+    }
+}
+
 impl ::core::fmt::Display for Pccdummy104 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -7709,6 +8444,13 @@ impl ::core::fmt::Debug for Pccdummy104 {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy105(pub u32);
 impl Pccdummy105 {
+}
+
+impl From<u32> for Pccdummy105 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy105(other)
+    }
 }
 
 impl ::core::fmt::Display for Pccdummy105 {
@@ -7786,6 +8528,13 @@ impl Lpuart0 {
         self
     }
 
+}
+
+impl From<u32> for Lpuart0 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Lpuart0(other)
+    }
 }
 
 impl ::core::fmt::Display for Lpuart0 {
@@ -7868,6 +8617,13 @@ impl Lpuart1 {
 
 }
 
+impl From<u32> for Lpuart1 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Lpuart1(other)
+    }
+}
+
 impl ::core::fmt::Display for Lpuart1 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -7948,6 +8704,13 @@ impl Lpuart2 {
 
 }
 
+impl From<u32> for Lpuart2 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Lpuart2(other)
+    }
+}
+
 impl ::core::fmt::Display for Lpuart2 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -7971,6 +8734,13 @@ pub struct Pccdummy109(pub u32);
 impl Pccdummy109 {
 }
 
+impl From<u32> for Pccdummy109 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy109(other)
+    }
+}
+
 impl ::core::fmt::Display for Pccdummy109 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -7989,6 +8759,13 @@ impl ::core::fmt::Debug for Pccdummy109 {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy110(pub u32);
 impl Pccdummy110 {
+}
+
+impl From<u32> for Pccdummy110 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy110(other)
+    }
 }
 
 impl ::core::fmt::Display for Pccdummy110 {
@@ -8011,6 +8788,13 @@ pub struct Pccdummy111(pub u32);
 impl Pccdummy111 {
 }
 
+impl From<u32> for Pccdummy111 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy111(other)
+    }
+}
+
 impl ::core::fmt::Display for Pccdummy111 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -8029,6 +8813,13 @@ impl ::core::fmt::Debug for Pccdummy111 {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy112(pub u32);
 impl Pccdummy112 {
+}
+
+impl From<u32> for Pccdummy112 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy112(other)
+    }
 }
 
 impl ::core::fmt::Display for Pccdummy112 {
@@ -8051,6 +8842,13 @@ pub struct Pccdummy113(pub u32);
 impl Pccdummy113 {
 }
 
+impl From<u32> for Pccdummy113 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy113(other)
+    }
+}
+
 impl ::core::fmt::Display for Pccdummy113 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -8069,6 +8867,13 @@ impl ::core::fmt::Debug for Pccdummy113 {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pccdummy114(pub u32);
 impl Pccdummy114 {
+}
+
+impl From<u32> for Pccdummy114 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pccdummy114(other)
+    }
 }
 
 impl ::core::fmt::Display for Pccdummy114 {
@@ -8127,6 +8932,13 @@ impl Cmp0 {
         self
     }
 
+}
+
+impl From<u32> for Cmp0 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Cmp0(other)
+    }
 }
 
 impl ::core::fmt::Display for Cmp0 {

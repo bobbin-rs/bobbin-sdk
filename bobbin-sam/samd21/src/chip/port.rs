@@ -491,6 +491,13 @@ impl Ctrl {
 
 }
 
+impl From<u32> for Ctrl {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Ctrl(other)
+    }
+}
+
 impl ::core::fmt::Display for Ctrl {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -534,6 +541,13 @@ impl Dir {
         self
     }
 
+}
+
+impl From<u32> for Dir {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Dir(other)
+    }
 }
 
 impl ::core::fmt::Display for Dir {
@@ -613,6 +627,13 @@ impl Dirclr {
 
 }
 
+impl From<u32> for Dirclr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Dirclr(other)
+    }
+}
+
 impl ::core::fmt::Display for Dirclr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -688,6 +709,13 @@ impl Dirset {
         self
     }
 
+}
+
+impl From<u32> for Dirset {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Dirset(other)
+    }
 }
 
 impl ::core::fmt::Display for Dirset {
@@ -767,6 +795,13 @@ impl Dirtgl {
 
 }
 
+impl From<u32> for Dirtgl {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Dirtgl(other)
+    }
+}
+
 impl ::core::fmt::Display for Dirtgl {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -842,6 +877,13 @@ impl In {
         self
     }
 
+}
+
+impl From<u32> for In {
+    #[inline]
+    fn from(other: u32) -> Self {
+         In(other)
+    }
 }
 
 impl ::core::fmt::Display for In {
@@ -921,6 +963,13 @@ impl Out {
 
 }
 
+impl From<u32> for Out {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Out(other)
+    }
+}
+
 impl ::core::fmt::Display for Out {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -996,6 +1045,13 @@ impl Outclr {
         self
     }
 
+}
+
+impl From<u32> for Outclr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Outclr(other)
+    }
 }
 
 impl ::core::fmt::Display for Outclr {
@@ -1075,6 +1131,13 @@ impl Outset {
 
 }
 
+impl From<u32> for Outset {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Outset(other)
+    }
+}
+
 impl ::core::fmt::Display for Outset {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -1150,6 +1213,13 @@ impl Outtgl {
         self
     }
 
+}
+
+impl From<u32> for Outtgl {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Outtgl(other)
+    }
 }
 
 impl ::core::fmt::Display for Outtgl {
@@ -1280,6 +1350,13 @@ impl Pincfg {
 
 }
 
+impl From<u8> for Pincfg {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Pincfg(other)
+    }
+}
+
 impl ::core::fmt::Display for Pincfg {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -1327,6 +1404,13 @@ impl Pmux {
         self
     }
 
+}
+
+impl From<u8> for Pmux {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Pmux(other)
+    }
 }
 
 impl ::core::fmt::Display for Pmux {
@@ -1520,6 +1604,13 @@ impl Wrconfig {
         self
     }
 
+}
+
+impl From<u32> for Wrconfig {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Wrconfig(other)
+    }
 }
 
 impl ::core::fmt::Display for Wrconfig {

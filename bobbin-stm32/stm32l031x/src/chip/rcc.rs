@@ -980,6 +980,13 @@ impl Cr {
 
 }
 
+impl From<u32> for Cr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Cr(other)
+    }
+}
+
 impl ::core::fmt::Display for Cr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -1109,6 +1116,13 @@ impl Icscr {
 
 }
 
+impl From<u32> for Icscr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Icscr(other)
+    }
+}
+
 impl ::core::fmt::Display for Icscr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -1189,6 +1203,13 @@ impl Crrcr {
         self
     }
 
+}
+
+impl From<u32> for Crrcr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Crrcr(other)
+    }
 }
 
 impl ::core::fmt::Display for Crrcr {
@@ -1423,6 +1444,13 @@ impl Cfgr {
 
 }
 
+impl From<u32> for Cfgr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Cfgr(other)
+    }
+}
+
 impl ::core::fmt::Display for Cfgr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -1604,6 +1632,13 @@ impl Cier {
         self
     }
 
+}
+
+impl From<u32> for Cier {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Cier(other)
+    }
 }
 
 impl ::core::fmt::Display for Cier {
@@ -1803,6 +1838,13 @@ impl Cifr {
         self
     }
 
+}
+
+impl From<u32> for Cifr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Cifr(other)
+    }
 }
 
 impl ::core::fmt::Display for Cifr {
@@ -2005,6 +2047,13 @@ impl Cicr {
 
 }
 
+impl From<u32> for Cicr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Cicr(other)
+    }
+}
+
 impl ::core::fmt::Display for Cicr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -2108,6 +2157,13 @@ impl Ioprstr {
         self
     }
 
+}
+
+impl From<u32> for Ioprstr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Ioprstr(other)
+    }
 }
 
 impl ::core::fmt::Display for Ioprstr {
@@ -2248,6 +2304,13 @@ impl Ahbrstr {
 
 }
 
+impl From<u32> for Ahbrstr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Ahbrstr(other)
+    }
+}
+
 impl ::core::fmt::Display for Ahbrstr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -2386,6 +2449,13 @@ impl Apb2rstr {
         self
     }
 
+}
+
+impl From<u32> for Apb2rstr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Apb2rstr(other)
+    }
 }
 
 impl ::core::fmt::Display for Apb2rstr {
@@ -2604,6 +2674,13 @@ impl Apb1rstr {
 
 }
 
+impl From<u32> for Apb1rstr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Apb1rstr(other)
+    }
+}
+
 impl ::core::fmt::Display for Apb1rstr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -2696,6 +2773,13 @@ impl Iopenr {
         self
     }
 
+}
+
+impl From<u32> for Iopenr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Iopenr(other)
+    }
 }
 
 impl ::core::fmt::Display for Iopenr {
@@ -2834,6 +2918,13 @@ impl Ahbenr {
         self
     }
 
+}
+
+impl From<u32> for Ahbenr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Ahbenr(other)
+    }
 }
 
 impl ::core::fmt::Display for Ahbenr {
@@ -2993,6 +3084,13 @@ impl Apb2enr {
         self
     }
 
+}
+
+impl From<u32> for Apb2enr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Apb2enr(other)
+    }
 }
 
 impl ::core::fmt::Display for Apb2enr {
@@ -3212,6 +3310,13 @@ impl Apb1enr {
 
 }
 
+impl From<u32> for Apb1enr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Apb1enr(other)
+    }
+}
+
 impl ::core::fmt::Display for Apb1enr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -3335,6 +3440,13 @@ impl Iopsmen {
         self
     }
 
+}
+
+impl From<u32> for Iopsmen {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Iopsmen(other)
+    }
 }
 
 impl ::core::fmt::Display for Iopsmen {
@@ -3495,6 +3607,13 @@ impl Ahbsmenr {
 
 }
 
+impl From<u32> for Ahbsmenr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Ahbsmenr(other)
+    }
+}
+
 impl ::core::fmt::Display for Ahbsmenr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -3634,6 +3753,13 @@ impl Apb2smenr {
         self
     }
 
+}
+
+impl From<u32> for Apb2smenr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Apb2smenr(other)
+    }
 }
 
 impl ::core::fmt::Display for Apb2smenr {
@@ -3871,6 +3997,13 @@ impl Apb1smenr {
 
 }
 
+impl From<u32> for Apb1smenr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Apb1smenr(other)
+    }
+}
+
 impl ::core::fmt::Display for Apb1smenr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -3995,6 +4128,13 @@ impl Ccipr {
         self
     }
 
+}
+
+impl From<u32> for Ccipr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Ccipr(other)
+    }
 }
 
 impl ::core::fmt::Display for Ccipr {
@@ -4381,6 +4521,13 @@ impl Csr {
         self
     }
 
+}
+
+impl From<u32> for Csr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Csr(other)
+    }
 }
 
 impl ::core::fmt::Display for Csr {

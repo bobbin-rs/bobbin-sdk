@@ -178,6 +178,13 @@ impl DbgmcuIdcode {
 
 }
 
+impl From<u32> for DbgmcuIdcode {
+    #[inline]
+    fn from(other: u32) -> Self {
+         DbgmcuIdcode(other)
+    }
+}
+
 impl ::core::fmt::Display for DbgmcuIdcode {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -388,6 +395,13 @@ impl DbgmcuCr {
         self
     }
 
+}
+
+impl From<u32> for DbgmcuCr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         DbgmcuCr(other)
+    }
 }
 
 impl ::core::fmt::Display for DbgmcuCr {
@@ -724,6 +738,13 @@ impl DbgmcuApb1Fz {
 
 }
 
+impl From<u32> for DbgmcuApb1Fz {
+    #[inline]
+    fn from(other: u32) -> Self {
+         DbgmcuApb1Fz(other)
+    }
+}
+
 impl ::core::fmt::Display for DbgmcuApb1Fz {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -853,6 +874,13 @@ impl DbgmcuApb2Fz {
         self
     }
 
+}
+
+impl From<u32> for DbgmcuApb2Fz {
+    #[inline]
+    fn from(other: u32) -> Self {
+         DbgmcuApb2Fz(other)
+    }
 }
 
 impl ::core::fmt::Display for DbgmcuApb2Fz {

@@ -352,6 +352,13 @@ impl Iser {
 
 }
 
+impl From<u32> for Iser {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Iser(other)
+    }
+}
+
 impl ::core::fmt::Display for Iser {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -427,6 +434,13 @@ impl Icer {
         self
     }
 
+}
+
+impl From<u32> for Icer {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Icer(other)
+    }
 }
 
 impl ::core::fmt::Display for Icer {
@@ -506,6 +520,13 @@ impl Ispr {
 
 }
 
+impl From<u32> for Ispr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Ispr(other)
+    }
+}
+
 impl ::core::fmt::Display for Ispr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -581,6 +602,13 @@ impl Icpr {
         self
     }
 
+}
+
+impl From<u32> for Icpr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Icpr(other)
+    }
 }
 
 impl ::core::fmt::Display for Icpr {
@@ -660,6 +688,13 @@ impl Iabr {
 
 }
 
+impl From<u32> for Iabr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Iabr(other)
+    }
+}
+
 impl ::core::fmt::Display for Iabr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -737,6 +772,13 @@ impl Ipr {
 
 }
 
+impl From<u32> for Ipr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Ipr(other)
+    }
+}
+
 impl ::core::fmt::Display for Ipr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -778,6 +820,13 @@ impl Stir {
         self
     }
 
+}
+
+impl From<u32> for Stir {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Stir(other)
+    }
 }
 
 impl ::core::fmt::Display for Stir {

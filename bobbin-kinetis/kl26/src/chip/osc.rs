@@ -165,6 +165,13 @@ impl Cr {
 
 }
 
+impl From<u8> for Cr {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Cr(other)
+    }
+}
+
 impl ::core::fmt::Display for Cr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)

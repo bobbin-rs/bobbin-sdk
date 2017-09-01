@@ -675,6 +675,13 @@ impl Stctrlh {
 
 }
 
+impl From<u16> for Stctrlh {
+    #[inline]
+    fn from(other: u16) -> Self {
+         Stctrlh(other)
+    }
+}
+
 impl ::core::fmt::Display for Stctrlh {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -726,6 +733,13 @@ impl Stctrll {
 
 }
 
+impl From<u16> for Stctrll {
+    #[inline]
+    fn from(other: u16) -> Self {
+         Stctrll(other)
+    }
+}
+
 impl ::core::fmt::Display for Stctrll {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -764,6 +778,13 @@ impl Tovalh {
         self
     }
 
+}
+
+impl From<u16> for Tovalh {
+    #[inline]
+    fn from(other: u16) -> Self {
+         Tovalh(other)
+    }
 }
 
 impl ::core::fmt::Display for Tovalh {
@@ -806,6 +827,13 @@ impl Tovall {
 
 }
 
+impl From<u16> for Tovall {
+    #[inline]
+    fn from(other: u16) -> Self {
+         Tovall(other)
+    }
+}
+
 impl ::core::fmt::Display for Tovall {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -844,6 +872,13 @@ impl Winh {
         self
     }
 
+}
+
+impl From<u16> for Winh {
+    #[inline]
+    fn from(other: u16) -> Self {
+         Winh(other)
+    }
 }
 
 impl ::core::fmt::Display for Winh {
@@ -886,6 +921,13 @@ impl Winl {
 
 }
 
+impl From<u16> for Winl {
+    #[inline]
+    fn from(other: u16) -> Self {
+         Winl(other)
+    }
+}
+
 impl ::core::fmt::Display for Winl {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -924,6 +966,13 @@ impl Refresh {
         self
     }
 
+}
+
+impl From<u16> for Refresh {
+    #[inline]
+    fn from(other: u16) -> Self {
+         Refresh(other)
+    }
 }
 
 impl ::core::fmt::Display for Refresh {
@@ -966,6 +1015,13 @@ impl Unlock {
 
 }
 
+impl From<u16> for Unlock {
+    #[inline]
+    fn from(other: u16) -> Self {
+         Unlock(other)
+    }
+}
+
 impl ::core::fmt::Display for Unlock {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -1004,6 +1060,13 @@ impl Tmrouth {
         self
     }
 
+}
+
+impl From<u16> for Tmrouth {
+    #[inline]
+    fn from(other: u16) -> Self {
+         Tmrouth(other)
+    }
 }
 
 impl ::core::fmt::Display for Tmrouth {
@@ -1046,6 +1109,13 @@ impl Tmroutl {
 
 }
 
+impl From<u16> for Tmroutl {
+    #[inline]
+    fn from(other: u16) -> Self {
+         Tmroutl(other)
+    }
+}
+
 impl ::core::fmt::Display for Tmroutl {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -1086,6 +1156,13 @@ impl Rstcnt {
 
 }
 
+impl From<u16> for Rstcnt {
+    #[inline]
+    fn from(other: u16) -> Self {
+         Rstcnt(other)
+    }
+}
+
 impl ::core::fmt::Display for Rstcnt {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -1124,6 +1201,13 @@ impl Presc {
         self
     }
 
+}
+
+impl From<u16> for Presc {
+    #[inline]
+    fn from(other: u16) -> Self {
+         Presc(other)
+    }
 }
 
 impl ::core::fmt::Display for Presc {

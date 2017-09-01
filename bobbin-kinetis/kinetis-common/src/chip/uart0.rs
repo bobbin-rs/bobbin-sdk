@@ -523,6 +523,13 @@ impl Bdh {
 
 }
 
+impl From<u8> for Bdh {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Bdh(other)
+    }
+}
+
 impl ::core::fmt::Display for Bdh {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -564,6 +571,13 @@ impl Bdl {
         self
     }
 
+}
+
+impl From<u8> for Bdl {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Bdl(other)
+    }
 }
 
 impl ::core::fmt::Display for Bdl {
@@ -737,6 +751,13 @@ impl C1 {
         self
     }
 
+}
+
+impl From<u8> for C1 {
+    #[inline]
+    fn from(other: u8) -> Self {
+         C1(other)
+    }
 }
 
 impl ::core::fmt::Display for C1 {
@@ -919,6 +940,13 @@ impl C2 {
 
 }
 
+impl From<u8> for C2 {
+    #[inline]
+    fn from(other: u8) -> Self {
+         C2(other)
+    }
+}
+
 impl ::core::fmt::Display for C2 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -1097,6 +1125,13 @@ impl S1 {
         self
     }
 
+}
+
+impl From<u8> for S1 {
+    #[inline]
+    fn from(other: u8) -> Self {
+         S1(other)
+    }
 }
 
 impl ::core::fmt::Display for S1 {
@@ -1279,6 +1314,13 @@ impl S2 {
 
 }
 
+impl From<u8> for S2 {
+    #[inline]
+    fn from(other: u8) -> Self {
+         S2(other)
+    }
+}
+
 impl ::core::fmt::Display for S2 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -1459,6 +1501,13 @@ impl C3 {
 
 }
 
+impl From<u8> for C3 {
+    #[inline]
+    fn from(other: u8) -> Self {
+         C3(other)
+    }
+}
+
 impl ::core::fmt::Display for C3 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -1506,6 +1555,13 @@ impl D {
 
 }
 
+impl From<u8> for D {
+    #[inline]
+    fn from(other: u8) -> Self {
+         D(other)
+    }
+}
+
 impl ::core::fmt::Display for D {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -1546,6 +1602,13 @@ impl Ma1 {
 
 }
 
+impl From<u8> for Ma1 {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Ma1(other)
+    }
+}
+
 impl ::core::fmt::Display for Ma1 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -1584,6 +1647,13 @@ impl Ma2 {
         self
     }
 
+}
+
+impl From<u8> for Ma2 {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Ma2(other)
+    }
 }
 
 impl ::core::fmt::Display for Ma2 {
@@ -1681,6 +1751,13 @@ impl C4 {
         self
     }
 
+}
+
+impl From<u8> for C4 {
+    #[inline]
+    fn from(other: u8) -> Self {
+         C4(other)
+    }
 }
 
 impl ::core::fmt::Display for C4 {
@@ -1781,6 +1858,13 @@ impl C5 {
         self
     }
 
+}
+
+impl From<u8> for C5 {
+    #[inline]
+    fn from(other: u8) -> Self {
+         C5(other)
+    }
 }
 
 impl ::core::fmt::Display for C5 {

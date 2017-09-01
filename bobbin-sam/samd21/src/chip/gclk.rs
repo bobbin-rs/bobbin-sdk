@@ -360,6 +360,13 @@ impl Clkctrl {
 
 }
 
+impl From<u16> for Clkctrl {
+    #[inline]
+    fn from(other: u16) -> Self {
+         Clkctrl(other)
+    }
+}
+
 impl ::core::fmt::Display for Clkctrl {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -403,6 +410,13 @@ impl ClkctrlId {
 
 }
 
+impl From<u8> for ClkctrlId {
+    #[inline]
+    fn from(other: u8) -> Self {
+         ClkctrlId(other)
+    }
+}
+
 impl ::core::fmt::Display for ClkctrlId {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -441,6 +455,13 @@ impl Ctrl {
         self
     }
 
+}
+
+impl From<u8> for Ctrl {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Ctrl(other)
+    }
 }
 
 impl ::core::fmt::Display for Ctrl {
@@ -616,6 +637,13 @@ impl Genctrl {
 
 }
 
+impl From<u32> for Genctrl {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Genctrl(other)
+    }
+}
+
 impl ::core::fmt::Display for Genctrl {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -661,6 +689,13 @@ impl GenctrlId {
         self
     }
 
+}
+
+impl From<u8> for GenctrlId {
+    #[inline]
+    fn from(other: u8) -> Self {
+         GenctrlId(other)
+    }
 }
 
 impl ::core::fmt::Display for GenctrlId {
@@ -722,6 +757,13 @@ impl Gendiv {
 
 }
 
+impl From<u32> for Gendiv {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Gendiv(other)
+    }
+}
+
 impl ::core::fmt::Display for Gendiv {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -763,6 +805,13 @@ impl GendivId {
 
 }
 
+impl From<u8> for GendivId {
+    #[inline]
+    fn from(other: u8) -> Self {
+         GendivId(other)
+    }
+}
+
 impl ::core::fmt::Display for GendivId {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -801,6 +850,13 @@ impl Status {
         self
     }
 
+}
+
+impl From<u8> for Status {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Status(other)
+    }
 }
 
 impl ::core::fmt::Display for Status {

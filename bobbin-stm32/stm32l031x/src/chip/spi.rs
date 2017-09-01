@@ -577,6 +577,13 @@ impl Cr1 {
 
 }
 
+impl From<u16> for Cr1 {
+    #[inline]
+    fn from(other: u16) -> Self {
+         Cr1(other)
+    }
+}
+
 impl ::core::fmt::Display for Cr1 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -742,6 +749,13 @@ impl Cr2 {
         self
     }
 
+}
+
+impl From<u16> for Cr2 {
+    #[inline]
+    fn from(other: u16) -> Self {
+         Cr2(other)
+    }
 }
 
 impl ::core::fmt::Display for Cr2 {
@@ -942,6 +956,13 @@ impl Sr {
 
 }
 
+impl From<u16> for Sr {
+    #[inline]
+    fn from(other: u16) -> Self {
+         Sr(other)
+    }
+}
+
 impl ::core::fmt::Display for Sr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -990,6 +1011,13 @@ impl Dr {
 
 }
 
+impl From<u16> for Dr {
+    #[inline]
+    fn from(other: u16) -> Self {
+         Dr(other)
+    }
+}
+
 impl ::core::fmt::Display for Dr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -1028,6 +1056,13 @@ impl Crcpr {
         self
     }
 
+}
+
+impl From<u32> for Crcpr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Crcpr(other)
+    }
 }
 
 impl ::core::fmt::Display for Crcpr {
@@ -1070,6 +1105,13 @@ impl Rxcrcr {
 
 }
 
+impl From<u16> for Rxcrcr {
+    #[inline]
+    fn from(other: u16) -> Self {
+         Rxcrcr(other)
+    }
+}
+
 impl ::core::fmt::Display for Rxcrcr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -1108,6 +1150,13 @@ impl Txcrcr {
         self
     }
 
+}
+
+impl From<u16> for Txcrcr {
+    #[inline]
+    fn from(other: u16) -> Self {
+         Txcrcr(other)
+    }
 }
 
 impl ::core::fmt::Display for Txcrcr {
@@ -1283,6 +1332,13 @@ impl I2scfgr {
 
 }
 
+impl From<u16> for I2scfgr {
+    #[inline]
+    fn from(other: u16) -> Self {
+         I2scfgr(other)
+    }
+}
+
 impl ::core::fmt::Display for I2scfgr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -1366,6 +1422,13 @@ impl I2spr {
         self
     }
 
+}
+
+impl From<u16> for I2spr {
+    #[inline]
+    fn from(other: u16) -> Self {
+         I2spr(other)
+    }
 }
 
 impl ::core::fmt::Display for I2spr {

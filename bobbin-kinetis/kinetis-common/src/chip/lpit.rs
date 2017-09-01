@@ -401,6 +401,13 @@ impl Verid {
 
 }
 
+impl From<u32> for Verid {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Verid(other)
+    }
+}
+
 impl ::core::fmt::Display for Verid {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -460,6 +467,13 @@ impl Param {
         self
     }
 
+}
+
+impl From<u32> for Param {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Param(other)
+    }
 }
 
 impl ::core::fmt::Display for Param {
@@ -560,6 +574,13 @@ impl Mcr {
 
 }
 
+impl From<u32> for Mcr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Mcr(other)
+    }
+}
+
 impl ::core::fmt::Display for Mcr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -607,6 +628,13 @@ impl Msr {
         self
     }
 
+}
+
+impl From<u32> for Msr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Msr(other)
+    }
 }
 
 impl ::core::fmt::Display for Msr {
@@ -658,6 +686,13 @@ impl Mier {
 
 }
 
+impl From<u32> for Mier {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Mier(other)
+    }
+}
+
 impl ::core::fmt::Display for Mier {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -705,6 +740,13 @@ impl Setten {
         self
     }
 
+}
+
+impl From<u32> for Setten {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Setten(other)
+    }
 }
 
 impl ::core::fmt::Display for Setten {
@@ -756,6 +798,13 @@ impl Clrten {
 
 }
 
+impl From<u32> for Clrten {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Clrten(other)
+    }
+}
+
 impl ::core::fmt::Display for Clrten {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -799,6 +848,13 @@ impl Tval {
 
 }
 
+impl From<u32> for Tval {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Tval(other)
+    }
+}
+
 impl ::core::fmt::Display for Tval {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -836,6 +892,13 @@ impl Cval {
         self
     }
 
+}
+
+impl From<u32> for Cval {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Cval(other)
+    }
 }
 
 impl ::core::fmt::Display for Cval {
@@ -1008,6 +1071,13 @@ impl Tctrl {
         self
     }
 
+}
+
+impl From<u32> for Tctrl {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Tctrl(other)
+    }
 }
 
 impl ::core::fmt::Display for Tctrl {

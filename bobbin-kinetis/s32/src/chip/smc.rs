@@ -231,6 +231,13 @@ impl Verid {
 
 }
 
+impl From<u32> for Verid {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Verid(other)
+    }
+}
+
 impl ::core::fmt::Display for Verid {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -330,6 +337,13 @@ impl Param {
 
 }
 
+impl From<u32> for Param {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Param(other)
+    }
+}
+
 impl ::core::fmt::Display for Param {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -390,6 +404,13 @@ impl Pmprot {
         self
     }
 
+}
+
+impl From<u32> for Pmprot {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pmprot(other)
+    }
 }
 
 impl ::core::fmt::Display for Pmprot {
@@ -471,6 +492,13 @@ impl Pmctrl {
 
 }
 
+impl From<u32> for Pmctrl {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pmctrl(other)
+    }
+}
+
 impl ::core::fmt::Display for Pmctrl {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -513,6 +541,13 @@ impl Stopctrl {
 
 }
 
+impl From<u32> for Stopctrl {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Stopctrl(other)
+    }
+}
+
 impl ::core::fmt::Display for Stopctrl {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -551,6 +586,13 @@ impl Pmstat {
         self
     }
 
+}
+
+impl From<u32> for Pmstat {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pmstat(other)
+    }
 }
 
 impl ::core::fmt::Display for Pmstat {

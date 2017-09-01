@@ -761,6 +761,13 @@ impl Cr1 {
 
 }
 
+impl From<u32> for Cr1 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Cr1(other)
+    }
+}
+
 impl ::core::fmt::Display for Cr1 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -1011,6 +1018,13 @@ impl Cr2 {
 
 }
 
+impl From<u32> for Cr2 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Cr2(other)
+    }
+}
+
 impl ::core::fmt::Display for Cr2 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -1137,6 +1151,13 @@ impl Oar1 {
 
 }
 
+impl From<u32> for Oar1 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Oar1(other)
+    }
+}
+
 impl ::core::fmt::Display for Oar1 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -1217,6 +1238,13 @@ impl Oar2 {
         self
     }
 
+}
+
+impl From<u32> for Oar2 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Oar2(other)
+    }
 }
 
 impl ::core::fmt::Display for Oar2 {
@@ -1337,6 +1365,13 @@ impl Timingr {
 
 }
 
+impl From<u32> for Timingr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Timingr(other)
+    }
+}
+
 impl ::core::fmt::Display for Timingr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -1455,6 +1490,13 @@ impl Timeoutr {
         self
     }
 
+}
+
+impl From<u32> for Timeoutr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Timeoutr(other)
+    }
 }
 
 impl ::core::fmt::Display for Timeoutr {
@@ -1805,6 +1847,13 @@ impl Isr {
 
 }
 
+impl From<u32> for Isr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Isr(other)
+    }
+}
+
 impl ::core::fmt::Display for Isr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -2013,6 +2062,13 @@ impl Icr {
 
 }
 
+impl From<u32> for Icr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Icr(other)
+    }
+}
+
 impl ::core::fmt::Display for Icr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -2061,6 +2117,13 @@ impl Pecr {
 
 }
 
+impl From<u32> for Pecr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pecr(other)
+    }
+}
+
 impl ::core::fmt::Display for Pecr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -2101,6 +2164,13 @@ impl Rxdr {
 
 }
 
+impl From<u32> for Rxdr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Rxdr(other)
+    }
+}
+
 impl ::core::fmt::Display for Rxdr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -2139,6 +2209,13 @@ impl Txdr {
         self
     }
 
+}
+
+impl From<u32> for Txdr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Txdr(other)
+    }
 }
 
 impl ::core::fmt::Display for Txdr {

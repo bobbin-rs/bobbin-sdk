@@ -415,6 +415,13 @@ impl Data {
 
 }
 
+impl From<u32> for Data {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Data(other)
+    }
+}
+
 impl ::core::fmt::Display for Data {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -458,6 +465,13 @@ impl Datal {
 
 }
 
+impl From<u16> for Datal {
+    #[inline]
+    fn from(other: u16) -> Self {
+         Datal(other)
+    }
+}
+
 impl ::core::fmt::Display for Datal {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -496,6 +510,13 @@ impl Datall {
         self
     }
 
+}
+
+impl From<u8> for Datall {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Datall(other)
+    }
 }
 
 impl ::core::fmt::Display for Datall {
@@ -538,6 +559,13 @@ impl Datalu {
 
 }
 
+impl From<u8> for Datalu {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Datalu(other)
+    }
+}
+
 impl ::core::fmt::Display for Datalu {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -576,6 +604,13 @@ impl Datah {
         self
     }
 
+}
+
+impl From<u16> for Datah {
+    #[inline]
+    fn from(other: u16) -> Self {
+         Datah(other)
+    }
 }
 
 impl ::core::fmt::Display for Datah {
@@ -618,6 +653,13 @@ impl Datahl {
 
 }
 
+impl From<u8> for Datahl {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Datahl(other)
+    }
+}
+
 impl ::core::fmt::Display for Datahl {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -656,6 +698,13 @@ impl Datahu {
         self
     }
 
+}
+
+impl From<u8> for Datahu {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Datahu(other)
+    }
 }
 
 impl ::core::fmt::Display for Datahu {
@@ -715,6 +764,13 @@ impl Gpoly {
         self
     }
 
+}
+
+impl From<u32> for Gpoly {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Gpoly(other)
+    }
 }
 
 impl ::core::fmt::Display for Gpoly {
@@ -832,6 +888,13 @@ impl Ctrl {
         self
     }
 
+}
+
+impl From<u32> for Ctrl {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Ctrl(other)
+    }
 }
 
 impl ::core::fmt::Display for Ctrl {

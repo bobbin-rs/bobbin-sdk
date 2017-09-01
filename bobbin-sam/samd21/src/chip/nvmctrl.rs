@@ -358,6 +358,13 @@ impl Addr {
 
 }
 
+impl From<u32> for Addr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Addr(other)
+    }
+}
+
 impl ::core::fmt::Display for Addr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -415,6 +422,13 @@ impl Ctrla {
         self
     }
 
+}
+
+impl From<u16> for Ctrla {
+    #[inline]
+    fn from(other: u16) -> Self {
+         Ctrla(other)
+    }
 }
 
 impl ::core::fmt::Display for Ctrla {
@@ -534,6 +548,13 @@ impl Ctrlb {
 
 }
 
+impl From<u32> for Ctrlb {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Ctrlb(other)
+    }
+}
+
 impl ::core::fmt::Display for Ctrlb {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -597,6 +618,13 @@ impl Intenclr {
 
 }
 
+impl From<u8> for Intenclr {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Intenclr(other)
+    }
+}
+
 impl ::core::fmt::Display for Intenclr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -655,6 +683,13 @@ impl Intenset {
         self
     }
 
+}
+
+impl From<u8> for Intenset {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Intenset(other)
+    }
 }
 
 impl ::core::fmt::Display for Intenset {
@@ -717,6 +752,13 @@ impl Intflag {
 
 }
 
+impl From<u8> for Intflag {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Intflag(other)
+    }
+}
+
 impl ::core::fmt::Display for Intflag {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -756,6 +798,13 @@ impl Lock {
         self
     }
 
+}
+
+impl From<u16> for Lock {
+    #[inline]
+    fn from(other: u16) -> Self {
+         Lock(other)
+    }
 }
 
 impl ::core::fmt::Display for Lock {
@@ -815,6 +864,13 @@ impl Param {
         self
     }
 
+}
+
+impl From<u32> for Param {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Param(other)
+    }
 }
 
 impl ::core::fmt::Display for Param {
@@ -951,6 +1007,13 @@ impl Status {
         self
     }
 
+}
+
+impl From<u16> for Status {
+    #[inline]
+    fn from(other: u16) -> Self {
+         Status(other)
+    }
 }
 
 impl ::core::fmt::Display for Status {

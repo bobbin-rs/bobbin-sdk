@@ -325,6 +325,13 @@ impl Pcr {
 
 }
 
+impl From<u32> for Pcr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pcr(other)
+    }
+}
+
 impl ::core::fmt::Display for Pcr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -393,6 +400,13 @@ impl Gpclr {
 
 }
 
+impl From<u32> for Gpclr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Gpclr(other)
+    }
+}
+
 impl ::core::fmt::Display for Gpclr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -453,6 +467,13 @@ impl Gpchr {
 
 }
 
+impl From<u32> for Gpchr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Gpchr(other)
+    }
+}
+
 impl ::core::fmt::Display for Gpchr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -498,6 +519,13 @@ impl Isfr {
         self
     }
 
+}
+
+impl From<u32> for Isfr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Isfr(other)
+    }
 }
 
 impl ::core::fmt::Display for Isfr {

@@ -569,6 +569,13 @@ impl Cc {
 
 }
 
+impl From<u8> for Cc {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Cc(other)
+    }
+}
+
 impl ::core::fmt::Display for Cc {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -609,6 +616,13 @@ impl Count {
 
 }
 
+impl From<u8> for Count {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Count(other)
+    }
+}
+
 impl ::core::fmt::Display for Count {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -647,6 +661,13 @@ impl Per {
         self
     }
 
+}
+
+impl From<u8> for Per {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Per(other)
+    }
 }
 
 impl ::core::fmt::Display for Per {
@@ -803,6 +824,13 @@ impl Ctrla {
 
 }
 
+impl From<u16> for Ctrla {
+    #[inline]
+    fn from(other: u16) -> Self {
+         Ctrla(other)
+    }
+}
+
 impl ::core::fmt::Display for Ctrla {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -887,6 +915,13 @@ impl Ctrlbclr {
 
 }
 
+impl From<u8> for Ctrlbclr {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Ctrlbclr(other)
+    }
+}
+
 impl ::core::fmt::Display for Ctrlbclr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -965,6 +1000,13 @@ impl Ctrlbset {
         self
     }
 
+}
+
+impl From<u8> for Ctrlbset {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Ctrlbset(other)
+    }
 }
 
 impl ::core::fmt::Display for Ctrlbset {
@@ -1066,6 +1108,13 @@ impl Ctrlc {
 
 }
 
+impl From<u8> for Ctrlc {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Ctrlc(other)
+    }
+}
+
 impl ::core::fmt::Display for Ctrlc {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -1107,6 +1156,13 @@ impl Dbgctrl {
         self
     }
 
+}
+
+impl From<u8> for Dbgctrl {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Dbgctrl(other)
+    }
 }
 
 impl ::core::fmt::Display for Dbgctrl {
@@ -1244,6 +1300,13 @@ impl Evctrl {
 
 }
 
+impl From<u16> for Evctrl {
+    #[inline]
+    fn from(other: u16) -> Self {
+         Evctrl(other)
+    }
+}
+
 impl ::core::fmt::Display for Evctrl {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -1363,6 +1426,13 @@ impl Intenclr {
         self
     }
 
+}
+
+impl From<u8> for Intenclr {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Intenclr(other)
+    }
 }
 
 impl ::core::fmt::Display for Intenclr {
@@ -1485,6 +1555,13 @@ impl Intenset {
 
 }
 
+impl From<u8> for Intenset {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Intenset(other)
+    }
+}
+
 impl ::core::fmt::Display for Intenset {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -1605,6 +1682,13 @@ impl Intflag {
 
 }
 
+impl From<u8> for Intflag {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Intflag(other)
+    }
+}
+
 impl ::core::fmt::Display for Intflag {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -1687,6 +1771,13 @@ impl Readreq {
 
 }
 
+impl From<u16> for Readreq {
+    #[inline]
+    fn from(other: u16) -> Self {
+         Readreq(other)
+    }
+}
+
 impl ::core::fmt::Display for Readreq {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -1765,6 +1856,13 @@ impl Status {
         self
     }
 
+}
+
+impl From<u8> for Status {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Status(other)
+    }
 }
 
 impl ::core::fmt::Display for Status {
@@ -2280,6 +2378,13 @@ impl Cc {
 
 }
 
+impl From<u16> for Cc {
+    #[inline]
+    fn from(other: u16) -> Self {
+         Cc(other)
+    }
+}
+
 impl ::core::fmt::Display for Cc {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -2318,6 +2423,13 @@ impl Count {
         self
     }
 
+}
+
+impl From<u16> for Count {
+    #[inline]
+    fn from(other: u16) -> Self {
+         Count(other)
+    }
 }
 
 impl ::core::fmt::Display for Count {
@@ -2474,6 +2586,13 @@ impl Ctrla {
 
 }
 
+impl From<u16> for Ctrla {
+    #[inline]
+    fn from(other: u16) -> Self {
+         Ctrla(other)
+    }
+}
+
 impl ::core::fmt::Display for Ctrla {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -2558,6 +2677,13 @@ impl Ctrlbclr {
 
 }
 
+impl From<u8> for Ctrlbclr {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Ctrlbclr(other)
+    }
+}
+
 impl ::core::fmt::Display for Ctrlbclr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -2636,6 +2762,13 @@ impl Ctrlbset {
         self
     }
 
+}
+
+impl From<u8> for Ctrlbset {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Ctrlbset(other)
+    }
 }
 
 impl ::core::fmt::Display for Ctrlbset {
@@ -2737,6 +2870,13 @@ impl Ctrlc {
 
 }
 
+impl From<u8> for Ctrlc {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Ctrlc(other)
+    }
+}
+
 impl ::core::fmt::Display for Ctrlc {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -2778,6 +2918,13 @@ impl Dbgctrl {
         self
     }
 
+}
+
+impl From<u8> for Dbgctrl {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Dbgctrl(other)
+    }
 }
 
 impl ::core::fmt::Display for Dbgctrl {
@@ -2915,6 +3062,13 @@ impl Evctrl {
 
 }
 
+impl From<u16> for Evctrl {
+    #[inline]
+    fn from(other: u16) -> Self {
+         Evctrl(other)
+    }
+}
+
 impl ::core::fmt::Display for Evctrl {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -3034,6 +3188,13 @@ impl Intenclr {
         self
     }
 
+}
+
+impl From<u8> for Intenclr {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Intenclr(other)
+    }
 }
 
 impl ::core::fmt::Display for Intenclr {
@@ -3156,6 +3317,13 @@ impl Intenset {
 
 }
 
+impl From<u8> for Intenset {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Intenset(other)
+    }
+}
+
 impl ::core::fmt::Display for Intenset {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -3276,6 +3444,13 @@ impl Intflag {
 
 }
 
+impl From<u8> for Intflag {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Intflag(other)
+    }
+}
+
 impl ::core::fmt::Display for Intflag {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -3358,6 +3533,13 @@ impl Readreq {
 
 }
 
+impl From<u16> for Readreq {
+    #[inline]
+    fn from(other: u16) -> Self {
+         Readreq(other)
+    }
+}
+
 impl ::core::fmt::Display for Readreq {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -3436,6 +3618,13 @@ impl Status {
         self
     }
 
+}
+
+impl From<u8> for Status {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Status(other)
+    }
 }
 
 impl ::core::fmt::Display for Status {
@@ -3951,6 +4140,13 @@ impl Cc {
 
 }
 
+impl From<u32> for Cc {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Cc(other)
+    }
+}
+
 impl ::core::fmt::Display for Cc {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -3988,6 +4184,13 @@ impl Count {
         self
     }
 
+}
+
+impl From<u32> for Count {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Count(other)
+    }
 }
 
 impl ::core::fmt::Display for Count {
@@ -4143,6 +4346,13 @@ impl Ctrla {
 
 }
 
+impl From<u16> for Ctrla {
+    #[inline]
+    fn from(other: u16) -> Self {
+         Ctrla(other)
+    }
+}
+
 impl ::core::fmt::Display for Ctrla {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -4227,6 +4437,13 @@ impl Ctrlbclr {
 
 }
 
+impl From<u8> for Ctrlbclr {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Ctrlbclr(other)
+    }
+}
+
 impl ::core::fmt::Display for Ctrlbclr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -4305,6 +4522,13 @@ impl Ctrlbset {
         self
     }
 
+}
+
+impl From<u8> for Ctrlbset {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Ctrlbset(other)
+    }
 }
 
 impl ::core::fmt::Display for Ctrlbset {
@@ -4406,6 +4630,13 @@ impl Ctrlc {
 
 }
 
+impl From<u8> for Ctrlc {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Ctrlc(other)
+    }
+}
+
 impl ::core::fmt::Display for Ctrlc {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -4447,6 +4678,13 @@ impl Dbgctrl {
         self
     }
 
+}
+
+impl From<u8> for Dbgctrl {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Dbgctrl(other)
+    }
 }
 
 impl ::core::fmt::Display for Dbgctrl {
@@ -4584,6 +4822,13 @@ impl Evctrl {
 
 }
 
+impl From<u16> for Evctrl {
+    #[inline]
+    fn from(other: u16) -> Self {
+         Evctrl(other)
+    }
+}
+
 impl ::core::fmt::Display for Evctrl {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -4703,6 +4948,13 @@ impl Intenclr {
         self
     }
 
+}
+
+impl From<u8> for Intenclr {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Intenclr(other)
+    }
 }
 
 impl ::core::fmt::Display for Intenclr {
@@ -4825,6 +5077,13 @@ impl Intenset {
 
 }
 
+impl From<u8> for Intenset {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Intenset(other)
+    }
+}
+
 impl ::core::fmt::Display for Intenset {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -4945,6 +5204,13 @@ impl Intflag {
 
 }
 
+impl From<u8> for Intflag {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Intflag(other)
+    }
+}
+
 impl ::core::fmt::Display for Intflag {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -5027,6 +5293,13 @@ impl Readreq {
 
 }
 
+impl From<u16> for Readreq {
+    #[inline]
+    fn from(other: u16) -> Self {
+         Readreq(other)
+    }
+}
+
 impl ::core::fmt::Display for Readreq {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -5105,6 +5378,13 @@ impl Status {
         self
     }
 
+}
+
+impl From<u8> for Status {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Status(other)
+    }
 }
 
 impl ::core::fmt::Display for Status {

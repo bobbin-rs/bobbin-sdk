@@ -197,6 +197,13 @@ impl Cpacr {
 
 }
 
+impl From<u32> for Cpacr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Cpacr(other)
+    }
+}
+
 impl ::core::fmt::Display for Cpacr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -363,6 +370,13 @@ impl Fpccr {
 
 }
 
+impl From<u32> for Fpccr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Fpccr(other)
+    }
+}
+
 impl ::core::fmt::Display for Fpccr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -406,6 +420,13 @@ impl Fpcar {
         self
     }
 
+}
+
+impl From<u32> for Fpcar {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Fpcar(other)
+    }
 }
 
 impl ::core::fmt::Display for Fpcar {
@@ -491,6 +512,13 @@ impl Fpdscr {
         self
     }
 
+}
+
+impl From<u32> for Fpdscr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Fpdscr(other)
+    }
 }
 
 impl ::core::fmt::Display for Fpdscr {

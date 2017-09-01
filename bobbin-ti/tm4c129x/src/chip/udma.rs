@@ -747,6 +747,13 @@ impl Stat {
 
 }
 
+impl From<u32> for Stat {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Stat(other)
+    }
+}
+
 impl ::core::fmt::Display for Stat {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -789,6 +796,13 @@ impl Cfg {
 
 }
 
+impl From<u32> for Cfg {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Cfg(other)
+    }
+}
+
 impl ::core::fmt::Display for Cfg {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -829,6 +843,13 @@ impl Ctlbase {
 
 }
 
+impl From<u32> for Ctlbase {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Ctlbase(other)
+    }
+}
+
 impl ::core::fmt::Display for Ctlbase {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -867,6 +888,13 @@ impl Altbase {
         self
     }
 
+}
+
+impl From<u32> for Altbase {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Altbase(other)
+    }
 }
 
 impl ::core::fmt::Display for Altbase {
@@ -912,6 +940,13 @@ impl Waitstat {
         self
     }
 
+}
+
+impl From<u32> for Waitstat {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Waitstat(other)
+    }
 }
 
 impl ::core::fmt::Display for Waitstat {
@@ -991,6 +1026,13 @@ impl Swreq {
 
 }
 
+impl From<u32> for Swreq {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Swreq(other)
+    }
+}
+
 impl ::core::fmt::Display for Swreq {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -1066,6 +1108,13 @@ impl Useburstset {
         self
     }
 
+}
+
+impl From<u32> for Useburstset {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Useburstset(other)
+    }
 }
 
 impl ::core::fmt::Display for Useburstset {
@@ -1145,6 +1194,13 @@ impl Useburstclr {
 
 }
 
+impl From<u32> for Useburstclr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Useburstclr(other)
+    }
+}
+
 impl ::core::fmt::Display for Useburstclr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -1220,6 +1276,13 @@ impl Reqmaskset {
         self
     }
 
+}
+
+impl From<u32> for Reqmaskset {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Reqmaskset(other)
+    }
 }
 
 impl ::core::fmt::Display for Reqmaskset {
@@ -1299,6 +1362,13 @@ impl Reqmaskclr {
 
 }
 
+impl From<u32> for Reqmaskclr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Reqmaskclr(other)
+    }
+}
+
 impl ::core::fmt::Display for Reqmaskclr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -1374,6 +1444,13 @@ impl Enaset {
         self
     }
 
+}
+
+impl From<u32> for Enaset {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Enaset(other)
+    }
 }
 
 impl ::core::fmt::Display for Enaset {
@@ -1453,6 +1530,13 @@ impl Enaclr {
 
 }
 
+impl From<u32> for Enaclr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Enaclr(other)
+    }
+}
+
 impl ::core::fmt::Display for Enaclr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -1528,6 +1612,13 @@ impl Altset {
         self
     }
 
+}
+
+impl From<u32> for Altset {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Altset(other)
+    }
 }
 
 impl ::core::fmt::Display for Altset {
@@ -1607,6 +1698,13 @@ impl Altclr {
 
 }
 
+impl From<u32> for Altclr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Altclr(other)
+    }
+}
+
 impl ::core::fmt::Display for Altclr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -1682,6 +1780,13 @@ impl Prioset {
         self
     }
 
+}
+
+impl From<u32> for Prioset {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Prioset(other)
+    }
 }
 
 impl ::core::fmt::Display for Prioset {
@@ -1761,6 +1866,13 @@ impl Prioclr {
 
 }
 
+impl From<u32> for Prioclr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Prioclr(other)
+    }
+}
+
 impl ::core::fmt::Display for Prioclr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -1836,6 +1948,13 @@ impl Errclr {
         self
     }
 
+}
+
+impl From<u32> for Errclr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Errclr(other)
+    }
 }
 
 impl ::core::fmt::Display for Errclr {
@@ -1915,6 +2034,13 @@ impl Chasgn {
 
 }
 
+impl From<u32> for Chasgn {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Chasgn(other)
+    }
+}
+
 impl ::core::fmt::Display for Chasgn {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -1992,6 +2118,13 @@ impl Chmap0 {
 
 }
 
+impl From<u32> for Chmap0 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Chmap0(other)
+    }
+}
+
 impl ::core::fmt::Display for Chmap0 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -2043,6 +2176,13 @@ impl Chmap1 {
         self
     }
 
+}
+
+impl From<u32> for Chmap1 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Chmap1(other)
+    }
 }
 
 impl ::core::fmt::Display for Chmap1 {
@@ -2098,6 +2238,13 @@ impl Chmap2 {
 
 }
 
+impl From<u32> for Chmap2 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Chmap2(other)
+    }
+}
+
 impl ::core::fmt::Display for Chmap2 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -2149,6 +2296,13 @@ impl Chmap3 {
         self
     }
 
+}
+
+impl From<u32> for Chmap3 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Chmap3(other)
+    }
 }
 
 impl ::core::fmt::Display for Chmap3 {
@@ -2286,6 +2440,13 @@ impl Srcendp {
 
 }
 
+impl From<u32> for Srcendp {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Srcendp(other)
+    }
+}
+
 impl ::core::fmt::Display for Srcendp {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -2323,6 +2484,13 @@ impl Dstendp {
         self
     }
 
+}
+
+impl From<u32> for Dstendp {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Dstendp(other)
+    }
 }
 
 impl ::core::fmt::Display for Dstendp {
@@ -2533,6 +2701,13 @@ impl Chctl {
         self
     }
 
+}
+
+impl From<u32> for Chctl {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Chctl(other)
+    }
 }
 
 impl ::core::fmt::Display for Chctl {

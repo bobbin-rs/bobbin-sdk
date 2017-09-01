@@ -401,6 +401,13 @@ impl Sc {
 
 }
 
+impl From<u32> for Sc {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Sc(other)
+    }
+}
+
 impl ::core::fmt::Display for Sc {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -446,6 +453,13 @@ impl Cnt {
 
 }
 
+impl From<u32> for Cnt {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Cnt(other)
+    }
+}
+
 impl ::core::fmt::Display for Cnt {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -484,6 +498,13 @@ impl Mod {
         self
     }
 
+}
+
+impl From<u32> for Mod {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Mod(other)
+    }
 }
 
 impl ::core::fmt::Display for Mod {
@@ -640,6 +661,13 @@ impl Csc {
 
 }
 
+impl From<u32> for Csc {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Csc(other)
+    }
+}
+
 impl ::core::fmt::Display for Csc {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -686,6 +714,13 @@ impl Cv {
 
 }
 
+impl From<u32> for Cv {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Cv(other)
+    }
+}
+
 impl ::core::fmt::Display for Cv {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -730,6 +765,13 @@ impl Status {
         self
     }
 
+}
+
+impl From<u32> for Status {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Status(other)
+    }
 }
 
 impl ::core::fmt::Display for Status {
@@ -889,6 +931,13 @@ impl Conf {
         self
     }
 
+}
+
+impl From<u32> for Conf {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Conf(other)
+    }
 }
 
 impl ::core::fmt::Display for Conf {

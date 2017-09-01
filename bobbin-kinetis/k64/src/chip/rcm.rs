@@ -271,6 +271,13 @@ impl Srs0 {
 
 }
 
+impl From<u8> for Srs0 {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Srs0(other)
+    }
+}
+
 impl ::core::fmt::Display for Srs0 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -412,6 +419,13 @@ impl Srs1 {
 
 }
 
+impl From<u8> for Srs1 {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Srs1(other)
+    }
+}
+
 impl ::core::fmt::Display for Srs1 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -476,6 +490,13 @@ impl Rpfc {
 
 }
 
+impl From<u8> for Rpfc {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Rpfc(other)
+    }
+}
+
 impl ::core::fmt::Display for Rpfc {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -517,6 +538,13 @@ impl Rpfw {
 
 }
 
+impl From<u8> for Rpfw {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Rpfw(other)
+    }
+}
+
 impl ::core::fmt::Display for Rpfw {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -555,6 +583,13 @@ impl Mr {
         self
     }
 
+}
+
+impl From<u8> for Mr {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Mr(other)
+    }
 }
 
 impl ::core::fmt::Display for Mr {

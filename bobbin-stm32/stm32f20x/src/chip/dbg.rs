@@ -178,6 +178,13 @@ impl Idcode {
 
 }
 
+impl From<u32> for Idcode {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Idcode(other)
+    }
+}
+
 impl ::core::fmt::Display for Idcode {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -388,6 +395,13 @@ impl Cr {
         self
     }
 
+}
+
+impl From<u32> for Cr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Cr(other)
+    }
 }
 
 impl ::core::fmt::Display for Cr {
@@ -724,6 +738,13 @@ impl Apb1Fz {
 
 }
 
+impl From<u32> for Apb1Fz {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Apb1Fz(other)
+    }
+}
+
 impl ::core::fmt::Display for Apb1Fz {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -853,6 +874,13 @@ impl Apb2Fz {
         self
     }
 
+}
+
+impl From<u32> for Apb2Fz {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Apb2Fz(other)
+    }
 }
 
 impl ::core::fmt::Display for Apb2Fz {

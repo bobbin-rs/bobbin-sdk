@@ -390,6 +390,13 @@ The core must write a 1 to it when writing C_HALT to halt itself."]
 
 }
 
+impl From<u32> for Dhcsr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Dhcsr(other)
+    }
+}
+
 impl ::core::fmt::Display for Dhcsr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -460,6 +467,13 @@ impl Dcrsr {
 
 }
 
+impl From<u32> for Dcrsr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Dcrsr(other)
+    }
+}
+
 impl ::core::fmt::Display for Dcrsr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -499,6 +513,13 @@ impl Derdr {
         self
     }
 
+}
+
+impl From<u32> for Derdr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Derdr(other)
+    }
 }
 
 impl ::core::fmt::Display for Derdr {
@@ -766,6 +787,13 @@ impl Demcr {
         self
     }
 
+}
+
+impl From<u32> for Demcr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Demcr(other)
+    }
 }
 
 impl ::core::fmt::Display for Demcr {

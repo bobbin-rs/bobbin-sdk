@@ -286,6 +286,13 @@ impl Clear {
 
 }
 
+impl From<u8> for Clear {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Clear(other)
+    }
+}
+
 impl ::core::fmt::Display for Clear {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -343,6 +350,13 @@ impl Config {
         self
     }
 
+}
+
+impl From<u8> for Config {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Config(other)
+    }
 }
 
 impl ::core::fmt::Display for Config {
@@ -424,6 +438,13 @@ impl Ctrl {
 
 }
 
+impl From<u8> for Ctrl {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Ctrl(other)
+    }
+}
+
 impl ::core::fmt::Display for Ctrl {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -466,6 +487,13 @@ impl Ewctrl {
 
 }
 
+impl From<u8> for Ewctrl {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Ewctrl(other)
+    }
+}
+
 impl ::core::fmt::Display for Ewctrl {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -504,6 +532,13 @@ impl Intenclr {
         self
     }
 
+}
+
+impl From<u8> for Intenclr {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Intenclr(other)
+    }
 }
 
 impl ::core::fmt::Display for Intenclr {
@@ -546,6 +581,13 @@ impl Intenset {
 
 }
 
+impl From<u8> for Intenset {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Intenset(other)
+    }
+}
+
 impl ::core::fmt::Display for Intenset {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -586,6 +628,13 @@ impl Intflag {
 
 }
 
+impl From<u8> for Intflag {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Intflag(other)
+    }
+}
+
 impl ::core::fmt::Display for Intflag {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -624,6 +673,13 @@ impl Status {
         self
     }
 
+}
+
+impl From<u8> for Status {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Status(other)
+    }
 }
 
 impl ::core::fmt::Display for Status {

@@ -231,6 +231,13 @@ impl Verid {
 
 }
 
+impl From<u32> for Verid {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Verid(other)
+    }
+}
+
 impl ::core::fmt::Display for Verid {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -520,6 +527,13 @@ impl Param {
 
 }
 
+impl From<u32> for Param {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Param(other)
+    }
+}
+
 impl ::core::fmt::Display for Param {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -763,6 +777,13 @@ impl Srs {
 
 }
 
+impl From<u32> for Srs {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Srs(other)
+    }
+}
+
 impl ::core::fmt::Display for Srs {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -849,6 +870,13 @@ impl Rpc {
         self
     }
 
+}
+
+impl From<u32> for Rpc {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Rpc(other)
+    }
 }
 
 impl ::core::fmt::Display for Rpc {
@@ -1081,6 +1109,13 @@ impl Ssrs {
         self
     }
 
+}
+
+impl From<u32> for Ssrs {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Ssrs(other)
+    }
 }
 
 impl ::core::fmt::Display for Ssrs {
@@ -1321,6 +1356,13 @@ impl Srie {
         self
     }
 
+}
+
+impl From<u32> for Srie {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Srie(other)
+    }
 }
 
 impl ::core::fmt::Display for Srie {

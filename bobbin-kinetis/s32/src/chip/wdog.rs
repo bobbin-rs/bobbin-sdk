@@ -425,6 +425,13 @@ impl Cs {
 
 }
 
+impl From<u32> for Cs {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Cs(other)
+    }
+}
+
 impl ::core::fmt::Display for Cs {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -497,6 +504,13 @@ impl Cnt {
 
 }
 
+impl From<u32> for Cnt {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Cnt(other)
+    }
+}
+
 impl ::core::fmt::Display for Cnt {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -557,6 +571,13 @@ impl Toval {
 
 }
 
+impl From<u32> for Toval {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Toval(other)
+    }
+}
+
 impl ::core::fmt::Display for Toval {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -615,6 +636,13 @@ impl Win {
         self
     }
 
+}
+
+impl From<u32> for Win {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Win(other)
+    }
 }
 
 impl ::core::fmt::Display for Win {

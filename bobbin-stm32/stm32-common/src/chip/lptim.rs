@@ -381,6 +381,13 @@ impl Isr {
 
 }
 
+impl From<u32> for Isr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Isr(other)
+    }
+}
+
 impl ::core::fmt::Display for Isr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -541,6 +548,13 @@ impl Icr {
 
 }
 
+impl From<u32> for Icr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Icr(other)
+    }
+}
+
 impl ::core::fmt::Display for Icr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -699,6 +713,13 @@ impl Ier {
         self
     }
 
+}
+
+impl From<u32> for Ier {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Ier(other)
+    }
 }
 
 impl ::core::fmt::Display for Ier {
@@ -975,6 +996,13 @@ impl Cfgr {
 
 }
 
+impl From<u32> for Cfgr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Cfgr(other)
+    }
+}
+
 impl ::core::fmt::Display for Cfgr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -1065,6 +1093,13 @@ impl Cr {
 
 }
 
+impl From<u32> for Cr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Cr(other)
+    }
+}
+
 impl ::core::fmt::Display for Cr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -1107,6 +1142,13 @@ impl Cmp {
 
 }
 
+impl From<u32> for Cmp {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Cmp(other)
+    }
+}
+
 impl ::core::fmt::Display for Cmp {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -1147,6 +1189,13 @@ impl Arr {
 
 }
 
+impl From<u32> for Arr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Arr(other)
+    }
+}
+
 impl ::core::fmt::Display for Arr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -1185,6 +1234,13 @@ impl Cnt {
         self
     }
 
+}
+
+impl From<u32> for Cnt {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Cnt(other)
+    }
 }
 
 impl ::core::fmt::Display for Cnt {

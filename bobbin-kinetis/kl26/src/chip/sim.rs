@@ -663,6 +663,13 @@ impl Sopt1 {
 
 }
 
+impl From<u32> for Sopt1 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Sopt1(other)
+    }
+}
+
 impl ::core::fmt::Display for Sopt1 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -742,6 +749,13 @@ impl Sopt1cfg {
         self
     }
 
+}
+
+impl From<u32> for Sopt1cfg {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Sopt1cfg(other)
+    }
 }
 
 impl ::core::fmt::Display for Sopt1cfg {
@@ -881,6 +895,13 @@ impl Sopt2 {
 
 }
 
+impl From<u32> for Sopt2 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Sopt2(other)
+    }
+}
+
 impl ::core::fmt::Display for Sopt2 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -1000,6 +1021,13 @@ impl Sopt4 {
         self
     }
 
+}
+
+impl From<u32> for Sopt4 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Sopt4(other)
+    }
 }
 
 impl ::core::fmt::Display for Sopt4 {
@@ -1160,6 +1188,13 @@ impl Sopt5 {
 
 }
 
+impl From<u32> for Sopt5 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Sopt5(other)
+    }
+}
+
 impl ::core::fmt::Display for Sopt5 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -1242,6 +1277,13 @@ impl Sopt7 {
         self
     }
 
+}
+
+impl From<u32> for Sopt7 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Sopt7(other)
+    }
 }
 
 impl ::core::fmt::Display for Sopt7 {
@@ -1398,6 +1440,13 @@ impl Sdid {
         self
     }
 
+}
+
+impl From<u32> for Sdid {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Sdid(other)
+    }
 }
 
 impl ::core::fmt::Display for Sdid {
@@ -1598,6 +1647,13 @@ impl Scgc4 {
 
 }
 
+impl From<u32> for Scgc4 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Scgc4(other)
+    }
+}
+
 impl ::core::fmt::Display for Scgc4 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -1758,6 +1814,13 @@ impl Scgc5 {
         self
     }
 
+}
+
+impl From<u32> for Scgc5 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Scgc5(other)
+    }
 }
 
 impl ::core::fmt::Display for Scgc5 {
@@ -1977,6 +2040,13 @@ impl Scgc6 {
 
 }
 
+impl From<u32> for Scgc6 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Scgc6(other)
+    }
+}
+
 impl ::core::fmt::Display for Scgc6 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -2024,6 +2094,13 @@ impl Scgc7 {
         self
     }
 
+}
+
+impl From<u32> for Scgc7 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Scgc7(other)
+    }
 }
 
 impl ::core::fmt::Display for Scgc7 {
@@ -2083,6 +2160,13 @@ impl Clkdiv1 {
         self
     }
 
+}
+
+impl From<u32> for Clkdiv1 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Clkdiv1(other)
+    }
 }
 
 impl ::core::fmt::Display for Clkdiv1 {
@@ -2164,6 +2248,13 @@ impl Fcfg1 {
 
 }
 
+impl From<u32> for Fcfg1 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Fcfg1(other)
+    }
+}
+
 impl ::core::fmt::Display for Fcfg1 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -2225,6 +2316,13 @@ impl Fcfg2 {
 
 }
 
+impl From<u32> for Fcfg2 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Fcfg2(other)
+    }
+}
+
 impl ::core::fmt::Display for Fcfg2 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -2264,6 +2362,13 @@ impl Uidmh {
         self
     }
 
+}
+
+impl From<u32> for Uidmh {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Uidmh(other)
+    }
 }
 
 impl ::core::fmt::Display for Uidmh {
@@ -2306,6 +2411,13 @@ impl Uidml {
 
 }
 
+impl From<u32> for Uidml {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Uidml(other)
+    }
+}
+
 impl ::core::fmt::Display for Uidml {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -2343,6 +2455,13 @@ impl Uidl {
         self
     }
 
+}
+
+impl From<u32> for Uidl {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Uidl(other)
+    }
 }
 
 impl ::core::fmt::Display for Uidl {
@@ -2422,6 +2541,13 @@ impl Copc {
 
 }
 
+impl From<u32> for Copc {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Copc(other)
+    }
+}
+
 impl ::core::fmt::Display for Copc {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -2462,6 +2588,13 @@ impl Srvcop {
         self
     }
 
+}
+
+impl From<u32> for Srvcop {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Srvcop(other)
+    }
 }
 
 impl ::core::fmt::Display for Srvcop {

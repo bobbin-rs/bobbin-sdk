@@ -309,6 +309,13 @@ impl Load {
 
 }
 
+impl From<u32> for Load {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Load(other)
+    }
+}
+
 impl ::core::fmt::Display for Load {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -346,6 +353,13 @@ impl Value {
         self
     }
 
+}
+
+impl From<u32> for Value {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Value(other)
+    }
 }
 
 impl ::core::fmt::Display for Value {
@@ -444,6 +458,13 @@ impl Ctl {
 
 }
 
+impl From<u32> for Ctl {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Ctl(other)
+    }
+}
+
 impl ::core::fmt::Display for Ctl {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -487,6 +508,13 @@ impl Icr {
 
 }
 
+impl From<u32> for Icr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Icr(other)
+    }
+}
+
 impl ::core::fmt::Display for Icr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -524,6 +552,13 @@ impl Ris {
         self
     }
 
+}
+
+impl From<u32> for Ris {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Ris(other)
+    }
 }
 
 impl ::core::fmt::Display for Ris {
@@ -566,6 +601,13 @@ impl Mis {
 
 }
 
+impl From<u32> for Mis {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Mis(other)
+    }
+}
+
 impl ::core::fmt::Display for Mis {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -606,6 +648,13 @@ impl Test {
 
 }
 
+impl From<u32> for Test {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Test(other)
+    }
+}
+
 impl ::core::fmt::Display for Test {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -644,6 +693,13 @@ impl Lock {
         self
     }
 
+}
+
+impl From<u32> for Lock {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Lock(other)
+    }
 }
 
 impl ::core::fmt::Display for Lock {

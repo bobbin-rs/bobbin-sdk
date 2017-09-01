@@ -427,6 +427,13 @@ impl Csr {
 
 }
 
+impl From<u32> for Csr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Csr(other)
+    }
+}
+
 impl ::core::fmt::Display for Csr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -598,6 +605,13 @@ impl Ccr {
 
 }
 
+impl From<u32> for Ccr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Ccr(other)
+    }
+}
+
 impl ::core::fmt::Display for Ccr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -661,6 +675,13 @@ impl Cdr {
         self
     }
 
+}
+
+impl From<u32> for Cdr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Cdr(other)
+    }
 }
 
 impl ::core::fmt::Display for Cdr {

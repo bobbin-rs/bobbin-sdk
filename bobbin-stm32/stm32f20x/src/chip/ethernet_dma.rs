@@ -671,6 +671,13 @@ impl Dmabmr {
 
 }
 
+impl From<u32> for Dmabmr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Dmabmr(other)
+    }
+}
+
 impl ::core::fmt::Display for Dmabmr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -722,6 +729,13 @@ impl Dmatpdr {
 
 }
 
+impl From<u32> for Dmatpdr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Dmatpdr(other)
+    }
+}
+
 impl ::core::fmt::Display for Dmatpdr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -759,6 +773,13 @@ impl Dmarpdr {
         self
     }
 
+}
+
+impl From<u32> for Dmarpdr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Dmarpdr(other)
+    }
 }
 
 impl ::core::fmt::Display for Dmarpdr {
@@ -800,6 +821,13 @@ impl Dmardlar {
 
 }
 
+impl From<u32> for Dmardlar {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Dmardlar(other)
+    }
+}
+
 impl ::core::fmt::Display for Dmardlar {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -837,6 +865,13 @@ impl Dmatdlar {
         self
     }
 
+}
+
+impl From<u32> for Dmatdlar {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Dmatdlar(other)
+    }
 }
 
 impl ::core::fmt::Display for Dmatdlar {
@@ -1258,6 +1293,13 @@ impl Dmasr {
 
 }
 
+impl From<u32> for Dmasr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Dmasr(other)
+    }
+}
+
 impl ::core::fmt::Display for Dmasr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -1525,6 +1567,13 @@ impl Dmaomr {
         self
     }
 
+}
+
+impl From<u32> for Dmaomr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Dmaomr(other)
+    }
 }
 
 impl ::core::fmt::Display for Dmaomr {
@@ -1844,6 +1893,13 @@ impl Dmaier {
 
 }
 
+impl From<u32> for Dmaier {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Dmaier(other)
+    }
+}
+
 impl ::core::fmt::Display for Dmaier {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -1955,6 +2011,13 @@ impl Dmamfbocr {
 
 }
 
+impl From<u32> for Dmamfbocr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Dmamfbocr(other)
+    }
+}
+
 impl ::core::fmt::Display for Dmamfbocr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -1998,6 +2061,13 @@ impl Dmarswtr {
 
 }
 
+impl From<u32> for Dmarswtr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Dmarswtr(other)
+    }
+}
+
 impl ::core::fmt::Display for Dmarswtr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -2036,6 +2106,13 @@ impl Dmachtdr {
         self
     }
 
+}
+
+impl From<u32> for Dmachtdr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Dmachtdr(other)
+    }
 }
 
 impl ::core::fmt::Display for Dmachtdr {
@@ -2077,6 +2154,13 @@ impl Dmachrdr {
 
 }
 
+impl From<u32> for Dmachrdr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Dmachrdr(other)
+    }
+}
+
 impl ::core::fmt::Display for Dmachrdr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -2116,6 +2200,13 @@ impl Dmachtbar {
 
 }
 
+impl From<u32> for Dmachtbar {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Dmachtbar(other)
+    }
+}
+
 impl ::core::fmt::Display for Dmachtbar {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -2153,6 +2244,13 @@ impl Dmachrbar {
         self
     }
 
+}
+
+impl From<u32> for Dmachrbar {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Dmachrbar(other)
+    }
 }
 
 impl ::core::fmt::Display for Dmachrbar {

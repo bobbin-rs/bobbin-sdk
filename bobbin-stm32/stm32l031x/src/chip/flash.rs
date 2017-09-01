@@ -366,6 +366,13 @@ impl Acr {
 
 }
 
+impl From<u32> for Acr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Acr(other)
+    }
+}
+
 impl ::core::fmt::Display for Acr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -620,6 +627,13 @@ impl Pecr {
 
 }
 
+impl From<u32> for Pecr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pecr(other)
+    }
+}
+
 impl ::core::fmt::Display for Pecr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -671,6 +685,13 @@ impl Pdkeyr {
 
 }
 
+impl From<u32> for Pdkeyr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pdkeyr(other)
+    }
+}
+
 impl ::core::fmt::Display for Pdkeyr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -708,6 +729,13 @@ impl Pekeyr {
         self
     }
 
+}
+
+impl From<u32> for Pekeyr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pekeyr(other)
+    }
 }
 
 impl ::core::fmt::Display for Pekeyr {
@@ -749,6 +777,13 @@ impl Prgkeyr {
 
 }
 
+impl From<u32> for Prgkeyr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Prgkeyr(other)
+    }
+}
+
 impl ::core::fmt::Display for Prgkeyr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -786,6 +821,13 @@ impl Optkeyr {
         self
     }
 
+}
+
+impl From<u32> for Optkeyr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Optkeyr(other)
+    }
 }
 
 impl ::core::fmt::Display for Optkeyr {
@@ -1017,6 +1059,13 @@ impl Sr {
 
 }
 
+impl From<u32> for Sr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Sr(other)
+    }
+}
+
 impl ::core::fmt::Display for Sr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -1105,6 +1154,13 @@ impl Obr {
 
 }
 
+impl From<u32> for Obr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Obr(other)
+    }
+}
+
 impl ::core::fmt::Display for Obr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -1145,6 +1201,13 @@ impl Wrpr {
         self
     }
 
+}
+
+impl From<u32> for Wrpr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Wrpr(other)
+    }
 }
 
 impl ::core::fmt::Display for Wrpr {

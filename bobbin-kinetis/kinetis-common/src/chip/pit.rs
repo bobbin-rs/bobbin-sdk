@@ -250,6 +250,13 @@ impl Mcr {
 
 }
 
+impl From<u32> for Mcr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Mcr(other)
+    }
+}
+
 impl ::core::fmt::Display for Mcr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -291,6 +298,13 @@ impl Ldval {
 
 }
 
+impl From<u32> for Ldval {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Ldval(other)
+    }
+}
+
 impl ::core::fmt::Display for Ldval {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -328,6 +342,13 @@ impl Cval {
         self
     }
 
+}
+
+impl From<u32> for Cval {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Cval(other)
+    }
 }
 
 impl ::core::fmt::Display for Cval {
@@ -407,6 +428,13 @@ impl Tctrl {
 
 }
 
+impl From<u32> for Tctrl {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Tctrl(other)
+    }
+}
+
 impl ::core::fmt::Display for Tctrl {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -447,6 +475,13 @@ impl Tflg {
         self
     }
 
+}
+
+impl From<u32> for Tflg {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Tflg(other)
+    }
 }
 
 impl ::core::fmt::Display for Tflg {

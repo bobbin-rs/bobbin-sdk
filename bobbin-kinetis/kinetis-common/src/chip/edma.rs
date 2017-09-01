@@ -1269,6 +1269,13 @@ impl Cr {
 
 }
 
+impl From<u32> for Cr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Cr(other)
+    }
+}
+
 impl ::core::fmt::Display for Cr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -1525,6 +1532,13 @@ impl Es {
 
 }
 
+impl From<u32> for Es {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Es(other)
+    }
+}
+
 impl ::core::fmt::Display for Es {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -1580,6 +1594,13 @@ impl Erq {
         self
     }
 
+}
+
+impl From<u32> for Erq {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Erq(other)
+    }
 }
 
 impl ::core::fmt::Display for Erq {
@@ -1641,6 +1662,13 @@ impl Eei {
         self
     }
 
+}
+
+impl From<u32> for Eei {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Eei(other)
+    }
 }
 
 impl ::core::fmt::Display for Eei {
@@ -1736,6 +1764,13 @@ impl Ceei {
 
 }
 
+impl From<u8> for Ceei {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Ceei(other)
+    }
+}
+
 impl ::core::fmt::Display for Ceei {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -1814,6 +1849,13 @@ impl Seei {
         self
     }
 
+}
+
+impl From<u8> for Seei {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Seei(other)
+    }
 }
 
 impl ::core::fmt::Display for Seei {
@@ -1896,6 +1938,13 @@ impl Cerq {
 
 }
 
+impl From<u8> for Cerq {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Cerq(other)
+    }
+}
+
 impl ::core::fmt::Display for Cerq {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -1974,6 +2023,13 @@ impl Serq {
         self
     }
 
+}
+
+impl From<u8> for Serq {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Serq(other)
+    }
 }
 
 impl ::core::fmt::Display for Serq {
@@ -2056,6 +2112,13 @@ impl Cdne {
 
 }
 
+impl From<u8> for Cdne {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Cdne(other)
+    }
+}
+
 impl ::core::fmt::Display for Cdne {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -2134,6 +2197,13 @@ impl Ssrt {
         self
     }
 
+}
+
+impl From<u8> for Ssrt {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Ssrt(other)
+    }
 }
 
 impl ::core::fmt::Display for Ssrt {
@@ -2216,6 +2286,13 @@ impl Cerr {
 
 }
 
+impl From<u8> for Cerr {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Cerr(other)
+    }
+}
+
 impl ::core::fmt::Display for Cerr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -2296,6 +2373,13 @@ impl Cint {
 
 }
 
+impl From<u8> for Cint {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Cint(other)
+    }
+}
+
 impl ::core::fmt::Display for Cint {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -2342,6 +2426,13 @@ impl Int {
         self
     }
 
+}
+
+impl From<u32> for Int {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Int(other)
+    }
 }
 
 impl ::core::fmt::Display for Int {
@@ -2405,6 +2496,13 @@ impl Err {
 
 }
 
+impl From<u32> for Err {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Err(other)
+    }
+}
+
 impl ::core::fmt::Display for Err {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -2464,6 +2562,13 @@ impl Hrs {
         self
     }
 
+}
+
+impl From<u32> for Hrs {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Hrs(other)
+    }
 }
 
 impl ::core::fmt::Display for Hrs {
@@ -2559,6 +2664,13 @@ impl Dchpri {
 
 }
 
+impl From<u8> for Dchpri {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Dchpri(other)
+    }
+}
+
 impl ::core::fmt::Display for Dchpri {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -2601,6 +2713,13 @@ impl TcdSaddr {
 
 }
 
+impl From<u32> for TcdSaddr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         TcdSaddr(other)
+    }
+}
+
 impl ::core::fmt::Display for TcdSaddr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -2638,6 +2757,13 @@ impl TcdSoff {
         self
     }
 
+}
+
+impl From<u16> for TcdSoff {
+    #[inline]
+    fn from(other: u16) -> Self {
+         TcdSoff(other)
+    }
 }
 
 impl ::core::fmt::Display for TcdSoff {
@@ -2737,6 +2863,13 @@ impl TcdAttr {
 
 }
 
+impl From<u16> for TcdAttr {
+    #[inline]
+    fn from(other: u16) -> Self {
+         TcdAttr(other)
+    }
+}
+
 impl ::core::fmt::Display for TcdAttr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -2778,6 +2911,13 @@ impl TcdNbytesMlno {
         self
     }
 
+}
+
+impl From<u32> for TcdNbytesMlno {
+    #[inline]
+    fn from(other: u32) -> Self {
+         TcdNbytesMlno(other)
+    }
 }
 
 impl ::core::fmt::Display for TcdNbytesMlno {
@@ -2855,6 +2995,13 @@ impl TcdNbytesMloffno {
         self
     }
 
+}
+
+impl From<u32> for TcdNbytesMloffno {
+    #[inline]
+    fn from(other: u32) -> Self {
+         TcdNbytesMloffno(other)
+    }
 }
 
 impl ::core::fmt::Display for TcdNbytesMloffno {
@@ -2956,6 +3103,13 @@ impl TcdNbytesMloffyes {
 
 }
 
+impl From<u32> for TcdNbytesMloffyes {
+    #[inline]
+    fn from(other: u32) -> Self {
+         TcdNbytesMloffyes(other)
+    }
+}
+
 impl ::core::fmt::Display for TcdNbytesMloffyes {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -2999,6 +3153,13 @@ impl TcdSlast {
 
 }
 
+impl From<u32> for TcdSlast {
+    #[inline]
+    fn from(other: u32) -> Self {
+         TcdSlast(other)
+    }
+}
+
 impl ::core::fmt::Display for TcdSlast {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -3038,6 +3199,13 @@ impl TcdDaddr {
 
 }
 
+impl From<u32> for TcdDaddr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         TcdDaddr(other)
+    }
+}
+
 impl ::core::fmt::Display for TcdDaddr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -3075,6 +3243,13 @@ impl TcdDoff {
         self
     }
 
+}
+
+impl From<u16> for TcdDoff {
+    #[inline]
+    fn from(other: u16) -> Self {
+         TcdDoff(other)
+    }
 }
 
 impl ::core::fmt::Display for TcdDoff {
@@ -3134,6 +3309,13 @@ impl TcdCiterElinkno {
         self
     }
 
+}
+
+impl From<u16> for TcdCiterElinkno {
+    #[inline]
+    fn from(other: u16) -> Self {
+         TcdCiterElinkno(other)
+    }
 }
 
 impl ::core::fmt::Display for TcdCiterElinkno {
@@ -3215,6 +3397,13 @@ impl TcdCiterElinkyes {
 
 }
 
+impl From<u16> for TcdCiterElinkyes {
+    #[inline]
+    fn from(other: u16) -> Self {
+         TcdCiterElinkyes(other)
+    }
+}
+
 impl ::core::fmt::Display for TcdCiterElinkyes {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -3255,6 +3444,13 @@ impl TcdDlastsga {
         self
     }
 
+}
+
+impl From<u32> for TcdDlastsga {
+    #[inline]
+    fn from(other: u32) -> Self {
+         TcdDlastsga(other)
+    }
 }
 
 impl ::core::fmt::Display for TcdDlastsga {
@@ -3467,6 +3663,13 @@ impl TcdCsr {
 
 }
 
+impl From<u16> for TcdCsr {
+    #[inline]
+    fn from(other: u16) -> Self {
+         TcdCsr(other)
+    }
+}
+
 impl ::core::fmt::Display for TcdCsr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -3533,6 +3736,13 @@ impl TcdBiterElinkno {
         self
     }
 
+}
+
+impl From<u16> for TcdBiterElinkno {
+    #[inline]
+    fn from(other: u16) -> Self {
+         TcdBiterElinkno(other)
+    }
 }
 
 impl ::core::fmt::Display for TcdBiterElinkno {
@@ -3612,6 +3822,13 @@ impl TcdBiterElinkyes {
         self
     }
 
+}
+
+impl From<u16> for TcdBiterElinkyes {
+    #[inline]
+    fn from(other: u16) -> Self {
+         TcdBiterElinkyes(other)
+    }
 }
 
 impl ::core::fmt::Display for TcdBiterElinkyes {

@@ -468,6 +468,13 @@ impl MpuType {
 
 }
 
+impl From<u32> for MpuType {
+    #[inline]
+    fn from(other: u32) -> Self {
+         MpuType(other)
+    }
+}
+
 impl ::core::fmt::Display for MpuType {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -548,6 +555,13 @@ impl MpuCtrl {
 
 }
 
+impl From<u32> for MpuCtrl {
+    #[inline]
+    fn from(other: u32) -> Self {
+         MpuCtrl(other)
+    }
+}
+
 impl ::core::fmt::Display for MpuCtrl {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -588,6 +602,13 @@ impl MpuRnr {
         self
     }
 
+}
+
+impl From<u32> for MpuRnr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         MpuRnr(other)
+    }
 }
 
 impl ::core::fmt::Display for MpuRnr {
@@ -669,6 +690,13 @@ impl MpuRbar {
         self
     }
 
+}
+
+impl From<u32> for MpuRbar {
+    #[inline]
+    fn from(other: u32) -> Self {
+         MpuRbar(other)
+    }
 }
 
 impl ::core::fmt::Display for MpuRbar {
@@ -865,6 +893,13 @@ impl MpuRasr {
 
 }
 
+impl From<u32> for MpuRasr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         MpuRasr(other)
+    }
+}
+
 impl ::core::fmt::Display for MpuRasr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -894,6 +929,13 @@ pub struct MpuRbarA1(pub u32);
 impl MpuRbarA1 {
 }
 
+impl From<u32> for MpuRbarA1 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         MpuRbarA1(other)
+    }
+}
+
 impl ::core::fmt::Display for MpuRbarA1 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -912,6 +954,13 @@ impl ::core::fmt::Debug for MpuRbarA1 {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct MpuRasrA1(pub u32);
 impl MpuRasrA1 {
+}
+
+impl From<u32> for MpuRasrA1 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         MpuRasrA1(other)
+    }
 }
 
 impl ::core::fmt::Display for MpuRasrA1 {
@@ -934,6 +983,13 @@ pub struct MpuRbarA2(pub u32);
 impl MpuRbarA2 {
 }
 
+impl From<u32> for MpuRbarA2 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         MpuRbarA2(other)
+    }
+}
+
 impl ::core::fmt::Display for MpuRbarA2 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -952,6 +1008,13 @@ impl ::core::fmt::Debug for MpuRbarA2 {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct MpuRasrA2(pub u32);
 impl MpuRasrA2 {
+}
+
+impl From<u32> for MpuRasrA2 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         MpuRasrA2(other)
+    }
 }
 
 impl ::core::fmt::Display for MpuRasrA2 {
@@ -974,6 +1037,13 @@ pub struct MpuRbarA3(pub u32);
 impl MpuRbarA3 {
 }
 
+impl From<u32> for MpuRbarA3 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         MpuRbarA3(other)
+    }
+}
+
 impl ::core::fmt::Display for MpuRbarA3 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -992,6 +1062,13 @@ impl ::core::fmt::Debug for MpuRbarA3 {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct MpuRasrA3(pub u32);
 impl MpuRasrA3 {
+}
+
+impl From<u32> for MpuRasrA3 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         MpuRasrA3(other)
+    }
 }
 
 impl ::core::fmt::Display for MpuRasrA3 {

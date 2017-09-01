@@ -1020,6 +1020,13 @@ impl Maccr {
 
 }
 
+impl From<u32> for Maccr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Maccr(other)
+    }
+}
+
 impl ::core::fmt::Display for Maccr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -1265,6 +1272,13 @@ impl Macffr {
 
 }
 
+impl From<u32> for Macffr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Macffr(other)
+    }
+}
+
 impl ::core::fmt::Display for Macffr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -1315,6 +1329,13 @@ impl Machthr {
 
 }
 
+impl From<u32> for Machthr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Machthr(other)
+    }
+}
+
 impl ::core::fmt::Display for Machthr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -1352,6 +1373,13 @@ impl Machtlr {
         self
     }
 
+}
+
+impl From<u32> for Machtlr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Machtlr(other)
+    }
 }
 
 impl ::core::fmt::Display for Machtlr {
@@ -1469,6 +1497,13 @@ impl Macmiiar {
 
 }
 
+impl From<u32> for Macmiiar {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Macmiiar(other)
+    }
+}
+
 impl ::core::fmt::Display for Macmiiar {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -1511,6 +1546,13 @@ impl Macmiidr {
         self
     }
 
+}
+
+impl From<u32> for Macmiidr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Macmiidr(other)
+    }
 }
 
 impl ::core::fmt::Display for Macmiidr {
@@ -1667,6 +1709,13 @@ impl Macfcr {
 
 }
 
+impl From<u32> for Macfcr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Macfcr(other)
+    }
+}
+
 impl ::core::fmt::Display for Macfcr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -1730,6 +1779,13 @@ impl Macvlantr {
         self
     }
 
+}
+
+impl From<u32> for Macvlantr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Macvlantr(other)
+    }
 }
 
 impl ::core::fmt::Display for Macvlantr {
@@ -1887,6 +1943,13 @@ impl Macpmtcsr {
 
 }
 
+impl From<u32> for Macpmtcsr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Macpmtcsr(other)
+    }
+}
+
 impl ::core::fmt::Display for Macpmtcsr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -2028,6 +2091,13 @@ impl Macdbgr {
 
 }
 
+impl From<u32> for Macdbgr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Macdbgr(other)
+    }
+}
+
 impl ::core::fmt::Display for Macdbgr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -2149,6 +2219,13 @@ impl Macsr {
 
 }
 
+impl From<u32> for Macsr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Macsr(other)
+    }
+}
+
 impl ::core::fmt::Display for Macsr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -2212,6 +2289,13 @@ impl Macimr {
 
 }
 
+impl From<u32> for Macimr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Macimr(other)
+    }
+}
+
 impl ::core::fmt::Display for Macimr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -2272,6 +2356,13 @@ impl Maca0hr {
 
 }
 
+impl From<u32> for Maca0hr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Maca0hr(other)
+    }
+}
+
 impl ::core::fmt::Display for Maca0hr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -2311,6 +2402,13 @@ impl Maca0lr {
         self
     }
 
+}
+
+impl From<u32> for Maca0lr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Maca0lr(other)
+    }
 }
 
 impl ::core::fmt::Display for Maca0lr {
@@ -2409,6 +2507,13 @@ impl Maca1hr {
 
 }
 
+impl From<u32> for Maca1hr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Maca1hr(other)
+    }
+}
+
 impl ::core::fmt::Display for Maca1hr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -2450,6 +2555,13 @@ impl Maca1lr {
         self
     }
 
+}
+
+impl From<u32> for Maca1lr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Maca1lr(other)
+    }
 }
 
 impl ::core::fmt::Display for Maca1lr {
@@ -2548,6 +2660,13 @@ impl Maca2hr {
 
 }
 
+impl From<u32> for Maca2hr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Maca2hr(other)
+    }
+}
+
 impl ::core::fmt::Display for Maca2hr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -2589,6 +2708,13 @@ impl Maca2lr {
         self
     }
 
+}
+
+impl From<u32> for Maca2lr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Maca2lr(other)
+    }
 }
 
 impl ::core::fmt::Display for Maca2lr {
@@ -2688,6 +2814,13 @@ impl Maca3hr {
 
 }
 
+impl From<u32> for Maca3hr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Maca3hr(other)
+    }
+}
+
 impl ::core::fmt::Display for Maca3hr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -2729,6 +2862,13 @@ impl Maca3lr {
         self
     }
 
+}
+
+impl From<u32> for Maca3lr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Maca3lr(other)
+    }
 }
 
 impl ::core::fmt::Display for Maca3lr {

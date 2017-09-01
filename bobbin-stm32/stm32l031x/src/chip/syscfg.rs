@@ -305,6 +305,13 @@ impl Cfgr1 {
 
 }
 
+impl From<u32> for Cfgr1 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Cfgr1(other)
+    }
+}
+
 impl ::core::fmt::Display for Cfgr1 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -479,6 +486,13 @@ impl Cfgr2 {
 
 }
 
+impl From<u32> for Cfgr2 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Cfgr2(other)
+    }
+}
+
 impl ::core::fmt::Display for Cfgr2 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -583,6 +597,13 @@ impl Exticr1 {
 
 }
 
+impl From<u32> for Exticr1 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Exticr1(other)
+    }
+}
+
 impl ::core::fmt::Display for Exticr1 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -681,6 +702,13 @@ impl Exticr2 {
         self
     }
 
+}
+
+impl From<u32> for Exticr2 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Exticr2(other)
+    }
 }
 
 impl ::core::fmt::Display for Exticr2 {
@@ -783,6 +811,13 @@ impl Exticr3 {
 
 }
 
+impl From<u32> for Exticr3 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Exticr3(other)
+    }
+}
+
 impl ::core::fmt::Display for Exticr3 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -881,6 +916,13 @@ impl Exticr4 {
         self
     }
 
+}
+
+impl From<u32> for Exticr4 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Exticr4(other)
+    }
 }
 
 impl ::core::fmt::Display for Exticr4 {
@@ -1133,6 +1175,13 @@ impl Cfgr3 {
         self
     }
 
+}
+
+impl From<u32> for Cfgr3 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Cfgr3(other)
+    }
 }
 
 impl ::core::fmt::Display for Cfgr3 {

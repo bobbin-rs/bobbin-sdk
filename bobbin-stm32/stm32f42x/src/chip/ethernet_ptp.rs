@@ -639,6 +639,13 @@ impl Ptptscr {
 
 }
 
+impl From<u32> for Ptptscr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Ptptscr(other)
+    }
+}
+
 impl ::core::fmt::Display for Ptptscr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -694,6 +701,13 @@ impl Ptpssir {
 
 }
 
+impl From<u32> for Ptpssir {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Ptpssir(other)
+    }
+}
+
 impl ::core::fmt::Display for Ptpssir {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -732,6 +746,13 @@ impl Ptptshr {
         self
     }
 
+}
+
+impl From<u32> for Ptptshr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Ptptshr(other)
+    }
 }
 
 impl ::core::fmt::Display for Ptptshr {
@@ -792,6 +813,13 @@ impl Ptptslr {
 
 }
 
+impl From<u32> for Ptptslr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Ptptslr(other)
+    }
+}
+
 impl ::core::fmt::Display for Ptptslr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -831,6 +859,13 @@ impl Ptptshur {
         self
     }
 
+}
+
+impl From<u32> for Ptptshur {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Ptptshur(other)
+    }
 }
 
 impl ::core::fmt::Display for Ptptshur {
@@ -891,6 +926,13 @@ impl Ptptslur {
 
 }
 
+impl From<u32> for Ptptslur {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Ptptslur(other)
+    }
+}
+
 impl ::core::fmt::Display for Ptptslur {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -932,6 +974,13 @@ impl Ptptsar {
 
 }
 
+impl From<u32> for Ptptsar {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Ptptsar(other)
+    }
+}
+
 impl ::core::fmt::Display for Ptptsar {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -971,6 +1020,13 @@ impl Ptptthr {
 
 }
 
+impl From<u32> for Ptptthr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Ptptthr(other)
+    }
+}
+
 impl ::core::fmt::Display for Ptptthr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -1008,6 +1064,13 @@ impl Ptpttlr {
         self
     }
 
+}
+
+impl From<u32> for Ptpttlr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Ptpttlr(other)
+    }
 }
 
 impl ::core::fmt::Display for Ptpttlr {
@@ -1068,6 +1131,13 @@ impl Ptptssr {
 
 }
 
+impl From<u32> for Ptptssr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Ptptssr(other)
+    }
+}
+
 impl ::core::fmt::Display for Ptptssr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -1126,6 +1196,13 @@ impl Ptpppscr {
         self
     }
 
+}
+
+impl From<u32> for Ptpppscr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Ptpppscr(other)
+    }
 }
 
 impl ::core::fmt::Display for Ptpppscr {

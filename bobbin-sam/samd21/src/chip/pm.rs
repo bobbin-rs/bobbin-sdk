@@ -633,6 +633,13 @@ impl Ahbmask {
 
 }
 
+impl From<u32> for Ahbmask {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Ahbmask(other)
+    }
+}
+
 impl ::core::fmt::Display for Ahbmask {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -793,6 +800,13 @@ impl Apbamask {
 
 }
 
+impl From<u32> for Apbamask {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Apbamask(other)
+    }
+}
+
 impl ::core::fmt::Display for Apbamask {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -837,6 +851,13 @@ impl Apbasel {
         self
     }
 
+}
+
+impl From<u8> for Apbasel {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Apbasel(other)
+    }
 }
 
 impl ::core::fmt::Display for Apbasel {
@@ -974,6 +995,13 @@ impl Apbbmask {
 
 }
 
+impl From<u32> for Apbbmask {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Apbbmask(other)
+    }
+}
+
 impl ::core::fmt::Display for Apbbmask {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -1017,6 +1045,13 @@ impl Apbbsel {
         self
     }
 
+}
+
+impl From<u8> for Apbbsel {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Apbbsel(other)
+    }
 }
 
 impl ::core::fmt::Display for Apbbsel {
@@ -1401,6 +1436,13 @@ impl Apbcmask {
 
 }
 
+impl From<u32> for Apbcmask {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Apbcmask(other)
+    }
+}
+
 impl ::core::fmt::Display for Apbcmask {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -1459,6 +1501,13 @@ impl Apbcsel {
 
 }
 
+impl From<u8> for Apbcsel {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Apbcsel(other)
+    }
+}
+
 impl ::core::fmt::Display for Apbcsel {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -1497,6 +1546,13 @@ impl Cpusel {
         self
     }
 
+}
+
+impl From<u8> for Cpusel {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Cpusel(other)
+    }
 }
 
 impl ::core::fmt::Display for Cpusel {
@@ -1556,6 +1612,13 @@ impl Ctrl {
         self
     }
 
+}
+
+impl From<u8> for Ctrl {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Ctrl(other)
+    }
 }
 
 impl ::core::fmt::Display for Ctrl {
@@ -1618,6 +1681,13 @@ impl Intenclr {
 
 }
 
+impl From<u8> for Intenclr {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Intenclr(other)
+    }
+}
+
 impl ::core::fmt::Display for Intenclr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -1678,6 +1748,13 @@ impl Intenset {
 
 }
 
+impl From<u8> for Intenset {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Intenset(other)
+    }
+}
+
 impl ::core::fmt::Display for Intenset {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -1736,6 +1813,13 @@ impl Intflag {
         self
     }
 
+}
+
+impl From<u8> for Intflag {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Intflag(other)
+    }
 }
 
 impl ::core::fmt::Display for Intflag {
@@ -1874,6 +1958,13 @@ impl Rcause {
 
 }
 
+impl From<u8> for Rcause {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Rcause(other)
+    }
+}
+
 impl ::core::fmt::Display for Rcause {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -1917,6 +2008,13 @@ impl Sleep {
         self
     }
 
+}
+
+impl From<u8> for Sleep {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Sleep(other)
+    }
 }
 
 impl ::core::fmt::Display for Sleep {

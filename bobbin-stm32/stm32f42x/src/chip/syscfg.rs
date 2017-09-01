@@ -267,6 +267,13 @@ impl Memrm {
 
 }
 
+impl From<u32> for Memrm {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Memrm(other)
+    }
+}
+
 impl ::core::fmt::Display for Memrm {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -305,6 +312,13 @@ impl Pmc {
         self
     }
 
+}
+
+impl From<u32> for Pmc {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pmc(other)
+    }
 }
 
 impl ::core::fmt::Display for Pmc {
@@ -402,6 +416,13 @@ impl Exticr1 {
         self
     }
 
+}
+
+impl From<u32> for Exticr1 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Exticr1(other)
+    }
 }
 
 impl ::core::fmt::Display for Exticr1 {
@@ -504,6 +525,13 @@ impl Exticr2 {
 
 }
 
+impl From<u32> for Exticr2 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Exticr2(other)
+    }
+}
+
 impl ::core::fmt::Display for Exticr2 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -602,6 +630,13 @@ impl Exticr3 {
         self
     }
 
+}
+
+impl From<u32> for Exticr3 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Exticr3(other)
+    }
 }
 
 impl ::core::fmt::Display for Exticr3 {
@@ -704,6 +739,13 @@ impl Exticr4 {
 
 }
 
+impl From<u32> for Exticr4 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Exticr4(other)
+    }
+}
+
 impl ::core::fmt::Display for Exticr4 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -764,6 +806,13 @@ impl Cmpcr {
         self
     }
 
+}
+
+impl From<u32> for Cmpcr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Cmpcr(other)
+    }
 }
 
 impl ::core::fmt::Display for Cmpcr {

@@ -813,6 +813,13 @@ impl Bod33 {
 
 }
 
+impl From<u32> for Bod33 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Bod33(other)
+    }
+}
+
 impl ::core::fmt::Display for Bod33 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -1050,6 +1057,13 @@ impl Dfllctrl {
 
 }
 
+impl From<u16> for Dfllctrl {
+    #[inline]
+    fn from(other: u16) -> Self {
+         Dfllctrl(other)
+    }
+}
+
 impl ::core::fmt::Display for Dfllctrl {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -1138,6 +1152,13 @@ impl Dfllmul {
 
 }
 
+impl From<u32> for Dfllmul {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Dfllmul(other)
+    }
+}
+
 impl ::core::fmt::Display for Dfllmul {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -1178,6 +1199,13 @@ impl Dfllsync {
         self
     }
 
+}
+
+impl From<u8> for Dfllsync {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Dfllsync(other)
+    }
 }
 
 impl ::core::fmt::Display for Dfllsync {
@@ -1258,6 +1286,13 @@ impl Dfllval {
 
 }
 
+impl From<u32> for Dfllval {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Dfllval(other)
+    }
+}
+
 impl ::core::fmt::Display for Dfllval {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -1336,6 +1371,13 @@ impl Dpllctrla {
         self
     }
 
+}
+
+impl From<u8> for Dpllctrla {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Dpllctrla(other)
+    }
 }
 
 impl ::core::fmt::Display for Dpllctrla {
@@ -1494,6 +1536,13 @@ impl Dpllctrlb {
 
 }
 
+impl From<u32> for Dpllctrlb {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Dpllctrlb(other)
+    }
+}
+
 impl ::core::fmt::Display for Dpllctrlb {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -1557,6 +1606,13 @@ impl Dpllratio {
         self
     }
 
+}
+
+impl From<u32> for Dpllratio {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Dpllratio(other)
+    }
 }
 
 impl ::core::fmt::Display for Dpllratio {
@@ -1655,6 +1711,13 @@ impl Dpllstatus {
         self
     }
 
+}
+
+impl From<u8> for Dpllstatus {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Dpllstatus(other)
+    }
 }
 
 impl ::core::fmt::Display for Dpllstatus {
@@ -1964,6 +2027,13 @@ impl Intenclr {
         self
     }
 
+}
+
+impl From<u32> for Intenclr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Intenclr(other)
+    }
 }
 
 impl ::core::fmt::Display for Intenclr {
@@ -2286,6 +2356,13 @@ impl Intenset {
 
 }
 
+impl From<u32> for Intenset {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Intenset(other)
+    }
+}
+
 impl ::core::fmt::Display for Intenset {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -2606,6 +2683,13 @@ impl Intflag {
 
 }
 
+impl From<u32> for Intflag {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Intflag(other)
+    }
+}
+
 impl ::core::fmt::Display for Intflag {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -2677,6 +2761,13 @@ impl Osculp32k {
         self
     }
 
+}
+
+impl From<u8> for Osculp32k {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Osculp32k(other)
+    }
 }
 
 impl ::core::fmt::Display for Osculp32k {
@@ -2813,6 +2904,13 @@ impl Osc8m {
         self
     }
 
+}
+
+impl From<u32> for Osc8m {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Osc8m(other)
+    }
 }
 
 impl ::core::fmt::Display for Osc8m {
@@ -2991,6 +3089,13 @@ impl Osc32k {
         self
     }
 
+}
+
+impl From<u32> for Osc32k {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Osc32k(other)
+    }
 }
 
 impl ::core::fmt::Display for Osc32k {
@@ -3306,6 +3411,13 @@ impl Pclksr {
 
 }
 
+impl From<u32> for Pclksr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pclksr(other)
+    }
+}
+
 impl ::core::fmt::Display for Pclksr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -3396,6 +3508,13 @@ impl Vref {
         self
     }
 
+}
+
+impl From<u32> for Vref {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Vref(other)
+    }
 }
 
 impl ::core::fmt::Display for Vref {
@@ -3552,6 +3671,13 @@ impl Xosc {
         self
     }
 
+}
+
+impl From<u16> for Xosc {
+    #[inline]
+    fn from(other: u16) -> Self {
+         Xosc(other)
+    }
 }
 
 impl ::core::fmt::Display for Xosc {
@@ -3750,6 +3876,13 @@ impl Xosc32k {
         self
     }
 
+}
+
+impl From<u16> for Xosc32k {
+    #[inline]
+    fn from(other: u16) -> Self {
+         Xosc32k(other)
+    }
 }
 
 impl ::core::fmt::Display for Xosc32k {

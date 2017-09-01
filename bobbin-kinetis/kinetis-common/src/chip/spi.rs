@@ -680,6 +680,13 @@ impl Mcr {
 
 }
 
+impl From<u32> for Mcr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Mcr(other)
+    }
+}
+
 impl ::core::fmt::Display for Mcr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -733,6 +740,13 @@ impl Tcr {
         self
     }
 
+}
+
+impl From<u32> for Tcr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Tcr(other)
+    }
 }
 
 impl ::core::fmt::Display for Tcr {
@@ -1003,6 +1017,13 @@ impl Ctar {
 
 }
 
+impl From<u32> for Ctar {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Ctar(other)
+    }
+}
+
 impl ::core::fmt::Display for Ctar {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -1091,6 +1112,13 @@ impl CtarSlave {
         self
     }
 
+}
+
+impl From<u32> for CtarSlave {
+    #[inline]
+    fn from(other: u32) -> Self {
+         CtarSlave(other)
+    }
 }
 
 impl ::core::fmt::Display for CtarSlave {
@@ -1325,6 +1353,13 @@ impl Sr {
 
 }
 
+impl From<u32> for Sr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Sr(other)
+    }
+}
+
 impl ::core::fmt::Display for Sr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -1508,6 +1543,13 @@ impl Rser {
 
 }
 
+impl From<u32> for Rser {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Rser(other)
+    }
+}
+
 impl ::core::fmt::Display for Rser {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -1650,6 +1692,13 @@ impl Pushr {
 
 }
 
+impl From<u32> for Pushr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pushr(other)
+    }
+}
+
 impl ::core::fmt::Display for Pushr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -1695,6 +1744,13 @@ impl PushrSlave {
 
 }
 
+impl From<u32> for PushrSlave {
+    #[inline]
+    fn from(other: u32) -> Self {
+         PushrSlave(other)
+    }
+}
+
 impl ::core::fmt::Display for PushrSlave {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -1732,6 +1788,13 @@ impl Popr {
         self
     }
 
+}
+
+impl From<u32> for Popr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Popr(other)
+    }
 }
 
 impl ::core::fmt::Display for Popr {
@@ -1792,6 +1855,13 @@ impl Txfr {
 
 }
 
+impl From<u32> for Txfr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Txfr(other)
+    }
+}
+
 impl ::core::fmt::Display for Txfr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -1831,6 +1901,13 @@ impl Rxfr {
         self
     }
 
+}
+
+impl From<u32> for Rxfr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Rxfr(other)
+    }
 }
 
 impl ::core::fmt::Display for Rxfr {

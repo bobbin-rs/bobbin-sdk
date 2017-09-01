@@ -186,6 +186,13 @@ impl Pdor {
 
 }
 
+impl From<u32> for Pdor {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pdor(other)
+    }
+}
+
 impl ::core::fmt::Display for Pdor {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -261,6 +268,13 @@ impl Psor {
         self
     }
 
+}
+
+impl From<u32> for Psor {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Psor(other)
+    }
 }
 
 impl ::core::fmt::Display for Psor {
@@ -340,6 +354,13 @@ impl Pcor {
 
 }
 
+impl From<u32> for Pcor {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pcor(other)
+    }
+}
+
 impl ::core::fmt::Display for Pcor {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -415,6 +436,13 @@ impl Ptor {
         self
     }
 
+}
+
+impl From<u32> for Ptor {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Ptor(other)
+    }
 }
 
 impl ::core::fmt::Display for Ptor {
@@ -494,6 +522,13 @@ impl Pdir {
 
 }
 
+impl From<u32> for Pdir {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pdir(other)
+    }
+}
+
 impl ::core::fmt::Display for Pdir {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -569,6 +604,13 @@ impl Pddr {
         self
     }
 
+}
+
+impl From<u32> for Pddr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pddr(other)
+    }
 }
 
 impl ::core::fmt::Display for Pddr {

@@ -898,6 +898,13 @@ impl Cc {
 
 }
 
+impl From<u32> for Cc {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Cc(other)
+    }
+}
+
 impl ::core::fmt::Display for Cc {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -938,6 +945,13 @@ impl Ccb {
 
 }
 
+impl From<u32> for Ccb {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Ccb(other)
+    }
+}
+
 impl ::core::fmt::Display for Ccb {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -976,6 +990,13 @@ impl Count {
         self
     }
 
+}
+
+impl From<u32> for Count {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Count(other)
+    }
 }
 
 impl ::core::fmt::Display for Count {
@@ -1176,6 +1197,13 @@ impl Ctrla {
 
 }
 
+impl From<u32> for Ctrla {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Ctrla(other)
+    }
+}
+
 impl ::core::fmt::Display for Ctrla {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -1303,6 +1331,13 @@ impl Ctrlbclr {
 
 }
 
+impl From<u8> for Ctrlbclr {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Ctrlbclr(other)
+    }
+}
+
 impl ::core::fmt::Display for Ctrlbclr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -1423,6 +1458,13 @@ impl Ctrlbset {
 
 }
 
+impl From<u8> for Ctrlbset {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Ctrlbset(other)
+    }
+}
+
 impl ::core::fmt::Display for Ctrlbset {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -1484,6 +1526,13 @@ impl Dbgctrl {
         self
     }
 
+}
+
+impl From<u8> for Dbgctrl {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Dbgctrl(other)
+    }
 }
 
 impl ::core::fmt::Display for Dbgctrl {
@@ -2002,6 +2051,13 @@ impl Drvctrl {
 
 }
 
+impl From<u32> for Drvctrl {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Drvctrl(other)
+    }
+}
+
 impl ::core::fmt::Display for Drvctrl {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -2390,6 +2446,13 @@ impl Evctrl {
 
 }
 
+impl From<u32> for Evctrl {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Evctrl(other)
+    }
+}
+
 impl ::core::fmt::Display for Evctrl {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -2618,6 +2681,13 @@ impl Fctrla {
 
 }
 
+impl From<u32> for Fctrla {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Fctrla(other)
+    }
+}
+
 impl ::core::fmt::Display for Fctrla {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -2836,6 +2906,13 @@ impl Fctrlb {
         self
     }
 
+}
+
+impl From<u32> for Fctrlb {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Fctrlb(other)
+    }
 }
 
 impl ::core::fmt::Display for Fctrlb {
@@ -3115,6 +3192,13 @@ impl Intenclr {
 
 }
 
+impl From<u32> for Intenclr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Intenclr(other)
+    }
+}
+
 impl ::core::fmt::Display for Intenclr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -3342,6 +3426,13 @@ impl Intenset {
         self
     }
 
+}
+
+impl From<u32> for Intenset {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Intenset(other)
+    }
 }
 
 impl ::core::fmt::Display for Intenset {
@@ -3573,6 +3664,13 @@ impl Intflag {
 
 }
 
+impl From<u32> for Intflag {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Intflag(other)
+    }
+}
+
 impl ::core::fmt::Display for Intflag {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -3654,6 +3752,13 @@ impl Patt {
         self
     }
 
+}
+
+impl From<u16> for Patt {
+    #[inline]
+    fn from(other: u16) -> Self {
+         Patt(other)
+    }
 }
 
 impl ::core::fmt::Display for Patt {
@@ -3742,6 +3847,13 @@ impl Pattb {
 
 }
 
+impl From<u16> for Pattb {
+    #[inline]
+    fn from(other: u16) -> Self {
+         Pattb(other)
+    }
+}
+
 impl ::core::fmt::Display for Pattb {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -3797,6 +3909,13 @@ impl Per {
 
 }
 
+impl From<u32> for Per {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Per(other)
+    }
+}
+
 impl ::core::fmt::Display for Per {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -3835,6 +3954,13 @@ impl Perb {
         self
     }
 
+}
+
+impl From<u32> for Perb {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Perb(other)
+    }
 }
 
 impl ::core::fmt::Display for Perb {
@@ -4174,6 +4300,13 @@ impl Status {
 
 }
 
+impl From<u32> for Status {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Status(other)
+    }
+}
+
 impl ::core::fmt::Display for Status {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -4475,6 +4608,13 @@ impl Syncbusy {
 
 }
 
+impl From<u32> for Syncbusy {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Syncbusy(other)
+    }
+}
+
 impl ::core::fmt::Display for Syncbusy {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -4646,6 +4786,13 @@ impl Wave {
 
 }
 
+impl From<u32> for Wave {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Wave(other)
+    }
+}
+
 impl ::core::fmt::Display for Wave {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -4813,6 +4960,13 @@ impl Waveb {
 
 }
 
+impl From<u32> for Waveb {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Waveb(other)
+    }
+}
+
 impl ::core::fmt::Display for Waveb {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -4928,6 +5082,13 @@ impl Wexctrl {
         self
     }
 
+}
+
+impl From<u32> for Wexctrl {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Wexctrl(other)
+    }
 }
 
 impl ::core::fmt::Display for Wexctrl {

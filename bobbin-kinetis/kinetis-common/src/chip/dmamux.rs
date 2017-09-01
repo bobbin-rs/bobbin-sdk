@@ -118,6 +118,13 @@ impl Chcfg {
 
 }
 
+impl From<u8> for Chcfg {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Chcfg(other)
+    }
+}
+
 impl ::core::fmt::Display for Chcfg {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)

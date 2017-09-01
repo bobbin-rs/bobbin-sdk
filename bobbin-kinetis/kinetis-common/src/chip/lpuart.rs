@@ -466,6 +466,13 @@ impl Verid {
 
 }
 
+impl From<u32> for Verid {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Verid(other)
+    }
+}
+
 impl ::core::fmt::Display for Verid {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -527,6 +534,13 @@ impl Param {
 
 }
 
+impl From<u32> for Param {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Param(other)
+    }
+}
+
 impl ::core::fmt::Display for Param {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -568,6 +582,13 @@ impl Global {
 
 }
 
+impl From<u32> for Global {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Global(other)
+    }
+}
+
 impl ::core::fmt::Display for Global {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -606,6 +627,13 @@ impl Pincfg {
         self
     }
 
+}
+
+impl From<u32> for Pincfg {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pincfg(other)
+    }
 }
 
 impl ::core::fmt::Display for Pincfg {
@@ -893,6 +921,13 @@ impl Baud {
         self
     }
 
+}
+
+impl From<u32> for Baud {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Baud(other)
+    }
 }
 
 impl ::core::fmt::Display for Baud {
@@ -1269,6 +1304,13 @@ impl Stat {
         self
     }
 
+}
+
+impl From<u32> for Stat {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Stat(other)
+    }
 }
 
 impl ::core::fmt::Display for Stat {
@@ -1841,6 +1883,13 @@ impl Ctrl {
 
 }
 
+impl From<u32> for Ctrl {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Ctrl(other)
+    }
+}
+
 impl ::core::fmt::Display for Ctrl {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -2003,6 +2052,13 @@ impl Data {
 
 }
 
+impl From<u32> for Data {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Data(other)
+    }
+}
+
 impl ::core::fmt::Display for Data {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -2065,6 +2121,13 @@ impl Match {
         self
     }
 
+}
+
+impl From<u32> for Match {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Match(other)
+    }
 }
 
 impl ::core::fmt::Display for Match {
@@ -2258,6 +2321,13 @@ impl Modir {
         self
     }
 
+}
+
+impl From<u32> for Modir {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Modir(other)
+    }
 }
 
 impl ::core::fmt::Display for Modir {
@@ -2536,6 +2606,13 @@ impl Fifo {
 
 }
 
+impl From<u32> for Fifo {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Fifo(other)
+    }
+}
+
 impl ::core::fmt::Display for Fifo {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -2643,6 +2720,13 @@ impl Water {
         self
     }
 
+}
+
+impl From<u32> for Water {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Water(other)
+    }
 }
 
 impl ::core::fmt::Display for Water {

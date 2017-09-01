@@ -313,6 +313,13 @@ impl Stim {
 
 }
 
+impl From<u32> for Stim {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Stim(other)
+    }
+}
+
 impl ::core::fmt::Display for Stim {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -347,6 +354,13 @@ impl Stim16 {
         self
     }
 
+}
+
+impl From<u16> for Stim16 {
+    #[inline]
+    fn from(other: u16) -> Self {
+         Stim16(other)
+    }
 }
 
 impl ::core::fmt::Display for Stim16 {
@@ -384,6 +398,13 @@ impl Stim8 {
         self
     }
 
+}
+
+impl From<u8> for Stim8 {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Stim8(other)
+    }
 }
 
 impl ::core::fmt::Display for Stim8 {
@@ -430,6 +451,13 @@ impl Ter {
         self
     }
 
+}
+
+impl From<u32> for Ter {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Ter(other)
+    }
 }
 
 impl ::core::fmt::Display for Ter {
@@ -507,6 +535,13 @@ impl Tpr {
         self
     }
 
+}
+
+impl From<u32> for Tpr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Tpr(other)
+    }
 }
 
 impl ::core::fmt::Display for Tpr {
@@ -685,6 +720,13 @@ impl Tcr {
 
 }
 
+impl From<u32> for Tcr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Tcr(other)
+    }
+}
+
 impl ::core::fmt::Display for Tcr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
@@ -730,6 +772,13 @@ impl Lar {
         self
     }
 
+}
+
+impl From<u32> for Lar {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Lar(other)
+    }
 }
 
 impl ::core::fmt::Display for Lar {
@@ -807,6 +856,13 @@ impl Lsr {
         self
     }
 
+}
+
+impl From<u32> for Lsr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Lsr(other)
+    }
 }
 
 impl ::core::fmt::Display for Lsr {
