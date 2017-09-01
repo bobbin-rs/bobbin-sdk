@@ -7,15 +7,15 @@ periph!(RTC, Rtc, 0x40001400);
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Rtc(pub usize);
 impl Rtc {
-#[doc="Get 32-bit Counter with Single 32-bit Compare Peripheral"]
+    #[doc="Get 32-bit Counter with Single 32-bit Compare Peripheral"]
     #[inline] pub fn mode0(&self) -> mode0::Mode0 {
         mode0::Mode0(self.0 + 0x0)
     }
-#[doc="Get 16-bit Counter with Two 16-bit Compares Peripheral"]
+    #[doc="Get 16-bit Counter with Two 16-bit Compares Peripheral"]
     #[inline] pub fn mode1(&self) -> mode1::Mode1 {
         mode1::Mode1(self.0 + 0x0)
     }
-#[doc="Get Clock/Calendar with Alarm Peripheral"]
+    #[doc="Get Clock/Calendar with Alarm Peripheral"]
     #[inline] pub fn mode2(&self) -> mode2::Mode2 {
         mode2::Mode2(self.0 + 0x0)
     }
@@ -23,9 +23,9 @@ impl Rtc {
 
 #[doc="32-bit Counter with Single 32-bit Compare Cluster"]
 pub mod mode0 {
-#[allow(unused_imports)] use bobbin_common::*;
+    #[allow(unused_imports)] use bobbin_common::*;
     #[derive(Clone, Copy, PartialEq, Eq)]
-#[doc="32-bit Counter with Single 32-bit Compare Peripheral"]
+    #[doc="32-bit Counter with Single 32-bit Compare Peripheral"]
     pub struct Mode0(pub usize);
 impl Mode0 {
     #[doc="Get the *mut pointer for the DBGCTRL register."]
@@ -1354,9 +1354,9 @@ impl ::core::fmt::Debug for Status {
 
 #[doc="16-bit Counter with Two 16-bit Compares Cluster"]
 pub mod mode1 {
-#[allow(unused_imports)] use bobbin_common::*;
+    #[allow(unused_imports)] use bobbin_common::*;
     #[derive(Clone, Copy, PartialEq, Eq)]
-#[doc="16-bit Counter with Two 16-bit Compares Peripheral"]
+    #[doc="16-bit Counter with Two 16-bit Compares Peripheral"]
     pub struct Mode1(pub usize);
 impl Mode1 {
     #[doc="Get the *mut pointer for the DBGCTRL register."]
@@ -2827,9 +2827,9 @@ impl ::core::fmt::Debug for Status {
 
 #[doc="Clock/Calendar with Alarm Cluster"]
 pub mod mode2 {
-#[allow(unused_imports)] use bobbin_common::*;
+    #[allow(unused_imports)] use bobbin_common::*;
     #[derive(Clone, Copy, PartialEq, Eq)]
-#[doc="Clock/Calendar with Alarm Peripheral"]
+    #[doc="Clock/Calendar with Alarm Peripheral"]
     pub struct Mode2(pub usize);
 impl Mode2 {
     #[doc="Get the *mut pointer for the DBGCTRL register."]

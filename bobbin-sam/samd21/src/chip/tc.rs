@@ -26,15 +26,15 @@ impl super::sig::SignalWo<super::sig::Tc5Wo1> for Tc5Ch1 {}
 
 
 impl TcPeriph {
-#[doc="Get 8-bit Counter Mode Peripheral"]
+    #[doc="Get 8-bit Counter Mode Peripheral"]
     #[inline] pub fn count8(&self) -> count8::Count8 {
         count8::Count8(self.0 + 0x0)
     }
-#[doc="Get 16-bit Counter Mode Peripheral"]
+    #[doc="Get 16-bit Counter Mode Peripheral"]
     #[inline] pub fn count16(&self) -> count16::Count16 {
         count16::Count16(self.0 + 0x0)
     }
-#[doc="Get 32-bit Counter Mode Peripheral"]
+    #[doc="Get 32-bit Counter Mode Peripheral"]
     #[inline] pub fn count32(&self) -> count32::Count32 {
         count32::Count32(self.0 + 0x0)
     }
@@ -42,9 +42,9 @@ impl TcPeriph {
 
 #[doc="8-bit Counter Mode Cluster"]
 pub mod count8 {
-#[allow(unused_imports)] use bobbin_common::*;
+    #[allow(unused_imports)] use bobbin_common::*;
     #[derive(Clone, Copy, PartialEq, Eq)]
-#[doc="8-bit Counter Mode Peripheral"]
+    #[doc="8-bit Counter Mode Peripheral"]
     pub struct Count8(pub usize);
 impl Count8 {
     #[doc="Get the *mut pointer for the CC register."]
@@ -1839,9 +1839,9 @@ impl ::core::fmt::Debug for Status {
 
 #[doc="16-bit Counter Mode Cluster"]
 pub mod count16 {
-#[allow(unused_imports)] use bobbin_common::*;
+    #[allow(unused_imports)] use bobbin_common::*;
     #[derive(Clone, Copy, PartialEq, Eq)]
-#[doc="16-bit Counter Mode Peripheral"]
+    #[doc="16-bit Counter Mode Peripheral"]
     pub struct Count16(pub usize);
 impl Count16 {
     #[doc="Get the *mut pointer for the CC register."]
@@ -3556,9 +3556,9 @@ impl ::core::fmt::Debug for Status {
 
 #[doc="32-bit Counter Mode Cluster"]
 pub mod count32 {
-#[allow(unused_imports)] use bobbin_common::*;
+    #[allow(unused_imports)] use bobbin_common::*;
     #[derive(Clone, Copy, PartialEq, Eq)]
-#[doc="32-bit Counter Mode Peripheral"]
+    #[doc="32-bit Counter Mode Peripheral"]
     pub struct Count32(pub usize);
 impl Count32 {
     #[doc="Get the *mut pointer for the CC register."]

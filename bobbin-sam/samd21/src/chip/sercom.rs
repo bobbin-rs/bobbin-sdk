@@ -68,19 +68,19 @@ impl super::sig::SignalPad3<super::sig::Sercom5Pad3> for Sercom5 {}
 
 
 impl SercomPeriph {
-#[doc="Get I2C Master Mode Peripheral"]
+    #[doc="Get I2C Master Mode Peripheral"]
     #[inline] pub fn i2cm(&self) -> i2cm::I2cm {
         i2cm::I2cm(self.0 + 0x0)
     }
-#[doc="Get I2C Slave Mode Peripheral"]
+    #[doc="Get I2C Slave Mode Peripheral"]
     #[inline] pub fn i2cs(&self) -> i2cs::I2cs {
         i2cs::I2cs(self.0 + 0x0)
     }
-#[doc="Get SPI Mode Peripheral"]
+    #[doc="Get SPI Mode Peripheral"]
     #[inline] pub fn spi(&self) -> spi::Spi {
         spi::Spi(self.0 + 0x0)
     }
-#[doc="Get USART Mode Peripheral"]
+    #[doc="Get USART Mode Peripheral"]
     #[inline] pub fn usart(&self) -> usart::Usart {
         usart::Usart(self.0 + 0x0)
     }
@@ -88,9 +88,9 @@ impl SercomPeriph {
 
 #[doc="I2C Master Mode Cluster"]
 pub mod i2cm {
-#[allow(unused_imports)] use bobbin_common::*;
+    #[allow(unused_imports)] use bobbin_common::*;
     #[derive(Clone, Copy, PartialEq, Eq)]
-#[doc="I2C Master Mode Peripheral"]
+    #[doc="I2C Master Mode Peripheral"]
     pub struct I2cm(pub usize);
 impl I2cm {
     #[doc="Get the *mut pointer for the ADDR register."]
@@ -1704,9 +1704,9 @@ impl ::core::fmt::Debug for Syncbusy {
 
 #[doc="I2C Slave Mode Cluster"]
 pub mod i2cs {
-#[allow(unused_imports)] use bobbin_common::*;
+    #[allow(unused_imports)] use bobbin_common::*;
     #[derive(Clone, Copy, PartialEq, Eq)]
-#[doc="I2C Slave Mode Peripheral"]
+    #[doc="I2C Slave Mode Peripheral"]
     pub struct I2cs(pub usize);
 impl I2cs {
     #[doc="Get the *mut pointer for the ADDR register."]
@@ -3200,9 +3200,9 @@ impl ::core::fmt::Debug for Syncbusy {
 
 #[doc="SPI Mode Cluster"]
 pub mod spi {
-#[allow(unused_imports)] use bobbin_common::*;
+    #[allow(unused_imports)] use bobbin_common::*;
     #[derive(Clone, Copy, PartialEq, Eq)]
-#[doc="SPI Mode Peripheral"]
+    #[doc="SPI Mode Peripheral"]
     pub struct Spi(pub usize);
 impl Spi {
     #[doc="Get the *mut pointer for the ADDR register."]
@@ -4676,9 +4676,9 @@ impl ::core::fmt::Debug for Syncbusy {
 
 #[doc="USART Mode Cluster"]
 pub mod usart {
-#[allow(unused_imports)] use bobbin_common::*;
+    #[allow(unused_imports)] use bobbin_common::*;
     #[derive(Clone, Copy, PartialEq, Eq)]
-#[doc="USART Mode Peripheral"]
+    #[doc="USART Mode Peripheral"]
     pub struct Usart(pub usize);
 impl Usart {
     #[doc="Get the *mut pointer for the BAUD register."]

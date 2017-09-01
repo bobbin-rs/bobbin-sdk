@@ -667,7 +667,7 @@ impl I2cPeriph {
 }
 
 pub mod master {
-#[allow(unused_imports)] use bobbin_common::*;
+    #[allow(unused_imports)] use bobbin_common::*;
     #[derive(Clone, Copy, PartialEq, Eq)]
     pub struct Master(pub usize);
 impl Master {
@@ -3051,7 +3051,7 @@ impl ::core::fmt::Debug for Mbcnt {
 // End of master
 
 pub mod slave {
-#[allow(unused_imports)] use bobbin_common::*;
+    #[allow(unused_imports)] use bobbin_common::*;
     #[derive(Clone, Copy, PartialEq, Eq)]
     pub struct Slave(pub usize);
 impl Slave {
