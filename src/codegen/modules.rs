@@ -1127,6 +1127,14 @@ pub fn gen_register_types<W: Write>(cfg: &Config, out: &mut W, regs: &[Register]
         try!(writeln!(out, "}}"));
         try!(writeln!(out, ""));
 
+        try!(writeln!(out, "impl From<{}> for {} {{", r_size, r_type));
+        try!(writeln!(out, "    #[inline]"));
+        try!(writeln!(out, "    fn from(other: {}) -> Self {{", r_size));
+        try!(writeln!(out, "         {}(other)", r_type));
+        try!(writeln!(out, "    }}"));
+        try!(writeln!(out, "}}"));        
+        try!(writeln!(out, ""));
+
         try!(writeln!(out, "impl ::core::fmt::Display for {} {{", r_type));
         try!(writeln!(out, "    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {{"));
         try!(writeln!(out, "         self.0.fmt(f)"));
