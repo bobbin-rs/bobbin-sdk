@@ -24,7 +24,7 @@ pub extern "C" fn main() -> ! {
         board::console::disable();
         MCG.with_c1(|r| r.set_clks(0b10));
         while MCG.s().clkst() != 0b10 {}
-        board::console::reinit();
+        board::console::enable();
         println!("Running on OSCCLK");
         board::delay(1000);
 
@@ -33,7 +33,7 @@ pub extern "C" fn main() -> ! {
         board::console::disable();
         MCG.with_c1(|r| r.set_clks(0b00));
         while MCG.s().clkst() != 0b11 {}
-        board::console::reinit();
+        board::console::enable();
         println!("Running on PLL");
         board::delay(1000);
     }
