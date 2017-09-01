@@ -787,7 +787,7 @@ pub fn gen_clusters<W: Write>(cfg: &Config, out: &mut W, p_type: &str, clusters:
         let c_type = format!("{}", to_camel(&c.name));
         let mod_name = c.name.to_lowercase();
         if let Some(ref desc) = c.description {
-            try!(gen_doc(cfg, out, 0, &format!("Get {} Peripheral", desc)));
+            try!(gen_doc(cfg, out, 4, &format!("Get {} Peripheral", desc)));
         }               
         try!(writeln!(out, "    #[inline] pub fn {}(&self) -> {}::{} {{", mod_name, mod_name, c_type));
         try!(writeln!(out, "        {}::{}(self.0 + 0x{:x})", mod_name, c_type, c.offset));
@@ -805,11 +805,11 @@ pub fn gen_clusters<W: Write>(cfg: &Config, out: &mut W, p_type: &str, clusters:
             try!(gen_doc(cfg, out, 0, &format!("{} Cluster", desc)));
         }                
         try!(writeln!(out, "pub mod {} {{", mod_name));
-        try!(writeln!(out, "#[allow(unused_imports)] use bobbin_common::*;"));
+        try!(writeln!(out, "    #[allow(unused_imports)] use bobbin_common::*;"));
         
         try!(writeln!(out, "    #[derive(Clone, Copy, PartialEq, Eq)]"));
         if let Some(ref desc) = c.description {
-            try!(gen_doc(cfg, out, 0, &format!("{} Peripheral", desc)));
+            try!(gen_doc(cfg, out, 4, &format!("{} Peripheral", desc)));
         }                
         try!(writeln!(out, "    pub struct {}(pub usize);", c_type));
         try!(gen_registers(cfg, out, &c_type, &c.registers[..], c.size.or(size), c.access.or(access)));
