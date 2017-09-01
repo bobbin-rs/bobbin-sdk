@@ -33,6 +33,10 @@ pub fn field_with(name: &str) -> String {
     format!("with_{}", field_name(name))
 }
 
+pub fn field_test(name: &str) -> String {
+    format!("test_{}", field_name(name))
+}
+
 pub fn field_ptr(name: &str) -> String {
     let name = field_name(name);
     if name.chars().next().unwrap().is_digit(10) {
