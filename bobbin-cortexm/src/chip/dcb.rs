@@ -7,27 +7,27 @@ periph!(DCB, Dcb, 0xe000edf0);
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dcb(pub usize);
 impl Dcb {
-    #[doc="Get the *const pointer for the DHCSR register."]
-    #[inline] pub fn dhcsr_ptr(&self) -> *const Dhcsr { 
-        (self.0 + 0x0) as *const Dhcsr
-    }
-
     #[doc="Get the *mut pointer for the DHCSR register."]
     #[inline] pub fn dhcsr_mut(&self) -> *mut Dhcsr { 
         (self.0 + 0x0) as *mut Dhcsr
     }
 
+    #[doc="Get the *const pointer for the DHCSR register."]
+    #[inline] pub fn dhcsr_ptr(&self) -> *const Dhcsr { 
+           self.dhcsr_mut()
+    }
+
     #[doc="Read the DHCSR register."]
     #[inline] pub fn dhcsr(&self) -> Dhcsr { 
         unsafe {
-            read_volatile((self.0 + 0x0) as *const Dhcsr)
+            read_volatile(self.dhcsr_ptr())
         }
     }
 
     #[doc="Write the DHCSR register."]
     #[inline] pub fn set_dhcsr<F: FnOnce(Dhcsr) -> Dhcsr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x0) as *mut Dhcsr, f(Dhcsr(0)));
+            write_volatile(self.dhcsr_mut(), f(Dhcsr(0)));
         }
         self
     }
@@ -35,14 +35,9 @@ impl Dcb {
     #[doc="Modify the DHCSR register."]
     #[inline] pub fn with_dhcsr<F: FnOnce(Dhcsr) -> Dhcsr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x0) as *mut Dhcsr, f(self.dhcsr()));
+            write_volatile(self.dhcsr_mut(), f(self.dhcsr()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the DCRSR register."]
-    #[inline] pub fn dcrsr_ptr(&self) -> *const Dcrsr { 
-        (self.0 + 0x4) as *const Dcrsr
     }
 
     #[doc="Get the *mut pointer for the DCRSR register."]
@@ -50,17 +45,22 @@ impl Dcb {
         (self.0 + 0x4) as *mut Dcrsr
     }
 
+    #[doc="Get the *const pointer for the DCRSR register."]
+    #[inline] pub fn dcrsr_ptr(&self) -> *const Dcrsr { 
+           self.dcrsr_mut()
+    }
+
     #[doc="Read the DCRSR register."]
     #[inline] pub fn dcrsr(&self) -> Dcrsr { 
         unsafe {
-            read_volatile((self.0 + 0x4) as *const Dcrsr)
+            read_volatile(self.dcrsr_ptr())
         }
     }
 
     #[doc="Write the DCRSR register."]
     #[inline] pub fn set_dcrsr<F: FnOnce(Dcrsr) -> Dcrsr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x4) as *mut Dcrsr, f(Dcrsr(0)));
+            write_volatile(self.dcrsr_mut(), f(Dcrsr(0)));
         }
         self
     }
@@ -68,14 +68,9 @@ impl Dcb {
     #[doc="Modify the DCRSR register."]
     #[inline] pub fn with_dcrsr<F: FnOnce(Dcrsr) -> Dcrsr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x4) as *mut Dcrsr, f(self.dcrsr()));
+            write_volatile(self.dcrsr_mut(), f(self.dcrsr()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the DERDR register."]
-    #[inline] pub fn derdr_ptr(&self) -> *const Derdr { 
-        (self.0 + 0x8) as *const Derdr
     }
 
     #[doc="Get the *mut pointer for the DERDR register."]
@@ -83,17 +78,22 @@ impl Dcb {
         (self.0 + 0x8) as *mut Derdr
     }
 
+    #[doc="Get the *const pointer for the DERDR register."]
+    #[inline] pub fn derdr_ptr(&self) -> *const Derdr { 
+           self.derdr_mut()
+    }
+
     #[doc="Read the DERDR register."]
     #[inline] pub fn derdr(&self) -> Derdr { 
         unsafe {
-            read_volatile((self.0 + 0x8) as *const Derdr)
+            read_volatile(self.derdr_ptr())
         }
     }
 
     #[doc="Write the DERDR register."]
     #[inline] pub fn set_derdr<F: FnOnce(Derdr) -> Derdr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x8) as *mut Derdr, f(Derdr(0)));
+            write_volatile(self.derdr_mut(), f(Derdr(0)));
         }
         self
     }
@@ -101,14 +101,9 @@ impl Dcb {
     #[doc="Modify the DERDR register."]
     #[inline] pub fn with_derdr<F: FnOnce(Derdr) -> Derdr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x8) as *mut Derdr, f(self.derdr()));
+            write_volatile(self.derdr_mut(), f(self.derdr()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the DEMCR register."]
-    #[inline] pub fn demcr_ptr(&self) -> *const Demcr { 
-        (self.0 + 0xc) as *const Demcr
     }
 
     #[doc="Get the *mut pointer for the DEMCR register."]
@@ -116,17 +111,22 @@ impl Dcb {
         (self.0 + 0xc) as *mut Demcr
     }
 
+    #[doc="Get the *const pointer for the DEMCR register."]
+    #[inline] pub fn demcr_ptr(&self) -> *const Demcr { 
+           self.demcr_mut()
+    }
+
     #[doc="Read the DEMCR register."]
     #[inline] pub fn demcr(&self) -> Demcr { 
         unsafe {
-            read_volatile((self.0 + 0xc) as *const Demcr)
+            read_volatile(self.demcr_ptr())
         }
     }
 
     #[doc="Write the DEMCR register."]
     #[inline] pub fn set_demcr<F: FnOnce(Demcr) -> Demcr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xc) as *mut Demcr, f(Demcr(0)));
+            write_volatile(self.demcr_mut(), f(Demcr(0)));
         }
         self
     }
@@ -134,7 +134,7 @@ impl Dcb {
     #[doc="Modify the DEMCR register."]
     #[inline] pub fn with_demcr<F: FnOnce(Demcr) -> Demcr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xc) as *mut Demcr, f(self.demcr()));
+            write_volatile(self.demcr_mut(), f(self.demcr()));
         }
         self
     }

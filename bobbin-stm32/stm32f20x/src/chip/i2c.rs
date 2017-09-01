@@ -13,27 +13,27 @@ pub struct I2cPeriph(pub usize);
 
 
 impl I2cPeriph {
-    #[doc="Get the *const pointer for the CR1 register."]
-    #[inline] pub fn cr1_ptr(&self) -> *const Cr1 { 
-        (self.0 + 0x0) as *const Cr1
-    }
-
     #[doc="Get the *mut pointer for the CR1 register."]
     #[inline] pub fn cr1_mut(&self) -> *mut Cr1 { 
         (self.0 + 0x0) as *mut Cr1
     }
 
+    #[doc="Get the *const pointer for the CR1 register."]
+    #[inline] pub fn cr1_ptr(&self) -> *const Cr1 { 
+           self.cr1_mut()
+    }
+
     #[doc="Read the CR1 register."]
     #[inline] pub fn cr1(&self) -> Cr1 { 
         unsafe {
-            read_volatile((self.0 + 0x0) as *const Cr1)
+            read_volatile(self.cr1_ptr())
         }
     }
 
     #[doc="Write the CR1 register."]
     #[inline] pub fn set_cr1<F: FnOnce(Cr1) -> Cr1>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x0) as *mut Cr1, f(Cr1(0)));
+            write_volatile(self.cr1_mut(), f(Cr1(0)));
         }
         self
     }
@@ -41,14 +41,9 @@ impl I2cPeriph {
     #[doc="Modify the CR1 register."]
     #[inline] pub fn with_cr1<F: FnOnce(Cr1) -> Cr1>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x0) as *mut Cr1, f(self.cr1()));
+            write_volatile(self.cr1_mut(), f(self.cr1()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the CR2 register."]
-    #[inline] pub fn cr2_ptr(&self) -> *const Cr2 { 
-        (self.0 + 0x4) as *const Cr2
     }
 
     #[doc="Get the *mut pointer for the CR2 register."]
@@ -56,17 +51,22 @@ impl I2cPeriph {
         (self.0 + 0x4) as *mut Cr2
     }
 
+    #[doc="Get the *const pointer for the CR2 register."]
+    #[inline] pub fn cr2_ptr(&self) -> *const Cr2 { 
+           self.cr2_mut()
+    }
+
     #[doc="Read the CR2 register."]
     #[inline] pub fn cr2(&self) -> Cr2 { 
         unsafe {
-            read_volatile((self.0 + 0x4) as *const Cr2)
+            read_volatile(self.cr2_ptr())
         }
     }
 
     #[doc="Write the CR2 register."]
     #[inline] pub fn set_cr2<F: FnOnce(Cr2) -> Cr2>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x4) as *mut Cr2, f(Cr2(0)));
+            write_volatile(self.cr2_mut(), f(Cr2(0)));
         }
         self
     }
@@ -74,14 +74,9 @@ impl I2cPeriph {
     #[doc="Modify the CR2 register."]
     #[inline] pub fn with_cr2<F: FnOnce(Cr2) -> Cr2>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x4) as *mut Cr2, f(self.cr2()));
+            write_volatile(self.cr2_mut(), f(self.cr2()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the OAR1 register."]
-    #[inline] pub fn oar1_ptr(&self) -> *const Oar1 { 
-        (self.0 + 0x8) as *const Oar1
     }
 
     #[doc="Get the *mut pointer for the OAR1 register."]
@@ -89,17 +84,22 @@ impl I2cPeriph {
         (self.0 + 0x8) as *mut Oar1
     }
 
+    #[doc="Get the *const pointer for the OAR1 register."]
+    #[inline] pub fn oar1_ptr(&self) -> *const Oar1 { 
+           self.oar1_mut()
+    }
+
     #[doc="Read the OAR1 register."]
     #[inline] pub fn oar1(&self) -> Oar1 { 
         unsafe {
-            read_volatile((self.0 + 0x8) as *const Oar1)
+            read_volatile(self.oar1_ptr())
         }
     }
 
     #[doc="Write the OAR1 register."]
     #[inline] pub fn set_oar1<F: FnOnce(Oar1) -> Oar1>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x8) as *mut Oar1, f(Oar1(0)));
+            write_volatile(self.oar1_mut(), f(Oar1(0)));
         }
         self
     }
@@ -107,14 +107,9 @@ impl I2cPeriph {
     #[doc="Modify the OAR1 register."]
     #[inline] pub fn with_oar1<F: FnOnce(Oar1) -> Oar1>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x8) as *mut Oar1, f(self.oar1()));
+            write_volatile(self.oar1_mut(), f(self.oar1()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the OAR2 register."]
-    #[inline] pub fn oar2_ptr(&self) -> *const Oar2 { 
-        (self.0 + 0xc) as *const Oar2
     }
 
     #[doc="Get the *mut pointer for the OAR2 register."]
@@ -122,17 +117,22 @@ impl I2cPeriph {
         (self.0 + 0xc) as *mut Oar2
     }
 
+    #[doc="Get the *const pointer for the OAR2 register."]
+    #[inline] pub fn oar2_ptr(&self) -> *const Oar2 { 
+           self.oar2_mut()
+    }
+
     #[doc="Read the OAR2 register."]
     #[inline] pub fn oar2(&self) -> Oar2 { 
         unsafe {
-            read_volatile((self.0 + 0xc) as *const Oar2)
+            read_volatile(self.oar2_ptr())
         }
     }
 
     #[doc="Write the OAR2 register."]
     #[inline] pub fn set_oar2<F: FnOnce(Oar2) -> Oar2>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xc) as *mut Oar2, f(Oar2(0)));
+            write_volatile(self.oar2_mut(), f(Oar2(0)));
         }
         self
     }
@@ -140,14 +140,9 @@ impl I2cPeriph {
     #[doc="Modify the OAR2 register."]
     #[inline] pub fn with_oar2<F: FnOnce(Oar2) -> Oar2>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xc) as *mut Oar2, f(self.oar2()));
+            write_volatile(self.oar2_mut(), f(self.oar2()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the DR register."]
-    #[inline] pub fn dr_ptr(&self) -> *const Dr { 
-        (self.0 + 0x10) as *const Dr
     }
 
     #[doc="Get the *mut pointer for the DR register."]
@@ -155,17 +150,22 @@ impl I2cPeriph {
         (self.0 + 0x10) as *mut Dr
     }
 
+    #[doc="Get the *const pointer for the DR register."]
+    #[inline] pub fn dr_ptr(&self) -> *const Dr { 
+           self.dr_mut()
+    }
+
     #[doc="Read the DR register."]
     #[inline] pub fn dr(&self) -> Dr { 
         unsafe {
-            read_volatile((self.0 + 0x10) as *const Dr)
+            read_volatile(self.dr_ptr())
         }
     }
 
     #[doc="Write the DR register."]
     #[inline] pub fn set_dr<F: FnOnce(Dr) -> Dr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x10) as *mut Dr, f(Dr(0)));
+            write_volatile(self.dr_mut(), f(Dr(0)));
         }
         self
     }
@@ -173,14 +173,9 @@ impl I2cPeriph {
     #[doc="Modify the DR register."]
     #[inline] pub fn with_dr<F: FnOnce(Dr) -> Dr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x10) as *mut Dr, f(self.dr()));
+            write_volatile(self.dr_mut(), f(self.dr()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the SR1 register."]
-    #[inline] pub fn sr1_ptr(&self) -> *const Sr1 { 
-        (self.0 + 0x14) as *const Sr1
     }
 
     #[doc="Get the *mut pointer for the SR1 register."]
@@ -188,17 +183,22 @@ impl I2cPeriph {
         (self.0 + 0x14) as *mut Sr1
     }
 
+    #[doc="Get the *const pointer for the SR1 register."]
+    #[inline] pub fn sr1_ptr(&self) -> *const Sr1 { 
+           self.sr1_mut()
+    }
+
     #[doc="Read the SR1 register."]
     #[inline] pub fn sr1(&self) -> Sr1 { 
         unsafe {
-            read_volatile((self.0 + 0x14) as *const Sr1)
+            read_volatile(self.sr1_ptr())
         }
     }
 
     #[doc="Write the SR1 register."]
     #[inline] pub fn set_sr1<F: FnOnce(Sr1) -> Sr1>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x14) as *mut Sr1, f(Sr1(0)));
+            write_volatile(self.sr1_mut(), f(Sr1(0)));
         }
         self
     }
@@ -206,14 +206,9 @@ impl I2cPeriph {
     #[doc="Modify the SR1 register."]
     #[inline] pub fn with_sr1<F: FnOnce(Sr1) -> Sr1>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x14) as *mut Sr1, f(self.sr1()));
+            write_volatile(self.sr1_mut(), f(self.sr1()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the SR2 register."]
-    #[inline] pub fn sr2_ptr(&self) -> *const Sr2 { 
-        (self.0 + 0x18) as *const Sr2
     }
 
     #[doc="Get the *mut pointer for the SR2 register."]
@@ -221,16 +216,16 @@ impl I2cPeriph {
         (self.0 + 0x18) as *mut Sr2
     }
 
+    #[doc="Get the *const pointer for the SR2 register."]
+    #[inline] pub fn sr2_ptr(&self) -> *const Sr2 { 
+           self.sr2_mut()
+    }
+
     #[doc="Read the SR2 register."]
     #[inline] pub fn sr2(&self) -> Sr2 { 
         unsafe {
-            read_volatile((self.0 + 0x18) as *const Sr2)
+            read_volatile(self.sr2_ptr())
         }
-    }
-
-    #[doc="Get the *const pointer for the CCR register."]
-    #[inline] pub fn ccr_ptr(&self) -> *const Ccr { 
-        (self.0 + 0x1c) as *const Ccr
     }
 
     #[doc="Get the *mut pointer for the CCR register."]
@@ -238,17 +233,22 @@ impl I2cPeriph {
         (self.0 + 0x1c) as *mut Ccr
     }
 
+    #[doc="Get the *const pointer for the CCR register."]
+    #[inline] pub fn ccr_ptr(&self) -> *const Ccr { 
+           self.ccr_mut()
+    }
+
     #[doc="Read the CCR register."]
     #[inline] pub fn ccr(&self) -> Ccr { 
         unsafe {
-            read_volatile((self.0 + 0x1c) as *const Ccr)
+            read_volatile(self.ccr_ptr())
         }
     }
 
     #[doc="Write the CCR register."]
     #[inline] pub fn set_ccr<F: FnOnce(Ccr) -> Ccr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x1c) as *mut Ccr, f(Ccr(0)));
+            write_volatile(self.ccr_mut(), f(Ccr(0)));
         }
         self
     }
@@ -256,14 +256,9 @@ impl I2cPeriph {
     #[doc="Modify the CCR register."]
     #[inline] pub fn with_ccr<F: FnOnce(Ccr) -> Ccr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x1c) as *mut Ccr, f(self.ccr()));
+            write_volatile(self.ccr_mut(), f(self.ccr()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the TRISE register."]
-    #[inline] pub fn trise_ptr(&self) -> *const Trise { 
-        (self.0 + 0x20) as *const Trise
     }
 
     #[doc="Get the *mut pointer for the TRISE register."]
@@ -271,17 +266,22 @@ impl I2cPeriph {
         (self.0 + 0x20) as *mut Trise
     }
 
+    #[doc="Get the *const pointer for the TRISE register."]
+    #[inline] pub fn trise_ptr(&self) -> *const Trise { 
+           self.trise_mut()
+    }
+
     #[doc="Read the TRISE register."]
     #[inline] pub fn trise(&self) -> Trise { 
         unsafe {
-            read_volatile((self.0 + 0x20) as *const Trise)
+            read_volatile(self.trise_ptr())
         }
     }
 
     #[doc="Write the TRISE register."]
     #[inline] pub fn set_trise<F: FnOnce(Trise) -> Trise>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x20) as *mut Trise, f(Trise(0)));
+            write_volatile(self.trise_mut(), f(Trise(0)));
         }
         self
     }
@@ -289,14 +289,9 @@ impl I2cPeriph {
     #[doc="Modify the TRISE register."]
     #[inline] pub fn with_trise<F: FnOnce(Trise) -> Trise>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x20) as *mut Trise, f(self.trise()));
+            write_volatile(self.trise_mut(), f(self.trise()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the FLTR register."]
-    #[inline] pub fn fltr_ptr(&self) -> *const Fltr { 
-        (self.0 + 0x24) as *const Fltr
     }
 
     #[doc="Get the *mut pointer for the FLTR register."]
@@ -304,17 +299,22 @@ impl I2cPeriph {
         (self.0 + 0x24) as *mut Fltr
     }
 
+    #[doc="Get the *const pointer for the FLTR register."]
+    #[inline] pub fn fltr_ptr(&self) -> *const Fltr { 
+           self.fltr_mut()
+    }
+
     #[doc="Read the FLTR register."]
     #[inline] pub fn fltr(&self) -> Fltr { 
         unsafe {
-            read_volatile((self.0 + 0x24) as *const Fltr)
+            read_volatile(self.fltr_ptr())
         }
     }
 
     #[doc="Write the FLTR register."]
     #[inline] pub fn set_fltr<F: FnOnce(Fltr) -> Fltr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x24) as *mut Fltr, f(Fltr(0)));
+            write_volatile(self.fltr_mut(), f(Fltr(0)));
         }
         self
     }
@@ -322,7 +322,7 @@ impl I2cPeriph {
     #[doc="Modify the FLTR register."]
     #[inline] pub fn with_fltr<F: FnOnce(Fltr) -> Fltr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x24) as *mut Fltr, f(self.fltr()));
+            write_volatile(self.fltr_mut(), f(self.fltr()));
         }
         self
     }

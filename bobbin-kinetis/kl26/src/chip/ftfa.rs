@@ -7,26 +7,21 @@ periph!(FTFA, Ftfa, 0x00000400);
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Ftfa(pub usize);
 impl Ftfa {
-    #[doc="Get the *const pointer for the BACKKEY3 register."]
-    #[inline] pub fn backkey3_ptr(&self) -> *const Backkey3 { 
-        (self.0 + 0x0) as *const Backkey3
-    }
-
     #[doc="Get the *mut pointer for the BACKKEY3 register."]
     #[inline] pub fn backkey3_mut(&self) -> *mut Backkey3 { 
         (self.0 + 0x0) as *mut Backkey3
     }
 
+    #[doc="Get the *const pointer for the BACKKEY3 register."]
+    #[inline] pub fn backkey3_ptr(&self) -> *const Backkey3 { 
+           self.backkey3_mut()
+    }
+
     #[doc="Read the BACKKEY3 register."]
     #[inline] pub fn backkey3(&self) -> Backkey3 { 
         unsafe {
-            read_volatile((self.0 + 0x0) as *const Backkey3)
+            read_volatile(self.backkey3_ptr())
         }
-    }
-
-    #[doc="Get the *const pointer for the BACKKEY2 register."]
-    #[inline] pub fn backkey2_ptr(&self) -> *const Backkey2 { 
-        (self.0 + 0x1) as *const Backkey2
     }
 
     #[doc="Get the *mut pointer for the BACKKEY2 register."]
@@ -34,16 +29,16 @@ impl Ftfa {
         (self.0 + 0x1) as *mut Backkey2
     }
 
+    #[doc="Get the *const pointer for the BACKKEY2 register."]
+    #[inline] pub fn backkey2_ptr(&self) -> *const Backkey2 { 
+           self.backkey2_mut()
+    }
+
     #[doc="Read the BACKKEY2 register."]
     #[inline] pub fn backkey2(&self) -> Backkey2 { 
         unsafe {
-            read_volatile((self.0 + 0x1) as *const Backkey2)
+            read_volatile(self.backkey2_ptr())
         }
-    }
-
-    #[doc="Get the *const pointer for the BACKKEY1 register."]
-    #[inline] pub fn backkey1_ptr(&self) -> *const Backkey1 { 
-        (self.0 + 0x2) as *const Backkey1
     }
 
     #[doc="Get the *mut pointer for the BACKKEY1 register."]
@@ -51,16 +46,16 @@ impl Ftfa {
         (self.0 + 0x2) as *mut Backkey1
     }
 
+    #[doc="Get the *const pointer for the BACKKEY1 register."]
+    #[inline] pub fn backkey1_ptr(&self) -> *const Backkey1 { 
+           self.backkey1_mut()
+    }
+
     #[doc="Read the BACKKEY1 register."]
     #[inline] pub fn backkey1(&self) -> Backkey1 { 
         unsafe {
-            read_volatile((self.0 + 0x2) as *const Backkey1)
+            read_volatile(self.backkey1_ptr())
         }
-    }
-
-    #[doc="Get the *const pointer for the BACKKEY0 register."]
-    #[inline] pub fn backkey0_ptr(&self) -> *const Backkey0 { 
-        (self.0 + 0x3) as *const Backkey0
     }
 
     #[doc="Get the *mut pointer for the BACKKEY0 register."]
@@ -68,16 +63,16 @@ impl Ftfa {
         (self.0 + 0x3) as *mut Backkey0
     }
 
+    #[doc="Get the *const pointer for the BACKKEY0 register."]
+    #[inline] pub fn backkey0_ptr(&self) -> *const Backkey0 { 
+           self.backkey0_mut()
+    }
+
     #[doc="Read the BACKKEY0 register."]
     #[inline] pub fn backkey0(&self) -> Backkey0 { 
         unsafe {
-            read_volatile((self.0 + 0x3) as *const Backkey0)
+            read_volatile(self.backkey0_ptr())
         }
-    }
-
-    #[doc="Get the *const pointer for the BACKKEY7 register."]
-    #[inline] pub fn backkey7_ptr(&self) -> *const Backkey7 { 
-        (self.0 + 0x4) as *const Backkey7
     }
 
     #[doc="Get the *mut pointer for the BACKKEY7 register."]
@@ -85,16 +80,16 @@ impl Ftfa {
         (self.0 + 0x4) as *mut Backkey7
     }
 
+    #[doc="Get the *const pointer for the BACKKEY7 register."]
+    #[inline] pub fn backkey7_ptr(&self) -> *const Backkey7 { 
+           self.backkey7_mut()
+    }
+
     #[doc="Read the BACKKEY7 register."]
     #[inline] pub fn backkey7(&self) -> Backkey7 { 
         unsafe {
-            read_volatile((self.0 + 0x4) as *const Backkey7)
+            read_volatile(self.backkey7_ptr())
         }
-    }
-
-    #[doc="Get the *const pointer for the BACKKEY6 register."]
-    #[inline] pub fn backkey6_ptr(&self) -> *const Backkey6 { 
-        (self.0 + 0x5) as *const Backkey6
     }
 
     #[doc="Get the *mut pointer for the BACKKEY6 register."]
@@ -102,16 +97,16 @@ impl Ftfa {
         (self.0 + 0x5) as *mut Backkey6
     }
 
+    #[doc="Get the *const pointer for the BACKKEY6 register."]
+    #[inline] pub fn backkey6_ptr(&self) -> *const Backkey6 { 
+           self.backkey6_mut()
+    }
+
     #[doc="Read the BACKKEY6 register."]
     #[inline] pub fn backkey6(&self) -> Backkey6 { 
         unsafe {
-            read_volatile((self.0 + 0x5) as *const Backkey6)
+            read_volatile(self.backkey6_ptr())
         }
-    }
-
-    #[doc="Get the *const pointer for the BACKKEY5 register."]
-    #[inline] pub fn backkey5_ptr(&self) -> *const Backkey5 { 
-        (self.0 + 0x6) as *const Backkey5
     }
 
     #[doc="Get the *mut pointer for the BACKKEY5 register."]
@@ -119,16 +114,16 @@ impl Ftfa {
         (self.0 + 0x6) as *mut Backkey5
     }
 
+    #[doc="Get the *const pointer for the BACKKEY5 register."]
+    #[inline] pub fn backkey5_ptr(&self) -> *const Backkey5 { 
+           self.backkey5_mut()
+    }
+
     #[doc="Read the BACKKEY5 register."]
     #[inline] pub fn backkey5(&self) -> Backkey5 { 
         unsafe {
-            read_volatile((self.0 + 0x6) as *const Backkey5)
+            read_volatile(self.backkey5_ptr())
         }
-    }
-
-    #[doc="Get the *const pointer for the BACKKEY4 register."]
-    #[inline] pub fn backkey4_ptr(&self) -> *const Backkey4 { 
-        (self.0 + 0x7) as *const Backkey4
     }
 
     #[doc="Get the *mut pointer for the BACKKEY4 register."]
@@ -136,16 +131,16 @@ impl Ftfa {
         (self.0 + 0x7) as *mut Backkey4
     }
 
+    #[doc="Get the *const pointer for the BACKKEY4 register."]
+    #[inline] pub fn backkey4_ptr(&self) -> *const Backkey4 { 
+           self.backkey4_mut()
+    }
+
     #[doc="Read the BACKKEY4 register."]
     #[inline] pub fn backkey4(&self) -> Backkey4 { 
         unsafe {
-            read_volatile((self.0 + 0x7) as *const Backkey4)
+            read_volatile(self.backkey4_ptr())
         }
-    }
-
-    #[doc="Get the *const pointer for the FPROT3 register."]
-    #[inline] pub fn fprot3_ptr(&self) -> *const Fprot3 { 
-        (self.0 + 0x8) as *const Fprot3
     }
 
     #[doc="Get the *mut pointer for the FPROT3 register."]
@@ -153,16 +148,16 @@ impl Ftfa {
         (self.0 + 0x8) as *mut Fprot3
     }
 
+    #[doc="Get the *const pointer for the FPROT3 register."]
+    #[inline] pub fn fprot3_ptr(&self) -> *const Fprot3 { 
+           self.fprot3_mut()
+    }
+
     #[doc="Read the FPROT3 register."]
     #[inline] pub fn fprot3(&self) -> Fprot3 { 
         unsafe {
-            read_volatile((self.0 + 0x8) as *const Fprot3)
+            read_volatile(self.fprot3_ptr())
         }
-    }
-
-    #[doc="Get the *const pointer for the FPROT2 register."]
-    #[inline] pub fn fprot2_ptr(&self) -> *const Fprot2 { 
-        (self.0 + 0x9) as *const Fprot2
     }
 
     #[doc="Get the *mut pointer for the FPROT2 register."]
@@ -170,16 +165,16 @@ impl Ftfa {
         (self.0 + 0x9) as *mut Fprot2
     }
 
+    #[doc="Get the *const pointer for the FPROT2 register."]
+    #[inline] pub fn fprot2_ptr(&self) -> *const Fprot2 { 
+           self.fprot2_mut()
+    }
+
     #[doc="Read the FPROT2 register."]
     #[inline] pub fn fprot2(&self) -> Fprot2 { 
         unsafe {
-            read_volatile((self.0 + 0x9) as *const Fprot2)
+            read_volatile(self.fprot2_ptr())
         }
-    }
-
-    #[doc="Get the *const pointer for the FPROT1 register."]
-    #[inline] pub fn fprot1_ptr(&self) -> *const Fprot1 { 
-        (self.0 + 0xa) as *const Fprot1
     }
 
     #[doc="Get the *mut pointer for the FPROT1 register."]
@@ -187,16 +182,16 @@ impl Ftfa {
         (self.0 + 0xa) as *mut Fprot1
     }
 
+    #[doc="Get the *const pointer for the FPROT1 register."]
+    #[inline] pub fn fprot1_ptr(&self) -> *const Fprot1 { 
+           self.fprot1_mut()
+    }
+
     #[doc="Read the FPROT1 register."]
     #[inline] pub fn fprot1(&self) -> Fprot1 { 
         unsafe {
-            read_volatile((self.0 + 0xa) as *const Fprot1)
+            read_volatile(self.fprot1_ptr())
         }
-    }
-
-    #[doc="Get the *const pointer for the FPROT0 register."]
-    #[inline] pub fn fprot0_ptr(&self) -> *const Fprot0 { 
-        (self.0 + 0xb) as *const Fprot0
     }
 
     #[doc="Get the *mut pointer for the FPROT0 register."]
@@ -204,16 +199,16 @@ impl Ftfa {
         (self.0 + 0xb) as *mut Fprot0
     }
 
+    #[doc="Get the *const pointer for the FPROT0 register."]
+    #[inline] pub fn fprot0_ptr(&self) -> *const Fprot0 { 
+           self.fprot0_mut()
+    }
+
     #[doc="Read the FPROT0 register."]
     #[inline] pub fn fprot0(&self) -> Fprot0 { 
         unsafe {
-            read_volatile((self.0 + 0xb) as *const Fprot0)
+            read_volatile(self.fprot0_ptr())
         }
-    }
-
-    #[doc="Get the *const pointer for the FSEC register."]
-    #[inline] pub fn fsec_ptr(&self) -> *const Fsec { 
-        (self.0 + 0xc) as *const Fsec
     }
 
     #[doc="Get the *mut pointer for the FSEC register."]
@@ -221,16 +216,16 @@ impl Ftfa {
         (self.0 + 0xc) as *mut Fsec
     }
 
+    #[doc="Get the *const pointer for the FSEC register."]
+    #[inline] pub fn fsec_ptr(&self) -> *const Fsec { 
+           self.fsec_mut()
+    }
+
     #[doc="Read the FSEC register."]
     #[inline] pub fn fsec(&self) -> Fsec { 
         unsafe {
-            read_volatile((self.0 + 0xc) as *const Fsec)
+            read_volatile(self.fsec_ptr())
         }
-    }
-
-    #[doc="Get the *const pointer for the FOPT register."]
-    #[inline] pub fn fopt_ptr(&self) -> *const Fopt { 
-        (self.0 + 0xd) as *const Fopt
     }
 
     #[doc="Get the *mut pointer for the FOPT register."]
@@ -238,10 +233,15 @@ impl Ftfa {
         (self.0 + 0xd) as *mut Fopt
     }
 
+    #[doc="Get the *const pointer for the FOPT register."]
+    #[inline] pub fn fopt_ptr(&self) -> *const Fopt { 
+           self.fopt_mut()
+    }
+
     #[doc="Read the FOPT register."]
     #[inline] pub fn fopt(&self) -> Fopt { 
         unsafe {
-            read_volatile((self.0 + 0xd) as *const Fopt)
+            read_volatile(self.fopt_ptr())
         }
     }
 

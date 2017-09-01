@@ -7,27 +7,27 @@ periph!(ETHERNET_PTP, EthernetPtp, 0x40028700);
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct EthernetPtp(pub usize);
 impl EthernetPtp {
-    #[doc="Get the *const pointer for the PTPTSCR register."]
-    #[inline] pub fn ptptscr_ptr(&self) -> *const Ptptscr { 
-        (self.0 + 0x0) as *const Ptptscr
-    }
-
     #[doc="Get the *mut pointer for the PTPTSCR register."]
     #[inline] pub fn ptptscr_mut(&self) -> *mut Ptptscr { 
         (self.0 + 0x0) as *mut Ptptscr
     }
 
+    #[doc="Get the *const pointer for the PTPTSCR register."]
+    #[inline] pub fn ptptscr_ptr(&self) -> *const Ptptscr { 
+           self.ptptscr_mut()
+    }
+
     #[doc="Read the PTPTSCR register."]
     #[inline] pub fn ptptscr(&self) -> Ptptscr { 
         unsafe {
-            read_volatile((self.0 + 0x0) as *const Ptptscr)
+            read_volatile(self.ptptscr_ptr())
         }
     }
 
     #[doc="Write the PTPTSCR register."]
     #[inline] pub fn set_ptptscr<F: FnOnce(Ptptscr) -> Ptptscr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x0) as *mut Ptptscr, f(Ptptscr(0)));
+            write_volatile(self.ptptscr_mut(), f(Ptptscr(0)));
         }
         self
     }
@@ -35,14 +35,9 @@ impl EthernetPtp {
     #[doc="Modify the PTPTSCR register."]
     #[inline] pub fn with_ptptscr<F: FnOnce(Ptptscr) -> Ptptscr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x0) as *mut Ptptscr, f(self.ptptscr()));
+            write_volatile(self.ptptscr_mut(), f(self.ptptscr()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the PTPSSIR register."]
-    #[inline] pub fn ptpssir_ptr(&self) -> *const Ptpssir { 
-        (self.0 + 0x4) as *const Ptpssir
     }
 
     #[doc="Get the *mut pointer for the PTPSSIR register."]
@@ -50,17 +45,22 @@ impl EthernetPtp {
         (self.0 + 0x4) as *mut Ptpssir
     }
 
+    #[doc="Get the *const pointer for the PTPSSIR register."]
+    #[inline] pub fn ptpssir_ptr(&self) -> *const Ptpssir { 
+           self.ptpssir_mut()
+    }
+
     #[doc="Read the PTPSSIR register."]
     #[inline] pub fn ptpssir(&self) -> Ptpssir { 
         unsafe {
-            read_volatile((self.0 + 0x4) as *const Ptpssir)
+            read_volatile(self.ptpssir_ptr())
         }
     }
 
     #[doc="Write the PTPSSIR register."]
     #[inline] pub fn set_ptpssir<F: FnOnce(Ptpssir) -> Ptpssir>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x4) as *mut Ptpssir, f(Ptpssir(0)));
+            write_volatile(self.ptpssir_mut(), f(Ptpssir(0)));
         }
         self
     }
@@ -68,14 +68,9 @@ impl EthernetPtp {
     #[doc="Modify the PTPSSIR register."]
     #[inline] pub fn with_ptpssir<F: FnOnce(Ptpssir) -> Ptpssir>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x4) as *mut Ptpssir, f(self.ptpssir()));
+            write_volatile(self.ptpssir_mut(), f(self.ptpssir()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the PTPTSHR register."]
-    #[inline] pub fn ptptshr_ptr(&self) -> *const Ptptshr { 
-        (self.0 + 0x8) as *const Ptptshr
     }
 
     #[doc="Get the *mut pointer for the PTPTSHR register."]
@@ -83,16 +78,16 @@ impl EthernetPtp {
         (self.0 + 0x8) as *mut Ptptshr
     }
 
+    #[doc="Get the *const pointer for the PTPTSHR register."]
+    #[inline] pub fn ptptshr_ptr(&self) -> *const Ptptshr { 
+           self.ptptshr_mut()
+    }
+
     #[doc="Read the PTPTSHR register."]
     #[inline] pub fn ptptshr(&self) -> Ptptshr { 
         unsafe {
-            read_volatile((self.0 + 0x8) as *const Ptptshr)
+            read_volatile(self.ptptshr_ptr())
         }
-    }
-
-    #[doc="Get the *const pointer for the PTPTSLR register."]
-    #[inline] pub fn ptptslr_ptr(&self) -> *const Ptptslr { 
-        (self.0 + 0xc) as *const Ptptslr
     }
 
     #[doc="Get the *mut pointer for the PTPTSLR register."]
@@ -100,16 +95,16 @@ impl EthernetPtp {
         (self.0 + 0xc) as *mut Ptptslr
     }
 
+    #[doc="Get the *const pointer for the PTPTSLR register."]
+    #[inline] pub fn ptptslr_ptr(&self) -> *const Ptptslr { 
+           self.ptptslr_mut()
+    }
+
     #[doc="Read the PTPTSLR register."]
     #[inline] pub fn ptptslr(&self) -> Ptptslr { 
         unsafe {
-            read_volatile((self.0 + 0xc) as *const Ptptslr)
+            read_volatile(self.ptptslr_ptr())
         }
-    }
-
-    #[doc="Get the *const pointer for the PTPTSHUR register."]
-    #[inline] pub fn ptptshur_ptr(&self) -> *const Ptptshur { 
-        (self.0 + 0x10) as *const Ptptshur
     }
 
     #[doc="Get the *mut pointer for the PTPTSHUR register."]
@@ -117,17 +112,22 @@ impl EthernetPtp {
         (self.0 + 0x10) as *mut Ptptshur
     }
 
+    #[doc="Get the *const pointer for the PTPTSHUR register."]
+    #[inline] pub fn ptptshur_ptr(&self) -> *const Ptptshur { 
+           self.ptptshur_mut()
+    }
+
     #[doc="Read the PTPTSHUR register."]
     #[inline] pub fn ptptshur(&self) -> Ptptshur { 
         unsafe {
-            read_volatile((self.0 + 0x10) as *const Ptptshur)
+            read_volatile(self.ptptshur_ptr())
         }
     }
 
     #[doc="Write the PTPTSHUR register."]
     #[inline] pub fn set_ptptshur<F: FnOnce(Ptptshur) -> Ptptshur>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x10) as *mut Ptptshur, f(Ptptshur(0)));
+            write_volatile(self.ptptshur_mut(), f(Ptptshur(0)));
         }
         self
     }
@@ -135,14 +135,9 @@ impl EthernetPtp {
     #[doc="Modify the PTPTSHUR register."]
     #[inline] pub fn with_ptptshur<F: FnOnce(Ptptshur) -> Ptptshur>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x10) as *mut Ptptshur, f(self.ptptshur()));
+            write_volatile(self.ptptshur_mut(), f(self.ptptshur()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the PTPTSLUR register."]
-    #[inline] pub fn ptptslur_ptr(&self) -> *const Ptptslur { 
-        (self.0 + 0x14) as *const Ptptslur
     }
 
     #[doc="Get the *mut pointer for the PTPTSLUR register."]
@@ -150,17 +145,22 @@ impl EthernetPtp {
         (self.0 + 0x14) as *mut Ptptslur
     }
 
+    #[doc="Get the *const pointer for the PTPTSLUR register."]
+    #[inline] pub fn ptptslur_ptr(&self) -> *const Ptptslur { 
+           self.ptptslur_mut()
+    }
+
     #[doc="Read the PTPTSLUR register."]
     #[inline] pub fn ptptslur(&self) -> Ptptslur { 
         unsafe {
-            read_volatile((self.0 + 0x14) as *const Ptptslur)
+            read_volatile(self.ptptslur_ptr())
         }
     }
 
     #[doc="Write the PTPTSLUR register."]
     #[inline] pub fn set_ptptslur<F: FnOnce(Ptptslur) -> Ptptslur>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x14) as *mut Ptptslur, f(Ptptslur(0)));
+            write_volatile(self.ptptslur_mut(), f(Ptptslur(0)));
         }
         self
     }
@@ -168,14 +168,9 @@ impl EthernetPtp {
     #[doc="Modify the PTPTSLUR register."]
     #[inline] pub fn with_ptptslur<F: FnOnce(Ptptslur) -> Ptptslur>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x14) as *mut Ptptslur, f(self.ptptslur()));
+            write_volatile(self.ptptslur_mut(), f(self.ptptslur()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the PTPTSAR register."]
-    #[inline] pub fn ptptsar_ptr(&self) -> *const Ptptsar { 
-        (self.0 + 0x18) as *const Ptptsar
     }
 
     #[doc="Get the *mut pointer for the PTPTSAR register."]
@@ -183,17 +178,22 @@ impl EthernetPtp {
         (self.0 + 0x18) as *mut Ptptsar
     }
 
+    #[doc="Get the *const pointer for the PTPTSAR register."]
+    #[inline] pub fn ptptsar_ptr(&self) -> *const Ptptsar { 
+           self.ptptsar_mut()
+    }
+
     #[doc="Read the PTPTSAR register."]
     #[inline] pub fn ptptsar(&self) -> Ptptsar { 
         unsafe {
-            read_volatile((self.0 + 0x18) as *const Ptptsar)
+            read_volatile(self.ptptsar_ptr())
         }
     }
 
     #[doc="Write the PTPTSAR register."]
     #[inline] pub fn set_ptptsar<F: FnOnce(Ptptsar) -> Ptptsar>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x18) as *mut Ptptsar, f(Ptptsar(0)));
+            write_volatile(self.ptptsar_mut(), f(Ptptsar(0)));
         }
         self
     }
@@ -201,14 +201,9 @@ impl EthernetPtp {
     #[doc="Modify the PTPTSAR register."]
     #[inline] pub fn with_ptptsar<F: FnOnce(Ptptsar) -> Ptptsar>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x18) as *mut Ptptsar, f(self.ptptsar()));
+            write_volatile(self.ptptsar_mut(), f(self.ptptsar()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the PTPTTHR register."]
-    #[inline] pub fn ptptthr_ptr(&self) -> *const Ptptthr { 
-        (self.0 + 0x1c) as *const Ptptthr
     }
 
     #[doc="Get the *mut pointer for the PTPTTHR register."]
@@ -216,17 +211,22 @@ impl EthernetPtp {
         (self.0 + 0x1c) as *mut Ptptthr
     }
 
+    #[doc="Get the *const pointer for the PTPTTHR register."]
+    #[inline] pub fn ptptthr_ptr(&self) -> *const Ptptthr { 
+           self.ptptthr_mut()
+    }
+
     #[doc="Read the PTPTTHR register."]
     #[inline] pub fn ptptthr(&self) -> Ptptthr { 
         unsafe {
-            read_volatile((self.0 + 0x1c) as *const Ptptthr)
+            read_volatile(self.ptptthr_ptr())
         }
     }
 
     #[doc="Write the PTPTTHR register."]
     #[inline] pub fn set_ptptthr<F: FnOnce(Ptptthr) -> Ptptthr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x1c) as *mut Ptptthr, f(Ptptthr(0)));
+            write_volatile(self.ptptthr_mut(), f(Ptptthr(0)));
         }
         self
     }
@@ -234,14 +234,9 @@ impl EthernetPtp {
     #[doc="Modify the PTPTTHR register."]
     #[inline] pub fn with_ptptthr<F: FnOnce(Ptptthr) -> Ptptthr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x1c) as *mut Ptptthr, f(self.ptptthr()));
+            write_volatile(self.ptptthr_mut(), f(self.ptptthr()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the PTPTTLR register."]
-    #[inline] pub fn ptpttlr_ptr(&self) -> *const Ptpttlr { 
-        (self.0 + 0x20) as *const Ptpttlr
     }
 
     #[doc="Get the *mut pointer for the PTPTTLR register."]
@@ -249,17 +244,22 @@ impl EthernetPtp {
         (self.0 + 0x20) as *mut Ptpttlr
     }
 
+    #[doc="Get the *const pointer for the PTPTTLR register."]
+    #[inline] pub fn ptpttlr_ptr(&self) -> *const Ptpttlr { 
+           self.ptpttlr_mut()
+    }
+
     #[doc="Read the PTPTTLR register."]
     #[inline] pub fn ptpttlr(&self) -> Ptpttlr { 
         unsafe {
-            read_volatile((self.0 + 0x20) as *const Ptpttlr)
+            read_volatile(self.ptpttlr_ptr())
         }
     }
 
     #[doc="Write the PTPTTLR register."]
     #[inline] pub fn set_ptpttlr<F: FnOnce(Ptpttlr) -> Ptpttlr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x20) as *mut Ptpttlr, f(Ptpttlr(0)));
+            write_volatile(self.ptpttlr_mut(), f(Ptpttlr(0)));
         }
         self
     }
@@ -267,14 +267,9 @@ impl EthernetPtp {
     #[doc="Modify the PTPTTLR register."]
     #[inline] pub fn with_ptpttlr<F: FnOnce(Ptpttlr) -> Ptpttlr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x20) as *mut Ptpttlr, f(self.ptpttlr()));
+            write_volatile(self.ptpttlr_mut(), f(self.ptpttlr()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the PTPTSSR register."]
-    #[inline] pub fn ptptssr_ptr(&self) -> *const Ptptssr { 
-        (self.0 + 0x28) as *const Ptptssr
     }
 
     #[doc="Get the *mut pointer for the PTPTSSR register."]
@@ -282,16 +277,16 @@ impl EthernetPtp {
         (self.0 + 0x28) as *mut Ptptssr
     }
 
+    #[doc="Get the *const pointer for the PTPTSSR register."]
+    #[inline] pub fn ptptssr_ptr(&self) -> *const Ptptssr { 
+           self.ptptssr_mut()
+    }
+
     #[doc="Read the PTPTSSR register."]
     #[inline] pub fn ptptssr(&self) -> Ptptssr { 
         unsafe {
-            read_volatile((self.0 + 0x28) as *const Ptptssr)
+            read_volatile(self.ptptssr_ptr())
         }
-    }
-
-    #[doc="Get the *const pointer for the PTPPPSCR register."]
-    #[inline] pub fn ptpppscr_ptr(&self) -> *const Ptpppscr { 
-        (self.0 + 0x2c) as *const Ptpppscr
     }
 
     #[doc="Get the *mut pointer for the PTPPPSCR register."]
@@ -299,10 +294,15 @@ impl EthernetPtp {
         (self.0 + 0x2c) as *mut Ptpppscr
     }
 
+    #[doc="Get the *const pointer for the PTPPPSCR register."]
+    #[inline] pub fn ptpppscr_ptr(&self) -> *const Ptpppscr { 
+           self.ptpppscr_mut()
+    }
+
     #[doc="Read the PTPPPSCR register."]
     #[inline] pub fn ptpppscr(&self) -> Ptpppscr { 
         unsafe {
-            read_volatile((self.0 + 0x2c) as *const Ptpppscr)
+            read_volatile(self.ptpppscr_ptr())
         }
     }
 

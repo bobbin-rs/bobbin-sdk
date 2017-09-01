@@ -7,26 +7,21 @@ pub struct DmaPeriph(pub usize);
 
 
 impl DmaPeriph {
-    #[doc="Get the *const pointer for the LISR register."]
-    #[inline] pub fn lisr_ptr(&self) -> *const Lisr { 
-        (self.0 + 0x0) as *const Lisr
-    }
-
     #[doc="Get the *mut pointer for the LISR register."]
     #[inline] pub fn lisr_mut(&self) -> *mut Lisr { 
         (self.0 + 0x0) as *mut Lisr
     }
 
+    #[doc="Get the *const pointer for the LISR register."]
+    #[inline] pub fn lisr_ptr(&self) -> *const Lisr { 
+           self.lisr_mut()
+    }
+
     #[doc="Read the LISR register."]
     #[inline] pub fn lisr(&self) -> Lisr { 
         unsafe {
-            read_volatile((self.0 + 0x0) as *const Lisr)
+            read_volatile(self.lisr_ptr())
         }
-    }
-
-    #[doc="Get the *const pointer for the HISR register."]
-    #[inline] pub fn hisr_ptr(&self) -> *const Hisr { 
-        (self.0 + 0x4) as *const Hisr
     }
 
     #[doc="Get the *mut pointer for the HISR register."]
@@ -34,16 +29,16 @@ impl DmaPeriph {
         (self.0 + 0x4) as *mut Hisr
     }
 
+    #[doc="Get the *const pointer for the HISR register."]
+    #[inline] pub fn hisr_ptr(&self) -> *const Hisr { 
+           self.hisr_mut()
+    }
+
     #[doc="Read the HISR register."]
     #[inline] pub fn hisr(&self) -> Hisr { 
         unsafe {
-            read_volatile((self.0 + 0x4) as *const Hisr)
+            read_volatile(self.hisr_ptr())
         }
-    }
-
-    #[doc="Get the *const pointer for the LIFCR register."]
-    #[inline] pub fn lifcr_ptr(&self) -> *const Lifcr { 
-        (self.0 + 0x8) as *const Lifcr
     }
 
     #[doc="Get the *mut pointer for the LIFCR register."]
@@ -51,17 +46,22 @@ impl DmaPeriph {
         (self.0 + 0x8) as *mut Lifcr
     }
 
+    #[doc="Get the *const pointer for the LIFCR register."]
+    #[inline] pub fn lifcr_ptr(&self) -> *const Lifcr { 
+           self.lifcr_mut()
+    }
+
     #[doc="Read the LIFCR register."]
     #[inline] pub fn lifcr(&self) -> Lifcr { 
         unsafe {
-            read_volatile((self.0 + 0x8) as *const Lifcr)
+            read_volatile(self.lifcr_ptr())
         }
     }
 
     #[doc="Write the LIFCR register."]
     #[inline] pub fn set_lifcr<F: FnOnce(Lifcr) -> Lifcr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x8) as *mut Lifcr, f(Lifcr(0)));
+            write_volatile(self.lifcr_mut(), f(Lifcr(0)));
         }
         self
     }
@@ -69,14 +69,9 @@ impl DmaPeriph {
     #[doc="Modify the LIFCR register."]
     #[inline] pub fn with_lifcr<F: FnOnce(Lifcr) -> Lifcr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x8) as *mut Lifcr, f(self.lifcr()));
+            write_volatile(self.lifcr_mut(), f(self.lifcr()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the HIFCR register."]
-    #[inline] pub fn hifcr_ptr(&self) -> *const Hifcr { 
-        (self.0 + 0xc) as *const Hifcr
     }
 
     #[doc="Get the *mut pointer for the HIFCR register."]
@@ -84,17 +79,22 @@ impl DmaPeriph {
         (self.0 + 0xc) as *mut Hifcr
     }
 
+    #[doc="Get the *const pointer for the HIFCR register."]
+    #[inline] pub fn hifcr_ptr(&self) -> *const Hifcr { 
+           self.hifcr_mut()
+    }
+
     #[doc="Read the HIFCR register."]
     #[inline] pub fn hifcr(&self) -> Hifcr { 
         unsafe {
-            read_volatile((self.0 + 0xc) as *const Hifcr)
+            read_volatile(self.hifcr_ptr())
         }
     }
 
     #[doc="Write the HIFCR register."]
     #[inline] pub fn set_hifcr<F: FnOnce(Hifcr) -> Hifcr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xc) as *mut Hifcr, f(Hifcr(0)));
+            write_volatile(self.hifcr_mut(), f(Hifcr(0)));
         }
         self
     }
@@ -102,15 +102,9 @@ impl DmaPeriph {
     #[doc="Modify the HIFCR register."]
     #[inline] pub fn with_hifcr<F: FnOnce(Hifcr) -> Hifcr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xc) as *mut Hifcr, f(self.hifcr()));
+            write_volatile(self.hifcr_mut(), f(self.hifcr()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the SCR register."]
-    #[inline] pub fn scr_ptr<I: Into<bits::R8>>(&self, index: I) -> *const Scr { 
-        let index: usize = index.into().value() as usize;
-        (self.0 + 0x10 + (index * 24)) as *const Scr
     }
 
     #[doc="Get the *mut pointer for the SCR register."]
@@ -119,36 +113,32 @@ impl DmaPeriph {
         (self.0 + 0x10 + (index * 24)) as *mut Scr
     }
 
+    #[doc="Get the *const pointer for the SCR register."]
+    #[inline] pub fn scr_ptr<I: Into<bits::R8>>(&self, index: I) -> *const Scr { 
+           self.scr_mut(index)
+    }
+
     #[doc="Read the SCR register."]
     #[inline] pub fn scr<I: Into<bits::R8>>(&self, index: I) -> Scr { 
-        let index: usize = index.into().value() as usize;
         unsafe {
-            read_volatile((self.0 + 0x10 + (index * 24)) as *const Scr)
+            read_volatile(self.scr_ptr(index))
         }
     }
 
     #[doc="Write the SCR register."]
     #[inline] pub fn set_scr<I: Into<bits::R8>, F: FnOnce(Scr) -> Scr>(&self, index: I, f: F) -> &Self {
-        let index: usize = index.into().value() as usize;
         unsafe {
-            write_volatile((self.0 + 0x10 + (index * 24)) as *mut Scr, f(Scr(0)));
+            write_volatile(self.scr_mut(index), f(Scr(0)));
         }
         self
     }
 
     #[doc="Modify the SCR register."]
     #[inline] pub fn with_scr<I: Into<bits::R8> + Copy, F: FnOnce(Scr) -> Scr>(&self, index: I, f: F) -> &Self {
-        let index: usize = index.into().value() as usize;
         unsafe {
-            write_volatile((self.0 + 0x10 + (index * 24)) as *mut Scr, f(self.scr(index)));
+            write_volatile(self.scr_mut(index), f(self.scr(index)));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the SNDTR register."]
-    #[inline] pub fn sndtr_ptr<I: Into<bits::R8>>(&self, index: I) -> *const Sndtr { 
-        let index: usize = index.into().value() as usize;
-        (self.0 + 0x14 + (index * 24)) as *const Sndtr
     }
 
     #[doc="Get the *mut pointer for the SNDTR register."]
@@ -157,36 +147,32 @@ impl DmaPeriph {
         (self.0 + 0x14 + (index * 24)) as *mut Sndtr
     }
 
+    #[doc="Get the *const pointer for the SNDTR register."]
+    #[inline] pub fn sndtr_ptr<I: Into<bits::R8>>(&self, index: I) -> *const Sndtr { 
+           self.sndtr_mut(index)
+    }
+
     #[doc="Read the SNDTR register."]
     #[inline] pub fn sndtr<I: Into<bits::R8>>(&self, index: I) -> Sndtr { 
-        let index: usize = index.into().value() as usize;
         unsafe {
-            read_volatile((self.0 + 0x14 + (index * 24)) as *const Sndtr)
+            read_volatile(self.sndtr_ptr(index))
         }
     }
 
     #[doc="Write the SNDTR register."]
     #[inline] pub fn set_sndtr<I: Into<bits::R8>, F: FnOnce(Sndtr) -> Sndtr>(&self, index: I, f: F) -> &Self {
-        let index: usize = index.into().value() as usize;
         unsafe {
-            write_volatile((self.0 + 0x14 + (index * 24)) as *mut Sndtr, f(Sndtr(0)));
+            write_volatile(self.sndtr_mut(index), f(Sndtr(0)));
         }
         self
     }
 
     #[doc="Modify the SNDTR register."]
     #[inline] pub fn with_sndtr<I: Into<bits::R8> + Copy, F: FnOnce(Sndtr) -> Sndtr>(&self, index: I, f: F) -> &Self {
-        let index: usize = index.into().value() as usize;
         unsafe {
-            write_volatile((self.0 + 0x14 + (index * 24)) as *mut Sndtr, f(self.sndtr(index)));
+            write_volatile(self.sndtr_mut(index), f(self.sndtr(index)));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the SPAR register."]
-    #[inline] pub fn spar_ptr<I: Into<bits::R8>>(&self, index: I) -> *const Spar { 
-        let index: usize = index.into().value() as usize;
-        (self.0 + 0x18 + (index * 24)) as *const Spar
     }
 
     #[doc="Get the *mut pointer for the SPAR register."]
@@ -195,36 +181,32 @@ impl DmaPeriph {
         (self.0 + 0x18 + (index * 24)) as *mut Spar
     }
 
+    #[doc="Get the *const pointer for the SPAR register."]
+    #[inline] pub fn spar_ptr<I: Into<bits::R8>>(&self, index: I) -> *const Spar { 
+           self.spar_mut(index)
+    }
+
     #[doc="Read the SPAR register."]
     #[inline] pub fn spar<I: Into<bits::R8>>(&self, index: I) -> Spar { 
-        let index: usize = index.into().value() as usize;
         unsafe {
-            read_volatile((self.0 + 0x18 + (index * 24)) as *const Spar)
+            read_volatile(self.spar_ptr(index))
         }
     }
 
     #[doc="Write the SPAR register."]
     #[inline] pub fn set_spar<I: Into<bits::R8>, F: FnOnce(Spar) -> Spar>(&self, index: I, f: F) -> &Self {
-        let index: usize = index.into().value() as usize;
         unsafe {
-            write_volatile((self.0 + 0x18 + (index * 24)) as *mut Spar, f(Spar(0)));
+            write_volatile(self.spar_mut(index), f(Spar(0)));
         }
         self
     }
 
     #[doc="Modify the SPAR register."]
     #[inline] pub fn with_spar<I: Into<bits::R8> + Copy, F: FnOnce(Spar) -> Spar>(&self, index: I, f: F) -> &Self {
-        let index: usize = index.into().value() as usize;
         unsafe {
-            write_volatile((self.0 + 0x18 + (index * 24)) as *mut Spar, f(self.spar(index)));
+            write_volatile(self.spar_mut(index), f(self.spar(index)));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the SM0AR register."]
-    #[inline] pub fn sm0ar_ptr<I: Into<bits::R8>>(&self, index: I) -> *const Sm0ar { 
-        let index: usize = index.into().value() as usize;
-        (self.0 + 0x1c + (index * 24)) as *const Sm0ar
     }
 
     #[doc="Get the *mut pointer for the SM0AR register."]
@@ -233,36 +215,32 @@ impl DmaPeriph {
         (self.0 + 0x1c + (index * 24)) as *mut Sm0ar
     }
 
+    #[doc="Get the *const pointer for the SM0AR register."]
+    #[inline] pub fn sm0ar_ptr<I: Into<bits::R8>>(&self, index: I) -> *const Sm0ar { 
+           self.sm0ar_mut(index)
+    }
+
     #[doc="Read the SM0AR register."]
     #[inline] pub fn sm0ar<I: Into<bits::R8>>(&self, index: I) -> Sm0ar { 
-        let index: usize = index.into().value() as usize;
         unsafe {
-            read_volatile((self.0 + 0x1c + (index * 24)) as *const Sm0ar)
+            read_volatile(self.sm0ar_ptr(index))
         }
     }
 
     #[doc="Write the SM0AR register."]
     #[inline] pub fn set_sm0ar<I: Into<bits::R8>, F: FnOnce(Sm0ar) -> Sm0ar>(&self, index: I, f: F) -> &Self {
-        let index: usize = index.into().value() as usize;
         unsafe {
-            write_volatile((self.0 + 0x1c + (index * 24)) as *mut Sm0ar, f(Sm0ar(0)));
+            write_volatile(self.sm0ar_mut(index), f(Sm0ar(0)));
         }
         self
     }
 
     #[doc="Modify the SM0AR register."]
     #[inline] pub fn with_sm0ar<I: Into<bits::R8> + Copy, F: FnOnce(Sm0ar) -> Sm0ar>(&self, index: I, f: F) -> &Self {
-        let index: usize = index.into().value() as usize;
         unsafe {
-            write_volatile((self.0 + 0x1c + (index * 24)) as *mut Sm0ar, f(self.sm0ar(index)));
+            write_volatile(self.sm0ar_mut(index), f(self.sm0ar(index)));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the SM1AR register."]
-    #[inline] pub fn sm1ar_ptr<I: Into<bits::R8>>(&self, index: I) -> *const Sm1ar { 
-        let index: usize = index.into().value() as usize;
-        (self.0 + 0x20 + (index * 24)) as *const Sm1ar
     }
 
     #[doc="Get the *mut pointer for the SM1AR register."]
@@ -271,36 +249,32 @@ impl DmaPeriph {
         (self.0 + 0x20 + (index * 24)) as *mut Sm1ar
     }
 
+    #[doc="Get the *const pointer for the SM1AR register."]
+    #[inline] pub fn sm1ar_ptr<I: Into<bits::R8>>(&self, index: I) -> *const Sm1ar { 
+           self.sm1ar_mut(index)
+    }
+
     #[doc="Read the SM1AR register."]
     #[inline] pub fn sm1ar<I: Into<bits::R8>>(&self, index: I) -> Sm1ar { 
-        let index: usize = index.into().value() as usize;
         unsafe {
-            read_volatile((self.0 + 0x20 + (index * 24)) as *const Sm1ar)
+            read_volatile(self.sm1ar_ptr(index))
         }
     }
 
     #[doc="Write the SM1AR register."]
     #[inline] pub fn set_sm1ar<I: Into<bits::R8>, F: FnOnce(Sm1ar) -> Sm1ar>(&self, index: I, f: F) -> &Self {
-        let index: usize = index.into().value() as usize;
         unsafe {
-            write_volatile((self.0 + 0x20 + (index * 24)) as *mut Sm1ar, f(Sm1ar(0)));
+            write_volatile(self.sm1ar_mut(index), f(Sm1ar(0)));
         }
         self
     }
 
     #[doc="Modify the SM1AR register."]
     #[inline] pub fn with_sm1ar<I: Into<bits::R8> + Copy, F: FnOnce(Sm1ar) -> Sm1ar>(&self, index: I, f: F) -> &Self {
-        let index: usize = index.into().value() as usize;
         unsafe {
-            write_volatile((self.0 + 0x20 + (index * 24)) as *mut Sm1ar, f(self.sm1ar(index)));
+            write_volatile(self.sm1ar_mut(index), f(self.sm1ar(index)));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the SFCR register."]
-    #[inline] pub fn sfcr_ptr<I: Into<bits::R8>>(&self, index: I) -> *const Sfcr { 
-        let index: usize = index.into().value() as usize;
-        (self.0 + 0x24 + (index * 24)) as *const Sfcr
     }
 
     #[doc="Get the *mut pointer for the SFCR register."]
@@ -309,28 +283,30 @@ impl DmaPeriph {
         (self.0 + 0x24 + (index * 24)) as *mut Sfcr
     }
 
+    #[doc="Get the *const pointer for the SFCR register."]
+    #[inline] pub fn sfcr_ptr<I: Into<bits::R8>>(&self, index: I) -> *const Sfcr { 
+           self.sfcr_mut(index)
+    }
+
     #[doc="Read the SFCR register."]
     #[inline] pub fn sfcr<I: Into<bits::R8>>(&self, index: I) -> Sfcr { 
-        let index: usize = index.into().value() as usize;
         unsafe {
-            read_volatile((self.0 + 0x24 + (index * 24)) as *const Sfcr)
+            read_volatile(self.sfcr_ptr(index))
         }
     }
 
     #[doc="Write the SFCR register."]
     #[inline] pub fn set_sfcr<I: Into<bits::R8>, F: FnOnce(Sfcr) -> Sfcr>(&self, index: I, f: F) -> &Self {
-        let index: usize = index.into().value() as usize;
         unsafe {
-            write_volatile((self.0 + 0x24 + (index * 24)) as *mut Sfcr, f(Sfcr(0)));
+            write_volatile(self.sfcr_mut(index), f(Sfcr(0)));
         }
         self
     }
 
     #[doc="Modify the SFCR register."]
     #[inline] pub fn with_sfcr<I: Into<bits::R8> + Copy, F: FnOnce(Sfcr) -> Sfcr>(&self, index: I, f: F) -> &Self {
-        let index: usize = index.into().value() as usize;
         unsafe {
-            write_volatile((self.0 + 0x24 + (index * 24)) as *mut Sfcr, f(self.sfcr(index)));
+            write_volatile(self.sfcr_mut(index), f(self.sfcr(index)));
         }
         self
     }

@@ -7,27 +7,27 @@ periph!(FPU, Fpu, 0xe000e000);
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Fpu(pub usize);
 impl Fpu {
-    #[doc="Get the *const pointer for the CPACR register."]
-    #[inline] pub fn cpacr_ptr(&self) -> *const Cpacr { 
-        (self.0 + 0xd88) as *const Cpacr
-    }
-
     #[doc="Get the *mut pointer for the CPACR register."]
     #[inline] pub fn cpacr_mut(&self) -> *mut Cpacr { 
         (self.0 + 0xd88) as *mut Cpacr
     }
 
+    #[doc="Get the *const pointer for the CPACR register."]
+    #[inline] pub fn cpacr_ptr(&self) -> *const Cpacr { 
+           self.cpacr_mut()
+    }
+
     #[doc="Read the CPACR register."]
     #[inline] pub fn cpacr(&self) -> Cpacr { 
         unsafe {
-            read_volatile((self.0 + 0xd88) as *const Cpacr)
+            read_volatile(self.cpacr_ptr())
         }
     }
 
     #[doc="Write the CPACR register."]
     #[inline] pub fn set_cpacr<F: FnOnce(Cpacr) -> Cpacr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xd88) as *mut Cpacr, f(Cpacr(0)));
+            write_volatile(self.cpacr_mut(), f(Cpacr(0)));
         }
         self
     }
@@ -35,14 +35,9 @@ impl Fpu {
     #[doc="Modify the CPACR register."]
     #[inline] pub fn with_cpacr<F: FnOnce(Cpacr) -> Cpacr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xd88) as *mut Cpacr, f(self.cpacr()));
+            write_volatile(self.cpacr_mut(), f(self.cpacr()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the FPCCR register."]
-    #[inline] pub fn fpccr_ptr(&self) -> *const Fpccr { 
-        (self.0 + 0xf34) as *const Fpccr
     }
 
     #[doc="Get the *mut pointer for the FPCCR register."]
@@ -50,17 +45,22 @@ impl Fpu {
         (self.0 + 0xf34) as *mut Fpccr
     }
 
+    #[doc="Get the *const pointer for the FPCCR register."]
+    #[inline] pub fn fpccr_ptr(&self) -> *const Fpccr { 
+           self.fpccr_mut()
+    }
+
     #[doc="Read the FPCCR register."]
     #[inline] pub fn fpccr(&self) -> Fpccr { 
         unsafe {
-            read_volatile((self.0 + 0xf34) as *const Fpccr)
+            read_volatile(self.fpccr_ptr())
         }
     }
 
     #[doc="Write the FPCCR register."]
     #[inline] pub fn set_fpccr<F: FnOnce(Fpccr) -> Fpccr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xf34) as *mut Fpccr, f(Fpccr(0)));
+            write_volatile(self.fpccr_mut(), f(Fpccr(0)));
         }
         self
     }
@@ -68,14 +68,9 @@ impl Fpu {
     #[doc="Modify the FPCCR register."]
     #[inline] pub fn with_fpccr<F: FnOnce(Fpccr) -> Fpccr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xf34) as *mut Fpccr, f(self.fpccr()));
+            write_volatile(self.fpccr_mut(), f(self.fpccr()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the FPCAR register."]
-    #[inline] pub fn fpcar_ptr(&self) -> *const Fpcar { 
-        (self.0 + 0xf38) as *const Fpcar
     }
 
     #[doc="Get the *mut pointer for the FPCAR register."]
@@ -83,17 +78,22 @@ impl Fpu {
         (self.0 + 0xf38) as *mut Fpcar
     }
 
+    #[doc="Get the *const pointer for the FPCAR register."]
+    #[inline] pub fn fpcar_ptr(&self) -> *const Fpcar { 
+           self.fpcar_mut()
+    }
+
     #[doc="Read the FPCAR register."]
     #[inline] pub fn fpcar(&self) -> Fpcar { 
         unsafe {
-            read_volatile((self.0 + 0xf38) as *const Fpcar)
+            read_volatile(self.fpcar_ptr())
         }
     }
 
     #[doc="Write the FPCAR register."]
     #[inline] pub fn set_fpcar<F: FnOnce(Fpcar) -> Fpcar>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xf38) as *mut Fpcar, f(Fpcar(0)));
+            write_volatile(self.fpcar_mut(), f(Fpcar(0)));
         }
         self
     }
@@ -101,14 +101,9 @@ impl Fpu {
     #[doc="Modify the FPCAR register."]
     #[inline] pub fn with_fpcar<F: FnOnce(Fpcar) -> Fpcar>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xf38) as *mut Fpcar, f(self.fpcar()));
+            write_volatile(self.fpcar_mut(), f(self.fpcar()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the FPDSCR register."]
-    #[inline] pub fn fpdscr_ptr(&self) -> *const Fpdscr { 
-        (self.0 + 0xf3c) as *const Fpdscr
     }
 
     #[doc="Get the *mut pointer for the FPDSCR register."]
@@ -116,17 +111,22 @@ impl Fpu {
         (self.0 + 0xf3c) as *mut Fpdscr
     }
 
+    #[doc="Get the *const pointer for the FPDSCR register."]
+    #[inline] pub fn fpdscr_ptr(&self) -> *const Fpdscr { 
+           self.fpdscr_mut()
+    }
+
     #[doc="Read the FPDSCR register."]
     #[inline] pub fn fpdscr(&self) -> Fpdscr { 
         unsafe {
-            read_volatile((self.0 + 0xf3c) as *const Fpdscr)
+            read_volatile(self.fpdscr_ptr())
         }
     }
 
     #[doc="Write the FPDSCR register."]
     #[inline] pub fn set_fpdscr<F: FnOnce(Fpdscr) -> Fpdscr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xf3c) as *mut Fpdscr, f(Fpdscr(0)));
+            write_volatile(self.fpdscr_mut(), f(Fpdscr(0)));
         }
         self
     }
@@ -134,7 +134,7 @@ impl Fpu {
     #[doc="Modify the FPDSCR register."]
     #[inline] pub fn with_fpdscr<F: FnOnce(Fpdscr) -> Fpdscr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xf3c) as *mut Fpdscr, f(self.fpdscr()));
+            write_volatile(self.fpdscr_mut(), f(self.fpdscr()));
         }
         self
     }

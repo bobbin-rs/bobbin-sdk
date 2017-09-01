@@ -7,27 +7,27 @@ periph!(SYSTICK, Systick, 0xe000e000);
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Systick(pub usize);
 impl Systick {
-    #[doc="Get the *const pointer for the CSR register."]
-    #[inline] pub fn csr_ptr(&self) -> *const Csr { 
-        (self.0 + 0x10) as *const Csr
-    }
-
     #[doc="Get the *mut pointer for the CSR register."]
     #[inline] pub fn csr_mut(&self) -> *mut Csr { 
         (self.0 + 0x10) as *mut Csr
     }
 
+    #[doc="Get the *const pointer for the CSR register."]
+    #[inline] pub fn csr_ptr(&self) -> *const Csr { 
+           self.csr_mut()
+    }
+
     #[doc="Read the CSR register."]
     #[inline] pub fn csr(&self) -> Csr { 
         unsafe {
-            read_volatile((self.0 + 0x10) as *const Csr)
+            read_volatile(self.csr_ptr())
         }
     }
 
     #[doc="Write the CSR register."]
     #[inline] pub fn set_csr<F: FnOnce(Csr) -> Csr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x10) as *mut Csr, f(Csr(0)));
+            write_volatile(self.csr_mut(), f(Csr(0)));
         }
         self
     }
@@ -35,14 +35,9 @@ impl Systick {
     #[doc="Modify the CSR register."]
     #[inline] pub fn with_csr<F: FnOnce(Csr) -> Csr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x10) as *mut Csr, f(self.csr()));
+            write_volatile(self.csr_mut(), f(self.csr()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the RVR register."]
-    #[inline] pub fn rvr_ptr(&self) -> *const Rvr { 
-        (self.0 + 0x14) as *const Rvr
     }
 
     #[doc="Get the *mut pointer for the RVR register."]
@@ -50,17 +45,22 @@ impl Systick {
         (self.0 + 0x14) as *mut Rvr
     }
 
+    #[doc="Get the *const pointer for the RVR register."]
+    #[inline] pub fn rvr_ptr(&self) -> *const Rvr { 
+           self.rvr_mut()
+    }
+
     #[doc="Read the RVR register."]
     #[inline] pub fn rvr(&self) -> Rvr { 
         unsafe {
-            read_volatile((self.0 + 0x14) as *const Rvr)
+            read_volatile(self.rvr_ptr())
         }
     }
 
     #[doc="Write the RVR register."]
     #[inline] pub fn set_rvr<F: FnOnce(Rvr) -> Rvr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x14) as *mut Rvr, f(Rvr(0)));
+            write_volatile(self.rvr_mut(), f(Rvr(0)));
         }
         self
     }
@@ -68,14 +68,9 @@ impl Systick {
     #[doc="Modify the RVR register."]
     #[inline] pub fn with_rvr<F: FnOnce(Rvr) -> Rvr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x14) as *mut Rvr, f(self.rvr()));
+            write_volatile(self.rvr_mut(), f(self.rvr()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the CVR register."]
-    #[inline] pub fn cvr_ptr(&self) -> *const Cvr { 
-        (self.0 + 0x18) as *const Cvr
     }
 
     #[doc="Get the *mut pointer for the CVR register."]
@@ -83,17 +78,22 @@ impl Systick {
         (self.0 + 0x18) as *mut Cvr
     }
 
+    #[doc="Get the *const pointer for the CVR register."]
+    #[inline] pub fn cvr_ptr(&self) -> *const Cvr { 
+           self.cvr_mut()
+    }
+
     #[doc="Read the CVR register."]
     #[inline] pub fn cvr(&self) -> Cvr { 
         unsafe {
-            read_volatile((self.0 + 0x18) as *const Cvr)
+            read_volatile(self.cvr_ptr())
         }
     }
 
     #[doc="Write the CVR register."]
     #[inline] pub fn set_cvr<F: FnOnce(Cvr) -> Cvr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x18) as *mut Cvr, f(Cvr(0)));
+            write_volatile(self.cvr_mut(), f(Cvr(0)));
         }
         self
     }
@@ -101,14 +101,9 @@ impl Systick {
     #[doc="Modify the CVR register."]
     #[inline] pub fn with_cvr<F: FnOnce(Cvr) -> Cvr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x18) as *mut Cvr, f(self.cvr()));
+            write_volatile(self.cvr_mut(), f(self.cvr()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the CALIB register."]
-    #[inline] pub fn calib_ptr(&self) -> *const Calib { 
-        (self.0 + 0x1c) as *const Calib
     }
 
     #[doc="Get the *mut pointer for the CALIB register."]
@@ -116,17 +111,22 @@ impl Systick {
         (self.0 + 0x1c) as *mut Calib
     }
 
+    #[doc="Get the *const pointer for the CALIB register."]
+    #[inline] pub fn calib_ptr(&self) -> *const Calib { 
+           self.calib_mut()
+    }
+
     #[doc="Read the CALIB register."]
     #[inline] pub fn calib(&self) -> Calib { 
         unsafe {
-            read_volatile((self.0 + 0x1c) as *const Calib)
+            read_volatile(self.calib_ptr())
         }
     }
 
     #[doc="Write the CALIB register."]
     #[inline] pub fn set_calib<F: FnOnce(Calib) -> Calib>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x1c) as *mut Calib, f(Calib(0)));
+            write_volatile(self.calib_mut(), f(Calib(0)));
         }
         self
     }
@@ -134,7 +134,7 @@ impl Systick {
     #[doc="Modify the CALIB register."]
     #[inline] pub fn with_calib<F: FnOnce(Calib) -> Calib>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x1c) as *mut Calib, f(self.calib()));
+            write_volatile(self.calib_mut(), f(self.calib()));
         }
         self
     }

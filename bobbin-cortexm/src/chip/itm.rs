@@ -7,48 +7,38 @@ periph!(ITM, Itm, 0xe0000000);
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Itm(pub usize);
 impl Itm {
-    #[doc="Get the *const pointer for the STIM register."]
-    #[inline] pub fn stim_ptr<I: Into<bits::R32>>(&self, index: I) -> *const Stim { 
-        let index: usize = index.into().value() as usize;
-        (self.0 + 0x0 + (index << 2)) as *const Stim
-    }
-
     #[doc="Get the *mut pointer for the STIM register."]
     #[inline] pub fn stim_mut<I: Into<bits::R32>>(&self, index: I) -> *mut Stim { 
         let index: usize = index.into().value() as usize;
         (self.0 + 0x0 + (index << 2)) as *mut Stim
     }
 
+    #[doc="Get the *const pointer for the STIM register."]
+    #[inline] pub fn stim_ptr<I: Into<bits::R32>>(&self, index: I) -> *const Stim { 
+           self.stim_mut(index)
+    }
+
     #[doc="Read the STIM register."]
     #[inline] pub fn stim<I: Into<bits::R32>>(&self, index: I) -> Stim { 
-        let index: usize = index.into().value() as usize;
         unsafe {
-            read_volatile((self.0 + 0x0 + (index << 2)) as *const Stim)
+            read_volatile(self.stim_ptr(index))
         }
     }
 
     #[doc="Write the STIM register."]
     #[inline] pub fn set_stim<I: Into<bits::R32>, F: FnOnce(Stim) -> Stim>(&self, index: I, f: F) -> &Self {
-        let index: usize = index.into().value() as usize;
         unsafe {
-            write_volatile((self.0 + 0x0 + (index << 2)) as *mut Stim, f(Stim(0)));
+            write_volatile(self.stim_mut(index), f(Stim(0)));
         }
         self
     }
 
     #[doc="Modify the STIM register."]
     #[inline] pub fn with_stim<I: Into<bits::R32> + Copy, F: FnOnce(Stim) -> Stim>(&self, index: I, f: F) -> &Self {
-        let index: usize = index.into().value() as usize;
         unsafe {
-            write_volatile((self.0 + 0x0 + (index << 2)) as *mut Stim, f(self.stim(index)));
+            write_volatile(self.stim_mut(index), f(self.stim(index)));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the STIM16 register."]
-    #[inline] pub fn stim16_ptr<I: Into<bits::R32>>(&self, index: I) -> *const Stim16 { 
-        let index: usize = index.into().value() as usize;
-        (self.0 + 0x0 + (index << 2)) as *const Stim16
     }
 
     #[doc="Get the *mut pointer for the STIM16 register."]
@@ -57,36 +47,32 @@ impl Itm {
         (self.0 + 0x0 + (index << 2)) as *mut Stim16
     }
 
+    #[doc="Get the *const pointer for the STIM16 register."]
+    #[inline] pub fn stim16_ptr<I: Into<bits::R32>>(&self, index: I) -> *const Stim16 { 
+           self.stim16_mut(index)
+    }
+
     #[doc="Read the STIM16 register."]
     #[inline] pub fn stim16<I: Into<bits::R32>>(&self, index: I) -> Stim16 { 
-        let index: usize = index.into().value() as usize;
         unsafe {
-            read_volatile((self.0 + 0x0 + (index << 2)) as *const Stim16)
+            read_volatile(self.stim16_ptr(index))
         }
     }
 
     #[doc="Write the STIM16 register."]
     #[inline] pub fn set_stim16<I: Into<bits::R32>, F: FnOnce(Stim16) -> Stim16>(&self, index: I, f: F) -> &Self {
-        let index: usize = index.into().value() as usize;
         unsafe {
-            write_volatile((self.0 + 0x0 + (index << 2)) as *mut Stim16, f(Stim16(0)));
+            write_volatile(self.stim16_mut(index), f(Stim16(0)));
         }
         self
     }
 
     #[doc="Modify the STIM16 register."]
     #[inline] pub fn with_stim16<I: Into<bits::R32> + Copy, F: FnOnce(Stim16) -> Stim16>(&self, index: I, f: F) -> &Self {
-        let index: usize = index.into().value() as usize;
         unsafe {
-            write_volatile((self.0 + 0x0 + (index << 2)) as *mut Stim16, f(self.stim16(index)));
+            write_volatile(self.stim16_mut(index), f(self.stim16(index)));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the STIM8 register."]
-    #[inline] pub fn stim8_ptr<I: Into<bits::R32>>(&self, index: I) -> *const Stim8 { 
-        let index: usize = index.into().value() as usize;
-        (self.0 + 0x0 + (index << 2)) as *const Stim8
     }
 
     #[doc="Get the *mut pointer for the STIM8 register."]
@@ -95,35 +81,32 @@ impl Itm {
         (self.0 + 0x0 + (index << 2)) as *mut Stim8
     }
 
+    #[doc="Get the *const pointer for the STIM8 register."]
+    #[inline] pub fn stim8_ptr<I: Into<bits::R32>>(&self, index: I) -> *const Stim8 { 
+           self.stim8_mut(index)
+    }
+
     #[doc="Read the STIM8 register."]
     #[inline] pub fn stim8<I: Into<bits::R32>>(&self, index: I) -> Stim8 { 
-        let index: usize = index.into().value() as usize;
         unsafe {
-            read_volatile((self.0 + 0x0 + (index << 2)) as *const Stim8)
+            read_volatile(self.stim8_ptr(index))
         }
     }
 
     #[doc="Write the STIM8 register."]
     #[inline] pub fn set_stim8<I: Into<bits::R32>, F: FnOnce(Stim8) -> Stim8>(&self, index: I, f: F) -> &Self {
-        let index: usize = index.into().value() as usize;
         unsafe {
-            write_volatile((self.0 + 0x0 + (index << 2)) as *mut Stim8, f(Stim8(0)));
+            write_volatile(self.stim8_mut(index), f(Stim8(0)));
         }
         self
     }
 
     #[doc="Modify the STIM8 register."]
     #[inline] pub fn with_stim8<I: Into<bits::R32> + Copy, F: FnOnce(Stim8) -> Stim8>(&self, index: I, f: F) -> &Self {
-        let index: usize = index.into().value() as usize;
         unsafe {
-            write_volatile((self.0 + 0x0 + (index << 2)) as *mut Stim8, f(self.stim8(index)));
+            write_volatile(self.stim8_mut(index), f(self.stim8(index)));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the TER register."]
-    #[inline] pub fn ter_ptr(&self) -> *const Ter { 
-        (self.0 + 0xe00) as *const Ter
     }
 
     #[doc="Get the *mut pointer for the TER register."]
@@ -131,17 +114,22 @@ impl Itm {
         (self.0 + 0xe00) as *mut Ter
     }
 
+    #[doc="Get the *const pointer for the TER register."]
+    #[inline] pub fn ter_ptr(&self) -> *const Ter { 
+           self.ter_mut()
+    }
+
     #[doc="Read the TER register."]
     #[inline] pub fn ter(&self) -> Ter { 
         unsafe {
-            read_volatile((self.0 + 0xe00) as *const Ter)
+            read_volatile(self.ter_ptr())
         }
     }
 
     #[doc="Write the TER register."]
     #[inline] pub fn set_ter<F: FnOnce(Ter) -> Ter>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xe00) as *mut Ter, f(Ter(0)));
+            write_volatile(self.ter_mut(), f(Ter(0)));
         }
         self
     }
@@ -149,14 +137,9 @@ impl Itm {
     #[doc="Modify the TER register."]
     #[inline] pub fn with_ter<F: FnOnce(Ter) -> Ter>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xe00) as *mut Ter, f(self.ter()));
+            write_volatile(self.ter_mut(), f(self.ter()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the TPR register."]
-    #[inline] pub fn tpr_ptr(&self) -> *const Tpr { 
-        (self.0 + 0xe40) as *const Tpr
     }
 
     #[doc="Get the *mut pointer for the TPR register."]
@@ -164,17 +147,22 @@ impl Itm {
         (self.0 + 0xe40) as *mut Tpr
     }
 
+    #[doc="Get the *const pointer for the TPR register."]
+    #[inline] pub fn tpr_ptr(&self) -> *const Tpr { 
+           self.tpr_mut()
+    }
+
     #[doc="Read the TPR register."]
     #[inline] pub fn tpr(&self) -> Tpr { 
         unsafe {
-            read_volatile((self.0 + 0xe40) as *const Tpr)
+            read_volatile(self.tpr_ptr())
         }
     }
 
     #[doc="Write the TPR register."]
     #[inline] pub fn set_tpr<F: FnOnce(Tpr) -> Tpr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xe40) as *mut Tpr, f(Tpr(0)));
+            write_volatile(self.tpr_mut(), f(Tpr(0)));
         }
         self
     }
@@ -182,14 +170,9 @@ impl Itm {
     #[doc="Modify the TPR register."]
     #[inline] pub fn with_tpr<F: FnOnce(Tpr) -> Tpr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xe40) as *mut Tpr, f(self.tpr()));
+            write_volatile(self.tpr_mut(), f(self.tpr()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the TCR register."]
-    #[inline] pub fn tcr_ptr(&self) -> *const Tcr { 
-        (self.0 + 0xe80) as *const Tcr
     }
 
     #[doc="Get the *mut pointer for the TCR register."]
@@ -197,17 +180,22 @@ impl Itm {
         (self.0 + 0xe80) as *mut Tcr
     }
 
+    #[doc="Get the *const pointer for the TCR register."]
+    #[inline] pub fn tcr_ptr(&self) -> *const Tcr { 
+           self.tcr_mut()
+    }
+
     #[doc="Read the TCR register."]
     #[inline] pub fn tcr(&self) -> Tcr { 
         unsafe {
-            read_volatile((self.0 + 0xe80) as *const Tcr)
+            read_volatile(self.tcr_ptr())
         }
     }
 
     #[doc="Write the TCR register."]
     #[inline] pub fn set_tcr<F: FnOnce(Tcr) -> Tcr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xe80) as *mut Tcr, f(Tcr(0)));
+            write_volatile(self.tcr_mut(), f(Tcr(0)));
         }
         self
     }
@@ -215,14 +203,9 @@ impl Itm {
     #[doc="Modify the TCR register."]
     #[inline] pub fn with_tcr<F: FnOnce(Tcr) -> Tcr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xe80) as *mut Tcr, f(self.tcr()));
+            write_volatile(self.tcr_mut(), f(self.tcr()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the LAR register."]
-    #[inline] pub fn lar_ptr(&self) -> *const Lar { 
-        (self.0 + 0xfb0) as *const Lar
     }
 
     #[doc="Get the *mut pointer for the LAR register."]
@@ -230,17 +213,17 @@ impl Itm {
         (self.0 + 0xfb0) as *mut Lar
     }
 
+    #[doc="Get the *const pointer for the LAR register."]
+    #[inline] pub fn lar_ptr(&self) -> *const Lar { 
+           self.lar_mut()
+    }
+
     #[doc="Write the LAR register."]
     #[inline] pub fn set_lar<F: FnOnce(Lar) -> Lar>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xfb0) as *mut Lar, f(Lar(0)));
+            write_volatile(self.lar_mut(), f(Lar(0)));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the LSR register."]
-    #[inline] pub fn lsr_ptr(&self) -> *const Lsr { 
-        (self.0 + 0xfb4) as *const Lsr
     }
 
     #[doc="Get the *mut pointer for the LSR register."]
@@ -248,10 +231,15 @@ impl Itm {
         (self.0 + 0xfb4) as *mut Lsr
     }
 
+    #[doc="Get the *const pointer for the LSR register."]
+    #[inline] pub fn lsr_ptr(&self) -> *const Lsr { 
+           self.lsr_mut()
+    }
+
     #[doc="Read the LSR register."]
     #[inline] pub fn lsr(&self) -> Lsr { 
         unsafe {
-            read_volatile((self.0 + 0xfb4) as *const Lsr)
+            read_volatile(self.lsr_ptr())
         }
     }
 

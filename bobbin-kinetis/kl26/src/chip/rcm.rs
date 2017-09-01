@@ -7,26 +7,21 @@ periph!(RCM, Rcm, 0x4007f000);
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Rcm(pub usize);
 impl Rcm {
-    #[doc="Get the *const pointer for the SRS0 register."]
-    #[inline] pub fn srs0_ptr(&self) -> *const Srs0 { 
-        (self.0 + 0x0) as *const Srs0
-    }
-
     #[doc="Get the *mut pointer for the SRS0 register."]
     #[inline] pub fn srs0_mut(&self) -> *mut Srs0 { 
         (self.0 + 0x0) as *mut Srs0
     }
 
+    #[doc="Get the *const pointer for the SRS0 register."]
+    #[inline] pub fn srs0_ptr(&self) -> *const Srs0 { 
+           self.srs0_mut()
+    }
+
     #[doc="Read the SRS0 register."]
     #[inline] pub fn srs0(&self) -> Srs0 { 
         unsafe {
-            read_volatile((self.0 + 0x0) as *const Srs0)
+            read_volatile(self.srs0_ptr())
         }
-    }
-
-    #[doc="Get the *const pointer for the SRS1 register."]
-    #[inline] pub fn srs1_ptr(&self) -> *const Srs1 { 
-        (self.0 + 0x1) as *const Srs1
     }
 
     #[doc="Get the *mut pointer for the SRS1 register."]
@@ -34,16 +29,16 @@ impl Rcm {
         (self.0 + 0x1) as *mut Srs1
     }
 
+    #[doc="Get the *const pointer for the SRS1 register."]
+    #[inline] pub fn srs1_ptr(&self) -> *const Srs1 { 
+           self.srs1_mut()
+    }
+
     #[doc="Read the SRS1 register."]
     #[inline] pub fn srs1(&self) -> Srs1 { 
         unsafe {
-            read_volatile((self.0 + 0x1) as *const Srs1)
+            read_volatile(self.srs1_ptr())
         }
-    }
-
-    #[doc="Get the *const pointer for the RPFC register."]
-    #[inline] pub fn rpfc_ptr(&self) -> *const Rpfc { 
-        (self.0 + 0x4) as *const Rpfc
     }
 
     #[doc="Get the *mut pointer for the RPFC register."]
@@ -51,17 +46,22 @@ impl Rcm {
         (self.0 + 0x4) as *mut Rpfc
     }
 
+    #[doc="Get the *const pointer for the RPFC register."]
+    #[inline] pub fn rpfc_ptr(&self) -> *const Rpfc { 
+           self.rpfc_mut()
+    }
+
     #[doc="Read the RPFC register."]
     #[inline] pub fn rpfc(&self) -> Rpfc { 
         unsafe {
-            read_volatile((self.0 + 0x4) as *const Rpfc)
+            read_volatile(self.rpfc_ptr())
         }
     }
 
     #[doc="Write the RPFC register."]
     #[inline] pub fn set_rpfc<F: FnOnce(Rpfc) -> Rpfc>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x4) as *mut Rpfc, f(Rpfc(0)));
+            write_volatile(self.rpfc_mut(), f(Rpfc(0)));
         }
         self
     }
@@ -69,14 +69,9 @@ impl Rcm {
     #[doc="Modify the RPFC register."]
     #[inline] pub fn with_rpfc<F: FnOnce(Rpfc) -> Rpfc>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x4) as *mut Rpfc, f(self.rpfc()));
+            write_volatile(self.rpfc_mut(), f(self.rpfc()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the RPFW register."]
-    #[inline] pub fn rpfw_ptr(&self) -> *const Rpfw { 
-        (self.0 + 0x5) as *const Rpfw
     }
 
     #[doc="Get the *mut pointer for the RPFW register."]
@@ -84,17 +79,22 @@ impl Rcm {
         (self.0 + 0x5) as *mut Rpfw
     }
 
+    #[doc="Get the *const pointer for the RPFW register."]
+    #[inline] pub fn rpfw_ptr(&self) -> *const Rpfw { 
+           self.rpfw_mut()
+    }
+
     #[doc="Read the RPFW register."]
     #[inline] pub fn rpfw(&self) -> Rpfw { 
         unsafe {
-            read_volatile((self.0 + 0x5) as *const Rpfw)
+            read_volatile(self.rpfw_ptr())
         }
     }
 
     #[doc="Write the RPFW register."]
     #[inline] pub fn set_rpfw<F: FnOnce(Rpfw) -> Rpfw>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x5) as *mut Rpfw, f(Rpfw(0)));
+            write_volatile(self.rpfw_mut(), f(Rpfw(0)));
         }
         self
     }
@@ -102,7 +102,7 @@ impl Rcm {
     #[doc="Modify the RPFW register."]
     #[inline] pub fn with_rpfw<F: FnOnce(Rpfw) -> Rpfw>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x5) as *mut Rpfw, f(self.rpfw()));
+            write_volatile(self.rpfw_mut(), f(self.rpfw()));
         }
         self
     }

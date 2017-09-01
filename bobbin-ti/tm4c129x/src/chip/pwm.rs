@@ -17,27 +17,27 @@ impl super::sig::SignalPwm<super::sig::M0pwm3> for Pwm0Ch3 {}
 
 
 impl PwmPeriph {
-    #[doc="Get the *const pointer for the CTL register."]
-    #[inline] pub fn ctl_ptr(&self) -> *const Ctl { 
-        (self.0 + 0x0) as *const Ctl
-    }
-
     #[doc="Get the *mut pointer for the CTL register."]
     #[inline] pub fn ctl_mut(&self) -> *mut Ctl { 
         (self.0 + 0x0) as *mut Ctl
     }
 
+    #[doc="Get the *const pointer for the CTL register."]
+    #[inline] pub fn ctl_ptr(&self) -> *const Ctl { 
+           self.ctl_mut()
+    }
+
     #[doc="Read the CTL register."]
     #[inline] pub fn ctl(&self) -> Ctl { 
         unsafe {
-            read_volatile((self.0 + 0x0) as *const Ctl)
+            read_volatile(self.ctl_ptr())
         }
     }
 
     #[doc="Write the CTL register."]
     #[inline] pub fn set_ctl<F: FnOnce(Ctl) -> Ctl>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x0) as *mut Ctl, f(Ctl(0)));
+            write_volatile(self.ctl_mut(), f(Ctl(0)));
         }
         self
     }
@@ -45,14 +45,9 @@ impl PwmPeriph {
     #[doc="Modify the CTL register."]
     #[inline] pub fn with_ctl<F: FnOnce(Ctl) -> Ctl>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x0) as *mut Ctl, f(self.ctl()));
+            write_volatile(self.ctl_mut(), f(self.ctl()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the SYNC register."]
-    #[inline] pub fn sync_ptr(&self) -> *const Sync { 
-        (self.0 + 0x4) as *const Sync
     }
 
     #[doc="Get the *mut pointer for the SYNC register."]
@@ -60,17 +55,22 @@ impl PwmPeriph {
         (self.0 + 0x4) as *mut Sync
     }
 
+    #[doc="Get the *const pointer for the SYNC register."]
+    #[inline] pub fn sync_ptr(&self) -> *const Sync { 
+           self.sync_mut()
+    }
+
     #[doc="Read the SYNC register."]
     #[inline] pub fn sync(&self) -> Sync { 
         unsafe {
-            read_volatile((self.0 + 0x4) as *const Sync)
+            read_volatile(self.sync_ptr())
         }
     }
 
     #[doc="Write the SYNC register."]
     #[inline] pub fn set_sync<F: FnOnce(Sync) -> Sync>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x4) as *mut Sync, f(Sync(0)));
+            write_volatile(self.sync_mut(), f(Sync(0)));
         }
         self
     }
@@ -78,14 +78,9 @@ impl PwmPeriph {
     #[doc="Modify the SYNC register."]
     #[inline] pub fn with_sync<F: FnOnce(Sync) -> Sync>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x4) as *mut Sync, f(self.sync()));
+            write_volatile(self.sync_mut(), f(self.sync()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the ENABLE register."]
-    #[inline] pub fn enable_ptr(&self) -> *const Enable { 
-        (self.0 + 0x8) as *const Enable
     }
 
     #[doc="Get the *mut pointer for the ENABLE register."]
@@ -93,17 +88,22 @@ impl PwmPeriph {
         (self.0 + 0x8) as *mut Enable
     }
 
+    #[doc="Get the *const pointer for the ENABLE register."]
+    #[inline] pub fn enable_ptr(&self) -> *const Enable { 
+           self.enable_mut()
+    }
+
     #[doc="Read the ENABLE register."]
     #[inline] pub fn enable(&self) -> Enable { 
         unsafe {
-            read_volatile((self.0 + 0x8) as *const Enable)
+            read_volatile(self.enable_ptr())
         }
     }
 
     #[doc="Write the ENABLE register."]
     #[inline] pub fn set_enable<F: FnOnce(Enable) -> Enable>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x8) as *mut Enable, f(Enable(0)));
+            write_volatile(self.enable_mut(), f(Enable(0)));
         }
         self
     }
@@ -111,14 +111,9 @@ impl PwmPeriph {
     #[doc="Modify the ENABLE register."]
     #[inline] pub fn with_enable<F: FnOnce(Enable) -> Enable>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x8) as *mut Enable, f(self.enable()));
+            write_volatile(self.enable_mut(), f(self.enable()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the INVERT register."]
-    #[inline] pub fn invert_ptr(&self) -> *const Invert { 
-        (self.0 + 0xc) as *const Invert
     }
 
     #[doc="Get the *mut pointer for the INVERT register."]
@@ -126,17 +121,22 @@ impl PwmPeriph {
         (self.0 + 0xc) as *mut Invert
     }
 
+    #[doc="Get the *const pointer for the INVERT register."]
+    #[inline] pub fn invert_ptr(&self) -> *const Invert { 
+           self.invert_mut()
+    }
+
     #[doc="Read the INVERT register."]
     #[inline] pub fn invert(&self) -> Invert { 
         unsafe {
-            read_volatile((self.0 + 0xc) as *const Invert)
+            read_volatile(self.invert_ptr())
         }
     }
 
     #[doc="Write the INVERT register."]
     #[inline] pub fn set_invert<F: FnOnce(Invert) -> Invert>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xc) as *mut Invert, f(Invert(0)));
+            write_volatile(self.invert_mut(), f(Invert(0)));
         }
         self
     }
@@ -144,14 +144,9 @@ impl PwmPeriph {
     #[doc="Modify the INVERT register."]
     #[inline] pub fn with_invert<F: FnOnce(Invert) -> Invert>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xc) as *mut Invert, f(self.invert()));
+            write_volatile(self.invert_mut(), f(self.invert()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the FAULT register."]
-    #[inline] pub fn fault_ptr(&self) -> *const Fault { 
-        (self.0 + 0x10) as *const Fault
     }
 
     #[doc="Get the *mut pointer for the FAULT register."]
@@ -159,17 +154,22 @@ impl PwmPeriph {
         (self.0 + 0x10) as *mut Fault
     }
 
+    #[doc="Get the *const pointer for the FAULT register."]
+    #[inline] pub fn fault_ptr(&self) -> *const Fault { 
+           self.fault_mut()
+    }
+
     #[doc="Read the FAULT register."]
     #[inline] pub fn fault(&self) -> Fault { 
         unsafe {
-            read_volatile((self.0 + 0x10) as *const Fault)
+            read_volatile(self.fault_ptr())
         }
     }
 
     #[doc="Write the FAULT register."]
     #[inline] pub fn set_fault<F: FnOnce(Fault) -> Fault>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x10) as *mut Fault, f(Fault(0)));
+            write_volatile(self.fault_mut(), f(Fault(0)));
         }
         self
     }
@@ -177,14 +177,9 @@ impl PwmPeriph {
     #[doc="Modify the FAULT register."]
     #[inline] pub fn with_fault<F: FnOnce(Fault) -> Fault>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x10) as *mut Fault, f(self.fault()));
+            write_volatile(self.fault_mut(), f(self.fault()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the INTEN register."]
-    #[inline] pub fn inten_ptr(&self) -> *const Inten { 
-        (self.0 + 0x14) as *const Inten
     }
 
     #[doc="Get the *mut pointer for the INTEN register."]
@@ -192,17 +187,22 @@ impl PwmPeriph {
         (self.0 + 0x14) as *mut Inten
     }
 
+    #[doc="Get the *const pointer for the INTEN register."]
+    #[inline] pub fn inten_ptr(&self) -> *const Inten { 
+           self.inten_mut()
+    }
+
     #[doc="Read the INTEN register."]
     #[inline] pub fn inten(&self) -> Inten { 
         unsafe {
-            read_volatile((self.0 + 0x14) as *const Inten)
+            read_volatile(self.inten_ptr())
         }
     }
 
     #[doc="Write the INTEN register."]
     #[inline] pub fn set_inten<F: FnOnce(Inten) -> Inten>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x14) as *mut Inten, f(Inten(0)));
+            write_volatile(self.inten_mut(), f(Inten(0)));
         }
         self
     }
@@ -210,14 +210,9 @@ impl PwmPeriph {
     #[doc="Modify the INTEN register."]
     #[inline] pub fn with_inten<F: FnOnce(Inten) -> Inten>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x14) as *mut Inten, f(self.inten()));
+            write_volatile(self.inten_mut(), f(self.inten()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the RIS register."]
-    #[inline] pub fn ris_ptr(&self) -> *const Ris { 
-        (self.0 + 0x18) as *const Ris
     }
 
     #[doc="Get the *mut pointer for the RIS register."]
@@ -225,17 +220,22 @@ impl PwmPeriph {
         (self.0 + 0x18) as *mut Ris
     }
 
+    #[doc="Get the *const pointer for the RIS register."]
+    #[inline] pub fn ris_ptr(&self) -> *const Ris { 
+           self.ris_mut()
+    }
+
     #[doc="Read the RIS register."]
     #[inline] pub fn ris(&self) -> Ris { 
         unsafe {
-            read_volatile((self.0 + 0x18) as *const Ris)
+            read_volatile(self.ris_ptr())
         }
     }
 
     #[doc="Write the RIS register."]
     #[inline] pub fn set_ris<F: FnOnce(Ris) -> Ris>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x18) as *mut Ris, f(Ris(0)));
+            write_volatile(self.ris_mut(), f(Ris(0)));
         }
         self
     }
@@ -243,14 +243,9 @@ impl PwmPeriph {
     #[doc="Modify the RIS register."]
     #[inline] pub fn with_ris<F: FnOnce(Ris) -> Ris>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x18) as *mut Ris, f(self.ris()));
+            write_volatile(self.ris_mut(), f(self.ris()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the ISC register."]
-    #[inline] pub fn isc_ptr(&self) -> *const Isc { 
-        (self.0 + 0x1c) as *const Isc
     }
 
     #[doc="Get the *mut pointer for the ISC register."]
@@ -258,17 +253,22 @@ impl PwmPeriph {
         (self.0 + 0x1c) as *mut Isc
     }
 
+    #[doc="Get the *const pointer for the ISC register."]
+    #[inline] pub fn isc_ptr(&self) -> *const Isc { 
+           self.isc_mut()
+    }
+
     #[doc="Read the ISC register."]
     #[inline] pub fn isc(&self) -> Isc { 
         unsafe {
-            read_volatile((self.0 + 0x1c) as *const Isc)
+            read_volatile(self.isc_ptr())
         }
     }
 
     #[doc="Write the ISC register."]
     #[inline] pub fn set_isc<F: FnOnce(Isc) -> Isc>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x1c) as *mut Isc, f(Isc(0)));
+            write_volatile(self.isc_mut(), f(Isc(0)));
         }
         self
     }
@@ -276,14 +276,9 @@ impl PwmPeriph {
     #[doc="Modify the ISC register."]
     #[inline] pub fn with_isc<F: FnOnce(Isc) -> Isc>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x1c) as *mut Isc, f(self.isc()));
+            write_volatile(self.isc_mut(), f(self.isc()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the STATUS register."]
-    #[inline] pub fn status_ptr(&self) -> *const Status { 
-        (self.0 + 0x20) as *const Status
     }
 
     #[doc="Get the *mut pointer for the STATUS register."]
@@ -291,17 +286,22 @@ impl PwmPeriph {
         (self.0 + 0x20) as *mut Status
     }
 
+    #[doc="Get the *const pointer for the STATUS register."]
+    #[inline] pub fn status_ptr(&self) -> *const Status { 
+           self.status_mut()
+    }
+
     #[doc="Read the STATUS register."]
     #[inline] pub fn status(&self) -> Status { 
         unsafe {
-            read_volatile((self.0 + 0x20) as *const Status)
+            read_volatile(self.status_ptr())
         }
     }
 
     #[doc="Write the STATUS register."]
     #[inline] pub fn set_status<F: FnOnce(Status) -> Status>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x20) as *mut Status, f(Status(0)));
+            write_volatile(self.status_mut(), f(Status(0)));
         }
         self
     }
@@ -309,14 +309,9 @@ impl PwmPeriph {
     #[doc="Modify the STATUS register."]
     #[inline] pub fn with_status<F: FnOnce(Status) -> Status>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x20) as *mut Status, f(self.status()));
+            write_volatile(self.status_mut(), f(self.status()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the FAULTVAL register."]
-    #[inline] pub fn faultval_ptr(&self) -> *const Faultval { 
-        (self.0 + 0x24) as *const Faultval
     }
 
     #[doc="Get the *mut pointer for the FAULTVAL register."]
@@ -324,17 +319,22 @@ impl PwmPeriph {
         (self.0 + 0x24) as *mut Faultval
     }
 
+    #[doc="Get the *const pointer for the FAULTVAL register."]
+    #[inline] pub fn faultval_ptr(&self) -> *const Faultval { 
+           self.faultval_mut()
+    }
+
     #[doc="Read the FAULTVAL register."]
     #[inline] pub fn faultval(&self) -> Faultval { 
         unsafe {
-            read_volatile((self.0 + 0x24) as *const Faultval)
+            read_volatile(self.faultval_ptr())
         }
     }
 
     #[doc="Write the FAULTVAL register."]
     #[inline] pub fn set_faultval<F: FnOnce(Faultval) -> Faultval>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x24) as *mut Faultval, f(Faultval(0)));
+            write_volatile(self.faultval_mut(), f(Faultval(0)));
         }
         self
     }
@@ -342,14 +342,9 @@ impl PwmPeriph {
     #[doc="Modify the FAULTVAL register."]
     #[inline] pub fn with_faultval<F: FnOnce(Faultval) -> Faultval>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x24) as *mut Faultval, f(self.faultval()));
+            write_volatile(self.faultval_mut(), f(self.faultval()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the ENUPD register."]
-    #[inline] pub fn enupd_ptr(&self) -> *const Enupd { 
-        (self.0 + 0x28) as *const Enupd
     }
 
     #[doc="Get the *mut pointer for the ENUPD register."]
@@ -357,17 +352,22 @@ impl PwmPeriph {
         (self.0 + 0x28) as *mut Enupd
     }
 
+    #[doc="Get the *const pointer for the ENUPD register."]
+    #[inline] pub fn enupd_ptr(&self) -> *const Enupd { 
+           self.enupd_mut()
+    }
+
     #[doc="Read the ENUPD register."]
     #[inline] pub fn enupd(&self) -> Enupd { 
         unsafe {
-            read_volatile((self.0 + 0x28) as *const Enupd)
+            read_volatile(self.enupd_ptr())
         }
     }
 
     #[doc="Write the ENUPD register."]
     #[inline] pub fn set_enupd<F: FnOnce(Enupd) -> Enupd>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x28) as *mut Enupd, f(Enupd(0)));
+            write_volatile(self.enupd_mut(), f(Enupd(0)));
         }
         self
     }
@@ -375,15 +375,9 @@ impl PwmPeriph {
     #[doc="Modify the ENUPD register."]
     #[inline] pub fn with_enupd<F: FnOnce(Enupd) -> Enupd>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x28) as *mut Enupd, f(self.enupd()));
+            write_volatile(self.enupd_mut(), f(self.enupd()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the CH_CTL register."]
-    #[inline] pub fn ch_ctl_ptr<I: Into<bits::R4>>(&self, index: I) -> *const ChCtl { 
-        let index: usize = index.into().value() as usize;
-        (self.0 + 0x40 + (index * 64)) as *const ChCtl
     }
 
     #[doc="Get the *mut pointer for the CH_CTL register."]
@@ -392,36 +386,32 @@ impl PwmPeriph {
         (self.0 + 0x40 + (index * 64)) as *mut ChCtl
     }
 
+    #[doc="Get the *const pointer for the CH_CTL register."]
+    #[inline] pub fn ch_ctl_ptr<I: Into<bits::R4>>(&self, index: I) -> *const ChCtl { 
+           self.ch_ctl_mut(index)
+    }
+
     #[doc="Read the CH_CTL register."]
     #[inline] pub fn ch_ctl<I: Into<bits::R4>>(&self, index: I) -> ChCtl { 
-        let index: usize = index.into().value() as usize;
         unsafe {
-            read_volatile((self.0 + 0x40 + (index * 64)) as *const ChCtl)
+            read_volatile(self.ch_ctl_ptr(index))
         }
     }
 
     #[doc="Write the CH_CTL register."]
     #[inline] pub fn set_ch_ctl<I: Into<bits::R4>, F: FnOnce(ChCtl) -> ChCtl>(&self, index: I, f: F) -> &Self {
-        let index: usize = index.into().value() as usize;
         unsafe {
-            write_volatile((self.0 + 0x40 + (index * 64)) as *mut ChCtl, f(ChCtl(0)));
+            write_volatile(self.ch_ctl_mut(index), f(ChCtl(0)));
         }
         self
     }
 
     #[doc="Modify the CH_CTL register."]
     #[inline] pub fn with_ch_ctl<I: Into<bits::R4> + Copy, F: FnOnce(ChCtl) -> ChCtl>(&self, index: I, f: F) -> &Self {
-        let index: usize = index.into().value() as usize;
         unsafe {
-            write_volatile((self.0 + 0x40 + (index * 64)) as *mut ChCtl, f(self.ch_ctl(index)));
+            write_volatile(self.ch_ctl_mut(index), f(self.ch_ctl(index)));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the CH_INTEN register."]
-    #[inline] pub fn ch_inten_ptr<I: Into<bits::R4>>(&self, index: I) -> *const ChInten { 
-        let index: usize = index.into().value() as usize;
-        (self.0 + 0x44 + (index * 64)) as *const ChInten
     }
 
     #[doc="Get the *mut pointer for the CH_INTEN register."]
@@ -430,36 +420,32 @@ impl PwmPeriph {
         (self.0 + 0x44 + (index * 64)) as *mut ChInten
     }
 
+    #[doc="Get the *const pointer for the CH_INTEN register."]
+    #[inline] pub fn ch_inten_ptr<I: Into<bits::R4>>(&self, index: I) -> *const ChInten { 
+           self.ch_inten_mut(index)
+    }
+
     #[doc="Read the CH_INTEN register."]
     #[inline] pub fn ch_inten<I: Into<bits::R4>>(&self, index: I) -> ChInten { 
-        let index: usize = index.into().value() as usize;
         unsafe {
-            read_volatile((self.0 + 0x44 + (index * 64)) as *const ChInten)
+            read_volatile(self.ch_inten_ptr(index))
         }
     }
 
     #[doc="Write the CH_INTEN register."]
     #[inline] pub fn set_ch_inten<I: Into<bits::R4>, F: FnOnce(ChInten) -> ChInten>(&self, index: I, f: F) -> &Self {
-        let index: usize = index.into().value() as usize;
         unsafe {
-            write_volatile((self.0 + 0x44 + (index * 64)) as *mut ChInten, f(ChInten(0)));
+            write_volatile(self.ch_inten_mut(index), f(ChInten(0)));
         }
         self
     }
 
     #[doc="Modify the CH_INTEN register."]
     #[inline] pub fn with_ch_inten<I: Into<bits::R4> + Copy, F: FnOnce(ChInten) -> ChInten>(&self, index: I, f: F) -> &Self {
-        let index: usize = index.into().value() as usize;
         unsafe {
-            write_volatile((self.0 + 0x44 + (index * 64)) as *mut ChInten, f(self.ch_inten(index)));
+            write_volatile(self.ch_inten_mut(index), f(self.ch_inten(index)));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the CH_RIS register."]
-    #[inline] pub fn ch_ris_ptr<I: Into<bits::R4>>(&self, index: I) -> *const ChRis { 
-        let index: usize = index.into().value() as usize;
-        (self.0 + 0x48 + (index * 64)) as *const ChRis
     }
 
     #[doc="Get the *mut pointer for the CH_RIS register."]
@@ -468,36 +454,32 @@ impl PwmPeriph {
         (self.0 + 0x48 + (index * 64)) as *mut ChRis
     }
 
+    #[doc="Get the *const pointer for the CH_RIS register."]
+    #[inline] pub fn ch_ris_ptr<I: Into<bits::R4>>(&self, index: I) -> *const ChRis { 
+           self.ch_ris_mut(index)
+    }
+
     #[doc="Read the CH_RIS register."]
     #[inline] pub fn ch_ris<I: Into<bits::R4>>(&self, index: I) -> ChRis { 
-        let index: usize = index.into().value() as usize;
         unsafe {
-            read_volatile((self.0 + 0x48 + (index * 64)) as *const ChRis)
+            read_volatile(self.ch_ris_ptr(index))
         }
     }
 
     #[doc="Write the CH_RIS register."]
     #[inline] pub fn set_ch_ris<I: Into<bits::R4>, F: FnOnce(ChRis) -> ChRis>(&self, index: I, f: F) -> &Self {
-        let index: usize = index.into().value() as usize;
         unsafe {
-            write_volatile((self.0 + 0x48 + (index * 64)) as *mut ChRis, f(ChRis(0)));
+            write_volatile(self.ch_ris_mut(index), f(ChRis(0)));
         }
         self
     }
 
     #[doc="Modify the CH_RIS register."]
     #[inline] pub fn with_ch_ris<I: Into<bits::R4> + Copy, F: FnOnce(ChRis) -> ChRis>(&self, index: I, f: F) -> &Self {
-        let index: usize = index.into().value() as usize;
         unsafe {
-            write_volatile((self.0 + 0x48 + (index * 64)) as *mut ChRis, f(self.ch_ris(index)));
+            write_volatile(self.ch_ris_mut(index), f(self.ch_ris(index)));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the CH_ISC register."]
-    #[inline] pub fn ch_isc_ptr<I: Into<bits::R4>>(&self, index: I) -> *const ChIsc { 
-        let index: usize = index.into().value() as usize;
-        (self.0 + 0x4c + (index * 64)) as *const ChIsc
     }
 
     #[doc="Get the *mut pointer for the CH_ISC register."]
@@ -506,36 +488,32 @@ impl PwmPeriph {
         (self.0 + 0x4c + (index * 64)) as *mut ChIsc
     }
 
+    #[doc="Get the *const pointer for the CH_ISC register."]
+    #[inline] pub fn ch_isc_ptr<I: Into<bits::R4>>(&self, index: I) -> *const ChIsc { 
+           self.ch_isc_mut(index)
+    }
+
     #[doc="Read the CH_ISC register."]
     #[inline] pub fn ch_isc<I: Into<bits::R4>>(&self, index: I) -> ChIsc { 
-        let index: usize = index.into().value() as usize;
         unsafe {
-            read_volatile((self.0 + 0x4c + (index * 64)) as *const ChIsc)
+            read_volatile(self.ch_isc_ptr(index))
         }
     }
 
     #[doc="Write the CH_ISC register."]
     #[inline] pub fn set_ch_isc<I: Into<bits::R4>, F: FnOnce(ChIsc) -> ChIsc>(&self, index: I, f: F) -> &Self {
-        let index: usize = index.into().value() as usize;
         unsafe {
-            write_volatile((self.0 + 0x4c + (index * 64)) as *mut ChIsc, f(ChIsc(0)));
+            write_volatile(self.ch_isc_mut(index), f(ChIsc(0)));
         }
         self
     }
 
     #[doc="Modify the CH_ISC register."]
     #[inline] pub fn with_ch_isc<I: Into<bits::R4> + Copy, F: FnOnce(ChIsc) -> ChIsc>(&self, index: I, f: F) -> &Self {
-        let index: usize = index.into().value() as usize;
         unsafe {
-            write_volatile((self.0 + 0x4c + (index * 64)) as *mut ChIsc, f(self.ch_isc(index)));
+            write_volatile(self.ch_isc_mut(index), f(self.ch_isc(index)));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the CH_LOAD register."]
-    #[inline] pub fn ch_load_ptr<I: Into<bits::R4>>(&self, index: I) -> *const ChLoad { 
-        let index: usize = index.into().value() as usize;
-        (self.0 + 0x50 + (index * 64)) as *const ChLoad
     }
 
     #[doc="Get the *mut pointer for the CH_LOAD register."]
@@ -544,36 +522,32 @@ impl PwmPeriph {
         (self.0 + 0x50 + (index * 64)) as *mut ChLoad
     }
 
+    #[doc="Get the *const pointer for the CH_LOAD register."]
+    #[inline] pub fn ch_load_ptr<I: Into<bits::R4>>(&self, index: I) -> *const ChLoad { 
+           self.ch_load_mut(index)
+    }
+
     #[doc="Read the CH_LOAD register."]
     #[inline] pub fn ch_load<I: Into<bits::R4>>(&self, index: I) -> ChLoad { 
-        let index: usize = index.into().value() as usize;
         unsafe {
-            read_volatile((self.0 + 0x50 + (index * 64)) as *const ChLoad)
+            read_volatile(self.ch_load_ptr(index))
         }
     }
 
     #[doc="Write the CH_LOAD register."]
     #[inline] pub fn set_ch_load<I: Into<bits::R4>, F: FnOnce(ChLoad) -> ChLoad>(&self, index: I, f: F) -> &Self {
-        let index: usize = index.into().value() as usize;
         unsafe {
-            write_volatile((self.0 + 0x50 + (index * 64)) as *mut ChLoad, f(ChLoad(0)));
+            write_volatile(self.ch_load_mut(index), f(ChLoad(0)));
         }
         self
     }
 
     #[doc="Modify the CH_LOAD register."]
     #[inline] pub fn with_ch_load<I: Into<bits::R4> + Copy, F: FnOnce(ChLoad) -> ChLoad>(&self, index: I, f: F) -> &Self {
-        let index: usize = index.into().value() as usize;
         unsafe {
-            write_volatile((self.0 + 0x50 + (index * 64)) as *mut ChLoad, f(self.ch_load(index)));
+            write_volatile(self.ch_load_mut(index), f(self.ch_load(index)));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the CH_COUNT register."]
-    #[inline] pub fn ch_count_ptr<I: Into<bits::R4>>(&self, index: I) -> *const ChCount { 
-        let index: usize = index.into().value() as usize;
-        (self.0 + 0x54 + (index * 64)) as *const ChCount
     }
 
     #[doc="Get the *mut pointer for the CH_COUNT register."]
@@ -582,36 +556,32 @@ impl PwmPeriph {
         (self.0 + 0x54 + (index * 64)) as *mut ChCount
     }
 
+    #[doc="Get the *const pointer for the CH_COUNT register."]
+    #[inline] pub fn ch_count_ptr<I: Into<bits::R4>>(&self, index: I) -> *const ChCount { 
+           self.ch_count_mut(index)
+    }
+
     #[doc="Read the CH_COUNT register."]
     #[inline] pub fn ch_count<I: Into<bits::R4>>(&self, index: I) -> ChCount { 
-        let index: usize = index.into().value() as usize;
         unsafe {
-            read_volatile((self.0 + 0x54 + (index * 64)) as *const ChCount)
+            read_volatile(self.ch_count_ptr(index))
         }
     }
 
     #[doc="Write the CH_COUNT register."]
     #[inline] pub fn set_ch_count<I: Into<bits::R4>, F: FnOnce(ChCount) -> ChCount>(&self, index: I, f: F) -> &Self {
-        let index: usize = index.into().value() as usize;
         unsafe {
-            write_volatile((self.0 + 0x54 + (index * 64)) as *mut ChCount, f(ChCount(0)));
+            write_volatile(self.ch_count_mut(index), f(ChCount(0)));
         }
         self
     }
 
     #[doc="Modify the CH_COUNT register."]
     #[inline] pub fn with_ch_count<I: Into<bits::R4> + Copy, F: FnOnce(ChCount) -> ChCount>(&self, index: I, f: F) -> &Self {
-        let index: usize = index.into().value() as usize;
         unsafe {
-            write_volatile((self.0 + 0x54 + (index * 64)) as *mut ChCount, f(self.ch_count(index)));
+            write_volatile(self.ch_count_mut(index), f(self.ch_count(index)));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the CH_CMPA register."]
-    #[inline] pub fn ch_cmpa_ptr<I: Into<bits::R4>>(&self, index: I) -> *const ChCmpa { 
-        let index: usize = index.into().value() as usize;
-        (self.0 + 0x58 + (index * 64)) as *const ChCmpa
     }
 
     #[doc="Get the *mut pointer for the CH_CMPA register."]
@@ -620,36 +590,32 @@ impl PwmPeriph {
         (self.0 + 0x58 + (index * 64)) as *mut ChCmpa
     }
 
+    #[doc="Get the *const pointer for the CH_CMPA register."]
+    #[inline] pub fn ch_cmpa_ptr<I: Into<bits::R4>>(&self, index: I) -> *const ChCmpa { 
+           self.ch_cmpa_mut(index)
+    }
+
     #[doc="Read the CH_CMPA register."]
     #[inline] pub fn ch_cmpa<I: Into<bits::R4>>(&self, index: I) -> ChCmpa { 
-        let index: usize = index.into().value() as usize;
         unsafe {
-            read_volatile((self.0 + 0x58 + (index * 64)) as *const ChCmpa)
+            read_volatile(self.ch_cmpa_ptr(index))
         }
     }
 
     #[doc="Write the CH_CMPA register."]
     #[inline] pub fn set_ch_cmpa<I: Into<bits::R4>, F: FnOnce(ChCmpa) -> ChCmpa>(&self, index: I, f: F) -> &Self {
-        let index: usize = index.into().value() as usize;
         unsafe {
-            write_volatile((self.0 + 0x58 + (index * 64)) as *mut ChCmpa, f(ChCmpa(0)));
+            write_volatile(self.ch_cmpa_mut(index), f(ChCmpa(0)));
         }
         self
     }
 
     #[doc="Modify the CH_CMPA register."]
     #[inline] pub fn with_ch_cmpa<I: Into<bits::R4> + Copy, F: FnOnce(ChCmpa) -> ChCmpa>(&self, index: I, f: F) -> &Self {
-        let index: usize = index.into().value() as usize;
         unsafe {
-            write_volatile((self.0 + 0x58 + (index * 64)) as *mut ChCmpa, f(self.ch_cmpa(index)));
+            write_volatile(self.ch_cmpa_mut(index), f(self.ch_cmpa(index)));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the CH_CMPB register."]
-    #[inline] pub fn ch_cmpb_ptr<I: Into<bits::R4>>(&self, index: I) -> *const ChCmpb { 
-        let index: usize = index.into().value() as usize;
-        (self.0 + 0x5c + (index * 64)) as *const ChCmpb
     }
 
     #[doc="Get the *mut pointer for the CH_CMPB register."]
@@ -658,36 +624,32 @@ impl PwmPeriph {
         (self.0 + 0x5c + (index * 64)) as *mut ChCmpb
     }
 
+    #[doc="Get the *const pointer for the CH_CMPB register."]
+    #[inline] pub fn ch_cmpb_ptr<I: Into<bits::R4>>(&self, index: I) -> *const ChCmpb { 
+           self.ch_cmpb_mut(index)
+    }
+
     #[doc="Read the CH_CMPB register."]
     #[inline] pub fn ch_cmpb<I: Into<bits::R4>>(&self, index: I) -> ChCmpb { 
-        let index: usize = index.into().value() as usize;
         unsafe {
-            read_volatile((self.0 + 0x5c + (index * 64)) as *const ChCmpb)
+            read_volatile(self.ch_cmpb_ptr(index))
         }
     }
 
     #[doc="Write the CH_CMPB register."]
     #[inline] pub fn set_ch_cmpb<I: Into<bits::R4>, F: FnOnce(ChCmpb) -> ChCmpb>(&self, index: I, f: F) -> &Self {
-        let index: usize = index.into().value() as usize;
         unsafe {
-            write_volatile((self.0 + 0x5c + (index * 64)) as *mut ChCmpb, f(ChCmpb(0)));
+            write_volatile(self.ch_cmpb_mut(index), f(ChCmpb(0)));
         }
         self
     }
 
     #[doc="Modify the CH_CMPB register."]
     #[inline] pub fn with_ch_cmpb<I: Into<bits::R4> + Copy, F: FnOnce(ChCmpb) -> ChCmpb>(&self, index: I, f: F) -> &Self {
-        let index: usize = index.into().value() as usize;
         unsafe {
-            write_volatile((self.0 + 0x5c + (index * 64)) as *mut ChCmpb, f(self.ch_cmpb(index)));
+            write_volatile(self.ch_cmpb_mut(index), f(self.ch_cmpb(index)));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the CH_GENA register."]
-    #[inline] pub fn ch_gena_ptr<I: Into<bits::R4>>(&self, index: I) -> *const ChGena { 
-        let index: usize = index.into().value() as usize;
-        (self.0 + 0x60 + (index * 64)) as *const ChGena
     }
 
     #[doc="Get the *mut pointer for the CH_GENA register."]
@@ -696,36 +658,32 @@ impl PwmPeriph {
         (self.0 + 0x60 + (index * 64)) as *mut ChGena
     }
 
+    #[doc="Get the *const pointer for the CH_GENA register."]
+    #[inline] pub fn ch_gena_ptr<I: Into<bits::R4>>(&self, index: I) -> *const ChGena { 
+           self.ch_gena_mut(index)
+    }
+
     #[doc="Read the CH_GENA register."]
     #[inline] pub fn ch_gena<I: Into<bits::R4>>(&self, index: I) -> ChGena { 
-        let index: usize = index.into().value() as usize;
         unsafe {
-            read_volatile((self.0 + 0x60 + (index * 64)) as *const ChGena)
+            read_volatile(self.ch_gena_ptr(index))
         }
     }
 
     #[doc="Write the CH_GENA register."]
     #[inline] pub fn set_ch_gena<I: Into<bits::R4>, F: FnOnce(ChGena) -> ChGena>(&self, index: I, f: F) -> &Self {
-        let index: usize = index.into().value() as usize;
         unsafe {
-            write_volatile((self.0 + 0x60 + (index * 64)) as *mut ChGena, f(ChGena(0)));
+            write_volatile(self.ch_gena_mut(index), f(ChGena(0)));
         }
         self
     }
 
     #[doc="Modify the CH_GENA register."]
     #[inline] pub fn with_ch_gena<I: Into<bits::R4> + Copy, F: FnOnce(ChGena) -> ChGena>(&self, index: I, f: F) -> &Self {
-        let index: usize = index.into().value() as usize;
         unsafe {
-            write_volatile((self.0 + 0x60 + (index * 64)) as *mut ChGena, f(self.ch_gena(index)));
+            write_volatile(self.ch_gena_mut(index), f(self.ch_gena(index)));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the CH_GENB register."]
-    #[inline] pub fn ch_genb_ptr<I: Into<bits::R4>>(&self, index: I) -> *const ChGenb { 
-        let index: usize = index.into().value() as usize;
-        (self.0 + 0x64 + (index * 64)) as *const ChGenb
     }
 
     #[doc="Get the *mut pointer for the CH_GENB register."]
@@ -734,36 +692,32 @@ impl PwmPeriph {
         (self.0 + 0x64 + (index * 64)) as *mut ChGenb
     }
 
+    #[doc="Get the *const pointer for the CH_GENB register."]
+    #[inline] pub fn ch_genb_ptr<I: Into<bits::R4>>(&self, index: I) -> *const ChGenb { 
+           self.ch_genb_mut(index)
+    }
+
     #[doc="Read the CH_GENB register."]
     #[inline] pub fn ch_genb<I: Into<bits::R4>>(&self, index: I) -> ChGenb { 
-        let index: usize = index.into().value() as usize;
         unsafe {
-            read_volatile((self.0 + 0x64 + (index * 64)) as *const ChGenb)
+            read_volatile(self.ch_genb_ptr(index))
         }
     }
 
     #[doc="Write the CH_GENB register."]
     #[inline] pub fn set_ch_genb<I: Into<bits::R4>, F: FnOnce(ChGenb) -> ChGenb>(&self, index: I, f: F) -> &Self {
-        let index: usize = index.into().value() as usize;
         unsafe {
-            write_volatile((self.0 + 0x64 + (index * 64)) as *mut ChGenb, f(ChGenb(0)));
+            write_volatile(self.ch_genb_mut(index), f(ChGenb(0)));
         }
         self
     }
 
     #[doc="Modify the CH_GENB register."]
     #[inline] pub fn with_ch_genb<I: Into<bits::R4> + Copy, F: FnOnce(ChGenb) -> ChGenb>(&self, index: I, f: F) -> &Self {
-        let index: usize = index.into().value() as usize;
         unsafe {
-            write_volatile((self.0 + 0x64 + (index * 64)) as *mut ChGenb, f(self.ch_genb(index)));
+            write_volatile(self.ch_genb_mut(index), f(self.ch_genb(index)));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the CH_DBCTL register."]
-    #[inline] pub fn ch_dbctl_ptr<I: Into<bits::R4>>(&self, index: I) -> *const ChDbctl { 
-        let index: usize = index.into().value() as usize;
-        (self.0 + 0x68 + (index * 64)) as *const ChDbctl
     }
 
     #[doc="Get the *mut pointer for the CH_DBCTL register."]
@@ -772,36 +726,32 @@ impl PwmPeriph {
         (self.0 + 0x68 + (index * 64)) as *mut ChDbctl
     }
 
+    #[doc="Get the *const pointer for the CH_DBCTL register."]
+    #[inline] pub fn ch_dbctl_ptr<I: Into<bits::R4>>(&self, index: I) -> *const ChDbctl { 
+           self.ch_dbctl_mut(index)
+    }
+
     #[doc="Read the CH_DBCTL register."]
     #[inline] pub fn ch_dbctl<I: Into<bits::R4>>(&self, index: I) -> ChDbctl { 
-        let index: usize = index.into().value() as usize;
         unsafe {
-            read_volatile((self.0 + 0x68 + (index * 64)) as *const ChDbctl)
+            read_volatile(self.ch_dbctl_ptr(index))
         }
     }
 
     #[doc="Write the CH_DBCTL register."]
     #[inline] pub fn set_ch_dbctl<I: Into<bits::R4>, F: FnOnce(ChDbctl) -> ChDbctl>(&self, index: I, f: F) -> &Self {
-        let index: usize = index.into().value() as usize;
         unsafe {
-            write_volatile((self.0 + 0x68 + (index * 64)) as *mut ChDbctl, f(ChDbctl(0)));
+            write_volatile(self.ch_dbctl_mut(index), f(ChDbctl(0)));
         }
         self
     }
 
     #[doc="Modify the CH_DBCTL register."]
     #[inline] pub fn with_ch_dbctl<I: Into<bits::R4> + Copy, F: FnOnce(ChDbctl) -> ChDbctl>(&self, index: I, f: F) -> &Self {
-        let index: usize = index.into().value() as usize;
         unsafe {
-            write_volatile((self.0 + 0x68 + (index * 64)) as *mut ChDbctl, f(self.ch_dbctl(index)));
+            write_volatile(self.ch_dbctl_mut(index), f(self.ch_dbctl(index)));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the CH_DBRISE register."]
-    #[inline] pub fn ch_dbrise_ptr<I: Into<bits::R4>>(&self, index: I) -> *const ChDbrise { 
-        let index: usize = index.into().value() as usize;
-        (self.0 + 0x6c + (index * 64)) as *const ChDbrise
     }
 
     #[doc="Get the *mut pointer for the CH_DBRISE register."]
@@ -810,36 +760,32 @@ impl PwmPeriph {
         (self.0 + 0x6c + (index * 64)) as *mut ChDbrise
     }
 
+    #[doc="Get the *const pointer for the CH_DBRISE register."]
+    #[inline] pub fn ch_dbrise_ptr<I: Into<bits::R4>>(&self, index: I) -> *const ChDbrise { 
+           self.ch_dbrise_mut(index)
+    }
+
     #[doc="Read the CH_DBRISE register."]
     #[inline] pub fn ch_dbrise<I: Into<bits::R4>>(&self, index: I) -> ChDbrise { 
-        let index: usize = index.into().value() as usize;
         unsafe {
-            read_volatile((self.0 + 0x6c + (index * 64)) as *const ChDbrise)
+            read_volatile(self.ch_dbrise_ptr(index))
         }
     }
 
     #[doc="Write the CH_DBRISE register."]
     #[inline] pub fn set_ch_dbrise<I: Into<bits::R4>, F: FnOnce(ChDbrise) -> ChDbrise>(&self, index: I, f: F) -> &Self {
-        let index: usize = index.into().value() as usize;
         unsafe {
-            write_volatile((self.0 + 0x6c + (index * 64)) as *mut ChDbrise, f(ChDbrise(0)));
+            write_volatile(self.ch_dbrise_mut(index), f(ChDbrise(0)));
         }
         self
     }
 
     #[doc="Modify the CH_DBRISE register."]
     #[inline] pub fn with_ch_dbrise<I: Into<bits::R4> + Copy, F: FnOnce(ChDbrise) -> ChDbrise>(&self, index: I, f: F) -> &Self {
-        let index: usize = index.into().value() as usize;
         unsafe {
-            write_volatile((self.0 + 0x6c + (index * 64)) as *mut ChDbrise, f(self.ch_dbrise(index)));
+            write_volatile(self.ch_dbrise_mut(index), f(self.ch_dbrise(index)));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the CH_DBFALL register."]
-    #[inline] pub fn ch_dbfall_ptr<I: Into<bits::R4>>(&self, index: I) -> *const ChDbfall { 
-        let index: usize = index.into().value() as usize;
-        (self.0 + 0x70 + (index * 64)) as *const ChDbfall
     }
 
     #[doc="Get the *mut pointer for the CH_DBFALL register."]
@@ -848,36 +794,32 @@ impl PwmPeriph {
         (self.0 + 0x70 + (index * 64)) as *mut ChDbfall
     }
 
+    #[doc="Get the *const pointer for the CH_DBFALL register."]
+    #[inline] pub fn ch_dbfall_ptr<I: Into<bits::R4>>(&self, index: I) -> *const ChDbfall { 
+           self.ch_dbfall_mut(index)
+    }
+
     #[doc="Read the CH_DBFALL register."]
     #[inline] pub fn ch_dbfall<I: Into<bits::R4>>(&self, index: I) -> ChDbfall { 
-        let index: usize = index.into().value() as usize;
         unsafe {
-            read_volatile((self.0 + 0x70 + (index * 64)) as *const ChDbfall)
+            read_volatile(self.ch_dbfall_ptr(index))
         }
     }
 
     #[doc="Write the CH_DBFALL register."]
     #[inline] pub fn set_ch_dbfall<I: Into<bits::R4>, F: FnOnce(ChDbfall) -> ChDbfall>(&self, index: I, f: F) -> &Self {
-        let index: usize = index.into().value() as usize;
         unsafe {
-            write_volatile((self.0 + 0x70 + (index * 64)) as *mut ChDbfall, f(ChDbfall(0)));
+            write_volatile(self.ch_dbfall_mut(index), f(ChDbfall(0)));
         }
         self
     }
 
     #[doc="Modify the CH_DBFALL register."]
     #[inline] pub fn with_ch_dbfall<I: Into<bits::R4> + Copy, F: FnOnce(ChDbfall) -> ChDbfall>(&self, index: I, f: F) -> &Self {
-        let index: usize = index.into().value() as usize;
         unsafe {
-            write_volatile((self.0 + 0x70 + (index * 64)) as *mut ChDbfall, f(self.ch_dbfall(index)));
+            write_volatile(self.ch_dbfall_mut(index), f(self.ch_dbfall(index)));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the CH_FLTSRC0 register."]
-    #[inline] pub fn ch_fltsrc0_ptr<I: Into<bits::R4>>(&self, index: I) -> *const ChFltsrc0 { 
-        let index: usize = index.into().value() as usize;
-        (self.0 + 0x74 + (index * 64)) as *const ChFltsrc0
     }
 
     #[doc="Get the *mut pointer for the CH_FLTSRC0 register."]
@@ -886,36 +828,32 @@ impl PwmPeriph {
         (self.0 + 0x74 + (index * 64)) as *mut ChFltsrc0
     }
 
+    #[doc="Get the *const pointer for the CH_FLTSRC0 register."]
+    #[inline] pub fn ch_fltsrc0_ptr<I: Into<bits::R4>>(&self, index: I) -> *const ChFltsrc0 { 
+           self.ch_fltsrc0_mut(index)
+    }
+
     #[doc="Read the CH_FLTSRC0 register."]
     #[inline] pub fn ch_fltsrc0<I: Into<bits::R4>>(&self, index: I) -> ChFltsrc0 { 
-        let index: usize = index.into().value() as usize;
         unsafe {
-            read_volatile((self.0 + 0x74 + (index * 64)) as *const ChFltsrc0)
+            read_volatile(self.ch_fltsrc0_ptr(index))
         }
     }
 
     #[doc="Write the CH_FLTSRC0 register."]
     #[inline] pub fn set_ch_fltsrc0<I: Into<bits::R4>, F: FnOnce(ChFltsrc0) -> ChFltsrc0>(&self, index: I, f: F) -> &Self {
-        let index: usize = index.into().value() as usize;
         unsafe {
-            write_volatile((self.0 + 0x74 + (index * 64)) as *mut ChFltsrc0, f(ChFltsrc0(0)));
+            write_volatile(self.ch_fltsrc0_mut(index), f(ChFltsrc0(0)));
         }
         self
     }
 
     #[doc="Modify the CH_FLTSRC0 register."]
     #[inline] pub fn with_ch_fltsrc0<I: Into<bits::R4> + Copy, F: FnOnce(ChFltsrc0) -> ChFltsrc0>(&self, index: I, f: F) -> &Self {
-        let index: usize = index.into().value() as usize;
         unsafe {
-            write_volatile((self.0 + 0x74 + (index * 64)) as *mut ChFltsrc0, f(self.ch_fltsrc0(index)));
+            write_volatile(self.ch_fltsrc0_mut(index), f(self.ch_fltsrc0(index)));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the CH_FLTSRC1 register."]
-    #[inline] pub fn ch_fltsrc1_ptr<I: Into<bits::R4>>(&self, index: I) -> *const ChFltsrc1 { 
-        let index: usize = index.into().value() as usize;
-        (self.0 + 0x78 + (index * 64)) as *const ChFltsrc1
     }
 
     #[doc="Get the *mut pointer for the CH_FLTSRC1 register."]
@@ -924,36 +862,32 @@ impl PwmPeriph {
         (self.0 + 0x78 + (index * 64)) as *mut ChFltsrc1
     }
 
+    #[doc="Get the *const pointer for the CH_FLTSRC1 register."]
+    #[inline] pub fn ch_fltsrc1_ptr<I: Into<bits::R4>>(&self, index: I) -> *const ChFltsrc1 { 
+           self.ch_fltsrc1_mut(index)
+    }
+
     #[doc="Read the CH_FLTSRC1 register."]
     #[inline] pub fn ch_fltsrc1<I: Into<bits::R4>>(&self, index: I) -> ChFltsrc1 { 
-        let index: usize = index.into().value() as usize;
         unsafe {
-            read_volatile((self.0 + 0x78 + (index * 64)) as *const ChFltsrc1)
+            read_volatile(self.ch_fltsrc1_ptr(index))
         }
     }
 
     #[doc="Write the CH_FLTSRC1 register."]
     #[inline] pub fn set_ch_fltsrc1<I: Into<bits::R4>, F: FnOnce(ChFltsrc1) -> ChFltsrc1>(&self, index: I, f: F) -> &Self {
-        let index: usize = index.into().value() as usize;
         unsafe {
-            write_volatile((self.0 + 0x78 + (index * 64)) as *mut ChFltsrc1, f(ChFltsrc1(0)));
+            write_volatile(self.ch_fltsrc1_mut(index), f(ChFltsrc1(0)));
         }
         self
     }
 
     #[doc="Modify the CH_FLTSRC1 register."]
     #[inline] pub fn with_ch_fltsrc1<I: Into<bits::R4> + Copy, F: FnOnce(ChFltsrc1) -> ChFltsrc1>(&self, index: I, f: F) -> &Self {
-        let index: usize = index.into().value() as usize;
         unsafe {
-            write_volatile((self.0 + 0x78 + (index * 64)) as *mut ChFltsrc1, f(self.ch_fltsrc1(index)));
+            write_volatile(self.ch_fltsrc1_mut(index), f(self.ch_fltsrc1(index)));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the CH_MINFLTPER register."]
-    #[inline] pub fn ch_minfltper_ptr<I: Into<bits::R4>>(&self, index: I) -> *const ChMinfltper { 
-        let index: usize = index.into().value() as usize;
-        (self.0 + 0x7c + (index * 64)) as *const ChMinfltper
     }
 
     #[doc="Get the *mut pointer for the CH_MINFLTPER register."]
@@ -962,36 +896,32 @@ impl PwmPeriph {
         (self.0 + 0x7c + (index * 64)) as *mut ChMinfltper
     }
 
+    #[doc="Get the *const pointer for the CH_MINFLTPER register."]
+    #[inline] pub fn ch_minfltper_ptr<I: Into<bits::R4>>(&self, index: I) -> *const ChMinfltper { 
+           self.ch_minfltper_mut(index)
+    }
+
     #[doc="Read the CH_MINFLTPER register."]
     #[inline] pub fn ch_minfltper<I: Into<bits::R4>>(&self, index: I) -> ChMinfltper { 
-        let index: usize = index.into().value() as usize;
         unsafe {
-            read_volatile((self.0 + 0x7c + (index * 64)) as *const ChMinfltper)
+            read_volatile(self.ch_minfltper_ptr(index))
         }
     }
 
     #[doc="Write the CH_MINFLTPER register."]
     #[inline] pub fn set_ch_minfltper<I: Into<bits::R4>, F: FnOnce(ChMinfltper) -> ChMinfltper>(&self, index: I, f: F) -> &Self {
-        let index: usize = index.into().value() as usize;
         unsafe {
-            write_volatile((self.0 + 0x7c + (index * 64)) as *mut ChMinfltper, f(ChMinfltper(0)));
+            write_volatile(self.ch_minfltper_mut(index), f(ChMinfltper(0)));
         }
         self
     }
 
     #[doc="Modify the CH_MINFLTPER register."]
     #[inline] pub fn with_ch_minfltper<I: Into<bits::R4> + Copy, F: FnOnce(ChMinfltper) -> ChMinfltper>(&self, index: I, f: F) -> &Self {
-        let index: usize = index.into().value() as usize;
         unsafe {
-            write_volatile((self.0 + 0x7c + (index * 64)) as *mut ChMinfltper, f(self.ch_minfltper(index)));
+            write_volatile(self.ch_minfltper_mut(index), f(self.ch_minfltper(index)));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the CH_FLTSEN register."]
-    #[inline] pub fn ch_fltsen_ptr<I: Into<bits::R4>>(&self, index: I) -> *const ChFltsen { 
-        let index: usize = index.into().value() as usize;
-        (self.0 + 0x800 + (index * 128)) as *const ChFltsen
     }
 
     #[doc="Get the *mut pointer for the CH_FLTSEN register."]
@@ -1000,36 +930,32 @@ impl PwmPeriph {
         (self.0 + 0x800 + (index * 128)) as *mut ChFltsen
     }
 
+    #[doc="Get the *const pointer for the CH_FLTSEN register."]
+    #[inline] pub fn ch_fltsen_ptr<I: Into<bits::R4>>(&self, index: I) -> *const ChFltsen { 
+           self.ch_fltsen_mut(index)
+    }
+
     #[doc="Read the CH_FLTSEN register."]
     #[inline] pub fn ch_fltsen<I: Into<bits::R4>>(&self, index: I) -> ChFltsen { 
-        let index: usize = index.into().value() as usize;
         unsafe {
-            read_volatile((self.0 + 0x800 + (index * 128)) as *const ChFltsen)
+            read_volatile(self.ch_fltsen_ptr(index))
         }
     }
 
     #[doc="Write the CH_FLTSEN register."]
     #[inline] pub fn set_ch_fltsen<I: Into<bits::R4>, F: FnOnce(ChFltsen) -> ChFltsen>(&self, index: I, f: F) -> &Self {
-        let index: usize = index.into().value() as usize;
         unsafe {
-            write_volatile((self.0 + 0x800 + (index * 128)) as *mut ChFltsen, f(ChFltsen(0)));
+            write_volatile(self.ch_fltsen_mut(index), f(ChFltsen(0)));
         }
         self
     }
 
     #[doc="Modify the CH_FLTSEN register."]
     #[inline] pub fn with_ch_fltsen<I: Into<bits::R4> + Copy, F: FnOnce(ChFltsen) -> ChFltsen>(&self, index: I, f: F) -> &Self {
-        let index: usize = index.into().value() as usize;
         unsafe {
-            write_volatile((self.0 + 0x800 + (index * 128)) as *mut ChFltsen, f(self.ch_fltsen(index)));
+            write_volatile(self.ch_fltsen_mut(index), f(self.ch_fltsen(index)));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the CH_FLTSTAT0 register."]
-    #[inline] pub fn ch_fltstat0_ptr<I: Into<bits::R4>>(&self, index: I) -> *const ChFltstat0 { 
-        let index: usize = index.into().value() as usize;
-        (self.0 + 0x804 + (index * 128)) as *const ChFltstat0
     }
 
     #[doc="Get the *mut pointer for the CH_FLTSTAT0 register."]
@@ -1038,17 +964,16 @@ impl PwmPeriph {
         (self.0 + 0x804 + (index * 128)) as *mut ChFltstat0
     }
 
-    #[doc="Read the CH_FLTSTAT0 register."]
-    #[inline] pub fn ch_fltstat0<I: Into<bits::R4>>(&self, index: I) -> ChFltstat0 { 
-        let index: usize = index.into().value() as usize;
-        unsafe {
-            read_volatile((self.0 + 0x804 + (index * 128)) as *const ChFltstat0)
-        }
+    #[doc="Get the *const pointer for the CH_FLTSTAT0 register."]
+    #[inline] pub fn ch_fltstat0_ptr<I: Into<bits::R4>>(&self, index: I) -> *const ChFltstat0 { 
+           self.ch_fltstat0_mut(index)
     }
 
-    #[doc="Get the *const pointer for the CH_FLTSTAT1 register."]
-    #[inline] pub fn ch_fltstat1_ptr(&self) -> *const ChFltstat1 { 
-        (self.0 + 0x808) as *const ChFltstat1
+    #[doc="Read the CH_FLTSTAT0 register."]
+    #[inline] pub fn ch_fltstat0<I: Into<bits::R4>>(&self, index: I) -> ChFltstat0 { 
+        unsafe {
+            read_volatile(self.ch_fltstat0_ptr(index))
+        }
     }
 
     #[doc="Get the *mut pointer for the CH_FLTSTAT1 register."]
@@ -1056,16 +981,16 @@ impl PwmPeriph {
         (self.0 + 0x808) as *mut ChFltstat1
     }
 
+    #[doc="Get the *const pointer for the CH_FLTSTAT1 register."]
+    #[inline] pub fn ch_fltstat1_ptr(&self) -> *const ChFltstat1 { 
+           self.ch_fltstat1_mut()
+    }
+
     #[doc="Read the CH_FLTSTAT1 register."]
     #[inline] pub fn ch_fltstat1(&self) -> ChFltstat1 { 
         unsafe {
-            read_volatile((self.0 + 0x808) as *const ChFltstat1)
+            read_volatile(self.ch_fltstat1_ptr())
         }
-    }
-
-    #[doc="Get the *const pointer for the PP register."]
-    #[inline] pub fn pp_ptr(&self) -> *const Pp { 
-        (self.0 + 0xfc0) as *const Pp
     }
 
     #[doc="Get the *mut pointer for the PP register."]
@@ -1073,17 +998,22 @@ impl PwmPeriph {
         (self.0 + 0xfc0) as *mut Pp
     }
 
+    #[doc="Get the *const pointer for the PP register."]
+    #[inline] pub fn pp_ptr(&self) -> *const Pp { 
+           self.pp_mut()
+    }
+
     #[doc="Read the PP register."]
     #[inline] pub fn pp(&self) -> Pp { 
         unsafe {
-            read_volatile((self.0 + 0xfc0) as *const Pp)
+            read_volatile(self.pp_ptr())
         }
     }
 
     #[doc="Write the PP register."]
     #[inline] pub fn set_pp<F: FnOnce(Pp) -> Pp>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xfc0) as *mut Pp, f(Pp(0)));
+            write_volatile(self.pp_mut(), f(Pp(0)));
         }
         self
     }
@@ -1091,14 +1021,9 @@ impl PwmPeriph {
     #[doc="Modify the PP register."]
     #[inline] pub fn with_pp<F: FnOnce(Pp) -> Pp>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xfc0) as *mut Pp, f(self.pp()));
+            write_volatile(self.pp_mut(), f(self.pp()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the CC register."]
-    #[inline] pub fn cc_ptr(&self) -> *const Cc { 
-        (self.0 + 0xfc8) as *const Cc
     }
 
     #[doc="Get the *mut pointer for the CC register."]
@@ -1106,17 +1031,22 @@ impl PwmPeriph {
         (self.0 + 0xfc8) as *mut Cc
     }
 
+    #[doc="Get the *const pointer for the CC register."]
+    #[inline] pub fn cc_ptr(&self) -> *const Cc { 
+           self.cc_mut()
+    }
+
     #[doc="Read the CC register."]
     #[inline] pub fn cc(&self) -> Cc { 
         unsafe {
-            read_volatile((self.0 + 0xfc8) as *const Cc)
+            read_volatile(self.cc_ptr())
         }
     }
 
     #[doc="Write the CC register."]
     #[inline] pub fn set_cc<F: FnOnce(Cc) -> Cc>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xfc8) as *mut Cc, f(Cc(0)));
+            write_volatile(self.cc_mut(), f(Cc(0)));
         }
         self
     }
@@ -1124,7 +1054,7 @@ impl PwmPeriph {
     #[doc="Modify the CC register."]
     #[inline] pub fn with_cc<F: FnOnce(Cc) -> Cc>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xfc8) as *mut Cc, f(self.cc()));
+            write_volatile(self.cc_mut(), f(self.cc()));
         }
         self
     }

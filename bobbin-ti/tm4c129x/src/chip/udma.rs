@@ -9,27 +9,27 @@ pub struct UdmaPeriph(pub usize);
 
 
 impl UdmaPeriph {
-    #[doc="Get the *const pointer for the STAT register."]
-    #[inline] pub fn stat_ptr(&self) -> *const Stat { 
-        (self.0 + 0x0) as *const Stat
-    }
-
     #[doc="Get the *mut pointer for the STAT register."]
     #[inline] pub fn stat_mut(&self) -> *mut Stat { 
         (self.0 + 0x0) as *mut Stat
     }
 
+    #[doc="Get the *const pointer for the STAT register."]
+    #[inline] pub fn stat_ptr(&self) -> *const Stat { 
+           self.stat_mut()
+    }
+
     #[doc="Read the STAT register."]
     #[inline] pub fn stat(&self) -> Stat { 
         unsafe {
-            read_volatile((self.0 + 0x0) as *const Stat)
+            read_volatile(self.stat_ptr())
         }
     }
 
     #[doc="Write the STAT register."]
     #[inline] pub fn set_stat<F: FnOnce(Stat) -> Stat>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x0) as *mut Stat, f(Stat(0)));
+            write_volatile(self.stat_mut(), f(Stat(0)));
         }
         self
     }
@@ -37,14 +37,9 @@ impl UdmaPeriph {
     #[doc="Modify the STAT register."]
     #[inline] pub fn with_stat<F: FnOnce(Stat) -> Stat>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x0) as *mut Stat, f(self.stat()));
+            write_volatile(self.stat_mut(), f(self.stat()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the CFG register."]
-    #[inline] pub fn cfg_ptr(&self) -> *const Cfg { 
-        (self.0 + 0x4) as *const Cfg
     }
 
     #[doc="Get the *mut pointer for the CFG register."]
@@ -52,17 +47,17 @@ impl UdmaPeriph {
         (self.0 + 0x4) as *mut Cfg
     }
 
+    #[doc="Get the *const pointer for the CFG register."]
+    #[inline] pub fn cfg_ptr(&self) -> *const Cfg { 
+           self.cfg_mut()
+    }
+
     #[doc="Write the CFG register."]
     #[inline] pub fn set_cfg<F: FnOnce(Cfg) -> Cfg>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x4) as *mut Cfg, f(Cfg(0)));
+            write_volatile(self.cfg_mut(), f(Cfg(0)));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the CTLBASE register."]
-    #[inline] pub fn ctlbase_ptr(&self) -> *const Ctlbase { 
-        (self.0 + 0x8) as *const Ctlbase
     }
 
     #[doc="Get the *mut pointer for the CTLBASE register."]
@@ -70,17 +65,22 @@ impl UdmaPeriph {
         (self.0 + 0x8) as *mut Ctlbase
     }
 
+    #[doc="Get the *const pointer for the CTLBASE register."]
+    #[inline] pub fn ctlbase_ptr(&self) -> *const Ctlbase { 
+           self.ctlbase_mut()
+    }
+
     #[doc="Read the CTLBASE register."]
     #[inline] pub fn ctlbase(&self) -> Ctlbase { 
         unsafe {
-            read_volatile((self.0 + 0x8) as *const Ctlbase)
+            read_volatile(self.ctlbase_ptr())
         }
     }
 
     #[doc="Write the CTLBASE register."]
     #[inline] pub fn set_ctlbase<F: FnOnce(Ctlbase) -> Ctlbase>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x8) as *mut Ctlbase, f(Ctlbase(0)));
+            write_volatile(self.ctlbase_mut(), f(Ctlbase(0)));
         }
         self
     }
@@ -88,14 +88,9 @@ impl UdmaPeriph {
     #[doc="Modify the CTLBASE register."]
     #[inline] pub fn with_ctlbase<F: FnOnce(Ctlbase) -> Ctlbase>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x8) as *mut Ctlbase, f(self.ctlbase()));
+            write_volatile(self.ctlbase_mut(), f(self.ctlbase()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the ALTBASE register."]
-    #[inline] pub fn altbase_ptr(&self) -> *const Altbase { 
-        (self.0 + 0xc) as *const Altbase
     }
 
     #[doc="Get the *mut pointer for the ALTBASE register."]
@@ -103,17 +98,22 @@ impl UdmaPeriph {
         (self.0 + 0xc) as *mut Altbase
     }
 
+    #[doc="Get the *const pointer for the ALTBASE register."]
+    #[inline] pub fn altbase_ptr(&self) -> *const Altbase { 
+           self.altbase_mut()
+    }
+
     #[doc="Read the ALTBASE register."]
     #[inline] pub fn altbase(&self) -> Altbase { 
         unsafe {
-            read_volatile((self.0 + 0xc) as *const Altbase)
+            read_volatile(self.altbase_ptr())
         }
     }
 
     #[doc="Write the ALTBASE register."]
     #[inline] pub fn set_altbase<F: FnOnce(Altbase) -> Altbase>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xc) as *mut Altbase, f(Altbase(0)));
+            write_volatile(self.altbase_mut(), f(Altbase(0)));
         }
         self
     }
@@ -121,14 +121,9 @@ impl UdmaPeriph {
     #[doc="Modify the ALTBASE register."]
     #[inline] pub fn with_altbase<F: FnOnce(Altbase) -> Altbase>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xc) as *mut Altbase, f(self.altbase()));
+            write_volatile(self.altbase_mut(), f(self.altbase()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the WAITSTAT register."]
-    #[inline] pub fn waitstat_ptr(&self) -> *const Waitstat { 
-        (self.0 + 0x10) as *const Waitstat
     }
 
     #[doc="Get the *mut pointer for the WAITSTAT register."]
@@ -136,17 +131,22 @@ impl UdmaPeriph {
         (self.0 + 0x10) as *mut Waitstat
     }
 
+    #[doc="Get the *const pointer for the WAITSTAT register."]
+    #[inline] pub fn waitstat_ptr(&self) -> *const Waitstat { 
+           self.waitstat_mut()
+    }
+
     #[doc="Read the WAITSTAT register."]
     #[inline] pub fn waitstat(&self) -> Waitstat { 
         unsafe {
-            read_volatile((self.0 + 0x10) as *const Waitstat)
+            read_volatile(self.waitstat_ptr())
         }
     }
 
     #[doc="Write the WAITSTAT register."]
     #[inline] pub fn set_waitstat<F: FnOnce(Waitstat) -> Waitstat>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x10) as *mut Waitstat, f(Waitstat(0)));
+            write_volatile(self.waitstat_mut(), f(Waitstat(0)));
         }
         self
     }
@@ -154,14 +154,9 @@ impl UdmaPeriph {
     #[doc="Modify the WAITSTAT register."]
     #[inline] pub fn with_waitstat<F: FnOnce(Waitstat) -> Waitstat>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x10) as *mut Waitstat, f(self.waitstat()));
+            write_volatile(self.waitstat_mut(), f(self.waitstat()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the SWREQ register."]
-    #[inline] pub fn swreq_ptr(&self) -> *const Swreq { 
-        (self.0 + 0x14) as *const Swreq
     }
 
     #[doc="Get the *mut pointer for the SWREQ register."]
@@ -169,17 +164,17 @@ impl UdmaPeriph {
         (self.0 + 0x14) as *mut Swreq
     }
 
+    #[doc="Get the *const pointer for the SWREQ register."]
+    #[inline] pub fn swreq_ptr(&self) -> *const Swreq { 
+           self.swreq_mut()
+    }
+
     #[doc="Write the SWREQ register."]
     #[inline] pub fn set_swreq<F: FnOnce(Swreq) -> Swreq>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x14) as *mut Swreq, f(Swreq(0)));
+            write_volatile(self.swreq_mut(), f(Swreq(0)));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the USEBURSTSET register."]
-    #[inline] pub fn useburstset_ptr(&self) -> *const Useburstset { 
-        (self.0 + 0x18) as *const Useburstset
     }
 
     #[doc="Get the *mut pointer for the USEBURSTSET register."]
@@ -187,17 +182,22 @@ impl UdmaPeriph {
         (self.0 + 0x18) as *mut Useburstset
     }
 
+    #[doc="Get the *const pointer for the USEBURSTSET register."]
+    #[inline] pub fn useburstset_ptr(&self) -> *const Useburstset { 
+           self.useburstset_mut()
+    }
+
     #[doc="Read the USEBURSTSET register."]
     #[inline] pub fn useburstset(&self) -> Useburstset { 
         unsafe {
-            read_volatile((self.0 + 0x18) as *const Useburstset)
+            read_volatile(self.useburstset_ptr())
         }
     }
 
     #[doc="Write the USEBURSTSET register."]
     #[inline] pub fn set_useburstset<F: FnOnce(Useburstset) -> Useburstset>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x18) as *mut Useburstset, f(Useburstset(0)));
+            write_volatile(self.useburstset_mut(), f(Useburstset(0)));
         }
         self
     }
@@ -205,14 +205,9 @@ impl UdmaPeriph {
     #[doc="Modify the USEBURSTSET register."]
     #[inline] pub fn with_useburstset<F: FnOnce(Useburstset) -> Useburstset>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x18) as *mut Useburstset, f(self.useburstset()));
+            write_volatile(self.useburstset_mut(), f(self.useburstset()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the USEBURSTCLR register."]
-    #[inline] pub fn useburstclr_ptr(&self) -> *const Useburstclr { 
-        (self.0 + 0x1c) as *const Useburstclr
     }
 
     #[doc="Get the *mut pointer for the USEBURSTCLR register."]
@@ -220,17 +215,17 @@ impl UdmaPeriph {
         (self.0 + 0x1c) as *mut Useburstclr
     }
 
+    #[doc="Get the *const pointer for the USEBURSTCLR register."]
+    #[inline] pub fn useburstclr_ptr(&self) -> *const Useburstclr { 
+           self.useburstclr_mut()
+    }
+
     #[doc="Write the USEBURSTCLR register."]
     #[inline] pub fn set_useburstclr<F: FnOnce(Useburstclr) -> Useburstclr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x1c) as *mut Useburstclr, f(Useburstclr(0)));
+            write_volatile(self.useburstclr_mut(), f(Useburstclr(0)));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the REQMASKSET register."]
-    #[inline] pub fn reqmaskset_ptr(&self) -> *const Reqmaskset { 
-        (self.0 + 0x20) as *const Reqmaskset
     }
 
     #[doc="Get the *mut pointer for the REQMASKSET register."]
@@ -238,17 +233,22 @@ impl UdmaPeriph {
         (self.0 + 0x20) as *mut Reqmaskset
     }
 
+    #[doc="Get the *const pointer for the REQMASKSET register."]
+    #[inline] pub fn reqmaskset_ptr(&self) -> *const Reqmaskset { 
+           self.reqmaskset_mut()
+    }
+
     #[doc="Read the REQMASKSET register."]
     #[inline] pub fn reqmaskset(&self) -> Reqmaskset { 
         unsafe {
-            read_volatile((self.0 + 0x20) as *const Reqmaskset)
+            read_volatile(self.reqmaskset_ptr())
         }
     }
 
     #[doc="Write the REQMASKSET register."]
     #[inline] pub fn set_reqmaskset<F: FnOnce(Reqmaskset) -> Reqmaskset>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x20) as *mut Reqmaskset, f(Reqmaskset(0)));
+            write_volatile(self.reqmaskset_mut(), f(Reqmaskset(0)));
         }
         self
     }
@@ -256,14 +256,9 @@ impl UdmaPeriph {
     #[doc="Modify the REQMASKSET register."]
     #[inline] pub fn with_reqmaskset<F: FnOnce(Reqmaskset) -> Reqmaskset>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x20) as *mut Reqmaskset, f(self.reqmaskset()));
+            write_volatile(self.reqmaskset_mut(), f(self.reqmaskset()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the REQMASKCLR register."]
-    #[inline] pub fn reqmaskclr_ptr(&self) -> *const Reqmaskclr { 
-        (self.0 + 0x24) as *const Reqmaskclr
     }
 
     #[doc="Get the *mut pointer for the REQMASKCLR register."]
@@ -271,17 +266,17 @@ impl UdmaPeriph {
         (self.0 + 0x24) as *mut Reqmaskclr
     }
 
+    #[doc="Get the *const pointer for the REQMASKCLR register."]
+    #[inline] pub fn reqmaskclr_ptr(&self) -> *const Reqmaskclr { 
+           self.reqmaskclr_mut()
+    }
+
     #[doc="Write the REQMASKCLR register."]
     #[inline] pub fn set_reqmaskclr<F: FnOnce(Reqmaskclr) -> Reqmaskclr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x24) as *mut Reqmaskclr, f(Reqmaskclr(0)));
+            write_volatile(self.reqmaskclr_mut(), f(Reqmaskclr(0)));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the ENASET register."]
-    #[inline] pub fn enaset_ptr(&self) -> *const Enaset { 
-        (self.0 + 0x28) as *const Enaset
     }
 
     #[doc="Get the *mut pointer for the ENASET register."]
@@ -289,17 +284,22 @@ impl UdmaPeriph {
         (self.0 + 0x28) as *mut Enaset
     }
 
+    #[doc="Get the *const pointer for the ENASET register."]
+    #[inline] pub fn enaset_ptr(&self) -> *const Enaset { 
+           self.enaset_mut()
+    }
+
     #[doc="Read the ENASET register."]
     #[inline] pub fn enaset(&self) -> Enaset { 
         unsafe {
-            read_volatile((self.0 + 0x28) as *const Enaset)
+            read_volatile(self.enaset_ptr())
         }
     }
 
     #[doc="Write the ENASET register."]
     #[inline] pub fn set_enaset<F: FnOnce(Enaset) -> Enaset>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x28) as *mut Enaset, f(Enaset(0)));
+            write_volatile(self.enaset_mut(), f(Enaset(0)));
         }
         self
     }
@@ -307,14 +307,9 @@ impl UdmaPeriph {
     #[doc="Modify the ENASET register."]
     #[inline] pub fn with_enaset<F: FnOnce(Enaset) -> Enaset>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x28) as *mut Enaset, f(self.enaset()));
+            write_volatile(self.enaset_mut(), f(self.enaset()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the ENACLR register."]
-    #[inline] pub fn enaclr_ptr(&self) -> *const Enaclr { 
-        (self.0 + 0x2c) as *const Enaclr
     }
 
     #[doc="Get the *mut pointer for the ENACLR register."]
@@ -322,17 +317,17 @@ impl UdmaPeriph {
         (self.0 + 0x2c) as *mut Enaclr
     }
 
+    #[doc="Get the *const pointer for the ENACLR register."]
+    #[inline] pub fn enaclr_ptr(&self) -> *const Enaclr { 
+           self.enaclr_mut()
+    }
+
     #[doc="Write the ENACLR register."]
     #[inline] pub fn set_enaclr<F: FnOnce(Enaclr) -> Enaclr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x2c) as *mut Enaclr, f(Enaclr(0)));
+            write_volatile(self.enaclr_mut(), f(Enaclr(0)));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the ALTSET register."]
-    #[inline] pub fn altset_ptr(&self) -> *const Altset { 
-        (self.0 + 0x30) as *const Altset
     }
 
     #[doc="Get the *mut pointer for the ALTSET register."]
@@ -340,17 +335,22 @@ impl UdmaPeriph {
         (self.0 + 0x30) as *mut Altset
     }
 
+    #[doc="Get the *const pointer for the ALTSET register."]
+    #[inline] pub fn altset_ptr(&self) -> *const Altset { 
+           self.altset_mut()
+    }
+
     #[doc="Read the ALTSET register."]
     #[inline] pub fn altset(&self) -> Altset { 
         unsafe {
-            read_volatile((self.0 + 0x30) as *const Altset)
+            read_volatile(self.altset_ptr())
         }
     }
 
     #[doc="Write the ALTSET register."]
     #[inline] pub fn set_altset<F: FnOnce(Altset) -> Altset>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x30) as *mut Altset, f(Altset(0)));
+            write_volatile(self.altset_mut(), f(Altset(0)));
         }
         self
     }
@@ -358,14 +358,9 @@ impl UdmaPeriph {
     #[doc="Modify the ALTSET register."]
     #[inline] pub fn with_altset<F: FnOnce(Altset) -> Altset>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x30) as *mut Altset, f(self.altset()));
+            write_volatile(self.altset_mut(), f(self.altset()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the ALTCLR register."]
-    #[inline] pub fn altclr_ptr(&self) -> *const Altclr { 
-        (self.0 + 0x34) as *const Altclr
     }
 
     #[doc="Get the *mut pointer for the ALTCLR register."]
@@ -373,17 +368,17 @@ impl UdmaPeriph {
         (self.0 + 0x34) as *mut Altclr
     }
 
+    #[doc="Get the *const pointer for the ALTCLR register."]
+    #[inline] pub fn altclr_ptr(&self) -> *const Altclr { 
+           self.altclr_mut()
+    }
+
     #[doc="Write the ALTCLR register."]
     #[inline] pub fn set_altclr<F: FnOnce(Altclr) -> Altclr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x34) as *mut Altclr, f(Altclr(0)));
+            write_volatile(self.altclr_mut(), f(Altclr(0)));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the PRIOSET register."]
-    #[inline] pub fn prioset_ptr(&self) -> *const Prioset { 
-        (self.0 + 0x38) as *const Prioset
     }
 
     #[doc="Get the *mut pointer for the PRIOSET register."]
@@ -391,17 +386,22 @@ impl UdmaPeriph {
         (self.0 + 0x38) as *mut Prioset
     }
 
+    #[doc="Get the *const pointer for the PRIOSET register."]
+    #[inline] pub fn prioset_ptr(&self) -> *const Prioset { 
+           self.prioset_mut()
+    }
+
     #[doc="Read the PRIOSET register."]
     #[inline] pub fn prioset(&self) -> Prioset { 
         unsafe {
-            read_volatile((self.0 + 0x38) as *const Prioset)
+            read_volatile(self.prioset_ptr())
         }
     }
 
     #[doc="Write the PRIOSET register."]
     #[inline] pub fn set_prioset<F: FnOnce(Prioset) -> Prioset>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x38) as *mut Prioset, f(Prioset(0)));
+            write_volatile(self.prioset_mut(), f(Prioset(0)));
         }
         self
     }
@@ -409,14 +409,9 @@ impl UdmaPeriph {
     #[doc="Modify the PRIOSET register."]
     #[inline] pub fn with_prioset<F: FnOnce(Prioset) -> Prioset>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x38) as *mut Prioset, f(self.prioset()));
+            write_volatile(self.prioset_mut(), f(self.prioset()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the PRIOCLR register."]
-    #[inline] pub fn prioclr_ptr(&self) -> *const Prioclr { 
-        (self.0 + 0x3c) as *const Prioclr
     }
 
     #[doc="Get the *mut pointer for the PRIOCLR register."]
@@ -424,17 +419,17 @@ impl UdmaPeriph {
         (self.0 + 0x3c) as *mut Prioclr
     }
 
+    #[doc="Get the *const pointer for the PRIOCLR register."]
+    #[inline] pub fn prioclr_ptr(&self) -> *const Prioclr { 
+           self.prioclr_mut()
+    }
+
     #[doc="Write the PRIOCLR register."]
     #[inline] pub fn set_prioclr<F: FnOnce(Prioclr) -> Prioclr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x3c) as *mut Prioclr, f(Prioclr(0)));
+            write_volatile(self.prioclr_mut(), f(Prioclr(0)));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the ERRCLR register."]
-    #[inline] pub fn errclr_ptr(&self) -> *const Errclr { 
-        (self.0 + 0x4c) as *const Errclr
     }
 
     #[doc="Get the *mut pointer for the ERRCLR register."]
@@ -442,17 +437,22 @@ impl UdmaPeriph {
         (self.0 + 0x4c) as *mut Errclr
     }
 
+    #[doc="Get the *const pointer for the ERRCLR register."]
+    #[inline] pub fn errclr_ptr(&self) -> *const Errclr { 
+           self.errclr_mut()
+    }
+
     #[doc="Read the ERRCLR register."]
     #[inline] pub fn errclr(&self) -> Errclr { 
         unsafe {
-            read_volatile((self.0 + 0x4c) as *const Errclr)
+            read_volatile(self.errclr_ptr())
         }
     }
 
     #[doc="Write the ERRCLR register."]
     #[inline] pub fn set_errclr<F: FnOnce(Errclr) -> Errclr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x4c) as *mut Errclr, f(Errclr(0)));
+            write_volatile(self.errclr_mut(), f(Errclr(0)));
         }
         self
     }
@@ -460,14 +460,9 @@ impl UdmaPeriph {
     #[doc="Modify the ERRCLR register."]
     #[inline] pub fn with_errclr<F: FnOnce(Errclr) -> Errclr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x4c) as *mut Errclr, f(self.errclr()));
+            write_volatile(self.errclr_mut(), f(self.errclr()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the CHASGN register."]
-    #[inline] pub fn chasgn_ptr(&self) -> *const Chasgn { 
-        (self.0 + 0x500) as *const Chasgn
     }
 
     #[doc="Get the *mut pointer for the CHASGN register."]
@@ -475,17 +470,22 @@ impl UdmaPeriph {
         (self.0 + 0x500) as *mut Chasgn
     }
 
+    #[doc="Get the *const pointer for the CHASGN register."]
+    #[inline] pub fn chasgn_ptr(&self) -> *const Chasgn { 
+           self.chasgn_mut()
+    }
+
     #[doc="Read the CHASGN register."]
     #[inline] pub fn chasgn(&self) -> Chasgn { 
         unsafe {
-            read_volatile((self.0 + 0x500) as *const Chasgn)
+            read_volatile(self.chasgn_ptr())
         }
     }
 
     #[doc="Write the CHASGN register."]
     #[inline] pub fn set_chasgn<F: FnOnce(Chasgn) -> Chasgn>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x500) as *mut Chasgn, f(Chasgn(0)));
+            write_volatile(self.chasgn_mut(), f(Chasgn(0)));
         }
         self
     }
@@ -493,14 +493,9 @@ impl UdmaPeriph {
     #[doc="Modify the CHASGN register."]
     #[inline] pub fn with_chasgn<F: FnOnce(Chasgn) -> Chasgn>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x500) as *mut Chasgn, f(self.chasgn()));
+            write_volatile(self.chasgn_mut(), f(self.chasgn()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the CHMAP0 register."]
-    #[inline] pub fn chmap0_ptr(&self) -> *const Chmap0 { 
-        (self.0 + 0x510) as *const Chmap0
     }
 
     #[doc="Get the *mut pointer for the CHMAP0 register."]
@@ -508,17 +503,22 @@ impl UdmaPeriph {
         (self.0 + 0x510) as *mut Chmap0
     }
 
+    #[doc="Get the *const pointer for the CHMAP0 register."]
+    #[inline] pub fn chmap0_ptr(&self) -> *const Chmap0 { 
+           self.chmap0_mut()
+    }
+
     #[doc="Read the CHMAP0 register."]
     #[inline] pub fn chmap0(&self) -> Chmap0 { 
         unsafe {
-            read_volatile((self.0 + 0x510) as *const Chmap0)
+            read_volatile(self.chmap0_ptr())
         }
     }
 
     #[doc="Write the CHMAP0 register."]
     #[inline] pub fn set_chmap0<F: FnOnce(Chmap0) -> Chmap0>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x510) as *mut Chmap0, f(Chmap0(0)));
+            write_volatile(self.chmap0_mut(), f(Chmap0(0)));
         }
         self
     }
@@ -526,14 +526,9 @@ impl UdmaPeriph {
     #[doc="Modify the CHMAP0 register."]
     #[inline] pub fn with_chmap0<F: FnOnce(Chmap0) -> Chmap0>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x510) as *mut Chmap0, f(self.chmap0()));
+            write_volatile(self.chmap0_mut(), f(self.chmap0()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the CHMAP1 register."]
-    #[inline] pub fn chmap1_ptr(&self) -> *const Chmap1 { 
-        (self.0 + 0x514) as *const Chmap1
     }
 
     #[doc="Get the *mut pointer for the CHMAP1 register."]
@@ -541,17 +536,22 @@ impl UdmaPeriph {
         (self.0 + 0x514) as *mut Chmap1
     }
 
+    #[doc="Get the *const pointer for the CHMAP1 register."]
+    #[inline] pub fn chmap1_ptr(&self) -> *const Chmap1 { 
+           self.chmap1_mut()
+    }
+
     #[doc="Read the CHMAP1 register."]
     #[inline] pub fn chmap1(&self) -> Chmap1 { 
         unsafe {
-            read_volatile((self.0 + 0x514) as *const Chmap1)
+            read_volatile(self.chmap1_ptr())
         }
     }
 
     #[doc="Write the CHMAP1 register."]
     #[inline] pub fn set_chmap1<F: FnOnce(Chmap1) -> Chmap1>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x514) as *mut Chmap1, f(Chmap1(0)));
+            write_volatile(self.chmap1_mut(), f(Chmap1(0)));
         }
         self
     }
@@ -559,14 +559,9 @@ impl UdmaPeriph {
     #[doc="Modify the CHMAP1 register."]
     #[inline] pub fn with_chmap1<F: FnOnce(Chmap1) -> Chmap1>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x514) as *mut Chmap1, f(self.chmap1()));
+            write_volatile(self.chmap1_mut(), f(self.chmap1()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the CHMAP2 register."]
-    #[inline] pub fn chmap2_ptr(&self) -> *const Chmap2 { 
-        (self.0 + 0x518) as *const Chmap2
     }
 
     #[doc="Get the *mut pointer for the CHMAP2 register."]
@@ -574,17 +569,22 @@ impl UdmaPeriph {
         (self.0 + 0x518) as *mut Chmap2
     }
 
+    #[doc="Get the *const pointer for the CHMAP2 register."]
+    #[inline] pub fn chmap2_ptr(&self) -> *const Chmap2 { 
+           self.chmap2_mut()
+    }
+
     #[doc="Read the CHMAP2 register."]
     #[inline] pub fn chmap2(&self) -> Chmap2 { 
         unsafe {
-            read_volatile((self.0 + 0x518) as *const Chmap2)
+            read_volatile(self.chmap2_ptr())
         }
     }
 
     #[doc="Write the CHMAP2 register."]
     #[inline] pub fn set_chmap2<F: FnOnce(Chmap2) -> Chmap2>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x518) as *mut Chmap2, f(Chmap2(0)));
+            write_volatile(self.chmap2_mut(), f(Chmap2(0)));
         }
         self
     }
@@ -592,14 +592,9 @@ impl UdmaPeriph {
     #[doc="Modify the CHMAP2 register."]
     #[inline] pub fn with_chmap2<F: FnOnce(Chmap2) -> Chmap2>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x518) as *mut Chmap2, f(self.chmap2()));
+            write_volatile(self.chmap2_mut(), f(self.chmap2()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the CHMAP3 register."]
-    #[inline] pub fn chmap3_ptr(&self) -> *const Chmap3 { 
-        (self.0 + 0x51c) as *const Chmap3
     }
 
     #[doc="Get the *mut pointer for the CHMAP3 register."]
@@ -607,17 +602,22 @@ impl UdmaPeriph {
         (self.0 + 0x51c) as *mut Chmap3
     }
 
+    #[doc="Get the *const pointer for the CHMAP3 register."]
+    #[inline] pub fn chmap3_ptr(&self) -> *const Chmap3 { 
+           self.chmap3_mut()
+    }
+
     #[doc="Read the CHMAP3 register."]
     #[inline] pub fn chmap3(&self) -> Chmap3 { 
         unsafe {
-            read_volatile((self.0 + 0x51c) as *const Chmap3)
+            read_volatile(self.chmap3_ptr())
         }
     }
 
     #[doc="Write the CHMAP3 register."]
     #[inline] pub fn set_chmap3<F: FnOnce(Chmap3) -> Chmap3>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x51c) as *mut Chmap3, f(Chmap3(0)));
+            write_volatile(self.chmap3_mut(), f(Chmap3(0)));
         }
         self
     }
@@ -625,7 +625,7 @@ impl UdmaPeriph {
     #[doc="Modify the CHMAP3 register."]
     #[inline] pub fn with_chmap3<F: FnOnce(Chmap3) -> Chmap3>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x51c) as *mut Chmap3, f(self.chmap3()));
+            write_volatile(self.chmap3_mut(), f(self.chmap3()));
         }
         self
     }

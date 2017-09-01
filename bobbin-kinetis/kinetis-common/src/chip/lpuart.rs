@@ -7,26 +7,21 @@ pub struct LpuartPeriph(pub usize);
 
 
 impl LpuartPeriph {
-    #[doc="Get the *const pointer for the VERID register."]
-    #[inline] pub fn verid_ptr(&self) -> *const Verid { 
-        (self.0 + 0x0) as *const Verid
-    }
-
     #[doc="Get the *mut pointer for the VERID register."]
     #[inline] pub fn verid_mut(&self) -> *mut Verid { 
         (self.0 + 0x0) as *mut Verid
     }
 
+    #[doc="Get the *const pointer for the VERID register."]
+    #[inline] pub fn verid_ptr(&self) -> *const Verid { 
+           self.verid_mut()
+    }
+
     #[doc="Read the VERID register."]
     #[inline] pub fn verid(&self) -> Verid { 
         unsafe {
-            read_volatile((self.0 + 0x0) as *const Verid)
+            read_volatile(self.verid_ptr())
         }
-    }
-
-    #[doc="Get the *const pointer for the PARAM register."]
-    #[inline] pub fn param_ptr(&self) -> *const Param { 
-        (self.0 + 0x4) as *const Param
     }
 
     #[doc="Get the *mut pointer for the PARAM register."]
@@ -34,16 +29,16 @@ impl LpuartPeriph {
         (self.0 + 0x4) as *mut Param
     }
 
+    #[doc="Get the *const pointer for the PARAM register."]
+    #[inline] pub fn param_ptr(&self) -> *const Param { 
+           self.param_mut()
+    }
+
     #[doc="Read the PARAM register."]
     #[inline] pub fn param(&self) -> Param { 
         unsafe {
-            read_volatile((self.0 + 0x4) as *const Param)
+            read_volatile(self.param_ptr())
         }
-    }
-
-    #[doc="Get the *const pointer for the GLOBAL register."]
-    #[inline] pub fn global_ptr(&self) -> *const Global { 
-        (self.0 + 0x8) as *const Global
     }
 
     #[doc="Get the *mut pointer for the GLOBAL register."]
@@ -51,17 +46,22 @@ impl LpuartPeriph {
         (self.0 + 0x8) as *mut Global
     }
 
+    #[doc="Get the *const pointer for the GLOBAL register."]
+    #[inline] pub fn global_ptr(&self) -> *const Global { 
+           self.global_mut()
+    }
+
     #[doc="Read the GLOBAL register."]
     #[inline] pub fn global(&self) -> Global { 
         unsafe {
-            read_volatile((self.0 + 0x8) as *const Global)
+            read_volatile(self.global_ptr())
         }
     }
 
     #[doc="Write the GLOBAL register."]
     #[inline] pub fn set_global<F: FnOnce(Global) -> Global>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x8) as *mut Global, f(Global(0)));
+            write_volatile(self.global_mut(), f(Global(0)));
         }
         self
     }
@@ -69,14 +69,9 @@ impl LpuartPeriph {
     #[doc="Modify the GLOBAL register."]
     #[inline] pub fn with_global<F: FnOnce(Global) -> Global>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x8) as *mut Global, f(self.global()));
+            write_volatile(self.global_mut(), f(self.global()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the PINCFG register."]
-    #[inline] pub fn pincfg_ptr(&self) -> *const Pincfg { 
-        (self.0 + 0xc) as *const Pincfg
     }
 
     #[doc="Get the *mut pointer for the PINCFG register."]
@@ -84,17 +79,22 @@ impl LpuartPeriph {
         (self.0 + 0xc) as *mut Pincfg
     }
 
+    #[doc="Get the *const pointer for the PINCFG register."]
+    #[inline] pub fn pincfg_ptr(&self) -> *const Pincfg { 
+           self.pincfg_mut()
+    }
+
     #[doc="Read the PINCFG register."]
     #[inline] pub fn pincfg(&self) -> Pincfg { 
         unsafe {
-            read_volatile((self.0 + 0xc) as *const Pincfg)
+            read_volatile(self.pincfg_ptr())
         }
     }
 
     #[doc="Write the PINCFG register."]
     #[inline] pub fn set_pincfg<F: FnOnce(Pincfg) -> Pincfg>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xc) as *mut Pincfg, f(Pincfg(0)));
+            write_volatile(self.pincfg_mut(), f(Pincfg(0)));
         }
         self
     }
@@ -102,14 +102,9 @@ impl LpuartPeriph {
     #[doc="Modify the PINCFG register."]
     #[inline] pub fn with_pincfg<F: FnOnce(Pincfg) -> Pincfg>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xc) as *mut Pincfg, f(self.pincfg()));
+            write_volatile(self.pincfg_mut(), f(self.pincfg()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the BAUD register."]
-    #[inline] pub fn baud_ptr(&self) -> *const Baud { 
-        (self.0 + 0x10) as *const Baud
     }
 
     #[doc="Get the *mut pointer for the BAUD register."]
@@ -117,17 +112,22 @@ impl LpuartPeriph {
         (self.0 + 0x10) as *mut Baud
     }
 
+    #[doc="Get the *const pointer for the BAUD register."]
+    #[inline] pub fn baud_ptr(&self) -> *const Baud { 
+           self.baud_mut()
+    }
+
     #[doc="Read the BAUD register."]
     #[inline] pub fn baud(&self) -> Baud { 
         unsafe {
-            read_volatile((self.0 + 0x10) as *const Baud)
+            read_volatile(self.baud_ptr())
         }
     }
 
     #[doc="Write the BAUD register."]
     #[inline] pub fn set_baud<F: FnOnce(Baud) -> Baud>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x10) as *mut Baud, f(Baud(0)));
+            write_volatile(self.baud_mut(), f(Baud(0)));
         }
         self
     }
@@ -135,14 +135,9 @@ impl LpuartPeriph {
     #[doc="Modify the BAUD register."]
     #[inline] pub fn with_baud<F: FnOnce(Baud) -> Baud>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x10) as *mut Baud, f(self.baud()));
+            write_volatile(self.baud_mut(), f(self.baud()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the STAT register."]
-    #[inline] pub fn stat_ptr(&self) -> *const Stat { 
-        (self.0 + 0x14) as *const Stat
     }
 
     #[doc="Get the *mut pointer for the STAT register."]
@@ -150,17 +145,22 @@ impl LpuartPeriph {
         (self.0 + 0x14) as *mut Stat
     }
 
+    #[doc="Get the *const pointer for the STAT register."]
+    #[inline] pub fn stat_ptr(&self) -> *const Stat { 
+           self.stat_mut()
+    }
+
     #[doc="Read the STAT register."]
     #[inline] pub fn stat(&self) -> Stat { 
         unsafe {
-            read_volatile((self.0 + 0x14) as *const Stat)
+            read_volatile(self.stat_ptr())
         }
     }
 
     #[doc="Write the STAT register."]
     #[inline] pub fn set_stat<F: FnOnce(Stat) -> Stat>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x14) as *mut Stat, f(Stat(0)));
+            write_volatile(self.stat_mut(), f(Stat(0)));
         }
         self
     }
@@ -168,14 +168,9 @@ impl LpuartPeriph {
     #[doc="Modify the STAT register."]
     #[inline] pub fn with_stat<F: FnOnce(Stat) -> Stat>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x14) as *mut Stat, f(self.stat()));
+            write_volatile(self.stat_mut(), f(self.stat()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the CTRL register."]
-    #[inline] pub fn ctrl_ptr(&self) -> *const Ctrl { 
-        (self.0 + 0x18) as *const Ctrl
     }
 
     #[doc="Get the *mut pointer for the CTRL register."]
@@ -183,17 +178,22 @@ impl LpuartPeriph {
         (self.0 + 0x18) as *mut Ctrl
     }
 
+    #[doc="Get the *const pointer for the CTRL register."]
+    #[inline] pub fn ctrl_ptr(&self) -> *const Ctrl { 
+           self.ctrl_mut()
+    }
+
     #[doc="Read the CTRL register."]
     #[inline] pub fn ctrl(&self) -> Ctrl { 
         unsafe {
-            read_volatile((self.0 + 0x18) as *const Ctrl)
+            read_volatile(self.ctrl_ptr())
         }
     }
 
     #[doc="Write the CTRL register."]
     #[inline] pub fn set_ctrl<F: FnOnce(Ctrl) -> Ctrl>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x18) as *mut Ctrl, f(Ctrl(0)));
+            write_volatile(self.ctrl_mut(), f(Ctrl(0)));
         }
         self
     }
@@ -201,14 +201,9 @@ impl LpuartPeriph {
     #[doc="Modify the CTRL register."]
     #[inline] pub fn with_ctrl<F: FnOnce(Ctrl) -> Ctrl>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x18) as *mut Ctrl, f(self.ctrl()));
+            write_volatile(self.ctrl_mut(), f(self.ctrl()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the DATA register."]
-    #[inline] pub fn data_ptr(&self) -> *const Data { 
-        (self.0 + 0x1c) as *const Data
     }
 
     #[doc="Get the *mut pointer for the DATA register."]
@@ -216,17 +211,22 @@ impl LpuartPeriph {
         (self.0 + 0x1c) as *mut Data
     }
 
+    #[doc="Get the *const pointer for the DATA register."]
+    #[inline] pub fn data_ptr(&self) -> *const Data { 
+           self.data_mut()
+    }
+
     #[doc="Read the DATA register."]
     #[inline] pub fn data(&self) -> Data { 
         unsafe {
-            read_volatile((self.0 + 0x1c) as *const Data)
+            read_volatile(self.data_ptr())
         }
     }
 
     #[doc="Write the DATA register."]
     #[inline] pub fn set_data<F: FnOnce(Data) -> Data>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x1c) as *mut Data, f(Data(0)));
+            write_volatile(self.data_mut(), f(Data(0)));
         }
         self
     }
@@ -234,14 +234,9 @@ impl LpuartPeriph {
     #[doc="Modify the DATA register."]
     #[inline] pub fn with_data<F: FnOnce(Data) -> Data>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x1c) as *mut Data, f(self.data()));
+            write_volatile(self.data_mut(), f(self.data()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the MATCH register."]
-    #[inline] pub fn match_ptr(&self) -> *const Match { 
-        (self.0 + 0x20) as *const Match
     }
 
     #[doc="Get the *mut pointer for the MATCH register."]
@@ -249,17 +244,22 @@ impl LpuartPeriph {
         (self.0 + 0x20) as *mut Match
     }
 
+    #[doc="Get the *const pointer for the MATCH register."]
+    #[inline] pub fn match_ptr(&self) -> *const Match { 
+           self.match_mut()
+    }
+
     #[doc="Read the MATCH register."]
     #[inline] pub fn _match(&self) -> Match { 
         unsafe {
-            read_volatile((self.0 + 0x20) as *const Match)
+            read_volatile(self.match_ptr())
         }
     }
 
     #[doc="Write the MATCH register."]
     #[inline] pub fn set_match<F: FnOnce(Match) -> Match>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x20) as *mut Match, f(Match(0)));
+            write_volatile(self.match_mut(), f(Match(0)));
         }
         self
     }
@@ -267,14 +267,9 @@ impl LpuartPeriph {
     #[doc="Modify the MATCH register."]
     #[inline] pub fn with_match<F: FnOnce(Match) -> Match>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x20) as *mut Match, f(self._match()));
+            write_volatile(self.match_mut(), f(self._match()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the MODIR register."]
-    #[inline] pub fn modir_ptr(&self) -> *const Modir { 
-        (self.0 + 0x24) as *const Modir
     }
 
     #[doc="Get the *mut pointer for the MODIR register."]
@@ -282,17 +277,22 @@ impl LpuartPeriph {
         (self.0 + 0x24) as *mut Modir
     }
 
+    #[doc="Get the *const pointer for the MODIR register."]
+    #[inline] pub fn modir_ptr(&self) -> *const Modir { 
+           self.modir_mut()
+    }
+
     #[doc="Read the MODIR register."]
     #[inline] pub fn modir(&self) -> Modir { 
         unsafe {
-            read_volatile((self.0 + 0x24) as *const Modir)
+            read_volatile(self.modir_ptr())
         }
     }
 
     #[doc="Write the MODIR register."]
     #[inline] pub fn set_modir<F: FnOnce(Modir) -> Modir>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x24) as *mut Modir, f(Modir(0)));
+            write_volatile(self.modir_mut(), f(Modir(0)));
         }
         self
     }
@@ -300,14 +300,9 @@ impl LpuartPeriph {
     #[doc="Modify the MODIR register."]
     #[inline] pub fn with_modir<F: FnOnce(Modir) -> Modir>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x24) as *mut Modir, f(self.modir()));
+            write_volatile(self.modir_mut(), f(self.modir()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the FIFO register."]
-    #[inline] pub fn fifo_ptr(&self) -> *const Fifo { 
-        (self.0 + 0x28) as *const Fifo
     }
 
     #[doc="Get the *mut pointer for the FIFO register."]
@@ -315,17 +310,22 @@ impl LpuartPeriph {
         (self.0 + 0x28) as *mut Fifo
     }
 
+    #[doc="Get the *const pointer for the FIFO register."]
+    #[inline] pub fn fifo_ptr(&self) -> *const Fifo { 
+           self.fifo_mut()
+    }
+
     #[doc="Read the FIFO register."]
     #[inline] pub fn fifo(&self) -> Fifo { 
         unsafe {
-            read_volatile((self.0 + 0x28) as *const Fifo)
+            read_volatile(self.fifo_ptr())
         }
     }
 
     #[doc="Write the FIFO register."]
     #[inline] pub fn set_fifo<F: FnOnce(Fifo) -> Fifo>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x28) as *mut Fifo, f(Fifo(0)));
+            write_volatile(self.fifo_mut(), f(Fifo(0)));
         }
         self
     }
@@ -333,14 +333,9 @@ impl LpuartPeriph {
     #[doc="Modify the FIFO register."]
     #[inline] pub fn with_fifo<F: FnOnce(Fifo) -> Fifo>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x28) as *mut Fifo, f(self.fifo()));
+            write_volatile(self.fifo_mut(), f(self.fifo()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the WATER register."]
-    #[inline] pub fn water_ptr(&self) -> *const Water { 
-        (self.0 + 0x2c) as *const Water
     }
 
     #[doc="Get the *mut pointer for the WATER register."]
@@ -348,17 +343,22 @@ impl LpuartPeriph {
         (self.0 + 0x2c) as *mut Water
     }
 
+    #[doc="Get the *const pointer for the WATER register."]
+    #[inline] pub fn water_ptr(&self) -> *const Water { 
+           self.water_mut()
+    }
+
     #[doc="Read the WATER register."]
     #[inline] pub fn water(&self) -> Water { 
         unsafe {
-            read_volatile((self.0 + 0x2c) as *const Water)
+            read_volatile(self.water_ptr())
         }
     }
 
     #[doc="Write the WATER register."]
     #[inline] pub fn set_water<F: FnOnce(Water) -> Water>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x2c) as *mut Water, f(Water(0)));
+            write_volatile(self.water_mut(), f(Water(0)));
         }
         self
     }
@@ -366,7 +366,7 @@ impl LpuartPeriph {
     #[doc="Modify the WATER register."]
     #[inline] pub fn with_water<F: FnOnce(Water) -> Water>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x2c) as *mut Water, f(self.water()));
+            write_volatile(self.water_mut(), f(self.water()));
         }
         self
     }

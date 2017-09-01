@@ -7,47 +7,38 @@ pub struct PortPeriph(pub usize);
 
 
 impl PortPeriph {
-    #[doc="Get the *const pointer for the PCR register."]
-    #[inline] pub fn pcr_ptr<I: Into<bits::R32>>(&self, index: I) -> *const Pcr { 
-        let index: usize = index.into().value() as usize;
-        (self.0 + 0x0 + (index << 2)) as *const Pcr
-    }
-
     #[doc="Get the *mut pointer for the PCR register."]
     #[inline] pub fn pcr_mut<I: Into<bits::R32>>(&self, index: I) -> *mut Pcr { 
         let index: usize = index.into().value() as usize;
         (self.0 + 0x0 + (index << 2)) as *mut Pcr
     }
 
+    #[doc="Get the *const pointer for the PCR register."]
+    #[inline] pub fn pcr_ptr<I: Into<bits::R32>>(&self, index: I) -> *const Pcr { 
+           self.pcr_mut(index)
+    }
+
     #[doc="Read the PCR register."]
     #[inline] pub fn pcr<I: Into<bits::R32>>(&self, index: I) -> Pcr { 
-        let index: usize = index.into().value() as usize;
         unsafe {
-            read_volatile((self.0 + 0x0 + (index << 2)) as *const Pcr)
+            read_volatile(self.pcr_ptr(index))
         }
     }
 
     #[doc="Write the PCR register."]
     #[inline] pub fn set_pcr<I: Into<bits::R32>, F: FnOnce(Pcr) -> Pcr>(&self, index: I, f: F) -> &Self {
-        let index: usize = index.into().value() as usize;
         unsafe {
-            write_volatile((self.0 + 0x0 + (index << 2)) as *mut Pcr, f(Pcr(0)));
+            write_volatile(self.pcr_mut(index), f(Pcr(0)));
         }
         self
     }
 
     #[doc="Modify the PCR register."]
     #[inline] pub fn with_pcr<I: Into<bits::R32> + Copy, F: FnOnce(Pcr) -> Pcr>(&self, index: I, f: F) -> &Self {
-        let index: usize = index.into().value() as usize;
         unsafe {
-            write_volatile((self.0 + 0x0 + (index << 2)) as *mut Pcr, f(self.pcr(index)));
+            write_volatile(self.pcr_mut(index), f(self.pcr(index)));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the GPCLR register."]
-    #[inline] pub fn gpclr_ptr(&self) -> *const Gpclr { 
-        (self.0 + 0x80) as *const Gpclr
     }
 
     #[doc="Get the *mut pointer for the GPCLR register."]
@@ -55,17 +46,17 @@ impl PortPeriph {
         (self.0 + 0x80) as *mut Gpclr
     }
 
+    #[doc="Get the *const pointer for the GPCLR register."]
+    #[inline] pub fn gpclr_ptr(&self) -> *const Gpclr { 
+           self.gpclr_mut()
+    }
+
     #[doc="Write the GPCLR register."]
     #[inline] pub fn set_gpclr<F: FnOnce(Gpclr) -> Gpclr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x80) as *mut Gpclr, f(Gpclr(0)));
+            write_volatile(self.gpclr_mut(), f(Gpclr(0)));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the GPCHR register."]
-    #[inline] pub fn gpchr_ptr(&self) -> *const Gpchr { 
-        (self.0 + 0x84) as *const Gpchr
     }
 
     #[doc="Get the *mut pointer for the GPCHR register."]
@@ -73,17 +64,17 @@ impl PortPeriph {
         (self.0 + 0x84) as *mut Gpchr
     }
 
+    #[doc="Get the *const pointer for the GPCHR register."]
+    #[inline] pub fn gpchr_ptr(&self) -> *const Gpchr { 
+           self.gpchr_mut()
+    }
+
     #[doc="Write the GPCHR register."]
     #[inline] pub fn set_gpchr<F: FnOnce(Gpchr) -> Gpchr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x84) as *mut Gpchr, f(Gpchr(0)));
+            write_volatile(self.gpchr_mut(), f(Gpchr(0)));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the ISFR register."]
-    #[inline] pub fn isfr_ptr(&self) -> *const Isfr { 
-        (self.0 + 0xa0) as *const Isfr
     }
 
     #[doc="Get the *mut pointer for the ISFR register."]
@@ -91,17 +82,22 @@ impl PortPeriph {
         (self.0 + 0xa0) as *mut Isfr
     }
 
+    #[doc="Get the *const pointer for the ISFR register."]
+    #[inline] pub fn isfr_ptr(&self) -> *const Isfr { 
+           self.isfr_mut()
+    }
+
     #[doc="Read the ISFR register."]
     #[inline] pub fn isfr(&self) -> Isfr { 
         unsafe {
-            read_volatile((self.0 + 0xa0) as *const Isfr)
+            read_volatile(self.isfr_ptr())
         }
     }
 
     #[doc="Write the ISFR register."]
     #[inline] pub fn set_isfr<F: FnOnce(Isfr) -> Isfr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xa0) as *mut Isfr, f(Isfr(0)));
+            write_volatile(self.isfr_mut(), f(Isfr(0)));
         }
         self
     }
@@ -109,7 +105,7 @@ impl PortPeriph {
     #[doc="Modify the ISFR register."]
     #[inline] pub fn with_isfr<F: FnOnce(Isfr) -> Isfr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xa0) as *mut Isfr, f(self.isfr()));
+            write_volatile(self.isfr_mut(), f(self.isfr()));
         }
         self
     }

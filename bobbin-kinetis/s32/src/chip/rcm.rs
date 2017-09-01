@@ -7,26 +7,21 @@ periph!(RCM, Rcm, 0x4007f000);
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Rcm(pub usize);
 impl Rcm {
-    #[doc="Get the *const pointer for the VERID register."]
-    #[inline] pub fn verid_ptr(&self) -> *const Verid { 
-        (self.0 + 0x0) as *const Verid
-    }
-
     #[doc="Get the *mut pointer for the VERID register."]
     #[inline] pub fn verid_mut(&self) -> *mut Verid { 
         (self.0 + 0x0) as *mut Verid
     }
 
+    #[doc="Get the *const pointer for the VERID register."]
+    #[inline] pub fn verid_ptr(&self) -> *const Verid { 
+           self.verid_mut()
+    }
+
     #[doc="Read the VERID register."]
     #[inline] pub fn verid(&self) -> Verid { 
         unsafe {
-            read_volatile((self.0 + 0x0) as *const Verid)
+            read_volatile(self.verid_ptr())
         }
-    }
-
-    #[doc="Get the *const pointer for the PARAM register."]
-    #[inline] pub fn param_ptr(&self) -> *const Param { 
-        (self.0 + 0x4) as *const Param
     }
 
     #[doc="Get the *mut pointer for the PARAM register."]
@@ -34,16 +29,16 @@ impl Rcm {
         (self.0 + 0x4) as *mut Param
     }
 
+    #[doc="Get the *const pointer for the PARAM register."]
+    #[inline] pub fn param_ptr(&self) -> *const Param { 
+           self.param_mut()
+    }
+
     #[doc="Read the PARAM register."]
     #[inline] pub fn param(&self) -> Param { 
         unsafe {
-            read_volatile((self.0 + 0x4) as *const Param)
+            read_volatile(self.param_ptr())
         }
-    }
-
-    #[doc="Get the *const pointer for the SRS register."]
-    #[inline] pub fn srs_ptr(&self) -> *const Srs { 
-        (self.0 + 0x8) as *const Srs
     }
 
     #[doc="Get the *mut pointer for the SRS register."]
@@ -51,16 +46,16 @@ impl Rcm {
         (self.0 + 0x8) as *mut Srs
     }
 
+    #[doc="Get the *const pointer for the SRS register."]
+    #[inline] pub fn srs_ptr(&self) -> *const Srs { 
+           self.srs_mut()
+    }
+
     #[doc="Read the SRS register."]
     #[inline] pub fn srs(&self) -> Srs { 
         unsafe {
-            read_volatile((self.0 + 0x8) as *const Srs)
+            read_volatile(self.srs_ptr())
         }
-    }
-
-    #[doc="Get the *const pointer for the RPC register."]
-    #[inline] pub fn rpc_ptr(&self) -> *const Rpc { 
-        (self.0 + 0xc) as *const Rpc
     }
 
     #[doc="Get the *mut pointer for the RPC register."]
@@ -68,17 +63,22 @@ impl Rcm {
         (self.0 + 0xc) as *mut Rpc
     }
 
+    #[doc="Get the *const pointer for the RPC register."]
+    #[inline] pub fn rpc_ptr(&self) -> *const Rpc { 
+           self.rpc_mut()
+    }
+
     #[doc="Read the RPC register."]
     #[inline] pub fn rpc(&self) -> Rpc { 
         unsafe {
-            read_volatile((self.0 + 0xc) as *const Rpc)
+            read_volatile(self.rpc_ptr())
         }
     }
 
     #[doc="Write the RPC register."]
     #[inline] pub fn set_rpc<F: FnOnce(Rpc) -> Rpc>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xc) as *mut Rpc, f(Rpc(0)));
+            write_volatile(self.rpc_mut(), f(Rpc(0)));
         }
         self
     }
@@ -86,14 +86,9 @@ impl Rcm {
     #[doc="Modify the RPC register."]
     #[inline] pub fn with_rpc<F: FnOnce(Rpc) -> Rpc>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xc) as *mut Rpc, f(self.rpc()));
+            write_volatile(self.rpc_mut(), f(self.rpc()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the SSRS register."]
-    #[inline] pub fn ssrs_ptr(&self) -> *const Ssrs { 
-        (self.0 + 0x18) as *const Ssrs
     }
 
     #[doc="Get the *mut pointer for the SSRS register."]
@@ -101,17 +96,22 @@ impl Rcm {
         (self.0 + 0x18) as *mut Ssrs
     }
 
+    #[doc="Get the *const pointer for the SSRS register."]
+    #[inline] pub fn ssrs_ptr(&self) -> *const Ssrs { 
+           self.ssrs_mut()
+    }
+
     #[doc="Read the SSRS register."]
     #[inline] pub fn ssrs(&self) -> Ssrs { 
         unsafe {
-            read_volatile((self.0 + 0x18) as *const Ssrs)
+            read_volatile(self.ssrs_ptr())
         }
     }
 
     #[doc="Write the SSRS register."]
     #[inline] pub fn set_ssrs<F: FnOnce(Ssrs) -> Ssrs>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x18) as *mut Ssrs, f(Ssrs(0)));
+            write_volatile(self.ssrs_mut(), f(Ssrs(0)));
         }
         self
     }
@@ -119,14 +119,9 @@ impl Rcm {
     #[doc="Modify the SSRS register."]
     #[inline] pub fn with_ssrs<F: FnOnce(Ssrs) -> Ssrs>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x18) as *mut Ssrs, f(self.ssrs()));
+            write_volatile(self.ssrs_mut(), f(self.ssrs()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the SRIE register."]
-    #[inline] pub fn srie_ptr(&self) -> *const Srie { 
-        (self.0 + 0x1c) as *const Srie
     }
 
     #[doc="Get the *mut pointer for the SRIE register."]
@@ -134,17 +129,22 @@ impl Rcm {
         (self.0 + 0x1c) as *mut Srie
     }
 
+    #[doc="Get the *const pointer for the SRIE register."]
+    #[inline] pub fn srie_ptr(&self) -> *const Srie { 
+           self.srie_mut()
+    }
+
     #[doc="Read the SRIE register."]
     #[inline] pub fn srie(&self) -> Srie { 
         unsafe {
-            read_volatile((self.0 + 0x1c) as *const Srie)
+            read_volatile(self.srie_ptr())
         }
     }
 
     #[doc="Write the SRIE register."]
     #[inline] pub fn set_srie<F: FnOnce(Srie) -> Srie>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x1c) as *mut Srie, f(Srie(0)));
+            write_volatile(self.srie_mut(), f(Srie(0)));
         }
         self
     }
@@ -152,7 +152,7 @@ impl Rcm {
     #[doc="Modify the SRIE register."]
     #[inline] pub fn with_srie<F: FnOnce(Srie) -> Srie>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x1c) as *mut Srie, f(self.srie()));
+            write_volatile(self.srie_mut(), f(self.srie()));
         }
         self
     }

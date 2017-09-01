@@ -7,27 +7,27 @@ periph!(AFIO, Afio, 0x40010000);
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Afio(pub usize);
 impl Afio {
-    #[doc="Get the *const pointer for the EVCR register."]
-    #[inline] pub fn evcr_ptr(&self) -> *const Evcr { 
-        (self.0 + 0x0) as *const Evcr
-    }
-
     #[doc="Get the *mut pointer for the EVCR register."]
     #[inline] pub fn evcr_mut(&self) -> *mut Evcr { 
         (self.0 + 0x0) as *mut Evcr
     }
 
+    #[doc="Get the *const pointer for the EVCR register."]
+    #[inline] pub fn evcr_ptr(&self) -> *const Evcr { 
+           self.evcr_mut()
+    }
+
     #[doc="Read the EVCR register."]
     #[inline] pub fn evcr(&self) -> Evcr { 
         unsafe {
-            read_volatile((self.0 + 0x0) as *const Evcr)
+            read_volatile(self.evcr_ptr())
         }
     }
 
     #[doc="Write the EVCR register."]
     #[inline] pub fn set_evcr<F: FnOnce(Evcr) -> Evcr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x0) as *mut Evcr, f(Evcr(0)));
+            write_volatile(self.evcr_mut(), f(Evcr(0)));
         }
         self
     }
@@ -35,14 +35,9 @@ impl Afio {
     #[doc="Modify the EVCR register."]
     #[inline] pub fn with_evcr<F: FnOnce(Evcr) -> Evcr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x0) as *mut Evcr, f(self.evcr()));
+            write_volatile(self.evcr_mut(), f(self.evcr()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the MAPR register."]
-    #[inline] pub fn mapr_ptr(&self) -> *const Mapr { 
-        (self.0 + 0x4) as *const Mapr
     }
 
     #[doc="Get the *mut pointer for the MAPR register."]
@@ -50,17 +45,22 @@ impl Afio {
         (self.0 + 0x4) as *mut Mapr
     }
 
+    #[doc="Get the *const pointer for the MAPR register."]
+    #[inline] pub fn mapr_ptr(&self) -> *const Mapr { 
+           self.mapr_mut()
+    }
+
     #[doc="Read the MAPR register."]
     #[inline] pub fn mapr(&self) -> Mapr { 
         unsafe {
-            read_volatile((self.0 + 0x4) as *const Mapr)
+            read_volatile(self.mapr_ptr())
         }
     }
 
     #[doc="Write the MAPR register."]
     #[inline] pub fn set_mapr<F: FnOnce(Mapr) -> Mapr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x4) as *mut Mapr, f(Mapr(0)));
+            write_volatile(self.mapr_mut(), f(Mapr(0)));
         }
         self
     }
@@ -68,14 +68,9 @@ impl Afio {
     #[doc="Modify the MAPR register."]
     #[inline] pub fn with_mapr<F: FnOnce(Mapr) -> Mapr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x4) as *mut Mapr, f(self.mapr()));
+            write_volatile(self.mapr_mut(), f(self.mapr()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the EXTICR1 register."]
-    #[inline] pub fn exticr1_ptr(&self) -> *const Exticr1 { 
-        (self.0 + 0x8) as *const Exticr1
     }
 
     #[doc="Get the *mut pointer for the EXTICR1 register."]
@@ -83,17 +78,22 @@ impl Afio {
         (self.0 + 0x8) as *mut Exticr1
     }
 
+    #[doc="Get the *const pointer for the EXTICR1 register."]
+    #[inline] pub fn exticr1_ptr(&self) -> *const Exticr1 { 
+           self.exticr1_mut()
+    }
+
     #[doc="Read the EXTICR1 register."]
     #[inline] pub fn exticr1(&self) -> Exticr1 { 
         unsafe {
-            read_volatile((self.0 + 0x8) as *const Exticr1)
+            read_volatile(self.exticr1_ptr())
         }
     }
 
     #[doc="Write the EXTICR1 register."]
     #[inline] pub fn set_exticr1<F: FnOnce(Exticr1) -> Exticr1>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x8) as *mut Exticr1, f(Exticr1(0)));
+            write_volatile(self.exticr1_mut(), f(Exticr1(0)));
         }
         self
     }
@@ -101,14 +101,9 @@ impl Afio {
     #[doc="Modify the EXTICR1 register."]
     #[inline] pub fn with_exticr1<F: FnOnce(Exticr1) -> Exticr1>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x8) as *mut Exticr1, f(self.exticr1()));
+            write_volatile(self.exticr1_mut(), f(self.exticr1()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the EXTICR2 register."]
-    #[inline] pub fn exticr2_ptr(&self) -> *const Exticr2 { 
-        (self.0 + 0xc) as *const Exticr2
     }
 
     #[doc="Get the *mut pointer for the EXTICR2 register."]
@@ -116,17 +111,22 @@ impl Afio {
         (self.0 + 0xc) as *mut Exticr2
     }
 
+    #[doc="Get the *const pointer for the EXTICR2 register."]
+    #[inline] pub fn exticr2_ptr(&self) -> *const Exticr2 { 
+           self.exticr2_mut()
+    }
+
     #[doc="Read the EXTICR2 register."]
     #[inline] pub fn exticr2(&self) -> Exticr2 { 
         unsafe {
-            read_volatile((self.0 + 0xc) as *const Exticr2)
+            read_volatile(self.exticr2_ptr())
         }
     }
 
     #[doc="Write the EXTICR2 register."]
     #[inline] pub fn set_exticr2<F: FnOnce(Exticr2) -> Exticr2>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xc) as *mut Exticr2, f(Exticr2(0)));
+            write_volatile(self.exticr2_mut(), f(Exticr2(0)));
         }
         self
     }
@@ -134,14 +134,9 @@ impl Afio {
     #[doc="Modify the EXTICR2 register."]
     #[inline] pub fn with_exticr2<F: FnOnce(Exticr2) -> Exticr2>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xc) as *mut Exticr2, f(self.exticr2()));
+            write_volatile(self.exticr2_mut(), f(self.exticr2()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the EXTICR3 register."]
-    #[inline] pub fn exticr3_ptr(&self) -> *const Exticr3 { 
-        (self.0 + 0x10) as *const Exticr3
     }
 
     #[doc="Get the *mut pointer for the EXTICR3 register."]
@@ -149,17 +144,22 @@ impl Afio {
         (self.0 + 0x10) as *mut Exticr3
     }
 
+    #[doc="Get the *const pointer for the EXTICR3 register."]
+    #[inline] pub fn exticr3_ptr(&self) -> *const Exticr3 { 
+           self.exticr3_mut()
+    }
+
     #[doc="Read the EXTICR3 register."]
     #[inline] pub fn exticr3(&self) -> Exticr3 { 
         unsafe {
-            read_volatile((self.0 + 0x10) as *const Exticr3)
+            read_volatile(self.exticr3_ptr())
         }
     }
 
     #[doc="Write the EXTICR3 register."]
     #[inline] pub fn set_exticr3<F: FnOnce(Exticr3) -> Exticr3>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x10) as *mut Exticr3, f(Exticr3(0)));
+            write_volatile(self.exticr3_mut(), f(Exticr3(0)));
         }
         self
     }
@@ -167,14 +167,9 @@ impl Afio {
     #[doc="Modify the EXTICR3 register."]
     #[inline] pub fn with_exticr3<F: FnOnce(Exticr3) -> Exticr3>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x10) as *mut Exticr3, f(self.exticr3()));
+            write_volatile(self.exticr3_mut(), f(self.exticr3()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the EXTICR4 register."]
-    #[inline] pub fn exticr4_ptr(&self) -> *const Exticr4 { 
-        (self.0 + 0x14) as *const Exticr4
     }
 
     #[doc="Get the *mut pointer for the EXTICR4 register."]
@@ -182,17 +177,22 @@ impl Afio {
         (self.0 + 0x14) as *mut Exticr4
     }
 
+    #[doc="Get the *const pointer for the EXTICR4 register."]
+    #[inline] pub fn exticr4_ptr(&self) -> *const Exticr4 { 
+           self.exticr4_mut()
+    }
+
     #[doc="Read the EXTICR4 register."]
     #[inline] pub fn exticr4(&self) -> Exticr4 { 
         unsafe {
-            read_volatile((self.0 + 0x14) as *const Exticr4)
+            read_volatile(self.exticr4_ptr())
         }
     }
 
     #[doc="Write the EXTICR4 register."]
     #[inline] pub fn set_exticr4<F: FnOnce(Exticr4) -> Exticr4>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x14) as *mut Exticr4, f(Exticr4(0)));
+            write_volatile(self.exticr4_mut(), f(Exticr4(0)));
         }
         self
     }
@@ -200,14 +200,9 @@ impl Afio {
     #[doc="Modify the EXTICR4 register."]
     #[inline] pub fn with_exticr4<F: FnOnce(Exticr4) -> Exticr4>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x14) as *mut Exticr4, f(self.exticr4()));
+            write_volatile(self.exticr4_mut(), f(self.exticr4()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the MAPR2 register."]
-    #[inline] pub fn mapr2_ptr(&self) -> *const Mapr2 { 
-        (self.0 + 0x1c) as *const Mapr2
     }
 
     #[doc="Get the *mut pointer for the MAPR2 register."]
@@ -215,17 +210,22 @@ impl Afio {
         (self.0 + 0x1c) as *mut Mapr2
     }
 
+    #[doc="Get the *const pointer for the MAPR2 register."]
+    #[inline] pub fn mapr2_ptr(&self) -> *const Mapr2 { 
+           self.mapr2_mut()
+    }
+
     #[doc="Read the MAPR2 register."]
     #[inline] pub fn mapr2(&self) -> Mapr2 { 
         unsafe {
-            read_volatile((self.0 + 0x1c) as *const Mapr2)
+            read_volatile(self.mapr2_ptr())
         }
     }
 
     #[doc="Write the MAPR2 register."]
     #[inline] pub fn set_mapr2<F: FnOnce(Mapr2) -> Mapr2>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x1c) as *mut Mapr2, f(Mapr2(0)));
+            write_volatile(self.mapr2_mut(), f(Mapr2(0)));
         }
         self
     }
@@ -233,7 +233,7 @@ impl Afio {
     #[doc="Modify the MAPR2 register."]
     #[inline] pub fn with_mapr2<F: FnOnce(Mapr2) -> Mapr2>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x1c) as *mut Mapr2, f(self.mapr2()));
+            write_volatile(self.mapr2_mut(), f(self.mapr2()));
         }
         self
     }

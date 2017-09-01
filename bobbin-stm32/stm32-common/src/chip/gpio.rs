@@ -7,27 +7,27 @@ pub struct GpioPeriph(pub usize);
 
 
 impl GpioPeriph {
-    #[doc="Get the *const pointer for the MODER register."]
-    #[inline] pub fn moder_ptr(&self) -> *const Moder { 
-        (self.0 + 0x0) as *const Moder
-    }
-
     #[doc="Get the *mut pointer for the MODER register."]
     #[inline] pub fn moder_mut(&self) -> *mut Moder { 
         (self.0 + 0x0) as *mut Moder
     }
 
+    #[doc="Get the *const pointer for the MODER register."]
+    #[inline] pub fn moder_ptr(&self) -> *const Moder { 
+           self.moder_mut()
+    }
+
     #[doc="Read the MODER register."]
     #[inline] pub fn moder(&self) -> Moder { 
         unsafe {
-            read_volatile((self.0 + 0x0) as *const Moder)
+            read_volatile(self.moder_ptr())
         }
     }
 
     #[doc="Write the MODER register."]
     #[inline] pub fn set_moder<F: FnOnce(Moder) -> Moder>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x0) as *mut Moder, f(Moder(0)));
+            write_volatile(self.moder_mut(), f(Moder(0)));
         }
         self
     }
@@ -35,14 +35,9 @@ impl GpioPeriph {
     #[doc="Modify the MODER register."]
     #[inline] pub fn with_moder<F: FnOnce(Moder) -> Moder>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x0) as *mut Moder, f(self.moder()));
+            write_volatile(self.moder_mut(), f(self.moder()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the OTYPER register."]
-    #[inline] pub fn otyper_ptr(&self) -> *const Otyper { 
-        (self.0 + 0x4) as *const Otyper
     }
 
     #[doc="Get the *mut pointer for the OTYPER register."]
@@ -50,17 +45,22 @@ impl GpioPeriph {
         (self.0 + 0x4) as *mut Otyper
     }
 
+    #[doc="Get the *const pointer for the OTYPER register."]
+    #[inline] pub fn otyper_ptr(&self) -> *const Otyper { 
+           self.otyper_mut()
+    }
+
     #[doc="Read the OTYPER register."]
     #[inline] pub fn otyper(&self) -> Otyper { 
         unsafe {
-            read_volatile((self.0 + 0x4) as *const Otyper)
+            read_volatile(self.otyper_ptr())
         }
     }
 
     #[doc="Write the OTYPER register."]
     #[inline] pub fn set_otyper<F: FnOnce(Otyper) -> Otyper>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x4) as *mut Otyper, f(Otyper(0)));
+            write_volatile(self.otyper_mut(), f(Otyper(0)));
         }
         self
     }
@@ -68,14 +68,9 @@ impl GpioPeriph {
     #[doc="Modify the OTYPER register."]
     #[inline] pub fn with_otyper<F: FnOnce(Otyper) -> Otyper>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x4) as *mut Otyper, f(self.otyper()));
+            write_volatile(self.otyper_mut(), f(self.otyper()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the OSPEEDR register."]
-    #[inline] pub fn ospeedr_ptr(&self) -> *const Ospeedr { 
-        (self.0 + 0x8) as *const Ospeedr
     }
 
     #[doc="Get the *mut pointer for the OSPEEDR register."]
@@ -83,17 +78,22 @@ impl GpioPeriph {
         (self.0 + 0x8) as *mut Ospeedr
     }
 
+    #[doc="Get the *const pointer for the OSPEEDR register."]
+    #[inline] pub fn ospeedr_ptr(&self) -> *const Ospeedr { 
+           self.ospeedr_mut()
+    }
+
     #[doc="Read the OSPEEDR register."]
     #[inline] pub fn ospeedr(&self) -> Ospeedr { 
         unsafe {
-            read_volatile((self.0 + 0x8) as *const Ospeedr)
+            read_volatile(self.ospeedr_ptr())
         }
     }
 
     #[doc="Write the OSPEEDR register."]
     #[inline] pub fn set_ospeedr<F: FnOnce(Ospeedr) -> Ospeedr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x8) as *mut Ospeedr, f(Ospeedr(0)));
+            write_volatile(self.ospeedr_mut(), f(Ospeedr(0)));
         }
         self
     }
@@ -101,14 +101,9 @@ impl GpioPeriph {
     #[doc="Modify the OSPEEDR register."]
     #[inline] pub fn with_ospeedr<F: FnOnce(Ospeedr) -> Ospeedr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x8) as *mut Ospeedr, f(self.ospeedr()));
+            write_volatile(self.ospeedr_mut(), f(self.ospeedr()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the PUPDR register."]
-    #[inline] pub fn pupdr_ptr(&self) -> *const Pupdr { 
-        (self.0 + 0xc) as *const Pupdr
     }
 
     #[doc="Get the *mut pointer for the PUPDR register."]
@@ -116,17 +111,22 @@ impl GpioPeriph {
         (self.0 + 0xc) as *mut Pupdr
     }
 
+    #[doc="Get the *const pointer for the PUPDR register."]
+    #[inline] pub fn pupdr_ptr(&self) -> *const Pupdr { 
+           self.pupdr_mut()
+    }
+
     #[doc="Read the PUPDR register."]
     #[inline] pub fn pupdr(&self) -> Pupdr { 
         unsafe {
-            read_volatile((self.0 + 0xc) as *const Pupdr)
+            read_volatile(self.pupdr_ptr())
         }
     }
 
     #[doc="Write the PUPDR register."]
     #[inline] pub fn set_pupdr<F: FnOnce(Pupdr) -> Pupdr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xc) as *mut Pupdr, f(Pupdr(0)));
+            write_volatile(self.pupdr_mut(), f(Pupdr(0)));
         }
         self
     }
@@ -134,14 +134,9 @@ impl GpioPeriph {
     #[doc="Modify the PUPDR register."]
     #[inline] pub fn with_pupdr<F: FnOnce(Pupdr) -> Pupdr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xc) as *mut Pupdr, f(self.pupdr()));
+            write_volatile(self.pupdr_mut(), f(self.pupdr()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the IDR register."]
-    #[inline] pub fn idr_ptr(&self) -> *const Idr { 
-        (self.0 + 0x10) as *const Idr
     }
 
     #[doc="Get the *mut pointer for the IDR register."]
@@ -149,16 +144,16 @@ impl GpioPeriph {
         (self.0 + 0x10) as *mut Idr
     }
 
+    #[doc="Get the *const pointer for the IDR register."]
+    #[inline] pub fn idr_ptr(&self) -> *const Idr { 
+           self.idr_mut()
+    }
+
     #[doc="Read the IDR register."]
     #[inline] pub fn idr(&self) -> Idr { 
         unsafe {
-            read_volatile((self.0 + 0x10) as *const Idr)
+            read_volatile(self.idr_ptr())
         }
-    }
-
-    #[doc="Get the *const pointer for the ODR register."]
-    #[inline] pub fn odr_ptr(&self) -> *const Odr { 
-        (self.0 + 0x14) as *const Odr
     }
 
     #[doc="Get the *mut pointer for the ODR register."]
@@ -166,17 +161,22 @@ impl GpioPeriph {
         (self.0 + 0x14) as *mut Odr
     }
 
+    #[doc="Get the *const pointer for the ODR register."]
+    #[inline] pub fn odr_ptr(&self) -> *const Odr { 
+           self.odr_mut()
+    }
+
     #[doc="Read the ODR register."]
     #[inline] pub fn odr(&self) -> Odr { 
         unsafe {
-            read_volatile((self.0 + 0x14) as *const Odr)
+            read_volatile(self.odr_ptr())
         }
     }
 
     #[doc="Write the ODR register."]
     #[inline] pub fn set_odr<F: FnOnce(Odr) -> Odr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x14) as *mut Odr, f(Odr(0)));
+            write_volatile(self.odr_mut(), f(Odr(0)));
         }
         self
     }
@@ -184,14 +184,9 @@ impl GpioPeriph {
     #[doc="Modify the ODR register."]
     #[inline] pub fn with_odr<F: FnOnce(Odr) -> Odr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x14) as *mut Odr, f(self.odr()));
+            write_volatile(self.odr_mut(), f(self.odr()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the BSRR register."]
-    #[inline] pub fn bsrr_ptr(&self) -> *const Bsrr { 
-        (self.0 + 0x18) as *const Bsrr
     }
 
     #[doc="Get the *mut pointer for the BSRR register."]
@@ -199,17 +194,17 @@ impl GpioPeriph {
         (self.0 + 0x18) as *mut Bsrr
     }
 
+    #[doc="Get the *const pointer for the BSRR register."]
+    #[inline] pub fn bsrr_ptr(&self) -> *const Bsrr { 
+           self.bsrr_mut()
+    }
+
     #[doc="Write the BSRR register."]
     #[inline] pub fn set_bsrr<F: FnOnce(Bsrr) -> Bsrr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x18) as *mut Bsrr, f(Bsrr(0)));
+            write_volatile(self.bsrr_mut(), f(Bsrr(0)));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the LCKR register."]
-    #[inline] pub fn lckr_ptr(&self) -> *const Lckr { 
-        (self.0 + 0x1c) as *const Lckr
     }
 
     #[doc="Get the *mut pointer for the LCKR register."]
@@ -217,17 +212,22 @@ impl GpioPeriph {
         (self.0 + 0x1c) as *mut Lckr
     }
 
+    #[doc="Get the *const pointer for the LCKR register."]
+    #[inline] pub fn lckr_ptr(&self) -> *const Lckr { 
+           self.lckr_mut()
+    }
+
     #[doc="Read the LCKR register."]
     #[inline] pub fn lckr(&self) -> Lckr { 
         unsafe {
-            read_volatile((self.0 + 0x1c) as *const Lckr)
+            read_volatile(self.lckr_ptr())
         }
     }
 
     #[doc="Write the LCKR register."]
     #[inline] pub fn set_lckr<F: FnOnce(Lckr) -> Lckr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x1c) as *mut Lckr, f(Lckr(0)));
+            write_volatile(self.lckr_mut(), f(Lckr(0)));
         }
         self
     }
@@ -235,14 +235,9 @@ impl GpioPeriph {
     #[doc="Modify the LCKR register."]
     #[inline] pub fn with_lckr<F: FnOnce(Lckr) -> Lckr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x1c) as *mut Lckr, f(self.lckr()));
+            write_volatile(self.lckr_mut(), f(self.lckr()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the AFRL register."]
-    #[inline] pub fn afrl_ptr(&self) -> *const Afrl { 
-        (self.0 + 0x20) as *const Afrl
     }
 
     #[doc="Get the *mut pointer for the AFRL register."]
@@ -250,17 +245,22 @@ impl GpioPeriph {
         (self.0 + 0x20) as *mut Afrl
     }
 
+    #[doc="Get the *const pointer for the AFRL register."]
+    #[inline] pub fn afrl_ptr(&self) -> *const Afrl { 
+           self.afrl_mut()
+    }
+
     #[doc="Read the AFRL register."]
     #[inline] pub fn afrl(&self) -> Afrl { 
         unsafe {
-            read_volatile((self.0 + 0x20) as *const Afrl)
+            read_volatile(self.afrl_ptr())
         }
     }
 
     #[doc="Write the AFRL register."]
     #[inline] pub fn set_afrl<F: FnOnce(Afrl) -> Afrl>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x20) as *mut Afrl, f(Afrl(0)));
+            write_volatile(self.afrl_mut(), f(Afrl(0)));
         }
         self
     }
@@ -268,14 +268,9 @@ impl GpioPeriph {
     #[doc="Modify the AFRL register."]
     #[inline] pub fn with_afrl<F: FnOnce(Afrl) -> Afrl>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x20) as *mut Afrl, f(self.afrl()));
+            write_volatile(self.afrl_mut(), f(self.afrl()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the AFRH register."]
-    #[inline] pub fn afrh_ptr(&self) -> *const Afrh { 
-        (self.0 + 0x24) as *const Afrh
     }
 
     #[doc="Get the *mut pointer for the AFRH register."]
@@ -283,17 +278,22 @@ impl GpioPeriph {
         (self.0 + 0x24) as *mut Afrh
     }
 
+    #[doc="Get the *const pointer for the AFRH register."]
+    #[inline] pub fn afrh_ptr(&self) -> *const Afrh { 
+           self.afrh_mut()
+    }
+
     #[doc="Read the AFRH register."]
     #[inline] pub fn afrh(&self) -> Afrh { 
         unsafe {
-            read_volatile((self.0 + 0x24) as *const Afrh)
+            read_volatile(self.afrh_ptr())
         }
     }
 
     #[doc="Write the AFRH register."]
     #[inline] pub fn set_afrh<F: FnOnce(Afrh) -> Afrh>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x24) as *mut Afrh, f(Afrh(0)));
+            write_volatile(self.afrh_mut(), f(Afrh(0)));
         }
         self
     }
@@ -301,14 +301,9 @@ impl GpioPeriph {
     #[doc="Modify the AFRH register."]
     #[inline] pub fn with_afrh<F: FnOnce(Afrh) -> Afrh>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x24) as *mut Afrh, f(self.afrh()));
+            write_volatile(self.afrh_mut(), f(self.afrh()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the BRR register."]
-    #[inline] pub fn brr_ptr(&self) -> *const Brr { 
-        (self.0 + 0x28) as *const Brr
     }
 
     #[doc="Get the *mut pointer for the BRR register."]
@@ -316,10 +311,15 @@ impl GpioPeriph {
         (self.0 + 0x28) as *mut Brr
     }
 
+    #[doc="Get the *const pointer for the BRR register."]
+    #[inline] pub fn brr_ptr(&self) -> *const Brr { 
+           self.brr_mut()
+    }
+
     #[doc="Write the BRR register."]
     #[inline] pub fn set_brr<F: FnOnce(Brr) -> Brr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x28) as *mut Brr, f(Brr(0)));
+            write_volatile(self.brr_mut(), f(Brr(0)));
         }
         self
     }

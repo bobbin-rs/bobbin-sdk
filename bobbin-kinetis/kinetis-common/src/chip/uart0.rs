@@ -7,27 +7,27 @@ pub struct Uart0Periph(pub usize);
 
 
 impl Uart0Periph {
-    #[doc="Get the *const pointer for the BDH register."]
-    #[inline] pub fn bdh_ptr(&self) -> *const Bdh { 
-        (self.0 + 0x0) as *const Bdh
-    }
-
     #[doc="Get the *mut pointer for the BDH register."]
     #[inline] pub fn bdh_mut(&self) -> *mut Bdh { 
         (self.0 + 0x0) as *mut Bdh
     }
 
+    #[doc="Get the *const pointer for the BDH register."]
+    #[inline] pub fn bdh_ptr(&self) -> *const Bdh { 
+           self.bdh_mut()
+    }
+
     #[doc="Read the BDH register."]
     #[inline] pub fn bdh(&self) -> Bdh { 
         unsafe {
-            read_volatile((self.0 + 0x0) as *const Bdh)
+            read_volatile(self.bdh_ptr())
         }
     }
 
     #[doc="Write the BDH register."]
     #[inline] pub fn set_bdh<F: FnOnce(Bdh) -> Bdh>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x0) as *mut Bdh, f(Bdh(0)));
+            write_volatile(self.bdh_mut(), f(Bdh(0)));
         }
         self
     }
@@ -35,14 +35,9 @@ impl Uart0Periph {
     #[doc="Modify the BDH register."]
     #[inline] pub fn with_bdh<F: FnOnce(Bdh) -> Bdh>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x0) as *mut Bdh, f(self.bdh()));
+            write_volatile(self.bdh_mut(), f(self.bdh()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the BDL register."]
-    #[inline] pub fn bdl_ptr(&self) -> *const Bdl { 
-        (self.0 + 0x1) as *const Bdl
     }
 
     #[doc="Get the *mut pointer for the BDL register."]
@@ -50,17 +45,22 @@ impl Uart0Periph {
         (self.0 + 0x1) as *mut Bdl
     }
 
+    #[doc="Get the *const pointer for the BDL register."]
+    #[inline] pub fn bdl_ptr(&self) -> *const Bdl { 
+           self.bdl_mut()
+    }
+
     #[doc="Read the BDL register."]
     #[inline] pub fn bdl(&self) -> Bdl { 
         unsafe {
-            read_volatile((self.0 + 0x1) as *const Bdl)
+            read_volatile(self.bdl_ptr())
         }
     }
 
     #[doc="Write the BDL register."]
     #[inline] pub fn set_bdl<F: FnOnce(Bdl) -> Bdl>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x1) as *mut Bdl, f(Bdl(0)));
+            write_volatile(self.bdl_mut(), f(Bdl(0)));
         }
         self
     }
@@ -68,14 +68,9 @@ impl Uart0Periph {
     #[doc="Modify the BDL register."]
     #[inline] pub fn with_bdl<F: FnOnce(Bdl) -> Bdl>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x1) as *mut Bdl, f(self.bdl()));
+            write_volatile(self.bdl_mut(), f(self.bdl()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the C1 register."]
-    #[inline] pub fn c1_ptr(&self) -> *const C1 { 
-        (self.0 + 0x2) as *const C1
     }
 
     #[doc="Get the *mut pointer for the C1 register."]
@@ -83,17 +78,22 @@ impl Uart0Periph {
         (self.0 + 0x2) as *mut C1
     }
 
+    #[doc="Get the *const pointer for the C1 register."]
+    #[inline] pub fn c1_ptr(&self) -> *const C1 { 
+           self.c1_mut()
+    }
+
     #[doc="Read the C1 register."]
     #[inline] pub fn c1(&self) -> C1 { 
         unsafe {
-            read_volatile((self.0 + 0x2) as *const C1)
+            read_volatile(self.c1_ptr())
         }
     }
 
     #[doc="Write the C1 register."]
     #[inline] pub fn set_c1<F: FnOnce(C1) -> C1>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x2) as *mut C1, f(C1(0)));
+            write_volatile(self.c1_mut(), f(C1(0)));
         }
         self
     }
@@ -101,14 +101,9 @@ impl Uart0Periph {
     #[doc="Modify the C1 register."]
     #[inline] pub fn with_c1<F: FnOnce(C1) -> C1>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x2) as *mut C1, f(self.c1()));
+            write_volatile(self.c1_mut(), f(self.c1()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the C2 register."]
-    #[inline] pub fn c2_ptr(&self) -> *const C2 { 
-        (self.0 + 0x3) as *const C2
     }
 
     #[doc="Get the *mut pointer for the C2 register."]
@@ -116,17 +111,22 @@ impl Uart0Periph {
         (self.0 + 0x3) as *mut C2
     }
 
+    #[doc="Get the *const pointer for the C2 register."]
+    #[inline] pub fn c2_ptr(&self) -> *const C2 { 
+           self.c2_mut()
+    }
+
     #[doc="Read the C2 register."]
     #[inline] pub fn c2(&self) -> C2 { 
         unsafe {
-            read_volatile((self.0 + 0x3) as *const C2)
+            read_volatile(self.c2_ptr())
         }
     }
 
     #[doc="Write the C2 register."]
     #[inline] pub fn set_c2<F: FnOnce(C2) -> C2>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x3) as *mut C2, f(C2(0)));
+            write_volatile(self.c2_mut(), f(C2(0)));
         }
         self
     }
@@ -134,14 +134,9 @@ impl Uart0Periph {
     #[doc="Modify the C2 register."]
     #[inline] pub fn with_c2<F: FnOnce(C2) -> C2>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x3) as *mut C2, f(self.c2()));
+            write_volatile(self.c2_mut(), f(self.c2()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the S1 register."]
-    #[inline] pub fn s1_ptr(&self) -> *const S1 { 
-        (self.0 + 0x4) as *const S1
     }
 
     #[doc="Get the *mut pointer for the S1 register."]
@@ -149,17 +144,22 @@ impl Uart0Periph {
         (self.0 + 0x4) as *mut S1
     }
 
+    #[doc="Get the *const pointer for the S1 register."]
+    #[inline] pub fn s1_ptr(&self) -> *const S1 { 
+           self.s1_mut()
+    }
+
     #[doc="Read the S1 register."]
     #[inline] pub fn s1(&self) -> S1 { 
         unsafe {
-            read_volatile((self.0 + 0x4) as *const S1)
+            read_volatile(self.s1_ptr())
         }
     }
 
     #[doc="Write the S1 register."]
     #[inline] pub fn set_s1<F: FnOnce(S1) -> S1>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x4) as *mut S1, f(S1(0)));
+            write_volatile(self.s1_mut(), f(S1(0)));
         }
         self
     }
@@ -167,14 +167,9 @@ impl Uart0Periph {
     #[doc="Modify the S1 register."]
     #[inline] pub fn with_s1<F: FnOnce(S1) -> S1>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x4) as *mut S1, f(self.s1()));
+            write_volatile(self.s1_mut(), f(self.s1()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the S2 register."]
-    #[inline] pub fn s2_ptr(&self) -> *const S2 { 
-        (self.0 + 0x5) as *const S2
     }
 
     #[doc="Get the *mut pointer for the S2 register."]
@@ -182,17 +177,22 @@ impl Uart0Periph {
         (self.0 + 0x5) as *mut S2
     }
 
+    #[doc="Get the *const pointer for the S2 register."]
+    #[inline] pub fn s2_ptr(&self) -> *const S2 { 
+           self.s2_mut()
+    }
+
     #[doc="Read the S2 register."]
     #[inline] pub fn s2(&self) -> S2 { 
         unsafe {
-            read_volatile((self.0 + 0x5) as *const S2)
+            read_volatile(self.s2_ptr())
         }
     }
 
     #[doc="Write the S2 register."]
     #[inline] pub fn set_s2<F: FnOnce(S2) -> S2>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x5) as *mut S2, f(S2(0)));
+            write_volatile(self.s2_mut(), f(S2(0)));
         }
         self
     }
@@ -200,14 +200,9 @@ impl Uart0Periph {
     #[doc="Modify the S2 register."]
     #[inline] pub fn with_s2<F: FnOnce(S2) -> S2>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x5) as *mut S2, f(self.s2()));
+            write_volatile(self.s2_mut(), f(self.s2()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the C3 register."]
-    #[inline] pub fn c3_ptr(&self) -> *const C3 { 
-        (self.0 + 0x6) as *const C3
     }
 
     #[doc="Get the *mut pointer for the C3 register."]
@@ -215,17 +210,22 @@ impl Uart0Periph {
         (self.0 + 0x6) as *mut C3
     }
 
+    #[doc="Get the *const pointer for the C3 register."]
+    #[inline] pub fn c3_ptr(&self) -> *const C3 { 
+           self.c3_mut()
+    }
+
     #[doc="Read the C3 register."]
     #[inline] pub fn c3(&self) -> C3 { 
         unsafe {
-            read_volatile((self.0 + 0x6) as *const C3)
+            read_volatile(self.c3_ptr())
         }
     }
 
     #[doc="Write the C3 register."]
     #[inline] pub fn set_c3<F: FnOnce(C3) -> C3>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x6) as *mut C3, f(C3(0)));
+            write_volatile(self.c3_mut(), f(C3(0)));
         }
         self
     }
@@ -233,14 +233,9 @@ impl Uart0Periph {
     #[doc="Modify the C3 register."]
     #[inline] pub fn with_c3<F: FnOnce(C3) -> C3>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x6) as *mut C3, f(self.c3()));
+            write_volatile(self.c3_mut(), f(self.c3()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the D register."]
-    #[inline] pub fn d_ptr(&self) -> *const D { 
-        (self.0 + 0x7) as *const D
     }
 
     #[doc="Get the *mut pointer for the D register."]
@@ -248,17 +243,22 @@ impl Uart0Periph {
         (self.0 + 0x7) as *mut D
     }
 
+    #[doc="Get the *const pointer for the D register."]
+    #[inline] pub fn d_ptr(&self) -> *const D { 
+           self.d_mut()
+    }
+
     #[doc="Read the D register."]
     #[inline] pub fn d(&self) -> D { 
         unsafe {
-            read_volatile((self.0 + 0x7) as *const D)
+            read_volatile(self.d_ptr())
         }
     }
 
     #[doc="Write the D register."]
     #[inline] pub fn set_d<F: FnOnce(D) -> D>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x7) as *mut D, f(D(0)));
+            write_volatile(self.d_mut(), f(D(0)));
         }
         self
     }
@@ -266,14 +266,9 @@ impl Uart0Periph {
     #[doc="Modify the D register."]
     #[inline] pub fn with_d<F: FnOnce(D) -> D>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x7) as *mut D, f(self.d()));
+            write_volatile(self.d_mut(), f(self.d()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the MA1 register."]
-    #[inline] pub fn ma1_ptr(&self) -> *const Ma1 { 
-        (self.0 + 0x8) as *const Ma1
     }
 
     #[doc="Get the *mut pointer for the MA1 register."]
@@ -281,17 +276,22 @@ impl Uart0Periph {
         (self.0 + 0x8) as *mut Ma1
     }
 
+    #[doc="Get the *const pointer for the MA1 register."]
+    #[inline] pub fn ma1_ptr(&self) -> *const Ma1 { 
+           self.ma1_mut()
+    }
+
     #[doc="Read the MA1 register."]
     #[inline] pub fn ma1(&self) -> Ma1 { 
         unsafe {
-            read_volatile((self.0 + 0x8) as *const Ma1)
+            read_volatile(self.ma1_ptr())
         }
     }
 
     #[doc="Write the MA1 register."]
     #[inline] pub fn set_ma1<F: FnOnce(Ma1) -> Ma1>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x8) as *mut Ma1, f(Ma1(0)));
+            write_volatile(self.ma1_mut(), f(Ma1(0)));
         }
         self
     }
@@ -299,14 +299,9 @@ impl Uart0Periph {
     #[doc="Modify the MA1 register."]
     #[inline] pub fn with_ma1<F: FnOnce(Ma1) -> Ma1>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x8) as *mut Ma1, f(self.ma1()));
+            write_volatile(self.ma1_mut(), f(self.ma1()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the MA2 register."]
-    #[inline] pub fn ma2_ptr(&self) -> *const Ma2 { 
-        (self.0 + 0x9) as *const Ma2
     }
 
     #[doc="Get the *mut pointer for the MA2 register."]
@@ -314,17 +309,22 @@ impl Uart0Periph {
         (self.0 + 0x9) as *mut Ma2
     }
 
+    #[doc="Get the *const pointer for the MA2 register."]
+    #[inline] pub fn ma2_ptr(&self) -> *const Ma2 { 
+           self.ma2_mut()
+    }
+
     #[doc="Read the MA2 register."]
     #[inline] pub fn ma2(&self) -> Ma2 { 
         unsafe {
-            read_volatile((self.0 + 0x9) as *const Ma2)
+            read_volatile(self.ma2_ptr())
         }
     }
 
     #[doc="Write the MA2 register."]
     #[inline] pub fn set_ma2<F: FnOnce(Ma2) -> Ma2>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x9) as *mut Ma2, f(Ma2(0)));
+            write_volatile(self.ma2_mut(), f(Ma2(0)));
         }
         self
     }
@@ -332,14 +332,9 @@ impl Uart0Periph {
     #[doc="Modify the MA2 register."]
     #[inline] pub fn with_ma2<F: FnOnce(Ma2) -> Ma2>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x9) as *mut Ma2, f(self.ma2()));
+            write_volatile(self.ma2_mut(), f(self.ma2()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the C4 register."]
-    #[inline] pub fn c4_ptr(&self) -> *const C4 { 
-        (self.0 + 0xa) as *const C4
     }
 
     #[doc="Get the *mut pointer for the C4 register."]
@@ -347,17 +342,22 @@ impl Uart0Periph {
         (self.0 + 0xa) as *mut C4
     }
 
+    #[doc="Get the *const pointer for the C4 register."]
+    #[inline] pub fn c4_ptr(&self) -> *const C4 { 
+           self.c4_mut()
+    }
+
     #[doc="Read the C4 register."]
     #[inline] pub fn c4(&self) -> C4 { 
         unsafe {
-            read_volatile((self.0 + 0xa) as *const C4)
+            read_volatile(self.c4_ptr())
         }
     }
 
     #[doc="Write the C4 register."]
     #[inline] pub fn set_c4<F: FnOnce(C4) -> C4>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xa) as *mut C4, f(C4(0)));
+            write_volatile(self.c4_mut(), f(C4(0)));
         }
         self
     }
@@ -365,14 +365,9 @@ impl Uart0Periph {
     #[doc="Modify the C4 register."]
     #[inline] pub fn with_c4<F: FnOnce(C4) -> C4>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xa) as *mut C4, f(self.c4()));
+            write_volatile(self.c4_mut(), f(self.c4()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the C5 register."]
-    #[inline] pub fn c5_ptr(&self) -> *const C5 { 
-        (self.0 + 0xb) as *const C5
     }
 
     #[doc="Get the *mut pointer for the C5 register."]
@@ -380,17 +375,22 @@ impl Uart0Periph {
         (self.0 + 0xb) as *mut C5
     }
 
+    #[doc="Get the *const pointer for the C5 register."]
+    #[inline] pub fn c5_ptr(&self) -> *const C5 { 
+           self.c5_mut()
+    }
+
     #[doc="Read the C5 register."]
     #[inline] pub fn c5(&self) -> C5 { 
         unsafe {
-            read_volatile((self.0 + 0xb) as *const C5)
+            read_volatile(self.c5_ptr())
         }
     }
 
     #[doc="Write the C5 register."]
     #[inline] pub fn set_c5<F: FnOnce(C5) -> C5>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xb) as *mut C5, f(C5(0)));
+            write_volatile(self.c5_mut(), f(C5(0)));
         }
         self
     }
@@ -398,7 +398,7 @@ impl Uart0Periph {
     #[doc="Modify the C5 register."]
     #[inline] pub fn with_c5<F: FnOnce(C5) -> C5>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xb) as *mut C5, f(self.c5()));
+            write_volatile(self.c5_mut(), f(self.c5()));
         }
         self
     }

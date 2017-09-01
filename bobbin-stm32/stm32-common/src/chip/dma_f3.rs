@@ -7,26 +7,21 @@ pub struct DmaPeriph(pub usize);
 
 
 impl DmaPeriph {
-    #[doc="Get the *const pointer for the ISR register."]
-    #[inline] pub fn isr_ptr(&self) -> *const Isr { 
-        (self.0 + 0x0) as *const Isr
-    }
-
     #[doc="Get the *mut pointer for the ISR register."]
     #[inline] pub fn isr_mut(&self) -> *mut Isr { 
         (self.0 + 0x0) as *mut Isr
     }
 
+    #[doc="Get the *const pointer for the ISR register."]
+    #[inline] pub fn isr_ptr(&self) -> *const Isr { 
+           self.isr_mut()
+    }
+
     #[doc="Read the ISR register."]
     #[inline] pub fn isr(&self) -> Isr { 
         unsafe {
-            read_volatile((self.0 + 0x0) as *const Isr)
+            read_volatile(self.isr_ptr())
         }
-    }
-
-    #[doc="Get the *const pointer for the IFCR register."]
-    #[inline] pub fn ifcr_ptr(&self) -> *const Ifcr { 
-        (self.0 + 0x4) as *const Ifcr
     }
 
     #[doc="Get the *mut pointer for the IFCR register."]
@@ -34,18 +29,17 @@ impl DmaPeriph {
         (self.0 + 0x4) as *mut Ifcr
     }
 
+    #[doc="Get the *const pointer for the IFCR register."]
+    #[inline] pub fn ifcr_ptr(&self) -> *const Ifcr { 
+           self.ifcr_mut()
+    }
+
     #[doc="Write the IFCR register."]
     #[inline] pub fn set_ifcr<F: FnOnce(Ifcr) -> Ifcr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x4) as *mut Ifcr, f(Ifcr(0)));
+            write_volatile(self.ifcr_mut(), f(Ifcr(0)));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the CCR register."]
-    #[inline] pub fn ccr_ptr<I: Into<bits::R7>>(&self, index: I) -> *const Ccr { 
-        let index: usize = index.into().value() as usize;
-        (self.0 + 0x8 + (index * 20)) as *const Ccr
     }
 
     #[doc="Get the *mut pointer for the CCR register."]
@@ -54,36 +48,32 @@ impl DmaPeriph {
         (self.0 + 0x8 + (index * 20)) as *mut Ccr
     }
 
+    #[doc="Get the *const pointer for the CCR register."]
+    #[inline] pub fn ccr_ptr<I: Into<bits::R7>>(&self, index: I) -> *const Ccr { 
+           self.ccr_mut(index)
+    }
+
     #[doc="Read the CCR register."]
     #[inline] pub fn ccr<I: Into<bits::R7>>(&self, index: I) -> Ccr { 
-        let index: usize = index.into().value() as usize;
         unsafe {
-            read_volatile((self.0 + 0x8 + (index * 20)) as *const Ccr)
+            read_volatile(self.ccr_ptr(index))
         }
     }
 
     #[doc="Write the CCR register."]
     #[inline] pub fn set_ccr<I: Into<bits::R7>, F: FnOnce(Ccr) -> Ccr>(&self, index: I, f: F) -> &Self {
-        let index: usize = index.into().value() as usize;
         unsafe {
-            write_volatile((self.0 + 0x8 + (index * 20)) as *mut Ccr, f(Ccr(0)));
+            write_volatile(self.ccr_mut(index), f(Ccr(0)));
         }
         self
     }
 
     #[doc="Modify the CCR register."]
     #[inline] pub fn with_ccr<I: Into<bits::R7> + Copy, F: FnOnce(Ccr) -> Ccr>(&self, index: I, f: F) -> &Self {
-        let index: usize = index.into().value() as usize;
         unsafe {
-            write_volatile((self.0 + 0x8 + (index * 20)) as *mut Ccr, f(self.ccr(index)));
+            write_volatile(self.ccr_mut(index), f(self.ccr(index)));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the CNDTR register."]
-    #[inline] pub fn cndtr_ptr<I: Into<bits::R7>>(&self, index: I) -> *const Cndtr { 
-        let index: usize = index.into().value() as usize;
-        (self.0 + 0xc + (index * 20)) as *const Cndtr
     }
 
     #[doc="Get the *mut pointer for the CNDTR register."]
@@ -92,36 +82,32 @@ impl DmaPeriph {
         (self.0 + 0xc + (index * 20)) as *mut Cndtr
     }
 
+    #[doc="Get the *const pointer for the CNDTR register."]
+    #[inline] pub fn cndtr_ptr<I: Into<bits::R7>>(&self, index: I) -> *const Cndtr { 
+           self.cndtr_mut(index)
+    }
+
     #[doc="Read the CNDTR register."]
     #[inline] pub fn cndtr<I: Into<bits::R7>>(&self, index: I) -> Cndtr { 
-        let index: usize = index.into().value() as usize;
         unsafe {
-            read_volatile((self.0 + 0xc + (index * 20)) as *const Cndtr)
+            read_volatile(self.cndtr_ptr(index))
         }
     }
 
     #[doc="Write the CNDTR register."]
     #[inline] pub fn set_cndtr<I: Into<bits::R7>, F: FnOnce(Cndtr) -> Cndtr>(&self, index: I, f: F) -> &Self {
-        let index: usize = index.into().value() as usize;
         unsafe {
-            write_volatile((self.0 + 0xc + (index * 20)) as *mut Cndtr, f(Cndtr(0)));
+            write_volatile(self.cndtr_mut(index), f(Cndtr(0)));
         }
         self
     }
 
     #[doc="Modify the CNDTR register."]
     #[inline] pub fn with_cndtr<I: Into<bits::R7> + Copy, F: FnOnce(Cndtr) -> Cndtr>(&self, index: I, f: F) -> &Self {
-        let index: usize = index.into().value() as usize;
         unsafe {
-            write_volatile((self.0 + 0xc + (index * 20)) as *mut Cndtr, f(self.cndtr(index)));
+            write_volatile(self.cndtr_mut(index), f(self.cndtr(index)));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the CPAR register."]
-    #[inline] pub fn cpar_ptr<I: Into<bits::R7>>(&self, index: I) -> *const Cpar { 
-        let index: usize = index.into().value() as usize;
-        (self.0 + 0x10 + (index * 20)) as *const Cpar
     }
 
     #[doc="Get the *mut pointer for the CPAR register."]
@@ -130,36 +116,32 @@ impl DmaPeriph {
         (self.0 + 0x10 + (index * 20)) as *mut Cpar
     }
 
+    #[doc="Get the *const pointer for the CPAR register."]
+    #[inline] pub fn cpar_ptr<I: Into<bits::R7>>(&self, index: I) -> *const Cpar { 
+           self.cpar_mut(index)
+    }
+
     #[doc="Read the CPAR register."]
     #[inline] pub fn cpar<I: Into<bits::R7>>(&self, index: I) -> Cpar { 
-        let index: usize = index.into().value() as usize;
         unsafe {
-            read_volatile((self.0 + 0x10 + (index * 20)) as *const Cpar)
+            read_volatile(self.cpar_ptr(index))
         }
     }
 
     #[doc="Write the CPAR register."]
     #[inline] pub fn set_cpar<I: Into<bits::R7>, F: FnOnce(Cpar) -> Cpar>(&self, index: I, f: F) -> &Self {
-        let index: usize = index.into().value() as usize;
         unsafe {
-            write_volatile((self.0 + 0x10 + (index * 20)) as *mut Cpar, f(Cpar(0)));
+            write_volatile(self.cpar_mut(index), f(Cpar(0)));
         }
         self
     }
 
     #[doc="Modify the CPAR register."]
     #[inline] pub fn with_cpar<I: Into<bits::R7> + Copy, F: FnOnce(Cpar) -> Cpar>(&self, index: I, f: F) -> &Self {
-        let index: usize = index.into().value() as usize;
         unsafe {
-            write_volatile((self.0 + 0x10 + (index * 20)) as *mut Cpar, f(self.cpar(index)));
+            write_volatile(self.cpar_mut(index), f(self.cpar(index)));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the CMAR register."]
-    #[inline] pub fn cmar_ptr<I: Into<bits::R7>>(&self, index: I) -> *const Cmar { 
-        let index: usize = index.into().value() as usize;
-        (self.0 + 0x14 + (index * 20)) as *const Cmar
     }
 
     #[doc="Get the *mut pointer for the CMAR register."]
@@ -168,28 +150,30 @@ impl DmaPeriph {
         (self.0 + 0x14 + (index * 20)) as *mut Cmar
     }
 
+    #[doc="Get the *const pointer for the CMAR register."]
+    #[inline] pub fn cmar_ptr<I: Into<bits::R7>>(&self, index: I) -> *const Cmar { 
+           self.cmar_mut(index)
+    }
+
     #[doc="Read the CMAR register."]
     #[inline] pub fn cmar<I: Into<bits::R7>>(&self, index: I) -> Cmar { 
-        let index: usize = index.into().value() as usize;
         unsafe {
-            read_volatile((self.0 + 0x14 + (index * 20)) as *const Cmar)
+            read_volatile(self.cmar_ptr(index))
         }
     }
 
     #[doc="Write the CMAR register."]
     #[inline] pub fn set_cmar<I: Into<bits::R7>, F: FnOnce(Cmar) -> Cmar>(&self, index: I, f: F) -> &Self {
-        let index: usize = index.into().value() as usize;
         unsafe {
-            write_volatile((self.0 + 0x14 + (index * 20)) as *mut Cmar, f(Cmar(0)));
+            write_volatile(self.cmar_mut(index), f(Cmar(0)));
         }
         self
     }
 
     #[doc="Modify the CMAR register."]
     #[inline] pub fn with_cmar<I: Into<bits::R7> + Copy, F: FnOnce(Cmar) -> Cmar>(&self, index: I, f: F) -> &Self {
-        let index: usize = index.into().value() as usize;
         unsafe {
-            write_volatile((self.0 + 0x14 + (index * 20)) as *mut Cmar, f(self.cmar(index)));
+            write_volatile(self.cmar_mut(index), f(self.cmar(index)));
         }
         self
     }

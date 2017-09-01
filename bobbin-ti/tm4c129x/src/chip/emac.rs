@@ -7,27 +7,27 @@ periph!(EMAC0, Emac, 0x400ec000);
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Emac(pub usize);
 impl Emac {
-    #[doc="Get the *const pointer for the CFG register."]
-    #[inline] pub fn cfg_ptr(&self) -> *const Cfg { 
-        (self.0 + 0x0) as *const Cfg
-    }
-
     #[doc="Get the *mut pointer for the CFG register."]
     #[inline] pub fn cfg_mut(&self) -> *mut Cfg { 
         (self.0 + 0x0) as *mut Cfg
     }
 
+    #[doc="Get the *const pointer for the CFG register."]
+    #[inline] pub fn cfg_ptr(&self) -> *const Cfg { 
+           self.cfg_mut()
+    }
+
     #[doc="Read the CFG register."]
     #[inline] pub fn cfg(&self) -> Cfg { 
         unsafe {
-            read_volatile((self.0 + 0x0) as *const Cfg)
+            read_volatile(self.cfg_ptr())
         }
     }
 
     #[doc="Write the CFG register."]
     #[inline] pub fn set_cfg<F: FnOnce(Cfg) -> Cfg>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x0) as *mut Cfg, f(Cfg(0)));
+            write_volatile(self.cfg_mut(), f(Cfg(0)));
         }
         self
     }
@@ -35,14 +35,9 @@ impl Emac {
     #[doc="Modify the CFG register."]
     #[inline] pub fn with_cfg<F: FnOnce(Cfg) -> Cfg>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x0) as *mut Cfg, f(self.cfg()));
+            write_volatile(self.cfg_mut(), f(self.cfg()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the FRAMEFLTR register."]
-    #[inline] pub fn framefltr_ptr(&self) -> *const Framefltr { 
-        (self.0 + 0x4) as *const Framefltr
     }
 
     #[doc="Get the *mut pointer for the FRAMEFLTR register."]
@@ -50,17 +45,22 @@ impl Emac {
         (self.0 + 0x4) as *mut Framefltr
     }
 
+    #[doc="Get the *const pointer for the FRAMEFLTR register."]
+    #[inline] pub fn framefltr_ptr(&self) -> *const Framefltr { 
+           self.framefltr_mut()
+    }
+
     #[doc="Read the FRAMEFLTR register."]
     #[inline] pub fn framefltr(&self) -> Framefltr { 
         unsafe {
-            read_volatile((self.0 + 0x4) as *const Framefltr)
+            read_volatile(self.framefltr_ptr())
         }
     }
 
     #[doc="Write the FRAMEFLTR register."]
     #[inline] pub fn set_framefltr<F: FnOnce(Framefltr) -> Framefltr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x4) as *mut Framefltr, f(Framefltr(0)));
+            write_volatile(self.framefltr_mut(), f(Framefltr(0)));
         }
         self
     }
@@ -68,14 +68,9 @@ impl Emac {
     #[doc="Modify the FRAMEFLTR register."]
     #[inline] pub fn with_framefltr<F: FnOnce(Framefltr) -> Framefltr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x4) as *mut Framefltr, f(self.framefltr()));
+            write_volatile(self.framefltr_mut(), f(self.framefltr()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the HASHTBLH register."]
-    #[inline] pub fn hashtblh_ptr(&self) -> *const Hashtblh { 
-        (self.0 + 0x8) as *const Hashtblh
     }
 
     #[doc="Get the *mut pointer for the HASHTBLH register."]
@@ -83,17 +78,22 @@ impl Emac {
         (self.0 + 0x8) as *mut Hashtblh
     }
 
+    #[doc="Get the *const pointer for the HASHTBLH register."]
+    #[inline] pub fn hashtblh_ptr(&self) -> *const Hashtblh { 
+           self.hashtblh_mut()
+    }
+
     #[doc="Read the HASHTBLH register."]
     #[inline] pub fn hashtblh(&self) -> Hashtblh { 
         unsafe {
-            read_volatile((self.0 + 0x8) as *const Hashtblh)
+            read_volatile(self.hashtblh_ptr())
         }
     }
 
     #[doc="Write the HASHTBLH register."]
     #[inline] pub fn set_hashtblh<F: FnOnce(Hashtblh) -> Hashtblh>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x8) as *mut Hashtblh, f(Hashtblh(0)));
+            write_volatile(self.hashtblh_mut(), f(Hashtblh(0)));
         }
         self
     }
@@ -101,14 +101,9 @@ impl Emac {
     #[doc="Modify the HASHTBLH register."]
     #[inline] pub fn with_hashtblh<F: FnOnce(Hashtblh) -> Hashtblh>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x8) as *mut Hashtblh, f(self.hashtblh()));
+            write_volatile(self.hashtblh_mut(), f(self.hashtblh()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the HASHTBLL register."]
-    #[inline] pub fn hashtbll_ptr(&self) -> *const Hashtbll { 
-        (self.0 + 0xc) as *const Hashtbll
     }
 
     #[doc="Get the *mut pointer for the HASHTBLL register."]
@@ -116,17 +111,22 @@ impl Emac {
         (self.0 + 0xc) as *mut Hashtbll
     }
 
+    #[doc="Get the *const pointer for the HASHTBLL register."]
+    #[inline] pub fn hashtbll_ptr(&self) -> *const Hashtbll { 
+           self.hashtbll_mut()
+    }
+
     #[doc="Read the HASHTBLL register."]
     #[inline] pub fn hashtbll(&self) -> Hashtbll { 
         unsafe {
-            read_volatile((self.0 + 0xc) as *const Hashtbll)
+            read_volatile(self.hashtbll_ptr())
         }
     }
 
     #[doc="Write the HASHTBLL register."]
     #[inline] pub fn set_hashtbll<F: FnOnce(Hashtbll) -> Hashtbll>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xc) as *mut Hashtbll, f(Hashtbll(0)));
+            write_volatile(self.hashtbll_mut(), f(Hashtbll(0)));
         }
         self
     }
@@ -134,14 +134,9 @@ impl Emac {
     #[doc="Modify the HASHTBLL register."]
     #[inline] pub fn with_hashtbll<F: FnOnce(Hashtbll) -> Hashtbll>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xc) as *mut Hashtbll, f(self.hashtbll()));
+            write_volatile(self.hashtbll_mut(), f(self.hashtbll()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the MIIADDR register."]
-    #[inline] pub fn miiaddr_ptr(&self) -> *const Miiaddr { 
-        (self.0 + 0x10) as *const Miiaddr
     }
 
     #[doc="Get the *mut pointer for the MIIADDR register."]
@@ -149,17 +144,22 @@ impl Emac {
         (self.0 + 0x10) as *mut Miiaddr
     }
 
+    #[doc="Get the *const pointer for the MIIADDR register."]
+    #[inline] pub fn miiaddr_ptr(&self) -> *const Miiaddr { 
+           self.miiaddr_mut()
+    }
+
     #[doc="Read the MIIADDR register."]
     #[inline] pub fn miiaddr(&self) -> Miiaddr { 
         unsafe {
-            read_volatile((self.0 + 0x10) as *const Miiaddr)
+            read_volatile(self.miiaddr_ptr())
         }
     }
 
     #[doc="Write the MIIADDR register."]
     #[inline] pub fn set_miiaddr<F: FnOnce(Miiaddr) -> Miiaddr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x10) as *mut Miiaddr, f(Miiaddr(0)));
+            write_volatile(self.miiaddr_mut(), f(Miiaddr(0)));
         }
         self
     }
@@ -167,14 +167,9 @@ impl Emac {
     #[doc="Modify the MIIADDR register."]
     #[inline] pub fn with_miiaddr<F: FnOnce(Miiaddr) -> Miiaddr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x10) as *mut Miiaddr, f(self.miiaddr()));
+            write_volatile(self.miiaddr_mut(), f(self.miiaddr()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the MIIDATA register."]
-    #[inline] pub fn miidata_ptr(&self) -> *const Miidata { 
-        (self.0 + 0x14) as *const Miidata
     }
 
     #[doc="Get the *mut pointer for the MIIDATA register."]
@@ -182,17 +177,22 @@ impl Emac {
         (self.0 + 0x14) as *mut Miidata
     }
 
+    #[doc="Get the *const pointer for the MIIDATA register."]
+    #[inline] pub fn miidata_ptr(&self) -> *const Miidata { 
+           self.miidata_mut()
+    }
+
     #[doc="Read the MIIDATA register."]
     #[inline] pub fn miidata(&self) -> Miidata { 
         unsafe {
-            read_volatile((self.0 + 0x14) as *const Miidata)
+            read_volatile(self.miidata_ptr())
         }
     }
 
     #[doc="Write the MIIDATA register."]
     #[inline] pub fn set_miidata<F: FnOnce(Miidata) -> Miidata>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x14) as *mut Miidata, f(Miidata(0)));
+            write_volatile(self.miidata_mut(), f(Miidata(0)));
         }
         self
     }
@@ -200,14 +200,9 @@ impl Emac {
     #[doc="Modify the MIIDATA register."]
     #[inline] pub fn with_miidata<F: FnOnce(Miidata) -> Miidata>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x14) as *mut Miidata, f(self.miidata()));
+            write_volatile(self.miidata_mut(), f(self.miidata()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the FLOWCTL register."]
-    #[inline] pub fn flowctl_ptr(&self) -> *const Flowctl { 
-        (self.0 + 0x18) as *const Flowctl
     }
 
     #[doc="Get the *mut pointer for the FLOWCTL register."]
@@ -215,17 +210,22 @@ impl Emac {
         (self.0 + 0x18) as *mut Flowctl
     }
 
+    #[doc="Get the *const pointer for the FLOWCTL register."]
+    #[inline] pub fn flowctl_ptr(&self) -> *const Flowctl { 
+           self.flowctl_mut()
+    }
+
     #[doc="Read the FLOWCTL register."]
     #[inline] pub fn flowctl(&self) -> Flowctl { 
         unsafe {
-            read_volatile((self.0 + 0x18) as *const Flowctl)
+            read_volatile(self.flowctl_ptr())
         }
     }
 
     #[doc="Write the FLOWCTL register."]
     #[inline] pub fn set_flowctl<F: FnOnce(Flowctl) -> Flowctl>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x18) as *mut Flowctl, f(Flowctl(0)));
+            write_volatile(self.flowctl_mut(), f(Flowctl(0)));
         }
         self
     }
@@ -233,14 +233,9 @@ impl Emac {
     #[doc="Modify the FLOWCTL register."]
     #[inline] pub fn with_flowctl<F: FnOnce(Flowctl) -> Flowctl>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x18) as *mut Flowctl, f(self.flowctl()));
+            write_volatile(self.flowctl_mut(), f(self.flowctl()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the VLANTG register."]
-    #[inline] pub fn vlantg_ptr(&self) -> *const Vlantg { 
-        (self.0 + 0x1c) as *const Vlantg
     }
 
     #[doc="Get the *mut pointer for the VLANTG register."]
@@ -248,17 +243,22 @@ impl Emac {
         (self.0 + 0x1c) as *mut Vlantg
     }
 
+    #[doc="Get the *const pointer for the VLANTG register."]
+    #[inline] pub fn vlantg_ptr(&self) -> *const Vlantg { 
+           self.vlantg_mut()
+    }
+
     #[doc="Read the VLANTG register."]
     #[inline] pub fn vlantg(&self) -> Vlantg { 
         unsafe {
-            read_volatile((self.0 + 0x1c) as *const Vlantg)
+            read_volatile(self.vlantg_ptr())
         }
     }
 
     #[doc="Write the VLANTG register."]
     #[inline] pub fn set_vlantg<F: FnOnce(Vlantg) -> Vlantg>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x1c) as *mut Vlantg, f(Vlantg(0)));
+            write_volatile(self.vlantg_mut(), f(Vlantg(0)));
         }
         self
     }
@@ -266,14 +266,9 @@ impl Emac {
     #[doc="Modify the VLANTG register."]
     #[inline] pub fn with_vlantg<F: FnOnce(Vlantg) -> Vlantg>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x1c) as *mut Vlantg, f(self.vlantg()));
+            write_volatile(self.vlantg_mut(), f(self.vlantg()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the STATUS register."]
-    #[inline] pub fn status_ptr(&self) -> *const Status { 
-        (self.0 + 0x24) as *const Status
     }
 
     #[doc="Get the *mut pointer for the STATUS register."]
@@ -281,17 +276,22 @@ impl Emac {
         (self.0 + 0x24) as *mut Status
     }
 
+    #[doc="Get the *const pointer for the STATUS register."]
+    #[inline] pub fn status_ptr(&self) -> *const Status { 
+           self.status_mut()
+    }
+
     #[doc="Read the STATUS register."]
     #[inline] pub fn status(&self) -> Status { 
         unsafe {
-            read_volatile((self.0 + 0x24) as *const Status)
+            read_volatile(self.status_ptr())
         }
     }
 
     #[doc="Write the STATUS register."]
     #[inline] pub fn set_status<F: FnOnce(Status) -> Status>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x24) as *mut Status, f(Status(0)));
+            write_volatile(self.status_mut(), f(Status(0)));
         }
         self
     }
@@ -299,14 +299,9 @@ impl Emac {
     #[doc="Modify the STATUS register."]
     #[inline] pub fn with_status<F: FnOnce(Status) -> Status>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x24) as *mut Status, f(self.status()));
+            write_volatile(self.status_mut(), f(self.status()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the RWUFF register."]
-    #[inline] pub fn rwuff_ptr(&self) -> *const Rwuff { 
-        (self.0 + 0x28) as *const Rwuff
     }
 
     #[doc="Get the *mut pointer for the RWUFF register."]
@@ -314,17 +309,22 @@ impl Emac {
         (self.0 + 0x28) as *mut Rwuff
     }
 
+    #[doc="Get the *const pointer for the RWUFF register."]
+    #[inline] pub fn rwuff_ptr(&self) -> *const Rwuff { 
+           self.rwuff_mut()
+    }
+
     #[doc="Read the RWUFF register."]
     #[inline] pub fn rwuff(&self) -> Rwuff { 
         unsafe {
-            read_volatile((self.0 + 0x28) as *const Rwuff)
+            read_volatile(self.rwuff_ptr())
         }
     }
 
     #[doc="Write the RWUFF register."]
     #[inline] pub fn set_rwuff<F: FnOnce(Rwuff) -> Rwuff>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x28) as *mut Rwuff, f(Rwuff(0)));
+            write_volatile(self.rwuff_mut(), f(Rwuff(0)));
         }
         self
     }
@@ -332,14 +332,9 @@ impl Emac {
     #[doc="Modify the RWUFF register."]
     #[inline] pub fn with_rwuff<F: FnOnce(Rwuff) -> Rwuff>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x28) as *mut Rwuff, f(self.rwuff()));
+            write_volatile(self.rwuff_mut(), f(self.rwuff()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the PMTCTLSTAT register."]
-    #[inline] pub fn pmtctlstat_ptr(&self) -> *const Pmtctlstat { 
-        (self.0 + 0x2c) as *const Pmtctlstat
     }
 
     #[doc="Get the *mut pointer for the PMTCTLSTAT register."]
@@ -347,17 +342,22 @@ impl Emac {
         (self.0 + 0x2c) as *mut Pmtctlstat
     }
 
+    #[doc="Get the *const pointer for the PMTCTLSTAT register."]
+    #[inline] pub fn pmtctlstat_ptr(&self) -> *const Pmtctlstat { 
+           self.pmtctlstat_mut()
+    }
+
     #[doc="Read the PMTCTLSTAT register."]
     #[inline] pub fn pmtctlstat(&self) -> Pmtctlstat { 
         unsafe {
-            read_volatile((self.0 + 0x2c) as *const Pmtctlstat)
+            read_volatile(self.pmtctlstat_ptr())
         }
     }
 
     #[doc="Write the PMTCTLSTAT register."]
     #[inline] pub fn set_pmtctlstat<F: FnOnce(Pmtctlstat) -> Pmtctlstat>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x2c) as *mut Pmtctlstat, f(Pmtctlstat(0)));
+            write_volatile(self.pmtctlstat_mut(), f(Pmtctlstat(0)));
         }
         self
     }
@@ -365,14 +365,9 @@ impl Emac {
     #[doc="Modify the PMTCTLSTAT register."]
     #[inline] pub fn with_pmtctlstat<F: FnOnce(Pmtctlstat) -> Pmtctlstat>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x2c) as *mut Pmtctlstat, f(self.pmtctlstat()));
+            write_volatile(self.pmtctlstat_mut(), f(self.pmtctlstat()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the RIS register."]
-    #[inline] pub fn ris_ptr(&self) -> *const Ris { 
-        (self.0 + 0x38) as *const Ris
     }
 
     #[doc="Get the *mut pointer for the RIS register."]
@@ -380,17 +375,22 @@ impl Emac {
         (self.0 + 0x38) as *mut Ris
     }
 
+    #[doc="Get the *const pointer for the RIS register."]
+    #[inline] pub fn ris_ptr(&self) -> *const Ris { 
+           self.ris_mut()
+    }
+
     #[doc="Read the RIS register."]
     #[inline] pub fn ris(&self) -> Ris { 
         unsafe {
-            read_volatile((self.0 + 0x38) as *const Ris)
+            read_volatile(self.ris_ptr())
         }
     }
 
     #[doc="Write the RIS register."]
     #[inline] pub fn set_ris<F: FnOnce(Ris) -> Ris>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x38) as *mut Ris, f(Ris(0)));
+            write_volatile(self.ris_mut(), f(Ris(0)));
         }
         self
     }
@@ -398,14 +398,9 @@ impl Emac {
     #[doc="Modify the RIS register."]
     #[inline] pub fn with_ris<F: FnOnce(Ris) -> Ris>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x38) as *mut Ris, f(self.ris()));
+            write_volatile(self.ris_mut(), f(self.ris()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the IM register."]
-    #[inline] pub fn im_ptr(&self) -> *const Im { 
-        (self.0 + 0x3c) as *const Im
     }
 
     #[doc="Get the *mut pointer for the IM register."]
@@ -413,17 +408,22 @@ impl Emac {
         (self.0 + 0x3c) as *mut Im
     }
 
+    #[doc="Get the *const pointer for the IM register."]
+    #[inline] pub fn im_ptr(&self) -> *const Im { 
+           self.im_mut()
+    }
+
     #[doc="Read the IM register."]
     #[inline] pub fn im(&self) -> Im { 
         unsafe {
-            read_volatile((self.0 + 0x3c) as *const Im)
+            read_volatile(self.im_ptr())
         }
     }
 
     #[doc="Write the IM register."]
     #[inline] pub fn set_im<F: FnOnce(Im) -> Im>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x3c) as *mut Im, f(Im(0)));
+            write_volatile(self.im_mut(), f(Im(0)));
         }
         self
     }
@@ -431,14 +431,9 @@ impl Emac {
     #[doc="Modify the IM register."]
     #[inline] pub fn with_im<F: FnOnce(Im) -> Im>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x3c) as *mut Im, f(self.im()));
+            write_volatile(self.im_mut(), f(self.im()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the ADDR0H register."]
-    #[inline] pub fn addr0h_ptr(&self) -> *const Addr0h { 
-        (self.0 + 0x40) as *const Addr0h
     }
 
     #[doc="Get the *mut pointer for the ADDR0H register."]
@@ -446,17 +441,22 @@ impl Emac {
         (self.0 + 0x40) as *mut Addr0h
     }
 
+    #[doc="Get the *const pointer for the ADDR0H register."]
+    #[inline] pub fn addr0h_ptr(&self) -> *const Addr0h { 
+           self.addr0h_mut()
+    }
+
     #[doc="Read the ADDR0H register."]
     #[inline] pub fn addr0h(&self) -> Addr0h { 
         unsafe {
-            read_volatile((self.0 + 0x40) as *const Addr0h)
+            read_volatile(self.addr0h_ptr())
         }
     }
 
     #[doc="Write the ADDR0H register."]
     #[inline] pub fn set_addr0h<F: FnOnce(Addr0h) -> Addr0h>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x40) as *mut Addr0h, f(Addr0h(0)));
+            write_volatile(self.addr0h_mut(), f(Addr0h(0)));
         }
         self
     }
@@ -464,14 +464,9 @@ impl Emac {
     #[doc="Modify the ADDR0H register."]
     #[inline] pub fn with_addr0h<F: FnOnce(Addr0h) -> Addr0h>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x40) as *mut Addr0h, f(self.addr0h()));
+            write_volatile(self.addr0h_mut(), f(self.addr0h()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the ADDR0L register."]
-    #[inline] pub fn addr0l_ptr(&self) -> *const Addr0l { 
-        (self.0 + 0x44) as *const Addr0l
     }
 
     #[doc="Get the *mut pointer for the ADDR0L register."]
@@ -479,17 +474,22 @@ impl Emac {
         (self.0 + 0x44) as *mut Addr0l
     }
 
+    #[doc="Get the *const pointer for the ADDR0L register."]
+    #[inline] pub fn addr0l_ptr(&self) -> *const Addr0l { 
+           self.addr0l_mut()
+    }
+
     #[doc="Read the ADDR0L register."]
     #[inline] pub fn addr0l(&self) -> Addr0l { 
         unsafe {
-            read_volatile((self.0 + 0x44) as *const Addr0l)
+            read_volatile(self.addr0l_ptr())
         }
     }
 
     #[doc="Write the ADDR0L register."]
     #[inline] pub fn set_addr0l<F: FnOnce(Addr0l) -> Addr0l>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x44) as *mut Addr0l, f(Addr0l(0)));
+            write_volatile(self.addr0l_mut(), f(Addr0l(0)));
         }
         self
     }
@@ -497,14 +497,9 @@ impl Emac {
     #[doc="Modify the ADDR0L register."]
     #[inline] pub fn with_addr0l<F: FnOnce(Addr0l) -> Addr0l>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x44) as *mut Addr0l, f(self.addr0l()));
+            write_volatile(self.addr0l_mut(), f(self.addr0l()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the ADDR1H register."]
-    #[inline] pub fn addr1h_ptr(&self) -> *const Addr1h { 
-        (self.0 + 0x48) as *const Addr1h
     }
 
     #[doc="Get the *mut pointer for the ADDR1H register."]
@@ -512,17 +507,22 @@ impl Emac {
         (self.0 + 0x48) as *mut Addr1h
     }
 
+    #[doc="Get the *const pointer for the ADDR1H register."]
+    #[inline] pub fn addr1h_ptr(&self) -> *const Addr1h { 
+           self.addr1h_mut()
+    }
+
     #[doc="Read the ADDR1H register."]
     #[inline] pub fn addr1h(&self) -> Addr1h { 
         unsafe {
-            read_volatile((self.0 + 0x48) as *const Addr1h)
+            read_volatile(self.addr1h_ptr())
         }
     }
 
     #[doc="Write the ADDR1H register."]
     #[inline] pub fn set_addr1h<F: FnOnce(Addr1h) -> Addr1h>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x48) as *mut Addr1h, f(Addr1h(0)));
+            write_volatile(self.addr1h_mut(), f(Addr1h(0)));
         }
         self
     }
@@ -530,14 +530,9 @@ impl Emac {
     #[doc="Modify the ADDR1H register."]
     #[inline] pub fn with_addr1h<F: FnOnce(Addr1h) -> Addr1h>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x48) as *mut Addr1h, f(self.addr1h()));
+            write_volatile(self.addr1h_mut(), f(self.addr1h()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the ADDR1L register."]
-    #[inline] pub fn addr1l_ptr(&self) -> *const Addr1l { 
-        (self.0 + 0x4c) as *const Addr1l
     }
 
     #[doc="Get the *mut pointer for the ADDR1L register."]
@@ -545,17 +540,22 @@ impl Emac {
         (self.0 + 0x4c) as *mut Addr1l
     }
 
+    #[doc="Get the *const pointer for the ADDR1L register."]
+    #[inline] pub fn addr1l_ptr(&self) -> *const Addr1l { 
+           self.addr1l_mut()
+    }
+
     #[doc="Read the ADDR1L register."]
     #[inline] pub fn addr1l(&self) -> Addr1l { 
         unsafe {
-            read_volatile((self.0 + 0x4c) as *const Addr1l)
+            read_volatile(self.addr1l_ptr())
         }
     }
 
     #[doc="Write the ADDR1L register."]
     #[inline] pub fn set_addr1l<F: FnOnce(Addr1l) -> Addr1l>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x4c) as *mut Addr1l, f(Addr1l(0)));
+            write_volatile(self.addr1l_mut(), f(Addr1l(0)));
         }
         self
     }
@@ -563,14 +563,9 @@ impl Emac {
     #[doc="Modify the ADDR1L register."]
     #[inline] pub fn with_addr1l<F: FnOnce(Addr1l) -> Addr1l>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x4c) as *mut Addr1l, f(self.addr1l()));
+            write_volatile(self.addr1l_mut(), f(self.addr1l()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the ADDR2H register."]
-    #[inline] pub fn addr2h_ptr(&self) -> *const Addr2h { 
-        (self.0 + 0x50) as *const Addr2h
     }
 
     #[doc="Get the *mut pointer for the ADDR2H register."]
@@ -578,17 +573,22 @@ impl Emac {
         (self.0 + 0x50) as *mut Addr2h
     }
 
+    #[doc="Get the *const pointer for the ADDR2H register."]
+    #[inline] pub fn addr2h_ptr(&self) -> *const Addr2h { 
+           self.addr2h_mut()
+    }
+
     #[doc="Read the ADDR2H register."]
     #[inline] pub fn addr2h(&self) -> Addr2h { 
         unsafe {
-            read_volatile((self.0 + 0x50) as *const Addr2h)
+            read_volatile(self.addr2h_ptr())
         }
     }
 
     #[doc="Write the ADDR2H register."]
     #[inline] pub fn set_addr2h<F: FnOnce(Addr2h) -> Addr2h>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x50) as *mut Addr2h, f(Addr2h(0)));
+            write_volatile(self.addr2h_mut(), f(Addr2h(0)));
         }
         self
     }
@@ -596,14 +596,9 @@ impl Emac {
     #[doc="Modify the ADDR2H register."]
     #[inline] pub fn with_addr2h<F: FnOnce(Addr2h) -> Addr2h>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x50) as *mut Addr2h, f(self.addr2h()));
+            write_volatile(self.addr2h_mut(), f(self.addr2h()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the ADDR2L register."]
-    #[inline] pub fn addr2l_ptr(&self) -> *const Addr2l { 
-        (self.0 + 0x54) as *const Addr2l
     }
 
     #[doc="Get the *mut pointer for the ADDR2L register."]
@@ -611,17 +606,22 @@ impl Emac {
         (self.0 + 0x54) as *mut Addr2l
     }
 
+    #[doc="Get the *const pointer for the ADDR2L register."]
+    #[inline] pub fn addr2l_ptr(&self) -> *const Addr2l { 
+           self.addr2l_mut()
+    }
+
     #[doc="Read the ADDR2L register."]
     #[inline] pub fn addr2l(&self) -> Addr2l { 
         unsafe {
-            read_volatile((self.0 + 0x54) as *const Addr2l)
+            read_volatile(self.addr2l_ptr())
         }
     }
 
     #[doc="Write the ADDR2L register."]
     #[inline] pub fn set_addr2l<F: FnOnce(Addr2l) -> Addr2l>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x54) as *mut Addr2l, f(Addr2l(0)));
+            write_volatile(self.addr2l_mut(), f(Addr2l(0)));
         }
         self
     }
@@ -629,14 +629,9 @@ impl Emac {
     #[doc="Modify the ADDR2L register."]
     #[inline] pub fn with_addr2l<F: FnOnce(Addr2l) -> Addr2l>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x54) as *mut Addr2l, f(self.addr2l()));
+            write_volatile(self.addr2l_mut(), f(self.addr2l()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the ADDR3H register."]
-    #[inline] pub fn addr3h_ptr(&self) -> *const Addr3h { 
-        (self.0 + 0x58) as *const Addr3h
     }
 
     #[doc="Get the *mut pointer for the ADDR3H register."]
@@ -644,17 +639,22 @@ impl Emac {
         (self.0 + 0x58) as *mut Addr3h
     }
 
+    #[doc="Get the *const pointer for the ADDR3H register."]
+    #[inline] pub fn addr3h_ptr(&self) -> *const Addr3h { 
+           self.addr3h_mut()
+    }
+
     #[doc="Read the ADDR3H register."]
     #[inline] pub fn addr3h(&self) -> Addr3h { 
         unsafe {
-            read_volatile((self.0 + 0x58) as *const Addr3h)
+            read_volatile(self.addr3h_ptr())
         }
     }
 
     #[doc="Write the ADDR3H register."]
     #[inline] pub fn set_addr3h<F: FnOnce(Addr3h) -> Addr3h>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x58) as *mut Addr3h, f(Addr3h(0)));
+            write_volatile(self.addr3h_mut(), f(Addr3h(0)));
         }
         self
     }
@@ -662,14 +662,9 @@ impl Emac {
     #[doc="Modify the ADDR3H register."]
     #[inline] pub fn with_addr3h<F: FnOnce(Addr3h) -> Addr3h>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x58) as *mut Addr3h, f(self.addr3h()));
+            write_volatile(self.addr3h_mut(), f(self.addr3h()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the ADDR3L register."]
-    #[inline] pub fn addr3l_ptr(&self) -> *const Addr3l { 
-        (self.0 + 0x5c) as *const Addr3l
     }
 
     #[doc="Get the *mut pointer for the ADDR3L register."]
@@ -677,17 +672,22 @@ impl Emac {
         (self.0 + 0x5c) as *mut Addr3l
     }
 
+    #[doc="Get the *const pointer for the ADDR3L register."]
+    #[inline] pub fn addr3l_ptr(&self) -> *const Addr3l { 
+           self.addr3l_mut()
+    }
+
     #[doc="Read the ADDR3L register."]
     #[inline] pub fn addr3l(&self) -> Addr3l { 
         unsafe {
-            read_volatile((self.0 + 0x5c) as *const Addr3l)
+            read_volatile(self.addr3l_ptr())
         }
     }
 
     #[doc="Write the ADDR3L register."]
     #[inline] pub fn set_addr3l<F: FnOnce(Addr3l) -> Addr3l>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x5c) as *mut Addr3l, f(Addr3l(0)));
+            write_volatile(self.addr3l_mut(), f(Addr3l(0)));
         }
         self
     }
@@ -695,14 +695,9 @@ impl Emac {
     #[doc="Modify the ADDR3L register."]
     #[inline] pub fn with_addr3l<F: FnOnce(Addr3l) -> Addr3l>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x5c) as *mut Addr3l, f(self.addr3l()));
+            write_volatile(self.addr3l_mut(), f(self.addr3l()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the WDOGTO register."]
-    #[inline] pub fn wdogto_ptr(&self) -> *const Wdogto { 
-        (self.0 + 0xdc) as *const Wdogto
     }
 
     #[doc="Get the *mut pointer for the WDOGTO register."]
@@ -710,17 +705,22 @@ impl Emac {
         (self.0 + 0xdc) as *mut Wdogto
     }
 
+    #[doc="Get the *const pointer for the WDOGTO register."]
+    #[inline] pub fn wdogto_ptr(&self) -> *const Wdogto { 
+           self.wdogto_mut()
+    }
+
     #[doc="Read the WDOGTO register."]
     #[inline] pub fn wdogto(&self) -> Wdogto { 
         unsafe {
-            read_volatile((self.0 + 0xdc) as *const Wdogto)
+            read_volatile(self.wdogto_ptr())
         }
     }
 
     #[doc="Write the WDOGTO register."]
     #[inline] pub fn set_wdogto<F: FnOnce(Wdogto) -> Wdogto>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xdc) as *mut Wdogto, f(Wdogto(0)));
+            write_volatile(self.wdogto_mut(), f(Wdogto(0)));
         }
         self
     }
@@ -728,14 +728,9 @@ impl Emac {
     #[doc="Modify the WDOGTO register."]
     #[inline] pub fn with_wdogto<F: FnOnce(Wdogto) -> Wdogto>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xdc) as *mut Wdogto, f(self.wdogto()));
+            write_volatile(self.wdogto_mut(), f(self.wdogto()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the MMCCTRL register."]
-    #[inline] pub fn mmcctrl_ptr(&self) -> *const Mmcctrl { 
-        (self.0 + 0x100) as *const Mmcctrl
     }
 
     #[doc="Get the *mut pointer for the MMCCTRL register."]
@@ -743,17 +738,22 @@ impl Emac {
         (self.0 + 0x100) as *mut Mmcctrl
     }
 
+    #[doc="Get the *const pointer for the MMCCTRL register."]
+    #[inline] pub fn mmcctrl_ptr(&self) -> *const Mmcctrl { 
+           self.mmcctrl_mut()
+    }
+
     #[doc="Read the MMCCTRL register."]
     #[inline] pub fn mmcctrl(&self) -> Mmcctrl { 
         unsafe {
-            read_volatile((self.0 + 0x100) as *const Mmcctrl)
+            read_volatile(self.mmcctrl_ptr())
         }
     }
 
     #[doc="Write the MMCCTRL register."]
     #[inline] pub fn set_mmcctrl<F: FnOnce(Mmcctrl) -> Mmcctrl>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x100) as *mut Mmcctrl, f(Mmcctrl(0)));
+            write_volatile(self.mmcctrl_mut(), f(Mmcctrl(0)));
         }
         self
     }
@@ -761,14 +761,9 @@ impl Emac {
     #[doc="Modify the MMCCTRL register."]
     #[inline] pub fn with_mmcctrl<F: FnOnce(Mmcctrl) -> Mmcctrl>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x100) as *mut Mmcctrl, f(self.mmcctrl()));
+            write_volatile(self.mmcctrl_mut(), f(self.mmcctrl()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the MMCRXRIS register."]
-    #[inline] pub fn mmcrxris_ptr(&self) -> *const Mmcrxris { 
-        (self.0 + 0x104) as *const Mmcrxris
     }
 
     #[doc="Get the *mut pointer for the MMCRXRIS register."]
@@ -776,17 +771,22 @@ impl Emac {
         (self.0 + 0x104) as *mut Mmcrxris
     }
 
+    #[doc="Get the *const pointer for the MMCRXRIS register."]
+    #[inline] pub fn mmcrxris_ptr(&self) -> *const Mmcrxris { 
+           self.mmcrxris_mut()
+    }
+
     #[doc="Read the MMCRXRIS register."]
     #[inline] pub fn mmcrxris(&self) -> Mmcrxris { 
         unsafe {
-            read_volatile((self.0 + 0x104) as *const Mmcrxris)
+            read_volatile(self.mmcrxris_ptr())
         }
     }
 
     #[doc="Write the MMCRXRIS register."]
     #[inline] pub fn set_mmcrxris<F: FnOnce(Mmcrxris) -> Mmcrxris>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x104) as *mut Mmcrxris, f(Mmcrxris(0)));
+            write_volatile(self.mmcrxris_mut(), f(Mmcrxris(0)));
         }
         self
     }
@@ -794,14 +794,9 @@ impl Emac {
     #[doc="Modify the MMCRXRIS register."]
     #[inline] pub fn with_mmcrxris<F: FnOnce(Mmcrxris) -> Mmcrxris>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x104) as *mut Mmcrxris, f(self.mmcrxris()));
+            write_volatile(self.mmcrxris_mut(), f(self.mmcrxris()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the MMCTXRIS register."]
-    #[inline] pub fn mmctxris_ptr(&self) -> *const Mmctxris { 
-        (self.0 + 0x108) as *const Mmctxris
     }
 
     #[doc="Get the *mut pointer for the MMCTXRIS register."]
@@ -809,17 +804,22 @@ impl Emac {
         (self.0 + 0x108) as *mut Mmctxris
     }
 
+    #[doc="Get the *const pointer for the MMCTXRIS register."]
+    #[inline] pub fn mmctxris_ptr(&self) -> *const Mmctxris { 
+           self.mmctxris_mut()
+    }
+
     #[doc="Read the MMCTXRIS register."]
     #[inline] pub fn mmctxris(&self) -> Mmctxris { 
         unsafe {
-            read_volatile((self.0 + 0x108) as *const Mmctxris)
+            read_volatile(self.mmctxris_ptr())
         }
     }
 
     #[doc="Write the MMCTXRIS register."]
     #[inline] pub fn set_mmctxris<F: FnOnce(Mmctxris) -> Mmctxris>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x108) as *mut Mmctxris, f(Mmctxris(0)));
+            write_volatile(self.mmctxris_mut(), f(Mmctxris(0)));
         }
         self
     }
@@ -827,14 +827,9 @@ impl Emac {
     #[doc="Modify the MMCTXRIS register."]
     #[inline] pub fn with_mmctxris<F: FnOnce(Mmctxris) -> Mmctxris>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x108) as *mut Mmctxris, f(self.mmctxris()));
+            write_volatile(self.mmctxris_mut(), f(self.mmctxris()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the MMCRXIM register."]
-    #[inline] pub fn mmcrxim_ptr(&self) -> *const Mmcrxim { 
-        (self.0 + 0x10c) as *const Mmcrxim
     }
 
     #[doc="Get the *mut pointer for the MMCRXIM register."]
@@ -842,17 +837,22 @@ impl Emac {
         (self.0 + 0x10c) as *mut Mmcrxim
     }
 
+    #[doc="Get the *const pointer for the MMCRXIM register."]
+    #[inline] pub fn mmcrxim_ptr(&self) -> *const Mmcrxim { 
+           self.mmcrxim_mut()
+    }
+
     #[doc="Read the MMCRXIM register."]
     #[inline] pub fn mmcrxim(&self) -> Mmcrxim { 
         unsafe {
-            read_volatile((self.0 + 0x10c) as *const Mmcrxim)
+            read_volatile(self.mmcrxim_ptr())
         }
     }
 
     #[doc="Write the MMCRXIM register."]
     #[inline] pub fn set_mmcrxim<F: FnOnce(Mmcrxim) -> Mmcrxim>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x10c) as *mut Mmcrxim, f(Mmcrxim(0)));
+            write_volatile(self.mmcrxim_mut(), f(Mmcrxim(0)));
         }
         self
     }
@@ -860,14 +860,9 @@ impl Emac {
     #[doc="Modify the MMCRXIM register."]
     #[inline] pub fn with_mmcrxim<F: FnOnce(Mmcrxim) -> Mmcrxim>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x10c) as *mut Mmcrxim, f(self.mmcrxim()));
+            write_volatile(self.mmcrxim_mut(), f(self.mmcrxim()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the MMCTXIM register."]
-    #[inline] pub fn mmctxim_ptr(&self) -> *const Mmctxim { 
-        (self.0 + 0x110) as *const Mmctxim
     }
 
     #[doc="Get the *mut pointer for the MMCTXIM register."]
@@ -875,17 +870,22 @@ impl Emac {
         (self.0 + 0x110) as *mut Mmctxim
     }
 
+    #[doc="Get the *const pointer for the MMCTXIM register."]
+    #[inline] pub fn mmctxim_ptr(&self) -> *const Mmctxim { 
+           self.mmctxim_mut()
+    }
+
     #[doc="Read the MMCTXIM register."]
     #[inline] pub fn mmctxim(&self) -> Mmctxim { 
         unsafe {
-            read_volatile((self.0 + 0x110) as *const Mmctxim)
+            read_volatile(self.mmctxim_ptr())
         }
     }
 
     #[doc="Write the MMCTXIM register."]
     #[inline] pub fn set_mmctxim<F: FnOnce(Mmctxim) -> Mmctxim>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x110) as *mut Mmctxim, f(Mmctxim(0)));
+            write_volatile(self.mmctxim_mut(), f(Mmctxim(0)));
         }
         self
     }
@@ -893,14 +893,9 @@ impl Emac {
     #[doc="Modify the MMCTXIM register."]
     #[inline] pub fn with_mmctxim<F: FnOnce(Mmctxim) -> Mmctxim>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x110) as *mut Mmctxim, f(self.mmctxim()));
+            write_volatile(self.mmctxim_mut(), f(self.mmctxim()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the TXCNTGB register."]
-    #[inline] pub fn txcntgb_ptr(&self) -> *const Txcntgb { 
-        (self.0 + 0x118) as *const Txcntgb
     }
 
     #[doc="Get the *mut pointer for the TXCNTGB register."]
@@ -908,17 +903,22 @@ impl Emac {
         (self.0 + 0x118) as *mut Txcntgb
     }
 
+    #[doc="Get the *const pointer for the TXCNTGB register."]
+    #[inline] pub fn txcntgb_ptr(&self) -> *const Txcntgb { 
+           self.txcntgb_mut()
+    }
+
     #[doc="Read the TXCNTGB register."]
     #[inline] pub fn txcntgb(&self) -> Txcntgb { 
         unsafe {
-            read_volatile((self.0 + 0x118) as *const Txcntgb)
+            read_volatile(self.txcntgb_ptr())
         }
     }
 
     #[doc="Write the TXCNTGB register."]
     #[inline] pub fn set_txcntgb<F: FnOnce(Txcntgb) -> Txcntgb>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x118) as *mut Txcntgb, f(Txcntgb(0)));
+            write_volatile(self.txcntgb_mut(), f(Txcntgb(0)));
         }
         self
     }
@@ -926,14 +926,9 @@ impl Emac {
     #[doc="Modify the TXCNTGB register."]
     #[inline] pub fn with_txcntgb<F: FnOnce(Txcntgb) -> Txcntgb>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x118) as *mut Txcntgb, f(self.txcntgb()));
+            write_volatile(self.txcntgb_mut(), f(self.txcntgb()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the TXCNTSCOL register."]
-    #[inline] pub fn txcntscol_ptr(&self) -> *const Txcntscol { 
-        (self.0 + 0x14c) as *const Txcntscol
     }
 
     #[doc="Get the *mut pointer for the TXCNTSCOL register."]
@@ -941,17 +936,22 @@ impl Emac {
         (self.0 + 0x14c) as *mut Txcntscol
     }
 
+    #[doc="Get the *const pointer for the TXCNTSCOL register."]
+    #[inline] pub fn txcntscol_ptr(&self) -> *const Txcntscol { 
+           self.txcntscol_mut()
+    }
+
     #[doc="Read the TXCNTSCOL register."]
     #[inline] pub fn txcntscol(&self) -> Txcntscol { 
         unsafe {
-            read_volatile((self.0 + 0x14c) as *const Txcntscol)
+            read_volatile(self.txcntscol_ptr())
         }
     }
 
     #[doc="Write the TXCNTSCOL register."]
     #[inline] pub fn set_txcntscol<F: FnOnce(Txcntscol) -> Txcntscol>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x14c) as *mut Txcntscol, f(Txcntscol(0)));
+            write_volatile(self.txcntscol_mut(), f(Txcntscol(0)));
         }
         self
     }
@@ -959,14 +959,9 @@ impl Emac {
     #[doc="Modify the TXCNTSCOL register."]
     #[inline] pub fn with_txcntscol<F: FnOnce(Txcntscol) -> Txcntscol>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x14c) as *mut Txcntscol, f(self.txcntscol()));
+            write_volatile(self.txcntscol_mut(), f(self.txcntscol()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the TXCNTMCOL register."]
-    #[inline] pub fn txcntmcol_ptr(&self) -> *const Txcntmcol { 
-        (self.0 + 0x150) as *const Txcntmcol
     }
 
     #[doc="Get the *mut pointer for the TXCNTMCOL register."]
@@ -974,17 +969,22 @@ impl Emac {
         (self.0 + 0x150) as *mut Txcntmcol
     }
 
+    #[doc="Get the *const pointer for the TXCNTMCOL register."]
+    #[inline] pub fn txcntmcol_ptr(&self) -> *const Txcntmcol { 
+           self.txcntmcol_mut()
+    }
+
     #[doc="Read the TXCNTMCOL register."]
     #[inline] pub fn txcntmcol(&self) -> Txcntmcol { 
         unsafe {
-            read_volatile((self.0 + 0x150) as *const Txcntmcol)
+            read_volatile(self.txcntmcol_ptr())
         }
     }
 
     #[doc="Write the TXCNTMCOL register."]
     #[inline] pub fn set_txcntmcol<F: FnOnce(Txcntmcol) -> Txcntmcol>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x150) as *mut Txcntmcol, f(Txcntmcol(0)));
+            write_volatile(self.txcntmcol_mut(), f(Txcntmcol(0)));
         }
         self
     }
@@ -992,14 +992,9 @@ impl Emac {
     #[doc="Modify the TXCNTMCOL register."]
     #[inline] pub fn with_txcntmcol<F: FnOnce(Txcntmcol) -> Txcntmcol>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x150) as *mut Txcntmcol, f(self.txcntmcol()));
+            write_volatile(self.txcntmcol_mut(), f(self.txcntmcol()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the TXOCTCNTG register."]
-    #[inline] pub fn txoctcntg_ptr(&self) -> *const Txoctcntg { 
-        (self.0 + 0x164) as *const Txoctcntg
     }
 
     #[doc="Get the *mut pointer for the TXOCTCNTG register."]
@@ -1007,17 +1002,22 @@ impl Emac {
         (self.0 + 0x164) as *mut Txoctcntg
     }
 
+    #[doc="Get the *const pointer for the TXOCTCNTG register."]
+    #[inline] pub fn txoctcntg_ptr(&self) -> *const Txoctcntg { 
+           self.txoctcntg_mut()
+    }
+
     #[doc="Read the TXOCTCNTG register."]
     #[inline] pub fn txoctcntg(&self) -> Txoctcntg { 
         unsafe {
-            read_volatile((self.0 + 0x164) as *const Txoctcntg)
+            read_volatile(self.txoctcntg_ptr())
         }
     }
 
     #[doc="Write the TXOCTCNTG register."]
     #[inline] pub fn set_txoctcntg<F: FnOnce(Txoctcntg) -> Txoctcntg>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x164) as *mut Txoctcntg, f(Txoctcntg(0)));
+            write_volatile(self.txoctcntg_mut(), f(Txoctcntg(0)));
         }
         self
     }
@@ -1025,14 +1025,9 @@ impl Emac {
     #[doc="Modify the TXOCTCNTG register."]
     #[inline] pub fn with_txoctcntg<F: FnOnce(Txoctcntg) -> Txoctcntg>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x164) as *mut Txoctcntg, f(self.txoctcntg()));
+            write_volatile(self.txoctcntg_mut(), f(self.txoctcntg()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the RXCNTGB register."]
-    #[inline] pub fn rxcntgb_ptr(&self) -> *const Rxcntgb { 
-        (self.0 + 0x180) as *const Rxcntgb
     }
 
     #[doc="Get the *mut pointer for the RXCNTGB register."]
@@ -1040,17 +1035,22 @@ impl Emac {
         (self.0 + 0x180) as *mut Rxcntgb
     }
 
+    #[doc="Get the *const pointer for the RXCNTGB register."]
+    #[inline] pub fn rxcntgb_ptr(&self) -> *const Rxcntgb { 
+           self.rxcntgb_mut()
+    }
+
     #[doc="Read the RXCNTGB register."]
     #[inline] pub fn rxcntgb(&self) -> Rxcntgb { 
         unsafe {
-            read_volatile((self.0 + 0x180) as *const Rxcntgb)
+            read_volatile(self.rxcntgb_ptr())
         }
     }
 
     #[doc="Write the RXCNTGB register."]
     #[inline] pub fn set_rxcntgb<F: FnOnce(Rxcntgb) -> Rxcntgb>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x180) as *mut Rxcntgb, f(Rxcntgb(0)));
+            write_volatile(self.rxcntgb_mut(), f(Rxcntgb(0)));
         }
         self
     }
@@ -1058,14 +1058,9 @@ impl Emac {
     #[doc="Modify the RXCNTGB register."]
     #[inline] pub fn with_rxcntgb<F: FnOnce(Rxcntgb) -> Rxcntgb>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x180) as *mut Rxcntgb, f(self.rxcntgb()));
+            write_volatile(self.rxcntgb_mut(), f(self.rxcntgb()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the RXCNTCRCERR register."]
-    #[inline] pub fn rxcntcrcerr_ptr(&self) -> *const Rxcntcrcerr { 
-        (self.0 + 0x194) as *const Rxcntcrcerr
     }
 
     #[doc="Get the *mut pointer for the RXCNTCRCERR register."]
@@ -1073,17 +1068,22 @@ impl Emac {
         (self.0 + 0x194) as *mut Rxcntcrcerr
     }
 
+    #[doc="Get the *const pointer for the RXCNTCRCERR register."]
+    #[inline] pub fn rxcntcrcerr_ptr(&self) -> *const Rxcntcrcerr { 
+           self.rxcntcrcerr_mut()
+    }
+
     #[doc="Read the RXCNTCRCERR register."]
     #[inline] pub fn rxcntcrcerr(&self) -> Rxcntcrcerr { 
         unsafe {
-            read_volatile((self.0 + 0x194) as *const Rxcntcrcerr)
+            read_volatile(self.rxcntcrcerr_ptr())
         }
     }
 
     #[doc="Write the RXCNTCRCERR register."]
     #[inline] pub fn set_rxcntcrcerr<F: FnOnce(Rxcntcrcerr) -> Rxcntcrcerr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x194) as *mut Rxcntcrcerr, f(Rxcntcrcerr(0)));
+            write_volatile(self.rxcntcrcerr_mut(), f(Rxcntcrcerr(0)));
         }
         self
     }
@@ -1091,14 +1091,9 @@ impl Emac {
     #[doc="Modify the RXCNTCRCERR register."]
     #[inline] pub fn with_rxcntcrcerr<F: FnOnce(Rxcntcrcerr) -> Rxcntcrcerr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x194) as *mut Rxcntcrcerr, f(self.rxcntcrcerr()));
+            write_volatile(self.rxcntcrcerr_mut(), f(self.rxcntcrcerr()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the RXCNTALGNERR register."]
-    #[inline] pub fn rxcntalgnerr_ptr(&self) -> *const Rxcntalgnerr { 
-        (self.0 + 0x198) as *const Rxcntalgnerr
     }
 
     #[doc="Get the *mut pointer for the RXCNTALGNERR register."]
@@ -1106,17 +1101,22 @@ impl Emac {
         (self.0 + 0x198) as *mut Rxcntalgnerr
     }
 
+    #[doc="Get the *const pointer for the RXCNTALGNERR register."]
+    #[inline] pub fn rxcntalgnerr_ptr(&self) -> *const Rxcntalgnerr { 
+           self.rxcntalgnerr_mut()
+    }
+
     #[doc="Read the RXCNTALGNERR register."]
     #[inline] pub fn rxcntalgnerr(&self) -> Rxcntalgnerr { 
         unsafe {
-            read_volatile((self.0 + 0x198) as *const Rxcntalgnerr)
+            read_volatile(self.rxcntalgnerr_ptr())
         }
     }
 
     #[doc="Write the RXCNTALGNERR register."]
     #[inline] pub fn set_rxcntalgnerr<F: FnOnce(Rxcntalgnerr) -> Rxcntalgnerr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x198) as *mut Rxcntalgnerr, f(Rxcntalgnerr(0)));
+            write_volatile(self.rxcntalgnerr_mut(), f(Rxcntalgnerr(0)));
         }
         self
     }
@@ -1124,14 +1124,9 @@ impl Emac {
     #[doc="Modify the RXCNTALGNERR register."]
     #[inline] pub fn with_rxcntalgnerr<F: FnOnce(Rxcntalgnerr) -> Rxcntalgnerr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x198) as *mut Rxcntalgnerr, f(self.rxcntalgnerr()));
+            write_volatile(self.rxcntalgnerr_mut(), f(self.rxcntalgnerr()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the RXCNTGUNI register."]
-    #[inline] pub fn rxcntguni_ptr(&self) -> *const Rxcntguni { 
-        (self.0 + 0x1c4) as *const Rxcntguni
     }
 
     #[doc="Get the *mut pointer for the RXCNTGUNI register."]
@@ -1139,17 +1134,22 @@ impl Emac {
         (self.0 + 0x1c4) as *mut Rxcntguni
     }
 
+    #[doc="Get the *const pointer for the RXCNTGUNI register."]
+    #[inline] pub fn rxcntguni_ptr(&self) -> *const Rxcntguni { 
+           self.rxcntguni_mut()
+    }
+
     #[doc="Read the RXCNTGUNI register."]
     #[inline] pub fn rxcntguni(&self) -> Rxcntguni { 
         unsafe {
-            read_volatile((self.0 + 0x1c4) as *const Rxcntguni)
+            read_volatile(self.rxcntguni_ptr())
         }
     }
 
     #[doc="Write the RXCNTGUNI register."]
     #[inline] pub fn set_rxcntguni<F: FnOnce(Rxcntguni) -> Rxcntguni>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x1c4) as *mut Rxcntguni, f(Rxcntguni(0)));
+            write_volatile(self.rxcntguni_mut(), f(Rxcntguni(0)));
         }
         self
     }
@@ -1157,14 +1157,9 @@ impl Emac {
     #[doc="Modify the RXCNTGUNI register."]
     #[inline] pub fn with_rxcntguni<F: FnOnce(Rxcntguni) -> Rxcntguni>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x1c4) as *mut Rxcntguni, f(self.rxcntguni()));
+            write_volatile(self.rxcntguni_mut(), f(self.rxcntguni()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the VLNINCREP register."]
-    #[inline] pub fn vlnincrep_ptr(&self) -> *const Vlnincrep { 
-        (self.0 + 0x584) as *const Vlnincrep
     }
 
     #[doc="Get the *mut pointer for the VLNINCREP register."]
@@ -1172,17 +1167,22 @@ impl Emac {
         (self.0 + 0x584) as *mut Vlnincrep
     }
 
+    #[doc="Get the *const pointer for the VLNINCREP register."]
+    #[inline] pub fn vlnincrep_ptr(&self) -> *const Vlnincrep { 
+           self.vlnincrep_mut()
+    }
+
     #[doc="Read the VLNINCREP register."]
     #[inline] pub fn vlnincrep(&self) -> Vlnincrep { 
         unsafe {
-            read_volatile((self.0 + 0x584) as *const Vlnincrep)
+            read_volatile(self.vlnincrep_ptr())
         }
     }
 
     #[doc="Write the VLNINCREP register."]
     #[inline] pub fn set_vlnincrep<F: FnOnce(Vlnincrep) -> Vlnincrep>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x584) as *mut Vlnincrep, f(Vlnincrep(0)));
+            write_volatile(self.vlnincrep_mut(), f(Vlnincrep(0)));
         }
         self
     }
@@ -1190,14 +1190,9 @@ impl Emac {
     #[doc="Modify the VLNINCREP register."]
     #[inline] pub fn with_vlnincrep<F: FnOnce(Vlnincrep) -> Vlnincrep>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x584) as *mut Vlnincrep, f(self.vlnincrep()));
+            write_volatile(self.vlnincrep_mut(), f(self.vlnincrep()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the VLANHASH register."]
-    #[inline] pub fn vlanhash_ptr(&self) -> *const Vlanhash { 
-        (self.0 + 0x588) as *const Vlanhash
     }
 
     #[doc="Get the *mut pointer for the VLANHASH register."]
@@ -1205,17 +1200,22 @@ impl Emac {
         (self.0 + 0x588) as *mut Vlanhash
     }
 
+    #[doc="Get the *const pointer for the VLANHASH register."]
+    #[inline] pub fn vlanhash_ptr(&self) -> *const Vlanhash { 
+           self.vlanhash_mut()
+    }
+
     #[doc="Read the VLANHASH register."]
     #[inline] pub fn vlanhash(&self) -> Vlanhash { 
         unsafe {
-            read_volatile((self.0 + 0x588) as *const Vlanhash)
+            read_volatile(self.vlanhash_ptr())
         }
     }
 
     #[doc="Write the VLANHASH register."]
     #[inline] pub fn set_vlanhash<F: FnOnce(Vlanhash) -> Vlanhash>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x588) as *mut Vlanhash, f(Vlanhash(0)));
+            write_volatile(self.vlanhash_mut(), f(Vlanhash(0)));
         }
         self
     }
@@ -1223,14 +1223,9 @@ impl Emac {
     #[doc="Modify the VLANHASH register."]
     #[inline] pub fn with_vlanhash<F: FnOnce(Vlanhash) -> Vlanhash>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x588) as *mut Vlanhash, f(self.vlanhash()));
+            write_volatile(self.vlanhash_mut(), f(self.vlanhash()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the TIMSTCTRL register."]
-    #[inline] pub fn timstctrl_ptr(&self) -> *const Timstctrl { 
-        (self.0 + 0x700) as *const Timstctrl
     }
 
     #[doc="Get the *mut pointer for the TIMSTCTRL register."]
@@ -1238,17 +1233,22 @@ impl Emac {
         (self.0 + 0x700) as *mut Timstctrl
     }
 
+    #[doc="Get the *const pointer for the TIMSTCTRL register."]
+    #[inline] pub fn timstctrl_ptr(&self) -> *const Timstctrl { 
+           self.timstctrl_mut()
+    }
+
     #[doc="Read the TIMSTCTRL register."]
     #[inline] pub fn timstctrl(&self) -> Timstctrl { 
         unsafe {
-            read_volatile((self.0 + 0x700) as *const Timstctrl)
+            read_volatile(self.timstctrl_ptr())
         }
     }
 
     #[doc="Write the TIMSTCTRL register."]
     #[inline] pub fn set_timstctrl<F: FnOnce(Timstctrl) -> Timstctrl>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x700) as *mut Timstctrl, f(Timstctrl(0)));
+            write_volatile(self.timstctrl_mut(), f(Timstctrl(0)));
         }
         self
     }
@@ -1256,14 +1256,9 @@ impl Emac {
     #[doc="Modify the TIMSTCTRL register."]
     #[inline] pub fn with_timstctrl<F: FnOnce(Timstctrl) -> Timstctrl>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x700) as *mut Timstctrl, f(self.timstctrl()));
+            write_volatile(self.timstctrl_mut(), f(self.timstctrl()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the SUBSECINC register."]
-    #[inline] pub fn subsecinc_ptr(&self) -> *const Subsecinc { 
-        (self.0 + 0x704) as *const Subsecinc
     }
 
     #[doc="Get the *mut pointer for the SUBSECINC register."]
@@ -1271,17 +1266,22 @@ impl Emac {
         (self.0 + 0x704) as *mut Subsecinc
     }
 
+    #[doc="Get the *const pointer for the SUBSECINC register."]
+    #[inline] pub fn subsecinc_ptr(&self) -> *const Subsecinc { 
+           self.subsecinc_mut()
+    }
+
     #[doc="Read the SUBSECINC register."]
     #[inline] pub fn subsecinc(&self) -> Subsecinc { 
         unsafe {
-            read_volatile((self.0 + 0x704) as *const Subsecinc)
+            read_volatile(self.subsecinc_ptr())
         }
     }
 
     #[doc="Write the SUBSECINC register."]
     #[inline] pub fn set_subsecinc<F: FnOnce(Subsecinc) -> Subsecinc>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x704) as *mut Subsecinc, f(Subsecinc(0)));
+            write_volatile(self.subsecinc_mut(), f(Subsecinc(0)));
         }
         self
     }
@@ -1289,14 +1289,9 @@ impl Emac {
     #[doc="Modify the SUBSECINC register."]
     #[inline] pub fn with_subsecinc<F: FnOnce(Subsecinc) -> Subsecinc>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x704) as *mut Subsecinc, f(self.subsecinc()));
+            write_volatile(self.subsecinc_mut(), f(self.subsecinc()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the TIMSEC register."]
-    #[inline] pub fn timsec_ptr(&self) -> *const Timsec { 
-        (self.0 + 0x708) as *const Timsec
     }
 
     #[doc="Get the *mut pointer for the TIMSEC register."]
@@ -1304,17 +1299,22 @@ impl Emac {
         (self.0 + 0x708) as *mut Timsec
     }
 
+    #[doc="Get the *const pointer for the TIMSEC register."]
+    #[inline] pub fn timsec_ptr(&self) -> *const Timsec { 
+           self.timsec_mut()
+    }
+
     #[doc="Read the TIMSEC register."]
     #[inline] pub fn timsec(&self) -> Timsec { 
         unsafe {
-            read_volatile((self.0 + 0x708) as *const Timsec)
+            read_volatile(self.timsec_ptr())
         }
     }
 
     #[doc="Write the TIMSEC register."]
     #[inline] pub fn set_timsec<F: FnOnce(Timsec) -> Timsec>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x708) as *mut Timsec, f(Timsec(0)));
+            write_volatile(self.timsec_mut(), f(Timsec(0)));
         }
         self
     }
@@ -1322,14 +1322,9 @@ impl Emac {
     #[doc="Modify the TIMSEC register."]
     #[inline] pub fn with_timsec<F: FnOnce(Timsec) -> Timsec>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x708) as *mut Timsec, f(self.timsec()));
+            write_volatile(self.timsec_mut(), f(self.timsec()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the TIMNANO register."]
-    #[inline] pub fn timnano_ptr(&self) -> *const Timnano { 
-        (self.0 + 0x70c) as *const Timnano
     }
 
     #[doc="Get the *mut pointer for the TIMNANO register."]
@@ -1337,17 +1332,22 @@ impl Emac {
         (self.0 + 0x70c) as *mut Timnano
     }
 
+    #[doc="Get the *const pointer for the TIMNANO register."]
+    #[inline] pub fn timnano_ptr(&self) -> *const Timnano { 
+           self.timnano_mut()
+    }
+
     #[doc="Read the TIMNANO register."]
     #[inline] pub fn timnano(&self) -> Timnano { 
         unsafe {
-            read_volatile((self.0 + 0x70c) as *const Timnano)
+            read_volatile(self.timnano_ptr())
         }
     }
 
     #[doc="Write the TIMNANO register."]
     #[inline] pub fn set_timnano<F: FnOnce(Timnano) -> Timnano>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x70c) as *mut Timnano, f(Timnano(0)));
+            write_volatile(self.timnano_mut(), f(Timnano(0)));
         }
         self
     }
@@ -1355,14 +1355,9 @@ impl Emac {
     #[doc="Modify the TIMNANO register."]
     #[inline] pub fn with_timnano<F: FnOnce(Timnano) -> Timnano>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x70c) as *mut Timnano, f(self.timnano()));
+            write_volatile(self.timnano_mut(), f(self.timnano()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the TIMSECU register."]
-    #[inline] pub fn timsecu_ptr(&self) -> *const Timsecu { 
-        (self.0 + 0x710) as *const Timsecu
     }
 
     #[doc="Get the *mut pointer for the TIMSECU register."]
@@ -1370,17 +1365,22 @@ impl Emac {
         (self.0 + 0x710) as *mut Timsecu
     }
 
+    #[doc="Get the *const pointer for the TIMSECU register."]
+    #[inline] pub fn timsecu_ptr(&self) -> *const Timsecu { 
+           self.timsecu_mut()
+    }
+
     #[doc="Read the TIMSECU register."]
     #[inline] pub fn timsecu(&self) -> Timsecu { 
         unsafe {
-            read_volatile((self.0 + 0x710) as *const Timsecu)
+            read_volatile(self.timsecu_ptr())
         }
     }
 
     #[doc="Write the TIMSECU register."]
     #[inline] pub fn set_timsecu<F: FnOnce(Timsecu) -> Timsecu>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x710) as *mut Timsecu, f(Timsecu(0)));
+            write_volatile(self.timsecu_mut(), f(Timsecu(0)));
         }
         self
     }
@@ -1388,14 +1388,9 @@ impl Emac {
     #[doc="Modify the TIMSECU register."]
     #[inline] pub fn with_timsecu<F: FnOnce(Timsecu) -> Timsecu>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x710) as *mut Timsecu, f(self.timsecu()));
+            write_volatile(self.timsecu_mut(), f(self.timsecu()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the TIMNANOU register."]
-    #[inline] pub fn timnanou_ptr(&self) -> *const Timnanou { 
-        (self.0 + 0x714) as *const Timnanou
     }
 
     #[doc="Get the *mut pointer for the TIMNANOU register."]
@@ -1403,17 +1398,22 @@ impl Emac {
         (self.0 + 0x714) as *mut Timnanou
     }
 
+    #[doc="Get the *const pointer for the TIMNANOU register."]
+    #[inline] pub fn timnanou_ptr(&self) -> *const Timnanou { 
+           self.timnanou_mut()
+    }
+
     #[doc="Read the TIMNANOU register."]
     #[inline] pub fn timnanou(&self) -> Timnanou { 
         unsafe {
-            read_volatile((self.0 + 0x714) as *const Timnanou)
+            read_volatile(self.timnanou_ptr())
         }
     }
 
     #[doc="Write the TIMNANOU register."]
     #[inline] pub fn set_timnanou<F: FnOnce(Timnanou) -> Timnanou>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x714) as *mut Timnanou, f(Timnanou(0)));
+            write_volatile(self.timnanou_mut(), f(Timnanou(0)));
         }
         self
     }
@@ -1421,14 +1421,9 @@ impl Emac {
     #[doc="Modify the TIMNANOU register."]
     #[inline] pub fn with_timnanou<F: FnOnce(Timnanou) -> Timnanou>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x714) as *mut Timnanou, f(self.timnanou()));
+            write_volatile(self.timnanou_mut(), f(self.timnanou()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the TIMADD register."]
-    #[inline] pub fn timadd_ptr(&self) -> *const Timadd { 
-        (self.0 + 0x718) as *const Timadd
     }
 
     #[doc="Get the *mut pointer for the TIMADD register."]
@@ -1436,17 +1431,22 @@ impl Emac {
         (self.0 + 0x718) as *mut Timadd
     }
 
+    #[doc="Get the *const pointer for the TIMADD register."]
+    #[inline] pub fn timadd_ptr(&self) -> *const Timadd { 
+           self.timadd_mut()
+    }
+
     #[doc="Read the TIMADD register."]
     #[inline] pub fn timadd(&self) -> Timadd { 
         unsafe {
-            read_volatile((self.0 + 0x718) as *const Timadd)
+            read_volatile(self.timadd_ptr())
         }
     }
 
     #[doc="Write the TIMADD register."]
     #[inline] pub fn set_timadd<F: FnOnce(Timadd) -> Timadd>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x718) as *mut Timadd, f(Timadd(0)));
+            write_volatile(self.timadd_mut(), f(Timadd(0)));
         }
         self
     }
@@ -1454,14 +1454,9 @@ impl Emac {
     #[doc="Modify the TIMADD register."]
     #[inline] pub fn with_timadd<F: FnOnce(Timadd) -> Timadd>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x718) as *mut Timadd, f(self.timadd()));
+            write_volatile(self.timadd_mut(), f(self.timadd()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the TARGSEC register."]
-    #[inline] pub fn targsec_ptr(&self) -> *const Targsec { 
-        (self.0 + 0x71c) as *const Targsec
     }
 
     #[doc="Get the *mut pointer for the TARGSEC register."]
@@ -1469,17 +1464,22 @@ impl Emac {
         (self.0 + 0x71c) as *mut Targsec
     }
 
+    #[doc="Get the *const pointer for the TARGSEC register."]
+    #[inline] pub fn targsec_ptr(&self) -> *const Targsec { 
+           self.targsec_mut()
+    }
+
     #[doc="Read the TARGSEC register."]
     #[inline] pub fn targsec(&self) -> Targsec { 
         unsafe {
-            read_volatile((self.0 + 0x71c) as *const Targsec)
+            read_volatile(self.targsec_ptr())
         }
     }
 
     #[doc="Write the TARGSEC register."]
     #[inline] pub fn set_targsec<F: FnOnce(Targsec) -> Targsec>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x71c) as *mut Targsec, f(Targsec(0)));
+            write_volatile(self.targsec_mut(), f(Targsec(0)));
         }
         self
     }
@@ -1487,14 +1487,9 @@ impl Emac {
     #[doc="Modify the TARGSEC register."]
     #[inline] pub fn with_targsec<F: FnOnce(Targsec) -> Targsec>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x71c) as *mut Targsec, f(self.targsec()));
+            write_volatile(self.targsec_mut(), f(self.targsec()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the TARGNANO register."]
-    #[inline] pub fn targnano_ptr(&self) -> *const Targnano { 
-        (self.0 + 0x720) as *const Targnano
     }
 
     #[doc="Get the *mut pointer for the TARGNANO register."]
@@ -1502,17 +1497,22 @@ impl Emac {
         (self.0 + 0x720) as *mut Targnano
     }
 
+    #[doc="Get the *const pointer for the TARGNANO register."]
+    #[inline] pub fn targnano_ptr(&self) -> *const Targnano { 
+           self.targnano_mut()
+    }
+
     #[doc="Read the TARGNANO register."]
     #[inline] pub fn targnano(&self) -> Targnano { 
         unsafe {
-            read_volatile((self.0 + 0x720) as *const Targnano)
+            read_volatile(self.targnano_ptr())
         }
     }
 
     #[doc="Write the TARGNANO register."]
     #[inline] pub fn set_targnano<F: FnOnce(Targnano) -> Targnano>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x720) as *mut Targnano, f(Targnano(0)));
+            write_volatile(self.targnano_mut(), f(Targnano(0)));
         }
         self
     }
@@ -1520,14 +1520,9 @@ impl Emac {
     #[doc="Modify the TARGNANO register."]
     #[inline] pub fn with_targnano<F: FnOnce(Targnano) -> Targnano>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x720) as *mut Targnano, f(self.targnano()));
+            write_volatile(self.targnano_mut(), f(self.targnano()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the HWORDSEC register."]
-    #[inline] pub fn hwordsec_ptr(&self) -> *const Hwordsec { 
-        (self.0 + 0x724) as *const Hwordsec
     }
 
     #[doc="Get the *mut pointer for the HWORDSEC register."]
@@ -1535,17 +1530,22 @@ impl Emac {
         (self.0 + 0x724) as *mut Hwordsec
     }
 
+    #[doc="Get the *const pointer for the HWORDSEC register."]
+    #[inline] pub fn hwordsec_ptr(&self) -> *const Hwordsec { 
+           self.hwordsec_mut()
+    }
+
     #[doc="Read the HWORDSEC register."]
     #[inline] pub fn hwordsec(&self) -> Hwordsec { 
         unsafe {
-            read_volatile((self.0 + 0x724) as *const Hwordsec)
+            read_volatile(self.hwordsec_ptr())
         }
     }
 
     #[doc="Write the HWORDSEC register."]
     #[inline] pub fn set_hwordsec<F: FnOnce(Hwordsec) -> Hwordsec>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x724) as *mut Hwordsec, f(Hwordsec(0)));
+            write_volatile(self.hwordsec_mut(), f(Hwordsec(0)));
         }
         self
     }
@@ -1553,14 +1553,9 @@ impl Emac {
     #[doc="Modify the HWORDSEC register."]
     #[inline] pub fn with_hwordsec<F: FnOnce(Hwordsec) -> Hwordsec>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x724) as *mut Hwordsec, f(self.hwordsec()));
+            write_volatile(self.hwordsec_mut(), f(self.hwordsec()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the TIMSTAT register."]
-    #[inline] pub fn timstat_ptr(&self) -> *const Timstat { 
-        (self.0 + 0x728) as *const Timstat
     }
 
     #[doc="Get the *mut pointer for the TIMSTAT register."]
@@ -1568,17 +1563,22 @@ impl Emac {
         (self.0 + 0x728) as *mut Timstat
     }
 
+    #[doc="Get the *const pointer for the TIMSTAT register."]
+    #[inline] pub fn timstat_ptr(&self) -> *const Timstat { 
+           self.timstat_mut()
+    }
+
     #[doc="Read the TIMSTAT register."]
     #[inline] pub fn timstat(&self) -> Timstat { 
         unsafe {
-            read_volatile((self.0 + 0x728) as *const Timstat)
+            read_volatile(self.timstat_ptr())
         }
     }
 
     #[doc="Write the TIMSTAT register."]
     #[inline] pub fn set_timstat<F: FnOnce(Timstat) -> Timstat>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x728) as *mut Timstat, f(Timstat(0)));
+            write_volatile(self.timstat_mut(), f(Timstat(0)));
         }
         self
     }
@@ -1586,14 +1586,9 @@ impl Emac {
     #[doc="Modify the TIMSTAT register."]
     #[inline] pub fn with_timstat<F: FnOnce(Timstat) -> Timstat>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x728) as *mut Timstat, f(self.timstat()));
+            write_volatile(self.timstat_mut(), f(self.timstat()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the PPSCTRL register."]
-    #[inline] pub fn ppsctrl_ptr(&self) -> *const Ppsctrl { 
-        (self.0 + 0x72c) as *const Ppsctrl
     }
 
     #[doc="Get the *mut pointer for the PPSCTRL register."]
@@ -1601,17 +1596,22 @@ impl Emac {
         (self.0 + 0x72c) as *mut Ppsctrl
     }
 
+    #[doc="Get the *const pointer for the PPSCTRL register."]
+    #[inline] pub fn ppsctrl_ptr(&self) -> *const Ppsctrl { 
+           self.ppsctrl_mut()
+    }
+
     #[doc="Read the PPSCTRL register."]
     #[inline] pub fn ppsctrl(&self) -> Ppsctrl { 
         unsafe {
-            read_volatile((self.0 + 0x72c) as *const Ppsctrl)
+            read_volatile(self.ppsctrl_ptr())
         }
     }
 
     #[doc="Write the PPSCTRL register."]
     #[inline] pub fn set_ppsctrl<F: FnOnce(Ppsctrl) -> Ppsctrl>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x72c) as *mut Ppsctrl, f(Ppsctrl(0)));
+            write_volatile(self.ppsctrl_mut(), f(Ppsctrl(0)));
         }
         self
     }
@@ -1619,14 +1619,9 @@ impl Emac {
     #[doc="Modify the PPSCTRL register."]
     #[inline] pub fn with_ppsctrl<F: FnOnce(Ppsctrl) -> Ppsctrl>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x72c) as *mut Ppsctrl, f(self.ppsctrl()));
+            write_volatile(self.ppsctrl_mut(), f(self.ppsctrl()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the PPS0INTVL register."]
-    #[inline] pub fn pps0intvl_ptr(&self) -> *const Pps0intvl { 
-        (self.0 + 0x760) as *const Pps0intvl
     }
 
     #[doc="Get the *mut pointer for the PPS0INTVL register."]
@@ -1634,17 +1629,22 @@ impl Emac {
         (self.0 + 0x760) as *mut Pps0intvl
     }
 
+    #[doc="Get the *const pointer for the PPS0INTVL register."]
+    #[inline] pub fn pps0intvl_ptr(&self) -> *const Pps0intvl { 
+           self.pps0intvl_mut()
+    }
+
     #[doc="Read the PPS0INTVL register."]
     #[inline] pub fn pps0intvl(&self) -> Pps0intvl { 
         unsafe {
-            read_volatile((self.0 + 0x760) as *const Pps0intvl)
+            read_volatile(self.pps0intvl_ptr())
         }
     }
 
     #[doc="Write the PPS0INTVL register."]
     #[inline] pub fn set_pps0intvl<F: FnOnce(Pps0intvl) -> Pps0intvl>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x760) as *mut Pps0intvl, f(Pps0intvl(0)));
+            write_volatile(self.pps0intvl_mut(), f(Pps0intvl(0)));
         }
         self
     }
@@ -1652,14 +1652,9 @@ impl Emac {
     #[doc="Modify the PPS0INTVL register."]
     #[inline] pub fn with_pps0intvl<F: FnOnce(Pps0intvl) -> Pps0intvl>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x760) as *mut Pps0intvl, f(self.pps0intvl()));
+            write_volatile(self.pps0intvl_mut(), f(self.pps0intvl()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the PPS0WIDTH register."]
-    #[inline] pub fn pps0width_ptr(&self) -> *const Pps0width { 
-        (self.0 + 0x764) as *const Pps0width
     }
 
     #[doc="Get the *mut pointer for the PPS0WIDTH register."]
@@ -1667,17 +1662,22 @@ impl Emac {
         (self.0 + 0x764) as *mut Pps0width
     }
 
+    #[doc="Get the *const pointer for the PPS0WIDTH register."]
+    #[inline] pub fn pps0width_ptr(&self) -> *const Pps0width { 
+           self.pps0width_mut()
+    }
+
     #[doc="Read the PPS0WIDTH register."]
     #[inline] pub fn pps0width(&self) -> Pps0width { 
         unsafe {
-            read_volatile((self.0 + 0x764) as *const Pps0width)
+            read_volatile(self.pps0width_ptr())
         }
     }
 
     #[doc="Write the PPS0WIDTH register."]
     #[inline] pub fn set_pps0width<F: FnOnce(Pps0width) -> Pps0width>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x764) as *mut Pps0width, f(Pps0width(0)));
+            write_volatile(self.pps0width_mut(), f(Pps0width(0)));
         }
         self
     }
@@ -1685,14 +1685,9 @@ impl Emac {
     #[doc="Modify the PPS0WIDTH register."]
     #[inline] pub fn with_pps0width<F: FnOnce(Pps0width) -> Pps0width>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x764) as *mut Pps0width, f(self.pps0width()));
+            write_volatile(self.pps0width_mut(), f(self.pps0width()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the DMABUSMOD register."]
-    #[inline] pub fn dmabusmod_ptr(&self) -> *const Dmabusmod { 
-        (self.0 + 0xc00) as *const Dmabusmod
     }
 
     #[doc="Get the *mut pointer for the DMABUSMOD register."]
@@ -1700,17 +1695,22 @@ impl Emac {
         (self.0 + 0xc00) as *mut Dmabusmod
     }
 
+    #[doc="Get the *const pointer for the DMABUSMOD register."]
+    #[inline] pub fn dmabusmod_ptr(&self) -> *const Dmabusmod { 
+           self.dmabusmod_mut()
+    }
+
     #[doc="Read the DMABUSMOD register."]
     #[inline] pub fn dmabusmod(&self) -> Dmabusmod { 
         unsafe {
-            read_volatile((self.0 + 0xc00) as *const Dmabusmod)
+            read_volatile(self.dmabusmod_ptr())
         }
     }
 
     #[doc="Write the DMABUSMOD register."]
     #[inline] pub fn set_dmabusmod<F: FnOnce(Dmabusmod) -> Dmabusmod>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xc00) as *mut Dmabusmod, f(Dmabusmod(0)));
+            write_volatile(self.dmabusmod_mut(), f(Dmabusmod(0)));
         }
         self
     }
@@ -1718,14 +1718,9 @@ impl Emac {
     #[doc="Modify the DMABUSMOD register."]
     #[inline] pub fn with_dmabusmod<F: FnOnce(Dmabusmod) -> Dmabusmod>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xc00) as *mut Dmabusmod, f(self.dmabusmod()));
+            write_volatile(self.dmabusmod_mut(), f(self.dmabusmod()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the TXPOLLD register."]
-    #[inline] pub fn txpolld_ptr(&self) -> *const Txpolld { 
-        (self.0 + 0xc04) as *const Txpolld
     }
 
     #[doc="Get the *mut pointer for the TXPOLLD register."]
@@ -1733,17 +1728,17 @@ impl Emac {
         (self.0 + 0xc04) as *mut Txpolld
     }
 
+    #[doc="Get the *const pointer for the TXPOLLD register."]
+    #[inline] pub fn txpolld_ptr(&self) -> *const Txpolld { 
+           self.txpolld_mut()
+    }
+
     #[doc="Write the TXPOLLD register."]
     #[inline] pub fn set_txpolld<F: FnOnce(Txpolld) -> Txpolld>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xc04) as *mut Txpolld, f(Txpolld(0)));
+            write_volatile(self.txpolld_mut(), f(Txpolld(0)));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the RXPOLLD register."]
-    #[inline] pub fn rxpolld_ptr(&self) -> *const Rxpolld { 
-        (self.0 + 0xc08) as *const Rxpolld
     }
 
     #[doc="Get the *mut pointer for the RXPOLLD register."]
@@ -1751,17 +1746,17 @@ impl Emac {
         (self.0 + 0xc08) as *mut Rxpolld
     }
 
+    #[doc="Get the *const pointer for the RXPOLLD register."]
+    #[inline] pub fn rxpolld_ptr(&self) -> *const Rxpolld { 
+           self.rxpolld_mut()
+    }
+
     #[doc="Write the RXPOLLD register."]
     #[inline] pub fn set_rxpolld<F: FnOnce(Rxpolld) -> Rxpolld>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xc08) as *mut Rxpolld, f(Rxpolld(0)));
+            write_volatile(self.rxpolld_mut(), f(Rxpolld(0)));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the RXDLADDR register."]
-    #[inline] pub fn rxdladdr_ptr(&self) -> *const Rxdladdr { 
-        (self.0 + 0xc0c) as *const Rxdladdr
     }
 
     #[doc="Get the *mut pointer for the RXDLADDR register."]
@@ -1769,17 +1764,22 @@ impl Emac {
         (self.0 + 0xc0c) as *mut Rxdladdr
     }
 
+    #[doc="Get the *const pointer for the RXDLADDR register."]
+    #[inline] pub fn rxdladdr_ptr(&self) -> *const Rxdladdr { 
+           self.rxdladdr_mut()
+    }
+
     #[doc="Read the RXDLADDR register."]
     #[inline] pub fn rxdladdr(&self) -> Rxdladdr { 
         unsafe {
-            read_volatile((self.0 + 0xc0c) as *const Rxdladdr)
+            read_volatile(self.rxdladdr_ptr())
         }
     }
 
     #[doc="Write the RXDLADDR register."]
     #[inline] pub fn set_rxdladdr<F: FnOnce(Rxdladdr) -> Rxdladdr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xc0c) as *mut Rxdladdr, f(Rxdladdr(0)));
+            write_volatile(self.rxdladdr_mut(), f(Rxdladdr(0)));
         }
         self
     }
@@ -1787,14 +1787,9 @@ impl Emac {
     #[doc="Modify the RXDLADDR register."]
     #[inline] pub fn with_rxdladdr<F: FnOnce(Rxdladdr) -> Rxdladdr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xc0c) as *mut Rxdladdr, f(self.rxdladdr()));
+            write_volatile(self.rxdladdr_mut(), f(self.rxdladdr()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the TXDLADDR register."]
-    #[inline] pub fn txdladdr_ptr(&self) -> *const Txdladdr { 
-        (self.0 + 0xc10) as *const Txdladdr
     }
 
     #[doc="Get the *mut pointer for the TXDLADDR register."]
@@ -1802,17 +1797,22 @@ impl Emac {
         (self.0 + 0xc10) as *mut Txdladdr
     }
 
+    #[doc="Get the *const pointer for the TXDLADDR register."]
+    #[inline] pub fn txdladdr_ptr(&self) -> *const Txdladdr { 
+           self.txdladdr_mut()
+    }
+
     #[doc="Read the TXDLADDR register."]
     #[inline] pub fn txdladdr(&self) -> Txdladdr { 
         unsafe {
-            read_volatile((self.0 + 0xc10) as *const Txdladdr)
+            read_volatile(self.txdladdr_ptr())
         }
     }
 
     #[doc="Write the TXDLADDR register."]
     #[inline] pub fn set_txdladdr<F: FnOnce(Txdladdr) -> Txdladdr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xc10) as *mut Txdladdr, f(Txdladdr(0)));
+            write_volatile(self.txdladdr_mut(), f(Txdladdr(0)));
         }
         self
     }
@@ -1820,14 +1820,9 @@ impl Emac {
     #[doc="Modify the TXDLADDR register."]
     #[inline] pub fn with_txdladdr<F: FnOnce(Txdladdr) -> Txdladdr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xc10) as *mut Txdladdr, f(self.txdladdr()));
+            write_volatile(self.txdladdr_mut(), f(self.txdladdr()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the DMARIS register."]
-    #[inline] pub fn dmaris_ptr(&self) -> *const Dmaris { 
-        (self.0 + 0xc14) as *const Dmaris
     }
 
     #[doc="Get the *mut pointer for the DMARIS register."]
@@ -1835,17 +1830,22 @@ impl Emac {
         (self.0 + 0xc14) as *mut Dmaris
     }
 
+    #[doc="Get the *const pointer for the DMARIS register."]
+    #[inline] pub fn dmaris_ptr(&self) -> *const Dmaris { 
+           self.dmaris_mut()
+    }
+
     #[doc="Read the DMARIS register."]
     #[inline] pub fn dmaris(&self) -> Dmaris { 
         unsafe {
-            read_volatile((self.0 + 0xc14) as *const Dmaris)
+            read_volatile(self.dmaris_ptr())
         }
     }
 
     #[doc="Write the DMARIS register."]
     #[inline] pub fn set_dmaris<F: FnOnce(Dmaris) -> Dmaris>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xc14) as *mut Dmaris, f(Dmaris(0)));
+            write_volatile(self.dmaris_mut(), f(Dmaris(0)));
         }
         self
     }
@@ -1853,14 +1853,9 @@ impl Emac {
     #[doc="Modify the DMARIS register."]
     #[inline] pub fn with_dmaris<F: FnOnce(Dmaris) -> Dmaris>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xc14) as *mut Dmaris, f(self.dmaris()));
+            write_volatile(self.dmaris_mut(), f(self.dmaris()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the DMAOPMODE register."]
-    #[inline] pub fn dmaopmode_ptr(&self) -> *const Dmaopmode { 
-        (self.0 + 0xc18) as *const Dmaopmode
     }
 
     #[doc="Get the *mut pointer for the DMAOPMODE register."]
@@ -1868,17 +1863,22 @@ impl Emac {
         (self.0 + 0xc18) as *mut Dmaopmode
     }
 
+    #[doc="Get the *const pointer for the DMAOPMODE register."]
+    #[inline] pub fn dmaopmode_ptr(&self) -> *const Dmaopmode { 
+           self.dmaopmode_mut()
+    }
+
     #[doc="Read the DMAOPMODE register."]
     #[inline] pub fn dmaopmode(&self) -> Dmaopmode { 
         unsafe {
-            read_volatile((self.0 + 0xc18) as *const Dmaopmode)
+            read_volatile(self.dmaopmode_ptr())
         }
     }
 
     #[doc="Write the DMAOPMODE register."]
     #[inline] pub fn set_dmaopmode<F: FnOnce(Dmaopmode) -> Dmaopmode>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xc18) as *mut Dmaopmode, f(Dmaopmode(0)));
+            write_volatile(self.dmaopmode_mut(), f(Dmaopmode(0)));
         }
         self
     }
@@ -1886,14 +1886,9 @@ impl Emac {
     #[doc="Modify the DMAOPMODE register."]
     #[inline] pub fn with_dmaopmode<F: FnOnce(Dmaopmode) -> Dmaopmode>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xc18) as *mut Dmaopmode, f(self.dmaopmode()));
+            write_volatile(self.dmaopmode_mut(), f(self.dmaopmode()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the DMAIM register."]
-    #[inline] pub fn dmaim_ptr(&self) -> *const Dmaim { 
-        (self.0 + 0xc1c) as *const Dmaim
     }
 
     #[doc="Get the *mut pointer for the DMAIM register."]
@@ -1901,17 +1896,22 @@ impl Emac {
         (self.0 + 0xc1c) as *mut Dmaim
     }
 
+    #[doc="Get the *const pointer for the DMAIM register."]
+    #[inline] pub fn dmaim_ptr(&self) -> *const Dmaim { 
+           self.dmaim_mut()
+    }
+
     #[doc="Read the DMAIM register."]
     #[inline] pub fn dmaim(&self) -> Dmaim { 
         unsafe {
-            read_volatile((self.0 + 0xc1c) as *const Dmaim)
+            read_volatile(self.dmaim_ptr())
         }
     }
 
     #[doc="Write the DMAIM register."]
     #[inline] pub fn set_dmaim<F: FnOnce(Dmaim) -> Dmaim>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xc1c) as *mut Dmaim, f(Dmaim(0)));
+            write_volatile(self.dmaim_mut(), f(Dmaim(0)));
         }
         self
     }
@@ -1919,14 +1919,9 @@ impl Emac {
     #[doc="Modify the DMAIM register."]
     #[inline] pub fn with_dmaim<F: FnOnce(Dmaim) -> Dmaim>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xc1c) as *mut Dmaim, f(self.dmaim()));
+            write_volatile(self.dmaim_mut(), f(self.dmaim()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the MFBOC register."]
-    #[inline] pub fn mfboc_ptr(&self) -> *const Mfboc { 
-        (self.0 + 0xc20) as *const Mfboc
     }
 
     #[doc="Get the *mut pointer for the MFBOC register."]
@@ -1934,17 +1929,22 @@ impl Emac {
         (self.0 + 0xc20) as *mut Mfboc
     }
 
+    #[doc="Get the *const pointer for the MFBOC register."]
+    #[inline] pub fn mfboc_ptr(&self) -> *const Mfboc { 
+           self.mfboc_mut()
+    }
+
     #[doc="Read the MFBOC register."]
     #[inline] pub fn mfboc(&self) -> Mfboc { 
         unsafe {
-            read_volatile((self.0 + 0xc20) as *const Mfboc)
+            read_volatile(self.mfboc_ptr())
         }
     }
 
     #[doc="Write the MFBOC register."]
     #[inline] pub fn set_mfboc<F: FnOnce(Mfboc) -> Mfboc>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xc20) as *mut Mfboc, f(Mfboc(0)));
+            write_volatile(self.mfboc_mut(), f(Mfboc(0)));
         }
         self
     }
@@ -1952,14 +1952,9 @@ impl Emac {
     #[doc="Modify the MFBOC register."]
     #[inline] pub fn with_mfboc<F: FnOnce(Mfboc) -> Mfboc>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xc20) as *mut Mfboc, f(self.mfboc()));
+            write_volatile(self.mfboc_mut(), f(self.mfboc()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the RXINTWDT register."]
-    #[inline] pub fn rxintwdt_ptr(&self) -> *const Rxintwdt { 
-        (self.0 + 0xc24) as *const Rxintwdt
     }
 
     #[doc="Get the *mut pointer for the RXINTWDT register."]
@@ -1967,17 +1962,22 @@ impl Emac {
         (self.0 + 0xc24) as *mut Rxintwdt
     }
 
+    #[doc="Get the *const pointer for the RXINTWDT register."]
+    #[inline] pub fn rxintwdt_ptr(&self) -> *const Rxintwdt { 
+           self.rxintwdt_mut()
+    }
+
     #[doc="Read the RXINTWDT register."]
     #[inline] pub fn rxintwdt(&self) -> Rxintwdt { 
         unsafe {
-            read_volatile((self.0 + 0xc24) as *const Rxintwdt)
+            read_volatile(self.rxintwdt_ptr())
         }
     }
 
     #[doc="Write the RXINTWDT register."]
     #[inline] pub fn set_rxintwdt<F: FnOnce(Rxintwdt) -> Rxintwdt>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xc24) as *mut Rxintwdt, f(Rxintwdt(0)));
+            write_volatile(self.rxintwdt_mut(), f(Rxintwdt(0)));
         }
         self
     }
@@ -1985,14 +1985,9 @@ impl Emac {
     #[doc="Modify the RXINTWDT register."]
     #[inline] pub fn with_rxintwdt<F: FnOnce(Rxintwdt) -> Rxintwdt>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xc24) as *mut Rxintwdt, f(self.rxintwdt()));
+            write_volatile(self.rxintwdt_mut(), f(self.rxintwdt()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the HOSTXDESC register."]
-    #[inline] pub fn hostxdesc_ptr(&self) -> *const Hostxdesc { 
-        (self.0 + 0xc48) as *const Hostxdesc
     }
 
     #[doc="Get the *mut pointer for the HOSTXDESC register."]
@@ -2000,17 +1995,22 @@ impl Emac {
         (self.0 + 0xc48) as *mut Hostxdesc
     }
 
+    #[doc="Get the *const pointer for the HOSTXDESC register."]
+    #[inline] pub fn hostxdesc_ptr(&self) -> *const Hostxdesc { 
+           self.hostxdesc_mut()
+    }
+
     #[doc="Read the HOSTXDESC register."]
     #[inline] pub fn hostxdesc(&self) -> Hostxdesc { 
         unsafe {
-            read_volatile((self.0 + 0xc48) as *const Hostxdesc)
+            read_volatile(self.hostxdesc_ptr())
         }
     }
 
     #[doc="Write the HOSTXDESC register."]
     #[inline] pub fn set_hostxdesc<F: FnOnce(Hostxdesc) -> Hostxdesc>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xc48) as *mut Hostxdesc, f(Hostxdesc(0)));
+            write_volatile(self.hostxdesc_mut(), f(Hostxdesc(0)));
         }
         self
     }
@@ -2018,14 +2018,9 @@ impl Emac {
     #[doc="Modify the HOSTXDESC register."]
     #[inline] pub fn with_hostxdesc<F: FnOnce(Hostxdesc) -> Hostxdesc>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xc48) as *mut Hostxdesc, f(self.hostxdesc()));
+            write_volatile(self.hostxdesc_mut(), f(self.hostxdesc()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the HOSRXDESC register."]
-    #[inline] pub fn hosrxdesc_ptr(&self) -> *const Hosrxdesc { 
-        (self.0 + 0xc4c) as *const Hosrxdesc
     }
 
     #[doc="Get the *mut pointer for the HOSRXDESC register."]
@@ -2033,17 +2028,22 @@ impl Emac {
         (self.0 + 0xc4c) as *mut Hosrxdesc
     }
 
+    #[doc="Get the *const pointer for the HOSRXDESC register."]
+    #[inline] pub fn hosrxdesc_ptr(&self) -> *const Hosrxdesc { 
+           self.hosrxdesc_mut()
+    }
+
     #[doc="Read the HOSRXDESC register."]
     #[inline] pub fn hosrxdesc(&self) -> Hosrxdesc { 
         unsafe {
-            read_volatile((self.0 + 0xc4c) as *const Hosrxdesc)
+            read_volatile(self.hosrxdesc_ptr())
         }
     }
 
     #[doc="Write the HOSRXDESC register."]
     #[inline] pub fn set_hosrxdesc<F: FnOnce(Hosrxdesc) -> Hosrxdesc>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xc4c) as *mut Hosrxdesc, f(Hosrxdesc(0)));
+            write_volatile(self.hosrxdesc_mut(), f(Hosrxdesc(0)));
         }
         self
     }
@@ -2051,14 +2051,9 @@ impl Emac {
     #[doc="Modify the HOSRXDESC register."]
     #[inline] pub fn with_hosrxdesc<F: FnOnce(Hosrxdesc) -> Hosrxdesc>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xc4c) as *mut Hosrxdesc, f(self.hosrxdesc()));
+            write_volatile(self.hosrxdesc_mut(), f(self.hosrxdesc()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the HOSTXBA register."]
-    #[inline] pub fn hostxba_ptr(&self) -> *const Hostxba { 
-        (self.0 + 0xc50) as *const Hostxba
     }
 
     #[doc="Get the *mut pointer for the HOSTXBA register."]
@@ -2066,17 +2061,22 @@ impl Emac {
         (self.0 + 0xc50) as *mut Hostxba
     }
 
+    #[doc="Get the *const pointer for the HOSTXBA register."]
+    #[inline] pub fn hostxba_ptr(&self) -> *const Hostxba { 
+           self.hostxba_mut()
+    }
+
     #[doc="Read the HOSTXBA register."]
     #[inline] pub fn hostxba(&self) -> Hostxba { 
         unsafe {
-            read_volatile((self.0 + 0xc50) as *const Hostxba)
+            read_volatile(self.hostxba_ptr())
         }
     }
 
     #[doc="Write the HOSTXBA register."]
     #[inline] pub fn set_hostxba<F: FnOnce(Hostxba) -> Hostxba>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xc50) as *mut Hostxba, f(Hostxba(0)));
+            write_volatile(self.hostxba_mut(), f(Hostxba(0)));
         }
         self
     }
@@ -2084,14 +2084,9 @@ impl Emac {
     #[doc="Modify the HOSTXBA register."]
     #[inline] pub fn with_hostxba<F: FnOnce(Hostxba) -> Hostxba>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xc50) as *mut Hostxba, f(self.hostxba()));
+            write_volatile(self.hostxba_mut(), f(self.hostxba()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the HOSRXBA register."]
-    #[inline] pub fn hosrxba_ptr(&self) -> *const Hosrxba { 
-        (self.0 + 0xc54) as *const Hosrxba
     }
 
     #[doc="Get the *mut pointer for the HOSRXBA register."]
@@ -2099,17 +2094,22 @@ impl Emac {
         (self.0 + 0xc54) as *mut Hosrxba
     }
 
+    #[doc="Get the *const pointer for the HOSRXBA register."]
+    #[inline] pub fn hosrxba_ptr(&self) -> *const Hosrxba { 
+           self.hosrxba_mut()
+    }
+
     #[doc="Read the HOSRXBA register."]
     #[inline] pub fn hosrxba(&self) -> Hosrxba { 
         unsafe {
-            read_volatile((self.0 + 0xc54) as *const Hosrxba)
+            read_volatile(self.hosrxba_ptr())
         }
     }
 
     #[doc="Write the HOSRXBA register."]
     #[inline] pub fn set_hosrxba<F: FnOnce(Hosrxba) -> Hosrxba>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xc54) as *mut Hosrxba, f(Hosrxba(0)));
+            write_volatile(self.hosrxba_mut(), f(Hosrxba(0)));
         }
         self
     }
@@ -2117,14 +2117,9 @@ impl Emac {
     #[doc="Modify the HOSRXBA register."]
     #[inline] pub fn with_hosrxba<F: FnOnce(Hosrxba) -> Hosrxba>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xc54) as *mut Hosrxba, f(self.hosrxba()));
+            write_volatile(self.hosrxba_mut(), f(self.hosrxba()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the PP register."]
-    #[inline] pub fn pp_ptr(&self) -> *const Pp { 
-        (self.0 + 0xfc0) as *const Pp
     }
 
     #[doc="Get the *mut pointer for the PP register."]
@@ -2132,17 +2127,22 @@ impl Emac {
         (self.0 + 0xfc0) as *mut Pp
     }
 
+    #[doc="Get the *const pointer for the PP register."]
+    #[inline] pub fn pp_ptr(&self) -> *const Pp { 
+           self.pp_mut()
+    }
+
     #[doc="Read the PP register."]
     #[inline] pub fn pp(&self) -> Pp { 
         unsafe {
-            read_volatile((self.0 + 0xfc0) as *const Pp)
+            read_volatile(self.pp_ptr())
         }
     }
 
     #[doc="Write the PP register."]
     #[inline] pub fn set_pp<F: FnOnce(Pp) -> Pp>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xfc0) as *mut Pp, f(Pp(0)));
+            write_volatile(self.pp_mut(), f(Pp(0)));
         }
         self
     }
@@ -2150,14 +2150,9 @@ impl Emac {
     #[doc="Modify the PP register."]
     #[inline] pub fn with_pp<F: FnOnce(Pp) -> Pp>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xfc0) as *mut Pp, f(self.pp()));
+            write_volatile(self.pp_mut(), f(self.pp()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the PC register."]
-    #[inline] pub fn pc_ptr(&self) -> *const Pc { 
-        (self.0 + 0xfc4) as *const Pc
     }
 
     #[doc="Get the *mut pointer for the PC register."]
@@ -2165,17 +2160,22 @@ impl Emac {
         (self.0 + 0xfc4) as *mut Pc
     }
 
+    #[doc="Get the *const pointer for the PC register."]
+    #[inline] pub fn pc_ptr(&self) -> *const Pc { 
+           self.pc_mut()
+    }
+
     #[doc="Read the PC register."]
     #[inline] pub fn pc(&self) -> Pc { 
         unsafe {
-            read_volatile((self.0 + 0xfc4) as *const Pc)
+            read_volatile(self.pc_ptr())
         }
     }
 
     #[doc="Write the PC register."]
     #[inline] pub fn set_pc<F: FnOnce(Pc) -> Pc>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xfc4) as *mut Pc, f(Pc(0)));
+            write_volatile(self.pc_mut(), f(Pc(0)));
         }
         self
     }
@@ -2183,14 +2183,9 @@ impl Emac {
     #[doc="Modify the PC register."]
     #[inline] pub fn with_pc<F: FnOnce(Pc) -> Pc>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xfc4) as *mut Pc, f(self.pc()));
+            write_volatile(self.pc_mut(), f(self.pc()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the CC register."]
-    #[inline] pub fn cc_ptr(&self) -> *const Cc { 
-        (self.0 + 0xfc8) as *const Cc
     }
 
     #[doc="Get the *mut pointer for the CC register."]
@@ -2198,17 +2193,22 @@ impl Emac {
         (self.0 + 0xfc8) as *mut Cc
     }
 
+    #[doc="Get the *const pointer for the CC register."]
+    #[inline] pub fn cc_ptr(&self) -> *const Cc { 
+           self.cc_mut()
+    }
+
     #[doc="Read the CC register."]
     #[inline] pub fn cc(&self) -> Cc { 
         unsafe {
-            read_volatile((self.0 + 0xfc8) as *const Cc)
+            read_volatile(self.cc_ptr())
         }
     }
 
     #[doc="Write the CC register."]
     #[inline] pub fn set_cc<F: FnOnce(Cc) -> Cc>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xfc8) as *mut Cc, f(Cc(0)));
+            write_volatile(self.cc_mut(), f(Cc(0)));
         }
         self
     }
@@ -2216,7 +2216,7 @@ impl Emac {
     #[doc="Modify the CC register."]
     #[inline] pub fn with_cc<F: FnOnce(Cc) -> Cc>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xfc8) as *mut Cc, f(self.cc()));
+            write_volatile(self.cc_mut(), f(self.cc()));
         }
         self
     }

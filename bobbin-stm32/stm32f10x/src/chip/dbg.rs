@@ -7,26 +7,21 @@ periph!(DBG, Dbg, 0xe0042000);
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dbg(pub usize);
 impl Dbg {
-    #[doc="Get the *const pointer for the IDCODE register."]
-    #[inline] pub fn idcode_ptr(&self) -> *const Idcode { 
-        (self.0 + 0x0) as *const Idcode
-    }
-
     #[doc="Get the *mut pointer for the IDCODE register."]
     #[inline] pub fn idcode_mut(&self) -> *mut Idcode { 
         (self.0 + 0x0) as *mut Idcode
     }
 
+    #[doc="Get the *const pointer for the IDCODE register."]
+    #[inline] pub fn idcode_ptr(&self) -> *const Idcode { 
+           self.idcode_mut()
+    }
+
     #[doc="Read the IDCODE register."]
     #[inline] pub fn idcode(&self) -> Idcode { 
         unsafe {
-            read_volatile((self.0 + 0x0) as *const Idcode)
+            read_volatile(self.idcode_ptr())
         }
-    }
-
-    #[doc="Get the *const pointer for the CR register."]
-    #[inline] pub fn cr_ptr(&self) -> *const Cr { 
-        (self.0 + 0x4) as *const Cr
     }
 
     #[doc="Get the *mut pointer for the CR register."]
@@ -34,17 +29,22 @@ impl Dbg {
         (self.0 + 0x4) as *mut Cr
     }
 
+    #[doc="Get the *const pointer for the CR register."]
+    #[inline] pub fn cr_ptr(&self) -> *const Cr { 
+           self.cr_mut()
+    }
+
     #[doc="Read the CR register."]
     #[inline] pub fn cr(&self) -> Cr { 
         unsafe {
-            read_volatile((self.0 + 0x4) as *const Cr)
+            read_volatile(self.cr_ptr())
         }
     }
 
     #[doc="Write the CR register."]
     #[inline] pub fn set_cr<F: FnOnce(Cr) -> Cr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x4) as *mut Cr, f(Cr(0)));
+            write_volatile(self.cr_mut(), f(Cr(0)));
         }
         self
     }
@@ -52,7 +52,7 @@ impl Dbg {
     #[doc="Modify the CR register."]
     #[inline] pub fn with_cr<F: FnOnce(Cr) -> Cr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x4) as *mut Cr, f(self.cr()));
+            write_volatile(self.cr_mut(), f(self.cr()));
         }
         self
     }

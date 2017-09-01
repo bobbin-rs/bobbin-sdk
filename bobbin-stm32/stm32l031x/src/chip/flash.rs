@@ -7,27 +7,27 @@ periph!(FLASH, Flash, 0x40022000);
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Flash(pub usize);
 impl Flash {
-    #[doc="Get the *const pointer for the ACR register."]
-    #[inline] pub fn acr_ptr(&self) -> *const Acr { 
-        (self.0 + 0x0) as *const Acr
-    }
-
     #[doc="Get the *mut pointer for the ACR register."]
     #[inline] pub fn acr_mut(&self) -> *mut Acr { 
         (self.0 + 0x0) as *mut Acr
     }
 
+    #[doc="Get the *const pointer for the ACR register."]
+    #[inline] pub fn acr_ptr(&self) -> *const Acr { 
+           self.acr_mut()
+    }
+
     #[doc="Read the ACR register."]
     #[inline] pub fn acr(&self) -> Acr { 
         unsafe {
-            read_volatile((self.0 + 0x0) as *const Acr)
+            read_volatile(self.acr_ptr())
         }
     }
 
     #[doc="Write the ACR register."]
     #[inline] pub fn set_acr<F: FnOnce(Acr) -> Acr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x0) as *mut Acr, f(Acr(0)));
+            write_volatile(self.acr_mut(), f(Acr(0)));
         }
         self
     }
@@ -35,14 +35,9 @@ impl Flash {
     #[doc="Modify the ACR register."]
     #[inline] pub fn with_acr<F: FnOnce(Acr) -> Acr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x0) as *mut Acr, f(self.acr()));
+            write_volatile(self.acr_mut(), f(self.acr()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the PECR register."]
-    #[inline] pub fn pecr_ptr(&self) -> *const Pecr { 
-        (self.0 + 0x4) as *const Pecr
     }
 
     #[doc="Get the *mut pointer for the PECR register."]
@@ -50,17 +45,22 @@ impl Flash {
         (self.0 + 0x4) as *mut Pecr
     }
 
+    #[doc="Get the *const pointer for the PECR register."]
+    #[inline] pub fn pecr_ptr(&self) -> *const Pecr { 
+           self.pecr_mut()
+    }
+
     #[doc="Read the PECR register."]
     #[inline] pub fn pecr(&self) -> Pecr { 
         unsafe {
-            read_volatile((self.0 + 0x4) as *const Pecr)
+            read_volatile(self.pecr_ptr())
         }
     }
 
     #[doc="Write the PECR register."]
     #[inline] pub fn set_pecr<F: FnOnce(Pecr) -> Pecr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x4) as *mut Pecr, f(Pecr(0)));
+            write_volatile(self.pecr_mut(), f(Pecr(0)));
         }
         self
     }
@@ -68,14 +68,9 @@ impl Flash {
     #[doc="Modify the PECR register."]
     #[inline] pub fn with_pecr<F: FnOnce(Pecr) -> Pecr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x4) as *mut Pecr, f(self.pecr()));
+            write_volatile(self.pecr_mut(), f(self.pecr()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the PDKEYR register."]
-    #[inline] pub fn pdkeyr_ptr(&self) -> *const Pdkeyr { 
-        (self.0 + 0x8) as *const Pdkeyr
     }
 
     #[doc="Get the *mut pointer for the PDKEYR register."]
@@ -83,17 +78,17 @@ impl Flash {
         (self.0 + 0x8) as *mut Pdkeyr
     }
 
+    #[doc="Get the *const pointer for the PDKEYR register."]
+    #[inline] pub fn pdkeyr_ptr(&self) -> *const Pdkeyr { 
+           self.pdkeyr_mut()
+    }
+
     #[doc="Write the PDKEYR register."]
     #[inline] pub fn set_pdkeyr<F: FnOnce(Pdkeyr) -> Pdkeyr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x8) as *mut Pdkeyr, f(Pdkeyr(0)));
+            write_volatile(self.pdkeyr_mut(), f(Pdkeyr(0)));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the PEKEYR register."]
-    #[inline] pub fn pekeyr_ptr(&self) -> *const Pekeyr { 
-        (self.0 + 0xc) as *const Pekeyr
     }
 
     #[doc="Get the *mut pointer for the PEKEYR register."]
@@ -101,17 +96,17 @@ impl Flash {
         (self.0 + 0xc) as *mut Pekeyr
     }
 
+    #[doc="Get the *const pointer for the PEKEYR register."]
+    #[inline] pub fn pekeyr_ptr(&self) -> *const Pekeyr { 
+           self.pekeyr_mut()
+    }
+
     #[doc="Write the PEKEYR register."]
     #[inline] pub fn set_pekeyr<F: FnOnce(Pekeyr) -> Pekeyr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xc) as *mut Pekeyr, f(Pekeyr(0)));
+            write_volatile(self.pekeyr_mut(), f(Pekeyr(0)));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the PRGKEYR register."]
-    #[inline] pub fn prgkeyr_ptr(&self) -> *const Prgkeyr { 
-        (self.0 + 0x10) as *const Prgkeyr
     }
 
     #[doc="Get the *mut pointer for the PRGKEYR register."]
@@ -119,17 +114,17 @@ impl Flash {
         (self.0 + 0x10) as *mut Prgkeyr
     }
 
+    #[doc="Get the *const pointer for the PRGKEYR register."]
+    #[inline] pub fn prgkeyr_ptr(&self) -> *const Prgkeyr { 
+           self.prgkeyr_mut()
+    }
+
     #[doc="Write the PRGKEYR register."]
     #[inline] pub fn set_prgkeyr<F: FnOnce(Prgkeyr) -> Prgkeyr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x10) as *mut Prgkeyr, f(Prgkeyr(0)));
+            write_volatile(self.prgkeyr_mut(), f(Prgkeyr(0)));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the OPTKEYR register."]
-    #[inline] pub fn optkeyr_ptr(&self) -> *const Optkeyr { 
-        (self.0 + 0x14) as *const Optkeyr
     }
 
     #[doc="Get the *mut pointer for the OPTKEYR register."]
@@ -137,17 +132,17 @@ impl Flash {
         (self.0 + 0x14) as *mut Optkeyr
     }
 
+    #[doc="Get the *const pointer for the OPTKEYR register."]
+    #[inline] pub fn optkeyr_ptr(&self) -> *const Optkeyr { 
+           self.optkeyr_mut()
+    }
+
     #[doc="Write the OPTKEYR register."]
     #[inline] pub fn set_optkeyr<F: FnOnce(Optkeyr) -> Optkeyr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x14) as *mut Optkeyr, f(Optkeyr(0)));
+            write_volatile(self.optkeyr_mut(), f(Optkeyr(0)));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the SR register."]
-    #[inline] pub fn sr_ptr(&self) -> *const Sr { 
-        (self.0 + 0x18) as *const Sr
     }
 
     #[doc="Get the *mut pointer for the SR register."]
@@ -155,17 +150,22 @@ impl Flash {
         (self.0 + 0x18) as *mut Sr
     }
 
+    #[doc="Get the *const pointer for the SR register."]
+    #[inline] pub fn sr_ptr(&self) -> *const Sr { 
+           self.sr_mut()
+    }
+
     #[doc="Read the SR register."]
     #[inline] pub fn sr(&self) -> Sr { 
         unsafe {
-            read_volatile((self.0 + 0x18) as *const Sr)
+            read_volatile(self.sr_ptr())
         }
     }
 
     #[doc="Write the SR register."]
     #[inline] pub fn set_sr<F: FnOnce(Sr) -> Sr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x18) as *mut Sr, f(Sr(0)));
+            write_volatile(self.sr_mut(), f(Sr(0)));
         }
         self
     }
@@ -173,14 +173,9 @@ impl Flash {
     #[doc="Modify the SR register."]
     #[inline] pub fn with_sr<F: FnOnce(Sr) -> Sr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x18) as *mut Sr, f(self.sr()));
+            write_volatile(self.sr_mut(), f(self.sr()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the OBR register."]
-    #[inline] pub fn obr_ptr(&self) -> *const Obr { 
-        (self.0 + 0x1c) as *const Obr
     }
 
     #[doc="Get the *mut pointer for the OBR register."]
@@ -188,16 +183,16 @@ impl Flash {
         (self.0 + 0x1c) as *mut Obr
     }
 
+    #[doc="Get the *const pointer for the OBR register."]
+    #[inline] pub fn obr_ptr(&self) -> *const Obr { 
+           self.obr_mut()
+    }
+
     #[doc="Read the OBR register."]
     #[inline] pub fn obr(&self) -> Obr { 
         unsafe {
-            read_volatile((self.0 + 0x1c) as *const Obr)
+            read_volatile(self.obr_ptr())
         }
-    }
-
-    #[doc="Get the *const pointer for the WRPR register."]
-    #[inline] pub fn wrpr_ptr(&self) -> *const Wrpr { 
-        (self.0 + 0x20) as *const Wrpr
     }
 
     #[doc="Get the *mut pointer for the WRPR register."]
@@ -205,17 +200,22 @@ impl Flash {
         (self.0 + 0x20) as *mut Wrpr
     }
 
+    #[doc="Get the *const pointer for the WRPR register."]
+    #[inline] pub fn wrpr_ptr(&self) -> *const Wrpr { 
+           self.wrpr_mut()
+    }
+
     #[doc="Read the WRPR register."]
     #[inline] pub fn wrpr(&self) -> Wrpr { 
         unsafe {
-            read_volatile((self.0 + 0x20) as *const Wrpr)
+            read_volatile(self.wrpr_ptr())
         }
     }
 
     #[doc="Write the WRPR register."]
     #[inline] pub fn set_wrpr<F: FnOnce(Wrpr) -> Wrpr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x20) as *mut Wrpr, f(Wrpr(0)));
+            write_volatile(self.wrpr_mut(), f(Wrpr(0)));
         }
         self
     }
@@ -223,7 +223,7 @@ impl Flash {
     #[doc="Modify the WRPR register."]
     #[inline] pub fn with_wrpr<F: FnOnce(Wrpr) -> Wrpr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x20) as *mut Wrpr, f(self.wrpr()));
+            write_volatile(self.wrpr_mut(), f(self.wrpr()));
         }
         self
     }

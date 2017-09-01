@@ -7,27 +7,27 @@ pub struct PitPeriph(pub usize);
 
 
 impl PitPeriph {
-    #[doc="Get the *const pointer for the MCR register."]
-    #[inline] pub fn mcr_ptr(&self) -> *const Mcr { 
-        (self.0 + 0x0) as *const Mcr
-    }
-
     #[doc="Get the *mut pointer for the MCR register."]
     #[inline] pub fn mcr_mut(&self) -> *mut Mcr { 
         (self.0 + 0x0) as *mut Mcr
     }
 
+    #[doc="Get the *const pointer for the MCR register."]
+    #[inline] pub fn mcr_ptr(&self) -> *const Mcr { 
+           self.mcr_mut()
+    }
+
     #[doc="Read the MCR register."]
     #[inline] pub fn mcr(&self) -> Mcr { 
         unsafe {
-            read_volatile((self.0 + 0x0) as *const Mcr)
+            read_volatile(self.mcr_ptr())
         }
     }
 
     #[doc="Write the MCR register."]
     #[inline] pub fn set_mcr<F: FnOnce(Mcr) -> Mcr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x0) as *mut Mcr, f(Mcr(0)));
+            write_volatile(self.mcr_mut(), f(Mcr(0)));
         }
         self
     }
@@ -35,15 +35,9 @@ impl PitPeriph {
     #[doc="Modify the MCR register."]
     #[inline] pub fn with_mcr<F: FnOnce(Mcr) -> Mcr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x0) as *mut Mcr, f(self.mcr()));
+            write_volatile(self.mcr_mut(), f(self.mcr()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the LDVAL register."]
-    #[inline] pub fn ldval_ptr<I: Into<bits::R4>>(&self, index: I) -> *const Ldval { 
-        let index: usize = index.into().value() as usize;
-        (self.0 + 0x100 + (index << 4)) as *const Ldval
     }
 
     #[doc="Get the *mut pointer for the LDVAL register."]
@@ -52,36 +46,32 @@ impl PitPeriph {
         (self.0 + 0x100 + (index << 4)) as *mut Ldval
     }
 
+    #[doc="Get the *const pointer for the LDVAL register."]
+    #[inline] pub fn ldval_ptr<I: Into<bits::R4>>(&self, index: I) -> *const Ldval { 
+           self.ldval_mut(index)
+    }
+
     #[doc="Read the LDVAL register."]
     #[inline] pub fn ldval<I: Into<bits::R4>>(&self, index: I) -> Ldval { 
-        let index: usize = index.into().value() as usize;
         unsafe {
-            read_volatile((self.0 + 0x100 + (index << 4)) as *const Ldval)
+            read_volatile(self.ldval_ptr(index))
         }
     }
 
     #[doc="Write the LDVAL register."]
     #[inline] pub fn set_ldval<I: Into<bits::R4>, F: FnOnce(Ldval) -> Ldval>(&self, index: I, f: F) -> &Self {
-        let index: usize = index.into().value() as usize;
         unsafe {
-            write_volatile((self.0 + 0x100 + (index << 4)) as *mut Ldval, f(Ldval(0)));
+            write_volatile(self.ldval_mut(index), f(Ldval(0)));
         }
         self
     }
 
     #[doc="Modify the LDVAL register."]
     #[inline] pub fn with_ldval<I: Into<bits::R4> + Copy, F: FnOnce(Ldval) -> Ldval>(&self, index: I, f: F) -> &Self {
-        let index: usize = index.into().value() as usize;
         unsafe {
-            write_volatile((self.0 + 0x100 + (index << 4)) as *mut Ldval, f(self.ldval(index)));
+            write_volatile(self.ldval_mut(index), f(self.ldval(index)));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the CVAL register."]
-    #[inline] pub fn cval_ptr<I: Into<bits::R4>>(&self, index: I) -> *const Cval { 
-        let index: usize = index.into().value() as usize;
-        (self.0 + 0x104 + (index << 4)) as *const Cval
     }
 
     #[doc="Get the *mut pointer for the CVAL register."]
@@ -90,18 +80,16 @@ impl PitPeriph {
         (self.0 + 0x104 + (index << 4)) as *mut Cval
     }
 
-    #[doc="Read the CVAL register."]
-    #[inline] pub fn cval<I: Into<bits::R4>>(&self, index: I) -> Cval { 
-        let index: usize = index.into().value() as usize;
-        unsafe {
-            read_volatile((self.0 + 0x104 + (index << 4)) as *const Cval)
-        }
+    #[doc="Get the *const pointer for the CVAL register."]
+    #[inline] pub fn cval_ptr<I: Into<bits::R4>>(&self, index: I) -> *const Cval { 
+           self.cval_mut(index)
     }
 
-    #[doc="Get the *const pointer for the TCTRL register."]
-    #[inline] pub fn tctrl_ptr<I: Into<bits::R4>>(&self, index: I) -> *const Tctrl { 
-        let index: usize = index.into().value() as usize;
-        (self.0 + 0x108 + (index << 4)) as *const Tctrl
+    #[doc="Read the CVAL register."]
+    #[inline] pub fn cval<I: Into<bits::R4>>(&self, index: I) -> Cval { 
+        unsafe {
+            read_volatile(self.cval_ptr(index))
+        }
     }
 
     #[doc="Get the *mut pointer for the TCTRL register."]
@@ -110,36 +98,32 @@ impl PitPeriph {
         (self.0 + 0x108 + (index << 4)) as *mut Tctrl
     }
 
+    #[doc="Get the *const pointer for the TCTRL register."]
+    #[inline] pub fn tctrl_ptr<I: Into<bits::R4>>(&self, index: I) -> *const Tctrl { 
+           self.tctrl_mut(index)
+    }
+
     #[doc="Read the TCTRL register."]
     #[inline] pub fn tctrl<I: Into<bits::R4>>(&self, index: I) -> Tctrl { 
-        let index: usize = index.into().value() as usize;
         unsafe {
-            read_volatile((self.0 + 0x108 + (index << 4)) as *const Tctrl)
+            read_volatile(self.tctrl_ptr(index))
         }
     }
 
     #[doc="Write the TCTRL register."]
     #[inline] pub fn set_tctrl<I: Into<bits::R4>, F: FnOnce(Tctrl) -> Tctrl>(&self, index: I, f: F) -> &Self {
-        let index: usize = index.into().value() as usize;
         unsafe {
-            write_volatile((self.0 + 0x108 + (index << 4)) as *mut Tctrl, f(Tctrl(0)));
+            write_volatile(self.tctrl_mut(index), f(Tctrl(0)));
         }
         self
     }
 
     #[doc="Modify the TCTRL register."]
     #[inline] pub fn with_tctrl<I: Into<bits::R4> + Copy, F: FnOnce(Tctrl) -> Tctrl>(&self, index: I, f: F) -> &Self {
-        let index: usize = index.into().value() as usize;
         unsafe {
-            write_volatile((self.0 + 0x108 + (index << 4)) as *mut Tctrl, f(self.tctrl(index)));
+            write_volatile(self.tctrl_mut(index), f(self.tctrl(index)));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the TFLG register."]
-    #[inline] pub fn tflg_ptr<I: Into<bits::R4>>(&self, index: I) -> *const Tflg { 
-        let index: usize = index.into().value() as usize;
-        (self.0 + 0x10c + (index << 4)) as *const Tflg
     }
 
     #[doc="Get the *mut pointer for the TFLG register."]
@@ -148,28 +132,30 @@ impl PitPeriph {
         (self.0 + 0x10c + (index << 4)) as *mut Tflg
     }
 
+    #[doc="Get the *const pointer for the TFLG register."]
+    #[inline] pub fn tflg_ptr<I: Into<bits::R4>>(&self, index: I) -> *const Tflg { 
+           self.tflg_mut(index)
+    }
+
     #[doc="Read the TFLG register."]
     #[inline] pub fn tflg<I: Into<bits::R4>>(&self, index: I) -> Tflg { 
-        let index: usize = index.into().value() as usize;
         unsafe {
-            read_volatile((self.0 + 0x10c + (index << 4)) as *const Tflg)
+            read_volatile(self.tflg_ptr(index))
         }
     }
 
     #[doc="Write the TFLG register."]
     #[inline] pub fn set_tflg<I: Into<bits::R4>, F: FnOnce(Tflg) -> Tflg>(&self, index: I, f: F) -> &Self {
-        let index: usize = index.into().value() as usize;
         unsafe {
-            write_volatile((self.0 + 0x10c + (index << 4)) as *mut Tflg, f(Tflg(0)));
+            write_volatile(self.tflg_mut(index), f(Tflg(0)));
         }
         self
     }
 
     #[doc="Modify the TFLG register."]
     #[inline] pub fn with_tflg<I: Into<bits::R4> + Copy, F: FnOnce(Tflg) -> Tflg>(&self, index: I, f: F) -> &Self {
-        let index: usize = index.into().value() as usize;
         unsafe {
-            write_volatile((self.0 + 0x10c + (index << 4)) as *mut Tflg, f(self.tflg(index)));
+            write_volatile(self.tflg_mut(index), f(self.tflg(index)));
         }
         self
     }

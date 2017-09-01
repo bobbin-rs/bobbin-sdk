@@ -7,27 +7,27 @@ periph!(DAC, Dac, 0x40007400);
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dac(pub usize);
 impl Dac {
-    #[doc="Get the *const pointer for the CR register."]
-    #[inline] pub fn cr_ptr(&self) -> *const Cr { 
-        (self.0 + 0x0) as *const Cr
-    }
-
     #[doc="Get the *mut pointer for the CR register."]
     #[inline] pub fn cr_mut(&self) -> *mut Cr { 
         (self.0 + 0x0) as *mut Cr
     }
 
+    #[doc="Get the *const pointer for the CR register."]
+    #[inline] pub fn cr_ptr(&self) -> *const Cr { 
+           self.cr_mut()
+    }
+
     #[doc="Read the CR register."]
     #[inline] pub fn cr(&self) -> Cr { 
         unsafe {
-            read_volatile((self.0 + 0x0) as *const Cr)
+            read_volatile(self.cr_ptr())
         }
     }
 
     #[doc="Write the CR register."]
     #[inline] pub fn set_cr<F: FnOnce(Cr) -> Cr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x0) as *mut Cr, f(Cr(0)));
+            write_volatile(self.cr_mut(), f(Cr(0)));
         }
         self
     }
@@ -35,14 +35,9 @@ impl Dac {
     #[doc="Modify the CR register."]
     #[inline] pub fn with_cr<F: FnOnce(Cr) -> Cr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x0) as *mut Cr, f(self.cr()));
+            write_volatile(self.cr_mut(), f(self.cr()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the SWTRIGR register."]
-    #[inline] pub fn swtrigr_ptr(&self) -> *const Swtrigr { 
-        (self.0 + 0x4) as *const Swtrigr
     }
 
     #[doc="Get the *mut pointer for the SWTRIGR register."]
@@ -50,17 +45,17 @@ impl Dac {
         (self.0 + 0x4) as *mut Swtrigr
     }
 
+    #[doc="Get the *const pointer for the SWTRIGR register."]
+    #[inline] pub fn swtrigr_ptr(&self) -> *const Swtrigr { 
+           self.swtrigr_mut()
+    }
+
     #[doc="Write the SWTRIGR register."]
     #[inline] pub fn set_swtrigr<F: FnOnce(Swtrigr) -> Swtrigr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x4) as *mut Swtrigr, f(Swtrigr(0)));
+            write_volatile(self.swtrigr_mut(), f(Swtrigr(0)));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the DHR12R1 register."]
-    #[inline] pub fn dhr12r1_ptr(&self) -> *const Dhr12r1 { 
-        (self.0 + 0x8) as *const Dhr12r1
     }
 
     #[doc="Get the *mut pointer for the DHR12R1 register."]
@@ -68,17 +63,22 @@ impl Dac {
         (self.0 + 0x8) as *mut Dhr12r1
     }
 
+    #[doc="Get the *const pointer for the DHR12R1 register."]
+    #[inline] pub fn dhr12r1_ptr(&self) -> *const Dhr12r1 { 
+           self.dhr12r1_mut()
+    }
+
     #[doc="Read the DHR12R1 register."]
     #[inline] pub fn dhr12r1(&self) -> Dhr12r1 { 
         unsafe {
-            read_volatile((self.0 + 0x8) as *const Dhr12r1)
+            read_volatile(self.dhr12r1_ptr())
         }
     }
 
     #[doc="Write the DHR12R1 register."]
     #[inline] pub fn set_dhr12r1<F: FnOnce(Dhr12r1) -> Dhr12r1>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x8) as *mut Dhr12r1, f(Dhr12r1(0)));
+            write_volatile(self.dhr12r1_mut(), f(Dhr12r1(0)));
         }
         self
     }
@@ -86,14 +86,9 @@ impl Dac {
     #[doc="Modify the DHR12R1 register."]
     #[inline] pub fn with_dhr12r1<F: FnOnce(Dhr12r1) -> Dhr12r1>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x8) as *mut Dhr12r1, f(self.dhr12r1()));
+            write_volatile(self.dhr12r1_mut(), f(self.dhr12r1()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the DHR12L1 register."]
-    #[inline] pub fn dhr12l1_ptr(&self) -> *const Dhr12l1 { 
-        (self.0 + 0xc) as *const Dhr12l1
     }
 
     #[doc="Get the *mut pointer for the DHR12L1 register."]
@@ -101,17 +96,22 @@ impl Dac {
         (self.0 + 0xc) as *mut Dhr12l1
     }
 
+    #[doc="Get the *const pointer for the DHR12L1 register."]
+    #[inline] pub fn dhr12l1_ptr(&self) -> *const Dhr12l1 { 
+           self.dhr12l1_mut()
+    }
+
     #[doc="Read the DHR12L1 register."]
     #[inline] pub fn dhr12l1(&self) -> Dhr12l1 { 
         unsafe {
-            read_volatile((self.0 + 0xc) as *const Dhr12l1)
+            read_volatile(self.dhr12l1_ptr())
         }
     }
 
     #[doc="Write the DHR12L1 register."]
     #[inline] pub fn set_dhr12l1<F: FnOnce(Dhr12l1) -> Dhr12l1>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xc) as *mut Dhr12l1, f(Dhr12l1(0)));
+            write_volatile(self.dhr12l1_mut(), f(Dhr12l1(0)));
         }
         self
     }
@@ -119,14 +119,9 @@ impl Dac {
     #[doc="Modify the DHR12L1 register."]
     #[inline] pub fn with_dhr12l1<F: FnOnce(Dhr12l1) -> Dhr12l1>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0xc) as *mut Dhr12l1, f(self.dhr12l1()));
+            write_volatile(self.dhr12l1_mut(), f(self.dhr12l1()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the DHR8R1 register."]
-    #[inline] pub fn dhr8r1_ptr(&self) -> *const Dhr8r1 { 
-        (self.0 + 0x10) as *const Dhr8r1
     }
 
     #[doc="Get the *mut pointer for the DHR8R1 register."]
@@ -134,17 +129,22 @@ impl Dac {
         (self.0 + 0x10) as *mut Dhr8r1
     }
 
+    #[doc="Get the *const pointer for the DHR8R1 register."]
+    #[inline] pub fn dhr8r1_ptr(&self) -> *const Dhr8r1 { 
+           self.dhr8r1_mut()
+    }
+
     #[doc="Read the DHR8R1 register."]
     #[inline] pub fn dhr8r1(&self) -> Dhr8r1 { 
         unsafe {
-            read_volatile((self.0 + 0x10) as *const Dhr8r1)
+            read_volatile(self.dhr8r1_ptr())
         }
     }
 
     #[doc="Write the DHR8R1 register."]
     #[inline] pub fn set_dhr8r1<F: FnOnce(Dhr8r1) -> Dhr8r1>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x10) as *mut Dhr8r1, f(Dhr8r1(0)));
+            write_volatile(self.dhr8r1_mut(), f(Dhr8r1(0)));
         }
         self
     }
@@ -152,14 +152,9 @@ impl Dac {
     #[doc="Modify the DHR8R1 register."]
     #[inline] pub fn with_dhr8r1<F: FnOnce(Dhr8r1) -> Dhr8r1>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x10) as *mut Dhr8r1, f(self.dhr8r1()));
+            write_volatile(self.dhr8r1_mut(), f(self.dhr8r1()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the DHR12R2 register."]
-    #[inline] pub fn dhr12r2_ptr(&self) -> *const Dhr12r2 { 
-        (self.0 + 0x14) as *const Dhr12r2
     }
 
     #[doc="Get the *mut pointer for the DHR12R2 register."]
@@ -167,17 +162,22 @@ impl Dac {
         (self.0 + 0x14) as *mut Dhr12r2
     }
 
+    #[doc="Get the *const pointer for the DHR12R2 register."]
+    #[inline] pub fn dhr12r2_ptr(&self) -> *const Dhr12r2 { 
+           self.dhr12r2_mut()
+    }
+
     #[doc="Read the DHR12R2 register."]
     #[inline] pub fn dhr12r2(&self) -> Dhr12r2 { 
         unsafe {
-            read_volatile((self.0 + 0x14) as *const Dhr12r2)
+            read_volatile(self.dhr12r2_ptr())
         }
     }
 
     #[doc="Write the DHR12R2 register."]
     #[inline] pub fn set_dhr12r2<F: FnOnce(Dhr12r2) -> Dhr12r2>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x14) as *mut Dhr12r2, f(Dhr12r2(0)));
+            write_volatile(self.dhr12r2_mut(), f(Dhr12r2(0)));
         }
         self
     }
@@ -185,14 +185,9 @@ impl Dac {
     #[doc="Modify the DHR12R2 register."]
     #[inline] pub fn with_dhr12r2<F: FnOnce(Dhr12r2) -> Dhr12r2>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x14) as *mut Dhr12r2, f(self.dhr12r2()));
+            write_volatile(self.dhr12r2_mut(), f(self.dhr12r2()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the DHR12L2 register."]
-    #[inline] pub fn dhr12l2_ptr(&self) -> *const Dhr12l2 { 
-        (self.0 + 0x18) as *const Dhr12l2
     }
 
     #[doc="Get the *mut pointer for the DHR12L2 register."]
@@ -200,17 +195,22 @@ impl Dac {
         (self.0 + 0x18) as *mut Dhr12l2
     }
 
+    #[doc="Get the *const pointer for the DHR12L2 register."]
+    #[inline] pub fn dhr12l2_ptr(&self) -> *const Dhr12l2 { 
+           self.dhr12l2_mut()
+    }
+
     #[doc="Read the DHR12L2 register."]
     #[inline] pub fn dhr12l2(&self) -> Dhr12l2 { 
         unsafe {
-            read_volatile((self.0 + 0x18) as *const Dhr12l2)
+            read_volatile(self.dhr12l2_ptr())
         }
     }
 
     #[doc="Write the DHR12L2 register."]
     #[inline] pub fn set_dhr12l2<F: FnOnce(Dhr12l2) -> Dhr12l2>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x18) as *mut Dhr12l2, f(Dhr12l2(0)));
+            write_volatile(self.dhr12l2_mut(), f(Dhr12l2(0)));
         }
         self
     }
@@ -218,14 +218,9 @@ impl Dac {
     #[doc="Modify the DHR12L2 register."]
     #[inline] pub fn with_dhr12l2<F: FnOnce(Dhr12l2) -> Dhr12l2>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x18) as *mut Dhr12l2, f(self.dhr12l2()));
+            write_volatile(self.dhr12l2_mut(), f(self.dhr12l2()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the DHR8R2 register."]
-    #[inline] pub fn dhr8r2_ptr(&self) -> *const Dhr8r2 { 
-        (self.0 + 0x1c) as *const Dhr8r2
     }
 
     #[doc="Get the *mut pointer for the DHR8R2 register."]
@@ -233,17 +228,22 @@ impl Dac {
         (self.0 + 0x1c) as *mut Dhr8r2
     }
 
+    #[doc="Get the *const pointer for the DHR8R2 register."]
+    #[inline] pub fn dhr8r2_ptr(&self) -> *const Dhr8r2 { 
+           self.dhr8r2_mut()
+    }
+
     #[doc="Read the DHR8R2 register."]
     #[inline] pub fn dhr8r2(&self) -> Dhr8r2 { 
         unsafe {
-            read_volatile((self.0 + 0x1c) as *const Dhr8r2)
+            read_volatile(self.dhr8r2_ptr())
         }
     }
 
     #[doc="Write the DHR8R2 register."]
     #[inline] pub fn set_dhr8r2<F: FnOnce(Dhr8r2) -> Dhr8r2>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x1c) as *mut Dhr8r2, f(Dhr8r2(0)));
+            write_volatile(self.dhr8r2_mut(), f(Dhr8r2(0)));
         }
         self
     }
@@ -251,14 +251,9 @@ impl Dac {
     #[doc="Modify the DHR8R2 register."]
     #[inline] pub fn with_dhr8r2<F: FnOnce(Dhr8r2) -> Dhr8r2>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x1c) as *mut Dhr8r2, f(self.dhr8r2()));
+            write_volatile(self.dhr8r2_mut(), f(self.dhr8r2()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the DHR12RD register."]
-    #[inline] pub fn dhr12rd_ptr(&self) -> *const Dhr12rd { 
-        (self.0 + 0x20) as *const Dhr12rd
     }
 
     #[doc="Get the *mut pointer for the DHR12RD register."]
@@ -266,17 +261,22 @@ impl Dac {
         (self.0 + 0x20) as *mut Dhr12rd
     }
 
+    #[doc="Get the *const pointer for the DHR12RD register."]
+    #[inline] pub fn dhr12rd_ptr(&self) -> *const Dhr12rd { 
+           self.dhr12rd_mut()
+    }
+
     #[doc="Read the DHR12RD register."]
     #[inline] pub fn dhr12rd(&self) -> Dhr12rd { 
         unsafe {
-            read_volatile((self.0 + 0x20) as *const Dhr12rd)
+            read_volatile(self.dhr12rd_ptr())
         }
     }
 
     #[doc="Write the DHR12RD register."]
     #[inline] pub fn set_dhr12rd<F: FnOnce(Dhr12rd) -> Dhr12rd>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x20) as *mut Dhr12rd, f(Dhr12rd(0)));
+            write_volatile(self.dhr12rd_mut(), f(Dhr12rd(0)));
         }
         self
     }
@@ -284,14 +284,9 @@ impl Dac {
     #[doc="Modify the DHR12RD register."]
     #[inline] pub fn with_dhr12rd<F: FnOnce(Dhr12rd) -> Dhr12rd>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x20) as *mut Dhr12rd, f(self.dhr12rd()));
+            write_volatile(self.dhr12rd_mut(), f(self.dhr12rd()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the DHR12LD register."]
-    #[inline] pub fn dhr12ld_ptr(&self) -> *const Dhr12ld { 
-        (self.0 + 0x24) as *const Dhr12ld
     }
 
     #[doc="Get the *mut pointer for the DHR12LD register."]
@@ -299,17 +294,22 @@ impl Dac {
         (self.0 + 0x24) as *mut Dhr12ld
     }
 
+    #[doc="Get the *const pointer for the DHR12LD register."]
+    #[inline] pub fn dhr12ld_ptr(&self) -> *const Dhr12ld { 
+           self.dhr12ld_mut()
+    }
+
     #[doc="Read the DHR12LD register."]
     #[inline] pub fn dhr12ld(&self) -> Dhr12ld { 
         unsafe {
-            read_volatile((self.0 + 0x24) as *const Dhr12ld)
+            read_volatile(self.dhr12ld_ptr())
         }
     }
 
     #[doc="Write the DHR12LD register."]
     #[inline] pub fn set_dhr12ld<F: FnOnce(Dhr12ld) -> Dhr12ld>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x24) as *mut Dhr12ld, f(Dhr12ld(0)));
+            write_volatile(self.dhr12ld_mut(), f(Dhr12ld(0)));
         }
         self
     }
@@ -317,14 +317,9 @@ impl Dac {
     #[doc="Modify the DHR12LD register."]
     #[inline] pub fn with_dhr12ld<F: FnOnce(Dhr12ld) -> Dhr12ld>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x24) as *mut Dhr12ld, f(self.dhr12ld()));
+            write_volatile(self.dhr12ld_mut(), f(self.dhr12ld()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the DHR8RD register."]
-    #[inline] pub fn dhr8rd_ptr(&self) -> *const Dhr8rd { 
-        (self.0 + 0x28) as *const Dhr8rd
     }
 
     #[doc="Get the *mut pointer for the DHR8RD register."]
@@ -332,17 +327,22 @@ impl Dac {
         (self.0 + 0x28) as *mut Dhr8rd
     }
 
+    #[doc="Get the *const pointer for the DHR8RD register."]
+    #[inline] pub fn dhr8rd_ptr(&self) -> *const Dhr8rd { 
+           self.dhr8rd_mut()
+    }
+
     #[doc="Read the DHR8RD register."]
     #[inline] pub fn dhr8rd(&self) -> Dhr8rd { 
         unsafe {
-            read_volatile((self.0 + 0x28) as *const Dhr8rd)
+            read_volatile(self.dhr8rd_ptr())
         }
     }
 
     #[doc="Write the DHR8RD register."]
     #[inline] pub fn set_dhr8rd<F: FnOnce(Dhr8rd) -> Dhr8rd>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x28) as *mut Dhr8rd, f(Dhr8rd(0)));
+            write_volatile(self.dhr8rd_mut(), f(Dhr8rd(0)));
         }
         self
     }
@@ -350,14 +350,9 @@ impl Dac {
     #[doc="Modify the DHR8RD register."]
     #[inline] pub fn with_dhr8rd<F: FnOnce(Dhr8rd) -> Dhr8rd>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x28) as *mut Dhr8rd, f(self.dhr8rd()));
+            write_volatile(self.dhr8rd_mut(), f(self.dhr8rd()));
         }
         self
-    }
-
-    #[doc="Get the *const pointer for the DOR1 register."]
-    #[inline] pub fn dor1_ptr(&self) -> *const Dor1 { 
-        (self.0 + 0x2c) as *const Dor1
     }
 
     #[doc="Get the *mut pointer for the DOR1 register."]
@@ -365,16 +360,16 @@ impl Dac {
         (self.0 + 0x2c) as *mut Dor1
     }
 
+    #[doc="Get the *const pointer for the DOR1 register."]
+    #[inline] pub fn dor1_ptr(&self) -> *const Dor1 { 
+           self.dor1_mut()
+    }
+
     #[doc="Read the DOR1 register."]
     #[inline] pub fn dor1(&self) -> Dor1 { 
         unsafe {
-            read_volatile((self.0 + 0x2c) as *const Dor1)
+            read_volatile(self.dor1_ptr())
         }
-    }
-
-    #[doc="Get the *const pointer for the DOR2 register."]
-    #[inline] pub fn dor2_ptr(&self) -> *const Dor2 { 
-        (self.0 + 0x30) as *const Dor2
     }
 
     #[doc="Get the *mut pointer for the DOR2 register."]
@@ -382,16 +377,16 @@ impl Dac {
         (self.0 + 0x30) as *mut Dor2
     }
 
+    #[doc="Get the *const pointer for the DOR2 register."]
+    #[inline] pub fn dor2_ptr(&self) -> *const Dor2 { 
+           self.dor2_mut()
+    }
+
     #[doc="Read the DOR2 register."]
     #[inline] pub fn dor2(&self) -> Dor2 { 
         unsafe {
-            read_volatile((self.0 + 0x30) as *const Dor2)
+            read_volatile(self.dor2_ptr())
         }
-    }
-
-    #[doc="Get the *const pointer for the SR register."]
-    #[inline] pub fn sr_ptr(&self) -> *const Sr { 
-        (self.0 + 0x34) as *const Sr
     }
 
     #[doc="Get the *mut pointer for the SR register."]
@@ -399,17 +394,22 @@ impl Dac {
         (self.0 + 0x34) as *mut Sr
     }
 
+    #[doc="Get the *const pointer for the SR register."]
+    #[inline] pub fn sr_ptr(&self) -> *const Sr { 
+           self.sr_mut()
+    }
+
     #[doc="Read the SR register."]
     #[inline] pub fn sr(&self) -> Sr { 
         unsafe {
-            read_volatile((self.0 + 0x34) as *const Sr)
+            read_volatile(self.sr_ptr())
         }
     }
 
     #[doc="Write the SR register."]
     #[inline] pub fn set_sr<F: FnOnce(Sr) -> Sr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x34) as *mut Sr, f(Sr(0)));
+            write_volatile(self.sr_mut(), f(Sr(0)));
         }
         self
     }
@@ -417,7 +417,7 @@ impl Dac {
     #[doc="Modify the SR register."]
     #[inline] pub fn with_sr<F: FnOnce(Sr) -> Sr>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile((self.0 + 0x34) as *mut Sr, f(self.sr()));
+            write_volatile(self.sr_mut(), f(self.sr()));
         }
         self
     }
