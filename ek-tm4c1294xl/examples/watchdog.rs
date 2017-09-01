@@ -18,8 +18,10 @@ pub extern "C" fn main() -> ! {
     while !w.sysctl_ready() {}
 
     // w.set_load(|_| Load(0x0500_0000));
-    w.set_timeout(0x500_0000);
-    w.set_ctl(|r| r.set_resen(1));
+    w
+        .set_timeout(0x500_0000)
+        .enable();
+    // w.set_ctl(|r| r.set_resen(1));
     
     for i in 0..5 {
         // Refresh Watchdog
