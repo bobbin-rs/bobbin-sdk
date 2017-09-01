@@ -844,7 +844,7 @@ pub fn gen_descriptor<W: Write>(cfg: &Config, out: &mut W, _p_type: &str, desc: 
         let r_getter = field_getter(&r.name);
         let r_setter = field_setter(&r.name);
         let r_with = field_with(&r.name);
-        let r_size = size_type(r.size.unwrap());
+        // let r_size = size_type(r.size.unwrap());
         let r_access = r.access.or(Some(Access::ReadWrite)).unwrap();
         let r_offset = r.offset;        
 
@@ -879,7 +879,7 @@ pub fn gen_descriptor<W: Write>(cfg: &Config, out: &mut W, _p_type: &str, desc: 
                 try!(writeln!(out, "      let index: {} = index.into();", i_type));
                 try!(writeln!(out, "      let index: usize = index.value() as usize;"));
                 try!(writeln!(out, "      unsafe {{"));
-                try!(writeln!(out, "          {}(read_volatile(self.0.as_ptr().offset(0x{:x} + {}) as *const {}))", r_type, r_offset, r_shift, r_size));
+                try!(writeln!(out, "          read_volatile(self.0.as_ptr().offset(0x{:x} + {}) as *const {})", r_offset, r_shift, r_type));
                 try!(writeln!(out, "      }}"));
                 try!(writeln!(out, "  }}"));
                 try!(writeln!(out, ""));
@@ -890,7 +890,7 @@ pub fn gen_descriptor<W: Write>(cfg: &Config, out: &mut W, _p_type: &str, desc: 
                 try!(writeln!(out, "      let index: {} = index.into();", i_type));
                 try!(writeln!(out, "      let index: usize = index.value() as usize;"));
                 try!(writeln!(out, "      unsafe {{"));
-                try!(writeln!(out, "          write_volatile(self.0.as_mut_ptr().offset(0x{:x} + {}) as *mut {}, value.0);", r_offset, r_shift, r_size)); 
+                try!(writeln!(out, "          write_volatile(self.0.as_mut_ptr().offset(0x{:x} + {}) as *mut {}, value);", r_offset, r_shift, r_type)); 
                 try!(writeln!(out, "      }}"));
                 try!(writeln!(out, "      self"));
                 try!(writeln!(out, "  }}"));
@@ -903,7 +903,7 @@ pub fn gen_descriptor<W: Write>(cfg: &Config, out: &mut W, _p_type: &str, desc: 
                 try!(writeln!(out, "      let index: usize = index.value() as usize;"));                                
                 try!(writeln!(out, "      let value = f(self.{}(index));", r_getter));
                 try!(writeln!(out, "      unsafe {{"));
-                try!(writeln!(out, "          write_volatile(self.0.as_mut_ptr().offset(0x{:x} + {}) as *mut {}, value.0);", r_offset, r_shift, r_size)); 
+                try!(writeln!(out, "          write_volatile(self.0.as_mut_ptr().offset(0x{:x} + {}) as *mut {}, value);", r_offset, r_shift, r_type)); 
                 try!(writeln!(out, "      }}"));
                 try!(writeln!(out, "      self"));
                 try!(writeln!(out, "  }}"));            
@@ -921,7 +921,7 @@ pub fn gen_descriptor<W: Write>(cfg: &Config, out: &mut W, _p_type: &str, desc: 
                 try!(gen_doc(cfg, out, 0, &format!("Read the {} register.", r.name.to_uppercase())));
                 try!(writeln!(out, "    #[inline] pub fn {}(&self) -> {} {{ ", r_getter, r_type));
                 try!(writeln!(out, "        unsafe {{"));
-                try!(writeln!(out, "            {}(read_volatile(self.0.as_ptr().offset(0x{:x}) as *const {}))", r_type, r_offset, r_size));
+                try!(writeln!(out, "            read_volatile(self.0.as_ptr().offset(0x{:x}) as *const {})", r_offset, r_type));
                 try!(writeln!(out, "        }}"));
                 try!(writeln!(out, "    }}"));
                 try!(writeln!(out, ""));
@@ -931,7 +931,7 @@ pub fn gen_descriptor<W: Write>(cfg: &Config, out: &mut W, _p_type: &str, desc: 
                 try!(writeln!(out, "    #[inline] pub fn {}<{}: FnOnce({}) -> {}>(&mut self, f: {}) -> &Self {{", r_setter, r_typevar, r_type, r_type, r_typevar));
                 try!(writeln!(out, "        let value = f({}(0));", r_type));
                 try!(writeln!(out, "        unsafe {{"));
-                try!(writeln!(out, "            write_volatile(self.0.as_mut_ptr().offset(0x{:x}) as *mut {}, value.0);", r_offset, r_size));                    
+                try!(writeln!(out, "            write_volatile(self.0.as_mut_ptr().offset(0x{:x}) as *mut {}, value);", r_offset, r_type));                    
                 try!(writeln!(out, "        }}"));
                 try!(writeln!(out, "        self"));
                 try!(writeln!(out, "  }}"));
@@ -942,7 +942,7 @@ pub fn gen_descriptor<W: Write>(cfg: &Config, out: &mut W, _p_type: &str, desc: 
                 try!(writeln!(out, "    #[inline] pub fn {}<{}: FnOnce({}) -> {}>(&mut self, f: {}) -> &mut Self {{", r_with, r_typevar, r_type, r_type, r_typevar));
                 try!(writeln!(out, "        let value = f(self.{}());", r_getter));
                 try!(writeln!(out, "        unsafe {{"));
-                try!(writeln!(out, "            write_volatile(self.0.as_mut_ptr().offset(0x{:x}) as *mut {}, value.0);", r_offset, r_size));                    
+                try!(writeln!(out, "            write_volatile(self.0.as_mut_ptr().offset(0x{:x}) as *mut {}, value);", r_offset, r_type));                    
                 try!(writeln!(out, "        }}"));
                 try!(writeln!(out, "      self"));
                 try!(writeln!(out, "    }}"));            
@@ -1006,7 +1006,7 @@ pub fn gen_register_methods<W: Write>(cfg: &Config, out: &mut W, p_type: &str, r
             try!(writeln!(out, "    #[inline] pub fn {}<I: Into<{}>>(&self, index: I) -> *const {} {{ ", r_ptr, i_type, r_size));
             try!(writeln!(out, "        let index: {} = index.into();", i_type));
             try!(writeln!(out, "        let index: usize = index.value() as usize;"));
-            try!(writeln!(out, "        ((self.0 as usize) + 0x{:x} + {}) as *const {}", r_offset, r_shift, r_size));
+            try!(writeln!(out, "        (self.0 + 0x{:x} + {}) as *const {}", r_offset, r_shift, r_size));
             try!(writeln!(out, "    }}"));
             try!(writeln!(out, ""));
 
@@ -1014,7 +1014,7 @@ pub fn gen_register_methods<W: Write>(cfg: &Config, out: &mut W, p_type: &str, r
             try!(writeln!(out, "    #[inline] pub fn {}<I: Into<{}>>(&self, index: I) -> *mut {} {{ ", r_mut, i_type, r_size));
             try!(writeln!(out, "        let index: {} = index.into();", i_type));
             try!(writeln!(out, "        let index: usize = index.value() as usize;"));
-            try!(writeln!(out, "        ((self.0 as usize) + 0x{:x} + {}) as *mut {}", r_offset, r_shift, r_size));
+            try!(writeln!(out, "        (self.0 + 0x{:x} + {}) as *mut {}", r_offset, r_shift, r_size));
             try!(writeln!(out, "    }}"));
             try!(writeln!(out, ""));
 
@@ -1024,7 +1024,7 @@ pub fn gen_register_methods<W: Write>(cfg: &Config, out: &mut W, p_type: &str, r
                 try!(writeln!(out, "        let index: {} = index.into();", i_type));
                 try!(writeln!(out, "        let index: usize = index.value() as usize;"));
                 try!(writeln!(out, "        unsafe {{"));
-                try!(writeln!(out, "            {}(read_volatile((self.0 + 0x{:x} + {}) as *const {}))", r_type, r_offset, r_shift, r_size));
+                try!(writeln!(out, "            read_volatile((self.0 + 0x{:x} + {}) as *const {})", r_offset, r_shift, r_type));
                 try!(writeln!(out, "        }}"));
                 try!(writeln!(out, "    }}"));
                 try!(writeln!(out, ""));
@@ -1036,7 +1036,7 @@ pub fn gen_register_methods<W: Write>(cfg: &Config, out: &mut W, p_type: &str, r
                 try!(writeln!(out, "        let index: usize = index.value() as usize;"));
                 try!(writeln!(out, "        let value = f({}(0));", r_type));
                 try!(writeln!(out, "        unsafe {{"));
-                try!(writeln!(out, "            write_volatile((self.0 + 0x{:x} + {}) as *mut {}, value.0);", r_offset, r_shift, r_size)); 
+                try!(writeln!(out, "            write_volatile((self.0 + 0x{:x} + {}) as *mut {}, value);", r_offset, r_shift, r_type)); 
                 try!(writeln!(out, "        }}"));
                 try!(writeln!(out, "        self"));
                 try!(writeln!(out, "    }}"));
@@ -1049,7 +1049,7 @@ pub fn gen_register_methods<W: Write>(cfg: &Config, out: &mut W, p_type: &str, r
                 try!(writeln!(out, "        let index: usize = index.value() as usize;"));                
                 try!(writeln!(out, "        let value = f(self.{}(index));", r_getter));
                 try!(writeln!(out, "        unsafe {{"));
-                try!(writeln!(out, "            write_volatile((self.0 + 0x{:x} + {}) as *mut {}, value.0);", r_offset, r_shift, r_size)); 
+                try!(writeln!(out, "            write_volatile((self.0 + 0x{:x} + {}) as *mut {}, value);", r_offset, r_shift, r_type)); 
                 try!(writeln!(out, "        }}"));
                 try!(writeln!(out, "        self"));
                 try!(writeln!(out, "    }}"));       
@@ -1058,13 +1058,13 @@ pub fn gen_register_methods<W: Write>(cfg: &Config, out: &mut W, p_type: &str, r
         } else {
             try!(gen_doc(cfg, out, 4, &format!("Get the *const pointer for the {} register.", r.name.to_uppercase())));
             try!(writeln!(out, "    #[inline] pub fn {}(&self) -> *const {} {{ ", r_ptr, r_size));
-            try!(writeln!(out, "        ((self.0 as usize) + 0x{:x}) as *const {}", r_offset, r_size));
+            try!(writeln!(out, "        (self.0 + 0x{:x}) as *const {}", r_offset, r_size));
             try!(writeln!(out, "    }}"));
             try!(writeln!(out, "")); 
 
             try!(gen_doc(cfg, out, 4, &format!("Get the *mut pointer for the {} register.", r.name.to_uppercase())));
             try!(writeln!(out, "    #[inline] pub fn {}(&self) -> *mut {} {{ ", r_mut, r_size));
-            try!(writeln!(out, "        ((self.0 as usize) + 0x{:x}) as *mut {}", r_offset, r_size));
+            try!(writeln!(out, "        (self.0 + 0x{:x}) as *mut {}", r_offset, r_size));
             try!(writeln!(out, "    }}"));
             try!(writeln!(out, ""));
             
@@ -1072,7 +1072,7 @@ pub fn gen_register_methods<W: Write>(cfg: &Config, out: &mut W, p_type: &str, r
                 try!(gen_doc(cfg, out, 4, &format!("Read the {} register.", r.name.to_uppercase())));
                 try!(writeln!(out, "    #[inline] pub fn {}(&self) -> {} {{ ", r_getter, r_type));
                 try!(writeln!(out, "        unsafe {{"));
-                try!(writeln!(out, "            {}(read_volatile((self.0 + 0x{:x}) as *const {}))", r_type, r_offset, r_size));
+                try!(writeln!(out, "            read_volatile((self.0 + 0x{:x}) as *const {})", r_offset, r_type));
                 try!(writeln!(out, "        }}"));
                 try!(writeln!(out, "    }}"));
                 try!(writeln!(out, ""));
@@ -1082,7 +1082,7 @@ pub fn gen_register_methods<W: Write>(cfg: &Config, out: &mut W, p_type: &str, r
                 try!(writeln!(out, "    #[inline] pub fn {}<{}: FnOnce({}) -> {}>(&self, f: {}) -> &Self {{", r_setter, r_typevar, r_type, r_type, r_typevar));
                 try!(writeln!(out, "        let value = f({}(0));", r_type));
                 try!(writeln!(out, "        unsafe {{"));
-                try!(writeln!(out, "            write_volatile((self.0 + 0x{:x}) as *mut {}, value.0);", r_offset, r_size));                    
+                try!(writeln!(out, "            write_volatile((self.0 + 0x{:x}) as *mut {}, value);", r_offset, r_type));                    
                 try!(writeln!(out, "        }}"));
                 try!(writeln!(out, "        self"));
                 try!(writeln!(out, "    }}"));                
@@ -1093,7 +1093,7 @@ pub fn gen_register_methods<W: Write>(cfg: &Config, out: &mut W, p_type: &str, r
                 try!(writeln!(out, "    #[inline] pub fn {}<{}: FnOnce({}) -> {}>(&self, f: {}) -> &Self {{", r_with, r_typevar, r_type, r_type, r_typevar));
                 try!(writeln!(out, "        let value = f(self.{}());", r_getter));
                 try!(writeln!(out, "        unsafe {{"));
-                try!(writeln!(out, "            write_volatile((self.0 + 0x{:x}) as *mut {}, value.0);", r_offset, r_size));                    
+                try!(writeln!(out, "            write_volatile((self.0 + 0x{:x}) as *mut {}, value);", r_offset, r_type));                    
                 try!(writeln!(out, "        }}"));
                 try!(writeln!(out, "        self"));
                 try!(writeln!(out, "    }}"));               
