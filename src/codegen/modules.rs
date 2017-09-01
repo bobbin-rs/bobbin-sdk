@@ -964,7 +964,7 @@ pub fn gen_registers<W: Write>(cfg: &Config, out: &mut W, p_type: &str, regs: &[
     Ok(())
 }
 
-pub fn gen_register_methods<W: Write>(cfg: &Config, out: &mut W, p_type: &str, regs: &[Register], size: Option<u64>, access: Option<Access>) -> Result<()> {
+pub fn gen_register_methods<W: Write>(cfg: &Config, out: &mut W, p_type: &str, regs: &[Register], _size: Option<u64>, access: Option<Access>) -> Result<()> {
     try!(writeln!(out, "impl {} {{", p_type));        
 
     for r in regs.iter() {  
@@ -974,7 +974,7 @@ pub fn gen_register_methods<W: Write>(cfg: &Config, out: &mut W, p_type: &str, r
         let r_getter = field_getter(&r.name);
         let r_setter = field_setter(&r.name);
         let r_with = field_with(&r.name);
-        let r_size = size_type(r.size.or(size).unwrap());
+        // let r_size = size_type(r.size.or(size).unwrap());
         let r_access = r.access.or(access).unwrap();
         let r_offset = r.offset;        
 
@@ -1003,18 +1003,18 @@ pub fn gen_register_methods<W: Write>(cfg: &Config, out: &mut W, p_type: &str, r
             };
 
             try!(gen_doc(cfg, out, 4, &format!("Get the *const pointer for the {} register.", r.name.to_uppercase())));
-            try!(writeln!(out, "    #[inline] pub fn {}<I: Into<{}>>(&self, index: I) -> *const {} {{ ", r_ptr, i_type, r_size));
+            try!(writeln!(out, "    #[inline] pub fn {}<I: Into<{}>>(&self, index: I) -> *const {} {{ ", r_ptr, i_type, r_type));
             // try!(writeln!(out, "        let index: {} = index.into();", i_type));
             try!(writeln!(out, "        let index: usize = index.into().value() as usize;"));
-            try!(writeln!(out, "        (self.0 + 0x{:x} + {}) as *const {}", r_offset, r_shift, r_size));
+            try!(writeln!(out, "        (self.0 + 0x{:x} + {}) as *const {}", r_offset, r_shift, r_type));
             try!(writeln!(out, "    }}"));
             try!(writeln!(out, ""));
 
             try!(gen_doc(cfg, out, 4, &format!("Get the *mut pointer for the {} register.", r.name.to_uppercase())));
-            try!(writeln!(out, "    #[inline] pub fn {}<I: Into<{}>>(&self, index: I) -> *mut {} {{ ", r_mut, i_type, r_size));
+            try!(writeln!(out, "    #[inline] pub fn {}<I: Into<{}>>(&self, index: I) -> *mut {} {{ ", r_mut, i_type, r_type));
             // try!(writeln!(out, "        let index: {} = index.into();", i_type));
             try!(writeln!(out, "        let index: usize = index.into().value() as usize;"));
-            try!(writeln!(out, "        (self.0 + 0x{:x} + {}) as *mut {}", r_offset, r_shift, r_size));
+            try!(writeln!(out, "        (self.0 + 0x{:x} + {}) as *mut {}", r_offset, r_shift, r_type));
             try!(writeln!(out, "    }}"));
             try!(writeln!(out, ""));
 
@@ -1057,14 +1057,14 @@ pub fn gen_register_methods<W: Write>(cfg: &Config, out: &mut W, p_type: &str, r
             }            
         } else {
             try!(gen_doc(cfg, out, 4, &format!("Get the *const pointer for the {} register.", r.name.to_uppercase())));
-            try!(writeln!(out, "    #[inline] pub fn {}(&self) -> *const {} {{ ", r_ptr, r_size));
-            try!(writeln!(out, "        (self.0 + 0x{:x}) as *const {}", r_offset, r_size));
+            try!(writeln!(out, "    #[inline] pub fn {}(&self) -> *const {} {{ ", r_ptr, r_type));
+            try!(writeln!(out, "        (self.0 + 0x{:x}) as *const {}", r_offset, r_type));
             try!(writeln!(out, "    }}"));
             try!(writeln!(out, "")); 
 
             try!(gen_doc(cfg, out, 4, &format!("Get the *mut pointer for the {} register.", r.name.to_uppercase())));
-            try!(writeln!(out, "    #[inline] pub fn {}(&self) -> *mut {} {{ ", r_mut, r_size));
-            try!(writeln!(out, "        (self.0 + 0x{:x}) as *mut {}", r_offset, r_size));
+            try!(writeln!(out, "    #[inline] pub fn {}(&self) -> *mut {} {{ ", r_mut, r_type));
+            try!(writeln!(out, "        (self.0 + 0x{:x}) as *mut {}", r_offset, r_type));
             try!(writeln!(out, "    }}"));
             try!(writeln!(out, ""));
             
