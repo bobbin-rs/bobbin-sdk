@@ -766,7 +766,7 @@ impl Stir {
 
     #[doc="Interrupt ID of the interrupt to trigger, in the range 0-239."]
     #[inline] pub fn test_intid(&self) -> bool {
-        self.intid != 0
+        self.intid() != 0
     }
 
     #[doc="Interrupt ID of the interrupt to trigger, in the range 0-239."]

@@ -164,7 +164,7 @@ impl Csr {
 
     #[doc="Timer Enable"]
     #[inline] pub fn test_ten(&self) -> bool {
-        self.ten != 0
+        self.ten() != 0
     }
 
     #[doc="Timer Enable"]
@@ -183,7 +183,7 @@ impl Csr {
 
     #[doc="Timer Mode Select"]
     #[inline] pub fn test_tms(&self) -> bool {
-        self.tms != 0
+        self.tms() != 0
     }
 
     #[doc="Timer Mode Select"]
@@ -202,7 +202,7 @@ impl Csr {
 
     #[doc="Timer Free-Running Counter"]
     #[inline] pub fn test_tfc(&self) -> bool {
-        self.tfc != 0
+        self.tfc() != 0
     }
 
     #[doc="Timer Free-Running Counter"]
@@ -221,7 +221,7 @@ impl Csr {
 
     #[doc="Timer Pin Polarity"]
     #[inline] pub fn test_tpp(&self) -> bool {
-        self.tpp != 0
+        self.tpp() != 0
     }
 
     #[doc="Timer Pin Polarity"]
@@ -240,7 +240,7 @@ impl Csr {
 
     #[doc="Timer Pin Select"]
     #[inline] pub fn test_tps(&self) -> bool {
-        self.tps != 0
+        self.tps() != 0
     }
 
     #[doc="Timer Pin Select"]
@@ -259,7 +259,7 @@ impl Csr {
 
     #[doc="Timer Interrupt Enable"]
     #[inline] pub fn test_tie(&self) -> bool {
-        self.tie != 0
+        self.tie() != 0
     }
 
     #[doc="Timer Interrupt Enable"]
@@ -278,7 +278,7 @@ impl Csr {
 
     #[doc="Timer Compare Flag"]
     #[inline] pub fn test_tcf(&self) -> bool {
-        self.tcf != 0
+        self.tcf() != 0
     }
 
     #[doc="Timer Compare Flag"]
@@ -324,7 +324,7 @@ impl Psr {
 
     #[doc="Prescaler Clock Select"]
     #[inline] pub fn test_pcs(&self) -> bool {
-        self.pcs != 0
+        self.pcs() != 0
     }
 
     #[doc="Prescaler Clock Select"]
@@ -343,7 +343,7 @@ impl Psr {
 
     #[doc="Prescaler Bypass"]
     #[inline] pub fn test_pbyp(&self) -> bool {
-        self.pbyp != 0
+        self.pbyp() != 0
     }
 
     #[doc="Prescaler Bypass"]
@@ -362,7 +362,7 @@ impl Psr {
 
     #[doc="Prescale Value"]
     #[inline] pub fn test_prescale(&self) -> bool {
-        self.prescale != 0
+        self.prescale() != 0
     }
 
     #[doc="Prescale Value"]
@@ -404,7 +404,7 @@ impl Cmr {
 
     #[doc="Compare Value"]
     #[inline] pub fn test_compare(&self) -> bool {
-        self.compare != 0
+        self.compare() != 0
     }
 
     #[doc="Compare Value"]
@@ -444,7 +444,7 @@ impl Cnr {
 
     #[doc="Counter Value"]
     #[inline] pub fn test_counter(&self) -> bool {
-        self.counter != 0
+        self.counter() != 0
     }
 
     #[doc="Counter Value"]

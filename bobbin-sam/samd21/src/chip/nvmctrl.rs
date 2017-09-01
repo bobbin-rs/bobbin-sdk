@@ -344,7 +344,7 @@ impl Addr {
 
     #[doc="NVM Address"]
     #[inline] pub fn test_addr(&self) -> bool {
-        self.addr != 0
+        self.addr() != 0
     }
 
     #[doc="NVM Address"]
@@ -384,7 +384,7 @@ impl Ctrla {
 
     #[doc="Command"]
     #[inline] pub fn test_cmd(&self) -> bool {
-        self.cmd != 0
+        self.cmd() != 0
     }
 
     #[doc="Command"]
@@ -403,7 +403,7 @@ impl Ctrla {
 
     #[doc="Command Execution"]
     #[inline] pub fn test_cmdex(&self) -> bool {
-        self.cmdex != 0
+        self.cmdex() != 0
     }
 
     #[doc="Command Execution"]
@@ -444,7 +444,7 @@ impl Ctrlb {
 
     #[doc="NVM Read Wait States"]
     #[inline] pub fn test_rws(&self) -> bool {
-        self.rws != 0
+        self.rws() != 0
     }
 
     #[doc="NVM Read Wait States"]
@@ -463,7 +463,7 @@ impl Ctrlb {
 
     #[doc="Manual Write"]
     #[inline] pub fn test_manw(&self) -> bool {
-        self.manw != 0
+        self.manw() != 0
     }
 
     #[doc="Manual Write"]
@@ -482,7 +482,7 @@ impl Ctrlb {
 
     #[doc="Power Reduction Mode during Sleep"]
     #[inline] pub fn test_sleepprm(&self) -> bool {
-        self.sleepprm != 0
+        self.sleepprm() != 0
     }
 
     #[doc="Power Reduction Mode during Sleep"]
@@ -501,7 +501,7 @@ impl Ctrlb {
 
     #[doc="NVMCTRL Read Mode"]
     #[inline] pub fn test_readmode(&self) -> bool {
-        self.readmode != 0
+        self.readmode() != 0
     }
 
     #[doc="NVMCTRL Read Mode"]
@@ -520,7 +520,7 @@ impl Ctrlb {
 
     #[doc="Cache Disable"]
     #[inline] pub fn test_cachedis(&self) -> bool {
-        self.cachedis != 0
+        self.cachedis() != 0
     }
 
     #[doc="Cache Disable"]
@@ -564,7 +564,7 @@ impl Intenclr {
 
     #[doc="NVM Ready Interrupt Enable"]
     #[inline] pub fn test_ready(&self) -> bool {
-        self.ready != 0
+        self.ready() != 0
     }
 
     #[doc="NVM Ready Interrupt Enable"]
@@ -583,7 +583,7 @@ impl Intenclr {
 
     #[doc="Error Interrupt Enable"]
     #[inline] pub fn test_error(&self) -> bool {
-        self.error != 0
+        self.error() != 0
     }
 
     #[doc="Error Interrupt Enable"]
@@ -624,7 +624,7 @@ impl Intenset {
 
     #[doc="NVM Ready Interrupt Enable"]
     #[inline] pub fn test_ready(&self) -> bool {
-        self.ready != 0
+        self.ready() != 0
     }
 
     #[doc="NVM Ready Interrupt Enable"]
@@ -643,7 +643,7 @@ impl Intenset {
 
     #[doc="Error Interrupt Enable"]
     #[inline] pub fn test_error(&self) -> bool {
-        self.error != 0
+        self.error() != 0
     }
 
     #[doc="Error Interrupt Enable"]
@@ -684,7 +684,7 @@ impl Intflag {
 
     #[doc="NVM Ready"]
     #[inline] pub fn test_ready(&self) -> bool {
-        self.ready != 0
+        self.ready() != 0
     }
 
     #[doc="NVM Ready"]
@@ -703,7 +703,7 @@ impl Intflag {
 
     #[doc="Error"]
     #[inline] pub fn test_error(&self) -> bool {
-        self.error != 0
+        self.error() != 0
     }
 
     #[doc="Error"]
@@ -744,7 +744,7 @@ impl Lock {
 
     #[doc="Region Lock Bits"]
     #[inline] pub fn test_lock(&self) -> bool {
-        self.lock != 0
+        self.lock() != 0
     }
 
     #[doc="Region Lock Bits"]
@@ -784,7 +784,7 @@ impl Param {
 
     #[doc="NVM Pages"]
     #[inline] pub fn test_nvmp(&self) -> bool {
-        self.nvmp != 0
+        self.nvmp() != 0
     }
 
     #[doc="NVM Pages"]
@@ -803,7 +803,7 @@ impl Param {
 
     #[doc="Page Size"]
     #[inline] pub fn test_psz(&self) -> bool {
-        self.psz != 0
+        self.psz() != 0
     }
 
     #[doc="Page Size"]
@@ -844,7 +844,7 @@ impl Status {
 
     #[doc="Power Reduction Mode"]
     #[inline] pub fn test_prm(&self) -> bool {
-        self.prm != 0
+        self.prm() != 0
     }
 
     #[doc="Power Reduction Mode"]
@@ -863,7 +863,7 @@ impl Status {
 
     #[doc="NVM Page Buffer Active Loading"]
     #[inline] pub fn test_load(&self) -> bool {
-        self.load != 0
+        self.load() != 0
     }
 
     #[doc="NVM Page Buffer Active Loading"]
@@ -882,7 +882,7 @@ impl Status {
 
     #[doc="Programming Error Status"]
     #[inline] pub fn test_proge(&self) -> bool {
-        self.proge != 0
+        self.proge() != 0
     }
 
     #[doc="Programming Error Status"]
@@ -901,7 +901,7 @@ impl Status {
 
     #[doc="Lock Error Status"]
     #[inline] pub fn test_locke(&self) -> bool {
-        self.locke != 0
+        self.locke() != 0
     }
 
     #[doc="Lock Error Status"]
@@ -920,7 +920,7 @@ impl Status {
 
     #[doc="NVM Error"]
     #[inline] pub fn test_nvme(&self) -> bool {
-        self.nvme != 0
+        self.nvme() != 0
     }
 
     #[doc="NVM Error"]
@@ -939,7 +939,7 @@ impl Status {
 
     #[doc="Security Bit Status"]
     #[inline] pub fn test_sb(&self) -> bool {
-        self.sb != 0
+        self.sb() != 0
     }
 
     #[doc="Security Bit Status"]

@@ -897,7 +897,7 @@ impl Isr {
 
     #[doc="JQOVF"]
     #[inline] pub fn test_jqovf(&self) -> bool {
-        self.jqovf != 0
+        self.jqovf() != 0
     }
 
     #[doc="JQOVF"]
@@ -916,7 +916,7 @@ impl Isr {
 
     #[doc="AWD3"]
     #[inline] pub fn test_awd3(&self) -> bool {
-        self.awd3 != 0
+        self.awd3() != 0
     }
 
     #[doc="AWD3"]
@@ -935,7 +935,7 @@ impl Isr {
 
     #[doc="AWD2"]
     #[inline] pub fn test_awd2(&self) -> bool {
-        self.awd2 != 0
+        self.awd2() != 0
     }
 
     #[doc="AWD2"]
@@ -954,7 +954,7 @@ impl Isr {
 
     #[doc="AWD1"]
     #[inline] pub fn test_awd1(&self) -> bool {
-        self.awd1 != 0
+        self.awd1() != 0
     }
 
     #[doc="AWD1"]
@@ -973,7 +973,7 @@ impl Isr {
 
     #[doc="JEOS"]
     #[inline] pub fn test_jeos(&self) -> bool {
-        self.jeos != 0
+        self.jeos() != 0
     }
 
     #[doc="JEOS"]
@@ -992,7 +992,7 @@ impl Isr {
 
     #[doc="JEOC"]
     #[inline] pub fn test_jeoc(&self) -> bool {
-        self.jeoc != 0
+        self.jeoc() != 0
     }
 
     #[doc="JEOC"]
@@ -1011,7 +1011,7 @@ impl Isr {
 
     #[doc="OVR"]
     #[inline] pub fn test_ovr(&self) -> bool {
-        self.ovr != 0
+        self.ovr() != 0
     }
 
     #[doc="OVR"]
@@ -1030,7 +1030,7 @@ impl Isr {
 
     #[doc="EOS"]
     #[inline] pub fn test_eos(&self) -> bool {
-        self.eos != 0
+        self.eos() != 0
     }
 
     #[doc="EOS"]
@@ -1049,7 +1049,7 @@ impl Isr {
 
     #[doc="EOC"]
     #[inline] pub fn test_eoc(&self) -> bool {
-        self.eoc != 0
+        self.eoc() != 0
     }
 
     #[doc="EOC"]
@@ -1068,7 +1068,7 @@ impl Isr {
 
     #[doc="EOSMP"]
     #[inline] pub fn test_eosmp(&self) -> bool {
-        self.eosmp != 0
+        self.eosmp() != 0
     }
 
     #[doc="EOSMP"]
@@ -1087,7 +1087,7 @@ impl Isr {
 
     #[doc="ADRDY"]
     #[inline] pub fn test_adrdy(&self) -> bool {
-        self.adrdy != 0
+        self.adrdy() != 0
     }
 
     #[doc="ADRDY"]
@@ -1137,7 +1137,7 @@ impl Ier {
 
     #[doc="JQOVFIE"]
     #[inline] pub fn test_jqovfie(&self) -> bool {
-        self.jqovfie != 0
+        self.jqovfie() != 0
     }
 
     #[doc="JQOVFIE"]
@@ -1156,7 +1156,7 @@ impl Ier {
 
     #[doc="AWD3IE"]
     #[inline] pub fn test_awd3ie(&self) -> bool {
-        self.awd3ie != 0
+        self.awd3ie() != 0
     }
 
     #[doc="AWD3IE"]
@@ -1175,7 +1175,7 @@ impl Ier {
 
     #[doc="AWD2IE"]
     #[inline] pub fn test_awd2ie(&self) -> bool {
-        self.awd2ie != 0
+        self.awd2ie() != 0
     }
 
     #[doc="AWD2IE"]
@@ -1194,7 +1194,7 @@ impl Ier {
 
     #[doc="AWD1IE"]
     #[inline] pub fn test_awd1ie(&self) -> bool {
-        self.awd1ie != 0
+        self.awd1ie() != 0
     }
 
     #[doc="AWD1IE"]
@@ -1213,7 +1213,7 @@ impl Ier {
 
     #[doc="JEOSIE"]
     #[inline] pub fn test_jeosie(&self) -> bool {
-        self.jeosie != 0
+        self.jeosie() != 0
     }
 
     #[doc="JEOSIE"]
@@ -1232,7 +1232,7 @@ impl Ier {
 
     #[doc="JEOCIE"]
     #[inline] pub fn test_jeocie(&self) -> bool {
-        self.jeocie != 0
+        self.jeocie() != 0
     }
 
     #[doc="JEOCIE"]
@@ -1251,7 +1251,7 @@ impl Ier {
 
     #[doc="OVRIE"]
     #[inline] pub fn test_ovrie(&self) -> bool {
-        self.ovrie != 0
+        self.ovrie() != 0
     }
 
     #[doc="OVRIE"]
@@ -1270,7 +1270,7 @@ impl Ier {
 
     #[doc="EOSIE"]
     #[inline] pub fn test_eosie(&self) -> bool {
-        self.eosie != 0
+        self.eosie() != 0
     }
 
     #[doc="EOSIE"]
@@ -1289,7 +1289,7 @@ impl Ier {
 
     #[doc="EOCIE"]
     #[inline] pub fn test_eocie(&self) -> bool {
-        self.eocie != 0
+        self.eocie() != 0
     }
 
     #[doc="EOCIE"]
@@ -1308,7 +1308,7 @@ impl Ier {
 
     #[doc="EOSMPIE"]
     #[inline] pub fn test_eosmpie(&self) -> bool {
-        self.eosmpie != 0
+        self.eosmpie() != 0
     }
 
     #[doc="EOSMPIE"]
@@ -1327,7 +1327,7 @@ impl Ier {
 
     #[doc="ADRDYIE"]
     #[inline] pub fn test_adrdyie(&self) -> bool {
-        self.adrdyie != 0
+        self.adrdyie() != 0
     }
 
     #[doc="ADRDYIE"]
@@ -1377,7 +1377,7 @@ impl Cr {
 
     #[doc="ADCAL"]
     #[inline] pub fn test_adcal(&self) -> bool {
-        self.adcal != 0
+        self.adcal() != 0
     }
 
     #[doc="ADCAL"]
@@ -1396,7 +1396,7 @@ impl Cr {
 
     #[doc="ADCALDIF"]
     #[inline] pub fn test_adcaldif(&self) -> bool {
-        self.adcaldif != 0
+        self.adcaldif() != 0
     }
 
     #[doc="ADCALDIF"]
@@ -1415,7 +1415,7 @@ impl Cr {
 
     #[doc="ADVREGEN"]
     #[inline] pub fn test_advregen(&self) -> bool {
-        self.advregen != 0
+        self.advregen() != 0
     }
 
     #[doc="ADVREGEN"]
@@ -1434,7 +1434,7 @@ impl Cr {
 
     #[doc="JADSTP"]
     #[inline] pub fn test_jadstp(&self) -> bool {
-        self.jadstp != 0
+        self.jadstp() != 0
     }
 
     #[doc="JADSTP"]
@@ -1453,7 +1453,7 @@ impl Cr {
 
     #[doc="ADSTP"]
     #[inline] pub fn test_adstp(&self) -> bool {
-        self.adstp != 0
+        self.adstp() != 0
     }
 
     #[doc="ADSTP"]
@@ -1472,7 +1472,7 @@ impl Cr {
 
     #[doc="JADSTART"]
     #[inline] pub fn test_jadstart(&self) -> bool {
-        self.jadstart != 0
+        self.jadstart() != 0
     }
 
     #[doc="JADSTART"]
@@ -1491,7 +1491,7 @@ impl Cr {
 
     #[doc="ADSTART"]
     #[inline] pub fn test_adstart(&self) -> bool {
-        self.adstart != 0
+        self.adstart() != 0
     }
 
     #[doc="ADSTART"]
@@ -1510,7 +1510,7 @@ impl Cr {
 
     #[doc="ADDIS"]
     #[inline] pub fn test_addis(&self) -> bool {
-        self.addis != 0
+        self.addis() != 0
     }
 
     #[doc="ADDIS"]
@@ -1529,7 +1529,7 @@ impl Cr {
 
     #[doc="ADEN"]
     #[inline] pub fn test_aden(&self) -> bool {
-        self.aden != 0
+        self.aden() != 0
     }
 
     #[doc="ADEN"]
@@ -1577,7 +1577,7 @@ impl Cfgr {
 
     #[doc="AWDCH1CH"]
     #[inline] pub fn test_awdch1ch(&self) -> bool {
-        self.awdch1ch != 0
+        self.awdch1ch() != 0
     }
 
     #[doc="AWDCH1CH"]
@@ -1596,7 +1596,7 @@ impl Cfgr {
 
     #[doc="JAUTO"]
     #[inline] pub fn test_jauto(&self) -> bool {
-        self.jauto != 0
+        self.jauto() != 0
     }
 
     #[doc="JAUTO"]
@@ -1615,7 +1615,7 @@ impl Cfgr {
 
     #[doc="JAWD1EN"]
     #[inline] pub fn test_jawd1en(&self) -> bool {
-        self.jawd1en != 0
+        self.jawd1en() != 0
     }
 
     #[doc="JAWD1EN"]
@@ -1634,7 +1634,7 @@ impl Cfgr {
 
     #[doc="AWD1EN"]
     #[inline] pub fn test_awd1en(&self) -> bool {
-        self.awd1en != 0
+        self.awd1en() != 0
     }
 
     #[doc="AWD1EN"]
@@ -1653,7 +1653,7 @@ impl Cfgr {
 
     #[doc="AWD1SGL"]
     #[inline] pub fn test_awd1sgl(&self) -> bool {
-        self.awd1sgl != 0
+        self.awd1sgl() != 0
     }
 
     #[doc="AWD1SGL"]
@@ -1672,7 +1672,7 @@ impl Cfgr {
 
     #[doc="JQM"]
     #[inline] pub fn test_jqm(&self) -> bool {
-        self.jqm != 0
+        self.jqm() != 0
     }
 
     #[doc="JQM"]
@@ -1691,7 +1691,7 @@ impl Cfgr {
 
     #[doc="JDISCEN"]
     #[inline] pub fn test_jdiscen(&self) -> bool {
-        self.jdiscen != 0
+        self.jdiscen() != 0
     }
 
     #[doc="JDISCEN"]
@@ -1710,7 +1710,7 @@ impl Cfgr {
 
     #[doc="DISCNUM"]
     #[inline] pub fn test_discnum(&self) -> bool {
-        self.discnum != 0
+        self.discnum() != 0
     }
 
     #[doc="DISCNUM"]
@@ -1729,7 +1729,7 @@ impl Cfgr {
 
     #[doc="DISCEN"]
     #[inline] pub fn test_discen(&self) -> bool {
-        self.discen != 0
+        self.discen() != 0
     }
 
     #[doc="DISCEN"]
@@ -1748,7 +1748,7 @@ impl Cfgr {
 
     #[doc="AUTOFF"]
     #[inline] pub fn test_autoff(&self) -> bool {
-        self.autoff != 0
+        self.autoff() != 0
     }
 
     #[doc="AUTOFF"]
@@ -1767,7 +1767,7 @@ impl Cfgr {
 
     #[doc="AUTDLY"]
     #[inline] pub fn test_autdly(&self) -> bool {
-        self.autdly != 0
+        self.autdly() != 0
     }
 
     #[doc="AUTDLY"]
@@ -1786,7 +1786,7 @@ impl Cfgr {
 
     #[doc="CONT"]
     #[inline] pub fn test_cont(&self) -> bool {
-        self.cont != 0
+        self.cont() != 0
     }
 
     #[doc="CONT"]
@@ -1805,7 +1805,7 @@ impl Cfgr {
 
     #[doc="OVRMOD"]
     #[inline] pub fn test_ovrmod(&self) -> bool {
-        self.ovrmod != 0
+        self.ovrmod() != 0
     }
 
     #[doc="OVRMOD"]
@@ -1824,7 +1824,7 @@ impl Cfgr {
 
     #[doc="EXTEN"]
     #[inline] pub fn test_exten(&self) -> bool {
-        self.exten != 0
+        self.exten() != 0
     }
 
     #[doc="EXTEN"]
@@ -1843,7 +1843,7 @@ impl Cfgr {
 
     #[doc="EXTSEL"]
     #[inline] pub fn test_extsel(&self) -> bool {
-        self.extsel != 0
+        self.extsel() != 0
     }
 
     #[doc="EXTSEL"]
@@ -1862,7 +1862,7 @@ impl Cfgr {
 
     #[doc="ALIGN"]
     #[inline] pub fn test_align(&self) -> bool {
-        self.align != 0
+        self.align() != 0
     }
 
     #[doc="ALIGN"]
@@ -1881,7 +1881,7 @@ impl Cfgr {
 
     #[doc="RES"]
     #[inline] pub fn test_res(&self) -> bool {
-        self.res != 0
+        self.res() != 0
     }
 
     #[doc="RES"]
@@ -1900,7 +1900,7 @@ impl Cfgr {
 
     #[doc="DMACFG"]
     #[inline] pub fn test_dmacfg(&self) -> bool {
-        self.dmacfg != 0
+        self.dmacfg() != 0
     }
 
     #[doc="DMACFG"]
@@ -1919,7 +1919,7 @@ impl Cfgr {
 
     #[doc="DMAEN"]
     #[inline] pub fn test_dmaen(&self) -> bool {
-        self.dmaen != 0
+        self.dmaen() != 0
     }
 
     #[doc="DMAEN"]
@@ -1977,7 +1977,7 @@ impl Smpr1 {
 
     #[doc="SMP9"]
     #[inline] pub fn test_smp9(&self) -> bool {
-        self.smp9 != 0
+        self.smp9() != 0
     }
 
     #[doc="SMP9"]
@@ -1996,7 +1996,7 @@ impl Smpr1 {
 
     #[doc="SMP8"]
     #[inline] pub fn test_smp8(&self) -> bool {
-        self.smp8 != 0
+        self.smp8() != 0
     }
 
     #[doc="SMP8"]
@@ -2015,7 +2015,7 @@ impl Smpr1 {
 
     #[doc="SMP7"]
     #[inline] pub fn test_smp7(&self) -> bool {
-        self.smp7 != 0
+        self.smp7() != 0
     }
 
     #[doc="SMP7"]
@@ -2034,7 +2034,7 @@ impl Smpr1 {
 
     #[doc="SMP6"]
     #[inline] pub fn test_smp6(&self) -> bool {
-        self.smp6 != 0
+        self.smp6() != 0
     }
 
     #[doc="SMP6"]
@@ -2053,7 +2053,7 @@ impl Smpr1 {
 
     #[doc="SMP5"]
     #[inline] pub fn test_smp5(&self) -> bool {
-        self.smp5 != 0
+        self.smp5() != 0
     }
 
     #[doc="SMP5"]
@@ -2072,7 +2072,7 @@ impl Smpr1 {
 
     #[doc="SMP4"]
     #[inline] pub fn test_smp4(&self) -> bool {
-        self.smp4 != 0
+        self.smp4() != 0
     }
 
     #[doc="SMP4"]
@@ -2091,7 +2091,7 @@ impl Smpr1 {
 
     #[doc="SMP3"]
     #[inline] pub fn test_smp3(&self) -> bool {
-        self.smp3 != 0
+        self.smp3() != 0
     }
 
     #[doc="SMP3"]
@@ -2110,7 +2110,7 @@ impl Smpr1 {
 
     #[doc="SMP2"]
     #[inline] pub fn test_smp2(&self) -> bool {
-        self.smp2 != 0
+        self.smp2() != 0
     }
 
     #[doc="SMP2"]
@@ -2129,7 +2129,7 @@ impl Smpr1 {
 
     #[doc="SMP1"]
     #[inline] pub fn test_smp1(&self) -> bool {
-        self.smp1 != 0
+        self.smp1() != 0
     }
 
     #[doc="SMP1"]
@@ -2177,7 +2177,7 @@ impl Smpr2 {
 
     #[doc="SMP18"]
     #[inline] pub fn test_smp18(&self) -> bool {
-        self.smp18 != 0
+        self.smp18() != 0
     }
 
     #[doc="SMP18"]
@@ -2196,7 +2196,7 @@ impl Smpr2 {
 
     #[doc="SMP17"]
     #[inline] pub fn test_smp17(&self) -> bool {
-        self.smp17 != 0
+        self.smp17() != 0
     }
 
     #[doc="SMP17"]
@@ -2215,7 +2215,7 @@ impl Smpr2 {
 
     #[doc="SMP16"]
     #[inline] pub fn test_smp16(&self) -> bool {
-        self.smp16 != 0
+        self.smp16() != 0
     }
 
     #[doc="SMP16"]
@@ -2234,7 +2234,7 @@ impl Smpr2 {
 
     #[doc="SMP15"]
     #[inline] pub fn test_smp15(&self) -> bool {
-        self.smp15 != 0
+        self.smp15() != 0
     }
 
     #[doc="SMP15"]
@@ -2253,7 +2253,7 @@ impl Smpr2 {
 
     #[doc="SMP14"]
     #[inline] pub fn test_smp14(&self) -> bool {
-        self.smp14 != 0
+        self.smp14() != 0
     }
 
     #[doc="SMP14"]
@@ -2272,7 +2272,7 @@ impl Smpr2 {
 
     #[doc="SMP13"]
     #[inline] pub fn test_smp13(&self) -> bool {
-        self.smp13 != 0
+        self.smp13() != 0
     }
 
     #[doc="SMP13"]
@@ -2291,7 +2291,7 @@ impl Smpr2 {
 
     #[doc="SMP12"]
     #[inline] pub fn test_smp12(&self) -> bool {
-        self.smp12 != 0
+        self.smp12() != 0
     }
 
     #[doc="SMP12"]
@@ -2310,7 +2310,7 @@ impl Smpr2 {
 
     #[doc="SMP11"]
     #[inline] pub fn test_smp11(&self) -> bool {
-        self.smp11 != 0
+        self.smp11() != 0
     }
 
     #[doc="SMP11"]
@@ -2329,7 +2329,7 @@ impl Smpr2 {
 
     #[doc="SMP10"]
     #[inline] pub fn test_smp10(&self) -> bool {
-        self.smp10 != 0
+        self.smp10() != 0
     }
 
     #[doc="SMP10"]
@@ -2377,7 +2377,7 @@ impl Tr1 {
 
     #[doc="HT1"]
     #[inline] pub fn test_ht1(&self) -> bool {
-        self.ht1 != 0
+        self.ht1() != 0
     }
 
     #[doc="HT1"]
@@ -2396,7 +2396,7 @@ impl Tr1 {
 
     #[doc="LT1"]
     #[inline] pub fn test_lt1(&self) -> bool {
-        self.lt1 != 0
+        self.lt1() != 0
     }
 
     #[doc="LT1"]
@@ -2437,7 +2437,7 @@ impl Tr2 {
 
     #[doc="HT2"]
     #[inline] pub fn test_ht2(&self) -> bool {
-        self.ht2 != 0
+        self.ht2() != 0
     }
 
     #[doc="HT2"]
@@ -2456,7 +2456,7 @@ impl Tr2 {
 
     #[doc="LT2"]
     #[inline] pub fn test_lt2(&self) -> bool {
-        self.lt2 != 0
+        self.lt2() != 0
     }
 
     #[doc="LT2"]
@@ -2497,7 +2497,7 @@ impl Tr3 {
 
     #[doc="HT3"]
     #[inline] pub fn test_ht3(&self) -> bool {
-        self.ht3 != 0
+        self.ht3() != 0
     }
 
     #[doc="HT3"]
@@ -2516,7 +2516,7 @@ impl Tr3 {
 
     #[doc="LT3"]
     #[inline] pub fn test_lt3(&self) -> bool {
-        self.lt3 != 0
+        self.lt3() != 0
     }
 
     #[doc="LT3"]
@@ -2557,7 +2557,7 @@ impl Sqr1 {
 
     #[doc="SQ4"]
     #[inline] pub fn test_sq4(&self) -> bool {
-        self.sq4 != 0
+        self.sq4() != 0
     }
 
     #[doc="SQ4"]
@@ -2576,7 +2576,7 @@ impl Sqr1 {
 
     #[doc="SQ3"]
     #[inline] pub fn test_sq3(&self) -> bool {
-        self.sq3 != 0
+        self.sq3() != 0
     }
 
     #[doc="SQ3"]
@@ -2595,7 +2595,7 @@ impl Sqr1 {
 
     #[doc="SQ2"]
     #[inline] pub fn test_sq2(&self) -> bool {
-        self.sq2 != 0
+        self.sq2() != 0
     }
 
     #[doc="SQ2"]
@@ -2614,7 +2614,7 @@ impl Sqr1 {
 
     #[doc="SQ1"]
     #[inline] pub fn test_sq1(&self) -> bool {
-        self.sq1 != 0
+        self.sq1() != 0
     }
 
     #[doc="SQ1"]
@@ -2633,7 +2633,7 @@ impl Sqr1 {
 
     #[doc="L"]
     #[inline] pub fn test_l(&self) -> bool {
-        self.l != 0
+        self.l() != 0
     }
 
     #[doc="L"]
@@ -2677,7 +2677,7 @@ impl Sqr2 {
 
     #[doc="SQ9"]
     #[inline] pub fn test_sq9(&self) -> bool {
-        self.sq9 != 0
+        self.sq9() != 0
     }
 
     #[doc="SQ9"]
@@ -2696,7 +2696,7 @@ impl Sqr2 {
 
     #[doc="SQ8"]
     #[inline] pub fn test_sq8(&self) -> bool {
-        self.sq8 != 0
+        self.sq8() != 0
     }
 
     #[doc="SQ8"]
@@ -2715,7 +2715,7 @@ impl Sqr2 {
 
     #[doc="SQ7"]
     #[inline] pub fn test_sq7(&self) -> bool {
-        self.sq7 != 0
+        self.sq7() != 0
     }
 
     #[doc="SQ7"]
@@ -2734,7 +2734,7 @@ impl Sqr2 {
 
     #[doc="SQ6"]
     #[inline] pub fn test_sq6(&self) -> bool {
-        self.sq6 != 0
+        self.sq6() != 0
     }
 
     #[doc="SQ6"]
@@ -2753,7 +2753,7 @@ impl Sqr2 {
 
     #[doc="SQ5"]
     #[inline] pub fn test_sq5(&self) -> bool {
-        self.sq5 != 0
+        self.sq5() != 0
     }
 
     #[doc="SQ5"]
@@ -2797,7 +2797,7 @@ impl Sqr3 {
 
     #[doc="SQ14"]
     #[inline] pub fn test_sq14(&self) -> bool {
-        self.sq14 != 0
+        self.sq14() != 0
     }
 
     #[doc="SQ14"]
@@ -2816,7 +2816,7 @@ impl Sqr3 {
 
     #[doc="SQ13"]
     #[inline] pub fn test_sq13(&self) -> bool {
-        self.sq13 != 0
+        self.sq13() != 0
     }
 
     #[doc="SQ13"]
@@ -2835,7 +2835,7 @@ impl Sqr3 {
 
     #[doc="SQ12"]
     #[inline] pub fn test_sq12(&self) -> bool {
-        self.sq12 != 0
+        self.sq12() != 0
     }
 
     #[doc="SQ12"]
@@ -2854,7 +2854,7 @@ impl Sqr3 {
 
     #[doc="SQ11"]
     #[inline] pub fn test_sq11(&self) -> bool {
-        self.sq11 != 0
+        self.sq11() != 0
     }
 
     #[doc="SQ11"]
@@ -2873,7 +2873,7 @@ impl Sqr3 {
 
     #[doc="SQ10"]
     #[inline] pub fn test_sq10(&self) -> bool {
-        self.sq10 != 0
+        self.sq10() != 0
     }
 
     #[doc="SQ10"]
@@ -2917,7 +2917,7 @@ impl Sqr4 {
 
     #[doc="SQ16"]
     #[inline] pub fn test_sq16(&self) -> bool {
-        self.sq16 != 0
+        self.sq16() != 0
     }
 
     #[doc="SQ16"]
@@ -2936,7 +2936,7 @@ impl Sqr4 {
 
     #[doc="SQ15"]
     #[inline] pub fn test_sq15(&self) -> bool {
-        self.sq15 != 0
+        self.sq15() != 0
     }
 
     #[doc="SQ15"]
@@ -2977,7 +2977,7 @@ impl Dr {
 
     #[doc="DATA"]
     #[inline] pub fn test_data(&self) -> bool {
-        self.data != 0
+        self.data() != 0
     }
 
     #[doc="DATA"]
@@ -2996,7 +2996,7 @@ impl Dr {
 
     #[doc="DATA (16 bit)"]
     #[inline] pub fn test_data_16(&self) -> bool {
-        self.data_16 != 0
+        self.data_16() != 0
     }
 
     #[doc="DATA (16 bit)"]
@@ -3015,7 +3015,7 @@ impl Dr {
 
     #[doc="DATA (12 bit)"]
     #[inline] pub fn test_data_12(&self) -> bool {
-        self.data_12 != 0
+        self.data_12() != 0
     }
 
     #[doc="DATA (12 bit)"]
@@ -3034,7 +3034,7 @@ impl Dr {
 
     #[doc="DATA (10 bit)"]
     #[inline] pub fn test_data_10(&self) -> bool {
-        self.data_10 != 0
+        self.data_10() != 0
     }
 
     #[doc="DATA (10 bit)"]
@@ -3053,7 +3053,7 @@ impl Dr {
 
     #[doc="DATA (8 bit)"]
     #[inline] pub fn test_data_8(&self) -> bool {
-        self.data_8 != 0
+        self.data_8() != 0
     }
 
     #[doc="DATA (8 bit)"]
@@ -3072,7 +3072,7 @@ impl Dr {
 
     #[doc="DATA (6 bit)"]
     #[inline] pub fn test_data_6(&self) -> bool {
-        self.data_6 != 0
+        self.data_6() != 0
     }
 
     #[doc="DATA (6 bit)"]
@@ -3117,7 +3117,7 @@ impl Jsqr {
 
     #[doc="JSQ4"]
     #[inline] pub fn test_jsq4(&self) -> bool {
-        self.jsq4 != 0
+        self.jsq4() != 0
     }
 
     #[doc="JSQ4"]
@@ -3136,7 +3136,7 @@ impl Jsqr {
 
     #[doc="JSQ3"]
     #[inline] pub fn test_jsq3(&self) -> bool {
-        self.jsq3 != 0
+        self.jsq3() != 0
     }
 
     #[doc="JSQ3"]
@@ -3155,7 +3155,7 @@ impl Jsqr {
 
     #[doc="JSQ2"]
     #[inline] pub fn test_jsq2(&self) -> bool {
-        self.jsq2 != 0
+        self.jsq2() != 0
     }
 
     #[doc="JSQ2"]
@@ -3174,7 +3174,7 @@ impl Jsqr {
 
     #[doc="JSQ1"]
     #[inline] pub fn test_jsq1(&self) -> bool {
-        self.jsq1 != 0
+        self.jsq1() != 0
     }
 
     #[doc="JSQ1"]
@@ -3193,7 +3193,7 @@ impl Jsqr {
 
     #[doc="JEXTEN"]
     #[inline] pub fn test_jexten(&self) -> bool {
-        self.jexten != 0
+        self.jexten() != 0
     }
 
     #[doc="JEXTEN"]
@@ -3212,7 +3212,7 @@ impl Jsqr {
 
     #[doc="JEXTSEL"]
     #[inline] pub fn test_jextsel(&self) -> bool {
-        self.jextsel != 0
+        self.jextsel() != 0
     }
 
     #[doc="JEXTSEL"]
@@ -3231,7 +3231,7 @@ impl Jsqr {
 
     #[doc="JL"]
     #[inline] pub fn test_jl(&self) -> bool {
-        self.jl != 0
+        self.jl() != 0
     }
 
     #[doc="JL"]
@@ -3277,7 +3277,7 @@ impl Ofr1 {
 
     #[doc="OFFSET1_EN"]
     #[inline] pub fn test_offset1_en(&self) -> bool {
-        self.offset1_en != 0
+        self.offset1_en() != 0
     }
 
     #[doc="OFFSET1_EN"]
@@ -3296,7 +3296,7 @@ impl Ofr1 {
 
     #[doc="OFFSET1_CH"]
     #[inline] pub fn test_offset1_ch(&self) -> bool {
-        self.offset1_ch != 0
+        self.offset1_ch() != 0
     }
 
     #[doc="OFFSET1_CH"]
@@ -3315,7 +3315,7 @@ impl Ofr1 {
 
     #[doc="OFFSET1"]
     #[inline] pub fn test_offset1(&self) -> bool {
-        self.offset1 != 0
+        self.offset1() != 0
     }
 
     #[doc="OFFSET1"]
@@ -3357,7 +3357,7 @@ impl Ofr2 {
 
     #[doc="OFFSET2_EN"]
     #[inline] pub fn test_offset2_en(&self) -> bool {
-        self.offset2_en != 0
+        self.offset2_en() != 0
     }
 
     #[doc="OFFSET2_EN"]
@@ -3376,7 +3376,7 @@ impl Ofr2 {
 
     #[doc="OFFSET2_CH"]
     #[inline] pub fn test_offset2_ch(&self) -> bool {
-        self.offset2_ch != 0
+        self.offset2_ch() != 0
     }
 
     #[doc="OFFSET2_CH"]
@@ -3395,7 +3395,7 @@ impl Ofr2 {
 
     #[doc="OFFSET2"]
     #[inline] pub fn test_offset2(&self) -> bool {
-        self.offset2 != 0
+        self.offset2() != 0
     }
 
     #[doc="OFFSET2"]
@@ -3437,7 +3437,7 @@ impl Ofr3 {
 
     #[doc="OFFSET3_EN"]
     #[inline] pub fn test_offset3_en(&self) -> bool {
-        self.offset3_en != 0
+        self.offset3_en() != 0
     }
 
     #[doc="OFFSET3_EN"]
@@ -3456,7 +3456,7 @@ impl Ofr3 {
 
     #[doc="OFFSET3_CH"]
     #[inline] pub fn test_offset3_ch(&self) -> bool {
-        self.offset3_ch != 0
+        self.offset3_ch() != 0
     }
 
     #[doc="OFFSET3_CH"]
@@ -3475,7 +3475,7 @@ impl Ofr3 {
 
     #[doc="OFFSET3"]
     #[inline] pub fn test_offset3(&self) -> bool {
-        self.offset3 != 0
+        self.offset3() != 0
     }
 
     #[doc="OFFSET3"]
@@ -3517,7 +3517,7 @@ impl Ofr4 {
 
     #[doc="OFFSET4_EN"]
     #[inline] pub fn test_offset4_en(&self) -> bool {
-        self.offset4_en != 0
+        self.offset4_en() != 0
     }
 
     #[doc="OFFSET4_EN"]
@@ -3536,7 +3536,7 @@ impl Ofr4 {
 
     #[doc="OFFSET4_CH"]
     #[inline] pub fn test_offset4_ch(&self) -> bool {
-        self.offset4_ch != 0
+        self.offset4_ch() != 0
     }
 
     #[doc="OFFSET4_CH"]
@@ -3555,7 +3555,7 @@ impl Ofr4 {
 
     #[doc="OFFSET4"]
     #[inline] pub fn test_offset4(&self) -> bool {
-        self.offset4 != 0
+        self.offset4() != 0
     }
 
     #[doc="OFFSET4"]
@@ -3597,7 +3597,7 @@ impl Jdr1 {
 
     #[doc="JDATA1"]
     #[inline] pub fn test_jdata1(&self) -> bool {
-        self.jdata1 != 0
+        self.jdata1() != 0
     }
 
     #[doc="JDATA1"]
@@ -3637,7 +3637,7 @@ impl Jdr2 {
 
     #[doc="JDATA2"]
     #[inline] pub fn test_jdata2(&self) -> bool {
-        self.jdata2 != 0
+        self.jdata2() != 0
     }
 
     #[doc="JDATA2"]
@@ -3677,7 +3677,7 @@ impl Jdr3 {
 
     #[doc="JDATA3"]
     #[inline] pub fn test_jdata3(&self) -> bool {
-        self.jdata3 != 0
+        self.jdata3() != 0
     }
 
     #[doc="JDATA3"]
@@ -3717,7 +3717,7 @@ impl Jdr4 {
 
     #[doc="JDATA4"]
     #[inline] pub fn test_jdata4(&self) -> bool {
-        self.jdata4 != 0
+        self.jdata4() != 0
     }
 
     #[doc="JDATA4"]
@@ -3757,7 +3757,7 @@ impl Awd2cr {
 
     #[doc="AWD2CH"]
     #[inline] pub fn test_awd2ch(&self) -> bool {
-        self.awd2ch != 0
+        self.awd2ch() != 0
     }
 
     #[doc="AWD2CH"]
@@ -3797,7 +3797,7 @@ impl Awd3cr {
 
     #[doc="AWD3CH"]
     #[inline] pub fn test_awd3ch(&self) -> bool {
-        self.awd3ch != 0
+        self.awd3ch() != 0
     }
 
     #[doc="AWD3CH"]
@@ -3837,7 +3837,7 @@ impl Difsel {
 
     #[doc="Differential mode for channels 15 to 1"]
     #[inline] pub fn test_difsel_1_15(&self) -> bool {
-        self.difsel_1_15 != 0
+        self.difsel_1_15() != 0
     }
 
     #[doc="Differential mode for channels 15 to 1"]
@@ -3856,7 +3856,7 @@ impl Difsel {
 
     #[doc="Differential mode for channels 18 to 16"]
     #[inline] pub fn test_difsel_16_18(&self) -> bool {
-        self.difsel_16_18 != 0
+        self.difsel_16_18() != 0
     }
 
     #[doc="Differential mode for channels 18 to 16"]
@@ -3897,7 +3897,7 @@ impl Calfact {
 
     #[doc="CALFACT_D"]
     #[inline] pub fn test_calfact_d(&self) -> bool {
-        self.calfact_d != 0
+        self.calfact_d() != 0
     }
 
     #[doc="CALFACT_D"]
@@ -3916,7 +3916,7 @@ impl Calfact {
 
     #[doc="CALFACT_S"]
     #[inline] pub fn test_calfact_s(&self) -> bool {
-        self.calfact_s != 0
+        self.calfact_s() != 0
     }
 
     #[doc="CALFACT_S"]

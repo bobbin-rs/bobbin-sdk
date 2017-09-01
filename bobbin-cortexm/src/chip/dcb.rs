@@ -164,7 +164,7 @@ impl Dhcsr {
 
     #[doc="Debug Key. 0xA05F must be written whenever this register is written. Reads back as status bits [25:16]. If not written as Key, the write operation is ignored and no bits are written into the register."]
     #[inline] pub fn test_dbgkey(&self) -> bool {
-        self.dbgkey != 0
+        self.dbgkey() != 0
     }
 
     #[doc="Debug Key. 0xA05F must be written whenever this register is written. Reads back as status bits [25:16]. If not written as Key, the write operation is ignored and no bits are written into the register."]
@@ -183,7 +183,7 @@ impl Dhcsr {
 
     #[doc="Indicates that the core has been reset, or is now being reset, since the last time this bit was read. This a sticky bit that clears on read. So, reading twice and getting 1 then 0 means it was reset in the past. Reading twice and getting 1 both times means that it is being reset now (held in reset still)."]
     #[inline] pub fn test_s_reset_st(&self) -> bool {
-        self.s_reset_st != 0
+        self.s_reset_st() != 0
     }
 
     #[doc="Indicates that the core has been reset, or is now being reset, since the last time this bit was read. This a sticky bit that clears on read. So, reading twice and getting 1 then 0 means it was reset in the past. Reading twice and getting 1 both times means that it is being reset now (held in reset still)."]
@@ -202,7 +202,7 @@ impl Dhcsr {
 
     #[doc="Indicates that an instruction has completed since last read. This is a sticky bit that clears on read. This determines if the core is stalled on a load/store or fetch."]
     #[inline] pub fn test_s_retire_st(&self) -> bool {
-        self.s_retire_st != 0
+        self.s_retire_st() != 0
     }
 
     #[doc="Indicates that an instruction has completed since last read. This is a sticky bit that clears on read. This determines if the core is stalled on a load/store or fetch."]
@@ -221,7 +221,7 @@ impl Dhcsr {
 
     #[doc="Reads as one if the core is running (not halted) and a lockup condition is present."]
     #[inline] pub fn test_s_lockup(&self) -> bool {
-        self.s_lockup != 0
+        self.s_lockup() != 0
     }
 
     #[doc="Reads as one if the core is running (not halted) and a lockup condition is present."]
@@ -240,7 +240,7 @@ impl Dhcsr {
 
     #[doc="ndicates that the core is sleeping (WFI, WFE or SLEEP-ON-EXIT). Must use C_HALT to gain control or wait for interrupt to wake-up."]
     #[inline] pub fn test_s_sleep(&self) -> bool {
-        self.s_sleep != 0
+        self.s_sleep() != 0
     }
 
     #[doc="ndicates that the core is sleeping (WFI, WFE or SLEEP-ON-EXIT). Must use C_HALT to gain control or wait for interrupt to wake-up."]
@@ -259,7 +259,7 @@ impl Dhcsr {
 
     #[doc="The core is in debug state when S_HALT is set."]
     #[inline] pub fn test_s_halt(&self) -> bool {
-        self.s_halt != 0
+        self.s_halt() != 0
     }
 
     #[doc="The core is in debug state when S_HALT is set."]
@@ -278,7 +278,7 @@ impl Dhcsr {
 
     #[doc="Register Read/Write on the Debug Core Register Selector register is available. Last transfer is complete."]
     #[inline] pub fn test_s_regrdy(&self) -> bool {
-        self.s_regrdy != 0
+        self.s_regrdy() != 0
     }
 
     #[doc="Register Read/Write on the Debug Core Register Selector register is available. Last transfer is complete."]
@@ -297,7 +297,7 @@ impl Dhcsr {
 
     #[doc="If the core is stalled on a load/store operation the stall ceases and the instruction is forced to complete. This enables Halting debug to gain control of the core. It can only be set if: C_DEBUGEN = 1 C_HALT = 1 The core reads S_RETIRE_ST as 0. This indicates that no instruction has advanced. This prevents misuse. The bus state is Unpredictable when this is used. S_RETIRE can detect core stalls on load/store operations."]
     #[inline] pub fn test_c_snapstall(&self) -> bool {
-        self.c_snapstall != 0
+        self.c_snapstall() != 0
     }
 
     #[doc="If the core is stalled on a load/store operation the stall ceases and the instruction is forced to complete. This enables Halting debug to gain control of the core. It can only be set if: C_DEBUGEN = 1 C_HALT = 1 The core reads S_RETIRE_ST as 0. This indicates that no instruction has advanced. This prevents misuse. The bus state is Unpredictable when this is used. S_RETIRE can detect core stalls on load/store operations."]
@@ -316,7 +316,7 @@ impl Dhcsr {
 
     #[doc="Mask interrupts when stepping or running in halted debug. Does not affect NMI, which is not maskable. Must only be modified when the processor is halted (S_HALT == 1)."]
     #[inline] pub fn test_c_maskints(&self) -> bool {
-        self.c_maskints != 0
+        self.c_maskints() != 0
     }
 
     #[doc="Mask interrupts when stepping or running in halted debug. Does not affect NMI, which is not maskable. Must only be modified when the processor is halted (S_HALT == 1)."]
@@ -335,7 +335,7 @@ impl Dhcsr {
 
     #[doc="Steps the core in halted debug. When C_DEBUGEN = 0, this bit has no effect. Must only be modified when the processor is halted (S_HALT == 1)."]
     #[inline] pub fn test_c_step(&self) -> bool {
-        self.c_step != 0
+        self.c_step() != 0
     }
 
     #[doc="Steps the core in halted debug. When C_DEBUGEN = 0, this bit has no effect. Must only be modified when the processor is halted (S_HALT == 1)."]
@@ -354,7 +354,7 @@ impl Dhcsr {
 
     #[doc="Halts the core. This bit is set automatically when the core Halts. For example Breakpoint. This bit clears on core reset. This bit can only be written if C_DEBUGEN is 1, otherwise it is ignored. When setting this bit to 1, C_DEBUGEN must also be written to 1 in the same value (value[1:0] is 2’b11). The core can halt itself, but only if C_DEBUGEN is already 1 and only if it writes with b11)."]
     #[inline] pub fn test_c_halt(&self) -> bool {
-        self.c_halt != 0
+        self.c_halt() != 0
     }
 
     #[doc="Halts the core. This bit is set automatically when the core Halts. For example Breakpoint. This bit clears on core reset. This bit can only be written if C_DEBUGEN is 1, otherwise it is ignored. When setting this bit to 1, C_DEBUGEN must also be written to 1 in the same value (value[1:0] is 2’b11). The core can halt itself, but only if C_DEBUGEN is already 1 and only if it writes with b11)."]
@@ -375,7 +375,7 @@ The core must write a 1 to it when writing C_HALT to halt itself."]
     #[doc="Enables debug. This can only be written by AHB-AP and not by the core. It is ignored when written by the core, which cannot set or clear it.
 The core must write a 1 to it when writing C_HALT to halt itself."]
     #[inline] pub fn test_c_debugen(&self) -> bool {
-        self.c_debugen != 0
+        self.c_debugen() != 0
     }
 
     #[doc="Enables debug. This can only be written by AHB-AP and not by the core. It is ignored when written by the core, which cannot set or clear it.
@@ -427,7 +427,7 @@ impl Dcrsr {
 
     #[doc="Write = 1, Read = 0"]
     #[inline] pub fn test_regwnr(&self) -> bool {
-        self.regwnr != 0
+        self.regwnr() != 0
     }
 
     #[doc="Write = 1, Read = 0"]
@@ -446,7 +446,7 @@ impl Dcrsr {
 
     #[doc="Register Select"]
     #[inline] pub fn test_regsel(&self) -> bool {
-        self.regsel != 0
+        self.regsel() != 0
     }
 
     #[doc="Register Select"]
@@ -487,7 +487,7 @@ impl Derdr {
 
     #[doc="This is the data value written to the register selected by the Debug Register Selector Register."]
     #[inline] pub fn test_data(&self) -> bool {
-        self.data != 0
+        self.data() != 0
     }
 
     #[doc="This is the data value written to the register selected by the Debug Register Selector Register."]
@@ -526,7 +526,7 @@ impl Demcr {
 
     #[doc="This bit must be set to 1 to enable use of the trace and debug blocks."]
     #[inline] pub fn test_trcena(&self) -> bool {
-        self.trcena != 0
+        self.trcena() != 0
     }
 
     #[doc="This bit must be set to 1 to enable use of the trace and debug blocks."]
@@ -545,7 +545,7 @@ impl Demcr {
 
     #[doc="This enables the monitor to identify how it wakes up: 1 = woken up by MON_PEND, 0 = woken up by debug exception."]
     #[inline] pub fn test_mon_req(&self) -> bool {
-        self.mon_req != 0
+        self.mon_req() != 0
     }
 
     #[doc="This enables the monitor to identify how it wakes up: 1 = woken up by MON_PEND, 0 = woken up by debug exception."]
@@ -564,7 +564,7 @@ impl Demcr {
 
     #[doc="When MON_EN = 1, this steps the core. When MON_EN = 0, this bit is ignored. This is the equivalent to C_STEP. Interrupts are only stepped according to the priority of the monitor and settings of PRIMASK, FAULTMASK, or BASEPRI."]
     #[inline] pub fn test_mon_step(&self) -> bool {
-        self.mon_step != 0
+        self.mon_step() != 0
     }
 
     #[doc="When MON_EN = 1, this steps the core. When MON_EN = 0, this bit is ignored. This is the equivalent to C_STEP. Interrupts are only stepped according to the priority of the monitor and settings of PRIMASK, FAULTMASK, or BASEPRI."]
@@ -583,7 +583,7 @@ impl Demcr {
 
     #[doc="Pend the monitor to activate when priority permits."]
     #[inline] pub fn test_mon_pend(&self) -> bool {
-        self.mon_pend != 0
+        self.mon_pend() != 0
     }
 
     #[doc="Pend the monitor to activate when priority permits."]
@@ -602,7 +602,7 @@ impl Demcr {
 
     #[doc="Enable the debug monitor."]
     #[inline] pub fn test_mon_en(&self) -> bool {
-        self.mon_en != 0
+        self.mon_en() != 0
     }
 
     #[doc="Enable the debug monitor."]
@@ -621,7 +621,7 @@ impl Demcr {
 
     #[doc="Debug trap on Hard Fault."]
     #[inline] pub fn test_vc_harderr(&self) -> bool {
-        self.vc_harderr != 0
+        self.vc_harderr() != 0
     }
 
     #[doc="Debug trap on Hard Fault."]
@@ -640,7 +640,7 @@ impl Demcr {
 
     #[doc="Debug Trap on interrupt/exception service errors. These are a subset of other faults and catches before BUSERR or HARDERR."]
     #[inline] pub fn test_vc_interr(&self) -> bool {
-        self.vc_interr != 0
+        self.vc_interr() != 0
     }
 
     #[doc="Debug Trap on interrupt/exception service errors. These are a subset of other faults and catches before BUSERR or HARDERR."]
@@ -659,7 +659,7 @@ impl Demcr {
 
     #[doc="Debug Trap on normal Bus error."]
     #[inline] pub fn test_vc_buserr(&self) -> bool {
-        self.vc_buserr != 0
+        self.vc_buserr() != 0
     }
 
     #[doc="Debug Trap on normal Bus error."]
@@ -678,7 +678,7 @@ impl Demcr {
 
     #[doc="Debug trap on Usage Fault state errors."]
     #[inline] pub fn test_vc_staterr(&self) -> bool {
-        self.vc_staterr != 0
+        self.vc_staterr() != 0
     }
 
     #[doc="Debug trap on Usage Fault state errors."]
@@ -697,7 +697,7 @@ impl Demcr {
 
     #[doc="Debug trap on Usage Fault enabled checking errors."]
     #[inline] pub fn test_vc_chkerr(&self) -> bool {
-        self.vc_chkerr != 0
+        self.vc_chkerr() != 0
     }
 
     #[doc="Debug trap on Usage Fault enabled checking errors."]
@@ -716,7 +716,7 @@ impl Demcr {
 
     #[doc="Debug trap on Usage Fault access to Coprocessor which is not present or marked as not present in CAR register."]
     #[inline] pub fn test_vc_nocperr(&self) -> bool {
-        self.vc_nocperr != 0
+        self.vc_nocperr() != 0
     }
 
     #[doc="Debug trap on Usage Fault access to Coprocessor which is not present or marked as not present in CAR register."]
@@ -735,7 +735,7 @@ impl Demcr {
 
     #[doc="Debug trap on Memory Management faults."]
     #[inline] pub fn test_vc_mmerr(&self) -> bool {
-        self.vc_mmerr != 0
+        self.vc_mmerr() != 0
     }
 
     #[doc="Debug trap on Memory Management faults."]
@@ -754,7 +754,7 @@ impl Demcr {
 
     #[doc="Reset Vector Catch. Halt running system if Core reset occurs."]
     #[inline] pub fn test_vc_corereset(&self) -> bool {
-        self.vc_corereset != 0
+        self.vc_corereset() != 0
     }
 
     #[doc="Reset Vector Catch. Halt running system if Core reset occurs."]

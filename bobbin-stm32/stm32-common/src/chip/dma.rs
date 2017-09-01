@@ -402,7 +402,7 @@ impl Lisr {
 
     #[doc="Stream x transfer complete interrupt flag (x = 3..0)"]
     #[inline] pub fn test_tcif3(&self) -> bool {
-        self.tcif3 != 0
+        self.tcif3() != 0
     }
 
     #[doc="Stream x transfer complete interrupt flag (x = 3..0)"]
@@ -421,7 +421,7 @@ impl Lisr {
 
     #[doc="Stream x half transfer interrupt flag (x=3..0)"]
     #[inline] pub fn test_htif3(&self) -> bool {
-        self.htif3 != 0
+        self.htif3() != 0
     }
 
     #[doc="Stream x half transfer interrupt flag (x=3..0)"]
@@ -440,7 +440,7 @@ impl Lisr {
 
     #[doc="Stream x transfer error interrupt flag (x=3..0)"]
     #[inline] pub fn test_teif3(&self) -> bool {
-        self.teif3 != 0
+        self.teif3() != 0
     }
 
     #[doc="Stream x transfer error interrupt flag (x=3..0)"]
@@ -459,7 +459,7 @@ impl Lisr {
 
     #[doc="Stream x direct mode error interrupt flag (x=3..0)"]
     #[inline] pub fn test_dmeif3(&self) -> bool {
-        self.dmeif3 != 0
+        self.dmeif3() != 0
     }
 
     #[doc="Stream x direct mode error interrupt flag (x=3..0)"]
@@ -478,7 +478,7 @@ impl Lisr {
 
     #[doc="Stream x FIFO error interrupt flag (x=3..0)"]
     #[inline] pub fn test_feif3(&self) -> bool {
-        self.feif3 != 0
+        self.feif3() != 0
     }
 
     #[doc="Stream x FIFO error interrupt flag (x=3..0)"]
@@ -497,7 +497,7 @@ impl Lisr {
 
     #[doc="Stream x transfer complete interrupt flag (x = 3..0)"]
     #[inline] pub fn test_tcif2(&self) -> bool {
-        self.tcif2 != 0
+        self.tcif2() != 0
     }
 
     #[doc="Stream x transfer complete interrupt flag (x = 3..0)"]
@@ -516,7 +516,7 @@ impl Lisr {
 
     #[doc="Stream x half transfer interrupt flag (x=3..0)"]
     #[inline] pub fn test_htif2(&self) -> bool {
-        self.htif2 != 0
+        self.htif2() != 0
     }
 
     #[doc="Stream x half transfer interrupt flag (x=3..0)"]
@@ -535,7 +535,7 @@ impl Lisr {
 
     #[doc="Stream x transfer error interrupt flag (x=3..0)"]
     #[inline] pub fn test_teif2(&self) -> bool {
-        self.teif2 != 0
+        self.teif2() != 0
     }
 
     #[doc="Stream x transfer error interrupt flag (x=3..0)"]
@@ -554,7 +554,7 @@ impl Lisr {
 
     #[doc="Stream x direct mode error interrupt flag (x=3..0)"]
     #[inline] pub fn test_dmeif2(&self) -> bool {
-        self.dmeif2 != 0
+        self.dmeif2() != 0
     }
 
     #[doc="Stream x direct mode error interrupt flag (x=3..0)"]
@@ -573,7 +573,7 @@ impl Lisr {
 
     #[doc="Stream x FIFO error interrupt flag (x=3..0)"]
     #[inline] pub fn test_feif2(&self) -> bool {
-        self.feif2 != 0
+        self.feif2() != 0
     }
 
     #[doc="Stream x FIFO error interrupt flag (x=3..0)"]
@@ -592,7 +592,7 @@ impl Lisr {
 
     #[doc="Stream x transfer complete interrupt flag (x = 3..0)"]
     #[inline] pub fn test_tcif1(&self) -> bool {
-        self.tcif1 != 0
+        self.tcif1() != 0
     }
 
     #[doc="Stream x transfer complete interrupt flag (x = 3..0)"]
@@ -611,7 +611,7 @@ impl Lisr {
 
     #[doc="Stream x half transfer interrupt flag (x=3..0)"]
     #[inline] pub fn test_htif1(&self) -> bool {
-        self.htif1 != 0
+        self.htif1() != 0
     }
 
     #[doc="Stream x half transfer interrupt flag (x=3..0)"]
@@ -630,7 +630,7 @@ impl Lisr {
 
     #[doc="Stream x transfer error interrupt flag (x=3..0)"]
     #[inline] pub fn test_teif1(&self) -> bool {
-        self.teif1 != 0
+        self.teif1() != 0
     }
 
     #[doc="Stream x transfer error interrupt flag (x=3..0)"]
@@ -649,7 +649,7 @@ impl Lisr {
 
     #[doc="Stream x direct mode error interrupt flag (x=3..0)"]
     #[inline] pub fn test_dmeif1(&self) -> bool {
-        self.dmeif1 != 0
+        self.dmeif1() != 0
     }
 
     #[doc="Stream x direct mode error interrupt flag (x=3..0)"]
@@ -668,7 +668,7 @@ impl Lisr {
 
     #[doc="Stream x FIFO error interrupt flag (x=3..0)"]
     #[inline] pub fn test_feif1(&self) -> bool {
-        self.feif1 != 0
+        self.feif1() != 0
     }
 
     #[doc="Stream x FIFO error interrupt flag (x=3..0)"]
@@ -687,7 +687,7 @@ impl Lisr {
 
     #[doc="Stream x transfer complete interrupt flag (x = 3..0)"]
     #[inline] pub fn test_tcif0(&self) -> bool {
-        self.tcif0 != 0
+        self.tcif0() != 0
     }
 
     #[doc="Stream x transfer complete interrupt flag (x = 3..0)"]
@@ -706,7 +706,7 @@ impl Lisr {
 
     #[doc="Stream x half transfer interrupt flag (x=3..0)"]
     #[inline] pub fn test_htif0(&self) -> bool {
-        self.htif0 != 0
+        self.htif0() != 0
     }
 
     #[doc="Stream x half transfer interrupt flag (x=3..0)"]
@@ -725,7 +725,7 @@ impl Lisr {
 
     #[doc="Stream x transfer error interrupt flag (x=3..0)"]
     #[inline] pub fn test_teif0(&self) -> bool {
-        self.teif0 != 0
+        self.teif0() != 0
     }
 
     #[doc="Stream x transfer error interrupt flag (x=3..0)"]
@@ -744,7 +744,7 @@ impl Lisr {
 
     #[doc="Stream x direct mode error interrupt flag (x=3..0)"]
     #[inline] pub fn test_dmeif0(&self) -> bool {
-        self.dmeif0 != 0
+        self.dmeif0() != 0
     }
 
     #[doc="Stream x direct mode error interrupt flag (x=3..0)"]
@@ -763,7 +763,7 @@ impl Lisr {
 
     #[doc="Stream x FIFO error interrupt flag (x=3..0)"]
     #[inline] pub fn test_feif0(&self) -> bool {
-        self.feif0 != 0
+        self.feif0() != 0
     }
 
     #[doc="Stream x FIFO error interrupt flag (x=3..0)"]
@@ -822,7 +822,7 @@ impl Hisr {
 
     #[doc="Stream x transfer complete interrupt flag (x=7..4)"]
     #[inline] pub fn test_tcif7(&self) -> bool {
-        self.tcif7 != 0
+        self.tcif7() != 0
     }
 
     #[doc="Stream x transfer complete interrupt flag (x=7..4)"]
@@ -841,7 +841,7 @@ impl Hisr {
 
     #[doc="Stream x half transfer interrupt flag (x=7..4)"]
     #[inline] pub fn test_htif7(&self) -> bool {
-        self.htif7 != 0
+        self.htif7() != 0
     }
 
     #[doc="Stream x half transfer interrupt flag (x=7..4)"]
@@ -860,7 +860,7 @@ impl Hisr {
 
     #[doc="Stream x transfer error interrupt flag (x=7..4)"]
     #[inline] pub fn test_teif7(&self) -> bool {
-        self.teif7 != 0
+        self.teif7() != 0
     }
 
     #[doc="Stream x transfer error interrupt flag (x=7..4)"]
@@ -879,7 +879,7 @@ impl Hisr {
 
     #[doc="Stream x direct mode error interrupt flag (x=7..4)"]
     #[inline] pub fn test_dmeif7(&self) -> bool {
-        self.dmeif7 != 0
+        self.dmeif7() != 0
     }
 
     #[doc="Stream x direct mode error interrupt flag (x=7..4)"]
@@ -898,7 +898,7 @@ impl Hisr {
 
     #[doc="Stream x FIFO error interrupt flag (x=7..4)"]
     #[inline] pub fn test_feif7(&self) -> bool {
-        self.feif7 != 0
+        self.feif7() != 0
     }
 
     #[doc="Stream x FIFO error interrupt flag (x=7..4)"]
@@ -917,7 +917,7 @@ impl Hisr {
 
     #[doc="Stream x transfer complete interrupt flag (x=7..4)"]
     #[inline] pub fn test_tcif6(&self) -> bool {
-        self.tcif6 != 0
+        self.tcif6() != 0
     }
 
     #[doc="Stream x transfer complete interrupt flag (x=7..4)"]
@@ -936,7 +936,7 @@ impl Hisr {
 
     #[doc="Stream x half transfer interrupt flag (x=7..4)"]
     #[inline] pub fn test_htif6(&self) -> bool {
-        self.htif6 != 0
+        self.htif6() != 0
     }
 
     #[doc="Stream x half transfer interrupt flag (x=7..4)"]
@@ -955,7 +955,7 @@ impl Hisr {
 
     #[doc="Stream x transfer error interrupt flag (x=7..4)"]
     #[inline] pub fn test_teif6(&self) -> bool {
-        self.teif6 != 0
+        self.teif6() != 0
     }
 
     #[doc="Stream x transfer error interrupt flag (x=7..4)"]
@@ -974,7 +974,7 @@ impl Hisr {
 
     #[doc="Stream x direct mode error interrupt flag (x=7..4)"]
     #[inline] pub fn test_dmeif6(&self) -> bool {
-        self.dmeif6 != 0
+        self.dmeif6() != 0
     }
 
     #[doc="Stream x direct mode error interrupt flag (x=7..4)"]
@@ -993,7 +993,7 @@ impl Hisr {
 
     #[doc="Stream x FIFO error interrupt flag (x=7..4)"]
     #[inline] pub fn test_feif6(&self) -> bool {
-        self.feif6 != 0
+        self.feif6() != 0
     }
 
     #[doc="Stream x FIFO error interrupt flag (x=7..4)"]
@@ -1012,7 +1012,7 @@ impl Hisr {
 
     #[doc="Stream x transfer complete interrupt flag (x=7..4)"]
     #[inline] pub fn test_tcif5(&self) -> bool {
-        self.tcif5 != 0
+        self.tcif5() != 0
     }
 
     #[doc="Stream x transfer complete interrupt flag (x=7..4)"]
@@ -1031,7 +1031,7 @@ impl Hisr {
 
     #[doc="Stream x half transfer interrupt flag (x=7..4)"]
     #[inline] pub fn test_htif5(&self) -> bool {
-        self.htif5 != 0
+        self.htif5() != 0
     }
 
     #[doc="Stream x half transfer interrupt flag (x=7..4)"]
@@ -1050,7 +1050,7 @@ impl Hisr {
 
     #[doc="Stream x transfer error interrupt flag (x=7..4)"]
     #[inline] pub fn test_teif5(&self) -> bool {
-        self.teif5 != 0
+        self.teif5() != 0
     }
 
     #[doc="Stream x transfer error interrupt flag (x=7..4)"]
@@ -1069,7 +1069,7 @@ impl Hisr {
 
     #[doc="Stream x direct mode error interrupt flag (x=7..4)"]
     #[inline] pub fn test_dmeif5(&self) -> bool {
-        self.dmeif5 != 0
+        self.dmeif5() != 0
     }
 
     #[doc="Stream x direct mode error interrupt flag (x=7..4)"]
@@ -1088,7 +1088,7 @@ impl Hisr {
 
     #[doc="Stream x FIFO error interrupt flag (x=7..4)"]
     #[inline] pub fn test_feif5(&self) -> bool {
-        self.feif5 != 0
+        self.feif5() != 0
     }
 
     #[doc="Stream x FIFO error interrupt flag (x=7..4)"]
@@ -1107,7 +1107,7 @@ impl Hisr {
 
     #[doc="Stream x transfer complete interrupt flag (x=7..4)"]
     #[inline] pub fn test_tcif4(&self) -> bool {
-        self.tcif4 != 0
+        self.tcif4() != 0
     }
 
     #[doc="Stream x transfer complete interrupt flag (x=7..4)"]
@@ -1126,7 +1126,7 @@ impl Hisr {
 
     #[doc="Stream x half transfer interrupt flag (x=7..4)"]
     #[inline] pub fn test_htif4(&self) -> bool {
-        self.htif4 != 0
+        self.htif4() != 0
     }
 
     #[doc="Stream x half transfer interrupt flag (x=7..4)"]
@@ -1145,7 +1145,7 @@ impl Hisr {
 
     #[doc="Stream x transfer error interrupt flag (x=7..4)"]
     #[inline] pub fn test_teif4(&self) -> bool {
-        self.teif4 != 0
+        self.teif4() != 0
     }
 
     #[doc="Stream x transfer error interrupt flag (x=7..4)"]
@@ -1164,7 +1164,7 @@ impl Hisr {
 
     #[doc="Stream x direct mode error interrupt flag (x=7..4)"]
     #[inline] pub fn test_dmeif4(&self) -> bool {
-        self.dmeif4 != 0
+        self.dmeif4() != 0
     }
 
     #[doc="Stream x direct mode error interrupt flag (x=7..4)"]
@@ -1183,7 +1183,7 @@ impl Hisr {
 
     #[doc="Stream x FIFO error interrupt flag (x=7..4)"]
     #[inline] pub fn test_feif4(&self) -> bool {
-        self.feif4 != 0
+        self.feif4() != 0
     }
 
     #[doc="Stream x FIFO error interrupt flag (x=7..4)"]
@@ -1242,7 +1242,7 @@ impl Lifcr {
 
     #[doc="Stream x clear transfer complete interrupt flag (x = 3..0)"]
     #[inline] pub fn test_ctcif3(&self) -> bool {
-        self.ctcif3 != 0
+        self.ctcif3() != 0
     }
 
     #[doc="Stream x clear transfer complete interrupt flag (x = 3..0)"]
@@ -1261,7 +1261,7 @@ impl Lifcr {
 
     #[doc="Stream x clear half transfer interrupt flag (x = 3..0)"]
     #[inline] pub fn test_chtif3(&self) -> bool {
-        self.chtif3 != 0
+        self.chtif3() != 0
     }
 
     #[doc="Stream x clear half transfer interrupt flag (x = 3..0)"]
@@ -1280,7 +1280,7 @@ impl Lifcr {
 
     #[doc="Stream x clear transfer error interrupt flag (x = 3..0)"]
     #[inline] pub fn test_cteif3(&self) -> bool {
-        self.cteif3 != 0
+        self.cteif3() != 0
     }
 
     #[doc="Stream x clear transfer error interrupt flag (x = 3..0)"]
@@ -1299,7 +1299,7 @@ impl Lifcr {
 
     #[doc="Stream x clear direct mode error interrupt flag (x = 3..0)"]
     #[inline] pub fn test_cdmeif3(&self) -> bool {
-        self.cdmeif3 != 0
+        self.cdmeif3() != 0
     }
 
     #[doc="Stream x clear direct mode error interrupt flag (x = 3..0)"]
@@ -1318,7 +1318,7 @@ impl Lifcr {
 
     #[doc="Stream x clear FIFO error interrupt flag (x = 3..0)"]
     #[inline] pub fn test_cfeif3(&self) -> bool {
-        self.cfeif3 != 0
+        self.cfeif3() != 0
     }
 
     #[doc="Stream x clear FIFO error interrupt flag (x = 3..0)"]
@@ -1337,7 +1337,7 @@ impl Lifcr {
 
     #[doc="Stream x clear transfer complete interrupt flag (x = 3..0)"]
     #[inline] pub fn test_ctcif2(&self) -> bool {
-        self.ctcif2 != 0
+        self.ctcif2() != 0
     }
 
     #[doc="Stream x clear transfer complete interrupt flag (x = 3..0)"]
@@ -1356,7 +1356,7 @@ impl Lifcr {
 
     #[doc="Stream x clear half transfer interrupt flag (x = 3..0)"]
     #[inline] pub fn test_chtif2(&self) -> bool {
-        self.chtif2 != 0
+        self.chtif2() != 0
     }
 
     #[doc="Stream x clear half transfer interrupt flag (x = 3..0)"]
@@ -1375,7 +1375,7 @@ impl Lifcr {
 
     #[doc="Stream x clear transfer error interrupt flag (x = 3..0)"]
     #[inline] pub fn test_cteif2(&self) -> bool {
-        self.cteif2 != 0
+        self.cteif2() != 0
     }
 
     #[doc="Stream x clear transfer error interrupt flag (x = 3..0)"]
@@ -1394,7 +1394,7 @@ impl Lifcr {
 
     #[doc="Stream x clear direct mode error interrupt flag (x = 3..0)"]
     #[inline] pub fn test_cdmeif2(&self) -> bool {
-        self.cdmeif2 != 0
+        self.cdmeif2() != 0
     }
 
     #[doc="Stream x clear direct mode error interrupt flag (x = 3..0)"]
@@ -1413,7 +1413,7 @@ impl Lifcr {
 
     #[doc="Stream x clear FIFO error interrupt flag (x = 3..0)"]
     #[inline] pub fn test_cfeif2(&self) -> bool {
-        self.cfeif2 != 0
+        self.cfeif2() != 0
     }
 
     #[doc="Stream x clear FIFO error interrupt flag (x = 3..0)"]
@@ -1432,7 +1432,7 @@ impl Lifcr {
 
     #[doc="Stream x clear transfer complete interrupt flag (x = 3..0)"]
     #[inline] pub fn test_ctcif1(&self) -> bool {
-        self.ctcif1 != 0
+        self.ctcif1() != 0
     }
 
     #[doc="Stream x clear transfer complete interrupt flag (x = 3..0)"]
@@ -1451,7 +1451,7 @@ impl Lifcr {
 
     #[doc="Stream x clear half transfer interrupt flag (x = 3..0)"]
     #[inline] pub fn test_chtif1(&self) -> bool {
-        self.chtif1 != 0
+        self.chtif1() != 0
     }
 
     #[doc="Stream x clear half transfer interrupt flag (x = 3..0)"]
@@ -1470,7 +1470,7 @@ impl Lifcr {
 
     #[doc="Stream x clear transfer error interrupt flag (x = 3..0)"]
     #[inline] pub fn test_cteif1(&self) -> bool {
-        self.cteif1 != 0
+        self.cteif1() != 0
     }
 
     #[doc="Stream x clear transfer error interrupt flag (x = 3..0)"]
@@ -1489,7 +1489,7 @@ impl Lifcr {
 
     #[doc="Stream x clear direct mode error interrupt flag (x = 3..0)"]
     #[inline] pub fn test_cdmeif1(&self) -> bool {
-        self.cdmeif1 != 0
+        self.cdmeif1() != 0
     }
 
     #[doc="Stream x clear direct mode error interrupt flag (x = 3..0)"]
@@ -1508,7 +1508,7 @@ impl Lifcr {
 
     #[doc="Stream x clear FIFO error interrupt flag (x = 3..0)"]
     #[inline] pub fn test_cfeif1(&self) -> bool {
-        self.cfeif1 != 0
+        self.cfeif1() != 0
     }
 
     #[doc="Stream x clear FIFO error interrupt flag (x = 3..0)"]
@@ -1527,7 +1527,7 @@ impl Lifcr {
 
     #[doc="Stream x clear transfer complete interrupt flag (x = 3..0)"]
     #[inline] pub fn test_ctcif0(&self) -> bool {
-        self.ctcif0 != 0
+        self.ctcif0() != 0
     }
 
     #[doc="Stream x clear transfer complete interrupt flag (x = 3..0)"]
@@ -1546,7 +1546,7 @@ impl Lifcr {
 
     #[doc="Stream x clear half transfer interrupt flag (x = 3..0)"]
     #[inline] pub fn test_chtif0(&self) -> bool {
-        self.chtif0 != 0
+        self.chtif0() != 0
     }
 
     #[doc="Stream x clear half transfer interrupt flag (x = 3..0)"]
@@ -1565,7 +1565,7 @@ impl Lifcr {
 
     #[doc="Stream x clear transfer error interrupt flag (x = 3..0)"]
     #[inline] pub fn test_cteif0(&self) -> bool {
-        self.cteif0 != 0
+        self.cteif0() != 0
     }
 
     #[doc="Stream x clear transfer error interrupt flag (x = 3..0)"]
@@ -1584,7 +1584,7 @@ impl Lifcr {
 
     #[doc="Stream x clear direct mode error interrupt flag (x = 3..0)"]
     #[inline] pub fn test_cdmeif0(&self) -> bool {
-        self.cdmeif0 != 0
+        self.cdmeif0() != 0
     }
 
     #[doc="Stream x clear direct mode error interrupt flag (x = 3..0)"]
@@ -1603,7 +1603,7 @@ impl Lifcr {
 
     #[doc="Stream x clear FIFO error interrupt flag (x = 3..0)"]
     #[inline] pub fn test_cfeif0(&self) -> bool {
-        self.cfeif0 != 0
+        self.cfeif0() != 0
     }
 
     #[doc="Stream x clear FIFO error interrupt flag (x = 3..0)"]
@@ -1662,7 +1662,7 @@ impl Hifcr {
 
     #[doc="Stream x clear transfer complete interrupt flag (x = 7..4)"]
     #[inline] pub fn test_ctcif7(&self) -> bool {
-        self.ctcif7 != 0
+        self.ctcif7() != 0
     }
 
     #[doc="Stream x clear transfer complete interrupt flag (x = 7..4)"]
@@ -1681,7 +1681,7 @@ impl Hifcr {
 
     #[doc="Stream x clear half transfer interrupt flag (x = 7..4)"]
     #[inline] pub fn test_chtif7(&self) -> bool {
-        self.chtif7 != 0
+        self.chtif7() != 0
     }
 
     #[doc="Stream x clear half transfer interrupt flag (x = 7..4)"]
@@ -1700,7 +1700,7 @@ impl Hifcr {
 
     #[doc="Stream x clear transfer error interrupt flag (x = 7..4)"]
     #[inline] pub fn test_cteif7(&self) -> bool {
-        self.cteif7 != 0
+        self.cteif7() != 0
     }
 
     #[doc="Stream x clear transfer error interrupt flag (x = 7..4)"]
@@ -1719,7 +1719,7 @@ impl Hifcr {
 
     #[doc="Stream x clear direct mode error interrupt flag (x = 7..4)"]
     #[inline] pub fn test_cdmeif7(&self) -> bool {
-        self.cdmeif7 != 0
+        self.cdmeif7() != 0
     }
 
     #[doc="Stream x clear direct mode error interrupt flag (x = 7..4)"]
@@ -1738,7 +1738,7 @@ impl Hifcr {
 
     #[doc="Stream x clear FIFO error interrupt flag (x = 7..4)"]
     #[inline] pub fn test_cfeif7(&self) -> bool {
-        self.cfeif7 != 0
+        self.cfeif7() != 0
     }
 
     #[doc="Stream x clear FIFO error interrupt flag (x = 7..4)"]
@@ -1757,7 +1757,7 @@ impl Hifcr {
 
     #[doc="Stream x clear transfer complete interrupt flag (x = 7..4)"]
     #[inline] pub fn test_ctcif6(&self) -> bool {
-        self.ctcif6 != 0
+        self.ctcif6() != 0
     }
 
     #[doc="Stream x clear transfer complete interrupt flag (x = 7..4)"]
@@ -1776,7 +1776,7 @@ impl Hifcr {
 
     #[doc="Stream x clear half transfer interrupt flag (x = 7..4)"]
     #[inline] pub fn test_chtif6(&self) -> bool {
-        self.chtif6 != 0
+        self.chtif6() != 0
     }
 
     #[doc="Stream x clear half transfer interrupt flag (x = 7..4)"]
@@ -1795,7 +1795,7 @@ impl Hifcr {
 
     #[doc="Stream x clear transfer error interrupt flag (x = 7..4)"]
     #[inline] pub fn test_cteif6(&self) -> bool {
-        self.cteif6 != 0
+        self.cteif6() != 0
     }
 
     #[doc="Stream x clear transfer error interrupt flag (x = 7..4)"]
@@ -1814,7 +1814,7 @@ impl Hifcr {
 
     #[doc="Stream x clear direct mode error interrupt flag (x = 7..4)"]
     #[inline] pub fn test_cdmeif6(&self) -> bool {
-        self.cdmeif6 != 0
+        self.cdmeif6() != 0
     }
 
     #[doc="Stream x clear direct mode error interrupt flag (x = 7..4)"]
@@ -1833,7 +1833,7 @@ impl Hifcr {
 
     #[doc="Stream x clear FIFO error interrupt flag (x = 7..4)"]
     #[inline] pub fn test_cfeif6(&self) -> bool {
-        self.cfeif6 != 0
+        self.cfeif6() != 0
     }
 
     #[doc="Stream x clear FIFO error interrupt flag (x = 7..4)"]
@@ -1852,7 +1852,7 @@ impl Hifcr {
 
     #[doc="Stream x clear transfer complete interrupt flag (x = 7..4)"]
     #[inline] pub fn test_ctcif5(&self) -> bool {
-        self.ctcif5 != 0
+        self.ctcif5() != 0
     }
 
     #[doc="Stream x clear transfer complete interrupt flag (x = 7..4)"]
@@ -1871,7 +1871,7 @@ impl Hifcr {
 
     #[doc="Stream x clear half transfer interrupt flag (x = 7..4)"]
     #[inline] pub fn test_chtif5(&self) -> bool {
-        self.chtif5 != 0
+        self.chtif5() != 0
     }
 
     #[doc="Stream x clear half transfer interrupt flag (x = 7..4)"]
@@ -1890,7 +1890,7 @@ impl Hifcr {
 
     #[doc="Stream x clear transfer error interrupt flag (x = 7..4)"]
     #[inline] pub fn test_cteif5(&self) -> bool {
-        self.cteif5 != 0
+        self.cteif5() != 0
     }
 
     #[doc="Stream x clear transfer error interrupt flag (x = 7..4)"]
@@ -1909,7 +1909,7 @@ impl Hifcr {
 
     #[doc="Stream x clear direct mode error interrupt flag (x = 7..4)"]
     #[inline] pub fn test_cdmeif5(&self) -> bool {
-        self.cdmeif5 != 0
+        self.cdmeif5() != 0
     }
 
     #[doc="Stream x clear direct mode error interrupt flag (x = 7..4)"]
@@ -1928,7 +1928,7 @@ impl Hifcr {
 
     #[doc="Stream x clear FIFO error interrupt flag (x = 7..4)"]
     #[inline] pub fn test_cfeif5(&self) -> bool {
-        self.cfeif5 != 0
+        self.cfeif5() != 0
     }
 
     #[doc="Stream x clear FIFO error interrupt flag (x = 7..4)"]
@@ -1947,7 +1947,7 @@ impl Hifcr {
 
     #[doc="Stream x clear transfer complete interrupt flag (x = 7..4)"]
     #[inline] pub fn test_ctcif4(&self) -> bool {
-        self.ctcif4 != 0
+        self.ctcif4() != 0
     }
 
     #[doc="Stream x clear transfer complete interrupt flag (x = 7..4)"]
@@ -1966,7 +1966,7 @@ impl Hifcr {
 
     #[doc="Stream x clear half transfer interrupt flag (x = 7..4)"]
     #[inline] pub fn test_chtif4(&self) -> bool {
-        self.chtif4 != 0
+        self.chtif4() != 0
     }
 
     #[doc="Stream x clear half transfer interrupt flag (x = 7..4)"]
@@ -1985,7 +1985,7 @@ impl Hifcr {
 
     #[doc="Stream x clear transfer error interrupt flag (x = 7..4)"]
     #[inline] pub fn test_cteif4(&self) -> bool {
-        self.cteif4 != 0
+        self.cteif4() != 0
     }
 
     #[doc="Stream x clear transfer error interrupt flag (x = 7..4)"]
@@ -2004,7 +2004,7 @@ impl Hifcr {
 
     #[doc="Stream x clear direct mode error interrupt flag (x = 7..4)"]
     #[inline] pub fn test_cdmeif4(&self) -> bool {
-        self.cdmeif4 != 0
+        self.cdmeif4() != 0
     }
 
     #[doc="Stream x clear direct mode error interrupt flag (x = 7..4)"]
@@ -2023,7 +2023,7 @@ impl Hifcr {
 
     #[doc="Stream x clear FIFO error interrupt flag (x = 7..4)"]
     #[inline] pub fn test_cfeif4(&self) -> bool {
-        self.cfeif4 != 0
+        self.cfeif4() != 0
     }
 
     #[doc="Stream x clear FIFO error interrupt flag (x = 7..4)"]
@@ -2082,7 +2082,7 @@ impl Scr {
 
     #[doc="Channel selection"]
     #[inline] pub fn test_chsel(&self) -> bool {
-        self.chsel != 0
+        self.chsel() != 0
     }
 
     #[doc="Channel selection"]
@@ -2101,7 +2101,7 @@ impl Scr {
 
     #[doc="Memory burst transfer configuration"]
     #[inline] pub fn test_mburst(&self) -> bool {
-        self.mburst != 0
+        self.mburst() != 0
     }
 
     #[doc="Memory burst transfer configuration"]
@@ -2120,7 +2120,7 @@ impl Scr {
 
     #[doc="Peripheral burst transfer configuration"]
     #[inline] pub fn test_pburst(&self) -> bool {
-        self.pburst != 0
+        self.pburst() != 0
     }
 
     #[doc="Peripheral burst transfer configuration"]
@@ -2139,7 +2139,7 @@ impl Scr {
 
     #[doc="Current target (only in double buffer mode)"]
     #[inline] pub fn test_ct(&self) -> bool {
-        self.ct != 0
+        self.ct() != 0
     }
 
     #[doc="Current target (only in double buffer mode)"]
@@ -2158,7 +2158,7 @@ impl Scr {
 
     #[doc="Double buffer mode"]
     #[inline] pub fn test_dbm(&self) -> bool {
-        self.dbm != 0
+        self.dbm() != 0
     }
 
     #[doc="Double buffer mode"]
@@ -2177,7 +2177,7 @@ impl Scr {
 
     #[doc="Priority level"]
     #[inline] pub fn test_pl(&self) -> bool {
-        self.pl != 0
+        self.pl() != 0
     }
 
     #[doc="Priority level"]
@@ -2196,7 +2196,7 @@ impl Scr {
 
     #[doc="Peripheral increment offset size"]
     #[inline] pub fn test_pincos(&self) -> bool {
-        self.pincos != 0
+        self.pincos() != 0
     }
 
     #[doc="Peripheral increment offset size"]
@@ -2215,7 +2215,7 @@ impl Scr {
 
     #[doc="Memory data size"]
     #[inline] pub fn test_msize(&self) -> bool {
-        self.msize != 0
+        self.msize() != 0
     }
 
     #[doc="Memory data size"]
@@ -2234,7 +2234,7 @@ impl Scr {
 
     #[doc="Peripheral data size"]
     #[inline] pub fn test_psize(&self) -> bool {
-        self.psize != 0
+        self.psize() != 0
     }
 
     #[doc="Peripheral data size"]
@@ -2253,7 +2253,7 @@ impl Scr {
 
     #[doc="Memory increment mode"]
     #[inline] pub fn test_minc(&self) -> bool {
-        self.minc != 0
+        self.minc() != 0
     }
 
     #[doc="Memory increment mode"]
@@ -2272,7 +2272,7 @@ impl Scr {
 
     #[doc="Peripheral increment mode"]
     #[inline] pub fn test_pinc(&self) -> bool {
-        self.pinc != 0
+        self.pinc() != 0
     }
 
     #[doc="Peripheral increment mode"]
@@ -2291,7 +2291,7 @@ impl Scr {
 
     #[doc="Circular mode"]
     #[inline] pub fn test_circ(&self) -> bool {
-        self.circ != 0
+        self.circ() != 0
     }
 
     #[doc="Circular mode"]
@@ -2310,7 +2310,7 @@ impl Scr {
 
     #[doc="Data transfer direction"]
     #[inline] pub fn test_dir(&self) -> bool {
-        self.dir != 0
+        self.dir() != 0
     }
 
     #[doc="Data transfer direction"]
@@ -2329,7 +2329,7 @@ impl Scr {
 
     #[doc="Peripheral flow controller"]
     #[inline] pub fn test_pfctrl(&self) -> bool {
-        self.pfctrl != 0
+        self.pfctrl() != 0
     }
 
     #[doc="Peripheral flow controller"]
@@ -2348,7 +2348,7 @@ impl Scr {
 
     #[doc="Transfer complete interrupt enable"]
     #[inline] pub fn test_tcie(&self) -> bool {
-        self.tcie != 0
+        self.tcie() != 0
     }
 
     #[doc="Transfer complete interrupt enable"]
@@ -2367,7 +2367,7 @@ impl Scr {
 
     #[doc="Half transfer interrupt enable"]
     #[inline] pub fn test_htie(&self) -> bool {
-        self.htie != 0
+        self.htie() != 0
     }
 
     #[doc="Half transfer interrupt enable"]
@@ -2386,7 +2386,7 @@ impl Scr {
 
     #[doc="Transfer error interrupt enable"]
     #[inline] pub fn test_teie(&self) -> bool {
-        self.teie != 0
+        self.teie() != 0
     }
 
     #[doc="Transfer error interrupt enable"]
@@ -2405,7 +2405,7 @@ impl Scr {
 
     #[doc="Direct mode error interrupt enable"]
     #[inline] pub fn test_dmeie(&self) -> bool {
-        self.dmeie != 0
+        self.dmeie() != 0
     }
 
     #[doc="Direct mode error interrupt enable"]
@@ -2424,7 +2424,7 @@ impl Scr {
 
     #[doc="Stream enable / flag stream ready when read low"]
     #[inline] pub fn test_en(&self) -> bool {
-        self.en != 0
+        self.en() != 0
     }
 
     #[doc="Stream enable / flag stream ready when read low"]
@@ -2482,7 +2482,7 @@ impl Sndtr {
 
     #[doc="Number of data items to transfer"]
     #[inline] pub fn test_ndt(&self) -> bool {
-        self.ndt != 0
+        self.ndt() != 0
     }
 
     #[doc="Number of data items to transfer"]
@@ -2522,7 +2522,7 @@ impl Spar {
 
     #[doc="Peripheral address"]
     #[inline] pub fn test_pa(&self) -> bool {
-        self.pa != 0
+        self.pa() != 0
     }
 
     #[doc="Peripheral address"]
@@ -2561,7 +2561,7 @@ impl Sm0ar {
 
     #[doc="Memory 0 address"]
     #[inline] pub fn test_m0a(&self) -> bool {
-        self.m0a != 0
+        self.m0a() != 0
     }
 
     #[doc="Memory 0 address"]
@@ -2600,7 +2600,7 @@ impl Sm1ar {
 
     #[doc="Memory 1 address (used in case of Double buffer mode)"]
     #[inline] pub fn test_m1a(&self) -> bool {
-        self.m1a != 0
+        self.m1a() != 0
     }
 
     #[doc="Memory 1 address (used in case of Double buffer mode)"]
@@ -2639,7 +2639,7 @@ impl Sfcr {
 
     #[doc="FIFO error interrupt enable"]
     #[inline] pub fn test_feie(&self) -> bool {
-        self.feie != 0
+        self.feie() != 0
     }
 
     #[doc="FIFO error interrupt enable"]
@@ -2658,7 +2658,7 @@ impl Sfcr {
 
     #[doc="FIFO status"]
     #[inline] pub fn test_fs(&self) -> bool {
-        self.fs != 0
+        self.fs() != 0
     }
 
     #[doc="FIFO status"]
@@ -2677,7 +2677,7 @@ impl Sfcr {
 
     #[doc="Direct mode disable"]
     #[inline] pub fn test_dmdis(&self) -> bool {
-        self.dmdis != 0
+        self.dmdis() != 0
     }
 
     #[doc="Direct mode disable"]
@@ -2696,7 +2696,7 @@ impl Sfcr {
 
     #[doc="FIFO threshold selection"]
     #[inline] pub fn test_fth(&self) -> bool {
-        self.fth != 0
+        self.fth() != 0
     }
 
     #[doc="FIFO threshold selection"]

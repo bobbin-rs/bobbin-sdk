@@ -604,7 +604,7 @@ impl Tr {
 
     #[doc="AM/PM notation"]
     #[inline] pub fn test_pm(&self) -> bool {
-        self.pm != 0
+        self.pm() != 0
     }
 
     #[doc="AM/PM notation"]
@@ -623,7 +623,7 @@ impl Tr {
 
     #[doc="Hour tens in BCD format"]
     #[inline] pub fn test_ht(&self) -> bool {
-        self.ht != 0
+        self.ht() != 0
     }
 
     #[doc="Hour tens in BCD format"]
@@ -642,7 +642,7 @@ impl Tr {
 
     #[doc="Hour units in BCD format"]
     #[inline] pub fn test_hu(&self) -> bool {
-        self.hu != 0
+        self.hu() != 0
     }
 
     #[doc="Hour units in BCD format"]
@@ -661,7 +661,7 @@ impl Tr {
 
     #[doc="Minute tens in BCD format"]
     #[inline] pub fn test_mnt(&self) -> bool {
-        self.mnt != 0
+        self.mnt() != 0
     }
 
     #[doc="Minute tens in BCD format"]
@@ -680,7 +680,7 @@ impl Tr {
 
     #[doc="Minute units in BCD format"]
     #[inline] pub fn test_mnu(&self) -> bool {
-        self.mnu != 0
+        self.mnu() != 0
     }
 
     #[doc="Minute units in BCD format"]
@@ -699,7 +699,7 @@ impl Tr {
 
     #[doc="Second tens in BCD format"]
     #[inline] pub fn test_st(&self) -> bool {
-        self.st != 0
+        self.st() != 0
     }
 
     #[doc="Second tens in BCD format"]
@@ -718,7 +718,7 @@ impl Tr {
 
     #[doc="Second units in BCD format"]
     #[inline] pub fn test_su(&self) -> bool {
-        self.su != 0
+        self.su() != 0
     }
 
     #[doc="Second units in BCD format"]
@@ -764,7 +764,7 @@ impl Dr {
 
     #[doc="Year tens in BCD format"]
     #[inline] pub fn test_yt(&self) -> bool {
-        self.yt != 0
+        self.yt() != 0
     }
 
     #[doc="Year tens in BCD format"]
@@ -783,7 +783,7 @@ impl Dr {
 
     #[doc="Year units in BCD format"]
     #[inline] pub fn test_yu(&self) -> bool {
-        self.yu != 0
+        self.yu() != 0
     }
 
     #[doc="Year units in BCD format"]
@@ -802,7 +802,7 @@ impl Dr {
 
     #[doc="Week day units"]
     #[inline] pub fn test_wdu(&self) -> bool {
-        self.wdu != 0
+        self.wdu() != 0
     }
 
     #[doc="Week day units"]
@@ -821,7 +821,7 @@ impl Dr {
 
     #[doc="Month tens in BCD format"]
     #[inline] pub fn test_mt(&self) -> bool {
-        self.mt != 0
+        self.mt() != 0
     }
 
     #[doc="Month tens in BCD format"]
@@ -840,7 +840,7 @@ impl Dr {
 
     #[doc="Month units in BCD format"]
     #[inline] pub fn test_mu(&self) -> bool {
-        self.mu != 0
+        self.mu() != 0
     }
 
     #[doc="Month units in BCD format"]
@@ -859,7 +859,7 @@ impl Dr {
 
     #[doc="Date tens in BCD format"]
     #[inline] pub fn test_dt(&self) -> bool {
-        self.dt != 0
+        self.dt() != 0
     }
 
     #[doc="Date tens in BCD format"]
@@ -878,7 +878,7 @@ impl Dr {
 
     #[doc="Date units in BCD format"]
     #[inline] pub fn test_du(&self) -> bool {
-        self.du != 0
+        self.du() != 0
     }
 
     #[doc="Date units in BCD format"]
@@ -924,7 +924,7 @@ impl Cr {
 
     #[doc="Wakeup clock selection"]
     #[inline] pub fn test_wcksel(&self) -> bool {
-        self.wcksel != 0
+        self.wcksel() != 0
     }
 
     #[doc="Wakeup clock selection"]
@@ -943,7 +943,7 @@ impl Cr {
 
     #[doc="Time-stamp event active edge"]
     #[inline] pub fn test_tsedge(&self) -> bool {
-        self.tsedge != 0
+        self.tsedge() != 0
     }
 
     #[doc="Time-stamp event active edge"]
@@ -962,7 +962,7 @@ impl Cr {
 
     #[doc="Reference clock detection enable (50 or 60 Hz)"]
     #[inline] pub fn test_refckon(&self) -> bool {
-        self.refckon != 0
+        self.refckon() != 0
     }
 
     #[doc="Reference clock detection enable (50 or 60 Hz)"]
@@ -981,7 +981,7 @@ impl Cr {
 
     #[doc="Bypass the shadow registers"]
     #[inline] pub fn test_bypshad(&self) -> bool {
-        self.bypshad != 0
+        self.bypshad() != 0
     }
 
     #[doc="Bypass the shadow registers"]
@@ -1000,7 +1000,7 @@ impl Cr {
 
     #[doc="Hour format"]
     #[inline] pub fn test_fmt(&self) -> bool {
-        self.fmt != 0
+        self.fmt() != 0
     }
 
     #[doc="Hour format"]
@@ -1019,7 +1019,7 @@ impl Cr {
 
     #[doc="Alarm A enable"]
     #[inline] pub fn test_alrae(&self) -> bool {
-        self.alrae != 0
+        self.alrae() != 0
     }
 
     #[doc="Alarm A enable"]
@@ -1038,7 +1038,7 @@ impl Cr {
 
     #[doc="Alarm B enable"]
     #[inline] pub fn test_alrbe(&self) -> bool {
-        self.alrbe != 0
+        self.alrbe() != 0
     }
 
     #[doc="Alarm B enable"]
@@ -1057,7 +1057,7 @@ impl Cr {
 
     #[doc="Wakeup timer enable"]
     #[inline] pub fn test_wute(&self) -> bool {
-        self.wute != 0
+        self.wute() != 0
     }
 
     #[doc="Wakeup timer enable"]
@@ -1076,7 +1076,7 @@ impl Cr {
 
     #[doc="Time stamp enable"]
     #[inline] pub fn test_tse(&self) -> bool {
-        self.tse != 0
+        self.tse() != 0
     }
 
     #[doc="Time stamp enable"]
@@ -1095,7 +1095,7 @@ impl Cr {
 
     #[doc="Alarm A interrupt enable"]
     #[inline] pub fn test_alraie(&self) -> bool {
-        self.alraie != 0
+        self.alraie() != 0
     }
 
     #[doc="Alarm A interrupt enable"]
@@ -1114,7 +1114,7 @@ impl Cr {
 
     #[doc="Alarm B interrupt enable"]
     #[inline] pub fn test_alrbie(&self) -> bool {
-        self.alrbie != 0
+        self.alrbie() != 0
     }
 
     #[doc="Alarm B interrupt enable"]
@@ -1133,7 +1133,7 @@ impl Cr {
 
     #[doc="Wakeup timer interrupt enable"]
     #[inline] pub fn test_wutie(&self) -> bool {
-        self.wutie != 0
+        self.wutie() != 0
     }
 
     #[doc="Wakeup timer interrupt enable"]
@@ -1152,7 +1152,7 @@ impl Cr {
 
     #[doc="Time-stamp interrupt enable"]
     #[inline] pub fn test_tsie(&self) -> bool {
-        self.tsie != 0
+        self.tsie() != 0
     }
 
     #[doc="Time-stamp interrupt enable"]
@@ -1171,7 +1171,7 @@ impl Cr {
 
     #[doc="Add 1 hour (summer time change)"]
     #[inline] pub fn test_add1h(&self) -> bool {
-        self.add1h != 0
+        self.add1h() != 0
     }
 
     #[doc="Add 1 hour (summer time change)"]
@@ -1190,7 +1190,7 @@ impl Cr {
 
     #[doc="Subtract 1 hour (winter time change)"]
     #[inline] pub fn test_sub1h(&self) -> bool {
-        self.sub1h != 0
+        self.sub1h() != 0
     }
 
     #[doc="Subtract 1 hour (winter time change)"]
@@ -1209,7 +1209,7 @@ impl Cr {
 
     #[doc="Backup"]
     #[inline] pub fn test_bkp(&self) -> bool {
-        self.bkp != 0
+        self.bkp() != 0
     }
 
     #[doc="Backup"]
@@ -1228,7 +1228,7 @@ impl Cr {
 
     #[doc="Calibration output selection"]
     #[inline] pub fn test_cosel(&self) -> bool {
-        self.cosel != 0
+        self.cosel() != 0
     }
 
     #[doc="Calibration output selection"]
@@ -1247,7 +1247,7 @@ impl Cr {
 
     #[doc="Output polarity"]
     #[inline] pub fn test_pol(&self) -> bool {
-        self.pol != 0
+        self.pol() != 0
     }
 
     #[doc="Output polarity"]
@@ -1266,7 +1266,7 @@ impl Cr {
 
     #[doc="Output selection"]
     #[inline] pub fn test_osel(&self) -> bool {
-        self.osel != 0
+        self.osel() != 0
     }
 
     #[doc="Output selection"]
@@ -1285,7 +1285,7 @@ impl Cr {
 
     #[doc="Calibration output enable"]
     #[inline] pub fn test_coe(&self) -> bool {
-        self.coe != 0
+        self.coe() != 0
     }
 
     #[doc="Calibration output enable"]
@@ -1344,7 +1344,7 @@ impl Isr {
 
     #[doc="Alarm A write flag"]
     #[inline] pub fn test_alrawf(&self) -> bool {
-        self.alrawf != 0
+        self.alrawf() != 0
     }
 
     #[doc="Alarm A write flag"]
@@ -1363,7 +1363,7 @@ impl Isr {
 
     #[doc="Alarm B write flag"]
     #[inline] pub fn test_alrbwf(&self) -> bool {
-        self.alrbwf != 0
+        self.alrbwf() != 0
     }
 
     #[doc="Alarm B write flag"]
@@ -1382,7 +1382,7 @@ impl Isr {
 
     #[doc="Wakeup timer write flag"]
     #[inline] pub fn test_wutwf(&self) -> bool {
-        self.wutwf != 0
+        self.wutwf() != 0
     }
 
     #[doc="Wakeup timer write flag"]
@@ -1401,7 +1401,7 @@ impl Isr {
 
     #[doc="Shift operation pending"]
     #[inline] pub fn test_shpf(&self) -> bool {
-        self.shpf != 0
+        self.shpf() != 0
     }
 
     #[doc="Shift operation pending"]
@@ -1420,7 +1420,7 @@ impl Isr {
 
     #[doc="Initialization status flag"]
     #[inline] pub fn test_inits(&self) -> bool {
-        self.inits != 0
+        self.inits() != 0
     }
 
     #[doc="Initialization status flag"]
@@ -1439,7 +1439,7 @@ impl Isr {
 
     #[doc="Registers synchronization flag"]
     #[inline] pub fn test_rsf(&self) -> bool {
-        self.rsf != 0
+        self.rsf() != 0
     }
 
     #[doc="Registers synchronization flag"]
@@ -1458,7 +1458,7 @@ impl Isr {
 
     #[doc="Initialization flag"]
     #[inline] pub fn test_initf(&self) -> bool {
-        self.initf != 0
+        self.initf() != 0
     }
 
     #[doc="Initialization flag"]
@@ -1477,7 +1477,7 @@ impl Isr {
 
     #[doc="Initialization mode"]
     #[inline] pub fn test_init(&self) -> bool {
-        self.init != 0
+        self.init() != 0
     }
 
     #[doc="Initialization mode"]
@@ -1496,7 +1496,7 @@ impl Isr {
 
     #[doc="Alarm A flag"]
     #[inline] pub fn test_alraf(&self) -> bool {
-        self.alraf != 0
+        self.alraf() != 0
     }
 
     #[doc="Alarm A flag"]
@@ -1515,7 +1515,7 @@ impl Isr {
 
     #[doc="Alarm B flag"]
     #[inline] pub fn test_alrbf(&self) -> bool {
-        self.alrbf != 0
+        self.alrbf() != 0
     }
 
     #[doc="Alarm B flag"]
@@ -1534,7 +1534,7 @@ impl Isr {
 
     #[doc="Wakeup timer flag"]
     #[inline] pub fn test_wutf(&self) -> bool {
-        self.wutf != 0
+        self.wutf() != 0
     }
 
     #[doc="Wakeup timer flag"]
@@ -1553,7 +1553,7 @@ impl Isr {
 
     #[doc="Time-stamp flag"]
     #[inline] pub fn test_tsf(&self) -> bool {
-        self.tsf != 0
+        self.tsf() != 0
     }
 
     #[doc="Time-stamp flag"]
@@ -1572,7 +1572,7 @@ impl Isr {
 
     #[doc="Time-stamp overflow flag"]
     #[inline] pub fn test_tsovf(&self) -> bool {
-        self.tsovf != 0
+        self.tsovf() != 0
     }
 
     #[doc="Time-stamp overflow flag"]
@@ -1591,7 +1591,7 @@ impl Isr {
 
     #[doc="Tamper detection flag"]
     #[inline] pub fn test_tamp1f(&self) -> bool {
-        self.tamp1f != 0
+        self.tamp1f() != 0
     }
 
     #[doc="Tamper detection flag"]
@@ -1610,7 +1610,7 @@ impl Isr {
 
     #[doc="RTC_TAMP2 detection flag"]
     #[inline] pub fn test_tamp2f(&self) -> bool {
-        self.tamp2f != 0
+        self.tamp2f() != 0
     }
 
     #[doc="RTC_TAMP2 detection flag"]
@@ -1629,7 +1629,7 @@ impl Isr {
 
     #[doc="RTC_TAMP3 detection flag"]
     #[inline] pub fn test_tamp3f(&self) -> bool {
-        self.tamp3f != 0
+        self.tamp3f() != 0
     }
 
     #[doc="RTC_TAMP3 detection flag"]
@@ -1648,7 +1648,7 @@ impl Isr {
 
     #[doc="Recalibration pending Flag"]
     #[inline] pub fn test_recalpf(&self) -> bool {
-        self.recalpf != 0
+        self.recalpf() != 0
     }
 
     #[doc="Recalibration pending Flag"]
@@ -1704,7 +1704,7 @@ impl Prer {
 
     #[doc="Asynchronous prescaler factor"]
     #[inline] pub fn test_prediv_a(&self) -> bool {
-        self.prediv_a != 0
+        self.prediv_a() != 0
     }
 
     #[doc="Asynchronous prescaler factor"]
@@ -1723,7 +1723,7 @@ impl Prer {
 
     #[doc="Synchronous prescaler factor"]
     #[inline] pub fn test_prediv_s(&self) -> bool {
-        self.prediv_s != 0
+        self.prediv_s() != 0
     }
 
     #[doc="Synchronous prescaler factor"]
@@ -1764,7 +1764,7 @@ impl Wutr {
 
     #[doc="Wakeup auto-reload value bits"]
     #[inline] pub fn test_wut(&self) -> bool {
-        self.wut != 0
+        self.wut() != 0
     }
 
     #[doc="Wakeup auto-reload value bits"]
@@ -1804,7 +1804,7 @@ impl Alrmar {
 
     #[doc="Alarm A date mask"]
     #[inline] pub fn test_msk4(&self) -> bool {
-        self.msk4 != 0
+        self.msk4() != 0
     }
 
     #[doc="Alarm A date mask"]
@@ -1823,7 +1823,7 @@ impl Alrmar {
 
     #[doc="Week day selection"]
     #[inline] pub fn test_wdsel(&self) -> bool {
-        self.wdsel != 0
+        self.wdsel() != 0
     }
 
     #[doc="Week day selection"]
@@ -1842,7 +1842,7 @@ impl Alrmar {
 
     #[doc="Date tens in BCD format"]
     #[inline] pub fn test_dt(&self) -> bool {
-        self.dt != 0
+        self.dt() != 0
     }
 
     #[doc="Date tens in BCD format"]
@@ -1861,7 +1861,7 @@ impl Alrmar {
 
     #[doc="Date units or day in BCD format"]
     #[inline] pub fn test_du(&self) -> bool {
-        self.du != 0
+        self.du() != 0
     }
 
     #[doc="Date units or day in BCD format"]
@@ -1880,7 +1880,7 @@ impl Alrmar {
 
     #[doc="Alarm A hours mask"]
     #[inline] pub fn test_msk3(&self) -> bool {
-        self.msk3 != 0
+        self.msk3() != 0
     }
 
     #[doc="Alarm A hours mask"]
@@ -1899,7 +1899,7 @@ impl Alrmar {
 
     #[doc="AM/PM notation"]
     #[inline] pub fn test_pm(&self) -> bool {
-        self.pm != 0
+        self.pm() != 0
     }
 
     #[doc="AM/PM notation"]
@@ -1918,7 +1918,7 @@ impl Alrmar {
 
     #[doc="Hour tens in BCD format"]
     #[inline] pub fn test_ht(&self) -> bool {
-        self.ht != 0
+        self.ht() != 0
     }
 
     #[doc="Hour tens in BCD format"]
@@ -1937,7 +1937,7 @@ impl Alrmar {
 
     #[doc="Hour units in BCD format"]
     #[inline] pub fn test_hu(&self) -> bool {
-        self.hu != 0
+        self.hu() != 0
     }
 
     #[doc="Hour units in BCD format"]
@@ -1956,7 +1956,7 @@ impl Alrmar {
 
     #[doc="Alarm A minutes mask"]
     #[inline] pub fn test_msk2(&self) -> bool {
-        self.msk2 != 0
+        self.msk2() != 0
     }
 
     #[doc="Alarm A minutes mask"]
@@ -1975,7 +1975,7 @@ impl Alrmar {
 
     #[doc="Minute tens in BCD format"]
     #[inline] pub fn test_mnt(&self) -> bool {
-        self.mnt != 0
+        self.mnt() != 0
     }
 
     #[doc="Minute tens in BCD format"]
@@ -1994,7 +1994,7 @@ impl Alrmar {
 
     #[doc="Minute units in BCD format"]
     #[inline] pub fn test_mnu(&self) -> bool {
-        self.mnu != 0
+        self.mnu() != 0
     }
 
     #[doc="Minute units in BCD format"]
@@ -2013,7 +2013,7 @@ impl Alrmar {
 
     #[doc="Alarm A seconds mask"]
     #[inline] pub fn test_msk1(&self) -> bool {
-        self.msk1 != 0
+        self.msk1() != 0
     }
 
     #[doc="Alarm A seconds mask"]
@@ -2032,7 +2032,7 @@ impl Alrmar {
 
     #[doc="Second tens in BCD format"]
     #[inline] pub fn test_st(&self) -> bool {
-        self.st != 0
+        self.st() != 0
     }
 
     #[doc="Second tens in BCD format"]
@@ -2051,7 +2051,7 @@ impl Alrmar {
 
     #[doc="Second units in BCD format"]
     #[inline] pub fn test_su(&self) -> bool {
-        self.su != 0
+        self.su() != 0
     }
 
     #[doc="Second units in BCD format"]
@@ -2104,7 +2104,7 @@ impl Alrmbr {
 
     #[doc="Alarm B date mask"]
     #[inline] pub fn test_msk4(&self) -> bool {
-        self.msk4 != 0
+        self.msk4() != 0
     }
 
     #[doc="Alarm B date mask"]
@@ -2123,7 +2123,7 @@ impl Alrmbr {
 
     #[doc="Week day selection"]
     #[inline] pub fn test_wdsel(&self) -> bool {
-        self.wdsel != 0
+        self.wdsel() != 0
     }
 
     #[doc="Week day selection"]
@@ -2142,7 +2142,7 @@ impl Alrmbr {
 
     #[doc="Date tens in BCD format"]
     #[inline] pub fn test_dt(&self) -> bool {
-        self.dt != 0
+        self.dt() != 0
     }
 
     #[doc="Date tens in BCD format"]
@@ -2161,7 +2161,7 @@ impl Alrmbr {
 
     #[doc="Date units or day in BCD format"]
     #[inline] pub fn test_du(&self) -> bool {
-        self.du != 0
+        self.du() != 0
     }
 
     #[doc="Date units or day in BCD format"]
@@ -2180,7 +2180,7 @@ impl Alrmbr {
 
     #[doc="Alarm B hours mask"]
     #[inline] pub fn test_msk3(&self) -> bool {
-        self.msk3 != 0
+        self.msk3() != 0
     }
 
     #[doc="Alarm B hours mask"]
@@ -2199,7 +2199,7 @@ impl Alrmbr {
 
     #[doc="AM/PM notation"]
     #[inline] pub fn test_pm(&self) -> bool {
-        self.pm != 0
+        self.pm() != 0
     }
 
     #[doc="AM/PM notation"]
@@ -2218,7 +2218,7 @@ impl Alrmbr {
 
     #[doc="Hour tens in BCD format"]
     #[inline] pub fn test_ht(&self) -> bool {
-        self.ht != 0
+        self.ht() != 0
     }
 
     #[doc="Hour tens in BCD format"]
@@ -2237,7 +2237,7 @@ impl Alrmbr {
 
     #[doc="Hour units in BCD format"]
     #[inline] pub fn test_hu(&self) -> bool {
-        self.hu != 0
+        self.hu() != 0
     }
 
     #[doc="Hour units in BCD format"]
@@ -2256,7 +2256,7 @@ impl Alrmbr {
 
     #[doc="Alarm B minutes mask"]
     #[inline] pub fn test_msk2(&self) -> bool {
-        self.msk2 != 0
+        self.msk2() != 0
     }
 
     #[doc="Alarm B minutes mask"]
@@ -2275,7 +2275,7 @@ impl Alrmbr {
 
     #[doc="Minute tens in BCD format"]
     #[inline] pub fn test_mnt(&self) -> bool {
-        self.mnt != 0
+        self.mnt() != 0
     }
 
     #[doc="Minute tens in BCD format"]
@@ -2294,7 +2294,7 @@ impl Alrmbr {
 
     #[doc="Minute units in BCD format"]
     #[inline] pub fn test_mnu(&self) -> bool {
-        self.mnu != 0
+        self.mnu() != 0
     }
 
     #[doc="Minute units in BCD format"]
@@ -2313,7 +2313,7 @@ impl Alrmbr {
 
     #[doc="Alarm B seconds mask"]
     #[inline] pub fn test_msk1(&self) -> bool {
-        self.msk1 != 0
+        self.msk1() != 0
     }
 
     #[doc="Alarm B seconds mask"]
@@ -2332,7 +2332,7 @@ impl Alrmbr {
 
     #[doc="Second tens in BCD format"]
     #[inline] pub fn test_st(&self) -> bool {
-        self.st != 0
+        self.st() != 0
     }
 
     #[doc="Second tens in BCD format"]
@@ -2351,7 +2351,7 @@ impl Alrmbr {
 
     #[doc="Second units in BCD format"]
     #[inline] pub fn test_su(&self) -> bool {
-        self.su != 0
+        self.su() != 0
     }
 
     #[doc="Second units in BCD format"]
@@ -2404,7 +2404,7 @@ impl Wpr {
 
     #[doc="Write protection key"]
     #[inline] pub fn test_key(&self) -> bool {
-        self.key != 0
+        self.key() != 0
     }
 
     #[doc="Write protection key"]
@@ -2444,7 +2444,7 @@ impl Ssr {
 
     #[doc="Sub second value"]
     #[inline] pub fn test_ss(&self) -> bool {
-        self.ss != 0
+        self.ss() != 0
     }
 
     #[doc="Sub second value"]
@@ -2484,7 +2484,7 @@ impl Shiftr {
 
     #[doc="Add one second"]
     #[inline] pub fn test_add1s(&self) -> bool {
-        self.add1s != 0
+        self.add1s() != 0
     }
 
     #[doc="Add one second"]
@@ -2503,7 +2503,7 @@ impl Shiftr {
 
     #[doc="Subtract a fraction of a second"]
     #[inline] pub fn test_subfs(&self) -> bool {
-        self.subfs != 0
+        self.subfs() != 0
     }
 
     #[doc="Subtract a fraction of a second"]
@@ -2544,7 +2544,7 @@ impl Tstr {
 
     #[doc="Second units in BCD format"]
     #[inline] pub fn test_su(&self) -> bool {
-        self.su != 0
+        self.su() != 0
     }
 
     #[doc="Second units in BCD format"]
@@ -2563,7 +2563,7 @@ impl Tstr {
 
     #[doc="Second tens in BCD format"]
     #[inline] pub fn test_st(&self) -> bool {
-        self.st != 0
+        self.st() != 0
     }
 
     #[doc="Second tens in BCD format"]
@@ -2582,7 +2582,7 @@ impl Tstr {
 
     #[doc="Minute units in BCD format"]
     #[inline] pub fn test_mnu(&self) -> bool {
-        self.mnu != 0
+        self.mnu() != 0
     }
 
     #[doc="Minute units in BCD format"]
@@ -2601,7 +2601,7 @@ impl Tstr {
 
     #[doc="Minute tens in BCD format"]
     #[inline] pub fn test_mnt(&self) -> bool {
-        self.mnt != 0
+        self.mnt() != 0
     }
 
     #[doc="Minute tens in BCD format"]
@@ -2620,7 +2620,7 @@ impl Tstr {
 
     #[doc="Hour units in BCD format"]
     #[inline] pub fn test_hu(&self) -> bool {
-        self.hu != 0
+        self.hu() != 0
     }
 
     #[doc="Hour units in BCD format"]
@@ -2639,7 +2639,7 @@ impl Tstr {
 
     #[doc="Hour tens in BCD format"]
     #[inline] pub fn test_ht(&self) -> bool {
-        self.ht != 0
+        self.ht() != 0
     }
 
     #[doc="Hour tens in BCD format"]
@@ -2658,7 +2658,7 @@ impl Tstr {
 
     #[doc="AM/PM notation"]
     #[inline] pub fn test_pm(&self) -> bool {
-        self.pm != 0
+        self.pm() != 0
     }
 
     #[doc="AM/PM notation"]
@@ -2704,7 +2704,7 @@ impl Tsdr {
 
     #[doc="Week day units"]
     #[inline] pub fn test_wdu(&self) -> bool {
-        self.wdu != 0
+        self.wdu() != 0
     }
 
     #[doc="Week day units"]
@@ -2723,7 +2723,7 @@ impl Tsdr {
 
     #[doc="Month tens in BCD format"]
     #[inline] pub fn test_mt(&self) -> bool {
-        self.mt != 0
+        self.mt() != 0
     }
 
     #[doc="Month tens in BCD format"]
@@ -2742,7 +2742,7 @@ impl Tsdr {
 
     #[doc="Month units in BCD format"]
     #[inline] pub fn test_mu(&self) -> bool {
-        self.mu != 0
+        self.mu() != 0
     }
 
     #[doc="Month units in BCD format"]
@@ -2761,7 +2761,7 @@ impl Tsdr {
 
     #[doc="Date tens in BCD format"]
     #[inline] pub fn test_dt(&self) -> bool {
-        self.dt != 0
+        self.dt() != 0
     }
 
     #[doc="Date tens in BCD format"]
@@ -2780,7 +2780,7 @@ impl Tsdr {
 
     #[doc="Date units in BCD format"]
     #[inline] pub fn test_du(&self) -> bool {
-        self.du != 0
+        self.du() != 0
     }
 
     #[doc="Date units in BCD format"]
@@ -2824,7 +2824,7 @@ impl Tsssr {
 
     #[doc="Sub second value"]
     #[inline] pub fn test_ss(&self) -> bool {
-        self.ss != 0
+        self.ss() != 0
     }
 
     #[doc="Sub second value"]
@@ -2864,7 +2864,7 @@ impl Calr {
 
     #[doc="Increase frequency of RTC by 488.5 ppm"]
     #[inline] pub fn test_calp(&self) -> bool {
-        self.calp != 0
+        self.calp() != 0
     }
 
     #[doc="Increase frequency of RTC by 488.5 ppm"]
@@ -2883,7 +2883,7 @@ impl Calr {
 
     #[doc="Use an 8-second calibration cycle period"]
     #[inline] pub fn test_calw8(&self) -> bool {
-        self.calw8 != 0
+        self.calw8() != 0
     }
 
     #[doc="Use an 8-second calibration cycle period"]
@@ -2902,7 +2902,7 @@ impl Calr {
 
     #[doc="Use a 16-second calibration cycle period"]
     #[inline] pub fn test_calw16(&self) -> bool {
-        self.calw16 != 0
+        self.calw16() != 0
     }
 
     #[doc="Use a 16-second calibration cycle period"]
@@ -2921,7 +2921,7 @@ impl Calr {
 
     #[doc="Calibration minus"]
     #[inline] pub fn test_calm(&self) -> bool {
-        self.calm != 0
+        self.calm() != 0
     }
 
     #[doc="Calibration minus"]
@@ -2964,7 +2964,7 @@ impl Tafcr {
 
     #[doc="Tamper 1 detection enable"]
     #[inline] pub fn test_tamp1e(&self) -> bool {
-        self.tamp1e != 0
+        self.tamp1e() != 0
     }
 
     #[doc="Tamper 1 detection enable"]
@@ -2983,7 +2983,7 @@ impl Tafcr {
 
     #[doc="Active level for tamper 1"]
     #[inline] pub fn test_tamp1trg(&self) -> bool {
-        self.tamp1trg != 0
+        self.tamp1trg() != 0
     }
 
     #[doc="Active level for tamper 1"]
@@ -3002,7 +3002,7 @@ impl Tafcr {
 
     #[doc="Tamper interrupt enable"]
     #[inline] pub fn test_tampie(&self) -> bool {
-        self.tampie != 0
+        self.tampie() != 0
     }
 
     #[doc="Tamper interrupt enable"]
@@ -3021,7 +3021,7 @@ impl Tafcr {
 
     #[doc="Tamper 2 detection enable"]
     #[inline] pub fn test_tamp2e(&self) -> bool {
-        self.tamp2e != 0
+        self.tamp2e() != 0
     }
 
     #[doc="Tamper 2 detection enable"]
@@ -3040,7 +3040,7 @@ impl Tafcr {
 
     #[doc="Active level for tamper 2"]
     #[inline] pub fn test_tamp2trg(&self) -> bool {
-        self.tamp2trg != 0
+        self.tamp2trg() != 0
     }
 
     #[doc="Active level for tamper 2"]
@@ -3059,7 +3059,7 @@ impl Tafcr {
 
     #[doc="Tamper 3 detection enable"]
     #[inline] pub fn test_tamp3e(&self) -> bool {
-        self.tamp3e != 0
+        self.tamp3e() != 0
     }
 
     #[doc="Tamper 3 detection enable"]
@@ -3078,7 +3078,7 @@ impl Tafcr {
 
     #[doc="Active level for tamper 3"]
     #[inline] pub fn test_tamp3trg(&self) -> bool {
-        self.tamp3trg != 0
+        self.tamp3trg() != 0
     }
 
     #[doc="Active level for tamper 3"]
@@ -3097,7 +3097,7 @@ impl Tafcr {
 
     #[doc="Activate timestamp on tamper detection event"]
     #[inline] pub fn test_tampts(&self) -> bool {
-        self.tampts != 0
+        self.tampts() != 0
     }
 
     #[doc="Activate timestamp on tamper detection event"]
@@ -3116,7 +3116,7 @@ impl Tafcr {
 
     #[doc="Tamper sampling frequency"]
     #[inline] pub fn test_tampfreq(&self) -> bool {
-        self.tampfreq != 0
+        self.tampfreq() != 0
     }
 
     #[doc="Tamper sampling frequency"]
@@ -3135,7 +3135,7 @@ impl Tafcr {
 
     #[doc="Tamper filter count"]
     #[inline] pub fn test_tampflt(&self) -> bool {
-        self.tampflt != 0
+        self.tampflt() != 0
     }
 
     #[doc="Tamper filter count"]
@@ -3154,7 +3154,7 @@ impl Tafcr {
 
     #[doc="Tamper precharge duration"]
     #[inline] pub fn test_tampprch(&self) -> bool {
-        self.tampprch != 0
+        self.tampprch() != 0
     }
 
     #[doc="Tamper precharge duration"]
@@ -3173,7 +3173,7 @@ impl Tafcr {
 
     #[doc="TAMPER pull-up disable"]
     #[inline] pub fn test_tamppudis(&self) -> bool {
-        self.tamppudis != 0
+        self.tamppudis() != 0
     }
 
     #[doc="TAMPER pull-up disable"]
@@ -3192,7 +3192,7 @@ impl Tafcr {
 
     #[doc="PC13 value"]
     #[inline] pub fn test_pc13value(&self) -> bool {
-        self.pc13value != 0
+        self.pc13value() != 0
     }
 
     #[doc="PC13 value"]
@@ -3211,7 +3211,7 @@ impl Tafcr {
 
     #[doc="PC13 mode"]
     #[inline] pub fn test_pc13mode(&self) -> bool {
-        self.pc13mode != 0
+        self.pc13mode() != 0
     }
 
     #[doc="PC13 mode"]
@@ -3230,7 +3230,7 @@ impl Tafcr {
 
     #[doc="PC14 value"]
     #[inline] pub fn test_pc14value(&self) -> bool {
-        self.pc14value != 0
+        self.pc14value() != 0
     }
 
     #[doc="PC14 value"]
@@ -3249,7 +3249,7 @@ impl Tafcr {
 
     #[doc="PC 14 mode"]
     #[inline] pub fn test_pc14mode(&self) -> bool {
-        self.pc14mode != 0
+        self.pc14mode() != 0
     }
 
     #[doc="PC 14 mode"]
@@ -3268,7 +3268,7 @@ impl Tafcr {
 
     #[doc="PC15 value"]
     #[inline] pub fn test_pc15value(&self) -> bool {
-        self.pc15value != 0
+        self.pc15value() != 0
     }
 
     #[doc="PC15 value"]
@@ -3287,7 +3287,7 @@ impl Tafcr {
 
     #[doc="PC15 mode"]
     #[inline] pub fn test_pc15mode(&self) -> bool {
-        self.pc15mode != 0
+        self.pc15mode() != 0
     }
 
     #[doc="PC15 mode"]
@@ -3344,7 +3344,7 @@ impl Alrmassr {
 
     #[doc="Mask the most-significant bits starting at this bit"]
     #[inline] pub fn test_maskss(&self) -> bool {
-        self.maskss != 0
+        self.maskss() != 0
     }
 
     #[doc="Mask the most-significant bits starting at this bit"]
@@ -3363,7 +3363,7 @@ impl Alrmassr {
 
     #[doc="Sub seconds value"]
     #[inline] pub fn test_ss(&self) -> bool {
-        self.ss != 0
+        self.ss() != 0
     }
 
     #[doc="Sub seconds value"]
@@ -3404,7 +3404,7 @@ impl Alrmbssr {
 
     #[doc="Mask the most-significant bits starting at this bit"]
     #[inline] pub fn test_maskss(&self) -> bool {
-        self.maskss != 0
+        self.maskss() != 0
     }
 
     #[doc="Mask the most-significant bits starting at this bit"]
@@ -3423,7 +3423,7 @@ impl Alrmbssr {
 
     #[doc="Sub seconds value"]
     #[inline] pub fn test_ss(&self) -> bool {
-        self.ss != 0
+        self.ss() != 0
     }
 
     #[doc="Sub seconds value"]
@@ -3464,7 +3464,7 @@ impl Bkpr {
 
     #[doc="BKP"]
     #[inline] pub fn test_bkp(&self) -> bool {
-        self.bkp != 0
+        self.bkp() != 0
     }
 
     #[doc="BKP"]

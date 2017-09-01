@@ -257,7 +257,7 @@ impl Acr {
 
     #[doc="Latency"]
     #[inline] pub fn test_latency(&self) -> bool {
-        self.latency != 0
+        self.latency() != 0
     }
 
     #[doc="Latency"]
@@ -276,7 +276,7 @@ impl Acr {
 
     #[doc="Prefetch enable"]
     #[inline] pub fn test_prften(&self) -> bool {
-        self.prften != 0
+        self.prften() != 0
     }
 
     #[doc="Prefetch enable"]
@@ -295,7 +295,7 @@ impl Acr {
 
     #[doc="Flash mode during Sleep"]
     #[inline] pub fn test_sleep_pd(&self) -> bool {
-        self.sleep_pd != 0
+        self.sleep_pd() != 0
     }
 
     #[doc="Flash mode during Sleep"]
@@ -314,7 +314,7 @@ impl Acr {
 
     #[doc="Flash mode during Run"]
     #[inline] pub fn test_run_pd(&self) -> bool {
-        self.run_pd != 0
+        self.run_pd() != 0
     }
 
     #[doc="Flash mode during Run"]
@@ -333,7 +333,7 @@ impl Acr {
 
     #[doc="Disable Buffer"]
     #[inline] pub fn test_desab_buf(&self) -> bool {
-        self.desab_buf != 0
+        self.desab_buf() != 0
     }
 
     #[doc="Disable Buffer"]
@@ -352,7 +352,7 @@ impl Acr {
 
     #[doc="Pre-read data address"]
     #[inline] pub fn test_pre_read(&self) -> bool {
-        self.pre_read != 0
+        self.pre_read() != 0
     }
 
     #[doc="Pre-read data address"]
@@ -397,7 +397,7 @@ impl Pecr {
 
     #[doc="FLASH_PECR and data EEPROM lock"]
     #[inline] pub fn test_pelock(&self) -> bool {
-        self.pelock != 0
+        self.pelock() != 0
     }
 
     #[doc="FLASH_PECR and data EEPROM lock"]
@@ -416,7 +416,7 @@ impl Pecr {
 
     #[doc="Program memory lock"]
     #[inline] pub fn test_prglock(&self) -> bool {
-        self.prglock != 0
+        self.prglock() != 0
     }
 
     #[doc="Program memory lock"]
@@ -435,7 +435,7 @@ impl Pecr {
 
     #[doc="Option bytes block lock"]
     #[inline] pub fn test_optlock(&self) -> bool {
-        self.optlock != 0
+        self.optlock() != 0
     }
 
     #[doc="Option bytes block lock"]
@@ -454,7 +454,7 @@ impl Pecr {
 
     #[doc="Program memory selection"]
     #[inline] pub fn test_prog(&self) -> bool {
-        self.prog != 0
+        self.prog() != 0
     }
 
     #[doc="Program memory selection"]
@@ -473,7 +473,7 @@ impl Pecr {
 
     #[doc="Data EEPROM selection"]
     #[inline] pub fn test_data(&self) -> bool {
-        self.data != 0
+        self.data() != 0
     }
 
     #[doc="Data EEPROM selection"]
@@ -492,7 +492,7 @@ impl Pecr {
 
     #[doc="Fixed time data write for Byte, Half Word and Word programming"]
     #[inline] pub fn test_ftdw(&self) -> bool {
-        self.ftdw != 0
+        self.ftdw() != 0
     }
 
     #[doc="Fixed time data write for Byte, Half Word and Word programming"]
@@ -511,7 +511,7 @@ impl Pecr {
 
     #[doc="Page or Double Word erase mode"]
     #[inline] pub fn test_erase(&self) -> bool {
-        self.erase != 0
+        self.erase() != 0
     }
 
     #[doc="Page or Double Word erase mode"]
@@ -530,7 +530,7 @@ impl Pecr {
 
     #[doc="Half Page/Double Word programming mode"]
     #[inline] pub fn test_fprg(&self) -> bool {
-        self.fprg != 0
+        self.fprg() != 0
     }
 
     #[doc="Half Page/Double Word programming mode"]
@@ -549,7 +549,7 @@ impl Pecr {
 
     #[doc="Parallel bank mode"]
     #[inline] pub fn test_parallelbank(&self) -> bool {
-        self.parallelbank != 0
+        self.parallelbank() != 0
     }
 
     #[doc="Parallel bank mode"]
@@ -568,7 +568,7 @@ impl Pecr {
 
     #[doc="End of programming interrupt enable"]
     #[inline] pub fn test_eopie(&self) -> bool {
-        self.eopie != 0
+        self.eopie() != 0
     }
 
     #[doc="End of programming interrupt enable"]
@@ -587,7 +587,7 @@ impl Pecr {
 
     #[doc="Error interrupt enable"]
     #[inline] pub fn test_errie(&self) -> bool {
-        self.errie != 0
+        self.errie() != 0
     }
 
     #[doc="Error interrupt enable"]
@@ -606,7 +606,7 @@ impl Pecr {
 
     #[doc="Launch the option byte loading"]
     #[inline] pub fn test_obl_launch(&self) -> bool {
-        self.obl_launch != 0
+        self.obl_launch() != 0
     }
 
     #[doc="Launch the option byte loading"]
@@ -657,7 +657,7 @@ impl Pdkeyr {
 
     #[doc="RUN_PD in FLASH_ACR key"]
     #[inline] pub fn test_pdkeyr(&self) -> bool {
-        self.pdkeyr != 0
+        self.pdkeyr() != 0
     }
 
     #[doc="RUN_PD in FLASH_ACR key"]
@@ -696,7 +696,7 @@ impl Pekeyr {
 
     #[doc="FLASH_PEC and data EEPROM key"]
     #[inline] pub fn test_pekeyr(&self) -> bool {
-        self.pekeyr != 0
+        self.pekeyr() != 0
     }
 
     #[doc="FLASH_PEC and data EEPROM key"]
@@ -735,7 +735,7 @@ impl Prgkeyr {
 
     #[doc="Program memory key"]
     #[inline] pub fn test_prgkeyr(&self) -> bool {
-        self.prgkeyr != 0
+        self.prgkeyr() != 0
     }
 
     #[doc="Program memory key"]
@@ -774,7 +774,7 @@ impl Optkeyr {
 
     #[doc="Option byte key"]
     #[inline] pub fn test_optkeyr(&self) -> bool {
-        self.optkeyr != 0
+        self.optkeyr() != 0
     }
 
     #[doc="Option byte key"]
@@ -813,7 +813,7 @@ impl Sr {
 
     #[doc="Write/erase operations in progress"]
     #[inline] pub fn test_bsy(&self) -> bool {
-        self.bsy != 0
+        self.bsy() != 0
     }
 
     #[doc="Write/erase operations in progress"]
@@ -832,7 +832,7 @@ impl Sr {
 
     #[doc="End of operation"]
     #[inline] pub fn test_eop(&self) -> bool {
-        self.eop != 0
+        self.eop() != 0
     }
 
     #[doc="End of operation"]
@@ -851,7 +851,7 @@ impl Sr {
 
     #[doc="End of high voltage"]
     #[inline] pub fn test_endhv(&self) -> bool {
-        self.endhv != 0
+        self.endhv() != 0
     }
 
     #[doc="End of high voltage"]
@@ -870,7 +870,7 @@ impl Sr {
 
     #[doc="Flash memory module ready after low power mode"]
     #[inline] pub fn test_ready(&self) -> bool {
-        self.ready != 0
+        self.ready() != 0
     }
 
     #[doc="Flash memory module ready after low power mode"]
@@ -889,7 +889,7 @@ impl Sr {
 
     #[doc="Write protected error"]
     #[inline] pub fn test_wrperr(&self) -> bool {
-        self.wrperr != 0
+        self.wrperr() != 0
     }
 
     #[doc="Write protected error"]
@@ -908,7 +908,7 @@ impl Sr {
 
     #[doc="Programming alignment error"]
     #[inline] pub fn test_pgaerr(&self) -> bool {
-        self.pgaerr != 0
+        self.pgaerr() != 0
     }
 
     #[doc="Programming alignment error"]
@@ -927,7 +927,7 @@ impl Sr {
 
     #[doc="Size error"]
     #[inline] pub fn test_sizerr(&self) -> bool {
-        self.sizerr != 0
+        self.sizerr() != 0
     }
 
     #[doc="Size error"]
@@ -946,7 +946,7 @@ impl Sr {
 
     #[doc="Option validity error"]
     #[inline] pub fn test_optverr(&self) -> bool {
-        self.optverr != 0
+        self.optverr() != 0
     }
 
     #[doc="Option validity error"]
@@ -965,7 +965,7 @@ impl Sr {
 
     #[doc="RDERR"]
     #[inline] pub fn test_rderr(&self) -> bool {
-        self.rderr != 0
+        self.rderr() != 0
     }
 
     #[doc="RDERR"]
@@ -984,7 +984,7 @@ impl Sr {
 
     #[doc="NOTZEROERR"]
     #[inline] pub fn test_notzeroerr(&self) -> bool {
-        self.notzeroerr != 0
+        self.notzeroerr() != 0
     }
 
     #[doc="NOTZEROERR"]
@@ -1003,7 +1003,7 @@ impl Sr {
 
     #[doc="FWWERR"]
     #[inline] pub fn test_fwwerr(&self) -> bool {
-        self.fwwerr != 0
+        self.fwwerr() != 0
     }
 
     #[doc="FWWERR"]
@@ -1053,7 +1053,7 @@ impl Obr {
 
     #[doc="Read protection"]
     #[inline] pub fn test_rdprt(&self) -> bool {
-        self.rdprt != 0
+        self.rdprt() != 0
     }
 
     #[doc="Read protection"]
@@ -1072,7 +1072,7 @@ impl Obr {
 
     #[doc="BOR_LEV"]
     #[inline] pub fn test_bor_lev(&self) -> bool {
-        self.bor_lev != 0
+        self.bor_lev() != 0
     }
 
     #[doc="BOR_LEV"]
@@ -1091,7 +1091,7 @@ impl Obr {
 
     #[doc="Selection of protection mode of WPR bits"]
     #[inline] pub fn test_sprmod(&self) -> bool {
-        self.sprmod != 0
+        self.sprmod() != 0
     }
 
     #[doc="Selection of protection mode of WPR bits"]
@@ -1133,7 +1133,7 @@ impl Wrpr {
 
     #[doc="Write protection"]
     #[inline] pub fn test_wrp(&self) -> bool {
-        self.wrp != 0
+        self.wrp() != 0
     }
 
     #[doc="Write protection"]

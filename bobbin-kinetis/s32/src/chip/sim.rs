@@ -465,7 +465,7 @@ impl Chipctl {
 
     #[doc="ADC interleave channel enable"]
     #[inline] pub fn test_adc_interleave_en(&self) -> bool {
-        self.adc_interleave_en != 0
+        self.adc_interleave_en() != 0
     }
 
     #[doc="ADC interleave channel enable"]
@@ -484,7 +484,7 @@ impl Chipctl {
 
     #[doc="CLKOUT Select"]
     #[inline] pub fn test_clkoutsel(&self) -> bool {
-        self.clkoutsel != 0
+        self.clkoutsel() != 0
     }
 
     #[doc="CLKOUT Select"]
@@ -503,7 +503,7 @@ impl Chipctl {
 
     #[doc="CLKOUT Divide Ratio"]
     #[inline] pub fn test_clkoutdiv(&self) -> bool {
-        self.clkoutdiv != 0
+        self.clkoutdiv() != 0
     }
 
     #[doc="CLKOUT Divide Ratio"]
@@ -522,7 +522,7 @@ impl Chipctl {
 
     #[doc="CLKOUT enable"]
     #[inline] pub fn test_clkouten(&self) -> bool {
-        self.clkouten != 0
+        self.clkouten() != 0
     }
 
     #[doc="CLKOUT enable"]
@@ -541,7 +541,7 @@ impl Chipctl {
 
     #[doc="Debug trace clock select"]
     #[inline] pub fn test_traceclk_sel(&self) -> bool {
-        self.traceclk_sel != 0
+        self.traceclk_sel() != 0
     }
 
     #[doc="Debug trace clock select"]
@@ -560,7 +560,7 @@ impl Chipctl {
 
     #[doc="PDB back-to-back select"]
     #[inline] pub fn test_pdb_bb_sel(&self) -> bool {
-        self.pdb_bb_sel != 0
+        self.pdb_bb_sel() != 0
     }
 
     #[doc="PDB back-to-back select"]
@@ -579,7 +579,7 @@ impl Chipctl {
 
     #[doc="ADC_SUPPLY"]
     #[inline] pub fn test_adc_supply(&self) -> bool {
-        self.adc_supply != 0
+        self.adc_supply() != 0
     }
 
     #[doc="ADC_SUPPLY"]
@@ -598,7 +598,7 @@ impl Chipctl {
 
     #[doc="ADC_SUPPLYEN"]
     #[inline] pub fn test_adc_supplyen(&self) -> bool {
-        self.adc_supplyen != 0
+        self.adc_supplyen() != 0
     }
 
     #[doc="ADC_SUPPLYEN"]
@@ -617,7 +617,7 @@ impl Chipctl {
 
     #[doc="SRAMU_RETEN"]
     #[inline] pub fn test_sramu_reten(&self) -> bool {
-        self.sramu_reten != 0
+        self.sramu_reten() != 0
     }
 
     #[doc="SRAMU_RETEN"]
@@ -636,7 +636,7 @@ impl Chipctl {
 
     #[doc="SRAML_RETEN"]
     #[inline] pub fn test_sraml_reten(&self) -> bool {
-        self.sraml_reten != 0
+        self.sraml_reten() != 0
     }
 
     #[doc="SRAML_RETEN"]
@@ -685,7 +685,7 @@ impl Ftmopt0 {
 
     #[doc="FTM0 Fault X Select"]
     #[inline] pub fn test_ftm0fltxsel(&self) -> bool {
-        self.ftm0fltxsel != 0
+        self.ftm0fltxsel() != 0
     }
 
     #[doc="FTM0 Fault X Select"]
@@ -704,7 +704,7 @@ impl Ftmopt0 {
 
     #[doc="FTM1 Fault X Select"]
     #[inline] pub fn test_ftm1fltxsel(&self) -> bool {
-        self.ftm1fltxsel != 0
+        self.ftm1fltxsel() != 0
     }
 
     #[doc="FTM1 Fault X Select"]
@@ -723,7 +723,7 @@ impl Ftmopt0 {
 
     #[doc="FTM2 Fault X Select"]
     #[inline] pub fn test_ftm2fltxsel(&self) -> bool {
-        self.ftm2fltxsel != 0
+        self.ftm2fltxsel() != 0
     }
 
     #[doc="FTM2 Fault X Select"]
@@ -742,7 +742,7 @@ impl Ftmopt0 {
 
     #[doc="FTM3 Fault X Select"]
     #[inline] pub fn test_ftm3fltxsel(&self) -> bool {
-        self.ftm3fltxsel != 0
+        self.ftm3fltxsel() != 0
     }
 
     #[doc="FTM3 Fault X Select"]
@@ -761,7 +761,7 @@ impl Ftmopt0 {
 
     #[doc="FTM0 External Clock Pin Select"]
     #[inline] pub fn test_ftm0clksel(&self) -> bool {
-        self.ftm0clksel != 0
+        self.ftm0clksel() != 0
     }
 
     #[doc="FTM0 External Clock Pin Select"]
@@ -780,7 +780,7 @@ impl Ftmopt0 {
 
     #[doc="FTM1 External Clock Pin Select"]
     #[inline] pub fn test_ftm1clksel(&self) -> bool {
-        self.ftm1clksel != 0
+        self.ftm1clksel() != 0
     }
 
     #[doc="FTM1 External Clock Pin Select"]
@@ -799,7 +799,7 @@ impl Ftmopt0 {
 
     #[doc="FTM2 External Clock Pin Select"]
     #[inline] pub fn test_ftm2clksel(&self) -> bool {
-        self.ftm2clksel != 0
+        self.ftm2clksel() != 0
     }
 
     #[doc="FTM2 External Clock Pin Select"]
@@ -818,7 +818,7 @@ impl Ftmopt0 {
 
     #[doc="FTM3 External Clock Pin Select"]
     #[inline] pub fn test_ftm3clksel(&self) -> bool {
-        self.ftm3clksel != 0
+        self.ftm3clksel() != 0
     }
 
     #[doc="FTM3 External Clock Pin Select"]
@@ -865,7 +865,7 @@ impl Lpoclks {
 
     #[doc="1 kHz LPO_CLK enable"]
     #[inline] pub fn test_lpo1kclken(&self) -> bool {
-        self.lpo1kclken != 0
+        self.lpo1kclken() != 0
     }
 
     #[doc="1 kHz LPO_CLK enable"]
@@ -884,7 +884,7 @@ impl Lpoclks {
 
     #[doc="32 kHz LPO_CLK enable"]
     #[inline] pub fn test_lpo32kclken(&self) -> bool {
-        self.lpo32kclken != 0
+        self.lpo32kclken() != 0
     }
 
     #[doc="32 kHz LPO_CLK enable"]
@@ -903,7 +903,7 @@ impl Lpoclks {
 
     #[doc="LPO clock source select"]
     #[inline] pub fn test_lpoclksel(&self) -> bool {
-        self.lpoclksel != 0
+        self.lpoclksel() != 0
     }
 
     #[doc="LPO clock source select"]
@@ -922,7 +922,7 @@ impl Lpoclks {
 
     #[doc="32 kHz clock source select"]
     #[inline] pub fn test_rtcclksel(&self) -> bool {
-        self.rtcclksel != 0
+        self.rtcclksel() != 0
     }
 
     #[doc="32 kHz clock source select"]
@@ -965,7 +965,7 @@ impl Adcopt {
 
     #[doc="ADC0 trigger source select"]
     #[inline] pub fn test_adc0trgsel(&self) -> bool {
-        self.adc0trgsel != 0
+        self.adc0trgsel() != 0
     }
 
     #[doc="ADC0 trigger source select"]
@@ -984,7 +984,7 @@ impl Adcopt {
 
     #[doc="ADC0 software pretrigger sources"]
     #[inline] pub fn test_adc0swpretrg(&self) -> bool {
-        self.adc0swpretrg != 0
+        self.adc0swpretrg() != 0
     }
 
     #[doc="ADC0 software pretrigger sources"]
@@ -1003,7 +1003,7 @@ impl Adcopt {
 
     #[doc="ADC0 pretrigger source select"]
     #[inline] pub fn test_adc0pretrgsel(&self) -> bool {
-        self.adc0pretrgsel != 0
+        self.adc0pretrgsel() != 0
     }
 
     #[doc="ADC0 pretrigger source select"]
@@ -1022,7 +1022,7 @@ impl Adcopt {
 
     #[doc="ADC1 trigger source select"]
     #[inline] pub fn test_adc1trgsel(&self) -> bool {
-        self.adc1trgsel != 0
+        self.adc1trgsel() != 0
     }
 
     #[doc="ADC1 trigger source select"]
@@ -1041,7 +1041,7 @@ impl Adcopt {
 
     #[doc="ADC1 software pretrigger sources"]
     #[inline] pub fn test_adc1swpretrg(&self) -> bool {
-        self.adc1swpretrg != 0
+        self.adc1swpretrg() != 0
     }
 
     #[doc="ADC1 software pretrigger sources"]
@@ -1060,7 +1060,7 @@ impl Adcopt {
 
     #[doc="ADC1 pretrigger source select"]
     #[inline] pub fn test_adc1pretrgsel(&self) -> bool {
-        self.adc1pretrgsel != 0
+        self.adc1pretrgsel() != 0
     }
 
     #[doc="ADC1 pretrigger source select"]
@@ -1105,7 +1105,7 @@ impl Ftmopt1 {
 
     #[doc="FTM0 Sync Bit"]
     #[inline] pub fn test_ftm0syncbit(&self) -> bool {
-        self.ftm0syncbit != 0
+        self.ftm0syncbit() != 0
     }
 
     #[doc="FTM0 Sync Bit"]
@@ -1124,7 +1124,7 @@ impl Ftmopt1 {
 
     #[doc="FTM1 Sync Bit"]
     #[inline] pub fn test_ftm1syncbit(&self) -> bool {
-        self.ftm1syncbit != 0
+        self.ftm1syncbit() != 0
     }
 
     #[doc="FTM1 Sync Bit"]
@@ -1143,7 +1143,7 @@ impl Ftmopt1 {
 
     #[doc="FTM2 Sync Bit"]
     #[inline] pub fn test_ftm2syncbit(&self) -> bool {
-        self.ftm2syncbit != 0
+        self.ftm2syncbit() != 0
     }
 
     #[doc="FTM2 Sync Bit"]
@@ -1162,7 +1162,7 @@ impl Ftmopt1 {
 
     #[doc="FTM3 Sync Bit"]
     #[inline] pub fn test_ftm3syncbit(&self) -> bool {
-        self.ftm3syncbit != 0
+        self.ftm3syncbit() != 0
     }
 
     #[doc="FTM3 Sync Bit"]
@@ -1181,7 +1181,7 @@ impl Ftmopt1 {
 
     #[doc="FTM1 CH0 Select"]
     #[inline] pub fn test_ftm1ch0sel(&self) -> bool {
-        self.ftm1ch0sel != 0
+        self.ftm1ch0sel() != 0
     }
 
     #[doc="FTM1 CH0 Select"]
@@ -1200,7 +1200,7 @@ impl Ftmopt1 {
 
     #[doc="FTM2 CH0 Select"]
     #[inline] pub fn test_ftm2ch0sel(&self) -> bool {
-        self.ftm2ch0sel != 0
+        self.ftm2ch0sel() != 0
     }
 
     #[doc="FTM2 CH0 Select"]
@@ -1219,7 +1219,7 @@ impl Ftmopt1 {
 
     #[doc="FTM2 CH1 Select"]
     #[inline] pub fn test_ftm2ch1sel(&self) -> bool {
-        self.ftm2ch1sel != 0
+        self.ftm2ch1sel() != 0
     }
 
     #[doc="FTM2 CH1 Select"]
@@ -1238,7 +1238,7 @@ impl Ftmopt1 {
 
     #[doc="FTM global load enable"]
     #[inline] pub fn test_ftmgldok(&self) -> bool {
-        self.ftmgldok != 0
+        self.ftmgldok() != 0
     }
 
     #[doc="FTM global load enable"]
@@ -1257,7 +1257,7 @@ impl Ftmopt1 {
 
     #[doc="FTM0 channel modulation select with FTM1_CH1"]
     #[inline] pub fn test_ftm0_outsel(&self) -> bool {
-        self.ftm0_outsel != 0
+        self.ftm0_outsel() != 0
     }
 
     #[doc="FTM0 channel modulation select with FTM1_CH1"]
@@ -1276,7 +1276,7 @@ impl Ftmopt1 {
 
     #[doc="FTM3 channel modulation select with FTM2_CH1"]
     #[inline] pub fn test_ftm3_outsel(&self) -> bool {
-        self.ftm3_outsel != 0
+        self.ftm3_outsel() != 0
     }
 
     #[doc="FTM3 channel modulation select with FTM2_CH1"]
@@ -1325,7 +1325,7 @@ impl Misctrl0 {
 
     #[doc="FTM0 OBE CTRL bit"]
     #[inline] pub fn test_ftm0_obe_ctrl(&self) -> bool {
-        self.ftm0_obe_ctrl != 0
+        self.ftm0_obe_ctrl() != 0
     }
 
     #[doc="FTM0 OBE CTRL bit"]
@@ -1344,7 +1344,7 @@ impl Misctrl0 {
 
     #[doc="FTM1 OBE CTRL bit"]
     #[inline] pub fn test_ftm1_obe_ctrl(&self) -> bool {
-        self.ftm1_obe_ctrl != 0
+        self.ftm1_obe_ctrl() != 0
     }
 
     #[doc="FTM1 OBE CTRL bit"]
@@ -1363,7 +1363,7 @@ impl Misctrl0 {
 
     #[doc="FTM2 OBE CTRL bit"]
     #[inline] pub fn test_ftm2_obe_ctrl(&self) -> bool {
-        self.ftm2_obe_ctrl != 0
+        self.ftm2_obe_ctrl() != 0
     }
 
     #[doc="FTM2 OBE CTRL bit"]
@@ -1382,7 +1382,7 @@ impl Misctrl0 {
 
     #[doc="FTM3 OBE CTRL bit"]
     #[inline] pub fn test_ftm3_obe_ctrl(&self) -> bool {
-        self.ftm3_obe_ctrl != 0
+        self.ftm3_obe_ctrl() != 0
     }
 
     #[doc="FTM3 OBE CTRL bit"]
@@ -1425,7 +1425,7 @@ impl Sdid {
 
     #[doc="Features"]
     #[inline] pub fn test_features(&self) -> bool {
-        self.features != 0
+        self.features() != 0
     }
 
     #[doc="Features"]
@@ -1444,7 +1444,7 @@ impl Sdid {
 
     #[doc="Package"]
     #[inline] pub fn test_package(&self) -> bool {
-        self.package != 0
+        self.package() != 0
     }
 
     #[doc="Package"]
@@ -1463,7 +1463,7 @@ impl Sdid {
 
     #[doc="Device revision number"]
     #[inline] pub fn test_revid(&self) -> bool {
-        self.revid != 0
+        self.revid() != 0
     }
 
     #[doc="Device revision number"]
@@ -1482,7 +1482,7 @@ impl Sdid {
 
     #[doc="RAM size"]
     #[inline] pub fn test_ramsize(&self) -> bool {
-        self.ramsize != 0
+        self.ramsize() != 0
     }
 
     #[doc="RAM size"]
@@ -1501,7 +1501,7 @@ impl Sdid {
 
     #[doc="Derivate"]
     #[inline] pub fn test_derivate(&self) -> bool {
-        self.derivate != 0
+        self.derivate() != 0
     }
 
     #[doc="Derivate"]
@@ -1520,7 +1520,7 @@ impl Sdid {
 
     #[doc="Subseries"]
     #[inline] pub fn test_subseries(&self) -> bool {
-        self.subseries != 0
+        self.subseries() != 0
     }
 
     #[doc="Subseries"]
@@ -1539,7 +1539,7 @@ impl Sdid {
 
     #[doc="S32K product series generation"]
     #[inline] pub fn test_generation(&self) -> bool {
-        self.generation != 0
+        self.generation() != 0
     }
 
     #[doc="S32K product series generation"]
@@ -1585,7 +1585,7 @@ impl Platcgc {
 
     #[doc="MSCM Clock Gating Control"]
     #[inline] pub fn test_cgcmscm(&self) -> bool {
-        self.cgcmscm != 0
+        self.cgcmscm() != 0
     }
 
     #[doc="MSCM Clock Gating Control"]
@@ -1604,7 +1604,7 @@ impl Platcgc {
 
     #[doc="MPU Clock Gating Control"]
     #[inline] pub fn test_cgcmpu(&self) -> bool {
-        self.cgcmpu != 0
+        self.cgcmpu() != 0
     }
 
     #[doc="MPU Clock Gating Control"]
@@ -1623,7 +1623,7 @@ impl Platcgc {
 
     #[doc="DMA Clock Gating Control"]
     #[inline] pub fn test_cgcdma(&self) -> bool {
-        self.cgcdma != 0
+        self.cgcdma() != 0
     }
 
     #[doc="DMA Clock Gating Control"]
@@ -1642,7 +1642,7 @@ impl Platcgc {
 
     #[doc="ERM Clock Gating Control"]
     #[inline] pub fn test_cgcerm(&self) -> bool {
-        self.cgcerm != 0
+        self.cgcerm() != 0
     }
 
     #[doc="ERM Clock Gating Control"]
@@ -1661,7 +1661,7 @@ impl Platcgc {
 
     #[doc="EIM Clock Gating Control"]
     #[inline] pub fn test_cgceim(&self) -> bool {
-        self.cgceim != 0
+        self.cgceim() != 0
     }
 
     #[doc="EIM Clock Gating Control"]
@@ -1705,7 +1705,7 @@ impl Fcfg1 {
 
     #[doc="FlexNVM partition"]
     #[inline] pub fn test_depart(&self) -> bool {
-        self.depart != 0
+        self.depart() != 0
     }
 
     #[doc="FlexNVM partition"]
@@ -1724,7 +1724,7 @@ impl Fcfg1 {
 
     #[doc="EEE SRAM SIZE"]
     #[inline] pub fn test_eeeramsize(&self) -> bool {
-        self.eeeramsize != 0
+        self.eeeramsize() != 0
     }
 
     #[doc="EEE SRAM SIZE"]
@@ -1765,7 +1765,7 @@ impl Uidh {
 
     #[doc="Unique Identification"]
     #[inline] pub fn test_uid127_96(&self) -> bool {
-        self.uid127_96 != 0
+        self.uid127_96() != 0
     }
 
     #[doc="Unique Identification"]
@@ -1804,7 +1804,7 @@ impl Uidmh {
 
     #[doc="Unique Identification"]
     #[inline] pub fn test_uid95_64(&self) -> bool {
-        self.uid95_64 != 0
+        self.uid95_64() != 0
     }
 
     #[doc="Unique Identification"]
@@ -1843,7 +1843,7 @@ impl Uidml {
 
     #[doc="Unique Identification"]
     #[inline] pub fn test_uid63_32(&self) -> bool {
-        self.uid63_32 != 0
+        self.uid63_32() != 0
     }
 
     #[doc="Unique Identification"]
@@ -1882,7 +1882,7 @@ impl Uidl {
 
     #[doc="Unique Identification"]
     #[inline] pub fn test_uid31_0(&self) -> bool {
-        self.uid31_0 != 0
+        self.uid31_0() != 0
     }
 
     #[doc="Unique Identification"]
@@ -1921,7 +1921,7 @@ impl Clkdiv4 {
 
     #[doc="Trace Clock Divider fraction To configure TRACEDIV and TRACEFRAC, you must first clear TRACEDIVEN to disable the trace clock divide function."]
     #[inline] pub fn test_tracefrac(&self) -> bool {
-        self.tracefrac != 0
+        self.tracefrac() != 0
     }
 
     #[doc="Trace Clock Divider fraction To configure TRACEDIV and TRACEFRAC, you must first clear TRACEDIVEN to disable the trace clock divide function."]
@@ -1940,7 +1940,7 @@ impl Clkdiv4 {
 
     #[doc="Trace Clock Divider value To configure TRACEDIV, you must first disable TRACEDIVEN, then enable it after setting TRACEDIV."]
     #[inline] pub fn test_tracediv(&self) -> bool {
-        self.tracediv != 0
+        self.tracediv() != 0
     }
 
     #[doc="Trace Clock Divider value To configure TRACEDIV, you must first disable TRACEDIVEN, then enable it after setting TRACEDIV."]
@@ -1959,7 +1959,7 @@ impl Clkdiv4 {
 
     #[doc="Debug Trace Divider control"]
     #[inline] pub fn test_tracediven(&self) -> bool {
-        self.tracediven != 0
+        self.tracediven() != 0
     }
 
     #[doc="Debug Trace Divider control"]
@@ -2001,7 +2001,7 @@ impl Misctrl1 {
 
     #[doc="Software trigger to TRGMUX. Writing to this bit generates software trigger to peripherals through TRGMUX (Refer to Figure: Trigger interconnectivity)."]
     #[inline] pub fn test_sw_trg(&self) -> bool {
-        self.sw_trg != 0
+        self.sw_trg() != 0
     }
 
     #[doc="Software trigger to TRGMUX. Writing to this bit generates software trigger to peripherals through TRGMUX (Refer to Figure: Trigger interconnectivity)."]

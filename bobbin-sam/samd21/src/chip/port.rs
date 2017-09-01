@@ -477,7 +477,7 @@ impl Ctrl {
 
     #[doc="Input Sampling Mode"]
     #[inline] pub fn test_sampling(&self) -> bool {
-        self.sampling != 0
+        self.sampling() != 0
     }
 
     #[doc="Input Sampling Mode"]
@@ -1209,7 +1209,7 @@ impl Pincfg {
 
     #[doc="Peripheral Multiplexer Enable"]
     #[inline] pub fn test_pmuxen(&self) -> bool {
-        self.pmuxen != 0
+        self.pmuxen() != 0
     }
 
     #[doc="Peripheral Multiplexer Enable"]
@@ -1228,7 +1228,7 @@ impl Pincfg {
 
     #[doc="Input Enable"]
     #[inline] pub fn test_inen(&self) -> bool {
-        self.inen != 0
+        self.inen() != 0
     }
 
     #[doc="Input Enable"]
@@ -1247,7 +1247,7 @@ impl Pincfg {
 
     #[doc="Pull Enable"]
     #[inline] pub fn test_pullen(&self) -> bool {
-        self.pullen != 0
+        self.pullen() != 0
     }
 
     #[doc="Pull Enable"]
@@ -1266,7 +1266,7 @@ impl Pincfg {
 
     #[doc="Output Driver Strength Selection"]
     #[inline] pub fn test_drvstr(&self) -> bool {
-        self.drvstr != 0
+        self.drvstr() != 0
     }
 
     #[doc="Output Driver Strength Selection"]
@@ -1356,7 +1356,7 @@ impl Wrconfig {
 
     #[doc="Pin Mask for Multiple Pin Configuration"]
     #[inline] pub fn test_pinmask(&self) -> bool {
-        self.pinmask != 0
+        self.pinmask() != 0
     }
 
     #[doc="Pin Mask for Multiple Pin Configuration"]
@@ -1375,7 +1375,7 @@ impl Wrconfig {
 
     #[doc="Peripheral Multiplexer Enable"]
     #[inline] pub fn test_pmuxen(&self) -> bool {
-        self.pmuxen != 0
+        self.pmuxen() != 0
     }
 
     #[doc="Peripheral Multiplexer Enable"]
@@ -1394,7 +1394,7 @@ impl Wrconfig {
 
     #[doc="Input Enable"]
     #[inline] pub fn test_inen(&self) -> bool {
-        self.inen != 0
+        self.inen() != 0
     }
 
     #[doc="Input Enable"]
@@ -1413,7 +1413,7 @@ impl Wrconfig {
 
     #[doc="Pull Enable"]
     #[inline] pub fn test_pullen(&self) -> bool {
-        self.pullen != 0
+        self.pullen() != 0
     }
 
     #[doc="Pull Enable"]
@@ -1432,7 +1432,7 @@ impl Wrconfig {
 
     #[doc="Output Driver Strength Selection"]
     #[inline] pub fn test_drvstr(&self) -> bool {
-        self.drvstr != 0
+        self.drvstr() != 0
     }
 
     #[doc="Output Driver Strength Selection"]
@@ -1451,7 +1451,7 @@ impl Wrconfig {
 
     #[doc="Peripheral Multiplexing"]
     #[inline] pub fn test_pmux(&self) -> bool {
-        self.pmux != 0
+        self.pmux() != 0
     }
 
     #[doc="Peripheral Multiplexing"]
@@ -1470,7 +1470,7 @@ impl Wrconfig {
 
     #[doc="Write PMUX"]
     #[inline] pub fn test_wrpmux(&self) -> bool {
-        self.wrpmux != 0
+        self.wrpmux() != 0
     }
 
     #[doc="Write PMUX"]
@@ -1489,7 +1489,7 @@ impl Wrconfig {
 
     #[doc="Write PINCFG"]
     #[inline] pub fn test_wrpincfg(&self) -> bool {
-        self.wrpincfg != 0
+        self.wrpincfg() != 0
     }
 
     #[doc="Write PINCFG"]
@@ -1508,7 +1508,7 @@ impl Wrconfig {
 
     #[doc="Half-Word Select"]
     #[inline] pub fn test_hwsel(&self) -> bool {
-        self.hwsel != 0
+        self.hwsel() != 0
     }
 
     #[doc="Half-Word Select"]

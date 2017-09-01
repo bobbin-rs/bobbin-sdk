@@ -295,7 +295,7 @@ impl Load {
 
     #[doc="Watchdog Load Value"]
     #[inline] pub fn test_load(&self) -> bool {
-        self.load != 0
+        self.load() != 0
     }
 
     #[doc="Watchdog Load Value"]
@@ -334,7 +334,7 @@ impl Value {
 
     #[doc="Watchdog Value"]
     #[inline] pub fn test_value(&self) -> bool {
-        self.value != 0
+        self.value() != 0
     }
 
     #[doc="Watchdog Value"]
@@ -373,7 +373,7 @@ impl Ctl {
 
     #[doc="Watchdog Interrupt Enable"]
     #[inline] pub fn test_inten(&self) -> bool {
-        self.inten != 0
+        self.inten() != 0
     }
 
     #[doc="Watchdog Interrupt Enable"]
@@ -392,7 +392,7 @@ impl Ctl {
 
     #[doc="Watchdog Reset Enable"]
     #[inline] pub fn test_resen(&self) -> bool {
-        self.resen != 0
+        self.resen() != 0
     }
 
     #[doc="Watchdog Reset Enable"]
@@ -411,7 +411,7 @@ impl Ctl {
 
     #[doc="Watchdog Interrupt Type"]
     #[inline] pub fn test_inttype(&self) -> bool {
-        self.inttype != 0
+        self.inttype() != 0
     }
 
     #[doc="Watchdog Interrupt Type"]
@@ -430,7 +430,7 @@ impl Ctl {
 
     #[doc="Write Complete"]
     #[inline] pub fn test_wrc(&self) -> bool {
-        self.wrc != 0
+        self.wrc() != 0
     }
 
     #[doc="Write Complete"]
@@ -473,7 +473,7 @@ impl Icr {
 
     #[doc="Watchdog Interrupt Clear"]
     #[inline] pub fn test_icr(&self) -> bool {
-        self.icr != 0
+        self.icr() != 0
     }
 
     #[doc="Watchdog Interrupt Clear"]
@@ -512,7 +512,7 @@ impl Ris {
 
     #[doc="Watchdog Raw Interrupt Status"]
     #[inline] pub fn test_wdtris(&self) -> bool {
-        self.wdtris != 0
+        self.wdtris() != 0
     }
 
     #[doc="Watchdog Raw Interrupt Status"]
@@ -552,7 +552,7 @@ impl Mis {
 
     #[doc="Watchdog Masked Interrupt Status"]
     #[inline] pub fn test_wdtmis(&self) -> bool {
-        self.wdtmis != 0
+        self.wdtmis() != 0
     }
 
     #[doc="Watchdog Masked Interrupt Status"]
@@ -592,7 +592,7 @@ impl Test {
 
     #[doc="Watchdog Stall Enable"]
     #[inline] pub fn test_stall(&self) -> bool {
-        self.stall != 0
+        self.stall() != 0
     }
 
     #[doc="Watchdog Stall Enable"]
@@ -632,7 +632,7 @@ impl Lock {
 
     #[doc="Watchdog Lock"]
     #[inline] pub fn test_lock(&self) -> bool {
-        self.lock != 0
+        self.lock() != 0
     }
 
     #[doc="Watchdog Lock"]

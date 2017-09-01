@@ -891,7 +891,7 @@ impl Sc1 {
 
     #[doc="Input channel select"]
     #[inline] pub fn test_adch(&self) -> bool {
-        self.adch != 0
+        self.adch() != 0
     }
 
     #[doc="Input channel select"]
@@ -910,7 +910,7 @@ impl Sc1 {
 
     #[doc="Differential Mode Enable"]
     #[inline] pub fn test_diff(&self) -> bool {
-        self.diff != 0
+        self.diff() != 0
     }
 
     #[doc="Differential Mode Enable"]
@@ -929,7 +929,7 @@ impl Sc1 {
 
     #[doc="Interrupt Enable"]
     #[inline] pub fn test_aien(&self) -> bool {
-        self.aien != 0
+        self.aien() != 0
     }
 
     #[doc="Interrupt Enable"]
@@ -948,7 +948,7 @@ impl Sc1 {
 
     #[doc="Conversion Complete Flag"]
     #[inline] pub fn test_coco(&self) -> bool {
-        self.coco != 0
+        self.coco() != 0
     }
 
     #[doc="Conversion Complete Flag"]
@@ -991,7 +991,7 @@ impl Cfg1 {
 
     #[doc="Input Clock Select"]
     #[inline] pub fn test_adiclk(&self) -> bool {
-        self.adiclk != 0
+        self.adiclk() != 0
     }
 
     #[doc="Input Clock Select"]
@@ -1010,7 +1010,7 @@ impl Cfg1 {
 
     #[doc="Conversion mode selection"]
     #[inline] pub fn test_mode(&self) -> bool {
-        self.mode != 0
+        self.mode() != 0
     }
 
     #[doc="Conversion mode selection"]
@@ -1029,7 +1029,7 @@ impl Cfg1 {
 
     #[doc="Sample Time Configuration"]
     #[inline] pub fn test_adlsmp(&self) -> bool {
-        self.adlsmp != 0
+        self.adlsmp() != 0
     }
 
     #[doc="Sample Time Configuration"]
@@ -1048,7 +1048,7 @@ impl Cfg1 {
 
     #[doc="Clock Divide Select"]
     #[inline] pub fn test_adiv(&self) -> bool {
-        self.adiv != 0
+        self.adiv() != 0
     }
 
     #[doc="Clock Divide Select"]
@@ -1067,7 +1067,7 @@ impl Cfg1 {
 
     #[doc="Low-Power Configuration"]
     #[inline] pub fn test_adlpc(&self) -> bool {
-        self.adlpc != 0
+        self.adlpc() != 0
     }
 
     #[doc="Low-Power Configuration"]
@@ -1111,7 +1111,7 @@ impl Cfg2 {
 
     #[doc="Long Sample Time Select"]
     #[inline] pub fn test_adlsts(&self) -> bool {
-        self.adlsts != 0
+        self.adlsts() != 0
     }
 
     #[doc="Long Sample Time Select"]
@@ -1130,7 +1130,7 @@ impl Cfg2 {
 
     #[doc="High-Speed Configuration"]
     #[inline] pub fn test_adhsc(&self) -> bool {
-        self.adhsc != 0
+        self.adhsc() != 0
     }
 
     #[doc="High-Speed Configuration"]
@@ -1149,7 +1149,7 @@ impl Cfg2 {
 
     #[doc="Asynchronous Clock Output Enable"]
     #[inline] pub fn test_adacken(&self) -> bool {
-        self.adacken != 0
+        self.adacken() != 0
     }
 
     #[doc="Asynchronous Clock Output Enable"]
@@ -1168,7 +1168,7 @@ impl Cfg2 {
 
     #[doc="ADC Mux Select"]
     #[inline] pub fn test_muxsel(&self) -> bool {
-        self.muxsel != 0
+        self.muxsel() != 0
     }
 
     #[doc="ADC Mux Select"]
@@ -1211,7 +1211,7 @@ impl R {
 
     #[doc="Data result"]
     #[inline] pub fn test_d(&self) -> bool {
-        self.d != 0
+        self.d() != 0
     }
 
     #[doc="Data result"]
@@ -1230,7 +1230,7 @@ impl R {
 
     #[doc="Data result (16 bit)"]
     #[inline] pub fn test_d16(&self) -> bool {
-        self.d16 != 0
+        self.d16() != 0
     }
 
     #[doc="Data result (16 bit)"]
@@ -1249,7 +1249,7 @@ impl R {
 
     #[doc="Data result (12 bit)"]
     #[inline] pub fn test_d12(&self) -> bool {
-        self.d12 != 0
+        self.d12() != 0
     }
 
     #[doc="Data result (12 bit)"]
@@ -1268,7 +1268,7 @@ impl R {
 
     #[doc="Data result (10 bit)"]
     #[inline] pub fn test_d10(&self) -> bool {
-        self.d10 != 0
+        self.d10() != 0
     }
 
     #[doc="Data result (10 bit)"]
@@ -1287,7 +1287,7 @@ impl R {
 
     #[doc="Data result (8 bit)"]
     #[inline] pub fn test_d8(&self) -> bool {
-        self.d8 != 0
+        self.d8() != 0
     }
 
     #[doc="Data result (8 bit)"]
@@ -1331,7 +1331,7 @@ impl Cv {
 
     #[doc="Compare Value."]
     #[inline] pub fn test_cv(&self) -> bool {
-        self.cv != 0
+        self.cv() != 0
     }
 
     #[doc="Compare Value."]
@@ -1371,7 +1371,7 @@ impl Sc2 {
 
     #[doc="Voltage Reference Selection"]
     #[inline] pub fn test_refsel(&self) -> bool {
-        self.refsel != 0
+        self.refsel() != 0
     }
 
     #[doc="Voltage Reference Selection"]
@@ -1390,7 +1390,7 @@ impl Sc2 {
 
     #[doc="DMA Enable"]
     #[inline] pub fn test_dmaen(&self) -> bool {
-        self.dmaen != 0
+        self.dmaen() != 0
     }
 
     #[doc="DMA Enable"]
@@ -1409,7 +1409,7 @@ impl Sc2 {
 
     #[doc="Compare Function Range Enable"]
     #[inline] pub fn test_acren(&self) -> bool {
-        self.acren != 0
+        self.acren() != 0
     }
 
     #[doc="Compare Function Range Enable"]
@@ -1428,7 +1428,7 @@ impl Sc2 {
 
     #[doc="Compare Function Greater Than Enable"]
     #[inline] pub fn test_acfgt(&self) -> bool {
-        self.acfgt != 0
+        self.acfgt() != 0
     }
 
     #[doc="Compare Function Greater Than Enable"]
@@ -1447,7 +1447,7 @@ impl Sc2 {
 
     #[doc="Compare Function Enable"]
     #[inline] pub fn test_acfe(&self) -> bool {
-        self.acfe != 0
+        self.acfe() != 0
     }
 
     #[doc="Compare Function Enable"]
@@ -1466,7 +1466,7 @@ impl Sc2 {
 
     #[doc="Conversion Trigger Select"]
     #[inline] pub fn test_adtrg(&self) -> bool {
-        self.adtrg != 0
+        self.adtrg() != 0
     }
 
     #[doc="Conversion Trigger Select"]
@@ -1485,7 +1485,7 @@ impl Sc2 {
 
     #[doc="Conversion Active"]
     #[inline] pub fn test_adact(&self) -> bool {
-        self.adact != 0
+        self.adact() != 0
     }
 
     #[doc="Conversion Active"]
@@ -1531,7 +1531,7 @@ impl Sc3 {
 
     #[doc="Hardware Average Select"]
     #[inline] pub fn test_avgs(&self) -> bool {
-        self.avgs != 0
+        self.avgs() != 0
     }
 
     #[doc="Hardware Average Select"]
@@ -1550,7 +1550,7 @@ impl Sc3 {
 
     #[doc="Hardware Average Enable"]
     #[inline] pub fn test_avge(&self) -> bool {
-        self.avge != 0
+        self.avge() != 0
     }
 
     #[doc="Hardware Average Enable"]
@@ -1569,7 +1569,7 @@ impl Sc3 {
 
     #[doc="Continuous Conversion Enable"]
     #[inline] pub fn test_adco(&self) -> bool {
-        self.adco != 0
+        self.adco() != 0
     }
 
     #[doc="Continuous Conversion Enable"]
@@ -1588,7 +1588,7 @@ impl Sc3 {
 
     #[doc="Calibration Failed Flag"]
     #[inline] pub fn test_calf(&self) -> bool {
-        self.calf != 0
+        self.calf() != 0
     }
 
     #[doc="Calibration Failed Flag"]
@@ -1607,7 +1607,7 @@ impl Sc3 {
 
     #[doc="Calibration"]
     #[inline] pub fn test_cal(&self) -> bool {
-        self.cal != 0
+        self.cal() != 0
     }
 
     #[doc="Calibration"]
@@ -1651,7 +1651,7 @@ impl Ofs {
 
     #[doc="Offset Error Correction Value"]
     #[inline] pub fn test_ofs(&self) -> bool {
-        self.ofs != 0
+        self.ofs() != 0
     }
 
     #[doc="Offset Error Correction Value"]
@@ -1691,7 +1691,7 @@ impl Pg {
 
     #[doc="Plus-Side Gain"]
     #[inline] pub fn test_pg(&self) -> bool {
-        self.pg != 0
+        self.pg() != 0
     }
 
     #[doc="Plus-Side Gain"]
@@ -1731,7 +1731,7 @@ impl Mg {
 
     #[doc="Minus-Side Gain"]
     #[inline] pub fn test_mg(&self) -> bool {
-        self.mg != 0
+        self.mg() != 0
     }
 
     #[doc="Minus-Side Gain"]
@@ -1771,7 +1771,7 @@ impl Clpd {
 
     #[doc="Calibration Value"]
     #[inline] pub fn test_clpd(&self) -> bool {
-        self.clpd != 0
+        self.clpd() != 0
     }
 
     #[doc="Calibration Value"]
@@ -1811,7 +1811,7 @@ impl Clps {
 
     #[doc="Calibration Value"]
     #[inline] pub fn test_clps(&self) -> bool {
-        self.clps != 0
+        self.clps() != 0
     }
 
     #[doc="Calibration Value"]
@@ -1851,7 +1851,7 @@ impl Clp4 {
 
     #[doc="Calibration Value"]
     #[inline] pub fn test_clp4(&self) -> bool {
-        self.clp4 != 0
+        self.clp4() != 0
     }
 
     #[doc="Calibration Value"]
@@ -1891,7 +1891,7 @@ impl Clp3 {
 
     #[doc="Calibration Value"]
     #[inline] pub fn test_clp3(&self) -> bool {
-        self.clp3 != 0
+        self.clp3() != 0
     }
 
     #[doc="Calibration Value"]
@@ -1931,7 +1931,7 @@ impl Clp2 {
 
     #[doc="Calibration Value"]
     #[inline] pub fn test_clp2(&self) -> bool {
-        self.clp2 != 0
+        self.clp2() != 0
     }
 
     #[doc="Calibration Value"]
@@ -1971,7 +1971,7 @@ impl Clp1 {
 
     #[doc="Calibration Value"]
     #[inline] pub fn test_clp1(&self) -> bool {
-        self.clp1 != 0
+        self.clp1() != 0
     }
 
     #[doc="Calibration Value"]
@@ -2011,7 +2011,7 @@ impl Clp0 {
 
     #[doc="Calibration Value"]
     #[inline] pub fn test_clp0(&self) -> bool {
-        self.clp0 != 0
+        self.clp0() != 0
     }
 
     #[doc="Calibration Value"]
@@ -2051,7 +2051,7 @@ impl Clmd {
 
     #[doc="Calibration Value"]
     #[inline] pub fn test_clmd(&self) -> bool {
-        self.clmd != 0
+        self.clmd() != 0
     }
 
     #[doc="Calibration Value"]
@@ -2091,7 +2091,7 @@ impl Clms {
 
     #[doc="Calibration Value"]
     #[inline] pub fn test_clms(&self) -> bool {
-        self.clms != 0
+        self.clms() != 0
     }
 
     #[doc="Calibration Value"]
@@ -2131,7 +2131,7 @@ impl Clm4 {
 
     #[doc="Calibration Value"]
     #[inline] pub fn test_clm4(&self) -> bool {
-        self.clm4 != 0
+        self.clm4() != 0
     }
 
     #[doc="Calibration Value"]
@@ -2171,7 +2171,7 @@ impl Clm3 {
 
     #[doc="Calibration Value"]
     #[inline] pub fn test_clm3(&self) -> bool {
-        self.clm3 != 0
+        self.clm3() != 0
     }
 
     #[doc="Calibration Value"]
@@ -2211,7 +2211,7 @@ impl Clm2 {
 
     #[doc="Calibration Value"]
     #[inline] pub fn test_clm2(&self) -> bool {
-        self.clm2 != 0
+        self.clm2() != 0
     }
 
     #[doc="Calibration Value"]
@@ -2251,7 +2251,7 @@ impl Clm1 {
 
     #[doc="Calibration Value"]
     #[inline] pub fn test_clm1(&self) -> bool {
-        self.clm1 != 0
+        self.clm1() != 0
     }
 
     #[doc="Calibration Value"]
@@ -2291,7 +2291,7 @@ impl Clm0 {
 
     #[doc="Calibration Value"]
     #[inline] pub fn test_clm0(&self) -> bool {
-        self.clm0 != 0
+        self.clm0() != 0
     }
 
     #[doc="Calibration Value"]

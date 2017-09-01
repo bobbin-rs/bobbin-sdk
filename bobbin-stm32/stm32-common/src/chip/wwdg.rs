@@ -128,7 +128,7 @@ impl Cr {
 
     #[doc="Activation bit"]
     #[inline] pub fn test_wdga(&self) -> bool {
-        self.wdga != 0
+        self.wdga() != 0
     }
 
     #[doc="Activation bit"]
@@ -147,7 +147,7 @@ impl Cr {
 
     #[doc="7-bit counter (MSB to LSB)"]
     #[inline] pub fn test_t(&self) -> bool {
-        self.t != 0
+        self.t() != 0
     }
 
     #[doc="7-bit counter (MSB to LSB)"]
@@ -188,7 +188,7 @@ impl Cfr {
 
     #[doc="Early wakeup interrupt"]
     #[inline] pub fn test_ewi(&self) -> bool {
-        self.ewi != 0
+        self.ewi() != 0
     }
 
     #[doc="Early wakeup interrupt"]
@@ -207,7 +207,7 @@ impl Cfr {
 
     #[doc="Timer base"]
     #[inline] pub fn test_wdgtb(&self) -> bool {
-        self.wdgtb != 0
+        self.wdgtb() != 0
     }
 
     #[doc="Timer base"]
@@ -226,7 +226,7 @@ impl Cfr {
 
     #[doc="7-bit window value"]
     #[inline] pub fn test_w(&self) -> bool {
-        self.w != 0
+        self.w() != 0
     }
 
     #[doc="7-bit window value"]
@@ -268,7 +268,7 @@ impl Sr {
 
     #[doc="Early wakeup interrupt flag"]
     #[inline] pub fn test_ewif(&self) -> bool {
-        self.ewif != 0
+        self.ewif() != 0
     }
 
     #[doc="Early wakeup interrupt flag"]

@@ -164,7 +164,7 @@ impl Csr {
 
     #[doc="Returns 1 if timer counted to 0 since last time this was read."]
     #[inline] pub fn test_countflag(&self) -> bool {
-        self.countflag != 0
+        self.countflag() != 0
     }
 
     #[doc="Returns 1 if timer counted to 0 since last time this was read."]
@@ -183,7 +183,7 @@ impl Csr {
 
     #[doc="Indicates the clock source: 0 = external clock, 1 = processor clock."]
     #[inline] pub fn test_clksource(&self) -> bool {
-        self.clksource != 0
+        self.clksource() != 0
     }
 
     #[doc="Indicates the clock source: 0 = external clock, 1 = processor clock."]
@@ -202,7 +202,7 @@ impl Csr {
 
     #[doc="Enables SysTick exception request: 0 = counting down to zero does not assert the SysTick exception request, 1 = counting down to zero asserts the SysTick exception request."]
     #[inline] pub fn test_tickint(&self) -> bool {
-        self.tickint != 0
+        self.tickint() != 0
     }
 
     #[doc="Enables SysTick exception request: 0 = counting down to zero does not assert the SysTick exception request, 1 = counting down to zero asserts the SysTick exception request."]
@@ -221,7 +221,7 @@ impl Csr {
 
     #[doc="Enables the counter: 0 = counter disabled, 1 = counter enabled."]
     #[inline] pub fn test_enable(&self) -> bool {
-        self.enable != 0
+        self.enable() != 0
     }
 
     #[doc="Enables the counter: 0 = counter disabled, 1 = counter enabled."]
@@ -264,7 +264,7 @@ impl Rvr {
 
     #[doc="Value to load into the SYST_CVR register when the counter is enabled and when it reaches 0"]
     #[inline] pub fn test_reload(&self) -> bool {
-        self.reload != 0
+        self.reload() != 0
     }
 
     #[doc="Value to load into the SYST_CVR register when the counter is enabled and when it reaches 0"]
@@ -304,7 +304,7 @@ impl Cvr {
 
     #[doc="Reads return the current value of the SysTick counter. A write of any value clears the field to 0, and also clears the SYST_CSR COUNTFLAG bit to 0."]
     #[inline] pub fn test_current(&self) -> bool {
-        self.current != 0
+        self.current() != 0
     }
 
     #[doc="Reads return the current value of the SysTick counter. A write of any value clears the field to 0, and also clears the SYST_CSR COUNTFLAG bit to 0."]
@@ -344,7 +344,7 @@ impl Calib {
 
     #[doc="Indicates whether the device provides a reference clock to the processor"]
     #[inline] pub fn test_noref(&self) -> bool {
-        self.noref != 0
+        self.noref() != 0
     }
 
     #[doc="Indicates whether the device provides a reference clock to the processor"]
@@ -363,7 +363,7 @@ impl Calib {
 
     #[doc="Indicates whether the TENMS value is exact: 0 = TENMS value is exact, 1 = TENMS value is inexact, or not given."]
     #[inline] pub fn test_skew(&self) -> bool {
-        self.skew != 0
+        self.skew() != 0
     }
 
     #[doc="Indicates whether the TENMS value is exact: 0 = TENMS value is exact, 1 = TENMS value is inexact, or not given."]
@@ -382,7 +382,7 @@ impl Calib {
 
     #[doc="Reload value for 10ms (100Hz) timing, subject to system clock skew errors."]
     #[inline] pub fn test_tenms(&self) -> bool {
-        self.tenms != 0
+        self.tenms() != 0
     }
 
     #[doc="Reload value for 10ms (100Hz) timing, subject to system clock skew errors."]

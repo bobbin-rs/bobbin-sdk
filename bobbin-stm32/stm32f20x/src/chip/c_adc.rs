@@ -90,7 +90,7 @@ impl Csr {
 
     #[doc="Overrun flag of ADC3"]
     #[inline] pub fn test_ovr3(&self) -> bool {
-        self.ovr3 != 0
+        self.ovr3() != 0
     }
 
     #[doc="Overrun flag of ADC3"]
@@ -109,7 +109,7 @@ impl Csr {
 
     #[doc="Regular channel Start flag of ADC 3"]
     #[inline] pub fn test_strt3(&self) -> bool {
-        self.strt3 != 0
+        self.strt3() != 0
     }
 
     #[doc="Regular channel Start flag of ADC 3"]
@@ -128,7 +128,7 @@ impl Csr {
 
     #[doc="Injected channel Start flag of ADC 3"]
     #[inline] pub fn test_jstrt3(&self) -> bool {
-        self.jstrt3 != 0
+        self.jstrt3() != 0
     }
 
     #[doc="Injected channel Start flag of ADC 3"]
@@ -147,7 +147,7 @@ impl Csr {
 
     #[doc="Injected channel end of conversion of ADC 3"]
     #[inline] pub fn test_jeoc3(&self) -> bool {
-        self.jeoc3 != 0
+        self.jeoc3() != 0
     }
 
     #[doc="Injected channel end of conversion of ADC 3"]
@@ -166,7 +166,7 @@ impl Csr {
 
     #[doc="End of conversion of ADC 3"]
     #[inline] pub fn test_eoc3(&self) -> bool {
-        self.eoc3 != 0
+        self.eoc3() != 0
     }
 
     #[doc="End of conversion of ADC 3"]
@@ -185,7 +185,7 @@ impl Csr {
 
     #[doc="Analog watchdog flag of ADC 3"]
     #[inline] pub fn test_awd3(&self) -> bool {
-        self.awd3 != 0
+        self.awd3() != 0
     }
 
     #[doc="Analog watchdog flag of ADC 3"]
@@ -204,7 +204,7 @@ impl Csr {
 
     #[doc="Overrun flag of ADC 2"]
     #[inline] pub fn test_ovr2(&self) -> bool {
-        self.ovr2 != 0
+        self.ovr2() != 0
     }
 
     #[doc="Overrun flag of ADC 2"]
@@ -223,7 +223,7 @@ impl Csr {
 
     #[doc="Regular channel Start flag of ADC 2"]
     #[inline] pub fn test_strt2(&self) -> bool {
-        self.strt2 != 0
+        self.strt2() != 0
     }
 
     #[doc="Regular channel Start flag of ADC 2"]
@@ -242,7 +242,7 @@ impl Csr {
 
     #[doc="Injected channel Start flag of ADC 2"]
     #[inline] pub fn test_jstrt2(&self) -> bool {
-        self.jstrt2 != 0
+        self.jstrt2() != 0
     }
 
     #[doc="Injected channel Start flag of ADC 2"]
@@ -261,7 +261,7 @@ impl Csr {
 
     #[doc="Injected channel end of conversion of ADC 2"]
     #[inline] pub fn test_jeoc2(&self) -> bool {
-        self.jeoc2 != 0
+        self.jeoc2() != 0
     }
 
     #[doc="Injected channel end of conversion of ADC 2"]
@@ -280,7 +280,7 @@ impl Csr {
 
     #[doc="End of conversion of ADC 2"]
     #[inline] pub fn test_eoc2(&self) -> bool {
-        self.eoc2 != 0
+        self.eoc2() != 0
     }
 
     #[doc="End of conversion of ADC 2"]
@@ -299,7 +299,7 @@ impl Csr {
 
     #[doc="Analog watchdog flag of ADC 2"]
     #[inline] pub fn test_awd2(&self) -> bool {
-        self.awd2 != 0
+        self.awd2() != 0
     }
 
     #[doc="Analog watchdog flag of ADC 2"]
@@ -318,7 +318,7 @@ impl Csr {
 
     #[doc="Overrun flag of ADC 1"]
     #[inline] pub fn test_ovr1(&self) -> bool {
-        self.ovr1 != 0
+        self.ovr1() != 0
     }
 
     #[doc="Overrun flag of ADC 1"]
@@ -337,7 +337,7 @@ impl Csr {
 
     #[doc="Regular channel Start flag of ADC 1"]
     #[inline] pub fn test_strt1(&self) -> bool {
-        self.strt1 != 0
+        self.strt1() != 0
     }
 
     #[doc="Regular channel Start flag of ADC 1"]
@@ -356,7 +356,7 @@ impl Csr {
 
     #[doc="Injected channel Start flag of ADC 1"]
     #[inline] pub fn test_jstrt1(&self) -> bool {
-        self.jstrt1 != 0
+        self.jstrt1() != 0
     }
 
     #[doc="Injected channel Start flag of ADC 1"]
@@ -375,7 +375,7 @@ impl Csr {
 
     #[doc="Injected channel end of conversion of ADC 1"]
     #[inline] pub fn test_jeoc1(&self) -> bool {
-        self.jeoc1 != 0
+        self.jeoc1() != 0
     }
 
     #[doc="Injected channel end of conversion of ADC 1"]
@@ -394,7 +394,7 @@ impl Csr {
 
     #[doc="End of conversion of ADC 1"]
     #[inline] pub fn test_eoc1(&self) -> bool {
-        self.eoc1 != 0
+        self.eoc1() != 0
     }
 
     #[doc="End of conversion of ADC 1"]
@@ -413,7 +413,7 @@ impl Csr {
 
     #[doc="Analog watchdog flag of ADC 1"]
     #[inline] pub fn test_awd1(&self) -> bool {
-        self.awd1 != 0
+        self.awd1() != 0
     }
 
     #[doc="Analog watchdog flag of ADC 1"]
@@ -470,7 +470,7 @@ impl Ccr {
 
     #[doc="Temperature sensor and VREFINT enable"]
     #[inline] pub fn test_tsvrefe(&self) -> bool {
-        self.tsvrefe != 0
+        self.tsvrefe() != 0
     }
 
     #[doc="Temperature sensor and VREFINT enable"]
@@ -489,7 +489,7 @@ impl Ccr {
 
     #[doc="VBAT enable"]
     #[inline] pub fn test_vbate(&self) -> bool {
-        self.vbate != 0
+        self.vbate() != 0
     }
 
     #[doc="VBAT enable"]
@@ -508,7 +508,7 @@ impl Ccr {
 
     #[doc="ADC prescaler"]
     #[inline] pub fn test_adcpre(&self) -> bool {
-        self.adcpre != 0
+        self.adcpre() != 0
     }
 
     #[doc="ADC prescaler"]
@@ -527,7 +527,7 @@ impl Ccr {
 
     #[doc="Direct memory access mode for multi ADC mode"]
     #[inline] pub fn test_dma(&self) -> bool {
-        self.dma != 0
+        self.dma() != 0
     }
 
     #[doc="Direct memory access mode for multi ADC mode"]
@@ -546,7 +546,7 @@ impl Ccr {
 
     #[doc="DMA disable selection for multi-ADC mode"]
     #[inline] pub fn test_dds(&self) -> bool {
-        self.dds != 0
+        self.dds() != 0
     }
 
     #[doc="DMA disable selection for multi-ADC mode"]
@@ -565,7 +565,7 @@ impl Ccr {
 
     #[doc="Delay between 2 sampling phases"]
     #[inline] pub fn test_delay(&self) -> bool {
-        self.delay != 0
+        self.delay() != 0
     }
 
     #[doc="Delay between 2 sampling phases"]
@@ -584,7 +584,7 @@ impl Ccr {
 
     #[doc="Multi ADC mode selection"]
     #[inline] pub fn test_mult(&self) -> bool {
-        self.mult != 0
+        self.mult() != 0
     }
 
     #[doc="Multi ADC mode selection"]
@@ -630,7 +630,7 @@ impl Cdr {
 
     #[doc="2nd data item of a pair of regular conversions"]
     #[inline] pub fn test_data2(&self) -> bool {
-        self.data2 != 0
+        self.data2() != 0
     }
 
     #[doc="2nd data item of a pair of regular conversions"]
@@ -649,7 +649,7 @@ impl Cdr {
 
     #[doc="1st data item of a pair of regular conversions"]
     #[inline] pub fn test_data1(&self) -> bool {
-        self.data1 != 0
+        self.data1() != 0
     }
 
     #[doc="1st data item of a pair of regular conversions"]

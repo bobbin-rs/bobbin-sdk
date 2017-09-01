@@ -1640,7 +1640,7 @@ impl Dr1 {
 
     #[doc="Backup data"]
     #[inline] pub fn test_d1(&self) -> bool {
-        self.d1 != 0
+        self.d1() != 0
     }
 
     #[doc="Backup data"]
@@ -1680,7 +1680,7 @@ impl Dr2 {
 
     #[doc="Backup data"]
     #[inline] pub fn test_d2(&self) -> bool {
-        self.d2 != 0
+        self.d2() != 0
     }
 
     #[doc="Backup data"]
@@ -1720,7 +1720,7 @@ impl Dr3 {
 
     #[doc="Backup data"]
     #[inline] pub fn test_d3(&self) -> bool {
-        self.d3 != 0
+        self.d3() != 0
     }
 
     #[doc="Backup data"]
@@ -1760,7 +1760,7 @@ impl Dr4 {
 
     #[doc="Backup data"]
     #[inline] pub fn test_d4(&self) -> bool {
-        self.d4 != 0
+        self.d4() != 0
     }
 
     #[doc="Backup data"]
@@ -1800,7 +1800,7 @@ impl Dr5 {
 
     #[doc="Backup data"]
     #[inline] pub fn test_d5(&self) -> bool {
-        self.d5 != 0
+        self.d5() != 0
     }
 
     #[doc="Backup data"]
@@ -1840,7 +1840,7 @@ impl Dr6 {
 
     #[doc="Backup data"]
     #[inline] pub fn test_d6(&self) -> bool {
-        self.d6 != 0
+        self.d6() != 0
     }
 
     #[doc="Backup data"]
@@ -1880,7 +1880,7 @@ impl Dr7 {
 
     #[doc="Backup data"]
     #[inline] pub fn test_d7(&self) -> bool {
-        self.d7 != 0
+        self.d7() != 0
     }
 
     #[doc="Backup data"]
@@ -1920,7 +1920,7 @@ impl Dr8 {
 
     #[doc="Backup data"]
     #[inline] pub fn test_d8(&self) -> bool {
-        self.d8 != 0
+        self.d8() != 0
     }
 
     #[doc="Backup data"]
@@ -1960,7 +1960,7 @@ impl Dr9 {
 
     #[doc="Backup data"]
     #[inline] pub fn test_d9(&self) -> bool {
-        self.d9 != 0
+        self.d9() != 0
     }
 
     #[doc="Backup data"]
@@ -2000,7 +2000,7 @@ impl Dr10 {
 
     #[doc="Backup data"]
     #[inline] pub fn test_d10(&self) -> bool {
-        self.d10 != 0
+        self.d10() != 0
     }
 
     #[doc="Backup data"]
@@ -2040,7 +2040,7 @@ impl Dr11 {
 
     #[doc="Backup data"]
     #[inline] pub fn test_dr11(&self) -> bool {
-        self.dr11 != 0
+        self.dr11() != 0
     }
 
     #[doc="Backup data"]
@@ -2080,7 +2080,7 @@ impl Dr12 {
 
     #[doc="Backup data"]
     #[inline] pub fn test_dr12(&self) -> bool {
-        self.dr12 != 0
+        self.dr12() != 0
     }
 
     #[doc="Backup data"]
@@ -2120,7 +2120,7 @@ impl Dr13 {
 
     #[doc="Backup data"]
     #[inline] pub fn test_dr13(&self) -> bool {
-        self.dr13 != 0
+        self.dr13() != 0
     }
 
     #[doc="Backup data"]
@@ -2160,7 +2160,7 @@ impl Dr14 {
 
     #[doc="Backup data"]
     #[inline] pub fn test_d14(&self) -> bool {
-        self.d14 != 0
+        self.d14() != 0
     }
 
     #[doc="Backup data"]
@@ -2200,7 +2200,7 @@ impl Dr15 {
 
     #[doc="Backup data"]
     #[inline] pub fn test_d15(&self) -> bool {
-        self.d15 != 0
+        self.d15() != 0
     }
 
     #[doc="Backup data"]
@@ -2240,7 +2240,7 @@ impl Dr16 {
 
     #[doc="Backup data"]
     #[inline] pub fn test_d16(&self) -> bool {
-        self.d16 != 0
+        self.d16() != 0
     }
 
     #[doc="Backup data"]
@@ -2280,7 +2280,7 @@ impl Dr17 {
 
     #[doc="Backup data"]
     #[inline] pub fn test_d17(&self) -> bool {
-        self.d17 != 0
+        self.d17() != 0
     }
 
     #[doc="Backup data"]
@@ -2320,7 +2320,7 @@ impl Dr18 {
 
     #[doc="Backup data"]
     #[inline] pub fn test_d18(&self) -> bool {
-        self.d18 != 0
+        self.d18() != 0
     }
 
     #[doc="Backup data"]
@@ -2360,7 +2360,7 @@ impl Dr19 {
 
     #[doc="Backup data"]
     #[inline] pub fn test_d19(&self) -> bool {
-        self.d19 != 0
+        self.d19() != 0
     }
 
     #[doc="Backup data"]
@@ -2400,7 +2400,7 @@ impl Dr20 {
 
     #[doc="Backup data"]
     #[inline] pub fn test_d20(&self) -> bool {
-        self.d20 != 0
+        self.d20() != 0
     }
 
     #[doc="Backup data"]
@@ -2440,7 +2440,7 @@ impl Dr21 {
 
     #[doc="Backup data"]
     #[inline] pub fn test_d21(&self) -> bool {
-        self.d21 != 0
+        self.d21() != 0
     }
 
     #[doc="Backup data"]
@@ -2480,7 +2480,7 @@ impl Dr22 {
 
     #[doc="Backup data"]
     #[inline] pub fn test_d22(&self) -> bool {
-        self.d22 != 0
+        self.d22() != 0
     }
 
     #[doc="Backup data"]
@@ -2520,7 +2520,7 @@ impl Dr23 {
 
     #[doc="Backup data"]
     #[inline] pub fn test_d23(&self) -> bool {
-        self.d23 != 0
+        self.d23() != 0
     }
 
     #[doc="Backup data"]
@@ -2560,7 +2560,7 @@ impl Dr24 {
 
     #[doc="Backup data"]
     #[inline] pub fn test_d24(&self) -> bool {
-        self.d24 != 0
+        self.d24() != 0
     }
 
     #[doc="Backup data"]
@@ -2600,7 +2600,7 @@ impl Dr25 {
 
     #[doc="Backup data"]
     #[inline] pub fn test_d25(&self) -> bool {
-        self.d25 != 0
+        self.d25() != 0
     }
 
     #[doc="Backup data"]
@@ -2640,7 +2640,7 @@ impl Dr26 {
 
     #[doc="Backup data"]
     #[inline] pub fn test_d26(&self) -> bool {
-        self.d26 != 0
+        self.d26() != 0
     }
 
     #[doc="Backup data"]
@@ -2680,7 +2680,7 @@ impl Dr27 {
 
     #[doc="Backup data"]
     #[inline] pub fn test_d27(&self) -> bool {
-        self.d27 != 0
+        self.d27() != 0
     }
 
     #[doc="Backup data"]
@@ -2720,7 +2720,7 @@ impl Dr28 {
 
     #[doc="Backup data"]
     #[inline] pub fn test_d28(&self) -> bool {
-        self.d28 != 0
+        self.d28() != 0
     }
 
     #[doc="Backup data"]
@@ -2760,7 +2760,7 @@ impl Dr29 {
 
     #[doc="Backup data"]
     #[inline] pub fn test_d29(&self) -> bool {
-        self.d29 != 0
+        self.d29() != 0
     }
 
     #[doc="Backup data"]
@@ -2800,7 +2800,7 @@ impl Dr30 {
 
     #[doc="Backup data"]
     #[inline] pub fn test_d30(&self) -> bool {
-        self.d30 != 0
+        self.d30() != 0
     }
 
     #[doc="Backup data"]
@@ -2840,7 +2840,7 @@ impl Dr31 {
 
     #[doc="Backup data"]
     #[inline] pub fn test_d31(&self) -> bool {
-        self.d31 != 0
+        self.d31() != 0
     }
 
     #[doc="Backup data"]
@@ -2880,7 +2880,7 @@ impl Dr32 {
 
     #[doc="Backup data"]
     #[inline] pub fn test_d32(&self) -> bool {
-        self.d32 != 0
+        self.d32() != 0
     }
 
     #[doc="Backup data"]
@@ -2920,7 +2920,7 @@ impl Dr33 {
 
     #[doc="Backup data"]
     #[inline] pub fn test_d33(&self) -> bool {
-        self.d33 != 0
+        self.d33() != 0
     }
 
     #[doc="Backup data"]
@@ -2960,7 +2960,7 @@ impl Dr34 {
 
     #[doc="Backup data"]
     #[inline] pub fn test_d34(&self) -> bool {
-        self.d34 != 0
+        self.d34() != 0
     }
 
     #[doc="Backup data"]
@@ -3000,7 +3000,7 @@ impl Dr35 {
 
     #[doc="Backup data"]
     #[inline] pub fn test_d35(&self) -> bool {
-        self.d35 != 0
+        self.d35() != 0
     }
 
     #[doc="Backup data"]
@@ -3040,7 +3040,7 @@ impl Dr36 {
 
     #[doc="Backup data"]
     #[inline] pub fn test_d36(&self) -> bool {
-        self.d36 != 0
+        self.d36() != 0
     }
 
     #[doc="Backup data"]
@@ -3080,7 +3080,7 @@ impl Dr37 {
 
     #[doc="Backup data"]
     #[inline] pub fn test_d37(&self) -> bool {
-        self.d37 != 0
+        self.d37() != 0
     }
 
     #[doc="Backup data"]
@@ -3120,7 +3120,7 @@ impl Dr38 {
 
     #[doc="Backup data"]
     #[inline] pub fn test_d38(&self) -> bool {
-        self.d38 != 0
+        self.d38() != 0
     }
 
     #[doc="Backup data"]
@@ -3160,7 +3160,7 @@ impl Dr39 {
 
     #[doc="Backup data"]
     #[inline] pub fn test_d39(&self) -> bool {
-        self.d39 != 0
+        self.d39() != 0
     }
 
     #[doc="Backup data"]
@@ -3200,7 +3200,7 @@ impl Dr40 {
 
     #[doc="Backup data"]
     #[inline] pub fn test_d40(&self) -> bool {
-        self.d40 != 0
+        self.d40() != 0
     }
 
     #[doc="Backup data"]
@@ -3240,7 +3240,7 @@ impl Dr41 {
 
     #[doc="Backup data"]
     #[inline] pub fn test_d41(&self) -> bool {
-        self.d41 != 0
+        self.d41() != 0
     }
 
     #[doc="Backup data"]
@@ -3280,7 +3280,7 @@ impl Dr42 {
 
     #[doc="Backup data"]
     #[inline] pub fn test_d42(&self) -> bool {
-        self.d42 != 0
+        self.d42() != 0
     }
 
     #[doc="Backup data"]
@@ -3320,7 +3320,7 @@ impl Rtccr {
 
     #[doc="Calibration value"]
     #[inline] pub fn test_cal(&self) -> bool {
-        self.cal != 0
+        self.cal() != 0
     }
 
     #[doc="Calibration value"]
@@ -3339,7 +3339,7 @@ impl Rtccr {
 
     #[doc="Calibration Clock Output"]
     #[inline] pub fn test_cco(&self) -> bool {
-        self.cco != 0
+        self.cco() != 0
     }
 
     #[doc="Calibration Clock Output"]
@@ -3358,7 +3358,7 @@ impl Rtccr {
 
     #[doc="Alarm or second output enable"]
     #[inline] pub fn test_asoe(&self) -> bool {
-        self.asoe != 0
+        self.asoe() != 0
     }
 
     #[doc="Alarm or second output enable"]
@@ -3377,7 +3377,7 @@ impl Rtccr {
 
     #[doc="Alarm or second output selection"]
     #[inline] pub fn test_asos(&self) -> bool {
-        self.asos != 0
+        self.asos() != 0
     }
 
     #[doc="Alarm or second output selection"]
@@ -3420,7 +3420,7 @@ impl Cr {
 
     #[doc="Tamper pin enable"]
     #[inline] pub fn test_tpe(&self) -> bool {
-        self.tpe != 0
+        self.tpe() != 0
     }
 
     #[doc="Tamper pin enable"]
@@ -3439,7 +3439,7 @@ impl Cr {
 
     #[doc="Tamper pin active level"]
     #[inline] pub fn test_tpal(&self) -> bool {
-        self.tpal != 0
+        self.tpal() != 0
     }
 
     #[doc="Tamper pin active level"]
@@ -3480,7 +3480,7 @@ impl Csr {
 
     #[doc="Clear Tamper event"]
     #[inline] pub fn test_cte(&self) -> bool {
-        self.cte != 0
+        self.cte() != 0
     }
 
     #[doc="Clear Tamper event"]
@@ -3499,7 +3499,7 @@ impl Csr {
 
     #[doc="Clear Tamper Interrupt"]
     #[inline] pub fn test_cti(&self) -> bool {
-        self.cti != 0
+        self.cti() != 0
     }
 
     #[doc="Clear Tamper Interrupt"]
@@ -3518,7 +3518,7 @@ impl Csr {
 
     #[doc="Tamper Pin interrupt enable"]
     #[inline] pub fn test_tpie(&self) -> bool {
-        self.tpie != 0
+        self.tpie() != 0
     }
 
     #[doc="Tamper Pin interrupt enable"]
@@ -3537,7 +3537,7 @@ impl Csr {
 
     #[doc="Tamper Event Flag"]
     #[inline] pub fn test_tef(&self) -> bool {
-        self.tef != 0
+        self.tef() != 0
     }
 
     #[doc="Tamper Event Flag"]
@@ -3556,7 +3556,7 @@ impl Csr {
 
     #[doc="Tamper Interrupt Flag"]
     #[inline] pub fn test_tif(&self) -> bool {
-        self.tif != 0
+        self.tif() != 0
     }
 
     #[doc="Tamper Interrupt Flag"]

@@ -1245,7 +1245,7 @@ impl Actss {
 
     #[doc="ADC Busy"]
     #[inline] pub fn test_busy(&self) -> bool {
-        self.busy != 0
+        self.busy() != 0
     }
 
     #[doc="ADC Busy"]
@@ -1343,7 +1343,7 @@ impl Ris {
 
     #[doc="Digital Comparator Raw Interrupt Status"]
     #[inline] pub fn test_inrdc(&self) -> bool {
-        self.inrdc != 0
+        self.inrdc() != 0
     }
 
     #[doc="Digital Comparator Raw Interrupt Status"]
@@ -1850,7 +1850,7 @@ impl Spc {
 
     #[doc="Phase Difference"]
     #[inline] pub fn test_phase(&self) -> bool {
-        self.phase != 0
+        self.phase() != 0
     }
 
     #[doc="Phase Difference"]
@@ -1915,7 +1915,7 @@ impl Pssi {
 
     #[doc="Synchronize Wait"]
     #[inline] pub fn test_syncwait(&self) -> bool {
-        self.syncwait != 0
+        self.syncwait() != 0
     }
 
     #[doc="Synchronize Wait"]
@@ -1934,7 +1934,7 @@ impl Pssi {
 
     #[doc="Global Synchronize"]
     #[inline] pub fn test_gsync(&self) -> bool {
-        self.gsync != 0
+        self.gsync() != 0
     }
 
     #[doc="Global Synchronize"]
@@ -1979,7 +1979,7 @@ impl Sac {
 
     #[doc="Hardware Averaging Control"]
     #[inline] pub fn test_avg(&self) -> bool {
-        self.avg != 0
+        self.avg() != 0
     }
 
     #[doc="Hardware Averaging Control"]
@@ -2072,7 +2072,7 @@ impl Ctl {
 
     #[doc="Voltage Reference Select"]
     #[inline] pub fn test_vref(&self) -> bool {
-        self.vref != 0
+        self.vref() != 0
     }
 
     #[doc="Voltage Reference Select"]
@@ -2091,7 +2091,7 @@ impl Ctl {
 
     #[doc="Dither Mode Enable"]
     #[inline] pub fn test_dither(&self) -> bool {
-        self.dither != 0
+        self.dither() != 0
     }
 
     #[doc="Dither Mode Enable"]
@@ -2337,7 +2337,7 @@ impl Ssfifo {
 
     #[doc="Conversion Result Data"]
     #[inline] pub fn test_data(&self) -> bool {
-        self.data != 0
+        self.data() != 0
     }
 
     #[doc="Conversion Result Data"]
@@ -2377,7 +2377,7 @@ impl Ssfstat {
 
     #[doc="FIFO Tail Pointer"]
     #[inline] pub fn test_tptr(&self) -> bool {
-        self.tptr != 0
+        self.tptr() != 0
     }
 
     #[doc="FIFO Tail Pointer"]
@@ -2396,7 +2396,7 @@ impl Ssfstat {
 
     #[doc="FIFO Head Pointer"]
     #[inline] pub fn test_hptr(&self) -> bool {
-        self.hptr != 0
+        self.hptr() != 0
     }
 
     #[doc="FIFO Head Pointer"]
@@ -2415,7 +2415,7 @@ impl Ssfstat {
 
     #[doc="FIFO Empty"]
     #[inline] pub fn test_empty(&self) -> bool {
-        self.empty != 0
+        self.empty() != 0
     }
 
     #[doc="FIFO Empty"]
@@ -2434,7 +2434,7 @@ impl Ssfstat {
 
     #[doc="FIFO Full"]
     #[inline] pub fn test_full(&self) -> bool {
-        self.full != 0
+        self.full() != 0
     }
 
     #[doc="FIFO Full"]
@@ -2775,7 +2775,7 @@ impl Dcctl {
 
     #[doc="Comparison Interrupt Mode"]
     #[inline] pub fn test_cim(&self) -> bool {
-        self.cim != 0
+        self.cim() != 0
     }
 
     #[doc="Comparison Interrupt Mode"]
@@ -2794,7 +2794,7 @@ impl Dcctl {
 
     #[doc="Comparison Interrupt Condition"]
     #[inline] pub fn test_cic(&self) -> bool {
-        self.cic != 0
+        self.cic() != 0
     }
 
     #[doc="Comparison Interrupt Condition"]
@@ -2813,7 +2813,7 @@ impl Dcctl {
 
     #[doc="Comparison Interrupt Enable"]
     #[inline] pub fn test_cie(&self) -> bool {
-        self.cie != 0
+        self.cie() != 0
     }
 
     #[doc="Comparison Interrupt Enable"]
@@ -2832,7 +2832,7 @@ impl Dcctl {
 
     #[doc="Comparison Trigger Mode"]
     #[inline] pub fn test_ctm(&self) -> bool {
-        self.ctm != 0
+        self.ctm() != 0
     }
 
     #[doc="Comparison Trigger Mode"]
@@ -2851,7 +2851,7 @@ impl Dcctl {
 
     #[doc="Comparison Trigger Condition"]
     #[inline] pub fn test_ctc(&self) -> bool {
-        self.ctc != 0
+        self.ctc() != 0
     }
 
     #[doc="Comparison Trigger Condition"]
@@ -2870,7 +2870,7 @@ impl Dcctl {
 
     #[doc="Comparison Trigger Enable"]
     #[inline] pub fn test_cte(&self) -> bool {
-        self.cte != 0
+        self.cte() != 0
     }
 
     #[doc="Comparison Trigger Enable"]
@@ -2962,7 +2962,7 @@ impl Pp {
 
     #[doc="Maximum Conversion Rate"]
     #[inline] pub fn test_mcr(&self) -> bool {
-        self.mcr != 0
+        self.mcr() != 0
     }
 
     #[doc="Maximum Conversion Rate"]
@@ -2981,7 +2981,7 @@ impl Pp {
 
     #[doc="ADC Channel Count"]
     #[inline] pub fn test_ch(&self) -> bool {
-        self.ch != 0
+        self.ch() != 0
     }
 
     #[doc="ADC Channel Count"]
@@ -3000,7 +3000,7 @@ impl Pp {
 
     #[doc="Digital Comparator Count"]
     #[inline] pub fn test_dc(&self) -> bool {
-        self.dc != 0
+        self.dc() != 0
     }
 
     #[doc="Digital Comparator Count"]
@@ -3019,7 +3019,7 @@ impl Pp {
 
     #[doc="ADC Architecture"]
     #[inline] pub fn test_type(&self) -> bool {
-        self._type != 0
+        self._type() != 0
     }
 
     #[doc="ADC Architecture"]
@@ -3038,7 +3038,7 @@ impl Pp {
 
     #[doc="Resolution"]
     #[inline] pub fn test_rsl(&self) -> bool {
-        self.rsl != 0
+        self.rsl() != 0
     }
 
     #[doc="Resolution"]
@@ -3057,7 +3057,7 @@ impl Pp {
 
     #[doc="Temperature Sensor"]
     #[inline] pub fn test_ts(&self) -> bool {
-        self.ts != 0
+        self.ts() != 0
     }
 
     #[doc="Temperature Sensor"]
@@ -3076,7 +3076,7 @@ impl Pp {
 
     #[doc="Application-Programmable Sample-and-Hold Time"]
     #[inline] pub fn test_apsht(&self) -> bool {
-        self.apsht != 0
+        self.apsht() != 0
     }
 
     #[doc="Application-Programmable Sample-and-Hold Time"]
@@ -3122,7 +3122,7 @@ impl Pc {
 
     #[doc="Conversion Rate"]
     #[inline] pub fn test_mcr(&self) -> bool {
-        self.mcr != 0
+        self.mcr() != 0
     }
 
     #[doc="Conversion Rate"]
@@ -3162,7 +3162,7 @@ impl Cc {
 
     #[doc="ADC Clock Source"]
     #[inline] pub fn test_cs(&self) -> bool {
-        self.cs != 0
+        self.cs() != 0
     }
 
     #[doc="ADC Clock Source"]
@@ -3181,7 +3181,7 @@ impl Cc {
 
     #[doc="PLL VCO Clock Divisor"]
     #[inline] pub fn test_clkdiv(&self) -> bool {
-        self.clkdiv != 0
+        self.clkdiv() != 0
     }
 
     #[doc="PLL VCO Clock Divisor"]

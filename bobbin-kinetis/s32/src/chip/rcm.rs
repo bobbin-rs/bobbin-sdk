@@ -179,7 +179,7 @@ impl Verid {
 
     #[doc="Feature Specification Number"]
     #[inline] pub fn test_feature(&self) -> bool {
-        self.feature != 0
+        self.feature() != 0
     }
 
     #[doc="Feature Specification Number"]
@@ -198,7 +198,7 @@ impl Verid {
 
     #[doc="Minor Version Number"]
     #[inline] pub fn test_minor(&self) -> bool {
-        self.minor != 0
+        self.minor() != 0
     }
 
     #[doc="Minor Version Number"]
@@ -217,7 +217,7 @@ impl Verid {
 
     #[doc="Major Version Number"]
     #[inline] pub fn test_major(&self) -> bool {
-        self.major != 0
+        self.major() != 0
     }
 
     #[doc="Major Version Number"]
@@ -259,7 +259,7 @@ impl Param {
 
     #[doc="Existence of SRS[WAKEUP] status indication feature"]
     #[inline] pub fn test_ewakeup(&self) -> bool {
-        self.ewakeup != 0
+        self.ewakeup() != 0
     }
 
     #[doc="Existence of SRS[WAKEUP] status indication feature"]
@@ -278,7 +278,7 @@ impl Param {
 
     #[doc="Existence of SRS[LVD] status indication feature"]
     #[inline] pub fn test_elvd(&self) -> bool {
-        self.elvd != 0
+        self.elvd() != 0
     }
 
     #[doc="Existence of SRS[LVD] status indication feature"]
@@ -297,7 +297,7 @@ impl Param {
 
     #[doc="Existence of SRS[LOC] status indication feature"]
     #[inline] pub fn test_eloc(&self) -> bool {
-        self.eloc != 0
+        self.eloc() != 0
     }
 
     #[doc="Existence of SRS[LOC] status indication feature"]
@@ -316,7 +316,7 @@ impl Param {
 
     #[doc="Existence of SRS[LOL] status indication feature"]
     #[inline] pub fn test_elol(&self) -> bool {
-        self.elol != 0
+        self.elol() != 0
     }
 
     #[doc="Existence of SRS[LOL] status indication feature"]
@@ -335,7 +335,7 @@ impl Param {
 
     #[doc="Existence of SRS[WDOG] status indication feature"]
     #[inline] pub fn test_ewdog(&self) -> bool {
-        self.ewdog != 0
+        self.ewdog() != 0
     }
 
     #[doc="Existence of SRS[WDOG] status indication feature"]
@@ -354,7 +354,7 @@ impl Param {
 
     #[doc="Existence of SRS[PIN] status indication feature"]
     #[inline] pub fn test_epin(&self) -> bool {
-        self.epin != 0
+        self.epin() != 0
     }
 
     #[doc="Existence of SRS[PIN] status indication feature"]
@@ -373,7 +373,7 @@ impl Param {
 
     #[doc="Existence of SRS[POR] status indication feature"]
     #[inline] pub fn test_epor(&self) -> bool {
-        self.epor != 0
+        self.epor() != 0
     }
 
     #[doc="Existence of SRS[POR] status indication feature"]
@@ -392,7 +392,7 @@ impl Param {
 
     #[doc="Existence of SRS[JTAG] status indication feature"]
     #[inline] pub fn test_ejtag(&self) -> bool {
-        self.ejtag != 0
+        self.ejtag() != 0
     }
 
     #[doc="Existence of SRS[JTAG] status indication feature"]
@@ -411,7 +411,7 @@ impl Param {
 
     #[doc="Existence of SRS[LOCKUP] status indication feature"]
     #[inline] pub fn test_elockup(&self) -> bool {
-        self.elockup != 0
+        self.elockup() != 0
     }
 
     #[doc="Existence of SRS[LOCKUP] status indication feature"]
@@ -430,7 +430,7 @@ impl Param {
 
     #[doc="Existence of SRS[SW] status indication feature"]
     #[inline] pub fn test_esw(&self) -> bool {
-        self.esw != 0
+        self.esw() != 0
     }
 
     #[doc="Existence of SRS[SW] status indication feature"]
@@ -449,7 +449,7 @@ impl Param {
 
     #[doc="Existence of SRS[MDM_AP] status indication feature"]
     #[inline] pub fn test_emdm_ap(&self) -> bool {
-        self.emdm_ap != 0
+        self.emdm_ap() != 0
     }
 
     #[doc="Existence of SRS[MDM_AP] status indication feature"]
@@ -468,7 +468,7 @@ impl Param {
 
     #[doc="Existence of SRS[SACKERR] status indication feature"]
     #[inline] pub fn test_esackerr(&self) -> bool {
-        self.esackerr != 0
+        self.esackerr() != 0
     }
 
     #[doc="Existence of SRS[SACKERR] status indication feature"]
@@ -487,7 +487,7 @@ impl Param {
 
     #[doc="Existence of SRS[TAMPER] status indication feature"]
     #[inline] pub fn test_etamper(&self) -> bool {
-        self.etamper != 0
+        self.etamper() != 0
     }
 
     #[doc="Existence of SRS[TAMPER] status indication feature"]
@@ -506,7 +506,7 @@ impl Param {
 
     #[doc="Existence of SRS[CORE1] status indication feature"]
     #[inline] pub fn test_ecore1(&self) -> bool {
-        self.ecore1 != 0
+        self.ecore1() != 0
     }
 
     #[doc="Existence of SRS[CORE1] status indication feature"]
@@ -559,7 +559,7 @@ impl Srs {
 
     #[doc="Low-Voltage Detect Reset or High-Voltage Detect Reset"]
     #[inline] pub fn test_lvd(&self) -> bool {
-        self.lvd != 0
+        self.lvd() != 0
     }
 
     #[doc="Low-Voltage Detect Reset or High-Voltage Detect Reset"]
@@ -578,7 +578,7 @@ impl Srs {
 
     #[doc="Loss-of-Clock Reset"]
     #[inline] pub fn test_loc(&self) -> bool {
-        self.loc != 0
+        self.loc() != 0
     }
 
     #[doc="Loss-of-Clock Reset"]
@@ -597,7 +597,7 @@ impl Srs {
 
     #[doc="Loss-of-Lock Reset"]
     #[inline] pub fn test_lol(&self) -> bool {
-        self.lol != 0
+        self.lol() != 0
     }
 
     #[doc="Loss-of-Lock Reset"]
@@ -616,7 +616,7 @@ impl Srs {
 
     #[doc="Watchdog"]
     #[inline] pub fn test_wdog(&self) -> bool {
-        self.wdog != 0
+        self.wdog() != 0
     }
 
     #[doc="Watchdog"]
@@ -635,7 +635,7 @@ impl Srs {
 
     #[doc="External Reset Pin"]
     #[inline] pub fn test_pin(&self) -> bool {
-        self.pin != 0
+        self.pin() != 0
     }
 
     #[doc="External Reset Pin"]
@@ -654,7 +654,7 @@ impl Srs {
 
     #[doc="Power-On Reset"]
     #[inline] pub fn test_por(&self) -> bool {
-        self.por != 0
+        self.por() != 0
     }
 
     #[doc="Power-On Reset"]
@@ -673,7 +673,7 @@ impl Srs {
 
     #[doc="JTAG generated reset"]
     #[inline] pub fn test_jtag(&self) -> bool {
-        self.jtag != 0
+        self.jtag() != 0
     }
 
     #[doc="JTAG generated reset"]
@@ -692,7 +692,7 @@ impl Srs {
 
     #[doc="Core Lockup"]
     #[inline] pub fn test_lockup(&self) -> bool {
-        self.lockup != 0
+        self.lockup() != 0
     }
 
     #[doc="Core Lockup"]
@@ -711,7 +711,7 @@ impl Srs {
 
     #[doc="Software"]
     #[inline] pub fn test_sw(&self) -> bool {
-        self.sw != 0
+        self.sw() != 0
     }
 
     #[doc="Software"]
@@ -730,7 +730,7 @@ impl Srs {
 
     #[doc="MDM-AP System Reset Request"]
     #[inline] pub fn test_mdm_ap(&self) -> bool {
-        self.mdm_ap != 0
+        self.mdm_ap() != 0
     }
 
     #[doc="MDM-AP System Reset Request"]
@@ -749,7 +749,7 @@ impl Srs {
 
     #[doc="Stop Acknowledge Error"]
     #[inline] pub fn test_sackerr(&self) -> bool {
-        self.sackerr != 0
+        self.sackerr() != 0
     }
 
     #[doc="Stop Acknowledge Error"]
@@ -799,7 +799,7 @@ impl Rpc {
 
     #[doc="Reset Pin Filter Select in Run and Wait Modes"]
     #[inline] pub fn test_rstfltsrw(&self) -> bool {
-        self.rstfltsrw != 0
+        self.rstfltsrw() != 0
     }
 
     #[doc="Reset Pin Filter Select in Run and Wait Modes"]
@@ -818,7 +818,7 @@ impl Rpc {
 
     #[doc="Reset Pin Filter Select in Stop Mode"]
     #[inline] pub fn test_rstfltss(&self) -> bool {
-        self.rstfltss != 0
+        self.rstfltss() != 0
     }
 
     #[doc="Reset Pin Filter Select in Stop Mode"]
@@ -837,7 +837,7 @@ impl Rpc {
 
     #[doc="Reset Pin Filter Bus Clock Select"]
     #[inline] pub fn test_rstfltsel(&self) -> bool {
-        self.rstfltsel != 0
+        self.rstfltsel() != 0
     }
 
     #[doc="Reset Pin Filter Bus Clock Select"]
@@ -879,7 +879,7 @@ impl Ssrs {
 
     #[doc="Sticky Low-Voltage Detect Reset"]
     #[inline] pub fn test_slvd(&self) -> bool {
-        self.slvd != 0
+        self.slvd() != 0
     }
 
     #[doc="Sticky Low-Voltage Detect Reset"]
@@ -898,7 +898,7 @@ impl Ssrs {
 
     #[doc="Sticky Loss-of-Clock Reset"]
     #[inline] pub fn test_sloc(&self) -> bool {
-        self.sloc != 0
+        self.sloc() != 0
     }
 
     #[doc="Sticky Loss-of-Clock Reset"]
@@ -917,7 +917,7 @@ impl Ssrs {
 
     #[doc="Sticky Loss-of-Lock Reset"]
     #[inline] pub fn test_slol(&self) -> bool {
-        self.slol != 0
+        self.slol() != 0
     }
 
     #[doc="Sticky Loss-of-Lock Reset"]
@@ -936,7 +936,7 @@ impl Ssrs {
 
     #[doc="Sticky Watchdog"]
     #[inline] pub fn test_swdog(&self) -> bool {
-        self.swdog != 0
+        self.swdog() != 0
     }
 
     #[doc="Sticky Watchdog"]
@@ -955,7 +955,7 @@ impl Ssrs {
 
     #[doc="Sticky External Reset Pin"]
     #[inline] pub fn test_spin(&self) -> bool {
-        self.spin != 0
+        self.spin() != 0
     }
 
     #[doc="Sticky External Reset Pin"]
@@ -974,7 +974,7 @@ impl Ssrs {
 
     #[doc="Sticky Power-On Reset"]
     #[inline] pub fn test_spor(&self) -> bool {
-        self.spor != 0
+        self.spor() != 0
     }
 
     #[doc="Sticky Power-On Reset"]
@@ -993,7 +993,7 @@ impl Ssrs {
 
     #[doc="Sticky JTAG generated reset"]
     #[inline] pub fn test_sjtag(&self) -> bool {
-        self.sjtag != 0
+        self.sjtag() != 0
     }
 
     #[doc="Sticky JTAG generated reset"]
@@ -1012,7 +1012,7 @@ impl Ssrs {
 
     #[doc="Sticky Core Lockup"]
     #[inline] pub fn test_slockup(&self) -> bool {
-        self.slockup != 0
+        self.slockup() != 0
     }
 
     #[doc="Sticky Core Lockup"]
@@ -1031,7 +1031,7 @@ impl Ssrs {
 
     #[doc="Sticky Software"]
     #[inline] pub fn test_ssw(&self) -> bool {
-        self.ssw != 0
+        self.ssw() != 0
     }
 
     #[doc="Sticky Software"]
@@ -1050,7 +1050,7 @@ impl Ssrs {
 
     #[doc="Sticky MDM-AP System Reset Request"]
     #[inline] pub fn test_smdm_ap(&self) -> bool {
-        self.smdm_ap != 0
+        self.smdm_ap() != 0
     }
 
     #[doc="Sticky MDM-AP System Reset Request"]
@@ -1069,7 +1069,7 @@ impl Ssrs {
 
     #[doc="Sticky Stop Acknowledge Error"]
     #[inline] pub fn test_ssackerr(&self) -> bool {
-        self.ssackerr != 0
+        self.ssackerr() != 0
     }
 
     #[doc="Sticky Stop Acknowledge Error"]
@@ -1119,7 +1119,7 @@ impl Srie {
 
     #[doc="Reset Delay Time"]
     #[inline] pub fn test_delay(&self) -> bool {
-        self.delay != 0
+        self.delay() != 0
     }
 
     #[doc="Reset Delay Time"]
@@ -1138,7 +1138,7 @@ impl Srie {
 
     #[doc="Loss-of-Clock Interrupt"]
     #[inline] pub fn test_loc(&self) -> bool {
-        self.loc != 0
+        self.loc() != 0
     }
 
     #[doc="Loss-of-Clock Interrupt"]
@@ -1157,7 +1157,7 @@ impl Srie {
 
     #[doc="Loss-of-Lock Interrupt"]
     #[inline] pub fn test_lol(&self) -> bool {
-        self.lol != 0
+        self.lol() != 0
     }
 
     #[doc="Loss-of-Lock Interrupt"]
@@ -1176,7 +1176,7 @@ impl Srie {
 
     #[doc="Watchdog Interrupt"]
     #[inline] pub fn test_wdog(&self) -> bool {
-        self.wdog != 0
+        self.wdog() != 0
     }
 
     #[doc="Watchdog Interrupt"]
@@ -1195,7 +1195,7 @@ impl Srie {
 
     #[doc="External Reset Pin Interrupt"]
     #[inline] pub fn test_pin(&self) -> bool {
-        self.pin != 0
+        self.pin() != 0
     }
 
     #[doc="External Reset Pin Interrupt"]
@@ -1214,7 +1214,7 @@ impl Srie {
 
     #[doc="Global Interrupt Enable"]
     #[inline] pub fn test_gie(&self) -> bool {
-        self.gie != 0
+        self.gie() != 0
     }
 
     #[doc="Global Interrupt Enable"]
@@ -1233,7 +1233,7 @@ impl Srie {
 
     #[doc="JTAG generated reset"]
     #[inline] pub fn test_jtag(&self) -> bool {
-        self.jtag != 0
+        self.jtag() != 0
     }
 
     #[doc="JTAG generated reset"]
@@ -1252,7 +1252,7 @@ impl Srie {
 
     #[doc="Core Lockup Interrupt"]
     #[inline] pub fn test_lockup(&self) -> bool {
-        self.lockup != 0
+        self.lockup() != 0
     }
 
     #[doc="Core Lockup Interrupt"]
@@ -1271,7 +1271,7 @@ impl Srie {
 
     #[doc="Software Interrupt"]
     #[inline] pub fn test_sw(&self) -> bool {
-        self.sw != 0
+        self.sw() != 0
     }
 
     #[doc="Software Interrupt"]
@@ -1290,7 +1290,7 @@ impl Srie {
 
     #[doc="MDM-AP System Reset Request"]
     #[inline] pub fn test_mdm_ap(&self) -> bool {
-        self.mdm_ap != 0
+        self.mdm_ap() != 0
     }
 
     #[doc="MDM-AP System Reset Request"]
@@ -1309,7 +1309,7 @@ impl Srie {
 
     #[doc="Stop Acknowledge Error Interrupt"]
     #[inline] pub fn test_sackerr(&self) -> bool {
-        self.sackerr != 0
+        self.sackerr() != 0
     }
 
     #[doc="Stop Acknowledge Error Interrupt"]

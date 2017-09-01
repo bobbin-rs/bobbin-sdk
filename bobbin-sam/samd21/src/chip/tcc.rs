@@ -884,7 +884,7 @@ impl Cc {
 
     #[doc="Compare and Capture value"]
     #[inline] pub fn test_cc(&self) -> bool {
-        self.cc != 0
+        self.cc() != 0
     }
 
     #[doc="Compare and Capture value"]
@@ -924,7 +924,7 @@ impl Ccb {
 
     #[doc="Compare and Capture buffer value"]
     #[inline] pub fn test_ccb(&self) -> bool {
-        self.ccb != 0
+        self.ccb() != 0
     }
 
     #[doc="Compare and Capture buffer value"]
@@ -964,7 +964,7 @@ impl Count {
 
     #[doc="Count Value"]
     #[inline] pub fn test_count(&self) -> bool {
-        self.count != 0
+        self.count() != 0
     }
 
     #[doc="Count Value"]
@@ -1004,7 +1004,7 @@ impl Ctrla {
 
     #[doc="Software Reset"]
     #[inline] pub fn test_swrst(&self) -> bool {
-        self.swrst != 0
+        self.swrst() != 0
     }
 
     #[doc="Software Reset"]
@@ -1023,7 +1023,7 @@ impl Ctrla {
 
     #[doc="Enable"]
     #[inline] pub fn test_enable(&self) -> bool {
-        self.enable != 0
+        self.enable() != 0
     }
 
     #[doc="Enable"]
@@ -1042,7 +1042,7 @@ impl Ctrla {
 
     #[doc="Enhanced Resolution"]
     #[inline] pub fn test_resolution(&self) -> bool {
-        self.resolution != 0
+        self.resolution() != 0
     }
 
     #[doc="Enhanced Resolution"]
@@ -1061,7 +1061,7 @@ impl Ctrla {
 
     #[doc="Prescaler"]
     #[inline] pub fn test_prescaler(&self) -> bool {
-        self.prescaler != 0
+        self.prescaler() != 0
     }
 
     #[doc="Prescaler"]
@@ -1080,7 +1080,7 @@ impl Ctrla {
 
     #[doc="Run in Standby"]
     #[inline] pub fn test_runstdby(&self) -> bool {
-        self.runstdby != 0
+        self.runstdby() != 0
     }
 
     #[doc="Run in Standby"]
@@ -1099,7 +1099,7 @@ impl Ctrla {
 
     #[doc="Prescaler and Counter Synchronization Selection"]
     #[inline] pub fn test_prescsync(&self) -> bool {
-        self.prescsync != 0
+        self.prescsync() != 0
     }
 
     #[doc="Prescaler and Counter Synchronization Selection"]
@@ -1118,7 +1118,7 @@ impl Ctrla {
 
     #[doc="Auto Lock"]
     #[inline] pub fn test_alock(&self) -> bool {
-        self.alock != 0
+        self.alock() != 0
     }
 
     #[doc="Auto Lock"]
@@ -1137,7 +1137,7 @@ impl Ctrla {
 
     #[doc="Master Synchronization"]
     #[inline] pub fn test_msync(&self) -> bool {
-        self.msync != 0
+        self.msync() != 0
     }
 
     #[doc="Master Synchronization"]
@@ -1213,7 +1213,7 @@ impl Ctrlbclr {
 
     #[doc="Counter Direction"]
     #[inline] pub fn test_dir(&self) -> bool {
-        self.dir != 0
+        self.dir() != 0
     }
 
     #[doc="Counter Direction"]
@@ -1232,7 +1232,7 @@ impl Ctrlbclr {
 
     #[doc="Lock Update"]
     #[inline] pub fn test_lupd(&self) -> bool {
-        self.lupd != 0
+        self.lupd() != 0
     }
 
     #[doc="Lock Update"]
@@ -1251,7 +1251,7 @@ impl Ctrlbclr {
 
     #[doc="One-Shot"]
     #[inline] pub fn test_oneshot(&self) -> bool {
-        self.oneshot != 0
+        self.oneshot() != 0
     }
 
     #[doc="One-Shot"]
@@ -1270,7 +1270,7 @@ impl Ctrlbclr {
 
     #[doc="Ramp Index Command"]
     #[inline] pub fn test_idxcmd(&self) -> bool {
-        self.idxcmd != 0
+        self.idxcmd() != 0
     }
 
     #[doc="Ramp Index Command"]
@@ -1289,7 +1289,7 @@ impl Ctrlbclr {
 
     #[doc="TCC Command"]
     #[inline] pub fn test_cmd(&self) -> bool {
-        self.cmd != 0
+        self.cmd() != 0
     }
 
     #[doc="TCC Command"]
@@ -1333,7 +1333,7 @@ impl Ctrlbset {
 
     #[doc="Counter Direction"]
     #[inline] pub fn test_dir(&self) -> bool {
-        self.dir != 0
+        self.dir() != 0
     }
 
     #[doc="Counter Direction"]
@@ -1352,7 +1352,7 @@ impl Ctrlbset {
 
     #[doc="Lock update"]
     #[inline] pub fn test_lupd(&self) -> bool {
-        self.lupd != 0
+        self.lupd() != 0
     }
 
     #[doc="Lock update"]
@@ -1371,7 +1371,7 @@ impl Ctrlbset {
 
     #[doc="One-Shot"]
     #[inline] pub fn test_oneshot(&self) -> bool {
-        self.oneshot != 0
+        self.oneshot() != 0
     }
 
     #[doc="One-Shot"]
@@ -1390,7 +1390,7 @@ impl Ctrlbset {
 
     #[doc="Ramp Index Command"]
     #[inline] pub fn test_idxcmd(&self) -> bool {
-        self.idxcmd != 0
+        self.idxcmd() != 0
     }
 
     #[doc="Ramp Index Command"]
@@ -1409,7 +1409,7 @@ impl Ctrlbset {
 
     #[doc="TCC Command"]
     #[inline] pub fn test_cmd(&self) -> bool {
-        self.cmd != 0
+        self.cmd() != 0
     }
 
     #[doc="TCC Command"]
@@ -1453,7 +1453,7 @@ impl Dbgctrl {
 
     #[doc="Debug Running Mode"]
     #[inline] pub fn test_dbgrun(&self) -> bool {
-        self.dbgrun != 0
+        self.dbgrun() != 0
     }
 
     #[doc="Debug Running Mode"]
@@ -1472,7 +1472,7 @@ impl Dbgctrl {
 
     #[doc="Fault Detection on Debug Break Detection"]
     #[inline] pub fn test_fddbd(&self) -> bool {
-        self.fddbd != 0
+        self.fddbd() != 0
     }
 
     #[doc="Fault Detection on Debug Break Detection"]
@@ -1513,7 +1513,7 @@ impl Drvctrl {
 
     #[doc="Non-Recoverable State 0 Output Enable"]
     #[inline] pub fn test_nre0(&self) -> bool {
-        self.nre0 != 0
+        self.nre0() != 0
     }
 
     #[doc="Non-Recoverable State 0 Output Enable"]
@@ -1532,7 +1532,7 @@ impl Drvctrl {
 
     #[doc="Non-Recoverable State 1 Output Enable"]
     #[inline] pub fn test_nre1(&self) -> bool {
-        self.nre1 != 0
+        self.nre1() != 0
     }
 
     #[doc="Non-Recoverable State 1 Output Enable"]
@@ -1551,7 +1551,7 @@ impl Drvctrl {
 
     #[doc="Non-Recoverable State 2 Output Enable"]
     #[inline] pub fn test_nre2(&self) -> bool {
-        self.nre2 != 0
+        self.nre2() != 0
     }
 
     #[doc="Non-Recoverable State 2 Output Enable"]
@@ -1570,7 +1570,7 @@ impl Drvctrl {
 
     #[doc="Non-Recoverable State 3 Output Enable"]
     #[inline] pub fn test_nre3(&self) -> bool {
-        self.nre3 != 0
+        self.nre3() != 0
     }
 
     #[doc="Non-Recoverable State 3 Output Enable"]
@@ -1589,7 +1589,7 @@ impl Drvctrl {
 
     #[doc="Non-Recoverable State 4 Output Enable"]
     #[inline] pub fn test_nre4(&self) -> bool {
-        self.nre4 != 0
+        self.nre4() != 0
     }
 
     #[doc="Non-Recoverable State 4 Output Enable"]
@@ -1608,7 +1608,7 @@ impl Drvctrl {
 
     #[doc="Non-Recoverable State 5 Output Enable"]
     #[inline] pub fn test_nre5(&self) -> bool {
-        self.nre5 != 0
+        self.nre5() != 0
     }
 
     #[doc="Non-Recoverable State 5 Output Enable"]
@@ -1627,7 +1627,7 @@ impl Drvctrl {
 
     #[doc="Non-Recoverable State 6 Output Enable"]
     #[inline] pub fn test_nre6(&self) -> bool {
-        self.nre6 != 0
+        self.nre6() != 0
     }
 
     #[doc="Non-Recoverable State 6 Output Enable"]
@@ -1646,7 +1646,7 @@ impl Drvctrl {
 
     #[doc="Non-Recoverable State 7 Output Enable"]
     #[inline] pub fn test_nre7(&self) -> bool {
-        self.nre7 != 0
+        self.nre7() != 0
     }
 
     #[doc="Non-Recoverable State 7 Output Enable"]
@@ -1665,7 +1665,7 @@ impl Drvctrl {
 
     #[doc="Non-Recoverable State 0 Output Value"]
     #[inline] pub fn test_nrv0(&self) -> bool {
-        self.nrv0 != 0
+        self.nrv0() != 0
     }
 
     #[doc="Non-Recoverable State 0 Output Value"]
@@ -1684,7 +1684,7 @@ impl Drvctrl {
 
     #[doc="Non-Recoverable State 1 Output Value"]
     #[inline] pub fn test_nrv1(&self) -> bool {
-        self.nrv1 != 0
+        self.nrv1() != 0
     }
 
     #[doc="Non-Recoverable State 1 Output Value"]
@@ -1703,7 +1703,7 @@ impl Drvctrl {
 
     #[doc="Non-Recoverable State 2 Output Value"]
     #[inline] pub fn test_nrv2(&self) -> bool {
-        self.nrv2 != 0
+        self.nrv2() != 0
     }
 
     #[doc="Non-Recoverable State 2 Output Value"]
@@ -1722,7 +1722,7 @@ impl Drvctrl {
 
     #[doc="Non-Recoverable State 3 Output Value"]
     #[inline] pub fn test_nrv3(&self) -> bool {
-        self.nrv3 != 0
+        self.nrv3() != 0
     }
 
     #[doc="Non-Recoverable State 3 Output Value"]
@@ -1741,7 +1741,7 @@ impl Drvctrl {
 
     #[doc="Non-Recoverable State 4 Output Value"]
     #[inline] pub fn test_nrv4(&self) -> bool {
-        self.nrv4 != 0
+        self.nrv4() != 0
     }
 
     #[doc="Non-Recoverable State 4 Output Value"]
@@ -1760,7 +1760,7 @@ impl Drvctrl {
 
     #[doc="Non-Recoverable State 5 Output Value"]
     #[inline] pub fn test_nrv5(&self) -> bool {
-        self.nrv5 != 0
+        self.nrv5() != 0
     }
 
     #[doc="Non-Recoverable State 5 Output Value"]
@@ -1779,7 +1779,7 @@ impl Drvctrl {
 
     #[doc="Non-Recoverable State 6 Output Value"]
     #[inline] pub fn test_nrv6(&self) -> bool {
-        self.nrv6 != 0
+        self.nrv6() != 0
     }
 
     #[doc="Non-Recoverable State 6 Output Value"]
@@ -1798,7 +1798,7 @@ impl Drvctrl {
 
     #[doc="Non-Recoverable State 7 Output Value"]
     #[inline] pub fn test_nrv7(&self) -> bool {
-        self.nrv7 != 0
+        self.nrv7() != 0
     }
 
     #[doc="Non-Recoverable State 7 Output Value"]
@@ -1817,7 +1817,7 @@ impl Drvctrl {
 
     #[doc="Output Waveform 0 Inversion"]
     #[inline] pub fn test_inven0(&self) -> bool {
-        self.inven0 != 0
+        self.inven0() != 0
     }
 
     #[doc="Output Waveform 0 Inversion"]
@@ -1836,7 +1836,7 @@ impl Drvctrl {
 
     #[doc="Output Waveform 1 Inversion"]
     #[inline] pub fn test_inven1(&self) -> bool {
-        self.inven1 != 0
+        self.inven1() != 0
     }
 
     #[doc="Output Waveform 1 Inversion"]
@@ -1855,7 +1855,7 @@ impl Drvctrl {
 
     #[doc="Output Waveform 2 Inversion"]
     #[inline] pub fn test_inven2(&self) -> bool {
-        self.inven2 != 0
+        self.inven2() != 0
     }
 
     #[doc="Output Waveform 2 Inversion"]
@@ -1874,7 +1874,7 @@ impl Drvctrl {
 
     #[doc="Output Waveform 3 Inversion"]
     #[inline] pub fn test_inven3(&self) -> bool {
-        self.inven3 != 0
+        self.inven3() != 0
     }
 
     #[doc="Output Waveform 3 Inversion"]
@@ -1893,7 +1893,7 @@ impl Drvctrl {
 
     #[doc="Output Waveform 4 Inversion"]
     #[inline] pub fn test_inven4(&self) -> bool {
-        self.inven4 != 0
+        self.inven4() != 0
     }
 
     #[doc="Output Waveform 4 Inversion"]
@@ -1912,7 +1912,7 @@ impl Drvctrl {
 
     #[doc="Output Waveform 5 Inversion"]
     #[inline] pub fn test_inven5(&self) -> bool {
-        self.inven5 != 0
+        self.inven5() != 0
     }
 
     #[doc="Output Waveform 5 Inversion"]
@@ -1931,7 +1931,7 @@ impl Drvctrl {
 
     #[doc="Output Waveform 6 Inversion"]
     #[inline] pub fn test_inven6(&self) -> bool {
-        self.inven6 != 0
+        self.inven6() != 0
     }
 
     #[doc="Output Waveform 6 Inversion"]
@@ -1950,7 +1950,7 @@ impl Drvctrl {
 
     #[doc="Output Waveform 7 Inversion"]
     #[inline] pub fn test_inven7(&self) -> bool {
-        self.inven7 != 0
+        self.inven7() != 0
     }
 
     #[doc="Output Waveform 7 Inversion"]
@@ -1969,7 +1969,7 @@ impl Drvctrl {
 
     #[doc="Non-Recoverable Fault Input 0 Filter Value"]
     #[inline] pub fn test_filterval0(&self) -> bool {
-        self.filterval0 != 0
+        self.filterval0() != 0
     }
 
     #[doc="Non-Recoverable Fault Input 0 Filter Value"]
@@ -1988,7 +1988,7 @@ impl Drvctrl {
 
     #[doc="Non-Recoverable Fault Input 1 Filter Value"]
     #[inline] pub fn test_filterval1(&self) -> bool {
-        self.filterval1 != 0
+        self.filterval1() != 0
     }
 
     #[doc="Non-Recoverable Fault Input 1 Filter Value"]
@@ -2053,7 +2053,7 @@ impl Evctrl {
 
     #[doc="Timer/counter Input Event0 Action"]
     #[inline] pub fn test_evact0(&self) -> bool {
-        self.evact0 != 0
+        self.evact0() != 0
     }
 
     #[doc="Timer/counter Input Event0 Action"]
@@ -2072,7 +2072,7 @@ impl Evctrl {
 
     #[doc="Timer/counter Input Event1 Action"]
     #[inline] pub fn test_evact1(&self) -> bool {
-        self.evact1 != 0
+        self.evact1() != 0
     }
 
     #[doc="Timer/counter Input Event1 Action"]
@@ -2091,7 +2091,7 @@ impl Evctrl {
 
     #[doc="Timer/counter Output Event Mode"]
     #[inline] pub fn test_cntsel(&self) -> bool {
-        self.cntsel != 0
+        self.cntsel() != 0
     }
 
     #[doc="Timer/counter Output Event Mode"]
@@ -2110,7 +2110,7 @@ impl Evctrl {
 
     #[doc="Overflow/Underflow Output Event Enable"]
     #[inline] pub fn test_ovfeo(&self) -> bool {
-        self.ovfeo != 0
+        self.ovfeo() != 0
     }
 
     #[doc="Overflow/Underflow Output Event Enable"]
@@ -2129,7 +2129,7 @@ impl Evctrl {
 
     #[doc="Retrigger Output Event Enable"]
     #[inline] pub fn test_trgeo(&self) -> bool {
-        self.trgeo != 0
+        self.trgeo() != 0
     }
 
     #[doc="Retrigger Output Event Enable"]
@@ -2148,7 +2148,7 @@ impl Evctrl {
 
     #[doc="Timer/counter Output Event Enable"]
     #[inline] pub fn test_cnteo(&self) -> bool {
-        self.cnteo != 0
+        self.cnteo() != 0
     }
 
     #[doc="Timer/counter Output Event Enable"]
@@ -2167,7 +2167,7 @@ impl Evctrl {
 
     #[doc="Inverted Event 0 Input Enable"]
     #[inline] pub fn test_tcinv0(&self) -> bool {
-        self.tcinv0 != 0
+        self.tcinv0() != 0
     }
 
     #[doc="Inverted Event 0 Input Enable"]
@@ -2186,7 +2186,7 @@ impl Evctrl {
 
     #[doc="Inverted Event 1 Input Enable"]
     #[inline] pub fn test_tcinv1(&self) -> bool {
-        self.tcinv1 != 0
+        self.tcinv1() != 0
     }
 
     #[doc="Inverted Event 1 Input Enable"]
@@ -2205,7 +2205,7 @@ impl Evctrl {
 
     #[doc="Timer/counter Event 0 Input Enable"]
     #[inline] pub fn test_tcei0(&self) -> bool {
-        self.tcei0 != 0
+        self.tcei0() != 0
     }
 
     #[doc="Timer/counter Event 0 Input Enable"]
@@ -2224,7 +2224,7 @@ impl Evctrl {
 
     #[doc="Timer/counter Event 1 Input Enable"]
     #[inline] pub fn test_tcei1(&self) -> bool {
-        self.tcei1 != 0
+        self.tcei1() != 0
     }
 
     #[doc="Timer/counter Event 1 Input Enable"]
@@ -2243,7 +2243,7 @@ impl Evctrl {
 
     #[doc="Match or Capture Channel 0 Event Input Enable"]
     #[inline] pub fn test_mcei0(&self) -> bool {
-        self.mcei0 != 0
+        self.mcei0() != 0
     }
 
     #[doc="Match or Capture Channel 0 Event Input Enable"]
@@ -2262,7 +2262,7 @@ impl Evctrl {
 
     #[doc="Match or Capture Channel 1 Event Input Enable"]
     #[inline] pub fn test_mcei1(&self) -> bool {
-        self.mcei1 != 0
+        self.mcei1() != 0
     }
 
     #[doc="Match or Capture Channel 1 Event Input Enable"]
@@ -2281,7 +2281,7 @@ impl Evctrl {
 
     #[doc="Match or Capture Channel 2 Event Input Enable"]
     #[inline] pub fn test_mcei2(&self) -> bool {
-        self.mcei2 != 0
+        self.mcei2() != 0
     }
 
     #[doc="Match or Capture Channel 2 Event Input Enable"]
@@ -2300,7 +2300,7 @@ impl Evctrl {
 
     #[doc="Match or Capture Channel 3 Event Input Enable"]
     #[inline] pub fn test_mcei3(&self) -> bool {
-        self.mcei3 != 0
+        self.mcei3() != 0
     }
 
     #[doc="Match or Capture Channel 3 Event Input Enable"]
@@ -2319,7 +2319,7 @@ impl Evctrl {
 
     #[doc="Match or Capture Channel 0 Event Output Enable"]
     #[inline] pub fn test_mceo0(&self) -> bool {
-        self.mceo0 != 0
+        self.mceo0() != 0
     }
 
     #[doc="Match or Capture Channel 0 Event Output Enable"]
@@ -2338,7 +2338,7 @@ impl Evctrl {
 
     #[doc="Match or Capture Channel 1 Event Output Enable"]
     #[inline] pub fn test_mceo1(&self) -> bool {
-        self.mceo1 != 0
+        self.mceo1() != 0
     }
 
     #[doc="Match or Capture Channel 1 Event Output Enable"]
@@ -2357,7 +2357,7 @@ impl Evctrl {
 
     #[doc="Match or Capture Channel 2 Event Output Enable"]
     #[inline] pub fn test_mceo2(&self) -> bool {
-        self.mceo2 != 0
+        self.mceo2() != 0
     }
 
     #[doc="Match or Capture Channel 2 Event Output Enable"]
@@ -2376,7 +2376,7 @@ impl Evctrl {
 
     #[doc="Match or Capture Channel 3 Event Output Enable"]
     #[inline] pub fn test_mceo3(&self) -> bool {
-        self.mceo3 != 0
+        self.mceo3() != 0
     }
 
     #[doc="Match or Capture Channel 3 Event Output Enable"]
@@ -2433,7 +2433,7 @@ impl Fctrla {
 
     #[doc="FaultA Source"]
     #[inline] pub fn test_src(&self) -> bool {
-        self.src != 0
+        self.src() != 0
     }
 
     #[doc="FaultA Source"]
@@ -2452,7 +2452,7 @@ impl Fctrla {
 
     #[doc="FaultA Keeper"]
     #[inline] pub fn test_keep(&self) -> bool {
-        self.keep != 0
+        self.keep() != 0
     }
 
     #[doc="FaultA Keeper"]
@@ -2471,7 +2471,7 @@ impl Fctrla {
 
     #[doc="FaultA Qualification"]
     #[inline] pub fn test_qual(&self) -> bool {
-        self.qual != 0
+        self.qual() != 0
     }
 
     #[doc="FaultA Qualification"]
@@ -2490,7 +2490,7 @@ impl Fctrla {
 
     #[doc="FaultA Blanking Mode"]
     #[inline] pub fn test_blank(&self) -> bool {
-        self.blank != 0
+        self.blank() != 0
     }
 
     #[doc="FaultA Blanking Mode"]
@@ -2509,7 +2509,7 @@ impl Fctrla {
 
     #[doc="FaultA Restart"]
     #[inline] pub fn test_restart(&self) -> bool {
-        self.restart != 0
+        self.restart() != 0
     }
 
     #[doc="FaultA Restart"]
@@ -2528,7 +2528,7 @@ impl Fctrla {
 
     #[doc="FaultA Halt Mode"]
     #[inline] pub fn test_halt(&self) -> bool {
-        self.halt != 0
+        self.halt() != 0
     }
 
     #[doc="FaultA Halt Mode"]
@@ -2547,7 +2547,7 @@ impl Fctrla {
 
     #[doc="FaultA Capture Channel"]
     #[inline] pub fn test_chsel(&self) -> bool {
-        self.chsel != 0
+        self.chsel() != 0
     }
 
     #[doc="FaultA Capture Channel"]
@@ -2566,7 +2566,7 @@ impl Fctrla {
 
     #[doc="FaultA Capture Action"]
     #[inline] pub fn test_capture(&self) -> bool {
-        self.capture != 0
+        self.capture() != 0
     }
 
     #[doc="FaultA Capture Action"]
@@ -2585,7 +2585,7 @@ impl Fctrla {
 
     #[doc="FaultA Blanking Time"]
     #[inline] pub fn test_blankval(&self) -> bool {
-        self.blankval != 0
+        self.blankval() != 0
     }
 
     #[doc="FaultA Blanking Time"]
@@ -2604,7 +2604,7 @@ impl Fctrla {
 
     #[doc="FaultA Filter Value"]
     #[inline] pub fn test_filterval(&self) -> bool {
-        self.filterval != 0
+        self.filterval() != 0
     }
 
     #[doc="FaultA Filter Value"]
@@ -2653,7 +2653,7 @@ impl Fctrlb {
 
     #[doc="FaultB Source"]
     #[inline] pub fn test_src(&self) -> bool {
-        self.src != 0
+        self.src() != 0
     }
 
     #[doc="FaultB Source"]
@@ -2672,7 +2672,7 @@ impl Fctrlb {
 
     #[doc="FaultB Keeper"]
     #[inline] pub fn test_keep(&self) -> bool {
-        self.keep != 0
+        self.keep() != 0
     }
 
     #[doc="FaultB Keeper"]
@@ -2691,7 +2691,7 @@ impl Fctrlb {
 
     #[doc="FaultB Qualification"]
     #[inline] pub fn test_qual(&self) -> bool {
-        self.qual != 0
+        self.qual() != 0
     }
 
     #[doc="FaultB Qualification"]
@@ -2710,7 +2710,7 @@ impl Fctrlb {
 
     #[doc="FaultB Blanking Mode"]
     #[inline] pub fn test_blank(&self) -> bool {
-        self.blank != 0
+        self.blank() != 0
     }
 
     #[doc="FaultB Blanking Mode"]
@@ -2729,7 +2729,7 @@ impl Fctrlb {
 
     #[doc="FaultB Restart"]
     #[inline] pub fn test_restart(&self) -> bool {
-        self.restart != 0
+        self.restart() != 0
     }
 
     #[doc="FaultB Restart"]
@@ -2748,7 +2748,7 @@ impl Fctrlb {
 
     #[doc="FaultB Halt Mode"]
     #[inline] pub fn test_halt(&self) -> bool {
-        self.halt != 0
+        self.halt() != 0
     }
 
     #[doc="FaultB Halt Mode"]
@@ -2767,7 +2767,7 @@ impl Fctrlb {
 
     #[doc="FaultB Capture Channel"]
     #[inline] pub fn test_chsel(&self) -> bool {
-        self.chsel != 0
+        self.chsel() != 0
     }
 
     #[doc="FaultB Capture Channel"]
@@ -2786,7 +2786,7 @@ impl Fctrlb {
 
     #[doc="FaultB Capture Action"]
     #[inline] pub fn test_capture(&self) -> bool {
-        self.capture != 0
+        self.capture() != 0
     }
 
     #[doc="FaultB Capture Action"]
@@ -2805,7 +2805,7 @@ impl Fctrlb {
 
     #[doc="FaultB Blanking Time"]
     #[inline] pub fn test_blankval(&self) -> bool {
-        self.blankval != 0
+        self.blankval() != 0
     }
 
     #[doc="FaultB Blanking Time"]
@@ -2824,7 +2824,7 @@ impl Fctrlb {
 
     #[doc="FaultB Filter Value"]
     #[inline] pub fn test_filterval(&self) -> bool {
-        self.filterval != 0
+        self.filterval() != 0
     }
 
     #[doc="FaultB Filter Value"]
@@ -2873,7 +2873,7 @@ impl Intenclr {
 
     #[doc="Overflow Interrupt Enable"]
     #[inline] pub fn test_ovf(&self) -> bool {
-        self.ovf != 0
+        self.ovf() != 0
     }
 
     #[doc="Overflow Interrupt Enable"]
@@ -2892,7 +2892,7 @@ impl Intenclr {
 
     #[doc="Retrigger Interrupt Enable"]
     #[inline] pub fn test_trg(&self) -> bool {
-        self.trg != 0
+        self.trg() != 0
     }
 
     #[doc="Retrigger Interrupt Enable"]
@@ -2911,7 +2911,7 @@ impl Intenclr {
 
     #[doc="Counter Interrupt Enable"]
     #[inline] pub fn test_cnt(&self) -> bool {
-        self.cnt != 0
+        self.cnt() != 0
     }
 
     #[doc="Counter Interrupt Enable"]
@@ -2930,7 +2930,7 @@ impl Intenclr {
 
     #[doc="Error Interrupt Enable"]
     #[inline] pub fn test_err(&self) -> bool {
-        self.err != 0
+        self.err() != 0
     }
 
     #[doc="Error Interrupt Enable"]
@@ -2949,7 +2949,7 @@ impl Intenclr {
 
     #[doc="Non-recoverable Debug Fault Interrupt Enable"]
     #[inline] pub fn test_dfs(&self) -> bool {
-        self.dfs != 0
+        self.dfs() != 0
     }
 
     #[doc="Non-recoverable Debug Fault Interrupt Enable"]
@@ -2968,7 +2968,7 @@ impl Intenclr {
 
     #[doc="Recoverable FaultA Interrupt Enable"]
     #[inline] pub fn test_faulta(&self) -> bool {
-        self.faulta != 0
+        self.faulta() != 0
     }
 
     #[doc="Recoverable FaultA Interrupt Enable"]
@@ -2987,7 +2987,7 @@ impl Intenclr {
 
     #[doc="Recoverable FaultB Interrupt Enable"]
     #[inline] pub fn test_faultb(&self) -> bool {
-        self.faultb != 0
+        self.faultb() != 0
     }
 
     #[doc="Recoverable FaultB Interrupt Enable"]
@@ -3006,7 +3006,7 @@ impl Intenclr {
 
     #[doc="Non-Recoverable Fault 0 Interrupt Enable"]
     #[inline] pub fn test_fault0(&self) -> bool {
-        self.fault0 != 0
+        self.fault0() != 0
     }
 
     #[doc="Non-Recoverable Fault 0 Interrupt Enable"]
@@ -3025,7 +3025,7 @@ impl Intenclr {
 
     #[doc="Non-Recoverable Fault 1 Interrupt Enable"]
     #[inline] pub fn test_fault1(&self) -> bool {
-        self.fault1 != 0
+        self.fault1() != 0
     }
 
     #[doc="Non-Recoverable Fault 1 Interrupt Enable"]
@@ -3044,7 +3044,7 @@ impl Intenclr {
 
     #[doc="Match or Capture Channel 0 Interrupt Enable"]
     #[inline] pub fn test_mc0(&self) -> bool {
-        self.mc0 != 0
+        self.mc0() != 0
     }
 
     #[doc="Match or Capture Channel 0 Interrupt Enable"]
@@ -3063,7 +3063,7 @@ impl Intenclr {
 
     #[doc="Match or Capture Channel 1 Interrupt Enable"]
     #[inline] pub fn test_mc1(&self) -> bool {
-        self.mc1 != 0
+        self.mc1() != 0
     }
 
     #[doc="Match or Capture Channel 1 Interrupt Enable"]
@@ -3082,7 +3082,7 @@ impl Intenclr {
 
     #[doc="Match or Capture Channel 2 Interrupt Enable"]
     #[inline] pub fn test_mc2(&self) -> bool {
-        self.mc2 != 0
+        self.mc2() != 0
     }
 
     #[doc="Match or Capture Channel 2 Interrupt Enable"]
@@ -3101,7 +3101,7 @@ impl Intenclr {
 
     #[doc="Match or Capture Channel 3 Interrupt Enable"]
     #[inline] pub fn test_mc3(&self) -> bool {
-        self.mc3 != 0
+        self.mc3() != 0
     }
 
     #[doc="Match or Capture Channel 3 Interrupt Enable"]
@@ -3153,7 +3153,7 @@ impl Intenset {
 
     #[doc="Overflow Interrupt Enable"]
     #[inline] pub fn test_ovf(&self) -> bool {
-        self.ovf != 0
+        self.ovf() != 0
     }
 
     #[doc="Overflow Interrupt Enable"]
@@ -3172,7 +3172,7 @@ impl Intenset {
 
     #[doc="Retrigger Interrupt Enable"]
     #[inline] pub fn test_trg(&self) -> bool {
-        self.trg != 0
+        self.trg() != 0
     }
 
     #[doc="Retrigger Interrupt Enable"]
@@ -3191,7 +3191,7 @@ impl Intenset {
 
     #[doc="Counter Interrupt Enable"]
     #[inline] pub fn test_cnt(&self) -> bool {
-        self.cnt != 0
+        self.cnt() != 0
     }
 
     #[doc="Counter Interrupt Enable"]
@@ -3210,7 +3210,7 @@ impl Intenset {
 
     #[doc="Error Interrupt Enable"]
     #[inline] pub fn test_err(&self) -> bool {
-        self.err != 0
+        self.err() != 0
     }
 
     #[doc="Error Interrupt Enable"]
@@ -3229,7 +3229,7 @@ impl Intenset {
 
     #[doc="Non-Recoverable Debug Fault Interrupt Enable"]
     #[inline] pub fn test_dfs(&self) -> bool {
-        self.dfs != 0
+        self.dfs() != 0
     }
 
     #[doc="Non-Recoverable Debug Fault Interrupt Enable"]
@@ -3248,7 +3248,7 @@ impl Intenset {
 
     #[doc="Recoverable FaultA Interrupt Enable"]
     #[inline] pub fn test_faulta(&self) -> bool {
-        self.faulta != 0
+        self.faulta() != 0
     }
 
     #[doc="Recoverable FaultA Interrupt Enable"]
@@ -3267,7 +3267,7 @@ impl Intenset {
 
     #[doc="Recoverable FaultB Interrupt Enable"]
     #[inline] pub fn test_faultb(&self) -> bool {
-        self.faultb != 0
+        self.faultb() != 0
     }
 
     #[doc="Recoverable FaultB Interrupt Enable"]
@@ -3286,7 +3286,7 @@ impl Intenset {
 
     #[doc="Non-Recoverable Fault 0 Interrupt Enable"]
     #[inline] pub fn test_fault0(&self) -> bool {
-        self.fault0 != 0
+        self.fault0() != 0
     }
 
     #[doc="Non-Recoverable Fault 0 Interrupt Enable"]
@@ -3305,7 +3305,7 @@ impl Intenset {
 
     #[doc="Non-Recoverable Fault 1 Interrupt Enabl"]
     #[inline] pub fn test_fault1(&self) -> bool {
-        self.fault1 != 0
+        self.fault1() != 0
     }
 
     #[doc="Non-Recoverable Fault 1 Interrupt Enabl"]
@@ -3382,7 +3382,7 @@ impl Intflag {
 
     #[doc="Overflow"]
     #[inline] pub fn test_ovf(&self) -> bool {
-        self.ovf != 0
+        self.ovf() != 0
     }
 
     #[doc="Overflow"]
@@ -3401,7 +3401,7 @@ impl Intflag {
 
     #[doc="Retrigger"]
     #[inline] pub fn test_trg(&self) -> bool {
-        self.trg != 0
+        self.trg() != 0
     }
 
     #[doc="Retrigger"]
@@ -3420,7 +3420,7 @@ impl Intflag {
 
     #[doc="Counter"]
     #[inline] pub fn test_cnt(&self) -> bool {
-        self.cnt != 0
+        self.cnt() != 0
     }
 
     #[doc="Counter"]
@@ -3439,7 +3439,7 @@ impl Intflag {
 
     #[doc="Error"]
     #[inline] pub fn test_err(&self) -> bool {
-        self.err != 0
+        self.err() != 0
     }
 
     #[doc="Error"]
@@ -3458,7 +3458,7 @@ impl Intflag {
 
     #[doc="Non-Recoverable Debug Fault"]
     #[inline] pub fn test_dfs(&self) -> bool {
-        self.dfs != 0
+        self.dfs() != 0
     }
 
     #[doc="Non-Recoverable Debug Fault"]
@@ -3477,7 +3477,7 @@ impl Intflag {
 
     #[doc="Recoverable FaultA"]
     #[inline] pub fn test_faulta(&self) -> bool {
-        self.faulta != 0
+        self.faulta() != 0
     }
 
     #[doc="Recoverable FaultA"]
@@ -3496,7 +3496,7 @@ impl Intflag {
 
     #[doc="Recoverable FaultB"]
     #[inline] pub fn test_faultb(&self) -> bool {
-        self.faultb != 0
+        self.faultb() != 0
     }
 
     #[doc="Recoverable FaultB"]
@@ -3515,7 +3515,7 @@ impl Intflag {
 
     #[doc="Non-Recoverable Fault 0"]
     #[inline] pub fn test_fault0(&self) -> bool {
-        self.fault0 != 0
+        self.fault0() != 0
     }
 
     #[doc="Non-Recoverable Fault 0"]
@@ -3534,7 +3534,7 @@ impl Intflag {
 
     #[doc="Non-Recoverable Fault 1"]
     #[inline] pub fn test_fault1(&self) -> bool {
-        self.fault1 != 0
+        self.fault1() != 0
     }
 
     #[doc="Non-Recoverable Fault 1"]
@@ -3783,7 +3783,7 @@ impl Per {
 
     #[doc="Period Value"]
     #[inline] pub fn test_per(&self) -> bool {
-        self.per != 0
+        self.per() != 0
     }
 
     #[doc="Period Value"]
@@ -3823,7 +3823,7 @@ impl Perb {
 
     #[doc="Period Value"]
     #[inline] pub fn test_perb(&self) -> bool {
-        self.perb != 0
+        self.perb() != 0
     }
 
     #[doc="Period Value"]
@@ -3863,7 +3863,7 @@ impl Status {
 
     #[doc="Stop"]
     #[inline] pub fn test_stop(&self) -> bool {
-        self.stop != 0
+        self.stop() != 0
     }
 
     #[doc="Stop"]
@@ -3882,7 +3882,7 @@ impl Status {
 
     #[doc="Ramp"]
     #[inline] pub fn test_idx(&self) -> bool {
-        self.idx != 0
+        self.idx() != 0
     }
 
     #[doc="Ramp"]
@@ -3901,7 +3901,7 @@ impl Status {
 
     #[doc="Non-Recoverable Debug Fault State"]
     #[inline] pub fn test_dfs(&self) -> bool {
-        self.dfs != 0
+        self.dfs() != 0
     }
 
     #[doc="Non-Recoverable Debug Fault State"]
@@ -3920,7 +3920,7 @@ impl Status {
 
     #[doc="Pattern Buffer Valid"]
     #[inline] pub fn test_pattbv(&self) -> bool {
-        self.pattbv != 0
+        self.pattbv() != 0
     }
 
     #[doc="Pattern Buffer Valid"]
@@ -3939,7 +3939,7 @@ impl Status {
 
     #[doc="Wave Buffer Valid"]
     #[inline] pub fn test_wavebv(&self) -> bool {
-        self.wavebv != 0
+        self.wavebv() != 0
     }
 
     #[doc="Wave Buffer Valid"]
@@ -3958,7 +3958,7 @@ impl Status {
 
     #[doc="Period Buffer Valid"]
     #[inline] pub fn test_perbv(&self) -> bool {
-        self.perbv != 0
+        self.perbv() != 0
     }
 
     #[doc="Period Buffer Valid"]
@@ -3977,7 +3977,7 @@ impl Status {
 
     #[doc="Recoverable FaultA Input"]
     #[inline] pub fn test_faultain(&self) -> bool {
-        self.faultain != 0
+        self.faultain() != 0
     }
 
     #[doc="Recoverable FaultA Input"]
@@ -3996,7 +3996,7 @@ impl Status {
 
     #[doc="Recoverable FaultB Input"]
     #[inline] pub fn test_faultbin(&self) -> bool {
-        self.faultbin != 0
+        self.faultbin() != 0
     }
 
     #[doc="Recoverable FaultB Input"]
@@ -4015,7 +4015,7 @@ impl Status {
 
     #[doc="Non-Recoverable Fault0 Input"]
     #[inline] pub fn test_fault0in(&self) -> bool {
-        self.fault0in != 0
+        self.fault0in() != 0
     }
 
     #[doc="Non-Recoverable Fault0 Input"]
@@ -4034,7 +4034,7 @@ impl Status {
 
     #[doc="Non-Recoverable Fault1 Input"]
     #[inline] pub fn test_fault1in(&self) -> bool {
-        self.fault1in != 0
+        self.fault1in() != 0
     }
 
     #[doc="Non-Recoverable Fault1 Input"]
@@ -4053,7 +4053,7 @@ impl Status {
 
     #[doc="Recoverable FaultA State"]
     #[inline] pub fn test_faulta(&self) -> bool {
-        self.faulta != 0
+        self.faulta() != 0
     }
 
     #[doc="Recoverable FaultA State"]
@@ -4072,7 +4072,7 @@ impl Status {
 
     #[doc="Recoverable FaultB State"]
     #[inline] pub fn test_faultb(&self) -> bool {
-        self.faultb != 0
+        self.faultb() != 0
     }
 
     #[doc="Recoverable FaultB State"]
@@ -4091,7 +4091,7 @@ impl Status {
 
     #[doc="Non-Recoverable Fault 0 State"]
     #[inline] pub fn test_fault0(&self) -> bool {
-        self.fault0 != 0
+        self.fault0() != 0
     }
 
     #[doc="Non-Recoverable Fault 0 State"]
@@ -4110,7 +4110,7 @@ impl Status {
 
     #[doc="Non-Recoverable Fault 1 State"]
     #[inline] pub fn test_fault1(&self) -> bool {
-        self.fault1 != 0
+        self.fault1() != 0
     }
 
     #[doc="Non-Recoverable Fault 1 State"]
@@ -4221,7 +4221,7 @@ impl Syncbusy {
 
     #[doc="Swrst Busy"]
     #[inline] pub fn test_swrst(&self) -> bool {
-        self.swrst != 0
+        self.swrst() != 0
     }
 
     #[doc="Swrst Busy"]
@@ -4240,7 +4240,7 @@ impl Syncbusy {
 
     #[doc="Enable Busy"]
     #[inline] pub fn test_enable(&self) -> bool {
-        self.enable != 0
+        self.enable() != 0
     }
 
     #[doc="Enable Busy"]
@@ -4259,7 +4259,7 @@ impl Syncbusy {
 
     #[doc="Ctrlb Busy"]
     #[inline] pub fn test_ctrlb(&self) -> bool {
-        self.ctrlb != 0
+        self.ctrlb() != 0
     }
 
     #[doc="Ctrlb Busy"]
@@ -4278,7 +4278,7 @@ impl Syncbusy {
 
     #[doc="Status Busy"]
     #[inline] pub fn test_status(&self) -> bool {
-        self.status != 0
+        self.status() != 0
     }
 
     #[doc="Status Busy"]
@@ -4297,7 +4297,7 @@ impl Syncbusy {
 
     #[doc="Count Busy"]
     #[inline] pub fn test_count(&self) -> bool {
-        self.count != 0
+        self.count() != 0
     }
 
     #[doc="Count Busy"]
@@ -4316,7 +4316,7 @@ impl Syncbusy {
 
     #[doc="Pattern Busy"]
     #[inline] pub fn test_patt(&self) -> bool {
-        self.patt != 0
+        self.patt() != 0
     }
 
     #[doc="Pattern Busy"]
@@ -4335,7 +4335,7 @@ impl Syncbusy {
 
     #[doc="Wave Busy"]
     #[inline] pub fn test_wave(&self) -> bool {
-        self.wave != 0
+        self.wave() != 0
     }
 
     #[doc="Wave Busy"]
@@ -4354,7 +4354,7 @@ impl Syncbusy {
 
     #[doc="Period busy"]
     #[inline] pub fn test_per(&self) -> bool {
-        self.per != 0
+        self.per() != 0
     }
 
     #[doc="Period busy"]
@@ -4398,7 +4398,7 @@ impl Syncbusy {
 
     #[doc="Pattern Buffer Busy"]
     #[inline] pub fn test_pattb(&self) -> bool {
-        self.pattb != 0
+        self.pattb() != 0
     }
 
     #[doc="Pattern Buffer Busy"]
@@ -4417,7 +4417,7 @@ impl Syncbusy {
 
     #[doc="Wave Buffer Busy"]
     #[inline] pub fn test_waveb(&self) -> bool {
-        self.waveb != 0
+        self.waveb() != 0
     }
 
     #[doc="Wave Buffer Busy"]
@@ -4436,7 +4436,7 @@ impl Syncbusy {
 
     #[doc="Period Buffer Busy"]
     #[inline] pub fn test_perb(&self) -> bool {
-        self.perb != 0
+        self.perb() != 0
     }
 
     #[doc="Period Buffer Busy"]
@@ -4519,7 +4519,7 @@ impl Wave {
 
     #[doc="Waveform Generation"]
     #[inline] pub fn test_wavegen(&self) -> bool {
-        self.wavegen != 0
+        self.wavegen() != 0
     }
 
     #[doc="Waveform Generation"]
@@ -4538,7 +4538,7 @@ impl Wave {
 
     #[doc="Ramp Mode"]
     #[inline] pub fn test_ramp(&self) -> bool {
-        self.ramp != 0
+        self.ramp() != 0
     }
 
     #[doc="Ramp Mode"]
@@ -4557,7 +4557,7 @@ impl Wave {
 
     #[doc="Circular period Enable"]
     #[inline] pub fn test_ciperen(&self) -> bool {
-        self.ciperen != 0
+        self.ciperen() != 0
     }
 
     #[doc="Circular period Enable"]
@@ -4686,7 +4686,7 @@ impl Waveb {
 
     #[doc="Waveform Generation Buffer"]
     #[inline] pub fn test_wavegenb(&self) -> bool {
-        self.wavegenb != 0
+        self.wavegenb() != 0
     }
 
     #[doc="Waveform Generation Buffer"]
@@ -4705,7 +4705,7 @@ impl Waveb {
 
     #[doc="Ramp Mode Buffer"]
     #[inline] pub fn test_rampb(&self) -> bool {
-        self.rampb != 0
+        self.rampb() != 0
     }
 
     #[doc="Ramp Mode Buffer"]
@@ -4724,7 +4724,7 @@ impl Waveb {
 
     #[doc="Circular Period Enable Buffer"]
     #[inline] pub fn test_ciperenb(&self) -> bool {
-        self.ciperenb != 0
+        self.ciperenb() != 0
     }
 
     #[doc="Circular Period Enable Buffer"]
@@ -4853,7 +4853,7 @@ impl Wexctrl {
 
     #[doc="Output Matrix"]
     #[inline] pub fn test_otmx(&self) -> bool {
-        self.otmx != 0
+        self.otmx() != 0
     }
 
     #[doc="Output Matrix"]
@@ -4897,7 +4897,7 @@ impl Wexctrl {
 
     #[doc="Dead-time Low Side Outputs Value"]
     #[inline] pub fn test_dtls(&self) -> bool {
-        self.dtls != 0
+        self.dtls() != 0
     }
 
     #[doc="Dead-time Low Side Outputs Value"]
@@ -4916,7 +4916,7 @@ impl Wexctrl {
 
     #[doc="Dead-time High Side Outputs Value"]
     #[inline] pub fn test_dths(&self) -> bool {
-        self.dths != 0
+        self.dths() != 0
     }
 
     #[doc="Dead-time High Side Outputs Value"]

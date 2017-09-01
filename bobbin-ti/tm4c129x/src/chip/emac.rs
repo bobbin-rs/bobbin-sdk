@@ -2434,7 +2434,7 @@ impl Cfg {
 
     #[doc="Preamble Length for Transmit Frames"]
     #[inline] pub fn test_prelen(&self) -> bool {
-        self.prelen != 0
+        self.prelen() != 0
     }
 
     #[doc="Preamble Length for Transmit Frames"]
@@ -2453,7 +2453,7 @@ impl Cfg {
 
     #[doc="Receiver Enable"]
     #[inline] pub fn test_re(&self) -> bool {
-        self.re != 0
+        self.re() != 0
     }
 
     #[doc="Receiver Enable"]
@@ -2472,7 +2472,7 @@ impl Cfg {
 
     #[doc="Transmitter Enable"]
     #[inline] pub fn test_te(&self) -> bool {
-        self.te != 0
+        self.te() != 0
     }
 
     #[doc="Transmitter Enable"]
@@ -2491,7 +2491,7 @@ impl Cfg {
 
     #[doc="Deferral Check"]
     #[inline] pub fn test_dc(&self) -> bool {
-        self.dc != 0
+        self.dc() != 0
     }
 
     #[doc="Deferral Check"]
@@ -2510,7 +2510,7 @@ impl Cfg {
 
     #[doc="Back-Off Limit"]
     #[inline] pub fn test_bl(&self) -> bool {
-        self.bl != 0
+        self.bl() != 0
     }
 
     #[doc="Back-Off Limit"]
@@ -2529,7 +2529,7 @@ impl Cfg {
 
     #[doc="Automatic Pad or CRC Stripping"]
     #[inline] pub fn test_acs(&self) -> bool {
-        self.acs != 0
+        self.acs() != 0
     }
 
     #[doc="Automatic Pad or CRC Stripping"]
@@ -2548,7 +2548,7 @@ impl Cfg {
 
     #[doc="Disable Retry"]
     #[inline] pub fn test_dr(&self) -> bool {
-        self.dr != 0
+        self.dr() != 0
     }
 
     #[doc="Disable Retry"]
@@ -2567,7 +2567,7 @@ impl Cfg {
 
     #[doc="Checksum Offload"]
     #[inline] pub fn test_ipc(&self) -> bool {
-        self.ipc != 0
+        self.ipc() != 0
     }
 
     #[doc="Checksum Offload"]
@@ -2586,7 +2586,7 @@ impl Cfg {
 
     #[doc="Duplex Mode"]
     #[inline] pub fn test_dupm(&self) -> bool {
-        self.dupm != 0
+        self.dupm() != 0
     }
 
     #[doc="Duplex Mode"]
@@ -2605,7 +2605,7 @@ impl Cfg {
 
     #[doc="Loopback Mode"]
     #[inline] pub fn test_loopbm(&self) -> bool {
-        self.loopbm != 0
+        self.loopbm() != 0
     }
 
     #[doc="Loopback Mode"]
@@ -2624,7 +2624,7 @@ impl Cfg {
 
     #[doc="Disable Receive Own"]
     #[inline] pub fn test_dro(&self) -> bool {
-        self.dro != 0
+        self.dro() != 0
     }
 
     #[doc="Disable Receive Own"]
@@ -2643,7 +2643,7 @@ impl Cfg {
 
     #[doc="Speed"]
     #[inline] pub fn test_fes(&self) -> bool {
-        self.fes != 0
+        self.fes() != 0
     }
 
     #[doc="Speed"]
@@ -2662,7 +2662,7 @@ impl Cfg {
 
     #[doc="Port Select"]
     #[inline] pub fn test_ps(&self) -> bool {
-        self.ps != 0
+        self.ps() != 0
     }
 
     #[doc="Port Select"]
@@ -2681,7 +2681,7 @@ impl Cfg {
 
     #[doc="Disable Carrier Sense During Transmission"]
     #[inline] pub fn test_discrs(&self) -> bool {
-        self.discrs != 0
+        self.discrs() != 0
     }
 
     #[doc="Disable Carrier Sense During Transmission"]
@@ -2700,7 +2700,7 @@ impl Cfg {
 
     #[doc="Inter-Frame Gap (IFG)"]
     #[inline] pub fn test_ifg(&self) -> bool {
-        self.ifg != 0
+        self.ifg() != 0
     }
 
     #[doc="Inter-Frame Gap (IFG)"]
@@ -2719,7 +2719,7 @@ impl Cfg {
 
     #[doc="Jumbo Frame Enable"]
     #[inline] pub fn test_jfen(&self) -> bool {
-        self.jfen != 0
+        self.jfen() != 0
     }
 
     #[doc="Jumbo Frame Enable"]
@@ -2738,7 +2738,7 @@ impl Cfg {
 
     #[doc="Jabber Disable"]
     #[inline] pub fn test_jd(&self) -> bool {
-        self.jd != 0
+        self.jd() != 0
     }
 
     #[doc="Jabber Disable"]
@@ -2757,7 +2757,7 @@ impl Cfg {
 
     #[doc="Watchdog Disable"]
     #[inline] pub fn test_wddis(&self) -> bool {
-        self.wddis != 0
+        self.wddis() != 0
     }
 
     #[doc="Watchdog Disable"]
@@ -2776,7 +2776,7 @@ impl Cfg {
 
     #[doc="CRC Stripping for Type Frames"]
     #[inline] pub fn test_cst(&self) -> bool {
-        self.cst != 0
+        self.cst() != 0
     }
 
     #[doc="CRC Stripping for Type Frames"]
@@ -2795,7 +2795,7 @@ impl Cfg {
 
     #[doc="IEEE 802"]
     #[inline] pub fn test_twokpen(&self) -> bool {
-        self.twokpen != 0
+        self.twokpen() != 0
     }
 
     #[doc="IEEE 802"]
@@ -2854,7 +2854,7 @@ impl Framefltr {
 
     #[doc="Promiscuous Mode"]
     #[inline] pub fn test_pr(&self) -> bool {
-        self.pr != 0
+        self.pr() != 0
     }
 
     #[doc="Promiscuous Mode"]
@@ -2873,7 +2873,7 @@ impl Framefltr {
 
     #[doc="Hash Unicast"]
     #[inline] pub fn test_huc(&self) -> bool {
-        self.huc != 0
+        self.huc() != 0
     }
 
     #[doc="Hash Unicast"]
@@ -2892,7 +2892,7 @@ impl Framefltr {
 
     #[doc="Hash Multicast"]
     #[inline] pub fn test_hmc(&self) -> bool {
-        self.hmc != 0
+        self.hmc() != 0
     }
 
     #[doc="Hash Multicast"]
@@ -2911,7 +2911,7 @@ impl Framefltr {
 
     #[doc="Destination Address (DA) Inverse Filtering"]
     #[inline] pub fn test_daif(&self) -> bool {
-        self.daif != 0
+        self.daif() != 0
     }
 
     #[doc="Destination Address (DA) Inverse Filtering"]
@@ -2930,7 +2930,7 @@ impl Framefltr {
 
     #[doc="Pass All Multicast"]
     #[inline] pub fn test_pm(&self) -> bool {
-        self.pm != 0
+        self.pm() != 0
     }
 
     #[doc="Pass All Multicast"]
@@ -2949,7 +2949,7 @@ impl Framefltr {
 
     #[doc="Disable Broadcast Frames"]
     #[inline] pub fn test_dbf(&self) -> bool {
-        self.dbf != 0
+        self.dbf() != 0
     }
 
     #[doc="Disable Broadcast Frames"]
@@ -2968,7 +2968,7 @@ impl Framefltr {
 
     #[doc="Pass Control Frames"]
     #[inline] pub fn test_pcf(&self) -> bool {
-        self.pcf != 0
+        self.pcf() != 0
     }
 
     #[doc="Pass Control Frames"]
@@ -2987,7 +2987,7 @@ impl Framefltr {
 
     #[doc="Source Address (SA) Inverse Filtering"]
     #[inline] pub fn test_saif(&self) -> bool {
-        self.saif != 0
+        self.saif() != 0
     }
 
     #[doc="Source Address (SA) Inverse Filtering"]
@@ -3006,7 +3006,7 @@ impl Framefltr {
 
     #[doc="Source Address Filter Enable"]
     #[inline] pub fn test_saf(&self) -> bool {
-        self.saf != 0
+        self.saf() != 0
     }
 
     #[doc="Source Address Filter Enable"]
@@ -3025,7 +3025,7 @@ impl Framefltr {
 
     #[doc="Hash or Perfect Filter"]
     #[inline] pub fn test_hpf(&self) -> bool {
-        self.hpf != 0
+        self.hpf() != 0
     }
 
     #[doc="Hash or Perfect Filter"]
@@ -3044,7 +3044,7 @@ impl Framefltr {
 
     #[doc="VLAN Tag Filter Enable"]
     #[inline] pub fn test_vtfe(&self) -> bool {
-        self.vtfe != 0
+        self.vtfe() != 0
     }
 
     #[doc="VLAN Tag Filter Enable"]
@@ -3063,7 +3063,7 @@ impl Framefltr {
 
     #[doc="Receive All"]
     #[inline] pub fn test_ra(&self) -> bool {
-        self.ra != 0
+        self.ra() != 0
     }
 
     #[doc="Receive All"]
@@ -3114,7 +3114,7 @@ impl Hashtblh {
 
     #[doc="Hash Table High"]
     #[inline] pub fn test_hth(&self) -> bool {
-        self.hth != 0
+        self.hth() != 0
     }
 
     #[doc="Hash Table High"]
@@ -3153,7 +3153,7 @@ impl Hashtbll {
 
     #[doc="Hash Table Low"]
     #[inline] pub fn test_htl(&self) -> bool {
-        self.htl != 0
+        self.htl() != 0
     }
 
     #[doc="Hash Table Low"]
@@ -3192,7 +3192,7 @@ impl Miiaddr {
 
     #[doc="MII Busy"]
     #[inline] pub fn test_miib(&self) -> bool {
-        self.miib != 0
+        self.miib() != 0
     }
 
     #[doc="MII Busy"]
@@ -3211,7 +3211,7 @@ impl Miiaddr {
 
     #[doc="MII Write"]
     #[inline] pub fn test_miiw(&self) -> bool {
-        self.miiw != 0
+        self.miiw() != 0
     }
 
     #[doc="MII Write"]
@@ -3230,7 +3230,7 @@ impl Miiaddr {
 
     #[doc="Clock Reference Frequency Selection"]
     #[inline] pub fn test_cr(&self) -> bool {
-        self.cr != 0
+        self.cr() != 0
     }
 
     #[doc="Clock Reference Frequency Selection"]
@@ -3249,7 +3249,7 @@ impl Miiaddr {
 
     #[doc="MII Register"]
     #[inline] pub fn test_mii(&self) -> bool {
-        self.mii != 0
+        self.mii() != 0
     }
 
     #[doc="MII Register"]
@@ -3268,7 +3268,7 @@ impl Miiaddr {
 
     #[doc="Physical Layer Address"]
     #[inline] pub fn test_pla(&self) -> bool {
-        self.pla != 0
+        self.pla() != 0
     }
 
     #[doc="Physical Layer Address"]
@@ -3312,7 +3312,7 @@ impl Miidata {
 
     #[doc="MII Data"]
     #[inline] pub fn test_data(&self) -> bool {
-        self.data != 0
+        self.data() != 0
     }
 
     #[doc="MII Data"]
@@ -3352,7 +3352,7 @@ impl Flowctl {
 
     #[doc="Flow Control Busy or Back-pressure Activate"]
     #[inline] pub fn test_fcbbpa(&self) -> bool {
-        self.fcbbpa != 0
+        self.fcbbpa() != 0
     }
 
     #[doc="Flow Control Busy or Back-pressure Activate"]
@@ -3371,7 +3371,7 @@ impl Flowctl {
 
     #[doc="Transmit Flow Control Enable"]
     #[inline] pub fn test_tfe(&self) -> bool {
-        self.tfe != 0
+        self.tfe() != 0
     }
 
     #[doc="Transmit Flow Control Enable"]
@@ -3390,7 +3390,7 @@ impl Flowctl {
 
     #[doc="Receive Flow Control Enable"]
     #[inline] pub fn test_rfe(&self) -> bool {
-        self.rfe != 0
+        self.rfe() != 0
     }
 
     #[doc="Receive Flow Control Enable"]
@@ -3409,7 +3409,7 @@ impl Flowctl {
 
     #[doc="Unicast Pause Frame Detect"]
     #[inline] pub fn test_up(&self) -> bool {
-        self.up != 0
+        self.up() != 0
     }
 
     #[doc="Unicast Pause Frame Detect"]
@@ -3428,7 +3428,7 @@ impl Flowctl {
 
     #[doc="Pause Low Threshold"]
     #[inline] pub fn test_plt(&self) -> bool {
-        self.plt != 0
+        self.plt() != 0
     }
 
     #[doc="Pause Low Threshold"]
@@ -3447,7 +3447,7 @@ impl Flowctl {
 
     #[doc="Disable Zero-Quanta Pause"]
     #[inline] pub fn test_dzqp(&self) -> bool {
-        self.dzqp != 0
+        self.dzqp() != 0
     }
 
     #[doc="Disable Zero-Quanta Pause"]
@@ -3466,7 +3466,7 @@ impl Flowctl {
 
     #[doc="Pause Time"]
     #[inline] pub fn test_pt(&self) -> bool {
-        self.pt != 0
+        self.pt() != 0
     }
 
     #[doc="Pause Time"]
@@ -3512,7 +3512,7 @@ impl Vlantg {
 
     #[doc="VLAN Tag Identifier for Receive Frames"]
     #[inline] pub fn test_vl(&self) -> bool {
-        self.vl != 0
+        self.vl() != 0
     }
 
     #[doc="VLAN Tag Identifier for Receive Frames"]
@@ -3531,7 +3531,7 @@ impl Vlantg {
 
     #[doc="Enable 12-Bit VLAN Tag Comparison"]
     #[inline] pub fn test_etv(&self) -> bool {
-        self.etv != 0
+        self.etv() != 0
     }
 
     #[doc="Enable 12-Bit VLAN Tag Comparison"]
@@ -3550,7 +3550,7 @@ impl Vlantg {
 
     #[doc="VLAN Tag Inverse Match Enable"]
     #[inline] pub fn test_vtim(&self) -> bool {
-        self.vtim != 0
+        self.vtim() != 0
     }
 
     #[doc="VLAN Tag Inverse Match Enable"]
@@ -3569,7 +3569,7 @@ impl Vlantg {
 
     #[doc="Enable S-VLAN"]
     #[inline] pub fn test_esvl(&self) -> bool {
-        self.esvl != 0
+        self.esvl() != 0
     }
 
     #[doc="Enable S-VLAN"]
@@ -3588,7 +3588,7 @@ impl Vlantg {
 
     #[doc="VLAN Tag Hash Table Match Enable"]
     #[inline] pub fn test_vthm(&self) -> bool {
-        self.vthm != 0
+        self.vthm() != 0
     }
 
     #[doc="VLAN Tag Hash Table Match Enable"]
@@ -3632,7 +3632,7 @@ impl Status {
 
     #[doc="MAC MII Receive Protocol Engine Status"]
     #[inline] pub fn test_rpe(&self) -> bool {
-        self.rpe != 0
+        self.rpe() != 0
     }
 
     #[doc="MAC MII Receive Protocol Engine Status"]
@@ -3651,7 +3651,7 @@ impl Status {
 
     #[doc="MAC Receive Frame Controller FIFO Status"]
     #[inline] pub fn test_rfcfc(&self) -> bool {
-        self.rfcfc != 0
+        self.rfcfc() != 0
     }
 
     #[doc="MAC Receive Frame Controller FIFO Status"]
@@ -3670,7 +3670,7 @@ impl Status {
 
     #[doc="TX/RX Controller RX FIFO Write Controller Active Status"]
     #[inline] pub fn test_rwc(&self) -> bool {
-        self.rwc != 0
+        self.rwc() != 0
     }
 
     #[doc="TX/RX Controller RX FIFO Write Controller Active Status"]
@@ -3689,7 +3689,7 @@ impl Status {
 
     #[doc="TX/RX Controller Read Controller State"]
     #[inline] pub fn test_rrc(&self) -> bool {
-        self.rrc != 0
+        self.rrc() != 0
     }
 
     #[doc="TX/RX Controller Read Controller State"]
@@ -3708,7 +3708,7 @@ impl Status {
 
     #[doc="TX/RX Controller RX FIFO Fill-level Status"]
     #[inline] pub fn test_rxf(&self) -> bool {
-        self.rxf != 0
+        self.rxf() != 0
     }
 
     #[doc="TX/RX Controller RX FIFO Fill-level Status"]
@@ -3727,7 +3727,7 @@ impl Status {
 
     #[doc="MAC MII Transmit Protocol Engine Status"]
     #[inline] pub fn test_tpe(&self) -> bool {
-        self.tpe != 0
+        self.tpe() != 0
     }
 
     #[doc="MAC MII Transmit Protocol Engine Status"]
@@ -3746,7 +3746,7 @@ impl Status {
 
     #[doc="MAC Transmit Frame Controller Status"]
     #[inline] pub fn test_tfc(&self) -> bool {
-        self.tfc != 0
+        self.tfc() != 0
     }
 
     #[doc="MAC Transmit Frame Controller Status"]
@@ -3765,7 +3765,7 @@ impl Status {
 
     #[doc="MAC Transmitter PAUSE"]
     #[inline] pub fn test_txpaused(&self) -> bool {
-        self.txpaused != 0
+        self.txpaused() != 0
     }
 
     #[doc="MAC Transmitter PAUSE"]
@@ -3784,7 +3784,7 @@ impl Status {
 
     #[doc="TX/RX Controller\'s TX FIFO Read Controller Status"]
     #[inline] pub fn test_trc(&self) -> bool {
-        self.trc != 0
+        self.trc() != 0
     }
 
     #[doc="TX/RX Controller\'s TX FIFO Read Controller Status"]
@@ -3803,7 +3803,7 @@ impl Status {
 
     #[doc="TX/RX Controller TX FIFO Write Controller Active Status"]
     #[inline] pub fn test_twc(&self) -> bool {
-        self.twc != 0
+        self.twc() != 0
     }
 
     #[doc="TX/RX Controller TX FIFO Write Controller Active Status"]
@@ -3822,7 +3822,7 @@ impl Status {
 
     #[doc="TX/RX Controller TX FIFO Not Empty Status"]
     #[inline] pub fn test_txfe(&self) -> bool {
-        self.txfe != 0
+        self.txfe() != 0
     }
 
     #[doc="TX/RX Controller TX FIFO Not Empty Status"]
@@ -3841,7 +3841,7 @@ impl Status {
 
     #[doc="TX/RX Controller TX FIFO Full Status"]
     #[inline] pub fn test_txff(&self) -> bool {
-        self.txff != 0
+        self.txff() != 0
     }
 
     #[doc="TX/RX Controller TX FIFO Full Status"]
@@ -3892,7 +3892,7 @@ impl Rwuff {
 
     #[doc="Remote Wake-Up Frame Filter"]
     #[inline] pub fn test_wakeupfil(&self) -> bool {
-        self.wakeupfil != 0
+        self.wakeupfil() != 0
     }
 
     #[doc="Remote Wake-Up Frame Filter"]
@@ -3931,7 +3931,7 @@ impl Pmtctlstat {
 
     #[doc="Power Down"]
     #[inline] pub fn test_pwrdwn(&self) -> bool {
-        self.pwrdwn != 0
+        self.pwrdwn() != 0
     }
 
     #[doc="Power Down"]
@@ -3950,7 +3950,7 @@ impl Pmtctlstat {
 
     #[doc="Magic Packet Enable"]
     #[inline] pub fn test_mgkpkten(&self) -> bool {
-        self.mgkpkten != 0
+        self.mgkpkten() != 0
     }
 
     #[doc="Magic Packet Enable"]
@@ -3969,7 +3969,7 @@ impl Pmtctlstat {
 
     #[doc="Wake-Up Frame Enable"]
     #[inline] pub fn test_wupfren(&self) -> bool {
-        self.wupfren != 0
+        self.wupfren() != 0
     }
 
     #[doc="Wake-Up Frame Enable"]
@@ -3988,7 +3988,7 @@ impl Pmtctlstat {
 
     #[doc="Magic Packet Received"]
     #[inline] pub fn test_mgkprx(&self) -> bool {
-        self.mgkprx != 0
+        self.mgkprx() != 0
     }
 
     #[doc="Magic Packet Received"]
@@ -4007,7 +4007,7 @@ impl Pmtctlstat {
 
     #[doc="Wake-Up Frame Received"]
     #[inline] pub fn test_wuprx(&self) -> bool {
-        self.wuprx != 0
+        self.wuprx() != 0
     }
 
     #[doc="Wake-Up Frame Received"]
@@ -4026,7 +4026,7 @@ impl Pmtctlstat {
 
     #[doc="Global Unicast"]
     #[inline] pub fn test_glblucast(&self) -> bool {
-        self.glblucast != 0
+        self.glblucast() != 0
     }
 
     #[doc="Global Unicast"]
@@ -4045,7 +4045,7 @@ impl Pmtctlstat {
 
     #[doc="Remote Wake-Up FIFO Pointer"]
     #[inline] pub fn test_rwkptr(&self) -> bool {
-        self.rwkptr != 0
+        self.rwkptr() != 0
     }
 
     #[doc="Remote Wake-Up FIFO Pointer"]
@@ -4064,7 +4064,7 @@ impl Pmtctlstat {
 
     #[doc="Wake-Up Frame Filter Register Pointer Reset"]
     #[inline] pub fn test_wupfrrst(&self) -> bool {
-        self.wupfrrst != 0
+        self.wupfrrst() != 0
     }
 
     #[doc="Wake-Up Frame Filter Register Pointer Reset"]
@@ -4111,7 +4111,7 @@ impl Ris {
 
     #[doc="PMT Interrupt Status"]
     #[inline] pub fn test_pmt(&self) -> bool {
-        self.pmt != 0
+        self.pmt() != 0
     }
 
     #[doc="PMT Interrupt Status"]
@@ -4130,7 +4130,7 @@ impl Ris {
 
     #[doc="MMC Interrupt Status"]
     #[inline] pub fn test_mmc(&self) -> bool {
-        self.mmc != 0
+        self.mmc() != 0
     }
 
     #[doc="MMC Interrupt Status"]
@@ -4149,7 +4149,7 @@ impl Ris {
 
     #[doc="MMC Receive Interrupt Status"]
     #[inline] pub fn test_mmcrx(&self) -> bool {
-        self.mmcrx != 0
+        self.mmcrx() != 0
     }
 
     #[doc="MMC Receive Interrupt Status"]
@@ -4168,7 +4168,7 @@ impl Ris {
 
     #[doc="MMC Transmit Interrupt Status"]
     #[inline] pub fn test_mmctx(&self) -> bool {
-        self.mmctx != 0
+        self.mmctx() != 0
     }
 
     #[doc="MMC Transmit Interrupt Status"]
@@ -4187,7 +4187,7 @@ impl Ris {
 
     #[doc="Timestamp Interrupt Status"]
     #[inline] pub fn test_ts(&self) -> bool {
-        self.ts != 0
+        self.ts() != 0
     }
 
     #[doc="Timestamp Interrupt Status"]
@@ -4231,7 +4231,7 @@ impl Im {
 
     #[doc="PMT Interrupt Mask"]
     #[inline] pub fn test_pmt(&self) -> bool {
-        self.pmt != 0
+        self.pmt() != 0
     }
 
     #[doc="PMT Interrupt Mask"]
@@ -4250,7 +4250,7 @@ impl Im {
 
     #[doc="Timestamp Interrupt Mask"]
     #[inline] pub fn test_tsi(&self) -> bool {
-        self.tsi != 0
+        self.tsi() != 0
     }
 
     #[doc="Timestamp Interrupt Mask"]
@@ -4291,7 +4291,7 @@ impl Addr0h {
 
     #[doc="MAC Address0 [47:32]"]
     #[inline] pub fn test_addrhi(&self) -> bool {
-        self.addrhi != 0
+        self.addrhi() != 0
     }
 
     #[doc="MAC Address0 [47:32]"]
@@ -4310,7 +4310,7 @@ impl Addr0h {
 
     #[doc="Address Enable"]
     #[inline] pub fn test_ae(&self) -> bool {
-        self.ae != 0
+        self.ae() != 0
     }
 
     #[doc="Address Enable"]
@@ -4351,7 +4351,7 @@ impl Addr0l {
 
     #[doc="MAC Address0 [31:0]"]
     #[inline] pub fn test_addrlo(&self) -> bool {
-        self.addrlo != 0
+        self.addrlo() != 0
     }
 
     #[doc="MAC Address0 [31:0]"]
@@ -4390,7 +4390,7 @@ impl Addr1h {
 
     #[doc="MAC Address1 [47:32]"]
     #[inline] pub fn test_addrhi(&self) -> bool {
-        self.addrhi != 0
+        self.addrhi() != 0
     }
 
     #[doc="MAC Address1 [47:32]"]
@@ -4409,7 +4409,7 @@ impl Addr1h {
 
     #[doc="Mask Byte Control"]
     #[inline] pub fn test_mbc(&self) -> bool {
-        self.mbc != 0
+        self.mbc() != 0
     }
 
     #[doc="Mask Byte Control"]
@@ -4428,7 +4428,7 @@ impl Addr1h {
 
     #[doc="Source Address"]
     #[inline] pub fn test_sa(&self) -> bool {
-        self.sa != 0
+        self.sa() != 0
     }
 
     #[doc="Source Address"]
@@ -4447,7 +4447,7 @@ impl Addr1h {
 
     #[doc="Address Enable"]
     #[inline] pub fn test_ae(&self) -> bool {
-        self.ae != 0
+        self.ae() != 0
     }
 
     #[doc="Address Enable"]
@@ -4490,7 +4490,7 @@ impl Addr1l {
 
     #[doc="MAC Address1 [31:0]"]
     #[inline] pub fn test_addrlo(&self) -> bool {
-        self.addrlo != 0
+        self.addrlo() != 0
     }
 
     #[doc="MAC Address1 [31:0]"]
@@ -4529,7 +4529,7 @@ impl Addr2h {
 
     #[doc="MAC Address2 [47:32]"]
     #[inline] pub fn test_addrhi(&self) -> bool {
-        self.addrhi != 0
+        self.addrhi() != 0
     }
 
     #[doc="MAC Address2 [47:32]"]
@@ -4548,7 +4548,7 @@ impl Addr2h {
 
     #[doc="Mask Byte Control"]
     #[inline] pub fn test_mbc(&self) -> bool {
-        self.mbc != 0
+        self.mbc() != 0
     }
 
     #[doc="Mask Byte Control"]
@@ -4567,7 +4567,7 @@ impl Addr2h {
 
     #[doc="Source Address"]
     #[inline] pub fn test_sa(&self) -> bool {
-        self.sa != 0
+        self.sa() != 0
     }
 
     #[doc="Source Address"]
@@ -4586,7 +4586,7 @@ impl Addr2h {
 
     #[doc="Address Enable"]
     #[inline] pub fn test_ae(&self) -> bool {
-        self.ae != 0
+        self.ae() != 0
     }
 
     #[doc="Address Enable"]
@@ -4629,7 +4629,7 @@ impl Addr2l {
 
     #[doc="MAC Address2 [31:0]"]
     #[inline] pub fn test_addrlo(&self) -> bool {
-        self.addrlo != 0
+        self.addrlo() != 0
     }
 
     #[doc="MAC Address2 [31:0]"]
@@ -4668,7 +4668,7 @@ impl Addr3h {
 
     #[doc="MAC Address3 [47:32]"]
     #[inline] pub fn test_addrhi(&self) -> bool {
-        self.addrhi != 0
+        self.addrhi() != 0
     }
 
     #[doc="MAC Address3 [47:32]"]
@@ -4687,7 +4687,7 @@ impl Addr3h {
 
     #[doc="Mask Byte Control"]
     #[inline] pub fn test_mbc(&self) -> bool {
-        self.mbc != 0
+        self.mbc() != 0
     }
 
     #[doc="Mask Byte Control"]
@@ -4706,7 +4706,7 @@ impl Addr3h {
 
     #[doc="Source Address"]
     #[inline] pub fn test_sa(&self) -> bool {
-        self.sa != 0
+        self.sa() != 0
     }
 
     #[doc="Source Address"]
@@ -4725,7 +4725,7 @@ impl Addr3h {
 
     #[doc="Address Enable"]
     #[inline] pub fn test_ae(&self) -> bool {
-        self.ae != 0
+        self.ae() != 0
     }
 
     #[doc="Address Enable"]
@@ -4768,7 +4768,7 @@ impl Addr3l {
 
     #[doc="MAC Address3 [31:0]"]
     #[inline] pub fn test_addrlo(&self) -> bool {
-        self.addrlo != 0
+        self.addrlo() != 0
     }
 
     #[doc="MAC Address3 [31:0]"]
@@ -4807,7 +4807,7 @@ impl Wdogto {
 
     #[doc="Watchdog Timeout"]
     #[inline] pub fn test_wto(&self) -> bool {
-        self.wto != 0
+        self.wto() != 0
     }
 
     #[doc="Watchdog Timeout"]
@@ -4826,7 +4826,7 @@ impl Wdogto {
 
     #[doc="Programmable Watchdog Enable"]
     #[inline] pub fn test_pwe(&self) -> bool {
-        self.pwe != 0
+        self.pwe() != 0
     }
 
     #[doc="Programmable Watchdog Enable"]
@@ -4867,7 +4867,7 @@ impl Mmcctrl {
 
     #[doc="Counters Reset"]
     #[inline] pub fn test_cntrst(&self) -> bool {
-        self.cntrst != 0
+        self.cntrst() != 0
     }
 
     #[doc="Counters Reset"]
@@ -4886,7 +4886,7 @@ impl Mmcctrl {
 
     #[doc="Counters Stop Rollover"]
     #[inline] pub fn test_cntstpro(&self) -> bool {
-        self.cntstpro != 0
+        self.cntstpro() != 0
     }
 
     #[doc="Counters Stop Rollover"]
@@ -4905,7 +4905,7 @@ impl Mmcctrl {
 
     #[doc="Reset on Read"]
     #[inline] pub fn test_rstonrd(&self) -> bool {
-        self.rstonrd != 0
+        self.rstonrd() != 0
     }
 
     #[doc="Reset on Read"]
@@ -4924,7 +4924,7 @@ impl Mmcctrl {
 
     #[doc="MMC Counter Freeze"]
     #[inline] pub fn test_cntfreez(&self) -> bool {
-        self.cntfreez != 0
+        self.cntfreez() != 0
     }
 
     #[doc="MMC Counter Freeze"]
@@ -4943,7 +4943,7 @@ impl Mmcctrl {
 
     #[doc="Counters Preset"]
     #[inline] pub fn test_cntprst(&self) -> bool {
-        self.cntprst != 0
+        self.cntprst() != 0
     }
 
     #[doc="Counters Preset"]
@@ -4962,7 +4962,7 @@ impl Mmcctrl {
 
     #[doc="Full/Half Preset Level Value"]
     #[inline] pub fn test_cntprstlvl(&self) -> bool {
-        self.cntprstlvl != 0
+        self.cntprstlvl() != 0
     }
 
     #[doc="Full/Half Preset Level Value"]
@@ -4981,7 +4981,7 @@ impl Mmcctrl {
 
     #[doc="Update MMC Counters for Dropped Broadcast Frames"]
     #[inline] pub fn test_ucdbc(&self) -> bool {
-        self.ucdbc != 0
+        self.ucdbc() != 0
     }
 
     #[doc="Update MMC Counters for Dropped Broadcast Frames"]
@@ -5027,7 +5027,7 @@ impl Mmcrxris {
 
     #[doc="MMC Receive Good Bad Frame Counter Interrupt Status"]
     #[inline] pub fn test_gbf(&self) -> bool {
-        self.gbf != 0
+        self.gbf() != 0
     }
 
     #[doc="MMC Receive Good Bad Frame Counter Interrupt Status"]
@@ -5046,7 +5046,7 @@ impl Mmcrxris {
 
     #[doc="MMC Receive CRC Error Frame Counter Interrupt Status"]
     #[inline] pub fn test_crcerr(&self) -> bool {
-        self.crcerr != 0
+        self.crcerr() != 0
     }
 
     #[doc="MMC Receive CRC Error Frame Counter Interrupt Status"]
@@ -5065,7 +5065,7 @@ impl Mmcrxris {
 
     #[doc="MMC Receive Alignment Error Frame Counter Interrupt Status"]
     #[inline] pub fn test_algnerr(&self) -> bool {
-        self.algnerr != 0
+        self.algnerr() != 0
     }
 
     #[doc="MMC Receive Alignment Error Frame Counter Interrupt Status"]
@@ -5084,7 +5084,7 @@ impl Mmcrxris {
 
     #[doc="MMC Receive Unicast Good Frame Counter Interrupt Status"]
     #[inline] pub fn test_ucgf(&self) -> bool {
-        self.ucgf != 0
+        self.ucgf() != 0
     }
 
     #[doc="MMC Receive Unicast Good Frame Counter Interrupt Status"]
@@ -5127,7 +5127,7 @@ impl Mmctxris {
 
     #[doc="MMC Transmit Good Bad Frame Counter Interrupt Status"]
     #[inline] pub fn test_gbf(&self) -> bool {
-        self.gbf != 0
+        self.gbf() != 0
     }
 
     #[doc="MMC Transmit Good Bad Frame Counter Interrupt Status"]
@@ -5146,7 +5146,7 @@ impl Mmctxris {
 
     #[doc="MMC Transmit Single Collision Good Frame Counter Interrupt Status"]
     #[inline] pub fn test_scollgf(&self) -> bool {
-        self.scollgf != 0
+        self.scollgf() != 0
     }
 
     #[doc="MMC Transmit Single Collision Good Frame Counter Interrupt Status"]
@@ -5165,7 +5165,7 @@ impl Mmctxris {
 
     #[doc="MMC Transmit Multiple Collision Good Frame Counter Interrupt Status"]
     #[inline] pub fn test_mcollgf(&self) -> bool {
-        self.mcollgf != 0
+        self.mcollgf() != 0
     }
 
     #[doc="MMC Transmit Multiple Collision Good Frame Counter Interrupt Status"]
@@ -5184,7 +5184,7 @@ impl Mmctxris {
 
     #[doc="Octet Counter Interrupt Status"]
     #[inline] pub fn test_octcnt(&self) -> bool {
-        self.octcnt != 0
+        self.octcnt() != 0
     }
 
     #[doc="Octet Counter Interrupt Status"]
@@ -5227,7 +5227,7 @@ impl Mmcrxim {
 
     #[doc="MMC Receive Good Bad Frame Counter Interrupt Mask"]
     #[inline] pub fn test_gbf(&self) -> bool {
-        self.gbf != 0
+        self.gbf() != 0
     }
 
     #[doc="MMC Receive Good Bad Frame Counter Interrupt Mask"]
@@ -5246,7 +5246,7 @@ impl Mmcrxim {
 
     #[doc="MMC Receive CRC Error Frame Counter Interrupt Mask"]
     #[inline] pub fn test_crcerr(&self) -> bool {
-        self.crcerr != 0
+        self.crcerr() != 0
     }
 
     #[doc="MMC Receive CRC Error Frame Counter Interrupt Mask"]
@@ -5265,7 +5265,7 @@ impl Mmcrxim {
 
     #[doc="MMC Receive Alignment Error Frame Counter Interrupt Mask"]
     #[inline] pub fn test_algnerr(&self) -> bool {
-        self.algnerr != 0
+        self.algnerr() != 0
     }
 
     #[doc="MMC Receive Alignment Error Frame Counter Interrupt Mask"]
@@ -5284,7 +5284,7 @@ impl Mmcrxim {
 
     #[doc="MMC Receive Unicast Good Frame Counter Interrupt Mask"]
     #[inline] pub fn test_ucgf(&self) -> bool {
-        self.ucgf != 0
+        self.ucgf() != 0
     }
 
     #[doc="MMC Receive Unicast Good Frame Counter Interrupt Mask"]
@@ -5327,7 +5327,7 @@ impl Mmctxim {
 
     #[doc="MMC Transmit Good Bad Frame Counter Interrupt Mask"]
     #[inline] pub fn test_gbf(&self) -> bool {
-        self.gbf != 0
+        self.gbf() != 0
     }
 
     #[doc="MMC Transmit Good Bad Frame Counter Interrupt Mask"]
@@ -5346,7 +5346,7 @@ impl Mmctxim {
 
     #[doc="MMC Transmit Single Collision Good Frame Counter Interrupt Mask"]
     #[inline] pub fn test_scollgf(&self) -> bool {
-        self.scollgf != 0
+        self.scollgf() != 0
     }
 
     #[doc="MMC Transmit Single Collision Good Frame Counter Interrupt Mask"]
@@ -5365,7 +5365,7 @@ impl Mmctxim {
 
     #[doc="MMC Transmit Multiple Collision Good Frame Counter Interrupt Mask"]
     #[inline] pub fn test_mcollgf(&self) -> bool {
-        self.mcollgf != 0
+        self.mcollgf() != 0
     }
 
     #[doc="MMC Transmit Multiple Collision Good Frame Counter Interrupt Mask"]
@@ -5384,7 +5384,7 @@ impl Mmctxim {
 
     #[doc="MMC Transmit Good Octet Counter Interrupt Mask"]
     #[inline] pub fn test_octcnt(&self) -> bool {
-        self.octcnt != 0
+        self.octcnt() != 0
     }
 
     #[doc="MMC Transmit Good Octet Counter Interrupt Mask"]
@@ -5427,7 +5427,7 @@ impl Txcntgb {
 
     #[doc="This field indicates the number of good and bad frames transmitted, exclusive of retried frames"]
     #[inline] pub fn test_txfrmgb(&self) -> bool {
-        self.txfrmgb != 0
+        self.txfrmgb() != 0
     }
 
     #[doc="This field indicates the number of good and bad frames transmitted, exclusive of retried frames"]
@@ -5466,7 +5466,7 @@ impl Txcntscol {
 
     #[doc="This field indicates the number of successfully transmitted frames after a single collision in the half-duplex mode"]
     #[inline] pub fn test_txsnglcolg(&self) -> bool {
-        self.txsnglcolg != 0
+        self.txsnglcolg() != 0
     }
 
     #[doc="This field indicates the number of successfully transmitted frames after a single collision in the half-duplex mode"]
@@ -5505,7 +5505,7 @@ impl Txcntmcol {
 
     #[doc="This field indicates the number of successfully transmitted frames after multiple collisions in the half-duplex mode"]
     #[inline] pub fn test_txmultcolg(&self) -> bool {
-        self.txmultcolg != 0
+        self.txmultcolg() != 0
     }
 
     #[doc="This field indicates the number of successfully transmitted frames after multiple collisions in the half-duplex mode"]
@@ -5544,7 +5544,7 @@ impl Txoctcntg {
 
     #[doc="This field indicates the number of bytes transmitted, exclusive of preamble, in good frames"]
     #[inline] pub fn test_txoctg(&self) -> bool {
-        self.txoctg != 0
+        self.txoctg() != 0
     }
 
     #[doc="This field indicates the number of bytes transmitted, exclusive of preamble, in good frames"]
@@ -5583,7 +5583,7 @@ impl Rxcntgb {
 
     #[doc="This field indicates the number of received good and bad frames"]
     #[inline] pub fn test_rxfrmgb(&self) -> bool {
-        self.rxfrmgb != 0
+        self.rxfrmgb() != 0
     }
 
     #[doc="This field indicates the number of received good and bad frames"]
@@ -5622,7 +5622,7 @@ impl Rxcntcrcerr {
 
     #[doc="This field indicates the number of frames received with CRC error"]
     #[inline] pub fn test_rxcrcerr(&self) -> bool {
-        self.rxcrcerr != 0
+        self.rxcrcerr() != 0
     }
 
     #[doc="This field indicates the number of frames received with CRC error"]
@@ -5661,7 +5661,7 @@ impl Rxcntalgnerr {
 
     #[doc="This field indicates the number of frames received with alignment (dribble) error"]
     #[inline] pub fn test_rxalgnerr(&self) -> bool {
-        self.rxalgnerr != 0
+        self.rxalgnerr() != 0
     }
 
     #[doc="This field indicates the number of frames received with alignment (dribble) error"]
@@ -5700,7 +5700,7 @@ impl Rxcntguni {
 
     #[doc="This field indicates the number of received good unicast frames"]
     #[inline] pub fn test_rxucastg(&self) -> bool {
-        self.rxucastg != 0
+        self.rxucastg() != 0
     }
 
     #[doc="This field indicates the number of received good unicast frames"]
@@ -5739,7 +5739,7 @@ impl Vlnincrep {
 
     #[doc="VLAN Tag for Transmit Frames"]
     #[inline] pub fn test_vlt(&self) -> bool {
-        self.vlt != 0
+        self.vlt() != 0
     }
 
     #[doc="VLAN Tag for Transmit Frames"]
@@ -5758,7 +5758,7 @@ impl Vlnincrep {
 
     #[doc="VLAN Tag Control in Transmit Frames"]
     #[inline] pub fn test_vlc(&self) -> bool {
-        self.vlc != 0
+        self.vlc() != 0
     }
 
     #[doc="VLAN Tag Control in Transmit Frames"]
@@ -5777,7 +5777,7 @@ impl Vlnincrep {
 
     #[doc="VLAN Priority Control"]
     #[inline] pub fn test_vlp(&self) -> bool {
-        self.vlp != 0
+        self.vlp() != 0
     }
 
     #[doc="VLAN Priority Control"]
@@ -5796,7 +5796,7 @@ impl Vlnincrep {
 
     #[doc="C-VLAN or S-VLAN"]
     #[inline] pub fn test_csvl(&self) -> bool {
-        self.csvl != 0
+        self.csvl() != 0
     }
 
     #[doc="C-VLAN or S-VLAN"]
@@ -5839,7 +5839,7 @@ impl Vlanhash {
 
     #[doc="VLAN Hash Table"]
     #[inline] pub fn test_vlht(&self) -> bool {
-        self.vlht != 0
+        self.vlht() != 0
     }
 
     #[doc="VLAN Hash Table"]
@@ -5879,7 +5879,7 @@ impl Timstctrl {
 
     #[doc="Timestamp Enable"]
     #[inline] pub fn test_tsen(&self) -> bool {
-        self.tsen != 0
+        self.tsen() != 0
     }
 
     #[doc="Timestamp Enable"]
@@ -5898,7 +5898,7 @@ impl Timstctrl {
 
     #[doc="Timestamp Fine or Coarse Update"]
     #[inline] pub fn test_tsfcupdt(&self) -> bool {
-        self.tsfcupdt != 0
+        self.tsfcupdt() != 0
     }
 
     #[doc="Timestamp Fine or Coarse Update"]
@@ -5917,7 +5917,7 @@ impl Timstctrl {
 
     #[doc="Timestamp Initialize"]
     #[inline] pub fn test_tsinit(&self) -> bool {
-        self.tsinit != 0
+        self.tsinit() != 0
     }
 
     #[doc="Timestamp Initialize"]
@@ -5936,7 +5936,7 @@ impl Timstctrl {
 
     #[doc="Timestamp Update"]
     #[inline] pub fn test_tsupdt(&self) -> bool {
-        self.tsupdt != 0
+        self.tsupdt() != 0
     }
 
     #[doc="Timestamp Update"]
@@ -5955,7 +5955,7 @@ impl Timstctrl {
 
     #[doc="Timestamp Interrupt Trigger Enable"]
     #[inline] pub fn test_inttrig(&self) -> bool {
-        self.inttrig != 0
+        self.inttrig() != 0
     }
 
     #[doc="Timestamp Interrupt Trigger Enable"]
@@ -5974,7 +5974,7 @@ impl Timstctrl {
 
     #[doc="Addend Register Update"]
     #[inline] pub fn test_addregup(&self) -> bool {
-        self.addregup != 0
+        self.addregup() != 0
     }
 
     #[doc="Addend Register Update"]
@@ -5993,7 +5993,7 @@ impl Timstctrl {
 
     #[doc="Enable Timestamp For All Frames"]
     #[inline] pub fn test_allf(&self) -> bool {
-        self.allf != 0
+        self.allf() != 0
     }
 
     #[doc="Enable Timestamp For All Frames"]
@@ -6012,7 +6012,7 @@ impl Timstctrl {
 
     #[doc="Timestamp Digital or Binary Rollover Control"]
     #[inline] pub fn test_dgtlbin(&self) -> bool {
-        self.dgtlbin != 0
+        self.dgtlbin() != 0
     }
 
     #[doc="Timestamp Digital or Binary Rollover Control"]
@@ -6031,7 +6031,7 @@ impl Timstctrl {
 
     #[doc="Enable PTP Packet Processing For Version 2 Format"]
     #[inline] pub fn test_ptpver2(&self) -> bool {
-        self.ptpver2 != 0
+        self.ptpver2() != 0
     }
 
     #[doc="Enable PTP Packet Processing For Version 2 Format"]
@@ -6050,7 +6050,7 @@ impl Timstctrl {
 
     #[doc="Enable Processing of PTP Over Ethernet Frames"]
     #[inline] pub fn test_ptpeth(&self) -> bool {
-        self.ptpeth != 0
+        self.ptpeth() != 0
     }
 
     #[doc="Enable Processing of PTP Over Ethernet Frames"]
@@ -6069,7 +6069,7 @@ impl Timstctrl {
 
     #[doc="Enable Processing of PTP Frames Sent Over IPv6-UDP"]
     #[inline] pub fn test_ptpipv6(&self) -> bool {
-        self.ptpipv6 != 0
+        self.ptpipv6() != 0
     }
 
     #[doc="Enable Processing of PTP Frames Sent Over IPv6-UDP"]
@@ -6088,7 +6088,7 @@ impl Timstctrl {
 
     #[doc="Enable Processing of PTP Frames Sent over IPv4-UDP"]
     #[inline] pub fn test_ptpipv4(&self) -> bool {
-        self.ptpipv4 != 0
+        self.ptpipv4() != 0
     }
 
     #[doc="Enable Processing of PTP Frames Sent over IPv4-UDP"]
@@ -6107,7 +6107,7 @@ impl Timstctrl {
 
     #[doc="Enable Timestamp Snapshot for Event Messages"]
     #[inline] pub fn test_tsevnt(&self) -> bool {
-        self.tsevnt != 0
+        self.tsevnt() != 0
     }
 
     #[doc="Enable Timestamp Snapshot for Event Messages"]
@@ -6126,7 +6126,7 @@ impl Timstctrl {
 
     #[doc="Enable Snapshot for Messages Relevant to Master"]
     #[inline] pub fn test_tsmast(&self) -> bool {
-        self.tsmast != 0
+        self.tsmast() != 0
     }
 
     #[doc="Enable Snapshot for Messages Relevant to Master"]
@@ -6145,7 +6145,7 @@ impl Timstctrl {
 
     #[doc="Select PTP packets for Taking Snapshots"]
     #[inline] pub fn test_selptp(&self) -> bool {
-        self.selptp != 0
+        self.selptp() != 0
     }
 
     #[doc="Select PTP packets for Taking Snapshots"]
@@ -6164,7 +6164,7 @@ impl Timstctrl {
 
     #[doc="Enable MAC address for PTP Frame Filtering"]
     #[inline] pub fn test_ptpfltr(&self) -> bool {
-        self.ptpfltr != 0
+        self.ptpfltr() != 0
     }
 
     #[doc="Enable MAC address for PTP Frame Filtering"]
@@ -6219,7 +6219,7 @@ impl Subsecinc {
 
     #[doc="Sub-second Increment Value"]
     #[inline] pub fn test_ssinc(&self) -> bool {
-        self.ssinc != 0
+        self.ssinc() != 0
     }
 
     #[doc="Sub-second Increment Value"]
@@ -6259,7 +6259,7 @@ impl Timsec {
 
     #[doc="Timestamp Second"]
     #[inline] pub fn test_tss(&self) -> bool {
-        self.tss != 0
+        self.tss() != 0
     }
 
     #[doc="Timestamp Second"]
@@ -6298,7 +6298,7 @@ impl Timnano {
 
     #[doc="Timestamp Sub-Seconds"]
     #[inline] pub fn test_tsss(&self) -> bool {
-        self.tsss != 0
+        self.tsss() != 0
     }
 
     #[doc="Timestamp Sub-Seconds"]
@@ -6338,7 +6338,7 @@ impl Timsecu {
 
     #[doc="Timestamp Second"]
     #[inline] pub fn test_tss(&self) -> bool {
-        self.tss != 0
+        self.tss() != 0
     }
 
     #[doc="Timestamp Second"]
@@ -6377,7 +6377,7 @@ impl Timnanou {
 
     #[doc="Timestamp Sub-Second"]
     #[inline] pub fn test_tsss(&self) -> bool {
-        self.tsss != 0
+        self.tsss() != 0
     }
 
     #[doc="Timestamp Sub-Second"]
@@ -6396,7 +6396,7 @@ impl Timnanou {
 
     #[doc="Add or subtract time"]
     #[inline] pub fn test_addsub(&self) -> bool {
-        self.addsub != 0
+        self.addsub() != 0
     }
 
     #[doc="Add or subtract time"]
@@ -6437,7 +6437,7 @@ impl Timadd {
 
     #[doc="Timestamp Addend Register"]
     #[inline] pub fn test_tsar(&self) -> bool {
-        self.tsar != 0
+        self.tsar() != 0
     }
 
     #[doc="Timestamp Addend Register"]
@@ -6476,7 +6476,7 @@ impl Targsec {
 
     #[doc="Target Time Seconds Register"]
     #[inline] pub fn test_tstr(&self) -> bool {
-        self.tstr != 0
+        self.tstr() != 0
     }
 
     #[doc="Target Time Seconds Register"]
@@ -6515,7 +6515,7 @@ impl Targnano {
 
     #[doc="Target Timestamp Low Register"]
     #[inline] pub fn test_ttslo(&self) -> bool {
-        self.ttslo != 0
+        self.ttslo() != 0
     }
 
     #[doc="Target Timestamp Low Register"]
@@ -6534,7 +6534,7 @@ impl Targnano {
 
     #[doc="Target Time Register Busy"]
     #[inline] pub fn test_trgtbusy(&self) -> bool {
-        self.trgtbusy != 0
+        self.trgtbusy() != 0
     }
 
     #[doc="Target Time Register Busy"]
@@ -6575,7 +6575,7 @@ impl Hwordsec {
 
     #[doc="Target Timestamp Higher Word Register"]
     #[inline] pub fn test_tshwr(&self) -> bool {
-        self.tshwr != 0
+        self.tshwr() != 0
     }
 
     #[doc="Target Timestamp Higher Word Register"]
@@ -6615,7 +6615,7 @@ impl Timstat {
 
     #[doc="Timestamp Seconds Overflow"]
     #[inline] pub fn test_tssovf(&self) -> bool {
-        self.tssovf != 0
+        self.tssovf() != 0
     }
 
     #[doc="Timestamp Seconds Overflow"]
@@ -6634,7 +6634,7 @@ impl Timstat {
 
     #[doc="Timestamp Target Time Reached"]
     #[inline] pub fn test_tstargt(&self) -> bool {
-        self.tstargt != 0
+        self.tstargt() != 0
     }
 
     #[doc="Timestamp Target Time Reached"]
@@ -6675,7 +6675,7 @@ impl Ppsctrl {
 
     #[doc="EN0PPS Output Frequency Control (PPSCTRL) or Command Control (PPSCMD)"]
     #[inline] pub fn test_ppsctrl(&self) -> bool {
-        self.ppsctrl != 0
+        self.ppsctrl() != 0
     }
 
     #[doc="EN0PPS Output Frequency Control (PPSCTRL) or Command Control (PPSCMD)"]
@@ -6694,7 +6694,7 @@ impl Ppsctrl {
 
     #[doc="Flexible PPS Output Mode Enable"]
     #[inline] pub fn test_ppsen0(&self) -> bool {
-        self.ppsen0 != 0
+        self.ppsen0() != 0
     }
 
     #[doc="Flexible PPS Output Mode Enable"]
@@ -6713,7 +6713,7 @@ impl Ppsctrl {
 
     #[doc="Target Time Register Mode for PPS0 Output"]
     #[inline] pub fn test_trgmods0(&self) -> bool {
-        self.trgmods0 != 0
+        self.trgmods0() != 0
     }
 
     #[doc="Target Time Register Mode for PPS0 Output"]
@@ -6755,7 +6755,7 @@ impl Pps0intvl {
 
     #[doc="PPS0 Output Signal Interval"]
     #[inline] pub fn test_pps0int(&self) -> bool {
-        self.pps0int != 0
+        self.pps0int() != 0
     }
 
     #[doc="PPS0 Output Signal Interval"]
@@ -6794,7 +6794,7 @@ impl Pps0width {
 
     #[doc="EN0PPS Output Signal Width"]
     #[inline] pub fn test_emac_pps0width(&self) -> bool {
-        self.emac_pps0width != 0
+        self.emac_pps0width() != 0
     }
 
     #[doc="EN0PPS Output Signal Width"]
@@ -6833,7 +6833,7 @@ impl Dmabusmod {
 
     #[doc="DMA Software Reset"]
     #[inline] pub fn test_swr(&self) -> bool {
-        self.swr != 0
+        self.swr() != 0
     }
 
     #[doc="DMA Software Reset"]
@@ -6852,7 +6852,7 @@ impl Dmabusmod {
 
     #[doc="DMA Arbitration Scheme"]
     #[inline] pub fn test_da(&self) -> bool {
-        self.da != 0
+        self.da() != 0
     }
 
     #[doc="DMA Arbitration Scheme"]
@@ -6871,7 +6871,7 @@ impl Dmabusmod {
 
     #[doc="Descriptor Skip Length"]
     #[inline] pub fn test_dsl(&self) -> bool {
-        self.dsl != 0
+        self.dsl() != 0
     }
 
     #[doc="Descriptor Skip Length"]
@@ -6890,7 +6890,7 @@ impl Dmabusmod {
 
     #[doc="Alternate Descriptor Size"]
     #[inline] pub fn test_atds(&self) -> bool {
-        self.atds != 0
+        self.atds() != 0
     }
 
     #[doc="Alternate Descriptor Size"]
@@ -6909,7 +6909,7 @@ impl Dmabusmod {
 
     #[doc="Programmable Burst Length"]
     #[inline] pub fn test_pbl(&self) -> bool {
-        self.pbl != 0
+        self.pbl() != 0
     }
 
     #[doc="Programmable Burst Length"]
@@ -6928,7 +6928,7 @@ impl Dmabusmod {
 
     #[doc="Priority Ratio"]
     #[inline] pub fn test_pr(&self) -> bool {
-        self.pr != 0
+        self.pr() != 0
     }
 
     #[doc="Priority Ratio"]
@@ -6947,7 +6947,7 @@ impl Dmabusmod {
 
     #[doc="Fixed Burst"]
     #[inline] pub fn test_fb(&self) -> bool {
-        self.fb != 0
+        self.fb() != 0
     }
 
     #[doc="Fixed Burst"]
@@ -6966,7 +6966,7 @@ impl Dmabusmod {
 
     #[doc="RX DMA Programmable Burst Length (PBL)"]
     #[inline] pub fn test_rpbl(&self) -> bool {
-        self.rpbl != 0
+        self.rpbl() != 0
     }
 
     #[doc="RX DMA Programmable Burst Length (PBL)"]
@@ -6985,7 +6985,7 @@ impl Dmabusmod {
 
     #[doc="Use Separate Programmable Burst Length (PBL)"]
     #[inline] pub fn test_usp(&self) -> bool {
-        self.usp != 0
+        self.usp() != 0
     }
 
     #[doc="Use Separate Programmable Burst Length (PBL)"]
@@ -7004,7 +7004,7 @@ impl Dmabusmod {
 
     #[doc="8 x Programmable Burst Length (PBL) Mode"]
     #[inline] pub fn test_8xpbl(&self) -> bool {
-        self._8xpbl != 0
+        self._8xpbl() != 0
     }
 
     #[doc="8 x Programmable Burst Length (PBL) Mode"]
@@ -7023,7 +7023,7 @@ impl Dmabusmod {
 
     #[doc="Address Aligned Beats"]
     #[inline] pub fn test_aal(&self) -> bool {
-        self.aal != 0
+        self.aal() != 0
     }
 
     #[doc="Address Aligned Beats"]
@@ -7042,7 +7042,7 @@ impl Dmabusmod {
 
     #[doc="Mixed Burst"]
     #[inline] pub fn test_mb(&self) -> bool {
-        self.mb != 0
+        self.mb() != 0
     }
 
     #[doc="Mixed Burst"]
@@ -7061,7 +7061,7 @@ impl Dmabusmod {
 
     #[doc="Transmit Priority"]
     #[inline] pub fn test_txpr(&self) -> bool {
-        self.txpr != 0
+        self.txpr() != 0
     }
 
     #[doc="Transmit Priority"]
@@ -7080,7 +7080,7 @@ impl Dmabusmod {
 
     #[doc="Rebuild Burst"]
     #[inline] pub fn test_rib(&self) -> bool {
-        self.rib != 0
+        self.rib() != 0
     }
 
     #[doc="Rebuild Burst"]
@@ -7133,7 +7133,7 @@ impl Txpolld {
 
     #[doc="Transmit Poll Demand"]
     #[inline] pub fn test_tpd(&self) -> bool {
-        self.tpd != 0
+        self.tpd() != 0
     }
 
     #[doc="Transmit Poll Demand"]
@@ -7172,7 +7172,7 @@ impl Rxpolld {
 
     #[doc="Receive Poll Demand"]
     #[inline] pub fn test_rpd(&self) -> bool {
-        self.rpd != 0
+        self.rpd() != 0
     }
 
     #[doc="Receive Poll Demand"]
@@ -7211,7 +7211,7 @@ impl Rxdladdr {
 
     #[doc="Start of Receive List"]
     #[inline] pub fn test_strxlist(&self) -> bool {
-        self.strxlist != 0
+        self.strxlist() != 0
     }
 
     #[doc="Start of Receive List"]
@@ -7251,7 +7251,7 @@ impl Txdladdr {
 
     #[doc="Start of Transmit List Base Address"]
     #[inline] pub fn test_txdladdr(&self) -> bool {
-        self.txdladdr != 0
+        self.txdladdr() != 0
     }
 
     #[doc="Start of Transmit List Base Address"]
@@ -7291,7 +7291,7 @@ impl Dmaris {
 
     #[doc="Transmit Interrupt"]
     #[inline] pub fn test_ti(&self) -> bool {
-        self.ti != 0
+        self.ti() != 0
     }
 
     #[doc="Transmit Interrupt"]
@@ -7310,7 +7310,7 @@ impl Dmaris {
 
     #[doc="Transmit Process Stopped"]
     #[inline] pub fn test_tps(&self) -> bool {
-        self.tps != 0
+        self.tps() != 0
     }
 
     #[doc="Transmit Process Stopped"]
@@ -7329,7 +7329,7 @@ impl Dmaris {
 
     #[doc="Transmit Buffer Unavailable"]
     #[inline] pub fn test_tu(&self) -> bool {
-        self.tu != 0
+        self.tu() != 0
     }
 
     #[doc="Transmit Buffer Unavailable"]
@@ -7348,7 +7348,7 @@ impl Dmaris {
 
     #[doc="Transmit Jabber Timeout"]
     #[inline] pub fn test_tjt(&self) -> bool {
-        self.tjt != 0
+        self.tjt() != 0
     }
 
     #[doc="Transmit Jabber Timeout"]
@@ -7367,7 +7367,7 @@ impl Dmaris {
 
     #[doc="Receive Overflow"]
     #[inline] pub fn test_ovf(&self) -> bool {
-        self.ovf != 0
+        self.ovf() != 0
     }
 
     #[doc="Receive Overflow"]
@@ -7386,7 +7386,7 @@ impl Dmaris {
 
     #[doc="Transmit Underflow"]
     #[inline] pub fn test_unf(&self) -> bool {
-        self.unf != 0
+        self.unf() != 0
     }
 
     #[doc="Transmit Underflow"]
@@ -7405,7 +7405,7 @@ impl Dmaris {
 
     #[doc="Receive Interrupt"]
     #[inline] pub fn test_ri(&self) -> bool {
-        self.ri != 0
+        self.ri() != 0
     }
 
     #[doc="Receive Interrupt"]
@@ -7424,7 +7424,7 @@ impl Dmaris {
 
     #[doc="Receive Buffer Unavailable"]
     #[inline] pub fn test_ru(&self) -> bool {
-        self.ru != 0
+        self.ru() != 0
     }
 
     #[doc="Receive Buffer Unavailable"]
@@ -7443,7 +7443,7 @@ impl Dmaris {
 
     #[doc="Receive Process Stopped"]
     #[inline] pub fn test_rps(&self) -> bool {
-        self.rps != 0
+        self.rps() != 0
     }
 
     #[doc="Receive Process Stopped"]
@@ -7462,7 +7462,7 @@ impl Dmaris {
 
     #[doc="Receive Watchdog Timeout"]
     #[inline] pub fn test_rwt(&self) -> bool {
-        self.rwt != 0
+        self.rwt() != 0
     }
 
     #[doc="Receive Watchdog Timeout"]
@@ -7481,7 +7481,7 @@ impl Dmaris {
 
     #[doc="Early Transmit Interrupt"]
     #[inline] pub fn test_eti(&self) -> bool {
-        self.eti != 0
+        self.eti() != 0
     }
 
     #[doc="Early Transmit Interrupt"]
@@ -7500,7 +7500,7 @@ impl Dmaris {
 
     #[doc="Fatal Bus Error Interrupt"]
     #[inline] pub fn test_fbi(&self) -> bool {
-        self.fbi != 0
+        self.fbi() != 0
     }
 
     #[doc="Fatal Bus Error Interrupt"]
@@ -7519,7 +7519,7 @@ impl Dmaris {
 
     #[doc="Early Receive Interrupt"]
     #[inline] pub fn test_eri(&self) -> bool {
-        self.eri != 0
+        self.eri() != 0
     }
 
     #[doc="Early Receive Interrupt"]
@@ -7538,7 +7538,7 @@ impl Dmaris {
 
     #[doc="Abnormal Interrupt Summary"]
     #[inline] pub fn test_ais(&self) -> bool {
-        self.ais != 0
+        self.ais() != 0
     }
 
     #[doc="Abnormal Interrupt Summary"]
@@ -7557,7 +7557,7 @@ impl Dmaris {
 
     #[doc="Normal Interrupt Summary"]
     #[inline] pub fn test_nis(&self) -> bool {
-        self.nis != 0
+        self.nis() != 0
     }
 
     #[doc="Normal Interrupt Summary"]
@@ -7576,7 +7576,7 @@ impl Dmaris {
 
     #[doc="Received Process State"]
     #[inline] pub fn test_rs(&self) -> bool {
-        self.rs != 0
+        self.rs() != 0
     }
 
     #[doc="Received Process State"]
@@ -7595,7 +7595,7 @@ impl Dmaris {
 
     #[doc="Transmit Process State"]
     #[inline] pub fn test_ts(&self) -> bool {
-        self.ts != 0
+        self.ts() != 0
     }
 
     #[doc="Transmit Process State"]
@@ -7614,7 +7614,7 @@ impl Dmaris {
 
     #[doc="Access Error"]
     #[inline] pub fn test_ae(&self) -> bool {
-        self.ae != 0
+        self.ae() != 0
     }
 
     #[doc="Access Error"]
@@ -7633,7 +7633,7 @@ impl Dmaris {
 
     #[doc="MAC MMC Interrupt"]
     #[inline] pub fn test_mmc(&self) -> bool {
-        self.mmc != 0
+        self.mmc() != 0
     }
 
     #[doc="MAC MMC Interrupt"]
@@ -7652,7 +7652,7 @@ impl Dmaris {
 
     #[doc="MAC PMT Interrupt Status"]
     #[inline] pub fn test_pmt(&self) -> bool {
-        self.pmt != 0
+        self.pmt() != 0
     }
 
     #[doc="MAC PMT Interrupt Status"]
@@ -7671,7 +7671,7 @@ impl Dmaris {
 
     #[doc="Timestamp Trigger Interrupt Status"]
     #[inline] pub fn test_tt(&self) -> bool {
-        self.tt != 0
+        self.tt() != 0
     }
 
     #[doc="Timestamp Trigger Interrupt Status"]
@@ -7731,7 +7731,7 @@ impl Dmaopmode {
 
     #[doc="Start or Stop Receive"]
     #[inline] pub fn test_sr(&self) -> bool {
-        self.sr != 0
+        self.sr() != 0
     }
 
     #[doc="Start or Stop Receive"]
@@ -7750,7 +7750,7 @@ impl Dmaopmode {
 
     #[doc="Operate on Second Frame"]
     #[inline] pub fn test_osf(&self) -> bool {
-        self.osf != 0
+        self.osf() != 0
     }
 
     #[doc="Operate on Second Frame"]
@@ -7769,7 +7769,7 @@ impl Dmaopmode {
 
     #[doc="Receive Threshold Control"]
     #[inline] pub fn test_rtc(&self) -> bool {
-        self.rtc != 0
+        self.rtc() != 0
     }
 
     #[doc="Receive Threshold Control"]
@@ -7788,7 +7788,7 @@ impl Dmaopmode {
 
     #[doc="Drop Giant Frame Enable"]
     #[inline] pub fn test_dgf(&self) -> bool {
-        self.dgf != 0
+        self.dgf() != 0
     }
 
     #[doc="Drop Giant Frame Enable"]
@@ -7807,7 +7807,7 @@ impl Dmaopmode {
 
     #[doc="Forward Undersized Good Frames"]
     #[inline] pub fn test_fuf(&self) -> bool {
-        self.fuf != 0
+        self.fuf() != 0
     }
 
     #[doc="Forward Undersized Good Frames"]
@@ -7826,7 +7826,7 @@ impl Dmaopmode {
 
     #[doc="Forward Error Frames"]
     #[inline] pub fn test_fef(&self) -> bool {
-        self.fef != 0
+        self.fef() != 0
     }
 
     #[doc="Forward Error Frames"]
@@ -7845,7 +7845,7 @@ impl Dmaopmode {
 
     #[doc="Start or Stop Transmission Command"]
     #[inline] pub fn test_st(&self) -> bool {
-        self.st != 0
+        self.st() != 0
     }
 
     #[doc="Start or Stop Transmission Command"]
@@ -7864,7 +7864,7 @@ impl Dmaopmode {
 
     #[doc="Transmit Threshold Control"]
     #[inline] pub fn test_ttc(&self) -> bool {
-        self.ttc != 0
+        self.ttc() != 0
     }
 
     #[doc="Transmit Threshold Control"]
@@ -7883,7 +7883,7 @@ impl Dmaopmode {
 
     #[doc="Flush Transmit FIFO"]
     #[inline] pub fn test_ftf(&self) -> bool {
-        self.ftf != 0
+        self.ftf() != 0
     }
 
     #[doc="Flush Transmit FIFO"]
@@ -7902,7 +7902,7 @@ impl Dmaopmode {
 
     #[doc="Transmit Store and Forward"]
     #[inline] pub fn test_tsf(&self) -> bool {
-        self.tsf != 0
+        self.tsf() != 0
     }
 
     #[doc="Transmit Store and Forward"]
@@ -7921,7 +7921,7 @@ impl Dmaopmode {
 
     #[doc="Disable Flushing of Received Frames"]
     #[inline] pub fn test_dff(&self) -> bool {
-        self.dff != 0
+        self.dff() != 0
     }
 
     #[doc="Disable Flushing of Received Frames"]
@@ -7940,7 +7940,7 @@ impl Dmaopmode {
 
     #[doc="Receive Store and Forward"]
     #[inline] pub fn test_rsf(&self) -> bool {
-        self.rsf != 0
+        self.rsf() != 0
     }
 
     #[doc="Receive Store and Forward"]
@@ -7959,7 +7959,7 @@ impl Dmaopmode {
 
     #[doc="Disable Dropping of TCP/IP Checksum Error Frames"]
     #[inline] pub fn test_dt(&self) -> bool {
-        self.dt != 0
+        self.dt() != 0
     }
 
     #[doc="Disable Dropping of TCP/IP Checksum Error Frames"]
@@ -8011,7 +8011,7 @@ impl Dmaim {
 
     #[doc="Transmit Interrupt Enable"]
     #[inline] pub fn test_tie(&self) -> bool {
-        self.tie != 0
+        self.tie() != 0
     }
 
     #[doc="Transmit Interrupt Enable"]
@@ -8030,7 +8030,7 @@ impl Dmaim {
 
     #[doc="Transmit Stopped Enable"]
     #[inline] pub fn test_tse(&self) -> bool {
-        self.tse != 0
+        self.tse() != 0
     }
 
     #[doc="Transmit Stopped Enable"]
@@ -8049,7 +8049,7 @@ impl Dmaim {
 
     #[doc="Transmit Buffer Unvailable Enable"]
     #[inline] pub fn test_tue(&self) -> bool {
-        self.tue != 0
+        self.tue() != 0
     }
 
     #[doc="Transmit Buffer Unvailable Enable"]
@@ -8068,7 +8068,7 @@ impl Dmaim {
 
     #[doc="Transmit Jabber Timeout Enable"]
     #[inline] pub fn test_tje(&self) -> bool {
-        self.tje != 0
+        self.tje() != 0
     }
 
     #[doc="Transmit Jabber Timeout Enable"]
@@ -8087,7 +8087,7 @@ impl Dmaim {
 
     #[doc="Overflow Interrupt Enable"]
     #[inline] pub fn test_ove(&self) -> bool {
-        self.ove != 0
+        self.ove() != 0
     }
 
     #[doc="Overflow Interrupt Enable"]
@@ -8106,7 +8106,7 @@ impl Dmaim {
 
     #[doc="Underflow Interrupt Enable"]
     #[inline] pub fn test_une(&self) -> bool {
-        self.une != 0
+        self.une() != 0
     }
 
     #[doc="Underflow Interrupt Enable"]
@@ -8125,7 +8125,7 @@ impl Dmaim {
 
     #[doc="Receive Interrupt Enable"]
     #[inline] pub fn test_rie(&self) -> bool {
-        self.rie != 0
+        self.rie() != 0
     }
 
     #[doc="Receive Interrupt Enable"]
@@ -8144,7 +8144,7 @@ impl Dmaim {
 
     #[doc="Receive Buffer Unavailable Enable"]
     #[inline] pub fn test_rue(&self) -> bool {
-        self.rue != 0
+        self.rue() != 0
     }
 
     #[doc="Receive Buffer Unavailable Enable"]
@@ -8163,7 +8163,7 @@ impl Dmaim {
 
     #[doc="Receive Stopped Enable"]
     #[inline] pub fn test_rse(&self) -> bool {
-        self.rse != 0
+        self.rse() != 0
     }
 
     #[doc="Receive Stopped Enable"]
@@ -8182,7 +8182,7 @@ impl Dmaim {
 
     #[doc="Receive Watchdog Timeout Enable"]
     #[inline] pub fn test_rwe(&self) -> bool {
-        self.rwe != 0
+        self.rwe() != 0
     }
 
     #[doc="Receive Watchdog Timeout Enable"]
@@ -8201,7 +8201,7 @@ impl Dmaim {
 
     #[doc="Early Transmit Interrupt Enable"]
     #[inline] pub fn test_ete(&self) -> bool {
-        self.ete != 0
+        self.ete() != 0
     }
 
     #[doc="Early Transmit Interrupt Enable"]
@@ -8220,7 +8220,7 @@ impl Dmaim {
 
     #[doc="Fatal Bus Error Enable"]
     #[inline] pub fn test_fbe(&self) -> bool {
-        self.fbe != 0
+        self.fbe() != 0
     }
 
     #[doc="Fatal Bus Error Enable"]
@@ -8239,7 +8239,7 @@ impl Dmaim {
 
     #[doc="Early Receive Interrupt Enable"]
     #[inline] pub fn test_ere(&self) -> bool {
-        self.ere != 0
+        self.ere() != 0
     }
 
     #[doc="Early Receive Interrupt Enable"]
@@ -8258,7 +8258,7 @@ impl Dmaim {
 
     #[doc="Abnormal Interrupt Summary Enable"]
     #[inline] pub fn test_aie(&self) -> bool {
-        self.aie != 0
+        self.aie() != 0
     }
 
     #[doc="Abnormal Interrupt Summary Enable"]
@@ -8277,7 +8277,7 @@ impl Dmaim {
 
     #[doc="Normal Interrupt Summary Enable"]
     #[inline] pub fn test_nie(&self) -> bool {
-        self.nie != 0
+        self.nie() != 0
     }
 
     #[doc="Normal Interrupt Summary Enable"]
@@ -8331,7 +8331,7 @@ impl Mfboc {
 
     #[doc="Missed Frame Counter"]
     #[inline] pub fn test_misfrmcnt(&self) -> bool {
-        self.misfrmcnt != 0
+        self.misfrmcnt() != 0
     }
 
     #[doc="Missed Frame Counter"]
@@ -8350,7 +8350,7 @@ impl Mfboc {
 
     #[doc="Overflow bit for Missed Frame Counter"]
     #[inline] pub fn test_miscntovf(&self) -> bool {
-        self.miscntovf != 0
+        self.miscntovf() != 0
     }
 
     #[doc="Overflow bit for Missed Frame Counter"]
@@ -8369,7 +8369,7 @@ impl Mfboc {
 
     #[doc="Overflow Frame Counter"]
     #[inline] pub fn test_ovffrmcnt(&self) -> bool {
-        self.ovffrmcnt != 0
+        self.ovffrmcnt() != 0
     }
 
     #[doc="Overflow Frame Counter"]
@@ -8388,7 +8388,7 @@ impl Mfboc {
 
     #[doc="Overflow Bit for FIFO Overflow Counter"]
     #[inline] pub fn test_ovfcntovf(&self) -> bool {
-        self.ovfcntovf != 0
+        self.ovfcntovf() != 0
     }
 
     #[doc="Overflow Bit for FIFO Overflow Counter"]
@@ -8431,7 +8431,7 @@ impl Rxintwdt {
 
     #[doc="Receive Interrupt Watchdog Timer Count"]
     #[inline] pub fn test_riwt(&self) -> bool {
-        self.riwt != 0
+        self.riwt() != 0
     }
 
     #[doc="Receive Interrupt Watchdog Timer Count"]
@@ -8471,7 +8471,7 @@ impl Hostxdesc {
 
     #[doc="Host Transmit Descriptor Address Pointer"]
     #[inline] pub fn test_curtxdesc(&self) -> bool {
-        self.curtxdesc != 0
+        self.curtxdesc() != 0
     }
 
     #[doc="Host Transmit Descriptor Address Pointer"]
@@ -8510,7 +8510,7 @@ impl Hosrxdesc {
 
     #[doc="Host Receive Descriptor Address Pointer"]
     #[inline] pub fn test_currxdesc(&self) -> bool {
-        self.currxdesc != 0
+        self.currxdesc() != 0
     }
 
     #[doc="Host Receive Descriptor Address Pointer"]
@@ -8549,7 +8549,7 @@ impl Hostxba {
 
     #[doc="Host Transmit Buffer Address Pointer"]
     #[inline] pub fn test_curtxbufa(&self) -> bool {
-        self.curtxbufa != 0
+        self.curtxbufa() != 0
     }
 
     #[doc="Host Transmit Buffer Address Pointer"]
@@ -8588,7 +8588,7 @@ impl Hosrxba {
 
     #[doc="Host Receive Buffer Address Pointer"]
     #[inline] pub fn test_currxbufa(&self) -> bool {
-        self.currxbufa != 0
+        self.currxbufa() != 0
     }
 
     #[doc="Host Receive Buffer Address Pointer"]
@@ -8627,7 +8627,7 @@ impl Pp {
 
     #[doc="Ethernet PHY Type"]
     #[inline] pub fn test_phytype(&self) -> bool {
-        self.phytype != 0
+        self.phytype() != 0
     }
 
     #[doc="Ethernet PHY Type"]
@@ -8646,7 +8646,7 @@ impl Pp {
 
     #[doc="Ethernet MAC Type"]
     #[inline] pub fn test_mactype(&self) -> bool {
-        self.mactype != 0
+        self.mactype() != 0
     }
 
     #[doc="Ethernet MAC Type"]
@@ -8687,7 +8687,7 @@ impl Pc {
 
     #[doc="Ethernet PHY Hold"]
     #[inline] pub fn test_phyhold(&self) -> bool {
-        self.phyhold != 0
+        self.phyhold() != 0
     }
 
     #[doc="Ethernet PHY Hold"]
@@ -8706,7 +8706,7 @@ impl Pc {
 
     #[doc="Auto Negotiation Mode"]
     #[inline] pub fn test_anmode(&self) -> bool {
-        self.anmode != 0
+        self.anmode() != 0
     }
 
     #[doc="Auto Negotiation Mode"]
@@ -8725,7 +8725,7 @@ impl Pc {
 
     #[doc="Auto Negotiation Enable"]
     #[inline] pub fn test_anen(&self) -> bool {
-        self.anen != 0
+        self.anen() != 0
     }
 
     #[doc="Auto Negotiation Enable"]
@@ -8744,7 +8744,7 @@ impl Pc {
 
     #[doc="Fast Auto Negotiation Select"]
     #[inline] pub fn test_fastansel(&self) -> bool {
-        self.fastansel != 0
+        self.fastansel() != 0
     }
 
     #[doc="Fast Auto Negotiation Select"]
@@ -8763,7 +8763,7 @@ impl Pc {
 
     #[doc="Fast Auto Negotiation Enable"]
     #[inline] pub fn test_fastanen(&self) -> bool {
-        self.fastanen != 0
+        self.fastanen() != 0
     }
 
     #[doc="Fast Auto Negotiation Enable"]
@@ -8782,7 +8782,7 @@ impl Pc {
 
     #[doc="Extended Full Duplex Ability"]
     #[inline] pub fn test_extfd(&self) -> bool {
-        self.extfd != 0
+        self.extfd() != 0
     }
 
     #[doc="Extended Full Duplex Ability"]
@@ -8801,7 +8801,7 @@ impl Pc {
 
     #[doc="FAST Link-Up in Parallel Detect"]
     #[inline] pub fn test_fastlupd(&self) -> bool {
-        self.fastlupd != 0
+        self.fastlupd() != 0
     }
 
     #[doc="FAST Link-Up in Parallel Detect"]
@@ -8820,7 +8820,7 @@ impl Pc {
 
     #[doc="Fast RXDV Detection"]
     #[inline] pub fn test_fastrxdv(&self) -> bool {
-        self.fastrxdv != 0
+        self.fastrxdv() != 0
     }
 
     #[doc="Fast RXDV Detection"]
@@ -8839,7 +8839,7 @@ impl Pc {
 
     #[doc="MDIX Enable"]
     #[inline] pub fn test_mdixen(&self) -> bool {
-        self.mdixen != 0
+        self.mdixen() != 0
     }
 
     #[doc="MDIX Enable"]
@@ -8858,7 +8858,7 @@ impl Pc {
 
     #[doc="Fast Auto MDI-X"]
     #[inline] pub fn test_fastmdix(&self) -> bool {
-        self.fastmdix != 0
+        self.fastmdix() != 0
     }
 
     #[doc="Fast Auto MDI-X"]
@@ -8877,7 +8877,7 @@ impl Pc {
 
     #[doc="Robust Auto MDI-X"]
     #[inline] pub fn test_rbstmdix(&self) -> bool {
-        self.rbstmdix != 0
+        self.rbstmdix() != 0
     }
 
     #[doc="Robust Auto MDI-X"]
@@ -8896,7 +8896,7 @@ impl Pc {
 
     #[doc="MDI Swap"]
     #[inline] pub fn test_mdiswap(&self) -> bool {
-        self.mdiswap != 0
+        self.mdiswap() != 0
     }
 
     #[doc="MDI Swap"]
@@ -8915,7 +8915,7 @@ impl Pc {
 
     #[doc="Polarity Swap"]
     #[inline] pub fn test_polswap(&self) -> bool {
-        self.polswap != 0
+        self.polswap() != 0
     }
 
     #[doc="Polarity Swap"]
@@ -8934,7 +8934,7 @@ impl Pc {
 
     #[doc="Fast Link Down Mode"]
     #[inline] pub fn test_fastldmode(&self) -> bool {
-        self.fastldmode != 0
+        self.fastldmode() != 0
     }
 
     #[doc="Fast Link Down Mode"]
@@ -8953,7 +8953,7 @@ impl Pc {
 
     #[doc="TDR Auto Run"]
     #[inline] pub fn test_tdrrun(&self) -> bool {
-        self.tdrrun != 0
+        self.tdrrun() != 0
     }
 
     #[doc="TDR Auto Run"]
@@ -8972,7 +8972,7 @@ impl Pc {
 
     #[doc="Link Loss Recovery"]
     #[inline] pub fn test_lrr(&self) -> bool {
-        self.lrr != 0
+        self.lrr() != 0
     }
 
     #[doc="Link Loss Recovery"]
@@ -8991,7 +8991,7 @@ impl Pc {
 
     #[doc="Isolate MII in Link Loss"]
     #[inline] pub fn test_isomiill(&self) -> bool {
-        self.isomiill != 0
+        self.isomiill() != 0
     }
 
     #[doc="Isolate MII in Link Loss"]
@@ -9010,7 +9010,7 @@ impl Pc {
 
     #[doc="RXER Detection During Idle"]
     #[inline] pub fn test_rxeridle(&self) -> bool {
-        self.rxeridle != 0
+        self.rxeridle() != 0
     }
 
     #[doc="RXER Detection During Idle"]
@@ -9029,7 +9029,7 @@ impl Pc {
 
     #[doc="Odd Nibble TXER Detection Disable"]
     #[inline] pub fn test_nibdetdis(&self) -> bool {
-        self.nibdetdis != 0
+        self.nibdetdis() != 0
     }
 
     #[doc="Odd Nibble TXER Detection Disable"]
@@ -9048,7 +9048,7 @@ impl Pc {
 
     #[doc="PHY Soft Restart"]
     #[inline] pub fn test_digrestart(&self) -> bool {
-        self.digrestart != 0
+        self.digrestart() != 0
     }
 
     #[doc="PHY Soft Restart"]
@@ -9067,7 +9067,7 @@ impl Pc {
 
     #[doc="Ethernet Interface Select"]
     #[inline] pub fn test_pintfs(&self) -> bool {
-        self.pintfs != 0
+        self.pintfs() != 0
     }
 
     #[doc="Ethernet Interface Select"]
@@ -9086,7 +9086,7 @@ impl Pc {
 
     #[doc="PHY Select"]
     #[inline] pub fn test_phyext(&self) -> bool {
-        self.phyext != 0
+        self.phyext() != 0
     }
 
     #[doc="PHY Select"]
@@ -9147,7 +9147,7 @@ impl Cc {
 
     #[doc="LED Polarity Control"]
     #[inline] pub fn test_pol(&self) -> bool {
-        self.pol != 0
+        self.pol() != 0
     }
 
     #[doc="LED Polarity Control"]
@@ -9166,7 +9166,7 @@ impl Cc {
 
     #[doc="PTP Clock Reference Enable"]
     #[inline] pub fn test_ptpcen(&self) -> bool {
-        self.ptpcen != 0
+        self.ptpcen() != 0
     }
 
     #[doc="PTP Clock Reference Enable"]

@@ -272,7 +272,7 @@ impl Cfgr1 {
 
     #[doc="Memory mapping selection bits"]
     #[inline] pub fn test_mem_mode(&self) -> bool {
-        self.mem_mode != 0
+        self.mem_mode() != 0
     }
 
     #[doc="Memory mapping selection bits"]
@@ -291,7 +291,7 @@ impl Cfgr1 {
 
     #[doc="USB interrupt remap"]
     #[inline] pub fn test_usb_it_rmp(&self) -> bool {
-        self.usb_it_rmp != 0
+        self.usb_it_rmp() != 0
     }
 
     #[doc="USB interrupt remap"]
@@ -310,7 +310,7 @@ impl Cfgr1 {
 
     #[doc="Timer 1 ITR3 selection"]
     #[inline] pub fn test_tim1_itr_rmp(&self) -> bool {
-        self.tim1_itr_rmp != 0
+        self.tim1_itr_rmp() != 0
     }
 
     #[doc="Timer 1 ITR3 selection"]
@@ -329,7 +329,7 @@ impl Cfgr1 {
 
     #[doc="DAC trigger remap (when TSEL = 001)"]
     #[inline] pub fn test_dac_trig_rmp(&self) -> bool {
-        self.dac_trig_rmp != 0
+        self.dac_trig_rmp() != 0
     }
 
     #[doc="DAC trigger remap (when TSEL = 001)"]
@@ -348,7 +348,7 @@ impl Cfgr1 {
 
     #[doc="ADC24 DMA remapping bit"]
     #[inline] pub fn test_adc24_dma_rmp(&self) -> bool {
-        self.adc24_dma_rmp != 0
+        self.adc24_dma_rmp() != 0
     }
 
     #[doc="ADC24 DMA remapping bit"]
@@ -367,7 +367,7 @@ impl Cfgr1 {
 
     #[doc="TIM16 DMA request remapping bit"]
     #[inline] pub fn test_tim16_dma_rmp(&self) -> bool {
-        self.tim16_dma_rmp != 0
+        self.tim16_dma_rmp() != 0
     }
 
     #[doc="TIM16 DMA request remapping bit"]
@@ -386,7 +386,7 @@ impl Cfgr1 {
 
     #[doc="TIM17 DMA request remapping bit"]
     #[inline] pub fn test_tim17_dma_rmp(&self) -> bool {
-        self.tim17_dma_rmp != 0
+        self.tim17_dma_rmp() != 0
     }
 
     #[doc="TIM17 DMA request remapping bit"]
@@ -405,7 +405,7 @@ impl Cfgr1 {
 
     #[doc="TIM6 and DAC1 DMA request remapping bit"]
     #[inline] pub fn test_tim6_dac1_dma_rmp(&self) -> bool {
-        self.tim6_dac1_dma_rmp != 0
+        self.tim6_dac1_dma_rmp() != 0
     }
 
     #[doc="TIM6 and DAC1 DMA request remapping bit"]
@@ -424,7 +424,7 @@ impl Cfgr1 {
 
     #[doc="TIM7 and DAC2 DMA request remapping bit"]
     #[inline] pub fn test_tim7_dac2_dma_rmp(&self) -> bool {
-        self.tim7_dac2_dma_rmp != 0
+        self.tim7_dac2_dma_rmp() != 0
     }
 
     #[doc="TIM7 and DAC2 DMA request remapping bit"]
@@ -443,7 +443,7 @@ impl Cfgr1 {
 
     #[doc="Fast Mode Plus (FM+) driving capability activation bits."]
     #[inline] pub fn test_i2c_pb6_fm(&self) -> bool {
-        self.i2c_pb6_fm != 0
+        self.i2c_pb6_fm() != 0
     }
 
     #[doc="Fast Mode Plus (FM+) driving capability activation bits."]
@@ -462,7 +462,7 @@ impl Cfgr1 {
 
     #[doc="Fast Mode Plus (FM+) driving capability activation bits."]
     #[inline] pub fn test_i2c_pb7_fm(&self) -> bool {
-        self.i2c_pb7_fm != 0
+        self.i2c_pb7_fm() != 0
     }
 
     #[doc="Fast Mode Plus (FM+) driving capability activation bits."]
@@ -481,7 +481,7 @@ impl Cfgr1 {
 
     #[doc="Fast Mode Plus (FM+) driving capability activation bits."]
     #[inline] pub fn test_i2c_pb8_fm(&self) -> bool {
-        self.i2c_pb8_fm != 0
+        self.i2c_pb8_fm() != 0
     }
 
     #[doc="Fast Mode Plus (FM+) driving capability activation bits."]
@@ -500,7 +500,7 @@ impl Cfgr1 {
 
     #[doc="Fast Mode Plus (FM+) driving capability activation bits."]
     #[inline] pub fn test_i2c_pb9_fm(&self) -> bool {
-        self.i2c_pb9_fm != 0
+        self.i2c_pb9_fm() != 0
     }
 
     #[doc="Fast Mode Plus (FM+) driving capability activation bits."]
@@ -519,7 +519,7 @@ impl Cfgr1 {
 
     #[doc="I2C1 Fast Mode Plus"]
     #[inline] pub fn test_i2c1_fm(&self) -> bool {
-        self.i2c1_fm != 0
+        self.i2c1_fm() != 0
     }
 
     #[doc="I2C1 Fast Mode Plus"]
@@ -538,7 +538,7 @@ impl Cfgr1 {
 
     #[doc="I2C2 Fast Mode Plus"]
     #[inline] pub fn test_i2c2_fm(&self) -> bool {
-        self.i2c2_fm != 0
+        self.i2c2_fm() != 0
     }
 
     #[doc="I2C2 Fast Mode Plus"]
@@ -557,7 +557,7 @@ impl Cfgr1 {
 
     #[doc="Encoder mode"]
     #[inline] pub fn test_encoder_mode(&self) -> bool {
-        self.encoder_mode != 0
+        self.encoder_mode() != 0
     }
 
     #[doc="Encoder mode"]
@@ -576,7 +576,7 @@ impl Cfgr1 {
 
     #[doc="Interrupt enable bits from FPU"]
     #[inline] pub fn test_fpu_it(&self) -> bool {
-        self.fpu_it != 0
+        self.fpu_it() != 0
     }
 
     #[doc="Interrupt enable bits from FPU"]
@@ -632,7 +632,7 @@ impl Exticr1 {
 
     #[doc="EXTI 3 configuration bits"]
     #[inline] pub fn test_exti3(&self) -> bool {
-        self.exti3 != 0
+        self.exti3() != 0
     }
 
     #[doc="EXTI 3 configuration bits"]
@@ -651,7 +651,7 @@ impl Exticr1 {
 
     #[doc="EXTI 2 configuration bits"]
     #[inline] pub fn test_exti2(&self) -> bool {
-        self.exti2 != 0
+        self.exti2() != 0
     }
 
     #[doc="EXTI 2 configuration bits"]
@@ -670,7 +670,7 @@ impl Exticr1 {
 
     #[doc="EXTI 1 configuration bits"]
     #[inline] pub fn test_exti1(&self) -> bool {
-        self.exti1 != 0
+        self.exti1() != 0
     }
 
     #[doc="EXTI 1 configuration bits"]
@@ -689,7 +689,7 @@ impl Exticr1 {
 
     #[doc="EXTI 0 configuration bits"]
     #[inline] pub fn test_exti0(&self) -> bool {
-        self.exti0 != 0
+        self.exti0() != 0
     }
 
     #[doc="EXTI 0 configuration bits"]
@@ -732,7 +732,7 @@ impl Exticr2 {
 
     #[doc="EXTI 7 configuration bits"]
     #[inline] pub fn test_exti7(&self) -> bool {
-        self.exti7 != 0
+        self.exti7() != 0
     }
 
     #[doc="EXTI 7 configuration bits"]
@@ -751,7 +751,7 @@ impl Exticr2 {
 
     #[doc="EXTI 6 configuration bits"]
     #[inline] pub fn test_exti6(&self) -> bool {
-        self.exti6 != 0
+        self.exti6() != 0
     }
 
     #[doc="EXTI 6 configuration bits"]
@@ -770,7 +770,7 @@ impl Exticr2 {
 
     #[doc="EXTI 5 configuration bits"]
     #[inline] pub fn test_exti5(&self) -> bool {
-        self.exti5 != 0
+        self.exti5() != 0
     }
 
     #[doc="EXTI 5 configuration bits"]
@@ -789,7 +789,7 @@ impl Exticr2 {
 
     #[doc="EXTI 4 configuration bits"]
     #[inline] pub fn test_exti4(&self) -> bool {
-        self.exti4 != 0
+        self.exti4() != 0
     }
 
     #[doc="EXTI 4 configuration bits"]
@@ -832,7 +832,7 @@ impl Exticr3 {
 
     #[doc="EXTI 11 configuration bits"]
     #[inline] pub fn test_exti11(&self) -> bool {
-        self.exti11 != 0
+        self.exti11() != 0
     }
 
     #[doc="EXTI 11 configuration bits"]
@@ -851,7 +851,7 @@ impl Exticr3 {
 
     #[doc="EXTI 10 configuration bits"]
     #[inline] pub fn test_exti10(&self) -> bool {
-        self.exti10 != 0
+        self.exti10() != 0
     }
 
     #[doc="EXTI 10 configuration bits"]
@@ -870,7 +870,7 @@ impl Exticr3 {
 
     #[doc="EXTI 9 configuration bits"]
     #[inline] pub fn test_exti9(&self) -> bool {
-        self.exti9 != 0
+        self.exti9() != 0
     }
 
     #[doc="EXTI 9 configuration bits"]
@@ -889,7 +889,7 @@ impl Exticr3 {
 
     #[doc="EXTI 8 configuration bits"]
     #[inline] pub fn test_exti8(&self) -> bool {
-        self.exti8 != 0
+        self.exti8() != 0
     }
 
     #[doc="EXTI 8 configuration bits"]
@@ -932,7 +932,7 @@ impl Exticr4 {
 
     #[doc="EXTI 15 configuration bits"]
     #[inline] pub fn test_exti15(&self) -> bool {
-        self.exti15 != 0
+        self.exti15() != 0
     }
 
     #[doc="EXTI 15 configuration bits"]
@@ -951,7 +951,7 @@ impl Exticr4 {
 
     #[doc="EXTI 14 configuration bits"]
     #[inline] pub fn test_exti14(&self) -> bool {
-        self.exti14 != 0
+        self.exti14() != 0
     }
 
     #[doc="EXTI 14 configuration bits"]
@@ -970,7 +970,7 @@ impl Exticr4 {
 
     #[doc="EXTI 13 configuration bits"]
     #[inline] pub fn test_exti13(&self) -> bool {
-        self.exti13 != 0
+        self.exti13() != 0
     }
 
     #[doc="EXTI 13 configuration bits"]
@@ -989,7 +989,7 @@ impl Exticr4 {
 
     #[doc="EXTI 12 configuration bits"]
     #[inline] pub fn test_exti12(&self) -> bool {
-        self.exti12 != 0
+        self.exti12() != 0
     }
 
     #[doc="EXTI 12 configuration bits"]
@@ -1032,7 +1032,7 @@ impl Cfgr2 {
 
     #[doc="Cortex-M0 LOCKUP bit enable bit"]
     #[inline] pub fn test_locup_lock(&self) -> bool {
-        self.locup_lock != 0
+        self.locup_lock() != 0
     }
 
     #[doc="Cortex-M0 LOCKUP bit enable bit"]
@@ -1051,7 +1051,7 @@ impl Cfgr2 {
 
     #[doc="SRAM parity lock bit"]
     #[inline] pub fn test_sram_parity_lock(&self) -> bool {
-        self.sram_parity_lock != 0
+        self.sram_parity_lock() != 0
     }
 
     #[doc="SRAM parity lock bit"]
@@ -1070,7 +1070,7 @@ impl Cfgr2 {
 
     #[doc="PVD lock enable bit"]
     #[inline] pub fn test_pvd_lock(&self) -> bool {
-        self.pvd_lock != 0
+        self.pvd_lock() != 0
     }
 
     #[doc="PVD lock enable bit"]
@@ -1089,7 +1089,7 @@ impl Cfgr2 {
 
     #[doc="Bypass address bit 29 in parity calculation"]
     #[inline] pub fn test_byp_add_par(&self) -> bool {
-        self.byp_add_par != 0
+        self.byp_add_par() != 0
     }
 
     #[doc="Bypass address bit 29 in parity calculation"]
@@ -1108,7 +1108,7 @@ impl Cfgr2 {
 
     #[doc="SRAM parity flag"]
     #[inline] pub fn test_sram_pef(&self) -> bool {
-        self.sram_pef != 0
+        self.sram_pef() != 0
     }
 
     #[doc="SRAM parity flag"]
@@ -1152,7 +1152,7 @@ impl Rcr {
 
     #[doc="CCM SRAM page write protection bit"]
     #[inline] pub fn test_page0_wp(&self) -> bool {
-        self.page0_wp != 0
+        self.page0_wp() != 0
     }
 
     #[doc="CCM SRAM page write protection bit"]
@@ -1171,7 +1171,7 @@ impl Rcr {
 
     #[doc="CCM SRAM page write protection bit"]
     #[inline] pub fn test_page1_wp(&self) -> bool {
-        self.page1_wp != 0
+        self.page1_wp() != 0
     }
 
     #[doc="CCM SRAM page write protection bit"]
@@ -1190,7 +1190,7 @@ impl Rcr {
 
     #[doc="CCM SRAM page write protection bit"]
     #[inline] pub fn test_page2_wp(&self) -> bool {
-        self.page2_wp != 0
+        self.page2_wp() != 0
     }
 
     #[doc="CCM SRAM page write protection bit"]
@@ -1209,7 +1209,7 @@ impl Rcr {
 
     #[doc="CCM SRAM page write protection bit"]
     #[inline] pub fn test_page3_wp(&self) -> bool {
-        self.page3_wp != 0
+        self.page3_wp() != 0
     }
 
     #[doc="CCM SRAM page write protection bit"]
@@ -1228,7 +1228,7 @@ impl Rcr {
 
     #[doc="CCM SRAM page write protection bit"]
     #[inline] pub fn test_page4_wp(&self) -> bool {
-        self.page4_wp != 0
+        self.page4_wp() != 0
     }
 
     #[doc="CCM SRAM page write protection bit"]
@@ -1247,7 +1247,7 @@ impl Rcr {
 
     #[doc="CCM SRAM page write protection bit"]
     #[inline] pub fn test_page5_wp(&self) -> bool {
-        self.page5_wp != 0
+        self.page5_wp() != 0
     }
 
     #[doc="CCM SRAM page write protection bit"]
@@ -1266,7 +1266,7 @@ impl Rcr {
 
     #[doc="CCM SRAM page write protection bit"]
     #[inline] pub fn test_page6_wp(&self) -> bool {
-        self.page6_wp != 0
+        self.page6_wp() != 0
     }
 
     #[doc="CCM SRAM page write protection bit"]
@@ -1285,7 +1285,7 @@ impl Rcr {
 
     #[doc="CCM SRAM page write protection bit"]
     #[inline] pub fn test_page7_wp(&self) -> bool {
-        self.page7_wp != 0
+        self.page7_wp() != 0
     }
 
     #[doc="CCM SRAM page write protection bit"]

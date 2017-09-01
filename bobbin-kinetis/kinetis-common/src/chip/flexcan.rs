@@ -1536,7 +1536,7 @@ impl Mcr {
 
     #[doc="Number Of The Last Message Buffer"]
     #[inline] pub fn test_maxmb(&self) -> bool {
-        self.maxmb != 0
+        self.maxmb() != 0
     }
 
     #[doc="Number Of The Last Message Buffer"]
@@ -1555,7 +1555,7 @@ impl Mcr {
 
     #[doc="ID Acceptance Mode"]
     #[inline] pub fn test_idam(&self) -> bool {
-        self.idam != 0
+        self.idam() != 0
     }
 
     #[doc="ID Acceptance Mode"]
@@ -1574,7 +1574,7 @@ impl Mcr {
 
     #[doc="CAN FD operation enable"]
     #[inline] pub fn test_fden(&self) -> bool {
-        self.fden != 0
+        self.fden() != 0
     }
 
     #[doc="CAN FD operation enable"]
@@ -1593,7 +1593,7 @@ impl Mcr {
 
     #[doc="Abort Enable"]
     #[inline] pub fn test_aen(&self) -> bool {
-        self.aen != 0
+        self.aen() != 0
     }
 
     #[doc="Abort Enable"]
@@ -1612,7 +1612,7 @@ impl Mcr {
 
     #[doc="Local Priority Enable"]
     #[inline] pub fn test_lprioen(&self) -> bool {
-        self.lprioen != 0
+        self.lprioen() != 0
     }
 
     #[doc="Local Priority Enable"]
@@ -1631,7 +1631,7 @@ impl Mcr {
 
     #[doc="Pretended Networking Enable"]
     #[inline] pub fn test_pnet_en(&self) -> bool {
-        self.pnet_en != 0
+        self.pnet_en() != 0
     }
 
     #[doc="Pretended Networking Enable"]
@@ -1650,7 +1650,7 @@ impl Mcr {
 
     #[doc="DMA Enable"]
     #[inline] pub fn test_dma(&self) -> bool {
-        self.dma != 0
+        self.dma() != 0
     }
 
     #[doc="DMA Enable"]
@@ -1669,7 +1669,7 @@ impl Mcr {
 
     #[doc="Individual Rx Masking And Queue Enable"]
     #[inline] pub fn test_irmq(&self) -> bool {
-        self.irmq != 0
+        self.irmq() != 0
     }
 
     #[doc="Individual Rx Masking And Queue Enable"]
@@ -1688,7 +1688,7 @@ impl Mcr {
 
     #[doc="Self Reception Disable"]
     #[inline] pub fn test_srxdis(&self) -> bool {
-        self.srxdis != 0
+        self.srxdis() != 0
     }
 
     #[doc="Self Reception Disable"]
@@ -1707,7 +1707,7 @@ impl Mcr {
 
     #[doc="Low-Power Mode Acknowledge"]
     #[inline] pub fn test_lpmack(&self) -> bool {
-        self.lpmack != 0
+        self.lpmack() != 0
     }
 
     #[doc="Low-Power Mode Acknowledge"]
@@ -1726,7 +1726,7 @@ impl Mcr {
 
     #[doc="Warning Interrupt Enable"]
     #[inline] pub fn test_wrnen(&self) -> bool {
-        self.wrnen != 0
+        self.wrnen() != 0
     }
 
     #[doc="Warning Interrupt Enable"]
@@ -1745,7 +1745,7 @@ impl Mcr {
 
     #[doc="Supervisor Mode"]
     #[inline] pub fn test_supv(&self) -> bool {
-        self.supv != 0
+        self.supv() != 0
     }
 
     #[doc="Supervisor Mode"]
@@ -1764,7 +1764,7 @@ impl Mcr {
 
     #[doc="Freeze Mode Acknowledge"]
     #[inline] pub fn test_frzack(&self) -> bool {
-        self.frzack != 0
+        self.frzack() != 0
     }
 
     #[doc="Freeze Mode Acknowledge"]
@@ -1783,7 +1783,7 @@ impl Mcr {
 
     #[doc="Soft Reset"]
     #[inline] pub fn test_softrst(&self) -> bool {
-        self.softrst != 0
+        self.softrst() != 0
     }
 
     #[doc="Soft Reset"]
@@ -1802,7 +1802,7 @@ impl Mcr {
 
     #[doc="FlexCAN Not Ready"]
     #[inline] pub fn test_notrdy(&self) -> bool {
-        self.notrdy != 0
+        self.notrdy() != 0
     }
 
     #[doc="FlexCAN Not Ready"]
@@ -1821,7 +1821,7 @@ impl Mcr {
 
     #[doc="Halt FlexCAN"]
     #[inline] pub fn test_halt(&self) -> bool {
-        self.halt != 0
+        self.halt() != 0
     }
 
     #[doc="Halt FlexCAN"]
@@ -1840,7 +1840,7 @@ impl Mcr {
 
     #[doc="Rx FIFO Enable"]
     #[inline] pub fn test_rfen(&self) -> bool {
-        self.rfen != 0
+        self.rfen() != 0
     }
 
     #[doc="Rx FIFO Enable"]
@@ -1859,7 +1859,7 @@ impl Mcr {
 
     #[doc="Freeze Enable"]
     #[inline] pub fn test_frz(&self) -> bool {
-        self.frz != 0
+        self.frz() != 0
     }
 
     #[doc="Freeze Enable"]
@@ -1878,7 +1878,7 @@ impl Mcr {
 
     #[doc="Module Disable"]
     #[inline] pub fn test_mdis(&self) -> bool {
-        self.mdis != 0
+        self.mdis() != 0
     }
 
     #[doc="Module Disable"]
@@ -1936,7 +1936,7 @@ impl Ctrl1 {
 
     #[doc="Propagation Segment"]
     #[inline] pub fn test_propseg(&self) -> bool {
-        self.propseg != 0
+        self.propseg() != 0
     }
 
     #[doc="Propagation Segment"]
@@ -1955,7 +1955,7 @@ impl Ctrl1 {
 
     #[doc="Listen-Only Mode"]
     #[inline] pub fn test_lom(&self) -> bool {
-        self.lom != 0
+        self.lom() != 0
     }
 
     #[doc="Listen-Only Mode"]
@@ -1974,7 +1974,7 @@ impl Ctrl1 {
 
     #[doc="Lowest Buffer Transmitted First"]
     #[inline] pub fn test_lbuf(&self) -> bool {
-        self.lbuf != 0
+        self.lbuf() != 0
     }
 
     #[doc="Lowest Buffer Transmitted First"]
@@ -1993,7 +1993,7 @@ impl Ctrl1 {
 
     #[doc="Timer Sync"]
     #[inline] pub fn test_tsyn(&self) -> bool {
-        self.tsyn != 0
+        self.tsyn() != 0
     }
 
     #[doc="Timer Sync"]
@@ -2012,7 +2012,7 @@ impl Ctrl1 {
 
     #[doc="Bus Off Recovery"]
     #[inline] pub fn test_boffrec(&self) -> bool {
-        self.boffrec != 0
+        self.boffrec() != 0
     }
 
     #[doc="Bus Off Recovery"]
@@ -2031,7 +2031,7 @@ impl Ctrl1 {
 
     #[doc="CAN Bit Sampling"]
     #[inline] pub fn test_smp(&self) -> bool {
-        self.smp != 0
+        self.smp() != 0
     }
 
     #[doc="CAN Bit Sampling"]
@@ -2050,7 +2050,7 @@ impl Ctrl1 {
 
     #[doc="Rx Warning Interrupt Mask"]
     #[inline] pub fn test_rwrnmsk(&self) -> bool {
-        self.rwrnmsk != 0
+        self.rwrnmsk() != 0
     }
 
     #[doc="Rx Warning Interrupt Mask"]
@@ -2069,7 +2069,7 @@ impl Ctrl1 {
 
     #[doc="Tx Warning Interrupt Mask"]
     #[inline] pub fn test_twrnmsk(&self) -> bool {
-        self.twrnmsk != 0
+        self.twrnmsk() != 0
     }
 
     #[doc="Tx Warning Interrupt Mask"]
@@ -2088,7 +2088,7 @@ impl Ctrl1 {
 
     #[doc="Loop Back Mode"]
     #[inline] pub fn test_lpb(&self) -> bool {
-        self.lpb != 0
+        self.lpb() != 0
     }
 
     #[doc="Loop Back Mode"]
@@ -2107,7 +2107,7 @@ impl Ctrl1 {
 
     #[doc="CAN Engine Clock Source"]
     #[inline] pub fn test_clksrc(&self) -> bool {
-        self.clksrc != 0
+        self.clksrc() != 0
     }
 
     #[doc="CAN Engine Clock Source"]
@@ -2126,7 +2126,7 @@ impl Ctrl1 {
 
     #[doc="Error Interrupt Mask"]
     #[inline] pub fn test_errmsk(&self) -> bool {
-        self.errmsk != 0
+        self.errmsk() != 0
     }
 
     #[doc="Error Interrupt Mask"]
@@ -2145,7 +2145,7 @@ impl Ctrl1 {
 
     #[doc="Bus Off Interrupt Mask"]
     #[inline] pub fn test_boffmsk(&self) -> bool {
-        self.boffmsk != 0
+        self.boffmsk() != 0
     }
 
     #[doc="Bus Off Interrupt Mask"]
@@ -2164,7 +2164,7 @@ impl Ctrl1 {
 
     #[doc="Phase Segment 2"]
     #[inline] pub fn test_pseg2(&self) -> bool {
-        self.pseg2 != 0
+        self.pseg2() != 0
     }
 
     #[doc="Phase Segment 2"]
@@ -2183,7 +2183,7 @@ impl Ctrl1 {
 
     #[doc="Phase Segment 1"]
     #[inline] pub fn test_pseg1(&self) -> bool {
-        self.pseg1 != 0
+        self.pseg1() != 0
     }
 
     #[doc="Phase Segment 1"]
@@ -2202,7 +2202,7 @@ impl Ctrl1 {
 
     #[doc="Resync Jump Width"]
     #[inline] pub fn test_rjw(&self) -> bool {
-        self.rjw != 0
+        self.rjw() != 0
     }
 
     #[doc="Resync Jump Width"]
@@ -2221,7 +2221,7 @@ impl Ctrl1 {
 
     #[doc="Prescaler Division Factor"]
     #[inline] pub fn test_presdiv(&self) -> bool {
-        self.presdiv != 0
+        self.presdiv() != 0
     }
 
     #[doc="Prescaler Division Factor"]
@@ -2276,7 +2276,7 @@ impl Timer {
 
     #[doc="Timer Value"]
     #[inline] pub fn test_timer(&self) -> bool {
-        self.timer != 0
+        self.timer() != 0
     }
 
     #[doc="Timer Value"]
@@ -2316,7 +2316,7 @@ impl Rxmgmask {
 
     #[doc="Rx Mailboxes Global Mask Bits"]
     #[inline] pub fn test_mg(&self) -> bool {
-        self.mg != 0
+        self.mg() != 0
     }
 
     #[doc="Rx Mailboxes Global Mask Bits"]
@@ -2355,7 +2355,7 @@ impl Rx14mask {
 
     #[doc="Rx Buffer 14 Mask Bits"]
     #[inline] pub fn test_rx14m(&self) -> bool {
-        self.rx14m != 0
+        self.rx14m() != 0
     }
 
     #[doc="Rx Buffer 14 Mask Bits"]
@@ -2394,7 +2394,7 @@ impl Rx15mask {
 
     #[doc="Rx Buffer 15 Mask Bits"]
     #[inline] pub fn test_rx15m(&self) -> bool {
-        self.rx15m != 0
+        self.rx15m() != 0
     }
 
     #[doc="Rx Buffer 15 Mask Bits"]
@@ -2433,7 +2433,7 @@ impl Ecr {
 
     #[doc="Transmit Error Counter"]
     #[inline] pub fn test_txerrcnt(&self) -> bool {
-        self.txerrcnt != 0
+        self.txerrcnt() != 0
     }
 
     #[doc="Transmit Error Counter"]
@@ -2452,7 +2452,7 @@ impl Ecr {
 
     #[doc="Receive Error Counter"]
     #[inline] pub fn test_rxerrcnt(&self) -> bool {
-        self.rxerrcnt != 0
+        self.rxerrcnt() != 0
     }
 
     #[doc="Receive Error Counter"]
@@ -2471,7 +2471,7 @@ impl Ecr {
 
     #[doc="Transmit Error Counter for fast bits"]
     #[inline] pub fn test_txerrcnt_fast(&self) -> bool {
-        self.txerrcnt_fast != 0
+        self.txerrcnt_fast() != 0
     }
 
     #[doc="Transmit Error Counter for fast bits"]
@@ -2490,7 +2490,7 @@ impl Ecr {
 
     #[doc="Receive Error Counter for fast bits"]
     #[inline] pub fn test_rxerrcnt_fast(&self) -> bool {
-        self.rxerrcnt_fast != 0
+        self.rxerrcnt_fast() != 0
     }
 
     #[doc="Receive Error Counter for fast bits"]
@@ -2533,7 +2533,7 @@ impl Esr1 {
 
     #[doc="Error Interrupt"]
     #[inline] pub fn test_errint(&self) -> bool {
-        self.errint != 0
+        self.errint() != 0
     }
 
     #[doc="Error Interrupt"]
@@ -2552,7 +2552,7 @@ impl Esr1 {
 
     #[doc="Bus Off Interrupt"]
     #[inline] pub fn test_boffint(&self) -> bool {
-        self.boffint != 0
+        self.boffint() != 0
     }
 
     #[doc="Bus Off Interrupt"]
@@ -2571,7 +2571,7 @@ impl Esr1 {
 
     #[doc="FlexCAN In Reception"]
     #[inline] pub fn test_rx(&self) -> bool {
-        self.rx != 0
+        self.rx() != 0
     }
 
     #[doc="FlexCAN In Reception"]
@@ -2590,7 +2590,7 @@ impl Esr1 {
 
     #[doc="Fault Confinement State"]
     #[inline] pub fn test_fltconf(&self) -> bool {
-        self.fltconf != 0
+        self.fltconf() != 0
     }
 
     #[doc="Fault Confinement State"]
@@ -2609,7 +2609,7 @@ impl Esr1 {
 
     #[doc="FlexCAN In Transmission"]
     #[inline] pub fn test_tx(&self) -> bool {
-        self.tx != 0
+        self.tx() != 0
     }
 
     #[doc="FlexCAN In Transmission"]
@@ -2628,7 +2628,7 @@ impl Esr1 {
 
     #[doc="IDLE"]
     #[inline] pub fn test_idle(&self) -> bool {
-        self.idle != 0
+        self.idle() != 0
     }
 
     #[doc="IDLE"]
@@ -2647,7 +2647,7 @@ impl Esr1 {
 
     #[doc="Rx Error Warning"]
     #[inline] pub fn test_rxwrn(&self) -> bool {
-        self.rxwrn != 0
+        self.rxwrn() != 0
     }
 
     #[doc="Rx Error Warning"]
@@ -2666,7 +2666,7 @@ impl Esr1 {
 
     #[doc="TX Error Warning"]
     #[inline] pub fn test_txwrn(&self) -> bool {
-        self.txwrn != 0
+        self.txwrn() != 0
     }
 
     #[doc="TX Error Warning"]
@@ -2685,7 +2685,7 @@ impl Esr1 {
 
     #[doc="Stuffing Error"]
     #[inline] pub fn test_stferr(&self) -> bool {
-        self.stferr != 0
+        self.stferr() != 0
     }
 
     #[doc="Stuffing Error"]
@@ -2704,7 +2704,7 @@ impl Esr1 {
 
     #[doc="Form Error"]
     #[inline] pub fn test_frmerr(&self) -> bool {
-        self.frmerr != 0
+        self.frmerr() != 0
     }
 
     #[doc="Form Error"]
@@ -2723,7 +2723,7 @@ impl Esr1 {
 
     #[doc="Cyclic Redundancy Check Error"]
     #[inline] pub fn test_crcerr(&self) -> bool {
-        self.crcerr != 0
+        self.crcerr() != 0
     }
 
     #[doc="Cyclic Redundancy Check Error"]
@@ -2742,7 +2742,7 @@ impl Esr1 {
 
     #[doc="Acknowledge Error"]
     #[inline] pub fn test_ackerr(&self) -> bool {
-        self.ackerr != 0
+        self.ackerr() != 0
     }
 
     #[doc="Acknowledge Error"]
@@ -2761,7 +2761,7 @@ impl Esr1 {
 
     #[doc="Bit0 Error"]
     #[inline] pub fn test_bit0err(&self) -> bool {
-        self.bit0err != 0
+        self.bit0err() != 0
     }
 
     #[doc="Bit0 Error"]
@@ -2780,7 +2780,7 @@ impl Esr1 {
 
     #[doc="Bit1 Error"]
     #[inline] pub fn test_bit1err(&self) -> bool {
-        self.bit1err != 0
+        self.bit1err() != 0
     }
 
     #[doc="Bit1 Error"]
@@ -2799,7 +2799,7 @@ impl Esr1 {
 
     #[doc="Rx Warning Interrupt Flag"]
     #[inline] pub fn test_rwrnint(&self) -> bool {
-        self.rwrnint != 0
+        self.rwrnint() != 0
     }
 
     #[doc="Rx Warning Interrupt Flag"]
@@ -2818,7 +2818,7 @@ impl Esr1 {
 
     #[doc="Tx Warning Interrupt Flag"]
     #[inline] pub fn test_twrnint(&self) -> bool {
-        self.twrnint != 0
+        self.twrnint() != 0
     }
 
     #[doc="Tx Warning Interrupt Flag"]
@@ -2837,7 +2837,7 @@ impl Esr1 {
 
     #[doc="CAN Synchronization Status"]
     #[inline] pub fn test_synch(&self) -> bool {
-        self.synch != 0
+        self.synch() != 0
     }
 
     #[doc="CAN Synchronization Status"]
@@ -2856,7 +2856,7 @@ impl Esr1 {
 
     #[doc="Bus Off Done Interrupt"]
     #[inline] pub fn test_boffdoneint(&self) -> bool {
-        self.boffdoneint != 0
+        self.boffdoneint() != 0
     }
 
     #[doc="Bus Off Done Interrupt"]
@@ -2875,7 +2875,7 @@ impl Esr1 {
 
     #[doc="Error Interrupt for errors detected in the Data Phase of CAN FD frames with the BRS bit set"]
     #[inline] pub fn test_errint_fast(&self) -> bool {
-        self.errint_fast != 0
+        self.errint_fast() != 0
     }
 
     #[doc="Error Interrupt for errors detected in the Data Phase of CAN FD frames with the BRS bit set"]
@@ -2894,7 +2894,7 @@ impl Esr1 {
 
     #[doc="Error Overrun bit"]
     #[inline] pub fn test_errovr(&self) -> bool {
-        self.errovr != 0
+        self.errovr() != 0
     }
 
     #[doc="Error Overrun bit"]
@@ -2913,7 +2913,7 @@ impl Esr1 {
 
     #[doc="Stuffing Error in the Data Phase of CAN FD frames with the BRS bit set"]
     #[inline] pub fn test_stferr_fast(&self) -> bool {
-        self.stferr_fast != 0
+        self.stferr_fast() != 0
     }
 
     #[doc="Stuffing Error in the Data Phase of CAN FD frames with the BRS bit set"]
@@ -2932,7 +2932,7 @@ impl Esr1 {
 
     #[doc="Form Error in the Data Phase of CAN FD frames with the BRS bit set"]
     #[inline] pub fn test_frmerr_fast(&self) -> bool {
-        self.frmerr_fast != 0
+        self.frmerr_fast() != 0
     }
 
     #[doc="Form Error in the Data Phase of CAN FD frames with the BRS bit set"]
@@ -2951,7 +2951,7 @@ impl Esr1 {
 
     #[doc="Cyclic Redundancy Check Error in the CRC field of CAN FD frames with the BRS bit set"]
     #[inline] pub fn test_crcerr_fast(&self) -> bool {
-        self.crcerr_fast != 0
+        self.crcerr_fast() != 0
     }
 
     #[doc="Cyclic Redundancy Check Error in the CRC field of CAN FD frames with the BRS bit set"]
@@ -2970,7 +2970,7 @@ impl Esr1 {
 
     #[doc="Bit0 Error in the Data Phase of CAN FD frames with the BRS bit set"]
     #[inline] pub fn test_bit0err_fast(&self) -> bool {
-        self.bit0err_fast != 0
+        self.bit0err_fast() != 0
     }
 
     #[doc="Bit0 Error in the Data Phase of CAN FD frames with the BRS bit set"]
@@ -2989,7 +2989,7 @@ impl Esr1 {
 
     #[doc="Bit1 Error in the Data Phase of CAN FD frames with the BRS bit set"]
     #[inline] pub fn test_bit1err_fast(&self) -> bool {
-        self.bit1err_fast != 0
+        self.bit1err_fast() != 0
     }
 
     #[doc="Bit1 Error in the Data Phase of CAN FD frames with the BRS bit set"]
@@ -3053,7 +3053,7 @@ impl Imask1 {
 
     #[doc="Buffer MB i Mask"]
     #[inline] pub fn test_buf31to0m(&self) -> bool {
-        self.buf31to0m != 0
+        self.buf31to0m() != 0
     }
 
     #[doc="Buffer MB i Mask"]
@@ -3169,7 +3169,7 @@ impl Ctrl2 {
 
     #[doc="Edge Filter Disable"]
     #[inline] pub fn test_edfltdis(&self) -> bool {
-        self.edfltdis != 0
+        self.edfltdis() != 0
     }
 
     #[doc="Edge Filter Disable"]
@@ -3188,7 +3188,7 @@ impl Ctrl2 {
 
     #[doc="ISO CAN FD Enable"]
     #[inline] pub fn test_isocanfden(&self) -> bool {
-        self.isocanfden != 0
+        self.isocanfden() != 0
     }
 
     #[doc="ISO CAN FD Enable"]
@@ -3207,7 +3207,7 @@ impl Ctrl2 {
 
     #[doc="Protocol Exception Enable"]
     #[inline] pub fn test_prexcen(&self) -> bool {
-        self.prexcen != 0
+        self.prexcen() != 0
     }
 
     #[doc="Protocol Exception Enable"]
@@ -3226,7 +3226,7 @@ impl Ctrl2 {
 
     #[doc="Timer Source"]
     #[inline] pub fn test_timer_src(&self) -> bool {
-        self.timer_src != 0
+        self.timer_src() != 0
     }
 
     #[doc="Timer Source"]
@@ -3245,7 +3245,7 @@ impl Ctrl2 {
 
     #[doc="Entire Frame Arbitration Field Comparison Enable For Rx Mailboxes"]
     #[inline] pub fn test_eacen(&self) -> bool {
-        self.eacen != 0
+        self.eacen() != 0
     }
 
     #[doc="Entire Frame Arbitration Field Comparison Enable For Rx Mailboxes"]
@@ -3264,7 +3264,7 @@ impl Ctrl2 {
 
     #[doc="Remote Request Storing"]
     #[inline] pub fn test_rrs(&self) -> bool {
-        self.rrs != 0
+        self.rrs() != 0
     }
 
     #[doc="Remote Request Storing"]
@@ -3283,7 +3283,7 @@ impl Ctrl2 {
 
     #[doc="Mailboxes Reception Priority"]
     #[inline] pub fn test_mrp(&self) -> bool {
-        self.mrp != 0
+        self.mrp() != 0
     }
 
     #[doc="Mailboxes Reception Priority"]
@@ -3302,7 +3302,7 @@ impl Ctrl2 {
 
     #[doc="Tx Arbitration Start Delay"]
     #[inline] pub fn test_tasd(&self) -> bool {
-        self.tasd != 0
+        self.tasd() != 0
     }
 
     #[doc="Tx Arbitration Start Delay"]
@@ -3321,7 +3321,7 @@ impl Ctrl2 {
 
     #[doc="Number Of Rx FIFO Filters"]
     #[inline] pub fn test_rffn(&self) -> bool {
-        self.rffn != 0
+        self.rffn() != 0
     }
 
     #[doc="Number Of Rx FIFO Filters"]
@@ -3340,7 +3340,7 @@ impl Ctrl2 {
 
     #[doc="Bus Off Done Interrupt Mask"]
     #[inline] pub fn test_boffdonemsk(&self) -> bool {
-        self.boffdonemsk != 0
+        self.boffdonemsk() != 0
     }
 
     #[doc="Bus Off Done Interrupt Mask"]
@@ -3359,7 +3359,7 @@ impl Ctrl2 {
 
     #[doc="Error Interrupt Mask for errors detected in the Data Phase of fast CAN FD frames"]
     #[inline] pub fn test_errmsk_fast(&self) -> bool {
-        self.errmsk_fast != 0
+        self.errmsk_fast() != 0
     }
 
     #[doc="Error Interrupt Mask for errors detected in the Data Phase of fast CAN FD frames"]
@@ -3409,7 +3409,7 @@ impl Esr2 {
 
     #[doc="Inactive Mailbox"]
     #[inline] pub fn test_imb(&self) -> bool {
-        self.imb != 0
+        self.imb() != 0
     }
 
     #[doc="Inactive Mailbox"]
@@ -3428,7 +3428,7 @@ impl Esr2 {
 
     #[doc="Valid Priority Status"]
     #[inline] pub fn test_vps(&self) -> bool {
-        self.vps != 0
+        self.vps() != 0
     }
 
     #[doc="Valid Priority Status"]
@@ -3447,7 +3447,7 @@ impl Esr2 {
 
     #[doc="Lowest Priority Tx Mailbox"]
     #[inline] pub fn test_lptm(&self) -> bool {
-        self.lptm != 0
+        self.lptm() != 0
     }
 
     #[doc="Lowest Priority Tx Mailbox"]
@@ -3489,7 +3489,7 @@ impl Crcr {
 
     #[doc="Transmitted CRC value"]
     #[inline] pub fn test_txcrc(&self) -> bool {
-        self.txcrc != 0
+        self.txcrc() != 0
     }
 
     #[doc="Transmitted CRC value"]
@@ -3508,7 +3508,7 @@ impl Crcr {
 
     #[doc="CRC Mailbox"]
     #[inline] pub fn test_mbcrc(&self) -> bool {
-        self.mbcrc != 0
+        self.mbcrc() != 0
     }
 
     #[doc="CRC Mailbox"]
@@ -3549,7 +3549,7 @@ impl Rxfgmask {
 
     #[doc="Rx FIFO Global Mask Bits"]
     #[inline] pub fn test_fgm(&self) -> bool {
-        self.fgm != 0
+        self.fgm() != 0
     }
 
     #[doc="Rx FIFO Global Mask Bits"]
@@ -3588,7 +3588,7 @@ impl Rxfir {
 
     #[doc="Identifier Acceptance Filter Hit Indicator"]
     #[inline] pub fn test_idhit(&self) -> bool {
-        self.idhit != 0
+        self.idhit() != 0
     }
 
     #[doc="Identifier Acceptance Filter Hit Indicator"]
@@ -3628,7 +3628,7 @@ impl Cbt {
 
     #[doc="Extended Phase Segment 2"]
     #[inline] pub fn test_epseg2(&self) -> bool {
-        self.epseg2 != 0
+        self.epseg2() != 0
     }
 
     #[doc="Extended Phase Segment 2"]
@@ -3647,7 +3647,7 @@ impl Cbt {
 
     #[doc="Extended Phase Segment 1"]
     #[inline] pub fn test_epseg1(&self) -> bool {
-        self.epseg1 != 0
+        self.epseg1() != 0
     }
 
     #[doc="Extended Phase Segment 1"]
@@ -3666,7 +3666,7 @@ impl Cbt {
 
     #[doc="Extended Propagation Segment"]
     #[inline] pub fn test_epropseg(&self) -> bool {
-        self.epropseg != 0
+        self.epropseg() != 0
     }
 
     #[doc="Extended Propagation Segment"]
@@ -3685,7 +3685,7 @@ impl Cbt {
 
     #[doc="Extended Resync Jump Width"]
     #[inline] pub fn test_erjw(&self) -> bool {
-        self.erjw != 0
+        self.erjw() != 0
     }
 
     #[doc="Extended Resync Jump Width"]
@@ -3704,7 +3704,7 @@ impl Cbt {
 
     #[doc="Extended Prescaler Division Factor"]
     #[inline] pub fn test_epresdiv(&self) -> bool {
-        self.epresdiv != 0
+        self.epresdiv() != 0
     }
 
     #[doc="Extended Prescaler Division Factor"]
@@ -3723,7 +3723,7 @@ impl Cbt {
 
     #[doc="Bit Timing Format Enable"]
     #[inline] pub fn test_btf(&self) -> bool {
-        self.btf != 0
+        self.btf() != 0
     }
 
     #[doc="Bit Timing Format Enable"]
@@ -3815,7 +3815,7 @@ impl Mb8h0 {
     }
 
     #[inline] pub fn test_edl(&self) -> bool {
-        self.edl != 0
+        self.edl() != 0
     }
 
     #[inline] pub fn set_edl<V: Into<bits::U1>>(mut self, value: V) -> Self {
@@ -3831,7 +3831,7 @@ impl Mb8h0 {
     }
 
     #[inline] pub fn test_brs(&self) -> bool {
-        self.brs != 0
+        self.brs() != 0
     }
 
     #[inline] pub fn set_brs<V: Into<bits::U1>>(mut self, value: V) -> Self {
@@ -3847,7 +3847,7 @@ impl Mb8h0 {
     }
 
     #[inline] pub fn test_esi(&self) -> bool {
-        self.esi != 0
+        self.esi() != 0
     }
 
     #[inline] pub fn set_esi<V: Into<bits::U1>>(mut self, value: V) -> Self {
@@ -3863,7 +3863,7 @@ impl Mb8h0 {
     }
 
     #[inline] pub fn test_code(&self) -> bool {
-        self.code != 0
+        self.code() != 0
     }
 
     #[inline] pub fn set_code<V: Into<bits::U4>>(mut self, value: V) -> Self {
@@ -3879,7 +3879,7 @@ impl Mb8h0 {
     }
 
     #[inline] pub fn test_srr(&self) -> bool {
-        self.srr != 0
+        self.srr() != 0
     }
 
     #[inline] pub fn set_srr<V: Into<bits::U1>>(mut self, value: V) -> Self {
@@ -3895,7 +3895,7 @@ impl Mb8h0 {
     }
 
     #[inline] pub fn test_ide(&self) -> bool {
-        self.ide != 0
+        self.ide() != 0
     }
 
     #[inline] pub fn set_ide<V: Into<bits::U1>>(mut self, value: V) -> Self {
@@ -3911,7 +3911,7 @@ impl Mb8h0 {
     }
 
     #[inline] pub fn test_rtr(&self) -> bool {
-        self.rtr != 0
+        self.rtr() != 0
     }
 
     #[inline] pub fn set_rtr<V: Into<bits::U1>>(mut self, value: V) -> Self {
@@ -3927,7 +3927,7 @@ impl Mb8h0 {
     }
 
     #[inline] pub fn test_dlc(&self) -> bool {
-        self.dlc != 0
+        self.dlc() != 0
     }
 
     #[inline] pub fn set_dlc<V: Into<bits::U4>>(mut self, value: V) -> Self {
@@ -3943,7 +3943,7 @@ impl Mb8h0 {
     }
 
     #[inline] pub fn test_time_stamp(&self) -> bool {
-        self.time_stamp != 0
+        self.time_stamp() != 0
     }
 
     #[inline] pub fn set_time_stamp<V: Into<bits::U16>>(mut self, value: V) -> Self {
@@ -3988,7 +3988,7 @@ impl Mb8h1 {
     }
 
     #[inline] pub fn test_prio(&self) -> bool {
-        self.prio != 0
+        self.prio() != 0
     }
 
     #[inline] pub fn set_prio<V: Into<bits::U3>>(mut self, value: V) -> Self {
@@ -4004,7 +4004,7 @@ impl Mb8h1 {
     }
 
     #[inline] pub fn test_id_std(&self) -> bool {
-        self.id_std != 0
+        self.id_std() != 0
     }
 
     #[inline] pub fn set_id_std<V: Into<bits::U11>>(mut self, value: V) -> Self {
@@ -4020,7 +4020,7 @@ impl Mb8h1 {
     }
 
     #[inline] pub fn test_id_ext(&self) -> bool {
-        self.id_ext != 0
+        self.id_ext() != 0
     }
 
     #[inline] pub fn set_id_ext<V: Into<bits::U29>>(mut self, value: V) -> Self {
@@ -4153,7 +4153,7 @@ impl Rximr {
 
     #[doc="Individual Mask Bits"]
     #[inline] pub fn test_mi(&self) -> bool {
-        self.mi != 0
+        self.mi() != 0
     }
 
     #[doc="Individual Mask Bits"]
@@ -4192,7 +4192,7 @@ impl Ctrl1Pn {
 
     #[doc="Filtering Combination Selection"]
     #[inline] pub fn test_fcs(&self) -> bool {
-        self.fcs != 0
+        self.fcs() != 0
     }
 
     #[doc="Filtering Combination Selection"]
@@ -4211,7 +4211,7 @@ impl Ctrl1Pn {
 
     #[doc="ID Filtering Selection"]
     #[inline] pub fn test_idfs(&self) -> bool {
-        self.idfs != 0
+        self.idfs() != 0
     }
 
     #[doc="ID Filtering Selection"]
@@ -4230,7 +4230,7 @@ impl Ctrl1Pn {
 
     #[doc="Payload Filtering Selection"]
     #[inline] pub fn test_plfs(&self) -> bool {
-        self.plfs != 0
+        self.plfs() != 0
     }
 
     #[doc="Payload Filtering Selection"]
@@ -4249,7 +4249,7 @@ impl Ctrl1Pn {
 
     #[doc="Number of Messages Matching the Same Filtering Criteria"]
     #[inline] pub fn test_nmatch(&self) -> bool {
-        self.nmatch != 0
+        self.nmatch() != 0
     }
 
     #[doc="Number of Messages Matching the Same Filtering Criteria"]
@@ -4268,7 +4268,7 @@ impl Ctrl1Pn {
 
     #[doc="Wake Up by Match Flag Mask Bit"]
     #[inline] pub fn test_wumf_msk(&self) -> bool {
-        self.wumf_msk != 0
+        self.wumf_msk() != 0
     }
 
     #[doc="Wake Up by Match Flag Mask Bit"]
@@ -4287,7 +4287,7 @@ impl Ctrl1Pn {
 
     #[doc="Wake Up by Timeout Flag Mask Bit"]
     #[inline] pub fn test_wtof_msk(&self) -> bool {
-        self.wtof_msk != 0
+        self.wtof_msk() != 0
     }
 
     #[doc="Wake Up by Timeout Flag Mask Bit"]
@@ -4332,7 +4332,7 @@ impl Ctrl2Pn {
 
     #[doc="Timeout for No Message Matching the Filtering Criteria"]
     #[inline] pub fn test_matchto(&self) -> bool {
-        self.matchto != 0
+        self.matchto() != 0
     }
 
     #[doc="Timeout for No Message Matching the Filtering Criteria"]
@@ -4372,7 +4372,7 @@ impl WuMtc {
 
     #[doc="Number of Matches while in Pretended Networking"]
     #[inline] pub fn test_mcounter(&self) -> bool {
-        self.mcounter != 0
+        self.mcounter() != 0
     }
 
     #[doc="Number of Matches while in Pretended Networking"]
@@ -4391,7 +4391,7 @@ impl WuMtc {
 
     #[doc="Wake Up by Match Flag Bit"]
     #[inline] pub fn test_wumf(&self) -> bool {
-        self.wumf != 0
+        self.wumf() != 0
     }
 
     #[doc="Wake Up by Match Flag Bit"]
@@ -4410,7 +4410,7 @@ impl WuMtc {
 
     #[doc="Wake Up by Timeout Flag Bit"]
     #[inline] pub fn test_wtof(&self) -> bool {
-        self.wtof != 0
+        self.wtof() != 0
     }
 
     #[doc="Wake Up by Timeout Flag Bit"]
@@ -4452,7 +4452,7 @@ impl FltId1 {
 
     #[doc="ID Filter 1 for Pretended Networking filtering"]
     #[inline] pub fn test_flt_id1(&self) -> bool {
-        self.flt_id1 != 0
+        self.flt_id1() != 0
     }
 
     #[doc="ID Filter 1 for Pretended Networking filtering"]
@@ -4471,7 +4471,7 @@ impl FltId1 {
 
     #[doc="Remote Transmission Request Filter"]
     #[inline] pub fn test_flt_rtr(&self) -> bool {
-        self.flt_rtr != 0
+        self.flt_rtr() != 0
     }
 
     #[doc="Remote Transmission Request Filter"]
@@ -4490,7 +4490,7 @@ impl FltId1 {
 
     #[doc="ID Extended Filter"]
     #[inline] pub fn test_flt_ide(&self) -> bool {
-        self.flt_ide != 0
+        self.flt_ide() != 0
     }
 
     #[doc="ID Extended Filter"]
@@ -4532,7 +4532,7 @@ impl FltDlc {
 
     #[doc="Upper Limit for Length of Data Bytes Filter"]
     #[inline] pub fn test_flt_dlc_hi(&self) -> bool {
-        self.flt_dlc_hi != 0
+        self.flt_dlc_hi() != 0
     }
 
     #[doc="Upper Limit for Length of Data Bytes Filter"]
@@ -4551,7 +4551,7 @@ impl FltDlc {
 
     #[doc="Lower Limit for Length of Data Bytes Filter"]
     #[inline] pub fn test_flt_dlc_lo(&self) -> bool {
-        self.flt_dlc_lo != 0
+        self.flt_dlc_lo() != 0
     }
 
     #[doc="Lower Limit for Length of Data Bytes Filter"]
@@ -4592,7 +4592,7 @@ impl Pl1Lo {
 
     #[doc="Payload Filter 1 low order bits for Pretended Networking payload filtering corresponding to the data byte 3."]
     #[inline] pub fn test_data_byte_3(&self) -> bool {
-        self.data_byte_3 != 0
+        self.data_byte_3() != 0
     }
 
     #[doc="Payload Filter 1 low order bits for Pretended Networking payload filtering corresponding to the data byte 3."]
@@ -4611,7 +4611,7 @@ impl Pl1Lo {
 
     #[doc="Payload Filter 1 low order bits for Pretended Networking payload filtering corresponding to the data byte 2."]
     #[inline] pub fn test_data_byte_2(&self) -> bool {
-        self.data_byte_2 != 0
+        self.data_byte_2() != 0
     }
 
     #[doc="Payload Filter 1 low order bits for Pretended Networking payload filtering corresponding to the data byte 2."]
@@ -4630,7 +4630,7 @@ impl Pl1Lo {
 
     #[doc="Payload Filter 1 low order bits for Pretended Networking payload filtering corresponding to the data byte 1."]
     #[inline] pub fn test_data_byte_1(&self) -> bool {
-        self.data_byte_1 != 0
+        self.data_byte_1() != 0
     }
 
     #[doc="Payload Filter 1 low order bits for Pretended Networking payload filtering corresponding to the data byte 1."]
@@ -4649,7 +4649,7 @@ impl Pl1Lo {
 
     #[doc="Payload Filter 1 low order bits for Pretended Networking payload filtering corresponding to the data byte 0."]
     #[inline] pub fn test_data_byte_0(&self) -> bool {
-        self.data_byte_0 != 0
+        self.data_byte_0() != 0
     }
 
     #[doc="Payload Filter 1 low order bits for Pretended Networking payload filtering corresponding to the data byte 0."]
@@ -4692,7 +4692,7 @@ impl Pl1Hi {
 
     #[doc="Payload Filter 1 high order bits for Pretended Networking payload filtering corresponding to the data byte 7."]
     #[inline] pub fn test_data_byte_7(&self) -> bool {
-        self.data_byte_7 != 0
+        self.data_byte_7() != 0
     }
 
     #[doc="Payload Filter 1 high order bits for Pretended Networking payload filtering corresponding to the data byte 7."]
@@ -4711,7 +4711,7 @@ impl Pl1Hi {
 
     #[doc="Payload Filter 1 high order bits for Pretended Networking payload filtering corresponding to the data byte 6."]
     #[inline] pub fn test_data_byte_6(&self) -> bool {
-        self.data_byte_6 != 0
+        self.data_byte_6() != 0
     }
 
     #[doc="Payload Filter 1 high order bits for Pretended Networking payload filtering corresponding to the data byte 6."]
@@ -4730,7 +4730,7 @@ impl Pl1Hi {
 
     #[doc="Payload Filter 1 high order bits for Pretended Networking payload filtering corresponding to the data byte 5."]
     #[inline] pub fn test_data_byte_5(&self) -> bool {
-        self.data_byte_5 != 0
+        self.data_byte_5() != 0
     }
 
     #[doc="Payload Filter 1 high order bits for Pretended Networking payload filtering corresponding to the data byte 5."]
@@ -4749,7 +4749,7 @@ impl Pl1Hi {
 
     #[doc="Payload Filter 1 high order bits for Pretended Networking payload filtering corresponding to the data byte 4."]
     #[inline] pub fn test_data_byte_4(&self) -> bool {
-        self.data_byte_4 != 0
+        self.data_byte_4() != 0
     }
 
     #[doc="Payload Filter 1 high order bits for Pretended Networking payload filtering corresponding to the data byte 4."]
@@ -4792,7 +4792,7 @@ impl FltId2Idmask {
 
     #[doc="ID Filter 2 for Pretended Networking Filtering / ID Mask Bits for Pretended Networking ID Filtering"]
     #[inline] pub fn test_flt_id2_idmask(&self) -> bool {
-        self.flt_id2_idmask != 0
+        self.flt_id2_idmask() != 0
     }
 
     #[doc="ID Filter 2 for Pretended Networking Filtering / ID Mask Bits for Pretended Networking ID Filtering"]
@@ -4811,7 +4811,7 @@ impl FltId2Idmask {
 
     #[doc="Remote Transmission Request Mask Bit"]
     #[inline] pub fn test_rtr_msk(&self) -> bool {
-        self.rtr_msk != 0
+        self.rtr_msk() != 0
     }
 
     #[doc="Remote Transmission Request Mask Bit"]
@@ -4830,7 +4830,7 @@ impl FltId2Idmask {
 
     #[doc="ID Extended Mask Bit"]
     #[inline] pub fn test_ide_msk(&self) -> bool {
-        self.ide_msk != 0
+        self.ide_msk() != 0
     }
 
     #[doc="ID Extended Mask Bit"]
@@ -4872,7 +4872,7 @@ impl Pl2PlmaskLo {
 
     #[doc="Payload Filter 2 low order bits / Payload Mask low order bits for Pretended Networking payload filtering corresponding to the data byte 3."]
     #[inline] pub fn test_data_byte_3(&self) -> bool {
-        self.data_byte_3 != 0
+        self.data_byte_3() != 0
     }
 
     #[doc="Payload Filter 2 low order bits / Payload Mask low order bits for Pretended Networking payload filtering corresponding to the data byte 3."]
@@ -4891,7 +4891,7 @@ impl Pl2PlmaskLo {
 
     #[doc="Payload Filter 2 low order bits / Payload Mask low order bits for Pretended Networking payload filtering corresponding to the data byte 2."]
     #[inline] pub fn test_data_byte_2(&self) -> bool {
-        self.data_byte_2 != 0
+        self.data_byte_2() != 0
     }
 
     #[doc="Payload Filter 2 low order bits / Payload Mask low order bits for Pretended Networking payload filtering corresponding to the data byte 2."]
@@ -4910,7 +4910,7 @@ impl Pl2PlmaskLo {
 
     #[doc="Payload Filter 2 low order bits / Payload Mask low order bits for Pretended Networking payload filtering corresponding to the data byte 1."]
     #[inline] pub fn test_data_byte_1(&self) -> bool {
-        self.data_byte_1 != 0
+        self.data_byte_1() != 0
     }
 
     #[doc="Payload Filter 2 low order bits / Payload Mask low order bits for Pretended Networking payload filtering corresponding to the data byte 1."]
@@ -4929,7 +4929,7 @@ impl Pl2PlmaskLo {
 
     #[doc="Payload Filter 2 low order bits / Payload Mask low order bits for Pretended Networking payload filtering corresponding to the data byte 0."]
     #[inline] pub fn test_data_byte_0(&self) -> bool {
-        self.data_byte_0 != 0
+        self.data_byte_0() != 0
     }
 
     #[doc="Payload Filter 2 low order bits / Payload Mask low order bits for Pretended Networking payload filtering corresponding to the data byte 0."]
@@ -4972,7 +4972,7 @@ impl Pl2PlmaskHi {
 
     #[doc="Payload Filter 2 high order bits / Payload Mask high order bits for Pretended Networking payload filtering corresponding to the data byte 7."]
     #[inline] pub fn test_data_byte_7(&self) -> bool {
-        self.data_byte_7 != 0
+        self.data_byte_7() != 0
     }
 
     #[doc="Payload Filter 2 high order bits / Payload Mask high order bits for Pretended Networking payload filtering corresponding to the data byte 7."]
@@ -4991,7 +4991,7 @@ impl Pl2PlmaskHi {
 
     #[doc="Payload Filter 2 high order bits / Payload Mask high order bits for Pretended Networking payload filtering corresponding to the data byte 6."]
     #[inline] pub fn test_data_byte_6(&self) -> bool {
-        self.data_byte_6 != 0
+        self.data_byte_6() != 0
     }
 
     #[doc="Payload Filter 2 high order bits / Payload Mask high order bits for Pretended Networking payload filtering corresponding to the data byte 6."]
@@ -5010,7 +5010,7 @@ impl Pl2PlmaskHi {
 
     #[doc="Payload Filter 2 high order bits / Payload Mask high order bits for Pretended Networking payload filtering corresponding to the data byte 5."]
     #[inline] pub fn test_data_byte_5(&self) -> bool {
-        self.data_byte_5 != 0
+        self.data_byte_5() != 0
     }
 
     #[doc="Payload Filter 2 high order bits / Payload Mask high order bits for Pretended Networking payload filtering corresponding to the data byte 5."]
@@ -5029,7 +5029,7 @@ impl Pl2PlmaskHi {
 
     #[doc="Payload Filter 2 high order bits / Payload Mask high order bits for Pretended Networking payload filtering corresponding to the data byte 4."]
     #[inline] pub fn test_data_byte_4(&self) -> bool {
-        self.data_byte_4 != 0
+        self.data_byte_4() != 0
     }
 
     #[doc="Payload Filter 2 high order bits / Payload Mask high order bits for Pretended Networking payload filtering corresponding to the data byte 4."]
@@ -5072,7 +5072,7 @@ impl Wmb0Cs {
 
     #[doc="Length of Data in Bytes"]
     #[inline] pub fn test_dlc(&self) -> bool {
-        self.dlc != 0
+        self.dlc() != 0
     }
 
     #[doc="Length of Data in Bytes"]
@@ -5091,7 +5091,7 @@ impl Wmb0Cs {
 
     #[doc="Remote Transmission Request Bit"]
     #[inline] pub fn test_rtr(&self) -> bool {
-        self.rtr != 0
+        self.rtr() != 0
     }
 
     #[doc="Remote Transmission Request Bit"]
@@ -5110,7 +5110,7 @@ impl Wmb0Cs {
 
     #[doc="ID Extended Bit"]
     #[inline] pub fn test_ide(&self) -> bool {
-        self.ide != 0
+        self.ide() != 0
     }
 
     #[doc="ID Extended Bit"]
@@ -5129,7 +5129,7 @@ impl Wmb0Cs {
 
     #[doc="Substitute Remote Request"]
     #[inline] pub fn test_srr(&self) -> bool {
-        self.srr != 0
+        self.srr() != 0
     }
 
     #[doc="Substitute Remote Request"]
@@ -5172,7 +5172,7 @@ impl Wmb0Id {
 
     #[doc="Received ID under Pretended Networking mode"]
     #[inline] pub fn test_id(&self) -> bool {
-        self.id != 0
+        self.id() != 0
     }
 
     #[doc="Received ID under Pretended Networking mode"]
@@ -5212,7 +5212,7 @@ impl Wmb0D03 {
 
     #[doc="Received payload corresponding to the data byte 3 under Pretended Networking mode"]
     #[inline] pub fn test_data_byte_3(&self) -> bool {
-        self.data_byte_3 != 0
+        self.data_byte_3() != 0
     }
 
     #[doc="Received payload corresponding to the data byte 3 under Pretended Networking mode"]
@@ -5231,7 +5231,7 @@ impl Wmb0D03 {
 
     #[doc="Received payload corresponding to the data byte 2 under Pretended Networking mode"]
     #[inline] pub fn test_data_byte_2(&self) -> bool {
-        self.data_byte_2 != 0
+        self.data_byte_2() != 0
     }
 
     #[doc="Received payload corresponding to the data byte 2 under Pretended Networking mode"]
@@ -5250,7 +5250,7 @@ impl Wmb0D03 {
 
     #[doc="Received payload corresponding to the data byte 1 under Pretended Networking mode"]
     #[inline] pub fn test_data_byte_1(&self) -> bool {
-        self.data_byte_1 != 0
+        self.data_byte_1() != 0
     }
 
     #[doc="Received payload corresponding to the data byte 1 under Pretended Networking mode"]
@@ -5269,7 +5269,7 @@ impl Wmb0D03 {
 
     #[doc="Received payload corresponding to the data byte 0 under Pretended Networking mode"]
     #[inline] pub fn test_data_byte_0(&self) -> bool {
-        self.data_byte_0 != 0
+        self.data_byte_0() != 0
     }
 
     #[doc="Received payload corresponding to the data byte 0 under Pretended Networking mode"]
@@ -5312,7 +5312,7 @@ impl Wmb0D47 {
 
     #[doc="Received payload corresponding to the data byte 7 under Pretended Networking mode"]
     #[inline] pub fn test_data_byte_7(&self) -> bool {
-        self.data_byte_7 != 0
+        self.data_byte_7() != 0
     }
 
     #[doc="Received payload corresponding to the data byte 7 under Pretended Networking mode"]
@@ -5331,7 +5331,7 @@ impl Wmb0D47 {
 
     #[doc="Received payload corresponding to the data byte 6 under Pretended Networking mode"]
     #[inline] pub fn test_data_byte_6(&self) -> bool {
-        self.data_byte_6 != 0
+        self.data_byte_6() != 0
     }
 
     #[doc="Received payload corresponding to the data byte 6 under Pretended Networking mode"]
@@ -5350,7 +5350,7 @@ impl Wmb0D47 {
 
     #[doc="Received payload corresponding to the data byte 5 under Pretended Networking mode"]
     #[inline] pub fn test_data_byte_5(&self) -> bool {
-        self.data_byte_5 != 0
+        self.data_byte_5() != 0
     }
 
     #[doc="Received payload corresponding to the data byte 5 under Pretended Networking mode"]
@@ -5369,7 +5369,7 @@ impl Wmb0D47 {
 
     #[doc="Received payload corresponding to the data byte 4 under Pretended Networking mode"]
     #[inline] pub fn test_data_byte_4(&self) -> bool {
-        self.data_byte_4 != 0
+        self.data_byte_4() != 0
     }
 
     #[doc="Received payload corresponding to the data byte 4 under Pretended Networking mode"]
@@ -5412,7 +5412,7 @@ impl Wmb1Cs {
 
     #[doc="Length of Data in Bytes"]
     #[inline] pub fn test_dlc(&self) -> bool {
-        self.dlc != 0
+        self.dlc() != 0
     }
 
     #[doc="Length of Data in Bytes"]
@@ -5431,7 +5431,7 @@ impl Wmb1Cs {
 
     #[doc="Remote Transmission Request Bit"]
     #[inline] pub fn test_rtr(&self) -> bool {
-        self.rtr != 0
+        self.rtr() != 0
     }
 
     #[doc="Remote Transmission Request Bit"]
@@ -5450,7 +5450,7 @@ impl Wmb1Cs {
 
     #[doc="ID Extended Bit"]
     #[inline] pub fn test_ide(&self) -> bool {
-        self.ide != 0
+        self.ide() != 0
     }
 
     #[doc="ID Extended Bit"]
@@ -5469,7 +5469,7 @@ impl Wmb1Cs {
 
     #[doc="Substitute Remote Request"]
     #[inline] pub fn test_srr(&self) -> bool {
-        self.srr != 0
+        self.srr() != 0
     }
 
     #[doc="Substitute Remote Request"]
@@ -5512,7 +5512,7 @@ impl Wmb1Id {
 
     #[doc="Received ID under Pretended Networking mode"]
     #[inline] pub fn test_id(&self) -> bool {
-        self.id != 0
+        self.id() != 0
     }
 
     #[doc="Received ID under Pretended Networking mode"]
@@ -5552,7 +5552,7 @@ impl Wmb1D03 {
 
     #[doc="Received payload corresponding to the data byte 3 under Pretended Networking mode"]
     #[inline] pub fn test_data_byte_3(&self) -> bool {
-        self.data_byte_3 != 0
+        self.data_byte_3() != 0
     }
 
     #[doc="Received payload corresponding to the data byte 3 under Pretended Networking mode"]
@@ -5571,7 +5571,7 @@ impl Wmb1D03 {
 
     #[doc="Received payload corresponding to the data byte 2 under Pretended Networking mode"]
     #[inline] pub fn test_data_byte_2(&self) -> bool {
-        self.data_byte_2 != 0
+        self.data_byte_2() != 0
     }
 
     #[doc="Received payload corresponding to the data byte 2 under Pretended Networking mode"]
@@ -5590,7 +5590,7 @@ impl Wmb1D03 {
 
     #[doc="Received payload corresponding to the data byte 1 under Pretended Networking mode"]
     #[inline] pub fn test_data_byte_1(&self) -> bool {
-        self.data_byte_1 != 0
+        self.data_byte_1() != 0
     }
 
     #[doc="Received payload corresponding to the data byte 1 under Pretended Networking mode"]
@@ -5609,7 +5609,7 @@ impl Wmb1D03 {
 
     #[doc="Received payload corresponding to the data byte 0 under Pretended Networking mode"]
     #[inline] pub fn test_data_byte_0(&self) -> bool {
-        self.data_byte_0 != 0
+        self.data_byte_0() != 0
     }
 
     #[doc="Received payload corresponding to the data byte 0 under Pretended Networking mode"]
@@ -5652,7 +5652,7 @@ impl Wmb1D47 {
 
     #[doc="Received payload corresponding to the data byte 7 under Pretended Networking mode"]
     #[inline] pub fn test_data_byte_7(&self) -> bool {
-        self.data_byte_7 != 0
+        self.data_byte_7() != 0
     }
 
     #[doc="Received payload corresponding to the data byte 7 under Pretended Networking mode"]
@@ -5671,7 +5671,7 @@ impl Wmb1D47 {
 
     #[doc="Received payload corresponding to the data byte 6 under Pretended Networking mode"]
     #[inline] pub fn test_data_byte_6(&self) -> bool {
-        self.data_byte_6 != 0
+        self.data_byte_6() != 0
     }
 
     #[doc="Received payload corresponding to the data byte 6 under Pretended Networking mode"]
@@ -5690,7 +5690,7 @@ impl Wmb1D47 {
 
     #[doc="Received payload corresponding to the data byte 5 under Pretended Networking mode"]
     #[inline] pub fn test_data_byte_5(&self) -> bool {
-        self.data_byte_5 != 0
+        self.data_byte_5() != 0
     }
 
     #[doc="Received payload corresponding to the data byte 5 under Pretended Networking mode"]
@@ -5709,7 +5709,7 @@ impl Wmb1D47 {
 
     #[doc="Received payload corresponding to the data byte 4 under Pretended Networking mode"]
     #[inline] pub fn test_data_byte_4(&self) -> bool {
-        self.data_byte_4 != 0
+        self.data_byte_4() != 0
     }
 
     #[doc="Received payload corresponding to the data byte 4 under Pretended Networking mode"]
@@ -5752,7 +5752,7 @@ impl Wmb2Cs {
 
     #[doc="Length of Data in Bytes"]
     #[inline] pub fn test_dlc(&self) -> bool {
-        self.dlc != 0
+        self.dlc() != 0
     }
 
     #[doc="Length of Data in Bytes"]
@@ -5771,7 +5771,7 @@ impl Wmb2Cs {
 
     #[doc="Remote Transmission Request Bit"]
     #[inline] pub fn test_rtr(&self) -> bool {
-        self.rtr != 0
+        self.rtr() != 0
     }
 
     #[doc="Remote Transmission Request Bit"]
@@ -5790,7 +5790,7 @@ impl Wmb2Cs {
 
     #[doc="ID Extended Bit"]
     #[inline] pub fn test_ide(&self) -> bool {
-        self.ide != 0
+        self.ide() != 0
     }
 
     #[doc="ID Extended Bit"]
@@ -5809,7 +5809,7 @@ impl Wmb2Cs {
 
     #[doc="Substitute Remote Request"]
     #[inline] pub fn test_srr(&self) -> bool {
-        self.srr != 0
+        self.srr() != 0
     }
 
     #[doc="Substitute Remote Request"]
@@ -5852,7 +5852,7 @@ impl Wmb2Id {
 
     #[doc="Received ID under Pretended Networking mode"]
     #[inline] pub fn test_id(&self) -> bool {
-        self.id != 0
+        self.id() != 0
     }
 
     #[doc="Received ID under Pretended Networking mode"]
@@ -5892,7 +5892,7 @@ impl Wmb2D03 {
 
     #[doc="Received payload corresponding to the data byte 3 under Pretended Networking mode"]
     #[inline] pub fn test_data_byte_3(&self) -> bool {
-        self.data_byte_3 != 0
+        self.data_byte_3() != 0
     }
 
     #[doc="Received payload corresponding to the data byte 3 under Pretended Networking mode"]
@@ -5911,7 +5911,7 @@ impl Wmb2D03 {
 
     #[doc="Received payload corresponding to the data byte 2 under Pretended Networking mode"]
     #[inline] pub fn test_data_byte_2(&self) -> bool {
-        self.data_byte_2 != 0
+        self.data_byte_2() != 0
     }
 
     #[doc="Received payload corresponding to the data byte 2 under Pretended Networking mode"]
@@ -5930,7 +5930,7 @@ impl Wmb2D03 {
 
     #[doc="Received payload corresponding to the data byte 1 under Pretended Networking mode"]
     #[inline] pub fn test_data_byte_1(&self) -> bool {
-        self.data_byte_1 != 0
+        self.data_byte_1() != 0
     }
 
     #[doc="Received payload corresponding to the data byte 1 under Pretended Networking mode"]
@@ -5949,7 +5949,7 @@ impl Wmb2D03 {
 
     #[doc="Received payload corresponding to the data byte 0 under Pretended Networking mode"]
     #[inline] pub fn test_data_byte_0(&self) -> bool {
-        self.data_byte_0 != 0
+        self.data_byte_0() != 0
     }
 
     #[doc="Received payload corresponding to the data byte 0 under Pretended Networking mode"]
@@ -5992,7 +5992,7 @@ impl Wmb2D47 {
 
     #[doc="Received payload corresponding to the data byte 7 under Pretended Networking mode"]
     #[inline] pub fn test_data_byte_7(&self) -> bool {
-        self.data_byte_7 != 0
+        self.data_byte_7() != 0
     }
 
     #[doc="Received payload corresponding to the data byte 7 under Pretended Networking mode"]
@@ -6011,7 +6011,7 @@ impl Wmb2D47 {
 
     #[doc="Received payload corresponding to the data byte 6 under Pretended Networking mode"]
     #[inline] pub fn test_data_byte_6(&self) -> bool {
-        self.data_byte_6 != 0
+        self.data_byte_6() != 0
     }
 
     #[doc="Received payload corresponding to the data byte 6 under Pretended Networking mode"]
@@ -6030,7 +6030,7 @@ impl Wmb2D47 {
 
     #[doc="Received payload corresponding to the data byte 5 under Pretended Networking mode"]
     #[inline] pub fn test_data_byte_5(&self) -> bool {
-        self.data_byte_5 != 0
+        self.data_byte_5() != 0
     }
 
     #[doc="Received payload corresponding to the data byte 5 under Pretended Networking mode"]
@@ -6049,7 +6049,7 @@ impl Wmb2D47 {
 
     #[doc="Received payload corresponding to the data byte 4 under Pretended Networking mode"]
     #[inline] pub fn test_data_byte_4(&self) -> bool {
-        self.data_byte_4 != 0
+        self.data_byte_4() != 0
     }
 
     #[doc="Received payload corresponding to the data byte 4 under Pretended Networking mode"]
@@ -6092,7 +6092,7 @@ impl Wmb3Cs {
 
     #[doc="Length of Data in Bytes"]
     #[inline] pub fn test_dlc(&self) -> bool {
-        self.dlc != 0
+        self.dlc() != 0
     }
 
     #[doc="Length of Data in Bytes"]
@@ -6111,7 +6111,7 @@ impl Wmb3Cs {
 
     #[doc="Remote Transmission Request Bit"]
     #[inline] pub fn test_rtr(&self) -> bool {
-        self.rtr != 0
+        self.rtr() != 0
     }
 
     #[doc="Remote Transmission Request Bit"]
@@ -6130,7 +6130,7 @@ impl Wmb3Cs {
 
     #[doc="ID Extended Bit"]
     #[inline] pub fn test_ide(&self) -> bool {
-        self.ide != 0
+        self.ide() != 0
     }
 
     #[doc="ID Extended Bit"]
@@ -6149,7 +6149,7 @@ impl Wmb3Cs {
 
     #[doc="Substitute Remote Request"]
     #[inline] pub fn test_srr(&self) -> bool {
-        self.srr != 0
+        self.srr() != 0
     }
 
     #[doc="Substitute Remote Request"]
@@ -6192,7 +6192,7 @@ impl Wmb3Id {
 
     #[doc="Received ID under Pretended Networking mode"]
     #[inline] pub fn test_id(&self) -> bool {
-        self.id != 0
+        self.id() != 0
     }
 
     #[doc="Received ID under Pretended Networking mode"]
@@ -6232,7 +6232,7 @@ impl Wmb3D03 {
 
     #[doc="Received payload corresponding to the data byte 3 under Pretended Networking mode"]
     #[inline] pub fn test_data_byte_3(&self) -> bool {
-        self.data_byte_3 != 0
+        self.data_byte_3() != 0
     }
 
     #[doc="Received payload corresponding to the data byte 3 under Pretended Networking mode"]
@@ -6251,7 +6251,7 @@ impl Wmb3D03 {
 
     #[doc="Received payload corresponding to the data byte 2 under Pretended Networking mode"]
     #[inline] pub fn test_data_byte_2(&self) -> bool {
-        self.data_byte_2 != 0
+        self.data_byte_2() != 0
     }
 
     #[doc="Received payload corresponding to the data byte 2 under Pretended Networking mode"]
@@ -6270,7 +6270,7 @@ impl Wmb3D03 {
 
     #[doc="Received payload corresponding to the data byte 1 under Pretended Networking mode"]
     #[inline] pub fn test_data_byte_1(&self) -> bool {
-        self.data_byte_1 != 0
+        self.data_byte_1() != 0
     }
 
     #[doc="Received payload corresponding to the data byte 1 under Pretended Networking mode"]
@@ -6289,7 +6289,7 @@ impl Wmb3D03 {
 
     #[doc="Received payload corresponding to the data byte 0 under Pretended Networking mode"]
     #[inline] pub fn test_data_byte_0(&self) -> bool {
-        self.data_byte_0 != 0
+        self.data_byte_0() != 0
     }
 
     #[doc="Received payload corresponding to the data byte 0 under Pretended Networking mode"]
@@ -6332,7 +6332,7 @@ impl Wmb3D47 {
 
     #[doc="Received payload corresponding to the data byte 7 under Pretended Networking mode"]
     #[inline] pub fn test_data_byte_7(&self) -> bool {
-        self.data_byte_7 != 0
+        self.data_byte_7() != 0
     }
 
     #[doc="Received payload corresponding to the data byte 7 under Pretended Networking mode"]
@@ -6351,7 +6351,7 @@ impl Wmb3D47 {
 
     #[doc="Received payload corresponding to the data byte 6 under Pretended Networking mode"]
     #[inline] pub fn test_data_byte_6(&self) -> bool {
-        self.data_byte_6 != 0
+        self.data_byte_6() != 0
     }
 
     #[doc="Received payload corresponding to the data byte 6 under Pretended Networking mode"]
@@ -6370,7 +6370,7 @@ impl Wmb3D47 {
 
     #[doc="Received payload corresponding to the data byte 5 under Pretended Networking mode"]
     #[inline] pub fn test_data_byte_5(&self) -> bool {
-        self.data_byte_5 != 0
+        self.data_byte_5() != 0
     }
 
     #[doc="Received payload corresponding to the data byte 5 under Pretended Networking mode"]
@@ -6389,7 +6389,7 @@ impl Wmb3D47 {
 
     #[doc="Received payload corresponding to the data byte 4 under Pretended Networking mode"]
     #[inline] pub fn test_data_byte_4(&self) -> bool {
-        self.data_byte_4 != 0
+        self.data_byte_4() != 0
     }
 
     #[doc="Received payload corresponding to the data byte 4 under Pretended Networking mode"]
@@ -6432,7 +6432,7 @@ impl Fdctrl {
 
     #[doc="Transceiver Delay Compensation Value"]
     #[inline] pub fn test_tdcval(&self) -> bool {
-        self.tdcval != 0
+        self.tdcval() != 0
     }
 
     #[doc="Transceiver Delay Compensation Value"]
@@ -6451,7 +6451,7 @@ impl Fdctrl {
 
     #[doc="Transceiver Delay Compensation Offset"]
     #[inline] pub fn test_tdcoff(&self) -> bool {
-        self.tdcoff != 0
+        self.tdcoff() != 0
     }
 
     #[doc="Transceiver Delay Compensation Offset"]
@@ -6470,7 +6470,7 @@ impl Fdctrl {
 
     #[doc="Transceiver Delay Compensation Fail"]
     #[inline] pub fn test_tdcfail(&self) -> bool {
-        self.tdcfail != 0
+        self.tdcfail() != 0
     }
 
     #[doc="Transceiver Delay Compensation Fail"]
@@ -6489,7 +6489,7 @@ impl Fdctrl {
 
     #[doc="Transceiver Delay Compensation Enable"]
     #[inline] pub fn test_tdcen(&self) -> bool {
-        self.tdcen != 0
+        self.tdcen() != 0
     }
 
     #[doc="Transceiver Delay Compensation Enable"]
@@ -6508,7 +6508,7 @@ impl Fdctrl {
 
     #[doc="Message Buffer Data Size for Region 0"]
     #[inline] pub fn test_mbdsr0(&self) -> bool {
-        self.mbdsr0 != 0
+        self.mbdsr0() != 0
     }
 
     #[doc="Message Buffer Data Size for Region 0"]
@@ -6527,7 +6527,7 @@ impl Fdctrl {
 
     #[doc="Bit Rate Switch Enable"]
     #[inline] pub fn test_fdrate(&self) -> bool {
-        self.fdrate != 0
+        self.fdrate() != 0
     }
 
     #[doc="Bit Rate Switch Enable"]
@@ -6572,7 +6572,7 @@ impl Fdcbt {
 
     #[doc="Fast Phase Segment 2"]
     #[inline] pub fn test_fpseg2(&self) -> bool {
-        self.fpseg2 != 0
+        self.fpseg2() != 0
     }
 
     #[doc="Fast Phase Segment 2"]
@@ -6591,7 +6591,7 @@ impl Fdcbt {
 
     #[doc="Fast Phase Segment 1"]
     #[inline] pub fn test_fpseg1(&self) -> bool {
-        self.fpseg1 != 0
+        self.fpseg1() != 0
     }
 
     #[doc="Fast Phase Segment 1"]
@@ -6610,7 +6610,7 @@ impl Fdcbt {
 
     #[doc="Fast Propagation Segment"]
     #[inline] pub fn test_fpropseg(&self) -> bool {
-        self.fpropseg != 0
+        self.fpropseg() != 0
     }
 
     #[doc="Fast Propagation Segment"]
@@ -6629,7 +6629,7 @@ impl Fdcbt {
 
     #[doc="Fast Resync Jump Width"]
     #[inline] pub fn test_frjw(&self) -> bool {
-        self.frjw != 0
+        self.frjw() != 0
     }
 
     #[doc="Fast Resync Jump Width"]
@@ -6648,7 +6648,7 @@ impl Fdcbt {
 
     #[doc="Fast Prescaler Division Factor"]
     #[inline] pub fn test_fpresdiv(&self) -> bool {
-        self.fpresdiv != 0
+        self.fpresdiv() != 0
     }
 
     #[doc="Fast Prescaler Division Factor"]
@@ -6692,7 +6692,7 @@ impl Fdcrc {
 
     #[doc="Extended Transmitted CRC value"]
     #[inline] pub fn test_fd_txcrc(&self) -> bool {
-        self.fd_txcrc != 0
+        self.fd_txcrc() != 0
     }
 
     #[doc="Extended Transmitted CRC value"]
@@ -6711,7 +6711,7 @@ impl Fdcrc {
 
     #[doc="CRC Mailbox Number for FD_TXCRC"]
     #[inline] pub fn test_fd_mbcrc(&self) -> bool {
-        self.fd_mbcrc != 0
+        self.fd_mbcrc() != 0
     }
 
     #[doc="CRC Mailbox Number for FD_TXCRC"]

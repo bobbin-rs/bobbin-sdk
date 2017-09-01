@@ -681,7 +681,7 @@ impl Cr1 {
 
     #[doc="Counter enable"]
     #[inline] pub fn test_cen(&self) -> bool {
-        self.cen != 0
+        self.cen() != 0
     }
 
     #[doc="Counter enable"]
@@ -700,7 +700,7 @@ impl Cr1 {
 
     #[doc="Update disable"]
     #[inline] pub fn test_udis(&self) -> bool {
-        self.udis != 0
+        self.udis() != 0
     }
 
     #[doc="Update disable"]
@@ -719,7 +719,7 @@ impl Cr1 {
 
     #[doc="Update request source"]
     #[inline] pub fn test_urs(&self) -> bool {
-        self.urs != 0
+        self.urs() != 0
     }
 
     #[doc="Update request source"]
@@ -738,7 +738,7 @@ impl Cr1 {
 
     #[doc="One-pulse mode"]
     #[inline] pub fn test_opm(&self) -> bool {
-        self.opm != 0
+        self.opm() != 0
     }
 
     #[doc="One-pulse mode"]
@@ -757,7 +757,7 @@ impl Cr1 {
 
     #[doc="Direction"]
     #[inline] pub fn test_dir(&self) -> bool {
-        self.dir != 0
+        self.dir() != 0
     }
 
     #[doc="Direction"]
@@ -776,7 +776,7 @@ impl Cr1 {
 
     #[doc="Center-aligned mode selection"]
     #[inline] pub fn test_cms(&self) -> bool {
-        self.cms != 0
+        self.cms() != 0
     }
 
     #[doc="Center-aligned mode selection"]
@@ -795,7 +795,7 @@ impl Cr1 {
 
     #[doc="Auto-reload preload enable"]
     #[inline] pub fn test_arpe(&self) -> bool {
-        self.arpe != 0
+        self.arpe() != 0
     }
 
     #[doc="Auto-reload preload enable"]
@@ -814,7 +814,7 @@ impl Cr1 {
 
     #[doc="Clock division"]
     #[inline] pub fn test_ckd(&self) -> bool {
-        self.ckd != 0
+        self.ckd() != 0
     }
 
     #[doc="Clock division"]
@@ -833,7 +833,7 @@ impl Cr1 {
 
     #[doc="UIF status bit remapping"]
     #[inline] pub fn test_uifremap(&self) -> bool {
-        self.uifremap != 0
+        self.uifremap() != 0
     }
 
     #[doc="UIF status bit remapping"]
@@ -881,7 +881,7 @@ impl Cr2 {
 
     #[doc="TI1 selection"]
     #[inline] pub fn test_ti1s(&self) -> bool {
-        self.ti1s != 0
+        self.ti1s() != 0
     }
 
     #[doc="TI1 selection"]
@@ -900,7 +900,7 @@ impl Cr2 {
 
     #[doc="Master mode selection"]
     #[inline] pub fn test_mms(&self) -> bool {
-        self.mms != 0
+        self.mms() != 0
     }
 
     #[doc="Master mode selection"]
@@ -919,7 +919,7 @@ impl Cr2 {
 
     #[doc="Capture/compare DMA selection"]
     #[inline] pub fn test_ccds(&self) -> bool {
-        self.ccds != 0
+        self.ccds() != 0
     }
 
     #[doc="Capture/compare DMA selection"]
@@ -961,7 +961,7 @@ impl Smcr {
 
     #[doc="Slave mode selection"]
     #[inline] pub fn test_sms(&self) -> bool {
-        self.sms != 0
+        self.sms() != 0
     }
 
     #[doc="Slave mode selection"]
@@ -980,7 +980,7 @@ impl Smcr {
 
     #[doc="OCREF clear selection"]
     #[inline] pub fn test_occs(&self) -> bool {
-        self.occs != 0
+        self.occs() != 0
     }
 
     #[doc="OCREF clear selection"]
@@ -999,7 +999,7 @@ impl Smcr {
 
     #[doc="Trigger selection"]
     #[inline] pub fn test_ts(&self) -> bool {
-        self.ts != 0
+        self.ts() != 0
     }
 
     #[doc="Trigger selection"]
@@ -1018,7 +1018,7 @@ impl Smcr {
 
     #[doc="Master/Slave mode"]
     #[inline] pub fn test_msm(&self) -> bool {
-        self.msm != 0
+        self.msm() != 0
     }
 
     #[doc="Master/Slave mode"]
@@ -1037,7 +1037,7 @@ impl Smcr {
 
     #[doc="External trigger filter"]
     #[inline] pub fn test_etf(&self) -> bool {
-        self.etf != 0
+        self.etf() != 0
     }
 
     #[doc="External trigger filter"]
@@ -1056,7 +1056,7 @@ impl Smcr {
 
     #[doc="External trigger prescaler"]
     #[inline] pub fn test_etps(&self) -> bool {
-        self.etps != 0
+        self.etps() != 0
     }
 
     #[doc="External trigger prescaler"]
@@ -1075,7 +1075,7 @@ impl Smcr {
 
     #[doc="External clock enable"]
     #[inline] pub fn test_ece(&self) -> bool {
-        self.ece != 0
+        self.ece() != 0
     }
 
     #[doc="External clock enable"]
@@ -1094,7 +1094,7 @@ impl Smcr {
 
     #[doc="External trigger polarity"]
     #[inline] pub fn test_etp(&self) -> bool {
-        self.etp != 0
+        self.etp() != 0
     }
 
     #[doc="External trigger polarity"]
@@ -1113,7 +1113,7 @@ impl Smcr {
 
     #[doc="Slave mode selection bit3"]
     #[inline] pub fn test_sms_3(&self) -> bool {
-        self.sms_3 != 0
+        self.sms_3() != 0
     }
 
     #[doc="Slave mode selection bit3"]
@@ -1161,7 +1161,7 @@ impl Dier {
 
     #[doc="Trigger DMA request enable"]
     #[inline] pub fn test_tde(&self) -> bool {
-        self.tde != 0
+        self.tde() != 0
     }
 
     #[doc="Trigger DMA request enable"]
@@ -1205,7 +1205,7 @@ impl Dier {
 
     #[doc="Update DMA request enable"]
     #[inline] pub fn test_ude(&self) -> bool {
-        self.ude != 0
+        self.ude() != 0
     }
 
     #[doc="Update DMA request enable"]
@@ -1224,7 +1224,7 @@ impl Dier {
 
     #[doc="Trigger interrupt enable"]
     #[inline] pub fn test_tie(&self) -> bool {
-        self.tie != 0
+        self.tie() != 0
     }
 
     #[doc="Trigger interrupt enable"]
@@ -1268,7 +1268,7 @@ impl Dier {
 
     #[doc="Update interrupt enable"]
     #[inline] pub fn test_uie(&self) -> bool {
-        self.uie != 0
+        self.uie() != 0
     }
 
     #[doc="Update interrupt enable"]
@@ -1344,7 +1344,7 @@ impl Sr {
 
     #[doc="Trigger interrupt flag"]
     #[inline] pub fn test_tif(&self) -> bool {
-        self.tif != 0
+        self.tif() != 0
     }
 
     #[doc="Trigger interrupt flag"]
@@ -1388,7 +1388,7 @@ impl Sr {
 
     #[doc="Update interrupt flag"]
     #[inline] pub fn test_uif(&self) -> bool {
-        self.uif != 0
+        self.uif() != 0
     }
 
     #[doc="Update interrupt flag"]
@@ -1437,7 +1437,7 @@ impl Egr {
 
     #[doc="Trigger generation"]
     #[inline] pub fn test_tg(&self) -> bool {
-        self.tg != 0
+        self.tg() != 0
     }
 
     #[doc="Trigger generation"]
@@ -1481,7 +1481,7 @@ impl Egr {
 
     #[doc="Update generation"]
     #[inline] pub fn test_ug(&self) -> bool {
-        self.ug != 0
+        self.ug() != 0
     }
 
     #[doc="Update generation"]
@@ -1916,7 +1916,7 @@ impl Cnt {
 
     #[doc="Low counter value"]
     #[inline] pub fn test_cntl(&self) -> bool {
-        self.cntl != 0
+        self.cntl() != 0
     }
 
     #[doc="Low counter value"]
@@ -1935,7 +1935,7 @@ impl Cnt {
 
     #[doc="High counter value"]
     #[inline] pub fn test_cnth(&self) -> bool {
-        self.cnth != 0
+        self.cnth() != 0
     }
 
     #[doc="High counter value"]
@@ -1954,7 +1954,7 @@ impl Cnt {
 
     #[doc="if IUFREMAP=0 than CNT with read write access else UIFCPY with read only access"]
     #[inline] pub fn test_cnt_or_uifcpy(&self) -> bool {
-        self.cnt_or_uifcpy != 0
+        self.cnt_or_uifcpy() != 0
     }
 
     #[doc="if IUFREMAP=0 than CNT with read write access else UIFCPY with read only access"]
@@ -1996,7 +1996,7 @@ impl Psc {
 
     #[doc="Prescaler value"]
     #[inline] pub fn test_psc(&self) -> bool {
-        self.psc != 0
+        self.psc() != 0
     }
 
     #[doc="Prescaler value"]
@@ -2036,7 +2036,7 @@ impl Arr {
 
     #[doc="Low Auto-reload value"]
     #[inline] pub fn test_arrl(&self) -> bool {
-        self.arrl != 0
+        self.arrl() != 0
     }
 
     #[doc="Low Auto-reload value"]
@@ -2055,7 +2055,7 @@ impl Arr {
 
     #[doc="High Auto-reload value"]
     #[inline] pub fn test_arrh(&self) -> bool {
-        self.arrh != 0
+        self.arrh() != 0
     }
 
     #[doc="High Auto-reload value"]
@@ -2096,7 +2096,7 @@ impl Rcr {
 
     #[doc="Repetition counter value"]
     #[inline] pub fn test_rep(&self) -> bool {
-        self.rep != 0
+        self.rep() != 0
     }
 
     #[doc="Repetition counter value"]
@@ -2136,7 +2136,7 @@ impl Bdtr {
 
     #[doc="Main output enable"]
     #[inline] pub fn test_moe(&self) -> bool {
-        self.moe != 0
+        self.moe() != 0
     }
 
     #[doc="Main output enable"]
@@ -2155,7 +2155,7 @@ impl Bdtr {
 
     #[doc="Automatic output enable"]
     #[inline] pub fn test_aoe(&self) -> bool {
-        self.aoe != 0
+        self.aoe() != 0
     }
 
     #[doc="Automatic output enable"]
@@ -2174,7 +2174,7 @@ impl Bdtr {
 
     #[doc="Break polarity"]
     #[inline] pub fn test_bkp(&self) -> bool {
-        self.bkp != 0
+        self.bkp() != 0
     }
 
     #[doc="Break polarity"]
@@ -2193,7 +2193,7 @@ impl Bdtr {
 
     #[doc="Break enable"]
     #[inline] pub fn test_bke(&self) -> bool {
-        self.bke != 0
+        self.bke() != 0
     }
 
     #[doc="Break enable"]
@@ -2212,7 +2212,7 @@ impl Bdtr {
 
     #[doc="Off-state selection for Run mode"]
     #[inline] pub fn test_ossr(&self) -> bool {
-        self.ossr != 0
+        self.ossr() != 0
     }
 
     #[doc="Off-state selection for Run mode"]
@@ -2231,7 +2231,7 @@ impl Bdtr {
 
     #[doc="Off-state selection for Idle mode"]
     #[inline] pub fn test_ossi(&self) -> bool {
-        self.ossi != 0
+        self.ossi() != 0
     }
 
     #[doc="Off-state selection for Idle mode"]
@@ -2250,7 +2250,7 @@ impl Bdtr {
 
     #[doc="Lock configuration"]
     #[inline] pub fn test_lock(&self) -> bool {
-        self.lock != 0
+        self.lock() != 0
     }
 
     #[doc="Lock configuration"]
@@ -2269,7 +2269,7 @@ impl Bdtr {
 
     #[doc="Dead-time generator setup"]
     #[inline] pub fn test_dtg(&self) -> bool {
-        self.dtg != 0
+        self.dtg() != 0
     }
 
     #[doc="Dead-time generator setup"]
@@ -2288,7 +2288,7 @@ impl Bdtr {
 
     #[doc="Break filter"]
     #[inline] pub fn test_bkf(&self) -> bool {
-        self.bkf != 0
+        self.bkf() != 0
     }
 
     #[doc="Break filter"]
@@ -2336,7 +2336,7 @@ impl Ccr {
 
     #[doc="Low Capture/Compare n value"]
     #[inline] pub fn test_ccrl(&self) -> bool {
-        self.ccrl != 0
+        self.ccrl() != 0
     }
 
     #[doc="Low Capture/Compare n value"]
@@ -2355,7 +2355,7 @@ impl Ccr {
 
     #[doc="High Capture/Compare n value (on TIM2)"]
     #[inline] pub fn test_ccrh(&self) -> bool {
-        self.ccrh != 0
+        self.ccrh() != 0
     }
 
     #[doc="High Capture/Compare n value (on TIM2)"]
@@ -2396,7 +2396,7 @@ impl Dcr {
 
     #[doc="DMA burst length"]
     #[inline] pub fn test_dbl(&self) -> bool {
-        self.dbl != 0
+        self.dbl() != 0
     }
 
     #[doc="DMA burst length"]
@@ -2415,7 +2415,7 @@ impl Dcr {
 
     #[doc="DMA base address"]
     #[inline] pub fn test_dba(&self) -> bool {
-        self.dba != 0
+        self.dba() != 0
     }
 
     #[doc="DMA base address"]
@@ -2456,7 +2456,7 @@ impl Dmar {
 
     #[doc="DMA register for burst accesses"]
     #[inline] pub fn test_dmab(&self) -> bool {
-        self.dmab != 0
+        self.dmab() != 0
     }
 
     #[doc="DMA register for burst accesses"]

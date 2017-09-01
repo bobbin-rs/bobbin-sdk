@@ -73,7 +73,7 @@ impl Idcode {
 
     #[doc="DEV_ID"]
     #[inline] pub fn test_dev_id(&self) -> bool {
-        self.dev_id != 0
+        self.dev_id() != 0
     }
 
     #[doc="DEV_ID"]
@@ -92,7 +92,7 @@ impl Idcode {
 
     #[doc="REV_ID"]
     #[inline] pub fn test_rev_id(&self) -> bool {
-        self.rev_id != 0
+        self.rev_id() != 0
     }
 
     #[doc="REV_ID"]
@@ -133,7 +133,7 @@ impl Cr {
 
     #[doc="DBG_SLEEP"]
     #[inline] pub fn test_dbg_sleep(&self) -> bool {
-        self.dbg_sleep != 0
+        self.dbg_sleep() != 0
     }
 
     #[doc="DBG_SLEEP"]
@@ -152,7 +152,7 @@ impl Cr {
 
     #[doc="DBG_STOP"]
     #[inline] pub fn test_dbg_stop(&self) -> bool {
-        self.dbg_stop != 0
+        self.dbg_stop() != 0
     }
 
     #[doc="DBG_STOP"]
@@ -171,7 +171,7 @@ impl Cr {
 
     #[doc="DBG_STANDBY"]
     #[inline] pub fn test_dbg_standby(&self) -> bool {
-        self.dbg_standby != 0
+        self.dbg_standby() != 0
     }
 
     #[doc="DBG_STANDBY"]
@@ -190,7 +190,7 @@ impl Cr {
 
     #[doc="TRACE_IOEN"]
     #[inline] pub fn test_trace_ioen(&self) -> bool {
-        self.trace_ioen != 0
+        self.trace_ioen() != 0
     }
 
     #[doc="TRACE_IOEN"]
@@ -209,7 +209,7 @@ impl Cr {
 
     #[doc="TRACE_MODE"]
     #[inline] pub fn test_trace_mode(&self) -> bool {
-        self.trace_mode != 0
+        self.trace_mode() != 0
     }
 
     #[doc="TRACE_MODE"]
@@ -228,7 +228,7 @@ impl Cr {
 
     #[doc="DBG_IWDG_STOP"]
     #[inline] pub fn test_dbg_iwdg_stop(&self) -> bool {
-        self.dbg_iwdg_stop != 0
+        self.dbg_iwdg_stop() != 0
     }
 
     #[doc="DBG_IWDG_STOP"]
@@ -247,7 +247,7 @@ impl Cr {
 
     #[doc="DBG_WWDG_STOP"]
     #[inline] pub fn test_dbg_wwdg_stop(&self) -> bool {
-        self.dbg_wwdg_stop != 0
+        self.dbg_wwdg_stop() != 0
     }
 
     #[doc="DBG_WWDG_STOP"]
@@ -266,7 +266,7 @@ impl Cr {
 
     #[doc="DBG_TIM1_STOP"]
     #[inline] pub fn test_dbg_tim1_stop(&self) -> bool {
-        self.dbg_tim1_stop != 0
+        self.dbg_tim1_stop() != 0
     }
 
     #[doc="DBG_TIM1_STOP"]
@@ -285,7 +285,7 @@ impl Cr {
 
     #[doc="DBG_TIM2_STOP"]
     #[inline] pub fn test_dbg_tim2_stop(&self) -> bool {
-        self.dbg_tim2_stop != 0
+        self.dbg_tim2_stop() != 0
     }
 
     #[doc="DBG_TIM2_STOP"]
@@ -304,7 +304,7 @@ impl Cr {
 
     #[doc="DBG_TIM3_STOP"]
     #[inline] pub fn test_dbg_tim3_stop(&self) -> bool {
-        self.dbg_tim3_stop != 0
+        self.dbg_tim3_stop() != 0
     }
 
     #[doc="DBG_TIM3_STOP"]
@@ -323,7 +323,7 @@ impl Cr {
 
     #[doc="DBG_TIM4_STOP"]
     #[inline] pub fn test_dbg_tim4_stop(&self) -> bool {
-        self.dbg_tim4_stop != 0
+        self.dbg_tim4_stop() != 0
     }
 
     #[doc="DBG_TIM4_STOP"]
@@ -342,7 +342,7 @@ impl Cr {
 
     #[doc="DBG_CAN1_STOP"]
     #[inline] pub fn test_dbg_can1_stop(&self) -> bool {
-        self.dbg_can1_stop != 0
+        self.dbg_can1_stop() != 0
     }
 
     #[doc="DBG_CAN1_STOP"]
@@ -361,7 +361,7 @@ impl Cr {
 
     #[doc="DBG_I2C1_SMBUS_TIMEOUT"]
     #[inline] pub fn test_dbg_i2c1_smbus_timeout(&self) -> bool {
-        self.dbg_i2c1_smbus_timeout != 0
+        self.dbg_i2c1_smbus_timeout() != 0
     }
 
     #[doc="DBG_I2C1_SMBUS_TIMEOUT"]
@@ -380,7 +380,7 @@ impl Cr {
 
     #[doc="DBG_I2C2_SMBUS_TIMEOUT"]
     #[inline] pub fn test_dbg_i2c2_smbus_timeout(&self) -> bool {
-        self.dbg_i2c2_smbus_timeout != 0
+        self.dbg_i2c2_smbus_timeout() != 0
     }
 
     #[doc="DBG_I2C2_SMBUS_TIMEOUT"]
@@ -399,7 +399,7 @@ impl Cr {
 
     #[doc="DBG_TIM8_STOP"]
     #[inline] pub fn test_dbg_tim8_stop(&self) -> bool {
-        self.dbg_tim8_stop != 0
+        self.dbg_tim8_stop() != 0
     }
 
     #[doc="DBG_TIM8_STOP"]
@@ -418,7 +418,7 @@ impl Cr {
 
     #[doc="DBG_TIM5_STOP"]
     #[inline] pub fn test_dbg_tim5_stop(&self) -> bool {
-        self.dbg_tim5_stop != 0
+        self.dbg_tim5_stop() != 0
     }
 
     #[doc="DBG_TIM5_STOP"]
@@ -437,7 +437,7 @@ impl Cr {
 
     #[doc="DBG_TIM6_STOP"]
     #[inline] pub fn test_dbg_tim6_stop(&self) -> bool {
-        self.dbg_tim6_stop != 0
+        self.dbg_tim6_stop() != 0
     }
 
     #[doc="DBG_TIM6_STOP"]
@@ -456,7 +456,7 @@ impl Cr {
 
     #[doc="DBG_TIM7_STOP"]
     #[inline] pub fn test_dbg_tim7_stop(&self) -> bool {
-        self.dbg_tim7_stop != 0
+        self.dbg_tim7_stop() != 0
     }
 
     #[doc="DBG_TIM7_STOP"]
@@ -475,7 +475,7 @@ impl Cr {
 
     #[doc="DBG_CAN2_STOP"]
     #[inline] pub fn test_dbg_can2_stop(&self) -> bool {
-        self.dbg_can2_stop != 0
+        self.dbg_can2_stop() != 0
     }
 
     #[doc="DBG_CAN2_STOP"]

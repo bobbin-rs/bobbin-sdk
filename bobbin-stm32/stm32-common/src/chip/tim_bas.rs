@@ -291,7 +291,7 @@ impl Cr1 {
 
     #[doc="Counter enable"]
     #[inline] pub fn test_cen(&self) -> bool {
-        self.cen != 0
+        self.cen() != 0
     }
 
     #[doc="Counter enable"]
@@ -310,7 +310,7 @@ impl Cr1 {
 
     #[doc="Update disable"]
     #[inline] pub fn test_udis(&self) -> bool {
-        self.udis != 0
+        self.udis() != 0
     }
 
     #[doc="Update disable"]
@@ -329,7 +329,7 @@ impl Cr1 {
 
     #[doc="Update request source"]
     #[inline] pub fn test_urs(&self) -> bool {
-        self.urs != 0
+        self.urs() != 0
     }
 
     #[doc="Update request source"]
@@ -348,7 +348,7 @@ impl Cr1 {
 
     #[doc="One-pulse mode"]
     #[inline] pub fn test_opm(&self) -> bool {
-        self.opm != 0
+        self.opm() != 0
     }
 
     #[doc="One-pulse mode"]
@@ -367,7 +367,7 @@ impl Cr1 {
 
     #[doc="Auto-reload preload enable"]
     #[inline] pub fn test_arpe(&self) -> bool {
-        self.arpe != 0
+        self.arpe() != 0
     }
 
     #[doc="Auto-reload preload enable"]
@@ -386,7 +386,7 @@ impl Cr1 {
 
     #[doc="UIF status bit remapping"]
     #[inline] pub fn test_uifremap(&self) -> bool {
-        self.uifremap != 0
+        self.uifremap() != 0
     }
 
     #[doc="UIF status bit remapping"]
@@ -431,7 +431,7 @@ impl Cr2 {
 
     #[doc="Master mode selection"]
     #[inline] pub fn test_mms(&self) -> bool {
-        self.mms != 0
+        self.mms() != 0
     }
 
     #[doc="Master mode selection"]
@@ -471,7 +471,7 @@ impl Dier {
 
     #[doc="Update DMA request enable"]
     #[inline] pub fn test_ude(&self) -> bool {
-        self.ude != 0
+        self.ude() != 0
     }
 
     #[doc="Update DMA request enable"]
@@ -490,7 +490,7 @@ impl Dier {
 
     #[doc="Update interrupt enable"]
     #[inline] pub fn test_uie(&self) -> bool {
-        self.uie != 0
+        self.uie() != 0
     }
 
     #[doc="Update interrupt enable"]
@@ -531,7 +531,7 @@ impl Sr {
 
     #[doc="Update interrupt flag"]
     #[inline] pub fn test_uif(&self) -> bool {
-        self.uif != 0
+        self.uif() != 0
     }
 
     #[doc="Update interrupt flag"]
@@ -571,7 +571,7 @@ impl Egr {
 
     #[doc="Update generation"]
     #[inline] pub fn test_ug(&self) -> bool {
-        self.ug != 0
+        self.ug() != 0
     }
 
     #[doc="Update generation"]
@@ -611,7 +611,7 @@ impl Cnt {
 
     #[doc="Low counter value"]
     #[inline] pub fn test_cnt(&self) -> bool {
-        self.cnt != 0
+        self.cnt() != 0
     }
 
     #[doc="Low counter value"]
@@ -630,7 +630,7 @@ impl Cnt {
 
     #[doc="UIF Copy"]
     #[inline] pub fn test_uifcpy(&self) -> bool {
-        self.uifcpy != 0
+        self.uifcpy() != 0
     }
 
     #[doc="UIF Copy"]
@@ -671,7 +671,7 @@ impl Psc {
 
     #[doc="Prescaler value"]
     #[inline] pub fn test_psc(&self) -> bool {
-        self.psc != 0
+        self.psc() != 0
     }
 
     #[doc="Prescaler value"]
@@ -711,7 +711,7 @@ impl Arr {
 
     #[doc="Low Auto-reload value"]
     #[inline] pub fn test_arr(&self) -> bool {
-        self.arr != 0
+        self.arr() != 0
     }
 
     #[doc="Low Auto-reload value"]

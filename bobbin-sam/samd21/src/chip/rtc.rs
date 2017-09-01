@@ -447,7 +447,7 @@ impl Dbgctrl {
 
     #[doc="Run During Debug"]
     #[inline] pub fn test_dbgrun(&self) -> bool {
-        self.dbgrun != 0
+        self.dbgrun() != 0
     }
 
     #[doc="Run During Debug"]
@@ -487,7 +487,7 @@ impl Freqcorr {
 
     #[doc="Correction Value"]
     #[inline] pub fn test_value(&self) -> bool {
-        self.value != 0
+        self.value() != 0
     }
 
     #[doc="Correction Value"]
@@ -506,7 +506,7 @@ impl Freqcorr {
 
     #[doc="Correction Sign"]
     #[inline] pub fn test_sign(&self) -> bool {
-        self.sign != 0
+        self.sign() != 0
     }
 
     #[doc="Correction Sign"]
@@ -547,7 +547,7 @@ impl Comp {
 
     #[doc="Compare Value"]
     #[inline] pub fn test_comp(&self) -> bool {
-        self.comp != 0
+        self.comp() != 0
     }
 
     #[doc="Compare Value"]
@@ -586,7 +586,7 @@ impl Count {
 
     #[doc="Counter Value"]
     #[inline] pub fn test_count(&self) -> bool {
-        self.count != 0
+        self.count() != 0
     }
 
     #[doc="Counter Value"]
@@ -625,7 +625,7 @@ impl Ctrl {
 
     #[doc="Software Reset"]
     #[inline] pub fn test_swrst(&self) -> bool {
-        self.swrst != 0
+        self.swrst() != 0
     }
 
     #[doc="Software Reset"]
@@ -644,7 +644,7 @@ impl Ctrl {
 
     #[doc="Enable"]
     #[inline] pub fn test_enable(&self) -> bool {
-        self.enable != 0
+        self.enable() != 0
     }
 
     #[doc="Enable"]
@@ -663,7 +663,7 @@ impl Ctrl {
 
     #[doc="Operating Mode"]
     #[inline] pub fn test_mode(&self) -> bool {
-        self.mode != 0
+        self.mode() != 0
     }
 
     #[doc="Operating Mode"]
@@ -682,7 +682,7 @@ impl Ctrl {
 
     #[doc="Clear on Match"]
     #[inline] pub fn test_matchclr(&self) -> bool {
-        self.matchclr != 0
+        self.matchclr() != 0
     }
 
     #[doc="Clear on Match"]
@@ -701,7 +701,7 @@ impl Ctrl {
 
     #[doc="Prescaler"]
     #[inline] pub fn test_prescaler(&self) -> bool {
-        self.prescaler != 0
+        self.prescaler() != 0
     }
 
     #[doc="Prescaler"]
@@ -745,7 +745,7 @@ impl Evctrl {
 
     #[doc="Periodic Interval 0 Event Output Enable"]
     #[inline] pub fn test_pereo0(&self) -> bool {
-        self.pereo0 != 0
+        self.pereo0() != 0
     }
 
     #[doc="Periodic Interval 0 Event Output Enable"]
@@ -764,7 +764,7 @@ impl Evctrl {
 
     #[doc="Periodic Interval 1 Event Output Enable"]
     #[inline] pub fn test_pereo1(&self) -> bool {
-        self.pereo1 != 0
+        self.pereo1() != 0
     }
 
     #[doc="Periodic Interval 1 Event Output Enable"]
@@ -783,7 +783,7 @@ impl Evctrl {
 
     #[doc="Periodic Interval 2 Event Output Enable"]
     #[inline] pub fn test_pereo2(&self) -> bool {
-        self.pereo2 != 0
+        self.pereo2() != 0
     }
 
     #[doc="Periodic Interval 2 Event Output Enable"]
@@ -802,7 +802,7 @@ impl Evctrl {
 
     #[doc="Periodic Interval 3 Event Output Enable"]
     #[inline] pub fn test_pereo3(&self) -> bool {
-        self.pereo3 != 0
+        self.pereo3() != 0
     }
 
     #[doc="Periodic Interval 3 Event Output Enable"]
@@ -821,7 +821,7 @@ impl Evctrl {
 
     #[doc="Periodic Interval 4 Event Output Enable"]
     #[inline] pub fn test_pereo4(&self) -> bool {
-        self.pereo4 != 0
+        self.pereo4() != 0
     }
 
     #[doc="Periodic Interval 4 Event Output Enable"]
@@ -840,7 +840,7 @@ impl Evctrl {
 
     #[doc="Periodic Interval 5 Event Output Enable"]
     #[inline] pub fn test_pereo5(&self) -> bool {
-        self.pereo5 != 0
+        self.pereo5() != 0
     }
 
     #[doc="Periodic Interval 5 Event Output Enable"]
@@ -859,7 +859,7 @@ impl Evctrl {
 
     #[doc="Periodic Interval 6 Event Output Enable"]
     #[inline] pub fn test_pereo6(&self) -> bool {
-        self.pereo6 != 0
+        self.pereo6() != 0
     }
 
     #[doc="Periodic Interval 6 Event Output Enable"]
@@ -878,7 +878,7 @@ impl Evctrl {
 
     #[doc="Periodic Interval 7 Event Output Enable"]
     #[inline] pub fn test_pereo7(&self) -> bool {
-        self.pereo7 != 0
+        self.pereo7() != 0
     }
 
     #[doc="Periodic Interval 7 Event Output Enable"]
@@ -897,7 +897,7 @@ impl Evctrl {
 
     #[doc="Compare 0 Event Output Enable"]
     #[inline] pub fn test_cmpeo0(&self) -> bool {
-        self.cmpeo0 != 0
+        self.cmpeo0() != 0
     }
 
     #[doc="Compare 0 Event Output Enable"]
@@ -916,7 +916,7 @@ impl Evctrl {
 
     #[doc="Overflow Event Output Enable"]
     #[inline] pub fn test_ovfeo(&self) -> bool {
-        self.ovfeo != 0
+        self.ovfeo() != 0
     }
 
     #[doc="Overflow Event Output Enable"]
@@ -965,7 +965,7 @@ impl Intenclr {
 
     #[doc="Compare 0 Interrupt Enable"]
     #[inline] pub fn test_cmp0(&self) -> bool {
-        self.cmp0 != 0
+        self.cmp0() != 0
     }
 
     #[doc="Compare 0 Interrupt Enable"]
@@ -984,7 +984,7 @@ impl Intenclr {
 
     #[doc="Synchronization Ready Interrupt Enable"]
     #[inline] pub fn test_syncrdy(&self) -> bool {
-        self.syncrdy != 0
+        self.syncrdy() != 0
     }
 
     #[doc="Synchronization Ready Interrupt Enable"]
@@ -1003,7 +1003,7 @@ impl Intenclr {
 
     #[doc="Overflow Interrupt Enable"]
     #[inline] pub fn test_ovf(&self) -> bool {
-        self.ovf != 0
+        self.ovf() != 0
     }
 
     #[doc="Overflow Interrupt Enable"]
@@ -1045,7 +1045,7 @@ impl Intenset {
 
     #[doc="Compare 0 Interrupt Enable"]
     #[inline] pub fn test_cmp0(&self) -> bool {
-        self.cmp0 != 0
+        self.cmp0() != 0
     }
 
     #[doc="Compare 0 Interrupt Enable"]
@@ -1064,7 +1064,7 @@ impl Intenset {
 
     #[doc="Synchronization Ready Interrupt Enable"]
     #[inline] pub fn test_syncrdy(&self) -> bool {
-        self.syncrdy != 0
+        self.syncrdy() != 0
     }
 
     #[doc="Synchronization Ready Interrupt Enable"]
@@ -1083,7 +1083,7 @@ impl Intenset {
 
     #[doc="Overflow Interrupt Enable"]
     #[inline] pub fn test_ovf(&self) -> bool {
-        self.ovf != 0
+        self.ovf() != 0
     }
 
     #[doc="Overflow Interrupt Enable"]
@@ -1125,7 +1125,7 @@ impl Intflag {
 
     #[doc="Compare 0"]
     #[inline] pub fn test_cmp0(&self) -> bool {
-        self.cmp0 != 0
+        self.cmp0() != 0
     }
 
     #[doc="Compare 0"]
@@ -1144,7 +1144,7 @@ impl Intflag {
 
     #[doc="Synchronization Ready"]
     #[inline] pub fn test_syncrdy(&self) -> bool {
-        self.syncrdy != 0
+        self.syncrdy() != 0
     }
 
     #[doc="Synchronization Ready"]
@@ -1163,7 +1163,7 @@ impl Intflag {
 
     #[doc="Overflow"]
     #[inline] pub fn test_ovf(&self) -> bool {
-        self.ovf != 0
+        self.ovf() != 0
     }
 
     #[doc="Overflow"]
@@ -1205,7 +1205,7 @@ impl Readreq {
 
     #[doc="Address"]
     #[inline] pub fn test_addr(&self) -> bool {
-        self.addr != 0
+        self.addr() != 0
     }
 
     #[doc="Address"]
@@ -1224,7 +1224,7 @@ impl Readreq {
 
     #[doc="Read Continuously"]
     #[inline] pub fn test_rcont(&self) -> bool {
-        self.rcont != 0
+        self.rcont() != 0
     }
 
     #[doc="Read Continuously"]
@@ -1243,7 +1243,7 @@ impl Readreq {
 
     #[doc="Read Request"]
     #[inline] pub fn test_rreq(&self) -> bool {
-        self.rreq != 0
+        self.rreq() != 0
     }
 
     #[doc="Read Request"]
@@ -1285,7 +1285,7 @@ impl Status {
 
     #[doc="Synchronization Busy"]
     #[inline] pub fn test_syncbusy(&self) -> bool {
-        self.syncbusy != 0
+        self.syncbusy() != 0
     }
 
     #[doc="Synchronization Busy"]
@@ -1779,7 +1779,7 @@ impl Dbgctrl {
 
     #[doc="Run During Debug"]
     #[inline] pub fn test_dbgrun(&self) -> bool {
-        self.dbgrun != 0
+        self.dbgrun() != 0
     }
 
     #[doc="Run During Debug"]
@@ -1819,7 +1819,7 @@ impl Freqcorr {
 
     #[doc="Correction Value"]
     #[inline] pub fn test_value(&self) -> bool {
-        self.value != 0
+        self.value() != 0
     }
 
     #[doc="Correction Value"]
@@ -1838,7 +1838,7 @@ impl Freqcorr {
 
     #[doc="Correction Sign"]
     #[inline] pub fn test_sign(&self) -> bool {
-        self.sign != 0
+        self.sign() != 0
     }
 
     #[doc="Correction Sign"]
@@ -1879,7 +1879,7 @@ impl Comp {
 
     #[doc="Compare Value"]
     #[inline] pub fn test_comp(&self) -> bool {
-        self.comp != 0
+        self.comp() != 0
     }
 
     #[doc="Compare Value"]
@@ -1919,7 +1919,7 @@ impl Count {
 
     #[doc="Counter Value"]
     #[inline] pub fn test_count(&self) -> bool {
-        self.count != 0
+        self.count() != 0
     }
 
     #[doc="Counter Value"]
@@ -1959,7 +1959,7 @@ impl Ctrl {
 
     #[doc="Software Reset"]
     #[inline] pub fn test_swrst(&self) -> bool {
-        self.swrst != 0
+        self.swrst() != 0
     }
 
     #[doc="Software Reset"]
@@ -1978,7 +1978,7 @@ impl Ctrl {
 
     #[doc="Enable"]
     #[inline] pub fn test_enable(&self) -> bool {
-        self.enable != 0
+        self.enable() != 0
     }
 
     #[doc="Enable"]
@@ -1997,7 +1997,7 @@ impl Ctrl {
 
     #[doc="Operating Mode"]
     #[inline] pub fn test_mode(&self) -> bool {
-        self.mode != 0
+        self.mode() != 0
     }
 
     #[doc="Operating Mode"]
@@ -2016,7 +2016,7 @@ impl Ctrl {
 
     #[doc="Prescaler"]
     #[inline] pub fn test_prescaler(&self) -> bool {
-        self.prescaler != 0
+        self.prescaler() != 0
     }
 
     #[doc="Prescaler"]
@@ -2059,7 +2059,7 @@ impl Evctrl {
 
     #[doc="Periodic Interval 0 Event Output Enable"]
     #[inline] pub fn test_pereo0(&self) -> bool {
-        self.pereo0 != 0
+        self.pereo0() != 0
     }
 
     #[doc="Periodic Interval 0 Event Output Enable"]
@@ -2078,7 +2078,7 @@ impl Evctrl {
 
     #[doc="Periodic Interval 1 Event Output Enable"]
     #[inline] pub fn test_pereo1(&self) -> bool {
-        self.pereo1 != 0
+        self.pereo1() != 0
     }
 
     #[doc="Periodic Interval 1 Event Output Enable"]
@@ -2097,7 +2097,7 @@ impl Evctrl {
 
     #[doc="Periodic Interval 2 Event Output Enable"]
     #[inline] pub fn test_pereo2(&self) -> bool {
-        self.pereo2 != 0
+        self.pereo2() != 0
     }
 
     #[doc="Periodic Interval 2 Event Output Enable"]
@@ -2116,7 +2116,7 @@ impl Evctrl {
 
     #[doc="Periodic Interval 3 Event Output Enable"]
     #[inline] pub fn test_pereo3(&self) -> bool {
-        self.pereo3 != 0
+        self.pereo3() != 0
     }
 
     #[doc="Periodic Interval 3 Event Output Enable"]
@@ -2135,7 +2135,7 @@ impl Evctrl {
 
     #[doc="Periodic Interval 4 Event Output Enable"]
     #[inline] pub fn test_pereo4(&self) -> bool {
-        self.pereo4 != 0
+        self.pereo4() != 0
     }
 
     #[doc="Periodic Interval 4 Event Output Enable"]
@@ -2154,7 +2154,7 @@ impl Evctrl {
 
     #[doc="Periodic Interval 5 Event Output Enable"]
     #[inline] pub fn test_pereo5(&self) -> bool {
-        self.pereo5 != 0
+        self.pereo5() != 0
     }
 
     #[doc="Periodic Interval 5 Event Output Enable"]
@@ -2173,7 +2173,7 @@ impl Evctrl {
 
     #[doc="Periodic Interval 6 Event Output Enable"]
     #[inline] pub fn test_pereo6(&self) -> bool {
-        self.pereo6 != 0
+        self.pereo6() != 0
     }
 
     #[doc="Periodic Interval 6 Event Output Enable"]
@@ -2192,7 +2192,7 @@ impl Evctrl {
 
     #[doc="Periodic Interval 7 Event Output Enable"]
     #[inline] pub fn test_pereo7(&self) -> bool {
-        self.pereo7 != 0
+        self.pereo7() != 0
     }
 
     #[doc="Periodic Interval 7 Event Output Enable"]
@@ -2211,7 +2211,7 @@ impl Evctrl {
 
     #[doc="Compare 0 Event Output Enable"]
     #[inline] pub fn test_cmpeo0(&self) -> bool {
-        self.cmpeo0 != 0
+        self.cmpeo0() != 0
     }
 
     #[doc="Compare 0 Event Output Enable"]
@@ -2230,7 +2230,7 @@ impl Evctrl {
 
     #[doc="Compare 1 Event Output Enable"]
     #[inline] pub fn test_cmpeo1(&self) -> bool {
-        self.cmpeo1 != 0
+        self.cmpeo1() != 0
     }
 
     #[doc="Compare 1 Event Output Enable"]
@@ -2249,7 +2249,7 @@ impl Evctrl {
 
     #[doc="Overflow Event Output Enable"]
     #[inline] pub fn test_ovfeo(&self) -> bool {
-        self.ovfeo != 0
+        self.ovfeo() != 0
     }
 
     #[doc="Overflow Event Output Enable"]
@@ -2299,7 +2299,7 @@ impl Intenclr {
 
     #[doc="Compare 0 Interrupt Enable"]
     #[inline] pub fn test_cmp0(&self) -> bool {
-        self.cmp0 != 0
+        self.cmp0() != 0
     }
 
     #[doc="Compare 0 Interrupt Enable"]
@@ -2318,7 +2318,7 @@ impl Intenclr {
 
     #[doc="Compare 1 Interrupt Enable"]
     #[inline] pub fn test_cmp1(&self) -> bool {
-        self.cmp1 != 0
+        self.cmp1() != 0
     }
 
     #[doc="Compare 1 Interrupt Enable"]
@@ -2337,7 +2337,7 @@ impl Intenclr {
 
     #[doc="Synchronization Ready Interrupt Enable"]
     #[inline] pub fn test_syncrdy(&self) -> bool {
-        self.syncrdy != 0
+        self.syncrdy() != 0
     }
 
     #[doc="Synchronization Ready Interrupt Enable"]
@@ -2356,7 +2356,7 @@ impl Intenclr {
 
     #[doc="Overflow Interrupt Enable"]
     #[inline] pub fn test_ovf(&self) -> bool {
-        self.ovf != 0
+        self.ovf() != 0
     }
 
     #[doc="Overflow Interrupt Enable"]
@@ -2399,7 +2399,7 @@ impl Intenset {
 
     #[doc="Compare 0 Interrupt Enable"]
     #[inline] pub fn test_cmp0(&self) -> bool {
-        self.cmp0 != 0
+        self.cmp0() != 0
     }
 
     #[doc="Compare 0 Interrupt Enable"]
@@ -2418,7 +2418,7 @@ impl Intenset {
 
     #[doc="Compare 1 Interrupt Enable"]
     #[inline] pub fn test_cmp1(&self) -> bool {
-        self.cmp1 != 0
+        self.cmp1() != 0
     }
 
     #[doc="Compare 1 Interrupt Enable"]
@@ -2437,7 +2437,7 @@ impl Intenset {
 
     #[doc="Synchronization Ready Interrupt Enable"]
     #[inline] pub fn test_syncrdy(&self) -> bool {
-        self.syncrdy != 0
+        self.syncrdy() != 0
     }
 
     #[doc="Synchronization Ready Interrupt Enable"]
@@ -2456,7 +2456,7 @@ impl Intenset {
 
     #[doc="Overflow Interrupt Enable"]
     #[inline] pub fn test_ovf(&self) -> bool {
-        self.ovf != 0
+        self.ovf() != 0
     }
 
     #[doc="Overflow Interrupt Enable"]
@@ -2499,7 +2499,7 @@ impl Intflag {
 
     #[doc="Compare 0"]
     #[inline] pub fn test_cmp0(&self) -> bool {
-        self.cmp0 != 0
+        self.cmp0() != 0
     }
 
     #[doc="Compare 0"]
@@ -2518,7 +2518,7 @@ impl Intflag {
 
     #[doc="Compare 1"]
     #[inline] pub fn test_cmp1(&self) -> bool {
-        self.cmp1 != 0
+        self.cmp1() != 0
     }
 
     #[doc="Compare 1"]
@@ -2537,7 +2537,7 @@ impl Intflag {
 
     #[doc="Synchronization Ready"]
     #[inline] pub fn test_syncrdy(&self) -> bool {
-        self.syncrdy != 0
+        self.syncrdy() != 0
     }
 
     #[doc="Synchronization Ready"]
@@ -2556,7 +2556,7 @@ impl Intflag {
 
     #[doc="Overflow"]
     #[inline] pub fn test_ovf(&self) -> bool {
-        self.ovf != 0
+        self.ovf() != 0
     }
 
     #[doc="Overflow"]
@@ -2599,7 +2599,7 @@ impl Per {
 
     #[doc="Counter Period"]
     #[inline] pub fn test_per(&self) -> bool {
-        self.per != 0
+        self.per() != 0
     }
 
     #[doc="Counter Period"]
@@ -2639,7 +2639,7 @@ impl Readreq {
 
     #[doc="Address"]
     #[inline] pub fn test_addr(&self) -> bool {
-        self.addr != 0
+        self.addr() != 0
     }
 
     #[doc="Address"]
@@ -2658,7 +2658,7 @@ impl Readreq {
 
     #[doc="Read Continuously"]
     #[inline] pub fn test_rcont(&self) -> bool {
-        self.rcont != 0
+        self.rcont() != 0
     }
 
     #[doc="Read Continuously"]
@@ -2677,7 +2677,7 @@ impl Readreq {
 
     #[doc="Read Request"]
     #[inline] pub fn test_rreq(&self) -> bool {
-        self.rreq != 0
+        self.rreq() != 0
     }
 
     #[doc="Read Request"]
@@ -2719,7 +2719,7 @@ impl Status {
 
     #[doc="Synchronization Busy"]
     #[inline] pub fn test_syncbusy(&self) -> bool {
-        self.syncbusy != 0
+        self.syncbusy() != 0
     }
 
     #[doc="Synchronization Busy"]
@@ -3223,7 +3223,7 @@ impl Dbgctrl {
 
     #[doc="Run During Debug"]
     #[inline] pub fn test_dbgrun(&self) -> bool {
-        self.dbgrun != 0
+        self.dbgrun() != 0
     }
 
     #[doc="Run During Debug"]
@@ -3263,7 +3263,7 @@ impl Freqcorr {
 
     #[doc="Correction Value"]
     #[inline] pub fn test_value(&self) -> bool {
-        self.value != 0
+        self.value() != 0
     }
 
     #[doc="Correction Value"]
@@ -3282,7 +3282,7 @@ impl Freqcorr {
 
     #[doc="Correction Sign"]
     #[inline] pub fn test_sign(&self) -> bool {
-        self.sign != 0
+        self.sign() != 0
     }
 
     #[doc="Correction Sign"]
@@ -3323,7 +3323,7 @@ impl Clock {
 
     #[doc="Second"]
     #[inline] pub fn test_second(&self) -> bool {
-        self.second != 0
+        self.second() != 0
     }
 
     #[doc="Second"]
@@ -3342,7 +3342,7 @@ impl Clock {
 
     #[doc="Minute"]
     #[inline] pub fn test_minute(&self) -> bool {
-        self.minute != 0
+        self.minute() != 0
     }
 
     #[doc="Minute"]
@@ -3361,7 +3361,7 @@ impl Clock {
 
     #[doc="Hour"]
     #[inline] pub fn test_hour(&self) -> bool {
-        self.hour != 0
+        self.hour() != 0
     }
 
     #[doc="Hour"]
@@ -3380,7 +3380,7 @@ impl Clock {
 
     #[doc="Day"]
     #[inline] pub fn test_day(&self) -> bool {
-        self.day != 0
+        self.day() != 0
     }
 
     #[doc="Day"]
@@ -3399,7 +3399,7 @@ impl Clock {
 
     #[doc="Month"]
     #[inline] pub fn test_month(&self) -> bool {
-        self.month != 0
+        self.month() != 0
     }
 
     #[doc="Month"]
@@ -3418,7 +3418,7 @@ impl Clock {
 
     #[doc="Year"]
     #[inline] pub fn test_year(&self) -> bool {
-        self.year != 0
+        self.year() != 0
     }
 
     #[doc="Year"]
@@ -3463,7 +3463,7 @@ impl Ctrl {
 
     #[doc="Software Reset"]
     #[inline] pub fn test_swrst(&self) -> bool {
-        self.swrst != 0
+        self.swrst() != 0
     }
 
     #[doc="Software Reset"]
@@ -3482,7 +3482,7 @@ impl Ctrl {
 
     #[doc="Enable"]
     #[inline] pub fn test_enable(&self) -> bool {
-        self.enable != 0
+        self.enable() != 0
     }
 
     #[doc="Enable"]
@@ -3501,7 +3501,7 @@ impl Ctrl {
 
     #[doc="Operating Mode"]
     #[inline] pub fn test_mode(&self) -> bool {
-        self.mode != 0
+        self.mode() != 0
     }
 
     #[doc="Operating Mode"]
@@ -3520,7 +3520,7 @@ impl Ctrl {
 
     #[doc="Clock Representation"]
     #[inline] pub fn test_clkrep(&self) -> bool {
-        self.clkrep != 0
+        self.clkrep() != 0
     }
 
     #[doc="Clock Representation"]
@@ -3539,7 +3539,7 @@ impl Ctrl {
 
     #[doc="Clear on Match"]
     #[inline] pub fn test_matchclr(&self) -> bool {
-        self.matchclr != 0
+        self.matchclr() != 0
     }
 
     #[doc="Clear on Match"]
@@ -3558,7 +3558,7 @@ impl Ctrl {
 
     #[doc="Prescaler"]
     #[inline] pub fn test_prescaler(&self) -> bool {
-        self.prescaler != 0
+        self.prescaler() != 0
     }
 
     #[doc="Prescaler"]
@@ -3603,7 +3603,7 @@ impl Evctrl {
 
     #[doc="Periodic Interval 0 Event Output Enable"]
     #[inline] pub fn test_pereo0(&self) -> bool {
-        self.pereo0 != 0
+        self.pereo0() != 0
     }
 
     #[doc="Periodic Interval 0 Event Output Enable"]
@@ -3622,7 +3622,7 @@ impl Evctrl {
 
     #[doc="Periodic Interval 1 Event Output Enable"]
     #[inline] pub fn test_pereo1(&self) -> bool {
-        self.pereo1 != 0
+        self.pereo1() != 0
     }
 
     #[doc="Periodic Interval 1 Event Output Enable"]
@@ -3641,7 +3641,7 @@ impl Evctrl {
 
     #[doc="Periodic Interval 2 Event Output Enable"]
     #[inline] pub fn test_pereo2(&self) -> bool {
-        self.pereo2 != 0
+        self.pereo2() != 0
     }
 
     #[doc="Periodic Interval 2 Event Output Enable"]
@@ -3660,7 +3660,7 @@ impl Evctrl {
 
     #[doc="Periodic Interval 3 Event Output Enable"]
     #[inline] pub fn test_pereo3(&self) -> bool {
-        self.pereo3 != 0
+        self.pereo3() != 0
     }
 
     #[doc="Periodic Interval 3 Event Output Enable"]
@@ -3679,7 +3679,7 @@ impl Evctrl {
 
     #[doc="Periodic Interval 4 Event Output Enable"]
     #[inline] pub fn test_pereo4(&self) -> bool {
-        self.pereo4 != 0
+        self.pereo4() != 0
     }
 
     #[doc="Periodic Interval 4 Event Output Enable"]
@@ -3698,7 +3698,7 @@ impl Evctrl {
 
     #[doc="Periodic Interval 5 Event Output Enable"]
     #[inline] pub fn test_pereo5(&self) -> bool {
-        self.pereo5 != 0
+        self.pereo5() != 0
     }
 
     #[doc="Periodic Interval 5 Event Output Enable"]
@@ -3717,7 +3717,7 @@ impl Evctrl {
 
     #[doc="Periodic Interval 6 Event Output Enable"]
     #[inline] pub fn test_pereo6(&self) -> bool {
-        self.pereo6 != 0
+        self.pereo6() != 0
     }
 
     #[doc="Periodic Interval 6 Event Output Enable"]
@@ -3736,7 +3736,7 @@ impl Evctrl {
 
     #[doc="Periodic Interval 7 Event Output Enable"]
     #[inline] pub fn test_pereo7(&self) -> bool {
-        self.pereo7 != 0
+        self.pereo7() != 0
     }
 
     #[doc="Periodic Interval 7 Event Output Enable"]
@@ -3755,7 +3755,7 @@ impl Evctrl {
 
     #[doc="Alarm 0 Event Output Enable"]
     #[inline] pub fn test_alarmeo0(&self) -> bool {
-        self.alarmeo0 != 0
+        self.alarmeo0() != 0
     }
 
     #[doc="Alarm 0 Event Output Enable"]
@@ -3774,7 +3774,7 @@ impl Evctrl {
 
     #[doc="Overflow Event Output Enable"]
     #[inline] pub fn test_ovfeo(&self) -> bool {
-        self.ovfeo != 0
+        self.ovfeo() != 0
     }
 
     #[doc="Overflow Event Output Enable"]
@@ -3823,7 +3823,7 @@ impl Intenclr {
 
     #[doc="Alarm 0 Interrupt Enable"]
     #[inline] pub fn test_alarm0(&self) -> bool {
-        self.alarm0 != 0
+        self.alarm0() != 0
     }
 
     #[doc="Alarm 0 Interrupt Enable"]
@@ -3842,7 +3842,7 @@ impl Intenclr {
 
     #[doc="Synchronization Ready Interrupt Enable"]
     #[inline] pub fn test_syncrdy(&self) -> bool {
-        self.syncrdy != 0
+        self.syncrdy() != 0
     }
 
     #[doc="Synchronization Ready Interrupt Enable"]
@@ -3861,7 +3861,7 @@ impl Intenclr {
 
     #[doc="Overflow Interrupt Enable"]
     #[inline] pub fn test_ovf(&self) -> bool {
-        self.ovf != 0
+        self.ovf() != 0
     }
 
     #[doc="Overflow Interrupt Enable"]
@@ -3903,7 +3903,7 @@ impl Intenset {
 
     #[doc="Alarm 0 Interrupt Enable"]
     #[inline] pub fn test_alarm0(&self) -> bool {
-        self.alarm0 != 0
+        self.alarm0() != 0
     }
 
     #[doc="Alarm 0 Interrupt Enable"]
@@ -3922,7 +3922,7 @@ impl Intenset {
 
     #[doc="Synchronization Ready Interrupt Enable"]
     #[inline] pub fn test_syncrdy(&self) -> bool {
-        self.syncrdy != 0
+        self.syncrdy() != 0
     }
 
     #[doc="Synchronization Ready Interrupt Enable"]
@@ -3941,7 +3941,7 @@ impl Intenset {
 
     #[doc="Overflow Interrupt Enable"]
     #[inline] pub fn test_ovf(&self) -> bool {
-        self.ovf != 0
+        self.ovf() != 0
     }
 
     #[doc="Overflow Interrupt Enable"]
@@ -3983,7 +3983,7 @@ impl Intflag {
 
     #[doc="Alarm 0"]
     #[inline] pub fn test_alarm0(&self) -> bool {
-        self.alarm0 != 0
+        self.alarm0() != 0
     }
 
     #[doc="Alarm 0"]
@@ -4002,7 +4002,7 @@ impl Intflag {
 
     #[doc="Synchronization Ready"]
     #[inline] pub fn test_syncrdy(&self) -> bool {
-        self.syncrdy != 0
+        self.syncrdy() != 0
     }
 
     #[doc="Synchronization Ready"]
@@ -4021,7 +4021,7 @@ impl Intflag {
 
     #[doc="Overflow"]
     #[inline] pub fn test_ovf(&self) -> bool {
-        self.ovf != 0
+        self.ovf() != 0
     }
 
     #[doc="Overflow"]
@@ -4063,7 +4063,7 @@ impl Alarm {
 
     #[doc="Second"]
     #[inline] pub fn test_second(&self) -> bool {
-        self.second != 0
+        self.second() != 0
     }
 
     #[doc="Second"]
@@ -4082,7 +4082,7 @@ impl Alarm {
 
     #[doc="Minute"]
     #[inline] pub fn test_minute(&self) -> bool {
-        self.minute != 0
+        self.minute() != 0
     }
 
     #[doc="Minute"]
@@ -4101,7 +4101,7 @@ impl Alarm {
 
     #[doc="Hour"]
     #[inline] pub fn test_hour(&self) -> bool {
-        self.hour != 0
+        self.hour() != 0
     }
 
     #[doc="Hour"]
@@ -4120,7 +4120,7 @@ impl Alarm {
 
     #[doc="Day"]
     #[inline] pub fn test_day(&self) -> bool {
-        self.day != 0
+        self.day() != 0
     }
 
     #[doc="Day"]
@@ -4139,7 +4139,7 @@ impl Alarm {
 
     #[doc="Month"]
     #[inline] pub fn test_month(&self) -> bool {
-        self.month != 0
+        self.month() != 0
     }
 
     #[doc="Month"]
@@ -4158,7 +4158,7 @@ impl Alarm {
 
     #[doc="Year"]
     #[inline] pub fn test_year(&self) -> bool {
-        self.year != 0
+        self.year() != 0
     }
 
     #[doc="Year"]
@@ -4203,7 +4203,7 @@ impl Mask {
 
     #[doc="Alarm Mask Selection"]
     #[inline] pub fn test_sel(&self) -> bool {
-        self.sel != 0
+        self.sel() != 0
     }
 
     #[doc="Alarm Mask Selection"]
@@ -4243,7 +4243,7 @@ impl Readreq {
 
     #[doc="Address"]
     #[inline] pub fn test_addr(&self) -> bool {
-        self.addr != 0
+        self.addr() != 0
     }
 
     #[doc="Address"]
@@ -4262,7 +4262,7 @@ impl Readreq {
 
     #[doc="Read Continuously"]
     #[inline] pub fn test_rcont(&self) -> bool {
-        self.rcont != 0
+        self.rcont() != 0
     }
 
     #[doc="Read Continuously"]
@@ -4281,7 +4281,7 @@ impl Readreq {
 
     #[doc="Read Request"]
     #[inline] pub fn test_rreq(&self) -> bool {
-        self.rreq != 0
+        self.rreq() != 0
     }
 
     #[doc="Read Request"]
@@ -4323,7 +4323,7 @@ impl Status {
 
     #[doc="Synchronization Busy"]
     #[inline] pub fn test_syncbusy(&self) -> bool {
-        self.syncbusy != 0
+        self.syncbusy() != 0
     }
 
     #[doc="Synchronization Busy"]

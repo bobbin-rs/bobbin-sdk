@@ -272,7 +272,7 @@ impl Evcr {
 
     #[doc="Pin selection"]
     #[inline] pub fn test_pin(&self) -> bool {
-        self.pin != 0
+        self.pin() != 0
     }
 
     #[doc="Pin selection"]
@@ -291,7 +291,7 @@ impl Evcr {
 
     #[doc="Port selection"]
     #[inline] pub fn test_port(&self) -> bool {
-        self.port != 0
+        self.port() != 0
     }
 
     #[doc="Port selection"]
@@ -310,7 +310,7 @@ impl Evcr {
 
     #[doc="Event Output Enable"]
     #[inline] pub fn test_evoe(&self) -> bool {
-        self.evoe != 0
+        self.evoe() != 0
     }
 
     #[doc="Event Output Enable"]
@@ -352,7 +352,7 @@ impl Mapr {
 
     #[doc="SPI1 remapping"]
     #[inline] pub fn test_spi1_remap(&self) -> bool {
-        self.spi1_remap != 0
+        self.spi1_remap() != 0
     }
 
     #[doc="SPI1 remapping"]
@@ -371,7 +371,7 @@ impl Mapr {
 
     #[doc="I2C1 remapping"]
     #[inline] pub fn test_i2c1_remap(&self) -> bool {
-        self.i2c1_remap != 0
+        self.i2c1_remap() != 0
     }
 
     #[doc="I2C1 remapping"]
@@ -390,7 +390,7 @@ impl Mapr {
 
     #[doc="USART1 remapping"]
     #[inline] pub fn test_usart1_remap(&self) -> bool {
-        self.usart1_remap != 0
+        self.usart1_remap() != 0
     }
 
     #[doc="USART1 remapping"]
@@ -409,7 +409,7 @@ impl Mapr {
 
     #[doc="USART2 remapping"]
     #[inline] pub fn test_usart2_remap(&self) -> bool {
-        self.usart2_remap != 0
+        self.usart2_remap() != 0
     }
 
     #[doc="USART2 remapping"]
@@ -428,7 +428,7 @@ impl Mapr {
 
     #[doc="USART3 remapping"]
     #[inline] pub fn test_usart3_remap(&self) -> bool {
-        self.usart3_remap != 0
+        self.usart3_remap() != 0
     }
 
     #[doc="USART3 remapping"]
@@ -447,7 +447,7 @@ impl Mapr {
 
     #[doc="TIM1 remapping"]
     #[inline] pub fn test_tim1_remap(&self) -> bool {
-        self.tim1_remap != 0
+        self.tim1_remap() != 0
     }
 
     #[doc="TIM1 remapping"]
@@ -466,7 +466,7 @@ impl Mapr {
 
     #[doc="TIM2 remapping"]
     #[inline] pub fn test_tim2_remap(&self) -> bool {
-        self.tim2_remap != 0
+        self.tim2_remap() != 0
     }
 
     #[doc="TIM2 remapping"]
@@ -485,7 +485,7 @@ impl Mapr {
 
     #[doc="TIM3 remapping"]
     #[inline] pub fn test_tim3_remap(&self) -> bool {
-        self.tim3_remap != 0
+        self.tim3_remap() != 0
     }
 
     #[doc="TIM3 remapping"]
@@ -504,7 +504,7 @@ impl Mapr {
 
     #[doc="TIM4 remapping"]
     #[inline] pub fn test_tim4_remap(&self) -> bool {
-        self.tim4_remap != 0
+        self.tim4_remap() != 0
     }
 
     #[doc="TIM4 remapping"]
@@ -523,7 +523,7 @@ impl Mapr {
 
     #[doc="CAN1 remapping"]
     #[inline] pub fn test_can_remap(&self) -> bool {
-        self.can_remap != 0
+        self.can_remap() != 0
     }
 
     #[doc="CAN1 remapping"]
@@ -542,7 +542,7 @@ impl Mapr {
 
     #[doc="Port D0/Port D1 mapping on OSCIN/OSCOUT"]
     #[inline] pub fn test_pd01_remap(&self) -> bool {
-        self.pd01_remap != 0
+        self.pd01_remap() != 0
     }
 
     #[doc="Port D0/Port D1 mapping on OSCIN/OSCOUT"]
@@ -561,7 +561,7 @@ impl Mapr {
 
     #[doc="Set and cleared by software"]
     #[inline] pub fn test_tim5ch4_iremap(&self) -> bool {
-        self.tim5ch4_iremap != 0
+        self.tim5ch4_iremap() != 0
     }
 
     #[doc="Set and cleared by software"]
@@ -580,7 +580,7 @@ impl Mapr {
 
     #[doc="ADC 1 External trigger injected conversion remapping"]
     #[inline] pub fn test_adc1_etrginj_remap(&self) -> bool {
-        self.adc1_etrginj_remap != 0
+        self.adc1_etrginj_remap() != 0
     }
 
     #[doc="ADC 1 External trigger injected conversion remapping"]
@@ -599,7 +599,7 @@ impl Mapr {
 
     #[doc="ADC 1 external trigger regular conversion remapping"]
     #[inline] pub fn test_adc1_etrgreg_remap(&self) -> bool {
-        self.adc1_etrgreg_remap != 0
+        self.adc1_etrgreg_remap() != 0
     }
 
     #[doc="ADC 1 external trigger regular conversion remapping"]
@@ -618,7 +618,7 @@ impl Mapr {
 
     #[doc="ADC 2 external trigger injected conversion remapping"]
     #[inline] pub fn test_adc2_etrginj_remap(&self) -> bool {
-        self.adc2_etrginj_remap != 0
+        self.adc2_etrginj_remap() != 0
     }
 
     #[doc="ADC 2 external trigger injected conversion remapping"]
@@ -637,7 +637,7 @@ impl Mapr {
 
     #[doc="ADC 2 external trigger regular conversion remapping"]
     #[inline] pub fn test_adc2_etrgreg_remap(&self) -> bool {
-        self.adc2_etrgreg_remap != 0
+        self.adc2_etrgreg_remap() != 0
     }
 
     #[doc="ADC 2 external trigger regular conversion remapping"]
@@ -656,7 +656,7 @@ impl Mapr {
 
     #[doc="Serial wire JTAG configuration"]
     #[inline] pub fn test_swj_cfg(&self) -> bool {
-        self.swj_cfg != 0
+        self.swj_cfg() != 0
     }
 
     #[doc="Serial wire JTAG configuration"]
@@ -712,7 +712,7 @@ impl Exticr1 {
 
     #[doc="EXTI0 configuration"]
     #[inline] pub fn test_exti0(&self) -> bool {
-        self.exti0 != 0
+        self.exti0() != 0
     }
 
     #[doc="EXTI0 configuration"]
@@ -731,7 +731,7 @@ impl Exticr1 {
 
     #[doc="EXTI1 configuration"]
     #[inline] pub fn test_exti1(&self) -> bool {
-        self.exti1 != 0
+        self.exti1() != 0
     }
 
     #[doc="EXTI1 configuration"]
@@ -750,7 +750,7 @@ impl Exticr1 {
 
     #[doc="EXTI2 configuration"]
     #[inline] pub fn test_exti2(&self) -> bool {
-        self.exti2 != 0
+        self.exti2() != 0
     }
 
     #[doc="EXTI2 configuration"]
@@ -769,7 +769,7 @@ impl Exticr1 {
 
     #[doc="EXTI3 configuration"]
     #[inline] pub fn test_exti3(&self) -> bool {
-        self.exti3 != 0
+        self.exti3() != 0
     }
 
     #[doc="EXTI3 configuration"]
@@ -812,7 +812,7 @@ impl Exticr2 {
 
     #[doc="EXTI4 configuration"]
     #[inline] pub fn test_exti4(&self) -> bool {
-        self.exti4 != 0
+        self.exti4() != 0
     }
 
     #[doc="EXTI4 configuration"]
@@ -831,7 +831,7 @@ impl Exticr2 {
 
     #[doc="EXTI5 configuration"]
     #[inline] pub fn test_exti5(&self) -> bool {
-        self.exti5 != 0
+        self.exti5() != 0
     }
 
     #[doc="EXTI5 configuration"]
@@ -850,7 +850,7 @@ impl Exticr2 {
 
     #[doc="EXTI6 configuration"]
     #[inline] pub fn test_exti6(&self) -> bool {
-        self.exti6 != 0
+        self.exti6() != 0
     }
 
     #[doc="EXTI6 configuration"]
@@ -869,7 +869,7 @@ impl Exticr2 {
 
     #[doc="EXTI7 configuration"]
     #[inline] pub fn test_exti7(&self) -> bool {
-        self.exti7 != 0
+        self.exti7() != 0
     }
 
     #[doc="EXTI7 configuration"]
@@ -912,7 +912,7 @@ impl Exticr3 {
 
     #[doc="EXTI8 configuration"]
     #[inline] pub fn test_exti8(&self) -> bool {
-        self.exti8 != 0
+        self.exti8() != 0
     }
 
     #[doc="EXTI8 configuration"]
@@ -931,7 +931,7 @@ impl Exticr3 {
 
     #[doc="EXTI9 configuration"]
     #[inline] pub fn test_exti9(&self) -> bool {
-        self.exti9 != 0
+        self.exti9() != 0
     }
 
     #[doc="EXTI9 configuration"]
@@ -950,7 +950,7 @@ impl Exticr3 {
 
     #[doc="EXTI10 configuration"]
     #[inline] pub fn test_exti10(&self) -> bool {
-        self.exti10 != 0
+        self.exti10() != 0
     }
 
     #[doc="EXTI10 configuration"]
@@ -969,7 +969,7 @@ impl Exticr3 {
 
     #[doc="EXTI11 configuration"]
     #[inline] pub fn test_exti11(&self) -> bool {
-        self.exti11 != 0
+        self.exti11() != 0
     }
 
     #[doc="EXTI11 configuration"]
@@ -1012,7 +1012,7 @@ impl Exticr4 {
 
     #[doc="EXTI12 configuration"]
     #[inline] pub fn test_exti12(&self) -> bool {
-        self.exti12 != 0
+        self.exti12() != 0
     }
 
     #[doc="EXTI12 configuration"]
@@ -1031,7 +1031,7 @@ impl Exticr4 {
 
     #[doc="EXTI13 configuration"]
     #[inline] pub fn test_exti13(&self) -> bool {
-        self.exti13 != 0
+        self.exti13() != 0
     }
 
     #[doc="EXTI13 configuration"]
@@ -1050,7 +1050,7 @@ impl Exticr4 {
 
     #[doc="EXTI14 configuration"]
     #[inline] pub fn test_exti14(&self) -> bool {
-        self.exti14 != 0
+        self.exti14() != 0
     }
 
     #[doc="EXTI14 configuration"]
@@ -1069,7 +1069,7 @@ impl Exticr4 {
 
     #[doc="EXTI15 configuration"]
     #[inline] pub fn test_exti15(&self) -> bool {
-        self.exti15 != 0
+        self.exti15() != 0
     }
 
     #[doc="EXTI15 configuration"]
@@ -1112,7 +1112,7 @@ impl Mapr2 {
 
     #[doc="TIM9 remapping"]
     #[inline] pub fn test_tim9_remap(&self) -> bool {
-        self.tim9_remap != 0
+        self.tim9_remap() != 0
     }
 
     #[doc="TIM9 remapping"]
@@ -1131,7 +1131,7 @@ impl Mapr2 {
 
     #[doc="TIM10 remapping"]
     #[inline] pub fn test_tim10_remap(&self) -> bool {
-        self.tim10_remap != 0
+        self.tim10_remap() != 0
     }
 
     #[doc="TIM10 remapping"]
@@ -1150,7 +1150,7 @@ impl Mapr2 {
 
     #[doc="TIM11 remapping"]
     #[inline] pub fn test_tim11_remap(&self) -> bool {
-        self.tim11_remap != 0
+        self.tim11_remap() != 0
     }
 
     #[doc="TIM11 remapping"]
@@ -1169,7 +1169,7 @@ impl Mapr2 {
 
     #[doc="TIM13 remapping"]
     #[inline] pub fn test_tim13_remap(&self) -> bool {
-        self.tim13_remap != 0
+        self.tim13_remap() != 0
     }
 
     #[doc="TIM13 remapping"]
@@ -1188,7 +1188,7 @@ impl Mapr2 {
 
     #[doc="TIM14 remapping"]
     #[inline] pub fn test_tim14_remap(&self) -> bool {
-        self.tim14_remap != 0
+        self.tim14_remap() != 0
     }
 
     #[doc="TIM14 remapping"]
@@ -1207,7 +1207,7 @@ impl Mapr2 {
 
     #[doc="NADV connect/disconnect"]
     #[inline] pub fn test_fsmc_nadv(&self) -> bool {
-        self.fsmc_nadv != 0
+        self.fsmc_nadv() != 0
     }
 
     #[doc="NADV connect/disconnect"]

@@ -536,7 +536,7 @@ impl Ccr {
 
     #[doc="Channel enable"]
     #[inline] pub fn test_en(&self) -> bool {
-        self.en != 0
+        self.en() != 0
     }
 
     #[doc="Channel enable"]
@@ -555,7 +555,7 @@ impl Ccr {
 
     #[doc="Transfer complete interrupt enable"]
     #[inline] pub fn test_tcie(&self) -> bool {
-        self.tcie != 0
+        self.tcie() != 0
     }
 
     #[doc="Transfer complete interrupt enable"]
@@ -574,7 +574,7 @@ impl Ccr {
 
     #[doc="Half Transfer interrupt enable"]
     #[inline] pub fn test_htie(&self) -> bool {
-        self.htie != 0
+        self.htie() != 0
     }
 
     #[doc="Half Transfer interrupt enable"]
@@ -593,7 +593,7 @@ impl Ccr {
 
     #[doc="Transfer error interrupt enable"]
     #[inline] pub fn test_teie(&self) -> bool {
-        self.teie != 0
+        self.teie() != 0
     }
 
     #[doc="Transfer error interrupt enable"]
@@ -612,7 +612,7 @@ impl Ccr {
 
     #[doc="Data transfer direction"]
     #[inline] pub fn test_dir(&self) -> bool {
-        self.dir != 0
+        self.dir() != 0
     }
 
     #[doc="Data transfer direction"]
@@ -631,7 +631,7 @@ impl Ccr {
 
     #[doc="Circular mode"]
     #[inline] pub fn test_circ(&self) -> bool {
-        self.circ != 0
+        self.circ() != 0
     }
 
     #[doc="Circular mode"]
@@ -650,7 +650,7 @@ impl Ccr {
 
     #[doc="Peripheral increment mode"]
     #[inline] pub fn test_pinc(&self) -> bool {
-        self.pinc != 0
+        self.pinc() != 0
     }
 
     #[doc="Peripheral increment mode"]
@@ -669,7 +669,7 @@ impl Ccr {
 
     #[doc="Memory increment mode"]
     #[inline] pub fn test_minc(&self) -> bool {
-        self.minc != 0
+        self.minc() != 0
     }
 
     #[doc="Memory increment mode"]
@@ -688,7 +688,7 @@ impl Ccr {
 
     #[doc="Peripheral size"]
     #[inline] pub fn test_psize(&self) -> bool {
-        self.psize != 0
+        self.psize() != 0
     }
 
     #[doc="Peripheral size"]
@@ -707,7 +707,7 @@ impl Ccr {
 
     #[doc="Memory size"]
     #[inline] pub fn test_msize(&self) -> bool {
-        self.msize != 0
+        self.msize() != 0
     }
 
     #[doc="Memory size"]
@@ -726,7 +726,7 @@ impl Ccr {
 
     #[doc="Channel Priority level"]
     #[inline] pub fn test_pl(&self) -> bool {
-        self.pl != 0
+        self.pl() != 0
     }
 
     #[doc="Channel Priority level"]
@@ -745,7 +745,7 @@ impl Ccr {
 
     #[doc="Memory to memory mode"]
     #[inline] pub fn test_mem2mem(&self) -> bool {
-        self.mem2mem != 0
+        self.mem2mem() != 0
     }
 
     #[doc="Memory to memory mode"]
@@ -796,7 +796,7 @@ impl Cndtr {
 
     #[doc="Number of data to transfer"]
     #[inline] pub fn test_ndt(&self) -> bool {
-        self.ndt != 0
+        self.ndt() != 0
     }
 
     #[doc="Number of data to transfer"]
@@ -836,7 +836,7 @@ impl Cpar {
 
     #[doc="Peripheral address"]
     #[inline] pub fn test_pa(&self) -> bool {
-        self.pa != 0
+        self.pa() != 0
     }
 
     #[doc="Peripheral address"]
@@ -875,7 +875,7 @@ impl Cmar {
 
     #[doc="Memory address"]
     #[inline] pub fn test_ma(&self) -> bool {
-        self.ma != 0
+        self.ma() != 0
     }
 
     #[doc="Memory address"]

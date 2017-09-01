@@ -666,7 +666,7 @@ impl Bod33 {
 
     #[doc="Enable"]
     #[inline] pub fn test_enable(&self) -> bool {
-        self.enable != 0
+        self.enable() != 0
     }
 
     #[doc="Enable"]
@@ -685,7 +685,7 @@ impl Bod33 {
 
     #[doc="Hysteresis"]
     #[inline] pub fn test_hyst(&self) -> bool {
-        self.hyst != 0
+        self.hyst() != 0
     }
 
     #[doc="Hysteresis"]
@@ -704,7 +704,7 @@ impl Bod33 {
 
     #[doc="BOD33 Action"]
     #[inline] pub fn test_action(&self) -> bool {
-        self.action != 0
+        self.action() != 0
     }
 
     #[doc="BOD33 Action"]
@@ -723,7 +723,7 @@ impl Bod33 {
 
     #[doc="Run in Standby"]
     #[inline] pub fn test_runstdby(&self) -> bool {
-        self.runstdby != 0
+        self.runstdby() != 0
     }
 
     #[doc="Run in Standby"]
@@ -742,7 +742,7 @@ impl Bod33 {
 
     #[doc="Operation Mode"]
     #[inline] pub fn test_mode(&self) -> bool {
-        self.mode != 0
+        self.mode() != 0
     }
 
     #[doc="Operation Mode"]
@@ -761,7 +761,7 @@ impl Bod33 {
 
     #[doc="Clock Enable"]
     #[inline] pub fn test_cen(&self) -> bool {
-        self.cen != 0
+        self.cen() != 0
     }
 
     #[doc="Clock Enable"]
@@ -780,7 +780,7 @@ impl Bod33 {
 
     #[doc="Prescaler Select"]
     #[inline] pub fn test_psel(&self) -> bool {
-        self.psel != 0
+        self.psel() != 0
     }
 
     #[doc="Prescaler Select"]
@@ -799,7 +799,7 @@ impl Bod33 {
 
     #[doc="BOD33 Threshold Level"]
     #[inline] pub fn test_level(&self) -> bool {
-        self.level != 0
+        self.level() != 0
     }
 
     #[doc="BOD33 Threshold Level"]
@@ -846,7 +846,7 @@ impl Dfllctrl {
 
     #[doc="DFLL Enable"]
     #[inline] pub fn test_enable(&self) -> bool {
-        self.enable != 0
+        self.enable() != 0
     }
 
     #[doc="DFLL Enable"]
@@ -865,7 +865,7 @@ impl Dfllctrl {
 
     #[doc="Operating Mode Selection"]
     #[inline] pub fn test_mode(&self) -> bool {
-        self.mode != 0
+        self.mode() != 0
     }
 
     #[doc="Operating Mode Selection"]
@@ -884,7 +884,7 @@ impl Dfllctrl {
 
     #[doc="Stable DFLL Frequency"]
     #[inline] pub fn test_stable(&self) -> bool {
-        self.stable != 0
+        self.stable() != 0
     }
 
     #[doc="Stable DFLL Frequency"]
@@ -903,7 +903,7 @@ impl Dfllctrl {
 
     #[doc="Lose Lock After Wake"]
     #[inline] pub fn test_llaw(&self) -> bool {
-        self.llaw != 0
+        self.llaw() != 0
     }
 
     #[doc="Lose Lock After Wake"]
@@ -922,7 +922,7 @@ impl Dfllctrl {
 
     #[doc="USB Clock Recovery Mode"]
     #[inline] pub fn test_usbcrm(&self) -> bool {
-        self.usbcrm != 0
+        self.usbcrm() != 0
     }
 
     #[doc="USB Clock Recovery Mode"]
@@ -941,7 +941,7 @@ impl Dfllctrl {
 
     #[doc="Run in Standby"]
     #[inline] pub fn test_runstdby(&self) -> bool {
-        self.runstdby != 0
+        self.runstdby() != 0
     }
 
     #[doc="Run in Standby"]
@@ -960,7 +960,7 @@ impl Dfllctrl {
 
     #[doc="On Demand Control"]
     #[inline] pub fn test_ondemand(&self) -> bool {
-        self.ondemand != 0
+        self.ondemand() != 0
     }
 
     #[doc="On Demand Control"]
@@ -979,7 +979,7 @@ impl Dfllctrl {
 
     #[doc="Chill Cycle Disable"]
     #[inline] pub fn test_ccdis(&self) -> bool {
-        self.ccdis != 0
+        self.ccdis() != 0
     }
 
     #[doc="Chill Cycle Disable"]
@@ -998,7 +998,7 @@ impl Dfllctrl {
 
     #[doc="Quick Lock Disable"]
     #[inline] pub fn test_qldis(&self) -> bool {
-        self.qldis != 0
+        self.qldis() != 0
     }
 
     #[doc="Quick Lock Disable"]
@@ -1017,7 +1017,7 @@ impl Dfllctrl {
 
     #[doc="Bypass Coarse Lock"]
     #[inline] pub fn test_bplckc(&self) -> bool {
-        self.bplckc != 0
+        self.bplckc() != 0
     }
 
     #[doc="Bypass Coarse Lock"]
@@ -1036,7 +1036,7 @@ impl Dfllctrl {
 
     #[doc="Wait Lock"]
     #[inline] pub fn test_waitlock(&self) -> bool {
-        self.waitlock != 0
+        self.waitlock() != 0
     }
 
     #[doc="Wait Lock"]
@@ -1086,7 +1086,7 @@ impl Dfllmul {
 
     #[doc="DFLL Multiply Factor"]
     #[inline] pub fn test_mul(&self) -> bool {
-        self.mul != 0
+        self.mul() != 0
     }
 
     #[doc="DFLL Multiply Factor"]
@@ -1105,7 +1105,7 @@ impl Dfllmul {
 
     #[doc="Fine Maximum Step"]
     #[inline] pub fn test_fstep(&self) -> bool {
-        self.fstep != 0
+        self.fstep() != 0
     }
 
     #[doc="Fine Maximum Step"]
@@ -1124,7 +1124,7 @@ impl Dfllmul {
 
     #[doc="Coarse Maximum Step"]
     #[inline] pub fn test_cstep(&self) -> bool {
-        self.cstep != 0
+        self.cstep() != 0
     }
 
     #[doc="Coarse Maximum Step"]
@@ -1166,7 +1166,7 @@ impl Dfllsync {
 
     #[doc="Read Request"]
     #[inline] pub fn test_readreq(&self) -> bool {
-        self.readreq != 0
+        self.readreq() != 0
     }
 
     #[doc="Read Request"]
@@ -1206,7 +1206,7 @@ impl Dfllval {
 
     #[doc="Fine Value"]
     #[inline] pub fn test_fine(&self) -> bool {
-        self.fine != 0
+        self.fine() != 0
     }
 
     #[doc="Fine Value"]
@@ -1225,7 +1225,7 @@ impl Dfllval {
 
     #[doc="Coarse Value"]
     #[inline] pub fn test_coarse(&self) -> bool {
-        self.coarse != 0
+        self.coarse() != 0
     }
 
     #[doc="Coarse Value"]
@@ -1244,7 +1244,7 @@ impl Dfllval {
 
     #[doc="Multiplication Ratio Difference"]
     #[inline] pub fn test_diff(&self) -> bool {
-        self.diff != 0
+        self.diff() != 0
     }
 
     #[doc="Multiplication Ratio Difference"]
@@ -1286,7 +1286,7 @@ impl Dpllctrla {
 
     #[doc="DPLL Enable"]
     #[inline] pub fn test_enable(&self) -> bool {
-        self.enable != 0
+        self.enable() != 0
     }
 
     #[doc="DPLL Enable"]
@@ -1305,7 +1305,7 @@ impl Dpllctrla {
 
     #[doc="Run in Standby"]
     #[inline] pub fn test_runstdby(&self) -> bool {
-        self.runstdby != 0
+        self.runstdby() != 0
     }
 
     #[doc="Run in Standby"]
@@ -1324,7 +1324,7 @@ impl Dpllctrla {
 
     #[doc="On Demand Clock Activation"]
     #[inline] pub fn test_ondemand(&self) -> bool {
-        self.ondemand != 0
+        self.ondemand() != 0
     }
 
     #[doc="On Demand Clock Activation"]
@@ -1366,7 +1366,7 @@ impl Dpllctrlb {
 
     #[doc="Proportional Integral Filter Selection"]
     #[inline] pub fn test_filter(&self) -> bool {
-        self.filter != 0
+        self.filter() != 0
     }
 
     #[doc="Proportional Integral Filter Selection"]
@@ -1385,7 +1385,7 @@ impl Dpllctrlb {
 
     #[doc="Low-Power Enable"]
     #[inline] pub fn test_lpen(&self) -> bool {
-        self.lpen != 0
+        self.lpen() != 0
     }
 
     #[doc="Low-Power Enable"]
@@ -1404,7 +1404,7 @@ impl Dpllctrlb {
 
     #[doc="Wake Up Fast"]
     #[inline] pub fn test_wuf(&self) -> bool {
-        self.wuf != 0
+        self.wuf() != 0
     }
 
     #[doc="Wake Up Fast"]
@@ -1423,7 +1423,7 @@ impl Dpllctrlb {
 
     #[doc="Reference Clock Selection"]
     #[inline] pub fn test_refclk(&self) -> bool {
-        self.refclk != 0
+        self.refclk() != 0
     }
 
     #[doc="Reference Clock Selection"]
@@ -1442,7 +1442,7 @@ impl Dpllctrlb {
 
     #[doc="Lock Time"]
     #[inline] pub fn test_ltime(&self) -> bool {
-        self.ltime != 0
+        self.ltime() != 0
     }
 
     #[doc="Lock Time"]
@@ -1461,7 +1461,7 @@ impl Dpllctrlb {
 
     #[doc="Lock Bypass"]
     #[inline] pub fn test_lbypass(&self) -> bool {
-        self.lbypass != 0
+        self.lbypass() != 0
     }
 
     #[doc="Lock Bypass"]
@@ -1480,7 +1480,7 @@ impl Dpllctrlb {
 
     #[doc="Clock Divider"]
     #[inline] pub fn test_div(&self) -> bool {
-        self.div != 0
+        self.div() != 0
     }
 
     #[doc="Clock Divider"]
@@ -1526,7 +1526,7 @@ impl Dpllratio {
 
     #[doc="Loop Divider Ratio"]
     #[inline] pub fn test_ldr(&self) -> bool {
-        self.ldr != 0
+        self.ldr() != 0
     }
 
     #[doc="Loop Divider Ratio"]
@@ -1545,7 +1545,7 @@ impl Dpllratio {
 
     #[doc="Loop Divider Ratio Fractional Part"]
     #[inline] pub fn test_ldrfrac(&self) -> bool {
-        self.ldrfrac != 0
+        self.ldrfrac() != 0
     }
 
     #[doc="Loop Divider Ratio Fractional Part"]
@@ -1586,7 +1586,7 @@ impl Dpllstatus {
 
     #[doc="DPLL Lock Status"]
     #[inline] pub fn test_lock(&self) -> bool {
-        self.lock != 0
+        self.lock() != 0
     }
 
     #[doc="DPLL Lock Status"]
@@ -1605,7 +1605,7 @@ impl Dpllstatus {
 
     #[doc="Output Clock Ready"]
     #[inline] pub fn test_clkrdy(&self) -> bool {
-        self.clkrdy != 0
+        self.clkrdy() != 0
     }
 
     #[doc="Output Clock Ready"]
@@ -1624,7 +1624,7 @@ impl Dpllstatus {
 
     #[doc="DPLL Enable"]
     #[inline] pub fn test_enable(&self) -> bool {
-        self.enable != 0
+        self.enable() != 0
     }
 
     #[doc="DPLL Enable"]
@@ -1643,7 +1643,7 @@ impl Dpllstatus {
 
     #[doc="Divider Enable"]
     #[inline] pub fn test_div(&self) -> bool {
-        self.div != 0
+        self.div() != 0
     }
 
     #[doc="Divider Enable"]
@@ -1686,7 +1686,7 @@ impl Intenclr {
 
     #[doc="XOSC Ready Interrupt Enable"]
     #[inline] pub fn test_xoscrdy(&self) -> bool {
-        self.xoscrdy != 0
+        self.xoscrdy() != 0
     }
 
     #[doc="XOSC Ready Interrupt Enable"]
@@ -1705,7 +1705,7 @@ impl Intenclr {
 
     #[doc="XOSC32K Ready Interrupt Enable"]
     #[inline] pub fn test_xosc32krdy(&self) -> bool {
-        self.xosc32krdy != 0
+        self.xosc32krdy() != 0
     }
 
     #[doc="XOSC32K Ready Interrupt Enable"]
@@ -1724,7 +1724,7 @@ impl Intenclr {
 
     #[doc="OSC32K Ready Interrupt Enable"]
     #[inline] pub fn test_osc32krdy(&self) -> bool {
-        self.osc32krdy != 0
+        self.osc32krdy() != 0
     }
 
     #[doc="OSC32K Ready Interrupt Enable"]
@@ -1743,7 +1743,7 @@ impl Intenclr {
 
     #[doc="OSC8M Ready Interrupt Enable"]
     #[inline] pub fn test_osc8mrdy(&self) -> bool {
-        self.osc8mrdy != 0
+        self.osc8mrdy() != 0
     }
 
     #[doc="OSC8M Ready Interrupt Enable"]
@@ -1762,7 +1762,7 @@ impl Intenclr {
 
     #[doc="DFLL Ready Interrupt Enable"]
     #[inline] pub fn test_dfllrdy(&self) -> bool {
-        self.dfllrdy != 0
+        self.dfllrdy() != 0
     }
 
     #[doc="DFLL Ready Interrupt Enable"]
@@ -1781,7 +1781,7 @@ impl Intenclr {
 
     #[doc="DFLL Out Of Bounds Interrupt Enable"]
     #[inline] pub fn test_dflloob(&self) -> bool {
-        self.dflloob != 0
+        self.dflloob() != 0
     }
 
     #[doc="DFLL Out Of Bounds Interrupt Enable"]
@@ -1800,7 +1800,7 @@ impl Intenclr {
 
     #[doc="DFLL Lock Fine Interrupt Enable"]
     #[inline] pub fn test_dflllckf(&self) -> bool {
-        self.dflllckf != 0
+        self.dflllckf() != 0
     }
 
     #[doc="DFLL Lock Fine Interrupt Enable"]
@@ -1819,7 +1819,7 @@ impl Intenclr {
 
     #[doc="DFLL Lock Coarse Interrupt Enable"]
     #[inline] pub fn test_dflllckc(&self) -> bool {
-        self.dflllckc != 0
+        self.dflllckc() != 0
     }
 
     #[doc="DFLL Lock Coarse Interrupt Enable"]
@@ -1838,7 +1838,7 @@ impl Intenclr {
 
     #[doc="DFLL Reference Clock Stopped Interrupt Enable"]
     #[inline] pub fn test_dfllrcs(&self) -> bool {
-        self.dfllrcs != 0
+        self.dfllrcs() != 0
     }
 
     #[doc="DFLL Reference Clock Stopped Interrupt Enable"]
@@ -1857,7 +1857,7 @@ impl Intenclr {
 
     #[doc="BOD33 Ready Interrupt Enable"]
     #[inline] pub fn test_bod33rdy(&self) -> bool {
-        self.bod33rdy != 0
+        self.bod33rdy() != 0
     }
 
     #[doc="BOD33 Ready Interrupt Enable"]
@@ -1876,7 +1876,7 @@ impl Intenclr {
 
     #[doc="BOD33 Detection Interrupt Enable"]
     #[inline] pub fn test_bod33det(&self) -> bool {
-        self.bod33det != 0
+        self.bod33det() != 0
     }
 
     #[doc="BOD33 Detection Interrupt Enable"]
@@ -1895,7 +1895,7 @@ impl Intenclr {
 
     #[doc="BOD33 Synchronization Ready Interrupt Enable"]
     #[inline] pub fn test_b33srdy(&self) -> bool {
-        self.b33srdy != 0
+        self.b33srdy() != 0
     }
 
     #[doc="BOD33 Synchronization Ready Interrupt Enable"]
@@ -1914,7 +1914,7 @@ impl Intenclr {
 
     #[doc="DPLL Lock Rise Interrupt Enable"]
     #[inline] pub fn test_dplllckr(&self) -> bool {
-        self.dplllckr != 0
+        self.dplllckr() != 0
     }
 
     #[doc="DPLL Lock Rise Interrupt Enable"]
@@ -1933,7 +1933,7 @@ impl Intenclr {
 
     #[doc="DPLL Lock Fall Interrupt Enable"]
     #[inline] pub fn test_dplllckf(&self) -> bool {
-        self.dplllckf != 0
+        self.dplllckf() != 0
     }
 
     #[doc="DPLL Lock Fall Interrupt Enable"]
@@ -1952,7 +1952,7 @@ impl Intenclr {
 
     #[doc="DPLL Lock Timeout Interrupt Enable"]
     #[inline] pub fn test_dplllto(&self) -> bool {
-        self.dplllto != 0
+        self.dplllto() != 0
     }
 
     #[doc="DPLL Lock Timeout Interrupt Enable"]
@@ -2006,7 +2006,7 @@ impl Intenset {
 
     #[doc="XOSC Ready Interrupt Enable"]
     #[inline] pub fn test_xoscrdy(&self) -> bool {
-        self.xoscrdy != 0
+        self.xoscrdy() != 0
     }
 
     #[doc="XOSC Ready Interrupt Enable"]
@@ -2025,7 +2025,7 @@ impl Intenset {
 
     #[doc="XOSC32K Ready Interrupt Enable"]
     #[inline] pub fn test_xosc32krdy(&self) -> bool {
-        self.xosc32krdy != 0
+        self.xosc32krdy() != 0
     }
 
     #[doc="XOSC32K Ready Interrupt Enable"]
@@ -2044,7 +2044,7 @@ impl Intenset {
 
     #[doc="OSC32K Ready Interrupt Enable"]
     #[inline] pub fn test_osc32krdy(&self) -> bool {
-        self.osc32krdy != 0
+        self.osc32krdy() != 0
     }
 
     #[doc="OSC32K Ready Interrupt Enable"]
@@ -2063,7 +2063,7 @@ impl Intenset {
 
     #[doc="OSC8M Ready Interrupt Enable"]
     #[inline] pub fn test_osc8mrdy(&self) -> bool {
-        self.osc8mrdy != 0
+        self.osc8mrdy() != 0
     }
 
     #[doc="OSC8M Ready Interrupt Enable"]
@@ -2082,7 +2082,7 @@ impl Intenset {
 
     #[doc="DFLL Ready Interrupt Enable"]
     #[inline] pub fn test_dfllrdy(&self) -> bool {
-        self.dfllrdy != 0
+        self.dfllrdy() != 0
     }
 
     #[doc="DFLL Ready Interrupt Enable"]
@@ -2101,7 +2101,7 @@ impl Intenset {
 
     #[doc="DFLL Out Of Bounds Interrupt Enable"]
     #[inline] pub fn test_dflloob(&self) -> bool {
-        self.dflloob != 0
+        self.dflloob() != 0
     }
 
     #[doc="DFLL Out Of Bounds Interrupt Enable"]
@@ -2120,7 +2120,7 @@ impl Intenset {
 
     #[doc="DFLL Lock Fine Interrupt Enable"]
     #[inline] pub fn test_dflllckf(&self) -> bool {
-        self.dflllckf != 0
+        self.dflllckf() != 0
     }
 
     #[doc="DFLL Lock Fine Interrupt Enable"]
@@ -2139,7 +2139,7 @@ impl Intenset {
 
     #[doc="DFLL Lock Coarse Interrupt Enable"]
     #[inline] pub fn test_dflllckc(&self) -> bool {
-        self.dflllckc != 0
+        self.dflllckc() != 0
     }
 
     #[doc="DFLL Lock Coarse Interrupt Enable"]
@@ -2158,7 +2158,7 @@ impl Intenset {
 
     #[doc="DFLL Reference Clock Stopped Interrupt Enable"]
     #[inline] pub fn test_dfllrcs(&self) -> bool {
-        self.dfllrcs != 0
+        self.dfllrcs() != 0
     }
 
     #[doc="DFLL Reference Clock Stopped Interrupt Enable"]
@@ -2177,7 +2177,7 @@ impl Intenset {
 
     #[doc="BOD33 Ready Interrupt Enable"]
     #[inline] pub fn test_bod33rdy(&self) -> bool {
-        self.bod33rdy != 0
+        self.bod33rdy() != 0
     }
 
     #[doc="BOD33 Ready Interrupt Enable"]
@@ -2196,7 +2196,7 @@ impl Intenset {
 
     #[doc="BOD33 Detection Interrupt Enable"]
     #[inline] pub fn test_bod33det(&self) -> bool {
-        self.bod33det != 0
+        self.bod33det() != 0
     }
 
     #[doc="BOD33 Detection Interrupt Enable"]
@@ -2215,7 +2215,7 @@ impl Intenset {
 
     #[doc="BOD33 Synchronization Ready Interrupt Enable"]
     #[inline] pub fn test_b33srdy(&self) -> bool {
-        self.b33srdy != 0
+        self.b33srdy() != 0
     }
 
     #[doc="BOD33 Synchronization Ready Interrupt Enable"]
@@ -2234,7 +2234,7 @@ impl Intenset {
 
     #[doc="DPLL Lock Rise Interrupt Enable"]
     #[inline] pub fn test_dplllckr(&self) -> bool {
-        self.dplllckr != 0
+        self.dplllckr() != 0
     }
 
     #[doc="DPLL Lock Rise Interrupt Enable"]
@@ -2253,7 +2253,7 @@ impl Intenset {
 
     #[doc="DPLL Lock Fall Interrupt Enable"]
     #[inline] pub fn test_dplllckf(&self) -> bool {
-        self.dplllckf != 0
+        self.dplllckf() != 0
     }
 
     #[doc="DPLL Lock Fall Interrupt Enable"]
@@ -2272,7 +2272,7 @@ impl Intenset {
 
     #[doc="DPLL Lock Timeout Interrupt Enable"]
     #[inline] pub fn test_dplllto(&self) -> bool {
-        self.dplllto != 0
+        self.dplllto() != 0
     }
 
     #[doc="DPLL Lock Timeout Interrupt Enable"]
@@ -2326,7 +2326,7 @@ impl Intflag {
 
     #[doc="XOSC Ready"]
     #[inline] pub fn test_xoscrdy(&self) -> bool {
-        self.xoscrdy != 0
+        self.xoscrdy() != 0
     }
 
     #[doc="XOSC Ready"]
@@ -2345,7 +2345,7 @@ impl Intflag {
 
     #[doc="XOSC32K Ready"]
     #[inline] pub fn test_xosc32krdy(&self) -> bool {
-        self.xosc32krdy != 0
+        self.xosc32krdy() != 0
     }
 
     #[doc="XOSC32K Ready"]
@@ -2364,7 +2364,7 @@ impl Intflag {
 
     #[doc="OSC32K Ready"]
     #[inline] pub fn test_osc32krdy(&self) -> bool {
-        self.osc32krdy != 0
+        self.osc32krdy() != 0
     }
 
     #[doc="OSC32K Ready"]
@@ -2383,7 +2383,7 @@ impl Intflag {
 
     #[doc="OSC8M Ready"]
     #[inline] pub fn test_osc8mrdy(&self) -> bool {
-        self.osc8mrdy != 0
+        self.osc8mrdy() != 0
     }
 
     #[doc="OSC8M Ready"]
@@ -2402,7 +2402,7 @@ impl Intflag {
 
     #[doc="DFLL Ready"]
     #[inline] pub fn test_dfllrdy(&self) -> bool {
-        self.dfllrdy != 0
+        self.dfllrdy() != 0
     }
 
     #[doc="DFLL Ready"]
@@ -2421,7 +2421,7 @@ impl Intflag {
 
     #[doc="DFLL Out Of Bounds"]
     #[inline] pub fn test_dflloob(&self) -> bool {
-        self.dflloob != 0
+        self.dflloob() != 0
     }
 
     #[doc="DFLL Out Of Bounds"]
@@ -2440,7 +2440,7 @@ impl Intflag {
 
     #[doc="DFLL Lock Fine"]
     #[inline] pub fn test_dflllckf(&self) -> bool {
-        self.dflllckf != 0
+        self.dflllckf() != 0
     }
 
     #[doc="DFLL Lock Fine"]
@@ -2459,7 +2459,7 @@ impl Intflag {
 
     #[doc="DFLL Lock Coarse"]
     #[inline] pub fn test_dflllckc(&self) -> bool {
-        self.dflllckc != 0
+        self.dflllckc() != 0
     }
 
     #[doc="DFLL Lock Coarse"]
@@ -2478,7 +2478,7 @@ impl Intflag {
 
     #[doc="DFLL Reference Clock Stopped"]
     #[inline] pub fn test_dfllrcs(&self) -> bool {
-        self.dfllrcs != 0
+        self.dfllrcs() != 0
     }
 
     #[doc="DFLL Reference Clock Stopped"]
@@ -2497,7 +2497,7 @@ impl Intflag {
 
     #[doc="BOD33 Ready"]
     #[inline] pub fn test_bod33rdy(&self) -> bool {
-        self.bod33rdy != 0
+        self.bod33rdy() != 0
     }
 
     #[doc="BOD33 Ready"]
@@ -2516,7 +2516,7 @@ impl Intflag {
 
     #[doc="BOD33 Detection"]
     #[inline] pub fn test_bod33det(&self) -> bool {
-        self.bod33det != 0
+        self.bod33det() != 0
     }
 
     #[doc="BOD33 Detection"]
@@ -2535,7 +2535,7 @@ impl Intflag {
 
     #[doc="BOD33 Synchronization Ready"]
     #[inline] pub fn test_b33srdy(&self) -> bool {
-        self.b33srdy != 0
+        self.b33srdy() != 0
     }
 
     #[doc="BOD33 Synchronization Ready"]
@@ -2554,7 +2554,7 @@ impl Intflag {
 
     #[doc="DPLL Lock Rise"]
     #[inline] pub fn test_dplllckr(&self) -> bool {
-        self.dplllckr != 0
+        self.dplllckr() != 0
     }
 
     #[doc="DPLL Lock Rise"]
@@ -2573,7 +2573,7 @@ impl Intflag {
 
     #[doc="DPLL Lock Fall"]
     #[inline] pub fn test_dplllckf(&self) -> bool {
-        self.dplllckf != 0
+        self.dplllckf() != 0
     }
 
     #[doc="DPLL Lock Fall"]
@@ -2592,7 +2592,7 @@ impl Intflag {
 
     #[doc="DPLL Lock Timeout"]
     #[inline] pub fn test_dplllto(&self) -> bool {
-        self.dplllto != 0
+        self.dplllto() != 0
     }
 
     #[doc="DPLL Lock Timeout"]
@@ -2646,7 +2646,7 @@ impl Osculp32k {
 
     #[doc="Oscillator Calibration"]
     #[inline] pub fn test_calib(&self) -> bool {
-        self.calib != 0
+        self.calib() != 0
     }
 
     #[doc="Oscillator Calibration"]
@@ -2665,7 +2665,7 @@ impl Osculp32k {
 
     #[doc="Write Lock"]
     #[inline] pub fn test_wrtlock(&self) -> bool {
-        self.wrtlock != 0
+        self.wrtlock() != 0
     }
 
     #[doc="Write Lock"]
@@ -2706,7 +2706,7 @@ impl Osc8m {
 
     #[doc="Oscillator Enable"]
     #[inline] pub fn test_enable(&self) -> bool {
-        self.enable != 0
+        self.enable() != 0
     }
 
     #[doc="Oscillator Enable"]
@@ -2725,7 +2725,7 @@ impl Osc8m {
 
     #[doc="Run in Standby"]
     #[inline] pub fn test_runstdby(&self) -> bool {
-        self.runstdby != 0
+        self.runstdby() != 0
     }
 
     #[doc="Run in Standby"]
@@ -2744,7 +2744,7 @@ impl Osc8m {
 
     #[doc="On Demand Control"]
     #[inline] pub fn test_ondemand(&self) -> bool {
-        self.ondemand != 0
+        self.ondemand() != 0
     }
 
     #[doc="On Demand Control"]
@@ -2763,7 +2763,7 @@ impl Osc8m {
 
     #[doc="Oscillator Prescaler"]
     #[inline] pub fn test_presc(&self) -> bool {
-        self.presc != 0
+        self.presc() != 0
     }
 
     #[doc="Oscillator Prescaler"]
@@ -2782,7 +2782,7 @@ impl Osc8m {
 
     #[doc="Oscillator Calibration"]
     #[inline] pub fn test_calib(&self) -> bool {
-        self.calib != 0
+        self.calib() != 0
     }
 
     #[doc="Oscillator Calibration"]
@@ -2801,7 +2801,7 @@ impl Osc8m {
 
     #[doc="Oscillator Frequency Range"]
     #[inline] pub fn test_frange(&self) -> bool {
-        self.frange != 0
+        self.frange() != 0
     }
 
     #[doc="Oscillator Frequency Range"]
@@ -2846,7 +2846,7 @@ impl Osc32k {
 
     #[doc="Oscillator Enable"]
     #[inline] pub fn test_enable(&self) -> bool {
-        self.enable != 0
+        self.enable() != 0
     }
 
     #[doc="Oscillator Enable"]
@@ -2865,7 +2865,7 @@ impl Osc32k {
 
     #[doc="32kHz Output Enable"]
     #[inline] pub fn test_en32k(&self) -> bool {
-        self.en32k != 0
+        self.en32k() != 0
     }
 
     #[doc="32kHz Output Enable"]
@@ -2884,7 +2884,7 @@ impl Osc32k {
 
     #[doc="1kHz Output Enable"]
     #[inline] pub fn test_en1k(&self) -> bool {
-        self.en1k != 0
+        self.en1k() != 0
     }
 
     #[doc="1kHz Output Enable"]
@@ -2903,7 +2903,7 @@ impl Osc32k {
 
     #[doc="Run in Standby"]
     #[inline] pub fn test_runstdby(&self) -> bool {
-        self.runstdby != 0
+        self.runstdby() != 0
     }
 
     #[doc="Run in Standby"]
@@ -2922,7 +2922,7 @@ impl Osc32k {
 
     #[doc="On Demand Control"]
     #[inline] pub fn test_ondemand(&self) -> bool {
-        self.ondemand != 0
+        self.ondemand() != 0
     }
 
     #[doc="On Demand Control"]
@@ -2941,7 +2941,7 @@ impl Osc32k {
 
     #[doc="Oscillator Start-Up Time"]
     #[inline] pub fn test_startup(&self) -> bool {
-        self.startup != 0
+        self.startup() != 0
     }
 
     #[doc="Oscillator Start-Up Time"]
@@ -2960,7 +2960,7 @@ impl Osc32k {
 
     #[doc="Write Lock"]
     #[inline] pub fn test_wrtlock(&self) -> bool {
-        self.wrtlock != 0
+        self.wrtlock() != 0
     }
 
     #[doc="Write Lock"]
@@ -2979,7 +2979,7 @@ impl Osc32k {
 
     #[doc="Oscillator Calibration"]
     #[inline] pub fn test_calib(&self) -> bool {
-        self.calib != 0
+        self.calib() != 0
     }
 
     #[doc="Oscillator Calibration"]
@@ -3026,7 +3026,7 @@ impl Pclksr {
 
     #[doc="XOSC Ready"]
     #[inline] pub fn test_xoscrdy(&self) -> bool {
-        self.xoscrdy != 0
+        self.xoscrdy() != 0
     }
 
     #[doc="XOSC Ready"]
@@ -3045,7 +3045,7 @@ impl Pclksr {
 
     #[doc="XOSC32K Ready"]
     #[inline] pub fn test_xosc32krdy(&self) -> bool {
-        self.xosc32krdy != 0
+        self.xosc32krdy() != 0
     }
 
     #[doc="XOSC32K Ready"]
@@ -3064,7 +3064,7 @@ impl Pclksr {
 
     #[doc="OSC32K Ready"]
     #[inline] pub fn test_osc32krdy(&self) -> bool {
-        self.osc32krdy != 0
+        self.osc32krdy() != 0
     }
 
     #[doc="OSC32K Ready"]
@@ -3083,7 +3083,7 @@ impl Pclksr {
 
     #[doc="OSC8M Ready"]
     #[inline] pub fn test_osc8mrdy(&self) -> bool {
-        self.osc8mrdy != 0
+        self.osc8mrdy() != 0
     }
 
     #[doc="OSC8M Ready"]
@@ -3102,7 +3102,7 @@ impl Pclksr {
 
     #[doc="DFLL Ready"]
     #[inline] pub fn test_dfllrdy(&self) -> bool {
-        self.dfllrdy != 0
+        self.dfllrdy() != 0
     }
 
     #[doc="DFLL Ready"]
@@ -3121,7 +3121,7 @@ impl Pclksr {
 
     #[doc="DFLL Out Of Bounds"]
     #[inline] pub fn test_dflloob(&self) -> bool {
-        self.dflloob != 0
+        self.dflloob() != 0
     }
 
     #[doc="DFLL Out Of Bounds"]
@@ -3140,7 +3140,7 @@ impl Pclksr {
 
     #[doc="DFLL Lock Fine"]
     #[inline] pub fn test_dflllckf(&self) -> bool {
-        self.dflllckf != 0
+        self.dflllckf() != 0
     }
 
     #[doc="DFLL Lock Fine"]
@@ -3159,7 +3159,7 @@ impl Pclksr {
 
     #[doc="DFLL Lock Coarse"]
     #[inline] pub fn test_dflllckc(&self) -> bool {
-        self.dflllckc != 0
+        self.dflllckc() != 0
     }
 
     #[doc="DFLL Lock Coarse"]
@@ -3178,7 +3178,7 @@ impl Pclksr {
 
     #[doc="DFLL Reference Clock Stopped"]
     #[inline] pub fn test_dfllrcs(&self) -> bool {
-        self.dfllrcs != 0
+        self.dfllrcs() != 0
     }
 
     #[doc="DFLL Reference Clock Stopped"]
@@ -3197,7 +3197,7 @@ impl Pclksr {
 
     #[doc="BOD33 Ready"]
     #[inline] pub fn test_bod33rdy(&self) -> bool {
-        self.bod33rdy != 0
+        self.bod33rdy() != 0
     }
 
     #[doc="BOD33 Ready"]
@@ -3216,7 +3216,7 @@ impl Pclksr {
 
     #[doc="BOD33 Detection"]
     #[inline] pub fn test_bod33det(&self) -> bool {
-        self.bod33det != 0
+        self.bod33det() != 0
     }
 
     #[doc="BOD33 Detection"]
@@ -3235,7 +3235,7 @@ impl Pclksr {
 
     #[doc="BOD33 Synchronization Ready"]
     #[inline] pub fn test_b33srdy(&self) -> bool {
-        self.b33srdy != 0
+        self.b33srdy() != 0
     }
 
     #[doc="BOD33 Synchronization Ready"]
@@ -3254,7 +3254,7 @@ impl Pclksr {
 
     #[doc="DPLL Lock Rise"]
     #[inline] pub fn test_dplllckr(&self) -> bool {
-        self.dplllckr != 0
+        self.dplllckr() != 0
     }
 
     #[doc="DPLL Lock Rise"]
@@ -3273,7 +3273,7 @@ impl Pclksr {
 
     #[doc="DPLL Lock Fall"]
     #[inline] pub fn test_dplllckf(&self) -> bool {
-        self.dplllckf != 0
+        self.dplllckf() != 0
     }
 
     #[doc="DPLL Lock Fall"]
@@ -3292,7 +3292,7 @@ impl Pclksr {
 
     #[doc="DPLL Lock Timeout"]
     #[inline] pub fn test_dplllto(&self) -> bool {
-        self.dplllto != 0
+        self.dplllto() != 0
     }
 
     #[doc="DPLL Lock Timeout"]
@@ -3346,7 +3346,7 @@ impl Vref {
 
     #[doc="Temperature Sensor Enable"]
     #[inline] pub fn test_tsen(&self) -> bool {
-        self.tsen != 0
+        self.tsen() != 0
     }
 
     #[doc="Temperature Sensor Enable"]
@@ -3365,7 +3365,7 @@ impl Vref {
 
     #[doc="Bandgap Output Enable"]
     #[inline] pub fn test_bgouten(&self) -> bool {
-        self.bgouten != 0
+        self.bgouten() != 0
     }
 
     #[doc="Bandgap Output Enable"]
@@ -3384,7 +3384,7 @@ impl Vref {
 
     #[doc="Bandgap Voltage Generator Calibration"]
     #[inline] pub fn test_calib(&self) -> bool {
-        self.calib != 0
+        self.calib() != 0
     }
 
     #[doc="Bandgap Voltage Generator Calibration"]
@@ -3426,7 +3426,7 @@ impl Xosc {
 
     #[doc="Oscillator Enable"]
     #[inline] pub fn test_enable(&self) -> bool {
-        self.enable != 0
+        self.enable() != 0
     }
 
     #[doc="Oscillator Enable"]
@@ -3445,7 +3445,7 @@ impl Xosc {
 
     #[doc="Crystal Oscillator Enable"]
     #[inline] pub fn test_xtalen(&self) -> bool {
-        self.xtalen != 0
+        self.xtalen() != 0
     }
 
     #[doc="Crystal Oscillator Enable"]
@@ -3464,7 +3464,7 @@ impl Xosc {
 
     #[doc="Run in Standby"]
     #[inline] pub fn test_runstdby(&self) -> bool {
-        self.runstdby != 0
+        self.runstdby() != 0
     }
 
     #[doc="Run in Standby"]
@@ -3483,7 +3483,7 @@ impl Xosc {
 
     #[doc="On Demand Control"]
     #[inline] pub fn test_ondemand(&self) -> bool {
-        self.ondemand != 0
+        self.ondemand() != 0
     }
 
     #[doc="On Demand Control"]
@@ -3502,7 +3502,7 @@ impl Xosc {
 
     #[doc="Oscillator Gain"]
     #[inline] pub fn test_gain(&self) -> bool {
-        self.gain != 0
+        self.gain() != 0
     }
 
     #[doc="Oscillator Gain"]
@@ -3521,7 +3521,7 @@ impl Xosc {
 
     #[doc="Automatic Amplitude Gain Control"]
     #[inline] pub fn test_ampgc(&self) -> bool {
-        self.ampgc != 0
+        self.ampgc() != 0
     }
 
     #[doc="Automatic Amplitude Gain Control"]
@@ -3540,7 +3540,7 @@ impl Xosc {
 
     #[doc="Start-Up Time"]
     #[inline] pub fn test_startup(&self) -> bool {
-        self.startup != 0
+        self.startup() != 0
     }
 
     #[doc="Start-Up Time"]
@@ -3586,7 +3586,7 @@ impl Xosc32k {
 
     #[doc="Oscillator Enable"]
     #[inline] pub fn test_enable(&self) -> bool {
-        self.enable != 0
+        self.enable() != 0
     }
 
     #[doc="Oscillator Enable"]
@@ -3605,7 +3605,7 @@ impl Xosc32k {
 
     #[doc="Crystal Oscillator Enable"]
     #[inline] pub fn test_xtalen(&self) -> bool {
-        self.xtalen != 0
+        self.xtalen() != 0
     }
 
     #[doc="Crystal Oscillator Enable"]
@@ -3624,7 +3624,7 @@ impl Xosc32k {
 
     #[doc="32kHz Output Enable"]
     #[inline] pub fn test_en32k(&self) -> bool {
-        self.en32k != 0
+        self.en32k() != 0
     }
 
     #[doc="32kHz Output Enable"]
@@ -3643,7 +3643,7 @@ impl Xosc32k {
 
     #[doc="1kHz Output Enable"]
     #[inline] pub fn test_en1k(&self) -> bool {
-        self.en1k != 0
+        self.en1k() != 0
     }
 
     #[doc="1kHz Output Enable"]
@@ -3662,7 +3662,7 @@ impl Xosc32k {
 
     #[doc="Automatic Amplitude Control Enable"]
     #[inline] pub fn test_aampen(&self) -> bool {
-        self.aampen != 0
+        self.aampen() != 0
     }
 
     #[doc="Automatic Amplitude Control Enable"]
@@ -3681,7 +3681,7 @@ impl Xosc32k {
 
     #[doc="Run in Standby"]
     #[inline] pub fn test_runstdby(&self) -> bool {
-        self.runstdby != 0
+        self.runstdby() != 0
     }
 
     #[doc="Run in Standby"]
@@ -3700,7 +3700,7 @@ impl Xosc32k {
 
     #[doc="On Demand Control"]
     #[inline] pub fn test_ondemand(&self) -> bool {
-        self.ondemand != 0
+        self.ondemand() != 0
     }
 
     #[doc="On Demand Control"]
@@ -3719,7 +3719,7 @@ impl Xosc32k {
 
     #[doc="Oscillator Start-Up Time"]
     #[inline] pub fn test_startup(&self) -> bool {
-        self.startup != 0
+        self.startup() != 0
     }
 
     #[doc="Oscillator Start-Up Time"]
@@ -3738,7 +3738,7 @@ impl Xosc32k {
 
     #[doc="Write Lock"]
     #[inline] pub fn test_wrtlock(&self) -> bool {
-        self.wrtlock != 0
+        self.wrtlock() != 0
     }
 
     #[doc="Write Lock"]

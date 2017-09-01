@@ -258,7 +258,7 @@ impl Backkey3 {
 
     #[doc="Backdoor Comparison Key."]
     #[inline] pub fn test_key(&self) -> bool {
-        self.key != 0
+        self.key() != 0
     }
 
     #[doc="Backdoor Comparison Key."]
@@ -298,7 +298,7 @@ impl Backkey2 {
 
     #[doc="Backdoor Comparison Key."]
     #[inline] pub fn test_key(&self) -> bool {
-        self.key != 0
+        self.key() != 0
     }
 
     #[doc="Backdoor Comparison Key."]
@@ -338,7 +338,7 @@ impl Backkey1 {
 
     #[doc="Backdoor Comparison Key."]
     #[inline] pub fn test_key(&self) -> bool {
-        self.key != 0
+        self.key() != 0
     }
 
     #[doc="Backdoor Comparison Key."]
@@ -378,7 +378,7 @@ impl Backkey0 {
 
     #[doc="Backdoor Comparison Key."]
     #[inline] pub fn test_key(&self) -> bool {
-        self.key != 0
+        self.key() != 0
     }
 
     #[doc="Backdoor Comparison Key."]
@@ -418,7 +418,7 @@ impl Backkey7 {
 
     #[doc="Backdoor Comparison Key."]
     #[inline] pub fn test_key(&self) -> bool {
-        self.key != 0
+        self.key() != 0
     }
 
     #[doc="Backdoor Comparison Key."]
@@ -458,7 +458,7 @@ impl Backkey6 {
 
     #[doc="Backdoor Comparison Key."]
     #[inline] pub fn test_key(&self) -> bool {
-        self.key != 0
+        self.key() != 0
     }
 
     #[doc="Backdoor Comparison Key."]
@@ -498,7 +498,7 @@ impl Backkey5 {
 
     #[doc="Backdoor Comparison Key."]
     #[inline] pub fn test_key(&self) -> bool {
-        self.key != 0
+        self.key() != 0
     }
 
     #[doc="Backdoor Comparison Key."]
@@ -538,7 +538,7 @@ impl Backkey4 {
 
     #[doc="Backdoor Comparison Key."]
     #[inline] pub fn test_key(&self) -> bool {
-        self.key != 0
+        self.key() != 0
     }
 
     #[doc="Backdoor Comparison Key."]
@@ -578,7 +578,7 @@ impl Fprot3 {
 
     #[doc="P-Flash Region Protect"]
     #[inline] pub fn test_prot(&self) -> bool {
-        self.prot != 0
+        self.prot() != 0
     }
 
     #[doc="P-Flash Region Protect"]
@@ -618,7 +618,7 @@ impl Fprot2 {
 
     #[doc="P-Flash Region Protect"]
     #[inline] pub fn test_prot(&self) -> bool {
-        self.prot != 0
+        self.prot() != 0
     }
 
     #[doc="P-Flash Region Protect"]
@@ -658,7 +658,7 @@ impl Fprot1 {
 
     #[doc="P-Flash Region Protect"]
     #[inline] pub fn test_prot(&self) -> bool {
-        self.prot != 0
+        self.prot() != 0
     }
 
     #[doc="P-Flash Region Protect"]
@@ -698,7 +698,7 @@ impl Fprot0 {
 
     #[doc="P-Flash Region Protect"]
     #[inline] pub fn test_prot(&self) -> bool {
-        self.prot != 0
+        self.prot() != 0
     }
 
     #[doc="P-Flash Region Protect"]
@@ -738,7 +738,7 @@ impl Fsec {
 
     #[doc="Flash Security"]
     #[inline] pub fn test_sec(&self) -> bool {
-        self.sec != 0
+        self.sec() != 0
     }
 
     #[doc="Flash Security"]
@@ -757,7 +757,7 @@ impl Fsec {
 
     #[doc="Freescale Failure Analysis Access Code"]
     #[inline] pub fn test_fslacc(&self) -> bool {
-        self.fslacc != 0
+        self.fslacc() != 0
     }
 
     #[doc="Freescale Failure Analysis Access Code"]
@@ -776,7 +776,7 @@ impl Fsec {
 
     #[doc="no description available"]
     #[inline] pub fn test_meen(&self) -> bool {
-        self.meen != 0
+        self.meen() != 0
     }
 
     #[doc="no description available"]
@@ -795,7 +795,7 @@ impl Fsec {
 
     #[doc="Backdoor Key Security Enable"]
     #[inline] pub fn test_keyen(&self) -> bool {
-        self.keyen != 0
+        self.keyen() != 0
     }
 
     #[doc="Backdoor Key Security Enable"]
@@ -838,7 +838,7 @@ impl Fopt {
 
     #[doc="no description available"]
     #[inline] pub fn test_lpboot0(&self) -> bool {
-        self.lpboot0 != 0
+        self.lpboot0() != 0
     }
 
     #[doc="no description available"]
@@ -857,7 +857,7 @@ impl Fopt {
 
     #[doc="no description available"]
     #[inline] pub fn test_nmi_dis(&self) -> bool {
-        self.nmi_dis != 0
+        self.nmi_dis() != 0
     }
 
     #[doc="no description available"]
@@ -876,7 +876,7 @@ impl Fopt {
 
     #[doc="no description available"]
     #[inline] pub fn test_reset_pin_cfg(&self) -> bool {
-        self.reset_pin_cfg != 0
+        self.reset_pin_cfg() != 0
     }
 
     #[doc="no description available"]
@@ -895,7 +895,7 @@ impl Fopt {
 
     #[doc="no description available"]
     #[inline] pub fn test_lpboot1(&self) -> bool {
-        self.lpboot1 != 0
+        self.lpboot1() != 0
     }
 
     #[doc="no description available"]
@@ -914,7 +914,7 @@ impl Fopt {
 
     #[doc="no description available"]
     #[inline] pub fn test_fast_init(&self) -> bool {
-        self.fast_init != 0
+        self.fast_init() != 0
     }
 
     #[doc="no description available"]

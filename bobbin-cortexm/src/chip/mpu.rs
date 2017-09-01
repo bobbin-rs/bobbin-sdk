@@ -416,7 +416,7 @@ impl MpuType {
 
     #[doc="Indicates the number of supported MPU instruction regions. Always contains 0x00. The MPU memory map is unified and is described by the DREGION field."]
     #[inline] pub fn test_iregion(&self) -> bool {
-        self.iregion != 0
+        self.iregion() != 0
     }
 
     #[doc="Indicates the number of supported MPU instruction regions. Always contains 0x00. The MPU memory map is unified and is described by the DREGION field."]
@@ -435,7 +435,7 @@ impl MpuType {
 
     #[doc="Indicates the number of supported MPU data regions: 0x08 = eight MPU regions."]
     #[inline] pub fn test_dregion(&self) -> bool {
-        self.dregion != 0
+        self.dregion() != 0
     }
 
     #[doc="Indicates the number of supported MPU data regions: 0x08 = eight MPU regions."]
@@ -454,7 +454,7 @@ impl MpuType {
 
     #[doc="Indicates support for unified or separate instruction and date memory maps: 0 = unified."]
     #[inline] pub fn test_separate(&self) -> bool {
-        self.separate != 0
+        self.separate() != 0
     }
 
     #[doc="Indicates support for unified or separate instruction and date memory maps: 0 = unified."]
@@ -496,7 +496,7 @@ impl MpuCtrl {
 
     #[doc="Enables privileged software access to the default memory map: 0 = If the MPU is enabled, disables use of the default memory map. Any memory access to a location not covered by any enabled region causes a fault. 1 = If the MPU is enabled, enables use of the default memory map as a background region for privileged software accesses. When enabled, the background region acts as if it is region number -1. Any region that is defined and enabled has priority over this default map. If the MPU is disabled, the processor ignores this bit."]
     #[inline] pub fn test_privdefena(&self) -> bool {
-        self.privdefena != 0
+        self.privdefena() != 0
     }
 
     #[doc="Enables privileged software access to the default memory map: 0 = If the MPU is enabled, disables use of the default memory map. Any memory access to a location not covered by any enabled region causes a fault. 1 = If the MPU is enabled, enables use of the default memory map as a background region for privileged software accesses. When enabled, the background region acts as if it is region number -1. Any region that is defined and enabled has priority over this default map. If the MPU is disabled, the processor ignores this bit."]
@@ -515,7 +515,7 @@ impl MpuCtrl {
 
     #[doc="Enables the operation of MPU during hard fault, NMI, and FAULTMASK handlers. When the MPU is enabled: 0 = MPU is disabled during hard fault, NMI, and FAULTMASK handlers, regardless of the value of the ENABLE bit1 = the MPU is enabled during hard fault, NMI, and FAULTMASK handlers. When the MPU is disabled, if this bit is set to 1 the behavior is Unpredictable."]
     #[inline] pub fn test_hfnmiena(&self) -> bool {
-        self.hfnmiena != 0
+        self.hfnmiena() != 0
     }
 
     #[doc="Enables the operation of MPU during hard fault, NMI, and FAULTMASK handlers. When the MPU is enabled: 0 = MPU is disabled during hard fault, NMI, and FAULTMASK handlers, regardless of the value of the ENABLE bit1 = the MPU is enabled during hard fault, NMI, and FAULTMASK handlers. When the MPU is disabled, if this bit is set to 1 the behavior is Unpredictable."]
@@ -534,7 +534,7 @@ impl MpuCtrl {
 
     #[doc="Enables the MPU: 0 = MPU disabled, 1 = MPU enabled."]
     #[inline] pub fn test_enable(&self) -> bool {
-        self.enable != 0
+        self.enable() != 0
     }
 
     #[doc="Enables the MPU: 0 = MPU disabled, 1 = MPU enabled."]
@@ -576,7 +576,7 @@ impl MpuRnr {
 
     #[doc="Indicates the MPU region referenced by the MPU_RBAR and MPU_RASR registers. The MPU supports 8 memory regions, so the permitted values of this field are 0-7."]
     #[inline] pub fn test_region(&self) -> bool {
-        self.region != 0
+        self.region() != 0
     }
 
     #[doc="Indicates the MPU region referenced by the MPU_RBAR and MPU_RASR registers. The MPU supports 8 memory regions, so the permitted values of this field are 0-7."]
@@ -616,7 +616,7 @@ impl MpuRbar {
 
     #[doc="Region base address field. The value of N depends on the region size."]
     #[inline] pub fn test_addr(&self) -> bool {
-        self.addr != 0
+        self.addr() != 0
     }
 
     #[doc="Region base address field. The value of N depends on the region size."]
@@ -637,7 +637,7 @@ impl MpuRbar {
     #[doc="MPU Region Number valid bit: 0 = MPU_RNR not changed, and the processor: updates the base address for the region specified in the MPU_RNR ignores the value of the REGION field
 1 = the processor: updates the value of the MPU_RNR to the value of the REGION field updates the base address for the region specified in the REGION field. Always reads as zero."]
     #[inline] pub fn test_valid(&self) -> bool {
-        self.valid != 0
+        self.valid() != 0
     }
 
     #[doc="MPU Region Number valid bit: 0 = MPU_RNR not changed, and the processor: updates the base address for the region specified in the MPU_RNR ignores the value of the REGION field
@@ -657,7 +657,7 @@ impl MpuRbar {
 
     #[doc="MPU region field: For the behavior on writes, see the description of the VALID field. On reads, returns the current region number, as specified by the RNR."]
     #[inline] pub fn test_region(&self) -> bool {
-        self.region != 0
+        self.region() != 0
     }
 
     #[doc="MPU region field: For the behavior on writes, see the description of the VALID field. On reads, returns the current region number, as specified by the RNR."]
@@ -699,7 +699,7 @@ impl MpuRasr {
 
     #[doc="Instruction access disable bit: 0 = instruction fetches enabled, 1 = instruction fetches disabled."]
     #[inline] pub fn test_xn(&self) -> bool {
-        self.xn != 0
+        self.xn() != 0
     }
 
     #[doc="Instruction access disable bit: 0 = instruction fetches enabled, 1 = instruction fetches disabled."]
@@ -718,7 +718,7 @@ impl MpuRasr {
 
     #[doc="Access permission field."]
     #[inline] pub fn test_ap(&self) -> bool {
-        self.ap != 0
+        self.ap() != 0
     }
 
     #[doc="Access permission field."]
@@ -737,7 +737,7 @@ impl MpuRasr {
 
     #[doc="Memory access attribute TEX"]
     #[inline] pub fn test_tex(&self) -> bool {
-        self.tex != 0
+        self.tex() != 0
     }
 
     #[doc="Memory access attribute TEX"]
@@ -756,7 +756,7 @@ impl MpuRasr {
 
     #[doc="C Bit"]
     #[inline] pub fn test_c(&self) -> bool {
-        self.c != 0
+        self.c() != 0
     }
 
     #[doc="C Bit"]
@@ -775,7 +775,7 @@ impl MpuRasr {
 
     #[doc="B Bit"]
     #[inline] pub fn test_b(&self) -> bool {
-        self.b != 0
+        self.b() != 0
     }
 
     #[doc="B Bit"]
@@ -794,7 +794,7 @@ impl MpuRasr {
 
     #[doc="Sharable Bit"]
     #[inline] pub fn test_s(&self) -> bool {
-        self.s != 0
+        self.s() != 0
     }
 
     #[doc="Sharable Bit"]
@@ -813,7 +813,7 @@ impl MpuRasr {
 
     #[doc="Subregion disable bits. For each bit in this field: 0 = corresponding sub-region is enabled1 = corresponding sub-region is disabled. See Subregions for more information. Region sizes of 128 bytes and less do not support subregions. When writing the attributes for such a region, write the SRD field as 0x00."]
     #[inline] pub fn test_srd(&self) -> bool {
-        self.srd != 0
+        self.srd() != 0
     }
 
     #[doc="Subregion disable bits. For each bit in this field: 0 = corresponding sub-region is enabled1 = corresponding sub-region is disabled. See Subregions for more information. Region sizes of 128 bytes and less do not support subregions. When writing the attributes for such a region, write the SRD field as 0x00."]
@@ -832,7 +832,7 @@ impl MpuRasr {
 
     #[doc="Specifies the size of the MPU protection region. The minimum permitted value is 3 (0b00010), see See SIZE field values for more information."]
     #[inline] pub fn test_size(&self) -> bool {
-        self.size != 0
+        self.size() != 0
     }
 
     #[doc="Specifies the size of the MPU protection region. The minimum permitted value is 3 (0b00010), see See SIZE field values for more information."]
@@ -851,7 +851,7 @@ impl MpuRasr {
 
     #[doc="Region enable bit."]
     #[inline] pub fn test_enable(&self) -> bool {
-        self.enable != 0
+        self.enable() != 0
     }
 
     #[doc="Region enable bit."]

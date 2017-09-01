@@ -217,7 +217,7 @@ impl Mcr {
 
     #[doc="Freeze"]
     #[inline] pub fn test_frz(&self) -> bool {
-        self.frz != 0
+        self.frz() != 0
     }
 
     #[doc="Freeze"]
@@ -236,7 +236,7 @@ impl Mcr {
 
     #[doc="Module Disable - (PIT section)"]
     #[inline] pub fn test_mdis(&self) -> bool {
-        self.mdis != 0
+        self.mdis() != 0
     }
 
     #[doc="Module Disable - (PIT section)"]
@@ -277,7 +277,7 @@ impl Ldval {
 
     #[doc="Timer Start Value"]
     #[inline] pub fn test_tsv(&self) -> bool {
-        self.tsv != 0
+        self.tsv() != 0
     }
 
     #[doc="Timer Start Value"]
@@ -316,7 +316,7 @@ impl Cval {
 
     #[doc="Current Timer Value"]
     #[inline] pub fn test_tvl(&self) -> bool {
-        self.tvl != 0
+        self.tvl() != 0
     }
 
     #[doc="Current Timer Value"]
@@ -355,7 +355,7 @@ impl Tctrl {
 
     #[doc="Timer Enable"]
     #[inline] pub fn test_ten(&self) -> bool {
-        self.ten != 0
+        self.ten() != 0
     }
 
     #[doc="Timer Enable"]
@@ -374,7 +374,7 @@ impl Tctrl {
 
     #[doc="Timer Interrupt Enable"]
     #[inline] pub fn test_tie(&self) -> bool {
-        self.tie != 0
+        self.tie() != 0
     }
 
     #[doc="Timer Interrupt Enable"]
@@ -393,7 +393,7 @@ impl Tctrl {
 
     #[doc="Chain Mode"]
     #[inline] pub fn test_chn(&self) -> bool {
-        self.chn != 0
+        self.chn() != 0
     }
 
     #[doc="Chain Mode"]
@@ -435,7 +435,7 @@ impl Tflg {
 
     #[doc="Timer Interrupt Flag"]
     #[inline] pub fn test_tif(&self) -> bool {
-        self.tif != 0
+        self.tif() != 0
     }
 
     #[doc="Timer Interrupt Flag"]

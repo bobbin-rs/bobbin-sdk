@@ -452,7 +452,7 @@ impl A1 {
 
     #[doc="Address"]
     #[inline] pub fn test_ad(&self) -> bool {
-        self.ad != 0
+        self.ad() != 0
     }
 
     #[doc="Address"]
@@ -492,7 +492,7 @@ impl F {
 
     #[doc="ClockRate"]
     #[inline] pub fn test_icr(&self) -> bool {
-        self.icr != 0
+        self.icr() != 0
     }
 
     #[doc="ClockRate"]
@@ -511,7 +511,7 @@ impl F {
 
     #[doc="Multiplier Factor"]
     #[inline] pub fn test_mult(&self) -> bool {
-        self.mult != 0
+        self.mult() != 0
     }
 
     #[doc="Multiplier Factor"]
@@ -552,7 +552,7 @@ impl C1 {
 
     #[doc="DMA Enable"]
     #[inline] pub fn test_dmaen(&self) -> bool {
-        self.dmaen != 0
+        self.dmaen() != 0
     }
 
     #[doc="DMA Enable"]
@@ -571,7 +571,7 @@ impl C1 {
 
     #[doc="Wakeup Enable"]
     #[inline] pub fn test_wuen(&self) -> bool {
-        self.wuen != 0
+        self.wuen() != 0
     }
 
     #[doc="Wakeup Enable"]
@@ -590,7 +590,7 @@ impl C1 {
 
     #[doc="Repeat START"]
     #[inline] pub fn test_rsta(&self) -> bool {
-        self.rsta != 0
+        self.rsta() != 0
     }
 
     #[doc="Repeat START"]
@@ -609,7 +609,7 @@ impl C1 {
 
     #[doc="Transmit Acknowledge Enable"]
     #[inline] pub fn test_txak(&self) -> bool {
-        self.txak != 0
+        self.txak() != 0
     }
 
     #[doc="Transmit Acknowledge Enable"]
@@ -628,7 +628,7 @@ impl C1 {
 
     #[doc="Transmit Mode Select"]
     #[inline] pub fn test_tx(&self) -> bool {
-        self.tx != 0
+        self.tx() != 0
     }
 
     #[doc="Transmit Mode Select"]
@@ -647,7 +647,7 @@ impl C1 {
 
     #[doc="Master Mode Select"]
     #[inline] pub fn test_mst(&self) -> bool {
-        self.mst != 0
+        self.mst() != 0
     }
 
     #[doc="Master Mode Select"]
@@ -666,7 +666,7 @@ impl C1 {
 
     #[doc="I2C Interrupt Enable"]
     #[inline] pub fn test_iicie(&self) -> bool {
-        self.iicie != 0
+        self.iicie() != 0
     }
 
     #[doc="I2C Interrupt Enable"]
@@ -685,7 +685,7 @@ impl C1 {
 
     #[doc="I2C Enable"]
     #[inline] pub fn test_iicen(&self) -> bool {
-        self.iicen != 0
+        self.iicen() != 0
     }
 
     #[doc="I2C Enable"]
@@ -732,7 +732,7 @@ impl S {
 
     #[doc="Receive Acknowledge"]
     #[inline] pub fn test_rxak(&self) -> bool {
-        self.rxak != 0
+        self.rxak() != 0
     }
 
     #[doc="Receive Acknowledge"]
@@ -751,7 +751,7 @@ impl S {
 
     #[doc="Interrupt Flag"]
     #[inline] pub fn test_iicif(&self) -> bool {
-        self.iicif != 0
+        self.iicif() != 0
     }
 
     #[doc="Interrupt Flag"]
@@ -770,7 +770,7 @@ impl S {
 
     #[doc="Slave Read/Write"]
     #[inline] pub fn test_srw(&self) -> bool {
-        self.srw != 0
+        self.srw() != 0
     }
 
     #[doc="Slave Read/Write"]
@@ -789,7 +789,7 @@ impl S {
 
     #[doc="Range Address Match"]
     #[inline] pub fn test_ram(&self) -> bool {
-        self.ram != 0
+        self.ram() != 0
     }
 
     #[doc="Range Address Match"]
@@ -808,7 +808,7 @@ impl S {
 
     #[doc="Arbitration Lost"]
     #[inline] pub fn test_arbl(&self) -> bool {
-        self.arbl != 0
+        self.arbl() != 0
     }
 
     #[doc="Arbitration Lost"]
@@ -827,7 +827,7 @@ impl S {
 
     #[doc="Bus Busy"]
     #[inline] pub fn test_busy(&self) -> bool {
-        self.busy != 0
+        self.busy() != 0
     }
 
     #[doc="Bus Busy"]
@@ -846,7 +846,7 @@ impl S {
 
     #[doc="Addressed As A Slave"]
     #[inline] pub fn test_iaas(&self) -> bool {
-        self.iaas != 0
+        self.iaas() != 0
     }
 
     #[doc="Addressed As A Slave"]
@@ -865,7 +865,7 @@ impl S {
 
     #[doc="Transfer Complete Flag"]
     #[inline] pub fn test_tcf(&self) -> bool {
-        self.tcf != 0
+        self.tcf() != 0
     }
 
     #[doc="Transfer Complete Flag"]
@@ -912,7 +912,7 @@ impl D {
 
     #[doc="Data"]
     #[inline] pub fn test_data(&self) -> bool {
-        self.data != 0
+        self.data() != 0
     }
 
     #[doc="Data"]
@@ -952,7 +952,7 @@ impl C2 {
 
     #[doc="Slave Address"]
     #[inline] pub fn test_ad(&self) -> bool {
-        self.ad != 0
+        self.ad() != 0
     }
 
     #[doc="Slave Address"]
@@ -971,7 +971,7 @@ impl C2 {
 
     #[doc="Range Address Matching Enable"]
     #[inline] pub fn test_rmen(&self) -> bool {
-        self.rmen != 0
+        self.rmen() != 0
     }
 
     #[doc="Range Address Matching Enable"]
@@ -990,7 +990,7 @@ impl C2 {
 
     #[doc="Slave Baud Rate Control"]
     #[inline] pub fn test_sbrc(&self) -> bool {
-        self.sbrc != 0
+        self.sbrc() != 0
     }
 
     #[doc="Slave Baud Rate Control"]
@@ -1009,7 +1009,7 @@ impl C2 {
 
     #[doc="High Drive Select"]
     #[inline] pub fn test_hdrs(&self) -> bool {
-        self.hdrs != 0
+        self.hdrs() != 0
     }
 
     #[doc="High Drive Select"]
@@ -1028,7 +1028,7 @@ impl C2 {
 
     #[doc="Address Extension"]
     #[inline] pub fn test_adext(&self) -> bool {
-        self.adext != 0
+        self.adext() != 0
     }
 
     #[doc="Address Extension"]
@@ -1047,7 +1047,7 @@ impl C2 {
 
     #[doc="General Call Address Enable"]
     #[inline] pub fn test_gcaen(&self) -> bool {
-        self.gcaen != 0
+        self.gcaen() != 0
     }
 
     #[doc="General Call Address Enable"]
@@ -1092,7 +1092,7 @@ impl Flt {
 
     #[doc="I2C Programmable Filter Factor"]
     #[inline] pub fn test_flt(&self) -> bool {
-        self.flt != 0
+        self.flt() != 0
     }
 
     #[doc="I2C Programmable Filter Factor"]
@@ -1111,7 +1111,7 @@ impl Flt {
 
     #[doc="I2C Bus Start Detect Flag"]
     #[inline] pub fn test_startf(&self) -> bool {
-        self.startf != 0
+        self.startf() != 0
     }
 
     #[doc="I2C Bus Start Detect Flag"]
@@ -1130,7 +1130,7 @@ impl Flt {
 
     #[doc="I2C Bus Stop or Start Interrupt Enable"]
     #[inline] pub fn test_ssie(&self) -> bool {
-        self.ssie != 0
+        self.ssie() != 0
     }
 
     #[doc="I2C Bus Stop or Start Interrupt Enable"]
@@ -1149,7 +1149,7 @@ impl Flt {
 
     #[doc="I2C Bus Stop Detect Flag"]
     #[inline] pub fn test_stopf(&self) -> bool {
-        self.stopf != 0
+        self.stopf() != 0
     }
 
     #[doc="I2C Bus Stop Detect Flag"]
@@ -1168,7 +1168,7 @@ impl Flt {
 
     #[doc="Stop Hold Enable"]
     #[inline] pub fn test_shen(&self) -> bool {
-        self.shen != 0
+        self.shen() != 0
     }
 
     #[doc="Stop Hold Enable"]
@@ -1212,7 +1212,7 @@ impl Ra {
 
     #[doc="Range Slave Address"]
     #[inline] pub fn test_rad(&self) -> bool {
-        self.rad != 0
+        self.rad() != 0
     }
 
     #[doc="Range Slave Address"]
@@ -1252,7 +1252,7 @@ impl Smb {
 
     #[doc="SHTF2 Interrupt Enable"]
     #[inline] pub fn test_shtf2ie(&self) -> bool {
-        self.shtf2ie != 0
+        self.shtf2ie() != 0
     }
 
     #[doc="SHTF2 Interrupt Enable"]
@@ -1271,7 +1271,7 @@ impl Smb {
 
     #[doc="SCL High Timeout Flag 2"]
     #[inline] pub fn test_shtf2(&self) -> bool {
-        self.shtf2 != 0
+        self.shtf2() != 0
     }
 
     #[doc="SCL High Timeout Flag 2"]
@@ -1290,7 +1290,7 @@ impl Smb {
 
     #[doc="SCL High Timeout Flag 1"]
     #[inline] pub fn test_shtf1(&self) -> bool {
-        self.shtf1 != 0
+        self.shtf1() != 0
     }
 
     #[doc="SCL High Timeout Flag 1"]
@@ -1309,7 +1309,7 @@ impl Smb {
 
     #[doc="SCL Low Timeout Flag"]
     #[inline] pub fn test_sltf(&self) -> bool {
-        self.sltf != 0
+        self.sltf() != 0
     }
 
     #[doc="SCL Low Timeout Flag"]
@@ -1328,7 +1328,7 @@ impl Smb {
 
     #[doc="Timeout Counter Clock Select"]
     #[inline] pub fn test_tcksel(&self) -> bool {
-        self.tcksel != 0
+        self.tcksel() != 0
     }
 
     #[doc="Timeout Counter Clock Select"]
@@ -1347,7 +1347,7 @@ impl Smb {
 
     #[doc="Second I2C Address Enable"]
     #[inline] pub fn test_siicaen(&self) -> bool {
-        self.siicaen != 0
+        self.siicaen() != 0
     }
 
     #[doc="Second I2C Address Enable"]
@@ -1366,7 +1366,7 @@ impl Smb {
 
     #[doc="SMBus Alert Response Address Enable"]
     #[inline] pub fn test_alerten(&self) -> bool {
-        self.alerten != 0
+        self.alerten() != 0
     }
 
     #[doc="SMBus Alert Response Address Enable"]
@@ -1385,7 +1385,7 @@ impl Smb {
 
     #[doc="Fast NACK/ACK Enable"]
     #[inline] pub fn test_fack(&self) -> bool {
-        self.fack != 0
+        self.fack() != 0
     }
 
     #[doc="Fast NACK/ACK Enable"]
@@ -1432,7 +1432,7 @@ impl A2 {
 
     #[doc="SMBus Address"]
     #[inline] pub fn test_sad(&self) -> bool {
-        self.sad != 0
+        self.sad() != 0
     }
 
     #[doc="SMBus Address"]
@@ -1472,7 +1472,7 @@ impl Slth {
 
     #[doc="Most significant byte of SCL low timeout value that determines the timeout period of SCL low."]
     #[inline] pub fn test_sslt(&self) -> bool {
-        self.sslt != 0
+        self.sslt() != 0
     }
 
     #[doc="Most significant byte of SCL low timeout value that determines the timeout period of SCL low."]
@@ -1512,7 +1512,7 @@ impl Sltl {
 
     #[doc="Least significant byte of SCL low timeout value that determines the timeout period of SCL low."]
     #[inline] pub fn test_sslt(&self) -> bool {
-        self.sslt != 0
+        self.sslt() != 0
     }
 
     #[doc="Least significant byte of SCL low timeout value that determines the timeout period of SCL low."]

@@ -109,7 +109,7 @@ impl Cr {
 
     #[doc="Interrupt enable"]
     #[inline] pub fn test_ie(&self) -> bool {
-        self.ie != 0
+        self.ie() != 0
     }
 
     #[doc="Interrupt enable"]
@@ -128,7 +128,7 @@ impl Cr {
 
     #[doc="Random number generator enable"]
     #[inline] pub fn test_rngen(&self) -> bool {
-        self.rngen != 0
+        self.rngen() != 0
     }
 
     #[doc="Random number generator enable"]
@@ -169,7 +169,7 @@ impl Sr {
 
     #[doc="Seed error interrupt status"]
     #[inline] pub fn test_seis(&self) -> bool {
-        self.seis != 0
+        self.seis() != 0
     }
 
     #[doc="Seed error interrupt status"]
@@ -188,7 +188,7 @@ impl Sr {
 
     #[doc="Clock error interrupt status"]
     #[inline] pub fn test_ceis(&self) -> bool {
-        self.ceis != 0
+        self.ceis() != 0
     }
 
     #[doc="Clock error interrupt status"]
@@ -207,7 +207,7 @@ impl Sr {
 
     #[doc="Seed error current status"]
     #[inline] pub fn test_secs(&self) -> bool {
-        self.secs != 0
+        self.secs() != 0
     }
 
     #[doc="Seed error current status"]
@@ -226,7 +226,7 @@ impl Sr {
 
     #[doc="Clock error current status"]
     #[inline] pub fn test_cecs(&self) -> bool {
-        self.cecs != 0
+        self.cecs() != 0
     }
 
     #[doc="Clock error current status"]
@@ -245,7 +245,7 @@ impl Sr {
 
     #[doc="Data ready"]
     #[inline] pub fn test_drdy(&self) -> bool {
-        self.drdy != 0
+        self.drdy() != 0
     }
 
     #[doc="Data ready"]
@@ -289,7 +289,7 @@ impl Dr {
 
     #[doc="Random data"]
     #[inline] pub fn test_rndata(&self) -> bool {
-        self.rndata != 0
+        self.rndata() != 0
     }
 
     #[doc="Random data"]

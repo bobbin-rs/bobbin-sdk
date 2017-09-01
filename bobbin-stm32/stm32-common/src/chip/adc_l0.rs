@@ -397,7 +397,7 @@ impl Isr {
 
     #[doc="ADC ready"]
     #[inline] pub fn test_adrdy(&self) -> bool {
-        self.adrdy != 0
+        self.adrdy() != 0
     }
 
     #[doc="ADC ready"]
@@ -416,7 +416,7 @@ impl Isr {
 
     #[doc="End of sampling flag"]
     #[inline] pub fn test_eosmp(&self) -> bool {
-        self.eosmp != 0
+        self.eosmp() != 0
     }
 
     #[doc="End of sampling flag"]
@@ -435,7 +435,7 @@ impl Isr {
 
     #[doc="End of conversion flag"]
     #[inline] pub fn test_eoc(&self) -> bool {
-        self.eoc != 0
+        self.eoc() != 0
     }
 
     #[doc="End of conversion flag"]
@@ -454,7 +454,7 @@ impl Isr {
 
     #[doc="End of sequence flag"]
     #[inline] pub fn test_eos(&self) -> bool {
-        self.eos != 0
+        self.eos() != 0
     }
 
     #[doc="End of sequence flag"]
@@ -473,7 +473,7 @@ impl Isr {
 
     #[doc="ADC overrun"]
     #[inline] pub fn test_ovr(&self) -> bool {
-        self.ovr != 0
+        self.ovr() != 0
     }
 
     #[doc="ADC overrun"]
@@ -492,7 +492,7 @@ impl Isr {
 
     #[doc="Analog watchdog flag"]
     #[inline] pub fn test_awd(&self) -> bool {
-        self.awd != 0
+        self.awd() != 0
     }
 
     #[doc="Analog watchdog flag"]
@@ -511,7 +511,7 @@ impl Isr {
 
     #[doc="End Of Calibration flag"]
     #[inline] pub fn test_eocal(&self) -> bool {
-        self.eocal != 0
+        self.eocal() != 0
     }
 
     #[doc="End Of Calibration flag"]
@@ -557,7 +557,7 @@ impl Ier {
 
     #[doc="ADC ready interrupt enable"]
     #[inline] pub fn test_adrdyie(&self) -> bool {
-        self.adrdyie != 0
+        self.adrdyie() != 0
     }
 
     #[doc="ADC ready interrupt enable"]
@@ -576,7 +576,7 @@ impl Ier {
 
     #[doc="End of sampling flag interrupt enable"]
     #[inline] pub fn test_eosmpie(&self) -> bool {
-        self.eosmpie != 0
+        self.eosmpie() != 0
     }
 
     #[doc="End of sampling flag interrupt enable"]
@@ -595,7 +595,7 @@ impl Ier {
 
     #[doc="End of conversion interrupt enable"]
     #[inline] pub fn test_eocie(&self) -> bool {
-        self.eocie != 0
+        self.eocie() != 0
     }
 
     #[doc="End of conversion interrupt enable"]
@@ -614,7 +614,7 @@ impl Ier {
 
     #[doc="End of conversion sequence interrupt enable"]
     #[inline] pub fn test_eosie(&self) -> bool {
-        self.eosie != 0
+        self.eosie() != 0
     }
 
     #[doc="End of conversion sequence interrupt enable"]
@@ -633,7 +633,7 @@ impl Ier {
 
     #[doc="Overrun interrupt enable"]
     #[inline] pub fn test_ovrie(&self) -> bool {
-        self.ovrie != 0
+        self.ovrie() != 0
     }
 
     #[doc="Overrun interrupt enable"]
@@ -652,7 +652,7 @@ impl Ier {
 
     #[doc="Analog watchdog interrupt enable"]
     #[inline] pub fn test_awdie(&self) -> bool {
-        self.awdie != 0
+        self.awdie() != 0
     }
 
     #[doc="Analog watchdog interrupt enable"]
@@ -671,7 +671,7 @@ impl Ier {
 
     #[doc="End of calibration interrupt enable"]
     #[inline] pub fn test_eocalie(&self) -> bool {
-        self.eocalie != 0
+        self.eocalie() != 0
     }
 
     #[doc="End of calibration interrupt enable"]
@@ -717,7 +717,7 @@ impl Cr {
 
     #[doc="ADC enable command"]
     #[inline] pub fn test_aden(&self) -> bool {
-        self.aden != 0
+        self.aden() != 0
     }
 
     #[doc="ADC enable command"]
@@ -736,7 +736,7 @@ impl Cr {
 
     #[doc="ADC disable command"]
     #[inline] pub fn test_addis(&self) -> bool {
-        self.addis != 0
+        self.addis() != 0
     }
 
     #[doc="ADC disable command"]
@@ -755,7 +755,7 @@ impl Cr {
 
     #[doc="ADC start conversion command"]
     #[inline] pub fn test_adstart(&self) -> bool {
-        self.adstart != 0
+        self.adstart() != 0
     }
 
     #[doc="ADC start conversion command"]
@@ -774,7 +774,7 @@ impl Cr {
 
     #[doc="ADC stop conversion command"]
     #[inline] pub fn test_adstp(&self) -> bool {
-        self.adstp != 0
+        self.adstp() != 0
     }
 
     #[doc="ADC stop conversion command"]
@@ -793,7 +793,7 @@ impl Cr {
 
     #[doc="ADC Voltage Regulator Enable"]
     #[inline] pub fn test_advregen(&self) -> bool {
-        self.advregen != 0
+        self.advregen() != 0
     }
 
     #[doc="ADC Voltage Regulator Enable"]
@@ -812,7 +812,7 @@ impl Cr {
 
     #[doc="ADC calibration"]
     #[inline] pub fn test_adcal(&self) -> bool {
-        self.adcal != 0
+        self.adcal() != 0
     }
 
     #[doc="ADC calibration"]
@@ -857,7 +857,7 @@ impl Cfgr1 {
 
     #[doc="Analog watchdog channel selection"]
     #[inline] pub fn test_awdch(&self) -> bool {
-        self.awdch != 0
+        self.awdch() != 0
     }
 
     #[doc="Analog watchdog channel selection"]
@@ -876,7 +876,7 @@ impl Cfgr1 {
 
     #[doc="Analog watchdog enable"]
     #[inline] pub fn test_awden(&self) -> bool {
-        self.awden != 0
+        self.awden() != 0
     }
 
     #[doc="Analog watchdog enable"]
@@ -895,7 +895,7 @@ impl Cfgr1 {
 
     #[doc="Enable the watchdog on a single channel or on all channels"]
     #[inline] pub fn test_awdsgl(&self) -> bool {
-        self.awdsgl != 0
+        self.awdsgl() != 0
     }
 
     #[doc="Enable the watchdog on a single channel or on all channels"]
@@ -914,7 +914,7 @@ impl Cfgr1 {
 
     #[doc="Discontinuous mode"]
     #[inline] pub fn test_discen(&self) -> bool {
-        self.discen != 0
+        self.discen() != 0
     }
 
     #[doc="Discontinuous mode"]
@@ -933,7 +933,7 @@ impl Cfgr1 {
 
     #[doc="Auto-off mode"]
     #[inline] pub fn test_autoff(&self) -> bool {
-        self.autoff != 0
+        self.autoff() != 0
     }
 
     #[doc="Auto-off mode"]
@@ -952,7 +952,7 @@ impl Cfgr1 {
 
     #[doc="Auto-delayed conversion mode"]
     #[inline] pub fn test_autdly(&self) -> bool {
-        self.autdly != 0
+        self.autdly() != 0
     }
 
     #[doc="Auto-delayed conversion mode"]
@@ -971,7 +971,7 @@ impl Cfgr1 {
 
     #[doc="Single / continuous conversion mode"]
     #[inline] pub fn test_cont(&self) -> bool {
-        self.cont != 0
+        self.cont() != 0
     }
 
     #[doc="Single / continuous conversion mode"]
@@ -990,7 +990,7 @@ impl Cfgr1 {
 
     #[doc="Overrun management mode"]
     #[inline] pub fn test_ovrmod(&self) -> bool {
-        self.ovrmod != 0
+        self.ovrmod() != 0
     }
 
     #[doc="Overrun management mode"]
@@ -1009,7 +1009,7 @@ impl Cfgr1 {
 
     #[doc="External trigger enable and polarity selection"]
     #[inline] pub fn test_exten(&self) -> bool {
-        self.exten != 0
+        self.exten() != 0
     }
 
     #[doc="External trigger enable and polarity selection"]
@@ -1028,7 +1028,7 @@ impl Cfgr1 {
 
     #[doc="External trigger selection"]
     #[inline] pub fn test_extsel(&self) -> bool {
-        self.extsel != 0
+        self.extsel() != 0
     }
 
     #[doc="External trigger selection"]
@@ -1047,7 +1047,7 @@ impl Cfgr1 {
 
     #[doc="Data alignment"]
     #[inline] pub fn test_align(&self) -> bool {
-        self.align != 0
+        self.align() != 0
     }
 
     #[doc="Data alignment"]
@@ -1066,7 +1066,7 @@ impl Cfgr1 {
 
     #[doc="Data resolution"]
     #[inline] pub fn test_res(&self) -> bool {
-        self.res != 0
+        self.res() != 0
     }
 
     #[doc="Data resolution"]
@@ -1085,7 +1085,7 @@ impl Cfgr1 {
 
     #[doc="Scan sequence direction"]
     #[inline] pub fn test_scandir(&self) -> bool {
-        self.scandir != 0
+        self.scandir() != 0
     }
 
     #[doc="Scan sequence direction"]
@@ -1104,7 +1104,7 @@ impl Cfgr1 {
 
     #[doc="Direct memery access configuration"]
     #[inline] pub fn test_dmacfg(&self) -> bool {
-        self.dmacfg != 0
+        self.dmacfg() != 0
     }
 
     #[doc="Direct memery access configuration"]
@@ -1123,7 +1123,7 @@ impl Cfgr1 {
 
     #[doc="Direct memory access enable"]
     #[inline] pub fn test_dmaen(&self) -> bool {
-        self.dmaen != 0
+        self.dmaen() != 0
     }
 
     #[doc="Direct memory access enable"]
@@ -1177,7 +1177,7 @@ impl Cfgr2 {
 
     #[doc="Oversampler Enable"]
     #[inline] pub fn test_ovse(&self) -> bool {
-        self.ovse != 0
+        self.ovse() != 0
     }
 
     #[doc="Oversampler Enable"]
@@ -1196,7 +1196,7 @@ impl Cfgr2 {
 
     #[doc="Oversampling ratio"]
     #[inline] pub fn test_ovsr(&self) -> bool {
-        self.ovsr != 0
+        self.ovsr() != 0
     }
 
     #[doc="Oversampling ratio"]
@@ -1215,7 +1215,7 @@ impl Cfgr2 {
 
     #[doc="Oversampling shift"]
     #[inline] pub fn test_ovss(&self) -> bool {
-        self.ovss != 0
+        self.ovss() != 0
     }
 
     #[doc="Oversampling shift"]
@@ -1234,7 +1234,7 @@ impl Cfgr2 {
 
     #[doc="Triggered Oversampling"]
     #[inline] pub fn test_tovs(&self) -> bool {
-        self.tovs != 0
+        self.tovs() != 0
     }
 
     #[doc="Triggered Oversampling"]
@@ -1253,7 +1253,7 @@ impl Cfgr2 {
 
     #[doc="ADC clock mode"]
     #[inline] pub fn test_ckmode(&self) -> bool {
-        self.ckmode != 0
+        self.ckmode() != 0
     }
 
     #[doc="ADC clock mode"]
@@ -1297,7 +1297,7 @@ impl Smpr {
 
     #[doc="Sampling time selection"]
     #[inline] pub fn test_smpr(&self) -> bool {
-        self.smpr != 0
+        self.smpr() != 0
     }
 
     #[doc="Sampling time selection"]
@@ -1337,7 +1337,7 @@ impl Tr {
 
     #[doc="Analog watchdog higher threshold"]
     #[inline] pub fn test_ht(&self) -> bool {
-        self.ht != 0
+        self.ht() != 0
     }
 
     #[doc="Analog watchdog higher threshold"]
@@ -1356,7 +1356,7 @@ impl Tr {
 
     #[doc="Analog watchdog lower threshold"]
     #[inline] pub fn test_lt(&self) -> bool {
-        self.lt != 0
+        self.lt() != 0
     }
 
     #[doc="Analog watchdog lower threshold"]
@@ -1461,7 +1461,7 @@ impl Dr {
 
     #[doc="Converted data"]
     #[inline] pub fn test_data(&self) -> bool {
-        self.data != 0
+        self.data() != 0
     }
 
     #[doc="Converted data"]
@@ -1480,7 +1480,7 @@ impl Dr {
 
     #[doc="DATA (12 bit)"]
     #[inline] pub fn test_data_12(&self) -> bool {
-        self.data_12 != 0
+        self.data_12() != 0
     }
 
     #[doc="DATA (12 bit)"]
@@ -1499,7 +1499,7 @@ impl Dr {
 
     #[doc="DATA (10 bit)"]
     #[inline] pub fn test_data_10(&self) -> bool {
-        self.data_10 != 0
+        self.data_10() != 0
     }
 
     #[doc="DATA (10 bit)"]
@@ -1518,7 +1518,7 @@ impl Dr {
 
     #[doc="DATA (8 bit)"]
     #[inline] pub fn test_data_8(&self) -> bool {
-        self.data_8 != 0
+        self.data_8() != 0
     }
 
     #[doc="DATA (8 bit)"]
@@ -1537,7 +1537,7 @@ impl Dr {
 
     #[doc="DATA (6 bit)"]
     #[inline] pub fn test_data_6(&self) -> bool {
-        self.data_6 != 0
+        self.data_6() != 0
     }
 
     #[doc="DATA (6 bit)"]
@@ -1581,7 +1581,7 @@ impl Calfact {
 
     #[doc="Calibration factor"]
     #[inline] pub fn test_calfact(&self) -> bool {
-        self.calfact != 0
+        self.calfact() != 0
     }
 
     #[doc="Calibration factor"]
@@ -1621,7 +1621,7 @@ impl Ccr {
 
     #[doc="ADC prescaler"]
     #[inline] pub fn test_presc(&self) -> bool {
-        self.presc != 0
+        self.presc() != 0
     }
 
     #[doc="ADC prescaler"]
@@ -1640,7 +1640,7 @@ impl Ccr {
 
     #[doc="VREFINT enable"]
     #[inline] pub fn test_vrefen(&self) -> bool {
-        self.vrefen != 0
+        self.vrefen() != 0
     }
 
     #[doc="VREFINT enable"]
@@ -1659,7 +1659,7 @@ impl Ccr {
 
     #[doc="Temperature sensor enable"]
     #[inline] pub fn test_tsen(&self) -> bool {
-        self.tsen != 0
+        self.tsen() != 0
     }
 
     #[doc="Temperature sensor enable"]
@@ -1678,7 +1678,7 @@ impl Ccr {
 
     #[doc="VLCD enable"]
     #[inline] pub fn test_vlcden(&self) -> bool {
-        self.vlcden != 0
+        self.vlcden() != 0
     }
 
     #[doc="VLCD enable"]
@@ -1697,7 +1697,7 @@ impl Ccr {
 
     #[doc="Low Frequency Mode enable"]
     #[inline] pub fn test_lfmen(&self) -> bool {
-        self.lfmen != 0
+        self.lfmen() != 0
     }
 
     #[doc="Low Frequency Mode enable"]

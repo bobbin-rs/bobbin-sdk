@@ -6248,7 +6248,7 @@ impl Did0 {
 
     #[doc="Minor Revision"]
     #[inline] pub fn test_min(&self) -> bool {
-        self.min != 0
+        self.min() != 0
     }
 
     #[doc="Minor Revision"]
@@ -6267,7 +6267,7 @@ impl Did0 {
 
     #[doc="Major Revision"]
     #[inline] pub fn test_maj(&self) -> bool {
-        self.maj != 0
+        self.maj() != 0
     }
 
     #[doc="Major Revision"]
@@ -6286,7 +6286,7 @@ impl Did0 {
 
     #[doc="Device Class"]
     #[inline] pub fn test_class(&self) -> bool {
-        self.class != 0
+        self.class() != 0
     }
 
     #[doc="Device Class"]
@@ -6305,7 +6305,7 @@ impl Did0 {
 
     #[doc="DID0 Version"]
     #[inline] pub fn test_ver(&self) -> bool {
-        self.ver != 0
+        self.ver() != 0
     }
 
     #[doc="DID0 Version"]
@@ -6348,7 +6348,7 @@ impl Did1 {
 
     #[doc="Qualification Status"]
     #[inline] pub fn test_qual(&self) -> bool {
-        self.qual != 0
+        self.qual() != 0
     }
 
     #[doc="Qualification Status"]
@@ -6367,7 +6367,7 @@ impl Did1 {
 
     #[doc="RoHS-Compliance"]
     #[inline] pub fn test_rohs(&self) -> bool {
-        self.rohs != 0
+        self.rohs() != 0
     }
 
     #[doc="RoHS-Compliance"]
@@ -6386,7 +6386,7 @@ impl Did1 {
 
     #[doc="Package Type"]
     #[inline] pub fn test_pkg(&self) -> bool {
-        self.pkg != 0
+        self.pkg() != 0
     }
 
     #[doc="Package Type"]
@@ -6405,7 +6405,7 @@ impl Did1 {
 
     #[doc="Temperature Range"]
     #[inline] pub fn test_temp(&self) -> bool {
-        self.temp != 0
+        self.temp() != 0
     }
 
     #[doc="Temperature Range"]
@@ -6424,7 +6424,7 @@ impl Did1 {
 
     #[doc="Package Pin Count"]
     #[inline] pub fn test_pincnt(&self) -> bool {
-        self.pincnt != 0
+        self.pincnt() != 0
     }
 
     #[doc="Package Pin Count"]
@@ -6443,7 +6443,7 @@ impl Did1 {
 
     #[doc="Part Number"]
     #[inline] pub fn test_prtno(&self) -> bool {
-        self.prtno != 0
+        self.prtno() != 0
     }
 
     #[doc="Part Number"]
@@ -6462,7 +6462,7 @@ impl Did1 {
 
     #[doc="Family"]
     #[inline] pub fn test_fam(&self) -> bool {
-        self.fam != 0
+        self.fam() != 0
     }
 
     #[doc="Family"]
@@ -6481,7 +6481,7 @@ impl Did1 {
 
     #[doc="DID1 Version"]
     #[inline] pub fn test_ver(&self) -> bool {
-        self.ver != 0
+        self.ver() != 0
     }
 
     #[doc="DID1 Version"]
@@ -6528,7 +6528,7 @@ impl Ptboctl {
 
     #[doc="VDD (VDDS) under BOR Event Action"]
     #[inline] pub fn test_vdd_ubor(&self) -> bool {
-        self.vdd_ubor != 0
+        self.vdd_ubor() != 0
     }
 
     #[doc="VDD (VDDS) under BOR Event Action"]
@@ -6547,7 +6547,7 @@ impl Ptboctl {
 
     #[doc="VDDA under BOR Event Action"]
     #[inline] pub fn test_vdda_ubor(&self) -> bool {
-        self.vdda_ubor != 0
+        self.vdda_ubor() != 0
     }
 
     #[doc="VDDA under BOR Event Action"]
@@ -6588,7 +6588,7 @@ impl Ris {
 
     #[doc="Brown-Out Reset Raw Interrupt Status"]
     #[inline] pub fn test_borris(&self) -> bool {
-        self.borris != 0
+        self.borris() != 0
     }
 
     #[doc="Brown-Out Reset Raw Interrupt Status"]
@@ -6607,7 +6607,7 @@ impl Ris {
 
     #[doc="Main Oscillator Failure Raw Interrupt Status"]
     #[inline] pub fn test_mofris(&self) -> bool {
-        self.mofris != 0
+        self.mofris() != 0
     }
 
     #[doc="Main Oscillator Failure Raw Interrupt Status"]
@@ -6626,7 +6626,7 @@ impl Ris {
 
     #[doc="PLL Lock Raw Interrupt Status"]
     #[inline] pub fn test_plllris(&self) -> bool {
-        self.plllris != 0
+        self.plllris() != 0
     }
 
     #[doc="PLL Lock Raw Interrupt Status"]
@@ -6645,7 +6645,7 @@ impl Ris {
 
     #[doc="MOSC Power Up Raw Interrupt Status"]
     #[inline] pub fn test_moscpupris(&self) -> bool {
-        self.moscpupris != 0
+        self.moscpupris() != 0
     }
 
     #[doc="MOSC Power Up Raw Interrupt Status"]
@@ -6688,7 +6688,7 @@ impl Imc {
 
     #[doc="Brown-Out Reset Interrupt Mask"]
     #[inline] pub fn test_borim(&self) -> bool {
-        self.borim != 0
+        self.borim() != 0
     }
 
     #[doc="Brown-Out Reset Interrupt Mask"]
@@ -6707,7 +6707,7 @@ impl Imc {
 
     #[doc="Main Oscillator Failure Interrupt Mask"]
     #[inline] pub fn test_mofim(&self) -> bool {
-        self.mofim != 0
+        self.mofim() != 0
     }
 
     #[doc="Main Oscillator Failure Interrupt Mask"]
@@ -6726,7 +6726,7 @@ impl Imc {
 
     #[doc="PLL Lock Interrupt Mask"]
     #[inline] pub fn test_plllim(&self) -> bool {
-        self.plllim != 0
+        self.plllim() != 0
     }
 
     #[doc="PLL Lock Interrupt Mask"]
@@ -6745,7 +6745,7 @@ impl Imc {
 
     #[doc="MOSC Power Up Interrupt Mask"]
     #[inline] pub fn test_moscpupim(&self) -> bool {
-        self.moscpupim != 0
+        self.moscpupim() != 0
     }
 
     #[doc="MOSC Power Up Interrupt Mask"]
@@ -6788,7 +6788,7 @@ impl Misc {
 
     #[doc="BOR Masked Interrupt Status"]
     #[inline] pub fn test_bormis(&self) -> bool {
-        self.bormis != 0
+        self.bormis() != 0
     }
 
     #[doc="BOR Masked Interrupt Status"]
@@ -6807,7 +6807,7 @@ impl Misc {
 
     #[doc="Main Oscillator Failure Masked Interrupt Status"]
     #[inline] pub fn test_mofmis(&self) -> bool {
-        self.mofmis != 0
+        self.mofmis() != 0
     }
 
     #[doc="Main Oscillator Failure Masked Interrupt Status"]
@@ -6826,7 +6826,7 @@ impl Misc {
 
     #[doc="PLL Lock Masked Interrupt Status"]
     #[inline] pub fn test_plllmis(&self) -> bool {
-        self.plllmis != 0
+        self.plllmis() != 0
     }
 
     #[doc="PLL Lock Masked Interrupt Status"]
@@ -6845,7 +6845,7 @@ impl Misc {
 
     #[doc="MOSC Power Up Masked Interrupt Status"]
     #[inline] pub fn test_moscpupmis(&self) -> bool {
-        self.moscpupmis != 0
+        self.moscpupmis() != 0
     }
 
     #[doc="MOSC Power Up Masked Interrupt Status"]
@@ -6888,7 +6888,7 @@ impl Resc {
 
     #[doc="External Reset"]
     #[inline] pub fn test_ext(&self) -> bool {
-        self.ext != 0
+        self.ext() != 0
     }
 
     #[doc="External Reset"]
@@ -6907,7 +6907,7 @@ impl Resc {
 
     #[doc="Power-On Reset"]
     #[inline] pub fn test_por(&self) -> bool {
-        self.por != 0
+        self.por() != 0
     }
 
     #[doc="Power-On Reset"]
@@ -6926,7 +6926,7 @@ impl Resc {
 
     #[doc="Brown-Out Reset"]
     #[inline] pub fn test_bor(&self) -> bool {
-        self.bor != 0
+        self.bor() != 0
     }
 
     #[doc="Brown-Out Reset"]
@@ -6945,7 +6945,7 @@ impl Resc {
 
     #[doc="Watchdog Timer 0 Reset"]
     #[inline] pub fn test_wdt0(&self) -> bool {
-        self.wdt0 != 0
+        self.wdt0() != 0
     }
 
     #[doc="Watchdog Timer 0 Reset"]
@@ -6964,7 +6964,7 @@ impl Resc {
 
     #[doc="Software Reset"]
     #[inline] pub fn test_sw(&self) -> bool {
-        self.sw != 0
+        self.sw() != 0
     }
 
     #[doc="Software Reset"]
@@ -6983,7 +6983,7 @@ impl Resc {
 
     #[doc="Watchdog Timer 1 Reset"]
     #[inline] pub fn test_wdt1(&self) -> bool {
-        self.wdt1 != 0
+        self.wdt1() != 0
     }
 
     #[doc="Watchdog Timer 1 Reset"]
@@ -7002,7 +7002,7 @@ impl Resc {
 
     #[doc="HIB Reset"]
     #[inline] pub fn test_hib(&self) -> bool {
-        self.hib != 0
+        self.hib() != 0
     }
 
     #[doc="HIB Reset"]
@@ -7021,7 +7021,7 @@ impl Resc {
 
     #[doc="HSSR Reset"]
     #[inline] pub fn test_hssr(&self) -> bool {
-        self.hssr != 0
+        self.hssr() != 0
     }
 
     #[doc="HSSR Reset"]
@@ -7040,7 +7040,7 @@ impl Resc {
 
     #[doc="MOSC Failure Reset"]
     #[inline] pub fn test_moscfail(&self) -> bool {
-        self.moscfail != 0
+        self.moscfail() != 0
     }
 
     #[doc="MOSC Failure Reset"]
@@ -7088,7 +7088,7 @@ impl Pwrtc {
 
     #[doc="VDD Under BOR Status"]
     #[inline] pub fn test_vdd_ubor(&self) -> bool {
-        self.vdd_ubor != 0
+        self.vdd_ubor() != 0
     }
 
     #[doc="VDD Under BOR Status"]
@@ -7107,7 +7107,7 @@ impl Pwrtc {
 
     #[doc="VDDA Under BOR Status"]
     #[inline] pub fn test_vdda_ubor(&self) -> bool {
-        self.vdda_ubor != 0
+        self.vdda_ubor() != 0
     }
 
     #[doc="VDDA Under BOR Status"]
@@ -7148,7 +7148,7 @@ impl Nmic {
 
     #[doc="External Pin NMI"]
     #[inline] pub fn test_external(&self) -> bool {
-        self.external != 0
+        self.external() != 0
     }
 
     #[doc="External Pin NMI"]
@@ -7167,7 +7167,7 @@ impl Nmic {
 
     #[doc="Power/Brown Out Event NMI"]
     #[inline] pub fn test_power(&self) -> bool {
-        self.power != 0
+        self.power() != 0
     }
 
     #[doc="Power/Brown Out Event NMI"]
@@ -7186,7 +7186,7 @@ impl Nmic {
 
     #[doc="Watch Dog Timer (WDT) 0 NMI"]
     #[inline] pub fn test_wdt0(&self) -> bool {
-        self.wdt0 != 0
+        self.wdt0() != 0
     }
 
     #[doc="Watch Dog Timer (WDT) 0 NMI"]
@@ -7205,7 +7205,7 @@ impl Nmic {
 
     #[doc="Watch Dog Timer (WDT) 1 NMI"]
     #[inline] pub fn test_wdt1(&self) -> bool {
-        self.wdt1 != 0
+        self.wdt1() != 0
     }
 
     #[doc="Watch Dog Timer (WDT) 1 NMI"]
@@ -7224,7 +7224,7 @@ impl Nmic {
 
     #[doc="Tamper Event NMI"]
     #[inline] pub fn test_tamper(&self) -> bool {
-        self.tamper != 0
+        self.tamper() != 0
     }
 
     #[doc="Tamper Event NMI"]
@@ -7243,7 +7243,7 @@ impl Nmic {
 
     #[doc="MOSC Failure NMI"]
     #[inline] pub fn test_moscfail(&self) -> bool {
-        self.moscfail != 0
+        self.moscfail() != 0
     }
 
     #[doc="MOSC Failure NMI"]
@@ -7288,7 +7288,7 @@ impl Moscctl {
 
     #[doc="Clock Validation for MOSC"]
     #[inline] pub fn test_cval(&self) -> bool {
-        self.cval != 0
+        self.cval() != 0
     }
 
     #[doc="Clock Validation for MOSC"]
@@ -7307,7 +7307,7 @@ impl Moscctl {
 
     #[doc="MOSC Failure Action"]
     #[inline] pub fn test_moscim(&self) -> bool {
-        self.moscim != 0
+        self.moscim() != 0
     }
 
     #[doc="MOSC Failure Action"]
@@ -7326,7 +7326,7 @@ impl Moscctl {
 
     #[doc="No Crystal Connected"]
     #[inline] pub fn test_noxtal(&self) -> bool {
-        self.noxtal != 0
+        self.noxtal() != 0
     }
 
     #[doc="No Crystal Connected"]
@@ -7345,7 +7345,7 @@ impl Moscctl {
 
     #[doc="Power Down"]
     #[inline] pub fn test_pwrdn(&self) -> bool {
-        self.pwrdn != 0
+        self.pwrdn() != 0
     }
 
     #[doc="Power Down"]
@@ -7364,7 +7364,7 @@ impl Moscctl {
 
     #[doc="Oscillator Range"]
     #[inline] pub fn test_oscrng(&self) -> bool {
-        self.oscrng != 0
+        self.oscrng() != 0
     }
 
     #[doc="Oscillator Range"]
@@ -7408,7 +7408,7 @@ impl Rsclkcfg {
 
     #[doc="PLL System Clock Divisor"]
     #[inline] pub fn test_psysdiv(&self) -> bool {
-        self.psysdiv != 0
+        self.psysdiv() != 0
     }
 
     #[doc="PLL System Clock Divisor"]
@@ -7427,7 +7427,7 @@ impl Rsclkcfg {
 
     #[doc="Oscillator System Clock Divisor"]
     #[inline] pub fn test_osysdiv(&self) -> bool {
-        self.osysdiv != 0
+        self.osysdiv() != 0
     }
 
     #[doc="Oscillator System Clock Divisor"]
@@ -7446,7 +7446,7 @@ impl Rsclkcfg {
 
     #[doc="Oscillator Source"]
     #[inline] pub fn test_oscsrc(&self) -> bool {
-        self.oscsrc != 0
+        self.oscsrc() != 0
     }
 
     #[doc="Oscillator Source"]
@@ -7465,7 +7465,7 @@ impl Rsclkcfg {
 
     #[doc="PLL Source"]
     #[inline] pub fn test_pllsrc(&self) -> bool {
-        self.pllsrc != 0
+        self.pllsrc() != 0
     }
 
     #[doc="PLL Source"]
@@ -7484,7 +7484,7 @@ impl Rsclkcfg {
 
     #[doc="Use PLL"]
     #[inline] pub fn test_usepll(&self) -> bool {
-        self.usepll != 0
+        self.usepll() != 0
     }
 
     #[doc="Use PLL"]
@@ -7503,7 +7503,7 @@ impl Rsclkcfg {
 
     #[doc="Auto Clock Gating"]
     #[inline] pub fn test_acg(&self) -> bool {
-        self.acg != 0
+        self.acg() != 0
     }
 
     #[doc="Auto Clock Gating"]
@@ -7522,7 +7522,7 @@ impl Rsclkcfg {
 
     #[doc="New PLLFREQ Accept"]
     #[inline] pub fn test_newfreq(&self) -> bool {
-        self.newfreq != 0
+        self.newfreq() != 0
     }
 
     #[doc="New PLLFREQ Accept"]
@@ -7541,7 +7541,7 @@ impl Rsclkcfg {
 
     #[doc="Memory Timing Register Update"]
     #[inline] pub fn test_memtimu(&self) -> bool {
-        self.memtimu != 0
+        self.memtimu() != 0
     }
 
     #[doc="Memory Timing Register Update"]
@@ -7588,7 +7588,7 @@ impl Memtim0 {
 
     #[doc="Flash Wait State"]
     #[inline] pub fn test_fws(&self) -> bool {
-        self.fws != 0
+        self.fws() != 0
     }
 
     #[doc="Flash Wait State"]
@@ -7607,7 +7607,7 @@ impl Memtim0 {
 
     #[doc="Flash Bank Clock Edge"]
     #[inline] pub fn test_fbce(&self) -> bool {
-        self.fbce != 0
+        self.fbce() != 0
     }
 
     #[doc="Flash Bank Clock Edge"]
@@ -7626,7 +7626,7 @@ impl Memtim0 {
 
     #[doc="Flash Bank Clock High Time"]
     #[inline] pub fn test_fbcht(&self) -> bool {
-        self.fbcht != 0
+        self.fbcht() != 0
     }
 
     #[doc="Flash Bank Clock High Time"]
@@ -7645,7 +7645,7 @@ impl Memtim0 {
 
     #[doc="EEPROM Wait States"]
     #[inline] pub fn test_ews(&self) -> bool {
-        self.ews != 0
+        self.ews() != 0
     }
 
     #[doc="EEPROM Wait States"]
@@ -7664,7 +7664,7 @@ impl Memtim0 {
 
     #[doc="EEPROM Bank Clock Edge"]
     #[inline] pub fn test_ebce(&self) -> bool {
-        self.ebce != 0
+        self.ebce() != 0
     }
 
     #[doc="EEPROM Bank Clock Edge"]
@@ -7683,7 +7683,7 @@ impl Memtim0 {
 
     #[doc="EEPROM Clock High Time"]
     #[inline] pub fn test_ebcht(&self) -> bool {
-        self.ebcht != 0
+        self.ebcht() != 0
     }
 
     #[doc="EEPROM Clock High Time"]
@@ -7728,7 +7728,7 @@ impl Altclkcfg {
 
     #[doc="Alternate Clock Source"]
     #[inline] pub fn test_altclk(&self) -> bool {
-        self.altclk != 0
+        self.altclk() != 0
     }
 
     #[doc="Alternate Clock Source"]
@@ -7768,7 +7768,7 @@ impl Dsclkcfg {
 
     #[doc="Deep Sleep Clock Divisor"]
     #[inline] pub fn test_dssysdiv(&self) -> bool {
-        self.dssysdiv != 0
+        self.dssysdiv() != 0
     }
 
     #[doc="Deep Sleep Clock Divisor"]
@@ -7787,7 +7787,7 @@ impl Dsclkcfg {
 
     #[doc="Deep Sleep Oscillator Source"]
     #[inline] pub fn test_dsoscsrc(&self) -> bool {
-        self.dsoscsrc != 0
+        self.dsoscsrc() != 0
     }
 
     #[doc="Deep Sleep Oscillator Source"]
@@ -7806,7 +7806,7 @@ impl Dsclkcfg {
 
     #[doc="MOSC Disable Power Down"]
     #[inline] pub fn test_moscdpd(&self) -> bool {
-        self.moscdpd != 0
+        self.moscdpd() != 0
     }
 
     #[doc="MOSC Disable Power Down"]
@@ -7825,7 +7825,7 @@ impl Dsclkcfg {
 
     #[doc="PIOSC Power Down"]
     #[inline] pub fn test_pioscpd(&self) -> bool {
-        self.pioscpd != 0
+        self.pioscpd() != 0
     }
 
     #[doc="PIOSC Power Down"]
@@ -7868,7 +7868,7 @@ impl Divsclk {
 
     #[doc="Divisor Value"]
     #[inline] pub fn test_div(&self) -> bool {
-        self.div != 0
+        self.div() != 0
     }
 
     #[doc="Divisor Value"]
@@ -7887,7 +7887,7 @@ impl Divsclk {
 
     #[doc="Clock Source"]
     #[inline] pub fn test_src(&self) -> bool {
-        self.src != 0
+        self.src() != 0
     }
 
     #[doc="Clock Source"]
@@ -7906,7 +7906,7 @@ impl Divsclk {
 
     #[doc="DIVSCLK Enable"]
     #[inline] pub fn test_en(&self) -> bool {
-        self.en != 0
+        self.en() != 0
     }
 
     #[doc="DIVSCLK Enable"]
@@ -7948,7 +7948,7 @@ impl Sysprop {
 
     #[doc="FPU Present"]
     #[inline] pub fn test_fpu(&self) -> bool {
-        self.fpu != 0
+        self.fpu() != 0
     }
 
     #[doc="FPU Present"]
@@ -7988,7 +7988,7 @@ impl Piosccal {
 
     #[doc="User Trim Value"]
     #[inline] pub fn test_ut(&self) -> bool {
-        self.ut != 0
+        self.ut() != 0
     }
 
     #[doc="User Trim Value"]
@@ -8007,7 +8007,7 @@ impl Piosccal {
 
     #[doc="Update Trim"]
     #[inline] pub fn test_update(&self) -> bool {
-        self.update != 0
+        self.update() != 0
     }
 
     #[doc="Update Trim"]
@@ -8026,7 +8026,7 @@ impl Piosccal {
 
     #[doc="Start Calibration"]
     #[inline] pub fn test_cal(&self) -> bool {
-        self.cal != 0
+        self.cal() != 0
     }
 
     #[doc="Start Calibration"]
@@ -8045,7 +8045,7 @@ impl Piosccal {
 
     #[doc="Use User Trim Value"]
     #[inline] pub fn test_uten(&self) -> bool {
-        self.uten != 0
+        self.uten() != 0
     }
 
     #[doc="Use User Trim Value"]
@@ -8088,7 +8088,7 @@ impl Pioscstat {
 
     #[doc="Calibration Trim Value"]
     #[inline] pub fn test_ct(&self) -> bool {
-        self.ct != 0
+        self.ct() != 0
     }
 
     #[doc="Calibration Trim Value"]
@@ -8107,7 +8107,7 @@ impl Pioscstat {
 
     #[doc="Calibration Result"]
     #[inline] pub fn test_cr(&self) -> bool {
-        self.cr != 0
+        self.cr() != 0
     }
 
     #[doc="Calibration Result"]
@@ -8126,7 +8126,7 @@ impl Pioscstat {
 
     #[doc="Default Trim Value"]
     #[inline] pub fn test_dt(&self) -> bool {
-        self.dt != 0
+        self.dt() != 0
     }
 
     #[doc="Default Trim Value"]
@@ -8168,7 +8168,7 @@ impl Pllfreq0 {
 
     #[doc="PLL M Integer Value"]
     #[inline] pub fn test_mint(&self) -> bool {
-        self.mint != 0
+        self.mint() != 0
     }
 
     #[doc="PLL M Integer Value"]
@@ -8187,7 +8187,7 @@ impl Pllfreq0 {
 
     #[doc="PLL M Fractional Value"]
     #[inline] pub fn test_mfrac(&self) -> bool {
-        self.mfrac != 0
+        self.mfrac() != 0
     }
 
     #[doc="PLL M Fractional Value"]
@@ -8206,7 +8206,7 @@ impl Pllfreq0 {
 
     #[doc="PLL Power"]
     #[inline] pub fn test_pllpwr(&self) -> bool {
-        self.pllpwr != 0
+        self.pllpwr() != 0
     }
 
     #[doc="PLL Power"]
@@ -8248,7 +8248,7 @@ impl Pllfreq1 {
 
     #[doc="PLL N Value"]
     #[inline] pub fn test_n(&self) -> bool {
-        self.n != 0
+        self.n() != 0
     }
 
     #[doc="PLL N Value"]
@@ -8267,7 +8267,7 @@ impl Pllfreq1 {
 
     #[doc="PLL Q Value"]
     #[inline] pub fn test_q(&self) -> bool {
-        self.q != 0
+        self.q() != 0
     }
 
     #[doc="PLL Q Value"]
@@ -8308,7 +8308,7 @@ impl Pllstat {
 
     #[doc="PLL Lock"]
     #[inline] pub fn test_lock(&self) -> bool {
-        self.lock != 0
+        self.lock() != 0
     }
 
     #[doc="PLL Lock"]
@@ -8348,7 +8348,7 @@ impl Slppwrcfg {
 
     #[doc="SRAM Power Modes"]
     #[inline] pub fn test_srampm(&self) -> bool {
-        self.srampm != 0
+        self.srampm() != 0
     }
 
     #[doc="SRAM Power Modes"]
@@ -8367,7 +8367,7 @@ impl Slppwrcfg {
 
     #[doc="Flash Power Modes"]
     #[inline] pub fn test_flashpm(&self) -> bool {
-        self.flashpm != 0
+        self.flashpm() != 0
     }
 
     #[doc="Flash Power Modes"]
@@ -8408,7 +8408,7 @@ impl Dslppwrcfg {
 
     #[doc="SRAM Power Modes"]
     #[inline] pub fn test_srampm(&self) -> bool {
-        self.srampm != 0
+        self.srampm() != 0
     }
 
     #[doc="SRAM Power Modes"]
@@ -8427,7 +8427,7 @@ impl Dslppwrcfg {
 
     #[doc="Flash Power Modes"]
     #[inline] pub fn test_flashpm(&self) -> bool {
-        self.flashpm != 0
+        self.flashpm() != 0
     }
 
     #[doc="Flash Power Modes"]
@@ -8446,7 +8446,7 @@ impl Dslppwrcfg {
 
     #[doc="Temperature Sense Power Down"]
     #[inline] pub fn test_tspd(&self) -> bool {
-        self.tspd != 0
+        self.tspd() != 0
     }
 
     #[doc="Temperature Sense Power Down"]
@@ -8465,7 +8465,7 @@ impl Dslppwrcfg {
 
     #[doc="LDO Sleep Mode"]
     #[inline] pub fn test_ldosm(&self) -> bool {
-        self.ldosm != 0
+        self.ldosm() != 0
     }
 
     #[doc="LDO Sleep Mode"]
@@ -8508,7 +8508,7 @@ impl Nvmstat {
 
     #[doc="32 Word Flash Write Buffer Available"]
     #[inline] pub fn test_fwb(&self) -> bool {
-        self.fwb != 0
+        self.fwb() != 0
     }
 
     #[doc="32 Word Flash Write Buffer Available"]
@@ -8548,7 +8548,7 @@ impl Ldospctl {
 
     #[doc="LDO Output Voltage"]
     #[inline] pub fn test_vldo(&self) -> bool {
-        self.vldo != 0
+        self.vldo() != 0
     }
 
     #[doc="LDO Output Voltage"]
@@ -8567,7 +8567,7 @@ impl Ldospctl {
 
     #[doc="Voltage Adjust Enable"]
     #[inline] pub fn test_vadjen(&self) -> bool {
-        self.vadjen != 0
+        self.vadjen() != 0
     }
 
     #[doc="Voltage Adjust Enable"]
@@ -8608,7 +8608,7 @@ impl Ldodpctl {
 
     #[doc="LDO Output Voltage"]
     #[inline] pub fn test_vldo(&self) -> bool {
-        self.vldo != 0
+        self.vldo() != 0
     }
 
     #[doc="LDO Output Voltage"]
@@ -8627,7 +8627,7 @@ impl Ldodpctl {
 
     #[doc="Voltage Adjust Enable"]
     #[inline] pub fn test_vadjen(&self) -> bool {
-        self.vadjen != 0
+        self.vadjen() != 0
     }
 
     #[doc="Voltage Adjust Enable"]
@@ -8668,7 +8668,7 @@ impl Resbehavctl {
 
     #[doc="External RST Pin Operation"]
     #[inline] pub fn test_extres(&self) -> bool {
-        self.extres != 0
+        self.extres() != 0
     }
 
     #[doc="External RST Pin Operation"]
@@ -8687,7 +8687,7 @@ impl Resbehavctl {
 
     #[doc="BOR Reset operation"]
     #[inline] pub fn test_bor(&self) -> bool {
-        self.bor != 0
+        self.bor() != 0
     }
 
     #[doc="BOR Reset operation"]
@@ -8706,7 +8706,7 @@ impl Resbehavctl {
 
     #[doc="Watchdog 0 Reset Operation"]
     #[inline] pub fn test_wdog0(&self) -> bool {
-        self.wdog0 != 0
+        self.wdog0() != 0
     }
 
     #[doc="Watchdog 0 Reset Operation"]
@@ -8725,7 +8725,7 @@ impl Resbehavctl {
 
     #[doc="Watchdog 1 Reset Operation"]
     #[inline] pub fn test_wdog1(&self) -> bool {
-        self.wdog1 != 0
+        self.wdog1() != 0
     }
 
     #[doc="Watchdog 1 Reset Operation"]
@@ -8768,7 +8768,7 @@ impl Hssr {
 
     #[doc="Command Descriptor Pointer"]
     #[inline] pub fn test_cdoff(&self) -> bool {
-        self.cdoff != 0
+        self.cdoff() != 0
     }
 
     #[doc="Command Descriptor Pointer"]
@@ -8787,7 +8787,7 @@ impl Hssr {
 
     #[doc="Write Key"]
     #[inline] pub fn test_key(&self) -> bool {
-        self.key != 0
+        self.key() != 0
     }
 
     #[doc="Write Key"]
@@ -8828,7 +8828,7 @@ impl Usbpds {
 
     #[doc="Power Domain Status"]
     #[inline] pub fn test_pwrstat(&self) -> bool {
-        self.pwrstat != 0
+        self.pwrstat() != 0
     }
 
     #[doc="Power Domain Status"]
@@ -8847,7 +8847,7 @@ impl Usbpds {
 
     #[doc="Memory Array Power Status"]
     #[inline] pub fn test_memstat(&self) -> bool {
-        self.memstat != 0
+        self.memstat() != 0
     }
 
     #[doc="Memory Array Power Status"]
@@ -8888,7 +8888,7 @@ impl Usbmpc {
 
     #[doc="Memory Array Power Control"]
     #[inline] pub fn test_pwrctl(&self) -> bool {
-        self.pwrctl != 0
+        self.pwrctl() != 0
     }
 
     #[doc="Memory Array Power Control"]
@@ -8928,7 +8928,7 @@ impl Emacpds {
 
     #[doc="Power Domain Status"]
     #[inline] pub fn test_pwrstat(&self) -> bool {
-        self.pwrstat != 0
+        self.pwrstat() != 0
     }
 
     #[doc="Power Domain Status"]
@@ -8947,7 +8947,7 @@ impl Emacpds {
 
     #[doc="Memory Array Power Status"]
     #[inline] pub fn test_memstat(&self) -> bool {
-        self.memstat != 0
+        self.memstat() != 0
     }
 
     #[doc="Memory Array Power Status"]
@@ -8988,7 +8988,7 @@ impl Emacmpc {
 
     #[doc="Memory Array Power Control"]
     #[inline] pub fn test_pwrctl(&self) -> bool {
-        self.pwrctl != 0
+        self.pwrctl() != 0
     }
 
     #[doc="Memory Array Power Control"]
@@ -9028,7 +9028,7 @@ impl Ppwd {
 
     #[doc="Watchdog Timer 0 Present"]
     #[inline] pub fn test_p0(&self) -> bool {
-        self.p0 != 0
+        self.p0() != 0
     }
 
     #[doc="Watchdog Timer 0 Present"]
@@ -9047,7 +9047,7 @@ impl Ppwd {
 
     #[doc="Watchdog Timer 1 Present"]
     #[inline] pub fn test_p1(&self) -> bool {
-        self.p1 != 0
+        self.p1() != 0
     }
 
     #[doc="Watchdog Timer 1 Present"]
@@ -9088,7 +9088,7 @@ impl Pptimer {
 
     #[doc="16/32-Bit General-Purpose Timer 0 Present"]
     #[inline] pub fn test_p0(&self) -> bool {
-        self.p0 != 0
+        self.p0() != 0
     }
 
     #[doc="16/32-Bit General-Purpose Timer 0 Present"]
@@ -9107,7 +9107,7 @@ impl Pptimer {
 
     #[doc="16/32-Bit General-Purpose Timer 1 Present"]
     #[inline] pub fn test_p1(&self) -> bool {
-        self.p1 != 0
+        self.p1() != 0
     }
 
     #[doc="16/32-Bit General-Purpose Timer 1 Present"]
@@ -9126,7 +9126,7 @@ impl Pptimer {
 
     #[doc="16/32-Bit General-Purpose Timer 2 Present"]
     #[inline] pub fn test_p2(&self) -> bool {
-        self.p2 != 0
+        self.p2() != 0
     }
 
     #[doc="16/32-Bit General-Purpose Timer 2 Present"]
@@ -9145,7 +9145,7 @@ impl Pptimer {
 
     #[doc="16/32-Bit General-Purpose Timer 3 Present"]
     #[inline] pub fn test_p3(&self) -> bool {
-        self.p3 != 0
+        self.p3() != 0
     }
 
     #[doc="16/32-Bit General-Purpose Timer 3 Present"]
@@ -9164,7 +9164,7 @@ impl Pptimer {
 
     #[doc="16/32-Bit General-Purpose Timer 4 Present"]
     #[inline] pub fn test_p4(&self) -> bool {
-        self.p4 != 0
+        self.p4() != 0
     }
 
     #[doc="16/32-Bit General-Purpose Timer 4 Present"]
@@ -9183,7 +9183,7 @@ impl Pptimer {
 
     #[doc="16/32-Bit General-Purpose Timer 5 Present"]
     #[inline] pub fn test_p5(&self) -> bool {
-        self.p5 != 0
+        self.p5() != 0
     }
 
     #[doc="16/32-Bit General-Purpose Timer 5 Present"]
@@ -9202,7 +9202,7 @@ impl Pptimer {
 
     #[doc="16/32-Bit General-Purpose Timer 6 Present"]
     #[inline] pub fn test_p6(&self) -> bool {
-        self.p6 != 0
+        self.p6() != 0
     }
 
     #[doc="16/32-Bit General-Purpose Timer 6 Present"]
@@ -9221,7 +9221,7 @@ impl Pptimer {
 
     #[doc="16/32-Bit General-Purpose Timer 7 Present"]
     #[inline] pub fn test_p7(&self) -> bool {
-        self.p7 != 0
+        self.p7() != 0
     }
 
     #[doc="16/32-Bit General-Purpose Timer 7 Present"]
@@ -9268,7 +9268,7 @@ impl Ppgpio {
 
     #[doc="GPIO Port A Present"]
     #[inline] pub fn test_p0(&self) -> bool {
-        self.p0 != 0
+        self.p0() != 0
     }
 
     #[doc="GPIO Port A Present"]
@@ -9287,7 +9287,7 @@ impl Ppgpio {
 
     #[doc="GPIO Port B Present"]
     #[inline] pub fn test_p1(&self) -> bool {
-        self.p1 != 0
+        self.p1() != 0
     }
 
     #[doc="GPIO Port B Present"]
@@ -9306,7 +9306,7 @@ impl Ppgpio {
 
     #[doc="GPIO Port C Present"]
     #[inline] pub fn test_p2(&self) -> bool {
-        self.p2 != 0
+        self.p2() != 0
     }
 
     #[doc="GPIO Port C Present"]
@@ -9325,7 +9325,7 @@ impl Ppgpio {
 
     #[doc="GPIO Port D Present"]
     #[inline] pub fn test_p3(&self) -> bool {
-        self.p3 != 0
+        self.p3() != 0
     }
 
     #[doc="GPIO Port D Present"]
@@ -9344,7 +9344,7 @@ impl Ppgpio {
 
     #[doc="GPIO Port E Present"]
     #[inline] pub fn test_p4(&self) -> bool {
-        self.p4 != 0
+        self.p4() != 0
     }
 
     #[doc="GPIO Port E Present"]
@@ -9363,7 +9363,7 @@ impl Ppgpio {
 
     #[doc="GPIO Port F Present"]
     #[inline] pub fn test_p5(&self) -> bool {
-        self.p5 != 0
+        self.p5() != 0
     }
 
     #[doc="GPIO Port F Present"]
@@ -9382,7 +9382,7 @@ impl Ppgpio {
 
     #[doc="GPIO Port G Present"]
     #[inline] pub fn test_p6(&self) -> bool {
-        self.p6 != 0
+        self.p6() != 0
     }
 
     #[doc="GPIO Port G Present"]
@@ -9401,7 +9401,7 @@ impl Ppgpio {
 
     #[doc="GPIO Port H Present"]
     #[inline] pub fn test_p7(&self) -> bool {
-        self.p7 != 0
+        self.p7() != 0
     }
 
     #[doc="GPIO Port H Present"]
@@ -9420,7 +9420,7 @@ impl Ppgpio {
 
     #[doc="GPIO Port J Present"]
     #[inline] pub fn test_p8(&self) -> bool {
-        self.p8 != 0
+        self.p8() != 0
     }
 
     #[doc="GPIO Port J Present"]
@@ -9439,7 +9439,7 @@ impl Ppgpio {
 
     #[doc="GPIO Port K Present"]
     #[inline] pub fn test_p9(&self) -> bool {
-        self.p9 != 0
+        self.p9() != 0
     }
 
     #[doc="GPIO Port K Present"]
@@ -9458,7 +9458,7 @@ impl Ppgpio {
 
     #[doc="GPIO Port L Present"]
     #[inline] pub fn test_p10(&self) -> bool {
-        self.p10 != 0
+        self.p10() != 0
     }
 
     #[doc="GPIO Port L Present"]
@@ -9477,7 +9477,7 @@ impl Ppgpio {
 
     #[doc="GPIO Port M Present"]
     #[inline] pub fn test_p11(&self) -> bool {
-        self.p11 != 0
+        self.p11() != 0
     }
 
     #[doc="GPIO Port M Present"]
@@ -9496,7 +9496,7 @@ impl Ppgpio {
 
     #[doc="GPIO Port N Present"]
     #[inline] pub fn test_p12(&self) -> bool {
-        self.p12 != 0
+        self.p12() != 0
     }
 
     #[doc="GPIO Port N Present"]
@@ -9515,7 +9515,7 @@ impl Ppgpio {
 
     #[doc="GPIO Port P Present"]
     #[inline] pub fn test_p13(&self) -> bool {
-        self.p13 != 0
+        self.p13() != 0
     }
 
     #[doc="GPIO Port P Present"]
@@ -9534,7 +9534,7 @@ impl Ppgpio {
 
     #[doc="GPIO Port Q Present"]
     #[inline] pub fn test_p14(&self) -> bool {
-        self.p14 != 0
+        self.p14() != 0
     }
 
     #[doc="GPIO Port Q Present"]
@@ -9588,7 +9588,7 @@ impl Ppdma {
 
     #[doc="uDMA Module Present"]
     #[inline] pub fn test_p0(&self) -> bool {
-        self.p0 != 0
+        self.p0() != 0
     }
 
     #[doc="uDMA Module Present"]
@@ -9628,7 +9628,7 @@ impl Ppepi {
 
     #[doc="EPI Module Present"]
     #[inline] pub fn test_p0(&self) -> bool {
-        self.p0 != 0
+        self.p0() != 0
     }
 
     #[doc="EPI Module Present"]
@@ -9668,7 +9668,7 @@ impl Pphib {
 
     #[doc="Hibernation Module Present"]
     #[inline] pub fn test_p0(&self) -> bool {
-        self.p0 != 0
+        self.p0() != 0
     }
 
     #[doc="Hibernation Module Present"]
@@ -9708,7 +9708,7 @@ impl Ppuart {
 
     #[doc="UART Module 0 Present"]
     #[inline] pub fn test_p0(&self) -> bool {
-        self.p0 != 0
+        self.p0() != 0
     }
 
     #[doc="UART Module 0 Present"]
@@ -9727,7 +9727,7 @@ impl Ppuart {
 
     #[doc="UART Module 1 Present"]
     #[inline] pub fn test_p1(&self) -> bool {
-        self.p1 != 0
+        self.p1() != 0
     }
 
     #[doc="UART Module 1 Present"]
@@ -9746,7 +9746,7 @@ impl Ppuart {
 
     #[doc="UART Module 2 Present"]
     #[inline] pub fn test_p2(&self) -> bool {
-        self.p2 != 0
+        self.p2() != 0
     }
 
     #[doc="UART Module 2 Present"]
@@ -9765,7 +9765,7 @@ impl Ppuart {
 
     #[doc="UART Module 3 Present"]
     #[inline] pub fn test_p3(&self) -> bool {
-        self.p3 != 0
+        self.p3() != 0
     }
 
     #[doc="UART Module 3 Present"]
@@ -9784,7 +9784,7 @@ impl Ppuart {
 
     #[doc="UART Module 4 Present"]
     #[inline] pub fn test_p4(&self) -> bool {
-        self.p4 != 0
+        self.p4() != 0
     }
 
     #[doc="UART Module 4 Present"]
@@ -9803,7 +9803,7 @@ impl Ppuart {
 
     #[doc="UART Module 5 Present"]
     #[inline] pub fn test_p5(&self) -> bool {
-        self.p5 != 0
+        self.p5() != 0
     }
 
     #[doc="UART Module 5 Present"]
@@ -9822,7 +9822,7 @@ impl Ppuart {
 
     #[doc="UART Module 6 Present"]
     #[inline] pub fn test_p6(&self) -> bool {
-        self.p6 != 0
+        self.p6() != 0
     }
 
     #[doc="UART Module 6 Present"]
@@ -9841,7 +9841,7 @@ impl Ppuart {
 
     #[doc="UART Module 7 Present"]
     #[inline] pub fn test_p7(&self) -> bool {
-        self.p7 != 0
+        self.p7() != 0
     }
 
     #[doc="UART Module 7 Present"]
@@ -9888,7 +9888,7 @@ impl Ppssi {
 
     #[doc="SSI Module 0 Present"]
     #[inline] pub fn test_p0(&self) -> bool {
-        self.p0 != 0
+        self.p0() != 0
     }
 
     #[doc="SSI Module 0 Present"]
@@ -9907,7 +9907,7 @@ impl Ppssi {
 
     #[doc="SSI Module 1 Present"]
     #[inline] pub fn test_p1(&self) -> bool {
-        self.p1 != 0
+        self.p1() != 0
     }
 
     #[doc="SSI Module 1 Present"]
@@ -9926,7 +9926,7 @@ impl Ppssi {
 
     #[doc="SSI Module 2 Present"]
     #[inline] pub fn test_p2(&self) -> bool {
-        self.p2 != 0
+        self.p2() != 0
     }
 
     #[doc="SSI Module 2 Present"]
@@ -9945,7 +9945,7 @@ impl Ppssi {
 
     #[doc="SSI Module 3 Present"]
     #[inline] pub fn test_p3(&self) -> bool {
-        self.p3 != 0
+        self.p3() != 0
     }
 
     #[doc="SSI Module 3 Present"]
@@ -9988,7 +9988,7 @@ impl Ppi2c {
 
     #[doc="I2C Module 0 Present"]
     #[inline] pub fn test_p0(&self) -> bool {
-        self.p0 != 0
+        self.p0() != 0
     }
 
     #[doc="I2C Module 0 Present"]
@@ -10007,7 +10007,7 @@ impl Ppi2c {
 
     #[doc="I2C Module 1 Present"]
     #[inline] pub fn test_p1(&self) -> bool {
-        self.p1 != 0
+        self.p1() != 0
     }
 
     #[doc="I2C Module 1 Present"]
@@ -10026,7 +10026,7 @@ impl Ppi2c {
 
     #[doc="I2C Module 2 Present"]
     #[inline] pub fn test_p2(&self) -> bool {
-        self.p2 != 0
+        self.p2() != 0
     }
 
     #[doc="I2C Module 2 Present"]
@@ -10045,7 +10045,7 @@ impl Ppi2c {
 
     #[doc="I2C Module 3 Present"]
     #[inline] pub fn test_p3(&self) -> bool {
-        self.p3 != 0
+        self.p3() != 0
     }
 
     #[doc="I2C Module 3 Present"]
@@ -10064,7 +10064,7 @@ impl Ppi2c {
 
     #[doc="I2C Module 4 Present"]
     #[inline] pub fn test_p4(&self) -> bool {
-        self.p4 != 0
+        self.p4() != 0
     }
 
     #[doc="I2C Module 4 Present"]
@@ -10083,7 +10083,7 @@ impl Ppi2c {
 
     #[doc="I2C Module 5 Present"]
     #[inline] pub fn test_p5(&self) -> bool {
-        self.p5 != 0
+        self.p5() != 0
     }
 
     #[doc="I2C Module 5 Present"]
@@ -10102,7 +10102,7 @@ impl Ppi2c {
 
     #[doc="I2C Module 6 Present"]
     #[inline] pub fn test_p6(&self) -> bool {
-        self.p6 != 0
+        self.p6() != 0
     }
 
     #[doc="I2C Module 6 Present"]
@@ -10121,7 +10121,7 @@ impl Ppi2c {
 
     #[doc="I2C Module 7 Present"]
     #[inline] pub fn test_p7(&self) -> bool {
-        self.p7 != 0
+        self.p7() != 0
     }
 
     #[doc="I2C Module 7 Present"]
@@ -10140,7 +10140,7 @@ impl Ppi2c {
 
     #[doc="I2C Module 8 Present"]
     #[inline] pub fn test_p8(&self) -> bool {
-        self.p8 != 0
+        self.p8() != 0
     }
 
     #[doc="I2C Module 8 Present"]
@@ -10159,7 +10159,7 @@ impl Ppi2c {
 
     #[doc="I2C Module 9 Present"]
     #[inline] pub fn test_p9(&self) -> bool {
-        self.p9 != 0
+        self.p9() != 0
     }
 
     #[doc="I2C Module 9 Present"]
@@ -10208,7 +10208,7 @@ impl Ppusb {
 
     #[doc="USB Module Present"]
     #[inline] pub fn test_p0(&self) -> bool {
-        self.p0 != 0
+        self.p0() != 0
     }
 
     #[doc="USB Module Present"]
@@ -10248,7 +10248,7 @@ impl Ppephy {
 
     #[doc="Ethernet PHY Module Present"]
     #[inline] pub fn test_p0(&self) -> bool {
-        self.p0 != 0
+        self.p0() != 0
     }
 
     #[doc="Ethernet PHY Module Present"]
@@ -10288,7 +10288,7 @@ impl Ppcan {
 
     #[doc="CAN Module 0 Present"]
     #[inline] pub fn test_p0(&self) -> bool {
-        self.p0 != 0
+        self.p0() != 0
     }
 
     #[doc="CAN Module 0 Present"]
@@ -10307,7 +10307,7 @@ impl Ppcan {
 
     #[doc="CAN Module 1 Present"]
     #[inline] pub fn test_p1(&self) -> bool {
-        self.p1 != 0
+        self.p1() != 0
     }
 
     #[doc="CAN Module 1 Present"]
@@ -10348,7 +10348,7 @@ impl Ppadc {
 
     #[doc="ADC Module 0 Present"]
     #[inline] pub fn test_p0(&self) -> bool {
-        self.p0 != 0
+        self.p0() != 0
     }
 
     #[doc="ADC Module 0 Present"]
@@ -10367,7 +10367,7 @@ impl Ppadc {
 
     #[doc="ADC Module 1 Present"]
     #[inline] pub fn test_p1(&self) -> bool {
-        self.p1 != 0
+        self.p1() != 0
     }
 
     #[doc="ADC Module 1 Present"]
@@ -10408,7 +10408,7 @@ impl Ppacmp {
 
     #[doc="Analog Comparator Module Present"]
     #[inline] pub fn test_p0(&self) -> bool {
-        self.p0 != 0
+        self.p0() != 0
     }
 
     #[doc="Analog Comparator Module Present"]
@@ -10448,7 +10448,7 @@ impl Pppwm {
 
     #[doc="PWM Module 0 Present"]
     #[inline] pub fn test_p0(&self) -> bool {
-        self.p0 != 0
+        self.p0() != 0
     }
 
     #[doc="PWM Module 0 Present"]
@@ -10488,7 +10488,7 @@ impl Ppqei {
 
     #[doc="QEI Module 0 Present"]
     #[inline] pub fn test_p0(&self) -> bool {
-        self.p0 != 0
+        self.p0() != 0
     }
 
     #[doc="QEI Module 0 Present"]
@@ -10528,7 +10528,7 @@ impl Pplpc {
 
     #[doc="LPC Module Present"]
     #[inline] pub fn test_p0(&self) -> bool {
-        self.p0 != 0
+        self.p0() != 0
     }
 
     #[doc="LPC Module Present"]
@@ -10568,7 +10568,7 @@ impl Pppeci {
 
     #[doc="PECI Module Present"]
     #[inline] pub fn test_p0(&self) -> bool {
-        self.p0 != 0
+        self.p0() != 0
     }
 
     #[doc="PECI Module Present"]
@@ -10608,7 +10608,7 @@ impl Ppfan {
 
     #[doc="FAN Module 0 Present"]
     #[inline] pub fn test_p0(&self) -> bool {
-        self.p0 != 0
+        self.p0() != 0
     }
 
     #[doc="FAN Module 0 Present"]
@@ -10648,7 +10648,7 @@ impl Ppeeprom {
 
     #[doc="EEPROM Module Present"]
     #[inline] pub fn test_p0(&self) -> bool {
-        self.p0 != 0
+        self.p0() != 0
     }
 
     #[doc="EEPROM Module Present"]
@@ -10688,7 +10688,7 @@ impl Ppwtimer {
 
     #[doc="32/64-Bit Wide General-Purpose Timer 0 Present"]
     #[inline] pub fn test_p0(&self) -> bool {
-        self.p0 != 0
+        self.p0() != 0
     }
 
     #[doc="32/64-Bit Wide General-Purpose Timer 0 Present"]
@@ -10728,7 +10728,7 @@ impl Pprts {
 
     #[doc="RTS Module Present"]
     #[inline] pub fn test_p0(&self) -> bool {
-        self.p0 != 0
+        self.p0() != 0
     }
 
     #[doc="RTS Module Present"]
@@ -10768,7 +10768,7 @@ impl Ppccm {
 
     #[doc="CRC and Cryptographic Modules Present"]
     #[inline] pub fn test_p0(&self) -> bool {
-        self.p0 != 0
+        self.p0() != 0
     }
 
     #[doc="CRC and Cryptographic Modules Present"]
@@ -10808,7 +10808,7 @@ impl Pplcd {
 
     #[doc="LCD Module Present"]
     #[inline] pub fn test_p0(&self) -> bool {
-        self.p0 != 0
+        self.p0() != 0
     }
 
     #[doc="LCD Module Present"]
@@ -10848,7 +10848,7 @@ impl Ppowire {
 
     #[doc="1-Wire Module Present"]
     #[inline] pub fn test_p0(&self) -> bool {
-        self.p0 != 0
+        self.p0() != 0
     }
 
     #[doc="1-Wire Module Present"]
@@ -10888,7 +10888,7 @@ impl Ppemac {
 
     #[doc="Ethernet Controller Module Present"]
     #[inline] pub fn test_p0(&self) -> bool {
-        self.p0 != 0
+        self.p0() != 0
     }
 
     #[doc="Ethernet Controller Module Present"]
@@ -10928,7 +10928,7 @@ impl Pphim {
 
     #[doc="HIM Module Present"]
     #[inline] pub fn test_p0(&self) -> bool {
-        self.p0 != 0
+        self.p0() != 0
     }
 
     #[doc="HIM Module Present"]
@@ -10968,7 +10968,7 @@ impl Srwd {
 
     #[doc="Watchdog Timer 0 Software Reset"]
     #[inline] pub fn test_r0(&self) -> bool {
-        self.r0 != 0
+        self.r0() != 0
     }
 
     #[doc="Watchdog Timer 0 Software Reset"]
@@ -10987,7 +10987,7 @@ impl Srwd {
 
     #[doc="Watchdog Timer 1 Software Reset"]
     #[inline] pub fn test_r1(&self) -> bool {
-        self.r1 != 0
+        self.r1() != 0
     }
 
     #[doc="Watchdog Timer 1 Software Reset"]
@@ -11028,7 +11028,7 @@ impl Srtimer {
 
     #[doc="16/32-Bit General-Purpose Timer 0 Software Reset"]
     #[inline] pub fn test_r0(&self) -> bool {
-        self.r0 != 0
+        self.r0() != 0
     }
 
     #[doc="16/32-Bit General-Purpose Timer 0 Software Reset"]
@@ -11047,7 +11047,7 @@ impl Srtimer {
 
     #[doc="16/32-Bit General-Purpose Timer 1 Software Reset"]
     #[inline] pub fn test_r1(&self) -> bool {
-        self.r1 != 0
+        self.r1() != 0
     }
 
     #[doc="16/32-Bit General-Purpose Timer 1 Software Reset"]
@@ -11066,7 +11066,7 @@ impl Srtimer {
 
     #[doc="16/32-Bit General-Purpose Timer 2 Software Reset"]
     #[inline] pub fn test_r2(&self) -> bool {
-        self.r2 != 0
+        self.r2() != 0
     }
 
     #[doc="16/32-Bit General-Purpose Timer 2 Software Reset"]
@@ -11085,7 +11085,7 @@ impl Srtimer {
 
     #[doc="16/32-Bit General-Purpose Timer 3 Software Reset"]
     #[inline] pub fn test_r3(&self) -> bool {
-        self.r3 != 0
+        self.r3() != 0
     }
 
     #[doc="16/32-Bit General-Purpose Timer 3 Software Reset"]
@@ -11104,7 +11104,7 @@ impl Srtimer {
 
     #[doc="16/32-Bit General-Purpose Timer 4 Software Reset"]
     #[inline] pub fn test_r4(&self) -> bool {
-        self.r4 != 0
+        self.r4() != 0
     }
 
     #[doc="16/32-Bit General-Purpose Timer 4 Software Reset"]
@@ -11123,7 +11123,7 @@ impl Srtimer {
 
     #[doc="16/32-Bit General-Purpose Timer 5 Software Reset"]
     #[inline] pub fn test_r5(&self) -> bool {
-        self.r5 != 0
+        self.r5() != 0
     }
 
     #[doc="16/32-Bit General-Purpose Timer 5 Software Reset"]
@@ -11142,7 +11142,7 @@ impl Srtimer {
 
     #[doc="16/32-Bit General-Purpose Timer 6 Software Reset"]
     #[inline] pub fn test_r6(&self) -> bool {
-        self.r6 != 0
+        self.r6() != 0
     }
 
     #[doc="16/32-Bit General-Purpose Timer 6 Software Reset"]
@@ -11161,7 +11161,7 @@ impl Srtimer {
 
     #[doc="16/32-Bit General-Purpose Timer 7 Software Reset"]
     #[inline] pub fn test_r7(&self) -> bool {
-        self.r7 != 0
+        self.r7() != 0
     }
 
     #[doc="16/32-Bit General-Purpose Timer 7 Software Reset"]
@@ -11208,7 +11208,7 @@ impl Srgpio {
 
     #[doc="GPIO Port A Software Reset"]
     #[inline] pub fn test_r0(&self) -> bool {
-        self.r0 != 0
+        self.r0() != 0
     }
 
     #[doc="GPIO Port A Software Reset"]
@@ -11227,7 +11227,7 @@ impl Srgpio {
 
     #[doc="GPIO Port B Software Reset"]
     #[inline] pub fn test_r1(&self) -> bool {
-        self.r1 != 0
+        self.r1() != 0
     }
 
     #[doc="GPIO Port B Software Reset"]
@@ -11246,7 +11246,7 @@ impl Srgpio {
 
     #[doc="GPIO Port C Software Reset"]
     #[inline] pub fn test_r2(&self) -> bool {
-        self.r2 != 0
+        self.r2() != 0
     }
 
     #[doc="GPIO Port C Software Reset"]
@@ -11265,7 +11265,7 @@ impl Srgpio {
 
     #[doc="GPIO Port D Software Reset"]
     #[inline] pub fn test_r3(&self) -> bool {
-        self.r3 != 0
+        self.r3() != 0
     }
 
     #[doc="GPIO Port D Software Reset"]
@@ -11284,7 +11284,7 @@ impl Srgpio {
 
     #[doc="GPIO Port E Software Reset"]
     #[inline] pub fn test_r4(&self) -> bool {
-        self.r4 != 0
+        self.r4() != 0
     }
 
     #[doc="GPIO Port E Software Reset"]
@@ -11303,7 +11303,7 @@ impl Srgpio {
 
     #[doc="GPIO Port F Software Reset"]
     #[inline] pub fn test_r5(&self) -> bool {
-        self.r5 != 0
+        self.r5() != 0
     }
 
     #[doc="GPIO Port F Software Reset"]
@@ -11322,7 +11322,7 @@ impl Srgpio {
 
     #[doc="GPIO Port G Software Reset"]
     #[inline] pub fn test_r6(&self) -> bool {
-        self.r6 != 0
+        self.r6() != 0
     }
 
     #[doc="GPIO Port G Software Reset"]
@@ -11341,7 +11341,7 @@ impl Srgpio {
 
     #[doc="GPIO Port H Software Reset"]
     #[inline] pub fn test_r7(&self) -> bool {
-        self.r7 != 0
+        self.r7() != 0
     }
 
     #[doc="GPIO Port H Software Reset"]
@@ -11360,7 +11360,7 @@ impl Srgpio {
 
     #[doc="GPIO Port J Software Reset"]
     #[inline] pub fn test_r8(&self) -> bool {
-        self.r8 != 0
+        self.r8() != 0
     }
 
     #[doc="GPIO Port J Software Reset"]
@@ -11379,7 +11379,7 @@ impl Srgpio {
 
     #[doc="GPIO Port K Software Reset"]
     #[inline] pub fn test_r9(&self) -> bool {
-        self.r9 != 0
+        self.r9() != 0
     }
 
     #[doc="GPIO Port K Software Reset"]
@@ -11398,7 +11398,7 @@ impl Srgpio {
 
     #[doc="GPIO Port L Software Reset"]
     #[inline] pub fn test_r10(&self) -> bool {
-        self.r10 != 0
+        self.r10() != 0
     }
 
     #[doc="GPIO Port L Software Reset"]
@@ -11417,7 +11417,7 @@ impl Srgpio {
 
     #[doc="GPIO Port M Software Reset"]
     #[inline] pub fn test_r11(&self) -> bool {
-        self.r11 != 0
+        self.r11() != 0
     }
 
     #[doc="GPIO Port M Software Reset"]
@@ -11436,7 +11436,7 @@ impl Srgpio {
 
     #[doc="GPIO Port N Software Reset"]
     #[inline] pub fn test_r12(&self) -> bool {
-        self.r12 != 0
+        self.r12() != 0
     }
 
     #[doc="GPIO Port N Software Reset"]
@@ -11455,7 +11455,7 @@ impl Srgpio {
 
     #[doc="GPIO Port P Software Reset"]
     #[inline] pub fn test_r13(&self) -> bool {
-        self.r13 != 0
+        self.r13() != 0
     }
 
     #[doc="GPIO Port P Software Reset"]
@@ -11474,7 +11474,7 @@ impl Srgpio {
 
     #[doc="GPIO Port Q Software Reset"]
     #[inline] pub fn test_r14(&self) -> bool {
-        self.r14 != 0
+        self.r14() != 0
     }
 
     #[doc="GPIO Port Q Software Reset"]
@@ -11528,7 +11528,7 @@ impl Srdma {
 
     #[doc="uDMA Module Software Reset"]
     #[inline] pub fn test_r0(&self) -> bool {
-        self.r0 != 0
+        self.r0() != 0
     }
 
     #[doc="uDMA Module Software Reset"]
@@ -11568,7 +11568,7 @@ impl Srepi {
 
     #[doc="EPI Module Software Reset"]
     #[inline] pub fn test_r0(&self) -> bool {
-        self.r0 != 0
+        self.r0() != 0
     }
 
     #[doc="EPI Module Software Reset"]
@@ -11608,7 +11608,7 @@ impl Srhib {
 
     #[doc="Hibernation Module Software Reset"]
     #[inline] pub fn test_r0(&self) -> bool {
-        self.r0 != 0
+        self.r0() != 0
     }
 
     #[doc="Hibernation Module Software Reset"]
@@ -11648,7 +11648,7 @@ impl Sruart {
 
     #[doc="UART Module 0 Software Reset"]
     #[inline] pub fn test_r0(&self) -> bool {
-        self.r0 != 0
+        self.r0() != 0
     }
 
     #[doc="UART Module 0 Software Reset"]
@@ -11667,7 +11667,7 @@ impl Sruart {
 
     #[doc="UART Module 1 Software Reset"]
     #[inline] pub fn test_r1(&self) -> bool {
-        self.r1 != 0
+        self.r1() != 0
     }
 
     #[doc="UART Module 1 Software Reset"]
@@ -11686,7 +11686,7 @@ impl Sruart {
 
     #[doc="UART Module 2 Software Reset"]
     #[inline] pub fn test_r2(&self) -> bool {
-        self.r2 != 0
+        self.r2() != 0
     }
 
     #[doc="UART Module 2 Software Reset"]
@@ -11705,7 +11705,7 @@ impl Sruart {
 
     #[doc="UART Module 3 Software Reset"]
     #[inline] pub fn test_r3(&self) -> bool {
-        self.r3 != 0
+        self.r3() != 0
     }
 
     #[doc="UART Module 3 Software Reset"]
@@ -11724,7 +11724,7 @@ impl Sruart {
 
     #[doc="UART Module 4 Software Reset"]
     #[inline] pub fn test_r4(&self) -> bool {
-        self.r4 != 0
+        self.r4() != 0
     }
 
     #[doc="UART Module 4 Software Reset"]
@@ -11743,7 +11743,7 @@ impl Sruart {
 
     #[doc="UART Module 5 Software Reset"]
     #[inline] pub fn test_r5(&self) -> bool {
-        self.r5 != 0
+        self.r5() != 0
     }
 
     #[doc="UART Module 5 Software Reset"]
@@ -11762,7 +11762,7 @@ impl Sruart {
 
     #[doc="UART Module 6 Software Reset"]
     #[inline] pub fn test_r6(&self) -> bool {
-        self.r6 != 0
+        self.r6() != 0
     }
 
     #[doc="UART Module 6 Software Reset"]
@@ -11781,7 +11781,7 @@ impl Sruart {
 
     #[doc="UART Module 7 Software Reset"]
     #[inline] pub fn test_r7(&self) -> bool {
-        self.r7 != 0
+        self.r7() != 0
     }
 
     #[doc="UART Module 7 Software Reset"]
@@ -11828,7 +11828,7 @@ impl Srssi {
 
     #[doc="SSI Module 0 Software Reset"]
     #[inline] pub fn test_r0(&self) -> bool {
-        self.r0 != 0
+        self.r0() != 0
     }
 
     #[doc="SSI Module 0 Software Reset"]
@@ -11847,7 +11847,7 @@ impl Srssi {
 
     #[doc="SSI Module 1 Software Reset"]
     #[inline] pub fn test_r1(&self) -> bool {
-        self.r1 != 0
+        self.r1() != 0
     }
 
     #[doc="SSI Module 1 Software Reset"]
@@ -11866,7 +11866,7 @@ impl Srssi {
 
     #[doc="SSI Module 2 Software Reset"]
     #[inline] pub fn test_r2(&self) -> bool {
-        self.r2 != 0
+        self.r2() != 0
     }
 
     #[doc="SSI Module 2 Software Reset"]
@@ -11885,7 +11885,7 @@ impl Srssi {
 
     #[doc="SSI Module 3 Software Reset"]
     #[inline] pub fn test_r3(&self) -> bool {
-        self.r3 != 0
+        self.r3() != 0
     }
 
     #[doc="SSI Module 3 Software Reset"]
@@ -11928,7 +11928,7 @@ impl Sri2c {
 
     #[doc="I2C Module 0 Software Reset"]
     #[inline] pub fn test_r0(&self) -> bool {
-        self.r0 != 0
+        self.r0() != 0
     }
 
     #[doc="I2C Module 0 Software Reset"]
@@ -11947,7 +11947,7 @@ impl Sri2c {
 
     #[doc="I2C Module 1 Software Reset"]
     #[inline] pub fn test_r1(&self) -> bool {
-        self.r1 != 0
+        self.r1() != 0
     }
 
     #[doc="I2C Module 1 Software Reset"]
@@ -11966,7 +11966,7 @@ impl Sri2c {
 
     #[doc="I2C Module 2 Software Reset"]
     #[inline] pub fn test_r2(&self) -> bool {
-        self.r2 != 0
+        self.r2() != 0
     }
 
     #[doc="I2C Module 2 Software Reset"]
@@ -11985,7 +11985,7 @@ impl Sri2c {
 
     #[doc="I2C Module 3 Software Reset"]
     #[inline] pub fn test_r3(&self) -> bool {
-        self.r3 != 0
+        self.r3() != 0
     }
 
     #[doc="I2C Module 3 Software Reset"]
@@ -12004,7 +12004,7 @@ impl Sri2c {
 
     #[doc="I2C Module 4 Software Reset"]
     #[inline] pub fn test_r4(&self) -> bool {
-        self.r4 != 0
+        self.r4() != 0
     }
 
     #[doc="I2C Module 4 Software Reset"]
@@ -12023,7 +12023,7 @@ impl Sri2c {
 
     #[doc="I2C Module 5 Software Reset"]
     #[inline] pub fn test_r5(&self) -> bool {
-        self.r5 != 0
+        self.r5() != 0
     }
 
     #[doc="I2C Module 5 Software Reset"]
@@ -12042,7 +12042,7 @@ impl Sri2c {
 
     #[doc="I2C Module 6 Software Reset"]
     #[inline] pub fn test_r6(&self) -> bool {
-        self.r6 != 0
+        self.r6() != 0
     }
 
     #[doc="I2C Module 6 Software Reset"]
@@ -12061,7 +12061,7 @@ impl Sri2c {
 
     #[doc="I2C Module 7 Software Reset"]
     #[inline] pub fn test_r7(&self) -> bool {
-        self.r7 != 0
+        self.r7() != 0
     }
 
     #[doc="I2C Module 7 Software Reset"]
@@ -12080,7 +12080,7 @@ impl Sri2c {
 
     #[doc="I2C Module 8 Software Reset"]
     #[inline] pub fn test_r8(&self) -> bool {
-        self.r8 != 0
+        self.r8() != 0
     }
 
     #[doc="I2C Module 8 Software Reset"]
@@ -12099,7 +12099,7 @@ impl Sri2c {
 
     #[doc="I2C Module 9 Software Reset"]
     #[inline] pub fn test_r9(&self) -> bool {
-        self.r9 != 0
+        self.r9() != 0
     }
 
     #[doc="I2C Module 9 Software Reset"]
@@ -12148,7 +12148,7 @@ impl Srusb {
 
     #[doc="USB Module Software Reset"]
     #[inline] pub fn test_r0(&self) -> bool {
-        self.r0 != 0
+        self.r0() != 0
     }
 
     #[doc="USB Module Software Reset"]
@@ -12188,7 +12188,7 @@ impl Srephy {
 
     #[doc="Ethernet PHY Module Software Reset"]
     #[inline] pub fn test_r0(&self) -> bool {
-        self.r0 != 0
+        self.r0() != 0
     }
 
     #[doc="Ethernet PHY Module Software Reset"]
@@ -12228,7 +12228,7 @@ impl Srcan {
 
     #[doc="CAN Module 0 Software Reset"]
     #[inline] pub fn test_r0(&self) -> bool {
-        self.r0 != 0
+        self.r0() != 0
     }
 
     #[doc="CAN Module 0 Software Reset"]
@@ -12247,7 +12247,7 @@ impl Srcan {
 
     #[doc="CAN Module 1 Software Reset"]
     #[inline] pub fn test_r1(&self) -> bool {
-        self.r1 != 0
+        self.r1() != 0
     }
 
     #[doc="CAN Module 1 Software Reset"]
@@ -12288,7 +12288,7 @@ impl Sradc {
 
     #[doc="ADC Module 0 Software Reset"]
     #[inline] pub fn test_r0(&self) -> bool {
-        self.r0 != 0
+        self.r0() != 0
     }
 
     #[doc="ADC Module 0 Software Reset"]
@@ -12307,7 +12307,7 @@ impl Sradc {
 
     #[doc="ADC Module 1 Software Reset"]
     #[inline] pub fn test_r1(&self) -> bool {
-        self.r1 != 0
+        self.r1() != 0
     }
 
     #[doc="ADC Module 1 Software Reset"]
@@ -12348,7 +12348,7 @@ impl Sracmp {
 
     #[doc="Analog Comparator Module 0 Software Reset"]
     #[inline] pub fn test_r0(&self) -> bool {
-        self.r0 != 0
+        self.r0() != 0
     }
 
     #[doc="Analog Comparator Module 0 Software Reset"]
@@ -12388,7 +12388,7 @@ impl Srpwm {
 
     #[doc="PWM Module 0 Software Reset"]
     #[inline] pub fn test_r0(&self) -> bool {
-        self.r0 != 0
+        self.r0() != 0
     }
 
     #[doc="PWM Module 0 Software Reset"]
@@ -12428,7 +12428,7 @@ impl Srqei {
 
     #[doc="QEI Module 0 Software Reset"]
     #[inline] pub fn test_r0(&self) -> bool {
-        self.r0 != 0
+        self.r0() != 0
     }
 
     #[doc="QEI Module 0 Software Reset"]
@@ -12468,7 +12468,7 @@ impl Sreeprom {
 
     #[doc="EEPROM Module Software Reset"]
     #[inline] pub fn test_r0(&self) -> bool {
-        self.r0 != 0
+        self.r0() != 0
     }
 
     #[doc="EEPROM Module Software Reset"]
@@ -12508,7 +12508,7 @@ impl Srccm {
 
     #[doc="CRC and Cryptographic Modules Software Reset"]
     #[inline] pub fn test_r0(&self) -> bool {
-        self.r0 != 0
+        self.r0() != 0
     }
 
     #[doc="CRC and Cryptographic Modules Software Reset"]
@@ -12548,7 +12548,7 @@ impl Sremac {
 
     #[doc="Ethernet Controller MAC Module 0 Software Reset"]
     #[inline] pub fn test_r0(&self) -> bool {
-        self.r0 != 0
+        self.r0() != 0
     }
 
     #[doc="Ethernet Controller MAC Module 0 Software Reset"]
@@ -12588,7 +12588,7 @@ impl Rcgcwd {
 
     #[doc="Watchdog Timer 0 Run Mode Clock Gating Control"]
     #[inline] pub fn test_r0(&self) -> bool {
-        self.r0 != 0
+        self.r0() != 0
     }
 
     #[doc="Watchdog Timer 0 Run Mode Clock Gating Control"]
@@ -12607,7 +12607,7 @@ impl Rcgcwd {
 
     #[doc="Watchdog Timer 1 Run Mode Clock Gating Control"]
     #[inline] pub fn test_r1(&self) -> bool {
-        self.r1 != 0
+        self.r1() != 0
     }
 
     #[doc="Watchdog Timer 1 Run Mode Clock Gating Control"]
@@ -12648,7 +12648,7 @@ impl Rcgctimer {
 
     #[doc="16/32-Bit General-Purpose Timer 0 Run Mode Clock Gating Control"]
     #[inline] pub fn test_r0(&self) -> bool {
-        self.r0 != 0
+        self.r0() != 0
     }
 
     #[doc="16/32-Bit General-Purpose Timer 0 Run Mode Clock Gating Control"]
@@ -12667,7 +12667,7 @@ impl Rcgctimer {
 
     #[doc="16/32-Bit General-Purpose Timer 1 Run Mode Clock Gating Control"]
     #[inline] pub fn test_r1(&self) -> bool {
-        self.r1 != 0
+        self.r1() != 0
     }
 
     #[doc="16/32-Bit General-Purpose Timer 1 Run Mode Clock Gating Control"]
@@ -12686,7 +12686,7 @@ impl Rcgctimer {
 
     #[doc="16/32-Bit General-Purpose Timer 2 Run Mode Clock Gating Control"]
     #[inline] pub fn test_r2(&self) -> bool {
-        self.r2 != 0
+        self.r2() != 0
     }
 
     #[doc="16/32-Bit General-Purpose Timer 2 Run Mode Clock Gating Control"]
@@ -12705,7 +12705,7 @@ impl Rcgctimer {
 
     #[doc="16/32-Bit General-Purpose Timer 3 Run Mode Clock Gating Control"]
     #[inline] pub fn test_r3(&self) -> bool {
-        self.r3 != 0
+        self.r3() != 0
     }
 
     #[doc="16/32-Bit General-Purpose Timer 3 Run Mode Clock Gating Control"]
@@ -12724,7 +12724,7 @@ impl Rcgctimer {
 
     #[doc="16/32-Bit General-Purpose Timer 4 Run Mode Clock Gating Control"]
     #[inline] pub fn test_r4(&self) -> bool {
-        self.r4 != 0
+        self.r4() != 0
     }
 
     #[doc="16/32-Bit General-Purpose Timer 4 Run Mode Clock Gating Control"]
@@ -12743,7 +12743,7 @@ impl Rcgctimer {
 
     #[doc="16/32-Bit General-Purpose Timer 5 Run Mode Clock Gating Control"]
     #[inline] pub fn test_r5(&self) -> bool {
-        self.r5 != 0
+        self.r5() != 0
     }
 
     #[doc="16/32-Bit General-Purpose Timer 5 Run Mode Clock Gating Control"]
@@ -12762,7 +12762,7 @@ impl Rcgctimer {
 
     #[doc="16/32-Bit General-Purpose Timer 6 Run Mode Clock Gating Control"]
     #[inline] pub fn test_r6(&self) -> bool {
-        self.r6 != 0
+        self.r6() != 0
     }
 
     #[doc="16/32-Bit General-Purpose Timer 6 Run Mode Clock Gating Control"]
@@ -12781,7 +12781,7 @@ impl Rcgctimer {
 
     #[doc="16/32-Bit General-Purpose Timer 7 Run Mode Clock Gating Control"]
     #[inline] pub fn test_r7(&self) -> bool {
-        self.r7 != 0
+        self.r7() != 0
     }
 
     #[doc="16/32-Bit General-Purpose Timer 7 Run Mode Clock Gating Control"]
@@ -12828,7 +12828,7 @@ impl Rcgcgpio {
 
     #[doc="GPIO Port A Run Mode Clock Gating Control"]
     #[inline] pub fn test_r0(&self) -> bool {
-        self.r0 != 0
+        self.r0() != 0
     }
 
     #[doc="GPIO Port A Run Mode Clock Gating Control"]
@@ -12847,7 +12847,7 @@ impl Rcgcgpio {
 
     #[doc="GPIO Port B Run Mode Clock Gating Control"]
     #[inline] pub fn test_r1(&self) -> bool {
-        self.r1 != 0
+        self.r1() != 0
     }
 
     #[doc="GPIO Port B Run Mode Clock Gating Control"]
@@ -12866,7 +12866,7 @@ impl Rcgcgpio {
 
     #[doc="GPIO Port C Run Mode Clock Gating Control"]
     #[inline] pub fn test_r2(&self) -> bool {
-        self.r2 != 0
+        self.r2() != 0
     }
 
     #[doc="GPIO Port C Run Mode Clock Gating Control"]
@@ -12885,7 +12885,7 @@ impl Rcgcgpio {
 
     #[doc="GPIO Port D Run Mode Clock Gating Control"]
     #[inline] pub fn test_r3(&self) -> bool {
-        self.r3 != 0
+        self.r3() != 0
     }
 
     #[doc="GPIO Port D Run Mode Clock Gating Control"]
@@ -12904,7 +12904,7 @@ impl Rcgcgpio {
 
     #[doc="GPIO Port E Run Mode Clock Gating Control"]
     #[inline] pub fn test_r4(&self) -> bool {
-        self.r4 != 0
+        self.r4() != 0
     }
 
     #[doc="GPIO Port E Run Mode Clock Gating Control"]
@@ -12923,7 +12923,7 @@ impl Rcgcgpio {
 
     #[doc="GPIO Port F Run Mode Clock Gating Control"]
     #[inline] pub fn test_r5(&self) -> bool {
-        self.r5 != 0
+        self.r5() != 0
     }
 
     #[doc="GPIO Port F Run Mode Clock Gating Control"]
@@ -12942,7 +12942,7 @@ impl Rcgcgpio {
 
     #[doc="GPIO Port G Run Mode Clock Gating Control"]
     #[inline] pub fn test_r6(&self) -> bool {
-        self.r6 != 0
+        self.r6() != 0
     }
 
     #[doc="GPIO Port G Run Mode Clock Gating Control"]
@@ -12961,7 +12961,7 @@ impl Rcgcgpio {
 
     #[doc="GPIO Port H Run Mode Clock Gating Control"]
     #[inline] pub fn test_r7(&self) -> bool {
-        self.r7 != 0
+        self.r7() != 0
     }
 
     #[doc="GPIO Port H Run Mode Clock Gating Control"]
@@ -12980,7 +12980,7 @@ impl Rcgcgpio {
 
     #[doc="GPIO Port J Run Mode Clock Gating Control"]
     #[inline] pub fn test_r8(&self) -> bool {
-        self.r8 != 0
+        self.r8() != 0
     }
 
     #[doc="GPIO Port J Run Mode Clock Gating Control"]
@@ -12999,7 +12999,7 @@ impl Rcgcgpio {
 
     #[doc="GPIO Port K Run Mode Clock Gating Control"]
     #[inline] pub fn test_r9(&self) -> bool {
-        self.r9 != 0
+        self.r9() != 0
     }
 
     #[doc="GPIO Port K Run Mode Clock Gating Control"]
@@ -13018,7 +13018,7 @@ impl Rcgcgpio {
 
     #[doc="GPIO Port L Run Mode Clock Gating Control"]
     #[inline] pub fn test_r10(&self) -> bool {
-        self.r10 != 0
+        self.r10() != 0
     }
 
     #[doc="GPIO Port L Run Mode Clock Gating Control"]
@@ -13037,7 +13037,7 @@ impl Rcgcgpio {
 
     #[doc="GPIO Port M Run Mode Clock Gating Control"]
     #[inline] pub fn test_r11(&self) -> bool {
-        self.r11 != 0
+        self.r11() != 0
     }
 
     #[doc="GPIO Port M Run Mode Clock Gating Control"]
@@ -13056,7 +13056,7 @@ impl Rcgcgpio {
 
     #[doc="GPIO Port N Run Mode Clock Gating Control"]
     #[inline] pub fn test_r12(&self) -> bool {
-        self.r12 != 0
+        self.r12() != 0
     }
 
     #[doc="GPIO Port N Run Mode Clock Gating Control"]
@@ -13075,7 +13075,7 @@ impl Rcgcgpio {
 
     #[doc="GPIO Port P Run Mode Clock Gating Control"]
     #[inline] pub fn test_r13(&self) -> bool {
-        self.r13 != 0
+        self.r13() != 0
     }
 
     #[doc="GPIO Port P Run Mode Clock Gating Control"]
@@ -13094,7 +13094,7 @@ impl Rcgcgpio {
 
     #[doc="GPIO Port Q Run Mode Clock Gating Control"]
     #[inline] pub fn test_r14(&self) -> bool {
-        self.r14 != 0
+        self.r14() != 0
     }
 
     #[doc="GPIO Port Q Run Mode Clock Gating Control"]
@@ -13148,7 +13148,7 @@ impl Rcgcdma {
 
     #[doc="uDMA Module Run Mode Clock Gating Control"]
     #[inline] pub fn test_r0(&self) -> bool {
-        self.r0 != 0
+        self.r0() != 0
     }
 
     #[doc="uDMA Module Run Mode Clock Gating Control"]
@@ -13188,7 +13188,7 @@ impl Rcgcepi {
 
     #[doc="EPI Module Run Mode Clock Gating Control"]
     #[inline] pub fn test_r0(&self) -> bool {
-        self.r0 != 0
+        self.r0() != 0
     }
 
     #[doc="EPI Module Run Mode Clock Gating Control"]
@@ -13228,7 +13228,7 @@ impl Rcgchib {
 
     #[doc="Hibernation Module Run Mode Clock Gating Control"]
     #[inline] pub fn test_r0(&self) -> bool {
-        self.r0 != 0
+        self.r0() != 0
     }
 
     #[doc="Hibernation Module Run Mode Clock Gating Control"]
@@ -13268,7 +13268,7 @@ impl Rcgcuart {
 
     #[doc="UART Module 0 Run Mode Clock Gating Control"]
     #[inline] pub fn test_r0(&self) -> bool {
-        self.r0 != 0
+        self.r0() != 0
     }
 
     #[doc="UART Module 0 Run Mode Clock Gating Control"]
@@ -13287,7 +13287,7 @@ impl Rcgcuart {
 
     #[doc="UART Module 1 Run Mode Clock Gating Control"]
     #[inline] pub fn test_r1(&self) -> bool {
-        self.r1 != 0
+        self.r1() != 0
     }
 
     #[doc="UART Module 1 Run Mode Clock Gating Control"]
@@ -13306,7 +13306,7 @@ impl Rcgcuart {
 
     #[doc="UART Module 2 Run Mode Clock Gating Control"]
     #[inline] pub fn test_r2(&self) -> bool {
-        self.r2 != 0
+        self.r2() != 0
     }
 
     #[doc="UART Module 2 Run Mode Clock Gating Control"]
@@ -13325,7 +13325,7 @@ impl Rcgcuart {
 
     #[doc="UART Module 3 Run Mode Clock Gating Control"]
     #[inline] pub fn test_r3(&self) -> bool {
-        self.r3 != 0
+        self.r3() != 0
     }
 
     #[doc="UART Module 3 Run Mode Clock Gating Control"]
@@ -13344,7 +13344,7 @@ impl Rcgcuart {
 
     #[doc="UART Module 4 Run Mode Clock Gating Control"]
     #[inline] pub fn test_r4(&self) -> bool {
-        self.r4 != 0
+        self.r4() != 0
     }
 
     #[doc="UART Module 4 Run Mode Clock Gating Control"]
@@ -13363,7 +13363,7 @@ impl Rcgcuart {
 
     #[doc="UART Module 5 Run Mode Clock Gating Control"]
     #[inline] pub fn test_r5(&self) -> bool {
-        self.r5 != 0
+        self.r5() != 0
     }
 
     #[doc="UART Module 5 Run Mode Clock Gating Control"]
@@ -13382,7 +13382,7 @@ impl Rcgcuart {
 
     #[doc="UART Module 6 Run Mode Clock Gating Control"]
     #[inline] pub fn test_r6(&self) -> bool {
-        self.r6 != 0
+        self.r6() != 0
     }
 
     #[doc="UART Module 6 Run Mode Clock Gating Control"]
@@ -13401,7 +13401,7 @@ impl Rcgcuart {
 
     #[doc="UART Module 7 Run Mode Clock Gating Control"]
     #[inline] pub fn test_r7(&self) -> bool {
-        self.r7 != 0
+        self.r7() != 0
     }
 
     #[doc="UART Module 7 Run Mode Clock Gating Control"]
@@ -13448,7 +13448,7 @@ impl Rcgcssi {
 
     #[doc="SSI Module 0 Run Mode Clock Gating Control"]
     #[inline] pub fn test_r0(&self) -> bool {
-        self.r0 != 0
+        self.r0() != 0
     }
 
     #[doc="SSI Module 0 Run Mode Clock Gating Control"]
@@ -13467,7 +13467,7 @@ impl Rcgcssi {
 
     #[doc="SSI Module 1 Run Mode Clock Gating Control"]
     #[inline] pub fn test_r1(&self) -> bool {
-        self.r1 != 0
+        self.r1() != 0
     }
 
     #[doc="SSI Module 1 Run Mode Clock Gating Control"]
@@ -13486,7 +13486,7 @@ impl Rcgcssi {
 
     #[doc="SSI Module 2 Run Mode Clock Gating Control"]
     #[inline] pub fn test_r2(&self) -> bool {
-        self.r2 != 0
+        self.r2() != 0
     }
 
     #[doc="SSI Module 2 Run Mode Clock Gating Control"]
@@ -13505,7 +13505,7 @@ impl Rcgcssi {
 
     #[doc="SSI Module 3 Run Mode Clock Gating Control"]
     #[inline] pub fn test_r3(&self) -> bool {
-        self.r3 != 0
+        self.r3() != 0
     }
 
     #[doc="SSI Module 3 Run Mode Clock Gating Control"]
@@ -13548,7 +13548,7 @@ impl Rcgci2c {
 
     #[doc="I2C Module 0 Run Mode Clock Gating Control"]
     #[inline] pub fn test_r0(&self) -> bool {
-        self.r0 != 0
+        self.r0() != 0
     }
 
     #[doc="I2C Module 0 Run Mode Clock Gating Control"]
@@ -13567,7 +13567,7 @@ impl Rcgci2c {
 
     #[doc="I2C Module 1 Run Mode Clock Gating Control"]
     #[inline] pub fn test_r1(&self) -> bool {
-        self.r1 != 0
+        self.r1() != 0
     }
 
     #[doc="I2C Module 1 Run Mode Clock Gating Control"]
@@ -13586,7 +13586,7 @@ impl Rcgci2c {
 
     #[doc="I2C Module 2 Run Mode Clock Gating Control"]
     #[inline] pub fn test_r2(&self) -> bool {
-        self.r2 != 0
+        self.r2() != 0
     }
 
     #[doc="I2C Module 2 Run Mode Clock Gating Control"]
@@ -13605,7 +13605,7 @@ impl Rcgci2c {
 
     #[doc="I2C Module 3 Run Mode Clock Gating Control"]
     #[inline] pub fn test_r3(&self) -> bool {
-        self.r3 != 0
+        self.r3() != 0
     }
 
     #[doc="I2C Module 3 Run Mode Clock Gating Control"]
@@ -13624,7 +13624,7 @@ impl Rcgci2c {
 
     #[doc="I2C Module 4 Run Mode Clock Gating Control"]
     #[inline] pub fn test_r4(&self) -> bool {
-        self.r4 != 0
+        self.r4() != 0
     }
 
     #[doc="I2C Module 4 Run Mode Clock Gating Control"]
@@ -13643,7 +13643,7 @@ impl Rcgci2c {
 
     #[doc="I2C Module 5 Run Mode Clock Gating Control"]
     #[inline] pub fn test_r5(&self) -> bool {
-        self.r5 != 0
+        self.r5() != 0
     }
 
     #[doc="I2C Module 5 Run Mode Clock Gating Control"]
@@ -13662,7 +13662,7 @@ impl Rcgci2c {
 
     #[doc="I2C Module 6 Run Mode Clock Gating Control"]
     #[inline] pub fn test_r6(&self) -> bool {
-        self.r6 != 0
+        self.r6() != 0
     }
 
     #[doc="I2C Module 6 Run Mode Clock Gating Control"]
@@ -13681,7 +13681,7 @@ impl Rcgci2c {
 
     #[doc="I2C Module 7 Run Mode Clock Gating Control"]
     #[inline] pub fn test_r7(&self) -> bool {
-        self.r7 != 0
+        self.r7() != 0
     }
 
     #[doc="I2C Module 7 Run Mode Clock Gating Control"]
@@ -13700,7 +13700,7 @@ impl Rcgci2c {
 
     #[doc="I2C Module 8 Run Mode Clock Gating Control"]
     #[inline] pub fn test_r8(&self) -> bool {
-        self.r8 != 0
+        self.r8() != 0
     }
 
     #[doc="I2C Module 8 Run Mode Clock Gating Control"]
@@ -13719,7 +13719,7 @@ impl Rcgci2c {
 
     #[doc="I2C Module 9 Run Mode Clock Gating Control"]
     #[inline] pub fn test_r9(&self) -> bool {
-        self.r9 != 0
+        self.r9() != 0
     }
 
     #[doc="I2C Module 9 Run Mode Clock Gating Control"]
@@ -13768,7 +13768,7 @@ impl Rcgcusb {
 
     #[doc="USB Module Run Mode Clock Gating Control"]
     #[inline] pub fn test_r0(&self) -> bool {
-        self.r0 != 0
+        self.r0() != 0
     }
 
     #[doc="USB Module Run Mode Clock Gating Control"]
@@ -13808,7 +13808,7 @@ impl Rcgcephy {
 
     #[doc="Ethernet PHY Module Run Mode Clock Gating Control"]
     #[inline] pub fn test_r0(&self) -> bool {
-        self.r0 != 0
+        self.r0() != 0
     }
 
     #[doc="Ethernet PHY Module Run Mode Clock Gating Control"]
@@ -13848,7 +13848,7 @@ impl Rcgccan {
 
     #[doc="CAN Module 0 Run Mode Clock Gating Control"]
     #[inline] pub fn test_r0(&self) -> bool {
-        self.r0 != 0
+        self.r0() != 0
     }
 
     #[doc="CAN Module 0 Run Mode Clock Gating Control"]
@@ -13867,7 +13867,7 @@ impl Rcgccan {
 
     #[doc="CAN Module 1 Run Mode Clock Gating Control"]
     #[inline] pub fn test_r1(&self) -> bool {
-        self.r1 != 0
+        self.r1() != 0
     }
 
     #[doc="CAN Module 1 Run Mode Clock Gating Control"]
@@ -13908,7 +13908,7 @@ impl Rcgcadc {
 
     #[doc="ADC Module 0 Run Mode Clock Gating Control"]
     #[inline] pub fn test_r0(&self) -> bool {
-        self.r0 != 0
+        self.r0() != 0
     }
 
     #[doc="ADC Module 0 Run Mode Clock Gating Control"]
@@ -13927,7 +13927,7 @@ impl Rcgcadc {
 
     #[doc="ADC Module 1 Run Mode Clock Gating Control"]
     #[inline] pub fn test_r1(&self) -> bool {
-        self.r1 != 0
+        self.r1() != 0
     }
 
     #[doc="ADC Module 1 Run Mode Clock Gating Control"]
@@ -13968,7 +13968,7 @@ impl Rcgcacmp {
 
     #[doc="Analog Comparator Module 0 Run Mode Clock Gating Control"]
     #[inline] pub fn test_r0(&self) -> bool {
-        self.r0 != 0
+        self.r0() != 0
     }
 
     #[doc="Analog Comparator Module 0 Run Mode Clock Gating Control"]
@@ -14008,7 +14008,7 @@ impl Rcgcpwm {
 
     #[doc="PWM Module 0 Run Mode Clock Gating Control"]
     #[inline] pub fn test_r0(&self) -> bool {
-        self.r0 != 0
+        self.r0() != 0
     }
 
     #[doc="PWM Module 0 Run Mode Clock Gating Control"]
@@ -14048,7 +14048,7 @@ impl Rcgcqei {
 
     #[doc="QEI Module 0 Run Mode Clock Gating Control"]
     #[inline] pub fn test_r0(&self) -> bool {
-        self.r0 != 0
+        self.r0() != 0
     }
 
     #[doc="QEI Module 0 Run Mode Clock Gating Control"]
@@ -14088,7 +14088,7 @@ impl Rcgceeprom {
 
     #[doc="EEPROM Module Run Mode Clock Gating Control"]
     #[inline] pub fn test_r0(&self) -> bool {
-        self.r0 != 0
+        self.r0() != 0
     }
 
     #[doc="EEPROM Module Run Mode Clock Gating Control"]
@@ -14128,7 +14128,7 @@ impl Rcgcccm {
 
     #[doc="CRC and Cryptographic Modules Run Mode Clock Gating Control"]
     #[inline] pub fn test_r0(&self) -> bool {
-        self.r0 != 0
+        self.r0() != 0
     }
 
     #[doc="CRC and Cryptographic Modules Run Mode Clock Gating Control"]
@@ -14168,7 +14168,7 @@ impl Rcgcemac {
 
     #[doc="Ethernet MAC Module 0 Run Mode Clock Gating Control"]
     #[inline] pub fn test_r0(&self) -> bool {
-        self.r0 != 0
+        self.r0() != 0
     }
 
     #[doc="Ethernet MAC Module 0 Run Mode Clock Gating Control"]
@@ -14208,7 +14208,7 @@ impl Scgcwd {
 
     #[doc="Watchdog Timer 0 Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_s0(&self) -> bool {
-        self.s0 != 0
+        self.s0() != 0
     }
 
     #[doc="Watchdog Timer 0 Sleep Mode Clock Gating Control"]
@@ -14227,7 +14227,7 @@ impl Scgcwd {
 
     #[doc="Watchdog Timer 1 Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_s1(&self) -> bool {
-        self.s1 != 0
+        self.s1() != 0
     }
 
     #[doc="Watchdog Timer 1 Sleep Mode Clock Gating Control"]
@@ -14268,7 +14268,7 @@ impl Scgctimer {
 
     #[doc="16/32-Bit General-Purpose Timer 0 Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_s0(&self) -> bool {
-        self.s0 != 0
+        self.s0() != 0
     }
 
     #[doc="16/32-Bit General-Purpose Timer 0 Sleep Mode Clock Gating Control"]
@@ -14287,7 +14287,7 @@ impl Scgctimer {
 
     #[doc="16/32-Bit General-Purpose Timer 1 Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_s1(&self) -> bool {
-        self.s1 != 0
+        self.s1() != 0
     }
 
     #[doc="16/32-Bit General-Purpose Timer 1 Sleep Mode Clock Gating Control"]
@@ -14306,7 +14306,7 @@ impl Scgctimer {
 
     #[doc="16/32-Bit General-Purpose Timer 2 Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_s2(&self) -> bool {
-        self.s2 != 0
+        self.s2() != 0
     }
 
     #[doc="16/32-Bit General-Purpose Timer 2 Sleep Mode Clock Gating Control"]
@@ -14325,7 +14325,7 @@ impl Scgctimer {
 
     #[doc="16/32-Bit General-Purpose Timer 3 Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_s3(&self) -> bool {
-        self.s3 != 0
+        self.s3() != 0
     }
 
     #[doc="16/32-Bit General-Purpose Timer 3 Sleep Mode Clock Gating Control"]
@@ -14344,7 +14344,7 @@ impl Scgctimer {
 
     #[doc="16/32-Bit General-Purpose Timer 4 Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_s4(&self) -> bool {
-        self.s4 != 0
+        self.s4() != 0
     }
 
     #[doc="16/32-Bit General-Purpose Timer 4 Sleep Mode Clock Gating Control"]
@@ -14363,7 +14363,7 @@ impl Scgctimer {
 
     #[doc="16/32-Bit General-Purpose Timer 5 Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_s5(&self) -> bool {
-        self.s5 != 0
+        self.s5() != 0
     }
 
     #[doc="16/32-Bit General-Purpose Timer 5 Sleep Mode Clock Gating Control"]
@@ -14382,7 +14382,7 @@ impl Scgctimer {
 
     #[doc="16/32-Bit General-Purpose Timer 6 Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_s6(&self) -> bool {
-        self.s6 != 0
+        self.s6() != 0
     }
 
     #[doc="16/32-Bit General-Purpose Timer 6 Sleep Mode Clock Gating Control"]
@@ -14401,7 +14401,7 @@ impl Scgctimer {
 
     #[doc="16/32-Bit General-Purpose Timer 7 Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_s7(&self) -> bool {
-        self.s7 != 0
+        self.s7() != 0
     }
 
     #[doc="16/32-Bit General-Purpose Timer 7 Sleep Mode Clock Gating Control"]
@@ -14448,7 +14448,7 @@ impl Scgcgpio {
 
     #[doc="GPIO Port A Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_s0(&self) -> bool {
-        self.s0 != 0
+        self.s0() != 0
     }
 
     #[doc="GPIO Port A Sleep Mode Clock Gating Control"]
@@ -14467,7 +14467,7 @@ impl Scgcgpio {
 
     #[doc="GPIO Port B Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_s1(&self) -> bool {
-        self.s1 != 0
+        self.s1() != 0
     }
 
     #[doc="GPIO Port B Sleep Mode Clock Gating Control"]
@@ -14486,7 +14486,7 @@ impl Scgcgpio {
 
     #[doc="GPIO Port C Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_s2(&self) -> bool {
-        self.s2 != 0
+        self.s2() != 0
     }
 
     #[doc="GPIO Port C Sleep Mode Clock Gating Control"]
@@ -14505,7 +14505,7 @@ impl Scgcgpio {
 
     #[doc="GPIO Port D Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_s3(&self) -> bool {
-        self.s3 != 0
+        self.s3() != 0
     }
 
     #[doc="GPIO Port D Sleep Mode Clock Gating Control"]
@@ -14524,7 +14524,7 @@ impl Scgcgpio {
 
     #[doc="GPIO Port E Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_s4(&self) -> bool {
-        self.s4 != 0
+        self.s4() != 0
     }
 
     #[doc="GPIO Port E Sleep Mode Clock Gating Control"]
@@ -14543,7 +14543,7 @@ impl Scgcgpio {
 
     #[doc="GPIO Port F Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_s5(&self) -> bool {
-        self.s5 != 0
+        self.s5() != 0
     }
 
     #[doc="GPIO Port F Sleep Mode Clock Gating Control"]
@@ -14562,7 +14562,7 @@ impl Scgcgpio {
 
     #[doc="GPIO Port G Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_s6(&self) -> bool {
-        self.s6 != 0
+        self.s6() != 0
     }
 
     #[doc="GPIO Port G Sleep Mode Clock Gating Control"]
@@ -14581,7 +14581,7 @@ impl Scgcgpio {
 
     #[doc="GPIO Port H Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_s7(&self) -> bool {
-        self.s7 != 0
+        self.s7() != 0
     }
 
     #[doc="GPIO Port H Sleep Mode Clock Gating Control"]
@@ -14600,7 +14600,7 @@ impl Scgcgpio {
 
     #[doc="GPIO Port J Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_s8(&self) -> bool {
-        self.s8 != 0
+        self.s8() != 0
     }
 
     #[doc="GPIO Port J Sleep Mode Clock Gating Control"]
@@ -14619,7 +14619,7 @@ impl Scgcgpio {
 
     #[doc="GPIO Port K Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_s9(&self) -> bool {
-        self.s9 != 0
+        self.s9() != 0
     }
 
     #[doc="GPIO Port K Sleep Mode Clock Gating Control"]
@@ -14638,7 +14638,7 @@ impl Scgcgpio {
 
     #[doc="GPIO Port L Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_s10(&self) -> bool {
-        self.s10 != 0
+        self.s10() != 0
     }
 
     #[doc="GPIO Port L Sleep Mode Clock Gating Control"]
@@ -14657,7 +14657,7 @@ impl Scgcgpio {
 
     #[doc="GPIO Port M Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_s11(&self) -> bool {
-        self.s11 != 0
+        self.s11() != 0
     }
 
     #[doc="GPIO Port M Sleep Mode Clock Gating Control"]
@@ -14676,7 +14676,7 @@ impl Scgcgpio {
 
     #[doc="GPIO Port N Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_s12(&self) -> bool {
-        self.s12 != 0
+        self.s12() != 0
     }
 
     #[doc="GPIO Port N Sleep Mode Clock Gating Control"]
@@ -14695,7 +14695,7 @@ impl Scgcgpio {
 
     #[doc="GPIO Port P Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_s13(&self) -> bool {
-        self.s13 != 0
+        self.s13() != 0
     }
 
     #[doc="GPIO Port P Sleep Mode Clock Gating Control"]
@@ -14714,7 +14714,7 @@ impl Scgcgpio {
 
     #[doc="GPIO Port Q Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_s14(&self) -> bool {
-        self.s14 != 0
+        self.s14() != 0
     }
 
     #[doc="GPIO Port Q Sleep Mode Clock Gating Control"]
@@ -14768,7 +14768,7 @@ impl Scgcdma {
 
     #[doc="uDMA Module Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_s0(&self) -> bool {
-        self.s0 != 0
+        self.s0() != 0
     }
 
     #[doc="uDMA Module Sleep Mode Clock Gating Control"]
@@ -14808,7 +14808,7 @@ impl Scgcepi {
 
     #[doc="EPI Module Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_s0(&self) -> bool {
-        self.s0 != 0
+        self.s0() != 0
     }
 
     #[doc="EPI Module Sleep Mode Clock Gating Control"]
@@ -14848,7 +14848,7 @@ impl Scgchib {
 
     #[doc="Hibernation Module Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_s0(&self) -> bool {
-        self.s0 != 0
+        self.s0() != 0
     }
 
     #[doc="Hibernation Module Sleep Mode Clock Gating Control"]
@@ -14888,7 +14888,7 @@ impl Scgcuart {
 
     #[doc="UART Module 0 Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_s0(&self) -> bool {
-        self.s0 != 0
+        self.s0() != 0
     }
 
     #[doc="UART Module 0 Sleep Mode Clock Gating Control"]
@@ -14907,7 +14907,7 @@ impl Scgcuart {
 
     #[doc="UART Module 1 Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_s1(&self) -> bool {
-        self.s1 != 0
+        self.s1() != 0
     }
 
     #[doc="UART Module 1 Sleep Mode Clock Gating Control"]
@@ -14926,7 +14926,7 @@ impl Scgcuart {
 
     #[doc="UART Module 2 Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_s2(&self) -> bool {
-        self.s2 != 0
+        self.s2() != 0
     }
 
     #[doc="UART Module 2 Sleep Mode Clock Gating Control"]
@@ -14945,7 +14945,7 @@ impl Scgcuart {
 
     #[doc="UART Module 3 Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_s3(&self) -> bool {
-        self.s3 != 0
+        self.s3() != 0
     }
 
     #[doc="UART Module 3 Sleep Mode Clock Gating Control"]
@@ -14964,7 +14964,7 @@ impl Scgcuart {
 
     #[doc="UART Module 4 Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_s4(&self) -> bool {
-        self.s4 != 0
+        self.s4() != 0
     }
 
     #[doc="UART Module 4 Sleep Mode Clock Gating Control"]
@@ -14983,7 +14983,7 @@ impl Scgcuart {
 
     #[doc="UART Module 5 Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_s5(&self) -> bool {
-        self.s5 != 0
+        self.s5() != 0
     }
 
     #[doc="UART Module 5 Sleep Mode Clock Gating Control"]
@@ -15002,7 +15002,7 @@ impl Scgcuart {
 
     #[doc="UART Module 6 Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_s6(&self) -> bool {
-        self.s6 != 0
+        self.s6() != 0
     }
 
     #[doc="UART Module 6 Sleep Mode Clock Gating Control"]
@@ -15021,7 +15021,7 @@ impl Scgcuart {
 
     #[doc="UART Module 7 Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_s7(&self) -> bool {
-        self.s7 != 0
+        self.s7() != 0
     }
 
     #[doc="UART Module 7 Sleep Mode Clock Gating Control"]
@@ -15068,7 +15068,7 @@ impl Scgcssi {
 
     #[doc="SSI Module 0 Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_s0(&self) -> bool {
-        self.s0 != 0
+        self.s0() != 0
     }
 
     #[doc="SSI Module 0 Sleep Mode Clock Gating Control"]
@@ -15087,7 +15087,7 @@ impl Scgcssi {
 
     #[doc="SSI Module 1 Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_s1(&self) -> bool {
-        self.s1 != 0
+        self.s1() != 0
     }
 
     #[doc="SSI Module 1 Sleep Mode Clock Gating Control"]
@@ -15106,7 +15106,7 @@ impl Scgcssi {
 
     #[doc="SSI Module 2 Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_s2(&self) -> bool {
-        self.s2 != 0
+        self.s2() != 0
     }
 
     #[doc="SSI Module 2 Sleep Mode Clock Gating Control"]
@@ -15125,7 +15125,7 @@ impl Scgcssi {
 
     #[doc="SSI Module 3 Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_s3(&self) -> bool {
-        self.s3 != 0
+        self.s3() != 0
     }
 
     #[doc="SSI Module 3 Sleep Mode Clock Gating Control"]
@@ -15168,7 +15168,7 @@ impl Scgci2c {
 
     #[doc="I2C Module 0 Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_s0(&self) -> bool {
-        self.s0 != 0
+        self.s0() != 0
     }
 
     #[doc="I2C Module 0 Sleep Mode Clock Gating Control"]
@@ -15187,7 +15187,7 @@ impl Scgci2c {
 
     #[doc="I2C Module 1 Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_s1(&self) -> bool {
-        self.s1 != 0
+        self.s1() != 0
     }
 
     #[doc="I2C Module 1 Sleep Mode Clock Gating Control"]
@@ -15206,7 +15206,7 @@ impl Scgci2c {
 
     #[doc="I2C Module 2 Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_s2(&self) -> bool {
-        self.s2 != 0
+        self.s2() != 0
     }
 
     #[doc="I2C Module 2 Sleep Mode Clock Gating Control"]
@@ -15225,7 +15225,7 @@ impl Scgci2c {
 
     #[doc="I2C Module 3 Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_s3(&self) -> bool {
-        self.s3 != 0
+        self.s3() != 0
     }
 
     #[doc="I2C Module 3 Sleep Mode Clock Gating Control"]
@@ -15244,7 +15244,7 @@ impl Scgci2c {
 
     #[doc="I2C Module 4 Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_s4(&self) -> bool {
-        self.s4 != 0
+        self.s4() != 0
     }
 
     #[doc="I2C Module 4 Sleep Mode Clock Gating Control"]
@@ -15263,7 +15263,7 @@ impl Scgci2c {
 
     #[doc="I2C Module 5 Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_s5(&self) -> bool {
-        self.s5 != 0
+        self.s5() != 0
     }
 
     #[doc="I2C Module 5 Sleep Mode Clock Gating Control"]
@@ -15282,7 +15282,7 @@ impl Scgci2c {
 
     #[doc="I2C Module 6 Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_s6(&self) -> bool {
-        self.s6 != 0
+        self.s6() != 0
     }
 
     #[doc="I2C Module 6 Sleep Mode Clock Gating Control"]
@@ -15301,7 +15301,7 @@ impl Scgci2c {
 
     #[doc="I2C Module 7 Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_s7(&self) -> bool {
-        self.s7 != 0
+        self.s7() != 0
     }
 
     #[doc="I2C Module 7 Sleep Mode Clock Gating Control"]
@@ -15320,7 +15320,7 @@ impl Scgci2c {
 
     #[doc="I2C Module 8 Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_s8(&self) -> bool {
-        self.s8 != 0
+        self.s8() != 0
     }
 
     #[doc="I2C Module 8 Sleep Mode Clock Gating Control"]
@@ -15339,7 +15339,7 @@ impl Scgci2c {
 
     #[doc="I2C Module 9 Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_s9(&self) -> bool {
-        self.s9 != 0
+        self.s9() != 0
     }
 
     #[doc="I2C Module 9 Sleep Mode Clock Gating Control"]
@@ -15388,7 +15388,7 @@ impl Scgcusb {
 
     #[doc="USB Module Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_s0(&self) -> bool {
-        self.s0 != 0
+        self.s0() != 0
     }
 
     #[doc="USB Module Sleep Mode Clock Gating Control"]
@@ -15428,7 +15428,7 @@ impl Scgcephy {
 
     #[doc="PHY Module Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_s0(&self) -> bool {
-        self.s0 != 0
+        self.s0() != 0
     }
 
     #[doc="PHY Module Sleep Mode Clock Gating Control"]
@@ -15468,7 +15468,7 @@ impl Scgccan {
 
     #[doc="CAN Module 0 Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_s0(&self) -> bool {
-        self.s0 != 0
+        self.s0() != 0
     }
 
     #[doc="CAN Module 0 Sleep Mode Clock Gating Control"]
@@ -15487,7 +15487,7 @@ impl Scgccan {
 
     #[doc="CAN Module 1 Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_s1(&self) -> bool {
-        self.s1 != 0
+        self.s1() != 0
     }
 
     #[doc="CAN Module 1 Sleep Mode Clock Gating Control"]
@@ -15528,7 +15528,7 @@ impl Scgcadc {
 
     #[doc="ADC Module 0 Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_s0(&self) -> bool {
-        self.s0 != 0
+        self.s0() != 0
     }
 
     #[doc="ADC Module 0 Sleep Mode Clock Gating Control"]
@@ -15547,7 +15547,7 @@ impl Scgcadc {
 
     #[doc="ADC Module 1 Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_s1(&self) -> bool {
-        self.s1 != 0
+        self.s1() != 0
     }
 
     #[doc="ADC Module 1 Sleep Mode Clock Gating Control"]
@@ -15588,7 +15588,7 @@ impl Scgcacmp {
 
     #[doc="Analog Comparator Module 0 Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_s0(&self) -> bool {
-        self.s0 != 0
+        self.s0() != 0
     }
 
     #[doc="Analog Comparator Module 0 Sleep Mode Clock Gating Control"]
@@ -15628,7 +15628,7 @@ impl Scgcpwm {
 
     #[doc="PWM Module 0 Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_s0(&self) -> bool {
-        self.s0 != 0
+        self.s0() != 0
     }
 
     #[doc="PWM Module 0 Sleep Mode Clock Gating Control"]
@@ -15668,7 +15668,7 @@ impl Scgcqei {
 
     #[doc="QEI Module 0 Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_s0(&self) -> bool {
-        self.s0 != 0
+        self.s0() != 0
     }
 
     #[doc="QEI Module 0 Sleep Mode Clock Gating Control"]
@@ -15708,7 +15708,7 @@ impl Scgceeprom {
 
     #[doc="EEPROM Module Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_s0(&self) -> bool {
-        self.s0 != 0
+        self.s0() != 0
     }
 
     #[doc="EEPROM Module Sleep Mode Clock Gating Control"]
@@ -15748,7 +15748,7 @@ impl Scgcccm {
 
     #[doc="CRC and Cryptographic Modules Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_s0(&self) -> bool {
-        self.s0 != 0
+        self.s0() != 0
     }
 
     #[doc="CRC and Cryptographic Modules Sleep Mode Clock Gating Control"]
@@ -15788,7 +15788,7 @@ impl Scgcemac {
 
     #[doc="Ethernet MAC Module 0 Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_s0(&self) -> bool {
-        self.s0 != 0
+        self.s0() != 0
     }
 
     #[doc="Ethernet MAC Module 0 Sleep Mode Clock Gating Control"]
@@ -15828,7 +15828,7 @@ impl Dcgcwd {
 
     #[doc="Watchdog Timer 0 Deep-Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_d0(&self) -> bool {
-        self.d0 != 0
+        self.d0() != 0
     }
 
     #[doc="Watchdog Timer 0 Deep-Sleep Mode Clock Gating Control"]
@@ -15847,7 +15847,7 @@ impl Dcgcwd {
 
     #[doc="Watchdog Timer 1 Deep-Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_d1(&self) -> bool {
-        self.d1 != 0
+        self.d1() != 0
     }
 
     #[doc="Watchdog Timer 1 Deep-Sleep Mode Clock Gating Control"]
@@ -15888,7 +15888,7 @@ impl Dcgctimer {
 
     #[doc="16/32-Bit General-Purpose Timer 0 Deep-Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_d0(&self) -> bool {
-        self.d0 != 0
+        self.d0() != 0
     }
 
     #[doc="16/32-Bit General-Purpose Timer 0 Deep-Sleep Mode Clock Gating Control"]
@@ -15907,7 +15907,7 @@ impl Dcgctimer {
 
     #[doc="16/32-Bit General-Purpose Timer 1 Deep-Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_d1(&self) -> bool {
-        self.d1 != 0
+        self.d1() != 0
     }
 
     #[doc="16/32-Bit General-Purpose Timer 1 Deep-Sleep Mode Clock Gating Control"]
@@ -15926,7 +15926,7 @@ impl Dcgctimer {
 
     #[doc="16/32-Bit General-Purpose Timer 2 Deep-Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_d2(&self) -> bool {
-        self.d2 != 0
+        self.d2() != 0
     }
 
     #[doc="16/32-Bit General-Purpose Timer 2 Deep-Sleep Mode Clock Gating Control"]
@@ -15945,7 +15945,7 @@ impl Dcgctimer {
 
     #[doc="16/32-Bit General-Purpose Timer 3 Deep-Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_d3(&self) -> bool {
-        self.d3 != 0
+        self.d3() != 0
     }
 
     #[doc="16/32-Bit General-Purpose Timer 3 Deep-Sleep Mode Clock Gating Control"]
@@ -15964,7 +15964,7 @@ impl Dcgctimer {
 
     #[doc="16/32-Bit General-Purpose Timer 4 Deep-Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_d4(&self) -> bool {
-        self.d4 != 0
+        self.d4() != 0
     }
 
     #[doc="16/32-Bit General-Purpose Timer 4 Deep-Sleep Mode Clock Gating Control"]
@@ -15983,7 +15983,7 @@ impl Dcgctimer {
 
     #[doc="16/32-Bit General-Purpose Timer 5 Deep-Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_d5(&self) -> bool {
-        self.d5 != 0
+        self.d5() != 0
     }
 
     #[doc="16/32-Bit General-Purpose Timer 5 Deep-Sleep Mode Clock Gating Control"]
@@ -16002,7 +16002,7 @@ impl Dcgctimer {
 
     #[doc="16/32-Bit General-Purpose Timer 6 Deep-Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_d6(&self) -> bool {
-        self.d6 != 0
+        self.d6() != 0
     }
 
     #[doc="16/32-Bit General-Purpose Timer 6 Deep-Sleep Mode Clock Gating Control"]
@@ -16021,7 +16021,7 @@ impl Dcgctimer {
 
     #[doc="16/32-Bit General-Purpose Timer 7 Deep-Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_d7(&self) -> bool {
-        self.d7 != 0
+        self.d7() != 0
     }
 
     #[doc="16/32-Bit General-Purpose Timer 7 Deep-Sleep Mode Clock Gating Control"]
@@ -16068,7 +16068,7 @@ impl Dcgcgpio {
 
     #[doc="GPIO Port A Deep-Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_d0(&self) -> bool {
-        self.d0 != 0
+        self.d0() != 0
     }
 
     #[doc="GPIO Port A Deep-Sleep Mode Clock Gating Control"]
@@ -16087,7 +16087,7 @@ impl Dcgcgpio {
 
     #[doc="GPIO Port B Deep-Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_d1(&self) -> bool {
-        self.d1 != 0
+        self.d1() != 0
     }
 
     #[doc="GPIO Port B Deep-Sleep Mode Clock Gating Control"]
@@ -16106,7 +16106,7 @@ impl Dcgcgpio {
 
     #[doc="GPIO Port C Deep-Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_d2(&self) -> bool {
-        self.d2 != 0
+        self.d2() != 0
     }
 
     #[doc="GPIO Port C Deep-Sleep Mode Clock Gating Control"]
@@ -16125,7 +16125,7 @@ impl Dcgcgpio {
 
     #[doc="GPIO Port D Deep-Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_d3(&self) -> bool {
-        self.d3 != 0
+        self.d3() != 0
     }
 
     #[doc="GPIO Port D Deep-Sleep Mode Clock Gating Control"]
@@ -16144,7 +16144,7 @@ impl Dcgcgpio {
 
     #[doc="GPIO Port E Deep-Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_d4(&self) -> bool {
-        self.d4 != 0
+        self.d4() != 0
     }
 
     #[doc="GPIO Port E Deep-Sleep Mode Clock Gating Control"]
@@ -16163,7 +16163,7 @@ impl Dcgcgpio {
 
     #[doc="GPIO Port F Deep-Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_d5(&self) -> bool {
-        self.d5 != 0
+        self.d5() != 0
     }
 
     #[doc="GPIO Port F Deep-Sleep Mode Clock Gating Control"]
@@ -16182,7 +16182,7 @@ impl Dcgcgpio {
 
     #[doc="GPIO Port G Deep-Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_d6(&self) -> bool {
-        self.d6 != 0
+        self.d6() != 0
     }
 
     #[doc="GPIO Port G Deep-Sleep Mode Clock Gating Control"]
@@ -16201,7 +16201,7 @@ impl Dcgcgpio {
 
     #[doc="GPIO Port H Deep-Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_d7(&self) -> bool {
-        self.d7 != 0
+        self.d7() != 0
     }
 
     #[doc="GPIO Port H Deep-Sleep Mode Clock Gating Control"]
@@ -16220,7 +16220,7 @@ impl Dcgcgpio {
 
     #[doc="GPIO Port J Deep-Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_d8(&self) -> bool {
-        self.d8 != 0
+        self.d8() != 0
     }
 
     #[doc="GPIO Port J Deep-Sleep Mode Clock Gating Control"]
@@ -16239,7 +16239,7 @@ impl Dcgcgpio {
 
     #[doc="GPIO Port K Deep-Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_d9(&self) -> bool {
-        self.d9 != 0
+        self.d9() != 0
     }
 
     #[doc="GPIO Port K Deep-Sleep Mode Clock Gating Control"]
@@ -16258,7 +16258,7 @@ impl Dcgcgpio {
 
     #[doc="GPIO Port L Deep-Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_d10(&self) -> bool {
-        self.d10 != 0
+        self.d10() != 0
     }
 
     #[doc="GPIO Port L Deep-Sleep Mode Clock Gating Control"]
@@ -16277,7 +16277,7 @@ impl Dcgcgpio {
 
     #[doc="GPIO Port M Deep-Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_d11(&self) -> bool {
-        self.d11 != 0
+        self.d11() != 0
     }
 
     #[doc="GPIO Port M Deep-Sleep Mode Clock Gating Control"]
@@ -16296,7 +16296,7 @@ impl Dcgcgpio {
 
     #[doc="GPIO Port N Deep-Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_d12(&self) -> bool {
-        self.d12 != 0
+        self.d12() != 0
     }
 
     #[doc="GPIO Port N Deep-Sleep Mode Clock Gating Control"]
@@ -16315,7 +16315,7 @@ impl Dcgcgpio {
 
     #[doc="GPIO Port P Deep-Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_d13(&self) -> bool {
-        self.d13 != 0
+        self.d13() != 0
     }
 
     #[doc="GPIO Port P Deep-Sleep Mode Clock Gating Control"]
@@ -16334,7 +16334,7 @@ impl Dcgcgpio {
 
     #[doc="GPIO Port Q Deep-Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_d14(&self) -> bool {
-        self.d14 != 0
+        self.d14() != 0
     }
 
     #[doc="GPIO Port Q Deep-Sleep Mode Clock Gating Control"]
@@ -16388,7 +16388,7 @@ impl Dcgcdma {
 
     #[doc="uDMA Module Deep-Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_d0(&self) -> bool {
-        self.d0 != 0
+        self.d0() != 0
     }
 
     #[doc="uDMA Module Deep-Sleep Mode Clock Gating Control"]
@@ -16428,7 +16428,7 @@ impl Dcgcepi {
 
     #[doc="EPI Module Deep-Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_d0(&self) -> bool {
-        self.d0 != 0
+        self.d0() != 0
     }
 
     #[doc="EPI Module Deep-Sleep Mode Clock Gating Control"]
@@ -16468,7 +16468,7 @@ impl Dcgchib {
 
     #[doc="Hibernation Module Deep-Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_d0(&self) -> bool {
-        self.d0 != 0
+        self.d0() != 0
     }
 
     #[doc="Hibernation Module Deep-Sleep Mode Clock Gating Control"]
@@ -16508,7 +16508,7 @@ impl Dcgcuart {
 
     #[doc="UART Module 0 Deep-Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_d0(&self) -> bool {
-        self.d0 != 0
+        self.d0() != 0
     }
 
     #[doc="UART Module 0 Deep-Sleep Mode Clock Gating Control"]
@@ -16527,7 +16527,7 @@ impl Dcgcuart {
 
     #[doc="UART Module 1 Deep-Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_d1(&self) -> bool {
-        self.d1 != 0
+        self.d1() != 0
     }
 
     #[doc="UART Module 1 Deep-Sleep Mode Clock Gating Control"]
@@ -16546,7 +16546,7 @@ impl Dcgcuart {
 
     #[doc="UART Module 2 Deep-Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_d2(&self) -> bool {
-        self.d2 != 0
+        self.d2() != 0
     }
 
     #[doc="UART Module 2 Deep-Sleep Mode Clock Gating Control"]
@@ -16565,7 +16565,7 @@ impl Dcgcuart {
 
     #[doc="UART Module 3 Deep-Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_d3(&self) -> bool {
-        self.d3 != 0
+        self.d3() != 0
     }
 
     #[doc="UART Module 3 Deep-Sleep Mode Clock Gating Control"]
@@ -16584,7 +16584,7 @@ impl Dcgcuart {
 
     #[doc="UART Module 4 Deep-Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_d4(&self) -> bool {
-        self.d4 != 0
+        self.d4() != 0
     }
 
     #[doc="UART Module 4 Deep-Sleep Mode Clock Gating Control"]
@@ -16603,7 +16603,7 @@ impl Dcgcuart {
 
     #[doc="UART Module 5 Deep-Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_d5(&self) -> bool {
-        self.d5 != 0
+        self.d5() != 0
     }
 
     #[doc="UART Module 5 Deep-Sleep Mode Clock Gating Control"]
@@ -16622,7 +16622,7 @@ impl Dcgcuart {
 
     #[doc="UART Module 6 Deep-Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_d6(&self) -> bool {
-        self.d6 != 0
+        self.d6() != 0
     }
 
     #[doc="UART Module 6 Deep-Sleep Mode Clock Gating Control"]
@@ -16641,7 +16641,7 @@ impl Dcgcuart {
 
     #[doc="UART Module 7 Deep-Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_d7(&self) -> bool {
-        self.d7 != 0
+        self.d7() != 0
     }
 
     #[doc="UART Module 7 Deep-Sleep Mode Clock Gating Control"]
@@ -16688,7 +16688,7 @@ impl Dcgcssi {
 
     #[doc="SSI Module 0 Deep-Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_d0(&self) -> bool {
-        self.d0 != 0
+        self.d0() != 0
     }
 
     #[doc="SSI Module 0 Deep-Sleep Mode Clock Gating Control"]
@@ -16707,7 +16707,7 @@ impl Dcgcssi {
 
     #[doc="SSI Module 1 Deep-Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_d1(&self) -> bool {
-        self.d1 != 0
+        self.d1() != 0
     }
 
     #[doc="SSI Module 1 Deep-Sleep Mode Clock Gating Control"]
@@ -16726,7 +16726,7 @@ impl Dcgcssi {
 
     #[doc="SSI Module 2 Deep-Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_d2(&self) -> bool {
-        self.d2 != 0
+        self.d2() != 0
     }
 
     #[doc="SSI Module 2 Deep-Sleep Mode Clock Gating Control"]
@@ -16745,7 +16745,7 @@ impl Dcgcssi {
 
     #[doc="SSI Module 3 Deep-Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_d3(&self) -> bool {
-        self.d3 != 0
+        self.d3() != 0
     }
 
     #[doc="SSI Module 3 Deep-Sleep Mode Clock Gating Control"]
@@ -16788,7 +16788,7 @@ impl Dcgci2c {
 
     #[doc="I2C Module 0 Deep-Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_d0(&self) -> bool {
-        self.d0 != 0
+        self.d0() != 0
     }
 
     #[doc="I2C Module 0 Deep-Sleep Mode Clock Gating Control"]
@@ -16807,7 +16807,7 @@ impl Dcgci2c {
 
     #[doc="I2C Module 1 Deep-Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_d1(&self) -> bool {
-        self.d1 != 0
+        self.d1() != 0
     }
 
     #[doc="I2C Module 1 Deep-Sleep Mode Clock Gating Control"]
@@ -16826,7 +16826,7 @@ impl Dcgci2c {
 
     #[doc="I2C Module 2 Deep-Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_d2(&self) -> bool {
-        self.d2 != 0
+        self.d2() != 0
     }
 
     #[doc="I2C Module 2 Deep-Sleep Mode Clock Gating Control"]
@@ -16845,7 +16845,7 @@ impl Dcgci2c {
 
     #[doc="I2C Module 3 Deep-Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_d3(&self) -> bool {
-        self.d3 != 0
+        self.d3() != 0
     }
 
     #[doc="I2C Module 3 Deep-Sleep Mode Clock Gating Control"]
@@ -16864,7 +16864,7 @@ impl Dcgci2c {
 
     #[doc="I2C Module 4 Deep-Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_d4(&self) -> bool {
-        self.d4 != 0
+        self.d4() != 0
     }
 
     #[doc="I2C Module 4 Deep-Sleep Mode Clock Gating Control"]
@@ -16883,7 +16883,7 @@ impl Dcgci2c {
 
     #[doc="I2C Module 5 Deep-Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_d5(&self) -> bool {
-        self.d5 != 0
+        self.d5() != 0
     }
 
     #[doc="I2C Module 5 Deep-Sleep Mode Clock Gating Control"]
@@ -16902,7 +16902,7 @@ impl Dcgci2c {
 
     #[doc="I2C Module 6 Deep-Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_d6(&self) -> bool {
-        self.d6 != 0
+        self.d6() != 0
     }
 
     #[doc="I2C Module 6 Deep-Sleep Mode Clock Gating Control"]
@@ -16921,7 +16921,7 @@ impl Dcgci2c {
 
     #[doc="I2C Module 7 Deep-Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_d7(&self) -> bool {
-        self.d7 != 0
+        self.d7() != 0
     }
 
     #[doc="I2C Module 7 Deep-Sleep Mode Clock Gating Control"]
@@ -16940,7 +16940,7 @@ impl Dcgci2c {
 
     #[doc="I2C Module 8 Deep-Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_d8(&self) -> bool {
-        self.d8 != 0
+        self.d8() != 0
     }
 
     #[doc="I2C Module 8 Deep-Sleep Mode Clock Gating Control"]
@@ -16959,7 +16959,7 @@ impl Dcgci2c {
 
     #[doc="I2C Module 9 Deep-Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_d9(&self) -> bool {
-        self.d9 != 0
+        self.d9() != 0
     }
 
     #[doc="I2C Module 9 Deep-Sleep Mode Clock Gating Control"]
@@ -17008,7 +17008,7 @@ impl Dcgcusb {
 
     #[doc="USB Module Deep-Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_d0(&self) -> bool {
-        self.d0 != 0
+        self.d0() != 0
     }
 
     #[doc="USB Module Deep-Sleep Mode Clock Gating Control"]
@@ -17048,7 +17048,7 @@ impl Dcgcephy {
 
     #[doc="PHY Module Deep-Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_d0(&self) -> bool {
-        self.d0 != 0
+        self.d0() != 0
     }
 
     #[doc="PHY Module Deep-Sleep Mode Clock Gating Control"]
@@ -17088,7 +17088,7 @@ impl Dcgccan {
 
     #[doc="CAN Module 0 Deep-Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_d0(&self) -> bool {
-        self.d0 != 0
+        self.d0() != 0
     }
 
     #[doc="CAN Module 0 Deep-Sleep Mode Clock Gating Control"]
@@ -17107,7 +17107,7 @@ impl Dcgccan {
 
     #[doc="CAN Module 1 Deep-Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_d1(&self) -> bool {
-        self.d1 != 0
+        self.d1() != 0
     }
 
     #[doc="CAN Module 1 Deep-Sleep Mode Clock Gating Control"]
@@ -17148,7 +17148,7 @@ impl Dcgcadc {
 
     #[doc="ADC Module 0 Deep-Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_d0(&self) -> bool {
-        self.d0 != 0
+        self.d0() != 0
     }
 
     #[doc="ADC Module 0 Deep-Sleep Mode Clock Gating Control"]
@@ -17167,7 +17167,7 @@ impl Dcgcadc {
 
     #[doc="ADC Module 1 Deep-Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_d1(&self) -> bool {
-        self.d1 != 0
+        self.d1() != 0
     }
 
     #[doc="ADC Module 1 Deep-Sleep Mode Clock Gating Control"]
@@ -17208,7 +17208,7 @@ impl Dcgcacmp {
 
     #[doc="Analog Comparator Module 0 Deep-Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_d0(&self) -> bool {
-        self.d0 != 0
+        self.d0() != 0
     }
 
     #[doc="Analog Comparator Module 0 Deep-Sleep Mode Clock Gating Control"]
@@ -17248,7 +17248,7 @@ impl Dcgcpwm {
 
     #[doc="PWM Module 0 Deep-Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_d0(&self) -> bool {
-        self.d0 != 0
+        self.d0() != 0
     }
 
     #[doc="PWM Module 0 Deep-Sleep Mode Clock Gating Control"]
@@ -17288,7 +17288,7 @@ impl Dcgcqei {
 
     #[doc="QEI Module 0 Deep-Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_d0(&self) -> bool {
-        self.d0 != 0
+        self.d0() != 0
     }
 
     #[doc="QEI Module 0 Deep-Sleep Mode Clock Gating Control"]
@@ -17328,7 +17328,7 @@ impl Dcgceeprom {
 
     #[doc="EEPROM Module Deep-Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_d0(&self) -> bool {
-        self.d0 != 0
+        self.d0() != 0
     }
 
     #[doc="EEPROM Module Deep-Sleep Mode Clock Gating Control"]
@@ -17368,7 +17368,7 @@ impl Dcgcccm {
 
     #[doc="CRC and Cryptographic Modules Deep-Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_d0(&self) -> bool {
-        self.d0 != 0
+        self.d0() != 0
     }
 
     #[doc="CRC and Cryptographic Modules Deep-Sleep Mode Clock Gating Control"]
@@ -17408,7 +17408,7 @@ impl Dcgcemac {
 
     #[doc="Ethernet MAC Module 0 Deep-Sleep Mode Clock Gating Control"]
     #[inline] pub fn test_d0(&self) -> bool {
-        self.d0 != 0
+        self.d0() != 0
     }
 
     #[doc="Ethernet MAC Module 0 Deep-Sleep Mode Clock Gating Control"]
@@ -17448,7 +17448,7 @@ impl Pcwd {
 
     #[doc="Watchdog Timer 0 Power Control"]
     #[inline] pub fn test_p0(&self) -> bool {
-        self.p0 != 0
+        self.p0() != 0
     }
 
     #[doc="Watchdog Timer 0 Power Control"]
@@ -17467,7 +17467,7 @@ impl Pcwd {
 
     #[doc="Watchdog Timer 1 Power Control"]
     #[inline] pub fn test_p1(&self) -> bool {
-        self.p1 != 0
+        self.p1() != 0
     }
 
     #[doc="Watchdog Timer 1 Power Control"]
@@ -17508,7 +17508,7 @@ impl Pctimer {
 
     #[doc="General-Purpose Timer 0 Power Control"]
     #[inline] pub fn test_p0(&self) -> bool {
-        self.p0 != 0
+        self.p0() != 0
     }
 
     #[doc="General-Purpose Timer 0 Power Control"]
@@ -17527,7 +17527,7 @@ impl Pctimer {
 
     #[doc="General-Purpose Timer 1 Power Control"]
     #[inline] pub fn test_p1(&self) -> bool {
-        self.p1 != 0
+        self.p1() != 0
     }
 
     #[doc="General-Purpose Timer 1 Power Control"]
@@ -17546,7 +17546,7 @@ impl Pctimer {
 
     #[doc="General-Purpose Timer 2 Power Control"]
     #[inline] pub fn test_p2(&self) -> bool {
-        self.p2 != 0
+        self.p2() != 0
     }
 
     #[doc="General-Purpose Timer 2 Power Control"]
@@ -17565,7 +17565,7 @@ impl Pctimer {
 
     #[doc="General-Purpose Timer 3 Power Control"]
     #[inline] pub fn test_p3(&self) -> bool {
-        self.p3 != 0
+        self.p3() != 0
     }
 
     #[doc="General-Purpose Timer 3 Power Control"]
@@ -17584,7 +17584,7 @@ impl Pctimer {
 
     #[doc="General-Purpose Timer 4 Power Control"]
     #[inline] pub fn test_p4(&self) -> bool {
-        self.p4 != 0
+        self.p4() != 0
     }
 
     #[doc="General-Purpose Timer 4 Power Control"]
@@ -17603,7 +17603,7 @@ impl Pctimer {
 
     #[doc="General-Purpose Timer 5 Power Control"]
     #[inline] pub fn test_p5(&self) -> bool {
-        self.p5 != 0
+        self.p5() != 0
     }
 
     #[doc="General-Purpose Timer 5 Power Control"]
@@ -17622,7 +17622,7 @@ impl Pctimer {
 
     #[doc="General-Purpose Timer 6 Power Control"]
     #[inline] pub fn test_p6(&self) -> bool {
-        self.p6 != 0
+        self.p6() != 0
     }
 
     #[doc="General-Purpose Timer 6 Power Control"]
@@ -17641,7 +17641,7 @@ impl Pctimer {
 
     #[doc="General-Purpose Timer 7 Power Control"]
     #[inline] pub fn test_p7(&self) -> bool {
-        self.p7 != 0
+        self.p7() != 0
     }
 
     #[doc="General-Purpose Timer 7 Power Control"]
@@ -17688,7 +17688,7 @@ impl Pcgpio {
 
     #[doc="GPIO Port A Power Control"]
     #[inline] pub fn test_p0(&self) -> bool {
-        self.p0 != 0
+        self.p0() != 0
     }
 
     #[doc="GPIO Port A Power Control"]
@@ -17707,7 +17707,7 @@ impl Pcgpio {
 
     #[doc="GPIO Port B Power Control"]
     #[inline] pub fn test_p1(&self) -> bool {
-        self.p1 != 0
+        self.p1() != 0
     }
 
     #[doc="GPIO Port B Power Control"]
@@ -17726,7 +17726,7 @@ impl Pcgpio {
 
     #[doc="GPIO Port C Power Control"]
     #[inline] pub fn test_p2(&self) -> bool {
-        self.p2 != 0
+        self.p2() != 0
     }
 
     #[doc="GPIO Port C Power Control"]
@@ -17745,7 +17745,7 @@ impl Pcgpio {
 
     #[doc="GPIO Port D Power Control"]
     #[inline] pub fn test_p3(&self) -> bool {
-        self.p3 != 0
+        self.p3() != 0
     }
 
     #[doc="GPIO Port D Power Control"]
@@ -17764,7 +17764,7 @@ impl Pcgpio {
 
     #[doc="GPIO Port E Power Control"]
     #[inline] pub fn test_p4(&self) -> bool {
-        self.p4 != 0
+        self.p4() != 0
     }
 
     #[doc="GPIO Port E Power Control"]
@@ -17783,7 +17783,7 @@ impl Pcgpio {
 
     #[doc="GPIO Port F Power Control"]
     #[inline] pub fn test_p5(&self) -> bool {
-        self.p5 != 0
+        self.p5() != 0
     }
 
     #[doc="GPIO Port F Power Control"]
@@ -17802,7 +17802,7 @@ impl Pcgpio {
 
     #[doc="GPIO Port G Power Control"]
     #[inline] pub fn test_p6(&self) -> bool {
-        self.p6 != 0
+        self.p6() != 0
     }
 
     #[doc="GPIO Port G Power Control"]
@@ -17821,7 +17821,7 @@ impl Pcgpio {
 
     #[doc="GPIO Port H Power Control"]
     #[inline] pub fn test_p7(&self) -> bool {
-        self.p7 != 0
+        self.p7() != 0
     }
 
     #[doc="GPIO Port H Power Control"]
@@ -17840,7 +17840,7 @@ impl Pcgpio {
 
     #[doc="GPIO Port J Power Control"]
     #[inline] pub fn test_p8(&self) -> bool {
-        self.p8 != 0
+        self.p8() != 0
     }
 
     #[doc="GPIO Port J Power Control"]
@@ -17859,7 +17859,7 @@ impl Pcgpio {
 
     #[doc="GPIO Port K Power Control"]
     #[inline] pub fn test_p9(&self) -> bool {
-        self.p9 != 0
+        self.p9() != 0
     }
 
     #[doc="GPIO Port K Power Control"]
@@ -17878,7 +17878,7 @@ impl Pcgpio {
 
     #[doc="GPIO Port L Power Control"]
     #[inline] pub fn test_p10(&self) -> bool {
-        self.p10 != 0
+        self.p10() != 0
     }
 
     #[doc="GPIO Port L Power Control"]
@@ -17897,7 +17897,7 @@ impl Pcgpio {
 
     #[doc="GPIO Port M Power Control"]
     #[inline] pub fn test_p11(&self) -> bool {
-        self.p11 != 0
+        self.p11() != 0
     }
 
     #[doc="GPIO Port M Power Control"]
@@ -17916,7 +17916,7 @@ impl Pcgpio {
 
     #[doc="GPIO Port N Power Control"]
     #[inline] pub fn test_p12(&self) -> bool {
-        self.p12 != 0
+        self.p12() != 0
     }
 
     #[doc="GPIO Port N Power Control"]
@@ -17935,7 +17935,7 @@ impl Pcgpio {
 
     #[doc="GPIO Port P Power Control"]
     #[inline] pub fn test_p13(&self) -> bool {
-        self.p13 != 0
+        self.p13() != 0
     }
 
     #[doc="GPIO Port P Power Control"]
@@ -17954,7 +17954,7 @@ impl Pcgpio {
 
     #[doc="GPIO Port Q Power Control"]
     #[inline] pub fn test_p14(&self) -> bool {
-        self.p14 != 0
+        self.p14() != 0
     }
 
     #[doc="GPIO Port Q Power Control"]
@@ -18008,7 +18008,7 @@ impl Pcdma {
 
     #[doc="uDMA Module Power Control"]
     #[inline] pub fn test_p0(&self) -> bool {
-        self.p0 != 0
+        self.p0() != 0
     }
 
     #[doc="uDMA Module Power Control"]
@@ -18048,7 +18048,7 @@ impl Pcepi {
 
     #[doc="EPI Module Power Control"]
     #[inline] pub fn test_p0(&self) -> bool {
-        self.p0 != 0
+        self.p0() != 0
     }
 
     #[doc="EPI Module Power Control"]
@@ -18088,7 +18088,7 @@ impl Pchib {
 
     #[doc="Hibernation Module Power Control"]
     #[inline] pub fn test_p0(&self) -> bool {
-        self.p0 != 0
+        self.p0() != 0
     }
 
     #[doc="Hibernation Module Power Control"]
@@ -18128,7 +18128,7 @@ impl Pcuart {
 
     #[doc="UART Module 0 Power Control"]
     #[inline] pub fn test_p0(&self) -> bool {
-        self.p0 != 0
+        self.p0() != 0
     }
 
     #[doc="UART Module 0 Power Control"]
@@ -18147,7 +18147,7 @@ impl Pcuart {
 
     #[doc="UART Module 1 Power Control"]
     #[inline] pub fn test_p1(&self) -> bool {
-        self.p1 != 0
+        self.p1() != 0
     }
 
     #[doc="UART Module 1 Power Control"]
@@ -18166,7 +18166,7 @@ impl Pcuart {
 
     #[doc="UART Module 2 Power Control"]
     #[inline] pub fn test_p2(&self) -> bool {
-        self.p2 != 0
+        self.p2() != 0
     }
 
     #[doc="UART Module 2 Power Control"]
@@ -18185,7 +18185,7 @@ impl Pcuart {
 
     #[doc="UART Module 3 Power Control"]
     #[inline] pub fn test_p3(&self) -> bool {
-        self.p3 != 0
+        self.p3() != 0
     }
 
     #[doc="UART Module 3 Power Control"]
@@ -18204,7 +18204,7 @@ impl Pcuart {
 
     #[doc="UART Module 4 Power Control"]
     #[inline] pub fn test_p4(&self) -> bool {
-        self.p4 != 0
+        self.p4() != 0
     }
 
     #[doc="UART Module 4 Power Control"]
@@ -18223,7 +18223,7 @@ impl Pcuart {
 
     #[doc="UART Module 5 Power Control"]
     #[inline] pub fn test_p5(&self) -> bool {
-        self.p5 != 0
+        self.p5() != 0
     }
 
     #[doc="UART Module 5 Power Control"]
@@ -18242,7 +18242,7 @@ impl Pcuart {
 
     #[doc="UART Module 6 Power Control"]
     #[inline] pub fn test_p6(&self) -> bool {
-        self.p6 != 0
+        self.p6() != 0
     }
 
     #[doc="UART Module 6 Power Control"]
@@ -18261,7 +18261,7 @@ impl Pcuart {
 
     #[doc="UART Module 7 Power Control"]
     #[inline] pub fn test_p7(&self) -> bool {
-        self.p7 != 0
+        self.p7() != 0
     }
 
     #[doc="UART Module 7 Power Control"]
@@ -18308,7 +18308,7 @@ impl Pcssi {
 
     #[doc="SSI Module 0 Power Control"]
     #[inline] pub fn test_p0(&self) -> bool {
-        self.p0 != 0
+        self.p0() != 0
     }
 
     #[doc="SSI Module 0 Power Control"]
@@ -18327,7 +18327,7 @@ impl Pcssi {
 
     #[doc="SSI Module 1 Power Control"]
     #[inline] pub fn test_p1(&self) -> bool {
-        self.p1 != 0
+        self.p1() != 0
     }
 
     #[doc="SSI Module 1 Power Control"]
@@ -18346,7 +18346,7 @@ impl Pcssi {
 
     #[doc="SSI Module 2 Power Control"]
     #[inline] pub fn test_p2(&self) -> bool {
-        self.p2 != 0
+        self.p2() != 0
     }
 
     #[doc="SSI Module 2 Power Control"]
@@ -18365,7 +18365,7 @@ impl Pcssi {
 
     #[doc="SSI Module 3 Power Control"]
     #[inline] pub fn test_p3(&self) -> bool {
-        self.p3 != 0
+        self.p3() != 0
     }
 
     #[doc="SSI Module 3 Power Control"]
@@ -18408,7 +18408,7 @@ impl Pci2c {
 
     #[doc="I2C Module 0 Power Control"]
     #[inline] pub fn test_p0(&self) -> bool {
-        self.p0 != 0
+        self.p0() != 0
     }
 
     #[doc="I2C Module 0 Power Control"]
@@ -18427,7 +18427,7 @@ impl Pci2c {
 
     #[doc="I2C Module 1 Power Control"]
     #[inline] pub fn test_p1(&self) -> bool {
-        self.p1 != 0
+        self.p1() != 0
     }
 
     #[doc="I2C Module 1 Power Control"]
@@ -18446,7 +18446,7 @@ impl Pci2c {
 
     #[doc="I2C Module 2 Power Control"]
     #[inline] pub fn test_p2(&self) -> bool {
-        self.p2 != 0
+        self.p2() != 0
     }
 
     #[doc="I2C Module 2 Power Control"]
@@ -18465,7 +18465,7 @@ impl Pci2c {
 
     #[doc="I2C Module 3 Power Control"]
     #[inline] pub fn test_p3(&self) -> bool {
-        self.p3 != 0
+        self.p3() != 0
     }
 
     #[doc="I2C Module 3 Power Control"]
@@ -18484,7 +18484,7 @@ impl Pci2c {
 
     #[doc="I2C Module 4 Power Control"]
     #[inline] pub fn test_p4(&self) -> bool {
-        self.p4 != 0
+        self.p4() != 0
     }
 
     #[doc="I2C Module 4 Power Control"]
@@ -18503,7 +18503,7 @@ impl Pci2c {
 
     #[doc="I2C Module 5 Power Control"]
     #[inline] pub fn test_p5(&self) -> bool {
-        self.p5 != 0
+        self.p5() != 0
     }
 
     #[doc="I2C Module 5 Power Control"]
@@ -18522,7 +18522,7 @@ impl Pci2c {
 
     #[doc="I2C Module 6 Power Control"]
     #[inline] pub fn test_p6(&self) -> bool {
-        self.p6 != 0
+        self.p6() != 0
     }
 
     #[doc="I2C Module 6 Power Control"]
@@ -18541,7 +18541,7 @@ impl Pci2c {
 
     #[doc="I2C Module 7 Power Control"]
     #[inline] pub fn test_p7(&self) -> bool {
-        self.p7 != 0
+        self.p7() != 0
     }
 
     #[doc="I2C Module 7 Power Control"]
@@ -18560,7 +18560,7 @@ impl Pci2c {
 
     #[doc="I2C Module 8 Power Control"]
     #[inline] pub fn test_p8(&self) -> bool {
-        self.p8 != 0
+        self.p8() != 0
     }
 
     #[doc="I2C Module 8 Power Control"]
@@ -18579,7 +18579,7 @@ impl Pci2c {
 
     #[doc="I2C Module 9 Power Control"]
     #[inline] pub fn test_p9(&self) -> bool {
-        self.p9 != 0
+        self.p9() != 0
     }
 
     #[doc="I2C Module 9 Power Control"]
@@ -18628,7 +18628,7 @@ impl Pcusb {
 
     #[doc="USB Module Power Control"]
     #[inline] pub fn test_p0(&self) -> bool {
-        self.p0 != 0
+        self.p0() != 0
     }
 
     #[doc="USB Module Power Control"]
@@ -18668,7 +18668,7 @@ impl Pcephy {
 
     #[doc="Ethernet PHY Module Power Control"]
     #[inline] pub fn test_p0(&self) -> bool {
-        self.p0 != 0
+        self.p0() != 0
     }
 
     #[doc="Ethernet PHY Module Power Control"]
@@ -18708,7 +18708,7 @@ impl Pccan {
 
     #[doc="CAN Module 0 Power Control"]
     #[inline] pub fn test_p0(&self) -> bool {
-        self.p0 != 0
+        self.p0() != 0
     }
 
     #[doc="CAN Module 0 Power Control"]
@@ -18727,7 +18727,7 @@ impl Pccan {
 
     #[doc="CAN Module 1 Power Control"]
     #[inline] pub fn test_p1(&self) -> bool {
-        self.p1 != 0
+        self.p1() != 0
     }
 
     #[doc="CAN Module 1 Power Control"]
@@ -18768,7 +18768,7 @@ impl Pcadc {
 
     #[doc="ADC Module 0 Power Control"]
     #[inline] pub fn test_p0(&self) -> bool {
-        self.p0 != 0
+        self.p0() != 0
     }
 
     #[doc="ADC Module 0 Power Control"]
@@ -18787,7 +18787,7 @@ impl Pcadc {
 
     #[doc="ADC Module 1 Power Control"]
     #[inline] pub fn test_p1(&self) -> bool {
-        self.p1 != 0
+        self.p1() != 0
     }
 
     #[doc="ADC Module 1 Power Control"]
@@ -18828,7 +18828,7 @@ impl Pcacmp {
 
     #[doc="Analog Comparator Module 0 Power Control"]
     #[inline] pub fn test_p0(&self) -> bool {
-        self.p0 != 0
+        self.p0() != 0
     }
 
     #[doc="Analog Comparator Module 0 Power Control"]
@@ -18868,7 +18868,7 @@ impl Pcpwm {
 
     #[doc="PWM Module 0 Power Control"]
     #[inline] pub fn test_p0(&self) -> bool {
-        self.p0 != 0
+        self.p0() != 0
     }
 
     #[doc="PWM Module 0 Power Control"]
@@ -18908,7 +18908,7 @@ impl Pcqei {
 
     #[doc="QEI Module 0 Power Control"]
     #[inline] pub fn test_p0(&self) -> bool {
-        self.p0 != 0
+        self.p0() != 0
     }
 
     #[doc="QEI Module 0 Power Control"]
@@ -18948,7 +18948,7 @@ impl Pceeprom {
 
     #[doc="EEPROM Module 0 Power Control"]
     #[inline] pub fn test_p0(&self) -> bool {
-        self.p0 != 0
+        self.p0() != 0
     }
 
     #[doc="EEPROM Module 0 Power Control"]
@@ -18988,7 +18988,7 @@ impl Pcccm {
 
     #[doc="CRC and Cryptographic Modules Power Control"]
     #[inline] pub fn test_p0(&self) -> bool {
-        self.p0 != 0
+        self.p0() != 0
     }
 
     #[doc="CRC and Cryptographic Modules Power Control"]
@@ -19028,7 +19028,7 @@ impl Pcemac {
 
     #[doc="Ethernet MAC Module 0 Power Control"]
     #[inline] pub fn test_p0(&self) -> bool {
-        self.p0 != 0
+        self.p0() != 0
     }
 
     #[doc="Ethernet MAC Module 0 Power Control"]
@@ -19068,7 +19068,7 @@ impl Prwd {
 
     #[doc="Watchdog Timer 0 Peripheral Ready"]
     #[inline] pub fn test_r0(&self) -> bool {
-        self.r0 != 0
+        self.r0() != 0
     }
 
     #[doc="Watchdog Timer 0 Peripheral Ready"]
@@ -19087,7 +19087,7 @@ impl Prwd {
 
     #[doc="Watchdog Timer 1 Peripheral Ready"]
     #[inline] pub fn test_r1(&self) -> bool {
-        self.r1 != 0
+        self.r1() != 0
     }
 
     #[doc="Watchdog Timer 1 Peripheral Ready"]
@@ -19128,7 +19128,7 @@ impl Prtimer {
 
     #[doc="16/32-Bit General-Purpose Timer 0 Peripheral Ready"]
     #[inline] pub fn test_r0(&self) -> bool {
-        self.r0 != 0
+        self.r0() != 0
     }
 
     #[doc="16/32-Bit General-Purpose Timer 0 Peripheral Ready"]
@@ -19147,7 +19147,7 @@ impl Prtimer {
 
     #[doc="16/32-Bit General-Purpose Timer 1 Peripheral Ready"]
     #[inline] pub fn test_r1(&self) -> bool {
-        self.r1 != 0
+        self.r1() != 0
     }
 
     #[doc="16/32-Bit General-Purpose Timer 1 Peripheral Ready"]
@@ -19166,7 +19166,7 @@ impl Prtimer {
 
     #[doc="16/32-Bit General-Purpose Timer 2 Peripheral Ready"]
     #[inline] pub fn test_r2(&self) -> bool {
-        self.r2 != 0
+        self.r2() != 0
     }
 
     #[doc="16/32-Bit General-Purpose Timer 2 Peripheral Ready"]
@@ -19185,7 +19185,7 @@ impl Prtimer {
 
     #[doc="16/32-Bit General-Purpose Timer 3 Peripheral Ready"]
     #[inline] pub fn test_r3(&self) -> bool {
-        self.r3 != 0
+        self.r3() != 0
     }
 
     #[doc="16/32-Bit General-Purpose Timer 3 Peripheral Ready"]
@@ -19204,7 +19204,7 @@ impl Prtimer {
 
     #[doc="16/32-Bit General-Purpose Timer 4 Peripheral Ready"]
     #[inline] pub fn test_r4(&self) -> bool {
-        self.r4 != 0
+        self.r4() != 0
     }
 
     #[doc="16/32-Bit General-Purpose Timer 4 Peripheral Ready"]
@@ -19223,7 +19223,7 @@ impl Prtimer {
 
     #[doc="16/32-Bit General-Purpose Timer 5 Peripheral Ready"]
     #[inline] pub fn test_r5(&self) -> bool {
-        self.r5 != 0
+        self.r5() != 0
     }
 
     #[doc="16/32-Bit General-Purpose Timer 5 Peripheral Ready"]
@@ -19242,7 +19242,7 @@ impl Prtimer {
 
     #[doc="16/32-Bit General-Purpose Timer 6 Peripheral Ready"]
     #[inline] pub fn test_r6(&self) -> bool {
-        self.r6 != 0
+        self.r6() != 0
     }
 
     #[doc="16/32-Bit General-Purpose Timer 6 Peripheral Ready"]
@@ -19261,7 +19261,7 @@ impl Prtimer {
 
     #[doc="16/32-Bit General-Purpose Timer 7 Peripheral Ready"]
     #[inline] pub fn test_r7(&self) -> bool {
-        self.r7 != 0
+        self.r7() != 0
     }
 
     #[doc="16/32-Bit General-Purpose Timer 7 Peripheral Ready"]
@@ -19308,7 +19308,7 @@ impl Prgpio {
 
     #[doc="GPIO Port A Peripheral Ready"]
     #[inline] pub fn test_r0(&self) -> bool {
-        self.r0 != 0
+        self.r0() != 0
     }
 
     #[doc="GPIO Port A Peripheral Ready"]
@@ -19327,7 +19327,7 @@ impl Prgpio {
 
     #[doc="GPIO Port B Peripheral Ready"]
     #[inline] pub fn test_r1(&self) -> bool {
-        self.r1 != 0
+        self.r1() != 0
     }
 
     #[doc="GPIO Port B Peripheral Ready"]
@@ -19346,7 +19346,7 @@ impl Prgpio {
 
     #[doc="GPIO Port C Peripheral Ready"]
     #[inline] pub fn test_r2(&self) -> bool {
-        self.r2 != 0
+        self.r2() != 0
     }
 
     #[doc="GPIO Port C Peripheral Ready"]
@@ -19365,7 +19365,7 @@ impl Prgpio {
 
     #[doc="GPIO Port D Peripheral Ready"]
     #[inline] pub fn test_r3(&self) -> bool {
-        self.r3 != 0
+        self.r3() != 0
     }
 
     #[doc="GPIO Port D Peripheral Ready"]
@@ -19384,7 +19384,7 @@ impl Prgpio {
 
     #[doc="GPIO Port E Peripheral Ready"]
     #[inline] pub fn test_r4(&self) -> bool {
-        self.r4 != 0
+        self.r4() != 0
     }
 
     #[doc="GPIO Port E Peripheral Ready"]
@@ -19403,7 +19403,7 @@ impl Prgpio {
 
     #[doc="GPIO Port F Peripheral Ready"]
     #[inline] pub fn test_r5(&self) -> bool {
-        self.r5 != 0
+        self.r5() != 0
     }
 
     #[doc="GPIO Port F Peripheral Ready"]
@@ -19422,7 +19422,7 @@ impl Prgpio {
 
     #[doc="GPIO Port G Peripheral Ready"]
     #[inline] pub fn test_r6(&self) -> bool {
-        self.r6 != 0
+        self.r6() != 0
     }
 
     #[doc="GPIO Port G Peripheral Ready"]
@@ -19441,7 +19441,7 @@ impl Prgpio {
 
     #[doc="GPIO Port H Peripheral Ready"]
     #[inline] pub fn test_r7(&self) -> bool {
-        self.r7 != 0
+        self.r7() != 0
     }
 
     #[doc="GPIO Port H Peripheral Ready"]
@@ -19460,7 +19460,7 @@ impl Prgpio {
 
     #[doc="GPIO Port J Peripheral Ready"]
     #[inline] pub fn test_r8(&self) -> bool {
-        self.r8 != 0
+        self.r8() != 0
     }
 
     #[doc="GPIO Port J Peripheral Ready"]
@@ -19479,7 +19479,7 @@ impl Prgpio {
 
     #[doc="GPIO Port K Peripheral Ready"]
     #[inline] pub fn test_r9(&self) -> bool {
-        self.r9 != 0
+        self.r9() != 0
     }
 
     #[doc="GPIO Port K Peripheral Ready"]
@@ -19498,7 +19498,7 @@ impl Prgpio {
 
     #[doc="GPIO Port L Peripheral Ready"]
     #[inline] pub fn test_r10(&self) -> bool {
-        self.r10 != 0
+        self.r10() != 0
     }
 
     #[doc="GPIO Port L Peripheral Ready"]
@@ -19517,7 +19517,7 @@ impl Prgpio {
 
     #[doc="GPIO Port M Peripheral Ready"]
     #[inline] pub fn test_r11(&self) -> bool {
-        self.r11 != 0
+        self.r11() != 0
     }
 
     #[doc="GPIO Port M Peripheral Ready"]
@@ -19536,7 +19536,7 @@ impl Prgpio {
 
     #[doc="GPIO Port N Peripheral Ready"]
     #[inline] pub fn test_r12(&self) -> bool {
-        self.r12 != 0
+        self.r12() != 0
     }
 
     #[doc="GPIO Port N Peripheral Ready"]
@@ -19555,7 +19555,7 @@ impl Prgpio {
 
     #[doc="GPIO Port P Peripheral Ready"]
     #[inline] pub fn test_r13(&self) -> bool {
-        self.r13 != 0
+        self.r13() != 0
     }
 
     #[doc="GPIO Port P Peripheral Ready"]
@@ -19574,7 +19574,7 @@ impl Prgpio {
 
     #[doc="GPIO Port Q Peripheral Ready"]
     #[inline] pub fn test_r14(&self) -> bool {
-        self.r14 != 0
+        self.r14() != 0
     }
 
     #[doc="GPIO Port Q Peripheral Ready"]
@@ -19628,7 +19628,7 @@ impl Prdma {
 
     #[doc="uDMA Module Peripheral Ready"]
     #[inline] pub fn test_r0(&self) -> bool {
-        self.r0 != 0
+        self.r0() != 0
     }
 
     #[doc="uDMA Module Peripheral Ready"]
@@ -19668,7 +19668,7 @@ impl Prepi {
 
     #[doc="EPI Module Peripheral Ready"]
     #[inline] pub fn test_r0(&self) -> bool {
-        self.r0 != 0
+        self.r0() != 0
     }
 
     #[doc="EPI Module Peripheral Ready"]
@@ -19708,7 +19708,7 @@ impl Prhib {
 
     #[doc="Hibernation Module Peripheral Ready"]
     #[inline] pub fn test_r0(&self) -> bool {
-        self.r0 != 0
+        self.r0() != 0
     }
 
     #[doc="Hibernation Module Peripheral Ready"]
@@ -19748,7 +19748,7 @@ impl Pruart {
 
     #[doc="UART Module 0 Peripheral Ready"]
     #[inline] pub fn test_r0(&self) -> bool {
-        self.r0 != 0
+        self.r0() != 0
     }
 
     #[doc="UART Module 0 Peripheral Ready"]
@@ -19767,7 +19767,7 @@ impl Pruart {
 
     #[doc="UART Module 1 Peripheral Ready"]
     #[inline] pub fn test_r1(&self) -> bool {
-        self.r1 != 0
+        self.r1() != 0
     }
 
     #[doc="UART Module 1 Peripheral Ready"]
@@ -19786,7 +19786,7 @@ impl Pruart {
 
     #[doc="UART Module 2 Peripheral Ready"]
     #[inline] pub fn test_r2(&self) -> bool {
-        self.r2 != 0
+        self.r2() != 0
     }
 
     #[doc="UART Module 2 Peripheral Ready"]
@@ -19805,7 +19805,7 @@ impl Pruart {
 
     #[doc="UART Module 3 Peripheral Ready"]
     #[inline] pub fn test_r3(&self) -> bool {
-        self.r3 != 0
+        self.r3() != 0
     }
 
     #[doc="UART Module 3 Peripheral Ready"]
@@ -19824,7 +19824,7 @@ impl Pruart {
 
     #[doc="UART Module 4 Peripheral Ready"]
     #[inline] pub fn test_r4(&self) -> bool {
-        self.r4 != 0
+        self.r4() != 0
     }
 
     #[doc="UART Module 4 Peripheral Ready"]
@@ -19843,7 +19843,7 @@ impl Pruart {
 
     #[doc="UART Module 5 Peripheral Ready"]
     #[inline] pub fn test_r5(&self) -> bool {
-        self.r5 != 0
+        self.r5() != 0
     }
 
     #[doc="UART Module 5 Peripheral Ready"]
@@ -19862,7 +19862,7 @@ impl Pruart {
 
     #[doc="UART Module 6 Peripheral Ready"]
     #[inline] pub fn test_r6(&self) -> bool {
-        self.r6 != 0
+        self.r6() != 0
     }
 
     #[doc="UART Module 6 Peripheral Ready"]
@@ -19881,7 +19881,7 @@ impl Pruart {
 
     #[doc="UART Module 7 Peripheral Ready"]
     #[inline] pub fn test_r7(&self) -> bool {
-        self.r7 != 0
+        self.r7() != 0
     }
 
     #[doc="UART Module 7 Peripheral Ready"]
@@ -19928,7 +19928,7 @@ impl Prssi {
 
     #[doc="SSI Module 0 Peripheral Ready"]
     #[inline] pub fn test_r0(&self) -> bool {
-        self.r0 != 0
+        self.r0() != 0
     }
 
     #[doc="SSI Module 0 Peripheral Ready"]
@@ -19947,7 +19947,7 @@ impl Prssi {
 
     #[doc="SSI Module 1 Peripheral Ready"]
     #[inline] pub fn test_r1(&self) -> bool {
-        self.r1 != 0
+        self.r1() != 0
     }
 
     #[doc="SSI Module 1 Peripheral Ready"]
@@ -19966,7 +19966,7 @@ impl Prssi {
 
     #[doc="SSI Module 2 Peripheral Ready"]
     #[inline] pub fn test_r2(&self) -> bool {
-        self.r2 != 0
+        self.r2() != 0
     }
 
     #[doc="SSI Module 2 Peripheral Ready"]
@@ -19985,7 +19985,7 @@ impl Prssi {
 
     #[doc="SSI Module 3 Peripheral Ready"]
     #[inline] pub fn test_r3(&self) -> bool {
-        self.r3 != 0
+        self.r3() != 0
     }
 
     #[doc="SSI Module 3 Peripheral Ready"]
@@ -20028,7 +20028,7 @@ impl Pri2c {
 
     #[doc="I2C Module 0 Peripheral Ready"]
     #[inline] pub fn test_r0(&self) -> bool {
-        self.r0 != 0
+        self.r0() != 0
     }
 
     #[doc="I2C Module 0 Peripheral Ready"]
@@ -20047,7 +20047,7 @@ impl Pri2c {
 
     #[doc="I2C Module 1 Peripheral Ready"]
     #[inline] pub fn test_r1(&self) -> bool {
-        self.r1 != 0
+        self.r1() != 0
     }
 
     #[doc="I2C Module 1 Peripheral Ready"]
@@ -20066,7 +20066,7 @@ impl Pri2c {
 
     #[doc="I2C Module 2 Peripheral Ready"]
     #[inline] pub fn test_r2(&self) -> bool {
-        self.r2 != 0
+        self.r2() != 0
     }
 
     #[doc="I2C Module 2 Peripheral Ready"]
@@ -20085,7 +20085,7 @@ impl Pri2c {
 
     #[doc="I2C Module 3 Peripheral Ready"]
     #[inline] pub fn test_r3(&self) -> bool {
-        self.r3 != 0
+        self.r3() != 0
     }
 
     #[doc="I2C Module 3 Peripheral Ready"]
@@ -20104,7 +20104,7 @@ impl Pri2c {
 
     #[doc="I2C Module 4 Peripheral Ready"]
     #[inline] pub fn test_r4(&self) -> bool {
-        self.r4 != 0
+        self.r4() != 0
     }
 
     #[doc="I2C Module 4 Peripheral Ready"]
@@ -20123,7 +20123,7 @@ impl Pri2c {
 
     #[doc="I2C Module 5 Peripheral Ready"]
     #[inline] pub fn test_r5(&self) -> bool {
-        self.r5 != 0
+        self.r5() != 0
     }
 
     #[doc="I2C Module 5 Peripheral Ready"]
@@ -20142,7 +20142,7 @@ impl Pri2c {
 
     #[doc="I2C Module 6 Peripheral Ready"]
     #[inline] pub fn test_r6(&self) -> bool {
-        self.r6 != 0
+        self.r6() != 0
     }
 
     #[doc="I2C Module 6 Peripheral Ready"]
@@ -20161,7 +20161,7 @@ impl Pri2c {
 
     #[doc="I2C Module 7 Peripheral Ready"]
     #[inline] pub fn test_r7(&self) -> bool {
-        self.r7 != 0
+        self.r7() != 0
     }
 
     #[doc="I2C Module 7 Peripheral Ready"]
@@ -20180,7 +20180,7 @@ impl Pri2c {
 
     #[doc="I2C Module 8 Peripheral Ready"]
     #[inline] pub fn test_r8(&self) -> bool {
-        self.r8 != 0
+        self.r8() != 0
     }
 
     #[doc="I2C Module 8 Peripheral Ready"]
@@ -20199,7 +20199,7 @@ impl Pri2c {
 
     #[doc="I2C Module 9 Peripheral Ready"]
     #[inline] pub fn test_r9(&self) -> bool {
-        self.r9 != 0
+        self.r9() != 0
     }
 
     #[doc="I2C Module 9 Peripheral Ready"]
@@ -20248,7 +20248,7 @@ impl Prusb {
 
     #[doc="USB Module Peripheral Ready"]
     #[inline] pub fn test_r0(&self) -> bool {
-        self.r0 != 0
+        self.r0() != 0
     }
 
     #[doc="USB Module Peripheral Ready"]
@@ -20288,7 +20288,7 @@ impl Prephy {
 
     #[doc="Ethernet PHY Module Peripheral Ready"]
     #[inline] pub fn test_r0(&self) -> bool {
-        self.r0 != 0
+        self.r0() != 0
     }
 
     #[doc="Ethernet PHY Module Peripheral Ready"]
@@ -20328,7 +20328,7 @@ impl Prcan {
 
     #[doc="CAN Module 0 Peripheral Ready"]
     #[inline] pub fn test_r0(&self) -> bool {
-        self.r0 != 0
+        self.r0() != 0
     }
 
     #[doc="CAN Module 0 Peripheral Ready"]
@@ -20347,7 +20347,7 @@ impl Prcan {
 
     #[doc="CAN Module 1 Peripheral Ready"]
     #[inline] pub fn test_r1(&self) -> bool {
-        self.r1 != 0
+        self.r1() != 0
     }
 
     #[doc="CAN Module 1 Peripheral Ready"]
@@ -20388,7 +20388,7 @@ impl Pradc {
 
     #[doc="ADC Module 0 Peripheral Ready"]
     #[inline] pub fn test_r0(&self) -> bool {
-        self.r0 != 0
+        self.r0() != 0
     }
 
     #[doc="ADC Module 0 Peripheral Ready"]
@@ -20407,7 +20407,7 @@ impl Pradc {
 
     #[doc="ADC Module 1 Peripheral Ready"]
     #[inline] pub fn test_r1(&self) -> bool {
-        self.r1 != 0
+        self.r1() != 0
     }
 
     #[doc="ADC Module 1 Peripheral Ready"]
@@ -20448,7 +20448,7 @@ impl Pracmp {
 
     #[doc="Analog Comparator Module 0 Peripheral Ready"]
     #[inline] pub fn test_r0(&self) -> bool {
-        self.r0 != 0
+        self.r0() != 0
     }
 
     #[doc="Analog Comparator Module 0 Peripheral Ready"]
@@ -20488,7 +20488,7 @@ impl Prpwm {
 
     #[doc="PWM Module 0 Peripheral Ready"]
     #[inline] pub fn test_r0(&self) -> bool {
-        self.r0 != 0
+        self.r0() != 0
     }
 
     #[doc="PWM Module 0 Peripheral Ready"]
@@ -20528,7 +20528,7 @@ impl Prqei {
 
     #[doc="QEI Module 0 Peripheral Ready"]
     #[inline] pub fn test_r0(&self) -> bool {
-        self.r0 != 0
+        self.r0() != 0
     }
 
     #[doc="QEI Module 0 Peripheral Ready"]
@@ -20568,7 +20568,7 @@ impl Preeprom {
 
     #[doc="EEPROM Module Peripheral Ready"]
     #[inline] pub fn test_r0(&self) -> bool {
-        self.r0 != 0
+        self.r0() != 0
     }
 
     #[doc="EEPROM Module Peripheral Ready"]
@@ -20608,7 +20608,7 @@ impl Prccm {
 
     #[doc="CRC and Cryptographic Modules Peripheral Ready"]
     #[inline] pub fn test_r0(&self) -> bool {
-        self.r0 != 0
+        self.r0() != 0
     }
 
     #[doc="CRC and Cryptographic Modules Peripheral Ready"]
@@ -20648,7 +20648,7 @@ impl Premac {
 
     #[doc="Ethernet MAC Module 0 Peripheral Ready"]
     #[inline] pub fn test_r0(&self) -> bool {
-        self.r0 != 0
+        self.r0() != 0
     }
 
     #[doc="Ethernet MAC Module 0 Peripheral Ready"]

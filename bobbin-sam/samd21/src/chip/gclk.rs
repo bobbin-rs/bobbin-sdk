@@ -289,7 +289,7 @@ impl Clkctrl {
 
     #[doc="Generic Clock Selection ID"]
     #[inline] pub fn test_id(&self) -> bool {
-        self.id != 0
+        self.id() != 0
     }
 
     #[doc="Generic Clock Selection ID"]
@@ -308,7 +308,7 @@ impl Clkctrl {
 
     #[doc="Generic Clock Generator"]
     #[inline] pub fn test_gen(&self) -> bool {
-        self.gen != 0
+        self.gen() != 0
     }
 
     #[doc="Generic Clock Generator"]
@@ -327,7 +327,7 @@ impl Clkctrl {
 
     #[doc="Clock Enable"]
     #[inline] pub fn test_clken(&self) -> bool {
-        self.clken != 0
+        self.clken() != 0
     }
 
     #[doc="Clock Enable"]
@@ -346,7 +346,7 @@ impl Clkctrl {
 
     #[doc="Write Lock"]
     #[inline] pub fn test_wrtlock(&self) -> bool {
-        self.wrtlock != 0
+        self.wrtlock() != 0
     }
 
     #[doc="Write Lock"]
@@ -389,7 +389,7 @@ impl ClkctrlId {
 
     #[doc="Generic Clock Selection ID"]
     #[inline] pub fn test_id(&self) -> bool {
-        self.id != 0
+        self.id() != 0
     }
 
     #[doc="Generic Clock Selection ID"]
@@ -429,7 +429,7 @@ impl Ctrl {
 
     #[doc="Software Reset"]
     #[inline] pub fn test_swrst(&self) -> bool {
-        self.swrst != 0
+        self.swrst() != 0
     }
 
     #[doc="Software Reset"]
@@ -469,7 +469,7 @@ impl Genctrl {
 
     #[doc="Generic Clock Generator Selection"]
     #[inline] pub fn test_id(&self) -> bool {
-        self.id != 0
+        self.id() != 0
     }
 
     #[doc="Generic Clock Generator Selection"]
@@ -488,7 +488,7 @@ impl Genctrl {
 
     #[doc="Source Select"]
     #[inline] pub fn test_src(&self) -> bool {
-        self.src != 0
+        self.src() != 0
     }
 
     #[doc="Source Select"]
@@ -507,7 +507,7 @@ impl Genctrl {
 
     #[doc="Generic Clock Generator Enable"]
     #[inline] pub fn test_genen(&self) -> bool {
-        self.genen != 0
+        self.genen() != 0
     }
 
     #[doc="Generic Clock Generator Enable"]
@@ -526,7 +526,7 @@ impl Genctrl {
 
     #[doc="Improve Duty Cycle"]
     #[inline] pub fn test_idc(&self) -> bool {
-        self.idc != 0
+        self.idc() != 0
     }
 
     #[doc="Improve Duty Cycle"]
@@ -545,7 +545,7 @@ impl Genctrl {
 
     #[doc="Output Off Value"]
     #[inline] pub fn test_oov(&self) -> bool {
-        self.oov != 0
+        self.oov() != 0
     }
 
     #[doc="Output Off Value"]
@@ -564,7 +564,7 @@ impl Genctrl {
 
     #[doc="Output Enable"]
     #[inline] pub fn test_oe(&self) -> bool {
-        self.oe != 0
+        self.oe() != 0
     }
 
     #[doc="Output Enable"]
@@ -583,7 +583,7 @@ impl Genctrl {
 
     #[doc="Divide Selection"]
     #[inline] pub fn test_divsel(&self) -> bool {
-        self.divsel != 0
+        self.divsel() != 0
     }
 
     #[doc="Divide Selection"]
@@ -602,7 +602,7 @@ impl Genctrl {
 
     #[doc="Run in Standby"]
     #[inline] pub fn test_runstdby(&self) -> bool {
-        self.runstdby != 0
+        self.runstdby() != 0
     }
 
     #[doc="Run in Standby"]
@@ -649,7 +649,7 @@ impl GenctrlId {
 
     #[doc="Generic Clock Generator Selection"]
     #[inline] pub fn test_id(&self) -> bool {
-        self.id != 0
+        self.id() != 0
     }
 
     #[doc="Generic Clock Generator Selection"]
@@ -689,7 +689,7 @@ impl Gendiv {
 
     #[doc="Generic Clock Generator Selection"]
     #[inline] pub fn test_id(&self) -> bool {
-        self.id != 0
+        self.id() != 0
     }
 
     #[doc="Generic Clock Generator Selection"]
@@ -708,7 +708,7 @@ impl Gendiv {
 
     #[doc="Division Factor"]
     #[inline] pub fn test_div(&self) -> bool {
-        self.div != 0
+        self.div() != 0
     }
 
     #[doc="Division Factor"]
@@ -749,7 +749,7 @@ impl GendivId {
 
     #[doc="Generic Clock Generator Selection"]
     #[inline] pub fn test_id(&self) -> bool {
-        self.id != 0
+        self.id() != 0
     }
 
     #[doc="Generic Clock Generator Selection"]
@@ -789,7 +789,7 @@ impl Status {
 
     #[doc="Synchronization Busy Status"]
     #[inline] pub fn test_syncbusy(&self) -> bool {
-        self.syncbusy != 0
+        self.syncbusy() != 0
     }
 
     #[doc="Synchronization Busy Status"]

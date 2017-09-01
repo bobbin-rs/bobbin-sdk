@@ -719,7 +719,7 @@ impl Cr {
 
     #[doc="PLL clock ready flag"]
     #[inline] pub fn test_pllrdy(&self) -> bool {
-        self.pllrdy != 0
+        self.pllrdy() != 0
     }
 
     #[doc="PLL clock ready flag"]
@@ -738,7 +738,7 @@ impl Cr {
 
     #[doc="PLL enable bit"]
     #[inline] pub fn test_pllon(&self) -> bool {
-        self.pllon != 0
+        self.pllon() != 0
     }
 
     #[doc="PLL enable bit"]
@@ -757,7 +757,7 @@ impl Cr {
 
     #[doc="TC/LCD prescaler"]
     #[inline] pub fn test_rtcpre(&self) -> bool {
-        self.rtcpre != 0
+        self.rtcpre() != 0
     }
 
     #[doc="TC/LCD prescaler"]
@@ -776,7 +776,7 @@ impl Cr {
 
     #[doc="Clock security system on HSE enable bit"]
     #[inline] pub fn test_csslseon(&self) -> bool {
-        self.csslseon != 0
+        self.csslseon() != 0
     }
 
     #[doc="Clock security system on HSE enable bit"]
@@ -795,7 +795,7 @@ impl Cr {
 
     #[doc="HSE clock bypass bit"]
     #[inline] pub fn test_hsebyp(&self) -> bool {
-        self.hsebyp != 0
+        self.hsebyp() != 0
     }
 
     #[doc="HSE clock bypass bit"]
@@ -814,7 +814,7 @@ impl Cr {
 
     #[doc="HSE clock ready flag"]
     #[inline] pub fn test_hserdy(&self) -> bool {
-        self.hserdy != 0
+        self.hserdy() != 0
     }
 
     #[doc="HSE clock ready flag"]
@@ -833,7 +833,7 @@ impl Cr {
 
     #[doc="HSE clock enable bit"]
     #[inline] pub fn test_hseon(&self) -> bool {
-        self.hseon != 0
+        self.hseon() != 0
     }
 
     #[doc="HSE clock enable bit"]
@@ -852,7 +852,7 @@ impl Cr {
 
     #[doc="MSI clock ready flag"]
     #[inline] pub fn test_msirdy(&self) -> bool {
-        self.msirdy != 0
+        self.msirdy() != 0
     }
 
     #[doc="MSI clock ready flag"]
@@ -871,7 +871,7 @@ impl Cr {
 
     #[doc="MSI clock enable bit"]
     #[inline] pub fn test_msion(&self) -> bool {
-        self.msion != 0
+        self.msion() != 0
     }
 
     #[doc="MSI clock enable bit"]
@@ -890,7 +890,7 @@ impl Cr {
 
     #[doc="HSI16DIVF"]
     #[inline] pub fn test_hsi16divf(&self) -> bool {
-        self.hsi16divf != 0
+        self.hsi16divf() != 0
     }
 
     #[doc="HSI16DIVF"]
@@ -909,7 +909,7 @@ impl Cr {
 
     #[doc="HSI16DIVEN"]
     #[inline] pub fn test_hsi16diven(&self) -> bool {
-        self.hsi16diven != 0
+        self.hsi16diven() != 0
     }
 
     #[doc="HSI16DIVEN"]
@@ -928,7 +928,7 @@ impl Cr {
 
     #[doc="Internal high-speed clock ready flag"]
     #[inline] pub fn test_hsi16rdyf(&self) -> bool {
-        self.hsi16rdyf != 0
+        self.hsi16rdyf() != 0
     }
 
     #[doc="Internal high-speed clock ready flag"]
@@ -947,7 +947,7 @@ impl Cr {
 
     #[doc="High-speed internal clock enable bit for some IP kernels"]
     #[inline] pub fn test_hsi16keron(&self) -> bool {
-        self.hsi16keron != 0
+        self.hsi16keron() != 0
     }
 
     #[doc="High-speed internal clock enable bit for some IP kernels"]
@@ -966,7 +966,7 @@ impl Cr {
 
     #[doc="16 MHz high-speed internal clock enable"]
     #[inline] pub fn test_hsi16on(&self) -> bool {
-        self.hsi16on != 0
+        self.hsi16on() != 0
     }
 
     #[doc="16 MHz high-speed internal clock enable"]
@@ -1019,7 +1019,7 @@ impl Icscr {
 
     #[doc="MSI clock trimming"]
     #[inline] pub fn test_msitrim(&self) -> bool {
-        self.msitrim != 0
+        self.msitrim() != 0
     }
 
     #[doc="MSI clock trimming"]
@@ -1038,7 +1038,7 @@ impl Icscr {
 
     #[doc="MSI clock calibration"]
     #[inline] pub fn test_msical(&self) -> bool {
-        self.msical != 0
+        self.msical() != 0
     }
 
     #[doc="MSI clock calibration"]
@@ -1057,7 +1057,7 @@ impl Icscr {
 
     #[doc="MSI clock ranges"]
     #[inline] pub fn test_msirange(&self) -> bool {
-        self.msirange != 0
+        self.msirange() != 0
     }
 
     #[doc="MSI clock ranges"]
@@ -1076,7 +1076,7 @@ impl Icscr {
 
     #[doc="High speed internal clock trimming"]
     #[inline] pub fn test_hsi16trim(&self) -> bool {
-        self.hsi16trim != 0
+        self.hsi16trim() != 0
     }
 
     #[doc="High speed internal clock trimming"]
@@ -1095,7 +1095,7 @@ impl Icscr {
 
     #[doc="nternal high speed clock calibration"]
     #[inline] pub fn test_hsi16cal(&self) -> bool {
-        self.hsi16cal != 0
+        self.hsi16cal() != 0
     }
 
     #[doc="nternal high speed clock calibration"]
@@ -1139,7 +1139,7 @@ impl Crrcr {
 
     #[doc="48 MHz HSI clock calibration"]
     #[inline] pub fn test_hsi48cal(&self) -> bool {
-        self.hsi48cal != 0
+        self.hsi48cal() != 0
     }
 
     #[doc="48 MHz HSI clock calibration"]
@@ -1158,7 +1158,7 @@ impl Crrcr {
 
     #[doc="48MHz HSI clock ready flag"]
     #[inline] pub fn test_hsi48rdy(&self) -> bool {
-        self.hsi48rdy != 0
+        self.hsi48rdy() != 0
     }
 
     #[doc="48MHz HSI clock ready flag"]
@@ -1177,7 +1177,7 @@ impl Crrcr {
 
     #[doc="48MHz HSI clock enable bit"]
     #[inline] pub fn test_hsi48on(&self) -> bool {
-        self.hsi48on != 0
+        self.hsi48on() != 0
     }
 
     #[doc="48MHz HSI clock enable bit"]
@@ -1219,7 +1219,7 @@ impl Cfgr {
 
     #[doc="Microcontroller clock output prescaler"]
     #[inline] pub fn test_mcopre(&self) -> bool {
-        self.mcopre != 0
+        self.mcopre() != 0
     }
 
     #[doc="Microcontroller clock output prescaler"]
@@ -1238,7 +1238,7 @@ impl Cfgr {
 
     #[doc="Microcontroller clock output selection"]
     #[inline] pub fn test_mcosel(&self) -> bool {
-        self.mcosel != 0
+        self.mcosel() != 0
     }
 
     #[doc="Microcontroller clock output selection"]
@@ -1257,7 +1257,7 @@ impl Cfgr {
 
     #[doc="PLL output division"]
     #[inline] pub fn test_plldiv(&self) -> bool {
-        self.plldiv != 0
+        self.plldiv() != 0
     }
 
     #[doc="PLL output division"]
@@ -1276,7 +1276,7 @@ impl Cfgr {
 
     #[doc="PLL multiplication factor"]
     #[inline] pub fn test_pllmul(&self) -> bool {
-        self.pllmul != 0
+        self.pllmul() != 0
     }
 
     #[doc="PLL multiplication factor"]
@@ -1295,7 +1295,7 @@ impl Cfgr {
 
     #[doc="PLL entry clock source"]
     #[inline] pub fn test_pllsrc(&self) -> bool {
-        self.pllsrc != 0
+        self.pllsrc() != 0
     }
 
     #[doc="PLL entry clock source"]
@@ -1314,7 +1314,7 @@ impl Cfgr {
 
     #[doc="Wake-up from stop clock selection"]
     #[inline] pub fn test_stopwuck(&self) -> bool {
-        self.stopwuck != 0
+        self.stopwuck() != 0
     }
 
     #[doc="Wake-up from stop clock selection"]
@@ -1333,7 +1333,7 @@ impl Cfgr {
 
     #[doc="APB high-speed prescaler (APB2)"]
     #[inline] pub fn test_ppre2(&self) -> bool {
-        self.ppre2 != 0
+        self.ppre2() != 0
     }
 
     #[doc="APB high-speed prescaler (APB2)"]
@@ -1352,7 +1352,7 @@ impl Cfgr {
 
     #[doc="APB low-speed prescaler (APB1)"]
     #[inline] pub fn test_ppre1(&self) -> bool {
-        self.ppre1 != 0
+        self.ppre1() != 0
     }
 
     #[doc="APB low-speed prescaler (APB1)"]
@@ -1371,7 +1371,7 @@ impl Cfgr {
 
     #[doc="AHB prescaler"]
     #[inline] pub fn test_hpre(&self) -> bool {
-        self.hpre != 0
+        self.hpre() != 0
     }
 
     #[doc="AHB prescaler"]
@@ -1390,7 +1390,7 @@ impl Cfgr {
 
     #[doc="System clock switch status"]
     #[inline] pub fn test_sws(&self) -> bool {
-        self.sws != 0
+        self.sws() != 0
     }
 
     #[doc="System clock switch status"]
@@ -1409,7 +1409,7 @@ impl Cfgr {
 
     #[doc="System clock switch"]
     #[inline] pub fn test_sw(&self) -> bool {
-        self.sw != 0
+        self.sw() != 0
     }
 
     #[doc="System clock switch"]
@@ -1459,7 +1459,7 @@ impl Cier {
 
     #[doc="LSE CSS interrupt flag"]
     #[inline] pub fn test_csslse(&self) -> bool {
-        self.csslse != 0
+        self.csslse() != 0
     }
 
     #[doc="LSE CSS interrupt flag"]
@@ -1478,7 +1478,7 @@ impl Cier {
 
     #[doc="HSI48 ready interrupt flag"]
     #[inline] pub fn test_hsi48rdyie(&self) -> bool {
-        self.hsi48rdyie != 0
+        self.hsi48rdyie() != 0
     }
 
     #[doc="HSI48 ready interrupt flag"]
@@ -1497,7 +1497,7 @@ impl Cier {
 
     #[doc="MSI ready interrupt flag"]
     #[inline] pub fn test_msirdyie(&self) -> bool {
-        self.msirdyie != 0
+        self.msirdyie() != 0
     }
 
     #[doc="MSI ready interrupt flag"]
@@ -1516,7 +1516,7 @@ impl Cier {
 
     #[doc="PLL ready interrupt flag"]
     #[inline] pub fn test_pllrdyie(&self) -> bool {
-        self.pllrdyie != 0
+        self.pllrdyie() != 0
     }
 
     #[doc="PLL ready interrupt flag"]
@@ -1535,7 +1535,7 @@ impl Cier {
 
     #[doc="HSE ready interrupt flag"]
     #[inline] pub fn test_hserdyie(&self) -> bool {
-        self.hserdyie != 0
+        self.hserdyie() != 0
     }
 
     #[doc="HSE ready interrupt flag"]
@@ -1554,7 +1554,7 @@ impl Cier {
 
     #[doc="HSI16 ready interrupt flag"]
     #[inline] pub fn test_hsi16rdyie(&self) -> bool {
-        self.hsi16rdyie != 0
+        self.hsi16rdyie() != 0
     }
 
     #[doc="HSI16 ready interrupt flag"]
@@ -1573,7 +1573,7 @@ impl Cier {
 
     #[doc="LSE ready interrupt flag"]
     #[inline] pub fn test_lserdyie(&self) -> bool {
-        self.lserdyie != 0
+        self.lserdyie() != 0
     }
 
     #[doc="LSE ready interrupt flag"]
@@ -1592,7 +1592,7 @@ impl Cier {
 
     #[doc="LSI ready interrupt flag"]
     #[inline] pub fn test_lsirdyie(&self) -> bool {
-        self.lsirdyie != 0
+        self.lsirdyie() != 0
     }
 
     #[doc="LSI ready interrupt flag"]
@@ -1639,7 +1639,7 @@ impl Cifr {
 
     #[doc="Clock Security System Interrupt flag"]
     #[inline] pub fn test_csshsef(&self) -> bool {
-        self.csshsef != 0
+        self.csshsef() != 0
     }
 
     #[doc="Clock Security System Interrupt flag"]
@@ -1658,7 +1658,7 @@ impl Cifr {
 
     #[doc="LSE Clock Security System Interrupt flag"]
     #[inline] pub fn test_csslsef(&self) -> bool {
-        self.csslsef != 0
+        self.csslsef() != 0
     }
 
     #[doc="LSE Clock Security System Interrupt flag"]
@@ -1677,7 +1677,7 @@ impl Cifr {
 
     #[doc="HSI48 ready interrupt flag"]
     #[inline] pub fn test_hsi48rdyf(&self) -> bool {
-        self.hsi48rdyf != 0
+        self.hsi48rdyf() != 0
     }
 
     #[doc="HSI48 ready interrupt flag"]
@@ -1696,7 +1696,7 @@ impl Cifr {
 
     #[doc="MSI ready interrupt flag"]
     #[inline] pub fn test_msirdyf(&self) -> bool {
-        self.msirdyf != 0
+        self.msirdyf() != 0
     }
 
     #[doc="MSI ready interrupt flag"]
@@ -1715,7 +1715,7 @@ impl Cifr {
 
     #[doc="PLL ready interrupt flag"]
     #[inline] pub fn test_pllrdyf(&self) -> bool {
-        self.pllrdyf != 0
+        self.pllrdyf() != 0
     }
 
     #[doc="PLL ready interrupt flag"]
@@ -1734,7 +1734,7 @@ impl Cifr {
 
     #[doc="HSE ready interrupt flag"]
     #[inline] pub fn test_hserdyf(&self) -> bool {
-        self.hserdyf != 0
+        self.hserdyf() != 0
     }
 
     #[doc="HSE ready interrupt flag"]
@@ -1753,7 +1753,7 @@ impl Cifr {
 
     #[doc="HSI16 ready interrupt flag"]
     #[inline] pub fn test_hsi16rdyf(&self) -> bool {
-        self.hsi16rdyf != 0
+        self.hsi16rdyf() != 0
     }
 
     #[doc="HSI16 ready interrupt flag"]
@@ -1772,7 +1772,7 @@ impl Cifr {
 
     #[doc="LSE ready interrupt flag"]
     #[inline] pub fn test_lserdyf(&self) -> bool {
-        self.lserdyf != 0
+        self.lserdyf() != 0
     }
 
     #[doc="LSE ready interrupt flag"]
@@ -1791,7 +1791,7 @@ impl Cifr {
 
     #[doc="LSI ready interrupt flag"]
     #[inline] pub fn test_lsirdyf(&self) -> bool {
-        self.lsirdyf != 0
+        self.lsirdyf() != 0
     }
 
     #[doc="LSI ready interrupt flag"]
@@ -1839,7 +1839,7 @@ impl Cicr {
 
     #[doc="Clock Security System Interrupt clear"]
     #[inline] pub fn test_csshsec(&self) -> bool {
-        self.csshsec != 0
+        self.csshsec() != 0
     }
 
     #[doc="Clock Security System Interrupt clear"]
@@ -1858,7 +1858,7 @@ impl Cicr {
 
     #[doc="LSE Clock Security System Interrupt clear"]
     #[inline] pub fn test_csslsec(&self) -> bool {
-        self.csslsec != 0
+        self.csslsec() != 0
     }
 
     #[doc="LSE Clock Security System Interrupt clear"]
@@ -1877,7 +1877,7 @@ impl Cicr {
 
     #[doc="HSI48 ready Interrupt clear"]
     #[inline] pub fn test_hsi48rdyc(&self) -> bool {
-        self.hsi48rdyc != 0
+        self.hsi48rdyc() != 0
     }
 
     #[doc="HSI48 ready Interrupt clear"]
@@ -1896,7 +1896,7 @@ impl Cicr {
 
     #[doc="MSI ready Interrupt clear"]
     #[inline] pub fn test_msirdyc(&self) -> bool {
-        self.msirdyc != 0
+        self.msirdyc() != 0
     }
 
     #[doc="MSI ready Interrupt clear"]
@@ -1915,7 +1915,7 @@ impl Cicr {
 
     #[doc="PLL ready Interrupt clear"]
     #[inline] pub fn test_pllrdyc(&self) -> bool {
-        self.pllrdyc != 0
+        self.pllrdyc() != 0
     }
 
     #[doc="PLL ready Interrupt clear"]
@@ -1934,7 +1934,7 @@ impl Cicr {
 
     #[doc="HSE ready Interrupt clear"]
     #[inline] pub fn test_hserdyc(&self) -> bool {
-        self.hserdyc != 0
+        self.hserdyc() != 0
     }
 
     #[doc="HSE ready Interrupt clear"]
@@ -1953,7 +1953,7 @@ impl Cicr {
 
     #[doc="HSI16 ready Interrupt clear"]
     #[inline] pub fn test_hsi16rdyc(&self) -> bool {
-        self.hsi16rdyc != 0
+        self.hsi16rdyc() != 0
     }
 
     #[doc="HSI16 ready Interrupt clear"]
@@ -1972,7 +1972,7 @@ impl Cicr {
 
     #[doc="LSE ready Interrupt clear"]
     #[inline] pub fn test_lserdyc(&self) -> bool {
-        self.lserdyc != 0
+        self.lserdyc() != 0
     }
 
     #[doc="LSE ready Interrupt clear"]
@@ -1991,7 +1991,7 @@ impl Cicr {
 
     #[doc="LSI ready Interrupt clear"]
     #[inline] pub fn test_lsirdyc(&self) -> bool {
-        self.lsirdyc != 0
+        self.lsirdyc() != 0
     }
 
     #[doc="LSI ready Interrupt clear"]
@@ -2039,7 +2039,7 @@ impl Ioprstr {
 
     #[doc="I/O port H reset"]
     #[inline] pub fn test_iophrst(&self) -> bool {
-        self.iophrst != 0
+        self.iophrst() != 0
     }
 
     #[doc="I/O port H reset"]
@@ -2058,7 +2058,7 @@ impl Ioprstr {
 
     #[doc="I/O port C reset"]
     #[inline] pub fn test_iopcrst(&self) -> bool {
-        self.iopcrst != 0
+        self.iopcrst() != 0
     }
 
     #[doc="I/O port C reset"]
@@ -2077,7 +2077,7 @@ impl Ioprstr {
 
     #[doc="I/O port B reset"]
     #[inline] pub fn test_iopbrst(&self) -> bool {
-        self.iopbrst != 0
+        self.iopbrst() != 0
     }
 
     #[doc="I/O port B reset"]
@@ -2096,7 +2096,7 @@ impl Ioprstr {
 
     #[doc="I/O port A reset"]
     #[inline] pub fn test_ioparst(&self) -> bool {
-        self.ioparst != 0
+        self.ioparst() != 0
     }
 
     #[doc="I/O port A reset"]
@@ -2139,7 +2139,7 @@ impl Ahbrstr {
 
     #[doc="Crypto module reset"]
     #[inline] pub fn test_cryprst(&self) -> bool {
-        self.cryprst != 0
+        self.cryprst() != 0
     }
 
     #[doc="Crypto module reset"]
@@ -2158,7 +2158,7 @@ impl Ahbrstr {
 
     #[doc="Random Number Generator module reset"]
     #[inline] pub fn test_rngrst(&self) -> bool {
-        self.rngrst != 0
+        self.rngrst() != 0
     }
 
     #[doc="Random Number Generator module reset"]
@@ -2177,7 +2177,7 @@ impl Ahbrstr {
 
     #[doc="Touch Sensing reset"]
     #[inline] pub fn test_touchrst(&self) -> bool {
-        self.touchrst != 0
+        self.touchrst() != 0
     }
 
     #[doc="Touch Sensing reset"]
@@ -2196,7 +2196,7 @@ impl Ahbrstr {
 
     #[doc="Test integration module reset"]
     #[inline] pub fn test_crcrst(&self) -> bool {
-        self.crcrst != 0
+        self.crcrst() != 0
     }
 
     #[doc="Test integration module reset"]
@@ -2215,7 +2215,7 @@ impl Ahbrstr {
 
     #[doc="Memory interface reset"]
     #[inline] pub fn test_mifrst(&self) -> bool {
-        self.mifrst != 0
+        self.mifrst() != 0
     }
 
     #[doc="Memory interface reset"]
@@ -2234,7 +2234,7 @@ impl Ahbrstr {
 
     #[doc="DMA reset"]
     #[inline] pub fn test_dmarst(&self) -> bool {
-        self.dmarst != 0
+        self.dmarst() != 0
     }
 
     #[doc="DMA reset"]
@@ -2279,7 +2279,7 @@ impl Apb2rstr {
 
     #[doc="DBG reset"]
     #[inline] pub fn test_dbgrst(&self) -> bool {
-        self.dbgrst != 0
+        self.dbgrst() != 0
     }
 
     #[doc="DBG reset"]
@@ -2298,7 +2298,7 @@ impl Apb2rstr {
 
     #[doc="SPI 1 reset"]
     #[inline] pub fn test_spi1rst(&self) -> bool {
-        self.spi1rst != 0
+        self.spi1rst() != 0
     }
 
     #[doc="SPI 1 reset"]
@@ -2317,7 +2317,7 @@ impl Apb2rstr {
 
     #[doc="ADC interface reset"]
     #[inline] pub fn test_adcrst(&self) -> bool {
-        self.adcrst != 0
+        self.adcrst() != 0
     }
 
     #[doc="ADC interface reset"]
@@ -2336,7 +2336,7 @@ impl Apb2rstr {
 
     #[doc="TIM22 timer reset"]
     #[inline] pub fn test_tim22rst(&self) -> bool {
-        self.tim22rst != 0
+        self.tim22rst() != 0
     }
 
     #[doc="TIM22 timer reset"]
@@ -2355,7 +2355,7 @@ impl Apb2rstr {
 
     #[doc="TIM21 timer reset"]
     #[inline] pub fn test_tim21rst(&self) -> bool {
-        self.tim21rst != 0
+        self.tim21rst() != 0
     }
 
     #[doc="TIM21 timer reset"]
@@ -2374,7 +2374,7 @@ impl Apb2rstr {
 
     #[doc="System configuration controller reset"]
     #[inline] pub fn test_syscfgrst(&self) -> bool {
-        self.syscfgrst != 0
+        self.syscfgrst() != 0
     }
 
     #[doc="System configuration controller reset"]
@@ -2419,7 +2419,7 @@ impl Apb1rstr {
 
     #[doc="Low power timer reset"]
     #[inline] pub fn test_lptim1rst(&self) -> bool {
-        self.lptim1rst != 0
+        self.lptim1rst() != 0
     }
 
     #[doc="Low power timer reset"]
@@ -2438,7 +2438,7 @@ impl Apb1rstr {
 
     #[doc="DAC interface reset"]
     #[inline] pub fn test_dacrst(&self) -> bool {
-        self.dacrst != 0
+        self.dacrst() != 0
     }
 
     #[doc="DAC interface reset"]
@@ -2457,7 +2457,7 @@ impl Apb1rstr {
 
     #[doc="Power interface reset"]
     #[inline] pub fn test_pwrrst(&self) -> bool {
-        self.pwrrst != 0
+        self.pwrrst() != 0
     }
 
     #[doc="Power interface reset"]
@@ -2476,7 +2476,7 @@ impl Apb1rstr {
 
     #[doc="Clock recovery system reset"]
     #[inline] pub fn test_crsrst(&self) -> bool {
-        self.crsrst != 0
+        self.crsrst() != 0
     }
 
     #[doc="Clock recovery system reset"]
@@ -2495,7 +2495,7 @@ impl Apb1rstr {
 
     #[doc="USB reset"]
     #[inline] pub fn test_usbrst(&self) -> bool {
-        self.usbrst != 0
+        self.usbrst() != 0
     }
 
     #[doc="USB reset"]
@@ -2514,7 +2514,7 @@ impl Apb1rstr {
 
     #[doc="I2C1 reset"]
     #[inline] pub fn test_i2c1rst(&self) -> bool {
-        self.i2c1rst != 0
+        self.i2c1rst() != 0
     }
 
     #[doc="I2C1 reset"]
@@ -2533,7 +2533,7 @@ impl Apb1rstr {
 
     #[doc="LPUART1 reset"]
     #[inline] pub fn test_lpuart1rst(&self) -> bool {
-        self.lpuart1rst != 0
+        self.lpuart1rst() != 0
     }
 
     #[doc="LPUART1 reset"]
@@ -2552,7 +2552,7 @@ impl Apb1rstr {
 
     #[doc="USART2 reset"]
     #[inline] pub fn test_usart2rst(&self) -> bool {
-        self.usart2rst != 0
+        self.usart2rst() != 0
     }
 
     #[doc="USART2 reset"]
@@ -2571,7 +2571,7 @@ impl Apb1rstr {
 
     #[doc="Window watchdog reset"]
     #[inline] pub fn test_wwdrst(&self) -> bool {
-        self.wwdrst != 0
+        self.wwdrst() != 0
     }
 
     #[doc="Window watchdog reset"]
@@ -2590,7 +2590,7 @@ impl Apb1rstr {
 
     #[doc="Timer2 reset"]
     #[inline] pub fn test_tim2rst(&self) -> bool {
-        self.tim2rst != 0
+        self.tim2rst() != 0
     }
 
     #[doc="Timer2 reset"]
@@ -2637,7 +2637,7 @@ impl Iopenr {
     }
 
     #[inline] pub fn test_iopaen(&self) -> bool {
-        self.iopaen != 0
+        self.iopaen() != 0
     }
 
     #[inline] pub fn set_iopaen<V: Into<bits::U1>>(mut self, value: V) -> Self {
@@ -2653,7 +2653,7 @@ impl Iopenr {
     }
 
     #[inline] pub fn test_iopben(&self) -> bool {
-        self.iopben != 0
+        self.iopben() != 0
     }
 
     #[inline] pub fn set_iopben<V: Into<bits::U1>>(mut self, value: V) -> Self {
@@ -2669,7 +2669,7 @@ impl Iopenr {
     }
 
     #[inline] pub fn test_iopcen(&self) -> bool {
-        self.iopcen != 0
+        self.iopcen() != 0
     }
 
     #[inline] pub fn set_iopcen<V: Into<bits::U1>>(mut self, value: V) -> Self {
@@ -2685,7 +2685,7 @@ impl Iopenr {
     }
 
     #[inline] pub fn test_iophen(&self) -> bool {
-        self.iophen != 0
+        self.iophen() != 0
     }
 
     #[inline] pub fn set_iophen<V: Into<bits::U1>>(mut self, value: V) -> Self {
@@ -2727,7 +2727,7 @@ impl Ahbenr {
 
     #[doc="Crypto clock enable bit"]
     #[inline] pub fn test_crypen(&self) -> bool {
-        self.crypen != 0
+        self.crypen() != 0
     }
 
     #[doc="Crypto clock enable bit"]
@@ -2746,7 +2746,7 @@ impl Ahbenr {
 
     #[doc="Random Number Generator clock enable bit"]
     #[inline] pub fn test_rngen(&self) -> bool {
-        self.rngen != 0
+        self.rngen() != 0
     }
 
     #[doc="Random Number Generator clock enable bit"]
@@ -2765,7 +2765,7 @@ impl Ahbenr {
 
     #[doc="Touch Sensing clock enable bit"]
     #[inline] pub fn test_touchen(&self) -> bool {
-        self.touchen != 0
+        self.touchen() != 0
     }
 
     #[doc="Touch Sensing clock enable bit"]
@@ -2784,7 +2784,7 @@ impl Ahbenr {
 
     #[doc="CRC clock enable bit"]
     #[inline] pub fn test_crcen(&self) -> bool {
-        self.crcen != 0
+        self.crcen() != 0
     }
 
     #[doc="CRC clock enable bit"]
@@ -2803,7 +2803,7 @@ impl Ahbenr {
 
     #[doc="NVM interface clock enable bit"]
     #[inline] pub fn test_mifen(&self) -> bool {
-        self.mifen != 0
+        self.mifen() != 0
     }
 
     #[doc="NVM interface clock enable bit"]
@@ -2822,7 +2822,7 @@ impl Ahbenr {
 
     #[doc="DMA clock enable bit"]
     #[inline] pub fn test_dmaen(&self) -> bool {
-        self.dmaen != 0
+        self.dmaen() != 0
     }
 
     #[doc="DMA clock enable bit"]
@@ -2867,7 +2867,7 @@ impl Apb2enr {
 
     #[doc="DBG clock enable bit"]
     #[inline] pub fn test_dbgen(&self) -> bool {
-        self.dbgen != 0
+        self.dbgen() != 0
     }
 
     #[doc="DBG clock enable bit"]
@@ -2886,7 +2886,7 @@ impl Apb2enr {
 
     #[doc="SPI1 clock enable bit"]
     #[inline] pub fn test_spi1en(&self) -> bool {
-        self.spi1en != 0
+        self.spi1en() != 0
     }
 
     #[doc="SPI1 clock enable bit"]
@@ -2905,7 +2905,7 @@ impl Apb2enr {
 
     #[doc="ADC clock enable bit"]
     #[inline] pub fn test_adcen(&self) -> bool {
-        self.adcen != 0
+        self.adcen() != 0
     }
 
     #[doc="ADC clock enable bit"]
@@ -2924,7 +2924,7 @@ impl Apb2enr {
 
     #[doc="MiFaRe Firewall clock enable bit"]
     #[inline] pub fn test_mifien(&self) -> bool {
-        self.mifien != 0
+        self.mifien() != 0
     }
 
     #[doc="MiFaRe Firewall clock enable bit"]
@@ -2943,7 +2943,7 @@ impl Apb2enr {
 
     #[doc="TIM22 timer clock enable bit"]
     #[inline] pub fn test_tim22en(&self) -> bool {
-        self.tim22en != 0
+        self.tim22en() != 0
     }
 
     #[doc="TIM22 timer clock enable bit"]
@@ -2962,7 +2962,7 @@ impl Apb2enr {
 
     #[doc="TIM21 timer clock enable bit"]
     #[inline] pub fn test_tim21en(&self) -> bool {
-        self.tim21en != 0
+        self.tim21en() != 0
     }
 
     #[doc="TIM21 timer clock enable bit"]
@@ -2981,7 +2981,7 @@ impl Apb2enr {
 
     #[doc="System configuration controller clock enable bit"]
     #[inline] pub fn test_syscfgen(&self) -> bool {
-        self.syscfgen != 0
+        self.syscfgen() != 0
     }
 
     #[doc="System configuration controller clock enable bit"]
@@ -3027,7 +3027,7 @@ impl Apb1enr {
 
     #[doc="Low power timer clock enable bit"]
     #[inline] pub fn test_lptim1en(&self) -> bool {
-        self.lptim1en != 0
+        self.lptim1en() != 0
     }
 
     #[doc="Low power timer clock enable bit"]
@@ -3046,7 +3046,7 @@ impl Apb1enr {
 
     #[doc="DAC interface clock enable bit"]
     #[inline] pub fn test_dacen(&self) -> bool {
-        self.dacen != 0
+        self.dacen() != 0
     }
 
     #[doc="DAC interface clock enable bit"]
@@ -3065,7 +3065,7 @@ impl Apb1enr {
 
     #[doc="Power interface clock enable bit"]
     #[inline] pub fn test_pwren(&self) -> bool {
-        self.pwren != 0
+        self.pwren() != 0
     }
 
     #[doc="Power interface clock enable bit"]
@@ -3084,7 +3084,7 @@ impl Apb1enr {
 
     #[doc="Clock recovery system clock enable bit"]
     #[inline] pub fn test_crsen(&self) -> bool {
-        self.crsen != 0
+        self.crsen() != 0
     }
 
     #[doc="Clock recovery system clock enable bit"]
@@ -3103,7 +3103,7 @@ impl Apb1enr {
 
     #[doc="USB clock enable bit"]
     #[inline] pub fn test_usben(&self) -> bool {
-        self.usben != 0
+        self.usben() != 0
     }
 
     #[doc="USB clock enable bit"]
@@ -3122,7 +3122,7 @@ impl Apb1enr {
 
     #[doc="I2C1 clock enable bit"]
     #[inline] pub fn test_i2c1en(&self) -> bool {
-        self.i2c1en != 0
+        self.i2c1en() != 0
     }
 
     #[doc="I2C1 clock enable bit"]
@@ -3141,7 +3141,7 @@ impl Apb1enr {
 
     #[doc="LPUART1 clock enable bit"]
     #[inline] pub fn test_lpuart1en(&self) -> bool {
-        self.lpuart1en != 0
+        self.lpuart1en() != 0
     }
 
     #[doc="LPUART1 clock enable bit"]
@@ -3160,7 +3160,7 @@ impl Apb1enr {
 
     #[doc="UART2 clock enable bit"]
     #[inline] pub fn test_usart2en(&self) -> bool {
-        self.usart2en != 0
+        self.usart2en() != 0
     }
 
     #[doc="UART2 clock enable bit"]
@@ -3179,7 +3179,7 @@ impl Apb1enr {
 
     #[doc="Window watchdog clock enable bit"]
     #[inline] pub fn test_wwdgen(&self) -> bool {
-        self.wwdgen != 0
+        self.wwdgen() != 0
     }
 
     #[doc="Window watchdog clock enable bit"]
@@ -3198,7 +3198,7 @@ impl Apb1enr {
 
     #[doc="Timer2 clock enable bit"]
     #[inline] pub fn test_tim2en(&self) -> bool {
-        self.tim2en != 0
+        self.tim2en() != 0
     }
 
     #[doc="Timer2 clock enable bit"]
@@ -3247,7 +3247,7 @@ impl Iopsmen {
 
     #[doc="IOPHSMEN"]
     #[inline] pub fn test_iophsmen(&self) -> bool {
-        self.iophsmen != 0
+        self.iophsmen() != 0
     }
 
     #[doc="IOPHSMEN"]
@@ -3266,7 +3266,7 @@ impl Iopsmen {
 
     #[doc="IOPDSMEN"]
     #[inline] pub fn test_iopdsmen(&self) -> bool {
-        self.iopdsmen != 0
+        self.iopdsmen() != 0
     }
 
     #[doc="IOPDSMEN"]
@@ -3285,7 +3285,7 @@ impl Iopsmen {
 
     #[doc="IOPCSMEN"]
     #[inline] pub fn test_iopcsmen(&self) -> bool {
-        self.iopcsmen != 0
+        self.iopcsmen() != 0
     }
 
     #[doc="IOPCSMEN"]
@@ -3304,7 +3304,7 @@ impl Iopsmen {
 
     #[doc="IOPBSMEN"]
     #[inline] pub fn test_iopbsmen(&self) -> bool {
-        self.iopbsmen != 0
+        self.iopbsmen() != 0
     }
 
     #[doc="IOPBSMEN"]
@@ -3323,7 +3323,7 @@ impl Iopsmen {
 
     #[doc="IOPASMEN"]
     #[inline] pub fn test_iopasmen(&self) -> bool {
-        self.iopasmen != 0
+        self.iopasmen() != 0
     }
 
     #[doc="IOPASMEN"]
@@ -3367,7 +3367,7 @@ impl Ahbsmenr {
 
     #[doc="Crypto clock enable during sleep mode bit"]
     #[inline] pub fn test_crypsmen(&self) -> bool {
-        self.crypsmen != 0
+        self.crypsmen() != 0
     }
 
     #[doc="Crypto clock enable during sleep mode bit"]
@@ -3386,7 +3386,7 @@ impl Ahbsmenr {
 
     #[doc="Random Number Generator clock enable during sleep mode bit"]
     #[inline] pub fn test_rngsmen(&self) -> bool {
-        self.rngsmen != 0
+        self.rngsmen() != 0
     }
 
     #[doc="Random Number Generator clock enable during sleep mode bit"]
@@ -3405,7 +3405,7 @@ impl Ahbsmenr {
 
     #[doc="Touch Sensing clock enable during sleep mode bit"]
     #[inline] pub fn test_touchsmen(&self) -> bool {
-        self.touchsmen != 0
+        self.touchsmen() != 0
     }
 
     #[doc="Touch Sensing clock enable during sleep mode bit"]
@@ -3424,7 +3424,7 @@ impl Ahbsmenr {
 
     #[doc="CRC clock enable during sleep mode bit"]
     #[inline] pub fn test_crcsmen(&self) -> bool {
-        self.crcsmen != 0
+        self.crcsmen() != 0
     }
 
     #[doc="CRC clock enable during sleep mode bit"]
@@ -3443,7 +3443,7 @@ impl Ahbsmenr {
 
     #[doc="SRAM interface clock enable during sleep mode bit"]
     #[inline] pub fn test_sramsmen(&self) -> bool {
-        self.sramsmen != 0
+        self.sramsmen() != 0
     }
 
     #[doc="SRAM interface clock enable during sleep mode bit"]
@@ -3462,7 +3462,7 @@ impl Ahbsmenr {
 
     #[doc="NVM interface clock enable during sleep mode bit"]
     #[inline] pub fn test_mifsmen(&self) -> bool {
-        self.mifsmen != 0
+        self.mifsmen() != 0
     }
 
     #[doc="NVM interface clock enable during sleep mode bit"]
@@ -3481,7 +3481,7 @@ impl Ahbsmenr {
 
     #[doc="DMA clock enable during sleep mode bit"]
     #[inline] pub fn test_dmasmen(&self) -> bool {
-        self.dmasmen != 0
+        self.dmasmen() != 0
     }
 
     #[doc="DMA clock enable during sleep mode bit"]
@@ -3527,7 +3527,7 @@ impl Apb2smenr {
 
     #[doc="DBG clock enable during sleep mode bit"]
     #[inline] pub fn test_dbgsmen(&self) -> bool {
-        self.dbgsmen != 0
+        self.dbgsmen() != 0
     }
 
     #[doc="DBG clock enable during sleep mode bit"]
@@ -3546,7 +3546,7 @@ impl Apb2smenr {
 
     #[doc="SPI1 clock enable during sleep mode bit"]
     #[inline] pub fn test_spi1smen(&self) -> bool {
-        self.spi1smen != 0
+        self.spi1smen() != 0
     }
 
     #[doc="SPI1 clock enable during sleep mode bit"]
@@ -3565,7 +3565,7 @@ impl Apb2smenr {
 
     #[doc="ADC clock enable during sleep mode bit"]
     #[inline] pub fn test_adcsmen(&self) -> bool {
-        self.adcsmen != 0
+        self.adcsmen() != 0
     }
 
     #[doc="ADC clock enable during sleep mode bit"]
@@ -3584,7 +3584,7 @@ impl Apb2smenr {
 
     #[doc="TIM22 timer clock enable during sleep mode bit"]
     #[inline] pub fn test_tim22smen(&self) -> bool {
-        self.tim22smen != 0
+        self.tim22smen() != 0
     }
 
     #[doc="TIM22 timer clock enable during sleep mode bit"]
@@ -3603,7 +3603,7 @@ impl Apb2smenr {
 
     #[doc="TIM21 timer clock enable during sleep mode bit"]
     #[inline] pub fn test_tim21smen(&self) -> bool {
-        self.tim21smen != 0
+        self.tim21smen() != 0
     }
 
     #[doc="TIM21 timer clock enable during sleep mode bit"]
@@ -3622,7 +3622,7 @@ impl Apb2smenr {
 
     #[doc="System configuration controller clock enable during sleep mode bit"]
     #[inline] pub fn test_syscfgsmen(&self) -> bool {
-        self.syscfgsmen != 0
+        self.syscfgsmen() != 0
     }
 
     #[doc="System configuration controller clock enable during sleep mode bit"]
@@ -3667,7 +3667,7 @@ impl Apb1smenr {
 
     #[doc="Low power timer clock enable during sleep mode bit"]
     #[inline] pub fn test_lptim1smen(&self) -> bool {
-        self.lptim1smen != 0
+        self.lptim1smen() != 0
     }
 
     #[doc="Low power timer clock enable during sleep mode bit"]
@@ -3686,7 +3686,7 @@ impl Apb1smenr {
 
     #[doc="DAC interface clock enable during sleep mode bit"]
     #[inline] pub fn test_dacsmen(&self) -> bool {
-        self.dacsmen != 0
+        self.dacsmen() != 0
     }
 
     #[doc="DAC interface clock enable during sleep mode bit"]
@@ -3705,7 +3705,7 @@ impl Apb1smenr {
 
     #[doc="Power interface clock enable during sleep mode bit"]
     #[inline] pub fn test_pwrsmen(&self) -> bool {
-        self.pwrsmen != 0
+        self.pwrsmen() != 0
     }
 
     #[doc="Power interface clock enable during sleep mode bit"]
@@ -3724,7 +3724,7 @@ impl Apb1smenr {
 
     #[doc="Clock recovery system clock enable during sleep mode bit"]
     #[inline] pub fn test_crssmen(&self) -> bool {
-        self.crssmen != 0
+        self.crssmen() != 0
     }
 
     #[doc="Clock recovery system clock enable during sleep mode bit"]
@@ -3743,7 +3743,7 @@ impl Apb1smenr {
 
     #[doc="USB clock enable during sleep mode bit"]
     #[inline] pub fn test_usbsmen(&self) -> bool {
-        self.usbsmen != 0
+        self.usbsmen() != 0
     }
 
     #[doc="USB clock enable during sleep mode bit"]
@@ -3762,7 +3762,7 @@ impl Apb1smenr {
 
     #[doc="I2C1 clock enable during sleep mode bit"]
     #[inline] pub fn test_i2c1smen(&self) -> bool {
-        self.i2c1smen != 0
+        self.i2c1smen() != 0
     }
 
     #[doc="I2C1 clock enable during sleep mode bit"]
@@ -3781,7 +3781,7 @@ impl Apb1smenr {
 
     #[doc="LPUART1 clock enable during sleep mode bit"]
     #[inline] pub fn test_lpuart1smen(&self) -> bool {
-        self.lpuart1smen != 0
+        self.lpuart1smen() != 0
     }
 
     #[doc="LPUART1 clock enable during sleep mode bit"]
@@ -3800,7 +3800,7 @@ impl Apb1smenr {
 
     #[doc="UART2 clock enable during sleep mode bit"]
     #[inline] pub fn test_usart2smen(&self) -> bool {
-        self.usart2smen != 0
+        self.usart2smen() != 0
     }
 
     #[doc="UART2 clock enable during sleep mode bit"]
@@ -3819,7 +3819,7 @@ impl Apb1smenr {
 
     #[doc="Window watchdog clock enable during sleep mode bit"]
     #[inline] pub fn test_wwdgsmen(&self) -> bool {
-        self.wwdgsmen != 0
+        self.wwdgsmen() != 0
     }
 
     #[doc="Window watchdog clock enable during sleep mode bit"]
@@ -3838,7 +3838,7 @@ impl Apb1smenr {
 
     #[doc="Timer 6 clock enable during sleep mode bit"]
     #[inline] pub fn test_tim6smen(&self) -> bool {
-        self.tim6smen != 0
+        self.tim6smen() != 0
     }
 
     #[doc="Timer 6 clock enable during sleep mode bit"]
@@ -3857,7 +3857,7 @@ impl Apb1smenr {
 
     #[doc="Timer2 clock enable during sleep mode bit"]
     #[inline] pub fn test_tim2smen(&self) -> bool {
-        self.tim2smen != 0
+        self.tim2smen() != 0
     }
 
     #[doc="Timer2 clock enable during sleep mode bit"]
@@ -3907,7 +3907,7 @@ impl Ccipr {
 
     #[doc="48 MHz HSI48 clock source selection bit"]
     #[inline] pub fn test_hsi48msel(&self) -> bool {
-        self.hsi48msel != 0
+        self.hsi48msel() != 0
     }
 
     #[doc="48 MHz HSI48 clock source selection bit"]
@@ -3926,7 +3926,7 @@ impl Ccipr {
 
     #[doc="Low Power Timer clock source selection bits"]
     #[inline] pub fn test_lptim1sel(&self) -> bool {
-        self.lptim1sel != 0
+        self.lptim1sel() != 0
     }
 
     #[doc="Low Power Timer clock source selection bits"]
@@ -3945,7 +3945,7 @@ impl Ccipr {
 
     #[doc="I2C1 clock source selection bits"]
     #[inline] pub fn test_i2c1sel(&self) -> bool {
-        self.i2c1sel != 0
+        self.i2c1sel() != 0
     }
 
     #[doc="I2C1 clock source selection bits"]
@@ -3964,7 +3964,7 @@ impl Ccipr {
 
     #[doc="LPUART1 clock source selection bits"]
     #[inline] pub fn test_lpuart1sel(&self) -> bool {
-        self.lpuart1sel != 0
+        self.lpuart1sel() != 0
     }
 
     #[doc="LPUART1 clock source selection bits"]
@@ -3983,7 +3983,7 @@ impl Ccipr {
 
     #[doc="USART2 clock source selection bits"]
     #[inline] pub fn test_usart2sel(&self) -> bool {
-        self.usart2sel != 0
+        self.usart2sel() != 0
     }
 
     #[doc="USART2 clock source selection bits"]
@@ -4027,7 +4027,7 @@ impl Csr {
 
     #[doc="Low-power reset flag"]
     #[inline] pub fn test_lpwrstf(&self) -> bool {
-        self.lpwrstf != 0
+        self.lpwrstf() != 0
     }
 
     #[doc="Low-power reset flag"]
@@ -4046,7 +4046,7 @@ impl Csr {
 
     #[doc="Window watchdog reset flag"]
     #[inline] pub fn test_wwdgrstf(&self) -> bool {
-        self.wwdgrstf != 0
+        self.wwdgrstf() != 0
     }
 
     #[doc="Window watchdog reset flag"]
@@ -4065,7 +4065,7 @@ impl Csr {
 
     #[doc="Independent watchdog reset flag"]
     #[inline] pub fn test_iwdgrstf(&self) -> bool {
-        self.iwdgrstf != 0
+        self.iwdgrstf() != 0
     }
 
     #[doc="Independent watchdog reset flag"]
@@ -4084,7 +4084,7 @@ impl Csr {
 
     #[doc="Software reset flag"]
     #[inline] pub fn test_sftrstf(&self) -> bool {
-        self.sftrstf != 0
+        self.sftrstf() != 0
     }
 
     #[doc="Software reset flag"]
@@ -4103,7 +4103,7 @@ impl Csr {
 
     #[doc="POR/PDR reset flag"]
     #[inline] pub fn test_porrstf(&self) -> bool {
-        self.porrstf != 0
+        self.porrstf() != 0
     }
 
     #[doc="POR/PDR reset flag"]
@@ -4122,7 +4122,7 @@ impl Csr {
 
     #[doc="PIN reset flag"]
     #[inline] pub fn test_pinrstf(&self) -> bool {
-        self.pinrstf != 0
+        self.pinrstf() != 0
     }
 
     #[doc="PIN reset flag"]
@@ -4141,7 +4141,7 @@ impl Csr {
 
     #[doc="OBLRSTF"]
     #[inline] pub fn test_oblrstf(&self) -> bool {
-        self.oblrstf != 0
+        self.oblrstf() != 0
     }
 
     #[doc="OBLRSTF"]
@@ -4160,7 +4160,7 @@ impl Csr {
 
     #[doc="Remove reset flag"]
     #[inline] pub fn test_rmvf(&self) -> bool {
-        self.rmvf != 0
+        self.rmvf() != 0
     }
 
     #[doc="Remove reset flag"]
@@ -4179,7 +4179,7 @@ impl Csr {
 
     #[doc="RTC software reset bit"]
     #[inline] pub fn test_rtcrst(&self) -> bool {
-        self.rtcrst != 0
+        self.rtcrst() != 0
     }
 
     #[doc="RTC software reset bit"]
@@ -4198,7 +4198,7 @@ impl Csr {
 
     #[doc="RTC clock enable bit"]
     #[inline] pub fn test_rtcen(&self) -> bool {
-        self.rtcen != 0
+        self.rtcen() != 0
     }
 
     #[doc="RTC clock enable bit"]
@@ -4217,7 +4217,7 @@ impl Csr {
 
     #[doc="RTC and LCD clock source selection bits"]
     #[inline] pub fn test_rtcsel(&self) -> bool {
-        self.rtcsel != 0
+        self.rtcsel() != 0
     }
 
     #[doc="RTC and LCD clock source selection bits"]
@@ -4236,7 +4236,7 @@ impl Csr {
 
     #[doc="CSS on LSE failure detection flag"]
     #[inline] pub fn test_csslsed(&self) -> bool {
-        self.csslsed != 0
+        self.csslsed() != 0
     }
 
     #[doc="CSS on LSE failure detection flag"]
@@ -4255,7 +4255,7 @@ impl Csr {
 
     #[doc="CSSLSEON"]
     #[inline] pub fn test_csslseon(&self) -> bool {
-        self.csslseon != 0
+        self.csslseon() != 0
     }
 
     #[doc="CSSLSEON"]
@@ -4274,7 +4274,7 @@ impl Csr {
 
     #[doc="LSEDRV"]
     #[inline] pub fn test_lsedrv(&self) -> bool {
-        self.lsedrv != 0
+        self.lsedrv() != 0
     }
 
     #[doc="LSEDRV"]
@@ -4293,7 +4293,7 @@ impl Csr {
 
     #[doc="External low-speed oscillator bypass bit"]
     #[inline] pub fn test_lsebyp(&self) -> bool {
-        self.lsebyp != 0
+        self.lsebyp() != 0
     }
 
     #[doc="External low-speed oscillator bypass bit"]
@@ -4312,7 +4312,7 @@ impl Csr {
 
     #[doc="External low-speed oscillator ready bit"]
     #[inline] pub fn test_lserdy(&self) -> bool {
-        self.lserdy != 0
+        self.lserdy() != 0
     }
 
     #[doc="External low-speed oscillator ready bit"]
@@ -4331,7 +4331,7 @@ impl Csr {
 
     #[doc="External low-speed oscillator enable bit"]
     #[inline] pub fn test_lseon(&self) -> bool {
-        self.lseon != 0
+        self.lseon() != 0
     }
 
     #[doc="External low-speed oscillator enable bit"]
@@ -4350,7 +4350,7 @@ impl Csr {
 
     #[doc="Internal low-speed oscillator ready bit"]
     #[inline] pub fn test_lsirdy(&self) -> bool {
-        self.lsirdy != 0
+        self.lsirdy() != 0
     }
 
     #[doc="Internal low-speed oscillator ready bit"]
@@ -4369,7 +4369,7 @@ impl Csr {
 
     #[doc="Internal low-speed oscillator enable"]
     #[inline] pub fn test_lsion(&self) -> bool {
-        self.lsion != 0
+        self.lsion() != 0
     }
 
     #[doc="Internal low-speed oscillator enable"]

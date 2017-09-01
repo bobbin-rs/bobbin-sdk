@@ -250,7 +250,7 @@ impl Sar {
 
     #[doc="Each SAR contains the byte address used by the DMA controller to read data"]
     #[inline] pub fn test_sar(&self) -> bool {
-        self.sar != 0
+        self.sar() != 0
     }
 
     #[doc="Each SAR contains the byte address used by the DMA controller to read data"]
@@ -289,7 +289,7 @@ impl Dar {
 
     #[doc="Each DAR contains the byte address used by the DMA controller to write data"]
     #[inline] pub fn test_dar(&self) -> bool {
-        self.dar != 0
+        self.dar() != 0
     }
 
     #[doc="Each DAR contains the byte address used by the DMA controller to write data"]
@@ -328,7 +328,7 @@ impl DsrBcr {
 
     #[doc="This field contains the number of bytes yet to be transferred for a given block"]
     #[inline] pub fn test_bcr(&self) -> bool {
-        self.bcr != 0
+        self.bcr() != 0
     }
 
     #[doc="This field contains the number of bytes yet to be transferred for a given block"]
@@ -347,7 +347,7 @@ impl DsrBcr {
 
     #[doc="Transactions Done"]
     #[inline] pub fn test_done(&self) -> bool {
-        self.done != 0
+        self.done() != 0
     }
 
     #[doc="Transactions Done"]
@@ -366,7 +366,7 @@ impl DsrBcr {
 
     #[doc="Busy"]
     #[inline] pub fn test_bsy(&self) -> bool {
-        self.bsy != 0
+        self.bsy() != 0
     }
 
     #[doc="Busy"]
@@ -385,7 +385,7 @@ impl DsrBcr {
 
     #[doc="Request"]
     #[inline] pub fn test_req(&self) -> bool {
-        self.req != 0
+        self.req() != 0
     }
 
     #[doc="Request"]
@@ -404,7 +404,7 @@ impl DsrBcr {
 
     #[doc="Bus Error on Destination"]
     #[inline] pub fn test_bed(&self) -> bool {
-        self.bed != 0
+        self.bed() != 0
     }
 
     #[doc="Bus Error on Destination"]
@@ -423,7 +423,7 @@ impl DsrBcr {
 
     #[doc="Bus Error on Source"]
     #[inline] pub fn test_bes(&self) -> bool {
-        self.bes != 0
+        self.bes() != 0
     }
 
     #[doc="Bus Error on Source"]
@@ -442,7 +442,7 @@ impl DsrBcr {
 
     #[doc="Configuration Error"]
     #[inline] pub fn test_ce(&self) -> bool {
-        self.ce != 0
+        self.ce() != 0
     }
 
     #[doc="Configuration Error"]
@@ -508,7 +508,7 @@ impl Dcr {
 
     #[doc="Link Channel 2"]
     #[inline] pub fn test_lch2(&self) -> bool {
-        self.lch2 != 0
+        self.lch2() != 0
     }
 
     #[doc="Link Channel 2"]
@@ -527,7 +527,7 @@ impl Dcr {
 
     #[doc="Link Channel 1"]
     #[inline] pub fn test_lch1(&self) -> bool {
-        self.lch1 != 0
+        self.lch1() != 0
     }
 
     #[doc="Link Channel 1"]
@@ -546,7 +546,7 @@ impl Dcr {
 
     #[doc="Link Channel Control"]
     #[inline] pub fn test_linkcc(&self) -> bool {
-        self.linkcc != 0
+        self.linkcc() != 0
     }
 
     #[doc="Link Channel Control"]
@@ -565,7 +565,7 @@ impl Dcr {
 
     #[doc="Disable Request"]
     #[inline] pub fn test_d_req(&self) -> bool {
-        self.d_req != 0
+        self.d_req() != 0
     }
 
     #[doc="Disable Request"]
@@ -584,7 +584,7 @@ impl Dcr {
 
     #[doc="Destination Address Modulo"]
     #[inline] pub fn test_dmod(&self) -> bool {
-        self.dmod != 0
+        self.dmod() != 0
     }
 
     #[doc="Destination Address Modulo"]
@@ -603,7 +603,7 @@ impl Dcr {
 
     #[doc="Source Address Modulo"]
     #[inline] pub fn test_smod(&self) -> bool {
-        self.smod != 0
+        self.smod() != 0
     }
 
     #[doc="Source Address Modulo"]
@@ -622,7 +622,7 @@ impl Dcr {
 
     #[doc="Start Transfer"]
     #[inline] pub fn test_start(&self) -> bool {
-        self.start != 0
+        self.start() != 0
     }
 
     #[doc="Start Transfer"]
@@ -641,7 +641,7 @@ impl Dcr {
 
     #[doc="Destination Size"]
     #[inline] pub fn test_dsize(&self) -> bool {
-        self.dsize != 0
+        self.dsize() != 0
     }
 
     #[doc="Destination Size"]
@@ -660,7 +660,7 @@ impl Dcr {
 
     #[doc="Destination Increment"]
     #[inline] pub fn test_dinc(&self) -> bool {
-        self.dinc != 0
+        self.dinc() != 0
     }
 
     #[doc="Destination Increment"]
@@ -679,7 +679,7 @@ impl Dcr {
 
     #[doc="Source Size"]
     #[inline] pub fn test_ssize(&self) -> bool {
-        self.ssize != 0
+        self.ssize() != 0
     }
 
     #[doc="Source Size"]
@@ -698,7 +698,7 @@ impl Dcr {
 
     #[doc="Source Increment"]
     #[inline] pub fn test_sinc(&self) -> bool {
-        self.sinc != 0
+        self.sinc() != 0
     }
 
     #[doc="Source Increment"]
@@ -717,7 +717,7 @@ impl Dcr {
 
     #[doc="Enable asynchronous DMA requests"]
     #[inline] pub fn test_eadreq(&self) -> bool {
-        self.eadreq != 0
+        self.eadreq() != 0
     }
 
     #[doc="Enable asynchronous DMA requests"]
@@ -736,7 +736,7 @@ impl Dcr {
 
     #[doc="Auto-align"]
     #[inline] pub fn test_aa(&self) -> bool {
-        self.aa != 0
+        self.aa() != 0
     }
 
     #[doc="Auto-align"]
@@ -755,7 +755,7 @@ impl Dcr {
 
     #[doc="Cycle Steal"]
     #[inline] pub fn test_cs(&self) -> bool {
-        self.cs != 0
+        self.cs() != 0
     }
 
     #[doc="Cycle Steal"]
@@ -774,7 +774,7 @@ impl Dcr {
 
     #[doc="Enable Peripheral Request"]
     #[inline] pub fn test_erq(&self) -> bool {
-        self.erq != 0
+        self.erq() != 0
     }
 
     #[doc="Enable Peripheral Request"]
@@ -793,7 +793,7 @@ impl Dcr {
 
     #[doc="Enable Interrupt on Completion of Transfer"]
     #[inline] pub fn test_eint(&self) -> bool {
-        self.eint != 0
+        self.eint() != 0
     }
 
     #[doc="Enable Interrupt on Completion of Transfer"]

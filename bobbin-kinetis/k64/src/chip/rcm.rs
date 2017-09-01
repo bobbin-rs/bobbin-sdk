@@ -143,7 +143,7 @@ impl Srs0 {
 
     #[doc="Low Leakage Wakeup Reset"]
     #[inline] pub fn test_wakeup(&self) -> bool {
-        self.wakeup != 0
+        self.wakeup() != 0
     }
 
     #[doc="Low Leakage Wakeup Reset"]
@@ -162,7 +162,7 @@ impl Srs0 {
 
     #[doc="Low-Voltage Detect Reset"]
     #[inline] pub fn test_lvd(&self) -> bool {
-        self.lvd != 0
+        self.lvd() != 0
     }
 
     #[doc="Low-Voltage Detect Reset"]
@@ -181,7 +181,7 @@ impl Srs0 {
 
     #[doc="Loss-of-Clock Reset"]
     #[inline] pub fn test_loc(&self) -> bool {
-        self.loc != 0
+        self.loc() != 0
     }
 
     #[doc="Loss-of-Clock Reset"]
@@ -200,7 +200,7 @@ impl Srs0 {
 
     #[doc="Loss-of-Lock Reset"]
     #[inline] pub fn test_lol(&self) -> bool {
-        self.lol != 0
+        self.lol() != 0
     }
 
     #[doc="Loss-of-Lock Reset"]
@@ -219,7 +219,7 @@ impl Srs0 {
 
     #[doc="Watchdog"]
     #[inline] pub fn test_wdog(&self) -> bool {
-        self.wdog != 0
+        self.wdog() != 0
     }
 
     #[doc="Watchdog"]
@@ -238,7 +238,7 @@ impl Srs0 {
 
     #[doc="External Reset Pin"]
     #[inline] pub fn test_pin(&self) -> bool {
-        self.pin != 0
+        self.pin() != 0
     }
 
     #[doc="External Reset Pin"]
@@ -257,7 +257,7 @@ impl Srs0 {
 
     #[doc="Power-On Reset"]
     #[inline] pub fn test_por(&self) -> bool {
-        self.por != 0
+        self.por() != 0
     }
 
     #[doc="Power-On Reset"]
@@ -303,7 +303,7 @@ impl Srs1 {
 
     #[doc="JTAG Generated Reset"]
     #[inline] pub fn test_jtag(&self) -> bool {
-        self.jtag != 0
+        self.jtag() != 0
     }
 
     #[doc="JTAG Generated Reset"]
@@ -322,7 +322,7 @@ impl Srs1 {
 
     #[doc="Core Lockup"]
     #[inline] pub fn test_lockup(&self) -> bool {
-        self.lockup != 0
+        self.lockup() != 0
     }
 
     #[doc="Core Lockup"]
@@ -341,7 +341,7 @@ impl Srs1 {
 
     #[doc="Software"]
     #[inline] pub fn test_sw(&self) -> bool {
-        self.sw != 0
+        self.sw() != 0
     }
 
     #[doc="Software"]
@@ -360,7 +360,7 @@ impl Srs1 {
 
     #[doc="MDM-AP System Reset Request"]
     #[inline] pub fn test_mdm_ap(&self) -> bool {
-        self.mdm_ap != 0
+        self.mdm_ap() != 0
     }
 
     #[doc="MDM-AP System Reset Request"]
@@ -379,7 +379,7 @@ impl Srs1 {
 
     #[doc="EzPort Reset"]
     #[inline] pub fn test_ezpt(&self) -> bool {
-        self.ezpt != 0
+        self.ezpt() != 0
     }
 
     #[doc="EzPort Reset"]
@@ -398,7 +398,7 @@ impl Srs1 {
 
     #[doc="Stop Mode Acknowledge Error Reset"]
     #[inline] pub fn test_sackerr(&self) -> bool {
-        self.sackerr != 0
+        self.sackerr() != 0
     }
 
     #[doc="Stop Mode Acknowledge Error Reset"]
@@ -443,7 +443,7 @@ impl Rpfc {
 
     #[doc="Reset Pin Filter Select in Run and Wait Modes"]
     #[inline] pub fn test_rstfltsrw(&self) -> bool {
-        self.rstfltsrw != 0
+        self.rstfltsrw() != 0
     }
 
     #[doc="Reset Pin Filter Select in Run and Wait Modes"]
@@ -462,7 +462,7 @@ impl Rpfc {
 
     #[doc="Reset Pin Filter Select in Stop Mode"]
     #[inline] pub fn test_rstfltss(&self) -> bool {
-        self.rstfltss != 0
+        self.rstfltss() != 0
     }
 
     #[doc="Reset Pin Filter Select in Stop Mode"]
@@ -503,7 +503,7 @@ impl Rpfw {
 
     #[doc="Reset Pin Filter Bus Clock Select"]
     #[inline] pub fn test_rstfltsel(&self) -> bool {
-        self.rstfltsel != 0
+        self.rstfltsel() != 0
     }
 
     #[doc="Reset Pin Filter Bus Clock Select"]
@@ -543,7 +543,7 @@ impl Mr {
 
     #[doc="EZP_MS_B pin state"]
     #[inline] pub fn test_ezp_ms(&self) -> bool {
-        self.ezp_ms != 0
+        self.ezp_ms() != 0
     }
 
     #[doc="EZP_MS_B pin state"]

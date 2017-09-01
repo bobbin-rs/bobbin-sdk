@@ -721,7 +721,7 @@ impl Maccr {
 
     #[doc="RE"]
     #[inline] pub fn test_re(&self) -> bool {
-        self.re != 0
+        self.re() != 0
     }
 
     #[doc="RE"]
@@ -740,7 +740,7 @@ impl Maccr {
 
     #[doc="TE"]
     #[inline] pub fn test_te(&self) -> bool {
-        self.te != 0
+        self.te() != 0
     }
 
     #[doc="TE"]
@@ -759,7 +759,7 @@ impl Maccr {
 
     #[doc="DC"]
     #[inline] pub fn test_dc(&self) -> bool {
-        self.dc != 0
+        self.dc() != 0
     }
 
     #[doc="DC"]
@@ -778,7 +778,7 @@ impl Maccr {
 
     #[doc="BL"]
     #[inline] pub fn test_bl(&self) -> bool {
-        self.bl != 0
+        self.bl() != 0
     }
 
     #[doc="BL"]
@@ -797,7 +797,7 @@ impl Maccr {
 
     #[doc="APCS"]
     #[inline] pub fn test_apcs(&self) -> bool {
-        self.apcs != 0
+        self.apcs() != 0
     }
 
     #[doc="APCS"]
@@ -816,7 +816,7 @@ impl Maccr {
 
     #[doc="RD"]
     #[inline] pub fn test_rd(&self) -> bool {
-        self.rd != 0
+        self.rd() != 0
     }
 
     #[doc="RD"]
@@ -835,7 +835,7 @@ impl Maccr {
 
     #[doc="IPCO"]
     #[inline] pub fn test_ipco(&self) -> bool {
-        self.ipco != 0
+        self.ipco() != 0
     }
 
     #[doc="IPCO"]
@@ -854,7 +854,7 @@ impl Maccr {
 
     #[doc="DM"]
     #[inline] pub fn test_dm(&self) -> bool {
-        self.dm != 0
+        self.dm() != 0
     }
 
     #[doc="DM"]
@@ -873,7 +873,7 @@ impl Maccr {
 
     #[doc="LM"]
     #[inline] pub fn test_lm(&self) -> bool {
-        self.lm != 0
+        self.lm() != 0
     }
 
     #[doc="LM"]
@@ -892,7 +892,7 @@ impl Maccr {
 
     #[doc="ROD"]
     #[inline] pub fn test_rod(&self) -> bool {
-        self.rod != 0
+        self.rod() != 0
     }
 
     #[doc="ROD"]
@@ -911,7 +911,7 @@ impl Maccr {
 
     #[doc="FES"]
     #[inline] pub fn test_fes(&self) -> bool {
-        self.fes != 0
+        self.fes() != 0
     }
 
     #[doc="FES"]
@@ -930,7 +930,7 @@ impl Maccr {
 
     #[doc="CSD"]
     #[inline] pub fn test_csd(&self) -> bool {
-        self.csd != 0
+        self.csd() != 0
     }
 
     #[doc="CSD"]
@@ -949,7 +949,7 @@ impl Maccr {
 
     #[doc="IFG"]
     #[inline] pub fn test_ifg(&self) -> bool {
-        self.ifg != 0
+        self.ifg() != 0
     }
 
     #[doc="IFG"]
@@ -968,7 +968,7 @@ impl Maccr {
 
     #[doc="JD"]
     #[inline] pub fn test_jd(&self) -> bool {
-        self.jd != 0
+        self.jd() != 0
     }
 
     #[doc="JD"]
@@ -987,7 +987,7 @@ impl Maccr {
 
     #[doc="WD"]
     #[inline] pub fn test_wd(&self) -> bool {
-        self.wd != 0
+        self.wd() != 0
     }
 
     #[doc="WD"]
@@ -1006,7 +1006,7 @@ impl Maccr {
 
     #[doc="CSTF"]
     #[inline] pub fn test_cstf(&self) -> bool {
-        self.cstf != 0
+        self.cstf() != 0
     }
 
     #[doc="CSTF"]
@@ -1061,7 +1061,7 @@ impl Macffr {
 
     #[doc="no description available"]
     #[inline] pub fn test_pm(&self) -> bool {
-        self.pm != 0
+        self.pm() != 0
     }
 
     #[doc="no description available"]
@@ -1080,7 +1080,7 @@ impl Macffr {
 
     #[doc="no description available"]
     #[inline] pub fn test_hu(&self) -> bool {
-        self.hu != 0
+        self.hu() != 0
     }
 
     #[doc="no description available"]
@@ -1099,7 +1099,7 @@ impl Macffr {
 
     #[doc="no description available"]
     #[inline] pub fn test_hm(&self) -> bool {
-        self.hm != 0
+        self.hm() != 0
     }
 
     #[doc="no description available"]
@@ -1118,7 +1118,7 @@ impl Macffr {
 
     #[doc="no description available"]
     #[inline] pub fn test_daif(&self) -> bool {
-        self.daif != 0
+        self.daif() != 0
     }
 
     #[doc="no description available"]
@@ -1137,7 +1137,7 @@ impl Macffr {
 
     #[doc="no description available"]
     #[inline] pub fn test_ram(&self) -> bool {
-        self.ram != 0
+        self.ram() != 0
     }
 
     #[doc="no description available"]
@@ -1156,7 +1156,7 @@ impl Macffr {
 
     #[doc="no description available"]
     #[inline] pub fn test_bfd(&self) -> bool {
-        self.bfd != 0
+        self.bfd() != 0
     }
 
     #[doc="no description available"]
@@ -1175,7 +1175,7 @@ impl Macffr {
 
     #[doc="no description available"]
     #[inline] pub fn test_pcf(&self) -> bool {
-        self.pcf != 0
+        self.pcf() != 0
     }
 
     #[doc="no description available"]
@@ -1194,7 +1194,7 @@ impl Macffr {
 
     #[doc="no description available"]
     #[inline] pub fn test_saif(&self) -> bool {
-        self.saif != 0
+        self.saif() != 0
     }
 
     #[doc="no description available"]
@@ -1213,7 +1213,7 @@ impl Macffr {
 
     #[doc="no description available"]
     #[inline] pub fn test_saf(&self) -> bool {
-        self.saf != 0
+        self.saf() != 0
     }
 
     #[doc="no description available"]
@@ -1232,7 +1232,7 @@ impl Macffr {
 
     #[doc="no description available"]
     #[inline] pub fn test_hpf(&self) -> bool {
-        self.hpf != 0
+        self.hpf() != 0
     }
 
     #[doc="no description available"]
@@ -1251,7 +1251,7 @@ impl Macffr {
 
     #[doc="no description available"]
     #[inline] pub fn test_ra(&self) -> bool {
-        self.ra != 0
+        self.ra() != 0
     }
 
     #[doc="no description available"]
@@ -1301,7 +1301,7 @@ impl Machthr {
 
     #[doc="no description available"]
     #[inline] pub fn test_hth(&self) -> bool {
-        self.hth != 0
+        self.hth() != 0
     }
 
     #[doc="no description available"]
@@ -1340,7 +1340,7 @@ impl Machtlr {
 
     #[doc="no description available"]
     #[inline] pub fn test_htl(&self) -> bool {
-        self.htl != 0
+        self.htl() != 0
     }
 
     #[doc="no description available"]
@@ -1379,7 +1379,7 @@ impl Macmiiar {
 
     #[doc="no description available"]
     #[inline] pub fn test_mb(&self) -> bool {
-        self.mb != 0
+        self.mb() != 0
     }
 
     #[doc="no description available"]
@@ -1398,7 +1398,7 @@ impl Macmiiar {
 
     #[doc="no description available"]
     #[inline] pub fn test_mw(&self) -> bool {
-        self.mw != 0
+        self.mw() != 0
     }
 
     #[doc="no description available"]
@@ -1417,7 +1417,7 @@ impl Macmiiar {
 
     #[doc="no description available"]
     #[inline] pub fn test_cr(&self) -> bool {
-        self.cr != 0
+        self.cr() != 0
     }
 
     #[doc="no description available"]
@@ -1436,7 +1436,7 @@ impl Macmiiar {
 
     #[doc="no description available"]
     #[inline] pub fn test_mr(&self) -> bool {
-        self.mr != 0
+        self.mr() != 0
     }
 
     #[doc="no description available"]
@@ -1455,7 +1455,7 @@ impl Macmiiar {
 
     #[doc="no description available"]
     #[inline] pub fn test_pa(&self) -> bool {
-        self.pa != 0
+        self.pa() != 0
     }
 
     #[doc="no description available"]
@@ -1499,7 +1499,7 @@ impl Macmiidr {
 
     #[doc="no description available"]
     #[inline] pub fn test_td(&self) -> bool {
-        self.td != 0
+        self.td() != 0
     }
 
     #[doc="no description available"]
@@ -1539,7 +1539,7 @@ impl Macfcr {
 
     #[doc="no description available"]
     #[inline] pub fn test_fcb(&self) -> bool {
-        self.fcb != 0
+        self.fcb() != 0
     }
 
     #[doc="no description available"]
@@ -1558,7 +1558,7 @@ impl Macfcr {
 
     #[doc="no description available"]
     #[inline] pub fn test_tfce(&self) -> bool {
-        self.tfce != 0
+        self.tfce() != 0
     }
 
     #[doc="no description available"]
@@ -1577,7 +1577,7 @@ impl Macfcr {
 
     #[doc="no description available"]
     #[inline] pub fn test_rfce(&self) -> bool {
-        self.rfce != 0
+        self.rfce() != 0
     }
 
     #[doc="no description available"]
@@ -1596,7 +1596,7 @@ impl Macfcr {
 
     #[doc="no description available"]
     #[inline] pub fn test_upfd(&self) -> bool {
-        self.upfd != 0
+        self.upfd() != 0
     }
 
     #[doc="no description available"]
@@ -1615,7 +1615,7 @@ impl Macfcr {
 
     #[doc="no description available"]
     #[inline] pub fn test_plt(&self) -> bool {
-        self.plt != 0
+        self.plt() != 0
     }
 
     #[doc="no description available"]
@@ -1634,7 +1634,7 @@ impl Macfcr {
 
     #[doc="no description available"]
     #[inline] pub fn test_zqpd(&self) -> bool {
-        self.zqpd != 0
+        self.zqpd() != 0
     }
 
     #[doc="no description available"]
@@ -1653,7 +1653,7 @@ impl Macfcr {
 
     #[doc="no description available"]
     #[inline] pub fn test_pt(&self) -> bool {
-        self.pt != 0
+        self.pt() != 0
     }
 
     #[doc="no description available"]
@@ -1699,7 +1699,7 @@ impl Macvlantr {
 
     #[doc="no description available"]
     #[inline] pub fn test_vlanti(&self) -> bool {
-        self.vlanti != 0
+        self.vlanti() != 0
     }
 
     #[doc="no description available"]
@@ -1718,7 +1718,7 @@ impl Macvlantr {
 
     #[doc="no description available"]
     #[inline] pub fn test_vlantc(&self) -> bool {
-        self.vlantc != 0
+        self.vlantc() != 0
     }
 
     #[doc="no description available"]
@@ -1759,7 +1759,7 @@ impl Macpmtcsr {
 
     #[doc="no description available"]
     #[inline] pub fn test_pd(&self) -> bool {
-        self.pd != 0
+        self.pd() != 0
     }
 
     #[doc="no description available"]
@@ -1778,7 +1778,7 @@ impl Macpmtcsr {
 
     #[doc="no description available"]
     #[inline] pub fn test_mpe(&self) -> bool {
-        self.mpe != 0
+        self.mpe() != 0
     }
 
     #[doc="no description available"]
@@ -1797,7 +1797,7 @@ impl Macpmtcsr {
 
     #[doc="no description available"]
     #[inline] pub fn test_wfe(&self) -> bool {
-        self.wfe != 0
+        self.wfe() != 0
     }
 
     #[doc="no description available"]
@@ -1816,7 +1816,7 @@ impl Macpmtcsr {
 
     #[doc="no description available"]
     #[inline] pub fn test_mpr(&self) -> bool {
-        self.mpr != 0
+        self.mpr() != 0
     }
 
     #[doc="no description available"]
@@ -1835,7 +1835,7 @@ impl Macpmtcsr {
 
     #[doc="no description available"]
     #[inline] pub fn test_wfr(&self) -> bool {
-        self.wfr != 0
+        self.wfr() != 0
     }
 
     #[doc="no description available"]
@@ -1854,7 +1854,7 @@ impl Macpmtcsr {
 
     #[doc="no description available"]
     #[inline] pub fn test_gu(&self) -> bool {
-        self.gu != 0
+        self.gu() != 0
     }
 
     #[doc="no description available"]
@@ -1873,7 +1873,7 @@ impl Macpmtcsr {
 
     #[doc="no description available"]
     #[inline] pub fn test_wffrpr(&self) -> bool {
-        self.wffrpr != 0
+        self.wffrpr() != 0
     }
 
     #[doc="no description available"]
@@ -1919,7 +1919,7 @@ impl Macdbgr {
 
     #[doc="CR"]
     #[inline] pub fn test_cr(&self) -> bool {
-        self.cr != 0
+        self.cr() != 0
     }
 
     #[doc="CR"]
@@ -1938,7 +1938,7 @@ impl Macdbgr {
 
     #[doc="CSR"]
     #[inline] pub fn test_csr(&self) -> bool {
-        self.csr != 0
+        self.csr() != 0
     }
 
     #[doc="CSR"]
@@ -1957,7 +1957,7 @@ impl Macdbgr {
 
     #[doc="ROR"]
     #[inline] pub fn test_ror(&self) -> bool {
-        self.ror != 0
+        self.ror() != 0
     }
 
     #[doc="ROR"]
@@ -1976,7 +1976,7 @@ impl Macdbgr {
 
     #[doc="MCF"]
     #[inline] pub fn test_mcf(&self) -> bool {
-        self.mcf != 0
+        self.mcf() != 0
     }
 
     #[doc="MCF"]
@@ -1995,7 +1995,7 @@ impl Macdbgr {
 
     #[doc="MCP"]
     #[inline] pub fn test_mcp(&self) -> bool {
-        self.mcp != 0
+        self.mcp() != 0
     }
 
     #[doc="MCP"]
@@ -2014,7 +2014,7 @@ impl Macdbgr {
 
     #[doc="MCFHP"]
     #[inline] pub fn test_mcfhp(&self) -> bool {
-        self.mcfhp != 0
+        self.mcfhp() != 0
     }
 
     #[doc="MCFHP"]
@@ -2059,7 +2059,7 @@ impl Macsr {
 
     #[doc="no description available"]
     #[inline] pub fn test_pmts(&self) -> bool {
-        self.pmts != 0
+        self.pmts() != 0
     }
 
     #[doc="no description available"]
@@ -2078,7 +2078,7 @@ impl Macsr {
 
     #[doc="no description available"]
     #[inline] pub fn test_mmcs(&self) -> bool {
-        self.mmcs != 0
+        self.mmcs() != 0
     }
 
     #[doc="no description available"]
@@ -2097,7 +2097,7 @@ impl Macsr {
 
     #[doc="no description available"]
     #[inline] pub fn test_mmcrs(&self) -> bool {
-        self.mmcrs != 0
+        self.mmcrs() != 0
     }
 
     #[doc="no description available"]
@@ -2116,7 +2116,7 @@ impl Macsr {
 
     #[doc="no description available"]
     #[inline] pub fn test_mmcts(&self) -> bool {
-        self.mmcts != 0
+        self.mmcts() != 0
     }
 
     #[doc="no description available"]
@@ -2135,7 +2135,7 @@ impl Macsr {
 
     #[doc="no description available"]
     #[inline] pub fn test_tsts(&self) -> bool {
-        self.tsts != 0
+        self.tsts() != 0
     }
 
     #[doc="no description available"]
@@ -2179,7 +2179,7 @@ impl Macimr {
 
     #[doc="no description available"]
     #[inline] pub fn test_pmtim(&self) -> bool {
-        self.pmtim != 0
+        self.pmtim() != 0
     }
 
     #[doc="no description available"]
@@ -2198,7 +2198,7 @@ impl Macimr {
 
     #[doc="no description available"]
     #[inline] pub fn test_tstim(&self) -> bool {
-        self.tstim != 0
+        self.tstim() != 0
     }
 
     #[doc="no description available"]
@@ -2239,7 +2239,7 @@ impl Maca0hr {
 
     #[doc="MAC address0 high"]
     #[inline] pub fn test_maca0h(&self) -> bool {
-        self.maca0h != 0
+        self.maca0h() != 0
     }
 
     #[doc="MAC address0 high"]
@@ -2258,7 +2258,7 @@ impl Maca0hr {
 
     #[doc="Always 1"]
     #[inline] pub fn test_mo(&self) -> bool {
-        self.mo != 0
+        self.mo() != 0
     }
 
     #[doc="Always 1"]
@@ -2299,7 +2299,7 @@ impl Maca0lr {
 
     #[doc="0"]
     #[inline] pub fn test_maca0l(&self) -> bool {
-        self.maca0l != 0
+        self.maca0l() != 0
     }
 
     #[doc="0"]
@@ -2338,7 +2338,7 @@ impl Maca1hr {
 
     #[doc="no description available"]
     #[inline] pub fn test_maca1h(&self) -> bool {
-        self.maca1h != 0
+        self.maca1h() != 0
     }
 
     #[doc="no description available"]
@@ -2357,7 +2357,7 @@ impl Maca1hr {
 
     #[doc="no description available"]
     #[inline] pub fn test_mbc(&self) -> bool {
-        self.mbc != 0
+        self.mbc() != 0
     }
 
     #[doc="no description available"]
@@ -2376,7 +2376,7 @@ impl Maca1hr {
 
     #[doc="no description available"]
     #[inline] pub fn test_sa(&self) -> bool {
-        self.sa != 0
+        self.sa() != 0
     }
 
     #[doc="no description available"]
@@ -2395,7 +2395,7 @@ impl Maca1hr {
 
     #[doc="no description available"]
     #[inline] pub fn test_ae(&self) -> bool {
-        self.ae != 0
+        self.ae() != 0
     }
 
     #[doc="no description available"]
@@ -2438,7 +2438,7 @@ impl Maca1lr {
 
     #[doc="no description available"]
     #[inline] pub fn test_maca1lr(&self) -> bool {
-        self.maca1lr != 0
+        self.maca1lr() != 0
     }
 
     #[doc="no description available"]
@@ -2477,7 +2477,7 @@ impl Maca2hr {
 
     #[doc="no description available"]
     #[inline] pub fn test_mac2ah(&self) -> bool {
-        self.mac2ah != 0
+        self.mac2ah() != 0
     }
 
     #[doc="no description available"]
@@ -2496,7 +2496,7 @@ impl Maca2hr {
 
     #[doc="no description available"]
     #[inline] pub fn test_mbc(&self) -> bool {
-        self.mbc != 0
+        self.mbc() != 0
     }
 
     #[doc="no description available"]
@@ -2515,7 +2515,7 @@ impl Maca2hr {
 
     #[doc="no description available"]
     #[inline] pub fn test_sa(&self) -> bool {
-        self.sa != 0
+        self.sa() != 0
     }
 
     #[doc="no description available"]
@@ -2534,7 +2534,7 @@ impl Maca2hr {
 
     #[doc="no description available"]
     #[inline] pub fn test_ae(&self) -> bool {
-        self.ae != 0
+        self.ae() != 0
     }
 
     #[doc="no description available"]
@@ -2577,7 +2577,7 @@ impl Maca2lr {
 
     #[doc="no description available"]
     #[inline] pub fn test_maca2l(&self) -> bool {
-        self.maca2l != 0
+        self.maca2l() != 0
     }
 
     #[doc="no description available"]
@@ -2617,7 +2617,7 @@ impl Maca3hr {
 
     #[doc="no description available"]
     #[inline] pub fn test_maca3h(&self) -> bool {
-        self.maca3h != 0
+        self.maca3h() != 0
     }
 
     #[doc="no description available"]
@@ -2636,7 +2636,7 @@ impl Maca3hr {
 
     #[doc="no description available"]
     #[inline] pub fn test_mbc(&self) -> bool {
-        self.mbc != 0
+        self.mbc() != 0
     }
 
     #[doc="no description available"]
@@ -2655,7 +2655,7 @@ impl Maca3hr {
 
     #[doc="no description available"]
     #[inline] pub fn test_sa(&self) -> bool {
-        self.sa != 0
+        self.sa() != 0
     }
 
     #[doc="no description available"]
@@ -2674,7 +2674,7 @@ impl Maca3hr {
 
     #[doc="no description available"]
     #[inline] pub fn test_ae(&self) -> bool {
-        self.ae != 0
+        self.ae() != 0
     }
 
     #[doc="no description available"]
@@ -2717,7 +2717,7 @@ impl Maca3lr {
 
     #[doc="no description available"]
     #[inline] pub fn test_mbca3l(&self) -> bool {
-        self.mbca3l != 0
+        self.mbca3l() != 0
     }
 
     #[doc="no description available"]

@@ -4836,7 +4836,7 @@ impl Ftfc {
 
     #[doc="Clock Gate Control"]
     #[inline] pub fn test_cgc(&self) -> bool {
-        self.cgc != 0
+        self.cgc() != 0
     }
 
     #[doc="Clock Gate Control"]
@@ -4855,7 +4855,7 @@ impl Ftfc {
 
     #[doc="Present"]
     #[inline] pub fn test_pr(&self) -> bool {
-        self.pr != 0
+        self.pr() != 0
     }
 
     #[doc="Present"]
@@ -4896,7 +4896,7 @@ impl Dmamux {
 
     #[doc="Clock Gate Control"]
     #[inline] pub fn test_cgc(&self) -> bool {
-        self.cgc != 0
+        self.cgc() != 0
     }
 
     #[doc="Clock Gate Control"]
@@ -4915,7 +4915,7 @@ impl Dmamux {
 
     #[doc="Present"]
     #[inline] pub fn test_pr(&self) -> bool {
-        self.pr != 0
+        self.pr() != 0
     }
 
     #[doc="Present"]
@@ -4996,7 +4996,7 @@ impl Flexcan0 {
 
     #[doc="Clock Gate Control"]
     #[inline] pub fn test_cgc(&self) -> bool {
-        self.cgc != 0
+        self.cgc() != 0
     }
 
     #[doc="Clock Gate Control"]
@@ -5015,7 +5015,7 @@ impl Flexcan0 {
 
     #[doc="Present"]
     #[inline] pub fn test_pr(&self) -> bool {
-        self.pr != 0
+        self.pr() != 0
     }
 
     #[doc="Present"]
@@ -5056,7 +5056,7 @@ impl Flexcan1 {
 
     #[doc="Clock Gate Control"]
     #[inline] pub fn test_cgc(&self) -> bool {
-        self.cgc != 0
+        self.cgc() != 0
     }
 
     #[doc="Clock Gate Control"]
@@ -5075,7 +5075,7 @@ impl Flexcan1 {
 
     #[doc="Present"]
     #[inline] pub fn test_pr(&self) -> bool {
-        self.pr != 0
+        self.pr() != 0
     }
 
     #[doc="Present"]
@@ -5116,7 +5116,7 @@ impl Ftm3 {
 
     #[doc="Peripheral Clock Source Select"]
     #[inline] pub fn test_pcs(&self) -> bool {
-        self.pcs != 0
+        self.pcs() != 0
     }
 
     #[doc="Peripheral Clock Source Select"]
@@ -5135,7 +5135,7 @@ impl Ftm3 {
 
     #[doc="Clock Gate Control"]
     #[inline] pub fn test_cgc(&self) -> bool {
-        self.cgc != 0
+        self.cgc() != 0
     }
 
     #[doc="Clock Gate Control"]
@@ -5154,7 +5154,7 @@ impl Ftm3 {
 
     #[doc="Present"]
     #[inline] pub fn test_pr(&self) -> bool {
-        self.pr != 0
+        self.pr() != 0
     }
 
     #[doc="Present"]
@@ -5196,7 +5196,7 @@ impl Adc1 {
 
     #[doc="Peripheral Clock Source Select"]
     #[inline] pub fn test_pcs(&self) -> bool {
-        self.pcs != 0
+        self.pcs() != 0
     }
 
     #[doc="Peripheral Clock Source Select"]
@@ -5215,7 +5215,7 @@ impl Adc1 {
 
     #[doc="Clock Gate Control"]
     #[inline] pub fn test_cgc(&self) -> bool {
-        self.cgc != 0
+        self.cgc() != 0
     }
 
     #[doc="Clock Gate Control"]
@@ -5234,7 +5234,7 @@ impl Adc1 {
 
     #[doc="Present"]
     #[inline] pub fn test_pr(&self) -> bool {
-        self.pr != 0
+        self.pr() != 0
     }
 
     #[doc="Present"]
@@ -5336,7 +5336,7 @@ impl Flexcan2 {
 
     #[doc="Clock Gate Control"]
     #[inline] pub fn test_cgc(&self) -> bool {
-        self.cgc != 0
+        self.cgc() != 0
     }
 
     #[doc="Clock Gate Control"]
@@ -5355,7 +5355,7 @@ impl Flexcan2 {
 
     #[doc="Present"]
     #[inline] pub fn test_pr(&self) -> bool {
-        self.pr != 0
+        self.pr() != 0
     }
 
     #[doc="Present"]
@@ -5396,7 +5396,7 @@ impl Lpspi0 {
 
     #[doc="Peripheral Clock Source Select"]
     #[inline] pub fn test_pcs(&self) -> bool {
-        self.pcs != 0
+        self.pcs() != 0
     }
 
     #[doc="Peripheral Clock Source Select"]
@@ -5415,7 +5415,7 @@ impl Lpspi0 {
 
     #[doc="Clock Gate Control"]
     #[inline] pub fn test_cgc(&self) -> bool {
-        self.cgc != 0
+        self.cgc() != 0
     }
 
     #[doc="Clock Gate Control"]
@@ -5434,7 +5434,7 @@ impl Lpspi0 {
 
     #[doc="Present"]
     #[inline] pub fn test_pr(&self) -> bool {
-        self.pr != 0
+        self.pr() != 0
     }
 
     #[doc="Present"]
@@ -5476,7 +5476,7 @@ impl Lpspi1 {
 
     #[doc="Peripheral Clock Source Select"]
     #[inline] pub fn test_pcs(&self) -> bool {
-        self.pcs != 0
+        self.pcs() != 0
     }
 
     #[doc="Peripheral Clock Source Select"]
@@ -5495,7 +5495,7 @@ impl Lpspi1 {
 
     #[doc="Clock Gate Control"]
     #[inline] pub fn test_cgc(&self) -> bool {
-        self.cgc != 0
+        self.cgc() != 0
     }
 
     #[doc="Clock Gate Control"]
@@ -5514,7 +5514,7 @@ impl Lpspi1 {
 
     #[doc="Present"]
     #[inline] pub fn test_pr(&self) -> bool {
-        self.pr != 0
+        self.pr() != 0
     }
 
     #[doc="Present"]
@@ -5556,7 +5556,7 @@ impl Lpspi2 {
 
     #[doc="Peripheral Clock Source Select"]
     #[inline] pub fn test_pcs(&self) -> bool {
-        self.pcs != 0
+        self.pcs() != 0
     }
 
     #[doc="Peripheral Clock Source Select"]
@@ -5575,7 +5575,7 @@ impl Lpspi2 {
 
     #[doc="Clock Gate Control"]
     #[inline] pub fn test_cgc(&self) -> bool {
-        self.cgc != 0
+        self.cgc() != 0
     }
 
     #[doc="Clock Gate Control"]
@@ -5594,7 +5594,7 @@ impl Lpspi2 {
 
     #[doc="Present"]
     #[inline] pub fn test_pr(&self) -> bool {
-        self.pr != 0
+        self.pr() != 0
     }
 
     #[doc="Present"]
@@ -5676,7 +5676,7 @@ impl Pdb1 {
 
     #[doc="Clock Gate Control"]
     #[inline] pub fn test_cgc(&self) -> bool {
-        self.cgc != 0
+        self.cgc() != 0
     }
 
     #[doc="Clock Gate Control"]
@@ -5695,7 +5695,7 @@ impl Pdb1 {
 
     #[doc="Present"]
     #[inline] pub fn test_pr(&self) -> bool {
-        self.pr != 0
+        self.pr() != 0
     }
 
     #[doc="Present"]
@@ -5736,7 +5736,7 @@ impl Crc {
 
     #[doc="Clock Gate Control"]
     #[inline] pub fn test_cgc(&self) -> bool {
-        self.cgc != 0
+        self.cgc() != 0
     }
 
     #[doc="Clock Gate Control"]
@@ -5755,7 +5755,7 @@ impl Crc {
 
     #[doc="Present"]
     #[inline] pub fn test_pr(&self) -> bool {
-        self.pr != 0
+        self.pr() != 0
     }
 
     #[doc="Present"]
@@ -5856,7 +5856,7 @@ impl Pdb0 {
 
     #[doc="Clock Gate Control"]
     #[inline] pub fn test_cgc(&self) -> bool {
-        self.cgc != 0
+        self.cgc() != 0
     }
 
     #[doc="Clock Gate Control"]
@@ -5875,7 +5875,7 @@ impl Pdb0 {
 
     #[doc="Present"]
     #[inline] pub fn test_pr(&self) -> bool {
-        self.pr != 0
+        self.pr() != 0
     }
 
     #[doc="Present"]
@@ -5916,7 +5916,7 @@ impl Lpit {
 
     #[doc="Peripheral Clock Source Select"]
     #[inline] pub fn test_pcs(&self) -> bool {
-        self.pcs != 0
+        self.pcs() != 0
     }
 
     #[doc="Peripheral Clock Source Select"]
@@ -5935,7 +5935,7 @@ impl Lpit {
 
     #[doc="Clock Gate Control"]
     #[inline] pub fn test_cgc(&self) -> bool {
-        self.cgc != 0
+        self.cgc() != 0
     }
 
     #[doc="Clock Gate Control"]
@@ -5954,7 +5954,7 @@ impl Lpit {
 
     #[doc="Present"]
     #[inline] pub fn test_pr(&self) -> bool {
-        self.pr != 0
+        self.pr() != 0
     }
 
     #[doc="Present"]
@@ -5996,7 +5996,7 @@ impl Ftm0 {
 
     #[doc="Peripheral Clock Source Select"]
     #[inline] pub fn test_pcs(&self) -> bool {
-        self.pcs != 0
+        self.pcs() != 0
     }
 
     #[doc="Peripheral Clock Source Select"]
@@ -6015,7 +6015,7 @@ impl Ftm0 {
 
     #[doc="Clock Gate Control"]
     #[inline] pub fn test_cgc(&self) -> bool {
-        self.cgc != 0
+        self.cgc() != 0
     }
 
     #[doc="Clock Gate Control"]
@@ -6034,7 +6034,7 @@ impl Ftm0 {
 
     #[doc="Present"]
     #[inline] pub fn test_pr(&self) -> bool {
-        self.pr != 0
+        self.pr() != 0
     }
 
     #[doc="Present"]
@@ -6076,7 +6076,7 @@ impl Ftm1 {
 
     #[doc="Peripheral Clock Source Select"]
     #[inline] pub fn test_pcs(&self) -> bool {
-        self.pcs != 0
+        self.pcs() != 0
     }
 
     #[doc="Peripheral Clock Source Select"]
@@ -6095,7 +6095,7 @@ impl Ftm1 {
 
     #[doc="Clock Gate Control"]
     #[inline] pub fn test_cgc(&self) -> bool {
-        self.cgc != 0
+        self.cgc() != 0
     }
 
     #[doc="Clock Gate Control"]
@@ -6114,7 +6114,7 @@ impl Ftm1 {
 
     #[doc="Present"]
     #[inline] pub fn test_pr(&self) -> bool {
-        self.pr != 0
+        self.pr() != 0
     }
 
     #[doc="Present"]
@@ -6156,7 +6156,7 @@ impl Ftm2 {
 
     #[doc="Peripheral Clock Source Select"]
     #[inline] pub fn test_pcs(&self) -> bool {
-        self.pcs != 0
+        self.pcs() != 0
     }
 
     #[doc="Peripheral Clock Source Select"]
@@ -6175,7 +6175,7 @@ impl Ftm2 {
 
     #[doc="Clock Gate Control"]
     #[inline] pub fn test_cgc(&self) -> bool {
-        self.cgc != 0
+        self.cgc() != 0
     }
 
     #[doc="Clock Gate Control"]
@@ -6194,7 +6194,7 @@ impl Ftm2 {
 
     #[doc="Present"]
     #[inline] pub fn test_pr(&self) -> bool {
-        self.pr != 0
+        self.pr() != 0
     }
 
     #[doc="Present"]
@@ -6236,7 +6236,7 @@ impl Adc0 {
 
     #[doc="Peripheral Clock Source Select"]
     #[inline] pub fn test_pcs(&self) -> bool {
-        self.pcs != 0
+        self.pcs() != 0
     }
 
     #[doc="Peripheral Clock Source Select"]
@@ -6255,7 +6255,7 @@ impl Adc0 {
 
     #[doc="Clock Gate Control"]
     #[inline] pub fn test_cgc(&self) -> bool {
-        self.cgc != 0
+        self.cgc() != 0
     }
 
     #[doc="Clock Gate Control"]
@@ -6274,7 +6274,7 @@ impl Adc0 {
 
     #[doc="Present"]
     #[inline] pub fn test_pr(&self) -> bool {
-        self.pr != 0
+        self.pr() != 0
     }
 
     #[doc="Present"]
@@ -6336,7 +6336,7 @@ impl Rtc {
 
     #[doc="Clock Gate Control"]
     #[inline] pub fn test_cgc(&self) -> bool {
-        self.cgc != 0
+        self.cgc() != 0
     }
 
     #[doc="Clock Gate Control"]
@@ -6355,7 +6355,7 @@ impl Rtc {
 
     #[doc="Present"]
     #[inline] pub fn test_pr(&self) -> bool {
-        self.pr != 0
+        self.pr() != 0
     }
 
     #[doc="Present"]
@@ -6436,7 +6436,7 @@ impl Lptmr0 {
 
     #[doc="Peripheral Clock Divider Select"]
     #[inline] pub fn test_pcd(&self) -> bool {
-        self.pcd != 0
+        self.pcd() != 0
     }
 
     #[doc="Peripheral Clock Divider Select"]
@@ -6455,7 +6455,7 @@ impl Lptmr0 {
 
     #[doc="Peripheral Clock Divider Fraction"]
     #[inline] pub fn test_frac(&self) -> bool {
-        self.frac != 0
+        self.frac() != 0
     }
 
     #[doc="Peripheral Clock Divider Fraction"]
@@ -6474,7 +6474,7 @@ impl Lptmr0 {
 
     #[doc="Peripheral Clock Source Select"]
     #[inline] pub fn test_pcs(&self) -> bool {
-        self.pcs != 0
+        self.pcs() != 0
     }
 
     #[doc="Peripheral Clock Source Select"]
@@ -6493,7 +6493,7 @@ impl Lptmr0 {
 
     #[doc="Clock Gate Control"]
     #[inline] pub fn test_cgc(&self) -> bool {
-        self.cgc != 0
+        self.cgc() != 0
     }
 
     #[doc="Clock Gate Control"]
@@ -6512,7 +6512,7 @@ impl Lptmr0 {
 
     #[doc="Present"]
     #[inline] pub fn test_pr(&self) -> bool {
-        self.pr != 0
+        self.pr() != 0
     }
 
     #[doc="Present"]
@@ -6716,7 +6716,7 @@ impl Porta {
 
     #[doc="Clock Gate Control"]
     #[inline] pub fn test_cgc(&self) -> bool {
-        self.cgc != 0
+        self.cgc() != 0
     }
 
     #[doc="Clock Gate Control"]
@@ -6735,7 +6735,7 @@ impl Porta {
 
     #[doc="Present"]
     #[inline] pub fn test_pr(&self) -> bool {
-        self.pr != 0
+        self.pr() != 0
     }
 
     #[doc="Present"]
@@ -6776,7 +6776,7 @@ impl Portb {
 
     #[doc="Clock Gate Control"]
     #[inline] pub fn test_cgc(&self) -> bool {
-        self.cgc != 0
+        self.cgc() != 0
     }
 
     #[doc="Clock Gate Control"]
@@ -6795,7 +6795,7 @@ impl Portb {
 
     #[doc="Present"]
     #[inline] pub fn test_pr(&self) -> bool {
-        self.pr != 0
+        self.pr() != 0
     }
 
     #[doc="Present"]
@@ -6836,7 +6836,7 @@ impl Portc {
 
     #[doc="Clock Gate Control"]
     #[inline] pub fn test_cgc(&self) -> bool {
-        self.cgc != 0
+        self.cgc() != 0
     }
 
     #[doc="Clock Gate Control"]
@@ -6855,7 +6855,7 @@ impl Portc {
 
     #[doc="Present"]
     #[inline] pub fn test_pr(&self) -> bool {
-        self.pr != 0
+        self.pr() != 0
     }
 
     #[doc="Present"]
@@ -6896,7 +6896,7 @@ impl Portd {
 
     #[doc="Clock Gate Control"]
     #[inline] pub fn test_cgc(&self) -> bool {
-        self.cgc != 0
+        self.cgc() != 0
     }
 
     #[doc="Clock Gate Control"]
@@ -6915,7 +6915,7 @@ impl Portd {
 
     #[doc="Present"]
     #[inline] pub fn test_pr(&self) -> bool {
-        self.pr != 0
+        self.pr() != 0
     }
 
     #[doc="Present"]
@@ -6956,7 +6956,7 @@ impl Porte {
 
     #[doc="Clock Gate Control"]
     #[inline] pub fn test_cgc(&self) -> bool {
-        self.cgc != 0
+        self.cgc() != 0
     }
 
     #[doc="Clock Gate Control"]
@@ -6975,7 +6975,7 @@ impl Porte {
 
     #[doc="Present"]
     #[inline] pub fn test_pr(&self) -> bool {
-        self.pr != 0
+        self.pr() != 0
     }
 
     #[doc="Present"]
@@ -7256,7 +7256,7 @@ impl Flexio {
 
     #[doc="Peripheral Clock Source Select"]
     #[inline] pub fn test_pcs(&self) -> bool {
-        self.pcs != 0
+        self.pcs() != 0
     }
 
     #[doc="Peripheral Clock Source Select"]
@@ -7275,7 +7275,7 @@ impl Flexio {
 
     #[doc="Clock Gate Control"]
     #[inline] pub fn test_cgc(&self) -> bool {
-        self.cgc != 0
+        self.cgc() != 0
     }
 
     #[doc="Clock Gate Control"]
@@ -7294,7 +7294,7 @@ impl Flexio {
 
     #[doc="Present"]
     #[inline] pub fn test_pr(&self) -> bool {
-        self.pr != 0
+        self.pr() != 0
     }
 
     #[doc="Present"]
@@ -7456,7 +7456,7 @@ impl Ewm {
 
     #[doc="Clock Gate Control"]
     #[inline] pub fn test_cgc(&self) -> bool {
-        self.cgc != 0
+        self.cgc() != 0
     }
 
     #[doc="Clock Gate Control"]
@@ -7475,7 +7475,7 @@ impl Ewm {
 
     #[doc="Present"]
     #[inline] pub fn test_pr(&self) -> bool {
-        self.pr != 0
+        self.pr() != 0
     }
 
     #[doc="Present"]
@@ -7596,7 +7596,7 @@ impl Lpi2c0 {
 
     #[doc="Peripheral Clock Source Select"]
     #[inline] pub fn test_pcs(&self) -> bool {
-        self.pcs != 0
+        self.pcs() != 0
     }
 
     #[doc="Peripheral Clock Source Select"]
@@ -7615,7 +7615,7 @@ impl Lpi2c0 {
 
     #[doc="Clock Gate Control"]
     #[inline] pub fn test_cgc(&self) -> bool {
-        self.cgc != 0
+        self.cgc() != 0
     }
 
     #[doc="Clock Gate Control"]
@@ -7634,7 +7634,7 @@ impl Lpi2c0 {
 
     #[doc="Present"]
     #[inline] pub fn test_pr(&self) -> bool {
-        self.pr != 0
+        self.pr() != 0
     }
 
     #[doc="Present"]
@@ -7736,7 +7736,7 @@ impl Lpuart0 {
 
     #[doc="Peripheral Clock Source Select"]
     #[inline] pub fn test_pcs(&self) -> bool {
-        self.pcs != 0
+        self.pcs() != 0
     }
 
     #[doc="Peripheral Clock Source Select"]
@@ -7755,7 +7755,7 @@ impl Lpuart0 {
 
     #[doc="Clock Gate Control"]
     #[inline] pub fn test_cgc(&self) -> bool {
-        self.cgc != 0
+        self.cgc() != 0
     }
 
     #[doc="Clock Gate Control"]
@@ -7774,7 +7774,7 @@ impl Lpuart0 {
 
     #[doc="Present"]
     #[inline] pub fn test_pr(&self) -> bool {
-        self.pr != 0
+        self.pr() != 0
     }
 
     #[doc="Present"]
@@ -7816,7 +7816,7 @@ impl Lpuart1 {
 
     #[doc="Peripheral Clock Source Select"]
     #[inline] pub fn test_pcs(&self) -> bool {
-        self.pcs != 0
+        self.pcs() != 0
     }
 
     #[doc="Peripheral Clock Source Select"]
@@ -7835,7 +7835,7 @@ impl Lpuart1 {
 
     #[doc="Clock Gate Control"]
     #[inline] pub fn test_cgc(&self) -> bool {
-        self.cgc != 0
+        self.cgc() != 0
     }
 
     #[doc="Clock Gate Control"]
@@ -7854,7 +7854,7 @@ impl Lpuart1 {
 
     #[doc="Present"]
     #[inline] pub fn test_pr(&self) -> bool {
-        self.pr != 0
+        self.pr() != 0
     }
 
     #[doc="Present"]
@@ -7896,7 +7896,7 @@ impl Lpuart2 {
 
     #[doc="Peripheral Clock Source Select"]
     #[inline] pub fn test_pcs(&self) -> bool {
-        self.pcs != 0
+        self.pcs() != 0
     }
 
     #[doc="Peripheral Clock Source Select"]
@@ -7915,7 +7915,7 @@ impl Lpuart2 {
 
     #[doc="Clock Gate Control"]
     #[inline] pub fn test_cgc(&self) -> bool {
-        self.cgc != 0
+        self.cgc() != 0
     }
 
     #[doc="Clock Gate Control"]
@@ -7934,7 +7934,7 @@ impl Lpuart2 {
 
     #[doc="Present"]
     #[inline] pub fn test_pr(&self) -> bool {
-        self.pr != 0
+        self.pr() != 0
     }
 
     #[doc="Present"]
@@ -8096,7 +8096,7 @@ impl Cmp0 {
 
     #[doc="Clock Gate Control"]
     #[inline] pub fn test_cgc(&self) -> bool {
-        self.cgc != 0
+        self.cgc() != 0
     }
 
     #[doc="Clock Gate Control"]
@@ -8115,7 +8115,7 @@ impl Cmp0 {
 
     #[doc="Present"]
     #[inline] pub fn test_pr(&self) -> bool {
-        self.pr != 0
+        self.pr() != 0
     }
 
     #[doc="Present"]

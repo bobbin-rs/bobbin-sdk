@@ -502,7 +502,7 @@ impl Sr {
 
     #[doc="Overrun"]
     #[inline] pub fn test_ovr(&self) -> bool {
-        self.ovr != 0
+        self.ovr() != 0
     }
 
     #[doc="Overrun"]
@@ -521,7 +521,7 @@ impl Sr {
 
     #[doc="Regular channel start flag"]
     #[inline] pub fn test_strt(&self) -> bool {
-        self.strt != 0
+        self.strt() != 0
     }
 
     #[doc="Regular channel start flag"]
@@ -540,7 +540,7 @@ impl Sr {
 
     #[doc="Injected channel start flag"]
     #[inline] pub fn test_jstrt(&self) -> bool {
-        self.jstrt != 0
+        self.jstrt() != 0
     }
 
     #[doc="Injected channel start flag"]
@@ -559,7 +559,7 @@ impl Sr {
 
     #[doc="Injected channel end of conversion"]
     #[inline] pub fn test_jeoc(&self) -> bool {
-        self.jeoc != 0
+        self.jeoc() != 0
     }
 
     #[doc="Injected channel end of conversion"]
@@ -578,7 +578,7 @@ impl Sr {
 
     #[doc="Regular channel end of conversion"]
     #[inline] pub fn test_eoc(&self) -> bool {
-        self.eoc != 0
+        self.eoc() != 0
     }
 
     #[doc="Regular channel end of conversion"]
@@ -597,7 +597,7 @@ impl Sr {
 
     #[doc="Analog watchdog flag"]
     #[inline] pub fn test_awd(&self) -> bool {
-        self.awd != 0
+        self.awd() != 0
     }
 
     #[doc="Analog watchdog flag"]
@@ -642,7 +642,7 @@ impl Cr1 {
 
     #[doc="Analog watchdog enable on regular channels"]
     #[inline] pub fn test_awden(&self) -> bool {
-        self.awden != 0
+        self.awden() != 0
     }
 
     #[doc="Analog watchdog enable on regular channels"]
@@ -661,7 +661,7 @@ impl Cr1 {
 
     #[doc="Analog watchdog enable on injected channels"]
     #[inline] pub fn test_jawden(&self) -> bool {
-        self.jawden != 0
+        self.jawden() != 0
     }
 
     #[doc="Analog watchdog enable on injected channels"]
@@ -680,7 +680,7 @@ impl Cr1 {
 
     #[doc="Dual mode selection"]
     #[inline] pub fn test_dualmod(&self) -> bool {
-        self.dualmod != 0
+        self.dualmod() != 0
     }
 
     #[doc="Dual mode selection"]
@@ -699,7 +699,7 @@ impl Cr1 {
 
     #[doc="Discontinuous mode channel count"]
     #[inline] pub fn test_discnum(&self) -> bool {
-        self.discnum != 0
+        self.discnum() != 0
     }
 
     #[doc="Discontinuous mode channel count"]
@@ -718,7 +718,7 @@ impl Cr1 {
 
     #[doc="Discontinuous mode on injected channels"]
     #[inline] pub fn test_jdiscen(&self) -> bool {
-        self.jdiscen != 0
+        self.jdiscen() != 0
     }
 
     #[doc="Discontinuous mode on injected channels"]
@@ -737,7 +737,7 @@ impl Cr1 {
 
     #[doc="Discontinuous mode on regular channels"]
     #[inline] pub fn test_discen(&self) -> bool {
-        self.discen != 0
+        self.discen() != 0
     }
 
     #[doc="Discontinuous mode on regular channels"]
@@ -756,7 +756,7 @@ impl Cr1 {
 
     #[doc="Automatic injected group conversion"]
     #[inline] pub fn test_jauto(&self) -> bool {
-        self.jauto != 0
+        self.jauto() != 0
     }
 
     #[doc="Automatic injected group conversion"]
@@ -775,7 +775,7 @@ impl Cr1 {
 
     #[doc="Enable the watchdog on a single channel in scan mode"]
     #[inline] pub fn test_awdsgl(&self) -> bool {
-        self.awdsgl != 0
+        self.awdsgl() != 0
     }
 
     #[doc="Enable the watchdog on a single channel in scan mode"]
@@ -794,7 +794,7 @@ impl Cr1 {
 
     #[doc="Scan mode"]
     #[inline] pub fn test_scan(&self) -> bool {
-        self.scan != 0
+        self.scan() != 0
     }
 
     #[doc="Scan mode"]
@@ -813,7 +813,7 @@ impl Cr1 {
 
     #[doc="Interrupt enable for injected channels"]
     #[inline] pub fn test_jeocie(&self) -> bool {
-        self.jeocie != 0
+        self.jeocie() != 0
     }
 
     #[doc="Interrupt enable for injected channels"]
@@ -832,7 +832,7 @@ impl Cr1 {
 
     #[doc="Analog watchdog interrupt enable"]
     #[inline] pub fn test_awdie(&self) -> bool {
-        self.awdie != 0
+        self.awdie() != 0
     }
 
     #[doc="Analog watchdog interrupt enable"]
@@ -851,7 +851,7 @@ impl Cr1 {
 
     #[doc="Interrupt enable for EOC"]
     #[inline] pub fn test_eocie(&self) -> bool {
-        self.eocie != 0
+        self.eocie() != 0
     }
 
     #[doc="Interrupt enable for EOC"]
@@ -870,7 +870,7 @@ impl Cr1 {
 
     #[doc="Analog watchdog channel select bits"]
     #[inline] pub fn test_awdch(&self) -> bool {
-        self.awdch != 0
+        self.awdch() != 0
     }
 
     #[doc="Analog watchdog channel select bits"]
@@ -922,7 +922,7 @@ impl Cr2 {
 
     #[doc="Temperature sensor and Vrefint enable"]
     #[inline] pub fn test_tsvrefe(&self) -> bool {
-        self.tsvrefe != 0
+        self.tsvrefe() != 0
     }
 
     #[doc="Temperature sensor and Vrefint enable"]
@@ -941,7 +941,7 @@ impl Cr2 {
 
     #[doc="Start conversion of regular channels"]
     #[inline] pub fn test_swstart(&self) -> bool {
-        self.swstart != 0
+        self.swstart() != 0
     }
 
     #[doc="Start conversion of regular channels"]
@@ -960,7 +960,7 @@ impl Cr2 {
 
     #[doc="Start conversion of injected channels"]
     #[inline] pub fn test_jswstart(&self) -> bool {
-        self.jswstart != 0
+        self.jswstart() != 0
     }
 
     #[doc="Start conversion of injected channels"]
@@ -979,7 +979,7 @@ impl Cr2 {
 
     #[doc="External trigger conversion mode for regular channels"]
     #[inline] pub fn test_exttrig(&self) -> bool {
-        self.exttrig != 0
+        self.exttrig() != 0
     }
 
     #[doc="External trigger conversion mode for regular channels"]
@@ -998,7 +998,7 @@ impl Cr2 {
 
     #[doc="External event select for regular group"]
     #[inline] pub fn test_extsel(&self) -> bool {
-        self.extsel != 0
+        self.extsel() != 0
     }
 
     #[doc="External event select for regular group"]
@@ -1017,7 +1017,7 @@ impl Cr2 {
 
     #[doc="External trigger conversion mode for injected channels"]
     #[inline] pub fn test_jexttrig(&self) -> bool {
-        self.jexttrig != 0
+        self.jexttrig() != 0
     }
 
     #[doc="External trigger conversion mode for injected channels"]
@@ -1036,7 +1036,7 @@ impl Cr2 {
 
     #[doc="External event select for injected group"]
     #[inline] pub fn test_jextsel(&self) -> bool {
-        self.jextsel != 0
+        self.jextsel() != 0
     }
 
     #[doc="External event select for injected group"]
@@ -1055,7 +1055,7 @@ impl Cr2 {
 
     #[doc="Data alignment"]
     #[inline] pub fn test_align(&self) -> bool {
-        self.align != 0
+        self.align() != 0
     }
 
     #[doc="Data alignment"]
@@ -1074,7 +1074,7 @@ impl Cr2 {
 
     #[doc="Direct memory access mode (for single ADC mode)"]
     #[inline] pub fn test_dma(&self) -> bool {
-        self.dma != 0
+        self.dma() != 0
     }
 
     #[doc="Direct memory access mode (for single ADC mode)"]
@@ -1093,7 +1093,7 @@ impl Cr2 {
 
     #[doc="Reset Calibration"]
     #[inline] pub fn test_rstcal(&self) -> bool {
-        self.rstcal != 0
+        self.rstcal() != 0
     }
 
     #[doc="Reset Calibration"]
@@ -1112,7 +1112,7 @@ impl Cr2 {
 
     #[doc="A/D Calibration"]
     #[inline] pub fn test_cal(&self) -> bool {
-        self.cal != 0
+        self.cal() != 0
     }
 
     #[doc="A/D Calibration"]
@@ -1131,7 +1131,7 @@ impl Cr2 {
 
     #[doc="Continuous conversion"]
     #[inline] pub fn test_cont(&self) -> bool {
-        self.cont != 0
+        self.cont() != 0
     }
 
     #[doc="Continuous conversion"]
@@ -1150,7 +1150,7 @@ impl Cr2 {
 
     #[doc="A/D Converter ON / OFF"]
     #[inline] pub fn test_adon(&self) -> bool {
-        self.adon != 0
+        self.adon() != 0
     }
 
     #[doc="A/D Converter ON / OFF"]
@@ -1309,7 +1309,7 @@ impl Jofr {
 
     #[doc="Data offset for injected channel x"]
     #[inline] pub fn test_joffset(&self) -> bool {
-        self.joffset != 0
+        self.joffset() != 0
     }
 
     #[doc="Data offset for injected channel x"]
@@ -1349,7 +1349,7 @@ impl Htr {
 
     #[doc="Analog watchdog higher threshold"]
     #[inline] pub fn test_ht(&self) -> bool {
-        self.ht != 0
+        self.ht() != 0
     }
 
     #[doc="Analog watchdog higher threshold"]
@@ -1389,7 +1389,7 @@ impl Ltr {
 
     #[doc="Analog watchdog lower threshold"]
     #[inline] pub fn test_lt(&self) -> bool {
-        self.lt != 0
+        self.lt() != 0
     }
 
     #[doc="Analog watchdog lower threshold"]
@@ -1429,7 +1429,7 @@ impl Sqr1 {
 
     #[doc="Regular channel sequence length"]
     #[inline] pub fn test_l(&self) -> bool {
-        self.l != 0
+        self.l() != 0
     }
 
     #[doc="Regular channel sequence length"]
@@ -1448,7 +1448,7 @@ impl Sqr1 {
 
     #[doc="16th conversion in regular sequence"]
     #[inline] pub fn test_sq16(&self) -> bool {
-        self.sq16 != 0
+        self.sq16() != 0
     }
 
     #[doc="16th conversion in regular sequence"]
@@ -1467,7 +1467,7 @@ impl Sqr1 {
 
     #[doc="15th conversion in regular sequence"]
     #[inline] pub fn test_sq15(&self) -> bool {
-        self.sq15 != 0
+        self.sq15() != 0
     }
 
     #[doc="15th conversion in regular sequence"]
@@ -1486,7 +1486,7 @@ impl Sqr1 {
 
     #[doc="14th conversion in regular sequence"]
     #[inline] pub fn test_sq14(&self) -> bool {
-        self.sq14 != 0
+        self.sq14() != 0
     }
 
     #[doc="14th conversion in regular sequence"]
@@ -1505,7 +1505,7 @@ impl Sqr1 {
 
     #[doc="13th conversion in regular sequence"]
     #[inline] pub fn test_sq13(&self) -> bool {
-        self.sq13 != 0
+        self.sq13() != 0
     }
 
     #[doc="13th conversion in regular sequence"]
@@ -1549,7 +1549,7 @@ impl Sqr2 {
 
     #[doc="12th conversion in regular sequence"]
     #[inline] pub fn test_sq12(&self) -> bool {
-        self.sq12 != 0
+        self.sq12() != 0
     }
 
     #[doc="12th conversion in regular sequence"]
@@ -1568,7 +1568,7 @@ impl Sqr2 {
 
     #[doc="11th conversion in regular sequence"]
     #[inline] pub fn test_sq11(&self) -> bool {
-        self.sq11 != 0
+        self.sq11() != 0
     }
 
     #[doc="11th conversion in regular sequence"]
@@ -1587,7 +1587,7 @@ impl Sqr2 {
 
     #[doc="10th conversion in regular sequence"]
     #[inline] pub fn test_sq10(&self) -> bool {
-        self.sq10 != 0
+        self.sq10() != 0
     }
 
     #[doc="10th conversion in regular sequence"]
@@ -1606,7 +1606,7 @@ impl Sqr2 {
 
     #[doc="9th conversion in regular sequence"]
     #[inline] pub fn test_sq9(&self) -> bool {
-        self.sq9 != 0
+        self.sq9() != 0
     }
 
     #[doc="9th conversion in regular sequence"]
@@ -1625,7 +1625,7 @@ impl Sqr2 {
 
     #[doc="8th conversion in regular sequence"]
     #[inline] pub fn test_sq8(&self) -> bool {
-        self.sq8 != 0
+        self.sq8() != 0
     }
 
     #[doc="8th conversion in regular sequence"]
@@ -1644,7 +1644,7 @@ impl Sqr2 {
 
     #[doc="7th conversion in regular sequence"]
     #[inline] pub fn test_sq7(&self) -> bool {
-        self.sq7 != 0
+        self.sq7() != 0
     }
 
     #[doc="7th conversion in regular sequence"]
@@ -1689,7 +1689,7 @@ impl Sqr3 {
 
     #[doc="6th conversion in regular sequence"]
     #[inline] pub fn test_sq6(&self) -> bool {
-        self.sq6 != 0
+        self.sq6() != 0
     }
 
     #[doc="6th conversion in regular sequence"]
@@ -1708,7 +1708,7 @@ impl Sqr3 {
 
     #[doc="5th conversion in regular sequence"]
     #[inline] pub fn test_sq5(&self) -> bool {
-        self.sq5 != 0
+        self.sq5() != 0
     }
 
     #[doc="5th conversion in regular sequence"]
@@ -1727,7 +1727,7 @@ impl Sqr3 {
 
     #[doc="4th conversion in regular sequence"]
     #[inline] pub fn test_sq4(&self) -> bool {
-        self.sq4 != 0
+        self.sq4() != 0
     }
 
     #[doc="4th conversion in regular sequence"]
@@ -1746,7 +1746,7 @@ impl Sqr3 {
 
     #[doc="3rd conversion in regular sequence"]
     #[inline] pub fn test_sq3(&self) -> bool {
-        self.sq3 != 0
+        self.sq3() != 0
     }
 
     #[doc="3rd conversion in regular sequence"]
@@ -1765,7 +1765,7 @@ impl Sqr3 {
 
     #[doc="2nd conversion in regular sequence"]
     #[inline] pub fn test_sq2(&self) -> bool {
-        self.sq2 != 0
+        self.sq2() != 0
     }
 
     #[doc="2nd conversion in regular sequence"]
@@ -1784,7 +1784,7 @@ impl Sqr3 {
 
     #[doc="1st conversion in regular sequence"]
     #[inline] pub fn test_sq1(&self) -> bool {
-        self.sq1 != 0
+        self.sq1() != 0
     }
 
     #[doc="1st conversion in regular sequence"]
@@ -1829,7 +1829,7 @@ impl Jsqr {
 
     #[doc="Injected sequence length"]
     #[inline] pub fn test_jl(&self) -> bool {
-        self.jl != 0
+        self.jl() != 0
     }
 
     #[doc="Injected sequence length"]
@@ -1848,7 +1848,7 @@ impl Jsqr {
 
     #[doc="4th conversion in injected sequence"]
     #[inline] pub fn test_jsq4(&self) -> bool {
-        self.jsq4 != 0
+        self.jsq4() != 0
     }
 
     #[doc="4th conversion in injected sequence"]
@@ -1867,7 +1867,7 @@ impl Jsqr {
 
     #[doc="3rd conversion in injected sequence"]
     #[inline] pub fn test_jsq3(&self) -> bool {
-        self.jsq3 != 0
+        self.jsq3() != 0
     }
 
     #[doc="3rd conversion in injected sequence"]
@@ -1886,7 +1886,7 @@ impl Jsqr {
 
     #[doc="2nd conversion in injected sequence"]
     #[inline] pub fn test_jsq2(&self) -> bool {
-        self.jsq2 != 0
+        self.jsq2() != 0
     }
 
     #[doc="2nd conversion in injected sequence"]
@@ -1905,7 +1905,7 @@ impl Jsqr {
 
     #[doc="1st conversion in injected sequence"]
     #[inline] pub fn test_jsq1(&self) -> bool {
-        self.jsq1 != 0
+        self.jsq1() != 0
     }
 
     #[doc="1st conversion in injected sequence"]
@@ -1949,7 +1949,7 @@ impl Jdr {
 
     #[doc="Injected data"]
     #[inline] pub fn test_jdata(&self) -> bool {
-        self.jdata != 0
+        self.jdata() != 0
     }
 
     #[doc="Injected data"]
@@ -1989,7 +1989,7 @@ impl Dr {
 
     #[doc="Regular data"]
     #[inline] pub fn test_data(&self) -> bool {
-        self.data != 0
+        self.data() != 0
     }
 
     #[doc="Regular data"]
@@ -2008,7 +2008,7 @@ impl Dr {
 
     #[doc="Regular data (12 bit)"]
     #[inline] pub fn test_data_12(&self) -> bool {
-        self.data_12 != 0
+        self.data_12() != 0
     }
 
     #[doc="Regular data (12 bit)"]

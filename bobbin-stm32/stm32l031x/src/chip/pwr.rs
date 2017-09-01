@@ -92,7 +92,7 @@ impl Cr {
 
     #[doc="Low-power deep sleep"]
     #[inline] pub fn test_lpds(&self) -> bool {
-        self.lpds != 0
+        self.lpds() != 0
     }
 
     #[doc="Low-power deep sleep"]
@@ -111,7 +111,7 @@ impl Cr {
 
     #[doc="Power down deepsleep"]
     #[inline] pub fn test_pdds(&self) -> bool {
-        self.pdds != 0
+        self.pdds() != 0
     }
 
     #[doc="Power down deepsleep"]
@@ -130,7 +130,7 @@ impl Cr {
 
     #[doc="Clear wakeup flag"]
     #[inline] pub fn test_cwuf(&self) -> bool {
-        self.cwuf != 0
+        self.cwuf() != 0
     }
 
     #[doc="Clear wakeup flag"]
@@ -149,7 +149,7 @@ impl Cr {
 
     #[doc="Clear standby flag"]
     #[inline] pub fn test_csbf(&self) -> bool {
-        self.csbf != 0
+        self.csbf() != 0
     }
 
     #[doc="Clear standby flag"]
@@ -168,7 +168,7 @@ impl Cr {
 
     #[doc="Power voltage detector enable"]
     #[inline] pub fn test_pvde(&self) -> bool {
-        self.pvde != 0
+        self.pvde() != 0
     }
 
     #[doc="Power voltage detector enable"]
@@ -187,7 +187,7 @@ impl Cr {
 
     #[doc="PVD level selection"]
     #[inline] pub fn test_pls(&self) -> bool {
-        self.pls != 0
+        self.pls() != 0
     }
 
     #[doc="PVD level selection"]
@@ -206,7 +206,7 @@ impl Cr {
 
     #[doc="Disable backup domain write protection"]
     #[inline] pub fn test_dbp(&self) -> bool {
-        self.dbp != 0
+        self.dbp() != 0
     }
 
     #[doc="Disable backup domain write protection"]
@@ -225,7 +225,7 @@ impl Cr {
 
     #[doc="Flash power down in Stop mode"]
     #[inline] pub fn test_fpds(&self) -> bool {
-        self.fpds != 0
+        self.fpds() != 0
     }
 
     #[doc="Flash power down in Stop mode"]
@@ -244,7 +244,7 @@ impl Cr {
 
     #[doc="Fast wakeup"]
     #[inline] pub fn test_fwu(&self) -> bool {
-        self.fwu != 0
+        self.fwu() != 0
     }
 
     #[doc="Fast wakeup"]
@@ -263,7 +263,7 @@ impl Cr {
 
     #[doc="Voltage scaling range selection"]
     #[inline] pub fn test_vos(&self) -> bool {
-        self.vos != 0
+        self.vos() != 0
     }
 
     #[doc="Voltage scaling range selection"]
@@ -282,7 +282,7 @@ impl Cr {
 
     #[doc="Deep sleep mode with Flash memory kept off"]
     #[inline] pub fn test_ds_ee_koff(&self) -> bool {
-        self.ds_ee_koff != 0
+        self.ds_ee_koff() != 0
     }
 
     #[doc="Deep sleep mode with Flash memory kept off"]
@@ -301,7 +301,7 @@ impl Cr {
 
     #[doc="Low power run mode"]
     #[inline] pub fn test_lprun(&self) -> bool {
-        self.lprun != 0
+        self.lprun() != 0
     }
 
     #[doc="Low power run mode"]
@@ -352,7 +352,7 @@ impl Csr {
 
     #[doc="Backup regulator enable"]
     #[inline] pub fn test_bre(&self) -> bool {
-        self.bre != 0
+        self.bre() != 0
     }
 
     #[doc="Backup regulator enable"]
@@ -371,7 +371,7 @@ impl Csr {
 
     #[doc="Enable WKUP pin"]
     #[inline] pub fn test_ewup(&self) -> bool {
-        self.ewup != 0
+        self.ewup() != 0
     }
 
     #[doc="Enable WKUP pin"]
@@ -390,7 +390,7 @@ impl Csr {
 
     #[doc="Backup regulator ready"]
     #[inline] pub fn test_brr(&self) -> bool {
-        self.brr != 0
+        self.brr() != 0
     }
 
     #[doc="Backup regulator ready"]
@@ -409,7 +409,7 @@ impl Csr {
 
     #[doc="PVD output"]
     #[inline] pub fn test_pvdo(&self) -> bool {
-        self.pvdo != 0
+        self.pvdo() != 0
     }
 
     #[doc="PVD output"]
@@ -428,7 +428,7 @@ impl Csr {
 
     #[doc="Standby flag"]
     #[inline] pub fn test_sbf(&self) -> bool {
-        self.sbf != 0
+        self.sbf() != 0
     }
 
     #[doc="Standby flag"]
@@ -447,7 +447,7 @@ impl Csr {
 
     #[doc="Wakeup flag"]
     #[inline] pub fn test_wuf(&self) -> bool {
-        self.wuf != 0
+        self.wuf() != 0
     }
 
     #[doc="Wakeup flag"]
@@ -466,7 +466,7 @@ impl Csr {
 
     #[doc="Voltage Scaling select flag"]
     #[inline] pub fn test_vosf(&self) -> bool {
-        self.vosf != 0
+        self.vosf() != 0
     }
 
     #[doc="Voltage Scaling select flag"]
@@ -485,7 +485,7 @@ impl Csr {
 
     #[doc="Regulator LP flag"]
     #[inline] pub fn test_reglpf(&self) -> bool {
-        self.reglpf != 0
+        self.reglpf() != 0
     }
 
     #[doc="Regulator LP flag"]

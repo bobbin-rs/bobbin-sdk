@@ -253,7 +253,7 @@ impl Memrm {
 
     #[doc="MEM_MODE"]
     #[inline] pub fn test_mem_mode(&self) -> bool {
-        self.mem_mode != 0
+        self.mem_mode() != 0
     }
 
     #[doc="MEM_MODE"]
@@ -293,7 +293,7 @@ impl Pmc {
 
     #[doc="Ethernet PHY interface selection"]
     #[inline] pub fn test_mii_rmii_sel(&self) -> bool {
-        self.mii_rmii_sel != 0
+        self.mii_rmii_sel() != 0
     }
 
     #[doc="Ethernet PHY interface selection"]
@@ -333,7 +333,7 @@ impl Exticr1 {
 
     #[doc="EXTI x configuration (x = 0 to 3)"]
     #[inline] pub fn test_exti3(&self) -> bool {
-        self.exti3 != 0
+        self.exti3() != 0
     }
 
     #[doc="EXTI x configuration (x = 0 to 3)"]
@@ -352,7 +352,7 @@ impl Exticr1 {
 
     #[doc="EXTI x configuration (x = 0 to 3)"]
     #[inline] pub fn test_exti2(&self) -> bool {
-        self.exti2 != 0
+        self.exti2() != 0
     }
 
     #[doc="EXTI x configuration (x = 0 to 3)"]
@@ -371,7 +371,7 @@ impl Exticr1 {
 
     #[doc="EXTI x configuration (x = 0 to 3)"]
     #[inline] pub fn test_exti1(&self) -> bool {
-        self.exti1 != 0
+        self.exti1() != 0
     }
 
     #[doc="EXTI x configuration (x = 0 to 3)"]
@@ -390,7 +390,7 @@ impl Exticr1 {
 
     #[doc="EXTI x configuration (x = 0 to 3)"]
     #[inline] pub fn test_exti0(&self) -> bool {
-        self.exti0 != 0
+        self.exti0() != 0
     }
 
     #[doc="EXTI x configuration (x = 0 to 3)"]
@@ -433,7 +433,7 @@ impl Exticr2 {
 
     #[doc="EXTI x configuration (x = 4 to 7)"]
     #[inline] pub fn test_exti7(&self) -> bool {
-        self.exti7 != 0
+        self.exti7() != 0
     }
 
     #[doc="EXTI x configuration (x = 4 to 7)"]
@@ -452,7 +452,7 @@ impl Exticr2 {
 
     #[doc="EXTI x configuration (x = 4 to 7)"]
     #[inline] pub fn test_exti6(&self) -> bool {
-        self.exti6 != 0
+        self.exti6() != 0
     }
 
     #[doc="EXTI x configuration (x = 4 to 7)"]
@@ -471,7 +471,7 @@ impl Exticr2 {
 
     #[doc="EXTI x configuration (x = 4 to 7)"]
     #[inline] pub fn test_exti5(&self) -> bool {
-        self.exti5 != 0
+        self.exti5() != 0
     }
 
     #[doc="EXTI x configuration (x = 4 to 7)"]
@@ -490,7 +490,7 @@ impl Exticr2 {
 
     #[doc="EXTI x configuration (x = 4 to 7)"]
     #[inline] pub fn test_exti4(&self) -> bool {
-        self.exti4 != 0
+        self.exti4() != 0
     }
 
     #[doc="EXTI x configuration (x = 4 to 7)"]
@@ -533,7 +533,7 @@ impl Exticr3 {
 
     #[doc="EXTI x configuration (x = 8 to 11)"]
     #[inline] pub fn test_exti11(&self) -> bool {
-        self.exti11 != 0
+        self.exti11() != 0
     }
 
     #[doc="EXTI x configuration (x = 8 to 11)"]
@@ -552,7 +552,7 @@ impl Exticr3 {
 
     #[doc="EXTI10"]
     #[inline] pub fn test_exti10(&self) -> bool {
-        self.exti10 != 0
+        self.exti10() != 0
     }
 
     #[doc="EXTI10"]
@@ -571,7 +571,7 @@ impl Exticr3 {
 
     #[doc="EXTI x configuration (x = 8 to 11)"]
     #[inline] pub fn test_exti9(&self) -> bool {
-        self.exti9 != 0
+        self.exti9() != 0
     }
 
     #[doc="EXTI x configuration (x = 8 to 11)"]
@@ -590,7 +590,7 @@ impl Exticr3 {
 
     #[doc="EXTI x configuration (x = 8 to 11)"]
     #[inline] pub fn test_exti8(&self) -> bool {
-        self.exti8 != 0
+        self.exti8() != 0
     }
 
     #[doc="EXTI x configuration (x = 8 to 11)"]
@@ -633,7 +633,7 @@ impl Exticr4 {
 
     #[doc="EXTI x configuration (x = 12 to 15)"]
     #[inline] pub fn test_exti15(&self) -> bool {
-        self.exti15 != 0
+        self.exti15() != 0
     }
 
     #[doc="EXTI x configuration (x = 12 to 15)"]
@@ -652,7 +652,7 @@ impl Exticr4 {
 
     #[doc="EXTI x configuration (x = 12 to 15)"]
     #[inline] pub fn test_exti14(&self) -> bool {
-        self.exti14 != 0
+        self.exti14() != 0
     }
 
     #[doc="EXTI x configuration (x = 12 to 15)"]
@@ -671,7 +671,7 @@ impl Exticr4 {
 
     #[doc="EXTI x configuration (x = 12 to 15)"]
     #[inline] pub fn test_exti13(&self) -> bool {
-        self.exti13 != 0
+        self.exti13() != 0
     }
 
     #[doc="EXTI x configuration (x = 12 to 15)"]
@@ -690,7 +690,7 @@ impl Exticr4 {
 
     #[doc="EXTI x configuration (x = 12 to 15)"]
     #[inline] pub fn test_exti12(&self) -> bool {
-        self.exti12 != 0
+        self.exti12() != 0
     }
 
     #[doc="EXTI x configuration (x = 12 to 15)"]
@@ -733,7 +733,7 @@ impl Cmpcr {
 
     #[doc="READY"]
     #[inline] pub fn test_ready(&self) -> bool {
-        self.ready != 0
+        self.ready() != 0
     }
 
     #[doc="READY"]
@@ -752,7 +752,7 @@ impl Cmpcr {
 
     #[doc="Compensation cell power-down"]
     #[inline] pub fn test_cmp_pd(&self) -> bool {
-        self.cmp_pd != 0
+        self.cmp_pd() != 0
     }
 
     #[doc="Compensation cell power-down"]

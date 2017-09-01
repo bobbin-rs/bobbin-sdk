@@ -164,7 +164,7 @@ impl Cs {
 
     #[doc="Stop Enable"]
     #[inline] pub fn test_stop(&self) -> bool {
-        self.stop != 0
+        self.stop() != 0
     }
 
     #[doc="Stop Enable"]
@@ -183,7 +183,7 @@ impl Cs {
 
     #[doc="Wait Enable"]
     #[inline] pub fn test_wait(&self) -> bool {
-        self.wait != 0
+        self.wait() != 0
     }
 
     #[doc="Wait Enable"]
@@ -202,7 +202,7 @@ impl Cs {
 
     #[doc="Debug Enable"]
     #[inline] pub fn test_dbg(&self) -> bool {
-        self.dbg != 0
+        self.dbg() != 0
     }
 
     #[doc="Debug Enable"]
@@ -221,7 +221,7 @@ impl Cs {
 
     #[doc="Watchdog Test"]
     #[inline] pub fn test_tst(&self) -> bool {
-        self.tst != 0
+        self.tst() != 0
     }
 
     #[doc="Watchdog Test"]
@@ -240,7 +240,7 @@ impl Cs {
 
     #[doc="Allow updates"]
     #[inline] pub fn test_update(&self) -> bool {
-        self.update != 0
+        self.update() != 0
     }
 
     #[doc="Allow updates"]
@@ -259,7 +259,7 @@ impl Cs {
 
     #[doc="Watchdog Interrupt"]
     #[inline] pub fn test_int(&self) -> bool {
-        self.int != 0
+        self.int() != 0
     }
 
     #[doc="Watchdog Interrupt"]
@@ -278,7 +278,7 @@ impl Cs {
 
     #[doc="Watchdog Enable"]
     #[inline] pub fn test_en(&self) -> bool {
-        self.en != 0
+        self.en() != 0
     }
 
     #[doc="Watchdog Enable"]
@@ -297,7 +297,7 @@ impl Cs {
 
     #[doc="Watchdog Clock"]
     #[inline] pub fn test_clk(&self) -> bool {
-        self.clk != 0
+        self.clk() != 0
     }
 
     #[doc="Watchdog Clock"]
@@ -316,7 +316,7 @@ impl Cs {
 
     #[doc="Reconfiguration Success"]
     #[inline] pub fn test_rcs(&self) -> bool {
-        self.rcs != 0
+        self.rcs() != 0
     }
 
     #[doc="Reconfiguration Success"]
@@ -335,7 +335,7 @@ impl Cs {
 
     #[doc="Unlock status"]
     #[inline] pub fn test_ulk(&self) -> bool {
-        self.ulk != 0
+        self.ulk() != 0
     }
 
     #[doc="Unlock status"]
@@ -354,7 +354,7 @@ impl Cs {
 
     #[doc="Watchdog prescaler"]
     #[inline] pub fn test_pres(&self) -> bool {
-        self.pres != 0
+        self.pres() != 0
     }
 
     #[doc="Watchdog prescaler"]
@@ -373,7 +373,7 @@ impl Cs {
 
     #[doc="Enables or disables WDOG support for 32-bit (otherwise 16-bit or 8-bit) refresh/unlock command write words"]
     #[inline] pub fn test_cmd32en(&self) -> bool {
-        self.cmd32en != 0
+        self.cmd32en() != 0
     }
 
     #[doc="Enables or disables WDOG support for 32-bit (otherwise 16-bit or 8-bit) refresh/unlock command write words"]
@@ -392,7 +392,7 @@ impl Cs {
 
     #[doc="Watchdog Interrupt Flag"]
     #[inline] pub fn test_flg(&self) -> bool {
-        self.flg != 0
+        self.flg() != 0
     }
 
     #[doc="Watchdog Interrupt Flag"]
@@ -411,7 +411,7 @@ impl Cs {
 
     #[doc="Watchdog Window"]
     #[inline] pub fn test_win(&self) -> bool {
-        self.win != 0
+        self.win() != 0
     }
 
     #[doc="Watchdog Window"]
@@ -464,7 +464,7 @@ impl Cnt {
 
     #[doc="Low byte of the Watchdog Counter"]
     #[inline] pub fn test_cntlow(&self) -> bool {
-        self.cntlow != 0
+        self.cntlow() != 0
     }
 
     #[doc="Low byte of the Watchdog Counter"]
@@ -483,7 +483,7 @@ impl Cnt {
 
     #[doc="High byte of the Watchdog Counter"]
     #[inline] pub fn test_cnthigh(&self) -> bool {
-        self.cnthigh != 0
+        self.cnthigh() != 0
     }
 
     #[doc="High byte of the Watchdog Counter"]
@@ -524,7 +524,7 @@ impl Toval {
 
     #[doc="Low byte of the timeout value"]
     #[inline] pub fn test_tovallow(&self) -> bool {
-        self.tovallow != 0
+        self.tovallow() != 0
     }
 
     #[doc="Low byte of the timeout value"]
@@ -543,7 +543,7 @@ impl Toval {
 
     #[doc="High byte of the timeout value"]
     #[inline] pub fn test_tovalhigh(&self) -> bool {
-        self.tovalhigh != 0
+        self.tovalhigh() != 0
     }
 
     #[doc="High byte of the timeout value"]
@@ -584,7 +584,7 @@ impl Win {
 
     #[doc="Low byte of Watchdog Window"]
     #[inline] pub fn test_winlow(&self) -> bool {
-        self.winlow != 0
+        self.winlow() != 0
     }
 
     #[doc="Low byte of Watchdog Window"]
@@ -603,7 +603,7 @@ impl Win {
 
     #[doc="High byte of Watchdog Window"]
     #[inline] pub fn test_winhigh(&self) -> bool {
-        self.winhigh != 0
+        self.winhigh() != 0
     }
 
     #[doc="High byte of Watchdog Window"]

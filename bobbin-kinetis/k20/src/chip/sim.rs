@@ -698,7 +698,7 @@ impl Sopt1 {
 
     #[doc="RAM size"]
     #[inline] pub fn test_ramsize(&self) -> bool {
-        self.ramsize != 0
+        self.ramsize() != 0
     }
 
     #[doc="RAM size"]
@@ -717,7 +717,7 @@ impl Sopt1 {
 
     #[doc="32K oscillator clock select"]
     #[inline] pub fn test_osc32ksel(&self) -> bool {
-        self.osc32ksel != 0
+        self.osc32ksel() != 0
     }
 
     #[doc="32K oscillator clock select"]
@@ -736,7 +736,7 @@ impl Sopt1 {
 
     #[doc="USB voltage regulator in standby mode during VLPR and VLPW modes"]
     #[inline] pub fn test_usbvstby(&self) -> bool {
-        self.usbvstby != 0
+        self.usbvstby() != 0
     }
 
     #[doc="USB voltage regulator in standby mode during VLPR and VLPW modes"]
@@ -755,7 +755,7 @@ impl Sopt1 {
 
     #[doc="USB voltage regulator in standby mode during Stop, VLPS, LLS and VLLS modes."]
     #[inline] pub fn test_usbsstby(&self) -> bool {
-        self.usbsstby != 0
+        self.usbsstby() != 0
     }
 
     #[doc="USB voltage regulator in standby mode during Stop, VLPS, LLS and VLLS modes."]
@@ -774,7 +774,7 @@ impl Sopt1 {
 
     #[doc="USB voltage regulator enable"]
     #[inline] pub fn test_usbregen(&self) -> bool {
-        self.usbregen != 0
+        self.usbregen() != 0
     }
 
     #[doc="USB voltage regulator enable"]
@@ -818,7 +818,7 @@ impl Sopt1cfg {
 
     #[doc="USB voltage regulator enable write enable"]
     #[inline] pub fn test_urwe(&self) -> bool {
-        self.urwe != 0
+        self.urwe() != 0
     }
 
     #[doc="USB voltage regulator enable write enable"]
@@ -837,7 +837,7 @@ impl Sopt1cfg {
 
     #[doc="USB voltage regulator VLP standby write enable"]
     #[inline] pub fn test_uvswe(&self) -> bool {
-        self.uvswe != 0
+        self.uvswe() != 0
     }
 
     #[doc="USB voltage regulator VLP standby write enable"]
@@ -856,7 +856,7 @@ impl Sopt1cfg {
 
     #[doc="USB voltage regulator stop standby write enable"]
     #[inline] pub fn test_usswe(&self) -> bool {
-        self.usswe != 0
+        self.usswe() != 0
     }
 
     #[doc="USB voltage regulator stop standby write enable"]
@@ -898,7 +898,7 @@ impl Sopt2 {
 
     #[doc="RTC clock out select"]
     #[inline] pub fn test_rtcclkoutsel(&self) -> bool {
-        self.rtcclkoutsel != 0
+        self.rtcclkoutsel() != 0
     }
 
     #[doc="RTC clock out select"]
@@ -917,7 +917,7 @@ impl Sopt2 {
 
     #[doc="CLKOUT select"]
     #[inline] pub fn test_clkoutsel(&self) -> bool {
-        self.clkoutsel != 0
+        self.clkoutsel() != 0
     }
 
     #[doc="CLKOUT select"]
@@ -936,7 +936,7 @@ impl Sopt2 {
 
     #[doc="FlexBus security level"]
     #[inline] pub fn test_fbsl(&self) -> bool {
-        self.fbsl != 0
+        self.fbsl() != 0
     }
 
     #[doc="FlexBus security level"]
@@ -955,7 +955,7 @@ impl Sopt2 {
 
     #[doc="PTD7 pad drive strength"]
     #[inline] pub fn test_ptd7pad(&self) -> bool {
-        self.ptd7pad != 0
+        self.ptd7pad() != 0
     }
 
     #[doc="PTD7 pad drive strength"]
@@ -974,7 +974,7 @@ impl Sopt2 {
 
     #[doc="Debug trace clock select"]
     #[inline] pub fn test_traceclksel(&self) -> bool {
-        self.traceclksel != 0
+        self.traceclksel() != 0
     }
 
     #[doc="Debug trace clock select"]
@@ -993,7 +993,7 @@ impl Sopt2 {
 
     #[doc="PLL/FLL clock select"]
     #[inline] pub fn test_pllfllsel(&self) -> bool {
-        self.pllfllsel != 0
+        self.pllfllsel() != 0
     }
 
     #[doc="PLL/FLL clock select"]
@@ -1012,7 +1012,7 @@ impl Sopt2 {
 
     #[doc="USB clock source select"]
     #[inline] pub fn test_usbsrc(&self) -> bool {
-        self.usbsrc != 0
+        self.usbsrc() != 0
     }
 
     #[doc="USB clock source select"]
@@ -1031,7 +1031,7 @@ impl Sopt2 {
 
     #[doc="RMII clock source select"]
     #[inline] pub fn test_rmiisrc(&self) -> bool {
-        self.rmiisrc != 0
+        self.rmiisrc() != 0
     }
 
     #[doc="RMII clock source select"]
@@ -1050,7 +1050,7 @@ impl Sopt2 {
 
     #[doc="IEEE 1588 timestamp clock source select"]
     #[inline] pub fn test_timesrc(&self) -> bool {
-        self.timesrc != 0
+        self.timesrc() != 0
     }
 
     #[doc="IEEE 1588 timestamp clock source select"]
@@ -1069,7 +1069,7 @@ impl Sopt2 {
 
     #[doc="SDHC clock source select"]
     #[inline] pub fn test_sdhcsrc(&self) -> bool {
-        self.sdhcsrc != 0
+        self.sdhcsrc() != 0
     }
 
     #[doc="SDHC clock source select"]
@@ -1118,7 +1118,7 @@ impl Sopt4 {
 
     #[doc="FTM0 Fault 0 Select"]
     #[inline] pub fn test_ftm0flt0(&self) -> bool {
-        self.ftm0flt0 != 0
+        self.ftm0flt0() != 0
     }
 
     #[doc="FTM0 Fault 0 Select"]
@@ -1137,7 +1137,7 @@ impl Sopt4 {
 
     #[doc="FTM0 Fault 1 Select"]
     #[inline] pub fn test_ftm0flt1(&self) -> bool {
-        self.ftm0flt1 != 0
+        self.ftm0flt1() != 0
     }
 
     #[doc="FTM0 Fault 1 Select"]
@@ -1156,7 +1156,7 @@ impl Sopt4 {
 
     #[doc="FTM0 Fault 2 Select"]
     #[inline] pub fn test_ftm0flt2(&self) -> bool {
-        self.ftm0flt2 != 0
+        self.ftm0flt2() != 0
     }
 
     #[doc="FTM0 Fault 2 Select"]
@@ -1175,7 +1175,7 @@ impl Sopt4 {
 
     #[doc="FTM1 Fault 0 Select"]
     #[inline] pub fn test_ftm1flt0(&self) -> bool {
-        self.ftm1flt0 != 0
+        self.ftm1flt0() != 0
     }
 
     #[doc="FTM1 Fault 0 Select"]
@@ -1194,7 +1194,7 @@ impl Sopt4 {
 
     #[doc="FTM2 Fault 0 Select"]
     #[inline] pub fn test_ftm2flt0(&self) -> bool {
-        self.ftm2flt0 != 0
+        self.ftm2flt0() != 0
     }
 
     #[doc="FTM2 Fault 0 Select"]
@@ -1213,7 +1213,7 @@ impl Sopt4 {
 
     #[doc="FTM3 Fault 0 Select"]
     #[inline] pub fn test_ftm3flt0(&self) -> bool {
-        self.ftm3flt0 != 0
+        self.ftm3flt0() != 0
     }
 
     #[doc="FTM3 Fault 0 Select"]
@@ -1232,7 +1232,7 @@ impl Sopt4 {
 
     #[doc="FTM1 channel 0 input capture source select"]
     #[inline] pub fn test_ftm1ch0src(&self) -> bool {
-        self.ftm1ch0src != 0
+        self.ftm1ch0src() != 0
     }
 
     #[doc="FTM1 channel 0 input capture source select"]
@@ -1251,7 +1251,7 @@ impl Sopt4 {
 
     #[doc="FTM2 channel 0 input capture source select"]
     #[inline] pub fn test_ftm2ch0src(&self) -> bool {
-        self.ftm2ch0src != 0
+        self.ftm2ch0src() != 0
     }
 
     #[doc="FTM2 channel 0 input capture source select"]
@@ -1270,7 +1270,7 @@ impl Sopt4 {
 
     #[doc="FlexTimer 0 External Clock Pin Select"]
     #[inline] pub fn test_ftm0clksel(&self) -> bool {
-        self.ftm0clksel != 0
+        self.ftm0clksel() != 0
     }
 
     #[doc="FlexTimer 0 External Clock Pin Select"]
@@ -1289,7 +1289,7 @@ impl Sopt4 {
 
     #[doc="FTM1 External Clock Pin Select"]
     #[inline] pub fn test_ftm1clksel(&self) -> bool {
-        self.ftm1clksel != 0
+        self.ftm1clksel() != 0
     }
 
     #[doc="FTM1 External Clock Pin Select"]
@@ -1308,7 +1308,7 @@ impl Sopt4 {
 
     #[doc="FlexTimer 2 External Clock Pin Select"]
     #[inline] pub fn test_ftm2clksel(&self) -> bool {
-        self.ftm2clksel != 0
+        self.ftm2clksel() != 0
     }
 
     #[doc="FlexTimer 2 External Clock Pin Select"]
@@ -1327,7 +1327,7 @@ impl Sopt4 {
 
     #[doc="FlexTimer 3 External Clock Pin Select"]
     #[inline] pub fn test_ftm3clksel(&self) -> bool {
-        self.ftm3clksel != 0
+        self.ftm3clksel() != 0
     }
 
     #[doc="FlexTimer 3 External Clock Pin Select"]
@@ -1346,7 +1346,7 @@ impl Sopt4 {
 
     #[doc="FlexTimer 0 Hardware Trigger 0 Source Select"]
     #[inline] pub fn test_ftm0trg0src(&self) -> bool {
-        self.ftm0trg0src != 0
+        self.ftm0trg0src() != 0
     }
 
     #[doc="FlexTimer 0 Hardware Trigger 0 Source Select"]
@@ -1365,7 +1365,7 @@ impl Sopt4 {
 
     #[doc="FlexTimer 0 Hardware Trigger 1 Source Select"]
     #[inline] pub fn test_ftm0trg1src(&self) -> bool {
-        self.ftm0trg1src != 0
+        self.ftm0trg1src() != 0
     }
 
     #[doc="FlexTimer 0 Hardware Trigger 1 Source Select"]
@@ -1384,7 +1384,7 @@ impl Sopt4 {
 
     #[doc="FlexTimer 3 Hardware Trigger 0 Source Select"]
     #[inline] pub fn test_ftm3trg0src(&self) -> bool {
-        self.ftm3trg0src != 0
+        self.ftm3trg0src() != 0
     }
 
     #[doc="FlexTimer 3 Hardware Trigger 0 Source Select"]
@@ -1403,7 +1403,7 @@ impl Sopt4 {
 
     #[doc="FlexTimer 3 Hardware Trigger 1 Source Select"]
     #[inline] pub fn test_ftm3trg1src(&self) -> bool {
-        self.ftm3trg1src != 0
+        self.ftm3trg1src() != 0
     }
 
     #[doc="FlexTimer 3 Hardware Trigger 1 Source Select"]
@@ -1458,7 +1458,7 @@ impl Sopt5 {
 
     #[doc="UART 0 transmit data source select"]
     #[inline] pub fn test_uart0txsrc(&self) -> bool {
-        self.uart0txsrc != 0
+        self.uart0txsrc() != 0
     }
 
     #[doc="UART 0 transmit data source select"]
@@ -1477,7 +1477,7 @@ impl Sopt5 {
 
     #[doc="UART 0 receive data source select"]
     #[inline] pub fn test_uart0rxsrc(&self) -> bool {
-        self.uart0rxsrc != 0
+        self.uart0rxsrc() != 0
     }
 
     #[doc="UART 0 receive data source select"]
@@ -1496,7 +1496,7 @@ impl Sopt5 {
 
     #[doc="UART 1 transmit data source select"]
     #[inline] pub fn test_uart1txsrc(&self) -> bool {
-        self.uart1txsrc != 0
+        self.uart1txsrc() != 0
     }
 
     #[doc="UART 1 transmit data source select"]
@@ -1515,7 +1515,7 @@ impl Sopt5 {
 
     #[doc="UART 1 receive data source select"]
     #[inline] pub fn test_uart1rxsrc(&self) -> bool {
-        self.uart1rxsrc != 0
+        self.uart1rxsrc() != 0
     }
 
     #[doc="UART 1 receive data source select"]
@@ -1558,7 +1558,7 @@ impl Sopt7 {
 
     #[doc="ADC0 trigger select"]
     #[inline] pub fn test_adc0trgsel(&self) -> bool {
-        self.adc0trgsel != 0
+        self.adc0trgsel() != 0
     }
 
     #[doc="ADC0 trigger select"]
@@ -1577,7 +1577,7 @@ impl Sopt7 {
 
     #[doc="ADC0 pretrigger select"]
     #[inline] pub fn test_adc0pretrgsel(&self) -> bool {
-        self.adc0pretrgsel != 0
+        self.adc0pretrgsel() != 0
     }
 
     #[doc="ADC0 pretrigger select"]
@@ -1596,7 +1596,7 @@ impl Sopt7 {
 
     #[doc="ADC0 alternate trigger enable"]
     #[inline] pub fn test_adc0alttrgen(&self) -> bool {
-        self.adc0alttrgen != 0
+        self.adc0alttrgen() != 0
     }
 
     #[doc="ADC0 alternate trigger enable"]
@@ -1615,7 +1615,7 @@ impl Sopt7 {
 
     #[doc="ADC1 trigger select"]
     #[inline] pub fn test_adc1trgsel(&self) -> bool {
-        self.adc1trgsel != 0
+        self.adc1trgsel() != 0
     }
 
     #[doc="ADC1 trigger select"]
@@ -1634,7 +1634,7 @@ impl Sopt7 {
 
     #[doc="ADC1 pre-trigger select"]
     #[inline] pub fn test_adc1pretrgsel(&self) -> bool {
-        self.adc1pretrgsel != 0
+        self.adc1pretrgsel() != 0
     }
 
     #[doc="ADC1 pre-trigger select"]
@@ -1653,7 +1653,7 @@ impl Sopt7 {
 
     #[doc="ADC1 alternate trigger enable"]
     #[inline] pub fn test_adc1alttrgen(&self) -> bool {
-        self.adc1alttrgen != 0
+        self.adc1alttrgen() != 0
     }
 
     #[doc="ADC1 alternate trigger enable"]
@@ -1698,7 +1698,7 @@ impl Sdid {
 
     #[doc="Pincount identification"]
     #[inline] pub fn test_pinid(&self) -> bool {
-        self.pinid != 0
+        self.pinid() != 0
     }
 
     #[doc="Pincount identification"]
@@ -1717,7 +1717,7 @@ impl Sdid {
 
     #[doc="Kinetis family identification"]
     #[inline] pub fn test_famid(&self) -> bool {
-        self.famid != 0
+        self.famid() != 0
     }
 
     #[doc="Kinetis family identification"]
@@ -1736,7 +1736,7 @@ impl Sdid {
 
     #[doc="Device Die ID"]
     #[inline] pub fn test_dieid(&self) -> bool {
-        self.dieid != 0
+        self.dieid() != 0
     }
 
     #[doc="Device Die ID"]
@@ -1755,7 +1755,7 @@ impl Sdid {
 
     #[doc="Device revision number"]
     #[inline] pub fn test_revid(&self) -> bool {
-        self.revid != 0
+        self.revid() != 0
     }
 
     #[doc="Device revision number"]
@@ -1774,7 +1774,7 @@ impl Sdid {
 
     #[doc="Kinetis Series ID"]
     #[inline] pub fn test_seriesid(&self) -> bool {
-        self.seriesid != 0
+        self.seriesid() != 0
     }
 
     #[doc="Kinetis Series ID"]
@@ -1793,7 +1793,7 @@ impl Sdid {
 
     #[doc="Kinetis Sub-Family ID"]
     #[inline] pub fn test_subfamid(&self) -> bool {
-        self.subfamid != 0
+        self.subfamid() != 0
     }
 
     #[doc="Kinetis Sub-Family ID"]
@@ -1812,7 +1812,7 @@ impl Sdid {
 
     #[doc="Kinetis Family ID"]
     #[inline] pub fn test_familyid(&self) -> bool {
-        self.familyid != 0
+        self.familyid() != 0
     }
 
     #[doc="Kinetis Family ID"]
@@ -1858,7 +1858,7 @@ impl Scgc1 {
 
     #[doc="I2C2 Clock Gate Control"]
     #[inline] pub fn test_i2c2(&self) -> bool {
-        self.i2c2 != 0
+        self.i2c2() != 0
     }
 
     #[doc="I2C2 Clock Gate Control"]
@@ -1877,7 +1877,7 @@ impl Scgc1 {
 
     #[doc="UART4 Clock Gate Control"]
     #[inline] pub fn test_uart4(&self) -> bool {
-        self.uart4 != 0
+        self.uart4() != 0
     }
 
     #[doc="UART4 Clock Gate Control"]
@@ -1896,7 +1896,7 @@ impl Scgc1 {
 
     #[doc="UART5 Clock Gate Control"]
     #[inline] pub fn test_uart5(&self) -> bool {
-        self.uart5 != 0
+        self.uart5() != 0
     }
 
     #[doc="UART5 Clock Gate Control"]
@@ -1938,7 +1938,7 @@ impl Scgc2 {
 
     #[doc="ENET Clock Gate Control"]
     #[inline] pub fn test_enet(&self) -> bool {
-        self.enet != 0
+        self.enet() != 0
     }
 
     #[doc="ENET Clock Gate Control"]
@@ -1957,7 +1957,7 @@ impl Scgc2 {
 
     #[doc="DAC0 Clock Gate Control"]
     #[inline] pub fn test_dac0(&self) -> bool {
-        self.dac0 != 0
+        self.dac0() != 0
     }
 
     #[doc="DAC0 Clock Gate Control"]
@@ -1976,7 +1976,7 @@ impl Scgc2 {
 
     #[doc="DAC1 Clock Gate Control"]
     #[inline] pub fn test_dac1(&self) -> bool {
-        self.dac1 != 0
+        self.dac1() != 0
     }
 
     #[doc="DAC1 Clock Gate Control"]
@@ -2018,7 +2018,7 @@ impl Scgc3 {
 
     #[doc="RNGA Clock Gate Control"]
     #[inline] pub fn test_rnga(&self) -> bool {
-        self.rnga != 0
+        self.rnga() != 0
     }
 
     #[doc="RNGA Clock Gate Control"]
@@ -2037,7 +2037,7 @@ impl Scgc3 {
 
     #[doc="SPI2 Clock Gate Control"]
     #[inline] pub fn test_spi2(&self) -> bool {
-        self.spi2 != 0
+        self.spi2() != 0
     }
 
     #[doc="SPI2 Clock Gate Control"]
@@ -2056,7 +2056,7 @@ impl Scgc3 {
 
     #[doc="SDHC Clock Gate Control"]
     #[inline] pub fn test_sdhc(&self) -> bool {
-        self.sdhc != 0
+        self.sdhc() != 0
     }
 
     #[doc="SDHC Clock Gate Control"]
@@ -2075,7 +2075,7 @@ impl Scgc3 {
 
     #[doc="FTM2 Clock Gate Control"]
     #[inline] pub fn test_ftm2(&self) -> bool {
-        self.ftm2 != 0
+        self.ftm2() != 0
     }
 
     #[doc="FTM2 Clock Gate Control"]
@@ -2094,7 +2094,7 @@ impl Scgc3 {
 
     #[doc="FTM3 Clock Gate Control"]
     #[inline] pub fn test_ftm3(&self) -> bool {
-        self.ftm3 != 0
+        self.ftm3() != 0
     }
 
     #[doc="FTM3 Clock Gate Control"]
@@ -2113,7 +2113,7 @@ impl Scgc3 {
 
     #[doc="ADC1 Clock Gate Control"]
     #[inline] pub fn test_adc1(&self) -> bool {
-        self.adc1 != 0
+        self.adc1() != 0
     }
 
     #[doc="ADC1 Clock Gate Control"]
@@ -2158,7 +2158,7 @@ impl Scgc4 {
 
     #[doc="EWM Clock Gate Control"]
     #[inline] pub fn test_ewm(&self) -> bool {
-        self.ewm != 0
+        self.ewm() != 0
     }
 
     #[doc="EWM Clock Gate Control"]
@@ -2177,7 +2177,7 @@ impl Scgc4 {
 
     #[doc="CMT Clock Gate Control"]
     #[inline] pub fn test_cmt(&self) -> bool {
-        self.cmt != 0
+        self.cmt() != 0
     }
 
     #[doc="CMT Clock Gate Control"]
@@ -2196,7 +2196,7 @@ impl Scgc4 {
 
     #[doc="I2C0 Clock Gate Control"]
     #[inline] pub fn test_i2c0(&self) -> bool {
-        self.i2c0 != 0
+        self.i2c0() != 0
     }
 
     #[doc="I2C0 Clock Gate Control"]
@@ -2215,7 +2215,7 @@ impl Scgc4 {
 
     #[doc="I2C1 Clock Gate Control"]
     #[inline] pub fn test_i2c1(&self) -> bool {
-        self.i2c1 != 0
+        self.i2c1() != 0
     }
 
     #[doc="I2C1 Clock Gate Control"]
@@ -2234,7 +2234,7 @@ impl Scgc4 {
 
     #[doc="UART0 Clock Gate Control"]
     #[inline] pub fn test_uart0(&self) -> bool {
-        self.uart0 != 0
+        self.uart0() != 0
     }
 
     #[doc="UART0 Clock Gate Control"]
@@ -2253,7 +2253,7 @@ impl Scgc4 {
 
     #[doc="UART1 Clock Gate Control"]
     #[inline] pub fn test_uart1(&self) -> bool {
-        self.uart1 != 0
+        self.uart1() != 0
     }
 
     #[doc="UART1 Clock Gate Control"]
@@ -2272,7 +2272,7 @@ impl Scgc4 {
 
     #[doc="UART2 Clock Gate Control"]
     #[inline] pub fn test_uart2(&self) -> bool {
-        self.uart2 != 0
+        self.uart2() != 0
     }
 
     #[doc="UART2 Clock Gate Control"]
@@ -2291,7 +2291,7 @@ impl Scgc4 {
 
     #[doc="UART3 Clock Gate Control"]
     #[inline] pub fn test_uart3(&self) -> bool {
-        self.uart3 != 0
+        self.uart3() != 0
     }
 
     #[doc="UART3 Clock Gate Control"]
@@ -2310,7 +2310,7 @@ impl Scgc4 {
 
     #[doc="USB Clock Gate Control"]
     #[inline] pub fn test_usbotg(&self) -> bool {
-        self.usbotg != 0
+        self.usbotg() != 0
     }
 
     #[doc="USB Clock Gate Control"]
@@ -2329,7 +2329,7 @@ impl Scgc4 {
 
     #[doc="Comparator Clock Gate Control"]
     #[inline] pub fn test_cmp(&self) -> bool {
-        self.cmp != 0
+        self.cmp() != 0
     }
 
     #[doc="Comparator Clock Gate Control"]
@@ -2348,7 +2348,7 @@ impl Scgc4 {
 
     #[doc="VREF Clock Gate Control"]
     #[inline] pub fn test_vref(&self) -> bool {
-        self.vref != 0
+        self.vref() != 0
     }
 
     #[doc="VREF Clock Gate Control"]
@@ -2398,7 +2398,7 @@ impl Scgc5 {
 
     #[doc="Low Power Timer Access Control"]
     #[inline] pub fn test_lptmr(&self) -> bool {
-        self.lptmr != 0
+        self.lptmr() != 0
     }
 
     #[doc="Low Power Timer Access Control"]
@@ -2417,7 +2417,7 @@ impl Scgc5 {
 
     #[doc="Port A Clock Gate Control"]
     #[inline] pub fn test_porta(&self) -> bool {
-        self.porta != 0
+        self.porta() != 0
     }
 
     #[doc="Port A Clock Gate Control"]
@@ -2436,7 +2436,7 @@ impl Scgc5 {
 
     #[doc="Port B Clock Gate Control"]
     #[inline] pub fn test_portb(&self) -> bool {
-        self.portb != 0
+        self.portb() != 0
     }
 
     #[doc="Port B Clock Gate Control"]
@@ -2455,7 +2455,7 @@ impl Scgc5 {
 
     #[doc="Port C Clock Gate Control"]
     #[inline] pub fn test_portc(&self) -> bool {
-        self.portc != 0
+        self.portc() != 0
     }
 
     #[doc="Port C Clock Gate Control"]
@@ -2474,7 +2474,7 @@ impl Scgc5 {
 
     #[doc="Port D Clock Gate Control"]
     #[inline] pub fn test_portd(&self) -> bool {
-        self.portd != 0
+        self.portd() != 0
     }
 
     #[doc="Port D Clock Gate Control"]
@@ -2493,7 +2493,7 @@ impl Scgc5 {
 
     #[doc="Port E Clock Gate Control"]
     #[inline] pub fn test_porte(&self) -> bool {
-        self.porte != 0
+        self.porte() != 0
     }
 
     #[doc="Port E Clock Gate Control"]
@@ -2538,7 +2538,7 @@ impl Scgc6 {
 
     #[doc="Flash Memory Clock Gate Control"]
     #[inline] pub fn test_ftf(&self) -> bool {
-        self.ftf != 0
+        self.ftf() != 0
     }
 
     #[doc="Flash Memory Clock Gate Control"]
@@ -2557,7 +2557,7 @@ impl Scgc6 {
 
     #[doc="DMA Mux Clock Gate Control"]
     #[inline] pub fn test_dmamux(&self) -> bool {
-        self.dmamux != 0
+        self.dmamux() != 0
     }
 
     #[doc="DMA Mux Clock Gate Control"]
@@ -2576,7 +2576,7 @@ impl Scgc6 {
 
     #[doc="FlexCAN0 Clock Gate Control"]
     #[inline] pub fn test_flexcan0(&self) -> bool {
-        self.flexcan0 != 0
+        self.flexcan0() != 0
     }
 
     #[doc="FlexCAN0 Clock Gate Control"]
@@ -2595,7 +2595,7 @@ impl Scgc6 {
 
     #[doc="RNGA Clock Gate Control"]
     #[inline] pub fn test_rnga(&self) -> bool {
-        self.rnga != 0
+        self.rnga() != 0
     }
 
     #[doc="RNGA Clock Gate Control"]
@@ -2614,7 +2614,7 @@ impl Scgc6 {
 
     #[doc="SPI0 Clock Gate Control"]
     #[inline] pub fn test_spi0(&self) -> bool {
-        self.spi0 != 0
+        self.spi0() != 0
     }
 
     #[doc="SPI0 Clock Gate Control"]
@@ -2633,7 +2633,7 @@ impl Scgc6 {
 
     #[doc="SPI1 Clock Gate Control"]
     #[inline] pub fn test_spi1(&self) -> bool {
-        self.spi1 != 0
+        self.spi1() != 0
     }
 
     #[doc="SPI1 Clock Gate Control"]
@@ -2652,7 +2652,7 @@ impl Scgc6 {
 
     #[doc="I2S Clock Gate Control"]
     #[inline] pub fn test_i2s(&self) -> bool {
-        self.i2s != 0
+        self.i2s() != 0
     }
 
     #[doc="I2S Clock Gate Control"]
@@ -2671,7 +2671,7 @@ impl Scgc6 {
 
     #[doc="CRC Clock Gate Control"]
     #[inline] pub fn test_crc(&self) -> bool {
-        self.crc != 0
+        self.crc() != 0
     }
 
     #[doc="CRC Clock Gate Control"]
@@ -2690,7 +2690,7 @@ impl Scgc6 {
 
     #[doc="USB DCD Clock Gate Control"]
     #[inline] pub fn test_usbdcd(&self) -> bool {
-        self.usbdcd != 0
+        self.usbdcd() != 0
     }
 
     #[doc="USB DCD Clock Gate Control"]
@@ -2709,7 +2709,7 @@ impl Scgc6 {
 
     #[doc="PDB Clock Gate Control"]
     #[inline] pub fn test_pdb(&self) -> bool {
-        self.pdb != 0
+        self.pdb() != 0
     }
 
     #[doc="PDB Clock Gate Control"]
@@ -2728,7 +2728,7 @@ impl Scgc6 {
 
     #[doc="PIT Clock Gate Control"]
     #[inline] pub fn test_pit(&self) -> bool {
-        self.pit != 0
+        self.pit() != 0
     }
 
     #[doc="PIT Clock Gate Control"]
@@ -2747,7 +2747,7 @@ impl Scgc6 {
 
     #[doc="FTM0 Clock Gate Control"]
     #[inline] pub fn test_ftm0(&self) -> bool {
-        self.ftm0 != 0
+        self.ftm0() != 0
     }
 
     #[doc="FTM0 Clock Gate Control"]
@@ -2766,7 +2766,7 @@ impl Scgc6 {
 
     #[doc="FTM1 Clock Gate Control"]
     #[inline] pub fn test_ftm1(&self) -> bool {
-        self.ftm1 != 0
+        self.ftm1() != 0
     }
 
     #[doc="FTM1 Clock Gate Control"]
@@ -2785,7 +2785,7 @@ impl Scgc6 {
 
     #[doc="FTM2 Clock Gate Control"]
     #[inline] pub fn test_ftm2(&self) -> bool {
-        self.ftm2 != 0
+        self.ftm2() != 0
     }
 
     #[doc="FTM2 Clock Gate Control"]
@@ -2804,7 +2804,7 @@ impl Scgc6 {
 
     #[doc="ADC0 Clock Gate Control"]
     #[inline] pub fn test_adc0(&self) -> bool {
-        self.adc0 != 0
+        self.adc0() != 0
     }
 
     #[doc="ADC0 Clock Gate Control"]
@@ -2823,7 +2823,7 @@ impl Scgc6 {
 
     #[doc="RTC Access Control"]
     #[inline] pub fn test_rtc(&self) -> bool {
-        self.rtc != 0
+        self.rtc() != 0
     }
 
     #[doc="RTC Access Control"]
@@ -2842,7 +2842,7 @@ impl Scgc6 {
 
     #[doc="DAC0 Clock Gate Control"]
     #[inline] pub fn test_dac0(&self) -> bool {
-        self.dac0 != 0
+        self.dac0() != 0
     }
 
     #[doc="DAC0 Clock Gate Control"]
@@ -2898,7 +2898,7 @@ impl Scgc7 {
 
     #[doc="FlexBus Clock Gate Control"]
     #[inline] pub fn test_flexbus(&self) -> bool {
-        self.flexbus != 0
+        self.flexbus() != 0
     }
 
     #[doc="FlexBus Clock Gate Control"]
@@ -2917,7 +2917,7 @@ impl Scgc7 {
 
     #[doc="DMA Clock Gate Control"]
     #[inline] pub fn test_dma(&self) -> bool {
-        self.dma != 0
+        self.dma() != 0
     }
 
     #[doc="DMA Clock Gate Control"]
@@ -2936,7 +2936,7 @@ impl Scgc7 {
 
     #[doc="MPU Clock Gate Control"]
     #[inline] pub fn test_mpu(&self) -> bool {
-        self.mpu != 0
+        self.mpu() != 0
     }
 
     #[doc="MPU Clock Gate Control"]
@@ -2978,7 +2978,7 @@ impl Clkdiv1 {
 
     #[doc="Clock 4 output divider value"]
     #[inline] pub fn test_outdiv4(&self) -> bool {
-        self.outdiv4 != 0
+        self.outdiv4() != 0
     }
 
     #[doc="Clock 4 output divider value"]
@@ -2997,7 +2997,7 @@ impl Clkdiv1 {
 
     #[doc="Clock 3 output divider value"]
     #[inline] pub fn test_outdiv3(&self) -> bool {
-        self.outdiv3 != 0
+        self.outdiv3() != 0
     }
 
     #[doc="Clock 3 output divider value"]
@@ -3016,7 +3016,7 @@ impl Clkdiv1 {
 
     #[doc="Clock 2 output divider value"]
     #[inline] pub fn test_outdiv2(&self) -> bool {
-        self.outdiv2 != 0
+        self.outdiv2() != 0
     }
 
     #[doc="Clock 2 output divider value"]
@@ -3035,7 +3035,7 @@ impl Clkdiv1 {
 
     #[doc="Clock 1 output divider value"]
     #[inline] pub fn test_outdiv1(&self) -> bool {
-        self.outdiv1 != 0
+        self.outdiv1() != 0
     }
 
     #[doc="Clock 1 output divider value"]
@@ -3078,7 +3078,7 @@ impl Clkdiv2 {
 
     #[doc="USB clock divider fraction"]
     #[inline] pub fn test_usbfrac(&self) -> bool {
-        self.usbfrac != 0
+        self.usbfrac() != 0
     }
 
     #[doc="USB clock divider fraction"]
@@ -3097,7 +3097,7 @@ impl Clkdiv2 {
 
     #[doc="USB clock divider divisor"]
     #[inline] pub fn test_usbdiv(&self) -> bool {
-        self.usbdiv != 0
+        self.usbdiv() != 0
     }
 
     #[doc="USB clock divider divisor"]
@@ -3138,7 +3138,7 @@ impl Fcfg1 {
 
     #[doc="Flash Disable"]
     #[inline] pub fn test_flashdis(&self) -> bool {
-        self.flashdis != 0
+        self.flashdis() != 0
     }
 
     #[doc="Flash Disable"]
@@ -3157,7 +3157,7 @@ impl Fcfg1 {
 
     #[doc="Flash Doze"]
     #[inline] pub fn test_flashdoze(&self) -> bool {
-        self.flashdoze != 0
+        self.flashdoze() != 0
     }
 
     #[doc="Flash Doze"]
@@ -3176,7 +3176,7 @@ impl Fcfg1 {
 
     #[doc="FlexNVM partition"]
     #[inline] pub fn test_depart(&self) -> bool {
-        self.depart != 0
+        self.depart() != 0
     }
 
     #[doc="FlexNVM partition"]
@@ -3195,7 +3195,7 @@ impl Fcfg1 {
 
     #[doc="EEPROM size"]
     #[inline] pub fn test_eesize(&self) -> bool {
-        self.eesize != 0
+        self.eesize() != 0
     }
 
     #[doc="EEPROM size"]
@@ -3214,7 +3214,7 @@ impl Fcfg1 {
 
     #[doc="Program flash size"]
     #[inline] pub fn test_pfsize(&self) -> bool {
-        self.pfsize != 0
+        self.pfsize() != 0
     }
 
     #[doc="Program flash size"]
@@ -3233,7 +3233,7 @@ impl Fcfg1 {
 
     #[doc="FlexNVM size"]
     #[inline] pub fn test_nvmsize(&self) -> bool {
-        self.nvmsize != 0
+        self.nvmsize() != 0
     }
 
     #[doc="FlexNVM size"]
@@ -3278,7 +3278,7 @@ impl Fcfg2 {
 
     #[doc="Max address block 1"]
     #[inline] pub fn test_maxaddr1(&self) -> bool {
-        self.maxaddr1 != 0
+        self.maxaddr1() != 0
     }
 
     #[doc="Max address block 1"]
@@ -3297,7 +3297,7 @@ impl Fcfg2 {
 
     #[doc="Program flash only"]
     #[inline] pub fn test_pflsh(&self) -> bool {
-        self.pflsh != 0
+        self.pflsh() != 0
     }
 
     #[doc="Program flash only"]
@@ -3316,7 +3316,7 @@ impl Fcfg2 {
 
     #[doc="Max address block 0"]
     #[inline] pub fn test_maxaddr0(&self) -> bool {
-        self.maxaddr0 != 0
+        self.maxaddr0() != 0
     }
 
     #[doc="Max address block 0"]
@@ -3358,7 +3358,7 @@ impl Uidh {
 
     #[doc="Unique Identification"]
     #[inline] pub fn test_uid(&self) -> bool {
-        self.uid != 0
+        self.uid() != 0
     }
 
     #[doc="Unique Identification"]
@@ -3397,7 +3397,7 @@ impl Uidmh {
 
     #[doc="Unique Identification"]
     #[inline] pub fn test_uid(&self) -> bool {
-        self.uid != 0
+        self.uid() != 0
     }
 
     #[doc="Unique Identification"]
@@ -3436,7 +3436,7 @@ impl Uidml {
 
     #[doc="Unique Identification"]
     #[inline] pub fn test_uid(&self) -> bool {
-        self.uid != 0
+        self.uid() != 0
     }
 
     #[doc="Unique Identification"]
@@ -3475,7 +3475,7 @@ impl Uidl {
 
     #[doc="Unique Identification"]
     #[inline] pub fn test_uid(&self) -> bool {
-        self.uid != 0
+        self.uid() != 0
     }
 
     #[doc="Unique Identification"]

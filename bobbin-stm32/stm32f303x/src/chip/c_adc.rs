@@ -94,7 +94,7 @@ impl Csr {
 
     #[doc="ADDRDY_MST"]
     #[inline] pub fn test_addrdy_mst(&self) -> bool {
-        self.addrdy_mst != 0
+        self.addrdy_mst() != 0
     }
 
     #[doc="ADDRDY_MST"]
@@ -113,7 +113,7 @@ impl Csr {
 
     #[doc="EOSMP_MST"]
     #[inline] pub fn test_eosmp_mst(&self) -> bool {
-        self.eosmp_mst != 0
+        self.eosmp_mst() != 0
     }
 
     #[doc="EOSMP_MST"]
@@ -132,7 +132,7 @@ impl Csr {
 
     #[doc="EOC_MST"]
     #[inline] pub fn test_eoc_mst(&self) -> bool {
-        self.eoc_mst != 0
+        self.eoc_mst() != 0
     }
 
     #[doc="EOC_MST"]
@@ -151,7 +151,7 @@ impl Csr {
 
     #[doc="EOS_MST"]
     #[inline] pub fn test_eos_mst(&self) -> bool {
-        self.eos_mst != 0
+        self.eos_mst() != 0
     }
 
     #[doc="EOS_MST"]
@@ -170,7 +170,7 @@ impl Csr {
 
     #[doc="OVR_MST"]
     #[inline] pub fn test_ovr_mst(&self) -> bool {
-        self.ovr_mst != 0
+        self.ovr_mst() != 0
     }
 
     #[doc="OVR_MST"]
@@ -189,7 +189,7 @@ impl Csr {
 
     #[doc="JEOC_MST"]
     #[inline] pub fn test_jeoc_mst(&self) -> bool {
-        self.jeoc_mst != 0
+        self.jeoc_mst() != 0
     }
 
     #[doc="JEOC_MST"]
@@ -208,7 +208,7 @@ impl Csr {
 
     #[doc="JEOS_MST"]
     #[inline] pub fn test_jeos_mst(&self) -> bool {
-        self.jeos_mst != 0
+        self.jeos_mst() != 0
     }
 
     #[doc="JEOS_MST"]
@@ -227,7 +227,7 @@ impl Csr {
 
     #[doc="AWD1_MST"]
     #[inline] pub fn test_awd1_mst(&self) -> bool {
-        self.awd1_mst != 0
+        self.awd1_mst() != 0
     }
 
     #[doc="AWD1_MST"]
@@ -246,7 +246,7 @@ impl Csr {
 
     #[doc="AWD2_MST"]
     #[inline] pub fn test_awd2_mst(&self) -> bool {
-        self.awd2_mst != 0
+        self.awd2_mst() != 0
     }
 
     #[doc="AWD2_MST"]
@@ -265,7 +265,7 @@ impl Csr {
 
     #[doc="AWD3_MST"]
     #[inline] pub fn test_awd3_mst(&self) -> bool {
-        self.awd3_mst != 0
+        self.awd3_mst() != 0
     }
 
     #[doc="AWD3_MST"]
@@ -284,7 +284,7 @@ impl Csr {
 
     #[doc="JQOVF_MST"]
     #[inline] pub fn test_jqovf_mst(&self) -> bool {
-        self.jqovf_mst != 0
+        self.jqovf_mst() != 0
     }
 
     #[doc="JQOVF_MST"]
@@ -303,7 +303,7 @@ impl Csr {
 
     #[doc="ADRDY_SLV"]
     #[inline] pub fn test_adrdy_slv(&self) -> bool {
-        self.adrdy_slv != 0
+        self.adrdy_slv() != 0
     }
 
     #[doc="ADRDY_SLV"]
@@ -322,7 +322,7 @@ impl Csr {
 
     #[doc="EOSMP_SLV"]
     #[inline] pub fn test_eosmp_slv(&self) -> bool {
-        self.eosmp_slv != 0
+        self.eosmp_slv() != 0
     }
 
     #[doc="EOSMP_SLV"]
@@ -341,7 +341,7 @@ impl Csr {
 
     #[doc="End of regular conversion of the slave ADC"]
     #[inline] pub fn test_eoc_slv(&self) -> bool {
-        self.eoc_slv != 0
+        self.eoc_slv() != 0
     }
 
     #[doc="End of regular conversion of the slave ADC"]
@@ -360,7 +360,7 @@ impl Csr {
 
     #[doc="End of regular sequence flag of the slave ADC"]
     #[inline] pub fn test_eos_slv(&self) -> bool {
-        self.eos_slv != 0
+        self.eos_slv() != 0
     }
 
     #[doc="End of regular sequence flag of the slave ADC"]
@@ -379,7 +379,7 @@ impl Csr {
 
     #[doc="Overrun flag of the slave ADC"]
     #[inline] pub fn test_ovr_slv(&self) -> bool {
-        self.ovr_slv != 0
+        self.ovr_slv() != 0
     }
 
     #[doc="Overrun flag of the slave ADC"]
@@ -398,7 +398,7 @@ impl Csr {
 
     #[doc="End of injected conversion flag of the slave ADC"]
     #[inline] pub fn test_jeoc_slv(&self) -> bool {
-        self.jeoc_slv != 0
+        self.jeoc_slv() != 0
     }
 
     #[doc="End of injected conversion flag of the slave ADC"]
@@ -417,7 +417,7 @@ impl Csr {
 
     #[doc="End of injected sequence flag of the slave ADC"]
     #[inline] pub fn test_jeos_slv(&self) -> bool {
-        self.jeos_slv != 0
+        self.jeos_slv() != 0
     }
 
     #[doc="End of injected sequence flag of the slave ADC"]
@@ -436,7 +436,7 @@ impl Csr {
 
     #[doc="Analog watchdog 1 flag of the slave ADC"]
     #[inline] pub fn test_awd1_slv(&self) -> bool {
-        self.awd1_slv != 0
+        self.awd1_slv() != 0
     }
 
     #[doc="Analog watchdog 1 flag of the slave ADC"]
@@ -455,7 +455,7 @@ impl Csr {
 
     #[doc="Analog watchdog 2 flag of the slave ADC"]
     #[inline] pub fn test_awd2_slv(&self) -> bool {
-        self.awd2_slv != 0
+        self.awd2_slv() != 0
     }
 
     #[doc="Analog watchdog 2 flag of the slave ADC"]
@@ -474,7 +474,7 @@ impl Csr {
 
     #[doc="Analog watchdog 3 flag of the slave ADC"]
     #[inline] pub fn test_awd3_slv(&self) -> bool {
-        self.awd3_slv != 0
+        self.awd3_slv() != 0
     }
 
     #[doc="Analog watchdog 3 flag of the slave ADC"]
@@ -493,7 +493,7 @@ impl Csr {
 
     #[doc="Injected Context Queue Overflow flag of the slave ADC"]
     #[inline] pub fn test_jqovf_slv(&self) -> bool {
-        self.jqovf_slv != 0
+        self.jqovf_slv() != 0
     }
 
     #[doc="Injected Context Queue Overflow flag of the slave ADC"]
@@ -554,7 +554,7 @@ impl Ccr {
 
     #[doc="Multi ADC mode selection"]
     #[inline] pub fn test_mult(&self) -> bool {
-        self.mult != 0
+        self.mult() != 0
     }
 
     #[doc="Multi ADC mode selection"]
@@ -573,7 +573,7 @@ impl Ccr {
 
     #[doc="Delay between 2 sampling phases"]
     #[inline] pub fn test_delay(&self) -> bool {
-        self.delay != 0
+        self.delay() != 0
     }
 
     #[doc="Delay between 2 sampling phases"]
@@ -592,7 +592,7 @@ impl Ccr {
 
     #[doc="DMA configuration (for multi-ADC mode)"]
     #[inline] pub fn test_dmacfg(&self) -> bool {
-        self.dmacfg != 0
+        self.dmacfg() != 0
     }
 
     #[doc="DMA configuration (for multi-ADC mode)"]
@@ -611,7 +611,7 @@ impl Ccr {
 
     #[doc="Direct memory access mode for multi ADC mode"]
     #[inline] pub fn test_mdma(&self) -> bool {
-        self.mdma != 0
+        self.mdma() != 0
     }
 
     #[doc="Direct memory access mode for multi ADC mode"]
@@ -630,7 +630,7 @@ impl Ccr {
 
     #[doc="ADC clock mode"]
     #[inline] pub fn test_ckmode(&self) -> bool {
-        self.ckmode != 0
+        self.ckmode() != 0
     }
 
     #[doc="ADC clock mode"]
@@ -649,7 +649,7 @@ impl Ccr {
 
     #[doc="VREFINT enable"]
     #[inline] pub fn test_vrefen(&self) -> bool {
-        self.vrefen != 0
+        self.vrefen() != 0
     }
 
     #[doc="VREFINT enable"]
@@ -668,7 +668,7 @@ impl Ccr {
 
     #[doc="Temperature sensor enable"]
     #[inline] pub fn test_tsen(&self) -> bool {
-        self.tsen != 0
+        self.tsen() != 0
     }
 
     #[doc="Temperature sensor enable"]
@@ -687,7 +687,7 @@ impl Ccr {
 
     #[doc="VBAT enable"]
     #[inline] pub fn test_vbaten(&self) -> bool {
-        self.vbaten != 0
+        self.vbaten() != 0
     }
 
     #[doc="VBAT enable"]
@@ -734,7 +734,7 @@ impl Cdr {
 
     #[doc="Regular data of the slave ADC"]
     #[inline] pub fn test_rdata_slv(&self) -> bool {
-        self.rdata_slv != 0
+        self.rdata_slv() != 0
     }
 
     #[doc="Regular data of the slave ADC"]
@@ -753,7 +753,7 @@ impl Cdr {
 
     #[doc="Regular data of the master ADC"]
     #[inline] pub fn test_rdata_mst(&self) -> bool {
-        self.rdata_mst != 0
+        self.rdata_mst() != 0
     }
 
     #[doc="Regular data of the master ADC"]

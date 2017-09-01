@@ -140,7 +140,7 @@ impl Pcr {
 
     #[doc="Pull Select"]
     #[inline] pub fn test_ps(&self) -> bool {
-        self.ps != 0
+        self.ps() != 0
     }
 
     #[doc="Pull Select"]
@@ -159,7 +159,7 @@ impl Pcr {
 
     #[doc="Pull Enable"]
     #[inline] pub fn test_pe(&self) -> bool {
-        self.pe != 0
+        self.pe() != 0
     }
 
     #[doc="Pull Enable"]
@@ -178,7 +178,7 @@ impl Pcr {
 
     #[doc="Slew Rate Enable"]
     #[inline] pub fn test_sre(&self) -> bool {
-        self.sre != 0
+        self.sre() != 0
     }
 
     #[doc="Slew Rate Enable"]
@@ -197,7 +197,7 @@ impl Pcr {
 
     #[doc="Passive Filter Enable"]
     #[inline] pub fn test_pfe(&self) -> bool {
-        self.pfe != 0
+        self.pfe() != 0
     }
 
     #[doc="Passive Filter Enable"]
@@ -216,7 +216,7 @@ impl Pcr {
 
     #[doc="Open Drain Enable"]
     #[inline] pub fn test_ode(&self) -> bool {
-        self.ode != 0
+        self.ode() != 0
     }
 
     #[doc="Open Drain Enable"]
@@ -235,7 +235,7 @@ impl Pcr {
 
     #[doc="Drive Strength Enable"]
     #[inline] pub fn test_dse(&self) -> bool {
-        self.dse != 0
+        self.dse() != 0
     }
 
     #[doc="Drive Strength Enable"]
@@ -254,7 +254,7 @@ impl Pcr {
 
     #[doc="Pin Mux Control"]
     #[inline] pub fn test_mux(&self) -> bool {
-        self.mux != 0
+        self.mux() != 0
     }
 
     #[doc="Pin Mux Control"]
@@ -273,7 +273,7 @@ impl Pcr {
 
     #[doc="Lock Register"]
     #[inline] pub fn test_lk(&self) -> bool {
-        self.lk != 0
+        self.lk() != 0
     }
 
     #[doc="Lock Register"]
@@ -292,7 +292,7 @@ impl Pcr {
 
     #[doc="Interrupt Configuration"]
     #[inline] pub fn test_irqc(&self) -> bool {
-        self.irqc != 0
+        self.irqc() != 0
     }
 
     #[doc="Interrupt Configuration"]
@@ -311,7 +311,7 @@ impl Pcr {
 
     #[doc="Interrupt Status Flag"]
     #[inline] pub fn test_isf(&self) -> bool {
-        self.isf != 0
+        self.isf() != 0
     }
 
     #[doc="Interrupt Status Flag"]
@@ -360,7 +360,7 @@ impl Gpclr {
 
     #[doc="Global Pin Write Data"]
     #[inline] pub fn test_gpwd(&self) -> bool {
-        self.gpwd != 0
+        self.gpwd() != 0
     }
 
     #[doc="Global Pin Write Data"]
@@ -379,7 +379,7 @@ impl Gpclr {
 
     #[doc="Global Pin Write Enable"]
     #[inline] pub fn test_gpwe(&self) -> bool {
-        self.gpwe != 0
+        self.gpwe() != 0
     }
 
     #[doc="Global Pin Write Enable"]
@@ -420,7 +420,7 @@ impl Gpchr {
 
     #[doc="Global Pin Write Data"]
     #[inline] pub fn test_gpwd(&self) -> bool {
-        self.gpwd != 0
+        self.gpwd() != 0
     }
 
     #[doc="Global Pin Write Data"]
@@ -439,7 +439,7 @@ impl Gpchr {
 
     #[doc="Global Pin Write Enable"]
     #[inline] pub fn test_gpwe(&self) -> bool {
-        self.gpwe != 0
+        self.gpwe() != 0
     }
 
     #[doc="Global Pin Write Enable"]

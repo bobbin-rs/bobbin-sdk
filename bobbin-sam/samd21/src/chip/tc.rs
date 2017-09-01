@@ -555,7 +555,7 @@ impl Cc {
 
     #[doc="Compare/Capture Value"]
     #[inline] pub fn test_cc(&self) -> bool {
-        self.cc != 0
+        self.cc() != 0
     }
 
     #[doc="Compare/Capture Value"]
@@ -595,7 +595,7 @@ impl Count {
 
     #[doc="Counter Value"]
     #[inline] pub fn test_count(&self) -> bool {
-        self.count != 0
+        self.count() != 0
     }
 
     #[doc="Counter Value"]
@@ -635,7 +635,7 @@ impl Per {
 
     #[doc="Period Value"]
     #[inline] pub fn test_per(&self) -> bool {
-        self.per != 0
+        self.per() != 0
     }
 
     #[doc="Period Value"]
@@ -675,7 +675,7 @@ impl Ctrla {
 
     #[doc="Software Reset"]
     #[inline] pub fn test_swrst(&self) -> bool {
-        self.swrst != 0
+        self.swrst() != 0
     }
 
     #[doc="Software Reset"]
@@ -694,7 +694,7 @@ impl Ctrla {
 
     #[doc="Enable"]
     #[inline] pub fn test_enable(&self) -> bool {
-        self.enable != 0
+        self.enable() != 0
     }
 
     #[doc="Enable"]
@@ -713,7 +713,7 @@ impl Ctrla {
 
     #[doc="TC Mode"]
     #[inline] pub fn test_mode(&self) -> bool {
-        self.mode != 0
+        self.mode() != 0
     }
 
     #[doc="TC Mode"]
@@ -732,7 +732,7 @@ impl Ctrla {
 
     #[doc="Waveform Generation Operation"]
     #[inline] pub fn test_wavegen(&self) -> bool {
-        self.wavegen != 0
+        self.wavegen() != 0
     }
 
     #[doc="Waveform Generation Operation"]
@@ -751,7 +751,7 @@ impl Ctrla {
 
     #[doc="Prescaler"]
     #[inline] pub fn test_prescaler(&self) -> bool {
-        self.prescaler != 0
+        self.prescaler() != 0
     }
 
     #[doc="Prescaler"]
@@ -770,7 +770,7 @@ impl Ctrla {
 
     #[doc="Run in Standby"]
     #[inline] pub fn test_runstdby(&self) -> bool {
-        self.runstdby != 0
+        self.runstdby() != 0
     }
 
     #[doc="Run in Standby"]
@@ -789,7 +789,7 @@ impl Ctrla {
 
     #[doc="Prescaler and Counter Synchronization"]
     #[inline] pub fn test_prescsync(&self) -> bool {
-        self.prescsync != 0
+        self.prescsync() != 0
     }
 
     #[doc="Prescaler and Counter Synchronization"]
@@ -835,7 +835,7 @@ impl Ctrlbclr {
 
     #[doc="Counter Direction"]
     #[inline] pub fn test_dir(&self) -> bool {
-        self.dir != 0
+        self.dir() != 0
     }
 
     #[doc="Counter Direction"]
@@ -854,7 +854,7 @@ impl Ctrlbclr {
 
     #[doc="One-Shot"]
     #[inline] pub fn test_oneshot(&self) -> bool {
-        self.oneshot != 0
+        self.oneshot() != 0
     }
 
     #[doc="One-Shot"]
@@ -873,7 +873,7 @@ impl Ctrlbclr {
 
     #[doc="Command"]
     #[inline] pub fn test_cmd(&self) -> bool {
-        self.cmd != 0
+        self.cmd() != 0
     }
 
     #[doc="Command"]
@@ -915,7 +915,7 @@ impl Ctrlbset {
 
     #[doc="Counter Direction"]
     #[inline] pub fn test_dir(&self) -> bool {
-        self.dir != 0
+        self.dir() != 0
     }
 
     #[doc="Counter Direction"]
@@ -934,7 +934,7 @@ impl Ctrlbset {
 
     #[doc="One-Shot"]
     #[inline] pub fn test_oneshot(&self) -> bool {
-        self.oneshot != 0
+        self.oneshot() != 0
     }
 
     #[doc="One-Shot"]
@@ -953,7 +953,7 @@ impl Ctrlbset {
 
     #[doc="Command"]
     #[inline] pub fn test_cmd(&self) -> bool {
-        self.cmd != 0
+        self.cmd() != 0
     }
 
     #[doc="Command"]
@@ -995,7 +995,7 @@ impl Ctrlc {
 
     #[doc="Output Waveform 0 Invert Enable"]
     #[inline] pub fn test_inven0(&self) -> bool {
-        self.inven0 != 0
+        self.inven0() != 0
     }
 
     #[doc="Output Waveform 0 Invert Enable"]
@@ -1014,7 +1014,7 @@ impl Ctrlc {
 
     #[doc="Output Waveform 1 Invert Enable"]
     #[inline] pub fn test_inven1(&self) -> bool {
-        self.inven1 != 0
+        self.inven1() != 0
     }
 
     #[doc="Output Waveform 1 Invert Enable"]
@@ -1033,7 +1033,7 @@ impl Ctrlc {
 
     #[doc="Capture Channel 0 Enable"]
     #[inline] pub fn test_cpten0(&self) -> bool {
-        self.cpten0 != 0
+        self.cpten0() != 0
     }
 
     #[doc="Capture Channel 0 Enable"]
@@ -1052,7 +1052,7 @@ impl Ctrlc {
 
     #[doc="Capture Channel 1 Enable"]
     #[inline] pub fn test_cpten1(&self) -> bool {
-        self.cpten1 != 0
+        self.cpten1() != 0
     }
 
     #[doc="Capture Channel 1 Enable"]
@@ -1095,7 +1095,7 @@ impl Dbgctrl {
 
     #[doc="Debug Run Mode"]
     #[inline] pub fn test_dbgrun(&self) -> bool {
-        self.dbgrun != 0
+        self.dbgrun() != 0
     }
 
     #[doc="Debug Run Mode"]
@@ -1135,7 +1135,7 @@ impl Evctrl {
 
     #[doc="Event Action"]
     #[inline] pub fn test_evact(&self) -> bool {
-        self.evact != 0
+        self.evact() != 0
     }
 
     #[doc="Event Action"]
@@ -1154,7 +1154,7 @@ impl Evctrl {
 
     #[doc="TC Inverted Event Input"]
     #[inline] pub fn test_tcinv(&self) -> bool {
-        self.tcinv != 0
+        self.tcinv() != 0
     }
 
     #[doc="TC Inverted Event Input"]
@@ -1173,7 +1173,7 @@ impl Evctrl {
 
     #[doc="TC Event Input"]
     #[inline] pub fn test_tcei(&self) -> bool {
-        self.tcei != 0
+        self.tcei() != 0
     }
 
     #[doc="TC Event Input"]
@@ -1192,7 +1192,7 @@ impl Evctrl {
 
     #[doc="Overflow/Underflow Event Output Enable"]
     #[inline] pub fn test_ovfeo(&self) -> bool {
-        self.ovfeo != 0
+        self.ovfeo() != 0
     }
 
     #[doc="Overflow/Underflow Event Output Enable"]
@@ -1211,7 +1211,7 @@ impl Evctrl {
 
     #[doc="Match or Capture Channel 0 Event Output Enable"]
     #[inline] pub fn test_mceo0(&self) -> bool {
-        self.mceo0 != 0
+        self.mceo0() != 0
     }
 
     #[doc="Match or Capture Channel 0 Event Output Enable"]
@@ -1230,7 +1230,7 @@ impl Evctrl {
 
     #[doc="Match or Capture Channel 1 Event Output Enable"]
     #[inline] pub fn test_mceo1(&self) -> bool {
-        self.mceo1 != 0
+        self.mceo1() != 0
     }
 
     #[doc="Match or Capture Channel 1 Event Output Enable"]
@@ -1275,7 +1275,7 @@ impl Intenclr {
 
     #[doc="Overflow Interrupt Enable"]
     #[inline] pub fn test_ovf(&self) -> bool {
-        self.ovf != 0
+        self.ovf() != 0
     }
 
     #[doc="Overflow Interrupt Enable"]
@@ -1294,7 +1294,7 @@ impl Intenclr {
 
     #[doc="Error Interrupt Enable"]
     #[inline] pub fn test_err(&self) -> bool {
-        self.err != 0
+        self.err() != 0
     }
 
     #[doc="Error Interrupt Enable"]
@@ -1313,7 +1313,7 @@ impl Intenclr {
 
     #[doc="Synchronization Ready Interrupt Enable"]
     #[inline] pub fn test_syncrdy(&self) -> bool {
-        self.syncrdy != 0
+        self.syncrdy() != 0
     }
 
     #[doc="Synchronization Ready Interrupt Enable"]
@@ -1332,7 +1332,7 @@ impl Intenclr {
 
     #[doc="Match or Capture Channel 0 Interrupt Enable"]
     #[inline] pub fn test_mc0(&self) -> bool {
-        self.mc0 != 0
+        self.mc0() != 0
     }
 
     #[doc="Match or Capture Channel 0 Interrupt Enable"]
@@ -1351,7 +1351,7 @@ impl Intenclr {
 
     #[doc="Match or Capture Channel 1 Interrupt Enable"]
     #[inline] pub fn test_mc1(&self) -> bool {
-        self.mc1 != 0
+        self.mc1() != 0
     }
 
     #[doc="Match or Capture Channel 1 Interrupt Enable"]
@@ -1395,7 +1395,7 @@ impl Intenset {
 
     #[doc="Overflow Interrupt Enable"]
     #[inline] pub fn test_ovf(&self) -> bool {
-        self.ovf != 0
+        self.ovf() != 0
     }
 
     #[doc="Overflow Interrupt Enable"]
@@ -1414,7 +1414,7 @@ impl Intenset {
 
     #[doc="Error Interrupt Enable"]
     #[inline] pub fn test_err(&self) -> bool {
-        self.err != 0
+        self.err() != 0
     }
 
     #[doc="Error Interrupt Enable"]
@@ -1433,7 +1433,7 @@ impl Intenset {
 
     #[doc="Synchronization Ready Interrupt Enable"]
     #[inline] pub fn test_syncrdy(&self) -> bool {
-        self.syncrdy != 0
+        self.syncrdy() != 0
     }
 
     #[doc="Synchronization Ready Interrupt Enable"]
@@ -1452,7 +1452,7 @@ impl Intenset {
 
     #[doc="Match or Capture Channel 0 Interrupt Enable"]
     #[inline] pub fn test_mc0(&self) -> bool {
-        self.mc0 != 0
+        self.mc0() != 0
     }
 
     #[doc="Match or Capture Channel 0 Interrupt Enable"]
@@ -1471,7 +1471,7 @@ impl Intenset {
 
     #[doc="Match or Capture Channel 1 Interrupt Enable"]
     #[inline] pub fn test_mc1(&self) -> bool {
-        self.mc1 != 0
+        self.mc1() != 0
     }
 
     #[doc="Match or Capture Channel 1 Interrupt Enable"]
@@ -1515,7 +1515,7 @@ impl Intflag {
 
     #[doc="Overflow"]
     #[inline] pub fn test_ovf(&self) -> bool {
-        self.ovf != 0
+        self.ovf() != 0
     }
 
     #[doc="Overflow"]
@@ -1534,7 +1534,7 @@ impl Intflag {
 
     #[doc="Error"]
     #[inline] pub fn test_err(&self) -> bool {
-        self.err != 0
+        self.err() != 0
     }
 
     #[doc="Error"]
@@ -1553,7 +1553,7 @@ impl Intflag {
 
     #[doc="Synchronization Ready"]
     #[inline] pub fn test_syncrdy(&self) -> bool {
-        self.syncrdy != 0
+        self.syncrdy() != 0
     }
 
     #[doc="Synchronization Ready"]
@@ -1572,7 +1572,7 @@ impl Intflag {
 
     #[doc="Match or Capture Channel 0"]
     #[inline] pub fn test_mc0(&self) -> bool {
-        self.mc0 != 0
+        self.mc0() != 0
     }
 
     #[doc="Match or Capture Channel 0"]
@@ -1591,7 +1591,7 @@ impl Intflag {
 
     #[doc="Match or Capture Channel 1"]
     #[inline] pub fn test_mc1(&self) -> bool {
-        self.mc1 != 0
+        self.mc1() != 0
     }
 
     #[doc="Match or Capture Channel 1"]
@@ -1635,7 +1635,7 @@ impl Readreq {
 
     #[doc="Address"]
     #[inline] pub fn test_addr(&self) -> bool {
-        self.addr != 0
+        self.addr() != 0
     }
 
     #[doc="Address"]
@@ -1654,7 +1654,7 @@ impl Readreq {
 
     #[doc="Read Continuously"]
     #[inline] pub fn test_rcont(&self) -> bool {
-        self.rcont != 0
+        self.rcont() != 0
     }
 
     #[doc="Read Continuously"]
@@ -1673,7 +1673,7 @@ impl Readreq {
 
     #[doc="Read Request"]
     #[inline] pub fn test_rreq(&self) -> bool {
-        self.rreq != 0
+        self.rreq() != 0
     }
 
     #[doc="Read Request"]
@@ -1715,7 +1715,7 @@ impl Status {
 
     #[doc="Stop"]
     #[inline] pub fn test_stop(&self) -> bool {
-        self.stop != 0
+        self.stop() != 0
     }
 
     #[doc="Stop"]
@@ -1734,7 +1734,7 @@ impl Status {
 
     #[doc="Slave"]
     #[inline] pub fn test_slave(&self) -> bool {
-        self.slave != 0
+        self.slave() != 0
     }
 
     #[doc="Slave"]
@@ -1753,7 +1753,7 @@ impl Status {
 
     #[doc="Synchronization Busy"]
     #[inline] pub fn test_syncbusy(&self) -> bool {
-        self.syncbusy != 0
+        self.syncbusy() != 0
     }
 
     #[doc="Synchronization Busy"]
@@ -2266,7 +2266,7 @@ impl Cc {
 
     #[doc="Compare/Capture Value"]
     #[inline] pub fn test_cc(&self) -> bool {
-        self.cc != 0
+        self.cc() != 0
     }
 
     #[doc="Compare/Capture Value"]
@@ -2306,7 +2306,7 @@ impl Count {
 
     #[doc="Count Value"]
     #[inline] pub fn test_count(&self) -> bool {
-        self.count != 0
+        self.count() != 0
     }
 
     #[doc="Count Value"]
@@ -2346,7 +2346,7 @@ impl Ctrla {
 
     #[doc="Software Reset"]
     #[inline] pub fn test_swrst(&self) -> bool {
-        self.swrst != 0
+        self.swrst() != 0
     }
 
     #[doc="Software Reset"]
@@ -2365,7 +2365,7 @@ impl Ctrla {
 
     #[doc="Enable"]
     #[inline] pub fn test_enable(&self) -> bool {
-        self.enable != 0
+        self.enable() != 0
     }
 
     #[doc="Enable"]
@@ -2384,7 +2384,7 @@ impl Ctrla {
 
     #[doc="TC Mode"]
     #[inline] pub fn test_mode(&self) -> bool {
-        self.mode != 0
+        self.mode() != 0
     }
 
     #[doc="TC Mode"]
@@ -2403,7 +2403,7 @@ impl Ctrla {
 
     #[doc="Waveform Generation Operation"]
     #[inline] pub fn test_wavegen(&self) -> bool {
-        self.wavegen != 0
+        self.wavegen() != 0
     }
 
     #[doc="Waveform Generation Operation"]
@@ -2422,7 +2422,7 @@ impl Ctrla {
 
     #[doc="Prescaler"]
     #[inline] pub fn test_prescaler(&self) -> bool {
-        self.prescaler != 0
+        self.prescaler() != 0
     }
 
     #[doc="Prescaler"]
@@ -2441,7 +2441,7 @@ impl Ctrla {
 
     #[doc="Run in Standby"]
     #[inline] pub fn test_runstdby(&self) -> bool {
-        self.runstdby != 0
+        self.runstdby() != 0
     }
 
     #[doc="Run in Standby"]
@@ -2460,7 +2460,7 @@ impl Ctrla {
 
     #[doc="Prescaler and Counter Synchronization"]
     #[inline] pub fn test_prescsync(&self) -> bool {
-        self.prescsync != 0
+        self.prescsync() != 0
     }
 
     #[doc="Prescaler and Counter Synchronization"]
@@ -2506,7 +2506,7 @@ impl Ctrlbclr {
 
     #[doc="Counter Direction"]
     #[inline] pub fn test_dir(&self) -> bool {
-        self.dir != 0
+        self.dir() != 0
     }
 
     #[doc="Counter Direction"]
@@ -2525,7 +2525,7 @@ impl Ctrlbclr {
 
     #[doc="One-Shot"]
     #[inline] pub fn test_oneshot(&self) -> bool {
-        self.oneshot != 0
+        self.oneshot() != 0
     }
 
     #[doc="One-Shot"]
@@ -2544,7 +2544,7 @@ impl Ctrlbclr {
 
     #[doc="Command"]
     #[inline] pub fn test_cmd(&self) -> bool {
-        self.cmd != 0
+        self.cmd() != 0
     }
 
     #[doc="Command"]
@@ -2586,7 +2586,7 @@ impl Ctrlbset {
 
     #[doc="Counter Direction"]
     #[inline] pub fn test_dir(&self) -> bool {
-        self.dir != 0
+        self.dir() != 0
     }
 
     #[doc="Counter Direction"]
@@ -2605,7 +2605,7 @@ impl Ctrlbset {
 
     #[doc="One-Shot"]
     #[inline] pub fn test_oneshot(&self) -> bool {
-        self.oneshot != 0
+        self.oneshot() != 0
     }
 
     #[doc="One-Shot"]
@@ -2624,7 +2624,7 @@ impl Ctrlbset {
 
     #[doc="Command"]
     #[inline] pub fn test_cmd(&self) -> bool {
-        self.cmd != 0
+        self.cmd() != 0
     }
 
     #[doc="Command"]
@@ -2666,7 +2666,7 @@ impl Ctrlc {
 
     #[doc="Output Waveform 0 Invert Enable"]
     #[inline] pub fn test_inven0(&self) -> bool {
-        self.inven0 != 0
+        self.inven0() != 0
     }
 
     #[doc="Output Waveform 0 Invert Enable"]
@@ -2685,7 +2685,7 @@ impl Ctrlc {
 
     #[doc="Output Waveform 1 Invert Enable"]
     #[inline] pub fn test_inven1(&self) -> bool {
-        self.inven1 != 0
+        self.inven1() != 0
     }
 
     #[doc="Output Waveform 1 Invert Enable"]
@@ -2704,7 +2704,7 @@ impl Ctrlc {
 
     #[doc="Capture Channel 0 Enable"]
     #[inline] pub fn test_cpten0(&self) -> bool {
-        self.cpten0 != 0
+        self.cpten0() != 0
     }
 
     #[doc="Capture Channel 0 Enable"]
@@ -2723,7 +2723,7 @@ impl Ctrlc {
 
     #[doc="Capture Channel 1 Enable"]
     #[inline] pub fn test_cpten1(&self) -> bool {
-        self.cpten1 != 0
+        self.cpten1() != 0
     }
 
     #[doc="Capture Channel 1 Enable"]
@@ -2766,7 +2766,7 @@ impl Dbgctrl {
 
     #[doc="Debug Run Mode"]
     #[inline] pub fn test_dbgrun(&self) -> bool {
-        self.dbgrun != 0
+        self.dbgrun() != 0
     }
 
     #[doc="Debug Run Mode"]
@@ -2806,7 +2806,7 @@ impl Evctrl {
 
     #[doc="Event Action"]
     #[inline] pub fn test_evact(&self) -> bool {
-        self.evact != 0
+        self.evact() != 0
     }
 
     #[doc="Event Action"]
@@ -2825,7 +2825,7 @@ impl Evctrl {
 
     #[doc="TC Inverted Event Input"]
     #[inline] pub fn test_tcinv(&self) -> bool {
-        self.tcinv != 0
+        self.tcinv() != 0
     }
 
     #[doc="TC Inverted Event Input"]
@@ -2844,7 +2844,7 @@ impl Evctrl {
 
     #[doc="TC Event Input"]
     #[inline] pub fn test_tcei(&self) -> bool {
-        self.tcei != 0
+        self.tcei() != 0
     }
 
     #[doc="TC Event Input"]
@@ -2863,7 +2863,7 @@ impl Evctrl {
 
     #[doc="Overflow/Underflow Event Output Enable"]
     #[inline] pub fn test_ovfeo(&self) -> bool {
-        self.ovfeo != 0
+        self.ovfeo() != 0
     }
 
     #[doc="Overflow/Underflow Event Output Enable"]
@@ -2882,7 +2882,7 @@ impl Evctrl {
 
     #[doc="Match or Capture Channel 0 Event Output Enable"]
     #[inline] pub fn test_mceo0(&self) -> bool {
-        self.mceo0 != 0
+        self.mceo0() != 0
     }
 
     #[doc="Match or Capture Channel 0 Event Output Enable"]
@@ -2901,7 +2901,7 @@ impl Evctrl {
 
     #[doc="Match or Capture Channel 1 Event Output Enable"]
     #[inline] pub fn test_mceo1(&self) -> bool {
-        self.mceo1 != 0
+        self.mceo1() != 0
     }
 
     #[doc="Match or Capture Channel 1 Event Output Enable"]
@@ -2946,7 +2946,7 @@ impl Intenclr {
 
     #[doc="Overflow Interrupt Enable"]
     #[inline] pub fn test_ovf(&self) -> bool {
-        self.ovf != 0
+        self.ovf() != 0
     }
 
     #[doc="Overflow Interrupt Enable"]
@@ -2965,7 +2965,7 @@ impl Intenclr {
 
     #[doc="Error Interrupt Enable"]
     #[inline] pub fn test_err(&self) -> bool {
-        self.err != 0
+        self.err() != 0
     }
 
     #[doc="Error Interrupt Enable"]
@@ -2984,7 +2984,7 @@ impl Intenclr {
 
     #[doc="Synchronization Ready Interrupt Enable"]
     #[inline] pub fn test_syncrdy(&self) -> bool {
-        self.syncrdy != 0
+        self.syncrdy() != 0
     }
 
     #[doc="Synchronization Ready Interrupt Enable"]
@@ -3003,7 +3003,7 @@ impl Intenclr {
 
     #[doc="Match or Capture Channel 0 Interrupt Enable"]
     #[inline] pub fn test_mc0(&self) -> bool {
-        self.mc0 != 0
+        self.mc0() != 0
     }
 
     #[doc="Match or Capture Channel 0 Interrupt Enable"]
@@ -3022,7 +3022,7 @@ impl Intenclr {
 
     #[doc="Match or Capture Channel 1 Interrupt Enable"]
     #[inline] pub fn test_mc1(&self) -> bool {
-        self.mc1 != 0
+        self.mc1() != 0
     }
 
     #[doc="Match or Capture Channel 1 Interrupt Enable"]
@@ -3066,7 +3066,7 @@ impl Intenset {
 
     #[doc="Overflow Interrupt Enable"]
     #[inline] pub fn test_ovf(&self) -> bool {
-        self.ovf != 0
+        self.ovf() != 0
     }
 
     #[doc="Overflow Interrupt Enable"]
@@ -3085,7 +3085,7 @@ impl Intenset {
 
     #[doc="Error Interrupt Enable"]
     #[inline] pub fn test_err(&self) -> bool {
-        self.err != 0
+        self.err() != 0
     }
 
     #[doc="Error Interrupt Enable"]
@@ -3104,7 +3104,7 @@ impl Intenset {
 
     #[doc="Synchronization Ready Interrupt Enable"]
     #[inline] pub fn test_syncrdy(&self) -> bool {
-        self.syncrdy != 0
+        self.syncrdy() != 0
     }
 
     #[doc="Synchronization Ready Interrupt Enable"]
@@ -3123,7 +3123,7 @@ impl Intenset {
 
     #[doc="Match or Capture Channel 0 Interrupt Enable"]
     #[inline] pub fn test_mc0(&self) -> bool {
-        self.mc0 != 0
+        self.mc0() != 0
     }
 
     #[doc="Match or Capture Channel 0 Interrupt Enable"]
@@ -3142,7 +3142,7 @@ impl Intenset {
 
     #[doc="Match or Capture Channel 1 Interrupt Enable"]
     #[inline] pub fn test_mc1(&self) -> bool {
-        self.mc1 != 0
+        self.mc1() != 0
     }
 
     #[doc="Match or Capture Channel 1 Interrupt Enable"]
@@ -3186,7 +3186,7 @@ impl Intflag {
 
     #[doc="Overflow"]
     #[inline] pub fn test_ovf(&self) -> bool {
-        self.ovf != 0
+        self.ovf() != 0
     }
 
     #[doc="Overflow"]
@@ -3205,7 +3205,7 @@ impl Intflag {
 
     #[doc="Error"]
     #[inline] pub fn test_err(&self) -> bool {
-        self.err != 0
+        self.err() != 0
     }
 
     #[doc="Error"]
@@ -3224,7 +3224,7 @@ impl Intflag {
 
     #[doc="Synchronization Ready"]
     #[inline] pub fn test_syncrdy(&self) -> bool {
-        self.syncrdy != 0
+        self.syncrdy() != 0
     }
 
     #[doc="Synchronization Ready"]
@@ -3243,7 +3243,7 @@ impl Intflag {
 
     #[doc="Match or Capture Channel 0"]
     #[inline] pub fn test_mc0(&self) -> bool {
-        self.mc0 != 0
+        self.mc0() != 0
     }
 
     #[doc="Match or Capture Channel 0"]
@@ -3262,7 +3262,7 @@ impl Intflag {
 
     #[doc="Match or Capture Channel 1"]
     #[inline] pub fn test_mc1(&self) -> bool {
-        self.mc1 != 0
+        self.mc1() != 0
     }
 
     #[doc="Match or Capture Channel 1"]
@@ -3306,7 +3306,7 @@ impl Readreq {
 
     #[doc="Address"]
     #[inline] pub fn test_addr(&self) -> bool {
-        self.addr != 0
+        self.addr() != 0
     }
 
     #[doc="Address"]
@@ -3325,7 +3325,7 @@ impl Readreq {
 
     #[doc="Read Continuously"]
     #[inline] pub fn test_rcont(&self) -> bool {
-        self.rcont != 0
+        self.rcont() != 0
     }
 
     #[doc="Read Continuously"]
@@ -3344,7 +3344,7 @@ impl Readreq {
 
     #[doc="Read Request"]
     #[inline] pub fn test_rreq(&self) -> bool {
-        self.rreq != 0
+        self.rreq() != 0
     }
 
     #[doc="Read Request"]
@@ -3386,7 +3386,7 @@ impl Status {
 
     #[doc="Stop"]
     #[inline] pub fn test_stop(&self) -> bool {
-        self.stop != 0
+        self.stop() != 0
     }
 
     #[doc="Stop"]
@@ -3405,7 +3405,7 @@ impl Status {
 
     #[doc="Slave"]
     #[inline] pub fn test_slave(&self) -> bool {
-        self.slave != 0
+        self.slave() != 0
     }
 
     #[doc="Slave"]
@@ -3424,7 +3424,7 @@ impl Status {
 
     #[doc="Synchronization Busy"]
     #[inline] pub fn test_syncbusy(&self) -> bool {
-        self.syncbusy != 0
+        self.syncbusy() != 0
     }
 
     #[doc="Synchronization Busy"]
@@ -3937,7 +3937,7 @@ impl Cc {
 
     #[doc="Compare/Capture Value"]
     #[inline] pub fn test_cc(&self) -> bool {
-        self.cc != 0
+        self.cc() != 0
     }
 
     #[doc="Compare/Capture Value"]
@@ -3976,7 +3976,7 @@ impl Count {
 
     #[doc="Count Value"]
     #[inline] pub fn test_count(&self) -> bool {
-        self.count != 0
+        self.count() != 0
     }
 
     #[doc="Count Value"]
@@ -4015,7 +4015,7 @@ impl Ctrla {
 
     #[doc="Software Reset"]
     #[inline] pub fn test_swrst(&self) -> bool {
-        self.swrst != 0
+        self.swrst() != 0
     }
 
     #[doc="Software Reset"]
@@ -4034,7 +4034,7 @@ impl Ctrla {
 
     #[doc="Enable"]
     #[inline] pub fn test_enable(&self) -> bool {
-        self.enable != 0
+        self.enable() != 0
     }
 
     #[doc="Enable"]
@@ -4053,7 +4053,7 @@ impl Ctrla {
 
     #[doc="TC Mode"]
     #[inline] pub fn test_mode(&self) -> bool {
-        self.mode != 0
+        self.mode() != 0
     }
 
     #[doc="TC Mode"]
@@ -4072,7 +4072,7 @@ impl Ctrla {
 
     #[doc="Waveform Generation Operation"]
     #[inline] pub fn test_wavegen(&self) -> bool {
-        self.wavegen != 0
+        self.wavegen() != 0
     }
 
     #[doc="Waveform Generation Operation"]
@@ -4091,7 +4091,7 @@ impl Ctrla {
 
     #[doc="Prescaler"]
     #[inline] pub fn test_prescaler(&self) -> bool {
-        self.prescaler != 0
+        self.prescaler() != 0
     }
 
     #[doc="Prescaler"]
@@ -4110,7 +4110,7 @@ impl Ctrla {
 
     #[doc="Run in Standby"]
     #[inline] pub fn test_runstdby(&self) -> bool {
-        self.runstdby != 0
+        self.runstdby() != 0
     }
 
     #[doc="Run in Standby"]
@@ -4129,7 +4129,7 @@ impl Ctrla {
 
     #[doc="Prescaler and Counter Synchronization"]
     #[inline] pub fn test_prescsync(&self) -> bool {
-        self.prescsync != 0
+        self.prescsync() != 0
     }
 
     #[doc="Prescaler and Counter Synchronization"]
@@ -4175,7 +4175,7 @@ impl Ctrlbclr {
 
     #[doc="Counter Direction"]
     #[inline] pub fn test_dir(&self) -> bool {
-        self.dir != 0
+        self.dir() != 0
     }
 
     #[doc="Counter Direction"]
@@ -4194,7 +4194,7 @@ impl Ctrlbclr {
 
     #[doc="One-Shot"]
     #[inline] pub fn test_oneshot(&self) -> bool {
-        self.oneshot != 0
+        self.oneshot() != 0
     }
 
     #[doc="One-Shot"]
@@ -4213,7 +4213,7 @@ impl Ctrlbclr {
 
     #[doc="Command"]
     #[inline] pub fn test_cmd(&self) -> bool {
-        self.cmd != 0
+        self.cmd() != 0
     }
 
     #[doc="Command"]
@@ -4255,7 +4255,7 @@ impl Ctrlbset {
 
     #[doc="Counter Direction"]
     #[inline] pub fn test_dir(&self) -> bool {
-        self.dir != 0
+        self.dir() != 0
     }
 
     #[doc="Counter Direction"]
@@ -4274,7 +4274,7 @@ impl Ctrlbset {
 
     #[doc="One-Shot"]
     #[inline] pub fn test_oneshot(&self) -> bool {
-        self.oneshot != 0
+        self.oneshot() != 0
     }
 
     #[doc="One-Shot"]
@@ -4293,7 +4293,7 @@ impl Ctrlbset {
 
     #[doc="Command"]
     #[inline] pub fn test_cmd(&self) -> bool {
-        self.cmd != 0
+        self.cmd() != 0
     }
 
     #[doc="Command"]
@@ -4335,7 +4335,7 @@ impl Ctrlc {
 
     #[doc="Output Waveform 0 Invert Enable"]
     #[inline] pub fn test_inven0(&self) -> bool {
-        self.inven0 != 0
+        self.inven0() != 0
     }
 
     #[doc="Output Waveform 0 Invert Enable"]
@@ -4354,7 +4354,7 @@ impl Ctrlc {
 
     #[doc="Output Waveform 1 Invert Enable"]
     #[inline] pub fn test_inven1(&self) -> bool {
-        self.inven1 != 0
+        self.inven1() != 0
     }
 
     #[doc="Output Waveform 1 Invert Enable"]
@@ -4373,7 +4373,7 @@ impl Ctrlc {
 
     #[doc="Capture Channel 0 Enable"]
     #[inline] pub fn test_cpten0(&self) -> bool {
-        self.cpten0 != 0
+        self.cpten0() != 0
     }
 
     #[doc="Capture Channel 0 Enable"]
@@ -4392,7 +4392,7 @@ impl Ctrlc {
 
     #[doc="Capture Channel 1 Enable"]
     #[inline] pub fn test_cpten1(&self) -> bool {
-        self.cpten1 != 0
+        self.cpten1() != 0
     }
 
     #[doc="Capture Channel 1 Enable"]
@@ -4435,7 +4435,7 @@ impl Dbgctrl {
 
     #[doc="Debug Run Mode"]
     #[inline] pub fn test_dbgrun(&self) -> bool {
-        self.dbgrun != 0
+        self.dbgrun() != 0
     }
 
     #[doc="Debug Run Mode"]
@@ -4475,7 +4475,7 @@ impl Evctrl {
 
     #[doc="Event Action"]
     #[inline] pub fn test_evact(&self) -> bool {
-        self.evact != 0
+        self.evact() != 0
     }
 
     #[doc="Event Action"]
@@ -4494,7 +4494,7 @@ impl Evctrl {
 
     #[doc="TC Inverted Event Input"]
     #[inline] pub fn test_tcinv(&self) -> bool {
-        self.tcinv != 0
+        self.tcinv() != 0
     }
 
     #[doc="TC Inverted Event Input"]
@@ -4513,7 +4513,7 @@ impl Evctrl {
 
     #[doc="TC Event Input"]
     #[inline] pub fn test_tcei(&self) -> bool {
-        self.tcei != 0
+        self.tcei() != 0
     }
 
     #[doc="TC Event Input"]
@@ -4532,7 +4532,7 @@ impl Evctrl {
 
     #[doc="Overflow/Underflow Event Output Enable"]
     #[inline] pub fn test_ovfeo(&self) -> bool {
-        self.ovfeo != 0
+        self.ovfeo() != 0
     }
 
     #[doc="Overflow/Underflow Event Output Enable"]
@@ -4551,7 +4551,7 @@ impl Evctrl {
 
     #[doc="Match or Capture Channel 0 Event Output Enable"]
     #[inline] pub fn test_mceo0(&self) -> bool {
-        self.mceo0 != 0
+        self.mceo0() != 0
     }
 
     #[doc="Match or Capture Channel 0 Event Output Enable"]
@@ -4570,7 +4570,7 @@ impl Evctrl {
 
     #[doc="Match or Capture Channel 1 Event Output Enable"]
     #[inline] pub fn test_mceo1(&self) -> bool {
-        self.mceo1 != 0
+        self.mceo1() != 0
     }
 
     #[doc="Match or Capture Channel 1 Event Output Enable"]
@@ -4615,7 +4615,7 @@ impl Intenclr {
 
     #[doc="Overflow Interrupt Enable"]
     #[inline] pub fn test_ovf(&self) -> bool {
-        self.ovf != 0
+        self.ovf() != 0
     }
 
     #[doc="Overflow Interrupt Enable"]
@@ -4634,7 +4634,7 @@ impl Intenclr {
 
     #[doc="Error Interrupt Enable"]
     #[inline] pub fn test_err(&self) -> bool {
-        self.err != 0
+        self.err() != 0
     }
 
     #[doc="Error Interrupt Enable"]
@@ -4653,7 +4653,7 @@ impl Intenclr {
 
     #[doc="Synchronization Ready Interrupt Enable"]
     #[inline] pub fn test_syncrdy(&self) -> bool {
-        self.syncrdy != 0
+        self.syncrdy() != 0
     }
 
     #[doc="Synchronization Ready Interrupt Enable"]
@@ -4672,7 +4672,7 @@ impl Intenclr {
 
     #[doc="Match or Capture Channel 0 Interrupt Enable"]
     #[inline] pub fn test_mc0(&self) -> bool {
-        self.mc0 != 0
+        self.mc0() != 0
     }
 
     #[doc="Match or Capture Channel 0 Interrupt Enable"]
@@ -4691,7 +4691,7 @@ impl Intenclr {
 
     #[doc="Match or Capture Channel 1 Interrupt Enable"]
     #[inline] pub fn test_mc1(&self) -> bool {
-        self.mc1 != 0
+        self.mc1() != 0
     }
 
     #[doc="Match or Capture Channel 1 Interrupt Enable"]
@@ -4735,7 +4735,7 @@ impl Intenset {
 
     #[doc="Overflow Interrupt Enable"]
     #[inline] pub fn test_ovf(&self) -> bool {
-        self.ovf != 0
+        self.ovf() != 0
     }
 
     #[doc="Overflow Interrupt Enable"]
@@ -4754,7 +4754,7 @@ impl Intenset {
 
     #[doc="Error Interrupt Enable"]
     #[inline] pub fn test_err(&self) -> bool {
-        self.err != 0
+        self.err() != 0
     }
 
     #[doc="Error Interrupt Enable"]
@@ -4773,7 +4773,7 @@ impl Intenset {
 
     #[doc="Synchronization Ready Interrupt Enable"]
     #[inline] pub fn test_syncrdy(&self) -> bool {
-        self.syncrdy != 0
+        self.syncrdy() != 0
     }
 
     #[doc="Synchronization Ready Interrupt Enable"]
@@ -4792,7 +4792,7 @@ impl Intenset {
 
     #[doc="Match or Capture Channel 0 Interrupt Enable"]
     #[inline] pub fn test_mc0(&self) -> bool {
-        self.mc0 != 0
+        self.mc0() != 0
     }
 
     #[doc="Match or Capture Channel 0 Interrupt Enable"]
@@ -4811,7 +4811,7 @@ impl Intenset {
 
     #[doc="Match or Capture Channel 1 Interrupt Enable"]
     #[inline] pub fn test_mc1(&self) -> bool {
-        self.mc1 != 0
+        self.mc1() != 0
     }
 
     #[doc="Match or Capture Channel 1 Interrupt Enable"]
@@ -4855,7 +4855,7 @@ impl Intflag {
 
     #[doc="Overflow"]
     #[inline] pub fn test_ovf(&self) -> bool {
-        self.ovf != 0
+        self.ovf() != 0
     }
 
     #[doc="Overflow"]
@@ -4874,7 +4874,7 @@ impl Intflag {
 
     #[doc="Error"]
     #[inline] pub fn test_err(&self) -> bool {
-        self.err != 0
+        self.err() != 0
     }
 
     #[doc="Error"]
@@ -4893,7 +4893,7 @@ impl Intflag {
 
     #[doc="Synchronization Ready"]
     #[inline] pub fn test_syncrdy(&self) -> bool {
-        self.syncrdy != 0
+        self.syncrdy() != 0
     }
 
     #[doc="Synchronization Ready"]
@@ -4912,7 +4912,7 @@ impl Intflag {
 
     #[doc="Match or Capture Channel 0"]
     #[inline] pub fn test_mc0(&self) -> bool {
-        self.mc0 != 0
+        self.mc0() != 0
     }
 
     #[doc="Match or Capture Channel 0"]
@@ -4931,7 +4931,7 @@ impl Intflag {
 
     #[doc="Match or Capture Channel 1"]
     #[inline] pub fn test_mc1(&self) -> bool {
-        self.mc1 != 0
+        self.mc1() != 0
     }
 
     #[doc="Match or Capture Channel 1"]
@@ -4975,7 +4975,7 @@ impl Readreq {
 
     #[doc="Address"]
     #[inline] pub fn test_addr(&self) -> bool {
-        self.addr != 0
+        self.addr() != 0
     }
 
     #[doc="Address"]
@@ -4994,7 +4994,7 @@ impl Readreq {
 
     #[doc="Read Continuously"]
     #[inline] pub fn test_rcont(&self) -> bool {
-        self.rcont != 0
+        self.rcont() != 0
     }
 
     #[doc="Read Continuously"]
@@ -5013,7 +5013,7 @@ impl Readreq {
 
     #[doc="Read Request"]
     #[inline] pub fn test_rreq(&self) -> bool {
-        self.rreq != 0
+        self.rreq() != 0
     }
 
     #[doc="Read Request"]
@@ -5055,7 +5055,7 @@ impl Status {
 
     #[doc="Stop"]
     #[inline] pub fn test_stop(&self) -> bool {
-        self.stop != 0
+        self.stop() != 0
     }
 
     #[doc="Stop"]
@@ -5074,7 +5074,7 @@ impl Status {
 
     #[doc="Slave"]
     #[inline] pub fn test_slave(&self) -> bool {
-        self.slave != 0
+        self.slave() != 0
     }
 
     #[doc="Slave"]
@@ -5093,7 +5093,7 @@ impl Status {
 
     #[doc="Synchronization Busy"]
     #[inline] pub fn test_syncbusy(&self) -> bool {
-        self.syncbusy != 0
+        self.syncbusy() != 0
     }
 
     #[doc="Synchronization Busy"]

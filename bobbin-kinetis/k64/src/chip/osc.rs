@@ -56,7 +56,7 @@ impl Cr {
 
     #[doc="Oscillator 16 pF Capacitor Load Configure"]
     #[inline] pub fn test_sc16p(&self) -> bool {
-        self.sc16p != 0
+        self.sc16p() != 0
     }
 
     #[doc="Oscillator 16 pF Capacitor Load Configure"]
@@ -75,7 +75,7 @@ impl Cr {
 
     #[doc="Oscillator 8 pF Capacitor Load Configure"]
     #[inline] pub fn test_sc8p(&self) -> bool {
-        self.sc8p != 0
+        self.sc8p() != 0
     }
 
     #[doc="Oscillator 8 pF Capacitor Load Configure"]
@@ -94,7 +94,7 @@ impl Cr {
 
     #[doc="Oscillator 4 pF Capacitor Load Configure"]
     #[inline] pub fn test_sc4p(&self) -> bool {
-        self.sc4p != 0
+        self.sc4p() != 0
     }
 
     #[doc="Oscillator 4 pF Capacitor Load Configure"]
@@ -113,7 +113,7 @@ impl Cr {
 
     #[doc="Oscillator 2 pF Capacitor Load Configure"]
     #[inline] pub fn test_sc2p(&self) -> bool {
-        self.sc2p != 0
+        self.sc2p() != 0
     }
 
     #[doc="Oscillator 2 pF Capacitor Load Configure"]
@@ -132,7 +132,7 @@ impl Cr {
 
     #[doc="External Reference Stop Enable"]
     #[inline] pub fn test_erefsten(&self) -> bool {
-        self.erefsten != 0
+        self.erefsten() != 0
     }
 
     #[doc="External Reference Stop Enable"]
@@ -151,7 +151,7 @@ impl Cr {
 
     #[doc="External Reference Enable"]
     #[inline] pub fn test_erclken(&self) -> bool {
-        self.erclken != 0
+        self.erclken() != 0
     }
 
     #[doc="External Reference Enable"]

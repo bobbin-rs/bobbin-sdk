@@ -745,7 +745,7 @@ impl Active {
 
     #[doc="Active Channel ID"]
     #[inline] pub fn test_id(&self) -> bool {
-        self.id != 0
+        self.id() != 0
     }
 
     #[doc="Active Channel ID"]
@@ -764,7 +764,7 @@ impl Active {
 
     #[doc="Active Channel Busy"]
     #[inline] pub fn test_abusy(&self) -> bool {
-        self.abusy != 0
+        self.abusy() != 0
     }
 
     #[doc="Active Channel Busy"]
@@ -783,7 +783,7 @@ impl Active {
 
     #[doc="Active Channel Block Transfer Count"]
     #[inline] pub fn test_btcnt(&self) -> bool {
-        self.btcnt != 0
+        self.btcnt() != 0
     }
 
     #[doc="Active Channel Block Transfer Count"]
@@ -829,7 +829,7 @@ impl Baseaddr {
 
     #[doc="Descriptor Memory Base Address"]
     #[inline] pub fn test_baseaddr(&self) -> bool {
-        self.baseaddr != 0
+        self.baseaddr() != 0
     }
 
     #[doc="Descriptor Memory Base Address"]
@@ -925,7 +925,7 @@ impl Chctrla {
 
     #[doc="Channel Software Reset"]
     #[inline] pub fn test_swrst(&self) -> bool {
-        self.swrst != 0
+        self.swrst() != 0
     }
 
     #[doc="Channel Software Reset"]
@@ -944,7 +944,7 @@ impl Chctrla {
 
     #[doc="Channel Enable"]
     #[inline] pub fn test_enable(&self) -> bool {
-        self.enable != 0
+        self.enable() != 0
     }
 
     #[doc="Channel Enable"]
@@ -985,7 +985,7 @@ impl Chctrlb {
 
     #[doc="Event Input Action"]
     #[inline] pub fn test_evact(&self) -> bool {
-        self.evact != 0
+        self.evact() != 0
     }
 
     #[doc="Event Input Action"]
@@ -1004,7 +1004,7 @@ impl Chctrlb {
 
     #[doc="Channel Event Input Enable"]
     #[inline] pub fn test_evie(&self) -> bool {
-        self.evie != 0
+        self.evie() != 0
     }
 
     #[doc="Channel Event Input Enable"]
@@ -1023,7 +1023,7 @@ impl Chctrlb {
 
     #[doc="Channel Event Output Enable"]
     #[inline] pub fn test_evoe(&self) -> bool {
-        self.evoe != 0
+        self.evoe() != 0
     }
 
     #[doc="Channel Event Output Enable"]
@@ -1042,7 +1042,7 @@ impl Chctrlb {
 
     #[doc="Channel Arbitration Level"]
     #[inline] pub fn test_lvl(&self) -> bool {
-        self.lvl != 0
+        self.lvl() != 0
     }
 
     #[doc="Channel Arbitration Level"]
@@ -1061,7 +1061,7 @@ impl Chctrlb {
 
     #[doc="Peripheral Trigger Source"]
     #[inline] pub fn test_trigsrc(&self) -> bool {
-        self.trigsrc != 0
+        self.trigsrc() != 0
     }
 
     #[doc="Peripheral Trigger Source"]
@@ -1080,7 +1080,7 @@ impl Chctrlb {
 
     #[doc="Trigger Action"]
     #[inline] pub fn test_trigact(&self) -> bool {
-        self.trigact != 0
+        self.trigact() != 0
     }
 
     #[doc="Trigger Action"]
@@ -1099,7 +1099,7 @@ impl Chctrlb {
 
     #[doc="Software Command"]
     #[inline] pub fn test_cmd(&self) -> bool {
-        self.cmd != 0
+        self.cmd() != 0
     }
 
     #[doc="Software Command"]
@@ -1145,7 +1145,7 @@ impl Chid {
 
     #[doc="Channel ID"]
     #[inline] pub fn test_id(&self) -> bool {
-        self.id != 0
+        self.id() != 0
     }
 
     #[doc="Channel ID"]
@@ -1185,7 +1185,7 @@ impl Chintenclr {
 
     #[doc="Transfer Error Interrupt Enable"]
     #[inline] pub fn test_terr(&self) -> bool {
-        self.terr != 0
+        self.terr() != 0
     }
 
     #[doc="Transfer Error Interrupt Enable"]
@@ -1204,7 +1204,7 @@ impl Chintenclr {
 
     #[doc="Transfer Complete Interrupt Enable"]
     #[inline] pub fn test_tcmpl(&self) -> bool {
-        self.tcmpl != 0
+        self.tcmpl() != 0
     }
 
     #[doc="Transfer Complete Interrupt Enable"]
@@ -1223,7 +1223,7 @@ impl Chintenclr {
 
     #[doc="Channel Suspend Interrupt Enable"]
     #[inline] pub fn test_susp(&self) -> bool {
-        self.susp != 0
+        self.susp() != 0
     }
 
     #[doc="Channel Suspend Interrupt Enable"]
@@ -1265,7 +1265,7 @@ impl Chintenset {
 
     #[doc="Transfer Error Interrupt Enable"]
     #[inline] pub fn test_terr(&self) -> bool {
-        self.terr != 0
+        self.terr() != 0
     }
 
     #[doc="Transfer Error Interrupt Enable"]
@@ -1284,7 +1284,7 @@ impl Chintenset {
 
     #[doc="Transfer Complete Interrupt Enable"]
     #[inline] pub fn test_tcmpl(&self) -> bool {
-        self.tcmpl != 0
+        self.tcmpl() != 0
     }
 
     #[doc="Transfer Complete Interrupt Enable"]
@@ -1303,7 +1303,7 @@ impl Chintenset {
 
     #[doc="Channel Suspend Interrupt Enable"]
     #[inline] pub fn test_susp(&self) -> bool {
-        self.susp != 0
+        self.susp() != 0
     }
 
     #[doc="Channel Suspend Interrupt Enable"]
@@ -1345,7 +1345,7 @@ impl Chintflag {
 
     #[doc="Transfer Error"]
     #[inline] pub fn test_terr(&self) -> bool {
-        self.terr != 0
+        self.terr() != 0
     }
 
     #[doc="Transfer Error"]
@@ -1364,7 +1364,7 @@ impl Chintflag {
 
     #[doc="Transfer Complete"]
     #[inline] pub fn test_tcmpl(&self) -> bool {
-        self.tcmpl != 0
+        self.tcmpl() != 0
     }
 
     #[doc="Transfer Complete"]
@@ -1383,7 +1383,7 @@ impl Chintflag {
 
     #[doc="Channel Suspend"]
     #[inline] pub fn test_susp(&self) -> bool {
-        self.susp != 0
+        self.susp() != 0
     }
 
     #[doc="Channel Suspend"]
@@ -1425,7 +1425,7 @@ impl Chstatus {
 
     #[doc="Channel Pending"]
     #[inline] pub fn test_pend(&self) -> bool {
-        self.pend != 0
+        self.pend() != 0
     }
 
     #[doc="Channel Pending"]
@@ -1444,7 +1444,7 @@ impl Chstatus {
 
     #[doc="Channel Busy"]
     #[inline] pub fn test_busy(&self) -> bool {
-        self.busy != 0
+        self.busy() != 0
     }
 
     #[doc="Channel Busy"]
@@ -1463,7 +1463,7 @@ impl Chstatus {
 
     #[doc="Fetch Error"]
     #[inline] pub fn test_ferr(&self) -> bool {
-        self.ferr != 0
+        self.ferr() != 0
     }
 
     #[doc="Fetch Error"]
@@ -1505,7 +1505,7 @@ impl Crcchksum {
 
     #[doc="CRC Checksum"]
     #[inline] pub fn test_crcchksum(&self) -> bool {
-        self.crcchksum != 0
+        self.crcchksum() != 0
     }
 
     #[doc="CRC Checksum"]
@@ -1544,7 +1544,7 @@ impl Crcctrl {
 
     #[doc="CRC Beat Size"]
     #[inline] pub fn test_crcbeatsize(&self) -> bool {
-        self.crcbeatsize != 0
+        self.crcbeatsize() != 0
     }
 
     #[doc="CRC Beat Size"]
@@ -1563,7 +1563,7 @@ impl Crcctrl {
 
     #[doc="CRC Polynomial Type"]
     #[inline] pub fn test_crcpoly(&self) -> bool {
-        self.crcpoly != 0
+        self.crcpoly() != 0
     }
 
     #[doc="CRC Polynomial Type"]
@@ -1582,7 +1582,7 @@ impl Crcctrl {
 
     #[doc="CRC Input Source"]
     #[inline] pub fn test_crcsrc(&self) -> bool {
-        self.crcsrc != 0
+        self.crcsrc() != 0
     }
 
     #[doc="CRC Input Source"]
@@ -1624,7 +1624,7 @@ impl Crcdatain {
 
     #[doc="CRC Data Input"]
     #[inline] pub fn test_crcdatain(&self) -> bool {
-        self.crcdatain != 0
+        self.crcdatain() != 0
     }
 
     #[doc="CRC Data Input"]
@@ -1663,7 +1663,7 @@ impl Crcstatus {
 
     #[doc="CRC Module Busy"]
     #[inline] pub fn test_crcbusy(&self) -> bool {
-        self.crcbusy != 0
+        self.crcbusy() != 0
     }
 
     #[doc="CRC Module Busy"]
@@ -1682,7 +1682,7 @@ impl Crcstatus {
 
     #[doc="CRC Zero"]
     #[inline] pub fn test_crczero(&self) -> bool {
-        self.crczero != 0
+        self.crczero() != 0
     }
 
     #[doc="CRC Zero"]
@@ -1723,7 +1723,7 @@ impl Ctrl {
 
     #[doc="Software Reset"]
     #[inline] pub fn test_swrst(&self) -> bool {
-        self.swrst != 0
+        self.swrst() != 0
     }
 
     #[doc="Software Reset"]
@@ -1742,7 +1742,7 @@ impl Ctrl {
 
     #[doc="DMA Enable"]
     #[inline] pub fn test_dmaenable(&self) -> bool {
-        self.dmaenable != 0
+        self.dmaenable() != 0
     }
 
     #[doc="DMA Enable"]
@@ -1761,7 +1761,7 @@ impl Ctrl {
 
     #[doc="CRC Enable"]
     #[inline] pub fn test_crcenable(&self) -> bool {
-        self.crcenable != 0
+        self.crcenable() != 0
     }
 
     #[doc="CRC Enable"]
@@ -1832,7 +1832,7 @@ impl Dbgctrl {
 
     #[doc="Debug Run"]
     #[inline] pub fn test_dbgrun(&self) -> bool {
-        self.dbgrun != 0
+        self.dbgrun() != 0
     }
 
     #[doc="Debug Run"]
@@ -1872,7 +1872,7 @@ impl Intpend {
 
     #[doc="Channel ID"]
     #[inline] pub fn test_id(&self) -> bool {
-        self.id != 0
+        self.id() != 0
     }
 
     #[doc="Channel ID"]
@@ -1891,7 +1891,7 @@ impl Intpend {
 
     #[doc="Transfer Error"]
     #[inline] pub fn test_terr(&self) -> bool {
-        self.terr != 0
+        self.terr() != 0
     }
 
     #[doc="Transfer Error"]
@@ -1910,7 +1910,7 @@ impl Intpend {
 
     #[doc="Transfer Complete"]
     #[inline] pub fn test_tcmpl(&self) -> bool {
-        self.tcmpl != 0
+        self.tcmpl() != 0
     }
 
     #[doc="Transfer Complete"]
@@ -1929,7 +1929,7 @@ impl Intpend {
 
     #[doc="Channel Suspend"]
     #[inline] pub fn test_susp(&self) -> bool {
-        self.susp != 0
+        self.susp() != 0
     }
 
     #[doc="Channel Suspend"]
@@ -1948,7 +1948,7 @@ impl Intpend {
 
     #[doc="Fetch Error"]
     #[inline] pub fn test_ferr(&self) -> bool {
-        self.ferr != 0
+        self.ferr() != 0
     }
 
     #[doc="Fetch Error"]
@@ -1967,7 +1967,7 @@ impl Intpend {
 
     #[doc="Busy"]
     #[inline] pub fn test_busy(&self) -> bool {
-        self.busy != 0
+        self.busy() != 0
     }
 
     #[doc="Busy"]
@@ -1986,7 +1986,7 @@ impl Intpend {
 
     #[doc="Pending"]
     #[inline] pub fn test_pend(&self) -> bool {
-        self.pend != 0
+        self.pend() != 0
     }
 
     #[doc="Pending"]
@@ -2281,7 +2281,7 @@ impl Wrbaddr {
 
     #[doc="Write-Back Memory Base Address"]
     #[inline] pub fn test_wrbaddr(&self) -> bool {
-        self.wrbaddr != 0
+        self.wrbaddr() != 0
     }
 
     #[doc="Write-Back Memory Base Address"]
@@ -2462,7 +2462,7 @@ impl Btctrl {
 
     #[doc="Descriptor Valid"]
     #[inline] pub fn test_valid(&self) -> bool {
-        self.valid != 0
+        self.valid() != 0
     }
 
     #[doc="Descriptor Valid"]
@@ -2481,7 +2481,7 @@ impl Btctrl {
 
     #[doc="Event Output Selection"]
     #[inline] pub fn test_evosel(&self) -> bool {
-        self.evosel != 0
+        self.evosel() != 0
     }
 
     #[doc="Event Output Selection"]
@@ -2500,7 +2500,7 @@ impl Btctrl {
 
     #[doc="Block Action"]
     #[inline] pub fn test_blockact(&self) -> bool {
-        self.blockact != 0
+        self.blockact() != 0
     }
 
     #[doc="Block Action"]
@@ -2519,7 +2519,7 @@ impl Btctrl {
 
     #[doc="Beat Size"]
     #[inline] pub fn test_beatsize(&self) -> bool {
-        self.beatsize != 0
+        self.beatsize() != 0
     }
 
     #[doc="Beat Size"]
@@ -2538,7 +2538,7 @@ impl Btctrl {
 
     #[doc="Source Address Increment Enable"]
     #[inline] pub fn test_srcinc(&self) -> bool {
-        self.srcinc != 0
+        self.srcinc() != 0
     }
 
     #[doc="Source Address Increment Enable"]
@@ -2557,7 +2557,7 @@ impl Btctrl {
 
     #[doc="Destination Address Increment Enable"]
     #[inline] pub fn test_dstinc(&self) -> bool {
-        self.dstinc != 0
+        self.dstinc() != 0
     }
 
     #[doc="Destination Address Increment Enable"]
@@ -2576,7 +2576,7 @@ impl Btctrl {
 
     #[doc="Step Selection"]
     #[inline] pub fn test_stepsel(&self) -> bool {
-        self.stepsel != 0
+        self.stepsel() != 0
     }
 
     #[doc="Step Selection"]
@@ -2595,7 +2595,7 @@ impl Btctrl {
 
     #[doc="Address Increment Step Size"]
     #[inline] pub fn test_stepsize(&self) -> bool {
-        self.stepsize != 0
+        self.stepsize() != 0
     }
 
     #[doc="Address Increment Step Size"]
@@ -2642,7 +2642,7 @@ impl Btcnt {
 
     #[doc="Block Transfer Count"]
     #[inline] pub fn test_btcnt(&self) -> bool {
-        self.btcnt != 0
+        self.btcnt() != 0
     }
 
     #[doc="Block Transfer Count"]
@@ -2682,7 +2682,7 @@ impl Srcaddr {
 
     #[doc="Transfer Source Address"]
     #[inline] pub fn test_srcaddr(&self) -> bool {
-        self.srcaddr != 0
+        self.srcaddr() != 0
     }
 
     #[doc="Transfer Source Address"]
@@ -2721,7 +2721,7 @@ impl Dstaddr {
 
     #[doc="Transfer Destination Address"]
     #[inline] pub fn test_dstaddr(&self) -> bool {
-        self.dstaddr != 0
+        self.dstaddr() != 0
     }
 
     #[doc="Transfer Destination Address"]
@@ -2760,7 +2760,7 @@ impl Descaddr {
 
     #[doc="Next Descriptor Address"]
     #[inline] pub fn test_descaddr(&self) -> bool {
-        self.descaddr != 0
+        self.descaddr() != 0
     }
 
     #[doc="Next Descriptor Address"]

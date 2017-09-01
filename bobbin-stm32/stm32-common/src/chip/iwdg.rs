@@ -164,7 +164,7 @@ impl Kr {
 
     #[doc="Key value (write only, read 0x0000)"]
     #[inline] pub fn test_key(&self) -> bool {
-        self.key != 0
+        self.key() != 0
     }
 
     #[doc="Key value (write only, read 0x0000)"]
@@ -204,7 +204,7 @@ impl Pr {
 
     #[doc="Prescaler divider"]
     #[inline] pub fn test_pr(&self) -> bool {
-        self.pr != 0
+        self.pr() != 0
     }
 
     #[doc="Prescaler divider"]
@@ -244,7 +244,7 @@ impl Rlr {
 
     #[doc="Watchdog counter reload value"]
     #[inline] pub fn test_rl(&self) -> bool {
-        self.rl != 0
+        self.rl() != 0
     }
 
     #[doc="Watchdog counter reload value"]
@@ -284,7 +284,7 @@ impl Sr {
 
     #[doc="Watchdog counter window value update"]
     #[inline] pub fn test_wvu(&self) -> bool {
-        self.wvu != 0
+        self.wvu() != 0
     }
 
     #[doc="Watchdog counter window value update"]
@@ -303,7 +303,7 @@ impl Sr {
 
     #[doc="Watchdog counter reload value update"]
     #[inline] pub fn test_rvu(&self) -> bool {
-        self.rvu != 0
+        self.rvu() != 0
     }
 
     #[doc="Watchdog counter reload value update"]
@@ -322,7 +322,7 @@ impl Sr {
 
     #[doc="Watchdog prescaler value update"]
     #[inline] pub fn test_pvu(&self) -> bool {
-        self.pvu != 0
+        self.pvu() != 0
     }
 
     #[doc="Watchdog prescaler value update"]
@@ -364,7 +364,7 @@ impl Winr {
 
     #[doc="Watchdog counter window value"]
     #[inline] pub fn test_win(&self) -> bool {
-        self.win != 0
+        self.win() != 0
     }
 
     #[doc="Watchdog counter window value"]

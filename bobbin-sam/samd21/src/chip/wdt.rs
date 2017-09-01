@@ -272,7 +272,7 @@ impl Clear {
 
     #[doc="Watchdog Clear"]
     #[inline] pub fn test_clear(&self) -> bool {
-        self.clear != 0
+        self.clear() != 0
     }
 
     #[doc="Watchdog Clear"]
@@ -312,7 +312,7 @@ impl Config {
 
     #[doc="Time-Out Period"]
     #[inline] pub fn test_per(&self) -> bool {
-        self.per != 0
+        self.per() != 0
     }
 
     #[doc="Time-Out Period"]
@@ -331,7 +331,7 @@ impl Config {
 
     #[doc="Window Mode Time-Out Period"]
     #[inline] pub fn test_window(&self) -> bool {
-        self.window != 0
+        self.window() != 0
     }
 
     #[doc="Window Mode Time-Out Period"]
@@ -372,7 +372,7 @@ impl Ctrl {
 
     #[doc="Enable"]
     #[inline] pub fn test_enable(&self) -> bool {
-        self.enable != 0
+        self.enable() != 0
     }
 
     #[doc="Enable"]
@@ -391,7 +391,7 @@ impl Ctrl {
 
     #[doc="Watchdog Timer Window Mode Enable"]
     #[inline] pub fn test_wen(&self) -> bool {
-        self.wen != 0
+        self.wen() != 0
     }
 
     #[doc="Watchdog Timer Window Mode Enable"]
@@ -410,7 +410,7 @@ impl Ctrl {
 
     #[doc="Always-On"]
     #[inline] pub fn test_alwayson(&self) -> bool {
-        self.alwayson != 0
+        self.alwayson() != 0
     }
 
     #[doc="Always-On"]
@@ -452,7 +452,7 @@ impl Ewctrl {
 
     #[doc="Early Warning Interrupt Time Offset"]
     #[inline] pub fn test_ewoffset(&self) -> bool {
-        self.ewoffset != 0
+        self.ewoffset() != 0
     }
 
     #[doc="Early Warning Interrupt Time Offset"]
@@ -492,7 +492,7 @@ impl Intenclr {
 
     #[doc="Early Warning Interrupt Enable"]
     #[inline] pub fn test_ew(&self) -> bool {
-        self.ew != 0
+        self.ew() != 0
     }
 
     #[doc="Early Warning Interrupt Enable"]
@@ -532,7 +532,7 @@ impl Intenset {
 
     #[doc="Early Warning Interrupt Enable"]
     #[inline] pub fn test_ew(&self) -> bool {
-        self.ew != 0
+        self.ew() != 0
     }
 
     #[doc="Early Warning Interrupt Enable"]
@@ -572,7 +572,7 @@ impl Intflag {
 
     #[doc="Early Warning"]
     #[inline] pub fn test_ew(&self) -> bool {
-        self.ew != 0
+        self.ew() != 0
     }
 
     #[doc="Early Warning"]
@@ -612,7 +612,7 @@ impl Status {
 
     #[doc="Synchronization Busy"]
     #[inline] pub fn test_syncbusy(&self) -> bool {
-        self.syncbusy != 0
+        self.syncbusy() != 0
     }
 
     #[doc="Synchronization Busy"]

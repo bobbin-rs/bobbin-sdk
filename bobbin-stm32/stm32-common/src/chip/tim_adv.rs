@@ -789,7 +789,7 @@ impl Cr1 {
 
     #[doc="Counter enable"]
     #[inline] pub fn test_cen(&self) -> bool {
-        self.cen != 0
+        self.cen() != 0
     }
 
     #[doc="Counter enable"]
@@ -808,7 +808,7 @@ impl Cr1 {
 
     #[doc="Update disable"]
     #[inline] pub fn test_udis(&self) -> bool {
-        self.udis != 0
+        self.udis() != 0
     }
 
     #[doc="Update disable"]
@@ -827,7 +827,7 @@ impl Cr1 {
 
     #[doc="Update request source"]
     #[inline] pub fn test_urs(&self) -> bool {
-        self.urs != 0
+        self.urs() != 0
     }
 
     #[doc="Update request source"]
@@ -846,7 +846,7 @@ impl Cr1 {
 
     #[doc="One-pulse mode"]
     #[inline] pub fn test_opm(&self) -> bool {
-        self.opm != 0
+        self.opm() != 0
     }
 
     #[doc="One-pulse mode"]
@@ -865,7 +865,7 @@ impl Cr1 {
 
     #[doc="Direction"]
     #[inline] pub fn test_dir(&self) -> bool {
-        self.dir != 0
+        self.dir() != 0
     }
 
     #[doc="Direction"]
@@ -884,7 +884,7 @@ impl Cr1 {
 
     #[doc="Center-aligned mode selection"]
     #[inline] pub fn test_cms(&self) -> bool {
-        self.cms != 0
+        self.cms() != 0
     }
 
     #[doc="Center-aligned mode selection"]
@@ -903,7 +903,7 @@ impl Cr1 {
 
     #[doc="Auto-reload preload enable"]
     #[inline] pub fn test_arpe(&self) -> bool {
-        self.arpe != 0
+        self.arpe() != 0
     }
 
     #[doc="Auto-reload preload enable"]
@@ -922,7 +922,7 @@ impl Cr1 {
 
     #[doc="Clock division"]
     #[inline] pub fn test_ckd(&self) -> bool {
-        self.ckd != 0
+        self.ckd() != 0
     }
 
     #[doc="Clock division"]
@@ -941,7 +941,7 @@ impl Cr1 {
 
     #[doc="UIF status bit remapping"]
     #[inline] pub fn test_uifremap(&self) -> bool {
-        self.uifremap != 0
+        self.uifremap() != 0
     }
 
     #[doc="UIF status bit remapping"]
@@ -989,7 +989,7 @@ impl Cr2 {
 
     #[doc="Capture/compare preloaded control"]
     #[inline] pub fn test_ccpc(&self) -> bool {
-        self.ccpc != 0
+        self.ccpc() != 0
     }
 
     #[doc="Capture/compare preloaded control"]
@@ -1008,7 +1008,7 @@ impl Cr2 {
 
     #[doc="Capture/compare control update selection"]
     #[inline] pub fn test_ccus(&self) -> bool {
-        self.ccus != 0
+        self.ccus() != 0
     }
 
     #[doc="Capture/compare control update selection"]
@@ -1027,7 +1027,7 @@ impl Cr2 {
 
     #[doc="Capture/compare DMA selection"]
     #[inline] pub fn test_ccds(&self) -> bool {
-        self.ccds != 0
+        self.ccds() != 0
     }
 
     #[doc="Capture/compare DMA selection"]
@@ -1046,7 +1046,7 @@ impl Cr2 {
 
     #[doc="Master mode selection"]
     #[inline] pub fn test_mms(&self) -> bool {
-        self.mms != 0
+        self.mms() != 0
     }
 
     #[doc="Master mode selection"]
@@ -1065,7 +1065,7 @@ impl Cr2 {
 
     #[doc="TI1 selection"]
     #[inline] pub fn test_ti1s(&self) -> bool {
-        self.ti1s != 0
+        self.ti1s() != 0
     }
 
     #[doc="TI1 selection"]
@@ -1084,7 +1084,7 @@ impl Cr2 {
 
     #[doc="Output Idle state 1"]
     #[inline] pub fn test_ois1(&self) -> bool {
-        self.ois1 != 0
+        self.ois1() != 0
     }
 
     #[doc="Output Idle state 1"]
@@ -1103,7 +1103,7 @@ impl Cr2 {
 
     #[doc="Output Idle state 1"]
     #[inline] pub fn test_ois1n(&self) -> bool {
-        self.ois1n != 0
+        self.ois1n() != 0
     }
 
     #[doc="Output Idle state 1"]
@@ -1122,7 +1122,7 @@ impl Cr2 {
 
     #[doc="Output Idle state 2"]
     #[inline] pub fn test_ois2(&self) -> bool {
-        self.ois2 != 0
+        self.ois2() != 0
     }
 
     #[doc="Output Idle state 2"]
@@ -1141,7 +1141,7 @@ impl Cr2 {
 
     #[doc="Output Idle state 2"]
     #[inline] pub fn test_ois2n(&self) -> bool {
-        self.ois2n != 0
+        self.ois2n() != 0
     }
 
     #[doc="Output Idle state 2"]
@@ -1160,7 +1160,7 @@ impl Cr2 {
 
     #[doc="Output Idle state 3"]
     #[inline] pub fn test_ois3(&self) -> bool {
-        self.ois3 != 0
+        self.ois3() != 0
     }
 
     #[doc="Output Idle state 3"]
@@ -1179,7 +1179,7 @@ impl Cr2 {
 
     #[doc="Output Idle state 3"]
     #[inline] pub fn test_ois3n(&self) -> bool {
-        self.ois3n != 0
+        self.ois3n() != 0
     }
 
     #[doc="Output Idle state 3"]
@@ -1198,7 +1198,7 @@ impl Cr2 {
 
     #[doc="Output Idle state 4"]
     #[inline] pub fn test_ois4(&self) -> bool {
-        self.ois4 != 0
+        self.ois4() != 0
     }
 
     #[doc="Output Idle state 4"]
@@ -1217,7 +1217,7 @@ impl Cr2 {
 
     #[doc="Output Idle state 5"]
     #[inline] pub fn test_ois5(&self) -> bool {
-        self.ois5 != 0
+        self.ois5() != 0
     }
 
     #[doc="Output Idle state 5"]
@@ -1236,7 +1236,7 @@ impl Cr2 {
 
     #[doc="Output Idle state 6"]
     #[inline] pub fn test_ois6(&self) -> bool {
-        self.ois6 != 0
+        self.ois6() != 0
     }
 
     #[doc="Output Idle state 6"]
@@ -1255,7 +1255,7 @@ impl Cr2 {
 
     #[doc="Master mode selection 2"]
     #[inline] pub fn test_mms2(&self) -> bool {
-        self.mms2 != 0
+        self.mms2() != 0
     }
 
     #[doc="Master mode selection 2"]
@@ -1309,7 +1309,7 @@ impl Smcr {
 
     #[doc="Slave mode selection"]
     #[inline] pub fn test_sms(&self) -> bool {
-        self.sms != 0
+        self.sms() != 0
     }
 
     #[doc="Slave mode selection"]
@@ -1328,7 +1328,7 @@ impl Smcr {
 
     #[doc="OCREF clear selection"]
     #[inline] pub fn test_occs(&self) -> bool {
-        self.occs != 0
+        self.occs() != 0
     }
 
     #[doc="OCREF clear selection"]
@@ -1347,7 +1347,7 @@ impl Smcr {
 
     #[doc="Trigger selection"]
     #[inline] pub fn test_ts(&self) -> bool {
-        self.ts != 0
+        self.ts() != 0
     }
 
     #[doc="Trigger selection"]
@@ -1366,7 +1366,7 @@ impl Smcr {
 
     #[doc="Master/Slave mode"]
     #[inline] pub fn test_msm(&self) -> bool {
-        self.msm != 0
+        self.msm() != 0
     }
 
     #[doc="Master/Slave mode"]
@@ -1385,7 +1385,7 @@ impl Smcr {
 
     #[doc="External trigger filter"]
     #[inline] pub fn test_etf(&self) -> bool {
-        self.etf != 0
+        self.etf() != 0
     }
 
     #[doc="External trigger filter"]
@@ -1404,7 +1404,7 @@ impl Smcr {
 
     #[doc="External trigger prescaler"]
     #[inline] pub fn test_etps(&self) -> bool {
-        self.etps != 0
+        self.etps() != 0
     }
 
     #[doc="External trigger prescaler"]
@@ -1423,7 +1423,7 @@ impl Smcr {
 
     #[doc="External clock enable"]
     #[inline] pub fn test_ece(&self) -> bool {
-        self.ece != 0
+        self.ece() != 0
     }
 
     #[doc="External clock enable"]
@@ -1442,7 +1442,7 @@ impl Smcr {
 
     #[doc="External trigger polarity"]
     #[inline] pub fn test_etp(&self) -> bool {
-        self.etp != 0
+        self.etp() != 0
     }
 
     #[doc="External trigger polarity"]
@@ -1461,7 +1461,7 @@ impl Smcr {
 
     #[doc="Slave mode selection bit 3"]
     #[inline] pub fn test_sms3(&self) -> bool {
-        self.sms3 != 0
+        self.sms3() != 0
     }
 
     #[doc="Slave mode selection bit 3"]
@@ -1509,7 +1509,7 @@ impl Dier {
 
     #[doc="Trigger DMA request enable"]
     #[inline] pub fn test_tde(&self) -> bool {
-        self.tde != 0
+        self.tde() != 0
     }
 
     #[doc="Trigger DMA request enable"]
@@ -1528,7 +1528,7 @@ impl Dier {
 
     #[doc="Reserved"]
     #[inline] pub fn test_comde(&self) -> bool {
-        self.comde != 0
+        self.comde() != 0
     }
 
     #[doc="Reserved"]
@@ -1572,7 +1572,7 @@ impl Dier {
 
     #[doc="Update DMA request enable"]
     #[inline] pub fn test_ude(&self) -> bool {
-        self.ude != 0
+        self.ude() != 0
     }
 
     #[doc="Update DMA request enable"]
@@ -1591,7 +1591,7 @@ impl Dier {
 
     #[doc="Break interrupt enable"]
     #[inline] pub fn test_bie(&self) -> bool {
-        self.bie != 0
+        self.bie() != 0
     }
 
     #[doc="Break interrupt enable"]
@@ -1610,7 +1610,7 @@ impl Dier {
 
     #[doc="Trigger interrupt enable"]
     #[inline] pub fn test_tie(&self) -> bool {
-        self.tie != 0
+        self.tie() != 0
     }
 
     #[doc="Trigger interrupt enable"]
@@ -1629,7 +1629,7 @@ impl Dier {
 
     #[doc="COM interrupt enable"]
     #[inline] pub fn test_comie(&self) -> bool {
-        self.comie != 0
+        self.comie() != 0
     }
 
     #[doc="COM interrupt enable"]
@@ -1673,7 +1673,7 @@ impl Dier {
 
     #[doc="Update interrupt enable"]
     #[inline] pub fn test_uie(&self) -> bool {
-        self.uie != 0
+        self.uie() != 0
     }
 
     #[doc="Update interrupt enable"]
@@ -1727,7 +1727,7 @@ impl Sr {
 
     #[doc="Update interrupt flag"]
     #[inline] pub fn test_uif(&self) -> bool {
-        self.uif != 0
+        self.uif() != 0
     }
 
     #[doc="Update interrupt flag"]
@@ -1746,7 +1746,7 @@ impl Sr {
 
     #[doc="Capture/compare 1 interrupt flag"]
     #[inline] pub fn test_cc1if(&self) -> bool {
-        self.cc1if != 0
+        self.cc1if() != 0
     }
 
     #[doc="Capture/compare 1 interrupt flag"]
@@ -1765,7 +1765,7 @@ impl Sr {
 
     #[doc="Capture/Compare 2 interrupt flag"]
     #[inline] pub fn test_cc2if(&self) -> bool {
-        self.cc2if != 0
+        self.cc2if() != 0
     }
 
     #[doc="Capture/Compare 2 interrupt flag"]
@@ -1784,7 +1784,7 @@ impl Sr {
 
     #[doc="Capture/Compare 3 interrupt flag"]
     #[inline] pub fn test_cc3if(&self) -> bool {
-        self.cc3if != 0
+        self.cc3if() != 0
     }
 
     #[doc="Capture/Compare 3 interrupt flag"]
@@ -1803,7 +1803,7 @@ impl Sr {
 
     #[doc="Capture/Compare 4 interrupt flag"]
     #[inline] pub fn test_cc4if(&self) -> bool {
-        self.cc4if != 0
+        self.cc4if() != 0
     }
 
     #[doc="Capture/Compare 4 interrupt flag"]
@@ -1822,7 +1822,7 @@ impl Sr {
 
     #[doc="COM interrupt flag"]
     #[inline] pub fn test_comif(&self) -> bool {
-        self.comif != 0
+        self.comif() != 0
     }
 
     #[doc="COM interrupt flag"]
@@ -1841,7 +1841,7 @@ impl Sr {
 
     #[doc="Trigger interrupt flag"]
     #[inline] pub fn test_tif(&self) -> bool {
-        self.tif != 0
+        self.tif() != 0
     }
 
     #[doc="Trigger interrupt flag"]
@@ -1860,7 +1860,7 @@ impl Sr {
 
     #[doc="Break interrupt flag"]
     #[inline] pub fn test_bif(&self) -> bool {
-        self.bif != 0
+        self.bif() != 0
     }
 
     #[doc="Break interrupt flag"]
@@ -1879,7 +1879,7 @@ impl Sr {
 
     #[doc="Break 2 interrupt flag"]
     #[inline] pub fn test_b2if(&self) -> bool {
-        self.b2if != 0
+        self.b2if() != 0
     }
 
     #[doc="Break 2 interrupt flag"]
@@ -1898,7 +1898,7 @@ impl Sr {
 
     #[doc="Capture/Compare 1 overcapture flag"]
     #[inline] pub fn test_cc1of(&self) -> bool {
-        self.cc1of != 0
+        self.cc1of() != 0
     }
 
     #[doc="Capture/Compare 1 overcapture flag"]
@@ -1917,7 +1917,7 @@ impl Sr {
 
     #[doc="Capture/compare 2 overcapture flag"]
     #[inline] pub fn test_cc2of(&self) -> bool {
-        self.cc2of != 0
+        self.cc2of() != 0
     }
 
     #[doc="Capture/compare 2 overcapture flag"]
@@ -1936,7 +1936,7 @@ impl Sr {
 
     #[doc="Capture/Compare 3 overcapture flag"]
     #[inline] pub fn test_cc3of(&self) -> bool {
-        self.cc3of != 0
+        self.cc3of() != 0
     }
 
     #[doc="Capture/Compare 3 overcapture flag"]
@@ -1955,7 +1955,7 @@ impl Sr {
 
     #[doc="Capture/Compare 4 overcapture flag"]
     #[inline] pub fn test_cc4of(&self) -> bool {
-        self.cc4of != 0
+        self.cc4of() != 0
     }
 
     #[doc="Capture/Compare 4 overcapture flag"]
@@ -1974,7 +1974,7 @@ impl Sr {
 
     #[doc="Capture/Compare 5 interrupt flag"]
     #[inline] pub fn test_cc5if(&self) -> bool {
-        self.cc5if != 0
+        self.cc5if() != 0
     }
 
     #[doc="Capture/Compare 5 interrupt flag"]
@@ -1993,7 +1993,7 @@ impl Sr {
 
     #[doc="Capture/Compare 6 interrupt flag"]
     #[inline] pub fn test_cc6if(&self) -> bool {
-        self.cc6if != 0
+        self.cc6if() != 0
     }
 
     #[doc="Capture/Compare 6 interrupt flag"]
@@ -2047,7 +2047,7 @@ impl Egr {
 
     #[doc="Update generation"]
     #[inline] pub fn test_ug(&self) -> bool {
-        self.ug != 0
+        self.ug() != 0
     }
 
     #[doc="Update generation"]
@@ -2066,7 +2066,7 @@ impl Egr {
 
     #[doc="Capture/compare 1 generation"]
     #[inline] pub fn test_cc1g(&self) -> bool {
-        self.cc1g != 0
+        self.cc1g() != 0
     }
 
     #[doc="Capture/compare 1 generation"]
@@ -2085,7 +2085,7 @@ impl Egr {
 
     #[doc="Capture/compare 2 generation"]
     #[inline] pub fn test_cc2g(&self) -> bool {
-        self.cc2g != 0
+        self.cc2g() != 0
     }
 
     #[doc="Capture/compare 2 generation"]
@@ -2104,7 +2104,7 @@ impl Egr {
 
     #[doc="Capture/compare 3 generation"]
     #[inline] pub fn test_cc3g(&self) -> bool {
-        self.cc3g != 0
+        self.cc3g() != 0
     }
 
     #[doc="Capture/compare 3 generation"]
@@ -2123,7 +2123,7 @@ impl Egr {
 
     #[doc="Capture/compare 4 generation"]
     #[inline] pub fn test_cc4g(&self) -> bool {
-        self.cc4g != 0
+        self.cc4g() != 0
     }
 
     #[doc="Capture/compare 4 generation"]
@@ -2142,7 +2142,7 @@ impl Egr {
 
     #[doc="Capture/Compare control update generation"]
     #[inline] pub fn test_comg(&self) -> bool {
-        self.comg != 0
+        self.comg() != 0
     }
 
     #[doc="Capture/Compare control update generation"]
@@ -2161,7 +2161,7 @@ impl Egr {
 
     #[doc="Trigger generation"]
     #[inline] pub fn test_tg(&self) -> bool {
-        self.tg != 0
+        self.tg() != 0
     }
 
     #[doc="Trigger generation"]
@@ -2180,7 +2180,7 @@ impl Egr {
 
     #[doc="Break generation"]
     #[inline] pub fn test_bg(&self) -> bool {
-        self.bg != 0
+        self.bg() != 0
     }
 
     #[doc="Break generation"]
@@ -2199,7 +2199,7 @@ impl Egr {
 
     #[doc="Break 2 generation"]
     #[inline] pub fn test_b2g(&self) -> bool {
-        self.b2g != 0
+        self.b2g() != 0
     }
 
     #[doc="Break 2 generation"]
@@ -2528,7 +2528,7 @@ impl Ccer {
 
     #[doc="Capture/Compare n output Polarity"]
     #[inline] pub fn test_ccp(&self) -> bool {
-        self.ccp != 0
+        self.ccp() != 0
     }
 
     #[doc="Capture/Compare n output Polarity"]
@@ -2547,7 +2547,7 @@ impl Ccer {
 
     #[doc="Capture/Compare n complementary output enable"]
     #[inline] pub fn test_ccne(&self) -> bool {
-        self.ccne != 0
+        self.ccne() != 0
     }
 
     #[doc="Capture/Compare n complementary output enable"]
@@ -2566,7 +2566,7 @@ impl Ccer {
 
     #[doc="Capture/Compare n output Polarity"]
     #[inline] pub fn test_ccnp(&self) -> bool {
-        self.ccnp != 0
+        self.ccnp() != 0
     }
 
     #[doc="Capture/Compare n output Polarity"]
@@ -2612,7 +2612,7 @@ impl Cnt {
 
     #[doc="counter value"]
     #[inline] pub fn test_cnt(&self) -> bool {
-        self.cnt != 0
+        self.cnt() != 0
     }
 
     #[doc="counter value"]
@@ -2631,7 +2631,7 @@ impl Cnt {
 
     #[doc="UIF copy"]
     #[inline] pub fn test_uifcpy(&self) -> bool {
-        self.uifcpy != 0
+        self.uifcpy() != 0
     }
 
     #[doc="UIF copy"]
@@ -2672,7 +2672,7 @@ impl Psc {
 
     #[doc="Prescaler value"]
     #[inline] pub fn test_psc(&self) -> bool {
-        self.psc != 0
+        self.psc() != 0
     }
 
     #[doc="Prescaler value"]
@@ -2712,7 +2712,7 @@ impl Arr {
 
     #[doc="Auto-reload value"]
     #[inline] pub fn test_arr(&self) -> bool {
-        self.arr != 0
+        self.arr() != 0
     }
 
     #[doc="Auto-reload value"]
@@ -2752,7 +2752,7 @@ impl Rcr {
 
     #[doc="Repetition counter value"]
     #[inline] pub fn test_rep(&self) -> bool {
-        self.rep != 0
+        self.rep() != 0
     }
 
     #[doc="Repetition counter value"]
@@ -2792,7 +2792,7 @@ impl Ccr {
 
     #[doc="Capture/Compare n value"]
     #[inline] pub fn test_ccr(&self) -> bool {
-        self.ccr != 0
+        self.ccr() != 0
     }
 
     #[doc="Capture/Compare n value"]
@@ -2832,7 +2832,7 @@ impl Bdtr {
 
     #[doc="Dead-time generator setup"]
     #[inline] pub fn test_dtg(&self) -> bool {
-        self.dtg != 0
+        self.dtg() != 0
     }
 
     #[doc="Dead-time generator setup"]
@@ -2851,7 +2851,7 @@ impl Bdtr {
 
     #[doc="Lock configuration"]
     #[inline] pub fn test_lock(&self) -> bool {
-        self.lock != 0
+        self.lock() != 0
     }
 
     #[doc="Lock configuration"]
@@ -2870,7 +2870,7 @@ impl Bdtr {
 
     #[doc="Off-state selection for Idle mode"]
     #[inline] pub fn test_ossi(&self) -> bool {
-        self.ossi != 0
+        self.ossi() != 0
     }
 
     #[doc="Off-state selection for Idle mode"]
@@ -2889,7 +2889,7 @@ impl Bdtr {
 
     #[doc="Off-state selection for Run mode"]
     #[inline] pub fn test_ossr(&self) -> bool {
-        self.ossr != 0
+        self.ossr() != 0
     }
 
     #[doc="Off-state selection for Run mode"]
@@ -2908,7 +2908,7 @@ impl Bdtr {
 
     #[doc="Break enable"]
     #[inline] pub fn test_bke(&self) -> bool {
-        self.bke != 0
+        self.bke() != 0
     }
 
     #[doc="Break enable"]
@@ -2927,7 +2927,7 @@ impl Bdtr {
 
     #[doc="Break polarity"]
     #[inline] pub fn test_bkp(&self) -> bool {
-        self.bkp != 0
+        self.bkp() != 0
     }
 
     #[doc="Break polarity"]
@@ -2946,7 +2946,7 @@ impl Bdtr {
 
     #[doc="Automatic output enable"]
     #[inline] pub fn test_aoe(&self) -> bool {
-        self.aoe != 0
+        self.aoe() != 0
     }
 
     #[doc="Automatic output enable"]
@@ -2965,7 +2965,7 @@ impl Bdtr {
 
     #[doc="Main output enable"]
     #[inline] pub fn test_moe(&self) -> bool {
-        self.moe != 0
+        self.moe() != 0
     }
 
     #[doc="Main output enable"]
@@ -2984,7 +2984,7 @@ impl Bdtr {
 
     #[doc="Break filter"]
     #[inline] pub fn test_bkf(&self) -> bool {
-        self.bkf != 0
+        self.bkf() != 0
     }
 
     #[doc="Break filter"]
@@ -3003,7 +3003,7 @@ impl Bdtr {
 
     #[doc="Break 2 filter"]
     #[inline] pub fn test_bk2f(&self) -> bool {
-        self.bk2f != 0
+        self.bk2f() != 0
     }
 
     #[doc="Break 2 filter"]
@@ -3022,7 +3022,7 @@ impl Bdtr {
 
     #[doc="Break 2 enable"]
     #[inline] pub fn test_bk2e(&self) -> bool {
-        self.bk2e != 0
+        self.bk2e() != 0
     }
 
     #[doc="Break 2 enable"]
@@ -3041,7 +3041,7 @@ impl Bdtr {
 
     #[doc="Break 2 polarity"]
     #[inline] pub fn test_bk2p(&self) -> bool {
-        self.bk2p != 0
+        self.bk2p() != 0
     }
 
     #[doc="Break 2 polarity"]
@@ -3092,7 +3092,7 @@ impl Dcr {
 
     #[doc="DMA burst length"]
     #[inline] pub fn test_dbl(&self) -> bool {
-        self.dbl != 0
+        self.dbl() != 0
     }
 
     #[doc="DMA burst length"]
@@ -3111,7 +3111,7 @@ impl Dcr {
 
     #[doc="DMA base address"]
     #[inline] pub fn test_dba(&self) -> bool {
-        self.dba != 0
+        self.dba() != 0
     }
 
     #[doc="DMA base address"]
@@ -3152,7 +3152,7 @@ impl Dmar {
 
     #[doc="DMA register for burst accesses"]
     #[inline] pub fn test_dmab(&self) -> bool {
-        self.dmab != 0
+        self.dmab() != 0
     }
 
     #[doc="DMA register for burst accesses"]
@@ -3192,7 +3192,7 @@ impl Ccmr3Output {
 
     #[doc="Output compare 5 fast enable"]
     #[inline] pub fn test_oc5fe(&self) -> bool {
-        self.oc5fe != 0
+        self.oc5fe() != 0
     }
 
     #[doc="Output compare 5 fast enable"]
@@ -3211,7 +3211,7 @@ impl Ccmr3Output {
 
     #[doc="Output compare 5 preload enable"]
     #[inline] pub fn test_oc5pe(&self) -> bool {
-        self.oc5pe != 0
+        self.oc5pe() != 0
     }
 
     #[doc="Output compare 5 preload enable"]
@@ -3230,7 +3230,7 @@ impl Ccmr3Output {
 
     #[doc="Output compare 5 mode"]
     #[inline] pub fn test_oc5m(&self) -> bool {
-        self.oc5m != 0
+        self.oc5m() != 0
     }
 
     #[doc="Output compare 5 mode"]
@@ -3249,7 +3249,7 @@ impl Ccmr3Output {
 
     #[doc="Output compare 5 clear enable"]
     #[inline] pub fn test_oc5ce(&self) -> bool {
-        self.oc5ce != 0
+        self.oc5ce() != 0
     }
 
     #[doc="Output compare 5 clear enable"]
@@ -3268,7 +3268,7 @@ impl Ccmr3Output {
 
     #[doc="Output compare 6 fast enable"]
     #[inline] pub fn test_oc6fe(&self) -> bool {
-        self.oc6fe != 0
+        self.oc6fe() != 0
     }
 
     #[doc="Output compare 6 fast enable"]
@@ -3287,7 +3287,7 @@ impl Ccmr3Output {
 
     #[doc="Output compare 6 preload enable"]
     #[inline] pub fn test_oc6pe(&self) -> bool {
-        self.oc6pe != 0
+        self.oc6pe() != 0
     }
 
     #[doc="Output compare 6 preload enable"]
@@ -3306,7 +3306,7 @@ impl Ccmr3Output {
 
     #[doc="Output compare 6 mode"]
     #[inline] pub fn test_oc6m(&self) -> bool {
-        self.oc6m != 0
+        self.oc6m() != 0
     }
 
     #[doc="Output compare 6 mode"]
@@ -3325,7 +3325,7 @@ impl Ccmr3Output {
 
     #[doc="Output compare 6 clear enable"]
     #[inline] pub fn test_oc6ce(&self) -> bool {
-        self.oc6ce != 0
+        self.oc6ce() != 0
     }
 
     #[doc="Output compare 6 clear enable"]
@@ -3344,7 +3344,7 @@ impl Ccmr3Output {
 
     #[doc="Outout Compare 5 mode bit 3"]
     #[inline] pub fn test_oc5m_3(&self) -> bool {
-        self.oc5m_3 != 0
+        self.oc5m_3() != 0
     }
 
     #[doc="Outout Compare 5 mode bit 3"]
@@ -3363,7 +3363,7 @@ impl Ccmr3Output {
 
     #[doc="Outout Compare 6 mode bit 3"]
     #[inline] pub fn test_oc6m_3(&self) -> bool {
-        self.oc6m_3 != 0
+        self.oc6m_3() != 0
     }
 
     #[doc="Outout Compare 6 mode bit 3"]
@@ -3412,7 +3412,7 @@ impl Ccr5 {
 
     #[doc="Capture/Compare 5 value"]
     #[inline] pub fn test_ccr5(&self) -> bool {
-        self.ccr5 != 0
+        self.ccr5() != 0
     }
 
     #[doc="Capture/Compare 5 value"]
@@ -3431,7 +3431,7 @@ impl Ccr5 {
 
     #[doc="Group Channel 5 and Channel 1"]
     #[inline] pub fn test_gc5c1(&self) -> bool {
-        self.gc5c1 != 0
+        self.gc5c1() != 0
     }
 
     #[doc="Group Channel 5 and Channel 1"]
@@ -3450,7 +3450,7 @@ impl Ccr5 {
 
     #[doc="Group Channel 5 and Channel 2"]
     #[inline] pub fn test_gc5c2(&self) -> bool {
-        self.gc5c2 != 0
+        self.gc5c2() != 0
     }
 
     #[doc="Group Channel 5 and Channel 2"]
@@ -3469,7 +3469,7 @@ impl Ccr5 {
 
     #[doc="Group Channel 5 and Channel 3"]
     #[inline] pub fn test_gc5c3(&self) -> bool {
-        self.gc5c3 != 0
+        self.gc5c3() != 0
     }
 
     #[doc="Group Channel 5 and Channel 3"]
@@ -3512,7 +3512,7 @@ impl Ccr6 {
 
     #[doc="Capture/Compare 6 value"]
     #[inline] pub fn test_ccr6(&self) -> bool {
-        self.ccr6 != 0
+        self.ccr6() != 0
     }
 
     #[doc="Capture/Compare 6 value"]
@@ -3552,7 +3552,7 @@ impl Or {
 
     #[doc="TIM1_ETR_ADC1 remapping capability"]
     #[inline] pub fn test_tim1_etr_adc1_rmp(&self) -> bool {
-        self.tim1_etr_adc1_rmp != 0
+        self.tim1_etr_adc1_rmp() != 0
     }
 
     #[doc="TIM1_ETR_ADC1 remapping capability"]
@@ -3571,7 +3571,7 @@ impl Or {
 
     #[doc="TIM1_ETR_ADC4 remapping capability"]
     #[inline] pub fn test_tim1_etr_adc4_rmp(&self) -> bool {
-        self.tim1_etr_adc4_rmp != 0
+        self.tim1_etr_adc4_rmp() != 0
     }
 
     #[doc="TIM1_ETR_ADC4 remapping capability"]

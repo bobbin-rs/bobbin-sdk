@@ -520,7 +520,7 @@ impl Verid {
 
     #[doc="Module Identification Number"]
     #[inline] pub fn test_feature(&self) -> bool {
-        self.feature != 0
+        self.feature() != 0
     }
 
     #[doc="Module Identification Number"]
@@ -539,7 +539,7 @@ impl Verid {
 
     #[doc="Minor Version Number"]
     #[inline] pub fn test_minor(&self) -> bool {
-        self.minor != 0
+        self.minor() != 0
     }
 
     #[doc="Minor Version Number"]
@@ -558,7 +558,7 @@ impl Verid {
 
     #[doc="Major Version Number"]
     #[inline] pub fn test_major(&self) -> bool {
-        self.major != 0
+        self.major() != 0
     }
 
     #[doc="Major Version Number"]
@@ -600,7 +600,7 @@ impl Param {
 
     #[doc="Transmit FIFO Size"]
     #[inline] pub fn test_txfifo(&self) -> bool {
-        self.txfifo != 0
+        self.txfifo() != 0
     }
 
     #[doc="Transmit FIFO Size"]
@@ -619,7 +619,7 @@ impl Param {
 
     #[doc="Receive FIFO Size"]
     #[inline] pub fn test_rxfifo(&self) -> bool {
-        self.rxfifo != 0
+        self.rxfifo() != 0
     }
 
     #[doc="Receive FIFO Size"]
@@ -660,7 +660,7 @@ impl Cr {
 
     #[doc="Module Enable"]
     #[inline] pub fn test_men(&self) -> bool {
-        self.men != 0
+        self.men() != 0
     }
 
     #[doc="Module Enable"]
@@ -679,7 +679,7 @@ impl Cr {
 
     #[doc="Software Reset"]
     #[inline] pub fn test_rst(&self) -> bool {
-        self.rst != 0
+        self.rst() != 0
     }
 
     #[doc="Software Reset"]
@@ -698,7 +698,7 @@ impl Cr {
 
     #[doc="Doze mode enable"]
     #[inline] pub fn test_dozen(&self) -> bool {
-        self.dozen != 0
+        self.dozen() != 0
     }
 
     #[doc="Doze mode enable"]
@@ -717,7 +717,7 @@ impl Cr {
 
     #[doc="Debug Enable"]
     #[inline] pub fn test_dbgen(&self) -> bool {
-        self.dbgen != 0
+        self.dbgen() != 0
     }
 
     #[doc="Debug Enable"]
@@ -736,7 +736,7 @@ impl Cr {
 
     #[doc="Reset Transmit FIFO"]
     #[inline] pub fn test_rtf(&self) -> bool {
-        self.rtf != 0
+        self.rtf() != 0
     }
 
     #[doc="Reset Transmit FIFO"]
@@ -755,7 +755,7 @@ impl Cr {
 
     #[doc="Reset Receive FIFO"]
     #[inline] pub fn test_rrf(&self) -> bool {
-        self.rrf != 0
+        self.rrf() != 0
     }
 
     #[doc="Reset Receive FIFO"]
@@ -800,7 +800,7 @@ impl Sr {
 
     #[doc="Transmit Data Flag"]
     #[inline] pub fn test_tdf(&self) -> bool {
-        self.tdf != 0
+        self.tdf() != 0
     }
 
     #[doc="Transmit Data Flag"]
@@ -819,7 +819,7 @@ impl Sr {
 
     #[doc="Receive Data Flag"]
     #[inline] pub fn test_rdf(&self) -> bool {
-        self.rdf != 0
+        self.rdf() != 0
     }
 
     #[doc="Receive Data Flag"]
@@ -838,7 +838,7 @@ impl Sr {
 
     #[doc="Word Complete Flag"]
     #[inline] pub fn test_wcf(&self) -> bool {
-        self.wcf != 0
+        self.wcf() != 0
     }
 
     #[doc="Word Complete Flag"]
@@ -857,7 +857,7 @@ impl Sr {
 
     #[doc="Frame Complete Flag"]
     #[inline] pub fn test_fcf(&self) -> bool {
-        self.fcf != 0
+        self.fcf() != 0
     }
 
     #[doc="Frame Complete Flag"]
@@ -876,7 +876,7 @@ impl Sr {
 
     #[doc="Transfer Complete Flag"]
     #[inline] pub fn test_tcf(&self) -> bool {
-        self.tcf != 0
+        self.tcf() != 0
     }
 
     #[doc="Transfer Complete Flag"]
@@ -895,7 +895,7 @@ impl Sr {
 
     #[doc="Transmit Error Flag"]
     #[inline] pub fn test_tef(&self) -> bool {
-        self.tef != 0
+        self.tef() != 0
     }
 
     #[doc="Transmit Error Flag"]
@@ -914,7 +914,7 @@ impl Sr {
 
     #[doc="Receive Error Flag"]
     #[inline] pub fn test_ref(&self) -> bool {
-        self._ref != 0
+        self._ref() != 0
     }
 
     #[doc="Receive Error Flag"]
@@ -933,7 +933,7 @@ impl Sr {
 
     #[doc="Data Match Flag"]
     #[inline] pub fn test_dmf(&self) -> bool {
-        self.dmf != 0
+        self.dmf() != 0
     }
 
     #[doc="Data Match Flag"]
@@ -952,7 +952,7 @@ impl Sr {
 
     #[doc="Module Busy Flag"]
     #[inline] pub fn test_mbf(&self) -> bool {
-        self.mbf != 0
+        self.mbf() != 0
     }
 
     #[doc="Module Busy Flag"]
@@ -1000,7 +1000,7 @@ impl Ier {
 
     #[doc="Transmit Data Interrupt Enable"]
     #[inline] pub fn test_tdie(&self) -> bool {
-        self.tdie != 0
+        self.tdie() != 0
     }
 
     #[doc="Transmit Data Interrupt Enable"]
@@ -1019,7 +1019,7 @@ impl Ier {
 
     #[doc="Receive Data Interrupt Enable"]
     #[inline] pub fn test_rdie(&self) -> bool {
-        self.rdie != 0
+        self.rdie() != 0
     }
 
     #[doc="Receive Data Interrupt Enable"]
@@ -1038,7 +1038,7 @@ impl Ier {
 
     #[doc="Word Complete Interrupt Enable"]
     #[inline] pub fn test_wcie(&self) -> bool {
-        self.wcie != 0
+        self.wcie() != 0
     }
 
     #[doc="Word Complete Interrupt Enable"]
@@ -1057,7 +1057,7 @@ impl Ier {
 
     #[doc="Frame Complete Interrupt Enable"]
     #[inline] pub fn test_fcie(&self) -> bool {
-        self.fcie != 0
+        self.fcie() != 0
     }
 
     #[doc="Frame Complete Interrupt Enable"]
@@ -1076,7 +1076,7 @@ impl Ier {
 
     #[doc="Transfer Complete Interrupt Enable"]
     #[inline] pub fn test_tcie(&self) -> bool {
-        self.tcie != 0
+        self.tcie() != 0
     }
 
     #[doc="Transfer Complete Interrupt Enable"]
@@ -1095,7 +1095,7 @@ impl Ier {
 
     #[doc="Transmit Error Interrupt Enable"]
     #[inline] pub fn test_teie(&self) -> bool {
-        self.teie != 0
+        self.teie() != 0
     }
 
     #[doc="Transmit Error Interrupt Enable"]
@@ -1114,7 +1114,7 @@ impl Ier {
 
     #[doc="Receive Error Interrupt Enable"]
     #[inline] pub fn test_reie(&self) -> bool {
-        self.reie != 0
+        self.reie() != 0
     }
 
     #[doc="Receive Error Interrupt Enable"]
@@ -1133,7 +1133,7 @@ impl Ier {
 
     #[doc="Data Match Interrupt Enable"]
     #[inline] pub fn test_dmie(&self) -> bool {
-        self.dmie != 0
+        self.dmie() != 0
     }
 
     #[doc="Data Match Interrupt Enable"]
@@ -1180,7 +1180,7 @@ impl Der {
 
     #[doc="Transmit Data DMA Enable"]
     #[inline] pub fn test_tdde(&self) -> bool {
-        self.tdde != 0
+        self.tdde() != 0
     }
 
     #[doc="Transmit Data DMA Enable"]
@@ -1199,7 +1199,7 @@ impl Der {
 
     #[doc="Receive Data DMA Enable"]
     #[inline] pub fn test_rdde(&self) -> bool {
-        self.rdde != 0
+        self.rdde() != 0
     }
 
     #[doc="Receive Data DMA Enable"]
@@ -1240,7 +1240,7 @@ impl Cfgr0 {
 
     #[doc="Host Request Enable"]
     #[inline] pub fn test_hren(&self) -> bool {
-        self.hren != 0
+        self.hren() != 0
     }
 
     #[doc="Host Request Enable"]
@@ -1259,7 +1259,7 @@ impl Cfgr0 {
 
     #[doc="Host Request Polarity"]
     #[inline] pub fn test_hrpol(&self) -> bool {
-        self.hrpol != 0
+        self.hrpol() != 0
     }
 
     #[doc="Host Request Polarity"]
@@ -1278,7 +1278,7 @@ impl Cfgr0 {
 
     #[doc="Host Request Select"]
     #[inline] pub fn test_hrsel(&self) -> bool {
-        self.hrsel != 0
+        self.hrsel() != 0
     }
 
     #[doc="Host Request Select"]
@@ -1297,7 +1297,7 @@ impl Cfgr0 {
 
     #[doc="Circular FIFO Enable"]
     #[inline] pub fn test_cirfifo(&self) -> bool {
-        self.cirfifo != 0
+        self.cirfifo() != 0
     }
 
     #[doc="Circular FIFO Enable"]
@@ -1316,7 +1316,7 @@ impl Cfgr0 {
 
     #[doc="Receive Data Match Only"]
     #[inline] pub fn test_rdmo(&self) -> bool {
-        self.rdmo != 0
+        self.rdmo() != 0
     }
 
     #[doc="Receive Data Match Only"]
@@ -1360,7 +1360,7 @@ impl Cfgr1 {
 
     #[doc="Master Mode"]
     #[inline] pub fn test_master(&self) -> bool {
-        self.master != 0
+        self.master() != 0
     }
 
     #[doc="Master Mode"]
@@ -1379,7 +1379,7 @@ impl Cfgr1 {
 
     #[doc="Sample Point"]
     #[inline] pub fn test_sample(&self) -> bool {
-        self.sample != 0
+        self.sample() != 0
     }
 
     #[doc="Sample Point"]
@@ -1398,7 +1398,7 @@ impl Cfgr1 {
 
     #[doc="Automatic PCS"]
     #[inline] pub fn test_autopcs(&self) -> bool {
-        self.autopcs != 0
+        self.autopcs() != 0
     }
 
     #[doc="Automatic PCS"]
@@ -1417,7 +1417,7 @@ impl Cfgr1 {
 
     #[doc="No Stall"]
     #[inline] pub fn test_nostall(&self) -> bool {
-        self.nostall != 0
+        self.nostall() != 0
     }
 
     #[doc="No Stall"]
@@ -1436,7 +1436,7 @@ impl Cfgr1 {
 
     #[doc="Peripheral Chip Select Polarity"]
     #[inline] pub fn test_pcspol(&self) -> bool {
-        self.pcspol != 0
+        self.pcspol() != 0
     }
 
     #[doc="Peripheral Chip Select Polarity"]
@@ -1455,7 +1455,7 @@ impl Cfgr1 {
 
     #[doc="Match Configuration"]
     #[inline] pub fn test_matcfg(&self) -> bool {
-        self.matcfg != 0
+        self.matcfg() != 0
     }
 
     #[doc="Match Configuration"]
@@ -1474,7 +1474,7 @@ impl Cfgr1 {
 
     #[doc="Pin Configuration"]
     #[inline] pub fn test_pincfg(&self) -> bool {
-        self.pincfg != 0
+        self.pincfg() != 0
     }
 
     #[doc="Pin Configuration"]
@@ -1493,7 +1493,7 @@ impl Cfgr1 {
 
     #[doc="Output Config"]
     #[inline] pub fn test_outcfg(&self) -> bool {
-        self.outcfg != 0
+        self.outcfg() != 0
     }
 
     #[doc="Output Config"]
@@ -1512,7 +1512,7 @@ impl Cfgr1 {
 
     #[doc="Peripheral Chip Select Configuration"]
     #[inline] pub fn test_pcscfg(&self) -> bool {
-        self.pcscfg != 0
+        self.pcscfg() != 0
     }
 
     #[doc="Peripheral Chip Select Configuration"]
@@ -1560,7 +1560,7 @@ impl Dmr0 {
 
     #[doc="Match 0 Value"]
     #[inline] pub fn test_match0(&self) -> bool {
-        self.match0 != 0
+        self.match0() != 0
     }
 
     #[doc="Match 0 Value"]
@@ -1599,7 +1599,7 @@ impl Dmr1 {
 
     #[doc="Match 1 Value"]
     #[inline] pub fn test_match1(&self) -> bool {
-        self.match1 != 0
+        self.match1() != 0
     }
 
     #[doc="Match 1 Value"]
@@ -1638,7 +1638,7 @@ impl Ccr {
 
     #[doc="SCK Divider"]
     #[inline] pub fn test_sckdiv(&self) -> bool {
-        self.sckdiv != 0
+        self.sckdiv() != 0
     }
 
     #[doc="SCK Divider"]
@@ -1657,7 +1657,7 @@ impl Ccr {
 
     #[doc="Delay Between Transfers"]
     #[inline] pub fn test_dbt(&self) -> bool {
-        self.dbt != 0
+        self.dbt() != 0
     }
 
     #[doc="Delay Between Transfers"]
@@ -1676,7 +1676,7 @@ impl Ccr {
 
     #[doc="PCS to SCK Delay"]
     #[inline] pub fn test_pcssck(&self) -> bool {
-        self.pcssck != 0
+        self.pcssck() != 0
     }
 
     #[doc="PCS to SCK Delay"]
@@ -1695,7 +1695,7 @@ impl Ccr {
 
     #[doc="SCK to PCS Delay"]
     #[inline] pub fn test_sckpcs(&self) -> bool {
-        self.sckpcs != 0
+        self.sckpcs() != 0
     }
 
     #[doc="SCK to PCS Delay"]
@@ -1738,7 +1738,7 @@ impl Fcr {
 
     #[doc="Transmit FIFO Watermark"]
     #[inline] pub fn test_txwater(&self) -> bool {
-        self.txwater != 0
+        self.txwater() != 0
     }
 
     #[doc="Transmit FIFO Watermark"]
@@ -1757,7 +1757,7 @@ impl Fcr {
 
     #[doc="Receive FIFO Watermark"]
     #[inline] pub fn test_rxwater(&self) -> bool {
-        self.rxwater != 0
+        self.rxwater() != 0
     }
 
     #[doc="Receive FIFO Watermark"]
@@ -1798,7 +1798,7 @@ impl Fsr {
 
     #[doc="Transmit FIFO Count"]
     #[inline] pub fn test_txcount(&self) -> bool {
-        self.txcount != 0
+        self.txcount() != 0
     }
 
     #[doc="Transmit FIFO Count"]
@@ -1817,7 +1817,7 @@ impl Fsr {
 
     #[doc="Receive FIFO Count"]
     #[inline] pub fn test_rxcount(&self) -> bool {
-        self.rxcount != 0
+        self.rxcount() != 0
     }
 
     #[doc="Receive FIFO Count"]
@@ -1858,7 +1858,7 @@ impl Tcr {
 
     #[doc="Frame Size"]
     #[inline] pub fn test_framesz(&self) -> bool {
-        self.framesz != 0
+        self.framesz() != 0
     }
 
     #[doc="Frame Size"]
@@ -1877,7 +1877,7 @@ impl Tcr {
 
     #[doc="Transfer Width"]
     #[inline] pub fn test_width(&self) -> bool {
-        self.width != 0
+        self.width() != 0
     }
 
     #[doc="Transfer Width"]
@@ -1896,7 +1896,7 @@ impl Tcr {
 
     #[doc="Transmit Data Mask"]
     #[inline] pub fn test_txmsk(&self) -> bool {
-        self.txmsk != 0
+        self.txmsk() != 0
     }
 
     #[doc="Transmit Data Mask"]
@@ -1915,7 +1915,7 @@ impl Tcr {
 
     #[doc="Receive Data Mask"]
     #[inline] pub fn test_rxmsk(&self) -> bool {
-        self.rxmsk != 0
+        self.rxmsk() != 0
     }
 
     #[doc="Receive Data Mask"]
@@ -1934,7 +1934,7 @@ impl Tcr {
 
     #[doc="Continuing Command"]
     #[inline] pub fn test_contc(&self) -> bool {
-        self.contc != 0
+        self.contc() != 0
     }
 
     #[doc="Continuing Command"]
@@ -1953,7 +1953,7 @@ impl Tcr {
 
     #[doc="Continuous Transfer"]
     #[inline] pub fn test_cont(&self) -> bool {
-        self.cont != 0
+        self.cont() != 0
     }
 
     #[doc="Continuous Transfer"]
@@ -1972,7 +1972,7 @@ impl Tcr {
 
     #[doc="Byte Swap"]
     #[inline] pub fn test_bysw(&self) -> bool {
-        self.bysw != 0
+        self.bysw() != 0
     }
 
     #[doc="Byte Swap"]
@@ -1991,7 +1991,7 @@ impl Tcr {
 
     #[doc="LSB First"]
     #[inline] pub fn test_lsbf(&self) -> bool {
-        self.lsbf != 0
+        self.lsbf() != 0
     }
 
     #[doc="LSB First"]
@@ -2010,7 +2010,7 @@ impl Tcr {
 
     #[doc="Peripheral Chip Select"]
     #[inline] pub fn test_pcs(&self) -> bool {
-        self.pcs != 0
+        self.pcs() != 0
     }
 
     #[doc="Peripheral Chip Select"]
@@ -2029,7 +2029,7 @@ impl Tcr {
 
     #[doc="Prescaler Value"]
     #[inline] pub fn test_prescale(&self) -> bool {
-        self.prescale != 0
+        self.prescale() != 0
     }
 
     #[doc="Prescaler Value"]
@@ -2048,7 +2048,7 @@ impl Tcr {
 
     #[doc="Clock Phase"]
     #[inline] pub fn test_cpha(&self) -> bool {
-        self.cpha != 0
+        self.cpha() != 0
     }
 
     #[doc="Clock Phase"]
@@ -2067,7 +2067,7 @@ impl Tcr {
 
     #[doc="Clock Polarity"]
     #[inline] pub fn test_cpol(&self) -> bool {
-        self.cpol != 0
+        self.cpol() != 0
     }
 
     #[doc="Clock Polarity"]
@@ -2118,7 +2118,7 @@ impl Tdr {
 
     #[doc="Transmit Data"]
     #[inline] pub fn test_data(&self) -> bool {
-        self.data != 0
+        self.data() != 0
     }
 
     #[doc="Transmit Data"]
@@ -2157,7 +2157,7 @@ impl Rsr {
 
     #[doc="Start Of Frame"]
     #[inline] pub fn test_sof(&self) -> bool {
-        self.sof != 0
+        self.sof() != 0
     }
 
     #[doc="Start Of Frame"]
@@ -2176,7 +2176,7 @@ impl Rsr {
 
     #[doc="RX FIFO Empty"]
     #[inline] pub fn test_rxempty(&self) -> bool {
-        self.rxempty != 0
+        self.rxempty() != 0
     }
 
     #[doc="RX FIFO Empty"]
@@ -2217,7 +2217,7 @@ impl Rdr {
 
     #[doc="Receive Data"]
     #[inline] pub fn test_data(&self) -> bool {
-        self.data != 0
+        self.data() != 0
     }
 
     #[doc="Receive Data"]

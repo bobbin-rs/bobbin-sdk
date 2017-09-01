@@ -219,7 +219,7 @@ impl Acr {
 
     #[doc="LATENCY"]
     #[inline] pub fn test_latency(&self) -> bool {
-        self.latency != 0
+        self.latency() != 0
     }
 
     #[doc="LATENCY"]
@@ -238,7 +238,7 @@ impl Acr {
 
     #[doc="PRFTBE"]
     #[inline] pub fn test_prftbe(&self) -> bool {
-        self.prftbe != 0
+        self.prftbe() != 0
     }
 
     #[doc="PRFTBE"]
@@ -257,7 +257,7 @@ impl Acr {
 
     #[doc="PRFTBS"]
     #[inline] pub fn test_prftbs(&self) -> bool {
-        self.prftbs != 0
+        self.prftbs() != 0
     }
 
     #[doc="PRFTBS"]
@@ -299,7 +299,7 @@ impl Keyr {
 
     #[doc="Flash Key"]
     #[inline] pub fn test_fkeyr(&self) -> bool {
-        self.fkeyr != 0
+        self.fkeyr() != 0
     }
 
     #[doc="Flash Key"]
@@ -338,7 +338,7 @@ impl Optkeyr {
 
     #[doc="Option byte key"]
     #[inline] pub fn test_optkeyr(&self) -> bool {
-        self.optkeyr != 0
+        self.optkeyr() != 0
     }
 
     #[doc="Option byte key"]
@@ -377,7 +377,7 @@ impl Sr {
 
     #[doc="End of operation"]
     #[inline] pub fn test_eop(&self) -> bool {
-        self.eop != 0
+        self.eop() != 0
     }
 
     #[doc="End of operation"]
@@ -396,7 +396,7 @@ impl Sr {
 
     #[doc="Write protection error"]
     #[inline] pub fn test_wrprt(&self) -> bool {
-        self.wrprt != 0
+        self.wrprt() != 0
     }
 
     #[doc="Write protection error"]
@@ -415,7 +415,7 @@ impl Sr {
 
     #[doc="Programming error"]
     #[inline] pub fn test_pgerr(&self) -> bool {
-        self.pgerr != 0
+        self.pgerr() != 0
     }
 
     #[doc="Programming error"]
@@ -434,7 +434,7 @@ impl Sr {
 
     #[doc="Busy"]
     #[inline] pub fn test_bsy(&self) -> bool {
-        self.bsy != 0
+        self.bsy() != 0
     }
 
     #[doc="Busy"]
@@ -477,7 +477,7 @@ impl Cr {
 
     #[doc="Force option byte loading"]
     #[inline] pub fn test_force_optload(&self) -> bool {
-        self.force_optload != 0
+        self.force_optload() != 0
     }
 
     #[doc="Force option byte loading"]
@@ -496,7 +496,7 @@ impl Cr {
 
     #[doc="End of operation interrupt enable"]
     #[inline] pub fn test_eopie(&self) -> bool {
-        self.eopie != 0
+        self.eopie() != 0
     }
 
     #[doc="End of operation interrupt enable"]
@@ -515,7 +515,7 @@ impl Cr {
 
     #[doc="Error interrupt enable"]
     #[inline] pub fn test_errie(&self) -> bool {
-        self.errie != 0
+        self.errie() != 0
     }
 
     #[doc="Error interrupt enable"]
@@ -534,7 +534,7 @@ impl Cr {
 
     #[doc="Option bytes write enable"]
     #[inline] pub fn test_optwre(&self) -> bool {
-        self.optwre != 0
+        self.optwre() != 0
     }
 
     #[doc="Option bytes write enable"]
@@ -553,7 +553,7 @@ impl Cr {
 
     #[doc="Lock"]
     #[inline] pub fn test_lock(&self) -> bool {
-        self.lock != 0
+        self.lock() != 0
     }
 
     #[doc="Lock"]
@@ -572,7 +572,7 @@ impl Cr {
 
     #[doc="Start"]
     #[inline] pub fn test_strt(&self) -> bool {
-        self.strt != 0
+        self.strt() != 0
     }
 
     #[doc="Start"]
@@ -591,7 +591,7 @@ impl Cr {
 
     #[doc="Option byte erase"]
     #[inline] pub fn test_opter(&self) -> bool {
-        self.opter != 0
+        self.opter() != 0
     }
 
     #[doc="Option byte erase"]
@@ -610,7 +610,7 @@ impl Cr {
 
     #[doc="Option byte programming"]
     #[inline] pub fn test_optpg(&self) -> bool {
-        self.optpg != 0
+        self.optpg() != 0
     }
 
     #[doc="Option byte programming"]
@@ -629,7 +629,7 @@ impl Cr {
 
     #[doc="Mass erase"]
     #[inline] pub fn test_mer(&self) -> bool {
-        self.mer != 0
+        self.mer() != 0
     }
 
     #[doc="Mass erase"]
@@ -648,7 +648,7 @@ impl Cr {
 
     #[doc="Page erase"]
     #[inline] pub fn test_per(&self) -> bool {
-        self.per != 0
+        self.per() != 0
     }
 
     #[doc="Page erase"]
@@ -667,7 +667,7 @@ impl Cr {
 
     #[doc="Programming"]
     #[inline] pub fn test_pg(&self) -> bool {
-        self.pg != 0
+        self.pg() != 0
     }
 
     #[doc="Programming"]
@@ -717,7 +717,7 @@ impl Ar {
 
     #[doc="Flash address"]
     #[inline] pub fn test_far(&self) -> bool {
-        self.far != 0
+        self.far() != 0
     }
 
     #[doc="Flash address"]
@@ -756,7 +756,7 @@ impl Obr {
 
     #[doc="Option byte error"]
     #[inline] pub fn test_opterr(&self) -> bool {
-        self.opterr != 0
+        self.opterr() != 0
     }
 
     #[doc="Option byte error"]
@@ -775,7 +775,7 @@ impl Obr {
 
     #[doc="Level 1 protection status"]
     #[inline] pub fn test_level1_prot(&self) -> bool {
-        self.level1_prot != 0
+        self.level1_prot() != 0
     }
 
     #[doc="Level 1 protection status"]
@@ -794,7 +794,7 @@ impl Obr {
 
     #[doc="Level 2 protection status"]
     #[inline] pub fn test_level2_prot(&self) -> bool {
-        self.level2_prot != 0
+        self.level2_prot() != 0
     }
 
     #[doc="Level 2 protection status"]
@@ -813,7 +813,7 @@ impl Obr {
 
     #[doc="WDG_SW"]
     #[inline] pub fn test_wdg_sw(&self) -> bool {
-        self.wdg_sw != 0
+        self.wdg_sw() != 0
     }
 
     #[doc="WDG_SW"]
@@ -832,7 +832,7 @@ impl Obr {
 
     #[doc="nRST_STOP"]
     #[inline] pub fn test_nrst_stop(&self) -> bool {
-        self.nrst_stop != 0
+        self.nrst_stop() != 0
     }
 
     #[doc="nRST_STOP"]
@@ -851,7 +851,7 @@ impl Obr {
 
     #[doc="nRST_STDBY"]
     #[inline] pub fn test_nrst_stdby(&self) -> bool {
-        self.nrst_stdby != 0
+        self.nrst_stdby() != 0
     }
 
     #[doc="nRST_STDBY"]
@@ -870,7 +870,7 @@ impl Obr {
 
     #[doc="BOOT1"]
     #[inline] pub fn test_boot1(&self) -> bool {
-        self.boot1 != 0
+        self.boot1() != 0
     }
 
     #[doc="BOOT1"]
@@ -889,7 +889,7 @@ impl Obr {
 
     #[doc="VDDA_MONITOR"]
     #[inline] pub fn test_vdda_monitor(&self) -> bool {
-        self.vdda_monitor != 0
+        self.vdda_monitor() != 0
     }
 
     #[doc="VDDA_MONITOR"]
@@ -908,7 +908,7 @@ impl Obr {
 
     #[doc="SRAM_PARITY_CHECK"]
     #[inline] pub fn test_sram_parity_check(&self) -> bool {
-        self.sram_parity_check != 0
+        self.sram_parity_check() != 0
     }
 
     #[doc="SRAM_PARITY_CHECK"]
@@ -927,7 +927,7 @@ impl Obr {
 
     #[doc="Data0"]
     #[inline] pub fn test_data0(&self) -> bool {
-        self.data0 != 0
+        self.data0() != 0
     }
 
     #[doc="Data0"]
@@ -946,7 +946,7 @@ impl Obr {
 
     #[doc="Data1"]
     #[inline] pub fn test_data1(&self) -> bool {
-        self.data1 != 0
+        self.data1() != 0
     }
 
     #[doc="Data1"]
@@ -996,7 +996,7 @@ impl Wrpr {
 
     #[doc="Write protect"]
     #[inline] pub fn test_wrp(&self) -> bool {
-        self.wrp != 0
+        self.wrp() != 0
     }
 
     #[doc="Write protect"]

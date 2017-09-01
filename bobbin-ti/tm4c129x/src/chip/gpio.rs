@@ -1366,7 +1366,7 @@ impl Im {
 
     #[doc="GPIO uDMA Done Interrupt Mask Enable"]
     #[inline] pub fn test_dmaime(&self) -> bool {
-        self.dmaime != 0
+        self.dmaime() != 0
     }
 
     #[doc="GPIO uDMA Done Interrupt Mask Enable"]
@@ -1439,7 +1439,7 @@ impl Ris {
 
     #[doc="GPIO uDMA Done Interrupt Raw Status"]
     #[inline] pub fn test_dmaris(&self) -> bool {
-        self.dmaris != 0
+        self.dmaris() != 0
     }
 
     #[doc="GPIO uDMA Done Interrupt Raw Status"]
@@ -1512,7 +1512,7 @@ impl Mis {
 
     #[doc="GPIO uDMA Done Interrupt Masked Status"]
     #[inline] pub fn test_dmamis(&self) -> bool {
-        self.dmamis != 0
+        self.dmamis() != 0
     }
 
     #[doc="GPIO uDMA Done Interrupt Masked Status"]
@@ -1585,7 +1585,7 @@ impl Icr {
 
     #[doc="GPIO uDMA Done Interrupt Clear"]
     #[inline] pub fn test_dmamic(&self) -> bool {
-        self.dmamic != 0
+        self.dmamic() != 0
     }
 
     #[doc="GPIO uDMA Done Interrupt Clear"]
@@ -2110,7 +2110,7 @@ impl Lock {
 
     #[doc="GPIO Lock"]
     #[inline] pub fn test_gpio_lock(&self) -> bool {
-        self.gpio_lock != 0
+        self.gpio_lock() != 0
     }
 
     #[doc="GPIO Lock"]
@@ -2520,7 +2520,7 @@ impl Gpiowakepen {
 
     #[doc="K[7] Wake Enable"]
     #[inline] pub fn test_wakep7(&self) -> bool {
-        self.wakep7 != 0
+        self.wakep7() != 0
     }
 
     #[doc="K[7] Wake Enable"]
@@ -2539,7 +2539,7 @@ impl Gpiowakepen {
 
     #[doc="K[6] Wake Enable"]
     #[inline] pub fn test_wakep6(&self) -> bool {
-        self.wakep6 != 0
+        self.wakep6() != 0
     }
 
     #[doc="K[6] Wake Enable"]
@@ -2558,7 +2558,7 @@ impl Gpiowakepen {
 
     #[doc="K[5] Wake Enable"]
     #[inline] pub fn test_wakep5(&self) -> bool {
-        self.wakep5 != 0
+        self.wakep5() != 0
     }
 
     #[doc="K[5] Wake Enable"]
@@ -2577,7 +2577,7 @@ impl Gpiowakepen {
 
     #[doc="K[4] Wake Enable"]
     #[inline] pub fn test_wakep4(&self) -> bool {
-        self.wakep4 != 0
+        self.wakep4() != 0
     }
 
     #[doc="K[4] Wake Enable"]
@@ -2620,7 +2620,7 @@ impl Gpiowakelvl {
 
     #[doc="K[7] Wake Level"]
     #[inline] pub fn test_wakelvl7(&self) -> bool {
-        self.wakelvl7 != 0
+        self.wakelvl7() != 0
     }
 
     #[doc="K[7] Wake Level"]
@@ -2639,7 +2639,7 @@ impl Gpiowakelvl {
 
     #[doc="K[6] Wake Level"]
     #[inline] pub fn test_wakelvl6(&self) -> bool {
-        self.wakelvl6 != 0
+        self.wakelvl6() != 0
     }
 
     #[doc="K[6] Wake Level"]
@@ -2658,7 +2658,7 @@ impl Gpiowakelvl {
 
     #[doc="K[5] Wake Level"]
     #[inline] pub fn test_wakelvl5(&self) -> bool {
-        self.wakelvl5 != 0
+        self.wakelvl5() != 0
     }
 
     #[doc="K[5] Wake Level"]
@@ -2677,7 +2677,7 @@ impl Gpiowakelvl {
 
     #[doc="K[4] Wake Level"]
     #[inline] pub fn test_wakelvl4(&self) -> bool {
-        self.wakelvl4 != 0
+        self.wakelvl4() != 0
     }
 
     #[doc="K[4] Wake Level"]
@@ -2720,7 +2720,7 @@ impl Gpiowakestat {
 
     #[doc="K[7] Wake Status"]
     #[inline] pub fn test_wakestat7(&self) -> bool {
-        self.wakestat7 != 0
+        self.wakestat7() != 0
     }
 
     #[doc="K[7] Wake Status"]
@@ -2739,7 +2739,7 @@ impl Gpiowakestat {
 
     #[doc="K[6] Wake Status"]
     #[inline] pub fn test_wakestat6(&self) -> bool {
-        self.wakestat6 != 0
+        self.wakestat6() != 0
     }
 
     #[doc="K[6] Wake Status"]
@@ -2758,7 +2758,7 @@ impl Gpiowakestat {
 
     #[doc="K[5] Wake Status"]
     #[inline] pub fn test_wakestat5(&self) -> bool {
-        self.wakestat5 != 0
+        self.wakestat5() != 0
     }
 
     #[doc="K[5] Wake Status"]
@@ -2777,7 +2777,7 @@ impl Gpiowakestat {
 
     #[doc="K[4] Wake Status"]
     #[inline] pub fn test_wakestat4(&self) -> bool {
-        self.wakestat4 != 0
+        self.wakestat4() != 0
     }
 
     #[doc="K[4] Wake Status"]

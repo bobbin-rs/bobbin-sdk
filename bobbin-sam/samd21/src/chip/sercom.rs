@@ -483,7 +483,7 @@ impl Addr {
 
     #[doc="Address Value"]
     #[inline] pub fn test_addr(&self) -> bool {
-        self.addr != 0
+        self.addr() != 0
     }
 
     #[doc="Address Value"]
@@ -502,7 +502,7 @@ impl Addr {
 
     #[doc="Length Enable"]
     #[inline] pub fn test_lenen(&self) -> bool {
-        self.lenen != 0
+        self.lenen() != 0
     }
 
     #[doc="Length Enable"]
@@ -521,7 +521,7 @@ impl Addr {
 
     #[doc="High Speed Mode"]
     #[inline] pub fn test_hs(&self) -> bool {
-        self.hs != 0
+        self.hs() != 0
     }
 
     #[doc="High Speed Mode"]
@@ -540,7 +540,7 @@ impl Addr {
 
     #[doc="Ten Bit Addressing Enable"]
     #[inline] pub fn test_tenbiten(&self) -> bool {
-        self.tenbiten != 0
+        self.tenbiten() != 0
     }
 
     #[doc="Ten Bit Addressing Enable"]
@@ -559,7 +559,7 @@ impl Addr {
 
     #[doc="Length"]
     #[inline] pub fn test_len(&self) -> bool {
-        self.len != 0
+        self.len() != 0
     }
 
     #[doc="Length"]
@@ -603,7 +603,7 @@ impl Baud {
 
     #[doc="Baud Rate Value"]
     #[inline] pub fn test_baud(&self) -> bool {
-        self.baud != 0
+        self.baud() != 0
     }
 
     #[doc="Baud Rate Value"]
@@ -622,7 +622,7 @@ impl Baud {
 
     #[doc="Baud Rate Value Low"]
     #[inline] pub fn test_baudlow(&self) -> bool {
-        self.baudlow != 0
+        self.baudlow() != 0
     }
 
     #[doc="Baud Rate Value Low"]
@@ -641,7 +641,7 @@ impl Baud {
 
     #[doc="High Speed Baud Rate Value"]
     #[inline] pub fn test_hsbaud(&self) -> bool {
-        self.hsbaud != 0
+        self.hsbaud() != 0
     }
 
     #[doc="High Speed Baud Rate Value"]
@@ -660,7 +660,7 @@ impl Baud {
 
     #[doc="High Speed Baud Rate Value Low"]
     #[inline] pub fn test_hsbaudlow(&self) -> bool {
-        self.hsbaudlow != 0
+        self.hsbaudlow() != 0
     }
 
     #[doc="High Speed Baud Rate Value Low"]
@@ -703,7 +703,7 @@ impl Ctrla {
 
     #[doc="Software Reset"]
     #[inline] pub fn test_swrst(&self) -> bool {
-        self.swrst != 0
+        self.swrst() != 0
     }
 
     #[doc="Software Reset"]
@@ -722,7 +722,7 @@ impl Ctrla {
 
     #[doc="Enable"]
     #[inline] pub fn test_enable(&self) -> bool {
-        self.enable != 0
+        self.enable() != 0
     }
 
     #[doc="Enable"]
@@ -741,7 +741,7 @@ impl Ctrla {
 
     #[doc="Operating Mode"]
     #[inline] pub fn test_mode(&self) -> bool {
-        self.mode != 0
+        self.mode() != 0
     }
 
     #[doc="Operating Mode"]
@@ -760,7 +760,7 @@ impl Ctrla {
 
     #[doc="Run in Standby"]
     #[inline] pub fn test_runstdby(&self) -> bool {
-        self.runstdby != 0
+        self.runstdby() != 0
     }
 
     #[doc="Run in Standby"]
@@ -779,7 +779,7 @@ impl Ctrla {
 
     #[doc="Pin Usage"]
     #[inline] pub fn test_pinout(&self) -> bool {
-        self.pinout != 0
+        self.pinout() != 0
     }
 
     #[doc="Pin Usage"]
@@ -798,7 +798,7 @@ impl Ctrla {
 
     #[doc="SDA Hold Time"]
     #[inline] pub fn test_sdahold(&self) -> bool {
-        self.sdahold != 0
+        self.sdahold() != 0
     }
 
     #[doc="SDA Hold Time"]
@@ -817,7 +817,7 @@ impl Ctrla {
 
     #[doc="Master SCL Low Extend Timeout"]
     #[inline] pub fn test_mexttoen(&self) -> bool {
-        self.mexttoen != 0
+        self.mexttoen() != 0
     }
 
     #[doc="Master SCL Low Extend Timeout"]
@@ -836,7 +836,7 @@ impl Ctrla {
 
     #[doc="Slave SCL Low Extend Timeout"]
     #[inline] pub fn test_sexttoen(&self) -> bool {
-        self.sexttoen != 0
+        self.sexttoen() != 0
     }
 
     #[doc="Slave SCL Low Extend Timeout"]
@@ -855,7 +855,7 @@ impl Ctrla {
 
     #[doc="Transfer Speed"]
     #[inline] pub fn test_speed(&self) -> bool {
-        self.speed != 0
+        self.speed() != 0
     }
 
     #[doc="Transfer Speed"]
@@ -874,7 +874,7 @@ impl Ctrla {
 
     #[doc="SCL Clock Stretch Mode"]
     #[inline] pub fn test_sclsm(&self) -> bool {
-        self.sclsm != 0
+        self.sclsm() != 0
     }
 
     #[doc="SCL Clock Stretch Mode"]
@@ -893,7 +893,7 @@ impl Ctrla {
 
     #[doc="Inactive Time-Out"]
     #[inline] pub fn test_inactout(&self) -> bool {
-        self.inactout != 0
+        self.inactout() != 0
     }
 
     #[doc="Inactive Time-Out"]
@@ -912,7 +912,7 @@ impl Ctrla {
 
     #[doc="SCL Low Timeout Enable"]
     #[inline] pub fn test_lowtouten(&self) -> bool {
-        self.lowtouten != 0
+        self.lowtouten() != 0
     }
 
     #[doc="SCL Low Timeout Enable"]
@@ -963,7 +963,7 @@ impl Ctrlb {
 
     #[doc="Smart Mode Enable"]
     #[inline] pub fn test_smen(&self) -> bool {
-        self.smen != 0
+        self.smen() != 0
     }
 
     #[doc="Smart Mode Enable"]
@@ -982,7 +982,7 @@ impl Ctrlb {
 
     #[doc="Quick Command Enable"]
     #[inline] pub fn test_qcen(&self) -> bool {
-        self.qcen != 0
+        self.qcen() != 0
     }
 
     #[doc="Quick Command Enable"]
@@ -1001,7 +1001,7 @@ impl Ctrlb {
 
     #[doc="Command"]
     #[inline] pub fn test_cmd(&self) -> bool {
-        self.cmd != 0
+        self.cmd() != 0
     }
 
     #[doc="Command"]
@@ -1020,7 +1020,7 @@ impl Ctrlb {
 
     #[doc="Acknowledge Action"]
     #[inline] pub fn test_ackact(&self) -> bool {
-        self.ackact != 0
+        self.ackact() != 0
     }
 
     #[doc="Acknowledge Action"]
@@ -1063,7 +1063,7 @@ impl Data {
 
     #[doc="Data Value"]
     #[inline] pub fn test_data(&self) -> bool {
-        self.data != 0
+        self.data() != 0
     }
 
     #[doc="Data Value"]
@@ -1103,7 +1103,7 @@ impl Dbgctrl {
 
     #[doc="Debug Mode"]
     #[inline] pub fn test_dbgstop(&self) -> bool {
-        self.dbgstop != 0
+        self.dbgstop() != 0
     }
 
     #[doc="Debug Mode"]
@@ -1143,7 +1143,7 @@ impl Intenclr {
 
     #[doc="Master On Bus Interrupt Disable"]
     #[inline] pub fn test_mb(&self) -> bool {
-        self.mb != 0
+        self.mb() != 0
     }
 
     #[doc="Master On Bus Interrupt Disable"]
@@ -1162,7 +1162,7 @@ impl Intenclr {
 
     #[doc="Slave On Bus Interrupt Disable"]
     #[inline] pub fn test_sb(&self) -> bool {
-        self.sb != 0
+        self.sb() != 0
     }
 
     #[doc="Slave On Bus Interrupt Disable"]
@@ -1181,7 +1181,7 @@ impl Intenclr {
 
     #[doc="Combined Error Interrupt Disable"]
     #[inline] pub fn test_error(&self) -> bool {
-        self.error != 0
+        self.error() != 0
     }
 
     #[doc="Combined Error Interrupt Disable"]
@@ -1223,7 +1223,7 @@ impl Intenset {
 
     #[doc="Master On Bus Interrupt Enable"]
     #[inline] pub fn test_mb(&self) -> bool {
-        self.mb != 0
+        self.mb() != 0
     }
 
     #[doc="Master On Bus Interrupt Enable"]
@@ -1242,7 +1242,7 @@ impl Intenset {
 
     #[doc="Slave On Bus Interrupt Enable"]
     #[inline] pub fn test_sb(&self) -> bool {
-        self.sb != 0
+        self.sb() != 0
     }
 
     #[doc="Slave On Bus Interrupt Enable"]
@@ -1261,7 +1261,7 @@ impl Intenset {
 
     #[doc="Combined Error Interrupt Enable"]
     #[inline] pub fn test_error(&self) -> bool {
-        self.error != 0
+        self.error() != 0
     }
 
     #[doc="Combined Error Interrupt Enable"]
@@ -1303,7 +1303,7 @@ impl Intflag {
 
     #[doc="Master On Bus Interrupt"]
     #[inline] pub fn test_mb(&self) -> bool {
-        self.mb != 0
+        self.mb() != 0
     }
 
     #[doc="Master On Bus Interrupt"]
@@ -1322,7 +1322,7 @@ impl Intflag {
 
     #[doc="Slave On Bus Interrupt"]
     #[inline] pub fn test_sb(&self) -> bool {
-        self.sb != 0
+        self.sb() != 0
     }
 
     #[doc="Slave On Bus Interrupt"]
@@ -1341,7 +1341,7 @@ impl Intflag {
 
     #[doc="Combined Error Interrupt"]
     #[inline] pub fn test_error(&self) -> bool {
-        self.error != 0
+        self.error() != 0
     }
 
     #[doc="Combined Error Interrupt"]
@@ -1383,7 +1383,7 @@ impl Status {
 
     #[doc="Bus Error"]
     #[inline] pub fn test_buserr(&self) -> bool {
-        self.buserr != 0
+        self.buserr() != 0
     }
 
     #[doc="Bus Error"]
@@ -1402,7 +1402,7 @@ impl Status {
 
     #[doc="Arbitration Lost"]
     #[inline] pub fn test_arblost(&self) -> bool {
-        self.arblost != 0
+        self.arblost() != 0
     }
 
     #[doc="Arbitration Lost"]
@@ -1421,7 +1421,7 @@ impl Status {
 
     #[doc="Received Not Acknowledge"]
     #[inline] pub fn test_rxnack(&self) -> bool {
-        self.rxnack != 0
+        self.rxnack() != 0
     }
 
     #[doc="Received Not Acknowledge"]
@@ -1440,7 +1440,7 @@ impl Status {
 
     #[doc="Bus State"]
     #[inline] pub fn test_busstate(&self) -> bool {
-        self.busstate != 0
+        self.busstate() != 0
     }
 
     #[doc="Bus State"]
@@ -1459,7 +1459,7 @@ impl Status {
 
     #[doc="SCL Low Timeout"]
     #[inline] pub fn test_lowtout(&self) -> bool {
-        self.lowtout != 0
+        self.lowtout() != 0
     }
 
     #[doc="SCL Low Timeout"]
@@ -1478,7 +1478,7 @@ impl Status {
 
     #[doc="Clock Hold"]
     #[inline] pub fn test_clkhold(&self) -> bool {
-        self.clkhold != 0
+        self.clkhold() != 0
     }
 
     #[doc="Clock Hold"]
@@ -1497,7 +1497,7 @@ impl Status {
 
     #[doc="Master SCL Low Extend Timeout"]
     #[inline] pub fn test_mexttout(&self) -> bool {
-        self.mexttout != 0
+        self.mexttout() != 0
     }
 
     #[doc="Master SCL Low Extend Timeout"]
@@ -1516,7 +1516,7 @@ impl Status {
 
     #[doc="Slave SCL Low Extend Timeout"]
     #[inline] pub fn test_sexttout(&self) -> bool {
-        self.sexttout != 0
+        self.sexttout() != 0
     }
 
     #[doc="Slave SCL Low Extend Timeout"]
@@ -1535,7 +1535,7 @@ impl Status {
 
     #[doc="Length Error"]
     #[inline] pub fn test_lenerr(&self) -> bool {
-        self.lenerr != 0
+        self.lenerr() != 0
     }
 
     #[doc="Length Error"]
@@ -1583,7 +1583,7 @@ impl Syncbusy {
 
     #[doc="Software Reset Synchronization Busy"]
     #[inline] pub fn test_swrst(&self) -> bool {
-        self.swrst != 0
+        self.swrst() != 0
     }
 
     #[doc="Software Reset Synchronization Busy"]
@@ -1602,7 +1602,7 @@ impl Syncbusy {
 
     #[doc="SERCOM Enable Synchronization Busy"]
     #[inline] pub fn test_enable(&self) -> bool {
-        self.enable != 0
+        self.enable() != 0
     }
 
     #[doc="SERCOM Enable Synchronization Busy"]
@@ -1621,7 +1621,7 @@ impl Syncbusy {
 
     #[doc="System Operation Synchronization Busy"]
     #[inline] pub fn test_sysop(&self) -> bool {
-        self.sysop != 0
+        self.sysop() != 0
     }
 
     #[doc="System Operation Synchronization Busy"]
@@ -2016,7 +2016,7 @@ impl Addr {
 
     #[doc="General Call Address Enable"]
     #[inline] pub fn test_gencen(&self) -> bool {
-        self.gencen != 0
+        self.gencen() != 0
     }
 
     #[doc="General Call Address Enable"]
@@ -2035,7 +2035,7 @@ impl Addr {
 
     #[doc="Address Value"]
     #[inline] pub fn test_addr(&self) -> bool {
-        self.addr != 0
+        self.addr() != 0
     }
 
     #[doc="Address Value"]
@@ -2054,7 +2054,7 @@ impl Addr {
 
     #[doc="Ten Bit Addressing Enable"]
     #[inline] pub fn test_tenbiten(&self) -> bool {
-        self.tenbiten != 0
+        self.tenbiten() != 0
     }
 
     #[doc="Ten Bit Addressing Enable"]
@@ -2073,7 +2073,7 @@ impl Addr {
 
     #[doc="Address Mask"]
     #[inline] pub fn test_addrmask(&self) -> bool {
-        self.addrmask != 0
+        self.addrmask() != 0
     }
 
     #[doc="Address Mask"]
@@ -2116,7 +2116,7 @@ impl Ctrla {
 
     #[doc="Software Reset"]
     #[inline] pub fn test_swrst(&self) -> bool {
-        self.swrst != 0
+        self.swrst() != 0
     }
 
     #[doc="Software Reset"]
@@ -2135,7 +2135,7 @@ impl Ctrla {
 
     #[doc="Enable"]
     #[inline] pub fn test_enable(&self) -> bool {
-        self.enable != 0
+        self.enable() != 0
     }
 
     #[doc="Enable"]
@@ -2154,7 +2154,7 @@ impl Ctrla {
 
     #[doc="Operating Mode"]
     #[inline] pub fn test_mode(&self) -> bool {
-        self.mode != 0
+        self.mode() != 0
     }
 
     #[doc="Operating Mode"]
@@ -2173,7 +2173,7 @@ impl Ctrla {
 
     #[doc="Run during Standby"]
     #[inline] pub fn test_runstdby(&self) -> bool {
-        self.runstdby != 0
+        self.runstdby() != 0
     }
 
     #[doc="Run during Standby"]
@@ -2192,7 +2192,7 @@ impl Ctrla {
 
     #[doc="Pin Usage"]
     #[inline] pub fn test_pinout(&self) -> bool {
-        self.pinout != 0
+        self.pinout() != 0
     }
 
     #[doc="Pin Usage"]
@@ -2211,7 +2211,7 @@ impl Ctrla {
 
     #[doc="SDA Hold Time"]
     #[inline] pub fn test_sdahold(&self) -> bool {
-        self.sdahold != 0
+        self.sdahold() != 0
     }
 
     #[doc="SDA Hold Time"]
@@ -2230,7 +2230,7 @@ impl Ctrla {
 
     #[doc="Slave SCL Low Extend Timeout"]
     #[inline] pub fn test_sexttoen(&self) -> bool {
-        self.sexttoen != 0
+        self.sexttoen() != 0
     }
 
     #[doc="Slave SCL Low Extend Timeout"]
@@ -2249,7 +2249,7 @@ impl Ctrla {
 
     #[doc="Transfer Speed"]
     #[inline] pub fn test_speed(&self) -> bool {
-        self.speed != 0
+        self.speed() != 0
     }
 
     #[doc="Transfer Speed"]
@@ -2268,7 +2268,7 @@ impl Ctrla {
 
     #[doc="SCL Clock Stretch Mode"]
     #[inline] pub fn test_sclsm(&self) -> bool {
-        self.sclsm != 0
+        self.sclsm() != 0
     }
 
     #[doc="SCL Clock Stretch Mode"]
@@ -2287,7 +2287,7 @@ impl Ctrla {
 
     #[doc="SCL Low Timeout Enable"]
     #[inline] pub fn test_lowtouten(&self) -> bool {
-        self.lowtouten != 0
+        self.lowtouten() != 0
     }
 
     #[doc="SCL Low Timeout Enable"]
@@ -2336,7 +2336,7 @@ impl Ctrlb {
 
     #[doc="Smart Mode Enable"]
     #[inline] pub fn test_smen(&self) -> bool {
-        self.smen != 0
+        self.smen() != 0
     }
 
     #[doc="Smart Mode Enable"]
@@ -2355,7 +2355,7 @@ impl Ctrlb {
 
     #[doc="PMBus Group Command"]
     #[inline] pub fn test_gcmd(&self) -> bool {
-        self.gcmd != 0
+        self.gcmd() != 0
     }
 
     #[doc="PMBus Group Command"]
@@ -2374,7 +2374,7 @@ impl Ctrlb {
 
     #[doc="Automatic Address Acknowledge"]
     #[inline] pub fn test_aacken(&self) -> bool {
-        self.aacken != 0
+        self.aacken() != 0
     }
 
     #[doc="Automatic Address Acknowledge"]
@@ -2393,7 +2393,7 @@ impl Ctrlb {
 
     #[doc="Address Mode"]
     #[inline] pub fn test_amode(&self) -> bool {
-        self.amode != 0
+        self.amode() != 0
     }
 
     #[doc="Address Mode"]
@@ -2412,7 +2412,7 @@ impl Ctrlb {
 
     #[doc="Command"]
     #[inline] pub fn test_cmd(&self) -> bool {
-        self.cmd != 0
+        self.cmd() != 0
     }
 
     #[doc="Command"]
@@ -2431,7 +2431,7 @@ impl Ctrlb {
 
     #[doc="Acknowledge Action"]
     #[inline] pub fn test_ackact(&self) -> bool {
-        self.ackact != 0
+        self.ackact() != 0
     }
 
     #[doc="Acknowledge Action"]
@@ -2476,7 +2476,7 @@ impl Data {
 
     #[doc="Data Value"]
     #[inline] pub fn test_data(&self) -> bool {
-        self.data != 0
+        self.data() != 0
     }
 
     #[doc="Data Value"]
@@ -2516,7 +2516,7 @@ impl Dbgctrl {
 
     #[doc="Debug Mode"]
     #[inline] pub fn test_dbgstop(&self) -> bool {
-        self.dbgstop != 0
+        self.dbgstop() != 0
     }
 
     #[doc="Debug Mode"]
@@ -2556,7 +2556,7 @@ impl Intenclr {
 
     #[doc="Stop Received Interrupt Disable"]
     #[inline] pub fn test_prec(&self) -> bool {
-        self.prec != 0
+        self.prec() != 0
     }
 
     #[doc="Stop Received Interrupt Disable"]
@@ -2575,7 +2575,7 @@ impl Intenclr {
 
     #[doc="Address Match Interrupt Disable"]
     #[inline] pub fn test_amatch(&self) -> bool {
-        self.amatch != 0
+        self.amatch() != 0
     }
 
     #[doc="Address Match Interrupt Disable"]
@@ -2594,7 +2594,7 @@ impl Intenclr {
 
     #[doc="Data Interrupt Disable"]
     #[inline] pub fn test_drdy(&self) -> bool {
-        self.drdy != 0
+        self.drdy() != 0
     }
 
     #[doc="Data Interrupt Disable"]
@@ -2613,7 +2613,7 @@ impl Intenclr {
 
     #[doc="Combined Error Interrupt Disable"]
     #[inline] pub fn test_error(&self) -> bool {
-        self.error != 0
+        self.error() != 0
     }
 
     #[doc="Combined Error Interrupt Disable"]
@@ -2656,7 +2656,7 @@ impl Intenset {
 
     #[doc="Stop Received Interrupt Enable"]
     #[inline] pub fn test_prec(&self) -> bool {
-        self.prec != 0
+        self.prec() != 0
     }
 
     #[doc="Stop Received Interrupt Enable"]
@@ -2675,7 +2675,7 @@ impl Intenset {
 
     #[doc="Address Match Interrupt Enable"]
     #[inline] pub fn test_amatch(&self) -> bool {
-        self.amatch != 0
+        self.amatch() != 0
     }
 
     #[doc="Address Match Interrupt Enable"]
@@ -2694,7 +2694,7 @@ impl Intenset {
 
     #[doc="Data Interrupt Enable"]
     #[inline] pub fn test_drdy(&self) -> bool {
-        self.drdy != 0
+        self.drdy() != 0
     }
 
     #[doc="Data Interrupt Enable"]
@@ -2713,7 +2713,7 @@ impl Intenset {
 
     #[doc="Combined Error Interrupt Enable"]
     #[inline] pub fn test_error(&self) -> bool {
-        self.error != 0
+        self.error() != 0
     }
 
     #[doc="Combined Error Interrupt Enable"]
@@ -2756,7 +2756,7 @@ impl Intflag {
 
     #[doc="Stop Received Interrupt"]
     #[inline] pub fn test_prec(&self) -> bool {
-        self.prec != 0
+        self.prec() != 0
     }
 
     #[doc="Stop Received Interrupt"]
@@ -2775,7 +2775,7 @@ impl Intflag {
 
     #[doc="Address Match Interrupt"]
     #[inline] pub fn test_amatch(&self) -> bool {
-        self.amatch != 0
+        self.amatch() != 0
     }
 
     #[doc="Address Match Interrupt"]
@@ -2794,7 +2794,7 @@ impl Intflag {
 
     #[doc="Data Interrupt"]
     #[inline] pub fn test_drdy(&self) -> bool {
-        self.drdy != 0
+        self.drdy() != 0
     }
 
     #[doc="Data Interrupt"]
@@ -2813,7 +2813,7 @@ impl Intflag {
 
     #[doc="Combined Error Interrupt"]
     #[inline] pub fn test_error(&self) -> bool {
-        self.error != 0
+        self.error() != 0
     }
 
     #[doc="Combined Error Interrupt"]
@@ -2856,7 +2856,7 @@ impl Status {
 
     #[doc="Bus Error"]
     #[inline] pub fn test_buserr(&self) -> bool {
-        self.buserr != 0
+        self.buserr() != 0
     }
 
     #[doc="Bus Error"]
@@ -2875,7 +2875,7 @@ impl Status {
 
     #[doc="Transmit Collision"]
     #[inline] pub fn test_coll(&self) -> bool {
-        self.coll != 0
+        self.coll() != 0
     }
 
     #[doc="Transmit Collision"]
@@ -2894,7 +2894,7 @@ impl Status {
 
     #[doc="Received Not Acknowledge"]
     #[inline] pub fn test_rxnack(&self) -> bool {
-        self.rxnack != 0
+        self.rxnack() != 0
     }
 
     #[doc="Received Not Acknowledge"]
@@ -2913,7 +2913,7 @@ impl Status {
 
     #[doc="Read/Write Direction"]
     #[inline] pub fn test_dir(&self) -> bool {
-        self.dir != 0
+        self.dir() != 0
     }
 
     #[doc="Read/Write Direction"]
@@ -2932,7 +2932,7 @@ impl Status {
 
     #[doc="Repeated Start"]
     #[inline] pub fn test_sr(&self) -> bool {
-        self.sr != 0
+        self.sr() != 0
     }
 
     #[doc="Repeated Start"]
@@ -2951,7 +2951,7 @@ impl Status {
 
     #[doc="SCL Low Timeout"]
     #[inline] pub fn test_lowtout(&self) -> bool {
-        self.lowtout != 0
+        self.lowtout() != 0
     }
 
     #[doc="SCL Low Timeout"]
@@ -2970,7 +2970,7 @@ impl Status {
 
     #[doc="Clock Hold"]
     #[inline] pub fn test_clkhold(&self) -> bool {
-        self.clkhold != 0
+        self.clkhold() != 0
     }
 
     #[doc="Clock Hold"]
@@ -2989,7 +2989,7 @@ impl Status {
 
     #[doc="Slave SCL Low Extend Timeout"]
     #[inline] pub fn test_sexttout(&self) -> bool {
-        self.sexttout != 0
+        self.sexttout() != 0
     }
 
     #[doc="Slave SCL Low Extend Timeout"]
@@ -3008,7 +3008,7 @@ impl Status {
 
     #[doc="High Speed"]
     #[inline] pub fn test_hs(&self) -> bool {
-        self.hs != 0
+        self.hs() != 0
     }
 
     #[doc="High Speed"]
@@ -3056,7 +3056,7 @@ impl Syncbusy {
 
     #[doc="Software Reset Synchronization Busy"]
     #[inline] pub fn test_swrst(&self) -> bool {
-        self.swrst != 0
+        self.swrst() != 0
     }
 
     #[doc="Software Reset Synchronization Busy"]
@@ -3075,7 +3075,7 @@ impl Syncbusy {
 
     #[doc="SERCOM Enable Synchronization Busy"]
     #[inline] pub fn test_enable(&self) -> bool {
-        self.enable != 0
+        self.enable() != 0
     }
 
     #[doc="SERCOM Enable Synchronization Busy"]
@@ -3505,7 +3505,7 @@ impl Addr {
 
     #[doc="Address Value"]
     #[inline] pub fn test_addr(&self) -> bool {
-        self.addr != 0
+        self.addr() != 0
     }
 
     #[doc="Address Value"]
@@ -3524,7 +3524,7 @@ impl Addr {
 
     #[doc="Address Mask"]
     #[inline] pub fn test_addrmask(&self) -> bool {
-        self.addrmask != 0
+        self.addrmask() != 0
     }
 
     #[doc="Address Mask"]
@@ -3565,7 +3565,7 @@ impl Baud {
 
     #[doc="Baud Rate Value"]
     #[inline] pub fn test_baud(&self) -> bool {
-        self.baud != 0
+        self.baud() != 0
     }
 
     #[doc="Baud Rate Value"]
@@ -3605,7 +3605,7 @@ impl Ctrla {
 
     #[doc="Software Reset"]
     #[inline] pub fn test_swrst(&self) -> bool {
-        self.swrst != 0
+        self.swrst() != 0
     }
 
     #[doc="Software Reset"]
@@ -3624,7 +3624,7 @@ impl Ctrla {
 
     #[doc="Enable"]
     #[inline] pub fn test_enable(&self) -> bool {
-        self.enable != 0
+        self.enable() != 0
     }
 
     #[doc="Enable"]
@@ -3643,7 +3643,7 @@ impl Ctrla {
 
     #[doc="Operating Mode"]
     #[inline] pub fn test_mode(&self) -> bool {
-        self.mode != 0
+        self.mode() != 0
     }
 
     #[doc="Operating Mode"]
@@ -3662,7 +3662,7 @@ impl Ctrla {
 
     #[doc="Run during Standby"]
     #[inline] pub fn test_runstdby(&self) -> bool {
-        self.runstdby != 0
+        self.runstdby() != 0
     }
 
     #[doc="Run during Standby"]
@@ -3681,7 +3681,7 @@ impl Ctrla {
 
     #[doc="Immediate Buffer Overflow Notification"]
     #[inline] pub fn test_ibon(&self) -> bool {
-        self.ibon != 0
+        self.ibon() != 0
     }
 
     #[doc="Immediate Buffer Overflow Notification"]
@@ -3700,7 +3700,7 @@ impl Ctrla {
 
     #[doc="Data Out Pinout"]
     #[inline] pub fn test_dopo(&self) -> bool {
-        self.dopo != 0
+        self.dopo() != 0
     }
 
     #[doc="Data Out Pinout"]
@@ -3719,7 +3719,7 @@ impl Ctrla {
 
     #[doc="Data In Pinout"]
     #[inline] pub fn test_dipo(&self) -> bool {
-        self.dipo != 0
+        self.dipo() != 0
     }
 
     #[doc="Data In Pinout"]
@@ -3738,7 +3738,7 @@ impl Ctrla {
 
     #[doc="Frame Format"]
     #[inline] pub fn test_form(&self) -> bool {
-        self.form != 0
+        self.form() != 0
     }
 
     #[doc="Frame Format"]
@@ -3757,7 +3757,7 @@ impl Ctrla {
 
     #[doc="Clock Phase"]
     #[inline] pub fn test_cpha(&self) -> bool {
-        self.cpha != 0
+        self.cpha() != 0
     }
 
     #[doc="Clock Phase"]
@@ -3776,7 +3776,7 @@ impl Ctrla {
 
     #[doc="Clock Polarity"]
     #[inline] pub fn test_cpol(&self) -> bool {
-        self.cpol != 0
+        self.cpol() != 0
     }
 
     #[doc="Clock Polarity"]
@@ -3795,7 +3795,7 @@ impl Ctrla {
 
     #[doc="Data Order"]
     #[inline] pub fn test_dord(&self) -> bool {
-        self.dord != 0
+        self.dord() != 0
     }
 
     #[doc="Data Order"]
@@ -3845,7 +3845,7 @@ impl Ctrlb {
 
     #[doc="Character Size"]
     #[inline] pub fn test_chsize(&self) -> bool {
-        self.chsize != 0
+        self.chsize() != 0
     }
 
     #[doc="Character Size"]
@@ -3864,7 +3864,7 @@ impl Ctrlb {
 
     #[doc="Data Preload Enable"]
     #[inline] pub fn test_ploaden(&self) -> bool {
-        self.ploaden != 0
+        self.ploaden() != 0
     }
 
     #[doc="Data Preload Enable"]
@@ -3883,7 +3883,7 @@ impl Ctrlb {
 
     #[doc="Slave Select Low Detect Enable"]
     #[inline] pub fn test_ssde(&self) -> bool {
-        self.ssde != 0
+        self.ssde() != 0
     }
 
     #[doc="Slave Select Low Detect Enable"]
@@ -3902,7 +3902,7 @@ impl Ctrlb {
 
     #[doc="Master Slave Select Enable"]
     #[inline] pub fn test_mssen(&self) -> bool {
-        self.mssen != 0
+        self.mssen() != 0
     }
 
     #[doc="Master Slave Select Enable"]
@@ -3921,7 +3921,7 @@ impl Ctrlb {
 
     #[doc="Address Mode"]
     #[inline] pub fn test_amode(&self) -> bool {
-        self.amode != 0
+        self.amode() != 0
     }
 
     #[doc="Address Mode"]
@@ -3940,7 +3940,7 @@ impl Ctrlb {
 
     #[doc="Receiver Enable"]
     #[inline] pub fn test_rxen(&self) -> bool {
-        self.rxen != 0
+        self.rxen() != 0
     }
 
     #[doc="Receiver Enable"]
@@ -3985,7 +3985,7 @@ impl Data {
 
     #[doc="Data Value"]
     #[inline] pub fn test_data(&self) -> bool {
-        self.data != 0
+        self.data() != 0
     }
 
     #[doc="Data Value"]
@@ -4025,7 +4025,7 @@ impl Dbgctrl {
 
     #[doc="Debug Mode"]
     #[inline] pub fn test_dbgstop(&self) -> bool {
-        self.dbgstop != 0
+        self.dbgstop() != 0
     }
 
     #[doc="Debug Mode"]
@@ -4065,7 +4065,7 @@ impl Intenclr {
 
     #[doc="Data Register Empty Interrupt Disable"]
     #[inline] pub fn test_dre(&self) -> bool {
-        self.dre != 0
+        self.dre() != 0
     }
 
     #[doc="Data Register Empty Interrupt Disable"]
@@ -4084,7 +4084,7 @@ impl Intenclr {
 
     #[doc="Transmit Complete Interrupt Disable"]
     #[inline] pub fn test_txc(&self) -> bool {
-        self.txc != 0
+        self.txc() != 0
     }
 
     #[doc="Transmit Complete Interrupt Disable"]
@@ -4103,7 +4103,7 @@ impl Intenclr {
 
     #[doc="Receive Complete Interrupt Disable"]
     #[inline] pub fn test_rxc(&self) -> bool {
-        self.rxc != 0
+        self.rxc() != 0
     }
 
     #[doc="Receive Complete Interrupt Disable"]
@@ -4122,7 +4122,7 @@ impl Intenclr {
 
     #[doc="Slave Select Low Interrupt Disable"]
     #[inline] pub fn test_ssl(&self) -> bool {
-        self.ssl != 0
+        self.ssl() != 0
     }
 
     #[doc="Slave Select Low Interrupt Disable"]
@@ -4141,7 +4141,7 @@ impl Intenclr {
 
     #[doc="Combined Error Interrupt Disable"]
     #[inline] pub fn test_error(&self) -> bool {
-        self.error != 0
+        self.error() != 0
     }
 
     #[doc="Combined Error Interrupt Disable"]
@@ -4185,7 +4185,7 @@ impl Intenset {
 
     #[doc="Data Register Empty Interrupt Enable"]
     #[inline] pub fn test_dre(&self) -> bool {
-        self.dre != 0
+        self.dre() != 0
     }
 
     #[doc="Data Register Empty Interrupt Enable"]
@@ -4204,7 +4204,7 @@ impl Intenset {
 
     #[doc="Transmit Complete Interrupt Enable"]
     #[inline] pub fn test_txc(&self) -> bool {
-        self.txc != 0
+        self.txc() != 0
     }
 
     #[doc="Transmit Complete Interrupt Enable"]
@@ -4223,7 +4223,7 @@ impl Intenset {
 
     #[doc="Receive Complete Interrupt Enable"]
     #[inline] pub fn test_rxc(&self) -> bool {
-        self.rxc != 0
+        self.rxc() != 0
     }
 
     #[doc="Receive Complete Interrupt Enable"]
@@ -4242,7 +4242,7 @@ impl Intenset {
 
     #[doc="Slave Select Low Interrupt Enable"]
     #[inline] pub fn test_ssl(&self) -> bool {
-        self.ssl != 0
+        self.ssl() != 0
     }
 
     #[doc="Slave Select Low Interrupt Enable"]
@@ -4261,7 +4261,7 @@ impl Intenset {
 
     #[doc="Combined Error Interrupt Enable"]
     #[inline] pub fn test_error(&self) -> bool {
-        self.error != 0
+        self.error() != 0
     }
 
     #[doc="Combined Error Interrupt Enable"]
@@ -4305,7 +4305,7 @@ impl Intflag {
 
     #[doc="Data Register Empty Interrupt"]
     #[inline] pub fn test_dre(&self) -> bool {
-        self.dre != 0
+        self.dre() != 0
     }
 
     #[doc="Data Register Empty Interrupt"]
@@ -4324,7 +4324,7 @@ impl Intflag {
 
     #[doc="Transmit Complete Interrupt"]
     #[inline] pub fn test_txc(&self) -> bool {
-        self.txc != 0
+        self.txc() != 0
     }
 
     #[doc="Transmit Complete Interrupt"]
@@ -4343,7 +4343,7 @@ impl Intflag {
 
     #[doc="Receive Complete Interrupt"]
     #[inline] pub fn test_rxc(&self) -> bool {
-        self.rxc != 0
+        self.rxc() != 0
     }
 
     #[doc="Receive Complete Interrupt"]
@@ -4362,7 +4362,7 @@ impl Intflag {
 
     #[doc="Slave Select Low Interrupt Flag"]
     #[inline] pub fn test_ssl(&self) -> bool {
-        self.ssl != 0
+        self.ssl() != 0
     }
 
     #[doc="Slave Select Low Interrupt Flag"]
@@ -4381,7 +4381,7 @@ impl Intflag {
 
     #[doc="Combined Error Interrupt"]
     #[inline] pub fn test_error(&self) -> bool {
-        self.error != 0
+        self.error() != 0
     }
 
     #[doc="Combined Error Interrupt"]
@@ -4425,7 +4425,7 @@ impl Status {
 
     #[doc="Buffer Overflow"]
     #[inline] pub fn test_bufovf(&self) -> bool {
-        self.bufovf != 0
+        self.bufovf() != 0
     }
 
     #[doc="Buffer Overflow"]
@@ -4465,7 +4465,7 @@ impl Syncbusy {
 
     #[doc="Software Reset Synchronization Busy"]
     #[inline] pub fn test_swrst(&self) -> bool {
-        self.swrst != 0
+        self.swrst() != 0
     }
 
     #[doc="Software Reset Synchronization Busy"]
@@ -4484,7 +4484,7 @@ impl Syncbusy {
 
     #[doc="SERCOM Enable Synchronization Busy"]
     #[inline] pub fn test_enable(&self) -> bool {
-        self.enable != 0
+        self.enable() != 0
     }
 
     #[doc="SERCOM Enable Synchronization Busy"]
@@ -4503,7 +4503,7 @@ impl Syncbusy {
 
     #[doc="CTRLB Synchronization Busy"]
     #[inline] pub fn test_ctrlb(&self) -> bool {
-        self.ctrlb != 0
+        self.ctrlb() != 0
     }
 
     #[doc="CTRLB Synchronization Busy"]
@@ -4934,7 +4934,7 @@ impl Baud {
 
     #[doc="Baud Rate Value"]
     #[inline] pub fn test_baud(&self) -> bool {
-        self.baud != 0
+        self.baud() != 0
     }
 
     #[doc="Baud Rate Value"]
@@ -4953,7 +4953,7 @@ impl Baud {
 
     #[doc="Fractional Part"]
     #[inline] pub fn test_fp(&self) -> bool {
-        self.fp != 0
+        self.fp() != 0
     }
 
     #[doc="Fractional Part"]
@@ -4994,7 +4994,7 @@ impl Ctrla {
 
     #[doc="Software Reset"]
     #[inline] pub fn test_swrst(&self) -> bool {
-        self.swrst != 0
+        self.swrst() != 0
     }
 
     #[doc="Software Reset"]
@@ -5013,7 +5013,7 @@ impl Ctrla {
 
     #[doc="Enable"]
     #[inline] pub fn test_enable(&self) -> bool {
-        self.enable != 0
+        self.enable() != 0
     }
 
     #[doc="Enable"]
@@ -5032,7 +5032,7 @@ impl Ctrla {
 
     #[doc="Operating Mode"]
     #[inline] pub fn test_mode(&self) -> bool {
-        self.mode != 0
+        self.mode() != 0
     }
 
     #[doc="Operating Mode"]
@@ -5051,7 +5051,7 @@ impl Ctrla {
 
     #[doc="Run during Standby"]
     #[inline] pub fn test_runstdby(&self) -> bool {
-        self.runstdby != 0
+        self.runstdby() != 0
     }
 
     #[doc="Run during Standby"]
@@ -5070,7 +5070,7 @@ impl Ctrla {
 
     #[doc="Immediate Buffer Overflow Notification"]
     #[inline] pub fn test_ibon(&self) -> bool {
-        self.ibon != 0
+        self.ibon() != 0
     }
 
     #[doc="Immediate Buffer Overflow Notification"]
@@ -5089,7 +5089,7 @@ impl Ctrla {
 
     #[doc="Sample"]
     #[inline] pub fn test_sampr(&self) -> bool {
-        self.sampr != 0
+        self.sampr() != 0
     }
 
     #[doc="Sample"]
@@ -5108,7 +5108,7 @@ impl Ctrla {
 
     #[doc="Transmit Data Pinout"]
     #[inline] pub fn test_txpo(&self) -> bool {
-        self.txpo != 0
+        self.txpo() != 0
     }
 
     #[doc="Transmit Data Pinout"]
@@ -5127,7 +5127,7 @@ impl Ctrla {
 
     #[doc="Receive Data Pinout"]
     #[inline] pub fn test_rxpo(&self) -> bool {
-        self.rxpo != 0
+        self.rxpo() != 0
     }
 
     #[doc="Receive Data Pinout"]
@@ -5146,7 +5146,7 @@ impl Ctrla {
 
     #[doc="Sample Adjustment"]
     #[inline] pub fn test_sampa(&self) -> bool {
-        self.sampa != 0
+        self.sampa() != 0
     }
 
     #[doc="Sample Adjustment"]
@@ -5165,7 +5165,7 @@ impl Ctrla {
 
     #[doc="Frame Format"]
     #[inline] pub fn test_form(&self) -> bool {
-        self.form != 0
+        self.form() != 0
     }
 
     #[doc="Frame Format"]
@@ -5184,7 +5184,7 @@ impl Ctrla {
 
     #[doc="Communication Mode"]
     #[inline] pub fn test_cmode(&self) -> bool {
-        self.cmode != 0
+        self.cmode() != 0
     }
 
     #[doc="Communication Mode"]
@@ -5203,7 +5203,7 @@ impl Ctrla {
 
     #[doc="Clock Polarity"]
     #[inline] pub fn test_cpol(&self) -> bool {
-        self.cpol != 0
+        self.cpol() != 0
     }
 
     #[doc="Clock Polarity"]
@@ -5222,7 +5222,7 @@ impl Ctrla {
 
     #[doc="Data Order"]
     #[inline] pub fn test_dord(&self) -> bool {
-        self.dord != 0
+        self.dord() != 0
     }
 
     #[doc="Data Order"]
@@ -5274,7 +5274,7 @@ impl Ctrlb {
 
     #[doc="Character Size"]
     #[inline] pub fn test_chsize(&self) -> bool {
-        self.chsize != 0
+        self.chsize() != 0
     }
 
     #[doc="Character Size"]
@@ -5293,7 +5293,7 @@ impl Ctrlb {
 
     #[doc="Stop Bit Mode"]
     #[inline] pub fn test_sbmode(&self) -> bool {
-        self.sbmode != 0
+        self.sbmode() != 0
     }
 
     #[doc="Stop Bit Mode"]
@@ -5312,7 +5312,7 @@ impl Ctrlb {
 
     #[doc="Collision Detection Enable"]
     #[inline] pub fn test_colden(&self) -> bool {
-        self.colden != 0
+        self.colden() != 0
     }
 
     #[doc="Collision Detection Enable"]
@@ -5331,7 +5331,7 @@ impl Ctrlb {
 
     #[doc="Start of Frame Detection Enable"]
     #[inline] pub fn test_sfde(&self) -> bool {
-        self.sfde != 0
+        self.sfde() != 0
     }
 
     #[doc="Start of Frame Detection Enable"]
@@ -5350,7 +5350,7 @@ impl Ctrlb {
 
     #[doc="Encoding Format"]
     #[inline] pub fn test_enc(&self) -> bool {
-        self.enc != 0
+        self.enc() != 0
     }
 
     #[doc="Encoding Format"]
@@ -5369,7 +5369,7 @@ impl Ctrlb {
 
     #[doc="Parity Mode"]
     #[inline] pub fn test_pmode(&self) -> bool {
-        self.pmode != 0
+        self.pmode() != 0
     }
 
     #[doc="Parity Mode"]
@@ -5388,7 +5388,7 @@ impl Ctrlb {
 
     #[doc="Transmitter Enable"]
     #[inline] pub fn test_txen(&self) -> bool {
-        self.txen != 0
+        self.txen() != 0
     }
 
     #[doc="Transmitter Enable"]
@@ -5407,7 +5407,7 @@ impl Ctrlb {
 
     #[doc="Receiver Enable"]
     #[inline] pub fn test_rxen(&self) -> bool {
-        self.rxen != 0
+        self.rxen() != 0
     }
 
     #[doc="Receiver Enable"]
@@ -5454,7 +5454,7 @@ impl Data {
 
     #[doc="Data Value"]
     #[inline] pub fn test_data(&self) -> bool {
-        self.data != 0
+        self.data() != 0
     }
 
     #[doc="Data Value"]
@@ -5494,7 +5494,7 @@ impl Dbgctrl {
 
     #[doc="Debug Mode"]
     #[inline] pub fn test_dbgstop(&self) -> bool {
-        self.dbgstop != 0
+        self.dbgstop() != 0
     }
 
     #[doc="Debug Mode"]
@@ -5534,7 +5534,7 @@ impl Intenclr {
 
     #[doc="Data Register Empty Interrupt Disable"]
     #[inline] pub fn test_dre(&self) -> bool {
-        self.dre != 0
+        self.dre() != 0
     }
 
     #[doc="Data Register Empty Interrupt Disable"]
@@ -5553,7 +5553,7 @@ impl Intenclr {
 
     #[doc="Transmit Complete Interrupt Disable"]
     #[inline] pub fn test_txc(&self) -> bool {
-        self.txc != 0
+        self.txc() != 0
     }
 
     #[doc="Transmit Complete Interrupt Disable"]
@@ -5572,7 +5572,7 @@ impl Intenclr {
 
     #[doc="Receive Complete Interrupt Disable"]
     #[inline] pub fn test_rxc(&self) -> bool {
-        self.rxc != 0
+        self.rxc() != 0
     }
 
     #[doc="Receive Complete Interrupt Disable"]
@@ -5591,7 +5591,7 @@ impl Intenclr {
 
     #[doc="Receive Start Interrupt Disable"]
     #[inline] pub fn test_rxs(&self) -> bool {
-        self.rxs != 0
+        self.rxs() != 0
     }
 
     #[doc="Receive Start Interrupt Disable"]
@@ -5610,7 +5610,7 @@ impl Intenclr {
 
     #[doc="Clear To Send Input Change Interrupt Disable"]
     #[inline] pub fn test_ctsic(&self) -> bool {
-        self.ctsic != 0
+        self.ctsic() != 0
     }
 
     #[doc="Clear To Send Input Change Interrupt Disable"]
@@ -5629,7 +5629,7 @@ impl Intenclr {
 
     #[doc="Break Received Interrupt Disable"]
     #[inline] pub fn test_rxbrk(&self) -> bool {
-        self.rxbrk != 0
+        self.rxbrk() != 0
     }
 
     #[doc="Break Received Interrupt Disable"]
@@ -5648,7 +5648,7 @@ impl Intenclr {
 
     #[doc="Combined Error Interrupt Disable"]
     #[inline] pub fn test_error(&self) -> bool {
-        self.error != 0
+        self.error() != 0
     }
 
     #[doc="Combined Error Interrupt Disable"]
@@ -5694,7 +5694,7 @@ impl Intenset {
 
     #[doc="Data Register Empty Interrupt Enable"]
     #[inline] pub fn test_dre(&self) -> bool {
-        self.dre != 0
+        self.dre() != 0
     }
 
     #[doc="Data Register Empty Interrupt Enable"]
@@ -5713,7 +5713,7 @@ impl Intenset {
 
     #[doc="Transmit Complete Interrupt Enable"]
     #[inline] pub fn test_txc(&self) -> bool {
-        self.txc != 0
+        self.txc() != 0
     }
 
     #[doc="Transmit Complete Interrupt Enable"]
@@ -5732,7 +5732,7 @@ impl Intenset {
 
     #[doc="Receive Complete Interrupt Enable"]
     #[inline] pub fn test_rxc(&self) -> bool {
-        self.rxc != 0
+        self.rxc() != 0
     }
 
     #[doc="Receive Complete Interrupt Enable"]
@@ -5751,7 +5751,7 @@ impl Intenset {
 
     #[doc="Receive Start Interrupt Enable"]
     #[inline] pub fn test_rxs(&self) -> bool {
-        self.rxs != 0
+        self.rxs() != 0
     }
 
     #[doc="Receive Start Interrupt Enable"]
@@ -5770,7 +5770,7 @@ impl Intenset {
 
     #[doc="Clear To Send Input Change Interrupt Enable"]
     #[inline] pub fn test_ctsic(&self) -> bool {
-        self.ctsic != 0
+        self.ctsic() != 0
     }
 
     #[doc="Clear To Send Input Change Interrupt Enable"]
@@ -5789,7 +5789,7 @@ impl Intenset {
 
     #[doc="Break Received Interrupt Enable"]
     #[inline] pub fn test_rxbrk(&self) -> bool {
-        self.rxbrk != 0
+        self.rxbrk() != 0
     }
 
     #[doc="Break Received Interrupt Enable"]
@@ -5808,7 +5808,7 @@ impl Intenset {
 
     #[doc="Combined Error Interrupt Enable"]
     #[inline] pub fn test_error(&self) -> bool {
-        self.error != 0
+        self.error() != 0
     }
 
     #[doc="Combined Error Interrupt Enable"]
@@ -5854,7 +5854,7 @@ impl Intflag {
 
     #[doc="Data Register Empty Interrupt"]
     #[inline] pub fn test_dre(&self) -> bool {
-        self.dre != 0
+        self.dre() != 0
     }
 
     #[doc="Data Register Empty Interrupt"]
@@ -5873,7 +5873,7 @@ impl Intflag {
 
     #[doc="Transmit Complete Interrupt"]
     #[inline] pub fn test_txc(&self) -> bool {
-        self.txc != 0
+        self.txc() != 0
     }
 
     #[doc="Transmit Complete Interrupt"]
@@ -5892,7 +5892,7 @@ impl Intflag {
 
     #[doc="Receive Complete Interrupt"]
     #[inline] pub fn test_rxc(&self) -> bool {
-        self.rxc != 0
+        self.rxc() != 0
     }
 
     #[doc="Receive Complete Interrupt"]
@@ -5911,7 +5911,7 @@ impl Intflag {
 
     #[doc="Receive Start Interrupt"]
     #[inline] pub fn test_rxs(&self) -> bool {
-        self.rxs != 0
+        self.rxs() != 0
     }
 
     #[doc="Receive Start Interrupt"]
@@ -5930,7 +5930,7 @@ impl Intflag {
 
     #[doc="Clear To Send Input Change Interrupt"]
     #[inline] pub fn test_ctsic(&self) -> bool {
-        self.ctsic != 0
+        self.ctsic() != 0
     }
 
     #[doc="Clear To Send Input Change Interrupt"]
@@ -5949,7 +5949,7 @@ impl Intflag {
 
     #[doc="Break Received Interrupt"]
     #[inline] pub fn test_rxbrk(&self) -> bool {
-        self.rxbrk != 0
+        self.rxbrk() != 0
     }
 
     #[doc="Break Received Interrupt"]
@@ -5968,7 +5968,7 @@ impl Intflag {
 
     #[doc="Combined Error Interrupt"]
     #[inline] pub fn test_error(&self) -> bool {
-        self.error != 0
+        self.error() != 0
     }
 
     #[doc="Combined Error Interrupt"]
@@ -6014,7 +6014,7 @@ impl Rxpl {
 
     #[doc="Receive Pulse Length"]
     #[inline] pub fn test_rxpl(&self) -> bool {
-        self.rxpl != 0
+        self.rxpl() != 0
     }
 
     #[doc="Receive Pulse Length"]
@@ -6054,7 +6054,7 @@ impl Status {
 
     #[doc="Parity Error"]
     #[inline] pub fn test_perr(&self) -> bool {
-        self.perr != 0
+        self.perr() != 0
     }
 
     #[doc="Parity Error"]
@@ -6073,7 +6073,7 @@ impl Status {
 
     #[doc="Frame Error"]
     #[inline] pub fn test_ferr(&self) -> bool {
-        self.ferr != 0
+        self.ferr() != 0
     }
 
     #[doc="Frame Error"]
@@ -6092,7 +6092,7 @@ impl Status {
 
     #[doc="Buffer Overflow"]
     #[inline] pub fn test_bufovf(&self) -> bool {
-        self.bufovf != 0
+        self.bufovf() != 0
     }
 
     #[doc="Buffer Overflow"]
@@ -6111,7 +6111,7 @@ impl Status {
 
     #[doc="Clear To Send"]
     #[inline] pub fn test_cts(&self) -> bool {
-        self.cts != 0
+        self.cts() != 0
     }
 
     #[doc="Clear To Send"]
@@ -6130,7 +6130,7 @@ impl Status {
 
     #[doc="Inconsistent Sync Field"]
     #[inline] pub fn test_isf(&self) -> bool {
-        self.isf != 0
+        self.isf() != 0
     }
 
     #[doc="Inconsistent Sync Field"]
@@ -6149,7 +6149,7 @@ impl Status {
 
     #[doc="Collision Detected"]
     #[inline] pub fn test_coll(&self) -> bool {
-        self.coll != 0
+        self.coll() != 0
     }
 
     #[doc="Collision Detected"]
@@ -6194,7 +6194,7 @@ impl Syncbusy {
 
     #[doc="Software Reset Synchronization Busy"]
     #[inline] pub fn test_swrst(&self) -> bool {
-        self.swrst != 0
+        self.swrst() != 0
     }
 
     #[doc="Software Reset Synchronization Busy"]
@@ -6213,7 +6213,7 @@ impl Syncbusy {
 
     #[doc="SERCOM Enable Synchronization Busy"]
     #[inline] pub fn test_enable(&self) -> bool {
-        self.enable != 0
+        self.enable() != 0
     }
 
     #[doc="SERCOM Enable Synchronization Busy"]
@@ -6232,7 +6232,7 @@ impl Syncbusy {
 
     #[doc="CTRLB Synchronization Busy"]
     #[inline] pub fn test_ctrlb(&self) -> bool {
-        self.ctrlb != 0
+        self.ctrlb() != 0
     }
 
     #[doc="CTRLB Synchronization Busy"]

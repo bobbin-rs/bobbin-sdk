@@ -208,7 +208,7 @@ impl Fifodata {
 
     #[doc="I2C TX FIFO Write Data Byte"]
     #[inline] pub fn test_data(&self) -> bool {
-        self.data != 0
+        self.data() != 0
     }
 
     #[doc="I2C TX FIFO Write Data Byte"]
@@ -248,7 +248,7 @@ impl Fifoctl {
 
     #[doc="TX FIFO Trigger"]
     #[inline] pub fn test_txtrig(&self) -> bool {
-        self.txtrig != 0
+        self.txtrig() != 0
     }
 
     #[doc="TX FIFO Trigger"]
@@ -267,7 +267,7 @@ impl Fifoctl {
 
     #[doc="DMA TX Channel Enable"]
     #[inline] pub fn test_dmatxena(&self) -> bool {
-        self.dmatxena != 0
+        self.dmatxena() != 0
     }
 
     #[doc="DMA TX Channel Enable"]
@@ -286,7 +286,7 @@ impl Fifoctl {
 
     #[doc="TX FIFO Flush"]
     #[inline] pub fn test_txflush(&self) -> bool {
-        self.txflush != 0
+        self.txflush() != 0
     }
 
     #[doc="TX FIFO Flush"]
@@ -305,7 +305,7 @@ impl Fifoctl {
 
     #[doc="TX Control Assignment"]
     #[inline] pub fn test_txasgnmt(&self) -> bool {
-        self.txasgnmt != 0
+        self.txasgnmt() != 0
     }
 
     #[doc="TX Control Assignment"]
@@ -324,7 +324,7 @@ impl Fifoctl {
 
     #[doc="RX FIFO Trigger"]
     #[inline] pub fn test_rxtrig(&self) -> bool {
-        self.rxtrig != 0
+        self.rxtrig() != 0
     }
 
     #[doc="RX FIFO Trigger"]
@@ -343,7 +343,7 @@ impl Fifoctl {
 
     #[doc="DMA RX Channel Enable"]
     #[inline] pub fn test_dmarxena(&self) -> bool {
-        self.dmarxena != 0
+        self.dmarxena() != 0
     }
 
     #[doc="DMA RX Channel Enable"]
@@ -362,7 +362,7 @@ impl Fifoctl {
 
     #[doc="RX FIFO Flush"]
     #[inline] pub fn test_rxflush(&self) -> bool {
-        self.rxflush != 0
+        self.rxflush() != 0
     }
 
     #[doc="RX FIFO Flush"]
@@ -381,7 +381,7 @@ impl Fifoctl {
 
     #[doc="RX Control Assignment"]
     #[inline] pub fn test_rxasgnmt(&self) -> bool {
-        self.rxasgnmt != 0
+        self.rxasgnmt() != 0
     }
 
     #[doc="RX Control Assignment"]
@@ -428,7 +428,7 @@ impl Fifostatus {
 
     #[doc="TX FIFO Empty"]
     #[inline] pub fn test_txfe(&self) -> bool {
-        self.txfe != 0
+        self.txfe() != 0
     }
 
     #[doc="TX FIFO Empty"]
@@ -447,7 +447,7 @@ impl Fifostatus {
 
     #[doc="TX FIFO Full"]
     #[inline] pub fn test_txff(&self) -> bool {
-        self.txff != 0
+        self.txff() != 0
     }
 
     #[doc="TX FIFO Full"]
@@ -466,7 +466,7 @@ impl Fifostatus {
 
     #[doc="TX FIFO Below Trigger Level"]
     #[inline] pub fn test_txblwtrig(&self) -> bool {
-        self.txblwtrig != 0
+        self.txblwtrig() != 0
     }
 
     #[doc="TX FIFO Below Trigger Level"]
@@ -485,7 +485,7 @@ impl Fifostatus {
 
     #[doc="RX FIFO Empty"]
     #[inline] pub fn test_rxfe(&self) -> bool {
-        self.rxfe != 0
+        self.rxfe() != 0
     }
 
     #[doc="RX FIFO Empty"]
@@ -504,7 +504,7 @@ impl Fifostatus {
 
     #[doc="RX FIFO Full"]
     #[inline] pub fn test_rxff(&self) -> bool {
-        self.rxff != 0
+        self.rxff() != 0
     }
 
     #[doc="RX FIFO Full"]
@@ -523,7 +523,7 @@ impl Fifostatus {
 
     #[doc="RX FIFO Above Trigger Level"]
     #[inline] pub fn test_rxabvtrig(&self) -> bool {
-        self.rxabvtrig != 0
+        self.rxabvtrig() != 0
     }
 
     #[doc="RX FIFO Above Trigger Level"]
@@ -568,7 +568,7 @@ impl Pp {
 
     #[doc="High-Speed Capable"]
     #[inline] pub fn test_hs(&self) -> bool {
-        self.hs != 0
+        self.hs() != 0
     }
 
     #[doc="High-Speed Capable"]
@@ -608,7 +608,7 @@ impl Pc {
 
     #[doc="High-Speed Capable"]
     #[inline] pub fn test_hs(&self) -> bool {
-        self.hs != 0
+        self.hs() != 0
     }
 
     #[doc="High-Speed Capable"]
@@ -1115,7 +1115,7 @@ impl Msa {
 
     #[doc="Receive not send"]
     #[inline] pub fn test_rs(&self) -> bool {
-        self.rs != 0
+        self.rs() != 0
     }
 
     #[doc="Receive not send"]
@@ -1134,7 +1134,7 @@ impl Msa {
 
     #[doc="I2C Slave Address"]
     #[inline] pub fn test_sa(&self) -> bool {
-        self.sa != 0
+        self.sa() != 0
     }
 
     #[doc="I2C Slave Address"]
@@ -1175,7 +1175,7 @@ impl McsWrite {
 
     #[doc="I2C Master Enable"]
     #[inline] pub fn test_run(&self) -> bool {
-        self.run != 0
+        self.run() != 0
     }
 
     #[doc="I2C Master Enable"]
@@ -1194,7 +1194,7 @@ impl McsWrite {
 
     #[doc="Generate START"]
     #[inline] pub fn test_start(&self) -> bool {
-        self.start != 0
+        self.start() != 0
     }
 
     #[doc="Generate START"]
@@ -1213,7 +1213,7 @@ impl McsWrite {
 
     #[doc="Generate STOP"]
     #[inline] pub fn test_stop(&self) -> bool {
-        self.stop != 0
+        self.stop() != 0
     }
 
     #[doc="Generate STOP"]
@@ -1232,7 +1232,7 @@ impl McsWrite {
 
     #[doc="Data Acknowledge Enable"]
     #[inline] pub fn test_ack(&self) -> bool {
-        self.ack != 0
+        self.ack() != 0
     }
 
     #[doc="Data Acknowledge Enable"]
@@ -1251,7 +1251,7 @@ impl McsWrite {
 
     #[doc="High Speed"]
     #[inline] pub fn test_hs(&self) -> bool {
-        self.hs != 0
+        self.hs() != 0
     }
 
     #[doc="High Speed"]
@@ -1270,7 +1270,7 @@ impl McsWrite {
 
     #[doc="Quick Command"]
     #[inline] pub fn test_qcmd(&self) -> bool {
-        self.qcmd != 0
+        self.qcmd() != 0
     }
 
     #[doc="Quick Command"]
@@ -1289,7 +1289,7 @@ impl McsWrite {
 
     #[doc="Burst Enable"]
     #[inline] pub fn test_burst(&self) -> bool {
-        self.burst != 0
+        self.burst() != 0
     }
 
     #[doc="Burst Enable"]
@@ -1335,7 +1335,7 @@ impl McsRead {
 
     #[doc="I2C Busy"]
     #[inline] pub fn test_busy(&self) -> bool {
-        self.busy != 0
+        self.busy() != 0
     }
 
     #[doc="I2C Busy"]
@@ -1354,7 +1354,7 @@ impl McsRead {
 
     #[doc="Error"]
     #[inline] pub fn test_error(&self) -> bool {
-        self.error != 0
+        self.error() != 0
     }
 
     #[doc="Error"]
@@ -1373,7 +1373,7 @@ impl McsRead {
 
     #[doc="Acknowledge Address"]
     #[inline] pub fn test_adrack(&self) -> bool {
-        self.adrack != 0
+        self.adrack() != 0
     }
 
     #[doc="Acknowledge Address"]
@@ -1392,7 +1392,7 @@ impl McsRead {
 
     #[doc="Acknowledge Data"]
     #[inline] pub fn test_datack(&self) -> bool {
-        self.datack != 0
+        self.datack() != 0
     }
 
     #[doc="Acknowledge Data"]
@@ -1411,7 +1411,7 @@ impl McsRead {
 
     #[doc="Arbitration Lost"]
     #[inline] pub fn test_arblst(&self) -> bool {
-        self.arblst != 0
+        self.arblst() != 0
     }
 
     #[doc="Arbitration Lost"]
@@ -1430,7 +1430,7 @@ impl McsRead {
 
     #[doc="I2C Idle"]
     #[inline] pub fn test_idle(&self) -> bool {
-        self.idle != 0
+        self.idle() != 0
     }
 
     #[doc="I2C Idle"]
@@ -1449,7 +1449,7 @@ impl McsRead {
 
     #[doc="Bus Busy"]
     #[inline] pub fn test_busbsy(&self) -> bool {
-        self.busbsy != 0
+        self.busbsy() != 0
     }
 
     #[doc="Bus Busy"]
@@ -1468,7 +1468,7 @@ impl McsRead {
 
     #[doc="Clock Timeout Error"]
     #[inline] pub fn test_clkto(&self) -> bool {
-        self.clkto != 0
+        self.clkto() != 0
     }
 
     #[doc="Clock Timeout Error"]
@@ -1487,7 +1487,7 @@ impl McsRead {
 
     #[doc="DMA TX Active Status"]
     #[inline] pub fn test_actdmatx(&self) -> bool {
-        self.actdmatx != 0
+        self.actdmatx() != 0
     }
 
     #[doc="DMA TX Active Status"]
@@ -1506,7 +1506,7 @@ impl McsRead {
 
     #[doc="DMA RX Active Status"]
     #[inline] pub fn test_actdmarx(&self) -> bool {
-        self.actdmarx != 0
+        self.actdmarx() != 0
     }
 
     #[doc="DMA RX Active Status"]
@@ -1555,7 +1555,7 @@ impl Mdr {
 
     #[doc="This byte contains the data transferred during a transaction"]
     #[inline] pub fn test_data(&self) -> bool {
-        self.data != 0
+        self.data() != 0
     }
 
     #[doc="This byte contains the data transferred during a transaction"]
@@ -1595,7 +1595,7 @@ impl Mtpr {
 
     #[doc="Timer Period"]
     #[inline] pub fn test_tpr(&self) -> bool {
-        self.tpr != 0
+        self.tpr() != 0
     }
 
     #[doc="Timer Period"]
@@ -1614,7 +1614,7 @@ impl Mtpr {
 
     #[doc="High-Speed Enable"]
     #[inline] pub fn test_hs(&self) -> bool {
-        self.hs != 0
+        self.hs() != 0
     }
 
     #[doc="High-Speed Enable"]
@@ -1633,7 +1633,7 @@ impl Mtpr {
 
     #[doc="Glitch Suppression Pulse Width"]
     #[inline] pub fn test_pulsel(&self) -> bool {
-        self.pulsel != 0
+        self.pulsel() != 0
     }
 
     #[doc="Glitch Suppression Pulse Width"]
@@ -1675,7 +1675,7 @@ impl Mimr {
 
     #[doc="Master Interrupt Mask"]
     #[inline] pub fn test_im(&self) -> bool {
-        self.im != 0
+        self.im() != 0
     }
 
     #[doc="Master Interrupt Mask"]
@@ -1694,7 +1694,7 @@ impl Mimr {
 
     #[doc="Clock Timeout Interrupt Mask"]
     #[inline] pub fn test_clkim(&self) -> bool {
-        self.clkim != 0
+        self.clkim() != 0
     }
 
     #[doc="Clock Timeout Interrupt Mask"]
@@ -1713,7 +1713,7 @@ impl Mimr {
 
     #[doc="Receive DMA Interrupt Mask"]
     #[inline] pub fn test_dmarxim(&self) -> bool {
-        self.dmarxim != 0
+        self.dmarxim() != 0
     }
 
     #[doc="Receive DMA Interrupt Mask"]
@@ -1732,7 +1732,7 @@ impl Mimr {
 
     #[doc="Transmit DMA Interrupt Mask"]
     #[inline] pub fn test_dmatxim(&self) -> bool {
-        self.dmatxim != 0
+        self.dmatxim() != 0
     }
 
     #[doc="Transmit DMA Interrupt Mask"]
@@ -1751,7 +1751,7 @@ impl Mimr {
 
     #[doc="Address/Data NACK Interrupt Mask"]
     #[inline] pub fn test_nackim(&self) -> bool {
-        self.nackim != 0
+        self.nackim() != 0
     }
 
     #[doc="Address/Data NACK Interrupt Mask"]
@@ -1770,7 +1770,7 @@ impl Mimr {
 
     #[doc="START Detection Interrupt Mask"]
     #[inline] pub fn test_startim(&self) -> bool {
-        self.startim != 0
+        self.startim() != 0
     }
 
     #[doc="START Detection Interrupt Mask"]
@@ -1789,7 +1789,7 @@ impl Mimr {
 
     #[doc="STOP Detection Interrupt Mask"]
     #[inline] pub fn test_stopim(&self) -> bool {
-        self.stopim != 0
+        self.stopim() != 0
     }
 
     #[doc="STOP Detection Interrupt Mask"]
@@ -1808,7 +1808,7 @@ impl Mimr {
 
     #[doc="Arbitration Lost Interrupt Mask"]
     #[inline] pub fn test_arblostim(&self) -> bool {
-        self.arblostim != 0
+        self.arblostim() != 0
     }
 
     #[doc="Arbitration Lost Interrupt Mask"]
@@ -1827,7 +1827,7 @@ impl Mimr {
 
     #[doc="Transmit FIFO Request Interrupt Mask"]
     #[inline] pub fn test_txim(&self) -> bool {
-        self.txim != 0
+        self.txim() != 0
     }
 
     #[doc="Transmit FIFO Request Interrupt Mask"]
@@ -1846,7 +1846,7 @@ impl Mimr {
 
     #[doc="Receive FIFO Request Interrupt Mask"]
     #[inline] pub fn test_rxim(&self) -> bool {
-        self.rxim != 0
+        self.rxim() != 0
     }
 
     #[doc="Receive FIFO Request Interrupt Mask"]
@@ -1865,7 +1865,7 @@ impl Mimr {
 
     #[doc="Transmit FIFO Empty Interrupt Mask"]
     #[inline] pub fn test_txfeim(&self) -> bool {
-        self.txfeim != 0
+        self.txfeim() != 0
     }
 
     #[doc="Transmit FIFO Empty Interrupt Mask"]
@@ -1884,7 +1884,7 @@ impl Mimr {
 
     #[doc="Receive FIFO Full Interrupt Mask"]
     #[inline] pub fn test_rxffim(&self) -> bool {
-        self.rxffim != 0
+        self.rxffim() != 0
     }
 
     #[doc="Receive FIFO Full Interrupt Mask"]
@@ -1935,7 +1935,7 @@ impl Mris {
 
     #[doc="Master Raw Interrupt Status"]
     #[inline] pub fn test_ris(&self) -> bool {
-        self.ris != 0
+        self.ris() != 0
     }
 
     #[doc="Master Raw Interrupt Status"]
@@ -1954,7 +1954,7 @@ impl Mris {
 
     #[doc="Clock Timeout Raw Interrupt Status"]
     #[inline] pub fn test_clkris(&self) -> bool {
-        self.clkris != 0
+        self.clkris() != 0
     }
 
     #[doc="Clock Timeout Raw Interrupt Status"]
@@ -1973,7 +1973,7 @@ impl Mris {
 
     #[doc="Receive DMA Raw Interrupt Status"]
     #[inline] pub fn test_dmarxris(&self) -> bool {
-        self.dmarxris != 0
+        self.dmarxris() != 0
     }
 
     #[doc="Receive DMA Raw Interrupt Status"]
@@ -1992,7 +1992,7 @@ impl Mris {
 
     #[doc="Transmit DMA Raw Interrupt Status"]
     #[inline] pub fn test_dmatxris(&self) -> bool {
-        self.dmatxris != 0
+        self.dmatxris() != 0
     }
 
     #[doc="Transmit DMA Raw Interrupt Status"]
@@ -2011,7 +2011,7 @@ impl Mris {
 
     #[doc="Address/Data NACK Raw Interrupt Status"]
     #[inline] pub fn test_nackris(&self) -> bool {
-        self.nackris != 0
+        self.nackris() != 0
     }
 
     #[doc="Address/Data NACK Raw Interrupt Status"]
@@ -2030,7 +2030,7 @@ impl Mris {
 
     #[doc="START Detection Raw Interrupt Status"]
     #[inline] pub fn test_startris(&self) -> bool {
-        self.startris != 0
+        self.startris() != 0
     }
 
     #[doc="START Detection Raw Interrupt Status"]
@@ -2049,7 +2049,7 @@ impl Mris {
 
     #[doc="STOP Detection Raw Interrupt Status"]
     #[inline] pub fn test_stopris(&self) -> bool {
-        self.stopris != 0
+        self.stopris() != 0
     }
 
     #[doc="STOP Detection Raw Interrupt Status"]
@@ -2068,7 +2068,7 @@ impl Mris {
 
     #[doc="Arbitration Lost Raw Interrupt Status"]
     #[inline] pub fn test_arblostris(&self) -> bool {
-        self.arblostris != 0
+        self.arblostris() != 0
     }
 
     #[doc="Arbitration Lost Raw Interrupt Status"]
@@ -2087,7 +2087,7 @@ impl Mris {
 
     #[doc="Transmit Request Raw Interrupt Status"]
     #[inline] pub fn test_txris(&self) -> bool {
-        self.txris != 0
+        self.txris() != 0
     }
 
     #[doc="Transmit Request Raw Interrupt Status"]
@@ -2106,7 +2106,7 @@ impl Mris {
 
     #[doc="Receive FIFO Request Raw Interrupt Status"]
     #[inline] pub fn test_rxris(&self) -> bool {
-        self.rxris != 0
+        self.rxris() != 0
     }
 
     #[doc="Receive FIFO Request Raw Interrupt Status"]
@@ -2125,7 +2125,7 @@ impl Mris {
 
     #[doc="Transmit FIFO Empty Raw Interrupt Status"]
     #[inline] pub fn test_txferis(&self) -> bool {
-        self.txferis != 0
+        self.txferis() != 0
     }
 
     #[doc="Transmit FIFO Empty Raw Interrupt Status"]
@@ -2144,7 +2144,7 @@ impl Mris {
 
     #[doc="Receive FIFO Full Raw Interrupt Status"]
     #[inline] pub fn test_rxffris(&self) -> bool {
-        self.rxffris != 0
+        self.rxffris() != 0
     }
 
     #[doc="Receive FIFO Full Raw Interrupt Status"]
@@ -2195,7 +2195,7 @@ impl Mmis {
 
     #[doc="Masked Interrupt Status"]
     #[inline] pub fn test_mis(&self) -> bool {
-        self.mis != 0
+        self.mis() != 0
     }
 
     #[doc="Masked Interrupt Status"]
@@ -2214,7 +2214,7 @@ impl Mmis {
 
     #[doc="Clock Timeout Masked Interrupt Status"]
     #[inline] pub fn test_clkmis(&self) -> bool {
-        self.clkmis != 0
+        self.clkmis() != 0
     }
 
     #[doc="Clock Timeout Masked Interrupt Status"]
@@ -2233,7 +2233,7 @@ impl Mmis {
 
     #[doc="Receive DMA Interrupt Status"]
     #[inline] pub fn test_dmarxmis(&self) -> bool {
-        self.dmarxmis != 0
+        self.dmarxmis() != 0
     }
 
     #[doc="Receive DMA Interrupt Status"]
@@ -2252,7 +2252,7 @@ impl Mmis {
 
     #[doc="Transmit DMA Interrupt Status"]
     #[inline] pub fn test_dmatxmis(&self) -> bool {
-        self.dmatxmis != 0
+        self.dmatxmis() != 0
     }
 
     #[doc="Transmit DMA Interrupt Status"]
@@ -2271,7 +2271,7 @@ impl Mmis {
 
     #[doc="Address/Data NACK Interrupt Mask"]
     #[inline] pub fn test_nackmis(&self) -> bool {
-        self.nackmis != 0
+        self.nackmis() != 0
     }
 
     #[doc="Address/Data NACK Interrupt Mask"]
@@ -2290,7 +2290,7 @@ impl Mmis {
 
     #[doc="START Detection Interrupt Mask"]
     #[inline] pub fn test_startmis(&self) -> bool {
-        self.startmis != 0
+        self.startmis() != 0
     }
 
     #[doc="START Detection Interrupt Mask"]
@@ -2309,7 +2309,7 @@ impl Mmis {
 
     #[doc="STOP Detection Interrupt Mask"]
     #[inline] pub fn test_stopmis(&self) -> bool {
-        self.stopmis != 0
+        self.stopmis() != 0
     }
 
     #[doc="STOP Detection Interrupt Mask"]
@@ -2328,7 +2328,7 @@ impl Mmis {
 
     #[doc="Arbitration Lost Interrupt Mask"]
     #[inline] pub fn test_arblostmis(&self) -> bool {
-        self.arblostmis != 0
+        self.arblostmis() != 0
     }
 
     #[doc="Arbitration Lost Interrupt Mask"]
@@ -2347,7 +2347,7 @@ impl Mmis {
 
     #[doc="Transmit Request Interrupt Mask"]
     #[inline] pub fn test_txmis(&self) -> bool {
-        self.txmis != 0
+        self.txmis() != 0
     }
 
     #[doc="Transmit Request Interrupt Mask"]
@@ -2366,7 +2366,7 @@ impl Mmis {
 
     #[doc="Receive FIFO Request Interrupt Mask"]
     #[inline] pub fn test_rxmis(&self) -> bool {
-        self.rxmis != 0
+        self.rxmis() != 0
     }
 
     #[doc="Receive FIFO Request Interrupt Mask"]
@@ -2385,7 +2385,7 @@ impl Mmis {
 
     #[doc="Transmit FIFO Empty Interrupt Mask"]
     #[inline] pub fn test_txfemis(&self) -> bool {
-        self.txfemis != 0
+        self.txfemis() != 0
     }
 
     #[doc="Transmit FIFO Empty Interrupt Mask"]
@@ -2404,7 +2404,7 @@ impl Mmis {
 
     #[doc="Receive FIFO Full Interrupt Mask"]
     #[inline] pub fn test_rxffmis(&self) -> bool {
-        self.rxffmis != 0
+        self.rxffmis() != 0
     }
 
     #[doc="Receive FIFO Full Interrupt Mask"]
@@ -2455,7 +2455,7 @@ impl Micr {
 
     #[doc="Master Interrupt Clear"]
     #[inline] pub fn test_ic(&self) -> bool {
-        self.ic != 0
+        self.ic() != 0
     }
 
     #[doc="Master Interrupt Clear"]
@@ -2474,7 +2474,7 @@ impl Micr {
 
     #[doc="Clock Timeout Interrupt Clear"]
     #[inline] pub fn test_clkic(&self) -> bool {
-        self.clkic != 0
+        self.clkic() != 0
     }
 
     #[doc="Clock Timeout Interrupt Clear"]
@@ -2493,7 +2493,7 @@ impl Micr {
 
     #[doc="Receive DMA Interrupt Clear"]
     #[inline] pub fn test_dmarxic(&self) -> bool {
-        self.dmarxic != 0
+        self.dmarxic() != 0
     }
 
     #[doc="Receive DMA Interrupt Clear"]
@@ -2512,7 +2512,7 @@ impl Micr {
 
     #[doc="Transmit DMA Interrupt Clear"]
     #[inline] pub fn test_dmatxic(&self) -> bool {
-        self.dmatxic != 0
+        self.dmatxic() != 0
     }
 
     #[doc="Transmit DMA Interrupt Clear"]
@@ -2531,7 +2531,7 @@ impl Micr {
 
     #[doc="Address/Data NACK Interrupt Clear"]
     #[inline] pub fn test_nackic(&self) -> bool {
-        self.nackic != 0
+        self.nackic() != 0
     }
 
     #[doc="Address/Data NACK Interrupt Clear"]
@@ -2550,7 +2550,7 @@ impl Micr {
 
     #[doc="START Detection Interrupt Clear"]
     #[inline] pub fn test_startic(&self) -> bool {
-        self.startic != 0
+        self.startic() != 0
     }
 
     #[doc="START Detection Interrupt Clear"]
@@ -2569,7 +2569,7 @@ impl Micr {
 
     #[doc="STOP Detection Interrupt Clear"]
     #[inline] pub fn test_stopic(&self) -> bool {
-        self.stopic != 0
+        self.stopic() != 0
     }
 
     #[doc="STOP Detection Interrupt Clear"]
@@ -2588,7 +2588,7 @@ impl Micr {
 
     #[doc="Arbitration Lost Interrupt Clear"]
     #[inline] pub fn test_arblostic(&self) -> bool {
-        self.arblostic != 0
+        self.arblostic() != 0
     }
 
     #[doc="Arbitration Lost Interrupt Clear"]
@@ -2607,7 +2607,7 @@ impl Micr {
 
     #[doc="Transmit FIFO Request Interrupt Clear"]
     #[inline] pub fn test_txic(&self) -> bool {
-        self.txic != 0
+        self.txic() != 0
     }
 
     #[doc="Transmit FIFO Request Interrupt Clear"]
@@ -2626,7 +2626,7 @@ impl Micr {
 
     #[doc="Receive FIFO Request Interrupt Clear"]
     #[inline] pub fn test_rxic(&self) -> bool {
-        self.rxic != 0
+        self.rxic() != 0
     }
 
     #[doc="Receive FIFO Request Interrupt Clear"]
@@ -2645,7 +2645,7 @@ impl Micr {
 
     #[doc="Transmit FIFO Empty Interrupt Clear"]
     #[inline] pub fn test_txfeic(&self) -> bool {
-        self.txfeic != 0
+        self.txfeic() != 0
     }
 
     #[doc="Transmit FIFO Empty Interrupt Clear"]
@@ -2664,7 +2664,7 @@ impl Micr {
 
     #[doc="Receive FIFO Full Interrupt Clear"]
     #[inline] pub fn test_rxffic(&self) -> bool {
-        self.rxffic != 0
+        self.rxffic() != 0
     }
 
     #[doc="Receive FIFO Full Interrupt Clear"]
@@ -2715,7 +2715,7 @@ impl Mcr {
 
     #[doc="I2C Loopback"]
     #[inline] pub fn test_lpbk(&self) -> bool {
-        self.lpbk != 0
+        self.lpbk() != 0
     }
 
     #[doc="I2C Loopback"]
@@ -2734,7 +2734,7 @@ impl Mcr {
 
     #[doc="I2C Master Function Enable"]
     #[inline] pub fn test_mfe(&self) -> bool {
-        self.mfe != 0
+        self.mfe() != 0
     }
 
     #[doc="I2C Master Function Enable"]
@@ -2753,7 +2753,7 @@ impl Mcr {
 
     #[doc="I2C Slave Function Enable"]
     #[inline] pub fn test_sfe(&self) -> bool {
-        self.sfe != 0
+        self.sfe() != 0
     }
 
     #[doc="I2C Slave Function Enable"]
@@ -2795,7 +2795,7 @@ impl Mclkocnt {
 
     #[doc="I2C Master Count"]
     #[inline] pub fn test_cntl(&self) -> bool {
-        self.cntl != 0
+        self.cntl() != 0
     }
 
     #[doc="I2C Master Count"]
@@ -2835,7 +2835,7 @@ impl Mbmon {
 
     #[doc="I2C SCL Status"]
     #[inline] pub fn test_scl(&self) -> bool {
-        self.scl != 0
+        self.scl() != 0
     }
 
     #[doc="I2C SCL Status"]
@@ -2854,7 +2854,7 @@ impl Mbmon {
 
     #[doc="I2C SDA Status"]
     #[inline] pub fn test_sda(&self) -> bool {
-        self.sda != 0
+        self.sda() != 0
     }
 
     #[doc="I2C SDA Status"]
@@ -2895,7 +2895,7 @@ impl Mblen {
 
     #[doc="I2C Burst Length"]
     #[inline] pub fn test_cntl(&self) -> bool {
-        self.cntl != 0
+        self.cntl() != 0
     }
 
     #[doc="I2C Burst Length"]
@@ -2935,7 +2935,7 @@ impl Mbcnt {
 
     #[doc="I2C Master Burst Count"]
     #[inline] pub fn test_cntl(&self) -> bool {
-        self.cntl != 0
+        self.cntl() != 0
     }
 
     #[doc="I2C Master Burst Count"]
@@ -3328,7 +3328,7 @@ impl Soar {
 
     #[doc="I2C Slave Own Address"]
     #[inline] pub fn test_oar(&self) -> bool {
-        self.oar != 0
+        self.oar() != 0
     }
 
     #[doc="I2C Slave Own Address"]
@@ -3368,7 +3368,7 @@ impl ScsrRead {
 
     #[doc="Receive Request"]
     #[inline] pub fn test_rreq(&self) -> bool {
-        self.rreq != 0
+        self.rreq() != 0
     }
 
     #[doc="Receive Request"]
@@ -3387,7 +3387,7 @@ impl ScsrRead {
 
     #[doc="TX FIFO Enable"]
     #[inline] pub fn test_txfifo(&self) -> bool {
-        self.txfifo != 0
+        self.txfifo() != 0
     }
 
     #[doc="TX FIFO Enable"]
@@ -3406,7 +3406,7 @@ impl ScsrRead {
 
     #[doc="First Byte Received"]
     #[inline] pub fn test_fbr(&self) -> bool {
-        self.fbr != 0
+        self.fbr() != 0
     }
 
     #[doc="First Byte Received"]
@@ -3425,7 +3425,7 @@ impl ScsrRead {
 
     #[doc="OAR2 Address Matched"]
     #[inline] pub fn test_oar2sel(&self) -> bool {
-        self.oar2sel != 0
+        self.oar2sel() != 0
     }
 
     #[doc="OAR2 Address Matched"]
@@ -3444,7 +3444,7 @@ impl ScsrRead {
 
     #[doc="Quick Command Status"]
     #[inline] pub fn test_qcmdst(&self) -> bool {
-        self.qcmdst != 0
+        self.qcmdst() != 0
     }
 
     #[doc="Quick Command Status"]
@@ -3463,7 +3463,7 @@ impl ScsrRead {
 
     #[doc="Quick Command Read / Write"]
     #[inline] pub fn test_qcmdrw(&self) -> bool {
-        self.qcmdrw != 0
+        self.qcmdrw() != 0
     }
 
     #[doc="Quick Command Read / Write"]
@@ -3482,7 +3482,7 @@ impl ScsrRead {
 
     #[doc="DMA TX Active Status"]
     #[inline] pub fn test_actdmatx(&self) -> bool {
-        self.actdmatx != 0
+        self.actdmatx() != 0
     }
 
     #[doc="DMA TX Active Status"]
@@ -3501,7 +3501,7 @@ impl ScsrRead {
 
     #[doc="DMA RX Active Status"]
     #[inline] pub fn test_actdmarx(&self) -> bool {
-        self.actdmarx != 0
+        self.actdmarx() != 0
     }
 
     #[doc="DMA RX Active Status"]
@@ -3548,7 +3548,7 @@ impl ScsrWrite {
 
     #[doc="Device Active"]
     #[inline] pub fn test_da(&self) -> bool {
-        self.da != 0
+        self.da() != 0
     }
 
     #[doc="Device Active"]
@@ -3567,7 +3567,7 @@ impl ScsrWrite {
 
     #[doc="Transmit Request"]
     #[inline] pub fn test_treq(&self) -> bool {
-        self.treq != 0
+        self.treq() != 0
     }
 
     #[doc="Transmit Request"]
@@ -3586,7 +3586,7 @@ impl ScsrWrite {
 
     #[doc="RX FIFO Enable"]
     #[inline] pub fn test_rxfifo(&self) -> bool {
-        self.rxfifo != 0
+        self.rxfifo() != 0
     }
 
     #[doc="RX FIFO Enable"]
@@ -3628,7 +3628,7 @@ impl Sdr {
 
     #[doc="Data for Transfer"]
     #[inline] pub fn test_data(&self) -> bool {
-        self.data != 0
+        self.data() != 0
     }
 
     #[doc="Data for Transfer"]
@@ -3668,7 +3668,7 @@ impl Simr {
 
     #[doc="Data Interrupt Mask"]
     #[inline] pub fn test_dataim(&self) -> bool {
-        self.dataim != 0
+        self.dataim() != 0
     }
 
     #[doc="Data Interrupt Mask"]
@@ -3687,7 +3687,7 @@ impl Simr {
 
     #[doc="Start Condition Interrupt Mask"]
     #[inline] pub fn test_startim(&self) -> bool {
-        self.startim != 0
+        self.startim() != 0
     }
 
     #[doc="Start Condition Interrupt Mask"]
@@ -3706,7 +3706,7 @@ impl Simr {
 
     #[doc="Stop Condition Interrupt Mask"]
     #[inline] pub fn test_stopim(&self) -> bool {
-        self.stopim != 0
+        self.stopim() != 0
     }
 
     #[doc="Stop Condition Interrupt Mask"]
@@ -3725,7 +3725,7 @@ impl Simr {
 
     #[doc="Receive DMA Interrupt Mask"]
     #[inline] pub fn test_dmarxim(&self) -> bool {
-        self.dmarxim != 0
+        self.dmarxim() != 0
     }
 
     #[doc="Receive DMA Interrupt Mask"]
@@ -3744,7 +3744,7 @@ impl Simr {
 
     #[doc="Transmit DMA Interrupt Mask"]
     #[inline] pub fn test_dmatxim(&self) -> bool {
-        self.dmatxim != 0
+        self.dmatxim() != 0
     }
 
     #[doc="Transmit DMA Interrupt Mask"]
@@ -3763,7 +3763,7 @@ impl Simr {
 
     #[doc="Transmit FIFO Request Interrupt Mask"]
     #[inline] pub fn test_txim(&self) -> bool {
-        self.txim != 0
+        self.txim() != 0
     }
 
     #[doc="Transmit FIFO Request Interrupt Mask"]
@@ -3782,7 +3782,7 @@ impl Simr {
 
     #[doc="Receive FIFO Request Interrupt Mask"]
     #[inline] pub fn test_rxim(&self) -> bool {
-        self.rxim != 0
+        self.rxim() != 0
     }
 
     #[doc="Receive FIFO Request Interrupt Mask"]
@@ -3801,7 +3801,7 @@ impl Simr {
 
     #[doc="Transmit FIFO Empty Interrupt Mask"]
     #[inline] pub fn test_txfeim(&self) -> bool {
-        self.txfeim != 0
+        self.txfeim() != 0
     }
 
     #[doc="Transmit FIFO Empty Interrupt Mask"]
@@ -3820,7 +3820,7 @@ impl Simr {
 
     #[doc="Receive FIFO Full Interrupt Mask"]
     #[inline] pub fn test_rxffim(&self) -> bool {
-        self.rxffim != 0
+        self.rxffim() != 0
     }
 
     #[doc="Receive FIFO Full Interrupt Mask"]
@@ -3868,7 +3868,7 @@ impl Sris {
 
     #[doc="Data Raw Interrupt Status"]
     #[inline] pub fn test_dataris(&self) -> bool {
-        self.dataris != 0
+        self.dataris() != 0
     }
 
     #[doc="Data Raw Interrupt Status"]
@@ -3887,7 +3887,7 @@ impl Sris {
 
     #[doc="Start Condition Raw Interrupt Status"]
     #[inline] pub fn test_startris(&self) -> bool {
-        self.startris != 0
+        self.startris() != 0
     }
 
     #[doc="Start Condition Raw Interrupt Status"]
@@ -3906,7 +3906,7 @@ impl Sris {
 
     #[doc="Stop Condition Raw Interrupt Status"]
     #[inline] pub fn test_stopris(&self) -> bool {
-        self.stopris != 0
+        self.stopris() != 0
     }
 
     #[doc="Stop Condition Raw Interrupt Status"]
@@ -3925,7 +3925,7 @@ impl Sris {
 
     #[doc="Receive DMA Raw Interrupt Status"]
     #[inline] pub fn test_dmarxris(&self) -> bool {
-        self.dmarxris != 0
+        self.dmarxris() != 0
     }
 
     #[doc="Receive DMA Raw Interrupt Status"]
@@ -3944,7 +3944,7 @@ impl Sris {
 
     #[doc="Transmit DMA Raw Interrupt Status"]
     #[inline] pub fn test_dmatxris(&self) -> bool {
-        self.dmatxris != 0
+        self.dmatxris() != 0
     }
 
     #[doc="Transmit DMA Raw Interrupt Status"]
@@ -3963,7 +3963,7 @@ impl Sris {
 
     #[doc="Transmit Request Raw Interrupt Status"]
     #[inline] pub fn test_txris(&self) -> bool {
-        self.txris != 0
+        self.txris() != 0
     }
 
     #[doc="Transmit Request Raw Interrupt Status"]
@@ -3982,7 +3982,7 @@ impl Sris {
 
     #[doc="Receive FIFO Request Raw Interrupt Status"]
     #[inline] pub fn test_rxris(&self) -> bool {
-        self.rxris != 0
+        self.rxris() != 0
     }
 
     #[doc="Receive FIFO Request Raw Interrupt Status"]
@@ -4001,7 +4001,7 @@ impl Sris {
 
     #[doc="Transmit FIFO Empty Raw Interrupt Status"]
     #[inline] pub fn test_txferis(&self) -> bool {
-        self.txferis != 0
+        self.txferis() != 0
     }
 
     #[doc="Transmit FIFO Empty Raw Interrupt Status"]
@@ -4020,7 +4020,7 @@ impl Sris {
 
     #[doc="Receive FIFO Full Raw Interrupt Status"]
     #[inline] pub fn test_rxffris(&self) -> bool {
-        self.rxffris != 0
+        self.rxffris() != 0
     }
 
     #[doc="Receive FIFO Full Raw Interrupt Status"]
@@ -4068,7 +4068,7 @@ impl Smis {
 
     #[doc="Data Masked Interrupt Status"]
     #[inline] pub fn test_datamis(&self) -> bool {
-        self.datamis != 0
+        self.datamis() != 0
     }
 
     #[doc="Data Masked Interrupt Status"]
@@ -4087,7 +4087,7 @@ impl Smis {
 
     #[doc="Start Condition Masked Interrupt Status"]
     #[inline] pub fn test_startmis(&self) -> bool {
-        self.startmis != 0
+        self.startmis() != 0
     }
 
     #[doc="Start Condition Masked Interrupt Status"]
@@ -4106,7 +4106,7 @@ impl Smis {
 
     #[doc="Stop Condition Masked Interrupt Status"]
     #[inline] pub fn test_stopmis(&self) -> bool {
-        self.stopmis != 0
+        self.stopmis() != 0
     }
 
     #[doc="Stop Condition Masked Interrupt Status"]
@@ -4125,7 +4125,7 @@ impl Smis {
 
     #[doc="Receive DMA Masked Interrupt Status"]
     #[inline] pub fn test_dmarxmis(&self) -> bool {
-        self.dmarxmis != 0
+        self.dmarxmis() != 0
     }
 
     #[doc="Receive DMA Masked Interrupt Status"]
@@ -4144,7 +4144,7 @@ impl Smis {
 
     #[doc="Transmit DMA Masked Interrupt Status"]
     #[inline] pub fn test_dmatxmis(&self) -> bool {
-        self.dmatxmis != 0
+        self.dmatxmis() != 0
     }
 
     #[doc="Transmit DMA Masked Interrupt Status"]
@@ -4163,7 +4163,7 @@ impl Smis {
 
     #[doc="Transmit FIFO Request Interrupt Mask"]
     #[inline] pub fn test_txmis(&self) -> bool {
-        self.txmis != 0
+        self.txmis() != 0
     }
 
     #[doc="Transmit FIFO Request Interrupt Mask"]
@@ -4182,7 +4182,7 @@ impl Smis {
 
     #[doc="Receive FIFO Request Interrupt Mask"]
     #[inline] pub fn test_rxmis(&self) -> bool {
-        self.rxmis != 0
+        self.rxmis() != 0
     }
 
     #[doc="Receive FIFO Request Interrupt Mask"]
@@ -4201,7 +4201,7 @@ impl Smis {
 
     #[doc="Transmit FIFO Empty Interrupt Mask"]
     #[inline] pub fn test_txfemis(&self) -> bool {
-        self.txfemis != 0
+        self.txfemis() != 0
     }
 
     #[doc="Transmit FIFO Empty Interrupt Mask"]
@@ -4220,7 +4220,7 @@ impl Smis {
 
     #[doc="Receive FIFO Full Interrupt Mask"]
     #[inline] pub fn test_rxffmis(&self) -> bool {
-        self.rxffmis != 0
+        self.rxffmis() != 0
     }
 
     #[doc="Receive FIFO Full Interrupt Mask"]
@@ -4268,7 +4268,7 @@ impl Sicr {
 
     #[doc="Data Interrupt Clear"]
     #[inline] pub fn test_dataic(&self) -> bool {
-        self.dataic != 0
+        self.dataic() != 0
     }
 
     #[doc="Data Interrupt Clear"]
@@ -4287,7 +4287,7 @@ impl Sicr {
 
     #[doc="Start Condition Interrupt Clear"]
     #[inline] pub fn test_startic(&self) -> bool {
-        self.startic != 0
+        self.startic() != 0
     }
 
     #[doc="Start Condition Interrupt Clear"]
@@ -4306,7 +4306,7 @@ impl Sicr {
 
     #[doc="Stop Condition Interrupt Clear"]
     #[inline] pub fn test_stopic(&self) -> bool {
-        self.stopic != 0
+        self.stopic() != 0
     }
 
     #[doc="Stop Condition Interrupt Clear"]
@@ -4325,7 +4325,7 @@ impl Sicr {
 
     #[doc="Receive DMA Interrupt Clear"]
     #[inline] pub fn test_dmarxic(&self) -> bool {
-        self.dmarxic != 0
+        self.dmarxic() != 0
     }
 
     #[doc="Receive DMA Interrupt Clear"]
@@ -4344,7 +4344,7 @@ impl Sicr {
 
     #[doc="Transmit DMA Interrupt Clear"]
     #[inline] pub fn test_dmatxic(&self) -> bool {
-        self.dmatxic != 0
+        self.dmatxic() != 0
     }
 
     #[doc="Transmit DMA Interrupt Clear"]
@@ -4363,7 +4363,7 @@ impl Sicr {
 
     #[doc="Transmit Request Interrupt Mask"]
     #[inline] pub fn test_txic(&self) -> bool {
-        self.txic != 0
+        self.txic() != 0
     }
 
     #[doc="Transmit Request Interrupt Mask"]
@@ -4382,7 +4382,7 @@ impl Sicr {
 
     #[doc="Receive Request Interrupt Mask"]
     #[inline] pub fn test_rxic(&self) -> bool {
-        self.rxic != 0
+        self.rxic() != 0
     }
 
     #[doc="Receive Request Interrupt Mask"]
@@ -4401,7 +4401,7 @@ impl Sicr {
 
     #[doc="Transmit FIFO Empty Interrupt Mask"]
     #[inline] pub fn test_txfeic(&self) -> bool {
-        self.txfeic != 0
+        self.txfeic() != 0
     }
 
     #[doc="Transmit FIFO Empty Interrupt Mask"]
@@ -4420,7 +4420,7 @@ impl Sicr {
 
     #[doc="Receive FIFO Full Interrupt Mask"]
     #[inline] pub fn test_rxffic(&self) -> bool {
-        self.rxffic != 0
+        self.rxffic() != 0
     }
 
     #[doc="Receive FIFO Full Interrupt Mask"]
@@ -4468,7 +4468,7 @@ impl Soar2 {
 
     #[doc="I2C Slave Own Address 2"]
     #[inline] pub fn test_oar2(&self) -> bool {
-        self.oar2 != 0
+        self.oar2() != 0
     }
 
     #[doc="I2C Slave Own Address 2"]
@@ -4487,7 +4487,7 @@ impl Soar2 {
 
     #[doc="I2C Slave Own Address 2 Enable"]
     #[inline] pub fn test_oar2en(&self) -> bool {
-        self.oar2en != 0
+        self.oar2en() != 0
     }
 
     #[doc="I2C Slave Own Address 2 Enable"]
@@ -4528,7 +4528,7 @@ impl Sackctl {
 
     #[doc="I2C Slave ACK Override Enable"]
     #[inline] pub fn test_ackoen(&self) -> bool {
-        self.ackoen != 0
+        self.ackoen() != 0
     }
 
     #[doc="I2C Slave ACK Override Enable"]
@@ -4547,7 +4547,7 @@ impl Sackctl {
 
     #[doc="I2C Slave ACK Override Value"]
     #[inline] pub fn test_ackoval(&self) -> bool {
-        self.ackoval != 0
+        self.ackoval() != 0
     }
 
     #[doc="I2C Slave ACK Override Value"]

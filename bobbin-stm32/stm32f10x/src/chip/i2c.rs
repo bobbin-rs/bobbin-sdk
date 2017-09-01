@@ -329,7 +329,7 @@ impl Cr1 {
 
     #[doc="Software reset"]
     #[inline] pub fn test_swrst(&self) -> bool {
-        self.swrst != 0
+        self.swrst() != 0
     }
 
     #[doc="Software reset"]
@@ -348,7 +348,7 @@ impl Cr1 {
 
     #[doc="SMBus alert"]
     #[inline] pub fn test_alert(&self) -> bool {
-        self.alert != 0
+        self.alert() != 0
     }
 
     #[doc="SMBus alert"]
@@ -367,7 +367,7 @@ impl Cr1 {
 
     #[doc="Packet error checking"]
     #[inline] pub fn test_pec(&self) -> bool {
-        self.pec != 0
+        self.pec() != 0
     }
 
     #[doc="Packet error checking"]
@@ -386,7 +386,7 @@ impl Cr1 {
 
     #[doc="Acknowledge/PEC Position (for data reception)"]
     #[inline] pub fn test_pos(&self) -> bool {
-        self.pos != 0
+        self.pos() != 0
     }
 
     #[doc="Acknowledge/PEC Position (for data reception)"]
@@ -405,7 +405,7 @@ impl Cr1 {
 
     #[doc="Acknowledge enable"]
     #[inline] pub fn test_ack(&self) -> bool {
-        self.ack != 0
+        self.ack() != 0
     }
 
     #[doc="Acknowledge enable"]
@@ -424,7 +424,7 @@ impl Cr1 {
 
     #[doc="Stop generation"]
     #[inline] pub fn test_stop(&self) -> bool {
-        self.stop != 0
+        self.stop() != 0
     }
 
     #[doc="Stop generation"]
@@ -443,7 +443,7 @@ impl Cr1 {
 
     #[doc="Start generation"]
     #[inline] pub fn test_start(&self) -> bool {
-        self.start != 0
+        self.start() != 0
     }
 
     #[doc="Start generation"]
@@ -462,7 +462,7 @@ impl Cr1 {
 
     #[doc="Clock stretching disable (Slave mode)"]
     #[inline] pub fn test_nostretch(&self) -> bool {
-        self.nostretch != 0
+        self.nostretch() != 0
     }
 
     #[doc="Clock stretching disable (Slave mode)"]
@@ -481,7 +481,7 @@ impl Cr1 {
 
     #[doc="General call enable"]
     #[inline] pub fn test_engc(&self) -> bool {
-        self.engc != 0
+        self.engc() != 0
     }
 
     #[doc="General call enable"]
@@ -500,7 +500,7 @@ impl Cr1 {
 
     #[doc="PEC enable"]
     #[inline] pub fn test_enpec(&self) -> bool {
-        self.enpec != 0
+        self.enpec() != 0
     }
 
     #[doc="PEC enable"]
@@ -519,7 +519,7 @@ impl Cr1 {
 
     #[doc="ARP enable"]
     #[inline] pub fn test_enarp(&self) -> bool {
-        self.enarp != 0
+        self.enarp() != 0
     }
 
     #[doc="ARP enable"]
@@ -538,7 +538,7 @@ impl Cr1 {
 
     #[doc="SMBus type"]
     #[inline] pub fn test_smbtype(&self) -> bool {
-        self.smbtype != 0
+        self.smbtype() != 0
     }
 
     #[doc="SMBus type"]
@@ -557,7 +557,7 @@ impl Cr1 {
 
     #[doc="SMBus mode"]
     #[inline] pub fn test_smbus(&self) -> bool {
-        self.smbus != 0
+        self.smbus() != 0
     }
 
     #[doc="SMBus mode"]
@@ -576,7 +576,7 @@ impl Cr1 {
 
     #[doc="Peripheral enable"]
     #[inline] pub fn test_pe(&self) -> bool {
-        self.pe != 0
+        self.pe() != 0
     }
 
     #[doc="Peripheral enable"]
@@ -629,7 +629,7 @@ impl Cr2 {
 
     #[doc="DMA last transfer"]
     #[inline] pub fn test_last(&self) -> bool {
-        self.last != 0
+        self.last() != 0
     }
 
     #[doc="DMA last transfer"]
@@ -648,7 +648,7 @@ impl Cr2 {
 
     #[doc="DMA requests enable"]
     #[inline] pub fn test_dmaen(&self) -> bool {
-        self.dmaen != 0
+        self.dmaen() != 0
     }
 
     #[doc="DMA requests enable"]
@@ -667,7 +667,7 @@ impl Cr2 {
 
     #[doc="Buffer interrupt enable"]
     #[inline] pub fn test_itbufen(&self) -> bool {
-        self.itbufen != 0
+        self.itbufen() != 0
     }
 
     #[doc="Buffer interrupt enable"]
@@ -686,7 +686,7 @@ impl Cr2 {
 
     #[doc="Event interrupt enable"]
     #[inline] pub fn test_itevten(&self) -> bool {
-        self.itevten != 0
+        self.itevten() != 0
     }
 
     #[doc="Event interrupt enable"]
@@ -705,7 +705,7 @@ impl Cr2 {
 
     #[doc="Error interrupt enable"]
     #[inline] pub fn test_iterren(&self) -> bool {
-        self.iterren != 0
+        self.iterren() != 0
     }
 
     #[doc="Error interrupt enable"]
@@ -724,7 +724,7 @@ impl Cr2 {
 
     #[doc="Peripheral clock frequency"]
     #[inline] pub fn test_freq(&self) -> bool {
-        self.freq != 0
+        self.freq() != 0
     }
 
     #[doc="Peripheral clock frequency"]
@@ -769,7 +769,7 @@ impl Oar1 {
 
     #[doc="Addressing mode (slave mode)"]
     #[inline] pub fn test_addmode(&self) -> bool {
-        self.addmode != 0
+        self.addmode() != 0
     }
 
     #[doc="Addressing mode (slave mode)"]
@@ -788,7 +788,7 @@ impl Oar1 {
 
     #[doc="Interface address"]
     #[inline] pub fn test_add10(&self) -> bool {
-        self.add10 != 0
+        self.add10() != 0
     }
 
     #[doc="Interface address"]
@@ -807,7 +807,7 @@ impl Oar1 {
 
     #[doc="Interface address"]
     #[inline] pub fn test_add7(&self) -> bool {
-        self.add7 != 0
+        self.add7() != 0
     }
 
     #[doc="Interface address"]
@@ -826,7 +826,7 @@ impl Oar1 {
 
     #[doc="Interface address"]
     #[inline] pub fn test_add0(&self) -> bool {
-        self.add0 != 0
+        self.add0() != 0
     }
 
     #[doc="Interface address"]
@@ -869,7 +869,7 @@ impl Oar2 {
 
     #[doc="Interface address"]
     #[inline] pub fn test_add2(&self) -> bool {
-        self.add2 != 0
+        self.add2() != 0
     }
 
     #[doc="Interface address"]
@@ -888,7 +888,7 @@ impl Oar2 {
 
     #[doc="Dual addressing mode enable"]
     #[inline] pub fn test_endual(&self) -> bool {
-        self.endual != 0
+        self.endual() != 0
     }
 
     #[doc="Dual addressing mode enable"]
@@ -929,7 +929,7 @@ impl Dr {
 
     #[doc="8-bit data register"]
     #[inline] pub fn test_dr(&self) -> bool {
-        self.dr != 0
+        self.dr() != 0
     }
 
     #[doc="8-bit data register"]
@@ -969,7 +969,7 @@ impl Sr1 {
 
     #[doc="SMBus alert"]
     #[inline] pub fn test_smbalert(&self) -> bool {
-        self.smbalert != 0
+        self.smbalert() != 0
     }
 
     #[doc="SMBus alert"]
@@ -988,7 +988,7 @@ impl Sr1 {
 
     #[doc="Timeout or Tlow error"]
     #[inline] pub fn test_timeout(&self) -> bool {
-        self.timeout != 0
+        self.timeout() != 0
     }
 
     #[doc="Timeout or Tlow error"]
@@ -1007,7 +1007,7 @@ impl Sr1 {
 
     #[doc="PEC Error in reception"]
     #[inline] pub fn test_pecerr(&self) -> bool {
-        self.pecerr != 0
+        self.pecerr() != 0
     }
 
     #[doc="PEC Error in reception"]
@@ -1026,7 +1026,7 @@ impl Sr1 {
 
     #[doc="Overrun/Underrun"]
     #[inline] pub fn test_ovr(&self) -> bool {
-        self.ovr != 0
+        self.ovr() != 0
     }
 
     #[doc="Overrun/Underrun"]
@@ -1045,7 +1045,7 @@ impl Sr1 {
 
     #[doc="Acknowledge failure"]
     #[inline] pub fn test_af(&self) -> bool {
-        self.af != 0
+        self.af() != 0
     }
 
     #[doc="Acknowledge failure"]
@@ -1064,7 +1064,7 @@ impl Sr1 {
 
     #[doc="Arbitration lost (master mode)"]
     #[inline] pub fn test_arlo(&self) -> bool {
-        self.arlo != 0
+        self.arlo() != 0
     }
 
     #[doc="Arbitration lost (master mode)"]
@@ -1083,7 +1083,7 @@ impl Sr1 {
 
     #[doc="Bus error"]
     #[inline] pub fn test_berr(&self) -> bool {
-        self.berr != 0
+        self.berr() != 0
     }
 
     #[doc="Bus error"]
@@ -1102,7 +1102,7 @@ impl Sr1 {
 
     #[doc="Data register empty (transmitters)"]
     #[inline] pub fn test_txe(&self) -> bool {
-        self.txe != 0
+        self.txe() != 0
     }
 
     #[doc="Data register empty (transmitters)"]
@@ -1121,7 +1121,7 @@ impl Sr1 {
 
     #[doc="Data register not empty (receivers)"]
     #[inline] pub fn test_rxne(&self) -> bool {
-        self.rxne != 0
+        self.rxne() != 0
     }
 
     #[doc="Data register not empty (receivers)"]
@@ -1140,7 +1140,7 @@ impl Sr1 {
 
     #[doc="Stop detection (slave mode)"]
     #[inline] pub fn test_stopf(&self) -> bool {
-        self.stopf != 0
+        self.stopf() != 0
     }
 
     #[doc="Stop detection (slave mode)"]
@@ -1159,7 +1159,7 @@ impl Sr1 {
 
     #[doc="10-bit header sent (Master mode)"]
     #[inline] pub fn test_add10(&self) -> bool {
-        self.add10 != 0
+        self.add10() != 0
     }
 
     #[doc="10-bit header sent (Master mode)"]
@@ -1178,7 +1178,7 @@ impl Sr1 {
 
     #[doc="Byte transfer finished"]
     #[inline] pub fn test_btf(&self) -> bool {
-        self.btf != 0
+        self.btf() != 0
     }
 
     #[doc="Byte transfer finished"]
@@ -1197,7 +1197,7 @@ impl Sr1 {
 
     #[doc="Address sent (master mode)/matched (slave mode)"]
     #[inline] pub fn test_addr(&self) -> bool {
-        self.addr != 0
+        self.addr() != 0
     }
 
     #[doc="Address sent (master mode)/matched (slave mode)"]
@@ -1216,7 +1216,7 @@ impl Sr1 {
 
     #[doc="Start bit (Master mode)"]
     #[inline] pub fn test_sb(&self) -> bool {
-        self.sb != 0
+        self.sb() != 0
     }
 
     #[doc="Start bit (Master mode)"]
@@ -1269,7 +1269,7 @@ impl Sr2 {
 
     #[doc="acket error checking register"]
     #[inline] pub fn test_pec(&self) -> bool {
-        self.pec != 0
+        self.pec() != 0
     }
 
     #[doc="acket error checking register"]
@@ -1288,7 +1288,7 @@ impl Sr2 {
 
     #[doc="Dual flag (Slave mode)"]
     #[inline] pub fn test_dualf(&self) -> bool {
-        self.dualf != 0
+        self.dualf() != 0
     }
 
     #[doc="Dual flag (Slave mode)"]
@@ -1307,7 +1307,7 @@ impl Sr2 {
 
     #[doc="SMBus host header (Slave mode)"]
     #[inline] pub fn test_smbhost(&self) -> bool {
-        self.smbhost != 0
+        self.smbhost() != 0
     }
 
     #[doc="SMBus host header (Slave mode)"]
@@ -1326,7 +1326,7 @@ impl Sr2 {
 
     #[doc="SMBus device default address (Slave mode)"]
     #[inline] pub fn test_smbdefault(&self) -> bool {
-        self.smbdefault != 0
+        self.smbdefault() != 0
     }
 
     #[doc="SMBus device default address (Slave mode)"]
@@ -1345,7 +1345,7 @@ impl Sr2 {
 
     #[doc="General call address (Slave mode)"]
     #[inline] pub fn test_gencall(&self) -> bool {
-        self.gencall != 0
+        self.gencall() != 0
     }
 
     #[doc="General call address (Slave mode)"]
@@ -1364,7 +1364,7 @@ impl Sr2 {
 
     #[doc="Transmitter/receiver"]
     #[inline] pub fn test_tra(&self) -> bool {
-        self.tra != 0
+        self.tra() != 0
     }
 
     #[doc="Transmitter/receiver"]
@@ -1383,7 +1383,7 @@ impl Sr2 {
 
     #[doc="Bus busy"]
     #[inline] pub fn test_busy(&self) -> bool {
-        self.busy != 0
+        self.busy() != 0
     }
 
     #[doc="Bus busy"]
@@ -1402,7 +1402,7 @@ impl Sr2 {
 
     #[doc="Master/slave"]
     #[inline] pub fn test_msl(&self) -> bool {
-        self.msl != 0
+        self.msl() != 0
     }
 
     #[doc="Master/slave"]
@@ -1449,7 +1449,7 @@ impl Ccr {
 
     #[doc="I2C master mode selection"]
     #[inline] pub fn test_f_s(&self) -> bool {
-        self.f_s != 0
+        self.f_s() != 0
     }
 
     #[doc="I2C master mode selection"]
@@ -1468,7 +1468,7 @@ impl Ccr {
 
     #[doc="Fast mode duty cycle"]
     #[inline] pub fn test_duty(&self) -> bool {
-        self.duty != 0
+        self.duty() != 0
     }
 
     #[doc="Fast mode duty cycle"]
@@ -1487,7 +1487,7 @@ impl Ccr {
 
     #[doc="Clock control register in Fast/Standard mode (Master mode)"]
     #[inline] pub fn test_ccr(&self) -> bool {
-        self.ccr != 0
+        self.ccr() != 0
     }
 
     #[doc="Clock control register in Fast/Standard mode (Master mode)"]
@@ -1529,7 +1529,7 @@ impl Trise {
 
     #[doc="Maximum rise time in Fast/Standard mode (Master mode)"]
     #[inline] pub fn test_trise(&self) -> bool {
-        self.trise != 0
+        self.trise() != 0
     }
 
     #[doc="Maximum rise time in Fast/Standard mode (Master mode)"]

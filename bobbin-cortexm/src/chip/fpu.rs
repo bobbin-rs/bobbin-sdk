@@ -164,7 +164,7 @@ impl Cpacr {
 
     #[doc="CP10 Access privileges"]
     #[inline] pub fn test_cp10(&self) -> bool {
-        self.cp10 != 0
+        self.cp10() != 0
     }
 
     #[doc="CP10 Access privileges"]
@@ -183,7 +183,7 @@ impl Cpacr {
 
     #[doc="CP11 Access privileges"]
     #[inline] pub fn test_cp11(&self) -> bool {
-        self.cp11 != 0
+        self.cp11() != 0
     }
 
     #[doc="CP11 Access privileges"]
@@ -222,7 +222,7 @@ impl Fpccr {
     }
 
     #[inline] pub fn test_aspen(&self) -> bool {
-        self.aspen != 0
+        self.aspen() != 0
     }
 
     #[inline] pub fn set_aspen<V: Into<bits::U1>>(mut self, value: V) -> Self {
@@ -238,7 +238,7 @@ impl Fpccr {
     }
 
     #[inline] pub fn test_lspen(&self) -> bool {
-        self.lspen != 0
+        self.lspen() != 0
     }
 
     #[inline] pub fn set_lspen<V: Into<bits::U1>>(mut self, value: V) -> Self {
@@ -254,7 +254,7 @@ impl Fpccr {
     }
 
     #[inline] pub fn test_monrdy(&self) -> bool {
-        self.monrdy != 0
+        self.monrdy() != 0
     }
 
     #[inline] pub fn set_monrdy<V: Into<bits::U1>>(mut self, value: V) -> Self {
@@ -270,7 +270,7 @@ impl Fpccr {
     }
 
     #[inline] pub fn test_bfrdy(&self) -> bool {
-        self.bfrdy != 0
+        self.bfrdy() != 0
     }
 
     #[inline] pub fn set_bfrdy<V: Into<bits::U1>>(mut self, value: V) -> Self {
@@ -286,7 +286,7 @@ impl Fpccr {
     }
 
     #[inline] pub fn test_mmrdy(&self) -> bool {
-        self.mmrdy != 0
+        self.mmrdy() != 0
     }
 
     #[inline] pub fn set_mmrdy<V: Into<bits::U1>>(mut self, value: V) -> Self {
@@ -302,7 +302,7 @@ impl Fpccr {
     }
 
     #[inline] pub fn test_hfrdy(&self) -> bool {
-        self.hfrdy != 0
+        self.hfrdy() != 0
     }
 
     #[inline] pub fn set_hfrdy<V: Into<bits::U1>>(mut self, value: V) -> Self {
@@ -318,7 +318,7 @@ impl Fpccr {
     }
 
     #[inline] pub fn test_thread(&self) -> bool {
-        self.thread != 0
+        self.thread() != 0
     }
 
     #[inline] pub fn set_thread<V: Into<bits::U1>>(mut self, value: V) -> Self {
@@ -334,7 +334,7 @@ impl Fpccr {
     }
 
     #[inline] pub fn test_user(&self) -> bool {
-        self.user != 0
+        self.user() != 0
     }
 
     #[inline] pub fn set_user<V: Into<bits::U1>>(mut self, value: V) -> Self {
@@ -350,7 +350,7 @@ impl Fpccr {
     }
 
     #[inline] pub fn test_lspact(&self) -> bool {
-        self.lspact != 0
+        self.lspact() != 0
     }
 
     #[inline] pub fn set_lspact<V: Into<bits::U1>>(mut self, value: V) -> Self {
@@ -395,7 +395,7 @@ impl Fpcar {
     }
 
     #[inline] pub fn test_address(&self) -> bool {
-        self.address != 0
+        self.address() != 0
     }
 
     #[inline] pub fn set_address<V: Into<bits::U29>>(mut self, value: V) -> Self {
@@ -432,7 +432,7 @@ impl Fpdscr {
     }
 
     #[inline] pub fn test_ahp(&self) -> bool {
-        self.ahp != 0
+        self.ahp() != 0
     }
 
     #[inline] pub fn set_ahp<V: Into<bits::U1>>(mut self, value: V) -> Self {
@@ -448,7 +448,7 @@ impl Fpdscr {
     }
 
     #[inline] pub fn test_dn(&self) -> bool {
-        self.dn != 0
+        self.dn() != 0
     }
 
     #[inline] pub fn set_dn<V: Into<bits::U1>>(mut self, value: V) -> Self {
@@ -464,7 +464,7 @@ impl Fpdscr {
     }
 
     #[inline] pub fn test_fz(&self) -> bool {
-        self.fz != 0
+        self.fz() != 0
     }
 
     #[inline] pub fn set_fz<V: Into<bits::U1>>(mut self, value: V) -> Self {
@@ -480,7 +480,7 @@ impl Fpdscr {
     }
 
     #[inline] pub fn test_rmode(&self) -> bool {
-        self.rmode != 0
+        self.rmode() != 0
     }
 
     #[inline] pub fn set_rmode<V: Into<bits::U2>>(mut self, value: V) -> Self {

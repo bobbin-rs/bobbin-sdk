@@ -367,7 +367,7 @@ impl Cr1 {
 
     #[doc="Peripheral enable"]
     #[inline] pub fn test_pe(&self) -> bool {
-        self.pe != 0
+        self.pe() != 0
     }
 
     #[doc="Peripheral enable"]
@@ -386,7 +386,7 @@ impl Cr1 {
 
     #[doc="TX Interrupt enable"]
     #[inline] pub fn test_txie(&self) -> bool {
-        self.txie != 0
+        self.txie() != 0
     }
 
     #[doc="TX Interrupt enable"]
@@ -405,7 +405,7 @@ impl Cr1 {
 
     #[doc="RX Interrupt enable"]
     #[inline] pub fn test_rxie(&self) -> bool {
-        self.rxie != 0
+        self.rxie() != 0
     }
 
     #[doc="RX Interrupt enable"]
@@ -424,7 +424,7 @@ impl Cr1 {
 
     #[doc="Address match interrupt enable (slave only)"]
     #[inline] pub fn test_addrie(&self) -> bool {
-        self.addrie != 0
+        self.addrie() != 0
     }
 
     #[doc="Address match interrupt enable (slave only)"]
@@ -443,7 +443,7 @@ impl Cr1 {
 
     #[doc="Not acknowledge received interrupt enable"]
     #[inline] pub fn test_nackie(&self) -> bool {
-        self.nackie != 0
+        self.nackie() != 0
     }
 
     #[doc="Not acknowledge received interrupt enable"]
@@ -462,7 +462,7 @@ impl Cr1 {
 
     #[doc="STOP detection Interrupt enable"]
     #[inline] pub fn test_stopie(&self) -> bool {
-        self.stopie != 0
+        self.stopie() != 0
     }
 
     #[doc="STOP detection Interrupt enable"]
@@ -481,7 +481,7 @@ impl Cr1 {
 
     #[doc="Transfer Complete interrupt enable"]
     #[inline] pub fn test_tcie(&self) -> bool {
-        self.tcie != 0
+        self.tcie() != 0
     }
 
     #[doc="Transfer Complete interrupt enable"]
@@ -500,7 +500,7 @@ impl Cr1 {
 
     #[doc="Error interrupts enable"]
     #[inline] pub fn test_errie(&self) -> bool {
-        self.errie != 0
+        self.errie() != 0
     }
 
     #[doc="Error interrupts enable"]
@@ -519,7 +519,7 @@ impl Cr1 {
 
     #[doc="Digital noise filter"]
     #[inline] pub fn test_dnf(&self) -> bool {
-        self.dnf != 0
+        self.dnf() != 0
     }
 
     #[doc="Digital noise filter"]
@@ -538,7 +538,7 @@ impl Cr1 {
 
     #[doc="Analog noise filter OFF"]
     #[inline] pub fn test_anfoff(&self) -> bool {
-        self.anfoff != 0
+        self.anfoff() != 0
     }
 
     #[doc="Analog noise filter OFF"]
@@ -557,7 +557,7 @@ impl Cr1 {
 
     #[doc="Software reset"]
     #[inline] pub fn test_swrst(&self) -> bool {
-        self.swrst != 0
+        self.swrst() != 0
     }
 
     #[doc="Software reset"]
@@ -576,7 +576,7 @@ impl Cr1 {
 
     #[doc="DMA transmission requests enable"]
     #[inline] pub fn test_txdmaen(&self) -> bool {
-        self.txdmaen != 0
+        self.txdmaen() != 0
     }
 
     #[doc="DMA transmission requests enable"]
@@ -595,7 +595,7 @@ impl Cr1 {
 
     #[doc="DMA reception requests enable"]
     #[inline] pub fn test_rxdmaen(&self) -> bool {
-        self.rxdmaen != 0
+        self.rxdmaen() != 0
     }
 
     #[doc="DMA reception requests enable"]
@@ -614,7 +614,7 @@ impl Cr1 {
 
     #[doc="Slave byte control"]
     #[inline] pub fn test_sbc(&self) -> bool {
-        self.sbc != 0
+        self.sbc() != 0
     }
 
     #[doc="Slave byte control"]
@@ -633,7 +633,7 @@ impl Cr1 {
 
     #[doc="Clock stretching disable"]
     #[inline] pub fn test_nostretch(&self) -> bool {
-        self.nostretch != 0
+        self.nostretch() != 0
     }
 
     #[doc="Clock stretching disable"]
@@ -652,7 +652,7 @@ impl Cr1 {
 
     #[doc="Wakeup from STOP enable"]
     #[inline] pub fn test_wupen(&self) -> bool {
-        self.wupen != 0
+        self.wupen() != 0
     }
 
     #[doc="Wakeup from STOP enable"]
@@ -671,7 +671,7 @@ impl Cr1 {
 
     #[doc="General call enable"]
     #[inline] pub fn test_gcen(&self) -> bool {
-        self.gcen != 0
+        self.gcen() != 0
     }
 
     #[doc="General call enable"]
@@ -690,7 +690,7 @@ impl Cr1 {
 
     #[doc="SMBus Host address enable"]
     #[inline] pub fn test_smbhen(&self) -> bool {
-        self.smbhen != 0
+        self.smbhen() != 0
     }
 
     #[doc="SMBus Host address enable"]
@@ -709,7 +709,7 @@ impl Cr1 {
 
     #[doc="SMBus Device Default address enable"]
     #[inline] pub fn test_smbden(&self) -> bool {
-        self.smbden != 0
+        self.smbden() != 0
     }
 
     #[doc="SMBus Device Default address enable"]
@@ -728,7 +728,7 @@ impl Cr1 {
 
     #[doc="SMBUS alert enable"]
     #[inline] pub fn test_alerten(&self) -> bool {
-        self.alerten != 0
+        self.alerten() != 0
     }
 
     #[doc="SMBUS alert enable"]
@@ -747,7 +747,7 @@ impl Cr1 {
 
     #[doc="PEC enable"]
     #[inline] pub fn test_pecen(&self) -> bool {
-        self.pecen != 0
+        self.pecen() != 0
     }
 
     #[doc="PEC enable"]
@@ -807,7 +807,7 @@ impl Cr2 {
 
     #[doc="Packet error checking byte"]
     #[inline] pub fn test_pecbyte(&self) -> bool {
-        self.pecbyte != 0
+        self.pecbyte() != 0
     }
 
     #[doc="Packet error checking byte"]
@@ -826,7 +826,7 @@ impl Cr2 {
 
     #[doc="Automatic end mode (master mode)"]
     #[inline] pub fn test_autoend(&self) -> bool {
-        self.autoend != 0
+        self.autoend() != 0
     }
 
     #[doc="Automatic end mode (master mode)"]
@@ -845,7 +845,7 @@ impl Cr2 {
 
     #[doc="NBYTES reload mode"]
     #[inline] pub fn test_reload(&self) -> bool {
-        self.reload != 0
+        self.reload() != 0
     }
 
     #[doc="NBYTES reload mode"]
@@ -864,7 +864,7 @@ impl Cr2 {
 
     #[doc="Number of bytes"]
     #[inline] pub fn test_nbytes(&self) -> bool {
-        self.nbytes != 0
+        self.nbytes() != 0
     }
 
     #[doc="Number of bytes"]
@@ -883,7 +883,7 @@ impl Cr2 {
 
     #[doc="NACK generation (slave mode)"]
     #[inline] pub fn test_nack(&self) -> bool {
-        self.nack != 0
+        self.nack() != 0
     }
 
     #[doc="NACK generation (slave mode)"]
@@ -902,7 +902,7 @@ impl Cr2 {
 
     #[doc="Stop generation (master mode)"]
     #[inline] pub fn test_stop(&self) -> bool {
-        self.stop != 0
+        self.stop() != 0
     }
 
     #[doc="Stop generation (master mode)"]
@@ -921,7 +921,7 @@ impl Cr2 {
 
     #[doc="Start generation"]
     #[inline] pub fn test_start(&self) -> bool {
-        self.start != 0
+        self.start() != 0
     }
 
     #[doc="Start generation"]
@@ -940,7 +940,7 @@ impl Cr2 {
 
     #[doc="10-bit address header only read direction (master receiver mode)"]
     #[inline] pub fn test_head10r(&self) -> bool {
-        self.head10r != 0
+        self.head10r() != 0
     }
 
     #[doc="10-bit address header only read direction (master receiver mode)"]
@@ -959,7 +959,7 @@ impl Cr2 {
 
     #[doc="10-bit addressing mode (master mode)"]
     #[inline] pub fn test_add10(&self) -> bool {
-        self.add10 != 0
+        self.add10() != 0
     }
 
     #[doc="10-bit addressing mode (master mode)"]
@@ -978,7 +978,7 @@ impl Cr2 {
 
     #[doc="Transfer direction (master mode)"]
     #[inline] pub fn test_rd_wrn(&self) -> bool {
-        self.rd_wrn != 0
+        self.rd_wrn() != 0
     }
 
     #[doc="Transfer direction (master mode)"]
@@ -997,7 +997,7 @@ impl Cr2 {
 
     #[doc="Slave address 9:0 (master mode)"]
     #[inline] pub fn test_sadd(&self) -> bool {
-        self.sadd != 0
+        self.sadd() != 0
     }
 
     #[doc="Slave address 9:0 (master mode)"]
@@ -1047,7 +1047,7 @@ impl Oar1 {
 
     #[doc="Interface address"]
     #[inline] pub fn test_oa1_0(&self) -> bool {
-        self.oa1_0 != 0
+        self.oa1_0() != 0
     }
 
     #[doc="Interface address"]
@@ -1066,7 +1066,7 @@ impl Oar1 {
 
     #[doc="Interface address"]
     #[inline] pub fn test_oa1_1(&self) -> bool {
-        self.oa1_1 != 0
+        self.oa1_1() != 0
     }
 
     #[doc="Interface address"]
@@ -1085,7 +1085,7 @@ impl Oar1 {
 
     #[doc="Interface address"]
     #[inline] pub fn test_oa1_8(&self) -> bool {
-        self.oa1_8 != 0
+        self.oa1_8() != 0
     }
 
     #[doc="Interface address"]
@@ -1104,7 +1104,7 @@ impl Oar1 {
 
     #[doc="Own Address 1 10-bit mode"]
     #[inline] pub fn test_oa1mode(&self) -> bool {
-        self.oa1mode != 0
+        self.oa1mode() != 0
     }
 
     #[doc="Own Address 1 10-bit mode"]
@@ -1123,7 +1123,7 @@ impl Oar1 {
 
     #[doc="Own Address 1 enable"]
     #[inline] pub fn test_oa1en(&self) -> bool {
-        self.oa1en != 0
+        self.oa1en() != 0
     }
 
     #[doc="Own Address 1 enable"]
@@ -1167,7 +1167,7 @@ impl Oar2 {
 
     #[doc="Interface address"]
     #[inline] pub fn test_oa2(&self) -> bool {
-        self.oa2 != 0
+        self.oa2() != 0
     }
 
     #[doc="Interface address"]
@@ -1186,7 +1186,7 @@ impl Oar2 {
 
     #[doc="Own Address 2 masks"]
     #[inline] pub fn test_oa2msk(&self) -> bool {
-        self.oa2msk != 0
+        self.oa2msk() != 0
     }
 
     #[doc="Own Address 2 masks"]
@@ -1205,7 +1205,7 @@ impl Oar2 {
 
     #[doc="Own Address 2 enable"]
     #[inline] pub fn test_oa2en(&self) -> bool {
-        self.oa2en != 0
+        self.oa2en() != 0
     }
 
     #[doc="Own Address 2 enable"]
@@ -1247,7 +1247,7 @@ impl Timingr {
 
     #[doc="SCL low period (master mode)"]
     #[inline] pub fn test_scll(&self) -> bool {
-        self.scll != 0
+        self.scll() != 0
     }
 
     #[doc="SCL low period (master mode)"]
@@ -1266,7 +1266,7 @@ impl Timingr {
 
     #[doc="SCL high period (master mode)"]
     #[inline] pub fn test_sclh(&self) -> bool {
-        self.sclh != 0
+        self.sclh() != 0
     }
 
     #[doc="SCL high period (master mode)"]
@@ -1285,7 +1285,7 @@ impl Timingr {
 
     #[doc="Data hold time"]
     #[inline] pub fn test_sdadel(&self) -> bool {
-        self.sdadel != 0
+        self.sdadel() != 0
     }
 
     #[doc="Data hold time"]
@@ -1304,7 +1304,7 @@ impl Timingr {
 
     #[doc="Data setup time"]
     #[inline] pub fn test_scldel(&self) -> bool {
-        self.scldel != 0
+        self.scldel() != 0
     }
 
     #[doc="Data setup time"]
@@ -1323,7 +1323,7 @@ impl Timingr {
 
     #[doc="Timing prescaler"]
     #[inline] pub fn test_presc(&self) -> bool {
-        self.presc != 0
+        self.presc() != 0
     }
 
     #[doc="Timing prescaler"]
@@ -1367,7 +1367,7 @@ impl Timeoutr {
 
     #[doc="Bus timeout A"]
     #[inline] pub fn test_timeouta(&self) -> bool {
-        self.timeouta != 0
+        self.timeouta() != 0
     }
 
     #[doc="Bus timeout A"]
@@ -1386,7 +1386,7 @@ impl Timeoutr {
 
     #[doc="Idle clock timeout detection"]
     #[inline] pub fn test_tidle(&self) -> bool {
-        self.tidle != 0
+        self.tidle() != 0
     }
 
     #[doc="Idle clock timeout detection"]
@@ -1405,7 +1405,7 @@ impl Timeoutr {
 
     #[doc="Clock timeout enable"]
     #[inline] pub fn test_timouten(&self) -> bool {
-        self.timouten != 0
+        self.timouten() != 0
     }
 
     #[doc="Clock timeout enable"]
@@ -1424,7 +1424,7 @@ impl Timeoutr {
 
     #[doc="Bus timeout B"]
     #[inline] pub fn test_timeoutb(&self) -> bool {
-        self.timeoutb != 0
+        self.timeoutb() != 0
     }
 
     #[doc="Bus timeout B"]
@@ -1443,7 +1443,7 @@ impl Timeoutr {
 
     #[doc="Extended clock timeout enable"]
     #[inline] pub fn test_texten(&self) -> bool {
-        self.texten != 0
+        self.texten() != 0
     }
 
     #[doc="Extended clock timeout enable"]
@@ -1487,7 +1487,7 @@ impl Isr {
 
     #[doc="Address match code (Slave mode)"]
     #[inline] pub fn test_addcode(&self) -> bool {
-        self.addcode != 0
+        self.addcode() != 0
     }
 
     #[doc="Address match code (Slave mode)"]
@@ -1506,7 +1506,7 @@ impl Isr {
 
     #[doc="Transfer direction (Slave mode)"]
     #[inline] pub fn test_dir(&self) -> bool {
-        self.dir != 0
+        self.dir() != 0
     }
 
     #[doc="Transfer direction (Slave mode)"]
@@ -1525,7 +1525,7 @@ impl Isr {
 
     #[doc="Bus busy"]
     #[inline] pub fn test_busy(&self) -> bool {
-        self.busy != 0
+        self.busy() != 0
     }
 
     #[doc="Bus busy"]
@@ -1544,7 +1544,7 @@ impl Isr {
 
     #[doc="SMBus alert"]
     #[inline] pub fn test_alert(&self) -> bool {
-        self.alert != 0
+        self.alert() != 0
     }
 
     #[doc="SMBus alert"]
@@ -1563,7 +1563,7 @@ impl Isr {
 
     #[doc="Timeout or t_low detection flag"]
     #[inline] pub fn test_timeout(&self) -> bool {
-        self.timeout != 0
+        self.timeout() != 0
     }
 
     #[doc="Timeout or t_low detection flag"]
@@ -1582,7 +1582,7 @@ impl Isr {
 
     #[doc="PEC Error in reception"]
     #[inline] pub fn test_pecerr(&self) -> bool {
-        self.pecerr != 0
+        self.pecerr() != 0
     }
 
     #[doc="PEC Error in reception"]
@@ -1601,7 +1601,7 @@ impl Isr {
 
     #[doc="Overrun/Underrun (slave mode)"]
     #[inline] pub fn test_ovr(&self) -> bool {
-        self.ovr != 0
+        self.ovr() != 0
     }
 
     #[doc="Overrun/Underrun (slave mode)"]
@@ -1620,7 +1620,7 @@ impl Isr {
 
     #[doc="Arbitration lost"]
     #[inline] pub fn test_arlo(&self) -> bool {
-        self.arlo != 0
+        self.arlo() != 0
     }
 
     #[doc="Arbitration lost"]
@@ -1639,7 +1639,7 @@ impl Isr {
 
     #[doc="Bus error"]
     #[inline] pub fn test_berr(&self) -> bool {
-        self.berr != 0
+        self.berr() != 0
     }
 
     #[doc="Bus error"]
@@ -1658,7 +1658,7 @@ impl Isr {
 
     #[doc="Transfer Complete Reload"]
     #[inline] pub fn test_tcr(&self) -> bool {
-        self.tcr != 0
+        self.tcr() != 0
     }
 
     #[doc="Transfer Complete Reload"]
@@ -1677,7 +1677,7 @@ impl Isr {
 
     #[doc="Transfer Complete (master mode)"]
     #[inline] pub fn test_tc(&self) -> bool {
-        self.tc != 0
+        self.tc() != 0
     }
 
     #[doc="Transfer Complete (master mode)"]
@@ -1696,7 +1696,7 @@ impl Isr {
 
     #[doc="Stop detection flag"]
     #[inline] pub fn test_stopf(&self) -> bool {
-        self.stopf != 0
+        self.stopf() != 0
     }
 
     #[doc="Stop detection flag"]
@@ -1715,7 +1715,7 @@ impl Isr {
 
     #[doc="Not acknowledge received flag"]
     #[inline] pub fn test_nackf(&self) -> bool {
-        self.nackf != 0
+        self.nackf() != 0
     }
 
     #[doc="Not acknowledge received flag"]
@@ -1734,7 +1734,7 @@ impl Isr {
 
     #[doc="Address matched (slave mode)"]
     #[inline] pub fn test_addr(&self) -> bool {
-        self.addr != 0
+        self.addr() != 0
     }
 
     #[doc="Address matched (slave mode)"]
@@ -1753,7 +1753,7 @@ impl Isr {
 
     #[doc="Receive data register not empty (receivers)"]
     #[inline] pub fn test_rxne(&self) -> bool {
-        self.rxne != 0
+        self.rxne() != 0
     }
 
     #[doc="Receive data register not empty (receivers)"]
@@ -1772,7 +1772,7 @@ impl Isr {
 
     #[doc="Transmit interrupt status (transmitters)"]
     #[inline] pub fn test_txis(&self) -> bool {
-        self.txis != 0
+        self.txis() != 0
     }
 
     #[doc="Transmit interrupt status (transmitters)"]
@@ -1791,7 +1791,7 @@ impl Isr {
 
     #[doc="Transmit data register empty (transmitters)"]
     #[inline] pub fn test_txe(&self) -> bool {
-        self.txe != 0
+        self.txe() != 0
     }
 
     #[doc="Transmit data register empty (transmitters)"]
@@ -1847,7 +1847,7 @@ impl Icr {
 
     #[doc="Alert flag clear"]
     #[inline] pub fn test_alertcf(&self) -> bool {
-        self.alertcf != 0
+        self.alertcf() != 0
     }
 
     #[doc="Alert flag clear"]
@@ -1866,7 +1866,7 @@ impl Icr {
 
     #[doc="Timeout detection flag clear"]
     #[inline] pub fn test_timoutcf(&self) -> bool {
-        self.timoutcf != 0
+        self.timoutcf() != 0
     }
 
     #[doc="Timeout detection flag clear"]
@@ -1885,7 +1885,7 @@ impl Icr {
 
     #[doc="PEC Error flag clear"]
     #[inline] pub fn test_peccf(&self) -> bool {
-        self.peccf != 0
+        self.peccf() != 0
     }
 
     #[doc="PEC Error flag clear"]
@@ -1904,7 +1904,7 @@ impl Icr {
 
     #[doc="Overrun/Underrun flag clear"]
     #[inline] pub fn test_ovrcf(&self) -> bool {
-        self.ovrcf != 0
+        self.ovrcf() != 0
     }
 
     #[doc="Overrun/Underrun flag clear"]
@@ -1923,7 +1923,7 @@ impl Icr {
 
     #[doc="Arbitration lost flag clear"]
     #[inline] pub fn test_arlocf(&self) -> bool {
-        self.arlocf != 0
+        self.arlocf() != 0
     }
 
     #[doc="Arbitration lost flag clear"]
@@ -1942,7 +1942,7 @@ impl Icr {
 
     #[doc="Bus error flag clear"]
     #[inline] pub fn test_berrcf(&self) -> bool {
-        self.berrcf != 0
+        self.berrcf() != 0
     }
 
     #[doc="Bus error flag clear"]
@@ -1961,7 +1961,7 @@ impl Icr {
 
     #[doc="Stop detection flag clear"]
     #[inline] pub fn test_stopcf(&self) -> bool {
-        self.stopcf != 0
+        self.stopcf() != 0
     }
 
     #[doc="Stop detection flag clear"]
@@ -1980,7 +1980,7 @@ impl Icr {
 
     #[doc="Not Acknowledge flag clear"]
     #[inline] pub fn test_nackcf(&self) -> bool {
-        self.nackcf != 0
+        self.nackcf() != 0
     }
 
     #[doc="Not Acknowledge flag clear"]
@@ -1999,7 +1999,7 @@ impl Icr {
 
     #[doc="Address Matched flag clear"]
     #[inline] pub fn test_addrcf(&self) -> bool {
-        self.addrcf != 0
+        self.addrcf() != 0
     }
 
     #[doc="Address Matched flag clear"]
@@ -2047,7 +2047,7 @@ impl Pecr {
 
     #[doc="Packet error checking register"]
     #[inline] pub fn test_pec(&self) -> bool {
-        self.pec != 0
+        self.pec() != 0
     }
 
     #[doc="Packet error checking register"]
@@ -2087,7 +2087,7 @@ impl Rxdr {
 
     #[doc="8-bit receive data"]
     #[inline] pub fn test_rxdata(&self) -> bool {
-        self.rxdata != 0
+        self.rxdata() != 0
     }
 
     #[doc="8-bit receive data"]
@@ -2127,7 +2127,7 @@ impl Txdr {
 
     #[doc="8-bit transmit data"]
     #[inline] pub fn test_txdata(&self) -> bool {
-        self.txdata != 0
+        self.txdata() != 0
     }
 
     #[doc="8-bit transmit data"]

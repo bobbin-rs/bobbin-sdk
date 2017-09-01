@@ -292,7 +292,7 @@ impl Sc {
 
     #[doc="Prescale Factor Selection"]
     #[inline] pub fn test_ps(&self) -> bool {
-        self.ps != 0
+        self.ps() != 0
     }
 
     #[doc="Prescale Factor Selection"]
@@ -311,7 +311,7 @@ impl Sc {
 
     #[doc="Clock Mode Selection"]
     #[inline] pub fn test_cmod(&self) -> bool {
-        self.cmod != 0
+        self.cmod() != 0
     }
 
     #[doc="Clock Mode Selection"]
@@ -330,7 +330,7 @@ impl Sc {
 
     #[doc="Center-Aligned PWM Select"]
     #[inline] pub fn test_cpwms(&self) -> bool {
-        self.cpwms != 0
+        self.cpwms() != 0
     }
 
     #[doc="Center-Aligned PWM Select"]
@@ -349,7 +349,7 @@ impl Sc {
 
     #[doc="Timer Overflow Interrupt Enable"]
     #[inline] pub fn test_toie(&self) -> bool {
-        self.toie != 0
+        self.toie() != 0
     }
 
     #[doc="Timer Overflow Interrupt Enable"]
@@ -368,7 +368,7 @@ impl Sc {
 
     #[doc="Timer Overflow Flag"]
     #[inline] pub fn test_tof(&self) -> bool {
-        self.tof != 0
+        self.tof() != 0
     }
 
     #[doc="Timer Overflow Flag"]
@@ -387,7 +387,7 @@ impl Sc {
 
     #[doc="DMA Enable"]
     #[inline] pub fn test_dma(&self) -> bool {
-        self.dma != 0
+        self.dma() != 0
     }
 
     #[doc="DMA Enable"]
@@ -432,7 +432,7 @@ impl Cnt {
 
     #[doc="Counter value"]
     #[inline] pub fn test_count(&self) -> bool {
-        self.count != 0
+        self.count() != 0
     }
 
     #[doc="Counter value"]
@@ -472,7 +472,7 @@ impl Mod {
 
     #[doc="Modulo value"]
     #[inline] pub fn test_mod(&self) -> bool {
-        self._mod != 0
+        self._mod() != 0
     }
 
     #[doc="Modulo value"]
@@ -512,7 +512,7 @@ impl Csc {
 
     #[doc="DMA Enable"]
     #[inline] pub fn test_dma(&self) -> bool {
-        self.dma != 0
+        self.dma() != 0
     }
 
     #[doc="DMA Enable"]
@@ -531,7 +531,7 @@ impl Csc {
 
     #[doc="Edge or Level Select"]
     #[inline] pub fn test_elsa(&self) -> bool {
-        self.elsa != 0
+        self.elsa() != 0
     }
 
     #[doc="Edge or Level Select"]
@@ -550,7 +550,7 @@ impl Csc {
 
     #[doc="Edge or Level Select"]
     #[inline] pub fn test_elsb(&self) -> bool {
-        self.elsb != 0
+        self.elsb() != 0
     }
 
     #[doc="Edge or Level Select"]
@@ -569,7 +569,7 @@ impl Csc {
 
     #[doc="Channel Mode Select"]
     #[inline] pub fn test_msa(&self) -> bool {
-        self.msa != 0
+        self.msa() != 0
     }
 
     #[doc="Channel Mode Select"]
@@ -588,7 +588,7 @@ impl Csc {
 
     #[doc="Channel Mode Select"]
     #[inline] pub fn test_msb(&self) -> bool {
-        self.msb != 0
+        self.msb() != 0
     }
 
     #[doc="Channel Mode Select"]
@@ -607,7 +607,7 @@ impl Csc {
 
     #[doc="Channel Interrupt Enable"]
     #[inline] pub fn test_chie(&self) -> bool {
-        self.chie != 0
+        self.chie() != 0
     }
 
     #[doc="Channel Interrupt Enable"]
@@ -626,7 +626,7 @@ impl Csc {
 
     #[doc="Channel Flag"]
     #[inline] pub fn test_chf(&self) -> bool {
-        self.chf != 0
+        self.chf() != 0
     }
 
     #[doc="Channel Flag"]
@@ -672,7 +672,7 @@ impl Cv {
 
     #[doc="Channel Value"]
     #[inline] pub fn test_val(&self) -> bool {
-        self.val != 0
+        self.val() != 0
     }
 
     #[doc="Channel Value"]
@@ -763,7 +763,7 @@ impl Conf {
 
     #[doc="Doze Enable"]
     #[inline] pub fn test_dozeen(&self) -> bool {
-        self.dozeen != 0
+        self.dozeen() != 0
     }
 
     #[doc="Doze Enable"]
@@ -782,7 +782,7 @@ impl Conf {
 
     #[doc="Debug Mode"]
     #[inline] pub fn test_dbgmode(&self) -> bool {
-        self.dbgmode != 0
+        self.dbgmode() != 0
     }
 
     #[doc="Debug Mode"]
@@ -801,7 +801,7 @@ impl Conf {
 
     #[doc="Global time base enable"]
     #[inline] pub fn test_gtbeen(&self) -> bool {
-        self.gtbeen != 0
+        self.gtbeen() != 0
     }
 
     #[doc="Global time base enable"]
@@ -820,7 +820,7 @@ impl Conf {
 
     #[doc="Counter Start on Trigger"]
     #[inline] pub fn test_csot(&self) -> bool {
-        self.csot != 0
+        self.csot() != 0
     }
 
     #[doc="Counter Start on Trigger"]
@@ -839,7 +839,7 @@ impl Conf {
 
     #[doc="Counter Stop On Overflow"]
     #[inline] pub fn test_csoo(&self) -> bool {
-        self.csoo != 0
+        self.csoo() != 0
     }
 
     #[doc="Counter Stop On Overflow"]
@@ -858,7 +858,7 @@ impl Conf {
 
     #[doc="Counter Reload On Trigger"]
     #[inline] pub fn test_crot(&self) -> bool {
-        self.crot != 0
+        self.crot() != 0
     }
 
     #[doc="Counter Reload On Trigger"]
@@ -877,7 +877,7 @@ impl Conf {
 
     #[doc="Trigger Select"]
     #[inline] pub fn test_trgsel(&self) -> bool {
-        self.trgsel != 0
+        self.trgsel() != 0
     }
 
     #[doc="Trigger Select"]

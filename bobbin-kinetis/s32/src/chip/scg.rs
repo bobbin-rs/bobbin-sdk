@@ -647,7 +647,7 @@ impl Verid {
 
     #[doc="SCG Version Number"]
     #[inline] pub fn test_version(&self) -> bool {
-        self.version != 0
+        self.version() != 0
     }
 
     #[doc="SCG Version Number"]
@@ -686,7 +686,7 @@ impl Param {
 
     #[doc="Clock Present"]
     #[inline] pub fn test_clkpres(&self) -> bool {
-        self.clkpres != 0
+        self.clkpres() != 0
     }
 
     #[doc="Clock Present"]
@@ -705,7 +705,7 @@ impl Param {
 
     #[doc="Divider Present"]
     #[inline] pub fn test_divpres(&self) -> bool {
-        self.divpres != 0
+        self.divpres() != 0
     }
 
     #[doc="Divider Present"]
@@ -746,7 +746,7 @@ impl Csr {
 
     #[doc="Slow Clock Divide Ratio"]
     #[inline] pub fn test_divslow(&self) -> bool {
-        self.divslow != 0
+        self.divslow() != 0
     }
 
     #[doc="Slow Clock Divide Ratio"]
@@ -765,7 +765,7 @@ impl Csr {
 
     #[doc="Bus Clock Divide Ratio"]
     #[inline] pub fn test_divbus(&self) -> bool {
-        self.divbus != 0
+        self.divbus() != 0
     }
 
     #[doc="Bus Clock Divide Ratio"]
@@ -784,7 +784,7 @@ impl Csr {
 
     #[doc="Core Clock Divide Ratio"]
     #[inline] pub fn test_divcore(&self) -> bool {
-        self.divcore != 0
+        self.divcore() != 0
     }
 
     #[doc="Core Clock Divide Ratio"]
@@ -803,7 +803,7 @@ impl Csr {
 
     #[doc="System Clock Source"]
     #[inline] pub fn test_scs(&self) -> bool {
-        self.scs != 0
+        self.scs() != 0
     }
 
     #[doc="System Clock Source"]
@@ -846,7 +846,7 @@ impl Rccr {
 
     #[doc="Slow Clock Divide Ratio"]
     #[inline] pub fn test_divslow(&self) -> bool {
-        self.divslow != 0
+        self.divslow() != 0
     }
 
     #[doc="Slow Clock Divide Ratio"]
@@ -865,7 +865,7 @@ impl Rccr {
 
     #[doc="Bus Clock Divide Ratio"]
     #[inline] pub fn test_divbus(&self) -> bool {
-        self.divbus != 0
+        self.divbus() != 0
     }
 
     #[doc="Bus Clock Divide Ratio"]
@@ -884,7 +884,7 @@ impl Rccr {
 
     #[doc="Core Clock Divide Ratio"]
     #[inline] pub fn test_divcore(&self) -> bool {
-        self.divcore != 0
+        self.divcore() != 0
     }
 
     #[doc="Core Clock Divide Ratio"]
@@ -903,7 +903,7 @@ impl Rccr {
 
     #[doc="System Clock Source"]
     #[inline] pub fn test_scs(&self) -> bool {
-        self.scs != 0
+        self.scs() != 0
     }
 
     #[doc="System Clock Source"]
@@ -946,7 +946,7 @@ impl Vccr {
 
     #[doc="Slow Clock Divide Ratio"]
     #[inline] pub fn test_divslow(&self) -> bool {
-        self.divslow != 0
+        self.divslow() != 0
     }
 
     #[doc="Slow Clock Divide Ratio"]
@@ -965,7 +965,7 @@ impl Vccr {
 
     #[doc="Bus Clock Divide Ratio"]
     #[inline] pub fn test_divbus(&self) -> bool {
-        self.divbus != 0
+        self.divbus() != 0
     }
 
     #[doc="Bus Clock Divide Ratio"]
@@ -984,7 +984,7 @@ impl Vccr {
 
     #[doc="Core Clock Divide Ratio"]
     #[inline] pub fn test_divcore(&self) -> bool {
-        self.divcore != 0
+        self.divcore() != 0
     }
 
     #[doc="Core Clock Divide Ratio"]
@@ -1003,7 +1003,7 @@ impl Vccr {
 
     #[doc="System Clock Source"]
     #[inline] pub fn test_scs(&self) -> bool {
-        self.scs != 0
+        self.scs() != 0
     }
 
     #[doc="System Clock Source"]
@@ -1046,7 +1046,7 @@ impl Hccr {
 
     #[doc="Slow Clock Divide Ratio"]
     #[inline] pub fn test_divslow(&self) -> bool {
-        self.divslow != 0
+        self.divslow() != 0
     }
 
     #[doc="Slow Clock Divide Ratio"]
@@ -1065,7 +1065,7 @@ impl Hccr {
 
     #[doc="Bus Clock Divide Ratio"]
     #[inline] pub fn test_divbus(&self) -> bool {
-        self.divbus != 0
+        self.divbus() != 0
     }
 
     #[doc="Bus Clock Divide Ratio"]
@@ -1084,7 +1084,7 @@ impl Hccr {
 
     #[doc="Core Clock Divide Ratio"]
     #[inline] pub fn test_divcore(&self) -> bool {
-        self.divcore != 0
+        self.divcore() != 0
     }
 
     #[doc="Core Clock Divide Ratio"]
@@ -1103,7 +1103,7 @@ impl Hccr {
 
     #[doc="System Clock Source"]
     #[inline] pub fn test_scs(&self) -> bool {
-        self.scs != 0
+        self.scs() != 0
     }
 
     #[doc="System Clock Source"]
@@ -1146,7 +1146,7 @@ impl Clkoutcnfg {
 
     #[doc="SCG Clkout Select"]
     #[inline] pub fn test_clkoutsel(&self) -> bool {
-        self.clkoutsel != 0
+        self.clkoutsel() != 0
     }
 
     #[doc="SCG Clkout Select"]
@@ -1186,7 +1186,7 @@ impl Sosccsr {
 
     #[doc="System OSC Enable"]
     #[inline] pub fn test_soscen(&self) -> bool {
-        self.soscen != 0
+        self.soscen() != 0
     }
 
     #[doc="System OSC Enable"]
@@ -1205,7 +1205,7 @@ impl Sosccsr {
 
     #[doc="System OSC Clock Monitor"]
     #[inline] pub fn test_sosccm(&self) -> bool {
-        self.sosccm != 0
+        self.sosccm() != 0
     }
 
     #[doc="System OSC Clock Monitor"]
@@ -1224,7 +1224,7 @@ impl Sosccsr {
 
     #[doc="System OSC Clock Monitor Reset Enable"]
     #[inline] pub fn test_sosccmre(&self) -> bool {
-        self.sosccmre != 0
+        self.sosccmre() != 0
     }
 
     #[doc="System OSC Clock Monitor Reset Enable"]
@@ -1243,7 +1243,7 @@ impl Sosccsr {
 
     #[doc="Lock Register"]
     #[inline] pub fn test_lk(&self) -> bool {
-        self.lk != 0
+        self.lk() != 0
     }
 
     #[doc="Lock Register"]
@@ -1262,7 +1262,7 @@ impl Sosccsr {
 
     #[doc="System OSC Valid"]
     #[inline] pub fn test_soscvld(&self) -> bool {
-        self.soscvld != 0
+        self.soscvld() != 0
     }
 
     #[doc="System OSC Valid"]
@@ -1281,7 +1281,7 @@ impl Sosccsr {
 
     #[doc="System OSC Selected"]
     #[inline] pub fn test_soscsel(&self) -> bool {
-        self.soscsel != 0
+        self.soscsel() != 0
     }
 
     #[doc="System OSC Selected"]
@@ -1300,7 +1300,7 @@ impl Sosccsr {
 
     #[doc="System OSC Clock Error"]
     #[inline] pub fn test_soscerr(&self) -> bool {
-        self.soscerr != 0
+        self.soscerr() != 0
     }
 
     #[doc="System OSC Clock Error"]
@@ -1346,7 +1346,7 @@ impl Soscdiv {
 
     #[doc="System OSC Clock Divide 1"]
     #[inline] pub fn test_soscdiv1(&self) -> bool {
-        self.soscdiv1 != 0
+        self.soscdiv1() != 0
     }
 
     #[doc="System OSC Clock Divide 1"]
@@ -1365,7 +1365,7 @@ impl Soscdiv {
 
     #[doc="System OSC Clock Divide 2"]
     #[inline] pub fn test_soscdiv2(&self) -> bool {
-        self.soscdiv2 != 0
+        self.soscdiv2() != 0
     }
 
     #[doc="System OSC Clock Divide 2"]
@@ -1406,7 +1406,7 @@ impl Sosccfg {
 
     #[doc="External Reference Select"]
     #[inline] pub fn test_erefs(&self) -> bool {
-        self.erefs != 0
+        self.erefs() != 0
     }
 
     #[doc="External Reference Select"]
@@ -1425,7 +1425,7 @@ impl Sosccfg {
 
     #[doc="High Gain Oscillator Select"]
     #[inline] pub fn test_hgo(&self) -> bool {
-        self.hgo != 0
+        self.hgo() != 0
     }
 
     #[doc="High Gain Oscillator Select"]
@@ -1444,7 +1444,7 @@ impl Sosccfg {
 
     #[doc="System OSC Range Select"]
     #[inline] pub fn test_range(&self) -> bool {
-        self.range != 0
+        self.range() != 0
     }
 
     #[doc="System OSC Range Select"]
@@ -1486,7 +1486,7 @@ impl Sirccsr {
 
     #[doc="Slow IRC Enable"]
     #[inline] pub fn test_sircen(&self) -> bool {
-        self.sircen != 0
+        self.sircen() != 0
     }
 
     #[doc="Slow IRC Enable"]
@@ -1505,7 +1505,7 @@ impl Sirccsr {
 
     #[doc="Slow IRC Stop Enable"]
     #[inline] pub fn test_sircsten(&self) -> bool {
-        self.sircsten != 0
+        self.sircsten() != 0
     }
 
     #[doc="Slow IRC Stop Enable"]
@@ -1524,7 +1524,7 @@ impl Sirccsr {
 
     #[doc="Slow IRC Low Power Enable"]
     #[inline] pub fn test_sirclpen(&self) -> bool {
-        self.sirclpen != 0
+        self.sirclpen() != 0
     }
 
     #[doc="Slow IRC Low Power Enable"]
@@ -1543,7 +1543,7 @@ impl Sirccsr {
 
     #[doc="Lock Register"]
     #[inline] pub fn test_lk(&self) -> bool {
-        self.lk != 0
+        self.lk() != 0
     }
 
     #[doc="Lock Register"]
@@ -1562,7 +1562,7 @@ impl Sirccsr {
 
     #[doc="Slow IRC Valid"]
     #[inline] pub fn test_sircvld(&self) -> bool {
-        self.sircvld != 0
+        self.sircvld() != 0
     }
 
     #[doc="Slow IRC Valid"]
@@ -1581,7 +1581,7 @@ impl Sirccsr {
 
     #[doc="Slow IRC Selected"]
     #[inline] pub fn test_sircsel(&self) -> bool {
-        self.sircsel != 0
+        self.sircsel() != 0
     }
 
     #[doc="Slow IRC Selected"]
@@ -1626,7 +1626,7 @@ impl Sircdiv {
 
     #[doc="Slow IRC Clock Divide 1"]
     #[inline] pub fn test_sircdiv1(&self) -> bool {
-        self.sircdiv1 != 0
+        self.sircdiv1() != 0
     }
 
     #[doc="Slow IRC Clock Divide 1"]
@@ -1645,7 +1645,7 @@ impl Sircdiv {
 
     #[doc="Slow IRC Clock Divide 2"]
     #[inline] pub fn test_sircdiv2(&self) -> bool {
-        self.sircdiv2 != 0
+        self.sircdiv2() != 0
     }
 
     #[doc="Slow IRC Clock Divide 2"]
@@ -1686,7 +1686,7 @@ impl Sirccfg {
 
     #[doc="Frequency Range"]
     #[inline] pub fn test_range(&self) -> bool {
-        self.range != 0
+        self.range() != 0
     }
 
     #[doc="Frequency Range"]
@@ -1726,7 +1726,7 @@ impl Firccsr {
 
     #[doc="Fast IRC Enable"]
     #[inline] pub fn test_fircen(&self) -> bool {
-        self.fircen != 0
+        self.fircen() != 0
     }
 
     #[doc="Fast IRC Enable"]
@@ -1745,7 +1745,7 @@ impl Firccsr {
 
     #[doc="Fast IRC Regulator Enable"]
     #[inline] pub fn test_fircregoff(&self) -> bool {
-        self.fircregoff != 0
+        self.fircregoff() != 0
     }
 
     #[doc="Fast IRC Regulator Enable"]
@@ -1764,7 +1764,7 @@ impl Firccsr {
 
     #[doc="Lock Register"]
     #[inline] pub fn test_lk(&self) -> bool {
-        self.lk != 0
+        self.lk() != 0
     }
 
     #[doc="Lock Register"]
@@ -1783,7 +1783,7 @@ impl Firccsr {
 
     #[doc="Fast IRC Valid status"]
     #[inline] pub fn test_fircvld(&self) -> bool {
-        self.fircvld != 0
+        self.fircvld() != 0
     }
 
     #[doc="Fast IRC Valid status"]
@@ -1802,7 +1802,7 @@ impl Firccsr {
 
     #[doc="Fast IRC Selected status"]
     #[inline] pub fn test_fircsel(&self) -> bool {
-        self.fircsel != 0
+        self.fircsel() != 0
     }
 
     #[doc="Fast IRC Selected status"]
@@ -1821,7 +1821,7 @@ impl Firccsr {
 
     #[doc="Fast IRC Clock Error"]
     #[inline] pub fn test_fircerr(&self) -> bool {
-        self.fircerr != 0
+        self.fircerr() != 0
     }
 
     #[doc="Fast IRC Clock Error"]
@@ -1866,7 +1866,7 @@ impl Fircdiv {
 
     #[doc="Fast IRC Clock Divide 1"]
     #[inline] pub fn test_fircdiv1(&self) -> bool {
-        self.fircdiv1 != 0
+        self.fircdiv1() != 0
     }
 
     #[doc="Fast IRC Clock Divide 1"]
@@ -1885,7 +1885,7 @@ impl Fircdiv {
 
     #[doc="Fast IRC Clock Divide 2"]
     #[inline] pub fn test_fircdiv2(&self) -> bool {
-        self.fircdiv2 != 0
+        self.fircdiv2() != 0
     }
 
     #[doc="Fast IRC Clock Divide 2"]
@@ -1926,7 +1926,7 @@ impl Firccfg {
 
     #[doc="Frequency Range"]
     #[inline] pub fn test_range(&self) -> bool {
-        self.range != 0
+        self.range() != 0
     }
 
     #[doc="Frequency Range"]
@@ -1966,7 +1966,7 @@ impl Spllcsr {
 
     #[doc="System PLL Enable"]
     #[inline] pub fn test_spllen(&self) -> bool {
-        self.spllen != 0
+        self.spllen() != 0
     }
 
     #[doc="System PLL Enable"]
@@ -1985,7 +1985,7 @@ impl Spllcsr {
 
     #[doc="System PLL Clock Monitor"]
     #[inline] pub fn test_spllcm(&self) -> bool {
-        self.spllcm != 0
+        self.spllcm() != 0
     }
 
     #[doc="System PLL Clock Monitor"]
@@ -2004,7 +2004,7 @@ impl Spllcsr {
 
     #[doc="System PLL Clock Monitor Reset Enable"]
     #[inline] pub fn test_spllcmre(&self) -> bool {
-        self.spllcmre != 0
+        self.spllcmre() != 0
     }
 
     #[doc="System PLL Clock Monitor Reset Enable"]
@@ -2023,7 +2023,7 @@ impl Spllcsr {
 
     #[doc="Lock Register"]
     #[inline] pub fn test_lk(&self) -> bool {
-        self.lk != 0
+        self.lk() != 0
     }
 
     #[doc="Lock Register"]
@@ -2042,7 +2042,7 @@ impl Spllcsr {
 
     #[doc="System PLL Valid"]
     #[inline] pub fn test_spllvld(&self) -> bool {
-        self.spllvld != 0
+        self.spllvld() != 0
     }
 
     #[doc="System PLL Valid"]
@@ -2061,7 +2061,7 @@ impl Spllcsr {
 
     #[doc="System PLL Selected"]
     #[inline] pub fn test_spllsel(&self) -> bool {
-        self.spllsel != 0
+        self.spllsel() != 0
     }
 
     #[doc="System PLL Selected"]
@@ -2080,7 +2080,7 @@ impl Spllcsr {
 
     #[doc="System PLL Clock Error"]
     #[inline] pub fn test_spllerr(&self) -> bool {
-        self.spllerr != 0
+        self.spllerr() != 0
     }
 
     #[doc="System PLL Clock Error"]
@@ -2126,7 +2126,7 @@ impl Splldiv {
 
     #[doc="System PLL Clock Divide 1"]
     #[inline] pub fn test_splldiv1(&self) -> bool {
-        self.splldiv1 != 0
+        self.splldiv1() != 0
     }
 
     #[doc="System PLL Clock Divide 1"]
@@ -2145,7 +2145,7 @@ impl Splldiv {
 
     #[doc="System PLL Clock Divide 2"]
     #[inline] pub fn test_splldiv2(&self) -> bool {
-        self.splldiv2 != 0
+        self.splldiv2() != 0
     }
 
     #[doc="System PLL Clock Divide 2"]
@@ -2186,7 +2186,7 @@ impl Spllcfg {
 
     #[doc="PLL Reference Clock Divider"]
     #[inline] pub fn test_prediv(&self) -> bool {
-        self.prediv != 0
+        self.prediv() != 0
     }
 
     #[doc="PLL Reference Clock Divider"]
@@ -2205,7 +2205,7 @@ impl Spllcfg {
 
     #[doc="System PLL Multiplier"]
     #[inline] pub fn test_mult(&self) -> bool {
-        self.mult != 0
+        self.mult() != 0
     }
 
     #[doc="System PLL Multiplier"]

@@ -1122,7 +1122,7 @@ impl Cr {
 
     #[doc="Enable Debug"]
     #[inline] pub fn test_edbg(&self) -> bool {
-        self.edbg != 0
+        self.edbg() != 0
     }
 
     #[doc="Enable Debug"]
@@ -1141,7 +1141,7 @@ impl Cr {
 
     #[doc="Enable Round Robin Channel Arbitration"]
     #[inline] pub fn test_erca(&self) -> bool {
-        self.erca != 0
+        self.erca() != 0
     }
 
     #[doc="Enable Round Robin Channel Arbitration"]
@@ -1160,7 +1160,7 @@ impl Cr {
 
     #[doc="Halt On Error"]
     #[inline] pub fn test_hoe(&self) -> bool {
-        self.hoe != 0
+        self.hoe() != 0
     }
 
     #[doc="Halt On Error"]
@@ -1179,7 +1179,7 @@ impl Cr {
 
     #[doc="Halt DMA Operations"]
     #[inline] pub fn test_halt(&self) -> bool {
-        self.halt != 0
+        self.halt() != 0
     }
 
     #[doc="Halt DMA Operations"]
@@ -1198,7 +1198,7 @@ impl Cr {
 
     #[doc="Continuous Link Mode"]
     #[inline] pub fn test_clm(&self) -> bool {
-        self.clm != 0
+        self.clm() != 0
     }
 
     #[doc="Continuous Link Mode"]
@@ -1217,7 +1217,7 @@ impl Cr {
 
     #[doc="Enable Minor Loop Mapping"]
     #[inline] pub fn test_emlm(&self) -> bool {
-        self.emlm != 0
+        self.emlm() != 0
     }
 
     #[doc="Enable Minor Loop Mapping"]
@@ -1236,7 +1236,7 @@ impl Cr {
 
     #[doc="Error Cancel Transfer"]
     #[inline] pub fn test_ecx(&self) -> bool {
-        self.ecx != 0
+        self.ecx() != 0
     }
 
     #[doc="Error Cancel Transfer"]
@@ -1255,7 +1255,7 @@ impl Cr {
 
     #[doc="Cancel Transfer"]
     #[inline] pub fn test_cx(&self) -> bool {
-        self.cx != 0
+        self.cx() != 0
     }
 
     #[doc="Cancel Transfer"]
@@ -1302,7 +1302,7 @@ impl Es {
 
     #[doc="Destination Bus Error"]
     #[inline] pub fn test_dbe(&self) -> bool {
-        self.dbe != 0
+        self.dbe() != 0
     }
 
     #[doc="Destination Bus Error"]
@@ -1321,7 +1321,7 @@ impl Es {
 
     #[doc="Source Bus Error"]
     #[inline] pub fn test_sbe(&self) -> bool {
-        self.sbe != 0
+        self.sbe() != 0
     }
 
     #[doc="Source Bus Error"]
@@ -1340,7 +1340,7 @@ impl Es {
 
     #[doc="Scatter/Gather Configuration Error"]
     #[inline] pub fn test_sge(&self) -> bool {
-        self.sge != 0
+        self.sge() != 0
     }
 
     #[doc="Scatter/Gather Configuration Error"]
@@ -1359,7 +1359,7 @@ impl Es {
 
     #[doc="NBYTES/CITER Configuration Error"]
     #[inline] pub fn test_nce(&self) -> bool {
-        self.nce != 0
+        self.nce() != 0
     }
 
     #[doc="NBYTES/CITER Configuration Error"]
@@ -1378,7 +1378,7 @@ impl Es {
 
     #[doc="Destination Offset Error"]
     #[inline] pub fn test_doe(&self) -> bool {
-        self.doe != 0
+        self.doe() != 0
     }
 
     #[doc="Destination Offset Error"]
@@ -1397,7 +1397,7 @@ impl Es {
 
     #[doc="Destination Address Error"]
     #[inline] pub fn test_dae(&self) -> bool {
-        self.dae != 0
+        self.dae() != 0
     }
 
     #[doc="Destination Address Error"]
@@ -1416,7 +1416,7 @@ impl Es {
 
     #[doc="Source Offset Error"]
     #[inline] pub fn test_soe(&self) -> bool {
-        self.soe != 0
+        self.soe() != 0
     }
 
     #[doc="Source Offset Error"]
@@ -1435,7 +1435,7 @@ impl Es {
 
     #[doc="Source Address Error"]
     #[inline] pub fn test_sae(&self) -> bool {
-        self.sae != 0
+        self.sae() != 0
     }
 
     #[doc="Source Address Error"]
@@ -1454,7 +1454,7 @@ impl Es {
 
     #[doc="Error Channel Number or Canceled Channel Number"]
     #[inline] pub fn test_errchn(&self) -> bool {
-        self.errchn != 0
+        self.errchn() != 0
     }
 
     #[doc="Error Channel Number or Canceled Channel Number"]
@@ -1473,7 +1473,7 @@ impl Es {
 
     #[doc="Channel Priority Error"]
     #[inline] pub fn test_cpe(&self) -> bool {
-        self.cpe != 0
+        self.cpe() != 0
     }
 
     #[doc="Channel Priority Error"]
@@ -1492,7 +1492,7 @@ impl Es {
 
     #[doc="Transfer Canceled"]
     #[inline] pub fn test_ecx(&self) -> bool {
-        self.ecx != 0
+        self.ecx() != 0
     }
 
     #[doc="Transfer Canceled"]
@@ -1511,7 +1511,7 @@ impl Es {
 
     #[doc="Logical OR of all ERR status bits"]
     #[inline] pub fn test_vld(&self) -> bool {
-        self.vld != 0
+        self.vld() != 0
     }
 
     #[doc="Logical OR of all ERR status bits"]
@@ -1684,7 +1684,7 @@ impl Ceei {
 
     #[doc="Clear Enable Error Interrupt"]
     #[inline] pub fn test_ceei(&self) -> bool {
-        self.ceei != 0
+        self.ceei() != 0
     }
 
     #[doc="Clear Enable Error Interrupt"]
@@ -1703,7 +1703,7 @@ impl Ceei {
 
     #[doc="Clear All Enable Error Interrupts"]
     #[inline] pub fn test_caee(&self) -> bool {
-        self.caee != 0
+        self.caee() != 0
     }
 
     #[doc="Clear All Enable Error Interrupts"]
@@ -1722,7 +1722,7 @@ impl Ceei {
 
     #[doc="No Op enable"]
     #[inline] pub fn test_nop(&self) -> bool {
-        self.nop != 0
+        self.nop() != 0
     }
 
     #[doc="No Op enable"]
@@ -1764,7 +1764,7 @@ impl Seei {
 
     #[doc="Set Enable Error Interrupt"]
     #[inline] pub fn test_seei(&self) -> bool {
-        self.seei != 0
+        self.seei() != 0
     }
 
     #[doc="Set Enable Error Interrupt"]
@@ -1783,7 +1783,7 @@ impl Seei {
 
     #[doc="Sets All Enable Error Interrupts"]
     #[inline] pub fn test_saee(&self) -> bool {
-        self.saee != 0
+        self.saee() != 0
     }
 
     #[doc="Sets All Enable Error Interrupts"]
@@ -1802,7 +1802,7 @@ impl Seei {
 
     #[doc="No Op enable"]
     #[inline] pub fn test_nop(&self) -> bool {
-        self.nop != 0
+        self.nop() != 0
     }
 
     #[doc="No Op enable"]
@@ -1844,7 +1844,7 @@ impl Cerq {
 
     #[doc="Clear Enable Request"]
     #[inline] pub fn test_cerq(&self) -> bool {
-        self.cerq != 0
+        self.cerq() != 0
     }
 
     #[doc="Clear Enable Request"]
@@ -1863,7 +1863,7 @@ impl Cerq {
 
     #[doc="Clear All Enable Requests"]
     #[inline] pub fn test_caer(&self) -> bool {
-        self.caer != 0
+        self.caer() != 0
     }
 
     #[doc="Clear All Enable Requests"]
@@ -1882,7 +1882,7 @@ impl Cerq {
 
     #[doc="No Op enable"]
     #[inline] pub fn test_nop(&self) -> bool {
-        self.nop != 0
+        self.nop() != 0
     }
 
     #[doc="No Op enable"]
@@ -1924,7 +1924,7 @@ impl Serq {
 
     #[doc="Set enable request"]
     #[inline] pub fn test_serq(&self) -> bool {
-        self.serq != 0
+        self.serq() != 0
     }
 
     #[doc="Set enable request"]
@@ -1943,7 +1943,7 @@ impl Serq {
 
     #[doc="Set All Enable Requests"]
     #[inline] pub fn test_saer(&self) -> bool {
-        self.saer != 0
+        self.saer() != 0
     }
 
     #[doc="Set All Enable Requests"]
@@ -1962,7 +1962,7 @@ impl Serq {
 
     #[doc="No Op enable"]
     #[inline] pub fn test_nop(&self) -> bool {
-        self.nop != 0
+        self.nop() != 0
     }
 
     #[doc="No Op enable"]
@@ -2004,7 +2004,7 @@ impl Cdne {
 
     #[doc="Clear DONE Bit"]
     #[inline] pub fn test_cdne(&self) -> bool {
-        self.cdne != 0
+        self.cdne() != 0
     }
 
     #[doc="Clear DONE Bit"]
@@ -2023,7 +2023,7 @@ impl Cdne {
 
     #[doc="Clears All DONE Bits"]
     #[inline] pub fn test_cadn(&self) -> bool {
-        self.cadn != 0
+        self.cadn() != 0
     }
 
     #[doc="Clears All DONE Bits"]
@@ -2042,7 +2042,7 @@ impl Cdne {
 
     #[doc="No Op enable"]
     #[inline] pub fn test_nop(&self) -> bool {
-        self.nop != 0
+        self.nop() != 0
     }
 
     #[doc="No Op enable"]
@@ -2084,7 +2084,7 @@ impl Ssrt {
 
     #[doc="Set START Bit"]
     #[inline] pub fn test_ssrt(&self) -> bool {
-        self.ssrt != 0
+        self.ssrt() != 0
     }
 
     #[doc="Set START Bit"]
@@ -2103,7 +2103,7 @@ impl Ssrt {
 
     #[doc="Set All START Bits (activates all channels)"]
     #[inline] pub fn test_sast(&self) -> bool {
-        self.sast != 0
+        self.sast() != 0
     }
 
     #[doc="Set All START Bits (activates all channels)"]
@@ -2122,7 +2122,7 @@ impl Ssrt {
 
     #[doc="No Op enable"]
     #[inline] pub fn test_nop(&self) -> bool {
-        self.nop != 0
+        self.nop() != 0
     }
 
     #[doc="No Op enable"]
@@ -2164,7 +2164,7 @@ impl Cerr {
 
     #[doc="Clear Error Indicator"]
     #[inline] pub fn test_cerr(&self) -> bool {
-        self.cerr != 0
+        self.cerr() != 0
     }
 
     #[doc="Clear Error Indicator"]
@@ -2183,7 +2183,7 @@ impl Cerr {
 
     #[doc="Clear All Error Indicators"]
     #[inline] pub fn test_caei(&self) -> bool {
-        self.caei != 0
+        self.caei() != 0
     }
 
     #[doc="Clear All Error Indicators"]
@@ -2202,7 +2202,7 @@ impl Cerr {
 
     #[doc="No Op enable"]
     #[inline] pub fn test_nop(&self) -> bool {
-        self.nop != 0
+        self.nop() != 0
     }
 
     #[doc="No Op enable"]
@@ -2244,7 +2244,7 @@ impl Cint {
 
     #[doc="Clear Interrupt Request"]
     #[inline] pub fn test_cint(&self) -> bool {
-        self.cint != 0
+        self.cint() != 0
     }
 
     #[doc="Clear Interrupt Request"]
@@ -2263,7 +2263,7 @@ impl Cint {
 
     #[doc="Clear All Interrupt Requests"]
     #[inline] pub fn test_cair(&self) -> bool {
-        self.cair != 0
+        self.cair() != 0
     }
 
     #[doc="Clear All Interrupt Requests"]
@@ -2282,7 +2282,7 @@ impl Cint {
 
     #[doc="No Op enable"]
     #[inline] pub fn test_nop(&self) -> bool {
-        self.nop != 0
+        self.nop() != 0
     }
 
     #[doc="No Op enable"]
@@ -2507,7 +2507,7 @@ impl Dchpri {
 
     #[doc="Channel n Arbitration Priority"]
     #[inline] pub fn test_chpri(&self) -> bool {
-        self.chpri != 0
+        self.chpri() != 0
     }
 
     #[doc="Channel n Arbitration Priority"]
@@ -2526,7 +2526,7 @@ impl Dchpri {
 
     #[doc="Disable Preempt Ability"]
     #[inline] pub fn test_dpa(&self) -> bool {
-        self.dpa != 0
+        self.dpa() != 0
     }
 
     #[doc="Disable Preempt Ability"]
@@ -2545,7 +2545,7 @@ impl Dchpri {
 
     #[doc="Enable Channel Preemption"]
     #[inline] pub fn test_ecp(&self) -> bool {
-        self.ecp != 0
+        self.ecp() != 0
     }
 
     #[doc="Enable Channel Preemption"]
@@ -2587,7 +2587,7 @@ impl TcdSaddr {
 
     #[doc="Source Address"]
     #[inline] pub fn test_saddr(&self) -> bool {
-        self.saddr != 0
+        self.saddr() != 0
     }
 
     #[doc="Source Address"]
@@ -2626,7 +2626,7 @@ impl TcdSoff {
 
     #[doc="Source address signed offset"]
     #[inline] pub fn test_soff(&self) -> bool {
-        self.soff != 0
+        self.soff() != 0
     }
 
     #[doc="Source address signed offset"]
@@ -2666,7 +2666,7 @@ impl TcdAttr {
 
     #[doc="Destination Data Transfer Size"]
     #[inline] pub fn test_dsize(&self) -> bool {
-        self.dsize != 0
+        self.dsize() != 0
     }
 
     #[doc="Destination Data Transfer Size"]
@@ -2685,7 +2685,7 @@ impl TcdAttr {
 
     #[doc="Destination Address Modulo"]
     #[inline] pub fn test_dmod(&self) -> bool {
-        self.dmod != 0
+        self.dmod() != 0
     }
 
     #[doc="Destination Address Modulo"]
@@ -2704,7 +2704,7 @@ impl TcdAttr {
 
     #[doc="Source data transfer size"]
     #[inline] pub fn test_ssize(&self) -> bool {
-        self.ssize != 0
+        self.ssize() != 0
     }
 
     #[doc="Source data transfer size"]
@@ -2723,7 +2723,7 @@ impl TcdAttr {
 
     #[doc="Source Address Modulo."]
     #[inline] pub fn test_smod(&self) -> bool {
-        self.smod != 0
+        self.smod() != 0
     }
 
     #[doc="Source Address Modulo."]
@@ -2766,7 +2766,7 @@ impl TcdNbytesMlno {
 
     #[doc="Minor Byte Transfer Count"]
     #[inline] pub fn test_nbytes(&self) -> bool {
-        self.nbytes != 0
+        self.nbytes() != 0
     }
 
     #[doc="Minor Byte Transfer Count"]
@@ -2805,7 +2805,7 @@ impl TcdNbytesMloffno {
 
     #[doc="Minor Byte Transfer Count"]
     #[inline] pub fn test_nbytes(&self) -> bool {
-        self.nbytes != 0
+        self.nbytes() != 0
     }
 
     #[doc="Minor Byte Transfer Count"]
@@ -2824,7 +2824,7 @@ impl TcdNbytesMloffno {
 
     #[doc="Destination Minor Loop Offset enable"]
     #[inline] pub fn test_dmloe(&self) -> bool {
-        self.dmloe != 0
+        self.dmloe() != 0
     }
 
     #[doc="Destination Minor Loop Offset enable"]
@@ -2843,7 +2843,7 @@ impl TcdNbytesMloffno {
 
     #[doc="Source Minor Loop Offset Enable"]
     #[inline] pub fn test_smloe(&self) -> bool {
-        self.smloe != 0
+        self.smloe() != 0
     }
 
     #[doc="Source Minor Loop Offset Enable"]
@@ -2885,7 +2885,7 @@ impl TcdNbytesMloffyes {
 
     #[doc="Minor Byte Transfer Count"]
     #[inline] pub fn test_nbytes(&self) -> bool {
-        self.nbytes != 0
+        self.nbytes() != 0
     }
 
     #[doc="Minor Byte Transfer Count"]
@@ -2904,7 +2904,7 @@ impl TcdNbytesMloffyes {
 
     #[doc="If SMLOE or DMLOE is set, this field represents a sign-extended offset applied to the source or destination address to form the next-state value after the minor loop completes."]
     #[inline] pub fn test_mloff(&self) -> bool {
-        self.mloff != 0
+        self.mloff() != 0
     }
 
     #[doc="If SMLOE or DMLOE is set, this field represents a sign-extended offset applied to the source or destination address to form the next-state value after the minor loop completes."]
@@ -2923,7 +2923,7 @@ impl TcdNbytesMloffyes {
 
     #[doc="Destination Minor Loop Offset enable"]
     #[inline] pub fn test_dmloe(&self) -> bool {
-        self.dmloe != 0
+        self.dmloe() != 0
     }
 
     #[doc="Destination Minor Loop Offset enable"]
@@ -2942,7 +2942,7 @@ impl TcdNbytesMloffyes {
 
     #[doc="Source Minor Loop Offset Enable"]
     #[inline] pub fn test_smloe(&self) -> bool {
-        self.smloe != 0
+        self.smloe() != 0
     }
 
     #[doc="Source Minor Loop Offset Enable"]
@@ -2985,7 +2985,7 @@ impl TcdSlast {
 
     #[doc="Last source Address Adjustment"]
     #[inline] pub fn test_slast(&self) -> bool {
-        self.slast != 0
+        self.slast() != 0
     }
 
     #[doc="Last source Address Adjustment"]
@@ -3024,7 +3024,7 @@ impl TcdDaddr {
 
     #[doc="Destination Address"]
     #[inline] pub fn test_daddr(&self) -> bool {
-        self.daddr != 0
+        self.daddr() != 0
     }
 
     #[doc="Destination Address"]
@@ -3063,7 +3063,7 @@ impl TcdDoff {
 
     #[doc="Destination Address Signed offset"]
     #[inline] pub fn test_doff(&self) -> bool {
-        self.doff != 0
+        self.doff() != 0
     }
 
     #[doc="Destination Address Signed offset"]
@@ -3103,7 +3103,7 @@ impl TcdCiterElinkno {
 
     #[doc="Current Major Iteration Count"]
     #[inline] pub fn test_citer(&self) -> bool {
-        self.citer != 0
+        self.citer() != 0
     }
 
     #[doc="Current Major Iteration Count"]
@@ -3122,7 +3122,7 @@ impl TcdCiterElinkno {
 
     #[doc="Enable channel-to-channel linking on minor-loop complete"]
     #[inline] pub fn test_elink(&self) -> bool {
-        self.elink != 0
+        self.elink() != 0
     }
 
     #[doc="Enable channel-to-channel linking on minor-loop complete"]
@@ -3163,7 +3163,7 @@ impl TcdCiterElinkyes {
 
     #[doc="Current Major Iteration Count"]
     #[inline] pub fn test_citer(&self) -> bool {
-        self.citer != 0
+        self.citer() != 0
     }
 
     #[doc="Current Major Iteration Count"]
@@ -3182,7 +3182,7 @@ impl TcdCiterElinkyes {
 
     #[doc="Link Channel Number"]
     #[inline] pub fn test_linkch(&self) -> bool {
-        self.linkch != 0
+        self.linkch() != 0
     }
 
     #[doc="Link Channel Number"]
@@ -3201,7 +3201,7 @@ impl TcdCiterElinkyes {
 
     #[doc="Enable channel-to-channel linking on minor-loop complete"]
     #[inline] pub fn test_elink(&self) -> bool {
-        self.elink != 0
+        self.elink() != 0
     }
 
     #[doc="Enable channel-to-channel linking on minor-loop complete"]
@@ -3243,7 +3243,7 @@ impl TcdDlastsga {
 
     #[doc="Destination last address adjustment or the memory address for the next transfer control descriptor to be loaded into this channel (scatter/gather)"]
     #[inline] pub fn test_dlastsga(&self) -> bool {
-        self.dlastsga != 0
+        self.dlastsga() != 0
     }
 
     #[doc="Destination last address adjustment or the memory address for the next transfer control descriptor to be loaded into this channel (scatter/gather)"]
@@ -3282,7 +3282,7 @@ impl TcdCsr {
 
     #[doc="Channel Start"]
     #[inline] pub fn test_start(&self) -> bool {
-        self.start != 0
+        self.start() != 0
     }
 
     #[doc="Channel Start"]
@@ -3301,7 +3301,7 @@ impl TcdCsr {
 
     #[doc="Enable an interrupt when major iteration count completes"]
     #[inline] pub fn test_intmajor(&self) -> bool {
-        self.intmajor != 0
+        self.intmajor() != 0
     }
 
     #[doc="Enable an interrupt when major iteration count completes"]
@@ -3320,7 +3320,7 @@ impl TcdCsr {
 
     #[doc="Enable an interrupt when major counter is half complete."]
     #[inline] pub fn test_inthalf(&self) -> bool {
-        self.inthalf != 0
+        self.inthalf() != 0
     }
 
     #[doc="Enable an interrupt when major counter is half complete."]
@@ -3339,7 +3339,7 @@ impl TcdCsr {
 
     #[doc="Disable Request"]
     #[inline] pub fn test_dreq(&self) -> bool {
-        self.dreq != 0
+        self.dreq() != 0
     }
 
     #[doc="Disable Request"]
@@ -3358,7 +3358,7 @@ impl TcdCsr {
 
     #[doc="Enable Scatter/Gather Processing"]
     #[inline] pub fn test_esg(&self) -> bool {
-        self.esg != 0
+        self.esg() != 0
     }
 
     #[doc="Enable Scatter/Gather Processing"]
@@ -3377,7 +3377,7 @@ impl TcdCsr {
 
     #[doc="Enable channel-to-channel linking on major loop complete"]
     #[inline] pub fn test_majorelink(&self) -> bool {
-        self.majorelink != 0
+        self.majorelink() != 0
     }
 
     #[doc="Enable channel-to-channel linking on major loop complete"]
@@ -3396,7 +3396,7 @@ impl TcdCsr {
 
     #[doc="Channel Active"]
     #[inline] pub fn test_active(&self) -> bool {
-        self.active != 0
+        self.active() != 0
     }
 
     #[doc="Channel Active"]
@@ -3415,7 +3415,7 @@ impl TcdCsr {
 
     #[doc="Channel Done"]
     #[inline] pub fn test_done(&self) -> bool {
-        self.done != 0
+        self.done() != 0
     }
 
     #[doc="Channel Done"]
@@ -3434,7 +3434,7 @@ impl TcdCsr {
 
     #[doc="Link Channel Number"]
     #[inline] pub fn test_majorlinkch(&self) -> bool {
-        self.majorlinkch != 0
+        self.majorlinkch() != 0
     }
 
     #[doc="Link Channel Number"]
@@ -3453,7 +3453,7 @@ impl TcdCsr {
 
     #[doc="Bandwidth Control"]
     #[inline] pub fn test_bwc(&self) -> bool {
-        self.bwc != 0
+        self.bwc() != 0
     }
 
     #[doc="Bandwidth Control"]
@@ -3502,7 +3502,7 @@ impl TcdBiterElinkno {
 
     #[doc="Starting Major Iteration Count"]
     #[inline] pub fn test_biter(&self) -> bool {
-        self.biter != 0
+        self.biter() != 0
     }
 
     #[doc="Starting Major Iteration Count"]
@@ -3521,7 +3521,7 @@ impl TcdBiterElinkno {
 
     #[doc="Enables channel-to-channel linking on minor loop complete"]
     #[inline] pub fn test_elink(&self) -> bool {
-        self.elink != 0
+        self.elink() != 0
     }
 
     #[doc="Enables channel-to-channel linking on minor loop complete"]
@@ -3562,7 +3562,7 @@ impl TcdBiterElinkyes {
 
     #[doc="Starting Major Iteration Count"]
     #[inline] pub fn test_biter(&self) -> bool {
-        self.biter != 0
+        self.biter() != 0
     }
 
     #[doc="Starting Major Iteration Count"]
@@ -3581,7 +3581,7 @@ impl TcdBiterElinkyes {
 
     #[doc="Link Channel Number"]
     #[inline] pub fn test_linkch(&self) -> bool {
-        self.linkch != 0
+        self.linkch() != 0
     }
 
     #[doc="Link Channel Number"]
@@ -3600,7 +3600,7 @@ impl TcdBiterElinkyes {
 
     #[doc="Enables channel-to-channel linking on minor loop complete"]
     #[inline] pub fn test_elink(&self) -> bool {
-        self.elink != 0
+        self.elink() != 0
     }
 
     #[doc="Enables channel-to-channel linking on minor loop complete"]

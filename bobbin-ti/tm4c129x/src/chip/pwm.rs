@@ -1966,7 +1966,7 @@ impl ChCtl {
 
     #[doc="PWM Block Enable"]
     #[inline] pub fn test_enable(&self) -> bool {
-        self.enable != 0
+        self.enable() != 0
     }
 
     #[doc="PWM Block Enable"]
@@ -1985,7 +1985,7 @@ impl ChCtl {
 
     #[doc="Counter Mode"]
     #[inline] pub fn test_mode(&self) -> bool {
-        self.mode != 0
+        self.mode() != 0
     }
 
     #[doc="Counter Mode"]
@@ -2004,7 +2004,7 @@ impl ChCtl {
 
     #[doc="Debug Mode"]
     #[inline] pub fn test_debug(&self) -> bool {
-        self.debug != 0
+        self.debug() != 0
     }
 
     #[doc="Debug Mode"]
@@ -2023,7 +2023,7 @@ impl ChCtl {
 
     #[doc="Load Register Update Mode"]
     #[inline] pub fn test_loadupd(&self) -> bool {
-        self.loadupd != 0
+        self.loadupd() != 0
     }
 
     #[doc="Load Register Update Mode"]
@@ -2042,7 +2042,7 @@ impl ChCtl {
 
     #[doc="Comparator A Update Mode"]
     #[inline] pub fn test_cmpaupd(&self) -> bool {
-        self.cmpaupd != 0
+        self.cmpaupd() != 0
     }
 
     #[doc="Comparator A Update Mode"]
@@ -2061,7 +2061,7 @@ impl ChCtl {
 
     #[doc="Comparator B Update Mode"]
     #[inline] pub fn test_cmpbupd(&self) -> bool {
-        self.cmpbupd != 0
+        self.cmpbupd() != 0
     }
 
     #[doc="Comparator B Update Mode"]
@@ -2080,7 +2080,7 @@ impl ChCtl {
 
     #[doc="PWMnGENA Update Mode"]
     #[inline] pub fn test_genaupd(&self) -> bool {
-        self.genaupd != 0
+        self.genaupd() != 0
     }
 
     #[doc="PWMnGENA Update Mode"]
@@ -2099,7 +2099,7 @@ impl ChCtl {
 
     #[doc="PWMnGENB Update Mode"]
     #[inline] pub fn test_genbupd(&self) -> bool {
-        self.genbupd != 0
+        self.genbupd() != 0
     }
 
     #[doc="PWMnGENB Update Mode"]
@@ -2118,7 +2118,7 @@ impl ChCtl {
 
     #[doc="PWMnDBCTL Update Mode"]
     #[inline] pub fn test_dbctlupd(&self) -> bool {
-        self.dbctlupd != 0
+        self.dbctlupd() != 0
     }
 
     #[doc="PWMnDBCTL Update Mode"]
@@ -2137,7 +2137,7 @@ impl ChCtl {
 
     #[doc="PWMnDBRISE Update Mode"]
     #[inline] pub fn test_dbriseupd(&self) -> bool {
-        self.dbriseupd != 0
+        self.dbriseupd() != 0
     }
 
     #[doc="PWMnDBRISE Update Mode"]
@@ -2156,7 +2156,7 @@ impl ChCtl {
 
     #[doc="PWMnDBFALL Update Mode"]
     #[inline] pub fn test_dbfallupd(&self) -> bool {
-        self.dbfallupd != 0
+        self.dbfallupd() != 0
     }
 
     #[doc="PWMnDBFALL Update Mode"]
@@ -2175,7 +2175,7 @@ impl ChCtl {
 
     #[doc="Fault Condition Source"]
     #[inline] pub fn test_fltsrc(&self) -> bool {
-        self.fltsrc != 0
+        self.fltsrc() != 0
     }
 
     #[doc="Fault Condition Source"]
@@ -2194,7 +2194,7 @@ impl ChCtl {
 
     #[doc="Minimum Fault Period"]
     #[inline] pub fn test_minfltper(&self) -> bool {
-        self.minfltper != 0
+        self.minfltper() != 0
     }
 
     #[doc="Minimum Fault Period"]
@@ -2213,7 +2213,7 @@ impl ChCtl {
 
     #[doc="Latch Fault Input"]
     #[inline] pub fn test_latch(&self) -> bool {
-        self.latch != 0
+        self.latch() != 0
     }
 
     #[doc="Latch Fault Input"]
@@ -2266,7 +2266,7 @@ impl ChInten {
 
     #[doc="Interrupt for Counter=0"]
     #[inline] pub fn test_intcntzero(&self) -> bool {
-        self.intcntzero != 0
+        self.intcntzero() != 0
     }
 
     #[doc="Interrupt for Counter=0"]
@@ -2285,7 +2285,7 @@ impl ChInten {
 
     #[doc="Interrupt for Counter=PWMnLOAD"]
     #[inline] pub fn test_intcntload(&self) -> bool {
-        self.intcntload != 0
+        self.intcntload() != 0
     }
 
     #[doc="Interrupt for Counter=PWMnLOAD"]
@@ -2304,7 +2304,7 @@ impl ChInten {
 
     #[doc="Interrupt for Counter=PWMnCMPA Up"]
     #[inline] pub fn test_intcmpau(&self) -> bool {
-        self.intcmpau != 0
+        self.intcmpau() != 0
     }
 
     #[doc="Interrupt for Counter=PWMnCMPA Up"]
@@ -2323,7 +2323,7 @@ impl ChInten {
 
     #[doc="Interrupt for Counter=PWMnCMPA Down"]
     #[inline] pub fn test_intcmpad(&self) -> bool {
-        self.intcmpad != 0
+        self.intcmpad() != 0
     }
 
     #[doc="Interrupt for Counter=PWMnCMPA Down"]
@@ -2342,7 +2342,7 @@ impl ChInten {
 
     #[doc="Interrupt for Counter=PWMnCMPB Up"]
     #[inline] pub fn test_intcmpbu(&self) -> bool {
-        self.intcmpbu != 0
+        self.intcmpbu() != 0
     }
 
     #[doc="Interrupt for Counter=PWMnCMPB Up"]
@@ -2361,7 +2361,7 @@ impl ChInten {
 
     #[doc="Interrupt for Counter=PWMnCMPB Down"]
     #[inline] pub fn test_intcmpbd(&self) -> bool {
-        self.intcmpbd != 0
+        self.intcmpbd() != 0
     }
 
     #[doc="Interrupt for Counter=PWMnCMPB Down"]
@@ -2380,7 +2380,7 @@ impl ChInten {
 
     #[doc="Trigger for Counter=0"]
     #[inline] pub fn test_trcntzero(&self) -> bool {
-        self.trcntzero != 0
+        self.trcntzero() != 0
     }
 
     #[doc="Trigger for Counter=0"]
@@ -2399,7 +2399,7 @@ impl ChInten {
 
     #[doc="Trigger for Counter=PWMnLOAD"]
     #[inline] pub fn test_trcntload(&self) -> bool {
-        self.trcntload != 0
+        self.trcntload() != 0
     }
 
     #[doc="Trigger for Counter=PWMnLOAD"]
@@ -2418,7 +2418,7 @@ impl ChInten {
 
     #[doc="Trigger for Counter=PWMnCMPA Up"]
     #[inline] pub fn test_trcmpau(&self) -> bool {
-        self.trcmpau != 0
+        self.trcmpau() != 0
     }
 
     #[doc="Trigger for Counter=PWMnCMPA Up"]
@@ -2437,7 +2437,7 @@ impl ChInten {
 
     #[doc="Trigger for Counter=PWMnCMPA Down"]
     #[inline] pub fn test_trcmpad(&self) -> bool {
-        self.trcmpad != 0
+        self.trcmpad() != 0
     }
 
     #[doc="Trigger for Counter=PWMnCMPA Down"]
@@ -2456,7 +2456,7 @@ impl ChInten {
 
     #[doc="Trigger for Counter=PWMnCMPB Up"]
     #[inline] pub fn test_trcmpbu(&self) -> bool {
-        self.trcmpbu != 0
+        self.trcmpbu() != 0
     }
 
     #[doc="Trigger for Counter=PWMnCMPB Up"]
@@ -2475,7 +2475,7 @@ impl ChInten {
 
     #[doc="Trigger for Counter=PWMnCMPB Down"]
     #[inline] pub fn test_trcmpbd(&self) -> bool {
-        self.trcmpbd != 0
+        self.trcmpbd() != 0
     }
 
     #[doc="Trigger for Counter=PWMnCMPB Down"]
@@ -2526,7 +2526,7 @@ impl ChRis {
 
     #[doc="Counter=0 Interrupt Status"]
     #[inline] pub fn test_intcntzero(&self) -> bool {
-        self.intcntzero != 0
+        self.intcntzero() != 0
     }
 
     #[doc="Counter=0 Interrupt Status"]
@@ -2545,7 +2545,7 @@ impl ChRis {
 
     #[doc="Counter=Load Interrupt Status"]
     #[inline] pub fn test_intcntload(&self) -> bool {
-        self.intcntload != 0
+        self.intcntload() != 0
     }
 
     #[doc="Counter=Load Interrupt Status"]
@@ -2564,7 +2564,7 @@ impl ChRis {
 
     #[doc="Comparator A Up Interrupt Status"]
     #[inline] pub fn test_intcmpau(&self) -> bool {
-        self.intcmpau != 0
+        self.intcmpau() != 0
     }
 
     #[doc="Comparator A Up Interrupt Status"]
@@ -2583,7 +2583,7 @@ impl ChRis {
 
     #[doc="Comparator A Down Interrupt Status"]
     #[inline] pub fn test_intcmpad(&self) -> bool {
-        self.intcmpad != 0
+        self.intcmpad() != 0
     }
 
     #[doc="Comparator A Down Interrupt Status"]
@@ -2602,7 +2602,7 @@ impl ChRis {
 
     #[doc="Comparator B Up Interrupt Status"]
     #[inline] pub fn test_intcmpbu(&self) -> bool {
-        self.intcmpbu != 0
+        self.intcmpbu() != 0
     }
 
     #[doc="Comparator B Up Interrupt Status"]
@@ -2621,7 +2621,7 @@ impl ChRis {
 
     #[doc="Comparator B Down Interrupt Status"]
     #[inline] pub fn test_intcmpbd(&self) -> bool {
-        self.intcmpbd != 0
+        self.intcmpbd() != 0
     }
 
     #[doc="Comparator B Down Interrupt Status"]
@@ -2666,7 +2666,7 @@ impl ChIsc {
 
     #[doc="Counter=0 Interrupt"]
     #[inline] pub fn test_intcntzero(&self) -> bool {
-        self.intcntzero != 0
+        self.intcntzero() != 0
     }
 
     #[doc="Counter=0 Interrupt"]
@@ -2685,7 +2685,7 @@ impl ChIsc {
 
     #[doc="Counter=Load Interrupt"]
     #[inline] pub fn test_intcntload(&self) -> bool {
-        self.intcntload != 0
+        self.intcntload() != 0
     }
 
     #[doc="Counter=Load Interrupt"]
@@ -2704,7 +2704,7 @@ impl ChIsc {
 
     #[doc="Comparator A Up Interrupt"]
     #[inline] pub fn test_intcmpau(&self) -> bool {
-        self.intcmpau != 0
+        self.intcmpau() != 0
     }
 
     #[doc="Comparator A Up Interrupt"]
@@ -2723,7 +2723,7 @@ impl ChIsc {
 
     #[doc="Comparator A Down Interrupt"]
     #[inline] pub fn test_intcmpad(&self) -> bool {
-        self.intcmpad != 0
+        self.intcmpad() != 0
     }
 
     #[doc="Comparator A Down Interrupt"]
@@ -2742,7 +2742,7 @@ impl ChIsc {
 
     #[doc="Comparator B Up Interrupt"]
     #[inline] pub fn test_intcmpbu(&self) -> bool {
-        self.intcmpbu != 0
+        self.intcmpbu() != 0
     }
 
     #[doc="Comparator B Up Interrupt"]
@@ -2761,7 +2761,7 @@ impl ChIsc {
 
     #[doc="Comparator B Down Interrupt"]
     #[inline] pub fn test_intcmpbd(&self) -> bool {
-        self.intcmpbd != 0
+        self.intcmpbd() != 0
     }
 
     #[doc="Comparator B Down Interrupt"]
@@ -2806,7 +2806,7 @@ impl ChLoad {
 
     #[doc="Counter Load Value"]
     #[inline] pub fn test_load(&self) -> bool {
-        self.load != 0
+        self.load() != 0
     }
 
     #[doc="Counter Load Value"]
@@ -2846,7 +2846,7 @@ impl ChCount {
 
     #[doc="Counter Value"]
     #[inline] pub fn test_count(&self) -> bool {
-        self.count != 0
+        self.count() != 0
     }
 
     #[doc="Counter Value"]
@@ -2886,7 +2886,7 @@ impl ChCmpa {
 
     #[doc="Comparator A Value"]
     #[inline] pub fn test_cmpa(&self) -> bool {
-        self.cmpa != 0
+        self.cmpa() != 0
     }
 
     #[doc="Comparator A Value"]
@@ -2926,7 +2926,7 @@ impl ChCmpb {
 
     #[doc="Comparator B Value"]
     #[inline] pub fn test_cmpb(&self) -> bool {
-        self.cmpb != 0
+        self.cmpb() != 0
     }
 
     #[doc="Comparator B Value"]
@@ -2966,7 +2966,7 @@ impl ChGena {
 
     #[doc="Action for Counter=0"]
     #[inline] pub fn test_actzero(&self) -> bool {
-        self.actzero != 0
+        self.actzero() != 0
     }
 
     #[doc="Action for Counter=0"]
@@ -2985,7 +2985,7 @@ impl ChGena {
 
     #[doc="Action for Counter=LOAD"]
     #[inline] pub fn test_actload(&self) -> bool {
-        self.actload != 0
+        self.actload() != 0
     }
 
     #[doc="Action for Counter=LOAD"]
@@ -3004,7 +3004,7 @@ impl ChGena {
 
     #[doc="Action for Comparator A Up"]
     #[inline] pub fn test_actcmpau(&self) -> bool {
-        self.actcmpau != 0
+        self.actcmpau() != 0
     }
 
     #[doc="Action for Comparator A Up"]
@@ -3023,7 +3023,7 @@ impl ChGena {
 
     #[doc="Action for Comparator A Down"]
     #[inline] pub fn test_actcmpad(&self) -> bool {
-        self.actcmpad != 0
+        self.actcmpad() != 0
     }
 
     #[doc="Action for Comparator A Down"]
@@ -3042,7 +3042,7 @@ impl ChGena {
 
     #[doc="Action for Comparator B Up"]
     #[inline] pub fn test_actcmpbu(&self) -> bool {
-        self.actcmpbu != 0
+        self.actcmpbu() != 0
     }
 
     #[doc="Action for Comparator B Up"]
@@ -3061,7 +3061,7 @@ impl ChGena {
 
     #[doc="Action for Comparator B Down"]
     #[inline] pub fn test_actcmpbd(&self) -> bool {
-        self.actcmpbd != 0
+        self.actcmpbd() != 0
     }
 
     #[doc="Action for Comparator B Down"]
@@ -3106,7 +3106,7 @@ impl ChGenb {
 
     #[doc="Action for Counter=0"]
     #[inline] pub fn test_actzero(&self) -> bool {
-        self.actzero != 0
+        self.actzero() != 0
     }
 
     #[doc="Action for Counter=0"]
@@ -3125,7 +3125,7 @@ impl ChGenb {
 
     #[doc="Action for Counter=LOAD"]
     #[inline] pub fn test_actload(&self) -> bool {
-        self.actload != 0
+        self.actload() != 0
     }
 
     #[doc="Action for Counter=LOAD"]
@@ -3144,7 +3144,7 @@ impl ChGenb {
 
     #[doc="Action for Comparator A Up"]
     #[inline] pub fn test_actcmpau(&self) -> bool {
-        self.actcmpau != 0
+        self.actcmpau() != 0
     }
 
     #[doc="Action for Comparator A Up"]
@@ -3163,7 +3163,7 @@ impl ChGenb {
 
     #[doc="Action for Comparator A Down"]
     #[inline] pub fn test_actcmpad(&self) -> bool {
-        self.actcmpad != 0
+        self.actcmpad() != 0
     }
 
     #[doc="Action for Comparator A Down"]
@@ -3182,7 +3182,7 @@ impl ChGenb {
 
     #[doc="Action for Comparator B Up"]
     #[inline] pub fn test_actcmpbu(&self) -> bool {
-        self.actcmpbu != 0
+        self.actcmpbu() != 0
     }
 
     #[doc="Action for Comparator B Up"]
@@ -3201,7 +3201,7 @@ impl ChGenb {
 
     #[doc="Action for Comparator B Down"]
     #[inline] pub fn test_actcmpbd(&self) -> bool {
-        self.actcmpbd != 0
+        self.actcmpbd() != 0
     }
 
     #[doc="Action for Comparator B Down"]
@@ -3246,7 +3246,7 @@ impl ChDbctl {
 
     #[doc="Dead-Band Generator Enable"]
     #[inline] pub fn test_enable(&self) -> bool {
-        self.enable != 0
+        self.enable() != 0
     }
 
     #[doc="Dead-Band Generator Enable"]
@@ -3286,7 +3286,7 @@ impl ChDbrise {
 
     #[doc="Dead-Band Rise Delay"]
     #[inline] pub fn test_delay(&self) -> bool {
-        self.delay != 0
+        self.delay() != 0
     }
 
     #[doc="Dead-Band Rise Delay"]
@@ -3326,7 +3326,7 @@ impl ChDbfall {
 
     #[doc="Dead-Band Fall Delay"]
     #[inline] pub fn test_delay(&self) -> bool {
-        self.delay != 0
+        self.delay() != 0
     }
 
     #[doc="Dead-Band Fall Delay"]
@@ -3366,7 +3366,7 @@ impl ChFltsrc0 {
 
     #[doc="Fault0 Input"]
     #[inline] pub fn test_fault0(&self) -> bool {
-        self.fault0 != 0
+        self.fault0() != 0
     }
 
     #[doc="Fault0 Input"]
@@ -3385,7 +3385,7 @@ impl ChFltsrc0 {
 
     #[doc="Fault1 Input"]
     #[inline] pub fn test_fault1(&self) -> bool {
-        self.fault1 != 0
+        self.fault1() != 0
     }
 
     #[doc="Fault1 Input"]
@@ -3404,7 +3404,7 @@ impl ChFltsrc0 {
 
     #[doc="Fault2 Input"]
     #[inline] pub fn test_fault2(&self) -> bool {
-        self.fault2 != 0
+        self.fault2() != 0
     }
 
     #[doc="Fault2 Input"]
@@ -3423,7 +3423,7 @@ impl ChFltsrc0 {
 
     #[doc="Fault3 Input"]
     #[inline] pub fn test_fault3(&self) -> bool {
-        self.fault3 != 0
+        self.fault3() != 0
     }
 
     #[doc="Fault3 Input"]
@@ -3466,7 +3466,7 @@ impl ChFltsrc1 {
 
     #[doc="Digital Comparator 0"]
     #[inline] pub fn test_dcmp0(&self) -> bool {
-        self.dcmp0 != 0
+        self.dcmp0() != 0
     }
 
     #[doc="Digital Comparator 0"]
@@ -3485,7 +3485,7 @@ impl ChFltsrc1 {
 
     #[doc="Digital Comparator 1"]
     #[inline] pub fn test_dcmp1(&self) -> bool {
-        self.dcmp1 != 0
+        self.dcmp1() != 0
     }
 
     #[doc="Digital Comparator 1"]
@@ -3504,7 +3504,7 @@ impl ChFltsrc1 {
 
     #[doc="Digital Comparator 2"]
     #[inline] pub fn test_dcmp2(&self) -> bool {
-        self.dcmp2 != 0
+        self.dcmp2() != 0
     }
 
     #[doc="Digital Comparator 2"]
@@ -3523,7 +3523,7 @@ impl ChFltsrc1 {
 
     #[doc="Digital Comparator 3"]
     #[inline] pub fn test_dcmp3(&self) -> bool {
-        self.dcmp3 != 0
+        self.dcmp3() != 0
     }
 
     #[doc="Digital Comparator 3"]
@@ -3542,7 +3542,7 @@ impl ChFltsrc1 {
 
     #[doc="Digital Comparator 4"]
     #[inline] pub fn test_dcmp4(&self) -> bool {
-        self.dcmp4 != 0
+        self.dcmp4() != 0
     }
 
     #[doc="Digital Comparator 4"]
@@ -3561,7 +3561,7 @@ impl ChFltsrc1 {
 
     #[doc="Digital Comparator 5"]
     #[inline] pub fn test_dcmp5(&self) -> bool {
-        self.dcmp5 != 0
+        self.dcmp5() != 0
     }
 
     #[doc="Digital Comparator 5"]
@@ -3580,7 +3580,7 @@ impl ChFltsrc1 {
 
     #[doc="Digital Comparator 6"]
     #[inline] pub fn test_dcmp6(&self) -> bool {
-        self.dcmp6 != 0
+        self.dcmp6() != 0
     }
 
     #[doc="Digital Comparator 6"]
@@ -3599,7 +3599,7 @@ impl ChFltsrc1 {
 
     #[doc="Digital Comparator 7"]
     #[inline] pub fn test_dcmp7(&self) -> bool {
-        self.dcmp7 != 0
+        self.dcmp7() != 0
     }
 
     #[doc="Digital Comparator 7"]
@@ -3646,7 +3646,7 @@ impl ChMinfltper {
 
     #[doc="Minimum Fault Period"]
     #[inline] pub fn test_minfltper(&self) -> bool {
-        self.minfltper != 0
+        self.minfltper() != 0
     }
 
     #[doc="Minimum Fault Period"]
@@ -3686,7 +3686,7 @@ impl ChFltsen {
 
     #[doc="Fault0 Sense"]
     #[inline] pub fn test_fault0(&self) -> bool {
-        self.fault0 != 0
+        self.fault0() != 0
     }
 
     #[doc="Fault0 Sense"]
@@ -3705,7 +3705,7 @@ impl ChFltsen {
 
     #[doc="Fault1 Sense"]
     #[inline] pub fn test_fault1(&self) -> bool {
-        self.fault1 != 0
+        self.fault1() != 0
     }
 
     #[doc="Fault1 Sense"]
@@ -3724,7 +3724,7 @@ impl ChFltsen {
 
     #[doc="Fault2 Sense"]
     #[inline] pub fn test_fault2(&self) -> bool {
-        self.fault2 != 0
+        self.fault2() != 0
     }
 
     #[doc="Fault2 Sense"]
@@ -3743,7 +3743,7 @@ impl ChFltsen {
 
     #[doc="Fault3 Sense"]
     #[inline] pub fn test_fault3(&self) -> bool {
-        self.fault3 != 0
+        self.fault3() != 0
     }
 
     #[doc="Fault3 Sense"]
@@ -3786,7 +3786,7 @@ impl ChFltstat0 {
 
     #[doc="Fault Input 0"]
     #[inline] pub fn test_fault0(&self) -> bool {
-        self.fault0 != 0
+        self.fault0() != 0
     }
 
     #[doc="Fault Input 0"]
@@ -3805,7 +3805,7 @@ impl ChFltstat0 {
 
     #[doc="Fault Input 1"]
     #[inline] pub fn test_fault1(&self) -> bool {
-        self.fault1 != 0
+        self.fault1() != 0
     }
 
     #[doc="Fault Input 1"]
@@ -3824,7 +3824,7 @@ impl ChFltstat0 {
 
     #[doc="Fault Input 2"]
     #[inline] pub fn test_fault2(&self) -> bool {
-        self.fault2 != 0
+        self.fault2() != 0
     }
 
     #[doc="Fault Input 2"]
@@ -3843,7 +3843,7 @@ impl ChFltstat0 {
 
     #[doc="Fault Input 3"]
     #[inline] pub fn test_fault3(&self) -> bool {
-        self.fault3 != 0
+        self.fault3() != 0
     }
 
     #[doc="Fault Input 3"]
@@ -3886,7 +3886,7 @@ impl ChFltstat1 {
 
     #[doc="Digital Comparator 0 Trigger"]
     #[inline] pub fn test_dcmp0(&self) -> bool {
-        self.dcmp0 != 0
+        self.dcmp0() != 0
     }
 
     #[doc="Digital Comparator 0 Trigger"]
@@ -3905,7 +3905,7 @@ impl ChFltstat1 {
 
     #[doc="Digital Comparator 1 Trigger"]
     #[inline] pub fn test_dcmp1(&self) -> bool {
-        self.dcmp1 != 0
+        self.dcmp1() != 0
     }
 
     #[doc="Digital Comparator 1 Trigger"]
@@ -3924,7 +3924,7 @@ impl ChFltstat1 {
 
     #[doc="Digital Comparator 2 Trigger"]
     #[inline] pub fn test_dcmp2(&self) -> bool {
-        self.dcmp2 != 0
+        self.dcmp2() != 0
     }
 
     #[doc="Digital Comparator 2 Trigger"]
@@ -3943,7 +3943,7 @@ impl ChFltstat1 {
 
     #[doc="Digital Comparator 3 Trigger"]
     #[inline] pub fn test_dcmp3(&self) -> bool {
-        self.dcmp3 != 0
+        self.dcmp3() != 0
     }
 
     #[doc="Digital Comparator 3 Trigger"]
@@ -3962,7 +3962,7 @@ impl ChFltstat1 {
 
     #[doc="Digital Comparator 4 Trigger"]
     #[inline] pub fn test_dcmp4(&self) -> bool {
-        self.dcmp4 != 0
+        self.dcmp4() != 0
     }
 
     #[doc="Digital Comparator 4 Trigger"]
@@ -3981,7 +3981,7 @@ impl ChFltstat1 {
 
     #[doc="Digital Comparator 5 Trigger"]
     #[inline] pub fn test_dcmp5(&self) -> bool {
-        self.dcmp5 != 0
+        self.dcmp5() != 0
     }
 
     #[doc="Digital Comparator 5 Trigger"]
@@ -4000,7 +4000,7 @@ impl ChFltstat1 {
 
     #[doc="Digital Comparator 6 Trigger"]
     #[inline] pub fn test_dcmp6(&self) -> bool {
-        self.dcmp6 != 0
+        self.dcmp6() != 0
     }
 
     #[doc="Digital Comparator 6 Trigger"]
@@ -4019,7 +4019,7 @@ impl ChFltstat1 {
 
     #[doc="Digital Comparator 7 Trigger"]
     #[inline] pub fn test_dcmp7(&self) -> bool {
-        self.dcmp7 != 0
+        self.dcmp7() != 0
     }
 
     #[doc="Digital Comparator 7 Trigger"]
@@ -4066,7 +4066,7 @@ impl Pp {
 
     #[doc="Generators"]
     #[inline] pub fn test_gcnt(&self) -> bool {
-        self.gcnt != 0
+        self.gcnt() != 0
     }
 
     #[doc="Generators"]
@@ -4085,7 +4085,7 @@ impl Pp {
 
     #[doc="Fault Inputs (per PWM unit)"]
     #[inline] pub fn test_fcnt(&self) -> bool {
-        self.fcnt != 0
+        self.fcnt() != 0
     }
 
     #[doc="Fault Inputs (per PWM unit)"]
@@ -4104,7 +4104,7 @@ impl Pp {
 
     #[doc="Extended Synchronization"]
     #[inline] pub fn test_esync(&self) -> bool {
-        self.esync != 0
+        self.esync() != 0
     }
 
     #[doc="Extended Synchronization"]
@@ -4123,7 +4123,7 @@ impl Pp {
 
     #[doc="Extended Fault"]
     #[inline] pub fn test_efault(&self) -> bool {
-        self.efault != 0
+        self.efault() != 0
     }
 
     #[doc="Extended Fault"]
@@ -4142,7 +4142,7 @@ impl Pp {
 
     #[doc="One-Shot Mode"]
     #[inline] pub fn test_one(&self) -> bool {
-        self.one != 0
+        self.one() != 0
     }
 
     #[doc="One-Shot Mode"]
@@ -4186,7 +4186,7 @@ impl Cc {
 
     #[doc="PWM Clock Divider"]
     #[inline] pub fn test_pwmdiv(&self) -> bool {
-        self.pwmdiv != 0
+        self.pwmdiv() != 0
     }
 
     #[doc="PWM Clock Divider"]
@@ -4205,7 +4205,7 @@ impl Cc {
 
     #[doc="Use PWM Clock Divisor"]
     #[inline] pub fn test_usepwm(&self) -> bool {
-        self.usepwm != 0
+        self.usepwm() != 0
     }
 
     #[doc="Use PWM Clock Divisor"]

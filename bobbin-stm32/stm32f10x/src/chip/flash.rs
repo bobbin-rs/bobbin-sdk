@@ -219,7 +219,7 @@ impl Acr {
 
     #[doc="Latency"]
     #[inline] pub fn test_latency(&self) -> bool {
-        self.latency != 0
+        self.latency() != 0
     }
 
     #[doc="Latency"]
@@ -238,7 +238,7 @@ impl Acr {
 
     #[doc="Flash half cycle access enable"]
     #[inline] pub fn test_hlfcya(&self) -> bool {
-        self.hlfcya != 0
+        self.hlfcya() != 0
     }
 
     #[doc="Flash half cycle access enable"]
@@ -257,7 +257,7 @@ impl Acr {
 
     #[doc="Prefetch buffer enable"]
     #[inline] pub fn test_prftbe(&self) -> bool {
-        self.prftbe != 0
+        self.prftbe() != 0
     }
 
     #[doc="Prefetch buffer enable"]
@@ -276,7 +276,7 @@ impl Acr {
 
     #[doc="Prefetch buffer status"]
     #[inline] pub fn test_prftbs(&self) -> bool {
-        self.prftbs != 0
+        self.prftbs() != 0
     }
 
     #[doc="Prefetch buffer status"]
@@ -319,7 +319,7 @@ impl Keyr {
 
     #[doc="FPEC key"]
     #[inline] pub fn test_key(&self) -> bool {
-        self.key != 0
+        self.key() != 0
     }
 
     #[doc="FPEC key"]
@@ -358,7 +358,7 @@ impl Optkeyr {
 
     #[doc="Option byte key"]
     #[inline] pub fn test_optkey(&self) -> bool {
-        self.optkey != 0
+        self.optkey() != 0
     }
 
     #[doc="Option byte key"]
@@ -397,7 +397,7 @@ impl Sr {
 
     #[doc="End of operation"]
     #[inline] pub fn test_eop(&self) -> bool {
-        self.eop != 0
+        self.eop() != 0
     }
 
     #[doc="End of operation"]
@@ -416,7 +416,7 @@ impl Sr {
 
     #[doc="Write protection error"]
     #[inline] pub fn test_wrprterr(&self) -> bool {
-        self.wrprterr != 0
+        self.wrprterr() != 0
     }
 
     #[doc="Write protection error"]
@@ -435,7 +435,7 @@ impl Sr {
 
     #[doc="Programming error"]
     #[inline] pub fn test_pgerr(&self) -> bool {
-        self.pgerr != 0
+        self.pgerr() != 0
     }
 
     #[doc="Programming error"]
@@ -454,7 +454,7 @@ impl Sr {
 
     #[doc="Busy"]
     #[inline] pub fn test_bsy(&self) -> bool {
-        self.bsy != 0
+        self.bsy() != 0
     }
 
     #[doc="Busy"]
@@ -497,7 +497,7 @@ impl Cr {
 
     #[doc="Programming"]
     #[inline] pub fn test_pg(&self) -> bool {
-        self.pg != 0
+        self.pg() != 0
     }
 
     #[doc="Programming"]
@@ -516,7 +516,7 @@ impl Cr {
 
     #[doc="Page Erase"]
     #[inline] pub fn test_per(&self) -> bool {
-        self.per != 0
+        self.per() != 0
     }
 
     #[doc="Page Erase"]
@@ -535,7 +535,7 @@ impl Cr {
 
     #[doc="Mass Erase"]
     #[inline] pub fn test_mer(&self) -> bool {
-        self.mer != 0
+        self.mer() != 0
     }
 
     #[doc="Mass Erase"]
@@ -554,7 +554,7 @@ impl Cr {
 
     #[doc="Option byte programming"]
     #[inline] pub fn test_optpg(&self) -> bool {
-        self.optpg != 0
+        self.optpg() != 0
     }
 
     #[doc="Option byte programming"]
@@ -573,7 +573,7 @@ impl Cr {
 
     #[doc="Option byte erase"]
     #[inline] pub fn test_opter(&self) -> bool {
-        self.opter != 0
+        self.opter() != 0
     }
 
     #[doc="Option byte erase"]
@@ -592,7 +592,7 @@ impl Cr {
 
     #[doc="Start"]
     #[inline] pub fn test_strt(&self) -> bool {
-        self.strt != 0
+        self.strt() != 0
     }
 
     #[doc="Start"]
@@ -611,7 +611,7 @@ impl Cr {
 
     #[doc="Lock"]
     #[inline] pub fn test_lock(&self) -> bool {
-        self.lock != 0
+        self.lock() != 0
     }
 
     #[doc="Lock"]
@@ -630,7 +630,7 @@ impl Cr {
 
     #[doc="Option bytes write enable"]
     #[inline] pub fn test_optwre(&self) -> bool {
-        self.optwre != 0
+        self.optwre() != 0
     }
 
     #[doc="Option bytes write enable"]
@@ -649,7 +649,7 @@ impl Cr {
 
     #[doc="Error interrupt enable"]
     #[inline] pub fn test_errie(&self) -> bool {
-        self.errie != 0
+        self.errie() != 0
     }
 
     #[doc="Error interrupt enable"]
@@ -668,7 +668,7 @@ impl Cr {
 
     #[doc="End of operation interrupt enable"]
     #[inline] pub fn test_eopie(&self) -> bool {
-        self.eopie != 0
+        self.eopie() != 0
     }
 
     #[doc="End of operation interrupt enable"]
@@ -717,7 +717,7 @@ impl Ar {
 
     #[doc="Flash Address"]
     #[inline] pub fn test_far(&self) -> bool {
-        self.far != 0
+        self.far() != 0
     }
 
     #[doc="Flash Address"]
@@ -756,7 +756,7 @@ impl Obr {
 
     #[doc="Option byte error"]
     #[inline] pub fn test_opterr(&self) -> bool {
-        self.opterr != 0
+        self.opterr() != 0
     }
 
     #[doc="Option byte error"]
@@ -775,7 +775,7 @@ impl Obr {
 
     #[doc="Read protection"]
     #[inline] pub fn test_rdprt(&self) -> bool {
-        self.rdprt != 0
+        self.rdprt() != 0
     }
 
     #[doc="Read protection"]
@@ -794,7 +794,7 @@ impl Obr {
 
     #[doc="WDG_SW"]
     #[inline] pub fn test_wdg_sw(&self) -> bool {
-        self.wdg_sw != 0
+        self.wdg_sw() != 0
     }
 
     #[doc="WDG_SW"]
@@ -813,7 +813,7 @@ impl Obr {
 
     #[doc="nRST_STOP"]
     #[inline] pub fn test_nrst_stop(&self) -> bool {
-        self.nrst_stop != 0
+        self.nrst_stop() != 0
     }
 
     #[doc="nRST_STOP"]
@@ -832,7 +832,7 @@ impl Obr {
 
     #[doc="nRST_STDBY"]
     #[inline] pub fn test_nrst_stdby(&self) -> bool {
-        self.nrst_stdby != 0
+        self.nrst_stdby() != 0
     }
 
     #[doc="nRST_STDBY"]
@@ -851,7 +851,7 @@ impl Obr {
 
     #[doc="Data0"]
     #[inline] pub fn test_data0(&self) -> bool {
-        self.data0 != 0
+        self.data0() != 0
     }
 
     #[doc="Data0"]
@@ -870,7 +870,7 @@ impl Obr {
 
     #[doc="Data1"]
     #[inline] pub fn test_data1(&self) -> bool {
-        self.data1 != 0
+        self.data1() != 0
     }
 
     #[doc="Data1"]
@@ -916,7 +916,7 @@ impl Wrpr {
 
     #[doc="Write protect"]
     #[inline] pub fn test_wrp(&self) -> bool {
-        self.wrp != 0
+        self.wrp() != 0
     }
 
     #[doc="Write protect"]

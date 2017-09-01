@@ -940,7 +940,7 @@ impl Sc {
 
     #[doc="Prescale Factor Selection"]
     #[inline] pub fn test_ps(&self) -> bool {
-        self.ps != 0
+        self.ps() != 0
     }
 
     #[doc="Prescale Factor Selection"]
@@ -959,7 +959,7 @@ impl Sc {
 
     #[doc="Clock Source Selection"]
     #[inline] pub fn test_clks(&self) -> bool {
-        self.clks != 0
+        self.clks() != 0
     }
 
     #[doc="Clock Source Selection"]
@@ -978,7 +978,7 @@ impl Sc {
 
     #[doc="Center-Aligned PWM Select"]
     #[inline] pub fn test_cpwms(&self) -> bool {
-        self.cpwms != 0
+        self.cpwms() != 0
     }
 
     #[doc="Center-Aligned PWM Select"]
@@ -997,7 +997,7 @@ impl Sc {
 
     #[doc="Timer Overflow Interrupt Enable"]
     #[inline] pub fn test_toie(&self) -> bool {
-        self.toie != 0
+        self.toie() != 0
     }
 
     #[doc="Timer Overflow Interrupt Enable"]
@@ -1016,7 +1016,7 @@ impl Sc {
 
     #[doc="Timer Overflow Flag"]
     #[inline] pub fn test_tof(&self) -> bool {
-        self.tof != 0
+        self.tof() != 0
     }
 
     #[doc="Timer Overflow Flag"]
@@ -1060,7 +1060,7 @@ impl Sc {
 
     #[doc="Filter Prescaler"]
     #[inline] pub fn test_fltps(&self) -> bool {
-        self.fltps != 0
+        self.fltps() != 0
     }
 
     #[doc="Filter Prescaler"]
@@ -1113,7 +1113,7 @@ impl Cnt {
 
     #[doc="Counter Value"]
     #[inline] pub fn test_count(&self) -> bool {
-        self.count != 0
+        self.count() != 0
     }
 
     #[doc="Counter Value"]
@@ -1153,7 +1153,7 @@ impl Mod {
 
     #[doc="Modulo Value"]
     #[inline] pub fn test_mod(&self) -> bool {
-        self._mod != 0
+        self._mod() != 0
     }
 
     #[doc="Modulo Value"]
@@ -1193,7 +1193,7 @@ impl Csc {
 
     #[doc="DMA Enable"]
     #[inline] pub fn test_dma(&self) -> bool {
-        self.dma != 0
+        self.dma() != 0
     }
 
     #[doc="DMA Enable"]
@@ -1212,7 +1212,7 @@ impl Csc {
 
     #[doc="Edge or Level Select"]
     #[inline] pub fn test_elsa(&self) -> bool {
-        self.elsa != 0
+        self.elsa() != 0
     }
 
     #[doc="Edge or Level Select"]
@@ -1231,7 +1231,7 @@ impl Csc {
 
     #[doc="Edge or Level Select"]
     #[inline] pub fn test_elsb(&self) -> bool {
-        self.elsb != 0
+        self.elsb() != 0
     }
 
     #[doc="Edge or Level Select"]
@@ -1250,7 +1250,7 @@ impl Csc {
 
     #[doc="Channel Mode Select"]
     #[inline] pub fn test_msa(&self) -> bool {
-        self.msa != 0
+        self.msa() != 0
     }
 
     #[doc="Channel Mode Select"]
@@ -1269,7 +1269,7 @@ impl Csc {
 
     #[doc="Channel Mode Select"]
     #[inline] pub fn test_msb(&self) -> bool {
-        self.msb != 0
+        self.msb() != 0
     }
 
     #[doc="Channel Mode Select"]
@@ -1288,7 +1288,7 @@ impl Csc {
 
     #[doc="Channel Interrupt Enable"]
     #[inline] pub fn test_chie(&self) -> bool {
-        self.chie != 0
+        self.chie() != 0
     }
 
     #[doc="Channel Interrupt Enable"]
@@ -1307,7 +1307,7 @@ impl Csc {
 
     #[doc="Channel Flag"]
     #[inline] pub fn test_chf(&self) -> bool {
-        self.chf != 0
+        self.chf() != 0
     }
 
     #[doc="Channel Flag"]
@@ -1353,7 +1353,7 @@ impl Cv {
 
     #[doc="Channel Value"]
     #[inline] pub fn test_val(&self) -> bool {
-        self.val != 0
+        self.val() != 0
     }
 
     #[doc="Channel Value"]
@@ -1393,7 +1393,7 @@ impl Cntin {
 
     #[doc="Initial Value Of The FTM Counter"]
     #[inline] pub fn test_init(&self) -> bool {
-        self.init != 0
+        self.init() != 0
     }
 
     #[doc="Initial Value Of The FTM Counter"]
@@ -1486,7 +1486,7 @@ impl Mode {
 
     #[doc="FTM Enable"]
     #[inline] pub fn test_ftmen(&self) -> bool {
-        self.ftmen != 0
+        self.ftmen() != 0
     }
 
     #[doc="FTM Enable"]
@@ -1505,7 +1505,7 @@ impl Mode {
 
     #[doc="Initialize The Channels Output"]
     #[inline] pub fn test_init(&self) -> bool {
-        self.init != 0
+        self.init() != 0
     }
 
     #[doc="Initialize The Channels Output"]
@@ -1524,7 +1524,7 @@ impl Mode {
 
     #[doc="Write Protection Disable"]
     #[inline] pub fn test_wpdis(&self) -> bool {
-        self.wpdis != 0
+        self.wpdis() != 0
     }
 
     #[doc="Write Protection Disable"]
@@ -1543,7 +1543,7 @@ impl Mode {
 
     #[doc="PWM Synchronization Mode"]
     #[inline] pub fn test_pwmsync(&self) -> bool {
-        self.pwmsync != 0
+        self.pwmsync() != 0
     }
 
     #[doc="PWM Synchronization Mode"]
@@ -1562,7 +1562,7 @@ impl Mode {
 
     #[doc="Capture Test Mode Enable"]
     #[inline] pub fn test_captest(&self) -> bool {
-        self.captest != 0
+        self.captest() != 0
     }
 
     #[doc="Capture Test Mode Enable"]
@@ -1581,7 +1581,7 @@ impl Mode {
 
     #[doc="Fault Control Mode"]
     #[inline] pub fn test_faultm(&self) -> bool {
-        self.faultm != 0
+        self.faultm() != 0
     }
 
     #[doc="Fault Control Mode"]
@@ -1600,7 +1600,7 @@ impl Mode {
 
     #[doc="Fault Interrupt Enable"]
     #[inline] pub fn test_faultie(&self) -> bool {
-        self.faultie != 0
+        self.faultie() != 0
     }
 
     #[doc="Fault Interrupt Enable"]
@@ -1646,7 +1646,7 @@ impl Sync {
 
     #[doc="Minimum Loading Point Enable"]
     #[inline] pub fn test_cntmin(&self) -> bool {
-        self.cntmin != 0
+        self.cntmin() != 0
     }
 
     #[doc="Minimum Loading Point Enable"]
@@ -1665,7 +1665,7 @@ impl Sync {
 
     #[doc="Maximum Loading Point Enable"]
     #[inline] pub fn test_cntmax(&self) -> bool {
-        self.cntmax != 0
+        self.cntmax() != 0
     }
 
     #[doc="Maximum Loading Point Enable"]
@@ -1684,7 +1684,7 @@ impl Sync {
 
     #[doc="FTM Counter Reinitialization By Synchronization (FTM counter synchronization)"]
     #[inline] pub fn test_reinit(&self) -> bool {
-        self.reinit != 0
+        self.reinit() != 0
     }
 
     #[doc="FTM Counter Reinitialization By Synchronization (FTM counter synchronization)"]
@@ -1703,7 +1703,7 @@ impl Sync {
 
     #[doc="Output Mask Synchronization"]
     #[inline] pub fn test_synchom(&self) -> bool {
-        self.synchom != 0
+        self.synchom() != 0
     }
 
     #[doc="Output Mask Synchronization"]
@@ -1722,7 +1722,7 @@ impl Sync {
 
     #[doc="PWM Synchronization Hardware Trigger 0"]
     #[inline] pub fn test_trig0(&self) -> bool {
-        self.trig0 != 0
+        self.trig0() != 0
     }
 
     #[doc="PWM Synchronization Hardware Trigger 0"]
@@ -1741,7 +1741,7 @@ impl Sync {
 
     #[doc="PWM Synchronization Hardware Trigger 1"]
     #[inline] pub fn test_trig1(&self) -> bool {
-        self.trig1 != 0
+        self.trig1() != 0
     }
 
     #[doc="PWM Synchronization Hardware Trigger 1"]
@@ -1760,7 +1760,7 @@ impl Sync {
 
     #[doc="PWM Synchronization Hardware Trigger 2"]
     #[inline] pub fn test_trig2(&self) -> bool {
-        self.trig2 != 0
+        self.trig2() != 0
     }
 
     #[doc="PWM Synchronization Hardware Trigger 2"]
@@ -1779,7 +1779,7 @@ impl Sync {
 
     #[doc="PWM Synchronization Software Trigger"]
     #[inline] pub fn test_swsync(&self) -> bool {
-        self.swsync != 0
+        self.swsync() != 0
     }
 
     #[doc="PWM Synchronization Software Trigger"]
@@ -2155,7 +2155,7 @@ impl Deadtime {
 
     #[doc="Deadtime Value"]
     #[inline] pub fn test_dtval(&self) -> bool {
-        self.dtval != 0
+        self.dtval() != 0
     }
 
     #[doc="Deadtime Value"]
@@ -2174,7 +2174,7 @@ impl Deadtime {
 
     #[doc="Deadtime Prescaler Value"]
     #[inline] pub fn test_dtps(&self) -> bool {
-        self.dtps != 0
+        self.dtps() != 0
     }
 
     #[doc="Deadtime Prescaler Value"]
@@ -2215,7 +2215,7 @@ impl Exttrig {
 
     #[doc="Channel 2 Trigger Enable"]
     #[inline] pub fn test_ch2trig(&self) -> bool {
-        self.ch2trig != 0
+        self.ch2trig() != 0
     }
 
     #[doc="Channel 2 Trigger Enable"]
@@ -2234,7 +2234,7 @@ impl Exttrig {
 
     #[doc="Channel 3 Trigger Enable"]
     #[inline] pub fn test_ch3trig(&self) -> bool {
-        self.ch3trig != 0
+        self.ch3trig() != 0
     }
 
     #[doc="Channel 3 Trigger Enable"]
@@ -2253,7 +2253,7 @@ impl Exttrig {
 
     #[doc="Channel 4 Trigger Enable"]
     #[inline] pub fn test_ch4trig(&self) -> bool {
-        self.ch4trig != 0
+        self.ch4trig() != 0
     }
 
     #[doc="Channel 4 Trigger Enable"]
@@ -2272,7 +2272,7 @@ impl Exttrig {
 
     #[doc="Channel 5 Trigger Enable"]
     #[inline] pub fn test_ch5trig(&self) -> bool {
-        self.ch5trig != 0
+        self.ch5trig() != 0
     }
 
     #[doc="Channel 5 Trigger Enable"]
@@ -2291,7 +2291,7 @@ impl Exttrig {
 
     #[doc="Channel 0 Trigger Enable"]
     #[inline] pub fn test_ch0trig(&self) -> bool {
-        self.ch0trig != 0
+        self.ch0trig() != 0
     }
 
     #[doc="Channel 0 Trigger Enable"]
@@ -2310,7 +2310,7 @@ impl Exttrig {
 
     #[doc="Channel 1 Trigger Enable"]
     #[inline] pub fn test_ch1trig(&self) -> bool {
-        self.ch1trig != 0
+        self.ch1trig() != 0
     }
 
     #[doc="Channel 1 Trigger Enable"]
@@ -2329,7 +2329,7 @@ impl Exttrig {
 
     #[doc="Initialization Trigger Enable"]
     #[inline] pub fn test_inittrigen(&self) -> bool {
-        self.inittrigen != 0
+        self.inittrigen() != 0
     }
 
     #[doc="Initialization Trigger Enable"]
@@ -2348,7 +2348,7 @@ impl Exttrig {
 
     #[doc="Channel Trigger Flag"]
     #[inline] pub fn test_trigf(&self) -> bool {
-        self.trigf != 0
+        self.trigf() != 0
     }
 
     #[doc="Channel Trigger Flag"]
@@ -2448,7 +2448,7 @@ impl Fms {
 
     #[doc="Fault Detection Flag 0"]
     #[inline] pub fn test_faultf0(&self) -> bool {
-        self.faultf0 != 0
+        self.faultf0() != 0
     }
 
     #[doc="Fault Detection Flag 0"]
@@ -2467,7 +2467,7 @@ impl Fms {
 
     #[doc="Fault Detection Flag 1"]
     #[inline] pub fn test_faultf1(&self) -> bool {
-        self.faultf1 != 0
+        self.faultf1() != 0
     }
 
     #[doc="Fault Detection Flag 1"]
@@ -2486,7 +2486,7 @@ impl Fms {
 
     #[doc="Fault Detection Flag 2"]
     #[inline] pub fn test_faultf2(&self) -> bool {
-        self.faultf2 != 0
+        self.faultf2() != 0
     }
 
     #[doc="Fault Detection Flag 2"]
@@ -2505,7 +2505,7 @@ impl Fms {
 
     #[doc="Fault Detection Flag 3"]
     #[inline] pub fn test_faultf3(&self) -> bool {
-        self.faultf3 != 0
+        self.faultf3() != 0
     }
 
     #[doc="Fault Detection Flag 3"]
@@ -2524,7 +2524,7 @@ impl Fms {
 
     #[doc="Fault Inputs"]
     #[inline] pub fn test_faultin(&self) -> bool {
-        self.faultin != 0
+        self.faultin() != 0
     }
 
     #[doc="Fault Inputs"]
@@ -2543,7 +2543,7 @@ impl Fms {
 
     #[doc="Write Protection Enable"]
     #[inline] pub fn test_wpen(&self) -> bool {
-        self.wpen != 0
+        self.wpen() != 0
     }
 
     #[doc="Write Protection Enable"]
@@ -2562,7 +2562,7 @@ impl Fms {
 
     #[doc="Fault Detection Flag"]
     #[inline] pub fn test_faultf(&self) -> bool {
-        self.faultf != 0
+        self.faultf() != 0
     }
 
     #[doc="Fault Detection Flag"]
@@ -2707,7 +2707,7 @@ impl Fltctrl {
 
     #[doc="Fault Input Filter"]
     #[inline] pub fn test_ffval(&self) -> bool {
-        self.ffval != 0
+        self.ffval() != 0
     }
 
     #[doc="Fault Input Filter"]
@@ -2755,7 +2755,7 @@ impl Qdctrl {
 
     #[doc="Quadrature Decoder Mode Enable"]
     #[inline] pub fn test_quaden(&self) -> bool {
-        self.quaden != 0
+        self.quaden() != 0
     }
 
     #[doc="Quadrature Decoder Mode Enable"]
@@ -2774,7 +2774,7 @@ impl Qdctrl {
 
     #[doc="Timer Overflow Direction In Quadrature Decoder Mode"]
     #[inline] pub fn test_tofdir(&self) -> bool {
-        self.tofdir != 0
+        self.tofdir() != 0
     }
 
     #[doc="Timer Overflow Direction In Quadrature Decoder Mode"]
@@ -2793,7 +2793,7 @@ impl Qdctrl {
 
     #[doc="FTM Counter Direction In Quadrature Decoder Mode"]
     #[inline] pub fn test_quadir(&self) -> bool {
-        self.quadir != 0
+        self.quadir() != 0
     }
 
     #[doc="FTM Counter Direction In Quadrature Decoder Mode"]
@@ -2812,7 +2812,7 @@ impl Qdctrl {
 
     #[doc="Quadrature Decoder Mode"]
     #[inline] pub fn test_quadmode(&self) -> bool {
-        self.quadmode != 0
+        self.quadmode() != 0
     }
 
     #[doc="Quadrature Decoder Mode"]
@@ -2831,7 +2831,7 @@ impl Qdctrl {
 
     #[doc="Phase B Input Polarity"]
     #[inline] pub fn test_phbpol(&self) -> bool {
-        self.phbpol != 0
+        self.phbpol() != 0
     }
 
     #[doc="Phase B Input Polarity"]
@@ -2850,7 +2850,7 @@ impl Qdctrl {
 
     #[doc="Phase A Input Polarity"]
     #[inline] pub fn test_phapol(&self) -> bool {
-        self.phapol != 0
+        self.phapol() != 0
     }
 
     #[doc="Phase A Input Polarity"]
@@ -2869,7 +2869,7 @@ impl Qdctrl {
 
     #[doc="Phase B Input Filter Enable"]
     #[inline] pub fn test_phbfltren(&self) -> bool {
-        self.phbfltren != 0
+        self.phbfltren() != 0
     }
 
     #[doc="Phase B Input Filter Enable"]
@@ -2888,7 +2888,7 @@ impl Qdctrl {
 
     #[doc="Phase A Input Filter Enable"]
     #[inline] pub fn test_phafltren(&self) -> bool {
-        self.phafltren != 0
+        self.phafltren() != 0
     }
 
     #[doc="Phase A Input Filter Enable"]
@@ -2935,7 +2935,7 @@ impl Conf {
 
     #[doc="TOF Frequency"]
     #[inline] pub fn test_numtof(&self) -> bool {
-        self.numtof != 0
+        self.numtof() != 0
     }
 
     #[doc="TOF Frequency"]
@@ -2954,7 +2954,7 @@ impl Conf {
 
     #[doc="BDM Mode"]
     #[inline] pub fn test_bdmmode(&self) -> bool {
-        self.bdmmode != 0
+        self.bdmmode() != 0
     }
 
     #[doc="BDM Mode"]
@@ -2973,7 +2973,7 @@ impl Conf {
 
     #[doc="Global Time Base Enable"]
     #[inline] pub fn test_gtbeen(&self) -> bool {
-        self.gtbeen != 0
+        self.gtbeen() != 0
     }
 
     #[doc="Global Time Base Enable"]
@@ -2992,7 +2992,7 @@ impl Conf {
 
     #[doc="Global Time Base Output"]
     #[inline] pub fn test_gtbeout(&self) -> bool {
-        self.gtbeout != 0
+        self.gtbeout() != 0
     }
 
     #[doc="Global Time Base Output"]
@@ -3084,7 +3084,7 @@ impl Synconf {
 
     #[doc="Hardware Trigger Mode"]
     #[inline] pub fn test_hwtrigmode(&self) -> bool {
-        self.hwtrigmode != 0
+        self.hwtrigmode() != 0
     }
 
     #[doc="Hardware Trigger Mode"]
@@ -3103,7 +3103,7 @@ impl Synconf {
 
     #[doc="CNTIN Register Synchronization"]
     #[inline] pub fn test_cntinc(&self) -> bool {
-        self.cntinc != 0
+        self.cntinc() != 0
     }
 
     #[doc="CNTIN Register Synchronization"]
@@ -3122,7 +3122,7 @@ impl Synconf {
 
     #[doc="INVCTRL Register Synchronization"]
     #[inline] pub fn test_invc(&self) -> bool {
-        self.invc != 0
+        self.invc() != 0
     }
 
     #[doc="INVCTRL Register Synchronization"]
@@ -3141,7 +3141,7 @@ impl Synconf {
 
     #[doc="SWOCTRL Register Synchronization"]
     #[inline] pub fn test_swoc(&self) -> bool {
-        self.swoc != 0
+        self.swoc() != 0
     }
 
     #[doc="SWOCTRL Register Synchronization"]
@@ -3160,7 +3160,7 @@ impl Synconf {
 
     #[doc="Synchronization Mode"]
     #[inline] pub fn test_syncmode(&self) -> bool {
-        self.syncmode != 0
+        self.syncmode() != 0
     }
 
     #[doc="Synchronization Mode"]
@@ -3179,7 +3179,7 @@ impl Synconf {
 
     #[doc="FTM counter synchronization is activated by the software trigger."]
     #[inline] pub fn test_swrstcnt(&self) -> bool {
-        self.swrstcnt != 0
+        self.swrstcnt() != 0
     }
 
     #[doc="FTM counter synchronization is activated by the software trigger."]
@@ -3198,7 +3198,7 @@ impl Synconf {
 
     #[doc="MOD, CNTIN, and CV registers synchronization is activated by the software trigger."]
     #[inline] pub fn test_swwrbuf(&self) -> bool {
-        self.swwrbuf != 0
+        self.swwrbuf() != 0
     }
 
     #[doc="MOD, CNTIN, and CV registers synchronization is activated by the software trigger."]
@@ -3217,7 +3217,7 @@ impl Synconf {
 
     #[doc="Output mask synchronization is activated by the software trigger."]
     #[inline] pub fn test_swom(&self) -> bool {
-        self.swom != 0
+        self.swom() != 0
     }
 
     #[doc="Output mask synchronization is activated by the software trigger."]
@@ -3236,7 +3236,7 @@ impl Synconf {
 
     #[doc="Inverting control synchronization is activated by the software trigger."]
     #[inline] pub fn test_swinvc(&self) -> bool {
-        self.swinvc != 0
+        self.swinvc() != 0
     }
 
     #[doc="Inverting control synchronization is activated by the software trigger."]
@@ -3255,7 +3255,7 @@ impl Synconf {
 
     #[doc="Software output control synchronization is activated by the software trigger."]
     #[inline] pub fn test_swsoc(&self) -> bool {
-        self.swsoc != 0
+        self.swsoc() != 0
     }
 
     #[doc="Software output control synchronization is activated by the software trigger."]
@@ -3274,7 +3274,7 @@ impl Synconf {
 
     #[doc="FTM counter synchronization is activated by a hardware trigger."]
     #[inline] pub fn test_hwrstcnt(&self) -> bool {
-        self.hwrstcnt != 0
+        self.hwrstcnt() != 0
     }
 
     #[doc="FTM counter synchronization is activated by a hardware trigger."]
@@ -3293,7 +3293,7 @@ impl Synconf {
 
     #[doc="MOD, CNTIN, and CV registers synchronization is activated by a hardware trigger."]
     #[inline] pub fn test_hwwrbuf(&self) -> bool {
-        self.hwwrbuf != 0
+        self.hwwrbuf() != 0
     }
 
     #[doc="MOD, CNTIN, and CV registers synchronization is activated by a hardware trigger."]
@@ -3312,7 +3312,7 @@ impl Synconf {
 
     #[doc="Output mask synchronization is activated by a hardware trigger."]
     #[inline] pub fn test_hwom(&self) -> bool {
-        self.hwom != 0
+        self.hwom() != 0
     }
 
     #[doc="Output mask synchronization is activated by a hardware trigger."]
@@ -3331,7 +3331,7 @@ impl Synconf {
 
     #[doc="Inverting control synchronization is activated by a hardware trigger."]
     #[inline] pub fn test_hwinvc(&self) -> bool {
-        self.hwinvc != 0
+        self.hwinvc() != 0
     }
 
     #[doc="Inverting control synchronization is activated by a hardware trigger."]
@@ -3350,7 +3350,7 @@ impl Synconf {
 
     #[doc="Software output control synchronization is activated by a hardware trigger."]
     #[inline] pub fn test_hwsoc(&self) -> bool {
-        self.hwsoc != 0
+        self.hwsoc() != 0
     }
 
     #[doc="Software output control synchronization is activated by a hardware trigger."]
@@ -3564,7 +3564,7 @@ impl Pwmload {
 
     #[doc="Load Enable"]
     #[inline] pub fn test_ldok(&self) -> bool {
-        self.ldok != 0
+        self.ldok() != 0
     }
 
     #[doc="Load Enable"]

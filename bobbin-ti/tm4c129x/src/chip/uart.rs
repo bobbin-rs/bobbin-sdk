@@ -735,7 +735,7 @@ impl Dr {
 
     #[doc="Data Transmitted or Received"]
     #[inline] pub fn test_data(&self) -> bool {
-        self.data != 0
+        self.data() != 0
     }
 
     #[doc="Data Transmitted or Received"]
@@ -754,7 +754,7 @@ impl Dr {
 
     #[doc="UART Framing Error"]
     #[inline] pub fn test_fe(&self) -> bool {
-        self.fe != 0
+        self.fe() != 0
     }
 
     #[doc="UART Framing Error"]
@@ -773,7 +773,7 @@ impl Dr {
 
     #[doc="UART Parity Error"]
     #[inline] pub fn test_pe(&self) -> bool {
-        self.pe != 0
+        self.pe() != 0
     }
 
     #[doc="UART Parity Error"]
@@ -792,7 +792,7 @@ impl Dr {
 
     #[doc="UART Break Error"]
     #[inline] pub fn test_be(&self) -> bool {
-        self.be != 0
+        self.be() != 0
     }
 
     #[doc="UART Break Error"]
@@ -811,7 +811,7 @@ impl Dr {
 
     #[doc="UART Overrun Error"]
     #[inline] pub fn test_oe(&self) -> bool {
-        self.oe != 0
+        self.oe() != 0
     }
 
     #[doc="UART Overrun Error"]
@@ -855,7 +855,7 @@ impl Rsr {
 
     #[doc="UART Framing Error"]
     #[inline] pub fn test_fe(&self) -> bool {
-        self.fe != 0
+        self.fe() != 0
     }
 
     #[doc="UART Framing Error"]
@@ -874,7 +874,7 @@ impl Rsr {
 
     #[doc="UART Parity Error"]
     #[inline] pub fn test_pe(&self) -> bool {
-        self.pe != 0
+        self.pe() != 0
     }
 
     #[doc="UART Parity Error"]
@@ -893,7 +893,7 @@ impl Rsr {
 
     #[doc="UART Break Error"]
     #[inline] pub fn test_be(&self) -> bool {
-        self.be != 0
+        self.be() != 0
     }
 
     #[doc="UART Break Error"]
@@ -912,7 +912,7 @@ impl Rsr {
 
     #[doc="UART Overrun Error"]
     #[inline] pub fn test_oe(&self) -> bool {
-        self.oe != 0
+        self.oe() != 0
     }
 
     #[doc="UART Overrun Error"]
@@ -955,7 +955,7 @@ impl Ecr {
 
     #[doc="Error Clear"]
     #[inline] pub fn test_data(&self) -> bool {
-        self.data != 0
+        self.data() != 0
     }
 
     #[doc="Error Clear"]
@@ -995,7 +995,7 @@ impl Fr {
 
     #[doc="Clear To Send"]
     #[inline] pub fn test_cts(&self) -> bool {
-        self.cts != 0
+        self.cts() != 0
     }
 
     #[doc="Clear To Send"]
@@ -1014,7 +1014,7 @@ impl Fr {
 
     #[doc="Data Set Ready"]
     #[inline] pub fn test_dsr(&self) -> bool {
-        self.dsr != 0
+        self.dsr() != 0
     }
 
     #[doc="Data Set Ready"]
@@ -1033,7 +1033,7 @@ impl Fr {
 
     #[doc="Data Carrier Detect"]
     #[inline] pub fn test_dcd(&self) -> bool {
-        self.dcd != 0
+        self.dcd() != 0
     }
 
     #[doc="Data Carrier Detect"]
@@ -1052,7 +1052,7 @@ impl Fr {
 
     #[doc="UART Busy"]
     #[inline] pub fn test_busy(&self) -> bool {
-        self.busy != 0
+        self.busy() != 0
     }
 
     #[doc="UART Busy"]
@@ -1071,7 +1071,7 @@ impl Fr {
 
     #[doc="UART Receive FIFO Empty"]
     #[inline] pub fn test_rxfe(&self) -> bool {
-        self.rxfe != 0
+        self.rxfe() != 0
     }
 
     #[doc="UART Receive FIFO Empty"]
@@ -1090,7 +1090,7 @@ impl Fr {
 
     #[doc="UART Transmit FIFO Full"]
     #[inline] pub fn test_txff(&self) -> bool {
-        self.txff != 0
+        self.txff() != 0
     }
 
     #[doc="UART Transmit FIFO Full"]
@@ -1109,7 +1109,7 @@ impl Fr {
 
     #[doc="UART Receive FIFO Full"]
     #[inline] pub fn test_rxff(&self) -> bool {
-        self.rxff != 0
+        self.rxff() != 0
     }
 
     #[doc="UART Receive FIFO Full"]
@@ -1128,7 +1128,7 @@ impl Fr {
 
     #[doc="UART Transmit FIFO Empty"]
     #[inline] pub fn test_txfe(&self) -> bool {
-        self.txfe != 0
+        self.txfe() != 0
     }
 
     #[doc="UART Transmit FIFO Empty"]
@@ -1147,7 +1147,7 @@ impl Fr {
 
     #[doc="Ring Indicator"]
     #[inline] pub fn test_ri(&self) -> bool {
-        self.ri != 0
+        self.ri() != 0
     }
 
     #[doc="Ring Indicator"]
@@ -1195,7 +1195,7 @@ impl Ilpr {
 
     #[doc="IrDA Low-Power Divisor"]
     #[inline] pub fn test_ilpdvsr(&self) -> bool {
-        self.ilpdvsr != 0
+        self.ilpdvsr() != 0
     }
 
     #[doc="IrDA Low-Power Divisor"]
@@ -1235,7 +1235,7 @@ impl Ibrd {
 
     #[doc="Integer Baud-Rate Divisor"]
     #[inline] pub fn test_divint(&self) -> bool {
-        self.divint != 0
+        self.divint() != 0
     }
 
     #[doc="Integer Baud-Rate Divisor"]
@@ -1275,7 +1275,7 @@ impl Fbrd {
 
     #[doc="Fractional Baud-Rate Divisor"]
     #[inline] pub fn test_divfrac(&self) -> bool {
-        self.divfrac != 0
+        self.divfrac() != 0
     }
 
     #[doc="Fractional Baud-Rate Divisor"]
@@ -1315,7 +1315,7 @@ impl Lcrh {
 
     #[doc="UART Send Break"]
     #[inline] pub fn test_brk(&self) -> bool {
-        self.brk != 0
+        self.brk() != 0
     }
 
     #[doc="UART Send Break"]
@@ -1334,7 +1334,7 @@ impl Lcrh {
 
     #[doc="UART Parity Enable"]
     #[inline] pub fn test_pen(&self) -> bool {
-        self.pen != 0
+        self.pen() != 0
     }
 
     #[doc="UART Parity Enable"]
@@ -1353,7 +1353,7 @@ impl Lcrh {
 
     #[doc="UART Even Parity Select"]
     #[inline] pub fn test_eps(&self) -> bool {
-        self.eps != 0
+        self.eps() != 0
     }
 
     #[doc="UART Even Parity Select"]
@@ -1372,7 +1372,7 @@ impl Lcrh {
 
     #[doc="UART Two Stop Bits Select"]
     #[inline] pub fn test_stp2(&self) -> bool {
-        self.stp2 != 0
+        self.stp2() != 0
     }
 
     #[doc="UART Two Stop Bits Select"]
@@ -1391,7 +1391,7 @@ impl Lcrh {
 
     #[doc="UART Enable FIFOs"]
     #[inline] pub fn test_fen(&self) -> bool {
-        self.fen != 0
+        self.fen() != 0
     }
 
     #[doc="UART Enable FIFOs"]
@@ -1410,7 +1410,7 @@ impl Lcrh {
 
     #[doc="UART Word Length"]
     #[inline] pub fn test_wlen(&self) -> bool {
-        self.wlen != 0
+        self.wlen() != 0
     }
 
     #[doc="UART Word Length"]
@@ -1429,7 +1429,7 @@ impl Lcrh {
 
     #[doc="UART Stick Parity Select"]
     #[inline] pub fn test_sps(&self) -> bool {
-        self.sps != 0
+        self.sps() != 0
     }
 
     #[doc="UART Stick Parity Select"]
@@ -1475,7 +1475,7 @@ impl Ctl {
 
     #[doc="UART Enable"]
     #[inline] pub fn test_uarten(&self) -> bool {
-        self.uarten != 0
+        self.uarten() != 0
     }
 
     #[doc="UART Enable"]
@@ -1494,7 +1494,7 @@ impl Ctl {
 
     #[doc="UART SIR Enable"]
     #[inline] pub fn test_siren(&self) -> bool {
-        self.siren != 0
+        self.siren() != 0
     }
 
     #[doc="UART SIR Enable"]
@@ -1513,7 +1513,7 @@ impl Ctl {
 
     #[doc="UART SIR Low-Power Mode"]
     #[inline] pub fn test_sirlp(&self) -> bool {
-        self.sirlp != 0
+        self.sirlp() != 0
     }
 
     #[doc="UART SIR Low-Power Mode"]
@@ -1532,7 +1532,7 @@ impl Ctl {
 
     #[doc="ISO 7816 Smart Card Support"]
     #[inline] pub fn test_smart(&self) -> bool {
-        self.smart != 0
+        self.smart() != 0
     }
 
     #[doc="ISO 7816 Smart Card Support"]
@@ -1551,7 +1551,7 @@ impl Ctl {
 
     #[doc="End of Transmission"]
     #[inline] pub fn test_eot(&self) -> bool {
-        self.eot != 0
+        self.eot() != 0
     }
 
     #[doc="End of Transmission"]
@@ -1570,7 +1570,7 @@ impl Ctl {
 
     #[doc="High-Speed Enable"]
     #[inline] pub fn test_hse(&self) -> bool {
-        self.hse != 0
+        self.hse() != 0
     }
 
     #[doc="High-Speed Enable"]
@@ -1589,7 +1589,7 @@ impl Ctl {
 
     #[doc="UART Loop Back Enable"]
     #[inline] pub fn test_lbe(&self) -> bool {
-        self.lbe != 0
+        self.lbe() != 0
     }
 
     #[doc="UART Loop Back Enable"]
@@ -1608,7 +1608,7 @@ impl Ctl {
 
     #[doc="UART Transmit Enable"]
     #[inline] pub fn test_txe(&self) -> bool {
-        self.txe != 0
+        self.txe() != 0
     }
 
     #[doc="UART Transmit Enable"]
@@ -1627,7 +1627,7 @@ impl Ctl {
 
     #[doc="UART Receive Enable"]
     #[inline] pub fn test_rxe(&self) -> bool {
-        self.rxe != 0
+        self.rxe() != 0
     }
 
     #[doc="UART Receive Enable"]
@@ -1646,7 +1646,7 @@ impl Ctl {
 
     #[doc="Data Terminal Ready"]
     #[inline] pub fn test_dtr(&self) -> bool {
-        self.dtr != 0
+        self.dtr() != 0
     }
 
     #[doc="Data Terminal Ready"]
@@ -1665,7 +1665,7 @@ impl Ctl {
 
     #[doc="Request to Send"]
     #[inline] pub fn test_rts(&self) -> bool {
-        self.rts != 0
+        self.rts() != 0
     }
 
     #[doc="Request to Send"]
@@ -1684,7 +1684,7 @@ impl Ctl {
 
     #[doc="Enable Request to Send"]
     #[inline] pub fn test_rtsen(&self) -> bool {
-        self.rtsen != 0
+        self.rtsen() != 0
     }
 
     #[doc="Enable Request to Send"]
@@ -1703,7 +1703,7 @@ impl Ctl {
 
     #[doc="Enable Clear To Send"]
     #[inline] pub fn test_ctsen(&self) -> bool {
-        self.ctsen != 0
+        self.ctsen() != 0
     }
 
     #[doc="Enable Clear To Send"]
@@ -1755,7 +1755,7 @@ impl Ifls {
 
     #[doc="UART Transmit Interrupt FIFO Level Select"]
     #[inline] pub fn test_tx(&self) -> bool {
-        self.tx != 0
+        self.tx() != 0
     }
 
     #[doc="UART Transmit Interrupt FIFO Level Select"]
@@ -1774,7 +1774,7 @@ impl Ifls {
 
     #[doc="UART Receive Interrupt FIFO Level Select"]
     #[inline] pub fn test_rx(&self) -> bool {
-        self.rx != 0
+        self.rx() != 0
     }
 
     #[doc="UART Receive Interrupt FIFO Level Select"]
@@ -1815,7 +1815,7 @@ impl Im {
 
     #[doc="UART Ring Indicator Modem Interrupt Mask"]
     #[inline] pub fn test_rimim(&self) -> bool {
-        self.rimim != 0
+        self.rimim() != 0
     }
 
     #[doc="UART Ring Indicator Modem Interrupt Mask"]
@@ -1834,7 +1834,7 @@ impl Im {
 
     #[doc="UART Clear to Send Modem Interrupt Mask"]
     #[inline] pub fn test_ctsmim(&self) -> bool {
-        self.ctsmim != 0
+        self.ctsmim() != 0
     }
 
     #[doc="UART Clear to Send Modem Interrupt Mask"]
@@ -1853,7 +1853,7 @@ impl Im {
 
     #[doc="UART Data Carrier Detect Modem Interrupt Mask"]
     #[inline] pub fn test_dcdmim(&self) -> bool {
-        self.dcdmim != 0
+        self.dcdmim() != 0
     }
 
     #[doc="UART Data Carrier Detect Modem Interrupt Mask"]
@@ -1872,7 +1872,7 @@ impl Im {
 
     #[doc="UART Data Set Ready Modem Interrupt Mask"]
     #[inline] pub fn test_dsrmim(&self) -> bool {
-        self.dsrmim != 0
+        self.dsrmim() != 0
     }
 
     #[doc="UART Data Set Ready Modem Interrupt Mask"]
@@ -1891,7 +1891,7 @@ impl Im {
 
     #[doc="UART Receive Interrupt Mask"]
     #[inline] pub fn test_rxim(&self) -> bool {
-        self.rxim != 0
+        self.rxim() != 0
     }
 
     #[doc="UART Receive Interrupt Mask"]
@@ -1910,7 +1910,7 @@ impl Im {
 
     #[doc="UART Transmit Interrupt Mask"]
     #[inline] pub fn test_txim(&self) -> bool {
-        self.txim != 0
+        self.txim() != 0
     }
 
     #[doc="UART Transmit Interrupt Mask"]
@@ -1929,7 +1929,7 @@ impl Im {
 
     #[doc="UART Receive Time-Out Interrupt Mask"]
     #[inline] pub fn test_rtim(&self) -> bool {
-        self.rtim != 0
+        self.rtim() != 0
     }
 
     #[doc="UART Receive Time-Out Interrupt Mask"]
@@ -1948,7 +1948,7 @@ impl Im {
 
     #[doc="UART Framing Error Interrupt Mask"]
     #[inline] pub fn test_feim(&self) -> bool {
-        self.feim != 0
+        self.feim() != 0
     }
 
     #[doc="UART Framing Error Interrupt Mask"]
@@ -1967,7 +1967,7 @@ impl Im {
 
     #[doc="UART Parity Error Interrupt Mask"]
     #[inline] pub fn test_peim(&self) -> bool {
-        self.peim != 0
+        self.peim() != 0
     }
 
     #[doc="UART Parity Error Interrupt Mask"]
@@ -1986,7 +1986,7 @@ impl Im {
 
     #[doc="UART Break Error Interrupt Mask"]
     #[inline] pub fn test_beim(&self) -> bool {
-        self.beim != 0
+        self.beim() != 0
     }
 
     #[doc="UART Break Error Interrupt Mask"]
@@ -2005,7 +2005,7 @@ impl Im {
 
     #[doc="UART Overrun Error Interrupt Mask"]
     #[inline] pub fn test_oeim(&self) -> bool {
-        self.oeim != 0
+        self.oeim() != 0
     }
 
     #[doc="UART Overrun Error Interrupt Mask"]
@@ -2024,7 +2024,7 @@ impl Im {
 
     #[doc="End of Transmission Interrupt Mask"]
     #[inline] pub fn test_eotim(&self) -> bool {
-        self.eotim != 0
+        self.eotim() != 0
     }
 
     #[doc="End of Transmission Interrupt Mask"]
@@ -2043,7 +2043,7 @@ impl Im {
 
     #[doc="9-Bit Mode Interrupt Mask"]
     #[inline] pub fn test_9bitim(&self) -> bool {
-        self._9bitim != 0
+        self._9bitim() != 0
     }
 
     #[doc="9-Bit Mode Interrupt Mask"]
@@ -2062,7 +2062,7 @@ impl Im {
 
     #[doc="Receive DMA Interrupt Mask"]
     #[inline] pub fn test_dmarxim(&self) -> bool {
-        self.dmarxim != 0
+        self.dmarxim() != 0
     }
 
     #[doc="Receive DMA Interrupt Mask"]
@@ -2081,7 +2081,7 @@ impl Im {
 
     #[doc="Transmit DMA Interrupt Mask"]
     #[inline] pub fn test_dmatxim(&self) -> bool {
-        self.dmatxim != 0
+        self.dmatxim() != 0
     }
 
     #[doc="Transmit DMA Interrupt Mask"]
@@ -2135,7 +2135,7 @@ impl Ris {
 
     #[doc="UART Ring Indicator Modem Raw Interrupt Status"]
     #[inline] pub fn test_riris(&self) -> bool {
-        self.riris != 0
+        self.riris() != 0
     }
 
     #[doc="UART Ring Indicator Modem Raw Interrupt Status"]
@@ -2154,7 +2154,7 @@ impl Ris {
 
     #[doc="UART Clear to Send Modem Raw Interrupt Status"]
     #[inline] pub fn test_ctsris(&self) -> bool {
-        self.ctsris != 0
+        self.ctsris() != 0
     }
 
     #[doc="UART Clear to Send Modem Raw Interrupt Status"]
@@ -2173,7 +2173,7 @@ impl Ris {
 
     #[doc="UART Data Carrier Detect Modem Raw Interrupt Status"]
     #[inline] pub fn test_dcdris(&self) -> bool {
-        self.dcdris != 0
+        self.dcdris() != 0
     }
 
     #[doc="UART Data Carrier Detect Modem Raw Interrupt Status"]
@@ -2192,7 +2192,7 @@ impl Ris {
 
     #[doc="UART Data Set Ready Modem Raw Interrupt Status"]
     #[inline] pub fn test_dsrris(&self) -> bool {
-        self.dsrris != 0
+        self.dsrris() != 0
     }
 
     #[doc="UART Data Set Ready Modem Raw Interrupt Status"]
@@ -2211,7 +2211,7 @@ impl Ris {
 
     #[doc="UART Receive Raw Interrupt Status"]
     #[inline] pub fn test_rxris(&self) -> bool {
-        self.rxris != 0
+        self.rxris() != 0
     }
 
     #[doc="UART Receive Raw Interrupt Status"]
@@ -2230,7 +2230,7 @@ impl Ris {
 
     #[doc="UART Transmit Raw Interrupt Status"]
     #[inline] pub fn test_txris(&self) -> bool {
-        self.txris != 0
+        self.txris() != 0
     }
 
     #[doc="UART Transmit Raw Interrupt Status"]
@@ -2249,7 +2249,7 @@ impl Ris {
 
     #[doc="UART Receive Time-Out Raw Interrupt Status"]
     #[inline] pub fn test_rtris(&self) -> bool {
-        self.rtris != 0
+        self.rtris() != 0
     }
 
     #[doc="UART Receive Time-Out Raw Interrupt Status"]
@@ -2268,7 +2268,7 @@ impl Ris {
 
     #[doc="UART Framing Error Raw Interrupt Status"]
     #[inline] pub fn test_feris(&self) -> bool {
-        self.feris != 0
+        self.feris() != 0
     }
 
     #[doc="UART Framing Error Raw Interrupt Status"]
@@ -2287,7 +2287,7 @@ impl Ris {
 
     #[doc="UART Parity Error Raw Interrupt Status"]
     #[inline] pub fn test_peris(&self) -> bool {
-        self.peris != 0
+        self.peris() != 0
     }
 
     #[doc="UART Parity Error Raw Interrupt Status"]
@@ -2306,7 +2306,7 @@ impl Ris {
 
     #[doc="UART Break Error Raw Interrupt Status"]
     #[inline] pub fn test_beris(&self) -> bool {
-        self.beris != 0
+        self.beris() != 0
     }
 
     #[doc="UART Break Error Raw Interrupt Status"]
@@ -2325,7 +2325,7 @@ impl Ris {
 
     #[doc="UART Overrun Error Raw Interrupt Status"]
     #[inline] pub fn test_oeris(&self) -> bool {
-        self.oeris != 0
+        self.oeris() != 0
     }
 
     #[doc="UART Overrun Error Raw Interrupt Status"]
@@ -2344,7 +2344,7 @@ impl Ris {
 
     #[doc="End of Transmission Raw Interrupt Status"]
     #[inline] pub fn test_eotris(&self) -> bool {
-        self.eotris != 0
+        self.eotris() != 0
     }
 
     #[doc="End of Transmission Raw Interrupt Status"]
@@ -2363,7 +2363,7 @@ impl Ris {
 
     #[doc="9-Bit Mode Raw Interrupt Status"]
     #[inline] pub fn test_9bitris(&self) -> bool {
-        self._9bitris != 0
+        self._9bitris() != 0
     }
 
     #[doc="9-Bit Mode Raw Interrupt Status"]
@@ -2382,7 +2382,7 @@ impl Ris {
 
     #[doc="Receive DMA Raw Interrupt Status"]
     #[inline] pub fn test_dmarxris(&self) -> bool {
-        self.dmarxris != 0
+        self.dmarxris() != 0
     }
 
     #[doc="Receive DMA Raw Interrupt Status"]
@@ -2401,7 +2401,7 @@ impl Ris {
 
     #[doc="Transmit DMA Raw Interrupt Status"]
     #[inline] pub fn test_dmatxris(&self) -> bool {
-        self.dmatxris != 0
+        self.dmatxris() != 0
     }
 
     #[doc="Transmit DMA Raw Interrupt Status"]
@@ -2455,7 +2455,7 @@ impl Mis {
 
     #[doc="UART Ring Indicator Modem Masked Interrupt Status"]
     #[inline] pub fn test_rimis(&self) -> bool {
-        self.rimis != 0
+        self.rimis() != 0
     }
 
     #[doc="UART Ring Indicator Modem Masked Interrupt Status"]
@@ -2474,7 +2474,7 @@ impl Mis {
 
     #[doc="UART Clear to Send Modem Masked Interrupt Status"]
     #[inline] pub fn test_ctsmis(&self) -> bool {
-        self.ctsmis != 0
+        self.ctsmis() != 0
     }
 
     #[doc="UART Clear to Send Modem Masked Interrupt Status"]
@@ -2493,7 +2493,7 @@ impl Mis {
 
     #[doc="UART Data Carrier Detect Modem Masked Interrupt Status"]
     #[inline] pub fn test_dcdmis(&self) -> bool {
-        self.dcdmis != 0
+        self.dcdmis() != 0
     }
 
     #[doc="UART Data Carrier Detect Modem Masked Interrupt Status"]
@@ -2512,7 +2512,7 @@ impl Mis {
 
     #[doc="UART Data Set Ready Modem Masked Interrupt Status"]
     #[inline] pub fn test_dsrmis(&self) -> bool {
-        self.dsrmis != 0
+        self.dsrmis() != 0
     }
 
     #[doc="UART Data Set Ready Modem Masked Interrupt Status"]
@@ -2531,7 +2531,7 @@ impl Mis {
 
     #[doc="UART Receive Masked Interrupt Status"]
     #[inline] pub fn test_rxmis(&self) -> bool {
-        self.rxmis != 0
+        self.rxmis() != 0
     }
 
     #[doc="UART Receive Masked Interrupt Status"]
@@ -2550,7 +2550,7 @@ impl Mis {
 
     #[doc="UART Transmit Masked Interrupt Status"]
     #[inline] pub fn test_txmis(&self) -> bool {
-        self.txmis != 0
+        self.txmis() != 0
     }
 
     #[doc="UART Transmit Masked Interrupt Status"]
@@ -2569,7 +2569,7 @@ impl Mis {
 
     #[doc="UART Receive Time-Out Masked Interrupt Status"]
     #[inline] pub fn test_rtmis(&self) -> bool {
-        self.rtmis != 0
+        self.rtmis() != 0
     }
 
     #[doc="UART Receive Time-Out Masked Interrupt Status"]
@@ -2588,7 +2588,7 @@ impl Mis {
 
     #[doc="UART Framing Error Masked Interrupt Status"]
     #[inline] pub fn test_femis(&self) -> bool {
-        self.femis != 0
+        self.femis() != 0
     }
 
     #[doc="UART Framing Error Masked Interrupt Status"]
@@ -2607,7 +2607,7 @@ impl Mis {
 
     #[doc="UART Parity Error Masked Interrupt Status"]
     #[inline] pub fn test_pemis(&self) -> bool {
-        self.pemis != 0
+        self.pemis() != 0
     }
 
     #[doc="UART Parity Error Masked Interrupt Status"]
@@ -2626,7 +2626,7 @@ impl Mis {
 
     #[doc="UART Break Error Masked Interrupt Status"]
     #[inline] pub fn test_bemis(&self) -> bool {
-        self.bemis != 0
+        self.bemis() != 0
     }
 
     #[doc="UART Break Error Masked Interrupt Status"]
@@ -2645,7 +2645,7 @@ impl Mis {
 
     #[doc="UART Overrun Error Masked Interrupt Status"]
     #[inline] pub fn test_oemis(&self) -> bool {
-        self.oemis != 0
+        self.oemis() != 0
     }
 
     #[doc="UART Overrun Error Masked Interrupt Status"]
@@ -2664,7 +2664,7 @@ impl Mis {
 
     #[doc="End of Transmission Masked Interrupt Status"]
     #[inline] pub fn test_eotmis(&self) -> bool {
-        self.eotmis != 0
+        self.eotmis() != 0
     }
 
     #[doc="End of Transmission Masked Interrupt Status"]
@@ -2683,7 +2683,7 @@ impl Mis {
 
     #[doc="9-Bit Mode Masked Interrupt Status"]
     #[inline] pub fn test_9bitmis(&self) -> bool {
-        self._9bitmis != 0
+        self._9bitmis() != 0
     }
 
     #[doc="9-Bit Mode Masked Interrupt Status"]
@@ -2702,7 +2702,7 @@ impl Mis {
 
     #[doc="Receive DMA Masked Interrupt Status"]
     #[inline] pub fn test_dmarxmis(&self) -> bool {
-        self.dmarxmis != 0
+        self.dmarxmis() != 0
     }
 
     #[doc="Receive DMA Masked Interrupt Status"]
@@ -2721,7 +2721,7 @@ impl Mis {
 
     #[doc="Transmit DMA Masked Interrupt Status"]
     #[inline] pub fn test_dmatxmis(&self) -> bool {
-        self.dmatxmis != 0
+        self.dmatxmis() != 0
     }
 
     #[doc="Transmit DMA Masked Interrupt Status"]
@@ -2775,7 +2775,7 @@ impl Icr {
 
     #[doc="UART Ring Indicator Modem Interrupt Clear"]
     #[inline] pub fn test_rimic(&self) -> bool {
-        self.rimic != 0
+        self.rimic() != 0
     }
 
     #[doc="UART Ring Indicator Modem Interrupt Clear"]
@@ -2794,7 +2794,7 @@ impl Icr {
 
     #[doc="UART Clear to Send Modem Interrupt Clear"]
     #[inline] pub fn test_ctsmic(&self) -> bool {
-        self.ctsmic != 0
+        self.ctsmic() != 0
     }
 
     #[doc="UART Clear to Send Modem Interrupt Clear"]
@@ -2813,7 +2813,7 @@ impl Icr {
 
     #[doc="UART Data Carrier Detect Modem Interrupt Clear"]
     #[inline] pub fn test_dcdmic(&self) -> bool {
-        self.dcdmic != 0
+        self.dcdmic() != 0
     }
 
     #[doc="UART Data Carrier Detect Modem Interrupt Clear"]
@@ -2832,7 +2832,7 @@ impl Icr {
 
     #[doc="UART Data Set Ready Modem Interrupt Clear"]
     #[inline] pub fn test_dsrmic(&self) -> bool {
-        self.dsrmic != 0
+        self.dsrmic() != 0
     }
 
     #[doc="UART Data Set Ready Modem Interrupt Clear"]
@@ -2851,7 +2851,7 @@ impl Icr {
 
     #[doc="Receive Interrupt Clear"]
     #[inline] pub fn test_rxic(&self) -> bool {
-        self.rxic != 0
+        self.rxic() != 0
     }
 
     #[doc="Receive Interrupt Clear"]
@@ -2870,7 +2870,7 @@ impl Icr {
 
     #[doc="Transmit Interrupt Clear"]
     #[inline] pub fn test_txic(&self) -> bool {
-        self.txic != 0
+        self.txic() != 0
     }
 
     #[doc="Transmit Interrupt Clear"]
@@ -2889,7 +2889,7 @@ impl Icr {
 
     #[doc="Receive Time-Out Interrupt Clear"]
     #[inline] pub fn test_rtic(&self) -> bool {
-        self.rtic != 0
+        self.rtic() != 0
     }
 
     #[doc="Receive Time-Out Interrupt Clear"]
@@ -2908,7 +2908,7 @@ impl Icr {
 
     #[doc="Framing Error Interrupt Clear"]
     #[inline] pub fn test_feic(&self) -> bool {
-        self.feic != 0
+        self.feic() != 0
     }
 
     #[doc="Framing Error Interrupt Clear"]
@@ -2927,7 +2927,7 @@ impl Icr {
 
     #[doc="Parity Error Interrupt Clear"]
     #[inline] pub fn test_peic(&self) -> bool {
-        self.peic != 0
+        self.peic() != 0
     }
 
     #[doc="Parity Error Interrupt Clear"]
@@ -2946,7 +2946,7 @@ impl Icr {
 
     #[doc="Break Error Interrupt Clear"]
     #[inline] pub fn test_beic(&self) -> bool {
-        self.beic != 0
+        self.beic() != 0
     }
 
     #[doc="Break Error Interrupt Clear"]
@@ -2965,7 +2965,7 @@ impl Icr {
 
     #[doc="Overrun Error Interrupt Clear"]
     #[inline] pub fn test_oeic(&self) -> bool {
-        self.oeic != 0
+        self.oeic() != 0
     }
 
     #[doc="Overrun Error Interrupt Clear"]
@@ -2984,7 +2984,7 @@ impl Icr {
 
     #[doc="End of Transmission Interrupt Clear"]
     #[inline] pub fn test_eotic(&self) -> bool {
-        self.eotic != 0
+        self.eotic() != 0
     }
 
     #[doc="End of Transmission Interrupt Clear"]
@@ -3003,7 +3003,7 @@ impl Icr {
 
     #[doc="9-Bit Mode Interrupt Clear"]
     #[inline] pub fn test_9bitic(&self) -> bool {
-        self._9bitic != 0
+        self._9bitic() != 0
     }
 
     #[doc="9-Bit Mode Interrupt Clear"]
@@ -3022,7 +3022,7 @@ impl Icr {
 
     #[doc="Receive DMA Interrupt Clear"]
     #[inline] pub fn test_dmarxic(&self) -> bool {
-        self.dmarxic != 0
+        self.dmarxic() != 0
     }
 
     #[doc="Receive DMA Interrupt Clear"]
@@ -3041,7 +3041,7 @@ impl Icr {
 
     #[doc="Transmit DMA Interrupt Clear"]
     #[inline] pub fn test_dmatxic(&self) -> bool {
-        self.dmatxic != 0
+        self.dmatxic() != 0
     }
 
     #[doc="Transmit DMA Interrupt Clear"]
@@ -3095,7 +3095,7 @@ impl Dmactl {
 
     #[doc="Receive DMA Enable"]
     #[inline] pub fn test_rxdmae(&self) -> bool {
-        self.rxdmae != 0
+        self.rxdmae() != 0
     }
 
     #[doc="Receive DMA Enable"]
@@ -3114,7 +3114,7 @@ impl Dmactl {
 
     #[doc="Transmit DMA Enable"]
     #[inline] pub fn test_txdmae(&self) -> bool {
-        self.txdmae != 0
+        self.txdmae() != 0
     }
 
     #[doc="Transmit DMA Enable"]
@@ -3133,7 +3133,7 @@ impl Dmactl {
 
     #[doc="DMA on Error"]
     #[inline] pub fn test_dmaerr(&self) -> bool {
-        self.dmaerr != 0
+        self.dmaerr() != 0
     }
 
     #[doc="DMA on Error"]
@@ -3175,7 +3175,7 @@ impl _9bitaddr {
 
     #[doc="Self Address for 9-Bit Mode"]
     #[inline] pub fn test_addr(&self) -> bool {
-        self.addr != 0
+        self.addr() != 0
     }
 
     #[doc="Self Address for 9-Bit Mode"]
@@ -3194,7 +3194,7 @@ impl _9bitaddr {
 
     #[doc="Enable 9-Bit Mode"]
     #[inline] pub fn test_9biten(&self) -> bool {
-        self._9biten != 0
+        self._9biten() != 0
     }
 
     #[doc="Enable 9-Bit Mode"]
@@ -3235,7 +3235,7 @@ impl _9bitamask {
 
     #[doc="Self Address Mask for 9-Bit Mode"]
     #[inline] pub fn test_mask(&self) -> bool {
-        self.mask != 0
+        self.mask() != 0
     }
 
     #[doc="Self Address Mask for 9-Bit Mode"]
@@ -3275,7 +3275,7 @@ impl Pp {
 
     #[doc="Smart Card Support"]
     #[inline] pub fn test_sc(&self) -> bool {
-        self.sc != 0
+        self.sc() != 0
     }
 
     #[doc="Smart Card Support"]
@@ -3294,7 +3294,7 @@ impl Pp {
 
     #[doc="9-Bit Support"]
     #[inline] pub fn test_nb(&self) -> bool {
-        self.nb != 0
+        self.nb() != 0
     }
 
     #[doc="9-Bit Support"]
@@ -3313,7 +3313,7 @@ impl Pp {
 
     #[doc="Modem Support"]
     #[inline] pub fn test_ms(&self) -> bool {
-        self.ms != 0
+        self.ms() != 0
     }
 
     #[doc="Modem Support"]
@@ -3332,7 +3332,7 @@ impl Pp {
 
     #[doc="Modem Support Extended"]
     #[inline] pub fn test_mse(&self) -> bool {
-        self.mse != 0
+        self.mse() != 0
     }
 
     #[doc="Modem Support Extended"]
@@ -3375,7 +3375,7 @@ impl Cc {
 
     #[doc="UART Baud Clock Source"]
     #[inline] pub fn test_cs(&self) -> bool {
-        self.cs != 0
+        self.cs() != 0
     }
 
     #[doc="UART Baud Clock Source"]

@@ -272,7 +272,7 @@ impl Cfgr1 {
 
     #[doc="Boot mode selected by the boot pins status bits"]
     #[inline] pub fn test_boot_mode(&self) -> bool {
-        self.boot_mode != 0
+        self.boot_mode() != 0
     }
 
     #[doc="Boot mode selected by the boot pins status bits"]
@@ -291,7 +291,7 @@ impl Cfgr1 {
 
     #[doc="Memory mapping selection bits"]
     #[inline] pub fn test_mem_mode(&self) -> bool {
-        self.mem_mode != 0
+        self.mem_mode() != 0
     }
 
     #[doc="Memory mapping selection bits"]
@@ -332,7 +332,7 @@ impl Cfgr2 {
 
     #[doc="I2C2 Fm+ drive capability enable bit"]
     #[inline] pub fn test_i2c2_fmp(&self) -> bool {
-        self.i2c2_fmp != 0
+        self.i2c2_fmp() != 0
     }
 
     #[doc="I2C2 Fm+ drive capability enable bit"]
@@ -351,7 +351,7 @@ impl Cfgr2 {
 
     #[doc="I2C1 Fm+ drive capability enable bit"]
     #[inline] pub fn test_i2c1_fmp(&self) -> bool {
-        self.i2c1_fmp != 0
+        self.i2c1_fmp() != 0
     }
 
     #[doc="I2C1 Fm+ drive capability enable bit"]
@@ -370,7 +370,7 @@ impl Cfgr2 {
 
     #[doc="Fm+ drive capability on PB9 enable bit"]
     #[inline] pub fn test_i2c_pb9_fmp(&self) -> bool {
-        self.i2c_pb9_fmp != 0
+        self.i2c_pb9_fmp() != 0
     }
 
     #[doc="Fm+ drive capability on PB9 enable bit"]
@@ -389,7 +389,7 @@ impl Cfgr2 {
 
     #[doc="Fm+ drive capability on PB8 enable bit"]
     #[inline] pub fn test_i2c_pb8_fmp(&self) -> bool {
-        self.i2c_pb8_fmp != 0
+        self.i2c_pb8_fmp() != 0
     }
 
     #[doc="Fm+ drive capability on PB8 enable bit"]
@@ -408,7 +408,7 @@ impl Cfgr2 {
 
     #[doc="Fm+ drive capability on PB7 enable bit"]
     #[inline] pub fn test_i2c_pb7_fmp(&self) -> bool {
-        self.i2c_pb7_fmp != 0
+        self.i2c_pb7_fmp() != 0
     }
 
     #[doc="Fm+ drive capability on PB7 enable bit"]
@@ -427,7 +427,7 @@ impl Cfgr2 {
 
     #[doc="Fm+ drive capability on PB6 enable bit"]
     #[inline] pub fn test_i2c_pb6_fmp(&self) -> bool {
-        self.i2c_pb6_fmp != 0
+        self.i2c_pb6_fmp() != 0
     }
 
     #[doc="Fm+ drive capability on PB6 enable bit"]
@@ -446,7 +446,7 @@ impl Cfgr2 {
 
     #[doc="Configuration of internal VLCD rail connection to optional external capacitor"]
     #[inline] pub fn test_capa(&self) -> bool {
-        self.capa != 0
+        self.capa() != 0
     }
 
     #[doc="Configuration of internal VLCD rail connection to optional external capacitor"]
@@ -465,7 +465,7 @@ impl Cfgr2 {
 
     #[doc="Firewall disable bit"]
     #[inline] pub fn test_fwdisen(&self) -> bool {
-        self.fwdisen != 0
+        self.fwdisen() != 0
     }
 
     #[doc="Firewall disable bit"]
@@ -512,7 +512,7 @@ impl Exticr1 {
 
     #[doc="EXTI x configuration (x = 0 to 3)"]
     #[inline] pub fn test_exti3(&self) -> bool {
-        self.exti3 != 0
+        self.exti3() != 0
     }
 
     #[doc="EXTI x configuration (x = 0 to 3)"]
@@ -531,7 +531,7 @@ impl Exticr1 {
 
     #[doc="EXTI x configuration (x = 0 to 3)"]
     #[inline] pub fn test_exti2(&self) -> bool {
-        self.exti2 != 0
+        self.exti2() != 0
     }
 
     #[doc="EXTI x configuration (x = 0 to 3)"]
@@ -550,7 +550,7 @@ impl Exticr1 {
 
     #[doc="EXTI x configuration (x = 0 to 3)"]
     #[inline] pub fn test_exti1(&self) -> bool {
-        self.exti1 != 0
+        self.exti1() != 0
     }
 
     #[doc="EXTI x configuration (x = 0 to 3)"]
@@ -569,7 +569,7 @@ impl Exticr1 {
 
     #[doc="EXTI x configuration (x = 0 to 3)"]
     #[inline] pub fn test_exti0(&self) -> bool {
-        self.exti0 != 0
+        self.exti0() != 0
     }
 
     #[doc="EXTI x configuration (x = 0 to 3)"]
@@ -612,7 +612,7 @@ impl Exticr2 {
 
     #[doc="EXTI x configuration (x = 4 to 7)"]
     #[inline] pub fn test_exti7(&self) -> bool {
-        self.exti7 != 0
+        self.exti7() != 0
     }
 
     #[doc="EXTI x configuration (x = 4 to 7)"]
@@ -631,7 +631,7 @@ impl Exticr2 {
 
     #[doc="EXTI x configuration (x = 4 to 7)"]
     #[inline] pub fn test_exti6(&self) -> bool {
-        self.exti6 != 0
+        self.exti6() != 0
     }
 
     #[doc="EXTI x configuration (x = 4 to 7)"]
@@ -650,7 +650,7 @@ impl Exticr2 {
 
     #[doc="EXTI x configuration (x = 4 to 7)"]
     #[inline] pub fn test_exti5(&self) -> bool {
-        self.exti5 != 0
+        self.exti5() != 0
     }
 
     #[doc="EXTI x configuration (x = 4 to 7)"]
@@ -669,7 +669,7 @@ impl Exticr2 {
 
     #[doc="EXTI x configuration (x = 4 to 7)"]
     #[inline] pub fn test_exti4(&self) -> bool {
-        self.exti4 != 0
+        self.exti4() != 0
     }
 
     #[doc="EXTI x configuration (x = 4 to 7)"]
@@ -712,7 +712,7 @@ impl Exticr3 {
 
     #[doc="EXTI x configuration (x = 8 to 11)"]
     #[inline] pub fn test_exti11(&self) -> bool {
-        self.exti11 != 0
+        self.exti11() != 0
     }
 
     #[doc="EXTI x configuration (x = 8 to 11)"]
@@ -731,7 +731,7 @@ impl Exticr3 {
 
     #[doc="EXTI10"]
     #[inline] pub fn test_exti10(&self) -> bool {
-        self.exti10 != 0
+        self.exti10() != 0
     }
 
     #[doc="EXTI10"]
@@ -750,7 +750,7 @@ impl Exticr3 {
 
     #[doc="EXTI x configuration (x = 8 to 11)"]
     #[inline] pub fn test_exti9(&self) -> bool {
-        self.exti9 != 0
+        self.exti9() != 0
     }
 
     #[doc="EXTI x configuration (x = 8 to 11)"]
@@ -769,7 +769,7 @@ impl Exticr3 {
 
     #[doc="EXTI x configuration (x = 8 to 11)"]
     #[inline] pub fn test_exti8(&self) -> bool {
-        self.exti8 != 0
+        self.exti8() != 0
     }
 
     #[doc="EXTI x configuration (x = 8 to 11)"]
@@ -812,7 +812,7 @@ impl Exticr4 {
 
     #[doc="EXTI x configuration (x = 12 to 15)"]
     #[inline] pub fn test_exti15(&self) -> bool {
-        self.exti15 != 0
+        self.exti15() != 0
     }
 
     #[doc="EXTI x configuration (x = 12 to 15)"]
@@ -831,7 +831,7 @@ impl Exticr4 {
 
     #[doc="EXTI14"]
     #[inline] pub fn test_exti14(&self) -> bool {
-        self.exti14 != 0
+        self.exti14() != 0
     }
 
     #[doc="EXTI14"]
@@ -850,7 +850,7 @@ impl Exticr4 {
 
     #[doc="EXTI13"]
     #[inline] pub fn test_exti13(&self) -> bool {
-        self.exti13 != 0
+        self.exti13() != 0
     }
 
     #[doc="EXTI13"]
@@ -869,7 +869,7 @@ impl Exticr4 {
 
     #[doc="EXTI12"]
     #[inline] pub fn test_exti12(&self) -> bool {
-        self.exti12 != 0
+        self.exti12() != 0
     }
 
     #[doc="EXTI12"]
@@ -912,7 +912,7 @@ impl Cfgr3 {
 
     #[doc="REF_CTRL lock bit"]
     #[inline] pub fn test_ref_lock(&self) -> bool {
-        self.ref_lock != 0
+        self.ref_lock() != 0
     }
 
     #[doc="REF_CTRL lock bit"]
@@ -931,7 +931,7 @@ impl Cfgr3 {
 
     #[doc="VREFINT ready flag"]
     #[inline] pub fn test_vrefint_rdyf(&self) -> bool {
-        self.vrefint_rdyf != 0
+        self.vrefint_rdyf() != 0
     }
 
     #[doc="VREFINT ready flag"]
@@ -950,7 +950,7 @@ impl Cfgr3 {
 
     #[doc="VREFINT for comparator ready flag"]
     #[inline] pub fn test_vrefint_comp_rdyf(&self) -> bool {
-        self.vrefint_comp_rdyf != 0
+        self.vrefint_comp_rdyf() != 0
     }
 
     #[doc="VREFINT for comparator ready flag"]
@@ -969,7 +969,7 @@ impl Cfgr3 {
 
     #[doc="VREFINT for ADC ready flag"]
     #[inline] pub fn test_vrefint_adc_rdyf(&self) -> bool {
-        self.vrefint_adc_rdyf != 0
+        self.vrefint_adc_rdyf() != 0
     }
 
     #[doc="VREFINT for ADC ready flag"]
@@ -988,7 +988,7 @@ impl Cfgr3 {
 
     #[doc="Sensor for ADC ready flag"]
     #[inline] pub fn test_sensor_adc_rdyf(&self) -> bool {
-        self.sensor_adc_rdyf != 0
+        self.sensor_adc_rdyf() != 0
     }
 
     #[doc="Sensor for ADC ready flag"]
@@ -1007,7 +1007,7 @@ impl Cfgr3 {
 
     #[doc="VREFINT for 48 MHz RC oscillator ready flag"]
     #[inline] pub fn test_ref_rc48mhz_rdyf(&self) -> bool {
-        self.ref_rc48mhz_rdyf != 0
+        self.ref_rc48mhz_rdyf() != 0
     }
 
     #[doc="VREFINT for 48 MHz RC oscillator ready flag"]
@@ -1026,7 +1026,7 @@ impl Cfgr3 {
 
     #[doc="VREFINT reference for 48 MHz RC oscillator enable bit"]
     #[inline] pub fn test_enref_rc48mhz(&self) -> bool {
-        self.enref_rc48mhz != 0
+        self.enref_rc48mhz() != 0
     }
 
     #[doc="VREFINT reference for 48 MHz RC oscillator enable bit"]
@@ -1045,7 +1045,7 @@ impl Cfgr3 {
 
     #[doc="VREFINT reference for comparator 2 enable bit"]
     #[inline] pub fn test_enbuf_vrefint_comp(&self) -> bool {
-        self.enbuf_vrefint_comp != 0
+        self.enbuf_vrefint_comp() != 0
     }
 
     #[doc="VREFINT reference for comparator 2 enable bit"]
@@ -1064,7 +1064,7 @@ impl Cfgr3 {
 
     #[doc="Sensor reference for ADC enable bit"]
     #[inline] pub fn test_enbuf_sensor_adc(&self) -> bool {
-        self.enbuf_sensor_adc != 0
+        self.enbuf_sensor_adc() != 0
     }
 
     #[doc="Sensor reference for ADC enable bit"]
@@ -1083,7 +1083,7 @@ impl Cfgr3 {
 
     #[doc="VREFINT reference for ADC enable bit"]
     #[inline] pub fn test_enbuf_bgap_adc(&self) -> bool {
-        self.enbuf_bgap_adc != 0
+        self.enbuf_bgap_adc() != 0
     }
 
     #[doc="VREFINT reference for ADC enable bit"]
@@ -1102,7 +1102,7 @@ impl Cfgr3 {
 
     #[doc="BGAP_ADC connection bit"]
     #[inline] pub fn test_sel_vref_out(&self) -> bool {
-        self.sel_vref_out != 0
+        self.sel_vref_out() != 0
     }
 
     #[doc="BGAP_ADC connection bit"]
@@ -1121,7 +1121,7 @@ impl Cfgr3 {
 
     #[doc="Vref Enable bit"]
     #[inline] pub fn test_en_bgap(&self) -> bool {
-        self.en_bgap != 0
+        self.en_bgap() != 0
     }
 
     #[doc="Vref Enable bit"]

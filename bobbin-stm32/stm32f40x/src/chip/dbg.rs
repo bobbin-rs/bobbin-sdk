@@ -145,7 +145,7 @@ impl DbgmcuIdcode {
 
     #[doc="DEV_ID"]
     #[inline] pub fn test_dev_id(&self) -> bool {
-        self.dev_id != 0
+        self.dev_id() != 0
     }
 
     #[doc="DEV_ID"]
@@ -164,7 +164,7 @@ impl DbgmcuIdcode {
 
     #[doc="REV_ID"]
     #[inline] pub fn test_rev_id(&self) -> bool {
-        self.rev_id != 0
+        self.rev_id() != 0
     }
 
     #[doc="REV_ID"]
@@ -205,7 +205,7 @@ impl DbgmcuCr {
 
     #[doc="DBG_SLEEP"]
     #[inline] pub fn test_dbg_sleep(&self) -> bool {
-        self.dbg_sleep != 0
+        self.dbg_sleep() != 0
     }
 
     #[doc="DBG_SLEEP"]
@@ -224,7 +224,7 @@ impl DbgmcuCr {
 
     #[doc="DBG_STOP"]
     #[inline] pub fn test_dbg_stop(&self) -> bool {
-        self.dbg_stop != 0
+        self.dbg_stop() != 0
     }
 
     #[doc="DBG_STOP"]
@@ -243,7 +243,7 @@ impl DbgmcuCr {
 
     #[doc="DBG_STANDBY"]
     #[inline] pub fn test_dbg_standby(&self) -> bool {
-        self.dbg_standby != 0
+        self.dbg_standby() != 0
     }
 
     #[doc="DBG_STANDBY"]
@@ -262,7 +262,7 @@ impl DbgmcuCr {
 
     #[doc="TRACE_IOEN"]
     #[inline] pub fn test_trace_ioen(&self) -> bool {
-        self.trace_ioen != 0
+        self.trace_ioen() != 0
     }
 
     #[doc="TRACE_IOEN"]
@@ -281,7 +281,7 @@ impl DbgmcuCr {
 
     #[doc="TRACE_MODE"]
     #[inline] pub fn test_trace_mode(&self) -> bool {
-        self.trace_mode != 0
+        self.trace_mode() != 0
     }
 
     #[doc="TRACE_MODE"]
@@ -300,7 +300,7 @@ impl DbgmcuCr {
 
     #[doc="DBG_I2C2_SMBUS_TIMEOUT"]
     #[inline] pub fn test_dbg_i2c2_smbus_timeout(&self) -> bool {
-        self.dbg_i2c2_smbus_timeout != 0
+        self.dbg_i2c2_smbus_timeout() != 0
     }
 
     #[doc="DBG_I2C2_SMBUS_TIMEOUT"]
@@ -319,7 +319,7 @@ impl DbgmcuCr {
 
     #[doc="DBG_TIM8_STOP"]
     #[inline] pub fn test_dbg_tim8_stop(&self) -> bool {
-        self.dbg_tim8_stop != 0
+        self.dbg_tim8_stop() != 0
     }
 
     #[doc="DBG_TIM8_STOP"]
@@ -338,7 +338,7 @@ impl DbgmcuCr {
 
     #[doc="DBG_TIM5_STOP"]
     #[inline] pub fn test_dbg_tim5_stop(&self) -> bool {
-        self.dbg_tim5_stop != 0
+        self.dbg_tim5_stop() != 0
     }
 
     #[doc="DBG_TIM5_STOP"]
@@ -357,7 +357,7 @@ impl DbgmcuCr {
 
     #[doc="DBG_TIM6_STOP"]
     #[inline] pub fn test_dbg_tim6_stop(&self) -> bool {
-        self.dbg_tim6_stop != 0
+        self.dbg_tim6_stop() != 0
     }
 
     #[doc="DBG_TIM6_STOP"]
@@ -376,7 +376,7 @@ impl DbgmcuCr {
 
     #[doc="DBG_TIM7_STOP"]
     #[inline] pub fn test_dbg_tim7_stop(&self) -> bool {
-        self.dbg_tim7_stop != 0
+        self.dbg_tim7_stop() != 0
     }
 
     #[doc="DBG_TIM7_STOP"]
@@ -425,7 +425,7 @@ impl DbgmcuApb1Fz {
 
     #[doc="DBG_TIM2_STOP"]
     #[inline] pub fn test_dbg_tim2_stop(&self) -> bool {
-        self.dbg_tim2_stop != 0
+        self.dbg_tim2_stop() != 0
     }
 
     #[doc="DBG_TIM2_STOP"]
@@ -444,7 +444,7 @@ impl DbgmcuApb1Fz {
 
     #[doc="DBG_TIM3 _STOP"]
     #[inline] pub fn test_dbg_tim3_stop(&self) -> bool {
-        self.dbg_tim3_stop != 0
+        self.dbg_tim3_stop() != 0
     }
 
     #[doc="DBG_TIM3 _STOP"]
@@ -463,7 +463,7 @@ impl DbgmcuApb1Fz {
 
     #[doc="DBG_TIM4_STOP"]
     #[inline] pub fn test_dbg_tim4_stop(&self) -> bool {
-        self.dbg_tim4_stop != 0
+        self.dbg_tim4_stop() != 0
     }
 
     #[doc="DBG_TIM4_STOP"]
@@ -482,7 +482,7 @@ impl DbgmcuApb1Fz {
 
     #[doc="DBG_TIM5_STOP"]
     #[inline] pub fn test_dbg_tim5_stop(&self) -> bool {
-        self.dbg_tim5_stop != 0
+        self.dbg_tim5_stop() != 0
     }
 
     #[doc="DBG_TIM5_STOP"]
@@ -501,7 +501,7 @@ impl DbgmcuApb1Fz {
 
     #[doc="DBG_TIM6_STOP"]
     #[inline] pub fn test_dbg_tim6_stop(&self) -> bool {
-        self.dbg_tim6_stop != 0
+        self.dbg_tim6_stop() != 0
     }
 
     #[doc="DBG_TIM6_STOP"]
@@ -520,7 +520,7 @@ impl DbgmcuApb1Fz {
 
     #[doc="DBG_TIM7_STOP"]
     #[inline] pub fn test_dbg_tim7_stop(&self) -> bool {
-        self.dbg_tim7_stop != 0
+        self.dbg_tim7_stop() != 0
     }
 
     #[doc="DBG_TIM7_STOP"]
@@ -539,7 +539,7 @@ impl DbgmcuApb1Fz {
 
     #[doc="DBG_TIM12_STOP"]
     #[inline] pub fn test_dbg_tim12_stop(&self) -> bool {
-        self.dbg_tim12_stop != 0
+        self.dbg_tim12_stop() != 0
     }
 
     #[doc="DBG_TIM12_STOP"]
@@ -558,7 +558,7 @@ impl DbgmcuApb1Fz {
 
     #[doc="DBG_TIM13_STOP"]
     #[inline] pub fn test_dbg_tim13_stop(&self) -> bool {
-        self.dbg_tim13_stop != 0
+        self.dbg_tim13_stop() != 0
     }
 
     #[doc="DBG_TIM13_STOP"]
@@ -577,7 +577,7 @@ impl DbgmcuApb1Fz {
 
     #[doc="DBG_TIM14_STOP"]
     #[inline] pub fn test_dbg_tim14_stop(&self) -> bool {
-        self.dbg_tim14_stop != 0
+        self.dbg_tim14_stop() != 0
     }
 
     #[doc="DBG_TIM14_STOP"]
@@ -596,7 +596,7 @@ impl DbgmcuApb1Fz {
 
     #[doc="DBG_WWDG_STOP"]
     #[inline] pub fn test_dbg_wwdg_stop(&self) -> bool {
-        self.dbg_wwdg_stop != 0
+        self.dbg_wwdg_stop() != 0
     }
 
     #[doc="DBG_WWDG_STOP"]
@@ -615,7 +615,7 @@ impl DbgmcuApb1Fz {
 
     #[doc="DBG_IWDEG_STOP"]
     #[inline] pub fn test_dbg_iwdeg_stop(&self) -> bool {
-        self.dbg_iwdeg_stop != 0
+        self.dbg_iwdeg_stop() != 0
     }
 
     #[doc="DBG_IWDEG_STOP"]
@@ -634,7 +634,7 @@ impl DbgmcuApb1Fz {
 
     #[doc="DBG_J2C1_SMBUS_TIMEOUT"]
     #[inline] pub fn test_dbg_j2c1_smbus_timeout(&self) -> bool {
-        self.dbg_j2c1_smbus_timeout != 0
+        self.dbg_j2c1_smbus_timeout() != 0
     }
 
     #[doc="DBG_J2C1_SMBUS_TIMEOUT"]
@@ -653,7 +653,7 @@ impl DbgmcuApb1Fz {
 
     #[doc="DBG_J2C2_SMBUS_TIMEOUT"]
     #[inline] pub fn test_dbg_j2c2_smbus_timeout(&self) -> bool {
-        self.dbg_j2c2_smbus_timeout != 0
+        self.dbg_j2c2_smbus_timeout() != 0
     }
 
     #[doc="DBG_J2C2_SMBUS_TIMEOUT"]
@@ -672,7 +672,7 @@ impl DbgmcuApb1Fz {
 
     #[doc="DBG_J2C3SMBUS_TIMEOUT"]
     #[inline] pub fn test_dbg_j2c3smbus_timeout(&self) -> bool {
-        self.dbg_j2c3smbus_timeout != 0
+        self.dbg_j2c3smbus_timeout() != 0
     }
 
     #[doc="DBG_J2C3SMBUS_TIMEOUT"]
@@ -691,7 +691,7 @@ impl DbgmcuApb1Fz {
 
     #[doc="DBG_CAN1_STOP"]
     #[inline] pub fn test_dbg_can1_stop(&self) -> bool {
-        self.dbg_can1_stop != 0
+        self.dbg_can1_stop() != 0
     }
 
     #[doc="DBG_CAN1_STOP"]
@@ -710,7 +710,7 @@ impl DbgmcuApb1Fz {
 
     #[doc="DBG_CAN2_STOP"]
     #[inline] pub fn test_dbg_can2_stop(&self) -> bool {
-        self.dbg_can2_stop != 0
+        self.dbg_can2_stop() != 0
     }
 
     #[doc="DBG_CAN2_STOP"]
@@ -765,7 +765,7 @@ impl DbgmcuApb2Fz {
 
     #[doc="TIM1 counter stopped when core is halted"]
     #[inline] pub fn test_dbg_tim1_stop(&self) -> bool {
-        self.dbg_tim1_stop != 0
+        self.dbg_tim1_stop() != 0
     }
 
     #[doc="TIM1 counter stopped when core is halted"]
@@ -784,7 +784,7 @@ impl DbgmcuApb2Fz {
 
     #[doc="TIM8 counter stopped when core is halted"]
     #[inline] pub fn test_dbg_tim8_stop(&self) -> bool {
-        self.dbg_tim8_stop != 0
+        self.dbg_tim8_stop() != 0
     }
 
     #[doc="TIM8 counter stopped when core is halted"]
@@ -803,7 +803,7 @@ impl DbgmcuApb2Fz {
 
     #[doc="TIM9 counter stopped when core is halted"]
     #[inline] pub fn test_dbg_tim9_stop(&self) -> bool {
-        self.dbg_tim9_stop != 0
+        self.dbg_tim9_stop() != 0
     }
 
     #[doc="TIM9 counter stopped when core is halted"]
@@ -822,7 +822,7 @@ impl DbgmcuApb2Fz {
 
     #[doc="TIM10 counter stopped when core is halted"]
     #[inline] pub fn test_dbg_tim10_stop(&self) -> bool {
-        self.dbg_tim10_stop != 0
+        self.dbg_tim10_stop() != 0
     }
 
     #[doc="TIM10 counter stopped when core is halted"]
@@ -841,7 +841,7 @@ impl DbgmcuApb2Fz {
 
     #[doc="TIM11 counter stopped when core is halted"]
     #[inline] pub fn test_dbg_tim11_stop(&self) -> bool {
-        self.dbg_tim11_stop != 0
+        self.dbg_tim11_stop() != 0
     }
 
     #[doc="TIM11 counter stopped when core is halted"]

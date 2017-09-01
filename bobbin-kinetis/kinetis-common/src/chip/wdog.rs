@@ -452,7 +452,7 @@ impl Stctrlh {
 
     #[doc="Enables or disables the WDOG\'s operation"]
     #[inline] pub fn test_wdogen(&self) -> bool {
-        self.wdogen != 0
+        self.wdogen() != 0
     }
 
     #[doc="Enables or disables the WDOG\'s operation"]
@@ -471,7 +471,7 @@ impl Stctrlh {
 
     #[doc="Selects clock source for the WDOG timer and other internal timing operations."]
     #[inline] pub fn test_clksrc(&self) -> bool {
-        self.clksrc != 0
+        self.clksrc() != 0
     }
 
     #[doc="Selects clock source for the WDOG timer and other internal timing operations."]
@@ -490,7 +490,7 @@ impl Stctrlh {
 
     #[doc="Used to enable the debug breadcrumbs feature"]
     #[inline] pub fn test_irqrsten(&self) -> bool {
-        self.irqrsten != 0
+        self.irqrsten() != 0
     }
 
     #[doc="Used to enable the debug breadcrumbs feature"]
@@ -509,7 +509,7 @@ impl Stctrlh {
 
     #[doc="Enables Windowing mode."]
     #[inline] pub fn test_winen(&self) -> bool {
-        self.winen != 0
+        self.winen() != 0
     }
 
     #[doc="Enables Windowing mode."]
@@ -528,7 +528,7 @@ impl Stctrlh {
 
     #[doc="Enables updates to watchdog write-once registers, after the reset-triggered initial configuration window (WCT) closes, through unlock sequence"]
     #[inline] pub fn test_allowupdate(&self) -> bool {
-        self.allowupdate != 0
+        self.allowupdate() != 0
     }
 
     #[doc="Enables updates to watchdog write-once registers, after the reset-triggered initial configuration window (WCT) closes, through unlock sequence"]
@@ -547,7 +547,7 @@ impl Stctrlh {
 
     #[doc="Enables or disables WDOG in Debug mode."]
     #[inline] pub fn test_dbgen(&self) -> bool {
-        self.dbgen != 0
+        self.dbgen() != 0
     }
 
     #[doc="Enables or disables WDOG in Debug mode."]
@@ -566,7 +566,7 @@ impl Stctrlh {
 
     #[doc="Enables or disables WDOG in Stop mode."]
     #[inline] pub fn test_stopen(&self) -> bool {
-        self.stopen != 0
+        self.stopen() != 0
     }
 
     #[doc="Enables or disables WDOG in Stop mode."]
@@ -585,7 +585,7 @@ impl Stctrlh {
 
     #[doc="Enables or disables WDOG in Wait mode."]
     #[inline] pub fn test_waiten(&self) -> bool {
-        self.waiten != 0
+        self.waiten() != 0
     }
 
     #[doc="Enables or disables WDOG in Wait mode."]
@@ -604,7 +604,7 @@ impl Stctrlh {
 
     #[doc="Puts the watchdog in the functional test mode"]
     #[inline] pub fn test_testwdog(&self) -> bool {
-        self.testwdog != 0
+        self.testwdog() != 0
     }
 
     #[doc="Puts the watchdog in the functional test mode"]
@@ -623,7 +623,7 @@ impl Stctrlh {
 
     #[doc="Effective only if TESTWDOG is set. Selects the test to be run on the watchdog timer."]
     #[inline] pub fn test_testsel(&self) -> bool {
-        self.testsel != 0
+        self.testsel() != 0
     }
 
     #[doc="Effective only if TESTWDOG is set. Selects the test to be run on the watchdog timer."]
@@ -642,7 +642,7 @@ impl Stctrlh {
 
     #[doc="This 2-bit field selects the byte to be tested when the watchdog is in the byte test mode."]
     #[inline] pub fn test_bytesel(&self) -> bool {
-        self.bytesel != 0
+        self.bytesel() != 0
     }
 
     #[doc="This 2-bit field selects the byte to be tested when the watchdog is in the byte test mode."]
@@ -661,7 +661,7 @@ impl Stctrlh {
 
     #[doc="Allows the WDOG\'s functional test mode to be disabled permanently"]
     #[inline] pub fn test_distestwdog(&self) -> bool {
-        self.distestwdog != 0
+        self.distestwdog() != 0
     }
 
     #[doc="Allows the WDOG\'s functional test mode to be disabled permanently"]
@@ -712,7 +712,7 @@ impl Stctrll {
 
     #[doc="Interrupt flag"]
     #[inline] pub fn test_intflg(&self) -> bool {
-        self.intflg != 0
+        self.intflg() != 0
     }
 
     #[doc="Interrupt flag"]
@@ -752,7 +752,7 @@ impl Tovalh {
 
     #[doc="Defines the upper 16 bits of the 32-bit time-out value for the watchdog timer"]
     #[inline] pub fn test_tovalhigh(&self) -> bool {
-        self.tovalhigh != 0
+        self.tovalhigh() != 0
     }
 
     #[doc="Defines the upper 16 bits of the 32-bit time-out value for the watchdog timer"]
@@ -792,7 +792,7 @@ impl Tovall {
 
     #[doc="Defines the lower 16 bits of the 32-bit time-out value for the watchdog timer"]
     #[inline] pub fn test_tovallow(&self) -> bool {
-        self.tovallow != 0
+        self.tovallow() != 0
     }
 
     #[doc="Defines the lower 16 bits of the 32-bit time-out value for the watchdog timer"]
@@ -832,7 +832,7 @@ impl Winh {
 
     #[doc="Defines the upper 16 bits of the 32-bit window for the windowed mode of operation of the watchdog"]
     #[inline] pub fn test_winhigh(&self) -> bool {
-        self.winhigh != 0
+        self.winhigh() != 0
     }
 
     #[doc="Defines the upper 16 bits of the 32-bit window for the windowed mode of operation of the watchdog"]
@@ -872,7 +872,7 @@ impl Winl {
 
     #[doc="Defines the lower 16 bits of the 32-bit window for the windowed mode of operation of the watchdog"]
     #[inline] pub fn test_winlow(&self) -> bool {
-        self.winlow != 0
+        self.winlow() != 0
     }
 
     #[doc="Defines the lower 16 bits of the 32-bit window for the windowed mode of operation of the watchdog"]
@@ -912,7 +912,7 @@ impl Refresh {
 
     #[doc="Watchdog refresh register"]
     #[inline] pub fn test_wdogrefresh(&self) -> bool {
-        self.wdogrefresh != 0
+        self.wdogrefresh() != 0
     }
 
     #[doc="Watchdog refresh register"]
@@ -952,7 +952,7 @@ impl Unlock {
 
     #[doc="Writing the unlock sequence values to this register to makes the watchdog write-once registers writable again"]
     #[inline] pub fn test_wdogunlock(&self) -> bool {
-        self.wdogunlock != 0
+        self.wdogunlock() != 0
     }
 
     #[doc="Writing the unlock sequence values to this register to makes the watchdog write-once registers writable again"]
@@ -992,7 +992,7 @@ impl Tmrouth {
 
     #[doc="Shows the value of the upper 16 bits of the watchdog timer."]
     #[inline] pub fn test_timerouthigh(&self) -> bool {
-        self.timerouthigh != 0
+        self.timerouthigh() != 0
     }
 
     #[doc="Shows the value of the upper 16 bits of the watchdog timer."]
@@ -1032,7 +1032,7 @@ impl Tmroutl {
 
     #[doc="Shows the value of the lower 16 bits of the watchdog timer."]
     #[inline] pub fn test_timeroutlow(&self) -> bool {
-        self.timeroutlow != 0
+        self.timeroutlow() != 0
     }
 
     #[doc="Shows the value of the lower 16 bits of the watchdog timer."]
@@ -1072,7 +1072,7 @@ impl Rstcnt {
 
     #[doc="Counts the number of times the watchdog resets the system"]
     #[inline] pub fn test_rstcnt(&self) -> bool {
-        self.rstcnt != 0
+        self.rstcnt() != 0
     }
 
     #[doc="Counts the number of times the watchdog resets the system"]
@@ -1112,7 +1112,7 @@ impl Presc {
 
     #[doc="3-bit prescaler for the watchdog clock source"]
     #[inline] pub fn test_prescval(&self) -> bool {
-        self.prescval != 0
+        self.prescval() != 0
     }
 
     #[doc="3-bit prescaler for the watchdog clock source"]

@@ -349,7 +349,7 @@ impl Verid {
 
     #[doc="Feature Number"]
     #[inline] pub fn test_feature(&self) -> bool {
-        self.feature != 0
+        self.feature() != 0
     }
 
     #[doc="Feature Number"]
@@ -368,7 +368,7 @@ impl Verid {
 
     #[doc="Minor Version Number"]
     #[inline] pub fn test_minor(&self) -> bool {
-        self.minor != 0
+        self.minor() != 0
     }
 
     #[doc="Minor Version Number"]
@@ -387,7 +387,7 @@ impl Verid {
 
     #[doc="Major Version Number"]
     #[inline] pub fn test_major(&self) -> bool {
-        self.major != 0
+        self.major() != 0
     }
 
     #[doc="Major Version Number"]
@@ -429,7 +429,7 @@ impl Param {
 
     #[doc="Number of Timer Channels"]
     #[inline] pub fn test_channel(&self) -> bool {
-        self.channel != 0
+        self.channel() != 0
     }
 
     #[doc="Number of Timer Channels"]
@@ -448,7 +448,7 @@ impl Param {
 
     #[doc="Number of External Trigger Inputs"]
     #[inline] pub fn test_ext_trig(&self) -> bool {
-        self.ext_trig != 0
+        self.ext_trig() != 0
     }
 
     #[doc="Number of External Trigger Inputs"]
@@ -489,7 +489,7 @@ impl Mcr {
 
     #[doc="Module Clock Enable"]
     #[inline] pub fn test_m_cen(&self) -> bool {
-        self.m_cen != 0
+        self.m_cen() != 0
     }
 
     #[doc="Module Clock Enable"]
@@ -508,7 +508,7 @@ impl Mcr {
 
     #[doc="Software Reset Bit"]
     #[inline] pub fn test_sw_rst(&self) -> bool {
-        self.sw_rst != 0
+        self.sw_rst() != 0
     }
 
     #[doc="Software Reset Bit"]
@@ -527,7 +527,7 @@ impl Mcr {
 
     #[doc="DOZE Mode Enable Bit"]
     #[inline] pub fn test_doze_en(&self) -> bool {
-        self.doze_en != 0
+        self.doze_en() != 0
     }
 
     #[doc="DOZE Mode Enable Bit"]
@@ -546,7 +546,7 @@ impl Mcr {
 
     #[doc="Debug Enable Bit"]
     #[inline] pub fn test_dbg_en(&self) -> bool {
-        self.dbg_en != 0
+        self.dbg_en() != 0
     }
 
     #[doc="Debug Enable Bit"]
@@ -785,7 +785,7 @@ impl Tval {
 
     #[doc="Timer Value"]
     #[inline] pub fn test_tmr_val(&self) -> bool {
-        self.tmr_val != 0
+        self.tmr_val() != 0
     }
 
     #[doc="Timer Value"]
@@ -824,7 +824,7 @@ impl Cval {
 
     #[doc="Current Timer Value"]
     #[inline] pub fn test_tmr_cur_val(&self) -> bool {
-        self.tmr_cur_val != 0
+        self.tmr_cur_val() != 0
     }
 
     #[doc="Current Timer Value"]
@@ -863,7 +863,7 @@ impl Tctrl {
 
     #[doc="Timer Enable"]
     #[inline] pub fn test_t_en(&self) -> bool {
-        self.t_en != 0
+        self.t_en() != 0
     }
 
     #[doc="Timer Enable"]
@@ -882,7 +882,7 @@ impl Tctrl {
 
     #[doc="Chain Channel"]
     #[inline] pub fn test_chain(&self) -> bool {
-        self.chain != 0
+        self.chain() != 0
     }
 
     #[doc="Chain Channel"]
@@ -901,7 +901,7 @@ impl Tctrl {
 
     #[doc="Timer Operation Mode"]
     #[inline] pub fn test_mode(&self) -> bool {
-        self.mode != 0
+        self.mode() != 0
     }
 
     #[doc="Timer Operation Mode"]
@@ -920,7 +920,7 @@ impl Tctrl {
 
     #[doc="Timer Start On Trigger"]
     #[inline] pub fn test_tsot(&self) -> bool {
-        self.tsot != 0
+        self.tsot() != 0
     }
 
     #[doc="Timer Start On Trigger"]
@@ -939,7 +939,7 @@ impl Tctrl {
 
     #[doc="Timer Stop On Interrupt"]
     #[inline] pub fn test_tsoi(&self) -> bool {
-        self.tsoi != 0
+        self.tsoi() != 0
     }
 
     #[doc="Timer Stop On Interrupt"]
@@ -958,7 +958,7 @@ impl Tctrl {
 
     #[doc="Timer Reload On Trigger"]
     #[inline] pub fn test_trot(&self) -> bool {
-        self.trot != 0
+        self.trot() != 0
     }
 
     #[doc="Timer Reload On Trigger"]
@@ -977,7 +977,7 @@ impl Tctrl {
 
     #[doc="Trigger Source"]
     #[inline] pub fn test_trg_src(&self) -> bool {
-        self.trg_src != 0
+        self.trg_src() != 0
     }
 
     #[doc="Trigger Source"]
@@ -996,7 +996,7 @@ impl Tctrl {
 
     #[doc="Trigger Select"]
     #[inline] pub fn test_trg_sel(&self) -> bool {
-        self.trg_sel != 0
+        self.trg_sel() != 0
     }
 
     #[doc="Trigger Select"]

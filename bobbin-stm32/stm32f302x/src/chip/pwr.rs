@@ -92,7 +92,7 @@ impl Cr {
 
     #[doc="Low-power deep sleep"]
     #[inline] pub fn test_lpds(&self) -> bool {
-        self.lpds != 0
+        self.lpds() != 0
     }
 
     #[doc="Low-power deep sleep"]
@@ -111,7 +111,7 @@ impl Cr {
 
     #[doc="Power down deepsleep"]
     #[inline] pub fn test_pdds(&self) -> bool {
-        self.pdds != 0
+        self.pdds() != 0
     }
 
     #[doc="Power down deepsleep"]
@@ -130,7 +130,7 @@ impl Cr {
 
     #[doc="Clear wakeup flag"]
     #[inline] pub fn test_cwuf(&self) -> bool {
-        self.cwuf != 0
+        self.cwuf() != 0
     }
 
     #[doc="Clear wakeup flag"]
@@ -149,7 +149,7 @@ impl Cr {
 
     #[doc="Clear standby flag"]
     #[inline] pub fn test_csbf(&self) -> bool {
-        self.csbf != 0
+        self.csbf() != 0
     }
 
     #[doc="Clear standby flag"]
@@ -168,7 +168,7 @@ impl Cr {
 
     #[doc="Power voltage detector enable"]
     #[inline] pub fn test_pvde(&self) -> bool {
-        self.pvde != 0
+        self.pvde() != 0
     }
 
     #[doc="Power voltage detector enable"]
@@ -187,7 +187,7 @@ impl Cr {
 
     #[doc="PVD level selection"]
     #[inline] pub fn test_pls(&self) -> bool {
-        self.pls != 0
+        self.pls() != 0
     }
 
     #[doc="PVD level selection"]
@@ -206,7 +206,7 @@ impl Cr {
 
     #[doc="Disable backup domain write protection"]
     #[inline] pub fn test_dbp(&self) -> bool {
-        self.dbp != 0
+        self.dbp() != 0
     }
 
     #[doc="Disable backup domain write protection"]
@@ -252,7 +252,7 @@ impl Csr {
 
     #[doc="Wakeup flag"]
     #[inline] pub fn test_wuf(&self) -> bool {
-        self.wuf != 0
+        self.wuf() != 0
     }
 
     #[doc="Wakeup flag"]
@@ -271,7 +271,7 @@ impl Csr {
 
     #[doc="Standby flag"]
     #[inline] pub fn test_sbf(&self) -> bool {
-        self.sbf != 0
+        self.sbf() != 0
     }
 
     #[doc="Standby flag"]
@@ -290,7 +290,7 @@ impl Csr {
 
     #[doc="PVD output"]
     #[inline] pub fn test_pvdo(&self) -> bool {
-        self.pvdo != 0
+        self.pvdo() != 0
     }
 
     #[doc="PVD output"]
@@ -309,7 +309,7 @@ impl Csr {
 
     #[doc="Enable WKUP1 pin"]
     #[inline] pub fn test_ewup1(&self) -> bool {
-        self.ewup1 != 0
+        self.ewup1() != 0
     }
 
     #[doc="Enable WKUP1 pin"]
@@ -328,7 +328,7 @@ impl Csr {
 
     #[doc="Enable WKUP2 pin"]
     #[inline] pub fn test_ewup2(&self) -> bool {
-        self.ewup2 != 0
+        self.ewup2() != 0
     }
 
     #[doc="Enable WKUP2 pin"]

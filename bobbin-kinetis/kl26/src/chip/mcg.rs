@@ -486,7 +486,7 @@ impl C1 {
 
     #[doc="Internal Reference Stop Enable"]
     #[inline] pub fn test_irefsten(&self) -> bool {
-        self.irefsten != 0
+        self.irefsten() != 0
     }
 
     #[doc="Internal Reference Stop Enable"]
@@ -505,7 +505,7 @@ impl C1 {
 
     #[doc="Internal Reference Clock Enable"]
     #[inline] pub fn test_irclken(&self) -> bool {
-        self.irclken != 0
+        self.irclken() != 0
     }
 
     #[doc="Internal Reference Clock Enable"]
@@ -524,7 +524,7 @@ impl C1 {
 
     #[doc="Internal Reference Select"]
     #[inline] pub fn test_irefs(&self) -> bool {
-        self.irefs != 0
+        self.irefs() != 0
     }
 
     #[doc="Internal Reference Select"]
@@ -543,7 +543,7 @@ impl C1 {
 
     #[doc="FLL External Reference Divider"]
     #[inline] pub fn test_frdiv(&self) -> bool {
-        self.frdiv != 0
+        self.frdiv() != 0
     }
 
     #[doc="FLL External Reference Divider"]
@@ -562,7 +562,7 @@ impl C1 {
 
     #[doc="Clock Source Select"]
     #[inline] pub fn test_clks(&self) -> bool {
-        self.clks != 0
+        self.clks() != 0
     }
 
     #[doc="Clock Source Select"]
@@ -606,7 +606,7 @@ impl C2 {
 
     #[doc="Internal Reference Clock Select"]
     #[inline] pub fn test_ircs(&self) -> bool {
-        self.ircs != 0
+        self.ircs() != 0
     }
 
     #[doc="Internal Reference Clock Select"]
@@ -625,7 +625,7 @@ impl C2 {
 
     #[doc="Low Power Select"]
     #[inline] pub fn test_lp(&self) -> bool {
-        self.lp != 0
+        self.lp() != 0
     }
 
     #[doc="Low Power Select"]
@@ -644,7 +644,7 @@ impl C2 {
 
     #[doc="External Reference Select"]
     #[inline] pub fn test_erefs0(&self) -> bool {
-        self.erefs0 != 0
+        self.erefs0() != 0
     }
 
     #[doc="External Reference Select"]
@@ -663,7 +663,7 @@ impl C2 {
 
     #[doc="High Gain Oscillator Select"]
     #[inline] pub fn test_hgo0(&self) -> bool {
-        self.hgo0 != 0
+        self.hgo0() != 0
     }
 
     #[doc="High Gain Oscillator Select"]
@@ -682,7 +682,7 @@ impl C2 {
 
     #[doc="Frequency Range Select"]
     #[inline] pub fn test_range0(&self) -> bool {
-        self.range0 != 0
+        self.range0() != 0
     }
 
     #[doc="Frequency Range Select"]
@@ -701,7 +701,7 @@ impl C2 {
 
     #[doc="Fast Internal Reference Clock Fine Trim"]
     #[inline] pub fn test_fcftrim(&self) -> bool {
-        self.fcftrim != 0
+        self.fcftrim() != 0
     }
 
     #[doc="Fast Internal Reference Clock Fine Trim"]
@@ -720,7 +720,7 @@ impl C2 {
 
     #[doc="Loss of Clock Reset Enable"]
     #[inline] pub fn test_locre0(&self) -> bool {
-        self.locre0 != 0
+        self.locre0() != 0
     }
 
     #[doc="Loss of Clock Reset Enable"]
@@ -766,7 +766,7 @@ impl C3 {
 
     #[doc="Slow Internal Reference Clock Trim Setting"]
     #[inline] pub fn test_sctrim(&self) -> bool {
-        self.sctrim != 0
+        self.sctrim() != 0
     }
 
     #[doc="Slow Internal Reference Clock Trim Setting"]
@@ -806,7 +806,7 @@ impl C4 {
 
     #[doc="Slow Internal Reference Clock Fine Trim"]
     #[inline] pub fn test_scftrim(&self) -> bool {
-        self.scftrim != 0
+        self.scftrim() != 0
     }
 
     #[doc="Slow Internal Reference Clock Fine Trim"]
@@ -825,7 +825,7 @@ impl C4 {
 
     #[doc="Fast Internal Reference Clock Trim Setting"]
     #[inline] pub fn test_fctrim(&self) -> bool {
-        self.fctrim != 0
+        self.fctrim() != 0
     }
 
     #[doc="Fast Internal Reference Clock Trim Setting"]
@@ -844,7 +844,7 @@ impl C4 {
 
     #[doc="DCO Range Select"]
     #[inline] pub fn test_drst_drs(&self) -> bool {
-        self.drst_drs != 0
+        self.drst_drs() != 0
     }
 
     #[doc="DCO Range Select"]
@@ -863,7 +863,7 @@ impl C4 {
 
     #[doc="DCO Maximum Frequency with 32.768 kHz Reference"]
     #[inline] pub fn test_dmx32(&self) -> bool {
-        self.dmx32 != 0
+        self.dmx32() != 0
     }
 
     #[doc="DCO Maximum Frequency with 32.768 kHz Reference"]
@@ -906,7 +906,7 @@ impl C5 {
 
     #[doc="PLL External Reference Divider"]
     #[inline] pub fn test_prdiv0(&self) -> bool {
-        self.prdiv0 != 0
+        self.prdiv0() != 0
     }
 
     #[doc="PLL External Reference Divider"]
@@ -925,7 +925,7 @@ impl C5 {
 
     #[doc="PLL Stop Enable"]
     #[inline] pub fn test_pllsten0(&self) -> bool {
-        self.pllsten0 != 0
+        self.pllsten0() != 0
     }
 
     #[doc="PLL Stop Enable"]
@@ -944,7 +944,7 @@ impl C5 {
 
     #[doc="PLL Clock Enable"]
     #[inline] pub fn test_pllclken0(&self) -> bool {
-        self.pllclken0 != 0
+        self.pllclken0() != 0
     }
 
     #[doc="PLL Clock Enable"]
@@ -986,7 +986,7 @@ impl C6 {
 
     #[doc="VCO 0 Divider"]
     #[inline] pub fn test_vdiv0(&self) -> bool {
-        self.vdiv0 != 0
+        self.vdiv0() != 0
     }
 
     #[doc="VCO 0 Divider"]
@@ -1005,7 +1005,7 @@ impl C6 {
 
     #[doc="Clock Monitor Enable"]
     #[inline] pub fn test_cme0(&self) -> bool {
-        self.cme0 != 0
+        self.cme0() != 0
     }
 
     #[doc="Clock Monitor Enable"]
@@ -1024,7 +1024,7 @@ impl C6 {
 
     #[doc="PLL Select"]
     #[inline] pub fn test_plls(&self) -> bool {
-        self.plls != 0
+        self.plls() != 0
     }
 
     #[doc="PLL Select"]
@@ -1043,7 +1043,7 @@ impl C6 {
 
     #[doc="Loss of Lock Interrrupt Enable"]
     #[inline] pub fn test_lolie0(&self) -> bool {
-        self.lolie0 != 0
+        self.lolie0() != 0
     }
 
     #[doc="Loss of Lock Interrrupt Enable"]
@@ -1086,7 +1086,7 @@ impl S {
 
     #[doc="Internal Reference Clock Status"]
     #[inline] pub fn test_ircst(&self) -> bool {
-        self.ircst != 0
+        self.ircst() != 0
     }
 
     #[doc="Internal Reference Clock Status"]
@@ -1105,7 +1105,7 @@ impl S {
 
     #[doc="OSC Initialization"]
     #[inline] pub fn test_oscinit0(&self) -> bool {
-        self.oscinit0 != 0
+        self.oscinit0() != 0
     }
 
     #[doc="OSC Initialization"]
@@ -1124,7 +1124,7 @@ impl S {
 
     #[doc="Clock Mode Status"]
     #[inline] pub fn test_clkst(&self) -> bool {
-        self.clkst != 0
+        self.clkst() != 0
     }
 
     #[doc="Clock Mode Status"]
@@ -1143,7 +1143,7 @@ impl S {
 
     #[doc="Internal Reference Status"]
     #[inline] pub fn test_irefst(&self) -> bool {
-        self.irefst != 0
+        self.irefst() != 0
     }
 
     #[doc="Internal Reference Status"]
@@ -1162,7 +1162,7 @@ impl S {
 
     #[doc="PLL Select Status"]
     #[inline] pub fn test_pllst(&self) -> bool {
-        self.pllst != 0
+        self.pllst() != 0
     }
 
     #[doc="PLL Select Status"]
@@ -1181,7 +1181,7 @@ impl S {
 
     #[doc="Lock Status"]
     #[inline] pub fn test_lock0(&self) -> bool {
-        self.lock0 != 0
+        self.lock0() != 0
     }
 
     #[doc="Lock Status"]
@@ -1200,7 +1200,7 @@ impl S {
 
     #[doc="Loss of Lock Status"]
     #[inline] pub fn test_lols0(&self) -> bool {
-        self.lols0 != 0
+        self.lols0() != 0
     }
 
     #[doc="Loss of Lock Status"]
@@ -1246,7 +1246,7 @@ impl Sc {
 
     #[doc="OSC0 Loss of Clock Status"]
     #[inline] pub fn test_locs0(&self) -> bool {
-        self.locs0 != 0
+        self.locs0() != 0
     }
 
     #[doc="OSC0 Loss of Clock Status"]
@@ -1265,7 +1265,7 @@ impl Sc {
 
     #[doc="Fast Clock Internal Reference Divider"]
     #[inline] pub fn test_fcrdiv(&self) -> bool {
-        self.fcrdiv != 0
+        self.fcrdiv() != 0
     }
 
     #[doc="Fast Clock Internal Reference Divider"]
@@ -1284,7 +1284,7 @@ impl Sc {
 
     #[doc="FLL Filter Preserve Enable"]
     #[inline] pub fn test_fltprsrv(&self) -> bool {
-        self.fltprsrv != 0
+        self.fltprsrv() != 0
     }
 
     #[doc="FLL Filter Preserve Enable"]
@@ -1303,7 +1303,7 @@ impl Sc {
 
     #[doc="Automatic Trim Machine Fail Flag"]
     #[inline] pub fn test_atmf(&self) -> bool {
-        self.atmf != 0
+        self.atmf() != 0
     }
 
     #[doc="Automatic Trim Machine Fail Flag"]
@@ -1322,7 +1322,7 @@ impl Sc {
 
     #[doc="Automatic Trim Machine Select"]
     #[inline] pub fn test_atms(&self) -> bool {
-        self.atms != 0
+        self.atms() != 0
     }
 
     #[doc="Automatic Trim Machine Select"]
@@ -1341,7 +1341,7 @@ impl Sc {
 
     #[doc="Automatic Trim Machine Enable"]
     #[inline] pub fn test_atme(&self) -> bool {
-        self.atme != 0
+        self.atme() != 0
     }
 
     #[doc="Automatic Trim Machine Enable"]
@@ -1386,7 +1386,7 @@ impl Atcvh {
 
     #[doc="ATM Compare Value High"]
     #[inline] pub fn test_atcvh(&self) -> bool {
-        self.atcvh != 0
+        self.atcvh() != 0
     }
 
     #[doc="ATM Compare Value High"]
@@ -1426,7 +1426,7 @@ impl Atcvl {
 
     #[doc="ATM Compare Value Low"]
     #[inline] pub fn test_atcvl(&self) -> bool {
-        self.atcvl != 0
+        self.atcvl() != 0
     }
 
     #[doc="ATM Compare Value Low"]
@@ -1466,7 +1466,7 @@ impl C7 {
 
     #[doc="MCG OSC Clock Select"]
     #[inline] pub fn test_oscsel(&self) -> bool {
-        self.oscsel != 0
+        self.oscsel() != 0
     }
 
     #[doc="MCG OSC Clock Select"]
@@ -1506,7 +1506,7 @@ impl C8 {
 
     #[doc="PLL Loss of Lock Reset Enable"]
     #[inline] pub fn test_lolre(&self) -> bool {
-        self.lolre != 0
+        self.lolre() != 0
     }
 
     #[doc="PLL Loss of Lock Reset Enable"]

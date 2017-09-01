@@ -443,7 +443,7 @@ impl Cr0 {
 
     #[doc="SSI Data Size Select"]
     #[inline] pub fn test_dss(&self) -> bool {
-        self.dss != 0
+        self.dss() != 0
     }
 
     #[doc="SSI Data Size Select"]
@@ -462,7 +462,7 @@ impl Cr0 {
 
     #[doc="SSI Frame Format Select"]
     #[inline] pub fn test_frf(&self) -> bool {
-        self.frf != 0
+        self.frf() != 0
     }
 
     #[doc="SSI Frame Format Select"]
@@ -481,7 +481,7 @@ impl Cr0 {
 
     #[doc="SSI Serial Clock Polarity"]
     #[inline] pub fn test_spo(&self) -> bool {
-        self.spo != 0
+        self.spo() != 0
     }
 
     #[doc="SSI Serial Clock Polarity"]
@@ -500,7 +500,7 @@ impl Cr0 {
 
     #[doc="SSI Serial Clock Phase"]
     #[inline] pub fn test_sph(&self) -> bool {
-        self.sph != 0
+        self.sph() != 0
     }
 
     #[doc="SSI Serial Clock Phase"]
@@ -519,7 +519,7 @@ impl Cr0 {
 
     #[doc="SSI Serial Clock Rate"]
     #[inline] pub fn test_scr(&self) -> bool {
-        self.scr != 0
+        self.scr() != 0
     }
 
     #[doc="SSI Serial Clock Rate"]
@@ -563,7 +563,7 @@ impl Cr1 {
 
     #[doc="SSI Loopback Mode"]
     #[inline] pub fn test_lbm(&self) -> bool {
-        self.lbm != 0
+        self.lbm() != 0
     }
 
     #[doc="SSI Loopback Mode"]
@@ -582,7 +582,7 @@ impl Cr1 {
 
     #[doc="SSI Synchronous Serial Port Enable"]
     #[inline] pub fn test_sse(&self) -> bool {
-        self.sse != 0
+        self.sse() != 0
     }
 
     #[doc="SSI Synchronous Serial Port Enable"]
@@ -601,7 +601,7 @@ impl Cr1 {
 
     #[doc="SSI Master/Slave Select"]
     #[inline] pub fn test_ms(&self) -> bool {
-        self.ms != 0
+        self.ms() != 0
     }
 
     #[doc="SSI Master/Slave Select"]
@@ -620,7 +620,7 @@ impl Cr1 {
 
     #[doc="End of Transmission"]
     #[inline] pub fn test_eot(&self) -> bool {
-        self.eot != 0
+        self.eot() != 0
     }
 
     #[doc="End of Transmission"]
@@ -639,7 +639,7 @@ impl Cr1 {
 
     #[doc="SSI Mode"]
     #[inline] pub fn test_mode(&self) -> bool {
-        self.mode != 0
+        self.mode() != 0
     }
 
     #[doc="SSI Mode"]
@@ -658,7 +658,7 @@ impl Cr1 {
 
     #[doc="SSI Direction of Operation"]
     #[inline] pub fn test_dir(&self) -> bool {
-        self.dir != 0
+        self.dir() != 0
     }
 
     #[doc="SSI Direction of Operation"]
@@ -677,7 +677,7 @@ impl Cr1 {
 
     #[doc="High Speed Clock Enable"]
     #[inline] pub fn test_hsclken(&self) -> bool {
-        self.hsclken != 0
+        self.hsclken() != 0
     }
 
     #[doc="High Speed Clock Enable"]
@@ -696,7 +696,7 @@ impl Cr1 {
 
     #[doc="FSS Hold Frame"]
     #[inline] pub fn test_fsshldfrm(&self) -> bool {
-        self.fsshldfrm != 0
+        self.fsshldfrm() != 0
     }
 
     #[doc="FSS Hold Frame"]
@@ -715,7 +715,7 @@ impl Cr1 {
 
     #[doc="Stop Frame (End of Message)"]
     #[inline] pub fn test_eom(&self) -> bool {
-        self.eom != 0
+        self.eom() != 0
     }
 
     #[doc="Stop Frame (End of Message)"]
@@ -763,7 +763,7 @@ impl Dr {
 
     #[doc="SSI Receive/Transmit Data"]
     #[inline] pub fn test_data(&self) -> bool {
-        self.data != 0
+        self.data() != 0
     }
 
     #[doc="SSI Receive/Transmit Data"]
@@ -803,7 +803,7 @@ impl Sr {
 
     #[doc="SSI Transmit FIFO Empty"]
     #[inline] pub fn test_tfe(&self) -> bool {
-        self.tfe != 0
+        self.tfe() != 0
     }
 
     #[doc="SSI Transmit FIFO Empty"]
@@ -822,7 +822,7 @@ impl Sr {
 
     #[doc="SSI Transmit FIFO Not Full"]
     #[inline] pub fn test_tnf(&self) -> bool {
-        self.tnf != 0
+        self.tnf() != 0
     }
 
     #[doc="SSI Transmit FIFO Not Full"]
@@ -841,7 +841,7 @@ impl Sr {
 
     #[doc="SSI Receive FIFO Not Empty"]
     #[inline] pub fn test_rne(&self) -> bool {
-        self.rne != 0
+        self.rne() != 0
     }
 
     #[doc="SSI Receive FIFO Not Empty"]
@@ -860,7 +860,7 @@ impl Sr {
 
     #[doc="SSI Receive FIFO Full"]
     #[inline] pub fn test_rff(&self) -> bool {
-        self.rff != 0
+        self.rff() != 0
     }
 
     #[doc="SSI Receive FIFO Full"]
@@ -879,7 +879,7 @@ impl Sr {
 
     #[doc="SSI Busy Bit"]
     #[inline] pub fn test_bsy(&self) -> bool {
-        self.bsy != 0
+        self.bsy() != 0
     }
 
     #[doc="SSI Busy Bit"]
@@ -923,7 +923,7 @@ impl Cpsr {
 
     #[doc="SSI Clock Prescale Divisor"]
     #[inline] pub fn test_cpsdvsr(&self) -> bool {
-        self.cpsdvsr != 0
+        self.cpsdvsr() != 0
     }
 
     #[doc="SSI Clock Prescale Divisor"]
@@ -963,7 +963,7 @@ impl Im {
 
     #[doc="SSI Receive Overrun Interrupt Mask"]
     #[inline] pub fn test_rorim(&self) -> bool {
-        self.rorim != 0
+        self.rorim() != 0
     }
 
     #[doc="SSI Receive Overrun Interrupt Mask"]
@@ -982,7 +982,7 @@ impl Im {
 
     #[doc="SSI Receive Time-Out Interrupt Mask"]
     #[inline] pub fn test_rtim(&self) -> bool {
-        self.rtim != 0
+        self.rtim() != 0
     }
 
     #[doc="SSI Receive Time-Out Interrupt Mask"]
@@ -1001,7 +1001,7 @@ impl Im {
 
     #[doc="SSI Receive FIFO Interrupt Mask"]
     #[inline] pub fn test_rxim(&self) -> bool {
-        self.rxim != 0
+        self.rxim() != 0
     }
 
     #[doc="SSI Receive FIFO Interrupt Mask"]
@@ -1020,7 +1020,7 @@ impl Im {
 
     #[doc="SSI Transmit FIFO Interrupt Mask"]
     #[inline] pub fn test_txim(&self) -> bool {
-        self.txim != 0
+        self.txim() != 0
     }
 
     #[doc="SSI Transmit FIFO Interrupt Mask"]
@@ -1039,7 +1039,7 @@ impl Im {
 
     #[doc="SSI Receive DMA Interrupt Mask"]
     #[inline] pub fn test_dmarxim(&self) -> bool {
-        self.dmarxim != 0
+        self.dmarxim() != 0
     }
 
     #[doc="SSI Receive DMA Interrupt Mask"]
@@ -1058,7 +1058,7 @@ impl Im {
 
     #[doc="SSI Transmit DMA Interrupt Mask"]
     #[inline] pub fn test_dmatxim(&self) -> bool {
-        self.dmatxim != 0
+        self.dmatxim() != 0
     }
 
     #[doc="SSI Transmit DMA Interrupt Mask"]
@@ -1077,7 +1077,7 @@ impl Im {
 
     #[doc="End of Transmit Interrupt Mask"]
     #[inline] pub fn test_eotim(&self) -> bool {
-        self.eotim != 0
+        self.eotim() != 0
     }
 
     #[doc="End of Transmit Interrupt Mask"]
@@ -1123,7 +1123,7 @@ impl Ris {
 
     #[doc="SSI Receive Overrun Raw Interrupt Status"]
     #[inline] pub fn test_rorris(&self) -> bool {
-        self.rorris != 0
+        self.rorris() != 0
     }
 
     #[doc="SSI Receive Overrun Raw Interrupt Status"]
@@ -1142,7 +1142,7 @@ impl Ris {
 
     #[doc="SSI Receive Time-Out Raw Interrupt Status"]
     #[inline] pub fn test_rtris(&self) -> bool {
-        self.rtris != 0
+        self.rtris() != 0
     }
 
     #[doc="SSI Receive Time-Out Raw Interrupt Status"]
@@ -1161,7 +1161,7 @@ impl Ris {
 
     #[doc="SSI Receive FIFO Raw Interrupt Status"]
     #[inline] pub fn test_rxris(&self) -> bool {
-        self.rxris != 0
+        self.rxris() != 0
     }
 
     #[doc="SSI Receive FIFO Raw Interrupt Status"]
@@ -1180,7 +1180,7 @@ impl Ris {
 
     #[doc="SSI Transmit FIFO Raw Interrupt Status"]
     #[inline] pub fn test_txris(&self) -> bool {
-        self.txris != 0
+        self.txris() != 0
     }
 
     #[doc="SSI Transmit FIFO Raw Interrupt Status"]
@@ -1199,7 +1199,7 @@ impl Ris {
 
     #[doc="SSI Receive DMA Raw Interrupt Status"]
     #[inline] pub fn test_dmarxris(&self) -> bool {
-        self.dmarxris != 0
+        self.dmarxris() != 0
     }
 
     #[doc="SSI Receive DMA Raw Interrupt Status"]
@@ -1218,7 +1218,7 @@ impl Ris {
 
     #[doc="SSI Transmit DMA Raw Interrupt Status"]
     #[inline] pub fn test_dmatxris(&self) -> bool {
-        self.dmatxris != 0
+        self.dmatxris() != 0
     }
 
     #[doc="SSI Transmit DMA Raw Interrupt Status"]
@@ -1237,7 +1237,7 @@ impl Ris {
 
     #[doc="End of Transmit Raw Interrupt Status"]
     #[inline] pub fn test_eotris(&self) -> bool {
-        self.eotris != 0
+        self.eotris() != 0
     }
 
     #[doc="End of Transmit Raw Interrupt Status"]
@@ -1283,7 +1283,7 @@ impl Mis {
 
     #[doc="SSI Receive Overrun Masked Interrupt Status"]
     #[inline] pub fn test_rormis(&self) -> bool {
-        self.rormis != 0
+        self.rormis() != 0
     }
 
     #[doc="SSI Receive Overrun Masked Interrupt Status"]
@@ -1302,7 +1302,7 @@ impl Mis {
 
     #[doc="SSI Receive Time-Out Masked Interrupt Status"]
     #[inline] pub fn test_rtmis(&self) -> bool {
-        self.rtmis != 0
+        self.rtmis() != 0
     }
 
     #[doc="SSI Receive Time-Out Masked Interrupt Status"]
@@ -1321,7 +1321,7 @@ impl Mis {
 
     #[doc="SSI Receive FIFO Masked Interrupt Status"]
     #[inline] pub fn test_rxmis(&self) -> bool {
-        self.rxmis != 0
+        self.rxmis() != 0
     }
 
     #[doc="SSI Receive FIFO Masked Interrupt Status"]
@@ -1340,7 +1340,7 @@ impl Mis {
 
     #[doc="SSI Transmit FIFO Masked Interrupt Status"]
     #[inline] pub fn test_txmis(&self) -> bool {
-        self.txmis != 0
+        self.txmis() != 0
     }
 
     #[doc="SSI Transmit FIFO Masked Interrupt Status"]
@@ -1359,7 +1359,7 @@ impl Mis {
 
     #[doc="SSI Receive DMA Masked Interrupt Status"]
     #[inline] pub fn test_dmarxmis(&self) -> bool {
-        self.dmarxmis != 0
+        self.dmarxmis() != 0
     }
 
     #[doc="SSI Receive DMA Masked Interrupt Status"]
@@ -1378,7 +1378,7 @@ impl Mis {
 
     #[doc="SSI Transmit DMA Masked Interrupt Status"]
     #[inline] pub fn test_dmatxmis(&self) -> bool {
-        self.dmatxmis != 0
+        self.dmatxmis() != 0
     }
 
     #[doc="SSI Transmit DMA Masked Interrupt Status"]
@@ -1397,7 +1397,7 @@ impl Mis {
 
     #[doc="End of Transmit Masked Interrupt Status"]
     #[inline] pub fn test_eotmis(&self) -> bool {
-        self.eotmis != 0
+        self.eotmis() != 0
     }
 
     #[doc="End of Transmit Masked Interrupt Status"]
@@ -1443,7 +1443,7 @@ impl Icr {
 
     #[doc="SSI Receive Overrun Interrupt Clear"]
     #[inline] pub fn test_roric(&self) -> bool {
-        self.roric != 0
+        self.roric() != 0
     }
 
     #[doc="SSI Receive Overrun Interrupt Clear"]
@@ -1462,7 +1462,7 @@ impl Icr {
 
     #[doc="SSI Receive Time-Out Interrupt Clear"]
     #[inline] pub fn test_rtic(&self) -> bool {
-        self.rtic != 0
+        self.rtic() != 0
     }
 
     #[doc="SSI Receive Time-Out Interrupt Clear"]
@@ -1481,7 +1481,7 @@ impl Icr {
 
     #[doc="SSI Receive DMA Interrupt Clear"]
     #[inline] pub fn test_dmarxic(&self) -> bool {
-        self.dmarxic != 0
+        self.dmarxic() != 0
     }
 
     #[doc="SSI Receive DMA Interrupt Clear"]
@@ -1500,7 +1500,7 @@ impl Icr {
 
     #[doc="SSI Transmit DMA Interrupt Clear"]
     #[inline] pub fn test_dmatxic(&self) -> bool {
-        self.dmatxic != 0
+        self.dmatxic() != 0
     }
 
     #[doc="SSI Transmit DMA Interrupt Clear"]
@@ -1519,7 +1519,7 @@ impl Icr {
 
     #[doc="End of Transmit Interrupt Clear"]
     #[inline] pub fn test_eotic(&self) -> bool {
-        self.eotic != 0
+        self.eotic() != 0
     }
 
     #[doc="End of Transmit Interrupt Clear"]
@@ -1563,7 +1563,7 @@ impl Dmactl {
 
     #[doc="Receive DMA Enable"]
     #[inline] pub fn test_rxdmae(&self) -> bool {
-        self.rxdmae != 0
+        self.rxdmae() != 0
     }
 
     #[doc="Receive DMA Enable"]
@@ -1582,7 +1582,7 @@ impl Dmactl {
 
     #[doc="Transmit DMA Enable"]
     #[inline] pub fn test_txdmae(&self) -> bool {
-        self.txdmae != 0
+        self.txdmae() != 0
     }
 
     #[doc="Transmit DMA Enable"]
@@ -1623,7 +1623,7 @@ impl Pp {
 
     #[doc="High Speed Capability"]
     #[inline] pub fn test_hsclk(&self) -> bool {
-        self.hsclk != 0
+        self.hsclk() != 0
     }
 
     #[doc="High Speed Capability"]
@@ -1642,7 +1642,7 @@ impl Pp {
 
     #[doc="Mode of Operation"]
     #[inline] pub fn test_mode(&self) -> bool {
-        self.mode != 0
+        self.mode() != 0
     }
 
     #[doc="Mode of Operation"]
@@ -1661,7 +1661,7 @@ impl Pp {
 
     #[doc="FSS Hold Frame Capability"]
     #[inline] pub fn test_fsshldfrm(&self) -> bool {
-        self.fsshldfrm != 0
+        self.fsshldfrm() != 0
     }
 
     #[doc="FSS Hold Frame Capability"]
@@ -1703,7 +1703,7 @@ impl Cc {
 
     #[doc="SSI Baud Clock Source"]
     #[inline] pub fn test_cs(&self) -> bool {
-        self.cs != 0
+        self.cs() != 0
     }
 
     #[doc="SSI Baud Clock Source"]

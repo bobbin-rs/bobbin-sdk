@@ -179,7 +179,7 @@ impl Verid {
 
     #[doc="Feature Specification Number"]
     #[inline] pub fn test_feature(&self) -> bool {
-        self.feature != 0
+        self.feature() != 0
     }
 
     #[doc="Feature Specification Number"]
@@ -198,7 +198,7 @@ impl Verid {
 
     #[doc="Minor Version Number"]
     #[inline] pub fn test_minor(&self) -> bool {
-        self.minor != 0
+        self.minor() != 0
     }
 
     #[doc="Minor Version Number"]
@@ -217,7 +217,7 @@ impl Verid {
 
     #[doc="Major Version Number"]
     #[inline] pub fn test_major(&self) -> bool {
-        self.major != 0
+        self.major() != 0
     }
 
     #[doc="Major Version Number"]
@@ -259,7 +259,7 @@ impl Param {
 
     #[doc="Existence of HSRUN feature"]
     #[inline] pub fn test_ehsrun(&self) -> bool {
-        self.ehsrun != 0
+        self.ehsrun() != 0
     }
 
     #[doc="Existence of HSRUN feature"]
@@ -278,7 +278,7 @@ impl Param {
 
     #[doc="Existence of LLS feature"]
     #[inline] pub fn test_ells(&self) -> bool {
-        self.ells != 0
+        self.ells() != 0
     }
 
     #[doc="Existence of LLS feature"]
@@ -297,7 +297,7 @@ impl Param {
 
     #[doc="Existence of LLS2 feature"]
     #[inline] pub fn test_ells2(&self) -> bool {
-        self.ells2 != 0
+        self.ells2() != 0
     }
 
     #[doc="Existence of LLS2 feature"]
@@ -316,7 +316,7 @@ impl Param {
 
     #[doc="Existence of VLLS0 feature"]
     #[inline] pub fn test_evlls0(&self) -> bool {
-        self.evlls0 != 0
+        self.evlls0() != 0
     }
 
     #[doc="Existence of VLLS0 feature"]
@@ -359,7 +359,7 @@ impl Pmprot {
 
     #[doc="Allow Very-Low-Power Modes"]
     #[inline] pub fn test_avlp(&self) -> bool {
-        self.avlp != 0
+        self.avlp() != 0
     }
 
     #[doc="Allow Very-Low-Power Modes"]
@@ -378,7 +378,7 @@ impl Pmprot {
 
     #[doc="Allow High Speed Run mode"]
     #[inline] pub fn test_ahsrun(&self) -> bool {
-        self.ahsrun != 0
+        self.ahsrun() != 0
     }
 
     #[doc="Allow High Speed Run mode"]
@@ -419,7 +419,7 @@ impl Pmctrl {
 
     #[doc="Stop Mode Control"]
     #[inline] pub fn test_stopm(&self) -> bool {
-        self.stopm != 0
+        self.stopm() != 0
     }
 
     #[doc="Stop Mode Control"]
@@ -438,7 +438,7 @@ impl Pmctrl {
 
     #[doc="Very Low Power Stop Aborted"]
     #[inline] pub fn test_vlpsa(&self) -> bool {
-        self.vlpsa != 0
+        self.vlpsa() != 0
     }
 
     #[doc="Very Low Power Stop Aborted"]
@@ -457,7 +457,7 @@ impl Pmctrl {
 
     #[doc="Run Mode Control"]
     #[inline] pub fn test_runm(&self) -> bool {
-        self.runm != 0
+        self.runm() != 0
     }
 
     #[doc="Run Mode Control"]
@@ -499,7 +499,7 @@ impl Stopctrl {
 
     #[doc="Stop Option"]
     #[inline] pub fn test_stopo(&self) -> bool {
-        self.stopo != 0
+        self.stopo() != 0
     }
 
     #[doc="Stop Option"]
@@ -539,7 +539,7 @@ impl Pmstat {
 
     #[doc="Power Mode Status"]
     #[inline] pub fn test_pmstat(&self) -> bool {
-        self.pmstat != 0
+        self.pmstat() != 0
     }
 
     #[doc="Power Mode Status"]

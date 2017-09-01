@@ -210,7 +210,7 @@ impl Dr {
 
     #[doc="Data register bits"]
     #[inline] pub fn test_dr(&self) -> bool {
-        self.dr != 0
+        self.dr() != 0
     }
 
     #[doc="Data register bits"]
@@ -249,7 +249,7 @@ impl Idr {
 
     #[doc="General-purpose 8-bit data register bits"]
     #[inline] pub fn test_idr(&self) -> bool {
-        self.idr != 0
+        self.idr() != 0
     }
 
     #[doc="General-purpose 8-bit data register bits"]
@@ -289,7 +289,7 @@ impl Cr {
 
     #[doc="reset bit"]
     #[inline] pub fn test_reset(&self) -> bool {
-        self._reset != 0
+        self._reset() != 0
     }
 
     #[doc="reset bit"]
@@ -308,7 +308,7 @@ impl Cr {
 
     #[doc="Reverse input data"]
     #[inline] pub fn test_rev_in(&self) -> bool {
-        self.rev_in != 0
+        self.rev_in() != 0
     }
 
     #[doc="Reverse input data"]
@@ -327,7 +327,7 @@ impl Cr {
 
     #[doc="Reverse output data"]
     #[inline] pub fn test_rev_out(&self) -> bool {
-        self.rev_out != 0
+        self.rev_out() != 0
     }
 
     #[doc="Reverse output data"]
@@ -369,7 +369,7 @@ impl Init {
 
     #[doc="Programmable initial CRC value"]
     #[inline] pub fn test_init(&self) -> bool {
-        self.init != 0
+        self.init() != 0
     }
 
     #[doc="Programmable initial CRC value"]
@@ -408,7 +408,7 @@ impl Dummy {
 
     #[doc="DUMMY DATA field"]
     #[inline] pub fn test_data(&self) -> bool {
-        self.data != 0
+        self.data() != 0
     }
 
     #[doc="DUMMY DATA field"]

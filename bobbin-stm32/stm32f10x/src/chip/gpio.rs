@@ -715,7 +715,7 @@ impl Lckr {
 
     #[doc="Lock key"]
     #[inline] pub fn test_lckk(&self) -> bool {
-        self.lckk != 0
+        self.lckk() != 0
     }
 
     #[doc="Lock key"]

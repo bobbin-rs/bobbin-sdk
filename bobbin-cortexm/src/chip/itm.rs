@@ -300,7 +300,7 @@ impl Stim {
     }
 
     #[inline] pub fn test_data(&self) -> bool {
-        self.data != 0
+        self.data() != 0
     }
 
     #[inline] pub fn set_data<V: Into<bits::U32>>(mut self, value: V) -> Self {
@@ -336,7 +336,7 @@ impl Stim16 {
     }
 
     #[inline] pub fn test_data(&self) -> bool {
-        self.data != 0
+        self.data() != 0
     }
 
     #[inline] pub fn set_data<V: Into<bits::U16>>(mut self, value: V) -> Self {
@@ -373,7 +373,7 @@ impl Stim8 {
     }
 
     #[inline] pub fn test_data(&self) -> bool {
-        self.data != 0
+        self.data() != 0
     }
 
     #[inline] pub fn set_data<V: Into<bits::U8>>(mut self, value: V) -> Self {
@@ -538,7 +538,7 @@ impl Tcr {
 
     #[doc="Set when ITM events present and being drained"]
     #[inline] pub fn test_busy(&self) -> bool {
-        self.busy != 0
+        self.busy() != 0
     }
 
     #[doc="Set when ITM events present and being drained"]
@@ -557,7 +557,7 @@ impl Tcr {
 
     #[doc="ATB ID for CoreSight System"]
     #[inline] pub fn test_atbid(&self) -> bool {
-        self.atbid != 0
+        self.atbid() != 0
     }
 
     #[doc="ATB ID for CoreSight System"]
@@ -576,7 +576,7 @@ impl Tcr {
 
     #[doc="Timestamp prescaler: 0b00 = no prescaling, 0b01 = divide by 4, 0b10 = divide by 16, 0b11 = divide by 64."]
     #[inline] pub fn test_tsprescale(&self) -> bool {
-        self.tsprescale != 0
+        self.tsprescale() != 0
     }
 
     #[doc="Timestamp prescaler: 0b00 = no prescaling, 0b01 = divide by 4, 0b10 = divide by 16, 0b11 = divide by 64."]
@@ -595,7 +595,7 @@ impl Tcr {
 
     #[doc="Enable SWV behavior – count on TPIUEMIT and TPIUBAUD."]
     #[inline] pub fn test_swoena(&self) -> bool {
-        self.swoena != 0
+        self.swoena() != 0
     }
 
     #[doc="Enable SWV behavior – count on TPIUEMIT and TPIUBAUD."]
@@ -614,7 +614,7 @@ impl Tcr {
 
     #[doc="Enables the DWT stimulus."]
     #[inline] pub fn test_dwtena(&self) -> bool {
-        self.dwtena != 0
+        self.dwtena() != 0
     }
 
     #[doc="Enables the DWT stimulus."]
@@ -633,7 +633,7 @@ impl Tcr {
 
     #[doc="Enables sync packets for TPIU."]
     #[inline] pub fn test_syncena(&self) -> bool {
-        self.syncena != 0
+        self.syncena() != 0
     }
 
     #[doc="Enables sync packets for TPIU."]
@@ -652,7 +652,7 @@ impl Tcr {
 
     #[doc="Enables differential timestamps. Differential timestamps are emitted when a packet is written to the FIFO with a non-zero timestamp counter, and when the timestamp counter overflows. Timestamps are emitted during idle times after a fixed number of cycles. This provides a time reference for packets and inter-packet gaps."]
     #[inline] pub fn test_tsena(&self) -> bool {
-        self.tsena != 0
+        self.tsena() != 0
     }
 
     #[doc="Enables differential timestamps. Differential timestamps are emitted when a packet is written to the FIFO with a non-zero timestamp counter, and when the timestamp counter overflows. Timestamps are emitted during idle times after a fixed number of cycles. This provides a time reference for packets and inter-packet gaps."]
@@ -671,7 +671,7 @@ impl Tcr {
 
     #[doc="Enable ITM. This is the master enable, and must be set before ITM Stimulus and Trace Enable registers can be written."]
     #[inline] pub fn test_itmena(&self) -> bool {
-        self.itmena != 0
+        self.itmena() != 0
     }
 
     #[doc="Enable ITM. This is the master enable, and must be set before ITM Stimulus and Trace Enable registers can be written."]
@@ -718,7 +718,7 @@ impl Lar {
 
     #[doc="A privileged write of 0xC5ACCE55 enables more write access to Control Register 0xE00::0xFFC. An invalid write removes write access."]
     #[inline] pub fn test_access(&self) -> bool {
-        self.access != 0
+        self.access() != 0
     }
 
     #[doc="A privileged write of 0xC5ACCE55 enables more write access to Control Register 0xE00::0xFFC. An invalid write removes write access."]
@@ -757,7 +757,7 @@ impl Lsr {
 
     #[doc="You cannot implement 8-bit lock accesses."]
     #[inline] pub fn test_byteacc(&self) -> bool {
-        self.byteacc != 0
+        self.byteacc() != 0
     }
 
     #[doc="You cannot implement 8-bit lock accesses."]
@@ -776,7 +776,7 @@ impl Lsr {
 
     #[doc="Write access to component is blocked. All writes are ignored, reads are permitted."]
     #[inline] pub fn test_access(&self) -> bool {
-        self.access != 0
+        self.access() != 0
     }
 
     #[doc="Write access to component is blocked. All writes are ignored, reads are permitted."]
@@ -795,7 +795,7 @@ impl Lsr {
 
     #[doc="Indicates that a lock mechanism exists for this component."]
     #[inline] pub fn test_present(&self) -> bool {
-        self.present != 0
+        self.present() != 0
     }
 
     #[doc="Indicates that a lock mechanism exists for this component."]

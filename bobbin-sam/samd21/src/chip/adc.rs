@@ -745,7 +745,7 @@ impl Avgctrl {
 
     #[doc="Number of Samples to be Collected"]
     #[inline] pub fn test_samplenum(&self) -> bool {
-        self.samplenum != 0
+        self.samplenum() != 0
     }
 
     #[doc="Number of Samples to be Collected"]
@@ -764,7 +764,7 @@ impl Avgctrl {
 
     #[doc="Adjusting Result / Division Coefficient"]
     #[inline] pub fn test_adjres(&self) -> bool {
-        self.adjres != 0
+        self.adjres() != 0
     }
 
     #[doc="Adjusting Result / Division Coefficient"]
@@ -805,7 +805,7 @@ impl Calib {
 
     #[doc="Linearity Calibration Value"]
     #[inline] pub fn test_linearity_cal(&self) -> bool {
-        self.linearity_cal != 0
+        self.linearity_cal() != 0
     }
 
     #[doc="Linearity Calibration Value"]
@@ -824,7 +824,7 @@ impl Calib {
 
     #[doc="Bias Calibration Value"]
     #[inline] pub fn test_bias_cal(&self) -> bool {
-        self.bias_cal != 0
+        self.bias_cal() != 0
     }
 
     #[doc="Bias Calibration Value"]
@@ -865,7 +865,7 @@ impl Ctrla {
 
     #[doc="Software Reset"]
     #[inline] pub fn test_swrst(&self) -> bool {
-        self.swrst != 0
+        self.swrst() != 0
     }
 
     #[doc="Software Reset"]
@@ -884,7 +884,7 @@ impl Ctrla {
 
     #[doc="Enable"]
     #[inline] pub fn test_enable(&self) -> bool {
-        self.enable != 0
+        self.enable() != 0
     }
 
     #[doc="Enable"]
@@ -903,7 +903,7 @@ impl Ctrla {
 
     #[doc="Run in Standby"]
     #[inline] pub fn test_runstdby(&self) -> bool {
-        self.runstdby != 0
+        self.runstdby() != 0
     }
 
     #[doc="Run in Standby"]
@@ -945,7 +945,7 @@ impl Ctrlb {
 
     #[doc="Differential Mode"]
     #[inline] pub fn test_diffmode(&self) -> bool {
-        self.diffmode != 0
+        self.diffmode() != 0
     }
 
     #[doc="Differential Mode"]
@@ -964,7 +964,7 @@ impl Ctrlb {
 
     #[doc="Left-Adjusted Result"]
     #[inline] pub fn test_leftadj(&self) -> bool {
-        self.leftadj != 0
+        self.leftadj() != 0
     }
 
     #[doc="Left-Adjusted Result"]
@@ -983,7 +983,7 @@ impl Ctrlb {
 
     #[doc="Free Running Mode"]
     #[inline] pub fn test_freerun(&self) -> bool {
-        self.freerun != 0
+        self.freerun() != 0
     }
 
     #[doc="Free Running Mode"]
@@ -1002,7 +1002,7 @@ impl Ctrlb {
 
     #[doc="Digital Correction Logic Enabled"]
     #[inline] pub fn test_corren(&self) -> bool {
-        self.corren != 0
+        self.corren() != 0
     }
 
     #[doc="Digital Correction Logic Enabled"]
@@ -1021,7 +1021,7 @@ impl Ctrlb {
 
     #[doc="Conversion Result Resolution"]
     #[inline] pub fn test_ressel(&self) -> bool {
-        self.ressel != 0
+        self.ressel() != 0
     }
 
     #[doc="Conversion Result Resolution"]
@@ -1040,7 +1040,7 @@ impl Ctrlb {
 
     #[doc="Prescaler Configuration"]
     #[inline] pub fn test_prescaler(&self) -> bool {
-        self.prescaler != 0
+        self.prescaler() != 0
     }
 
     #[doc="Prescaler Configuration"]
@@ -1085,7 +1085,7 @@ impl Dbgctrl {
 
     #[doc="Debug Run"]
     #[inline] pub fn test_dbgrun(&self) -> bool {
-        self.dbgrun != 0
+        self.dbgrun() != 0
     }
 
     #[doc="Debug Run"]
@@ -1125,7 +1125,7 @@ impl Evctrl {
 
     #[doc="Start Conversion Event In"]
     #[inline] pub fn test_startei(&self) -> bool {
-        self.startei != 0
+        self.startei() != 0
     }
 
     #[doc="Start Conversion Event In"]
@@ -1144,7 +1144,7 @@ impl Evctrl {
 
     #[doc="Synchronization Event In"]
     #[inline] pub fn test_syncei(&self) -> bool {
-        self.syncei != 0
+        self.syncei() != 0
     }
 
     #[doc="Synchronization Event In"]
@@ -1163,7 +1163,7 @@ impl Evctrl {
 
     #[doc="Result Ready Event Out"]
     #[inline] pub fn test_resrdyeo(&self) -> bool {
-        self.resrdyeo != 0
+        self.resrdyeo() != 0
     }
 
     #[doc="Result Ready Event Out"]
@@ -1182,7 +1182,7 @@ impl Evctrl {
 
     #[doc="Window Monitor Event Out"]
     #[inline] pub fn test_winmoneo(&self) -> bool {
-        self.winmoneo != 0
+        self.winmoneo() != 0
     }
 
     #[doc="Window Monitor Event Out"]
@@ -1225,7 +1225,7 @@ impl Gaincorr {
 
     #[doc="Gain Correction Value"]
     #[inline] pub fn test_gaincorr(&self) -> bool {
-        self.gaincorr != 0
+        self.gaincorr() != 0
     }
 
     #[doc="Gain Correction Value"]
@@ -1265,7 +1265,7 @@ impl Inputctrl {
 
     #[doc="Positive Mux Input Selection"]
     #[inline] pub fn test_muxpos(&self) -> bool {
-        self.muxpos != 0
+        self.muxpos() != 0
     }
 
     #[doc="Positive Mux Input Selection"]
@@ -1284,7 +1284,7 @@ impl Inputctrl {
 
     #[doc="Negative Mux Input Selection"]
     #[inline] pub fn test_muxneg(&self) -> bool {
-        self.muxneg != 0
+        self.muxneg() != 0
     }
 
     #[doc="Negative Mux Input Selection"]
@@ -1303,7 +1303,7 @@ impl Inputctrl {
 
     #[doc="Number of Input Channels Included in Scan"]
     #[inline] pub fn test_inputscan(&self) -> bool {
-        self.inputscan != 0
+        self.inputscan() != 0
     }
 
     #[doc="Number of Input Channels Included in Scan"]
@@ -1322,7 +1322,7 @@ impl Inputctrl {
 
     #[doc="Positive Mux Setting Offset"]
     #[inline] pub fn test_inputoffset(&self) -> bool {
-        self.inputoffset != 0
+        self.inputoffset() != 0
     }
 
     #[doc="Positive Mux Setting Offset"]
@@ -1341,7 +1341,7 @@ impl Inputctrl {
 
     #[doc="Gain Factor Selection"]
     #[inline] pub fn test_gain(&self) -> bool {
-        self.gain != 0
+        self.gain() != 0
     }
 
     #[doc="Gain Factor Selection"]
@@ -1385,7 +1385,7 @@ impl Intenclr {
 
     #[doc="Result Ready Interrupt Enable"]
     #[inline] pub fn test_resrdy(&self) -> bool {
-        self.resrdy != 0
+        self.resrdy() != 0
     }
 
     #[doc="Result Ready Interrupt Enable"]
@@ -1404,7 +1404,7 @@ impl Intenclr {
 
     #[doc="Overrun Interrupt Enable"]
     #[inline] pub fn test_overrun(&self) -> bool {
-        self.overrun != 0
+        self.overrun() != 0
     }
 
     #[doc="Overrun Interrupt Enable"]
@@ -1423,7 +1423,7 @@ impl Intenclr {
 
     #[doc="Window Monitor Interrupt Enable"]
     #[inline] pub fn test_winmon(&self) -> bool {
-        self.winmon != 0
+        self.winmon() != 0
     }
 
     #[doc="Window Monitor Interrupt Enable"]
@@ -1442,7 +1442,7 @@ impl Intenclr {
 
     #[doc="Synchronization Ready Interrupt Enable"]
     #[inline] pub fn test_syncrdy(&self) -> bool {
-        self.syncrdy != 0
+        self.syncrdy() != 0
     }
 
     #[doc="Synchronization Ready Interrupt Enable"]
@@ -1485,7 +1485,7 @@ impl Intenset {
 
     #[doc="Result Ready Interrupt Enable"]
     #[inline] pub fn test_resrdy(&self) -> bool {
-        self.resrdy != 0
+        self.resrdy() != 0
     }
 
     #[doc="Result Ready Interrupt Enable"]
@@ -1504,7 +1504,7 @@ impl Intenset {
 
     #[doc="Overrun Interrupt Enable"]
     #[inline] pub fn test_overrun(&self) -> bool {
-        self.overrun != 0
+        self.overrun() != 0
     }
 
     #[doc="Overrun Interrupt Enable"]
@@ -1523,7 +1523,7 @@ impl Intenset {
 
     #[doc="Window Monitor Interrupt Enable"]
     #[inline] pub fn test_winmon(&self) -> bool {
-        self.winmon != 0
+        self.winmon() != 0
     }
 
     #[doc="Window Monitor Interrupt Enable"]
@@ -1542,7 +1542,7 @@ impl Intenset {
 
     #[doc="Synchronization Ready Interrupt Enable"]
     #[inline] pub fn test_syncrdy(&self) -> bool {
-        self.syncrdy != 0
+        self.syncrdy() != 0
     }
 
     #[doc="Synchronization Ready Interrupt Enable"]
@@ -1585,7 +1585,7 @@ impl Intflag {
 
     #[doc="Result Ready"]
     #[inline] pub fn test_resrdy(&self) -> bool {
-        self.resrdy != 0
+        self.resrdy() != 0
     }
 
     #[doc="Result Ready"]
@@ -1604,7 +1604,7 @@ impl Intflag {
 
     #[doc="Overrun"]
     #[inline] pub fn test_overrun(&self) -> bool {
-        self.overrun != 0
+        self.overrun() != 0
     }
 
     #[doc="Overrun"]
@@ -1623,7 +1623,7 @@ impl Intflag {
 
     #[doc="Window Monitor"]
     #[inline] pub fn test_winmon(&self) -> bool {
-        self.winmon != 0
+        self.winmon() != 0
     }
 
     #[doc="Window Monitor"]
@@ -1642,7 +1642,7 @@ impl Intflag {
 
     #[doc="Synchronization Ready"]
     #[inline] pub fn test_syncrdy(&self) -> bool {
-        self.syncrdy != 0
+        self.syncrdy() != 0
     }
 
     #[doc="Synchronization Ready"]
@@ -1685,7 +1685,7 @@ impl Offsetcorr {
 
     #[doc="Offset Correction Value"]
     #[inline] pub fn test_offsetcorr(&self) -> bool {
-        self.offsetcorr != 0
+        self.offsetcorr() != 0
     }
 
     #[doc="Offset Correction Value"]
@@ -1725,7 +1725,7 @@ impl Refctrl {
 
     #[doc="Reference Selection"]
     #[inline] pub fn test_refsel(&self) -> bool {
-        self.refsel != 0
+        self.refsel() != 0
     }
 
     #[doc="Reference Selection"]
@@ -1744,7 +1744,7 @@ impl Refctrl {
 
     #[doc="Reference Buffer Offset Compensation Enable"]
     #[inline] pub fn test_refcomp(&self) -> bool {
-        self.refcomp != 0
+        self.refcomp() != 0
     }
 
     #[doc="Reference Buffer Offset Compensation Enable"]
@@ -1785,7 +1785,7 @@ impl Result {
 
     #[doc="Result Conversion Value"]
     #[inline] pub fn test_result(&self) -> bool {
-        self.result != 0
+        self.result() != 0
     }
 
     #[doc="Result Conversion Value"]
@@ -1804,7 +1804,7 @@ impl Result {
 
     #[doc="Result Conversion Value (16 bits)"]
     #[inline] pub fn test_result_16(&self) -> bool {
-        self.result_16 != 0
+        self.result_16() != 0
     }
 
     #[doc="Result Conversion Value (16 bits)"]
@@ -1823,7 +1823,7 @@ impl Result {
 
     #[doc="Result Conversion Value (12 bits)"]
     #[inline] pub fn test_result_12(&self) -> bool {
-        self.result_12 != 0
+        self.result_12() != 0
     }
 
     #[doc="Result Conversion Value (12 bits)"]
@@ -1842,7 +1842,7 @@ impl Result {
 
     #[doc="Result Conversion Value (10 bits)"]
     #[inline] pub fn test_result_10(&self) -> bool {
-        self.result_10 != 0
+        self.result_10() != 0
     }
 
     #[doc="Result Conversion Value (10 bits)"]
@@ -1861,7 +1861,7 @@ impl Result {
 
     #[doc="Result Conversion Value (8 bits)"]
     #[inline] pub fn test_result_8(&self) -> bool {
-        self.result_8 != 0
+        self.result_8() != 0
     }
 
     #[doc="Result Conversion Value (8 bits)"]
@@ -1905,7 +1905,7 @@ impl Sampctrl {
 
     #[doc="Sampling Time Length"]
     #[inline] pub fn test_samplen(&self) -> bool {
-        self.samplen != 0
+        self.samplen() != 0
     }
 
     #[doc="Sampling Time Length"]
@@ -1945,7 +1945,7 @@ impl Status {
 
     #[doc="Synchronization Busy"]
     #[inline] pub fn test_syncbusy(&self) -> bool {
-        self.syncbusy != 0
+        self.syncbusy() != 0
     }
 
     #[doc="Synchronization Busy"]
@@ -1985,7 +1985,7 @@ impl Swtrig {
 
     #[doc="ADC Conversion Flush"]
     #[inline] pub fn test_flush(&self) -> bool {
-        self.flush != 0
+        self.flush() != 0
     }
 
     #[doc="ADC Conversion Flush"]
@@ -2004,7 +2004,7 @@ impl Swtrig {
 
     #[doc="ADC Start Conversion"]
     #[inline] pub fn test_start(&self) -> bool {
-        self.start != 0
+        self.start() != 0
     }
 
     #[doc="ADC Start Conversion"]
@@ -2045,7 +2045,7 @@ impl Winctrl {
 
     #[doc="Window Monitor Mode"]
     #[inline] pub fn test_winmode(&self) -> bool {
-        self.winmode != 0
+        self.winmode() != 0
     }
 
     #[doc="Window Monitor Mode"]
@@ -2085,7 +2085,7 @@ impl Winlt {
 
     #[doc="Window Lower Threshold"]
     #[inline] pub fn test_winlt(&self) -> bool {
-        self.winlt != 0
+        self.winlt() != 0
     }
 
     #[doc="Window Lower Threshold"]
@@ -2125,7 +2125,7 @@ impl Winut {
 
     #[doc="Window Upper Threshold"]
     #[inline] pub fn test_winut(&self) -> bool {
-        self.winut != 0
+        self.winut() != 0
     }
 
     #[doc="Window Upper Threshold"]

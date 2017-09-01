@@ -253,7 +253,7 @@ impl Isr {
 
     #[doc="Counter direction change up to down"]
     #[inline] pub fn test_down(&self) -> bool {
-        self.down != 0
+        self.down() != 0
     }
 
     #[doc="Counter direction change up to down"]
@@ -272,7 +272,7 @@ impl Isr {
 
     #[doc="Counter direction change down to up"]
     #[inline] pub fn test_up(&self) -> bool {
-        self.up != 0
+        self.up() != 0
     }
 
     #[doc="Counter direction change down to up"]
@@ -291,7 +291,7 @@ impl Isr {
 
     #[doc="Autoreload register update OK"]
     #[inline] pub fn test_arrok(&self) -> bool {
-        self.arrok != 0
+        self.arrok() != 0
     }
 
     #[doc="Autoreload register update OK"]
@@ -310,7 +310,7 @@ impl Isr {
 
     #[doc="Compare register update OK"]
     #[inline] pub fn test_cmpok(&self) -> bool {
-        self.cmpok != 0
+        self.cmpok() != 0
     }
 
     #[doc="Compare register update OK"]
@@ -329,7 +329,7 @@ impl Isr {
 
     #[doc="External trigger edge event"]
     #[inline] pub fn test_exttrig(&self) -> bool {
-        self.exttrig != 0
+        self.exttrig() != 0
     }
 
     #[doc="External trigger edge event"]
@@ -348,7 +348,7 @@ impl Isr {
 
     #[doc="Autoreload match"]
     #[inline] pub fn test_arrm(&self) -> bool {
-        self.arrm != 0
+        self.arrm() != 0
     }
 
     #[doc="Autoreload match"]
@@ -367,7 +367,7 @@ impl Isr {
 
     #[doc="Compare match"]
     #[inline] pub fn test_cmpm(&self) -> bool {
-        self.cmpm != 0
+        self.cmpm() != 0
     }
 
     #[doc="Compare match"]
@@ -413,7 +413,7 @@ impl Icr {
 
     #[doc="Direction change to down Clear Flag"]
     #[inline] pub fn test_downcf(&self) -> bool {
-        self.downcf != 0
+        self.downcf() != 0
     }
 
     #[doc="Direction change to down Clear Flag"]
@@ -432,7 +432,7 @@ impl Icr {
 
     #[doc="Direction change to UP Clear Flag"]
     #[inline] pub fn test_upcf(&self) -> bool {
-        self.upcf != 0
+        self.upcf() != 0
     }
 
     #[doc="Direction change to UP Clear Flag"]
@@ -451,7 +451,7 @@ impl Icr {
 
     #[doc="Autoreload register update OK Clear Flag"]
     #[inline] pub fn test_arrokcf(&self) -> bool {
-        self.arrokcf != 0
+        self.arrokcf() != 0
     }
 
     #[doc="Autoreload register update OK Clear Flag"]
@@ -470,7 +470,7 @@ impl Icr {
 
     #[doc="Compare register update OK Clear Flag"]
     #[inline] pub fn test_cmpokcf(&self) -> bool {
-        self.cmpokcf != 0
+        self.cmpokcf() != 0
     }
 
     #[doc="Compare register update OK Clear Flag"]
@@ -489,7 +489,7 @@ impl Icr {
 
     #[doc="External trigger valid edge Clear Flag"]
     #[inline] pub fn test_exttrigcf(&self) -> bool {
-        self.exttrigcf != 0
+        self.exttrigcf() != 0
     }
 
     #[doc="External trigger valid edge Clear Flag"]
@@ -508,7 +508,7 @@ impl Icr {
 
     #[doc="Autoreload match Clear Flag"]
     #[inline] pub fn test_arrmcf(&self) -> bool {
-        self.arrmcf != 0
+        self.arrmcf() != 0
     }
 
     #[doc="Autoreload match Clear Flag"]
@@ -527,7 +527,7 @@ impl Icr {
 
     #[doc="compare match Clear Flag"]
     #[inline] pub fn test_cmpmcf(&self) -> bool {
-        self.cmpmcf != 0
+        self.cmpmcf() != 0
     }
 
     #[doc="compare match Clear Flag"]
@@ -573,7 +573,7 @@ impl Ier {
 
     #[doc="Direction change to down Interrupt Enable"]
     #[inline] pub fn test_downie(&self) -> bool {
-        self.downie != 0
+        self.downie() != 0
     }
 
     #[doc="Direction change to down Interrupt Enable"]
@@ -592,7 +592,7 @@ impl Ier {
 
     #[doc="Direction change to UP Interrupt Enable"]
     #[inline] pub fn test_upie(&self) -> bool {
-        self.upie != 0
+        self.upie() != 0
     }
 
     #[doc="Direction change to UP Interrupt Enable"]
@@ -611,7 +611,7 @@ impl Ier {
 
     #[doc="Autoreload register update OK Interrupt Enable"]
     #[inline] pub fn test_arrokie(&self) -> bool {
-        self.arrokie != 0
+        self.arrokie() != 0
     }
 
     #[doc="Autoreload register update OK Interrupt Enable"]
@@ -630,7 +630,7 @@ impl Ier {
 
     #[doc="Compare register update OK Interrupt Enable"]
     #[inline] pub fn test_cmpokie(&self) -> bool {
-        self.cmpokie != 0
+        self.cmpokie() != 0
     }
 
     #[doc="Compare register update OK Interrupt Enable"]
@@ -649,7 +649,7 @@ impl Ier {
 
     #[doc="External trigger valid edge Interrupt Enable"]
     #[inline] pub fn test_exttrigie(&self) -> bool {
-        self.exttrigie != 0
+        self.exttrigie() != 0
     }
 
     #[doc="External trigger valid edge Interrupt Enable"]
@@ -668,7 +668,7 @@ impl Ier {
 
     #[doc="Autoreload match Interrupt Enable"]
     #[inline] pub fn test_arrmie(&self) -> bool {
-        self.arrmie != 0
+        self.arrmie() != 0
     }
 
     #[doc="Autoreload match Interrupt Enable"]
@@ -687,7 +687,7 @@ impl Ier {
 
     #[doc="Compare match Interrupt Enable"]
     #[inline] pub fn test_cmpmie(&self) -> bool {
-        self.cmpmie != 0
+        self.cmpmie() != 0
     }
 
     #[doc="Compare match Interrupt Enable"]
@@ -733,7 +733,7 @@ impl Cfgr {
 
     #[doc="Encoder mode enable"]
     #[inline] pub fn test_enc(&self) -> bool {
-        self.enc != 0
+        self.enc() != 0
     }
 
     #[doc="Encoder mode enable"]
@@ -752,7 +752,7 @@ impl Cfgr {
 
     #[doc="counter mode enabled"]
     #[inline] pub fn test_countmode(&self) -> bool {
-        self.countmode != 0
+        self.countmode() != 0
     }
 
     #[doc="counter mode enabled"]
@@ -771,7 +771,7 @@ impl Cfgr {
 
     #[doc="Registers update mode"]
     #[inline] pub fn test_preload(&self) -> bool {
-        self.preload != 0
+        self.preload() != 0
     }
 
     #[doc="Registers update mode"]
@@ -790,7 +790,7 @@ impl Cfgr {
 
     #[doc="Waveform shape polarity"]
     #[inline] pub fn test_wavpol(&self) -> bool {
-        self.wavpol != 0
+        self.wavpol() != 0
     }
 
     #[doc="Waveform shape polarity"]
@@ -809,7 +809,7 @@ impl Cfgr {
 
     #[doc="Waveform shape"]
     #[inline] pub fn test_wave(&self) -> bool {
-        self.wave != 0
+        self.wave() != 0
     }
 
     #[doc="Waveform shape"]
@@ -828,7 +828,7 @@ impl Cfgr {
 
     #[doc="Timeout enable"]
     #[inline] pub fn test_timout(&self) -> bool {
-        self.timout != 0
+        self.timout() != 0
     }
 
     #[doc="Timeout enable"]
@@ -847,7 +847,7 @@ impl Cfgr {
 
     #[doc="Trigger enable and polarity"]
     #[inline] pub fn test_trigen(&self) -> bool {
-        self.trigen != 0
+        self.trigen() != 0
     }
 
     #[doc="Trigger enable and polarity"]
@@ -866,7 +866,7 @@ impl Cfgr {
 
     #[doc="Trigger selector"]
     #[inline] pub fn test_trigsel(&self) -> bool {
-        self.trigsel != 0
+        self.trigsel() != 0
     }
 
     #[doc="Trigger selector"]
@@ -885,7 +885,7 @@ impl Cfgr {
 
     #[doc="Clock prescaler"]
     #[inline] pub fn test_presc(&self) -> bool {
-        self.presc != 0
+        self.presc() != 0
     }
 
     #[doc="Clock prescaler"]
@@ -904,7 +904,7 @@ impl Cfgr {
 
     #[doc="Configurable digital filter for trigger"]
     #[inline] pub fn test_trgflt(&self) -> bool {
-        self.trgflt != 0
+        self.trgflt() != 0
     }
 
     #[doc="Configurable digital filter for trigger"]
@@ -923,7 +923,7 @@ impl Cfgr {
 
     #[doc="Configurable digital filter for external clock"]
     #[inline] pub fn test_ckflt(&self) -> bool {
-        self.ckflt != 0
+        self.ckflt() != 0
     }
 
     #[doc="Configurable digital filter for external clock"]
@@ -942,7 +942,7 @@ impl Cfgr {
 
     #[doc="Clock Polarity"]
     #[inline] pub fn test_ckpol(&self) -> bool {
-        self.ckpol != 0
+        self.ckpol() != 0
     }
 
     #[doc="Clock Polarity"]
@@ -961,7 +961,7 @@ impl Cfgr {
 
     #[doc="Clock selector"]
     #[inline] pub fn test_cksel(&self) -> bool {
-        self.cksel != 0
+        self.cksel() != 0
     }
 
     #[doc="Clock selector"]
@@ -1013,7 +1013,7 @@ impl Cr {
 
     #[doc="Timer start in continuous mode"]
     #[inline] pub fn test_cntstrt(&self) -> bool {
-        self.cntstrt != 0
+        self.cntstrt() != 0
     }
 
     #[doc="Timer start in continuous mode"]
@@ -1032,7 +1032,7 @@ impl Cr {
 
     #[doc="LPTIM start in single mode"]
     #[inline] pub fn test_sngstrt(&self) -> bool {
-        self.sngstrt != 0
+        self.sngstrt() != 0
     }
 
     #[doc="LPTIM start in single mode"]
@@ -1051,7 +1051,7 @@ impl Cr {
 
     #[doc="LPTIM Enable"]
     #[inline] pub fn test_enable(&self) -> bool {
-        self.enable != 0
+        self.enable() != 0
     }
 
     #[doc="LPTIM Enable"]
@@ -1093,7 +1093,7 @@ impl Cmp {
 
     #[doc="Compare value."]
     #[inline] pub fn test_cmp(&self) -> bool {
-        self.cmp != 0
+        self.cmp() != 0
     }
 
     #[doc="Compare value."]
@@ -1133,7 +1133,7 @@ impl Arr {
 
     #[doc="Auto reload value."]
     #[inline] pub fn test_arr(&self) -> bool {
-        self.arr != 0
+        self.arr() != 0
     }
 
     #[doc="Auto reload value."]
@@ -1173,7 +1173,7 @@ impl Cnt {
 
     #[doc="Counter value."]
     #[inline] pub fn test_cnt(&self) -> bool {
-        self.cnt != 0
+        self.cnt() != 0
     }
 
     #[doc="Counter value."]

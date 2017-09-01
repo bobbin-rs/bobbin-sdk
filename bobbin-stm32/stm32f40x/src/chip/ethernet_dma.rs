@@ -448,7 +448,7 @@ impl Dmabmr {
 
     #[doc="no description available"]
     #[inline] pub fn test_sr(&self) -> bool {
-        self.sr != 0
+        self.sr() != 0
     }
 
     #[doc="no description available"]
@@ -467,7 +467,7 @@ impl Dmabmr {
 
     #[doc="no description available"]
     #[inline] pub fn test_da(&self) -> bool {
-        self.da != 0
+        self.da() != 0
     }
 
     #[doc="no description available"]
@@ -486,7 +486,7 @@ impl Dmabmr {
 
     #[doc="no description available"]
     #[inline] pub fn test_dsl(&self) -> bool {
-        self.dsl != 0
+        self.dsl() != 0
     }
 
     #[doc="no description available"]
@@ -505,7 +505,7 @@ impl Dmabmr {
 
     #[doc="no description available"]
     #[inline] pub fn test_edfe(&self) -> bool {
-        self.edfe != 0
+        self.edfe() != 0
     }
 
     #[doc="no description available"]
@@ -524,7 +524,7 @@ impl Dmabmr {
 
     #[doc="no description available"]
     #[inline] pub fn test_pbl(&self) -> bool {
-        self.pbl != 0
+        self.pbl() != 0
     }
 
     #[doc="no description available"]
@@ -543,7 +543,7 @@ impl Dmabmr {
 
     #[doc="no description available"]
     #[inline] pub fn test_rtpr(&self) -> bool {
-        self.rtpr != 0
+        self.rtpr() != 0
     }
 
     #[doc="no description available"]
@@ -562,7 +562,7 @@ impl Dmabmr {
 
     #[doc="no description available"]
     #[inline] pub fn test_fb(&self) -> bool {
-        self.fb != 0
+        self.fb() != 0
     }
 
     #[doc="no description available"]
@@ -581,7 +581,7 @@ impl Dmabmr {
 
     #[doc="no description available"]
     #[inline] pub fn test_rdp(&self) -> bool {
-        self.rdp != 0
+        self.rdp() != 0
     }
 
     #[doc="no description available"]
@@ -600,7 +600,7 @@ impl Dmabmr {
 
     #[doc="no description available"]
     #[inline] pub fn test_usp(&self) -> bool {
-        self.usp != 0
+        self.usp() != 0
     }
 
     #[doc="no description available"]
@@ -619,7 +619,7 @@ impl Dmabmr {
 
     #[doc="no description available"]
     #[inline] pub fn test_fpm(&self) -> bool {
-        self.fpm != 0
+        self.fpm() != 0
     }
 
     #[doc="no description available"]
@@ -638,7 +638,7 @@ impl Dmabmr {
 
     #[doc="no description available"]
     #[inline] pub fn test_aab(&self) -> bool {
-        self.aab != 0
+        self.aab() != 0
     }
 
     #[doc="no description available"]
@@ -657,7 +657,7 @@ impl Dmabmr {
 
     #[doc="no description available"]
     #[inline] pub fn test_mb(&self) -> bool {
-        self.mb != 0
+        self.mb() != 0
     }
 
     #[doc="no description available"]
@@ -708,7 +708,7 @@ impl Dmatpdr {
 
     #[doc="no description available"]
     #[inline] pub fn test_tpd(&self) -> bool {
-        self.tpd != 0
+        self.tpd() != 0
     }
 
     #[doc="no description available"]
@@ -747,7 +747,7 @@ impl Dmarpdr {
 
     #[doc="RPD"]
     #[inline] pub fn test_rpd(&self) -> bool {
-        self.rpd != 0
+        self.rpd() != 0
     }
 
     #[doc="RPD"]
@@ -786,7 +786,7 @@ impl Dmardlar {
 
     #[doc="no description available"]
     #[inline] pub fn test_srl(&self) -> bool {
-        self.srl != 0
+        self.srl() != 0
     }
 
     #[doc="no description available"]
@@ -825,7 +825,7 @@ impl Dmatdlar {
 
     #[doc="no description available"]
     #[inline] pub fn test_stl(&self) -> bool {
-        self.stl != 0
+        self.stl() != 0
     }
 
     #[doc="no description available"]
@@ -864,7 +864,7 @@ impl Dmasr {
 
     #[doc="no description available"]
     #[inline] pub fn test_ts(&self) -> bool {
-        self.ts != 0
+        self.ts() != 0
     }
 
     #[doc="no description available"]
@@ -883,7 +883,7 @@ impl Dmasr {
 
     #[doc="no description available"]
     #[inline] pub fn test_tpss(&self) -> bool {
-        self.tpss != 0
+        self.tpss() != 0
     }
 
     #[doc="no description available"]
@@ -902,7 +902,7 @@ impl Dmasr {
 
     #[doc="no description available"]
     #[inline] pub fn test_tbus(&self) -> bool {
-        self.tbus != 0
+        self.tbus() != 0
     }
 
     #[doc="no description available"]
@@ -921,7 +921,7 @@ impl Dmasr {
 
     #[doc="no description available"]
     #[inline] pub fn test_tjts(&self) -> bool {
-        self.tjts != 0
+        self.tjts() != 0
     }
 
     #[doc="no description available"]
@@ -940,7 +940,7 @@ impl Dmasr {
 
     #[doc="no description available"]
     #[inline] pub fn test_ros(&self) -> bool {
-        self.ros != 0
+        self.ros() != 0
     }
 
     #[doc="no description available"]
@@ -959,7 +959,7 @@ impl Dmasr {
 
     #[doc="no description available"]
     #[inline] pub fn test_tus(&self) -> bool {
-        self.tus != 0
+        self.tus() != 0
     }
 
     #[doc="no description available"]
@@ -978,7 +978,7 @@ impl Dmasr {
 
     #[doc="no description available"]
     #[inline] pub fn test_rs(&self) -> bool {
-        self.rs != 0
+        self.rs() != 0
     }
 
     #[doc="no description available"]
@@ -997,7 +997,7 @@ impl Dmasr {
 
     #[doc="no description available"]
     #[inline] pub fn test_rbus(&self) -> bool {
-        self.rbus != 0
+        self.rbus() != 0
     }
 
     #[doc="no description available"]
@@ -1016,7 +1016,7 @@ impl Dmasr {
 
     #[doc="no description available"]
     #[inline] pub fn test_rpss(&self) -> bool {
-        self.rpss != 0
+        self.rpss() != 0
     }
 
     #[doc="no description available"]
@@ -1035,7 +1035,7 @@ impl Dmasr {
 
     #[doc="no description available"]
     #[inline] pub fn test_pwts(&self) -> bool {
-        self.pwts != 0
+        self.pwts() != 0
     }
 
     #[doc="no description available"]
@@ -1054,7 +1054,7 @@ impl Dmasr {
 
     #[doc="no description available"]
     #[inline] pub fn test_ets(&self) -> bool {
-        self.ets != 0
+        self.ets() != 0
     }
 
     #[doc="no description available"]
@@ -1073,7 +1073,7 @@ impl Dmasr {
 
     #[doc="no description available"]
     #[inline] pub fn test_fbes(&self) -> bool {
-        self.fbes != 0
+        self.fbes() != 0
     }
 
     #[doc="no description available"]
@@ -1092,7 +1092,7 @@ impl Dmasr {
 
     #[doc="no description available"]
     #[inline] pub fn test_ers(&self) -> bool {
-        self.ers != 0
+        self.ers() != 0
     }
 
     #[doc="no description available"]
@@ -1111,7 +1111,7 @@ impl Dmasr {
 
     #[doc="no description available"]
     #[inline] pub fn test_ais(&self) -> bool {
-        self.ais != 0
+        self.ais() != 0
     }
 
     #[doc="no description available"]
@@ -1130,7 +1130,7 @@ impl Dmasr {
 
     #[doc="no description available"]
     #[inline] pub fn test_nis(&self) -> bool {
-        self.nis != 0
+        self.nis() != 0
     }
 
     #[doc="no description available"]
@@ -1149,7 +1149,7 @@ impl Dmasr {
 
     #[doc="no description available"]
     #[inline] pub fn test_rps(&self) -> bool {
-        self.rps != 0
+        self.rps() != 0
     }
 
     #[doc="no description available"]
@@ -1168,7 +1168,7 @@ impl Dmasr {
 
     #[doc="no description available"]
     #[inline] pub fn test_tps(&self) -> bool {
-        self.tps != 0
+        self.tps() != 0
     }
 
     #[doc="no description available"]
@@ -1187,7 +1187,7 @@ impl Dmasr {
 
     #[doc="no description available"]
     #[inline] pub fn test_ebs(&self) -> bool {
-        self.ebs != 0
+        self.ebs() != 0
     }
 
     #[doc="no description available"]
@@ -1206,7 +1206,7 @@ impl Dmasr {
 
     #[doc="no description available"]
     #[inline] pub fn test_mmcs(&self) -> bool {
-        self.mmcs != 0
+        self.mmcs() != 0
     }
 
     #[doc="no description available"]
@@ -1225,7 +1225,7 @@ impl Dmasr {
 
     #[doc="no description available"]
     #[inline] pub fn test_pmts(&self) -> bool {
-        self.pmts != 0
+        self.pmts() != 0
     }
 
     #[doc="no description available"]
@@ -1244,7 +1244,7 @@ impl Dmasr {
 
     #[doc="no description available"]
     #[inline] pub fn test_tsts(&self) -> bool {
-        self.tsts != 0
+        self.tsts() != 0
     }
 
     #[doc="no description available"]
@@ -1304,7 +1304,7 @@ impl Dmaomr {
 
     #[doc="SR"]
     #[inline] pub fn test_sr(&self) -> bool {
-        self.sr != 0
+        self.sr() != 0
     }
 
     #[doc="SR"]
@@ -1323,7 +1323,7 @@ impl Dmaomr {
 
     #[doc="OSF"]
     #[inline] pub fn test_osf(&self) -> bool {
-        self.osf != 0
+        self.osf() != 0
     }
 
     #[doc="OSF"]
@@ -1342,7 +1342,7 @@ impl Dmaomr {
 
     #[doc="RTC"]
     #[inline] pub fn test_rtc(&self) -> bool {
-        self.rtc != 0
+        self.rtc() != 0
     }
 
     #[doc="RTC"]
@@ -1361,7 +1361,7 @@ impl Dmaomr {
 
     #[doc="FUGF"]
     #[inline] pub fn test_fugf(&self) -> bool {
-        self.fugf != 0
+        self.fugf() != 0
     }
 
     #[doc="FUGF"]
@@ -1380,7 +1380,7 @@ impl Dmaomr {
 
     #[doc="FEF"]
     #[inline] pub fn test_fef(&self) -> bool {
-        self.fef != 0
+        self.fef() != 0
     }
 
     #[doc="FEF"]
@@ -1399,7 +1399,7 @@ impl Dmaomr {
 
     #[doc="ST"]
     #[inline] pub fn test_st(&self) -> bool {
-        self.st != 0
+        self.st() != 0
     }
 
     #[doc="ST"]
@@ -1418,7 +1418,7 @@ impl Dmaomr {
 
     #[doc="TTC"]
     #[inline] pub fn test_ttc(&self) -> bool {
-        self.ttc != 0
+        self.ttc() != 0
     }
 
     #[doc="TTC"]
@@ -1437,7 +1437,7 @@ impl Dmaomr {
 
     #[doc="FTF"]
     #[inline] pub fn test_ftf(&self) -> bool {
-        self.ftf != 0
+        self.ftf() != 0
     }
 
     #[doc="FTF"]
@@ -1456,7 +1456,7 @@ impl Dmaomr {
 
     #[doc="TSF"]
     #[inline] pub fn test_tsf(&self) -> bool {
-        self.tsf != 0
+        self.tsf() != 0
     }
 
     #[doc="TSF"]
@@ -1475,7 +1475,7 @@ impl Dmaomr {
 
     #[doc="DFRF"]
     #[inline] pub fn test_dfrf(&self) -> bool {
-        self.dfrf != 0
+        self.dfrf() != 0
     }
 
     #[doc="DFRF"]
@@ -1494,7 +1494,7 @@ impl Dmaomr {
 
     #[doc="RSF"]
     #[inline] pub fn test_rsf(&self) -> bool {
-        self.rsf != 0
+        self.rsf() != 0
     }
 
     #[doc="RSF"]
@@ -1513,7 +1513,7 @@ impl Dmaomr {
 
     #[doc="DTCEFD"]
     #[inline] pub fn test_dtcefd(&self) -> bool {
-        self.dtcefd != 0
+        self.dtcefd() != 0
     }
 
     #[doc="DTCEFD"]
@@ -1564,7 +1564,7 @@ impl Dmaier {
 
     #[doc="no description available"]
     #[inline] pub fn test_tie(&self) -> bool {
-        self.tie != 0
+        self.tie() != 0
     }
 
     #[doc="no description available"]
@@ -1583,7 +1583,7 @@ impl Dmaier {
 
     #[doc="no description available"]
     #[inline] pub fn test_tpsie(&self) -> bool {
-        self.tpsie != 0
+        self.tpsie() != 0
     }
 
     #[doc="no description available"]
@@ -1602,7 +1602,7 @@ impl Dmaier {
 
     #[doc="no description available"]
     #[inline] pub fn test_tbuie(&self) -> bool {
-        self.tbuie != 0
+        self.tbuie() != 0
     }
 
     #[doc="no description available"]
@@ -1621,7 +1621,7 @@ impl Dmaier {
 
     #[doc="no description available"]
     #[inline] pub fn test_tjtie(&self) -> bool {
-        self.tjtie != 0
+        self.tjtie() != 0
     }
 
     #[doc="no description available"]
@@ -1640,7 +1640,7 @@ impl Dmaier {
 
     #[doc="no description available"]
     #[inline] pub fn test_roie(&self) -> bool {
-        self.roie != 0
+        self.roie() != 0
     }
 
     #[doc="no description available"]
@@ -1659,7 +1659,7 @@ impl Dmaier {
 
     #[doc="no description available"]
     #[inline] pub fn test_tuie(&self) -> bool {
-        self.tuie != 0
+        self.tuie() != 0
     }
 
     #[doc="no description available"]
@@ -1678,7 +1678,7 @@ impl Dmaier {
 
     #[doc="no description available"]
     #[inline] pub fn test_rie(&self) -> bool {
-        self.rie != 0
+        self.rie() != 0
     }
 
     #[doc="no description available"]
@@ -1697,7 +1697,7 @@ impl Dmaier {
 
     #[doc="no description available"]
     #[inline] pub fn test_rbuie(&self) -> bool {
-        self.rbuie != 0
+        self.rbuie() != 0
     }
 
     #[doc="no description available"]
@@ -1716,7 +1716,7 @@ impl Dmaier {
 
     #[doc="no description available"]
     #[inline] pub fn test_rpsie(&self) -> bool {
-        self.rpsie != 0
+        self.rpsie() != 0
     }
 
     #[doc="no description available"]
@@ -1735,7 +1735,7 @@ impl Dmaier {
 
     #[doc="no description available"]
     #[inline] pub fn test_rwtie(&self) -> bool {
-        self.rwtie != 0
+        self.rwtie() != 0
     }
 
     #[doc="no description available"]
@@ -1754,7 +1754,7 @@ impl Dmaier {
 
     #[doc="no description available"]
     #[inline] pub fn test_etie(&self) -> bool {
-        self.etie != 0
+        self.etie() != 0
     }
 
     #[doc="no description available"]
@@ -1773,7 +1773,7 @@ impl Dmaier {
 
     #[doc="no description available"]
     #[inline] pub fn test_fbeie(&self) -> bool {
-        self.fbeie != 0
+        self.fbeie() != 0
     }
 
     #[doc="no description available"]
@@ -1792,7 +1792,7 @@ impl Dmaier {
 
     #[doc="no description available"]
     #[inline] pub fn test_erie(&self) -> bool {
-        self.erie != 0
+        self.erie() != 0
     }
 
     #[doc="no description available"]
@@ -1811,7 +1811,7 @@ impl Dmaier {
 
     #[doc="no description available"]
     #[inline] pub fn test_aise(&self) -> bool {
-        self.aise != 0
+        self.aise() != 0
     }
 
     #[doc="no description available"]
@@ -1830,7 +1830,7 @@ impl Dmaier {
 
     #[doc="no description available"]
     #[inline] pub fn test_nise(&self) -> bool {
-        self.nise != 0
+        self.nise() != 0
     }
 
     #[doc="no description available"]
@@ -1884,7 +1884,7 @@ impl Dmamfbocr {
 
     #[doc="no description available"]
     #[inline] pub fn test_mfc(&self) -> bool {
-        self.mfc != 0
+        self.mfc() != 0
     }
 
     #[doc="no description available"]
@@ -1903,7 +1903,7 @@ impl Dmamfbocr {
 
     #[doc="no description available"]
     #[inline] pub fn test_omfc(&self) -> bool {
-        self.omfc != 0
+        self.omfc() != 0
     }
 
     #[doc="no description available"]
@@ -1922,7 +1922,7 @@ impl Dmamfbocr {
 
     #[doc="no description available"]
     #[inline] pub fn test_mfa(&self) -> bool {
-        self.mfa != 0
+        self.mfa() != 0
     }
 
     #[doc="no description available"]
@@ -1941,7 +1941,7 @@ impl Dmamfbocr {
 
     #[doc="no description available"]
     #[inline] pub fn test_ofoc(&self) -> bool {
-        self.ofoc != 0
+        self.ofoc() != 0
     }
 
     #[doc="no description available"]
@@ -1984,7 +1984,7 @@ impl Dmarswtr {
 
     #[doc="RSWTC"]
     #[inline] pub fn test_rswtc(&self) -> bool {
-        self.rswtc != 0
+        self.rswtc() != 0
     }
 
     #[doc="RSWTC"]
@@ -2024,7 +2024,7 @@ impl Dmachtdr {
 
     #[doc="HTDAP"]
     #[inline] pub fn test_htdap(&self) -> bool {
-        self.htdap != 0
+        self.htdap() != 0
     }
 
     #[doc="HTDAP"]
@@ -2063,7 +2063,7 @@ impl Dmachrdr {
 
     #[doc="HRDAP"]
     #[inline] pub fn test_hrdap(&self) -> bool {
-        self.hrdap != 0
+        self.hrdap() != 0
     }
 
     #[doc="HRDAP"]
@@ -2102,7 +2102,7 @@ impl Dmachtbar {
 
     #[doc="no description available"]
     #[inline] pub fn test_htbap(&self) -> bool {
-        self.htbap != 0
+        self.htbap() != 0
     }
 
     #[doc="no description available"]
@@ -2141,7 +2141,7 @@ impl Dmachrbar {
 
     #[doc="no description available"]
     #[inline] pub fn test_hrbap(&self) -> bool {
-        self.hrbap != 0
+        self.hrbap() != 0
     }
 
     #[doc="no description available"]

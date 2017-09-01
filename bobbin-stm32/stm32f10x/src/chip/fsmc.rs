@@ -954,7 +954,7 @@ impl Bcr1 {
 
     #[doc="CBURSTRW"]
     #[inline] pub fn test_cburstrw(&self) -> bool {
-        self.cburstrw != 0
+        self.cburstrw() != 0
     }
 
     #[doc="CBURSTRW"]
@@ -973,7 +973,7 @@ impl Bcr1 {
 
     #[doc="ASYNCWAIT"]
     #[inline] pub fn test_asyncwait(&self) -> bool {
-        self.asyncwait != 0
+        self.asyncwait() != 0
     }
 
     #[doc="ASYNCWAIT"]
@@ -992,7 +992,7 @@ impl Bcr1 {
 
     #[doc="EXTMOD"]
     #[inline] pub fn test_extmod(&self) -> bool {
-        self.extmod != 0
+        self.extmod() != 0
     }
 
     #[doc="EXTMOD"]
@@ -1011,7 +1011,7 @@ impl Bcr1 {
 
     #[doc="WAITEN"]
     #[inline] pub fn test_waiten(&self) -> bool {
-        self.waiten != 0
+        self.waiten() != 0
     }
 
     #[doc="WAITEN"]
@@ -1030,7 +1030,7 @@ impl Bcr1 {
 
     #[doc="WREN"]
     #[inline] pub fn test_wren(&self) -> bool {
-        self.wren != 0
+        self.wren() != 0
     }
 
     #[doc="WREN"]
@@ -1049,7 +1049,7 @@ impl Bcr1 {
 
     #[doc="WAITCFG"]
     #[inline] pub fn test_waitcfg(&self) -> bool {
-        self.waitcfg != 0
+        self.waitcfg() != 0
     }
 
     #[doc="WAITCFG"]
@@ -1068,7 +1068,7 @@ impl Bcr1 {
 
     #[doc="WAITPOL"]
     #[inline] pub fn test_waitpol(&self) -> bool {
-        self.waitpol != 0
+        self.waitpol() != 0
     }
 
     #[doc="WAITPOL"]
@@ -1087,7 +1087,7 @@ impl Bcr1 {
 
     #[doc="BURSTEN"]
     #[inline] pub fn test_bursten(&self) -> bool {
-        self.bursten != 0
+        self.bursten() != 0
     }
 
     #[doc="BURSTEN"]
@@ -1106,7 +1106,7 @@ impl Bcr1 {
 
     #[doc="FACCEN"]
     #[inline] pub fn test_faccen(&self) -> bool {
-        self.faccen != 0
+        self.faccen() != 0
     }
 
     #[doc="FACCEN"]
@@ -1125,7 +1125,7 @@ impl Bcr1 {
 
     #[doc="MWID"]
     #[inline] pub fn test_mwid(&self) -> bool {
-        self.mwid != 0
+        self.mwid() != 0
     }
 
     #[doc="MWID"]
@@ -1144,7 +1144,7 @@ impl Bcr1 {
 
     #[doc="MTYP"]
     #[inline] pub fn test_mtyp(&self) -> bool {
-        self.mtyp != 0
+        self.mtyp() != 0
     }
 
     #[doc="MTYP"]
@@ -1163,7 +1163,7 @@ impl Bcr1 {
 
     #[doc="MUXEN"]
     #[inline] pub fn test_muxen(&self) -> bool {
-        self.muxen != 0
+        self.muxen() != 0
     }
 
     #[doc="MUXEN"]
@@ -1182,7 +1182,7 @@ impl Bcr1 {
 
     #[doc="MBKEN"]
     #[inline] pub fn test_mbken(&self) -> bool {
-        self.mbken != 0
+        self.mbken() != 0
     }
 
     #[doc="MBKEN"]
@@ -1234,7 +1234,7 @@ impl Btr1 {
 
     #[doc="ACCMOD"]
     #[inline] pub fn test_accmod(&self) -> bool {
-        self.accmod != 0
+        self.accmod() != 0
     }
 
     #[doc="ACCMOD"]
@@ -1253,7 +1253,7 @@ impl Btr1 {
 
     #[doc="DATLAT"]
     #[inline] pub fn test_datlat(&self) -> bool {
-        self.datlat != 0
+        self.datlat() != 0
     }
 
     #[doc="DATLAT"]
@@ -1272,7 +1272,7 @@ impl Btr1 {
 
     #[doc="CLKDIV"]
     #[inline] pub fn test_clkdiv(&self) -> bool {
-        self.clkdiv != 0
+        self.clkdiv() != 0
     }
 
     #[doc="CLKDIV"]
@@ -1291,7 +1291,7 @@ impl Btr1 {
 
     #[doc="BUSTURN"]
     #[inline] pub fn test_busturn(&self) -> bool {
-        self.busturn != 0
+        self.busturn() != 0
     }
 
     #[doc="BUSTURN"]
@@ -1310,7 +1310,7 @@ impl Btr1 {
 
     #[doc="DATAST"]
     #[inline] pub fn test_datast(&self) -> bool {
-        self.datast != 0
+        self.datast() != 0
     }
 
     #[doc="DATAST"]
@@ -1329,7 +1329,7 @@ impl Btr1 {
 
     #[doc="ADDHLD"]
     #[inline] pub fn test_addhld(&self) -> bool {
-        self.addhld != 0
+        self.addhld() != 0
     }
 
     #[doc="ADDHLD"]
@@ -1348,7 +1348,7 @@ impl Btr1 {
 
     #[doc="ADDSET"]
     #[inline] pub fn test_addset(&self) -> bool {
-        self.addset != 0
+        self.addset() != 0
     }
 
     #[doc="ADDSET"]
@@ -1394,7 +1394,7 @@ impl Bcr2 {
 
     #[doc="CBURSTRW"]
     #[inline] pub fn test_cburstrw(&self) -> bool {
-        self.cburstrw != 0
+        self.cburstrw() != 0
     }
 
     #[doc="CBURSTRW"]
@@ -1413,7 +1413,7 @@ impl Bcr2 {
 
     #[doc="ASYNCWAIT"]
     #[inline] pub fn test_asyncwait(&self) -> bool {
-        self.asyncwait != 0
+        self.asyncwait() != 0
     }
 
     #[doc="ASYNCWAIT"]
@@ -1432,7 +1432,7 @@ impl Bcr2 {
 
     #[doc="EXTMOD"]
     #[inline] pub fn test_extmod(&self) -> bool {
-        self.extmod != 0
+        self.extmod() != 0
     }
 
     #[doc="EXTMOD"]
@@ -1451,7 +1451,7 @@ impl Bcr2 {
 
     #[doc="WAITEN"]
     #[inline] pub fn test_waiten(&self) -> bool {
-        self.waiten != 0
+        self.waiten() != 0
     }
 
     #[doc="WAITEN"]
@@ -1470,7 +1470,7 @@ impl Bcr2 {
 
     #[doc="WREN"]
     #[inline] pub fn test_wren(&self) -> bool {
-        self.wren != 0
+        self.wren() != 0
     }
 
     #[doc="WREN"]
@@ -1489,7 +1489,7 @@ impl Bcr2 {
 
     #[doc="WAITCFG"]
     #[inline] pub fn test_waitcfg(&self) -> bool {
-        self.waitcfg != 0
+        self.waitcfg() != 0
     }
 
     #[doc="WAITCFG"]
@@ -1508,7 +1508,7 @@ impl Bcr2 {
 
     #[doc="WRAPMOD"]
     #[inline] pub fn test_wrapmod(&self) -> bool {
-        self.wrapmod != 0
+        self.wrapmod() != 0
     }
 
     #[doc="WRAPMOD"]
@@ -1527,7 +1527,7 @@ impl Bcr2 {
 
     #[doc="WAITPOL"]
     #[inline] pub fn test_waitpol(&self) -> bool {
-        self.waitpol != 0
+        self.waitpol() != 0
     }
 
     #[doc="WAITPOL"]
@@ -1546,7 +1546,7 @@ impl Bcr2 {
 
     #[doc="BURSTEN"]
     #[inline] pub fn test_bursten(&self) -> bool {
-        self.bursten != 0
+        self.bursten() != 0
     }
 
     #[doc="BURSTEN"]
@@ -1565,7 +1565,7 @@ impl Bcr2 {
 
     #[doc="FACCEN"]
     #[inline] pub fn test_faccen(&self) -> bool {
-        self.faccen != 0
+        self.faccen() != 0
     }
 
     #[doc="FACCEN"]
@@ -1584,7 +1584,7 @@ impl Bcr2 {
 
     #[doc="MWID"]
     #[inline] pub fn test_mwid(&self) -> bool {
-        self.mwid != 0
+        self.mwid() != 0
     }
 
     #[doc="MWID"]
@@ -1603,7 +1603,7 @@ impl Bcr2 {
 
     #[doc="MTYP"]
     #[inline] pub fn test_mtyp(&self) -> bool {
-        self.mtyp != 0
+        self.mtyp() != 0
     }
 
     #[doc="MTYP"]
@@ -1622,7 +1622,7 @@ impl Bcr2 {
 
     #[doc="MUXEN"]
     #[inline] pub fn test_muxen(&self) -> bool {
-        self.muxen != 0
+        self.muxen() != 0
     }
 
     #[doc="MUXEN"]
@@ -1641,7 +1641,7 @@ impl Bcr2 {
 
     #[doc="MBKEN"]
     #[inline] pub fn test_mbken(&self) -> bool {
-        self.mbken != 0
+        self.mbken() != 0
     }
 
     #[doc="MBKEN"]
@@ -1694,7 +1694,7 @@ impl Btr2 {
 
     #[doc="ACCMOD"]
     #[inline] pub fn test_accmod(&self) -> bool {
-        self.accmod != 0
+        self.accmod() != 0
     }
 
     #[doc="ACCMOD"]
@@ -1713,7 +1713,7 @@ impl Btr2 {
 
     #[doc="DATLAT"]
     #[inline] pub fn test_datlat(&self) -> bool {
-        self.datlat != 0
+        self.datlat() != 0
     }
 
     #[doc="DATLAT"]
@@ -1732,7 +1732,7 @@ impl Btr2 {
 
     #[doc="CLKDIV"]
     #[inline] pub fn test_clkdiv(&self) -> bool {
-        self.clkdiv != 0
+        self.clkdiv() != 0
     }
 
     #[doc="CLKDIV"]
@@ -1751,7 +1751,7 @@ impl Btr2 {
 
     #[doc="BUSTURN"]
     #[inline] pub fn test_busturn(&self) -> bool {
-        self.busturn != 0
+        self.busturn() != 0
     }
 
     #[doc="BUSTURN"]
@@ -1770,7 +1770,7 @@ impl Btr2 {
 
     #[doc="DATAST"]
     #[inline] pub fn test_datast(&self) -> bool {
-        self.datast != 0
+        self.datast() != 0
     }
 
     #[doc="DATAST"]
@@ -1789,7 +1789,7 @@ impl Btr2 {
 
     #[doc="ADDHLD"]
     #[inline] pub fn test_addhld(&self) -> bool {
-        self.addhld != 0
+        self.addhld() != 0
     }
 
     #[doc="ADDHLD"]
@@ -1808,7 +1808,7 @@ impl Btr2 {
 
     #[doc="ADDSET"]
     #[inline] pub fn test_addset(&self) -> bool {
-        self.addset != 0
+        self.addset() != 0
     }
 
     #[doc="ADDSET"]
@@ -1854,7 +1854,7 @@ impl Bcr3 {
 
     #[doc="CBURSTRW"]
     #[inline] pub fn test_cburstrw(&self) -> bool {
-        self.cburstrw != 0
+        self.cburstrw() != 0
     }
 
     #[doc="CBURSTRW"]
@@ -1873,7 +1873,7 @@ impl Bcr3 {
 
     #[doc="ASYNCWAIT"]
     #[inline] pub fn test_asyncwait(&self) -> bool {
-        self.asyncwait != 0
+        self.asyncwait() != 0
     }
 
     #[doc="ASYNCWAIT"]
@@ -1892,7 +1892,7 @@ impl Bcr3 {
 
     #[doc="EXTMOD"]
     #[inline] pub fn test_extmod(&self) -> bool {
-        self.extmod != 0
+        self.extmod() != 0
     }
 
     #[doc="EXTMOD"]
@@ -1911,7 +1911,7 @@ impl Bcr3 {
 
     #[doc="WAITEN"]
     #[inline] pub fn test_waiten(&self) -> bool {
-        self.waiten != 0
+        self.waiten() != 0
     }
 
     #[doc="WAITEN"]
@@ -1930,7 +1930,7 @@ impl Bcr3 {
 
     #[doc="WREN"]
     #[inline] pub fn test_wren(&self) -> bool {
-        self.wren != 0
+        self.wren() != 0
     }
 
     #[doc="WREN"]
@@ -1949,7 +1949,7 @@ impl Bcr3 {
 
     #[doc="WAITCFG"]
     #[inline] pub fn test_waitcfg(&self) -> bool {
-        self.waitcfg != 0
+        self.waitcfg() != 0
     }
 
     #[doc="WAITCFG"]
@@ -1968,7 +1968,7 @@ impl Bcr3 {
 
     #[doc="WRAPMOD"]
     #[inline] pub fn test_wrapmod(&self) -> bool {
-        self.wrapmod != 0
+        self.wrapmod() != 0
     }
 
     #[doc="WRAPMOD"]
@@ -1987,7 +1987,7 @@ impl Bcr3 {
 
     #[doc="WAITPOL"]
     #[inline] pub fn test_waitpol(&self) -> bool {
-        self.waitpol != 0
+        self.waitpol() != 0
     }
 
     #[doc="WAITPOL"]
@@ -2006,7 +2006,7 @@ impl Bcr3 {
 
     #[doc="BURSTEN"]
     #[inline] pub fn test_bursten(&self) -> bool {
-        self.bursten != 0
+        self.bursten() != 0
     }
 
     #[doc="BURSTEN"]
@@ -2025,7 +2025,7 @@ impl Bcr3 {
 
     #[doc="FACCEN"]
     #[inline] pub fn test_faccen(&self) -> bool {
-        self.faccen != 0
+        self.faccen() != 0
     }
 
     #[doc="FACCEN"]
@@ -2044,7 +2044,7 @@ impl Bcr3 {
 
     #[doc="MWID"]
     #[inline] pub fn test_mwid(&self) -> bool {
-        self.mwid != 0
+        self.mwid() != 0
     }
 
     #[doc="MWID"]
@@ -2063,7 +2063,7 @@ impl Bcr3 {
 
     #[doc="MTYP"]
     #[inline] pub fn test_mtyp(&self) -> bool {
-        self.mtyp != 0
+        self.mtyp() != 0
     }
 
     #[doc="MTYP"]
@@ -2082,7 +2082,7 @@ impl Bcr3 {
 
     #[doc="MUXEN"]
     #[inline] pub fn test_muxen(&self) -> bool {
-        self.muxen != 0
+        self.muxen() != 0
     }
 
     #[doc="MUXEN"]
@@ -2101,7 +2101,7 @@ impl Bcr3 {
 
     #[doc="MBKEN"]
     #[inline] pub fn test_mbken(&self) -> bool {
-        self.mbken != 0
+        self.mbken() != 0
     }
 
     #[doc="MBKEN"]
@@ -2154,7 +2154,7 @@ impl Btr3 {
 
     #[doc="ACCMOD"]
     #[inline] pub fn test_accmod(&self) -> bool {
-        self.accmod != 0
+        self.accmod() != 0
     }
 
     #[doc="ACCMOD"]
@@ -2173,7 +2173,7 @@ impl Btr3 {
 
     #[doc="DATLAT"]
     #[inline] pub fn test_datlat(&self) -> bool {
-        self.datlat != 0
+        self.datlat() != 0
     }
 
     #[doc="DATLAT"]
@@ -2192,7 +2192,7 @@ impl Btr3 {
 
     #[doc="CLKDIV"]
     #[inline] pub fn test_clkdiv(&self) -> bool {
-        self.clkdiv != 0
+        self.clkdiv() != 0
     }
 
     #[doc="CLKDIV"]
@@ -2211,7 +2211,7 @@ impl Btr3 {
 
     #[doc="BUSTURN"]
     #[inline] pub fn test_busturn(&self) -> bool {
-        self.busturn != 0
+        self.busturn() != 0
     }
 
     #[doc="BUSTURN"]
@@ -2230,7 +2230,7 @@ impl Btr3 {
 
     #[doc="DATAST"]
     #[inline] pub fn test_datast(&self) -> bool {
-        self.datast != 0
+        self.datast() != 0
     }
 
     #[doc="DATAST"]
@@ -2249,7 +2249,7 @@ impl Btr3 {
 
     #[doc="ADDHLD"]
     #[inline] pub fn test_addhld(&self) -> bool {
-        self.addhld != 0
+        self.addhld() != 0
     }
 
     #[doc="ADDHLD"]
@@ -2268,7 +2268,7 @@ impl Btr3 {
 
     #[doc="ADDSET"]
     #[inline] pub fn test_addset(&self) -> bool {
-        self.addset != 0
+        self.addset() != 0
     }
 
     #[doc="ADDSET"]
@@ -2314,7 +2314,7 @@ impl Bcr4 {
 
     #[doc="CBURSTRW"]
     #[inline] pub fn test_cburstrw(&self) -> bool {
-        self.cburstrw != 0
+        self.cburstrw() != 0
     }
 
     #[doc="CBURSTRW"]
@@ -2333,7 +2333,7 @@ impl Bcr4 {
 
     #[doc="ASYNCWAIT"]
     #[inline] pub fn test_asyncwait(&self) -> bool {
-        self.asyncwait != 0
+        self.asyncwait() != 0
     }
 
     #[doc="ASYNCWAIT"]
@@ -2352,7 +2352,7 @@ impl Bcr4 {
 
     #[doc="EXTMOD"]
     #[inline] pub fn test_extmod(&self) -> bool {
-        self.extmod != 0
+        self.extmod() != 0
     }
 
     #[doc="EXTMOD"]
@@ -2371,7 +2371,7 @@ impl Bcr4 {
 
     #[doc="WAITEN"]
     #[inline] pub fn test_waiten(&self) -> bool {
-        self.waiten != 0
+        self.waiten() != 0
     }
 
     #[doc="WAITEN"]
@@ -2390,7 +2390,7 @@ impl Bcr4 {
 
     #[doc="WREN"]
     #[inline] pub fn test_wren(&self) -> bool {
-        self.wren != 0
+        self.wren() != 0
     }
 
     #[doc="WREN"]
@@ -2409,7 +2409,7 @@ impl Bcr4 {
 
     #[doc="WAITCFG"]
     #[inline] pub fn test_waitcfg(&self) -> bool {
-        self.waitcfg != 0
+        self.waitcfg() != 0
     }
 
     #[doc="WAITCFG"]
@@ -2428,7 +2428,7 @@ impl Bcr4 {
 
     #[doc="WRAPMOD"]
     #[inline] pub fn test_wrapmod(&self) -> bool {
-        self.wrapmod != 0
+        self.wrapmod() != 0
     }
 
     #[doc="WRAPMOD"]
@@ -2447,7 +2447,7 @@ impl Bcr4 {
 
     #[doc="WAITPOL"]
     #[inline] pub fn test_waitpol(&self) -> bool {
-        self.waitpol != 0
+        self.waitpol() != 0
     }
 
     #[doc="WAITPOL"]
@@ -2466,7 +2466,7 @@ impl Bcr4 {
 
     #[doc="BURSTEN"]
     #[inline] pub fn test_bursten(&self) -> bool {
-        self.bursten != 0
+        self.bursten() != 0
     }
 
     #[doc="BURSTEN"]
@@ -2485,7 +2485,7 @@ impl Bcr4 {
 
     #[doc="FACCEN"]
     #[inline] pub fn test_faccen(&self) -> bool {
-        self.faccen != 0
+        self.faccen() != 0
     }
 
     #[doc="FACCEN"]
@@ -2504,7 +2504,7 @@ impl Bcr4 {
 
     #[doc="MWID"]
     #[inline] pub fn test_mwid(&self) -> bool {
-        self.mwid != 0
+        self.mwid() != 0
     }
 
     #[doc="MWID"]
@@ -2523,7 +2523,7 @@ impl Bcr4 {
 
     #[doc="MTYP"]
     #[inline] pub fn test_mtyp(&self) -> bool {
-        self.mtyp != 0
+        self.mtyp() != 0
     }
 
     #[doc="MTYP"]
@@ -2542,7 +2542,7 @@ impl Bcr4 {
 
     #[doc="MUXEN"]
     #[inline] pub fn test_muxen(&self) -> bool {
-        self.muxen != 0
+        self.muxen() != 0
     }
 
     #[doc="MUXEN"]
@@ -2561,7 +2561,7 @@ impl Bcr4 {
 
     #[doc="MBKEN"]
     #[inline] pub fn test_mbken(&self) -> bool {
-        self.mbken != 0
+        self.mbken() != 0
     }
 
     #[doc="MBKEN"]
@@ -2614,7 +2614,7 @@ impl Btr4 {
 
     #[doc="ACCMOD"]
     #[inline] pub fn test_accmod(&self) -> bool {
-        self.accmod != 0
+        self.accmod() != 0
     }
 
     #[doc="ACCMOD"]
@@ -2633,7 +2633,7 @@ impl Btr4 {
 
     #[doc="DATLAT"]
     #[inline] pub fn test_datlat(&self) -> bool {
-        self.datlat != 0
+        self.datlat() != 0
     }
 
     #[doc="DATLAT"]
@@ -2652,7 +2652,7 @@ impl Btr4 {
 
     #[doc="CLKDIV"]
     #[inline] pub fn test_clkdiv(&self) -> bool {
-        self.clkdiv != 0
+        self.clkdiv() != 0
     }
 
     #[doc="CLKDIV"]
@@ -2671,7 +2671,7 @@ impl Btr4 {
 
     #[doc="BUSTURN"]
     #[inline] pub fn test_busturn(&self) -> bool {
-        self.busturn != 0
+        self.busturn() != 0
     }
 
     #[doc="BUSTURN"]
@@ -2690,7 +2690,7 @@ impl Btr4 {
 
     #[doc="DATAST"]
     #[inline] pub fn test_datast(&self) -> bool {
-        self.datast != 0
+        self.datast() != 0
     }
 
     #[doc="DATAST"]
@@ -2709,7 +2709,7 @@ impl Btr4 {
 
     #[doc="ADDHLD"]
     #[inline] pub fn test_addhld(&self) -> bool {
-        self.addhld != 0
+        self.addhld() != 0
     }
 
     #[doc="ADDHLD"]
@@ -2728,7 +2728,7 @@ impl Btr4 {
 
     #[doc="ADDSET"]
     #[inline] pub fn test_addset(&self) -> bool {
-        self.addset != 0
+        self.addset() != 0
     }
 
     #[doc="ADDSET"]
@@ -2774,7 +2774,7 @@ impl Pcr2 {
 
     #[doc="ECCPS"]
     #[inline] pub fn test_eccps(&self) -> bool {
-        self.eccps != 0
+        self.eccps() != 0
     }
 
     #[doc="ECCPS"]
@@ -2793,7 +2793,7 @@ impl Pcr2 {
 
     #[doc="TAR"]
     #[inline] pub fn test_tar(&self) -> bool {
-        self.tar != 0
+        self.tar() != 0
     }
 
     #[doc="TAR"]
@@ -2812,7 +2812,7 @@ impl Pcr2 {
 
     #[doc="TCLR"]
     #[inline] pub fn test_tclr(&self) -> bool {
-        self.tclr != 0
+        self.tclr() != 0
     }
 
     #[doc="TCLR"]
@@ -2831,7 +2831,7 @@ impl Pcr2 {
 
     #[doc="ECCEN"]
     #[inline] pub fn test_eccen(&self) -> bool {
-        self.eccen != 0
+        self.eccen() != 0
     }
 
     #[doc="ECCEN"]
@@ -2850,7 +2850,7 @@ impl Pcr2 {
 
     #[doc="PWID"]
     #[inline] pub fn test_pwid(&self) -> bool {
-        self.pwid != 0
+        self.pwid() != 0
     }
 
     #[doc="PWID"]
@@ -2869,7 +2869,7 @@ impl Pcr2 {
 
     #[doc="PTYP"]
     #[inline] pub fn test_ptyp(&self) -> bool {
-        self.ptyp != 0
+        self.ptyp() != 0
     }
 
     #[doc="PTYP"]
@@ -2888,7 +2888,7 @@ impl Pcr2 {
 
     #[doc="PBKEN"]
     #[inline] pub fn test_pbken(&self) -> bool {
-        self.pbken != 0
+        self.pbken() != 0
     }
 
     #[doc="PBKEN"]
@@ -2907,7 +2907,7 @@ impl Pcr2 {
 
     #[doc="PWAITEN"]
     #[inline] pub fn test_pwaiten(&self) -> bool {
-        self.pwaiten != 0
+        self.pwaiten() != 0
     }
 
     #[doc="PWAITEN"]
@@ -2954,7 +2954,7 @@ impl Sr2 {
 
     #[doc="FEMPT"]
     #[inline] pub fn test_fempt(&self) -> bool {
-        self.fempt != 0
+        self.fempt() != 0
     }
 
     #[doc="FEMPT"]
@@ -2973,7 +2973,7 @@ impl Sr2 {
 
     #[doc="IFEN"]
     #[inline] pub fn test_ifen(&self) -> bool {
-        self.ifen != 0
+        self.ifen() != 0
     }
 
     #[doc="IFEN"]
@@ -2992,7 +2992,7 @@ impl Sr2 {
 
     #[doc="ILEN"]
     #[inline] pub fn test_ilen(&self) -> bool {
-        self.ilen != 0
+        self.ilen() != 0
     }
 
     #[doc="ILEN"]
@@ -3011,7 +3011,7 @@ impl Sr2 {
 
     #[doc="IREN"]
     #[inline] pub fn test_iren(&self) -> bool {
-        self.iren != 0
+        self.iren() != 0
     }
 
     #[doc="IREN"]
@@ -3030,7 +3030,7 @@ impl Sr2 {
 
     #[doc="IFS"]
     #[inline] pub fn test_ifs(&self) -> bool {
-        self.ifs != 0
+        self.ifs() != 0
     }
 
     #[doc="IFS"]
@@ -3049,7 +3049,7 @@ impl Sr2 {
 
     #[doc="ILS"]
     #[inline] pub fn test_ils(&self) -> bool {
-        self.ils != 0
+        self.ils() != 0
     }
 
     #[doc="ILS"]
@@ -3068,7 +3068,7 @@ impl Sr2 {
 
     #[doc="IRS"]
     #[inline] pub fn test_irs(&self) -> bool {
-        self.irs != 0
+        self.irs() != 0
     }
 
     #[doc="IRS"]
@@ -3114,7 +3114,7 @@ impl Pmem2 {
 
     #[doc="MEMHIZx"]
     #[inline] pub fn test_memhizx(&self) -> bool {
-        self.memhizx != 0
+        self.memhizx() != 0
     }
 
     #[doc="MEMHIZx"]
@@ -3133,7 +3133,7 @@ impl Pmem2 {
 
     #[doc="MEMHOLDx"]
     #[inline] pub fn test_memholdx(&self) -> bool {
-        self.memholdx != 0
+        self.memholdx() != 0
     }
 
     #[doc="MEMHOLDx"]
@@ -3152,7 +3152,7 @@ impl Pmem2 {
 
     #[doc="MEMWAITx"]
     #[inline] pub fn test_memwaitx(&self) -> bool {
-        self.memwaitx != 0
+        self.memwaitx() != 0
     }
 
     #[doc="MEMWAITx"]
@@ -3171,7 +3171,7 @@ impl Pmem2 {
 
     #[doc="MEMSETx"]
     #[inline] pub fn test_memsetx(&self) -> bool {
-        self.memsetx != 0
+        self.memsetx() != 0
     }
 
     #[doc="MEMSETx"]
@@ -3214,7 +3214,7 @@ impl Patt2 {
 
     #[doc="Attribute memory x databus HiZ time"]
     #[inline] pub fn test_atthizx(&self) -> bool {
-        self.atthizx != 0
+        self.atthizx() != 0
     }
 
     #[doc="Attribute memory x databus HiZ time"]
@@ -3233,7 +3233,7 @@ impl Patt2 {
 
     #[doc="Attribute memory x hold time"]
     #[inline] pub fn test_attholdx(&self) -> bool {
-        self.attholdx != 0
+        self.attholdx() != 0
     }
 
     #[doc="Attribute memory x hold time"]
@@ -3252,7 +3252,7 @@ impl Patt2 {
 
     #[doc="Attribute memory x wait time"]
     #[inline] pub fn test_attwaitx(&self) -> bool {
-        self.attwaitx != 0
+        self.attwaitx() != 0
     }
 
     #[doc="Attribute memory x wait time"]
@@ -3271,7 +3271,7 @@ impl Patt2 {
 
     #[doc="Attribute memory x setup time"]
     #[inline] pub fn test_attsetx(&self) -> bool {
-        self.attsetx != 0
+        self.attsetx() != 0
     }
 
     #[doc="Attribute memory x setup time"]
@@ -3314,7 +3314,7 @@ impl Eccr2 {
 
     #[doc="ECC result"]
     #[inline] pub fn test_eccx(&self) -> bool {
-        self.eccx != 0
+        self.eccx() != 0
     }
 
     #[doc="ECC result"]
@@ -3353,7 +3353,7 @@ impl Pcr3 {
 
     #[doc="ECCPS"]
     #[inline] pub fn test_eccps(&self) -> bool {
-        self.eccps != 0
+        self.eccps() != 0
     }
 
     #[doc="ECCPS"]
@@ -3372,7 +3372,7 @@ impl Pcr3 {
 
     #[doc="TAR"]
     #[inline] pub fn test_tar(&self) -> bool {
-        self.tar != 0
+        self.tar() != 0
     }
 
     #[doc="TAR"]
@@ -3391,7 +3391,7 @@ impl Pcr3 {
 
     #[doc="TCLR"]
     #[inline] pub fn test_tclr(&self) -> bool {
-        self.tclr != 0
+        self.tclr() != 0
     }
 
     #[doc="TCLR"]
@@ -3410,7 +3410,7 @@ impl Pcr3 {
 
     #[doc="ECCEN"]
     #[inline] pub fn test_eccen(&self) -> bool {
-        self.eccen != 0
+        self.eccen() != 0
     }
 
     #[doc="ECCEN"]
@@ -3429,7 +3429,7 @@ impl Pcr3 {
 
     #[doc="PWID"]
     #[inline] pub fn test_pwid(&self) -> bool {
-        self.pwid != 0
+        self.pwid() != 0
     }
 
     #[doc="PWID"]
@@ -3448,7 +3448,7 @@ impl Pcr3 {
 
     #[doc="PTYP"]
     #[inline] pub fn test_ptyp(&self) -> bool {
-        self.ptyp != 0
+        self.ptyp() != 0
     }
 
     #[doc="PTYP"]
@@ -3467,7 +3467,7 @@ impl Pcr3 {
 
     #[doc="PBKEN"]
     #[inline] pub fn test_pbken(&self) -> bool {
-        self.pbken != 0
+        self.pbken() != 0
     }
 
     #[doc="PBKEN"]
@@ -3486,7 +3486,7 @@ impl Pcr3 {
 
     #[doc="PWAITEN"]
     #[inline] pub fn test_pwaiten(&self) -> bool {
-        self.pwaiten != 0
+        self.pwaiten() != 0
     }
 
     #[doc="PWAITEN"]
@@ -3533,7 +3533,7 @@ impl Sr3 {
 
     #[doc="FEMPT"]
     #[inline] pub fn test_fempt(&self) -> bool {
-        self.fempt != 0
+        self.fempt() != 0
     }
 
     #[doc="FEMPT"]
@@ -3552,7 +3552,7 @@ impl Sr3 {
 
     #[doc="IFEN"]
     #[inline] pub fn test_ifen(&self) -> bool {
-        self.ifen != 0
+        self.ifen() != 0
     }
 
     #[doc="IFEN"]
@@ -3571,7 +3571,7 @@ impl Sr3 {
 
     #[doc="ILEN"]
     #[inline] pub fn test_ilen(&self) -> bool {
-        self.ilen != 0
+        self.ilen() != 0
     }
 
     #[doc="ILEN"]
@@ -3590,7 +3590,7 @@ impl Sr3 {
 
     #[doc="IREN"]
     #[inline] pub fn test_iren(&self) -> bool {
-        self.iren != 0
+        self.iren() != 0
     }
 
     #[doc="IREN"]
@@ -3609,7 +3609,7 @@ impl Sr3 {
 
     #[doc="IFS"]
     #[inline] pub fn test_ifs(&self) -> bool {
-        self.ifs != 0
+        self.ifs() != 0
     }
 
     #[doc="IFS"]
@@ -3628,7 +3628,7 @@ impl Sr3 {
 
     #[doc="ILS"]
     #[inline] pub fn test_ils(&self) -> bool {
-        self.ils != 0
+        self.ils() != 0
     }
 
     #[doc="ILS"]
@@ -3647,7 +3647,7 @@ impl Sr3 {
 
     #[doc="IRS"]
     #[inline] pub fn test_irs(&self) -> bool {
-        self.irs != 0
+        self.irs() != 0
     }
 
     #[doc="IRS"]
@@ -3693,7 +3693,7 @@ impl Pmem3 {
 
     #[doc="MEMHIZx"]
     #[inline] pub fn test_memhizx(&self) -> bool {
-        self.memhizx != 0
+        self.memhizx() != 0
     }
 
     #[doc="MEMHIZx"]
@@ -3712,7 +3712,7 @@ impl Pmem3 {
 
     #[doc="MEMHOLDx"]
     #[inline] pub fn test_memholdx(&self) -> bool {
-        self.memholdx != 0
+        self.memholdx() != 0
     }
 
     #[doc="MEMHOLDx"]
@@ -3731,7 +3731,7 @@ impl Pmem3 {
 
     #[doc="MEMWAITx"]
     #[inline] pub fn test_memwaitx(&self) -> bool {
-        self.memwaitx != 0
+        self.memwaitx() != 0
     }
 
     #[doc="MEMWAITx"]
@@ -3750,7 +3750,7 @@ impl Pmem3 {
 
     #[doc="MEMSETx"]
     #[inline] pub fn test_memsetx(&self) -> bool {
-        self.memsetx != 0
+        self.memsetx() != 0
     }
 
     #[doc="MEMSETx"]
@@ -3793,7 +3793,7 @@ impl Patt3 {
 
     #[doc="ATTHIZx"]
     #[inline] pub fn test_atthizx(&self) -> bool {
-        self.atthizx != 0
+        self.atthizx() != 0
     }
 
     #[doc="ATTHIZx"]
@@ -3812,7 +3812,7 @@ impl Patt3 {
 
     #[doc="ATTHOLDx"]
     #[inline] pub fn test_attholdx(&self) -> bool {
-        self.attholdx != 0
+        self.attholdx() != 0
     }
 
     #[doc="ATTHOLDx"]
@@ -3831,7 +3831,7 @@ impl Patt3 {
 
     #[doc="ATTWAITx"]
     #[inline] pub fn test_attwaitx(&self) -> bool {
-        self.attwaitx != 0
+        self.attwaitx() != 0
     }
 
     #[doc="ATTWAITx"]
@@ -3850,7 +3850,7 @@ impl Patt3 {
 
     #[doc="ATTSETx"]
     #[inline] pub fn test_attsetx(&self) -> bool {
-        self.attsetx != 0
+        self.attsetx() != 0
     }
 
     #[doc="ATTSETx"]
@@ -3893,7 +3893,7 @@ impl Eccr3 {
 
     #[doc="ECCx"]
     #[inline] pub fn test_eccx(&self) -> bool {
-        self.eccx != 0
+        self.eccx() != 0
     }
 
     #[doc="ECCx"]
@@ -3932,7 +3932,7 @@ impl Pcr4 {
 
     #[doc="ECCPS"]
     #[inline] pub fn test_eccps(&self) -> bool {
-        self.eccps != 0
+        self.eccps() != 0
     }
 
     #[doc="ECCPS"]
@@ -3951,7 +3951,7 @@ impl Pcr4 {
 
     #[doc="TAR"]
     #[inline] pub fn test_tar(&self) -> bool {
-        self.tar != 0
+        self.tar() != 0
     }
 
     #[doc="TAR"]
@@ -3970,7 +3970,7 @@ impl Pcr4 {
 
     #[doc="TCLR"]
     #[inline] pub fn test_tclr(&self) -> bool {
-        self.tclr != 0
+        self.tclr() != 0
     }
 
     #[doc="TCLR"]
@@ -3989,7 +3989,7 @@ impl Pcr4 {
 
     #[doc="ECCEN"]
     #[inline] pub fn test_eccen(&self) -> bool {
-        self.eccen != 0
+        self.eccen() != 0
     }
 
     #[doc="ECCEN"]
@@ -4008,7 +4008,7 @@ impl Pcr4 {
 
     #[doc="PWID"]
     #[inline] pub fn test_pwid(&self) -> bool {
-        self.pwid != 0
+        self.pwid() != 0
     }
 
     #[doc="PWID"]
@@ -4027,7 +4027,7 @@ impl Pcr4 {
 
     #[doc="PTYP"]
     #[inline] pub fn test_ptyp(&self) -> bool {
-        self.ptyp != 0
+        self.ptyp() != 0
     }
 
     #[doc="PTYP"]
@@ -4046,7 +4046,7 @@ impl Pcr4 {
 
     #[doc="PBKEN"]
     #[inline] pub fn test_pbken(&self) -> bool {
-        self.pbken != 0
+        self.pbken() != 0
     }
 
     #[doc="PBKEN"]
@@ -4065,7 +4065,7 @@ impl Pcr4 {
 
     #[doc="PWAITEN"]
     #[inline] pub fn test_pwaiten(&self) -> bool {
-        self.pwaiten != 0
+        self.pwaiten() != 0
     }
 
     #[doc="PWAITEN"]
@@ -4112,7 +4112,7 @@ impl Sr4 {
 
     #[doc="FEMPT"]
     #[inline] pub fn test_fempt(&self) -> bool {
-        self.fempt != 0
+        self.fempt() != 0
     }
 
     #[doc="FEMPT"]
@@ -4131,7 +4131,7 @@ impl Sr4 {
 
     #[doc="IFEN"]
     #[inline] pub fn test_ifen(&self) -> bool {
-        self.ifen != 0
+        self.ifen() != 0
     }
 
     #[doc="IFEN"]
@@ -4150,7 +4150,7 @@ impl Sr4 {
 
     #[doc="ILEN"]
     #[inline] pub fn test_ilen(&self) -> bool {
-        self.ilen != 0
+        self.ilen() != 0
     }
 
     #[doc="ILEN"]
@@ -4169,7 +4169,7 @@ impl Sr4 {
 
     #[doc="IREN"]
     #[inline] pub fn test_iren(&self) -> bool {
-        self.iren != 0
+        self.iren() != 0
     }
 
     #[doc="IREN"]
@@ -4188,7 +4188,7 @@ impl Sr4 {
 
     #[doc="IFS"]
     #[inline] pub fn test_ifs(&self) -> bool {
-        self.ifs != 0
+        self.ifs() != 0
     }
 
     #[doc="IFS"]
@@ -4207,7 +4207,7 @@ impl Sr4 {
 
     #[doc="ILS"]
     #[inline] pub fn test_ils(&self) -> bool {
-        self.ils != 0
+        self.ils() != 0
     }
 
     #[doc="ILS"]
@@ -4226,7 +4226,7 @@ impl Sr4 {
 
     #[doc="IRS"]
     #[inline] pub fn test_irs(&self) -> bool {
-        self.irs != 0
+        self.irs() != 0
     }
 
     #[doc="IRS"]
@@ -4272,7 +4272,7 @@ impl Pmem4 {
 
     #[doc="MEMHIZx"]
     #[inline] pub fn test_memhizx(&self) -> bool {
-        self.memhizx != 0
+        self.memhizx() != 0
     }
 
     #[doc="MEMHIZx"]
@@ -4291,7 +4291,7 @@ impl Pmem4 {
 
     #[doc="MEMHOLDx"]
     #[inline] pub fn test_memholdx(&self) -> bool {
-        self.memholdx != 0
+        self.memholdx() != 0
     }
 
     #[doc="MEMHOLDx"]
@@ -4310,7 +4310,7 @@ impl Pmem4 {
 
     #[doc="MEMWAITx"]
     #[inline] pub fn test_memwaitx(&self) -> bool {
-        self.memwaitx != 0
+        self.memwaitx() != 0
     }
 
     #[doc="MEMWAITx"]
@@ -4329,7 +4329,7 @@ impl Pmem4 {
 
     #[doc="MEMSETx"]
     #[inline] pub fn test_memsetx(&self) -> bool {
-        self.memsetx != 0
+        self.memsetx() != 0
     }
 
     #[doc="MEMSETx"]
@@ -4372,7 +4372,7 @@ impl Patt4 {
 
     #[doc="ATTHIZx"]
     #[inline] pub fn test_atthizx(&self) -> bool {
-        self.atthizx != 0
+        self.atthizx() != 0
     }
 
     #[doc="ATTHIZx"]
@@ -4391,7 +4391,7 @@ impl Patt4 {
 
     #[doc="ATTHOLDx"]
     #[inline] pub fn test_attholdx(&self) -> bool {
-        self.attholdx != 0
+        self.attholdx() != 0
     }
 
     #[doc="ATTHOLDx"]
@@ -4410,7 +4410,7 @@ impl Patt4 {
 
     #[doc="ATTWAITx"]
     #[inline] pub fn test_attwaitx(&self) -> bool {
-        self.attwaitx != 0
+        self.attwaitx() != 0
     }
 
     #[doc="ATTWAITx"]
@@ -4429,7 +4429,7 @@ impl Patt4 {
 
     #[doc="ATTSETx"]
     #[inline] pub fn test_attsetx(&self) -> bool {
-        self.attsetx != 0
+        self.attsetx() != 0
     }
 
     #[doc="ATTSETx"]
@@ -4472,7 +4472,7 @@ impl Pio4 {
 
     #[doc="IOHIZx"]
     #[inline] pub fn test_iohizx(&self) -> bool {
-        self.iohizx != 0
+        self.iohizx() != 0
     }
 
     #[doc="IOHIZx"]
@@ -4491,7 +4491,7 @@ impl Pio4 {
 
     #[doc="IOHOLDx"]
     #[inline] pub fn test_ioholdx(&self) -> bool {
-        self.ioholdx != 0
+        self.ioholdx() != 0
     }
 
     #[doc="IOHOLDx"]
@@ -4510,7 +4510,7 @@ impl Pio4 {
 
     #[doc="IOWAITx"]
     #[inline] pub fn test_iowaitx(&self) -> bool {
-        self.iowaitx != 0
+        self.iowaitx() != 0
     }
 
     #[doc="IOWAITx"]
@@ -4529,7 +4529,7 @@ impl Pio4 {
 
     #[doc="IOSETx"]
     #[inline] pub fn test_iosetx(&self) -> bool {
-        self.iosetx != 0
+        self.iosetx() != 0
     }
 
     #[doc="IOSETx"]
@@ -4572,7 +4572,7 @@ impl Bwtr1 {
 
     #[doc="ACCMOD"]
     #[inline] pub fn test_accmod(&self) -> bool {
-        self.accmod != 0
+        self.accmod() != 0
     }
 
     #[doc="ACCMOD"]
@@ -4591,7 +4591,7 @@ impl Bwtr1 {
 
     #[doc="DATLAT"]
     #[inline] pub fn test_datlat(&self) -> bool {
-        self.datlat != 0
+        self.datlat() != 0
     }
 
     #[doc="DATLAT"]
@@ -4610,7 +4610,7 @@ impl Bwtr1 {
 
     #[doc="CLKDIV"]
     #[inline] pub fn test_clkdiv(&self) -> bool {
-        self.clkdiv != 0
+        self.clkdiv() != 0
     }
 
     #[doc="CLKDIV"]
@@ -4629,7 +4629,7 @@ impl Bwtr1 {
 
     #[doc="DATAST"]
     #[inline] pub fn test_datast(&self) -> bool {
-        self.datast != 0
+        self.datast() != 0
     }
 
     #[doc="DATAST"]
@@ -4648,7 +4648,7 @@ impl Bwtr1 {
 
     #[doc="ADDHLD"]
     #[inline] pub fn test_addhld(&self) -> bool {
-        self.addhld != 0
+        self.addhld() != 0
     }
 
     #[doc="ADDHLD"]
@@ -4667,7 +4667,7 @@ impl Bwtr1 {
 
     #[doc="ADDSET"]
     #[inline] pub fn test_addset(&self) -> bool {
-        self.addset != 0
+        self.addset() != 0
     }
 
     #[doc="ADDSET"]
@@ -4712,7 +4712,7 @@ impl Bwtr2 {
 
     #[doc="ACCMOD"]
     #[inline] pub fn test_accmod(&self) -> bool {
-        self.accmod != 0
+        self.accmod() != 0
     }
 
     #[doc="ACCMOD"]
@@ -4731,7 +4731,7 @@ impl Bwtr2 {
 
     #[doc="DATLAT"]
     #[inline] pub fn test_datlat(&self) -> bool {
-        self.datlat != 0
+        self.datlat() != 0
     }
 
     #[doc="DATLAT"]
@@ -4750,7 +4750,7 @@ impl Bwtr2 {
 
     #[doc="CLKDIV"]
     #[inline] pub fn test_clkdiv(&self) -> bool {
-        self.clkdiv != 0
+        self.clkdiv() != 0
     }
 
     #[doc="CLKDIV"]
@@ -4769,7 +4769,7 @@ impl Bwtr2 {
 
     #[doc="DATAST"]
     #[inline] pub fn test_datast(&self) -> bool {
-        self.datast != 0
+        self.datast() != 0
     }
 
     #[doc="DATAST"]
@@ -4788,7 +4788,7 @@ impl Bwtr2 {
 
     #[doc="ADDHLD"]
     #[inline] pub fn test_addhld(&self) -> bool {
-        self.addhld != 0
+        self.addhld() != 0
     }
 
     #[doc="ADDHLD"]
@@ -4807,7 +4807,7 @@ impl Bwtr2 {
 
     #[doc="ADDSET"]
     #[inline] pub fn test_addset(&self) -> bool {
-        self.addset != 0
+        self.addset() != 0
     }
 
     #[doc="ADDSET"]
@@ -4852,7 +4852,7 @@ impl Bwtr3 {
 
     #[doc="ACCMOD"]
     #[inline] pub fn test_accmod(&self) -> bool {
-        self.accmod != 0
+        self.accmod() != 0
     }
 
     #[doc="ACCMOD"]
@@ -4871,7 +4871,7 @@ impl Bwtr3 {
 
     #[doc="DATLAT"]
     #[inline] pub fn test_datlat(&self) -> bool {
-        self.datlat != 0
+        self.datlat() != 0
     }
 
     #[doc="DATLAT"]
@@ -4890,7 +4890,7 @@ impl Bwtr3 {
 
     #[doc="CLKDIV"]
     #[inline] pub fn test_clkdiv(&self) -> bool {
-        self.clkdiv != 0
+        self.clkdiv() != 0
     }
 
     #[doc="CLKDIV"]
@@ -4909,7 +4909,7 @@ impl Bwtr3 {
 
     #[doc="DATAST"]
     #[inline] pub fn test_datast(&self) -> bool {
-        self.datast != 0
+        self.datast() != 0
     }
 
     #[doc="DATAST"]
@@ -4928,7 +4928,7 @@ impl Bwtr3 {
 
     #[doc="ADDHLD"]
     #[inline] pub fn test_addhld(&self) -> bool {
-        self.addhld != 0
+        self.addhld() != 0
     }
 
     #[doc="ADDHLD"]
@@ -4947,7 +4947,7 @@ impl Bwtr3 {
 
     #[doc="ADDSET"]
     #[inline] pub fn test_addset(&self) -> bool {
-        self.addset != 0
+        self.addset() != 0
     }
 
     #[doc="ADDSET"]
@@ -4992,7 +4992,7 @@ impl Bwtr4 {
 
     #[doc="ACCMOD"]
     #[inline] pub fn test_accmod(&self) -> bool {
-        self.accmod != 0
+        self.accmod() != 0
     }
 
     #[doc="ACCMOD"]
@@ -5011,7 +5011,7 @@ impl Bwtr4 {
 
     #[doc="DATLAT"]
     #[inline] pub fn test_datlat(&self) -> bool {
-        self.datlat != 0
+        self.datlat() != 0
     }
 
     #[doc="DATLAT"]
@@ -5030,7 +5030,7 @@ impl Bwtr4 {
 
     #[doc="CLKDIV"]
     #[inline] pub fn test_clkdiv(&self) -> bool {
-        self.clkdiv != 0
+        self.clkdiv() != 0
     }
 
     #[doc="CLKDIV"]
@@ -5049,7 +5049,7 @@ impl Bwtr4 {
 
     #[doc="DATAST"]
     #[inline] pub fn test_datast(&self) -> bool {
-        self.datast != 0
+        self.datast() != 0
     }
 
     #[doc="DATAST"]
@@ -5068,7 +5068,7 @@ impl Bwtr4 {
 
     #[doc="ADDHLD"]
     #[inline] pub fn test_addhld(&self) -> bool {
-        self.addhld != 0
+        self.addhld() != 0
     }
 
     #[doc="ADDHLD"]
@@ -5087,7 +5087,7 @@ impl Bwtr4 {
 
     #[doc="ADDSET"]
     #[inline] pub fn test_addset(&self) -> bool {
-        self.addset != 0
+        self.addset() != 0
     }
 
     #[doc="ADDSET"]

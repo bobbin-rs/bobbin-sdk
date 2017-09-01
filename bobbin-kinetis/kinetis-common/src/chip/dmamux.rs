@@ -66,7 +66,7 @@ impl Chcfg {
 
     #[doc="DMA Channel Source (Slot)"]
     #[inline] pub fn test_source(&self) -> bool {
-        self.source != 0
+        self.source() != 0
     }
 
     #[doc="DMA Channel Source (Slot)"]
@@ -85,7 +85,7 @@ impl Chcfg {
 
     #[doc="DMA Channel Trigger Enable"]
     #[inline] pub fn test_trig(&self) -> bool {
-        self.trig != 0
+        self.trig() != 0
     }
 
     #[doc="DMA Channel Trigger Enable"]
@@ -104,7 +104,7 @@ impl Chcfg {
 
     #[doc="DMA Channel Enable"]
     #[inline] pub fn test_enbl(&self) -> bool {
-        self.enbl != 0
+        self.enbl() != 0
     }
 
     #[doc="DMA Channel Enable"]

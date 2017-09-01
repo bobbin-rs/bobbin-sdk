@@ -505,7 +505,7 @@ impl Ahbmask {
 
     #[doc="HPB0 AHB Clock Enable"]
     #[inline] pub fn test_hpb0(&self) -> bool {
-        self.hpb0 != 0
+        self.hpb0() != 0
     }
 
     #[doc="HPB0 AHB Clock Enable"]
@@ -524,7 +524,7 @@ impl Ahbmask {
 
     #[doc="HPB1 AHB Clock Enable"]
     #[inline] pub fn test_hpb1(&self) -> bool {
-        self.hpb1 != 0
+        self.hpb1() != 0
     }
 
     #[doc="HPB1 AHB Clock Enable"]
@@ -543,7 +543,7 @@ impl Ahbmask {
 
     #[doc="HPB2 AHB Clock Enable"]
     #[inline] pub fn test_hpb2(&self) -> bool {
-        self.hpb2 != 0
+        self.hpb2() != 0
     }
 
     #[doc="HPB2 AHB Clock Enable"]
@@ -562,7 +562,7 @@ impl Ahbmask {
 
     #[doc="DSU AHB Clock Enable"]
     #[inline] pub fn test_dsu(&self) -> bool {
-        self.dsu != 0
+        self.dsu() != 0
     }
 
     #[doc="DSU AHB Clock Enable"]
@@ -581,7 +581,7 @@ impl Ahbmask {
 
     #[doc="NVMCTRL AHB Clock Enable"]
     #[inline] pub fn test_nvmctrl(&self) -> bool {
-        self.nvmctrl != 0
+        self.nvmctrl() != 0
     }
 
     #[doc="NVMCTRL AHB Clock Enable"]
@@ -600,7 +600,7 @@ impl Ahbmask {
 
     #[doc="DMAC AHB Clock Enable"]
     #[inline] pub fn test_dmac(&self) -> bool {
-        self.dmac != 0
+        self.dmac() != 0
     }
 
     #[doc="DMAC AHB Clock Enable"]
@@ -619,7 +619,7 @@ impl Ahbmask {
 
     #[doc="USB AHB Clock Enable"]
     #[inline] pub fn test_usb(&self) -> bool {
-        self.usb != 0
+        self.usb() != 0
     }
 
     #[doc="USB AHB Clock Enable"]
@@ -665,7 +665,7 @@ impl Apbamask {
 
     #[doc="PAC0 APB Clock Enable"]
     #[inline] pub fn test_pac0(&self) -> bool {
-        self.pac0 != 0
+        self.pac0() != 0
     }
 
     #[doc="PAC0 APB Clock Enable"]
@@ -684,7 +684,7 @@ impl Apbamask {
 
     #[doc="PM APB Clock Enable"]
     #[inline] pub fn test_pm(&self) -> bool {
-        self.pm != 0
+        self.pm() != 0
     }
 
     #[doc="PM APB Clock Enable"]
@@ -703,7 +703,7 @@ impl Apbamask {
 
     #[doc="SYSCTRL APB Clock Enable"]
     #[inline] pub fn test_sysctrl(&self) -> bool {
-        self.sysctrl != 0
+        self.sysctrl() != 0
     }
 
     #[doc="SYSCTRL APB Clock Enable"]
@@ -722,7 +722,7 @@ impl Apbamask {
 
     #[doc="GCLK APB Clock Enable"]
     #[inline] pub fn test_gclk(&self) -> bool {
-        self.gclk != 0
+        self.gclk() != 0
     }
 
     #[doc="GCLK APB Clock Enable"]
@@ -741,7 +741,7 @@ impl Apbamask {
 
     #[doc="WDT APB Clock Enable"]
     #[inline] pub fn test_wdt(&self) -> bool {
-        self.wdt != 0
+        self.wdt() != 0
     }
 
     #[doc="WDT APB Clock Enable"]
@@ -760,7 +760,7 @@ impl Apbamask {
 
     #[doc="RTC APB Clock Enable"]
     #[inline] pub fn test_rtc(&self) -> bool {
-        self.rtc != 0
+        self.rtc() != 0
     }
 
     #[doc="RTC APB Clock Enable"]
@@ -779,7 +779,7 @@ impl Apbamask {
 
     #[doc="EIC APB Clock Enable"]
     #[inline] pub fn test_eic(&self) -> bool {
-        self.eic != 0
+        self.eic() != 0
     }
 
     #[doc="EIC APB Clock Enable"]
@@ -825,7 +825,7 @@ impl Apbasel {
 
     #[doc="APBA Prescaler Selection"]
     #[inline] pub fn test_apbadiv(&self) -> bool {
-        self.apbadiv != 0
+        self.apbadiv() != 0
     }
 
     #[doc="APBA Prescaler Selection"]
@@ -865,7 +865,7 @@ impl Apbbmask {
 
     #[doc="PAC1 APB Clock Enable"]
     #[inline] pub fn test_pac1(&self) -> bool {
-        self.pac1 != 0
+        self.pac1() != 0
     }
 
     #[doc="PAC1 APB Clock Enable"]
@@ -884,7 +884,7 @@ impl Apbbmask {
 
     #[doc="DSU APB Clock Enable"]
     #[inline] pub fn test_dsu(&self) -> bool {
-        self.dsu != 0
+        self.dsu() != 0
     }
 
     #[doc="DSU APB Clock Enable"]
@@ -903,7 +903,7 @@ impl Apbbmask {
 
     #[doc="NVMCTRL APB Clock Enable"]
     #[inline] pub fn test_nvmctrl(&self) -> bool {
-        self.nvmctrl != 0
+        self.nvmctrl() != 0
     }
 
     #[doc="NVMCTRL APB Clock Enable"]
@@ -922,7 +922,7 @@ impl Apbbmask {
 
     #[doc="PORT APB Clock Enable"]
     #[inline] pub fn test_port(&self) -> bool {
-        self.port != 0
+        self.port() != 0
     }
 
     #[doc="PORT APB Clock Enable"]
@@ -941,7 +941,7 @@ impl Apbbmask {
 
     #[doc="DMAC APB Clock Enable"]
     #[inline] pub fn test_dmac(&self) -> bool {
-        self.dmac != 0
+        self.dmac() != 0
     }
 
     #[doc="DMAC APB Clock Enable"]
@@ -960,7 +960,7 @@ impl Apbbmask {
 
     #[doc="USB APB Clock Enable"]
     #[inline] pub fn test_usb(&self) -> bool {
-        self.usb != 0
+        self.usb() != 0
     }
 
     #[doc="USB APB Clock Enable"]
@@ -1005,7 +1005,7 @@ impl Apbbsel {
 
     #[doc="APBB Prescaler Selection"]
     #[inline] pub fn test_apbbdiv(&self) -> bool {
-        self.apbbdiv != 0
+        self.apbbdiv() != 0
     }
 
     #[doc="APBB Prescaler Selection"]
@@ -1045,7 +1045,7 @@ impl Apbcmask {
 
     #[doc="PAC2 APB Clock Enable"]
     #[inline] pub fn test_pac2(&self) -> bool {
-        self.pac2 != 0
+        self.pac2() != 0
     }
 
     #[doc="PAC2 APB Clock Enable"]
@@ -1064,7 +1064,7 @@ impl Apbcmask {
 
     #[doc="EVSYS APB Clock Enable"]
     #[inline] pub fn test_evsys(&self) -> bool {
-        self.evsys != 0
+        self.evsys() != 0
     }
 
     #[doc="EVSYS APB Clock Enable"]
@@ -1083,7 +1083,7 @@ impl Apbcmask {
 
     #[doc="SERCOM0 APB Clock Enable"]
     #[inline] pub fn test_sercom0(&self) -> bool {
-        self.sercom0 != 0
+        self.sercom0() != 0
     }
 
     #[doc="SERCOM0 APB Clock Enable"]
@@ -1102,7 +1102,7 @@ impl Apbcmask {
 
     #[doc="SERCOM1 APB Clock Enable"]
     #[inline] pub fn test_sercom1(&self) -> bool {
-        self.sercom1 != 0
+        self.sercom1() != 0
     }
 
     #[doc="SERCOM1 APB Clock Enable"]
@@ -1121,7 +1121,7 @@ impl Apbcmask {
 
     #[doc="SERCOM2 APB Clock Enable"]
     #[inline] pub fn test_sercom2(&self) -> bool {
-        self.sercom2 != 0
+        self.sercom2() != 0
     }
 
     #[doc="SERCOM2 APB Clock Enable"]
@@ -1140,7 +1140,7 @@ impl Apbcmask {
 
     #[doc="SERCOM3 APB Clock Enable"]
     #[inline] pub fn test_sercom3(&self) -> bool {
-        self.sercom3 != 0
+        self.sercom3() != 0
     }
 
     #[doc="SERCOM3 APB Clock Enable"]
@@ -1159,7 +1159,7 @@ impl Apbcmask {
 
     #[doc="SERCOM4 APB Clock Enable"]
     #[inline] pub fn test_sercom4(&self) -> bool {
-        self.sercom4 != 0
+        self.sercom4() != 0
     }
 
     #[doc="SERCOM4 APB Clock Enable"]
@@ -1178,7 +1178,7 @@ impl Apbcmask {
 
     #[doc="SERCOM5 APB Clock Enable"]
     #[inline] pub fn test_sercom5(&self) -> bool {
-        self.sercom5 != 0
+        self.sercom5() != 0
     }
 
     #[doc="SERCOM5 APB Clock Enable"]
@@ -1197,7 +1197,7 @@ impl Apbcmask {
 
     #[doc="TCC0 APB Clock Enable"]
     #[inline] pub fn test_tcc0(&self) -> bool {
-        self.tcc0 != 0
+        self.tcc0() != 0
     }
 
     #[doc="TCC0 APB Clock Enable"]
@@ -1216,7 +1216,7 @@ impl Apbcmask {
 
     #[doc="TCC1 APB Clock Enable"]
     #[inline] pub fn test_tcc1(&self) -> bool {
-        self.tcc1 != 0
+        self.tcc1() != 0
     }
 
     #[doc="TCC1 APB Clock Enable"]
@@ -1235,7 +1235,7 @@ impl Apbcmask {
 
     #[doc="TCC2 APB Clock Enable"]
     #[inline] pub fn test_tcc2(&self) -> bool {
-        self.tcc2 != 0
+        self.tcc2() != 0
     }
 
     #[doc="TCC2 APB Clock Enable"]
@@ -1254,7 +1254,7 @@ impl Apbcmask {
 
     #[doc="TC3 APB Clock Enable"]
     #[inline] pub fn test_tc3(&self) -> bool {
-        self.tc3 != 0
+        self.tc3() != 0
     }
 
     #[doc="TC3 APB Clock Enable"]
@@ -1273,7 +1273,7 @@ impl Apbcmask {
 
     #[doc="TC4 APB Clock Enable"]
     #[inline] pub fn test_tc4(&self) -> bool {
-        self.tc4 != 0
+        self.tc4() != 0
     }
 
     #[doc="TC4 APB Clock Enable"]
@@ -1292,7 +1292,7 @@ impl Apbcmask {
 
     #[doc="TC5 APB Clock Enable"]
     #[inline] pub fn test_tc5(&self) -> bool {
-        self.tc5 != 0
+        self.tc5() != 0
     }
 
     #[doc="TC5 APB Clock Enable"]
@@ -1311,7 +1311,7 @@ impl Apbcmask {
 
     #[doc="ADC APB Clock Enable"]
     #[inline] pub fn test_adc(&self) -> bool {
-        self.adc != 0
+        self.adc() != 0
     }
 
     #[doc="ADC APB Clock Enable"]
@@ -1330,7 +1330,7 @@ impl Apbcmask {
 
     #[doc="AC APB Clock Enable"]
     #[inline] pub fn test_ac(&self) -> bool {
-        self.ac != 0
+        self.ac() != 0
     }
 
     #[doc="AC APB Clock Enable"]
@@ -1349,7 +1349,7 @@ impl Apbcmask {
 
     #[doc="DAC APB Clock Enable"]
     #[inline] pub fn test_dac(&self) -> bool {
-        self.dac != 0
+        self.dac() != 0
     }
 
     #[doc="DAC APB Clock Enable"]
@@ -1368,7 +1368,7 @@ impl Apbcmask {
 
     #[doc="I2S APB Clock Enable"]
     #[inline] pub fn test_i2s(&self) -> bool {
-        self.i2s != 0
+        self.i2s() != 0
     }
 
     #[doc="I2S APB Clock Enable"]
@@ -1387,7 +1387,7 @@ impl Apbcmask {
 
     #[doc="ATW APB Clock Enable"]
     #[inline] pub fn test_atw(&self) -> bool {
-        self.atw != 0
+        self.atw() != 0
     }
 
     #[doc="ATW APB Clock Enable"]
@@ -1445,7 +1445,7 @@ impl Apbcsel {
 
     #[doc="APBC Prescaler Selection"]
     #[inline] pub fn test_apbcdiv(&self) -> bool {
-        self.apbcdiv != 0
+        self.apbcdiv() != 0
     }
 
     #[doc="APBC Prescaler Selection"]
@@ -1485,7 +1485,7 @@ impl Cpusel {
 
     #[doc="CPU Prescaler Selection"]
     #[inline] pub fn test_cpudiv(&self) -> bool {
-        self.cpudiv != 0
+        self.cpudiv() != 0
     }
 
     #[doc="CPU Prescaler Selection"]
@@ -1525,7 +1525,7 @@ impl Ctrl {
 
     #[doc="Clock Failure Detector Enable"]
     #[inline] pub fn test_cfden(&self) -> bool {
-        self.cfden != 0
+        self.cfden() != 0
     }
 
     #[doc="Clock Failure Detector Enable"]
@@ -1544,7 +1544,7 @@ impl Ctrl {
 
     #[doc="Backup Clock Select"]
     #[inline] pub fn test_bkupclk(&self) -> bool {
-        self.bkupclk != 0
+        self.bkupclk() != 0
     }
 
     #[doc="Backup Clock Select"]
@@ -1585,7 +1585,7 @@ impl Intenclr {
 
     #[doc="Clock Ready Interrupt Enable"]
     #[inline] pub fn test_ckrdy(&self) -> bool {
-        self.ckrdy != 0
+        self.ckrdy() != 0
     }
 
     #[doc="Clock Ready Interrupt Enable"]
@@ -1604,7 +1604,7 @@ impl Intenclr {
 
     #[doc="Clock Failure Detector Interrupt Enable"]
     #[inline] pub fn test_cfd(&self) -> bool {
-        self.cfd != 0
+        self.cfd() != 0
     }
 
     #[doc="Clock Failure Detector Interrupt Enable"]
@@ -1645,7 +1645,7 @@ impl Intenset {
 
     #[doc="Clock Ready Interrupt Enable"]
     #[inline] pub fn test_ckrdy(&self) -> bool {
-        self.ckrdy != 0
+        self.ckrdy() != 0
     }
 
     #[doc="Clock Ready Interrupt Enable"]
@@ -1664,7 +1664,7 @@ impl Intenset {
 
     #[doc="Clock Failure Detector Interrupt Enable"]
     #[inline] pub fn test_cfd(&self) -> bool {
-        self.cfd != 0
+        self.cfd() != 0
     }
 
     #[doc="Clock Failure Detector Interrupt Enable"]
@@ -1705,7 +1705,7 @@ impl Intflag {
 
     #[doc="Clock Ready"]
     #[inline] pub fn test_ckrdy(&self) -> bool {
-        self.ckrdy != 0
+        self.ckrdy() != 0
     }
 
     #[doc="Clock Ready"]
@@ -1724,7 +1724,7 @@ impl Intflag {
 
     #[doc="Clock Failure Detector"]
     #[inline] pub fn test_cfd(&self) -> bool {
-        self.cfd != 0
+        self.cfd() != 0
     }
 
     #[doc="Clock Failure Detector"]
@@ -1765,7 +1765,7 @@ impl Rcause {
 
     #[doc="Power On Reset"]
     #[inline] pub fn test_por(&self) -> bool {
-        self.por != 0
+        self.por() != 0
     }
 
     #[doc="Power On Reset"]
@@ -1784,7 +1784,7 @@ impl Rcause {
 
     #[doc="Brown Out 12 Detector Reset"]
     #[inline] pub fn test_bod12(&self) -> bool {
-        self.bod12 != 0
+        self.bod12() != 0
     }
 
     #[doc="Brown Out 12 Detector Reset"]
@@ -1803,7 +1803,7 @@ impl Rcause {
 
     #[doc="Brown Out 33 Detector Reset"]
     #[inline] pub fn test_bod33(&self) -> bool {
-        self.bod33 != 0
+        self.bod33() != 0
     }
 
     #[doc="Brown Out 33 Detector Reset"]
@@ -1822,7 +1822,7 @@ impl Rcause {
 
     #[doc="External Reset"]
     #[inline] pub fn test_ext(&self) -> bool {
-        self.ext != 0
+        self.ext() != 0
     }
 
     #[doc="External Reset"]
@@ -1841,7 +1841,7 @@ impl Rcause {
 
     #[doc="Watchdog Reset"]
     #[inline] pub fn test_wdt(&self) -> bool {
-        self.wdt != 0
+        self.wdt() != 0
     }
 
     #[doc="Watchdog Reset"]
@@ -1860,7 +1860,7 @@ impl Rcause {
 
     #[doc="System Reset Request"]
     #[inline] pub fn test_syst(&self) -> bool {
-        self.syst != 0
+        self.syst() != 0
     }
 
     #[doc="System Reset Request"]
@@ -1905,7 +1905,7 @@ impl Sleep {
 
     #[doc="Idle Mode Configuration"]
     #[inline] pub fn test_idle(&self) -> bool {
-        self.idle != 0
+        self.idle() != 0
     }
 
     #[doc="Idle Mode Configuration"]

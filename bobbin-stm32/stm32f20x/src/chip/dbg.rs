@@ -145,7 +145,7 @@ impl Idcode {
 
     #[doc="DEV_ID"]
     #[inline] pub fn test_dev_id(&self) -> bool {
-        self.dev_id != 0
+        self.dev_id() != 0
     }
 
     #[doc="DEV_ID"]
@@ -164,7 +164,7 @@ impl Idcode {
 
     #[doc="REV_ID"]
     #[inline] pub fn test_rev_id(&self) -> bool {
-        self.rev_id != 0
+        self.rev_id() != 0
     }
 
     #[doc="REV_ID"]
@@ -205,7 +205,7 @@ impl Cr {
 
     #[doc="SLEEP"]
     #[inline] pub fn test_sleep(&self) -> bool {
-        self.sleep != 0
+        self.sleep() != 0
     }
 
     #[doc="SLEEP"]
@@ -224,7 +224,7 @@ impl Cr {
 
     #[doc="STOP"]
     #[inline] pub fn test_stop(&self) -> bool {
-        self.stop != 0
+        self.stop() != 0
     }
 
     #[doc="STOP"]
@@ -243,7 +243,7 @@ impl Cr {
 
     #[doc="STANDBY"]
     #[inline] pub fn test_standby(&self) -> bool {
-        self.standby != 0
+        self.standby() != 0
     }
 
     #[doc="STANDBY"]
@@ -262,7 +262,7 @@ impl Cr {
 
     #[doc="TRACE_IOEN"]
     #[inline] pub fn test_trace_ioen(&self) -> bool {
-        self.trace_ioen != 0
+        self.trace_ioen() != 0
     }
 
     #[doc="TRACE_IOEN"]
@@ -281,7 +281,7 @@ impl Cr {
 
     #[doc="TRACE_MODE"]
     #[inline] pub fn test_trace_mode(&self) -> bool {
-        self.trace_mode != 0
+        self.trace_mode() != 0
     }
 
     #[doc="TRACE_MODE"]
@@ -300,7 +300,7 @@ impl Cr {
 
     #[doc="I2C2_SMBUS_TIMEOUT"]
     #[inline] pub fn test_i2c2_smbus_timeout(&self) -> bool {
-        self.i2c2_smbus_timeout != 0
+        self.i2c2_smbus_timeout() != 0
     }
 
     #[doc="I2C2_SMBUS_TIMEOUT"]
@@ -319,7 +319,7 @@ impl Cr {
 
     #[doc="TIM8_STOP"]
     #[inline] pub fn test_tim8_stop(&self) -> bool {
-        self.tim8_stop != 0
+        self.tim8_stop() != 0
     }
 
     #[doc="TIM8_STOP"]
@@ -338,7 +338,7 @@ impl Cr {
 
     #[doc="TIM5_STOP"]
     #[inline] pub fn test_tim5_stop(&self) -> bool {
-        self.tim5_stop != 0
+        self.tim5_stop() != 0
     }
 
     #[doc="TIM5_STOP"]
@@ -357,7 +357,7 @@ impl Cr {
 
     #[doc="TIM6_STOP"]
     #[inline] pub fn test_tim6_stop(&self) -> bool {
-        self.tim6_stop != 0
+        self.tim6_stop() != 0
     }
 
     #[doc="TIM6_STOP"]
@@ -376,7 +376,7 @@ impl Cr {
 
     #[doc="TIM7_STOP"]
     #[inline] pub fn test_tim7_stop(&self) -> bool {
-        self.tim7_stop != 0
+        self.tim7_stop() != 0
     }
 
     #[doc="TIM7_STOP"]
@@ -425,7 +425,7 @@ impl Apb1Fz {
 
     #[doc="TIM2_STOP"]
     #[inline] pub fn test_tim2_stop(&self) -> bool {
-        self.tim2_stop != 0
+        self.tim2_stop() != 0
     }
 
     #[doc="TIM2_STOP"]
@@ -444,7 +444,7 @@ impl Apb1Fz {
 
     #[doc="TIM3 _STOP"]
     #[inline] pub fn test_tim3_stop(&self) -> bool {
-        self.tim3_stop != 0
+        self.tim3_stop() != 0
     }
 
     #[doc="TIM3 _STOP"]
@@ -463,7 +463,7 @@ impl Apb1Fz {
 
     #[doc="TIM4_STOP"]
     #[inline] pub fn test_tim4_stop(&self) -> bool {
-        self.tim4_stop != 0
+        self.tim4_stop() != 0
     }
 
     #[doc="TIM4_STOP"]
@@ -482,7 +482,7 @@ impl Apb1Fz {
 
     #[doc="TIM5_STOP"]
     #[inline] pub fn test_tim5_stop(&self) -> bool {
-        self.tim5_stop != 0
+        self.tim5_stop() != 0
     }
 
     #[doc="TIM5_STOP"]
@@ -501,7 +501,7 @@ impl Apb1Fz {
 
     #[doc="TIM6_STOP"]
     #[inline] pub fn test_tim6_stop(&self) -> bool {
-        self.tim6_stop != 0
+        self.tim6_stop() != 0
     }
 
     #[doc="TIM6_STOP"]
@@ -520,7 +520,7 @@ impl Apb1Fz {
 
     #[doc="TIM7_STOP"]
     #[inline] pub fn test_tim7_stop(&self) -> bool {
-        self.tim7_stop != 0
+        self.tim7_stop() != 0
     }
 
     #[doc="TIM7_STOP"]
@@ -539,7 +539,7 @@ impl Apb1Fz {
 
     #[doc="TIM12_STOP"]
     #[inline] pub fn test_tim12_stop(&self) -> bool {
-        self.tim12_stop != 0
+        self.tim12_stop() != 0
     }
 
     #[doc="TIM12_STOP"]
@@ -558,7 +558,7 @@ impl Apb1Fz {
 
     #[doc="TIM13_STOP"]
     #[inline] pub fn test_tim13_stop(&self) -> bool {
-        self.tim13_stop != 0
+        self.tim13_stop() != 0
     }
 
     #[doc="TIM13_STOP"]
@@ -577,7 +577,7 @@ impl Apb1Fz {
 
     #[doc="TIM14_STOP"]
     #[inline] pub fn test_tim14_stop(&self) -> bool {
-        self.tim14_stop != 0
+        self.tim14_stop() != 0
     }
 
     #[doc="TIM14_STOP"]
@@ -596,7 +596,7 @@ impl Apb1Fz {
 
     #[doc="WWDG_STOP"]
     #[inline] pub fn test_wwdg_stop(&self) -> bool {
-        self.wwdg_stop != 0
+        self.wwdg_stop() != 0
     }
 
     #[doc="WWDG_STOP"]
@@ -615,7 +615,7 @@ impl Apb1Fz {
 
     #[doc="IWDEG_STOP"]
     #[inline] pub fn test_iwdeg_stop(&self) -> bool {
-        self.iwdeg_stop != 0
+        self.iwdeg_stop() != 0
     }
 
     #[doc="IWDEG_STOP"]
@@ -634,7 +634,7 @@ impl Apb1Fz {
 
     #[doc="J2C1_SMBUS_TIMEOUT"]
     #[inline] pub fn test_j2c1_smbus_timeout(&self) -> bool {
-        self.j2c1_smbus_timeout != 0
+        self.j2c1_smbus_timeout() != 0
     }
 
     #[doc="J2C1_SMBUS_TIMEOUT"]
@@ -653,7 +653,7 @@ impl Apb1Fz {
 
     #[doc="J2C2_SMBUS_TIMEOUT"]
     #[inline] pub fn test_j2c2_smbus_timeout(&self) -> bool {
-        self.j2c2_smbus_timeout != 0
+        self.j2c2_smbus_timeout() != 0
     }
 
     #[doc="J2C2_SMBUS_TIMEOUT"]
@@ -672,7 +672,7 @@ impl Apb1Fz {
 
     #[doc="J2C3SMBUS_TIMEOUT"]
     #[inline] pub fn test_j2c3smbus_timeout(&self) -> bool {
-        self.j2c3smbus_timeout != 0
+        self.j2c3smbus_timeout() != 0
     }
 
     #[doc="J2C3SMBUS_TIMEOUT"]
@@ -691,7 +691,7 @@ impl Apb1Fz {
 
     #[doc="CAN1_STOP"]
     #[inline] pub fn test_can1_stop(&self) -> bool {
-        self.can1_stop != 0
+        self.can1_stop() != 0
     }
 
     #[doc="CAN1_STOP"]
@@ -710,7 +710,7 @@ impl Apb1Fz {
 
     #[doc="CAN2_STOP"]
     #[inline] pub fn test_can2_stop(&self) -> bool {
-        self.can2_stop != 0
+        self.can2_stop() != 0
     }
 
     #[doc="CAN2_STOP"]
@@ -765,7 +765,7 @@ impl Apb2Fz {
 
     #[doc="TIM1 counter stopped when core is halted"]
     #[inline] pub fn test_tim1_stop(&self) -> bool {
-        self.tim1_stop != 0
+        self.tim1_stop() != 0
     }
 
     #[doc="TIM1 counter stopped when core is halted"]
@@ -784,7 +784,7 @@ impl Apb2Fz {
 
     #[doc="TIM8 counter stopped when core is halted"]
     #[inline] pub fn test_tim8_stop(&self) -> bool {
-        self.tim8_stop != 0
+        self.tim8_stop() != 0
     }
 
     #[doc="TIM8 counter stopped when core is halted"]
@@ -803,7 +803,7 @@ impl Apb2Fz {
 
     #[doc="TIM9 counter stopped when core is halted"]
     #[inline] pub fn test_tim9_stop(&self) -> bool {
-        self.tim9_stop != 0
+        self.tim9_stop() != 0
     }
 
     #[doc="TIM9 counter stopped when core is halted"]
@@ -822,7 +822,7 @@ impl Apb2Fz {
 
     #[doc="TIM10 counter stopped when core is halted"]
     #[inline] pub fn test_tim10_stop(&self) -> bool {
-        self.tim10_stop != 0
+        self.tim10_stop() != 0
     }
 
     #[doc="TIM10 counter stopped when core is halted"]
@@ -841,7 +841,7 @@ impl Apb2Fz {
 
     #[doc="TIM11 counter stopped when core is halted"]
     #[inline] pub fn test_tim11_stop(&self) -> bool {
-        self.tim11_stop != 0
+        self.tim11_stop() != 0
     }
 
     #[doc="TIM11 counter stopped when core is halted"]

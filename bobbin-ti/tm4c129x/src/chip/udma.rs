@@ -695,7 +695,7 @@ impl Stat {
 
     #[doc="Master Enable Status"]
     #[inline] pub fn test_masten(&self) -> bool {
-        self.masten != 0
+        self.masten() != 0
     }
 
     #[doc="Master Enable Status"]
@@ -714,7 +714,7 @@ impl Stat {
 
     #[doc="Control State Machine Status"]
     #[inline] pub fn test_state(&self) -> bool {
-        self.state != 0
+        self.state() != 0
     }
 
     #[doc="Control State Machine Status"]
@@ -733,7 +733,7 @@ impl Stat {
 
     #[doc="Available uDMA Channels Minus 1"]
     #[inline] pub fn test_dmachans(&self) -> bool {
-        self.dmachans != 0
+        self.dmachans() != 0
     }
 
     #[doc="Available uDMA Channels Minus 1"]
@@ -775,7 +775,7 @@ impl Cfg {
 
     #[doc="Controller Master Enable"]
     #[inline] pub fn test_masten(&self) -> bool {
-        self.masten != 0
+        self.masten() != 0
     }
 
     #[doc="Controller Master Enable"]
@@ -815,7 +815,7 @@ impl Ctlbase {
 
     #[doc="Channel Control Base Address"]
     #[inline] pub fn test_addr(&self) -> bool {
-        self.addr != 0
+        self.addr() != 0
     }
 
     #[doc="Channel Control Base Address"]
@@ -855,7 +855,7 @@ impl Altbase {
 
     #[doc="Alternate Channel Address Pointer"]
     #[inline] pub fn test_addr(&self) -> bool {
-        self.addr != 0
+        self.addr() != 0
     }
 
     #[doc="Alternate Channel Address Pointer"]
@@ -2272,7 +2272,7 @@ impl Srcendp {
 
     #[doc="Source Address End Pointer. This field points to the last address of the μDMA transfer source (inclusive). If the source address is not incrementing (the SRCINC field in the DMACHCTL register is 0x3), then this field points at the source location itself (such as a peripheral data register)."]
     #[inline] pub fn test_addr(&self) -> bool {
-        self.addr != 0
+        self.addr() != 0
     }
 
     #[doc="Source Address End Pointer. This field points to the last address of the μDMA transfer source (inclusive). If the source address is not incrementing (the SRCINC field in the DMACHCTL register is 0x3), then this field points at the source location itself (such as a peripheral data register)."]
@@ -2311,7 +2311,7 @@ impl Dstendp {
 
     #[doc="Destination Address End Pointer. This field points to the last address of the μDMA transfer destination (inclusive). If the destination address is not incrementing (the DSTINC field in the DMACHCTL register is 0x3), then this field points at the destination location itself (such as a peripheral data register)."]
     #[inline] pub fn test_addr(&self) -> bool {
-        self.addr != 0
+        self.addr() != 0
     }
 
     #[doc="Destination Address End Pointer. This field points to the last address of the μDMA transfer destination (inclusive). If the destination address is not incrementing (the DSTINC field in the DMACHCTL register is 0x3), then this field points at the destination location itself (such as a peripheral data register)."]
@@ -2350,7 +2350,7 @@ impl Chctl {
 
     #[doc="Destination Address Increment. This field configures the destination address increment. The address increment value must be equal or greater than the value of the destination size (DSTSIZE)."]
     #[inline] pub fn test_dstinc(&self) -> bool {
-        self.dstinc != 0
+        self.dstinc() != 0
     }
 
     #[doc="Destination Address Increment. This field configures the destination address increment. The address increment value must be equal or greater than the value of the destination size (DSTSIZE)."]
@@ -2369,7 +2369,7 @@ impl Chctl {
 
     #[doc="Destination Data Size. This field configures the destination item data size."]
     #[inline] pub fn test_dstsize(&self) -> bool {
-        self.dstsize != 0
+        self.dstsize() != 0
     }
 
     #[doc="Destination Data Size. This field configures the destination item data size."]
@@ -2388,7 +2388,7 @@ impl Chctl {
 
     #[doc="Source Address Increment. This field configures the source address increment. The address increment value must be equal or greater than the value of the source size (SRCSIZE)."]
     #[inline] pub fn test_srcinc(&self) -> bool {
-        self.srcinc != 0
+        self.srcinc() != 0
     }
 
     #[doc="Source Address Increment. This field configures the source address increment. The address increment value must be equal or greater than the value of the source size (SRCSIZE)."]
@@ -2407,7 +2407,7 @@ impl Chctl {
 
     #[doc="Source Data Size. This field configures the source item data size."]
     #[inline] pub fn test_srcsize(&self) -> bool {
-        self.srcsize != 0
+        self.srcsize() != 0
     }
 
     #[doc="Source Data Size. This field configures the source item data size."]
@@ -2426,7 +2426,7 @@ impl Chctl {
 
     #[doc="Destination Privilege Access. This bit controls the privilege access protection for destination data writes."]
     #[inline] pub fn test_dstproto(&self) -> bool {
-        self.dstproto != 0
+        self.dstproto() != 0
     }
 
     #[doc="Destination Privilege Access. This bit controls the privilege access protection for destination data writes."]
@@ -2445,7 +2445,7 @@ impl Chctl {
 
     #[doc="Source Privilege Access. This bit controls the privilege access protection for source data reads."]
     #[inline] pub fn test_srcproto(&self) -> bool {
-        self.srcproto != 0
+        self.srcproto() != 0
     }
 
     #[doc="Source Privilege Access. This bit controls the privilege access protection for source data reads."]
@@ -2464,7 +2464,7 @@ impl Chctl {
 
     #[doc="Arbitration Size. This field configures the number of transfers that can occur before the μDMA controller re-arbitrates."]
     #[inline] pub fn test_arbsize(&self) -> bool {
-        self.arbsize != 0
+        self.arbsize() != 0
     }
 
     #[doc="Arbitration Size. This field configures the number of transfers that can occur before the μDMA controller re-arbitrates."]
@@ -2483,7 +2483,7 @@ impl Chctl {
 
     #[doc="Transfer Size (minus 1). This field configures the total number of items to transfer. The value of this field is 1 less than the number to transfer (value 0 means transfer 1 item). The maximum value for this 10-bit field is 1023 which represents a transfer size of 1024 items."]
     #[inline] pub fn test_xfersize(&self) -> bool {
-        self.xfersize != 0
+        self.xfersize() != 0
     }
 
     #[doc="Transfer Size (minus 1). This field configures the total number of items to transfer. The value of this field is 1 less than the number to transfer (value 0 means transfer 1 item). The maximum value for this 10-bit field is 1023 which represents a transfer size of 1024 items."]
@@ -2502,7 +2502,7 @@ impl Chctl {
 
     #[doc="Next Useburst. This field controls whether the Useburst SET[n] bit is automatically set for the last transfer of a peripheral scatter-gather operation. Normally, for the last transfer, if the number of remaining items to transfer is less than the arbitration size, the μDMA controller uses single transfers to complete the transaction. If this bit is set, then the controller uses a burst transfer to complete the last transfer."]
     #[inline] pub fn test_nxtuseburst(&self) -> bool {
-        self.nxtuseburst != 0
+        self.nxtuseburst() != 0
     }
 
     #[doc="Next Useburst. This field controls whether the Useburst SET[n] bit is automatically set for the last transfer of a peripheral scatter-gather operation. Normally, for the last transfer, if the number of remaining items to transfer is less than the arbitration size, the μDMA controller uses single transfers to complete the transaction. If this bit is set, then the controller uses a burst transfer to complete the last transfer."]
@@ -2521,7 +2521,7 @@ impl Chctl {
 
     #[doc="μDMA Transfer Mode. This field configures the operating mode of the μDMA cycle. Refer to “Transfer Modes” on page 685 for a detailed explanation of transfer modes. Because this register is in system RAM, it has no reset value. Therefore, this field should be initialized to 0 before the channel is enabled."]
     #[inline] pub fn test_xfermode(&self) -> bool {
-        self.xfermode != 0
+        self.xfermode() != 0
     }
 
     #[doc="μDMA Transfer Mode. This field configures the operating mode of the μDMA cycle. Refer to “Transfer Modes” on page 685 for a detailed explanation of transfer modes. Because this register is in system RAM, it has no reset value. Therefore, this field should be initialized to 0 before the channel is enabled."]

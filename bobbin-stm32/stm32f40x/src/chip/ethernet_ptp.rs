@@ -340,7 +340,7 @@ impl Ptptscr {
 
     #[doc="no description available"]
     #[inline] pub fn test_tse(&self) -> bool {
-        self.tse != 0
+        self.tse() != 0
     }
 
     #[doc="no description available"]
@@ -359,7 +359,7 @@ impl Ptptscr {
 
     #[doc="no description available"]
     #[inline] pub fn test_tsfcu(&self) -> bool {
-        self.tsfcu != 0
+        self.tsfcu() != 0
     }
 
     #[doc="no description available"]
@@ -378,7 +378,7 @@ impl Ptptscr {
 
     #[doc="no description available"]
     #[inline] pub fn test_tsptppsv2e(&self) -> bool {
-        self.tsptppsv2e != 0
+        self.tsptppsv2e() != 0
     }
 
     #[doc="no description available"]
@@ -397,7 +397,7 @@ impl Ptptscr {
 
     #[doc="no description available"]
     #[inline] pub fn test_tssptpoefe(&self) -> bool {
-        self.tssptpoefe != 0
+        self.tssptpoefe() != 0
     }
 
     #[doc="no description available"]
@@ -416,7 +416,7 @@ impl Ptptscr {
 
     #[doc="no description available"]
     #[inline] pub fn test_tssipv6fe(&self) -> bool {
-        self.tssipv6fe != 0
+        self.tssipv6fe() != 0
     }
 
     #[doc="no description available"]
@@ -435,7 +435,7 @@ impl Ptptscr {
 
     #[doc="no description available"]
     #[inline] pub fn test_tssipv4fe(&self) -> bool {
-        self.tssipv4fe != 0
+        self.tssipv4fe() != 0
     }
 
     #[doc="no description available"]
@@ -454,7 +454,7 @@ impl Ptptscr {
 
     #[doc="no description available"]
     #[inline] pub fn test_tsseme(&self) -> bool {
-        self.tsseme != 0
+        self.tsseme() != 0
     }
 
     #[doc="no description available"]
@@ -473,7 +473,7 @@ impl Ptptscr {
 
     #[doc="no description available"]
     #[inline] pub fn test_tssmrme(&self) -> bool {
-        self.tssmrme != 0
+        self.tssmrme() != 0
     }
 
     #[doc="no description available"]
@@ -492,7 +492,7 @@ impl Ptptscr {
 
     #[doc="no description available"]
     #[inline] pub fn test_tscnt(&self) -> bool {
-        self.tscnt != 0
+        self.tscnt() != 0
     }
 
     #[doc="no description available"]
@@ -511,7 +511,7 @@ impl Ptptscr {
 
     #[doc="no description available"]
     #[inline] pub fn test_tspffmae(&self) -> bool {
-        self.tspffmae != 0
+        self.tspffmae() != 0
     }
 
     #[doc="no description available"]
@@ -530,7 +530,7 @@ impl Ptptscr {
 
     #[doc="no description available"]
     #[inline] pub fn test_tssti(&self) -> bool {
-        self.tssti != 0
+        self.tssti() != 0
     }
 
     #[doc="no description available"]
@@ -549,7 +549,7 @@ impl Ptptscr {
 
     #[doc="no description available"]
     #[inline] pub fn test_tsstu(&self) -> bool {
-        self.tsstu != 0
+        self.tsstu() != 0
     }
 
     #[doc="no description available"]
@@ -568,7 +568,7 @@ impl Ptptscr {
 
     #[doc="no description available"]
     #[inline] pub fn test_tsite(&self) -> bool {
-        self.tsite != 0
+        self.tsite() != 0
     }
 
     #[doc="no description available"]
@@ -587,7 +587,7 @@ impl Ptptscr {
 
     #[doc="no description available"]
     #[inline] pub fn test_ttsaru(&self) -> bool {
-        self.ttsaru != 0
+        self.ttsaru() != 0
     }
 
     #[doc="no description available"]
@@ -606,7 +606,7 @@ impl Ptptscr {
 
     #[doc="no description available"]
     #[inline] pub fn test_tssarfe(&self) -> bool {
-        self.tssarfe != 0
+        self.tssarfe() != 0
     }
 
     #[doc="no description available"]
@@ -625,7 +625,7 @@ impl Ptptscr {
 
     #[doc="no description available"]
     #[inline] pub fn test_tsssr(&self) -> bool {
-        self.tsssr != 0
+        self.tsssr() != 0
     }
 
     #[doc="no description available"]
@@ -680,7 +680,7 @@ impl Ptpssir {
 
     #[doc="no description available"]
     #[inline] pub fn test_stssi(&self) -> bool {
-        self.stssi != 0
+        self.stssi() != 0
     }
 
     #[doc="no description available"]
@@ -720,7 +720,7 @@ impl Ptptshr {
 
     #[doc="no description available"]
     #[inline] pub fn test_sts(&self) -> bool {
-        self.sts != 0
+        self.sts() != 0
     }
 
     #[doc="no description available"]
@@ -759,7 +759,7 @@ impl Ptptslr {
 
     #[doc="no description available"]
     #[inline] pub fn test_stss(&self) -> bool {
-        self.stss != 0
+        self.stss() != 0
     }
 
     #[doc="no description available"]
@@ -778,7 +778,7 @@ impl Ptptslr {
 
     #[doc="no description available"]
     #[inline] pub fn test_stpns(&self) -> bool {
-        self.stpns != 0
+        self.stpns() != 0
     }
 
     #[doc="no description available"]
@@ -819,7 +819,7 @@ impl Ptptshur {
 
     #[doc="no description available"]
     #[inline] pub fn test_tsus(&self) -> bool {
-        self.tsus != 0
+        self.tsus() != 0
     }
 
     #[doc="no description available"]
@@ -858,7 +858,7 @@ impl Ptptslur {
 
     #[doc="no description available"]
     #[inline] pub fn test_tsuss(&self) -> bool {
-        self.tsuss != 0
+        self.tsuss() != 0
     }
 
     #[doc="no description available"]
@@ -877,7 +877,7 @@ impl Ptptslur {
 
     #[doc="no description available"]
     #[inline] pub fn test_tsupns(&self) -> bool {
-        self.tsupns != 0
+        self.tsupns() != 0
     }
 
     #[doc="no description available"]
@@ -918,7 +918,7 @@ impl Ptptsar {
 
     #[doc="no description available"]
     #[inline] pub fn test_tsa(&self) -> bool {
-        self.tsa != 0
+        self.tsa() != 0
     }
 
     #[doc="no description available"]
@@ -957,7 +957,7 @@ impl Ptptthr {
 
     #[doc="0"]
     #[inline] pub fn test_ttsh(&self) -> bool {
-        self.ttsh != 0
+        self.ttsh() != 0
     }
 
     #[doc="0"]
@@ -996,7 +996,7 @@ impl Ptpttlr {
 
     #[doc="no description available"]
     #[inline] pub fn test_ttsl(&self) -> bool {
-        self.ttsl != 0
+        self.ttsl() != 0
     }
 
     #[doc="no description available"]
@@ -1035,7 +1035,7 @@ impl Ptptssr {
 
     #[doc="no description available"]
     #[inline] pub fn test_tsso(&self) -> bool {
-        self.tsso != 0
+        self.tsso() != 0
     }
 
     #[doc="no description available"]
@@ -1054,7 +1054,7 @@ impl Ptptssr {
 
     #[doc="no description available"]
     #[inline] pub fn test_tsttr(&self) -> bool {
-        self.tsttr != 0
+        self.tsttr() != 0
     }
 
     #[doc="no description available"]
@@ -1095,7 +1095,7 @@ impl Ptpppscr {
 
     #[doc="TSSO"]
     #[inline] pub fn test_tsso(&self) -> bool {
-        self.tsso != 0
+        self.tsso() != 0
     }
 
     #[doc="TSSO"]
@@ -1114,7 +1114,7 @@ impl Ptpppscr {
 
     #[doc="TSTTR"]
     #[inline] pub fn test_tsttr(&self) -> bool {
-        self.tsttr != 0
+        self.tsttr() != 0
     }
 
     #[doc="TSTTR"]

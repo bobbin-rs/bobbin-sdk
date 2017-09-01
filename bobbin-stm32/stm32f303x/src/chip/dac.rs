@@ -471,7 +471,7 @@ impl Cr {
 
     #[doc="DAC channel2 DMA underrun interrupt enable"]
     #[inline] pub fn test_dmaudrie2(&self) -> bool {
-        self.dmaudrie2 != 0
+        self.dmaudrie2() != 0
     }
 
     #[doc="DAC channel2 DMA underrun interrupt enable"]
@@ -490,7 +490,7 @@ impl Cr {
 
     #[doc="DAC channel2 DMA enable"]
     #[inline] pub fn test_dmaen2(&self) -> bool {
-        self.dmaen2 != 0
+        self.dmaen2() != 0
     }
 
     #[doc="DAC channel2 DMA enable"]
@@ -509,7 +509,7 @@ impl Cr {
 
     #[doc="DAC channel2 mask/amplitude selector"]
     #[inline] pub fn test_mamp2(&self) -> bool {
-        self.mamp2 != 0
+        self.mamp2() != 0
     }
 
     #[doc="DAC channel2 mask/amplitude selector"]
@@ -528,7 +528,7 @@ impl Cr {
 
     #[doc="DAC channel2 noise/triangle wave generation enable"]
     #[inline] pub fn test_wave2(&self) -> bool {
-        self.wave2 != 0
+        self.wave2() != 0
     }
 
     #[doc="DAC channel2 noise/triangle wave generation enable"]
@@ -547,7 +547,7 @@ impl Cr {
 
     #[doc="DAC channel2 trigger selection"]
     #[inline] pub fn test_tsel2(&self) -> bool {
-        self.tsel2 != 0
+        self.tsel2() != 0
     }
 
     #[doc="DAC channel2 trigger selection"]
@@ -566,7 +566,7 @@ impl Cr {
 
     #[doc="DAC channel2 trigger enable"]
     #[inline] pub fn test_ten2(&self) -> bool {
-        self.ten2 != 0
+        self.ten2() != 0
     }
 
     #[doc="DAC channel2 trigger enable"]
@@ -585,7 +585,7 @@ impl Cr {
 
     #[doc="DAC channel2 output buffer disable"]
     #[inline] pub fn test_boff2(&self) -> bool {
-        self.boff2 != 0
+        self.boff2() != 0
     }
 
     #[doc="DAC channel2 output buffer disable"]
@@ -604,7 +604,7 @@ impl Cr {
 
     #[doc="DAC channel2 enable"]
     #[inline] pub fn test_en2(&self) -> bool {
-        self.en2 != 0
+        self.en2() != 0
     }
 
     #[doc="DAC channel2 enable"]
@@ -623,7 +623,7 @@ impl Cr {
 
     #[doc="DAC channel1 DMA Underrun Interrupt enable"]
     #[inline] pub fn test_dmaudrie1(&self) -> bool {
-        self.dmaudrie1 != 0
+        self.dmaudrie1() != 0
     }
 
     #[doc="DAC channel1 DMA Underrun Interrupt enable"]
@@ -642,7 +642,7 @@ impl Cr {
 
     #[doc="DAC channel1 DMA enable"]
     #[inline] pub fn test_dmaen1(&self) -> bool {
-        self.dmaen1 != 0
+        self.dmaen1() != 0
     }
 
     #[doc="DAC channel1 DMA enable"]
@@ -661,7 +661,7 @@ impl Cr {
 
     #[doc="DAC channel1 mask/amplitude selector"]
     #[inline] pub fn test_mamp1(&self) -> bool {
-        self.mamp1 != 0
+        self.mamp1() != 0
     }
 
     #[doc="DAC channel1 mask/amplitude selector"]
@@ -680,7 +680,7 @@ impl Cr {
 
     #[doc="DAC channel1 noise/triangle wave generation enable"]
     #[inline] pub fn test_wave1(&self) -> bool {
-        self.wave1 != 0
+        self.wave1() != 0
     }
 
     #[doc="DAC channel1 noise/triangle wave generation enable"]
@@ -699,7 +699,7 @@ impl Cr {
 
     #[doc="DAC channel1 trigger selection"]
     #[inline] pub fn test_tsel1(&self) -> bool {
-        self.tsel1 != 0
+        self.tsel1() != 0
     }
 
     #[doc="DAC channel1 trigger selection"]
@@ -718,7 +718,7 @@ impl Cr {
 
     #[doc="DAC channel1 trigger enable"]
     #[inline] pub fn test_ten1(&self) -> bool {
-        self.ten1 != 0
+        self.ten1() != 0
     }
 
     #[doc="DAC channel1 trigger enable"]
@@ -737,7 +737,7 @@ impl Cr {
 
     #[doc="DAC channel1 output buffer disable"]
     #[inline] pub fn test_boff1(&self) -> bool {
-        self.boff1 != 0
+        self.boff1() != 0
     }
 
     #[doc="DAC channel1 output buffer disable"]
@@ -756,7 +756,7 @@ impl Cr {
 
     #[doc="DAC channel1 enable"]
     #[inline] pub fn test_en1(&self) -> bool {
-        self.en1 != 0
+        self.en1() != 0
     }
 
     #[doc="DAC channel1 enable"]
@@ -811,7 +811,7 @@ impl Swtrigr {
 
     #[doc="DAC channel2 software trigger"]
     #[inline] pub fn test_swtrig2(&self) -> bool {
-        self.swtrig2 != 0
+        self.swtrig2() != 0
     }
 
     #[doc="DAC channel2 software trigger"]
@@ -830,7 +830,7 @@ impl Swtrigr {
 
     #[doc="DAC channel1 software trigger"]
     #[inline] pub fn test_swtrig1(&self) -> bool {
-        self.swtrig1 != 0
+        self.swtrig1() != 0
     }
 
     #[doc="DAC channel1 software trigger"]
@@ -871,7 +871,7 @@ impl Dhr12r1 {
 
     #[doc="DAC channel1 12-bit right-aligned data"]
     #[inline] pub fn test_dacc1dhr(&self) -> bool {
-        self.dacc1dhr != 0
+        self.dacc1dhr() != 0
     }
 
     #[doc="DAC channel1 12-bit right-aligned data"]
@@ -911,7 +911,7 @@ impl Dhr12l1 {
 
     #[doc="DAC channel1 12-bit left-aligned data"]
     #[inline] pub fn test_dacc1dhr(&self) -> bool {
-        self.dacc1dhr != 0
+        self.dacc1dhr() != 0
     }
 
     #[doc="DAC channel1 12-bit left-aligned data"]
@@ -951,7 +951,7 @@ impl Dhr8r1 {
 
     #[doc="DAC channel1 8-bit right-aligned data"]
     #[inline] pub fn test_dacc1dhr(&self) -> bool {
-        self.dacc1dhr != 0
+        self.dacc1dhr() != 0
     }
 
     #[doc="DAC channel1 8-bit right-aligned data"]
@@ -991,7 +991,7 @@ impl Dhr12r2 {
 
     #[doc="DAC channel2 12-bit right-aligned data"]
     #[inline] pub fn test_dacc2dhr(&self) -> bool {
-        self.dacc2dhr != 0
+        self.dacc2dhr() != 0
     }
 
     #[doc="DAC channel2 12-bit right-aligned data"]
@@ -1031,7 +1031,7 @@ impl Dhr12l2 {
 
     #[doc="DAC channel2 12-bit left-aligned data"]
     #[inline] pub fn test_dacc2dhr(&self) -> bool {
-        self.dacc2dhr != 0
+        self.dacc2dhr() != 0
     }
 
     #[doc="DAC channel2 12-bit left-aligned data"]
@@ -1071,7 +1071,7 @@ impl Dhr8r2 {
 
     #[doc="DAC channel2 8-bit right-aligned data"]
     #[inline] pub fn test_dacc2dhr(&self) -> bool {
-        self.dacc2dhr != 0
+        self.dacc2dhr() != 0
     }
 
     #[doc="DAC channel2 8-bit right-aligned data"]
@@ -1111,7 +1111,7 @@ impl Dhr12rd {
 
     #[doc="DAC channel2 12-bit right-aligned data"]
     #[inline] pub fn test_dacc2dhr(&self) -> bool {
-        self.dacc2dhr != 0
+        self.dacc2dhr() != 0
     }
 
     #[doc="DAC channel2 12-bit right-aligned data"]
@@ -1130,7 +1130,7 @@ impl Dhr12rd {
 
     #[doc="DAC channel1 12-bit right-aligned data"]
     #[inline] pub fn test_dacc1dhr(&self) -> bool {
-        self.dacc1dhr != 0
+        self.dacc1dhr() != 0
     }
 
     #[doc="DAC channel1 12-bit right-aligned data"]
@@ -1171,7 +1171,7 @@ impl Dhr12ld {
 
     #[doc="DAC channel2 12-bit left-aligned data"]
     #[inline] pub fn test_dacc2dhr(&self) -> bool {
-        self.dacc2dhr != 0
+        self.dacc2dhr() != 0
     }
 
     #[doc="DAC channel2 12-bit left-aligned data"]
@@ -1190,7 +1190,7 @@ impl Dhr12ld {
 
     #[doc="DAC channel1 12-bit left-aligned data"]
     #[inline] pub fn test_dacc1dhr(&self) -> bool {
-        self.dacc1dhr != 0
+        self.dacc1dhr() != 0
     }
 
     #[doc="DAC channel1 12-bit left-aligned data"]
@@ -1231,7 +1231,7 @@ impl Dhr8rd {
 
     #[doc="DAC channel2 8-bit right-aligned data"]
     #[inline] pub fn test_dacc2dhr(&self) -> bool {
-        self.dacc2dhr != 0
+        self.dacc2dhr() != 0
     }
 
     #[doc="DAC channel2 8-bit right-aligned data"]
@@ -1250,7 +1250,7 @@ impl Dhr8rd {
 
     #[doc="DAC channel1 8-bit right-aligned data"]
     #[inline] pub fn test_dacc1dhr(&self) -> bool {
-        self.dacc1dhr != 0
+        self.dacc1dhr() != 0
     }
 
     #[doc="DAC channel1 8-bit right-aligned data"]
@@ -1291,7 +1291,7 @@ impl Dor1 {
 
     #[doc="DAC channel1 data output"]
     #[inline] pub fn test_dacc1dor(&self) -> bool {
-        self.dacc1dor != 0
+        self.dacc1dor() != 0
     }
 
     #[doc="DAC channel1 data output"]
@@ -1331,7 +1331,7 @@ impl Dor2 {
 
     #[doc="DAC channel2 data output"]
     #[inline] pub fn test_dacc2dor(&self) -> bool {
-        self.dacc2dor != 0
+        self.dacc2dor() != 0
     }
 
     #[doc="DAC channel2 data output"]
@@ -1371,7 +1371,7 @@ impl Sr {
 
     #[doc="DAC channel2 DMA underrun flag"]
     #[inline] pub fn test_dmaudr2(&self) -> bool {
-        self.dmaudr2 != 0
+        self.dmaudr2() != 0
     }
 
     #[doc="DAC channel2 DMA underrun flag"]
@@ -1390,7 +1390,7 @@ impl Sr {
 
     #[doc="DAC channel1 DMA underrun flag"]
     #[inline] pub fn test_dmaudr1(&self) -> bool {
-        self.dmaudr1 != 0
+        self.dmaudr1() != 0
     }
 
     #[doc="DAC channel1 DMA underrun flag"]

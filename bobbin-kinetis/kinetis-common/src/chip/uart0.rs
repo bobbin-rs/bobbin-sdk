@@ -452,7 +452,7 @@ impl Bdh {
 
     #[doc="Baud Rate Modulo Divisor."]
     #[inline] pub fn test_sbr(&self) -> bool {
-        self.sbr != 0
+        self.sbr() != 0
     }
 
     #[doc="Baud Rate Modulo Divisor."]
@@ -471,7 +471,7 @@ impl Bdh {
 
     #[doc="Stop Bit Number Select"]
     #[inline] pub fn test_sbns(&self) -> bool {
-        self.sbns != 0
+        self.sbns() != 0
     }
 
     #[doc="Stop Bit Number Select"]
@@ -490,7 +490,7 @@ impl Bdh {
 
     #[doc="RX Input Active Edge Interrupt Enable (for RXEDGIF)"]
     #[inline] pub fn test_rxedgie(&self) -> bool {
-        self.rxedgie != 0
+        self.rxedgie() != 0
     }
 
     #[doc="RX Input Active Edge Interrupt Enable (for RXEDGIF)"]
@@ -509,7 +509,7 @@ impl Bdh {
 
     #[doc="LIN Break Detect Interrupt Enable (for LBKDIF)"]
     #[inline] pub fn test_lbkdie(&self) -> bool {
-        self.lbkdie != 0
+        self.lbkdie() != 0
     }
 
     #[doc="LIN Break Detect Interrupt Enable (for LBKDIF)"]
@@ -552,7 +552,7 @@ impl Bdl {
 
     #[doc="Baud Rate Modulo Divisor"]
     #[inline] pub fn test_sbr(&self) -> bool {
-        self.sbr != 0
+        self.sbr() != 0
     }
 
     #[doc="Baud Rate Modulo Divisor"]
@@ -592,7 +592,7 @@ impl C1 {
 
     #[doc="Parity Type"]
     #[inline] pub fn test_pt(&self) -> bool {
-        self.pt != 0
+        self.pt() != 0
     }
 
     #[doc="Parity Type"]
@@ -611,7 +611,7 @@ impl C1 {
 
     #[doc="Parity Enable"]
     #[inline] pub fn test_pe(&self) -> bool {
-        self.pe != 0
+        self.pe() != 0
     }
 
     #[doc="Parity Enable"]
@@ -630,7 +630,7 @@ impl C1 {
 
     #[doc="Idle Line Type Select"]
     #[inline] pub fn test_ilt(&self) -> bool {
-        self.ilt != 0
+        self.ilt() != 0
     }
 
     #[doc="Idle Line Type Select"]
@@ -649,7 +649,7 @@ impl C1 {
 
     #[doc="Receiver Wakeup Method Select"]
     #[inline] pub fn test_wake(&self) -> bool {
-        self.wake != 0
+        self.wake() != 0
     }
 
     #[doc="Receiver Wakeup Method Select"]
@@ -668,7 +668,7 @@ impl C1 {
 
     #[doc="9-Bit or 8-Bit Mode Select"]
     #[inline] pub fn test_m(&self) -> bool {
-        self.m != 0
+        self.m() != 0
     }
 
     #[doc="9-Bit or 8-Bit Mode Select"]
@@ -687,7 +687,7 @@ impl C1 {
 
     #[doc="Receiver Source Select"]
     #[inline] pub fn test_rsrc(&self) -> bool {
-        self.rsrc != 0
+        self.rsrc() != 0
     }
 
     #[doc="Receiver Source Select"]
@@ -706,7 +706,7 @@ impl C1 {
 
     #[doc="Doze Enable"]
     #[inline] pub fn test_dozeen(&self) -> bool {
-        self.dozeen != 0
+        self.dozeen() != 0
     }
 
     #[doc="Doze Enable"]
@@ -725,7 +725,7 @@ impl C1 {
 
     #[doc="Loop Mode Select"]
     #[inline] pub fn test_loops(&self) -> bool {
-        self.loops != 0
+        self.loops() != 0
     }
 
     #[doc="Loop Mode Select"]
@@ -772,7 +772,7 @@ impl C2 {
 
     #[doc="Send Break"]
     #[inline] pub fn test_sbk(&self) -> bool {
-        self.sbk != 0
+        self.sbk() != 0
     }
 
     #[doc="Send Break"]
@@ -791,7 +791,7 @@ impl C2 {
 
     #[doc="Receiver Wakeup Control"]
     #[inline] pub fn test_rwu(&self) -> bool {
-        self.rwu != 0
+        self.rwu() != 0
     }
 
     #[doc="Receiver Wakeup Control"]
@@ -810,7 +810,7 @@ impl C2 {
 
     #[doc="Receiver Enable"]
     #[inline] pub fn test_re(&self) -> bool {
-        self.re != 0
+        self.re() != 0
     }
 
     #[doc="Receiver Enable"]
@@ -829,7 +829,7 @@ impl C2 {
 
     #[doc="Transmitter Enable"]
     #[inline] pub fn test_te(&self) -> bool {
-        self.te != 0
+        self.te() != 0
     }
 
     #[doc="Transmitter Enable"]
@@ -848,7 +848,7 @@ impl C2 {
 
     #[doc="Idle Line Interrupt Enable for IDLE"]
     #[inline] pub fn test_ilie(&self) -> bool {
-        self.ilie != 0
+        self.ilie() != 0
     }
 
     #[doc="Idle Line Interrupt Enable for IDLE"]
@@ -867,7 +867,7 @@ impl C2 {
 
     #[doc="Receiver Interrupt Enable for RDRF"]
     #[inline] pub fn test_rie(&self) -> bool {
-        self.rie != 0
+        self.rie() != 0
     }
 
     #[doc="Receiver Interrupt Enable for RDRF"]
@@ -886,7 +886,7 @@ impl C2 {
 
     #[doc="Transmission Complete Interrupt Enable for TC"]
     #[inline] pub fn test_tcie(&self) -> bool {
-        self.tcie != 0
+        self.tcie() != 0
     }
 
     #[doc="Transmission Complete Interrupt Enable for TC"]
@@ -905,7 +905,7 @@ impl C2 {
 
     #[doc="Transmit Interrupt Enable for TDRE"]
     #[inline] pub fn test_tie(&self) -> bool {
-        self.tie != 0
+        self.tie() != 0
     }
 
     #[doc="Transmit Interrupt Enable for TDRE"]
@@ -952,7 +952,7 @@ impl S1 {
 
     #[doc="Parity Error Flag"]
     #[inline] pub fn test_pf(&self) -> bool {
-        self.pf != 0
+        self.pf() != 0
     }
 
     #[doc="Parity Error Flag"]
@@ -971,7 +971,7 @@ impl S1 {
 
     #[doc="Framing Error Flag"]
     #[inline] pub fn test_fe(&self) -> bool {
-        self.fe != 0
+        self.fe() != 0
     }
 
     #[doc="Framing Error Flag"]
@@ -990,7 +990,7 @@ impl S1 {
 
     #[doc="Noise Flag"]
     #[inline] pub fn test_nf(&self) -> bool {
-        self.nf != 0
+        self.nf() != 0
     }
 
     #[doc="Noise Flag"]
@@ -1009,7 +1009,7 @@ impl S1 {
 
     #[doc="Receiver Overrun Flag"]
     #[inline] pub fn test_or(&self) -> bool {
-        self.or != 0
+        self.or() != 0
     }
 
     #[doc="Receiver Overrun Flag"]
@@ -1028,7 +1028,7 @@ impl S1 {
 
     #[doc="Idle Line Flag"]
     #[inline] pub fn test_idle(&self) -> bool {
-        self.idle != 0
+        self.idle() != 0
     }
 
     #[doc="Idle Line Flag"]
@@ -1047,7 +1047,7 @@ impl S1 {
 
     #[doc="Receive Data Register Full Flag"]
     #[inline] pub fn test_rdrf(&self) -> bool {
-        self.rdrf != 0
+        self.rdrf() != 0
     }
 
     #[doc="Receive Data Register Full Flag"]
@@ -1066,7 +1066,7 @@ impl S1 {
 
     #[doc="Transmission Complete Flag"]
     #[inline] pub fn test_tc(&self) -> bool {
-        self.tc != 0
+        self.tc() != 0
     }
 
     #[doc="Transmission Complete Flag"]
@@ -1085,7 +1085,7 @@ impl S1 {
 
     #[doc="Transmit Data Register Empty Flag"]
     #[inline] pub fn test_tdre(&self) -> bool {
-        self.tdre != 0
+        self.tdre() != 0
     }
 
     #[doc="Transmit Data Register Empty Flag"]
@@ -1132,7 +1132,7 @@ impl S2 {
 
     #[doc="Receiver Active Flag"]
     #[inline] pub fn test_raf(&self) -> bool {
-        self.raf != 0
+        self.raf() != 0
     }
 
     #[doc="Receiver Active Flag"]
@@ -1151,7 +1151,7 @@ impl S2 {
 
     #[doc="LIN Break Detection Enable"]
     #[inline] pub fn test_lbkde(&self) -> bool {
-        self.lbkde != 0
+        self.lbkde() != 0
     }
 
     #[doc="LIN Break Detection Enable"]
@@ -1170,7 +1170,7 @@ impl S2 {
 
     #[doc="Break Character Generation Length"]
     #[inline] pub fn test_brk13(&self) -> bool {
-        self.brk13 != 0
+        self.brk13() != 0
     }
 
     #[doc="Break Character Generation Length"]
@@ -1189,7 +1189,7 @@ impl S2 {
 
     #[doc="Receive Wake Up Idle Detect"]
     #[inline] pub fn test_rwuid(&self) -> bool {
-        self.rwuid != 0
+        self.rwuid() != 0
     }
 
     #[doc="Receive Wake Up Idle Detect"]
@@ -1208,7 +1208,7 @@ impl S2 {
 
     #[doc="Receive Data Inversion"]
     #[inline] pub fn test_rxinv(&self) -> bool {
-        self.rxinv != 0
+        self.rxinv() != 0
     }
 
     #[doc="Receive Data Inversion"]
@@ -1227,7 +1227,7 @@ impl S2 {
 
     #[doc="MSB First"]
     #[inline] pub fn test_msbf(&self) -> bool {
-        self.msbf != 0
+        self.msbf() != 0
     }
 
     #[doc="MSB First"]
@@ -1246,7 +1246,7 @@ impl S2 {
 
     #[doc="UART_RX Pin Active Edge Interrupt Flag"]
     #[inline] pub fn test_rxedgif(&self) -> bool {
-        self.rxedgif != 0
+        self.rxedgif() != 0
     }
 
     #[doc="UART_RX Pin Active Edge Interrupt Flag"]
@@ -1265,7 +1265,7 @@ impl S2 {
 
     #[doc="LIN Break Detect Interrupt Flag"]
     #[inline] pub fn test_lbkdif(&self) -> bool {
-        self.lbkdif != 0
+        self.lbkdif() != 0
     }
 
     #[doc="LIN Break Detect Interrupt Flag"]
@@ -1312,7 +1312,7 @@ impl C3 {
 
     #[doc="Parity Error Interrupt Enable"]
     #[inline] pub fn test_peie(&self) -> bool {
-        self.peie != 0
+        self.peie() != 0
     }
 
     #[doc="Parity Error Interrupt Enable"]
@@ -1331,7 +1331,7 @@ impl C3 {
 
     #[doc="Framing Error Interrupt Enable"]
     #[inline] pub fn test_feie(&self) -> bool {
-        self.feie != 0
+        self.feie() != 0
     }
 
     #[doc="Framing Error Interrupt Enable"]
@@ -1350,7 +1350,7 @@ impl C3 {
 
     #[doc="Noise Error Interrupt Enable"]
     #[inline] pub fn test_neie(&self) -> bool {
-        self.neie != 0
+        self.neie() != 0
     }
 
     #[doc="Noise Error Interrupt Enable"]
@@ -1369,7 +1369,7 @@ impl C3 {
 
     #[doc="Overrun Interrupt Enable"]
     #[inline] pub fn test_orie(&self) -> bool {
-        self.orie != 0
+        self.orie() != 0
     }
 
     #[doc="Overrun Interrupt Enable"]
@@ -1388,7 +1388,7 @@ impl C3 {
 
     #[doc="Transmit Data Inversion"]
     #[inline] pub fn test_txinv(&self) -> bool {
-        self.txinv != 0
+        self.txinv() != 0
     }
 
     #[doc="Transmit Data Inversion"]
@@ -1407,7 +1407,7 @@ impl C3 {
 
     #[doc="UART_TX Pin Direction in Single-Wire Mode"]
     #[inline] pub fn test_txdir(&self) -> bool {
-        self.txdir != 0
+        self.txdir() != 0
     }
 
     #[doc="UART_TX Pin Direction in Single-Wire Mode"]
@@ -1426,7 +1426,7 @@ impl C3 {
 
     #[doc="Receive Bit 9 / Transmit Bit 8"]
     #[inline] pub fn test_r9t8(&self) -> bool {
-        self.r9t8 != 0
+        self.r9t8() != 0
     }
 
     #[doc="Receive Bit 9 / Transmit Bit 8"]
@@ -1445,7 +1445,7 @@ impl C3 {
 
     #[doc="Receive Bit 8 / Transmit Bit 9"]
     #[inline] pub fn test_r8t9(&self) -> bool {
-        self.r8t9 != 0
+        self.r8t9() != 0
     }
 
     #[doc="Receive Bit 8 / Transmit Bit 9"]
@@ -1492,7 +1492,7 @@ impl D {
 
     #[doc="Read receive data buffer or write transmit data buffer."]
     #[inline] pub fn test_rt(&self) -> bool {
-        self.rt != 0
+        self.rt() != 0
     }
 
     #[doc="Read receive data buffer or write transmit data buffer."]
@@ -1532,7 +1532,7 @@ impl Ma1 {
 
     #[doc="Match Address"]
     #[inline] pub fn test_ma(&self) -> bool {
-        self.ma != 0
+        self.ma() != 0
     }
 
     #[doc="Match Address"]
@@ -1572,7 +1572,7 @@ impl Ma2 {
 
     #[doc="Match Address"]
     #[inline] pub fn test_ma(&self) -> bool {
-        self.ma != 0
+        self.ma() != 0
     }
 
     #[doc="Match Address"]
@@ -1612,7 +1612,7 @@ impl C4 {
 
     #[doc="Over Sampling Ratio"]
     #[inline] pub fn test_osr(&self) -> bool {
-        self.osr != 0
+        self.osr() != 0
     }
 
     #[doc="Over Sampling Ratio"]
@@ -1631,7 +1631,7 @@ impl C4 {
 
     #[doc="10-bit Mode select"]
     #[inline] pub fn test_m10(&self) -> bool {
-        self.m10 != 0
+        self.m10() != 0
     }
 
     #[doc="10-bit Mode select"]
@@ -1650,7 +1650,7 @@ impl C4 {
 
     #[doc="Match Address Mode Enable 2"]
     #[inline] pub fn test_maen2(&self) -> bool {
-        self.maen2 != 0
+        self.maen2() != 0
     }
 
     #[doc="Match Address Mode Enable 2"]
@@ -1669,7 +1669,7 @@ impl C4 {
 
     #[doc="Match Address Mode Enable 1"]
     #[inline] pub fn test_maen1(&self) -> bool {
-        self.maen1 != 0
+        self.maen1() != 0
     }
 
     #[doc="Match Address Mode Enable 1"]
@@ -1712,7 +1712,7 @@ impl C5 {
 
     #[doc="Resynchronization Disable"]
     #[inline] pub fn test_resyncdis(&self) -> bool {
-        self.resyncdis != 0
+        self.resyncdis() != 0
     }
 
     #[doc="Resynchronization Disable"]
@@ -1731,7 +1731,7 @@ impl C5 {
 
     #[doc="Both Edge Sampling"]
     #[inline] pub fn test_bothedge(&self) -> bool {
-        self.bothedge != 0
+        self.bothedge() != 0
     }
 
     #[doc="Both Edge Sampling"]
@@ -1750,7 +1750,7 @@ impl C5 {
 
     #[doc="Receiver Full DMA Enable"]
     #[inline] pub fn test_rdmae(&self) -> bool {
-        self.rdmae != 0
+        self.rdmae() != 0
     }
 
     #[doc="Receiver Full DMA Enable"]
@@ -1769,7 +1769,7 @@ impl C5 {
 
     #[doc="Transmitter DMA Enable"]
     #[inline] pub fn test_tdmae(&self) -> bool {
-        self.tdmae != 0
+        self.tdmae() != 0
     }
 
     #[doc="Transmitter DMA Enable"]

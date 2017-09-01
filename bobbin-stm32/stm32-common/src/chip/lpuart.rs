@@ -272,7 +272,7 @@ impl Cr1 {
 
     #[doc="Word length"]
     #[inline] pub fn test_m1(&self) -> bool {
-        self.m1 != 0
+        self.m1() != 0
     }
 
     #[doc="Word length"]
@@ -291,7 +291,7 @@ impl Cr1 {
 
     #[doc="Driver Enable assertion time"]
     #[inline] pub fn test_deat4(&self) -> bool {
-        self.deat4 != 0
+        self.deat4() != 0
     }
 
     #[doc="Driver Enable assertion time"]
@@ -310,7 +310,7 @@ impl Cr1 {
 
     #[doc="DEAT3"]
     #[inline] pub fn test_deat3(&self) -> bool {
-        self.deat3 != 0
+        self.deat3() != 0
     }
 
     #[doc="DEAT3"]
@@ -329,7 +329,7 @@ impl Cr1 {
 
     #[doc="DEAT2"]
     #[inline] pub fn test_deat2(&self) -> bool {
-        self.deat2 != 0
+        self.deat2() != 0
     }
 
     #[doc="DEAT2"]
@@ -348,7 +348,7 @@ impl Cr1 {
 
     #[doc="DEAT1"]
     #[inline] pub fn test_deat1(&self) -> bool {
-        self.deat1 != 0
+        self.deat1() != 0
     }
 
     #[doc="DEAT1"]
@@ -367,7 +367,7 @@ impl Cr1 {
 
     #[doc="DEAT0"]
     #[inline] pub fn test_deat0(&self) -> bool {
-        self.deat0 != 0
+        self.deat0() != 0
     }
 
     #[doc="DEAT0"]
@@ -386,7 +386,7 @@ impl Cr1 {
 
     #[doc="Driver Enable de-assertion time"]
     #[inline] pub fn test_dedt4(&self) -> bool {
-        self.dedt4 != 0
+        self.dedt4() != 0
     }
 
     #[doc="Driver Enable de-assertion time"]
@@ -405,7 +405,7 @@ impl Cr1 {
 
     #[doc="DEDT3"]
     #[inline] pub fn test_dedt3(&self) -> bool {
-        self.dedt3 != 0
+        self.dedt3() != 0
     }
 
     #[doc="DEDT3"]
@@ -424,7 +424,7 @@ impl Cr1 {
 
     #[doc="DEDT2"]
     #[inline] pub fn test_dedt2(&self) -> bool {
-        self.dedt2 != 0
+        self.dedt2() != 0
     }
 
     #[doc="DEDT2"]
@@ -443,7 +443,7 @@ impl Cr1 {
 
     #[doc="DEDT1"]
     #[inline] pub fn test_dedt1(&self) -> bool {
-        self.dedt1 != 0
+        self.dedt1() != 0
     }
 
     #[doc="DEDT1"]
@@ -462,7 +462,7 @@ impl Cr1 {
 
     #[doc="DEDT0"]
     #[inline] pub fn test_dedt0(&self) -> bool {
-        self.dedt0 != 0
+        self.dedt0() != 0
     }
 
     #[doc="DEDT0"]
@@ -481,7 +481,7 @@ impl Cr1 {
 
     #[doc="Character match interrupt enable"]
     #[inline] pub fn test_cmie(&self) -> bool {
-        self.cmie != 0
+        self.cmie() != 0
     }
 
     #[doc="Character match interrupt enable"]
@@ -500,7 +500,7 @@ impl Cr1 {
 
     #[doc="Mute mode enable"]
     #[inline] pub fn test_mme(&self) -> bool {
-        self.mme != 0
+        self.mme() != 0
     }
 
     #[doc="Mute mode enable"]
@@ -519,7 +519,7 @@ impl Cr1 {
 
     #[doc="Word length"]
     #[inline] pub fn test_m0(&self) -> bool {
-        self.m0 != 0
+        self.m0() != 0
     }
 
     #[doc="Word length"]
@@ -538,7 +538,7 @@ impl Cr1 {
 
     #[doc="Receiver wakeup method"]
     #[inline] pub fn test_wake(&self) -> bool {
-        self.wake != 0
+        self.wake() != 0
     }
 
     #[doc="Receiver wakeup method"]
@@ -557,7 +557,7 @@ impl Cr1 {
 
     #[doc="Parity control enable"]
     #[inline] pub fn test_pce(&self) -> bool {
-        self.pce != 0
+        self.pce() != 0
     }
 
     #[doc="Parity control enable"]
@@ -576,7 +576,7 @@ impl Cr1 {
 
     #[doc="Parity selection"]
     #[inline] pub fn test_ps(&self) -> bool {
-        self.ps != 0
+        self.ps() != 0
     }
 
     #[doc="Parity selection"]
@@ -595,7 +595,7 @@ impl Cr1 {
 
     #[doc="PE interrupt enable"]
     #[inline] pub fn test_peie(&self) -> bool {
-        self.peie != 0
+        self.peie() != 0
     }
 
     #[doc="PE interrupt enable"]
@@ -614,7 +614,7 @@ impl Cr1 {
 
     #[doc="interrupt enable"]
     #[inline] pub fn test_txeie(&self) -> bool {
-        self.txeie != 0
+        self.txeie() != 0
     }
 
     #[doc="interrupt enable"]
@@ -633,7 +633,7 @@ impl Cr1 {
 
     #[doc="Transmission complete interrupt enable"]
     #[inline] pub fn test_tcie(&self) -> bool {
-        self.tcie != 0
+        self.tcie() != 0
     }
 
     #[doc="Transmission complete interrupt enable"]
@@ -652,7 +652,7 @@ impl Cr1 {
 
     #[doc="RXNE interrupt enable"]
     #[inline] pub fn test_rxneie(&self) -> bool {
-        self.rxneie != 0
+        self.rxneie() != 0
     }
 
     #[doc="RXNE interrupt enable"]
@@ -671,7 +671,7 @@ impl Cr1 {
 
     #[doc="IDLE interrupt enable"]
     #[inline] pub fn test_idleie(&self) -> bool {
-        self.idleie != 0
+        self.idleie() != 0
     }
 
     #[doc="IDLE interrupt enable"]
@@ -690,7 +690,7 @@ impl Cr1 {
 
     #[doc="Transmitter enable"]
     #[inline] pub fn test_te(&self) -> bool {
-        self.te != 0
+        self.te() != 0
     }
 
     #[doc="Transmitter enable"]
@@ -709,7 +709,7 @@ impl Cr1 {
 
     #[doc="Receiver enable"]
     #[inline] pub fn test_re(&self) -> bool {
-        self.re != 0
+        self.re() != 0
     }
 
     #[doc="Receiver enable"]
@@ -728,7 +728,7 @@ impl Cr1 {
 
     #[doc="USART enable in Stop mode"]
     #[inline] pub fn test_uesm(&self) -> bool {
-        self.uesm != 0
+        self.uesm() != 0
     }
 
     #[doc="USART enable in Stop mode"]
@@ -747,7 +747,7 @@ impl Cr1 {
 
     #[doc="USART enable"]
     #[inline] pub fn test_ue(&self) -> bool {
-        self.ue != 0
+        self.ue() != 0
     }
 
     #[doc="USART enable"]
@@ -812,7 +812,7 @@ impl Cr2 {
 
     #[doc="Address of the USART node"]
     #[inline] pub fn test_add4_7(&self) -> bool {
-        self.add4_7 != 0
+        self.add4_7() != 0
     }
 
     #[doc="Address of the USART node"]
@@ -831,7 +831,7 @@ impl Cr2 {
 
     #[doc="Address of the USART node"]
     #[inline] pub fn test_add0_3(&self) -> bool {
-        self.add0_3 != 0
+        self.add0_3() != 0
     }
 
     #[doc="Address of the USART node"]
@@ -850,7 +850,7 @@ impl Cr2 {
 
     #[doc="Most significant bit first"]
     #[inline] pub fn test_msbfirst(&self) -> bool {
-        self.msbfirst != 0
+        self.msbfirst() != 0
     }
 
     #[doc="Most significant bit first"]
@@ -869,7 +869,7 @@ impl Cr2 {
 
     #[doc="Binary data inversion"]
     #[inline] pub fn test_tainv(&self) -> bool {
-        self.tainv != 0
+        self.tainv() != 0
     }
 
     #[doc="Binary data inversion"]
@@ -888,7 +888,7 @@ impl Cr2 {
 
     #[doc="TX pin active level inversion"]
     #[inline] pub fn test_txinv(&self) -> bool {
-        self.txinv != 0
+        self.txinv() != 0
     }
 
     #[doc="TX pin active level inversion"]
@@ -907,7 +907,7 @@ impl Cr2 {
 
     #[doc="RX pin active level inversion"]
     #[inline] pub fn test_rxinv(&self) -> bool {
-        self.rxinv != 0
+        self.rxinv() != 0
     }
 
     #[doc="RX pin active level inversion"]
@@ -926,7 +926,7 @@ impl Cr2 {
 
     #[doc="Swap TX/RX pins"]
     #[inline] pub fn test_swap(&self) -> bool {
-        self.swap != 0
+        self.swap() != 0
     }
 
     #[doc="Swap TX/RX pins"]
@@ -945,7 +945,7 @@ impl Cr2 {
 
     #[doc="STOP bits"]
     #[inline] pub fn test_stop(&self) -> bool {
-        self.stop != 0
+        self.stop() != 0
     }
 
     #[doc="STOP bits"]
@@ -964,7 +964,7 @@ impl Cr2 {
 
     #[doc="Clock enable"]
     #[inline] pub fn test_clken(&self) -> bool {
-        self.clken != 0
+        self.clken() != 0
     }
 
     #[doc="Clock enable"]
@@ -983,7 +983,7 @@ impl Cr2 {
 
     #[doc="7-bit Address Detection/4-bit Address Detection"]
     #[inline] pub fn test_addm7(&self) -> bool {
-        self.addm7 != 0
+        self.addm7() != 0
     }
 
     #[doc="7-bit Address Detection/4-bit Address Detection"]
@@ -1032,7 +1032,7 @@ impl Cr3 {
 
     #[doc="Wakeup from Stop mode interrupt enable"]
     #[inline] pub fn test_wufie(&self) -> bool {
-        self.wufie != 0
+        self.wufie() != 0
     }
 
     #[doc="Wakeup from Stop mode interrupt enable"]
@@ -1051,7 +1051,7 @@ impl Cr3 {
 
     #[doc="Wakeup from Stop mode interrupt flag selection"]
     #[inline] pub fn test_wus(&self) -> bool {
-        self.wus != 0
+        self.wus() != 0
     }
 
     #[doc="Wakeup from Stop mode interrupt flag selection"]
@@ -1070,7 +1070,7 @@ impl Cr3 {
 
     #[doc="Driver enable polarity selection"]
     #[inline] pub fn test_dep(&self) -> bool {
-        self.dep != 0
+        self.dep() != 0
     }
 
     #[doc="Driver enable polarity selection"]
@@ -1089,7 +1089,7 @@ impl Cr3 {
 
     #[doc="Driver enable mode"]
     #[inline] pub fn test_dem(&self) -> bool {
-        self.dem != 0
+        self.dem() != 0
     }
 
     #[doc="Driver enable mode"]
@@ -1108,7 +1108,7 @@ impl Cr3 {
 
     #[doc="DMA Disable on Reception Error"]
     #[inline] pub fn test_ddre(&self) -> bool {
-        self.ddre != 0
+        self.ddre() != 0
     }
 
     #[doc="DMA Disable on Reception Error"]
@@ -1127,7 +1127,7 @@ impl Cr3 {
 
     #[doc="Overrun Disable"]
     #[inline] pub fn test_ovrdis(&self) -> bool {
-        self.ovrdis != 0
+        self.ovrdis() != 0
     }
 
     #[doc="Overrun Disable"]
@@ -1146,7 +1146,7 @@ impl Cr3 {
 
     #[doc="CTS interrupt enable"]
     #[inline] pub fn test_ctsie(&self) -> bool {
-        self.ctsie != 0
+        self.ctsie() != 0
     }
 
     #[doc="CTS interrupt enable"]
@@ -1165,7 +1165,7 @@ impl Cr3 {
 
     #[doc="CTS enable"]
     #[inline] pub fn test_ctse(&self) -> bool {
-        self.ctse != 0
+        self.ctse() != 0
     }
 
     #[doc="CTS enable"]
@@ -1184,7 +1184,7 @@ impl Cr3 {
 
     #[doc="RTS enable"]
     #[inline] pub fn test_rtse(&self) -> bool {
-        self.rtse != 0
+        self.rtse() != 0
     }
 
     #[doc="RTS enable"]
@@ -1203,7 +1203,7 @@ impl Cr3 {
 
     #[doc="DMA enable transmitter"]
     #[inline] pub fn test_dmat(&self) -> bool {
-        self.dmat != 0
+        self.dmat() != 0
     }
 
     #[doc="DMA enable transmitter"]
@@ -1222,7 +1222,7 @@ impl Cr3 {
 
     #[doc="DMA enable receiver"]
     #[inline] pub fn test_dmar(&self) -> bool {
-        self.dmar != 0
+        self.dmar() != 0
     }
 
     #[doc="DMA enable receiver"]
@@ -1241,7 +1241,7 @@ impl Cr3 {
 
     #[doc="Half-duplex selection"]
     #[inline] pub fn test_hdsel(&self) -> bool {
-        self.hdsel != 0
+        self.hdsel() != 0
     }
 
     #[doc="Half-duplex selection"]
@@ -1260,7 +1260,7 @@ impl Cr3 {
 
     #[doc="Error interrupt enable"]
     #[inline] pub fn test_eie(&self) -> bool {
-        self.eie != 0
+        self.eie() != 0
     }
 
     #[doc="Error interrupt enable"]
@@ -1312,7 +1312,7 @@ impl Brr {
 
     #[doc="BRR"]
     #[inline] pub fn test_brr(&self) -> bool {
-        self.brr != 0
+        self.brr() != 0
     }
 
     #[doc="BRR"]
@@ -1352,7 +1352,7 @@ impl Rqr {
 
     #[doc="Receive data flush request"]
     #[inline] pub fn test_rxfrq(&self) -> bool {
-        self.rxfrq != 0
+        self.rxfrq() != 0
     }
 
     #[doc="Receive data flush request"]
@@ -1371,7 +1371,7 @@ impl Rqr {
 
     #[doc="Mute mode request"]
     #[inline] pub fn test_mmrq(&self) -> bool {
-        self.mmrq != 0
+        self.mmrq() != 0
     }
 
     #[doc="Mute mode request"]
@@ -1390,7 +1390,7 @@ impl Rqr {
 
     #[doc="Send break request"]
     #[inline] pub fn test_sbkrq(&self) -> bool {
-        self.sbkrq != 0
+        self.sbkrq() != 0
     }
 
     #[doc="Send break request"]
@@ -1432,7 +1432,7 @@ impl Isr {
 
     #[doc="REACK"]
     #[inline] pub fn test_reack(&self) -> bool {
-        self.reack != 0
+        self.reack() != 0
     }
 
     #[doc="REACK"]
@@ -1451,7 +1451,7 @@ impl Isr {
 
     #[doc="TEACK"]
     #[inline] pub fn test_teack(&self) -> bool {
-        self.teack != 0
+        self.teack() != 0
     }
 
     #[doc="TEACK"]
@@ -1470,7 +1470,7 @@ impl Isr {
 
     #[doc="WUF"]
     #[inline] pub fn test_wuf(&self) -> bool {
-        self.wuf != 0
+        self.wuf() != 0
     }
 
     #[doc="WUF"]
@@ -1489,7 +1489,7 @@ impl Isr {
 
     #[doc="RWU"]
     #[inline] pub fn test_rwu(&self) -> bool {
-        self.rwu != 0
+        self.rwu() != 0
     }
 
     #[doc="RWU"]
@@ -1508,7 +1508,7 @@ impl Isr {
 
     #[doc="SBKF"]
     #[inline] pub fn test_sbkf(&self) -> bool {
-        self.sbkf != 0
+        self.sbkf() != 0
     }
 
     #[doc="SBKF"]
@@ -1527,7 +1527,7 @@ impl Isr {
 
     #[doc="CMF"]
     #[inline] pub fn test_cmf(&self) -> bool {
-        self.cmf != 0
+        self.cmf() != 0
     }
 
     #[doc="CMF"]
@@ -1546,7 +1546,7 @@ impl Isr {
 
     #[doc="BUSY"]
     #[inline] pub fn test_busy(&self) -> bool {
-        self.busy != 0
+        self.busy() != 0
     }
 
     #[doc="BUSY"]
@@ -1565,7 +1565,7 @@ impl Isr {
 
     #[doc="CTS"]
     #[inline] pub fn test_cts(&self) -> bool {
-        self.cts != 0
+        self.cts() != 0
     }
 
     #[doc="CTS"]
@@ -1584,7 +1584,7 @@ impl Isr {
 
     #[doc="CTSIF"]
     #[inline] pub fn test_ctsif(&self) -> bool {
-        self.ctsif != 0
+        self.ctsif() != 0
     }
 
     #[doc="CTSIF"]
@@ -1603,7 +1603,7 @@ impl Isr {
 
     #[doc="TXE"]
     #[inline] pub fn test_txe(&self) -> bool {
-        self.txe != 0
+        self.txe() != 0
     }
 
     #[doc="TXE"]
@@ -1622,7 +1622,7 @@ impl Isr {
 
     #[doc="TC"]
     #[inline] pub fn test_tc(&self) -> bool {
-        self.tc != 0
+        self.tc() != 0
     }
 
     #[doc="TC"]
@@ -1641,7 +1641,7 @@ impl Isr {
 
     #[doc="RXNE"]
     #[inline] pub fn test_rxne(&self) -> bool {
-        self.rxne != 0
+        self.rxne() != 0
     }
 
     #[doc="RXNE"]
@@ -1660,7 +1660,7 @@ impl Isr {
 
     #[doc="IDLE"]
     #[inline] pub fn test_idle(&self) -> bool {
-        self.idle != 0
+        self.idle() != 0
     }
 
     #[doc="IDLE"]
@@ -1679,7 +1679,7 @@ impl Isr {
 
     #[doc="ORE"]
     #[inline] pub fn test_ore(&self) -> bool {
-        self.ore != 0
+        self.ore() != 0
     }
 
     #[doc="ORE"]
@@ -1698,7 +1698,7 @@ impl Isr {
 
     #[doc="NF"]
     #[inline] pub fn test_nf(&self) -> bool {
-        self.nf != 0
+        self.nf() != 0
     }
 
     #[doc="NF"]
@@ -1717,7 +1717,7 @@ impl Isr {
 
     #[doc="FE"]
     #[inline] pub fn test_fe(&self) -> bool {
-        self.fe != 0
+        self.fe() != 0
     }
 
     #[doc="FE"]
@@ -1736,7 +1736,7 @@ impl Isr {
 
     #[doc="PE"]
     #[inline] pub fn test_pe(&self) -> bool {
-        self.pe != 0
+        self.pe() != 0
     }
 
     #[doc="PE"]
@@ -1792,7 +1792,7 @@ impl Icr {
 
     #[doc="Wakeup from Stop mode clear flag"]
     #[inline] pub fn test_wucf(&self) -> bool {
-        self.wucf != 0
+        self.wucf() != 0
     }
 
     #[doc="Wakeup from Stop mode clear flag"]
@@ -1811,7 +1811,7 @@ impl Icr {
 
     #[doc="Character match clear flag"]
     #[inline] pub fn test_cmcf(&self) -> bool {
-        self.cmcf != 0
+        self.cmcf() != 0
     }
 
     #[doc="Character match clear flag"]
@@ -1830,7 +1830,7 @@ impl Icr {
 
     #[doc="CTS clear flag"]
     #[inline] pub fn test_ctscf(&self) -> bool {
-        self.ctscf != 0
+        self.ctscf() != 0
     }
 
     #[doc="CTS clear flag"]
@@ -1849,7 +1849,7 @@ impl Icr {
 
     #[doc="Transmission complete clear flag"]
     #[inline] pub fn test_tccf(&self) -> bool {
-        self.tccf != 0
+        self.tccf() != 0
     }
 
     #[doc="Transmission complete clear flag"]
@@ -1868,7 +1868,7 @@ impl Icr {
 
     #[doc="Idle line detected clear flag"]
     #[inline] pub fn test_idlecf(&self) -> bool {
-        self.idlecf != 0
+        self.idlecf() != 0
     }
 
     #[doc="Idle line detected clear flag"]
@@ -1887,7 +1887,7 @@ impl Icr {
 
     #[doc="Overrun error clear flag"]
     #[inline] pub fn test_orecf(&self) -> bool {
-        self.orecf != 0
+        self.orecf() != 0
     }
 
     #[doc="Overrun error clear flag"]
@@ -1906,7 +1906,7 @@ impl Icr {
 
     #[doc="Noise detected clear flag"]
     #[inline] pub fn test_ncf(&self) -> bool {
-        self.ncf != 0
+        self.ncf() != 0
     }
 
     #[doc="Noise detected clear flag"]
@@ -1925,7 +1925,7 @@ impl Icr {
 
     #[doc="Framing error clear flag"]
     #[inline] pub fn test_fecf(&self) -> bool {
-        self.fecf != 0
+        self.fecf() != 0
     }
 
     #[doc="Framing error clear flag"]
@@ -1944,7 +1944,7 @@ impl Icr {
 
     #[doc="Parity error clear flag"]
     #[inline] pub fn test_pecf(&self) -> bool {
-        self.pecf != 0
+        self.pecf() != 0
     }
 
     #[doc="Parity error clear flag"]
@@ -1992,7 +1992,7 @@ impl Rdr {
 
     #[doc="Receive data value"]
     #[inline] pub fn test_rdr(&self) -> bool {
-        self.rdr != 0
+        self.rdr() != 0
     }
 
     #[doc="Receive data value"]
@@ -2032,7 +2032,7 @@ impl Tdr {
 
     #[doc="Transmit data value"]
     #[inline] pub fn test_tdr(&self) -> bool {
-        self.tdr != 0
+        self.tdr() != 0
     }
 
     #[doc="Transmit data value"]

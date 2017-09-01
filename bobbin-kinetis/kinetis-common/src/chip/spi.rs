@@ -381,7 +381,7 @@ impl Mcr {
 
     #[doc="Halt"]
     #[inline] pub fn test_halt(&self) -> bool {
-        self.halt != 0
+        self.halt() != 0
     }
 
     #[doc="Halt"]
@@ -400,7 +400,7 @@ impl Mcr {
 
     #[doc="Sample Point"]
     #[inline] pub fn test_smpl_pt(&self) -> bool {
-        self.smpl_pt != 0
+        self.smpl_pt() != 0
     }
 
     #[doc="Sample Point"]
@@ -419,7 +419,7 @@ impl Mcr {
 
     #[doc="Flushes the RX FIFO"]
     #[inline] pub fn test_clr_rxf(&self) -> bool {
-        self.clr_rxf != 0
+        self.clr_rxf() != 0
     }
 
     #[doc="Flushes the RX FIFO"]
@@ -438,7 +438,7 @@ impl Mcr {
 
     #[doc="Clear TX FIFO"]
     #[inline] pub fn test_clr_txf(&self) -> bool {
-        self.clr_txf != 0
+        self.clr_txf() != 0
     }
 
     #[doc="Clear TX FIFO"]
@@ -457,7 +457,7 @@ impl Mcr {
 
     #[doc="Disable Receive FIFO"]
     #[inline] pub fn test_dis_rxf(&self) -> bool {
-        self.dis_rxf != 0
+        self.dis_rxf() != 0
     }
 
     #[doc="Disable Receive FIFO"]
@@ -476,7 +476,7 @@ impl Mcr {
 
     #[doc="Disable Transmit FIFO"]
     #[inline] pub fn test_dis_txf(&self) -> bool {
-        self.dis_txf != 0
+        self.dis_txf() != 0
     }
 
     #[doc="Disable Transmit FIFO"]
@@ -495,7 +495,7 @@ impl Mcr {
 
     #[doc="Module Disable"]
     #[inline] pub fn test_mdis(&self) -> bool {
-        self.mdis != 0
+        self.mdis() != 0
     }
 
     #[doc="Module Disable"]
@@ -514,7 +514,7 @@ impl Mcr {
 
     #[doc="Doze Enable"]
     #[inline] pub fn test_doze(&self) -> bool {
-        self.doze != 0
+        self.doze() != 0
     }
 
     #[doc="Doze Enable"]
@@ -533,7 +533,7 @@ impl Mcr {
 
     #[doc="Peripheral Chip Select x Inactive State"]
     #[inline] pub fn test_pcsis(&self) -> bool {
-        self.pcsis != 0
+        self.pcsis() != 0
     }
 
     #[doc="Peripheral Chip Select x Inactive State"]
@@ -552,7 +552,7 @@ impl Mcr {
 
     #[doc="Receive FIFO Overflow Overwrite Enable"]
     #[inline] pub fn test_rooe(&self) -> bool {
-        self.rooe != 0
+        self.rooe() != 0
     }
 
     #[doc="Receive FIFO Overflow Overwrite Enable"]
@@ -571,7 +571,7 @@ impl Mcr {
 
     #[doc="Peripheral Chip Select Strobe Enable"]
     #[inline] pub fn test_pcsse(&self) -> bool {
-        self.pcsse != 0
+        self.pcsse() != 0
     }
 
     #[doc="Peripheral Chip Select Strobe Enable"]
@@ -590,7 +590,7 @@ impl Mcr {
 
     #[doc="Modified Timing Format Enable"]
     #[inline] pub fn test_mtfe(&self) -> bool {
-        self.mtfe != 0
+        self.mtfe() != 0
     }
 
     #[doc="Modified Timing Format Enable"]
@@ -609,7 +609,7 @@ impl Mcr {
 
     #[doc="Freeze"]
     #[inline] pub fn test_frz(&self) -> bool {
-        self.frz != 0
+        self.frz() != 0
     }
 
     #[doc="Freeze"]
@@ -628,7 +628,7 @@ impl Mcr {
 
     #[doc="SPI Configuration."]
     #[inline] pub fn test_dconf(&self) -> bool {
-        self.dconf != 0
+        self.dconf() != 0
     }
 
     #[doc="SPI Configuration."]
@@ -647,7 +647,7 @@ impl Mcr {
 
     #[doc="Continuous SCK Enable"]
     #[inline] pub fn test_cont_scke(&self) -> bool {
-        self.cont_scke != 0
+        self.cont_scke() != 0
     }
 
     #[doc="Continuous SCK Enable"]
@@ -666,7 +666,7 @@ impl Mcr {
 
     #[doc="Master/Slave Mode Select"]
     #[inline] pub fn test_mstr(&self) -> bool {
-        self.mstr != 0
+        self.mstr() != 0
     }
 
     #[doc="Master/Slave Mode Select"]
@@ -721,7 +721,7 @@ impl Tcr {
 
     #[doc="SPI Transfer Counter"]
     #[inline] pub fn test_spi_tcnt(&self) -> bool {
-        self.spi_tcnt != 0
+        self.spi_tcnt() != 0
     }
 
     #[doc="SPI Transfer Counter"]
@@ -761,7 +761,7 @@ impl Ctar {
 
     #[doc="Baud Rate Scaler"]
     #[inline] pub fn test_br(&self) -> bool {
-        self.br != 0
+        self.br() != 0
     }
 
     #[doc="Baud Rate Scaler"]
@@ -780,7 +780,7 @@ impl Ctar {
 
     #[doc="Delay After Transfer Scaler"]
     #[inline] pub fn test_dt(&self) -> bool {
-        self.dt != 0
+        self.dt() != 0
     }
 
     #[doc="Delay After Transfer Scaler"]
@@ -799,7 +799,7 @@ impl Ctar {
 
     #[doc="After SCK Delay Scaler"]
     #[inline] pub fn test_asc(&self) -> bool {
-        self.asc != 0
+        self.asc() != 0
     }
 
     #[doc="After SCK Delay Scaler"]
@@ -818,7 +818,7 @@ impl Ctar {
 
     #[doc="PCS to SCK Delay Scaler"]
     #[inline] pub fn test_cssck(&self) -> bool {
-        self.cssck != 0
+        self.cssck() != 0
     }
 
     #[doc="PCS to SCK Delay Scaler"]
@@ -837,7 +837,7 @@ impl Ctar {
 
     #[doc="Baud Rate Prescaler"]
     #[inline] pub fn test_pbr(&self) -> bool {
-        self.pbr != 0
+        self.pbr() != 0
     }
 
     #[doc="Baud Rate Prescaler"]
@@ -856,7 +856,7 @@ impl Ctar {
 
     #[doc="Delay after Transfer Prescaler"]
     #[inline] pub fn test_pdt(&self) -> bool {
-        self.pdt != 0
+        self.pdt() != 0
     }
 
     #[doc="Delay after Transfer Prescaler"]
@@ -875,7 +875,7 @@ impl Ctar {
 
     #[doc="After SCK Delay Prescaler"]
     #[inline] pub fn test_pasc(&self) -> bool {
-        self.pasc != 0
+        self.pasc() != 0
     }
 
     #[doc="After SCK Delay Prescaler"]
@@ -894,7 +894,7 @@ impl Ctar {
 
     #[doc="PCS to SCK Delay Prescaler"]
     #[inline] pub fn test_pcssck(&self) -> bool {
-        self.pcssck != 0
+        self.pcssck() != 0
     }
 
     #[doc="PCS to SCK Delay Prescaler"]
@@ -913,7 +913,7 @@ impl Ctar {
 
     #[doc="LSB First"]
     #[inline] pub fn test_lsbfe(&self) -> bool {
-        self.lsbfe != 0
+        self.lsbfe() != 0
     }
 
     #[doc="LSB First"]
@@ -932,7 +932,7 @@ impl Ctar {
 
     #[doc="Clock Phase"]
     #[inline] pub fn test_cpha(&self) -> bool {
-        self.cpha != 0
+        self.cpha() != 0
     }
 
     #[doc="Clock Phase"]
@@ -951,7 +951,7 @@ impl Ctar {
 
     #[doc="Clock Polarity"]
     #[inline] pub fn test_cpol(&self) -> bool {
-        self.cpol != 0
+        self.cpol() != 0
     }
 
     #[doc="Clock Polarity"]
@@ -970,7 +970,7 @@ impl Ctar {
 
     #[doc="Frame Size"]
     #[inline] pub fn test_fmsz(&self) -> bool {
-        self.fmsz != 0
+        self.fmsz() != 0
     }
 
     #[doc="Frame Size"]
@@ -989,7 +989,7 @@ impl Ctar {
 
     #[doc="Double Baud Rate"]
     #[inline] pub fn test_dbr(&self) -> bool {
-        self.dbr != 0
+        self.dbr() != 0
     }
 
     #[doc="Double Baud Rate"]
@@ -1041,7 +1041,7 @@ impl CtarSlave {
 
     #[doc="Clock Phase"]
     #[inline] pub fn test_cpha(&self) -> bool {
-        self.cpha != 0
+        self.cpha() != 0
     }
 
     #[doc="Clock Phase"]
@@ -1060,7 +1060,7 @@ impl CtarSlave {
 
     #[doc="Clock Polarity"]
     #[inline] pub fn test_cpol(&self) -> bool {
-        self.cpol != 0
+        self.cpol() != 0
     }
 
     #[doc="Clock Polarity"]
@@ -1079,7 +1079,7 @@ impl CtarSlave {
 
     #[doc="Frame Size"]
     #[inline] pub fn test_fmsz(&self) -> bool {
-        self.fmsz != 0
+        self.fmsz() != 0
     }
 
     #[doc="Frame Size"]
@@ -1121,7 +1121,7 @@ impl Sr {
 
     #[doc="Pop Next Pointer"]
     #[inline] pub fn test_popnxtptr(&self) -> bool {
-        self.popnxtptr != 0
+        self.popnxtptr() != 0
     }
 
     #[doc="Pop Next Pointer"]
@@ -1140,7 +1140,7 @@ impl Sr {
 
     #[doc="RX FIFO Counter"]
     #[inline] pub fn test_rxctr(&self) -> bool {
-        self.rxctr != 0
+        self.rxctr() != 0
     }
 
     #[doc="RX FIFO Counter"]
@@ -1159,7 +1159,7 @@ impl Sr {
 
     #[doc="Transmit Next Pointer"]
     #[inline] pub fn test_txnxtptr(&self) -> bool {
-        self.txnxtptr != 0
+        self.txnxtptr() != 0
     }
 
     #[doc="Transmit Next Pointer"]
@@ -1178,7 +1178,7 @@ impl Sr {
 
     #[doc="TX FIFO Counter"]
     #[inline] pub fn test_txctr(&self) -> bool {
-        self.txctr != 0
+        self.txctr() != 0
     }
 
     #[doc="TX FIFO Counter"]
@@ -1197,7 +1197,7 @@ impl Sr {
 
     #[doc="Receive FIFO Drain Flag"]
     #[inline] pub fn test_rfdf(&self) -> bool {
-        self.rfdf != 0
+        self.rfdf() != 0
     }
 
     #[doc="Receive FIFO Drain Flag"]
@@ -1216,7 +1216,7 @@ impl Sr {
 
     #[doc="Receive FIFO Overflow Flag"]
     #[inline] pub fn test_rfof(&self) -> bool {
-        self.rfof != 0
+        self.rfof() != 0
     }
 
     #[doc="Receive FIFO Overflow Flag"]
@@ -1235,7 +1235,7 @@ impl Sr {
 
     #[doc="Transmit FIFO Fill Flag"]
     #[inline] pub fn test_tfff(&self) -> bool {
-        self.tfff != 0
+        self.tfff() != 0
     }
 
     #[doc="Transmit FIFO Fill Flag"]
@@ -1254,7 +1254,7 @@ impl Sr {
 
     #[doc="Transmit FIFO Underflow Flag"]
     #[inline] pub fn test_tfuf(&self) -> bool {
-        self.tfuf != 0
+        self.tfuf() != 0
     }
 
     #[doc="Transmit FIFO Underflow Flag"]
@@ -1273,7 +1273,7 @@ impl Sr {
 
     #[doc="End of Queue Flag"]
     #[inline] pub fn test_eoqf(&self) -> bool {
-        self.eoqf != 0
+        self.eoqf() != 0
     }
 
     #[doc="End of Queue Flag"]
@@ -1292,7 +1292,7 @@ impl Sr {
 
     #[doc="TX and RX Status"]
     #[inline] pub fn test_txrxs(&self) -> bool {
-        self.txrxs != 0
+        self.txrxs() != 0
     }
 
     #[doc="TX and RX Status"]
@@ -1311,7 +1311,7 @@ impl Sr {
 
     #[doc="Transfer Complete Flag"]
     #[inline] pub fn test_tcf(&self) -> bool {
-        self.tcf != 0
+        self.tcf() != 0
     }
 
     #[doc="Transfer Complete Flag"]
@@ -1361,7 +1361,7 @@ impl Rser {
 
     #[doc="Receive FIFO Drain DMA or Interrupt Request Select"]
     #[inline] pub fn test_rfdf_dirs(&self) -> bool {
-        self.rfdf_dirs != 0
+        self.rfdf_dirs() != 0
     }
 
     #[doc="Receive FIFO Drain DMA or Interrupt Request Select"]
@@ -1380,7 +1380,7 @@ impl Rser {
 
     #[doc="Receive FIFO Drain Request Enable"]
     #[inline] pub fn test_rfdf_re(&self) -> bool {
-        self.rfdf_re != 0
+        self.rfdf_re() != 0
     }
 
     #[doc="Receive FIFO Drain Request Enable"]
@@ -1399,7 +1399,7 @@ impl Rser {
 
     #[doc="Receive FIFO Overflow Request Enable"]
     #[inline] pub fn test_rfof_re(&self) -> bool {
-        self.rfof_re != 0
+        self.rfof_re() != 0
     }
 
     #[doc="Receive FIFO Overflow Request Enable"]
@@ -1418,7 +1418,7 @@ impl Rser {
 
     #[doc="Transmit FIFO Fill DMA or Interrupt Request Select"]
     #[inline] pub fn test_tfff_dirs(&self) -> bool {
-        self.tfff_dirs != 0
+        self.tfff_dirs() != 0
     }
 
     #[doc="Transmit FIFO Fill DMA or Interrupt Request Select"]
@@ -1437,7 +1437,7 @@ impl Rser {
 
     #[doc="Transmit FIFO Fill Request Enable"]
     #[inline] pub fn test_tfff_re(&self) -> bool {
-        self.tfff_re != 0
+        self.tfff_re() != 0
     }
 
     #[doc="Transmit FIFO Fill Request Enable"]
@@ -1456,7 +1456,7 @@ impl Rser {
 
     #[doc="Transmit FIFO Underflow Request Enable"]
     #[inline] pub fn test_tfuf_re(&self) -> bool {
-        self.tfuf_re != 0
+        self.tfuf_re() != 0
     }
 
     #[doc="Transmit FIFO Underflow Request Enable"]
@@ -1475,7 +1475,7 @@ impl Rser {
 
     #[doc="Finished Request Enable"]
     #[inline] pub fn test_eoqf_re(&self) -> bool {
-        self.eoqf_re != 0
+        self.eoqf_re() != 0
     }
 
     #[doc="Finished Request Enable"]
@@ -1494,7 +1494,7 @@ impl Rser {
 
     #[doc="Transmission Complete Request Enable"]
     #[inline] pub fn test_tcf_re(&self) -> bool {
-        self.tcf_re != 0
+        self.tcf_re() != 0
     }
 
     #[doc="Transmission Complete Request Enable"]
@@ -1541,7 +1541,7 @@ impl Pushr {
 
     #[doc="Transmit Data"]
     #[inline] pub fn test_txdata(&self) -> bool {
-        self.txdata != 0
+        self.txdata() != 0
     }
 
     #[doc="Transmit Data"]
@@ -1560,7 +1560,7 @@ impl Pushr {
 
     #[doc="Select which PCS signals are to be asserted for the transfer"]
     #[inline] pub fn test_pcs(&self) -> bool {
-        self.pcs != 0
+        self.pcs() != 0
     }
 
     #[doc="Select which PCS signals are to be asserted for the transfer"]
@@ -1579,7 +1579,7 @@ impl Pushr {
 
     #[doc="Clear Transfer Counter"]
     #[inline] pub fn test_ctcnt(&self) -> bool {
-        self.ctcnt != 0
+        self.ctcnt() != 0
     }
 
     #[doc="Clear Transfer Counter"]
@@ -1598,7 +1598,7 @@ impl Pushr {
 
     #[doc="End Of Queue"]
     #[inline] pub fn test_eoq(&self) -> bool {
-        self.eoq != 0
+        self.eoq() != 0
     }
 
     #[doc="End Of Queue"]
@@ -1617,7 +1617,7 @@ impl Pushr {
 
     #[doc="Clock and Transfer Attributes Select"]
     #[inline] pub fn test_ctas(&self) -> bool {
-        self.ctas != 0
+        self.ctas() != 0
     }
 
     #[doc="Clock and Transfer Attributes Select"]
@@ -1636,7 +1636,7 @@ impl Pushr {
 
     #[doc="Continuous Peripheral Chip Select Enable"]
     #[inline] pub fn test_cont(&self) -> bool {
-        self.cont != 0
+        self.cont() != 0
     }
 
     #[doc="Continuous Peripheral Chip Select Enable"]
@@ -1681,7 +1681,7 @@ impl PushrSlave {
 
     #[doc="Transmit Data"]
     #[inline] pub fn test_txdata(&self) -> bool {
-        self.txdata != 0
+        self.txdata() != 0
     }
 
     #[doc="Transmit Data"]
@@ -1720,7 +1720,7 @@ impl Popr {
 
     #[doc="Received Data"]
     #[inline] pub fn test_rxdata(&self) -> bool {
-        self.rxdata != 0
+        self.rxdata() != 0
     }
 
     #[doc="Received Data"]
@@ -1759,7 +1759,7 @@ impl Txfr {
 
     #[doc="Transmit Data"]
     #[inline] pub fn test_txdata(&self) -> bool {
-        self.txdata != 0
+        self.txdata() != 0
     }
 
     #[doc="Transmit Data"]
@@ -1778,7 +1778,7 @@ impl Txfr {
 
     #[doc="Transmit Command or Transmit Data"]
     #[inline] pub fn test_txcmd_txdata(&self) -> bool {
-        self.txcmd_txdata != 0
+        self.txcmd_txdata() != 0
     }
 
     #[doc="Transmit Command or Transmit Data"]
@@ -1819,7 +1819,7 @@ impl Rxfr {
 
     #[doc="Receive Data"]
     #[inline] pub fn test_rxdata(&self) -> bool {
-        self.rxdata != 0
+        self.rxdata() != 0
     }
 
     #[doc="Receive Data"]

@@ -704,7 +704,7 @@ impl Actlr {
 
     #[doc="When set to 1, disables IT folding."]
     #[inline] pub fn test_disfold(&self) -> bool {
-        self.disfold != 0
+        self.disfold() != 0
     }
 
     #[doc="When set to 1, disables IT folding."]
@@ -723,7 +723,7 @@ impl Actlr {
 
     #[doc="When set to 1, disables write buffer use during default memory map accesses."]
     #[inline] pub fn test_disdefwbuf(&self) -> bool {
-        self.disdefwbuf != 0
+        self.disdefwbuf() != 0
     }
 
     #[doc="When set to 1, disables write buffer use during default memory map accesses."]
@@ -742,7 +742,7 @@ impl Actlr {
 
     #[doc="When set to 1, disables interruption of load multiple and store multiple instructions."]
     #[inline] pub fn test_dismcycint(&self) -> bool {
-        self.dismcycint != 0
+        self.dismcycint() != 0
     }
 
     #[doc="When set to 1, disables interruption of load multiple and store multiple instructions."]
@@ -784,7 +784,7 @@ impl Cpuid {
 
     #[doc="Implementer Code"]
     #[inline] pub fn test_implementer(&self) -> bool {
-        self.implementer != 0
+        self.implementer() != 0
     }
 
     #[doc="Implementer Code"]
@@ -803,7 +803,7 @@ impl Cpuid {
 
     #[doc="Variant number, the r value in the rnpn product revision identifier"]
     #[inline] pub fn test_variant(&self) -> bool {
-        self.variant != 0
+        self.variant() != 0
     }
 
     #[doc="Variant number, the r value in the rnpn product revision identifier"]
@@ -822,7 +822,7 @@ impl Cpuid {
 
     #[doc="Reads as 0xF"]
     #[inline] pub fn test_constant(&self) -> bool {
-        self.constant != 0
+        self.constant() != 0
     }
 
     #[doc="Reads as 0xF"]
@@ -841,7 +841,7 @@ impl Cpuid {
 
     #[doc="Part number of the processor"]
     #[inline] pub fn test_partno(&self) -> bool {
-        self.partno != 0
+        self.partno() != 0
     }
 
     #[doc="Part number of the processor"]
@@ -860,7 +860,7 @@ impl Cpuid {
 
     #[doc="Revision number, the p value in the rnpn product revision identifier"]
     #[inline] pub fn test_revision(&self) -> bool {
-        self.revision != 0
+        self.revision() != 0
     }
 
     #[doc="Revision number, the p value in the rnpn product revision identifier"]
@@ -904,7 +904,7 @@ impl Icsr {
 
     #[doc="NMI set-pending bit"]
     #[inline] pub fn test_nmipendset(&self) -> bool {
-        self.nmipendset != 0
+        self.nmipendset() != 0
     }
 
     #[doc="NMI set-pending bit"]
@@ -923,7 +923,7 @@ impl Icsr {
 
     #[doc="PendSV set-pending bit"]
     #[inline] pub fn test_pendsvset(&self) -> bool {
-        self.pendsvset != 0
+        self.pendsvset() != 0
     }
 
     #[doc="PendSV set-pending bit"]
@@ -942,7 +942,7 @@ impl Icsr {
 
     #[doc="PendSV clear-pending bit"]
     #[inline] pub fn test_pendsvclr(&self) -> bool {
-        self.pendsvclr != 0
+        self.pendsvclr() != 0
     }
 
     #[doc="PendSV clear-pending bit"]
@@ -961,7 +961,7 @@ impl Icsr {
 
     #[doc="Systick exception set-pending bit"]
     #[inline] pub fn test_pendstset(&self) -> bool {
-        self.pendstset != 0
+        self.pendstset() != 0
     }
 
     #[doc="Systick exception set-pending bit"]
@@ -980,7 +980,7 @@ impl Icsr {
 
     #[doc="Systick clear-pending bit"]
     #[inline] pub fn test_pendstclr(&self) -> bool {
-        self.pendstclr != 0
+        self.pendstclr() != 0
     }
 
     #[doc="Systick clear-pending bit"]
@@ -999,7 +999,7 @@ impl Icsr {
 
     #[doc="Interrupt pending flag, excluding NMI and Faults"]
     #[inline] pub fn test_isrpending(&self) -> bool {
-        self.isrpending != 0
+        self.isrpending() != 0
     }
 
     #[doc="Interrupt pending flag, excluding NMI and Faults"]
@@ -1018,7 +1018,7 @@ impl Icsr {
 
     #[doc="Indicates the exception number of the highest priority pending enabled exception"]
     #[inline] pub fn test_vectpending(&self) -> bool {
-        self.vectpending != 0
+        self.vectpending() != 0
     }
 
     #[doc="Indicates the exception number of the highest priority pending enabled exception"]
@@ -1037,7 +1037,7 @@ impl Icsr {
 
     #[doc="Indicates the exception number of the highest priority pending enabled exception"]
     #[inline] pub fn test_rettobase(&self) -> bool {
-        self.rettobase != 0
+        self.rettobase() != 0
     }
 
     #[doc="Indicates the exception number of the highest priority pending enabled exception"]
@@ -1056,7 +1056,7 @@ impl Icsr {
 
     #[doc="Contains the active exception number. Subtract 16 from this value to obtain the CMSIS IRQ number required to index into the Interrupt Clear-Enable, Set-Enable, Clear-Pending, Set-Pending, or Priority Registers"]
     #[inline] pub fn test_vectactive(&self) -> bool {
-        self.vectactive != 0
+        self.vectactive() != 0
     }
 
     #[doc="Contains the active exception number. Subtract 16 from this value to obtain the CMSIS IRQ number required to index into the Interrupt Clear-Enable, Set-Enable, Clear-Pending, Set-Pending, or Priority Registers"]
@@ -1104,7 +1104,7 @@ impl Vtor {
 
     #[doc="Vector table base offset field. It contains bits[29:7] of the offset of the table base from the bottom of the memory map."]
     #[inline] pub fn test_tbloff(&self) -> bool {
-        self.tbloff != 0
+        self.tbloff() != 0
     }
 
     #[doc="Vector table base offset field. It contains bits[29:7] of the offset of the table base from the bottom of the memory map."]
@@ -1144,7 +1144,7 @@ impl Aircr {
 
     #[doc="Register key: Reads as 0xFA05. On writes, write 0x5FA to VECTKEY, otherwise the write is ignored."]
     #[inline] pub fn test_vectkey(&self) -> bool {
-        self.vectkey != 0
+        self.vectkey() != 0
     }
 
     #[doc="Register key: Reads as 0xFA05. On writes, write 0x5FA to VECTKEY, otherwise the write is ignored."]
@@ -1163,7 +1163,7 @@ impl Aircr {
 
     #[doc="Data endianness bit is implementation defined: 0 = Little-endian, 1 = Big-endian."]
     #[inline] pub fn test_endianness(&self) -> bool {
-        self.endianness != 0
+        self.endianness() != 0
     }
 
     #[doc="Data endianness bit is implementation defined: 0 = Little-endian, 1 = Big-endian."]
@@ -1182,7 +1182,7 @@ impl Aircr {
 
     #[doc="Interrupt priority grouping field is implementation defined. This field determines the split of group priority from subpriority, see Binary point."]
     #[inline] pub fn test_prigroup(&self) -> bool {
-        self.prigroup != 0
+        self.prigroup() != 0
     }
 
     #[doc="Interrupt priority grouping field is implementation defined. This field determines the split of group priority from subpriority, see Binary point."]
@@ -1201,7 +1201,7 @@ impl Aircr {
 
     #[doc="System reset request bit is implementation defined: 0 = no system reset request, 1 = asserts a signal to the outer system that requests a reset. This is intended to force a large system reset of all major components except for debug."]
     #[inline] pub fn test_sysresetreq(&self) -> bool {
-        self.sysresetreq != 0
+        self.sysresetreq() != 0
     }
 
     #[doc="System reset request bit is implementation defined: 0 = no system reset request, 1 = asserts a signal to the outer system that requests a reset. This is intended to force a large system reset of all major components except for debug."]
@@ -1220,7 +1220,7 @@ impl Aircr {
 
     #[doc="Reserved for Debug use. This bit reads as 0. When writing to the register you must write 0 to this bit, otherwise behavior is Unpredictable."]
     #[inline] pub fn test_vectclractive(&self) -> bool {
-        self.vectclractive != 0
+        self.vectclractive() != 0
     }
 
     #[doc="Reserved for Debug use. This bit reads as 0. When writing to the register you must write 0 to this bit, otherwise behavior is Unpredictable."]
@@ -1239,7 +1239,7 @@ impl Aircr {
 
     #[doc="Reserved for Debug use. This bit reads as 0. When writing to the register you must write 0 to this bit, otherwise behavior is Unpredictable."]
     #[inline] pub fn test_vectreset(&self) -> bool {
-        self.vectreset != 0
+        self.vectreset() != 0
     }
 
     #[doc="Reserved for Debug use. This bit reads as 0. When writing to the register you must write 0 to this bit, otherwise behavior is Unpredictable."]
@@ -1284,7 +1284,7 @@ impl Scr {
 
     #[doc="Send Event on Pending bit"]
     #[inline] pub fn test_sevonpend(&self) -> bool {
-        self.sevonpend != 0
+        self.sevonpend() != 0
     }
 
     #[doc="Send Event on Pending bit"]
@@ -1303,7 +1303,7 @@ impl Scr {
 
     #[doc="Controls whether the processor uses sleep or deep sleep as its low power mode"]
     #[inline] pub fn test_sleepdeep(&self) -> bool {
-        self.sleepdeep != 0
+        self.sleepdeep() != 0
     }
 
     #[doc="Controls whether the processor uses sleep or deep sleep as its low power mode"]
@@ -1322,7 +1322,7 @@ impl Scr {
 
     #[doc="Indicates sleep-on-exit when returning from Handler mode to Thread mode:"]
     #[inline] pub fn test_sleeponexit(&self) -> bool {
-        self.sleeponexit != 0
+        self.sleeponexit() != 0
     }
 
     #[doc="Indicates sleep-on-exit when returning from Handler mode to Thread mode:"]
@@ -1364,7 +1364,7 @@ impl Ccr {
 
     #[doc="Indicates stack alignment on exception entry: 0 = 4-byte aligned1 = 8-byte aligned. On exception entry, the processor uses bit[9] of the stacked PSR to indicate the stack alignment. On return from the exception it uses this stacked bit to restore the correct stack alignment."]
     #[inline] pub fn test_stkalign(&self) -> bool {
-        self.stkalign != 0
+        self.stkalign() != 0
     }
 
     #[doc="Indicates stack alignment on exception entry: 0 = 4-byte aligned1 = 8-byte aligned. On exception entry, the processor uses bit[9] of the stacked PSR to indicate the stack alignment. On return from the exception it uses this stacked bit to restore the correct stack alignment."]
@@ -1383,7 +1383,7 @@ impl Ccr {
 
     #[doc="Enables handlers with priority -1 or -2 to ignore data BusFaults caused by load and store instructions. This applies to the hard fault, NMI, and FAULTMASK escalated handlers: 0 = data bus faults caused by load and store instructions cause a lock-up, 1 = handlers running at priority -1 and -2 ignore data bus faults caused by load and store instructions. Set this bit to 1 only when the handler and its data are in absolutely safe memory. The normal use of this bit is to probe system devices and bridges to detect control path problems and fix them."]
     #[inline] pub fn test_bfhfnmign(&self) -> bool {
-        self.bfhfnmign != 0
+        self.bfhfnmign() != 0
     }
 
     #[doc="Enables handlers with priority -1 or -2 to ignore data BusFaults caused by load and store instructions. This applies to the hard fault, NMI, and FAULTMASK escalated handlers: 0 = data bus faults caused by load and store instructions cause a lock-up, 1 = handlers running at priority -1 and -2 ignore data bus faults caused by load and store instructions. Set this bit to 1 only when the handler and its data are in absolutely safe memory. The normal use of this bit is to probe system devices and bridges to detect control path problems and fix them."]
@@ -1402,7 +1402,7 @@ impl Ccr {
 
     #[doc="Enables faulting or halting when the processor executes an SDIV or UDIV instruction with a divisor of 0: 0 = do not trap divide by 0, 1 = trap divide by 0. When this bit is set to 0, a divide by zero returns a quotient of 0."]
     #[inline] pub fn test_div_0_trp(&self) -> bool {
-        self.div_0_trp != 0
+        self.div_0_trp() != 0
     }
 
     #[doc="Enables faulting or halting when the processor executes an SDIV or UDIV instruction with a divisor of 0: 0 = do not trap divide by 0, 1 = trap divide by 0. When this bit is set to 0, a divide by zero returns a quotient of 0."]
@@ -1421,7 +1421,7 @@ impl Ccr {
 
     #[doc="Enables unaligned access traps: 0 = do not trap unaligned halfword and word accesses1 = trap unaligned halfword and word accesses. If this bit is set to 1, an unaligned access generates a UsageFault. Unaligned LDM, STM, LDRD, and STRD instructions always fault irrespective of whether UNALIGN_TRP is set to 1."]
     #[inline] pub fn test_unalign_trp(&self) -> bool {
-        self.unalign_trp != 0
+        self.unalign_trp() != 0
     }
 
     #[doc="Enables unaligned access traps: 0 = do not trap unaligned halfword and word accesses1 = trap unaligned halfword and word accesses. If this bit is set to 1, an unaligned access generates a UsageFault. Unaligned LDM, STM, LDRD, and STRD instructions always fault irrespective of whether UNALIGN_TRP is set to 1."]
@@ -1440,7 +1440,7 @@ impl Ccr {
 
     #[doc="Enables unprivileged software access to the STIR, see Software Trigger Interrupt Register: 0 = disable, 1 = enable."]
     #[inline] pub fn test_usersetmpend(&self) -> bool {
-        self.usersetmpend != 0
+        self.usersetmpend() != 0
     }
 
     #[doc="Enables unprivileged software access to the STIR, see Software Trigger Interrupt Register: 0 = disable, 1 = enable."]
@@ -1459,7 +1459,7 @@ impl Ccr {
 
     #[doc="Indicates how the processor enters Thread mode: 0 = processor can enter Thread mode only when no exception is active, 1 = processor can enter Thread mode from any level under the control of an EXC_RETURN value, see Exception return."]
     #[inline] pub fn test_nonbasethrdena(&self) -> bool {
-        self.nonbasethrdena != 0
+        self.nonbasethrdena() != 0
     }
 
     #[doc="Indicates how the processor enters Thread mode: 0 = processor can enter Thread mode only when no exception is active, 1 = processor can enter Thread mode from any level under the control of an EXC_RETURN value, see Exception return."]
@@ -1504,7 +1504,7 @@ impl Shpr1 {
 
     #[doc="Priority of system handler 6, UsageFault"]
     #[inline] pub fn test_pri_6(&self) -> bool {
-        self.pri_6 != 0
+        self.pri_6() != 0
     }
 
     #[doc="Priority of system handler 6, UsageFault"]
@@ -1523,7 +1523,7 @@ impl Shpr1 {
 
     #[doc="Priority of system handler 5, BusFault"]
     #[inline] pub fn test_pri_5(&self) -> bool {
-        self.pri_5 != 0
+        self.pri_5() != 0
     }
 
     #[doc="Priority of system handler 5, BusFault"]
@@ -1542,7 +1542,7 @@ impl Shpr1 {
 
     #[doc="Priority of system handler 4, MemManage"]
     #[inline] pub fn test_pri_4(&self) -> bool {
-        self.pri_4 != 0
+        self.pri_4() != 0
     }
 
     #[doc="Priority of system handler 4, MemManage"]
@@ -1584,7 +1584,7 @@ impl Shpr2 {
 
     #[doc="Priority of system handler 11, SVCall"]
     #[inline] pub fn test_pri_11(&self) -> bool {
-        self.pri_11 != 0
+        self.pri_11() != 0
     }
 
     #[doc="Priority of system handler 11, SVCall"]
@@ -1624,7 +1624,7 @@ impl Shpr3 {
 
     #[doc="Priority of system handler 15, SysTick exception"]
     #[inline] pub fn test_pri_15(&self) -> bool {
-        self.pri_15 != 0
+        self.pri_15() != 0
     }
 
     #[doc="Priority of system handler 15, SysTick exception"]
@@ -1643,7 +1643,7 @@ impl Shpr3 {
 
     #[doc="Priority of system handler 14, PendSV"]
     #[inline] pub fn test_pri_14(&self) -> bool {
-        self.pri_14 != 0
+        self.pri_14() != 0
     }
 
     #[doc="Priority of system handler 14, PendSV"]
@@ -1684,7 +1684,7 @@ impl Shcsr {
 
     #[doc="UsageFault enable bit, set to 1 to enable"]
     #[inline] pub fn test_usgfaultena(&self) -> bool {
-        self.usgfaultena != 0
+        self.usgfaultena() != 0
     }
 
     #[doc="UsageFault enable bit, set to 1 to enable"]
@@ -1703,7 +1703,7 @@ impl Shcsr {
 
     #[doc="BusFault enable bit, set to 1 to enable"]
     #[inline] pub fn test_busfaultena(&self) -> bool {
-        self.busfaultena != 0
+        self.busfaultena() != 0
     }
 
     #[doc="BusFault enable bit, set to 1 to enable"]
@@ -1722,7 +1722,7 @@ impl Shcsr {
 
     #[doc="MemManage enable bit, set to 1 to enable"]
     #[inline] pub fn test_memfaultena(&self) -> bool {
-        self.memfaultena != 0
+        self.memfaultena() != 0
     }
 
     #[doc="MemManage enable bit, set to 1 to enable"]
@@ -1741,7 +1741,7 @@ impl Shcsr {
 
     #[doc="SVCall pending bit, reads as 1 if exception is pending"]
     #[inline] pub fn test_svcallpended(&self) -> bool {
-        self.svcallpended != 0
+        self.svcallpended() != 0
     }
 
     #[doc="SVCall pending bit, reads as 1 if exception is pending"]
@@ -1760,7 +1760,7 @@ impl Shcsr {
 
     #[doc="BusFault exception pending bit, reads as 1 if exception is pending"]
     #[inline] pub fn test_busfaultpended(&self) -> bool {
-        self.busfaultpended != 0
+        self.busfaultpended() != 0
     }
 
     #[doc="BusFault exception pending bit, reads as 1 if exception is pending"]
@@ -1779,7 +1779,7 @@ impl Shcsr {
 
     #[doc="MemManage exception pending bit, reads as 1 if exception is pending"]
     #[inline] pub fn test_memfaultpended(&self) -> bool {
-        self.memfaultpended != 0
+        self.memfaultpended() != 0
     }
 
     #[doc="MemManage exception pending bit, reads as 1 if exception is pending"]
@@ -1798,7 +1798,7 @@ impl Shcsr {
 
     #[doc="UsageFault exception pending bit, reads as 1 if exception is pending"]
     #[inline] pub fn test_usgfaultpended(&self) -> bool {
-        self.usgfaultpended != 0
+        self.usgfaultpended() != 0
     }
 
     #[doc="UsageFault exception pending bit, reads as 1 if exception is pending"]
@@ -1817,7 +1817,7 @@ impl Shcsr {
 
     #[doc="SysTick exception active bit, reads as 1 if exception is active"]
     #[inline] pub fn test_systickact(&self) -> bool {
-        self.systickact != 0
+        self.systickact() != 0
     }
 
     #[doc="SysTick exception active bit, reads as 1 if exception is active"]
@@ -1836,7 +1836,7 @@ impl Shcsr {
 
     #[doc="PendSV exception active bit, reads as 1 if exception is active"]
     #[inline] pub fn test_pendsvact(&self) -> bool {
-        self.pendsvact != 0
+        self.pendsvact() != 0
     }
 
     #[doc="PendSV exception active bit, reads as 1 if exception is active"]
@@ -1855,7 +1855,7 @@ impl Shcsr {
 
     #[doc="Debug monitor active bit, reads as 1 if Debug monitor is active"]
     #[inline] pub fn test_monitoract(&self) -> bool {
-        self.monitoract != 0
+        self.monitoract() != 0
     }
 
     #[doc="Debug monitor active bit, reads as 1 if Debug monitor is active"]
@@ -1874,7 +1874,7 @@ impl Shcsr {
 
     #[doc="SVCall active bit, reads as 1 if SVC call is active"]
     #[inline] pub fn test_svcallact(&self) -> bool {
-        self.svcallact != 0
+        self.svcallact() != 0
     }
 
     #[doc="SVCall active bit, reads as 1 if SVC call is active"]
@@ -1893,7 +1893,7 @@ impl Shcsr {
 
     #[doc="UsageFault exception active bit, reads as 1 if exception is active"]
     #[inline] pub fn test_usgfaultact(&self) -> bool {
-        self.usgfaultact != 0
+        self.usgfaultact() != 0
     }
 
     #[doc="UsageFault exception active bit, reads as 1 if exception is active"]
@@ -1912,7 +1912,7 @@ impl Shcsr {
 
     #[doc="BusFault exception active bit, reads as 1 if exception is active"]
     #[inline] pub fn test_busfaultact(&self) -> bool {
-        self.busfaultact != 0
+        self.busfaultact() != 0
     }
 
     #[doc="BusFault exception active bit, reads as 1 if exception is active"]
@@ -1931,7 +1931,7 @@ impl Shcsr {
 
     #[doc="MemManage exception active bit, reads as 1 if exception is active"]
     #[inline] pub fn test_memfaultact(&self) -> bool {
-        self.memfaultact != 0
+        self.memfaultact() != 0
     }
 
     #[doc="MemManage exception active bit, reads as 1 if exception is active"]
@@ -2004,7 +2004,7 @@ impl Mmfsr {
 
     #[doc="MemManage Fault Address Register (MMFAR) valid flag: 0 = value in MMAR is not a valid fault address, 1 = MMAR holds a valid fault address. If a MemManage fault occurs and is escalated to a HardFault because of priority, the HardFault handler must set this bit to 0. This prevents problems on return to a stacked active MemManage fault handler whose MMAR value has been overwritten."]
     #[inline] pub fn test_mmarvalid(&self) -> bool {
-        self.mmarvalid != 0
+        self.mmarvalid() != 0
     }
 
     #[doc="MemManage Fault Address Register (MMFAR) valid flag: 0 = value in MMAR is not a valid fault address, 1 = MMAR holds a valid fault address. If a MemManage fault occurs and is escalated to a HardFault because of priority, the HardFault handler must set this bit to 0. This prevents problems on return to a stacked active MemManage fault handler whose MMAR value has been overwritten."]
@@ -2023,7 +2023,7 @@ impl Mmfsr {
 
     #[doc="MemManage fault on stacking for exception entry: 0 = no stacking fault, 1 = stacking for an exception entry has caused one or more access violations. When this bit is 1, the SP is still adjusted but the values in the context area on the stack might be incorrect. The processor has not written a fault address to the MMAR."]
     #[inline] pub fn test_mstkerr(&self) -> bool {
-        self.mstkerr != 0
+        self.mstkerr() != 0
     }
 
     #[doc="MemManage fault on stacking for exception entry: 0 = no stacking fault, 1 = stacking for an exception entry has caused one or more access violations. When this bit is 1, the SP is still adjusted but the values in the context area on the stack might be incorrect. The processor has not written a fault address to the MMAR."]
@@ -2042,7 +2042,7 @@ impl Mmfsr {
 
     #[doc="MemManage fault on unstacking for a return from exception: 0 = no unstacking fault, 1 = unstack for an exception return has caused one or more access violations. This fault is chained to the handler. This means that when this bit is 1, the original return stack is still present. The processor has not adjusted the SP from the failing return, and has not performed a new save. The processor has not written a fault address to the MMAR."]
     #[inline] pub fn test_munstkerr(&self) -> bool {
-        self.munstkerr != 0
+        self.munstkerr() != 0
     }
 
     #[doc="MemManage fault on unstacking for a return from exception: 0 = no unstacking fault, 1 = unstack for an exception return has caused one or more access violations. This fault is chained to the handler. This means that when this bit is 1, the original return stack is still present. The processor has not adjusted the SP from the failing return, and has not performed a new save. The processor has not written a fault address to the MMAR."]
@@ -2061,7 +2061,7 @@ impl Mmfsr {
 
     #[doc="Data access violation flag: 0 = no data access violation fault, 1 = the processor attempted a load or store at a location that does not permit the operation. When this bit is 1, the PC value stacked for the exception return points to the faulting instruction. The processor has loaded the MMAR with the address of the attempted access."]
     #[inline] pub fn test_daccviol(&self) -> bool {
-        self.daccviol != 0
+        self.daccviol() != 0
     }
 
     #[doc="Data access violation flag: 0 = no data access violation fault, 1 = the processor attempted a load or store at a location that does not permit the operation. When this bit is 1, the PC value stacked for the exception return points to the faulting instruction. The processor has loaded the MMAR with the address of the attempted access."]
@@ -2080,7 +2080,7 @@ impl Mmfsr {
 
     #[doc="Instruction access violation flag: 0 = no instruction access violation fault, 1 = the processor attempted an instruction fetch from a location that does not permit execution. This fault occurs on any access to an XN region, even when the MPU is disabled or not present. When this bit is 1, the PC value stacked for the exception return points to the faulting instruction. The processor has not written a fault address to the MMAR."]
     #[inline] pub fn test_iaccviol(&self) -> bool {
-        self.iaccviol != 0
+        self.iaccviol() != 0
     }
 
     #[doc="Instruction access violation flag: 0 = no instruction access violation fault, 1 = the processor attempted an instruction fetch from a location that does not permit execution. This fault occurs on any access to an XN region, even when the MPU is disabled or not present. When this bit is 1, the PC value stacked for the exception return points to the faulting instruction. The processor has not written a fault address to the MMAR."]
@@ -2124,7 +2124,7 @@ impl Bfsr {
 
     #[doc="BusFault Address Register (BFAR) valid flag: 0 = value in BFAR is not a valid fault address, 1 = BFAR holds a valid fault address. The processor sets this bit to 1 after a BusFault where the address is known. Other faults can set this bit to 0, such as a MemManage fault occurring later. If a BusFault occurs and is escalated to a hard fault because of priority, the hard fault handler must set this bit to 0. This prevents problems if returning to a stacked active BusFault handler whose BFAR value has been overwritten."]
     #[inline] pub fn test_bfarvalid(&self) -> bool {
-        self.bfarvalid != 0
+        self.bfarvalid() != 0
     }
 
     #[doc="BusFault Address Register (BFAR) valid flag: 0 = value in BFAR is not a valid fault address, 1 = BFAR holds a valid fault address. The processor sets this bit to 1 after a BusFault where the address is known. Other faults can set this bit to 0, such as a MemManage fault occurring later. If a BusFault occurs and is escalated to a hard fault because of priority, the hard fault handler must set this bit to 0. This prevents problems if returning to a stacked active BusFault handler whose BFAR value has been overwritten."]
@@ -2143,7 +2143,7 @@ impl Bfsr {
 
     #[doc="BusFault on stacking for exception entry: 0 = no stacking fault, 1 = stacking for an exception entry has caused one or more BusFaults. When the processor sets this bit to 1, the SP is still adjusted but the values in the context area on the stack might be incorrect. The processor does not write a fault address to the BFAR."]
     #[inline] pub fn test_stkerr(&self) -> bool {
-        self.stkerr != 0
+        self.stkerr() != 0
     }
 
     #[doc="BusFault on stacking for exception entry: 0 = no stacking fault, 1 = stacking for an exception entry has caused one or more BusFaults. When the processor sets this bit to 1, the SP is still adjusted but the values in the context area on the stack might be incorrect. The processor does not write a fault address to the BFAR."]
@@ -2162,7 +2162,7 @@ impl Bfsr {
 
     #[doc="BusFault on unstacking for a return from exception: 0 = no unstacking fault, 1 = unstack for an exception return has caused one or more BusFaults. This fault is chained to the handler. This means that when the processor sets this bit to 1, the original return stack is still present. The processor does not adjust the SP from the failing return, does not performed a new save, and does not write a fault address to the BFAR."]
     #[inline] pub fn test_unstkerr(&self) -> bool {
-        self.unstkerr != 0
+        self.unstkerr() != 0
     }
 
     #[doc="BusFault on unstacking for a return from exception: 0 = no unstacking fault, 1 = unstack for an exception return has caused one or more BusFaults. This fault is chained to the handler. This means that when the processor sets this bit to 1, the original return stack is still present. The processor does not adjust the SP from the failing return, does not performed a new save, and does not write a fault address to the BFAR."]
@@ -2181,7 +2181,7 @@ impl Bfsr {
 
     #[doc="Imprecise data bus error: 0 = no imprecise data bus error, 1 = a data bus error has occurred, but the return address in the stack frame is not related to the instruction that caused the error. When the processor sets this bit to 1, it does not write a fault address to the BFAR. This is an asynchronous fault. Therefore, if it is detected when the priority of the current process is higher than the BusFault priority, the BusFault becomes pending and becomes active only when the processor returns from all higher priority processes. If a precise fault occurs before the processor enters the handler for the imprecise BusFault, the handler detects both IMPRECISERR set to 1 and one of the precise fault status bits set to 1."]
     #[inline] pub fn test_impreciserr(&self) -> bool {
-        self.impreciserr != 0
+        self.impreciserr() != 0
     }
 
     #[doc="Imprecise data bus error: 0 = no imprecise data bus error, 1 = a data bus error has occurred, but the return address in the stack frame is not related to the instruction that caused the error. When the processor sets this bit to 1, it does not write a fault address to the BFAR. This is an asynchronous fault. Therefore, if it is detected when the priority of the current process is higher than the BusFault priority, the BusFault becomes pending and becomes active only when the processor returns from all higher priority processes. If a precise fault occurs before the processor enters the handler for the imprecise BusFault, the handler detects both IMPRECISERR set to 1 and one of the precise fault status bits set to 1."]
@@ -2200,7 +2200,7 @@ impl Bfsr {
 
     #[doc="Precise data bus error: 0 = no precise data bus error, 1 = a data bus error has occurred, and the PC value stacked for the exception return points to the instruction that caused the fault. When the processor sets this bit is 1, it writes the faulting address to the BFAR."]
     #[inline] pub fn test_preciserr(&self) -> bool {
-        self.preciserr != 0
+        self.preciserr() != 0
     }
 
     #[doc="Precise data bus error: 0 = no precise data bus error, 1 = a data bus error has occurred, and the PC value stacked for the exception return points to the instruction that caused the fault. When the processor sets this bit is 1, it writes the faulting address to the BFAR."]
@@ -2219,7 +2219,7 @@ impl Bfsr {
 
     #[doc="Instruction bus error: 0 = no instruction bus error, 1 = instruction bus error. The processor detects the instruction bus error on prefetching an instruction, but it sets the IBUSERR flag to 1 only if it attempts to issue the faulting instruction. When the processor sets this bit is 1, it does not write a fault address to the BFAR."]
     #[inline] pub fn test_ibuserr(&self) -> bool {
-        self.ibuserr != 0
+        self.ibuserr() != 0
     }
 
     #[doc="Instruction bus error: 0 = no instruction bus error, 1 = instruction bus error. The processor detects the instruction bus error on prefetching an instruction, but it sets the IBUSERR flag to 1 only if it attempts to issue the faulting instruction. When the processor sets this bit is 1, it does not write a fault address to the BFAR."]
@@ -2264,7 +2264,7 @@ impl Ufsr {
 
     #[doc="Divide by zero UsageFault: 0 = no divide by zero fault, or divide by zero trapping not enabled, 1 = the processor has executed an SDIV or UDIV instruction with a divisor of 0. When the processor sets this bit to 1, the PC value stacked for the exception return points to the instruction that performed the divide by zero. Enable trapping of divide by zero by setting the DIV_0_TRP bit in the CCR to 1, see Configuration and Control Register."]
     #[inline] pub fn test_divbyzero(&self) -> bool {
-        self.divbyzero != 0
+        self.divbyzero() != 0
     }
 
     #[doc="Divide by zero UsageFault: 0 = no divide by zero fault, or divide by zero trapping not enabled, 1 = the processor has executed an SDIV or UDIV instruction with a divisor of 0. When the processor sets this bit to 1, the PC value stacked for the exception return points to the instruction that performed the divide by zero. Enable trapping of divide by zero by setting the DIV_0_TRP bit in the CCR to 1, see Configuration and Control Register."]
@@ -2283,7 +2283,7 @@ impl Ufsr {
 
     #[doc="Unaligned access UsageFault: 0 = no unaligned access fault, or unaligned access trapping not enabled, 1 = the processor has made an unaligned memory access. Enable trapping of unaligned accesses by setting the UNALIGN_TRP bit in the CCR to 1, see Configuration and Control Register. Unaligned LDM, STM, LDRD, and STRD instructions always fault irrespective of the setting of UNALIGN_TRP."]
     #[inline] pub fn test_unaligned(&self) -> bool {
-        self.unaligned != 0
+        self.unaligned() != 0
     }
 
     #[doc="Unaligned access UsageFault: 0 = no unaligned access fault, or unaligned access trapping not enabled, 1 = the processor has made an unaligned memory access. Enable trapping of unaligned accesses by setting the UNALIGN_TRP bit in the CCR to 1, see Configuration and Control Register. Unaligned LDM, STM, LDRD, and STRD instructions always fault irrespective of the setting of UNALIGN_TRP."]
@@ -2302,7 +2302,7 @@ impl Ufsr {
 
     #[doc="No coprocessor UsageFault. The processor does not support coprocessor instructions: 0 = no UsageFault caused by attempting to access a coprocessor, 1 = the processor has attempted to access a coprocessor."]
     #[inline] pub fn test_nocp(&self) -> bool {
-        self.nocp != 0
+        self.nocp() != 0
     }
 
     #[doc="No coprocessor UsageFault. The processor does not support coprocessor instructions: 0 = no UsageFault caused by attempting to access a coprocessor, 1 = the processor has attempted to access a coprocessor."]
@@ -2321,7 +2321,7 @@ impl Ufsr {
 
     #[doc="Invalid PC load UsageFault, caused by an invalid PC load by EXC_RETURN: 0 = no invalid PC load UsageFault, 1 = the processor has attempted an illegal load of EXC_RETURN to the PC, as a result of an invalid context, or an invalid EXC_RETURN value. When this bit is set to 1, the PC value stacked for the exception return points to the instruction that tried to perform the illegal load of the PC."]
     #[inline] pub fn test_invpc(&self) -> bool {
-        self.invpc != 0
+        self.invpc() != 0
     }
 
     #[doc="Invalid PC load UsageFault, caused by an invalid PC load by EXC_RETURN: 0 = no invalid PC load UsageFault, 1 = the processor has attempted an illegal load of EXC_RETURN to the PC, as a result of an invalid context, or an invalid EXC_RETURN value. When this bit is set to 1, the PC value stacked for the exception return points to the instruction that tried to perform the illegal load of the PC."]
@@ -2340,7 +2340,7 @@ impl Ufsr {
 
     #[doc="Invalid state UsageFault: 0 = no invalid state UsageFault, 1 = the processor has attempted to execute an instruction that makes illegal use of the EPSR. When this bit is set to 1, the PC value stacked for the exception return points to the instruction that attempted the illegal use of the EPSR. This bit is not set to 1 if an undefined instruction uses the EPSR."]
     #[inline] pub fn test_invstate(&self) -> bool {
-        self.invstate != 0
+        self.invstate() != 0
     }
 
     #[doc="Invalid state UsageFault: 0 = no invalid state UsageFault, 1 = the processor has attempted to execute an instruction that makes illegal use of the EPSR. When this bit is set to 1, the PC value stacked for the exception return points to the instruction that attempted the illegal use of the EPSR. This bit is not set to 1 if an undefined instruction uses the EPSR."]
@@ -2359,7 +2359,7 @@ impl Ufsr {
 
     #[doc="Undefined instruction UsageFault: 0 = no undefined instruction UsageFault, 1 = the processor has attempted to execute an undefined instruction. When this bit is set to 1, the PC value stacked for the exception return points to the undefined instruction. An undefined instruction is an instruction that the processor cannot decode."]
     #[inline] pub fn test_undefinstr(&self) -> bool {
-        self.undefinstr != 0
+        self.undefinstr() != 0
     }
 
     #[doc="Undefined instruction UsageFault: 0 = no undefined instruction UsageFault, 1 = the processor has attempted to execute an undefined instruction. When this bit is set to 1, the PC value stacked for the exception return points to the undefined instruction. An undefined instruction is an instruction that the processor cannot decode."]
@@ -2404,7 +2404,7 @@ impl Hfsr {
 
     #[doc="Reserved for Debug use. When writing to the register you must write 0 to this bit, otherwise behavior is Unpredictable."]
     #[inline] pub fn test_debugevt(&self) -> bool {
-        self.debugevt != 0
+        self.debugevt() != 0
     }
 
     #[doc="Reserved for Debug use. When writing to the register you must write 0 to this bit, otherwise behavior is Unpredictable."]
@@ -2423,7 +2423,7 @@ impl Hfsr {
 
     #[doc="Indicates a forced hard fault, generated by escalation of a fault with configurable priority that cannot be handles, either because of priority or because it is disabled: 0 = no forced HardFault, 1 = forced HardFault. When this bit is set to 1, the HardFault handler must read the other fault status registers to find the cause of the fault."]
     #[inline] pub fn test_forced(&self) -> bool {
-        self.forced != 0
+        self.forced() != 0
     }
 
     #[doc="Indicates a forced hard fault, generated by escalation of a fault with configurable priority that cannot be handles, either because of priority or because it is disabled: 0 = no forced HardFault, 1 = forced HardFault. When this bit is set to 1, the HardFault handler must read the other fault status registers to find the cause of the fault."]
@@ -2442,7 +2442,7 @@ impl Hfsr {
 
     #[doc="Indicates a BusFault on a vector table read during exception processing: 0 = no BusFault on vector table read, 1 = BusFault on vector table read. This error is always handled by the hard fault handler. When this bit is set to 1, the PC value stacked for the exception return points to the instruction that was preempted by the exception."]
     #[inline] pub fn test_vecttbl(&self) -> bool {
-        self.vecttbl != 0
+        self.vecttbl() != 0
     }
 
     #[doc="Indicates a BusFault on a vector table read during exception processing: 0 = no BusFault on vector table read, 1 = BusFault on vector table read. This error is always handled by the hard fault handler. When this bit is set to 1, the PC value stacked for the exception return points to the instruction that was preempted by the exception."]
@@ -2484,7 +2484,7 @@ impl Mmfar {
 
     #[doc="When the MMARVALID bit of the MMFSR is set to 1, this field holds the address of the location that generated the MemManage fault"]
     #[inline] pub fn test_address(&self) -> bool {
-        self.address != 0
+        self.address() != 0
     }
 
     #[doc="When the MMARVALID bit of the MMFSR is set to 1, this field holds the address of the location that generated the MemManage fault"]
@@ -2523,7 +2523,7 @@ impl Bfar {
 
     #[doc="When the BFARVALID bit of the BFSR is set to 1, this field holds the address of the location that generated the BusFault"]
     #[inline] pub fn test_address(&self) -> bool {
-        self.address != 0
+        self.address() != 0
     }
 
     #[doc="When the BFARVALID bit of the BFSR is set to 1, this field holds the address of the location that generated the BusFault"]
@@ -2562,7 +2562,7 @@ impl Afsr {
 
     #[doc="Implementation defined. The bits map to the AUXFAULT input signals."]
     #[inline] pub fn test_impdef(&self) -> bool {
-        self.impdef != 0
+        self.impdef() != 0
     }
 
     #[doc="Implementation defined. The bits map to the AUXFAULT input signals."]

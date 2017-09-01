@@ -1103,7 +1103,7 @@ impl Sc1 {
 
     #[doc="Input channel select"]
     #[inline] pub fn test_adch(&self) -> bool {
-        self.adch != 0
+        self.adch() != 0
     }
 
     #[doc="Input channel select"]
@@ -1122,7 +1122,7 @@ impl Sc1 {
 
     #[doc="Interrupt Enable"]
     #[inline] pub fn test_aien(&self) -> bool {
-        self.aien != 0
+        self.aien() != 0
     }
 
     #[doc="Interrupt Enable"]
@@ -1141,7 +1141,7 @@ impl Sc1 {
 
     #[doc="Conversion Complete Flag"]
     #[inline] pub fn test_coco(&self) -> bool {
-        self.coco != 0
+        self.coco() != 0
     }
 
     #[doc="Conversion Complete Flag"]
@@ -1183,7 +1183,7 @@ impl Cfg1 {
 
     #[doc="Input Clock Select"]
     #[inline] pub fn test_adiclk(&self) -> bool {
-        self.adiclk != 0
+        self.adiclk() != 0
     }
 
     #[doc="Input Clock Select"]
@@ -1202,7 +1202,7 @@ impl Cfg1 {
 
     #[doc="Conversion mode selection"]
     #[inline] pub fn test_mode(&self) -> bool {
-        self.mode != 0
+        self.mode() != 0
     }
 
     #[doc="Conversion mode selection"]
@@ -1221,7 +1221,7 @@ impl Cfg1 {
 
     #[doc="Clock Divide Select"]
     #[inline] pub fn test_adiv(&self) -> bool {
-        self.adiv != 0
+        self.adiv() != 0
     }
 
     #[doc="Clock Divide Select"]
@@ -1240,7 +1240,7 @@ impl Cfg1 {
 
     #[doc="Clear Latch Trigger in Trigger Handler Block"]
     #[inline] pub fn test_clrltrg(&self) -> bool {
-        self.clrltrg != 0
+        self.clrltrg() != 0
     }
 
     #[doc="Clear Latch Trigger in Trigger Handler Block"]
@@ -1283,7 +1283,7 @@ impl Cfg2 {
 
     #[doc="Sample Time Select"]
     #[inline] pub fn test_smplts(&self) -> bool {
-        self.smplts != 0
+        self.smplts() != 0
     }
 
     #[doc="Sample Time Select"]
@@ -1323,7 +1323,7 @@ impl R {
 
     #[doc="Data result"]
     #[inline] pub fn test_d(&self) -> bool {
-        self.d != 0
+        self.d() != 0
     }
 
     #[doc="Data result"]
@@ -1342,7 +1342,7 @@ impl R {
 
     #[doc="Data result (12 bit)"]
     #[inline] pub fn test_d12(&self) -> bool {
-        self.d12 != 0
+        self.d12() != 0
     }
 
     #[doc="Data result (12 bit)"]
@@ -1361,7 +1361,7 @@ impl R {
 
     #[doc="Data result (10 bit)"]
     #[inline] pub fn test_d10(&self) -> bool {
-        self.d10 != 0
+        self.d10() != 0
     }
 
     #[doc="Data result (10 bit)"]
@@ -1380,7 +1380,7 @@ impl R {
 
     #[doc="Data result (8 bit)"]
     #[inline] pub fn test_d8(&self) -> bool {
-        self.d8 != 0
+        self.d8() != 0
     }
 
     #[doc="Data result (8 bit)"]
@@ -1423,7 +1423,7 @@ impl Cv {
 
     #[doc="Compare Value."]
     #[inline] pub fn test_cv(&self) -> bool {
-        self.cv != 0
+        self.cv() != 0
     }
 
     #[doc="Compare Value."]
@@ -1463,7 +1463,7 @@ impl Sc2 {
 
     #[doc="Voltage Reference Selection"]
     #[inline] pub fn test_refsel(&self) -> bool {
-        self.refsel != 0
+        self.refsel() != 0
     }
 
     #[doc="Voltage Reference Selection"]
@@ -1482,7 +1482,7 @@ impl Sc2 {
 
     #[doc="DMA Enable"]
     #[inline] pub fn test_dmaen(&self) -> bool {
-        self.dmaen != 0
+        self.dmaen() != 0
     }
 
     #[doc="DMA Enable"]
@@ -1501,7 +1501,7 @@ impl Sc2 {
 
     #[doc="Compare Function Range Enable"]
     #[inline] pub fn test_acren(&self) -> bool {
-        self.acren != 0
+        self.acren() != 0
     }
 
     #[doc="Compare Function Range Enable"]
@@ -1520,7 +1520,7 @@ impl Sc2 {
 
     #[doc="Compare Function Greater Than Enable"]
     #[inline] pub fn test_acfgt(&self) -> bool {
-        self.acfgt != 0
+        self.acfgt() != 0
     }
 
     #[doc="Compare Function Greater Than Enable"]
@@ -1539,7 +1539,7 @@ impl Sc2 {
 
     #[doc="Compare Function Enable"]
     #[inline] pub fn test_acfe(&self) -> bool {
-        self.acfe != 0
+        self.acfe() != 0
     }
 
     #[doc="Compare Function Enable"]
@@ -1558,7 +1558,7 @@ impl Sc2 {
 
     #[doc="Conversion Trigger Select"]
     #[inline] pub fn test_adtrg(&self) -> bool {
-        self.adtrg != 0
+        self.adtrg() != 0
     }
 
     #[doc="Conversion Trigger Select"]
@@ -1577,7 +1577,7 @@ impl Sc2 {
 
     #[doc="Conversion Active"]
     #[inline] pub fn test_adact(&self) -> bool {
-        self.adact != 0
+        self.adact() != 0
     }
 
     #[doc="Conversion Active"]
@@ -1596,7 +1596,7 @@ impl Sc2 {
 
     #[doc="Trigger Process Number"]
     #[inline] pub fn test_trgprnum(&self) -> bool {
-        self.trgprnum != 0
+        self.trgprnum() != 0
     }
 
     #[doc="Trigger Process Number"]
@@ -1615,7 +1615,7 @@ impl Sc2 {
 
     #[doc="Trigger Status"]
     #[inline] pub fn test_trgstlat(&self) -> bool {
-        self.trgstlat != 0
+        self.trgstlat() != 0
     }
 
     #[doc="Trigger Status"]
@@ -1634,7 +1634,7 @@ impl Sc2 {
 
     #[doc="Error in Multiplexed Trigger Request"]
     #[inline] pub fn test_trgsterr(&self) -> bool {
-        self.trgsterr != 0
+        self.trgsterr() != 0
     }
 
     #[doc="Error in Multiplexed Trigger Request"]
@@ -1683,7 +1683,7 @@ impl Sc3 {
 
     #[doc="Hardware Average Select"]
     #[inline] pub fn test_avgs(&self) -> bool {
-        self.avgs != 0
+        self.avgs() != 0
     }
 
     #[doc="Hardware Average Select"]
@@ -1702,7 +1702,7 @@ impl Sc3 {
 
     #[doc="Hardware Average Enable"]
     #[inline] pub fn test_avge(&self) -> bool {
-        self.avge != 0
+        self.avge() != 0
     }
 
     #[doc="Hardware Average Enable"]
@@ -1721,7 +1721,7 @@ impl Sc3 {
 
     #[doc="Continuous Conversion Enable"]
     #[inline] pub fn test_adco(&self) -> bool {
-        self.adco != 0
+        self.adco() != 0
     }
 
     #[doc="Continuous Conversion Enable"]
@@ -1740,7 +1740,7 @@ impl Sc3 {
 
     #[doc="Calibration"]
     #[inline] pub fn test_cal(&self) -> bool {
-        self.cal != 0
+        self.cal() != 0
     }
 
     #[doc="Calibration"]
@@ -1783,7 +1783,7 @@ impl BaseOfs {
 
     #[doc="Base Offset Error Correction Value"]
     #[inline] pub fn test_ba_ofs(&self) -> bool {
-        self.ba_ofs != 0
+        self.ba_ofs() != 0
     }
 
     #[doc="Base Offset Error Correction Value"]
@@ -1823,7 +1823,7 @@ impl Ofs {
 
     #[doc="Offset Error Correction Value"]
     #[inline] pub fn test_ofs(&self) -> bool {
-        self.ofs != 0
+        self.ofs() != 0
     }
 
     #[doc="Offset Error Correction Value"]
@@ -1863,7 +1863,7 @@ impl UsrOfs {
 
     #[doc="USER Offset Error Correction Value"]
     #[inline] pub fn test_usr_ofs(&self) -> bool {
-        self.usr_ofs != 0
+        self.usr_ofs() != 0
     }
 
     #[doc="USER Offset Error Correction Value"]
@@ -1903,7 +1903,7 @@ impl Xofs {
 
     #[doc="X offset error correction value"]
     #[inline] pub fn test_xofs(&self) -> bool {
-        self.xofs != 0
+        self.xofs() != 0
     }
 
     #[doc="X offset error correction value"]
@@ -1943,7 +1943,7 @@ impl Yofs {
 
     #[doc="Y offset error correction value"]
     #[inline] pub fn test_yofs(&self) -> bool {
-        self.yofs != 0
+        self.yofs() != 0
     }
 
     #[doc="Y offset error correction value"]
@@ -1983,7 +1983,7 @@ impl G {
 
     #[doc="Gain error adjustment factor for the overall conversion"]
     #[inline] pub fn test_g(&self) -> bool {
-        self.g != 0
+        self.g() != 0
     }
 
     #[doc="Gain error adjustment factor for the overall conversion"]
@@ -2023,7 +2023,7 @@ impl Ug {
 
     #[doc="User gain error correction value"]
     #[inline] pub fn test_ug(&self) -> bool {
-        self.ug != 0
+        self.ug() != 0
     }
 
     #[doc="User gain error correction value"]
@@ -2063,7 +2063,7 @@ impl Clps {
 
     #[doc="Calibration Value"]
     #[inline] pub fn test_clps(&self) -> bool {
-        self.clps != 0
+        self.clps() != 0
     }
 
     #[doc="Calibration Value"]
@@ -2103,7 +2103,7 @@ impl Clp3 {
 
     #[doc="Calibration Value"]
     #[inline] pub fn test_clp3(&self) -> bool {
-        self.clp3 != 0
+        self.clp3() != 0
     }
 
     #[doc="Calibration Value"]
@@ -2143,7 +2143,7 @@ impl Clp2 {
 
     #[doc="Calibration Value"]
     #[inline] pub fn test_clp2(&self) -> bool {
-        self.clp2 != 0
+        self.clp2() != 0
     }
 
     #[doc="Calibration Value"]
@@ -2183,7 +2183,7 @@ impl Clp1 {
 
     #[doc="Calibration Value"]
     #[inline] pub fn test_clp1(&self) -> bool {
-        self.clp1 != 0
+        self.clp1() != 0
     }
 
     #[doc="Calibration Value"]
@@ -2223,7 +2223,7 @@ impl Clp0 {
 
     #[doc="Calibration Value"]
     #[inline] pub fn test_clp0(&self) -> bool {
-        self.clp0 != 0
+        self.clp0() != 0
     }
 
     #[doc="Calibration Value"]
@@ -2263,7 +2263,7 @@ impl Clpx {
 
     #[doc="Calibration Value"]
     #[inline] pub fn test_clpx(&self) -> bool {
-        self.clpx != 0
+        self.clpx() != 0
     }
 
     #[doc="Calibration Value"]
@@ -2303,7 +2303,7 @@ impl Clp9 {
 
     #[doc="Calibration Value"]
     #[inline] pub fn test_clp9(&self) -> bool {
-        self.clp9 != 0
+        self.clp9() != 0
     }
 
     #[doc="Calibration Value"]
@@ -2343,7 +2343,7 @@ impl ClpsOfs {
 
     #[doc="CLPS Offset"]
     #[inline] pub fn test_clps_ofs(&self) -> bool {
-        self.clps_ofs != 0
+        self.clps_ofs() != 0
     }
 
     #[doc="CLPS Offset"]
@@ -2383,7 +2383,7 @@ impl Clp3Ofs {
 
     #[doc="CLP3 Offset"]
     #[inline] pub fn test_clp3_ofs(&self) -> bool {
-        self.clp3_ofs != 0
+        self.clp3_ofs() != 0
     }
 
     #[doc="CLP3 Offset"]
@@ -2423,7 +2423,7 @@ impl Clp2Ofs {
 
     #[doc="CLP2 Offset"]
     #[inline] pub fn test_clp2_ofs(&self) -> bool {
-        self.clp2_ofs != 0
+        self.clp2_ofs() != 0
     }
 
     #[doc="CLP2 Offset"]
@@ -2463,7 +2463,7 @@ impl Clp1Ofs {
 
     #[doc="CLP1 Offset"]
     #[inline] pub fn test_clp1_ofs(&self) -> bool {
-        self.clp1_ofs != 0
+        self.clp1_ofs() != 0
     }
 
     #[doc="CLP1 Offset"]
@@ -2503,7 +2503,7 @@ impl Clp0Ofs {
 
     #[doc="CLP0 Offset"]
     #[inline] pub fn test_clp0_ofs(&self) -> bool {
-        self.clp0_ofs != 0
+        self.clp0_ofs() != 0
     }
 
     #[doc="CLP0 Offset"]
@@ -2543,7 +2543,7 @@ impl ClpxOfs {
 
     #[doc="CLPX Offset"]
     #[inline] pub fn test_clpx_ofs(&self) -> bool {
-        self.clpx_ofs != 0
+        self.clpx_ofs() != 0
     }
 
     #[doc="CLPX Offset"]
@@ -2583,7 +2583,7 @@ impl Clp9Ofs {
 
     #[doc="CLP9 Offset"]
     #[inline] pub fn test_clp9_ofs(&self) -> bool {
-        self.clp9_ofs != 0
+        self.clp9_ofs() != 0
     }
 
     #[doc="CLP9 Offset"]

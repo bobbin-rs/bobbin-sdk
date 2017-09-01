@@ -344,7 +344,7 @@ impl Data {
 
     #[doc="CRC Low Lower Byte"]
     #[inline] pub fn test_ll(&self) -> bool {
-        self.ll != 0
+        self.ll() != 0
     }
 
     #[doc="CRC Low Lower Byte"]
@@ -363,7 +363,7 @@ impl Data {
 
     #[doc="CRC Low Upper Byte"]
     #[inline] pub fn test_lu(&self) -> bool {
-        self.lu != 0
+        self.lu() != 0
     }
 
     #[doc="CRC Low Upper Byte"]
@@ -382,7 +382,7 @@ impl Data {
 
     #[doc="CRC High Lower Byte"]
     #[inline] pub fn test_hl(&self) -> bool {
-        self.hl != 0
+        self.hl() != 0
     }
 
     #[doc="CRC High Lower Byte"]
@@ -401,7 +401,7 @@ impl Data {
 
     #[doc="CRC High Upper Byte"]
     #[inline] pub fn test_hu(&self) -> bool {
-        self.hu != 0
+        self.hu() != 0
     }
 
     #[doc="CRC High Upper Byte"]
@@ -444,7 +444,7 @@ impl Datal {
 
     #[doc="DATAL stores the lower 16 bits of the 16/32 bit CRC"]
     #[inline] pub fn test_datal(&self) -> bool {
-        self.datal != 0
+        self.datal() != 0
     }
 
     #[doc="DATAL stores the lower 16 bits of the 16/32 bit CRC"]
@@ -484,7 +484,7 @@ impl Datall {
 
     #[doc="CRCLL stores the first 8 bits of the 32 bit DATA"]
     #[inline] pub fn test_datall(&self) -> bool {
-        self.datall != 0
+        self.datall() != 0
     }
 
     #[doc="CRCLL stores the first 8 bits of the 32 bit DATA"]
@@ -524,7 +524,7 @@ impl Datalu {
 
     #[doc="DATALL stores the second 8 bits of the 32 bit CRC"]
     #[inline] pub fn test_datalu(&self) -> bool {
-        self.datalu != 0
+        self.datalu() != 0
     }
 
     #[doc="DATALL stores the second 8 bits of the 32 bit CRC"]
@@ -564,7 +564,7 @@ impl Datah {
 
     #[doc="DATAH stores the high 16 bits of the 16/32 bit CRC"]
     #[inline] pub fn test_datah(&self) -> bool {
-        self.datah != 0
+        self.datah() != 0
     }
 
     #[doc="DATAH stores the high 16 bits of the 16/32 bit CRC"]
@@ -604,7 +604,7 @@ impl Datahl {
 
     #[doc="DATAHL stores the third 8 bits of the 32 bit CRC"]
     #[inline] pub fn test_datahl(&self) -> bool {
-        self.datahl != 0
+        self.datahl() != 0
     }
 
     #[doc="DATAHL stores the third 8 bits of the 32 bit CRC"]
@@ -644,7 +644,7 @@ impl Datahu {
 
     #[doc="DATAHU stores the fourth 8 bits of the 32 bit CRC"]
     #[inline] pub fn test_datahu(&self) -> bool {
-        self.datahu != 0
+        self.datahu() != 0
     }
 
     #[doc="DATAHU stores the fourth 8 bits of the 32 bit CRC"]
@@ -684,7 +684,7 @@ impl Gpoly {
 
     #[doc="Low Polynominal Half-word"]
     #[inline] pub fn test_low(&self) -> bool {
-        self.low != 0
+        self.low() != 0
     }
 
     #[doc="Low Polynominal Half-word"]
@@ -703,7 +703,7 @@ impl Gpoly {
 
     #[doc="High Polynominal Half-word"]
     #[inline] pub fn test_high(&self) -> bool {
-        self.high != 0
+        self.high() != 0
     }
 
     #[doc="High Polynominal Half-word"]
@@ -744,7 +744,7 @@ impl Ctrl {
 
     #[doc="TCRC"]
     #[inline] pub fn test_tcrc(&self) -> bool {
-        self.tcrc != 0
+        self.tcrc() != 0
     }
 
     #[doc="TCRC"]
@@ -763,7 +763,7 @@ impl Ctrl {
 
     #[doc="Write CRC Data Register As Seed"]
     #[inline] pub fn test_was(&self) -> bool {
-        self.was != 0
+        self.was() != 0
     }
 
     #[doc="Write CRC Data Register As Seed"]
@@ -782,7 +782,7 @@ impl Ctrl {
 
     #[doc="Complement Read Of CRC Data Register"]
     #[inline] pub fn test_fxor(&self) -> bool {
-        self.fxor != 0
+        self.fxor() != 0
     }
 
     #[doc="Complement Read Of CRC Data Register"]
@@ -801,7 +801,7 @@ impl Ctrl {
 
     #[doc="Type Of Transpose For Read"]
     #[inline] pub fn test_totr(&self) -> bool {
-        self.totr != 0
+        self.totr() != 0
     }
 
     #[doc="Type Of Transpose For Read"]
@@ -820,7 +820,7 @@ impl Ctrl {
 
     #[doc="Type Of Transpose For Writes"]
     #[inline] pub fn test_tot(&self) -> bool {
-        self.tot != 0
+        self.tot() != 0
     }
 
     #[doc="Type Of Transpose For Writes"]

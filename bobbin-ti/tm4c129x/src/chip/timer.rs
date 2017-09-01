@@ -851,7 +851,7 @@ impl Cfg {
 
     #[doc="GPTM Configuration"]
     #[inline] pub fn test_cfg(&self) -> bool {
-        self.cfg != 0
+        self.cfg() != 0
     }
 
     #[doc="GPTM Configuration"]
@@ -891,7 +891,7 @@ impl Tmr {
 
     #[doc="GPTM Timer n Mode"]
     #[inline] pub fn test_tmr(&self) -> bool {
-        self.tmr != 0
+        self.tmr() != 0
     }
 
     #[doc="GPTM Timer n Mode"]
@@ -910,7 +910,7 @@ impl Tmr {
 
     #[doc="GPTM Timer n Capture Mode"]
     #[inline] pub fn test_tcmr(&self) -> bool {
-        self.tcmr != 0
+        self.tcmr() != 0
     }
 
     #[doc="GPTM Timer n Capture Mode"]
@@ -929,7 +929,7 @@ impl Tmr {
 
     #[doc="GPTM Timer n Alternate Mode Select"]
     #[inline] pub fn test_tams(&self) -> bool {
-        self.tams != 0
+        self.tams() != 0
     }
 
     #[doc="GPTM Timer n Alternate Mode Select"]
@@ -948,7 +948,7 @@ impl Tmr {
 
     #[doc="GPTM Timer n Count Direction"]
     #[inline] pub fn test_tcdir(&self) -> bool {
-        self.tcdir != 0
+        self.tcdir() != 0
     }
 
     #[doc="GPTM Timer n Count Direction"]
@@ -967,7 +967,7 @@ impl Tmr {
 
     #[doc="GPTM Timer n Match Interrupt Enable"]
     #[inline] pub fn test_tmie(&self) -> bool {
-        self.tmie != 0
+        self.tmie() != 0
     }
 
     #[doc="GPTM Timer n Match Interrupt Enable"]
@@ -986,7 +986,7 @@ impl Tmr {
 
     #[doc="GPTM Timer n Wait-on-Trigger"]
     #[inline] pub fn test_twot(&self) -> bool {
-        self.twot != 0
+        self.twot() != 0
     }
 
     #[doc="GPTM Timer n Wait-on-Trigger"]
@@ -1005,7 +1005,7 @@ impl Tmr {
 
     #[doc="GPTM Timer n Snap-Shot Mode"]
     #[inline] pub fn test_tsnaps(&self) -> bool {
-        self.tsnaps != 0
+        self.tsnaps() != 0
     }
 
     #[doc="GPTM Timer n Snap-Shot Mode"]
@@ -1024,7 +1024,7 @@ impl Tmr {
 
     #[doc="GPTM Timer n Interval Load Write"]
     #[inline] pub fn test_tild(&self) -> bool {
-        self.tild != 0
+        self.tild() != 0
     }
 
     #[doc="GPTM Timer n Interval Load Write"]
@@ -1043,7 +1043,7 @@ impl Tmr {
 
     #[doc="GPTM Timer n PWM Interrupt Enable"]
     #[inline] pub fn test_tpwmie(&self) -> bool {
-        self.tpwmie != 0
+        self.tpwmie() != 0
     }
 
     #[doc="GPTM Timer n PWM Interrupt Enable"]
@@ -1062,7 +1062,7 @@ impl Tmr {
 
     #[doc="GPTM Timer n Match Register Update"]
     #[inline] pub fn test_tmrsu(&self) -> bool {
-        self.tmrsu != 0
+        self.tmrsu() != 0
     }
 
     #[doc="GPTM Timer n Match Register Update"]
@@ -1081,7 +1081,7 @@ impl Tmr {
 
     #[doc="GPTM Timer n PWM Legacy Operation"]
     #[inline] pub fn test_tplo(&self) -> bool {
-        self.tplo != 0
+        self.tplo() != 0
     }
 
     #[doc="GPTM Timer n PWM Legacy Operation"]
@@ -1100,7 +1100,7 @@ impl Tmr {
 
     #[doc="One-shot/Periodic Interrupt Disable"]
     #[inline] pub fn test_tcintd(&self) -> bool {
-        self.tcintd != 0
+        self.tcintd() != 0
     }
 
     #[doc="One-shot/Periodic Interrupt Disable"]
@@ -1119,7 +1119,7 @@ impl Tmr {
 
     #[doc="Timer Compare Action Select"]
     #[inline] pub fn test_tcact(&self) -> bool {
-        self.tcact != 0
+        self.tcact() != 0
     }
 
     #[doc="Timer Compare Action Select"]
@@ -1246,7 +1246,7 @@ impl Ctl {
 
     #[doc="GPTM RTC Stall Enable"]
     #[inline] pub fn test_rtcen(&self) -> bool {
-        self.rtcen != 0
+        self.rtcen() != 0
     }
 
     #[doc="GPTM RTC Stall Enable"]
@@ -1474,7 +1474,7 @@ impl Imr {
 
     #[doc="GPTM RTC Interrupt Mask"]
     #[inline] pub fn test_rtcim(&self) -> bool {
-        self.rtcim != 0
+        self.rtcim() != 0
     }
 
     #[doc="GPTM RTC Interrupt Mask"]
@@ -1649,7 +1649,7 @@ impl Ris {
 
     #[doc="GPTM RTC Raw Interrupt"]
     #[inline] pub fn test_rtcris(&self) -> bool {
-        self.rtcris != 0
+        self.rtcris() != 0
     }
 
     #[doc="GPTM RTC Raw Interrupt"]
@@ -1668,7 +1668,7 @@ impl Ris {
 
     #[doc="GPTM Timer A Match Raw Interrupt"]
     #[inline] pub fn test_tamris(&self) -> bool {
-        self.tamris != 0
+        self.tamris() != 0
     }
 
     #[doc="GPTM Timer A Match Raw Interrupt"]
@@ -1712,7 +1712,7 @@ impl Ris {
 
     #[doc="GPTM Timer B Match Raw Interrupt"]
     #[inline] pub fn test_tbmris(&self) -> bool {
-        self.tbmris != 0
+        self.tbmris() != 0
     }
 
     #[doc="GPTM Timer B Match Raw Interrupt"]
@@ -1837,7 +1837,7 @@ impl Mis {
 
     #[doc="GPTM RTC Masked Interrupt"]
     #[inline] pub fn test_rtcmis(&self) -> bool {
-        self.rtcmis != 0
+        self.rtcmis() != 0
     }
 
     #[doc="GPTM RTC Masked Interrupt"]
@@ -1856,7 +1856,7 @@ impl Mis {
 
     #[doc="GPTM Timer A Match Masked Interrupt"]
     #[inline] pub fn test_tammis(&self) -> bool {
-        self.tammis != 0
+        self.tammis() != 0
     }
 
     #[doc="GPTM Timer A Match Masked Interrupt"]
@@ -1900,7 +1900,7 @@ impl Mis {
 
     #[doc="GPTM Timer B Match Masked Interrupt"]
     #[inline] pub fn test_tbmmis(&self) -> bool {
-        self.tbmmis != 0
+        self.tbmmis() != 0
     }
 
     #[doc="GPTM Timer B Match Masked Interrupt"]
@@ -2025,7 +2025,7 @@ impl Icr {
 
     #[doc="GPTM RTC Interrupt Clear"]
     #[inline] pub fn test_rtccint(&self) -> bool {
-        self.rtccint != 0
+        self.rtccint() != 0
     }
 
     #[doc="GPTM RTC Interrupt Clear"]
@@ -2044,7 +2044,7 @@ impl Icr {
 
     #[doc="GPTM Timer A Match Interrupt Clear"]
     #[inline] pub fn test_tamcint(&self) -> bool {
-        self.tamcint != 0
+        self.tamcint() != 0
     }
 
     #[doc="GPTM Timer A Match Interrupt Clear"]
@@ -2088,7 +2088,7 @@ impl Icr {
 
     #[doc="GPTM Timer B Match Interrupt Clear"]
     #[inline] pub fn test_tbmcint(&self) -> bool {
-        self.tbmcint != 0
+        self.tbmcint() != 0
     }
 
     #[doc="GPTM Timer B Match Interrupt Clear"]
@@ -2136,7 +2136,7 @@ impl Tilr {
     }
 
     #[inline] pub fn test_tilr(&self) -> bool {
-        self.tilr != 0
+        self.tilr() != 0
     }
 
     #[inline] pub fn set_tilr<V: Into<bits::U32>>(mut self, value: V) -> Self {
@@ -2172,7 +2172,7 @@ impl Tmtchr {
     }
 
     #[inline] pub fn test_tmtchr(&self) -> bool {
-        self.tmtchr != 0
+        self.tmtchr() != 0
     }
 
     #[inline] pub fn set_tmtchr<V: Into<bits::U32>>(mut self, value: V) -> Self {
@@ -2210,7 +2210,7 @@ impl Tpr {
 
     #[doc="GPTM Timer n Prescale"]
     #[inline] pub fn test_tpsr(&self) -> bool {
-        self.tpsr != 0
+        self.tpsr() != 0
     }
 
     #[doc="GPTM Timer n Prescale"]
@@ -2250,7 +2250,7 @@ impl Tpmr {
 
     #[doc="GPTM Timer n Prescale Match"]
     #[inline] pub fn test_tpsmr(&self) -> bool {
-        self.tpsmr != 0
+        self.tpsmr() != 0
     }
 
     #[doc="GPTM Timer n Prescale Match"]
@@ -2288,7 +2288,7 @@ impl Tr {
     }
 
     #[inline] pub fn test_tr(&self) -> bool {
-        self.tr != 0
+        self.tr() != 0
     }
 
     #[inline] pub fn set_tr<V: Into<bits::U32>>(mut self, value: V) -> Self {
@@ -2324,7 +2324,7 @@ impl Tv {
     }
 
     #[inline] pub fn test_tv(&self) -> bool {
-        self.tv != 0
+        self.tv() != 0
     }
 
     #[inline] pub fn set_tv<V: Into<bits::U32>>(mut self, value: V) -> Self {
@@ -2362,7 +2362,7 @@ impl Rtcpd {
 
     #[doc="RTC Predivide Counter Value"]
     #[inline] pub fn test_rtcpd(&self) -> bool {
-        self.rtcpd != 0
+        self.rtcpd() != 0
     }
 
     #[doc="RTC Predivide Counter Value"]
@@ -2402,7 +2402,7 @@ impl Tps {
 
     #[doc="GPTM Timer n Prescaler Snapshot"]
     #[inline] pub fn test_pss(&self) -> bool {
-        self.pss != 0
+        self.pss() != 0
     }
 
     #[doc="GPTM Timer n Prescaler Snapshot"]
@@ -2517,7 +2517,7 @@ impl Dmaev {
 
     #[doc="GPTM RTC Match Event DMA Trigger Enable"]
     #[inline] pub fn test_rtcdmaen(&self) -> bool {
-        self.rtcdmaen != 0
+        self.rtcdmaen() != 0
     }
 
     #[doc="GPTM RTC Match Event DMA Trigger Enable"]
@@ -2665,7 +2665,7 @@ impl Adcev {
 
     #[doc="GPTM RTC Match Event ADC Trigger Enable"]
     #[inline] pub fn test_rtcadcen(&self) -> bool {
-        self.rtcadcen != 0
+        self.rtcadcen() != 0
     }
 
     #[doc="GPTM RTC Match Event ADC Trigger Enable"]
@@ -2738,7 +2738,7 @@ impl Pp {
 
     #[doc="Count Size"]
     #[inline] pub fn test_size(&self) -> bool {
-        self.size != 0
+        self.size() != 0
     }
 
     #[doc="Count Size"]
@@ -2757,7 +2757,7 @@ impl Pp {
 
     #[doc="Chain with Other Timers"]
     #[inline] pub fn test_chain(&self) -> bool {
-        self.chain != 0
+        self.chain() != 0
     }
 
     #[doc="Chain with Other Timers"]
@@ -2776,7 +2776,7 @@ impl Pp {
 
     #[doc="Synchronize Start"]
     #[inline] pub fn test_synccnt(&self) -> bool {
-        self.synccnt != 0
+        self.synccnt() != 0
     }
 
     #[doc="Synchronize Start"]
@@ -2795,7 +2795,7 @@ impl Pp {
 
     #[doc="Alternate Clock Source"]
     #[inline] pub fn test_altclk(&self) -> bool {
-        self.altclk != 0
+        self.altclk() != 0
     }
 
     #[doc="Alternate Clock Source"]
@@ -2838,7 +2838,7 @@ impl Cc {
 
     #[doc="Alternate Clock Source"]
     #[inline] pub fn test_altclk(&self) -> bool {
-        self.altclk != 0
+        self.altclk() != 0
     }
 
     #[doc="Alternate Clock Source"]

@@ -348,7 +348,7 @@ impl Cr1 {
 
     #[doc="Bidirectional data mode enable"]
     #[inline] pub fn test_bidimode(&self) -> bool {
-        self.bidimode != 0
+        self.bidimode() != 0
     }
 
     #[doc="Bidirectional data mode enable"]
@@ -367,7 +367,7 @@ impl Cr1 {
 
     #[doc="Output enable in bidirectional mode"]
     #[inline] pub fn test_bidioe(&self) -> bool {
-        self.bidioe != 0
+        self.bidioe() != 0
     }
 
     #[doc="Output enable in bidirectional mode"]
@@ -386,7 +386,7 @@ impl Cr1 {
 
     #[doc="Hardware CRC calculation enable"]
     #[inline] pub fn test_crcen(&self) -> bool {
-        self.crcen != 0
+        self.crcen() != 0
     }
 
     #[doc="Hardware CRC calculation enable"]
@@ -405,7 +405,7 @@ impl Cr1 {
 
     #[doc="CRC transfer next"]
     #[inline] pub fn test_crcnext(&self) -> bool {
-        self.crcnext != 0
+        self.crcnext() != 0
     }
 
     #[doc="CRC transfer next"]
@@ -424,7 +424,7 @@ impl Cr1 {
 
     #[doc="Data frame format"]
     #[inline] pub fn test_dff(&self) -> bool {
-        self.dff != 0
+        self.dff() != 0
     }
 
     #[doc="Data frame format"]
@@ -443,7 +443,7 @@ impl Cr1 {
 
     #[doc="Receive only"]
     #[inline] pub fn test_rxonly(&self) -> bool {
-        self.rxonly != 0
+        self.rxonly() != 0
     }
 
     #[doc="Receive only"]
@@ -462,7 +462,7 @@ impl Cr1 {
 
     #[doc="Software slave management"]
     #[inline] pub fn test_ssm(&self) -> bool {
-        self.ssm != 0
+        self.ssm() != 0
     }
 
     #[doc="Software slave management"]
@@ -481,7 +481,7 @@ impl Cr1 {
 
     #[doc="Internal slave select"]
     #[inline] pub fn test_ssi(&self) -> bool {
-        self.ssi != 0
+        self.ssi() != 0
     }
 
     #[doc="Internal slave select"]
@@ -500,7 +500,7 @@ impl Cr1 {
 
     #[doc="Frame format"]
     #[inline] pub fn test_lsbfirst(&self) -> bool {
-        self.lsbfirst != 0
+        self.lsbfirst() != 0
     }
 
     #[doc="Frame format"]
@@ -519,7 +519,7 @@ impl Cr1 {
 
     #[doc="SPI enable"]
     #[inline] pub fn test_spe(&self) -> bool {
-        self.spe != 0
+        self.spe() != 0
     }
 
     #[doc="SPI enable"]
@@ -538,7 +538,7 @@ impl Cr1 {
 
     #[doc="Baud rate control"]
     #[inline] pub fn test_br(&self) -> bool {
-        self.br != 0
+        self.br() != 0
     }
 
     #[doc="Baud rate control"]
@@ -557,7 +557,7 @@ impl Cr1 {
 
     #[doc="Master selection"]
     #[inline] pub fn test_mstr(&self) -> bool {
-        self.mstr != 0
+        self.mstr() != 0
     }
 
     #[doc="Master selection"]
@@ -576,7 +576,7 @@ impl Cr1 {
 
     #[doc="Clock polarity"]
     #[inline] pub fn test_cpol(&self) -> bool {
-        self.cpol != 0
+        self.cpol() != 0
     }
 
     #[doc="Clock polarity"]
@@ -595,7 +595,7 @@ impl Cr1 {
 
     #[doc="Clock phase"]
     #[inline] pub fn test_cpha(&self) -> bool {
-        self.cpha != 0
+        self.cpha() != 0
     }
 
     #[doc="Clock phase"]
@@ -648,7 +648,7 @@ impl Cr2 {
 
     #[doc="Rx buffer DMA enable"]
     #[inline] pub fn test_rxdmaen(&self) -> bool {
-        self.rxdmaen != 0
+        self.rxdmaen() != 0
     }
 
     #[doc="Rx buffer DMA enable"]
@@ -667,7 +667,7 @@ impl Cr2 {
 
     #[doc="Tx buffer DMA enable"]
     #[inline] pub fn test_txdmaen(&self) -> bool {
-        self.txdmaen != 0
+        self.txdmaen() != 0
     }
 
     #[doc="Tx buffer DMA enable"]
@@ -686,7 +686,7 @@ impl Cr2 {
 
     #[doc="SS output enable"]
     #[inline] pub fn test_ssoe(&self) -> bool {
-        self.ssoe != 0
+        self.ssoe() != 0
     }
 
     #[doc="SS output enable"]
@@ -705,7 +705,7 @@ impl Cr2 {
 
     #[doc="NSS pulse management"]
     #[inline] pub fn test_nssp(&self) -> bool {
-        self.nssp != 0
+        self.nssp() != 0
     }
 
     #[doc="NSS pulse management"]
@@ -724,7 +724,7 @@ impl Cr2 {
 
     #[doc="Frame format"]
     #[inline] pub fn test_frf(&self) -> bool {
-        self.frf != 0
+        self.frf() != 0
     }
 
     #[doc="Frame format"]
@@ -743,7 +743,7 @@ impl Cr2 {
 
     #[doc="Error interrupt enable"]
     #[inline] pub fn test_errie(&self) -> bool {
-        self.errie != 0
+        self.errie() != 0
     }
 
     #[doc="Error interrupt enable"]
@@ -762,7 +762,7 @@ impl Cr2 {
 
     #[doc="RX buffer not empty interrupt enable"]
     #[inline] pub fn test_rxneie(&self) -> bool {
-        self.rxneie != 0
+        self.rxneie() != 0
     }
 
     #[doc="RX buffer not empty interrupt enable"]
@@ -781,7 +781,7 @@ impl Cr2 {
 
     #[doc="Tx buffer empty interrupt enable"]
     #[inline] pub fn test_txeie(&self) -> bool {
-        self.txeie != 0
+        self.txeie() != 0
     }
 
     #[doc="Tx buffer empty interrupt enable"]
@@ -800,7 +800,7 @@ impl Cr2 {
 
     #[doc="Data size"]
     #[inline] pub fn test_ds(&self) -> bool {
-        self.ds != 0
+        self.ds() != 0
     }
 
     #[doc="Data size"]
@@ -819,7 +819,7 @@ impl Cr2 {
 
     #[doc="FIFO reception threshold"]
     #[inline] pub fn test_frxth(&self) -> bool {
-        self.frxth != 0
+        self.frxth() != 0
     }
 
     #[doc="FIFO reception threshold"]
@@ -838,7 +838,7 @@ impl Cr2 {
 
     #[doc="Last DMA transfer for reception"]
     #[inline] pub fn test_ldma_rx(&self) -> bool {
-        self.ldma_rx != 0
+        self.ldma_rx() != 0
     }
 
     #[doc="Last DMA transfer for reception"]
@@ -857,7 +857,7 @@ impl Cr2 {
 
     #[doc="Last DMA transfer for transmission"]
     #[inline] pub fn test_ldma_tx(&self) -> bool {
-        self.ldma_tx != 0
+        self.ldma_tx() != 0
     }
 
     #[doc="Last DMA transfer for transmission"]
@@ -908,7 +908,7 @@ impl Sr {
 
     #[doc="Receive buffer not empty"]
     #[inline] pub fn test_rxne(&self) -> bool {
-        self.rxne != 0
+        self.rxne() != 0
     }
 
     #[doc="Receive buffer not empty"]
@@ -927,7 +927,7 @@ impl Sr {
 
     #[doc="Transmit buffer empty"]
     #[inline] pub fn test_txe(&self) -> bool {
-        self.txe != 0
+        self.txe() != 0
     }
 
     #[doc="Transmit buffer empty"]
@@ -946,7 +946,7 @@ impl Sr {
 
     #[doc="Channel side"]
     #[inline] pub fn test_chside(&self) -> bool {
-        self.chside != 0
+        self.chside() != 0
     }
 
     #[doc="Channel side"]
@@ -965,7 +965,7 @@ impl Sr {
 
     #[doc="Underrun flag"]
     #[inline] pub fn test_udr(&self) -> bool {
-        self.udr != 0
+        self.udr() != 0
     }
 
     #[doc="Underrun flag"]
@@ -984,7 +984,7 @@ impl Sr {
 
     #[doc="CRC error flag"]
     #[inline] pub fn test_crcerr(&self) -> bool {
-        self.crcerr != 0
+        self.crcerr() != 0
     }
 
     #[doc="CRC error flag"]
@@ -1003,7 +1003,7 @@ impl Sr {
 
     #[doc="Mode fault"]
     #[inline] pub fn test_modf(&self) -> bool {
-        self.modf != 0
+        self.modf() != 0
     }
 
     #[doc="Mode fault"]
@@ -1022,7 +1022,7 @@ impl Sr {
 
     #[doc="Overrun flag"]
     #[inline] pub fn test_ovr(&self) -> bool {
-        self.ovr != 0
+        self.ovr() != 0
     }
 
     #[doc="Overrun flag"]
@@ -1041,7 +1041,7 @@ impl Sr {
 
     #[doc="Busy flag"]
     #[inline] pub fn test_bsy(&self) -> bool {
-        self.bsy != 0
+        self.bsy() != 0
     }
 
     #[doc="Busy flag"]
@@ -1060,7 +1060,7 @@ impl Sr {
 
     #[doc="TI frame format error"]
     #[inline] pub fn test_tifrfe(&self) -> bool {
-        self.tifrfe != 0
+        self.tifrfe() != 0
     }
 
     #[doc="TI frame format error"]
@@ -1079,7 +1079,7 @@ impl Sr {
 
     #[doc="FIFO reception level"]
     #[inline] pub fn test_frlvl(&self) -> bool {
-        self.frlvl != 0
+        self.frlvl() != 0
     }
 
     #[doc="FIFO reception level"]
@@ -1098,7 +1098,7 @@ impl Sr {
 
     #[doc="FIFO transmission level"]
     #[inline] pub fn test_ftlvl(&self) -> bool {
-        self.ftlvl != 0
+        self.ftlvl() != 0
     }
 
     #[doc="FIFO transmission level"]
@@ -1148,7 +1148,7 @@ impl Dr {
 
     #[doc="Data register"]
     #[inline] pub fn test_dr(&self) -> bool {
-        self.dr != 0
+        self.dr() != 0
     }
 
     #[doc="Data register"]
@@ -1188,7 +1188,7 @@ impl Dr8 {
 
     #[doc="Data register"]
     #[inline] pub fn test_dr8(&self) -> bool {
-        self.dr8 != 0
+        self.dr8() != 0
     }
 
     #[doc="Data register"]
@@ -1228,7 +1228,7 @@ impl Crcpr {
 
     #[doc="CRC polynomial register"]
     #[inline] pub fn test_crcpoly(&self) -> bool {
-        self.crcpoly != 0
+        self.crcpoly() != 0
     }
 
     #[doc="CRC polynomial register"]
@@ -1268,7 +1268,7 @@ impl Rxcrcr {
 
     #[doc="Rx CRC register"]
     #[inline] pub fn test_rxcrc(&self) -> bool {
-        self.rxcrc != 0
+        self.rxcrc() != 0
     }
 
     #[doc="Rx CRC register"]
@@ -1308,7 +1308,7 @@ impl Txcrcr {
 
     #[doc="Tx CRC register"]
     #[inline] pub fn test_txcrc(&self) -> bool {
-        self.txcrc != 0
+        self.txcrc() != 0
     }
 
     #[doc="Tx CRC register"]
@@ -1348,7 +1348,7 @@ impl I2scfgr {
 
     #[doc="I2S mode selection"]
     #[inline] pub fn test_i2smod(&self) -> bool {
-        self.i2smod != 0
+        self.i2smod() != 0
     }
 
     #[doc="I2S mode selection"]
@@ -1367,7 +1367,7 @@ impl I2scfgr {
 
     #[doc="I2S Enable"]
     #[inline] pub fn test_i2se(&self) -> bool {
-        self.i2se != 0
+        self.i2se() != 0
     }
 
     #[doc="I2S Enable"]
@@ -1386,7 +1386,7 @@ impl I2scfgr {
 
     #[doc="I2S configuration mode"]
     #[inline] pub fn test_i2scfg(&self) -> bool {
-        self.i2scfg != 0
+        self.i2scfg() != 0
     }
 
     #[doc="I2S configuration mode"]
@@ -1405,7 +1405,7 @@ impl I2scfgr {
 
     #[doc="PCM frame synchronization"]
     #[inline] pub fn test_pcmsync(&self) -> bool {
-        self.pcmsync != 0
+        self.pcmsync() != 0
     }
 
     #[doc="PCM frame synchronization"]
@@ -1424,7 +1424,7 @@ impl I2scfgr {
 
     #[doc="I2S standard selection"]
     #[inline] pub fn test_i2sstd(&self) -> bool {
-        self.i2sstd != 0
+        self.i2sstd() != 0
     }
 
     #[doc="I2S standard selection"]
@@ -1443,7 +1443,7 @@ impl I2scfgr {
 
     #[doc="Steady state clock polarity"]
     #[inline] pub fn test_ckpol(&self) -> bool {
-        self.ckpol != 0
+        self.ckpol() != 0
     }
 
     #[doc="Steady state clock polarity"]
@@ -1462,7 +1462,7 @@ impl I2scfgr {
 
     #[doc="Data length to be transferred"]
     #[inline] pub fn test_datlen(&self) -> bool {
-        self.datlen != 0
+        self.datlen() != 0
     }
 
     #[doc="Data length to be transferred"]
@@ -1481,7 +1481,7 @@ impl I2scfgr {
 
     #[doc="Channel length (number of bits per audio channel)"]
     #[inline] pub fn test_chlen(&self) -> bool {
-        self.chlen != 0
+        self.chlen() != 0
     }
 
     #[doc="Channel length (number of bits per audio channel)"]
@@ -1528,7 +1528,7 @@ impl I2spr {
 
     #[doc="Master clock output enable"]
     #[inline] pub fn test_mckoe(&self) -> bool {
-        self.mckoe != 0
+        self.mckoe() != 0
     }
 
     #[doc="Master clock output enable"]
@@ -1547,7 +1547,7 @@ impl I2spr {
 
     #[doc="Odd factor for the prescaler"]
     #[inline] pub fn test_odd(&self) -> bool {
-        self.odd != 0
+        self.odd() != 0
     }
 
     #[doc="Odd factor for the prescaler"]
@@ -1566,7 +1566,7 @@ impl I2spr {
 
     #[doc="I2S Linear prescaler"]
     #[inline] pub fn test_i2sdiv(&self) -> bool {
-        self.i2sdiv != 0
+        self.i2sdiv() != 0
     }
 
     #[doc="I2S Linear prescaler"]

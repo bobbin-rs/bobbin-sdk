@@ -308,7 +308,7 @@ impl Tsr {
 
     #[doc="Time Seconds Register"]
     #[inline] pub fn test_tsr(&self) -> bool {
-        self.tsr != 0
+        self.tsr() != 0
     }
 
     #[doc="Time Seconds Register"]
@@ -347,7 +347,7 @@ impl Tpr {
 
     #[doc="Time Prescaler Register"]
     #[inline] pub fn test_tpr(&self) -> bool {
-        self.tpr != 0
+        self.tpr() != 0
     }
 
     #[doc="Time Prescaler Register"]
@@ -387,7 +387,7 @@ impl Tar {
 
     #[doc="Time Alarm Register"]
     #[inline] pub fn test_tar(&self) -> bool {
-        self.tar != 0
+        self.tar() != 0
     }
 
     #[doc="Time Alarm Register"]
@@ -426,7 +426,7 @@ impl Tcr {
 
     #[doc="Time Compensation Register"]
     #[inline] pub fn test_tcr(&self) -> bool {
-        self.tcr != 0
+        self.tcr() != 0
     }
 
     #[doc="Time Compensation Register"]
@@ -445,7 +445,7 @@ impl Tcr {
 
     #[doc="Compensation Interval Register"]
     #[inline] pub fn test_cir(&self) -> bool {
-        self.cir != 0
+        self.cir() != 0
     }
 
     #[doc="Compensation Interval Register"]
@@ -464,7 +464,7 @@ impl Tcr {
 
     #[doc="Time Compensation Value"]
     #[inline] pub fn test_tcv(&self) -> bool {
-        self.tcv != 0
+        self.tcv() != 0
     }
 
     #[doc="Time Compensation Value"]
@@ -483,7 +483,7 @@ impl Tcr {
 
     #[doc="Compensation Interval Counter"]
     #[inline] pub fn test_cic(&self) -> bool {
-        self.cic != 0
+        self.cic() != 0
     }
 
     #[doc="Compensation Interval Counter"]
@@ -526,7 +526,7 @@ impl Cr {
 
     #[doc="Software Reset"]
     #[inline] pub fn test_swr(&self) -> bool {
-        self.swr != 0
+        self.swr() != 0
     }
 
     #[doc="Software Reset"]
@@ -545,7 +545,7 @@ impl Cr {
 
     #[doc="Supervisor Access"]
     #[inline] pub fn test_sup(&self) -> bool {
-        self.sup != 0
+        self.sup() != 0
     }
 
     #[doc="Supervisor Access"]
@@ -564,7 +564,7 @@ impl Cr {
 
     #[doc="Update Mode"]
     #[inline] pub fn test_um(&self) -> bool {
-        self.um != 0
+        self.um() != 0
     }
 
     #[doc="Update Mode"]
@@ -583,7 +583,7 @@ impl Cr {
 
     #[doc="Clock Pin Select"]
     #[inline] pub fn test_cps(&self) -> bool {
-        self.cps != 0
+        self.cps() != 0
     }
 
     #[doc="Clock Pin Select"]
@@ -602,7 +602,7 @@ impl Cr {
 
     #[doc="LPO Select"]
     #[inline] pub fn test_lpos(&self) -> bool {
-        self.lpos != 0
+        self.lpos() != 0
     }
 
     #[doc="LPO Select"]
@@ -621,7 +621,7 @@ impl Cr {
 
     #[doc="Clock Pin Enable"]
     #[inline] pub fn test_cpe(&self) -> bool {
-        self.cpe != 0
+        self.cpe() != 0
     }
 
     #[doc="Clock Pin Enable"]
@@ -666,7 +666,7 @@ impl Sr {
 
     #[doc="Time Invalid Flag"]
     #[inline] pub fn test_tif(&self) -> bool {
-        self.tif != 0
+        self.tif() != 0
     }
 
     #[doc="Time Invalid Flag"]
@@ -685,7 +685,7 @@ impl Sr {
 
     #[doc="Time Overflow Flag"]
     #[inline] pub fn test_tof(&self) -> bool {
-        self.tof != 0
+        self.tof() != 0
     }
 
     #[doc="Time Overflow Flag"]
@@ -704,7 +704,7 @@ impl Sr {
 
     #[doc="Time Alarm Flag"]
     #[inline] pub fn test_taf(&self) -> bool {
-        self.taf != 0
+        self.taf() != 0
     }
 
     #[doc="Time Alarm Flag"]
@@ -723,7 +723,7 @@ impl Sr {
 
     #[doc="Time Counter Enable"]
     #[inline] pub fn test_tce(&self) -> bool {
-        self.tce != 0
+        self.tce() != 0
     }
 
     #[doc="Time Counter Enable"]
@@ -766,7 +766,7 @@ impl Lr {
 
     #[doc="Time Compensation Lock"]
     #[inline] pub fn test_tcl(&self) -> bool {
-        self.tcl != 0
+        self.tcl() != 0
     }
 
     #[doc="Time Compensation Lock"]
@@ -785,7 +785,7 @@ impl Lr {
 
     #[doc="Control Register Lock"]
     #[inline] pub fn test_crl(&self) -> bool {
-        self.crl != 0
+        self.crl() != 0
     }
 
     #[doc="Control Register Lock"]
@@ -804,7 +804,7 @@ impl Lr {
 
     #[doc="Status Register Lock"]
     #[inline] pub fn test_srl(&self) -> bool {
-        self.srl != 0
+        self.srl() != 0
     }
 
     #[doc="Status Register Lock"]
@@ -823,7 +823,7 @@ impl Lr {
 
     #[doc="Lock Register Lock"]
     #[inline] pub fn test_lrl(&self) -> bool {
-        self.lrl != 0
+        self.lrl() != 0
     }
 
     #[doc="Lock Register Lock"]
@@ -866,7 +866,7 @@ impl Ier {
 
     #[doc="Time Invalid Interrupt Enable"]
     #[inline] pub fn test_tiie(&self) -> bool {
-        self.tiie != 0
+        self.tiie() != 0
     }
 
     #[doc="Time Invalid Interrupt Enable"]
@@ -885,7 +885,7 @@ impl Ier {
 
     #[doc="Time Overflow Interrupt Enable"]
     #[inline] pub fn test_toie(&self) -> bool {
-        self.toie != 0
+        self.toie() != 0
     }
 
     #[doc="Time Overflow Interrupt Enable"]
@@ -904,7 +904,7 @@ impl Ier {
 
     #[doc="Time Alarm Interrupt Enable"]
     #[inline] pub fn test_taie(&self) -> bool {
-        self.taie != 0
+        self.taie() != 0
     }
 
     #[doc="Time Alarm Interrupt Enable"]
@@ -923,7 +923,7 @@ impl Ier {
 
     #[doc="Time Seconds Interrupt Enable"]
     #[inline] pub fn test_tsie(&self) -> bool {
-        self.tsie != 0
+        self.tsie() != 0
     }
 
     #[doc="Time Seconds Interrupt Enable"]
@@ -942,7 +942,7 @@ impl Ier {
 
     #[doc="Timer Seconds Interrupt Configuration"]
     #[inline] pub fn test_tsic(&self) -> bool {
-        self.tsic != 0
+        self.tsic() != 0
     }
 
     #[doc="Timer Seconds Interrupt Configuration"]
