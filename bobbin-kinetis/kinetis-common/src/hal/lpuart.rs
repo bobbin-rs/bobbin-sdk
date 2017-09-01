@@ -82,7 +82,7 @@ impl Write for LpuartPeriph {
 
 impl SerialTx<u8> for LpuartPeriph {    
     fn can_tx(&self) -> bool {
-        self.stat().tdre() != 0
+        self.stat().test_tdre()
     }
 
     fn tx(&self, c: u8) -> &Self {
@@ -92,7 +92,7 @@ impl SerialTx<u8> for LpuartPeriph {
 
 impl SerialRx<u8> for LpuartPeriph {
     fn can_rx(&self) -> bool {
-        self.stat().rdrf() != 0
+        self.stat().test_rdrf()
     }
 
     fn rx(&self) -> u8 {
