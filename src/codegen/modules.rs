@@ -1195,9 +1195,10 @@ pub fn gen_field<W: Write>(cfg: &Config, out: &mut W, f: &Field, size: &str, _ac
 
         if let Some(ref desc) = f.description {
             try!(gen_doc(cfg, out, 4, desc));
+        } else {
+            try!(gen_doc(cfg, out, 4, &format!("Gets the {} field.", f.name)));            
         }
         try!(writeln!(out, "    #[inline] pub fn {}<I: Into<{}>>(&self, index: I) -> {} {{", f_getter, i_type, field_type));
-        // try!(writeln!(out, "        let index: {} = index.into();", i_type));
         try!(writeln!(out, "        let index: usize = index.into().value() as usize;"));
         match f_incr {
             1 => {
@@ -1220,17 +1221,13 @@ pub fn gen_field<W: Write>(cfg: &Config, out: &mut W, f: &Field, size: &str, _ac
         try!(writeln!(out, "    }}"));    
         try!(writeln!(out, ""));    
 
-        if let Some(ref desc) = f.description {
-            try!(gen_doc(cfg, out, 4, desc));
-        }
+        try!(gen_doc(cfg, out, 4, &format!("Returns true if {} != 0", f.name)));
         try!(writeln!(out, "    #[inline] pub fn {}<I: Into<{}>>(&self, index: I) -> bool{{", f_tester, i_type));
         try!(writeln!(out, "        self.{}(index) != 0", f_getter));    
         try!(writeln!(out, "    }}"));    
         try!(writeln!(out, ""));    
 
-        if let Some(ref desc) = f.description {
-            try!(gen_doc(cfg, out, 4, desc));
-        }
+        try!(gen_doc(cfg, out, 4, &format!("Sets the {} field.", f.name)));
         try!(writeln!(out, "    #[inline] pub fn {}<I: Into<{}>, V: Into<{}>>(mut self, index: I, value: V) -> Self {{", f_setter, i_type, field_type));
         try!(writeln!(out, "        let index: usize = index.into().value() as usize;"));            
         try!(writeln!(out, "        let value: {} = value.into();", field_type));            
@@ -1262,6 +1259,8 @@ pub fn gen_field<W: Write>(cfg: &Config, out: &mut W, f: &Field, size: &str, _ac
 
         if let Some(ref desc) = f.description {
             try!(gen_doc(cfg, out, 4, desc));
+        } else {
+            try!(gen_doc(cfg, out, 4, &format!("Gets the {} field.", f.name)));            
         }
         try!(writeln!(out, "    #[inline] pub fn {}(&self) -> {} {{", f_getter, field_type));
         try!(writeln!(out, "        unsafe {{ ::core::mem::transmute(((self.0 >> {}) & 0x{:x}) as {}) }} // {}", f_offset, f_mask, min_size, f_bits));
@@ -1270,9 +1269,7 @@ pub fn gen_field<W: Write>(cfg: &Config, out: &mut W, f: &Field, size: &str, _ac
 
         // Field Tester
 
-        if let Some(ref desc) = f.description {
-            try!(gen_doc(cfg, out, 4, desc));
-        }
+        try!(gen_doc(cfg, out, 4, &format!("Returns true if {} != 0", f.name)));
         try!(writeln!(out, "    #[inline] pub fn {}(&self) -> bool {{", f_tester));
         try!(writeln!(out, "        self.{}() != 0", f_getter));
         try!(writeln!(out, "    }}"));    
@@ -1280,9 +1277,7 @@ pub fn gen_field<W: Write>(cfg: &Config, out: &mut W, f: &Field, size: &str, _ac
 
         // Field Setter
 
-        if let Some(ref desc) = f.description {
-            try!(gen_doc(cfg, out, 4, desc));
-        }
+        try!(gen_doc(cfg, out, 4, &format!("Sets the {} field.", f.name)));
         try!(writeln!(out, "    #[inline] pub fn {}<V: Into<{}>>(mut self, value: V) -> Self {{", f_setter, field_type));
         try!(writeln!(out, "        let value: {} = value.into();", field_type));
         try!(writeln!(out, "        let value: {} = value.into();", size));
