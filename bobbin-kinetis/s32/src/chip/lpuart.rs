@@ -36,18 +36,18 @@ impl super::sig::SignalRts<super::sig::Lpuart2Rts> for Lpuart2 {}
 
 
 pub trait IrqLpuartRxtx<T> {
-   fn irq_lpuart_rxtx(&self) -> T;
+    fn irq_lpuart_rxtx(&self) -> T;
 }
 
 impl IrqLpuartRxtx<super::irq::IrqLpuart0Rxtx> for Lpuart0 {
-   fn irq_lpuart_rxtx(&self) -> super::irq::IrqLpuart0Rxtx { super::irq::IRQ_LPUART0_RXTX }
+    fn irq_lpuart_rxtx(&self) -> super::irq::IrqLpuart0Rxtx { super::irq::IRQ_LPUART0_RXTX }
 }
 
 impl IrqLpuartRxtx<super::irq::IrqLpuart1Rxtx> for Lpuart1 {
-   fn irq_lpuart_rxtx(&self) -> super::irq::IrqLpuart1Rxtx { super::irq::IRQ_LPUART1_RXTX }
+    fn irq_lpuart_rxtx(&self) -> super::irq::IrqLpuart1Rxtx { super::irq::IRQ_LPUART1_RXTX }
 }
 
 impl IrqLpuartRxtx<super::irq::IrqLpuart2Rxtx> for Lpuart2 {
-   fn irq_lpuart_rxtx(&self) -> super::irq::IrqLpuart2Rxtx { super::irq::IRQ_LPUART2_RXTX }
+    fn irq_lpuart_rxtx(&self) -> super::irq::IrqLpuart2Rxtx { super::irq::IRQ_LPUART2_RXTX }
 }
 

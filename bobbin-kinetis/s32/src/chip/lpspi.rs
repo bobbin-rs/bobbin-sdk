@@ -54,18 +54,18 @@ impl super::sig::SignalSpiPcs3<super::sig::Lpspi2Pcs3> for Lpspi2 {}
 
 
 pub trait IrqLpspi<T> {
-   fn irq_lpspi(&self) -> T;
+    fn irq_lpspi(&self) -> T;
 }
 
 impl IrqLpspi<super::irq::IrqLpspi0> for Lpspi0 {
-   fn irq_lpspi(&self) -> super::irq::IrqLpspi0 { super::irq::IRQ_LPSPI0 }
+    fn irq_lpspi(&self) -> super::irq::IrqLpspi0 { super::irq::IRQ_LPSPI0 }
 }
 
 impl IrqLpspi<super::irq::IrqLpspi1> for Lpspi1 {
-   fn irq_lpspi(&self) -> super::irq::IrqLpspi1 { super::irq::IRQ_LPSPI1 }
+    fn irq_lpspi(&self) -> super::irq::IrqLpspi1 { super::irq::IRQ_LPSPI1 }
 }
 
 impl IrqLpspi<super::irq::IrqLpspi2> for Lpspi2 {
-   fn irq_lpspi(&self) -> super::irq::IrqLpspi2 { super::irq::IRQ_LPSPI2 }
+    fn irq_lpspi(&self) -> super::irq::IrqLpspi2 { super::irq::IRQ_LPSPI2 }
 }
 

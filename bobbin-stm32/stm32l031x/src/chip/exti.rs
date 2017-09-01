@@ -37,118 +37,118 @@ channel!(EXTI_LINE28, ExtiLine28, EXTI, Exti, _EXTI_LINE28, ExtiCh, _EXTI, 28);
 channel!(EXTI_LINE29, ExtiLine29, EXTI, Exti, _EXTI_LINE29, ExtiCh, _EXTI, 29);
 
 pub trait IrqExti<T> {
-   fn irq_exti(&self) -> T;
+    fn irq_exti(&self) -> T;
 }
 
 impl IrqExti<super::irq::IrqExti0> for ExtiLine0 {
-   fn irq_exti(&self) -> super::irq::IrqExti0 { super::irq::IRQ_EXTI0 }
+    fn irq_exti(&self) -> super::irq::IrqExti0 { super::irq::IRQ_EXTI0 }
 }
 
 impl IrqExti<super::irq::IrqExti1> for ExtiLine1 {
-   fn irq_exti(&self) -> super::irq::IrqExti1 { super::irq::IRQ_EXTI1 }
+    fn irq_exti(&self) -> super::irq::IrqExti1 { super::irq::IRQ_EXTI1 }
 }
 
 impl IrqExti<super::irq::IrqExti2> for ExtiLine2 {
-   fn irq_exti(&self) -> super::irq::IrqExti2 { super::irq::IRQ_EXTI2 }
+    fn irq_exti(&self) -> super::irq::IrqExti2 { super::irq::IRQ_EXTI2 }
 }
 
 impl IrqExti<super::irq::IrqExti3> for ExtiLine3 {
-   fn irq_exti(&self) -> super::irq::IrqExti3 { super::irq::IRQ_EXTI3 }
+    fn irq_exti(&self) -> super::irq::IrqExti3 { super::irq::IRQ_EXTI3 }
 }
 
 impl IrqExti<super::irq::IrqExti4> for ExtiLine4 {
-   fn irq_exti(&self) -> super::irq::IrqExti4 { super::irq::IRQ_EXTI4 }
+    fn irq_exti(&self) -> super::irq::IrqExti4 { super::irq::IRQ_EXTI4 }
 }
 
 impl IrqExti<super::irq::IrqExti5> for ExtiLine5 {
-   fn irq_exti(&self) -> super::irq::IrqExti5 { super::irq::IRQ_EXTI5 }
+    fn irq_exti(&self) -> super::irq::IrqExti5 { super::irq::IRQ_EXTI5 }
 }
 
 impl IrqExti<super::irq::IrqExti6> for ExtiLine6 {
-   fn irq_exti(&self) -> super::irq::IrqExti6 { super::irq::IRQ_EXTI6 }
+    fn irq_exti(&self) -> super::irq::IrqExti6 { super::irq::IRQ_EXTI6 }
 }
 
 impl IrqExti<super::irq::IrqExti7> for ExtiLine7 {
-   fn irq_exti(&self) -> super::irq::IrqExti7 { super::irq::IRQ_EXTI7 }
+    fn irq_exti(&self) -> super::irq::IrqExti7 { super::irq::IRQ_EXTI7 }
 }
 
 impl IrqExti<super::irq::IrqExti8> for ExtiLine8 {
-   fn irq_exti(&self) -> super::irq::IrqExti8 { super::irq::IRQ_EXTI8 }
+    fn irq_exti(&self) -> super::irq::IrqExti8 { super::irq::IRQ_EXTI8 }
 }
 
 impl IrqExti<super::irq::IrqExti9> for ExtiLine9 {
-   fn irq_exti(&self) -> super::irq::IrqExti9 { super::irq::IRQ_EXTI9 }
+    fn irq_exti(&self) -> super::irq::IrqExti9 { super::irq::IRQ_EXTI9 }
 }
 
 impl IrqExti<super::irq::IrqExti10> for ExtiLine10 {
-   fn irq_exti(&self) -> super::irq::IrqExti10 { super::irq::IRQ_EXTI10 }
+    fn irq_exti(&self) -> super::irq::IrqExti10 { super::irq::IRQ_EXTI10 }
 }
 
 impl IrqExti<super::irq::IrqExti11> for ExtiLine11 {
-   fn irq_exti(&self) -> super::irq::IrqExti11 { super::irq::IRQ_EXTI11 }
+    fn irq_exti(&self) -> super::irq::IrqExti11 { super::irq::IRQ_EXTI11 }
 }
 
 impl IrqExti<super::irq::IrqExti12> for ExtiLine12 {
-   fn irq_exti(&self) -> super::irq::IrqExti12 { super::irq::IRQ_EXTI12 }
+    fn irq_exti(&self) -> super::irq::IrqExti12 { super::irq::IRQ_EXTI12 }
 }
 
 impl IrqExti<super::irq::IrqExti13> for ExtiLine13 {
-   fn irq_exti(&self) -> super::irq::IrqExti13 { super::irq::IRQ_EXTI13 }
+    fn irq_exti(&self) -> super::irq::IrqExti13 { super::irq::IRQ_EXTI13 }
 }
 
 impl IrqExti<super::irq::IrqExti14> for ExtiLine14 {
-   fn irq_exti(&self) -> super::irq::IrqExti14 { super::irq::IRQ_EXTI14 }
+    fn irq_exti(&self) -> super::irq::IrqExti14 { super::irq::IRQ_EXTI14 }
 }
 
 impl IrqExti<super::irq::IrqExti15> for ExtiLine15 {
-   fn irq_exti(&self) -> super::irq::IrqExti15 { super::irq::IRQ_EXTI15 }
+    fn irq_exti(&self) -> super::irq::IrqExti15 { super::irq::IRQ_EXTI15 }
 }
 
 impl IrqExti<super::irq::IrqExti16> for ExtiLine16 {
-   fn irq_exti(&self) -> super::irq::IrqExti16 { super::irq::IRQ_EXTI16 }
+    fn irq_exti(&self) -> super::irq::IrqExti16 { super::irq::IRQ_EXTI16 }
 }
 
 impl IrqExti<super::irq::IrqExti17> for ExtiLine17 {
-   fn irq_exti(&self) -> super::irq::IrqExti17 { super::irq::IRQ_EXTI17 }
+    fn irq_exti(&self) -> super::irq::IrqExti17 { super::irq::IRQ_EXTI17 }
 }
 
 impl IrqExti<super::irq::IrqExti19> for ExtiLine19 {
-   fn irq_exti(&self) -> super::irq::IrqExti19 { super::irq::IRQ_EXTI19 }
+    fn irq_exti(&self) -> super::irq::IrqExti19 { super::irq::IRQ_EXTI19 }
 }
 
 impl IrqExti<super::irq::IrqExti20> for ExtiLine20 {
-   fn irq_exti(&self) -> super::irq::IrqExti20 { super::irq::IRQ_EXTI20 }
+    fn irq_exti(&self) -> super::irq::IrqExti20 { super::irq::IRQ_EXTI20 }
 }
 
 impl IrqExti<super::irq::IrqExti21> for ExtiLine21 {
-   fn irq_exti(&self) -> super::irq::IrqExti21 { super::irq::IRQ_EXTI21 }
+    fn irq_exti(&self) -> super::irq::IrqExti21 { super::irq::IRQ_EXTI21 }
 }
 
 impl IrqExti<super::irq::IrqExti22> for ExtiLine22 {
-   fn irq_exti(&self) -> super::irq::IrqExti22 { super::irq::IRQ_EXTI22 }
+    fn irq_exti(&self) -> super::irq::IrqExti22 { super::irq::IRQ_EXTI22 }
 }
 
 impl IrqExti<super::irq::IrqExti23> for ExtiLine23 {
-   fn irq_exti(&self) -> super::irq::IrqExti23 { super::irq::IRQ_EXTI23 }
+    fn irq_exti(&self) -> super::irq::IrqExti23 { super::irq::IRQ_EXTI23 }
 }
 
 impl IrqExti<super::irq::IrqExti24> for ExtiLine24 {
-   fn irq_exti(&self) -> super::irq::IrqExti24 { super::irq::IRQ_EXTI24 }
+    fn irq_exti(&self) -> super::irq::IrqExti24 { super::irq::IRQ_EXTI24 }
 }
 
 impl IrqExti<super::irq::IrqExti25> for ExtiLine25 {
-   fn irq_exti(&self) -> super::irq::IrqExti25 { super::irq::IRQ_EXTI25 }
+    fn irq_exti(&self) -> super::irq::IrqExti25 { super::irq::IRQ_EXTI25 }
 }
 
 impl IrqExti<super::irq::IrqExti26> for ExtiLine26 {
-   fn irq_exti(&self) -> super::irq::IrqExti26 { super::irq::IRQ_EXTI26 }
+    fn irq_exti(&self) -> super::irq::IrqExti26 { super::irq::IRQ_EXTI26 }
 }
 
 impl IrqExti<super::irq::IrqExti28> for ExtiLine28 {
-   fn irq_exti(&self) -> super::irq::IrqExti28 { super::irq::IRQ_EXTI28 }
+    fn irq_exti(&self) -> super::irq::IrqExti28 { super::irq::IRQ_EXTI28 }
 }
 
 impl IrqExti<super::irq::IrqExti29> for ExtiLine29 {
-   fn irq_exti(&self) -> super::irq::IrqExti29 { super::irq::IRQ_EXTI29 }
+    fn irq_exti(&self) -> super::irq::IrqExti29 { super::irq::IRQ_EXTI29 }
 }
 

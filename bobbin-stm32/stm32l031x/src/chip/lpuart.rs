@@ -16,10 +16,10 @@ impl super::sig::SignalRts<super::sig::Lpuart1Rts> for Lpuart1 {}
 
 
 pub trait IrqLpuart<T> {
-   fn irq_lpuart(&self) -> T;
+    fn irq_lpuart(&self) -> T;
 }
 
 impl IrqLpuart<super::irq::IrqLpuart1> for Lpuart1 {
-   fn irq_lpuart(&self) -> super::irq::IrqLpuart1 { super::irq::IRQ_LPUART1 }
+    fn irq_lpuart(&self) -> super::irq::IrqLpuart1 { super::irq::IRQ_LPUART1 }
 }
 

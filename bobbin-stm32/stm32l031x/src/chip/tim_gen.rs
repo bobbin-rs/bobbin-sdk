@@ -42,18 +42,18 @@ channel!(TIM22_CH1, Tim22Ch1, TIM22, Tim22, _TIM22_CH1, TimGenCh, _TIM22, 0);
 channel!(TIM22_CH2, Tim22Ch2, TIM22, Tim22, _TIM22_CH2, TimGenCh, _TIM22, 1);
 
 pub trait IrqTim<T> {
-   fn irq_tim(&self) -> T;
+    fn irq_tim(&self) -> T;
 }
 
 impl IrqTim<super::irq::IrqTim2> for Tim2 {
-   fn irq_tim(&self) -> super::irq::IrqTim2 { super::irq::IRQ_TIM2 }
+    fn irq_tim(&self) -> super::irq::IrqTim2 { super::irq::IRQ_TIM2 }
 }
 
 impl IrqTim<super::irq::IrqTim21> for Tim21 {
-   fn irq_tim(&self) -> super::irq::IrqTim21 { super::irq::IRQ_TIM21 }
+    fn irq_tim(&self) -> super::irq::IrqTim21 { super::irq::IRQ_TIM21 }
 }
 
 impl IrqTim<super::irq::IrqTim22> for Tim22 {
-   fn irq_tim(&self) -> super::irq::IrqTim22 { super::irq::IRQ_TIM22 }
+    fn irq_tim(&self) -> super::irq::IrqTim22 { super::irq::IRQ_TIM22 }
 }
 

@@ -24,78 +24,78 @@ channel!(DMA14, Dma14, DMA, Dma, _DMA14, EdmaCh, _DMA, 14);
 channel!(DMA15, Dma15, DMA, Dma, _DMA15, EdmaCh, _DMA, 15);
 
 pub trait IrqDmaError<T> {
-   fn irq_dma_error(&self) -> T;
+    fn irq_dma_error(&self) -> T;
 }
 
 pub trait IrqDma<T> {
-   fn irq_dma(&self) -> T;
+    fn irq_dma(&self) -> T;
 }
 
 impl IrqDmaError<super::irq::IrqDmaError> for Dma {
-   fn irq_dma_error(&self) -> super::irq::IrqDmaError { super::irq::IRQ_DMA_ERROR }
+    fn irq_dma_error(&self) -> super::irq::IrqDmaError { super::irq::IRQ_DMA_ERROR }
 }
 
 impl IrqDma<super::irq::IrqDma0> for Dma0 {
-   fn irq_dma(&self) -> super::irq::IrqDma0 { super::irq::IRQ_DMA0 }
+    fn irq_dma(&self) -> super::irq::IrqDma0 { super::irq::IRQ_DMA0 }
 }
 
 impl IrqDma<super::irq::IrqDma1> for Dma1 {
-   fn irq_dma(&self) -> super::irq::IrqDma1 { super::irq::IRQ_DMA1 }
+    fn irq_dma(&self) -> super::irq::IrqDma1 { super::irq::IRQ_DMA1 }
 }
 
 impl IrqDma<super::irq::IrqDma2> for Dma2 {
-   fn irq_dma(&self) -> super::irq::IrqDma2 { super::irq::IRQ_DMA2 }
+    fn irq_dma(&self) -> super::irq::IrqDma2 { super::irq::IRQ_DMA2 }
 }
 
 impl IrqDma<super::irq::IrqDma3> for Dma3 {
-   fn irq_dma(&self) -> super::irq::IrqDma3 { super::irq::IRQ_DMA3 }
+    fn irq_dma(&self) -> super::irq::IrqDma3 { super::irq::IRQ_DMA3 }
 }
 
 impl IrqDma<super::irq::IrqDma4> for Dma4 {
-   fn irq_dma(&self) -> super::irq::IrqDma4 { super::irq::IRQ_DMA4 }
+    fn irq_dma(&self) -> super::irq::IrqDma4 { super::irq::IRQ_DMA4 }
 }
 
 impl IrqDma<super::irq::IrqDma5> for Dma5 {
-   fn irq_dma(&self) -> super::irq::IrqDma5 { super::irq::IRQ_DMA5 }
+    fn irq_dma(&self) -> super::irq::IrqDma5 { super::irq::IRQ_DMA5 }
 }
 
 impl IrqDma<super::irq::IrqDma6> for Dma6 {
-   fn irq_dma(&self) -> super::irq::IrqDma6 { super::irq::IRQ_DMA6 }
+    fn irq_dma(&self) -> super::irq::IrqDma6 { super::irq::IRQ_DMA6 }
 }
 
 impl IrqDma<super::irq::IrqDma7> for Dma7 {
-   fn irq_dma(&self) -> super::irq::IrqDma7 { super::irq::IRQ_DMA7 }
+    fn irq_dma(&self) -> super::irq::IrqDma7 { super::irq::IRQ_DMA7 }
 }
 
 impl IrqDma<super::irq::IrqDma8> for Dma8 {
-   fn irq_dma(&self) -> super::irq::IrqDma8 { super::irq::IRQ_DMA8 }
+    fn irq_dma(&self) -> super::irq::IrqDma8 { super::irq::IRQ_DMA8 }
 }
 
 impl IrqDma<super::irq::IrqDma9> for Dma9 {
-   fn irq_dma(&self) -> super::irq::IrqDma9 { super::irq::IRQ_DMA9 }
+    fn irq_dma(&self) -> super::irq::IrqDma9 { super::irq::IRQ_DMA9 }
 }
 
 impl IrqDma<super::irq::IrqDma10> for Dma10 {
-   fn irq_dma(&self) -> super::irq::IrqDma10 { super::irq::IRQ_DMA10 }
+    fn irq_dma(&self) -> super::irq::IrqDma10 { super::irq::IRQ_DMA10 }
 }
 
 impl IrqDma<super::irq::IrqDma11> for Dma11 {
-   fn irq_dma(&self) -> super::irq::IrqDma11 { super::irq::IRQ_DMA11 }
+    fn irq_dma(&self) -> super::irq::IrqDma11 { super::irq::IRQ_DMA11 }
 }
 
 impl IrqDma<super::irq::IrqDma12> for Dma12 {
-   fn irq_dma(&self) -> super::irq::IrqDma12 { super::irq::IRQ_DMA12 }
+    fn irq_dma(&self) -> super::irq::IrqDma12 { super::irq::IRQ_DMA12 }
 }
 
 impl IrqDma<super::irq::IrqDma13> for Dma13 {
-   fn irq_dma(&self) -> super::irq::IrqDma13 { super::irq::IRQ_DMA13 }
+    fn irq_dma(&self) -> super::irq::IrqDma13 { super::irq::IRQ_DMA13 }
 }
 
 impl IrqDma<super::irq::IrqDma14> for Dma14 {
-   fn irq_dma(&self) -> super::irq::IrqDma14 { super::irq::IRQ_DMA14 }
+    fn irq_dma(&self) -> super::irq::IrqDma14 { super::irq::IRQ_DMA14 }
 }
 
 impl IrqDma<super::irq::IrqDma15> for Dma15 {
-   fn irq_dma(&self) -> super::irq::IrqDma15 { super::irq::IRQ_DMA15 }
+    fn irq_dma(&self) -> super::irq::IrqDma15 { super::irq::IRQ_DMA15 }
 }
 

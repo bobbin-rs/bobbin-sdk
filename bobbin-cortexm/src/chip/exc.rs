@@ -21,29 +21,29 @@ pub fn set_handler(exc: Exception, handler: Option<Handler>) {
 pub struct Exception(pub usize);
 
 impl Exception {
-   pub fn set_handler(&self, handler: Option<Handler>) {
-      unsafe { R_EXCEPTION_HANDLERS[self.0] = handler };
-   }
+    pub fn set_handler(&self, handler: Option<Handler>) {
+        unsafe { R_EXCEPTION_HANDLERS[self.0] = handler };
+    }
 }
 
 #[cfg_attr(target_os="none", link_section=".vector.exceptions")]
 #[no_mangle]
 pub static EXCEPTION_HANDLERS: [Option<Handler>; 15] = [
-   Some(_reset),                  // Reset Handler
-   Some(_nmi),                    // Non-maskable interrupt.
-   Some(_hard_fault),             // All class of fault.
-   Some(_memmanage_fault),        // Memory Management
-   Some(_bus_fault),              // Pre-fetch fault, memory access fault.
-   Some(_usage_fault),            // Undefined instruction or illegal state.
-   None,
-   None,
-   None,
-   None,
-   Some(_svcall),                 // System service call via SWI instruction
-   Some(_debug),                  // Debug
-   None,
-   Some(_pendsv),                 // Pendable request for system service
-   Some(_systick),                // System tick timer
+    Some(_reset),                  // Reset Handler
+    Some(_nmi),                    // Non-maskable interrupt.
+    Some(_hard_fault),             // All class of fault.
+    Some(_memmanage_fault),        // Memory Management
+    Some(_bus_fault),              // Pre-fetch fault, memory access fault.
+    Some(_usage_fault),            // Undefined instruction or illegal state.
+    None,
+    None,
+    None,
+    None,
+    Some(_svcall),                 // System service call via SWI instruction
+    Some(_debug),                  // Debug
+    None,
+    Some(_pendsv),                 // Pendable request for system service
+    Some(_systick),                // System tick timer
 ];
 
 #[cfg_attr(target_os="none", link_section=".bss.r_exceptions")]
@@ -51,14 +51,14 @@ pub static EXCEPTION_HANDLERS: [Option<Handler>; 15] = [
 pub static mut R_EXCEPTION_HANDLERS: [Option<Handler>; 15] = [None; 15];
 
 extern "C" {
-   pub fn _reset();               // Reset Handler
-   pub fn _nmi();                 // Non-maskable interrupt.
-   pub fn _hard_fault();          // All class of fault.
-   pub fn _memmanage_fault();     // Memory Management
-   pub fn _bus_fault();           // Pre-fetch fault, memory access fault.
-   pub fn _usage_fault();         // Undefined instruction or illegal state.
-   pub fn _svcall();              // System service call via SWI instruction
-   pub fn _debug();               // Debug
-   pub fn _pendsv();              // Pendable request for system service
-   pub fn _systick();             // System tick timer
+    pub fn _reset();               // Reset Handler
+    pub fn _nmi();                 // Non-maskable interrupt.
+    pub fn _hard_fault();          // All class of fault.
+    pub fn _memmanage_fault();     // Memory Management
+    pub fn _bus_fault();           // Pre-fetch fault, memory access fault.
+    pub fn _usage_fault();         // Undefined instruction or illegal state.
+    pub fn _svcall();              // System service call via SWI instruction
+    pub fn _debug();               // Debug
+    pub fn _pendsv();              // Pendable request for system service
+    pub fn _systick();             // System tick timer
 }

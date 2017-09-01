@@ -18,10 +18,10 @@ impl super::sig::SignalCk<super::sig::Usart2Ck> for Usart2 {}
 
 
 pub trait IrqUsart<T> {
-   fn irq_usart(&self) -> T;
+    fn irq_usart(&self) -> T;
 }
 
 impl IrqUsart<super::irq::IrqUsart2> for Usart2 {
-   fn irq_usart(&self) -> super::irq::IrqUsart2 { super::irq::IRQ_USART2 }
+    fn irq_usart(&self) -> super::irq::IrqUsart2 { super::irq::IRQ_USART2 }
 }
 

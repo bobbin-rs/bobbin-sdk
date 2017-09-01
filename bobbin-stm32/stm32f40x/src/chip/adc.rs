@@ -159,18 +159,18 @@ channel!(ADC3_CH14, Adc3Ch14, ADC3, Adc3, _ADC3_CH14, AdcCh, _ADC3, 14);
 channel!(ADC3_CH15, Adc3Ch15, ADC3, Adc3, _ADC3_CH15, AdcCh, _ADC3, 15);
 
 pub trait IrqAdc<T> {
-   fn irq_adc(&self) -> T;
+    fn irq_adc(&self) -> T;
 }
 
 impl IrqAdc<super::irq::IrqAdc1> for Adc1 {
-   fn irq_adc(&self) -> super::irq::IrqAdc1 { super::irq::IRQ_ADC1 }
+    fn irq_adc(&self) -> super::irq::IrqAdc1 { super::irq::IRQ_ADC1 }
 }
 
 impl IrqAdc<super::irq::IrqAdc2> for Adc2 {
-   fn irq_adc(&self) -> super::irq::IrqAdc2 { super::irq::IRQ_ADC2 }
+    fn irq_adc(&self) -> super::irq::IrqAdc2 { super::irq::IRQ_ADC2 }
 }
 
 impl IrqAdc<super::irq::IrqAdc3> for Adc3 {
-   fn irq_adc(&self) -> super::irq::IrqAdc3 { super::irq::IRQ_ADC3 }
+    fn irq_adc(&self) -> super::irq::IrqAdc3 { super::irq::IRQ_ADC3 }
 }
 

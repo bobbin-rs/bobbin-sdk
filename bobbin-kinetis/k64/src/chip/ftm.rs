@@ -84,18 +84,18 @@ channel!(FTM2_CH6, Ftm2Ch6, FTM2, Ftm2, _FTM2_CH6, FtmCh, _FTM2, 6);
 channel!(FTM2_CH7, Ftm2Ch7, FTM2, Ftm2, _FTM2_CH7, FtmCh, _FTM2, 7);
 
 pub trait IrqFtm<T> {
-   fn irq_ftm(&self) -> T;
+    fn irq_ftm(&self) -> T;
 }
 
 impl IrqFtm<super::irq::IrqFtm0> for Ftm0 {
-   fn irq_ftm(&self) -> super::irq::IrqFtm0 { super::irq::IRQ_FTM0 }
+    fn irq_ftm(&self) -> super::irq::IrqFtm0 { super::irq::IRQ_FTM0 }
 }
 
 impl IrqFtm<super::irq::IrqFtm1> for Ftm1 {
-   fn irq_ftm(&self) -> super::irq::IrqFtm1 { super::irq::IRQ_FTM1 }
+    fn irq_ftm(&self) -> super::irq::IrqFtm1 { super::irq::IRQ_FTM1 }
 }
 
 impl IrqFtm<super::irq::IrqFtm2> for Ftm2 {
-   fn irq_ftm(&self) -> super::irq::IrqFtm2 { super::irq::IRQ_FTM2 }
+    fn irq_ftm(&self) -> super::irq::IrqFtm2 { super::irq::IRQ_FTM2 }
 }
 
