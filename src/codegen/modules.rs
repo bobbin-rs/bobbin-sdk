@@ -1293,7 +1293,7 @@ pub fn gen_field<W: Write>(cfg: &Config, out: &mut W, f: &Field, size: &str, _ac
             try!(gen_doc(cfg, out, 4, desc));
         }
         try!(writeln!(out, "    #[inline] pub fn {}(&self) -> bool {{", f_tester));
-        try!(writeln!(out, "        self.{} != 0", f_getter));
+        try!(writeln!(out, "        self.{}() != 0", f_getter));
         try!(writeln!(out, "    }}"));    
         try!(writeln!(out, ""));    
 
