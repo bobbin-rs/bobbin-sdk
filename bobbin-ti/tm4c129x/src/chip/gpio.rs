@@ -55,21 +55,24 @@ pub struct GpioPeriph(pub usize);
 
 
 impl GpioPeriph {
-#[doc="Get the *const pointer for the DATA register."]
+   #[doc="Get the *const pointer for the DATA register."]
    #[inline] pub fn data_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x3fc) as *const u32
    }
-#[doc="Get the *mut pointer for the DATA register."]
+
+   #[doc="Get the *mut pointer for the DATA register."]
    #[inline] pub fn data_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x3fc) as *mut u32
    }
-#[doc="Read the DATA register."]
+
+   #[doc="Read the DATA register."]
    #[inline] pub fn data(&self) -> Data { 
       unsafe {
          Data(read_volatile((self.0 + 0x3fc) as *const u32))
       }
    }
-#[doc="Write the DATA register."]
+
+   #[doc="Write the DATA register."]
    #[inline] pub fn set_data<F: FnOnce(Data) -> Data>(&self, f: F) -> &Self {
       let value = f(Data(0));
       unsafe {
@@ -77,7 +80,8 @@ impl GpioPeriph {
       }
       self
    }
-#[doc="Modify the DATA register."]
+
+   #[doc="Modify the DATA register."]
    #[inline] pub fn with_data<F: FnOnce(Data) -> Data>(&self, f: F) -> &Self {
       let tmp = self.data();
       let value = f(tmp);
@@ -87,21 +91,24 @@ impl GpioPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the DIR register."]
+   #[doc="Get the *const pointer for the DIR register."]
    #[inline] pub fn dir_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x400) as *const u32
    }
-#[doc="Get the *mut pointer for the DIR register."]
+
+   #[doc="Get the *mut pointer for the DIR register."]
    #[inline] pub fn dir_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x400) as *mut u32
    }
-#[doc="Read the DIR register."]
+
+   #[doc="Read the DIR register."]
    #[inline] pub fn dir(&self) -> Dir { 
       unsafe {
          Dir(read_volatile((self.0 + 0x400) as *const u32))
       }
    }
-#[doc="Write the DIR register."]
+
+   #[doc="Write the DIR register."]
    #[inline] pub fn set_dir<F: FnOnce(Dir) -> Dir>(&self, f: F) -> &Self {
       let value = f(Dir(0));
       unsafe {
@@ -109,7 +116,8 @@ impl GpioPeriph {
       }
       self
    }
-#[doc="Modify the DIR register."]
+
+   #[doc="Modify the DIR register."]
    #[inline] pub fn with_dir<F: FnOnce(Dir) -> Dir>(&self, f: F) -> &Self {
       let tmp = self.dir();
       let value = f(tmp);
@@ -119,21 +127,24 @@ impl GpioPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the IS register."]
+   #[doc="Get the *const pointer for the IS register."]
    #[inline] pub fn is_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x404) as *const u32
    }
-#[doc="Get the *mut pointer for the IS register."]
+
+   #[doc="Get the *mut pointer for the IS register."]
    #[inline] pub fn is_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x404) as *mut u32
    }
-#[doc="Read the IS register."]
+
+   #[doc="Read the IS register."]
    #[inline] pub fn is(&self) -> Is { 
       unsafe {
          Is(read_volatile((self.0 + 0x404) as *const u32))
       }
    }
-#[doc="Write the IS register."]
+
+   #[doc="Write the IS register."]
    #[inline] pub fn set_is<F: FnOnce(Is) -> Is>(&self, f: F) -> &Self {
       let value = f(Is(0));
       unsafe {
@@ -141,7 +152,8 @@ impl GpioPeriph {
       }
       self
    }
-#[doc="Modify the IS register."]
+
+   #[doc="Modify the IS register."]
    #[inline] pub fn with_is<F: FnOnce(Is) -> Is>(&self, f: F) -> &Self {
       let tmp = self.is();
       let value = f(tmp);
@@ -151,21 +163,24 @@ impl GpioPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the IBE register."]
+   #[doc="Get the *const pointer for the IBE register."]
    #[inline] pub fn ibe_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x408) as *const u32
    }
-#[doc="Get the *mut pointer for the IBE register."]
+
+   #[doc="Get the *mut pointer for the IBE register."]
    #[inline] pub fn ibe_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x408) as *mut u32
    }
-#[doc="Read the IBE register."]
+
+   #[doc="Read the IBE register."]
    #[inline] pub fn ibe(&self) -> Ibe { 
       unsafe {
          Ibe(read_volatile((self.0 + 0x408) as *const u32))
       }
    }
-#[doc="Write the IBE register."]
+
+   #[doc="Write the IBE register."]
    #[inline] pub fn set_ibe<F: FnOnce(Ibe) -> Ibe>(&self, f: F) -> &Self {
       let value = f(Ibe(0));
       unsafe {
@@ -173,7 +188,8 @@ impl GpioPeriph {
       }
       self
    }
-#[doc="Modify the IBE register."]
+
+   #[doc="Modify the IBE register."]
    #[inline] pub fn with_ibe<F: FnOnce(Ibe) -> Ibe>(&self, f: F) -> &Self {
       let tmp = self.ibe();
       let value = f(tmp);
@@ -183,21 +199,24 @@ impl GpioPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the IEV register."]
+   #[doc="Get the *const pointer for the IEV register."]
    #[inline] pub fn iev_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x40c) as *const u32
    }
-#[doc="Get the *mut pointer for the IEV register."]
+
+   #[doc="Get the *mut pointer for the IEV register."]
    #[inline] pub fn iev_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x40c) as *mut u32
    }
-#[doc="Read the IEV register."]
+
+   #[doc="Read the IEV register."]
    #[inline] pub fn iev(&self) -> Iev { 
       unsafe {
          Iev(read_volatile((self.0 + 0x40c) as *const u32))
       }
    }
-#[doc="Write the IEV register."]
+
+   #[doc="Write the IEV register."]
    #[inline] pub fn set_iev<F: FnOnce(Iev) -> Iev>(&self, f: F) -> &Self {
       let value = f(Iev(0));
       unsafe {
@@ -205,7 +224,8 @@ impl GpioPeriph {
       }
       self
    }
-#[doc="Modify the IEV register."]
+
+   #[doc="Modify the IEV register."]
    #[inline] pub fn with_iev<F: FnOnce(Iev) -> Iev>(&self, f: F) -> &Self {
       let tmp = self.iev();
       let value = f(tmp);
@@ -215,21 +235,24 @@ impl GpioPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the IM register."]
+   #[doc="Get the *const pointer for the IM register."]
    #[inline] pub fn im_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x410) as *const u32
    }
-#[doc="Get the *mut pointer for the IM register."]
+
+   #[doc="Get the *mut pointer for the IM register."]
    #[inline] pub fn im_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x410) as *mut u32
    }
-#[doc="Read the IM register."]
+
+   #[doc="Read the IM register."]
    #[inline] pub fn im(&self) -> Im { 
       unsafe {
          Im(read_volatile((self.0 + 0x410) as *const u32))
       }
    }
-#[doc="Write the IM register."]
+
+   #[doc="Write the IM register."]
    #[inline] pub fn set_im<F: FnOnce(Im) -> Im>(&self, f: F) -> &Self {
       let value = f(Im(0));
       unsafe {
@@ -237,7 +260,8 @@ impl GpioPeriph {
       }
       self
    }
-#[doc="Modify the IM register."]
+
+   #[doc="Modify the IM register."]
    #[inline] pub fn with_im<F: FnOnce(Im) -> Im>(&self, f: F) -> &Self {
       let tmp = self.im();
       let value = f(tmp);
@@ -247,21 +271,24 @@ impl GpioPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the RIS register."]
+   #[doc="Get the *const pointer for the RIS register."]
    #[inline] pub fn ris_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x414) as *const u32
    }
-#[doc="Get the *mut pointer for the RIS register."]
+
+   #[doc="Get the *mut pointer for the RIS register."]
    #[inline] pub fn ris_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x414) as *mut u32
    }
-#[doc="Read the RIS register."]
+
+   #[doc="Read the RIS register."]
    #[inline] pub fn ris(&self) -> Ris { 
       unsafe {
          Ris(read_volatile((self.0 + 0x414) as *const u32))
       }
    }
-#[doc="Write the RIS register."]
+
+   #[doc="Write the RIS register."]
    #[inline] pub fn set_ris<F: FnOnce(Ris) -> Ris>(&self, f: F) -> &Self {
       let value = f(Ris(0));
       unsafe {
@@ -269,7 +296,8 @@ impl GpioPeriph {
       }
       self
    }
-#[doc="Modify the RIS register."]
+
+   #[doc="Modify the RIS register."]
    #[inline] pub fn with_ris<F: FnOnce(Ris) -> Ris>(&self, f: F) -> &Self {
       let tmp = self.ris();
       let value = f(tmp);
@@ -279,21 +307,24 @@ impl GpioPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the MIS register."]
+   #[doc="Get the *const pointer for the MIS register."]
    #[inline] pub fn mis_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x418) as *const u32
    }
-#[doc="Get the *mut pointer for the MIS register."]
+
+   #[doc="Get the *mut pointer for the MIS register."]
    #[inline] pub fn mis_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x418) as *mut u32
    }
-#[doc="Read the MIS register."]
+
+   #[doc="Read the MIS register."]
    #[inline] pub fn mis(&self) -> Mis { 
       unsafe {
          Mis(read_volatile((self.0 + 0x418) as *const u32))
       }
    }
-#[doc="Write the MIS register."]
+
+   #[doc="Write the MIS register."]
    #[inline] pub fn set_mis<F: FnOnce(Mis) -> Mis>(&self, f: F) -> &Self {
       let value = f(Mis(0));
       unsafe {
@@ -301,7 +332,8 @@ impl GpioPeriph {
       }
       self
    }
-#[doc="Modify the MIS register."]
+
+   #[doc="Modify the MIS register."]
    #[inline] pub fn with_mis<F: FnOnce(Mis) -> Mis>(&self, f: F) -> &Self {
       let tmp = self.mis();
       let value = f(tmp);
@@ -311,15 +343,17 @@ impl GpioPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the ICR register."]
+   #[doc="Get the *const pointer for the ICR register."]
    #[inline] pub fn icr_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x41c) as *const u32
    }
-#[doc="Get the *mut pointer for the ICR register."]
+
+   #[doc="Get the *mut pointer for the ICR register."]
    #[inline] pub fn icr_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x41c) as *mut u32
    }
-#[doc="Write the ICR register."]
+
+   #[doc="Write the ICR register."]
    #[inline] pub fn set_icr<F: FnOnce(Icr) -> Icr>(&self, f: F) -> &Self {
       let value = f(Icr(0));
       unsafe {
@@ -328,21 +362,24 @@ impl GpioPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the AFSEL register."]
+   #[doc="Get the *const pointer for the AFSEL register."]
    #[inline] pub fn afsel_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x420) as *const u32
    }
-#[doc="Get the *mut pointer for the AFSEL register."]
+
+   #[doc="Get the *mut pointer for the AFSEL register."]
    #[inline] pub fn afsel_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x420) as *mut u32
    }
-#[doc="Read the AFSEL register."]
+
+   #[doc="Read the AFSEL register."]
    #[inline] pub fn afsel(&self) -> Afsel { 
       unsafe {
          Afsel(read_volatile((self.0 + 0x420) as *const u32))
       }
    }
-#[doc="Write the AFSEL register."]
+
+   #[doc="Write the AFSEL register."]
    #[inline] pub fn set_afsel<F: FnOnce(Afsel) -> Afsel>(&self, f: F) -> &Self {
       let value = f(Afsel(0));
       unsafe {
@@ -350,7 +387,8 @@ impl GpioPeriph {
       }
       self
    }
-#[doc="Modify the AFSEL register."]
+
+   #[doc="Modify the AFSEL register."]
    #[inline] pub fn with_afsel<F: FnOnce(Afsel) -> Afsel>(&self, f: F) -> &Self {
       let tmp = self.afsel();
       let value = f(tmp);
@@ -360,21 +398,24 @@ impl GpioPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the DR2R register."]
+   #[doc="Get the *const pointer for the DR2R register."]
    #[inline] pub fn dr2r_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x500) as *const u32
    }
-#[doc="Get the *mut pointer for the DR2R register."]
+
+   #[doc="Get the *mut pointer for the DR2R register."]
    #[inline] pub fn dr2r_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x500) as *mut u32
    }
-#[doc="Read the DR2R register."]
+
+   #[doc="Read the DR2R register."]
    #[inline] pub fn dr2r(&self) -> Dr2r { 
       unsafe {
          Dr2r(read_volatile((self.0 + 0x500) as *const u32))
       }
    }
-#[doc="Write the DR2R register."]
+
+   #[doc="Write the DR2R register."]
    #[inline] pub fn set_dr2r<F: FnOnce(Dr2r) -> Dr2r>(&self, f: F) -> &Self {
       let value = f(Dr2r(0));
       unsafe {
@@ -382,7 +423,8 @@ impl GpioPeriph {
       }
       self
    }
-#[doc="Modify the DR2R register."]
+
+   #[doc="Modify the DR2R register."]
    #[inline] pub fn with_dr2r<F: FnOnce(Dr2r) -> Dr2r>(&self, f: F) -> &Self {
       let tmp = self.dr2r();
       let value = f(tmp);
@@ -392,21 +434,24 @@ impl GpioPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the DR4R register."]
+   #[doc="Get the *const pointer for the DR4R register."]
    #[inline] pub fn dr4r_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x504) as *const u32
    }
-#[doc="Get the *mut pointer for the DR4R register."]
+
+   #[doc="Get the *mut pointer for the DR4R register."]
    #[inline] pub fn dr4r_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x504) as *mut u32
    }
-#[doc="Read the DR4R register."]
+
+   #[doc="Read the DR4R register."]
    #[inline] pub fn dr4r(&self) -> Dr4r { 
       unsafe {
          Dr4r(read_volatile((self.0 + 0x504) as *const u32))
       }
    }
-#[doc="Write the DR4R register."]
+
+   #[doc="Write the DR4R register."]
    #[inline] pub fn set_dr4r<F: FnOnce(Dr4r) -> Dr4r>(&self, f: F) -> &Self {
       let value = f(Dr4r(0));
       unsafe {
@@ -414,7 +459,8 @@ impl GpioPeriph {
       }
       self
    }
-#[doc="Modify the DR4R register."]
+
+   #[doc="Modify the DR4R register."]
    #[inline] pub fn with_dr4r<F: FnOnce(Dr4r) -> Dr4r>(&self, f: F) -> &Self {
       let tmp = self.dr4r();
       let value = f(tmp);
@@ -424,21 +470,24 @@ impl GpioPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the DR8R register."]
+   #[doc="Get the *const pointer for the DR8R register."]
    #[inline] pub fn dr8r_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x508) as *const u32
    }
-#[doc="Get the *mut pointer for the DR8R register."]
+
+   #[doc="Get the *mut pointer for the DR8R register."]
    #[inline] pub fn dr8r_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x508) as *mut u32
    }
-#[doc="Read the DR8R register."]
+
+   #[doc="Read the DR8R register."]
    #[inline] pub fn dr8r(&self) -> Dr8r { 
       unsafe {
          Dr8r(read_volatile((self.0 + 0x508) as *const u32))
       }
    }
-#[doc="Write the DR8R register."]
+
+   #[doc="Write the DR8R register."]
    #[inline] pub fn set_dr8r<F: FnOnce(Dr8r) -> Dr8r>(&self, f: F) -> &Self {
       let value = f(Dr8r(0));
       unsafe {
@@ -446,7 +495,8 @@ impl GpioPeriph {
       }
       self
    }
-#[doc="Modify the DR8R register."]
+
+   #[doc="Modify the DR8R register."]
    #[inline] pub fn with_dr8r<F: FnOnce(Dr8r) -> Dr8r>(&self, f: F) -> &Self {
       let tmp = self.dr8r();
       let value = f(tmp);
@@ -456,21 +506,24 @@ impl GpioPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the ODR register."]
+   #[doc="Get the *const pointer for the ODR register."]
    #[inline] pub fn odr_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x50c) as *const u32
    }
-#[doc="Get the *mut pointer for the ODR register."]
+
+   #[doc="Get the *mut pointer for the ODR register."]
    #[inline] pub fn odr_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x50c) as *mut u32
    }
-#[doc="Read the ODR register."]
+
+   #[doc="Read the ODR register."]
    #[inline] pub fn odr(&self) -> Odr { 
       unsafe {
          Odr(read_volatile((self.0 + 0x50c) as *const u32))
       }
    }
-#[doc="Write the ODR register."]
+
+   #[doc="Write the ODR register."]
    #[inline] pub fn set_odr<F: FnOnce(Odr) -> Odr>(&self, f: F) -> &Self {
       let value = f(Odr(0));
       unsafe {
@@ -478,7 +531,8 @@ impl GpioPeriph {
       }
       self
    }
-#[doc="Modify the ODR register."]
+
+   #[doc="Modify the ODR register."]
    #[inline] pub fn with_odr<F: FnOnce(Odr) -> Odr>(&self, f: F) -> &Self {
       let tmp = self.odr();
       let value = f(tmp);
@@ -488,21 +542,24 @@ impl GpioPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the PUR register."]
+   #[doc="Get the *const pointer for the PUR register."]
    #[inline] pub fn pur_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x510) as *const u32
    }
-#[doc="Get the *mut pointer for the PUR register."]
+
+   #[doc="Get the *mut pointer for the PUR register."]
    #[inline] pub fn pur_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x510) as *mut u32
    }
-#[doc="Read the PUR register."]
+
+   #[doc="Read the PUR register."]
    #[inline] pub fn pur(&self) -> Pur { 
       unsafe {
          Pur(read_volatile((self.0 + 0x510) as *const u32))
       }
    }
-#[doc="Write the PUR register."]
+
+   #[doc="Write the PUR register."]
    #[inline] pub fn set_pur<F: FnOnce(Pur) -> Pur>(&self, f: F) -> &Self {
       let value = f(Pur(0));
       unsafe {
@@ -510,7 +567,8 @@ impl GpioPeriph {
       }
       self
    }
-#[doc="Modify the PUR register."]
+
+   #[doc="Modify the PUR register."]
    #[inline] pub fn with_pur<F: FnOnce(Pur) -> Pur>(&self, f: F) -> &Self {
       let tmp = self.pur();
       let value = f(tmp);
@@ -520,21 +578,24 @@ impl GpioPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the PDR register."]
+   #[doc="Get the *const pointer for the PDR register."]
    #[inline] pub fn pdr_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x514) as *const u32
    }
-#[doc="Get the *mut pointer for the PDR register."]
+
+   #[doc="Get the *mut pointer for the PDR register."]
    #[inline] pub fn pdr_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x514) as *mut u32
    }
-#[doc="Read the PDR register."]
+
+   #[doc="Read the PDR register."]
    #[inline] pub fn pdr(&self) -> Pdr { 
       unsafe {
          Pdr(read_volatile((self.0 + 0x514) as *const u32))
       }
    }
-#[doc="Write the PDR register."]
+
+   #[doc="Write the PDR register."]
    #[inline] pub fn set_pdr<F: FnOnce(Pdr) -> Pdr>(&self, f: F) -> &Self {
       let value = f(Pdr(0));
       unsafe {
@@ -542,7 +603,8 @@ impl GpioPeriph {
       }
       self
    }
-#[doc="Modify the PDR register."]
+
+   #[doc="Modify the PDR register."]
    #[inline] pub fn with_pdr<F: FnOnce(Pdr) -> Pdr>(&self, f: F) -> &Self {
       let tmp = self.pdr();
       let value = f(tmp);
@@ -552,21 +614,24 @@ impl GpioPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the SLR register."]
+   #[doc="Get the *const pointer for the SLR register."]
    #[inline] pub fn slr_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x518) as *const u32
    }
-#[doc="Get the *mut pointer for the SLR register."]
+
+   #[doc="Get the *mut pointer for the SLR register."]
    #[inline] pub fn slr_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x518) as *mut u32
    }
-#[doc="Read the SLR register."]
+
+   #[doc="Read the SLR register."]
    #[inline] pub fn slr(&self) -> Slr { 
       unsafe {
          Slr(read_volatile((self.0 + 0x518) as *const u32))
       }
    }
-#[doc="Write the SLR register."]
+
+   #[doc="Write the SLR register."]
    #[inline] pub fn set_slr<F: FnOnce(Slr) -> Slr>(&self, f: F) -> &Self {
       let value = f(Slr(0));
       unsafe {
@@ -574,7 +639,8 @@ impl GpioPeriph {
       }
       self
    }
-#[doc="Modify the SLR register."]
+
+   #[doc="Modify the SLR register."]
    #[inline] pub fn with_slr<F: FnOnce(Slr) -> Slr>(&self, f: F) -> &Self {
       let tmp = self.slr();
       let value = f(tmp);
@@ -584,21 +650,24 @@ impl GpioPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the DEN register."]
+   #[doc="Get the *const pointer for the DEN register."]
    #[inline] pub fn den_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x51c) as *const u32
    }
-#[doc="Get the *mut pointer for the DEN register."]
+
+   #[doc="Get the *mut pointer for the DEN register."]
    #[inline] pub fn den_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x51c) as *mut u32
    }
-#[doc="Read the DEN register."]
+
+   #[doc="Read the DEN register."]
    #[inline] pub fn den(&self) -> Den { 
       unsafe {
          Den(read_volatile((self.0 + 0x51c) as *const u32))
       }
    }
-#[doc="Write the DEN register."]
+
+   #[doc="Write the DEN register."]
    #[inline] pub fn set_den<F: FnOnce(Den) -> Den>(&self, f: F) -> &Self {
       let value = f(Den(0));
       unsafe {
@@ -606,7 +675,8 @@ impl GpioPeriph {
       }
       self
    }
-#[doc="Modify the DEN register."]
+
+   #[doc="Modify the DEN register."]
    #[inline] pub fn with_den<F: FnOnce(Den) -> Den>(&self, f: F) -> &Self {
       let tmp = self.den();
       let value = f(tmp);
@@ -616,21 +686,24 @@ impl GpioPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the LOCK register."]
+   #[doc="Get the *const pointer for the LOCK register."]
    #[inline] pub fn lock_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x520) as *const u32
    }
-#[doc="Get the *mut pointer for the LOCK register."]
+
+   #[doc="Get the *mut pointer for the LOCK register."]
    #[inline] pub fn lock_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x520) as *mut u32
    }
-#[doc="Read the LOCK register."]
+
+   #[doc="Read the LOCK register."]
    #[inline] pub fn lock(&self) -> Lock { 
       unsafe {
          Lock(read_volatile((self.0 + 0x520) as *const u32))
       }
    }
-#[doc="Write the LOCK register."]
+
+   #[doc="Write the LOCK register."]
    #[inline] pub fn set_lock<F: FnOnce(Lock) -> Lock>(&self, f: F) -> &Self {
       let value = f(Lock(0));
       unsafe {
@@ -638,7 +711,8 @@ impl GpioPeriph {
       }
       self
    }
-#[doc="Modify the LOCK register."]
+
+   #[doc="Modify the LOCK register."]
    #[inline] pub fn with_lock<F: FnOnce(Lock) -> Lock>(&self, f: F) -> &Self {
       let tmp = self.lock();
       let value = f(tmp);
@@ -648,36 +722,41 @@ impl GpioPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the CR register."]
+   #[doc="Get the *const pointer for the CR register."]
    #[inline] pub fn cr_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x524) as *const u32
    }
-#[doc="Get the *mut pointer for the CR register."]
+
+   #[doc="Get the *mut pointer for the CR register."]
    #[inline] pub fn cr_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x524) as *mut u32
    }
-#[doc="Read the CR register."]
+
+   #[doc="Read the CR register."]
    #[inline] pub fn cr(&self) -> Cr { 
       unsafe {
          Cr(read_volatile((self.0 + 0x524) as *const u32))
       }
    }
 
-#[doc="Get the *const pointer for the AMSEL register."]
+   #[doc="Get the *const pointer for the AMSEL register."]
    #[inline] pub fn amsel_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x528) as *const u32
    }
-#[doc="Get the *mut pointer for the AMSEL register."]
+
+   #[doc="Get the *mut pointer for the AMSEL register."]
    #[inline] pub fn amsel_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x528) as *mut u32
    }
-#[doc="Read the AMSEL register."]
+
+   #[doc="Read the AMSEL register."]
    #[inline] pub fn amsel(&self) -> Amsel { 
       unsafe {
          Amsel(read_volatile((self.0 + 0x528) as *const u32))
       }
    }
-#[doc="Write the AMSEL register."]
+
+   #[doc="Write the AMSEL register."]
    #[inline] pub fn set_amsel<F: FnOnce(Amsel) -> Amsel>(&self, f: F) -> &Self {
       let value = f(Amsel(0));
       unsafe {
@@ -685,7 +764,8 @@ impl GpioPeriph {
       }
       self
    }
-#[doc="Modify the AMSEL register."]
+
+   #[doc="Modify the AMSEL register."]
    #[inline] pub fn with_amsel<F: FnOnce(Amsel) -> Amsel>(&self, f: F) -> &Self {
       let tmp = self.amsel();
       let value = f(tmp);
@@ -695,21 +775,24 @@ impl GpioPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the PCTL register."]
+   #[doc="Get the *const pointer for the PCTL register."]
    #[inline] pub fn pctl_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x52c) as *const u32
    }
-#[doc="Get the *mut pointer for the PCTL register."]
+
+   #[doc="Get the *mut pointer for the PCTL register."]
    #[inline] pub fn pctl_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x52c) as *mut u32
    }
-#[doc="Read the PCTL register."]
+
+   #[doc="Read the PCTL register."]
    #[inline] pub fn pctl(&self) -> Pctl { 
       unsafe {
          Pctl(read_volatile((self.0 + 0x52c) as *const u32))
       }
    }
-#[doc="Write the PCTL register."]
+
+   #[doc="Write the PCTL register."]
    #[inline] pub fn set_pctl<F: FnOnce(Pctl) -> Pctl>(&self, f: F) -> &Self {
       let value = f(Pctl(0));
       unsafe {
@@ -717,7 +800,8 @@ impl GpioPeriph {
       }
       self
    }
-#[doc="Modify the PCTL register."]
+
+   #[doc="Modify the PCTL register."]
    #[inline] pub fn with_pctl<F: FnOnce(Pctl) -> Pctl>(&self, f: F) -> &Self {
       let tmp = self.pctl();
       let value = f(tmp);
@@ -727,21 +811,24 @@ impl GpioPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the ADCCTL register."]
+   #[doc="Get the *const pointer for the ADCCTL register."]
    #[inline] pub fn adcctl_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x530) as *const u32
    }
-#[doc="Get the *mut pointer for the ADCCTL register."]
+
+   #[doc="Get the *mut pointer for the ADCCTL register."]
    #[inline] pub fn adcctl_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x530) as *mut u32
    }
-#[doc="Read the ADCCTL register."]
+
+   #[doc="Read the ADCCTL register."]
    #[inline] pub fn adcctl(&self) -> Adcctl { 
       unsafe {
          Adcctl(read_volatile((self.0 + 0x530) as *const u32))
       }
    }
-#[doc="Write the ADCCTL register."]
+
+   #[doc="Write the ADCCTL register."]
    #[inline] pub fn set_adcctl<F: FnOnce(Adcctl) -> Adcctl>(&self, f: F) -> &Self {
       let value = f(Adcctl(0));
       unsafe {
@@ -749,7 +836,8 @@ impl GpioPeriph {
       }
       self
    }
-#[doc="Modify the ADCCTL register."]
+
+   #[doc="Modify the ADCCTL register."]
    #[inline] pub fn with_adcctl<F: FnOnce(Adcctl) -> Adcctl>(&self, f: F) -> &Self {
       let tmp = self.adcctl();
       let value = f(tmp);
@@ -759,21 +847,24 @@ impl GpioPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the DMACTL register."]
+   #[doc="Get the *const pointer for the DMACTL register."]
    #[inline] pub fn dmactl_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x534) as *const u32
    }
-#[doc="Get the *mut pointer for the DMACTL register."]
+
+   #[doc="Get the *mut pointer for the DMACTL register."]
    #[inline] pub fn dmactl_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x534) as *mut u32
    }
-#[doc="Read the DMACTL register."]
+
+   #[doc="Read the DMACTL register."]
    #[inline] pub fn dmactl(&self) -> Dmactl { 
       unsafe {
          Dmactl(read_volatile((self.0 + 0x534) as *const u32))
       }
    }
-#[doc="Write the DMACTL register."]
+
+   #[doc="Write the DMACTL register."]
    #[inline] pub fn set_dmactl<F: FnOnce(Dmactl) -> Dmactl>(&self, f: F) -> &Self {
       let value = f(Dmactl(0));
       unsafe {
@@ -781,7 +872,8 @@ impl GpioPeriph {
       }
       self
    }
-#[doc="Modify the DMACTL register."]
+
+   #[doc="Modify the DMACTL register."]
    #[inline] pub fn with_dmactl<F: FnOnce(Dmactl) -> Dmactl>(&self, f: F) -> &Self {
       let tmp = self.dmactl();
       let value = f(tmp);
@@ -791,21 +883,24 @@ impl GpioPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the GPIOSI register."]
+   #[doc="Get the *const pointer for the GPIOSI register."]
    #[inline] pub fn gpiosi_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x539) as *const u32
    }
-#[doc="Get the *mut pointer for the GPIOSI register."]
+
+   #[doc="Get the *mut pointer for the GPIOSI register."]
    #[inline] pub fn gpiosi_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x539) as *mut u32
    }
-#[doc="Read the GPIOSI register."]
+
+   #[doc="Read the GPIOSI register."]
    #[inline] pub fn gpiosi(&self) -> Gpiosi { 
       unsafe {
          Gpiosi(read_volatile((self.0 + 0x539) as *const u32))
       }
    }
-#[doc="Write the GPIOSI register."]
+
+   #[doc="Write the GPIOSI register."]
    #[inline] pub fn set_gpiosi<F: FnOnce(Gpiosi) -> Gpiosi>(&self, f: F) -> &Self {
       let value = f(Gpiosi(0));
       unsafe {
@@ -813,7 +908,8 @@ impl GpioPeriph {
       }
       self
    }
-#[doc="Modify the GPIOSI register."]
+
+   #[doc="Modify the GPIOSI register."]
    #[inline] pub fn with_gpiosi<F: FnOnce(Gpiosi) -> Gpiosi>(&self, f: F) -> &Self {
       let tmp = self.gpiosi();
       let value = f(tmp);
@@ -823,21 +919,24 @@ impl GpioPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the GPIODR12R register."]
+   #[doc="Get the *const pointer for the GPIODR12R register."]
    #[inline] pub fn gpiodr12r_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x53c) as *const u32
    }
-#[doc="Get the *mut pointer for the GPIODR12R register."]
+
+   #[doc="Get the *mut pointer for the GPIODR12R register."]
    #[inline] pub fn gpiodr12r_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x53c) as *mut u32
    }
-#[doc="Read the GPIODR12R register."]
+
+   #[doc="Read the GPIODR12R register."]
    #[inline] pub fn gpiodr12r(&self) -> Gpiodr12r { 
       unsafe {
          Gpiodr12r(read_volatile((self.0 + 0x53c) as *const u32))
       }
    }
-#[doc="Write the GPIODR12R register."]
+
+   #[doc="Write the GPIODR12R register."]
    #[inline] pub fn set_gpiodr12r<F: FnOnce(Gpiodr12r) -> Gpiodr12r>(&self, f: F) -> &Self {
       let value = f(Gpiodr12r(0));
       unsafe {
@@ -845,7 +944,8 @@ impl GpioPeriph {
       }
       self
    }
-#[doc="Modify the GPIODR12R register."]
+
+   #[doc="Modify the GPIODR12R register."]
    #[inline] pub fn with_gpiodr12r<F: FnOnce(Gpiodr12r) -> Gpiodr12r>(&self, f: F) -> &Self {
       let tmp = self.gpiodr12r();
       let value = f(tmp);
@@ -855,21 +955,24 @@ impl GpioPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the GPIOWAKEPEN register."]
+   #[doc="Get the *const pointer for the GPIOWAKEPEN register."]
    #[inline] pub fn gpiowakepen_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x540) as *const u32
    }
-#[doc="Get the *mut pointer for the GPIOWAKEPEN register."]
+
+   #[doc="Get the *mut pointer for the GPIOWAKEPEN register."]
    #[inline] pub fn gpiowakepen_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x540) as *mut u32
    }
-#[doc="Read the GPIOWAKEPEN register."]
+
+   #[doc="Read the GPIOWAKEPEN register."]
    #[inline] pub fn gpiowakepen(&self) -> Gpiowakepen { 
       unsafe {
          Gpiowakepen(read_volatile((self.0 + 0x540) as *const u32))
       }
    }
-#[doc="Write the GPIOWAKEPEN register."]
+
+   #[doc="Write the GPIOWAKEPEN register."]
    #[inline] pub fn set_gpiowakepen<F: FnOnce(Gpiowakepen) -> Gpiowakepen>(&self, f: F) -> &Self {
       let value = f(Gpiowakepen(0));
       unsafe {
@@ -877,7 +980,8 @@ impl GpioPeriph {
       }
       self
    }
-#[doc="Modify the GPIOWAKEPEN register."]
+
+   #[doc="Modify the GPIOWAKEPEN register."]
    #[inline] pub fn with_gpiowakepen<F: FnOnce(Gpiowakepen) -> Gpiowakepen>(&self, f: F) -> &Self {
       let tmp = self.gpiowakepen();
       let value = f(tmp);
@@ -887,21 +991,24 @@ impl GpioPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the GPIOWAKELVL register."]
+   #[doc="Get the *const pointer for the GPIOWAKELVL register."]
    #[inline] pub fn gpiowakelvl_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x544) as *const u32
    }
-#[doc="Get the *mut pointer for the GPIOWAKELVL register."]
+
+   #[doc="Get the *mut pointer for the GPIOWAKELVL register."]
    #[inline] pub fn gpiowakelvl_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x544) as *mut u32
    }
-#[doc="Read the GPIOWAKELVL register."]
+
+   #[doc="Read the GPIOWAKELVL register."]
    #[inline] pub fn gpiowakelvl(&self) -> Gpiowakelvl { 
       unsafe {
          Gpiowakelvl(read_volatile((self.0 + 0x544) as *const u32))
       }
    }
-#[doc="Write the GPIOWAKELVL register."]
+
+   #[doc="Write the GPIOWAKELVL register."]
    #[inline] pub fn set_gpiowakelvl<F: FnOnce(Gpiowakelvl) -> Gpiowakelvl>(&self, f: F) -> &Self {
       let value = f(Gpiowakelvl(0));
       unsafe {
@@ -909,7 +1016,8 @@ impl GpioPeriph {
       }
       self
    }
-#[doc="Modify the GPIOWAKELVL register."]
+
+   #[doc="Modify the GPIOWAKELVL register."]
    #[inline] pub fn with_gpiowakelvl<F: FnOnce(Gpiowakelvl) -> Gpiowakelvl>(&self, f: F) -> &Self {
       let tmp = self.gpiowakelvl();
       let value = f(tmp);
@@ -919,21 +1027,24 @@ impl GpioPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the GPIOWAKESTAT register."]
+   #[doc="Get the *const pointer for the GPIOWAKESTAT register."]
    #[inline] pub fn gpiowakestat_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x548) as *const u32
    }
-#[doc="Get the *mut pointer for the GPIOWAKESTAT register."]
+
+   #[doc="Get the *mut pointer for the GPIOWAKESTAT register."]
    #[inline] pub fn gpiowakestat_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x548) as *mut u32
    }
-#[doc="Read the GPIOWAKESTAT register."]
+
+   #[doc="Read the GPIOWAKESTAT register."]
    #[inline] pub fn gpiowakestat(&self) -> Gpiowakestat { 
       unsafe {
          Gpiowakestat(read_volatile((self.0 + 0x548) as *const u32))
       }
    }
-#[doc="Write the GPIOWAKESTAT register."]
+
+   #[doc="Write the GPIOWAKESTAT register."]
    #[inline] pub fn set_gpiowakestat<F: FnOnce(Gpiowakestat) -> Gpiowakestat>(&self, f: F) -> &Self {
       let value = f(Gpiowakestat(0));
       unsafe {
@@ -941,7 +1052,8 @@ impl GpioPeriph {
       }
       self
    }
-#[doc="Modify the GPIOWAKESTAT register."]
+
+   #[doc="Modify the GPIOWAKESTAT register."]
    #[inline] pub fn with_gpiowakestat<F: FnOnce(Gpiowakestat) -> Gpiowakestat>(&self, f: F) -> &Self {
       let tmp = self.gpiowakestat();
       let value = f(tmp);
@@ -957,14 +1069,20 @@ impl GpioPeriph {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Data(pub u32);
 impl Data {
-#[doc="GPIO Data"]
+   #[doc="GPIO Data"]
    #[inline] pub fn data<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
       let index: bits::R8 = index.into();
       let index: usize = index.value();
       let shift: usize = 0 + index;
       unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
    }
-#[doc="GPIO Data"]
+
+   #[doc="GPIO Data"]
+   #[inline] pub fn test_data<I: Into<bits::R8>>(&self, index: I) -> bool{
+      self.data(index) != 0
+   }
+
+   #[doc="GPIO Data"]
    #[inline] pub fn set_data<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
       let index: bits::R8 = index.into();
       let index: usize = index.value();
@@ -977,11 +1095,13 @@ impl Data {
    }
 
 }
+
 impl ::core::fmt::Display for Data {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Data {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -997,18 +1117,25 @@ impl ::core::fmt::Debug for Data {
       Ok(())
    }
 }
+
 #[doc="GPIO Direction"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Dir(pub u32);
 impl Dir {
-#[doc="GPIO Direction"]
+   #[doc="GPIO Direction"]
    #[inline] pub fn dir<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
       let index: bits::R8 = index.into();
       let index: usize = index.value();
       let shift: usize = 0 + index;
       unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
    }
-#[doc="GPIO Direction"]
+
+   #[doc="GPIO Direction"]
+   #[inline] pub fn test_dir<I: Into<bits::R8>>(&self, index: I) -> bool{
+      self.dir(index) != 0
+   }
+
+   #[doc="GPIO Direction"]
    #[inline] pub fn set_dir<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
       let index: bits::R8 = index.into();
       let index: usize = index.value();
@@ -1021,11 +1148,13 @@ impl Dir {
    }
 
 }
+
 impl ::core::fmt::Display for Dir {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Dir {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1041,18 +1170,25 @@ impl ::core::fmt::Debug for Dir {
       Ok(())
    }
 }
+
 #[doc="GPIO Interrupt Sense"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Is(pub u32);
 impl Is {
-#[doc="GPIO Interrupt Sense"]
+   #[doc="GPIO Interrupt Sense"]
    #[inline] pub fn is<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
       let index: bits::R8 = index.into();
       let index: usize = index.value();
       let shift: usize = 0 + index;
       unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
    }
-#[doc="GPIO Interrupt Sense"]
+
+   #[doc="GPIO Interrupt Sense"]
+   #[inline] pub fn test_is<I: Into<bits::R8>>(&self, index: I) -> bool{
+      self.is(index) != 0
+   }
+
+   #[doc="GPIO Interrupt Sense"]
    #[inline] pub fn set_is<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
       let index: bits::R8 = index.into();
       let index: usize = index.value();
@@ -1065,11 +1201,13 @@ impl Is {
    }
 
 }
+
 impl ::core::fmt::Display for Is {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Is {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1085,18 +1223,25 @@ impl ::core::fmt::Debug for Is {
       Ok(())
    }
 }
+
 #[doc="GPIO Interrupt Both Edges"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ibe(pub u32);
 impl Ibe {
-#[doc="GPIO Interrupt Both Edges"]
+   #[doc="GPIO Interrupt Both Edges"]
    #[inline] pub fn ibe<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
       let index: bits::R8 = index.into();
       let index: usize = index.value();
       let shift: usize = 0 + index;
       unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
    }
-#[doc="GPIO Interrupt Both Edges"]
+
+   #[doc="GPIO Interrupt Both Edges"]
+   #[inline] pub fn test_ibe<I: Into<bits::R8>>(&self, index: I) -> bool{
+      self.ibe(index) != 0
+   }
+
+   #[doc="GPIO Interrupt Both Edges"]
    #[inline] pub fn set_ibe<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
       let index: bits::R8 = index.into();
       let index: usize = index.value();
@@ -1109,11 +1254,13 @@ impl Ibe {
    }
 
 }
+
 impl ::core::fmt::Display for Ibe {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Ibe {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1129,18 +1276,25 @@ impl ::core::fmt::Debug for Ibe {
       Ok(())
    }
 }
+
 #[doc="GPIO Interrupt Event"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Iev(pub u32);
 impl Iev {
-#[doc="GPIO Interrupt Event"]
+   #[doc="GPIO Interrupt Event"]
    #[inline] pub fn iev<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
       let index: bits::R8 = index.into();
       let index: usize = index.value();
       let shift: usize = 0 + index;
       unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
    }
-#[doc="GPIO Interrupt Event"]
+
+   #[doc="GPIO Interrupt Event"]
+   #[inline] pub fn test_iev<I: Into<bits::R8>>(&self, index: I) -> bool{
+      self.iev(index) != 0
+   }
+
+   #[doc="GPIO Interrupt Event"]
    #[inline] pub fn set_iev<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
       let index: bits::R8 = index.into();
       let index: usize = index.value();
@@ -1153,11 +1307,13 @@ impl Iev {
    }
 
 }
+
 impl ::core::fmt::Display for Iev {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Iev {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1173,18 +1329,25 @@ impl ::core::fmt::Debug for Iev {
       Ok(())
    }
 }
+
 #[doc="GPIO Interrupt Mask"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Im(pub u32);
 impl Im {
-#[doc="GPIO Interrupt Mask"]
+   #[doc="GPIO Interrupt Mask"]
    #[inline] pub fn im<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
       let index: bits::R8 = index.into();
       let index: usize = index.value();
       let shift: usize = 0 + index;
       unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
    }
-#[doc="GPIO Interrupt Mask"]
+
+   #[doc="GPIO Interrupt Mask"]
+   #[inline] pub fn test_im<I: Into<bits::R8>>(&self, index: I) -> bool{
+      self.im(index) != 0
+   }
+
+   #[doc="GPIO Interrupt Mask"]
    #[inline] pub fn set_im<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
       let index: bits::R8 = index.into();
       let index: usize = index.value();
@@ -1196,11 +1359,17 @@ impl Im {
       self
    }
 
-#[doc="GPIO uDMA Done Interrupt Mask Enable"]
+   #[doc="GPIO uDMA Done Interrupt Mask Enable"]
    #[inline] pub fn dmaime(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
    }
-#[doc="GPIO uDMA Done Interrupt Mask Enable"]
+
+   #[doc="GPIO uDMA Done Interrupt Mask Enable"]
+   #[inline] pub fn test_dmaime(&self) -> bool {
+      self.dmaime != 0
+   }
+
+   #[doc="GPIO uDMA Done Interrupt Mask Enable"]
    #[inline] pub fn set_dmaime<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1210,11 +1379,13 @@ impl Im {
    }
 
 }
+
 impl ::core::fmt::Display for Im {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Im {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1231,18 +1402,25 @@ impl ::core::fmt::Debug for Im {
       Ok(())
    }
 }
+
 #[doc="GPIO Raw Interrupt Status"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ris(pub u32);
 impl Ris {
-#[doc="GPIO Raw Interrupt Status"]
+   #[doc="GPIO Raw Interrupt Status"]
    #[inline] pub fn ris<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
       let index: bits::R8 = index.into();
       let index: usize = index.value();
       let shift: usize = 0 + index;
       unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
    }
-#[doc="GPIO Raw Interrupt Status"]
+
+   #[doc="GPIO Raw Interrupt Status"]
+   #[inline] pub fn test_ris<I: Into<bits::R8>>(&self, index: I) -> bool{
+      self.ris(index) != 0
+   }
+
+   #[doc="GPIO Raw Interrupt Status"]
    #[inline] pub fn set_ris<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
       let index: bits::R8 = index.into();
       let index: usize = index.value();
@@ -1254,11 +1432,17 @@ impl Ris {
       self
    }
 
-#[doc="GPIO uDMA Done Interrupt Raw Status"]
+   #[doc="GPIO uDMA Done Interrupt Raw Status"]
    #[inline] pub fn dmaris(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
    }
-#[doc="GPIO uDMA Done Interrupt Raw Status"]
+
+   #[doc="GPIO uDMA Done Interrupt Raw Status"]
+   #[inline] pub fn test_dmaris(&self) -> bool {
+      self.dmaris != 0
+   }
+
+   #[doc="GPIO uDMA Done Interrupt Raw Status"]
    #[inline] pub fn set_dmaris<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1268,11 +1452,13 @@ impl Ris {
    }
 
 }
+
 impl ::core::fmt::Display for Ris {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Ris {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1289,18 +1475,25 @@ impl ::core::fmt::Debug for Ris {
       Ok(())
    }
 }
+
 #[doc="GPIO Masked Interrupt Status"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Mis(pub u32);
 impl Mis {
-#[doc="GPIO Masked Interrupt Status"]
+   #[doc="GPIO Masked Interrupt Status"]
    #[inline] pub fn mis<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
       let index: bits::R8 = index.into();
       let index: usize = index.value();
       let shift: usize = 0 + index;
       unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
    }
-#[doc="GPIO Masked Interrupt Status"]
+
+   #[doc="GPIO Masked Interrupt Status"]
+   #[inline] pub fn test_mis<I: Into<bits::R8>>(&self, index: I) -> bool{
+      self.mis(index) != 0
+   }
+
+   #[doc="GPIO Masked Interrupt Status"]
    #[inline] pub fn set_mis<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
       let index: bits::R8 = index.into();
       let index: usize = index.value();
@@ -1312,11 +1505,17 @@ impl Mis {
       self
    }
 
-#[doc="GPIO uDMA Done Interrupt Masked Status"]
+   #[doc="GPIO uDMA Done Interrupt Masked Status"]
    #[inline] pub fn dmamis(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
    }
-#[doc="GPIO uDMA Done Interrupt Masked Status"]
+
+   #[doc="GPIO uDMA Done Interrupt Masked Status"]
+   #[inline] pub fn test_dmamis(&self) -> bool {
+      self.dmamis != 0
+   }
+
+   #[doc="GPIO uDMA Done Interrupt Masked Status"]
    #[inline] pub fn set_dmamis<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1326,11 +1525,13 @@ impl Mis {
    }
 
 }
+
 impl ::core::fmt::Display for Mis {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Mis {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1347,18 +1548,25 @@ impl ::core::fmt::Debug for Mis {
       Ok(())
    }
 }
+
 #[doc="GPIO Interrupt Clear"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Icr(pub u32);
 impl Icr {
-#[doc="GPIO Interrupt Clear"]
+   #[doc="GPIO Interrupt Clear"]
    #[inline] pub fn icr<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
       let index: bits::R8 = index.into();
       let index: usize = index.value();
       let shift: usize = 0 + index;
       unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
    }
-#[doc="GPIO Interrupt Clear"]
+
+   #[doc="GPIO Interrupt Clear"]
+   #[inline] pub fn test_icr<I: Into<bits::R8>>(&self, index: I) -> bool{
+      self.icr(index) != 0
+   }
+
+   #[doc="GPIO Interrupt Clear"]
    #[inline] pub fn set_icr<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
       let index: bits::R8 = index.into();
       let index: usize = index.value();
@@ -1370,11 +1578,17 @@ impl Icr {
       self
    }
 
-#[doc="GPIO uDMA Done Interrupt Clear"]
+   #[doc="GPIO uDMA Done Interrupt Clear"]
    #[inline] pub fn dmamic(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
    }
-#[doc="GPIO uDMA Done Interrupt Clear"]
+
+   #[doc="GPIO uDMA Done Interrupt Clear"]
+   #[inline] pub fn test_dmamic(&self) -> bool {
+      self.dmamic != 0
+   }
+
+   #[doc="GPIO uDMA Done Interrupt Clear"]
    #[inline] pub fn set_dmamic<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1384,11 +1598,13 @@ impl Icr {
    }
 
 }
+
 impl ::core::fmt::Display for Icr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Icr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1405,18 +1621,25 @@ impl ::core::fmt::Debug for Icr {
       Ok(())
    }
 }
+
 #[doc="GPIO Alternate Function Select"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Afsel(pub u32);
 impl Afsel {
-#[doc="GPIO Alternate Function Select"]
+   #[doc="GPIO Alternate Function Select"]
    #[inline] pub fn afsel<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
       let index: bits::R8 = index.into();
       let index: usize = index.value();
       let shift: usize = 0 + index;
       unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
    }
-#[doc="GPIO Alternate Function Select"]
+
+   #[doc="GPIO Alternate Function Select"]
+   #[inline] pub fn test_afsel<I: Into<bits::R8>>(&self, index: I) -> bool{
+      self.afsel(index) != 0
+   }
+
+   #[doc="GPIO Alternate Function Select"]
    #[inline] pub fn set_afsel<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
       let index: bits::R8 = index.into();
       let index: usize = index.value();
@@ -1429,11 +1652,13 @@ impl Afsel {
    }
 
 }
+
 impl ::core::fmt::Display for Afsel {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Afsel {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1449,18 +1674,25 @@ impl ::core::fmt::Debug for Afsel {
       Ok(())
    }
 }
+
 #[doc="GPIO 2-mA Drive Select"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Dr2r(pub u32);
 impl Dr2r {
-#[doc="GPIO 2-mA Drive Enable"]
+   #[doc="GPIO 2-mA Drive Enable"]
    #[inline] pub fn drv2<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
       let index: bits::R8 = index.into();
       let index: usize = index.value();
       let shift: usize = 0 + index;
       unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
    }
-#[doc="GPIO 2-mA Drive Enable"]
+
+   #[doc="GPIO 2-mA Drive Enable"]
+   #[inline] pub fn test_drv2<I: Into<bits::R8>>(&self, index: I) -> bool{
+      self.drv2(index) != 0
+   }
+
+   #[doc="GPIO 2-mA Drive Enable"]
    #[inline] pub fn set_drv2<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
       let index: bits::R8 = index.into();
       let index: usize = index.value();
@@ -1473,11 +1705,13 @@ impl Dr2r {
    }
 
 }
+
 impl ::core::fmt::Display for Dr2r {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Dr2r {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1493,18 +1727,25 @@ impl ::core::fmt::Debug for Dr2r {
       Ok(())
    }
 }
+
 #[doc="GPIO 4-mA Drive Select"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Dr4r(pub u32);
 impl Dr4r {
-#[doc="GPIO 4-mA Drive Enable"]
+   #[doc="GPIO 4-mA Drive Enable"]
    #[inline] pub fn drv4<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
       let index: bits::R8 = index.into();
       let index: usize = index.value();
       let shift: usize = 0 + index;
       unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
    }
-#[doc="GPIO 4-mA Drive Enable"]
+
+   #[doc="GPIO 4-mA Drive Enable"]
+   #[inline] pub fn test_drv4<I: Into<bits::R8>>(&self, index: I) -> bool{
+      self.drv4(index) != 0
+   }
+
+   #[doc="GPIO 4-mA Drive Enable"]
    #[inline] pub fn set_drv4<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
       let index: bits::R8 = index.into();
       let index: usize = index.value();
@@ -1517,11 +1758,13 @@ impl Dr4r {
    }
 
 }
+
 impl ::core::fmt::Display for Dr4r {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Dr4r {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1537,18 +1780,25 @@ impl ::core::fmt::Debug for Dr4r {
       Ok(())
    }
 }
+
 #[doc="GPIO 8-mA Drive Select"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Dr8r(pub u32);
 impl Dr8r {
-#[doc="GPIO 8-mA Drive Enable"]
+   #[doc="GPIO 8-mA Drive Enable"]
    #[inline] pub fn drv8<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
       let index: bits::R8 = index.into();
       let index: usize = index.value();
       let shift: usize = 0 + index;
       unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
    }
-#[doc="GPIO 8-mA Drive Enable"]
+
+   #[doc="GPIO 8-mA Drive Enable"]
+   #[inline] pub fn test_drv8<I: Into<bits::R8>>(&self, index: I) -> bool{
+      self.drv8(index) != 0
+   }
+
+   #[doc="GPIO 8-mA Drive Enable"]
    #[inline] pub fn set_drv8<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
       let index: bits::R8 = index.into();
       let index: usize = index.value();
@@ -1561,11 +1811,13 @@ impl Dr8r {
    }
 
 }
+
 impl ::core::fmt::Display for Dr8r {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Dr8r {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1581,18 +1833,25 @@ impl ::core::fmt::Debug for Dr8r {
       Ok(())
    }
 }
+
 #[doc="GPIO Open Drain Select"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Odr(pub u32);
 impl Odr {
-#[doc="GPIO Open Drain Enable"]
+   #[doc="GPIO Open Drain Enable"]
    #[inline] pub fn ode<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
       let index: bits::R8 = index.into();
       let index: usize = index.value();
       let shift: usize = 0 + index;
       unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
    }
-#[doc="GPIO Open Drain Enable"]
+
+   #[doc="GPIO Open Drain Enable"]
+   #[inline] pub fn test_ode<I: Into<bits::R8>>(&self, index: I) -> bool{
+      self.ode(index) != 0
+   }
+
+   #[doc="GPIO Open Drain Enable"]
    #[inline] pub fn set_ode<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
       let index: bits::R8 = index.into();
       let index: usize = index.value();
@@ -1605,11 +1864,13 @@ impl Odr {
    }
 
 }
+
 impl ::core::fmt::Display for Odr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Odr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1625,18 +1886,25 @@ impl ::core::fmt::Debug for Odr {
       Ok(())
    }
 }
+
 #[doc="GPIO Pull-Up Select"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pur(pub u32);
 impl Pur {
-#[doc="GPIO Pull-Up Enable"]
+   #[doc="GPIO Pull-Up Enable"]
    #[inline] pub fn pue<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
       let index: bits::R8 = index.into();
       let index: usize = index.value();
       let shift: usize = 0 + index;
       unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
    }
-#[doc="GPIO Pull-Up Enable"]
+
+   #[doc="GPIO Pull-Up Enable"]
+   #[inline] pub fn test_pue<I: Into<bits::R8>>(&self, index: I) -> bool{
+      self.pue(index) != 0
+   }
+
+   #[doc="GPIO Pull-Up Enable"]
    #[inline] pub fn set_pue<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
       let index: bits::R8 = index.into();
       let index: usize = index.value();
@@ -1649,11 +1917,13 @@ impl Pur {
    }
 
 }
+
 impl ::core::fmt::Display for Pur {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Pur {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1669,18 +1939,25 @@ impl ::core::fmt::Debug for Pur {
       Ok(())
    }
 }
+
 #[doc="GPIO Pull-Down Select"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pdr(pub u32);
 impl Pdr {
-#[doc="GPIO Pull-Down Enable"]
+   #[doc="GPIO Pull-Down Enable"]
    #[inline] pub fn pde<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
       let index: bits::R8 = index.into();
       let index: usize = index.value();
       let shift: usize = 0 + index;
       unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
    }
-#[doc="GPIO Pull-Down Enable"]
+
+   #[doc="GPIO Pull-Down Enable"]
+   #[inline] pub fn test_pde<I: Into<bits::R8>>(&self, index: I) -> bool{
+      self.pde(index) != 0
+   }
+
+   #[doc="GPIO Pull-Down Enable"]
    #[inline] pub fn set_pde<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
       let index: bits::R8 = index.into();
       let index: usize = index.value();
@@ -1693,11 +1970,13 @@ impl Pdr {
    }
 
 }
+
 impl ::core::fmt::Display for Pdr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Pdr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1713,18 +1992,25 @@ impl ::core::fmt::Debug for Pdr {
       Ok(())
    }
 }
+
 #[doc="GPIO Slew Rate Control Select"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Slr(pub u32);
 impl Slr {
-#[doc="GPIO Slew Rate Limit Enable"]
+   #[doc="GPIO Slew Rate Limit Enable"]
    #[inline] pub fn slr<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
       let index: bits::R8 = index.into();
       let index: usize = index.value();
       let shift: usize = 0 + index;
       unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
    }
-#[doc="GPIO Slew Rate Limit Enable"]
+
+   #[doc="GPIO Slew Rate Limit Enable"]
+   #[inline] pub fn test_slr<I: Into<bits::R8>>(&self, index: I) -> bool{
+      self.slr(index) != 0
+   }
+
+   #[doc="GPIO Slew Rate Limit Enable"]
    #[inline] pub fn set_slr<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
       let index: bits::R8 = index.into();
       let index: usize = index.value();
@@ -1737,11 +2023,13 @@ impl Slr {
    }
 
 }
+
 impl ::core::fmt::Display for Slr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Slr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1757,18 +2045,25 @@ impl ::core::fmt::Debug for Slr {
       Ok(())
    }
 }
+
 #[doc="GPIO Digital Enable"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Den(pub u32);
 impl Den {
-#[doc="GPIO Digital Enable"]
+   #[doc="GPIO Digital Enable"]
    #[inline] pub fn den<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
       let index: bits::R8 = index.into();
       let index: usize = index.value();
       let shift: usize = 0 + index;
       unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
    }
-#[doc="GPIO Digital Enable"]
+
+   #[doc="GPIO Digital Enable"]
+   #[inline] pub fn test_den<I: Into<bits::R8>>(&self, index: I) -> bool{
+      self.den(index) != 0
+   }
+
+   #[doc="GPIO Digital Enable"]
    #[inline] pub fn set_den<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
       let index: bits::R8 = index.into();
       let index: usize = index.value();
@@ -1781,11 +2076,13 @@ impl Den {
    }
 
 }
+
 impl ::core::fmt::Display for Den {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Den {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1801,15 +2098,22 @@ impl ::core::fmt::Debug for Den {
       Ok(())
    }
 }
+
 #[doc="GPIO Lock"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Lock(pub u32);
 impl Lock {
-#[doc="GPIO Lock"]
+   #[doc="GPIO Lock"]
    #[inline] pub fn gpio_lock(&self) -> bits::U32 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffffffff) as u32) } // [31:0]
    }
-#[doc="GPIO Lock"]
+
+   #[doc="GPIO Lock"]
+   #[inline] pub fn test_gpio_lock(&self) -> bool {
+      self.gpio_lock != 0
+   }
+
+   #[doc="GPIO Lock"]
    #[inline] pub fn set_gpio_lock<V: Into<bits::U32>>(mut self, value: V) -> Self {
       let value: bits::U32 = value.into();
       let value: u32 = value.into();
@@ -1819,11 +2123,13 @@ impl Lock {
    }
 
 }
+
 impl ::core::fmt::Display for Lock {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Lock {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1831,18 +2137,25 @@ impl ::core::fmt::Debug for Lock {
       Ok(())
    }
 }
+
 #[doc="GPIO Commit"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Cr(pub u32);
 impl Cr {
-#[doc="GPIO Commit"]
+   #[doc="GPIO Commit"]
    #[inline] pub fn cr<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
       let index: bits::R8 = index.into();
       let index: usize = index.value();
       let shift: usize = 0 + index;
       unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
    }
-#[doc="GPIO Commit"]
+
+   #[doc="GPIO Commit"]
+   #[inline] pub fn test_cr<I: Into<bits::R8>>(&self, index: I) -> bool{
+      self.cr(index) != 0
+   }
+
+   #[doc="GPIO Commit"]
    #[inline] pub fn set_cr<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
       let index: bits::R8 = index.into();
       let index: usize = index.value();
@@ -1855,11 +2168,13 @@ impl Cr {
    }
 
 }
+
 impl ::core::fmt::Display for Cr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Cr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1875,18 +2190,25 @@ impl ::core::fmt::Debug for Cr {
       Ok(())
    }
 }
+
 #[doc="GPIO Analog Mode Select"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Amsel(pub u32);
 impl Amsel {
-#[doc="GPIO Analog Mode Select"]
+   #[doc="GPIO Analog Mode Select"]
    #[inline] pub fn gpioamsel<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
       let index: bits::R8 = index.into();
       let index: usize = index.value();
       let shift: usize = 0 + index;
       unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
    }
-#[doc="GPIO Analog Mode Select"]
+
+   #[doc="GPIO Analog Mode Select"]
+   #[inline] pub fn test_gpioamsel<I: Into<bits::R8>>(&self, index: I) -> bool{
+      self.gpioamsel(index) != 0
+   }
+
+   #[doc="GPIO Analog Mode Select"]
    #[inline] pub fn set_gpioamsel<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
       let index: bits::R8 = index.into();
       let index: usize = index.value();
@@ -1899,11 +2221,13 @@ impl Amsel {
    }
 
 }
+
 impl ::core::fmt::Display for Amsel {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Amsel {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1919,18 +2243,25 @@ impl ::core::fmt::Debug for Amsel {
       Ok(())
    }
 }
+
 #[doc="GPIO Port Control"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pctl(pub u32);
 impl Pctl {
-#[doc="GPIO Port Mux Control"]
+   #[doc="GPIO Port Mux Control"]
    #[inline] pub fn pmc<I: Into<bits::R8>>(&self, index: I) -> bits::U4 {
       let index: bits::R8 = index.into();
       let index: usize = index.value();
       let shift: usize = 0 + (index << 2);
       unsafe { ::core::mem::transmute(((self.0 >> shift) & 0xf) as u8) } // [3:0]
    }
-#[doc="GPIO Port Mux Control"]
+
+   #[doc="GPIO Port Mux Control"]
+   #[inline] pub fn test_pmc<I: Into<bits::R8>>(&self, index: I) -> bool{
+      self.pmc(index) != 0
+   }
+
+   #[doc="GPIO Port Mux Control"]
    #[inline] pub fn set_pmc<I: Into<bits::R8>, V: Into<bits::U4>>(mut self, index: I, value: V) -> Self {
       let index: bits::R8 = index.into();
       let index: usize = index.value();
@@ -1943,11 +2274,13 @@ impl Pctl {
    }
 
 }
+
 impl ::core::fmt::Display for Pctl {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Pctl {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1963,18 +2296,25 @@ impl ::core::fmt::Debug for Pctl {
       Ok(())
    }
 }
+
 #[doc="GPIO ADC Control"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Adcctl(pub u32);
 impl Adcctl {
-#[doc="ADC Trigger Enable"]
+   #[doc="ADC Trigger Enable"]
    #[inline] pub fn adcen<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
       let index: bits::R8 = index.into();
       let index: usize = index.value();
       let shift: usize = 0 + index;
       unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
    }
-#[doc="ADC Trigger Enable"]
+
+   #[doc="ADC Trigger Enable"]
+   #[inline] pub fn test_adcen<I: Into<bits::R8>>(&self, index: I) -> bool{
+      self.adcen(index) != 0
+   }
+
+   #[doc="ADC Trigger Enable"]
    #[inline] pub fn set_adcen<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
       let index: bits::R8 = index.into();
       let index: usize = index.value();
@@ -1987,11 +2327,13 @@ impl Adcctl {
    }
 
 }
+
 impl ::core::fmt::Display for Adcctl {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Adcctl {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -2007,18 +2349,25 @@ impl ::core::fmt::Debug for Adcctl {
       Ok(())
    }
 }
+
 #[doc="GPIO DMA Control"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Dmactl(pub u32);
 impl Dmactl {
-#[doc="uDMA Trigger Enable"]
+   #[doc="uDMA Trigger Enable"]
    #[inline] pub fn dmaen<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
       let index: bits::R8 = index.into();
       let index: usize = index.value();
       let shift: usize = 0 + index;
       unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
    }
-#[doc="uDMA Trigger Enable"]
+
+   #[doc="uDMA Trigger Enable"]
+   #[inline] pub fn test_dmaen<I: Into<bits::R8>>(&self, index: I) -> bool{
+      self.dmaen(index) != 0
+   }
+
+   #[doc="uDMA Trigger Enable"]
    #[inline] pub fn set_dmaen<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
       let index: bits::R8 = index.into();
       let index: usize = index.value();
@@ -2031,11 +2380,13 @@ impl Dmactl {
    }
 
 }
+
 impl ::core::fmt::Display for Dmactl {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Dmactl {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -2051,18 +2402,25 @@ impl ::core::fmt::Debug for Dmactl {
       Ok(())
    }
 }
+
 #[doc="GPIO Select Interrupt"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Gpiosi(pub u32);
 impl Gpiosi {
-#[doc="Summary Interrupt"]
+   #[doc="Summary Interrupt"]
    #[inline] pub fn sum<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
       let index: bits::R8 = index.into();
       let index: usize = index.value();
       let shift: usize = 0 + index;
       unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
    }
-#[doc="Summary Interrupt"]
+
+   #[doc="Summary Interrupt"]
+   #[inline] pub fn test_sum<I: Into<bits::R8>>(&self, index: I) -> bool{
+      self.sum(index) != 0
+   }
+
+   #[doc="Summary Interrupt"]
    #[inline] pub fn set_sum<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
       let index: bits::R8 = index.into();
       let index: usize = index.value();
@@ -2075,11 +2433,13 @@ impl Gpiosi {
    }
 
 }
+
 impl ::core::fmt::Display for Gpiosi {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Gpiosi {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -2095,18 +2455,25 @@ impl ::core::fmt::Debug for Gpiosi {
       Ok(())
    }
 }
+
 #[doc="GPIO 12-mA Drive Select"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Gpiodr12r(pub u32);
 impl Gpiodr12r {
-#[doc="12-mA Drive Enable"]
+   #[doc="12-mA Drive Enable"]
    #[inline] pub fn drv12<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
       let index: bits::R8 = index.into();
       let index: usize = index.value();
       let shift: usize = 0 + index;
       unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
    }
-#[doc="12-mA Drive Enable"]
+
+   #[doc="12-mA Drive Enable"]
+   #[inline] pub fn test_drv12<I: Into<bits::R8>>(&self, index: I) -> bool{
+      self.drv12(index) != 0
+   }
+
+   #[doc="12-mA Drive Enable"]
    #[inline] pub fn set_drv12<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
       let index: bits::R8 = index.into();
       let index: usize = index.value();
@@ -2119,11 +2486,13 @@ impl Gpiodr12r {
    }
 
 }
+
 impl ::core::fmt::Display for Gpiodr12r {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Gpiodr12r {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -2139,15 +2508,22 @@ impl ::core::fmt::Debug for Gpiodr12r {
       Ok(())
    }
 }
+
 #[doc="GPIO Wake Pin Enable"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Gpiowakepen(pub u32);
 impl Gpiowakepen {
-#[doc="K[7] Wake Enable"]
+   #[doc="K[7] Wake Enable"]
    #[inline] pub fn wakep7(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
    }
-#[doc="K[7] Wake Enable"]
+
+   #[doc="K[7] Wake Enable"]
+   #[inline] pub fn test_wakep7(&self) -> bool {
+      self.wakep7 != 0
+   }
+
+   #[doc="K[7] Wake Enable"]
    #[inline] pub fn set_wakep7<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -2156,11 +2532,17 @@ impl Gpiowakepen {
       self
    }
 
-#[doc="K[6] Wake Enable"]
+   #[doc="K[6] Wake Enable"]
    #[inline] pub fn wakep6(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
    }
-#[doc="K[6] Wake Enable"]
+
+   #[doc="K[6] Wake Enable"]
+   #[inline] pub fn test_wakep6(&self) -> bool {
+      self.wakep6 != 0
+   }
+
+   #[doc="K[6] Wake Enable"]
    #[inline] pub fn set_wakep6<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -2169,11 +2551,17 @@ impl Gpiowakepen {
       self
    }
 
-#[doc="K[5] Wake Enable"]
+   #[doc="K[5] Wake Enable"]
    #[inline] pub fn wakep5(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
    }
-#[doc="K[5] Wake Enable"]
+
+   #[doc="K[5] Wake Enable"]
+   #[inline] pub fn test_wakep5(&self) -> bool {
+      self.wakep5 != 0
+   }
+
+   #[doc="K[5] Wake Enable"]
    #[inline] pub fn set_wakep5<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -2182,11 +2570,17 @@ impl Gpiowakepen {
       self
    }
 
-#[doc="K[4] Wake Enable"]
+   #[doc="K[4] Wake Enable"]
    #[inline] pub fn wakep4(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
    }
-#[doc="K[4] Wake Enable"]
+
+   #[doc="K[4] Wake Enable"]
+   #[inline] pub fn test_wakep4(&self) -> bool {
+      self.wakep4 != 0
+   }
+
+   #[doc="K[4] Wake Enable"]
    #[inline] pub fn set_wakep4<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -2196,11 +2590,13 @@ impl Gpiowakepen {
    }
 
 }
+
 impl ::core::fmt::Display for Gpiowakepen {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Gpiowakepen {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -2212,15 +2608,22 @@ impl ::core::fmt::Debug for Gpiowakepen {
       Ok(())
    }
 }
+
 #[doc="GPIO Wake Level"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Gpiowakelvl(pub u32);
 impl Gpiowakelvl {
-#[doc="K[7] Wake Level"]
+   #[doc="K[7] Wake Level"]
    #[inline] pub fn wakelvl7(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
    }
-#[doc="K[7] Wake Level"]
+
+   #[doc="K[7] Wake Level"]
+   #[inline] pub fn test_wakelvl7(&self) -> bool {
+      self.wakelvl7 != 0
+   }
+
+   #[doc="K[7] Wake Level"]
    #[inline] pub fn set_wakelvl7<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -2229,11 +2632,17 @@ impl Gpiowakelvl {
       self
    }
 
-#[doc="K[6] Wake Level"]
+   #[doc="K[6] Wake Level"]
    #[inline] pub fn wakelvl6(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
    }
-#[doc="K[6] Wake Level"]
+
+   #[doc="K[6] Wake Level"]
+   #[inline] pub fn test_wakelvl6(&self) -> bool {
+      self.wakelvl6 != 0
+   }
+
+   #[doc="K[6] Wake Level"]
    #[inline] pub fn set_wakelvl6<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -2242,11 +2651,17 @@ impl Gpiowakelvl {
       self
    }
 
-#[doc="K[5] Wake Level"]
+   #[doc="K[5] Wake Level"]
    #[inline] pub fn wakelvl5(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
    }
-#[doc="K[5] Wake Level"]
+
+   #[doc="K[5] Wake Level"]
+   #[inline] pub fn test_wakelvl5(&self) -> bool {
+      self.wakelvl5 != 0
+   }
+
+   #[doc="K[5] Wake Level"]
    #[inline] pub fn set_wakelvl5<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -2255,11 +2670,17 @@ impl Gpiowakelvl {
       self
    }
 
-#[doc="K[4] Wake Level"]
+   #[doc="K[4] Wake Level"]
    #[inline] pub fn wakelvl4(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
    }
-#[doc="K[4] Wake Level"]
+
+   #[doc="K[4] Wake Level"]
+   #[inline] pub fn test_wakelvl4(&self) -> bool {
+      self.wakelvl4 != 0
+   }
+
+   #[doc="K[4] Wake Level"]
    #[inline] pub fn set_wakelvl4<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -2269,11 +2690,13 @@ impl Gpiowakelvl {
    }
 
 }
+
 impl ::core::fmt::Display for Gpiowakelvl {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Gpiowakelvl {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -2285,15 +2708,22 @@ impl ::core::fmt::Debug for Gpiowakelvl {
       Ok(())
    }
 }
+
 #[doc="GPIO Wake Level"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Gpiowakestat(pub u32);
 impl Gpiowakestat {
-#[doc="K[7] Wake Status"]
+   #[doc="K[7] Wake Status"]
    #[inline] pub fn wakestat7(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
    }
-#[doc="K[7] Wake Status"]
+
+   #[doc="K[7] Wake Status"]
+   #[inline] pub fn test_wakestat7(&self) -> bool {
+      self.wakestat7 != 0
+   }
+
+   #[doc="K[7] Wake Status"]
    #[inline] pub fn set_wakestat7<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -2302,11 +2732,17 @@ impl Gpiowakestat {
       self
    }
 
-#[doc="K[6] Wake Status"]
+   #[doc="K[6] Wake Status"]
    #[inline] pub fn wakestat6(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
    }
-#[doc="K[6] Wake Status"]
+
+   #[doc="K[6] Wake Status"]
+   #[inline] pub fn test_wakestat6(&self) -> bool {
+      self.wakestat6 != 0
+   }
+
+   #[doc="K[6] Wake Status"]
    #[inline] pub fn set_wakestat6<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -2315,11 +2751,17 @@ impl Gpiowakestat {
       self
    }
 
-#[doc="K[5] Wake Status"]
+   #[doc="K[5] Wake Status"]
    #[inline] pub fn wakestat5(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
    }
-#[doc="K[5] Wake Status"]
+
+   #[doc="K[5] Wake Status"]
+   #[inline] pub fn test_wakestat5(&self) -> bool {
+      self.wakestat5 != 0
+   }
+
+   #[doc="K[5] Wake Status"]
    #[inline] pub fn set_wakestat5<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -2328,11 +2770,17 @@ impl Gpiowakestat {
       self
    }
 
-#[doc="K[4] Wake Status"]
+   #[doc="K[4] Wake Status"]
    #[inline] pub fn wakestat4(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
    }
-#[doc="K[4] Wake Status"]
+
+   #[doc="K[4] Wake Status"]
+   #[inline] pub fn test_wakestat4(&self) -> bool {
+      self.wakestat4 != 0
+   }
+
+   #[doc="K[4] Wake Status"]
    #[inline] pub fn set_wakestat4<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -2342,11 +2790,13 @@ impl Gpiowakestat {
    }
 
 }
+
 impl ::core::fmt::Display for Gpiowakestat {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Gpiowakestat {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -2358,6 +2808,7 @@ impl ::core::fmt::Debug for Gpiowakestat {
       Ok(())
    }
 }
+
 pub struct GpioPin { pub port: GpioPeriph, pub index: usize }
 pin!(PA0, Pa0, GPIOA, Gpioa, _PA0, GpioPin, _GPIOA, 0);
    alt_fn!(Pa0, super::sig::U0rx, 1);

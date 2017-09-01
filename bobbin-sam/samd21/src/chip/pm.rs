@@ -7,21 +7,24 @@ periph!(PM, Pm, 0x40000400);
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pm(pub usize);
 impl Pm {
-#[doc="Get the *const pointer for the AHBMASK register."]
+   #[doc="Get the *const pointer for the AHBMASK register."]
    #[inline] pub fn ahbmask_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x14) as *const u32
    }
-#[doc="Get the *mut pointer for the AHBMASK register."]
+
+   #[doc="Get the *mut pointer for the AHBMASK register."]
    #[inline] pub fn ahbmask_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x14) as *mut u32
    }
-#[doc="Read the AHBMASK register."]
+
+   #[doc="Read the AHBMASK register."]
    #[inline] pub fn ahbmask(&self) -> Ahbmask { 
       unsafe {
          Ahbmask(read_volatile((self.0 + 0x14) as *const u32))
       }
    }
-#[doc="Write the AHBMASK register."]
+
+   #[doc="Write the AHBMASK register."]
    #[inline] pub fn set_ahbmask<F: FnOnce(Ahbmask) -> Ahbmask>(&self, f: F) -> &Self {
       let value = f(Ahbmask(0));
       unsafe {
@@ -29,7 +32,8 @@ impl Pm {
       }
       self
    }
-#[doc="Modify the AHBMASK register."]
+
+   #[doc="Modify the AHBMASK register."]
    #[inline] pub fn with_ahbmask<F: FnOnce(Ahbmask) -> Ahbmask>(&self, f: F) -> &Self {
       let tmp = self.ahbmask();
       let value = f(tmp);
@@ -39,21 +43,24 @@ impl Pm {
       self
    }
 
-#[doc="Get the *const pointer for the APBAMASK register."]
+   #[doc="Get the *const pointer for the APBAMASK register."]
    #[inline] pub fn apbamask_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x18) as *const u32
    }
-#[doc="Get the *mut pointer for the APBAMASK register."]
+
+   #[doc="Get the *mut pointer for the APBAMASK register."]
    #[inline] pub fn apbamask_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x18) as *mut u32
    }
-#[doc="Read the APBAMASK register."]
+
+   #[doc="Read the APBAMASK register."]
    #[inline] pub fn apbamask(&self) -> Apbamask { 
       unsafe {
          Apbamask(read_volatile((self.0 + 0x18) as *const u32))
       }
    }
-#[doc="Write the APBAMASK register."]
+
+   #[doc="Write the APBAMASK register."]
    #[inline] pub fn set_apbamask<F: FnOnce(Apbamask) -> Apbamask>(&self, f: F) -> &Self {
       let value = f(Apbamask(0));
       unsafe {
@@ -61,7 +68,8 @@ impl Pm {
       }
       self
    }
-#[doc="Modify the APBAMASK register."]
+
+   #[doc="Modify the APBAMASK register."]
    #[inline] pub fn with_apbamask<F: FnOnce(Apbamask) -> Apbamask>(&self, f: F) -> &Self {
       let tmp = self.apbamask();
       let value = f(tmp);
@@ -71,21 +79,24 @@ impl Pm {
       self
    }
 
-#[doc="Get the *const pointer for the APBASEL register."]
+   #[doc="Get the *const pointer for the APBASEL register."]
    #[inline] pub fn apbasel_ptr(&self) -> *const u8 { 
       ((self.0 as usize) + 0x9) as *const u8
    }
-#[doc="Get the *mut pointer for the APBASEL register."]
+
+   #[doc="Get the *mut pointer for the APBASEL register."]
    #[inline] pub fn apbasel_mut(&self) -> *mut u8 { 
       ((self.0 as usize) + 0x9) as *mut u8
    }
-#[doc="Read the APBASEL register."]
+
+   #[doc="Read the APBASEL register."]
    #[inline] pub fn apbasel(&self) -> Apbasel { 
       unsafe {
          Apbasel(read_volatile((self.0 + 0x9) as *const u8))
       }
    }
-#[doc="Write the APBASEL register."]
+
+   #[doc="Write the APBASEL register."]
    #[inline] pub fn set_apbasel<F: FnOnce(Apbasel) -> Apbasel>(&self, f: F) -> &Self {
       let value = f(Apbasel(0));
       unsafe {
@@ -93,7 +104,8 @@ impl Pm {
       }
       self
    }
-#[doc="Modify the APBASEL register."]
+
+   #[doc="Modify the APBASEL register."]
    #[inline] pub fn with_apbasel<F: FnOnce(Apbasel) -> Apbasel>(&self, f: F) -> &Self {
       let tmp = self.apbasel();
       let value = f(tmp);
@@ -103,21 +115,24 @@ impl Pm {
       self
    }
 
-#[doc="Get the *const pointer for the APBBMASK register."]
+   #[doc="Get the *const pointer for the APBBMASK register."]
    #[inline] pub fn apbbmask_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x1c) as *const u32
    }
-#[doc="Get the *mut pointer for the APBBMASK register."]
+
+   #[doc="Get the *mut pointer for the APBBMASK register."]
    #[inline] pub fn apbbmask_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x1c) as *mut u32
    }
-#[doc="Read the APBBMASK register."]
+
+   #[doc="Read the APBBMASK register."]
    #[inline] pub fn apbbmask(&self) -> Apbbmask { 
       unsafe {
          Apbbmask(read_volatile((self.0 + 0x1c) as *const u32))
       }
    }
-#[doc="Write the APBBMASK register."]
+
+   #[doc="Write the APBBMASK register."]
    #[inline] pub fn set_apbbmask<F: FnOnce(Apbbmask) -> Apbbmask>(&self, f: F) -> &Self {
       let value = f(Apbbmask(0));
       unsafe {
@@ -125,7 +140,8 @@ impl Pm {
       }
       self
    }
-#[doc="Modify the APBBMASK register."]
+
+   #[doc="Modify the APBBMASK register."]
    #[inline] pub fn with_apbbmask<F: FnOnce(Apbbmask) -> Apbbmask>(&self, f: F) -> &Self {
       let tmp = self.apbbmask();
       let value = f(tmp);
@@ -135,21 +151,24 @@ impl Pm {
       self
    }
 
-#[doc="Get the *const pointer for the APBBSEL register."]
+   #[doc="Get the *const pointer for the APBBSEL register."]
    #[inline] pub fn apbbsel_ptr(&self) -> *const u8 { 
       ((self.0 as usize) + 0xa) as *const u8
    }
-#[doc="Get the *mut pointer for the APBBSEL register."]
+
+   #[doc="Get the *mut pointer for the APBBSEL register."]
    #[inline] pub fn apbbsel_mut(&self) -> *mut u8 { 
       ((self.0 as usize) + 0xa) as *mut u8
    }
-#[doc="Read the APBBSEL register."]
+
+   #[doc="Read the APBBSEL register."]
    #[inline] pub fn apbbsel(&self) -> Apbbsel { 
       unsafe {
          Apbbsel(read_volatile((self.0 + 0xa) as *const u8))
       }
    }
-#[doc="Write the APBBSEL register."]
+
+   #[doc="Write the APBBSEL register."]
    #[inline] pub fn set_apbbsel<F: FnOnce(Apbbsel) -> Apbbsel>(&self, f: F) -> &Self {
       let value = f(Apbbsel(0));
       unsafe {
@@ -157,7 +176,8 @@ impl Pm {
       }
       self
    }
-#[doc="Modify the APBBSEL register."]
+
+   #[doc="Modify the APBBSEL register."]
    #[inline] pub fn with_apbbsel<F: FnOnce(Apbbsel) -> Apbbsel>(&self, f: F) -> &Self {
       let tmp = self.apbbsel();
       let value = f(tmp);
@@ -167,21 +187,24 @@ impl Pm {
       self
    }
 
-#[doc="Get the *const pointer for the APBCMASK register."]
+   #[doc="Get the *const pointer for the APBCMASK register."]
    #[inline] pub fn apbcmask_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x20) as *const u32
    }
-#[doc="Get the *mut pointer for the APBCMASK register."]
+
+   #[doc="Get the *mut pointer for the APBCMASK register."]
    #[inline] pub fn apbcmask_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x20) as *mut u32
    }
-#[doc="Read the APBCMASK register."]
+
+   #[doc="Read the APBCMASK register."]
    #[inline] pub fn apbcmask(&self) -> Apbcmask { 
       unsafe {
          Apbcmask(read_volatile((self.0 + 0x20) as *const u32))
       }
    }
-#[doc="Write the APBCMASK register."]
+
+   #[doc="Write the APBCMASK register."]
    #[inline] pub fn set_apbcmask<F: FnOnce(Apbcmask) -> Apbcmask>(&self, f: F) -> &Self {
       let value = f(Apbcmask(0));
       unsafe {
@@ -189,7 +212,8 @@ impl Pm {
       }
       self
    }
-#[doc="Modify the APBCMASK register."]
+
+   #[doc="Modify the APBCMASK register."]
    #[inline] pub fn with_apbcmask<F: FnOnce(Apbcmask) -> Apbcmask>(&self, f: F) -> &Self {
       let tmp = self.apbcmask();
       let value = f(tmp);
@@ -199,21 +223,24 @@ impl Pm {
       self
    }
 
-#[doc="Get the *const pointer for the APBCSEL register."]
+   #[doc="Get the *const pointer for the APBCSEL register."]
    #[inline] pub fn apbcsel_ptr(&self) -> *const u8 { 
       ((self.0 as usize) + 0xb) as *const u8
    }
-#[doc="Get the *mut pointer for the APBCSEL register."]
+
+   #[doc="Get the *mut pointer for the APBCSEL register."]
    #[inline] pub fn apbcsel_mut(&self) -> *mut u8 { 
       ((self.0 as usize) + 0xb) as *mut u8
    }
-#[doc="Read the APBCSEL register."]
+
+   #[doc="Read the APBCSEL register."]
    #[inline] pub fn apbcsel(&self) -> Apbcsel { 
       unsafe {
          Apbcsel(read_volatile((self.0 + 0xb) as *const u8))
       }
    }
-#[doc="Write the APBCSEL register."]
+
+   #[doc="Write the APBCSEL register."]
    #[inline] pub fn set_apbcsel<F: FnOnce(Apbcsel) -> Apbcsel>(&self, f: F) -> &Self {
       let value = f(Apbcsel(0));
       unsafe {
@@ -221,7 +248,8 @@ impl Pm {
       }
       self
    }
-#[doc="Modify the APBCSEL register."]
+
+   #[doc="Modify the APBCSEL register."]
    #[inline] pub fn with_apbcsel<F: FnOnce(Apbcsel) -> Apbcsel>(&self, f: F) -> &Self {
       let tmp = self.apbcsel();
       let value = f(tmp);
@@ -231,21 +259,24 @@ impl Pm {
       self
    }
 
-#[doc="Get the *const pointer for the CPUSEL register."]
+   #[doc="Get the *const pointer for the CPUSEL register."]
    #[inline] pub fn cpusel_ptr(&self) -> *const u8 { 
       ((self.0 as usize) + 0x8) as *const u8
    }
-#[doc="Get the *mut pointer for the CPUSEL register."]
+
+   #[doc="Get the *mut pointer for the CPUSEL register."]
    #[inline] pub fn cpusel_mut(&self) -> *mut u8 { 
       ((self.0 as usize) + 0x8) as *mut u8
    }
-#[doc="Read the CPUSEL register."]
+
+   #[doc="Read the CPUSEL register."]
    #[inline] pub fn cpusel(&self) -> Cpusel { 
       unsafe {
          Cpusel(read_volatile((self.0 + 0x8) as *const u8))
       }
    }
-#[doc="Write the CPUSEL register."]
+
+   #[doc="Write the CPUSEL register."]
    #[inline] pub fn set_cpusel<F: FnOnce(Cpusel) -> Cpusel>(&self, f: F) -> &Self {
       let value = f(Cpusel(0));
       unsafe {
@@ -253,7 +284,8 @@ impl Pm {
       }
       self
    }
-#[doc="Modify the CPUSEL register."]
+
+   #[doc="Modify the CPUSEL register."]
    #[inline] pub fn with_cpusel<F: FnOnce(Cpusel) -> Cpusel>(&self, f: F) -> &Self {
       let tmp = self.cpusel();
       let value = f(tmp);
@@ -263,21 +295,24 @@ impl Pm {
       self
    }
 
-#[doc="Get the *const pointer for the CTRL register."]
+   #[doc="Get the *const pointer for the CTRL register."]
    #[inline] pub fn ctrl_ptr(&self) -> *const u8 { 
       ((self.0 as usize) + 0x0) as *const u8
    }
-#[doc="Get the *mut pointer for the CTRL register."]
+
+   #[doc="Get the *mut pointer for the CTRL register."]
    #[inline] pub fn ctrl_mut(&self) -> *mut u8 { 
       ((self.0 as usize) + 0x0) as *mut u8
    }
-#[doc="Read the CTRL register."]
+
+   #[doc="Read the CTRL register."]
    #[inline] pub fn ctrl(&self) -> Ctrl { 
       unsafe {
          Ctrl(read_volatile((self.0 + 0x0) as *const u8))
       }
    }
-#[doc="Write the CTRL register."]
+
+   #[doc="Write the CTRL register."]
    #[inline] pub fn set_ctrl<F: FnOnce(Ctrl) -> Ctrl>(&self, f: F) -> &Self {
       let value = f(Ctrl(0));
       unsafe {
@@ -285,7 +320,8 @@ impl Pm {
       }
       self
    }
-#[doc="Modify the CTRL register."]
+
+   #[doc="Modify the CTRL register."]
    #[inline] pub fn with_ctrl<F: FnOnce(Ctrl) -> Ctrl>(&self, f: F) -> &Self {
       let tmp = self.ctrl();
       let value = f(tmp);
@@ -295,21 +331,24 @@ impl Pm {
       self
    }
 
-#[doc="Get the *const pointer for the INTENCLR register."]
+   #[doc="Get the *const pointer for the INTENCLR register."]
    #[inline] pub fn intenclr_ptr(&self) -> *const u8 { 
       ((self.0 as usize) + 0x34) as *const u8
    }
-#[doc="Get the *mut pointer for the INTENCLR register."]
+
+   #[doc="Get the *mut pointer for the INTENCLR register."]
    #[inline] pub fn intenclr_mut(&self) -> *mut u8 { 
       ((self.0 as usize) + 0x34) as *mut u8
    }
-#[doc="Read the INTENCLR register."]
+
+   #[doc="Read the INTENCLR register."]
    #[inline] pub fn intenclr(&self) -> Intenclr { 
       unsafe {
          Intenclr(read_volatile((self.0 + 0x34) as *const u8))
       }
    }
-#[doc="Write the INTENCLR register."]
+
+   #[doc="Write the INTENCLR register."]
    #[inline] pub fn set_intenclr<F: FnOnce(Intenclr) -> Intenclr>(&self, f: F) -> &Self {
       let value = f(Intenclr(0));
       unsafe {
@@ -317,7 +356,8 @@ impl Pm {
       }
       self
    }
-#[doc="Modify the INTENCLR register."]
+
+   #[doc="Modify the INTENCLR register."]
    #[inline] pub fn with_intenclr<F: FnOnce(Intenclr) -> Intenclr>(&self, f: F) -> &Self {
       let tmp = self.intenclr();
       let value = f(tmp);
@@ -327,21 +367,24 @@ impl Pm {
       self
    }
 
-#[doc="Get the *const pointer for the INTENSET register."]
+   #[doc="Get the *const pointer for the INTENSET register."]
    #[inline] pub fn intenset_ptr(&self) -> *const u8 { 
       ((self.0 as usize) + 0x35) as *const u8
    }
-#[doc="Get the *mut pointer for the INTENSET register."]
+
+   #[doc="Get the *mut pointer for the INTENSET register."]
    #[inline] pub fn intenset_mut(&self) -> *mut u8 { 
       ((self.0 as usize) + 0x35) as *mut u8
    }
-#[doc="Read the INTENSET register."]
+
+   #[doc="Read the INTENSET register."]
    #[inline] pub fn intenset(&self) -> Intenset { 
       unsafe {
          Intenset(read_volatile((self.0 + 0x35) as *const u8))
       }
    }
-#[doc="Write the INTENSET register."]
+
+   #[doc="Write the INTENSET register."]
    #[inline] pub fn set_intenset<F: FnOnce(Intenset) -> Intenset>(&self, f: F) -> &Self {
       let value = f(Intenset(0));
       unsafe {
@@ -349,7 +392,8 @@ impl Pm {
       }
       self
    }
-#[doc="Modify the INTENSET register."]
+
+   #[doc="Modify the INTENSET register."]
    #[inline] pub fn with_intenset<F: FnOnce(Intenset) -> Intenset>(&self, f: F) -> &Self {
       let tmp = self.intenset();
       let value = f(tmp);
@@ -359,21 +403,24 @@ impl Pm {
       self
    }
 
-#[doc="Get the *const pointer for the INTFLAG register."]
+   #[doc="Get the *const pointer for the INTFLAG register."]
    #[inline] pub fn intflag_ptr(&self) -> *const u8 { 
       ((self.0 as usize) + 0x36) as *const u8
    }
-#[doc="Get the *mut pointer for the INTFLAG register."]
+
+   #[doc="Get the *mut pointer for the INTFLAG register."]
    #[inline] pub fn intflag_mut(&self) -> *mut u8 { 
       ((self.0 as usize) + 0x36) as *mut u8
    }
-#[doc="Read the INTFLAG register."]
+
+   #[doc="Read the INTFLAG register."]
    #[inline] pub fn intflag(&self) -> Intflag { 
       unsafe {
          Intflag(read_volatile((self.0 + 0x36) as *const u8))
       }
    }
-#[doc="Write the INTFLAG register."]
+
+   #[doc="Write the INTFLAG register."]
    #[inline] pub fn set_intflag<F: FnOnce(Intflag) -> Intflag>(&self, f: F) -> &Self {
       let value = f(Intflag(0));
       unsafe {
@@ -381,7 +428,8 @@ impl Pm {
       }
       self
    }
-#[doc="Modify the INTFLAG register."]
+
+   #[doc="Modify the INTFLAG register."]
    #[inline] pub fn with_intflag<F: FnOnce(Intflag) -> Intflag>(&self, f: F) -> &Self {
       let tmp = self.intflag();
       let value = f(tmp);
@@ -391,36 +439,41 @@ impl Pm {
       self
    }
 
-#[doc="Get the *const pointer for the RCAUSE register."]
+   #[doc="Get the *const pointer for the RCAUSE register."]
    #[inline] pub fn rcause_ptr(&self) -> *const u8 { 
       ((self.0 as usize) + 0x38) as *const u8
    }
-#[doc="Get the *mut pointer for the RCAUSE register."]
+
+   #[doc="Get the *mut pointer for the RCAUSE register."]
    #[inline] pub fn rcause_mut(&self) -> *mut u8 { 
       ((self.0 as usize) + 0x38) as *mut u8
    }
-#[doc="Read the RCAUSE register."]
+
+   #[doc="Read the RCAUSE register."]
    #[inline] pub fn rcause(&self) -> Rcause { 
       unsafe {
          Rcause(read_volatile((self.0 + 0x38) as *const u8))
       }
    }
 
-#[doc="Get the *const pointer for the SLEEP register."]
+   #[doc="Get the *const pointer for the SLEEP register."]
    #[inline] pub fn sleep_ptr(&self) -> *const u8 { 
       ((self.0 as usize) + 0x1) as *const u8
    }
-#[doc="Get the *mut pointer for the SLEEP register."]
+
+   #[doc="Get the *mut pointer for the SLEEP register."]
    #[inline] pub fn sleep_mut(&self) -> *mut u8 { 
       ((self.0 as usize) + 0x1) as *mut u8
    }
-#[doc="Read the SLEEP register."]
+
+   #[doc="Read the SLEEP register."]
    #[inline] pub fn sleep(&self) -> Sleep { 
       unsafe {
          Sleep(read_volatile((self.0 + 0x1) as *const u8))
       }
    }
-#[doc="Write the SLEEP register."]
+
+   #[doc="Write the SLEEP register."]
    #[inline] pub fn set_sleep<F: FnOnce(Sleep) -> Sleep>(&self, f: F) -> &Self {
       let value = f(Sleep(0));
       unsafe {
@@ -428,7 +481,8 @@ impl Pm {
       }
       self
    }
-#[doc="Modify the SLEEP register."]
+
+   #[doc="Modify the SLEEP register."]
    #[inline] pub fn with_sleep<F: FnOnce(Sleep) -> Sleep>(&self, f: F) -> &Self {
       let tmp = self.sleep();
       let value = f(tmp);
@@ -444,11 +498,17 @@ impl Pm {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ahbmask(pub u32);
 impl Ahbmask {
-#[doc="HPB0 AHB Clock Enable"]
+   #[doc="HPB0 AHB Clock Enable"]
    #[inline] pub fn hpb0(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
    }
-#[doc="HPB0 AHB Clock Enable"]
+
+   #[doc="HPB0 AHB Clock Enable"]
+   #[inline] pub fn test_hpb0(&self) -> bool {
+      self.hpb0 != 0
+   }
+
+   #[doc="HPB0 AHB Clock Enable"]
    #[inline] pub fn set_hpb0<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -457,11 +517,17 @@ impl Ahbmask {
       self
    }
 
-#[doc="HPB1 AHB Clock Enable"]
+   #[doc="HPB1 AHB Clock Enable"]
    #[inline] pub fn hpb1(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
    }
-#[doc="HPB1 AHB Clock Enable"]
+
+   #[doc="HPB1 AHB Clock Enable"]
+   #[inline] pub fn test_hpb1(&self) -> bool {
+      self.hpb1 != 0
+   }
+
+   #[doc="HPB1 AHB Clock Enable"]
    #[inline] pub fn set_hpb1<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -470,11 +536,17 @@ impl Ahbmask {
       self
    }
 
-#[doc="HPB2 AHB Clock Enable"]
+   #[doc="HPB2 AHB Clock Enable"]
    #[inline] pub fn hpb2(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
    }
-#[doc="HPB2 AHB Clock Enable"]
+
+   #[doc="HPB2 AHB Clock Enable"]
+   #[inline] pub fn test_hpb2(&self) -> bool {
+      self.hpb2 != 0
+   }
+
+   #[doc="HPB2 AHB Clock Enable"]
    #[inline] pub fn set_hpb2<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -483,11 +555,17 @@ impl Ahbmask {
       self
    }
 
-#[doc="DSU AHB Clock Enable"]
+   #[doc="DSU AHB Clock Enable"]
    #[inline] pub fn dsu(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
    }
-#[doc="DSU AHB Clock Enable"]
+
+   #[doc="DSU AHB Clock Enable"]
+   #[inline] pub fn test_dsu(&self) -> bool {
+      self.dsu != 0
+   }
+
+   #[doc="DSU AHB Clock Enable"]
    #[inline] pub fn set_dsu<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -496,11 +574,17 @@ impl Ahbmask {
       self
    }
 
-#[doc="NVMCTRL AHB Clock Enable"]
+   #[doc="NVMCTRL AHB Clock Enable"]
    #[inline] pub fn nvmctrl(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
    }
-#[doc="NVMCTRL AHB Clock Enable"]
+
+   #[doc="NVMCTRL AHB Clock Enable"]
+   #[inline] pub fn test_nvmctrl(&self) -> bool {
+      self.nvmctrl != 0
+   }
+
+   #[doc="NVMCTRL AHB Clock Enable"]
    #[inline] pub fn set_nvmctrl<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -509,11 +593,17 @@ impl Ahbmask {
       self
    }
 
-#[doc="DMAC AHB Clock Enable"]
+   #[doc="DMAC AHB Clock Enable"]
    #[inline] pub fn dmac(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
    }
-#[doc="DMAC AHB Clock Enable"]
+
+   #[doc="DMAC AHB Clock Enable"]
+   #[inline] pub fn test_dmac(&self) -> bool {
+      self.dmac != 0
+   }
+
+   #[doc="DMAC AHB Clock Enable"]
    #[inline] pub fn set_dmac<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -522,11 +612,17 @@ impl Ahbmask {
       self
    }
 
-#[doc="USB AHB Clock Enable"]
+   #[doc="USB AHB Clock Enable"]
    #[inline] pub fn usb(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
    }
-#[doc="USB AHB Clock Enable"]
+
+   #[doc="USB AHB Clock Enable"]
+   #[inline] pub fn test_usb(&self) -> bool {
+      self.usb != 0
+   }
+
+   #[doc="USB AHB Clock Enable"]
    #[inline] pub fn set_usb<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -536,11 +632,13 @@ impl Ahbmask {
    }
 
 }
+
 impl ::core::fmt::Display for Ahbmask {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Ahbmask {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -555,15 +653,22 @@ impl ::core::fmt::Debug for Ahbmask {
       Ok(())
    }
 }
+
 #[doc="APBA Mask"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Apbamask(pub u32);
 impl Apbamask {
-#[doc="PAC0 APB Clock Enable"]
+   #[doc="PAC0 APB Clock Enable"]
    #[inline] pub fn pac0(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
    }
-#[doc="PAC0 APB Clock Enable"]
+
+   #[doc="PAC0 APB Clock Enable"]
+   #[inline] pub fn test_pac0(&self) -> bool {
+      self.pac0 != 0
+   }
+
+   #[doc="PAC0 APB Clock Enable"]
    #[inline] pub fn set_pac0<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -572,11 +677,17 @@ impl Apbamask {
       self
    }
 
-#[doc="PM APB Clock Enable"]
+   #[doc="PM APB Clock Enable"]
    #[inline] pub fn pm(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
    }
-#[doc="PM APB Clock Enable"]
+
+   #[doc="PM APB Clock Enable"]
+   #[inline] pub fn test_pm(&self) -> bool {
+      self.pm != 0
+   }
+
+   #[doc="PM APB Clock Enable"]
    #[inline] pub fn set_pm<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -585,11 +696,17 @@ impl Apbamask {
       self
    }
 
-#[doc="SYSCTRL APB Clock Enable"]
+   #[doc="SYSCTRL APB Clock Enable"]
    #[inline] pub fn sysctrl(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
    }
-#[doc="SYSCTRL APB Clock Enable"]
+
+   #[doc="SYSCTRL APB Clock Enable"]
+   #[inline] pub fn test_sysctrl(&self) -> bool {
+      self.sysctrl != 0
+   }
+
+   #[doc="SYSCTRL APB Clock Enable"]
    #[inline] pub fn set_sysctrl<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -598,11 +715,17 @@ impl Apbamask {
       self
    }
 
-#[doc="GCLK APB Clock Enable"]
+   #[doc="GCLK APB Clock Enable"]
    #[inline] pub fn gclk(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
    }
-#[doc="GCLK APB Clock Enable"]
+
+   #[doc="GCLK APB Clock Enable"]
+   #[inline] pub fn test_gclk(&self) -> bool {
+      self.gclk != 0
+   }
+
+   #[doc="GCLK APB Clock Enable"]
    #[inline] pub fn set_gclk<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -611,11 +734,17 @@ impl Apbamask {
       self
    }
 
-#[doc="WDT APB Clock Enable"]
+   #[doc="WDT APB Clock Enable"]
    #[inline] pub fn wdt(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
    }
-#[doc="WDT APB Clock Enable"]
+
+   #[doc="WDT APB Clock Enable"]
+   #[inline] pub fn test_wdt(&self) -> bool {
+      self.wdt != 0
+   }
+
+   #[doc="WDT APB Clock Enable"]
    #[inline] pub fn set_wdt<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -624,11 +753,17 @@ impl Apbamask {
       self
    }
 
-#[doc="RTC APB Clock Enable"]
+   #[doc="RTC APB Clock Enable"]
    #[inline] pub fn rtc(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
    }
-#[doc="RTC APB Clock Enable"]
+
+   #[doc="RTC APB Clock Enable"]
+   #[inline] pub fn test_rtc(&self) -> bool {
+      self.rtc != 0
+   }
+
+   #[doc="RTC APB Clock Enable"]
    #[inline] pub fn set_rtc<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -637,11 +772,17 @@ impl Apbamask {
       self
    }
 
-#[doc="EIC APB Clock Enable"]
+   #[doc="EIC APB Clock Enable"]
    #[inline] pub fn eic(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
    }
-#[doc="EIC APB Clock Enable"]
+
+   #[doc="EIC APB Clock Enable"]
+   #[inline] pub fn test_eic(&self) -> bool {
+      self.eic != 0
+   }
+
+   #[doc="EIC APB Clock Enable"]
    #[inline] pub fn set_eic<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -651,11 +792,13 @@ impl Apbamask {
    }
 
 }
+
 impl ::core::fmt::Display for Apbamask {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Apbamask {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -670,15 +813,22 @@ impl ::core::fmt::Debug for Apbamask {
       Ok(())
    }
 }
+
 #[doc="APBA Clock Select"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Apbasel(pub u8);
 impl Apbasel {
-#[doc="APBA Prescaler Selection"]
+   #[doc="APBA Prescaler Selection"]
    #[inline] pub fn apbadiv(&self) -> bits::U3 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x7) as u8) } // [2:0]
    }
-#[doc="APBA Prescaler Selection"]
+
+   #[doc="APBA Prescaler Selection"]
+   #[inline] pub fn test_apbadiv(&self) -> bool {
+      self.apbadiv != 0
+   }
+
+   #[doc="APBA Prescaler Selection"]
    #[inline] pub fn set_apbadiv<V: Into<bits::U3>>(mut self, value: V) -> Self {
       let value: bits::U3 = value.into();
       let value: u8 = value.into();
@@ -688,11 +838,13 @@ impl Apbasel {
    }
 
 }
+
 impl ::core::fmt::Display for Apbasel {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Apbasel {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -701,15 +853,22 @@ impl ::core::fmt::Debug for Apbasel {
       Ok(())
    }
 }
+
 #[doc="APBB Mask"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Apbbmask(pub u32);
 impl Apbbmask {
-#[doc="PAC1 APB Clock Enable"]
+   #[doc="PAC1 APB Clock Enable"]
    #[inline] pub fn pac1(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
    }
-#[doc="PAC1 APB Clock Enable"]
+
+   #[doc="PAC1 APB Clock Enable"]
+   #[inline] pub fn test_pac1(&self) -> bool {
+      self.pac1 != 0
+   }
+
+   #[doc="PAC1 APB Clock Enable"]
    #[inline] pub fn set_pac1<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -718,11 +877,17 @@ impl Apbbmask {
       self
    }
 
-#[doc="DSU APB Clock Enable"]
+   #[doc="DSU APB Clock Enable"]
    #[inline] pub fn dsu(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
    }
-#[doc="DSU APB Clock Enable"]
+
+   #[doc="DSU APB Clock Enable"]
+   #[inline] pub fn test_dsu(&self) -> bool {
+      self.dsu != 0
+   }
+
+   #[doc="DSU APB Clock Enable"]
    #[inline] pub fn set_dsu<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -731,11 +896,17 @@ impl Apbbmask {
       self
    }
 
-#[doc="NVMCTRL APB Clock Enable"]
+   #[doc="NVMCTRL APB Clock Enable"]
    #[inline] pub fn nvmctrl(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
    }
-#[doc="NVMCTRL APB Clock Enable"]
+
+   #[doc="NVMCTRL APB Clock Enable"]
+   #[inline] pub fn test_nvmctrl(&self) -> bool {
+      self.nvmctrl != 0
+   }
+
+   #[doc="NVMCTRL APB Clock Enable"]
    #[inline] pub fn set_nvmctrl<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -744,11 +915,17 @@ impl Apbbmask {
       self
    }
 
-#[doc="PORT APB Clock Enable"]
+   #[doc="PORT APB Clock Enable"]
    #[inline] pub fn port(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
    }
-#[doc="PORT APB Clock Enable"]
+
+   #[doc="PORT APB Clock Enable"]
+   #[inline] pub fn test_port(&self) -> bool {
+      self.port != 0
+   }
+
+   #[doc="PORT APB Clock Enable"]
    #[inline] pub fn set_port<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -757,11 +934,17 @@ impl Apbbmask {
       self
    }
 
-#[doc="DMAC APB Clock Enable"]
+   #[doc="DMAC APB Clock Enable"]
    #[inline] pub fn dmac(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
    }
-#[doc="DMAC APB Clock Enable"]
+
+   #[doc="DMAC APB Clock Enable"]
+   #[inline] pub fn test_dmac(&self) -> bool {
+      self.dmac != 0
+   }
+
+   #[doc="DMAC APB Clock Enable"]
    #[inline] pub fn set_dmac<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -770,11 +953,17 @@ impl Apbbmask {
       self
    }
 
-#[doc="USB APB Clock Enable"]
+   #[doc="USB APB Clock Enable"]
    #[inline] pub fn usb(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
    }
-#[doc="USB APB Clock Enable"]
+
+   #[doc="USB APB Clock Enable"]
+   #[inline] pub fn test_usb(&self) -> bool {
+      self.usb != 0
+   }
+
+   #[doc="USB APB Clock Enable"]
    #[inline] pub fn set_usb<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -784,11 +973,13 @@ impl Apbbmask {
    }
 
 }
+
 impl ::core::fmt::Display for Apbbmask {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Apbbmask {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -802,15 +993,22 @@ impl ::core::fmt::Debug for Apbbmask {
       Ok(())
    }
 }
+
 #[doc="APBB Clock Select"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Apbbsel(pub u8);
 impl Apbbsel {
-#[doc="APBB Prescaler Selection"]
+   #[doc="APBB Prescaler Selection"]
    #[inline] pub fn apbbdiv(&self) -> bits::U3 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x7) as u8) } // [2:0]
    }
-#[doc="APBB Prescaler Selection"]
+
+   #[doc="APBB Prescaler Selection"]
+   #[inline] pub fn test_apbbdiv(&self) -> bool {
+      self.apbbdiv != 0
+   }
+
+   #[doc="APBB Prescaler Selection"]
    #[inline] pub fn set_apbbdiv<V: Into<bits::U3>>(mut self, value: V) -> Self {
       let value: bits::U3 = value.into();
       let value: u8 = value.into();
@@ -820,11 +1018,13 @@ impl Apbbsel {
    }
 
 }
+
 impl ::core::fmt::Display for Apbbsel {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Apbbsel {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -833,15 +1033,22 @@ impl ::core::fmt::Debug for Apbbsel {
       Ok(())
    }
 }
+
 #[doc="APBC Mask"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Apbcmask(pub u32);
 impl Apbcmask {
-#[doc="PAC2 APB Clock Enable"]
+   #[doc="PAC2 APB Clock Enable"]
    #[inline] pub fn pac2(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
    }
-#[doc="PAC2 APB Clock Enable"]
+
+   #[doc="PAC2 APB Clock Enable"]
+   #[inline] pub fn test_pac2(&self) -> bool {
+      self.pac2 != 0
+   }
+
+   #[doc="PAC2 APB Clock Enable"]
    #[inline] pub fn set_pac2<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -850,11 +1057,17 @@ impl Apbcmask {
       self
    }
 
-#[doc="EVSYS APB Clock Enable"]
+   #[doc="EVSYS APB Clock Enable"]
    #[inline] pub fn evsys(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
    }
-#[doc="EVSYS APB Clock Enable"]
+
+   #[doc="EVSYS APB Clock Enable"]
+   #[inline] pub fn test_evsys(&self) -> bool {
+      self.evsys != 0
+   }
+
+   #[doc="EVSYS APB Clock Enable"]
    #[inline] pub fn set_evsys<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -863,11 +1076,17 @@ impl Apbcmask {
       self
    }
 
-#[doc="SERCOM0 APB Clock Enable"]
+   #[doc="SERCOM0 APB Clock Enable"]
    #[inline] pub fn sercom0(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
    }
-#[doc="SERCOM0 APB Clock Enable"]
+
+   #[doc="SERCOM0 APB Clock Enable"]
+   #[inline] pub fn test_sercom0(&self) -> bool {
+      self.sercom0 != 0
+   }
+
+   #[doc="SERCOM0 APB Clock Enable"]
    #[inline] pub fn set_sercom0<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -876,11 +1095,17 @@ impl Apbcmask {
       self
    }
 
-#[doc="SERCOM1 APB Clock Enable"]
+   #[doc="SERCOM1 APB Clock Enable"]
    #[inline] pub fn sercom1(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
    }
-#[doc="SERCOM1 APB Clock Enable"]
+
+   #[doc="SERCOM1 APB Clock Enable"]
+   #[inline] pub fn test_sercom1(&self) -> bool {
+      self.sercom1 != 0
+   }
+
+   #[doc="SERCOM1 APB Clock Enable"]
    #[inline] pub fn set_sercom1<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -889,11 +1114,17 @@ impl Apbcmask {
       self
    }
 
-#[doc="SERCOM2 APB Clock Enable"]
+   #[doc="SERCOM2 APB Clock Enable"]
    #[inline] pub fn sercom2(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
    }
-#[doc="SERCOM2 APB Clock Enable"]
+
+   #[doc="SERCOM2 APB Clock Enable"]
+   #[inline] pub fn test_sercom2(&self) -> bool {
+      self.sercom2 != 0
+   }
+
+   #[doc="SERCOM2 APB Clock Enable"]
    #[inline] pub fn set_sercom2<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -902,11 +1133,17 @@ impl Apbcmask {
       self
    }
 
-#[doc="SERCOM3 APB Clock Enable"]
+   #[doc="SERCOM3 APB Clock Enable"]
    #[inline] pub fn sercom3(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
    }
-#[doc="SERCOM3 APB Clock Enable"]
+
+   #[doc="SERCOM3 APB Clock Enable"]
+   #[inline] pub fn test_sercom3(&self) -> bool {
+      self.sercom3 != 0
+   }
+
+   #[doc="SERCOM3 APB Clock Enable"]
    #[inline] pub fn set_sercom3<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -915,11 +1152,17 @@ impl Apbcmask {
       self
    }
 
-#[doc="SERCOM4 APB Clock Enable"]
+   #[doc="SERCOM4 APB Clock Enable"]
    #[inline] pub fn sercom4(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
    }
-#[doc="SERCOM4 APB Clock Enable"]
+
+   #[doc="SERCOM4 APB Clock Enable"]
+   #[inline] pub fn test_sercom4(&self) -> bool {
+      self.sercom4 != 0
+   }
+
+   #[doc="SERCOM4 APB Clock Enable"]
    #[inline] pub fn set_sercom4<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -928,11 +1171,17 @@ impl Apbcmask {
       self
    }
 
-#[doc="SERCOM5 APB Clock Enable"]
+   #[doc="SERCOM5 APB Clock Enable"]
    #[inline] pub fn sercom5(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
    }
-#[doc="SERCOM5 APB Clock Enable"]
+
+   #[doc="SERCOM5 APB Clock Enable"]
+   #[inline] pub fn test_sercom5(&self) -> bool {
+      self.sercom5 != 0
+   }
+
+   #[doc="SERCOM5 APB Clock Enable"]
    #[inline] pub fn set_sercom5<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -941,11 +1190,17 @@ impl Apbcmask {
       self
    }
 
-#[doc="TCC0 APB Clock Enable"]
+   #[doc="TCC0 APB Clock Enable"]
    #[inline] pub fn tcc0(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
    }
-#[doc="TCC0 APB Clock Enable"]
+
+   #[doc="TCC0 APB Clock Enable"]
+   #[inline] pub fn test_tcc0(&self) -> bool {
+      self.tcc0 != 0
+   }
+
+   #[doc="TCC0 APB Clock Enable"]
    #[inline] pub fn set_tcc0<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -954,11 +1209,17 @@ impl Apbcmask {
       self
    }
 
-#[doc="TCC1 APB Clock Enable"]
+   #[doc="TCC1 APB Clock Enable"]
    #[inline] pub fn tcc1(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
    }
-#[doc="TCC1 APB Clock Enable"]
+
+   #[doc="TCC1 APB Clock Enable"]
+   #[inline] pub fn test_tcc1(&self) -> bool {
+      self.tcc1 != 0
+   }
+
+   #[doc="TCC1 APB Clock Enable"]
    #[inline] pub fn set_tcc1<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -967,11 +1228,17 @@ impl Apbcmask {
       self
    }
 
-#[doc="TCC2 APB Clock Enable"]
+   #[doc="TCC2 APB Clock Enable"]
    #[inline] pub fn tcc2(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x1) as u8) } // [10]
    }
-#[doc="TCC2 APB Clock Enable"]
+
+   #[doc="TCC2 APB Clock Enable"]
+   #[inline] pub fn test_tcc2(&self) -> bool {
+      self.tcc2 != 0
+   }
+
+   #[doc="TCC2 APB Clock Enable"]
    #[inline] pub fn set_tcc2<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -980,11 +1247,17 @@ impl Apbcmask {
       self
    }
 
-#[doc="TC3 APB Clock Enable"]
+   #[doc="TC3 APB Clock Enable"]
    #[inline] pub fn tc3(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 11) & 0x1) as u8) } // [11]
    }
-#[doc="TC3 APB Clock Enable"]
+
+   #[doc="TC3 APB Clock Enable"]
+   #[inline] pub fn test_tc3(&self) -> bool {
+      self.tc3 != 0
+   }
+
+   #[doc="TC3 APB Clock Enable"]
    #[inline] pub fn set_tc3<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -993,11 +1266,17 @@ impl Apbcmask {
       self
    }
 
-#[doc="TC4 APB Clock Enable"]
+   #[doc="TC4 APB Clock Enable"]
    #[inline] pub fn tc4(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 12) & 0x1) as u8) } // [12]
    }
-#[doc="TC4 APB Clock Enable"]
+
+   #[doc="TC4 APB Clock Enable"]
+   #[inline] pub fn test_tc4(&self) -> bool {
+      self.tc4 != 0
+   }
+
+   #[doc="TC4 APB Clock Enable"]
    #[inline] pub fn set_tc4<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1006,11 +1285,17 @@ impl Apbcmask {
       self
    }
 
-#[doc="TC5 APB Clock Enable"]
+   #[doc="TC5 APB Clock Enable"]
    #[inline] pub fn tc5(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 13) & 0x1) as u8) } // [13]
    }
-#[doc="TC5 APB Clock Enable"]
+
+   #[doc="TC5 APB Clock Enable"]
+   #[inline] pub fn test_tc5(&self) -> bool {
+      self.tc5 != 0
+   }
+
+   #[doc="TC5 APB Clock Enable"]
    #[inline] pub fn set_tc5<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1019,11 +1304,17 @@ impl Apbcmask {
       self
    }
 
-#[doc="ADC APB Clock Enable"]
+   #[doc="ADC APB Clock Enable"]
    #[inline] pub fn adc(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1) as u8) } // [16]
    }
-#[doc="ADC APB Clock Enable"]
+
+   #[doc="ADC APB Clock Enable"]
+   #[inline] pub fn test_adc(&self) -> bool {
+      self.adc != 0
+   }
+
+   #[doc="ADC APB Clock Enable"]
    #[inline] pub fn set_adc<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1032,11 +1323,17 @@ impl Apbcmask {
       self
    }
 
-#[doc="AC APB Clock Enable"]
+   #[doc="AC APB Clock Enable"]
    #[inline] pub fn ac(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 17) & 0x1) as u8) } // [17]
    }
-#[doc="AC APB Clock Enable"]
+
+   #[doc="AC APB Clock Enable"]
+   #[inline] pub fn test_ac(&self) -> bool {
+      self.ac != 0
+   }
+
+   #[doc="AC APB Clock Enable"]
    #[inline] pub fn set_ac<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1045,11 +1342,17 @@ impl Apbcmask {
       self
    }
 
-#[doc="DAC APB Clock Enable"]
+   #[doc="DAC APB Clock Enable"]
    #[inline] pub fn dac(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 18) & 0x1) as u8) } // [18]
    }
-#[doc="DAC APB Clock Enable"]
+
+   #[doc="DAC APB Clock Enable"]
+   #[inline] pub fn test_dac(&self) -> bool {
+      self.dac != 0
+   }
+
+   #[doc="DAC APB Clock Enable"]
    #[inline] pub fn set_dac<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1058,11 +1361,17 @@ impl Apbcmask {
       self
    }
 
-#[doc="I2S APB Clock Enable"]
+   #[doc="I2S APB Clock Enable"]
    #[inline] pub fn i2s(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 20) & 0x1) as u8) } // [20]
    }
-#[doc="I2S APB Clock Enable"]
+
+   #[doc="I2S APB Clock Enable"]
+   #[inline] pub fn test_i2s(&self) -> bool {
+      self.i2s != 0
+   }
+
+   #[doc="I2S APB Clock Enable"]
    #[inline] pub fn set_i2s<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1071,11 +1380,17 @@ impl Apbcmask {
       self
    }
 
-#[doc="ATW APB Clock Enable"]
+   #[doc="ATW APB Clock Enable"]
    #[inline] pub fn atw(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 23) & 0x1) as u8) } // [23]
    }
-#[doc="ATW APB Clock Enable"]
+
+   #[doc="ATW APB Clock Enable"]
+   #[inline] pub fn test_atw(&self) -> bool {
+      self.atw != 0
+   }
+
+   #[doc="ATW APB Clock Enable"]
    #[inline] pub fn set_atw<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1085,11 +1400,13 @@ impl Apbcmask {
    }
 
 }
+
 impl ::core::fmt::Display for Apbcmask {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Apbcmask {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1116,15 +1433,22 @@ impl ::core::fmt::Debug for Apbcmask {
       Ok(())
    }
 }
+
 #[doc="APBC Clock Select"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Apbcsel(pub u8);
 impl Apbcsel {
-#[doc="APBC Prescaler Selection"]
+   #[doc="APBC Prescaler Selection"]
    #[inline] pub fn apbcdiv(&self) -> bits::U3 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x7) as u8) } // [2:0]
    }
-#[doc="APBC Prescaler Selection"]
+
+   #[doc="APBC Prescaler Selection"]
+   #[inline] pub fn test_apbcdiv(&self) -> bool {
+      self.apbcdiv != 0
+   }
+
+   #[doc="APBC Prescaler Selection"]
    #[inline] pub fn set_apbcdiv<V: Into<bits::U3>>(mut self, value: V) -> Self {
       let value: bits::U3 = value.into();
       let value: u8 = value.into();
@@ -1134,11 +1458,13 @@ impl Apbcsel {
    }
 
 }
+
 impl ::core::fmt::Display for Apbcsel {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Apbcsel {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1147,15 +1473,22 @@ impl ::core::fmt::Debug for Apbcsel {
       Ok(())
    }
 }
+
 #[doc="CPU Clock Select"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Cpusel(pub u8);
 impl Cpusel {
-#[doc="CPU Prescaler Selection"]
+   #[doc="CPU Prescaler Selection"]
    #[inline] pub fn cpudiv(&self) -> bits::U3 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x7) as u8) } // [2:0]
    }
-#[doc="CPU Prescaler Selection"]
+
+   #[doc="CPU Prescaler Selection"]
+   #[inline] pub fn test_cpudiv(&self) -> bool {
+      self.cpudiv != 0
+   }
+
+   #[doc="CPU Prescaler Selection"]
    #[inline] pub fn set_cpudiv<V: Into<bits::U3>>(mut self, value: V) -> Self {
       let value: bits::U3 = value.into();
       let value: u8 = value.into();
@@ -1165,11 +1498,13 @@ impl Cpusel {
    }
 
 }
+
 impl ::core::fmt::Display for Cpusel {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Cpusel {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1178,15 +1513,22 @@ impl ::core::fmt::Debug for Cpusel {
       Ok(())
    }
 }
+
 #[doc="Control"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ctrl(pub u8);
 impl Ctrl {
-#[doc="Clock Failure Detector Enable"]
+   #[doc="Clock Failure Detector Enable"]
    #[inline] pub fn cfden(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
    }
-#[doc="Clock Failure Detector Enable"]
+
+   #[doc="Clock Failure Detector Enable"]
+   #[inline] pub fn test_cfden(&self) -> bool {
+      self.cfden != 0
+   }
+
+   #[doc="Clock Failure Detector Enable"]
    #[inline] pub fn set_cfden<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u8 = value.into();
@@ -1195,11 +1537,17 @@ impl Ctrl {
       self
    }
 
-#[doc="Backup Clock Select"]
+   #[doc="Backup Clock Select"]
    #[inline] pub fn bkupclk(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
    }
-#[doc="Backup Clock Select"]
+
+   #[doc="Backup Clock Select"]
+   #[inline] pub fn test_bkupclk(&self) -> bool {
+      self.bkupclk != 0
+   }
+
+   #[doc="Backup Clock Select"]
    #[inline] pub fn set_bkupclk<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u8 = value.into();
@@ -1209,11 +1557,13 @@ impl Ctrl {
    }
 
 }
+
 impl ::core::fmt::Display for Ctrl {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Ctrl {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1223,15 +1573,22 @@ impl ::core::fmt::Debug for Ctrl {
       Ok(())
    }
 }
+
 #[doc="Interrupt Enable Clear"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Intenclr(pub u8);
 impl Intenclr {
-#[doc="Clock Ready Interrupt Enable"]
+   #[doc="Clock Ready Interrupt Enable"]
    #[inline] pub fn ckrdy(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
    }
-#[doc="Clock Ready Interrupt Enable"]
+
+   #[doc="Clock Ready Interrupt Enable"]
+   #[inline] pub fn test_ckrdy(&self) -> bool {
+      self.ckrdy != 0
+   }
+
+   #[doc="Clock Ready Interrupt Enable"]
    #[inline] pub fn set_ckrdy<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u8 = value.into();
@@ -1240,11 +1597,17 @@ impl Intenclr {
       self
    }
 
-#[doc="Clock Failure Detector Interrupt Enable"]
+   #[doc="Clock Failure Detector Interrupt Enable"]
    #[inline] pub fn cfd(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
    }
-#[doc="Clock Failure Detector Interrupt Enable"]
+
+   #[doc="Clock Failure Detector Interrupt Enable"]
+   #[inline] pub fn test_cfd(&self) -> bool {
+      self.cfd != 0
+   }
+
+   #[doc="Clock Failure Detector Interrupt Enable"]
    #[inline] pub fn set_cfd<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u8 = value.into();
@@ -1254,11 +1617,13 @@ impl Intenclr {
    }
 
 }
+
 impl ::core::fmt::Display for Intenclr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Intenclr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1268,15 +1633,22 @@ impl ::core::fmt::Debug for Intenclr {
       Ok(())
    }
 }
+
 #[doc="Interrupt Enable Set"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Intenset(pub u8);
 impl Intenset {
-#[doc="Clock Ready Interrupt Enable"]
+   #[doc="Clock Ready Interrupt Enable"]
    #[inline] pub fn ckrdy(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
    }
-#[doc="Clock Ready Interrupt Enable"]
+
+   #[doc="Clock Ready Interrupt Enable"]
+   #[inline] pub fn test_ckrdy(&self) -> bool {
+      self.ckrdy != 0
+   }
+
+   #[doc="Clock Ready Interrupt Enable"]
    #[inline] pub fn set_ckrdy<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u8 = value.into();
@@ -1285,11 +1657,17 @@ impl Intenset {
       self
    }
 
-#[doc="Clock Failure Detector Interrupt Enable"]
+   #[doc="Clock Failure Detector Interrupt Enable"]
    #[inline] pub fn cfd(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
    }
-#[doc="Clock Failure Detector Interrupt Enable"]
+
+   #[doc="Clock Failure Detector Interrupt Enable"]
+   #[inline] pub fn test_cfd(&self) -> bool {
+      self.cfd != 0
+   }
+
+   #[doc="Clock Failure Detector Interrupt Enable"]
    #[inline] pub fn set_cfd<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u8 = value.into();
@@ -1299,11 +1677,13 @@ impl Intenset {
    }
 
 }
+
 impl ::core::fmt::Display for Intenset {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Intenset {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1313,15 +1693,22 @@ impl ::core::fmt::Debug for Intenset {
       Ok(())
    }
 }
+
 #[doc="Interrupt Flag Status and Clear"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Intflag(pub u8);
 impl Intflag {
-#[doc="Clock Ready"]
+   #[doc="Clock Ready"]
    #[inline] pub fn ckrdy(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
    }
-#[doc="Clock Ready"]
+
+   #[doc="Clock Ready"]
+   #[inline] pub fn test_ckrdy(&self) -> bool {
+      self.ckrdy != 0
+   }
+
+   #[doc="Clock Ready"]
    #[inline] pub fn set_ckrdy<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u8 = value.into();
@@ -1330,11 +1717,17 @@ impl Intflag {
       self
    }
 
-#[doc="Clock Failure Detector"]
+   #[doc="Clock Failure Detector"]
    #[inline] pub fn cfd(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
    }
-#[doc="Clock Failure Detector"]
+
+   #[doc="Clock Failure Detector"]
+   #[inline] pub fn test_cfd(&self) -> bool {
+      self.cfd != 0
+   }
+
+   #[doc="Clock Failure Detector"]
    #[inline] pub fn set_cfd<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u8 = value.into();
@@ -1344,11 +1737,13 @@ impl Intflag {
    }
 
 }
+
 impl ::core::fmt::Display for Intflag {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Intflag {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1358,15 +1753,22 @@ impl ::core::fmt::Debug for Intflag {
       Ok(())
    }
 }
+
 #[doc="Reset Cause"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Rcause(pub u8);
 impl Rcause {
-#[doc="Power On Reset"]
+   #[doc="Power On Reset"]
    #[inline] pub fn por(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
    }
-#[doc="Power On Reset"]
+
+   #[doc="Power On Reset"]
+   #[inline] pub fn test_por(&self) -> bool {
+      self.por != 0
+   }
+
+   #[doc="Power On Reset"]
    #[inline] pub fn set_por<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u8 = value.into();
@@ -1375,11 +1777,17 @@ impl Rcause {
       self
    }
 
-#[doc="Brown Out 12 Detector Reset"]
+   #[doc="Brown Out 12 Detector Reset"]
    #[inline] pub fn bod12(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
    }
-#[doc="Brown Out 12 Detector Reset"]
+
+   #[doc="Brown Out 12 Detector Reset"]
+   #[inline] pub fn test_bod12(&self) -> bool {
+      self.bod12 != 0
+   }
+
+   #[doc="Brown Out 12 Detector Reset"]
    #[inline] pub fn set_bod12<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u8 = value.into();
@@ -1388,11 +1796,17 @@ impl Rcause {
       self
    }
 
-#[doc="Brown Out 33 Detector Reset"]
+   #[doc="Brown Out 33 Detector Reset"]
    #[inline] pub fn bod33(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
    }
-#[doc="Brown Out 33 Detector Reset"]
+
+   #[doc="Brown Out 33 Detector Reset"]
+   #[inline] pub fn test_bod33(&self) -> bool {
+      self.bod33 != 0
+   }
+
+   #[doc="Brown Out 33 Detector Reset"]
    #[inline] pub fn set_bod33<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u8 = value.into();
@@ -1401,11 +1815,17 @@ impl Rcause {
       self
    }
 
-#[doc="External Reset"]
+   #[doc="External Reset"]
    #[inline] pub fn ext(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
    }
-#[doc="External Reset"]
+
+   #[doc="External Reset"]
+   #[inline] pub fn test_ext(&self) -> bool {
+      self.ext != 0
+   }
+
+   #[doc="External Reset"]
    #[inline] pub fn set_ext<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u8 = value.into();
@@ -1414,11 +1834,17 @@ impl Rcause {
       self
    }
 
-#[doc="Watchdog Reset"]
+   #[doc="Watchdog Reset"]
    #[inline] pub fn wdt(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
    }
-#[doc="Watchdog Reset"]
+
+   #[doc="Watchdog Reset"]
+   #[inline] pub fn test_wdt(&self) -> bool {
+      self.wdt != 0
+   }
+
+   #[doc="Watchdog Reset"]
    #[inline] pub fn set_wdt<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u8 = value.into();
@@ -1427,11 +1853,17 @@ impl Rcause {
       self
    }
 
-#[doc="System Reset Request"]
+   #[doc="System Reset Request"]
    #[inline] pub fn syst(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
    }
-#[doc="System Reset Request"]
+
+   #[doc="System Reset Request"]
+   #[inline] pub fn test_syst(&self) -> bool {
+      self.syst != 0
+   }
+
+   #[doc="System Reset Request"]
    #[inline] pub fn set_syst<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u8 = value.into();
@@ -1441,11 +1873,13 @@ impl Rcause {
    }
 
 }
+
 impl ::core::fmt::Display for Rcause {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Rcause {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1459,15 +1893,22 @@ impl ::core::fmt::Debug for Rcause {
       Ok(())
    }
 }
+
 #[doc="Sleep Mode"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Sleep(pub u8);
 impl Sleep {
-#[doc="Idle Mode Configuration"]
+   #[doc="Idle Mode Configuration"]
    #[inline] pub fn idle(&self) -> bits::U2 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x3) as u8) } // [1:0]
    }
-#[doc="Idle Mode Configuration"]
+
+   #[doc="Idle Mode Configuration"]
+   #[inline] pub fn test_idle(&self) -> bool {
+      self.idle != 0
+   }
+
+   #[doc="Idle Mode Configuration"]
    #[inline] pub fn set_idle<V: Into<bits::U2>>(mut self, value: V) -> Self {
       let value: bits::U2 = value.into();
       let value: u8 = value.into();
@@ -1477,11 +1918,13 @@ impl Sleep {
    }
 
 }
+
 impl ::core::fmt::Display for Sleep {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Sleep {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1490,6 +1933,7 @@ impl ::core::fmt::Debug for Sleep {
       Ok(())
    }
 }
+
 pub trait En {
    fn en(&self) -> u32;
    fn set_en(&self, value: u32);

@@ -7,19 +7,21 @@ pub struct DmaPeriph(pub usize);
 
 
 impl DmaPeriph {
-#[doc="Get the *const pointer for the SAR register."]
+   #[doc="Get the *const pointer for the SAR register."]
    #[inline] pub fn sar_ptr<I: Into<bits::R4>>(&self, index: I) -> *const u32 { 
       let index: bits::R4 = index.into();
       let index: usize = index.value() as usize;
       ((self.0 as usize) + 0x100 + (index << 4)) as *const u32
    }
-#[doc="Get the *mut pointer for the SAR register."]
+
+   #[doc="Get the *mut pointer for the SAR register."]
    #[inline] pub fn sar_mut<I: Into<bits::R4>>(&self, index: I) -> *mut u32 { 
       let index: bits::R4 = index.into();
       let index: usize = index.value() as usize;
       ((self.0 as usize) + 0x100 + (index << 4)) as *mut u32
    }
-#[doc="Read the SAR register."]
+
+   #[doc="Read the SAR register."]
    #[inline] pub fn sar<I: Into<bits::R4>>(&self, index: I) -> Sar { 
       let index: bits::R4 = index.into();
       let index: usize = index.value() as usize;
@@ -27,7 +29,8 @@ impl DmaPeriph {
          Sar(read_volatile((self.0 + 0x100 + (index << 4)) as *const u32))
       }
    }
-#[doc="Write the SAR register."]
+
+   #[doc="Write the SAR register."]
    #[inline] pub fn set_sar<I: Into<bits::R4>, F: FnOnce(Sar) -> Sar>(&self, index: I, f: F) -> &Self {
       let index: bits::R4 = index.into();
       let index: usize = index.value() as usize;
@@ -37,7 +40,8 @@ impl DmaPeriph {
       }
       self
    }
-#[doc="Modify the SAR register."]
+
+   #[doc="Modify the SAR register."]
    #[inline] pub fn with_sar<I: Into<bits::R4> + Copy, F: FnOnce(Sar) -> Sar>(&self, index: I, f: F) -> &Self {
       let index: bits::R4 = index.into();
       let index: usize = index.value() as usize;
@@ -49,19 +53,21 @@ impl DmaPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the DAR register."]
+   #[doc="Get the *const pointer for the DAR register."]
    #[inline] pub fn dar_ptr<I: Into<bits::R4>>(&self, index: I) -> *const u32 { 
       let index: bits::R4 = index.into();
       let index: usize = index.value() as usize;
       ((self.0 as usize) + 0x104 + (index << 4)) as *const u32
    }
-#[doc="Get the *mut pointer for the DAR register."]
+
+   #[doc="Get the *mut pointer for the DAR register."]
    #[inline] pub fn dar_mut<I: Into<bits::R4>>(&self, index: I) -> *mut u32 { 
       let index: bits::R4 = index.into();
       let index: usize = index.value() as usize;
       ((self.0 as usize) + 0x104 + (index << 4)) as *mut u32
    }
-#[doc="Read the DAR register."]
+
+   #[doc="Read the DAR register."]
    #[inline] pub fn dar<I: Into<bits::R4>>(&self, index: I) -> Dar { 
       let index: bits::R4 = index.into();
       let index: usize = index.value() as usize;
@@ -69,7 +75,8 @@ impl DmaPeriph {
          Dar(read_volatile((self.0 + 0x104 + (index << 4)) as *const u32))
       }
    }
-#[doc="Write the DAR register."]
+
+   #[doc="Write the DAR register."]
    #[inline] pub fn set_dar<I: Into<bits::R4>, F: FnOnce(Dar) -> Dar>(&self, index: I, f: F) -> &Self {
       let index: bits::R4 = index.into();
       let index: usize = index.value() as usize;
@@ -79,7 +86,8 @@ impl DmaPeriph {
       }
       self
    }
-#[doc="Modify the DAR register."]
+
+   #[doc="Modify the DAR register."]
    #[inline] pub fn with_dar<I: Into<bits::R4> + Copy, F: FnOnce(Dar) -> Dar>(&self, index: I, f: F) -> &Self {
       let index: bits::R4 = index.into();
       let index: usize = index.value() as usize;
@@ -91,19 +99,21 @@ impl DmaPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the DSR_BCR register."]
+   #[doc="Get the *const pointer for the DSR_BCR register."]
    #[inline] pub fn dsr_bcr_ptr<I: Into<bits::R4>>(&self, index: I) -> *const u32 { 
       let index: bits::R4 = index.into();
       let index: usize = index.value() as usize;
       ((self.0 as usize) + 0x108 + (index << 4)) as *const u32
    }
-#[doc="Get the *mut pointer for the DSR_BCR register."]
+
+   #[doc="Get the *mut pointer for the DSR_BCR register."]
    #[inline] pub fn dsr_bcr_mut<I: Into<bits::R4>>(&self, index: I) -> *mut u32 { 
       let index: bits::R4 = index.into();
       let index: usize = index.value() as usize;
       ((self.0 as usize) + 0x108 + (index << 4)) as *mut u32
    }
-#[doc="Read the DSR_BCR register."]
+
+   #[doc="Read the DSR_BCR register."]
    #[inline] pub fn dsr_bcr<I: Into<bits::R4>>(&self, index: I) -> DsrBcr { 
       let index: bits::R4 = index.into();
       let index: usize = index.value() as usize;
@@ -111,7 +121,8 @@ impl DmaPeriph {
          DsrBcr(read_volatile((self.0 + 0x108 + (index << 4)) as *const u32))
       }
    }
-#[doc="Write the DSR_BCR register."]
+
+   #[doc="Write the DSR_BCR register."]
    #[inline] pub fn set_dsr_bcr<I: Into<bits::R4>, F: FnOnce(DsrBcr) -> DsrBcr>(&self, index: I, f: F) -> &Self {
       let index: bits::R4 = index.into();
       let index: usize = index.value() as usize;
@@ -121,7 +132,8 @@ impl DmaPeriph {
       }
       self
    }
-#[doc="Modify the DSR_BCR register."]
+
+   #[doc="Modify the DSR_BCR register."]
    #[inline] pub fn with_dsr_bcr<I: Into<bits::R4> + Copy, F: FnOnce(DsrBcr) -> DsrBcr>(&self, index: I, f: F) -> &Self {
       let index: bits::R4 = index.into();
       let index: usize = index.value() as usize;
@@ -133,19 +145,21 @@ impl DmaPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the DSR register."]
+   #[doc="Get the *const pointer for the DSR register."]
    #[inline] pub fn dsr_ptr<I: Into<bits::R4>>(&self, index: I) -> *const u8 { 
       let index: bits::R4 = index.into();
       let index: usize = index.value() as usize;
       ((self.0 as usize) + 0x10b + (index << 4)) as *const u8
    }
-#[doc="Get the *mut pointer for the DSR register."]
+
+   #[doc="Get the *mut pointer for the DSR register."]
    #[inline] pub fn dsr_mut<I: Into<bits::R4>>(&self, index: I) -> *mut u8 { 
       let index: bits::R4 = index.into();
       let index: usize = index.value() as usize;
       ((self.0 as usize) + 0x10b + (index << 4)) as *mut u8
    }
-#[doc="Read the DSR register."]
+
+   #[doc="Read the DSR register."]
    #[inline] pub fn dsr<I: Into<bits::R4>>(&self, index: I) -> Dsr { 
       let index: bits::R4 = index.into();
       let index: usize = index.value() as usize;
@@ -153,7 +167,8 @@ impl DmaPeriph {
          Dsr(read_volatile((self.0 + 0x10b + (index << 4)) as *const u8))
       }
    }
-#[doc="Write the DSR register."]
+
+   #[doc="Write the DSR register."]
    #[inline] pub fn set_dsr<I: Into<bits::R4>, F: FnOnce(Dsr) -> Dsr>(&self, index: I, f: F) -> &Self {
       let index: bits::R4 = index.into();
       let index: usize = index.value() as usize;
@@ -163,7 +178,8 @@ impl DmaPeriph {
       }
       self
    }
-#[doc="Modify the DSR register."]
+
+   #[doc="Modify the DSR register."]
    #[inline] pub fn with_dsr<I: Into<bits::R4> + Copy, F: FnOnce(Dsr) -> Dsr>(&self, index: I, f: F) -> &Self {
       let index: bits::R4 = index.into();
       let index: usize = index.value() as usize;
@@ -175,19 +191,21 @@ impl DmaPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the DCR register."]
+   #[doc="Get the *const pointer for the DCR register."]
    #[inline] pub fn dcr_ptr<I: Into<bits::R4>>(&self, index: I) -> *const u32 { 
       let index: bits::R4 = index.into();
       let index: usize = index.value() as usize;
       ((self.0 as usize) + 0x10c + (index << 4)) as *const u32
    }
-#[doc="Get the *mut pointer for the DCR register."]
+
+   #[doc="Get the *mut pointer for the DCR register."]
    #[inline] pub fn dcr_mut<I: Into<bits::R4>>(&self, index: I) -> *mut u32 { 
       let index: bits::R4 = index.into();
       let index: usize = index.value() as usize;
       ((self.0 as usize) + 0x10c + (index << 4)) as *mut u32
    }
-#[doc="Read the DCR register."]
+
+   #[doc="Read the DCR register."]
    #[inline] pub fn dcr<I: Into<bits::R4>>(&self, index: I) -> Dcr { 
       let index: bits::R4 = index.into();
       let index: usize = index.value() as usize;
@@ -195,7 +213,8 @@ impl DmaPeriph {
          Dcr(read_volatile((self.0 + 0x10c + (index << 4)) as *const u32))
       }
    }
-#[doc="Write the DCR register."]
+
+   #[doc="Write the DCR register."]
    #[inline] pub fn set_dcr<I: Into<bits::R4>, F: FnOnce(Dcr) -> Dcr>(&self, index: I, f: F) -> &Self {
       let index: bits::R4 = index.into();
       let index: usize = index.value() as usize;
@@ -205,7 +224,8 @@ impl DmaPeriph {
       }
       self
    }
-#[doc="Modify the DCR register."]
+
+   #[doc="Modify the DCR register."]
    #[inline] pub fn with_dcr<I: Into<bits::R4> + Copy, F: FnOnce(Dcr) -> Dcr>(&self, index: I, f: F) -> &Self {
       let index: bits::R4 = index.into();
       let index: usize = index.value() as usize;
@@ -223,11 +243,17 @@ impl DmaPeriph {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Sar(pub u32);
 impl Sar {
-#[doc="Each SAR contains the byte address used by the DMA controller to read data"]
+   #[doc="Each SAR contains the byte address used by the DMA controller to read data"]
    #[inline] pub fn sar(&self) -> bits::U32 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffffffff) as u32) } // [31:0]
    }
-#[doc="Each SAR contains the byte address used by the DMA controller to read data"]
+
+   #[doc="Each SAR contains the byte address used by the DMA controller to read data"]
+   #[inline] pub fn test_sar(&self) -> bool {
+      self.sar != 0
+   }
+
+   #[doc="Each SAR contains the byte address used by the DMA controller to read data"]
    #[inline] pub fn set_sar<V: Into<bits::U32>>(mut self, value: V) -> Self {
       let value: bits::U32 = value.into();
       let value: u32 = value.into();
@@ -237,11 +263,13 @@ impl Sar {
    }
 
 }
+
 impl ::core::fmt::Display for Sar {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Sar {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -249,15 +277,22 @@ impl ::core::fmt::Debug for Sar {
       Ok(())
    }
 }
+
 #[doc="Destination Address Register"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Dar(pub u32);
 impl Dar {
-#[doc="Each DAR contains the byte address used by the DMA controller to write data"]
+   #[doc="Each DAR contains the byte address used by the DMA controller to write data"]
    #[inline] pub fn dar(&self) -> bits::U32 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffffffff) as u32) } // [31:0]
    }
-#[doc="Each DAR contains the byte address used by the DMA controller to write data"]
+
+   #[doc="Each DAR contains the byte address used by the DMA controller to write data"]
+   #[inline] pub fn test_dar(&self) -> bool {
+      self.dar != 0
+   }
+
+   #[doc="Each DAR contains the byte address used by the DMA controller to write data"]
    #[inline] pub fn set_dar<V: Into<bits::U32>>(mut self, value: V) -> Self {
       let value: bits::U32 = value.into();
       let value: u32 = value.into();
@@ -267,11 +302,13 @@ impl Dar {
    }
 
 }
+
 impl ::core::fmt::Display for Dar {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Dar {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -279,15 +316,22 @@ impl ::core::fmt::Debug for Dar {
       Ok(())
    }
 }
+
 #[doc="DMA Status Register / Byte Count Register"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct DsrBcr(pub u32);
 impl DsrBcr {
-#[doc="This field contains the number of bytes yet to be transferred for a given block"]
+   #[doc="This field contains the number of bytes yet to be transferred for a given block"]
    #[inline] pub fn bcr(&self) -> bits::U24 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffffff) as u32) } // [23:0]
    }
-#[doc="This field contains the number of bytes yet to be transferred for a given block"]
+
+   #[doc="This field contains the number of bytes yet to be transferred for a given block"]
+   #[inline] pub fn test_bcr(&self) -> bool {
+      self.bcr != 0
+   }
+
+   #[doc="This field contains the number of bytes yet to be transferred for a given block"]
    #[inline] pub fn set_bcr<V: Into<bits::U24>>(mut self, value: V) -> Self {
       let value: bits::U24 = value.into();
       let value: u32 = value.into();
@@ -296,11 +340,17 @@ impl DsrBcr {
       self
    }
 
-#[doc="Transactions Done"]
+   #[doc="Transactions Done"]
    #[inline] pub fn done(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 24) & 0x1) as u8) } // [24]
    }
-#[doc="Transactions Done"]
+
+   #[doc="Transactions Done"]
+   #[inline] pub fn test_done(&self) -> bool {
+      self.done != 0
+   }
+
+   #[doc="Transactions Done"]
    #[inline] pub fn set_done<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -309,11 +359,17 @@ impl DsrBcr {
       self
    }
 
-#[doc="Busy"]
+   #[doc="Busy"]
    #[inline] pub fn bsy(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 25) & 0x1) as u8) } // [25]
    }
-#[doc="Busy"]
+
+   #[doc="Busy"]
+   #[inline] pub fn test_bsy(&self) -> bool {
+      self.bsy != 0
+   }
+
+   #[doc="Busy"]
    #[inline] pub fn set_bsy<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -322,11 +378,17 @@ impl DsrBcr {
       self
    }
 
-#[doc="Request"]
+   #[doc="Request"]
    #[inline] pub fn req(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 26) & 0x1) as u8) } // [26]
    }
-#[doc="Request"]
+
+   #[doc="Request"]
+   #[inline] pub fn test_req(&self) -> bool {
+      self.req != 0
+   }
+
+   #[doc="Request"]
    #[inline] pub fn set_req<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -335,11 +397,17 @@ impl DsrBcr {
       self
    }
 
-#[doc="Bus Error on Destination"]
+   #[doc="Bus Error on Destination"]
    #[inline] pub fn bed(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 28) & 0x1) as u8) } // [28]
    }
-#[doc="Bus Error on Destination"]
+
+   #[doc="Bus Error on Destination"]
+   #[inline] pub fn test_bed(&self) -> bool {
+      self.bed != 0
+   }
+
+   #[doc="Bus Error on Destination"]
    #[inline] pub fn set_bed<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -348,11 +416,17 @@ impl DsrBcr {
       self
    }
 
-#[doc="Bus Error on Source"]
+   #[doc="Bus Error on Source"]
    #[inline] pub fn bes(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 29) & 0x1) as u8) } // [29]
    }
-#[doc="Bus Error on Source"]
+
+   #[doc="Bus Error on Source"]
+   #[inline] pub fn test_bes(&self) -> bool {
+      self.bes != 0
+   }
+
+   #[doc="Bus Error on Source"]
    #[inline] pub fn set_bes<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -361,11 +435,17 @@ impl DsrBcr {
       self
    }
 
-#[doc="Configuration Error"]
+   #[doc="Configuration Error"]
    #[inline] pub fn ce(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 30) & 0x1) as u8) } // [30]
    }
-#[doc="Configuration Error"]
+
+   #[doc="Configuration Error"]
+   #[inline] pub fn test_ce(&self) -> bool {
+      self.ce != 0
+   }
+
+   #[doc="Configuration Error"]
    #[inline] pub fn set_ce<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -375,11 +455,13 @@ impl DsrBcr {
    }
 
 }
+
 impl ::core::fmt::Display for DsrBcr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for DsrBcr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -394,16 +476,19 @@ impl ::core::fmt::Debug for DsrBcr {
       Ok(())
    }
 }
+
 #[doc="DMA_DSR0 register."]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Dsr(pub u8);
 impl Dsr {
 }
+
 impl ::core::fmt::Display for Dsr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Dsr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -411,15 +496,22 @@ impl ::core::fmt::Debug for Dsr {
       Ok(())
    }
 }
+
 #[doc="DMA Control Register"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Dcr(pub u32);
 impl Dcr {
-#[doc="Link Channel 2"]
+   #[doc="Link Channel 2"]
    #[inline] pub fn lch2(&self) -> bits::U2 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x3) as u8) } // [1:0]
    }
-#[doc="Link Channel 2"]
+
+   #[doc="Link Channel 2"]
+   #[inline] pub fn test_lch2(&self) -> bool {
+      self.lch2 != 0
+   }
+
+   #[doc="Link Channel 2"]
    #[inline] pub fn set_lch2<V: Into<bits::U2>>(mut self, value: V) -> Self {
       let value: bits::U2 = value.into();
       let value: u32 = value.into();
@@ -428,11 +520,17 @@ impl Dcr {
       self
    }
 
-#[doc="Link Channel 1"]
+   #[doc="Link Channel 1"]
    #[inline] pub fn lch1(&self) -> bits::U2 {
       unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x3) as u8) } // [3:2]
    }
-#[doc="Link Channel 1"]
+
+   #[doc="Link Channel 1"]
+   #[inline] pub fn test_lch1(&self) -> bool {
+      self.lch1 != 0
+   }
+
+   #[doc="Link Channel 1"]
    #[inline] pub fn set_lch1<V: Into<bits::U2>>(mut self, value: V) -> Self {
       let value: bits::U2 = value.into();
       let value: u32 = value.into();
@@ -441,11 +539,17 @@ impl Dcr {
       self
    }
 
-#[doc="Link Channel Control"]
+   #[doc="Link Channel Control"]
    #[inline] pub fn linkcc(&self) -> bits::U2 {
       unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x3) as u8) } // [5:4]
    }
-#[doc="Link Channel Control"]
+
+   #[doc="Link Channel Control"]
+   #[inline] pub fn test_linkcc(&self) -> bool {
+      self.linkcc != 0
+   }
+
+   #[doc="Link Channel Control"]
    #[inline] pub fn set_linkcc<V: Into<bits::U2>>(mut self, value: V) -> Self {
       let value: bits::U2 = value.into();
       let value: u32 = value.into();
@@ -454,11 +558,17 @@ impl Dcr {
       self
    }
 
-#[doc="Disable Request"]
+   #[doc="Disable Request"]
    #[inline] pub fn d_req(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
    }
-#[doc="Disable Request"]
+
+   #[doc="Disable Request"]
+   #[inline] pub fn test_d_req(&self) -> bool {
+      self.d_req != 0
+   }
+
+   #[doc="Disable Request"]
    #[inline] pub fn set_d_req<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -467,11 +577,17 @@ impl Dcr {
       self
    }
 
-#[doc="Destination Address Modulo"]
+   #[doc="Destination Address Modulo"]
    #[inline] pub fn dmod(&self) -> bits::U4 {
       unsafe { ::core::mem::transmute(((self.0 >> 8) & 0xf) as u8) } // [11:8]
    }
-#[doc="Destination Address Modulo"]
+
+   #[doc="Destination Address Modulo"]
+   #[inline] pub fn test_dmod(&self) -> bool {
+      self.dmod != 0
+   }
+
+   #[doc="Destination Address Modulo"]
    #[inline] pub fn set_dmod<V: Into<bits::U4>>(mut self, value: V) -> Self {
       let value: bits::U4 = value.into();
       let value: u32 = value.into();
@@ -480,11 +596,17 @@ impl Dcr {
       self
    }
 
-#[doc="Source Address Modulo"]
+   #[doc="Source Address Modulo"]
    #[inline] pub fn smod(&self) -> bits::U4 {
       unsafe { ::core::mem::transmute(((self.0 >> 12) & 0xf) as u8) } // [15:12]
    }
-#[doc="Source Address Modulo"]
+
+   #[doc="Source Address Modulo"]
+   #[inline] pub fn test_smod(&self) -> bool {
+      self.smod != 0
+   }
+
+   #[doc="Source Address Modulo"]
    #[inline] pub fn set_smod<V: Into<bits::U4>>(mut self, value: V) -> Self {
       let value: bits::U4 = value.into();
       let value: u32 = value.into();
@@ -493,11 +615,17 @@ impl Dcr {
       self
    }
 
-#[doc="Start Transfer"]
+   #[doc="Start Transfer"]
    #[inline] pub fn start(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1) as u8) } // [16]
    }
-#[doc="Start Transfer"]
+
+   #[doc="Start Transfer"]
+   #[inline] pub fn test_start(&self) -> bool {
+      self.start != 0
+   }
+
+   #[doc="Start Transfer"]
    #[inline] pub fn set_start<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -506,11 +634,17 @@ impl Dcr {
       self
    }
 
-#[doc="Destination Size"]
+   #[doc="Destination Size"]
    #[inline] pub fn dsize(&self) -> bits::U2 {
       unsafe { ::core::mem::transmute(((self.0 >> 17) & 0x3) as u8) } // [18:17]
    }
-#[doc="Destination Size"]
+
+   #[doc="Destination Size"]
+   #[inline] pub fn test_dsize(&self) -> bool {
+      self.dsize != 0
+   }
+
+   #[doc="Destination Size"]
    #[inline] pub fn set_dsize<V: Into<bits::U2>>(mut self, value: V) -> Self {
       let value: bits::U2 = value.into();
       let value: u32 = value.into();
@@ -519,11 +653,17 @@ impl Dcr {
       self
    }
 
-#[doc="Destination Increment"]
+   #[doc="Destination Increment"]
    #[inline] pub fn dinc(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 19) & 0x1) as u8) } // [19]
    }
-#[doc="Destination Increment"]
+
+   #[doc="Destination Increment"]
+   #[inline] pub fn test_dinc(&self) -> bool {
+      self.dinc != 0
+   }
+
+   #[doc="Destination Increment"]
    #[inline] pub fn set_dinc<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -532,11 +672,17 @@ impl Dcr {
       self
    }
 
-#[doc="Source Size"]
+   #[doc="Source Size"]
    #[inline] pub fn ssize(&self) -> bits::U2 {
       unsafe { ::core::mem::transmute(((self.0 >> 20) & 0x3) as u8) } // [21:20]
    }
-#[doc="Source Size"]
+
+   #[doc="Source Size"]
+   #[inline] pub fn test_ssize(&self) -> bool {
+      self.ssize != 0
+   }
+
+   #[doc="Source Size"]
    #[inline] pub fn set_ssize<V: Into<bits::U2>>(mut self, value: V) -> Self {
       let value: bits::U2 = value.into();
       let value: u32 = value.into();
@@ -545,11 +691,17 @@ impl Dcr {
       self
    }
 
-#[doc="Source Increment"]
+   #[doc="Source Increment"]
    #[inline] pub fn sinc(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 22) & 0x1) as u8) } // [22]
    }
-#[doc="Source Increment"]
+
+   #[doc="Source Increment"]
+   #[inline] pub fn test_sinc(&self) -> bool {
+      self.sinc != 0
+   }
+
+   #[doc="Source Increment"]
    #[inline] pub fn set_sinc<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -558,11 +710,17 @@ impl Dcr {
       self
    }
 
-#[doc="Enable asynchronous DMA requests"]
+   #[doc="Enable asynchronous DMA requests"]
    #[inline] pub fn eadreq(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 23) & 0x1) as u8) } // [23]
    }
-#[doc="Enable asynchronous DMA requests"]
+
+   #[doc="Enable asynchronous DMA requests"]
+   #[inline] pub fn test_eadreq(&self) -> bool {
+      self.eadreq != 0
+   }
+
+   #[doc="Enable asynchronous DMA requests"]
    #[inline] pub fn set_eadreq<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -571,11 +729,17 @@ impl Dcr {
       self
    }
 
-#[doc="Auto-align"]
+   #[doc="Auto-align"]
    #[inline] pub fn aa(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 28) & 0x1) as u8) } // [28]
    }
-#[doc="Auto-align"]
+
+   #[doc="Auto-align"]
+   #[inline] pub fn test_aa(&self) -> bool {
+      self.aa != 0
+   }
+
+   #[doc="Auto-align"]
    #[inline] pub fn set_aa<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -584,11 +748,17 @@ impl Dcr {
       self
    }
 
-#[doc="Cycle Steal"]
+   #[doc="Cycle Steal"]
    #[inline] pub fn cs(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 29) & 0x1) as u8) } // [29]
    }
-#[doc="Cycle Steal"]
+
+   #[doc="Cycle Steal"]
+   #[inline] pub fn test_cs(&self) -> bool {
+      self.cs != 0
+   }
+
+   #[doc="Cycle Steal"]
    #[inline] pub fn set_cs<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -597,11 +767,17 @@ impl Dcr {
       self
    }
 
-#[doc="Enable Peripheral Request"]
+   #[doc="Enable Peripheral Request"]
    #[inline] pub fn erq(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 30) & 0x1) as u8) } // [30]
    }
-#[doc="Enable Peripheral Request"]
+
+   #[doc="Enable Peripheral Request"]
+   #[inline] pub fn test_erq(&self) -> bool {
+      self.erq != 0
+   }
+
+   #[doc="Enable Peripheral Request"]
    #[inline] pub fn set_erq<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -610,11 +786,17 @@ impl Dcr {
       self
    }
 
-#[doc="Enable Interrupt on Completion of Transfer"]
+   #[doc="Enable Interrupt on Completion of Transfer"]
    #[inline] pub fn eint(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 31) & 0x1) as u8) } // [31]
    }
-#[doc="Enable Interrupt on Completion of Transfer"]
+
+   #[doc="Enable Interrupt on Completion of Transfer"]
+   #[inline] pub fn test_eint(&self) -> bool {
+      self.eint != 0
+   }
+
+   #[doc="Enable Interrupt on Completion of Transfer"]
    #[inline] pub fn set_eint<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -624,11 +806,13 @@ impl Dcr {
    }
 
 }
+
 impl ::core::fmt::Display for Dcr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Dcr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -652,5 +836,6 @@ impl ::core::fmt::Debug for Dcr {
       Ok(())
    }
 }
+
 pub struct DmaCh { pub periph: DmaPeriph, pub index: usize }
 

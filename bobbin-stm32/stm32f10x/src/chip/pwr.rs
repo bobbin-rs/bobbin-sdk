@@ -7,21 +7,24 @@ periph!(PWR, Pwr, 0x40007000);
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Pwr(pub usize);
 impl Pwr {
-#[doc="Get the *const pointer for the CR register."]
+   #[doc="Get the *const pointer for the CR register."]
    #[inline] pub fn cr_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x0) as *const u32
    }
-#[doc="Get the *mut pointer for the CR register."]
+
+   #[doc="Get the *mut pointer for the CR register."]
    #[inline] pub fn cr_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x0) as *mut u32
    }
-#[doc="Read the CR register."]
+
+   #[doc="Read the CR register."]
    #[inline] pub fn cr(&self) -> Cr { 
       unsafe {
          Cr(read_volatile((self.0 + 0x0) as *const u32))
       }
    }
-#[doc="Write the CR register."]
+
+   #[doc="Write the CR register."]
    #[inline] pub fn set_cr<F: FnOnce(Cr) -> Cr>(&self, f: F) -> &Self {
       let value = f(Cr(0));
       unsafe {
@@ -29,7 +32,8 @@ impl Pwr {
       }
       self
    }
-#[doc="Modify the CR register."]
+
+   #[doc="Modify the CR register."]
    #[inline] pub fn with_cr<F: FnOnce(Cr) -> Cr>(&self, f: F) -> &Self {
       let tmp = self.cr();
       let value = f(tmp);
@@ -39,21 +43,24 @@ impl Pwr {
       self
    }
 
-#[doc="Get the *const pointer for the CSR register."]
+   #[doc="Get the *const pointer for the CSR register."]
    #[inline] pub fn csr_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x4) as *const u32
    }
-#[doc="Get the *mut pointer for the CSR register."]
+
+   #[doc="Get the *mut pointer for the CSR register."]
    #[inline] pub fn csr_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x4) as *mut u32
    }
-#[doc="Read the CSR register."]
+
+   #[doc="Read the CSR register."]
    #[inline] pub fn csr(&self) -> Csr { 
       unsafe {
          Csr(read_volatile((self.0 + 0x4) as *const u32))
       }
    }
-#[doc="Write the CSR register."]
+
+   #[doc="Write the CSR register."]
    #[inline] pub fn set_csr<F: FnOnce(Csr) -> Csr>(&self, f: F) -> &Self {
       let value = f(Csr(0));
       unsafe {
@@ -61,7 +68,8 @@ impl Pwr {
       }
       self
    }
-#[doc="Modify the CSR register."]
+
+   #[doc="Modify the CSR register."]
    #[inline] pub fn with_csr<F: FnOnce(Csr) -> Csr>(&self, f: F) -> &Self {
       let tmp = self.csr();
       let value = f(tmp);
@@ -77,11 +85,17 @@ impl Pwr {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Cr(pub u32);
 impl Cr {
-#[doc="Low Power Deep Sleep"]
+   #[doc="Low Power Deep Sleep"]
    #[inline] pub fn lpds(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
    }
-#[doc="Low Power Deep Sleep"]
+
+   #[doc="Low Power Deep Sleep"]
+   #[inline] pub fn test_lpds(&self) -> bool {
+      self.lpds != 0
+   }
+
+   #[doc="Low Power Deep Sleep"]
    #[inline] pub fn set_lpds<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -90,11 +104,17 @@ impl Cr {
       self
    }
 
-#[doc="Power Down Deep Sleep"]
+   #[doc="Power Down Deep Sleep"]
    #[inline] pub fn pdds(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
    }
-#[doc="Power Down Deep Sleep"]
+
+   #[doc="Power Down Deep Sleep"]
+   #[inline] pub fn test_pdds(&self) -> bool {
+      self.pdds != 0
+   }
+
+   #[doc="Power Down Deep Sleep"]
    #[inline] pub fn set_pdds<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -103,11 +123,17 @@ impl Cr {
       self
    }
 
-#[doc="Clear Wake-up Flag"]
+   #[doc="Clear Wake-up Flag"]
    #[inline] pub fn cwuf(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
    }
-#[doc="Clear Wake-up Flag"]
+
+   #[doc="Clear Wake-up Flag"]
+   #[inline] pub fn test_cwuf(&self) -> bool {
+      self.cwuf != 0
+   }
+
+   #[doc="Clear Wake-up Flag"]
    #[inline] pub fn set_cwuf<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -116,11 +142,17 @@ impl Cr {
       self
    }
 
-#[doc="Clear STANDBY Flag"]
+   #[doc="Clear STANDBY Flag"]
    #[inline] pub fn csbf(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
    }
-#[doc="Clear STANDBY Flag"]
+
+   #[doc="Clear STANDBY Flag"]
+   #[inline] pub fn test_csbf(&self) -> bool {
+      self.csbf != 0
+   }
+
+   #[doc="Clear STANDBY Flag"]
    #[inline] pub fn set_csbf<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -129,11 +161,17 @@ impl Cr {
       self
    }
 
-#[doc="Power Voltage Detector Enable"]
+   #[doc="Power Voltage Detector Enable"]
    #[inline] pub fn pvde(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
    }
-#[doc="Power Voltage Detector Enable"]
+
+   #[doc="Power Voltage Detector Enable"]
+   #[inline] pub fn test_pvde(&self) -> bool {
+      self.pvde != 0
+   }
+
+   #[doc="Power Voltage Detector Enable"]
    #[inline] pub fn set_pvde<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -142,11 +180,17 @@ impl Cr {
       self
    }
 
-#[doc="PVD Level Selection"]
+   #[doc="PVD Level Selection"]
    #[inline] pub fn pls(&self) -> bits::U3 {
       unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x7) as u8) } // [7:5]
    }
-#[doc="PVD Level Selection"]
+
+   #[doc="PVD Level Selection"]
+   #[inline] pub fn test_pls(&self) -> bool {
+      self.pls != 0
+   }
+
+   #[doc="PVD Level Selection"]
    #[inline] pub fn set_pls<V: Into<bits::U3>>(mut self, value: V) -> Self {
       let value: bits::U3 = value.into();
       let value: u32 = value.into();
@@ -155,11 +199,17 @@ impl Cr {
       self
    }
 
-#[doc="Disable Backup Domain write protection"]
+   #[doc="Disable Backup Domain write protection"]
    #[inline] pub fn dbp(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
    }
-#[doc="Disable Backup Domain write protection"]
+
+   #[doc="Disable Backup Domain write protection"]
+   #[inline] pub fn test_dbp(&self) -> bool {
+      self.dbp != 0
+   }
+
+   #[doc="Disable Backup Domain write protection"]
    #[inline] pub fn set_dbp<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -169,11 +219,13 @@ impl Cr {
    }
 
 }
+
 impl ::core::fmt::Display for Cr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Cr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -188,15 +240,22 @@ impl ::core::fmt::Debug for Cr {
       Ok(())
    }
 }
+
 #[doc="Power control register (PWR_CR)"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Csr(pub u32);
 impl Csr {
-#[doc="Wake-Up Flag"]
+   #[doc="Wake-Up Flag"]
    #[inline] pub fn wuf(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
    }
-#[doc="Wake-Up Flag"]
+
+   #[doc="Wake-Up Flag"]
+   #[inline] pub fn test_wuf(&self) -> bool {
+      self.wuf != 0
+   }
+
+   #[doc="Wake-Up Flag"]
    #[inline] pub fn set_wuf<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -205,11 +264,17 @@ impl Csr {
       self
    }
 
-#[doc="STANDBY Flag"]
+   #[doc="STANDBY Flag"]
    #[inline] pub fn sbf(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
    }
-#[doc="STANDBY Flag"]
+
+   #[doc="STANDBY Flag"]
+   #[inline] pub fn test_sbf(&self) -> bool {
+      self.sbf != 0
+   }
+
+   #[doc="STANDBY Flag"]
    #[inline] pub fn set_sbf<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -218,11 +283,17 @@ impl Csr {
       self
    }
 
-#[doc="PVD Output"]
+   #[doc="PVD Output"]
    #[inline] pub fn pvdo(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
    }
-#[doc="PVD Output"]
+
+   #[doc="PVD Output"]
+   #[inline] pub fn test_pvdo(&self) -> bool {
+      self.pvdo != 0
+   }
+
+   #[doc="PVD Output"]
    #[inline] pub fn set_pvdo<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -231,11 +302,17 @@ impl Csr {
       self
    }
 
-#[doc="Enable WKUP pin"]
+   #[doc="Enable WKUP pin"]
    #[inline] pub fn ewup(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
    }
-#[doc="Enable WKUP pin"]
+
+   #[doc="Enable WKUP pin"]
+   #[inline] pub fn test_ewup(&self) -> bool {
+      self.ewup != 0
+   }
+
+   #[doc="Enable WKUP pin"]
    #[inline] pub fn set_ewup<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -245,11 +322,13 @@ impl Csr {
    }
 
 }
+
 impl ::core::fmt::Display for Csr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Csr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -261,4 +340,5 @@ impl ::core::fmt::Debug for Csr {
       Ok(())
    }
 }
+
 

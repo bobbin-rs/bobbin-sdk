@@ -7,21 +7,24 @@ pub struct GpioPeriph(pub usize);
 
 
 impl GpioPeriph {
-#[doc="Get the *const pointer for the PDOR register."]
+   #[doc="Get the *const pointer for the PDOR register."]
    #[inline] pub fn pdor_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x0) as *const u32
    }
-#[doc="Get the *mut pointer for the PDOR register."]
+
+   #[doc="Get the *mut pointer for the PDOR register."]
    #[inline] pub fn pdor_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x0) as *mut u32
    }
-#[doc="Read the PDOR register."]
+
+   #[doc="Read the PDOR register."]
    #[inline] pub fn pdor(&self) -> Pdor { 
       unsafe {
          Pdor(read_volatile((self.0 + 0x0) as *const u32))
       }
    }
-#[doc="Write the PDOR register."]
+
+   #[doc="Write the PDOR register."]
    #[inline] pub fn set_pdor<F: FnOnce(Pdor) -> Pdor>(&self, f: F) -> &Self {
       let value = f(Pdor(0));
       unsafe {
@@ -29,7 +32,8 @@ impl GpioPeriph {
       }
       self
    }
-#[doc="Modify the PDOR register."]
+
+   #[doc="Modify the PDOR register."]
    #[inline] pub fn with_pdor<F: FnOnce(Pdor) -> Pdor>(&self, f: F) -> &Self {
       let tmp = self.pdor();
       let value = f(tmp);
@@ -39,15 +43,17 @@ impl GpioPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the PSOR register."]
+   #[doc="Get the *const pointer for the PSOR register."]
    #[inline] pub fn psor_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x4) as *const u32
    }
-#[doc="Get the *mut pointer for the PSOR register."]
+
+   #[doc="Get the *mut pointer for the PSOR register."]
    #[inline] pub fn psor_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x4) as *mut u32
    }
-#[doc="Write the PSOR register."]
+
+   #[doc="Write the PSOR register."]
    #[inline] pub fn set_psor<F: FnOnce(Psor) -> Psor>(&self, f: F) -> &Self {
       let value = f(Psor(0));
       unsafe {
@@ -56,15 +62,17 @@ impl GpioPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the PCOR register."]
+   #[doc="Get the *const pointer for the PCOR register."]
    #[inline] pub fn pcor_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x8) as *const u32
    }
-#[doc="Get the *mut pointer for the PCOR register."]
+
+   #[doc="Get the *mut pointer for the PCOR register."]
    #[inline] pub fn pcor_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x8) as *mut u32
    }
-#[doc="Write the PCOR register."]
+
+   #[doc="Write the PCOR register."]
    #[inline] pub fn set_pcor<F: FnOnce(Pcor) -> Pcor>(&self, f: F) -> &Self {
       let value = f(Pcor(0));
       unsafe {
@@ -73,15 +81,17 @@ impl GpioPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the PTOR register."]
+   #[doc="Get the *const pointer for the PTOR register."]
    #[inline] pub fn ptor_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0xc) as *const u32
    }
-#[doc="Get the *mut pointer for the PTOR register."]
+
+   #[doc="Get the *mut pointer for the PTOR register."]
    #[inline] pub fn ptor_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0xc) as *mut u32
    }
-#[doc="Write the PTOR register."]
+
+   #[doc="Write the PTOR register."]
    #[inline] pub fn set_ptor<F: FnOnce(Ptor) -> Ptor>(&self, f: F) -> &Self {
       let value = f(Ptor(0));
       unsafe {
@@ -90,36 +100,41 @@ impl GpioPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the PDIR register."]
+   #[doc="Get the *const pointer for the PDIR register."]
    #[inline] pub fn pdir_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x10) as *const u32
    }
-#[doc="Get the *mut pointer for the PDIR register."]
+
+   #[doc="Get the *mut pointer for the PDIR register."]
    #[inline] pub fn pdir_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x10) as *mut u32
    }
-#[doc="Read the PDIR register."]
+
+   #[doc="Read the PDIR register."]
    #[inline] pub fn pdir(&self) -> Pdir { 
       unsafe {
          Pdir(read_volatile((self.0 + 0x10) as *const u32))
       }
    }
 
-#[doc="Get the *const pointer for the PDDR register."]
+   #[doc="Get the *const pointer for the PDDR register."]
    #[inline] pub fn pddr_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x14) as *const u32
    }
-#[doc="Get the *mut pointer for the PDDR register."]
+
+   #[doc="Get the *mut pointer for the PDDR register."]
    #[inline] pub fn pddr_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x14) as *mut u32
    }
-#[doc="Read the PDDR register."]
+
+   #[doc="Read the PDDR register."]
    #[inline] pub fn pddr(&self) -> Pddr { 
       unsafe {
          Pddr(read_volatile((self.0 + 0x14) as *const u32))
       }
    }
-#[doc="Write the PDDR register."]
+
+   #[doc="Write the PDDR register."]
    #[inline] pub fn set_pddr<F: FnOnce(Pddr) -> Pddr>(&self, f: F) -> &Self {
       let value = f(Pddr(0));
       unsafe {
@@ -127,7 +142,8 @@ impl GpioPeriph {
       }
       self
    }
-#[doc="Modify the PDDR register."]
+
+   #[doc="Modify the PDDR register."]
    #[inline] pub fn with_pddr<F: FnOnce(Pddr) -> Pddr>(&self, f: F) -> &Self {
       let tmp = self.pddr();
       let value = f(tmp);
@@ -143,14 +159,20 @@ impl GpioPeriph {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pdor(pub u32);
 impl Pdor {
-#[doc="Port Data Output"]
+   #[doc="Port Data Output"]
    #[inline] pub fn pdo<I: Into<bits::R32>>(&self, index: I) -> bits::U1 {
       let index: bits::R32 = index.into();
       let index: usize = index.value();
       let shift: usize = 0 + index;
       unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
    }
-#[doc="Port Data Output"]
+
+   #[doc="Port Data Output"]
+   #[inline] pub fn test_pdo<I: Into<bits::R32>>(&self, index: I) -> bool{
+      self.pdo(index) != 0
+   }
+
+   #[doc="Port Data Output"]
    #[inline] pub fn set_pdo<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
       let index: bits::R32 = index.into();
       let index: usize = index.value();
@@ -163,11 +185,13 @@ impl Pdor {
    }
 
 }
+
 impl ::core::fmt::Display for Pdor {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Pdor {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -207,18 +231,25 @@ impl ::core::fmt::Debug for Pdor {
       Ok(())
    }
 }
+
 #[doc="Port Set Output Register"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Psor(pub u32);
 impl Psor {
-#[doc="Port Set Output"]
+   #[doc="Port Set Output"]
    #[inline] pub fn ptso<I: Into<bits::R32>>(&self, index: I) -> bits::U1 {
       let index: bits::R32 = index.into();
       let index: usize = index.value();
       let shift: usize = 0 + index;
       unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
    }
-#[doc="Port Set Output"]
+
+   #[doc="Port Set Output"]
+   #[inline] pub fn test_ptso<I: Into<bits::R32>>(&self, index: I) -> bool{
+      self.ptso(index) != 0
+   }
+
+   #[doc="Port Set Output"]
    #[inline] pub fn set_ptso<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
       let index: bits::R32 = index.into();
       let index: usize = index.value();
@@ -231,11 +262,13 @@ impl Psor {
    }
 
 }
+
 impl ::core::fmt::Display for Psor {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Psor {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -275,18 +308,25 @@ impl ::core::fmt::Debug for Psor {
       Ok(())
    }
 }
+
 #[doc="Port Clear Output Register"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pcor(pub u32);
 impl Pcor {
-#[doc="Port Clear Output"]
+   #[doc="Port Clear Output"]
    #[inline] pub fn ptco<I: Into<bits::R32>>(&self, index: I) -> bits::U1 {
       let index: bits::R32 = index.into();
       let index: usize = index.value();
       let shift: usize = 0 + index;
       unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
    }
-#[doc="Port Clear Output"]
+
+   #[doc="Port Clear Output"]
+   #[inline] pub fn test_ptco<I: Into<bits::R32>>(&self, index: I) -> bool{
+      self.ptco(index) != 0
+   }
+
+   #[doc="Port Clear Output"]
    #[inline] pub fn set_ptco<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
       let index: bits::R32 = index.into();
       let index: usize = index.value();
@@ -299,11 +339,13 @@ impl Pcor {
    }
 
 }
+
 impl ::core::fmt::Display for Pcor {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Pcor {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -343,18 +385,25 @@ impl ::core::fmt::Debug for Pcor {
       Ok(())
    }
 }
+
 #[doc="Port Toggle Output Register"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ptor(pub u32);
 impl Ptor {
-#[doc="Port Toggle Output"]
+   #[doc="Port Toggle Output"]
    #[inline] pub fn ptto<I: Into<bits::R32>>(&self, index: I) -> bits::U1 {
       let index: bits::R32 = index.into();
       let index: usize = index.value();
       let shift: usize = 0 + index;
       unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
    }
-#[doc="Port Toggle Output"]
+
+   #[doc="Port Toggle Output"]
+   #[inline] pub fn test_ptto<I: Into<bits::R32>>(&self, index: I) -> bool{
+      self.ptto(index) != 0
+   }
+
+   #[doc="Port Toggle Output"]
    #[inline] pub fn set_ptto<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
       let index: bits::R32 = index.into();
       let index: usize = index.value();
@@ -367,11 +416,13 @@ impl Ptor {
    }
 
 }
+
 impl ::core::fmt::Display for Ptor {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Ptor {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -411,18 +462,25 @@ impl ::core::fmt::Debug for Ptor {
       Ok(())
    }
 }
+
 #[doc="Port Data Input Register"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pdir(pub u32);
 impl Pdir {
-#[doc="Port Data Input"]
+   #[doc="Port Data Input"]
    #[inline] pub fn pdi<I: Into<bits::R32>>(&self, index: I) -> bits::U1 {
       let index: bits::R32 = index.into();
       let index: usize = index.value();
       let shift: usize = 0 + index;
       unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
    }
-#[doc="Port Data Input"]
+
+   #[doc="Port Data Input"]
+   #[inline] pub fn test_pdi<I: Into<bits::R32>>(&self, index: I) -> bool{
+      self.pdi(index) != 0
+   }
+
+   #[doc="Port Data Input"]
    #[inline] pub fn set_pdi<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
       let index: bits::R32 = index.into();
       let index: usize = index.value();
@@ -435,11 +493,13 @@ impl Pdir {
    }
 
 }
+
 impl ::core::fmt::Display for Pdir {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Pdir {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -479,18 +539,25 @@ impl ::core::fmt::Debug for Pdir {
       Ok(())
    }
 }
+
 #[doc="Port Data Direction Register"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pddr(pub u32);
 impl Pddr {
-#[doc="Port Data Direction"]
+   #[doc="Port Data Direction"]
    #[inline] pub fn pdd<I: Into<bits::R32>>(&self, index: I) -> bits::U1 {
       let index: bits::R32 = index.into();
       let index: usize = index.value();
       let shift: usize = 0 + index;
       unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
    }
-#[doc="Port Data Direction"]
+
+   #[doc="Port Data Direction"]
+   #[inline] pub fn test_pdd<I: Into<bits::R32>>(&self, index: I) -> bool{
+      self.pdd(index) != 0
+   }
+
+   #[doc="Port Data Direction"]
    #[inline] pub fn set_pdd<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
       let index: bits::R32 = index.into();
       let index: usize = index.value();
@@ -503,11 +570,13 @@ impl Pddr {
    }
 
 }
+
 impl ::core::fmt::Display for Pddr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Pddr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -547,5 +616,6 @@ impl ::core::fmt::Debug for Pddr {
       Ok(())
    }
 }
+
 pub struct GpioPin { pub port: GpioPeriph, pub index: usize }
 

@@ -21,21 +21,24 @@ pub struct GpioPeriph(pub usize);
 
 
 impl GpioPeriph {
-#[doc="Get the *const pointer for the CRL register."]
+   #[doc="Get the *const pointer for the CRL register."]
    #[inline] pub fn crl_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x0) as *const u32
    }
-#[doc="Get the *mut pointer for the CRL register."]
+
+   #[doc="Get the *mut pointer for the CRL register."]
    #[inline] pub fn crl_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x0) as *mut u32
    }
-#[doc="Read the CRL register."]
+
+   #[doc="Read the CRL register."]
    #[inline] pub fn crl(&self) -> Crl { 
       unsafe {
          Crl(read_volatile((self.0 + 0x0) as *const u32))
       }
    }
-#[doc="Write the CRL register."]
+
+   #[doc="Write the CRL register."]
    #[inline] pub fn set_crl<F: FnOnce(Crl) -> Crl>(&self, f: F) -> &Self {
       let value = f(Crl(0));
       unsafe {
@@ -43,7 +46,8 @@ impl GpioPeriph {
       }
       self
    }
-#[doc="Modify the CRL register."]
+
+   #[doc="Modify the CRL register."]
    #[inline] pub fn with_crl<F: FnOnce(Crl) -> Crl>(&self, f: F) -> &Self {
       let tmp = self.crl();
       let value = f(tmp);
@@ -53,21 +57,24 @@ impl GpioPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the CRH register."]
+   #[doc="Get the *const pointer for the CRH register."]
    #[inline] pub fn crh_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x4) as *const u32
    }
-#[doc="Get the *mut pointer for the CRH register."]
+
+   #[doc="Get the *mut pointer for the CRH register."]
    #[inline] pub fn crh_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x4) as *mut u32
    }
-#[doc="Read the CRH register."]
+
+   #[doc="Read the CRH register."]
    #[inline] pub fn crh(&self) -> Crh { 
       unsafe {
          Crh(read_volatile((self.0 + 0x4) as *const u32))
       }
    }
-#[doc="Write the CRH register."]
+
+   #[doc="Write the CRH register."]
    #[inline] pub fn set_crh<F: FnOnce(Crh) -> Crh>(&self, f: F) -> &Self {
       let value = f(Crh(0));
       unsafe {
@@ -75,7 +82,8 @@ impl GpioPeriph {
       }
       self
    }
-#[doc="Modify the CRH register."]
+
+   #[doc="Modify the CRH register."]
    #[inline] pub fn with_crh<F: FnOnce(Crh) -> Crh>(&self, f: F) -> &Self {
       let tmp = self.crh();
       let value = f(tmp);
@@ -85,36 +93,41 @@ impl GpioPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the IDR register."]
+   #[doc="Get the *const pointer for the IDR register."]
    #[inline] pub fn idr_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x8) as *const u32
    }
-#[doc="Get the *mut pointer for the IDR register."]
+
+   #[doc="Get the *mut pointer for the IDR register."]
    #[inline] pub fn idr_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x8) as *mut u32
    }
-#[doc="Read the IDR register."]
+
+   #[doc="Read the IDR register."]
    #[inline] pub fn idr(&self) -> Idr { 
       unsafe {
          Idr(read_volatile((self.0 + 0x8) as *const u32))
       }
    }
 
-#[doc="Get the *const pointer for the ODR register."]
+   #[doc="Get the *const pointer for the ODR register."]
    #[inline] pub fn odr_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0xc) as *const u32
    }
-#[doc="Get the *mut pointer for the ODR register."]
+
+   #[doc="Get the *mut pointer for the ODR register."]
    #[inline] pub fn odr_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0xc) as *mut u32
    }
-#[doc="Read the ODR register."]
+
+   #[doc="Read the ODR register."]
    #[inline] pub fn odr(&self) -> Odr { 
       unsafe {
          Odr(read_volatile((self.0 + 0xc) as *const u32))
       }
    }
-#[doc="Write the ODR register."]
+
+   #[doc="Write the ODR register."]
    #[inline] pub fn set_odr<F: FnOnce(Odr) -> Odr>(&self, f: F) -> &Self {
       let value = f(Odr(0));
       unsafe {
@@ -122,7 +135,8 @@ impl GpioPeriph {
       }
       self
    }
-#[doc="Modify the ODR register."]
+
+   #[doc="Modify the ODR register."]
    #[inline] pub fn with_odr<F: FnOnce(Odr) -> Odr>(&self, f: F) -> &Self {
       let tmp = self.odr();
       let value = f(tmp);
@@ -132,15 +146,17 @@ impl GpioPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the BSRR register."]
+   #[doc="Get the *const pointer for the BSRR register."]
    #[inline] pub fn bsrr_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x10) as *const u32
    }
-#[doc="Get the *mut pointer for the BSRR register."]
+
+   #[doc="Get the *mut pointer for the BSRR register."]
    #[inline] pub fn bsrr_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x10) as *mut u32
    }
-#[doc="Write the BSRR register."]
+
+   #[doc="Write the BSRR register."]
    #[inline] pub fn set_bsrr<F: FnOnce(Bsrr) -> Bsrr>(&self, f: F) -> &Self {
       let value = f(Bsrr(0));
       unsafe {
@@ -149,15 +165,17 @@ impl GpioPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the BRR register."]
+   #[doc="Get the *const pointer for the BRR register."]
    #[inline] pub fn brr_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x14) as *const u32
    }
-#[doc="Get the *mut pointer for the BRR register."]
+
+   #[doc="Get the *mut pointer for the BRR register."]
    #[inline] pub fn brr_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x14) as *mut u32
    }
-#[doc="Write the BRR register."]
+
+   #[doc="Write the BRR register."]
    #[inline] pub fn set_brr<F: FnOnce(Brr) -> Brr>(&self, f: F) -> &Self {
       let value = f(Brr(0));
       unsafe {
@@ -166,21 +184,24 @@ impl GpioPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the LCKR register."]
+   #[doc="Get the *const pointer for the LCKR register."]
    #[inline] pub fn lckr_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x18) as *const u32
    }
-#[doc="Get the *mut pointer for the LCKR register."]
+
+   #[doc="Get the *mut pointer for the LCKR register."]
    #[inline] pub fn lckr_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x18) as *mut u32
    }
-#[doc="Read the LCKR register."]
+
+   #[doc="Read the LCKR register."]
    #[inline] pub fn lckr(&self) -> Lckr { 
       unsafe {
          Lckr(read_volatile((self.0 + 0x18) as *const u32))
       }
    }
-#[doc="Write the LCKR register."]
+
+   #[doc="Write the LCKR register."]
    #[inline] pub fn set_lckr<F: FnOnce(Lckr) -> Lckr>(&self, f: F) -> &Self {
       let value = f(Lckr(0));
       unsafe {
@@ -188,7 +209,8 @@ impl GpioPeriph {
       }
       self
    }
-#[doc="Modify the LCKR register."]
+
+   #[doc="Modify the LCKR register."]
    #[inline] pub fn with_lckr<F: FnOnce(Lckr) -> Lckr>(&self, f: F) -> &Self {
       let tmp = self.lckr();
       let value = f(tmp);
@@ -204,14 +226,20 @@ impl GpioPeriph {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Crl(pub u32);
 impl Crl {
-#[doc="Port n.m mode bits"]
+   #[doc="Port n.m mode bits"]
    #[inline] pub fn mode<I: Into<bits::R8>>(&self, index: I) -> bits::U2 {
       let index: bits::R8 = index.into();
       let index: usize = index.value();
       let shift: usize = 0 + (index << 2);
       unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x3) as u8) } // [1:0]
    }
-#[doc="Port n.m mode bits"]
+
+   #[doc="Port n.m mode bits"]
+   #[inline] pub fn test_mode<I: Into<bits::R8>>(&self, index: I) -> bool{
+      self.mode(index) != 0
+   }
+
+   #[doc="Port n.m mode bits"]
    #[inline] pub fn set_mode<I: Into<bits::R8>, V: Into<bits::U2>>(mut self, index: I, value: V) -> Self {
       let index: bits::R8 = index.into();
       let index: usize = index.value();
@@ -223,14 +251,20 @@ impl Crl {
       self
    }
 
-#[doc="Port n.m configuration bits"]
+   #[doc="Port n.m configuration bits"]
    #[inline] pub fn cnf<I: Into<bits::R8>>(&self, index: I) -> bits::U2 {
       let index: bits::R8 = index.into();
       let index: usize = index.value();
       let shift: usize = 2 + (index << 2);
       unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x3) as u8) } // [3:2]
    }
-#[doc="Port n.m configuration bits"]
+
+   #[doc="Port n.m configuration bits"]
+   #[inline] pub fn test_cnf<I: Into<bits::R8>>(&self, index: I) -> bool{
+      self.cnf(index) != 0
+   }
+
+   #[doc="Port n.m configuration bits"]
    #[inline] pub fn set_cnf<I: Into<bits::R8>, V: Into<bits::U2>>(mut self, index: I, value: V) -> Self {
       let index: bits::R8 = index.into();
       let index: usize = index.value();
@@ -243,11 +277,13 @@ impl Crl {
    }
 
 }
+
 impl ::core::fmt::Display for Crl {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Crl {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -271,18 +307,25 @@ impl ::core::fmt::Debug for Crl {
       Ok(())
    }
 }
+
 #[doc="Port configuration register high (GPIOn_CRL)"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Crh(pub u32);
 impl Crh {
-#[doc="Port n.m mode bits"]
+   #[doc="Port n.m mode bits"]
    #[inline] pub fn mode<I: Into<bits::R8>>(&self, index: I) -> bits::U2 {
       let index: bits::R8 = index.into();
       let index: usize = index.value();
       let shift: usize = 0 + (index << 2);
       unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x3) as u8) } // [1:0]
    }
-#[doc="Port n.m mode bits"]
+
+   #[doc="Port n.m mode bits"]
+   #[inline] pub fn test_mode<I: Into<bits::R8>>(&self, index: I) -> bool{
+      self.mode(index) != 0
+   }
+
+   #[doc="Port n.m mode bits"]
    #[inline] pub fn set_mode<I: Into<bits::R8>, V: Into<bits::U2>>(mut self, index: I, value: V) -> Self {
       let index: bits::R8 = index.into();
       let index: usize = index.value();
@@ -294,14 +337,20 @@ impl Crh {
       self
    }
 
-#[doc="Port n.m configuration bits"]
+   #[doc="Port n.m configuration bits"]
    #[inline] pub fn cnf<I: Into<bits::R8>>(&self, index: I) -> bits::U2 {
       let index: bits::R8 = index.into();
       let index: usize = index.value();
       let shift: usize = 2 + (index << 2);
       unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x3) as u8) } // [3:2]
    }
-#[doc="Port n.m configuration bits"]
+
+   #[doc="Port n.m configuration bits"]
+   #[inline] pub fn test_cnf<I: Into<bits::R8>>(&self, index: I) -> bool{
+      self.cnf(index) != 0
+   }
+
+   #[doc="Port n.m configuration bits"]
    #[inline] pub fn set_cnf<I: Into<bits::R8>, V: Into<bits::U2>>(mut self, index: I, value: V) -> Self {
       let index: bits::R8 = index.into();
       let index: usize = index.value();
@@ -314,11 +363,13 @@ impl Crh {
    }
 
 }
+
 impl ::core::fmt::Display for Crh {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Crh {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -342,18 +393,25 @@ impl ::core::fmt::Debug for Crh {
       Ok(())
    }
 }
+
 #[doc="Port input data register (GPIOn_IDR)"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Idr(pub u32);
 impl Idr {
-#[doc="Port input data"]
+   #[doc="Port input data"]
    #[inline] pub fn idr<I: Into<bits::R16>>(&self, index: I) -> bits::U1 {
       let index: bits::R16 = index.into();
       let index: usize = index.value();
       let shift: usize = 0 + index;
       unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
    }
-#[doc="Port input data"]
+
+   #[doc="Port input data"]
+   #[inline] pub fn test_idr<I: Into<bits::R16>>(&self, index: I) -> bool{
+      self.idr(index) != 0
+   }
+
+   #[doc="Port input data"]
    #[inline] pub fn set_idr<I: Into<bits::R16>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
       let index: bits::R16 = index.into();
       let index: usize = index.value();
@@ -366,11 +424,13 @@ impl Idr {
    }
 
 }
+
 impl ::core::fmt::Display for Idr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Idr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -394,18 +454,25 @@ impl ::core::fmt::Debug for Idr {
       Ok(())
    }
 }
+
 #[doc="Port output data register (GPIOn_ODR)"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Odr(pub u32);
 impl Odr {
-#[doc="Port output data"]
+   #[doc="Port output data"]
    #[inline] pub fn odr<I: Into<bits::R16>>(&self, index: I) -> bits::U1 {
       let index: bits::R16 = index.into();
       let index: usize = index.value();
       let shift: usize = 0 + index;
       unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
    }
-#[doc="Port output data"]
+
+   #[doc="Port output data"]
+   #[inline] pub fn test_odr<I: Into<bits::R16>>(&self, index: I) -> bool{
+      self.odr(index) != 0
+   }
+
+   #[doc="Port output data"]
    #[inline] pub fn set_odr<I: Into<bits::R16>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
       let index: bits::R16 = index.into();
       let index: usize = index.value();
@@ -418,11 +485,13 @@ impl Odr {
    }
 
 }
+
 impl ::core::fmt::Display for Odr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Odr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -446,18 +515,25 @@ impl ::core::fmt::Debug for Odr {
       Ok(())
    }
 }
+
 #[doc="Port bit set/reset register (GPIOn_BSRR)"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Bsrr(pub u32);
 impl Bsrr {
-#[doc="Set bit n"]
+   #[doc="Set bit n"]
    #[inline] pub fn bs<I: Into<bits::R16>>(&self, index: I) -> bits::U1 {
       let index: bits::R16 = index.into();
       let index: usize = index.value();
       let shift: usize = 0 + index;
       unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
    }
-#[doc="Set bit n"]
+
+   #[doc="Set bit n"]
+   #[inline] pub fn test_bs<I: Into<bits::R16>>(&self, index: I) -> bool{
+      self.bs(index) != 0
+   }
+
+   #[doc="Set bit n"]
    #[inline] pub fn set_bs<I: Into<bits::R16>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
       let index: bits::R16 = index.into();
       let index: usize = index.value();
@@ -469,14 +545,20 @@ impl Bsrr {
       self
    }
 
-#[doc="Reset bit n"]
+   #[doc="Reset bit n"]
    #[inline] pub fn br<I: Into<bits::R16>>(&self, index: I) -> bits::U1 {
       let index: bits::R16 = index.into();
       let index: usize = index.value();
       let shift: usize = 16 + index;
       unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [16]
    }
-#[doc="Reset bit n"]
+
+   #[doc="Reset bit n"]
+   #[inline] pub fn test_br<I: Into<bits::R16>>(&self, index: I) -> bool{
+      self.br(index) != 0
+   }
+
+   #[doc="Reset bit n"]
    #[inline] pub fn set_br<I: Into<bits::R16>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
       let index: bits::R16 = index.into();
       let index: usize = index.value();
@@ -489,11 +571,13 @@ impl Bsrr {
    }
 
 }
+
 impl ::core::fmt::Display for Bsrr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Bsrr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -533,18 +617,25 @@ impl ::core::fmt::Debug for Bsrr {
       Ok(())
    }
 }
+
 #[doc="Port bit reset register (GPIOn_BRR)"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Brr(pub u32);
 impl Brr {
-#[doc="Reset bit n"]
+   #[doc="Reset bit n"]
    #[inline] pub fn br<I: Into<bits::R16>>(&self, index: I) -> bits::U1 {
       let index: bits::R16 = index.into();
       let index: usize = index.value();
       let shift: usize = 0 + index;
       unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
    }
-#[doc="Reset bit n"]
+
+   #[doc="Reset bit n"]
+   #[inline] pub fn test_br<I: Into<bits::R16>>(&self, index: I) -> bool{
+      self.br(index) != 0
+   }
+
+   #[doc="Reset bit n"]
    #[inline] pub fn set_br<I: Into<bits::R16>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
       let index: bits::R16 = index.into();
       let index: usize = index.value();
@@ -557,11 +648,13 @@ impl Brr {
    }
 
 }
+
 impl ::core::fmt::Display for Brr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Brr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -585,18 +678,25 @@ impl ::core::fmt::Debug for Brr {
       Ok(())
    }
 }
+
 #[doc="Port configuration lock register"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Lckr(pub u32);
 impl Lckr {
-#[doc="Port Lock bit n"]
+   #[doc="Port Lock bit n"]
    #[inline] pub fn lck0<I: Into<bits::R16>>(&self, index: I) -> bits::U1 {
       let index: bits::R16 = index.into();
       let index: usize = index.value();
       let shift: usize = 0 + index;
       unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
    }
-#[doc="Port Lock bit n"]
+
+   #[doc="Port Lock bit n"]
+   #[inline] pub fn test_lck0<I: Into<bits::R16>>(&self, index: I) -> bool{
+      self.lck0(index) != 0
+   }
+
+   #[doc="Port Lock bit n"]
    #[inline] pub fn set_lck0<I: Into<bits::R16>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
       let index: bits::R16 = index.into();
       let index: usize = index.value();
@@ -608,11 +708,17 @@ impl Lckr {
       self
    }
 
-#[doc="Lock key"]
+   #[doc="Lock key"]
    #[inline] pub fn lckk(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1) as u8) } // [16]
    }
-#[doc="Lock key"]
+
+   #[doc="Lock key"]
+   #[inline] pub fn test_lckk(&self) -> bool {
+      self.lckk != 0
+   }
+
+   #[doc="Lock key"]
    #[inline] pub fn set_lckk<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -622,11 +728,13 @@ impl Lckr {
    }
 
 }
+
 impl ::core::fmt::Display for Lckr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Lckr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -651,6 +759,7 @@ impl ::core::fmt::Debug for Lckr {
       Ok(())
    }
 }
+
 pub struct GpioPin { pub port: GpioPeriph, pub index: usize }
 pin!(PA0, Pa0, GPIOA, Gpioa, _PA0, GpioPin, _GPIOA, 0);
 

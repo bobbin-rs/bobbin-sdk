@@ -75,19 +75,21 @@ impl super::sig::SignalAdc<super::sig::Adc1Se15> for Adc1Ch15 {}
 
 
 impl AdcPeriph {
-#[doc="Get the *const pointer for the SC1 register."]
+   #[doc="Get the *const pointer for the SC1 register."]
    #[inline] pub fn sc1_ptr<I: Into<bits::R16>>(&self, index: I) -> *const u32 { 
       let index: bits::R16 = index.into();
       let index: usize = index.value() as usize;
       ((self.0 as usize) + 0x0 + (index << 2)) as *const u32
    }
-#[doc="Get the *mut pointer for the SC1 register."]
+
+   #[doc="Get the *mut pointer for the SC1 register."]
    #[inline] pub fn sc1_mut<I: Into<bits::R16>>(&self, index: I) -> *mut u32 { 
       let index: bits::R16 = index.into();
       let index: usize = index.value() as usize;
       ((self.0 as usize) + 0x0 + (index << 2)) as *mut u32
    }
-#[doc="Read the SC1 register."]
+
+   #[doc="Read the SC1 register."]
    #[inline] pub fn sc1<I: Into<bits::R16>>(&self, index: I) -> Sc1 { 
       let index: bits::R16 = index.into();
       let index: usize = index.value() as usize;
@@ -95,7 +97,8 @@ impl AdcPeriph {
          Sc1(read_volatile((self.0 + 0x0 + (index << 2)) as *const u32))
       }
    }
-#[doc="Write the SC1 register."]
+
+   #[doc="Write the SC1 register."]
    #[inline] pub fn set_sc1<I: Into<bits::R16>, F: FnOnce(Sc1) -> Sc1>(&self, index: I, f: F) -> &Self {
       let index: bits::R16 = index.into();
       let index: usize = index.value() as usize;
@@ -105,7 +108,8 @@ impl AdcPeriph {
       }
       self
    }
-#[doc="Modify the SC1 register."]
+
+   #[doc="Modify the SC1 register."]
    #[inline] pub fn with_sc1<I: Into<bits::R16> + Copy, F: FnOnce(Sc1) -> Sc1>(&self, index: I, f: F) -> &Self {
       let index: bits::R16 = index.into();
       let index: usize = index.value() as usize;
@@ -117,21 +121,24 @@ impl AdcPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the CFG1 register."]
+   #[doc="Get the *const pointer for the CFG1 register."]
    #[inline] pub fn cfg1_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x40) as *const u32
    }
-#[doc="Get the *mut pointer for the CFG1 register."]
+
+   #[doc="Get the *mut pointer for the CFG1 register."]
    #[inline] pub fn cfg1_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x40) as *mut u32
    }
-#[doc="Read the CFG1 register."]
+
+   #[doc="Read the CFG1 register."]
    #[inline] pub fn cfg1(&self) -> Cfg1 { 
       unsafe {
          Cfg1(read_volatile((self.0 + 0x40) as *const u32))
       }
    }
-#[doc="Write the CFG1 register."]
+
+   #[doc="Write the CFG1 register."]
    #[inline] pub fn set_cfg1<F: FnOnce(Cfg1) -> Cfg1>(&self, f: F) -> &Self {
       let value = f(Cfg1(0));
       unsafe {
@@ -139,7 +146,8 @@ impl AdcPeriph {
       }
       self
    }
-#[doc="Modify the CFG1 register."]
+
+   #[doc="Modify the CFG1 register."]
    #[inline] pub fn with_cfg1<F: FnOnce(Cfg1) -> Cfg1>(&self, f: F) -> &Self {
       let tmp = self.cfg1();
       let value = f(tmp);
@@ -149,21 +157,24 @@ impl AdcPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the CFG2 register."]
+   #[doc="Get the *const pointer for the CFG2 register."]
    #[inline] pub fn cfg2_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x44) as *const u32
    }
-#[doc="Get the *mut pointer for the CFG2 register."]
+
+   #[doc="Get the *mut pointer for the CFG2 register."]
    #[inline] pub fn cfg2_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x44) as *mut u32
    }
-#[doc="Read the CFG2 register."]
+
+   #[doc="Read the CFG2 register."]
    #[inline] pub fn cfg2(&self) -> Cfg2 { 
       unsafe {
          Cfg2(read_volatile((self.0 + 0x44) as *const u32))
       }
    }
-#[doc="Write the CFG2 register."]
+
+   #[doc="Write the CFG2 register."]
    #[inline] pub fn set_cfg2<F: FnOnce(Cfg2) -> Cfg2>(&self, f: F) -> &Self {
       let value = f(Cfg2(0));
       unsafe {
@@ -171,7 +182,8 @@ impl AdcPeriph {
       }
       self
    }
-#[doc="Modify the CFG2 register."]
+
+   #[doc="Modify the CFG2 register."]
    #[inline] pub fn with_cfg2<F: FnOnce(Cfg2) -> Cfg2>(&self, f: F) -> &Self {
       let tmp = self.cfg2();
       let value = f(tmp);
@@ -181,19 +193,21 @@ impl AdcPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the R register."]
+   #[doc="Get the *const pointer for the R register."]
    #[inline] pub fn r_ptr<I: Into<bits::R16>>(&self, index: I) -> *const u32 { 
       let index: bits::R16 = index.into();
       let index: usize = index.value() as usize;
       ((self.0 as usize) + 0x48 + (index << 2)) as *const u32
    }
-#[doc="Get the *mut pointer for the R register."]
+
+   #[doc="Get the *mut pointer for the R register."]
    #[inline] pub fn r_mut<I: Into<bits::R16>>(&self, index: I) -> *mut u32 { 
       let index: bits::R16 = index.into();
       let index: usize = index.value() as usize;
       ((self.0 as usize) + 0x48 + (index << 2)) as *mut u32
    }
-#[doc="Read the R register."]
+
+   #[doc="Read the R register."]
    #[inline] pub fn r<I: Into<bits::R16>>(&self, index: I) -> R { 
       let index: bits::R16 = index.into();
       let index: usize = index.value() as usize;
@@ -202,19 +216,21 @@ impl AdcPeriph {
       }
    }
 
-#[doc="Get the *const pointer for the CV register."]
+   #[doc="Get the *const pointer for the CV register."]
    #[inline] pub fn cv_ptr<I: Into<bits::R2>>(&self, index: I) -> *const u32 { 
       let index: bits::R2 = index.into();
       let index: usize = index.value() as usize;
       ((self.0 as usize) + 0x88 + (index << 2)) as *const u32
    }
-#[doc="Get the *mut pointer for the CV register."]
+
+   #[doc="Get the *mut pointer for the CV register."]
    #[inline] pub fn cv_mut<I: Into<bits::R2>>(&self, index: I) -> *mut u32 { 
       let index: bits::R2 = index.into();
       let index: usize = index.value() as usize;
       ((self.0 as usize) + 0x88 + (index << 2)) as *mut u32
    }
-#[doc="Read the CV register."]
+
+   #[doc="Read the CV register."]
    #[inline] pub fn cv<I: Into<bits::R2>>(&self, index: I) -> Cv { 
       let index: bits::R2 = index.into();
       let index: usize = index.value() as usize;
@@ -222,7 +238,8 @@ impl AdcPeriph {
          Cv(read_volatile((self.0 + 0x88 + (index << 2)) as *const u32))
       }
    }
-#[doc="Write the CV register."]
+
+   #[doc="Write the CV register."]
    #[inline] pub fn set_cv<I: Into<bits::R2>, F: FnOnce(Cv) -> Cv>(&self, index: I, f: F) -> &Self {
       let index: bits::R2 = index.into();
       let index: usize = index.value() as usize;
@@ -232,7 +249,8 @@ impl AdcPeriph {
       }
       self
    }
-#[doc="Modify the CV register."]
+
+   #[doc="Modify the CV register."]
    #[inline] pub fn with_cv<I: Into<bits::R2> + Copy, F: FnOnce(Cv) -> Cv>(&self, index: I, f: F) -> &Self {
       let index: bits::R2 = index.into();
       let index: usize = index.value() as usize;
@@ -244,21 +262,24 @@ impl AdcPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the SC2 register."]
+   #[doc="Get the *const pointer for the SC2 register."]
    #[inline] pub fn sc2_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x90) as *const u32
    }
-#[doc="Get the *mut pointer for the SC2 register."]
+
+   #[doc="Get the *mut pointer for the SC2 register."]
    #[inline] pub fn sc2_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x90) as *mut u32
    }
-#[doc="Read the SC2 register."]
+
+   #[doc="Read the SC2 register."]
    #[inline] pub fn sc2(&self) -> Sc2 { 
       unsafe {
          Sc2(read_volatile((self.0 + 0x90) as *const u32))
       }
    }
-#[doc="Write the SC2 register."]
+
+   #[doc="Write the SC2 register."]
    #[inline] pub fn set_sc2<F: FnOnce(Sc2) -> Sc2>(&self, f: F) -> &Self {
       let value = f(Sc2(0));
       unsafe {
@@ -266,7 +287,8 @@ impl AdcPeriph {
       }
       self
    }
-#[doc="Modify the SC2 register."]
+
+   #[doc="Modify the SC2 register."]
    #[inline] pub fn with_sc2<F: FnOnce(Sc2) -> Sc2>(&self, f: F) -> &Self {
       let tmp = self.sc2();
       let value = f(tmp);
@@ -276,21 +298,24 @@ impl AdcPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the SC3 register."]
+   #[doc="Get the *const pointer for the SC3 register."]
    #[inline] pub fn sc3_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x94) as *const u32
    }
-#[doc="Get the *mut pointer for the SC3 register."]
+
+   #[doc="Get the *mut pointer for the SC3 register."]
    #[inline] pub fn sc3_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x94) as *mut u32
    }
-#[doc="Read the SC3 register."]
+
+   #[doc="Read the SC3 register."]
    #[inline] pub fn sc3(&self) -> Sc3 { 
       unsafe {
          Sc3(read_volatile((self.0 + 0x94) as *const u32))
       }
    }
-#[doc="Write the SC3 register."]
+
+   #[doc="Write the SC3 register."]
    #[inline] pub fn set_sc3<F: FnOnce(Sc3) -> Sc3>(&self, f: F) -> &Self {
       let value = f(Sc3(0));
       unsafe {
@@ -298,7 +323,8 @@ impl AdcPeriph {
       }
       self
    }
-#[doc="Modify the SC3 register."]
+
+   #[doc="Modify the SC3 register."]
    #[inline] pub fn with_sc3<F: FnOnce(Sc3) -> Sc3>(&self, f: F) -> &Self {
       let tmp = self.sc3();
       let value = f(tmp);
@@ -308,21 +334,24 @@ impl AdcPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the BASE_OFS register."]
+   #[doc="Get the *const pointer for the BASE_OFS register."]
    #[inline] pub fn base_ofs_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x98) as *const u32
    }
-#[doc="Get the *mut pointer for the BASE_OFS register."]
+
+   #[doc="Get the *mut pointer for the BASE_OFS register."]
    #[inline] pub fn base_ofs_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x98) as *mut u32
    }
-#[doc="Read the BASE_OFS register."]
+
+   #[doc="Read the BASE_OFS register."]
    #[inline] pub fn base_ofs(&self) -> BaseOfs { 
       unsafe {
          BaseOfs(read_volatile((self.0 + 0x98) as *const u32))
       }
    }
-#[doc="Write the BASE_OFS register."]
+
+   #[doc="Write the BASE_OFS register."]
    #[inline] pub fn set_base_ofs<F: FnOnce(BaseOfs) -> BaseOfs>(&self, f: F) -> &Self {
       let value = f(BaseOfs(0));
       unsafe {
@@ -330,7 +359,8 @@ impl AdcPeriph {
       }
       self
    }
-#[doc="Modify the BASE_OFS register."]
+
+   #[doc="Modify the BASE_OFS register."]
    #[inline] pub fn with_base_ofs<F: FnOnce(BaseOfs) -> BaseOfs>(&self, f: F) -> &Self {
       let tmp = self.base_ofs();
       let value = f(tmp);
@@ -340,21 +370,24 @@ impl AdcPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the OFS register."]
+   #[doc="Get the *const pointer for the OFS register."]
    #[inline] pub fn ofs_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x9c) as *const u32
    }
-#[doc="Get the *mut pointer for the OFS register."]
+
+   #[doc="Get the *mut pointer for the OFS register."]
    #[inline] pub fn ofs_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x9c) as *mut u32
    }
-#[doc="Read the OFS register."]
+
+   #[doc="Read the OFS register."]
    #[inline] pub fn ofs(&self) -> Ofs { 
       unsafe {
          Ofs(read_volatile((self.0 + 0x9c) as *const u32))
       }
    }
-#[doc="Write the OFS register."]
+
+   #[doc="Write the OFS register."]
    #[inline] pub fn set_ofs<F: FnOnce(Ofs) -> Ofs>(&self, f: F) -> &Self {
       let value = f(Ofs(0));
       unsafe {
@@ -362,7 +395,8 @@ impl AdcPeriph {
       }
       self
    }
-#[doc="Modify the OFS register."]
+
+   #[doc="Modify the OFS register."]
    #[inline] pub fn with_ofs<F: FnOnce(Ofs) -> Ofs>(&self, f: F) -> &Self {
       let tmp = self.ofs();
       let value = f(tmp);
@@ -372,21 +406,24 @@ impl AdcPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the USR_OFS register."]
+   #[doc="Get the *const pointer for the USR_OFS register."]
    #[inline] pub fn usr_ofs_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0xa0) as *const u32
    }
-#[doc="Get the *mut pointer for the USR_OFS register."]
+
+   #[doc="Get the *mut pointer for the USR_OFS register."]
    #[inline] pub fn usr_ofs_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0xa0) as *mut u32
    }
-#[doc="Read the USR_OFS register."]
+
+   #[doc="Read the USR_OFS register."]
    #[inline] pub fn usr_ofs(&self) -> UsrOfs { 
       unsafe {
          UsrOfs(read_volatile((self.0 + 0xa0) as *const u32))
       }
    }
-#[doc="Write the USR_OFS register."]
+
+   #[doc="Write the USR_OFS register."]
    #[inline] pub fn set_usr_ofs<F: FnOnce(UsrOfs) -> UsrOfs>(&self, f: F) -> &Self {
       let value = f(UsrOfs(0));
       unsafe {
@@ -394,7 +431,8 @@ impl AdcPeriph {
       }
       self
    }
-#[doc="Modify the USR_OFS register."]
+
+   #[doc="Modify the USR_OFS register."]
    #[inline] pub fn with_usr_ofs<F: FnOnce(UsrOfs) -> UsrOfs>(&self, f: F) -> &Self {
       let tmp = self.usr_ofs();
       let value = f(tmp);
@@ -404,21 +442,24 @@ impl AdcPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the XOFS register."]
+   #[doc="Get the *const pointer for the XOFS register."]
    #[inline] pub fn xofs_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0xa4) as *const u32
    }
-#[doc="Get the *mut pointer for the XOFS register."]
+
+   #[doc="Get the *mut pointer for the XOFS register."]
    #[inline] pub fn xofs_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0xa4) as *mut u32
    }
-#[doc="Read the XOFS register."]
+
+   #[doc="Read the XOFS register."]
    #[inline] pub fn xofs(&self) -> Xofs { 
       unsafe {
          Xofs(read_volatile((self.0 + 0xa4) as *const u32))
       }
    }
-#[doc="Write the XOFS register."]
+
+   #[doc="Write the XOFS register."]
    #[inline] pub fn set_xofs<F: FnOnce(Xofs) -> Xofs>(&self, f: F) -> &Self {
       let value = f(Xofs(0));
       unsafe {
@@ -426,7 +467,8 @@ impl AdcPeriph {
       }
       self
    }
-#[doc="Modify the XOFS register."]
+
+   #[doc="Modify the XOFS register."]
    #[inline] pub fn with_xofs<F: FnOnce(Xofs) -> Xofs>(&self, f: F) -> &Self {
       let tmp = self.xofs();
       let value = f(tmp);
@@ -436,21 +478,24 @@ impl AdcPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the YOFS register."]
+   #[doc="Get the *const pointer for the YOFS register."]
    #[inline] pub fn yofs_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0xa8) as *const u32
    }
-#[doc="Get the *mut pointer for the YOFS register."]
+
+   #[doc="Get the *mut pointer for the YOFS register."]
    #[inline] pub fn yofs_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0xa8) as *mut u32
    }
-#[doc="Read the YOFS register."]
+
+   #[doc="Read the YOFS register."]
    #[inline] pub fn yofs(&self) -> Yofs { 
       unsafe {
          Yofs(read_volatile((self.0 + 0xa8) as *const u32))
       }
    }
-#[doc="Write the YOFS register."]
+
+   #[doc="Write the YOFS register."]
    #[inline] pub fn set_yofs<F: FnOnce(Yofs) -> Yofs>(&self, f: F) -> &Self {
       let value = f(Yofs(0));
       unsafe {
@@ -458,7 +503,8 @@ impl AdcPeriph {
       }
       self
    }
-#[doc="Modify the YOFS register."]
+
+   #[doc="Modify the YOFS register."]
    #[inline] pub fn with_yofs<F: FnOnce(Yofs) -> Yofs>(&self, f: F) -> &Self {
       let tmp = self.yofs();
       let value = f(tmp);
@@ -468,21 +514,24 @@ impl AdcPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the G register."]
+   #[doc="Get the *const pointer for the G register."]
    #[inline] pub fn g_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0xac) as *const u32
    }
-#[doc="Get the *mut pointer for the G register."]
+
+   #[doc="Get the *mut pointer for the G register."]
    #[inline] pub fn g_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0xac) as *mut u32
    }
-#[doc="Read the G register."]
+
+   #[doc="Read the G register."]
    #[inline] pub fn g(&self) -> G { 
       unsafe {
          G(read_volatile((self.0 + 0xac) as *const u32))
       }
    }
-#[doc="Write the G register."]
+
+   #[doc="Write the G register."]
    #[inline] pub fn set_g<F: FnOnce(G) -> G>(&self, f: F) -> &Self {
       let value = f(G(0));
       unsafe {
@@ -490,7 +539,8 @@ impl AdcPeriph {
       }
       self
    }
-#[doc="Modify the G register."]
+
+   #[doc="Modify the G register."]
    #[inline] pub fn with_g<F: FnOnce(G) -> G>(&self, f: F) -> &Self {
       let tmp = self.g();
       let value = f(tmp);
@@ -500,21 +550,24 @@ impl AdcPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the UG register."]
+   #[doc="Get the *const pointer for the UG register."]
    #[inline] pub fn ug_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0xb0) as *const u32
    }
-#[doc="Get the *mut pointer for the UG register."]
+
+   #[doc="Get the *mut pointer for the UG register."]
    #[inline] pub fn ug_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0xb0) as *mut u32
    }
-#[doc="Read the UG register."]
+
+   #[doc="Read the UG register."]
    #[inline] pub fn ug(&self) -> Ug { 
       unsafe {
          Ug(read_volatile((self.0 + 0xb0) as *const u32))
       }
    }
-#[doc="Write the UG register."]
+
+   #[doc="Write the UG register."]
    #[inline] pub fn set_ug<F: FnOnce(Ug) -> Ug>(&self, f: F) -> &Self {
       let value = f(Ug(0));
       unsafe {
@@ -522,7 +575,8 @@ impl AdcPeriph {
       }
       self
    }
-#[doc="Modify the UG register."]
+
+   #[doc="Modify the UG register."]
    #[inline] pub fn with_ug<F: FnOnce(Ug) -> Ug>(&self, f: F) -> &Self {
       let tmp = self.ug();
       let value = f(tmp);
@@ -532,21 +586,24 @@ impl AdcPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the CLPS register."]
+   #[doc="Get the *const pointer for the CLPS register."]
    #[inline] pub fn clps_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0xb4) as *const u32
    }
-#[doc="Get the *mut pointer for the CLPS register."]
+
+   #[doc="Get the *mut pointer for the CLPS register."]
    #[inline] pub fn clps_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0xb4) as *mut u32
    }
-#[doc="Read the CLPS register."]
+
+   #[doc="Read the CLPS register."]
    #[inline] pub fn clps(&self) -> Clps { 
       unsafe {
          Clps(read_volatile((self.0 + 0xb4) as *const u32))
       }
    }
-#[doc="Write the CLPS register."]
+
+   #[doc="Write the CLPS register."]
    #[inline] pub fn set_clps<F: FnOnce(Clps) -> Clps>(&self, f: F) -> &Self {
       let value = f(Clps(0));
       unsafe {
@@ -554,7 +611,8 @@ impl AdcPeriph {
       }
       self
    }
-#[doc="Modify the CLPS register."]
+
+   #[doc="Modify the CLPS register."]
    #[inline] pub fn with_clps<F: FnOnce(Clps) -> Clps>(&self, f: F) -> &Self {
       let tmp = self.clps();
       let value = f(tmp);
@@ -564,21 +622,24 @@ impl AdcPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the CLP3 register."]
+   #[doc="Get the *const pointer for the CLP3 register."]
    #[inline] pub fn clp3_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0xb8) as *const u32
    }
-#[doc="Get the *mut pointer for the CLP3 register."]
+
+   #[doc="Get the *mut pointer for the CLP3 register."]
    #[inline] pub fn clp3_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0xb8) as *mut u32
    }
-#[doc="Read the CLP3 register."]
+
+   #[doc="Read the CLP3 register."]
    #[inline] pub fn clp3(&self) -> Clp3 { 
       unsafe {
          Clp3(read_volatile((self.0 + 0xb8) as *const u32))
       }
    }
-#[doc="Write the CLP3 register."]
+
+   #[doc="Write the CLP3 register."]
    #[inline] pub fn set_clp3<F: FnOnce(Clp3) -> Clp3>(&self, f: F) -> &Self {
       let value = f(Clp3(0));
       unsafe {
@@ -586,7 +647,8 @@ impl AdcPeriph {
       }
       self
    }
-#[doc="Modify the CLP3 register."]
+
+   #[doc="Modify the CLP3 register."]
    #[inline] pub fn with_clp3<F: FnOnce(Clp3) -> Clp3>(&self, f: F) -> &Self {
       let tmp = self.clp3();
       let value = f(tmp);
@@ -596,21 +658,24 @@ impl AdcPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the CLP2 register."]
+   #[doc="Get the *const pointer for the CLP2 register."]
    #[inline] pub fn clp2_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0xbc) as *const u32
    }
-#[doc="Get the *mut pointer for the CLP2 register."]
+
+   #[doc="Get the *mut pointer for the CLP2 register."]
    #[inline] pub fn clp2_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0xbc) as *mut u32
    }
-#[doc="Read the CLP2 register."]
+
+   #[doc="Read the CLP2 register."]
    #[inline] pub fn clp2(&self) -> Clp2 { 
       unsafe {
          Clp2(read_volatile((self.0 + 0xbc) as *const u32))
       }
    }
-#[doc="Write the CLP2 register."]
+
+   #[doc="Write the CLP2 register."]
    #[inline] pub fn set_clp2<F: FnOnce(Clp2) -> Clp2>(&self, f: F) -> &Self {
       let value = f(Clp2(0));
       unsafe {
@@ -618,7 +683,8 @@ impl AdcPeriph {
       }
       self
    }
-#[doc="Modify the CLP2 register."]
+
+   #[doc="Modify the CLP2 register."]
    #[inline] pub fn with_clp2<F: FnOnce(Clp2) -> Clp2>(&self, f: F) -> &Self {
       let tmp = self.clp2();
       let value = f(tmp);
@@ -628,21 +694,24 @@ impl AdcPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the CLP1 register."]
+   #[doc="Get the *const pointer for the CLP1 register."]
    #[inline] pub fn clp1_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0xc0) as *const u32
    }
-#[doc="Get the *mut pointer for the CLP1 register."]
+
+   #[doc="Get the *mut pointer for the CLP1 register."]
    #[inline] pub fn clp1_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0xc0) as *mut u32
    }
-#[doc="Read the CLP1 register."]
+
+   #[doc="Read the CLP1 register."]
    #[inline] pub fn clp1(&self) -> Clp1 { 
       unsafe {
          Clp1(read_volatile((self.0 + 0xc0) as *const u32))
       }
    }
-#[doc="Write the CLP1 register."]
+
+   #[doc="Write the CLP1 register."]
    #[inline] pub fn set_clp1<F: FnOnce(Clp1) -> Clp1>(&self, f: F) -> &Self {
       let value = f(Clp1(0));
       unsafe {
@@ -650,7 +719,8 @@ impl AdcPeriph {
       }
       self
    }
-#[doc="Modify the CLP1 register."]
+
+   #[doc="Modify the CLP1 register."]
    #[inline] pub fn with_clp1<F: FnOnce(Clp1) -> Clp1>(&self, f: F) -> &Self {
       let tmp = self.clp1();
       let value = f(tmp);
@@ -660,21 +730,24 @@ impl AdcPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the CLP0 register."]
+   #[doc="Get the *const pointer for the CLP0 register."]
    #[inline] pub fn clp0_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0xc4) as *const u32
    }
-#[doc="Get the *mut pointer for the CLP0 register."]
+
+   #[doc="Get the *mut pointer for the CLP0 register."]
    #[inline] pub fn clp0_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0xc4) as *mut u32
    }
-#[doc="Read the CLP0 register."]
+
+   #[doc="Read the CLP0 register."]
    #[inline] pub fn clp0(&self) -> Clp0 { 
       unsafe {
          Clp0(read_volatile((self.0 + 0xc4) as *const u32))
       }
    }
-#[doc="Write the CLP0 register."]
+
+   #[doc="Write the CLP0 register."]
    #[inline] pub fn set_clp0<F: FnOnce(Clp0) -> Clp0>(&self, f: F) -> &Self {
       let value = f(Clp0(0));
       unsafe {
@@ -682,7 +755,8 @@ impl AdcPeriph {
       }
       self
    }
-#[doc="Modify the CLP0 register."]
+
+   #[doc="Modify the CLP0 register."]
    #[inline] pub fn with_clp0<F: FnOnce(Clp0) -> Clp0>(&self, f: F) -> &Self {
       let tmp = self.clp0();
       let value = f(tmp);
@@ -692,21 +766,24 @@ impl AdcPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the CLPX register."]
+   #[doc="Get the *const pointer for the CLPX register."]
    #[inline] pub fn clpx_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0xc8) as *const u32
    }
-#[doc="Get the *mut pointer for the CLPX register."]
+
+   #[doc="Get the *mut pointer for the CLPX register."]
    #[inline] pub fn clpx_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0xc8) as *mut u32
    }
-#[doc="Read the CLPX register."]
+
+   #[doc="Read the CLPX register."]
    #[inline] pub fn clpx(&self) -> Clpx { 
       unsafe {
          Clpx(read_volatile((self.0 + 0xc8) as *const u32))
       }
    }
-#[doc="Write the CLPX register."]
+
+   #[doc="Write the CLPX register."]
    #[inline] pub fn set_clpx<F: FnOnce(Clpx) -> Clpx>(&self, f: F) -> &Self {
       let value = f(Clpx(0));
       unsafe {
@@ -714,7 +791,8 @@ impl AdcPeriph {
       }
       self
    }
-#[doc="Modify the CLPX register."]
+
+   #[doc="Modify the CLPX register."]
    #[inline] pub fn with_clpx<F: FnOnce(Clpx) -> Clpx>(&self, f: F) -> &Self {
       let tmp = self.clpx();
       let value = f(tmp);
@@ -724,21 +802,24 @@ impl AdcPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the CLP9 register."]
+   #[doc="Get the *const pointer for the CLP9 register."]
    #[inline] pub fn clp9_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0xcc) as *const u32
    }
-#[doc="Get the *mut pointer for the CLP9 register."]
+
+   #[doc="Get the *mut pointer for the CLP9 register."]
    #[inline] pub fn clp9_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0xcc) as *mut u32
    }
-#[doc="Read the CLP9 register."]
+
+   #[doc="Read the CLP9 register."]
    #[inline] pub fn clp9(&self) -> Clp9 { 
       unsafe {
          Clp9(read_volatile((self.0 + 0xcc) as *const u32))
       }
    }
-#[doc="Write the CLP9 register."]
+
+   #[doc="Write the CLP9 register."]
    #[inline] pub fn set_clp9<F: FnOnce(Clp9) -> Clp9>(&self, f: F) -> &Self {
       let value = f(Clp9(0));
       unsafe {
@@ -746,7 +827,8 @@ impl AdcPeriph {
       }
       self
    }
-#[doc="Modify the CLP9 register."]
+
+   #[doc="Modify the CLP9 register."]
    #[inline] pub fn with_clp9<F: FnOnce(Clp9) -> Clp9>(&self, f: F) -> &Self {
       let tmp = self.clp9();
       let value = f(tmp);
@@ -756,21 +838,24 @@ impl AdcPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the CLPS_OFS register."]
+   #[doc="Get the *const pointer for the CLPS_OFS register."]
    #[inline] pub fn clps_ofs_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0xd0) as *const u32
    }
-#[doc="Get the *mut pointer for the CLPS_OFS register."]
+
+   #[doc="Get the *mut pointer for the CLPS_OFS register."]
    #[inline] pub fn clps_ofs_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0xd0) as *mut u32
    }
-#[doc="Read the CLPS_OFS register."]
+
+   #[doc="Read the CLPS_OFS register."]
    #[inline] pub fn clps_ofs(&self) -> ClpsOfs { 
       unsafe {
          ClpsOfs(read_volatile((self.0 + 0xd0) as *const u32))
       }
    }
-#[doc="Write the CLPS_OFS register."]
+
+   #[doc="Write the CLPS_OFS register."]
    #[inline] pub fn set_clps_ofs<F: FnOnce(ClpsOfs) -> ClpsOfs>(&self, f: F) -> &Self {
       let value = f(ClpsOfs(0));
       unsafe {
@@ -778,7 +863,8 @@ impl AdcPeriph {
       }
       self
    }
-#[doc="Modify the CLPS_OFS register."]
+
+   #[doc="Modify the CLPS_OFS register."]
    #[inline] pub fn with_clps_ofs<F: FnOnce(ClpsOfs) -> ClpsOfs>(&self, f: F) -> &Self {
       let tmp = self.clps_ofs();
       let value = f(tmp);
@@ -788,21 +874,24 @@ impl AdcPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the CLP3_OFS register."]
+   #[doc="Get the *const pointer for the CLP3_OFS register."]
    #[inline] pub fn clp3_ofs_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0xd4) as *const u32
    }
-#[doc="Get the *mut pointer for the CLP3_OFS register."]
+
+   #[doc="Get the *mut pointer for the CLP3_OFS register."]
    #[inline] pub fn clp3_ofs_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0xd4) as *mut u32
    }
-#[doc="Read the CLP3_OFS register."]
+
+   #[doc="Read the CLP3_OFS register."]
    #[inline] pub fn clp3_ofs(&self) -> Clp3Ofs { 
       unsafe {
          Clp3Ofs(read_volatile((self.0 + 0xd4) as *const u32))
       }
    }
-#[doc="Write the CLP3_OFS register."]
+
+   #[doc="Write the CLP3_OFS register."]
    #[inline] pub fn set_clp3_ofs<F: FnOnce(Clp3Ofs) -> Clp3Ofs>(&self, f: F) -> &Self {
       let value = f(Clp3Ofs(0));
       unsafe {
@@ -810,7 +899,8 @@ impl AdcPeriph {
       }
       self
    }
-#[doc="Modify the CLP3_OFS register."]
+
+   #[doc="Modify the CLP3_OFS register."]
    #[inline] pub fn with_clp3_ofs<F: FnOnce(Clp3Ofs) -> Clp3Ofs>(&self, f: F) -> &Self {
       let tmp = self.clp3_ofs();
       let value = f(tmp);
@@ -820,21 +910,24 @@ impl AdcPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the CLP2_OFS register."]
+   #[doc="Get the *const pointer for the CLP2_OFS register."]
    #[inline] pub fn clp2_ofs_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0xd8) as *const u32
    }
-#[doc="Get the *mut pointer for the CLP2_OFS register."]
+
+   #[doc="Get the *mut pointer for the CLP2_OFS register."]
    #[inline] pub fn clp2_ofs_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0xd8) as *mut u32
    }
-#[doc="Read the CLP2_OFS register."]
+
+   #[doc="Read the CLP2_OFS register."]
    #[inline] pub fn clp2_ofs(&self) -> Clp2Ofs { 
       unsafe {
          Clp2Ofs(read_volatile((self.0 + 0xd8) as *const u32))
       }
    }
-#[doc="Write the CLP2_OFS register."]
+
+   #[doc="Write the CLP2_OFS register."]
    #[inline] pub fn set_clp2_ofs<F: FnOnce(Clp2Ofs) -> Clp2Ofs>(&self, f: F) -> &Self {
       let value = f(Clp2Ofs(0));
       unsafe {
@@ -842,7 +935,8 @@ impl AdcPeriph {
       }
       self
    }
-#[doc="Modify the CLP2_OFS register."]
+
+   #[doc="Modify the CLP2_OFS register."]
    #[inline] pub fn with_clp2_ofs<F: FnOnce(Clp2Ofs) -> Clp2Ofs>(&self, f: F) -> &Self {
       let tmp = self.clp2_ofs();
       let value = f(tmp);
@@ -852,21 +946,24 @@ impl AdcPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the CLP1_OFS register."]
+   #[doc="Get the *const pointer for the CLP1_OFS register."]
    #[inline] pub fn clp1_ofs_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0xdc) as *const u32
    }
-#[doc="Get the *mut pointer for the CLP1_OFS register."]
+
+   #[doc="Get the *mut pointer for the CLP1_OFS register."]
    #[inline] pub fn clp1_ofs_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0xdc) as *mut u32
    }
-#[doc="Read the CLP1_OFS register."]
+
+   #[doc="Read the CLP1_OFS register."]
    #[inline] pub fn clp1_ofs(&self) -> Clp1Ofs { 
       unsafe {
          Clp1Ofs(read_volatile((self.0 + 0xdc) as *const u32))
       }
    }
-#[doc="Write the CLP1_OFS register."]
+
+   #[doc="Write the CLP1_OFS register."]
    #[inline] pub fn set_clp1_ofs<F: FnOnce(Clp1Ofs) -> Clp1Ofs>(&self, f: F) -> &Self {
       let value = f(Clp1Ofs(0));
       unsafe {
@@ -874,7 +971,8 @@ impl AdcPeriph {
       }
       self
    }
-#[doc="Modify the CLP1_OFS register."]
+
+   #[doc="Modify the CLP1_OFS register."]
    #[inline] pub fn with_clp1_ofs<F: FnOnce(Clp1Ofs) -> Clp1Ofs>(&self, f: F) -> &Self {
       let tmp = self.clp1_ofs();
       let value = f(tmp);
@@ -884,21 +982,24 @@ impl AdcPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the CLP0_OFS register."]
+   #[doc="Get the *const pointer for the CLP0_OFS register."]
    #[inline] pub fn clp0_ofs_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0xe0) as *const u32
    }
-#[doc="Get the *mut pointer for the CLP0_OFS register."]
+
+   #[doc="Get the *mut pointer for the CLP0_OFS register."]
    #[inline] pub fn clp0_ofs_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0xe0) as *mut u32
    }
-#[doc="Read the CLP0_OFS register."]
+
+   #[doc="Read the CLP0_OFS register."]
    #[inline] pub fn clp0_ofs(&self) -> Clp0Ofs { 
       unsafe {
          Clp0Ofs(read_volatile((self.0 + 0xe0) as *const u32))
       }
    }
-#[doc="Write the CLP0_OFS register."]
+
+   #[doc="Write the CLP0_OFS register."]
    #[inline] pub fn set_clp0_ofs<F: FnOnce(Clp0Ofs) -> Clp0Ofs>(&self, f: F) -> &Self {
       let value = f(Clp0Ofs(0));
       unsafe {
@@ -906,7 +1007,8 @@ impl AdcPeriph {
       }
       self
    }
-#[doc="Modify the CLP0_OFS register."]
+
+   #[doc="Modify the CLP0_OFS register."]
    #[inline] pub fn with_clp0_ofs<F: FnOnce(Clp0Ofs) -> Clp0Ofs>(&self, f: F) -> &Self {
       let tmp = self.clp0_ofs();
       let value = f(tmp);
@@ -916,21 +1018,24 @@ impl AdcPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the CLPX_OFS register."]
+   #[doc="Get the *const pointer for the CLPX_OFS register."]
    #[inline] pub fn clpx_ofs_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0xe4) as *const u32
    }
-#[doc="Get the *mut pointer for the CLPX_OFS register."]
+
+   #[doc="Get the *mut pointer for the CLPX_OFS register."]
    #[inline] pub fn clpx_ofs_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0xe4) as *mut u32
    }
-#[doc="Read the CLPX_OFS register."]
+
+   #[doc="Read the CLPX_OFS register."]
    #[inline] pub fn clpx_ofs(&self) -> ClpxOfs { 
       unsafe {
          ClpxOfs(read_volatile((self.0 + 0xe4) as *const u32))
       }
    }
-#[doc="Write the CLPX_OFS register."]
+
+   #[doc="Write the CLPX_OFS register."]
    #[inline] pub fn set_clpx_ofs<F: FnOnce(ClpxOfs) -> ClpxOfs>(&self, f: F) -> &Self {
       let value = f(ClpxOfs(0));
       unsafe {
@@ -938,7 +1043,8 @@ impl AdcPeriph {
       }
       self
    }
-#[doc="Modify the CLPX_OFS register."]
+
+   #[doc="Modify the CLPX_OFS register."]
    #[inline] pub fn with_clpx_ofs<F: FnOnce(ClpxOfs) -> ClpxOfs>(&self, f: F) -> &Self {
       let tmp = self.clpx_ofs();
       let value = f(tmp);
@@ -948,21 +1054,24 @@ impl AdcPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the CLP9_OFS register."]
+   #[doc="Get the *const pointer for the CLP9_OFS register."]
    #[inline] pub fn clp9_ofs_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0xe8) as *const u32
    }
-#[doc="Get the *mut pointer for the CLP9_OFS register."]
+
+   #[doc="Get the *mut pointer for the CLP9_OFS register."]
    #[inline] pub fn clp9_ofs_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0xe8) as *mut u32
    }
-#[doc="Read the CLP9_OFS register."]
+
+   #[doc="Read the CLP9_OFS register."]
    #[inline] pub fn clp9_ofs(&self) -> Clp9Ofs { 
       unsafe {
          Clp9Ofs(read_volatile((self.0 + 0xe8) as *const u32))
       }
    }
-#[doc="Write the CLP9_OFS register."]
+
+   #[doc="Write the CLP9_OFS register."]
    #[inline] pub fn set_clp9_ofs<F: FnOnce(Clp9Ofs) -> Clp9Ofs>(&self, f: F) -> &Self {
       let value = f(Clp9Ofs(0));
       unsafe {
@@ -970,7 +1079,8 @@ impl AdcPeriph {
       }
       self
    }
-#[doc="Modify the CLP9_OFS register."]
+
+   #[doc="Modify the CLP9_OFS register."]
    #[inline] pub fn with_clp9_ofs<F: FnOnce(Clp9Ofs) -> Clp9Ofs>(&self, f: F) -> &Self {
       let tmp = self.clp9_ofs();
       let value = f(tmp);
@@ -986,11 +1096,17 @@ impl AdcPeriph {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Sc1(pub u32);
 impl Sc1 {
-#[doc="Input channel select"]
+   #[doc="Input channel select"]
    #[inline] pub fn adch(&self) -> bits::U5 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1f) as u8) } // [4:0]
    }
-#[doc="Input channel select"]
+
+   #[doc="Input channel select"]
+   #[inline] pub fn test_adch(&self) -> bool {
+      self.adch != 0
+   }
+
+   #[doc="Input channel select"]
    #[inline] pub fn set_adch<V: Into<bits::U5>>(mut self, value: V) -> Self {
       let value: bits::U5 = value.into();
       let value: u32 = value.into();
@@ -999,11 +1115,17 @@ impl Sc1 {
       self
    }
 
-#[doc="Interrupt Enable"]
+   #[doc="Interrupt Enable"]
    #[inline] pub fn aien(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
    }
-#[doc="Interrupt Enable"]
+
+   #[doc="Interrupt Enable"]
+   #[inline] pub fn test_aien(&self) -> bool {
+      self.aien != 0
+   }
+
+   #[doc="Interrupt Enable"]
    #[inline] pub fn set_aien<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1012,11 +1134,17 @@ impl Sc1 {
       self
    }
 
-#[doc="Conversion Complete Flag"]
+   #[doc="Conversion Complete Flag"]
    #[inline] pub fn coco(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
    }
-#[doc="Conversion Complete Flag"]
+
+   #[doc="Conversion Complete Flag"]
+   #[inline] pub fn test_coco(&self) -> bool {
+      self.coco != 0
+   }
+
+   #[doc="Conversion Complete Flag"]
    #[inline] pub fn set_coco<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1026,11 +1154,13 @@ impl Sc1 {
    }
 
 }
+
 impl ::core::fmt::Display for Sc1 {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Sc1 {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1041,15 +1171,22 @@ impl ::core::fmt::Debug for Sc1 {
       Ok(())
    }
 }
+
 #[doc="ADC Configuration Register 1"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Cfg1(pub u32);
 impl Cfg1 {
-#[doc="Input Clock Select"]
+   #[doc="Input Clock Select"]
    #[inline] pub fn adiclk(&self) -> bits::U2 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x3) as u8) } // [1:0]
    }
-#[doc="Input Clock Select"]
+
+   #[doc="Input Clock Select"]
+   #[inline] pub fn test_adiclk(&self) -> bool {
+      self.adiclk != 0
+   }
+
+   #[doc="Input Clock Select"]
    #[inline] pub fn set_adiclk<V: Into<bits::U2>>(mut self, value: V) -> Self {
       let value: bits::U2 = value.into();
       let value: u32 = value.into();
@@ -1058,11 +1195,17 @@ impl Cfg1 {
       self
    }
 
-#[doc="Conversion mode selection"]
+   #[doc="Conversion mode selection"]
    #[inline] pub fn mode(&self) -> bits::U2 {
       unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x3) as u8) } // [3:2]
    }
-#[doc="Conversion mode selection"]
+
+   #[doc="Conversion mode selection"]
+   #[inline] pub fn test_mode(&self) -> bool {
+      self.mode != 0
+   }
+
+   #[doc="Conversion mode selection"]
    #[inline] pub fn set_mode<V: Into<bits::U2>>(mut self, value: V) -> Self {
       let value: bits::U2 = value.into();
       let value: u32 = value.into();
@@ -1071,11 +1214,17 @@ impl Cfg1 {
       self
    }
 
-#[doc="Clock Divide Select"]
+   #[doc="Clock Divide Select"]
    #[inline] pub fn adiv(&self) -> bits::U2 {
       unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x3) as u8) } // [6:5]
    }
-#[doc="Clock Divide Select"]
+
+   #[doc="Clock Divide Select"]
+   #[inline] pub fn test_adiv(&self) -> bool {
+      self.adiv != 0
+   }
+
+   #[doc="Clock Divide Select"]
    #[inline] pub fn set_adiv<V: Into<bits::U2>>(mut self, value: V) -> Self {
       let value: bits::U2 = value.into();
       let value: u32 = value.into();
@@ -1084,11 +1233,17 @@ impl Cfg1 {
       self
    }
 
-#[doc="Clear Latch Trigger in Trigger Handler Block"]
+   #[doc="Clear Latch Trigger in Trigger Handler Block"]
    #[inline] pub fn clrltrg(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
    }
-#[doc="Clear Latch Trigger in Trigger Handler Block"]
+
+   #[doc="Clear Latch Trigger in Trigger Handler Block"]
+   #[inline] pub fn test_clrltrg(&self) -> bool {
+      self.clrltrg != 0
+   }
+
+   #[doc="Clear Latch Trigger in Trigger Handler Block"]
    #[inline] pub fn set_clrltrg<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1098,11 +1253,13 @@ impl Cfg1 {
    }
 
 }
+
 impl ::core::fmt::Display for Cfg1 {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Cfg1 {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1114,15 +1271,22 @@ impl ::core::fmt::Debug for Cfg1 {
       Ok(())
    }
 }
+
 #[doc="ADC Configuration Register 2"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Cfg2(pub u32);
 impl Cfg2 {
-#[doc="Sample Time Select"]
+   #[doc="Sample Time Select"]
    #[inline] pub fn smplts(&self) -> bits::U8 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
    }
-#[doc="Sample Time Select"]
+
+   #[doc="Sample Time Select"]
+   #[inline] pub fn test_smplts(&self) -> bool {
+      self.smplts != 0
+   }
+
+   #[doc="Sample Time Select"]
    #[inline] pub fn set_smplts<V: Into<bits::U8>>(mut self, value: V) -> Self {
       let value: bits::U8 = value.into();
       let value: u32 = value.into();
@@ -1132,11 +1296,13 @@ impl Cfg2 {
    }
 
 }
+
 impl ::core::fmt::Display for Cfg2 {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Cfg2 {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1145,15 +1311,22 @@ impl ::core::fmt::Debug for Cfg2 {
       Ok(())
    }
 }
+
 #[doc="ADC Data Result Registers"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct R(pub u32);
 impl R {
-#[doc="Data result"]
+   #[doc="Data result"]
    #[inline] pub fn d(&self) -> bits::U12 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xfff) as u16) } // [11:0]
    }
-#[doc="Data result"]
+
+   #[doc="Data result"]
+   #[inline] pub fn test_d(&self) -> bool {
+      self.d != 0
+   }
+
+   #[doc="Data result"]
    #[inline] pub fn set_d<V: Into<bits::U12>>(mut self, value: V) -> Self {
       let value: bits::U12 = value.into();
       let value: u32 = value.into();
@@ -1162,11 +1335,17 @@ impl R {
       self
    }
 
-#[doc="Data result (12 bit)"]
+   #[doc="Data result (12 bit)"]
    #[inline] pub fn d12(&self) -> bits::U12 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xfff) as u16) } // [11:0]
    }
-#[doc="Data result (12 bit)"]
+
+   #[doc="Data result (12 bit)"]
+   #[inline] pub fn test_d12(&self) -> bool {
+      self.d12 != 0
+   }
+
+   #[doc="Data result (12 bit)"]
    #[inline] pub fn set_d12<V: Into<bits::U12>>(mut self, value: V) -> Self {
       let value: bits::U12 = value.into();
       let value: u32 = value.into();
@@ -1175,11 +1354,17 @@ impl R {
       self
    }
 
-#[doc="Data result (10 bit)"]
+   #[doc="Data result (10 bit)"]
    #[inline] pub fn d10(&self) -> bits::U10 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x3ff) as u16) } // [9:0]
    }
-#[doc="Data result (10 bit)"]
+
+   #[doc="Data result (10 bit)"]
+   #[inline] pub fn test_d10(&self) -> bool {
+      self.d10 != 0
+   }
+
+   #[doc="Data result (10 bit)"]
    #[inline] pub fn set_d10<V: Into<bits::U10>>(mut self, value: V) -> Self {
       let value: bits::U10 = value.into();
       let value: u32 = value.into();
@@ -1188,11 +1373,17 @@ impl R {
       self
    }
 
-#[doc="Data result (8 bit)"]
+   #[doc="Data result (8 bit)"]
    #[inline] pub fn d8(&self) -> bits::U8 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
    }
-#[doc="Data result (8 bit)"]
+
+   #[doc="Data result (8 bit)"]
+   #[inline] pub fn test_d8(&self) -> bool {
+      self.d8 != 0
+   }
+
+   #[doc="Data result (8 bit)"]
    #[inline] pub fn set_d8<V: Into<bits::U8>>(mut self, value: V) -> Self {
       let value: bits::U8 = value.into();
       let value: u32 = value.into();
@@ -1202,11 +1393,13 @@ impl R {
    }
 
 }
+
 impl ::core::fmt::Display for R {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for R {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1218,15 +1411,22 @@ impl ::core::fmt::Debug for R {
       Ok(())
    }
 }
+
 #[doc="Compare Value Registers"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Cv(pub u32);
 impl Cv {
-#[doc="Compare Value."]
+   #[doc="Compare Value."]
    #[inline] pub fn cv(&self) -> bits::U16 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffff) as u16) } // [15:0]
    }
-#[doc="Compare Value."]
+
+   #[doc="Compare Value."]
+   #[inline] pub fn test_cv(&self) -> bool {
+      self.cv != 0
+   }
+
+   #[doc="Compare Value."]
    #[inline] pub fn set_cv<V: Into<bits::U16>>(mut self, value: V) -> Self {
       let value: bits::U16 = value.into();
       let value: u32 = value.into();
@@ -1236,11 +1436,13 @@ impl Cv {
    }
 
 }
+
 impl ::core::fmt::Display for Cv {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Cv {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1249,15 +1451,22 @@ impl ::core::fmt::Debug for Cv {
       Ok(())
    }
 }
+
 #[doc="Status and Control Register 2"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Sc2(pub u32);
 impl Sc2 {
-#[doc="Voltage Reference Selection"]
+   #[doc="Voltage Reference Selection"]
    #[inline] pub fn refsel(&self) -> bits::U2 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x3) as u8) } // [1:0]
    }
-#[doc="Voltage Reference Selection"]
+
+   #[doc="Voltage Reference Selection"]
+   #[inline] pub fn test_refsel(&self) -> bool {
+      self.refsel != 0
+   }
+
+   #[doc="Voltage Reference Selection"]
    #[inline] pub fn set_refsel<V: Into<bits::U2>>(mut self, value: V) -> Self {
       let value: bits::U2 = value.into();
       let value: u32 = value.into();
@@ -1266,11 +1475,17 @@ impl Sc2 {
       self
    }
 
-#[doc="DMA Enable"]
+   #[doc="DMA Enable"]
    #[inline] pub fn dmaen(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
    }
-#[doc="DMA Enable"]
+
+   #[doc="DMA Enable"]
+   #[inline] pub fn test_dmaen(&self) -> bool {
+      self.dmaen != 0
+   }
+
+   #[doc="DMA Enable"]
    #[inline] pub fn set_dmaen<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1279,11 +1494,17 @@ impl Sc2 {
       self
    }
 
-#[doc="Compare Function Range Enable"]
+   #[doc="Compare Function Range Enable"]
    #[inline] pub fn acren(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
    }
-#[doc="Compare Function Range Enable"]
+
+   #[doc="Compare Function Range Enable"]
+   #[inline] pub fn test_acren(&self) -> bool {
+      self.acren != 0
+   }
+
+   #[doc="Compare Function Range Enable"]
    #[inline] pub fn set_acren<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1292,11 +1513,17 @@ impl Sc2 {
       self
    }
 
-#[doc="Compare Function Greater Than Enable"]
+   #[doc="Compare Function Greater Than Enable"]
    #[inline] pub fn acfgt(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
    }
-#[doc="Compare Function Greater Than Enable"]
+
+   #[doc="Compare Function Greater Than Enable"]
+   #[inline] pub fn test_acfgt(&self) -> bool {
+      self.acfgt != 0
+   }
+
+   #[doc="Compare Function Greater Than Enable"]
    #[inline] pub fn set_acfgt<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1305,11 +1532,17 @@ impl Sc2 {
       self
    }
 
-#[doc="Compare Function Enable"]
+   #[doc="Compare Function Enable"]
    #[inline] pub fn acfe(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
    }
-#[doc="Compare Function Enable"]
+
+   #[doc="Compare Function Enable"]
+   #[inline] pub fn test_acfe(&self) -> bool {
+      self.acfe != 0
+   }
+
+   #[doc="Compare Function Enable"]
    #[inline] pub fn set_acfe<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1318,11 +1551,17 @@ impl Sc2 {
       self
    }
 
-#[doc="Conversion Trigger Select"]
+   #[doc="Conversion Trigger Select"]
    #[inline] pub fn adtrg(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
    }
-#[doc="Conversion Trigger Select"]
+
+   #[doc="Conversion Trigger Select"]
+   #[inline] pub fn test_adtrg(&self) -> bool {
+      self.adtrg != 0
+   }
+
+   #[doc="Conversion Trigger Select"]
    #[inline] pub fn set_adtrg<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1331,11 +1570,17 @@ impl Sc2 {
       self
    }
 
-#[doc="Conversion Active"]
+   #[doc="Conversion Active"]
    #[inline] pub fn adact(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
    }
-#[doc="Conversion Active"]
+
+   #[doc="Conversion Active"]
+   #[inline] pub fn test_adact(&self) -> bool {
+      self.adact != 0
+   }
+
+   #[doc="Conversion Active"]
    #[inline] pub fn set_adact<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1344,11 +1589,17 @@ impl Sc2 {
       self
    }
 
-#[doc="Trigger Process Number"]
+   #[doc="Trigger Process Number"]
    #[inline] pub fn trgprnum(&self) -> bits::U2 {
       unsafe { ::core::mem::transmute(((self.0 >> 13) & 0x3) as u8) } // [14:13]
    }
-#[doc="Trigger Process Number"]
+
+   #[doc="Trigger Process Number"]
+   #[inline] pub fn test_trgprnum(&self) -> bool {
+      self.trgprnum != 0
+   }
+
+   #[doc="Trigger Process Number"]
    #[inline] pub fn set_trgprnum<V: Into<bits::U2>>(mut self, value: V) -> Self {
       let value: bits::U2 = value.into();
       let value: u32 = value.into();
@@ -1357,11 +1608,17 @@ impl Sc2 {
       self
    }
 
-#[doc="Trigger Status"]
+   #[doc="Trigger Status"]
    #[inline] pub fn trgstlat(&self) -> bits::U4 {
       unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xf) as u8) } // [19:16]
    }
-#[doc="Trigger Status"]
+
+   #[doc="Trigger Status"]
+   #[inline] pub fn test_trgstlat(&self) -> bool {
+      self.trgstlat != 0
+   }
+
+   #[doc="Trigger Status"]
    #[inline] pub fn set_trgstlat<V: Into<bits::U4>>(mut self, value: V) -> Self {
       let value: bits::U4 = value.into();
       let value: u32 = value.into();
@@ -1370,11 +1627,17 @@ impl Sc2 {
       self
    }
 
-#[doc="Error in Multiplexed Trigger Request"]
+   #[doc="Error in Multiplexed Trigger Request"]
    #[inline] pub fn trgsterr(&self) -> bits::U4 {
       unsafe { ::core::mem::transmute(((self.0 >> 24) & 0xf) as u8) } // [27:24]
    }
-#[doc="Error in Multiplexed Trigger Request"]
+
+   #[doc="Error in Multiplexed Trigger Request"]
+   #[inline] pub fn test_trgsterr(&self) -> bool {
+      self.trgsterr != 0
+   }
+
+   #[doc="Error in Multiplexed Trigger Request"]
    #[inline] pub fn set_trgsterr<V: Into<bits::U4>>(mut self, value: V) -> Self {
       let value: bits::U4 = value.into();
       let value: u32 = value.into();
@@ -1384,11 +1647,13 @@ impl Sc2 {
    }
 
 }
+
 impl ::core::fmt::Display for Sc2 {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Sc2 {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1406,15 +1671,22 @@ impl ::core::fmt::Debug for Sc2 {
       Ok(())
    }
 }
+
 #[doc="Status and Control Register 3"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Sc3(pub u32);
 impl Sc3 {
-#[doc="Hardware Average Select"]
+   #[doc="Hardware Average Select"]
    #[inline] pub fn avgs(&self) -> bits::U2 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x3) as u8) } // [1:0]
    }
-#[doc="Hardware Average Select"]
+
+   #[doc="Hardware Average Select"]
+   #[inline] pub fn test_avgs(&self) -> bool {
+      self.avgs != 0
+   }
+
+   #[doc="Hardware Average Select"]
    #[inline] pub fn set_avgs<V: Into<bits::U2>>(mut self, value: V) -> Self {
       let value: bits::U2 = value.into();
       let value: u32 = value.into();
@@ -1423,11 +1695,17 @@ impl Sc3 {
       self
    }
 
-#[doc="Hardware Average Enable"]
+   #[doc="Hardware Average Enable"]
    #[inline] pub fn avge(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
    }
-#[doc="Hardware Average Enable"]
+
+   #[doc="Hardware Average Enable"]
+   #[inline] pub fn test_avge(&self) -> bool {
+      self.avge != 0
+   }
+
+   #[doc="Hardware Average Enable"]
    #[inline] pub fn set_avge<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1436,11 +1714,17 @@ impl Sc3 {
       self
    }
 
-#[doc="Continuous Conversion Enable"]
+   #[doc="Continuous Conversion Enable"]
    #[inline] pub fn adco(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
    }
-#[doc="Continuous Conversion Enable"]
+
+   #[doc="Continuous Conversion Enable"]
+   #[inline] pub fn test_adco(&self) -> bool {
+      self.adco != 0
+   }
+
+   #[doc="Continuous Conversion Enable"]
    #[inline] pub fn set_adco<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1449,11 +1733,17 @@ impl Sc3 {
       self
    }
 
-#[doc="Calibration"]
+   #[doc="Calibration"]
    #[inline] pub fn cal(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
    }
-#[doc="Calibration"]
+
+   #[doc="Calibration"]
+   #[inline] pub fn test_cal(&self) -> bool {
+      self.cal != 0
+   }
+
+   #[doc="Calibration"]
    #[inline] pub fn set_cal<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1463,11 +1753,13 @@ impl Sc3 {
    }
 
 }
+
 impl ::core::fmt::Display for Sc3 {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Sc3 {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1479,15 +1771,22 @@ impl ::core::fmt::Debug for Sc3 {
       Ok(())
    }
 }
+
 #[doc="BASE Offset Register"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct BaseOfs(pub u32);
 impl BaseOfs {
-#[doc="Base Offset Error Correction Value"]
+   #[doc="Base Offset Error Correction Value"]
    #[inline] pub fn ba_ofs(&self) -> bits::U8 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
    }
-#[doc="Base Offset Error Correction Value"]
+
+   #[doc="Base Offset Error Correction Value"]
+   #[inline] pub fn test_ba_ofs(&self) -> bool {
+      self.ba_ofs != 0
+   }
+
+   #[doc="Base Offset Error Correction Value"]
    #[inline] pub fn set_ba_ofs<V: Into<bits::U8>>(mut self, value: V) -> Self {
       let value: bits::U8 = value.into();
       let value: u32 = value.into();
@@ -1497,11 +1796,13 @@ impl BaseOfs {
    }
 
 }
+
 impl ::core::fmt::Display for BaseOfs {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for BaseOfs {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1510,15 +1811,22 @@ impl ::core::fmt::Debug for BaseOfs {
       Ok(())
    }
 }
+
 #[doc="ADC Offset Correction Register"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ofs(pub u32);
 impl Ofs {
-#[doc="Offset Error Correction Value"]
+   #[doc="Offset Error Correction Value"]
    #[inline] pub fn ofs(&self) -> bits::U16 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffff) as u16) } // [15:0]
    }
-#[doc="Offset Error Correction Value"]
+
+   #[doc="Offset Error Correction Value"]
+   #[inline] pub fn test_ofs(&self) -> bool {
+      self.ofs != 0
+   }
+
+   #[doc="Offset Error Correction Value"]
    #[inline] pub fn set_ofs<V: Into<bits::U16>>(mut self, value: V) -> Self {
       let value: bits::U16 = value.into();
       let value: u32 = value.into();
@@ -1528,11 +1836,13 @@ impl Ofs {
    }
 
 }
+
 impl ::core::fmt::Display for Ofs {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Ofs {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1541,15 +1851,22 @@ impl ::core::fmt::Debug for Ofs {
       Ok(())
    }
 }
+
 #[doc="USER Offset Correction Register"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct UsrOfs(pub u32);
 impl UsrOfs {
-#[doc="USER Offset Error Correction Value"]
+   #[doc="USER Offset Error Correction Value"]
    #[inline] pub fn usr_ofs(&self) -> bits::U8 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
    }
-#[doc="USER Offset Error Correction Value"]
+
+   #[doc="USER Offset Error Correction Value"]
+   #[inline] pub fn test_usr_ofs(&self) -> bool {
+      self.usr_ofs != 0
+   }
+
+   #[doc="USER Offset Error Correction Value"]
    #[inline] pub fn set_usr_ofs<V: Into<bits::U8>>(mut self, value: V) -> Self {
       let value: bits::U8 = value.into();
       let value: u32 = value.into();
@@ -1559,11 +1876,13 @@ impl UsrOfs {
    }
 
 }
+
 impl ::core::fmt::Display for UsrOfs {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for UsrOfs {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1572,15 +1891,22 @@ impl ::core::fmt::Debug for UsrOfs {
       Ok(())
    }
 }
+
 #[doc="ADC X Offset Correction Register"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Xofs(pub u32);
 impl Xofs {
-#[doc="X offset error correction value"]
+   #[doc="X offset error correction value"]
    #[inline] pub fn xofs(&self) -> bits::U6 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x3f) as u8) } // [5:0]
    }
-#[doc="X offset error correction value"]
+
+   #[doc="X offset error correction value"]
+   #[inline] pub fn test_xofs(&self) -> bool {
+      self.xofs != 0
+   }
+
+   #[doc="X offset error correction value"]
    #[inline] pub fn set_xofs<V: Into<bits::U6>>(mut self, value: V) -> Self {
       let value: bits::U6 = value.into();
       let value: u32 = value.into();
@@ -1590,11 +1916,13 @@ impl Xofs {
    }
 
 }
+
 impl ::core::fmt::Display for Xofs {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Xofs {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1603,15 +1931,22 @@ impl ::core::fmt::Debug for Xofs {
       Ok(())
    }
 }
+
 #[doc="ADC Y Offset Correction Register"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Yofs(pub u32);
 impl Yofs {
-#[doc="Y offset error correction value"]
+   #[doc="Y offset error correction value"]
    #[inline] pub fn yofs(&self) -> bits::U8 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
    }
-#[doc="Y offset error correction value"]
+
+   #[doc="Y offset error correction value"]
+   #[inline] pub fn test_yofs(&self) -> bool {
+      self.yofs != 0
+   }
+
+   #[doc="Y offset error correction value"]
    #[inline] pub fn set_yofs<V: Into<bits::U8>>(mut self, value: V) -> Self {
       let value: bits::U8 = value.into();
       let value: u32 = value.into();
@@ -1621,11 +1956,13 @@ impl Yofs {
    }
 
 }
+
 impl ::core::fmt::Display for Yofs {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Yofs {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1634,15 +1971,22 @@ impl ::core::fmt::Debug for Yofs {
       Ok(())
    }
 }
+
 #[doc="ADC Gain Register"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct G(pub u32);
 impl G {
-#[doc="Gain error adjustment factor for the overall conversion"]
+   #[doc="Gain error adjustment factor for the overall conversion"]
    #[inline] pub fn g(&self) -> bits::U11 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x7ff) as u16) } // [10:0]
    }
-#[doc="Gain error adjustment factor for the overall conversion"]
+
+   #[doc="Gain error adjustment factor for the overall conversion"]
+   #[inline] pub fn test_g(&self) -> bool {
+      self.g != 0
+   }
+
+   #[doc="Gain error adjustment factor for the overall conversion"]
    #[inline] pub fn set_g<V: Into<bits::U11>>(mut self, value: V) -> Self {
       let value: bits::U11 = value.into();
       let value: u32 = value.into();
@@ -1652,11 +1996,13 @@ impl G {
    }
 
 }
+
 impl ::core::fmt::Display for G {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for G {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1665,15 +2011,22 @@ impl ::core::fmt::Debug for G {
       Ok(())
    }
 }
+
 #[doc="ADC User Gain Register"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ug(pub u32);
 impl Ug {
-#[doc="User gain error correction value"]
+   #[doc="User gain error correction value"]
    #[inline] pub fn ug(&self) -> bits::U10 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x3ff) as u16) } // [9:0]
    }
-#[doc="User gain error correction value"]
+
+   #[doc="User gain error correction value"]
+   #[inline] pub fn test_ug(&self) -> bool {
+      self.ug != 0
+   }
+
+   #[doc="User gain error correction value"]
    #[inline] pub fn set_ug<V: Into<bits::U10>>(mut self, value: V) -> Self {
       let value: bits::U10 = value.into();
       let value: u32 = value.into();
@@ -1683,11 +2036,13 @@ impl Ug {
    }
 
 }
+
 impl ::core::fmt::Display for Ug {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Ug {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1696,15 +2051,22 @@ impl ::core::fmt::Debug for Ug {
       Ok(())
    }
 }
+
 #[doc="ADC General Calibration Value Register S"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Clps(pub u32);
 impl Clps {
-#[doc="Calibration Value"]
+   #[doc="Calibration Value"]
    #[inline] pub fn clps(&self) -> bits::U7 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x7f) as u8) } // [6:0]
    }
-#[doc="Calibration Value"]
+
+   #[doc="Calibration Value"]
+   #[inline] pub fn test_clps(&self) -> bool {
+      self.clps != 0
+   }
+
+   #[doc="Calibration Value"]
    #[inline] pub fn set_clps<V: Into<bits::U7>>(mut self, value: V) -> Self {
       let value: bits::U7 = value.into();
       let value: u32 = value.into();
@@ -1714,11 +2076,13 @@ impl Clps {
    }
 
 }
+
 impl ::core::fmt::Display for Clps {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Clps {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1727,15 +2091,22 @@ impl ::core::fmt::Debug for Clps {
       Ok(())
    }
 }
+
 #[doc="ADC Plus-Side General Calibration Value Register 3"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Clp3(pub u32);
 impl Clp3 {
-#[doc="Calibration Value"]
+   #[doc="Calibration Value"]
    #[inline] pub fn clp3(&self) -> bits::U10 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x3ff) as u16) } // [9:0]
    }
-#[doc="Calibration Value"]
+
+   #[doc="Calibration Value"]
+   #[inline] pub fn test_clp3(&self) -> bool {
+      self.clp3 != 0
+   }
+
+   #[doc="Calibration Value"]
    #[inline] pub fn set_clp3<V: Into<bits::U10>>(mut self, value: V) -> Self {
       let value: bits::U10 = value.into();
       let value: u32 = value.into();
@@ -1745,11 +2116,13 @@ impl Clp3 {
    }
 
 }
+
 impl ::core::fmt::Display for Clp3 {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Clp3 {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1758,15 +2131,22 @@ impl ::core::fmt::Debug for Clp3 {
       Ok(())
    }
 }
+
 #[doc="ADC Plus-Side General Calibration Value Register 2"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Clp2(pub u32);
 impl Clp2 {
-#[doc="Calibration Value"]
+   #[doc="Calibration Value"]
    #[inline] pub fn clp2(&self) -> bits::U10 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x3ff) as u16) } // [9:0]
    }
-#[doc="Calibration Value"]
+
+   #[doc="Calibration Value"]
+   #[inline] pub fn test_clp2(&self) -> bool {
+      self.clp2 != 0
+   }
+
+   #[doc="Calibration Value"]
    #[inline] pub fn set_clp2<V: Into<bits::U10>>(mut self, value: V) -> Self {
       let value: bits::U10 = value.into();
       let value: u32 = value.into();
@@ -1776,11 +2156,13 @@ impl Clp2 {
    }
 
 }
+
 impl ::core::fmt::Display for Clp2 {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Clp2 {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1789,15 +2171,22 @@ impl ::core::fmt::Debug for Clp2 {
       Ok(())
    }
 }
+
 #[doc="ADC Plus-Side General Calibration Value Register 1"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Clp1(pub u32);
 impl Clp1 {
-#[doc="Calibration Value"]
+   #[doc="Calibration Value"]
    #[inline] pub fn clp1(&self) -> bits::U9 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1ff) as u16) } // [8:0]
    }
-#[doc="Calibration Value"]
+
+   #[doc="Calibration Value"]
+   #[inline] pub fn test_clp1(&self) -> bool {
+      self.clp1 != 0
+   }
+
+   #[doc="Calibration Value"]
    #[inline] pub fn set_clp1<V: Into<bits::U9>>(mut self, value: V) -> Self {
       let value: bits::U9 = value.into();
       let value: u32 = value.into();
@@ -1807,11 +2196,13 @@ impl Clp1 {
    }
 
 }
+
 impl ::core::fmt::Display for Clp1 {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Clp1 {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1820,15 +2211,22 @@ impl ::core::fmt::Debug for Clp1 {
       Ok(())
    }
 }
+
 #[doc="ADC Plus-Side General Calibration Value Register 0"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Clp0(pub u32);
 impl Clp0 {
-#[doc="Calibration Value"]
+   #[doc="Calibration Value"]
    #[inline] pub fn clp0(&self) -> bits::U8 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
    }
-#[doc="Calibration Value"]
+
+   #[doc="Calibration Value"]
+   #[inline] pub fn test_clp0(&self) -> bool {
+      self.clp0 != 0
+   }
+
+   #[doc="Calibration Value"]
    #[inline] pub fn set_clp0<V: Into<bits::U8>>(mut self, value: V) -> Self {
       let value: bits::U8 = value.into();
       let value: u32 = value.into();
@@ -1838,11 +2236,13 @@ impl Clp0 {
    }
 
 }
+
 impl ::core::fmt::Display for Clp0 {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Clp0 {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1851,15 +2251,22 @@ impl ::core::fmt::Debug for Clp0 {
       Ok(())
    }
 }
+
 #[doc="ADC Plus-Side General Calibration Value Register X"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Clpx(pub u32);
 impl Clpx {
-#[doc="Calibration Value"]
+   #[doc="Calibration Value"]
    #[inline] pub fn clpx(&self) -> bits::U7 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x7f) as u8) } // [6:0]
    }
-#[doc="Calibration Value"]
+
+   #[doc="Calibration Value"]
+   #[inline] pub fn test_clpx(&self) -> bool {
+      self.clpx != 0
+   }
+
+   #[doc="Calibration Value"]
    #[inline] pub fn set_clpx<V: Into<bits::U7>>(mut self, value: V) -> Self {
       let value: bits::U7 = value.into();
       let value: u32 = value.into();
@@ -1869,11 +2276,13 @@ impl Clpx {
    }
 
 }
+
 impl ::core::fmt::Display for Clpx {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Clpx {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1882,15 +2291,22 @@ impl ::core::fmt::Debug for Clpx {
       Ok(())
    }
 }
+
 #[doc="ADC Plus-Side General Calibration Value Register 9"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Clp9(pub u32);
 impl Clp9 {
-#[doc="Calibration Value"]
+   #[doc="Calibration Value"]
    #[inline] pub fn clp9(&self) -> bits::U7 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x7f) as u8) } // [6:0]
    }
-#[doc="Calibration Value"]
+
+   #[doc="Calibration Value"]
+   #[inline] pub fn test_clp9(&self) -> bool {
+      self.clp9 != 0
+   }
+
+   #[doc="Calibration Value"]
    #[inline] pub fn set_clp9<V: Into<bits::U7>>(mut self, value: V) -> Self {
       let value: bits::U7 = value.into();
       let value: u32 = value.into();
@@ -1900,11 +2316,13 @@ impl Clp9 {
    }
 
 }
+
 impl ::core::fmt::Display for Clp9 {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Clp9 {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1913,15 +2331,22 @@ impl ::core::fmt::Debug for Clp9 {
       Ok(())
    }
 }
+
 #[doc="ADC General Calibration Offset Value Register S"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct ClpsOfs(pub u32);
 impl ClpsOfs {
-#[doc="CLPS Offset"]
+   #[doc="CLPS Offset"]
    #[inline] pub fn clps_ofs(&self) -> bits::U4 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xf) as u8) } // [3:0]
    }
-#[doc="CLPS Offset"]
+
+   #[doc="CLPS Offset"]
+   #[inline] pub fn test_clps_ofs(&self) -> bool {
+      self.clps_ofs != 0
+   }
+
+   #[doc="CLPS Offset"]
    #[inline] pub fn set_clps_ofs<V: Into<bits::U4>>(mut self, value: V) -> Self {
       let value: bits::U4 = value.into();
       let value: u32 = value.into();
@@ -1931,11 +2356,13 @@ impl ClpsOfs {
    }
 
 }
+
 impl ::core::fmt::Display for ClpsOfs {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for ClpsOfs {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1944,15 +2371,22 @@ impl ::core::fmt::Debug for ClpsOfs {
       Ok(())
    }
 }
+
 #[doc="ADC Plus-Side General Calibration Offset Value Register 3"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Clp3Ofs(pub u32);
 impl Clp3Ofs {
-#[doc="CLP3 Offset"]
+   #[doc="CLP3 Offset"]
    #[inline] pub fn clp3_ofs(&self) -> bits::U4 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xf) as u8) } // [3:0]
    }
-#[doc="CLP3 Offset"]
+
+   #[doc="CLP3 Offset"]
+   #[inline] pub fn test_clp3_ofs(&self) -> bool {
+      self.clp3_ofs != 0
+   }
+
+   #[doc="CLP3 Offset"]
    #[inline] pub fn set_clp3_ofs<V: Into<bits::U4>>(mut self, value: V) -> Self {
       let value: bits::U4 = value.into();
       let value: u32 = value.into();
@@ -1962,11 +2396,13 @@ impl Clp3Ofs {
    }
 
 }
+
 impl ::core::fmt::Display for Clp3Ofs {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Clp3Ofs {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1975,15 +2411,22 @@ impl ::core::fmt::Debug for Clp3Ofs {
       Ok(())
    }
 }
+
 #[doc="ADC Plus-Side General Calibration Offset Value Register 2"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Clp2Ofs(pub u32);
 impl Clp2Ofs {
-#[doc="CLP2 Offset"]
+   #[doc="CLP2 Offset"]
    #[inline] pub fn clp2_ofs(&self) -> bits::U4 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xf) as u8) } // [3:0]
    }
-#[doc="CLP2 Offset"]
+
+   #[doc="CLP2 Offset"]
+   #[inline] pub fn test_clp2_ofs(&self) -> bool {
+      self.clp2_ofs != 0
+   }
+
+   #[doc="CLP2 Offset"]
    #[inline] pub fn set_clp2_ofs<V: Into<bits::U4>>(mut self, value: V) -> Self {
       let value: bits::U4 = value.into();
       let value: u32 = value.into();
@@ -1993,11 +2436,13 @@ impl Clp2Ofs {
    }
 
 }
+
 impl ::core::fmt::Display for Clp2Ofs {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Clp2Ofs {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -2006,15 +2451,22 @@ impl ::core::fmt::Debug for Clp2Ofs {
       Ok(())
    }
 }
+
 #[doc="ADC Plus-Side General Calibration Offset Value Register 1"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Clp1Ofs(pub u32);
 impl Clp1Ofs {
-#[doc="CLP1 Offset"]
+   #[doc="CLP1 Offset"]
    #[inline] pub fn clp1_ofs(&self) -> bits::U4 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xf) as u8) } // [3:0]
    }
-#[doc="CLP1 Offset"]
+
+   #[doc="CLP1 Offset"]
+   #[inline] pub fn test_clp1_ofs(&self) -> bool {
+      self.clp1_ofs != 0
+   }
+
+   #[doc="CLP1 Offset"]
    #[inline] pub fn set_clp1_ofs<V: Into<bits::U4>>(mut self, value: V) -> Self {
       let value: bits::U4 = value.into();
       let value: u32 = value.into();
@@ -2024,11 +2476,13 @@ impl Clp1Ofs {
    }
 
 }
+
 impl ::core::fmt::Display for Clp1Ofs {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Clp1Ofs {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -2037,15 +2491,22 @@ impl ::core::fmt::Debug for Clp1Ofs {
       Ok(())
    }
 }
+
 #[doc="ADC Plus-Side General Calibration Offset Value Register 0"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Clp0Ofs(pub u32);
 impl Clp0Ofs {
-#[doc="CLP0 Offset"]
+   #[doc="CLP0 Offset"]
    #[inline] pub fn clp0_ofs(&self) -> bits::U4 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xf) as u8) } // [3:0]
    }
-#[doc="CLP0 Offset"]
+
+   #[doc="CLP0 Offset"]
+   #[inline] pub fn test_clp0_ofs(&self) -> bool {
+      self.clp0_ofs != 0
+   }
+
+   #[doc="CLP0 Offset"]
    #[inline] pub fn set_clp0_ofs<V: Into<bits::U4>>(mut self, value: V) -> Self {
       let value: bits::U4 = value.into();
       let value: u32 = value.into();
@@ -2055,11 +2516,13 @@ impl Clp0Ofs {
    }
 
 }
+
 impl ::core::fmt::Display for Clp0Ofs {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Clp0Ofs {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -2068,15 +2531,22 @@ impl ::core::fmt::Debug for Clp0Ofs {
       Ok(())
    }
 }
+
 #[doc="ADC Plus-Side General Calibration Offset Value Register X"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct ClpxOfs(pub u32);
 impl ClpxOfs {
-#[doc="CLPX Offset"]
+   #[doc="CLPX Offset"]
    #[inline] pub fn clpx_ofs(&self) -> bits::U12 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xfff) as u16) } // [11:0]
    }
-#[doc="CLPX Offset"]
+
+   #[doc="CLPX Offset"]
+   #[inline] pub fn test_clpx_ofs(&self) -> bool {
+      self.clpx_ofs != 0
+   }
+
+   #[doc="CLPX Offset"]
    #[inline] pub fn set_clpx_ofs<V: Into<bits::U12>>(mut self, value: V) -> Self {
       let value: bits::U12 = value.into();
       let value: u32 = value.into();
@@ -2086,11 +2556,13 @@ impl ClpxOfs {
    }
 
 }
+
 impl ::core::fmt::Display for ClpxOfs {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for ClpxOfs {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -2099,15 +2571,22 @@ impl ::core::fmt::Debug for ClpxOfs {
       Ok(())
    }
 }
+
 #[doc="ADC Plus-Side General Calibration Offset Value Register 9"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Clp9Ofs(pub u32);
 impl Clp9Ofs {
-#[doc="CLP9 Offset"]
+   #[doc="CLP9 Offset"]
    #[inline] pub fn clp9_ofs(&self) -> bits::U12 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xfff) as u16) } // [11:0]
    }
-#[doc="CLP9 Offset"]
+
+   #[doc="CLP9 Offset"]
+   #[inline] pub fn test_clp9_ofs(&self) -> bool {
+      self.clp9_ofs != 0
+   }
+
+   #[doc="CLP9 Offset"]
    #[inline] pub fn set_clp9_ofs<V: Into<bits::U12>>(mut self, value: V) -> Self {
       let value: bits::U12 = value.into();
       let value: u32 = value.into();
@@ -2117,11 +2596,13 @@ impl Clp9Ofs {
    }
 
 }
+
 impl ::core::fmt::Display for Clp9Ofs {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Clp9Ofs {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -2130,6 +2611,7 @@ impl ::core::fmt::Debug for Clp9Ofs {
       Ok(())
    }
 }
+
 pub struct AdcCh { pub periph: AdcPeriph, pub index: usize }
 channel!(ADC0_CH0, Adc0Ch0, ADC0, Adc0, _ADC0_CH0, AdcCh, _ADC0, 0);
 channel!(ADC0_CH1, Adc0Ch1, ADC0, Adc0, _ADC0_CH1, AdcCh, _ADC0, 1);

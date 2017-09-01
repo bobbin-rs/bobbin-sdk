@@ -55,21 +55,24 @@ impl super::sig::SignalTx<super::sig::U7tx> for Uart7 {}
 
 
 impl UartPeriph {
-#[doc="Get the *const pointer for the DR register."]
+   #[doc="Get the *const pointer for the DR register."]
    #[inline] pub fn dr_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x0) as *const u32
    }
-#[doc="Get the *mut pointer for the DR register."]
+
+   #[doc="Get the *mut pointer for the DR register."]
    #[inline] pub fn dr_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x0) as *mut u32
    }
-#[doc="Read the DR register."]
+
+   #[doc="Read the DR register."]
    #[inline] pub fn dr(&self) -> Dr { 
       unsafe {
          Dr(read_volatile((self.0 + 0x0) as *const u32))
       }
    }
-#[doc="Write the DR register."]
+
+   #[doc="Write the DR register."]
    #[inline] pub fn set_dr<F: FnOnce(Dr) -> Dr>(&self, f: F) -> &Self {
       let value = f(Dr(0));
       unsafe {
@@ -77,7 +80,8 @@ impl UartPeriph {
       }
       self
    }
-#[doc="Modify the DR register."]
+
+   #[doc="Modify the DR register."]
    #[inline] pub fn with_dr<F: FnOnce(Dr) -> Dr>(&self, f: F) -> &Self {
       let tmp = self.dr();
       let value = f(tmp);
@@ -87,21 +91,24 @@ impl UartPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the RSR register."]
+   #[doc="Get the *const pointer for the RSR register."]
    #[inline] pub fn rsr_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x4) as *const u32
    }
-#[doc="Get the *mut pointer for the RSR register."]
+
+   #[doc="Get the *mut pointer for the RSR register."]
    #[inline] pub fn rsr_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x4) as *mut u32
    }
-#[doc="Read the RSR register."]
+
+   #[doc="Read the RSR register."]
    #[inline] pub fn rsr(&self) -> Rsr { 
       unsafe {
          Rsr(read_volatile((self.0 + 0x4) as *const u32))
       }
    }
-#[doc="Write the RSR register."]
+
+   #[doc="Write the RSR register."]
    #[inline] pub fn set_rsr<F: FnOnce(Rsr) -> Rsr>(&self, f: F) -> &Self {
       let value = f(Rsr(0));
       unsafe {
@@ -109,7 +116,8 @@ impl UartPeriph {
       }
       self
    }
-#[doc="Modify the RSR register."]
+
+   #[doc="Modify the RSR register."]
    #[inline] pub fn with_rsr<F: FnOnce(Rsr) -> Rsr>(&self, f: F) -> &Self {
       let tmp = self.rsr();
       let value = f(tmp);
@@ -119,21 +127,24 @@ impl UartPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the ECR register."]
+   #[doc="Get the *const pointer for the ECR register."]
    #[inline] pub fn ecr_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x4) as *const u32
    }
-#[doc="Get the *mut pointer for the ECR register."]
+
+   #[doc="Get the *mut pointer for the ECR register."]
    #[inline] pub fn ecr_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x4) as *mut u32
    }
-#[doc="Read the ECR register."]
+
+   #[doc="Read the ECR register."]
    #[inline] pub fn ecr(&self) -> Ecr { 
       unsafe {
          Ecr(read_volatile((self.0 + 0x4) as *const u32))
       }
    }
-#[doc="Write the ECR register."]
+
+   #[doc="Write the ECR register."]
    #[inline] pub fn set_ecr<F: FnOnce(Ecr) -> Ecr>(&self, f: F) -> &Self {
       let value = f(Ecr(0));
       unsafe {
@@ -141,7 +152,8 @@ impl UartPeriph {
       }
       self
    }
-#[doc="Modify the ECR register."]
+
+   #[doc="Modify the ECR register."]
    #[inline] pub fn with_ecr<F: FnOnce(Ecr) -> Ecr>(&self, f: F) -> &Self {
       let tmp = self.ecr();
       let value = f(tmp);
@@ -151,21 +163,24 @@ impl UartPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the FR register."]
+   #[doc="Get the *const pointer for the FR register."]
    #[inline] pub fn fr_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x18) as *const u32
    }
-#[doc="Get the *mut pointer for the FR register."]
+
+   #[doc="Get the *mut pointer for the FR register."]
    #[inline] pub fn fr_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x18) as *mut u32
    }
-#[doc="Read the FR register."]
+
+   #[doc="Read the FR register."]
    #[inline] pub fn fr(&self) -> Fr { 
       unsafe {
          Fr(read_volatile((self.0 + 0x18) as *const u32))
       }
    }
-#[doc="Write the FR register."]
+
+   #[doc="Write the FR register."]
    #[inline] pub fn set_fr<F: FnOnce(Fr) -> Fr>(&self, f: F) -> &Self {
       let value = f(Fr(0));
       unsafe {
@@ -173,7 +188,8 @@ impl UartPeriph {
       }
       self
    }
-#[doc="Modify the FR register."]
+
+   #[doc="Modify the FR register."]
    #[inline] pub fn with_fr<F: FnOnce(Fr) -> Fr>(&self, f: F) -> &Self {
       let tmp = self.fr();
       let value = f(tmp);
@@ -183,21 +199,24 @@ impl UartPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the ILPR register."]
+   #[doc="Get the *const pointer for the ILPR register."]
    #[inline] pub fn ilpr_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x20) as *const u32
    }
-#[doc="Get the *mut pointer for the ILPR register."]
+
+   #[doc="Get the *mut pointer for the ILPR register."]
    #[inline] pub fn ilpr_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x20) as *mut u32
    }
-#[doc="Read the ILPR register."]
+
+   #[doc="Read the ILPR register."]
    #[inline] pub fn ilpr(&self) -> Ilpr { 
       unsafe {
          Ilpr(read_volatile((self.0 + 0x20) as *const u32))
       }
    }
-#[doc="Write the ILPR register."]
+
+   #[doc="Write the ILPR register."]
    #[inline] pub fn set_ilpr<F: FnOnce(Ilpr) -> Ilpr>(&self, f: F) -> &Self {
       let value = f(Ilpr(0));
       unsafe {
@@ -205,7 +224,8 @@ impl UartPeriph {
       }
       self
    }
-#[doc="Modify the ILPR register."]
+
+   #[doc="Modify the ILPR register."]
    #[inline] pub fn with_ilpr<F: FnOnce(Ilpr) -> Ilpr>(&self, f: F) -> &Self {
       let tmp = self.ilpr();
       let value = f(tmp);
@@ -215,21 +235,24 @@ impl UartPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the IBRD register."]
+   #[doc="Get the *const pointer for the IBRD register."]
    #[inline] pub fn ibrd_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x24) as *const u32
    }
-#[doc="Get the *mut pointer for the IBRD register."]
+
+   #[doc="Get the *mut pointer for the IBRD register."]
    #[inline] pub fn ibrd_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x24) as *mut u32
    }
-#[doc="Read the IBRD register."]
+
+   #[doc="Read the IBRD register."]
    #[inline] pub fn ibrd(&self) -> Ibrd { 
       unsafe {
          Ibrd(read_volatile((self.0 + 0x24) as *const u32))
       }
    }
-#[doc="Write the IBRD register."]
+
+   #[doc="Write the IBRD register."]
    #[inline] pub fn set_ibrd<F: FnOnce(Ibrd) -> Ibrd>(&self, f: F) -> &Self {
       let value = f(Ibrd(0));
       unsafe {
@@ -237,7 +260,8 @@ impl UartPeriph {
       }
       self
    }
-#[doc="Modify the IBRD register."]
+
+   #[doc="Modify the IBRD register."]
    #[inline] pub fn with_ibrd<F: FnOnce(Ibrd) -> Ibrd>(&self, f: F) -> &Self {
       let tmp = self.ibrd();
       let value = f(tmp);
@@ -247,21 +271,24 @@ impl UartPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the FBRD register."]
+   #[doc="Get the *const pointer for the FBRD register."]
    #[inline] pub fn fbrd_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x28) as *const u32
    }
-#[doc="Get the *mut pointer for the FBRD register."]
+
+   #[doc="Get the *mut pointer for the FBRD register."]
    #[inline] pub fn fbrd_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x28) as *mut u32
    }
-#[doc="Read the FBRD register."]
+
+   #[doc="Read the FBRD register."]
    #[inline] pub fn fbrd(&self) -> Fbrd { 
       unsafe {
          Fbrd(read_volatile((self.0 + 0x28) as *const u32))
       }
    }
-#[doc="Write the FBRD register."]
+
+   #[doc="Write the FBRD register."]
    #[inline] pub fn set_fbrd<F: FnOnce(Fbrd) -> Fbrd>(&self, f: F) -> &Self {
       let value = f(Fbrd(0));
       unsafe {
@@ -269,7 +296,8 @@ impl UartPeriph {
       }
       self
    }
-#[doc="Modify the FBRD register."]
+
+   #[doc="Modify the FBRD register."]
    #[inline] pub fn with_fbrd<F: FnOnce(Fbrd) -> Fbrd>(&self, f: F) -> &Self {
       let tmp = self.fbrd();
       let value = f(tmp);
@@ -279,21 +307,24 @@ impl UartPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the LCRH register."]
+   #[doc="Get the *const pointer for the LCRH register."]
    #[inline] pub fn lcrh_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x2c) as *const u32
    }
-#[doc="Get the *mut pointer for the LCRH register."]
+
+   #[doc="Get the *mut pointer for the LCRH register."]
    #[inline] pub fn lcrh_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x2c) as *mut u32
    }
-#[doc="Read the LCRH register."]
+
+   #[doc="Read the LCRH register."]
    #[inline] pub fn lcrh(&self) -> Lcrh { 
       unsafe {
          Lcrh(read_volatile((self.0 + 0x2c) as *const u32))
       }
    }
-#[doc="Write the LCRH register."]
+
+   #[doc="Write the LCRH register."]
    #[inline] pub fn set_lcrh<F: FnOnce(Lcrh) -> Lcrh>(&self, f: F) -> &Self {
       let value = f(Lcrh(0));
       unsafe {
@@ -301,7 +332,8 @@ impl UartPeriph {
       }
       self
    }
-#[doc="Modify the LCRH register."]
+
+   #[doc="Modify the LCRH register."]
    #[inline] pub fn with_lcrh<F: FnOnce(Lcrh) -> Lcrh>(&self, f: F) -> &Self {
       let tmp = self.lcrh();
       let value = f(tmp);
@@ -311,21 +343,24 @@ impl UartPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the CTL register."]
+   #[doc="Get the *const pointer for the CTL register."]
    #[inline] pub fn ctl_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x30) as *const u32
    }
-#[doc="Get the *mut pointer for the CTL register."]
+
+   #[doc="Get the *mut pointer for the CTL register."]
    #[inline] pub fn ctl_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x30) as *mut u32
    }
-#[doc="Read the CTL register."]
+
+   #[doc="Read the CTL register."]
    #[inline] pub fn ctl(&self) -> Ctl { 
       unsafe {
          Ctl(read_volatile((self.0 + 0x30) as *const u32))
       }
    }
-#[doc="Write the CTL register."]
+
+   #[doc="Write the CTL register."]
    #[inline] pub fn set_ctl<F: FnOnce(Ctl) -> Ctl>(&self, f: F) -> &Self {
       let value = f(Ctl(0));
       unsafe {
@@ -333,7 +368,8 @@ impl UartPeriph {
       }
       self
    }
-#[doc="Modify the CTL register."]
+
+   #[doc="Modify the CTL register."]
    #[inline] pub fn with_ctl<F: FnOnce(Ctl) -> Ctl>(&self, f: F) -> &Self {
       let tmp = self.ctl();
       let value = f(tmp);
@@ -343,21 +379,24 @@ impl UartPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the IFLS register."]
+   #[doc="Get the *const pointer for the IFLS register."]
    #[inline] pub fn ifls_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x34) as *const u32
    }
-#[doc="Get the *mut pointer for the IFLS register."]
+
+   #[doc="Get the *mut pointer for the IFLS register."]
    #[inline] pub fn ifls_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x34) as *mut u32
    }
-#[doc="Read the IFLS register."]
+
+   #[doc="Read the IFLS register."]
    #[inline] pub fn ifls(&self) -> Ifls { 
       unsafe {
          Ifls(read_volatile((self.0 + 0x34) as *const u32))
       }
    }
-#[doc="Write the IFLS register."]
+
+   #[doc="Write the IFLS register."]
    #[inline] pub fn set_ifls<F: FnOnce(Ifls) -> Ifls>(&self, f: F) -> &Self {
       let value = f(Ifls(0));
       unsafe {
@@ -365,7 +404,8 @@ impl UartPeriph {
       }
       self
    }
-#[doc="Modify the IFLS register."]
+
+   #[doc="Modify the IFLS register."]
    #[inline] pub fn with_ifls<F: FnOnce(Ifls) -> Ifls>(&self, f: F) -> &Self {
       let tmp = self.ifls();
       let value = f(tmp);
@@ -375,21 +415,24 @@ impl UartPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the IM register."]
+   #[doc="Get the *const pointer for the IM register."]
    #[inline] pub fn im_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x38) as *const u32
    }
-#[doc="Get the *mut pointer for the IM register."]
+
+   #[doc="Get the *mut pointer for the IM register."]
    #[inline] pub fn im_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x38) as *mut u32
    }
-#[doc="Read the IM register."]
+
+   #[doc="Read the IM register."]
    #[inline] pub fn im(&self) -> Im { 
       unsafe {
          Im(read_volatile((self.0 + 0x38) as *const u32))
       }
    }
-#[doc="Write the IM register."]
+
+   #[doc="Write the IM register."]
    #[inline] pub fn set_im<F: FnOnce(Im) -> Im>(&self, f: F) -> &Self {
       let value = f(Im(0));
       unsafe {
@@ -397,7 +440,8 @@ impl UartPeriph {
       }
       self
    }
-#[doc="Modify the IM register."]
+
+   #[doc="Modify the IM register."]
    #[inline] pub fn with_im<F: FnOnce(Im) -> Im>(&self, f: F) -> &Self {
       let tmp = self.im();
       let value = f(tmp);
@@ -407,21 +451,24 @@ impl UartPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the RIS register."]
+   #[doc="Get the *const pointer for the RIS register."]
    #[inline] pub fn ris_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x3c) as *const u32
    }
-#[doc="Get the *mut pointer for the RIS register."]
+
+   #[doc="Get the *mut pointer for the RIS register."]
    #[inline] pub fn ris_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x3c) as *mut u32
    }
-#[doc="Read the RIS register."]
+
+   #[doc="Read the RIS register."]
    #[inline] pub fn ris(&self) -> Ris { 
       unsafe {
          Ris(read_volatile((self.0 + 0x3c) as *const u32))
       }
    }
-#[doc="Write the RIS register."]
+
+   #[doc="Write the RIS register."]
    #[inline] pub fn set_ris<F: FnOnce(Ris) -> Ris>(&self, f: F) -> &Self {
       let value = f(Ris(0));
       unsafe {
@@ -429,7 +476,8 @@ impl UartPeriph {
       }
       self
    }
-#[doc="Modify the RIS register."]
+
+   #[doc="Modify the RIS register."]
    #[inline] pub fn with_ris<F: FnOnce(Ris) -> Ris>(&self, f: F) -> &Self {
       let tmp = self.ris();
       let value = f(tmp);
@@ -439,21 +487,24 @@ impl UartPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the MIS register."]
+   #[doc="Get the *const pointer for the MIS register."]
    #[inline] pub fn mis_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x40) as *const u32
    }
-#[doc="Get the *mut pointer for the MIS register."]
+
+   #[doc="Get the *mut pointer for the MIS register."]
    #[inline] pub fn mis_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x40) as *mut u32
    }
-#[doc="Read the MIS register."]
+
+   #[doc="Read the MIS register."]
    #[inline] pub fn mis(&self) -> Mis { 
       unsafe {
          Mis(read_volatile((self.0 + 0x40) as *const u32))
       }
    }
-#[doc="Write the MIS register."]
+
+   #[doc="Write the MIS register."]
    #[inline] pub fn set_mis<F: FnOnce(Mis) -> Mis>(&self, f: F) -> &Self {
       let value = f(Mis(0));
       unsafe {
@@ -461,7 +512,8 @@ impl UartPeriph {
       }
       self
    }
-#[doc="Modify the MIS register."]
+
+   #[doc="Modify the MIS register."]
    #[inline] pub fn with_mis<F: FnOnce(Mis) -> Mis>(&self, f: F) -> &Self {
       let tmp = self.mis();
       let value = f(tmp);
@@ -471,15 +523,17 @@ impl UartPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the ICR register."]
+   #[doc="Get the *const pointer for the ICR register."]
    #[inline] pub fn icr_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x44) as *const u32
    }
-#[doc="Get the *mut pointer for the ICR register."]
+
+   #[doc="Get the *mut pointer for the ICR register."]
    #[inline] pub fn icr_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x44) as *mut u32
    }
-#[doc="Write the ICR register."]
+
+   #[doc="Write the ICR register."]
    #[inline] pub fn set_icr<F: FnOnce(Icr) -> Icr>(&self, f: F) -> &Self {
       let value = f(Icr(0));
       unsafe {
@@ -488,21 +542,24 @@ impl UartPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the DMACTL register."]
+   #[doc="Get the *const pointer for the DMACTL register."]
    #[inline] pub fn dmactl_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x48) as *const u32
    }
-#[doc="Get the *mut pointer for the DMACTL register."]
+
+   #[doc="Get the *mut pointer for the DMACTL register."]
    #[inline] pub fn dmactl_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x48) as *mut u32
    }
-#[doc="Read the DMACTL register."]
+
+   #[doc="Read the DMACTL register."]
    #[inline] pub fn dmactl(&self) -> Dmactl { 
       unsafe {
          Dmactl(read_volatile((self.0 + 0x48) as *const u32))
       }
    }
-#[doc="Write the DMACTL register."]
+
+   #[doc="Write the DMACTL register."]
    #[inline] pub fn set_dmactl<F: FnOnce(Dmactl) -> Dmactl>(&self, f: F) -> &Self {
       let value = f(Dmactl(0));
       unsafe {
@@ -510,7 +567,8 @@ impl UartPeriph {
       }
       self
    }
-#[doc="Modify the DMACTL register."]
+
+   #[doc="Modify the DMACTL register."]
    #[inline] pub fn with_dmactl<F: FnOnce(Dmactl) -> Dmactl>(&self, f: F) -> &Self {
       let tmp = self.dmactl();
       let value = f(tmp);
@@ -520,21 +578,24 @@ impl UartPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the _9BITADDR register."]
+   #[doc="Get the *const pointer for the _9BITADDR register."]
    #[inline] pub fn _9bitaddr_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0xa4) as *const u32
    }
-#[doc="Get the *mut pointer for the _9BITADDR register."]
+
+   #[doc="Get the *mut pointer for the _9BITADDR register."]
    #[inline] pub fn _9bitaddr_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0xa4) as *mut u32
    }
-#[doc="Read the _9BITADDR register."]
+
+   #[doc="Read the _9BITADDR register."]
    #[inline] pub fn _9bitaddr(&self) -> _9bitaddr { 
       unsafe {
          _9bitaddr(read_volatile((self.0 + 0xa4) as *const u32))
       }
    }
-#[doc="Write the _9BITADDR register."]
+
+   #[doc="Write the _9BITADDR register."]
    #[inline] pub fn set_9bitaddr<F: FnOnce(_9bitaddr) -> _9bitaddr>(&self, f: F) -> &Self {
       let value = f(_9bitaddr(0));
       unsafe {
@@ -542,7 +603,8 @@ impl UartPeriph {
       }
       self
    }
-#[doc="Modify the _9BITADDR register."]
+
+   #[doc="Modify the _9BITADDR register."]
    #[inline] pub fn with_9bitaddr<F: FnOnce(_9bitaddr) -> _9bitaddr>(&self, f: F) -> &Self {
       let tmp = self._9bitaddr();
       let value = f(tmp);
@@ -552,21 +614,24 @@ impl UartPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the _9BITAMASK register."]
+   #[doc="Get the *const pointer for the _9BITAMASK register."]
    #[inline] pub fn _9bitamask_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0xa8) as *const u32
    }
-#[doc="Get the *mut pointer for the _9BITAMASK register."]
+
+   #[doc="Get the *mut pointer for the _9BITAMASK register."]
    #[inline] pub fn _9bitamask_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0xa8) as *mut u32
    }
-#[doc="Read the _9BITAMASK register."]
+
+   #[doc="Read the _9BITAMASK register."]
    #[inline] pub fn _9bitamask(&self) -> _9bitamask { 
       unsafe {
          _9bitamask(read_volatile((self.0 + 0xa8) as *const u32))
       }
    }
-#[doc="Write the _9BITAMASK register."]
+
+   #[doc="Write the _9BITAMASK register."]
    #[inline] pub fn set_9bitamask<F: FnOnce(_9bitamask) -> _9bitamask>(&self, f: F) -> &Self {
       let value = f(_9bitamask(0));
       unsafe {
@@ -574,7 +639,8 @@ impl UartPeriph {
       }
       self
    }
-#[doc="Modify the _9BITAMASK register."]
+
+   #[doc="Modify the _9BITAMASK register."]
    #[inline] pub fn with_9bitamask<F: FnOnce(_9bitamask) -> _9bitamask>(&self, f: F) -> &Self {
       let tmp = self._9bitamask();
       let value = f(tmp);
@@ -584,21 +650,24 @@ impl UartPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the PP register."]
+   #[doc="Get the *const pointer for the PP register."]
    #[inline] pub fn pp_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0xfc0) as *const u32
    }
-#[doc="Get the *mut pointer for the PP register."]
+
+   #[doc="Get the *mut pointer for the PP register."]
    #[inline] pub fn pp_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0xfc0) as *mut u32
    }
-#[doc="Read the PP register."]
+
+   #[doc="Read the PP register."]
    #[inline] pub fn pp(&self) -> Pp { 
       unsafe {
          Pp(read_volatile((self.0 + 0xfc0) as *const u32))
       }
    }
-#[doc="Write the PP register."]
+
+   #[doc="Write the PP register."]
    #[inline] pub fn set_pp<F: FnOnce(Pp) -> Pp>(&self, f: F) -> &Self {
       let value = f(Pp(0));
       unsafe {
@@ -606,7 +675,8 @@ impl UartPeriph {
       }
       self
    }
-#[doc="Modify the PP register."]
+
+   #[doc="Modify the PP register."]
    #[inline] pub fn with_pp<F: FnOnce(Pp) -> Pp>(&self, f: F) -> &Self {
       let tmp = self.pp();
       let value = f(tmp);
@@ -616,21 +686,24 @@ impl UartPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the CC register."]
+   #[doc="Get the *const pointer for the CC register."]
    #[inline] pub fn cc_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0xfc8) as *const u32
    }
-#[doc="Get the *mut pointer for the CC register."]
+
+   #[doc="Get the *mut pointer for the CC register."]
    #[inline] pub fn cc_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0xfc8) as *mut u32
    }
-#[doc="Read the CC register."]
+
+   #[doc="Read the CC register."]
    #[inline] pub fn cc(&self) -> Cc { 
       unsafe {
          Cc(read_volatile((self.0 + 0xfc8) as *const u32))
       }
    }
-#[doc="Write the CC register."]
+
+   #[doc="Write the CC register."]
    #[inline] pub fn set_cc<F: FnOnce(Cc) -> Cc>(&self, f: F) -> &Self {
       let value = f(Cc(0));
       unsafe {
@@ -638,7 +711,8 @@ impl UartPeriph {
       }
       self
    }
-#[doc="Modify the CC register."]
+
+   #[doc="Modify the CC register."]
    #[inline] pub fn with_cc<F: FnOnce(Cc) -> Cc>(&self, f: F) -> &Self {
       let tmp = self.cc();
       let value = f(tmp);
@@ -654,11 +728,17 @@ impl UartPeriph {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Dr(pub u32);
 impl Dr {
-#[doc="Data Transmitted or Received"]
+   #[doc="Data Transmitted or Received"]
    #[inline] pub fn data(&self) -> bits::U8 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
    }
-#[doc="Data Transmitted or Received"]
+
+   #[doc="Data Transmitted or Received"]
+   #[inline] pub fn test_data(&self) -> bool {
+      self.data != 0
+   }
+
+   #[doc="Data Transmitted or Received"]
    #[inline] pub fn set_data<V: Into<bits::U8>>(mut self, value: V) -> Self {
       let value: bits::U8 = value.into();
       let value: u32 = value.into();
@@ -667,11 +747,17 @@ impl Dr {
       self
    }
 
-#[doc="UART Framing Error"]
+   #[doc="UART Framing Error"]
    #[inline] pub fn fe(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
    }
-#[doc="UART Framing Error"]
+
+   #[doc="UART Framing Error"]
+   #[inline] pub fn test_fe(&self) -> bool {
+      self.fe != 0
+   }
+
+   #[doc="UART Framing Error"]
    #[inline] pub fn set_fe<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -680,11 +766,17 @@ impl Dr {
       self
    }
 
-#[doc="UART Parity Error"]
+   #[doc="UART Parity Error"]
    #[inline] pub fn pe(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
    }
-#[doc="UART Parity Error"]
+
+   #[doc="UART Parity Error"]
+   #[inline] pub fn test_pe(&self) -> bool {
+      self.pe != 0
+   }
+
+   #[doc="UART Parity Error"]
    #[inline] pub fn set_pe<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -693,11 +785,17 @@ impl Dr {
       self
    }
 
-#[doc="UART Break Error"]
+   #[doc="UART Break Error"]
    #[inline] pub fn be(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x1) as u8) } // [10]
    }
-#[doc="UART Break Error"]
+
+   #[doc="UART Break Error"]
+   #[inline] pub fn test_be(&self) -> bool {
+      self.be != 0
+   }
+
+   #[doc="UART Break Error"]
    #[inline] pub fn set_be<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -706,11 +804,17 @@ impl Dr {
       self
    }
 
-#[doc="UART Overrun Error"]
+   #[doc="UART Overrun Error"]
    #[inline] pub fn oe(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 11) & 0x1) as u8) } // [11]
    }
-#[doc="UART Overrun Error"]
+
+   #[doc="UART Overrun Error"]
+   #[inline] pub fn test_oe(&self) -> bool {
+      self.oe != 0
+   }
+
+   #[doc="UART Overrun Error"]
    #[inline] pub fn set_oe<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -720,11 +824,13 @@ impl Dr {
    }
 
 }
+
 impl ::core::fmt::Display for Dr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Dr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -737,15 +843,22 @@ impl ::core::fmt::Debug for Dr {
       Ok(())
    }
 }
+
 #[doc="UART Receive Status/Error Clear"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Rsr(pub u32);
 impl Rsr {
-#[doc="UART Framing Error"]
+   #[doc="UART Framing Error"]
    #[inline] pub fn fe(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
    }
-#[doc="UART Framing Error"]
+
+   #[doc="UART Framing Error"]
+   #[inline] pub fn test_fe(&self) -> bool {
+      self.fe != 0
+   }
+
+   #[doc="UART Framing Error"]
    #[inline] pub fn set_fe<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -754,11 +867,17 @@ impl Rsr {
       self
    }
 
-#[doc="UART Parity Error"]
+   #[doc="UART Parity Error"]
    #[inline] pub fn pe(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
    }
-#[doc="UART Parity Error"]
+
+   #[doc="UART Parity Error"]
+   #[inline] pub fn test_pe(&self) -> bool {
+      self.pe != 0
+   }
+
+   #[doc="UART Parity Error"]
    #[inline] pub fn set_pe<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -767,11 +886,17 @@ impl Rsr {
       self
    }
 
-#[doc="UART Break Error"]
+   #[doc="UART Break Error"]
    #[inline] pub fn be(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
    }
-#[doc="UART Break Error"]
+
+   #[doc="UART Break Error"]
+   #[inline] pub fn test_be(&self) -> bool {
+      self.be != 0
+   }
+
+   #[doc="UART Break Error"]
    #[inline] pub fn set_be<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -780,11 +905,17 @@ impl Rsr {
       self
    }
 
-#[doc="UART Overrun Error"]
+   #[doc="UART Overrun Error"]
    #[inline] pub fn oe(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
    }
-#[doc="UART Overrun Error"]
+
+   #[doc="UART Overrun Error"]
+   #[inline] pub fn test_oe(&self) -> bool {
+      self.oe != 0
+   }
+
+   #[doc="UART Overrun Error"]
    #[inline] pub fn set_oe<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -794,11 +925,13 @@ impl Rsr {
    }
 
 }
+
 impl ::core::fmt::Display for Rsr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Rsr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -810,15 +943,22 @@ impl ::core::fmt::Debug for Rsr {
       Ok(())
    }
 }
+
 #[doc="UART Receive Status/Error Clear"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ecr(pub u32);
 impl Ecr {
-#[doc="Error Clear"]
+   #[doc="Error Clear"]
    #[inline] pub fn data(&self) -> bits::U8 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
    }
-#[doc="Error Clear"]
+
+   #[doc="Error Clear"]
+   #[inline] pub fn test_data(&self) -> bool {
+      self.data != 0
+   }
+
+   #[doc="Error Clear"]
    #[inline] pub fn set_data<V: Into<bits::U8>>(mut self, value: V) -> Self {
       let value: bits::U8 = value.into();
       let value: u32 = value.into();
@@ -828,11 +968,13 @@ impl Ecr {
    }
 
 }
+
 impl ::core::fmt::Display for Ecr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Ecr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -841,15 +983,22 @@ impl ::core::fmt::Debug for Ecr {
       Ok(())
    }
 }
+
 #[doc="UART Flag"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Fr(pub u32);
 impl Fr {
-#[doc="Clear To Send"]
+   #[doc="Clear To Send"]
    #[inline] pub fn cts(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
    }
-#[doc="Clear To Send"]
+
+   #[doc="Clear To Send"]
+   #[inline] pub fn test_cts(&self) -> bool {
+      self.cts != 0
+   }
+
+   #[doc="Clear To Send"]
    #[inline] pub fn set_cts<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -858,11 +1007,17 @@ impl Fr {
       self
    }
 
-#[doc="Data Set Ready"]
+   #[doc="Data Set Ready"]
    #[inline] pub fn dsr(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
    }
-#[doc="Data Set Ready"]
+
+   #[doc="Data Set Ready"]
+   #[inline] pub fn test_dsr(&self) -> bool {
+      self.dsr != 0
+   }
+
+   #[doc="Data Set Ready"]
    #[inline] pub fn set_dsr<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -871,11 +1026,17 @@ impl Fr {
       self
    }
 
-#[doc="Data Carrier Detect"]
+   #[doc="Data Carrier Detect"]
    #[inline] pub fn dcd(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
    }
-#[doc="Data Carrier Detect"]
+
+   #[doc="Data Carrier Detect"]
+   #[inline] pub fn test_dcd(&self) -> bool {
+      self.dcd != 0
+   }
+
+   #[doc="Data Carrier Detect"]
    #[inline] pub fn set_dcd<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -884,11 +1045,17 @@ impl Fr {
       self
    }
 
-#[doc="UART Busy"]
+   #[doc="UART Busy"]
    #[inline] pub fn busy(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
    }
-#[doc="UART Busy"]
+
+   #[doc="UART Busy"]
+   #[inline] pub fn test_busy(&self) -> bool {
+      self.busy != 0
+   }
+
+   #[doc="UART Busy"]
    #[inline] pub fn set_busy<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -897,11 +1064,17 @@ impl Fr {
       self
    }
 
-#[doc="UART Receive FIFO Empty"]
+   #[doc="UART Receive FIFO Empty"]
    #[inline] pub fn rxfe(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
    }
-#[doc="UART Receive FIFO Empty"]
+
+   #[doc="UART Receive FIFO Empty"]
+   #[inline] pub fn test_rxfe(&self) -> bool {
+      self.rxfe != 0
+   }
+
+   #[doc="UART Receive FIFO Empty"]
    #[inline] pub fn set_rxfe<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -910,11 +1083,17 @@ impl Fr {
       self
    }
 
-#[doc="UART Transmit FIFO Full"]
+   #[doc="UART Transmit FIFO Full"]
    #[inline] pub fn txff(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
    }
-#[doc="UART Transmit FIFO Full"]
+
+   #[doc="UART Transmit FIFO Full"]
+   #[inline] pub fn test_txff(&self) -> bool {
+      self.txff != 0
+   }
+
+   #[doc="UART Transmit FIFO Full"]
    #[inline] pub fn set_txff<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -923,11 +1102,17 @@ impl Fr {
       self
    }
 
-#[doc="UART Receive FIFO Full"]
+   #[doc="UART Receive FIFO Full"]
    #[inline] pub fn rxff(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
    }
-#[doc="UART Receive FIFO Full"]
+
+   #[doc="UART Receive FIFO Full"]
+   #[inline] pub fn test_rxff(&self) -> bool {
+      self.rxff != 0
+   }
+
+   #[doc="UART Receive FIFO Full"]
    #[inline] pub fn set_rxff<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -936,11 +1121,17 @@ impl Fr {
       self
    }
 
-#[doc="UART Transmit FIFO Empty"]
+   #[doc="UART Transmit FIFO Empty"]
    #[inline] pub fn txfe(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
    }
-#[doc="UART Transmit FIFO Empty"]
+
+   #[doc="UART Transmit FIFO Empty"]
+   #[inline] pub fn test_txfe(&self) -> bool {
+      self.txfe != 0
+   }
+
+   #[doc="UART Transmit FIFO Empty"]
    #[inline] pub fn set_txfe<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -949,11 +1140,17 @@ impl Fr {
       self
    }
 
-#[doc="Ring Indicator"]
+   #[doc="Ring Indicator"]
    #[inline] pub fn ri(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
    }
-#[doc="Ring Indicator"]
+
+   #[doc="Ring Indicator"]
+   #[inline] pub fn test_ri(&self) -> bool {
+      self.ri != 0
+   }
+
+   #[doc="Ring Indicator"]
    #[inline] pub fn set_ri<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -963,11 +1160,13 @@ impl Fr {
    }
 
 }
+
 impl ::core::fmt::Display for Fr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Fr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -984,15 +1183,22 @@ impl ::core::fmt::Debug for Fr {
       Ok(())
    }
 }
+
 #[doc="UART IrDA Low-Power Register"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ilpr(pub u32);
 impl Ilpr {
-#[doc="IrDA Low-Power Divisor"]
+   #[doc="IrDA Low-Power Divisor"]
    #[inline] pub fn ilpdvsr(&self) -> bits::U8 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
    }
-#[doc="IrDA Low-Power Divisor"]
+
+   #[doc="IrDA Low-Power Divisor"]
+   #[inline] pub fn test_ilpdvsr(&self) -> bool {
+      self.ilpdvsr != 0
+   }
+
+   #[doc="IrDA Low-Power Divisor"]
    #[inline] pub fn set_ilpdvsr<V: Into<bits::U8>>(mut self, value: V) -> Self {
       let value: bits::U8 = value.into();
       let value: u32 = value.into();
@@ -1002,11 +1208,13 @@ impl Ilpr {
    }
 
 }
+
 impl ::core::fmt::Display for Ilpr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Ilpr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1015,15 +1223,22 @@ impl ::core::fmt::Debug for Ilpr {
       Ok(())
    }
 }
+
 #[doc="UART Integer Baud-Rate Divisor"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ibrd(pub u32);
 impl Ibrd {
-#[doc="Integer Baud-Rate Divisor"]
+   #[doc="Integer Baud-Rate Divisor"]
    #[inline] pub fn divint(&self) -> bits::U16 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffff) as u16) } // [15:0]
    }
-#[doc="Integer Baud-Rate Divisor"]
+
+   #[doc="Integer Baud-Rate Divisor"]
+   #[inline] pub fn test_divint(&self) -> bool {
+      self.divint != 0
+   }
+
+   #[doc="Integer Baud-Rate Divisor"]
    #[inline] pub fn set_divint<V: Into<bits::U16>>(mut self, value: V) -> Self {
       let value: bits::U16 = value.into();
       let value: u32 = value.into();
@@ -1033,11 +1248,13 @@ impl Ibrd {
    }
 
 }
+
 impl ::core::fmt::Display for Ibrd {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Ibrd {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1046,15 +1263,22 @@ impl ::core::fmt::Debug for Ibrd {
       Ok(())
    }
 }
+
 #[doc="UART Fractional Baud-Rate Divisor"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Fbrd(pub u32);
 impl Fbrd {
-#[doc="Fractional Baud-Rate Divisor"]
+   #[doc="Fractional Baud-Rate Divisor"]
    #[inline] pub fn divfrac(&self) -> bits::U6 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x3f) as u8) } // [5:0]
    }
-#[doc="Fractional Baud-Rate Divisor"]
+
+   #[doc="Fractional Baud-Rate Divisor"]
+   #[inline] pub fn test_divfrac(&self) -> bool {
+      self.divfrac != 0
+   }
+
+   #[doc="Fractional Baud-Rate Divisor"]
    #[inline] pub fn set_divfrac<V: Into<bits::U6>>(mut self, value: V) -> Self {
       let value: bits::U6 = value.into();
       let value: u32 = value.into();
@@ -1064,11 +1288,13 @@ impl Fbrd {
    }
 
 }
+
 impl ::core::fmt::Display for Fbrd {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Fbrd {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1077,15 +1303,22 @@ impl ::core::fmt::Debug for Fbrd {
       Ok(())
    }
 }
+
 #[doc="UART Line Control"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Lcrh(pub u32);
 impl Lcrh {
-#[doc="UART Send Break"]
+   #[doc="UART Send Break"]
    #[inline] pub fn brk(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
    }
-#[doc="UART Send Break"]
+
+   #[doc="UART Send Break"]
+   #[inline] pub fn test_brk(&self) -> bool {
+      self.brk != 0
+   }
+
+   #[doc="UART Send Break"]
    #[inline] pub fn set_brk<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1094,11 +1327,17 @@ impl Lcrh {
       self
    }
 
-#[doc="UART Parity Enable"]
+   #[doc="UART Parity Enable"]
    #[inline] pub fn pen(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
    }
-#[doc="UART Parity Enable"]
+
+   #[doc="UART Parity Enable"]
+   #[inline] pub fn test_pen(&self) -> bool {
+      self.pen != 0
+   }
+
+   #[doc="UART Parity Enable"]
    #[inline] pub fn set_pen<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1107,11 +1346,17 @@ impl Lcrh {
       self
    }
 
-#[doc="UART Even Parity Select"]
+   #[doc="UART Even Parity Select"]
    #[inline] pub fn eps(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
    }
-#[doc="UART Even Parity Select"]
+
+   #[doc="UART Even Parity Select"]
+   #[inline] pub fn test_eps(&self) -> bool {
+      self.eps != 0
+   }
+
+   #[doc="UART Even Parity Select"]
    #[inline] pub fn set_eps<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1120,11 +1365,17 @@ impl Lcrh {
       self
    }
 
-#[doc="UART Two Stop Bits Select"]
+   #[doc="UART Two Stop Bits Select"]
    #[inline] pub fn stp2(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
    }
-#[doc="UART Two Stop Bits Select"]
+
+   #[doc="UART Two Stop Bits Select"]
+   #[inline] pub fn test_stp2(&self) -> bool {
+      self.stp2 != 0
+   }
+
+   #[doc="UART Two Stop Bits Select"]
    #[inline] pub fn set_stp2<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1133,11 +1384,17 @@ impl Lcrh {
       self
    }
 
-#[doc="UART Enable FIFOs"]
+   #[doc="UART Enable FIFOs"]
    #[inline] pub fn fen(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
    }
-#[doc="UART Enable FIFOs"]
+
+   #[doc="UART Enable FIFOs"]
+   #[inline] pub fn test_fen(&self) -> bool {
+      self.fen != 0
+   }
+
+   #[doc="UART Enable FIFOs"]
    #[inline] pub fn set_fen<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1146,11 +1403,17 @@ impl Lcrh {
       self
    }
 
-#[doc="UART Word Length"]
+   #[doc="UART Word Length"]
    #[inline] pub fn wlen(&self) -> bits::U2 {
       unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x3) as u8) } // [6:5]
    }
-#[doc="UART Word Length"]
+
+   #[doc="UART Word Length"]
+   #[inline] pub fn test_wlen(&self) -> bool {
+      self.wlen != 0
+   }
+
+   #[doc="UART Word Length"]
    #[inline] pub fn set_wlen<V: Into<bits::U2>>(mut self, value: V) -> Self {
       let value: bits::U2 = value.into();
       let value: u32 = value.into();
@@ -1159,11 +1422,17 @@ impl Lcrh {
       self
    }
 
-#[doc="UART Stick Parity Select"]
+   #[doc="UART Stick Parity Select"]
    #[inline] pub fn sps(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
    }
-#[doc="UART Stick Parity Select"]
+
+   #[doc="UART Stick Parity Select"]
+   #[inline] pub fn test_sps(&self) -> bool {
+      self.sps != 0
+   }
+
+   #[doc="UART Stick Parity Select"]
    #[inline] pub fn set_sps<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1173,11 +1442,13 @@ impl Lcrh {
    }
 
 }
+
 impl ::core::fmt::Display for Lcrh {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Lcrh {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1192,15 +1463,22 @@ impl ::core::fmt::Debug for Lcrh {
       Ok(())
    }
 }
+
 #[doc="UART Control"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ctl(pub u32);
 impl Ctl {
-#[doc="UART Enable"]
+   #[doc="UART Enable"]
    #[inline] pub fn uarten(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
    }
-#[doc="UART Enable"]
+
+   #[doc="UART Enable"]
+   #[inline] pub fn test_uarten(&self) -> bool {
+      self.uarten != 0
+   }
+
+   #[doc="UART Enable"]
    #[inline] pub fn set_uarten<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1209,11 +1487,17 @@ impl Ctl {
       self
    }
 
-#[doc="UART SIR Enable"]
+   #[doc="UART SIR Enable"]
    #[inline] pub fn siren(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
    }
-#[doc="UART SIR Enable"]
+
+   #[doc="UART SIR Enable"]
+   #[inline] pub fn test_siren(&self) -> bool {
+      self.siren != 0
+   }
+
+   #[doc="UART SIR Enable"]
    #[inline] pub fn set_siren<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1222,11 +1506,17 @@ impl Ctl {
       self
    }
 
-#[doc="UART SIR Low-Power Mode"]
+   #[doc="UART SIR Low-Power Mode"]
    #[inline] pub fn sirlp(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
    }
-#[doc="UART SIR Low-Power Mode"]
+
+   #[doc="UART SIR Low-Power Mode"]
+   #[inline] pub fn test_sirlp(&self) -> bool {
+      self.sirlp != 0
+   }
+
+   #[doc="UART SIR Low-Power Mode"]
    #[inline] pub fn set_sirlp<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1235,11 +1525,17 @@ impl Ctl {
       self
    }
 
-#[doc="ISO 7816 Smart Card Support"]
+   #[doc="ISO 7816 Smart Card Support"]
    #[inline] pub fn smart(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
    }
-#[doc="ISO 7816 Smart Card Support"]
+
+   #[doc="ISO 7816 Smart Card Support"]
+   #[inline] pub fn test_smart(&self) -> bool {
+      self.smart != 0
+   }
+
+   #[doc="ISO 7816 Smart Card Support"]
    #[inline] pub fn set_smart<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1248,11 +1544,17 @@ impl Ctl {
       self
    }
 
-#[doc="End of Transmission"]
+   #[doc="End of Transmission"]
    #[inline] pub fn eot(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
    }
-#[doc="End of Transmission"]
+
+   #[doc="End of Transmission"]
+   #[inline] pub fn test_eot(&self) -> bool {
+      self.eot != 0
+   }
+
+   #[doc="End of Transmission"]
    #[inline] pub fn set_eot<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1261,11 +1563,17 @@ impl Ctl {
       self
    }
 
-#[doc="High-Speed Enable"]
+   #[doc="High-Speed Enable"]
    #[inline] pub fn hse(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
    }
-#[doc="High-Speed Enable"]
+
+   #[doc="High-Speed Enable"]
+   #[inline] pub fn test_hse(&self) -> bool {
+      self.hse != 0
+   }
+
+   #[doc="High-Speed Enable"]
    #[inline] pub fn set_hse<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1274,11 +1582,17 @@ impl Ctl {
       self
    }
 
-#[doc="UART Loop Back Enable"]
+   #[doc="UART Loop Back Enable"]
    #[inline] pub fn lbe(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
    }
-#[doc="UART Loop Back Enable"]
+
+   #[doc="UART Loop Back Enable"]
+   #[inline] pub fn test_lbe(&self) -> bool {
+      self.lbe != 0
+   }
+
+   #[doc="UART Loop Back Enable"]
    #[inline] pub fn set_lbe<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1287,11 +1601,17 @@ impl Ctl {
       self
    }
 
-#[doc="UART Transmit Enable"]
+   #[doc="UART Transmit Enable"]
    #[inline] pub fn txe(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
    }
-#[doc="UART Transmit Enable"]
+
+   #[doc="UART Transmit Enable"]
+   #[inline] pub fn test_txe(&self) -> bool {
+      self.txe != 0
+   }
+
+   #[doc="UART Transmit Enable"]
    #[inline] pub fn set_txe<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1300,11 +1620,17 @@ impl Ctl {
       self
    }
 
-#[doc="UART Receive Enable"]
+   #[doc="UART Receive Enable"]
    #[inline] pub fn rxe(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
    }
-#[doc="UART Receive Enable"]
+
+   #[doc="UART Receive Enable"]
+   #[inline] pub fn test_rxe(&self) -> bool {
+      self.rxe != 0
+   }
+
+   #[doc="UART Receive Enable"]
    #[inline] pub fn set_rxe<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1313,11 +1639,17 @@ impl Ctl {
       self
    }
 
-#[doc="Data Terminal Ready"]
+   #[doc="Data Terminal Ready"]
    #[inline] pub fn dtr(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x1) as u8) } // [10]
    }
-#[doc="Data Terminal Ready"]
+
+   #[doc="Data Terminal Ready"]
+   #[inline] pub fn test_dtr(&self) -> bool {
+      self.dtr != 0
+   }
+
+   #[doc="Data Terminal Ready"]
    #[inline] pub fn set_dtr<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1326,11 +1658,17 @@ impl Ctl {
       self
    }
 
-#[doc="Request to Send"]
+   #[doc="Request to Send"]
    #[inline] pub fn rts(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 11) & 0x1) as u8) } // [11]
    }
-#[doc="Request to Send"]
+
+   #[doc="Request to Send"]
+   #[inline] pub fn test_rts(&self) -> bool {
+      self.rts != 0
+   }
+
+   #[doc="Request to Send"]
    #[inline] pub fn set_rts<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1339,11 +1677,17 @@ impl Ctl {
       self
    }
 
-#[doc="Enable Request to Send"]
+   #[doc="Enable Request to Send"]
    #[inline] pub fn rtsen(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 14) & 0x1) as u8) } // [14]
    }
-#[doc="Enable Request to Send"]
+
+   #[doc="Enable Request to Send"]
+   #[inline] pub fn test_rtsen(&self) -> bool {
+      self.rtsen != 0
+   }
+
+   #[doc="Enable Request to Send"]
    #[inline] pub fn set_rtsen<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1352,11 +1696,17 @@ impl Ctl {
       self
    }
 
-#[doc="Enable Clear To Send"]
+   #[doc="Enable Clear To Send"]
    #[inline] pub fn ctsen(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 15) & 0x1) as u8) } // [15]
    }
-#[doc="Enable Clear To Send"]
+
+   #[doc="Enable Clear To Send"]
+   #[inline] pub fn test_ctsen(&self) -> bool {
+      self.ctsen != 0
+   }
+
+   #[doc="Enable Clear To Send"]
    #[inline] pub fn set_ctsen<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1366,11 +1716,13 @@ impl Ctl {
    }
 
 }
+
 impl ::core::fmt::Display for Ctl {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Ctl {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1391,15 +1743,22 @@ impl ::core::fmt::Debug for Ctl {
       Ok(())
    }
 }
+
 #[doc="UART Interrupt FIFO Level Select"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ifls(pub u32);
 impl Ifls {
-#[doc="UART Transmit Interrupt FIFO Level Select"]
+   #[doc="UART Transmit Interrupt FIFO Level Select"]
    #[inline] pub fn tx(&self) -> bits::U3 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x7) as u8) } // [2:0]
    }
-#[doc="UART Transmit Interrupt FIFO Level Select"]
+
+   #[doc="UART Transmit Interrupt FIFO Level Select"]
+   #[inline] pub fn test_tx(&self) -> bool {
+      self.tx != 0
+   }
+
+   #[doc="UART Transmit Interrupt FIFO Level Select"]
    #[inline] pub fn set_tx<V: Into<bits::U3>>(mut self, value: V) -> Self {
       let value: bits::U3 = value.into();
       let value: u32 = value.into();
@@ -1408,11 +1767,17 @@ impl Ifls {
       self
    }
 
-#[doc="UART Receive Interrupt FIFO Level Select"]
+   #[doc="UART Receive Interrupt FIFO Level Select"]
    #[inline] pub fn rx(&self) -> bits::U3 {
       unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x7) as u8) } // [5:3]
    }
-#[doc="UART Receive Interrupt FIFO Level Select"]
+
+   #[doc="UART Receive Interrupt FIFO Level Select"]
+   #[inline] pub fn test_rx(&self) -> bool {
+      self.rx != 0
+   }
+
+   #[doc="UART Receive Interrupt FIFO Level Select"]
    #[inline] pub fn set_rx<V: Into<bits::U3>>(mut self, value: V) -> Self {
       let value: bits::U3 = value.into();
       let value: u32 = value.into();
@@ -1422,11 +1787,13 @@ impl Ifls {
    }
 
 }
+
 impl ::core::fmt::Display for Ifls {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Ifls {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1436,15 +1803,22 @@ impl ::core::fmt::Debug for Ifls {
       Ok(())
    }
 }
+
 #[doc="UART Interrupt Mask"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Im(pub u32);
 impl Im {
-#[doc="UART Ring Indicator Modem Interrupt Mask"]
+   #[doc="UART Ring Indicator Modem Interrupt Mask"]
    #[inline] pub fn rimim(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
    }
-#[doc="UART Ring Indicator Modem Interrupt Mask"]
+
+   #[doc="UART Ring Indicator Modem Interrupt Mask"]
+   #[inline] pub fn test_rimim(&self) -> bool {
+      self.rimim != 0
+   }
+
+   #[doc="UART Ring Indicator Modem Interrupt Mask"]
    #[inline] pub fn set_rimim<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1453,11 +1827,17 @@ impl Im {
       self
    }
 
-#[doc="UART Clear to Send Modem Interrupt Mask"]
+   #[doc="UART Clear to Send Modem Interrupt Mask"]
    #[inline] pub fn ctsmim(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
    }
-#[doc="UART Clear to Send Modem Interrupt Mask"]
+
+   #[doc="UART Clear to Send Modem Interrupt Mask"]
+   #[inline] pub fn test_ctsmim(&self) -> bool {
+      self.ctsmim != 0
+   }
+
+   #[doc="UART Clear to Send Modem Interrupt Mask"]
    #[inline] pub fn set_ctsmim<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1466,11 +1846,17 @@ impl Im {
       self
    }
 
-#[doc="UART Data Carrier Detect Modem Interrupt Mask"]
+   #[doc="UART Data Carrier Detect Modem Interrupt Mask"]
    #[inline] pub fn dcdmim(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
    }
-#[doc="UART Data Carrier Detect Modem Interrupt Mask"]
+
+   #[doc="UART Data Carrier Detect Modem Interrupt Mask"]
+   #[inline] pub fn test_dcdmim(&self) -> bool {
+      self.dcdmim != 0
+   }
+
+   #[doc="UART Data Carrier Detect Modem Interrupt Mask"]
    #[inline] pub fn set_dcdmim<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1479,11 +1865,17 @@ impl Im {
       self
    }
 
-#[doc="UART Data Set Ready Modem Interrupt Mask"]
+   #[doc="UART Data Set Ready Modem Interrupt Mask"]
    #[inline] pub fn dsrmim(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
    }
-#[doc="UART Data Set Ready Modem Interrupt Mask"]
+
+   #[doc="UART Data Set Ready Modem Interrupt Mask"]
+   #[inline] pub fn test_dsrmim(&self) -> bool {
+      self.dsrmim != 0
+   }
+
+   #[doc="UART Data Set Ready Modem Interrupt Mask"]
    #[inline] pub fn set_dsrmim<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1492,11 +1884,17 @@ impl Im {
       self
    }
 
-#[doc="UART Receive Interrupt Mask"]
+   #[doc="UART Receive Interrupt Mask"]
    #[inline] pub fn rxim(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
    }
-#[doc="UART Receive Interrupt Mask"]
+
+   #[doc="UART Receive Interrupt Mask"]
+   #[inline] pub fn test_rxim(&self) -> bool {
+      self.rxim != 0
+   }
+
+   #[doc="UART Receive Interrupt Mask"]
    #[inline] pub fn set_rxim<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1505,11 +1903,17 @@ impl Im {
       self
    }
 
-#[doc="UART Transmit Interrupt Mask"]
+   #[doc="UART Transmit Interrupt Mask"]
    #[inline] pub fn txim(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
    }
-#[doc="UART Transmit Interrupt Mask"]
+
+   #[doc="UART Transmit Interrupt Mask"]
+   #[inline] pub fn test_txim(&self) -> bool {
+      self.txim != 0
+   }
+
+   #[doc="UART Transmit Interrupt Mask"]
    #[inline] pub fn set_txim<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1518,11 +1922,17 @@ impl Im {
       self
    }
 
-#[doc="UART Receive Time-Out Interrupt Mask"]
+   #[doc="UART Receive Time-Out Interrupt Mask"]
    #[inline] pub fn rtim(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
    }
-#[doc="UART Receive Time-Out Interrupt Mask"]
+
+   #[doc="UART Receive Time-Out Interrupt Mask"]
+   #[inline] pub fn test_rtim(&self) -> bool {
+      self.rtim != 0
+   }
+
+   #[doc="UART Receive Time-Out Interrupt Mask"]
    #[inline] pub fn set_rtim<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1531,11 +1941,17 @@ impl Im {
       self
    }
 
-#[doc="UART Framing Error Interrupt Mask"]
+   #[doc="UART Framing Error Interrupt Mask"]
    #[inline] pub fn feim(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
    }
-#[doc="UART Framing Error Interrupt Mask"]
+
+   #[doc="UART Framing Error Interrupt Mask"]
+   #[inline] pub fn test_feim(&self) -> bool {
+      self.feim != 0
+   }
+
+   #[doc="UART Framing Error Interrupt Mask"]
    #[inline] pub fn set_feim<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1544,11 +1960,17 @@ impl Im {
       self
    }
 
-#[doc="UART Parity Error Interrupt Mask"]
+   #[doc="UART Parity Error Interrupt Mask"]
    #[inline] pub fn peim(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
    }
-#[doc="UART Parity Error Interrupt Mask"]
+
+   #[doc="UART Parity Error Interrupt Mask"]
+   #[inline] pub fn test_peim(&self) -> bool {
+      self.peim != 0
+   }
+
+   #[doc="UART Parity Error Interrupt Mask"]
    #[inline] pub fn set_peim<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1557,11 +1979,17 @@ impl Im {
       self
    }
 
-#[doc="UART Break Error Interrupt Mask"]
+   #[doc="UART Break Error Interrupt Mask"]
    #[inline] pub fn beim(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
    }
-#[doc="UART Break Error Interrupt Mask"]
+
+   #[doc="UART Break Error Interrupt Mask"]
+   #[inline] pub fn test_beim(&self) -> bool {
+      self.beim != 0
+   }
+
+   #[doc="UART Break Error Interrupt Mask"]
    #[inline] pub fn set_beim<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1570,11 +1998,17 @@ impl Im {
       self
    }
 
-#[doc="UART Overrun Error Interrupt Mask"]
+   #[doc="UART Overrun Error Interrupt Mask"]
    #[inline] pub fn oeim(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x1) as u8) } // [10]
    }
-#[doc="UART Overrun Error Interrupt Mask"]
+
+   #[doc="UART Overrun Error Interrupt Mask"]
+   #[inline] pub fn test_oeim(&self) -> bool {
+      self.oeim != 0
+   }
+
+   #[doc="UART Overrun Error Interrupt Mask"]
    #[inline] pub fn set_oeim<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1583,11 +2017,17 @@ impl Im {
       self
    }
 
-#[doc="End of Transmission Interrupt Mask"]
+   #[doc="End of Transmission Interrupt Mask"]
    #[inline] pub fn eotim(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 11) & 0x1) as u8) } // [11]
    }
-#[doc="End of Transmission Interrupt Mask"]
+
+   #[doc="End of Transmission Interrupt Mask"]
+   #[inline] pub fn test_eotim(&self) -> bool {
+      self.eotim != 0
+   }
+
+   #[doc="End of Transmission Interrupt Mask"]
    #[inline] pub fn set_eotim<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1596,11 +2036,17 @@ impl Im {
       self
    }
 
-#[doc="9-Bit Mode Interrupt Mask"]
+   #[doc="9-Bit Mode Interrupt Mask"]
    #[inline] pub fn _9bitim(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 12) & 0x1) as u8) } // [12]
    }
-#[doc="9-Bit Mode Interrupt Mask"]
+
+   #[doc="9-Bit Mode Interrupt Mask"]
+   #[inline] pub fn test_9bitim(&self) -> bool {
+      self._9bitim != 0
+   }
+
+   #[doc="9-Bit Mode Interrupt Mask"]
    #[inline] pub fn set_9bitim<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1609,11 +2055,17 @@ impl Im {
       self
    }
 
-#[doc="Receive DMA Interrupt Mask"]
+   #[doc="Receive DMA Interrupt Mask"]
    #[inline] pub fn dmarxim(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1) as u8) } // [16]
    }
-#[doc="Receive DMA Interrupt Mask"]
+
+   #[doc="Receive DMA Interrupt Mask"]
+   #[inline] pub fn test_dmarxim(&self) -> bool {
+      self.dmarxim != 0
+   }
+
+   #[doc="Receive DMA Interrupt Mask"]
    #[inline] pub fn set_dmarxim<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1622,11 +2074,17 @@ impl Im {
       self
    }
 
-#[doc="Transmit DMA Interrupt Mask"]
+   #[doc="Transmit DMA Interrupt Mask"]
    #[inline] pub fn dmatxim(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 17) & 0x1) as u8) } // [17]
    }
-#[doc="Transmit DMA Interrupt Mask"]
+
+   #[doc="Transmit DMA Interrupt Mask"]
+   #[inline] pub fn test_dmatxim(&self) -> bool {
+      self.dmatxim != 0
+   }
+
+   #[doc="Transmit DMA Interrupt Mask"]
    #[inline] pub fn set_dmatxim<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1636,11 +2094,13 @@ impl Im {
    }
 
 }
+
 impl ::core::fmt::Display for Im {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Im {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1663,15 +2123,22 @@ impl ::core::fmt::Debug for Im {
       Ok(())
    }
 }
+
 #[doc="UART Raw Interrupt Status"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ris(pub u32);
 impl Ris {
-#[doc="UART Ring Indicator Modem Raw Interrupt Status"]
+   #[doc="UART Ring Indicator Modem Raw Interrupt Status"]
    #[inline] pub fn riris(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
    }
-#[doc="UART Ring Indicator Modem Raw Interrupt Status"]
+
+   #[doc="UART Ring Indicator Modem Raw Interrupt Status"]
+   #[inline] pub fn test_riris(&self) -> bool {
+      self.riris != 0
+   }
+
+   #[doc="UART Ring Indicator Modem Raw Interrupt Status"]
    #[inline] pub fn set_riris<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1680,11 +2147,17 @@ impl Ris {
       self
    }
 
-#[doc="UART Clear to Send Modem Raw Interrupt Status"]
+   #[doc="UART Clear to Send Modem Raw Interrupt Status"]
    #[inline] pub fn ctsris(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
    }
-#[doc="UART Clear to Send Modem Raw Interrupt Status"]
+
+   #[doc="UART Clear to Send Modem Raw Interrupt Status"]
+   #[inline] pub fn test_ctsris(&self) -> bool {
+      self.ctsris != 0
+   }
+
+   #[doc="UART Clear to Send Modem Raw Interrupt Status"]
    #[inline] pub fn set_ctsris<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1693,11 +2166,17 @@ impl Ris {
       self
    }
 
-#[doc="UART Data Carrier Detect Modem Raw Interrupt Status"]
+   #[doc="UART Data Carrier Detect Modem Raw Interrupt Status"]
    #[inline] pub fn dcdris(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
    }
-#[doc="UART Data Carrier Detect Modem Raw Interrupt Status"]
+
+   #[doc="UART Data Carrier Detect Modem Raw Interrupt Status"]
+   #[inline] pub fn test_dcdris(&self) -> bool {
+      self.dcdris != 0
+   }
+
+   #[doc="UART Data Carrier Detect Modem Raw Interrupt Status"]
    #[inline] pub fn set_dcdris<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1706,11 +2185,17 @@ impl Ris {
       self
    }
 
-#[doc="UART Data Set Ready Modem Raw Interrupt Status"]
+   #[doc="UART Data Set Ready Modem Raw Interrupt Status"]
    #[inline] pub fn dsrris(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
    }
-#[doc="UART Data Set Ready Modem Raw Interrupt Status"]
+
+   #[doc="UART Data Set Ready Modem Raw Interrupt Status"]
+   #[inline] pub fn test_dsrris(&self) -> bool {
+      self.dsrris != 0
+   }
+
+   #[doc="UART Data Set Ready Modem Raw Interrupt Status"]
    #[inline] pub fn set_dsrris<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1719,11 +2204,17 @@ impl Ris {
       self
    }
 
-#[doc="UART Receive Raw Interrupt Status"]
+   #[doc="UART Receive Raw Interrupt Status"]
    #[inline] pub fn rxris(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
    }
-#[doc="UART Receive Raw Interrupt Status"]
+
+   #[doc="UART Receive Raw Interrupt Status"]
+   #[inline] pub fn test_rxris(&self) -> bool {
+      self.rxris != 0
+   }
+
+   #[doc="UART Receive Raw Interrupt Status"]
    #[inline] pub fn set_rxris<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1732,11 +2223,17 @@ impl Ris {
       self
    }
 
-#[doc="UART Transmit Raw Interrupt Status"]
+   #[doc="UART Transmit Raw Interrupt Status"]
    #[inline] pub fn txris(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
    }
-#[doc="UART Transmit Raw Interrupt Status"]
+
+   #[doc="UART Transmit Raw Interrupt Status"]
+   #[inline] pub fn test_txris(&self) -> bool {
+      self.txris != 0
+   }
+
+   #[doc="UART Transmit Raw Interrupt Status"]
    #[inline] pub fn set_txris<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1745,11 +2242,17 @@ impl Ris {
       self
    }
 
-#[doc="UART Receive Time-Out Raw Interrupt Status"]
+   #[doc="UART Receive Time-Out Raw Interrupt Status"]
    #[inline] pub fn rtris(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
    }
-#[doc="UART Receive Time-Out Raw Interrupt Status"]
+
+   #[doc="UART Receive Time-Out Raw Interrupt Status"]
+   #[inline] pub fn test_rtris(&self) -> bool {
+      self.rtris != 0
+   }
+
+   #[doc="UART Receive Time-Out Raw Interrupt Status"]
    #[inline] pub fn set_rtris<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1758,11 +2261,17 @@ impl Ris {
       self
    }
 
-#[doc="UART Framing Error Raw Interrupt Status"]
+   #[doc="UART Framing Error Raw Interrupt Status"]
    #[inline] pub fn feris(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
    }
-#[doc="UART Framing Error Raw Interrupt Status"]
+
+   #[doc="UART Framing Error Raw Interrupt Status"]
+   #[inline] pub fn test_feris(&self) -> bool {
+      self.feris != 0
+   }
+
+   #[doc="UART Framing Error Raw Interrupt Status"]
    #[inline] pub fn set_feris<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1771,11 +2280,17 @@ impl Ris {
       self
    }
 
-#[doc="UART Parity Error Raw Interrupt Status"]
+   #[doc="UART Parity Error Raw Interrupt Status"]
    #[inline] pub fn peris(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
    }
-#[doc="UART Parity Error Raw Interrupt Status"]
+
+   #[doc="UART Parity Error Raw Interrupt Status"]
+   #[inline] pub fn test_peris(&self) -> bool {
+      self.peris != 0
+   }
+
+   #[doc="UART Parity Error Raw Interrupt Status"]
    #[inline] pub fn set_peris<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1784,11 +2299,17 @@ impl Ris {
       self
    }
 
-#[doc="UART Break Error Raw Interrupt Status"]
+   #[doc="UART Break Error Raw Interrupt Status"]
    #[inline] pub fn beris(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
    }
-#[doc="UART Break Error Raw Interrupt Status"]
+
+   #[doc="UART Break Error Raw Interrupt Status"]
+   #[inline] pub fn test_beris(&self) -> bool {
+      self.beris != 0
+   }
+
+   #[doc="UART Break Error Raw Interrupt Status"]
    #[inline] pub fn set_beris<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1797,11 +2318,17 @@ impl Ris {
       self
    }
 
-#[doc="UART Overrun Error Raw Interrupt Status"]
+   #[doc="UART Overrun Error Raw Interrupt Status"]
    #[inline] pub fn oeris(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x1) as u8) } // [10]
    }
-#[doc="UART Overrun Error Raw Interrupt Status"]
+
+   #[doc="UART Overrun Error Raw Interrupt Status"]
+   #[inline] pub fn test_oeris(&self) -> bool {
+      self.oeris != 0
+   }
+
+   #[doc="UART Overrun Error Raw Interrupt Status"]
    #[inline] pub fn set_oeris<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1810,11 +2337,17 @@ impl Ris {
       self
    }
 
-#[doc="End of Transmission Raw Interrupt Status"]
+   #[doc="End of Transmission Raw Interrupt Status"]
    #[inline] pub fn eotris(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 11) & 0x1) as u8) } // [11]
    }
-#[doc="End of Transmission Raw Interrupt Status"]
+
+   #[doc="End of Transmission Raw Interrupt Status"]
+   #[inline] pub fn test_eotris(&self) -> bool {
+      self.eotris != 0
+   }
+
+   #[doc="End of Transmission Raw Interrupt Status"]
    #[inline] pub fn set_eotris<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1823,11 +2356,17 @@ impl Ris {
       self
    }
 
-#[doc="9-Bit Mode Raw Interrupt Status"]
+   #[doc="9-Bit Mode Raw Interrupt Status"]
    #[inline] pub fn _9bitris(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 12) & 0x1) as u8) } // [12]
    }
-#[doc="9-Bit Mode Raw Interrupt Status"]
+
+   #[doc="9-Bit Mode Raw Interrupt Status"]
+   #[inline] pub fn test_9bitris(&self) -> bool {
+      self._9bitris != 0
+   }
+
+   #[doc="9-Bit Mode Raw Interrupt Status"]
    #[inline] pub fn set_9bitris<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1836,11 +2375,17 @@ impl Ris {
       self
    }
 
-#[doc="Receive DMA Raw Interrupt Status"]
+   #[doc="Receive DMA Raw Interrupt Status"]
    #[inline] pub fn dmarxris(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1) as u8) } // [16]
    }
-#[doc="Receive DMA Raw Interrupt Status"]
+
+   #[doc="Receive DMA Raw Interrupt Status"]
+   #[inline] pub fn test_dmarxris(&self) -> bool {
+      self.dmarxris != 0
+   }
+
+   #[doc="Receive DMA Raw Interrupt Status"]
    #[inline] pub fn set_dmarxris<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1849,11 +2394,17 @@ impl Ris {
       self
    }
 
-#[doc="Transmit DMA Raw Interrupt Status"]
+   #[doc="Transmit DMA Raw Interrupt Status"]
    #[inline] pub fn dmatxris(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 17) & 0x1) as u8) } // [17]
    }
-#[doc="Transmit DMA Raw Interrupt Status"]
+
+   #[doc="Transmit DMA Raw Interrupt Status"]
+   #[inline] pub fn test_dmatxris(&self) -> bool {
+      self.dmatxris != 0
+   }
+
+   #[doc="Transmit DMA Raw Interrupt Status"]
    #[inline] pub fn set_dmatxris<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1863,11 +2414,13 @@ impl Ris {
    }
 
 }
+
 impl ::core::fmt::Display for Ris {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Ris {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -1890,15 +2443,22 @@ impl ::core::fmt::Debug for Ris {
       Ok(())
    }
 }
+
 #[doc="UART Masked Interrupt Status"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Mis(pub u32);
 impl Mis {
-#[doc="UART Ring Indicator Modem Masked Interrupt Status"]
+   #[doc="UART Ring Indicator Modem Masked Interrupt Status"]
    #[inline] pub fn rimis(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
    }
-#[doc="UART Ring Indicator Modem Masked Interrupt Status"]
+
+   #[doc="UART Ring Indicator Modem Masked Interrupt Status"]
+   #[inline] pub fn test_rimis(&self) -> bool {
+      self.rimis != 0
+   }
+
+   #[doc="UART Ring Indicator Modem Masked Interrupt Status"]
    #[inline] pub fn set_rimis<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1907,11 +2467,17 @@ impl Mis {
       self
    }
 
-#[doc="UART Clear to Send Modem Masked Interrupt Status"]
+   #[doc="UART Clear to Send Modem Masked Interrupt Status"]
    #[inline] pub fn ctsmis(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
    }
-#[doc="UART Clear to Send Modem Masked Interrupt Status"]
+
+   #[doc="UART Clear to Send Modem Masked Interrupt Status"]
+   #[inline] pub fn test_ctsmis(&self) -> bool {
+      self.ctsmis != 0
+   }
+
+   #[doc="UART Clear to Send Modem Masked Interrupt Status"]
    #[inline] pub fn set_ctsmis<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1920,11 +2486,17 @@ impl Mis {
       self
    }
 
-#[doc="UART Data Carrier Detect Modem Masked Interrupt Status"]
+   #[doc="UART Data Carrier Detect Modem Masked Interrupt Status"]
    #[inline] pub fn dcdmis(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
    }
-#[doc="UART Data Carrier Detect Modem Masked Interrupt Status"]
+
+   #[doc="UART Data Carrier Detect Modem Masked Interrupt Status"]
+   #[inline] pub fn test_dcdmis(&self) -> bool {
+      self.dcdmis != 0
+   }
+
+   #[doc="UART Data Carrier Detect Modem Masked Interrupt Status"]
    #[inline] pub fn set_dcdmis<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1933,11 +2505,17 @@ impl Mis {
       self
    }
 
-#[doc="UART Data Set Ready Modem Masked Interrupt Status"]
+   #[doc="UART Data Set Ready Modem Masked Interrupt Status"]
    #[inline] pub fn dsrmis(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
    }
-#[doc="UART Data Set Ready Modem Masked Interrupt Status"]
+
+   #[doc="UART Data Set Ready Modem Masked Interrupt Status"]
+   #[inline] pub fn test_dsrmis(&self) -> bool {
+      self.dsrmis != 0
+   }
+
+   #[doc="UART Data Set Ready Modem Masked Interrupt Status"]
    #[inline] pub fn set_dsrmis<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1946,11 +2524,17 @@ impl Mis {
       self
    }
 
-#[doc="UART Receive Masked Interrupt Status"]
+   #[doc="UART Receive Masked Interrupt Status"]
    #[inline] pub fn rxmis(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
    }
-#[doc="UART Receive Masked Interrupt Status"]
+
+   #[doc="UART Receive Masked Interrupt Status"]
+   #[inline] pub fn test_rxmis(&self) -> bool {
+      self.rxmis != 0
+   }
+
+   #[doc="UART Receive Masked Interrupt Status"]
    #[inline] pub fn set_rxmis<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1959,11 +2543,17 @@ impl Mis {
       self
    }
 
-#[doc="UART Transmit Masked Interrupt Status"]
+   #[doc="UART Transmit Masked Interrupt Status"]
    #[inline] pub fn txmis(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
    }
-#[doc="UART Transmit Masked Interrupt Status"]
+
+   #[doc="UART Transmit Masked Interrupt Status"]
+   #[inline] pub fn test_txmis(&self) -> bool {
+      self.txmis != 0
+   }
+
+   #[doc="UART Transmit Masked Interrupt Status"]
    #[inline] pub fn set_txmis<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1972,11 +2562,17 @@ impl Mis {
       self
    }
 
-#[doc="UART Receive Time-Out Masked Interrupt Status"]
+   #[doc="UART Receive Time-Out Masked Interrupt Status"]
    #[inline] pub fn rtmis(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
    }
-#[doc="UART Receive Time-Out Masked Interrupt Status"]
+
+   #[doc="UART Receive Time-Out Masked Interrupt Status"]
+   #[inline] pub fn test_rtmis(&self) -> bool {
+      self.rtmis != 0
+   }
+
+   #[doc="UART Receive Time-Out Masked Interrupt Status"]
    #[inline] pub fn set_rtmis<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1985,11 +2581,17 @@ impl Mis {
       self
    }
 
-#[doc="UART Framing Error Masked Interrupt Status"]
+   #[doc="UART Framing Error Masked Interrupt Status"]
    #[inline] pub fn femis(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
    }
-#[doc="UART Framing Error Masked Interrupt Status"]
+
+   #[doc="UART Framing Error Masked Interrupt Status"]
+   #[inline] pub fn test_femis(&self) -> bool {
+      self.femis != 0
+   }
+
+   #[doc="UART Framing Error Masked Interrupt Status"]
    #[inline] pub fn set_femis<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -1998,11 +2600,17 @@ impl Mis {
       self
    }
 
-#[doc="UART Parity Error Masked Interrupt Status"]
+   #[doc="UART Parity Error Masked Interrupt Status"]
    #[inline] pub fn pemis(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
    }
-#[doc="UART Parity Error Masked Interrupt Status"]
+
+   #[doc="UART Parity Error Masked Interrupt Status"]
+   #[inline] pub fn test_pemis(&self) -> bool {
+      self.pemis != 0
+   }
+
+   #[doc="UART Parity Error Masked Interrupt Status"]
    #[inline] pub fn set_pemis<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -2011,11 +2619,17 @@ impl Mis {
       self
    }
 
-#[doc="UART Break Error Masked Interrupt Status"]
+   #[doc="UART Break Error Masked Interrupt Status"]
    #[inline] pub fn bemis(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
    }
-#[doc="UART Break Error Masked Interrupt Status"]
+
+   #[doc="UART Break Error Masked Interrupt Status"]
+   #[inline] pub fn test_bemis(&self) -> bool {
+      self.bemis != 0
+   }
+
+   #[doc="UART Break Error Masked Interrupt Status"]
    #[inline] pub fn set_bemis<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -2024,11 +2638,17 @@ impl Mis {
       self
    }
 
-#[doc="UART Overrun Error Masked Interrupt Status"]
+   #[doc="UART Overrun Error Masked Interrupt Status"]
    #[inline] pub fn oemis(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x1) as u8) } // [10]
    }
-#[doc="UART Overrun Error Masked Interrupt Status"]
+
+   #[doc="UART Overrun Error Masked Interrupt Status"]
+   #[inline] pub fn test_oemis(&self) -> bool {
+      self.oemis != 0
+   }
+
+   #[doc="UART Overrun Error Masked Interrupt Status"]
    #[inline] pub fn set_oemis<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -2037,11 +2657,17 @@ impl Mis {
       self
    }
 
-#[doc="End of Transmission Masked Interrupt Status"]
+   #[doc="End of Transmission Masked Interrupt Status"]
    #[inline] pub fn eotmis(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 11) & 0x1) as u8) } // [11]
    }
-#[doc="End of Transmission Masked Interrupt Status"]
+
+   #[doc="End of Transmission Masked Interrupt Status"]
+   #[inline] pub fn test_eotmis(&self) -> bool {
+      self.eotmis != 0
+   }
+
+   #[doc="End of Transmission Masked Interrupt Status"]
    #[inline] pub fn set_eotmis<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -2050,11 +2676,17 @@ impl Mis {
       self
    }
 
-#[doc="9-Bit Mode Masked Interrupt Status"]
+   #[doc="9-Bit Mode Masked Interrupt Status"]
    #[inline] pub fn _9bitmis(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 12) & 0x1) as u8) } // [12]
    }
-#[doc="9-Bit Mode Masked Interrupt Status"]
+
+   #[doc="9-Bit Mode Masked Interrupt Status"]
+   #[inline] pub fn test_9bitmis(&self) -> bool {
+      self._9bitmis != 0
+   }
+
+   #[doc="9-Bit Mode Masked Interrupt Status"]
    #[inline] pub fn set_9bitmis<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -2063,11 +2695,17 @@ impl Mis {
       self
    }
 
-#[doc="Receive DMA Masked Interrupt Status"]
+   #[doc="Receive DMA Masked Interrupt Status"]
    #[inline] pub fn dmarxmis(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1) as u8) } // [16]
    }
-#[doc="Receive DMA Masked Interrupt Status"]
+
+   #[doc="Receive DMA Masked Interrupt Status"]
+   #[inline] pub fn test_dmarxmis(&self) -> bool {
+      self.dmarxmis != 0
+   }
+
+   #[doc="Receive DMA Masked Interrupt Status"]
    #[inline] pub fn set_dmarxmis<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -2076,11 +2714,17 @@ impl Mis {
       self
    }
 
-#[doc="Transmit DMA Masked Interrupt Status"]
+   #[doc="Transmit DMA Masked Interrupt Status"]
    #[inline] pub fn dmatxmis(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 17) & 0x1) as u8) } // [17]
    }
-#[doc="Transmit DMA Masked Interrupt Status"]
+
+   #[doc="Transmit DMA Masked Interrupt Status"]
+   #[inline] pub fn test_dmatxmis(&self) -> bool {
+      self.dmatxmis != 0
+   }
+
+   #[doc="Transmit DMA Masked Interrupt Status"]
    #[inline] pub fn set_dmatxmis<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -2090,11 +2734,13 @@ impl Mis {
    }
 
 }
+
 impl ::core::fmt::Display for Mis {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Mis {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -2117,15 +2763,22 @@ impl ::core::fmt::Debug for Mis {
       Ok(())
    }
 }
+
 #[doc="UART Interrupt Clear"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Icr(pub u32);
 impl Icr {
-#[doc="UART Ring Indicator Modem Interrupt Clear"]
+   #[doc="UART Ring Indicator Modem Interrupt Clear"]
    #[inline] pub fn rimic(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
    }
-#[doc="UART Ring Indicator Modem Interrupt Clear"]
+
+   #[doc="UART Ring Indicator Modem Interrupt Clear"]
+   #[inline] pub fn test_rimic(&self) -> bool {
+      self.rimic != 0
+   }
+
+   #[doc="UART Ring Indicator Modem Interrupt Clear"]
    #[inline] pub fn set_rimic<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -2134,11 +2787,17 @@ impl Icr {
       self
    }
 
-#[doc="UART Clear to Send Modem Interrupt Clear"]
+   #[doc="UART Clear to Send Modem Interrupt Clear"]
    #[inline] pub fn ctsmic(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
    }
-#[doc="UART Clear to Send Modem Interrupt Clear"]
+
+   #[doc="UART Clear to Send Modem Interrupt Clear"]
+   #[inline] pub fn test_ctsmic(&self) -> bool {
+      self.ctsmic != 0
+   }
+
+   #[doc="UART Clear to Send Modem Interrupt Clear"]
    #[inline] pub fn set_ctsmic<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -2147,11 +2806,17 @@ impl Icr {
       self
    }
 
-#[doc="UART Data Carrier Detect Modem Interrupt Clear"]
+   #[doc="UART Data Carrier Detect Modem Interrupt Clear"]
    #[inline] pub fn dcdmic(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
    }
-#[doc="UART Data Carrier Detect Modem Interrupt Clear"]
+
+   #[doc="UART Data Carrier Detect Modem Interrupt Clear"]
+   #[inline] pub fn test_dcdmic(&self) -> bool {
+      self.dcdmic != 0
+   }
+
+   #[doc="UART Data Carrier Detect Modem Interrupt Clear"]
    #[inline] pub fn set_dcdmic<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -2160,11 +2825,17 @@ impl Icr {
       self
    }
 
-#[doc="UART Data Set Ready Modem Interrupt Clear"]
+   #[doc="UART Data Set Ready Modem Interrupt Clear"]
    #[inline] pub fn dsrmic(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
    }
-#[doc="UART Data Set Ready Modem Interrupt Clear"]
+
+   #[doc="UART Data Set Ready Modem Interrupt Clear"]
+   #[inline] pub fn test_dsrmic(&self) -> bool {
+      self.dsrmic != 0
+   }
+
+   #[doc="UART Data Set Ready Modem Interrupt Clear"]
    #[inline] pub fn set_dsrmic<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -2173,11 +2844,17 @@ impl Icr {
       self
    }
 
-#[doc="Receive Interrupt Clear"]
+   #[doc="Receive Interrupt Clear"]
    #[inline] pub fn rxic(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
    }
-#[doc="Receive Interrupt Clear"]
+
+   #[doc="Receive Interrupt Clear"]
+   #[inline] pub fn test_rxic(&self) -> bool {
+      self.rxic != 0
+   }
+
+   #[doc="Receive Interrupt Clear"]
    #[inline] pub fn set_rxic<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -2186,11 +2863,17 @@ impl Icr {
       self
    }
 
-#[doc="Transmit Interrupt Clear"]
+   #[doc="Transmit Interrupt Clear"]
    #[inline] pub fn txic(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
    }
-#[doc="Transmit Interrupt Clear"]
+
+   #[doc="Transmit Interrupt Clear"]
+   #[inline] pub fn test_txic(&self) -> bool {
+      self.txic != 0
+   }
+
+   #[doc="Transmit Interrupt Clear"]
    #[inline] pub fn set_txic<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -2199,11 +2882,17 @@ impl Icr {
       self
    }
 
-#[doc="Receive Time-Out Interrupt Clear"]
+   #[doc="Receive Time-Out Interrupt Clear"]
    #[inline] pub fn rtic(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
    }
-#[doc="Receive Time-Out Interrupt Clear"]
+
+   #[doc="Receive Time-Out Interrupt Clear"]
+   #[inline] pub fn test_rtic(&self) -> bool {
+      self.rtic != 0
+   }
+
+   #[doc="Receive Time-Out Interrupt Clear"]
    #[inline] pub fn set_rtic<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -2212,11 +2901,17 @@ impl Icr {
       self
    }
 
-#[doc="Framing Error Interrupt Clear"]
+   #[doc="Framing Error Interrupt Clear"]
    #[inline] pub fn feic(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
    }
-#[doc="Framing Error Interrupt Clear"]
+
+   #[doc="Framing Error Interrupt Clear"]
+   #[inline] pub fn test_feic(&self) -> bool {
+      self.feic != 0
+   }
+
+   #[doc="Framing Error Interrupt Clear"]
    #[inline] pub fn set_feic<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -2225,11 +2920,17 @@ impl Icr {
       self
    }
 
-#[doc="Parity Error Interrupt Clear"]
+   #[doc="Parity Error Interrupt Clear"]
    #[inline] pub fn peic(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
    }
-#[doc="Parity Error Interrupt Clear"]
+
+   #[doc="Parity Error Interrupt Clear"]
+   #[inline] pub fn test_peic(&self) -> bool {
+      self.peic != 0
+   }
+
+   #[doc="Parity Error Interrupt Clear"]
    #[inline] pub fn set_peic<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -2238,11 +2939,17 @@ impl Icr {
       self
    }
 
-#[doc="Break Error Interrupt Clear"]
+   #[doc="Break Error Interrupt Clear"]
    #[inline] pub fn beic(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
    }
-#[doc="Break Error Interrupt Clear"]
+
+   #[doc="Break Error Interrupt Clear"]
+   #[inline] pub fn test_beic(&self) -> bool {
+      self.beic != 0
+   }
+
+   #[doc="Break Error Interrupt Clear"]
    #[inline] pub fn set_beic<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -2251,11 +2958,17 @@ impl Icr {
       self
    }
 
-#[doc="Overrun Error Interrupt Clear"]
+   #[doc="Overrun Error Interrupt Clear"]
    #[inline] pub fn oeic(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x1) as u8) } // [10]
    }
-#[doc="Overrun Error Interrupt Clear"]
+
+   #[doc="Overrun Error Interrupt Clear"]
+   #[inline] pub fn test_oeic(&self) -> bool {
+      self.oeic != 0
+   }
+
+   #[doc="Overrun Error Interrupt Clear"]
    #[inline] pub fn set_oeic<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -2264,11 +2977,17 @@ impl Icr {
       self
    }
 
-#[doc="End of Transmission Interrupt Clear"]
+   #[doc="End of Transmission Interrupt Clear"]
    #[inline] pub fn eotic(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 11) & 0x1) as u8) } // [11]
    }
-#[doc="End of Transmission Interrupt Clear"]
+
+   #[doc="End of Transmission Interrupt Clear"]
+   #[inline] pub fn test_eotic(&self) -> bool {
+      self.eotic != 0
+   }
+
+   #[doc="End of Transmission Interrupt Clear"]
    #[inline] pub fn set_eotic<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -2277,11 +2996,17 @@ impl Icr {
       self
    }
 
-#[doc="9-Bit Mode Interrupt Clear"]
+   #[doc="9-Bit Mode Interrupt Clear"]
    #[inline] pub fn _9bitic(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 12) & 0x1) as u8) } // [12]
    }
-#[doc="9-Bit Mode Interrupt Clear"]
+
+   #[doc="9-Bit Mode Interrupt Clear"]
+   #[inline] pub fn test_9bitic(&self) -> bool {
+      self._9bitic != 0
+   }
+
+   #[doc="9-Bit Mode Interrupt Clear"]
    #[inline] pub fn set_9bitic<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -2290,11 +3015,17 @@ impl Icr {
       self
    }
 
-#[doc="Receive DMA Interrupt Clear"]
+   #[doc="Receive DMA Interrupt Clear"]
    #[inline] pub fn dmarxic(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1) as u8) } // [16]
    }
-#[doc="Receive DMA Interrupt Clear"]
+
+   #[doc="Receive DMA Interrupt Clear"]
+   #[inline] pub fn test_dmarxic(&self) -> bool {
+      self.dmarxic != 0
+   }
+
+   #[doc="Receive DMA Interrupt Clear"]
    #[inline] pub fn set_dmarxic<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -2303,11 +3034,17 @@ impl Icr {
       self
    }
 
-#[doc="Transmit DMA Interrupt Clear"]
+   #[doc="Transmit DMA Interrupt Clear"]
    #[inline] pub fn dmatxic(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 17) & 0x1) as u8) } // [17]
    }
-#[doc="Transmit DMA Interrupt Clear"]
+
+   #[doc="Transmit DMA Interrupt Clear"]
+   #[inline] pub fn test_dmatxic(&self) -> bool {
+      self.dmatxic != 0
+   }
+
+   #[doc="Transmit DMA Interrupt Clear"]
    #[inline] pub fn set_dmatxic<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -2317,11 +3054,13 @@ impl Icr {
    }
 
 }
+
 impl ::core::fmt::Display for Icr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Icr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -2344,15 +3083,22 @@ impl ::core::fmt::Debug for Icr {
       Ok(())
    }
 }
+
 #[doc="UART DMA Control"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Dmactl(pub u32);
 impl Dmactl {
-#[doc="Receive DMA Enable"]
+   #[doc="Receive DMA Enable"]
    #[inline] pub fn rxdmae(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
    }
-#[doc="Receive DMA Enable"]
+
+   #[doc="Receive DMA Enable"]
+   #[inline] pub fn test_rxdmae(&self) -> bool {
+      self.rxdmae != 0
+   }
+
+   #[doc="Receive DMA Enable"]
    #[inline] pub fn set_rxdmae<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -2361,11 +3107,17 @@ impl Dmactl {
       self
    }
 
-#[doc="Transmit DMA Enable"]
+   #[doc="Transmit DMA Enable"]
    #[inline] pub fn txdmae(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
    }
-#[doc="Transmit DMA Enable"]
+
+   #[doc="Transmit DMA Enable"]
+   #[inline] pub fn test_txdmae(&self) -> bool {
+      self.txdmae != 0
+   }
+
+   #[doc="Transmit DMA Enable"]
    #[inline] pub fn set_txdmae<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -2374,11 +3126,17 @@ impl Dmactl {
       self
    }
 
-#[doc="DMA on Error"]
+   #[doc="DMA on Error"]
    #[inline] pub fn dmaerr(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
    }
-#[doc="DMA on Error"]
+
+   #[doc="DMA on Error"]
+   #[inline] pub fn test_dmaerr(&self) -> bool {
+      self.dmaerr != 0
+   }
+
+   #[doc="DMA on Error"]
    #[inline] pub fn set_dmaerr<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -2388,11 +3146,13 @@ impl Dmactl {
    }
 
 }
+
 impl ::core::fmt::Display for Dmactl {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Dmactl {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -2403,15 +3163,22 @@ impl ::core::fmt::Debug for Dmactl {
       Ok(())
    }
 }
+
 #[doc="UART 9-Bit Self Address"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct _9bitaddr(pub u32);
 impl _9bitaddr {
-#[doc="Self Address for 9-Bit Mode"]
+   #[doc="Self Address for 9-Bit Mode"]
    #[inline] pub fn addr(&self) -> bits::U8 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
    }
-#[doc="Self Address for 9-Bit Mode"]
+
+   #[doc="Self Address for 9-Bit Mode"]
+   #[inline] pub fn test_addr(&self) -> bool {
+      self.addr != 0
+   }
+
+   #[doc="Self Address for 9-Bit Mode"]
    #[inline] pub fn set_addr<V: Into<bits::U8>>(mut self, value: V) -> Self {
       let value: bits::U8 = value.into();
       let value: u32 = value.into();
@@ -2420,11 +3187,17 @@ impl _9bitaddr {
       self
    }
 
-#[doc="Enable 9-Bit Mode"]
+   #[doc="Enable 9-Bit Mode"]
    #[inline] pub fn _9biten(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 15) & 0x1) as u8) } // [15]
    }
-#[doc="Enable 9-Bit Mode"]
+
+   #[doc="Enable 9-Bit Mode"]
+   #[inline] pub fn test_9biten(&self) -> bool {
+      self._9biten != 0
+   }
+
+   #[doc="Enable 9-Bit Mode"]
    #[inline] pub fn set_9biten<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -2434,11 +3207,13 @@ impl _9bitaddr {
    }
 
 }
+
 impl ::core::fmt::Display for _9bitaddr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for _9bitaddr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -2448,15 +3223,22 @@ impl ::core::fmt::Debug for _9bitaddr {
       Ok(())
    }
 }
+
 #[doc="UART 9-Bit Self Address Mask"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct _9bitamask(pub u32);
 impl _9bitamask {
-#[doc="Self Address Mask for 9-Bit Mode"]
+   #[doc="Self Address Mask for 9-Bit Mode"]
    #[inline] pub fn mask(&self) -> bits::U8 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
    }
-#[doc="Self Address Mask for 9-Bit Mode"]
+
+   #[doc="Self Address Mask for 9-Bit Mode"]
+   #[inline] pub fn test_mask(&self) -> bool {
+      self.mask != 0
+   }
+
+   #[doc="Self Address Mask for 9-Bit Mode"]
    #[inline] pub fn set_mask<V: Into<bits::U8>>(mut self, value: V) -> Self {
       let value: bits::U8 = value.into();
       let value: u32 = value.into();
@@ -2466,11 +3248,13 @@ impl _9bitamask {
    }
 
 }
+
 impl ::core::fmt::Display for _9bitamask {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for _9bitamask {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -2479,15 +3263,22 @@ impl ::core::fmt::Debug for _9bitamask {
       Ok(())
    }
 }
+
 #[doc="UART Peripheral Properties"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Pp(pub u32);
 impl Pp {
-#[doc="Smart Card Support"]
+   #[doc="Smart Card Support"]
    #[inline] pub fn sc(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
    }
-#[doc="Smart Card Support"]
+
+   #[doc="Smart Card Support"]
+   #[inline] pub fn test_sc(&self) -> bool {
+      self.sc != 0
+   }
+
+   #[doc="Smart Card Support"]
    #[inline] pub fn set_sc<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -2496,11 +3287,17 @@ impl Pp {
       self
    }
 
-#[doc="9-Bit Support"]
+   #[doc="9-Bit Support"]
    #[inline] pub fn nb(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
    }
-#[doc="9-Bit Support"]
+
+   #[doc="9-Bit Support"]
+   #[inline] pub fn test_nb(&self) -> bool {
+      self.nb != 0
+   }
+
+   #[doc="9-Bit Support"]
    #[inline] pub fn set_nb<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -2509,11 +3306,17 @@ impl Pp {
       self
    }
 
-#[doc="Modem Support"]
+   #[doc="Modem Support"]
    #[inline] pub fn ms(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
    }
-#[doc="Modem Support"]
+
+   #[doc="Modem Support"]
+   #[inline] pub fn test_ms(&self) -> bool {
+      self.ms != 0
+   }
+
+   #[doc="Modem Support"]
    #[inline] pub fn set_ms<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -2522,11 +3325,17 @@ impl Pp {
       self
    }
 
-#[doc="Modem Support Extended"]
+   #[doc="Modem Support Extended"]
    #[inline] pub fn mse(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
    }
-#[doc="Modem Support Extended"]
+
+   #[doc="Modem Support Extended"]
+   #[inline] pub fn test_mse(&self) -> bool {
+      self.mse != 0
+   }
+
+   #[doc="Modem Support Extended"]
    #[inline] pub fn set_mse<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -2536,11 +3345,13 @@ impl Pp {
    }
 
 }
+
 impl ::core::fmt::Display for Pp {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Pp {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -2552,15 +3363,22 @@ impl ::core::fmt::Debug for Pp {
       Ok(())
    }
 }
+
 #[doc="UART Clock Configuration"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Cc(pub u32);
 impl Cc {
-#[doc="UART Baud Clock Source"]
+   #[doc="UART Baud Clock Source"]
    #[inline] pub fn cs(&self) -> bits::U4 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xf) as u8) } // [3:0]
    }
-#[doc="UART Baud Clock Source"]
+
+   #[doc="UART Baud Clock Source"]
+   #[inline] pub fn test_cs(&self) -> bool {
+      self.cs != 0
+   }
+
+   #[doc="UART Baud Clock Source"]
    #[inline] pub fn set_cs<V: Into<bits::U4>>(mut self, value: V) -> Self {
       let value: bits::U4 = value.into();
       let value: u32 = value.into();
@@ -2570,11 +3388,13 @@ impl Cc {
    }
 
 }
+
 impl ::core::fmt::Display for Cc {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Cc {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -2583,4 +3403,5 @@ impl ::core::fmt::Debug for Cc {
       Ok(())
    }
 }
+
 

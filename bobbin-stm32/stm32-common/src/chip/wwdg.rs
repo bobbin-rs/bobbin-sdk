@@ -7,21 +7,24 @@ pub struct WwdgPeriph(pub usize);
 
 
 impl WwdgPeriph {
-#[doc="Get the *const pointer for the CR register."]
+   #[doc="Get the *const pointer for the CR register."]
    #[inline] pub fn cr_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x0) as *const u32
    }
-#[doc="Get the *mut pointer for the CR register."]
+
+   #[doc="Get the *mut pointer for the CR register."]
    #[inline] pub fn cr_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x0) as *mut u32
    }
-#[doc="Read the CR register."]
+
+   #[doc="Read the CR register."]
    #[inline] pub fn cr(&self) -> Cr { 
       unsafe {
          Cr(read_volatile((self.0 + 0x0) as *const u32))
       }
    }
-#[doc="Write the CR register."]
+
+   #[doc="Write the CR register."]
    #[inline] pub fn set_cr<F: FnOnce(Cr) -> Cr>(&self, f: F) -> &Self {
       let value = f(Cr(0));
       unsafe {
@@ -29,7 +32,8 @@ impl WwdgPeriph {
       }
       self
    }
-#[doc="Modify the CR register."]
+
+   #[doc="Modify the CR register."]
    #[inline] pub fn with_cr<F: FnOnce(Cr) -> Cr>(&self, f: F) -> &Self {
       let tmp = self.cr();
       let value = f(tmp);
@@ -39,21 +43,24 @@ impl WwdgPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the CFR register."]
+   #[doc="Get the *const pointer for the CFR register."]
    #[inline] pub fn cfr_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x4) as *const u32
    }
-#[doc="Get the *mut pointer for the CFR register."]
+
+   #[doc="Get the *mut pointer for the CFR register."]
    #[inline] pub fn cfr_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x4) as *mut u32
    }
-#[doc="Read the CFR register."]
+
+   #[doc="Read the CFR register."]
    #[inline] pub fn cfr(&self) -> Cfr { 
       unsafe {
          Cfr(read_volatile((self.0 + 0x4) as *const u32))
       }
    }
-#[doc="Write the CFR register."]
+
+   #[doc="Write the CFR register."]
    #[inline] pub fn set_cfr<F: FnOnce(Cfr) -> Cfr>(&self, f: F) -> &Self {
       let value = f(Cfr(0));
       unsafe {
@@ -61,7 +68,8 @@ impl WwdgPeriph {
       }
       self
    }
-#[doc="Modify the CFR register."]
+
+   #[doc="Modify the CFR register."]
    #[inline] pub fn with_cfr<F: FnOnce(Cfr) -> Cfr>(&self, f: F) -> &Self {
       let tmp = self.cfr();
       let value = f(tmp);
@@ -71,21 +79,24 @@ impl WwdgPeriph {
       self
    }
 
-#[doc="Get the *const pointer for the SR register."]
+   #[doc="Get the *const pointer for the SR register."]
    #[inline] pub fn sr_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x8) as *const u32
    }
-#[doc="Get the *mut pointer for the SR register."]
+
+   #[doc="Get the *mut pointer for the SR register."]
    #[inline] pub fn sr_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x8) as *mut u32
    }
-#[doc="Read the SR register."]
+
+   #[doc="Read the SR register."]
    #[inline] pub fn sr(&self) -> Sr { 
       unsafe {
          Sr(read_volatile((self.0 + 0x8) as *const u32))
       }
    }
-#[doc="Write the SR register."]
+
+   #[doc="Write the SR register."]
    #[inline] pub fn set_sr<F: FnOnce(Sr) -> Sr>(&self, f: F) -> &Self {
       let value = f(Sr(0));
       unsafe {
@@ -93,7 +104,8 @@ impl WwdgPeriph {
       }
       self
    }
-#[doc="Modify the SR register."]
+
+   #[doc="Modify the SR register."]
    #[inline] pub fn with_sr<F: FnOnce(Sr) -> Sr>(&self, f: F) -> &Self {
       let tmp = self.sr();
       let value = f(tmp);
@@ -109,11 +121,17 @@ impl WwdgPeriph {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Cr(pub u32);
 impl Cr {
-#[doc="Activation bit"]
+   #[doc="Activation bit"]
    #[inline] pub fn wdga(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
    }
-#[doc="Activation bit"]
+
+   #[doc="Activation bit"]
+   #[inline] pub fn test_wdga(&self) -> bool {
+      self.wdga != 0
+   }
+
+   #[doc="Activation bit"]
    #[inline] pub fn set_wdga<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -122,11 +140,17 @@ impl Cr {
       self
    }
 
-#[doc="7-bit counter (MSB to LSB)"]
+   #[doc="7-bit counter (MSB to LSB)"]
    #[inline] pub fn t(&self) -> bits::U7 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x7f) as u8) } // [6:0]
    }
-#[doc="7-bit counter (MSB to LSB)"]
+
+   #[doc="7-bit counter (MSB to LSB)"]
+   #[inline] pub fn test_t(&self) -> bool {
+      self.t != 0
+   }
+
+   #[doc="7-bit counter (MSB to LSB)"]
    #[inline] pub fn set_t<V: Into<bits::U7>>(mut self, value: V) -> Self {
       let value: bits::U7 = value.into();
       let value: u32 = value.into();
@@ -136,11 +160,13 @@ impl Cr {
    }
 
 }
+
 impl ::core::fmt::Display for Cr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Cr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -150,15 +176,22 @@ impl ::core::fmt::Debug for Cr {
       Ok(())
    }
 }
+
 #[doc="Configuration register"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Cfr(pub u32);
 impl Cfr {
-#[doc="Early wakeup interrupt"]
+   #[doc="Early wakeup interrupt"]
    #[inline] pub fn ewi(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
    }
-#[doc="Early wakeup interrupt"]
+
+   #[doc="Early wakeup interrupt"]
+   #[inline] pub fn test_ewi(&self) -> bool {
+      self.ewi != 0
+   }
+
+   #[doc="Early wakeup interrupt"]
    #[inline] pub fn set_ewi<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -167,11 +200,17 @@ impl Cfr {
       self
    }
 
-#[doc="Timer base"]
+   #[doc="Timer base"]
    #[inline] pub fn wdgtb(&self) -> bits::U2 {
       unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x3) as u8) } // [8:7]
    }
-#[doc="Timer base"]
+
+   #[doc="Timer base"]
+   #[inline] pub fn test_wdgtb(&self) -> bool {
+      self.wdgtb != 0
+   }
+
+   #[doc="Timer base"]
    #[inline] pub fn set_wdgtb<V: Into<bits::U2>>(mut self, value: V) -> Self {
       let value: bits::U2 = value.into();
       let value: u32 = value.into();
@@ -180,11 +219,17 @@ impl Cfr {
       self
    }
 
-#[doc="7-bit window value"]
+   #[doc="7-bit window value"]
    #[inline] pub fn w(&self) -> bits::U7 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x7f) as u8) } // [6:0]
    }
-#[doc="7-bit window value"]
+
+   #[doc="7-bit window value"]
+   #[inline] pub fn test_w(&self) -> bool {
+      self.w != 0
+   }
+
+   #[doc="7-bit window value"]
    #[inline] pub fn set_w<V: Into<bits::U7>>(mut self, value: V) -> Self {
       let value: bits::U7 = value.into();
       let value: u32 = value.into();
@@ -194,11 +239,13 @@ impl Cfr {
    }
 
 }
+
 impl ::core::fmt::Display for Cfr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Cfr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -209,15 +256,22 @@ impl ::core::fmt::Debug for Cfr {
       Ok(())
    }
 }
+
 #[doc="Status register"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Sr(pub u32);
 impl Sr {
-#[doc="Early wakeup interrupt flag"]
+   #[doc="Early wakeup interrupt flag"]
    #[inline] pub fn ewif(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
    }
-#[doc="Early wakeup interrupt flag"]
+
+   #[doc="Early wakeup interrupt flag"]
+   #[inline] pub fn test_ewif(&self) -> bool {
+      self.ewif != 0
+   }
+
+   #[doc="Early wakeup interrupt flag"]
    #[inline] pub fn set_ewif<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -227,11 +281,13 @@ impl Sr {
    }
 
 }
+
 impl ::core::fmt::Display for Sr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Sr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -240,4 +296,5 @@ impl ::core::fmt::Debug for Sr {
       Ok(())
    }
 }
+
 

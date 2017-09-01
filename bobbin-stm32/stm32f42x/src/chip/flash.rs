@@ -7,21 +7,24 @@ periph!(FLASH, Flash, 0x40023c00);
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Flash(pub usize);
 impl Flash {
-#[doc="Get the *const pointer for the ACR register."]
+   #[doc="Get the *const pointer for the ACR register."]
    #[inline] pub fn acr_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x0) as *const u32
    }
-#[doc="Get the *mut pointer for the ACR register."]
+
+   #[doc="Get the *mut pointer for the ACR register."]
    #[inline] pub fn acr_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x0) as *mut u32
    }
-#[doc="Read the ACR register."]
+
+   #[doc="Read the ACR register."]
    #[inline] pub fn acr(&self) -> Acr { 
       unsafe {
          Acr(read_volatile((self.0 + 0x0) as *const u32))
       }
    }
-#[doc="Write the ACR register."]
+
+   #[doc="Write the ACR register."]
    #[inline] pub fn set_acr<F: FnOnce(Acr) -> Acr>(&self, f: F) -> &Self {
       let value = f(Acr(0));
       unsafe {
@@ -29,7 +32,8 @@ impl Flash {
       }
       self
    }
-#[doc="Modify the ACR register."]
+
+   #[doc="Modify the ACR register."]
    #[inline] pub fn with_acr<F: FnOnce(Acr) -> Acr>(&self, f: F) -> &Self {
       let tmp = self.acr();
       let value = f(tmp);
@@ -39,15 +43,17 @@ impl Flash {
       self
    }
 
-#[doc="Get the *const pointer for the KEYR register."]
+   #[doc="Get the *const pointer for the KEYR register."]
    #[inline] pub fn keyr_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x4) as *const u32
    }
-#[doc="Get the *mut pointer for the KEYR register."]
+
+   #[doc="Get the *mut pointer for the KEYR register."]
    #[inline] pub fn keyr_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x4) as *mut u32
    }
-#[doc="Write the KEYR register."]
+
+   #[doc="Write the KEYR register."]
    #[inline] pub fn set_keyr<F: FnOnce(Keyr) -> Keyr>(&self, f: F) -> &Self {
       let value = f(Keyr(0));
       unsafe {
@@ -56,15 +62,17 @@ impl Flash {
       self
    }
 
-#[doc="Get the *const pointer for the OPTKEYR register."]
+   #[doc="Get the *const pointer for the OPTKEYR register."]
    #[inline] pub fn optkeyr_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x8) as *const u32
    }
-#[doc="Get the *mut pointer for the OPTKEYR register."]
+
+   #[doc="Get the *mut pointer for the OPTKEYR register."]
    #[inline] pub fn optkeyr_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x8) as *mut u32
    }
-#[doc="Write the OPTKEYR register."]
+
+   #[doc="Write the OPTKEYR register."]
    #[inline] pub fn set_optkeyr<F: FnOnce(Optkeyr) -> Optkeyr>(&self, f: F) -> &Self {
       let value = f(Optkeyr(0));
       unsafe {
@@ -73,21 +81,24 @@ impl Flash {
       self
    }
 
-#[doc="Get the *const pointer for the SR register."]
+   #[doc="Get the *const pointer for the SR register."]
    #[inline] pub fn sr_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0xc) as *const u32
    }
-#[doc="Get the *mut pointer for the SR register."]
+
+   #[doc="Get the *mut pointer for the SR register."]
    #[inline] pub fn sr_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0xc) as *mut u32
    }
-#[doc="Read the SR register."]
+
+   #[doc="Read the SR register."]
    #[inline] pub fn sr(&self) -> Sr { 
       unsafe {
          Sr(read_volatile((self.0 + 0xc) as *const u32))
       }
    }
-#[doc="Write the SR register."]
+
+   #[doc="Write the SR register."]
    #[inline] pub fn set_sr<F: FnOnce(Sr) -> Sr>(&self, f: F) -> &Self {
       let value = f(Sr(0));
       unsafe {
@@ -95,7 +106,8 @@ impl Flash {
       }
       self
    }
-#[doc="Modify the SR register."]
+
+   #[doc="Modify the SR register."]
    #[inline] pub fn with_sr<F: FnOnce(Sr) -> Sr>(&self, f: F) -> &Self {
       let tmp = self.sr();
       let value = f(tmp);
@@ -105,21 +117,24 @@ impl Flash {
       self
    }
 
-#[doc="Get the *const pointer for the CR register."]
+   #[doc="Get the *const pointer for the CR register."]
    #[inline] pub fn cr_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x10) as *const u32
    }
-#[doc="Get the *mut pointer for the CR register."]
+
+   #[doc="Get the *mut pointer for the CR register."]
    #[inline] pub fn cr_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x10) as *mut u32
    }
-#[doc="Read the CR register."]
+
+   #[doc="Read the CR register."]
    #[inline] pub fn cr(&self) -> Cr { 
       unsafe {
          Cr(read_volatile((self.0 + 0x10) as *const u32))
       }
    }
-#[doc="Write the CR register."]
+
+   #[doc="Write the CR register."]
    #[inline] pub fn set_cr<F: FnOnce(Cr) -> Cr>(&self, f: F) -> &Self {
       let value = f(Cr(0));
       unsafe {
@@ -127,7 +142,8 @@ impl Flash {
       }
       self
    }
-#[doc="Modify the CR register."]
+
+   #[doc="Modify the CR register."]
    #[inline] pub fn with_cr<F: FnOnce(Cr) -> Cr>(&self, f: F) -> &Self {
       let tmp = self.cr();
       let value = f(tmp);
@@ -137,21 +153,24 @@ impl Flash {
       self
    }
 
-#[doc="Get the *const pointer for the OPTCR register."]
+   #[doc="Get the *const pointer for the OPTCR register."]
    #[inline] pub fn optcr_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x14) as *const u32
    }
-#[doc="Get the *mut pointer for the OPTCR register."]
+
+   #[doc="Get the *mut pointer for the OPTCR register."]
    #[inline] pub fn optcr_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x14) as *mut u32
    }
-#[doc="Read the OPTCR register."]
+
+   #[doc="Read the OPTCR register."]
    #[inline] pub fn optcr(&self) -> Optcr { 
       unsafe {
          Optcr(read_volatile((self.0 + 0x14) as *const u32))
       }
    }
-#[doc="Write the OPTCR register."]
+
+   #[doc="Write the OPTCR register."]
    #[inline] pub fn set_optcr<F: FnOnce(Optcr) -> Optcr>(&self, f: F) -> &Self {
       let value = f(Optcr(0));
       unsafe {
@@ -159,7 +178,8 @@ impl Flash {
       }
       self
    }
-#[doc="Modify the OPTCR register."]
+
+   #[doc="Modify the OPTCR register."]
    #[inline] pub fn with_optcr<F: FnOnce(Optcr) -> Optcr>(&self, f: F) -> &Self {
       let tmp = self.optcr();
       let value = f(tmp);
@@ -175,11 +195,17 @@ impl Flash {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Acr(pub u32);
 impl Acr {
-#[doc="Latency"]
+   #[doc="Latency"]
    #[inline] pub fn latency(&self) -> bits::U3 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x7) as u8) } // [2:0]
    }
-#[doc="Latency"]
+
+   #[doc="Latency"]
+   #[inline] pub fn test_latency(&self) -> bool {
+      self.latency != 0
+   }
+
+   #[doc="Latency"]
    #[inline] pub fn set_latency<V: Into<bits::U3>>(mut self, value: V) -> Self {
       let value: bits::U3 = value.into();
       let value: u32 = value.into();
@@ -188,11 +214,17 @@ impl Acr {
       self
    }
 
-#[doc="Prefetch enable"]
+   #[doc="Prefetch enable"]
    #[inline] pub fn prften(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
    }
-#[doc="Prefetch enable"]
+
+   #[doc="Prefetch enable"]
+   #[inline] pub fn test_prften(&self) -> bool {
+      self.prften != 0
+   }
+
+   #[doc="Prefetch enable"]
    #[inline] pub fn set_prften<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -201,11 +233,17 @@ impl Acr {
       self
    }
 
-#[doc="Instruction cache enable"]
+   #[doc="Instruction cache enable"]
    #[inline] pub fn icen(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
    }
-#[doc="Instruction cache enable"]
+
+   #[doc="Instruction cache enable"]
+   #[inline] pub fn test_icen(&self) -> bool {
+      self.icen != 0
+   }
+
+   #[doc="Instruction cache enable"]
    #[inline] pub fn set_icen<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -214,11 +252,17 @@ impl Acr {
       self
    }
 
-#[doc="Data cache enable"]
+   #[doc="Data cache enable"]
    #[inline] pub fn dcen(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x1) as u8) } // [10]
    }
-#[doc="Data cache enable"]
+
+   #[doc="Data cache enable"]
+   #[inline] pub fn test_dcen(&self) -> bool {
+      self.dcen != 0
+   }
+
+   #[doc="Data cache enable"]
    #[inline] pub fn set_dcen<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -227,11 +271,17 @@ impl Acr {
       self
    }
 
-#[doc="Instruction cache reset"]
+   #[doc="Instruction cache reset"]
    #[inline] pub fn icrst(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 11) & 0x1) as u8) } // [11]
    }
-#[doc="Instruction cache reset"]
+
+   #[doc="Instruction cache reset"]
+   #[inline] pub fn test_icrst(&self) -> bool {
+      self.icrst != 0
+   }
+
+   #[doc="Instruction cache reset"]
    #[inline] pub fn set_icrst<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -240,11 +290,17 @@ impl Acr {
       self
    }
 
-#[doc="Data cache reset"]
+   #[doc="Data cache reset"]
    #[inline] pub fn dcrst(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 12) & 0x1) as u8) } // [12]
    }
-#[doc="Data cache reset"]
+
+   #[doc="Data cache reset"]
+   #[inline] pub fn test_dcrst(&self) -> bool {
+      self.dcrst != 0
+   }
+
+   #[doc="Data cache reset"]
    #[inline] pub fn set_dcrst<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -254,11 +310,13 @@ impl Acr {
    }
 
 }
+
 impl ::core::fmt::Display for Acr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Acr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -272,15 +330,22 @@ impl ::core::fmt::Debug for Acr {
       Ok(())
    }
 }
+
 #[doc="Flash key register"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Keyr(pub u32);
 impl Keyr {
-#[doc="FPEC key"]
+   #[doc="FPEC key"]
    #[inline] pub fn key(&self) -> bits::U32 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffffffff) as u32) } // [31:0]
    }
-#[doc="FPEC key"]
+
+   #[doc="FPEC key"]
+   #[inline] pub fn test_key(&self) -> bool {
+      self.key != 0
+   }
+
+   #[doc="FPEC key"]
    #[inline] pub fn set_key<V: Into<bits::U32>>(mut self, value: V) -> Self {
       let value: bits::U32 = value.into();
       let value: u32 = value.into();
@@ -290,11 +355,13 @@ impl Keyr {
    }
 
 }
+
 impl ::core::fmt::Display for Keyr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Keyr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -302,15 +369,22 @@ impl ::core::fmt::Debug for Keyr {
       Ok(())
    }
 }
+
 #[doc="Flash option key register"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Optkeyr(pub u32);
 impl Optkeyr {
-#[doc="Option byte key"]
+   #[doc="Option byte key"]
    #[inline] pub fn optkey(&self) -> bits::U32 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffffffff) as u32) } // [31:0]
    }
-#[doc="Option byte key"]
+
+   #[doc="Option byte key"]
+   #[inline] pub fn test_optkey(&self) -> bool {
+      self.optkey != 0
+   }
+
+   #[doc="Option byte key"]
    #[inline] pub fn set_optkey<V: Into<bits::U32>>(mut self, value: V) -> Self {
       let value: bits::U32 = value.into();
       let value: u32 = value.into();
@@ -320,11 +394,13 @@ impl Optkeyr {
    }
 
 }
+
 impl ::core::fmt::Display for Optkeyr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Optkeyr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -332,15 +408,22 @@ impl ::core::fmt::Debug for Optkeyr {
       Ok(())
    }
 }
+
 #[doc="Status register"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Sr(pub u32);
 impl Sr {
-#[doc="End of operation"]
+   #[doc="End of operation"]
    #[inline] pub fn eop(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
    }
-#[doc="End of operation"]
+
+   #[doc="End of operation"]
+   #[inline] pub fn test_eop(&self) -> bool {
+      self.eop != 0
+   }
+
+   #[doc="End of operation"]
    #[inline] pub fn set_eop<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -349,11 +432,17 @@ impl Sr {
       self
    }
 
-#[doc="Operation error"]
+   #[doc="Operation error"]
    #[inline] pub fn operr(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
    }
-#[doc="Operation error"]
+
+   #[doc="Operation error"]
+   #[inline] pub fn test_operr(&self) -> bool {
+      self.operr != 0
+   }
+
+   #[doc="Operation error"]
    #[inline] pub fn set_operr<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -362,11 +451,17 @@ impl Sr {
       self
    }
 
-#[doc="Write protection error"]
+   #[doc="Write protection error"]
    #[inline] pub fn wrperr(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
    }
-#[doc="Write protection error"]
+
+   #[doc="Write protection error"]
+   #[inline] pub fn test_wrperr(&self) -> bool {
+      self.wrperr != 0
+   }
+
+   #[doc="Write protection error"]
    #[inline] pub fn set_wrperr<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -375,11 +470,17 @@ impl Sr {
       self
    }
 
-#[doc="Programming alignment error"]
+   #[doc="Programming alignment error"]
    #[inline] pub fn pgaerr(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
    }
-#[doc="Programming alignment error"]
+
+   #[doc="Programming alignment error"]
+   #[inline] pub fn test_pgaerr(&self) -> bool {
+      self.pgaerr != 0
+   }
+
+   #[doc="Programming alignment error"]
    #[inline] pub fn set_pgaerr<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -388,11 +489,17 @@ impl Sr {
       self
    }
 
-#[doc="Programming parallelism error"]
+   #[doc="Programming parallelism error"]
    #[inline] pub fn pgperr(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
    }
-#[doc="Programming parallelism error"]
+
+   #[doc="Programming parallelism error"]
+   #[inline] pub fn test_pgperr(&self) -> bool {
+      self.pgperr != 0
+   }
+
+   #[doc="Programming parallelism error"]
    #[inline] pub fn set_pgperr<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -401,11 +508,17 @@ impl Sr {
       self
    }
 
-#[doc="Programming sequence error"]
+   #[doc="Programming sequence error"]
    #[inline] pub fn pgserr(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
    }
-#[doc="Programming sequence error"]
+
+   #[doc="Programming sequence error"]
+   #[inline] pub fn test_pgserr(&self) -> bool {
+      self.pgserr != 0
+   }
+
+   #[doc="Programming sequence error"]
    #[inline] pub fn set_pgserr<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -414,11 +527,17 @@ impl Sr {
       self
    }
 
-#[doc="Busy"]
+   #[doc="Busy"]
    #[inline] pub fn bsy(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1) as u8) } // [16]
    }
-#[doc="Busy"]
+
+   #[doc="Busy"]
+   #[inline] pub fn test_bsy(&self) -> bool {
+      self.bsy != 0
+   }
+
+   #[doc="Busy"]
    #[inline] pub fn set_bsy<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -428,11 +547,13 @@ impl Sr {
    }
 
 }
+
 impl ::core::fmt::Display for Sr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Sr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -447,15 +568,22 @@ impl ::core::fmt::Debug for Sr {
       Ok(())
    }
 }
+
 #[doc="Control register"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Cr(pub u32);
 impl Cr {
-#[doc="Programming"]
+   #[doc="Programming"]
    #[inline] pub fn pg(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
    }
-#[doc="Programming"]
+
+   #[doc="Programming"]
+   #[inline] pub fn test_pg(&self) -> bool {
+      self.pg != 0
+   }
+
+   #[doc="Programming"]
    #[inline] pub fn set_pg<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -464,11 +592,17 @@ impl Cr {
       self
    }
 
-#[doc="Sector Erase"]
+   #[doc="Sector Erase"]
    #[inline] pub fn ser(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
    }
-#[doc="Sector Erase"]
+
+   #[doc="Sector Erase"]
+   #[inline] pub fn test_ser(&self) -> bool {
+      self.ser != 0
+   }
+
+   #[doc="Sector Erase"]
    #[inline] pub fn set_ser<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -477,11 +611,17 @@ impl Cr {
       self
    }
 
-#[doc="Mass Erase"]
+   #[doc="Mass Erase"]
    #[inline] pub fn mer(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
    }
-#[doc="Mass Erase"]
+
+   #[doc="Mass Erase"]
+   #[inline] pub fn test_mer(&self) -> bool {
+      self.mer != 0
+   }
+
+   #[doc="Mass Erase"]
    #[inline] pub fn set_mer<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -490,11 +630,17 @@ impl Cr {
       self
    }
 
-#[doc="Sector number"]
+   #[doc="Sector number"]
    #[inline] pub fn snb(&self) -> bits::U4 {
       unsafe { ::core::mem::transmute(((self.0 >> 3) & 0xf) as u8) } // [6:3]
    }
-#[doc="Sector number"]
+
+   #[doc="Sector number"]
+   #[inline] pub fn test_snb(&self) -> bool {
+      self.snb != 0
+   }
+
+   #[doc="Sector number"]
    #[inline] pub fn set_snb<V: Into<bits::U4>>(mut self, value: V) -> Self {
       let value: bits::U4 = value.into();
       let value: u32 = value.into();
@@ -503,11 +649,17 @@ impl Cr {
       self
    }
 
-#[doc="Program size"]
+   #[doc="Program size"]
    #[inline] pub fn psize(&self) -> bits::U2 {
       unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x3) as u8) } // [9:8]
    }
-#[doc="Program size"]
+
+   #[doc="Program size"]
+   #[inline] pub fn test_psize(&self) -> bool {
+      self.psize != 0
+   }
+
+   #[doc="Program size"]
    #[inline] pub fn set_psize<V: Into<bits::U2>>(mut self, value: V) -> Self {
       let value: bits::U2 = value.into();
       let value: u32 = value.into();
@@ -516,11 +668,17 @@ impl Cr {
       self
    }
 
-#[doc="Start"]
+   #[doc="Start"]
    #[inline] pub fn strt(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1) as u8) } // [16]
    }
-#[doc="Start"]
+
+   #[doc="Start"]
+   #[inline] pub fn test_strt(&self) -> bool {
+      self.strt != 0
+   }
+
+   #[doc="Start"]
    #[inline] pub fn set_strt<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -529,11 +687,17 @@ impl Cr {
       self
    }
 
-#[doc="End of operation interrupt enable"]
+   #[doc="End of operation interrupt enable"]
    #[inline] pub fn eopie(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 24) & 0x1) as u8) } // [24]
    }
-#[doc="End of operation interrupt enable"]
+
+   #[doc="End of operation interrupt enable"]
+   #[inline] pub fn test_eopie(&self) -> bool {
+      self.eopie != 0
+   }
+
+   #[doc="End of operation interrupt enable"]
    #[inline] pub fn set_eopie<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -542,11 +706,17 @@ impl Cr {
       self
    }
 
-#[doc="Error interrupt enable"]
+   #[doc="Error interrupt enable"]
    #[inline] pub fn errie(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 25) & 0x1) as u8) } // [25]
    }
-#[doc="Error interrupt enable"]
+
+   #[doc="Error interrupt enable"]
+   #[inline] pub fn test_errie(&self) -> bool {
+      self.errie != 0
+   }
+
+   #[doc="Error interrupt enable"]
    #[inline] pub fn set_errie<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -555,11 +725,17 @@ impl Cr {
       self
    }
 
-#[doc="Lock"]
+   #[doc="Lock"]
    #[inline] pub fn lock(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 31) & 0x1) as u8) } // [31]
    }
-#[doc="Lock"]
+
+   #[doc="Lock"]
+   #[inline] pub fn test_lock(&self) -> bool {
+      self.lock != 0
+   }
+
+   #[doc="Lock"]
    #[inline] pub fn set_lock<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -569,11 +745,13 @@ impl Cr {
    }
 
 }
+
 impl ::core::fmt::Display for Cr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Cr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -590,15 +768,22 @@ impl ::core::fmt::Debug for Cr {
       Ok(())
    }
 }
+
 #[doc="Flash option control register"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Optcr(pub u32);
 impl Optcr {
-#[doc="Option lock"]
+   #[doc="Option lock"]
    #[inline] pub fn optlock(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
    }
-#[doc="Option lock"]
+
+   #[doc="Option lock"]
+   #[inline] pub fn test_optlock(&self) -> bool {
+      self.optlock != 0
+   }
+
+   #[doc="Option lock"]
    #[inline] pub fn set_optlock<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -607,11 +792,17 @@ impl Optcr {
       self
    }
 
-#[doc="Option start"]
+   #[doc="Option start"]
    #[inline] pub fn optstrt(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
    }
-#[doc="Option start"]
+
+   #[doc="Option start"]
+   #[inline] pub fn test_optstrt(&self) -> bool {
+      self.optstrt != 0
+   }
+
+   #[doc="Option start"]
    #[inline] pub fn set_optstrt<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -620,11 +811,17 @@ impl Optcr {
       self
    }
 
-#[doc="BOR reset Level"]
+   #[doc="BOR reset Level"]
    #[inline] pub fn bor_lev(&self) -> bits::U2 {
       unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x3) as u8) } // [3:2]
    }
-#[doc="BOR reset Level"]
+
+   #[doc="BOR reset Level"]
+   #[inline] pub fn test_bor_lev(&self) -> bool {
+      self.bor_lev != 0
+   }
+
+   #[doc="BOR reset Level"]
    #[inline] pub fn set_bor_lev<V: Into<bits::U2>>(mut self, value: V) -> Self {
       let value: bits::U2 = value.into();
       let value: u32 = value.into();
@@ -633,11 +830,17 @@ impl Optcr {
       self
    }
 
-#[doc="WDG_SW User option bytes"]
+   #[doc="WDG_SW User option bytes"]
    #[inline] pub fn wdg_sw(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
    }
-#[doc="WDG_SW User option bytes"]
+
+   #[doc="WDG_SW User option bytes"]
+   #[inline] pub fn test_wdg_sw(&self) -> bool {
+      self.wdg_sw != 0
+   }
+
+   #[doc="WDG_SW User option bytes"]
    #[inline] pub fn set_wdg_sw<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -646,11 +849,17 @@ impl Optcr {
       self
    }
 
-#[doc="nRST_STOP User option bytes"]
+   #[doc="nRST_STOP User option bytes"]
    #[inline] pub fn nrst_stop(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
    }
-#[doc="nRST_STOP User option bytes"]
+
+   #[doc="nRST_STOP User option bytes"]
+   #[inline] pub fn test_nrst_stop(&self) -> bool {
+      self.nrst_stop != 0
+   }
+
+   #[doc="nRST_STOP User option bytes"]
    #[inline] pub fn set_nrst_stop<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -659,11 +868,17 @@ impl Optcr {
       self
    }
 
-#[doc="nRST_STDBY User option bytes"]
+   #[doc="nRST_STDBY User option bytes"]
    #[inline] pub fn nrst_stdby(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
    }
-#[doc="nRST_STDBY User option bytes"]
+
+   #[doc="nRST_STDBY User option bytes"]
+   #[inline] pub fn test_nrst_stdby(&self) -> bool {
+      self.nrst_stdby != 0
+   }
+
+   #[doc="nRST_STDBY User option bytes"]
    #[inline] pub fn set_nrst_stdby<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -672,11 +887,17 @@ impl Optcr {
       self
    }
 
-#[doc="Read protect"]
+   #[doc="Read protect"]
    #[inline] pub fn rdp(&self) -> bits::U8 {
       unsafe { ::core::mem::transmute(((self.0 >> 8) & 0xff) as u8) } // [15:8]
    }
-#[doc="Read protect"]
+
+   #[doc="Read protect"]
+   #[inline] pub fn test_rdp(&self) -> bool {
+      self.rdp != 0
+   }
+
+   #[doc="Read protect"]
    #[inline] pub fn set_rdp<V: Into<bits::U8>>(mut self, value: V) -> Self {
       let value: bits::U8 = value.into();
       let value: u32 = value.into();
@@ -685,11 +906,17 @@ impl Optcr {
       self
    }
 
-#[doc="Not write protect"]
+   #[doc="Not write protect"]
    #[inline] pub fn nwrp(&self) -> bits::U12 {
       unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xfff) as u16) } // [27:16]
    }
-#[doc="Not write protect"]
+
+   #[doc="Not write protect"]
+   #[inline] pub fn test_nwrp(&self) -> bool {
+      self.nwrp != 0
+   }
+
+   #[doc="Not write protect"]
    #[inline] pub fn set_nwrp<V: Into<bits::U12>>(mut self, value: V) -> Self {
       let value: bits::U12 = value.into();
       let value: u32 = value.into();
@@ -699,11 +926,13 @@ impl Optcr {
    }
 
 }
+
 impl ::core::fmt::Display for Optcr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Optcr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -719,4 +948,5 @@ impl ::core::fmt::Debug for Optcr {
       Ok(())
    }
 }
+
 

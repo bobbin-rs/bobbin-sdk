@@ -7,36 +7,41 @@ periph!(DBG, Dbg, 0xe0042000);
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Dbg(pub usize);
 impl Dbg {
-#[doc="Get the *const pointer for the IDCODE register."]
+   #[doc="Get the *const pointer for the IDCODE register."]
    #[inline] pub fn idcode_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x0) as *const u32
    }
-#[doc="Get the *mut pointer for the IDCODE register."]
+
+   #[doc="Get the *mut pointer for the IDCODE register."]
    #[inline] pub fn idcode_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x0) as *mut u32
    }
-#[doc="Read the IDCODE register."]
+
+   #[doc="Read the IDCODE register."]
    #[inline] pub fn idcode(&self) -> Idcode { 
       unsafe {
          Idcode(read_volatile((self.0 + 0x0) as *const u32))
       }
    }
 
-#[doc="Get the *const pointer for the CR register."]
+   #[doc="Get the *const pointer for the CR register."]
    #[inline] pub fn cr_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x4) as *const u32
    }
-#[doc="Get the *mut pointer for the CR register."]
+
+   #[doc="Get the *mut pointer for the CR register."]
    #[inline] pub fn cr_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x4) as *mut u32
    }
-#[doc="Read the CR register."]
+
+   #[doc="Read the CR register."]
    #[inline] pub fn cr(&self) -> Cr { 
       unsafe {
          Cr(read_volatile((self.0 + 0x4) as *const u32))
       }
    }
-#[doc="Write the CR register."]
+
+   #[doc="Write the CR register."]
    #[inline] pub fn set_cr<F: FnOnce(Cr) -> Cr>(&self, f: F) -> &Self {
       let value = f(Cr(0));
       unsafe {
@@ -44,7 +49,8 @@ impl Dbg {
       }
       self
    }
-#[doc="Modify the CR register."]
+
+   #[doc="Modify the CR register."]
    #[inline] pub fn with_cr<F: FnOnce(Cr) -> Cr>(&self, f: F) -> &Self {
       let tmp = self.cr();
       let value = f(tmp);
@@ -60,11 +66,17 @@ impl Dbg {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Idcode(pub u32);
 impl Idcode {
-#[doc="DEV_ID"]
+   #[doc="DEV_ID"]
    #[inline] pub fn dev_id(&self) -> bits::U12 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xfff) as u16) } // [11:0]
    }
-#[doc="DEV_ID"]
+
+   #[doc="DEV_ID"]
+   #[inline] pub fn test_dev_id(&self) -> bool {
+      self.dev_id != 0
+   }
+
+   #[doc="DEV_ID"]
    #[inline] pub fn set_dev_id<V: Into<bits::U12>>(mut self, value: V) -> Self {
       let value: bits::U12 = value.into();
       let value: u32 = value.into();
@@ -73,11 +85,17 @@ impl Idcode {
       self
    }
 
-#[doc="REV_ID"]
+   #[doc="REV_ID"]
    #[inline] pub fn rev_id(&self) -> bits::U16 {
       unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xffff) as u16) } // [31:16]
    }
-#[doc="REV_ID"]
+
+   #[doc="REV_ID"]
+   #[inline] pub fn test_rev_id(&self) -> bool {
+      self.rev_id != 0
+   }
+
+   #[doc="REV_ID"]
    #[inline] pub fn set_rev_id<V: Into<bits::U16>>(mut self, value: V) -> Self {
       let value: bits::U16 = value.into();
       let value: u32 = value.into();
@@ -87,11 +105,13 @@ impl Idcode {
    }
 
 }
+
 impl ::core::fmt::Display for Idcode {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Idcode {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -101,15 +121,22 @@ impl ::core::fmt::Debug for Idcode {
       Ok(())
    }
 }
+
 #[doc="DBGMCU_CR"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Cr(pub u32);
 impl Cr {
-#[doc="DBG_SLEEP"]
+   #[doc="DBG_SLEEP"]
    #[inline] pub fn dbg_sleep(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
    }
-#[doc="DBG_SLEEP"]
+
+   #[doc="DBG_SLEEP"]
+   #[inline] pub fn test_dbg_sleep(&self) -> bool {
+      self.dbg_sleep != 0
+   }
+
+   #[doc="DBG_SLEEP"]
    #[inline] pub fn set_dbg_sleep<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -118,11 +145,17 @@ impl Cr {
       self
    }
 
-#[doc="DBG_STOP"]
+   #[doc="DBG_STOP"]
    #[inline] pub fn dbg_stop(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
    }
-#[doc="DBG_STOP"]
+
+   #[doc="DBG_STOP"]
+   #[inline] pub fn test_dbg_stop(&self) -> bool {
+      self.dbg_stop != 0
+   }
+
+   #[doc="DBG_STOP"]
    #[inline] pub fn set_dbg_stop<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -131,11 +164,17 @@ impl Cr {
       self
    }
 
-#[doc="DBG_STANDBY"]
+   #[doc="DBG_STANDBY"]
    #[inline] pub fn dbg_standby(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
    }
-#[doc="DBG_STANDBY"]
+
+   #[doc="DBG_STANDBY"]
+   #[inline] pub fn test_dbg_standby(&self) -> bool {
+      self.dbg_standby != 0
+   }
+
+   #[doc="DBG_STANDBY"]
    #[inline] pub fn set_dbg_standby<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -144,11 +183,17 @@ impl Cr {
       self
    }
 
-#[doc="TRACE_IOEN"]
+   #[doc="TRACE_IOEN"]
    #[inline] pub fn trace_ioen(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
    }
-#[doc="TRACE_IOEN"]
+
+   #[doc="TRACE_IOEN"]
+   #[inline] pub fn test_trace_ioen(&self) -> bool {
+      self.trace_ioen != 0
+   }
+
+   #[doc="TRACE_IOEN"]
    #[inline] pub fn set_trace_ioen<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -157,11 +202,17 @@ impl Cr {
       self
    }
 
-#[doc="TRACE_MODE"]
+   #[doc="TRACE_MODE"]
    #[inline] pub fn trace_mode(&self) -> bits::U2 {
       unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x3) as u8) } // [7:6]
    }
-#[doc="TRACE_MODE"]
+
+   #[doc="TRACE_MODE"]
+   #[inline] pub fn test_trace_mode(&self) -> bool {
+      self.trace_mode != 0
+   }
+
+   #[doc="TRACE_MODE"]
    #[inline] pub fn set_trace_mode<V: Into<bits::U2>>(mut self, value: V) -> Self {
       let value: bits::U2 = value.into();
       let value: u32 = value.into();
@@ -170,11 +221,17 @@ impl Cr {
       self
    }
 
-#[doc="DBG_IWDG_STOP"]
+   #[doc="DBG_IWDG_STOP"]
    #[inline] pub fn dbg_iwdg_stop(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
    }
-#[doc="DBG_IWDG_STOP"]
+
+   #[doc="DBG_IWDG_STOP"]
+   #[inline] pub fn test_dbg_iwdg_stop(&self) -> bool {
+      self.dbg_iwdg_stop != 0
+   }
+
+   #[doc="DBG_IWDG_STOP"]
    #[inline] pub fn set_dbg_iwdg_stop<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -183,11 +240,17 @@ impl Cr {
       self
    }
 
-#[doc="DBG_WWDG_STOP"]
+   #[doc="DBG_WWDG_STOP"]
    #[inline] pub fn dbg_wwdg_stop(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
    }
-#[doc="DBG_WWDG_STOP"]
+
+   #[doc="DBG_WWDG_STOP"]
+   #[inline] pub fn test_dbg_wwdg_stop(&self) -> bool {
+      self.dbg_wwdg_stop != 0
+   }
+
+   #[doc="DBG_WWDG_STOP"]
    #[inline] pub fn set_dbg_wwdg_stop<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -196,11 +259,17 @@ impl Cr {
       self
    }
 
-#[doc="DBG_TIM1_STOP"]
+   #[doc="DBG_TIM1_STOP"]
    #[inline] pub fn dbg_tim1_stop(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x1) as u8) } // [10]
    }
-#[doc="DBG_TIM1_STOP"]
+
+   #[doc="DBG_TIM1_STOP"]
+   #[inline] pub fn test_dbg_tim1_stop(&self) -> bool {
+      self.dbg_tim1_stop != 0
+   }
+
+   #[doc="DBG_TIM1_STOP"]
    #[inline] pub fn set_dbg_tim1_stop<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -209,11 +278,17 @@ impl Cr {
       self
    }
 
-#[doc="DBG_TIM2_STOP"]
+   #[doc="DBG_TIM2_STOP"]
    #[inline] pub fn dbg_tim2_stop(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 11) & 0x1) as u8) } // [11]
    }
-#[doc="DBG_TIM2_STOP"]
+
+   #[doc="DBG_TIM2_STOP"]
+   #[inline] pub fn test_dbg_tim2_stop(&self) -> bool {
+      self.dbg_tim2_stop != 0
+   }
+
+   #[doc="DBG_TIM2_STOP"]
    #[inline] pub fn set_dbg_tim2_stop<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -222,11 +297,17 @@ impl Cr {
       self
    }
 
-#[doc="DBG_TIM3_STOP"]
+   #[doc="DBG_TIM3_STOP"]
    #[inline] pub fn dbg_tim3_stop(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 12) & 0x1) as u8) } // [12]
    }
-#[doc="DBG_TIM3_STOP"]
+
+   #[doc="DBG_TIM3_STOP"]
+   #[inline] pub fn test_dbg_tim3_stop(&self) -> bool {
+      self.dbg_tim3_stop != 0
+   }
+
+   #[doc="DBG_TIM3_STOP"]
    #[inline] pub fn set_dbg_tim3_stop<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -235,11 +316,17 @@ impl Cr {
       self
    }
 
-#[doc="DBG_TIM4_STOP"]
+   #[doc="DBG_TIM4_STOP"]
    #[inline] pub fn dbg_tim4_stop(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 13) & 0x1) as u8) } // [13]
    }
-#[doc="DBG_TIM4_STOP"]
+
+   #[doc="DBG_TIM4_STOP"]
+   #[inline] pub fn test_dbg_tim4_stop(&self) -> bool {
+      self.dbg_tim4_stop != 0
+   }
+
+   #[doc="DBG_TIM4_STOP"]
    #[inline] pub fn set_dbg_tim4_stop<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -248,11 +335,17 @@ impl Cr {
       self
    }
 
-#[doc="DBG_CAN1_STOP"]
+   #[doc="DBG_CAN1_STOP"]
    #[inline] pub fn dbg_can1_stop(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 14) & 0x1) as u8) } // [14]
    }
-#[doc="DBG_CAN1_STOP"]
+
+   #[doc="DBG_CAN1_STOP"]
+   #[inline] pub fn test_dbg_can1_stop(&self) -> bool {
+      self.dbg_can1_stop != 0
+   }
+
+   #[doc="DBG_CAN1_STOP"]
    #[inline] pub fn set_dbg_can1_stop<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -261,11 +354,17 @@ impl Cr {
       self
    }
 
-#[doc="DBG_I2C1_SMBUS_TIMEOUT"]
+   #[doc="DBG_I2C1_SMBUS_TIMEOUT"]
    #[inline] pub fn dbg_i2c1_smbus_timeout(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 15) & 0x1) as u8) } // [15]
    }
-#[doc="DBG_I2C1_SMBUS_TIMEOUT"]
+
+   #[doc="DBG_I2C1_SMBUS_TIMEOUT"]
+   #[inline] pub fn test_dbg_i2c1_smbus_timeout(&self) -> bool {
+      self.dbg_i2c1_smbus_timeout != 0
+   }
+
+   #[doc="DBG_I2C1_SMBUS_TIMEOUT"]
    #[inline] pub fn set_dbg_i2c1_smbus_timeout<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -274,11 +373,17 @@ impl Cr {
       self
    }
 
-#[doc="DBG_I2C2_SMBUS_TIMEOUT"]
+   #[doc="DBG_I2C2_SMBUS_TIMEOUT"]
    #[inline] pub fn dbg_i2c2_smbus_timeout(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1) as u8) } // [16]
    }
-#[doc="DBG_I2C2_SMBUS_TIMEOUT"]
+
+   #[doc="DBG_I2C2_SMBUS_TIMEOUT"]
+   #[inline] pub fn test_dbg_i2c2_smbus_timeout(&self) -> bool {
+      self.dbg_i2c2_smbus_timeout != 0
+   }
+
+   #[doc="DBG_I2C2_SMBUS_TIMEOUT"]
    #[inline] pub fn set_dbg_i2c2_smbus_timeout<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -287,11 +392,17 @@ impl Cr {
       self
    }
 
-#[doc="DBG_TIM8_STOP"]
+   #[doc="DBG_TIM8_STOP"]
    #[inline] pub fn dbg_tim8_stop(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 17) & 0x1) as u8) } // [17]
    }
-#[doc="DBG_TIM8_STOP"]
+
+   #[doc="DBG_TIM8_STOP"]
+   #[inline] pub fn test_dbg_tim8_stop(&self) -> bool {
+      self.dbg_tim8_stop != 0
+   }
+
+   #[doc="DBG_TIM8_STOP"]
    #[inline] pub fn set_dbg_tim8_stop<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -300,11 +411,17 @@ impl Cr {
       self
    }
 
-#[doc="DBG_TIM5_STOP"]
+   #[doc="DBG_TIM5_STOP"]
    #[inline] pub fn dbg_tim5_stop(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 18) & 0x1) as u8) } // [18]
    }
-#[doc="DBG_TIM5_STOP"]
+
+   #[doc="DBG_TIM5_STOP"]
+   #[inline] pub fn test_dbg_tim5_stop(&self) -> bool {
+      self.dbg_tim5_stop != 0
+   }
+
+   #[doc="DBG_TIM5_STOP"]
    #[inline] pub fn set_dbg_tim5_stop<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -313,11 +430,17 @@ impl Cr {
       self
    }
 
-#[doc="DBG_TIM6_STOP"]
+   #[doc="DBG_TIM6_STOP"]
    #[inline] pub fn dbg_tim6_stop(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 19) & 0x1) as u8) } // [19]
    }
-#[doc="DBG_TIM6_STOP"]
+
+   #[doc="DBG_TIM6_STOP"]
+   #[inline] pub fn test_dbg_tim6_stop(&self) -> bool {
+      self.dbg_tim6_stop != 0
+   }
+
+   #[doc="DBG_TIM6_STOP"]
    #[inline] pub fn set_dbg_tim6_stop<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -326,11 +449,17 @@ impl Cr {
       self
    }
 
-#[doc="DBG_TIM7_STOP"]
+   #[doc="DBG_TIM7_STOP"]
    #[inline] pub fn dbg_tim7_stop(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 20) & 0x1) as u8) } // [20]
    }
-#[doc="DBG_TIM7_STOP"]
+
+   #[doc="DBG_TIM7_STOP"]
+   #[inline] pub fn test_dbg_tim7_stop(&self) -> bool {
+      self.dbg_tim7_stop != 0
+   }
+
+   #[doc="DBG_TIM7_STOP"]
    #[inline] pub fn set_dbg_tim7_stop<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -339,11 +468,17 @@ impl Cr {
       self
    }
 
-#[doc="DBG_CAN2_STOP"]
+   #[doc="DBG_CAN2_STOP"]
    #[inline] pub fn dbg_can2_stop(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 21) & 0x1) as u8) } // [21]
    }
-#[doc="DBG_CAN2_STOP"]
+
+   #[doc="DBG_CAN2_STOP"]
+   #[inline] pub fn test_dbg_can2_stop(&self) -> bool {
+      self.dbg_can2_stop != 0
+   }
+
+   #[doc="DBG_CAN2_STOP"]
    #[inline] pub fn set_dbg_can2_stop<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -353,11 +488,13 @@ impl Cr {
    }
 
 }
+
 impl ::core::fmt::Display for Cr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Cr {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -384,4 +521,5 @@ impl ::core::fmt::Debug for Cr {
       Ok(())
    }
 }
+
 

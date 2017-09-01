@@ -7,21 +7,24 @@ periph!(GCLK, Gclk, 0x40000c00);
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Gclk(pub usize);
 impl Gclk {
-#[doc="Get the *const pointer for the CLKCTRL register."]
+   #[doc="Get the *const pointer for the CLKCTRL register."]
    #[inline] pub fn clkctrl_ptr(&self) -> *const u16 { 
       ((self.0 as usize) + 0x2) as *const u16
    }
-#[doc="Get the *mut pointer for the CLKCTRL register."]
+
+   #[doc="Get the *mut pointer for the CLKCTRL register."]
    #[inline] pub fn clkctrl_mut(&self) -> *mut u16 { 
       ((self.0 as usize) + 0x2) as *mut u16
    }
-#[doc="Read the CLKCTRL register."]
+
+   #[doc="Read the CLKCTRL register."]
    #[inline] pub fn clkctrl(&self) -> Clkctrl { 
       unsafe {
          Clkctrl(read_volatile((self.0 + 0x2) as *const u16))
       }
    }
-#[doc="Write the CLKCTRL register."]
+
+   #[doc="Write the CLKCTRL register."]
    #[inline] pub fn set_clkctrl<F: FnOnce(Clkctrl) -> Clkctrl>(&self, f: F) -> &Self {
       let value = f(Clkctrl(0));
       unsafe {
@@ -29,7 +32,8 @@ impl Gclk {
       }
       self
    }
-#[doc="Modify the CLKCTRL register."]
+
+   #[doc="Modify the CLKCTRL register."]
    #[inline] pub fn with_clkctrl<F: FnOnce(Clkctrl) -> Clkctrl>(&self, f: F) -> &Self {
       let tmp = self.clkctrl();
       let value = f(tmp);
@@ -39,21 +43,24 @@ impl Gclk {
       self
    }
 
-#[doc="Get the *const pointer for the CLKCTRL_ID register."]
+   #[doc="Get the *const pointer for the CLKCTRL_ID register."]
    #[inline] pub fn clkctrl_id_ptr(&self) -> *const u8 { 
       ((self.0 as usize) + 0x2) as *const u8
    }
-#[doc="Get the *mut pointer for the CLKCTRL_ID register."]
+
+   #[doc="Get the *mut pointer for the CLKCTRL_ID register."]
    #[inline] pub fn clkctrl_id_mut(&self) -> *mut u8 { 
       ((self.0 as usize) + 0x2) as *mut u8
    }
-#[doc="Read the CLKCTRL_ID register."]
+
+   #[doc="Read the CLKCTRL_ID register."]
    #[inline] pub fn clkctrl_id(&self) -> ClkctrlId { 
       unsafe {
          ClkctrlId(read_volatile((self.0 + 0x2) as *const u8))
       }
    }
-#[doc="Write the CLKCTRL_ID register."]
+
+   #[doc="Write the CLKCTRL_ID register."]
    #[inline] pub fn set_clkctrl_id<F: FnOnce(ClkctrlId) -> ClkctrlId>(&self, f: F) -> &Self {
       let value = f(ClkctrlId(0));
       unsafe {
@@ -61,7 +68,8 @@ impl Gclk {
       }
       self
    }
-#[doc="Modify the CLKCTRL_ID register."]
+
+   #[doc="Modify the CLKCTRL_ID register."]
    #[inline] pub fn with_clkctrl_id<F: FnOnce(ClkctrlId) -> ClkctrlId>(&self, f: F) -> &Self {
       let tmp = self.clkctrl_id();
       let value = f(tmp);
@@ -71,21 +79,24 @@ impl Gclk {
       self
    }
 
-#[doc="Get the *const pointer for the CTRL register."]
+   #[doc="Get the *const pointer for the CTRL register."]
    #[inline] pub fn ctrl_ptr(&self) -> *const u8 { 
       ((self.0 as usize) + 0x0) as *const u8
    }
-#[doc="Get the *mut pointer for the CTRL register."]
+
+   #[doc="Get the *mut pointer for the CTRL register."]
    #[inline] pub fn ctrl_mut(&self) -> *mut u8 { 
       ((self.0 as usize) + 0x0) as *mut u8
    }
-#[doc="Read the CTRL register."]
+
+   #[doc="Read the CTRL register."]
    #[inline] pub fn ctrl(&self) -> Ctrl { 
       unsafe {
          Ctrl(read_volatile((self.0 + 0x0) as *const u8))
       }
    }
-#[doc="Write the CTRL register."]
+
+   #[doc="Write the CTRL register."]
    #[inline] pub fn set_ctrl<F: FnOnce(Ctrl) -> Ctrl>(&self, f: F) -> &Self {
       let value = f(Ctrl(0));
       unsafe {
@@ -93,7 +104,8 @@ impl Gclk {
       }
       self
    }
-#[doc="Modify the CTRL register."]
+
+   #[doc="Modify the CTRL register."]
    #[inline] pub fn with_ctrl<F: FnOnce(Ctrl) -> Ctrl>(&self, f: F) -> &Self {
       let tmp = self.ctrl();
       let value = f(tmp);
@@ -103,21 +115,24 @@ impl Gclk {
       self
    }
 
-#[doc="Get the *const pointer for the GENCTRL register."]
+   #[doc="Get the *const pointer for the GENCTRL register."]
    #[inline] pub fn genctrl_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x4) as *const u32
    }
-#[doc="Get the *mut pointer for the GENCTRL register."]
+
+   #[doc="Get the *mut pointer for the GENCTRL register."]
    #[inline] pub fn genctrl_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x4) as *mut u32
    }
-#[doc="Read the GENCTRL register."]
+
+   #[doc="Read the GENCTRL register."]
    #[inline] pub fn genctrl(&self) -> Genctrl { 
       unsafe {
          Genctrl(read_volatile((self.0 + 0x4) as *const u32))
       }
    }
-#[doc="Write the GENCTRL register."]
+
+   #[doc="Write the GENCTRL register."]
    #[inline] pub fn set_genctrl<F: FnOnce(Genctrl) -> Genctrl>(&self, f: F) -> &Self {
       let value = f(Genctrl(0));
       unsafe {
@@ -125,7 +140,8 @@ impl Gclk {
       }
       self
    }
-#[doc="Modify the GENCTRL register."]
+
+   #[doc="Modify the GENCTRL register."]
    #[inline] pub fn with_genctrl<F: FnOnce(Genctrl) -> Genctrl>(&self, f: F) -> &Self {
       let tmp = self.genctrl();
       let value = f(tmp);
@@ -135,21 +151,24 @@ impl Gclk {
       self
    }
 
-#[doc="Get the *const pointer for the GENCTRL_ID register."]
+   #[doc="Get the *const pointer for the GENCTRL_ID register."]
    #[inline] pub fn genctrl_id_ptr(&self) -> *const u8 { 
       ((self.0 as usize) + 0x4) as *const u8
    }
-#[doc="Get the *mut pointer for the GENCTRL_ID register."]
+
+   #[doc="Get the *mut pointer for the GENCTRL_ID register."]
    #[inline] pub fn genctrl_id_mut(&self) -> *mut u8 { 
       ((self.0 as usize) + 0x4) as *mut u8
    }
-#[doc="Read the GENCTRL_ID register."]
+
+   #[doc="Read the GENCTRL_ID register."]
    #[inline] pub fn genctrl_id(&self) -> GenctrlId { 
       unsafe {
          GenctrlId(read_volatile((self.0 + 0x4) as *const u8))
       }
    }
-#[doc="Write the GENCTRL_ID register."]
+
+   #[doc="Write the GENCTRL_ID register."]
    #[inline] pub fn set_genctrl_id<F: FnOnce(GenctrlId) -> GenctrlId>(&self, f: F) -> &Self {
       let value = f(GenctrlId(0));
       unsafe {
@@ -157,7 +176,8 @@ impl Gclk {
       }
       self
    }
-#[doc="Modify the GENCTRL_ID register."]
+
+   #[doc="Modify the GENCTRL_ID register."]
    #[inline] pub fn with_genctrl_id<F: FnOnce(GenctrlId) -> GenctrlId>(&self, f: F) -> &Self {
       let tmp = self.genctrl_id();
       let value = f(tmp);
@@ -167,21 +187,24 @@ impl Gclk {
       self
    }
 
-#[doc="Get the *const pointer for the GENDIV register."]
+   #[doc="Get the *const pointer for the GENDIV register."]
    #[inline] pub fn gendiv_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x8) as *const u32
    }
-#[doc="Get the *mut pointer for the GENDIV register."]
+
+   #[doc="Get the *mut pointer for the GENDIV register."]
    #[inline] pub fn gendiv_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x8) as *mut u32
    }
-#[doc="Read the GENDIV register."]
+
+   #[doc="Read the GENDIV register."]
    #[inline] pub fn gendiv(&self) -> Gendiv { 
       unsafe {
          Gendiv(read_volatile((self.0 + 0x8) as *const u32))
       }
    }
-#[doc="Write the GENDIV register."]
+
+   #[doc="Write the GENDIV register."]
    #[inline] pub fn set_gendiv<F: FnOnce(Gendiv) -> Gendiv>(&self, f: F) -> &Self {
       let value = f(Gendiv(0));
       unsafe {
@@ -189,7 +212,8 @@ impl Gclk {
       }
       self
    }
-#[doc="Modify the GENDIV register."]
+
+   #[doc="Modify the GENDIV register."]
    #[inline] pub fn with_gendiv<F: FnOnce(Gendiv) -> Gendiv>(&self, f: F) -> &Self {
       let tmp = self.gendiv();
       let value = f(tmp);
@@ -199,21 +223,24 @@ impl Gclk {
       self
    }
 
-#[doc="Get the *const pointer for the GENDIV_ID register."]
+   #[doc="Get the *const pointer for the GENDIV_ID register."]
    #[inline] pub fn gendiv_id_ptr(&self) -> *const u8 { 
       ((self.0 as usize) + 0x8) as *const u8
    }
-#[doc="Get the *mut pointer for the GENDIV_ID register."]
+
+   #[doc="Get the *mut pointer for the GENDIV_ID register."]
    #[inline] pub fn gendiv_id_mut(&self) -> *mut u8 { 
       ((self.0 as usize) + 0x8) as *mut u8
    }
-#[doc="Read the GENDIV_ID register."]
+
+   #[doc="Read the GENDIV_ID register."]
    #[inline] pub fn gendiv_id(&self) -> GendivId { 
       unsafe {
          GendivId(read_volatile((self.0 + 0x8) as *const u8))
       }
    }
-#[doc="Write the GENDIV_ID register."]
+
+   #[doc="Write the GENDIV_ID register."]
    #[inline] pub fn set_gendiv_id<F: FnOnce(GendivId) -> GendivId>(&self, f: F) -> &Self {
       let value = f(GendivId(0));
       unsafe {
@@ -221,7 +248,8 @@ impl Gclk {
       }
       self
    }
-#[doc="Modify the GENDIV_ID register."]
+
+   #[doc="Modify the GENDIV_ID register."]
    #[inline] pub fn with_gendiv_id<F: FnOnce(GendivId) -> GendivId>(&self, f: F) -> &Self {
       let tmp = self.gendiv_id();
       let value = f(tmp);
@@ -231,15 +259,17 @@ impl Gclk {
       self
    }
 
-#[doc="Get the *const pointer for the STATUS register."]
+   #[doc="Get the *const pointer for the STATUS register."]
    #[inline] pub fn status_ptr(&self) -> *const u8 { 
       ((self.0 as usize) + 0x1) as *const u8
    }
-#[doc="Get the *mut pointer for the STATUS register."]
+
+   #[doc="Get the *mut pointer for the STATUS register."]
    #[inline] pub fn status_mut(&self) -> *mut u8 { 
       ((self.0 as usize) + 0x1) as *mut u8
    }
-#[doc="Read the STATUS register."]
+
+   #[doc="Read the STATUS register."]
    #[inline] pub fn status(&self) -> Status { 
       unsafe {
          Status(read_volatile((self.0 + 0x1) as *const u8))
@@ -252,11 +282,17 @@ impl Gclk {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Clkctrl(pub u16);
 impl Clkctrl {
-#[doc="Generic Clock Selection ID"]
+   #[doc="Generic Clock Selection ID"]
    #[inline] pub fn id(&self) -> bits::U6 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x3f) as u8) } // [5:0]
    }
-#[doc="Generic Clock Selection ID"]
+
+   #[doc="Generic Clock Selection ID"]
+   #[inline] pub fn test_id(&self) -> bool {
+      self.id != 0
+   }
+
+   #[doc="Generic Clock Selection ID"]
    #[inline] pub fn set_id<V: Into<bits::U6>>(mut self, value: V) -> Self {
       let value: bits::U6 = value.into();
       let value: u16 = value.into();
@@ -265,11 +301,17 @@ impl Clkctrl {
       self
    }
 
-#[doc="Generic Clock Generator"]
+   #[doc="Generic Clock Generator"]
    #[inline] pub fn gen(&self) -> bits::U4 {
       unsafe { ::core::mem::transmute(((self.0 >> 8) & 0xf) as u8) } // [11:8]
    }
-#[doc="Generic Clock Generator"]
+
+   #[doc="Generic Clock Generator"]
+   #[inline] pub fn test_gen(&self) -> bool {
+      self.gen != 0
+   }
+
+   #[doc="Generic Clock Generator"]
    #[inline] pub fn set_gen<V: Into<bits::U4>>(mut self, value: V) -> Self {
       let value: bits::U4 = value.into();
       let value: u16 = value.into();
@@ -278,11 +320,17 @@ impl Clkctrl {
       self
    }
 
-#[doc="Clock Enable"]
+   #[doc="Clock Enable"]
    #[inline] pub fn clken(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 14) & 0x1) as u8) } // [14]
    }
-#[doc="Clock Enable"]
+
+   #[doc="Clock Enable"]
+   #[inline] pub fn test_clken(&self) -> bool {
+      self.clken != 0
+   }
+
+   #[doc="Clock Enable"]
    #[inline] pub fn set_clken<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u16 = value.into();
@@ -291,11 +339,17 @@ impl Clkctrl {
       self
    }
 
-#[doc="Write Lock"]
+   #[doc="Write Lock"]
    #[inline] pub fn wrtlock(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 15) & 0x1) as u8) } // [15]
    }
-#[doc="Write Lock"]
+
+   #[doc="Write Lock"]
+   #[inline] pub fn test_wrtlock(&self) -> bool {
+      self.wrtlock != 0
+   }
+
+   #[doc="Write Lock"]
    #[inline] pub fn set_wrtlock<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u16 = value.into();
@@ -305,11 +359,13 @@ impl Clkctrl {
    }
 
 }
+
 impl ::core::fmt::Display for Clkctrl {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Clkctrl {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -321,15 +377,22 @@ impl ::core::fmt::Debug for Clkctrl {
       Ok(())
    }
 }
+
 #[doc="Generic Clock Control - ID Field"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct ClkctrlId(pub u8);
 impl ClkctrlId {
-#[doc="Generic Clock Selection ID"]
+   #[doc="Generic Clock Selection ID"]
    #[inline] pub fn id(&self) -> bits::U6 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x3f) as u8) } // [5:0]
    }
-#[doc="Generic Clock Selection ID"]
+
+   #[doc="Generic Clock Selection ID"]
+   #[inline] pub fn test_id(&self) -> bool {
+      self.id != 0
+   }
+
+   #[doc="Generic Clock Selection ID"]
    #[inline] pub fn set_id<V: Into<bits::U6>>(mut self, value: V) -> Self {
       let value: bits::U6 = value.into();
       let value: u8 = value.into();
@@ -339,11 +402,13 @@ impl ClkctrlId {
    }
 
 }
+
 impl ::core::fmt::Display for ClkctrlId {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for ClkctrlId {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -352,15 +417,22 @@ impl ::core::fmt::Debug for ClkctrlId {
       Ok(())
    }
 }
+
 #[doc="Control"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ctrl(pub u8);
 impl Ctrl {
-#[doc="Software Reset"]
+   #[doc="Software Reset"]
    #[inline] pub fn swrst(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
    }
-#[doc="Software Reset"]
+
+   #[doc="Software Reset"]
+   #[inline] pub fn test_swrst(&self) -> bool {
+      self.swrst != 0
+   }
+
+   #[doc="Software Reset"]
    #[inline] pub fn set_swrst<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u8 = value.into();
@@ -370,11 +442,13 @@ impl Ctrl {
    }
 
 }
+
 impl ::core::fmt::Display for Ctrl {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Ctrl {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -383,15 +457,22 @@ impl ::core::fmt::Debug for Ctrl {
       Ok(())
    }
 }
+
 #[doc="Generic Clock Generator Control"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Genctrl(pub u32);
 impl Genctrl {
-#[doc="Generic Clock Generator Selection"]
+   #[doc="Generic Clock Generator Selection"]
    #[inline] pub fn id(&self) -> bits::U4 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xf) as u8) } // [3:0]
    }
-#[doc="Generic Clock Generator Selection"]
+
+   #[doc="Generic Clock Generator Selection"]
+   #[inline] pub fn test_id(&self) -> bool {
+      self.id != 0
+   }
+
+   #[doc="Generic Clock Generator Selection"]
    #[inline] pub fn set_id<V: Into<bits::U4>>(mut self, value: V) -> Self {
       let value: bits::U4 = value.into();
       let value: u32 = value.into();
@@ -400,11 +481,17 @@ impl Genctrl {
       self
    }
 
-#[doc="Source Select"]
+   #[doc="Source Select"]
    #[inline] pub fn src(&self) -> bits::U5 {
       unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1f) as u8) } // [12:8]
    }
-#[doc="Source Select"]
+
+   #[doc="Source Select"]
+   #[inline] pub fn test_src(&self) -> bool {
+      self.src != 0
+   }
+
+   #[doc="Source Select"]
    #[inline] pub fn set_src<V: Into<bits::U5>>(mut self, value: V) -> Self {
       let value: bits::U5 = value.into();
       let value: u32 = value.into();
@@ -413,11 +500,17 @@ impl Genctrl {
       self
    }
 
-#[doc="Generic Clock Generator Enable"]
+   #[doc="Generic Clock Generator Enable"]
    #[inline] pub fn genen(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1) as u8) } // [16]
    }
-#[doc="Generic Clock Generator Enable"]
+
+   #[doc="Generic Clock Generator Enable"]
+   #[inline] pub fn test_genen(&self) -> bool {
+      self.genen != 0
+   }
+
+   #[doc="Generic Clock Generator Enable"]
    #[inline] pub fn set_genen<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -426,11 +519,17 @@ impl Genctrl {
       self
    }
 
-#[doc="Improve Duty Cycle"]
+   #[doc="Improve Duty Cycle"]
    #[inline] pub fn idc(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 17) & 0x1) as u8) } // [17]
    }
-#[doc="Improve Duty Cycle"]
+
+   #[doc="Improve Duty Cycle"]
+   #[inline] pub fn test_idc(&self) -> bool {
+      self.idc != 0
+   }
+
+   #[doc="Improve Duty Cycle"]
    #[inline] pub fn set_idc<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -439,11 +538,17 @@ impl Genctrl {
       self
    }
 
-#[doc="Output Off Value"]
+   #[doc="Output Off Value"]
    #[inline] pub fn oov(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 18) & 0x1) as u8) } // [18]
    }
-#[doc="Output Off Value"]
+
+   #[doc="Output Off Value"]
+   #[inline] pub fn test_oov(&self) -> bool {
+      self.oov != 0
+   }
+
+   #[doc="Output Off Value"]
    #[inline] pub fn set_oov<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -452,11 +557,17 @@ impl Genctrl {
       self
    }
 
-#[doc="Output Enable"]
+   #[doc="Output Enable"]
    #[inline] pub fn oe(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 19) & 0x1) as u8) } // [19]
    }
-#[doc="Output Enable"]
+
+   #[doc="Output Enable"]
+   #[inline] pub fn test_oe(&self) -> bool {
+      self.oe != 0
+   }
+
+   #[doc="Output Enable"]
    #[inline] pub fn set_oe<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -465,11 +576,17 @@ impl Genctrl {
       self
    }
 
-#[doc="Divide Selection"]
+   #[doc="Divide Selection"]
    #[inline] pub fn divsel(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 20) & 0x1) as u8) } // [20]
    }
-#[doc="Divide Selection"]
+
+   #[doc="Divide Selection"]
+   #[inline] pub fn test_divsel(&self) -> bool {
+      self.divsel != 0
+   }
+
+   #[doc="Divide Selection"]
    #[inline] pub fn set_divsel<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -478,11 +595,17 @@ impl Genctrl {
       self
    }
 
-#[doc="Run in Standby"]
+   #[doc="Run in Standby"]
    #[inline] pub fn runstdby(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 21) & 0x1) as u8) } // [21]
    }
-#[doc="Run in Standby"]
+
+   #[doc="Run in Standby"]
+   #[inline] pub fn test_runstdby(&self) -> bool {
+      self.runstdby != 0
+   }
+
+   #[doc="Run in Standby"]
    #[inline] pub fn set_runstdby<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -492,11 +615,13 @@ impl Genctrl {
    }
 
 }
+
 impl ::core::fmt::Display for Genctrl {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Genctrl {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -512,15 +637,22 @@ impl ::core::fmt::Debug for Genctrl {
       Ok(())
    }
 }
+
 #[doc="Generic Clock Generator Control - ID Only"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct GenctrlId(pub u8);
 impl GenctrlId {
-#[doc="Generic Clock Generator Selection"]
+   #[doc="Generic Clock Generator Selection"]
    #[inline] pub fn id(&self) -> bits::U4 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xf) as u8) } // [3:0]
    }
-#[doc="Generic Clock Generator Selection"]
+
+   #[doc="Generic Clock Generator Selection"]
+   #[inline] pub fn test_id(&self) -> bool {
+      self.id != 0
+   }
+
+   #[doc="Generic Clock Generator Selection"]
    #[inline] pub fn set_id<V: Into<bits::U4>>(mut self, value: V) -> Self {
       let value: bits::U4 = value.into();
       let value: u8 = value.into();
@@ -530,11 +662,13 @@ impl GenctrlId {
    }
 
 }
+
 impl ::core::fmt::Display for GenctrlId {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for GenctrlId {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -543,15 +677,22 @@ impl ::core::fmt::Debug for GenctrlId {
       Ok(())
    }
 }
+
 #[doc="Generic Clock Generator Division"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Gendiv(pub u32);
 impl Gendiv {
-#[doc="Generic Clock Generator Selection"]
+   #[doc="Generic Clock Generator Selection"]
    #[inline] pub fn id(&self) -> bits::U4 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xf) as u8) } // [3:0]
    }
-#[doc="Generic Clock Generator Selection"]
+
+   #[doc="Generic Clock Generator Selection"]
+   #[inline] pub fn test_id(&self) -> bool {
+      self.id != 0
+   }
+
+   #[doc="Generic Clock Generator Selection"]
    #[inline] pub fn set_id<V: Into<bits::U4>>(mut self, value: V) -> Self {
       let value: bits::U4 = value.into();
       let value: u32 = value.into();
@@ -560,11 +701,17 @@ impl Gendiv {
       self
    }
 
-#[doc="Division Factor"]
+   #[doc="Division Factor"]
    #[inline] pub fn div(&self) -> bits::U16 {
       unsafe { ::core::mem::transmute(((self.0 >> 8) & 0xffff) as u16) } // [23:8]
    }
-#[doc="Division Factor"]
+
+   #[doc="Division Factor"]
+   #[inline] pub fn test_div(&self) -> bool {
+      self.div != 0
+   }
+
+   #[doc="Division Factor"]
    #[inline] pub fn set_div<V: Into<bits::U16>>(mut self, value: V) -> Self {
       let value: bits::U16 = value.into();
       let value: u32 = value.into();
@@ -574,11 +721,13 @@ impl Gendiv {
    }
 
 }
+
 impl ::core::fmt::Display for Gendiv {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Gendiv {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -588,15 +737,22 @@ impl ::core::fmt::Debug for Gendiv {
       Ok(())
    }
 }
+
 #[doc="Generic Clock Generator Division - ID Only"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct GendivId(pub u8);
 impl GendivId {
-#[doc="Generic Clock Generator Selection"]
+   #[doc="Generic Clock Generator Selection"]
    #[inline] pub fn id(&self) -> bits::U4 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xf) as u8) } // [3:0]
    }
-#[doc="Generic Clock Generator Selection"]
+
+   #[doc="Generic Clock Generator Selection"]
+   #[inline] pub fn test_id(&self) -> bool {
+      self.id != 0
+   }
+
+   #[doc="Generic Clock Generator Selection"]
    #[inline] pub fn set_id<V: Into<bits::U4>>(mut self, value: V) -> Self {
       let value: bits::U4 = value.into();
       let value: u8 = value.into();
@@ -606,11 +762,13 @@ impl GendivId {
    }
 
 }
+
 impl ::core::fmt::Display for GendivId {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for GendivId {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -619,15 +777,22 @@ impl ::core::fmt::Debug for GendivId {
       Ok(())
    }
 }
+
 #[doc="Status"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Status(pub u8);
 impl Status {
-#[doc="Synchronization Busy Status"]
+   #[doc="Synchronization Busy Status"]
    #[inline] pub fn syncbusy(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
    }
-#[doc="Synchronization Busy Status"]
+
+   #[doc="Synchronization Busy Status"]
+   #[inline] pub fn test_syncbusy(&self) -> bool {
+      self.syncbusy != 0
+   }
+
+   #[doc="Synchronization Busy Status"]
    #[inline] pub fn set_syncbusy<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u8 = value.into();
@@ -637,11 +802,13 @@ impl Status {
    }
 
 }
+
 impl ::core::fmt::Display for Status {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Status {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -650,4 +817,5 @@ impl ::core::fmt::Debug for Status {
       Ok(())
    }
 }
+
 

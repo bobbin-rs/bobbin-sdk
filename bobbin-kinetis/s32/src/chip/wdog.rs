@@ -7,21 +7,24 @@ periph!(WDOG, Wdog, 0x40052000);
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Wdog(pub usize);
 impl Wdog {
-#[doc="Get the *const pointer for the CS register."]
+   #[doc="Get the *const pointer for the CS register."]
    #[inline] pub fn cs_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x0) as *const u32
    }
-#[doc="Get the *mut pointer for the CS register."]
+
+   #[doc="Get the *mut pointer for the CS register."]
    #[inline] pub fn cs_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x0) as *mut u32
    }
-#[doc="Read the CS register."]
+
+   #[doc="Read the CS register."]
    #[inline] pub fn cs(&self) -> Cs { 
       unsafe {
          Cs(read_volatile((self.0 + 0x0) as *const u32))
       }
    }
-#[doc="Write the CS register."]
+
+   #[doc="Write the CS register."]
    #[inline] pub fn set_cs<F: FnOnce(Cs) -> Cs>(&self, f: F) -> &Self {
       let value = f(Cs(0));
       unsafe {
@@ -29,7 +32,8 @@ impl Wdog {
       }
       self
    }
-#[doc="Modify the CS register."]
+
+   #[doc="Modify the CS register."]
    #[inline] pub fn with_cs<F: FnOnce(Cs) -> Cs>(&self, f: F) -> &Self {
       let tmp = self.cs();
       let value = f(tmp);
@@ -39,21 +43,24 @@ impl Wdog {
       self
    }
 
-#[doc="Get the *const pointer for the CNT register."]
+   #[doc="Get the *const pointer for the CNT register."]
    #[inline] pub fn cnt_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x4) as *const u32
    }
-#[doc="Get the *mut pointer for the CNT register."]
+
+   #[doc="Get the *mut pointer for the CNT register."]
    #[inline] pub fn cnt_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x4) as *mut u32
    }
-#[doc="Read the CNT register."]
+
+   #[doc="Read the CNT register."]
    #[inline] pub fn cnt(&self) -> Cnt { 
       unsafe {
          Cnt(read_volatile((self.0 + 0x4) as *const u32))
       }
    }
-#[doc="Write the CNT register."]
+
+   #[doc="Write the CNT register."]
    #[inline] pub fn set_cnt<F: FnOnce(Cnt) -> Cnt>(&self, f: F) -> &Self {
       let value = f(Cnt(0));
       unsafe {
@@ -61,7 +68,8 @@ impl Wdog {
       }
       self
    }
-#[doc="Modify the CNT register."]
+
+   #[doc="Modify the CNT register."]
    #[inline] pub fn with_cnt<F: FnOnce(Cnt) -> Cnt>(&self, f: F) -> &Self {
       let tmp = self.cnt();
       let value = f(tmp);
@@ -71,21 +79,24 @@ impl Wdog {
       self
    }
 
-#[doc="Get the *const pointer for the TOVAL register."]
+   #[doc="Get the *const pointer for the TOVAL register."]
    #[inline] pub fn toval_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0x8) as *const u32
    }
-#[doc="Get the *mut pointer for the TOVAL register."]
+
+   #[doc="Get the *mut pointer for the TOVAL register."]
    #[inline] pub fn toval_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0x8) as *mut u32
    }
-#[doc="Read the TOVAL register."]
+
+   #[doc="Read the TOVAL register."]
    #[inline] pub fn toval(&self) -> Toval { 
       unsafe {
          Toval(read_volatile((self.0 + 0x8) as *const u32))
       }
    }
-#[doc="Write the TOVAL register."]
+
+   #[doc="Write the TOVAL register."]
    #[inline] pub fn set_toval<F: FnOnce(Toval) -> Toval>(&self, f: F) -> &Self {
       let value = f(Toval(0));
       unsafe {
@@ -93,7 +104,8 @@ impl Wdog {
       }
       self
    }
-#[doc="Modify the TOVAL register."]
+
+   #[doc="Modify the TOVAL register."]
    #[inline] pub fn with_toval<F: FnOnce(Toval) -> Toval>(&self, f: F) -> &Self {
       let tmp = self.toval();
       let value = f(tmp);
@@ -103,21 +115,24 @@ impl Wdog {
       self
    }
 
-#[doc="Get the *const pointer for the WIN register."]
+   #[doc="Get the *const pointer for the WIN register."]
    #[inline] pub fn win_ptr(&self) -> *const u32 { 
       ((self.0 as usize) + 0xc) as *const u32
    }
-#[doc="Get the *mut pointer for the WIN register."]
+
+   #[doc="Get the *mut pointer for the WIN register."]
    #[inline] pub fn win_mut(&self) -> *mut u32 { 
       ((self.0 as usize) + 0xc) as *mut u32
    }
-#[doc="Read the WIN register."]
+
+   #[doc="Read the WIN register."]
    #[inline] pub fn win(&self) -> Win { 
       unsafe {
          Win(read_volatile((self.0 + 0xc) as *const u32))
       }
    }
-#[doc="Write the WIN register."]
+
+   #[doc="Write the WIN register."]
    #[inline] pub fn set_win<F: FnOnce(Win) -> Win>(&self, f: F) -> &Self {
       let value = f(Win(0));
       unsafe {
@@ -125,7 +140,8 @@ impl Wdog {
       }
       self
    }
-#[doc="Modify the WIN register."]
+
+   #[doc="Modify the WIN register."]
    #[inline] pub fn with_win<F: FnOnce(Win) -> Win>(&self, f: F) -> &Self {
       let tmp = self.win();
       let value = f(tmp);
@@ -141,11 +157,17 @@ impl Wdog {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Cs(pub u32);
 impl Cs {
-#[doc="Stop Enable"]
+   #[doc="Stop Enable"]
    #[inline] pub fn stop(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
    }
-#[doc="Stop Enable"]
+
+   #[doc="Stop Enable"]
+   #[inline] pub fn test_stop(&self) -> bool {
+      self.stop != 0
+   }
+
+   #[doc="Stop Enable"]
    #[inline] pub fn set_stop<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -154,11 +176,17 @@ impl Cs {
       self
    }
 
-#[doc="Wait Enable"]
+   #[doc="Wait Enable"]
    #[inline] pub fn wait(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
    }
-#[doc="Wait Enable"]
+
+   #[doc="Wait Enable"]
+   #[inline] pub fn test_wait(&self) -> bool {
+      self.wait != 0
+   }
+
+   #[doc="Wait Enable"]
    #[inline] pub fn set_wait<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -167,11 +195,17 @@ impl Cs {
       self
    }
 
-#[doc="Debug Enable"]
+   #[doc="Debug Enable"]
    #[inline] pub fn dbg(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
    }
-#[doc="Debug Enable"]
+
+   #[doc="Debug Enable"]
+   #[inline] pub fn test_dbg(&self) -> bool {
+      self.dbg != 0
+   }
+
+   #[doc="Debug Enable"]
    #[inline] pub fn set_dbg<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -180,11 +214,17 @@ impl Cs {
       self
    }
 
-#[doc="Watchdog Test"]
+   #[doc="Watchdog Test"]
    #[inline] pub fn tst(&self) -> bits::U2 {
       unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x3) as u8) } // [4:3]
    }
-#[doc="Watchdog Test"]
+
+   #[doc="Watchdog Test"]
+   #[inline] pub fn test_tst(&self) -> bool {
+      self.tst != 0
+   }
+
+   #[doc="Watchdog Test"]
    #[inline] pub fn set_tst<V: Into<bits::U2>>(mut self, value: V) -> Self {
       let value: bits::U2 = value.into();
       let value: u32 = value.into();
@@ -193,11 +233,17 @@ impl Cs {
       self
    }
 
-#[doc="Allow updates"]
+   #[doc="Allow updates"]
    #[inline] pub fn update(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
    }
-#[doc="Allow updates"]
+
+   #[doc="Allow updates"]
+   #[inline] pub fn test_update(&self) -> bool {
+      self.update != 0
+   }
+
+   #[doc="Allow updates"]
    #[inline] pub fn set_update<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -206,11 +252,17 @@ impl Cs {
       self
    }
 
-#[doc="Watchdog Interrupt"]
+   #[doc="Watchdog Interrupt"]
    #[inline] pub fn int(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
    }
-#[doc="Watchdog Interrupt"]
+
+   #[doc="Watchdog Interrupt"]
+   #[inline] pub fn test_int(&self) -> bool {
+      self.int != 0
+   }
+
+   #[doc="Watchdog Interrupt"]
    #[inline] pub fn set_int<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -219,11 +271,17 @@ impl Cs {
       self
    }
 
-#[doc="Watchdog Enable"]
+   #[doc="Watchdog Enable"]
    #[inline] pub fn en(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
    }
-#[doc="Watchdog Enable"]
+
+   #[doc="Watchdog Enable"]
+   #[inline] pub fn test_en(&self) -> bool {
+      self.en != 0
+   }
+
+   #[doc="Watchdog Enable"]
    #[inline] pub fn set_en<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -232,11 +290,17 @@ impl Cs {
       self
    }
 
-#[doc="Watchdog Clock"]
+   #[doc="Watchdog Clock"]
    #[inline] pub fn clk(&self) -> bits::U2 {
       unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x3) as u8) } // [9:8]
    }
-#[doc="Watchdog Clock"]
+
+   #[doc="Watchdog Clock"]
+   #[inline] pub fn test_clk(&self) -> bool {
+      self.clk != 0
+   }
+
+   #[doc="Watchdog Clock"]
    #[inline] pub fn set_clk<V: Into<bits::U2>>(mut self, value: V) -> Self {
       let value: bits::U2 = value.into();
       let value: u32 = value.into();
@@ -245,11 +309,17 @@ impl Cs {
       self
    }
 
-#[doc="Reconfiguration Success"]
+   #[doc="Reconfiguration Success"]
    #[inline] pub fn rcs(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x1) as u8) } // [10]
    }
-#[doc="Reconfiguration Success"]
+
+   #[doc="Reconfiguration Success"]
+   #[inline] pub fn test_rcs(&self) -> bool {
+      self.rcs != 0
+   }
+
+   #[doc="Reconfiguration Success"]
    #[inline] pub fn set_rcs<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -258,11 +328,17 @@ impl Cs {
       self
    }
 
-#[doc="Unlock status"]
+   #[doc="Unlock status"]
    #[inline] pub fn ulk(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 11) & 0x1) as u8) } // [11]
    }
-#[doc="Unlock status"]
+
+   #[doc="Unlock status"]
+   #[inline] pub fn test_ulk(&self) -> bool {
+      self.ulk != 0
+   }
+
+   #[doc="Unlock status"]
    #[inline] pub fn set_ulk<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -271,11 +347,17 @@ impl Cs {
       self
    }
 
-#[doc="Watchdog prescaler"]
+   #[doc="Watchdog prescaler"]
    #[inline] pub fn pres(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 12) & 0x1) as u8) } // [12]
    }
-#[doc="Watchdog prescaler"]
+
+   #[doc="Watchdog prescaler"]
+   #[inline] pub fn test_pres(&self) -> bool {
+      self.pres != 0
+   }
+
+   #[doc="Watchdog prescaler"]
    #[inline] pub fn set_pres<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -284,11 +366,17 @@ impl Cs {
       self
    }
 
-#[doc="Enables or disables WDOG support for 32-bit (otherwise 16-bit or 8-bit) refresh/unlock command write words"]
+   #[doc="Enables or disables WDOG support for 32-bit (otherwise 16-bit or 8-bit) refresh/unlock command write words"]
    #[inline] pub fn cmd32en(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 13) & 0x1) as u8) } // [13]
    }
-#[doc="Enables or disables WDOG support for 32-bit (otherwise 16-bit or 8-bit) refresh/unlock command write words"]
+
+   #[doc="Enables or disables WDOG support for 32-bit (otherwise 16-bit or 8-bit) refresh/unlock command write words"]
+   #[inline] pub fn test_cmd32en(&self) -> bool {
+      self.cmd32en != 0
+   }
+
+   #[doc="Enables or disables WDOG support for 32-bit (otherwise 16-bit or 8-bit) refresh/unlock command write words"]
    #[inline] pub fn set_cmd32en<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -297,11 +385,17 @@ impl Cs {
       self
    }
 
-#[doc="Watchdog Interrupt Flag"]
+   #[doc="Watchdog Interrupt Flag"]
    #[inline] pub fn flg(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 14) & 0x1) as u8) } // [14]
    }
-#[doc="Watchdog Interrupt Flag"]
+
+   #[doc="Watchdog Interrupt Flag"]
+   #[inline] pub fn test_flg(&self) -> bool {
+      self.flg != 0
+   }
+
+   #[doc="Watchdog Interrupt Flag"]
    #[inline] pub fn set_flg<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -310,11 +404,17 @@ impl Cs {
       self
    }
 
-#[doc="Watchdog Window"]
+   #[doc="Watchdog Window"]
    #[inline] pub fn win(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 15) & 0x1) as u8) } // [15]
    }
-#[doc="Watchdog Window"]
+
+   #[doc="Watchdog Window"]
+   #[inline] pub fn test_win(&self) -> bool {
+      self.win != 0
+   }
+
+   #[doc="Watchdog Window"]
    #[inline] pub fn set_win<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u32 = value.into();
@@ -324,11 +424,13 @@ impl Cs {
    }
 
 }
+
 impl ::core::fmt::Display for Cs {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Cs {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -350,15 +452,22 @@ impl ::core::fmt::Debug for Cs {
       Ok(())
    }
 }
+
 #[doc="Watchdog Counter Register"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Cnt(pub u32);
 impl Cnt {
-#[doc="Low byte of the Watchdog Counter"]
+   #[doc="Low byte of the Watchdog Counter"]
    #[inline] pub fn cntlow(&self) -> bits::U8 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
    }
-#[doc="Low byte of the Watchdog Counter"]
+
+   #[doc="Low byte of the Watchdog Counter"]
+   #[inline] pub fn test_cntlow(&self) -> bool {
+      self.cntlow != 0
+   }
+
+   #[doc="Low byte of the Watchdog Counter"]
    #[inline] pub fn set_cntlow<V: Into<bits::U8>>(mut self, value: V) -> Self {
       let value: bits::U8 = value.into();
       let value: u32 = value.into();
@@ -367,11 +476,17 @@ impl Cnt {
       self
    }
 
-#[doc="High byte of the Watchdog Counter"]
+   #[doc="High byte of the Watchdog Counter"]
    #[inline] pub fn cnthigh(&self) -> bits::U8 {
       unsafe { ::core::mem::transmute(((self.0 >> 8) & 0xff) as u8) } // [15:8]
    }
-#[doc="High byte of the Watchdog Counter"]
+
+   #[doc="High byte of the Watchdog Counter"]
+   #[inline] pub fn test_cnthigh(&self) -> bool {
+      self.cnthigh != 0
+   }
+
+   #[doc="High byte of the Watchdog Counter"]
    #[inline] pub fn set_cnthigh<V: Into<bits::U8>>(mut self, value: V) -> Self {
       let value: bits::U8 = value.into();
       let value: u32 = value.into();
@@ -381,11 +496,13 @@ impl Cnt {
    }
 
 }
+
 impl ::core::fmt::Display for Cnt {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Cnt {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -395,15 +512,22 @@ impl ::core::fmt::Debug for Cnt {
       Ok(())
    }
 }
+
 #[doc="Watchdog Timeout Value Register"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Toval(pub u32);
 impl Toval {
-#[doc="Low byte of the timeout value"]
+   #[doc="Low byte of the timeout value"]
    #[inline] pub fn tovallow(&self) -> bits::U8 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
    }
-#[doc="Low byte of the timeout value"]
+
+   #[doc="Low byte of the timeout value"]
+   #[inline] pub fn test_tovallow(&self) -> bool {
+      self.tovallow != 0
+   }
+
+   #[doc="Low byte of the timeout value"]
    #[inline] pub fn set_tovallow<V: Into<bits::U8>>(mut self, value: V) -> Self {
       let value: bits::U8 = value.into();
       let value: u32 = value.into();
@@ -412,11 +536,17 @@ impl Toval {
       self
    }
 
-#[doc="High byte of the timeout value"]
+   #[doc="High byte of the timeout value"]
    #[inline] pub fn tovalhigh(&self) -> bits::U8 {
       unsafe { ::core::mem::transmute(((self.0 >> 8) & 0xff) as u8) } // [15:8]
    }
-#[doc="High byte of the timeout value"]
+
+   #[doc="High byte of the timeout value"]
+   #[inline] pub fn test_tovalhigh(&self) -> bool {
+      self.tovalhigh != 0
+   }
+
+   #[doc="High byte of the timeout value"]
    #[inline] pub fn set_tovalhigh<V: Into<bits::U8>>(mut self, value: V) -> Self {
       let value: bits::U8 = value.into();
       let value: u32 = value.into();
@@ -426,11 +556,13 @@ impl Toval {
    }
 
 }
+
 impl ::core::fmt::Display for Toval {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Toval {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -440,15 +572,22 @@ impl ::core::fmt::Debug for Toval {
       Ok(())
    }
 }
+
 #[doc="Watchdog Window Register"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Win(pub u32);
 impl Win {
-#[doc="Low byte of Watchdog Window"]
+   #[doc="Low byte of Watchdog Window"]
    #[inline] pub fn winlow(&self) -> bits::U8 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
    }
-#[doc="Low byte of Watchdog Window"]
+
+   #[doc="Low byte of Watchdog Window"]
+   #[inline] pub fn test_winlow(&self) -> bool {
+      self.winlow != 0
+   }
+
+   #[doc="Low byte of Watchdog Window"]
    #[inline] pub fn set_winlow<V: Into<bits::U8>>(mut self, value: V) -> Self {
       let value: bits::U8 = value.into();
       let value: u32 = value.into();
@@ -457,11 +596,17 @@ impl Win {
       self
    }
 
-#[doc="High byte of Watchdog Window"]
+   #[doc="High byte of Watchdog Window"]
    #[inline] pub fn winhigh(&self) -> bits::U8 {
       unsafe { ::core::mem::transmute(((self.0 >> 8) & 0xff) as u8) } // [15:8]
    }
-#[doc="High byte of Watchdog Window"]
+
+   #[doc="High byte of Watchdog Window"]
+   #[inline] pub fn test_winhigh(&self) -> bool {
+      self.winhigh != 0
+   }
+
+   #[doc="High byte of Watchdog Window"]
    #[inline] pub fn set_winhigh<V: Into<bits::U8>>(mut self, value: V) -> Self {
       let value: bits::U8 = value.into();
       let value: u32 = value.into();
@@ -471,11 +616,13 @@ impl Win {
    }
 
 }
+
 impl ::core::fmt::Display for Win {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Win {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -485,4 +632,5 @@ impl ::core::fmt::Debug for Win {
       Ok(())
    }
 }
+
 

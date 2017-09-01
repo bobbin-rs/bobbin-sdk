@@ -7,19 +7,21 @@ pub struct DmamuxPeriph(pub usize);
 
 
 impl DmamuxPeriph {
-#[doc="Get the *const pointer for the CHCFG register."]
+   #[doc="Get the *const pointer for the CHCFG register."]
    #[inline] pub fn chcfg_ptr<I: Into<bits::R16>>(&self, index: I) -> *const u8 { 
       let index: bits::R16 = index.into();
       let index: usize = index.value() as usize;
       ((self.0 as usize) + 0x0 + (index)) as *const u8
    }
-#[doc="Get the *mut pointer for the CHCFG register."]
+
+   #[doc="Get the *mut pointer for the CHCFG register."]
    #[inline] pub fn chcfg_mut<I: Into<bits::R16>>(&self, index: I) -> *mut u8 { 
       let index: bits::R16 = index.into();
       let index: usize = index.value() as usize;
       ((self.0 as usize) + 0x0 + (index)) as *mut u8
    }
-#[doc="Read the CHCFG register."]
+
+   #[doc="Read the CHCFG register."]
    #[inline] pub fn chcfg<I: Into<bits::R16>>(&self, index: I) -> Chcfg { 
       let index: bits::R16 = index.into();
       let index: usize = index.value() as usize;
@@ -27,7 +29,8 @@ impl DmamuxPeriph {
          Chcfg(read_volatile((self.0 + 0x0 + (index)) as *const u8))
       }
    }
-#[doc="Write the CHCFG register."]
+
+   #[doc="Write the CHCFG register."]
    #[inline] pub fn set_chcfg<I: Into<bits::R16>, F: FnOnce(Chcfg) -> Chcfg>(&self, index: I, f: F) -> &Self {
       let index: bits::R16 = index.into();
       let index: usize = index.value() as usize;
@@ -37,7 +40,8 @@ impl DmamuxPeriph {
       }
       self
    }
-#[doc="Modify the CHCFG register."]
+
+   #[doc="Modify the CHCFG register."]
    #[inline] pub fn with_chcfg<I: Into<bits::R16> + Copy, F: FnOnce(Chcfg) -> Chcfg>(&self, index: I, f: F) -> &Self {
       let index: bits::R16 = index.into();
       let index: usize = index.value() as usize;
@@ -55,11 +59,17 @@ impl DmamuxPeriph {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Chcfg(pub u8);
 impl Chcfg {
-#[doc="DMA Channel Source (Slot)"]
+   #[doc="DMA Channel Source (Slot)"]
    #[inline] pub fn source(&self) -> bits::U6 {
       unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x3f) as u8) } // [5:0]
    }
-#[doc="DMA Channel Source (Slot)"]
+
+   #[doc="DMA Channel Source (Slot)"]
+   #[inline] pub fn test_source(&self) -> bool {
+      self.source != 0
+   }
+
+   #[doc="DMA Channel Source (Slot)"]
    #[inline] pub fn set_source<V: Into<bits::U6>>(mut self, value: V) -> Self {
       let value: bits::U6 = value.into();
       let value: u8 = value.into();
@@ -68,11 +78,17 @@ impl Chcfg {
       self
    }
 
-#[doc="DMA Channel Trigger Enable"]
+   #[doc="DMA Channel Trigger Enable"]
    #[inline] pub fn trig(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
    }
-#[doc="DMA Channel Trigger Enable"]
+
+   #[doc="DMA Channel Trigger Enable"]
+   #[inline] pub fn test_trig(&self) -> bool {
+      self.trig != 0
+   }
+
+   #[doc="DMA Channel Trigger Enable"]
    #[inline] pub fn set_trig<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u8 = value.into();
@@ -81,11 +97,17 @@ impl Chcfg {
       self
    }
 
-#[doc="DMA Channel Enable"]
+   #[doc="DMA Channel Enable"]
    #[inline] pub fn enbl(&self) -> bits::U1 {
       unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
    }
-#[doc="DMA Channel Enable"]
+
+   #[doc="DMA Channel Enable"]
+   #[inline] pub fn test_enbl(&self) -> bool {
+      self.enbl != 0
+   }
+
+   #[doc="DMA Channel Enable"]
    #[inline] pub fn set_enbl<V: Into<bits::U1>>(mut self, value: V) -> Self {
       let value: bits::U1 = value.into();
       let value: u8 = value.into();
@@ -95,11 +117,13 @@ impl Chcfg {
    }
 
 }
+
 impl ::core::fmt::Display for Chcfg {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
        self.0.fmt(f)
    }
 }
+
 impl ::core::fmt::Debug for Chcfg {
    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
       try!(write!(f, "[0x{:08x}", self.0));
@@ -110,4 +134,5 @@ impl ::core::fmt::Debug for Chcfg {
       Ok(())
    }
 }
+
 
