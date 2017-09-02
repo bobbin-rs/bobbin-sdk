@@ -28,9 +28,24 @@ pub fn init() {
     // let _rx = pin::pb22().into_pmux(PMux::PMuxD);
     // let _rx = pin::pb23().into_pmux(PMux::PMuxD);
     // let u = usart::device(SERCOM5);
-    SERCOM.configure(63018, 1, 3);   
-    SERCOM.set_enabled(true);
+    // SERCOM.configure(63018, 1, 3);   
+    // SERCOM.set_enabled(true);
+    enable();
 }
+
+pub fn enable() {
+    // SERCOM.configure(63018, 1, 3);   
+    // SERCOM.set_config(|c| c.set_baud(63018).set_txpo(1).set_rxpo(3));
+    SERCOM.set_config(|c| c.set_baud(63018).set_txpo(1).set_rxpo(3));
+    SERCOM.set_enabled(true);
+    // SERCOM.set_config(|c| c.set_baud(63018).set_txpo(1).set_rxpo(3));
+    // SERCOM.enable();
+}
+
+pub fn disable() {
+    SERCOM.disable();
+}
+
 
 /// Macro for sending `print!`-formatted messages over the Console
 #[macro_export]
