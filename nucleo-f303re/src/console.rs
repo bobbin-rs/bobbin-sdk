@@ -20,19 +20,18 @@ pub fn init() {
     USART_TX.mode_tx(&USART);
     USART_RX.mode_rx(&USART);
 
-    // Set Baud and Enable USART
+    enable();
+}
 
-    USART.set_config(|cfg| cfg.set_baud(USART_BAUD, USART.clock(&CLK).unwrap()));
-    USART.enable();
+pub fn enable() {
+    // Set Baud and Enable USART    
+    USART
+        .set_config(|c| c.set_baud(USART_BAUD, USART.clock(&CLK).unwrap()))
+        .enable();
 }
 
 pub fn disable() {
     USART.disable();
-}
-
-pub fn reinit() {
-    USART.set_config(|cfg| cfg.set_baud(USART_BAUD, USART.clock(&CLK).unwrap()));
-    USART.enable();    
 }
 
 /// Macro for sending `print!`-formatted messages over the Console

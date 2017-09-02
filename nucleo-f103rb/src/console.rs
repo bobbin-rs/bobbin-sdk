@@ -23,16 +23,18 @@ pub fn init() {
     USART_TX.mode_alt_fn();
     USART_RX.mode_input();
 
-    // Set Baud and Enable USART
-    USART.enable(USART.clock(&CLK).expect("No clock available") / USART_BAUD);
+    enable();
+}
+
+pub fn enable() {
+    // Set Baud and Enable USART    
+    USART
+        .set_config(|c| c.set_baud(USART_BAUD, USART.clock(&CLK).unwrap()))
+        .enable();
 }
 
 pub fn disable() {
     USART.disable();
-}
-
-pub fn reinit() {
-    USART.disable().enable(USART.clock(&CLK).expect("No clock available") / USART_BAUD);
 }
 
 
