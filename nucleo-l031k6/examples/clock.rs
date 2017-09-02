@@ -38,7 +38,7 @@ pub extern "C" fn main() -> ! {
         RCC.with_cfgr(|r| r.set_sw(U2::B01));
         // Wait for HSI to be selected
         while RCC.cfgr().sws() != U2::B01 {}
-        board::console::reinit();
+        board::console::enable();
         println!("Running on HSI");
 
         board::delay(1000);
@@ -51,7 +51,7 @@ pub extern "C" fn main() -> ! {
         RCC.with_cfgr(|r| r.set_sw(U2::B11));
         while RCC.cfgr().sws() != U2::B11 {}        
 
-        board::console::reinit();
+        board::console::enable();
         println!("Running on PLL");        
         board::delay(1000);
     }
