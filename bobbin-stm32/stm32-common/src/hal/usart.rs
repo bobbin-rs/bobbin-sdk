@@ -1,12 +1,15 @@
+pub use bobbin_common::configure::*;
+pub use bobbin_common::enabled::*;
 pub use bobbin_common::serial::*;
 use core::fmt::{self, Write};
 use chip::usart::*;
 
+#[derive(Debug)]
 pub struct Config {
-    pub cr1: Cr1,
-    pub cr2: Cr2,
-    pub cr3: Cr3,
-    pub brr: Brr,
+    cr1: Cr1,
+    cr2: Cr2,
+    cr3: Cr3,
+    brr: Brr,
 }
 
 impl Default for Config {
@@ -43,23 +46,8 @@ impl Config {
     }
 }
 
-// pub trait UsartExt {
-//     fn set_config<F: FnOnce(Config) -> Config>(&self, f: F) -> &Self;
-//     fn with_config<F: FnOnce(Config) -> Config>(&self, f: F) -> &Self;
-//     fn configure(&self, cfg: Config) -> &Self;
-//     fn set_baud(&self, baud: u32, clock: u32) -> &Self;
-//     fn enable(&self) -> &Self;
-//     fn disable(&self) -> &Self;
-//     // fn putc(&self, c: u8);
-//     // fn try_putc(&self, c: u8) -> Option<usize>;
-//     // fn getc(&self) -> u8;
-//     // fn try_getc(&self) -> Option<u8>;
-//     // fn write(&self, buf: &[u8]) -> usize;
-//     // fn read(&self, buf: &mut [u8]) -> usize;
-// }
-
-impl UsartPeriph {
-    pub fn config(&self) -> Config {
+impl Configure<Config> for UsartPeriph {
+    fn config(&self) -> Config {
         Config {
             cr1: self.cr1(),
             cr2: self.cr2(),
@@ -68,94 +56,31 @@ impl UsartPeriph {
         }
     }
 
-    pub fn set_config<F: FnOnce(Config) -> Config>(&self, f: F) -> &Self {
-        self.configure(f(Config::default()))
-    }
 
-    pub fn with_config<F: FnOnce(Config) -> Config>(&self, f: F) -> &Self {
-        self.configure(f(self.config()))
-    }
-    
-    pub fn configure(&self, cfg: Config) -> &Self {        
+    fn configure(&self, cfg: Config) -> &Self {        
         self.set_cr1(|_| cfg.cr1);
         self.set_cr2(|_| cfg.cr2);
         self.set_cr3(|_| cfg.cr3);
         self.set_brr(|_| cfg.brr);
         self
     }
-    pub fn set_baud(&self, baud: u32, clock: u32) -> &Self {
-        let brr = clock / baud;
-        self.set_brr(|r| r
-            .set_div_fraction((brr & 0b1111) as u32)
-            .set_div_mantissa(brr as u32 >> 4)
-        )
+}
+
+impl Enabled for UsartPeriph {
+    fn enabled(&self) -> bool {
+        self.cr1().test_ue()
     }
 
-    pub fn enable(&self) -> &Self {
+    fn set_enabled(&self, value: bool) -> &Self {
         self
             .set_cr1(|r| r
-                .set_ue(1)
-                .set_re(1)
-                .set_te(1)
+                .set_ue(value)
+                .set_re(value)
+                .set_te(value)
             )        
     }
-    pub fn disable(&self) -> &Self {
-        self
-            .set_cr1(|r| r
-                .set_ue(0)
-                .set_re(0)
-                .set_te(0)
-            )      
-    }
-
-    // fn putc(&self, c: u8) {
-    //     let u = self;
-    //     while u.isr().txe() == 0 {}
-    //     u.set_tdr(|r| r.set_tdr(c as u32));
-    // }
-
-    // fn try_putc(&self, c: u8) -> Option<usize> {
-    //     let u = self;
-    //     if u.isr().txe() != 0 {
-    //         u.set_tdr(|r| r.set_tdr(c as u32));
-    //         Some(1)
-    //     } else {
-    //         None
-    //     }            
-    // }
-
-    // fn try_getc(&self) -> Option<u8> {
-    //     let u = self;
-    //     if u.isr().rxne() != 0 {
-    //         Some(u.rdr().rdr().into())
-    //     } else {
-    //         None
-    //     }
-    // }
-
-    // fn getc(&self) -> u8 {
-    //     let u = self;
-    //     while u.isr().rxne() == 0 {}
-    //     u.rdr().rdr().into()         
-    // }
-
-    // fn write(&self, buf: &[u8]) -> usize {
-    //     for b in buf.iter() {
-    //         self.putc(*b)
-    //     }
-    //     buf.len()
-    // }
-
-    // fn read(&self, buf: &mut [u8]) -> usize {
-    //     if buf.len() == 0 { return 0; }
-    //     if let Some(c) = self.try_getc() {
-    //         buf[0] = c;
-    //         1
-    //     } else {
-    //         0
-    //     }
-    // }
 }
+
 
 impl Write for UsartPeriph {
     fn write_str(&mut self, s: &str) -> fmt::Result {
