@@ -46,7 +46,7 @@ pub extern "C" fn main() -> ! {
         board::console::disable();
         RCC.with_cfgr(|r| r.set_sw(0b01));
         while RCC.cfgr().sws() != 0b01 {};
-        board::console::reinit();
+        board::console::enable();
         println!("Running on HSE");
 
         board::delay(1000);
@@ -56,7 +56,7 @@ pub extern "C" fn main() -> ! {
         board::console::disable();
         RCC.with_cfgr(|r| r.set_sw(0b10));
         while RCC.cfgr().sws() != 0b10 {};
-        board::console::reinit();
+        board::console::enable();
         println!("Running on PLL");
 
         board::delay(1000);
