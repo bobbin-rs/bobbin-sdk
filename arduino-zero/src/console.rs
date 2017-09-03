@@ -25,26 +25,17 @@ pub fn init() {
     SERCOM_TX.mode_pad_2(&SERCOM);
     SERCOM_RX.mode_pad_3(&SERCOM);
 
-    // let _rx = pin::pb22().into_pmux(PMux::PMuxD);
-    // let _rx = pin::pb23().into_pmux(PMux::PMuxD);
-    // let u = usart::device(SERCOM5);
-    // SERCOM.configure(63018, 1, 3);   
-    // SERCOM.set_enabled(true);
     enable();
 }
 
 pub fn enable() {
-    SERCOM.configure(63018, 1, 3);
-    SERCOM.set_enabled(true);
-    // SERCOM
-    //     .set_config(|c| c.set_baud(63018).set_txpo(1).set_rxpo(3))
-    //     .enable();
-    // SERCOM.set_config(|c| c.set_baud(63018).set_txpo(1).set_rxpo(3));
-    // SERCOM.enable();
+    SERCOM
+        .set_config(|c| c.set_baud(63018).set_txpo(1).set_rxpo(3))
+        .set_enabled(true);
 }
 
 pub fn disable() {
-    // SERCOM.disable();
+    SERCOM.disable();
 }
 
 
