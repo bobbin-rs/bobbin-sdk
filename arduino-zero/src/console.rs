@@ -30,7 +30,12 @@ pub fn init() {
 
 pub fn enable() {
     SERCOM
-        .set_config(|c| c.set_baud(63018).set_txpo(1).set_rxpo(3))
+        .set_config(|c| c
+            .set_mode_usart_int()
+            .set_baud(63018)
+            .set_txpo(1)
+            .set_rxpo(3)
+        )
         .set_enabled(true);
 }
 
