@@ -1,6 +1,10 @@
+pub use bobbin_common::configure::*;
+pub use bobbin_common::enabled::*;
 pub use bobbin_common::serial::*;
 pub use chip::sercom::*;
 pub use super::pm::PmEnabled;
+
+use bobbin_common::bits::*;
 
 // NOTE: Before usage, power up and set clocks
 
@@ -15,6 +19,86 @@ pub use super::pm::PmEnabled;
 // );
 // // Wait for synchronization
 // while gclk::GCLK.status().syncbusy() != 0 {}
+
+
+pub struct Config {
+    ctrla: usart::Ctrla,
+    ctrlb: usart::Ctrlb,
+    baud: usart::Baud,
+}
+
+impl Default for Config {
+    fn default() -> Self {
+        Config {
+            ctrla: usart::Ctrla(0).set_mode(0x1).set_dord(0x1),
+            ctrlb: usart::Ctrlb(0).set_rxen(0x1).set_txen(0x1).set_chsize(0x0),
+            baud: usart::Baud(0),
+        }
+    }
+}
+
+impl Config {
+    pub fn set_baud(mut self, value: u16) -> Self {
+        self.baud = usart::Baud(value);
+        self
+    }
+
+    pub fn set_txpo<V: Into<U2>>(mut self, value: V) -> Self {
+        self.ctrla = self.ctrla.set_txpo(value.into());
+        self
+    }
+
+    pub fn set_rxpo<V: Into<U2>>(mut self, value: V) -> Self {
+        self.ctrla = self.ctrla.set_rxpo(value.into());
+        self
+    }
+}
+
+impl Configure<Config> for SercomPeriph {
+    fn config(&self) -> Config {
+        let s = self.usart();
+        Config {
+            ctrla: s.ctrla(),
+            ctrlb: s.ctrlb(),
+            baud: s.baud(),
+        }
+    }
+
+    fn configure(&self, cfg: Config) -> &Self {
+        let s = self.usart();
+
+        // Reset peripheral
+        s.set_ctrla(|r| r.set_swrst(0x1));
+
+        // Wait for reset
+        while s.ctrla().swrst() != 0 {}
+
+        // Update CTRLA
+        s.set_ctrla(|_| cfg.ctrla);
+
+        // Update CTRLB
+        s.set_ctrlb(|_| cfg.ctrlb);
+
+        // Wait for synchronization
+        while s.syncbusy().ctrlb() != 0 {}
+
+        // Update BAUD
+        s.set_baud(|_| cfg.baud);
+
+        self
+    }
+}
+
+impl Enabled for SercomPeriph {
+    fn enabled(&self) -> bool {
+        self.usart().ctrla().test_enable()
+    }
+
+    fn set_enabled(&self, value: bool) -> &Self {
+        self.usart().with_ctrla(|r| r.set_enable(value));
+        self
+    }        
+}
 
 
 impl SercomPeriph {
@@ -73,12 +157,6 @@ impl SercomPeriph {
         let s = self.usart();
         s.set_baud(|_| usart::Baud(value));
         while s.syncbusy().enable() != 0 {}
-        self
-    }
-
-    pub fn set_enabled(&self, value: bool) -> &Self {
-        let s = self.usart();
-        s.with_ctrla(|r| r.set_enable(value));
         self
     }
 
