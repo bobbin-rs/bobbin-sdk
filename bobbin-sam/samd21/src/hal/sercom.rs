@@ -21,6 +21,17 @@ use bobbin_common::bits::*;
 // while gclk::GCLK.status().syncbusy() != 0 {}
 
 
+#[derive(Debug, PartialEq, Eq, Clone, Copy)]
+#[repr(u8)]
+pub enum Mode {
+    UsartExternal = 0x0,
+    UsartInternal = 0x1,
+    SpiSlave = 0x2,
+    SpiMaster = 0x3,
+    I2cSlave = 0x4,
+    I2cMaster = 0x5,
+}
+
 pub struct Config {
     ctrla: usart::Ctrla,
     ctrlb: usart::Ctrlb,
@@ -30,7 +41,7 @@ pub struct Config {
 impl Default for Config {
     fn default() -> Self {
         Config {
-            ctrla: usart::Ctrla(0).set_mode(0x1).set_dord(0x1),
+            ctrla: usart::Ctrla(0).set_dord(0x1),
             ctrlb: usart::Ctrlb(0).set_rxen(0x1).set_txen(0x1).set_chsize(0x0),
             baud: usart::Baud(0),
         }
@@ -38,6 +49,19 @@ impl Default for Config {
 }
 
 impl Config {
+    pub fn set_mode_usart_ext(self) -> Self {
+        self.set_mode(Mode::UsartExternal)
+    }
+
+    pub fn set_mode_usart_int(self) -> Self {
+        self.set_mode(Mode::UsartInternal)
+    }
+
+    pub fn set_mode(mut self, mode: Mode) -> Self {
+        self.ctrla = self.ctrla.set_mode(mode as u8);
+        self
+    }
+
     pub fn set_baud(mut self, value: u16) -> Self {
         self.baud = usart::Baud(value);
         self
@@ -98,74 +122,6 @@ impl Enabled for SercomPeriph {
         self.usart().with_ctrla(|r| r.set_enable(value));
         self
     }        
-}
-
-
-impl SercomPeriph {
-    pub fn configure(&self, baud: u16, tx_pad: u8, rx_pad: u8) -> &Self {
-        let s = self.usart();
-
-        // Before Use: Power up SERCOM
-        // Before Use: Set SERCOM Clock
-
-        // UART Initialization
-
-        // Wait for synchronization
-        while s.syncbusy().enable() != 0 {}
-
-        // Disable the UART module
-        s.with_ctrla(|r| r.set_enable(0));
-
-        // Wait for synchronization
-        while s.syncbusy().swrst() != 0 {}
-        
-        // Software Reset
-        s.with_ctrla(|r| r.set_swrst(1));
-    
-        // Wait for synchronization
-        while s.ctrla().swrst() != 0 {}
-
-        // Wait for synchronization
-        while s.syncbusy().swrst() != 0 || s.syncbusy().enable() != 0 {}
-
-        // Update the UART pad settings, mode and data order settings
-
-        s.set_ctrla(|r| r
-            .set_txpo(tx_pad as u32)
-            .set_rxpo(rx_pad as u32)
-            .set_mode(0x1)
-            .set_dord(1)
-        );
-
-        // Wait for synchronization
-        while s.syncbusy().ctrlb() != 0 {}
-
-        // Enable transmit and receive and set data size to 8 bits
-
-        s.set_ctrlb(|r| r
-            .set_rxen(1)
-            .set_txen(1)
-            .set_chsize(0)
-        );
-
-        // Load the baud value
-        self.set_baud(baud);
-        self
-    }
-
-    pub fn set_baud(&self, value: u16) -> &Self {
-        let s = self.usart();
-        s.set_baud(|_| usart::Baud(value));
-        while s.syncbusy().enable() != 0 {}
-        self
-    }
-
-    // pub fn write(&self, buf: &[u8]) -> &Self {
-    //     for b in buf.iter() {
-    //         self.putc(*b);
-    //     }
-    //     self
-    // }
 }
 
 impl SerialTx<u8> for SercomPeriph {    
