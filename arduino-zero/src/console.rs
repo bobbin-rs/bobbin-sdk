@@ -34,16 +34,17 @@ pub fn init() {
 }
 
 pub fn enable() {
-    // SERCOM.configure(63018, 1, 3);   
-    // SERCOM.set_config(|c| c.set_baud(63018).set_txpo(1).set_rxpo(3));
-    SERCOM.set_config(|c| c.set_baud(63018).set_txpo(1).set_rxpo(3));
+    SERCOM.configure(63018, 1, 3);
     SERCOM.set_enabled(true);
+    // SERCOM
+    //     .set_config(|c| c.set_baud(63018).set_txpo(1).set_rxpo(3))
+    //     .enable();
     // SERCOM.set_config(|c| c.set_baud(63018).set_txpo(1).set_rxpo(3));
     // SERCOM.enable();
 }
 
 pub fn disable() {
-    SERCOM.disable();
+    // SERCOM.disable();
 }
 
 
