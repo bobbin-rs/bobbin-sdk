@@ -16,6 +16,7 @@ extern crate tm4c129x;
 pub use tm4c129x::{common, chip, hal};
 
 pub mod exceptions;
+#[cfg(target_os="none")]
 pub mod lang_items;
 
 pub mod clock;

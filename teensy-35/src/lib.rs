@@ -15,6 +15,7 @@ pub use k64::{common, chip, hal};
 #[macro_use] pub mod logger;
 
 pub mod exceptions;
+#[cfg(target_os="none")]
 pub mod lang_items;
 
 pub mod clock;

@@ -15,6 +15,7 @@ extern crate stm32f40x;
 pub use stm32f40x::{common, chip, hal};
 
 pub mod exceptions;
+#[cfg(target_os="none")]
 pub mod lang_items;
 
 pub mod pin;

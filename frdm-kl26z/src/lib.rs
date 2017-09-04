@@ -16,6 +16,7 @@ pub mod console;
 // pub mod logger;
 
 pub mod exceptions;
+#[cfg(target_os="none")]
 pub mod lang_items;
 
 pub mod clock;

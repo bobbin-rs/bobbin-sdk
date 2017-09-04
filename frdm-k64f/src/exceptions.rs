@@ -7,6 +7,7 @@ pub unsafe extern "C" fn default_handler_entry_point() -> ! {
     loop {}
 }
 
+#[cfg(target_os="none")]
 #[doc(hidden)]
 #[export_name = "_reset"]
 pub unsafe extern "C" fn reset() -> ! {

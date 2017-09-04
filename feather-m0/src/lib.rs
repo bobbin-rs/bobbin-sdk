@@ -13,6 +13,7 @@ extern crate samd21;
 pub use samd21::{common, chip, hal};
 
 pub mod exceptions;
+#[cfg(target_os="none")]
 pub mod lang_items;
 
 pub mod clock;
