@@ -38,17 +38,16 @@ impl Delay<u16> for LptimPeriph {
             .start_up_once(value)
             .clr_timeout_flag()
             .wait_timeout_flag()
-            .stop()
     }
 }
 
 impl Timer<u16> for LptimPeriph {
     fn stop(&self) -> &Self {
-        self.set_enabled(false)
+        unimplemented!()
     }
 
     fn running(&self) -> bool {
-        self.enabled()
+        unimplemented!()
     }
 
     fn period(&self) -> u16 {
