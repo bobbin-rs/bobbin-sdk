@@ -80,6 +80,12 @@ pub mod usart {
     pub use super::rcc::RccEnabled;
 }
 
+pub mod lpuart {
+    pub use chip::lpuart::*;
+    pub use stm32_common::hal::lpuart::*;
+    pub use super::rcc::RccEnabled;
+}
+
 pub mod tim {
     pub use chip::tim_gen::*;
     pub use stm32_common::hal::tim_gen::*;

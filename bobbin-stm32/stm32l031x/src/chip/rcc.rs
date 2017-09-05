@@ -4713,6 +4713,11 @@ impl En for super::i2c::I2c1 {
     #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_i2c1en(value)); }
 }
 
+impl En for super::lpuart::Lpuart1 {
+    #[inline] fn en(&self) -> u32 { RCC.apb1enr().lpuart1en().into() }
+    #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_lpuart1en(value)); }
+}
+
 impl En for super::usart::Usart2 {
     #[inline] fn en(&self) -> u32 { RCC.apb1enr().usart2en().into() }
     #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_usart2en(value)); }

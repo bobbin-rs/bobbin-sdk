@@ -24,6 +24,10 @@ impl ExtiCh {
         self
     }   
 
+    pub fn pending(&self) -> bool {
+        self.periph.pr().test_pr(self.index)
+    }
+
     pub fn clr_pending(&self) -> &Self {
         self.periph.set_pr(|r| r.set_pr(self.index, 1));
         self
