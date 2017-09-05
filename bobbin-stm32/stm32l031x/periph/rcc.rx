@@ -840,6 +840,7 @@
             (bit-offset 18)
             (bit-width 1)
             (description "LPUART1 clock enable bit")            
+            (link (name EN) (peripheral-group LPUART) (peripheral LPUART1))
         )
         (field
             (name USART2EN)
