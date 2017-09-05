@@ -86,7 +86,7 @@ pub extern "C" fn main() -> ! {
         .wait_sysclk_rdy()
         .set_pll_on(false)
         .set_hse_on(false);
-    board::console::reinit();
+    board::console::enable();
     println!("Running on HSI, SYSCLK: {:?}", clk.sysclk());
     println!("Switch to HSE and Update USART");
     board::delay(10);
@@ -97,7 +97,7 @@ pub extern "C" fn main() -> ! {
         .set_sysclk_src(SysClockSrc::Hse)
         .wait_sysclk_rdy()
         .set_hsi_on(false);
-    board::console::reinit();
+    board::console::enable();
     println!("Running on HSE, SYSCLK: {:?}", clk.sysclk());
     println!("Switch to PLL and Update USART");
     board::delay(10);
@@ -107,7 +107,7 @@ pub extern "C" fn main() -> ! {
         .wait_pll_rdy()
         .set_sysclk_src(SysClockSrc::Pll)
         .wait_sysclk_rdy();
-    board::console::reinit();        
+    board::console::enable();        
     println!("Running on PLL, SYSCLK: {:?}", clk.sysclk());        
 
     if false {
