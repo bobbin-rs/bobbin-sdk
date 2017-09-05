@@ -11,6 +11,7 @@ pub extern "C" fn main() -> ! {
     test_crc();
     test_gpio();
     test_lptim();
+    test_systick();
     println!("[done] All tests passed");
     loop {}
 }
@@ -116,4 +117,44 @@ fn test_lptim() {
     tim.rcc_disable();
 
     println!("[pass] LPTIM OK");
+}
+
+fn test_systick() {
+    use board::hal::systick;
+
+    let reload_value = 1000;
+
+    // println!("# Disable Systick");
+    systick::set_enabled(false);
+    assert!(!systick::enabled());
+
+    // println!("# Set Reload Value");
+    systick::set_reload_value(reload_value);
+    assert_eq!(systick::reload_value(), reload_value);
+
+    // println!("# Set Current Value");
+    systick::set_current_value(0);
+    assert_eq!(systick::current_value(), 0);
+
+    // println!("# Clear Count Flag");
+    let _ = systick::count_flag();
+    assert!(!systick::count_flag());
+
+
+    let mut value_min = systick::current_value();
+
+    // println!("# Start Test");
+    systick::set_enabled(true);
+    assert!(systick::current_value() > 0);
+
+    while !systick::count_flag() {
+        let v = systick::current_value();
+        if v < value_min {
+            value_min = v;
+        }
+    }
+    assert!(value_min < reload_value);
+    systick::set_enabled(false);
+
+    println!("[pass] SYSTICK OK");
 }
