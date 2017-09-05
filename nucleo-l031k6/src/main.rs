@@ -15,6 +15,7 @@ pub extern "C" fn main() -> ! {
     test_adc();
     test_dma();
     test_exti();
+    // test_lpuart();
     println!("[done] All tests passed");
     loop {}
 }
@@ -263,3 +264,43 @@ fn test_exti() {
 
     println!("[pass] EXTI OK");
 }
+
+// /// PA3(A2) must be connected to PA2(A7)
+// fn test_lpuart() {
+//     use board::console;
+//     use board::clock::{CLK, Clock};
+//     use board::hal::gpio::*;
+//     use board::hal::lpuart::*;
+
+//     let uart = LPUART1;
+//     let port = GPIOA;
+//     let rx = PA3; // A2
+//     let tx = PA2; // A7
+
+//     let f_ck = uart.clock(&CLK).unwrap();
+//     println!("Clock: {:?}", f_ck);
+
+
+
+//     board::delay(10);
+//     console::disable();
+
+    
+//     uart.rcc_enable();
+//     port.rcc_enable();
+
+//     rx.mode_rx(&uart);
+//     tx.mode_tx(&uart);
+
+//     // uart.with_config(|c| c.set_baud(9600, f_ck));
+//     // uart.with_config(|c| c.set_brr(13u32.into()));
+//     uart.set_brr(|r| r.set_brr(13));
+//     uart.set_enabled(true);
+
+//     uart.putc(b'a');
+//     // let c = uart.getc();
+//     uart.rcc_disable();
+//     console::init();
+//     // assert_eq!(c, b'a');
+//     println!("[pass] LPUART OK");
+// }
