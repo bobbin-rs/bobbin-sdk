@@ -13,9 +13,7 @@ pub extern "C" fn main() -> ! {
     board::init();
     
     println!("FTM Test");    
-    let ch = FTM0_CH2;
-    let t0 = ch.periph();
-
+    let t0 = FTM0;
     t0
         .sim_set_enabled(true);
 
