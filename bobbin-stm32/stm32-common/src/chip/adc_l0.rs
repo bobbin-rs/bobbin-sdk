@@ -1296,17 +1296,17 @@ impl ::core::fmt::Debug for Cfgr2 {
 pub struct Smpr(pub u32);
 impl Smpr {
     #[doc="Sampling time selection"]
-    #[inline] pub fn smpr(&self) -> bits::U3 {
+    #[inline] pub fn smp(&self) -> bits::U3 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x7) as u8) } // [2:0]
     }
 
-    #[doc="Returns true if SMPR != 0"]
-    #[inline] pub fn test_smpr(&self) -> bool {
-        self.smpr() != 0
+    #[doc="Returns true if SMP != 0"]
+    #[inline] pub fn test_smp(&self) -> bool {
+        self.smp() != 0
     }
 
-    #[doc="Sets the SMPR field."]
-    #[inline] pub fn set_smpr<V: Into<bits::U3>>(mut self, value: V) -> Self {
+    #[doc="Sets the SMP field."]
+    #[inline] pub fn set_smp<V: Into<bits::U3>>(mut self, value: V) -> Self {
         let value: bits::U3 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x7 << 0);
@@ -1332,7 +1332,7 @@ impl ::core::fmt::Display for Smpr {
 impl ::core::fmt::Debug for Smpr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
         try!(write!(f, "[0x{:08x}", self.0));
-        if self.smpr() != 0 { try!(write!(f, " smpr=0x{:x}", self.smpr()))}
+        if self.smp() != 0 { try!(write!(f, " smp=0x{:x}", self.smp()))}
         try!(write!(f, "]"));
         Ok(())
     }
