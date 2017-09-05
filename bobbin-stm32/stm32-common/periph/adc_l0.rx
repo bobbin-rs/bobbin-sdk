@@ -288,7 +288,7 @@
         (reset-value 0x0)
         (description "sampling time register")
         (field
-            (name SMPR)
+            (name SMP)
             (bit-offset 0)
             (bit-width 3)
             (description "Sampling time selection")
