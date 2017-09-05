@@ -12,6 +12,7 @@ pub extern "C" fn main() -> ! {
     test_gpio();
     test_lptim();
     test_systick();
+    test_adc();
     println!("[done] All tests passed");
     loop {}
 }
@@ -157,4 +158,30 @@ fn test_systick() {
     systick::set_enabled(false);
 
     println!("[pass] SYSTICK OK");
+}
+
+fn test_adc() {
+    use board::hal::adc::*;
+
+    let adc = ADC1;
+    let adc_temp = ADC1_TEMP;
+    let adc_ref = ADC1_REFINT;
+
+    adc.rcc_enable();
+    adc.init();
+    adc.with_ccr(|r| r.set_tsen(1).set_vrefen(1));
+    adc.with_smpr(|r| r.set_smp(0b111));
+
+    let t: u8 = <AdcCh as AnalogRead<u8>>::start(&adc_temp).analog_read();
+    let v: u8 = <AdcCh as AnalogRead<u8>>::start(&adc_ref).analog_read();
+
+    println!("# t: {} v: {}", t, v);
+
+    assert!(t > 110 && t < 130);
+    assert!(v > 220 && t < 240);
+
+
+    adc.rcc_disable();
+
+    println!("[pass] ADC OK")
 }
