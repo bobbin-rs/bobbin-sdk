@@ -40,7 +40,7 @@ pub fn init() {
 pub fn enable() {
     let baud_div = UART.clock(&CLK).expect("No bus clock") / (4 * UART_BAUD);
     UART
-        .set_config(|c| c.set_baud_divisor(baud_div as u16))
+        .set_config(|c| c.set_osr(0x3).set_baud_divisor(baud_div as u16))
         .enable();
 }
 
