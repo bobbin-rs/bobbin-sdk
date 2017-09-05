@@ -13,6 +13,7 @@ pub extern "C" fn main() -> ! {
     test_lptim();
     test_systick();
     test_adc();
+    test_dma();
     println!("[done] All tests passed");
     loop {}
 }
@@ -184,4 +185,41 @@ fn test_adc() {
     adc.rcc_disable();
 
     println!("[pass] ADC OK")
+}
+
+fn test_dma() {
+    use board::hal::dma::*;    
+    let src = [0xffu8; 1024];
+    let dst = [0u8; 1024];
+    
+    let dma = DMA1;
+    let dma_ch = DMA1_CH1;
+
+    // ch.irq_dma().set_enabled(true);
+
+    dma.rcc_enable();
+    
+    dma_ch    
+        .set_pa(&src as *const u8 as u32)
+        .set_ma(&dst as *const u8 as u32)
+        .set_psize(Size::Bit8)
+        .set_pinc(true)
+        .set_msize(Size::Bit8)
+        .set_minc(true)
+        .set_mem2mem(true)
+        .set_ndt(1024)
+        .set_tcie(true)
+        .clr_teif()
+        .clr_tcif();
+        
+    dma_ch.clr_tcif().set_enabled(true);
+
+    while !dma_ch.tcif() {}
+
+    for i in 0..1024 {
+        assert_eq!(src[i], dst[i]);
+    }    
+
+    dma.rcc_disable();
+    println!("[pass] DMA OK");
 }
