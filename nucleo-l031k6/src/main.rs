@@ -14,6 +14,7 @@ pub extern "C" fn main() -> ! {
     test_systick();
     test_adc();
     test_dma();
+    test_exti();
     println!("[done] All tests passed");
     loop {}
 }
@@ -211,7 +212,7 @@ fn test_dma() {
         .set_tcie(true)
         .clr_teif()
         .clr_tcif();
-        
+
     dma_ch.clr_tcif().set_enabled(true);
 
     while !dma_ch.tcif() {}
@@ -222,4 +223,43 @@ fn test_dma() {
 
     dma.rcc_disable();
     println!("[pass] DMA OK");
+}
+
+/// Pin PA10 / D0 must be connected to Pin PA9 / D1
+fn test_exti() {
+    use board::hal::gpio::*;
+    use board::hal::syscfg::*;
+    use board::hal::exti::*;    
+
+    let port = GPIOA;
+    let port_out = PA10; // D0
+    let port_in = PA9; // D1
+    let line = EXTI_LINE9;
+
+    port.rcc_enable();
+    port_out.mode_output().set_output(false);
+    port_in.mode_input();
+
+    SYSCFG.rcc_enable();
+    SYSCFG.set_exti(line.index, Source::GpioA);
+    
+    line.set_interrupt_mask(true);
+    line.set_rising_trigger(true);
+    line.set_falling_trigger(true);
+
+    // Test for rising edge trigger
+    line.clr_pending(); 
+    assert_eq!(line.pending(), false);
+    port_out.set_output(true);
+    assert_eq!(line.pending(), true);    
+
+    // Test for falling edge trigger
+    line.clr_pending(); 
+    port_out.set_output(false);
+    assert_eq!(line.pending(), true);    
+    line.clr_pending(); 
+
+    SYSCFG.rcc_disable();
+
+    println!("[pass] EXTI OK");
 }
