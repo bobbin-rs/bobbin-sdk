@@ -11,6 +11,7 @@ pub mod digital;
 pub mod analog;
 pub mod serial;
 pub mod spi;
+pub mod i2c;
 pub mod watchdog;
 pub mod configure;
 pub mod enabled;
