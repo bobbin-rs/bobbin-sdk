@@ -16,6 +16,7 @@ pub extern "C" fn main() -> ! {
     test_dma();
     test_exti();
     test_lpuart();
+    test_usart();
     println!("[done] All tests passed");
     loop {}
 }
@@ -311,4 +312,53 @@ fn test_lpuart() {
     println!("# dst: {:?}", dst);
     assert_eq!(src, &dst);
     println!("[pass] LPUART OK");
+}
+
+
+fn test_usart() {
+    use board::console;
+    use board::clock::{CLK, Clock};
+    use board::hal::gpio::*;
+    use board::hal::usart::*;
+
+    let uart = USART2;
+    let port = GPIOA;
+    let tx = PA2;
+
+    let f_ck = uart.clock(&CLK).unwrap();
+
+    board::delay(1);
+    console::disable();
+   
+    uart.rcc_enable();
+    port.rcc_enable();
+
+    tx.mode_tx(&uart);
+
+    uart.with_config(|c| c.set_baud(115200, f_ck));
+    // uart.set_brr(|r| r.set_brr(71_111));
+    uart.with_cr3(|r| r.set_hdsel(1));
+    uart.set_enabled(true);
+
+    let src = b"# ABCD\r\n";;
+    let mut dst = [0u8; 8];
+
+    if uart.can_rx() {
+        let _ = uart.rx();
+    }
+
+    for i in 0..src.len() {
+        uart.putc(src[i]);
+        while !uart.isr().test_tc() {}
+        if uart.can_rx() {
+            dst[i] = uart.rx();
+        }
+    }
+    // while uart.isr().test_busy() {}
+    uart.rcc_disable();
+    console::init();
+    println!("# src: {:?}", src);
+    println!("# dst: {:?}", dst);
+    assert_eq!(src, &dst);
+    println!("[pass] USART OK");
 }
