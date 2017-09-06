@@ -364,7 +364,7 @@ fn test_usart() {
     println!("[pass] USART OK");
 }
 
-/// PA6(A5) and PA7(A6) must be jumpered togeter.
+/// PA6(A5) and PA7(A6) must be jumpered together for loopback.
 fn test_spi() {
     use board::hal::gpio::*;
     use board::hal::spi::*;
@@ -377,6 +377,10 @@ fn test_spi() {
 
     spi.rcc_enable();
     port.rcc_enable();
+
+    // NOTE: Pins must be set with output speed HIGH or leading edge
+    // of transmission will occasionally be missed.
+
     spi_miso.mode_spi_miso(&spi).speed_high().pull_up();
     spi_mosi.mode_spi_mosi(&spi).speed_high().push_pull();
     spi_sck.mode_spi_sck(&spi).speed_high().push_pull();
