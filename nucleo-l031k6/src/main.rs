@@ -17,6 +17,7 @@ pub extern "C" fn main() -> ! {
     test_exti();
     test_lpuart();
     test_usart();
+    test_spi();
     println!("[done] All tests passed");
     loop {}
 }
@@ -179,7 +180,7 @@ fn test_adc() {
     let t: u8 = <AdcCh as AnalogRead<u8>>::start(&adc_temp).analog_read();
     let v: u8 = <AdcCh as AnalogRead<u8>>::start(&adc_ref).analog_read();
 
-    println!("# t: {} v: {}", t, v);
+    // println!("# t: {} v: {}", t, v);
 
     assert!(t > 110 && t < 130);
     assert!(v > 220 && t < 240);
@@ -308,8 +309,8 @@ fn test_lpuart() {
     // while uart.isr().test_busy() {}
     uart.rcc_disable();
     console::init();
-    println!("# src: {:?}", src);
-    println!("# dst: {:?}", dst);
+    // println!("# src: {:?}", src);
+    // println!("# dst: {:?}", dst);
     assert_eq!(src, &dst);
     println!("[pass] LPUART OK");
 }
@@ -357,8 +358,62 @@ fn test_usart() {
     // while uart.isr().test_busy() {}
     uart.rcc_disable();
     console::init();
-    println!("# src: {:?}", src);
-    println!("# dst: {:?}", dst);
+    // println!("# src: {:?}", src);
+    // println!("# dst: {:?}", dst);
     assert_eq!(src, &dst);
     println!("[pass] USART OK");
+}
+
+/// PA6(A5) and PA7(A6) must be jumpered togeter.
+fn test_spi() {
+    use board::hal::gpio::*;
+    use board::hal::spi::*;
+
+    let spi = SPI1;
+    let port = GPIOA;
+    let spi_miso = PA6;
+    let spi_mosi = PA7;
+    let spi_sck = PA5;
+
+    spi.rcc_enable();
+    port.rcc_enable();
+    spi_miso.mode_spi_miso(&spi).speed_high().pull_up();
+    spi_mosi.mode_spi_mosi(&spi).speed_high().push_pull();
+    spi_sck.mode_spi_sck(&spi).speed_high().push_pull();
+
+    spi.set_config(|cfg| cfg
+        .set_frame_size(FrameSize::Bits8)
+        .set_master(true)
+        .set_baud_divider(0b0.into())
+    );
+
+    spi.set_output_enabled(true).set_enabled(true);
+
+    let src: [u8; 8] = [0xde, 0xad, 0xbe, 0xef, 0x12, 0x34, 0x56, 0x78];
+    let mut dst = [0u8; 8];
+
+    let mut i = 0;
+    let mut j = 0;
+    loop {
+        if i < src.len() && spi.can_tx() {
+            spi.tx(src[i]);
+            i += 1;
+        }
+        if j < dst.len() && spi.can_rx() {
+            dst[j] = spi.rx();
+            j += 1;
+        }
+        if j == dst.len() {
+            break;
+        }        
+    }
+    // println!("# src: {:?}", src);
+    // println!("# dst: {:?}", dst);
+    assert_eq!(src, dst);
+    
+    spi.set_enabled(false);
+
+    println!("[pass] SPI OK");
+
+    spi.rcc_disable();
 }
