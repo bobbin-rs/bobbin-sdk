@@ -265,7 +265,6 @@ fn test_exti() {
     println!("[pass] EXTI OK");
 }
 
-/// PA3(A2) must be connected to PA2(A7)
 fn test_lpuart() {
     use board::console;
     use board::clock::{CLK, Clock};
@@ -274,38 +273,31 @@ fn test_lpuart() {
 
     let uart = LPUART1;
     let port = GPIOA;
-    let rx = PA3; // A2
-    let tx = PA2; // A7
+    let tx = PA2;
 
     let f_ck = uart.clock(&CLK).unwrap();
-    println!("Clock: {:?}", f_ck);
 
-
-
-    board::delay(10);
+    board::delay(1);
     console::disable();
-
-    
+   
     uart.rcc_enable();
     port.rcc_enable();
 
-    rx.mode_rx(&uart);
     tx.mode_tx(&uart);
 
-    // uart.with_config(|c| c.set_baud(115200, f_ck));
-    // uart.with_config(|c| c.set_brr(13u32.into()));
-    uart.set_brr(|r| r.set_brr(71_111));
-    // uart.with_cr3(|r| r.set_hdsel(1));
+    uart.with_config(|c| c.set_baud(115200, f_ck));
+    // uart.set_brr(|r| r.set_brr(71_111));
+    uart.with_cr3(|r| r.set_hdsel(1));
     uart.set_enabled(true);
 
-    let src = [b'a', b'b', b'c', b'd'];
-    let mut dst = [0u8; 4];
+    let src = b"# ABCD\r\n";;
+    let mut dst = [0u8; 8];
 
     if uart.can_rx() {
         let _ = uart.rx();
     }
 
-    for i in 0..4 {
+    for i in 0..src.len() {
         uart.putc(src[i]);
         while !uart.isr().test_tc() {}
         if uart.can_rx() {
@@ -313,10 +305,10 @@ fn test_lpuart() {
         }
     }
     // while uart.isr().test_busy() {}
-
     uart.rcc_disable();
     console::init();
-    println!("src: {:?}", src);
-    println!("dst: {:?}", dst);
+    println!("# src: {:?}", src);
+    println!("# dst: {:?}", dst);
+    assert_eq!(src, &dst);
     println!("[pass] LPUART OK");
 }
