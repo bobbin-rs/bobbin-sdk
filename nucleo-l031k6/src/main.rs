@@ -1,5 +1,6 @@
 #![no_std]
 #![no_main]
+#![allow(dead_code)]
 
 #[macro_use]
 extern crate nucleo_l031k6 as board;
@@ -8,16 +9,17 @@ extern crate nucleo_l031k6 as board;
 pub extern "C" fn main() -> ! {
     board::init();
     println!("[start] Running tests for nucleo-l031K6");
-    test_crc();
-    test_gpio();
-    test_lptim();
-    test_systick();
-    test_adc();
-    test_dma();
-    test_exti();
-    test_lpuart();
-    test_usart();
-    test_spi();
+    // test_crc();
+    // test_gpio();
+    // test_lptim();
+    // test_systick();
+    // test_adc();
+    // test_dma();
+    // test_exti();
+    // test_lpuart();
+    // test_usart();
+    // test_spi();
+    test_i2c();
     println!("[done] All tests passed");
     loop {}
 }
@@ -416,8 +418,62 @@ fn test_spi() {
     assert_eq!(src, dst);
     
     spi.set_enabled(false);
+    spi.rcc_disable();
 
     println!("[pass] SPI OK");
+}
 
-    spi.rcc_disable();
+fn test_i2c() {
+    use board::hal::gpio::*;
+    use board::hal::i2c::*;
+    use board::common::bits::*;
+
+    let addr: U7 = U7::from(0x60);
+
+    let i2c = I2C1;
+    let i2c_port = GPIOB;
+    let i2c_scl = PB6; // D4
+    let i2c_sda = PB7; // D5
+
+    i2c.rcc_enable();
+    i2c_port.rcc_enable();
+
+    // Attached to MPL3115A2 
+    // NOTE: SCL and SCA must have pull-up resistors.
+
+    i2c_scl.mode_i2c_scl(&i2c).open_drain();
+    i2c_sda.mode_i2c_sda(&i2c).open_drain();
+
+    println!("# Configuring I2C");
+
+    // i2c.set_config(|c| c.set_timing(0x8.into(), 0x3.into(), 0x0.into(), 0xd.into(), 0x12.into()));
+    i2c.set_enabled(false);
+    // i2c.set_timingr(|_| Timingr(0x00300619));
+    i2c.set_timingr(|r| r
+        .set_presc(0x8)
+        .set_scldel(0x3)
+        .set_sdadel(0x0)
+        .set_sclh(0xF)
+        .set_scll(0x12)
+    );
+    println!("Sending");
+
+    i2c.write_addr(addr, &[0x26, 0xb8]);
+    i2c.write_addr(addr, &[0x13, 0x07]);
+    i2c.write_addr(addr, &[0x26, 0xb9]);
+    board::delay(500);
+    let cmd = [0u8];
+    let mut buf = [0u8; 6];
+    i2c.write_addr(addr, &cmd);
+    i2c.read_addr(addr, &mut buf);
+    println!("# {:?}", buf);
+
+    assert!(buf[0] == 014 && buf[1] == 0 && buf[2] != 0 && buf[3] != 0 && buf[4] != 0 && buf[5] != 0);
+
+    i2c.disable();
+    println!("# Disabling I2C");
+
+    i2c_port.rcc_disable();
+    i2c.rcc_disable();
+    println!("[pass] I2C OK");
 }
