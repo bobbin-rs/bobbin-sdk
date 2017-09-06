@@ -120,7 +120,7 @@ impl SpiCanTx for SpiPeriph {
 
 impl SpiTx<u8> for SpiPeriph {
     fn tx(&self, value: u8) -> &Self {
-        self.set_dr8(|r| r.set_dr(value));
+        self.set_dr(|r| r.set_dr(value));
         self
     }
 }
@@ -140,7 +140,7 @@ impl SpiCanRx for SpiPeriph {
 
 impl SpiRx<u8> for SpiPeriph {
     fn rx(&self) -> u8 {
-        self.dr8().dr().into()
+        self.dr().dr().into()
     }
 }
 
