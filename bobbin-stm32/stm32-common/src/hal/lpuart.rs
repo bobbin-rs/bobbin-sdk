@@ -33,7 +33,7 @@ impl Config {
     // LPUARTDIV is coded on the LPUART_BRR register.
 
     pub fn set_baud(mut self, baud: u32, clock: u32) -> Self {
-        let divider: u32 = baud / (256 * clock);
+        let divider: u32 = (64 * clock) / (baud / 4);
         self.brr = Brr(0).set_brr(divider);
         self
     }
@@ -92,7 +92,7 @@ impl Write for LpuartPeriph {
 
 impl SerialTx<u8> for LpuartPeriph {    
     fn can_tx(&self) -> bool {
-        self.isr().txe() != 0
+        self.isr().test_txe()
     }
 
     fn tx(&self, c: u8) -> &Self {
@@ -102,7 +102,7 @@ impl SerialTx<u8> for LpuartPeriph {
 
 impl SerialRx<u8> for LpuartPeriph {
     fn can_rx(&self) -> bool {
-        self.isr().rxne() != 0
+        self.isr().test_rxne()
     }
 
     fn rx(&self) -> u8 {
