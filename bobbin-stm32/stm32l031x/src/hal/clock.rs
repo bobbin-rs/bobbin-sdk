@@ -8,6 +8,8 @@ use ::chip::usart::*;
 use ::chip::lpuart::*;
 use ::chip::lptim::*;
 use ::chip::tim_gen::*;
+use ::chip::i2c::*;
+use ::chip::spi::*;
 
 use core::fmt;
 
@@ -304,5 +306,19 @@ impl<T: ClockTree> Clock<T> for Tim22 {
     #[inline]
     fn clock(&self, t: &T) -> Hz {
         t.tim_pclk2()
+    }
+}
+
+impl<T: ClockTree> Clock<T> for I2c1 {
+    #[inline]
+    fn clock(&self, t: &T) -> Hz {
+        t.pclk1()
+    }
+}
+
+impl<T: ClockTree> Clock<T> for Spi1 {
+    #[inline]
+    fn clock(&self, t: &T) -> Hz {
+        t.pclk2()
     }
 }
