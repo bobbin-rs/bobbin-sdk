@@ -191,7 +191,7 @@ pin!(PB12, Pb12, GPIOB, Gpiob, _PB12, GpioPin, _GPIOB, 12);
     alt_fn!(Pb12, super::sig::Eventout, 6);
 
 pin!(PB13, Pb13, GPIOB, Gpiob, _PB13, GpioPin, _GPIOB, 13);
-    alt_fn!(Pb13, super::sig::SpiSck, 0);
+    alt_fn!(Pb13, super::sig::Spi1Sck, 0);
     alt_fn!(Pb13, super::sig::Mco, 1);
     alt_fn!(Pb13, super::sig::Tim21Ch1, 5);
     alt_fn!(Pb13, super::sig::Lpuart1Cts, 6);

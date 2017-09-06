@@ -28,8 +28,8 @@ pub trait SpiMiso {}
 pub trait SignalSpiMiso<T> {}
 pub trait SpiMosi {}
 pub trait SignalSpiMosi<T> {}
-pub trait Sck {}
-pub trait SignalSck<T> {}
+pub trait SpiSck {}
+pub trait SignalSpiSck<T> {}
 pub trait Adc {}
 pub trait SignalAdc<T> {}
 
@@ -88,6 +88,5 @@ pub struct Mco {}
 pub struct Spi1Mio {}
 pub struct Swdio {}
 pub struct Swclk {}
-pub struct SpiSck {}
 pub struct RtcOut {}
 pub struct RtcRefin {}

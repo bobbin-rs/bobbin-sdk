@@ -48,6 +48,7 @@ pub mod gpio {
     impl_mode!(ModeAdc, mode_adc, SignalAdc);
     impl_mode!(ModeI2cScl, mode_i2c_scl, SignalI2cScl);
     impl_mode!(ModeI2cSda, mode_i2c_sda, SignalI2cSda);
+    impl_mode!(ModeSpiSck, mode_spi_sck, SignalSpiSck);
     impl_mode!(ModeSpiNss, mode_spi_nss, SignalSpiNss);
     impl_mode!(ModeSpiMosi, mode_spi_mosi, SignalSpiMosi);
     impl_mode!(ModeSpiMiso, mode_spi_miso, SignalSpiMiso);
@@ -115,7 +116,7 @@ pub mod i2c {
 
 pub mod spi {
     pub use chip::spi::*;
-    pub use stm32_common::hal::spi_v2::*;
+    pub use stm32_common::hal::spi_v1::*;
     pub use super::rcc::RccEnabled;
 }
 

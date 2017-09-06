@@ -139,6 +139,39 @@ impl SpiPeriph {
         self
     }
 
+    #[doc="Get the *mut pointer for the DR8 register."]
+    #[inline] pub fn dr8_mut(&self) -> *mut Dr8 { 
+        (self.0 + 0xc) as *mut Dr8
+    }
+
+    #[doc="Get the *const pointer for the DR8 register."]
+    #[inline] pub fn dr8_ptr(&self) -> *const Dr8 { 
+           self.dr8_mut()
+    }
+
+    #[doc="Read the DR8 register."]
+    #[inline] pub fn dr8(&self) -> Dr8 { 
+        unsafe {
+            read_volatile(self.dr8_ptr())
+        }
+    }
+
+    #[doc="Write the DR8 register."]
+    #[inline] pub fn set_dr8<F: FnOnce(Dr8) -> Dr8>(&self, f: F) -> &Self {
+        unsafe {
+            write_volatile(self.dr8_mut(), f(Dr8(0)));
+        }
+        self
+    }
+
+    #[doc="Modify the DR8 register."]
+    #[inline] pub fn with_dr8<F: FnOnce(Dr8) -> Dr8>(&self, f: F) -> &Self {
+        unsafe {
+            write_volatile(self.dr8_mut(), f(self.dr8()));
+        }
+        self
+    }
+
     #[doc="Get the *mut pointer for the CRCPR register."]
     #[inline] pub fn crcpr_mut(&self) -> *mut Crcpr { 
         (self.0 + 0x10) as *mut Crcpr
@@ -994,6 +1027,53 @@ impl ::core::fmt::Display for Dr {
 }
 
 impl ::core::fmt::Debug for Dr {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        if self.dr() != 0 { try!(write!(f, " dr=0x{:x}", self.dr()))}
+        try!(write!(f, "]"));
+        Ok(())
+    }
+}
+
+#[doc="data register (8 bit)"]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct Dr8(pub u16);
+impl Dr8 {
+    #[doc="Data register (8 bit)"]
+    #[inline] pub fn dr(&self) -> bits::U8 {
+        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
+    }
+
+    #[doc="Returns true if DR != 0"]
+    #[inline] pub fn test_dr(&self) -> bool {
+        self.dr() != 0
+    }
+
+    #[doc="Sets the DR field."]
+    #[inline] pub fn set_dr<V: Into<bits::U8>>(mut self, value: V) -> Self {
+        let value: bits::U8 = value.into();
+        let value: u16 = value.into();
+        self.0 &= !(0xff << 0);
+        self.0 |= value << 0;
+        self
+    }
+
+}
+
+impl From<u16> for Dr8 {
+    #[inline]
+    fn from(other: u16) -> Self {
+         Dr8(other)
+    }
+}
+
+impl ::core::fmt::Display for Dr8 {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
+    }
+}
+
+impl ::core::fmt::Debug for Dr8 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
         try!(write!(f, "[0x{:08x}", self.0));
         if self.dr() != 0 { try!(write!(f, " dr=0x{:x}", self.dr()))}

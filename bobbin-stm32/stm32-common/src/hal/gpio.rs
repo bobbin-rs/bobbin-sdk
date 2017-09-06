@@ -158,6 +158,27 @@ impl GpioPin {
     pub fn open_drain(&self) -> &Self {
         self.set_output_type(OutputType::OpenDrain)
     }
+
+    #[inline]
+    pub fn speed_low(&self) -> &Self {
+        self.set_output_speed(OutputSpeed::LowSpeed)
+    }
+
+    #[inline]
+    pub fn speed_medium(&self) -> &Self {
+        self.set_output_speed(OutputSpeed::MediumSpeed)
+    }
+
+    #[inline]
+    pub fn speed_fast(&self) -> &Self {
+        self.set_output_speed(OutputSpeed::FastSpeed)
+    }
+
+    #[inline]
+    pub fn speed_high(&self) -> &Self {
+        self.set_output_speed(OutputSpeed::HighSpeed)
+    }
+
 }
 
 impl DigitalInput for GpioPin {

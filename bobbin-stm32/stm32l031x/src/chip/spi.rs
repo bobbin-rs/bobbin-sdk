@@ -11,7 +11,7 @@ impl super::sig::SignalSpiMiso<super::sig::Spi1Miso> for Spi1 {}
 impl super::sig::Signal<super::sig::Spi1Mosi> for Spi1 {}
 impl super::sig::SignalSpiMosi<super::sig::Spi1Mosi> for Spi1 {}
 impl super::sig::Signal<super::sig::Spi1Sck> for Spi1 {}
-impl super::sig::SignalSck<super::sig::Spi1Sck> for Spi1 {}
+impl super::sig::SignalSpiSck<super::sig::Spi1Sck> for Spi1 {}
 
 
 
