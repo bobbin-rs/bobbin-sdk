@@ -701,7 +701,7 @@
                 (altfn 6 EVENTOUT)
             )
             (pin (name PB13) (index 13)
-                (altfn 0 SPI_SCK)
+                (altfn 0 SPI1_SCK)
                 (altfn 1 MCO)
                 (altfn 5 TIM21_CH1)
                 (altfn 6 LPUART1_CTS)
@@ -784,7 +784,7 @@
             (signal (name SPI1_NSS) (type SPI_NSS))
             (signal (name SPI1_MISO) (type SPI_MISO))
             (signal (name SPI1_MOSI) (type SPI_MOSI))
-            (signal (name SPI1_SCK) (type SCK))
+            (signal (name SPI1_SCK) (type SPI_SCK))
             (interrupt
                 (name SPI1)
                 (value 25)
