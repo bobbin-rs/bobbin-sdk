@@ -18,3 +18,7 @@ pub mod rng;
 pub mod iwdg;
 pub mod wwdg;
 pub mod exti;
+pub mod i2c_v1;
+pub mod i2c_v2;
+pub mod spi_v1;
+pub mod spi_v2;

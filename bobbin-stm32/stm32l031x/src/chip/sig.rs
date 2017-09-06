@@ -2,12 +2,12 @@
 
 pub trait Signal<T> {}
 
-pub trait Smba {}
-pub trait SignalSmba<T> {}
-pub trait Scl {}
-pub trait SignalScl<T> {}
-pub trait Sda {}
-pub trait SignalSda<T> {}
+pub trait I2cSmba {}
+pub trait SignalI2cSmba<T> {}
+pub trait I2cScl {}
+pub trait SignalI2cScl<T> {}
+pub trait I2cSda {}
+pub trait SignalI2cSda<T> {}
 pub trait Etr {}
 pub trait SignalEtr<T> {}
 pub trait Tim {}
@@ -22,12 +22,12 @@ pub trait Rts {}
 pub trait SignalRts<T> {}
 pub trait Ck {}
 pub trait SignalCk<T> {}
-pub trait Nss {}
-pub trait SignalNss<T> {}
-pub trait Miso {}
-pub trait SignalMiso<T> {}
-pub trait Mosi {}
-pub trait SignalMosi<T> {}
+pub trait SpiNss {}
+pub trait SignalSpiNss<T> {}
+pub trait SpiMiso {}
+pub trait SignalSpiMiso<T> {}
+pub trait SpiMosi {}
+pub trait SignalSpiMosi<T> {}
 pub trait Sck {}
 pub trait SignalSck<T> {}
 pub trait Adc {}
@@ -82,7 +82,6 @@ pub struct Eventout {}
 pub struct Lptim1In2 {}
 pub struct Comp2Out {}
 pub struct Uart2Ck {}
-pub struct SpiMiso {}
 pub struct Lptim1Etr {}
 pub struct Lptim1Out {}
 pub struct Mco {}

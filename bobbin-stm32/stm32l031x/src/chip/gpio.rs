@@ -60,7 +60,7 @@ pin!(PA5, Pa5, GPIOA, Gpioa, _PA5, GpioPin, _GPIOA, 5);
 
 pin!(PA6, Pa6, GPIOA, Gpioa, _PA6, GpioPin, _GPIOA, 6);
     alt_fn!(Pa6, super::sig::Adc1In6, 0);
-    alt_fn!(Pa6, super::sig::SpiMiso, 0);
+    alt_fn!(Pa6, super::sig::Spi1Miso, 0);
     alt_fn!(Pa6, super::sig::Lptim1Etr, 1);
     alt_fn!(Pa6, super::sig::Lpuart1Cts, 4);
     alt_fn!(Pa6, super::sig::Tim22Ch1, 5);

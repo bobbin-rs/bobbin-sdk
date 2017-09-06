@@ -21,57 +21,86 @@ pub mod gpio {
     pub use chip::gpio::*;
     pub use stm32_common::hal::gpio::*;
     pub use super::rcc::RccEnabled;
-    use chip::sig::{SignalTx, SignalRx, SignalTim, SignalAdc};
+    // use chip::sig::{ SignalRx, SignalTim, SignalAdc};
 
     use core::ops::Deref;
 
-    pub trait ModeTx<SIG, PERIPH> {
-        fn mode_tx(&self, _: &PERIPH) -> &Self;
+    macro_rules! impl_mode {
+        ($mode:ident, $meth:ident, $sig:ident) => (
+            use chip::sig::$sig;
+
+            pub trait $mode<SIG, PERIPH> {
+                fn $meth(&self, _: &PERIPH) -> &Self;
+            }
+
+            impl<PERIPH, PIN, SIG> $mode<SIG, PERIPH> for PIN where PERIPH: $sig<SIG>, PIN: AltFn<SIG>, PIN: Deref<Target=GpioPin> {
+                #[inline]
+                fn $meth(&self, _: &PERIPH) -> &Self {
+                    self.mode_alt_fn(self.alt_fn());
+                    self
+                }
+            }            
+        )
     }
 
-    pub trait ModeRx<SIG, PERIPH> {
-        fn mode_rx(&self, _: &PERIPH) -> &Self;
-    }
+    impl_mode!(ModeRx, mode_rx, SignalRx);
+    impl_mode!(ModeTx, mode_tx, SignalTx);
+    impl_mode!(ModeTim, mode_tim, SignalTim);
+    impl_mode!(ModeAdc, mode_adc, SignalAdc);
+    impl_mode!(ModeI2cScl, mode_i2c_scl, SignalI2cScl);
+    impl_mode!(ModeI2cSda, mode_i2c_sda, SignalI2cSda);
+    impl_mode!(ModeSpiNss, mode_spi_nss, SignalSpiNss);
+    impl_mode!(ModeSpiMosi, mode_spi_mosi, SignalSpiMosi);
+    impl_mode!(ModeSpiMiso, mode_spi_miso, SignalSpiMiso);
 
-    pub trait ModeTim<SIG, PERIPH> {
-        fn mode_tim(&self, _: &PERIPH) -> &Self;
-    }    
 
-    pub trait ModeAdc<SIG, PERIPH> {
-        fn mode_adc(&self, _: &PERIPH) -> &Self;
-    }    
+    // pub trait ModeTx<SIG, PERIPH> {
+    //     fn mode_tx(&self, _: &PERIPH) -> &Self;
+    // }
 
-    impl<PERIPH, PIN, SIG> ModeTx<SIG, PERIPH> for PIN where PERIPH: SignalTx<SIG>, PIN: AltFn<SIG>, PIN: Deref<Target=GpioPin> {
-        #[inline]
-        fn mode_tx(&self, _: &PERIPH) -> &Self {
-            self.mode_alt_fn(self.alt_fn());
-            self
-        }
-    }
+    // pub trait ModeRx<SIG, PERIPH> {
+    //     fn mode_rx(&self, _: &PERIPH) -> &Self;
+    // }
 
-    impl<PERIPH, PIN, SIG> ModeRx<SIG, PERIPH> for PIN where PERIPH: SignalRx<SIG>, PIN: AltFn<SIG>, PIN: Deref<Target=GpioPin>  {
-        #[inline]
-        fn mode_rx(&self, _: &PERIPH) -> &Self {
-            self.mode_alt_fn(self.alt_fn());
-            self
-        }
-    }
+    // pub trait ModeTim<SIG, PERIPH> {
+    //     fn mode_tim(&self, _: &PERIPH) -> &Self;
+    // }    
+
+    // pub trait ModeAdc<SIG, PERIPH> {
+    //     fn mode_adc(&self, _: &PERIPH) -> &Self;
+    // }    
+
+    // impl<PERIPH, PIN, SIG> ModeTx<SIG, PERIPH> for PIN where PERIPH: SignalTx<SIG>, PIN: AltFn<SIG>, PIN: Deref<Target=GpioPin> {
+    //     #[inline]
+    //     fn mode_tx(&self, _: &PERIPH) -> &Self {
+    //         self.mode_alt_fn(self.alt_fn());
+    //         self
+    //     }
+    // }
+
+    // impl<PERIPH, PIN, SIG> ModeRx<SIG, PERIPH> for PIN where PERIPH: SignalRx<SIG>, PIN: AltFn<SIG>, PIN: Deref<Target=GpioPin>  {
+    //     #[inline]
+    //     fn mode_rx(&self, _: &PERIPH) -> &Self {
+    //         self.mode_alt_fn(self.alt_fn());
+    //         self
+    //     }
+    // }
     
-    impl<PERIPH, PIN, SIG> ModeTim<SIG, PERIPH>  for PIN where PERIPH: SignalTim<SIG>, PIN: AltFn<SIG>, PIN: Deref<Target=GpioPin> {
-        #[inline]
-        fn mode_tim(&self, _: &PERIPH) -> &Self {
-            self.mode_alt_fn(self.alt_fn());
-            self
-        }
-    }    
+    // impl<PERIPH, PIN, SIG> ModeTim<SIG, PERIPH>  for PIN where PERIPH: SignalTim<SIG>, PIN: AltFn<SIG>, PIN: Deref<Target=GpioPin> {
+    //     #[inline]
+    //     fn mode_tim(&self, _: &PERIPH) -> &Self {
+    //         self.mode_alt_fn(self.alt_fn());
+    //         self
+    //     }
+    // }    
 
-    impl<PERIPH, PIN, SIG> ModeAdc<SIG, PERIPH>  for PIN where PERIPH: SignalAdc<SIG>, PIN: AltFn<SIG>, PIN: Deref<Target=GpioPin> {
-        #[inline]
-        fn mode_adc(&self, _: &PERIPH) -> &Self {
-            self.mode_alt_fn(self.alt_fn()).mode_analog();
-            self
-        }
-    }        
+    // impl<PERIPH, PIN, SIG> ModeAdc<SIG, PERIPH>  for PIN where PERIPH: SignalAdc<SIG>, PIN: AltFn<SIG>, PIN: Deref<Target=GpioPin> {
+    //     #[inline]
+    //     fn mode_adc(&self, _: &PERIPH) -> &Self {
+    //         self.mode_alt_fn(self.alt_fn()).mode_analog();
+    //         self
+    //     }
+    // }        
 }
 
 pub mod usart {
@@ -126,7 +155,18 @@ pub mod exti {
     pub use chip::exti::*;
     pub use stm32_common::hal::exti::*;
     pub use super::rcc::RccEnabled;
+}
 
+pub mod i2c {
+    pub use chip::i2c::*;
+    pub use stm32_common::hal::i2c_v2::*;
+    pub use super::rcc::RccEnabled;
+}
+
+pub mod spi {
+    pub use chip::spi::*;
+    pub use stm32_common::hal::spi_v2::*;
+    pub use super::rcc::RccEnabled;
 }
 
 pub mod syscfg {

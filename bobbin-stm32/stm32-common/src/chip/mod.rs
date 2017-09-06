@@ -21,3 +21,7 @@ pub mod adc_f1;
 pub mod adc_f24;
 pub mod adc_f3;
 pub mod adc_l0;
+pub mod i2c_v1;
+pub mod i2c_v2;
+pub mod spi_v1;
+pub mod spi_v2;
