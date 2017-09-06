@@ -415,13 +415,13 @@
     )
     (peripheral-group
         (name I2C)
-        (prototype "periph/i2c.rx")
+        (module (name stm32_common::chip::i2c_v2::*))
         (peripheral 
             (name I2C1)
             (address 0x40005400)
-            (signal (name I2C1_SMBA) (type SMBA))
-            (signal (name I2C1_SCL) (type SCL))
-            (signal (name I2C1_SDA) (type SDA))
+            (signal (name I2C1_SMBA) (type I2C_SMBA))
+            (signal (name I2C1_SCL) (type I2C_SCL))
+            (signal (name I2C1_SDA) (type I2C_SDA))
             (interrupt
                 (name I2C1)
                 (value 23)
@@ -565,7 +565,7 @@
             )
             (pin (name PA6) (index 6)
                 (altfn 0 ADC1_IN6)
-                (altfn 0 SPI_MISO)
+                (altfn 0 SPI1_MISO)
                 (altfn 1 LPTIM1_ETR)
                 (altfn 4 LPUART1_CTS)
                 (altfn 5 TIM22_CH1)
@@ -777,13 +777,13 @@
 
     (peripheral-group
         (name SPI)        
-        (prototype "periph/spi.rx")
+        (module (name stm32_common::chip::spi_v1::*))
         (peripheral 
             (name SPI1)
             (address 0x40013000)
-            (signal (name SPI1_NSS) (type NSS))
-            (signal (name SPI1_MISO) (type MISO))
-            (signal (name SPI1_MOSI) (type MOSI))
+            (signal (name SPI1_NSS) (type SPI_NSS))
+            (signal (name SPI1_MISO) (type SPI_MISO))
+            (signal (name SPI1_MOSI) (type SPI_MOSI))
             (signal (name SPI1_SCK) (type SCK))
             (interrupt
                 (name SPI1)

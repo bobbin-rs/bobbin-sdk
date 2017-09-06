@@ -94,4 +94,24 @@
         (has-channels)
         (prototype "periph/adc_l0.rx")
     )    
+    (peripheral-group
+        (name I2C_V1)
+        (has-channels)
+        (prototype "periph/i2c_v1.rx")
+    )    
+    (peripheral-group
+        (name I2C_V2)
+        (has-channels)
+        (prototype "periph/i2c_v2.rx")
+    )    
+    (peripheral-group
+        (name SPI_V1)
+        (has-channels)
+        (prototype "periph/spi_v1.rx")
+    )    
+    (peripheral-group
+        (name SPI_V2)
+        (has-channels)
+        (prototype "periph/spi_v2.rx")
+    )        
 )
