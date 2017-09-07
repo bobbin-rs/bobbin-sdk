@@ -29,6 +29,11 @@ impl PortPin {
         self.port.with_pcr(self.index, |r| r.set_mux(value as u32));
         self
     }
+
+    pub fn set_mux_disabled(&self) -> &Self {
+        self.set_mux(0)
+    }
+
     pub fn set_mux_gpio(&self) -> &Self {
         self.set_mux(1)
     }

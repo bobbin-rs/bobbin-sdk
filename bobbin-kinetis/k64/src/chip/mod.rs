@@ -16,6 +16,7 @@ pub mod mcg;
 pub mod osc;
 pub mod rcm;
 pub mod enet;
+pub mod crc;
 pub mod wdog;
 pub mod dmamux;
 pub mod edma;

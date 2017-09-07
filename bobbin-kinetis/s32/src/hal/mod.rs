@@ -50,3 +50,9 @@ pub mod rtc {
     pub use chip::rtc::*;
     pub use super::pcc::PccEnabled;
 }
+
+pub mod crc {
+    pub use chip::crc::*;
+    pub use kinetis_common::hal::crc::*;
+    pub use super::pcc::PccEnabled;
+}

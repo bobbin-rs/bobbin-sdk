@@ -14,6 +14,7 @@ pub mod sig;
 pub mod sim;
 pub mod mcg;
 pub mod osc;
+pub mod crc;
 pub mod dmamux;
 pub mod edma;
 pub mod ftm;

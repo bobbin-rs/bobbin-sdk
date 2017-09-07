@@ -6,6 +6,7 @@ extern crate std;
 
 pub extern crate bobbin_bits as bits;
 pub mod clock;
+pub mod crc;
 pub mod timer;
 pub mod digital;
 pub mod analog;

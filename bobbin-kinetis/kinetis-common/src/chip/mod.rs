@@ -1,5 +1,6 @@
 #[allow(unused_imports)] use bobbin_common::*;
 pub mod sig;
+pub mod crc;
 pub mod wdog;
 pub mod gpio;
 pub mod port;

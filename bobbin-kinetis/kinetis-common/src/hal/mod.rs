@@ -15,3 +15,4 @@ pub mod edma;
 pub mod dmamux;
 pub mod wdog;
 pub mod adc;
+pub mod crc;
