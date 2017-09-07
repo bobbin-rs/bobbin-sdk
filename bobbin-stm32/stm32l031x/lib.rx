@@ -18,12 +18,6 @@
     (peripheral (include "periph/pwr.rx"))
     (peripheral (include "periph/rcc.rx"))
     (peripheral (include "periph/syscfg.rx"))
-    ;(peripheral (include "periph/iwdg.rx"))
-    ;(peripheral (include "periph/wwdg.rx"))
-    ;(peripheral (include "periph/crc.rx"))
-    ;(peripheral (include "periph/rng.rx"))    
-    ;(peripheral (include "periph/rtc.rx"))
-    ;(peripheral (include "periph/lptim.rx"))
 
     (variants
         (variant (name STM32L031x4) (link "stm32l031x4.ld"))
