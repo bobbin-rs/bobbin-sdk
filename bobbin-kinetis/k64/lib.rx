@@ -28,6 +28,15 @@
     (peripheral (include "periph/enet.rx"))
 
     (peripheral-group
+        (name CRC)
+        (module (name kinetis_common::chip::crc::*))
+        (peripheral
+            (name CRC)
+            (address 0x40032000)
+        )
+    )
+
+    (peripheral-group
         (name WDOG)
         (module (name kinetis_common::chip::wdog::*))
         (peripheral

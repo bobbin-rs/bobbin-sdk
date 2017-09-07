@@ -29,9 +29,17 @@
     (peripheral (include "periph/pcc.rx"))
     (peripheral (include "periph/rcm.rx"))
     (peripheral (include "periph/wdog.rx"))
-    (peripheral (include "periph/crc.rx"))
     (peripheral (include "periph/rtc.rx"))
     (peripheral (include "periph/smc.rx"))
+
+    (peripheral-group
+        (name CRC)
+        (module (name kinetis_common::chip::crc::*))
+        (peripheral
+            (name CRC)
+            (address 0x40032000)
+        )
+    )
 
     (peripheral-group
         (name DMAMUX)
@@ -471,6 +479,20 @@
             )
         )
     )
+
+    (peripheral-group
+        (name LPTMR)
+        (module (name kinetis_common::chip::lptmr::*))
+        (peripheral
+            (name LPTMR0)
+            (address 0x40040000)
+            (description "Low Power Timer")
+            (interrupt
+                (name LPTMR0)
+                (value 58)
+            )
+        )
+    )   
 
     (peripheral-group
         (name FLEXCAN)

@@ -6,6 +6,8 @@
     (link (name CGC))
     (link (name PR))
     (link (name PCS))
+    (link (name PCD))
+    (link (name FRAC))
     (register
         (name PCCDummy0)
         (offset 0x0)
@@ -1736,6 +1738,7 @@
             (bit-width 3)
             (access read-write)
             (description "Peripheral Clock Divider Select")
+            (link (name PCD) (peripheral-group LPTMR) (peripheral LPTMR0))            
             (value
                 (value "#000")
                 (name "000")
@@ -1783,6 +1786,7 @@
             (bit-width 1)
             (access read-write)
             (description "Peripheral Clock Divider Fraction")
+            (link (name FRAC) (peripheral-group LPTMR) (peripheral LPTMR0))            
             (value
                 (value "#0")
                 (name "0")
@@ -1800,6 +1804,7 @@
             (bit-width 3)
             (access read-write)
             (description "Peripheral Clock Source Select")
+            (link (name PCS) (peripheral-group LPTMR) (peripheral LPTMR0))            
             (value
                 (value "#000")
                 (name "000")
@@ -1847,6 +1852,7 @@
             (bit-width 1)
             (access read-write)
             (description "Clock Gate Control")
+            (link (name CGC) (peripheral-group LPTMR) (peripheral LPTMR0))
             (value
                 (value "#0")
                 (name "0")

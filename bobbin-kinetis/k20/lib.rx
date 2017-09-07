@@ -26,6 +26,15 @@
     (peripheral (include "periph/osc.rx"))    
 
     (peripheral-group
+        (name CRC)
+        (module (name kinetis_common::chip::crc::*))
+        (peripheral
+            (name CRC)
+            (address 0x40032000)
+        )
+    )
+
+    (peripheral-group
         (name DMAMUX)
         (module (name kinetis_common::chip::dmamux::*))
         (peripheral
