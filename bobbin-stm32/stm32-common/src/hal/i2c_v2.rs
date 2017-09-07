@@ -55,43 +55,42 @@ impl Enabled for I2cPeriph {
     }
 }
 
-impl WriteAddr<U7> for I2cPeriph {
-    fn write_addr(&self, addr: U7, data: &[u8]) -> &Self {
-        self.with_cr1(|r| r.set_pe(0));
-        self.set_cr2(|r| r
-            .set_autoend(1)
-            .set_nbytes(data.len())
-            .set_sadd(addr.value() << 1 | 0)                
-        );
-        self.with_cr1(|r| r.set_pe(1));
-        self.with_cr2(|r| r.set_start(1));
-        for byte in data.iter() {
-            while self.isr().txe() == 0 {}
-            self.set_txdr(|r| r.set_txdata(*byte));
+impl<A: Into<U7>> I2cTransfer<A> for I2cPeriph {
+    fn transfer(&self, addr: A, out_buf: &[u8], in_buf: &mut[u8]) -> &Self {
+        let addr = addr.into();
+        self.set_enabled(true);
+        if out_buf.len() > 0 {
+            self.with_cr2(|r| r
+                .set_sadd(addr.value() << 1)
+                .set_rd_wrn(0)
+                .set_nbytes(out_buf.len())
+                .set_autoend(in_buf.len() == 0)
+            );
+            self.with_cr2(|r| r.set_start(1));
+            for c in out_buf.iter() {
+                while self.isr().txis() == 0 {}
+                self.set_txdr(|r| r.set_txdata(*c));
+            }
+            if in_buf.len() > 0 {
+                while self.isr().tc() == 0 {}
+            }
         }
-        while self.isr().stopf() == 0 {}
-        self.with_cr1(|r| r.set_pe(0));
+        if in_buf.len() > 0 {
+            self.with_cr2(|r| r
+                .set_sadd(addr.value() << 1)
+                .set_rd_wrn(1)
+                .set_nbytes(in_buf.len())        
+            );
+            self.with_cr2(|r| r.set_start(1));
+            self.with_cr2(|r| r.set_autoend(1));
+
+            for i in 0..in_buf.len() {
+                while self.isr().rxne() == 0 {}
+                in_buf[i] = self.rxdr().rxdata().value();
+            }
+        }
+        while self.isr().busy() != 0 {}        
+        self.set_enabled(false);
         self
-    }
-}
-
-
-impl ReadAddr<U7> for I2cPeriph {
-    fn read_addr(&self, addr: U7, data: &mut [u8]) -> &Self {
-        self.with_cr1(|r| r.set_pe(0));
-        self.set_cr2(|r| r
-            .set_autoend(1)
-            .set_nbytes(data.len())
-            .set_sadd(addr.value() << 1 | 1)                
-            .set_rd_wrn(1)
-        );            
-        self.with_cr1(|r| r.set_pe(1));
-        self.with_cr2(|r| r.set_start(1));
-        for i in 0..data.len() {
-            while self.isr().rxne() == 0 {}
-            data[i] = self.rxdr().rxdata().value();
-        }           
-        self.with_cr1(|r| r.set_pe(0));       
-        self 
-    }
+    }    
 }
