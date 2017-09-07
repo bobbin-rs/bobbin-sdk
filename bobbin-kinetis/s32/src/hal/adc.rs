@@ -1,7 +1,7 @@
 use bobbin_common::bits::*;
 pub use bobbin_common::analog::AnalogRead;
 pub use chip::adc::*;
-pub use super::pcc::PccEnabled;
+pub use super::pcc::{PccClockSource, PccEnabled};
 
 #[derive(Debug, PartialEq, Eq, Clone, Copy)]
 #[repr(u8)]
