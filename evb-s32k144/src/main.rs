@@ -37,6 +37,10 @@ fn test_crc() {
     let v: u32 = CRC.init(CRC_32_START).write(&msg[..]).read();
     assert_eq!(v, 0x4A17B156);
 
+    // NOTE: These tests require updating the read() function to
+    // byte swap 16 bit values, which may be incorrect. Add
+    // further tests with other CRC specifications.
+
     let tot = 1;
     let totr = 1;
     let fxor = 0;
