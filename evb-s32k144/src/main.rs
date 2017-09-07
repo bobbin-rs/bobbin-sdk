@@ -16,6 +16,7 @@ pub extern "C" fn main() -> ! {
     test_adc();
     test_dma();
     test_irq();
+    test_lpuart();
     println!("[done] All tests passed");
     loop {}
 }
@@ -356,4 +357,32 @@ fn test_irq() {
     assert!(port_in.isf());   
 
     println!("[pass] IRQ OK");
+}
+
+fn test_lpuart() {
+    use board::hal::pcc;
+    use board::hal::lpuart::*;
+    use board::hal::clock::Clock;
+    use board::clock::CLK;
+
+    let uart_baud = 115_200;
+    let uart = LPUART0;
+
+    uart.pcc_set_clock_source(pcc::ClockSource::SPLLDIV2);
+    let sbr = uart.clock(&CLK).unwrap() / (uart_baud << 4);    
+    uart
+        .set_config(|c| c.set_baud_divisor(sbr.into()))    
+        .with_ctrl(|r| r.set_loops(1))
+        .enable();
+
+    let src = b"Hello World\r\n";
+    let mut dst = [0u8; 13];
+
+    assert!(src.len() == dst.len());
+    for i in 0..src.len() {
+        uart.wait_tx().tx(src[i]);
+        dst[i] = uart.wait_rx().rx();
+    }
+    assert_eq!(src, &dst);
+    println!("[pass] LPUART OK");
 }
