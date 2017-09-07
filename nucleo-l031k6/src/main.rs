@@ -526,9 +526,9 @@ fn test_i2c() {
                 while i2c.isr().txis() == 0 {}
                 i2c.set_txdr(|r| r.set_txdata(*c));
             }
-            // if in_buf.len() > 0 {
-            //     while i2c.sr().tc() == 0 {}
-            // }
+            if in_buf.len() > 0 {
+                while i2c.isr().tc() == 0 {}
+            }
         }
         if in_buf.len() > 0 {
             i2c.with_cr2(|r| r
