@@ -8,9 +8,20 @@ extern crate evb_s32k144 as board;
 pub extern "C" fn main() -> ! {
     board::init();
     println!("[start] Running tests for evb-s32k144");
+    // test_crc();
     test_gpio();
     println!("[done] All tests passed");
     loop {}
+}
+
+fn test_crc() {
+    use board::common::crc::*;
+    use board::hal::crc::*;
+
+    // Set polynomial to CRC_32
+    println!("# Setting up CRC");    
+
+    println!("[pass] CRC OK");
 }
 
 /// Jumper PTA11(D0) to PTA17(D1)
