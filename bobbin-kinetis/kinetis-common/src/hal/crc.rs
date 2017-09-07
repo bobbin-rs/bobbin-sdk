@@ -28,7 +28,8 @@ impl CrcWrite<u8> for CrcPeriph {
 
 impl CrcRead<u16> for CrcPeriph {
     fn read(&self) -> u16 {
-        self.datal().0
+        let d = self.data();
+        d.lu().into_u16() | d.ll().into_u16() << 8
     }
 }
 
