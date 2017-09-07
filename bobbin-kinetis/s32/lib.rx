@@ -1494,6 +1494,7 @@
             (channel (name ADC0_CH15) (index 15) (signal (name ADC0_SE15) (type ADC)))
 
             (channel (name ADC0_IN0) (index 21))
+            (channel (name ADC0_TEMP) (index 26))
             (channel (name ADC0_BANDGAP) (index 27))
             (channel (name ADC0_REFSH) (index 29))
             (channel (name ADC0_REFSL) (index 30))
