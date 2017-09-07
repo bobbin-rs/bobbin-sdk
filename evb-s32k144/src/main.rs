@@ -17,6 +17,7 @@ pub extern "C" fn main() -> ! {
     test_dma();
     test_irq();
     test_lpuart();
+    test_lpspi();
     println!("[done] All tests passed");
     loop {}
 }
@@ -385,4 +386,61 @@ fn test_lpuart() {
     }
     assert_eq!(src, &dst);
     println!("[pass] LPUART OK");
+}
+
+// NOTE: Board must be powered by 12V to use UJA1169
+// Without power, all registers will read 0xff
+
+// SPLLDIV2 = 40MHz
+// Prescale = Divide by 4 => 10MHz
+// SCKDIV = 8 => Divide by 10 => 1MHz
+fn test_lpspi() {
+    use board::hal::lpspi::*;
+    use board::uja1169::Mode;
+    use board::hal::pcc::*;
+    use board::hal::port::*;
+
+
+    pub const SCK: Ptb14 = PTB14;
+    pub const MOSI: Ptb15 = PTB15;
+    pub const MISO: Ptb16 = PTB16;
+    pub const PCS3: Ptb17 = PTB17;
+
+    pub const SPI: Lpspi1 = LPSPI1;
+
+    SCK.port().pcc_set_enabled(true);
+    SCK.mode_spi_sck(&SPI);
+
+    MISO.port().pcc_set_enabled(true);
+    MISO.mode_spi_sout(&SPI);
+
+    MOSI.port().pcc_set_enabled(true);
+    MOSI.mode_spi_sin(&SPI);
+
+    PCS3.port().pcc_set_enabled(true);
+    PCS3.mode_spi_pcs3(&SPI);
+
+    let l1 = SPI;
+    l1.pcc_set_clock_source(ClockSource::SPLLDIV2).pcc_set_enabled(true);
+    l1.set_enabled(false);    
+    
+    l1.configure(Config::default()
+        .master(true)
+        .sckpcs(4)
+        .pcssck(9)
+        .dbt(8)
+        .sckdiv(8)
+        .txwater(3)        
+    );
+    l1.set_enabled(true);
+    let t = l1.target()
+        .cpha(true)
+        .prescale(2)
+        .pcs(3)
+        .framesz(15);
+
+
+    t.configure();
+
+    println!("[pass] LPSPI OK");
 }
