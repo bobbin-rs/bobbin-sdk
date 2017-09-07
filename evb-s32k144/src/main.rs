@@ -14,6 +14,7 @@ pub extern "C" fn main() -> ! {
     test_lptmr();
     test_systick();
     test_adc();
+    test_dma();
     println!("[done] All tests passed");
     loop {}
 }
@@ -268,4 +269,54 @@ fn test_adc() {
     assert!(v.value() == 0);
 
     println!("[pass] ADC OK");
+}
+
+fn test_dma() {
+    use board::hal::edma::*;
+
+    let mut src = [0u8; 32];
+    let mut dst = [0u8; 32];
+
+    for (i, s) in src.iter_mut().enumerate() {
+        *s = i as u8;
+    }
+
+    let d = DMA;
+    let ch = DMA0;
+
+    d.set_tcd_citer_elinkno(ch.index(), |_| TcdCiterElinkno(0x0001));
+    d.set_tcd_biter_elinkno(ch.index(), |_| TcdBiterElinkno(0x0001));
+    d.set_tcd_nbytes_mlno(ch.index(), |_| TcdNbytesMlno(32));
+
+    d.set_tcd_saddr(ch.index(), |_| TcdSaddr(0).set_saddr(src.as_ptr() as u32));
+    d.set_tcd_soff(ch.index(), |_| TcdSoff(0).set_soff(0x1));
+    d.with_tcd_attr(ch.index(), |r| r.set_ssize(0));
+    d.set_tcd_slast(ch.index(), |_| TcdSlast(0));
+    
+
+
+    d.set_tcd_daddr(ch.index(), |_| TcdDaddr(0).set_daddr(dst.as_mut_ptr() as u32));
+    d.set_tcd_doff(ch.index(), |_| TcdDoff(0).set_doff(0x1));
+    d.with_tcd_attr(ch.index(), |r| r.set_dsize(0).set_dmod(0).set_smod(0));
+    d.set_tcd_dlastsga(ch.index(), |_| TcdDlastsga(0));
+    
+
+    d.with_tcd_csr(ch.index(), |r| r.set_intmajor(0).set_inthalf(0).set_majorlinkch(0).set_majorelink(0));
+
+    d.with_tcd_csr(ch.index(), |r| r.set_start(1));
+    loop {
+        let err = d.err();
+        if err.err(ch.index()) != 0 {
+            println!("[fail] DMA_ES: {:?}", d.es());
+
+            break;
+        }
+        let csr = d.tcd_csr(ch.index());
+        if csr.done() != 0 {
+            break;
+        }        
+    }
+
+    assert_eq!(src, dst);
+    println!("[pass] DMA OK");
 }
