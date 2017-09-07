@@ -457,18 +457,36 @@ fn test_i2c() {
         .set_scll(0x12)
     );
     println!("Sending");
+    let cmd = [0x0c];
+    let mut buf = [0u8;1];
+    i2c.set_enabled(true);
 
-    i2c.write_addr(addr, &[0x26, 0xb8]);
-    i2c.write_addr(addr, &[0x13, 0x07]);
-    i2c.write_addr(addr, &[0x26, 0xb9]);
-    board::delay(500);
+    // transfer(&i2c, addr.value(), &cmd, &mut buf);
+
+    println!("Mode:  0x{:08x}", reg_read(&i2c, 0x26));
+    println!("WHOAMI: {:?}", reg_read(&i2c, 0x0c));
+
+    write(&i2c, addr.value(), &[0x26, 0xb8]); // OSR = 128
+    write(&i2c, addr.value(), &[0x13, 0x07]); // Enable Data Flags
+    write(&i2c, addr.value(), &[0x26, 0xb9]); // Set Active
+    
+
+    println!("Mode:  0x{:08x}", reg_read(&i2c, 0x26));
+    // i2c.write_addr(addr, &[0x26, 0xb8]);
+    // i2c.write_addr(addr, &[0x13, 0x07]);
+    // i2c.write_addr(addr, &[0x26, 0xb9]);
+    board::delay(750);
     let cmd = [0u8];
     let mut buf = [0u8; 6];
-    i2c.write_addr(addr, &cmd);
-    i2c.read_addr(addr, &mut buf);
+    // i2c.write_addr(addr, &cmd);
+    // i2c.read_addr(addr, &mut buf);
+    
+    transfer(&i2c, addr.value(), &cmd, &mut buf);
     println!("# {:?}", buf);
 
     assert!(buf[0] == 014 && buf[1] == 0 && buf[2] != 0 && buf[3] != 0 && buf[4] != 0 && buf[5] != 0);
+
+
 
     i2c.disable();
     println!("# Disabling I2C");
@@ -476,4 +494,58 @@ fn test_i2c() {
     i2c_port.rcc_disable();
     i2c.rcc_disable();
     println!("[pass] I2C OK");
+
+    fn reg_write(i2c: &I2cPeriph, reg: u8, value: u8) {
+        let cmd = [reg, value];
+        transfer(i2c, 0x60, &cmd, &mut [])
+    }
+
+    fn reg_read(i2c: &I2cPeriph, reg: u8) -> u8 {
+        let cmd = [reg];
+        let mut buf = [0u8];
+        transfer(i2c, 0x60, &cmd, &mut buf);
+        buf[0]
+    }
+
+
+    fn write(i2c: &I2cPeriph, addr: u8, out_buf: &[u8]) {
+        transfer(i2c, addr, out_buf, &mut[]);
+    }
+
+    fn transfer(i2c: &I2cPeriph, addr: u8, out_buf: &[u8], in_buf: &mut[u8]) {
+        // i2c.set_enabled(true);
+        if out_buf.len() > 0 {
+            i2c.with_cr2(|r| r
+                .set_sadd(addr << 1)
+                .set_rd_wrn(0)
+                .set_nbytes(out_buf.len())
+                .set_autoend(in_buf.len() == 0)
+            );
+            i2c.with_cr2(|r| r.set_start(1));
+            for c in out_buf.iter() {
+                while i2c.isr().txis() == 0 {}
+                i2c.set_txdr(|r| r.set_txdata(*c));
+            }
+            // if in_buf.len() > 0 {
+            //     while i2c.sr().tc() == 0 {}
+            // }
+        }
+        if in_buf.len() > 0 {
+            i2c.with_cr2(|r| r
+                .set_sadd(addr << 1)
+                .set_rd_wrn(1)
+                .set_nbytes(in_buf.len())        
+            );
+            i2c.with_cr2(|r| r.set_start(1));
+            i2c.with_cr2(|r| r.set_autoend(1));
+
+            for i in 0..in_buf.len() {
+                while i2c.isr().rxne() == 0 {}
+                in_buf[i] = i2c.rxdr().rxdata().value();
+            }
+        }
+
+        // i2c.set_enabled(false);
+    }
+
 }
