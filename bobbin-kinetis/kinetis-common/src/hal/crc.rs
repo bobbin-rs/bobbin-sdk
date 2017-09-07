@@ -29,6 +29,10 @@ impl CrcWrite<u8> for CrcPeriph {
 impl CrcRead<u16> for CrcPeriph {
     fn read(&self) -> u16 {
         let d = self.data();
+
+        // NOTE: this function does byte swapping in order to make CRC16
+        // tests work, but I don't understand why this is needed. Need to
+        // see if this still works for other 16 bit CRCs.
         d.lu().into_u16() | d.ll().into_u16() << 8
     }
 }
