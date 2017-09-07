@@ -13,6 +13,7 @@ pub extern "C" fn main() -> ! {
     test_ftm();
     test_lptmr();
     test_systick();
+    test_adc();
     println!("[done] All tests passed");
     loop {}
 }
@@ -232,4 +233,39 @@ fn test_systick() {
     systick::set_enabled(false);
 
     println!("[pass] SYSTICK OK");
+}
+fn test_adc() {
+    use board::common::bits::*;
+    use board::hal::pcc;
+    use board::hal::adc::*;
+
+    let adc0 = ADC0;
+    let ch0 = ADC0_TEMP;    
+    let ch1 = ADC0_BANDGAP;
+    let ch2 = ADC0_REFSH;
+    let ch3 = ADC0_REFSL;
+
+    adc0
+        .pcc_set_clock_source(pcc::ClockSource::SPLLDIV2)
+        .pcc_enable();
+
+    let v: U12 = ch0.analog_read();
+    println!("# ADC0_TEMP:    {}", v);
+    // Arbitrary bounds - find formula
+    assert!(v.value() > 550 && v.value() < 650);
+
+    let v: U12 = ch1.analog_read();
+    println!("# ADC0_BANDGAP: {}", v);
+    // Arbitrary bounds - find formula
+    assert!(v.value() > 800 && v.value() < 900);
+
+    let v: U12 = ch2.analog_read();
+    println!("# ADC0_REFSH:   {}", v);
+    assert!(v.value() == 4095);
+
+    let v: U12 = ch3.analog_read();
+    println!("# ADC0_REFSL:   {}", v);
+    assert!(v.value() == 0);
+
+    println!("[pass] ADC OK");
 }
