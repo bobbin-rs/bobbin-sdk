@@ -1,4 +1,5 @@
 pub use chip::edma::*;
+pub use bobbin_common::Channel;
 
 impl EdmaCh {
     pub fn attr(&self) -> TcdAttr {
