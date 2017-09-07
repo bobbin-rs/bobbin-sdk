@@ -55,6 +55,9 @@ fn test_crc() {
     // println!("{:04x} {:04x}", v, 0x3EEB);
     assert_eq!(v, 0x3eeb);
 
+    let v: u16 = CRC.init(0u16).write(&b"123456789"[..]).read();
+    // println!("{:04x} {:04x}", v, 0x3EEB);
+    assert_eq!(v, 0xBB3D);
     // for tot in 0..4 {
     //     for totr in 0..4 {
     //         for fxor in 0..2 {
