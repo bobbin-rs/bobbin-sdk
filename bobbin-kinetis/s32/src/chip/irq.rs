@@ -65,6 +65,7 @@ irq!(IRQ_LPIT0_CH0, IrqLpit0Ch0, 48);
 irq!(IRQ_LPIT0_CH1, IrqLpit0Ch1, 49);
 irq!(IRQ_LPIT0_CH2, IrqLpit0Ch2, 50);
 irq!(IRQ_LPIT0_CH3, IrqLpit0Ch3, 51);
+irq!(IRQ_LPTMR0, IrqLptmr0, 58);
 irq!(IRQ_CAN0_ORED, IrqCan0Ored, 78);
 irq!(IRQ_CAN0_ERROR, IrqCan0Error, 79);
 irq!(IRQ_CAN0_WAKE_UP, IrqCan0WakeUp, 80);
@@ -164,7 +165,7 @@ pub static mut INTERRUPT_HANDLERS: [Option<Handler>; 147] = [
     None,
     None,
     None,                          // IRQ 57: No Description
-    None,
+    None,                          // IRQ 58: No Description
     None,                          // IRQ 59: No Description
     None,                          // IRQ 60: No Description
     None,                          // IRQ 61: No Description

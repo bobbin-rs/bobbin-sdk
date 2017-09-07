@@ -79,6 +79,16 @@ impl Start<u16> for FtmPeriph {
     }
 }
 
+
+impl StartUp<u16> for FtmPeriph {
+    fn start_up(&self, value: u16) -> &Self {
+        self
+            .set_modulo(value - 1)
+            .set_center(false)
+            .set_clock(ClockSource::SystemClk)
+    }
+}
+
 impl Delay<u16> for FtmPeriph {
     fn delay(&self, value: u16) -> &Self {
         self

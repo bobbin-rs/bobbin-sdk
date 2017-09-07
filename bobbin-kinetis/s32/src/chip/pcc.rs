@@ -8651,6 +8651,34 @@ impl Pcc {
     }
 }
 
+pub trait Pcd {
+    fn pcd(&self) -> u32;
+    fn set_pcd(&self, value: u32);
+}
+
+impl Pcc {
+    #[inline] pub fn pcd<P: Pcd>(&self, p: &P) -> u32 {
+        p.pcd()
+    }
+    #[inline] pub fn set_pcd<P: Pcd>(&self, p: &P, value: u32) {
+        p.set_pcd(value)
+    }
+}
+
+pub trait Frac {
+    fn frac(&self) -> u32;
+    fn set_frac(&self, value: u32);
+}
+
+impl Pcc {
+    #[inline] pub fn frac<P: Frac>(&self, p: &P) -> u32 {
+        p.frac()
+    }
+    #[inline] pub fn set_frac<P: Frac>(&self, p: &P, value: u32) {
+        p.set_frac(value)
+    }
+}
+
 impl Cgc for super::flexcan::Can0 {
     #[inline] fn cgc(&self) -> u32 { PCC.flexcan0().cgc().into() }
     #[inline] fn set_cgc(&self, value: u32) { PCC.with_flexcan0(|r| r.set_cgc(value)); }
@@ -8769,6 +8797,26 @@ impl Cgc for super::adc::Adc0 {
 impl Cgc for super::rtc::Rtc {
     #[inline] fn cgc(&self) -> u32 { PCC.rtc().cgc().into() }
     #[inline] fn set_cgc(&self, value: u32) { PCC.with_rtc(|r| r.set_cgc(value)); }
+}
+
+impl Pcd for super::lptmr::Lptmr0 {
+    #[inline] fn pcd(&self) -> u32 { PCC.lptmr0().pcd().into() }
+    #[inline] fn set_pcd(&self, value: u32) { PCC.with_lptmr0(|r| r.set_pcd(value)); }
+}
+
+impl Frac for super::lptmr::Lptmr0 {
+    #[inline] fn frac(&self) -> u32 { PCC.lptmr0().frac().into() }
+    #[inline] fn set_frac(&self, value: u32) { PCC.with_lptmr0(|r| r.set_frac(value)); }
+}
+
+impl Pcs for super::lptmr::Lptmr0 {
+    #[inline] fn pcs(&self) -> u32 { PCC.lptmr0().pcs().into() }
+    #[inline] fn set_pcs(&self, value: u32) { PCC.with_lptmr0(|r| r.set_pcs(value)); }
+}
+
+impl Cgc for super::lptmr::Lptmr0 {
+    #[inline] fn cgc(&self) -> u32 { PCC.lptmr0().cgc().into() }
+    #[inline] fn set_cgc(&self, value: u32) { PCC.with_lptmr0(|r| r.set_cgc(value)); }
 }
 
 impl Cgc for super::port::Porta {

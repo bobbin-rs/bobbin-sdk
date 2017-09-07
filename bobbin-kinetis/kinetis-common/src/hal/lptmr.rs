@@ -1,3 +1,4 @@
+pub use bobbin_common::enabled::*;
 pub use bobbin_common::timer::*;
 pub use chip::lptmr::*;
 
@@ -22,6 +23,15 @@ impl LptmrPeriph {
     }
 }
 
+impl Enabled for LptmrPeriph {
+    fn enabled(&self) -> bool {
+        self.csr().test_ten()
+    }
+    fn set_enabled(&self, value: bool) -> &Self {
+        self.with_csr(|r| r.set_ten(value))
+    }
+}
+
 impl Start<u16> for LptmrPeriph {
     fn start(&self, value: u16) -> &Self {
         self.start_up(value)
@@ -31,18 +41,20 @@ impl Start<u16> for LptmrPeriph {
 impl StartUp<u16> for LptmrPeriph {
     fn start_up(&self, value: u16) -> &Self {
         self
+            .with_csr(|r| r.set_ten(0))
             .set_period(value)
             .with_csr(|r| r.set_tfc(1).set_ten(1))
     }
 }
 
-impl StartUpOnce<u16> for LptmrPeriph {
-    fn start_up_once(&self, value: u16) -> &Self {
-        self
-            .set_period(value)
-            .with_csr(|r| r.set_tfc(0).set_ten(1))
-    }
-}
+// impl StartUpOnce<u16> for LptmrPeriph {
+//     fn start_up_once(&self, value: u16) -> &Self {
+//         self
+//             .with_csr(|r| r.set_ten(0))
+//             .set_period(value)
+//             .with_csr(|r| r.set_tfc(0).set_ten(1))
+//     }
+// }
 
 impl Delay<u16> for LptmrPeriph {
     fn delay(&self, value: u16) -> &Self {
@@ -73,7 +85,7 @@ impl Timer<u16> for LptmrPeriph {
     }
 
     fn counter(&self) -> u16 {
-        self.cnr().counter().value()
+        self.set_cnr(|_| Cnr(0)).cnr().counter().value()
     }
 
     fn timeout_flag(&self) -> bool {
@@ -83,4 +95,19 @@ impl Timer<u16> for LptmrPeriph {
     fn clr_timeout_flag(&self) -> &Self {
         self.with_csr(|r| r.set_tcf(1))
     }    
+}
+
+impl Compare<u16> for LptmrPeriph {
+    fn compare(&self) -> u16 {
+        self.cmr().compare().value()
+    }
+    fn set_compare(&self, value: u16) -> &Self {
+        self.set_cmr(|r| r.set_compare(value))
+    }
+    fn compare_flag(&self) -> bool {
+        self.csr().test_tcf()
+    }
+    fn clr_compare_flag(&self) -> &Self {
+        self.with_csr(|r| r.set_tcf(1))
+    }
 }

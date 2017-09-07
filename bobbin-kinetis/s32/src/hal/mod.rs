@@ -28,6 +28,12 @@ pub mod lpit {
     pub use super::pcc::{PccEnabled, PccClockSource};
 }
 
+pub mod lptmr {
+    pub use chip::lptmr::*;
+    pub use kinetis_common::hal::lptmr::*;
+    pub use super::pcc::{PccEnabled, PccClockSource, PccClockDivider, PccClockDividerFrac};
+}
+
 pub mod ftm {
     pub use chip::ftm::*;
     pub use bobbin_common::timer::*;

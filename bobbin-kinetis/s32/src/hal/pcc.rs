@@ -9,6 +9,24 @@ pub enum ClockSource {
     SPLLDIV2 = 0b110,
 }
 
+#[derive(Debug, PartialEq, Eq, Clone, Copy)]
+pub enum ClockDivider {
+    Div1 = 0b000,
+    Div2 = 0b001,
+    Div3 = 0b010,
+    Div4 = 0b011,
+    Div5 = 0b100,
+    Div6 = 0b101,
+    Div7 = 0b110,
+    Div8 = 0b111,
+}
+
+#[derive(Debug, PartialEq, Eq, Clone, Copy)]
+pub enum ClockDividerFrac {
+    Frac0 = 0b0,
+    Frac1 = 0b1,
+}
+
 /// Enable or disable an associated peripheral clock.
 pub trait PccEnabled {
     /// Returns true if the peripheral clock is enabled.
@@ -58,6 +76,51 @@ impl<P> PccClockSource for P where P: Pcs + Cgc {
         if value != ClockSource::Disabled {
             self.set_cgc(1)
         }
+        self
+    }
+}
+
+pub trait PccClockDivider {
+    fn pcc_clock_divider(&self) -> ClockDivider;
+    fn pcc_set_clock_divider(&self, value: ClockDivider) -> &Self;
+}
+
+impl<P> PccClockDivider for P where P: Pcd {
+    fn pcc_clock_divider(&self) -> ClockDivider {
+        match self.pcd() {
+            0b000 => ClockDivider::Div1,
+            0b001 => ClockDivider::Div2,
+            0b010 => ClockDivider::Div3,
+            0b011 => ClockDivider::Div4,
+            0b100 => ClockDivider::Div5,
+            0b101 => ClockDivider::Div6,
+            0b110 => ClockDivider::Div7,
+            0b111 => ClockDivider::Div8,
+            _ => unreachable!(),
+        }
+    }
+    fn pcc_set_clock_divider(&self, value: ClockDivider) -> &Self {
+        self.set_pcd(value as u32);
+        self
+    }
+}
+
+pub trait PccClockDividerFrac {
+    fn pcc_clock_divider_frac(&self) -> ClockDividerFrac;
+    fn pcc_set_clock_divider_frac(&self, value: ClockDividerFrac) -> &Self;
+}
+
+
+impl<P> PccClockDividerFrac for P where P: Frac {
+    fn pcc_clock_divider_frac(&self) -> ClockDividerFrac {
+        match self.frac() {
+            0b0 => ClockDividerFrac::Frac0,
+            0b1 => ClockDividerFrac::Frac1,
+            _ => unreachable!(),
+        }
+    }
+    fn pcc_set_clock_divider_frac(&self, value: ClockDividerFrac) -> &Self {
+        self.set_frac(value as u32);
         self
     }
 }

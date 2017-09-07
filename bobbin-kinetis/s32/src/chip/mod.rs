@@ -23,6 +23,7 @@ pub mod dmamux;
 pub mod edma;
 pub mod ftm;
 pub mod lpit;
+pub mod lptmr;
 pub mod flexcan;
 pub mod port;
 pub mod gpio;
