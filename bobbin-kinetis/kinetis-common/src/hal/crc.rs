@@ -14,31 +14,48 @@ impl CrcMode32 for CrcPeriph {
     }
 }
 
-impl CrcReadWrite<u8> for CrcPeriph {
+impl CrcRead<u8> for CrcPeriph {
     fn read(&self) -> u8 {
-        self.data().0 as u8
+        self.datall().0
     }
+}
+
+impl CrcWrite<u8> for CrcPeriph {
     fn write(&self, value: u8) -> &Self {
-        self.set_data(|_| Data(value as u32))
+        self.set_datall(|_| Datall(value))
     }
 }
 
-
-impl CrcReadWrite<u16> for CrcPeriph {
+impl CrcRead<u16> for CrcPeriph {
     fn read(&self) -> u16 {
-        self.data().0 as u16
-    }
-    fn write(&self, value: u16) -> &Self {
-        self.set_data(|_| Data(value as u32))
+        self.datal().0
     }
 }
 
-impl CrcReadWrite<u32> for CrcPeriph  {
+impl CrcWrite<u16> for CrcPeriph {
+    fn write(&self, value: u16) -> &Self {
+        self.set_datal(|_| Datal(value))
+    }
+}
+
+impl CrcRead<u32> for CrcPeriph  {
     fn read(&self) -> u32 {
         self.data().0 as u32
     }
+}
+
+impl CrcWrite<u32> for CrcPeriph  {
     fn write(&self, value: u32) -> &Self {
         self.set_data(|_| Data(value))
+    }
+}
+
+impl<'a> CrcWrite<&'a [u8]> for CrcPeriph  {
+    fn write(&self, value: &[u8]) -> &Self {
+        for c in value.iter() {
+            self.write(*c);
+        }
+        self
     }
 }
 

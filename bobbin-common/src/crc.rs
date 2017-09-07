@@ -11,10 +11,14 @@ pub trait CrcMode32 {
     fn mode_32(&self) -> &Self;
 }
 
-pub trait CrcReadWrite<T> {
-    fn write(&self, value: T) -> &Self;
+pub trait CrcRead<T> {
     fn read(&self) -> T;
 }
+
+pub trait CrcWrite<T> {
+    fn write(&self, value: T) -> &Self;
+}
+
 
 pub trait CrcPoly<T> {
     fn poly(&self) -> T;
