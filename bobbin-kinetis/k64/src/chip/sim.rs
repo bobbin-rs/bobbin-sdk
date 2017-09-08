@@ -3727,6 +3727,11 @@ impl En for super::dmamux::Dmamux {
     #[inline] fn set_en(&self, value: u32) { SIM.with_scgc6(|r| r.set_dmamux(value)); }
 }
 
+impl En for super::flexcan::Can0 {
+    #[inline] fn en(&self) -> u32 { SIM.scgc6().flexcan0().into() }
+    #[inline] fn set_en(&self, value: u32) { SIM.with_scgc6(|r| r.set_flexcan0(value)); }
+}
+
 impl En for super::spi::Spi0 {
     #[inline] fn en(&self) -> u32 { SIM.scgc6().spi0().into() }
     #[inline] fn set_en(&self, value: u32) { SIM.with_scgc6(|r| r.set_spi0(value)); }

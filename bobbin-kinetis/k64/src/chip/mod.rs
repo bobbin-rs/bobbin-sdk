@@ -26,6 +26,7 @@ pub mod lptmr;
 pub mod spi;
 pub mod i2c;
 pub mod uart;
+pub mod flexcan;
 pub mod gpio;
 pub mod port;
 pub mod adc;

@@ -118,3 +118,9 @@ pub mod crc {
     pub use kinetis_common::hal::crc::*;
     pub use super::sim::SimEnabled;
 }
+
+pub mod flexcan {
+    pub use chip::flexcan::*;
+    pub use kinetis_common::hal::flexcan::*;
+    pub use super::sim::SimEnabled;
+}

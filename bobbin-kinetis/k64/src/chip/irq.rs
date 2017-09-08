@@ -48,6 +48,12 @@ irq!(IRQ_UART4_RX_TX, IrqUart4RxTx, 66);
 irq!(IRQ_UART4_ERR, IrqUart4Err, 67);
 irq!(IRQ_UART5_RX_TX, IrqUart5RxTx, 68);
 irq!(IRQ_UART5_ERR, IrqUart5Err, 69);
+irq!(IRQ_CAN0_ORED_MESSAGE_BUFFER, IrqCan0OredMessageBuffer, 75);
+irq!(IRQ_CAN0_BUS_OFF, IrqCan0BusOff, 76);
+irq!(IRQ_CAN0_ERROR, IrqCan0Error, 77);
+irq!(IRQ_CAN0_TX_WARNING, IrqCan0TxWarning, 78);
+irq!(IRQ_CAN0_RX_WARNING, IrqCan0RxWarning, 79);
+irq!(IRQ_CAN0_WAKE_UP, IrqCan0WakeUp, 80);
 irq!(IRQ_PORTA, IrqPorta, 59);
 irq!(IRQ_PORTB, IrqPortb, 60);
 irq!(IRQ_PORTC, IrqPortc, 61);
@@ -147,12 +153,12 @@ pub static mut INTERRUPT_HANDLERS: [Option<Handler>; 86] = [
     None,
     None,                          // IRQ 73: No Description
     None,
-    None,
-    None,
-    None,
-    None,
-    None,
-    None,
+    None,                          // IRQ 75: No Description
+    None,                          // IRQ 76: No Description
+    None,                          // IRQ 77: No Description
+    None,                          // IRQ 78: No Description
+    None,                          // IRQ 79: No Description
+    None,                          // IRQ 80: No Description
     None,
     None,                          // IRQ 82: No Description
     None,                          // IRQ 83: No Description

@@ -101,8 +101,8 @@ impl Enabled for FlexcanPeriph {
 }
 
 impl FlexcanPeriph {
-    pub fn clear_ram(&self) -> &Self {
-        for i in 0..128 {
+    pub fn clear_ram(&self, words: usize) -> &Self {
+        for i in 0..words {
             self.set_ram(i, |_| Ram(0));            
         }
         self
