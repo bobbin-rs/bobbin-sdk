@@ -459,14 +459,77 @@ fn test_lpspi() {
 fn test_flexcan() {
     use board::hal::flexcan::*;
 
+    // Initialize the Module Configuration Register (CAN_MCR)
+    // Initialize the Control 1 Register (CAN_CTRL1) and optionally the CAN Bit Timing Register (CAN_CBT). 
+    // Initialize also the CAN FD CAN Bit Timing Register (CAN_FDCBT).
+    // Initialize the Message Buffers
+    // Initialize the Rx Individual Mask Registers (CAN_RXIMRn)
+    // Set required interrupt mask bits in the CAN_IMASK Registers (for all MB interrupts) and in CAN_CTRL1 / CAN_CTRL2 Registers (for Bus Off and Error interrupts)
+    // If Pretended Networking mode is enabled, configure the necessary registers for selective Wake Up
+    // Negate the HALT bit in CAN_MCR
+
+    println!("# FlexCan Test Start");
+
     let can = CAN0;
+    let rx = can.mbuf(0);
+    let tx = can.mbuf(1);
+
     can.pcc_enable();
-
-    can.set_config(|c| c.set_loopback(true));
-
     can.enable();
+    {
+        if can.mcr().test_lpmack() {
+            // Enable Clock
+            can.with_mcr(|r| r.set_frz(false).set_halt(false));
+            while can.mcr().test_lpmack() {}
+        }
+        can.with_mcr(|r| r.set_softrst(true));
+        while can.mcr().test_softrst() {}
+        can.clear_ram();        
+        can.with_mcr(|r| r.set_frz(true).set_halt(true));
+        can.with_mcr(|r| r
+            .set_irmq(true) // Individual Rx Masking and Queue Enable
+        );
+        can.with_ctrl1(|r| r
+            .set_lpb(true) // Loopback Enabled
+            .set_propseg(0x6) // Propagation Segment = 7
+            .set_pseg1(0x03) // Phase Segment 1 = 4
+            .set_pseg2(0x03) // Phase Segment 2 = 4
+            .set_presdiv(0) // Prescale Divider = 1
+            .set_rjw(3) // Resync Jump Width = 4
+            .set_smp(1) // Samples = 3
+        );
+        rx.set_idmask(0x1fffffff);
+        rx.set_idmask(0x1fffffff);
+    }
+    {
+        can.with_mcr(|r| r.set_frz(false).set_halt(false));
+    }
+    for _ in 0..10 {
+        let id = CanId::Ext(ExtendedId(0x1234));
 
+        // println!("# Prepare Rx Mailbox");
+        rx.set_id(CanId::Ext(ExtendedId(0x1234)));
+        rx.set_code(Code::RxEmpty);
 
+        // println!("# Write Packet");
+        let buf_out = [0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08];
+        tx.write(id, &buf_out);
+        // println!("# > {:?} {:?}", id, buf_out);
+
+        // println!("# Wait for Tx Flag");
+        while !tx.flag() {}
+        tx.clr_flag();
+
+        // println!("TX: {:?}", tx);
+        // println!("# Wait for Rx Flag");
+        while !rx.flag() {}
+        rx.clr_flag();
+        let mut buf_in = [0u8; 16];
+        let (id_rx, n) = rx.read(&mut buf_in);
+        // println!("# < {:?} {:?}", id, &buf_in[..n]);
+        assert_eq!(id_rx, id);
+        assert_eq!(&buf_out[..], &buf_in[..n]);
+    }
     can.disable();
     can.pcc_disable();
 
