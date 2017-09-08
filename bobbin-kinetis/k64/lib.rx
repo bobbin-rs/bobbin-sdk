@@ -606,7 +606,39 @@
             )
         )
     )
-    
+    (peripheral-group
+        (name FLEXCAN)
+        (module (name kinetis_common::chip::flexcan::*))
+        (peripheral
+            (name CAN0)
+            (address 0x40024000)
+            (description "Flex Controller Area Network module")
+            (interrupt
+                (name CAN0_ORed_Message_buffer)
+                (value 75)
+            )
+            (interrupt
+                (name CAN0_Bus_Off)
+                (value 76)
+            )
+            (interrupt
+                (name CAN0_Error)
+                (value 77)
+            )
+            (interrupt
+                (name CAN0_Tx_Warning)
+                (value 78)
+            )
+            (interrupt
+                (name CAN0_Rx_Warning)
+                (value 79)
+            )
+            (interrupt
+                (name CAN0_Wake_Up)
+                (value 80)
+            )
+        )
+    )
     (peripheral-group
         (name GPIO)
         (module (name kinetis_common::chip::gpio::*))

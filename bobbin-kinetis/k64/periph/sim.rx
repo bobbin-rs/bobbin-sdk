@@ -1895,6 +1895,7 @@
             (bit-width 1)
             (access read-write)
             (description "FlexCAN0 Clock Gate Control")
+            (link (name EN) (peripheral-group FLEXCAN) (peripheral CAN0))            
             (value
                 (value "#0")
                 (name "0")
@@ -1972,6 +1973,7 @@
             (bit-width 1)
             (access read-write)
             (description "CRC Clock Gate Control")
+            (link (name EN) (peripheral-group CRC) (peripheral CRC))            
             (value
                 (value "#0")
                 (name "0")
