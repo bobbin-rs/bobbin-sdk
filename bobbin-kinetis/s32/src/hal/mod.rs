@@ -49,7 +49,7 @@ pub mod ftm {
 pub mod flexcan {
     pub use chip::flexcan::*;
     pub use kinetis_common::hal::flexcan::*;
-    pub use super::pcc::{PccEnabled, PccClockSource};
+    pub use super::pcc::{PccEnabled};
 }
 
 pub mod edma {
