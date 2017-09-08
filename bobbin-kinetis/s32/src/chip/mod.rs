@@ -28,5 +28,6 @@ pub mod flexcan;
 pub mod port;
 pub mod gpio;
 pub mod lpuart;
+pub mod lpi2c;
 pub mod lpspi;
 pub mod adc;

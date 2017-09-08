@@ -1,6 +1,7 @@
 pub mod flexcan;
 pub mod gpio;
 pub mod lpit;
+pub mod lpi2c;
 pub mod lpspi;
 pub mod lpuart;
 pub mod ftm;

@@ -85,6 +85,8 @@ irq!(IRQ_PORTE, IrqPorte, 63);
 irq!(IRQ_LPUART0_RXTX, IrqLpuart0Rxtx, 31);
 irq!(IRQ_LPUART1_RXTX, IrqLpuart1Rxtx, 33);
 irq!(IRQ_LPUART2_RXTX, IrqLpuart2Rxtx, 35);
+irq!(IRQ_LPI2C0_MASTER, IrqLpi2c0Master, 24);
+irq!(IRQ_LPI2C0_SLAVE, IrqLpi2c0Slave, 25);
 irq!(IRQ_LPSPI0, IrqLpspi0, 26);
 irq!(IRQ_LPSPI1, IrqLpspi1, 27);
 irq!(IRQ_LPSPI2, IrqLpspi2, 28);
@@ -131,8 +133,8 @@ pub static mut INTERRUPT_HANDLERS: [Option<Handler>; 147] = [
     None,
     None,                          // IRQ 22: No Description
     None,                          // IRQ 23: No Description
-    None,
-    None,
+    None,                          // IRQ 24: No Description
+    None,                          // IRQ 25: No Description
     None,                          // IRQ 26: No Description
     None,                          // IRQ 27: No Description
     None,                          // IRQ 28: No Description

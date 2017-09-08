@@ -8844,6 +8844,16 @@ impl Cgc for super::port::Porte {
     #[inline] fn set_cgc(&self, value: u32) { PCC.with_porte(|r| r.set_cgc(value)); }
 }
 
+impl Pcs for super::lpi2c::Lpi2c0 {
+    #[inline] fn pcs(&self) -> u32 { PCC.lpi2c0().pcs().into() }
+    #[inline] fn set_pcs(&self, value: u32) { PCC.with_lpi2c0(|r| r.set_pcs(value)); }
+}
+
+impl Cgc for super::lpi2c::Lpi2c0 {
+    #[inline] fn cgc(&self) -> u32 { PCC.lpi2c0().cgc().into() }
+    #[inline] fn set_cgc(&self, value: u32) { PCC.with_lpi2c0(|r| r.set_cgc(value)); }
+}
+
 impl Pcs for super::lpuart::Lpuart0 {
     #[inline] fn pcs(&self) -> u32 { PCC.lpuart0().pcs().into() }
     #[inline] fn set_pcs(&self, value: u32) { PCC.with_lpuart0(|r| r.set_pcs(value)); }

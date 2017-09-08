@@ -8,6 +8,7 @@ pub mod uart;
 pub mod uart0;
 pub mod flexcan;
 pub mod lpit;
+pub mod lpi2c;
 pub mod lpspi;
 pub mod lpuart;
 pub mod ftm;

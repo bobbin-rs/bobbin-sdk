@@ -33,6 +33,12 @@ pub mod lptmr {
     pub use super::pcc::{PccEnabled, PccClockSource, PccClockDivider, PccClockDividerFrac};
 }
 
+pub mod lpi2c {
+    pub use chip::lpspi::*;
+    pub use kinetis_common::hal::lpi2c::*;
+    pub use super::pcc::{PccEnabled, PccClockSource};
+}
+
 pub mod lpspi {
     pub use chip::lpspi::*;
     pub use kinetis_common::hal::lpspi::*;
