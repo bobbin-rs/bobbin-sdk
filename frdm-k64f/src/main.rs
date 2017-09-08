@@ -9,19 +9,20 @@ extern crate frdm_k64f as board;
 pub extern "C" fn main() -> ! {
     board::init();
     println!("[start] Running tests for frdm-k64f");
-    test_crc();
-    test_gpio();
-    test_systick();
-    test_ftm();
-    test_pit();
-    test_lptmr();
-    test_adc();
-    test_dma();
-    test_irq();
-    test_uart();
+    // test_crc();
+    // test_gpio();
+    // test_systick();
+    // test_ftm();
+    // test_pit();
+    // test_lptmr();
+    // test_adc();
+    // test_dma();
+    // test_irq();
+    // test_uart();
+    test_i2c();
     // test_lpi2c();
     // test_lpspi();
-    test_flexcan();
+    // test_flexcan();
     println!("[done] All tests passed");
     loop {}
 }
@@ -565,38 +566,115 @@ fn test_flexcan() {
     println!("[pass] FLEXCAN OK")
 }
 
-// fn test_lpi2c() {
-//     use board::hal::pcc;
-//     use board::hal::lpi2c::*;
+fn test_i2c() {
+    use board::hal::i2c::*;
+    use board::hal::port::*;
 
-//     pub const I2CADDR: u8 = 0x12;
+    pub const I2CADDR: u8 = 0x1D;
 
-//     let i2c = LPI2C0;
+    let port = PORTE;
+    let port_scl = PTE24;
+    let port_sda = PTE25;
 
-//     println!("# LPI2C Test Start");
+    let i2c = I2C0;
 
-//     i2c
-//         .pcc_set_clock_source(pcc::ClockSource::SPLLDIV2)
-//         .pcc_enable();
+    println!("# I2C Test Start");
 
-//     // Enable Master
-//     i2c.with_mcr(|r| r.set_men(true));
+    port.sim_enable();
+    port_scl.mode_i2c_scl(&i2c).set_pull_none().set_ode(true);
+    port_sda.mode_i2c_sda(&i2c).set_pull_none().set_ode(true);
 
-//     // Set Slave Address
+    i2c.sim_enable();
 
-//     i2c.with_samr(|r| r.set_addr0(I2CADDR));
+    // // Enable Master Mode
+    // i2c.with_c1(|r| r.set_mst(true));
 
-//     // Enable Slave
-//     i2c.with_scr(|r| r.set_sen(true));
+    let mult = 0;
+    let icr = 0x1c;
+
+    // 1. Write: Frequency Divider register to set the I2C baud rate (see example in description of ICR)
+    i2c.set_f(|_| F(0).set_mult(mult).set_icr(icr));
+
+    // 2. Write: Control Register 1 to enable the I2C module and interrupts
+    i2c.with_c1(|r| r.set_iicen(1).set_iicie(1));
+
+    // Write to 0x0d
+
+    let addr = 0x1d;
+    let cmd = [0x0du8];
+    let mut buf = [0u8, 0u8];
+    println!("Writing");
+    i2c_write(&i2c, addr, &cmd);
+    println!("Reading");
+    i2c_read(&i2c, addr, &mut buf);
+    println!("result: {:?}", buf);
+
+
+    i2c.sim_disable();
+    println!("[pass] LPI2C OK");
 
 
 
-//     // Disable Slave
-//     i2c.with_scr(|r| r.set_sen(false));
-    
-//     // Disable Master
-//     i2c.with_mcr(|r| r.set_men(false));
+    fn i2c_write(i2c: &I2cPeriph, addr: u8, bytes: &[u8]) {        
+        // Wait while Busy
+        while i2c.s().busy() != 0 {}
+        // Send Start
+        i2c.with_c1(|r| r.set_tx(1).set_mst(1));                        
+        // Send Slave Address
+        i2c.set_d(|_| D(0).set_data(addr << 1));
+        // wait for interrupt
+        while i2c.s().iicif() == 0 {}
+        i2c.with_s(|r| r.set_iicif(1));
 
-//     i2c.pcc_disable();
-//     println!("[pass] LPI2C OK");
-// }
+        for i in 0..bytes.len() {                
+            // Send Byte
+            i2c.set_d(|_| D(0).set_data(bytes[i]));
+            // wait for interrupt
+            while i2c.s().iicif() == 0 {}
+            i2c.with_s(|r| r.set_iicif(1));
+        }
+        
+        i2c.with_c1(|r| r.set_mst(0).set_tx(0));
+    }
+
+    fn i2c_read(i2c: &I2cPeriph, addr: u8, bytes: &mut [u8]) {
+        // Wait while Busy
+        while i2c.s().busy() != 0 {}
+        // Send Start
+        i2c.with_c1(|r| r.set_tx(1).set_mst(1));                        
+        // Send Slave Address
+        i2c.set_d(|_| D(0).set_data((addr << 1) | 1));
+        // wait for interrupt
+        while i2c.s().iicif() == 0 {}
+        i2c.with_s(|r| r.set_iicif(1));
+
+        // Enter Receive Mode with ACK
+        i2c.with_c1(|r| r.set_tx(0).set_txak(0));
+
+        // Receive dummy byte
+        let _ = i2c.d().data();
+        // wait for interrupt
+        while i2c.s().iicif() == 0 {}
+        i2c.with_s(|r| r.set_iicif(1));
+
+        let len = bytes.len();
+
+        for i in 0..len-2 {
+            i2c.with_c1(|r| r.set_txak(0));
+            bytes[i] = i2c.d().data().value();
+            // wait for interrupt
+            while i2c.s().iicif() == 0 {}
+            i2c.with_s(|r| r.set_iicif(1));
+        }
+        // Set NACK
+        i2c.with_c1(|r| r.set_txak(1));
+
+        bytes[len-2] = i2c.d().data().value();
+        // wait for interrupt
+        while i2c.s().iicif() == 0 {}
+        i2c.with_s(|r| r.set_iicif(1));
+        // send stop
+        i2c.with_c1(|r| r.set_mst(0));
+        bytes[len-1] = i2c.d().data().value();
+    }    
+}
