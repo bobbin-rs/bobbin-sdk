@@ -45,13 +45,19 @@ impl PortPin {
         });
         self
     }
+    pub fn set_pull_none(&self) -> &Self {
+        self.set_pull(Pull::None)
+    }
     pub fn set_pull_down(&self) -> &Self {
         self.set_pull(Pull::PullDown)
     }
     pub fn set_pull_up(&self) -> &Self {
         self.set_pull(Pull::PullUp)
     }
-    
+    pub fn set_ode(&self, value: bool) -> &Self {
+        self.port.with_pcr(self.index, |r| r.set_ode(value));
+        self
+    }
     pub fn isf(&self) -> bool {
         self.port.pcr(self.index).isf() != 0
     }
