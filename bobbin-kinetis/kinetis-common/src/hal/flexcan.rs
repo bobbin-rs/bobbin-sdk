@@ -5,6 +5,7 @@ pub use ::chip::flexcan::*;
 
 use bobbin_common::bits::*;
 
+#[derive(Debug, PartialEq, Eq, Clone, Copy)]
 pub enum IdAcceptanceMode {
     FormatA = 0b00,
     FormatB = 0b01,
@@ -12,12 +13,13 @@ pub enum IdAcceptanceMode {
     FormatD = 0b11,
 }
 
+#[derive(Debug, PartialEq, Eq, Clone, Copy)]
 pub enum ClockSource {
     Oscillator = 0b0,
     Peripheral = 0b1,
 }
 
-#[derive(Debug)]
+#[derive(Debug, PartialEq, Eq, Clone, Copy)]
 pub enum Code {
     RxInactive = 0b0000,
     RxBusy = 0b0001,
@@ -31,16 +33,16 @@ pub enum Code {
     TxAnswer = 0b1110,
 }
 
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, PartialEq, Eq, Clone, Copy)]
 pub enum CanId {
     Std(StandardId),
     Ext(ExtendedId),
 }
 
-#[derive(Clone, Copy)]
+#[derive(PartialEq, Eq, Clone, Copy)]
 pub struct StandardId(pub u16);
 
-#[derive(Clone, Copy)]
+#[derive(PartialEq, Eq, Clone, Copy)]
 pub struct ExtendedId(pub u32);
 
 impl ::core::fmt::Debug for StandardId {
@@ -114,6 +116,12 @@ impl FlexcanPeriph {
 pub struct MBuf {
     can: FlexcanPeriph,
     index: usize,
+}
+
+impl ::core::fmt::Debug for MBuf {
+   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+       write!(f, "[{}: {:?} {:?}]", self.index, self.mb8h0(), self.mb8h1())
+   }
 }
 
 impl MBuf {    
