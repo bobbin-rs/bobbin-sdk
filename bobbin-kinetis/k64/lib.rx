@@ -442,6 +442,17 @@
             (name SPI0)
             (address 0x4002c000)
             (description "Serial Peripheral Interface")
+            (signal (name SPI0_SCK) (type SPI_SCK))
+            (signal (name SPI0_SOUT) (type SPI_SOUT))
+            (signal (name SPI0_SIN) (type SPI_SIN))
+
+            (signal (name SPI0_PCS0) (type SPI_PCS0))
+            (signal (name SPI0_PCS1) (type SPI_PCS1))
+            (signal (name SPI0_PCS2) (type SPI_PCS2))
+            (signal (name SPI0_PCS3) (type SPI_PCS3))
+            (signal (name SPI0_PCS4) (type SPI_PCS4))
+            (signal (name SPI0_PCS5) (type SPI_PCS5))
+
             (interrupt
                 (name SPI0)
                 (value 26)
@@ -452,6 +463,16 @@
             (name SPI1)
             (address 0x4002d000)
             (description "Serial Peripheral Interface")
+
+            (signal (name SPI1_SCK) (type SPI_SCK))
+            (signal (name SPI1_SOUT) (type SPI_SOUT))
+            (signal (name SPI1_SIN) (type SPI_SIN))
+
+            (signal (name SPI1_PCS0) (type SPI_PCS0))
+            (signal (name SPI1_PCS1) (type SPI_PCS1))
+            (signal (name SPI1_PCS2) (type SPI_PCS2))
+            (signal (name SPI1_PCS3) (type SPI_PCS3))
+
             (interrupt
                 (name SPI1)
                 (value 27)
@@ -462,6 +483,14 @@
             (name SPI2)
             (address 0x400ac000)
             (description "Serial Peripheral Interface")
+
+            (signal (name SPI2_SCK) (type SPI_SCK))
+            (signal (name SPI2_SOUT) (type SPI_SOUT))
+            (signal (name SPI2_SIN) (type SPI_SIN))
+
+            (signal (name SPI2_PCS0) (type SPI_PCS0))
+            (signal (name SPI2_PCS1) (type SPI_PCS1))
+            
             (interrupt
                 (name SPI2)
                 (value 65)
@@ -478,6 +507,10 @@
             (name I2C0)
             (address 0x40066000)
             (description "Inter-Integrated Circuit")
+
+            (signal (name I2C0_SCL) (type I2C_SCL))
+            (signal (name I2C0_SDA) (type I2C_SDA))
+
             (interrupt
                 (name I2C0)
                 (value 24)
@@ -487,6 +520,10 @@
             (name I2C1)
             (address 0x40067000)
             (description "Inter-Integrated Circuit")
+
+            (signal (name I2C1_SCL) (type I2C_SCL))
+            (signal (name I2C1_SDA) (type I2C_SDA))
+
             (interrupt
                 (name I2C1)
                 (value 25)
