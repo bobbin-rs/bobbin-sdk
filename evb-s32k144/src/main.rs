@@ -18,6 +18,7 @@ pub extern "C" fn main() -> ! {
     test_irq();
     test_lpuart();
     test_lpspi();
+    test_flexcan();
     println!("[done] All tests passed");
     loop {}
 }
@@ -396,7 +397,6 @@ fn test_lpuart() {
 // SCKDIV = 8 => Divide by 10 => 1MHz
 fn test_lpspi() {
     use board::hal::lpspi::*;
-    use board::uja1169::Mode;
     use board::hal::pcc::*;
     use board::hal::port::*;
 
@@ -454,4 +454,21 @@ fn test_lpspi() {
     assert_eq!(ids, 0xEF);
 
     println!("[pass] LPSPI OK");
+}
+
+fn test_flexcan() {
+    use board::hal::flexcan::*;
+
+    let can = CAN0;
+    can.pcc_enable();
+
+    can.set_config(|c| c.set_loopback(true));
+
+    can.enable();
+
+
+    can.disable();
+    can.pcc_disable();
+
+    println!("[pass] FLEXCAN OK")
 }
