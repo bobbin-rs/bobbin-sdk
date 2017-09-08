@@ -3737,6 +3737,11 @@ impl En for super::spi::Spi1 {
     #[inline] fn set_en(&self, value: u32) { SIM.with_scgc6(|r| r.set_spi1(value)); }
 }
 
+impl En for super::crc::Crc {
+    #[inline] fn en(&self) -> u32 { SIM.scgc6().crc().into() }
+    #[inline] fn set_en(&self, value: u32) { SIM.with_scgc6(|r| r.set_crc(value)); }
+}
+
 impl En for super::pit::Pit {
     #[inline] fn en(&self) -> u32 { SIM.scgc6().pit().into() }
     #[inline] fn set_en(&self, value: u32) { SIM.with_scgc6(|r| r.set_pit(value)); }
