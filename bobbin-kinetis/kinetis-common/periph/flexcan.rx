@@ -1481,7 +1481,7 @@
             (bit-offset 0)
             (bit-width 8)
             (access read-write)
-            (description "Data byte 3 of Rx/Tx frame.")
+            (description "Data byte of Rx/Tx frame.")
         )
     )
     (register
@@ -2852,6 +2852,79 @@
             (bit-width 7)
             (access read-only)
             (description "CRC Mailbox Number for FD_TXCRC")
+        )
+    )
+    (descriptor
+        (name MBUF)
+        (size 0x10)
+        (description "CAN Message Buffer Header")
+        (register
+            (name HDR1)
+            (size 0x20)
+            (field
+                (name EDL)
+                (bit-offset 31)
+                (bit-width 1)            
+            )
+            (field
+                (name BRS)
+                (bit-offset 30)
+                (bit-width 1)            
+            )
+            (field
+                (name ESI)
+                (bit-offset 29)
+                (bit-width 1)            
+            )
+            (field
+                (name CODE)
+                (bit-offset 24)
+                (bit-width 4)            
+            )  
+            (field
+                (name SRR)
+                (bit-offset 22)
+                (bit-width 1)            
+            )
+            (field
+                (name IDE)
+                (bit-offset 21)
+                (bit-width 1)            
+            )
+            (field
+                (name RTR)
+                (bit-offset 20)
+                (bit-width 1)            
+            )     
+            (field
+                (name DLC)
+                (bit-offset 16)
+                (bit-width 4)            
+            )  
+            (field
+                (name TIME_STAMP)
+                (bit-offset 0)
+                (bit-width 16)            
+            )     
+        )
+        (register
+            (name HDR2)
+            (size 0x20)
+            (field
+                (name PRIO)
+                (bit-offset 29)
+                (bit-width 3)            
+            )       
+            (field
+                (name ID_STD)
+                (bit-offset 18)
+                (bit-width 11)            
+            )               
+            (field
+                (name ID_EXT)
+                (bit-offset 0)
+                (bit-width 29)            
+            )          
         )
     )
 )
