@@ -585,6 +585,37 @@ fn test_flexcan() {
 }
 
 fn test_lpi2c() {
-    // TODO
+    use board::hal::pcc;
+    use board::hal::lpi2c::*;
+
+    pub const I2CADDR: u8 = 0x12;
+
+    let i2c = LPI2C0;
+
+    println!("# LPI2C Test Start");
+
+    i2c
+        .pcc_set_clock_source(pcc::ClockSource::SPLLDIV2)
+        .pcc_enable();
+
+    // Enable Master
+    i2c.with_mcr(|r| r.set_men(true));
+
+    // Set Slave Address
+
+    i2c.with_samr(|r| r.set_addr0(I2CADDR));
+
+    // Enable Slave
+    i2c.with_scr(|r| r.set_sen(true));
+
+
+
+    // Disable Slave
+    i2c.with_scr(|r| r.set_sen(false));
+    
+    // Disable Master
+    i2c.with_mcr(|r| r.set_men(false));
+
+    i2c.pcc_disable();
     println!("[pass] LPI2C OK");
 }
