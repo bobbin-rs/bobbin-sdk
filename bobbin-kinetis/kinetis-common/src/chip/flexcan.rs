@@ -3724,7 +3724,7 @@ impl ::core::fmt::Debug for Cbt {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ram(pub u32);
 impl Ram {
-    #[doc="Data byte 3 of Rx/Tx frame."]
+    #[doc="Data byte of Rx/Tx frame."]
     #[inline] pub fn byte<I: Into<bits::R4>>(&self, index: I) -> bits::U8 {
         let index: usize = index.into().value() as usize;
         let shift: usize = 0 + (index << 3);
@@ -6980,6 +6980,353 @@ impl ::core::fmt::Debug for Fdcrc {
         try!(write!(f, "[0x{:08x}", self.0));
         if self.fd_txcrc() != 0 { try!(write!(f, " fd_txcrc=0x{:x}", self.fd_txcrc()))}
         if self.fd_mbcrc() != 0 { try!(write!(f, " fd_mbcrc=0x{:x}", self.fd_mbcrc()))}
+        try!(write!(f, "]"));
+        Ok(())
+    }
+}
+
+
+#[doc="CAN Message Buffer Header"]
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub struct Mbuf(pub [u8; 16]);
+
+impl Mbuf {
+#[doc="Read the HDR1 register."]
+    #[inline] pub fn hdr1(&self) -> Hdr1 { 
+        unsafe {
+            read_volatile(self.0.as_ptr().offset(0x0) as *const Hdr1)
+        }
+    }
+
+#[doc="Write the HDR1 register."]
+    #[inline] pub fn set_hdr1<F: FnOnce(Hdr1) -> Hdr1>(&mut self, f: F) -> &Self {
+        unsafe {
+            write_volatile(self.0.as_mut_ptr().offset(0x0) as *mut Hdr1, f(Hdr1(0)));
+        }
+        self
+  }
+
+#[doc="Modfy the HDR1 register."]
+    #[inline] pub fn with_hdr1<F: FnOnce(Hdr1) -> Hdr1>(&mut self, f: F) -> &mut Self {
+        unsafe {
+            write_volatile(self.0.as_mut_ptr().offset(0x0) as *mut Hdr1, f(self.hdr1()));
+        }
+      self
+    }
+
+
+#[doc="Read the HDR2 register."]
+    #[inline] pub fn hdr2(&self) -> Hdr2 { 
+        unsafe {
+            read_volatile(self.0.as_ptr().offset(0x0) as *const Hdr2)
+        }
+    }
+
+#[doc="Write the HDR2 register."]
+    #[inline] pub fn set_hdr2<F: FnOnce(Hdr2) -> Hdr2>(&mut self, f: F) -> &Self {
+        unsafe {
+            write_volatile(self.0.as_mut_ptr().offset(0x0) as *mut Hdr2, f(Hdr2(0)));
+        }
+        self
+  }
+
+#[doc="Modfy the HDR2 register."]
+    #[inline] pub fn with_hdr2<F: FnOnce(Hdr2) -> Hdr2>(&mut self, f: F) -> &mut Self {
+        unsafe {
+            write_volatile(self.0.as_mut_ptr().offset(0x0) as *mut Hdr2, f(self.hdr2()));
+        }
+      self
+    }
+
+
+}
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct Hdr1(pub u32);
+impl Hdr1 {
+    #[doc="Gets the EDL field."]
+    #[inline] pub fn edl(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 31) & 0x1) as u8) } // [31]
+    }
+
+    #[doc="Returns true if EDL != 0"]
+    #[inline] pub fn test_edl(&self) -> bool {
+        self.edl() != 0
+    }
+
+    #[doc="Sets the EDL field."]
+    #[inline] pub fn set_edl<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 31);
+        self.0 |= value << 31;
+        self
+    }
+
+    #[doc="Gets the BRS field."]
+    #[inline] pub fn brs(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 30) & 0x1) as u8) } // [30]
+    }
+
+    #[doc="Returns true if BRS != 0"]
+    #[inline] pub fn test_brs(&self) -> bool {
+        self.brs() != 0
+    }
+
+    #[doc="Sets the BRS field."]
+    #[inline] pub fn set_brs<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 30);
+        self.0 |= value << 30;
+        self
+    }
+
+    #[doc="Gets the ESI field."]
+    #[inline] pub fn esi(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 29) & 0x1) as u8) } // [29]
+    }
+
+    #[doc="Returns true if ESI != 0"]
+    #[inline] pub fn test_esi(&self) -> bool {
+        self.esi() != 0
+    }
+
+    #[doc="Sets the ESI field."]
+    #[inline] pub fn set_esi<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 29);
+        self.0 |= value << 29;
+        self
+    }
+
+    #[doc="Gets the CODE field."]
+    #[inline] pub fn code(&self) -> bits::U4 {
+        unsafe { ::core::mem::transmute(((self.0 >> 24) & 0xf) as u8) } // [27:24]
+    }
+
+    #[doc="Returns true if CODE != 0"]
+    #[inline] pub fn test_code(&self) -> bool {
+        self.code() != 0
+    }
+
+    #[doc="Sets the CODE field."]
+    #[inline] pub fn set_code<V: Into<bits::U4>>(mut self, value: V) -> Self {
+        let value: bits::U4 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0xf << 24);
+        self.0 |= value << 24;
+        self
+    }
+
+    #[doc="Gets the SRR field."]
+    #[inline] pub fn srr(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 22) & 0x1) as u8) } // [22]
+    }
+
+    #[doc="Returns true if SRR != 0"]
+    #[inline] pub fn test_srr(&self) -> bool {
+        self.srr() != 0
+    }
+
+    #[doc="Sets the SRR field."]
+    #[inline] pub fn set_srr<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 22);
+        self.0 |= value << 22;
+        self
+    }
+
+    #[doc="Gets the IDE field."]
+    #[inline] pub fn ide(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 21) & 0x1) as u8) } // [21]
+    }
+
+    #[doc="Returns true if IDE != 0"]
+    #[inline] pub fn test_ide(&self) -> bool {
+        self.ide() != 0
+    }
+
+    #[doc="Sets the IDE field."]
+    #[inline] pub fn set_ide<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 21);
+        self.0 |= value << 21;
+        self
+    }
+
+    #[doc="Gets the RTR field."]
+    #[inline] pub fn rtr(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 20) & 0x1) as u8) } // [20]
+    }
+
+    #[doc="Returns true if RTR != 0"]
+    #[inline] pub fn test_rtr(&self) -> bool {
+        self.rtr() != 0
+    }
+
+    #[doc="Sets the RTR field."]
+    #[inline] pub fn set_rtr<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 20);
+        self.0 |= value << 20;
+        self
+    }
+
+    #[doc="Gets the DLC field."]
+    #[inline] pub fn dlc(&self) -> bits::U4 {
+        unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xf) as u8) } // [19:16]
+    }
+
+    #[doc="Returns true if DLC != 0"]
+    #[inline] pub fn test_dlc(&self) -> bool {
+        self.dlc() != 0
+    }
+
+    #[doc="Sets the DLC field."]
+    #[inline] pub fn set_dlc<V: Into<bits::U4>>(mut self, value: V) -> Self {
+        let value: bits::U4 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0xf << 16);
+        self.0 |= value << 16;
+        self
+    }
+
+    #[doc="Gets the TIME_STAMP field."]
+    #[inline] pub fn time_stamp(&self) -> bits::U16 {
+        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffff) as u16) } // [15:0]
+    }
+
+    #[doc="Returns true if TIME_STAMP != 0"]
+    #[inline] pub fn test_time_stamp(&self) -> bool {
+        self.time_stamp() != 0
+    }
+
+    #[doc="Sets the TIME_STAMP field."]
+    #[inline] pub fn set_time_stamp<V: Into<bits::U16>>(mut self, value: V) -> Self {
+        let value: bits::U16 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0xffff << 0);
+        self.0 |= value << 0;
+        self
+    }
+
+}
+
+impl From<u32> for Hdr1 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Hdr1(other)
+    }
+}
+
+impl ::core::fmt::Display for Hdr1 {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
+    }
+}
+
+impl ::core::fmt::Debug for Hdr1 {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        if self.edl() != 0 { try!(write!(f, " edl"))}
+        if self.brs() != 0 { try!(write!(f, " brs"))}
+        if self.esi() != 0 { try!(write!(f, " esi"))}
+        if self.code() != 0 { try!(write!(f, " code=0x{:x}", self.code()))}
+        if self.srr() != 0 { try!(write!(f, " srr"))}
+        if self.ide() != 0 { try!(write!(f, " ide"))}
+        if self.rtr() != 0 { try!(write!(f, " rtr"))}
+        if self.dlc() != 0 { try!(write!(f, " dlc=0x{:x}", self.dlc()))}
+        if self.time_stamp() != 0 { try!(write!(f, " time_stamp=0x{:x}", self.time_stamp()))}
+        try!(write!(f, "]"));
+        Ok(())
+    }
+}
+
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct Hdr2(pub u32);
+impl Hdr2 {
+    #[doc="Gets the PRIO field."]
+    #[inline] pub fn prio(&self) -> bits::U3 {
+        unsafe { ::core::mem::transmute(((self.0 >> 29) & 0x7) as u8) } // [31:29]
+    }
+
+    #[doc="Returns true if PRIO != 0"]
+    #[inline] pub fn test_prio(&self) -> bool {
+        self.prio() != 0
+    }
+
+    #[doc="Sets the PRIO field."]
+    #[inline] pub fn set_prio<V: Into<bits::U3>>(mut self, value: V) -> Self {
+        let value: bits::U3 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x7 << 29);
+        self.0 |= value << 29;
+        self
+    }
+
+    #[doc="Gets the ID_STD field."]
+    #[inline] pub fn id_std(&self) -> bits::U11 {
+        unsafe { ::core::mem::transmute(((self.0 >> 18) & 0x7ff) as u16) } // [28:18]
+    }
+
+    #[doc="Returns true if ID_STD != 0"]
+    #[inline] pub fn test_id_std(&self) -> bool {
+        self.id_std() != 0
+    }
+
+    #[doc="Sets the ID_STD field."]
+    #[inline] pub fn set_id_std<V: Into<bits::U11>>(mut self, value: V) -> Self {
+        let value: bits::U11 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x7ff << 18);
+        self.0 |= value << 18;
+        self
+    }
+
+    #[doc="Gets the ID_EXT field."]
+    #[inline] pub fn id_ext(&self) -> bits::U29 {
+        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1fffffff) as u32) } // [28:0]
+    }
+
+    #[doc="Returns true if ID_EXT != 0"]
+    #[inline] pub fn test_id_ext(&self) -> bool {
+        self.id_ext() != 0
+    }
+
+    #[doc="Sets the ID_EXT field."]
+    #[inline] pub fn set_id_ext<V: Into<bits::U29>>(mut self, value: V) -> Self {
+        let value: bits::U29 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1fffffff << 0);
+        self.0 |= value << 0;
+        self
+    }
+
+}
+
+impl From<u32> for Hdr2 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Hdr2(other)
+    }
+}
+
+impl ::core::fmt::Display for Hdr2 {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
+    }
+}
+
+impl ::core::fmt::Debug for Hdr2 {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        if self.prio() != 0 { try!(write!(f, " prio=0x{:x}", self.prio()))}
+        if self.id_std() != 0 { try!(write!(f, " id_std=0x{:x}", self.id_std()))}
+        if self.id_ext() != 0 { try!(write!(f, " id_ext=0x{:x}", self.id_ext()))}
         try!(write!(f, "]"));
         Ok(())
     }
