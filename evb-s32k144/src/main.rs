@@ -11,6 +11,7 @@ pub extern "C" fn main() -> ! {
     test_crc();
     test_gpio();
     test_ftm();
+    test_lpit();
     test_lptmr();
     test_systick();
     test_adc();
@@ -160,6 +161,52 @@ fn test_ftm() {
     println!("[pass] FTM OK");
 }
 
+fn test_lpit() {
+    use board::hal::pcc;
+    use board::hal::lpit::*;
+
+    fn check_progress(tim: &LpitCh) {
+        let mut c_min = 4096;
+        while !tim.timeout_flag() {
+            let c = tim.counter();
+            if c < c_min {
+                c_min = c;
+            }
+        }
+        assert!(c_min < 4096);
+    }
+
+
+    let tim = LPIT0;
+    let tim_ch = LPIT0_CH0;
+    tim
+        .pcc_set_clock_source(pcc::ClockSource::SOSCDIV2)
+        .pcc_enable();
+
+    // Repeat Up Counter    
+    tim_ch
+        .clr_timeout_flag()
+        .start_down(4096);
+    check_progress(&tim_ch);
+    tim_ch.clr_timeout_flag();
+    check_progress(&tim_ch);
+
+    assert!(tim_ch.running());
+    tim_ch.stop();
+
+    tim_ch
+        .clr_timeout_flag()
+        .start_down_once(4096);
+    check_progress(&tim_ch);
+    tim_ch.clr_timeout_flag();
+    assert_eq!(tim_ch.counter(), 4095);
+    assert_eq!(tim_ch.counter(), 4095);
+
+
+    tim.pcc_disable();
+
+    println!("[pass] LPIT OK");}
+
 fn test_lptmr() {
     use board::hal::pcc;
     use board::hal::lptmr::*;
@@ -198,7 +245,7 @@ fn test_lptmr() {
     // tim.set_enabled(false);
     tim.pcc_disable();
 
-    println!("[pass] FTM OK");
+    println!("[pass] LPTMR OK");
 }
 
 fn test_systick() {
