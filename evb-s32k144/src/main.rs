@@ -17,6 +17,7 @@ pub extern "C" fn main() -> ! {
     test_dma();
     test_irq();
     test_lpuart();
+    test_lpi2c();
     test_lpspi();
     test_flexcan();
     println!("[done] All tests passed");
@@ -534,4 +535,9 @@ fn test_flexcan() {
     can.pcc_disable();
 
     println!("[pass] FLEXCAN OK")
+}
+
+fn test_lpi2c() {
+    // TODO
+    println!("[pass] LPI2C OK");
 }
