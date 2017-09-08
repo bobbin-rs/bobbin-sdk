@@ -117,11 +117,11 @@ pub extern "C" fn main() -> ! {
     for i in 0..4 {
         println!("0x{:02x} M{}      {:?}", 0x2b+i, i, r.m(i));
     }
-    println!("0x2F FC:     {:?}", r.fc());
+    println!("0x2F FC     {:?}", r.fc());
     for i in 0..8 {
         println!("0x{:02x} DM{}     {:?}", 0x68+i, i, r.dm(i));
     }
-    
+    println!("DONE");
     
     loop {}
 }
