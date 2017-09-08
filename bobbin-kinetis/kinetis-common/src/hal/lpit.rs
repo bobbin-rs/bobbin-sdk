@@ -92,6 +92,28 @@ impl Start<u32> for LpitCh {
     }
 }
 
+impl StartDown<u32> for LpitCh {
+    fn start_down(&self, value: u32) -> &Self {       
+        self.periph
+            .with_tctrl(self.index, |r| r.set_tsoi(0))        
+            .set_ch_value(self.index, value - 1)
+            .set_ch_enabled(self.index, true);
+        self
+    }
+}
+
+
+impl StartDownOnce<u32> for LpitCh {
+    fn start_down_once(&self, value: u32) -> &Self {       
+        self.periph
+            .with_tctrl(self.index, |r| r.set_tsoi(1))
+            .set_ch_value(self.index, value - 1)
+            .set_ch_enabled(self.index, true);
+        self
+    }
+}
+
+
 impl Timer<u32> for LpitCh {
     fn stop(&self) -> &Self {
         self.periph.set_ch_enabled(self.index, false);
