@@ -6,7 +6,6 @@ pub mod clock;
 pub mod pcc;
 pub mod wdog;
 pub mod adc;
-// pub mod lpspi;
 pub mod port;
 
 pub mod gpio {
@@ -32,6 +31,12 @@ pub mod lptmr {
     pub use chip::lptmr::*;
     pub use kinetis_common::hal::lptmr::*;
     pub use super::pcc::{PccEnabled, PccClockSource, PccClockDivider, PccClockDividerFrac};
+}
+
+pub mod lpspi {
+    pub use chip::lpspi::*;
+    pub use kinetis_common::hal::lpspi::*;
+    pub use super::pcc::{PccEnabled, PccClockSource};
 }
 
 pub mod ftm {
