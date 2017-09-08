@@ -46,13 +46,21 @@ pub extern "C" fn main() -> ! {
     l1.set_enabled(false);    
     
     l1.configure(Config::default()
-        .master(true)
-        .sckpcs(4)
-        .pcssck(9)
-        .dbt(8)
-        .sckdiv(8)
-        .txwater(3)        
+        .set_master(true)
+        .set_clock_config(
+            8,
+            8,
+            9,
+            4
+        )
+        // .sckpcs(4)
+        // .pcssck(9)
+        // .dbt(8)
+        // .sckdiv(8)
+        // .txwater(3)        
     );
+    l1.with_fcr(|r| r.set_txwater(3));
+
     l1.set_enabled(true);
     let t = l1.target()
         .cpha(true)
