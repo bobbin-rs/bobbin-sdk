@@ -1405,7 +1405,30 @@
             )        
         )   
     )
+    (peripheral-group
+        (name LPI2C)
+        (module (name kinetis_common::chip::lpi2c::*))
+        (peripheral
+            (name LPI2C0)
+            (address 0x40066000)
+            (description "The LPI2C Memory Map/Register Definition can be found here.")
 
+            (signal (name LPI2C0_HREQ) (type LPI2C_HREQ))
+            (signal (name LPI2C0_SCL) (type LPI2C_SCL))
+            (signal (name LPI2C0_SDA) (type LPI2C_SDA))
+            (signal (name LPI2C0_SCLS) (type LPI2C_SCLS))
+            (signal (name LPI2C0_SDAS) (type LPI2C_SDAS))
+
+            (interrupt
+                (name LPI2C0_Master)
+                (value 24)
+            )
+            (interrupt
+                (name LPI2C0_Slave)
+                (value 25)
+            )
+        )
+    )
     (peripheral-group
         (name LPSPI)
         (module (name kinetis_common::chip::lpspi::*))

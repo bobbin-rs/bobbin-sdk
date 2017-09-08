@@ -33,7 +33,11 @@
         (name LPIT)
         (has-channels)
         (prototype "periph/lpit.rx")
-    )       
+    )      
+    (peripheral-group
+        (name LPI2C)
+        (prototype "periph/lpi2c.rx")
+    )  
     (peripheral-group
         (name LPSPI)
         (prototype "periph/lpspi.rx")
