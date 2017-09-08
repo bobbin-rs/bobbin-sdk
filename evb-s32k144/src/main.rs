@@ -532,7 +532,8 @@ fn test_flexcan() {
         }
         can.with_mcr(|r| r.set_softrst(true));
         while can.mcr().test_softrst() {}
-        can.clear_ram();        
+        // println!("# Clear RAM (MAXMB={})", can.mcr().maxmb());
+        can.clear_ram(16);        
         can.with_mcr(|r| r.set_frz(true).set_halt(true));
         can.with_mcr(|r| r
             .set_irmq(true) // Individual Rx Masking and Queue Enable
@@ -592,7 +593,7 @@ fn test_lpi2c() {
 
     let i2c = LPI2C0;
 
-    println!("# LPI2C Test Start");
+    // println!("# LPI2C Test Start");
 
     i2c
         .pcc_set_clock_source(pcc::ClockSource::SPLLDIV2)
