@@ -425,13 +425,16 @@ fn test_lpspi() {
     l1.set_enabled(false);    
     
     l1.configure(Config::default()
-        .master(true)
-        .sckpcs(4)
-        .pcssck(9)
-        .dbt(8)
-        .sckdiv(8)
-        .txwater(3)        
+        .set_master(true)
+        .set_clock_config(
+            8, // SCKDIV
+            8, // DBT
+            9, // PCSSCK
+            4  // SCKPCS
+        )
     );
+    l1.with_fcr(|r| r.set_txwater(3));
+
     l1.set_enabled(true);
     let t = l1.target()
         .cpha(true)
@@ -441,6 +444,14 @@ fn test_lpspi() {
 
 
     t.configure();
+
+    let u = board::uja1169::device(t);
+    let r = u.reg();
+    let ids = r.ids().ids();
+    if ids == 0xff {
+        panic!("*** IDS = 0xff, device may not have 12v power. ***");
+    }
+    assert_eq!(ids, 0xEF);
 
     println!("[pass] LPSPI OK");
 }
