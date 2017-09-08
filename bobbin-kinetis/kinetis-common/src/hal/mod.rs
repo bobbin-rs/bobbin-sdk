@@ -4,6 +4,7 @@ pub mod lpit;
 pub mod lpi2c;
 pub mod lpspi;
 pub mod lpuart;
+pub mod i2c;
 pub mod ftm;
 pub mod tpm;
 pub mod pit;

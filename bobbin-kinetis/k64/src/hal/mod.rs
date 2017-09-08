@@ -10,58 +10,100 @@ pub mod port {
     pub use chip::port::*;    
     pub use kinetis_common::hal::port::*;
     pub use super::sim::SimEnabled;
-    use chip::sig::{SignalTx, SignalRx, SignalFtm, SignalAdc};
+    // use chip::sig::{SignalTx, SignalRx, SignalFtm, SignalAdc};
 
     use core::ops::Deref;
 
-    pub trait ModeTx<SIG, PERIPH> {
-        fn mode_tx(&self, _: &PERIPH) -> &Self;
+
+    macro_rules! impl_mode {
+        ($mode:ident, $meth:ident, $sig:ident) => (
+            use chip::sig::$sig;
+
+            pub trait $mode<SIG, PERIPH> {
+                fn $meth(&self, _: &PERIPH) -> &Self;
+            }
+
+            impl<PERIPH, PIN, SIG> $mode<SIG, PERIPH> for PIN where PERIPH: $sig<SIG>, PIN: AltFn<SIG>, PIN: Deref<Target=PortPin> {
+                #[inline]
+                fn $meth(&self, _: &PERIPH) -> &Self {
+                    self.set_mux(self.alt_fn());
+                    self
+                }
+            }            
+        )
     }
 
-    pub trait ModeRx<SIG, PERIPH> {
-        fn mode_rx(&self, _: &PERIPH) -> &Self;
-    }
+    impl_mode!(ModeTx, mode_tx, SignalTx);
+    impl_mode!(ModeRx, mode_rx, SignalRx);
+    impl_mode!(ModeFtm, mode_ftm, SignalFtm);
+    impl_mode!(ModeAdc, mode_adc, SignalAdc);
+    impl_mode!(ModeI2cScl, mode_i2c_scl, SignalI2cScl);
+    impl_mode!(ModeI2cSda, mode_i2c_sda, SignalI2cSda);
+    impl_mode!(ModeSpiSck, mode_spi_sck, SignalSpiSck);
+    impl_mode!(ModeSpiSout, mode_spi_sout, SignalSpiSout);
+    impl_mode!(ModeSpiSin, mode_spi_sin, SignalSpiSin);
+    impl_mode!(ModeSpiPcs0, mode_spi_pcs0, SignalSpiPcs0);
+    impl_mode!(ModeSpiPcs1, mode_spi_pcs1, SignalSpiPcs1);
+    impl_mode!(ModeSpiPcs2, mode_spi_pcs2, SignalSpiPcs2);
+    impl_mode!(ModeSpiPcs3, mode_spi_pcs3, SignalSpiPcs3);
+    impl_mode!(ModeSpiPcs4, mode_spi_pcs4, SignalSpiPcs4);
+    impl_mode!(ModeSpiPcs5, mode_spi_pcs5, SignalSpiPcs5);
 
-    pub trait ModeFtm<SIG, PERIPH> {
-        fn mode_ftm(&self, _: &PERIPH) -> &Self;
-    }
 
-    pub trait ModeAdc<SIG, PERIPH> {
-        fn mode_adc(&self, _: &PERIPH) -> &Self;
-    }
+    // pub trait ModeTx<SIG, PERIPH> {
+    //     fn mode_tx(&self, _: &PERIPH) -> &Self;
+    // }
 
-    impl<PERIPH, PIN, SIG> ModeTx<SIG, PERIPH> for PIN where PERIPH: SignalTx<SIG>, PIN: AltFn<SIG>, PIN: Deref<Target=PortPin> {
-        fn mode_tx(&self, _: &PERIPH) -> &Self {
-            self.set_mux(self.alt_fn());
-            self
-        }
-    }
+    // pub trait ModeRx<SIG, PERIPH> {
+    //     fn mode_rx(&self, _: &PERIPH) -> &Self;
+    // }
 
-    impl<PERIPH, PIN, SIG> ModeRx<SIG, PERIPH> for PIN where PERIPH: SignalRx<SIG>, PIN: AltFn<SIG>, PIN: Deref<Target=PortPin> {
-        fn mode_rx(&self, _: &PERIPH) -> &Self {
-            self.set_mux(self.alt_fn());
-            self
-        }
-    }   
+    // pub trait ModeFtm<SIG, PERIPH> {
+    //     fn mode_ftm(&self, _: &PERIPH) -> &Self;
+    // }
 
-    impl<PERIPH, PIN, SIG> ModeFtm<SIG, PERIPH> for PIN where PERIPH: SignalFtm<SIG>, PIN: AltFn<SIG>, PIN: Deref<Target=PortPin> {
-        fn mode_ftm(&self, _: &PERIPH) -> &Self {
-            self.set_mux(self.alt_fn());
-            self
-        }
-    }        
+    // pub trait ModeAdc<SIG, PERIPH> {
+    //     fn mode_adc(&self, _: &PERIPH) -> &Self;
+    // }
 
-    impl<PERIPH, PIN, SIG> ModeAdc<SIG, PERIPH> for PIN where PERIPH: SignalAdc<SIG>, PIN: AltFn<SIG>, PIN: Deref<Target=PortPin> {
-        fn mode_adc(&self, _: &PERIPH) -> &Self {
-            self.set_mux(self.alt_fn());
-            self
-        }
-    }
+    // impl<PERIPH, PIN, SIG> ModeTx<SIG, PERIPH> for PIN where PERIPH: SignalTx<SIG>, PIN: AltFn<SIG>, PIN: Deref<Target=PortPin> {
+    //     fn mode_tx(&self, _: &PERIPH) -> &Self {
+    //         self.set_mux(self.alt_fn());
+    //         self
+    //     }
+    // }
+
+    // impl<PERIPH, PIN, SIG> ModeRx<SIG, PERIPH> for PIN where PERIPH: SignalRx<SIG>, PIN: AltFn<SIG>, PIN: Deref<Target=PortPin> {
+    //     fn mode_rx(&self, _: &PERIPH) -> &Self {
+    //         self.set_mux(self.alt_fn());
+    //         self
+    //     }
+    // }   
+
+    // impl<PERIPH, PIN, SIG> ModeFtm<SIG, PERIPH> for PIN where PERIPH: SignalFtm<SIG>, PIN: AltFn<SIG>, PIN: Deref<Target=PortPin> {
+    //     fn mode_ftm(&self, _: &PERIPH) -> &Self {
+    //         self.set_mux(self.alt_fn());
+    //         self
+    //     }
+    // }        
+
+    // impl<PERIPH, PIN, SIG> ModeAdc<SIG, PERIPH> for PIN where PERIPH: SignalAdc<SIG>, PIN: AltFn<SIG>, PIN: Deref<Target=PortPin> {
+    //     fn mode_adc(&self, _: &PERIPH) -> &Self {
+    //         self.set_mux(self.alt_fn());
+    //         self
+    //     }
+    // }
 }
 
 pub mod gpio {
     pub use chip::gpio::*;
     pub use kinetis_common::hal::gpio::*;
+    pub use super::sim::SimEnabled;
+}
+
+pub mod i2c {
+    pub use chip::i2c::*;
+    pub use kinetis_common::hal::i2c::*;
     pub use super::sim::SimEnabled;
 }
 
