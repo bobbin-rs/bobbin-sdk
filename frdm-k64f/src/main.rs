@@ -604,7 +604,7 @@ fn test_i2c() {
 
     let addr = 0x1d;
     let cmd = [0x0d];
-    let mut buf = [0u8, 0u8];
+    let mut buf = [0u8];
 
     i2c_transfer(&i2c, addr, &cmd, &mut buf);
     // i2c_write(&i2c, addr, &cmd);
@@ -652,20 +652,20 @@ fn test_i2c() {
 
         let len = bytes_in.len();
 
-        for i in 0..len-2 {
-            i2c.with_c1(|r| r.set_txak(0));
-            bytes_in[i] = i2c.d().data().value();
-            // wait for interrupt
-            while i2c.s().iicif() == 0 {}
-            i2c.with_s(|r| r.set_iicif(1));
-        }
-        // Set NACK
-        i2c.with_c1(|r| r.set_txak(1));
+        // for i in 0..len-2 {
+        //     i2c.with_c1(|r| r.set_txak(0));
+        //     bytes_in[i] = i2c.d().data().value();
+        //     // wait for interrupt
+        //     while i2c.s().iicif() == 0 {}
+        //     i2c.with_s(|r| r.set_iicif(1));
+        // }
+        // // Set NACK
+        // i2c.with_c1(|r| r.set_txak(1));
 
-        bytes_in[len-2] = i2c.d().data().value();
+        // bytes_in[len-2] = i2c.d().data().value();
         // wait for interrupt
-        while i2c.s().iicif() == 0 {}
-        i2c.with_s(|r| r.set_iicif(1));
+        // while i2c.s().iicif() == 0 {}
+        // i2c.with_s(|r| r.set_iicif(1));
         // send stop
         i2c.with_c1(|r| r.set_mst(0));
         bytes_in[len-1] = i2c.d().data().value();        
