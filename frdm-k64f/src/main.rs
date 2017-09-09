@@ -569,6 +569,7 @@ fn test_flexcan() {
 fn test_i2c() {
     use board::hal::i2c::*;
     use board::hal::port::*;
+    use board::hal::gpio::*;
     use board::clock::CLK;
     use board::hal::clock::Clock;
 
@@ -584,8 +585,23 @@ fn test_i2c() {
     
     println!("# Clock: {:?}", i2c.clock(&CLK).unwrap());
     port.sim_enable();
-    
 
+    port_scl.set_mux_gpio();
+    port_sda.set_mux_gpio();
+
+    let gpio_scl = port_scl.gpio_pin();
+    let gpio_sda = port_sda.gpio_pin();
+
+
+    gpio_scl.set_output(true);
+    gpio_sda.set_output(true);
+    board::delay(1);
+    gpio_scl.set_output(false);
+    gpio_sda.set_output(false);
+    board::delay(1);
+    gpio_scl.set_output(true);
+    gpio_sda.set_output(true);
+    board::delay(1);
     port_scl.mode_i2c_scl(&i2c).set_pull_none().set_ode(true);
     port_sda.mode_i2c_sda(&i2c).set_pull_none().set_ode(true);
 
@@ -600,9 +616,64 @@ fn test_i2c() {
     // 2. Write: Control Register 1 to enable the I2C module and interrupts
     i2c.with_c1(|r| r.set_iicen(1));
 
-    // Write to 0x0d
-
     let addr = 0x1d;
+
+    // Write 1
+    with_tx(&i2c, || {
+        write(&i2c, addr, &[0x0d]);
+    });
+
+    // Write 2
+    with_tx(&i2c, || {
+        write(&i2c, addr, &[0x0d, 0x0e]);
+    });
+
+    // Write 3
+    with_tx(&i2c, || {
+        write(&i2c, addr, &[0x0d, 0x0e, 0x0f]);
+    });
+   
+    // Read 1
+    let mut buf: [u8; 1] = [0u8; 1];
+    with_tx(&i2c, || {
+        read(&i2c, addr, &mut buf);
+    });
+
+    // Read 2
+    let mut buf: [u8; 2] = [0u8; 2];
+    with_tx(&i2c, || {
+        read(&i2c, addr, &mut buf);
+    });
+
+    // Read 3
+    let mut buf: [u8; 3] = [0u8; 3];
+    with_tx(&i2c, || {
+        read(&i2c, addr, &mut buf);
+    });
+
+    // Write / Write
+    with_tx(&i2c, || {
+        write(&i2c, addr, &[0x0d]);
+        restart(&i2c);
+        write(&i2c, addr, &[0x0d]);
+    });
+
+    // Write / Read
+    let mut buf: [u8; 1] = [0u8; 1];
+    with_tx(&i2c, || {
+        write(&i2c, addr, &[0x0d]);
+        restart(&i2c);
+        read(&i2c, addr, &mut buf);
+    });
+
+    // Write / Read
+    let mut buf: [u8; 6] = [0u8; 6];
+    with_tx(&i2c, || {
+        write(&i2c, addr, &[0x00]);
+        restart(&i2c);
+        read(&i2c, addr, &mut buf);
+    });
+
 
     let whoami = reg_read(&i2c, addr, 0xd);
     println!("whoami: {:02x}", whoami);
@@ -624,17 +695,113 @@ fn test_i2c() {
     i2c.sim_disable();
     println!("[pass] LPI2C OK");
 
+
+    fn with_tx<F: FnOnce()>(i2c: &I2cPeriph, f: F) {
+        // Wait while Busy
+        while i2c.s().busy() != 0 {}
+        // Send Start
+        i2c.with_c1(|r| r.set_mst(1).set_tx(1));
+        f();        
+        // Send Stop
+        i2c.with_c1(|r| r.set_mst(0).set_tx(0));        
+        // Wait while Busy
+        while i2c.s().busy() != 0 {}
+    }
+
+    fn restart(i2c: &I2cPeriph) {
+        // Send Restart
+        i2c.with_c1(|r| r.set_tx(1).set_rsta(1));                                
+    }
+
+    fn wait_transfer(i2c: &I2cPeriph) {
+        // wait for interrupt
+        while i2c.s().iicif() == 0 {}
+        i2c.with_s(|r| r.set_iicif(1));        
+    }
+
+    fn write(i2c: &I2cPeriph, addr: u8, bytes: &[u8]) {
+        set_tx(i2c, true);
+        set_data(i2c, addr << 1);
+        wait_transfer(i2c);
+        let mut n = bytes.len();
+        let mut i = 0;
+        while n > 0 {        
+            set_data(i2c, bytes[i]);
+            wait_transfer(i2c);
+            i += 1;
+            n -= 1;
+        }
+    }
+
+    fn read(i2c: &I2cPeriph, addr: u8, bytes: &mut [u8]) {
+        set_tx(i2c, true);
+        set_data(i2c, addr << 1 | 1);
+        wait_transfer(i2c);
+        set_tx(i2c, false);
+        if bytes.len() == 1 {
+            set_txak(i2c, true);
+        } else {
+            set_txak(i2c, false);
+        }
+        
+        let _ = data(i2c);        
+        let mut n = bytes.len();
+        let mut i = 0;
+        loop {
+            wait_transfer(i2c);
+            match n {
+                1 => {
+                    set_tx(i2c, true);
+                    bytes[i] = data(i2c);
+                    return;
+                },
+                2 => {
+                    set_txak(i2c, true);
+                    bytes[i] = data(i2c);
+                    i += 1;
+                },
+                _ => {
+                    bytes[i] = data(i2c);
+                    i += 1;
+                }
+            }
+            n -= 1;
+        }
+    }
+
+    fn data(i2c: &I2cPeriph) -> u8 {
+        i2c.d().data().value()
+    }
+
+    fn set_data(i2c: &I2cPeriph, d: u8) {
+        i2c.set_d(|_| D(0).set_data(d));
+    }
+
+    fn set_tx(i2c: &I2cPeriph, value: bool) {
+        i2c.with_c1(|r| r.set_tx(value));
+    }
+
+    fn set_txak(i2c: &I2cPeriph, value: bool) {
+        i2c.with_c1(|r| r.set_txak(value));
+    }
+    
+
     fn reg_read(i2c: &I2cPeriph, addr: u8, reg: u8) -> u8 {
         let cmd = [reg];
         let mut buf = [0u8];
-        i2c_transfer(&i2c, addr, &cmd, &mut buf);
+        with_tx(i2c, || {
+            write(i2c, addr, &cmd);
+            restart(i2c);
+            read(i2c, addr, &mut buf);
+        });
         buf[0]
     }
 
     fn reg_write(i2c: &I2cPeriph, addr: u8, reg: u8, value: u8)  {
         let cmd = [reg, value];
-        let mut buf = [];
-        i2c_transfer(&i2c, addr, &cmd, &mut buf);
+        with_tx(i2c, || {
+            write(i2c, addr, &cmd);
+        });        
     }
 
     fn i2c_transfer(i2c: &I2cPeriph, addr: u8, bytes: &[u8], bytes_in: &mut [u8]) {        
