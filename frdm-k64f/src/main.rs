@@ -676,6 +676,7 @@ fn test_i2c() {
 
 }
 
+/// RFM9x LoRa Radio on pins D10-D13
 fn test_spi() {
     pub use board::hal::spi::*;
     pub use board::hal::port::*;
