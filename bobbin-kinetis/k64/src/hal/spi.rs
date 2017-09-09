@@ -79,7 +79,7 @@ impl Write for SpiDevice {
                 // full, this flag will not clear.
 
                 while spi.sr().tfff() == 0 {}                
-                spi.set_pushr(Pushr(0).set_ctas(0).set_eoq(last).set_txdata(bytes[i] as u32));
+                spi.set_pushr(Pushr(0).set_ctas(0).set_eoq(last).set_txdata(bytes[i]).set_pcs(0, 1));
                 spi.set_sr(Sr(0).set_tfff(1));
             }            
             while spi.sr().eoqf() == 0 {}
@@ -105,7 +105,7 @@ impl Read for SpiDevice {
             // Flush FIFOs
             spi.with_mcr(|r| r.set_halt(1).set_clr_txf(1).set_clr_rxf(1));
             // Clear status bits
-            spi.set_sr(Sr(0).set_tcf(1).set_eoqf(1).set_tfuf(1).set_tfff(1).set_rfof(1).set_rfdf(1));
+            spi.set_sr(Sr(0).set_tcf(1).set_eoqf(1).set_tfuf(1).set_tfff(1).set_rfof(1).set_rfdf(1).set_pcs(0, 1));
             spi.with_mcr(|r| r.set_halt(0)); 
             let len = bytes.len();
             for i in 0..len {
@@ -154,7 +154,7 @@ impl Transfer for SpiDevice {
                 // full, this flag will not clear.
 
                 while spi.sr().tfff() == 0 {}                
-                spi.set_pushr(Pushr(0).set_ctas(0).set_eoq(last).set_txdata(bytes_out[i] as u32));
+                spi.set_pushr(Pushr(0).set_ctas(0).set_eoq(last).set_txdata(bytes_out[i] as u32).set_pcs(0, 1));
                 spi.set_sr(Sr(0).set_tfff(1));
 
                 while spi.sr().rfdf() == 0 {}

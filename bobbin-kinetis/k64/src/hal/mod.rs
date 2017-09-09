@@ -107,6 +107,11 @@ pub mod i2c {
     pub use super::sim::SimEnabled;
 }
 
+pub mod spi {
+    pub use chip::spi::*;
+    pub use kinetis_common::hal::spi::*;
+    pub use super::sim::SimEnabled;
+}
 
 pub mod uart {
     pub use chip::uart::*;
