@@ -11,23 +11,23 @@ impl I2cPeriph {
         self
     }
 
-    pub fn data(&self) -> u8 {
+    fn data(&self) -> u8 {
         self.d().data().value()
     }
 
-    pub fn set_data(&self, d: u8) {
+    fn set_data(&self, d: u8) {
         self.set_d(|_| D(0).set_data(d));
     }
 
-    pub fn set_tx(&self, value: bool) {
+    fn set_tx(&self, value: bool) {
         self.with_c1(|r| r.set_tx(value));
     }
 
-    pub fn set_txak(&self, value: bool) {
+    fn set_txak(&self, value: bool) {
         self.with_c1(|r| r.set_txak(value));
     }    
 
-    pub fn with_tx<F: FnOnce(&Self) -> &Self>(&self, f: F) -> &Self {
+    fn with_tx<F: FnOnce(&Self) -> &Self>(&self, f: F) -> &Self {
         // Wait while Busy
         while self.s().busy() != 0 {}
         // Send Start
@@ -40,18 +40,18 @@ impl I2cPeriph {
         self
     }
 
-    pub fn restart(&self) -> &Self {
+    fn restart(&self) -> &Self {
         self.with_c1(|r| r.set_tx(1).set_rsta(1));
         self                     
     }
 
-    pub fn wait_transfer(&self) -> &Self {
+    fn wait_transfer(&self) -> &Self {
         while self.s().iicif() == 0 {}
         self.with_s(|r| r.set_iicif(1));
         self
     }
 
-    pub fn write(&self, addr: u8, bytes: &[u8]) -> &Self {
+    fn write(&self, addr: u8, bytes: &[u8]) -> &Self {
         self.set_data(addr << 1);
         self.wait_transfer();
         let mut n = bytes.len();
