@@ -603,16 +603,39 @@ fn test_i2c() {
     // Write to 0x0d
 
     let addr = 0x1d;
-    let cmd = [0x0d];
-    let mut buf = [0u8];
 
-    i2c_transfer(&i2c, addr, &cmd, &mut buf);
-    // i2c_write(&i2c, addr, &cmd);
-    // i2c_read(&i2c, addr, &mut buf);
-    println!("{:?}", buf);
+    let whoami = reg_read(&i2c, addr, 0xd);
+    println!("whoami: {:02x}", whoami);
+
+    loop {
+        println!("temp: {}", reg_read(&i2c, addr, 0x51));
+        println!("{} {} | {} {} | {} {}",
+            reg_read(&i2c, addr, 0x01),
+            reg_read(&i2c, addr, 0x02),
+            reg_read(&i2c, addr, 0x03),
+            reg_read(&i2c, addr, 0x04),
+            reg_read(&i2c, addr, 0x05),
+            reg_read(&i2c, addr, 0x06),
+        );
+        board::delay(1000);
+    }
+
 
     i2c.sim_disable();
     println!("[pass] LPI2C OK");
+
+    fn reg_read(i2c: &I2cPeriph, addr: u8, reg: u8) -> u8 {
+        let cmd = [reg];
+        let mut buf = [0u8];
+        i2c_transfer(&i2c, addr, &cmd, &mut buf);
+        buf[0]
+    }
+
+    fn reg_write(i2c: &I2cPeriph, addr: u8, reg: u8, value: u8)  {
+        let cmd = [reg, value];
+        let mut buf = [];
+        i2c_transfer(&i2c, addr, &cmd, &mut buf);
+    }
 
     fn i2c_transfer(i2c: &I2cPeriph, addr: u8, bytes: &[u8], bytes_in: &mut [u8]) {        
         // Wait while Busy
@@ -633,42 +656,56 @@ fn test_i2c() {
             i2c.with_s(|r| r.set_iicif(1));
         }        
 
-        // Send Restart
-        i2c.with_c1(|r| r.set_tx(1).set_rsta(1));                        
+        if bytes_in.len() == 0 {
+            i2c.with_c1(|r| r.set_mst(0));
+        } else {
+            // Send Restart
+            i2c.with_c1(|r| r.set_tx(1).set_rsta(1));                        
 
-        // Send Slave Address
-        i2c.set_d(|_| D(0).set_data((addr << 1) | 1));
-        // wait for interrupt
-        while i2c.s().iicif() == 0 {}
-        i2c.with_s(|r| r.set_iicif(1));
+            // Send Slave Address
+            i2c.set_d(|_| D(0).set_data((addr << 1) | 1));
+            // wait for interrupt
+            while i2c.s().iicif() == 0 {}
+            i2c.with_s(|r| r.set_iicif(1));
 
-        i2c.with_c1(|r| r.set_tx(0));
+            i2c.with_c1(|r| r.set_tx(0));
 
-        // // Receive dummy byte
-        // let _ = i2c.d().data();
-        // // wait for interrupt
-        // while i2c.s().iicif() == 0 {}
-        // i2c.with_s(|r| r.set_iicif(1));
+            // Receive dummy byte
+            let _ = i2c.d().data();
+            // wait for interrupt
+            while i2c.s().iicif() == 0 {}
+            i2c.with_s(|r| r.set_iicif(1));
 
-        let len = bytes_in.len();
+            let len = bytes_in.len();
+            let mut i = 0;
 
-        // for i in 0..len-2 {
-        //     i2c.with_c1(|r| r.set_txak(0));
-        //     bytes_in[i] = i2c.d().data().value();
-        //     // wait for interrupt
-        //     while i2c.s().iicif() == 0 {}
-        //     i2c.with_s(|r| r.set_iicif(1));
-        // }
-        // // Set NACK
-        // i2c.with_c1(|r| r.set_txak(1));
-
-        // bytes_in[len-2] = i2c.d().data().value();
-        // wait for interrupt
-        // while i2c.s().iicif() == 0 {}
-        // i2c.with_s(|r| r.set_iicif(1));
-        // send stop
-        i2c.with_c1(|r| r.set_mst(0));
-        bytes_in[len-1] = i2c.d().data().value();        
+            loop {
+                if i == len {
+                    
+                    break
+                } else if i + 0 == len {
+                    // Last byte
+                    i2c.with_c1(|r| r.set_mst(0));
+                    bytes_in[i] = i2c.d().data().value();     
+                    break
+                    // println!("{}: {:02x}", i, bytes_in[i]);
+                } else if i + 1 == len {
+                    // Second to last byte
+                    i2c.with_c1(|r| r.set_txak(1)); 
+                    bytes_in[i] = i2c.d().data().value();     
+                    // println!("{}: {:02x}", i, bytes_in[i]);
+                    while i2c.s().iicif() == 0 {}
+                    i2c.with_s(|r| r.set_iicif(1));
+                } else {
+                    i2c.with_c1(|r| r.set_txak(0)); 
+                    bytes_in[i] = i2c.d().data().value();  
+                    // println!("{}: {:02x}", i, bytes_in[i]);   
+                    while i2c.s().iicif() == 0 {}
+                    i2c.with_s(|r| r.set_iicif(1));
+                }
+                i += 1;
+            }
+        }   
     }
 
     fn i2c_write(i2c: &I2cPeriph, addr: u8, bytes: &[u8]) {        
