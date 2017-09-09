@@ -6,6 +6,7 @@ use chip::uart::*;
 use chip::pit::*;
 use chip::ftm::*;
 use chip::lptmr::*;
+use chip::i2c::*;
 
 use core::fmt;
 // use hal::mcg::MCG;
@@ -494,8 +495,8 @@ impl<T: ClockTree> Clock<T> for Lptmr0 {
     }
 }
 
-// impl<T: ClockTree> Clock<T> for Ftm3 {
-//     fn clock(&self, t: &T) -> Hz {
-//         t.bus()
-//     }
-// }
+impl<T: ClockTree> Clock<T> for I2c0 {
+    fn clock(&self, t: &T) -> Hz {
+        t.bus()
+    }
+}
