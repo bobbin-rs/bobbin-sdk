@@ -9,20 +9,19 @@ extern crate frdm_k64f as board;
 pub extern "C" fn main() -> ! {
     board::init();
     println!("[start] Running tests for frdm-k64f");
-    test_crc();
-    test_gpio();
-    test_systick();
-    test_ftm();
-    test_pit();
-    test_lptmr();
-    test_adc();
-    test_dma();
-    test_irq();
-    test_uart();
-    test_i2c();
-    // test_lpi2c();
-    // test_lpspi();
-    test_flexcan();
+    // test_crc();
+    // test_gpio();
+    // test_systick();
+    // test_ftm();
+    // test_pit();
+    // test_lptmr();
+    // test_adc();
+    // test_dma();
+    // test_irq();
+    // test_uart();
+    // test_i2c();
+    test_spi();
+    // test_flexcan();
     println!("[done] All tests passed");
     loop {}
 }
@@ -569,8 +568,6 @@ fn test_flexcan() {
 fn test_i2c() {
     use board::hal::i2c::*;
     use board::hal::port::*;
-    use board::clock::CLK;
-    use board::hal::clock::Clock;
 
     pub const I2CADDR: u8 = 0x1D;
 
@@ -580,9 +577,6 @@ fn test_i2c() {
 
     let i2c = I2C0;
 
-    println!("# I2C Test Start");
-    
-    println!("# Clock: {:?}", i2c.clock(&CLK).unwrap());
     port.sim_enable();
 
     port_scl.set_mux_gpio();
@@ -679,5 +673,54 @@ fn test_i2c() {
 
     i2c.sim_disable();
     println!("[pass] LPI2C OK");
+
+}
+
+fn test_spi() {
+    pub use board::hal::spi::*;
+    pub use board::hal::port::*;
+    pub use board::hal::gpio::*;
+
+
+    let port = PORTD;
+    let port_sck = PTD1; // D13
+    let port_sout = PTD2; // D12
+    let port_sin = PTD3; // D11
+    let port_pcs1 = PTD0; // D10
+    let gpio_pcs1 = PD0;
+
+    let spi = SPI0;
+
+    port.sim_enable();
+    port_sck.mode_spi_sck(&spi);
+    port_sout.mode_spi_sout(&spi);
+    port_sin.mode_spi_sin(&spi);
+    // port_pcs1.mode_spi_pcs1(&spi);
+    port_pcs1.set_mux_gpio();
+    gpio_pcs1.set_dir_output();
+
+    spi.sim_enable();
+
+    spi.init(0b1000, 0b00);
+
+    gpio_pcs1.set_output(false);
+
+    // Read Version @ 0x42, expect 0x12
+    let v = reg_read(&spi, 0x42);
+    println!("version: 0x{:02x}", v);
+    assert_eq!(v, 0x12);
+    
+    spi.sim_disable();
+
+    println!("[pass] SPI OK");
+
+    fn reg_read(spi: &SpiPeriph, reg: u8) -> u8 {
+        let cmd = [reg];
+        let mut buf = [0u8];
+        spi.write(&cmd);    
+        board::delay(1);
+        spi.read(&mut buf);
+        buf[0]
+    }
 
 }
