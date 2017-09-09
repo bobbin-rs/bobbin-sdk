@@ -9,20 +9,20 @@ extern crate frdm_k64f as board;
 pub extern "C" fn main() -> ! {
     board::init();
     println!("[start] Running tests for frdm-k64f");
-    // test_crc();
-    // test_gpio();
-    // test_systick();
-    // test_ftm();
-    // test_pit();
-    // test_lptmr();
-    // test_adc();
-    // test_dma();
-    // test_irq();
-    // test_uart();
+    test_crc();
+    test_gpio();
+    test_systick();
+    test_ftm();
+    test_pit();
+    test_lptmr();
+    test_adc();
+    test_dma();
+    test_irq();
+    test_uart();
     test_i2c();
     // test_lpi2c();
     // test_lpspi();
-    // test_flexcan();
+    test_flexcan();
     println!("[done] All tests passed");
     loop {}
 }
@@ -592,16 +592,6 @@ fn test_i2c() {
     let gpio_scl = port_scl.gpio_pin();
     let gpio_sda = port_sda.gpio_pin();
 
-
-    gpio_scl.set_output(true);
-    gpio_sda.set_output(true);
-    board::delay(1);
-    gpio_scl.set_output(false);
-    gpio_sda.set_output(false);
-    board::delay(1);
-    gpio_scl.set_output(true);
-    gpio_sda.set_output(true);
-    board::delay(1);
     port_scl.mode_i2c_scl(&i2c).set_pull_none().set_ode(true);
     port_sda.mode_i2c_sda(&i2c).set_pull_none().set_ode(true);
 
