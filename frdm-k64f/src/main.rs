@@ -569,7 +569,6 @@ fn test_flexcan() {
 fn test_i2c() {
     use board::hal::i2c::*;
     use board::hal::port::*;
-    use board::hal::gpio::*;
     use board::clock::CLK;
     use board::hal::clock::Clock;
 
@@ -588,9 +587,6 @@ fn test_i2c() {
 
     port_scl.set_mux_gpio();
     port_sda.set_mux_gpio();
-
-    let gpio_scl = port_scl.gpio_pin();
-    let gpio_sda = port_sda.gpio_pin();
 
     port_scl.mode_i2c_scl(&i2c).set_pull_none().set_ode(true);
     port_sda.mode_i2c_sda(&i2c).set_pull_none().set_ode(true);
