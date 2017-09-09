@@ -585,7 +585,7 @@ fn test_i2c() {
     port_sda.mode_i2c_sda(&i2c).set_pull_none().set_ode(true);
 
     i2c.sim_enable();
-
+    i2c.with_c1(|r| r.set_iicen(1));
     // // Enable Master Mode
     // i2c.with_c1(|r| r.set_mst(true));
 
@@ -602,18 +602,74 @@ fn test_i2c() {
 
     let addr = 0x1d;
     let cmd = [0x0du8];
-    let mut buf = [0u8, 0u8];
-    println!("Writing");
-    i2c_write(&i2c, addr, &cmd);
-    println!("Reading");
-    i2c_read(&i2c, addr, &mut buf);
-    println!("result: {:?}", buf);
-
+    let mut buf = [0u8];
+    loop {
+        i2c_transfer(&i2c, addr, &cmd, &mut buf);
+        println!("result: {:?}", buf);
+        board::delay(1000);
+    }
 
     i2c.sim_disable();
     println!("[pass] LPI2C OK");
 
 
+    fn i2c_transfer(i2c: &I2cPeriph, addr: u8, bytes_out: &[u8], bytes_in: &mut [u8]) {
+        // Wait while Busy
+        while i2c.s().busy() != 0 {}
+
+        if bytes_out.len() > 0 {
+            // Send Start
+            i2c.with_c1(|r| r.set_tx(1));                        
+            i2c.with_c1(|r| r.set_mst(1));                        
+            // Send Slave Address
+            i2c.set_d(|_| D(0).set_data(addr << 1));
+            // wait for interrupt
+            while i2c.s().iicif() == 0 {}
+            i2c.with_s(|r| r.set_iicif(1));
+            let mut i = 0;
+            while i < bytes_out.len() - 1 {
+                // Send Byte
+                i2c.set_d(|_| D(0).set_data(bytes_out[i]));
+                // wait for interrupt
+                while i2c.s().iicif() == 0 {}
+                i2c.with_s(|r| r.set_iicif(1));
+                i += 1;
+            }
+            // Send Byte
+            i2c.set_d(|_| D(0).set_data(bytes_out[i]));
+            // wait for interrupt
+            while i2c.s().iicif() == 0 {}
+            i2c.with_s(|r| r.set_iicif(1));
+            if bytes_in.len() > 0 {
+                // Repeat Start
+                i2c.with_c1(|r| r.set_rsta(1));
+            }
+        }
+        if bytes_in.len() > 0 {
+            // Send Slave Address
+            i2c.set_d(|_| D(0).set_data((addr << 1) | 1));
+
+            // Enter Receive Mode with ACK
+            i2c.with_c1(|r| r.set_tx(0).set_txak(0));   
+
+            // Receive dummy byte
+            let _ = i2c.d().data();
+            // wait for interrupt
+            while i2c.s().iicif() == 0 {}
+            i2c.with_s(|r| r.set_iicif(1));
+            
+            let mut i = 0;
+            while i < bytes_in.len() - 1 {
+                i2c.with_c1(|r| r.set_txak(0));
+                bytes_in[i] = i2c.d().data().value();
+                i += 1;
+            }
+            i2c.with_c1(|r| r.set_txak(1));
+            bytes_in[i] = i2c.d().data().value();
+        }
+        i2c.with_c1(|r| r.set_mst(0));
+
+    }
 
     fn i2c_write(i2c: &I2cPeriph, addr: u8, bytes: &[u8]) {        
         // Wait while Busy
@@ -633,7 +689,6 @@ fn test_i2c() {
             while i2c.s().iicif() == 0 {}
             i2c.with_s(|r| r.set_iicif(1));
         }
-        
         i2c.with_c1(|r| r.set_mst(0).set_tx(0));
     }
 
