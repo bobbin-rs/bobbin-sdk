@@ -672,7 +672,7 @@ fn test_i2c() {
     assert_eq!(buf[0], 0xc7);
 
     i2c.sim_disable();
-    println!("[pass] LPI2C OK");
+    println!("[pass] I2C OK");
 
 }
 
