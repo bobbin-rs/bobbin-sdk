@@ -10,53 +10,36 @@ pub mod port {
     pub use chip::port::*;    
     pub use kinetis_common::hal::port::*;
     pub use super::sim::SimEnabled;
-    use chip::sig::{SignalTx, SignalRx, SignalTpm, SignalAdc};
-
     use core::ops::Deref;
 
-    pub trait ModeTx<SIG, PERIPH> {
-        fn mode_tx(&self, _: &PERIPH) -> &Self;
+    macro_rules! impl_mode {
+        ($mode:ident, $meth:ident, $sig:ident) => (
+            use chip::sig::$sig;
+
+            pub trait $mode<SIG, PERIPH> {
+                fn $meth(&self, _: &PERIPH) -> &Self;
+            }
+
+            impl<PERIPH, PIN, SIG> $mode<SIG, PERIPH> for PIN where PERIPH: $sig<SIG>, PIN: AltFn<SIG>, PIN: Deref<Target=PortPin> {
+                #[inline]
+                fn $meth(&self, _: &PERIPH) -> &Self {
+                    self.set_mux(self.alt_fn());
+                    self
+                }
+            }            
+        )
     }
 
-    pub trait ModeRx<SIG, PERIPH> {
-        fn mode_rx(&self, _: &PERIPH) -> &Self;
-    }
 
-    pub trait ModeTpm<SIG, PERIPH> {
-        fn mode_tpm(&self, _: &PERIPH) -> &Self;
-    }
-
-    pub trait ModeAdc<SIG, PERIPH> {
-        fn mode_adc(&self, _: &PERIPH) -> &Self;
-    }
-
-    impl<PERIPH, PIN, SIG> ModeTx<SIG, PERIPH> for PIN where PERIPH: SignalTx<SIG>, PIN: AltFn<SIG>, PIN: Deref<Target=PortPin> {
-        fn mode_tx(&self, _: &PERIPH) -> &Self {
-            self.set_mux(self.alt_fn());
-            self
-        }
-    }
-
-    impl<PERIPH, PIN, SIG> ModeRx<SIG, PERIPH> for PIN where PERIPH: SignalRx<SIG>, PIN: AltFn<SIG>, PIN: Deref<Target=PortPin> {
-        fn mode_rx(&self, _: &PERIPH) -> &Self {
-            self.set_mux(self.alt_fn());
-            self
-        }
-    }    
-
-    impl<PERIPH, PIN, SIG> ModeTpm<SIG, PERIPH> for PIN where PERIPH: SignalTpm<SIG>, PIN: AltFn<SIG>, PIN: Deref<Target=PortPin> {
-        fn mode_tpm(&self, _: &PERIPH) -> &Self {
-            self.set_mux(self.alt_fn());
-            self
-        }
-    }        
-
-    impl<PERIPH, PIN, SIG> ModeAdc<SIG, PERIPH> for PIN where PERIPH: SignalAdc<SIG>, PIN: AltFn<SIG>, PIN: Deref<Target=PortPin> {
-        fn mode_adc(&self, _: &PERIPH) -> &Self {
-            self.set_mux(self.alt_fn());
-            self
-        }
-    }          
+    impl_mode!(ModeTx, mode_tx, SignalTx);
+    impl_mode!(ModeRx, mode_rx, SignalRx);
+    impl_mode!(ModeAdc, mode_adc, SignalAdc);
+    impl_mode!(ModeI2cScl, mode_i2c_scl, SignalI2cScl);
+    impl_mode!(ModeI2cSda, mode_i2c_sda, SignalI2cSda);
+    impl_mode!(ModeSpiSck, mode_spi_sck, SignalSpiSck);
+    impl_mode!(ModeSpiMiso, mode_spi_miso, SignalSpiMiso);
+    impl_mode!(ModeSpiMosi, mode_spi_mosi, SignalSpiMosi);
+    impl_mode!(ModeSpiPcs0, mode_spi_pcs0, SignalSpiPcs0);
 }
 
 pub mod gpio {
@@ -66,6 +49,18 @@ pub mod gpio {
     pub use bobbin_common::Pin;
 }
 
+
+pub mod i2c {
+    pub use chip::i2c::*;
+    pub use kinetis_common::hal::i2c::*;
+    pub use super::sim::SimEnabled;
+}
+
+// pub mod spi {
+//     pub use chip::spi::*;
+//     pub use kinetis_common::hal::spi::*;
+//     pub use super::sim::SimEnabled;
+// }
 
 pub mod uart {
     pub use chip::uart::*;
@@ -88,6 +83,12 @@ pub mod tpm {
 pub mod pit {
     pub use chip::pit::*;
     pub use kinetis_common::hal::pit::*;
+    pub use super::sim::SimEnabled;
+}
+
+pub mod lptmr {
+    pub use chip::lptmr::*;
+    pub use kinetis_common::hal::lptmr::*;
     pub use super::sim::SimEnabled;
 }
 

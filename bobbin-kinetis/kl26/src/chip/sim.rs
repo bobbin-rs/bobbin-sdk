@@ -2634,6 +2634,16 @@ impl Src for super::uart0::Uart0 {
     #[inline] fn set_src(&self, value: u32) { SIM.with_sopt2(|r| r.set_uart0src(value)); }
 }
 
+impl En for super::i2c::I2c0 {
+    #[inline] fn en(&self) -> u32 { SIM.scgc4().i2c0().into() }
+    #[inline] fn set_en(&self, value: u32) { SIM.with_scgc4(|r| r.set_i2c0(value)); }
+}
+
+impl En for super::i2c::I2c1 {
+    #[inline] fn en(&self) -> u32 { SIM.scgc4().i2c1().into() }
+    #[inline] fn set_en(&self, value: u32) { SIM.with_scgc4(|r| r.set_i2c1(value)); }
+}
+
 impl En for super::uart0::Uart0 {
     #[inline] fn en(&self) -> u32 { SIM.scgc4().uart0().into() }
     #[inline] fn set_en(&self, value: u32) { SIM.with_scgc4(|r| r.set_uart0(value)); }
@@ -2647,6 +2657,21 @@ impl En for super::uart::Uart1 {
 impl En for super::uart::Uart2 {
     #[inline] fn en(&self) -> u32 { SIM.scgc4().uart2().into() }
     #[inline] fn set_en(&self, value: u32) { SIM.with_scgc4(|r| r.set_uart2(value)); }
+}
+
+impl En for super::spi::Spi0 {
+    #[inline] fn en(&self) -> u32 { SIM.scgc4().spi0().into() }
+    #[inline] fn set_en(&self, value: u32) { SIM.with_scgc4(|r| r.set_spi0(value)); }
+}
+
+impl En for super::spi::Spi1 {
+    #[inline] fn en(&self) -> u32 { SIM.scgc4().spi1().into() }
+    #[inline] fn set_en(&self, value: u32) { SIM.with_scgc4(|r| r.set_spi1(value)); }
+}
+
+impl En for super::lptmr::Lptmr0 {
+    #[inline] fn en(&self) -> u32 { SIM.scgc5().lptmr().into() }
+    #[inline] fn set_en(&self, value: u32) { SIM.with_scgc5(|r| r.set_lptmr(value)); }
 }
 
 impl En for super::port::Porta {

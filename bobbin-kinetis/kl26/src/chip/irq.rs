@@ -12,6 +12,11 @@ irq!(IRQ_TPM0, IrqTpm0, 17);
 irq!(IRQ_TPM1, IrqTpm1, 18);
 irq!(IRQ_TPM2, IrqTpm2, 19);
 irq!(IRQ_PIT, IrqPit, 22);
+irq!(IRQ_LPTMR0, IrqLptmr0, 44);
+irq!(IRQ_SPI0, IrqSpi0, 26);
+irq!(IRQ_SPI1, IrqSpi1, 27);
+irq!(IRQ_I2C0, IrqI2c0, 24);
+irq!(IRQ_I2C1, IrqI2c1, 25);
 irq!(IRQ_PORTA, IrqPorta, 30);
 irq!(IRQ_PORTC, IrqPortc, 31);
 irq!(IRQ_PORTD, IrqPortd, 31);
@@ -60,9 +65,9 @@ pub static mut INTERRUPT_HANDLERS: [Option<Handler>; 48] = [
     None,
     None,                          // IRQ 22: No Description
     None,
-    None,
-    None,
-    None,
+    None,                          // IRQ 24: No Description
+    None,                          // IRQ 25: No Description
+    None,                          // IRQ 26: No Description
     None,                          // IRQ 27: No Description
     None,
     None,
@@ -80,7 +85,7 @@ pub static mut INTERRUPT_HANDLERS: [Option<Handler>; 48] = [
     None,
     None,
     None,
-    None,
+    None,                          // IRQ 44: No Description
     None,
     None,
     None,
