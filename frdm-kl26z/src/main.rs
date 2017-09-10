@@ -137,7 +137,7 @@ fn test_systick() {
 }
 
 fn test_tpm() {
-    use board::hal::pit::*;
+    
 }
 
 
@@ -238,7 +238,7 @@ fn test_adc() {
 
     let v: U12 = ch3.analog_read();
     println!("# ADC0_REFSL:   {}", v);
-    assert!(v.value() == 0);
+    assert!(v.value() < 5);
 
     adc.sim_disable();
 
