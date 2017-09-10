@@ -676,8 +676,53 @@ fn test_i2c() {
 
 }
 
-/// RFM9x LoRa Radio on pins D10-D13
+/// Jumper PTD2(D12) and PTD3(D13)
 fn test_spi() {
+    pub use board::hal::spi::*;
+    pub use board::hal::port::*;
+    pub use board::hal::gpio::*;
+
+
+    let port = PORTD;
+    let port_sck = PTD1; // D13
+    let port_sout = PTD2; // D12
+    let port_sin = PTD3; // D11
+    let port_pcs0 = PTD0; // D10
+
+    let spi = SPI0;
+
+    port.sim_enable();
+    port_sck.mode_spi_sck(&spi);
+    port_sout.mode_spi_sout(&spi);
+    port_sin.mode_spi_sin(&spi);
+    port_pcs0.mode_spi_pcs0(&spi);
+
+    spi.sim_enable();
+    spi.init(0b1000, 0b00);
+
+    let bytes_out = [0x01, 0x02, 0x03, 0x04, 0x05];
+    let mut bytes_in = [0u8; 5];
+
+    spi.transfer(&bytes_out, &mut bytes_in);
+    assert_eq!(bytes_out, bytes_in);
+
+    spi.sim_disable();
+
+    println!("[pass] SPI OK");
+
+    fn reg_read(spi: &SpiPeriph, reg: u8) -> u8 {
+        let cmd = [reg];
+        let mut buf = [0u8];
+        spi.write(&cmd);   
+        spi.read(&mut buf);
+        buf[0]
+    }
+
+}
+
+
+/// RFM9x LoRa Radio on pins D10-D13
+fn test_spi_lora() {
     pub use board::hal::spi::*;
     pub use board::hal::port::*;
     pub use board::hal::gpio::*;
