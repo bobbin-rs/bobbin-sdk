@@ -847,7 +847,7 @@
             (bit-width 1)
             (access read-write)
             (description "I2C0 Clock Gate Control")
-            ;(link (name EN) (peripheral-group I2C) (peripheral I2C0))
+            (link (name EN) (peripheral-group I2C) (peripheral I2C0))
             (value
                 (value "#0")
                 (name "0")
@@ -865,7 +865,7 @@
             (bit-width 1)
             (access read-write)
             (description "I2C1 Clock Gate Control")
-            ;(link (name EN) (peripheral-group I2C) (peripheral I2C1))
+            (link (name EN) (peripheral-group I2C) (peripheral I2C1))
             (value
                 (value "#0")
                 (name "0")
@@ -971,7 +971,7 @@
             (bit-width 1)
             (access read-write)
             (description "SPI0 Clock Gate Control")
-            ; (link (name EN) (peripheral-group SPI) (peripheral SPI0))
+            (link (name EN) (peripheral-group SPI) (peripheral SPI0))
             (value
                 (value "#0")
                 (name "0")
@@ -989,7 +989,7 @@
             (bit-width 1)
             (access read-write)
             (description "SPI1 Clock Gate Control")
-            ; (link (name EN) (peripheral-group SPI) (peripheral SPI1))
+            (link (name EN) (peripheral-group SPI) (peripheral SPI1))
             (value
                 (value "#0")
                 (name "0")
@@ -1016,6 +1016,7 @@
             (bit-width 1)
             (access read-write)
             (description "Low Power Timer Access Control")
+            (link (name EN) (peripheral-group LPTMR) (peripheral LPTMR0))
             (value
                 (value "#0")
                 (name "0")

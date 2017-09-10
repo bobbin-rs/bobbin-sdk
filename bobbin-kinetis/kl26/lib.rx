@@ -220,9 +220,99 @@
                 (name PIT_CH3)
                 (index 3)
             )            
-
         )
     )
+
+    (peripheral-group
+        (name LPTMR)  
+        (module (name kinetis_common::chip::lptmr::*))
+        (peripheral
+            (name LPTMR0)
+            (address 0x40040000)
+            (description "Low Power Timer")
+            (signal (name LPTMR0_ALT1) (type LPTMR_ALT1))
+            (signal (name LPTMR0_ALT2) (type LPTMR_ALT2))
+            (interrupt
+                (name LPTMR0)
+                (value 44)
+                (type LPTMR)
+            )
+        )
+    )
+
+
+    (peripheral-group
+        (name SPI)  
+        ;(module (name kinetis_common::chip::spi::*))
+        (peripheral 
+            (name SPI0)
+            (address 0x40076000)
+            (description "Serial Peripheral Interface")
+            (signal (name SPI0_SCK) (type SPI_SCK))
+            (signal (name SPI0_MISO) (type SPI_MISO))
+            (signal (name SPI0_MOSI) (type SPI_MOSI))
+
+            (signal (name SPI0_PCS0) (type SPI_PCS0))
+
+            (interrupt
+                (name SPI0)
+                (value 26)
+                (type SPI)
+            )
+        )
+        (peripheral
+            (name SPI1)
+            (address 0x40077000)
+            (description "Serial Peripheral Interface")
+
+            (signal (name SPI1_SCK) (type SPI_SCK))
+            (signal (name SPI1_SOUT) (type SPI_SOUT))
+            (signal (name SPI1_SIN) (type SPI_SIN))
+
+            (signal (name SPI1_PCS0) (type SPI_PCS0))
+            (signal (name SPI1_PCS1) (type SPI_PCS1))
+            (signal (name SPI1_PCS2) (type SPI_PCS2))
+            (signal (name SPI1_PCS3) (type SPI_PCS3))
+
+            (interrupt
+                (name SPI1)
+                (value 27)
+                (type SPI)
+            )
+        )
+    )
+
+    (peripheral-group
+        (name I2C)
+        (module (name kinetis_common::chip::i2c::*))
+        (peripheral 
+            (name I2C0)
+            (address 0x40066000)
+            (description "Inter-Integrated Circuit")
+
+            (signal (name I2C0_SCL) (type I2C_SCL))
+            (signal (name I2C0_SDA) (type I2C_SDA))
+
+            (interrupt
+                (name I2C0)
+                (value 24)
+            )        
+        )
+        (peripheral
+            (name I2C1)
+            (address 0x40067000)
+            (description "Inter-Integrated Circuit")
+
+            (signal (name I2C1_SCL) (type I2C_SCL))
+            (signal (name I2C1_SDA) (type I2C_SDA))
+
+            (interrupt
+                (name I2C1)
+                (value 25)
+            )
+        )
+    )
+
     (peripheral-group    
         (name PORT) 
         (module (name kinetis_common::chip::port::*))
