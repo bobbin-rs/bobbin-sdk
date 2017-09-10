@@ -700,8 +700,11 @@ fn test_spi() {
     spi.sim_enable();
     spi.init(0b1000, 0b00);
 
-    let bytes_out = [0x01, 0x02, 0x03, 0x04, 0x05];
-    let mut bytes_in = [0u8; 5];
+    let mut bytes_out = [0u8; 32];
+    let mut bytes_in = [0u8; 32];
+    for (i, b) in bytes_out.iter_mut().enumerate() {
+        *b = i as u8
+    }
 
     spi.transfer(&bytes_out, &mut bytes_in);
     assert_eq!(bytes_out, bytes_in);
