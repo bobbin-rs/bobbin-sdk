@@ -701,6 +701,7 @@
             (bit-offset 12)
             (bit-width 1)
             (description "SPI 1 clock enable")
+            (link (name EN) (peripheral-group SPI) (peripheral SPI1))
         )
         (field
             (name TIM8EN)
@@ -816,12 +817,14 @@
             (bit-offset 14)
             (bit-width 1)
             (description "SPI 2 clock enable")
+            (link (name EN) (peripheral-group SPI) (peripheral SPI2))
         )
         (field
             (name SPI3EN)
             (bit-offset 15)
             (bit-width 1)
             (description "SPI 3 clock enable")
+            (link (name EN) (peripheral-group SPI) (peripheral SPI3))
         )
         (field
             (name USART2EN)
@@ -856,12 +859,14 @@
             (bit-offset 21)
             (bit-width 1)
             (description "I2C 1 clock enable")
+            (link (name EN) (peripheral-group I2C) (peripheral I2C1))
         )
         (field
             (name I2C2EN)
             (bit-offset 22)
             (bit-width 1)
             (description "I2C 2 clock enable")
+            (link (name EN) (peripheral-group I2C) (peripheral I2C2))
         )
         (field
             (name USBEN)

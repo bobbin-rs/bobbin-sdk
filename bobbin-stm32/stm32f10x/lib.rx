@@ -408,6 +408,9 @@
             (channel (name ADC1_CH14) (index 14))
             (channel (name ADC1_CH15) (index 15))
 
+            (channel (name ADC1_TEMP) (index 16))
+            (channel (name ADC1_REF) (index 17))
+
             (interrupt
                 (name ADC)
                 (value 18)
@@ -445,7 +448,7 @@
 
     (peripheral-group
         (name SPI)
-        (prototype "periph/spi.rx")
+        (module (name stm32_common::chip::spi_v1::*))
         (peripheral 
             (name SPI1)
             (address 0x40013000)
@@ -476,7 +479,7 @@
     )
     (peripheral-group
         (name I2C)
-        (prototype "periph/i2c.rx")
+        (module (name stm32_common::chip::i2c_v1::*))
         (peripheral
             (name I2C2)
             (address 0x40005800)
