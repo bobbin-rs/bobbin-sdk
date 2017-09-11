@@ -16,7 +16,7 @@ pub extern "C" fn main() -> ! {
     // test_exti();
     // test_lpuart();
     // test_usart();
-    // test_spi();
+    test_spi();
     test_i2c();
     println!("[done] All tests passed");
     loop {}
@@ -290,62 +290,62 @@ fn test_dma() {
 //     println!("[pass] USART OK");
 // }
 
-// /// PA6(A5) and PA7(A6) must be jumpered together for loopback.
-// fn test_spi() {
-//     use board::hal::gpio::*;
-//     use board::hal::spi::*;
+/// PA6(D12) and PA7(D11) must be jumpered together for loopback.
+fn test_spi() {
+    use board::hal::gpio::*;
+    use board::hal::spi::*;
 
-//     let spi = SPI1;
-//     let port = GPIOA;
-//     let spi_miso = PA6; // A5
-//     let spi_mosi = PA7; // A6
-//     let spi_sck = PA5;
+    let spi = SPI1;
+    let port = GPIOA;
+    let spi_miso = PA6; // A5
+    let spi_mosi = PA7; // A6
+    let spi_sck = PA5;
 
-//     spi.rcc_enable();
-//     port.rcc_enable();
+    spi.rcc_enable();
+    port.rcc_enable();
 
-//     // NOTE: Pins must be set with output speed HIGH or leading edge
-//     // of transmission will occasionally be missed.
+    // NOTE: Pins must be set with output speed HIGH or leading edge
+    // of transmission will occasionally be missed.
 
-//     spi_miso.mode_spi_miso(&spi).speed_high().pull_up();
-//     spi_mosi.mode_spi_mosi(&spi).speed_high().push_pull();
-//     spi_sck.mode_spi_sck(&spi).speed_high().push_pull();
+    spi_miso.mode_spi_miso(&spi).speed_high().pull_up();
+    spi_mosi.mode_spi_mosi(&spi).speed_high().push_pull();
+    spi_sck.mode_spi_sck(&spi).speed_high().push_pull();
 
-//     spi.set_config(|cfg| cfg
-//         .set_frame_size(FrameSize::Bits8)
-//         .set_master(true)
-//         .set_baud_divider(0b0.into())
-//     );
+    spi.set_config(|cfg| cfg
+        .set_frame_size(FrameSize::Bits8)
+        .set_master(true)
+        .set_baud_divider(0b0.into())
+    );
 
-//     spi.set_output_enabled(true).set_enabled(true);
+    spi.set_output_enabled(true).set_enabled(true);
 
-//     let src: [u8; 8] = [0xde, 0xad, 0xbe, 0xef, 0x12, 0x34, 0x56, 0x78];
-//     let mut dst = [0u8; 8];
+    let src: [u8; 8] = [0xde, 0xad, 0xbe, 0xef, 0x12, 0x34, 0x56, 0x78];
+    let mut dst = [0u8; 8];
 
-//     let mut i = 0;
-//     let mut j = 0;
-//     loop {
-//         if i < src.len() && spi.can_tx() {
-//             spi.tx(src[i]);
-//             i += 1;
-//         }
-//         if j < dst.len() && spi.can_rx() {
-//             dst[j] = spi.rx();
-//             j += 1;
-//         }
-//         if j == dst.len() {
-//             break;
-//         }        
-//     }
-//     // println!("# src: {:?}", src);
-//     // println!("# dst: {:?}", dst);
-//     assert_eq!(src, dst);
+    let mut i = 0;
+    let mut j = 0;
+    loop {
+        if i < src.len() && spi.can_tx() {
+            spi.tx(src[i]);
+            i += 1;
+        }
+        if j < dst.len() && spi.can_rx() {
+            dst[j] = spi.rx();
+            j += 1;
+        }
+        if j == dst.len() {
+            break;
+        }        
+    }
+    // println!("# src: {:?}", src);
+    // println!("# dst: {:?}", dst);
+    assert_eq!(src, dst);
     
-//     spi.set_enabled(false);
-//     spi.rcc_disable();
+    spi.set_enabled(false);
+    spi.rcc_disable();
 
-//     println!("[pass] SPI OK");
-// }
+    println!("[pass] SPI OK");
+}
 
 fn test_i2c() {
     use board::hal::gpio::*;
