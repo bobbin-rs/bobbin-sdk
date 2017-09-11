@@ -6,9 +6,20 @@ pub use ::chip::spi_v2::*;
 use bobbin_common::bits::*;
 
 #[derive(Debug, PartialEq, Eq, Clone, Copy)]
-pub enum FrameSize {
-    Bits8 = 0,
-    Bits16 = 1,
+pub enum DataSize {
+    Bits4 = 0b0011,
+    Bits5 = 0b0100,
+    Bits6 = 0b0101,
+    Bits7 = 0b0110,
+    Bits8 = 0b0111,
+    Bits9 = 0b1000,
+    Bits10 = 0b1001,
+    Bits11 = 0b1010,
+    Bits12 = 0b1011,
+    Bits13 = 0b1100,
+    Bits14 = 0b1101,
+    Bits15 = 0b1110,
+    Bits16 = 0b1111,
 }
 
 #[derive(Debug, Default)]
@@ -18,15 +29,8 @@ pub struct Config {
 }
 
 impl Config {
-    pub fn frame_size(self) -> FrameSize {
-        match self.cr1.dff() {
-            U1::B0 => FrameSize::Bits8,
-            U1::B1 => FrameSize::Bits16,
-        }
-    }
-
-    pub fn set_frame_size(mut self, value: FrameSize) -> Self {
-        self.cr1 = self.cr1.set_dff(value as u8);
+    pub fn set_data_size(mut self, value: DataSize) -> Self {
+        self.cr2 = self.cr2.set_ds(value as u8);
         self
     }
 
@@ -120,7 +124,7 @@ impl SpiCanTx for SpiPeriph {
 
 impl SpiTx<u8> for SpiPeriph {
     fn tx(&self, value: u8) -> &Self {
-        self.set_dr(|r| r.set_dr(value));
+        self.set_dr8(|r| r.set_dr8(value));
         self
     }
 }
@@ -140,7 +144,7 @@ impl SpiCanRx for SpiPeriph {
 
 impl SpiRx<u8> for SpiPeriph {
     fn rx(&self) -> u8 {
-        self.dr().dr().into()
+        self.dr8().dr8().value() as u8
     }
 }
 
