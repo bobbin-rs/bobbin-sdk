@@ -718,10 +718,14 @@
 
     (peripheral-group
         (name SPI)
-        (prototype "periph/spi.rx")
+        (module (name stm32_common::chip::spi_v1::*))
         (peripheral 
             (name SPI1)
             (address 0x40013000)
+            (signal (name SPI1_NSS) (type SPI_NSS))
+            (signal (name SPI1_MISO) (type SPI_MISO))
+            (signal (name SPI1_MOSI) (type SPI_MOSI))
+            (signal (name SPI1_SCK) (type SPI_SCK))                   
             (interrupt
                 (name SPI1)
                 (value 35)
@@ -731,6 +735,10 @@
         (peripheral
             (name SPI2)
             (address 0x40003800)
+            (signal (name SPI2_NSS) (type SPI_NSS))
+            (signal (name SPI2_MISO) (type SPI_MISO))
+            (signal (name SPI2_MOSI) (type SPI_MOSI))
+            (signal (name SPI2_SCK) (type SPI_SCK))                   
             (interrupt
                 (name SPI2)
                 (value 36)
@@ -740,6 +748,10 @@
         (peripheral
             (name SPI3)
             (address 0x40003c00)
+            (signal (name SPI3_NSS) (type SPI_NSS))
+            (signal (name SPI3_MISO) (type SPI_MISO))
+            (signal (name SPI3_MOSI) (type SPI_MOSI))
+            (signal (name SPI3_SCK) (type SPI_SCK))                   
             (interrupt
                 (name SPI3)
                 (value 51)
@@ -757,6 +769,10 @@
         (peripheral
             (name SPI4)
             (address 0x40013400)
+            (signal (name SPI4_NSS) (type SPI_NSS))
+            (signal (name SPI4_MISO) (type SPI_MISO))
+            (signal (name SPI4_MOSI) (type SPI_MOSI))
+            (signal (name SPI4_SCK) (type SPI_SCK))                   
             (interrupt
                 (name SPI4)
                 (value 84)
@@ -766,6 +782,10 @@
         (peripheral
             (name SPI5)
             (address 0x40015000)
+            (signal (name SPI5_NSS) (type SPI_NSS))
+            (signal (name SPI5_MISO) (type SPI_MISO))
+            (signal (name SPI5_MOSI) (type SPI_MOSI))
+            (signal (name SPI5_SCK) (type SPI_SCK))                   
             (interrupt
                 (name SPI5)
                 (value 85)
@@ -775,6 +795,10 @@
         (peripheral
             (name SPI6)
             (address 0x40015400)
+            (signal (name SPI6_NSS) (type SPI_NSS))
+            (signal (name SPI6_MISO) (type SPI_MISO))
+            (signal (name SPI6_MOSI) (type SPI_MOSI))
+            (signal (name SPI6_SCK) (type SPI_SCK))            
             (interrupt
                 (name SPI6)
                 (value 86)
@@ -784,10 +808,13 @@
     )
     (peripheral-group
         (name I2C)
-        (prototype "periph/i2c.rx")
+        (module (name stm32_common::chip::i2c_v1::*))
         (peripheral 
             (name I2C3)
             (address 0x40005c00)
+            (signal (name I2C3_SCL) (type I2C_SCL))
+            (signal (name I2C3_SDA) (type I2C_SDA))
+            (signal (name I2C3_SMBAL) (type I2C_SMBAL))            
             (interrupt
                 (name I2C3_EV)
                 (value 72)
@@ -802,6 +829,9 @@
         (peripheral
             (name I2C2)
             (address 0x40005800)
+            (signal (name I2C2_SCL) (type I2C_SCL))
+            (signal (name I2C2_SDA) (type I2C_SDA))
+            (signal (name I2C2_SMBAL) (type I2C_SMBAL))
             (interrupt
                 (name I2C2_EV)
                 (value 33)
@@ -816,6 +846,9 @@
         (peripheral
             (name I2C1)
             (address 0x40005400)
+            (signal (name I2C1_SCL) (type I2C_SCL))
+            (signal (name I2C1_SDA) (type I2C_SDA))
+            (signal (name I2C1_SMBAL) (type I2C_SMBAL))
             (interrupt
                 (name I2C1_EV)
                 (value 31)

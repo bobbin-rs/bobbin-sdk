@@ -1323,9 +1323,9 @@
         (peripheral
             (name I2C2)
             (address 0x40005800)
-            (signal (name I2C1_SCL) (type I2C_SCL))
-            (signal (name I2C1_SDA) (type I2C_SDA))
-            (signal (name I2C1_SMBAL) (type I2C_SMBAL))
+            (signal (name I2C2_SCL) (type I2C_SCL))
+            (signal (name I2C2_SDA) (type I2C_SDA))
+            (signal (name I2C2_SMBAL) (type I2C_SMBAL))
             (interrupt
                 (name I2C2_EV_EXTI24)
                 (value 33)
@@ -1340,6 +1340,9 @@
         (peripheral
             (name I2C3)
             (address 0x40007800)
+            (signal (name I2C3_SCL) (type I2C_SCL))
+            (signal (name I2C3_SDA) (type I2C_SDA))
+            (signal (name I2C3_SMBAL) (type I2C_SMBAL))
             (interrupt
                 (name I2C3_EV)
                 (value 72)
