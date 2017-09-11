@@ -11,6 +11,7 @@ pub use bobbin_cortexm::chip::itm;
 pub mod irq;
 pub mod sig;
 pub mod sysctl;
+pub mod ccm;
 pub mod emac;
 pub mod adc;
 pub mod watchdog;

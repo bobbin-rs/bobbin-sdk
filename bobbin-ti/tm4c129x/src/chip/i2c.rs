@@ -9,9 +9,25 @@ periph!( I2C3, I2c3, _I2C3, I2cPeriph, 0x40023000);
 #[doc="I2C Peripheral"]
 pub struct I2cPeriph(pub usize); 
 
+impl super::sig::Signal<super::sig::I2c0scl> for I2c0 {}
+impl super::sig::SignalI2cScl<super::sig::I2c0scl> for I2c0 {}
+impl super::sig::Signal<super::sig::I2c0sda> for I2c0 {}
+impl super::sig::SignalI2cSda<super::sig::I2c0sda> for I2c0 {}
 
+impl super::sig::Signal<super::sig::I2c1scl> for I2c1 {}
+impl super::sig::SignalI2cScl<super::sig::I2c1scl> for I2c1 {}
+impl super::sig::Signal<super::sig::I2c1sda> for I2c1 {}
+impl super::sig::SignalI2cSda<super::sig::I2c1sda> for I2c1 {}
 
+impl super::sig::Signal<super::sig::I2c2scl> for I2c2 {}
+impl super::sig::SignalI2cScl<super::sig::I2c2scl> for I2c2 {}
+impl super::sig::Signal<super::sig::I2c2sda> for I2c2 {}
+impl super::sig::SignalI2cSda<super::sig::I2c2sda> for I2c2 {}
 
+impl super::sig::Signal<super::sig::I2c3scl> for I2c3 {}
+impl super::sig::SignalI2cScl<super::sig::I2c3scl> for I2c3 {}
+impl super::sig::Signal<super::sig::I2c3sda> for I2c3 {}
+impl super::sig::SignalI2cSda<super::sig::I2c3sda> for I2c3 {}
 
 
 impl I2cPeriph {

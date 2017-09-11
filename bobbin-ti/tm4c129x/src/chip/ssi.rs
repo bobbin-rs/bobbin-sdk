@@ -9,9 +9,57 @@ periph!( SSI3, Ssi3, _SSI3, SsiPeriph, 0x4000b000);
 #[doc="SSI Peripheral"]
 pub struct SsiPeriph(pub usize); 
 
+impl super::sig::Signal<super::sig::Ssi0clk> for Ssi0 {}
+impl super::sig::SignalSsiClk<super::sig::Ssi0clk> for Ssi0 {}
+impl super::sig::Signal<super::sig::Ssi0fss> for Ssi0 {}
+impl super::sig::SignalSsiFss<super::sig::Ssi0fss> for Ssi0 {}
+impl super::sig::Signal<super::sig::Ssi0dat0> for Ssi0 {}
+impl super::sig::SignalSsiDat0<super::sig::Ssi0dat0> for Ssi0 {}
+impl super::sig::Signal<super::sig::Ssi0dat1> for Ssi0 {}
+impl super::sig::SignalSsiDat1<super::sig::Ssi0dat1> for Ssi0 {}
+impl super::sig::Signal<super::sig::Ssi0dat2> for Ssi0 {}
+impl super::sig::SignalSsiDat2<super::sig::Ssi0dat2> for Ssi0 {}
+impl super::sig::Signal<super::sig::Ssi0dat3> for Ssi0 {}
+impl super::sig::SignalSsiDat3<super::sig::Ssi0dat3> for Ssi0 {}
 
+impl super::sig::Signal<super::sig::Ssi1clk> for Ssi1 {}
+impl super::sig::SignalSsiClk<super::sig::Ssi1clk> for Ssi1 {}
+impl super::sig::Signal<super::sig::Ssi1fss> for Ssi1 {}
+impl super::sig::SignalSsiFss<super::sig::Ssi1fss> for Ssi1 {}
+impl super::sig::Signal<super::sig::Ssi1dat0> for Ssi1 {}
+impl super::sig::SignalSsiDat0<super::sig::Ssi1dat0> for Ssi1 {}
+impl super::sig::Signal<super::sig::Ssi1dat1> for Ssi1 {}
+impl super::sig::SignalSsiDat1<super::sig::Ssi1dat1> for Ssi1 {}
+impl super::sig::Signal<super::sig::Ssi1dat2> for Ssi1 {}
+impl super::sig::SignalSsiDat2<super::sig::Ssi1dat2> for Ssi1 {}
+impl super::sig::Signal<super::sig::Ssi1dat3> for Ssi1 {}
+impl super::sig::SignalSsiDat3<super::sig::Ssi1dat3> for Ssi1 {}
 
+impl super::sig::Signal<super::sig::Ssi2clk> for Ssi2 {}
+impl super::sig::SignalSsiClk<super::sig::Ssi2clk> for Ssi2 {}
+impl super::sig::Signal<super::sig::Ssi2fss> for Ssi2 {}
+impl super::sig::SignalSsiFss<super::sig::Ssi2fss> for Ssi2 {}
+impl super::sig::Signal<super::sig::Ssi2dat0> for Ssi2 {}
+impl super::sig::SignalSsiDat0<super::sig::Ssi2dat0> for Ssi2 {}
+impl super::sig::Signal<super::sig::Ssi2dat1> for Ssi2 {}
+impl super::sig::SignalSsiDat1<super::sig::Ssi2dat1> for Ssi2 {}
+impl super::sig::Signal<super::sig::Ssi2dat2> for Ssi2 {}
+impl super::sig::SignalSsiDat2<super::sig::Ssi2dat2> for Ssi2 {}
+impl super::sig::Signal<super::sig::Ssi2dat3> for Ssi2 {}
+impl super::sig::SignalSsiDat3<super::sig::Ssi2dat3> for Ssi2 {}
 
+impl super::sig::Signal<super::sig::Ssi3clk> for Ssi3 {}
+impl super::sig::SignalSsiClk<super::sig::Ssi3clk> for Ssi3 {}
+impl super::sig::Signal<super::sig::Ssi3fss> for Ssi3 {}
+impl super::sig::SignalSsiFss<super::sig::Ssi3fss> for Ssi3 {}
+impl super::sig::Signal<super::sig::Ssi3dat0> for Ssi3 {}
+impl super::sig::SignalSsiDat0<super::sig::Ssi3dat0> for Ssi3 {}
+impl super::sig::Signal<super::sig::Ssi3dat1> for Ssi3 {}
+impl super::sig::SignalSsiDat1<super::sig::Ssi3dat1> for Ssi3 {}
+impl super::sig::Signal<super::sig::Ssi3dat2> for Ssi3 {}
+impl super::sig::SignalSsiDat2<super::sig::Ssi3dat2> for Ssi3 {}
+impl super::sig::Signal<super::sig::Ssi3dat3> for Ssi3 {}
+impl super::sig::SignalSsiDat3<super::sig::Ssi3dat3> for Ssi3 {}
 
 
 impl SsiPeriph {

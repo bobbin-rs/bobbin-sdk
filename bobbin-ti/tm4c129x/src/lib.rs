@@ -1,4 +1,5 @@
 #![no_std]
+#![feature(asm)]
 #![cfg_attr(target_os="none", feature(compiler_builtins_lib))]
 
 #[cfg(target_os="none")] extern crate compiler_builtins;

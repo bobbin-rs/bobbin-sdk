@@ -2,7 +2,7 @@ pub use bobbin_common::digital::*;
 pub use bobbin_common::{Pin, AltFn};
 pub use chip::gpio::*;
 pub use super::sysctl::SysctlEnabled;
-use chip::sig::{SignalTx, SignalRx, SignalCcp, SignalPwm, SignalAin};
+// use chip::sig::{SignalTx, SignalRx, SignalCcp, SignalPwm, SignalAin};
 
 use core::ops::Deref;
 
@@ -11,61 +11,94 @@ pub enum Dir {
     Out = 1,    
 }
 
-pub trait ModeTx<SIG, PERIPH> {
-    fn mode_tx(&self, _: &PERIPH) -> &Self;
+
+macro_rules! impl_mode {
+    ($mode:ident, $meth:ident, $sig:ident) => (
+        use chip::sig::$sig;
+
+        pub trait $mode<SIG, PERIPH> {
+            fn $meth(&self, _: &PERIPH) -> &Self;
+        }
+
+        impl<PERIPH, PIN, SIG> $mode<SIG, PERIPH> for PIN where PERIPH: $sig<SIG>, PIN: AltFn<SIG>, PIN: Deref<Target=GpioPin> {
+            #[inline]
+            fn $meth(&self, _: &PERIPH) -> &Self {
+                self.mode_alt_fn(self.alt_fn());
+                self
+            }
+        }            
+    )
 }
 
-pub trait ModeRx<SIG, PERIPH> {
-    fn mode_rx(&self, _: &PERIPH) -> &Self;
-}
+impl_mode!(ModeTx, mode_tx, SignalTx);
+impl_mode!(ModeRx, mode_rx, SignalRx);
+impl_mode!(ModeCcp, mode_ccp, SignalCcp);
+impl_mode!(ModePwm, mode_pwm, SignalPwm);
+impl_mode!(ModeAin, mode_ain, SignalAin);
+impl_mode!(ModeI2cScl, mode_i2c_scl, SignalI2cScl);
+impl_mode!(ModeI2cSda, mode_i2c_sda, SignalI2cSda);
+impl_mode!(ModeSsiFss, mode_ssi_fss, SignalSsiFss);
+impl_mode!(ModeSsiClk, mode_ssi_clk, SignalSsiClk);
+impl_mode!(ModeSsiDat0, mode_ssi_dat0, SignalSsiDat0);
+impl_mode!(ModeSsiDat1, mode_ssi_dat1, SignalSsiDat1);
+impl_mode!(ModeSsiDat2, mode_ssi_dat2, SignalSsiDat2);
+impl_mode!(ModeSsiDat3, mode_ssi_dat3, SignalSsiDat3);
 
-pub trait ModeCcp<SIG, PERIPH> {
-    fn mode_ccp(&self, _: &PERIPH) -> &Self;
-}
+// pub trait ModeTx<SIG, PERIPH> {
+//     fn mode_tx(&self, _: &PERIPH) -> &Self;
+// }
 
-pub trait ModePwm<SIG, PERIPH> {
-    fn mode_pwm(&self, _: &PERIPH) -> &Self;
-}
+// pub trait ModeRx<SIG, PERIPH> {
+//     fn mode_rx(&self, _: &PERIPH) -> &Self;
+// }
 
-pub trait ModeAin<SIG, PERIPH> {
-    fn mode_ain(&self, _: &PERIPH) -> &Self;
-}
+// pub trait ModeCcp<SIG, PERIPH> {
+//     fn mode_ccp(&self, _: &PERIPH) -> &Self;
+// }
 
-impl<PERIPH, PIN, SIG> ModeTx<SIG, PERIPH> for PIN where PERIPH: SignalTx<SIG>, PIN: AltFn<SIG>, PIN: Deref<Target=GpioPin> {
-    fn mode_tx(&self, _: &PERIPH) -> &Self {
-        self.mode_alt_fn(self.alt_fn());
-        self
-    }
-}
+// pub trait ModePwm<SIG, PERIPH> {
+//     fn mode_pwm(&self, _: &PERIPH) -> &Self;
+// }
 
-impl<PERIPH, PIN, SIG> ModeRx<SIG, PERIPH> for PIN where PERIPH: SignalRx<SIG>, PIN: AltFn<SIG>, PIN: Deref<Target=GpioPin> {
-    fn mode_rx(&self, _: &PERIPH) -> &Self {
-        self.mode_alt_fn(self.alt_fn());
-        self
-    }
-}
+// pub trait ModeAin<SIG, PERIPH> {
+//     fn mode_ain(&self, _: &PERIPH) -> &Self;
+// }
 
-impl<PERIPH, PIN, SIG> ModeCcp<SIG, PERIPH> for PIN where PERIPH: SignalCcp<SIG>, PIN: AltFn<SIG>, PIN: Deref<Target=GpioPin> {
-    fn mode_ccp(&self, _: &PERIPH) -> &Self {
-        self.mode_alt_fn(self.alt_fn());
-        self
-    }
-}
+// impl<PERIPH, PIN, SIG> ModeTx<SIG, PERIPH> for PIN where PERIPH: SignalTx<SIG>, PIN: AltFn<SIG>, PIN: Deref<Target=GpioPin> {
+//     fn mode_tx(&self, _: &PERIPH) -> &Self {
+//         self.mode_alt_fn(self.alt_fn());
+//         self
+//     }
+// }
 
-impl<PERIPH, PIN, SIG> ModePwm<SIG, PERIPH> for PIN where PERIPH: SignalPwm<SIG>, PIN: AltFn<SIG>, PIN: Deref<Target=GpioPin> {
-    fn mode_pwm(&self, _: &PERIPH) -> &Self {
-        self.mode_alt_fn(self.alt_fn());
-        self
-    }
-}
+// impl<PERIPH, PIN, SIG> ModeRx<SIG, PERIPH> for PIN where PERIPH: SignalRx<SIG>, PIN: AltFn<SIG>, PIN: Deref<Target=GpioPin> {
+//     fn mode_rx(&self, _: &PERIPH) -> &Self {
+//         self.mode_alt_fn(self.alt_fn());
+//         self
+//     }
+// }
 
-impl<PERIPH, PIN, SIG> ModeAin<SIG, PERIPH> for PIN where PERIPH: SignalAin<SIG>, PIN: AltFn<SIG>, PIN: Deref<Target=GpioPin> {
-    fn mode_ain(&self, _: &PERIPH) -> &Self {
-        self.mode_alt_fn(self.alt_fn());        
-        self.deref().set_digital_enable(false).set_analog_select(true);
-        self
-    }
-}
+// impl<PERIPH, PIN, SIG> ModeCcp<SIG, PERIPH> for PIN where PERIPH: SignalCcp<SIG>, PIN: AltFn<SIG>, PIN: Deref<Target=GpioPin> {
+//     fn mode_ccp(&self, _: &PERIPH) -> &Self {
+//         self.mode_alt_fn(self.alt_fn());
+//         self
+//     }
+// }
+
+// impl<PERIPH, PIN, SIG> ModePwm<SIG, PERIPH> for PIN where PERIPH: SignalPwm<SIG>, PIN: AltFn<SIG>, PIN: Deref<Target=GpioPin> {
+//     fn mode_pwm(&self, _: &PERIPH) -> &Self {
+//         self.mode_alt_fn(self.alt_fn());
+//         self
+//     }
+// }
+
+// impl<PERIPH, PIN, SIG> ModeAin<SIG, PERIPH> for PIN where PERIPH: SignalAin<SIG>, PIN: AltFn<SIG>, PIN: Deref<Target=GpioPin> {
+//     fn mode_ain(&self, _: &PERIPH) -> &Self {
+//         self.mode_alt_fn(self.alt_fn());        
+//         self.deref().set_digital_enable(false).set_analog_select(true);
+//         self
+//     }
+// }
 
 // pub trait GpioExt {
 //     fn set_dir(&self, value: Dir) -> &Self;
@@ -157,6 +190,14 @@ impl GpioPin {
         self
     }
 
+    pub fn mode_disabled(&self) -> &Self {
+        self.set_dir(Dir::In);
+        self.set_afsel(false);
+        self.set_digital_enable(false);
+        self.set_port_control(0);
+        self
+    }
+
     pub fn mode_input(&self) -> &Self {
         self.set_dir(Dir::In);
         self.set_afsel(false);
@@ -188,6 +229,31 @@ impl GpioPin {
     pub fn pull_down(&self) -> &Self {
         self.set_pulldown_select(true)
     }    
+
+    pub fn test_ris(&self) -> bool {
+        self.port.ris().test_ris(self.index)
+    }
+
+    pub fn clr_ris(&self) -> &Self {
+        self.port.set_icr(|r| r.set_ic(self.index, 1));
+        self
+    }
+
+    pub fn set_is(&self, value: bool) -> &Self {
+        self.port.set_is(|r| r.set_is(self.index, value));
+        self
+    }
+
+    pub fn set_ibe(&self, value: bool) -> &Self {
+        self.port.set_ibe(|r| r.set_ibe(self.index, value));
+        self
+    }
+
+    pub fn set_iev(&self, value: bool) -> &Self {
+        self.port.set_iev(|r| r.set_iev(self.index, value));
+        self
+    }
+
 }
 
 impl DigitalInput for GpioPin  {        

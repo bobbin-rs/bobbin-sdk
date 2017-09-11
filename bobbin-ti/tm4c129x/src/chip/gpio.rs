@@ -1512,19 +1512,19 @@ impl ::core::fmt::Debug for Mis {
 pub struct Icr(pub u32);
 impl Icr {
     #[doc="GPIO Interrupt Clear"]
-    #[inline] pub fn icr<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
+    #[inline] pub fn ic<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
         let index: usize = index.into().value() as usize;
         let shift: usize = 0 + index;
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Returns true if ICR != 0"]
-    #[inline] pub fn test_icr<I: Into<bits::R8>>(&self, index: I) -> bool{
-        self.icr(index) != 0
+    #[doc="Returns true if IC != 0"]
+    #[inline] pub fn test_ic<I: Into<bits::R8>>(&self, index: I) -> bool{
+        self.ic(index) != 0
     }
 
-    #[doc="Sets the ICR field."]
-    #[inline] pub fn set_icr<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+    #[doc="Sets the IC field."]
+    #[inline] pub fn set_ic<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
@@ -1571,14 +1571,14 @@ impl ::core::fmt::Display for Icr {
 impl ::core::fmt::Debug for Icr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
         try!(write!(f, "[0x{:08x}", self.0));
-        if self.icr(0) != 0 { try!(write!(f, " icr[0]"))}
-        if self.icr(1) != 0 { try!(write!(f, " icr[1]"))}
-        if self.icr(2) != 0 { try!(write!(f, " icr[2]"))}
-        if self.icr(3) != 0 { try!(write!(f, " icr[3]"))}
-        if self.icr(4) != 0 { try!(write!(f, " icr[4]"))}
-        if self.icr(5) != 0 { try!(write!(f, " icr[5]"))}
-        if self.icr(6) != 0 { try!(write!(f, " icr[6]"))}
-        if self.icr(7) != 0 { try!(write!(f, " icr[7]"))}
+        if self.ic(0) != 0 { try!(write!(f, " ic[0]"))}
+        if self.ic(1) != 0 { try!(write!(f, " ic[1]"))}
+        if self.ic(2) != 0 { try!(write!(f, " ic[2]"))}
+        if self.ic(3) != 0 { try!(write!(f, " ic[3]"))}
+        if self.ic(4) != 0 { try!(write!(f, " ic[4]"))}
+        if self.ic(5) != 0 { try!(write!(f, " ic[5]"))}
+        if self.ic(6) != 0 { try!(write!(f, " ic[6]"))}
+        if self.ic(7) != 0 { try!(write!(f, " ic[7]"))}
         if self.dmamic() != 0 { try!(write!(f, " dmamic"))}
         try!(write!(f, "]"));
         Ok(())
