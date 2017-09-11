@@ -33,10 +33,10 @@
             (description "CRC transfer next")
         )
         (field
-            (name DFF)
+            (name CRCL)
             (bit-offset 11)
             (bit-width 1)
-            (description "Data frame format")
+            (description "CRC Length")
         )
         (field
             (name RXONLY)
@@ -236,11 +236,11 @@
             (description "Busy flag")
         )
         (field
-            (name TIFRFE)
+            (name FRE)
             (bit-offset 8)
             (bit-width 1)
             (access read-only)
-            (description "TI frame format error")
+            (description "Frame format error")
         )
         (field
             (name FRLVL)
