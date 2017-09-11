@@ -11,7 +11,7 @@ pub extern "C" fn main() -> ! {
     println!("[start] Running tests for nucleo-f303re");
     test_crc();
     test_systick();
-    // test_adc();
+    test_adc();
     test_dma();
     // test_exti();
     // test_lpuart();
@@ -86,31 +86,36 @@ fn test_systick() {
     println!("[pass] SYSTICK OK");
 }
 
-// fn test_adc() {
-//     use board::hal::adc::*;
+fn test_adc() {
+    use board::chip::rcc::*;
+    use board::hal::adc::*;
+    use board::chip::c_adc::C_ADC12;
 
-//     let adc = ADC1;
-//     let adc_temp = ADC1_TEMP;
-//     let adc_ref = ADC1_REFINT;
+    let adc = ADC1;
+    let adc_temp = ADC1_TEMP;
+    let adc_ref = ADC1_REFINT;
 
-//     adc.rcc_enable();
-//     adc.init();
-//     adc.with_ccr(|r| r.set_tsen(1).set_vrefen(1));
-//     adc.with_smpr(|r| r.set_smp(0b111));
+    // NOTE: Set ADC prescaler to enable clock
 
-//     let t: u8 = <AdcCh as AnalogRead<u8>>::start(&adc_temp).analog_read();
-//     let v: u8 = <AdcCh as AnalogRead<u8>>::start(&adc_ref).analog_read();
+    RCC.with_cfgr2(|r| r.set_adc12pres(0b11100));
+    adc.rcc_enable();
+    adc.init();
+    C_ADC12.with_ccr(|r| r.set_tsen(1).set_vrefen(1));
+    // adc.with_smpr1(|r| r.set_smp(0b111));
 
-//     println!("# t: {} v: {}", t, v);
+    let t: u8 = <AdcCh as AnalogRead<u8>>::start(&adc_temp).analog_read();
+    let v: u8 = <AdcCh as AnalogRead<u8>>::start(&adc_ref).analog_read();
 
-//     // assert!(t > 110 && t < 130);
-//     // assert!(v > 220 && t < 240);
+    println!("# t: {} v: {}", t, v);
+
+    // assert!(t > 110 && t < 130);
+    // assert!(v > 220 && t < 240);
 
 
-//     adc.rcc_disable();
+    adc.rcc_disable();
 
-//     println!("[pass] ADC OK")
-// }
+    println!("[pass] ADC OK")
+}
 
 fn test_dma() {
     use board::hal::dma::*;    
@@ -364,11 +369,8 @@ fn test_i2c() {
     i2c_scl.mode_i2c_scl(&i2c).open_drain();
     i2c_sda.mode_i2c_sda(&i2c).open_drain();
 
-    println!("# Configuring I2C");
-
     // i2c.set_config(|c| c.set_timing(0x8.into(), 0x3.into(), 0x0.into(), 0xd.into(), 0x12.into()));
     i2c.set_enabled(false);
-    println!("enabled");
     // i2c.set_timingr(|_| Timingr(0x00300619));
     i2c.set_timingr(|r| r
         .set_presc(0x0)
@@ -377,13 +379,9 @@ fn test_i2c() {
         .set_sclh(0xF)
         .set_scll(0x12)
     );
-    println!("CR1 {:?}", i2c.cr1());
-    println!("CR2 {:?}", i2c.cr2());
-    println!("TIMINGR {:?}", i2c.timingr());
-    println!("read_reg");
     assert_eq!(i2c.read_reg(addr, 0x0c), 0xc4);
-    
-    println!("Mode:  0x{:08x}", i2c.read_reg(addr, 0x26));
+   
+    // println!("Mode:  0x{:08x}", i2c.read_reg(addr, 0x26));
     
 
     i2c.write_reg(addr, 0x26, 0xb8); // OSR = 128
