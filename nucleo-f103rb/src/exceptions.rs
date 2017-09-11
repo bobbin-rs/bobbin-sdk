@@ -4,7 +4,7 @@ use hal;
 #[doc(hidden)]
 #[export_name = "_default_exception_handler"]
 pub unsafe extern "C" fn default_handler_entry_point() -> ! {
-    println!("[EXCEPTION]");
+    println!("[exception]");
     loop {}
 }
 
