@@ -77,7 +77,7 @@ pub fn enable_pll_external_mode() {
     //rcc.with_cfgr(|r| r.set_mco(0b101));
     
     // Disable internal high-speed oscillator.        
-    rcc.with_cr(|r| r.set_hsion(0));
+    // rcc.with_cr(|r| r.set_hsion(0));
 }
 
 pub fn hsi_enabled() -> bool {
