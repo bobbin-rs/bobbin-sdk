@@ -128,7 +128,7 @@
         (access write-only)
         (description "GPIO Interrupt Clear")
         (field
-            (name ICR)
+            (name IC)
             (dim 8)
             (dim-increment 1)
             (bit-offset 0)

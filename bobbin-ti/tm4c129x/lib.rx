@@ -18,6 +18,7 @@
         (module (name chip::itm))      
     )    
     (peripheral (include "periph/sysctl.rx"))
+    (peripheral (include "periph/ccm.rx"))
     (peripheral (include "periph/emac.rx"))
     
     (peripheral-group
@@ -524,6 +525,8 @@
             (name I2C0)
             (address 0x40020000)
             (description "Register map for I2C0 peripheral")
+            (signal (name I2C0SCL) (type I2C_SCL))
+            (signal (name I2C0SDA) (type I2C_SDA))
             (interrupt
                 (name I2C0)
                 (value 8)
@@ -532,6 +535,8 @@
         (peripheral
             (name I2C1)
             (address 0x40021000)
+            (signal (name I2C1SCL) (type I2C_SCL))
+            (signal (name I2C1SDA) (type I2C_SDA))            
             (interrupt
                 (name I2C1)
                 (value 37)
@@ -540,6 +545,8 @@
         (peripheral
             (name I2C2)
             (address 0x40022000)
+            (signal (name I2C2SCL) (type I2C_SCL))
+            (signal (name I2C2SDA) (type I2C_SDA))
             (interrupt
                 (name I2C2)
                 (value 61)
@@ -548,6 +555,8 @@
         (peripheral
             (name I2C3)
             (address 0x40023000)
+            (signal (name I2C3SCL) (type I2C_SCL))
+            (signal (name I2C3SDA) (type I2C_SDA))            
             (interrupt
                 (name I2C3)
                 (value 62)
@@ -562,6 +571,12 @@
             (name SSI0)
             (address 0x40008000)
             (description "Register map for SSI0 peripheral")
+            (signal (name SSI0CLK) (type SSI_CLK))
+            (signal (name SSI0FSS) (type SSI_FSS))            
+            (signal (name SSI0DAT0) (type SSI_DAT0))
+            (signal (name SSI0DAT1) (type SSI_DAT1))
+            (signal (name SSI0DAT2) (type SSI_DAT2))
+            (signal (name SSI0DAT3) (type SSI_DAT3))
             (interrupt
                 (name SSI0)
                 (value 7)
@@ -570,6 +585,12 @@
         (peripheral
             (name SSI1)
             (address 0x40009000)
+            (signal (name SSI1CLK) (type SSI_CLK))
+            (signal (name SSI1FSS) (type SSI_FSS))            
+            (signal (name SSI1DAT0) (type SSI_DAT0))
+            (signal (name SSI1DAT1) (type SSI_DAT1))
+            (signal (name SSI1DAT2) (type SSI_DAT2))
+            (signal (name SSI1DAT3) (type SSI_DAT3))           
             (interrupt
                 (name SSI1)
                 (value 34)
@@ -578,6 +599,12 @@
         (peripheral
             (name SSI2)
             (address 0x4000a000)
+            (signal (name SSI2CLK) (type SSI_CLK))
+            (signal (name SSI2FSS) (type SSI_FSS))            
+            (signal (name SSI2DAT0) (type SSI_DAT0))
+            (signal (name SSI2DAT1) (type SSI_DAT1))
+            (signal (name SSI2DAT2) (type SSI_DAT2))
+            (signal (name SSI2DAT3) (type SSI_DAT3))            
             (interrupt
                 (name SSI2)
                 (value 54)
@@ -586,6 +613,12 @@
         (peripheral
             (name SSI3)
             (address 0x4000b000)
+            (signal (name SSI3CLK) (type SSI_CLK))
+            (signal (name SSI3FSS) (type SSI_FSS))            
+            (signal (name SSI3DAT0) (type SSI_DAT0))
+            (signal (name SSI3DAT1) (type SSI_DAT1))
+            (signal (name SSI3DAT2) (type SSI_DAT2))
+            (signal (name SSI3DAT3) (type SSI_DAT3))           
             (interrupt
                 (name SSI3)
                 (value 55)
