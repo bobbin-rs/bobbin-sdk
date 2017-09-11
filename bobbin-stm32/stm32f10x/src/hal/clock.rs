@@ -5,7 +5,9 @@ use ::chip::usart::*;
 use ::chip::tim_gen::*;
 use ::chip::tim_adv::*;
 // use ::chip::iwdg::*;
-use ::chip::wwdg::*;
+// use ::chip::wwdg::*;
+use ::chip::i2c::*;
+use ::chip::spi::*;
 use core::fmt;
 pub type Hz = Option<u32>;
 
@@ -360,4 +362,8 @@ impl_clock!(Tim4, tim_pclk1);
 
 
 // impl_clock!(Iwdg, lsi);
-impl_clock!(Wwdg, pclk1);
+impl_clock!(I2c1, pclk1);
+impl_clock!(I2c2, pclk1);
+impl_clock!(Spi1, pclk2);
+impl_clock!(Spi2, pclk1);
+impl_clock!(Spi3, pclk1);

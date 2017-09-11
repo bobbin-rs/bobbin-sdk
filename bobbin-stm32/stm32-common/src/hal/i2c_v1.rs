@@ -37,6 +37,8 @@ impl Enabled for I2cPeriph {
     }
 }
 
+// NOTE: Seems to always produce double byte reads and writes. Needs Review.
+
 impl<A: Into<U7>> I2cTransfer<A> for I2cPeriph {
     fn transfer(&self, addr: A, cmd: &[u8], data: &mut[u8]) -> &Self {
         let i2c = self;

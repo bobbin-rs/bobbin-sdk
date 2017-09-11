@@ -8,7 +8,7 @@ impl AdcPeriph {
     }
 
     pub fn set_sequence_channel(&self, sequence: u8, channel: u8) -> &Self {
-        assert!(channel < 16, "Channel must b 0..15");
+        assert!(channel <= 17, "Channel must b 0..17");
         let channel = channel as u32;
         match sequence {
             1 => self.with_sqr3(|r| r.set_sq1(channel)),

@@ -3547,6 +3547,11 @@ impl En for super::tim_adv::Tim1 {
     #[inline] fn set_en(&self, value: u32) { RCC.with_apb2enr(|r| r.set_tim1en(value)); }
 }
 
+impl En for super::spi::Spi1 {
+    #[inline] fn en(&self) -> u32 { RCC.apb2enr().spi1en().into() }
+    #[inline] fn set_en(&self, value: u32) { RCC.with_apb2enr(|r| r.set_spi1en(value)); }
+}
+
 impl En for super::usart::Usart1 {
     #[inline] fn en(&self) -> u32 { RCC.apb2enr().usart1en().into() }
     #[inline] fn set_en(&self, value: u32) { RCC.with_apb2enr(|r| r.set_usart1en(value)); }
@@ -3572,6 +3577,16 @@ impl En for super::wwdg::Wwdg {
     #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_wwdgen(value)); }
 }
 
+impl En for super::spi::Spi2 {
+    #[inline] fn en(&self) -> u32 { RCC.apb1enr().spi2en().into() }
+    #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_spi2en(value)); }
+}
+
+impl En for super::spi::Spi3 {
+    #[inline] fn en(&self) -> u32 { RCC.apb1enr().spi3en().into() }
+    #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_spi3en(value)); }
+}
+
 impl En for super::usart::Usart2 {
     #[inline] fn en(&self) -> u32 { RCC.apb1enr().usart2en().into() }
     #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_usart2en(value)); }
@@ -3580,6 +3595,16 @@ impl En for super::usart::Usart2 {
 impl En for super::usart::Usart3 {
     #[inline] fn en(&self) -> u32 { RCC.apb1enr().usart3en().into() }
     #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_usart3en(value)); }
+}
+
+impl En for super::i2c::I2c1 {
+    #[inline] fn en(&self) -> u32 { RCC.apb1enr().i2c1en().into() }
+    #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_i2c1en(value)); }
+}
+
+impl En for super::i2c::I2c2 {
+    #[inline] fn en(&self) -> u32 { RCC.apb1enr().i2c2en().into() }
+    #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_i2c2en(value)); }
 }
 
 impl En for super::pwr::Pwr {

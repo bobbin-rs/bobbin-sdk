@@ -24,6 +24,8 @@ channel!(ADC1_CH12, Adc1Ch12, ADC1, Adc1, _ADC1_CH12, AdcCh, _ADC1, 12);
 channel!(ADC1_CH13, Adc1Ch13, ADC1, Adc1, _ADC1_CH13, AdcCh, _ADC1, 13);
 channel!(ADC1_CH14, Adc1Ch14, ADC1, Adc1, _ADC1_CH14, AdcCh, _ADC1, 14);
 channel!(ADC1_CH15, Adc1Ch15, ADC1, Adc1, _ADC1_CH15, AdcCh, _ADC1, 15);
+channel!(ADC1_TEMP, Adc1Temp, ADC1, Adc1, _ADC1_TEMP, AdcCh, _ADC1, 16);
+channel!(ADC1_REF, Adc1Ref, ADC1, Adc1, _ADC1_REF, AdcCh, _ADC1, 17);
 channel!(ADC2_CH0, Adc2Ch0, ADC2, Adc2, _ADC2_CH0, AdcCh, _ADC2, 0);
 channel!(ADC2_CH1, Adc2Ch1, ADC2, Adc2, _ADC2_CH1, AdcCh, _ADC2, 1);
 channel!(ADC2_CH2, Adc2Ch2, ADC2, Adc2, _ADC2_CH2, AdcCh, _ADC2, 2);

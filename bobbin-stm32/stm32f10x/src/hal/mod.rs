@@ -24,6 +24,18 @@ pub mod usart {
     pub use super::rcc::RccEnabled;
 }
 
+pub mod i2c {
+    pub use chip::i2c::*;
+    pub use stm32_common::hal::i2c_v1::*;
+    pub use super::rcc::RccEnabled;
+}
+
+pub mod spi {
+    pub use chip::spi::*;
+    pub use stm32_common::hal::spi_v1::*;
+    pub use super::rcc::RccEnabled;
+}
+
 pub mod tim {
     pub use chip::tim_gen::*;
     pub use stm32_common::hal::tim_gen::*;

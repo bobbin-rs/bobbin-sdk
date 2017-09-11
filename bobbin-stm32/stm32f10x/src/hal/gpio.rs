@@ -7,7 +7,7 @@ impl GpioPin {
     #[inline]
     pub fn mode_output(&self) -> &Self {
         match self.index {
-            0 ... 8 => {
+            0 ... 7 => {
                 self.port.with_crl(|r| r.set_cnf(self.index, 0b00).set_mode(self.index, 0b01));
             },
             _ => {
@@ -19,7 +19,7 @@ impl GpioPin {
     #[inline]
     pub fn mode_input(&self) -> &Self {
         match self.index {
-            0 ... 8 => {
+            0 ... 7 => {
                 self.port.with_crl(|r| r.set_cnf(self.index, 0b10).set_mode(self.index, 0b00));
             },
             _ => {
@@ -32,7 +32,7 @@ impl GpioPin {
     #[inline]
     pub fn mode_alt_fn(&self) -> &Self {
         match self.index {
-            0 ... 8 => {
+            0 ... 7 => {
                 self.port.with_crl(|r| r.set_cnf(self.index, 0b10).set_mode(self.index, 0b01));
             },
             _ => {
@@ -42,9 +42,21 @@ impl GpioPin {
         self
     }
     #[inline]
+    pub fn mode_alt_fn_open_drain(&self) -> &Self {
+        match self.index {
+            0 ... 7 => {
+                self.port.with_crl(|r| r.set_cnf(self.index, 0b11).set_mode(self.index, 0b10));
+            },
+            _ => {
+                self.port.with_crh(|r| r.set_cnf(self.index - 8, 0b11).set_mode(self.index - 8, 0b10));
+            }
+        }
+        self
+    }    
+    #[inline]
     pub fn mode_analog(&self) -> &Self {
         match self.index {
-            0 ... 8 => {
+            0 ... 7 => {
                 self.port.with_crl(|r| r.set_cnf(self.index, 0).set_mode(self.index, 0));
             },
             _ => {
