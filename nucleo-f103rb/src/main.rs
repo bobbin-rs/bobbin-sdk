@@ -188,18 +188,16 @@ fn test_i2c() {
     // // Set Rise Time Register = 43
     i2c.set_trise(|_| Trise(0).set_trise(43));
 
-    println!("Resetting Bus");
+    // println!("Resetting Bus");
     for _ in 0..10 {
         i2c.with_cr1(|r| r.set_start(1));
         i2c.with_cr1(|r| r.set_start(0));
     }
 
-    println!("Read Reg");
     assert_eq!(i2c.read_reg(addr, 0x0c), 0xc4);
    
     // println!("Mode:  0x{:08x}", i2c.read_reg(addr, 0x26));
     
-
     i2c.write_reg(addr, 0x26, 0xb8); // OSR = 128
     i2c.write_reg(addr, 0x13, 0x06); // Enable Data Flags
     i2c.write_reg(addr, 0x26, 0xb9); // Set Active
