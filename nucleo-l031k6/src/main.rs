@@ -10,7 +10,7 @@ pub extern "C" fn main() -> ! {
     board::init();
     println!("[start] Running tests for nucleo-l031K6");
     test_crc();
-    test_gpio();
+    // test_gpio();
     test_lptim();
     test_systick();
     test_adc();
@@ -18,7 +18,7 @@ pub extern "C" fn main() -> ! {
     test_exti();
     test_lpuart();
     test_usart();
-    test_spi();
+    // test_spi();
     test_i2c();
     println!("[done] All tests passed");
     loop {}
