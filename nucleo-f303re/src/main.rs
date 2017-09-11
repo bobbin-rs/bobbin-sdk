@@ -452,6 +452,11 @@ fn test_spi_lora() {
 
 
     println!("[pass] SPI OK");
+    spi.rcc_disable();
+    spi_sck.mode_analog();
+    spi_mosi.mode_analog();
+    spi_miso.mode_analog();
+    spi_nss.mode_analog();
 
     fn transfer(spi: &SpiPeriph, nss: &GpioPin, src: &[u8], dst: &mut[u8]) {
         let mut i = 0;
