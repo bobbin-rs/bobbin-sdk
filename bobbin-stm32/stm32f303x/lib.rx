@@ -1299,11 +1299,16 @@
 
     (peripheral-group
         (name I2C)
-        (prototype "periph/i2c.rx")
+        (module (name stm32_common::chip::i2c_v2::*))
+        
         (peripheral
             (name I2C1)
             (address 0x40005400)
             (description "Inter-integrated circuit")
+            (signal (name I2C1_SCL) (type I2C_SCL))
+            (signal (name I2C1_SDA) (type I2C_SDA))
+            (signal (name I2C1_SMBAL) (type I2C_SMBAL))
+            
             (interrupt
                 (name I2C1_EV_EXTI23)
                 (value 31)
@@ -1318,6 +1323,9 @@
         (peripheral
             (name I2C2)
             (address 0x40005800)
+            (signal (name I2C1_SCL) (type I2C_SCL))
+            (signal (name I2C1_SDA) (type I2C_SDA))
+            (signal (name I2C1_SMBAL) (type I2C_SMBAL))
             (interrupt
                 (name I2C2_EV_EXTI24)
                 (value 33)
@@ -1346,11 +1354,15 @@
     )
     (peripheral-group
         (name SPI)
-        (prototype "periph/spi.rx")
+        (module (name stm32_common::chip::spi_v2::*))
         (peripheral
             (name SPI1)
             (address 0x40013000)
             (description "Serial peripheral interface/Inter-IC sound")
+            (signal (name SPI1_NSS) (type SPI_NSS))
+            (signal (name SPI1_MISO) (type SPI_MISO))
+            (signal (name SPI1_MOSI) (type SPI_MOSI))
+            (signal (name SPI1_SCK) (type SPI_SCK))            
             (interrupt
                 (name SPI1)
                 (value 35)
@@ -1360,6 +1372,10 @@
         (peripheral
             (name SPI2)
             (address 0x40003800)
+            (signal (name SPI2_NSS) (type SPI_NSS))
+            (signal (name SPI2_MISO) (type SPI_MISO))
+            (signal (name SPI2_MOSI) (type SPI_MOSI))
+            (signal (name SPI2_SCK) (type SPI_SCK))            
             (interrupt
                 (name SPI2)
                 (value 36)
@@ -1369,6 +1385,10 @@
         (peripheral
             (name SPI3)
             (address 0x40003c00)
+            (signal (name SPI3_NSS) (type SPI_NSS))
+            (signal (name SPI3_MISO) (type SPI_MISO))
+            (signal (name SPI3_MOSI) (type SPI_MOSI))
+            (signal (name SPI3_SCK) (type SPI_SCK))            
             (interrupt
                 (name SPI3)
                 (value 51)
