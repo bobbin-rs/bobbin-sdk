@@ -9,6 +9,7 @@ pub extern "C" fn main() -> ! {
     board::init();
     println!("[start] Running tests for nucleo-f429zi");
     test_i2c();
+    test_spi_lora();
     println!("[done] All tests passed");
     loop {}
 }
@@ -72,4 +73,77 @@ fn test_i2c() {
     i2c_port.rcc_disable();
     i2c.rcc_disable();
     println!("[pass] I2C OK");
+}
+
+
+fn test_spi_lora() {
+    use board::hal::gpio::*;
+    use board::hal::spi::*;
+
+    let spi = SPI1;
+    let port = GPIOA;
+    let spi_miso = PA6; // A5
+    let spi_mosi = PA7; // A6
+    let spi_sck = PA5;
+    let spi_nss = PD14; // D10
+
+    spi.rcc_enable();
+    port.rcc_enable();
+    GPIOD.rcc_enable();
+
+    // NOTE: Pins must be set with output speed HIGH or leading edge
+    // of transmission will occasionally be missed.
+
+    spi_miso.mode_spi_miso(&spi).speed_high().pull_up();
+    spi_mosi.mode_spi_mosi(&spi).speed_high().push_pull();
+    spi_sck.mode_spi_sck(&spi).speed_high().push_pull();
+    spi_nss.mode_output();
+
+    spi.set_config(|cfg| cfg
+        .set_frame_size(FrameSize::Bits8)
+        .set_master(true)
+        .set_baud_divider(0b100.into())
+    );
+
+    spi.set_output_enabled(true).set_enabled(true);
+
+
+    let test_data = [(0x42, 0x12), (0x01, 0x09), (0x02, 0x1a), (0x03, 0x0b), (0x04, 0x00), (0x05, 0x52), (0x06, 0x6c)];
+
+    for &(tx, rx) in test_data.iter() {
+        // println!("0x{:02x}: 0x{:02x}", tx, rx);
+        assert_eq!(reg_read(&spi, &spi_nss, tx), rx);
+    }
+
+
+    println!("[pass] SPI OK");
+    spi.rcc_disable();
+
+    fn transfer(spi: &SpiPeriph, nss: &GpioPin, src: &[u8], dst: &mut[u8]) {
+        let mut i = 0;
+        let mut j = 0;
+        nss.set_output(false);
+        loop {
+            if i < src.len() && spi.can_tx() {
+                spi.tx(src[i]);
+                i += 1;
+            }
+            if j < dst.len() && spi.can_rx() {
+                dst[j] = spi.rx();
+                j += 1;
+            }
+            if j == dst.len() {
+                break;
+            }        
+        }
+        nss.set_output(true);
+    }
+
+    fn reg_read(spi: &SpiPeriph, nss: &GpioPin, reg: u8) -> u8 {
+        let cmd = [reg, 0xff];
+        let mut buf = [0u8, 0u8];
+        transfer(spi, nss, &cmd, &mut buf);
+        buf[1]
+    }
+    
 }
