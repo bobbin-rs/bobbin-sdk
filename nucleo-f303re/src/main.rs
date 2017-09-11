@@ -9,10 +9,10 @@ extern crate nucleo_f303re as board;
 pub extern "C" fn main() -> ! {
     board::init();
     println!("[start] Running tests for nucleo-f303re");
-    // test_crc();
-    // test_systick();
-    // test_adc();
-    // test_dma();
+    test_crc();
+    test_systick();
+    test_adc();
+    test_dma();
     // test_exti();
     // test_lpuart();
     // test_usart();

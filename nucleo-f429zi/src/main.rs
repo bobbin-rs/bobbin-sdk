@@ -8,10 +8,113 @@ extern crate nucleo_f429zi as board;
 pub extern "C" fn main() -> ! {
     board::init();
     println!("[start] Running tests for nucleo-f429zi");
+    test_crc();
+    test_systick();
+    test_dma();
     test_i2c();
     test_spi_lora();
     println!("[done] All tests passed");
     loop {}
+}
+
+fn test_crc() {
+    use board::hal::crc::*;
+
+    let crc = CRC;
+
+    // println!("# Setting up CRC");
+
+    crc.rcc_enable();
+    // println!("# Starting CRC");
+
+    let expect: [u32;4 ] = [0xffffffff, 0xc704dd7b, 0x6dc5a6ee,0x491308c2];
+
+
+    for i in 0..4 {
+        // println!("{:08x}", crc.read());
+        assert_eq!(crc.read(), expect[i]);
+        crc.write(i as u32);
+    }
+
+    crc.rcc_disable();
+
+    println!("[pass] CRC OK");    
+}
+
+fn test_systick() {
+    use board::hal::systick;
+
+    let reload_value = 1000;
+
+    // println!("# Disable Systick");
+    systick::set_enabled(false);
+    assert!(!systick::enabled());
+
+    // println!("# Set Reload Value");
+    systick::set_reload_value(reload_value);
+    assert_eq!(systick::reload_value(), reload_value);
+
+    // println!("# Set Current Value");
+    systick::set_current_value(0);
+    assert_eq!(systick::current_value(), 0);
+
+    // println!("# Clear Count Flag");
+    let _ = systick::count_flag();
+    assert!(!systick::count_flag());
+
+
+    let mut value_min = systick::current_value();
+
+    // println!("# Start Test");
+    systick::set_enabled(true);
+    assert!(systick::current_value() > 0);
+
+    while !systick::count_flag() {
+        let v = systick::current_value();
+        if v < value_min {
+            value_min = v;
+        }
+    }
+    assert!(value_min < reload_value);
+    systick::set_enabled(false);
+
+    println!("[pass] SYSTICK OK");
+}
+
+
+fn test_dma() {
+    use board::hal::dma::*;    
+    
+    let dma = DMA2;
+    let dma_ch = DMA2_STREAM0;
+
+    dma.rcc_enable();
+
+    let src = [0xffu8; 1024];
+    let dst = [0u8; 1024];
+
+    dma_ch    
+        .set_pa(&src as *const u8 as u32)
+        .set_m0a(&dst as *const u8 as u32)
+        .set_psize(Size::Bit8)
+        .set_pinc(true)
+        .set_msize(Size::Bit8)
+        .set_minc(true)
+        .set_dir(Dir::MtoM)
+        .set_ndt(1024)
+        .set_tcie(true)
+        .clr_teif()
+        .clr_tcif();
+
+    println!("Starting DMA Transfer");
+    dma_ch.clr_tcif().set_enabled(true);
+    while !dma_ch.tcif() {}
+    for i in 0..1024 {
+        assert_eq!(src[i], dst[i]);
+    }
+
+    dma.rcc_disable();
+    println!("[pass] DMA OK");
 }
 
 
