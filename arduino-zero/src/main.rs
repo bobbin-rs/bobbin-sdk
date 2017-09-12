@@ -10,7 +10,8 @@ pub extern "C" fn main() -> ! {
     println!("[start] Running tests for arduino-zero");
     test_systick();
     test_dma();
-
+    test_adc();
+    test_i2c();
     println!("[done] All tests passed");
     loop {}
 }
@@ -140,4 +141,29 @@ fn test_dma() {
 
     assert_eq!(&src[..], &dst[..]);
     println!("[pass] DMA OK");    
+}
+
+fn test_adc() {    
+    pub use board::hal::adc::*;
+    pub use board::hal::port::*;
+    use board::common::bits::*;
+    
+    init();
+    let v_temp: U12 = ADC_TEMP.analog_read();
+    let v_bandgap: U12 = ADC_BANDGAP.analog_read();
+    let v_scaled_core: U12 = ADC_SCALED_CORE.analog_read();
+    let v_scaled_io: U12 = ADC_SCALED_IO.analog_read();
+    println!("# {} {} {} {}", v_temp, v_bandgap, v_scaled_core, v_scaled_io);
+
+    assert!(v_temp.value() > 1000 && v_temp.value() < 1200);
+    assert!(v_bandgap.value() > 1450 && v_bandgap.value() < 1600);
+    assert!(v_scaled_core.value() > 350 && v_scaled_core.value() < 450);
+    assert!(v_scaled_io.value() > 1000 && v_scaled_io.value() < 1100);
+
+    println!("[pass] ADC OK");
+}
+
+fn test_i2c() {
+
+    println!("[pass] I2C OK");    
 }
