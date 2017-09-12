@@ -2261,4 +2261,9 @@ channel!(ADC_CH16, AdcCh16, ADC, Adc, _ADC_CH16, AdcCh, _ADC, 16);
 channel!(ADC_CH17, AdcCh17, ADC, Adc, _ADC_CH17, AdcCh, _ADC, 17);
 channel!(ADC_CH18, AdcCh18, ADC, Adc, _ADC_CH18, AdcCh, _ADC, 18);
 channel!(ADC_CH19, AdcCh19, ADC, Adc, _ADC_CH19, AdcCh, _ADC, 19);
+channel!(ADC_TEMP, AdcTemp, ADC, Adc, _ADC_TEMP, AdcCh, _ADC, 24);
+channel!(ADC_BANDGAP, AdcBandgap, ADC, Adc, _ADC_BANDGAP, AdcCh, _ADC, 25);
+channel!(ADC_SCALED_CORE, AdcScaledCore, ADC, Adc, _ADC_SCALED_CORE, AdcCh, _ADC, 26);
+channel!(ADC_SCALED_IO, AdcScaledIo, ADC, Adc, _ADC_SCALED_IO, AdcCh, _ADC, 27);
+channel!(ADC_DAC, AdcDac, ADC, Adc, _ADC_DAC, AdcCh, _ADC, 28);
 

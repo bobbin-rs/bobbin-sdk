@@ -1,3 +1,4 @@
+pub use bobbin_common::Channel;
 pub use chip::dmac::*;
 use super::pm::PM;
 
