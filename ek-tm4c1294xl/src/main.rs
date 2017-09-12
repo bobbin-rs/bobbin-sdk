@@ -12,7 +12,7 @@ pub extern "C" fn main() -> ! {
     test_systick();
     // test_crc();
     test_dma();
-    test_gpio();
+    // test_gpio();
     test_i2c();
     test_spi_lora();
     println!("[done] All tests passed");
