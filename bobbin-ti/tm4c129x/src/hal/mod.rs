@@ -11,5 +11,5 @@ pub mod watchdog;
 pub mod adc;
 pub mod ccm;
 pub mod i2c;
-// pub mod ssi;
+pub mod ssi;
 // pub mod emac;

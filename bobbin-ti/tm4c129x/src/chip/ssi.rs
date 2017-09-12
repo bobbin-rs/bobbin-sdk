@@ -39,27 +39,27 @@ impl super::sig::Signal<super::sig::Ssi2clk> for Ssi2 {}
 impl super::sig::SignalSsiClk<super::sig::Ssi2clk> for Ssi2 {}
 impl super::sig::Signal<super::sig::Ssi2fss> for Ssi2 {}
 impl super::sig::SignalSsiFss<super::sig::Ssi2fss> for Ssi2 {}
-impl super::sig::Signal<super::sig::Ssi2dat0> for Ssi2 {}
-impl super::sig::SignalSsiDat0<super::sig::Ssi2dat0> for Ssi2 {}
-impl super::sig::Signal<super::sig::Ssi2dat1> for Ssi2 {}
-impl super::sig::SignalSsiDat1<super::sig::Ssi2dat1> for Ssi2 {}
-impl super::sig::Signal<super::sig::Ssi2dat2> for Ssi2 {}
-impl super::sig::SignalSsiDat2<super::sig::Ssi2dat2> for Ssi2 {}
-impl super::sig::Signal<super::sig::Ssi2dat3> for Ssi2 {}
-impl super::sig::SignalSsiDat3<super::sig::Ssi2dat3> for Ssi2 {}
+impl super::sig::Signal<super::sig::Ssi2xdat0> for Ssi2 {}
+impl super::sig::SignalSsiDat0<super::sig::Ssi2xdat0> for Ssi2 {}
+impl super::sig::Signal<super::sig::Ssi2xdat1> for Ssi2 {}
+impl super::sig::SignalSsiDat1<super::sig::Ssi2xdat1> for Ssi2 {}
+impl super::sig::Signal<super::sig::Ssi2xdat2> for Ssi2 {}
+impl super::sig::SignalSsiDat2<super::sig::Ssi2xdat2> for Ssi2 {}
+impl super::sig::Signal<super::sig::Ssi2xdat3> for Ssi2 {}
+impl super::sig::SignalSsiDat3<super::sig::Ssi2xdat3> for Ssi2 {}
 
 impl super::sig::Signal<super::sig::Ssi3clk> for Ssi3 {}
 impl super::sig::SignalSsiClk<super::sig::Ssi3clk> for Ssi3 {}
 impl super::sig::Signal<super::sig::Ssi3fss> for Ssi3 {}
 impl super::sig::SignalSsiFss<super::sig::Ssi3fss> for Ssi3 {}
-impl super::sig::Signal<super::sig::Ssi3dat0> for Ssi3 {}
-impl super::sig::SignalSsiDat0<super::sig::Ssi3dat0> for Ssi3 {}
-impl super::sig::Signal<super::sig::Ssi3dat1> for Ssi3 {}
-impl super::sig::SignalSsiDat1<super::sig::Ssi3dat1> for Ssi3 {}
-impl super::sig::Signal<super::sig::Ssi3dat2> for Ssi3 {}
-impl super::sig::SignalSsiDat2<super::sig::Ssi3dat2> for Ssi3 {}
-impl super::sig::Signal<super::sig::Ssi3dat3> for Ssi3 {}
-impl super::sig::SignalSsiDat3<super::sig::Ssi3dat3> for Ssi3 {}
+impl super::sig::Signal<super::sig::Ssi3xdat0> for Ssi3 {}
+impl super::sig::SignalSsiDat0<super::sig::Ssi3xdat0> for Ssi3 {}
+impl super::sig::Signal<super::sig::Ssi3xdat1> for Ssi3 {}
+impl super::sig::SignalSsiDat1<super::sig::Ssi3xdat1> for Ssi3 {}
+impl super::sig::Signal<super::sig::Ssi3xdat2> for Ssi3 {}
+impl super::sig::SignalSsiDat2<super::sig::Ssi3xdat2> for Ssi3 {}
+impl super::sig::Signal<super::sig::Ssi3xdat3> for Ssi3 {}
+impl super::sig::SignalSsiDat3<super::sig::Ssi3xdat3> for Ssi3 {}
 
 
 impl SsiPeriph {
@@ -158,6 +158,39 @@ impl SsiPeriph {
     #[inline] pub fn with_dr<F: FnOnce(Dr) -> Dr>(&self, f: F) -> &Self {
         unsafe {
             write_volatile(self.dr_mut(), f(self.dr()));
+        }
+        self
+    }
+
+    #[doc="Get the *mut pointer for the DR8 register."]
+    #[inline] pub fn dr8_mut(&self) -> *mut Dr8 { 
+        (self.0 + 0x8) as *mut Dr8
+    }
+
+    #[doc="Get the *const pointer for the DR8 register."]
+    #[inline] pub fn dr8_ptr(&self) -> *const Dr8 { 
+           self.dr8_mut()
+    }
+
+    #[doc="Read the DR8 register."]
+    #[inline] pub fn dr8(&self) -> Dr8 { 
+        unsafe {
+            read_volatile(self.dr8_ptr())
+        }
+    }
+
+    #[doc="Write the DR8 register."]
+    #[inline] pub fn set_dr8<F: FnOnce(Dr8) -> Dr8>(&self, f: F) -> &Self {
+        unsafe {
+            write_volatile(self.dr8_mut(), f(Dr8(0)));
+        }
+        self
+    }
+
+    #[doc="Modify the DR8 register."]
+    #[inline] pub fn with_dr8<F: FnOnce(Dr8) -> Dr8>(&self, f: F) -> &Self {
+        unsafe {
+            write_volatile(self.dr8_mut(), f(self.dr8()));
         }
         self
     }
@@ -819,6 +852,53 @@ impl ::core::fmt::Display for Dr {
 }
 
 impl ::core::fmt::Debug for Dr {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        if self.data() != 0 { try!(write!(f, " data=0x{:x}", self.data()))}
+        try!(write!(f, "]"));
+        Ok(())
+    }
+}
+
+#[doc="SSI Data (8 bit)"]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct Dr8(pub u32);
+impl Dr8 {
+    #[doc="SSI Receive/Transmit Data (8 bit)"]
+    #[inline] pub fn data(&self) -> bits::U8 {
+        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
+    }
+
+    #[doc="Returns true if DATA != 0"]
+    #[inline] pub fn test_data(&self) -> bool {
+        self.data() != 0
+    }
+
+    #[doc="Sets the DATA field."]
+    #[inline] pub fn set_data<V: Into<bits::U8>>(mut self, value: V) -> Self {
+        let value: bits::U8 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0xff << 0);
+        self.0 |= value << 0;
+        self
+    }
+
+}
+
+impl From<u32> for Dr8 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Dr8(other)
+    }
+}
+
+impl ::core::fmt::Display for Dr8 {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
+    }
+}
+
+impl ::core::fmt::Debug for Dr8 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
         try!(write!(f, "[0x{:08x}", self.0));
         if self.data() != 0 { try!(write!(f, " data=0x{:x}", self.data()))}

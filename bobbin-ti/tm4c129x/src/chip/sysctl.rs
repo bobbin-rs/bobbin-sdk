@@ -21567,6 +21567,26 @@ impl Rcgc for super::uart::Uart7 {
     #[inline] fn set_rcgc(&self, value: u32) { SYSCTL.with_rcgcuart(|r| r.set_r7(value)); }
 }
 
+impl Rcgc for super::ssi::Ssi0 {
+    #[inline] fn rcgc(&self) -> u32 { SYSCTL.rcgcssi().r0().into() }
+    #[inline] fn set_rcgc(&self, value: u32) { SYSCTL.with_rcgcssi(|r| r.set_r0(value)); }
+}
+
+impl Rcgc for super::ssi::Ssi1 {
+    #[inline] fn rcgc(&self) -> u32 { SYSCTL.rcgcssi().r1().into() }
+    #[inline] fn set_rcgc(&self, value: u32) { SYSCTL.with_rcgcssi(|r| r.set_r1(value)); }
+}
+
+impl Rcgc for super::ssi::Ssi2 {
+    #[inline] fn rcgc(&self) -> u32 { SYSCTL.rcgcssi().r2().into() }
+    #[inline] fn set_rcgc(&self, value: u32) { SYSCTL.with_rcgcssi(|r| r.set_r2(value)); }
+}
+
+impl Rcgc for super::ssi::Ssi3 {
+    #[inline] fn rcgc(&self) -> u32 { SYSCTL.rcgcssi().r3().into() }
+    #[inline] fn set_rcgc(&self, value: u32) { SYSCTL.with_rcgcssi(|r| r.set_r3(value)); }
+}
+
 impl Rcgc for super::i2c::I2c0 {
     #[inline] fn rcgc(&self) -> u32 { SYSCTL.rcgci2c().r0().into() }
     #[inline] fn set_rcgc(&self, value: u32) { SYSCTL.with_rcgci2c(|r| r.set_r0(value)); }
