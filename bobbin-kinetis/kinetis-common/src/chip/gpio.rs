@@ -144,6 +144,39 @@ impl GpioPeriph {
         self
     }
 
+    #[doc="Get the *mut pointer for the PIDR register."]
+    #[inline] pub fn pidr_mut(&self) -> *mut Pidr { 
+        (self.0 + 0x18) as *mut Pidr
+    }
+
+    #[doc="Get the *const pointer for the PIDR register."]
+    #[inline] pub fn pidr_ptr(&self) -> *const Pidr { 
+           self.pidr_mut()
+    }
+
+    #[doc="Read the PIDR register."]
+    #[inline] pub fn pidr(&self) -> Pidr { 
+        unsafe {
+            read_volatile(self.pidr_ptr())
+        }
+    }
+
+    #[doc="Write the PIDR register."]
+    #[inline] pub fn set_pidr<F: FnOnce(Pidr) -> Pidr>(&self, f: F) -> &Self {
+        unsafe {
+            write_volatile(self.pidr_mut(), f(Pidr(0)));
+        }
+        self
+    }
+
+    #[doc="Modify the PIDR register."]
+    #[inline] pub fn with_pidr<F: FnOnce(Pidr) -> Pidr>(&self, f: F) -> &Self {
+        unsafe {
+            write_volatile(self.pidr_mut(), f(self.pidr()));
+        }
+        self
+    }
+
 }
 
 #[doc="Port Data Output Register"]
@@ -633,6 +666,88 @@ impl ::core::fmt::Debug for Pddr {
         if self.pdd(29) != 0 { try!(write!(f, " pdd[29]"))}
         if self.pdd(30) != 0 { try!(write!(f, " pdd[30]"))}
         if self.pdd(31) != 0 { try!(write!(f, " pdd[31]"))}
+        try!(write!(f, "]"));
+        Ok(())
+    }
+}
+
+#[doc="Port Input Disable Register"]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct Pidr(pub u32);
+impl Pidr {
+    #[doc="Port Input Disable"]
+    #[inline] pub fn pid<I: Into<bits::R32>>(&self, index: I) -> bits::U1 {
+        let index: usize = index.into().value() as usize;
+        let shift: usize = 0 + index;
+        unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
+    }
+
+    #[doc="Returns true if PID != 0"]
+    #[inline] pub fn test_pid<I: Into<bits::R32>>(&self, index: I) -> bool{
+        self.pid(index) != 0
+    }
+
+    #[doc="Sets the PID field."]
+    #[inline] pub fn set_pid<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+        let index: usize = index.into().value() as usize;
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        let shift: usize = 0 + index;
+        self.0 &= !(0x1 << shift);
+        self.0 |= value << shift;
+        self
+    }
+
+}
+
+impl From<u32> for Pidr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Pidr(other)
+    }
+}
+
+impl ::core::fmt::Display for Pidr {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
+    }
+}
+
+impl ::core::fmt::Debug for Pidr {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        if self.pid(0) != 0 { try!(write!(f, " pid[0]"))}
+        if self.pid(1) != 0 { try!(write!(f, " pid[1]"))}
+        if self.pid(2) != 0 { try!(write!(f, " pid[2]"))}
+        if self.pid(3) != 0 { try!(write!(f, " pid[3]"))}
+        if self.pid(4) != 0 { try!(write!(f, " pid[4]"))}
+        if self.pid(5) != 0 { try!(write!(f, " pid[5]"))}
+        if self.pid(6) != 0 { try!(write!(f, " pid[6]"))}
+        if self.pid(7) != 0 { try!(write!(f, " pid[7]"))}
+        if self.pid(8) != 0 { try!(write!(f, " pid[8]"))}
+        if self.pid(9) != 0 { try!(write!(f, " pid[9]"))}
+        if self.pid(10) != 0 { try!(write!(f, " pid[10]"))}
+        if self.pid(11) != 0 { try!(write!(f, " pid[11]"))}
+        if self.pid(12) != 0 { try!(write!(f, " pid[12]"))}
+        if self.pid(13) != 0 { try!(write!(f, " pid[13]"))}
+        if self.pid(14) != 0 { try!(write!(f, " pid[14]"))}
+        if self.pid(15) != 0 { try!(write!(f, " pid[15]"))}
+        if self.pid(16) != 0 { try!(write!(f, " pid[16]"))}
+        if self.pid(17) != 0 { try!(write!(f, " pid[17]"))}
+        if self.pid(18) != 0 { try!(write!(f, " pid[18]"))}
+        if self.pid(19) != 0 { try!(write!(f, " pid[19]"))}
+        if self.pid(20) != 0 { try!(write!(f, " pid[20]"))}
+        if self.pid(21) != 0 { try!(write!(f, " pid[21]"))}
+        if self.pid(22) != 0 { try!(write!(f, " pid[22]"))}
+        if self.pid(23) != 0 { try!(write!(f, " pid[23]"))}
+        if self.pid(24) != 0 { try!(write!(f, " pid[24]"))}
+        if self.pid(25) != 0 { try!(write!(f, " pid[25]"))}
+        if self.pid(26) != 0 { try!(write!(f, " pid[26]"))}
+        if self.pid(27) != 0 { try!(write!(f, " pid[27]"))}
+        if self.pid(28) != 0 { try!(write!(f, " pid[28]"))}
+        if self.pid(29) != 0 { try!(write!(f, " pid[29]"))}
+        if self.pid(30) != 0 { try!(write!(f, " pid[30]"))}
+        if self.pid(31) != 0 { try!(write!(f, " pid[31]"))}
         try!(write!(f, "]"));
         Ok(())
     }
