@@ -12,7 +12,7 @@ pub extern "C" fn main() -> ! {
     test_systick();
     // test_crc();
     test_dma();
-    // test_gpio();
+    test_gpio();
     test_i2c();
     test_spi_lora();
     println!("[done] All tests passed");
@@ -150,16 +150,16 @@ fn test_gpio() {
     assert!(!port_in.test_ris());
     
     port_out.set_output(false);
-    // assert_eq!(port_in.input(), false);
-    // assert!(port_in.test_ris());
-    // port_in.clr_ris();
-    // assert!(!port_in.test_ris());
+    assert_eq!(port_in.input(), false);
+    assert!(port_in.test_ris());
+    port_in.clr_ris();
+    assert!(!port_in.test_ris());
 
-    // port_out.toggle_output();
-    // assert_eq!(port_in.input(), true);
-    // assert!(port_in.test_ris());
-    // port_in.clr_ris();
-    // assert!(!port_in.test_ris());
+    port_out.toggle_output();
+    assert_eq!(port_in.input(), true);
+    assert!(port_in.test_ris());
+    port_in.clr_ris();
+    assert!(!port_in.test_ris());
 
     println!("[pass] GPIO OK");
 }
