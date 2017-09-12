@@ -1413,11 +1413,11 @@
             (address 0x40066000)
             (description "The LPI2C Memory Map/Register Definition can be found here.")
 
-            (signal (name LPI2C0_HREQ) (type LPI2C_HREQ))
-            (signal (name LPI2C0_SCL) (type LPI2C_SCL))
-            (signal (name LPI2C0_SDA) (type LPI2C_SDA))
-            (signal (name LPI2C0_SCLS) (type LPI2C_SCLS))
-            (signal (name LPI2C0_SDAS) (type LPI2C_SDAS))
+            (signal (name LPI2C0_HREQ) (type I2C_HREQ))
+            (signal (name LPI2C0_SCL) (type I2C_SCL))
+            (signal (name LPI2C0_SDA) (type I2C_SDA))
+            (signal (name LPI2C0_SCLS) (type I2C_SCLS))
+            (signal (name LPI2C0_SDAS) (type I2C_SDAS))
 
             (interrupt
                 (name LPI2C0_Master)
