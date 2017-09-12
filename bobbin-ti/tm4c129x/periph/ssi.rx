@@ -201,6 +201,17 @@
         )
     )
     (register
+        (name DR8)
+        (offset 0x8)
+        (description "SSI Data (8 bit)")
+        (field
+            (name DATA)
+            (bit-offset 0)
+            (bit-width 8)
+            (description "SSI Receive/Transmit Data (8 bit)")
+        )
+    )    
+    (register
         (name SR)
         (offset 0xc)
         (description "SSI Status")

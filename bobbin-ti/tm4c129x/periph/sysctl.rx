@@ -2702,24 +2702,28 @@
             (bit-offset 0)
             (bit-width 1)
             (description "SSI Module 0 Run Mode Clock Gating Control")
+            (link (name RCGC) (peripheral-group SSI) (peripheral SSI0))
         )
         (field
             (name R1)
             (bit-offset 1)
             (bit-width 1)
             (description "SSI Module 1 Run Mode Clock Gating Control")
+            (link (name RCGC) (peripheral-group SSI) (peripheral SSI1))
         )
         (field
             (name R2)
             (bit-offset 2)
             (bit-width 1)
             (description "SSI Module 2 Run Mode Clock Gating Control")
+            (link (name RCGC) (peripheral-group SSI) (peripheral SSI2))
         )
         (field
             (name R3)
             (bit-offset 3)
             (bit-width 1)
             (description "SSI Module 3 Run Mode Clock Gating Control")
+            (link (name RCGC) (peripheral-group SSI) (peripheral SSI3))
         )
     )
     (register
