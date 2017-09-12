@@ -187,41 +187,20 @@ fn test_i2c() {
     p0.mode_pad_0(&i2c);
     p1.mode_pad_1(&i2c);
     
-
-    println!("Starting I2c");
-    println!("Initializing");
     i2c.init_i2c(240);
-    println!("Enabling");
     i2c.enable_i2c();
-    println!("CTRLA:  {:?}", i2c.i2cm().ctrla());
-    println!("CTRLB:  {:?}", i2c.i2cm().ctrlb());
-    println!("BAUD:   {:?}", i2c.i2cm().baud());
-    println!("STATUS: {:?}", i2c.i2cm().status());
-    println!("idle? {} owner? {}", i2c.bus_idle(), i2c.bus_owner());
 
-    let cmd = [0x0c_u8];
-    let mut buf = [0u8];
-    // i2c.write(addr, &cmd);
-    // i2c.read(addr, &mut buf);
-    i2c.transfer(addr, &cmd, &mut buf);
-    println!("0x{:02x}", buf[0]);
-
-    println!("Read Register");
     assert_eq!(i2c.read_reg(addr, 0x0c), 0xc4);
-    println!("Done Reading Register");
     
-    println!("Mode:  0x{:02x}", i2c.read_reg(addr, 0x26));   
+    // println!("Mode:  0x{:02x}", i2c.read_reg(addr, 0x26));   
     
     i2c.write_reg(addr, 0x26, 0xb8); // OSR = 128
     i2c.write_reg(addr, 0x13, 0x06); // Enable Data Flags
     i2c.write_reg(addr, 0x26, 0xb9); // Set Active
-    println!("Mode:  0x{:02x}", i2c.read_reg(addr, 0x26));
-
-    while i2c.read_reg(addr, 0x00) != 0x04 {}
-    println!("Ready to read");
+    // println!("Mode:  0x{:02x}", i2c.read_reg(addr, 0x26));
 
     loop {
-        // while i2c.read_reg(addr, 0x00) != 0x04 {}    
+        while i2c.read_reg(addr, 0x00) != 0x04 {}    
         let mut buf = [0u8; 5];
         i2c.transfer(addr, &[0x01], &mut buf);
         println!("# {:?}", buf);
