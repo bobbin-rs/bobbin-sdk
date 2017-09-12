@@ -168,4 +168,23 @@
             )
         )
     )
+    (register
+        ; S32K Only
+        (name PIDR)
+        (offset 0x18)
+        (size 0x20)
+        (access read-write)
+        (reset-value 0x0)
+        (reset-mask 0xffffffff)
+        (description "Port Input Disable Register")
+        (field
+            (name PID)
+            (dim 32)
+            (dim-increment 1)
+            (bit-offset 0)
+            (bit-width 1)
+            (access read-write)
+            (description "Port Input Disable")
+        )
+    )    
 )
