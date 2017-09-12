@@ -14,6 +14,7 @@ pub extern "C" fn main() -> ! {
     test_dma();
     // test_gpio();
     test_i2c();
+    test_spi_lora();
     println!("[done] All tests passed");
     loop {}
 }
@@ -204,4 +205,55 @@ fn test_i2c() {
     port_scl.mode_disabled();
     port_sda.mode_disabled();
     println!("[pass] I2C OK");
+}
+
+/// RFM9x LoRa Radio on pins D10-D13
+fn test_spi_lora() {
+    use board::hal::gpio::*;
+    use board::hal::ssi::*;
+
+    let spi = SSI2;
+    let port = GPIOD;
+    let spi_miso = PD1; // D13
+    let spi_mosi = PD0; // D12
+    let spi_sck = PD3; // D11
+    let spi_nss = PC7; // D10
+
+    spi.sysctl_enable();
+    port.sysctl_enable();
+    GPIOC.sysctl_enable();
+
+    // NOTE: Pins must be set with output speed HIGH or leading edge
+    // of transmission will occasionally be missed.
+
+    spi_miso.mode_ssi_dat0(&spi);
+    spi_mosi.mode_ssi_dat1(&spi);
+    spi_sck.mode_ssi_clk(&spi);
+    spi_nss.mode_output().pull_up().set_output(true);
+
+    spi.init();
+
+    let test_data = [(0x42, 0x12), (0x01, 0x09), (0x02, 0x1a), (0x03, 0x0b), (0x04, 0x00), (0x05, 0x52), (0x06, 0x6c)];
+
+    for &(tx, rx) in test_data.iter() {
+        // println!("0x{:02x}: 0x{:02x}", tx, rx);
+        assert_eq!(reg_read(&spi, &spi_nss, tx), rx);
+    }
+
+    println!("[pass] SPI OK");
+    spi.sysctl_disable();
+    spi_sck.mode_disabled();
+    spi_mosi.mode_disabled();
+    spi_miso.mode_disabled();
+    spi_nss.mode_disabled();
+
+    fn reg_read(spi: &SsiPeriph, nss: &GpioPin, reg: u8) -> u8 {
+        let cmd = [reg, 0xff];
+        let mut buf = [0u8, 0u8];
+        nss.set_output(false);
+        spi.transfer(&cmd, &mut buf);
+        nss.set_output(true);
+        buf[1]
+    }
+
 }
