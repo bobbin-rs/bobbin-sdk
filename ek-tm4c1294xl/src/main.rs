@@ -202,6 +202,7 @@ fn test_i2c() {
         break
     }
     
+    i2c.sysctl_set_enabled(false);
     port_scl.mode_disabled();
     port_sda.mode_disabled();
     println!("[pass] I2C OK");

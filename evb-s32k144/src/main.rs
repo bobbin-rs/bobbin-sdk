@@ -20,7 +20,7 @@ pub extern "C" fn main() -> ! {
     test_lpuart();
     test_lpi2c();
     test_lpspi();
-    test_flexcan();
+    test_flexcan();    
     println!("[done] All tests passed");
     loop {}
 }
@@ -79,7 +79,7 @@ fn test_crc() {
 
 }
 
-/// Jumper PTA11(D0) to PTA17(D1)
+/// Jumper PTA11 to PTA17
 fn test_gpio() {
     use board::hal::port::*;
     use board::hal::gpio::*;
@@ -588,28 +588,76 @@ fn test_flexcan() {
 fn test_lpi2c() {
     use board::hal::pcc;
     use board::hal::lpi2c::*;
+    use board::hal::port::*;
+    // use board::hal::gpio::*;
 
-    pub const I2CADDR: u8 = 0x12;
+    let addr: u8 = 0x60;
 
     let i2c = LPI2C0;
 
-    // println!("# LPI2C Test Start");
+    let port = PORTA;
+    let port_scl = PTA3;
+    let port_sda = PTA2;
+
+    println!("# LPI2C Test Start");
+
+    port.pcc_enable();
+    port_scl.mode_i2c_scl(&i2c).set_pull_none();
+    port_sda.mode_i2c_sda(&i2c).set_pull_none();
+
+    // // Disable pin input - seems to help reduce capacitance?
+
+    // GPIOA.with_pidr(|r| r.set_pid(3, 1).set_pid(2, 1));
 
     i2c
         .pcc_set_clock_source(pcc::ClockSource::SPLLDIV2)
         .pcc_enable();
 
+    {
+        // let input_clock = i2c.clock(&CLK).unwrap();
+
+        i2c.with_mcfgr0(|r| r.set_cirfifo(0));
+        i2c.with_mcfgr1(|r| r.set_prescale(0x0));
+        i2c.with_mcfgr2(|r| r.set_filtscl(1).set_filtsda(1).set_busidle(0xBA));        
+        i2c.with_mccr0(|r| r.set_clklo(0x3e).set_clkhi(0x35).set_sethold(0x1d).set_datavd(0x0f));
+        i2c.with_mfcr(|r| r.set_txwater(0x3).set_rxwater(0x3));
+    }
+
     // Enable Master
     i2c.with_mcr(|r| r.set_men(true));
 
-    // Set Slave Address
+    // println!("CLKLO:   0x{:02x}", i2c.mccr0().clklo());
+    // println!("CLKHI:   0x{:02x}", i2c.mccr0().clkhi());
+    // println!("SETHOLD: 0x{:02x}", i2c.mccr0().sethold());
+    // println!("DATAVD:  0x{:02x}", i2c.mccr0().datavd());
+    // println!("FILTSCL: 0x{:02x}", i2c.mcfgr2().filtscl());
+    // println!("FILTSDA: 0x{:02x}", i2c.mcfgr2().filtsda());
+    // println!("BUSIDLE: 0x{:02x}", i2c.mcfgr2().busidle());
 
-    i2c.with_samr(|r| r.set_addr0(I2CADDR));
+    // let cmd = [0x0c_u8];
+    // let mut buf = [0u8];
+    // i2c.write(addr, &cmd);
+    // i2c.read(addr, &mut buf);
+    // println!("{:02x}", buf[0]);
 
-    // Enable Slave
-    i2c.with_scr(|r| r.set_sen(true));
 
+    assert_eq!(i2c.read_reg(addr, 0x0c), 0xc4);
+   
+    // println!("Mode:  0x{:08x}", i2c.read_reg(addr, 0x26));   
 
+    i2c.write_reg(addr, 0x26, 0xb8); // OSR = 128
+    i2c.write_reg(addr, 0x13, 0x06); // Enable Data Flags
+    i2c.write_reg(addr, 0x26, 0xb9); // Set Active
+    // println!("Mode:  0x{:08x}", i2c.read_reg(addr, 0x26));
+
+    loop {
+        while i2c.read_reg(addr, 0x00) != 0x04 {}    
+        let mut buf = [0u8; 5];
+        i2c.transfer(addr, &[0x01], &mut buf);
+        println!("# {:?}", buf);
+        // assert!(buf[0] == 0 && buf[1] != 0 && buf[2] != 0 && buf[3] != 0 && buf[4] != 0);
+        break
+    }
 
     // Disable Slave
     i2c.with_scr(|r| r.set_sen(false));
@@ -619,4 +667,7 @@ fn test_lpi2c() {
 
     i2c.pcc_disable();
     println!("[pass] LPI2C OK");
+
+
+
 }
