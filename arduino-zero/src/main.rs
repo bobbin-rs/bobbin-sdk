@@ -9,10 +9,11 @@ extern crate arduino_zero as board;
 pub extern "C" fn main() -> ! {
     board::init();
     println!("[start] Running tests for arduino-zero");
-    // test_systick();
-    // test_dma();
-    // test_adc();
+    test_systick();
+    test_dma();
+    test_adc();
     test_i2c();
+    test_spi();
     println!("[done] All tests passed");
     loop {}
 }
@@ -207,9 +208,65 @@ fn test_i2c() {
         // assert!(buf[0] == 0 && buf[1] != 0 && buf[2] != 0 && buf[3] != 0 && buf[4] != 0);
         break
     }
-        
-
-    
 
     println!("[pass] I2C OK");    
+}
+
+fn test_spi() {
+    pub use board::hal::spi::*;
+    pub use board::hal::port::*;
+
+    // NSS = PA06
+    // SPI = PA12, PB10, PB11 (SERCOM4)
+
+    let spi = SERCOM1;
+
+    let miso = PA19;
+    let ss = PA18;
+    let sck = PA17;    
+    let mosi = PA16;
+
+    miso.mode_pad_3(&spi);
+    sck.mode_pad_1(&spi);
+    // ss.mode_pad_2(&spi);
+
+    mosi.mode_pad_0(&spi);
+    ss.set_mode_output().set_pull_enabled(false);
+
+
+    spi.pm_set_enabled(true);
+    spi.init_spi(47, 0x0, 0x3);
+    spi.set_enabled(true);
+    spi.set_rxen(true);
+    // spi.spi().with_ctrlb(|r| r.set_mssen(true));
+    ss.set_output(true);
+
+    // println!("CTRLA:   {:?}", spi.spi().ctrla());
+    // println!("CTRLB:   {:?}", spi.spi().ctrlb());
+
+    let test_data = [(0x42, 0x12), (0x01, 0x09), (0x02, 0x1a), (0x03, 0x0b), (0x04, 0x00), (0x05, 0x52), (0x06, 0x6c)];
+
+    for &(tx, rx) in test_data.iter() {
+        // println!("0x{:02x}: 0x{:02x}", tx, rx);
+        assert_eq!(reg_read(&spi, &ss, tx), rx);
+    }
+
+    spi.pm_set_enabled(false);
+    miso.set_mode_input();
+    mosi.set_mode_input();
+    sck.set_mode_input();
+    ss.set_mode_input();
+
+    println!("[pass] SPI OK");        
+
+
+
+    fn reg_read(spi: &SercomPeriph, nss: &PortPin, reg: u8) -> u8 {
+        let cmd = [reg, 0xff];
+        let mut buf = [0u8, 0u8];
+        nss.set_output(false);
+        spi.spi_transfer(&cmd, &mut buf);
+        nss.set_output(true);
+        buf[1]
+    }    
 }
