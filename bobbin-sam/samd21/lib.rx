@@ -78,6 +78,13 @@
             (channel (name ADC_CH17) (index 17) (signal (name AIN_17) (type AIN)))
             (channel (name ADC_CH18) (index 18) (signal (name AIN_18) (type AIN)))
             (channel (name ADC_CH19) (index 19) (signal (name AIN_19) (type AIN)))
+
+            (channel (name ADC_TEMP) (index 24))
+            (channel (name ADC_BANDGAP) (index 25))
+            (channel (name ADC_SCALED_CORE) (index 26))
+            (channel (name ADC_SCALED_IO) (index 27))
+            (channel (name ADC_DAC) (index 28))
+
             (interrupt
                 (name ADC)
                 (value 23)
