@@ -11,6 +11,7 @@ pub mod dmac;
 pub mod wdt;
 pub mod adc;
 pub mod i2c;
+pub mod spi;
 
 // // pub mod port;
 // // pub mod usart;
