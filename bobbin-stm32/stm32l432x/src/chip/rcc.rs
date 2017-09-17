@@ -7780,6 +7780,16 @@ impl En for super::lpuart::Lpuart1 {
     #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr2(|r| r.set_lpuart1en(value)); }
 }
 
+impl En for super::tim_gen::Tim16 {
+    #[inline] fn en(&self) -> u32 { RCC.apb2enr().tim16en().into() }
+    #[inline] fn set_en(&self, value: u32) { RCC.with_apb2enr(|r| r.set_tim16en(value)); }
+}
+
+impl En for super::tim_gen::Tim15 {
+    #[inline] fn en(&self) -> u32 { RCC.apb2enr().tim15en().into() }
+    #[inline] fn set_en(&self, value: u32) { RCC.with_apb2enr(|r| r.set_tim15en(value)); }
+}
+
 impl En for super::usart::Usart1 {
     #[inline] fn en(&self) -> u32 { RCC.apb2enr().usart1en().into() }
     #[inline] fn set_en(&self, value: u32) { RCC.with_apb2enr(|r| r.set_usart1en(value)); }

@@ -24,7 +24,7 @@ pin!(PA0, Pa0, GPIOA, Gpioa, _PA0, GpioPin, _GPIOA, 0);
     alt_fn!(Pa0, super::sig::Adc1In0, 0);
     alt_fn!(Pa0, super::sig::Lptim1In1, 1);
     alt_fn!(Pa0, super::sig::Tim2Ch1, 2);
-    alt_fn!(Pa0, super::sig::Usart2Cts, 4);
+    alt_fn!(Pa0, super::sig::Usart2Cts, 7);
     alt_fn!(Pa0, super::sig::Tim2Etr, 5);
     alt_fn!(Pa0, super::sig::Comp1Out, 7);
 
@@ -34,14 +34,14 @@ pin!(PA1, Pa1, GPIOA, Gpioa, _PA1, GpioPin, _GPIOA, 1);
     alt_fn!(Pa1, super::sig::Lptim1In2, 1);
     alt_fn!(Pa1, super::sig::Tim2Ch2, 2);
     alt_fn!(Pa1, super::sig::I2c1Smba, 3);
-    alt_fn!(Pa1, super::sig::Usart2Rts, 4);
+    alt_fn!(Pa1, super::sig::Usart2Rts, 7);
     alt_fn!(Pa1, super::sig::Tim21Etr, 5);
 
 pin!(PA2, Pa2, GPIOA, Gpioa, _PA2, GpioPin, _GPIOA, 2);
     alt_fn!(Pa2, super::sig::Adc1In2, 0);
     alt_fn!(Pa2, super::sig::Tim21Ch1, 0);
     alt_fn!(Pa2, super::sig::Tim2Ch3, 2);
-    alt_fn!(Pa2, super::sig::Usart2Tx, 4);
+    alt_fn!(Pa2, super::sig::Usart2Tx, 7);
     alt_fn!(Pa2, super::sig::Lpuart1Tx, 6);
     alt_fn!(Pa2, super::sig::Comp2Out, 7);
 
@@ -49,14 +49,14 @@ pin!(PA3, Pa3, GPIOA, Gpioa, _PA3, GpioPin, _GPIOA, 3);
     alt_fn!(Pa3, super::sig::Adc1In3, 0);
     alt_fn!(Pa3, super::sig::Tim21Ch2, 0);
     alt_fn!(Pa3, super::sig::Tim2Ch4, 2);
-    alt_fn!(Pa3, super::sig::Usart2Rx, 4);
+    alt_fn!(Pa3, super::sig::Usart2Rx, 7);
     alt_fn!(Pa3, super::sig::Lpuart1Rx, 6);
 
 pin!(PA4, Pa4, GPIOA, Gpioa, _PA4, GpioPin, _GPIOA, 4);
     alt_fn!(Pa4, super::sig::Adc1In4, 0);
     alt_fn!(Pa4, super::sig::Spi1Nss, 0);
     alt_fn!(Pa4, super::sig::Lptim1In1, 1);
-    alt_fn!(Pa4, super::sig::Uart2Ck, 4);
+    alt_fn!(Pa4, super::sig::Uart2Ck, 7);
     alt_fn!(Pa4, super::sig::Tim22Etr, 5);
 
 pin!(PA5, Pa5, GPIOA, Gpioa, _PA5, GpioPin, _GPIOA, 5);
@@ -133,7 +133,7 @@ pin!(PA15, Pa15, GPIOA, Gpioa, _PA15, GpioPin, _GPIOA, 15);
     alt_fn!(Pa15, super::sig::Spi1Nss, 0);
     alt_fn!(Pa15, super::sig::Tim2Etr, 2);
     alt_fn!(Pa15, super::sig::Eventout, 3);
-    alt_fn!(Pa15, super::sig::Usart2Rx, 4);
+    alt_fn!(Pa15, super::sig::Usart2Rx, 3);
     alt_fn!(Pa15, super::sig::Tim2Ch1, 5);
 
 pin!(PB0, Pb0, GPIOB, Gpiob, _PB0, GpioPin, _GPIOB, 0);

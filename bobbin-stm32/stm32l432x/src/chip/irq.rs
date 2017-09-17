@@ -61,8 +61,8 @@ irq!(IRQ_TIM2, IrqTim2, 28);
 irq!(IRQ_TIM3, IrqTim3, 29);
 irq!(IRQ_TIM4, IrqTim4, 30);
 irq!(IRQ_TIM5, IrqTim5, 50);
-irq!(IRQ_TIM21, IrqTim21, 20);
-irq!(IRQ_TIM22, IrqTim22, 22);
+irq!(IRQ_TIM15, IrqTim15, 24);
+irq!(IRQ_TIM16, IrqTim16, 25);
 irq!(IRQ_USART1, IrqUsart1, 37);
 irq!(IRQ_USART2, IrqUsart2, 38);
 irq!(IRQ_USART3, IrqUsart3, 39);
@@ -110,12 +110,12 @@ pub static mut INTERRUPT_HANDLERS: [Option<Handler>; 84] = [
     None,
     None,
     None,
-    None,                          // IRQ 20: TIMER21 global interrupt
-    None,
-    None,                          // IRQ 22: TIMER22 global interrupt
     None,
     None,
     None,
+    None,
+    None,                          // IRQ 24: Timer 15 global interrupt
+    None,                          // IRQ 25: Timer 16 global interrupt
     None,
     None,
     None,                          // IRQ 28: TIM2 global interrupt

@@ -6,8 +6,8 @@ periph!( TIM2, Tim2, _TIM2, TimGenPeriph, 0x40000000);
 periph!( TIM3, Tim3, _TIM3, TimGenPeriph, 0x40000400);
 periph!( TIM4, Tim4, _TIM4, TimGenPeriph, 0x40000800);
 periph!( TIM5, Tim5, _TIM5, TimGenPeriph, 0x40000c00);
-periph!( TIM21, Tim21, _TIM21, TimGenPeriph, 0x40010800);
-periph!( TIM22, Tim22, _TIM22, TimGenPeriph, 0x40011400);
+periph!( TIM15, Tim15, _TIM15, TimGenPeriph, 0x40014000);
+periph!( TIM16, Tim16, _TIM16, TimGenPeriph, 0x40014400);
 
 impl super::sig::Signal<super::sig::Tim2Etr> for Tim2 {}
 impl super::sig::SignalEtr<super::sig::Tim2Etr> for Tim2 {}
@@ -47,19 +47,15 @@ impl super::sig::SignalTim<super::sig::Tim5Ch3> for Tim5Ch3 {}
 impl super::sig::Signal<super::sig::Tim5Ch4> for Tim5Ch4 {}
 impl super::sig::SignalTim<super::sig::Tim5Ch4> for Tim5Ch4 {}
 
-impl super::sig::Signal<super::sig::Tim21Etr> for Tim21 {}
-impl super::sig::SignalEtr<super::sig::Tim21Etr> for Tim21 {}
-impl super::sig::Signal<super::sig::Tim21Ch1> for Tim21Ch1 {}
-impl super::sig::SignalTim<super::sig::Tim21Ch1> for Tim21Ch1 {}
-impl super::sig::Signal<super::sig::Tim21Ch2> for Tim21Ch2 {}
-impl super::sig::SignalTim<super::sig::Tim21Ch2> for Tim21Ch2 {}
+impl super::sig::Signal<super::sig::Tim15Ch1> for Tim15Ch1 {}
+impl super::sig::SignalTim<super::sig::Tim15Ch1> for Tim15Ch1 {}
+impl super::sig::Signal<super::sig::Tim15Ch2> for Tim15Ch2 {}
+impl super::sig::SignalTim<super::sig::Tim15Ch2> for Tim15Ch2 {}
 
-impl super::sig::Signal<super::sig::Tim22Etr> for Tim22 {}
-impl super::sig::SignalEtr<super::sig::Tim22Etr> for Tim22 {}
-impl super::sig::Signal<super::sig::Tim22Ch1> for Tim22Ch1 {}
-impl super::sig::SignalTim<super::sig::Tim22Ch1> for Tim22Ch1 {}
-impl super::sig::Signal<super::sig::Tim22Ch2> for Tim22Ch2 {}
-impl super::sig::SignalTim<super::sig::Tim22Ch2> for Tim22Ch2 {}
+impl super::sig::Signal<super::sig::Tim16Ch1> for Tim16Ch1 {}
+impl super::sig::SignalTim<super::sig::Tim16Ch1> for Tim16Ch1 {}
+impl super::sig::Signal<super::sig::Tim16Ch2> for Tim16Ch2 {}
+impl super::sig::SignalTim<super::sig::Tim16Ch2> for Tim16Ch2 {}
 
 
 channel!(TIM2_CH1, Tim2Ch1, TIM2, Tim2, _TIM2_CH1, TimGenCh, _TIM2, 0);
@@ -78,10 +74,10 @@ channel!(TIM5_CH1, Tim5Ch1, TIM5, Tim5, _TIM5_CH1, TimGenCh, _TIM5, 0);
 channel!(TIM5_CH2, Tim5Ch2, TIM5, Tim5, _TIM5_CH2, TimGenCh, _TIM5, 1);
 channel!(TIM5_CH3, Tim5Ch3, TIM5, Tim5, _TIM5_CH3, TimGenCh, _TIM5, 2);
 channel!(TIM5_CH4, Tim5Ch4, TIM5, Tim5, _TIM5_CH4, TimGenCh, _TIM5, 3);
-channel!(TIM21_CH1, Tim21Ch1, TIM21, Tim21, _TIM21_CH1, TimGenCh, _TIM21, 0);
-channel!(TIM21_CH2, Tim21Ch2, TIM21, Tim21, _TIM21_CH2, TimGenCh, _TIM21, 1);
-channel!(TIM22_CH1, Tim22Ch1, TIM22, Tim22, _TIM22_CH1, TimGenCh, _TIM22, 0);
-channel!(TIM22_CH2, Tim22Ch2, TIM22, Tim22, _TIM22_CH2, TimGenCh, _TIM22, 1);
+channel!(TIM15_CH1, Tim15Ch1, TIM15, Tim15, _TIM15_CH1, TimGenCh, _TIM15, 0);
+channel!(TIM15_CH2, Tim15Ch2, TIM15, Tim15, _TIM15_CH2, TimGenCh, _TIM15, 1);
+channel!(TIM16_CH1, Tim16Ch1, TIM16, Tim16, _TIM16_CH1, TimGenCh, _TIM16, 0);
+channel!(TIM16_CH2, Tim16Ch2, TIM16, Tim16, _TIM16_CH2, TimGenCh, _TIM16, 1);
 
 pub trait IrqTim<T> {
     fn irq_tim(&self) -> T;
@@ -103,11 +99,11 @@ impl IrqTim<super::irq::IrqTim5> for Tim5 {
     fn irq_tim(&self) -> super::irq::IrqTim5 { super::irq::IRQ_TIM5 }
 }
 
-impl IrqTim<super::irq::IrqTim21> for Tim21 {
-    fn irq_tim(&self) -> super::irq::IrqTim21 { super::irq::IRQ_TIM21 }
+impl IrqTim<super::irq::IrqTim15> for Tim15 {
+    fn irq_tim(&self) -> super::irq::IrqTim15 { super::irq::IRQ_TIM15 }
 }
 
-impl IrqTim<super::irq::IrqTim22> for Tim22 {
-    fn irq_tim(&self) -> super::irq::IrqTim22 { super::irq::IRQ_TIM22 }
+impl IrqTim<super::irq::IrqTim16> for Tim16 {
+    fn irq_tim(&self) -> super::irq::IrqTim16 { super::irq::IRQ_TIM16 }
 }
 
