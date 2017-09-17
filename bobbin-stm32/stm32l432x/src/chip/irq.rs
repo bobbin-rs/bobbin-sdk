@@ -57,6 +57,13 @@ irq!(IRQ_I2C2_EV, IrqI2c2Ev, 33);
 irq!(IRQ_I2C2_ER, IrqI2c2Er, 34);
 irq!(IRQ_I2C3_EV, IrqI2c3Ev, 72);
 irq!(IRQ_I2C3_ER, IrqI2c3Er, 73);
+irq!(IRQ_TIM1_CC, IrqTim1Cc, 27);
+irq!(IRQ_TIM8_BRK, IrqTim8Brk, 43);
+irq!(IRQ_TIM8, IrqTim8, 44);
+irq!(IRQ_TIM8_TRG_COM, IrqTim8TrgCom, 45);
+irq!(IRQ_TIM8_CC, IrqTim8Cc, 46);
+irq!(IRQ_TIM6_DAC, IrqTim6Dac, 54);
+irq!(IRQ_TIM7, IrqTim7, 55);
 irq!(IRQ_TIM2, IrqTim2, 28);
 irq!(IRQ_TIM3, IrqTim3, 29);
 irq!(IRQ_TIM4, IrqTim4, 30);
@@ -117,7 +124,7 @@ pub static mut INTERRUPT_HANDLERS: [Option<Handler>; 84] = [
     None,                          // IRQ 24: Timer 15 global interrupt
     None,                          // IRQ 25: Timer 16 global interrupt
     None,
-    None,
+    None,                          // IRQ 27: TIM1 Capture Compare interrupt
     None,                          // IRQ 28: TIM2 global interrupt
     None,                          // IRQ 29: TIM3 global interrupt
     None,                          // IRQ 30: TIM4 global interrupt
@@ -133,10 +140,10 @@ pub static mut INTERRUPT_HANDLERS: [Option<Handler>; 84] = [
     None,
     None,
     None,
-    None,
-    None,
-    None,
-    None,
+    None,                          // IRQ 43: TIM8 Break Interrupt
+    None,                          // IRQ 44: TIM8 Update Interrupt
+    None,                          // IRQ 45: TIM8 Trigger and Commutation Interrupt
+    None,                          // IRQ 46: TIM8 Capture Compare Interrupt
     None,
     None,
     None,
@@ -144,8 +151,8 @@ pub static mut INTERRUPT_HANDLERS: [Option<Handler>; 84] = [
     None,                          // IRQ 51: SPI3 global Interrupt
     None,                          // IRQ 52: UART4 global Interrupt
     None,                          // IRQ 53: UART5 global Interrupt
-    None,
-    None,
+    None,                          // IRQ 54: TIM6 global and DAC1 and 2 underrun error interrupts
+    None,                          // IRQ 55: TIM7 global interrupt
     None,                          // IRQ 56: DMA2 Channel 1 global Interrupt
     None,                          // IRQ 57: DMA2 Channel 2 global Interrupt
     None,                          // IRQ 58: DMA2 Channel 3 global Interrupt

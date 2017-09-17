@@ -7795,9 +7795,19 @@ impl En for super::usart::Usart1 {
     #[inline] fn set_en(&self, value: u32) { RCC.with_apb2enr(|r| r.set_usart1en(value)); }
 }
 
+impl En for super::tim_adv::Tim8 {
+    #[inline] fn en(&self) -> u32 { RCC.apb2enr().tim8en().into() }
+    #[inline] fn set_en(&self, value: u32) { RCC.with_apb2enr(|r| r.set_tim8en(value)); }
+}
+
 impl En for super::spi::Spi1 {
     #[inline] fn en(&self) -> u32 { RCC.apb2enr().spi1en().into() }
     #[inline] fn set_en(&self, value: u32) { RCC.with_apb2enr(|r| r.set_spi1en(value)); }
+}
+
+impl En for super::tim_adv::Tim1 {
+    #[inline] fn en(&self) -> u32 { RCC.apb2enr().tim1en().into() }
+    #[inline] fn set_en(&self, value: u32) { RCC.with_apb2enr(|r| r.set_tim1en(value)); }
 }
 
 impl En for super::syscfg::Syscfg {
