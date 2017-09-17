@@ -12,7 +12,8 @@ pub const CLK: DynamicClock = DynamicClock {
 // AHB = 32MHz
 
 pub fn init() {
-    init_pll()
+    // init_pll()
+    
     // // (1) Set one wait state in Latency bit of FLASH_ACR 
     // FLASH.with_acr(|r| r.set_latency(1));
 

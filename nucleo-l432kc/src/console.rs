@@ -7,32 +7,33 @@ use common::Pin;
 pub const USART: Usart2 = USART2;
 pub const USART_TX: Pa2 = PA2;
 pub const USART_RX: Pa15 = PA15;
-pub const USART_CLOCK: u32 = 32_000_000;
+pub const USART_CLOCK: u32 = 4_000_000;
 pub const USART_BAUD: u32 = 115_200;
 
-// pub fn init() {
-//     // Enable Clocks
-//     USART.rcc_enable();
-//     USART_TX.port().rcc_enable();
-//     USART_RX.port().rcc_enable();
+pub fn init() {
+    // Enable Clocks
+    USART.rcc_enable();
+    USART_TX.port().rcc_enable();
+    USART_RX.port().rcc_enable();
 
-//     // Set Pin Configuration
-//     USART_TX.mode_tx(&USART);
-//     USART_RX.mode_rx(&USART);
+    // Set Pin Configuration
+    USART_TX.mode_tx(&USART);
+    USART_RX.mode_rx(&USART);
 
-//     enable();
-// }
+    enable();
+}
 
-// pub fn enable() {
-//     // Set Baud and Enable USART    
-//     USART
-//         .set_config(|c| c.set_baud(USART_BAUD, USART.clock(&CLK).unwrap()))
-//         .enable();
-// }
+pub fn enable() {
+    // Set Baud and Enable USART    
+    USART
+        // .set_config(|c| c.set_baud(USART_BAUD, USART.clock(&CLK).unwrap()))
+        .set_config(|c| c.set_baud(USART_BAUD, USART_CLOCK))
+        .enable();
+}
 
-// pub fn disable() {
-//     USART.disable();
-// }
+pub fn disable() {
+    USART.disable();
+}
 
 /// Macro for sending `print!`-formatted messages over the Console
 #[macro_export]
