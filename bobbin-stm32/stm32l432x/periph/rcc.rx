@@ -1346,12 +1346,14 @@
             (bit-offset 17)
             (bit-width 1)
             (description "TIM16 timer clock enable")
+            (link (name EN) (peripheral-group TIM_GEN) (peripheral TIM16))
         )
         (field
             (name TIM15EN)
             (bit-offset 16)
             (bit-width 1)
             (description "TIM15 timer clock enable")
+            (link (name EN) (peripheral-group TIM_GEN) (peripheral TIM15))
         )
         (field
             (name USART1EN)
