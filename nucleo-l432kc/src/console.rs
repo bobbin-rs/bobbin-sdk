@@ -1,6 +1,6 @@
 use core::fmt::{self, Write, Arguments};
-// use hal::clock::Clock;
-// use clock::CLK;
+use hal::clock::Clock;
+use clock::CLK;
 use hal::gpio::*;
 use hal::usart::*;
 use common::Pin;
@@ -26,8 +26,7 @@ pub fn init() {
 pub fn enable() {
     // Set Baud and Enable USART    
     USART
-        // .set_config(|c| c.set_baud(USART_BAUD, USART.clock(&CLK).unwrap()))
-        .set_config(|c| c.set_baud(USART_BAUD, USART_CLOCK))
+        .set_config(|c| c.set_baud(USART_BAUD, USART.clock(&CLK).unwrap()))
         .enable();
 }
 

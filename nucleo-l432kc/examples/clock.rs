@@ -23,36 +23,38 @@ pub extern "C" fn main() -> ! {
     println!("Clock Test");
     println!("{:?}", clk);
 
-    println!("LPUART1:   {:?}", LPUART1.clock(&clk));
-    println!("USART2:   {:?}", USART2.clock(&clk));
-    println!("LPTIM:     {:?}", LPTIM.clock(&clk));
-    println!("TIM2:     {:?}", TIM2.clock(&clk));
-    println!("TIM21:     {:?}", TIM21.clock(&clk));
-    println!("TIM22:     {:?}", TIM22.clock(&clk));
+    loop {}
+
+    // println!("LPUART1:   {:?}", LPUART1.clock(&clk));
+    // println!("USART2:   {:?}", USART2.clock(&clk));
+    // println!("LPTIM:     {:?}", LPTIM.clock(&clk));
+    // println!("TIM2:     {:?}", TIM2.clock(&clk));
+    // println!("TIM21:     {:?}", TIM21.clock(&clk));
+    // println!("TIM22:     {:?}", TIM22.clock(&clk));
     
-    loop {
-        println!("Switching to HSI");
-        board::delay(50);
-        board::console::disable();
-        // Select HSI as SYSCLK source.        
-        RCC.with_cfgr(|r| r.set_sw(U2::B01));
-        // Wait for HSI to be selected
-        while RCC.cfgr().sws() != U2::B01 {}
-        board::console::enable();
-        println!("Running on HSI");
+    // loop {
+    //     println!("Switching to HSI");
+    //     board::delay(50);
+    //     board::console::disable();
+    //     // Select HSI as SYSCLK source.        
+    //     RCC.with_cfgr(|r| r.set_sw(U2::B01));
+    //     // Wait for HSI to be selected
+    //     while RCC.cfgr().sws() != U2::B01 {}
+    //     board::console::enable();
+    //     println!("Running on HSI");
 
-        board::delay(1000);
+    //     board::delay(1000);
 
-        println!("Switching to PLL");
-        board::delay(50);
-        board::console::disable();
+    //     println!("Switching to PLL");
+    //     board::delay(50);
+    //     board::console::disable();
         
-        // Select PLL as SYSCLK source.        
-        RCC.with_cfgr(|r| r.set_sw(U2::B11));
-        while RCC.cfgr().sws() != U2::B11 {}        
+    //     // Select PLL as SYSCLK source.        
+    //     RCC.with_cfgr(|r| r.set_sw(U2::B11));
+    //     while RCC.cfgr().sws() != U2::B11 {}        
 
-        board::console::enable();
-        println!("Running on PLL");        
-        board::delay(1000);
-    }
+    //     board::console::enable();
+    //     println!("Running on PLL");        
+    //     board::delay(1000);
+    // }
 }
