@@ -521,6 +521,72 @@
     )
 
     (peripheral-group
+        (name TIM_ADV)
+        (module (name stm32_common::chip::tim_adv::*))
+        (peripheral
+            (group-name TIM)
+            (name TIM1)
+            (address 0x40012c00)
+            (description "Advanced-timers")
+            (interrupt
+                (name TIM1_CC)
+                (value 27)
+                (description "TIM1 Capture Compare interrupt")
+            )
+        )
+        (peripheral
+            (group-name TIM)
+            (name TIM8)
+            (address 0x40013400)
+            (description "Advanced-timers")
+            (interrupt
+                (name TIM8_BRK)
+                (value 43)
+                (description "TIM8 Break Interrupt")
+            )
+            (interrupt
+                (name TIM8)
+                (value 44)
+                (description "TIM8 Update Interrupt")
+            )
+            (interrupt
+                (name TIM8_TRG_COM)
+                (value 45)
+                (description "TIM8 Trigger and Commutation Interrupt")
+            )
+            (interrupt
+                (name TIM8_CC)
+                (value 46)
+                (description "TIM8 Capture Compare Interrupt")
+            )        
+        )
+    )
+
+    (peripheral-group
+        (name TIM_BAS)
+        (module (name stm32_common::chip::tim_bas::*))
+        (peripheral
+            (name TIM6)
+            (address 0x40001000)
+            (description "Basic-timers")
+            (interrupt
+                (name TIM6_DAC)
+                (value 54)
+                (description "TIM6 global and DAC1 and 2 underrun error interrupts")
+            )
+        )        
+        (peripheral
+            (name TIM7)
+            (address 0x40001400)
+            (interrupt
+                (name TIM7)
+                (value 55)
+                (description "TIM7 global interrupt")
+            )
+        )
+    )
+
+    (peripheral-group
         (name TIM_GEN)
         (module (name stm32_common::chip::tim_gen::*))
         (peripheral            

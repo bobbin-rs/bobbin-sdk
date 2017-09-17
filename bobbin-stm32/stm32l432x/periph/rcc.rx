@@ -1367,6 +1367,7 @@
             (bit-offset 13)
             (bit-width 1)
             (description "TIM8 timer clock enable")
+            (link (name EN) (peripheral-group TIM_ADV) (peripheral TIM8))
         )
         (field
             (name SPI1EN)
@@ -1380,7 +1381,7 @@
             (bit-offset 11)
             (bit-width 1)
             (description "TIM1 timer clock enable")
-            ; (link (name EN) (peripheral-group TIM_ADV) (peripheral TIM1))
+            (link (name EN) (peripheral-group TIM_ADV) (peripheral TIM1))
         )
         (field
             (name SDMMCEN)
