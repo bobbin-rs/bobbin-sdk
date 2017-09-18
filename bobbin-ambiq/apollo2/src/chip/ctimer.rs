@@ -161,6 +161,138 @@ impl CtimerPeriph {
         self
     }
 
+    #[doc="Get the *mut pointer for the INTEN register."]
+    #[inline] pub fn inten_mut(&self) -> *mut Inten { 
+        (self.0 + 0x200) as *mut Inten
+    }
+
+    #[doc="Get the *const pointer for the INTEN register."]
+    #[inline] pub fn inten_ptr(&self) -> *const Inten { 
+           self.inten_mut()
+    }
+
+    #[doc="Read the INTEN register."]
+    #[inline] pub fn inten(&self) -> Inten { 
+        unsafe {
+            read_volatile(self.inten_ptr())
+        }
+    }
+
+    #[doc="Write the INTEN register."]
+    #[inline] pub fn set_inten<F: FnOnce(Inten) -> Inten>(&self, f: F) -> &Self {
+        unsafe {
+            write_volatile(self.inten_mut(), f(Inten(0)));
+        }
+        self
+    }
+
+    #[doc="Modify the INTEN register."]
+    #[inline] pub fn with_inten<F: FnOnce(Inten) -> Inten>(&self, f: F) -> &Self {
+        unsafe {
+            write_volatile(self.inten_mut(), f(self.inten()));
+        }
+        self
+    }
+
+    #[doc="Get the *mut pointer for the INTSTAT register."]
+    #[inline] pub fn intstat_mut(&self) -> *mut Intstat { 
+        (self.0 + 0x204) as *mut Intstat
+    }
+
+    #[doc="Get the *const pointer for the INTSTAT register."]
+    #[inline] pub fn intstat_ptr(&self) -> *const Intstat { 
+           self.intstat_mut()
+    }
+
+    #[doc="Read the INTSTAT register."]
+    #[inline] pub fn intstat(&self) -> Intstat { 
+        unsafe {
+            read_volatile(self.intstat_ptr())
+        }
+    }
+
+    #[doc="Write the INTSTAT register."]
+    #[inline] pub fn set_intstat<F: FnOnce(Intstat) -> Intstat>(&self, f: F) -> &Self {
+        unsafe {
+            write_volatile(self.intstat_mut(), f(Intstat(0)));
+        }
+        self
+    }
+
+    #[doc="Modify the INTSTAT register."]
+    #[inline] pub fn with_intstat<F: FnOnce(Intstat) -> Intstat>(&self, f: F) -> &Self {
+        unsafe {
+            write_volatile(self.intstat_mut(), f(self.intstat()));
+        }
+        self
+    }
+
+    #[doc="Get the *mut pointer for the INTCLR register."]
+    #[inline] pub fn intclr_mut(&self) -> *mut Intclr { 
+        (self.0 + 0x208) as *mut Intclr
+    }
+
+    #[doc="Get the *const pointer for the INTCLR register."]
+    #[inline] pub fn intclr_ptr(&self) -> *const Intclr { 
+           self.intclr_mut()
+    }
+
+    #[doc="Read the INTCLR register."]
+    #[inline] pub fn intclr(&self) -> Intclr { 
+        unsafe {
+            read_volatile(self.intclr_ptr())
+        }
+    }
+
+    #[doc="Write the INTCLR register."]
+    #[inline] pub fn set_intclr<F: FnOnce(Intclr) -> Intclr>(&self, f: F) -> &Self {
+        unsafe {
+            write_volatile(self.intclr_mut(), f(Intclr(0)));
+        }
+        self
+    }
+
+    #[doc="Modify the INTCLR register."]
+    #[inline] pub fn with_intclr<F: FnOnce(Intclr) -> Intclr>(&self, f: F) -> &Self {
+        unsafe {
+            write_volatile(self.intclr_mut(), f(self.intclr()));
+        }
+        self
+    }
+
+    #[doc="Get the *mut pointer for the INTSET register."]
+    #[inline] pub fn intset_mut(&self) -> *mut Intset { 
+        (self.0 + 0x20c) as *mut Intset
+    }
+
+    #[doc="Get the *const pointer for the INTSET register."]
+    #[inline] pub fn intset_ptr(&self) -> *const Intset { 
+           self.intset_mut()
+    }
+
+    #[doc="Read the INTSET register."]
+    #[inline] pub fn intset(&self) -> Intset { 
+        unsafe {
+            read_volatile(self.intset_ptr())
+        }
+    }
+
+    #[doc="Write the INTSET register."]
+    #[inline] pub fn set_intset<F: FnOnce(Intset) -> Intset>(&self, f: F) -> &Self {
+        unsafe {
+            write_volatile(self.intset_mut(), f(Intset(0)));
+        }
+        self
+    }
+
+    #[doc="Modify the INTSET register."]
+    #[inline] pub fn with_intset<F: FnOnce(Intset) -> Intset>(&self, f: F) -> &Self {
+        unsafe {
+            write_volatile(self.intset_mut(), f(self.intset()));
+        }
+        self
+    }
+
 }
 
 #[doc="Counter/Timer Register"]
@@ -726,6 +858,1394 @@ impl ::core::fmt::Debug for Ctrl {
         if self.tmrafn() != 0 { try!(write!(f, " tmrafn=0x{:x}", self.tmrafn()))}
         if self.tmraclk() != 0 { try!(write!(f, " tmraclk=0x{:x}", self.tmraclk()))}
         if self.tmraen() != 0 { try!(write!(f, " tmraen"))}
+        try!(write!(f, "]"));
+        Ok(())
+    }
+}
+
+#[doc="Counter/Timer Interrupts: Enable"]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct Inten(pub u32);
+impl Inten {
+    #[doc="Counter/Timer B3 interrupt based on COMPR1."]
+    #[inline] pub fn ctmrb3c1int(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 15) & 0x1) as u8) } // [15]
+    }
+
+    #[doc="Returns true if CTMRB3C1INT != 0"]
+    #[inline] pub fn test_ctmrb3c1int(&self) -> bool {
+        self.ctmrb3c1int() != 0
+    }
+
+    #[doc="Sets the CTMRB3C1INT field."]
+    #[inline] pub fn set_ctmrb3c1int<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 15);
+        self.0 |= value << 15;
+        self
+    }
+
+    #[doc="Counter/Timer A3 interrupt based on COMPR1."]
+    #[inline] pub fn ctmra3c1int(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 14) & 0x1) as u8) } // [14]
+    }
+
+    #[doc="Returns true if CTMRA3C1INT != 0"]
+    #[inline] pub fn test_ctmra3c1int(&self) -> bool {
+        self.ctmra3c1int() != 0
+    }
+
+    #[doc="Sets the CTMRA3C1INT field."]
+    #[inline] pub fn set_ctmra3c1int<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 14);
+        self.0 |= value << 14;
+        self
+    }
+
+    #[doc="Counter/Timer B2 interrupt based on COMPR1."]
+    #[inline] pub fn ctmrb2c1int(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 13) & 0x1) as u8) } // [13]
+    }
+
+    #[doc="Returns true if CTMRB2C1INT != 0"]
+    #[inline] pub fn test_ctmrb2c1int(&self) -> bool {
+        self.ctmrb2c1int() != 0
+    }
+
+    #[doc="Sets the CTMRB2C1INT field."]
+    #[inline] pub fn set_ctmrb2c1int<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 13);
+        self.0 |= value << 13;
+        self
+    }
+
+    #[doc="Counter/Timer A2 interrupt based on COMPR1."]
+    #[inline] pub fn ctmra2c1int(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 12) & 0x1) as u8) } // [12]
+    }
+
+    #[doc="Returns true if CTMRA2C1INT != 0"]
+    #[inline] pub fn test_ctmra2c1int(&self) -> bool {
+        self.ctmra2c1int() != 0
+    }
+
+    #[doc="Sets the CTMRA2C1INT field."]
+    #[inline] pub fn set_ctmra2c1int<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 12);
+        self.0 |= value << 12;
+        self
+    }
+
+    #[doc="Counter/Timer B1 interrupt based on COMPR1."]
+    #[inline] pub fn ctmrb1c1int(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 11) & 0x1) as u8) } // [11]
+    }
+
+    #[doc="Returns true if CTMRB1C1INT != 0"]
+    #[inline] pub fn test_ctmrb1c1int(&self) -> bool {
+        self.ctmrb1c1int() != 0
+    }
+
+    #[doc="Sets the CTMRB1C1INT field."]
+    #[inline] pub fn set_ctmrb1c1int<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 11);
+        self.0 |= value << 11;
+        self
+    }
+
+    #[doc="Counter/Timer A1 interrupt based on COMPR1."]
+    #[inline] pub fn ctmra1c1int(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x1) as u8) } // [10]
+    }
+
+    #[doc="Returns true if CTMRA1C1INT != 0"]
+    #[inline] pub fn test_ctmra1c1int(&self) -> bool {
+        self.ctmra1c1int() != 0
+    }
+
+    #[doc="Sets the CTMRA1C1INT field."]
+    #[inline] pub fn set_ctmra1c1int<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 10);
+        self.0 |= value << 10;
+        self
+    }
+
+    #[doc="Counter/Timer B0 interrupt based on COMPR1."]
+    #[inline] pub fn ctmrb0c1int(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
+    }
+
+    #[doc="Returns true if CTMRB0C1INT != 0"]
+    #[inline] pub fn test_ctmrb0c1int(&self) -> bool {
+        self.ctmrb0c1int() != 0
+    }
+
+    #[doc="Sets the CTMRB0C1INT field."]
+    #[inline] pub fn set_ctmrb0c1int<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 9);
+        self.0 |= value << 9;
+        self
+    }
+
+    #[doc="Counter/Timer A0 interrupt based on COMPR1."]
+    #[inline] pub fn ctmra0c1int(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
+    }
+
+    #[doc="Returns true if CTMRA0C1INT != 0"]
+    #[inline] pub fn test_ctmra0c1int(&self) -> bool {
+        self.ctmra0c1int() != 0
+    }
+
+    #[doc="Sets the CTMRA0C1INT field."]
+    #[inline] pub fn set_ctmra0c1int<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 8);
+        self.0 |= value << 8;
+        self
+    }
+
+    #[doc="Counter/Timer B3 interrupt based on COMPR0."]
+    #[inline] pub fn ctmrb3c0int(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
+    }
+
+    #[doc="Returns true if CTMRB3C0INT != 0"]
+    #[inline] pub fn test_ctmrb3c0int(&self) -> bool {
+        self.ctmrb3c0int() != 0
+    }
+
+    #[doc="Sets the CTMRB3C0INT field."]
+    #[inline] pub fn set_ctmrb3c0int<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 7);
+        self.0 |= value << 7;
+        self
+    }
+
+    #[doc="Counter/Timer A3 interrupt based on COMPR0."]
+    #[inline] pub fn ctmra3c0int(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
+    }
+
+    #[doc="Returns true if CTMRA3C0INT != 0"]
+    #[inline] pub fn test_ctmra3c0int(&self) -> bool {
+        self.ctmra3c0int() != 0
+    }
+
+    #[doc="Sets the CTMRA3C0INT field."]
+    #[inline] pub fn set_ctmra3c0int<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 6);
+        self.0 |= value << 6;
+        self
+    }
+
+    #[doc="Counter/Timer B2 interrupt based on COMPR0."]
+    #[inline] pub fn ctmrb2c0int(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
+    }
+
+    #[doc="Returns true if CTMRB2C0INT != 0"]
+    #[inline] pub fn test_ctmrb2c0int(&self) -> bool {
+        self.ctmrb2c0int() != 0
+    }
+
+    #[doc="Sets the CTMRB2C0INT field."]
+    #[inline] pub fn set_ctmrb2c0int<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 5);
+        self.0 |= value << 5;
+        self
+    }
+
+    #[doc="Counter/Timer A2 interrupt based on COMPR0."]
+    #[inline] pub fn ctmra2c0int(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
+    }
+
+    #[doc="Returns true if CTMRA2C0INT != 0"]
+    #[inline] pub fn test_ctmra2c0int(&self) -> bool {
+        self.ctmra2c0int() != 0
+    }
+
+    #[doc="Sets the CTMRA2C0INT field."]
+    #[inline] pub fn set_ctmra2c0int<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 4);
+        self.0 |= value << 4;
+        self
+    }
+
+    #[doc="Counter/Timer B1 interrupt based on COMPR0."]
+    #[inline] pub fn ctmrb1c0int(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
+    }
+
+    #[doc="Returns true if CTMRB1C0INT != 0"]
+    #[inline] pub fn test_ctmrb1c0int(&self) -> bool {
+        self.ctmrb1c0int() != 0
+    }
+
+    #[doc="Sets the CTMRB1C0INT field."]
+    #[inline] pub fn set_ctmrb1c0int<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 3);
+        self.0 |= value << 3;
+        self
+    }
+
+    #[doc="Counter/Timer A1 interrupt based on COMPR0."]
+    #[inline] pub fn ctmra1c0int(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
+    }
+
+    #[doc="Returns true if CTMRA1C0INT != 0"]
+    #[inline] pub fn test_ctmra1c0int(&self) -> bool {
+        self.ctmra1c0int() != 0
+    }
+
+    #[doc="Sets the CTMRA1C0INT field."]
+    #[inline] pub fn set_ctmra1c0int<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 2);
+        self.0 |= value << 2;
+        self
+    }
+
+    #[doc="Counter/Timer B0 interrupt based on COMPR0."]
+    #[inline] pub fn ctmrb0c0int(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
+    }
+
+    #[doc="Returns true if CTMRB0C0INT != 0"]
+    #[inline] pub fn test_ctmrb0c0int(&self) -> bool {
+        self.ctmrb0c0int() != 0
+    }
+
+    #[doc="Sets the CTMRB0C0INT field."]
+    #[inline] pub fn set_ctmrb0c0int<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 1);
+        self.0 |= value << 1;
+        self
+    }
+
+    #[doc="Counter/Timer A0 interrupt based on COMPR0."]
+    #[inline] pub fn ctmra0c0int(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
+    }
+
+    #[doc="Returns true if CTMRA0C0INT != 0"]
+    #[inline] pub fn test_ctmra0c0int(&self) -> bool {
+        self.ctmra0c0int() != 0
+    }
+
+    #[doc="Sets the CTMRA0C0INT field."]
+    #[inline] pub fn set_ctmra0c0int<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 0);
+        self.0 |= value << 0;
+        self
+    }
+
+}
+
+impl From<u32> for Inten {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Inten(other)
+    }
+}
+
+impl ::core::fmt::Display for Inten {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
+    }
+}
+
+impl ::core::fmt::Debug for Inten {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        if self.ctmrb3c1int() != 0 { try!(write!(f, " ctmrb3c1int"))}
+        if self.ctmra3c1int() != 0 { try!(write!(f, " ctmra3c1int"))}
+        if self.ctmrb2c1int() != 0 { try!(write!(f, " ctmrb2c1int"))}
+        if self.ctmra2c1int() != 0 { try!(write!(f, " ctmra2c1int"))}
+        if self.ctmrb1c1int() != 0 { try!(write!(f, " ctmrb1c1int"))}
+        if self.ctmra1c1int() != 0 { try!(write!(f, " ctmra1c1int"))}
+        if self.ctmrb0c1int() != 0 { try!(write!(f, " ctmrb0c1int"))}
+        if self.ctmra0c1int() != 0 { try!(write!(f, " ctmra0c1int"))}
+        if self.ctmrb3c0int() != 0 { try!(write!(f, " ctmrb3c0int"))}
+        if self.ctmra3c0int() != 0 { try!(write!(f, " ctmra3c0int"))}
+        if self.ctmrb2c0int() != 0 { try!(write!(f, " ctmrb2c0int"))}
+        if self.ctmra2c0int() != 0 { try!(write!(f, " ctmra2c0int"))}
+        if self.ctmrb1c0int() != 0 { try!(write!(f, " ctmrb1c0int"))}
+        if self.ctmra1c0int() != 0 { try!(write!(f, " ctmra1c0int"))}
+        if self.ctmrb0c0int() != 0 { try!(write!(f, " ctmrb0c0int"))}
+        if self.ctmra0c0int() != 0 { try!(write!(f, " ctmra0c0int"))}
+        try!(write!(f, "]"));
+        Ok(())
+    }
+}
+
+#[doc="Counter/Timer Interrupts: Status"]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct Intstat(pub u32);
+impl Intstat {
+    #[doc="Counter/Timer B3 interrupt based on COMPR1."]
+    #[inline] pub fn ctmrb3c1int(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 15) & 0x1) as u8) } // [15]
+    }
+
+    #[doc="Returns true if CTMRB3C1INT != 0"]
+    #[inline] pub fn test_ctmrb3c1int(&self) -> bool {
+        self.ctmrb3c1int() != 0
+    }
+
+    #[doc="Sets the CTMRB3C1INT field."]
+    #[inline] pub fn set_ctmrb3c1int<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 15);
+        self.0 |= value << 15;
+        self
+    }
+
+    #[doc="Counter/Timer A3 interrupt based on COMPR1."]
+    #[inline] pub fn ctmra3c1int(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 14) & 0x1) as u8) } // [14]
+    }
+
+    #[doc="Returns true if CTMRA3C1INT != 0"]
+    #[inline] pub fn test_ctmra3c1int(&self) -> bool {
+        self.ctmra3c1int() != 0
+    }
+
+    #[doc="Sets the CTMRA3C1INT field."]
+    #[inline] pub fn set_ctmra3c1int<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 14);
+        self.0 |= value << 14;
+        self
+    }
+
+    #[doc="Counter/Timer B2 interrupt based on COMPR1."]
+    #[inline] pub fn ctmrb2c1int(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 13) & 0x1) as u8) } // [13]
+    }
+
+    #[doc="Returns true if CTMRB2C1INT != 0"]
+    #[inline] pub fn test_ctmrb2c1int(&self) -> bool {
+        self.ctmrb2c1int() != 0
+    }
+
+    #[doc="Sets the CTMRB2C1INT field."]
+    #[inline] pub fn set_ctmrb2c1int<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 13);
+        self.0 |= value << 13;
+        self
+    }
+
+    #[doc="Counter/Timer A2 interrupt based on COMPR1."]
+    #[inline] pub fn ctmra2c1int(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 12) & 0x1) as u8) } // [12]
+    }
+
+    #[doc="Returns true if CTMRA2C1INT != 0"]
+    #[inline] pub fn test_ctmra2c1int(&self) -> bool {
+        self.ctmra2c1int() != 0
+    }
+
+    #[doc="Sets the CTMRA2C1INT field."]
+    #[inline] pub fn set_ctmra2c1int<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 12);
+        self.0 |= value << 12;
+        self
+    }
+
+    #[doc="Counter/Timer B1 interrupt based on COMPR1."]
+    #[inline] pub fn ctmrb1c1int(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 11) & 0x1) as u8) } // [11]
+    }
+
+    #[doc="Returns true if CTMRB1C1INT != 0"]
+    #[inline] pub fn test_ctmrb1c1int(&self) -> bool {
+        self.ctmrb1c1int() != 0
+    }
+
+    #[doc="Sets the CTMRB1C1INT field."]
+    #[inline] pub fn set_ctmrb1c1int<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 11);
+        self.0 |= value << 11;
+        self
+    }
+
+    #[doc="Counter/Timer A1 interrupt based on COMPR1."]
+    #[inline] pub fn ctmra1c1int(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x1) as u8) } // [10]
+    }
+
+    #[doc="Returns true if CTMRA1C1INT != 0"]
+    #[inline] pub fn test_ctmra1c1int(&self) -> bool {
+        self.ctmra1c1int() != 0
+    }
+
+    #[doc="Sets the CTMRA1C1INT field."]
+    #[inline] pub fn set_ctmra1c1int<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 10);
+        self.0 |= value << 10;
+        self
+    }
+
+    #[doc="Counter/Timer B0 interrupt based on COMPR1."]
+    #[inline] pub fn ctmrb0c1int(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
+    }
+
+    #[doc="Returns true if CTMRB0C1INT != 0"]
+    #[inline] pub fn test_ctmrb0c1int(&self) -> bool {
+        self.ctmrb0c1int() != 0
+    }
+
+    #[doc="Sets the CTMRB0C1INT field."]
+    #[inline] pub fn set_ctmrb0c1int<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 9);
+        self.0 |= value << 9;
+        self
+    }
+
+    #[doc="Counter/Timer A0 interrupt based on COMPR1."]
+    #[inline] pub fn ctmra0c1int(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
+    }
+
+    #[doc="Returns true if CTMRA0C1INT != 0"]
+    #[inline] pub fn test_ctmra0c1int(&self) -> bool {
+        self.ctmra0c1int() != 0
+    }
+
+    #[doc="Sets the CTMRA0C1INT field."]
+    #[inline] pub fn set_ctmra0c1int<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 8);
+        self.0 |= value << 8;
+        self
+    }
+
+    #[doc="Counter/Timer B3 interrupt based on COMPR0."]
+    #[inline] pub fn ctmrb3c0int(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
+    }
+
+    #[doc="Returns true if CTMRB3C0INT != 0"]
+    #[inline] pub fn test_ctmrb3c0int(&self) -> bool {
+        self.ctmrb3c0int() != 0
+    }
+
+    #[doc="Sets the CTMRB3C0INT field."]
+    #[inline] pub fn set_ctmrb3c0int<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 7);
+        self.0 |= value << 7;
+        self
+    }
+
+    #[doc="Counter/Timer A3 interrupt based on COMPR0."]
+    #[inline] pub fn ctmra3c0int(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
+    }
+
+    #[doc="Returns true if CTMRA3C0INT != 0"]
+    #[inline] pub fn test_ctmra3c0int(&self) -> bool {
+        self.ctmra3c0int() != 0
+    }
+
+    #[doc="Sets the CTMRA3C0INT field."]
+    #[inline] pub fn set_ctmra3c0int<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 6);
+        self.0 |= value << 6;
+        self
+    }
+
+    #[doc="Counter/Timer B2 interrupt based on COMPR0."]
+    #[inline] pub fn ctmrb2c0int(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
+    }
+
+    #[doc="Returns true if CTMRB2C0INT != 0"]
+    #[inline] pub fn test_ctmrb2c0int(&self) -> bool {
+        self.ctmrb2c0int() != 0
+    }
+
+    #[doc="Sets the CTMRB2C0INT field."]
+    #[inline] pub fn set_ctmrb2c0int<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 5);
+        self.0 |= value << 5;
+        self
+    }
+
+    #[doc="Counter/Timer A2 interrupt based on COMPR0."]
+    #[inline] pub fn ctmra2c0int(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
+    }
+
+    #[doc="Returns true if CTMRA2C0INT != 0"]
+    #[inline] pub fn test_ctmra2c0int(&self) -> bool {
+        self.ctmra2c0int() != 0
+    }
+
+    #[doc="Sets the CTMRA2C0INT field."]
+    #[inline] pub fn set_ctmra2c0int<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 4);
+        self.0 |= value << 4;
+        self
+    }
+
+    #[doc="Counter/Timer B1 interrupt based on COMPR0."]
+    #[inline] pub fn ctmrb1c0int(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
+    }
+
+    #[doc="Returns true if CTMRB1C0INT != 0"]
+    #[inline] pub fn test_ctmrb1c0int(&self) -> bool {
+        self.ctmrb1c0int() != 0
+    }
+
+    #[doc="Sets the CTMRB1C0INT field."]
+    #[inline] pub fn set_ctmrb1c0int<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 3);
+        self.0 |= value << 3;
+        self
+    }
+
+    #[doc="Counter/Timer A1 interrupt based on COMPR0."]
+    #[inline] pub fn ctmra1c0int(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
+    }
+
+    #[doc="Returns true if CTMRA1C0INT != 0"]
+    #[inline] pub fn test_ctmra1c0int(&self) -> bool {
+        self.ctmra1c0int() != 0
+    }
+
+    #[doc="Sets the CTMRA1C0INT field."]
+    #[inline] pub fn set_ctmra1c0int<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 2);
+        self.0 |= value << 2;
+        self
+    }
+
+    #[doc="Counter/Timer B0 interrupt based on COMPR0."]
+    #[inline] pub fn ctmrb0c0int(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
+    }
+
+    #[doc="Returns true if CTMRB0C0INT != 0"]
+    #[inline] pub fn test_ctmrb0c0int(&self) -> bool {
+        self.ctmrb0c0int() != 0
+    }
+
+    #[doc="Sets the CTMRB0C0INT field."]
+    #[inline] pub fn set_ctmrb0c0int<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 1);
+        self.0 |= value << 1;
+        self
+    }
+
+    #[doc="Counter/Timer A0 interrupt based on COMPR0."]
+    #[inline] pub fn ctmra0c0int(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
+    }
+
+    #[doc="Returns true if CTMRA0C0INT != 0"]
+    #[inline] pub fn test_ctmra0c0int(&self) -> bool {
+        self.ctmra0c0int() != 0
+    }
+
+    #[doc="Sets the CTMRA0C0INT field."]
+    #[inline] pub fn set_ctmra0c0int<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 0);
+        self.0 |= value << 0;
+        self
+    }
+
+}
+
+impl From<u32> for Intstat {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Intstat(other)
+    }
+}
+
+impl ::core::fmt::Display for Intstat {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
+    }
+}
+
+impl ::core::fmt::Debug for Intstat {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        if self.ctmrb3c1int() != 0 { try!(write!(f, " ctmrb3c1int"))}
+        if self.ctmra3c1int() != 0 { try!(write!(f, " ctmra3c1int"))}
+        if self.ctmrb2c1int() != 0 { try!(write!(f, " ctmrb2c1int"))}
+        if self.ctmra2c1int() != 0 { try!(write!(f, " ctmra2c1int"))}
+        if self.ctmrb1c1int() != 0 { try!(write!(f, " ctmrb1c1int"))}
+        if self.ctmra1c1int() != 0 { try!(write!(f, " ctmra1c1int"))}
+        if self.ctmrb0c1int() != 0 { try!(write!(f, " ctmrb0c1int"))}
+        if self.ctmra0c1int() != 0 { try!(write!(f, " ctmra0c1int"))}
+        if self.ctmrb3c0int() != 0 { try!(write!(f, " ctmrb3c0int"))}
+        if self.ctmra3c0int() != 0 { try!(write!(f, " ctmra3c0int"))}
+        if self.ctmrb2c0int() != 0 { try!(write!(f, " ctmrb2c0int"))}
+        if self.ctmra2c0int() != 0 { try!(write!(f, " ctmra2c0int"))}
+        if self.ctmrb1c0int() != 0 { try!(write!(f, " ctmrb1c0int"))}
+        if self.ctmra1c0int() != 0 { try!(write!(f, " ctmra1c0int"))}
+        if self.ctmrb0c0int() != 0 { try!(write!(f, " ctmrb0c0int"))}
+        if self.ctmra0c0int() != 0 { try!(write!(f, " ctmra0c0int"))}
+        try!(write!(f, "]"));
+        Ok(())
+    }
+}
+
+#[doc="Counter/Timer Interrupts: Clear"]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct Intclr(pub u32);
+impl Intclr {
+    #[doc="Counter/Timer B3 interrupt based on COMPR1."]
+    #[inline] pub fn ctmrb3c1int(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 15) & 0x1) as u8) } // [15]
+    }
+
+    #[doc="Returns true if CTMRB3C1INT != 0"]
+    #[inline] pub fn test_ctmrb3c1int(&self) -> bool {
+        self.ctmrb3c1int() != 0
+    }
+
+    #[doc="Sets the CTMRB3C1INT field."]
+    #[inline] pub fn set_ctmrb3c1int<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 15);
+        self.0 |= value << 15;
+        self
+    }
+
+    #[doc="Counter/Timer A3 interrupt based on COMPR1."]
+    #[inline] pub fn ctmra3c1int(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 14) & 0x1) as u8) } // [14]
+    }
+
+    #[doc="Returns true if CTMRA3C1INT != 0"]
+    #[inline] pub fn test_ctmra3c1int(&self) -> bool {
+        self.ctmra3c1int() != 0
+    }
+
+    #[doc="Sets the CTMRA3C1INT field."]
+    #[inline] pub fn set_ctmra3c1int<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 14);
+        self.0 |= value << 14;
+        self
+    }
+
+    #[doc="Counter/Timer B2 interrupt based on COMPR1."]
+    #[inline] pub fn ctmrb2c1int(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 13) & 0x1) as u8) } // [13]
+    }
+
+    #[doc="Returns true if CTMRB2C1INT != 0"]
+    #[inline] pub fn test_ctmrb2c1int(&self) -> bool {
+        self.ctmrb2c1int() != 0
+    }
+
+    #[doc="Sets the CTMRB2C1INT field."]
+    #[inline] pub fn set_ctmrb2c1int<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 13);
+        self.0 |= value << 13;
+        self
+    }
+
+    #[doc="Counter/Timer A2 interrupt based on COMPR1."]
+    #[inline] pub fn ctmra2c1int(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 12) & 0x1) as u8) } // [12]
+    }
+
+    #[doc="Returns true if CTMRA2C1INT != 0"]
+    #[inline] pub fn test_ctmra2c1int(&self) -> bool {
+        self.ctmra2c1int() != 0
+    }
+
+    #[doc="Sets the CTMRA2C1INT field."]
+    #[inline] pub fn set_ctmra2c1int<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 12);
+        self.0 |= value << 12;
+        self
+    }
+
+    #[doc="Counter/Timer B1 interrupt based on COMPR1."]
+    #[inline] pub fn ctmrb1c1int(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 11) & 0x1) as u8) } // [11]
+    }
+
+    #[doc="Returns true if CTMRB1C1INT != 0"]
+    #[inline] pub fn test_ctmrb1c1int(&self) -> bool {
+        self.ctmrb1c1int() != 0
+    }
+
+    #[doc="Sets the CTMRB1C1INT field."]
+    #[inline] pub fn set_ctmrb1c1int<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 11);
+        self.0 |= value << 11;
+        self
+    }
+
+    #[doc="Counter/Timer A1 interrupt based on COMPR1."]
+    #[inline] pub fn ctmra1c1int(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x1) as u8) } // [10]
+    }
+
+    #[doc="Returns true if CTMRA1C1INT != 0"]
+    #[inline] pub fn test_ctmra1c1int(&self) -> bool {
+        self.ctmra1c1int() != 0
+    }
+
+    #[doc="Sets the CTMRA1C1INT field."]
+    #[inline] pub fn set_ctmra1c1int<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 10);
+        self.0 |= value << 10;
+        self
+    }
+
+    #[doc="Counter/Timer B0 interrupt based on COMPR1."]
+    #[inline] pub fn ctmrb0c1int(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
+    }
+
+    #[doc="Returns true if CTMRB0C1INT != 0"]
+    #[inline] pub fn test_ctmrb0c1int(&self) -> bool {
+        self.ctmrb0c1int() != 0
+    }
+
+    #[doc="Sets the CTMRB0C1INT field."]
+    #[inline] pub fn set_ctmrb0c1int<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 9);
+        self.0 |= value << 9;
+        self
+    }
+
+    #[doc="Counter/Timer A0 interrupt based on COMPR1."]
+    #[inline] pub fn ctmra0c1int(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
+    }
+
+    #[doc="Returns true if CTMRA0C1INT != 0"]
+    #[inline] pub fn test_ctmra0c1int(&self) -> bool {
+        self.ctmra0c1int() != 0
+    }
+
+    #[doc="Sets the CTMRA0C1INT field."]
+    #[inline] pub fn set_ctmra0c1int<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 8);
+        self.0 |= value << 8;
+        self
+    }
+
+    #[doc="Counter/Timer B3 interrupt based on COMPR0."]
+    #[inline] pub fn ctmrb3c0int(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
+    }
+
+    #[doc="Returns true if CTMRB3C0INT != 0"]
+    #[inline] pub fn test_ctmrb3c0int(&self) -> bool {
+        self.ctmrb3c0int() != 0
+    }
+
+    #[doc="Sets the CTMRB3C0INT field."]
+    #[inline] pub fn set_ctmrb3c0int<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 7);
+        self.0 |= value << 7;
+        self
+    }
+
+    #[doc="Counter/Timer A3 interrupt based on COMPR0."]
+    #[inline] pub fn ctmra3c0int(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
+    }
+
+    #[doc="Returns true if CTMRA3C0INT != 0"]
+    #[inline] pub fn test_ctmra3c0int(&self) -> bool {
+        self.ctmra3c0int() != 0
+    }
+
+    #[doc="Sets the CTMRA3C0INT field."]
+    #[inline] pub fn set_ctmra3c0int<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 6);
+        self.0 |= value << 6;
+        self
+    }
+
+    #[doc="Counter/Timer B2 interrupt based on COMPR0."]
+    #[inline] pub fn ctmrb2c0int(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
+    }
+
+    #[doc="Returns true if CTMRB2C0INT != 0"]
+    #[inline] pub fn test_ctmrb2c0int(&self) -> bool {
+        self.ctmrb2c0int() != 0
+    }
+
+    #[doc="Sets the CTMRB2C0INT field."]
+    #[inline] pub fn set_ctmrb2c0int<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 5);
+        self.0 |= value << 5;
+        self
+    }
+
+    #[doc="Counter/Timer A2 interrupt based on COMPR0."]
+    #[inline] pub fn ctmra2c0int(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
+    }
+
+    #[doc="Returns true if CTMRA2C0INT != 0"]
+    #[inline] pub fn test_ctmra2c0int(&self) -> bool {
+        self.ctmra2c0int() != 0
+    }
+
+    #[doc="Sets the CTMRA2C0INT field."]
+    #[inline] pub fn set_ctmra2c0int<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 4);
+        self.0 |= value << 4;
+        self
+    }
+
+    #[doc="Counter/Timer B1 interrupt based on COMPR0."]
+    #[inline] pub fn ctmrb1c0int(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
+    }
+
+    #[doc="Returns true if CTMRB1C0INT != 0"]
+    #[inline] pub fn test_ctmrb1c0int(&self) -> bool {
+        self.ctmrb1c0int() != 0
+    }
+
+    #[doc="Sets the CTMRB1C0INT field."]
+    #[inline] pub fn set_ctmrb1c0int<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 3);
+        self.0 |= value << 3;
+        self
+    }
+
+    #[doc="Counter/Timer A1 interrupt based on COMPR0."]
+    #[inline] pub fn ctmra1c0int(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
+    }
+
+    #[doc="Returns true if CTMRA1C0INT != 0"]
+    #[inline] pub fn test_ctmra1c0int(&self) -> bool {
+        self.ctmra1c0int() != 0
+    }
+
+    #[doc="Sets the CTMRA1C0INT field."]
+    #[inline] pub fn set_ctmra1c0int<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 2);
+        self.0 |= value << 2;
+        self
+    }
+
+    #[doc="Counter/Timer B0 interrupt based on COMPR0."]
+    #[inline] pub fn ctmrb0c0int(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
+    }
+
+    #[doc="Returns true if CTMRB0C0INT != 0"]
+    #[inline] pub fn test_ctmrb0c0int(&self) -> bool {
+        self.ctmrb0c0int() != 0
+    }
+
+    #[doc="Sets the CTMRB0C0INT field."]
+    #[inline] pub fn set_ctmrb0c0int<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 1);
+        self.0 |= value << 1;
+        self
+    }
+
+    #[doc="Counter/Timer A0 interrupt based on COMPR0."]
+    #[inline] pub fn ctmra0c0int(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
+    }
+
+    #[doc="Returns true if CTMRA0C0INT != 0"]
+    #[inline] pub fn test_ctmra0c0int(&self) -> bool {
+        self.ctmra0c0int() != 0
+    }
+
+    #[doc="Sets the CTMRA0C0INT field."]
+    #[inline] pub fn set_ctmra0c0int<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 0);
+        self.0 |= value << 0;
+        self
+    }
+
+}
+
+impl From<u32> for Intclr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Intclr(other)
+    }
+}
+
+impl ::core::fmt::Display for Intclr {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
+    }
+}
+
+impl ::core::fmt::Debug for Intclr {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        if self.ctmrb3c1int() != 0 { try!(write!(f, " ctmrb3c1int"))}
+        if self.ctmra3c1int() != 0 { try!(write!(f, " ctmra3c1int"))}
+        if self.ctmrb2c1int() != 0 { try!(write!(f, " ctmrb2c1int"))}
+        if self.ctmra2c1int() != 0 { try!(write!(f, " ctmra2c1int"))}
+        if self.ctmrb1c1int() != 0 { try!(write!(f, " ctmrb1c1int"))}
+        if self.ctmra1c1int() != 0 { try!(write!(f, " ctmra1c1int"))}
+        if self.ctmrb0c1int() != 0 { try!(write!(f, " ctmrb0c1int"))}
+        if self.ctmra0c1int() != 0 { try!(write!(f, " ctmra0c1int"))}
+        if self.ctmrb3c0int() != 0 { try!(write!(f, " ctmrb3c0int"))}
+        if self.ctmra3c0int() != 0 { try!(write!(f, " ctmra3c0int"))}
+        if self.ctmrb2c0int() != 0 { try!(write!(f, " ctmrb2c0int"))}
+        if self.ctmra2c0int() != 0 { try!(write!(f, " ctmra2c0int"))}
+        if self.ctmrb1c0int() != 0 { try!(write!(f, " ctmrb1c0int"))}
+        if self.ctmra1c0int() != 0 { try!(write!(f, " ctmra1c0int"))}
+        if self.ctmrb0c0int() != 0 { try!(write!(f, " ctmrb0c0int"))}
+        if self.ctmra0c0int() != 0 { try!(write!(f, " ctmra0c0int"))}
+        try!(write!(f, "]"));
+        Ok(())
+    }
+}
+
+#[doc="Counter/Timer Interrupts: Set"]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct Intset(pub u32);
+impl Intset {
+    #[doc="Counter/Timer B3 interrupt based on COMPR1."]
+    #[inline] pub fn ctmrb3c1int(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 15) & 0x1) as u8) } // [15]
+    }
+
+    #[doc="Returns true if CTMRB3C1INT != 0"]
+    #[inline] pub fn test_ctmrb3c1int(&self) -> bool {
+        self.ctmrb3c1int() != 0
+    }
+
+    #[doc="Sets the CTMRB3C1INT field."]
+    #[inline] pub fn set_ctmrb3c1int<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 15);
+        self.0 |= value << 15;
+        self
+    }
+
+    #[doc="Counter/Timer A3 interrupt based on COMPR1."]
+    #[inline] pub fn ctmra3c1int(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 14) & 0x1) as u8) } // [14]
+    }
+
+    #[doc="Returns true if CTMRA3C1INT != 0"]
+    #[inline] pub fn test_ctmra3c1int(&self) -> bool {
+        self.ctmra3c1int() != 0
+    }
+
+    #[doc="Sets the CTMRA3C1INT field."]
+    #[inline] pub fn set_ctmra3c1int<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 14);
+        self.0 |= value << 14;
+        self
+    }
+
+    #[doc="Counter/Timer B2 interrupt based on COMPR1."]
+    #[inline] pub fn ctmrb2c1int(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 13) & 0x1) as u8) } // [13]
+    }
+
+    #[doc="Returns true if CTMRB2C1INT != 0"]
+    #[inline] pub fn test_ctmrb2c1int(&self) -> bool {
+        self.ctmrb2c1int() != 0
+    }
+
+    #[doc="Sets the CTMRB2C1INT field."]
+    #[inline] pub fn set_ctmrb2c1int<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 13);
+        self.0 |= value << 13;
+        self
+    }
+
+    #[doc="Counter/Timer A2 interrupt based on COMPR1."]
+    #[inline] pub fn ctmra2c1int(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 12) & 0x1) as u8) } // [12]
+    }
+
+    #[doc="Returns true if CTMRA2C1INT != 0"]
+    #[inline] pub fn test_ctmra2c1int(&self) -> bool {
+        self.ctmra2c1int() != 0
+    }
+
+    #[doc="Sets the CTMRA2C1INT field."]
+    #[inline] pub fn set_ctmra2c1int<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 12);
+        self.0 |= value << 12;
+        self
+    }
+
+    #[doc="Counter/Timer B1 interrupt based on COMPR1."]
+    #[inline] pub fn ctmrb1c1int(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 11) & 0x1) as u8) } // [11]
+    }
+
+    #[doc="Returns true if CTMRB1C1INT != 0"]
+    #[inline] pub fn test_ctmrb1c1int(&self) -> bool {
+        self.ctmrb1c1int() != 0
+    }
+
+    #[doc="Sets the CTMRB1C1INT field."]
+    #[inline] pub fn set_ctmrb1c1int<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 11);
+        self.0 |= value << 11;
+        self
+    }
+
+    #[doc="Counter/Timer A1 interrupt based on COMPR1."]
+    #[inline] pub fn ctmra1c1int(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x1) as u8) } // [10]
+    }
+
+    #[doc="Returns true if CTMRA1C1INT != 0"]
+    #[inline] pub fn test_ctmra1c1int(&self) -> bool {
+        self.ctmra1c1int() != 0
+    }
+
+    #[doc="Sets the CTMRA1C1INT field."]
+    #[inline] pub fn set_ctmra1c1int<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 10);
+        self.0 |= value << 10;
+        self
+    }
+
+    #[doc="Counter/Timer B0 interrupt based on COMPR1."]
+    #[inline] pub fn ctmrb0c1int(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
+    }
+
+    #[doc="Returns true if CTMRB0C1INT != 0"]
+    #[inline] pub fn test_ctmrb0c1int(&self) -> bool {
+        self.ctmrb0c1int() != 0
+    }
+
+    #[doc="Sets the CTMRB0C1INT field."]
+    #[inline] pub fn set_ctmrb0c1int<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 9);
+        self.0 |= value << 9;
+        self
+    }
+
+    #[doc="Counter/Timer A0 interrupt based on COMPR1."]
+    #[inline] pub fn ctmra0c1int(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
+    }
+
+    #[doc="Returns true if CTMRA0C1INT != 0"]
+    #[inline] pub fn test_ctmra0c1int(&self) -> bool {
+        self.ctmra0c1int() != 0
+    }
+
+    #[doc="Sets the CTMRA0C1INT field."]
+    #[inline] pub fn set_ctmra0c1int<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 8);
+        self.0 |= value << 8;
+        self
+    }
+
+    #[doc="Counter/Timer B3 interrupt based on COMPR0."]
+    #[inline] pub fn ctmrb3c0int(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
+    }
+
+    #[doc="Returns true if CTMRB3C0INT != 0"]
+    #[inline] pub fn test_ctmrb3c0int(&self) -> bool {
+        self.ctmrb3c0int() != 0
+    }
+
+    #[doc="Sets the CTMRB3C0INT field."]
+    #[inline] pub fn set_ctmrb3c0int<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 7);
+        self.0 |= value << 7;
+        self
+    }
+
+    #[doc="Counter/Timer A3 interrupt based on COMPR0."]
+    #[inline] pub fn ctmra3c0int(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
+    }
+
+    #[doc="Returns true if CTMRA3C0INT != 0"]
+    #[inline] pub fn test_ctmra3c0int(&self) -> bool {
+        self.ctmra3c0int() != 0
+    }
+
+    #[doc="Sets the CTMRA3C0INT field."]
+    #[inline] pub fn set_ctmra3c0int<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 6);
+        self.0 |= value << 6;
+        self
+    }
+
+    #[doc="Counter/Timer B2 interrupt based on COMPR0."]
+    #[inline] pub fn ctmrb2c0int(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
+    }
+
+    #[doc="Returns true if CTMRB2C0INT != 0"]
+    #[inline] pub fn test_ctmrb2c0int(&self) -> bool {
+        self.ctmrb2c0int() != 0
+    }
+
+    #[doc="Sets the CTMRB2C0INT field."]
+    #[inline] pub fn set_ctmrb2c0int<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 5);
+        self.0 |= value << 5;
+        self
+    }
+
+    #[doc="Counter/Timer A2 interrupt based on COMPR0."]
+    #[inline] pub fn ctmra2c0int(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
+    }
+
+    #[doc="Returns true if CTMRA2C0INT != 0"]
+    #[inline] pub fn test_ctmra2c0int(&self) -> bool {
+        self.ctmra2c0int() != 0
+    }
+
+    #[doc="Sets the CTMRA2C0INT field."]
+    #[inline] pub fn set_ctmra2c0int<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 4);
+        self.0 |= value << 4;
+        self
+    }
+
+    #[doc="Counter/Timer B1 interrupt based on COMPR0."]
+    #[inline] pub fn ctmrb1c0int(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
+    }
+
+    #[doc="Returns true if CTMRB1C0INT != 0"]
+    #[inline] pub fn test_ctmrb1c0int(&self) -> bool {
+        self.ctmrb1c0int() != 0
+    }
+
+    #[doc="Sets the CTMRB1C0INT field."]
+    #[inline] pub fn set_ctmrb1c0int<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 3);
+        self.0 |= value << 3;
+        self
+    }
+
+    #[doc="Counter/Timer A1 interrupt based on COMPR0."]
+    #[inline] pub fn ctmra1c0int(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
+    }
+
+    #[doc="Returns true if CTMRA1C0INT != 0"]
+    #[inline] pub fn test_ctmra1c0int(&self) -> bool {
+        self.ctmra1c0int() != 0
+    }
+
+    #[doc="Sets the CTMRA1C0INT field."]
+    #[inline] pub fn set_ctmra1c0int<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 2);
+        self.0 |= value << 2;
+        self
+    }
+
+    #[doc="Counter/Timer B0 interrupt based on COMPR0."]
+    #[inline] pub fn ctmrb0c0int(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
+    }
+
+    #[doc="Returns true if CTMRB0C0INT != 0"]
+    #[inline] pub fn test_ctmrb0c0int(&self) -> bool {
+        self.ctmrb0c0int() != 0
+    }
+
+    #[doc="Sets the CTMRB0C0INT field."]
+    #[inline] pub fn set_ctmrb0c0int<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 1);
+        self.0 |= value << 1;
+        self
+    }
+
+    #[doc="Counter/Timer A0 interrupt based on COMPR0."]
+    #[inline] pub fn ctmra0c0int(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
+    }
+
+    #[doc="Returns true if CTMRA0C0INT != 0"]
+    #[inline] pub fn test_ctmra0c0int(&self) -> bool {
+        self.ctmra0c0int() != 0
+    }
+
+    #[doc="Sets the CTMRA0C0INT field."]
+    #[inline] pub fn set_ctmra0c0int<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 0);
+        self.0 |= value << 0;
+        self
+    }
+
+}
+
+impl From<u32> for Intset {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Intset(other)
+    }
+}
+
+impl ::core::fmt::Display for Intset {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
+    }
+}
+
+impl ::core::fmt::Debug for Intset {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        if self.ctmrb3c1int() != 0 { try!(write!(f, " ctmrb3c1int"))}
+        if self.ctmra3c1int() != 0 { try!(write!(f, " ctmra3c1int"))}
+        if self.ctmrb2c1int() != 0 { try!(write!(f, " ctmrb2c1int"))}
+        if self.ctmra2c1int() != 0 { try!(write!(f, " ctmra2c1int"))}
+        if self.ctmrb1c1int() != 0 { try!(write!(f, " ctmrb1c1int"))}
+        if self.ctmra1c1int() != 0 { try!(write!(f, " ctmra1c1int"))}
+        if self.ctmrb0c1int() != 0 { try!(write!(f, " ctmrb0c1int"))}
+        if self.ctmra0c1int() != 0 { try!(write!(f, " ctmra0c1int"))}
+        if self.ctmrb3c0int() != 0 { try!(write!(f, " ctmrb3c0int"))}
+        if self.ctmra3c0int() != 0 { try!(write!(f, " ctmra3c0int"))}
+        if self.ctmrb2c0int() != 0 { try!(write!(f, " ctmrb2c0int"))}
+        if self.ctmra2c0int() != 0 { try!(write!(f, " ctmra2c0int"))}
+        if self.ctmrb1c0int() != 0 { try!(write!(f, " ctmrb1c0int"))}
+        if self.ctmra1c0int() != 0 { try!(write!(f, " ctmra1c0int"))}
+        if self.ctmrb0c0int() != 0 { try!(write!(f, " ctmrb0c0int"))}
+        if self.ctmra0c0int() != 0 { try!(write!(f, " ctmra0c0int"))}
         try!(write!(f, "]"));
         Ok(())
     }
