@@ -23,6 +23,9 @@ impl AdcPeriph {
         // Calibrate
         self.with_cr(|r| r.set_adcaldif(0));
         self.with_cr(|r| r.set_adcal(1));
+        for _ in 0..100 {
+            let _ = self.cr();
+        }        
         while self.cr().adcal() != 0 {}
 
         // Enable ADC
@@ -76,7 +79,7 @@ impl AdcPeriph {
 
     pub fn set_sequence_channel(&self, sequence: usize, channel: usize) -> &Self {
         assert!(sequence > 0 && sequence <= 16, "Sequence must be 1..16");
-        assert!(channel > 0 && channel <= 18, "Channel must be 1..18");
+        assert!(channel <= 18, "Channel must be 0..18");
         let channel = channel as u32;
         match sequence {
             1 => self.with_sqr1(|r| r.set_sq1(channel)),
