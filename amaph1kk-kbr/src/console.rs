@@ -65,7 +65,7 @@ pub const CONSOLE: Console = Console {};
 pub struct Console {}
 
 impl Write for Console {
-    fn write_str(&mut self, s: &str) -> fmt::Result {        
+    fn write_str(&mut self, _s: &str) -> fmt::Result {        
         // let usart = USART;
         // for byte in s.as_bytes().iter().cloned() {
         //     if byte == b'\n' {
