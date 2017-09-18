@@ -13,20 +13,20 @@ use board::hal::gpio::*;
 pub extern "C" fn main() -> ! {
     GPIO.with_padkey(|r| r.set_padkey(0x73));
 
-    GPIO.with_padrege(|r| r.set_pad17fncsel(0x3));
-    GPIO.with_cfgc(|r| r.set_gpio17outcfg(0x1));
+    GPIO.with_padreg(4, |r| r.set_padfncsel(1, 0x3));
+    GPIO.with_cfg(2, |r| r.set_gpiooutcfg(1, 0x1));
 
     pub const DELAY: usize = 4_000_000;
 
     loop {
         // Set GPIO17
-        GPIO.set_wtsa(|r| r.set_wtsa(1 << 17));
+        GPIO.set_wts(0, |r| r.set_wts(17, 1));
         // Delay approx 1/2 second
         unsafe {
             for _ in 0..DELAY { asm!("nop") }
         }
         // Clr GPIO17
-        GPIO.set_wtca(|r| r.set_wtca(1 << 17));
+        GPIO.set_wtc(0, |r| r.set_wtc(17, 1));
         // ptr::write_volatile(WTCA, 1 << 17);
         // Delay approx 1/2 second
         unsafe {
