@@ -15,42 +15,47 @@ use ::chip::spi::*;
 
 use core::fmt;
 
-// Main System Clock = 32MHz
-// APB2 = 32MHz
-// APB1 = 32MHz
-// AHB = 32MHz
+// Main System Clock = 80 MHz
+// APB2 = 80 MHz
+// APB1 = 80 MHz
+// AHB = 80 MHz
+// 
+// HSI @ 16 MHz
+// VCO @ 160 MHz (M = 1, N = 10)
+// PLL @ 80 Mhz (R = 2)
+// FLASH: 4 wait states
 
-// pub fn init_pll() {
-//     // (1) Set one wait state in Latency bit of FLASH_ACR 
-//     FLASH.with_acr(|r| r.set_latency(1));
 
-//     // (2) Check the latency is set
-//     while FLASH.acr().latency() == 0 {}
+pub fn init_pll() {
+    // (1) Set one wait state in Latency bit of FLASH_ACR 
+    FLASH.with_acr(|r| r.set_latency(4));
 
-//     // (3) Switch the clock on HSI16/4 and disable PLL
+    // (2) Check the latency is set
+    while FLASH.acr().latency() != 4 {}
 
-//     RCC.with_cr(|r| r.set_pllon(0).set_hsidivf(0).set_hsion(1));
+    // (3) Switch the clock on HSI16/4 and disable PLL
 
-//     // Wait for HSI16 Ready Flag
-//     while RCC.cr().hsirdyf() == 0 {}
+    RCC.with_cr(|r| r.set_pllon(0).set_hsion(1));
 
-//     // (4) Set PLLMUL to 16 to get 32MHz on CPU clock, PLLDIV/2
+    // Wait for HSI16 Ready Flag
+    while RCC.cr().hsirdy() == 0 {}
 
-//     RCC.with_cfgr(|r| r.set_pllmul(0b0010).set_plldiv(0b10));
 
-//     // (5) Enable and switch on PLL 
+    RCC.with_pllcfgr(|r| r.set_pllsrc(0b10).set_pllm(0x0).set_plln(0xa).set_pllr(0x0).set_pllren(1));
 
-//     RCC.with_cr(|r| r.set_pllon(1));
+    // (5) Enable and switch on PLL 
 
-//     // Wait for PLL Ready
-//     while RCC.cr().pllrdy() == 0 {}
+    RCC.with_cr(|r| r.set_pllon(1));
 
-//     // Switch to PLL
-//     RCC.with_cfgr(|r| r.set_sw(0b11));
+    // Wait for PLL Ready
+    while RCC.cr().pllrdy() == 0 {}
 
-//     // Wait for system clock to use PLL
-//     while RCC.cfgr().sws() != 0b11 {}
-// }
+    // Switch to PLL
+    RCC.with_cfgr(|r| r.set_sw(0b11));
+
+    // Wait for system clock to use PLL
+    while RCC.cfgr().sws() != 0b11 {}
+}
 
 pub const HSI: Hz = Some(16_000_000);
 pub const LSI: Hz = Some(32_000);
