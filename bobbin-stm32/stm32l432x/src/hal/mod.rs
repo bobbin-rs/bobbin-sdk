@@ -12,7 +12,7 @@ pub mod dma {
 
 pub mod adc {
     pub use chip::adc::*;
-    pub use stm32_common::hal::adc_l0::*;
+    pub use stm32_common::hal::adc_f3::*;
     pub use super::rcc::RccEnabled;
 }
 

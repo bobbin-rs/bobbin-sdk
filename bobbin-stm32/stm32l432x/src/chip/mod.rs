@@ -15,6 +15,7 @@ pub mod flash;
 pub mod pwr;
 pub mod rcc;
 pub mod syscfg;
+pub mod c_adc;
 pub mod rng;
 pub mod iwdg;
 pub mod wwdg;

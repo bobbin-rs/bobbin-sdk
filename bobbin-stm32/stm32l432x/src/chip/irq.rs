@@ -79,7 +79,9 @@ irq!(IRQ_LPUART1, IrqLpuart1, 77);
 irq!(IRQ_SPI1, IrqSpi1, 35);
 irq!(IRQ_SPI2, IrqSpi2, 36);
 irq!(IRQ_SPI3, IrqSpi3, 51);
-irq!(IRQ_ADC1, IrqAdc1, 12);
+irq!(IRQ_ADC1, IrqAdc1, 18);
+irq!(IRQ_ADC2, IrqAdc2, 18);
+irq!(IRQ_ADC3, IrqAdc3, 47);
 
 pub fn handler(index: usize) -> Option<Handler> {
     unsafe { 
@@ -109,13 +111,13 @@ pub static mut INTERRUPT_HANDLERS: [Option<Handler>; 84] = [
     None,
     None,
     None,
-    None,                          // IRQ 12: ADC 1
     None,
     None,
     None,
     None,
     None,
     None,
+    None,                          // IRQ 18: ADC1 and ADC2 global interrupt
     None,
     None,
     None,
@@ -144,7 +146,7 @@ pub static mut INTERRUPT_HANDLERS: [Option<Handler>; 84] = [
     None,                          // IRQ 44: TIM8 Update Interrupt
     None,                          // IRQ 45: TIM8 Trigger and Commutation Interrupt
     None,                          // IRQ 46: TIM8 Capture Compare Interrupt
-    None,
+    None,                          // IRQ 47: ADC3 global Interrupt
     None,
     None,
     None,                          // IRQ 50: TIM5 global Interrupt
