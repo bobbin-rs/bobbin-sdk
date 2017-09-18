@@ -32,12 +32,46 @@
     (peripheral-group
         (name ADC)    
         (prototype "periph/adc.rx")
+        (has-channels)
         (peripheral
             (name ADC)
             (address 0x50010000)
             (size 0x20)
             (access read-write)
             (description "Analog Digital Converter Control")
+
+            (channel (name ADC_CH0) (index 0) )
+            (channel (name ADC_CH1) (index 1))
+            (channel (name ADC_CH2) (index 2))
+            (channel (name ADC_CH3) (index 3))
+            (channel (name ADC_CH4) (index 4))
+            (channel (name ADC_CH5) (index 5))
+            (channel (name ADC_CH6) (index 6))
+            (channel (name ADC_CH7) (index 7))
+            (channel (name ADC_CH8) (index 8))
+            (channel (name ADC_CH9) (index 9))
+            (channel (name ADC_CH10) (index 10))
+            (channel (name ADC_CH11) (index 11))
+            (channel (name ADC_CH12) (index 12))
+
+            (channel (name ADC_TEMP) (index 13))
+            (channel (name ADC_BATT) (index 14))
+            (channel (name ADC_VSS) (index 15))
+
+            (signal (name ADCSE0) (type ADC_SE0))
+            (signal (name ADCSE1) (type ADC_SE1))
+            (signal (name ADCSE2) (type ADC_SE2))
+            (signal (name ADCSE3) (type ADC_SE3))
+            (signal (name ADCSE4) (type ADC_SE4))
+            (signal (name ADCSE5) (type ADC_SE5))
+            (signal (name ADCSE6) (type ADC_SE6))
+            (signal (name ADCSE7) (type ADC_SE7))
+            (signal (name ADCD0PSE8) (type ADC_D0P) (type ADC_SE8))
+            (signal (name ADCD0NSE9) (type ADC_D0N) (type ADC_SE9))
+            (signal (name ADCD1P) (type ADC_D1P))
+            (signal (name ADCD1N) (type ADC_D1N))
+
+
             (interrupt
                 (name ADC)
                 (value 16)
@@ -54,6 +88,25 @@
             (size 0x20)
             (access read-write)
             (description "I2C/SPI Master")
+
+            (signal (name M0SCK) (type SCK))
+            (signal (name M0SCKLB) (type SCK_LB))
+            (signal (name M0MISO) (type MISO))
+            (signal (name M0MOSI) (type MOSI))
+            (signal (name M0nCE0) (type CE0))
+            (signal (name M0nCE1) (type CE1))
+            (signal (name M0nCE2) (type CE2))
+            (signal (name M0nCE3) (type CE3))
+            (signal (name M0nCE4) (type CE4))
+            (signal (name M0nCE5) (type CE5))
+            (signal (name M0nCE6) (type CE6))
+            (signal (name M0nCE7) (type CE7))
+
+            (signal (name M0SCL) (type SCL))
+            (signal (name M0SCLLB) (type SCL_LB))
+            (signal (name M0SDA) (type SDA))
+            (signal (name M0WIR3) (type WIR3))
+            
             (interrupt
                 (name IOMSTR0)
                 (value 6)
@@ -62,6 +115,25 @@
         (peripheral
             (name IOMSTR1)
             (address 0x50005000)
+
+            (signal (name M1SCK) (type SCK))
+            (signal (name M1SCKLB) (type SCK_LB))
+            (signal (name M1MISO) (type MISO))
+            (signal (name M1MOSI) (type MOSI))
+            (signal (name M1nCE0) (type CE0))
+            (signal (name M1nCE1) (type CE1))
+            (signal (name M1nCE2) (type CE2))
+            (signal (name M1nCE3) (type CE3))
+            (signal (name M1nCE4) (type CE4))
+            (signal (name M1nCE5) (type CE5))
+            (signal (name M1nCE6) (type CE6))
+            (signal (name M1nCE7) (type CE7))
+
+            (signal (name M1SCL) (type SCL))
+            (signal (name M1SCLLB) (type SCL_LB))
+            (signal (name M1SDA) (type SDA))
+            (signal (name M1WIR3) (type WIR3))
+                        
             (interrupt
                 (name IOMSTR1)
                 (value 7)
@@ -70,6 +142,26 @@
         (peripheral
             (name IOMSTR2)
             (address 0x50006000)
+
+            (signal (name M2SCK) (type SCK))
+            (signal (name M2SCKLB) (type SCK_LB))
+            (signal (name M2MISO) (type MISO))
+            (signal (name M2MOSI) (type MOSI))
+            (signal (name M2nCE0) (type CE0))
+            (signal (name M2nCE1) (type CE1))
+            (signal (name M2nCE2) (type CE2))
+            (signal (name M2nCE3) (type CE3))
+            (signal (name M2nCE4) (type CE4))
+            (signal (name M2nCE5) (type CE5))
+            (signal (name M2nCE6) (type CE6))
+            (signal (name M2nCE7) (type CE7))
+
+            (signal (name M2SCL) (type SCL))
+            (signal (name M2SCLLB) (type SCL_LB))
+            (signal (name M2SDA) (type SDA))
+            (signal (name M2WIR3) (type WIR3))
+            
+
             (interrupt
                 (name IOMSTR2)
                 (value 8)
@@ -78,6 +170,25 @@
         (peripheral
             (name IOMSTR3)
             (address 0x50007000)
+
+            (signal (name M0SCK) (type SCK))
+            (signal (name M0SCKLB) (type SCK_LB))
+            (signal (name M0MISO) (type MISO))
+            (signal (name M0MOSI) (type MOSI))
+            (signal (name M0nCE0) (type CE0))
+            (signal (name M0nCE1) (type CE1))
+            (signal (name M0nCE2) (type CE2))
+            (signal (name M0nCE3) (type CE3))
+            (signal (name M0nCE4) (type CE4))
+            (signal (name M0nCE5) (type CE5))
+            (signal (name M0nCE6) (type CE6))
+            (signal (name M0nCE7) (type CE7))
+
+            (signal (name M0SCL) (type SCL))
+            (signal (name M0SCLLB) (type SCL_LB))
+            (signal (name M0SDA) (type SDA))
+            (signal (name M0WIR3) (type WIR3))
+
             (interrupt
                 (name IOMSTR3)
                 (value 9)
@@ -86,6 +197,26 @@
         (peripheral
             (name IOMSTR4)
             (address 0x50008000)
+
+            (signal (name M4SCK) (type SCK))
+            (signal (name M4SCKLB) (type SCK_LB))
+            (signal (name M4MISO) (type MISO))
+            (signal (name M4MOSI) (type MOSI))
+            (signal (name M4nCE0) (type CE0))
+            (signal (name M4nCE1) (type CE1))
+            (signal (name M4nCE2) (type CE2))
+            (signal (name M4nCE3) (type CE3))
+            (signal (name M4nCE4) (type CE4))
+            (signal (name M4nCE5) (type CE5))
+            (signal (name M4nCE6) (type CE6))
+            (signal (name M4nCE7) (type CE7))
+
+            (signal (name M4SCL) (type SCL))
+            (signal (name M4SCLLB) (type SCL_LB))
+            (signal (name M4SDA) (type SDA))
+            (signal (name M4WIR3) (type WIR3))
+            
+
             (interrupt
                 (name IOMSTR4)
                 (value 10)
@@ -94,6 +225,25 @@
         (peripheral
             (name IOMSTR5)
             (address 0x50009000)
+
+            (signal (name M5SCK) (type SCK))
+            (signal (name M5SCKLB) (type SCK_LB))
+            (signal (name M5MISO) (type MISO))
+            (signal (name M5MOSI) (type MOSI))
+            (signal (name M5nCE0) (type CE0))
+            (signal (name M5nCE1) (type CE1))
+            (signal (name M5nCE2) (type CE2))
+            (signal (name M5nCE3) (type CE3))
+            (signal (name M5nCE4) (type CE4))
+            (signal (name M5nCE5) (type CE5))
+            (signal (name M5nCE6) (type CE6))
+            (signal (name M5nCE7) (type CE7))
+
+            (signal (name M5SCL) (type SCL))
+            (signal (name M5SCLLB) (type SCL_LB))
+            (signal (name M5SDA) (type SDA))
+            (signal (name M5WIR3) (type WIR3))
+                        
             (interrupt
                 (name IOMSTR5)
                 (value 11)
@@ -109,6 +259,23 @@
             (size 0x20)
             (access read-write)
             (description "I2C/SPI Slave")
+
+            (signal (name SLSCL) (type SL_SCL))
+            (signal (name SLSCLLB) (type SL_SCL_LB))
+            (signal (name SLSDA) (type SL_SDA))
+            (signal (name SLSDALB) (type SL_SDA_LB))
+
+            (signal (name SLSMISO) (type SL_MISO))
+            (signal (name SLSMOSI) (type SL_MOSI))
+            (signal (name SLSWIR3) (type SL_WIR3))
+            (signal (name SLnCE) (type SL_CE))
+            (signal (name SLINT) (type SL_INT))
+            (signal (name SLINTGP) (type SL_INT_GP))
+
+            (signal (name SLMISOLB) (type SL_MISO_LB))
+            (signal (name SLMOSILB) (type SL_MOSI_LB))
+            (signal (name SLWIR3LB) (type SL_WIR3_LB))
+            
             (interrupt
                 (name IOSLAVE)
                 (value 4)
@@ -143,6 +310,10 @@
             (size 0x20)
             (access read-write)
             (description "Serial UART")
+            (signal (name UART0TX) (type UART_TX))
+            (signal (name UART0RX) (type UART_RX))
+            (signal (name UA0CTS) (type UART_CTS))
+            (signal (name UA0RTS) (type UART_RTS))
             (interrupt
                 (name UART0)
                 (value 14)
@@ -151,6 +322,10 @@
         (peripheral
             (name UART1)
             (address 0x4001d000)
+            (signal (name UART1TX) (type UART_TX))
+            (signal (name UART1RX) (type UART_RX))
+            (signal (name UA1CTS) (type UART_CTS))
+            (signal (name UA1RTS) (type UART_RTS))
             (interrupt
                 (name UART1)
                 (value 15)
