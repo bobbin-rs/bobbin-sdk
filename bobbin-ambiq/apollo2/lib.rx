@@ -1,0 +1,191 @@
+(device
+    (name apollo2)
+    (vendor "Ambiq Micro")
+    (size 0x20)
+    (access read-write)
+    (description "Ultra-Low power ARM Cortex-M4 MCU from Ambiq Micro")
+
+    (interrupt-count 33)
+    (variants
+        (variant (name AMAPH1KK) (link "amaph1kk.ld"))
+    )
+    (crate
+        (name bobbin_cortexm)
+        (module (name chip::exc))
+        (module (name chip::nvic))
+        (module (name chip::scb))
+        (module (name chip::systick))
+        (module (name chip::mpu))
+        (module (name chip::fpu))
+        (module (name chip::dcb))
+        (module (name chip::itm))      
+    )    
+
+    ; (peripheral (include "periph/cachectrl.rx"))
+    (peripheral (include "periph/ctimer.rx"))
+    (peripheral (include "periph/mcuctrl.rx"))
+    (peripheral (include "periph/pwrctrl.rx"))
+    (peripheral (include "periph/rstgen.rx"))
+    (peripheral (include "periph/wdt.rx"))
+    (peripheral (include "periph/clkgen.rx"))
+
+    (peripheral-group
+        (name ADC)    
+        (prototype "periph/adc.rx")
+        (peripheral
+            (name ADC)
+            (address 0x50010000)
+            (size 0x20)
+            (access read-write)
+            (description "Analog Digital Converter Control")
+            (interrupt
+                (name ADC)
+                (value 16)
+            )        
+        )
+    )
+
+    (peripheral-group
+        (name GPIO)
+        (prototype "periph/gpio.rx")
+        (peripheral
+            (name GPIO)
+            (address 0x40010000)
+            (size 0x20)
+            (access read-write)
+            (description "General Purpose IO")
+            (interrupt
+                (name GPIO)
+                (value 12)
+            )        
+        )
+    )
+
+    (peripheral-group
+        (name IOMSTR)
+        (prototype "periph/iomstr.rx")
+        (peripheral
+            (name IOMSTR0)
+            (address 0x50004000)
+            (size 0x20)
+            (access read-write)
+            (description "I2C/SPI Master")
+            (interrupt
+                (name IOMSTR0)
+                (value 6)
+            )
+        )
+        (peripheral
+            (name IOMSTR1)
+            (address 0x50005000)
+            (interrupt
+                (name IOMSTR1)
+                (value 7)
+            )
+        )
+        (peripheral
+            (name IOMSTR2)
+            (address 0x50006000)
+            (interrupt
+                (name IOMSTR2)
+                (value 8)
+            )
+        )
+        (peripheral
+            (name IOMSTR3)
+            (address 0x50007000)
+            (interrupt
+                (name IOMSTR3)
+                (value 9)
+            )
+        )
+        (peripheral
+            (name IOMSTR4)
+            (address 0x50008000)
+            (interrupt
+                (name IOMSTR4)
+                (value 10)
+            )
+        )
+        (peripheral
+            (name IOMSTR5)
+            (address 0x50009000)
+            (interrupt
+                (name IOMSTR5)
+                (value 11)
+            )
+        )                
+    )
+    (peripheral-group
+        (name IOSLAVE)
+        (prototype "periph/ioslave.rx")
+        (peripheral
+            (name IOSLAVE)
+            (address 0x50000000)
+            (size 0x20)
+            (access read-write)
+            (description "I2C/SPI Slave")
+            (interrupt
+                (name IOSLAVE)
+                (value 4)
+            )
+            (interrupt
+                (name IOSLAVEACC)
+                (value 5)
+            )
+        )
+    )
+    (peripheral-group
+        (name PDM)
+        (prototype "periph/pdm.rx")
+        (peripheral
+            (name PDM)
+            (address 0x50011000)
+            (size 0x20)
+            (access read-write)
+            (description "PDM Audio")
+            (interrupt
+                (name PDM)
+                (value 17)
+            )      
+        )
+    )
+    (peripheral-group
+        (name UART)
+        (prototype "periph/uart.rx")
+        (peripheral
+            (name UART0)
+            (address 0x4001c000)
+            (size 0x20)
+            (access read-write)
+            (description "Serial UART")
+            (interrupt
+                (name UART0)
+                (value 14)
+            )     
+        )
+        (peripheral
+            (name UART1)
+            (address 0x4001d000)
+            (interrupt
+                (name UART1)
+                (value 15)
+            )
+        )
+    )
+    (peripheral-group
+        (name VCOMP)
+        (prototype "periph/vcomp.rx")
+        (peripheral
+            (name VCOMP)
+            (address 0x4000c000)
+            (size 0x20)
+            (access read-write)
+            (description "Voltage Comparator")
+            (interrupt
+                (name VCOMP)
+                (value 3)
+            )
+        )
+    )
+)
