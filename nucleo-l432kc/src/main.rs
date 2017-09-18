@@ -7,20 +7,20 @@ extern crate nucleo_l432kc as board;
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
-    // board::init();
-    // println!("[start] Running tests for nucleo-l031K6");
+    board::init();
+    println!("[start] Running tests for nucleo-l432KC");
     // test_crc();
     // // test_gpio();
-    // test_lptim();
-    // test_systick();
-    // test_adc();
+    test_lptim();
+    test_systick();
+    test_adc();
     // test_dma();
     // test_exti();
     // test_lpuart();
     // test_usart();
     // // test_spi();
     // test_i2c();
-    // println!("[done] All tests passed");
+    println!("[done] All tests passed");
     loop {}
 }
 
@@ -81,117 +81,152 @@ pub extern "C" fn main() -> ! {
 //     println!("[pass] CRC OK");    
 // }
 
-// fn test_lptim() {
-//     use board::hal::lptim::*;
+fn test_lptim() {
+    use board::hal::lptim::*;
 
-//     fn check_progress(tim: Lptim) {
-//         let mut c_max = 0;
-//         while !tim.timeout_flag() {
-//             let c = tim.counter();
-//             if c > c_max {
-//                 c_max = c;
-//             }
-//         }
-//         assert!(tim.compare_flag());
-//         assert!(c_max > 0);
-//     }
+    fn check_progress(tim: &LptimPeriph) {
+        let mut c_max = 0;
+        while !tim.timeout_flag() {
+            let c = tim.counter();
+            if c > c_max {
+                c_max = c;
+            }
+        }
+        assert!(tim.compare_flag());
+        assert!(c_max > 0);
+    }
 
-//     let tim = LPTIM;
-//     tim.rcc_enable();
-//     tim.set_enabled(true);
+    let tim = LPTIM1;
+    tim.rcc_enable();
+    tim.set_enabled(true);
 
-//     // Repeat Up Counter
+    // Repeat Up Counter
 
-//     tim
-//         .set_compare(512)
-//         .clr_compare_flag()
-//         .clr_timeout_flag()
-//         .start_up(1024);
-//     check_progress(tim);
-//     tim
-//         .clr_compare_flag()
-//         .clr_timeout_flag();
-//     check_progress(tim);    
+    tim
+        .set_compare(512)
+        .clr_compare_flag()
+        .clr_timeout_flag()
+        .start_up(1024);
+    check_progress(&tim);
+    tim
+        .clr_compare_flag()
+        .clr_timeout_flag();
+    check_progress(&tim);    
     
-//     // Single Up Counter
-//     tim
-//         .set_compare(512)
-//         .clr_compare_flag()
-//         .clr_timeout_flag()
-//         .start_up_once(1024);
-//     check_progress(tim);   
+    // Single Up Counter
+    tim
+        .set_compare(512)
+        .clr_compare_flag()
+        .clr_timeout_flag()
+        .start_up_once(1024);
+    check_progress(&tim);   
 
-//     tim.set_enabled(false);
-//     tim.rcc_disable();
+    tim.set_enabled(false);
+    tim.rcc_disable();
 
-//     println!("[pass] LPTIM OK");
-// }
+    println!("[pass] LPTIM OK");
+}
 
-// fn test_systick() {
-//     use board::hal::systick;
+fn test_systick() {
+    use board::hal::systick;
 
-//     let reload_value = 1000;
+    let reload_value = 1000;
 
-//     // println!("# Disable Systick");
-//     systick::set_enabled(false);
-//     assert!(!systick::enabled());
+    // println!("# Disable Systick");
+    systick::set_enabled(false);
+    assert!(!systick::enabled());
 
-//     // println!("# Set Reload Value");
-//     systick::set_reload_value(reload_value);
-//     assert_eq!(systick::reload_value(), reload_value);
+    // println!("# Set Reload Value");
+    systick::set_reload_value(reload_value);
+    assert_eq!(systick::reload_value(), reload_value);
 
-//     // println!("# Set Current Value");
-//     systick::set_current_value(0);
-//     assert_eq!(systick::current_value(), 0);
+    // println!("# Set Current Value");
+    systick::set_current_value(0);
+    assert_eq!(systick::current_value(), 0);
 
-//     // println!("# Clear Count Flag");
-//     let _ = systick::count_flag();
-//     assert!(!systick::count_flag());
-
-
-//     let mut value_min = systick::current_value();
-
-//     // println!("# Start Test");
-//     systick::set_enabled(true);
-//     assert!(systick::current_value() > 0);
-
-//     while !systick::count_flag() {
-//         let v = systick::current_value();
-//         if v < value_min {
-//             value_min = v;
-//         }
-//     }
-//     assert!(value_min < reload_value);
-//     systick::set_enabled(false);
-
-//     println!("[pass] SYSTICK OK");
-// }
-
-// fn test_adc() {
-//     use board::hal::adc::*;
-
-//     let adc = ADC1;
-//     let adc_temp = ADC1_TEMP;
-//     let adc_ref = ADC1_REFINT;
-
-//     adc.rcc_enable();
-//     adc.init();
-//     adc.with_ccr(|r| r.set_tsen(1).set_vrefen(1));
-//     adc.with_smpr(|r| r.set_smp(0b111));
-
-//     let t: u8 = <AdcCh as AnalogRead<u8>>::start(&adc_temp).analog_read();
-//     let v: u8 = <AdcCh as AnalogRead<u8>>::start(&adc_ref).analog_read();
-
-//     println!("# t: {} v: {}", t, v);
-
-//     // assert!(t > 110 && t < 130);
-//     // assert!(v > 220 && t < 240);
+    // println!("# Clear Count Flag");
+    let _ = systick::count_flag();
+    assert!(!systick::count_flag());
 
 
-//     adc.rcc_disable();
+    let mut value_min = systick::current_value();
 
-//     println!("[pass] ADC OK")
-// }
+    // println!("# Start Test");
+    systick::set_enabled(true);
+    assert!(systick::current_value() > 0);
+
+    while !systick::count_flag() {
+        let v = systick::current_value();
+        if v < value_min {
+            value_min = v;
+        }
+    }
+    assert!(value_min < reload_value);
+    systick::set_enabled(false);
+
+    println!("[pass] SYSTICK OK");
+}
+
+fn test_adc() {
+    use board::chip::rcc::*;
+    use board::hal::adc::*;
+    use board::chip::c_adc::C_ADC;
+
+    let adc = ADC1;
+    let adc_temp = ADC1_TEMP;
+    let adc_ref = ADC1_REFINT;
+
+    // NOTE: Set ADC prescaler to enable clock
+
+
+    adc.rcc_enable();
+    C_ADC.with_ccr(|r| r.set_ckmode(0b11).set_tsen(1).set_vrefen(1));
+    // init(&adc);
+    adc.init();
+    // adc.with_smpr1(|r| r.set_smp(0b111));
+
+    let t: u8 = <AdcCh as AnalogRead<u8>>::start(&adc_temp).analog_read();
+    let v: u8 = <AdcCh as AnalogRead<u8>>::start(&adc_ref).analog_read();
+
+    println!("# t: {} v: {}", t, v);
+
+    // assert!(t > 110 && t < 130);
+    // assert!(v > 220 && t < 240);
+
+
+    adc.rcc_disable();
+
+    println!("[pass] ADC OK");
+
+    fn init(adc: &AdcPeriph) {
+        adc.with_cr(|r| r.set_aden(0));
+        while adc.isr().adrdy() != 0 {}
+
+        // Enable Analog Voltage Regulator
+        adc.with_cr(|r| r.set_advregen(0b00));
+        adc.with_cr(|r| r.set_advregen(0b01));
+
+        // Calibrate
+        adc.with_cr(|r| r.set_adcaldif(0));
+        adc.with_cr(|r| r.set_adcal(1));
+
+        // Delay required in order for calibration
+        // update to work
+        for _ in 0..100 {
+            let _ = adc.cr();
+        }
+        // println!("calibrate");
+        while adc.cr().adcal() != 0 {}
+        // println!("a");
+
+        // Enable ADC
+        adc.with_cr(|r| r.set_aden(1));
+        // Wait until ADC is ready
+        while adc.isr().adrdy() == 0 {}
+        println!("ready");
+    }
+
+}
 
 // fn test_dma() {
 //     use board::hal::dma::*;    
