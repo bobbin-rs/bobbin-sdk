@@ -3,7 +3,7 @@ use hal::gpio::*;
 
 // LED0 = P17
 
-pub const LED0: P17 = P17;
+pub const LED0: Gp17 = GP17;
 
 pub fn init() {  
     GPIO.unlock();  

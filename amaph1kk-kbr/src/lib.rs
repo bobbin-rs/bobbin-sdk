@@ -16,13 +16,13 @@ pub mod lang_items;
 
 // pub mod clock;
 pub mod led;
-// pub mod btn;
-// pub mod tim;
+pub mod btn;
+pub mod tim;
 
-// pub use tim::delay;
+pub use tim::delay;
 
 // pub fn delay(n: u32) {
-//     for _ in 0..(n * 100_000) {
+//     for _ in 0..(n * 5_000) {
 //         unsafe { asm!("nop") }
 //     }
 // }
@@ -30,7 +30,7 @@ pub mod led;
 pub fn init() {
     // clock::init();
     led::init();
-    // btn::init();
-    // tim::init();
+    btn::init();
+    tim::init();
     // console::init();
 }
