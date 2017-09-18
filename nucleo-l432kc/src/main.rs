@@ -10,12 +10,12 @@ pub extern "C" fn main() -> ! {
     board::init();
     println!("[start] Running tests for nucleo-l432KC");
     // test_crc();
-    // // test_gpio();
+    test_gpio();
     test_lptim();
     test_systick();
     test_adc();
-    // test_dma();
-    // test_exti();
+    test_dma();
+    test_exti();
     // test_lpuart();
     // test_usart();
     // // test_spi();
@@ -24,38 +24,38 @@ pub extern "C" fn main() -> ! {
     loop {}
 }
 
-// /// Pin PA10 / D0 must be connected to Pin PA9 / D1
-// fn test_gpio() {
-//     use board::hal::gpio::*;
-//     let port = GPIOA;
-//     let port_out = PA10; // D0
-//     let port_in = PA9; // D1
+/// Pin PA10 / D0 must be connected to Pin PA9 / D1
+fn test_gpio() {
+    use board::hal::gpio::*;
+    let port = GPIOA;
+    let port_out = PA10; // D0
+    let port_in = PA9; // D1
 
-//     // println!("# Setting up GPIO");
+    // println!("# Setting up GPIO");
 
-//     port.rcc_enable();
-//     port_out.mode_output();
-//     port_in.mode_input();
+    port.rcc_enable();
+    port_out.mode_output();
+    port_in.mode_input();
 
-//     // println!("# Starting GPIO");
+    // println!("# Starting GPIO");
 
-//     port_out.set_output(false);
-//     assert_eq!(port_out.output(), false);
-//     assert_eq!(port_in.input(), false);
+    port_out.set_output(false);
+    assert_eq!(port_out.output(), false);
+    assert_eq!(port_in.input(), false);
 
-//     port_out.set_output(true);
-//     assert_eq!(port_out.output(), true);
-//     assert_eq!(port_in.input(), true);
+    port_out.set_output(true);
+    assert_eq!(port_out.output(), true);
+    assert_eq!(port_in.input(), true);
 
-//     port_out.toggle_output();
-//     assert_eq!(port_out.output(), false);
-//     assert_eq!(port_in.input(), false);
+    port_out.toggle_output();
+    assert_eq!(port_out.output(), false);
+    assert_eq!(port_in.input(), false);
 
-//     port_out.mode_analog();
-//     port_in.mode_analog();
+    port_out.mode_analog();
+    port_in.mode_analog();
 
-//     println!("[pass] GPIO OK");
-// }
+    println!("[pass] GPIO OK");
+}
 
 // fn test_crc() {
 //     use board::hal::crc::*;
@@ -168,7 +168,7 @@ fn test_systick() {
 }
 
 fn test_adc() {
-    use board::chip::rcc::*;
+    // use board::chip::rcc::*;
     use board::hal::adc::*;
     use board::chip::c_adc::C_ADC;
 
@@ -228,129 +228,126 @@ fn test_adc() {
 
 }
 
-// fn test_dma() {
-//     use board::hal::dma::*;    
-//     let src = [0xffu8; 1024];
-//     let dst = [0u8; 1024];
+fn test_dma() {
+    use board::hal::dma::*;    
+    let src = [0xffu8; 1024];
+    let dst = [0u8; 1024];
     
-//     let dma = DMA1;
-//     let dma_ch = DMA1_CH1;
+    let dma = DMA1;
+    let dma_ch = DMA1_CH1;
 
-//     // ch.irq_dma().set_enabled(true);
+    // ch.irq_dma().set_enabled(true);
 
-//     dma.rcc_enable();
+    dma.rcc_enable();
     
-//     dma_ch    
-//         .set_pa(&src as *const u8 as u32)
-//         .set_ma(&dst as *const u8 as u32)
-//         .set_psize(Size::Bit8)
-//         .set_pinc(true)
-//         .set_msize(Size::Bit8)
-//         .set_minc(true)
-//         .set_mem2mem(true)
-//         .set_ndt(1024)
-//         .set_tcie(true)
-//         .clr_teif()
-//         .clr_tcif();
+    dma_ch    
+        .set_pa(&src as *const u8 as u32)
+        .set_ma(&dst as *const u8 as u32)
+        .set_psize(Size::Bit8)
+        .set_pinc(true)
+        .set_msize(Size::Bit8)
+        .set_minc(true)
+        .set_mem2mem(true)
+        .set_ndt(1024)
+        .set_tcie(true)
+        .clr_teif()
+        .clr_tcif();
 
-//     dma_ch.clr_tcif().set_enabled(true);
+    dma_ch.clr_tcif().set_enabled(true);
 
-//     while !dma_ch.tcif() {}
+    while !dma_ch.tcif() {}
 
-//     for i in 0..1024 {
-//         assert_eq!(src[i], dst[i]);
-//     }    
+    for i in 0..1024 {
+        assert_eq!(src[i], dst[i]);
+    }    
 
-//     dma.rcc_disable();
-//     println!("[pass] DMA OK");
-// }
+    dma.rcc_disable();
+    println!("[pass] DMA OK");
+}
 
-// /// Pin PA10 / D0 must be connected to Pin PA9 / D1
-// fn test_exti() {
-//     use board::hal::gpio::*;
-//     use board::hal::syscfg::*;
-//     use board::hal::exti::*;    
+/// Pin PA10 / D0 must be connected to Pin PA9 / D1
+fn test_exti() {
+    use board::hal::gpio::*;
+    use board::hal::syscfg::*;
+    use board::hal::exti::*;    
 
-//     let port = GPIOA;
-//     let port_out = PA10; // D0
-//     let port_in = PA9; // D1
-//     let line = EXTI_LINE9;
+    let port = GPIOA;
+    let port_out = PA10; // D0
+    let port_in = PA9; // D1
+    let line = EXTI_LINE9;
 
-//     port.rcc_enable();
-//     port_out.mode_output().set_output(false);
-//     port_in.mode_input();
+    port.rcc_enable();
+    port_out.mode_output().set_output(false);
+    port_in.mode_input();
 
-//     SYSCFG.rcc_enable();
-//     SYSCFG.set_exti(line.index, Source::GpioA);
+    SYSCFG.rcc_enable();
+    SYSCFG.set_exti(line.index, Source::GpioA);
     
-//     line.set_interrupt_mask(true);
-//     line.set_rising_trigger(true);
-//     line.set_falling_trigger(true);
+    line.set_interrupt_mask(true);
+    line.set_rising_trigger(true);
+    line.set_falling_trigger(true);
 
-//     // Test for rising edge trigger
-//     line.clr_pending(); 
-//     assert_eq!(line.pending(), false);
-//     port_out.set_output(true);
-//     assert_eq!(line.pending(), true);    
+    // Test for rising edge trigger
+    line.clr_pending(); 
+    assert_eq!(line.pending(), false);
+    port_out.set_output(true);
+    assert_eq!(line.pending(), true);    
 
-//     // Test for falling edge trigger
-//     line.clr_pending(); 
-//     port_out.set_output(false);
-//     assert_eq!(line.pending(), true);    
-//     line.clr_pending(); 
+    // Test for falling edge trigger
+    line.clr_pending(); 
+    port_out.set_output(false);
+    assert_eq!(line.pending(), true);    
+    line.clr_pending(); 
 
-//     SYSCFG.rcc_disable();
+    SYSCFG.rcc_disable();
 
-//     println!("[pass] EXTI OK");
-// }
+    println!("[pass] EXTI OK");
+}
 
-// fn test_lpuart() {
-//     use board::console;
-//     use board::clock::{CLK, Clock};
-//     use board::hal::gpio::*;
-//     use board::hal::lpuart::*;
+fn test_lpuart() {
+    use board::console;
+    use board::clock::{CLK, Clock};
+    use board::hal::gpio::*;
+    use board::hal::lpuart::*;
 
-//     let uart = LPUART1;
-//     let port = GPIOA;
-//     let tx = PA2;
+    let uart = LPUART1;
+    let port = GPIOA;
+    let tx = PA2;
 
-//     let f_ck = uart.clock(&CLK).unwrap();
+    let f_ck = uart.clock(&CLK).unwrap();
 
-//     board::delay(1);
-//     console::disable();
-   
-//     uart.rcc_enable();
-//     port.rcc_enable();
+    board::delay(1);
+    console::disable();
+    uart.rcc_enable();
+    port.rcc_enable();
+    tx.mode_tx(&uart);
+    uart.with_config(|c| c.set_baud(115200, f_ck));
+    uart.set_brr(|r| r.set_brr(4096));
+    uart.with_cr3(|r| r.set_hdsel(1));
+    uart.set_enabled(true);
 
-//     tx.mode_tx(&uart);
+    let src = b"# ABCD\r\n";;
+    let mut dst = [0u8; 8];
 
-//     uart.with_config(|c| c.set_baud(115200, f_ck));
-//     // uart.set_brr(|r| r.set_brr(71_111));
-//     uart.with_cr3(|r| r.set_hdsel(1));
-//     uart.set_enabled(true);
+    if uart.can_rx() {
+        let _ = uart.rx();
+    }
 
-//     let src = b"# ABCD\r\n";;
-//     let mut dst = [0u8; 8];
-
-//     if uart.can_rx() {
-//         let _ = uart.rx();
-//     }
-
-//     for i in 0..src.len() {
-//         uart.putc(src[i]);
-//         while !uart.isr().test_tc() {}
-//         if uart.can_rx() {
-//             dst[i] = uart.rx();
-//         }
-//     }
-//     // while uart.isr().test_busy() {}
-//     uart.rcc_disable();
-//     console::init();
-//     // println!("# src: {:?}", src);
-//     // println!("# dst: {:?}", dst);
-//     assert_eq!(src, &dst);
-//     println!("[pass] LPUART OK");
-// }
+    for i in 0..src.len() {
+        uart.putc(src[i]);
+        while !uart.isr().test_tc() {}
+        if uart.can_rx() {
+            dst[i] = uart.rx();
+        }
+    }
+    // while uart.isr().test_busy() {}
+    uart.rcc_disable();
+    console::init();
+    // println!("# src: {:?}", src);
+    // println!("# dst: {:?}", dst);
+    assert_eq!(src, &dst);
+    println!("[pass] LPUART OK");
+}
 
 
 // fn test_usart() {
