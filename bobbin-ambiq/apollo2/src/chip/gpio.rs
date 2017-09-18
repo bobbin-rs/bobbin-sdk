@@ -17863,4 +17863,481 @@ impl ::core::fmt::Debug for Int1set {
     }
 }
 
+pub struct GpioPin { pub port: GpioPeriph, pub index: usize }
+pin!(P0, P0, GPIO, Gpio, _P0, GpioPin, _GPIO, 0);
+    alt_fn!(P0, super::sig::Slscl, 0);
+    alt_fn!(P0, super::sig::Slsck, 1);
+    alt_fn!(P0, super::sig::Clkout, 2);
+    alt_fn!(P0, super::sig::Gpio0, 3);
+    alt_fn!(P0, super::sig::Mxscklb, 4);
+    alt_fn!(P0, super::sig::M2sck, 5);
+    alt_fn!(P0, super::sig::Mxscllb, 6);
+    alt_fn!(P0, super::sig::M2scl, 7);
+
+pin!(P1, P1, GPIO, Gpio, _P1, GpioPin, _GPIO, 1);
+    alt_fn!(P1, super::sig::Slsda, 0);
+    alt_fn!(P1, super::sig::Slmiso, 1);
+    alt_fn!(P1, super::sig::Uart0tx, 2);
+    alt_fn!(P1, super::sig::Gpio1, 3);
+    alt_fn!(P1, super::sig::Mxmisolb, 4);
+    alt_fn!(P1, super::sig::M2mis0, 5);
+    alt_fn!(P1, super::sig::Mxsdalb, 6);
+    alt_fn!(P1, super::sig::M2sda, 7);
+
+pin!(P2, P2, GPIO, Gpio, _P2, GpioPin, _GPIO, 2);
+    alt_fn!(P2, super::sig::Slwir3, 0);
+    alt_fn!(P2, super::sig::Slmosi, 1);
+    alt_fn!(P2, super::sig::Uart0rx, 2);
+    alt_fn!(P2, super::sig::Gpio2, 3);
+    alt_fn!(P2, super::sig::Mxmosilb, 4);
+    alt_fn!(P2, super::sig::M2mosi, 5);
+    alt_fn!(P2, super::sig::Mxwir3lb, 6);
+    alt_fn!(P2, super::sig::M2wir3, 7);
+
+pin!(P3, P3, GPIO, Gpio, _P3, GpioPin, _GPIO, 3);
+    alt_fn!(P3, super::sig::Ua0rts, 0);
+    alt_fn!(P3, super::sig::Slnce, 1);
+    alt_fn!(P3, super::sig::M1nce4, 2);
+    alt_fn!(P3, super::sig::Gpio3, 3);
+    alt_fn!(P3, super::sig::Mxncelb, 4);
+    alt_fn!(P3, super::sig::M2nce0, 5);
+    alt_fn!(P3, super::sig::Trig1, 6);
+    alt_fn!(P3, super::sig::I2sWclk, 7);
+
+pin!(P4, P4, GPIO, Gpio, _P4, GpioPin, _GPIO, 4);
+    alt_fn!(P4, super::sig::Ua0cts, 0);
+    alt_fn!(P4, super::sig::Slint, 1);
+    alt_fn!(P4, super::sig::M0nce5, 2);
+    alt_fn!(P4, super::sig::Gpio4, 3);
+    alt_fn!(P4, super::sig::Slintgp, 4);
+    alt_fn!(P4, super::sig::M2nce5, 5);
+    alt_fn!(P4, super::sig::Clkout, 6);
+    alt_fn!(P4, super::sig::Xt32khz, 7);
+
+pin!(P5, P5, GPIO, Gpio, _P5, GpioPin, _GPIO, 5);
+    alt_fn!(P5, super::sig::M0scl, 0);
+    alt_fn!(P5, super::sig::M0sck, 1);
+    alt_fn!(P5, super::sig::Ua0rts, 2);
+    alt_fn!(P5, super::sig::Gpio5, 3);
+    alt_fn!(P5, super::sig::M0scklb, 4);
+    alt_fn!(P5, super::sig::M0scllb, 6);
+    alt_fn!(P5, super::sig::M1nce2, 7);
+
+pin!(P6, P6, GPIO, Gpio, _P6, GpioPin, _GPIO, 6);
+    alt_fn!(P6, super::sig::M0sda, 0);
+    alt_fn!(P6, super::sig::M0miso, 1);
+    alt_fn!(P6, super::sig::Ua0cts, 2);
+    alt_fn!(P6, super::sig::Gpio6, 3);
+    alt_fn!(P6, super::sig::Slmisolb, 4);
+    alt_fn!(P6, super::sig::M1nce0, 5);
+    alt_fn!(P6, super::sig::Slsdalb, 6);
+    alt_fn!(P6, super::sig::I2sDat, 7);
+
+pin!(P7, P7, GPIO, Gpio, _P7, GpioPin, _GPIO, 7);
+    alt_fn!(P7, super::sig::M0wir3, 0);
+    alt_fn!(P7, super::sig::M0mosi, 1);
+    alt_fn!(P7, super::sig::Clkout, 2);
+    alt_fn!(P7, super::sig::Gpio7, 3);
+    alt_fn!(P7, super::sig::Trig0, 4);
+    alt_fn!(P7, super::sig::Uart0tx, 5);
+    alt_fn!(P7, super::sig::Slwir3lb, 6);
+    alt_fn!(P7, super::sig::M1nce1, 7);
+
+pin!(P8, P8, GPIO, Gpio, _P8, GpioPin, _GPIO, 8);
+    alt_fn!(P8, super::sig::M1scl, 0);
+    alt_fn!(P8, super::sig::M1sck, 1);
+    alt_fn!(P8, super::sig::M0nce4, 2);
+    alt_fn!(P8, super::sig::Gpio8, 3);
+    alt_fn!(P8, super::sig::M2nce4, 4);
+    alt_fn!(P8, super::sig::M1scklb, 5);
+    alt_fn!(P8, super::sig::Uart1tx, 6);
+    alt_fn!(P8, super::sig::M1scllb, 7);
+
+pin!(P9, P9, GPIO, Gpio, _P9, GpioPin, _GPIO, 9);
+    alt_fn!(P9, super::sig::M1sda, 0);
+    alt_fn!(P9, super::sig::M1miso, 1);
+    alt_fn!(P9, super::sig::M0nce5, 2);
+    alt_fn!(P9, super::sig::Gpio9, 3);
+    alt_fn!(P9, super::sig::M4nce5, 4);
+    alt_fn!(P9, super::sig::Slmisolb, 5);
+    alt_fn!(P9, super::sig::Uart1rx, 6);
+    alt_fn!(P9, super::sig::Slsdalb, 7);
+
+pin!(P10, P10, GPIO, Gpio, _P10, GpioPin, _GPIO, 10);
+    alt_fn!(P10, super::sig::M1wir3, 0);
+    alt_fn!(P10, super::sig::M1mosi, 1);
+    alt_fn!(P10, super::sig::M0nce6, 2);
+    alt_fn!(P10, super::sig::Gpio10, 3);
+    alt_fn!(P10, super::sig::M2nce6, 4);
+    alt_fn!(P10, super::sig::Ua1rts, 5);
+    alt_fn!(P10, super::sig::M4nce4, 6);
+    alt_fn!(P10, super::sig::Slwir3lb, 7);
+
+pin!(P11, P11, GPIO, Gpio, _P11, GpioPin, _GPIO, 11);
+    alt_fn!(P11, super::sig::Adcse2, 0);
+    alt_fn!(P11, super::sig::M0nce0, 1);
+    alt_fn!(P11, super::sig::Clkout, 2);
+    alt_fn!(P11, super::sig::Gpio11, 3);
+    alt_fn!(P11, super::sig::M2nce7, 4);
+    alt_fn!(P11, super::sig::Ua1cts, 5);
+    alt_fn!(P11, super::sig::Uart0rx, 6);
+    alt_fn!(P11, super::sig::PdmData, 7);
+
+pin!(P12, P12, GPIO, Gpio, _P12, GpioPin, _GPIO, 12);
+    alt_fn!(P12, super::sig::Adcd0nse9, 0);
+    alt_fn!(P12, super::sig::M1nce0, 1);
+    alt_fn!(P12, super::sig::Tcta0, 2);
+    alt_fn!(P12, super::sig::Gpio12, 3);
+    alt_fn!(P12, super::sig::Clkout, 4);
+    alt_fn!(P12, super::sig::PdmClk, 5);
+    alt_fn!(P12, super::sig::Ua0cts, 6);
+    alt_fn!(P12, super::sig::Uart1tx, 7);
+
+pin!(P13, P13, GPIO, Gpio, _P13, GpioPin, _GPIO, 13);
+    alt_fn!(P13, super::sig::Adcd0pse8, 0);
+    alt_fn!(P13, super::sig::M1nce1, 1);
+    alt_fn!(P13, super::sig::Tctb0, 2);
+    alt_fn!(P13, super::sig::Gpio13, 3);
+    alt_fn!(P13, super::sig::M2nce3, 4);
+    alt_fn!(P13, super::sig::Ua0rts, 6);
+    alt_fn!(P13, super::sig::Uart1rx, 7);
+
+pin!(P14, P14, GPIO, Gpio, _P14, GpioPin, _GPIO, 14);
+    alt_fn!(P14, super::sig::Adcd1p, 0);
+    alt_fn!(P14, super::sig::M1nce2, 1);
+    alt_fn!(P14, super::sig::Uart1tx, 2);
+    alt_fn!(P14, super::sig::Gpio14, 3);
+    alt_fn!(P14, super::sig::M2nce1, 4);
+    alt_fn!(P14, super::sig::Swdck, 6);
+    alt_fn!(P14, super::sig::Xt32khz, 7);
+
+pin!(P15, P15, GPIO, Gpio, _P15, GpioPin, _GPIO, 15);
+    alt_fn!(P15, super::sig::Adcd1n, 0);
+    alt_fn!(P15, super::sig::M1nce3, 1);
+    alt_fn!(P15, super::sig::Uart1rx, 2);
+    alt_fn!(P15, super::sig::Gpio15, 3);
+    alt_fn!(P15, super::sig::M2nce2, 4);
+    alt_fn!(P15, super::sig::Swdio, 6);
+    alt_fn!(P15, super::sig::Swo, 7);
+
+pin!(P16, P16, GPIO, Gpio, _P16, GpioPin, _GPIO, 16);
+    alt_fn!(P16, super::sig::Adcse0, 0);
+    alt_fn!(P16, super::sig::M0nce4, 1);
+    alt_fn!(P16, super::sig::Trig0, 2);
+    alt_fn!(P16, super::sig::Gpio16, 3);
+    alt_fn!(P16, super::sig::M2nce3, 4);
+    alt_fn!(P16, super::sig::Cmpin0, 5);
+    alt_fn!(P16, super::sig::Uart0tx, 6);
+    alt_fn!(P16, super::sig::Ua1rts, 7);
+
+pin!(P17, P17, GPIO, Gpio, _P17, GpioPin, _GPIO, 17);
+    alt_fn!(P17, super::sig::Cmprf1, 0);
+    alt_fn!(P17, super::sig::M0nce1, 1);
+    alt_fn!(P17, super::sig::Trig1, 2);
+    alt_fn!(P17, super::sig::Gpio17, 3);
+    alt_fn!(P17, super::sig::M4nce3, 4);
+    alt_fn!(P17, super::sig::Uart0rx, 6);
+    alt_fn!(P17, super::sig::Ua1cts, 7);
+
+pin!(P18, P18, GPIO, Gpio, _P18, GpioPin, _GPIO, 18);
+    alt_fn!(P18, super::sig::Cmpin1, 0);
+    alt_fn!(P18, super::sig::M0nce2, 1);
+    alt_fn!(P18, super::sig::Tcta1, 2);
+    alt_fn!(P18, super::sig::Gpio18, 3);
+    alt_fn!(P18, super::sig::M4nce1, 4);
+    alt_fn!(P18, super::sig::Uart1tx, 6);
+    alt_fn!(P18, super::sig::Xt32khz, 7);
+
+pin!(P19, P19, GPIO, Gpio, _P19, GpioPin, _GPIO, 19);
+    alt_fn!(P19, super::sig::Cmprf0, 0);
+    alt_fn!(P19, super::sig::M0nce3, 1);
+    alt_fn!(P19, super::sig::Tctb1, 2);
+    alt_fn!(P19, super::sig::Gpio19, 3);
+    alt_fn!(P19, super::sig::Tcta1, 4);
+    alt_fn!(P19, super::sig::Uart1rx, 6);
+    alt_fn!(P19, super::sig::I2sBclk, 7);
+
+pin!(P20, P20, GPIO, Gpio, _P20, GpioPin, _GPIO, 20);
+    alt_fn!(P20, super::sig::Swdck, 0);
+    alt_fn!(P20, super::sig::M1nce5, 1);
+    alt_fn!(P20, super::sig::Tcta2, 2);
+    alt_fn!(P20, super::sig::Gpio20, 3);
+    alt_fn!(P20, super::sig::Uart0tx, 4);
+    alt_fn!(P20, super::sig::Uart1tx, 5);
+
+pin!(P21, P21, GPIO, Gpio, _P21, GpioPin, _GPIO, 21);
+    alt_fn!(P21, super::sig::Swdio, 0);
+    alt_fn!(P21, super::sig::M1nce6, 1);
+    alt_fn!(P21, super::sig::Tctb2, 2);
+    alt_fn!(P21, super::sig::Gpio21, 3);
+    alt_fn!(P21, super::sig::Uart0rx, 4);
+    alt_fn!(P21, super::sig::Uart1rx, 5);
+
+pin!(P22, P22, GPIO, Gpio, _P22, GpioPin, _GPIO, 22);
+    alt_fn!(P22, super::sig::Uart0tx, 0);
+    alt_fn!(P22, super::sig::M1nce7, 1);
+    alt_fn!(P22, super::sig::Tcta3, 2);
+    alt_fn!(P22, super::sig::Gpio22, 3);
+    alt_fn!(P22, super::sig::PdmClk, 4);
+    alt_fn!(P22, super::sig::Tctb1, 6);
+    alt_fn!(P22, super::sig::Swo, 7);
+
+pin!(P23, P23, GPIO, Gpio, _P23, GpioPin, _GPIO, 23);
+    alt_fn!(P23, super::sig::Uart0rx, 0);
+    alt_fn!(P23, super::sig::M0nce0, 1);
+    alt_fn!(P23, super::sig::Tctb3, 2);
+    alt_fn!(P23, super::sig::Gpio23, 3);
+    alt_fn!(P23, super::sig::PdmData, 4);
+    alt_fn!(P23, super::sig::Cmpout, 5);
+    alt_fn!(P23, super::sig::Tctb1, 6);
+
+pin!(P24, P24, GPIO, Gpio, _P24, GpioPin, _GPIO, 24);
+    alt_fn!(P24, super::sig::M2nce1, 0);
+    alt_fn!(P24, super::sig::M0nce1, 1);
+    alt_fn!(P24, super::sig::Clkout, 2);
+    alt_fn!(P24, super::sig::Gpio24, 3);
+    alt_fn!(P24, super::sig::M5nce0, 4);
+    alt_fn!(P24, super::sig::Tcta1, 5);
+    alt_fn!(P24, super::sig::I2sBclk, 6);
+    alt_fn!(P24, super::sig::Swo, 7);
+
+pin!(P25, P25, GPIO, Gpio, _P25, GpioPin, _GPIO, 25);
+    alt_fn!(P25, super::sig::M0nce2, 1);
+    alt_fn!(P25, super::sig::Tcta0, 2);
+    alt_fn!(P25, super::sig::Gpio25, 3);
+    alt_fn!(P25, super::sig::M2sda, 4);
+    alt_fn!(P25, super::sig::M2miso, 5);
+    alt_fn!(P25, super::sig::Slmisolb, 6);
+    alt_fn!(P25, super::sig::Slsdalb, 7);
+
+pin!(P26, P26, GPIO, Gpio, _P26, GpioPin, _GPIO, 26);
+    alt_fn!(P26, super::sig::M0nce3, 1);
+    alt_fn!(P26, super::sig::Tctb0, 2);
+    alt_fn!(P26, super::sig::Gpio26, 3);
+    alt_fn!(P26, super::sig::M2nce0, 4);
+    alt_fn!(P26, super::sig::Tcta1, 5);
+    alt_fn!(P26, super::sig::M5nce1, 6);
+    alt_fn!(P26, super::sig::M3nce0, 7);
+
+pin!(P27, P27, GPIO, Gpio, _P27, GpioPin, _GPIO, 27);
+    alt_fn!(P27, super::sig::M1nce4, 1);
+    alt_fn!(P27, super::sig::Tcta1, 2);
+    alt_fn!(P27, super::sig::Gpio27, 3);
+    alt_fn!(P27, super::sig::M2scl, 4);
+    alt_fn!(P27, super::sig::M2sck, 5);
+    alt_fn!(P27, super::sig::M2scklb, 6);
+    alt_fn!(P27, super::sig::M2scllb, 7);
+
+pin!(P28, P28, GPIO, Gpio, _P28, GpioPin, _GPIO, 28);
+    alt_fn!(P28, super::sig::I2sWclk, 0);
+    alt_fn!(P28, super::sig::M1nce5, 1);
+    alt_fn!(P28, super::sig::Tctb1, 2);
+    alt_fn!(P28, super::sig::Gpio28, 3);
+    alt_fn!(P28, super::sig::M2wir3, 4);
+    alt_fn!(P28, super::sig::M2mosi, 5);
+    alt_fn!(P28, super::sig::M5nce3, 6);
+    alt_fn!(P28, super::sig::Slwir3lb, 7);
+
+pin!(P29, P29, GPIO, Gpio, _P29, GpioPin, _GPIO, 29);
+    alt_fn!(P29, super::sig::Adcse1, 0);
+    alt_fn!(P29, super::sig::M1nce6, 1);
+    alt_fn!(P29, super::sig::Tcta2, 2);
+    alt_fn!(P29, super::sig::Gpio29, 3);
+    alt_fn!(P29, super::sig::Ua0cts, 4);
+    alt_fn!(P29, super::sig::Ua1cts, 5);
+    alt_fn!(P29, super::sig::M4nce0, 6);
+    alt_fn!(P29, super::sig::PdmData, 7);
+
+pin!(P30, P30, GPIO, Gpio, _P30, GpioPin, _GPIO, 30);
+    alt_fn!(P30, super::sig::M1nce7, 1);
+    alt_fn!(P30, super::sig::Tctb2, 2);
+    alt_fn!(P30, super::sig::Gpio30, 3);
+    alt_fn!(P30, super::sig::Uart0tx, 4);
+    alt_fn!(P30, super::sig::Ua1rts, 5);
+    alt_fn!(P30, super::sig::I2sDat, 7);
+
+pin!(P31, P31, GPIO, Gpio, _P31, GpioPin, _GPIO, 31);
+    alt_fn!(P31, super::sig::Adcse3, 0);
+    alt_fn!(P31, super::sig::M0nce4, 1);
+    alt_fn!(P31, super::sig::Tcta3, 2);
+    alt_fn!(P31, super::sig::Gpio31, 3);
+    alt_fn!(P31, super::sig::Uart0rx, 4);
+    alt_fn!(P31, super::sig::Tctb1, 5);
+
+pin!(P32, P32, GPIO, Gpio, _P32, GpioPin, _GPIO, 32);
+    alt_fn!(P32, super::sig::Adcse4, 0);
+    alt_fn!(P32, super::sig::M0nce5, 1);
+    alt_fn!(P32, super::sig::Tctb3, 2);
+    alt_fn!(P32, super::sig::Gpio32, 3);
+    alt_fn!(P32, super::sig::Tctb1, 5);
+
+pin!(P33, P33, GPIO, Gpio, _P33, GpioPin, _GPIO, 33);
+    alt_fn!(P33, super::sig::Adcse5, 0);
+    alt_fn!(P33, super::sig::M0nce6, 1);
+    alt_fn!(P33, super::sig::Xt32khz, 2);
+    alt_fn!(P33, super::sig::Gpio33, 3);
+    alt_fn!(P33, super::sig::M3nce7, 5);
+    alt_fn!(P33, super::sig::Tctb1, 6);
+    alt_fn!(P33, super::sig::Swo, 7);
+
+pin!(P34, P34, GPIO, Gpio, _P34, GpioPin, _GPIO, 34);
+    alt_fn!(P34, super::sig::Adcse6, 0);
+    alt_fn!(P34, super::sig::M0nce7, 1);
+    alt_fn!(P34, super::sig::M2nce3, 2);
+    alt_fn!(P34, super::sig::Gpio34, 3);
+    alt_fn!(P34, super::sig::Cmprf2, 4);
+    alt_fn!(P34, super::sig::M3nce1, 5);
+    alt_fn!(P34, super::sig::M4nce0, 6);
+    alt_fn!(P34, super::sig::M5nce2, 7);
+
+pin!(P35, P35, GPIO, Gpio, _P35, GpioPin, _GPIO, 35);
+    alt_fn!(P35, super::sig::Adcse7, 0);
+    alt_fn!(P35, super::sig::M1nce0, 1);
+    alt_fn!(P35, super::sig::Uart1tx, 2);
+    alt_fn!(P35, super::sig::Gpio35, 3);
+    alt_fn!(P35, super::sig::M4nce6, 4);
+    alt_fn!(P35, super::sig::Tcta1, 5);
+    alt_fn!(P35, super::sig::Ua0rts, 6);
+    alt_fn!(P35, super::sig::M3nce2, 7);
+
+pin!(P36, P36, GPIO, Gpio, _P36, GpioPin, _GPIO, 36);
+    alt_fn!(P36, super::sig::Trig1, 0);
+    alt_fn!(P36, super::sig::M1nce1, 1);
+    alt_fn!(P36, super::sig::Uart1rx, 2);
+    alt_fn!(P36, super::sig::Gpio36, 3);
+    alt_fn!(P36, super::sig::Xt32khz, 4);
+    alt_fn!(P36, super::sig::M2nce0, 5);
+    alt_fn!(P36, super::sig::Ua0cts, 6);
+    alt_fn!(P36, super::sig::M3nce3, 7);
+
+pin!(P37, P37, GPIO, Gpio, _P37, GpioPin, _GPIO, 37);
+    alt_fn!(P37, super::sig::Trig2, 0);
+    alt_fn!(P37, super::sig::M1nce2, 1);
+    alt_fn!(P37, super::sig::Ua0rts, 2);
+    alt_fn!(P37, super::sig::Gpio37, 3);
+    alt_fn!(P37, super::sig::M3nce4, 4);
+    alt_fn!(P37, super::sig::M4nce1, 5);
+    alt_fn!(P37, super::sig::PdmClk, 6);
+    alt_fn!(P37, super::sig::Tcta1, 7);
+
+pin!(P38, P38, GPIO, Gpio, _P38, GpioPin, _GPIO, 38);
+    alt_fn!(P38, super::sig::Trig3, 0);
+    alt_fn!(P38, super::sig::M1nce3, 1);
+    alt_fn!(P38, super::sig::Ua0cts, 2);
+    alt_fn!(P38, super::sig::Gpio38, 3);
+    alt_fn!(P38, super::sig::M3wir3, 4);
+    alt_fn!(P38, super::sig::M3mosi, 5);
+    alt_fn!(P38, super::sig::M4nce7, 6);
+    alt_fn!(P38, super::sig::Slwir3lb, 7);
+
+pin!(P39, P39, GPIO, Gpio, _P39, GpioPin, _GPIO, 39);
+    alt_fn!(P39, super::sig::Uart0tx, 0);
+    alt_fn!(P39, super::sig::Uart1tx, 1);
+    alt_fn!(P39, super::sig::Clkout, 2);
+    alt_fn!(P39, super::sig::Gpio39, 3);
+    alt_fn!(P39, super::sig::M4scl, 4);
+    alt_fn!(P39, super::sig::M4sck, 5);
+    alt_fn!(P39, super::sig::M4scklb, 6);
+    alt_fn!(P39, super::sig::M4scllb, 7);
+
+pin!(P40, P40, GPIO, Gpio, _P40, GpioPin, _GPIO, 40);
+    alt_fn!(P40, super::sig::Uart0rx, 0);
+    alt_fn!(P40, super::sig::Uart1rx, 1);
+    alt_fn!(P40, super::sig::Trig0, 2);
+    alt_fn!(P40, super::sig::Gpio40, 3);
+    alt_fn!(P40, super::sig::M4sda, 4);
+    alt_fn!(P40, super::sig::M4miso, 5);
+    alt_fn!(P40, super::sig::Slmisolb, 6);
+    alt_fn!(P40, super::sig::Slsdalb, 7);
+
+pin!(P41, P41, GPIO, Gpio, _P41, GpioPin, _GPIO, 41);
+    alt_fn!(P41, super::sig::M2nce1, 0);
+    alt_fn!(P41, super::sig::Clkout, 1);
+    alt_fn!(P41, super::sig::Swo, 2);
+    alt_fn!(P41, super::sig::Gpio41, 3);
+    alt_fn!(P41, super::sig::M3nce5, 4);
+    alt_fn!(P41, super::sig::M5nce7, 5);
+    alt_fn!(P41, super::sig::M4nce2, 6);
+    alt_fn!(P41, super::sig::Ua0rts, 7);
+
+pin!(P42, P42, GPIO, Gpio, _P42, GpioPin, _GPIO, 42);
+    alt_fn!(P42, super::sig::M2nce2, 0);
+    alt_fn!(P42, super::sig::M0nce0, 1);
+    alt_fn!(P42, super::sig::Tcta0, 2);
+    alt_fn!(P42, super::sig::Gpio42, 3);
+    alt_fn!(P42, super::sig::M3scl, 4);
+    alt_fn!(P42, super::sig::M3sck, 5);
+    alt_fn!(P42, super::sig::M3scklb, 6);
+    alt_fn!(P42, super::sig::M3scllb, 7);
+
+pin!(P43, P43, GPIO, Gpio, _P43, GpioPin, _GPIO, 43);
+    alt_fn!(P43, super::sig::M2nce4, 0);
+    alt_fn!(P43, super::sig::M0nce1, 1);
+    alt_fn!(P43, super::sig::Tctb0, 2);
+    alt_fn!(P43, super::sig::Gpio43, 3);
+    alt_fn!(P43, super::sig::M3sda, 4);
+    alt_fn!(P43, super::sig::M3miso, 5);
+    alt_fn!(P43, super::sig::Slmisolb, 6);
+    alt_fn!(P43, super::sig::Slsdalb, 7);
+
+pin!(P44, P44, GPIO, Gpio, _P44, GpioPin, _GPIO, 44);
+    alt_fn!(P44, super::sig::Ua1rts, 0);
+    alt_fn!(P44, super::sig::M0nce2, 1);
+    alt_fn!(P44, super::sig::Tcta1, 2);
+    alt_fn!(P44, super::sig::Gpio44, 3);
+    alt_fn!(P44, super::sig::M4wir3, 4);
+    alt_fn!(P44, super::sig::M4mosi, 5);
+    alt_fn!(P44, super::sig::M5nce6, 6);
+    alt_fn!(P44, super::sig::Slwir3lb, 7);
+
+pin!(P45, P45, GPIO, Gpio, _P45, GpioPin, _GPIO, 45);
+    alt_fn!(P45, super::sig::Ua1cts, 0);
+    alt_fn!(P45, super::sig::M0nce3, 1);
+    alt_fn!(P45, super::sig::Tctb1, 2);
+    alt_fn!(P45, super::sig::Gpio45, 3);
+    alt_fn!(P45, super::sig::M4nce3, 4);
+    alt_fn!(P45, super::sig::M3nce6, 5);
+    alt_fn!(P45, super::sig::M5nce5, 6);
+    alt_fn!(P45, super::sig::Swo, 7);
+
+pin!(P46, P46, GPIO, Gpio, _P46, GpioPin, _GPIO, 46);
+    alt_fn!(P46, super::sig::Xt32khz, 0);
+    alt_fn!(P46, super::sig::M0nce4, 1);
+    alt_fn!(P46, super::sig::Tcta2, 2);
+    alt_fn!(P46, super::sig::Gpio46, 3);
+    alt_fn!(P46, super::sig::Tcta1, 4);
+    alt_fn!(P46, super::sig::M5nce4, 5);
+    alt_fn!(P46, super::sig::M4nce4, 6);
+    alt_fn!(P46, super::sig::Swo, 7);
+
+pin!(P47, P47, GPIO, Gpio, _P47, GpioPin, _GPIO, 47);
+    alt_fn!(P47, super::sig::M2nce5, 0);
+    alt_fn!(P47, super::sig::M0nce5, 1);
+    alt_fn!(P47, super::sig::Tctb2, 2);
+    alt_fn!(P47, super::sig::Gpio47, 3);
+    alt_fn!(P47, super::sig::M5wir3, 4);
+    alt_fn!(P47, super::sig::M5mosi, 5);
+    alt_fn!(P47, super::sig::M4nce5, 6);
+    alt_fn!(P47, super::sig::Slwir3lb, 7);
+
+pin!(P48, P48, GPIO, Gpio, _P48, GpioPin, _GPIO, 48);
+    alt_fn!(P48, super::sig::M2nce6, 0);
+    alt_fn!(P48, super::sig::M0nce6, 1);
+    alt_fn!(P48, super::sig::Tcta3, 2);
+    alt_fn!(P48, super::sig::Gpio48, 3);
+    alt_fn!(P48, super::sig::M5scl, 4);
+    alt_fn!(P48, super::sig::M5sck, 5);
+    alt_fn!(P48, super::sig::M5scklb, 6);
+    alt_fn!(P48, super::sig::M5scllb, 7);
+
+pin!(P49, P49, GPIO, Gpio, _P49, GpioPin, _GPIO, 49);
+    alt_fn!(P49, super::sig::M2nce7, 0);
+    alt_fn!(P49, super::sig::M0nce7, 1);
+    alt_fn!(P49, super::sig::Tctb3, 2);
+    alt_fn!(P49, super::sig::Gpio49, 3);
+    alt_fn!(P49, super::sig::M5sda, 4);
+    alt_fn!(P49, super::sig::M5miso, 5);
+    alt_fn!(P49, super::sig::Slmisolb, 6);
+    alt_fn!(P49, super::sig::Slsdalb, 7);
+
 

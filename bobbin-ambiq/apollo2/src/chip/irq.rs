@@ -5,7 +5,6 @@
 pub type Handler = extern "C" fn();
 
 irq!(IRQ_ADC, IrqAdc, 16);
-irq!(IRQ_GPIO, IrqGpio, 12);
 irq!(IRQ_IOMSTR0, IrqIomstr0, 6);
 irq!(IRQ_IOMSTR1, IrqIomstr1, 7);
 irq!(IRQ_IOMSTR2, IrqIomstr2, 8);
@@ -18,6 +17,7 @@ irq!(IRQ_PDM, IrqPdm, 17);
 irq!(IRQ_UART0, IrqUart0, 14);
 irq!(IRQ_UART1, IrqUart1, 15);
 irq!(IRQ_VCOMP, IrqVcomp, 3);
+irq!(IRQ_GPIO, IrqGpio, 12);
 
 pub fn handler(index: usize) -> Option<Handler> {
     unsafe { 
