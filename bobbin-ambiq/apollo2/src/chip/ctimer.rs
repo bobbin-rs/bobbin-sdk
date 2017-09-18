@@ -7,21 +7,21 @@ periph!( CTIMER, Ctimer, _CTIMER, CtimerPeriph, 0x40008000);
 pub struct CtimerPeriph(pub usize); 
 
 impl super::sig::Signal<super::sig::Tcta0> for Ctimer {}
-impl super::sig::SignalTcta0<super::sig::Tcta0> for Ctimer {}
+impl super::sig::SignalTctA0<super::sig::Tcta0> for Ctimer {}
 impl super::sig::Signal<super::sig::Tcta1> for Ctimer {}
-impl super::sig::SignalTcta1<super::sig::Tcta1> for Ctimer {}
+impl super::sig::SignalTctA1<super::sig::Tcta1> for Ctimer {}
 impl super::sig::Signal<super::sig::Tcta2> for Ctimer {}
-impl super::sig::SignalTcta2<super::sig::Tcta2> for Ctimer {}
+impl super::sig::SignalTctA2<super::sig::Tcta2> for Ctimer {}
 impl super::sig::Signal<super::sig::Tcta3> for Ctimer {}
-impl super::sig::SignalTcta3<super::sig::Tcta3> for Ctimer {}
+impl super::sig::SignalTctA3<super::sig::Tcta3> for Ctimer {}
 impl super::sig::Signal<super::sig::Tctb0> for Ctimer {}
-impl super::sig::SignalTctb0<super::sig::Tctb0> for Ctimer {}
+impl super::sig::SignalTctB0<super::sig::Tctb0> for Ctimer {}
 impl super::sig::Signal<super::sig::Tctb1> for Ctimer {}
-impl super::sig::SignalTctb1<super::sig::Tctb1> for Ctimer {}
+impl super::sig::SignalTctB1<super::sig::Tctb1> for Ctimer {}
 impl super::sig::Signal<super::sig::Tctb2> for Ctimer {}
-impl super::sig::SignalTctb2<super::sig::Tctb2> for Ctimer {}
+impl super::sig::SignalTctB2<super::sig::Tctb2> for Ctimer {}
 impl super::sig::Signal<super::sig::Tctb3> for Ctimer {}
-impl super::sig::SignalTctb3<super::sig::Tctb3> for Ctimer {}
+impl super::sig::SignalTctB3<super::sig::Tctb3> for Ctimer {}
 
 
 impl CtimerPeriph {

@@ -10,7 +10,6 @@ pub use bobbin_cortexm::chip::itm;
 
 pub mod irq;
 pub mod sig;
-pub mod ctimer;
 pub mod stimer;
 pub mod mcuctrl;
 pub mod pwrctrl;
