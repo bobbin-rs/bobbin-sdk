@@ -32,6 +32,14 @@ impl super::sig::Signal<super::sig::Adcd1p> for Adc {}
 impl super::sig::SignalAdcD1p<super::sig::Adcd1p> for Adc {}
 impl super::sig::Signal<super::sig::Adcd1n> for Adc {}
 impl super::sig::SignalAdcD1n<super::sig::Adcd1n> for Adc {}
+impl super::sig::Signal<super::sig::Trig0> for Adc {}
+impl super::sig::SignalAdcTrig0<super::sig::Trig0> for Adc {}
+impl super::sig::Signal<super::sig::Trig1> for Adc {}
+impl super::sig::SignalAdcTrig1<super::sig::Trig1> for Adc {}
+impl super::sig::Signal<super::sig::Trig2> for Adc {}
+impl super::sig::SignalAdcTrig2<super::sig::Trig2> for Adc {}
+impl super::sig::Signal<super::sig::Trig3> for Adc {}
+impl super::sig::SignalAdcTrig3<super::sig::Trig3> for Adc {}
 
 
 impl AdcPeriph {
@@ -134,266 +142,36 @@ impl AdcPeriph {
         self
     }
 
-    #[doc="Get the *mut pointer for the SL0CFG register."]
-    #[inline] pub fn sl0cfg_mut(&self) -> *mut Sl0cfg { 
-        (self.0 + 0xc) as *mut Sl0cfg
+    #[doc="Get the *mut pointer for the SLCFG register."]
+    #[inline] pub fn slcfg_mut<I: Into<bits::R8>>(&self, index: I) -> *mut Slcfg { 
+        let index: usize = index.into().value() as usize;
+        (self.0 + 0xc + (index << 2)) as *mut Slcfg
     }
 
-    #[doc="Get the *const pointer for the SL0CFG register."]
-    #[inline] pub fn sl0cfg_ptr(&self) -> *const Sl0cfg { 
-           self.sl0cfg_mut()
+    #[doc="Get the *const pointer for the SLCFG register."]
+    #[inline] pub fn slcfg_ptr<I: Into<bits::R8>>(&self, index: I) -> *const Slcfg { 
+           self.slcfg_mut(index)
     }
 
-    #[doc="Read the SL0CFG register."]
-    #[inline] pub fn sl0cfg(&self) -> Sl0cfg { 
+    #[doc="Read the SLCFG register."]
+    #[inline] pub fn slcfg<I: Into<bits::R8>>(&self, index: I) -> Slcfg { 
         unsafe {
-            read_volatile(self.sl0cfg_ptr())
+            read_volatile(self.slcfg_ptr(index))
         }
     }
 
-    #[doc="Write the SL0CFG register."]
-    #[inline] pub fn set_sl0cfg<F: FnOnce(Sl0cfg) -> Sl0cfg>(&self, f: F) -> &Self {
+    #[doc="Write the SLCFG register."]
+    #[inline] pub fn set_slcfg<I: Into<bits::R8>, F: FnOnce(Slcfg) -> Slcfg>(&self, index: I, f: F) -> &Self {
         unsafe {
-            write_volatile(self.sl0cfg_mut(), f(Sl0cfg(0)));
-        }
-        self
-    }
-
-    #[doc="Modify the SL0CFG register."]
-    #[inline] pub fn with_sl0cfg<F: FnOnce(Sl0cfg) -> Sl0cfg>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.sl0cfg_mut(), f(self.sl0cfg()));
+            write_volatile(self.slcfg_mut(index), f(Slcfg(0)));
         }
         self
     }
 
-    #[doc="Get the *mut pointer for the SL1CFG register."]
-    #[inline] pub fn sl1cfg_mut(&self) -> *mut Sl1cfg { 
-        (self.0 + 0x10) as *mut Sl1cfg
-    }
-
-    #[doc="Get the *const pointer for the SL1CFG register."]
-    #[inline] pub fn sl1cfg_ptr(&self) -> *const Sl1cfg { 
-           self.sl1cfg_mut()
-    }
-
-    #[doc="Read the SL1CFG register."]
-    #[inline] pub fn sl1cfg(&self) -> Sl1cfg { 
+    #[doc="Modify the SLCFG register."]
+    #[inline] pub fn with_slcfg<I: Into<bits::R8> + Copy, F: FnOnce(Slcfg) -> Slcfg>(&self, index: I, f: F) -> &Self {
         unsafe {
-            read_volatile(self.sl1cfg_ptr())
-        }
-    }
-
-    #[doc="Write the SL1CFG register."]
-    #[inline] pub fn set_sl1cfg<F: FnOnce(Sl1cfg) -> Sl1cfg>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.sl1cfg_mut(), f(Sl1cfg(0)));
-        }
-        self
-    }
-
-    #[doc="Modify the SL1CFG register."]
-    #[inline] pub fn with_sl1cfg<F: FnOnce(Sl1cfg) -> Sl1cfg>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.sl1cfg_mut(), f(self.sl1cfg()));
-        }
-        self
-    }
-
-    #[doc="Get the *mut pointer for the SL2CFG register."]
-    #[inline] pub fn sl2cfg_mut(&self) -> *mut Sl2cfg { 
-        (self.0 + 0x14) as *mut Sl2cfg
-    }
-
-    #[doc="Get the *const pointer for the SL2CFG register."]
-    #[inline] pub fn sl2cfg_ptr(&self) -> *const Sl2cfg { 
-           self.sl2cfg_mut()
-    }
-
-    #[doc="Read the SL2CFG register."]
-    #[inline] pub fn sl2cfg(&self) -> Sl2cfg { 
-        unsafe {
-            read_volatile(self.sl2cfg_ptr())
-        }
-    }
-
-    #[doc="Write the SL2CFG register."]
-    #[inline] pub fn set_sl2cfg<F: FnOnce(Sl2cfg) -> Sl2cfg>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.sl2cfg_mut(), f(Sl2cfg(0)));
-        }
-        self
-    }
-
-    #[doc="Modify the SL2CFG register."]
-    #[inline] pub fn with_sl2cfg<F: FnOnce(Sl2cfg) -> Sl2cfg>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.sl2cfg_mut(), f(self.sl2cfg()));
-        }
-        self
-    }
-
-    #[doc="Get the *mut pointer for the SL3CFG register."]
-    #[inline] pub fn sl3cfg_mut(&self) -> *mut Sl3cfg { 
-        (self.0 + 0x18) as *mut Sl3cfg
-    }
-
-    #[doc="Get the *const pointer for the SL3CFG register."]
-    #[inline] pub fn sl3cfg_ptr(&self) -> *const Sl3cfg { 
-           self.sl3cfg_mut()
-    }
-
-    #[doc="Read the SL3CFG register."]
-    #[inline] pub fn sl3cfg(&self) -> Sl3cfg { 
-        unsafe {
-            read_volatile(self.sl3cfg_ptr())
-        }
-    }
-
-    #[doc="Write the SL3CFG register."]
-    #[inline] pub fn set_sl3cfg<F: FnOnce(Sl3cfg) -> Sl3cfg>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.sl3cfg_mut(), f(Sl3cfg(0)));
-        }
-        self
-    }
-
-    #[doc="Modify the SL3CFG register."]
-    #[inline] pub fn with_sl3cfg<F: FnOnce(Sl3cfg) -> Sl3cfg>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.sl3cfg_mut(), f(self.sl3cfg()));
-        }
-        self
-    }
-
-    #[doc="Get the *mut pointer for the SL4CFG register."]
-    #[inline] pub fn sl4cfg_mut(&self) -> *mut Sl4cfg { 
-        (self.0 + 0x1c) as *mut Sl4cfg
-    }
-
-    #[doc="Get the *const pointer for the SL4CFG register."]
-    #[inline] pub fn sl4cfg_ptr(&self) -> *const Sl4cfg { 
-           self.sl4cfg_mut()
-    }
-
-    #[doc="Read the SL4CFG register."]
-    #[inline] pub fn sl4cfg(&self) -> Sl4cfg { 
-        unsafe {
-            read_volatile(self.sl4cfg_ptr())
-        }
-    }
-
-    #[doc="Write the SL4CFG register."]
-    #[inline] pub fn set_sl4cfg<F: FnOnce(Sl4cfg) -> Sl4cfg>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.sl4cfg_mut(), f(Sl4cfg(0)));
-        }
-        self
-    }
-
-    #[doc="Modify the SL4CFG register."]
-    #[inline] pub fn with_sl4cfg<F: FnOnce(Sl4cfg) -> Sl4cfg>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.sl4cfg_mut(), f(self.sl4cfg()));
-        }
-        self
-    }
-
-    #[doc="Get the *mut pointer for the SL5CFG register."]
-    #[inline] pub fn sl5cfg_mut(&self) -> *mut Sl5cfg { 
-        (self.0 + 0x20) as *mut Sl5cfg
-    }
-
-    #[doc="Get the *const pointer for the SL5CFG register."]
-    #[inline] pub fn sl5cfg_ptr(&self) -> *const Sl5cfg { 
-           self.sl5cfg_mut()
-    }
-
-    #[doc="Read the SL5CFG register."]
-    #[inline] pub fn sl5cfg(&self) -> Sl5cfg { 
-        unsafe {
-            read_volatile(self.sl5cfg_ptr())
-        }
-    }
-
-    #[doc="Write the SL5CFG register."]
-    #[inline] pub fn set_sl5cfg<F: FnOnce(Sl5cfg) -> Sl5cfg>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.sl5cfg_mut(), f(Sl5cfg(0)));
-        }
-        self
-    }
-
-    #[doc="Modify the SL5CFG register."]
-    #[inline] pub fn with_sl5cfg<F: FnOnce(Sl5cfg) -> Sl5cfg>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.sl5cfg_mut(), f(self.sl5cfg()));
-        }
-        self
-    }
-
-    #[doc="Get the *mut pointer for the SL6CFG register."]
-    #[inline] pub fn sl6cfg_mut(&self) -> *mut Sl6cfg { 
-        (self.0 + 0x24) as *mut Sl6cfg
-    }
-
-    #[doc="Get the *const pointer for the SL6CFG register."]
-    #[inline] pub fn sl6cfg_ptr(&self) -> *const Sl6cfg { 
-           self.sl6cfg_mut()
-    }
-
-    #[doc="Read the SL6CFG register."]
-    #[inline] pub fn sl6cfg(&self) -> Sl6cfg { 
-        unsafe {
-            read_volatile(self.sl6cfg_ptr())
-        }
-    }
-
-    #[doc="Write the SL6CFG register."]
-    #[inline] pub fn set_sl6cfg<F: FnOnce(Sl6cfg) -> Sl6cfg>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.sl6cfg_mut(), f(Sl6cfg(0)));
-        }
-        self
-    }
-
-    #[doc="Modify the SL6CFG register."]
-    #[inline] pub fn with_sl6cfg<F: FnOnce(Sl6cfg) -> Sl6cfg>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.sl6cfg_mut(), f(self.sl6cfg()));
-        }
-        self
-    }
-
-    #[doc="Get the *mut pointer for the SL7CFG register."]
-    #[inline] pub fn sl7cfg_mut(&self) -> *mut Sl7cfg { 
-        (self.0 + 0x28) as *mut Sl7cfg
-    }
-
-    #[doc="Get the *const pointer for the SL7CFG register."]
-    #[inline] pub fn sl7cfg_ptr(&self) -> *const Sl7cfg { 
-           self.sl7cfg_mut()
-    }
-
-    #[doc="Read the SL7CFG register."]
-    #[inline] pub fn sl7cfg(&self) -> Sl7cfg { 
-        unsafe {
-            read_volatile(self.sl7cfg_ptr())
-        }
-    }
-
-    #[doc="Write the SL7CFG register."]
-    #[inline] pub fn set_sl7cfg<F: FnOnce(Sl7cfg) -> Sl7cfg>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.sl7cfg_mut(), f(Sl7cfg(0)));
-        }
-        self
-    }
-
-    #[doc="Modify the SL7CFG register."]
-    #[inline] pub fn with_sl7cfg<F: FnOnce(Sl7cfg) -> Sl7cfg>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.sl7cfg_mut(), f(self.sl7cfg()));
+            write_volatile(self.slcfg_mut(index), f(self.slcfg(index)));
         }
         self
     }
@@ -914,20 +692,20 @@ impl ::core::fmt::Debug for Swt {
 
 #[doc="Slot 0 Configuration Register"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
-pub struct Sl0cfg(pub u32);
-impl Sl0cfg {
+pub struct Slcfg(pub u32);
+impl Slcfg {
     #[doc="Select the number of measurements to average in the accumulate divide module for this slot."]
-    #[inline] pub fn adsel0(&self) -> bits::U3 {
+    #[inline] pub fn adsel(&self) -> bits::U3 {
         unsafe { ::core::mem::transmute(((self.0 >> 24) & 0x7) as u8) } // [26:24]
     }
 
-    #[doc="Returns true if ADSEL0 != 0"]
-    #[inline] pub fn test_adsel0(&self) -> bool {
-        self.adsel0() != 0
+    #[doc="Returns true if ADSEL != 0"]
+    #[inline] pub fn test_adsel(&self) -> bool {
+        self.adsel() != 0
     }
 
-    #[doc="Sets the ADSEL0 field."]
-    #[inline] pub fn set_adsel0<V: Into<bits::U3>>(mut self, value: V) -> Self {
+    #[doc="Sets the ADSEL field."]
+    #[inline] pub fn set_adsel<V: Into<bits::U3>>(mut self, value: V) -> Self {
         let value: bits::U3 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x7 << 24);
@@ -936,17 +714,17 @@ impl Sl0cfg {
     }
 
     #[doc="Set the Precision Mode For Slot."]
-    #[inline] pub fn prmode0(&self) -> bits::U2 {
+    #[inline] pub fn prmode(&self) -> bits::U2 {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x3) as u8) } // [17:16]
     }
 
-    #[doc="Returns true if PRMODE0 != 0"]
-    #[inline] pub fn test_prmode0(&self) -> bool {
-        self.prmode0() != 0
+    #[doc="Returns true if PRMODE != 0"]
+    #[inline] pub fn test_prmode(&self) -> bool {
+        self.prmode() != 0
     }
 
-    #[doc="Sets the PRMODE0 field."]
-    #[inline] pub fn set_prmode0<V: Into<bits::U2>>(mut self, value: V) -> Self {
+    #[doc="Sets the PRMODE field."]
+    #[inline] pub fn set_prmode<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x3 << 16);
@@ -955,17 +733,17 @@ impl Sl0cfg {
     }
 
     #[doc="Select one of the 14 channel inputs for this slot."]
-    #[inline] pub fn chsel0(&self) -> bits::U4 {
+    #[inline] pub fn chsel(&self) -> bits::U4 {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0xf) as u8) } // [11:8]
     }
 
-    #[doc="Returns true if CHSEL0 != 0"]
-    #[inline] pub fn test_chsel0(&self) -> bool {
-        self.chsel0() != 0
+    #[doc="Returns true if CHSEL != 0"]
+    #[inline] pub fn test_chsel(&self) -> bool {
+        self.chsel() != 0
     }
 
-    #[doc="Sets the CHSEL0 field."]
-    #[inline] pub fn set_chsel0<V: Into<bits::U4>>(mut self, value: V) -> Self {
+    #[doc="Sets the CHSEL field."]
+    #[inline] pub fn set_chsel<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0xf << 8);
@@ -974,17 +752,17 @@ impl Sl0cfg {
     }
 
     #[doc="This bit enables the window compare function for slot 0."]
-    #[inline] pub fn wcen0(&self) -> bits::U1 {
+    #[inline] pub fn wcen(&self) -> bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="Returns true if WCEN0 != 0"]
-    #[inline] pub fn test_wcen0(&self) -> bool {
-        self.wcen0() != 0
+    #[doc="Returns true if WCEN != 0"]
+    #[inline] pub fn test_wcen(&self) -> bool {
+        self.wcen() != 0
     }
 
-    #[doc="Sets the WCEN0 field."]
-    #[inline] pub fn set_wcen0<V: Into<bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the WCEN field."]
+    #[inline] pub fn set_wcen<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 1);
@@ -993,17 +771,17 @@ impl Sl0cfg {
     }
 
     #[doc="This bit enables slot 0 for ADC conversions."]
-    #[inline] pub fn slen0(&self) -> bits::U1 {
+    #[inline] pub fn slen(&self) -> bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Returns true if SLEN0 != 0"]
-    #[inline] pub fn test_slen0(&self) -> bool {
-        self.slen0() != 0
+    #[doc="Returns true if SLEN != 0"]
+    #[inline] pub fn test_slen(&self) -> bool {
+        self.slen() != 0
     }
 
-    #[doc="Sets the SLEN0 field."]
-    #[inline] pub fn set_slen0<V: Into<bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the SLEN field."]
+    #[inline] pub fn set_slen<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 0);
@@ -1013,916 +791,27 @@ impl Sl0cfg {
 
 }
 
-impl From<u32> for Sl0cfg {
+impl From<u32> for Slcfg {
     #[inline]
     fn from(other: u32) -> Self {
-         Sl0cfg(other)
+         Slcfg(other)
     }
 }
 
-impl ::core::fmt::Display for Sl0cfg {
+impl ::core::fmt::Display for Slcfg {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
     }
 }
 
-impl ::core::fmt::Debug for Sl0cfg {
+impl ::core::fmt::Debug for Slcfg {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
         try!(write!(f, "[0x{:08x}", self.0));
-        if self.adsel0() != 0 { try!(write!(f, " adsel0=0x{:x}", self.adsel0()))}
-        if self.prmode0() != 0 { try!(write!(f, " prmode0=0x{:x}", self.prmode0()))}
-        if self.chsel0() != 0 { try!(write!(f, " chsel0=0x{:x}", self.chsel0()))}
-        if self.wcen0() != 0 { try!(write!(f, " wcen0"))}
-        if self.slen0() != 0 { try!(write!(f, " slen0"))}
-        try!(write!(f, "]"));
-        Ok(())
-    }
-}
-
-#[doc="Slot 1 Configuration Register"]
-#[derive(Default, Clone, Copy, PartialEq, Eq)]
-pub struct Sl1cfg(pub u32);
-impl Sl1cfg {
-    #[doc="Select the number of measurements to average in the accumulate divide module for this slot."]
-    #[inline] pub fn adsel1(&self) -> bits::U3 {
-        unsafe { ::core::mem::transmute(((self.0 >> 24) & 0x7) as u8) } // [26:24]
-    }
-
-    #[doc="Returns true if ADSEL1 != 0"]
-    #[inline] pub fn test_adsel1(&self) -> bool {
-        self.adsel1() != 0
-    }
-
-    #[doc="Sets the ADSEL1 field."]
-    #[inline] pub fn set_adsel1<V: Into<bits::U3>>(mut self, value: V) -> Self {
-        let value: bits::U3 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x7 << 24);
-        self.0 |= value << 24;
-        self
-    }
-
-    #[doc="Set the Precision Mode For Slot."]
-    #[inline] pub fn prmode1(&self) -> bits::U2 {
-        unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x3) as u8) } // [17:16]
-    }
-
-    #[doc="Returns true if PRMODE1 != 0"]
-    #[inline] pub fn test_prmode1(&self) -> bool {
-        self.prmode1() != 0
-    }
-
-    #[doc="Sets the PRMODE1 field."]
-    #[inline] pub fn set_prmode1<V: Into<bits::U2>>(mut self, value: V) -> Self {
-        let value: bits::U2 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x3 << 16);
-        self.0 |= value << 16;
-        self
-    }
-
-    #[doc="Select one of the 14 channel inputs for this slot."]
-    #[inline] pub fn chsel1(&self) -> bits::U4 {
-        unsafe { ::core::mem::transmute(((self.0 >> 8) & 0xf) as u8) } // [11:8]
-    }
-
-    #[doc="Returns true if CHSEL1 != 0"]
-    #[inline] pub fn test_chsel1(&self) -> bool {
-        self.chsel1() != 0
-    }
-
-    #[doc="Sets the CHSEL1 field."]
-    #[inline] pub fn set_chsel1<V: Into<bits::U4>>(mut self, value: V) -> Self {
-        let value: bits::U4 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0xf << 8);
-        self.0 |= value << 8;
-        self
-    }
-
-    #[doc="This bit enables the window compare function for slot 1."]
-    #[inline] pub fn wcen1(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
-    }
-
-    #[doc="Returns true if WCEN1 != 0"]
-    #[inline] pub fn test_wcen1(&self) -> bool {
-        self.wcen1() != 0
-    }
-
-    #[doc="Sets the WCEN1 field."]
-    #[inline] pub fn set_wcen1<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 1);
-        self.0 |= value << 1;
-        self
-    }
-
-    #[doc="This bit enables slot 1 for ADC conversions."]
-    #[inline] pub fn slen1(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
-    }
-
-    #[doc="Returns true if SLEN1 != 0"]
-    #[inline] pub fn test_slen1(&self) -> bool {
-        self.slen1() != 0
-    }
-
-    #[doc="Sets the SLEN1 field."]
-    #[inline] pub fn set_slen1<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 0);
-        self.0 |= value << 0;
-        self
-    }
-
-}
-
-impl From<u32> for Sl1cfg {
-    #[inline]
-    fn from(other: u32) -> Self {
-         Sl1cfg(other)
-    }
-}
-
-impl ::core::fmt::Display for Sl1cfg {
-    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-         self.0.fmt(f)
-    }
-}
-
-impl ::core::fmt::Debug for Sl1cfg {
-    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-        try!(write!(f, "[0x{:08x}", self.0));
-        if self.adsel1() != 0 { try!(write!(f, " adsel1=0x{:x}", self.adsel1()))}
-        if self.prmode1() != 0 { try!(write!(f, " prmode1=0x{:x}", self.prmode1()))}
-        if self.chsel1() != 0 { try!(write!(f, " chsel1=0x{:x}", self.chsel1()))}
-        if self.wcen1() != 0 { try!(write!(f, " wcen1"))}
-        if self.slen1() != 0 { try!(write!(f, " slen1"))}
-        try!(write!(f, "]"));
-        Ok(())
-    }
-}
-
-#[doc="Slot 2 Configuration Register"]
-#[derive(Default, Clone, Copy, PartialEq, Eq)]
-pub struct Sl2cfg(pub u32);
-impl Sl2cfg {
-    #[doc="Select the number of measurements to average in the accumulate divide module for this slot."]
-    #[inline] pub fn adsel2(&self) -> bits::U3 {
-        unsafe { ::core::mem::transmute(((self.0 >> 24) & 0x7) as u8) } // [26:24]
-    }
-
-    #[doc="Returns true if ADSEL2 != 0"]
-    #[inline] pub fn test_adsel2(&self) -> bool {
-        self.adsel2() != 0
-    }
-
-    #[doc="Sets the ADSEL2 field."]
-    #[inline] pub fn set_adsel2<V: Into<bits::U3>>(mut self, value: V) -> Self {
-        let value: bits::U3 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x7 << 24);
-        self.0 |= value << 24;
-        self
-    }
-
-    #[doc="Set the Precision Mode For Slot."]
-    #[inline] pub fn prmode2(&self) -> bits::U2 {
-        unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x3) as u8) } // [17:16]
-    }
-
-    #[doc="Returns true if PRMODE2 != 0"]
-    #[inline] pub fn test_prmode2(&self) -> bool {
-        self.prmode2() != 0
-    }
-
-    #[doc="Sets the PRMODE2 field."]
-    #[inline] pub fn set_prmode2<V: Into<bits::U2>>(mut self, value: V) -> Self {
-        let value: bits::U2 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x3 << 16);
-        self.0 |= value << 16;
-        self
-    }
-
-    #[doc="Select one of the 14 channel inputs for this slot."]
-    #[inline] pub fn chsel2(&self) -> bits::U4 {
-        unsafe { ::core::mem::transmute(((self.0 >> 8) & 0xf) as u8) } // [11:8]
-    }
-
-    #[doc="Returns true if CHSEL2 != 0"]
-    #[inline] pub fn test_chsel2(&self) -> bool {
-        self.chsel2() != 0
-    }
-
-    #[doc="Sets the CHSEL2 field."]
-    #[inline] pub fn set_chsel2<V: Into<bits::U4>>(mut self, value: V) -> Self {
-        let value: bits::U4 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0xf << 8);
-        self.0 |= value << 8;
-        self
-    }
-
-    #[doc="This bit enables the window compare function for slot 2."]
-    #[inline] pub fn wcen2(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
-    }
-
-    #[doc="Returns true if WCEN2 != 0"]
-    #[inline] pub fn test_wcen2(&self) -> bool {
-        self.wcen2() != 0
-    }
-
-    #[doc="Sets the WCEN2 field."]
-    #[inline] pub fn set_wcen2<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 1);
-        self.0 |= value << 1;
-        self
-    }
-
-    #[doc="This bit enables slot 2 for ADC conversions."]
-    #[inline] pub fn slen2(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
-    }
-
-    #[doc="Returns true if SLEN2 != 0"]
-    #[inline] pub fn test_slen2(&self) -> bool {
-        self.slen2() != 0
-    }
-
-    #[doc="Sets the SLEN2 field."]
-    #[inline] pub fn set_slen2<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 0);
-        self.0 |= value << 0;
-        self
-    }
-
-}
-
-impl From<u32> for Sl2cfg {
-    #[inline]
-    fn from(other: u32) -> Self {
-         Sl2cfg(other)
-    }
-}
-
-impl ::core::fmt::Display for Sl2cfg {
-    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-         self.0.fmt(f)
-    }
-}
-
-impl ::core::fmt::Debug for Sl2cfg {
-    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-        try!(write!(f, "[0x{:08x}", self.0));
-        if self.adsel2() != 0 { try!(write!(f, " adsel2=0x{:x}", self.adsel2()))}
-        if self.prmode2() != 0 { try!(write!(f, " prmode2=0x{:x}", self.prmode2()))}
-        if self.chsel2() != 0 { try!(write!(f, " chsel2=0x{:x}", self.chsel2()))}
-        if self.wcen2() != 0 { try!(write!(f, " wcen2"))}
-        if self.slen2() != 0 { try!(write!(f, " slen2"))}
-        try!(write!(f, "]"));
-        Ok(())
-    }
-}
-
-#[doc="Slot 3 Configuration Register"]
-#[derive(Default, Clone, Copy, PartialEq, Eq)]
-pub struct Sl3cfg(pub u32);
-impl Sl3cfg {
-    #[doc="Select the number of measurements to average in the accumulate divide module for this slot."]
-    #[inline] pub fn adsel3(&self) -> bits::U3 {
-        unsafe { ::core::mem::transmute(((self.0 >> 24) & 0x7) as u8) } // [26:24]
-    }
-
-    #[doc="Returns true if ADSEL3 != 0"]
-    #[inline] pub fn test_adsel3(&self) -> bool {
-        self.adsel3() != 0
-    }
-
-    #[doc="Sets the ADSEL3 field."]
-    #[inline] pub fn set_adsel3<V: Into<bits::U3>>(mut self, value: V) -> Self {
-        let value: bits::U3 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x7 << 24);
-        self.0 |= value << 24;
-        self
-    }
-
-    #[doc="Set the Precision Mode For Slot."]
-    #[inline] pub fn prmode3(&self) -> bits::U2 {
-        unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x3) as u8) } // [17:16]
-    }
-
-    #[doc="Returns true if PRMODE3 != 0"]
-    #[inline] pub fn test_prmode3(&self) -> bool {
-        self.prmode3() != 0
-    }
-
-    #[doc="Sets the PRMODE3 field."]
-    #[inline] pub fn set_prmode3<V: Into<bits::U2>>(mut self, value: V) -> Self {
-        let value: bits::U2 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x3 << 16);
-        self.0 |= value << 16;
-        self
-    }
-
-    #[doc="Select one of the 14 channel inputs for this slot."]
-    #[inline] pub fn chsel3(&self) -> bits::U4 {
-        unsafe { ::core::mem::transmute(((self.0 >> 8) & 0xf) as u8) } // [11:8]
-    }
-
-    #[doc="Returns true if CHSEL3 != 0"]
-    #[inline] pub fn test_chsel3(&self) -> bool {
-        self.chsel3() != 0
-    }
-
-    #[doc="Sets the CHSEL3 field."]
-    #[inline] pub fn set_chsel3<V: Into<bits::U4>>(mut self, value: V) -> Self {
-        let value: bits::U4 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0xf << 8);
-        self.0 |= value << 8;
-        self
-    }
-
-    #[doc="This bit enables the window compare function for slot 3."]
-    #[inline] pub fn wcen3(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
-    }
-
-    #[doc="Returns true if WCEN3 != 0"]
-    #[inline] pub fn test_wcen3(&self) -> bool {
-        self.wcen3() != 0
-    }
-
-    #[doc="Sets the WCEN3 field."]
-    #[inline] pub fn set_wcen3<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 1);
-        self.0 |= value << 1;
-        self
-    }
-
-    #[doc="This bit enables slot 3 for ADC conversions."]
-    #[inline] pub fn slen3(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
-    }
-
-    #[doc="Returns true if SLEN3 != 0"]
-    #[inline] pub fn test_slen3(&self) -> bool {
-        self.slen3() != 0
-    }
-
-    #[doc="Sets the SLEN3 field."]
-    #[inline] pub fn set_slen3<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 0);
-        self.0 |= value << 0;
-        self
-    }
-
-}
-
-impl From<u32> for Sl3cfg {
-    #[inline]
-    fn from(other: u32) -> Self {
-         Sl3cfg(other)
-    }
-}
-
-impl ::core::fmt::Display for Sl3cfg {
-    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-         self.0.fmt(f)
-    }
-}
-
-impl ::core::fmt::Debug for Sl3cfg {
-    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-        try!(write!(f, "[0x{:08x}", self.0));
-        if self.adsel3() != 0 { try!(write!(f, " adsel3=0x{:x}", self.adsel3()))}
-        if self.prmode3() != 0 { try!(write!(f, " prmode3=0x{:x}", self.prmode3()))}
-        if self.chsel3() != 0 { try!(write!(f, " chsel3=0x{:x}", self.chsel3()))}
-        if self.wcen3() != 0 { try!(write!(f, " wcen3"))}
-        if self.slen3() != 0 { try!(write!(f, " slen3"))}
-        try!(write!(f, "]"));
-        Ok(())
-    }
-}
-
-#[doc="Slot 4 Configuration Register"]
-#[derive(Default, Clone, Copy, PartialEq, Eq)]
-pub struct Sl4cfg(pub u32);
-impl Sl4cfg {
-    #[doc="Select the number of measurements to average in the accumulate divide module for this slot."]
-    #[inline] pub fn adsel4(&self) -> bits::U3 {
-        unsafe { ::core::mem::transmute(((self.0 >> 24) & 0x7) as u8) } // [26:24]
-    }
-
-    #[doc="Returns true if ADSEL4 != 0"]
-    #[inline] pub fn test_adsel4(&self) -> bool {
-        self.adsel4() != 0
-    }
-
-    #[doc="Sets the ADSEL4 field."]
-    #[inline] pub fn set_adsel4<V: Into<bits::U3>>(mut self, value: V) -> Self {
-        let value: bits::U3 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x7 << 24);
-        self.0 |= value << 24;
-        self
-    }
-
-    #[doc="Set the Precision Mode For Slot."]
-    #[inline] pub fn prmode4(&self) -> bits::U2 {
-        unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x3) as u8) } // [17:16]
-    }
-
-    #[doc="Returns true if PRMODE4 != 0"]
-    #[inline] pub fn test_prmode4(&self) -> bool {
-        self.prmode4() != 0
-    }
-
-    #[doc="Sets the PRMODE4 field."]
-    #[inline] pub fn set_prmode4<V: Into<bits::U2>>(mut self, value: V) -> Self {
-        let value: bits::U2 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x3 << 16);
-        self.0 |= value << 16;
-        self
-    }
-
-    #[doc="Select one of the 14 channel inputs for this slot."]
-    #[inline] pub fn chsel4(&self) -> bits::U4 {
-        unsafe { ::core::mem::transmute(((self.0 >> 8) & 0xf) as u8) } // [11:8]
-    }
-
-    #[doc="Returns true if CHSEL4 != 0"]
-    #[inline] pub fn test_chsel4(&self) -> bool {
-        self.chsel4() != 0
-    }
-
-    #[doc="Sets the CHSEL4 field."]
-    #[inline] pub fn set_chsel4<V: Into<bits::U4>>(mut self, value: V) -> Self {
-        let value: bits::U4 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0xf << 8);
-        self.0 |= value << 8;
-        self
-    }
-
-    #[doc="This bit enables the window compare function for slot 4."]
-    #[inline] pub fn wcen4(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
-    }
-
-    #[doc="Returns true if WCEN4 != 0"]
-    #[inline] pub fn test_wcen4(&self) -> bool {
-        self.wcen4() != 0
-    }
-
-    #[doc="Sets the WCEN4 field."]
-    #[inline] pub fn set_wcen4<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 1);
-        self.0 |= value << 1;
-        self
-    }
-
-    #[doc="This bit enables slot 4 for ADC conversions."]
-    #[inline] pub fn slen4(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
-    }
-
-    #[doc="Returns true if SLEN4 != 0"]
-    #[inline] pub fn test_slen4(&self) -> bool {
-        self.slen4() != 0
-    }
-
-    #[doc="Sets the SLEN4 field."]
-    #[inline] pub fn set_slen4<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 0);
-        self.0 |= value << 0;
-        self
-    }
-
-}
-
-impl From<u32> for Sl4cfg {
-    #[inline]
-    fn from(other: u32) -> Self {
-         Sl4cfg(other)
-    }
-}
-
-impl ::core::fmt::Display for Sl4cfg {
-    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-         self.0.fmt(f)
-    }
-}
-
-impl ::core::fmt::Debug for Sl4cfg {
-    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-        try!(write!(f, "[0x{:08x}", self.0));
-        if self.adsel4() != 0 { try!(write!(f, " adsel4=0x{:x}", self.adsel4()))}
-        if self.prmode4() != 0 { try!(write!(f, " prmode4=0x{:x}", self.prmode4()))}
-        if self.chsel4() != 0 { try!(write!(f, " chsel4=0x{:x}", self.chsel4()))}
-        if self.wcen4() != 0 { try!(write!(f, " wcen4"))}
-        if self.slen4() != 0 { try!(write!(f, " slen4"))}
-        try!(write!(f, "]"));
-        Ok(())
-    }
-}
-
-#[doc="Slot 5 Configuration Register"]
-#[derive(Default, Clone, Copy, PartialEq, Eq)]
-pub struct Sl5cfg(pub u32);
-impl Sl5cfg {
-    #[doc="Select number of measurements to average in the accumulate divide module for this slot."]
-    #[inline] pub fn adsel5(&self) -> bits::U3 {
-        unsafe { ::core::mem::transmute(((self.0 >> 24) & 0x7) as u8) } // [26:24]
-    }
-
-    #[doc="Returns true if ADSEL5 != 0"]
-    #[inline] pub fn test_adsel5(&self) -> bool {
-        self.adsel5() != 0
-    }
-
-    #[doc="Sets the ADSEL5 field."]
-    #[inline] pub fn set_adsel5<V: Into<bits::U3>>(mut self, value: V) -> Self {
-        let value: bits::U3 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x7 << 24);
-        self.0 |= value << 24;
-        self
-    }
-
-    #[doc="Set the Precision Mode For Slot."]
-    #[inline] pub fn prmode5(&self) -> bits::U2 {
-        unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x3) as u8) } // [17:16]
-    }
-
-    #[doc="Returns true if PRMODE5 != 0"]
-    #[inline] pub fn test_prmode5(&self) -> bool {
-        self.prmode5() != 0
-    }
-
-    #[doc="Sets the PRMODE5 field."]
-    #[inline] pub fn set_prmode5<V: Into<bits::U2>>(mut self, value: V) -> Self {
-        let value: bits::U2 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x3 << 16);
-        self.0 |= value << 16;
-        self
-    }
-
-    #[doc="Select one of the 14 channel inputs for this slot."]
-    #[inline] pub fn chsel5(&self) -> bits::U4 {
-        unsafe { ::core::mem::transmute(((self.0 >> 8) & 0xf) as u8) } // [11:8]
-    }
-
-    #[doc="Returns true if CHSEL5 != 0"]
-    #[inline] pub fn test_chsel5(&self) -> bool {
-        self.chsel5() != 0
-    }
-
-    #[doc="Sets the CHSEL5 field."]
-    #[inline] pub fn set_chsel5<V: Into<bits::U4>>(mut self, value: V) -> Self {
-        let value: bits::U4 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0xf << 8);
-        self.0 |= value << 8;
-        self
-    }
-
-    #[doc="This bit enables the window compare function for slot 5."]
-    #[inline] pub fn wcen5(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
-    }
-
-    #[doc="Returns true if WCEN5 != 0"]
-    #[inline] pub fn test_wcen5(&self) -> bool {
-        self.wcen5() != 0
-    }
-
-    #[doc="Sets the WCEN5 field."]
-    #[inline] pub fn set_wcen5<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 1);
-        self.0 |= value << 1;
-        self
-    }
-
-    #[doc="This bit enables slot 5 for ADC conversions."]
-    #[inline] pub fn slen5(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
-    }
-
-    #[doc="Returns true if SLEN5 != 0"]
-    #[inline] pub fn test_slen5(&self) -> bool {
-        self.slen5() != 0
-    }
-
-    #[doc="Sets the SLEN5 field."]
-    #[inline] pub fn set_slen5<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 0);
-        self.0 |= value << 0;
-        self
-    }
-
-}
-
-impl From<u32> for Sl5cfg {
-    #[inline]
-    fn from(other: u32) -> Self {
-         Sl5cfg(other)
-    }
-}
-
-impl ::core::fmt::Display for Sl5cfg {
-    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-         self.0.fmt(f)
-    }
-}
-
-impl ::core::fmt::Debug for Sl5cfg {
-    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-        try!(write!(f, "[0x{:08x}", self.0));
-        if self.adsel5() != 0 { try!(write!(f, " adsel5=0x{:x}", self.adsel5()))}
-        if self.prmode5() != 0 { try!(write!(f, " prmode5=0x{:x}", self.prmode5()))}
-        if self.chsel5() != 0 { try!(write!(f, " chsel5=0x{:x}", self.chsel5()))}
-        if self.wcen5() != 0 { try!(write!(f, " wcen5"))}
-        if self.slen5() != 0 { try!(write!(f, " slen5"))}
-        try!(write!(f, "]"));
-        Ok(())
-    }
-}
-
-#[doc="Slot 6 Configuration Register"]
-#[derive(Default, Clone, Copy, PartialEq, Eq)]
-pub struct Sl6cfg(pub u32);
-impl Sl6cfg {
-    #[doc="Select the number of measurements to average in the accumulate divide module for this slot."]
-    #[inline] pub fn adsel6(&self) -> bits::U3 {
-        unsafe { ::core::mem::transmute(((self.0 >> 24) & 0x7) as u8) } // [26:24]
-    }
-
-    #[doc="Returns true if ADSEL6 != 0"]
-    #[inline] pub fn test_adsel6(&self) -> bool {
-        self.adsel6() != 0
-    }
-
-    #[doc="Sets the ADSEL6 field."]
-    #[inline] pub fn set_adsel6<V: Into<bits::U3>>(mut self, value: V) -> Self {
-        let value: bits::U3 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x7 << 24);
-        self.0 |= value << 24;
-        self
-    }
-
-    #[doc="Set the Precision Mode For Slot."]
-    #[inline] pub fn prmode6(&self) -> bits::U2 {
-        unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x3) as u8) } // [17:16]
-    }
-
-    #[doc="Returns true if PRMODE6 != 0"]
-    #[inline] pub fn test_prmode6(&self) -> bool {
-        self.prmode6() != 0
-    }
-
-    #[doc="Sets the PRMODE6 field."]
-    #[inline] pub fn set_prmode6<V: Into<bits::U2>>(mut self, value: V) -> Self {
-        let value: bits::U2 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x3 << 16);
-        self.0 |= value << 16;
-        self
-    }
-
-    #[doc="Select one of the 14 channel inputs for this slot."]
-    #[inline] pub fn chsel6(&self) -> bits::U4 {
-        unsafe { ::core::mem::transmute(((self.0 >> 8) & 0xf) as u8) } // [11:8]
-    }
-
-    #[doc="Returns true if CHSEL6 != 0"]
-    #[inline] pub fn test_chsel6(&self) -> bool {
-        self.chsel6() != 0
-    }
-
-    #[doc="Sets the CHSEL6 field."]
-    #[inline] pub fn set_chsel6<V: Into<bits::U4>>(mut self, value: V) -> Self {
-        let value: bits::U4 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0xf << 8);
-        self.0 |= value << 8;
-        self
-    }
-
-    #[doc="This bit enables the window compare function for slot 6."]
-    #[inline] pub fn wcen6(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
-    }
-
-    #[doc="Returns true if WCEN6 != 0"]
-    #[inline] pub fn test_wcen6(&self) -> bool {
-        self.wcen6() != 0
-    }
-
-    #[doc="Sets the WCEN6 field."]
-    #[inline] pub fn set_wcen6<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 1);
-        self.0 |= value << 1;
-        self
-    }
-
-    #[doc="This bit enables slot 6 for ADC conversions."]
-    #[inline] pub fn slen6(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
-    }
-
-    #[doc="Returns true if SLEN6 != 0"]
-    #[inline] pub fn test_slen6(&self) -> bool {
-        self.slen6() != 0
-    }
-
-    #[doc="Sets the SLEN6 field."]
-    #[inline] pub fn set_slen6<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 0);
-        self.0 |= value << 0;
-        self
-    }
-
-}
-
-impl From<u32> for Sl6cfg {
-    #[inline]
-    fn from(other: u32) -> Self {
-         Sl6cfg(other)
-    }
-}
-
-impl ::core::fmt::Display for Sl6cfg {
-    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-         self.0.fmt(f)
-    }
-}
-
-impl ::core::fmt::Debug for Sl6cfg {
-    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-        try!(write!(f, "[0x{:08x}", self.0));
-        if self.adsel6() != 0 { try!(write!(f, " adsel6=0x{:x}", self.adsel6()))}
-        if self.prmode6() != 0 { try!(write!(f, " prmode6=0x{:x}", self.prmode6()))}
-        if self.chsel6() != 0 { try!(write!(f, " chsel6=0x{:x}", self.chsel6()))}
-        if self.wcen6() != 0 { try!(write!(f, " wcen6"))}
-        if self.slen6() != 0 { try!(write!(f, " slen6"))}
-        try!(write!(f, "]"));
-        Ok(())
-    }
-}
-
-#[doc="Slot 7 Configuration Register"]
-#[derive(Default, Clone, Copy, PartialEq, Eq)]
-pub struct Sl7cfg(pub u32);
-impl Sl7cfg {
-    #[doc="Select the number of measurements to average in the accumulate divide module for this slot."]
-    #[inline] pub fn adsel7(&self) -> bits::U3 {
-        unsafe { ::core::mem::transmute(((self.0 >> 24) & 0x7) as u8) } // [26:24]
-    }
-
-    #[doc="Returns true if ADSEL7 != 0"]
-    #[inline] pub fn test_adsel7(&self) -> bool {
-        self.adsel7() != 0
-    }
-
-    #[doc="Sets the ADSEL7 field."]
-    #[inline] pub fn set_adsel7<V: Into<bits::U3>>(mut self, value: V) -> Self {
-        let value: bits::U3 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x7 << 24);
-        self.0 |= value << 24;
-        self
-    }
-
-    #[doc="Set the Precision Mode For Slot."]
-    #[inline] pub fn prmode7(&self) -> bits::U2 {
-        unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x3) as u8) } // [17:16]
-    }
-
-    #[doc="Returns true if PRMODE7 != 0"]
-    #[inline] pub fn test_prmode7(&self) -> bool {
-        self.prmode7() != 0
-    }
-
-    #[doc="Sets the PRMODE7 field."]
-    #[inline] pub fn set_prmode7<V: Into<bits::U2>>(mut self, value: V) -> Self {
-        let value: bits::U2 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x3 << 16);
-        self.0 |= value << 16;
-        self
-    }
-
-    #[doc="Select one of the 14 channel inputs for this slot."]
-    #[inline] pub fn chsel7(&self) -> bits::U4 {
-        unsafe { ::core::mem::transmute(((self.0 >> 8) & 0xf) as u8) } // [11:8]
-    }
-
-    #[doc="Returns true if CHSEL7 != 0"]
-    #[inline] pub fn test_chsel7(&self) -> bool {
-        self.chsel7() != 0
-    }
-
-    #[doc="Sets the CHSEL7 field."]
-    #[inline] pub fn set_chsel7<V: Into<bits::U4>>(mut self, value: V) -> Self {
-        let value: bits::U4 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0xf << 8);
-        self.0 |= value << 8;
-        self
-    }
-
-    #[doc="This bit enables the window compare function for slot 7."]
-    #[inline] pub fn wcen7(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
-    }
-
-    #[doc="Returns true if WCEN7 != 0"]
-    #[inline] pub fn test_wcen7(&self) -> bool {
-        self.wcen7() != 0
-    }
-
-    #[doc="Sets the WCEN7 field."]
-    #[inline] pub fn set_wcen7<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 1);
-        self.0 |= value << 1;
-        self
-    }
-
-    #[doc="This bit enables slot 7 for ADC conversions."]
-    #[inline] pub fn slen7(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
-    }
-
-    #[doc="Returns true if SLEN7 != 0"]
-    #[inline] pub fn test_slen7(&self) -> bool {
-        self.slen7() != 0
-    }
-
-    #[doc="Sets the SLEN7 field."]
-    #[inline] pub fn set_slen7<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 0);
-        self.0 |= value << 0;
-        self
-    }
-
-}
-
-impl From<u32> for Sl7cfg {
-    #[inline]
-    fn from(other: u32) -> Self {
-         Sl7cfg(other)
-    }
-}
-
-impl ::core::fmt::Display for Sl7cfg {
-    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-         self.0.fmt(f)
-    }
-}
-
-impl ::core::fmt::Debug for Sl7cfg {
-    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-        try!(write!(f, "[0x{:08x}", self.0));
-        if self.adsel7() != 0 { try!(write!(f, " adsel7=0x{:x}", self.adsel7()))}
-        if self.prmode7() != 0 { try!(write!(f, " prmode7=0x{:x}", self.prmode7()))}
-        if self.chsel7() != 0 { try!(write!(f, " chsel7=0x{:x}", self.chsel7()))}
-        if self.wcen7() != 0 { try!(write!(f, " wcen7"))}
-        if self.slen7() != 0 { try!(write!(f, " slen7"))}
+        if self.adsel() != 0 { try!(write!(f, " adsel=0x{:x}", self.adsel()))}
+        if self.prmode() != 0 { try!(write!(f, " prmode=0x{:x}", self.prmode()))}
+        if self.chsel() != 0 { try!(write!(f, " chsel=0x{:x}", self.chsel()))}
+        if self.wcen() != 0 { try!(write!(f, " wcen"))}
+        if self.slen() != 0 { try!(write!(f, " slen"))}
         try!(write!(f, "]"));
         Ok(())
     }

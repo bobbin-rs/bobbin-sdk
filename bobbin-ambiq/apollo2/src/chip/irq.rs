@@ -4,6 +4,7 @@
 
 pub type Handler = extern "C" fn();
 
+irq!(IRQ_CTIMER, IrqCtimer, 13);
 irq!(IRQ_ADC, IrqAdc, 16);
 irq!(IRQ_IOMSTR0, IrqIomstr0, 6);
 irq!(IRQ_IOMSTR1, IrqIomstr1, 7);
