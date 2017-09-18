@@ -31,6 +31,30 @@
     (peripheral (include "periph/clkgen.rx"))
 
     (peripheral-group
+        (name CTIMER)
+        (prototype "periph/ctimer.rx")
+        (peripheral
+            (name CTIMER)
+            (address 0x40008000)
+
+            (signal (name TCTA0) (type TCTA0))
+            (signal (name TCTA1) (type TCTA1))
+            (signal (name TCTA2) (type TCTA2))
+            (signal (name TCTA3) (type TCTA3))
+
+            (signal (name TCTB0) (type TCTB0))
+            (signal (name TCTB1) (type TCTB1))
+            (signal (name TCTB2) (type TCTB2))
+            (signal (name TCTB3) (type TCTB3))
+
+            (interrupt
+                (name CTIMER)
+                (value 13)
+            )   
+        )     
+    )
+
+    (peripheral-group
         (name ADC)    
         (prototype "periph/adc.rx")
         (has-channels)
@@ -72,6 +96,10 @@
             (signal (name ADCD1P) (type ADC_D1P))
             (signal (name ADCD1N) (type ADC_D1N))
 
+            (signal (name TRIG0) (type ADC_TRIG0))
+            (signal (name TRIG1) (type ADC_TRIG1))
+            (signal (name TRIG2) (type ADC_TRIG2))
+            (signal (name TRIG3) (type ADC_TRIG3))
 
             (interrupt
                 (name ADC)

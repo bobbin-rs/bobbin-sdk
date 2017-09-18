@@ -1,14 +1,8 @@
 (peripheral
     (group-name CTIMER)
-    (name CTIMER)
-    (address 0x40008000)
     (size 0x20)
     (access read-write)
     (description "Counter/Timer")
-    (interrupt
-        (name CTIMER)
-        (value 13)
-    )
     (register
         (name TMR)
         (dim 4)
