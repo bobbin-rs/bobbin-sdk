@@ -9,7 +9,7 @@ bobbin-kinetis: kinetis-common k20 k64 kl26 s32
 
 bobbin-sam: samd21
 
-bobbin-stm32: stm32-common stm32f10x stm32f20x stm32f40x stm32f42x stm32f302x stm32f303x stm32l031x
+bobbin-stm32: stm32-common stm32f10x stm32f20x stm32f40x stm32f42x stm32f302x stm32f303x stm32l031x stm32l432x
 
 bobbin-ti: tm4c129x
 
@@ -56,6 +56,9 @@ stm32f303x:
 	$(CHIP) $(CHIP_ARGS) bobbin-stm32/$@/lib.rx ../bobbin-mcu/bobbin-stm32/$@/src/chip/mod.rs
 
 stm32l031x:
+	$(CHIP) $(CHIP_ARGS) bobbin-stm32/$@/lib.rx ../bobbin-mcu/bobbin-stm32/$@/src/chip/mod.rs
+
+stm32l432x:
 	$(CHIP) $(CHIP_ARGS) bobbin-stm32/$@/lib.rx ../bobbin-mcu/bobbin-stm32/$@/src/chip/mod.rs
 
 tm4c129x:
