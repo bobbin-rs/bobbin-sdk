@@ -7,7 +7,23 @@ periph!( UART1, Uart1, _UART1, UartPeriph, 0x4001d000);
 #[doc="UART Peripheral"]
 pub struct UartPeriph(pub usize); 
 
+impl super::sig::Signal<super::sig::Uart0tx> for Uart0 {}
+impl super::sig::SignalUartTx<super::sig::Uart0tx> for Uart0 {}
+impl super::sig::Signal<super::sig::Uart0rx> for Uart0 {}
+impl super::sig::SignalUartRx<super::sig::Uart0rx> for Uart0 {}
+impl super::sig::Signal<super::sig::Ua0cts> for Uart0 {}
+impl super::sig::SignalUartCts<super::sig::Ua0cts> for Uart0 {}
+impl super::sig::Signal<super::sig::Ua0rts> for Uart0 {}
+impl super::sig::SignalUartRts<super::sig::Ua0rts> for Uart0 {}
 
+impl super::sig::Signal<super::sig::Uart1tx> for Uart1 {}
+impl super::sig::SignalUartTx<super::sig::Uart1tx> for Uart1 {}
+impl super::sig::Signal<super::sig::Uart1rx> for Uart1 {}
+impl super::sig::SignalUartRx<super::sig::Uart1rx> for Uart1 {}
+impl super::sig::Signal<super::sig::Ua1cts> for Uart1 {}
+impl super::sig::SignalUartCts<super::sig::Ua1cts> for Uart1 {}
+impl super::sig::Signal<super::sig::Ua1rts> for Uart1 {}
+impl super::sig::SignalUartRts<super::sig::Ua1rts> for Uart1 {}
 
 
 impl UartPeriph {

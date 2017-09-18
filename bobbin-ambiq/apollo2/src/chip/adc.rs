@@ -6,6 +6,32 @@ periph!( ADC, Adc, _ADC, AdcPeriph, 0x50010000);
 #[doc="ADC Peripheral"]
 pub struct AdcPeriph(pub usize); 
 
+impl super::sig::Signal<super::sig::Adcse0> for Adc {}
+impl super::sig::SignalAdcSe0<super::sig::Adcse0> for Adc {}
+impl super::sig::Signal<super::sig::Adcse1> for Adc {}
+impl super::sig::SignalAdcSe1<super::sig::Adcse1> for Adc {}
+impl super::sig::Signal<super::sig::Adcse2> for Adc {}
+impl super::sig::SignalAdcSe2<super::sig::Adcse2> for Adc {}
+impl super::sig::Signal<super::sig::Adcse3> for Adc {}
+impl super::sig::SignalAdcSe3<super::sig::Adcse3> for Adc {}
+impl super::sig::Signal<super::sig::Adcse4> for Adc {}
+impl super::sig::SignalAdcSe4<super::sig::Adcse4> for Adc {}
+impl super::sig::Signal<super::sig::Adcse5> for Adc {}
+impl super::sig::SignalAdcSe5<super::sig::Adcse5> for Adc {}
+impl super::sig::Signal<super::sig::Adcse6> for Adc {}
+impl super::sig::SignalAdcSe6<super::sig::Adcse6> for Adc {}
+impl super::sig::Signal<super::sig::Adcse7> for Adc {}
+impl super::sig::SignalAdcSe7<super::sig::Adcse7> for Adc {}
+impl super::sig::Signal<super::sig::Adcd0pse8> for Adc {}
+impl super::sig::SignalAdcD0p<super::sig::Adcd0pse8> for Adc {}
+impl super::sig::SignalAdcSe8<super::sig::Adcd0pse8> for Adc {}
+impl super::sig::Signal<super::sig::Adcd0nse9> for Adc {}
+impl super::sig::SignalAdcD0n<super::sig::Adcd0nse9> for Adc {}
+impl super::sig::SignalAdcSe9<super::sig::Adcd0nse9> for Adc {}
+impl super::sig::Signal<super::sig::Adcd1p> for Adc {}
+impl super::sig::SignalAdcD1p<super::sig::Adcd1p> for Adc {}
+impl super::sig::Signal<super::sig::Adcd1n> for Adc {}
+impl super::sig::SignalAdcD1n<super::sig::Adcd1n> for Adc {}
 
 
 impl AdcPeriph {
@@ -2691,4 +2717,21 @@ impl ::core::fmt::Debug for Intset {
     }
 }
 
+pub struct AdcCh { pub periph: AdcPeriph, pub index: usize }
+channel!(ADC_CH0, AdcCh0, ADC, Adc, _ADC_CH0, AdcCh, _ADC, 0);
+channel!(ADC_CH1, AdcCh1, ADC, Adc, _ADC_CH1, AdcCh, _ADC, 1);
+channel!(ADC_CH2, AdcCh2, ADC, Adc, _ADC_CH2, AdcCh, _ADC, 2);
+channel!(ADC_CH3, AdcCh3, ADC, Adc, _ADC_CH3, AdcCh, _ADC, 3);
+channel!(ADC_CH4, AdcCh4, ADC, Adc, _ADC_CH4, AdcCh, _ADC, 4);
+channel!(ADC_CH5, AdcCh5, ADC, Adc, _ADC_CH5, AdcCh, _ADC, 5);
+channel!(ADC_CH6, AdcCh6, ADC, Adc, _ADC_CH6, AdcCh, _ADC, 6);
+channel!(ADC_CH7, AdcCh7, ADC, Adc, _ADC_CH7, AdcCh, _ADC, 7);
+channel!(ADC_CH8, AdcCh8, ADC, Adc, _ADC_CH8, AdcCh, _ADC, 8);
+channel!(ADC_CH9, AdcCh9, ADC, Adc, _ADC_CH9, AdcCh, _ADC, 9);
+channel!(ADC_CH10, AdcCh10, ADC, Adc, _ADC_CH10, AdcCh, _ADC, 10);
+channel!(ADC_CH11, AdcCh11, ADC, Adc, _ADC_CH11, AdcCh, _ADC, 11);
+channel!(ADC_CH12, AdcCh12, ADC, Adc, _ADC_CH12, AdcCh, _ADC, 12);
+channel!(ADC_TEMP, AdcTemp, ADC, Adc, _ADC_TEMP, AdcCh, _ADC, 13);
+channel!(ADC_BATT, AdcBatt, ADC, Adc, _ADC_BATT, AdcCh, _ADC, 14);
+channel!(ADC_VSS, AdcVss, ADC, Adc, _ADC_VSS, AdcCh, _ADC, 15);
 

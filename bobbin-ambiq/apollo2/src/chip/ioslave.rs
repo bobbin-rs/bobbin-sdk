@@ -6,6 +6,32 @@ periph!( IOSLAVE, Ioslave, _IOSLAVE, IoslavePeriph, 0x50000000);
 #[doc="IOSLAVE Peripheral"]
 pub struct IoslavePeriph(pub usize); 
 
+impl super::sig::Signal<super::sig::Slscl> for Ioslave {}
+impl super::sig::SignalSlScl<super::sig::Slscl> for Ioslave {}
+impl super::sig::Signal<super::sig::Slscllb> for Ioslave {}
+impl super::sig::SignalSlSclLb<super::sig::Slscllb> for Ioslave {}
+impl super::sig::Signal<super::sig::Slsda> for Ioslave {}
+impl super::sig::SignalSlSda<super::sig::Slsda> for Ioslave {}
+impl super::sig::Signal<super::sig::Slsdalb> for Ioslave {}
+impl super::sig::SignalSlSdaLb<super::sig::Slsdalb> for Ioslave {}
+impl super::sig::Signal<super::sig::Slsmiso> for Ioslave {}
+impl super::sig::SignalSlMiso<super::sig::Slsmiso> for Ioslave {}
+impl super::sig::Signal<super::sig::Slsmosi> for Ioslave {}
+impl super::sig::SignalSlMosi<super::sig::Slsmosi> for Ioslave {}
+impl super::sig::Signal<super::sig::Slswir3> for Ioslave {}
+impl super::sig::SignalSlWir3<super::sig::Slswir3> for Ioslave {}
+impl super::sig::Signal<super::sig::Slnce> for Ioslave {}
+impl super::sig::SignalSlCe<super::sig::Slnce> for Ioslave {}
+impl super::sig::Signal<super::sig::Slint> for Ioslave {}
+impl super::sig::SignalSlInt<super::sig::Slint> for Ioslave {}
+impl super::sig::Signal<super::sig::Slintgp> for Ioslave {}
+impl super::sig::SignalSlIntGp<super::sig::Slintgp> for Ioslave {}
+impl super::sig::Signal<super::sig::Slmisolb> for Ioslave {}
+impl super::sig::SignalSlMisoLb<super::sig::Slmisolb> for Ioslave {}
+impl super::sig::Signal<super::sig::Slmosilb> for Ioslave {}
+impl super::sig::SignalSlMosiLb<super::sig::Slmosilb> for Ioslave {}
+impl super::sig::Signal<super::sig::Slwir3lb> for Ioslave {}
+impl super::sig::SignalSlWir3Lb<super::sig::Slwir3lb> for Ioslave {}
 
 
 impl IoslavePeriph {
