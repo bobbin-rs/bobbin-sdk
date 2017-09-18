@@ -268,7 +268,7 @@
         (access read-write)
         (reset-value 0x0)
         (reset-mask 0xffffffff)
-        (description "GPIO Enable Register A")
+        (description "GPIO Enable Register n")
         (field
             (name EN)
             (dim 32)
