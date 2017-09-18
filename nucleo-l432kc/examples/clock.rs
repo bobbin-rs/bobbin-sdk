@@ -5,11 +5,11 @@
 extern crate nucleo_l432kc as board;
 
 use board::chip::rcc::RCC;
-use board::hal::clock::*;
-use board::chip::lpuart::*;
-use board::chip::usart::*;
-use board::chip::lptim::*;
-use board::chip::tim_gen::*;
+// use board::hal::clock::*;
+// use board::chip::lpuart::*;
+// use board::chip::usart::*;
+// use board::chip::lptim::*;
+// use board::chip::tim_gen::*;
 // use board::chip::tim_adv::*;
 // use board::chip::iwdg::*;
 // use board::chip::wwdg::*;
@@ -22,7 +22,6 @@ pub extern "C" fn main() -> ! {
     let clk = board::clock::CLK;
     println!("Clock Test");
     println!("{:?}", clk);
-   
     // Enable HSI
     RCC.with_cr(|r| r.set_hsion(true));
     while !RCC.cr().test_hsirdy() {}
