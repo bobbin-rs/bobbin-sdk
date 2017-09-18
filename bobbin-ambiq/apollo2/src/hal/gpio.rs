@@ -74,11 +74,11 @@ impl GpioPin {
     }
 
     pub fn set_gpio_input_enabled(&self) -> &Self {
-        self.set_gpio_input(true)
+        self.set_gpio_input(false)
     }
 
     pub fn set_gpio_input_disabled(&self) -> &Self {
-        self.set_gpio_input(false)
+        self.set_gpio_input(true)
     }
 
     pub fn set_gpio_output<V: Into<U2>>(&self, value: V) -> &Self {
