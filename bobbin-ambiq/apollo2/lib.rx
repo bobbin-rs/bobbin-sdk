@@ -23,6 +23,7 @@
 
     ; (peripheral (include "periph/cachectrl.rx"))
     (peripheral (include "periph/ctimer.rx"))
+    (peripheral (include "periph/stimer.rx"))
     (peripheral (include "periph/mcuctrl.rx"))
     (peripheral (include "periph/pwrctrl.rx"))
     (peripheral (include "periph/rstgen.rx"))
@@ -275,7 +276,7 @@
             (signal (name SLMISOLB) (type SL_MISO_LB))
             (signal (name SLMOSILB) (type SL_MOSI_LB))
             (signal (name SLWIR3LB) (type SL_WIR3_LB))
-            
+
             (interrupt
                 (name IOSLAVE)
                 (value 4)
