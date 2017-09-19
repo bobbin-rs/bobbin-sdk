@@ -1,7 +1,31 @@
 pub use bobbin_common::digital::*;
+pub use bobbin_common::{Pin, AltFn};
 pub use ::chip::gpio::*;
 
 use bobbin_common::bits::*;
+use core::ops::Deref;
+
+macro_rules! impl_mode {
+    ($mode:ident, $meth:ident, $sig:ident) => (
+        use chip::sig::$sig;
+
+        pub trait $mode<SIG, PERIPH> {
+            fn $meth(&self, _: &PERIPH) -> &Self;
+        }
+
+        impl<PERIPH, PIN, SIG> $mode<SIG, PERIPH> for PIN where PERIPH: $sig<SIG>, PIN: AltFn<SIG>, PIN: Deref<Target=GpioPin> {
+            #[inline]
+            fn $meth(&self, _: &PERIPH) -> &Self {
+                self.set_pad_function(self.alt_fn());
+                self
+            }
+        }            
+    )
+}
+
+impl_mode!(ModeUartTx, mode_uart_tx, SignalUartTx);
+impl_mode!(ModeUartRx, mode_uart_rx, SignalUartRx);
+
 
 impl GpioPeriph {
     pub fn unlock(&self) -> &Self {
