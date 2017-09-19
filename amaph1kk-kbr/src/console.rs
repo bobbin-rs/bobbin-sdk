@@ -1,40 +1,47 @@
 use core::fmt::{self, Write, Arguments};
-// use hal::gpio::*;
-// use hal::usart::*;
+use hal::gpio::*;
+use hal::uart::*;
+use chip::clkgen::*;
+use chip::pwrctrl::*;
 // use hal::clock::Clock;
 // use chip::afio::*;
 // use clock::CLK;
 
-// pub const USART: Usart1 = USART1;
-// pub const USART_TX: Pb6 = PB6;
-// pub const USART_RX: Pb7 = PB7;
-// pub const USART_CLOCK: u32 = 72_000_000;
-// pub const USART_BAUD: u32 = 115_200;
+pub const UART: Uart0 = UART0;
+pub const UART_TX: Gp22 = GP22;
+pub const UART_RX: Gp23 = GP23;
+pub const UART_CLOCK: u32 = 48_000_000;
+pub const UART_BAUD: u32 = 115_200;
 
 pub fn init() {
-    // // Enable Clocks
-    // USART.rcc_enable();
-    // USART_TX.port().rcc_enable();
-    // USART_RX.port().rcc_enable();
+    GPIO.unlock();
+    // UART_TX
+    //     .set_pad_gpio()
+    //     .set_gpio_output_pushpull();
+    UART_TX.mode_uart_tx(&UART);
+    UART_RX.mode_uart_rx(&UART);
 
-    // AFIO.rcc_enable();
-    // AFIO.with_mapr(|r| r.set_usart1_remap(1));
+    // Enable Power
+    PWRCTRL.with_deviceen(|r| r.set_uart0(1));
+    // Automatic HCLK speed
+    CLKGEN.with_uarten(|r| r.set_uart0en(0x1));
 
-    // USART_TX.mode_alt_fn();
-    // USART_RX.mode_input();
 
+    UART.init();
     enable();
 }
 
 pub fn enable() {
-    // Set Baud and Enable USART    
-    // USART
-    //     .set_config(|c| c.set_baud(USART_BAUD, USART.clock(&CLK).unwrap()))
+    UART.enable();
+
+    // Set Baud and Enable UART    
+    // UART
+    //     .set_config(|c| c.set_baud(UART_BAUD, UART.clock(&CLK).unwrap()))
     //     .enable();
 }
 
 pub fn disable() {
-    // USART.disable();
+    UART.disable();
 }
 
 
@@ -65,14 +72,13 @@ pub const CONSOLE: Console = Console {};
 pub struct Console {}
 
 impl Write for Console {
-    fn write_str(&mut self, _s: &str) -> fmt::Result {        
-        // let usart = USART;
-        // for byte in s.as_bytes().iter().cloned() {
-        //     if byte == b'\n' {
-        //         usart.putc(b'\r');
-        //     }
-        //     usart.putc(byte);
-        // }
+    fn write_str(&mut self, s: &str) -> fmt::Result {        
+        for byte in s.as_bytes().iter().cloned() {
+            if byte == b'\n' {
+                UART.putc(b'\r');
+            }
+            UART.putc(byte);
+        }
         Ok(())
     }
 }
