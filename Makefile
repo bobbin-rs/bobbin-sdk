@@ -13,6 +13,8 @@ bobbin-stm32: stm32-common stm32f10x stm32f20x stm32f40x stm32f42x stm32f302x st
 
 bobbin-ti: tm4c129x
 
+bobbin-ambiq: apollo2
+
 bobbin-cortexm:
 	$(CHIP) $(CHIP_ARGS) $@/mod.rx ../bobbin-mcu/$@/src/chip/mod.rs
 	
@@ -64,3 +66,5 @@ stm32l432x:
 tm4c129x:
 	$(CHIP) $(CHIP_ARGS) bobbin-ti/$@/lib.rx ../bobbin-mcu/bobbin-ti/$@/src/chip/mod.rs
 	
+apollo2:
+	$(CHIP) $(CHIP_ARGS) bobbin-ambiq/$@/lib.rx ../bobbin-mcu/bobbin-ambiq/$@/src/chip/mod.rs
