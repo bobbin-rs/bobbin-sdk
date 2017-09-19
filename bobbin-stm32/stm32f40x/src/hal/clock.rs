@@ -129,7 +129,7 @@ impl ClockTree for DynamicClock {
         let vco = match cfgr.pllsrc() {
             U1::B0 => self.hsi(),
             U1::B1 => self.hse(),
-        }.map(|v| v * cfgr.plln().into_u32() / cfgr.pllm().into_u32());
+        }.map(|v| (v / cfgr.pllm().into_u32()) * cfgr.plln().into_u32());
         vco.map(|v| v / (2 * (cfgr.pllp().into_u32() + 1)))
     }
 
