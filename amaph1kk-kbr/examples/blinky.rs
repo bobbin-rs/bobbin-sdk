@@ -3,7 +3,8 @@
 
 extern crate amaph1kk_kbr as board;
 
-use board::led::{LED0, DigitalOutput};
+use board::hal::gpio::*;
+use board::led::*;
 use board::btn::{BTN2, DigitalInput};
 
 
@@ -14,12 +15,23 @@ use board::btn::{BTN2, DigitalInput};
 pub extern "C" fn main() -> ! {
     board::init();
 
+    let leds: [GpioPin; 5] = [
+        LED0.into(),
+        LED1.into(),
+        LED2.into(),
+        LED3.into(),
+        LED4.into(),
+    ];
     loop {
-        LED0.toggle_output();
-        if BTN2.input() {
-            board::delay(1000);
-        } else {
-            board::delay(100);            
+        for c in 0..5 {
+            for i in 0..5 {
+                leds[i].set_output(c == i);
+            }
+            if BTN2.input() {
+                board::delay(100);            
+            } else {
+                board::delay(1000);
+            }
         }
     }    
 }
