@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-# bobbin-mcu
-=======
 # Bobbin Board Definitions
 
 This repository contains board crates - Rust crates with all the information needed to build an application running on a specific embedded hardware platform.
@@ -58,4 +55,3 @@ Hello, World! 1
 Hello, World! 2
 ^C
 ```
->>>>>>> boards/master
