@@ -1,0 +1,26 @@
+[package]
+name = "teensy_lc"
+version = "0.1.0"
+authors = ["Jonathan Soo <jcsoo@agora.com>"]
+
+[[bin]]
+name = "main"
+path = "src/main.rs"
+doc = false
+
+[dependencies]
+kl26 = { path = "../../bobbin-mcu/bobbin-kinetis/kl26"}
+r0 = "0.1.0"
+
+[features]
+default = ["kl26/Z64"]
+
+[profile.dev]
+panic = "abort"
+opt-level = "s"
+lto = false
+
+[profile.release]
+panic = "abort"
+debug = true
+lto = true

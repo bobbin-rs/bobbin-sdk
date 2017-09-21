@@ -1,0 +1,26 @@
+[package]
+name = "nucleo-l031k6"
+version = "0.1.0"
+authors = ["Jonathan Soo <jcsoo@agora.com>"]
+
+[[bin]]
+name = "main"
+path = "src/main.rs"
+doc = false
+
+[dependencies]
+stm32l031x = { path = "../../bobbin-mcu/bobbin-stm32/stm32l031x"}
+r0 = "0.1.0"
+
+[features]
+default = ["stm32l031x/stm32l031x6"]
+
+[profile.dev]
+panic = "abort"
+opt-level = "s"
+lto = false
+
+[profile.release]
+panic = "abort"
+debug = true
+lto = true
