@@ -1,0 +1,115 @@
+(peripheral
+    (group-name FPU)
+    (name FPU)
+    (size 0x20)
+    (address 0xe000e000)
+    (description "FPU")
+    (register
+        (name CPACR)
+        (offset 0xd88)
+        (description "Coprocessor Access Control Register")
+        (field
+            (name CP10)
+            (bit-offset 20)
+            (bit-width 2)
+            (description "CP10 Access privileges")
+        )        
+        (field
+            (name CP11)
+            (bit-offset 22)
+            (bit-width 2)
+            (description "CP11 Access privileges")
+        )
+
+    )
+    (register
+        (name FPCCR)
+        (offset 0xf34)
+        (description "Floating-point Context Control Register")
+        (field
+            (name ASPEN)
+            (bit-offset 31)
+            (bit-width 1)
+        )
+        (field
+            (name LSPEN)
+            (bit-offset 30)
+            (bit-width 1)
+        )
+        (field
+            (name MONRDY)
+            (bit-offset 8)
+            (bit-width 1)
+        )
+        (field
+            (name BFRDY)
+            (bit-offset 6)
+            (bit-width 1)
+        )
+        (field
+            (name MMRDY)
+            (bit-offset 5)
+            (bit-width 1)
+        )
+        (field
+            (name HFRDY)
+            (bit-offset 4)
+            (bit-width 1)
+        )
+        (field
+            (name THREAD)
+            (bit-offset 3)
+            (bit-width 1)
+        )
+        (field
+            (name USER)
+            (bit-offset 1)
+            (bit-width 1)
+        )
+        (field
+            (name LSPACT)
+            (bit-offset 0)
+            (bit-width 1)
+        )
+    )    
+    (register
+        (name FPCAR)
+        (offset 0xf38)
+        (description "Floating-point Context Address Register")
+        (field
+            (name ADDRESS)
+            (bit-offset 3)
+            (bit-width 29)
+        )
+    )    
+    ;(register
+    ;    (name FPSCR)
+    ;    (offset 0xf38)
+    ;    (description "Floating-point Status Control Register")
+    ;)    
+    (register
+        (name FPDSCR)
+        (offset 0xf3c)
+        (description "Floating-point Default Status Control Register")
+        (field
+            (name AHP)
+            (bit-offset 26)
+            (bit-width 1)
+        )
+        (field
+            (name DN)
+            (bit-offset 25)
+            (bit-width 1)
+        )
+        (field
+            (name FZ)
+            (bit-offset 24)
+            (bit-width 1)
+        )
+        (field
+            (name RMODE)
+            (bit-offset 22)
+            (bit-width 2)
+        )    
+    )
+)

@@ -1,11 +1,8 @@
-<<<<<<< HEAD
 **/.cargo/
 **/.bobbin/
 **/target/
 **/tmp/
 **/Cargo.lock
-=======
-**/target/
-**/Cargo.lock
-**/.bobbin/
->>>>>>> boards/master
+*.bak
+*~
+*.tmp
