@@ -9,7 +9,7 @@ path = "src/main.rs"
 doc = false
 
 [dependencies]
-stm32l031x = { path = "../../bobbin-mcu/bobbin-stm32/stm32l031x"}
+stm32l031x = { path = "../../mcu/bobbin-stm32/stm32l031x"}
 r0 = "0.1.0"
 
 [features]

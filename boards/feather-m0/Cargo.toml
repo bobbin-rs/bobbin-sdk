@@ -10,7 +10,7 @@ path = "src/main.rs"
 doc = false
 
 [dependencies]
-samd21 = { path = "../../bobbin-mcu/bobbin-sam/samd21"}
+samd21 = { path = "../../mcu/bobbin-sam/samd21"}
 r0 = "0.1.0"
 
 [features]

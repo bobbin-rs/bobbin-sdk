@@ -9,7 +9,7 @@ path = "src/main.rs"
 doc = false
 
 [dependencies]
-k20 = { path = "../../bobbin-mcu/bobbin-kinetis/k20"}
+k20 = { path = "../../mcu/bobbin-kinetis/k20"}
 r0 = "0.1.0"
 log = { version="0.3", default-features = false }
 

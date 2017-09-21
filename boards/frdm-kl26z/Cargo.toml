@@ -9,7 +9,7 @@ path = "src/main.rs"
 doc = false
 
 [dependencies]
-kl26 = { path = "../../bobbin-mcu/bobbin-kinetis/kl26"}
+kl26 = { path = "../../mcu/bobbin-kinetis/kl26"}
 r0 = "0.1.0"
 
 [features]

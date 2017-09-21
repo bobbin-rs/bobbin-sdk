@@ -9,7 +9,7 @@ path = "src/main.rs"
 doc = false
 
 [dependencies]
-stm32f20x = { path = "../../bobbin-mcu/bobbin-stm32/stm32f20x"}
+stm32f20x = { path = "../../mcu/bobbin-stm32/stm32f20x"}
 r0 = "0.1.0"
 log = { version="0.3", default-features = false }
 

@@ -10,7 +10,7 @@ doc = false
 
 
 [dependencies]
-k64 = { path = "../../bobbin-mcu/bobbin-kinetis/k64"}
+k64 = { path = "../../mcu/bobbin-kinetis/k64"}
 r0 = "0.1.0"
 log = { version="0.3", default-features = false }
 

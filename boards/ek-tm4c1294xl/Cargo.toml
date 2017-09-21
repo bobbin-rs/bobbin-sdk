@@ -9,7 +9,7 @@ path = "src/main.rs"
 doc = false
 
 [dependencies]
-tm4c129x = { path = "../../bobbin-mcu/bobbin-ti/tm4c129x/"}
+tm4c129x = { path = "../../mcu/bobbin-ti/tm4c129x/"}
 r0 = "0.1.0"
 log = { version="0.3", default-features = false }
 

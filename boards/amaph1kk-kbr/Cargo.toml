@@ -9,7 +9,7 @@ path = "src/main.rs"
 doc = false
 
 [dependencies]
-apollo2 = { path = "../../bobbin-mcu/bobbin-ambiq/apollo2"}
+apollo2 = { path = "../../mcu/bobbin-ambiq/apollo2"}
 r0 = "0.1.0"
 log = { version="0.3", default-features = false }
 

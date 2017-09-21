@@ -387,18 +387,18 @@ impl Cr1 {
         self
     }
 
-    #[doc="Data frame format"]
-    #[inline] pub fn dff(&self) -> bits::U1 {
+    #[doc="CRC Length"]
+    #[inline] pub fn crcl(&self) -> bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 11) & 0x1) as u8) } // [11]
     }
 
-    #[doc="Returns true if DFF != 0"]
-    #[inline] pub fn test_dff(&self) -> bool {
-        self.dff() != 0
+    #[doc="Returns true if CRCL != 0"]
+    #[inline] pub fn test_crcl(&self) -> bool {
+        self.crcl() != 0
     }
 
-    #[doc="Sets the DFF field."]
-    #[inline] pub fn set_dff<V: Into<bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the CRCL field."]
+    #[inline] pub fn set_crcl<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 11);
@@ -599,7 +599,7 @@ impl ::core::fmt::Debug for Cr1 {
         if self.bidioe() != 0 { try!(write!(f, " bidioe"))}
         if self.crcen() != 0 { try!(write!(f, " crcen"))}
         if self.crcnext() != 0 { try!(write!(f, " crcnext"))}
-        if self.dff() != 0 { try!(write!(f, " dff"))}
+        if self.crcl() != 0 { try!(write!(f, " crcl"))}
         if self.rxonly() != 0 { try!(write!(f, " rxonly"))}
         if self.ssm() != 0 { try!(write!(f, " ssm"))}
         if self.ssi() != 0 { try!(write!(f, " ssi"))}
@@ -1037,18 +1037,18 @@ impl Sr {
         self
     }
 
-    #[doc="TI frame format error"]
-    #[inline] pub fn tifrfe(&self) -> bits::U1 {
+    #[doc="Frame format error"]
+    #[inline] pub fn fre(&self) -> bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
     }
 
-    #[doc="Returns true if TIFRFE != 0"]
-    #[inline] pub fn test_tifrfe(&self) -> bool {
-        self.tifrfe() != 0
+    #[doc="Returns true if FRE != 0"]
+    #[inline] pub fn test_fre(&self) -> bool {
+        self.fre() != 0
     }
 
-    #[doc="Sets the TIFRFE field."]
-    #[inline] pub fn set_tifrfe<V: Into<bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the FRE field."]
+    #[inline] pub fn set_fre<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 8);
@@ -1120,7 +1120,7 @@ impl ::core::fmt::Debug for Sr {
         if self.modf() != 0 { try!(write!(f, " modf"))}
         if self.ovr() != 0 { try!(write!(f, " ovr"))}
         if self.bsy() != 0 { try!(write!(f, " bsy"))}
-        if self.tifrfe() != 0 { try!(write!(f, " tifrfe"))}
+        if self.fre() != 0 { try!(write!(f, " fre"))}
         if self.frlvl() != 0 { try!(write!(f, " frlvl=0x{:x}", self.frlvl()))}
         if self.ftlvl() != 0 { try!(write!(f, " ftlvl=0x{:x}", self.ftlvl()))}
         try!(write!(f, "]"));
