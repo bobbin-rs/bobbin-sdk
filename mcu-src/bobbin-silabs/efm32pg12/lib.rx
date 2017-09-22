@@ -17,4 +17,23 @@
         (module (name chip::dcb))
         (module (name chip::itm))      
     )
+
+    (peripheral-group
+        (name GPIO)
+        (prototype "periph/gpio.rx")
+        (peripheral
+            (name GPIO)
+            (address 0x4000a000)
+            (description "GPIO")
+            (interrupt
+                (name GPIO_EVEN)
+                (value 10)
+            )
+            (interrupt
+                (name GPIO_ODD)
+                (value 18)
+            )
+        )
+    )
+
 )

@@ -10,3 +10,4 @@ pub use bobbin_cortexm::chip::itm;
 
 pub mod irq;
 pub mod sig;
+pub mod gpio;
