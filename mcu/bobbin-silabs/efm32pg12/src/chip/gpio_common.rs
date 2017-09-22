@@ -528,155 +528,26 @@ impl GpioCommon {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Extipsell(pub u32);
 impl Extipsell {
-    #[doc="External Interrupt 0 Port Select"]
-    #[inline] pub fn extipsel0(&self) -> bits::U4 {
-        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xf) as u8) } // [3:0]
+    #[doc="External Interrupt n Port Select"]
+    #[inline] pub fn extipsel<I: Into<bits::R8>>(&self, index: I) -> bits::U4 {
+        let index: usize = index.into().value() as usize;
+        let shift: usize = 0 + (index << 2);
+        unsafe { ::core::mem::transmute(((self.0 >> shift) & 0xf) as u8) } // [3:0]
     }
 
-    #[doc="Returns true if EXTIPSEL0 != 0"]
-    #[inline] pub fn test_extipsel0(&self) -> bool {
-        self.extipsel0() != 0
+    #[doc="Returns true if EXTIPSEL != 0"]
+    #[inline] pub fn test_extipsel<I: Into<bits::R8>>(&self, index: I) -> bool{
+        self.extipsel(index) != 0
     }
 
-    #[doc="Sets the EXTIPSEL0 field."]
-    #[inline] pub fn set_extipsel0<V: Into<bits::U4>>(mut self, value: V) -> Self {
+    #[doc="Sets the EXTIPSEL field."]
+    #[inline] pub fn set_extipsel<I: Into<bits::R8>, V: Into<bits::U4>>(mut self, index: I, value: V) -> Self {
+        let index: usize = index.into().value() as usize;
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
-        self.0 &= !(0xf << 0);
-        self.0 |= value << 0;
-        self
-    }
-
-    #[doc="External Interrupt 1 Port Select"]
-    #[inline] pub fn extipsel1(&self) -> bits::U4 {
-        unsafe { ::core::mem::transmute(((self.0 >> 4) & 0xf) as u8) } // [7:4]
-    }
-
-    #[doc="Returns true if EXTIPSEL1 != 0"]
-    #[inline] pub fn test_extipsel1(&self) -> bool {
-        self.extipsel1() != 0
-    }
-
-    #[doc="Sets the EXTIPSEL1 field."]
-    #[inline] pub fn set_extipsel1<V: Into<bits::U4>>(mut self, value: V) -> Self {
-        let value: bits::U4 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0xf << 4);
-        self.0 |= value << 4;
-        self
-    }
-
-    #[doc="External Interrupt 2 Port Select"]
-    #[inline] pub fn extipsel2(&self) -> bits::U4 {
-        unsafe { ::core::mem::transmute(((self.0 >> 8) & 0xf) as u8) } // [11:8]
-    }
-
-    #[doc="Returns true if EXTIPSEL2 != 0"]
-    #[inline] pub fn test_extipsel2(&self) -> bool {
-        self.extipsel2() != 0
-    }
-
-    #[doc="Sets the EXTIPSEL2 field."]
-    #[inline] pub fn set_extipsel2<V: Into<bits::U4>>(mut self, value: V) -> Self {
-        let value: bits::U4 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0xf << 8);
-        self.0 |= value << 8;
-        self
-    }
-
-    #[doc="External Interrupt 3 Port Select"]
-    #[inline] pub fn extipsel3(&self) -> bits::U4 {
-        unsafe { ::core::mem::transmute(((self.0 >> 12) & 0xf) as u8) } // [15:12]
-    }
-
-    #[doc="Returns true if EXTIPSEL3 != 0"]
-    #[inline] pub fn test_extipsel3(&self) -> bool {
-        self.extipsel3() != 0
-    }
-
-    #[doc="Sets the EXTIPSEL3 field."]
-    #[inline] pub fn set_extipsel3<V: Into<bits::U4>>(mut self, value: V) -> Self {
-        let value: bits::U4 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0xf << 12);
-        self.0 |= value << 12;
-        self
-    }
-
-    #[doc="External Interrupt 4 Port Select"]
-    #[inline] pub fn extipsel4(&self) -> bits::U4 {
-        unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xf) as u8) } // [19:16]
-    }
-
-    #[doc="Returns true if EXTIPSEL4 != 0"]
-    #[inline] pub fn test_extipsel4(&self) -> bool {
-        self.extipsel4() != 0
-    }
-
-    #[doc="Sets the EXTIPSEL4 field."]
-    #[inline] pub fn set_extipsel4<V: Into<bits::U4>>(mut self, value: V) -> Self {
-        let value: bits::U4 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0xf << 16);
-        self.0 |= value << 16;
-        self
-    }
-
-    #[doc="External Interrupt 5 Port Select"]
-    #[inline] pub fn extipsel5(&self) -> bits::U4 {
-        unsafe { ::core::mem::transmute(((self.0 >> 20) & 0xf) as u8) } // [23:20]
-    }
-
-    #[doc="Returns true if EXTIPSEL5 != 0"]
-    #[inline] pub fn test_extipsel5(&self) -> bool {
-        self.extipsel5() != 0
-    }
-
-    #[doc="Sets the EXTIPSEL5 field."]
-    #[inline] pub fn set_extipsel5<V: Into<bits::U4>>(mut self, value: V) -> Self {
-        let value: bits::U4 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0xf << 20);
-        self.0 |= value << 20;
-        self
-    }
-
-    #[doc="External Interrupt 6 Port Select"]
-    #[inline] pub fn extipsel6(&self) -> bits::U4 {
-        unsafe { ::core::mem::transmute(((self.0 >> 24) & 0xf) as u8) } // [27:24]
-    }
-
-    #[doc="Returns true if EXTIPSEL6 != 0"]
-    #[inline] pub fn test_extipsel6(&self) -> bool {
-        self.extipsel6() != 0
-    }
-
-    #[doc="Sets the EXTIPSEL6 field."]
-    #[inline] pub fn set_extipsel6<V: Into<bits::U4>>(mut self, value: V) -> Self {
-        let value: bits::U4 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0xf << 24);
-        self.0 |= value << 24;
-        self
-    }
-
-    #[doc="External Interrupt 7 Port Select"]
-    #[inline] pub fn extipsel7(&self) -> bits::U4 {
-        unsafe { ::core::mem::transmute(((self.0 >> 28) & 0xf) as u8) } // [31:28]
-    }
-
-    #[doc="Returns true if EXTIPSEL7 != 0"]
-    #[inline] pub fn test_extipsel7(&self) -> bool {
-        self.extipsel7() != 0
-    }
-
-    #[doc="Sets the EXTIPSEL7 field."]
-    #[inline] pub fn set_extipsel7<V: Into<bits::U4>>(mut self, value: V) -> Self {
-        let value: bits::U4 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0xf << 28);
-        self.0 |= value << 28;
+        let shift: usize = 0 + (index << 2);
+        self.0 &= !(0xf << shift);
+        self.0 |= value << shift;
         self
     }
 
@@ -698,14 +569,14 @@ impl ::core::fmt::Display for Extipsell {
 impl ::core::fmt::Debug for Extipsell {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
         try!(write!(f, "[0x{:08x}", self.0));
-        if self.extipsel0() != 0 { try!(write!(f, " extipsel0=0x{:x}", self.extipsel0()))}
-        if self.extipsel1() != 0 { try!(write!(f, " extipsel1=0x{:x}", self.extipsel1()))}
-        if self.extipsel2() != 0 { try!(write!(f, " extipsel2=0x{:x}", self.extipsel2()))}
-        if self.extipsel3() != 0 { try!(write!(f, " extipsel3=0x{:x}", self.extipsel3()))}
-        if self.extipsel4() != 0 { try!(write!(f, " extipsel4=0x{:x}", self.extipsel4()))}
-        if self.extipsel5() != 0 { try!(write!(f, " extipsel5=0x{:x}", self.extipsel5()))}
-        if self.extipsel6() != 0 { try!(write!(f, " extipsel6=0x{:x}", self.extipsel6()))}
-        if self.extipsel7() != 0 { try!(write!(f, " extipsel7=0x{:x}", self.extipsel7()))}
+        if self.extipsel(0) != 0 { try!(write!(f, " extipsel[0]=0x{:x}", self.extipsel(0)))}
+        if self.extipsel(1) != 0 { try!(write!(f, " extipsel[1]=0x{:x}", self.extipsel(1)))}
+        if self.extipsel(2) != 0 { try!(write!(f, " extipsel[2]=0x{:x}", self.extipsel(2)))}
+        if self.extipsel(3) != 0 { try!(write!(f, " extipsel[3]=0x{:x}", self.extipsel(3)))}
+        if self.extipsel(4) != 0 { try!(write!(f, " extipsel[4]=0x{:x}", self.extipsel(4)))}
+        if self.extipsel(5) != 0 { try!(write!(f, " extipsel[5]=0x{:x}", self.extipsel(5)))}
+        if self.extipsel(6) != 0 { try!(write!(f, " extipsel[6]=0x{:x}", self.extipsel(6)))}
+        if self.extipsel(7) != 0 { try!(write!(f, " extipsel[7]=0x{:x}", self.extipsel(7)))}
         try!(write!(f, "]"));
         Ok(())
     }
@@ -715,155 +586,26 @@ impl ::core::fmt::Debug for Extipsell {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Extipselh(pub u32);
 impl Extipselh {
-    #[doc="External Interrupt 8 Port Select"]
-    #[inline] pub fn extipsel8(&self) -> bits::U4 {
-        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xf) as u8) } // [3:0]
+    #[doc="External Interrupt n Port Select"]
+    #[inline] pub fn extipsel<I: Into<bits::R8>>(&self, index: I) -> bits::U4 {
+        let index: usize = index.into().value() as usize;
+        let shift: usize = 0 + (index << 2);
+        unsafe { ::core::mem::transmute(((self.0 >> shift) & 0xf) as u8) } // [3:0]
     }
 
-    #[doc="Returns true if EXTIPSEL8 != 0"]
-    #[inline] pub fn test_extipsel8(&self) -> bool {
-        self.extipsel8() != 0
+    #[doc="Returns true if EXTIPSEL != 0"]
+    #[inline] pub fn test_extipsel<I: Into<bits::R8>>(&self, index: I) -> bool{
+        self.extipsel(index) != 0
     }
 
-    #[doc="Sets the EXTIPSEL8 field."]
-    #[inline] pub fn set_extipsel8<V: Into<bits::U4>>(mut self, value: V) -> Self {
+    #[doc="Sets the EXTIPSEL field."]
+    #[inline] pub fn set_extipsel<I: Into<bits::R8>, V: Into<bits::U4>>(mut self, index: I, value: V) -> Self {
+        let index: usize = index.into().value() as usize;
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
-        self.0 &= !(0xf << 0);
-        self.0 |= value << 0;
-        self
-    }
-
-    #[doc="External Interrupt 9 Port Select"]
-    #[inline] pub fn extipsel9(&self) -> bits::U4 {
-        unsafe { ::core::mem::transmute(((self.0 >> 4) & 0xf) as u8) } // [7:4]
-    }
-
-    #[doc="Returns true if EXTIPSEL9 != 0"]
-    #[inline] pub fn test_extipsel9(&self) -> bool {
-        self.extipsel9() != 0
-    }
-
-    #[doc="Sets the EXTIPSEL9 field."]
-    #[inline] pub fn set_extipsel9<V: Into<bits::U4>>(mut self, value: V) -> Self {
-        let value: bits::U4 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0xf << 4);
-        self.0 |= value << 4;
-        self
-    }
-
-    #[doc="External Interrupt 10 Port Select"]
-    #[inline] pub fn extipsel10(&self) -> bits::U4 {
-        unsafe { ::core::mem::transmute(((self.0 >> 8) & 0xf) as u8) } // [11:8]
-    }
-
-    #[doc="Returns true if EXTIPSEL10 != 0"]
-    #[inline] pub fn test_extipsel10(&self) -> bool {
-        self.extipsel10() != 0
-    }
-
-    #[doc="Sets the EXTIPSEL10 field."]
-    #[inline] pub fn set_extipsel10<V: Into<bits::U4>>(mut self, value: V) -> Self {
-        let value: bits::U4 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0xf << 8);
-        self.0 |= value << 8;
-        self
-    }
-
-    #[doc="External Interrupt 11 Port Select"]
-    #[inline] pub fn extipsel11(&self) -> bits::U4 {
-        unsafe { ::core::mem::transmute(((self.0 >> 12) & 0xf) as u8) } // [15:12]
-    }
-
-    #[doc="Returns true if EXTIPSEL11 != 0"]
-    #[inline] pub fn test_extipsel11(&self) -> bool {
-        self.extipsel11() != 0
-    }
-
-    #[doc="Sets the EXTIPSEL11 field."]
-    #[inline] pub fn set_extipsel11<V: Into<bits::U4>>(mut self, value: V) -> Self {
-        let value: bits::U4 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0xf << 12);
-        self.0 |= value << 12;
-        self
-    }
-
-    #[doc="External Interrupt 12 Port Select"]
-    #[inline] pub fn extipsel12(&self) -> bits::U4 {
-        unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xf) as u8) } // [19:16]
-    }
-
-    #[doc="Returns true if EXTIPSEL12 != 0"]
-    #[inline] pub fn test_extipsel12(&self) -> bool {
-        self.extipsel12() != 0
-    }
-
-    #[doc="Sets the EXTIPSEL12 field."]
-    #[inline] pub fn set_extipsel12<V: Into<bits::U4>>(mut self, value: V) -> Self {
-        let value: bits::U4 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0xf << 16);
-        self.0 |= value << 16;
-        self
-    }
-
-    #[doc="External Interrupt 13 Port Select"]
-    #[inline] pub fn extipsel13(&self) -> bits::U4 {
-        unsafe { ::core::mem::transmute(((self.0 >> 20) & 0xf) as u8) } // [23:20]
-    }
-
-    #[doc="Returns true if EXTIPSEL13 != 0"]
-    #[inline] pub fn test_extipsel13(&self) -> bool {
-        self.extipsel13() != 0
-    }
-
-    #[doc="Sets the EXTIPSEL13 field."]
-    #[inline] pub fn set_extipsel13<V: Into<bits::U4>>(mut self, value: V) -> Self {
-        let value: bits::U4 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0xf << 20);
-        self.0 |= value << 20;
-        self
-    }
-
-    #[doc="External Interrupt 14 Port Select"]
-    #[inline] pub fn extipsel14(&self) -> bits::U4 {
-        unsafe { ::core::mem::transmute(((self.0 >> 24) & 0xf) as u8) } // [27:24]
-    }
-
-    #[doc="Returns true if EXTIPSEL14 != 0"]
-    #[inline] pub fn test_extipsel14(&self) -> bool {
-        self.extipsel14() != 0
-    }
-
-    #[doc="Sets the EXTIPSEL14 field."]
-    #[inline] pub fn set_extipsel14<V: Into<bits::U4>>(mut self, value: V) -> Self {
-        let value: bits::U4 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0xf << 24);
-        self.0 |= value << 24;
-        self
-    }
-
-    #[doc="External Interrupt 15 Port Select"]
-    #[inline] pub fn extipsel15(&self) -> bits::U4 {
-        unsafe { ::core::mem::transmute(((self.0 >> 28) & 0xf) as u8) } // [31:28]
-    }
-
-    #[doc="Returns true if EXTIPSEL15 != 0"]
-    #[inline] pub fn test_extipsel15(&self) -> bool {
-        self.extipsel15() != 0
-    }
-
-    #[doc="Sets the EXTIPSEL15 field."]
-    #[inline] pub fn set_extipsel15<V: Into<bits::U4>>(mut self, value: V) -> Self {
-        let value: bits::U4 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0xf << 28);
-        self.0 |= value << 28;
+        let shift: usize = 0 + (index << 2);
+        self.0 &= !(0xf << shift);
+        self.0 |= value << shift;
         self
     }
 
@@ -885,14 +627,14 @@ impl ::core::fmt::Display for Extipselh {
 impl ::core::fmt::Debug for Extipselh {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
         try!(write!(f, "[0x{:08x}", self.0));
-        if self.extipsel8() != 0 { try!(write!(f, " extipsel8=0x{:x}", self.extipsel8()))}
-        if self.extipsel9() != 0 { try!(write!(f, " extipsel9=0x{:x}", self.extipsel9()))}
-        if self.extipsel10() != 0 { try!(write!(f, " extipsel10=0x{:x}", self.extipsel10()))}
-        if self.extipsel11() != 0 { try!(write!(f, " extipsel11=0x{:x}", self.extipsel11()))}
-        if self.extipsel12() != 0 { try!(write!(f, " extipsel12=0x{:x}", self.extipsel12()))}
-        if self.extipsel13() != 0 { try!(write!(f, " extipsel13=0x{:x}", self.extipsel13()))}
-        if self.extipsel14() != 0 { try!(write!(f, " extipsel14=0x{:x}", self.extipsel14()))}
-        if self.extipsel15() != 0 { try!(write!(f, " extipsel15=0x{:x}", self.extipsel15()))}
+        if self.extipsel(0) != 0 { try!(write!(f, " extipsel[0]=0x{:x}", self.extipsel(0)))}
+        if self.extipsel(1) != 0 { try!(write!(f, " extipsel[1]=0x{:x}", self.extipsel(1)))}
+        if self.extipsel(2) != 0 { try!(write!(f, " extipsel[2]=0x{:x}", self.extipsel(2)))}
+        if self.extipsel(3) != 0 { try!(write!(f, " extipsel[3]=0x{:x}", self.extipsel(3)))}
+        if self.extipsel(4) != 0 { try!(write!(f, " extipsel[4]=0x{:x}", self.extipsel(4)))}
+        if self.extipsel(5) != 0 { try!(write!(f, " extipsel[5]=0x{:x}", self.extipsel(5)))}
+        if self.extipsel(6) != 0 { try!(write!(f, " extipsel[6]=0x{:x}", self.extipsel(6)))}
+        if self.extipsel(7) != 0 { try!(write!(f, " extipsel[7]=0x{:x}", self.extipsel(7)))}
         try!(write!(f, "]"));
         Ok(())
     }
@@ -903,154 +645,25 @@ impl ::core::fmt::Debug for Extipselh {
 pub struct Extipinsell(pub u32);
 impl Extipinsell {
     #[doc="External Interrupt 0 Pin Select"]
-    #[inline] pub fn extipinsel0(&self) -> bits::U2 {
-        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x3) as u8) } // [1:0]
+    #[inline] pub fn extipinsel<I: Into<bits::R8>>(&self, index: I) -> bits::U2 {
+        let index: usize = index.into().value() as usize;
+        let shift: usize = 0 + (index << 2);
+        unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x3) as u8) } // [1:0]
     }
 
-    #[doc="Returns true if EXTIPINSEL0 != 0"]
-    #[inline] pub fn test_extipinsel0(&self) -> bool {
-        self.extipinsel0() != 0
+    #[doc="Returns true if EXTIPINSEL != 0"]
+    #[inline] pub fn test_extipinsel<I: Into<bits::R8>>(&self, index: I) -> bool{
+        self.extipinsel(index) != 0
     }
 
-    #[doc="Sets the EXTIPINSEL0 field."]
-    #[inline] pub fn set_extipinsel0<V: Into<bits::U2>>(mut self, value: V) -> Self {
+    #[doc="Sets the EXTIPINSEL field."]
+    #[inline] pub fn set_extipinsel<I: Into<bits::R8>, V: Into<bits::U2>>(mut self, index: I, value: V) -> Self {
+        let index: usize = index.into().value() as usize;
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
-        self.0 &= !(0x3 << 0);
-        self.0 |= value << 0;
-        self
-    }
-
-    #[doc="External Interrupt 1 Pin Select"]
-    #[inline] pub fn extipinsel1(&self) -> bits::U2 {
-        unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x3) as u8) } // [5:4]
-    }
-
-    #[doc="Returns true if EXTIPINSEL1 != 0"]
-    #[inline] pub fn test_extipinsel1(&self) -> bool {
-        self.extipinsel1() != 0
-    }
-
-    #[doc="Sets the EXTIPINSEL1 field."]
-    #[inline] pub fn set_extipinsel1<V: Into<bits::U2>>(mut self, value: V) -> Self {
-        let value: bits::U2 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x3 << 4);
-        self.0 |= value << 4;
-        self
-    }
-
-    #[doc="External Interrupt 2 Pin Select"]
-    #[inline] pub fn extipinsel2(&self) -> bits::U2 {
-        unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x3) as u8) } // [9:8]
-    }
-
-    #[doc="Returns true if EXTIPINSEL2 != 0"]
-    #[inline] pub fn test_extipinsel2(&self) -> bool {
-        self.extipinsel2() != 0
-    }
-
-    #[doc="Sets the EXTIPINSEL2 field."]
-    #[inline] pub fn set_extipinsel2<V: Into<bits::U2>>(mut self, value: V) -> Self {
-        let value: bits::U2 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x3 << 8);
-        self.0 |= value << 8;
-        self
-    }
-
-    #[doc="External Interrupt 3 Pin Select"]
-    #[inline] pub fn extipinsel3(&self) -> bits::U2 {
-        unsafe { ::core::mem::transmute(((self.0 >> 12) & 0x3) as u8) } // [13:12]
-    }
-
-    #[doc="Returns true if EXTIPINSEL3 != 0"]
-    #[inline] pub fn test_extipinsel3(&self) -> bool {
-        self.extipinsel3() != 0
-    }
-
-    #[doc="Sets the EXTIPINSEL3 field."]
-    #[inline] pub fn set_extipinsel3<V: Into<bits::U2>>(mut self, value: V) -> Self {
-        let value: bits::U2 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x3 << 12);
-        self.0 |= value << 12;
-        self
-    }
-
-    #[doc="External Interrupt 4 Pin Select"]
-    #[inline] pub fn extipinsel4(&self) -> bits::U2 {
-        unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x3) as u8) } // [17:16]
-    }
-
-    #[doc="Returns true if EXTIPINSEL4 != 0"]
-    #[inline] pub fn test_extipinsel4(&self) -> bool {
-        self.extipinsel4() != 0
-    }
-
-    #[doc="Sets the EXTIPINSEL4 field."]
-    #[inline] pub fn set_extipinsel4<V: Into<bits::U2>>(mut self, value: V) -> Self {
-        let value: bits::U2 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x3 << 16);
-        self.0 |= value << 16;
-        self
-    }
-
-    #[doc="External Interrupt 5 Pin Select"]
-    #[inline] pub fn extipinsel5(&self) -> bits::U2 {
-        unsafe { ::core::mem::transmute(((self.0 >> 20) & 0x3) as u8) } // [21:20]
-    }
-
-    #[doc="Returns true if EXTIPINSEL5 != 0"]
-    #[inline] pub fn test_extipinsel5(&self) -> bool {
-        self.extipinsel5() != 0
-    }
-
-    #[doc="Sets the EXTIPINSEL5 field."]
-    #[inline] pub fn set_extipinsel5<V: Into<bits::U2>>(mut self, value: V) -> Self {
-        let value: bits::U2 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x3 << 20);
-        self.0 |= value << 20;
-        self
-    }
-
-    #[doc="External Interrupt 6 Pin Select"]
-    #[inline] pub fn extipinsel6(&self) -> bits::U2 {
-        unsafe { ::core::mem::transmute(((self.0 >> 24) & 0x3) as u8) } // [25:24]
-    }
-
-    #[doc="Returns true if EXTIPINSEL6 != 0"]
-    #[inline] pub fn test_extipinsel6(&self) -> bool {
-        self.extipinsel6() != 0
-    }
-
-    #[doc="Sets the EXTIPINSEL6 field."]
-    #[inline] pub fn set_extipinsel6<V: Into<bits::U2>>(mut self, value: V) -> Self {
-        let value: bits::U2 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x3 << 24);
-        self.0 |= value << 24;
-        self
-    }
-
-    #[doc="External Interrupt 7 Pin Select"]
-    #[inline] pub fn extipinsel7(&self) -> bits::U2 {
-        unsafe { ::core::mem::transmute(((self.0 >> 28) & 0x3) as u8) } // [29:28]
-    }
-
-    #[doc="Returns true if EXTIPINSEL7 != 0"]
-    #[inline] pub fn test_extipinsel7(&self) -> bool {
-        self.extipinsel7() != 0
-    }
-
-    #[doc="Sets the EXTIPINSEL7 field."]
-    #[inline] pub fn set_extipinsel7<V: Into<bits::U2>>(mut self, value: V) -> Self {
-        let value: bits::U2 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x3 << 28);
-        self.0 |= value << 28;
+        let shift: usize = 0 + (index << 2);
+        self.0 &= !(0x3 << shift);
+        self.0 |= value << shift;
         self
     }
 
@@ -1072,14 +685,14 @@ impl ::core::fmt::Display for Extipinsell {
 impl ::core::fmt::Debug for Extipinsell {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
         try!(write!(f, "[0x{:08x}", self.0));
-        if self.extipinsel0() != 0 { try!(write!(f, " extipinsel0=0x{:x}", self.extipinsel0()))}
-        if self.extipinsel1() != 0 { try!(write!(f, " extipinsel1=0x{:x}", self.extipinsel1()))}
-        if self.extipinsel2() != 0 { try!(write!(f, " extipinsel2=0x{:x}", self.extipinsel2()))}
-        if self.extipinsel3() != 0 { try!(write!(f, " extipinsel3=0x{:x}", self.extipinsel3()))}
-        if self.extipinsel4() != 0 { try!(write!(f, " extipinsel4=0x{:x}", self.extipinsel4()))}
-        if self.extipinsel5() != 0 { try!(write!(f, " extipinsel5=0x{:x}", self.extipinsel5()))}
-        if self.extipinsel6() != 0 { try!(write!(f, " extipinsel6=0x{:x}", self.extipinsel6()))}
-        if self.extipinsel7() != 0 { try!(write!(f, " extipinsel7=0x{:x}", self.extipinsel7()))}
+        if self.extipinsel(0) != 0 { try!(write!(f, " extipinsel[0]=0x{:x}", self.extipinsel(0)))}
+        if self.extipinsel(1) != 0 { try!(write!(f, " extipinsel[1]=0x{:x}", self.extipinsel(1)))}
+        if self.extipinsel(2) != 0 { try!(write!(f, " extipinsel[2]=0x{:x}", self.extipinsel(2)))}
+        if self.extipinsel(3) != 0 { try!(write!(f, " extipinsel[3]=0x{:x}", self.extipinsel(3)))}
+        if self.extipinsel(4) != 0 { try!(write!(f, " extipinsel[4]=0x{:x}", self.extipinsel(4)))}
+        if self.extipinsel(5) != 0 { try!(write!(f, " extipinsel[5]=0x{:x}", self.extipinsel(5)))}
+        if self.extipinsel(6) != 0 { try!(write!(f, " extipinsel[6]=0x{:x}", self.extipinsel(6)))}
+        if self.extipinsel(7) != 0 { try!(write!(f, " extipinsel[7]=0x{:x}", self.extipinsel(7)))}
         try!(write!(f, "]"));
         Ok(())
     }
@@ -1090,154 +703,25 @@ impl ::core::fmt::Debug for Extipinsell {
 pub struct Extipinselh(pub u32);
 impl Extipinselh {
     #[doc="External Interrupt 8 Pin Select"]
-    #[inline] pub fn extipinsel8(&self) -> bits::U2 {
-        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x3) as u8) } // [1:0]
+    #[inline] pub fn extipinsel<I: Into<bits::R8>>(&self, index: I) -> bits::U2 {
+        let index: usize = index.into().value() as usize;
+        let shift: usize = 0 + (index << 2);
+        unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x3) as u8) } // [1:0]
     }
 
-    #[doc="Returns true if EXTIPINSEL8 != 0"]
-    #[inline] pub fn test_extipinsel8(&self) -> bool {
-        self.extipinsel8() != 0
+    #[doc="Returns true if EXTIPINSEL != 0"]
+    #[inline] pub fn test_extipinsel<I: Into<bits::R8>>(&self, index: I) -> bool{
+        self.extipinsel(index) != 0
     }
 
-    #[doc="Sets the EXTIPINSEL8 field."]
-    #[inline] pub fn set_extipinsel8<V: Into<bits::U2>>(mut self, value: V) -> Self {
+    #[doc="Sets the EXTIPINSEL field."]
+    #[inline] pub fn set_extipinsel<I: Into<bits::R8>, V: Into<bits::U2>>(mut self, index: I, value: V) -> Self {
+        let index: usize = index.into().value() as usize;
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
-        self.0 &= !(0x3 << 0);
-        self.0 |= value << 0;
-        self
-    }
-
-    #[doc="External Interrupt 9 Pin Select"]
-    #[inline] pub fn extipinsel9(&self) -> bits::U2 {
-        unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x3) as u8) } // [5:4]
-    }
-
-    #[doc="Returns true if EXTIPINSEL9 != 0"]
-    #[inline] pub fn test_extipinsel9(&self) -> bool {
-        self.extipinsel9() != 0
-    }
-
-    #[doc="Sets the EXTIPINSEL9 field."]
-    #[inline] pub fn set_extipinsel9<V: Into<bits::U2>>(mut self, value: V) -> Self {
-        let value: bits::U2 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x3 << 4);
-        self.0 |= value << 4;
-        self
-    }
-
-    #[doc="External Interrupt 10 Pin Select"]
-    #[inline] pub fn extipinsel10(&self) -> bits::U2 {
-        unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x3) as u8) } // [9:8]
-    }
-
-    #[doc="Returns true if EXTIPINSEL10 != 0"]
-    #[inline] pub fn test_extipinsel10(&self) -> bool {
-        self.extipinsel10() != 0
-    }
-
-    #[doc="Sets the EXTIPINSEL10 field."]
-    #[inline] pub fn set_extipinsel10<V: Into<bits::U2>>(mut self, value: V) -> Self {
-        let value: bits::U2 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x3 << 8);
-        self.0 |= value << 8;
-        self
-    }
-
-    #[doc="External Interrupt 11 Pin Select"]
-    #[inline] pub fn extipinsel11(&self) -> bits::U2 {
-        unsafe { ::core::mem::transmute(((self.0 >> 12) & 0x3) as u8) } // [13:12]
-    }
-
-    #[doc="Returns true if EXTIPINSEL11 != 0"]
-    #[inline] pub fn test_extipinsel11(&self) -> bool {
-        self.extipinsel11() != 0
-    }
-
-    #[doc="Sets the EXTIPINSEL11 field."]
-    #[inline] pub fn set_extipinsel11<V: Into<bits::U2>>(mut self, value: V) -> Self {
-        let value: bits::U2 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x3 << 12);
-        self.0 |= value << 12;
-        self
-    }
-
-    #[doc="External Interrupt 12 Pin Select"]
-    #[inline] pub fn extipinsel12(&self) -> bits::U2 {
-        unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x3) as u8) } // [17:16]
-    }
-
-    #[doc="Returns true if EXTIPINSEL12 != 0"]
-    #[inline] pub fn test_extipinsel12(&self) -> bool {
-        self.extipinsel12() != 0
-    }
-
-    #[doc="Sets the EXTIPINSEL12 field."]
-    #[inline] pub fn set_extipinsel12<V: Into<bits::U2>>(mut self, value: V) -> Self {
-        let value: bits::U2 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x3 << 16);
-        self.0 |= value << 16;
-        self
-    }
-
-    #[doc="External Interrupt 13 Pin Select"]
-    #[inline] pub fn extipinsel13(&self) -> bits::U2 {
-        unsafe { ::core::mem::transmute(((self.0 >> 20) & 0x3) as u8) } // [21:20]
-    }
-
-    #[doc="Returns true if EXTIPINSEL13 != 0"]
-    #[inline] pub fn test_extipinsel13(&self) -> bool {
-        self.extipinsel13() != 0
-    }
-
-    #[doc="Sets the EXTIPINSEL13 field."]
-    #[inline] pub fn set_extipinsel13<V: Into<bits::U2>>(mut self, value: V) -> Self {
-        let value: bits::U2 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x3 << 20);
-        self.0 |= value << 20;
-        self
-    }
-
-    #[doc="External Interrupt 14 Pin Select"]
-    #[inline] pub fn extipinsel14(&self) -> bits::U2 {
-        unsafe { ::core::mem::transmute(((self.0 >> 24) & 0x3) as u8) } // [25:24]
-    }
-
-    #[doc="Returns true if EXTIPINSEL14 != 0"]
-    #[inline] pub fn test_extipinsel14(&self) -> bool {
-        self.extipinsel14() != 0
-    }
-
-    #[doc="Sets the EXTIPINSEL14 field."]
-    #[inline] pub fn set_extipinsel14<V: Into<bits::U2>>(mut self, value: V) -> Self {
-        let value: bits::U2 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x3 << 24);
-        self.0 |= value << 24;
-        self
-    }
-
-    #[doc="External Interrupt 15 Pin Select"]
-    #[inline] pub fn extipinsel15(&self) -> bits::U2 {
-        unsafe { ::core::mem::transmute(((self.0 >> 28) & 0x3) as u8) } // [29:28]
-    }
-
-    #[doc="Returns true if EXTIPINSEL15 != 0"]
-    #[inline] pub fn test_extipinsel15(&self) -> bool {
-        self.extipinsel15() != 0
-    }
-
-    #[doc="Sets the EXTIPINSEL15 field."]
-    #[inline] pub fn set_extipinsel15<V: Into<bits::U2>>(mut self, value: V) -> Self {
-        let value: bits::U2 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x3 << 28);
-        self.0 |= value << 28;
+        let shift: usize = 0 + (index << 2);
+        self.0 &= !(0x3 << shift);
+        self.0 |= value << shift;
         self
     }
 
@@ -1259,14 +743,14 @@ impl ::core::fmt::Display for Extipinselh {
 impl ::core::fmt::Debug for Extipinselh {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
         try!(write!(f, "[0x{:08x}", self.0));
-        if self.extipinsel8() != 0 { try!(write!(f, " extipinsel8=0x{:x}", self.extipinsel8()))}
-        if self.extipinsel9() != 0 { try!(write!(f, " extipinsel9=0x{:x}", self.extipinsel9()))}
-        if self.extipinsel10() != 0 { try!(write!(f, " extipinsel10=0x{:x}", self.extipinsel10()))}
-        if self.extipinsel11() != 0 { try!(write!(f, " extipinsel11=0x{:x}", self.extipinsel11()))}
-        if self.extipinsel12() != 0 { try!(write!(f, " extipinsel12=0x{:x}", self.extipinsel12()))}
-        if self.extipinsel13() != 0 { try!(write!(f, " extipinsel13=0x{:x}", self.extipinsel13()))}
-        if self.extipinsel14() != 0 { try!(write!(f, " extipinsel14=0x{:x}", self.extipinsel14()))}
-        if self.extipinsel15() != 0 { try!(write!(f, " extipinsel15=0x{:x}", self.extipinsel15()))}
+        if self.extipinsel(0) != 0 { try!(write!(f, " extipinsel[0]=0x{:x}", self.extipinsel(0)))}
+        if self.extipinsel(1) != 0 { try!(write!(f, " extipinsel[1]=0x{:x}", self.extipinsel(1)))}
+        if self.extipinsel(2) != 0 { try!(write!(f, " extipinsel[2]=0x{:x}", self.extipinsel(2)))}
+        if self.extipinsel(3) != 0 { try!(write!(f, " extipinsel[3]=0x{:x}", self.extipinsel(3)))}
+        if self.extipinsel(4) != 0 { try!(write!(f, " extipinsel[4]=0x{:x}", self.extipinsel(4)))}
+        if self.extipinsel(5) != 0 { try!(write!(f, " extipinsel[5]=0x{:x}", self.extipinsel(5)))}
+        if self.extipinsel(6) != 0 { try!(write!(f, " extipinsel[6]=0x{:x}", self.extipinsel(6)))}
+        if self.extipinsel(7) != 0 { try!(write!(f, " extipinsel[7]=0x{:x}", self.extipinsel(7)))}
         try!(write!(f, "]"));
         Ok(())
     }
@@ -1277,21 +761,25 @@ impl ::core::fmt::Debug for Extipinselh {
 pub struct Extirise(pub u32);
 impl Extirise {
     #[doc="External Interrupt n Rising Edge Trigger Enable"]
-    #[inline] pub fn extirise(&self) -> bits::U16 {
-        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffff) as u16) } // [15:0]
+    #[inline] pub fn extirise<I: Into<bits::R16>>(&self, index: I) -> bits::U1 {
+        let index: usize = index.into().value() as usize;
+        let shift: usize = 0 + index;
+        unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
     #[doc="Returns true if EXTIRISE != 0"]
-    #[inline] pub fn test_extirise(&self) -> bool {
-        self.extirise() != 0
+    #[inline] pub fn test_extirise<I: Into<bits::R16>>(&self, index: I) -> bool{
+        self.extirise(index) != 0
     }
 
     #[doc="Sets the EXTIRISE field."]
-    #[inline] pub fn set_extirise<V: Into<bits::U16>>(mut self, value: V) -> Self {
-        let value: bits::U16 = value.into();
+    #[inline] pub fn set_extirise<I: Into<bits::R16>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+        let index: usize = index.into().value() as usize;
+        let value: bits::U1 = value.into();
         let value: u32 = value.into();
-        self.0 &= !(0xffff << 0);
-        self.0 |= value << 0;
+        let shift: usize = 0 + index;
+        self.0 &= !(0x1 << shift);
+        self.0 |= value << shift;
         self
     }
 
@@ -1313,7 +801,22 @@ impl ::core::fmt::Display for Extirise {
 impl ::core::fmt::Debug for Extirise {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
         try!(write!(f, "[0x{:08x}", self.0));
-        if self.extirise() != 0 { try!(write!(f, " extirise=0x{:x}", self.extirise()))}
+        if self.extirise(0) != 0 { try!(write!(f, " extirise[0]"))}
+        if self.extirise(1) != 0 { try!(write!(f, " extirise[1]"))}
+        if self.extirise(2) != 0 { try!(write!(f, " extirise[2]"))}
+        if self.extirise(3) != 0 { try!(write!(f, " extirise[3]"))}
+        if self.extirise(4) != 0 { try!(write!(f, " extirise[4]"))}
+        if self.extirise(5) != 0 { try!(write!(f, " extirise[5]"))}
+        if self.extirise(6) != 0 { try!(write!(f, " extirise[6]"))}
+        if self.extirise(7) != 0 { try!(write!(f, " extirise[7]"))}
+        if self.extirise(8) != 0 { try!(write!(f, " extirise[8]"))}
+        if self.extirise(9) != 0 { try!(write!(f, " extirise[9]"))}
+        if self.extirise(10) != 0 { try!(write!(f, " extirise[10]"))}
+        if self.extirise(11) != 0 { try!(write!(f, " extirise[11]"))}
+        if self.extirise(12) != 0 { try!(write!(f, " extirise[12]"))}
+        if self.extirise(13) != 0 { try!(write!(f, " extirise[13]"))}
+        if self.extirise(14) != 0 { try!(write!(f, " extirise[14]"))}
+        if self.extirise(15) != 0 { try!(write!(f, " extirise[15]"))}
         try!(write!(f, "]"));
         Ok(())
     }
@@ -1324,21 +827,25 @@ impl ::core::fmt::Debug for Extirise {
 pub struct Extifall(pub u32);
 impl Extifall {
     #[doc="External Interrupt n Falling Edge Trigger Enable"]
-    #[inline] pub fn extifall(&self) -> bits::U16 {
-        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffff) as u16) } // [15:0]
+    #[inline] pub fn extifall<I: Into<bits::R16>>(&self, index: I) -> bits::U1 {
+        let index: usize = index.into().value() as usize;
+        let shift: usize = 0 + index;
+        unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
     #[doc="Returns true if EXTIFALL != 0"]
-    #[inline] pub fn test_extifall(&self) -> bool {
-        self.extifall() != 0
+    #[inline] pub fn test_extifall<I: Into<bits::R16>>(&self, index: I) -> bool{
+        self.extifall(index) != 0
     }
 
     #[doc="Sets the EXTIFALL field."]
-    #[inline] pub fn set_extifall<V: Into<bits::U16>>(mut self, value: V) -> Self {
-        let value: bits::U16 = value.into();
+    #[inline] pub fn set_extifall<I: Into<bits::R16>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+        let index: usize = index.into().value() as usize;
+        let value: bits::U1 = value.into();
         let value: u32 = value.into();
-        self.0 &= !(0xffff << 0);
-        self.0 |= value << 0;
+        let shift: usize = 0 + index;
+        self.0 &= !(0x1 << shift);
+        self.0 |= value << shift;
         self
     }
 
@@ -1360,7 +867,22 @@ impl ::core::fmt::Display for Extifall {
 impl ::core::fmt::Debug for Extifall {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
         try!(write!(f, "[0x{:08x}", self.0));
-        if self.extifall() != 0 { try!(write!(f, " extifall=0x{:x}", self.extifall()))}
+        if self.extifall(0) != 0 { try!(write!(f, " extifall[0]"))}
+        if self.extifall(1) != 0 { try!(write!(f, " extifall[1]"))}
+        if self.extifall(2) != 0 { try!(write!(f, " extifall[2]"))}
+        if self.extifall(3) != 0 { try!(write!(f, " extifall[3]"))}
+        if self.extifall(4) != 0 { try!(write!(f, " extifall[4]"))}
+        if self.extifall(5) != 0 { try!(write!(f, " extifall[5]"))}
+        if self.extifall(6) != 0 { try!(write!(f, " extifall[6]"))}
+        if self.extifall(7) != 0 { try!(write!(f, " extifall[7]"))}
+        if self.extifall(8) != 0 { try!(write!(f, " extifall[8]"))}
+        if self.extifall(9) != 0 { try!(write!(f, " extifall[9]"))}
+        if self.extifall(10) != 0 { try!(write!(f, " extifall[10]"))}
+        if self.extifall(11) != 0 { try!(write!(f, " extifall[11]"))}
+        if self.extifall(12) != 0 { try!(write!(f, " extifall[12]"))}
+        if self.extifall(13) != 0 { try!(write!(f, " extifall[13]"))}
+        if self.extifall(14) != 0 { try!(write!(f, " extifall[14]"))}
+        if self.extifall(15) != 0 { try!(write!(f, " extifall[15]"))}
         try!(write!(f, "]"));
         Ok(())
     }
@@ -1371,116 +893,25 @@ impl ::core::fmt::Debug for Extifall {
 pub struct Extilevel(pub u32);
 impl Extilevel {
     #[doc="EM4 Wake Up Level for EM4WU0 Pin"]
-    #[inline] pub fn em4wu0(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1) as u8) } // [16]
+    #[inline] pub fn em4wu<I: Into<bits::R16>>(&self, index: I) -> bits::U1 {
+        let index: usize = index.into().value() as usize;
+        let shift: usize = 16 + index;
+        unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [16]
     }
 
-    #[doc="Returns true if EM4WU0 != 0"]
-    #[inline] pub fn test_em4wu0(&self) -> bool {
-        self.em4wu0() != 0
+    #[doc="Returns true if EM4WU != 0"]
+    #[inline] pub fn test_em4wu<I: Into<bits::R16>>(&self, index: I) -> bool{
+        self.em4wu(index) != 0
     }
 
-    #[doc="Sets the EM4WU0 field."]
-    #[inline] pub fn set_em4wu0<V: Into<bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the EM4WU field."]
+    #[inline] pub fn set_em4wu<I: Into<bits::R16>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+        let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
-        self.0 &= !(0x1 << 16);
-        self.0 |= value << 16;
-        self
-    }
-
-    #[doc="EM4 Wake Up Level for EM4WU1 Pin"]
-    #[inline] pub fn em4wu1(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 17) & 0x1) as u8) } // [17]
-    }
-
-    #[doc="Returns true if EM4WU1 != 0"]
-    #[inline] pub fn test_em4wu1(&self) -> bool {
-        self.em4wu1() != 0
-    }
-
-    #[doc="Sets the EM4WU1 field."]
-    #[inline] pub fn set_em4wu1<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 17);
-        self.0 |= value << 17;
-        self
-    }
-
-    #[doc="EM4 Wake Up Level for EM4WU4 Pin"]
-    #[inline] pub fn em4wu4(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 20) & 0x1) as u8) } // [20]
-    }
-
-    #[doc="Returns true if EM4WU4 != 0"]
-    #[inline] pub fn test_em4wu4(&self) -> bool {
-        self.em4wu4() != 0
-    }
-
-    #[doc="Sets the EM4WU4 field."]
-    #[inline] pub fn set_em4wu4<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 20);
-        self.0 |= value << 20;
-        self
-    }
-
-    #[doc="EM4 Wake Up Level for EM4WU8 Pin"]
-    #[inline] pub fn em4wu8(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 24) & 0x1) as u8) } // [24]
-    }
-
-    #[doc="Returns true if EM4WU8 != 0"]
-    #[inline] pub fn test_em4wu8(&self) -> bool {
-        self.em4wu8() != 0
-    }
-
-    #[doc="Sets the EM4WU8 field."]
-    #[inline] pub fn set_em4wu8<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 24);
-        self.0 |= value << 24;
-        self
-    }
-
-    #[doc="EM4 Wake Up Level for EM4WU9 Pin"]
-    #[inline] pub fn em4wu9(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 25) & 0x1) as u8) } // [25]
-    }
-
-    #[doc="Returns true if EM4WU9 != 0"]
-    #[inline] pub fn test_em4wu9(&self) -> bool {
-        self.em4wu9() != 0
-    }
-
-    #[doc="Sets the EM4WU9 field."]
-    #[inline] pub fn set_em4wu9<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 25);
-        self.0 |= value << 25;
-        self
-    }
-
-    #[doc="EM4 Wake Up Level for EM4WU12 Pin"]
-    #[inline] pub fn em4wu12(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 28) & 0x1) as u8) } // [28]
-    }
-
-    #[doc="Returns true if EM4WU12 != 0"]
-    #[inline] pub fn test_em4wu12(&self) -> bool {
-        self.em4wu12() != 0
-    }
-
-    #[doc="Sets the EM4WU12 field."]
-    #[inline] pub fn set_em4wu12<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 28);
-        self.0 |= value << 28;
+        let shift: usize = 16 + index;
+        self.0 &= !(0x1 << shift);
+        self.0 |= value << shift;
         self
     }
 
@@ -1502,12 +933,22 @@ impl ::core::fmt::Display for Extilevel {
 impl ::core::fmt::Debug for Extilevel {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
         try!(write!(f, "[0x{:08x}", self.0));
-        if self.em4wu0() != 0 { try!(write!(f, " em4wu0"))}
-        if self.em4wu1() != 0 { try!(write!(f, " em4wu1"))}
-        if self.em4wu4() != 0 { try!(write!(f, " em4wu4"))}
-        if self.em4wu8() != 0 { try!(write!(f, " em4wu8"))}
-        if self.em4wu9() != 0 { try!(write!(f, " em4wu9"))}
-        if self.em4wu12() != 0 { try!(write!(f, " em4wu12"))}
+        if self.em4wu(0) != 0 { try!(write!(f, " em4wu[0]"))}
+        if self.em4wu(1) != 0 { try!(write!(f, " em4wu[1]"))}
+        if self.em4wu(2) != 0 { try!(write!(f, " em4wu[2]"))}
+        if self.em4wu(3) != 0 { try!(write!(f, " em4wu[3]"))}
+        if self.em4wu(4) != 0 { try!(write!(f, " em4wu[4]"))}
+        if self.em4wu(5) != 0 { try!(write!(f, " em4wu[5]"))}
+        if self.em4wu(6) != 0 { try!(write!(f, " em4wu[6]"))}
+        if self.em4wu(7) != 0 { try!(write!(f, " em4wu[7]"))}
+        if self.em4wu(8) != 0 { try!(write!(f, " em4wu[8]"))}
+        if self.em4wu(9) != 0 { try!(write!(f, " em4wu[9]"))}
+        if self.em4wu(10) != 0 { try!(write!(f, " em4wu[10]"))}
+        if self.em4wu(11) != 0 { try!(write!(f, " em4wu[11]"))}
+        if self.em4wu(12) != 0 { try!(write!(f, " em4wu[12]"))}
+        if self.em4wu(13) != 0 { try!(write!(f, " em4wu[13]"))}
+        if self.em4wu(14) != 0 { try!(write!(f, " em4wu[14]"))}
+        if self.em4wu(15) != 0 { try!(write!(f, " em4wu[15]"))}
         try!(write!(f, "]"));
         Ok(())
     }
@@ -1518,40 +959,48 @@ impl ::core::fmt::Debug for Extilevel {
 pub struct If(pub u32);
 impl If {
     #[doc="External Pin Interrupt Flag"]
-    #[inline] pub fn ext(&self) -> bits::U16 {
-        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffff) as u16) } // [15:0]
+    #[inline] pub fn ext<I: Into<bits::R16>>(&self, index: I) -> bits::U1 {
+        let index: usize = index.into().value() as usize;
+        let shift: usize = 0 + index;
+        unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
     #[doc="Returns true if EXT != 0"]
-    #[inline] pub fn test_ext(&self) -> bool {
-        self.ext() != 0
+    #[inline] pub fn test_ext<I: Into<bits::R16>>(&self, index: I) -> bool{
+        self.ext(index) != 0
     }
 
     #[doc="Sets the EXT field."]
-    #[inline] pub fn set_ext<V: Into<bits::U16>>(mut self, value: V) -> Self {
-        let value: bits::U16 = value.into();
+    #[inline] pub fn set_ext<I: Into<bits::R16>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+        let index: usize = index.into().value() as usize;
+        let value: bits::U1 = value.into();
         let value: u32 = value.into();
-        self.0 &= !(0xffff << 0);
-        self.0 |= value << 0;
+        let shift: usize = 0 + index;
+        self.0 &= !(0x1 << shift);
+        self.0 |= value << shift;
         self
     }
 
     #[doc="EM4 wake up Pin Interrupt Flag"]
-    #[inline] pub fn em4wu(&self) -> bits::U16 {
-        unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xffff) as u16) } // [31:16]
+    #[inline] pub fn em4wu<I: Into<bits::R16>>(&self, index: I) -> bits::U1 {
+        let index: usize = index.into().value() as usize;
+        let shift: usize = 16 + index;
+        unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [16]
     }
 
     #[doc="Returns true if EM4WU != 0"]
-    #[inline] pub fn test_em4wu(&self) -> bool {
-        self.em4wu() != 0
+    #[inline] pub fn test_em4wu<I: Into<bits::R16>>(&self, index: I) -> bool{
+        self.em4wu(index) != 0
     }
 
     #[doc="Sets the EM4WU field."]
-    #[inline] pub fn set_em4wu<V: Into<bits::U16>>(mut self, value: V) -> Self {
-        let value: bits::U16 = value.into();
+    #[inline] pub fn set_em4wu<I: Into<bits::R16>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+        let index: usize = index.into().value() as usize;
+        let value: bits::U1 = value.into();
         let value: u32 = value.into();
-        self.0 &= !(0xffff << 16);
-        self.0 |= value << 16;
+        let shift: usize = 16 + index;
+        self.0 &= !(0x1 << shift);
+        self.0 |= value << shift;
         self
     }
 
@@ -1573,8 +1022,38 @@ impl ::core::fmt::Display for If {
 impl ::core::fmt::Debug for If {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
         try!(write!(f, "[0x{:08x}", self.0));
-        if self.ext() != 0 { try!(write!(f, " ext=0x{:x}", self.ext()))}
-        if self.em4wu() != 0 { try!(write!(f, " em4wu=0x{:x}", self.em4wu()))}
+        if self.ext(0) != 0 { try!(write!(f, " ext[0]"))}
+        if self.ext(1) != 0 { try!(write!(f, " ext[1]"))}
+        if self.ext(2) != 0 { try!(write!(f, " ext[2]"))}
+        if self.ext(3) != 0 { try!(write!(f, " ext[3]"))}
+        if self.ext(4) != 0 { try!(write!(f, " ext[4]"))}
+        if self.ext(5) != 0 { try!(write!(f, " ext[5]"))}
+        if self.ext(6) != 0 { try!(write!(f, " ext[6]"))}
+        if self.ext(7) != 0 { try!(write!(f, " ext[7]"))}
+        if self.ext(8) != 0 { try!(write!(f, " ext[8]"))}
+        if self.ext(9) != 0 { try!(write!(f, " ext[9]"))}
+        if self.ext(10) != 0 { try!(write!(f, " ext[10]"))}
+        if self.ext(11) != 0 { try!(write!(f, " ext[11]"))}
+        if self.ext(12) != 0 { try!(write!(f, " ext[12]"))}
+        if self.ext(13) != 0 { try!(write!(f, " ext[13]"))}
+        if self.ext(14) != 0 { try!(write!(f, " ext[14]"))}
+        if self.ext(15) != 0 { try!(write!(f, " ext[15]"))}
+        if self.em4wu(0) != 0 { try!(write!(f, " em4wu[0]"))}
+        if self.em4wu(1) != 0 { try!(write!(f, " em4wu[1]"))}
+        if self.em4wu(2) != 0 { try!(write!(f, " em4wu[2]"))}
+        if self.em4wu(3) != 0 { try!(write!(f, " em4wu[3]"))}
+        if self.em4wu(4) != 0 { try!(write!(f, " em4wu[4]"))}
+        if self.em4wu(5) != 0 { try!(write!(f, " em4wu[5]"))}
+        if self.em4wu(6) != 0 { try!(write!(f, " em4wu[6]"))}
+        if self.em4wu(7) != 0 { try!(write!(f, " em4wu[7]"))}
+        if self.em4wu(8) != 0 { try!(write!(f, " em4wu[8]"))}
+        if self.em4wu(9) != 0 { try!(write!(f, " em4wu[9]"))}
+        if self.em4wu(10) != 0 { try!(write!(f, " em4wu[10]"))}
+        if self.em4wu(11) != 0 { try!(write!(f, " em4wu[11]"))}
+        if self.em4wu(12) != 0 { try!(write!(f, " em4wu[12]"))}
+        if self.em4wu(13) != 0 { try!(write!(f, " em4wu[13]"))}
+        if self.em4wu(14) != 0 { try!(write!(f, " em4wu[14]"))}
+        if self.em4wu(15) != 0 { try!(write!(f, " em4wu[15]"))}
         try!(write!(f, "]"));
         Ok(())
     }
@@ -1585,40 +1064,48 @@ impl ::core::fmt::Debug for If {
 pub struct Ifs(pub u32);
 impl Ifs {
     #[doc="Set EXT Interrupt Flag"]
-    #[inline] pub fn ext(&self) -> bits::U16 {
-        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffff) as u16) } // [15:0]
+    #[inline] pub fn ext<I: Into<bits::R16>>(&self, index: I) -> bits::U1 {
+        let index: usize = index.into().value() as usize;
+        let shift: usize = 0 + index;
+        unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
     #[doc="Returns true if EXT != 0"]
-    #[inline] pub fn test_ext(&self) -> bool {
-        self.ext() != 0
+    #[inline] pub fn test_ext<I: Into<bits::R16>>(&self, index: I) -> bool{
+        self.ext(index) != 0
     }
 
     #[doc="Sets the EXT field."]
-    #[inline] pub fn set_ext<V: Into<bits::U16>>(mut self, value: V) -> Self {
-        let value: bits::U16 = value.into();
+    #[inline] pub fn set_ext<I: Into<bits::R16>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+        let index: usize = index.into().value() as usize;
+        let value: bits::U1 = value.into();
         let value: u32 = value.into();
-        self.0 &= !(0xffff << 0);
-        self.0 |= value << 0;
+        let shift: usize = 0 + index;
+        self.0 &= !(0x1 << shift);
+        self.0 |= value << shift;
         self
     }
 
     #[doc="Set EM4WU Interrupt Flag"]
-    #[inline] pub fn em4wu(&self) -> bits::U16 {
-        unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xffff) as u16) } // [31:16]
+    #[inline] pub fn em4wu<I: Into<bits::R16>>(&self, index: I) -> bits::U1 {
+        let index: usize = index.into().value() as usize;
+        let shift: usize = 16 + index;
+        unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [16]
     }
 
     #[doc="Returns true if EM4WU != 0"]
-    #[inline] pub fn test_em4wu(&self) -> bool {
-        self.em4wu() != 0
+    #[inline] pub fn test_em4wu<I: Into<bits::R16>>(&self, index: I) -> bool{
+        self.em4wu(index) != 0
     }
 
     #[doc="Sets the EM4WU field."]
-    #[inline] pub fn set_em4wu<V: Into<bits::U16>>(mut self, value: V) -> Self {
-        let value: bits::U16 = value.into();
+    #[inline] pub fn set_em4wu<I: Into<bits::R16>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+        let index: usize = index.into().value() as usize;
+        let value: bits::U1 = value.into();
         let value: u32 = value.into();
-        self.0 &= !(0xffff << 16);
-        self.0 |= value << 16;
+        let shift: usize = 16 + index;
+        self.0 &= !(0x1 << shift);
+        self.0 |= value << shift;
         self
     }
 
@@ -1640,8 +1127,38 @@ impl ::core::fmt::Display for Ifs {
 impl ::core::fmt::Debug for Ifs {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
         try!(write!(f, "[0x{:08x}", self.0));
-        if self.ext() != 0 { try!(write!(f, " ext=0x{:x}", self.ext()))}
-        if self.em4wu() != 0 { try!(write!(f, " em4wu=0x{:x}", self.em4wu()))}
+        if self.ext(0) != 0 { try!(write!(f, " ext[0]"))}
+        if self.ext(1) != 0 { try!(write!(f, " ext[1]"))}
+        if self.ext(2) != 0 { try!(write!(f, " ext[2]"))}
+        if self.ext(3) != 0 { try!(write!(f, " ext[3]"))}
+        if self.ext(4) != 0 { try!(write!(f, " ext[4]"))}
+        if self.ext(5) != 0 { try!(write!(f, " ext[5]"))}
+        if self.ext(6) != 0 { try!(write!(f, " ext[6]"))}
+        if self.ext(7) != 0 { try!(write!(f, " ext[7]"))}
+        if self.ext(8) != 0 { try!(write!(f, " ext[8]"))}
+        if self.ext(9) != 0 { try!(write!(f, " ext[9]"))}
+        if self.ext(10) != 0 { try!(write!(f, " ext[10]"))}
+        if self.ext(11) != 0 { try!(write!(f, " ext[11]"))}
+        if self.ext(12) != 0 { try!(write!(f, " ext[12]"))}
+        if self.ext(13) != 0 { try!(write!(f, " ext[13]"))}
+        if self.ext(14) != 0 { try!(write!(f, " ext[14]"))}
+        if self.ext(15) != 0 { try!(write!(f, " ext[15]"))}
+        if self.em4wu(0) != 0 { try!(write!(f, " em4wu[0]"))}
+        if self.em4wu(1) != 0 { try!(write!(f, " em4wu[1]"))}
+        if self.em4wu(2) != 0 { try!(write!(f, " em4wu[2]"))}
+        if self.em4wu(3) != 0 { try!(write!(f, " em4wu[3]"))}
+        if self.em4wu(4) != 0 { try!(write!(f, " em4wu[4]"))}
+        if self.em4wu(5) != 0 { try!(write!(f, " em4wu[5]"))}
+        if self.em4wu(6) != 0 { try!(write!(f, " em4wu[6]"))}
+        if self.em4wu(7) != 0 { try!(write!(f, " em4wu[7]"))}
+        if self.em4wu(8) != 0 { try!(write!(f, " em4wu[8]"))}
+        if self.em4wu(9) != 0 { try!(write!(f, " em4wu[9]"))}
+        if self.em4wu(10) != 0 { try!(write!(f, " em4wu[10]"))}
+        if self.em4wu(11) != 0 { try!(write!(f, " em4wu[11]"))}
+        if self.em4wu(12) != 0 { try!(write!(f, " em4wu[12]"))}
+        if self.em4wu(13) != 0 { try!(write!(f, " em4wu[13]"))}
+        if self.em4wu(14) != 0 { try!(write!(f, " em4wu[14]"))}
+        if self.em4wu(15) != 0 { try!(write!(f, " em4wu[15]"))}
         try!(write!(f, "]"));
         Ok(())
     }
@@ -1652,40 +1169,48 @@ impl ::core::fmt::Debug for Ifs {
 pub struct Ifc(pub u32);
 impl Ifc {
     #[doc="Clear EXT Interrupt Flag"]
-    #[inline] pub fn ext(&self) -> bits::U16 {
-        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffff) as u16) } // [15:0]
+    #[inline] pub fn ext<I: Into<bits::R16>>(&self, index: I) -> bits::U1 {
+        let index: usize = index.into().value() as usize;
+        let shift: usize = 0 + index;
+        unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
     #[doc="Returns true if EXT != 0"]
-    #[inline] pub fn test_ext(&self) -> bool {
-        self.ext() != 0
+    #[inline] pub fn test_ext<I: Into<bits::R16>>(&self, index: I) -> bool{
+        self.ext(index) != 0
     }
 
     #[doc="Sets the EXT field."]
-    #[inline] pub fn set_ext<V: Into<bits::U16>>(mut self, value: V) -> Self {
-        let value: bits::U16 = value.into();
+    #[inline] pub fn set_ext<I: Into<bits::R16>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+        let index: usize = index.into().value() as usize;
+        let value: bits::U1 = value.into();
         let value: u32 = value.into();
-        self.0 &= !(0xffff << 0);
-        self.0 |= value << 0;
+        let shift: usize = 0 + index;
+        self.0 &= !(0x1 << shift);
+        self.0 |= value << shift;
         self
     }
 
     #[doc="Clear EM4WU Interrupt Flag"]
-    #[inline] pub fn em4wu(&self) -> bits::U16 {
-        unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xffff) as u16) } // [31:16]
+    #[inline] pub fn em4wu<I: Into<bits::R16>>(&self, index: I) -> bits::U1 {
+        let index: usize = index.into().value() as usize;
+        let shift: usize = 16 + index;
+        unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [16]
     }
 
     #[doc="Returns true if EM4WU != 0"]
-    #[inline] pub fn test_em4wu(&self) -> bool {
-        self.em4wu() != 0
+    #[inline] pub fn test_em4wu<I: Into<bits::R16>>(&self, index: I) -> bool{
+        self.em4wu(index) != 0
     }
 
     #[doc="Sets the EM4WU field."]
-    #[inline] pub fn set_em4wu<V: Into<bits::U16>>(mut self, value: V) -> Self {
-        let value: bits::U16 = value.into();
+    #[inline] pub fn set_em4wu<I: Into<bits::R16>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+        let index: usize = index.into().value() as usize;
+        let value: bits::U1 = value.into();
         let value: u32 = value.into();
-        self.0 &= !(0xffff << 16);
-        self.0 |= value << 16;
+        let shift: usize = 16 + index;
+        self.0 &= !(0x1 << shift);
+        self.0 |= value << shift;
         self
     }
 
@@ -1707,8 +1232,38 @@ impl ::core::fmt::Display for Ifc {
 impl ::core::fmt::Debug for Ifc {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
         try!(write!(f, "[0x{:08x}", self.0));
-        if self.ext() != 0 { try!(write!(f, " ext=0x{:x}", self.ext()))}
-        if self.em4wu() != 0 { try!(write!(f, " em4wu=0x{:x}", self.em4wu()))}
+        if self.ext(0) != 0 { try!(write!(f, " ext[0]"))}
+        if self.ext(1) != 0 { try!(write!(f, " ext[1]"))}
+        if self.ext(2) != 0 { try!(write!(f, " ext[2]"))}
+        if self.ext(3) != 0 { try!(write!(f, " ext[3]"))}
+        if self.ext(4) != 0 { try!(write!(f, " ext[4]"))}
+        if self.ext(5) != 0 { try!(write!(f, " ext[5]"))}
+        if self.ext(6) != 0 { try!(write!(f, " ext[6]"))}
+        if self.ext(7) != 0 { try!(write!(f, " ext[7]"))}
+        if self.ext(8) != 0 { try!(write!(f, " ext[8]"))}
+        if self.ext(9) != 0 { try!(write!(f, " ext[9]"))}
+        if self.ext(10) != 0 { try!(write!(f, " ext[10]"))}
+        if self.ext(11) != 0 { try!(write!(f, " ext[11]"))}
+        if self.ext(12) != 0 { try!(write!(f, " ext[12]"))}
+        if self.ext(13) != 0 { try!(write!(f, " ext[13]"))}
+        if self.ext(14) != 0 { try!(write!(f, " ext[14]"))}
+        if self.ext(15) != 0 { try!(write!(f, " ext[15]"))}
+        if self.em4wu(0) != 0 { try!(write!(f, " em4wu[0]"))}
+        if self.em4wu(1) != 0 { try!(write!(f, " em4wu[1]"))}
+        if self.em4wu(2) != 0 { try!(write!(f, " em4wu[2]"))}
+        if self.em4wu(3) != 0 { try!(write!(f, " em4wu[3]"))}
+        if self.em4wu(4) != 0 { try!(write!(f, " em4wu[4]"))}
+        if self.em4wu(5) != 0 { try!(write!(f, " em4wu[5]"))}
+        if self.em4wu(6) != 0 { try!(write!(f, " em4wu[6]"))}
+        if self.em4wu(7) != 0 { try!(write!(f, " em4wu[7]"))}
+        if self.em4wu(8) != 0 { try!(write!(f, " em4wu[8]"))}
+        if self.em4wu(9) != 0 { try!(write!(f, " em4wu[9]"))}
+        if self.em4wu(10) != 0 { try!(write!(f, " em4wu[10]"))}
+        if self.em4wu(11) != 0 { try!(write!(f, " em4wu[11]"))}
+        if self.em4wu(12) != 0 { try!(write!(f, " em4wu[12]"))}
+        if self.em4wu(13) != 0 { try!(write!(f, " em4wu[13]"))}
+        if self.em4wu(14) != 0 { try!(write!(f, " em4wu[14]"))}
+        if self.em4wu(15) != 0 { try!(write!(f, " em4wu[15]"))}
         try!(write!(f, "]"));
         Ok(())
     }
@@ -1719,40 +1274,48 @@ impl ::core::fmt::Debug for Ifc {
 pub struct Ien(pub u32);
 impl Ien {
     #[doc="EXT Interrupt Enable"]
-    #[inline] pub fn ext(&self) -> bits::U16 {
-        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffff) as u16) } // [15:0]
+    #[inline] pub fn ext<I: Into<bits::R16>>(&self, index: I) -> bits::U1 {
+        let index: usize = index.into().value() as usize;
+        let shift: usize = 0 + index;
+        unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
     #[doc="Returns true if EXT != 0"]
-    #[inline] pub fn test_ext(&self) -> bool {
-        self.ext() != 0
+    #[inline] pub fn test_ext<I: Into<bits::R16>>(&self, index: I) -> bool{
+        self.ext(index) != 0
     }
 
     #[doc="Sets the EXT field."]
-    #[inline] pub fn set_ext<V: Into<bits::U16>>(mut self, value: V) -> Self {
-        let value: bits::U16 = value.into();
+    #[inline] pub fn set_ext<I: Into<bits::R16>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+        let index: usize = index.into().value() as usize;
+        let value: bits::U1 = value.into();
         let value: u32 = value.into();
-        self.0 &= !(0xffff << 0);
-        self.0 |= value << 0;
+        let shift: usize = 0 + index;
+        self.0 &= !(0x1 << shift);
+        self.0 |= value << shift;
         self
     }
 
     #[doc="EM4WU Interrupt Enable"]
-    #[inline] pub fn em4wu(&self) -> bits::U16 {
-        unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xffff) as u16) } // [31:16]
+    #[inline] pub fn em4wu<I: Into<bits::R16>>(&self, index: I) -> bits::U11 {
+        let index: usize = index.into().value() as usize;
+        let shift: usize = 16 + index;
+        unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x7ff) as u16) } // [26:16]
     }
 
     #[doc="Returns true if EM4WU != 0"]
-    #[inline] pub fn test_em4wu(&self) -> bool {
-        self.em4wu() != 0
+    #[inline] pub fn test_em4wu<I: Into<bits::R16>>(&self, index: I) -> bool{
+        self.em4wu(index) != 0
     }
 
     #[doc="Sets the EM4WU field."]
-    #[inline] pub fn set_em4wu<V: Into<bits::U16>>(mut self, value: V) -> Self {
-        let value: bits::U16 = value.into();
+    #[inline] pub fn set_em4wu<I: Into<bits::R16>, V: Into<bits::U11>>(mut self, index: I, value: V) -> Self {
+        let index: usize = index.into().value() as usize;
+        let value: bits::U11 = value.into();
         let value: u32 = value.into();
-        self.0 &= !(0xffff << 16);
-        self.0 |= value << 16;
+        let shift: usize = 16 + index;
+        self.0 &= !(0x7ff << shift);
+        self.0 |= value << shift;
         self
     }
 
@@ -1774,8 +1337,38 @@ impl ::core::fmt::Display for Ien {
 impl ::core::fmt::Debug for Ien {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
         try!(write!(f, "[0x{:08x}", self.0));
-        if self.ext() != 0 { try!(write!(f, " ext=0x{:x}", self.ext()))}
-        if self.em4wu() != 0 { try!(write!(f, " em4wu=0x{:x}", self.em4wu()))}
+        if self.ext(0) != 0 { try!(write!(f, " ext[0]"))}
+        if self.ext(1) != 0 { try!(write!(f, " ext[1]"))}
+        if self.ext(2) != 0 { try!(write!(f, " ext[2]"))}
+        if self.ext(3) != 0 { try!(write!(f, " ext[3]"))}
+        if self.ext(4) != 0 { try!(write!(f, " ext[4]"))}
+        if self.ext(5) != 0 { try!(write!(f, " ext[5]"))}
+        if self.ext(6) != 0 { try!(write!(f, " ext[6]"))}
+        if self.ext(7) != 0 { try!(write!(f, " ext[7]"))}
+        if self.ext(8) != 0 { try!(write!(f, " ext[8]"))}
+        if self.ext(9) != 0 { try!(write!(f, " ext[9]"))}
+        if self.ext(10) != 0 { try!(write!(f, " ext[10]"))}
+        if self.ext(11) != 0 { try!(write!(f, " ext[11]"))}
+        if self.ext(12) != 0 { try!(write!(f, " ext[12]"))}
+        if self.ext(13) != 0 { try!(write!(f, " ext[13]"))}
+        if self.ext(14) != 0 { try!(write!(f, " ext[14]"))}
+        if self.ext(15) != 0 { try!(write!(f, " ext[15]"))}
+        if self.em4wu(0) != 0 { try!(write!(f, " em4wu[0]=0x{:x}", self.em4wu(0)))}
+        if self.em4wu(1) != 0 { try!(write!(f, " em4wu[1]=0x{:x}", self.em4wu(1)))}
+        if self.em4wu(2) != 0 { try!(write!(f, " em4wu[2]=0x{:x}", self.em4wu(2)))}
+        if self.em4wu(3) != 0 { try!(write!(f, " em4wu[3]=0x{:x}", self.em4wu(3)))}
+        if self.em4wu(4) != 0 { try!(write!(f, " em4wu[4]=0x{:x}", self.em4wu(4)))}
+        if self.em4wu(5) != 0 { try!(write!(f, " em4wu[5]=0x{:x}", self.em4wu(5)))}
+        if self.em4wu(6) != 0 { try!(write!(f, " em4wu[6]=0x{:x}", self.em4wu(6)))}
+        if self.em4wu(7) != 0 { try!(write!(f, " em4wu[7]=0x{:x}", self.em4wu(7)))}
+        if self.em4wu(8) != 0 { try!(write!(f, " em4wu[8]=0x{:x}", self.em4wu(8)))}
+        if self.em4wu(9) != 0 { try!(write!(f, " em4wu[9]=0x{:x}", self.em4wu(9)))}
+        if self.em4wu(10) != 0 { try!(write!(f, " em4wu[10]=0x{:x}", self.em4wu(10)))}
+        if self.em4wu(11) != 0 { try!(write!(f, " em4wu[11]=0x{:x}", self.em4wu(11)))}
+        if self.em4wu(12) != 0 { try!(write!(f, " em4wu[12]=0x{:x}", self.em4wu(12)))}
+        if self.em4wu(13) != 0 { try!(write!(f, " em4wu[13]=0x{:x}", self.em4wu(13)))}
+        if self.em4wu(14) != 0 { try!(write!(f, " em4wu[14]=0x{:x}", self.em4wu(14)))}
+        if self.em4wu(15) != 0 { try!(write!(f, " em4wu[15]=0x{:x}", self.em4wu(15)))}
         try!(write!(f, "]"));
         Ok(())
     }
@@ -1786,21 +1379,25 @@ impl ::core::fmt::Debug for Ien {
 pub struct Em4wuen(pub u32);
 impl Em4wuen {
     #[doc="EM4 wake up enable"]
-    #[inline] pub fn em4wuen(&self) -> bits::U16 {
-        unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xffff) as u16) } // [31:16]
+    #[inline] pub fn em4wuen<I: Into<bits::R16>>(&self, index: I) -> bits::U1 {
+        let index: usize = index.into().value() as usize;
+        let shift: usize = 16 + index;
+        unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [16]
     }
 
     #[doc="Returns true if EM4WUEN != 0"]
-    #[inline] pub fn test_em4wuen(&self) -> bool {
-        self.em4wuen() != 0
+    #[inline] pub fn test_em4wuen<I: Into<bits::R16>>(&self, index: I) -> bool{
+        self.em4wuen(index) != 0
     }
 
     #[doc="Sets the EM4WUEN field."]
-    #[inline] pub fn set_em4wuen<V: Into<bits::U16>>(mut self, value: V) -> Self {
-        let value: bits::U16 = value.into();
+    #[inline] pub fn set_em4wuen<I: Into<bits::R16>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+        let index: usize = index.into().value() as usize;
+        let value: bits::U1 = value.into();
         let value: u32 = value.into();
-        self.0 &= !(0xffff << 16);
-        self.0 |= value << 16;
+        let shift: usize = 16 + index;
+        self.0 &= !(0x1 << shift);
+        self.0 |= value << shift;
         self
     }
 
@@ -1822,7 +1419,22 @@ impl ::core::fmt::Display for Em4wuen {
 impl ::core::fmt::Debug for Em4wuen {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
         try!(write!(f, "[0x{:08x}", self.0));
-        if self.em4wuen() != 0 { try!(write!(f, " em4wuen=0x{:x}", self.em4wuen()))}
+        if self.em4wuen(0) != 0 { try!(write!(f, " em4wuen[0]"))}
+        if self.em4wuen(1) != 0 { try!(write!(f, " em4wuen[1]"))}
+        if self.em4wuen(2) != 0 { try!(write!(f, " em4wuen[2]"))}
+        if self.em4wuen(3) != 0 { try!(write!(f, " em4wuen[3]"))}
+        if self.em4wuen(4) != 0 { try!(write!(f, " em4wuen[4]"))}
+        if self.em4wuen(5) != 0 { try!(write!(f, " em4wuen[5]"))}
+        if self.em4wuen(6) != 0 { try!(write!(f, " em4wuen[6]"))}
+        if self.em4wuen(7) != 0 { try!(write!(f, " em4wuen[7]"))}
+        if self.em4wuen(8) != 0 { try!(write!(f, " em4wuen[8]"))}
+        if self.em4wuen(9) != 0 { try!(write!(f, " em4wuen[9]"))}
+        if self.em4wuen(10) != 0 { try!(write!(f, " em4wuen[10]"))}
+        if self.em4wuen(11) != 0 { try!(write!(f, " em4wuen[11]"))}
+        if self.em4wuen(12) != 0 { try!(write!(f, " em4wuen[12]"))}
+        if self.em4wuen(13) != 0 { try!(write!(f, " em4wuen[13]"))}
+        if self.em4wuen(14) != 0 { try!(write!(f, " em4wuen[14]"))}
+        if self.em4wuen(15) != 0 { try!(write!(f, " em4wuen[15]"))}
         try!(write!(f, "]"));
         Ok(())
     }

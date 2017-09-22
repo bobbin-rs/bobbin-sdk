@@ -5,7 +5,7 @@
 
 // #[macro_use]
 extern crate silabs_slstk3401a as board;
-
+use board::hal::gpio::*;
 
 use core::ptr;
 
@@ -34,8 +34,9 @@ pub extern "C" fn main() -> ! {
         loop {
             // Toggle PF4
             // ptr::write_volatile(GPIO_PF_DOUTTGL, 1 << PIN);
+            GPIOF.set_douttgl(|r| r.set_douttgl(PIN, 1));
             // Delay approx 1/2 second
-            for _ in 0..1_000_000 { asm!("nop") }
+            for _ in 0..5_000_000 { asm!("nop") }
         }
     }
 }
