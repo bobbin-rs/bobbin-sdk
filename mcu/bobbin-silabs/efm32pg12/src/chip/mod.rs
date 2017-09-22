@@ -13,3 +13,5 @@ pub mod sig;
 pub mod cmu;
 pub mod gpio_common;
 pub mod gpio;
+pub mod usart;
+pub mod leuart;

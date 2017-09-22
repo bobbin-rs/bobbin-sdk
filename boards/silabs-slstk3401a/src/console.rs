@@ -10,9 +10,11 @@ use core::fmt::{self, Write, Arguments};
 // // pub const USART_CLOCK: u32 = 84_000_000;
 // pub const USART_BAUD: u32 = 115_200;
 
-// // USART 1 / PB6 / PB7
-// // Clock @ 168_000_000
-// // APB2 @ Clock / 2 = 84_000_000
+// Assume HFRCO @ 19MHz
+// HFSRCLK = 19MHZ
+// HFCLK = 19MHz
+// HFPERCLK = 19MHz
+// 
 
 pub fn init() {
     // Enable Clocks

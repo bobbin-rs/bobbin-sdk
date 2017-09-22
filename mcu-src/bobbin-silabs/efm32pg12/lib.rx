@@ -86,4 +86,73 @@
         )
     )
 
+    (peripheral-group
+        (name USART)
+        (prototype "periph/usart.rx")
+        (peripheral
+            (name USART0)
+            (address 0x40010000)
+            (description "USART0")
+            (interrupt
+                (name USART0_RX)
+                (value 12)
+            )
+            (interrupt
+                (name USART0_TX)
+                (value 13)
+            )
+        )
+        (peripheral
+            (name USART1)
+            (address 0x40010400)
+            (description "USART1")
+            (interrupt
+                (name USART1_RX)
+                (value 20)
+            )
+            (interrupt
+                (name USART1_TX)
+                (value 21)
+            )
+        )    
+        (peripheral
+            (name USART2)
+            (address 0x40010800)
+            (description "USART2")
+            (interrupt
+                (name USART2_RX)
+                (value 40)
+            )
+            (interrupt
+                (name USART2_TX)
+                (value 41)
+            )
+        )
+        (peripheral
+            (name USART3)
+            (address 0x40010c00)
+            (description "USART3")
+            (interrupt
+                (name USART3_RX)
+                (value 43)
+            )
+            (interrupt
+                (name USART3_TX)
+                (value 44)
+            )
+        )    
+    )
+    (peripheral-group
+        (name LEUART)
+        (prototype "periph/leuart.rx")
+        (peripheral
+            (name LEUART0)
+            (address 0x4004a000)
+            (description "LEUART0")
+            (interrupt
+                (name LEUART0)
+                (value 22)
+            )
+        )
+    )
 )
