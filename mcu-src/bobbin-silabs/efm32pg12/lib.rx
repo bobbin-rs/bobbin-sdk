@@ -18,21 +18,71 @@
         (module (name chip::itm))      
     )
 
+    (peripheral (include "periph/cmu.rx"))
+    (peripheral (include "periph/gpio_common.rx"))
+
     (peripheral-group
         (name GPIO)
         (prototype "periph/gpio.rx")
         (peripheral
-            (name GPIO)
+            (name GPIOA)
             (address 0x4000a000)
-            (description "GPIO")
-            (interrupt
-                (name GPIO_EVEN)
-                (value 10)
-            )
-            (interrupt
-                (name GPIO_ODD)
-                (value 18)
-            )
+            (description "GPIO Port A")
+        )
+        (peripheral
+            (name GPIOB)
+            (address 0x4000a030)
+            (description "GPIO Port B")
+        )
+        (peripheral
+            (name GPIOC)
+            (address 0x4000a060)
+            (description "GPIO Port C")
+        )
+        (peripheral
+            (name GPIOD)
+            (address 0x4000a090)
+            (description "GPIO Port D")
+        )
+        (peripheral
+            (name GPIOE)
+            (address 0x4000a0c0)
+            (description "GPIO Port E")
+        )
+        (peripheral
+            (name GPIOF)
+            (address 0x4000a0f0)
+            (description "GPIO Port F")
+        )
+        (peripheral
+            (name GPIOG)
+            (address 0x4000a120)
+            (description "GPIO Port G")
+        )
+        (peripheral
+            (name GPIOH)
+            (address 0x4000a150)
+            (description "GPIO Port H")
+        )
+        (peripheral
+            (name GPIOI)
+            (address 0x4000a180)
+            (description "GPIO Port I")
+        )
+        (peripheral
+            (name GPIOJ)
+            (address 0x4000a1b0)
+            (description "GPIO Port J")
+        )
+        (peripheral
+            (name GPIOK)
+            (address 0x4000a1e0)
+            (description "GPIO Port K")
+        )
+        (peripheral
+            (name GPIOL)
+            (address 0x4000a210)
+            (description "GPIO Port L")
         )
     )
 

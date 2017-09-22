@@ -4,8 +4,6 @@
 
 pub type Handler = extern "C" fn();
 
-irq!(IRQ_GPIO_EVEN, IrqGpioEven, 10);
-irq!(IRQ_GPIO_ODD, IrqGpioOdd, 18);
 
 pub fn handler(index: usize) -> Option<Handler> {
     unsafe { 
@@ -47,7 +45,7 @@ pub static mut INTERRUPT_HANDLERS: [Option<Handler>; 50] = [
     None,
     None,
     None,
-    None,
+    None,                          // IRQ 24: No Description
     None,
     None,
     None,

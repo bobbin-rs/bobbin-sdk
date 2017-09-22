@@ -33,7 +33,7 @@ pub extern "C" fn main() -> ! {
         ptr::write_volatile(GPIO_PF_MODEL, ptr::read_volatile(GPIO_PF_MODEL) | 0b0100 << (PIN * 4));
         loop {
             // Toggle PF4
-            ptr::write_volatile(GPIO_PF_DOUTTGL, 1 << PIN);
+            // ptr::write_volatile(GPIO_PF_DOUTTGL, 1 << PIN);
             // Delay approx 1/2 second
             for _ in 0..1_000_000 { asm!("nop") }
         }
