@@ -2,7 +2,13 @@ pub use bobbin_common::digital::*;
 pub use bobbin_common::{AltFn, Pin};
 pub use ::chip::gpio::*;
 
+use ::chip::cmu::*;
 use bobbin_common::bits::*;
+
+pub fn init() {
+    // Enable GPIO
+    CMU.with_hfbusclken0(|r| r.set_gpio(true));
+}
 
 impl GpioPin {
     pub fn set_mode<V: Into<U4>>(&self, value: V) -> &Self {
