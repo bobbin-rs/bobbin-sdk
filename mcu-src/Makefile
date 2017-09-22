@@ -15,6 +15,8 @@ bobbin-ti: tm4c129x
 
 bobbin-ambiq: apollo2
 
+bobbin-silabs: efm32pg12
+
 bobbin-cortexm:
 	$(CHIP) $(CHIP_ARGS) $@/mod.rx ../mcu/$@/src/chip/mod.rs
 	
@@ -68,3 +70,6 @@ tm4c129x:
 	
 apollo2:
 	$(CHIP) $(CHIP_ARGS) bobbin-ambiq/$@/lib.rx ../mcu/bobbin-ambiq/$@/src/chip/mod.rs
+
+efm32pg12:
+	$(CHIP) $(CHIP_ARGS) bobbin-silabs/$@/lib.rx ../mcu/bobbin-silabs/$@/src/chip/mod.rs

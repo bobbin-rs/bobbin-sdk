@@ -8,6 +8,7 @@ members = [
     "bobbin-stm32/*/",
     "bobbin-ti/*/",
     "bobbin-ambiq/*",
+    "bobbin-silabs/*",
 ]
 
 exclude = [
@@ -16,4 +17,5 @@ exclude = [
     "bobbin-stm32/target/",
     "bobbin-ti/target/",
     "bobbin-ambiq/target/",
+    "bobbin-silabs/target/",
 ]

@@ -1,0 +1,20 @@
+(device
+    (name EFM32PG12B500F1024GL125)
+    (size 0x20)
+    (description "Silicon Labs EFM32PG12B500F1024GL125 Cortex-M MCU")
+    (interrupt-count 50)
+    (variants
+        (variant (name EFM32PG12B500F1024) (link "efm32pg12b500f1024.ld"))
+    )
+    (crate
+        (name bobbin_cortexm)
+        (module (name chip::exc))
+        (module (name chip::nvic))
+        (module (name chip::scb))
+        (module (name chip::systick))
+        (module (name chip::mpu))
+        (module (name chip::fpu))
+        (module (name chip::dcb))
+        (module (name chip::itm))      
+    )
+)
