@@ -3,8 +3,9 @@
 #![feature(asm)]
 #![feature(lang_items)]
 
-pub mod lang_items;
-pub mod exceptions;
+// #[macro_use]
+extern crate silabs_slstk3401a as board;
+
 
 use core::ptr;
 
