@@ -13,9 +13,6 @@ pub const LED1: Pf5 = PF5;
 pub fn init() {
     // Enable GPIO
     CMU.with_hfbusclken0(|r| r.set_gpio(true));
-    // Set PF4 Mode = Output
-    GPIOF.with_model(|r| r.set_mode(4, 0b0100));
-    // Set PF5 Mode = Output
-    GPIOF.with_model(|r| r.set_mode(5, 0b0100));
-    
+    LED0.mode_output();
+    LED1.mode_output();    
 }

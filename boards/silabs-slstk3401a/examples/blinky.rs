@@ -26,7 +26,7 @@ pub extern "C" fn main() -> ! {
         if BTN0.input() {
             board::delay(100)            
         } else {
-            board::delay(1000);
+            board::delay(500);
         }
     }
 }
