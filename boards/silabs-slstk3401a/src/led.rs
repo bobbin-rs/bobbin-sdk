@@ -9,6 +9,6 @@ pub const LED1: Pf5 = PF5;
 
 pub fn init() {
     ::hal::gpio::init();
-    LED0.mode_output();
-    LED1.mode_output();    
+    LED0.mode_push_pull();
+    LED1.mode_push_pull();    
 }
