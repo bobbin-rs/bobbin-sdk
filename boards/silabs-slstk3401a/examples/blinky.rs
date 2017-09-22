@@ -8,7 +8,10 @@ extern crate silabs_slstk3401a as board;
 use board::hal::cmu::*;
 use board::hal::gpio::*;
 
-// LED0 = PF4;
+// LED0 = PF4
+// LED1 = PF5
+// BTN0 = PF6
+// BTN1 = PF7
 
 pub const PIN: usize = 4;
 

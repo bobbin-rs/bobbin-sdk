@@ -859,4 +859,389 @@ impl ::core::fmt::Debug for Ovtdis {
     }
 }
 
+pub struct GpioPin { pub port: GpioPeriph, pub index: usize }
+pin!(PA0, Pa0, GPIOA, Gpioa, _PA0, GpioPin, _GPIOA, 0);
+
+pin!(PA1, Pa1, GPIOA, Gpioa, _PA1, GpioPin, _GPIOA, 1);
+
+pin!(PA2, Pa2, GPIOA, Gpioa, _PA2, GpioPin, _GPIOA, 2);
+
+pin!(PA3, Pa3, GPIOA, Gpioa, _PA3, GpioPin, _GPIOA, 3);
+
+pin!(PA4, Pa4, GPIOA, Gpioa, _PA4, GpioPin, _GPIOA, 4);
+
+pin!(PA5, Pa5, GPIOA, Gpioa, _PA5, GpioPin, _GPIOA, 5);
+
+pin!(PA6, Pa6, GPIOA, Gpioa, _PA6, GpioPin, _GPIOA, 6);
+
+pin!(PA7, Pa7, GPIOA, Gpioa, _PA7, GpioPin, _GPIOA, 7);
+
+pin!(PA8, Pa8, GPIOA, Gpioa, _PA8, GpioPin, _GPIOA, 8);
+
+pin!(PA9, Pa9, GPIOA, Gpioa, _PA9, GpioPin, _GPIOA, 9);
+
+pin!(PA10, Pa10, GPIOA, Gpioa, _PA10, GpioPin, _GPIOA, 10);
+
+pin!(PA11, Pa11, GPIOA, Gpioa, _PA11, GpioPin, _GPIOA, 11);
+
+pin!(PA12, Pa12, GPIOA, Gpioa, _PA12, GpioPin, _GPIOA, 12);
+
+pin!(PA13, Pa13, GPIOA, Gpioa, _PA13, GpioPin, _GPIOA, 13);
+
+pin!(PA14, Pa14, GPIOA, Gpioa, _PA14, GpioPin, _GPIOA, 14);
+
+pin!(PA15, Pa15, GPIOA, Gpioa, _PA15, GpioPin, _GPIOA, 15);
+
+pin!(PB0, Pb0, GPIOB, Gpiob, _PB0, GpioPin, _GPIOB, 0);
+
+pin!(PB1, Pb1, GPIOB, Gpiob, _PB1, GpioPin, _GPIOB, 1);
+
+pin!(PB2, Pb2, GPIOB, Gpiob, _PB2, GpioPin, _GPIOB, 2);
+
+pin!(PB3, Pb3, GPIOB, Gpiob, _PB3, GpioPin, _GPIOB, 3);
+
+pin!(PB4, Pb4, GPIOB, Gpiob, _PB4, GpioPin, _GPIOB, 4);
+
+pin!(PB5, Pb5, GPIOB, Gpiob, _PB5, GpioPin, _GPIOB, 5);
+
+pin!(PB6, Pb6, GPIOB, Gpiob, _PB6, GpioPin, _GPIOB, 6);
+
+pin!(PB7, Pb7, GPIOB, Gpiob, _PB7, GpioPin, _GPIOB, 7);
+
+pin!(PB8, Pb8, GPIOB, Gpiob, _PB8, GpioPin, _GPIOB, 8);
+
+pin!(PB9, Pb9, GPIOB, Gpiob, _PB9, GpioPin, _GPIOB, 9);
+
+pin!(PB10, Pb10, GPIOB, Gpiob, _PB10, GpioPin, _GPIOB, 10);
+
+pin!(PB11, Pb11, GPIOB, Gpiob, _PB11, GpioPin, _GPIOB, 11);
+
+pin!(PB12, Pb12, GPIOB, Gpiob, _PB12, GpioPin, _GPIOB, 12);
+
+pin!(PB13, Pb13, GPIOB, Gpiob, _PB13, GpioPin, _GPIOB, 13);
+
+pin!(PB14, Pb14, GPIOB, Gpiob, _PB14, GpioPin, _GPIOB, 14);
+
+pin!(PB15, Pb15, GPIOB, Gpiob, _PB15, GpioPin, _GPIOB, 15);
+
+pin!(PC0, Pc0, GPIOC, Gpioc, _PC0, GpioPin, _GPIOC, 0);
+
+pin!(PC1, Pc1, GPIOC, Gpioc, _PC1, GpioPin, _GPIOC, 1);
+
+pin!(PC2, Pc2, GPIOC, Gpioc, _PC2, GpioPin, _GPIOC, 2);
+
+pin!(PC3, Pc3, GPIOC, Gpioc, _PC3, GpioPin, _GPIOC, 3);
+
+pin!(PC4, Pc4, GPIOC, Gpioc, _PC4, GpioPin, _GPIOC, 4);
+
+pin!(PC5, Pc5, GPIOC, Gpioc, _PC5, GpioPin, _GPIOC, 5);
+
+pin!(PC6, Pc6, GPIOC, Gpioc, _PC6, GpioPin, _GPIOC, 6);
+
+pin!(PC7, Pc7, GPIOC, Gpioc, _PC7, GpioPin, _GPIOC, 7);
+
+pin!(PC8, Pc8, GPIOC, Gpioc, _PC8, GpioPin, _GPIOC, 8);
+
+pin!(PC9, Pc9, GPIOC, Gpioc, _PC9, GpioPin, _GPIOC, 9);
+
+pin!(PC10, Pc10, GPIOC, Gpioc, _PC10, GpioPin, _GPIOC, 10);
+
+pin!(PC11, Pc11, GPIOC, Gpioc, _PC11, GpioPin, _GPIOC, 11);
+
+pin!(PC12, Pc12, GPIOC, Gpioc, _PC12, GpioPin, _GPIOC, 12);
+
+pin!(PC13, Pc13, GPIOC, Gpioc, _PC13, GpioPin, _GPIOC, 13);
+
+pin!(PC14, Pc14, GPIOC, Gpioc, _PC14, GpioPin, _GPIOC, 14);
+
+pin!(PC15, Pc15, GPIOC, Gpioc, _PC15, GpioPin, _GPIOC, 15);
+
+pin!(PD0, Pd0, GPIOD, Gpiod, _PD0, GpioPin, _GPIOD, 0);
+
+pin!(PD1, Pd1, GPIOD, Gpiod, _PD1, GpioPin, _GPIOD, 1);
+
+pin!(PD2, Pd2, GPIOD, Gpiod, _PD2, GpioPin, _GPIOD, 2);
+
+pin!(PD3, Pd3, GPIOD, Gpiod, _PD3, GpioPin, _GPIOD, 3);
+
+pin!(PD4, Pd4, GPIOD, Gpiod, _PD4, GpioPin, _GPIOD, 4);
+
+pin!(PD5, Pd5, GPIOD, Gpiod, _PD5, GpioPin, _GPIOD, 5);
+
+pin!(PD6, Pd6, GPIOD, Gpiod, _PD6, GpioPin, _GPIOD, 6);
+
+pin!(PD7, Pd7, GPIOD, Gpiod, _PD7, GpioPin, _GPIOD, 7);
+
+pin!(PD8, Pd8, GPIOD, Gpiod, _PD8, GpioPin, _GPIOD, 8);
+
+pin!(PD9, Pd9, GPIOD, Gpiod, _PD9, GpioPin, _GPIOD, 9);
+
+pin!(PD10, Pd10, GPIOD, Gpiod, _PD10, GpioPin, _GPIOD, 10);
+
+pin!(PD11, Pd11, GPIOD, Gpiod, _PD11, GpioPin, _GPIOD, 11);
+
+pin!(PD12, Pd12, GPIOD, Gpiod, _PD12, GpioPin, _GPIOD, 12);
+
+pin!(PD13, Pd13, GPIOD, Gpiod, _PD13, GpioPin, _GPIOD, 13);
+
+pin!(PD14, Pd14, GPIOD, Gpiod, _PD14, GpioPin, _GPIOD, 14);
+
+pin!(PD15, Pd15, GPIOD, Gpiod, _PD15, GpioPin, _GPIOD, 15);
+
+pin!(PE0, Pe0, GPIOE, Gpioe, _PE0, GpioPin, _GPIOE, 0);
+
+pin!(PE1, Pe1, GPIOE, Gpioe, _PE1, GpioPin, _GPIOE, 1);
+
+pin!(PE2, Pe2, GPIOE, Gpioe, _PE2, GpioPin, _GPIOE, 2);
+
+pin!(PE3, Pe3, GPIOE, Gpioe, _PE3, GpioPin, _GPIOE, 3);
+
+pin!(PE4, Pe4, GPIOE, Gpioe, _PE4, GpioPin, _GPIOE, 4);
+
+pin!(PE5, Pe5, GPIOE, Gpioe, _PE5, GpioPin, _GPIOE, 5);
+
+pin!(PE6, Pe6, GPIOE, Gpioe, _PE6, GpioPin, _GPIOE, 6);
+
+pin!(PE7, Pe7, GPIOE, Gpioe, _PE7, GpioPin, _GPIOE, 7);
+
+pin!(PE8, Pe8, GPIOE, Gpioe, _PE8, GpioPin, _GPIOE, 8);
+
+pin!(PE9, Pe9, GPIOE, Gpioe, _PE9, GpioPin, _GPIOE, 9);
+
+pin!(PE10, Pe10, GPIOE, Gpioe, _PE10, GpioPin, _GPIOE, 10);
+
+pin!(PE11, Pe11, GPIOE, Gpioe, _PE11, GpioPin, _GPIOE, 11);
+
+pin!(PE12, Pe12, GPIOE, Gpioe, _PE12, GpioPin, _GPIOE, 12);
+
+pin!(PE13, Pe13, GPIOE, Gpioe, _PE13, GpioPin, _GPIOE, 13);
+
+pin!(PE14, Pe14, GPIOE, Gpioe, _PE14, GpioPin, _GPIOE, 14);
+
+pin!(PE15, Pe15, GPIOE, Gpioe, _PE15, GpioPin, _GPIOE, 15);
+
+pin!(PF0, Pf0, GPIOF, Gpiof, _PF0, GpioPin, _GPIOF, 0);
+
+pin!(PF1, Pf1, GPIOF, Gpiof, _PF1, GpioPin, _GPIOF, 1);
+
+pin!(PF2, Pf2, GPIOF, Gpiof, _PF2, GpioPin, _GPIOF, 2);
+
+pin!(PF3, Pf3, GPIOF, Gpiof, _PF3, GpioPin, _GPIOF, 3);
+
+pin!(PF4, Pf4, GPIOF, Gpiof, _PF4, GpioPin, _GPIOF, 4);
+
+pin!(PF5, Pf5, GPIOF, Gpiof, _PF5, GpioPin, _GPIOF, 5);
+
+pin!(PF6, Pf6, GPIOF, Gpiof, _PF6, GpioPin, _GPIOF, 6);
+
+pin!(PF7, Pf7, GPIOF, Gpiof, _PF7, GpioPin, _GPIOF, 7);
+
+pin!(PF8, Pf8, GPIOF, Gpiof, _PF8, GpioPin, _GPIOF, 8);
+
+pin!(PF9, Pf9, GPIOF, Gpiof, _PF9, GpioPin, _GPIOF, 9);
+
+pin!(PF10, Pf10, GPIOF, Gpiof, _PF10, GpioPin, _GPIOF, 10);
+
+pin!(PF11, Pf11, GPIOF, Gpiof, _PF11, GpioPin, _GPIOF, 11);
+
+pin!(PF12, Pf12, GPIOF, Gpiof, _PF12, GpioPin, _GPIOF, 12);
+
+pin!(PF13, Pf13, GPIOF, Gpiof, _PF13, GpioPin, _GPIOF, 13);
+
+pin!(PF14, Pf14, GPIOF, Gpiof, _PF14, GpioPin, _GPIOF, 14);
+
+pin!(PF15, Pf15, GPIOF, Gpiof, _PF15, GpioPin, _GPIOF, 15);
+
+pin!(PG0, Pg0, GPIOG, Gpiog, _PG0, GpioPin, _GPIOG, 0);
+
+pin!(PG1, Pg1, GPIOG, Gpiog, _PG1, GpioPin, _GPIOG, 1);
+
+pin!(PG2, Pg2, GPIOG, Gpiog, _PG2, GpioPin, _GPIOG, 2);
+
+pin!(PG3, Pg3, GPIOG, Gpiog, _PG3, GpioPin, _GPIOG, 3);
+
+pin!(PG4, Pg4, GPIOG, Gpiog, _PG4, GpioPin, _GPIOG, 4);
+
+pin!(PG5, Pg5, GPIOG, Gpiog, _PG5, GpioPin, _GPIOG, 5);
+
+pin!(PG6, Pg6, GPIOG, Gpiog, _PG6, GpioPin, _GPIOG, 6);
+
+pin!(PG7, Pg7, GPIOG, Gpiog, _PG7, GpioPin, _GPIOG, 7);
+
+pin!(PG8, Pg8, GPIOG, Gpiog, _PG8, GpioPin, _GPIOG, 8);
+
+pin!(PG9, Pg9, GPIOG, Gpiog, _PG9, GpioPin, _GPIOG, 9);
+
+pin!(PG10, Pg10, GPIOG, Gpiog, _PG10, GpioPin, _GPIOG, 10);
+
+pin!(PG11, Pg11, GPIOG, Gpiog, _PG11, GpioPin, _GPIOG, 11);
+
+pin!(PG12, Pg12, GPIOG, Gpiog, _PG12, GpioPin, _GPIOG, 12);
+
+pin!(PG13, Pg13, GPIOG, Gpiog, _PG13, GpioPin, _GPIOG, 13);
+
+pin!(PG14, Pg14, GPIOG, Gpiog, _PG14, GpioPin, _GPIOG, 14);
+
+pin!(PG15, Pg15, GPIOG, Gpiog, _PG15, GpioPin, _GPIOG, 15);
+
+pin!(PH0, Ph0, GPIOH, Gpioh, _PH0, GpioPin, _GPIOH, 0);
+
+pin!(PH1, Ph1, GPIOH, Gpioh, _PH1, GpioPin, _GPIOH, 1);
+
+pin!(PH2, Ph2, GPIOH, Gpioh, _PH2, GpioPin, _GPIOH, 2);
+
+pin!(PH3, Ph3, GPIOH, Gpioh, _PH3, GpioPin, _GPIOH, 3);
+
+pin!(PH4, Ph4, GPIOH, Gpioh, _PH4, GpioPin, _GPIOH, 4);
+
+pin!(PH5, Ph5, GPIOH, Gpioh, _PH5, GpioPin, _GPIOH, 5);
+
+pin!(PH6, Ph6, GPIOH, Gpioh, _PH6, GpioPin, _GPIOH, 6);
+
+pin!(PH7, Ph7, GPIOH, Gpioh, _PH7, GpioPin, _GPIOH, 7);
+
+pin!(PH8, Ph8, GPIOH, Gpioh, _PH8, GpioPin, _GPIOH, 8);
+
+pin!(PH9, Ph9, GPIOH, Gpioh, _PH9, GpioPin, _GPIOH, 9);
+
+pin!(PH10, Ph10, GPIOH, Gpioh, _PH10, GpioPin, _GPIOH, 10);
+
+pin!(PH11, Ph11, GPIOH, Gpioh, _PH11, GpioPin, _GPIOH, 11);
+
+pin!(PH12, Ph12, GPIOH, Gpioh, _PH12, GpioPin, _GPIOH, 12);
+
+pin!(PH13, Ph13, GPIOH, Gpioh, _PH13, GpioPin, _GPIOH, 13);
+
+pin!(PH14, Ph14, GPIOH, Gpioh, _PH14, GpioPin, _GPIOH, 14);
+
+pin!(PH15, Ph15, GPIOH, Gpioh, _PH15, GpioPin, _GPIOH, 15);
+
+pin!(PI0, Pi0, GPIOI, Gpioi, _PI0, GpioPin, _GPIOI, 0);
+
+pin!(PI1, Pi1, GPIOI, Gpioi, _PI1, GpioPin, _GPIOI, 1);
+
+pin!(PI2, Pi2, GPIOI, Gpioi, _PI2, GpioPin, _GPIOI, 2);
+
+pin!(PI3, Pi3, GPIOI, Gpioi, _PI3, GpioPin, _GPIOI, 3);
+
+pin!(PI4, Pi4, GPIOI, Gpioi, _PI4, GpioPin, _GPIOI, 4);
+
+pin!(PI5, Pi5, GPIOI, Gpioi, _PI5, GpioPin, _GPIOI, 5);
+
+pin!(PI6, Pi6, GPIOI, Gpioi, _PI6, GpioPin, _GPIOI, 6);
+
+pin!(PI7, Pi7, GPIOI, Gpioi, _PI7, GpioPin, _GPIOI, 7);
+
+pin!(PI8, Pi8, GPIOI, Gpioi, _PI8, GpioPin, _GPIOI, 8);
+
+pin!(PI9, Pi9, GPIOI, Gpioi, _PI9, GpioPin, _GPIOI, 9);
+
+pin!(PI10, Pi10, GPIOI, Gpioi, _PI10, GpioPin, _GPIOI, 10);
+
+pin!(PI11, Pi11, GPIOI, Gpioi, _PI11, GpioPin, _GPIOI, 11);
+
+pin!(PI12, Pi12, GPIOI, Gpioi, _PI12, GpioPin, _GPIOI, 12);
+
+pin!(PI13, Pi13, GPIOI, Gpioi, _PI13, GpioPin, _GPIOI, 13);
+
+pin!(PI14, Pi14, GPIOI, Gpioi, _PI14, GpioPin, _GPIOI, 14);
+
+pin!(PI15, Pi15, GPIOI, Gpioi, _PI15, GpioPin, _GPIOI, 15);
+
+pin!(PJ0, Pj0, GPIOJ, Gpioj, _PJ0, GpioPin, _GPIOJ, 0);
+
+pin!(PJ1, Pj1, GPIOJ, Gpioj, _PJ1, GpioPin, _GPIOJ, 1);
+
+pin!(PJ2, Pj2, GPIOJ, Gpioj, _PJ2, GpioPin, _GPIOJ, 2);
+
+pin!(PJ3, Pj3, GPIOJ, Gpioj, _PJ3, GpioPin, _GPIOJ, 3);
+
+pin!(PJ4, Pj4, GPIOJ, Gpioj, _PJ4, GpioPin, _GPIOJ, 4);
+
+pin!(PJ5, Pj5, GPIOJ, Gpioj, _PJ5, GpioPin, _GPIOJ, 5);
+
+pin!(PJ6, Pj6, GPIOJ, Gpioj, _PJ6, GpioPin, _GPIOJ, 6);
+
+pin!(PJ7, Pj7, GPIOJ, Gpioj, _PJ7, GpioPin, _GPIOJ, 7);
+
+pin!(PJ8, Pj8, GPIOJ, Gpioj, _PJ8, GpioPin, _GPIOJ, 8);
+
+pin!(PJ9, Pj9, GPIOJ, Gpioj, _PJ9, GpioPin, _GPIOJ, 9);
+
+pin!(PJ10, Pj10, GPIOJ, Gpioj, _PJ10, GpioPin, _GPIOJ, 10);
+
+pin!(PJ11, Pj11, GPIOJ, Gpioj, _PJ11, GpioPin, _GPIOJ, 11);
+
+pin!(PJ12, Pj12, GPIOJ, Gpioj, _PJ12, GpioPin, _GPIOJ, 12);
+
+pin!(PJ13, Pj13, GPIOJ, Gpioj, _PJ13, GpioPin, _GPIOJ, 13);
+
+pin!(PJ14, Pj14, GPIOJ, Gpioj, _PJ14, GpioPin, _GPIOJ, 14);
+
+pin!(PJ15, Pj15, GPIOJ, Gpioj, _PJ15, GpioPin, _GPIOJ, 15);
+
+pin!(PK0, Pk0, GPIOK, Gpiok, _PK0, GpioPin, _GPIOK, 0);
+
+pin!(PK1, Pk1, GPIOK, Gpiok, _PK1, GpioPin, _GPIOK, 1);
+
+pin!(PK2, Pk2, GPIOK, Gpiok, _PK2, GpioPin, _GPIOK, 2);
+
+pin!(PK3, Pk3, GPIOK, Gpiok, _PK3, GpioPin, _GPIOK, 3);
+
+pin!(PK4, Pk4, GPIOK, Gpiok, _PK4, GpioPin, _GPIOK, 4);
+
+pin!(PK5, Pk5, GPIOK, Gpiok, _PK5, GpioPin, _GPIOK, 5);
+
+pin!(PK6, Pk6, GPIOK, Gpiok, _PK6, GpioPin, _GPIOK, 6);
+
+pin!(PK7, Pk7, GPIOK, Gpiok, _PK7, GpioPin, _GPIOK, 7);
+
+pin!(PK8, Pk8, GPIOK, Gpiok, _PK8, GpioPin, _GPIOK, 8);
+
+pin!(PK9, Pk9, GPIOK, Gpiok, _PK9, GpioPin, _GPIOK, 9);
+
+pin!(PK10, Pk10, GPIOK, Gpiok, _PK10, GpioPin, _GPIOK, 10);
+
+pin!(PK11, Pk11, GPIOK, Gpiok, _PK11, GpioPin, _GPIOK, 11);
+
+pin!(PK12, Pk12, GPIOK, Gpiok, _PK12, GpioPin, _GPIOK, 12);
+
+pin!(PK13, Pk13, GPIOK, Gpiok, _PK13, GpioPin, _GPIOK, 13);
+
+pin!(PK14, Pk14, GPIOK, Gpiok, _PK14, GpioPin, _GPIOK, 14);
+
+pin!(PK15, Pk15, GPIOK, Gpiok, _PK15, GpioPin, _GPIOK, 15);
+
+pin!(PL0, Pl0, GPIOL, Gpiol, _PL0, GpioPin, _GPIOL, 0);
+
+pin!(PL1, Pl1, GPIOL, Gpiol, _PL1, GpioPin, _GPIOL, 1);
+
+pin!(PL2, Pl2, GPIOL, Gpiol, _PL2, GpioPin, _GPIOL, 2);
+
+pin!(PL3, Pl3, GPIOL, Gpiol, _PL3, GpioPin, _GPIOL, 3);
+
+pin!(PL4, Pl4, GPIOL, Gpiol, _PL4, GpioPin, _GPIOL, 4);
+
+pin!(PL5, Pl5, GPIOL, Gpiol, _PL5, GpioPin, _GPIOL, 5);
+
+pin!(PL6, Pl6, GPIOL, Gpiol, _PL6, GpioPin, _GPIOL, 6);
+
+pin!(PL7, Pl7, GPIOL, Gpiol, _PL7, GpioPin, _GPIOL, 7);
+
+pin!(PL8, Pl8, GPIOL, Gpiol, _PL8, GpioPin, _GPIOL, 8);
+
+pin!(PL9, Pl9, GPIOL, Gpiol, _PL9, GpioPin, _GPIOL, 9);
+
+pin!(PL10, Pl10, GPIOL, Gpiol, _PL10, GpioPin, _GPIOL, 10);
+
+pin!(PL11, Pl11, GPIOL, Gpiol, _PL11, GpioPin, _GPIOL, 11);
+
+pin!(PL12, Pl12, GPIOL, Gpiol, _PL12, GpioPin, _GPIOL, 12);
+
+pin!(PL13, Pl13, GPIOL, Gpiol, _PL13, GpioPin, _GPIOL, 13);
+
+pin!(PL14, Pl14, GPIOL, Gpiol, _PL14, GpioPin, _GPIOL, 14);
+
+pin!(PL15, Pl15, GPIOL, Gpiol, _PL15, GpioPin, _GPIOL, 15);
+
 

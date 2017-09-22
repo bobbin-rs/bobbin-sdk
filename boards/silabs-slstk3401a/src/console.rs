@@ -1,12 +1,13 @@
 use core::fmt::{self, Write, Arguments};
-// use hal::gpio::*;
-// use hal::usart::*;
+use hal::gpio::*;
+use hal::usart::*;
 // use hal::clock::Clock;
 // use clock::CLK;
 
-// pub const USART: Usart2 = USART2;
-// pub const USART_TX: Pa2 = PA2;
-// pub const USART_RX: Pa3 = PA3;
+pub const USART: Usart0 = USART0;
+pub const USART_TX: Pa0 = PA0;
+pub const USART_RX: Pa1 = PA1;
+pub const USART_CS: Pa5 = PA5;
 // // pub const USART_CLOCK: u32 = 84_000_000;
 // pub const USART_BAUD: u32 = 115_200;
 
@@ -14,7 +15,16 @@ use core::fmt::{self, Write, Arguments};
 // HFSRCLK = 19MHZ
 // HFCLK = 19MHz
 // HFPERCLK = 19MHz
-// 
+
+// Enable USB VCOM by setting PA5 High
+// UART0 TX - PA0
+// UART0 RX - PA1
+
+// Pin Routing
+// US0_CS: PA5 @ Location 2
+// US0_TX: PA0 @ Location 0
+// US0_RX: PA1 @ Location 1
+
 
 pub fn init() {
     // Enable Clocks
