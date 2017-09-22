@@ -5,6 +5,7 @@
 
 // #[macro_use]
 extern crate silabs_slstk3401a as board;
+use board::hal::cmu::*;
 use board::hal::gpio::*;
 
 use core::ptr;
@@ -28,9 +29,14 @@ pub const GPIO_PF_DOUTTGL: *mut u32 = 0x4000_a108 as *mut u32;
 pub extern "C" fn main() -> ! {
     unsafe {
         // Enable GPIO
-        ptr::write_volatile(CMU_HFBUSCLKEN0, ptr::read_volatile(CMU_HFBUSCLKEN0) | CMU_HFBUSCLKEN0_GPIO);
+        // ptr::write_volatile(CMU_HFBUSCLKEN0, ptr::read_volatile(CMU_HFBUSCLKEN0) | CMU_HFBUSCLKEN0_GPIO);
+        CMU.with_hfbusclken0(|r| r.set_gpio(true));
+
         // Set PF4 Mode = Output
-        ptr::write_volatile(GPIO_PF_MODEL, ptr::read_volatile(GPIO_PF_MODEL) | 0b0100 << (PIN * 4));
+        // ptr::write_volatile(GPIO_PF_MODEL, ptr::read_volatile(GPIO_PF_MODEL) | 0b0100 << (PIN * 4));
+
+        GPIOF.with_model(|r| r.set_mode(PIN, 0b0100));
+
         loop {
             // Toggle PF4
             // ptr::write_volatile(GPIO_PF_DOUTTGL, 1 << PIN);

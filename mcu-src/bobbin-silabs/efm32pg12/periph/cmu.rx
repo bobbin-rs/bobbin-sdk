@@ -7,6 +7,7 @@
         (name CMU)
         (value 24)
     )
+    (link (name CLKEN))
     (register
         (name CTRL)
         (offset 0x0)
@@ -2419,6 +2420,7 @@
             (bit-width 1)
             (access read-write)
             (description "General purpose Input/Output Clock Enable")
+            (link (name CLKEN) (peripheral-group GPIO_COMMON) (peripheral GPIO_COMMON))
         )
         (field
             (name PRS)

@@ -7814,4 +7814,23 @@ impl ::core::fmt::Debug for Hfrcoss {
     }
 }
 
+pub trait Clken {
+    fn clken(&self) -> u32;
+    fn set_clken(&self, value: u32);
+}
+
+impl Cmu {
+    #[inline] pub fn clken<P: Clken>(&self, p: &P) -> u32 {
+        p.clken()
+    }
+    #[inline] pub fn set_clken<P: Clken>(&self, p: &P, value: u32) {
+        p.set_clken(value)
+    }
+}
+
+impl Clken for super::gpio_common::GpioCommon {
+    #[inline] fn clken(&self) -> u32 { CMU.hfbusclken0().gpio().into() }
+    #[inline] fn set_clken(&self, value: u32) { CMU.with_hfbusclken0(|r| r.set_gpio(value)); }
+}
+
 
