@@ -7833,4 +7833,24 @@ impl Clken for super::gpio_common::GpioCommon {
     #[inline] fn set_clken(&self, value: u32) { CMU.with_hfbusclken0(|r| r.set_gpio(value)); }
 }
 
+impl Clken for super::usart::Usart0 {
+    #[inline] fn clken(&self) -> u32 { CMU.hfperclken0().usart0().into() }
+    #[inline] fn set_clken(&self, value: u32) { CMU.with_hfperclken0(|r| r.set_usart0(value)); }
+}
+
+impl Clken for super::usart::Usart1 {
+    #[inline] fn clken(&self) -> u32 { CMU.hfperclken0().usart1().into() }
+    #[inline] fn set_clken(&self, value: u32) { CMU.with_hfperclken0(|r| r.set_usart1(value)); }
+}
+
+impl Clken for super::usart::Usart2 {
+    #[inline] fn clken(&self) -> u32 { CMU.hfperclken0().usart2().into() }
+    #[inline] fn set_clken(&self, value: u32) { CMU.with_hfperclken0(|r| r.set_usart2(value)); }
+}
+
+impl Clken for super::usart::Usart3 {
+    #[inline] fn clken(&self) -> u32 { CMU.hfperclken0().usart3().into() }
+    #[inline] fn set_clken(&self, value: u32) { CMU.with_hfperclken0(|r| r.set_usart3(value)); }
+}
+
 

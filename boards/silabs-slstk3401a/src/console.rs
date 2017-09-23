@@ -1,4 +1,5 @@
 use core::fmt::{self, Write, Arguments};
+use hal::cmu::*;
 use hal::gpio::*;
 use hal::usart::*;
 // use hal::clock::Clock;
@@ -8,8 +9,8 @@ pub const USART: Usart0 = USART0;
 pub const USART_TX: Pa0 = PA0;
 pub const USART_RX: Pa1 = PA1;
 pub const USART_CS: Pa5 = PA5;
-// // pub const USART_CLOCK: u32 = 84_000_000;
-// pub const USART_BAUD: u32 = 115_200;
+pub const USART_CLOCK: u32 = 19_000_000;
+pub const USART_BAUD: u32 = 115_200;
 
 // Assume HFRCO @ 19MHz
 // HFSRCLK = 19MHZ
@@ -23,23 +24,51 @@ pub const USART_CS: Pa5 = PA5;
 // Pin Routing
 // US0_CS: PA5 @ Location 2
 // US0_TX: PA0 @ Location 0
-// US0_RX: PA1 @ Location 1
+// US0_RX: PA1 @ Location 0
 
 
 pub fn init() {
     // Enable Clocks
-    // USART.rcc_enable();
-    // USART_TX.port().rcc_enable();
-    // USART_RX.port().rcc_enable();
+    ::hal::gpio::init();
+    CMU.with_ctrl(|r| r.set_hfperclken(true));
+    USART0.cmu_enable();
 
-    // // Set Pin Configuration
-    // USART_TX.mode_tx(&USART);
-    // USART_RX.mode_rx(&USART);
+    USART_TX.mode_push_pull_alt();
+    USART_RX.mode_push_pull_alt();
+    USART_CS.mode_push_pull().set_output(true);
+
+    USART0.with_routepen(|r| r.set_txpen(1).set_rxpen(1));
+    USART0.with_routeloc0(|r| r.set_rxloc(0).set_txloc(0));
 
     enable();
 }
 
 pub fn enable() {
+    // Set USART0 Baud
+    // Set USART0 Configuration
+    // br = fHFPERCLK/(oversample x (1 + USARTn_CLKDIV/256))
+
+    // USART_BAUD = USART_CLOCK / (oversample * (1 + CLKDIV / 256))
+    // (oversample * (1 + CLKDIV / 256)) = USART_CLOCK / USART_BAUD
+    // (1 + CLKDIV / 256)) = USART_CLOCK / USART_BAUD
+    // CLKDIV = ((USART_CLOCK / USART_BAUD) - 1) * 256
+    // USARTn_CLKDIV = 256 x (fHFPERCLK/(oversample x brdesired) - 1)
+    // bd = 41,966
+
+    use ::led::*;
+
+    let oversample = 16;
+    let div = 256 * (USART_CLOCK / ((oversample * USART_BAUD) - 1));
+    let div = div << 5;
+
+    USART.with_clkdiv(|r| r.set_div(div));
+    USART.set_cmd(|r| r.set_rxen(1).set_txen(1));
+    loop {
+        LED0.toggle_output();
+        USART.set_txdata(|r| r.set_txdata(b'.'));
+        ::delay(500);
+    }
+
     // Set Baud and Enable USART    
     // USART
     //     .set_config(|c| c.set_baud(USART_BAUD, USART.clock(&CLK).unwrap()))

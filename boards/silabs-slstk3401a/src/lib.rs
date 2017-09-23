@@ -37,5 +37,5 @@ pub fn init() {
     led::init();
     btn::init();
     // tim::init();
-    // console::init();
+    console::init();
 }

@@ -2486,13 +2486,15 @@
             (bit-width 1)
             (access read-write)
             (description "Universal Synchronous/Asynchronous Receiver/Transmitter 0 Clock Enable")
-        )
+            (link (name CLKEN) (peripheral-group USART) (peripheral USART0))
+            )
         (field
             (name USART1)
             (bit-offset 5)
             (bit-width 1)
             (access read-write)
             (description "Universal Synchronous/Asynchronous Receiver/Transmitter 1 Clock Enable")
+            (link (name CLKEN) (peripheral-group USART) (peripheral USART1))
         )
         (field
             (name USART2)
@@ -2500,6 +2502,7 @@
             (bit-width 1)
             (access read-write)
             (description "Universal Synchronous/Asynchronous Receiver/Transmitter 2 Clock Enable")
+            (link (name CLKEN) (peripheral-group USART) (peripheral USART2))
         )
         (field
             (name USART3)
@@ -2507,6 +2510,7 @@
             (bit-width 1)
             (access read-write)
             (description "Universal Synchronous/Asynchronous Receiver/Transmitter 3 Clock Enable")
+            (link (name CLKEN) (peripheral-group USART) (peripheral USART3))
         )
         (field
             (name I2C0)
