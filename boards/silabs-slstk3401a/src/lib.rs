@@ -19,7 +19,7 @@ pub mod exceptions;
 pub mod lang_items;
 
 // pub mod pin;
-// pub mod clock;
+pub mod clock;
 pub mod led;
 pub mod btn;
 // pub mod tim;
@@ -33,9 +33,9 @@ pub fn delay(ms: usize) {
 }
 
 pub fn init() {
-    // clock::init();
+    clock::init();
     led::init();
     btn::init();
     // tim::init();
-    console::init();
+    // console::init();
 }

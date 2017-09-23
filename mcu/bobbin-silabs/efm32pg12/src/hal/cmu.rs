@@ -1,6 +1,5 @@
 pub use ::chip::cmu::*;
 
-
 pub trait CmuEnabled {
     fn cmu_enabled(&self) -> bool;
     fn cmu_set_enabled(&self, value: bool) -> &Self;
@@ -17,4 +16,10 @@ impl<P> CmuEnabled for P where P: Clken {
         self.set_clken(value);
         self
     }
+}
+
+pub fn init_hfxo() {
+    CMU.set_oscencmd(|r| r.set_hfxoen(1));
+    while CMU.status().hfxordy() == 0 {}
+    CMU.set_hfclksel(|r| r.set_hf(0x2));
 }
