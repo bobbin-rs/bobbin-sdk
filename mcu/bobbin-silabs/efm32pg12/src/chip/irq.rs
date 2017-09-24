@@ -62,7 +62,7 @@ pub static mut INTERRUPT_HANDLERS: [Option<Handler>; 50] = [
     None,
     None,
     None,
-    None,
+    None,                          // IRQ 32: No Description
     None,
     None,
     None,

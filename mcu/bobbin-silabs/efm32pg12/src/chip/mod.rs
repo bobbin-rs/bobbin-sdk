@@ -11,6 +11,7 @@ pub use bobbin_cortexm::chip::itm;
 pub mod irq;
 pub mod sig;
 pub mod cmu;
+pub mod cryotimer;
 pub mod gpio_common;
 pub mod gpio;
 pub mod usart;

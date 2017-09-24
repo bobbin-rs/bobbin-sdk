@@ -22,20 +22,20 @@ pub mod lang_items;
 pub mod clock;
 pub mod led;
 pub mod btn;
-// pub mod tim;
+pub mod tim;
 
-// pub use tim::delay;
+pub use tim::delay;
 
-pub fn delay(ms: usize) {
-    for _ in 0..(ms * 10_000) {
-        unsafe { asm!("nop"); }
-    }
-}
+// pub fn delay(ms: usize) {
+//     for _ in 0..(ms * 10_000) {
+//         unsafe { asm!("nop"); }
+//     }
+// }
 
 pub fn init() {
     clock::init();
     led::init();
     btn::init();
-    // tim::init();
+    tim::init();
     // console::init();
 }

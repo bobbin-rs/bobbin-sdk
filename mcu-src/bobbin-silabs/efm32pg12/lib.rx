@@ -19,6 +19,7 @@
     )
 
     (peripheral (include "periph/cmu.rx"))
+    (peripheral (include "periph/cryotimer.rx"))
     (peripheral (include "periph/gpio_common.rx"))
 
     (peripheral-group

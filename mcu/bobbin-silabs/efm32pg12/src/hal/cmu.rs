@@ -23,3 +23,8 @@ pub fn init_hfxo() {
     while CMU.status().hfxordy() == 0 {}
     CMU.set_hfclksel(|r| r.set_hf(0x2));
 }
+
+pub fn enable_lfxo() {
+    CMU.set_oscencmd(|r| r.set_lfxoen(1));
+    while CMU.status().lfxordy() == 0 {}
+}
