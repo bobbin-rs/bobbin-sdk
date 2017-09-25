@@ -2546,6 +2546,7 @@
             (bit-width 1)
             (access read-write)
             (description "CryoTimer Clock Enable")
+            (link (name CLKEN) (peripheral-group CRYOTIMER) (peripheral CRYOTIMER))
         )
         (field
             (name ADC0)

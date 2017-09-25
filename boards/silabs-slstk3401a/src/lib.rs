@@ -24,13 +24,13 @@ pub mod led;
 pub mod btn;
 pub mod tim;
 
-// pub use tim::delay;
+pub use tim::delay;
 
-pub fn delay(ms: usize) {
-    for _ in 0..(ms * 10_000) {
-        unsafe { asm!("nop"); }
-    }
-}
+// pub fn delay(ms: usize) {
+//     for _ in 0..(ms * 10_000) {
+//         unsafe { asm!("nop"); }
+//     }
+// }
 
 pub fn init() {
     clock::init();

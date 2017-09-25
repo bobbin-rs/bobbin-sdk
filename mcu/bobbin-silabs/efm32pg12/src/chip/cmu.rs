@@ -7853,4 +7853,9 @@ impl Clken for super::usart::Usart3 {
     #[inline] fn set_clken(&self, value: u32) { CMU.with_hfperclken0(|r| r.set_usart3(value)); }
 }
 
+impl Clken for super::cryotimer::Cryotimer {
+    #[inline] fn clken(&self) -> u32 { CMU.hfperclken0().cryotimer().into() }
+    #[inline] fn set_clken(&self, value: u32) { CMU.with_hfperclken0(|r| r.set_cryotimer(value)); }
+}
+
 
