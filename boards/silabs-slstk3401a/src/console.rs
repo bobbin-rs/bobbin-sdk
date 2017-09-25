@@ -9,7 +9,7 @@ pub const USART: Usart0 = USART0;
 pub const USART_TX: Pa0 = PA0;
 pub const USART_RX: Pa1 = PA1;
 pub const USART_CS: Pa5 = PA5;
-pub const USART_CLOCK: u32 = 19_000_000;
+pub const USART_CLOCK: u32 = 4_000_000;
 pub const USART_BAUD: u32 = 115_200;
 
 // Assume HFRCO @ 19MHz
@@ -37,6 +37,17 @@ pub fn init() {
     USART_RX.mode_push_pull_alt();
     USART_CS.mode_push_pull().set_output(true);
 
+    // USART_TX.mode_push_pull();
+    // USART_RX.mode_push_pull();
+    // USART_CS.mode_push_pull();
+    // loop {
+    //     ::delay(100);
+    //     USART_TX.toggle_output();
+    //     USART_RX.toggle_output();
+    //     USART_CS.toggle_output();
+    // }
+
+
     USART0.with_routepen(|r| r.set_txpen(1).set_rxpen(1));
     USART0.with_routeloc0(|r| r.set_rxloc(0).set_txloc(0));
 
@@ -57,15 +68,22 @@ pub fn enable() {
 
     use ::led::*;
 
-    let oversample = 16;
-    let div = 256 * (USART_CLOCK / ((oversample * USART_BAUD) - 1));
-    let div = div << 5;
+    // let oversample = 16;
+    // let div = 256 * (USART_CLOCK / ((oversample * USART_BAUD) - 1));
+    // let div = 5299 * 8;
+    // let div = 5555 / 8;
+    // let div = 5299 / 8;
+    let div = 5299 >> 3;
+    // let div = div / 8;
 
-    USART.with_clkdiv(|r| r.set_div(div));
+    USART.set_clkdiv(|r| r.set_div(div));
     USART.set_cmd(|r| r.set_rxen(1).set_txen(1));
     loop {
         LED0.toggle_output();
-        USART.set_txdata(|r| r.set_txdata(b'.'));
+        while !USART.can_tx() {}
+        USART.tx(b'.');
+        // while USART.status().txbl() == 0 {}
+        // USART.set_txdata(|r| r.set_txdata(b'.'));
         ::delay(500);
     }
 
