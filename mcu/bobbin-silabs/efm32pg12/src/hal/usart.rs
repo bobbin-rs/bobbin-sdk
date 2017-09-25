@@ -1,4 +1,5 @@
 pub use bobbin_common::serial::*;
+pub use bobbin_common::enabled::*;
 pub use ::chip::usart::*;
 pub use ::hal::cmu::CmuEnabled;
 
@@ -45,6 +46,21 @@ impl UsartPeriph {
         let clkdiv = clkdiv * 64;    
 
         self.set_clkdiv(|r| r.set_div(clkdiv >> 3));        
+        self
+    }
+}
+
+impl Enabled for UsartPeriph {
+    fn enabled(&self) -> bool {
+        self.status().txens() != 0 || self.status().rxens() != 0
+    }
+
+    fn set_enabled(&self, value: bool) -> &Self {
+        if value {
+            self.set_cmd(|r| r.set_rxen(1).set_txen(1));            
+        } else {
+            self.set_cmd(|r| r.set_rxdis(1).set_txdis(1));
+        }
         self
     }
 }

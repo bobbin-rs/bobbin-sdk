@@ -44,14 +44,13 @@ pub fn init() {
 }
 
 pub fn enable() {
-    USART.set_baud(USART_CLOCK, USART_BAUD);
-    USART.set_cmd(|r| r.set_rxen(1).set_txen(1));
-
+    USART
+        .set_baud(USART_CLOCK, USART_BAUD)
+        .enable();
 }
 
 pub fn disable() {
-    // USART.disable();
-    USART.set_cmd(|r| r.set_rxen(0).set_txen(0));
+    USART.disable();
 }
 
 /// Macro for sending `print!`-formatted messages over the Console
