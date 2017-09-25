@@ -21,6 +21,20 @@ pub const PIN: usize = 4;
 pub extern "C" fn main() -> ! {
     board::init();
 
+    use board::hal::usart::*;;
+
+    println!("{:?}", USART0.clkdiv());
+
+    let refFreq = 40_000_000;
+    let oversample = 16;
+    let baudrate = 115200;
+
+    let clkdiv  = 4 * refFreq + (oversample * baudrate) / 2;
+    let clkdiv = clkdiv / (oversample * baudrate);
+    let clkdiv = clkdiv - 4;
+    let clkdiv = clkdiv * 64;    
+    println!("clkdiv: {}", clkdiv);
+
     let mut i = 0;
     loop {
         println!("Hello, World {}", i);

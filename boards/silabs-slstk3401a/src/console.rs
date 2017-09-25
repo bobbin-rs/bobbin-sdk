@@ -44,22 +44,7 @@ pub fn init() {
 }
 
 pub fn enable() {
-    // Set USART0 Baud
-    // Set USART0 Configuration
-    // br = fHFPERCLK/(oversample x (1 + USARTn_CLKDIV/256))
-
-    // USART_BAUD = USART_CLOCK / (oversample * (1 + CLKDIV / 256))
-    // (oversample * (1 + CLKDIV / 256)) = USART_CLOCK / USART_BAUD
-    // (1 + CLKDIV / 256)) = USART_CLOCK / USART_BAUD
-    // CLKDIV = ((USART_CLOCK / USART_BAUD) - 1) * 256
-    // USARTn_CLKDIV = 256 x (fHFPERCLK/(oversample x brdesired) - 1)
-
-    let div = 256 * (USART_CLOCK / (16 * USART_BAUD) - 1);
-    // let div = 5299 >> 3;
-    let div = div >> 3;
-    // let div = div / 8;
-
-    USART.set_clkdiv(|r| r.set_div(div));
+    USART.set_baud(USART_CLOCK, USART_BAUD);
     USART.set_cmd(|r| r.set_rxen(1).set_txen(1));
 
 }
