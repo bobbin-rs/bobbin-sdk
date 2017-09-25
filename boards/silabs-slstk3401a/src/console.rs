@@ -9,7 +9,7 @@ pub const USART: Usart0 = USART0;
 pub const USART_TX: Pa0 = PA0;
 pub const USART_RX: Pa1 = PA1;
 pub const USART_CS: Pa5 = PA5;
-pub const USART_CLOCK: u32 = 4_000_000;
+pub const USART_CLOCK: u32 = 40_000_000;
 pub const USART_BAUD: u32 = 115_200;
 
 // Assume HFRCO @ 19MHz
@@ -37,17 +37,6 @@ pub fn init() {
     USART_RX.mode_push_pull_alt();
     USART_CS.mode_push_pull().set_output(true);
 
-    // USART_TX.mode_push_pull();
-    // USART_RX.mode_push_pull();
-    // USART_CS.mode_push_pull();
-    // loop {
-    //     ::delay(100);
-    //     USART_TX.toggle_output();
-    //     USART_RX.toggle_output();
-    //     USART_CS.toggle_output();
-    // }
-
-
     USART0.with_routepen(|r| r.set_txpen(1).set_rxpen(1));
     USART0.with_routeloc0(|r| r.set_rxloc(0).set_txloc(0));
 
@@ -64,37 +53,20 @@ pub fn enable() {
     // (1 + CLKDIV / 256)) = USART_CLOCK / USART_BAUD
     // CLKDIV = ((USART_CLOCK / USART_BAUD) - 1) * 256
     // USARTn_CLKDIV = 256 x (fHFPERCLK/(oversample x brdesired) - 1)
-    // bd = 41,966
 
-    use ::led::*;
-
-    // let oversample = 16;
-    // let div = 256 * (USART_CLOCK / ((oversample * USART_BAUD) - 1));
-    // let div = 5299 * 8;
-    // let div = 5555 / 8;
-    // let div = 5299 / 8;
-    let div = 5299 >> 3;
+    let div = 256 * (USART_CLOCK / (16 * USART_BAUD) - 1);
+    // let div = 5299 >> 3;
+    let div = div >> 3;
     // let div = div / 8;
 
     USART.set_clkdiv(|r| r.set_div(div));
     USART.set_cmd(|r| r.set_rxen(1).set_txen(1));
-    loop {
-        LED0.toggle_output();
-        while !USART.can_tx() {}
-        USART.tx(b'.');
-        // while USART.status().txbl() == 0 {}
-        // USART.set_txdata(|r| r.set_txdata(b'.'));
-        ::delay(500);
-    }
 
-    // Set Baud and Enable USART    
-    // USART
-    //     .set_config(|c| c.set_baud(USART_BAUD, USART.clock(&CLK).unwrap()))
-    //     .enable();
 }
 
 pub fn disable() {
     // USART.disable();
+    USART.set_cmd(|r| r.set_rxen(0).set_txen(0));
 }
 
 /// Macro for sending `print!`-formatted messages over the Console
@@ -124,14 +96,14 @@ pub const CONSOLE: Console = Console {};
 pub struct Console {}
 
 impl Write for Console {
-    fn write_str(&mut self, _s: &str) -> fmt::Result {        
-        // let usart = USART;
-        // for byte in s.as_bytes().iter().cloned() {
-        //     if byte == b'\n' {
-        //         usart.putc(b'\r');
-        //     }
-        //     usart.putc(byte);
-        // }
+    fn write_str(&mut self, s: &str) -> fmt::Result {        
+        let usart = USART;
+        for byte in s.as_bytes().iter().cloned() {
+            if byte == b'\n' {
+                usart.putc(b'\r');
+            }
+            usart.putc(byte);
+        }
         Ok(())
     }
 }
