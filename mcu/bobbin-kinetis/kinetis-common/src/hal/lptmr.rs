@@ -114,3 +114,8 @@ impl Compare<u16> for LptmrPeriph {
         self.with_csr(|r| r.set_tcf(1))
     }
 }
+
+pub fn test_lptmr(tim: &LptmrPeriph) {
+    test_timer(tim, 1024);
+    test_timer_up(tim, 1024);    
+}

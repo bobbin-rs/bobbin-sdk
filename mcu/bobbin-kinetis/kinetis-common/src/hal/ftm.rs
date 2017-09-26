@@ -256,3 +256,8 @@ impl PwmCenterHigh<u16> for FtmCh {
         self
     }
 }
+
+pub fn test_ftm(ftm: &FtmPeriph) {
+    test_timer(ftm, 1024);
+    test_timer_up(ftm, 1024);    
+}

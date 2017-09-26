@@ -166,3 +166,27 @@ impl Delay<u32> for LpitCh {
             .wait_timeout()
     }
 }
+
+pub fn test_lpit(tim_ch: &LpitCh) {
+    fn check_progress(tim: &LpitCh) {
+        let mut ticks: u32 = 0;
+        while !tim.test_timeout() {
+            ticks += 1;
+        }
+        assert!(ticks > 0);
+    }
+    // Repeat Down Counter    
+    tim_ch.start_down(4096);
+    assert!(!tim_ch.test_timeout());
+    check_progress(&tim_ch);
+    tim_ch.clr_timeout();
+    check_progress(&tim_ch);
+    tim_ch.stop();
+
+    tim_ch.start_down_once(4096);
+    check_progress(&tim_ch);
+    tim_ch.clr_timeout();
+    assert_eq!(tim_ch.counter(), 4096);
+    assert_eq!(tim_ch.counter(), 4096);
+
+}
