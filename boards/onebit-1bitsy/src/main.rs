@@ -8,10 +8,15 @@ extern crate onebit_1bitsy as board;
 pub extern "C" fn main() -> ! {
     board::init();
     println!("[start] Running tests for onebit-1bitsy");
-    for i in 0..5 {
-        println!("[pass] {}", i);
-        board::delay(100);
-    }
+    test_systick();
     println!("[done] All tests passed");
     loop {}
+}
+
+fn test_systick() {
+    use board::hal::systick::*;
+
+    println!("# Testing SYSTICK");
+    test_systick(&SYSTICK, ClockSource::Internal);
+    println!("[pass] SYSTICK OK");
 }

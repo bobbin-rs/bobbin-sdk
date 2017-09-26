@@ -100,24 +100,21 @@ impl Systick {
     }
 }
 
-pub fn test_systick(s: &Systick) {
+pub fn test_systick(s: &Systick, source: ClockSource) {
     let reload_value = 10000;
 
-    // println!("# Disable Systick");
     s.set_enabled(false);
     assert!(!s.enabled());
 
-    s.set_clock_source(ClockSource::Internal);
+    s.set_clock_source(source);
+    assert_eq!(s.clock_source(), source);
 
-    // println!("# Set Reload Value");
     s.set_reload_value(reload_value);
     assert_eq!(s.reload_value(), reload_value);
 
-    // println!("# Set Current Value");
     s.set_current_value(0);
     assert_eq!(s.current_value(), 0);
 
-    // println!("# Clear Count Flag");
     let _ = s.count_flag();
     assert!(!s.count_flag());
 

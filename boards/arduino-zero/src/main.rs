@@ -18,44 +18,11 @@ pub extern "C" fn main() -> ! {
     loop {}
 }
 
-
 fn test_systick() {
     use board::hal::systick::*;
 
-    let reload_value = 1000;
-
-    // println!("# Disable Systick");
-    SYSTICK.set_enabled(false);
-    assert!(!SYSTICK.enabled());
-
-    // println!("# Set Reload Value");
-    SYSTICK.set_reload_value(reload_value);
-    assert_eq!(SYSTICK.reload_value(), reload_value);
-
-    // println!("# Set Current Value");
-    SYSTICK.set_current_value(0);
-    assert_eq!(SYSTICK.current_value(), 0);
-
-    // println!("# Clear Count Flag");
-    let _ = SYSTICK.count_flag();
-    assert!(!SYSTICK.count_flag());
-
-
-    let mut value_min = SYSTICK.current_value();
-
-    // println!("# Start Test");
-    SYSTICK.set_enabled(true);
-    assert!(SYSTICK.current_value() > 0);
-
-    while !SYSTICK.count_flag() {
-        let v = SYSTICK.current_value();
-        if v < value_min {
-            value_min = v;
-        }
-    }
-    assert!(value_min < reload_value);
-    SYSTICK.set_enabled(false);
-
+    println!("# Testing SYSTICK");
+    test_systick(&SYSTICK, ClockSource::Internal);
     println!("[pass] SYSTICK OK");
 }
 
