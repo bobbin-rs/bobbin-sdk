@@ -12,11 +12,4 @@ pub mod wdt;
 pub mod adc;
 pub mod i2c;
 pub mod spi;
-
-// // pub mod port;
-// // pub mod usart;
-// // // pub mod spi;
-
-// // pub mod tc;
-// // pub mod tcc;
-// // pub mod adc;
+pub mod uid;
