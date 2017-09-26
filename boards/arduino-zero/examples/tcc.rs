@@ -29,15 +29,15 @@ pub extern "C" fn main() -> ! {
     ch3.set_compare(800);
     
     loop {
-        ch0.clr_compare_flag().wait_compare_flag();
+        ch0.clr_compare().wait_test_compare();
         println!("{} compare 0", tcc.counter());
-        ch1.clr_compare_flag().wait_compare_flag();
+        ch1.clr_compare().wait_test_compare();
         println!("{} compare 1", tcc.counter());
-        ch2.clr_compare_flag().wait_compare_flag();
+        ch2.clr_compare().wait_test_compare();
         println!("{} compare 2", tcc.counter());
-        ch3.clr_compare_flag().wait_compare_flag();
+        ch3.clr_compare().wait_test_compare();
         println!("{} compare 3", tcc.counter());
-        tcc.clr_timeout_flag().wait_timeout_flag();
+        tcc.clr_timeout().wait_timeout();
         println!("{} timeout", tcc.counter());
     }
 }

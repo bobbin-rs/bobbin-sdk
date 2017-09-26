@@ -46,8 +46,8 @@ impl Delay<u32> for PitCh {
     fn delay(&self, value: u32) -> &Self {
         self
             .start_down(value)
-            .clr_timeout_flag()
-            .wait_timeout_flag()
+            .clr_timeout()
+            .wait_timeout()
             .stop()
     }
 }
@@ -68,34 +68,44 @@ impl StartDown<u32> for PitCh {
     }
 }
 
-impl Timer<u32> for PitCh {
+impl Stop for PitCh {
     fn stop(&self) -> &Self {
         self.periph.set_timer_enabled(self.index, false);
         self
     }
+}
 
+impl Running for PitCh {
     fn running(&self) -> bool {
         self.periph.timer_enabled(self.index)
     }
+}
 
+impl Period<u32> for PitCh {
     fn period(&self) -> u32 {
         self.periph.load_value(self.index) + 1
     }
-    
+}
+
+impl SetPeriod<u32> for PitCh {
     fn set_period(&self, value: u32) -> &Self {
         self.periph.set_load_value(self.index, value - 1);
         self
     }
+}
 
+impl Counter<u32> for PitCh {
     fn counter(&self) -> u32 {
         self.periph.counter_value(self.index)
     }
+}
 
-    fn timeout_flag(&self) -> bool {
+impl Timeout for PitCh {
+    fn test_timeout(&self) -> bool {
         self.periph.interrupt_flag(self.index)
     }
 
-    fn clr_timeout_flag(&self) -> &Self {
+    fn clr_timeout(&self) -> &Self {
         self.periph.clr_interrupt_flag(self.index);
         self
     }

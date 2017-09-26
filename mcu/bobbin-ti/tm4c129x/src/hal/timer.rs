@@ -77,11 +77,11 @@ impl TimerCh {
         self
     }
     #[inline]
-    pub fn timeout_flag(&self) -> bool {
+    pub fn test_timeout(&self) -> bool {
         self.periph.ris().ttoris(self.index) != 0
     }
     #[inline]
-    pub fn clr_timeout_flag(&self) -> &Self {
+    pub fn clr_timeout(&self) -> &Self {
         self.periph.set_icr(|r| r.set_ttocint(self.index, 1));
         self
     }
@@ -115,35 +115,48 @@ impl TimerCh {
 impl Delay<u32> for TimerPeriph {    
     fn delay(&self, value: u32) -> &Self {
         self
-            .start_down_once(value)
-            .clr_timeout_flag()
-            .wait_timeout_flag()
+            .clr_timeout()
+            .start_once(value)
+            .wait_timeout()
     }
 }
 
-impl Timer<u32> for TimerPeriph {
+impl Stop for TimerPeriph {
     fn stop(&self) -> &Self {
         self.with_ctl(|r| r.set_ten(0, 0))
     }
+}
+
+impl Running for TimerPeriph {
     fn running(&self) -> bool {
         self.ctl().ten(0) != 0
     }
+}
 
+impl Period<u32> for TimerPeriph {
     fn period(&self) -> u32 {
         self.tilr(0).tilr().value()
     }
+}
+
+impl SetPeriod<u32> for TimerPeriph {
     fn set_period(&self, value: u32) -> &Self {
         self.set_tilr(0, |r| r.set_tilr(value))
     }
+}
 
+impl Counter<u32> for TimerPeriph {
     fn counter(&self) -> u32 {
         self.tv(0).tv().value()
     }
+}
 
-    fn timeout_flag(&self) -> bool {
+impl Timeout for TimerPeriph {
+    fn test_timeout(&self) -> bool {
         self.ris().ttoris(0) != 0
     }
-    fn clr_timeout_flag(&self) -> &Self {
+
+    fn clr_timeout(&self) -> &Self {
         self.set_icr(|r| r.set_ttocint(0, 1))
     }
 }
@@ -152,6 +165,12 @@ impl Timer<u32> for TimerPeriph {
 impl Start<u32> for TimerPeriph {
     fn start(&self, value: u32) -> &Self {
         self.start_down(value)
+    }
+}
+
+impl StartOnce<u32> for TimerPeriph {
+    fn start_once(&self, value: u32) -> &Self {
+        self.start_down_once(value)
     }
 }
 
@@ -223,6 +242,8 @@ impl Prescale<u8> for TimerPeriph {
     fn prescale(&self) -> u8 {
         self.tpr(0).tpsr().value()
     }
+}
+impl SetPrescale<u8> for TimerPeriph {
     fn set_prescale(&self, value: u8) -> &Self {
         self.set_tpr(0, |r| r.set_tpsr(value))
     }
@@ -243,11 +264,11 @@ impl Compare<u32> for TimerPeriph {
         self.set_tmtchr(0, |r| r.set_tmtchr(value))
     }
 
-    fn compare_flag(&self) -> bool {
+    fn test_compare(&self) -> bool {
         self.ris().tamris() != 0
     }
 
-    fn clr_compare_flag(&self) -> &Self {
+    fn clr_compare(&self) -> &Self {
         self.set_icr(|r| r.set_tamcint(1))
     }
 

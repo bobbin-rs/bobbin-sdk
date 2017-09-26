@@ -86,6 +86,18 @@ impl LpitCh {
 impl Start<u32> for LpitCh {
     fn start(&self, value: u32) -> &Self {       
         self.periph
+            .with_tctrl(self.index, |r| r.set_tsoi(0))
+            .set_ch_value(self.index, value - 1)
+            .set_ch_enabled(self.index, true);
+        self
+    }
+}
+
+
+impl StartOnce<u32> for LpitCh {
+    fn start_once(&self, value: u32) -> &Self {       
+        self.periph
+            .with_tctrl(self.index, |r| r.set_tsoi(1))
             .set_ch_value(self.index, value - 1)
             .set_ch_enabled(self.index, true);
         self
@@ -113,36 +125,35 @@ impl StartDownOnce<u32> for LpitCh {
     }
 }
 
-
-impl Timer<u32> for LpitCh {
+impl Stop for LpitCh {
     fn stop(&self) -> &Self {
         self.periph.set_ch_enabled(self.index, false);
         self
     }
+}
 
+impl Running for LpitCh {
     fn running(&self) -> bool {
         self.periph.ch_enabled(self.index)        
     }
+}
 
+impl Period<u32> for LpitCh {
     fn period(&self) -> u32 {
         self.periph.ch_value(self.index) + 1        
     }
-    
+}
+
+impl SetPeriod<u32> for LpitCh {
     fn set_period(&self, value: u32) -> &Self {
         self.periph.set_ch_value(self.index, value - 1);
         self
     }
+}
 
+impl Counter<u32> for LpitCh {
     fn counter(&self) -> u32 {
         self.periph.ch_value(self.index)
-    }
-
-    fn timeout_flag(&self) -> bool {
-        self.tif()
-    }
-
-    fn clr_timeout_flag(&self) -> &Self {
-        self.clr_tif()
     }
 }
 
@@ -153,12 +164,22 @@ impl SetCounter<u32> for LpitCh {
     }
 }
 
+impl Timeout for LpitCh {
+    fn test_timeout(&self) -> bool {
+        self.tif()
+    }
+
+    fn clr_timeout(&self) -> &Self {
+        self.clr_tif()
+    }
+}
+
 impl Delay<u32> for LpitCh {
     fn delay(&self, value: u32) -> &Self {
         self
-            .start(value)
-            .clr_timeout_flag()
-            .wait_timeout_flag()
             .stop()
+            .clr_timeout()
+            .start_once(value)
+            .wait_timeout()
     }
 }

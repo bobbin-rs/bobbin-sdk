@@ -33,7 +33,7 @@ pub extern "C" fn main() -> ! {
     t.set_prescale(prescale);
     t.start(period as u16);
     loop {
-        t.clr_timeout_flag().wait_timeout_flag();
+        t.clr_timeout().wait_timeout();
         println!("tick");
     }
 

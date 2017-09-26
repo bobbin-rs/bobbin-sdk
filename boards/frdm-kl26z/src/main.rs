@@ -146,7 +146,7 @@ fn test_pit() {
 
     fn check_progress(tim: &PitCh) {
         let mut c_min = 4096;
-        while !tim.timeout_flag() {
+        while !tim.test_timeout() {
             let c = tim.counter();
             if c < c_min {
                 c_min = c;
@@ -162,10 +162,10 @@ fn test_pit() {
 
     // Repeat Up Counter    
     tim_ch
-        .clr_timeout_flag()
+        .clr_timeout()
         .start_down(4096);
     check_progress(&tim_ch);
-    tim_ch.clr_timeout_flag();
+    tim_ch.clr_timeout();
     check_progress(&tim_ch);
 
     assert!(tim_ch.running());
@@ -181,13 +181,13 @@ fn test_lptmr() {
 
     fn check_progress(tim: &LptmrPeriph) {
         let mut c_max = 0;
-        while !tim.timeout_flag() {
+        while !tim.test_timeout() {
             let c = tim.counter();
             if c > c_max {
                 c_max = c;
             }
         }
-        assert!(tim.compare_flag());
+        assert!(tim.test_compare());
         assert!(c_max > 0);
     }
 
@@ -199,10 +199,10 @@ fn test_lptmr() {
     // Repeat Up Counter    
     tim
         .set_compare(2048)
-        .clr_timeout_flag()
+        .clr_timeout()
         .start_up(4096);
     check_progress(&tim);
-    tim.clr_compare_flag().clr_timeout_flag();
+    tim.clr_compare().clr_timeout();
     check_progress(&tim);
     
     // tim.set_enabled(false);

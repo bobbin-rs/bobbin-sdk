@@ -16,6 +16,12 @@ impl Start<u16> for LptimPeriph {
     }
 }
 
+impl StartOnce<u16> for LptimPeriph {
+    fn start_once(&self, value: u16) -> &Self {
+        self.start_up_once(value)
+    }
+}
+
 impl StartUp<u16> for LptimPeriph {
     fn start_up(&self, value: u16) -> &Self {
         self
@@ -35,25 +41,18 @@ impl StartUpOnce<u16> for LptimPeriph {
 impl Delay<u16> for LptimPeriph {
     fn delay(&self, value: u16) -> &Self {
         self
-            .start_up_once(value)
-            .clr_timeout_flag()
-            .wait_timeout_flag()
+            .start_once(value)
+            .clr_timeout()
+            .wait_timeout()
     }
 }
 
-impl Timer<u16> for LptimPeriph {
-    fn stop(&self) -> &Self {
-        unimplemented!()
-    }
-
-    fn running(&self) -> bool {
-        unimplemented!()
-    }
-
+impl Period<u16> for LptimPeriph {
     fn period(&self) -> u16 {
         self.arr().arr().value() + 1
     }
-    
+}
+impl SetPeriod<u16> for LptimPeriph {
     fn set_period(&self, value: u16) -> &Self {
         self
             .set_enabled(true)
@@ -61,16 +60,19 @@ impl Timer<u16> for LptimPeriph {
         while self.isr().arrok() == 0 {}            
         self
     }
-
+}
+impl Counter<u16> for LptimPeriph {
     fn counter(&self) -> u16 {
         self.cnt().cnt().value()
     }
+}
 
-    fn timeout_flag(&self) -> bool {
+impl Timeout for LptimPeriph {
+    fn test_timeout(&self) -> bool {
         self.isr().arrm() != 0
     }
 
-    fn clr_timeout_flag(&self) -> &Self {
+    fn clr_timeout(&self) -> &Self {
         self.set_icr(|r| r.set_arrmcf(1))
     }
 }
@@ -79,6 +81,9 @@ impl Prescale<u16> for LptimPeriph {
     fn prescale(&self) -> u16 {
         1 << self.cfgr().presc().value()
     }
+}
+
+impl SetPrescale<u16> for LptimPeriph {
     fn set_prescale(&self, value: u16) -> &Self {
         let shift = match value {
             1 => 0,
@@ -109,11 +114,11 @@ impl Compare<u16> for LptimPeriph {
         
     }
 
-    fn compare_flag(&self) -> bool {
+    fn test_compare(&self) -> bool {
         self.isr().cmpm() != 0
     }
 
-    fn clr_compare_flag(&self) -> &Self {
+    fn clr_compare(&self) -> &Self {
         self.set_icr(|r| r.set_cmpmcf(1))
     }
 }
