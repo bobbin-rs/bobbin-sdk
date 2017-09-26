@@ -119,6 +119,7 @@ impl<V: Into<U24>> StartDown<V> for Systick {
             .set_enabled(false)
             .clr_count_flag()
             .set_reload_value(value)
+            .set_current_value(0)
             .set_enabled(true)
     }
 }
@@ -178,7 +179,7 @@ impl<V: Into<U24>> Delay<V> for Systick {
 impl Elapsed<U24> for Systick {
     fn elapsed<F: FnOnce()>(&self, f: F) -> Option<U24> {
         const MAX: u32 = (1u32 << 24) - 1u32;
-        self.set_period(MAX).clr_counter().set_enabled(true);
+        self.clr_count_flag().set_period(MAX).clr_counter().set_enabled(true);
         f();
         let value = self.set_enabled(false).counter().value();
         if self.count_flag() {
