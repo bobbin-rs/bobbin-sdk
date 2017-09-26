@@ -1,6 +1,7 @@
 pub use bobbin_common::timer::*;
 pub use bobbin_common::Channel;
 pub use chip::timer::*;
+pub use core::ops::Deref;
 pub use super::sysctl::SysctlEnabled;
 
 #[derive(Debug, PartialEq, Eq, Clone, Copy)]
@@ -151,6 +152,18 @@ impl Counter<u32> for TimerPeriph {
     }
 }
 
+impl SetCounter<u32> for TimerPeriph {
+    fn set_counter(&self, value: u32) -> &Self {
+        self.set_tv(0, |r| r.set_tv(value))
+    }
+}
+
+impl ClearCounter for TimerPeriph {
+    fn clr_counter(&self) -> &Self {
+        self.set_tv(0, |r| r.set_tv(0))
+    }
+}
+
 impl Timeout for TimerPeriph {
     fn test_timeout(&self) -> bool {
         self.ris().ttoris(0) != 0
@@ -184,6 +197,8 @@ impl StartDown<u32> for TimerPeriph {
         self.set_tmr(0, |r| r.set_tcdir(0).set_tmr(0x02));
         // set timer a load register
         self.set_tilr(0, |r| r.set_tilr(value));
+        // Clear Timeout
+        self.clr_timeout();
         // enable timer a
         self.with_ctl(|r| r.set_ten(0, 1));
         self
@@ -200,6 +215,8 @@ impl StartUp<u32> for TimerPeriph {
         self.set_tmr(0, |r| r.set_tcdir(1).set_tmr(0x02));
         // set timer a load register
         self.set_tilr(0, |r| r.set_tilr(value));
+        // Clear Timeout
+        self.clr_timeout();
         // enable timer a
         self.with_ctl(|r| r.set_ten(0, 1));        
         self
@@ -216,6 +233,8 @@ impl StartDownOnce<u32> for TimerPeriph {
         self.set_tmr(0, |r| r.set_tcdir(0).set_tmr(0x01));        
         // set timer a load register
         self.set_tilr(0, |r| r.set_tilr(value));
+        // Clear Timeout
+        self.clr_timeout();        
         // enable timer a
         self.with_ctl(|r| r.set_ten(0, 1));               
         self
@@ -232,6 +251,8 @@ impl StartUpOnce<u32> for TimerPeriph {
         self.set_tmr(0, |r| r.set_tcdir(1).set_tmr(0x01));        
         // set timer a load register
         self.set_tilr(0, |r| r.set_tilr(value));
+        // Clear Timeout
+        self.clr_timeout();        
         // enable timer a
         self.with_ctl(|r| r.set_ten(0, 1));         
         self
@@ -246,12 +267,6 @@ impl Prescale<u8> for TimerPeriph {
 impl SetPrescale<u8> for TimerPeriph {
     fn set_prescale(&self, value: u8) -> &Self {
         self.set_tpr(0, |r| r.set_tpsr(value))
-    }
-}
-
-impl SetCounter<u32> for TimerPeriph {
-    fn set_counter(&self, value: u32) -> &Self {
-        self.set_tv(0, |r| r.set_tv(value))
     }
 }
 

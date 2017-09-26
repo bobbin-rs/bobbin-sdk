@@ -152,7 +152,7 @@ impl Counter<U24> for Systick {
     }
 }
 
-impl ClearCounter<U24> for Systick {
+impl ClearCounter for Systick {
     fn clr_counter(&self) -> &Self {
         self.set_current_value(0)
     }

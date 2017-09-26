@@ -29,18 +29,33 @@ fn test_systick() {
 }
 
 fn test_timer() {
-    use board::hal::systick::*;
     use board::hal::timer::*;    
 
-    SYSTICK.set_clock_source(ClockSource::Internal);    
-    let t = SYSTICK.elapsed(|| {
-        board::delay(10);
-    });
-    println!("T: {}", t.unwrap().value());
-    let t = SYSTICK.elapsed(|| {
-        board::delay(100);
-    });
-    println!("T: {}", t.unwrap().value());
+
+    println!("# Testing TIMER0");
+    TIMER0.sysctl_enable();
+
+    println!("# Test Timer");
+    test_timer(TIMER0.deref(), 1000u32);
+
+    println!("# Test Timer Once");
+    test_timer_once(TIMER0.deref(), 1000u32);
+
+    println!("# Test Timer Up");
+    test_timer_up(TIMER0.deref(), 1000u32);
+
+    println!("# Test Timer Up Once");
+    test_timer_up_once(TIMER0.deref(), 1000u32);
+
+    println!("# Test Timer Down");
+    test_timer_down(TIMER0.deref(), 1000u32);    
+
+    println!("# Test Timer Down Once");
+    test_timer_down_once(TIMER0.deref(), 1000u32);   
+
+    TIMER0.sysctl_disable();
+    println!("[pass] TIMER0 OK");
+
 }
 
 // fn test_crc() {

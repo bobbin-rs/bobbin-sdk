@@ -1,12 +1,3 @@
-pub trait Start<T> {
-    // Start a repeating timer with period `value`.
-    fn start(&self, value: T) -> &Self;
-}
-
-pub trait StartOnce<T> {
-    // Start a one-shot timer with period `value`.
-    fn start_once(&self, value: T) -> &Self;
-}
 
 pub trait Running {
     // Returns true if the timer is currently running.
@@ -49,7 +40,7 @@ pub trait SetCounter<T> {
     fn set_counter(&self, value: T) -> &Self;
 }
 
-pub trait ClearCounter<T> {
+pub trait ClearCounter {
     // Set the current counter value to zero.
     fn clr_counter(&self) -> &Self;
 }
@@ -79,23 +70,39 @@ pub trait Delay<T> {
     fn delay(&self, value: T) -> &Self;
 }
 
+pub trait Start<T> {
+    // Start a repeating timer with period `value`,
+    // clearing timeout flag if available.
+    fn start(&self, value: T) -> &Self;
+}
+
+pub trait StartOnce<T> {
+    // Start a one-shot timer with period `value`,
+    // clearing timeout flag if available.
+    fn start_once(&self, value: T) -> &Self;
+}
+
 pub trait StartDown<T> {
-    // Start a repeating down-counting timer from `value` to zero.
+    // Start a repeating down-counting timer from `value` to zero, 
+    // clearing timeout flag if available.
     fn start_down(&self, value: T) -> &Self;
 }
 
 pub trait StartUp<T> {
-    // Start a repeating up-counting timer from zero to `value`.
+    // Start a repeating up-counting timer from zero to `value`,
+    // clearing timeout flag if available.
     fn start_up(&self, value: T) -> &Self;
 }
 
 pub trait StartDownOnce<T> {
-    // Start a one-shot down-counting timer from `value` to zero.
+    // Start a one-shot down-counting timer from `value` to zero,
+    // clearing timeout flag if available.
     fn start_down_once(&self, value: T) -> &Self;
 }
 
 pub trait StartUpOnce<T> {
-    // Start a one-shot up-counting timer from zero to `value`.
+    // Start a one-shot up-counting timer from zero to `value`
+    // clearing timeout flag if available.
     fn start_up_once(&self, value: T) -> &Self;
 }
 
@@ -157,4 +164,105 @@ pub trait PwmCenterLow<T> {
 pub trait PwmCenterHigh<T> {
     // Center Aligned PWM, (Counter < Compare) => Output High
     fn pwm_center_high(&self, compare: T, period: T) -> &Self;
+}
+
+pub fn test_timer<V, T>(t: &T, v: V) 
+where V: Into<u32>, T: Start<V> + Stop + Running + Timeout
+{
+    let mut ticks = 0;
+    t.start(v);
+    
+    while !t.test_timeout() {
+        ticks += 1;
+    }
+    assert!(ticks > 0);
+    t.clr_timeout();
+    ticks = 0;
+    while !t.test_timeout() {
+        ticks += 1;
+    }
+    assert!(ticks > 0);
+    t.stop();    
+    assert!(!t.running());    
+}
+
+
+pub fn test_timer_once<V, T>(t: &T, v: V) 
+where V: Into<u32>, T: StartOnce<V> + Running + Timeout
+{
+    let mut ticks = 0;
+    t.start_once(v);
+    
+    while !t.test_timeout() {
+        ticks += 1;
+    }
+    assert!(ticks > 0);
+    t.clr_timeout();
+    assert!(!t.running());    
+}
+
+
+pub fn test_timer_up<V, T>(t: &T, v: V) 
+where V: Into<u32>, T: StartUp<V> + Stop + Running +Timeout
+{
+    let mut ticks = 0;
+    t.start_up(v);    
+    while !t.test_timeout() {
+        ticks += 1;
+    }
+    assert!(ticks > 0);
+    t.clr_timeout();
+    ticks = 0;
+    while !t.test_timeout() {
+        ticks += 1;
+    }
+    assert!(ticks > 0);
+    t.stop();
+    assert!(!t.running());    
+}
+
+pub fn test_timer_up_once<V, T>(t: &T, v: V) 
+where V: Into<u32>, T: StartUpOnce<V> + Running + Timeout
+{
+    let mut ticks = 0;
+    t.start_up_once(v);    
+    while !t.test_timeout() {
+        ticks += 1;
+    }
+    assert!(ticks > 0);
+    t.clr_timeout();
+    assert!(!t.running());
+}
+
+
+pub fn test_timer_down<V, T>(t: &T, v: V) 
+where V: Into<u32>, T: StartDown<V> + Stop + Running + Timeout
+{
+    let mut ticks = 0;
+    t.start_down(v);        
+    while !t.test_timeout() {
+        ticks += 1;
+    }
+    assert!(ticks > 0);
+    t.clr_timeout();
+    ticks = 0;
+    while !t.test_timeout() {
+        ticks += 1;
+    }
+    assert!(ticks > 0);
+    t.stop();
+    assert!(!t.running());
+}
+
+pub fn test_timer_down_once<V, T>(t: &T, v: V) 
+where V: Into<u32>, T: StartDownOnce<V> + Running + Timeout
+{
+    let mut ticks = 0;
+    t.start_down_once(v);        
+    while !t.test_timeout() {
+        ticks += 1;
+    }
+    assert!(ticks > 0);
+    t.clr_timeout();
+    assert!(!t.running());
 }
