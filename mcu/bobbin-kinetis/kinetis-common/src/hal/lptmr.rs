@@ -45,7 +45,7 @@ impl StartUp<u16> for LptmrPeriph {
             .with_csr(|r| r.set_ten(0))
             .set_period(value)
             .clr_timeout()
-            .with_csr(|r| r.set_tfc(1).set_ten(1))
+            .with_csr(|r| r.set_tfc(0).set_ten(1))
     }
 }
 
