@@ -39,34 +39,34 @@ impl PwmCh {
     }
 }
 
-impl Timer<u16> for PwmCh {
+impl Stop for PwmCh {
     fn stop(&self) -> &Self {
         self.set_enabled(false)
     }
+}
+
+impl Running for PwmCh {
     fn running(&self) -> bool {
         self.enabled()
     }
+}
 
+impl Period<u16> for PwmCh {
     fn period(&self) -> u16 {
         self.periph.ch_load(self.index).load().value()
     }
+}
 
+impl SetPeriod<u16> for PwmCh {
     fn set_period(&self, value: u16) -> &Self {
         self.periph.set_ch_load(self.index, |r| r.set_load(value));
         self
     }
+}
 
+impl Counter<u16> for PwmCh {
     fn counter(&self) -> u16 {
         self.periph.ch_count(self.index).count().value()
-    }
-
-    fn timeout_flag(&self) -> bool {
-        self.periph.ch_ris(self.index).intcntload() != 0
-    }
-
-    fn clr_timeout_flag(&self) -> &Self {
-        self.periph.set_ch_isc(self.index, |r| r.set_intcntload(1));
-        self        
     }
 }
 
@@ -75,6 +75,17 @@ impl SetCounter<u16> for PwmCh {
         self.periph.set_ch_count(self.index, |r| r.set_count(value));
         self
     }    
+}
+
+impl Timeout for PwmCh {
+    fn test_timeout(&self) -> bool {
+        self.periph.ch_ris(self.index).intcntload() != 0
+    }
+
+    fn clr_timeout(&self) -> &Self {
+        self.periph.set_ch_isc(self.index, |r| r.set_intcntload(1));
+        self        
+    }
 }
 
 impl Compare<u16> for PwmCh {
@@ -87,11 +98,11 @@ impl Compare<u16> for PwmCh {
         self
     }
 
-    fn compare_flag(&self) -> bool {
+    fn test_compare(&self) -> bool {
         self.periph.ch_ris(self.index).intcmpau() != 0
     }
 
-    fn clr_compare_flag(&self) -> &Self {
+    fn clr_compare(&self) -> &Self {
         self.periph.set_ch_isc(self.index, |r| r.set_intcmpau(1));
         self
     }

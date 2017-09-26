@@ -96,35 +96,46 @@ impl TcPeriph {
     }
 }
 
-impl Timer<u16> for TcPeriph {
+impl Stop for TcPeriph {
     fn stop(&self) -> &Self {
         self.count16().set_ctrlbset(|r| r.set_cmd(0x2));
         self.count16().with_ctrla(|r| r.set_enable(0x0));
         while self.count16().status().syncbusy() != 0 {}
         self
     }
+}
+
+impl Running for TcPeriph {
     fn running(&self) -> bool {
         self.count16().status().stop() == 0
     }
+}
 
+impl Period<u16> for TcPeriph {
     fn period(&self) -> u16 {
         self.count16().cc(0).cc().value()
     }
+}
 
+impl SetPeriod<u16> for TcPeriph {
     fn set_period(&self, value: u16) -> &Self {
         self.count16().set_cc(0, |r| r.set_cc(value));
         self
     }
+}
 
+impl Counter<u16> for TcPeriph {
     fn counter(&self) -> u16 {
         self.count16().count().count().value()
     }
+}
 
-    fn timeout_flag(&self) -> bool {
+impl Timeout for TcPeriph {
+    fn test_timeout(&self) -> bool {
         self.count16().intflag().mc0() != 0
     }
 
-    fn clr_timeout_flag(&self) -> &Self {
+    fn clr_timeout(&self) -> &Self {
         self.count16().set_intflag(|r| r.set_mc0(1));
         self
     }
@@ -144,6 +155,9 @@ impl Prescale<u16> for TcPeriph {
     fn prescale(&self) -> u16 {
         1 << self.count16().ctrla().prescaler().value() 
     }
+}
+
+impl SetPrescale<u16> for TcPeriph {
     fn set_prescale(&self, value: u16) -> &Self {
         let shift = match value {
             1 => 0,
@@ -181,11 +195,11 @@ impl Compare<u16> for TcPeriph {
         self
     }
 
-    fn compare_flag(&self) -> bool {
+    fn test_compare(&self) -> bool {
         self.count16().intflag().mc1() != 0
     }
 
-    fn clr_compare_flag(&self) -> &Self {
+    fn clr_compare(&self) -> &Self {
         self.count16().set_intflag(|r| r.set_mc1(1));
         self
     }
@@ -196,8 +210,8 @@ impl Delay<u16> for TcPeriph {
     fn delay(&self, value: u16) -> &Self {
         self
             .start(value)
-            .clr_timeout_flag()
-            .wait_timeout_flag()
+            .clr_timeout()
+            .wait_timeout()
             .stop()
     }
 }

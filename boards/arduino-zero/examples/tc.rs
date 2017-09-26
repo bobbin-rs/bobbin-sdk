@@ -30,9 +30,9 @@ pub extern "C" fn main() -> ! {
         .set_compare(512)
         .start(1024);
     loop {
-        tc.clr_compare_flag().wait_compare_flag();
+        tc.clr_compare().wait_test_compare();
         println!("{} compare", tc.counter());
-        tc.clr_timeout_flag().wait_timeout_flag();
+        tc.clr_timeout().wait_timeout();
         println!("{} timeout", tc.counter());
     }
 }

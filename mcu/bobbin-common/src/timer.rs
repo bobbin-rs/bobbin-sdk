@@ -3,23 +3,6 @@
 //     Up,
 // }
 
-pub trait Timer<T> {
-    fn stop(&self) -> &Self;
-    fn running(&self) -> bool;
-
-    fn period(&self) -> T;
-    fn set_period(&self, value: T) -> &Self;
-
-    fn counter(&self) -> T;
-
-    fn timeout_flag(&self) -> bool;
-    fn clr_timeout_flag(&self) -> &Self;
-
-    fn wait_timeout_flag(&self) -> &Self {
-        while !self.timeout_flag() {}
-        self
-    }    
-}
 
 pub trait Start<T> {
     fn start(&self, value: T) -> &Self;
@@ -28,6 +11,71 @@ pub trait Start<T> {
 pub trait StartOnce<T> {
     fn start_once(&self, value: T) -> &Self;
 }
+
+pub trait Running {
+    fn running(&self) -> bool;
+}
+
+pub trait Stop {
+    fn stop(&self) -> &Self;
+}
+
+pub trait Timeout {
+    fn test_timeout(&self) -> bool;
+    fn clr_timeout(&self) -> &Self;
+
+    fn wait_timeout(&self) -> &Self {
+        while !self.test_timeout() {}
+        self
+    }        
+}
+
+pub trait Counter<T> {
+    fn counter(&self) -> T;
+}
+
+pub trait SetCounter<T> {
+    fn set_counter(&self, value: T) -> &Self;
+}
+
+pub trait Prescale<T> {
+    fn prescale(&self) -> T;
+}
+
+pub trait SetPrescale<T> {
+    fn set_prescale(&self, value: T) -> &Self;
+}
+
+pub trait Period<T> {
+    fn period(&self) -> T;
+}
+
+pub trait SetPeriod<T> {
+    fn set_period(&self, value: T) ->&Self;
+}
+
+pub trait Delay<T> {
+    fn delay(&self, value: T) -> &Self;
+}
+
+// pub trait Timer<T> {
+//     fn stop(&self) -> &Self;
+//     fn running(&self) -> bool;
+
+//     fn period(&self) -> T;
+//     fn set_period(&self, value: T) -> &Self;
+
+//     fn counter(&self) -> T;
+
+//     fn test_timeout(&self) -> bool;
+//     fn clr_timeout(&self) -> &Self;
+
+//     fn wait_timeout(&self) -> &Self {
+//         while !self.test_timeout() {}
+//         self
+//     }    
+// }
+
 
 pub trait StartDown<T> {
     fn start_down(&self, value: T) -> &Self;
@@ -45,28 +93,15 @@ pub trait StartUpOnce<T> {
     fn start_up_once(&self, value: T) -> &Self;
 }
 
-pub trait Delay<T> {
-    fn delay(&self, value: T) -> &Self;
-}
-
-pub trait Prescale<T> {
-    fn prescale(&self) -> T;
-    fn set_prescale(&self, value: T) -> &Self;
-}
-
-pub trait SetCounter<T> {
-    fn set_counter(&self, value: T) -> &Self;
-}
-
 pub trait Compare<T> {
     fn compare(&self) -> T;
     fn set_compare(&self, value: T) -> &Self;
 
-    fn compare_flag(&self) -> bool;
-    fn clr_compare_flag(&self) -> &Self;
+    fn test_compare(&self) -> bool;
+    fn clr_compare(&self) -> &Self;
 
-    fn wait_compare_flag(&self) -> &Self {
-        while !self.compare_flag() {}
+    fn wait_test_compare(&self) -> &Self {
+        while !self.test_compare() {}
         self
     }
 }

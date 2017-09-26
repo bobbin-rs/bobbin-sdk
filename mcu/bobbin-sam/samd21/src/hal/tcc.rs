@@ -39,37 +39,47 @@ impl TccCh {
     }
 }
 
-impl Timer<u16> for TccPeriph {
+impl Stop for TccPeriph {
     fn stop(&self) -> &Self {
         self.set_ctrlbset(|r| r.set_cmd(0x2));
         self.with_ctrla(|r| r.set_enable(0x0));
         self
     }
+}
+
+impl Running for TccPeriph {
     fn running(&self) -> bool {
         self.status().stop() == 0
     }
+}
 
+impl Period<u16> for TccPeriph {
     fn period(&self) -> u16 {
         // Discard excess bits
         self.per().per().value() as u16
     }
+}
 
+impl SetPeriod<u16> for TccPeriph {
     fn set_period(&self, value: u16) -> &Self {
         self.set_per(|r| r.set_per(value));
         while self.syncbusy().per() != 0 {}
         self
     }
-
+}
+impl Counter<u16> for TccPeriph {
     fn counter(&self) -> u16 {
         // Discard excess bits
         self.count().count().value() as u16
     }
+}
 
-    fn timeout_flag(&self) -> bool {
+impl Timeout for TccPeriph {
+    fn test_timeout(&self) -> bool {
         self.intflag().ovf() != 0
     }
 
-    fn clr_timeout_flag(&self) -> &Self {
+    fn clr_timeout(&self) -> &Self {
         self.set_intflag(|r| r.set_ovf(1));
         self
     }    
@@ -141,6 +151,9 @@ impl Prescale<u16> for TccPeriph {
     fn prescale(&self) -> u16 {
         1 << self.ctrla().prescaler().value() 
     }
+}
+
+impl SetPrescale<u16> for TccPeriph {
     fn set_prescale(&self, value: u16) -> &Self {
         let shift = match value {
             1 => 0,
@@ -179,11 +192,11 @@ impl Compare<u16> for TccCh {
         self
     }
 
-    fn compare_flag(&self) -> bool {
+    fn test_compare(&self) -> bool {
         self.periph.intflag().mc(self.index) != 0
     }
 
-    fn clr_compare_flag(&self) -> &Self {
+    fn clr_compare(&self) -> &Self {
         self.periph.set_intflag(|r| r.set_mc(self.index, 1));
         self
     }

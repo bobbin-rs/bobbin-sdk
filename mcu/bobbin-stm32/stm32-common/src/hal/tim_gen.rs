@@ -128,7 +128,9 @@ impl Prescale<u16> for TimGenPeriph {
     fn prescale(&self) -> u16 {
         self.psc().psc().value() + 1
     }
+}
 
+impl SetPrescale<u16> for TimGenPeriph {
     fn set_prescale(&self, value: u16) -> &Self {
         self
             .set_psc(|r| r.set_psc(value - 1))
@@ -139,6 +141,12 @@ impl Prescale<u16> for TimGenPeriph {
 impl Start<u16> for TimGenPeriph {
     fn start(&self, value: u16) -> &Self {
         self.start_up(value)
+    }
+}
+
+impl StartOnce<u16> for TimGenPeriph {
+    fn start_once(&self, value: u16) -> &Self {
+        self.start_up_once(value)
     }
 }
 
@@ -181,40 +189,48 @@ impl StartDownOnce<u16> for TimGenPeriph {
 impl Delay<u16> for TimGenPeriph {
     fn delay(&self, value: u16) -> &Self {
         self
-            .start(value)
-            .clr_timeout_flag()
-            .wait_timeout_flag()
-            .stop()
+            .start_once(value)
+            .clr_timeout()
+            .wait_timeout()
     }
 }
 
-impl Timer<u16> for TimGenPeriph {
-
+impl Stop for TimGenPeriph {
     fn stop(&self) -> &Self {
         self.with_cr1(|r| r.set_cen(0))
     }
+}
 
+impl Running for TimGenPeriph {
     fn running(&self) -> bool {
         self.cr1().cen() != 0
     }
+}
 
+impl Period<u16> for TimGenPeriph {
     fn period(&self) -> u16 {
         self.arr().arrl().value() + 1
     }
-    
+}
+
+impl SetPeriod<u16> for TimGenPeriph {  
     fn set_period(&self, value: u16) -> &Self {
         self.set_arr(|r| r.set_arrl((value - 1 )))
     }
+}
 
+impl Counter<u16> for TimGenPeriph {
     fn counter(&self) -> u16 {
         self.cnt().cntl().value()
     }
+}
 
-    fn timeout_flag(&self) -> bool {
+impl Timeout for TimGenPeriph {
+    fn test_timeout(&self) -> bool {
         self.sr().uif() != 0
     }
 
-    fn clr_timeout_flag(&self) -> &Self {
+    fn clr_timeout(&self) -> &Self {
         self.with_sr(|r| r.set_uif(0))
     }
 }
@@ -230,10 +246,10 @@ impl Compare<u16> for TimGenCh {
         self
     }
 
-    fn compare_flag(&self) -> bool {
+    fn test_compare(&self) -> bool {
         self.periph.sr().ccif(self.index) != 0
     }
-    fn clr_compare_flag(&self) -> &Self {
+    fn clr_compare(&self) -> &Self {
         self.periph.with_sr(|r| r.set_ccif(self.index, 0));
         self    
     }

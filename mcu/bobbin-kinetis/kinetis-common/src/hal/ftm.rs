@@ -89,42 +89,21 @@ impl StartUp<u16> for FtmPeriph {
     }
 }
 
-impl Delay<u16> for FtmPeriph {
-    fn delay(&self, value: u16) -> &Self {
-        self
-            .start(value)
-            .clr_timeout_flag()
-            .wait_timeout_flag()
-            .stop()
-    }
-}
-impl Timer<u16> for FtmPeriph {
-    fn stop(&self) -> &Self {
-        self.set_clock(ClockSource::Disabled)
-    }
-
+impl Running for FtmPeriph {
     fn running(&self) -> bool {
         self.sc().clks() != 0
     }
+}
 
-    fn period(&self) -> u16 {
-        self.modulo() + 1
+impl Stop for FtmPeriph {
+    fn stop(&self) -> &Self {
+        self.set_clock(ClockSource::Disabled)
     }
+}
 
-    fn set_period(&self, value: u16) -> &Self {
-        self.set_modulo(value - 1)
-    }
-
+impl Counter<u16> for FtmPeriph {
     fn counter(&self) -> u16 {
         self.cnt().count().value()
-    }    
-
-    fn timeout_flag(&self) -> bool {
-        self.sc().tof() != 0
-    }
-
-    fn clr_timeout_flag(&self) -> &Self {
-        self.with_sc(|r| r.set_tof(0))
     }    
 }
 
@@ -134,11 +113,46 @@ impl SetCounter<u16> for FtmPeriph {
     }
 }
 
+
+impl Timeout for FtmPeriph {
+    fn test_timeout(&self) -> bool {
+        self.sc().tof() != 0
+    }
+
+    fn clr_timeout(&self) -> &Self {
+        self.with_sc(|r| r.set_tof(0))
+    }        
+}
+
+impl Delay<u16> for FtmPeriph {
+    fn delay(&self, value: u16) -> &Self {
+        self
+            .start(value)
+            .clr_timeout()
+            .wait_timeout()
+            .stop()
+    }
+}
+
+impl Period<u16> for FtmPeriph {
+    fn period(&self) -> u16 {
+        self.modulo() + 1
+    }
+}
+
+impl SetPeriod<u16> for FtmPeriph {
+    fn set_period(&self, value: u16) -> &Self {
+        self.set_modulo(value - 1)
+    }
+}
+
 impl Prescale<u16> for FtmPeriph {
     fn prescale(&self) -> u16 {
         1u16 << self.sc().ps().value()
     }
+}
 
+impl SetPrescale<u16> for FtmPeriph {
     fn set_prescale(&self, value: u16) -> &Self {
         let value = match value {
             1 => 0b000,
@@ -164,11 +178,11 @@ impl Compare<u16> for FtmCh {
         self
     }
 
-    fn compare_flag(&self) -> bool {
+    fn test_compare(&self) -> bool {
         self.periph.csc(self.index).chf() != 0
     }
 
-    fn clr_compare_flag(&self) -> &Self {
+    fn clr_compare(&self) -> &Self {
         self.periph.with_csc(self.index, |r| r.set_chf(0));
         self    
     }

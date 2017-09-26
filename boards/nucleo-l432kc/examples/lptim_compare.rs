@@ -37,9 +37,9 @@ pub extern "C" fn main() -> ! {
         .start(period as u16);
         
     loop {
-        t.clr_compare_flag().wait_compare_flag();
+        t.clr_compare().wait_test_compare();
         println!("compare");
-        t.clr_timeout_flag().wait_timeout_flag();
+        t.clr_timeout().wait_timeout();
         println!("timeout");
     }
 

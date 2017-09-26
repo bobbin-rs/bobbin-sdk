@@ -123,13 +123,13 @@ fn test_ftm() {
 
     fn check_progress(tim: &FtmPeriph, tim_ch: &FtmCh) {
         let mut c_max = 0;
-        while !tim.timeout_flag() {
+        while !tim.test_timeout() {
             let c = tim.counter();
             if c > c_max {
                 c_max = c;
             }
         }
-        assert!(tim_ch.compare_flag());
+        assert!(tim_ch.test_compare());
         assert!(c_max > 0);
     }
 
@@ -145,14 +145,14 @@ fn test_ftm() {
     tim_ch.with_csc(|r| r.set_chie(0).set_msb(0).set_msa(1).set_elsb(0).set_elsa(0));
     tim_ch.set_compare(512);
 
-    tim_ch.clr_compare_flag();
-    assert!(!tim_ch.compare_flag());
+    tim_ch.clr_compare();
+    assert!(!tim_ch.test_compare());
     tim
         .start_up(1024)
-        .clr_timeout_flag();
+        .clr_timeout();
     check_progress(&tim, &tim_ch);
-    tim.clr_timeout_flag();
-    tim_ch.clr_compare_flag();
+    tim.clr_timeout();
+    tim_ch.clr_compare();
     check_progress(&tim, &tim_ch);    
     
     // tim.set_enabled(false);
@@ -167,7 +167,7 @@ fn test_lpit() {
 
     fn check_progress(tim: &LpitCh) {
         let mut c_min = 4096;
-        while !tim.timeout_flag() {
+        while !tim.test_timeout() {
             let c = tim.counter();
             if c < c_min {
                 c_min = c;
@@ -185,20 +185,20 @@ fn test_lpit() {
 
     // Repeat Up Counter    
     tim_ch
-        .clr_timeout_flag()
+        .clr_timeout()
         .start_down(4096);
     check_progress(&tim_ch);
-    tim_ch.clr_timeout_flag();
+    tim_ch.clr_timeout();
     check_progress(&tim_ch);
 
     assert!(tim_ch.running());
     tim_ch.stop();
 
     tim_ch
-        .clr_timeout_flag()
+        .clr_timeout()
         .start_down_once(4096);
     check_progress(&tim_ch);
-    tim_ch.clr_timeout_flag();
+    tim_ch.clr_timeout();
     assert_eq!(tim_ch.counter(), 4095);
     assert_eq!(tim_ch.counter(), 4095);
 
@@ -213,13 +213,13 @@ fn test_lptmr() {
 
     fn check_progress(tim: &LptmrPeriph) {
         let mut c_max = 0;
-        while !tim.timeout_flag() {
+        while !tim.test_timeout() {
             let c = tim.counter();
             if c > c_max {
                 c_max = c;
             }
         }
-        assert!(tim.compare_flag());
+        assert!(tim.test_compare());
         assert!(c_max > 0);
     }
 
@@ -236,10 +236,10 @@ fn test_lptmr() {
     // Repeat Up Counter    
     tim
         .set_compare(2048)
-        .clr_timeout_flag()
+        .clr_timeout()
         .start_up(4096);
     check_progress(&tim);
-    tim.clr_compare_flag().clr_timeout_flag();
+    tim.clr_compare().clr_timeout();
     check_progress(&tim);
     
     // tim.set_enabled(false);

@@ -47,52 +47,53 @@ impl StartUp<u16> for LptmrPeriph {
     }
 }
 
-// impl StartUpOnce<u16> for LptmrPeriph {
-//     fn start_up_once(&self, value: u16) -> &Self {
-//         self
-//             .with_csr(|r| r.set_ten(0))
-//             .set_period(value)
-//             .with_csr(|r| r.set_tfc(0).set_ten(1))
-//     }
-// }
-
 impl Delay<u16> for LptmrPeriph {
     fn delay(&self, value: u16) -> &Self {
         self
             .set_period(value)
             .with_csr(|r| r.set_tfc(0).set_ten(1))
-            .clr_timeout_flag()
-            .wait_timeout_flag()
+            .clr_timeout()
+            .wait_timeout()
     }
 }
 
 
-impl Timer<u16> for LptmrPeriph {
+impl Stop for LptmrPeriph {
     fn stop(&self) -> &Self {
         self.with_csr(|r| r.set_ten(0))
     }
+}
 
+impl Running for LptmrPeriph {
     fn running(&self) -> bool {
         self.csr().ten() != 0
     }
+}
 
+impl Period<u16> for LptmrPeriph {
     fn period(&self) -> u16 {
         self.cmr().compare().value()
     }
-    
+}
+
+impl SetPeriod<u16> for LptmrPeriph {    
     fn set_period(&self, value: u16) -> &Self {    
         self.set_cmr(|r| r.set_compare(value as u32))
     }
+}
 
+impl Counter<u16> for LptmrPeriph {
     fn counter(&self) -> u16 {
         self.set_cnr(|_| Cnr(0)).cnr().counter().value()
     }
+}
 
-    fn timeout_flag(&self) -> bool {
+impl Timeout for LptmrPeriph {
+    fn test_timeout(&self) -> bool {
         self.csr().tcf() != 0
     }
 
-    fn clr_timeout_flag(&self) -> &Self {
+    fn clr_timeout(&self) -> &Self {
         self.with_csr(|r| r.set_tcf(1))
     }    
 }
@@ -104,10 +105,10 @@ impl Compare<u16> for LptmrPeriph {
     fn set_compare(&self, value: u16) -> &Self {
         self.set_cmr(|r| r.set_compare(value))
     }
-    fn compare_flag(&self) -> bool {
+    fn test_compare(&self) -> bool {
         self.csr().test_tcf()
     }
-    fn clr_compare_flag(&self) -> &Self {
+    fn clr_compare(&self) -> &Self {
         self.with_csr(|r| r.set_tcf(1))
     }
 }

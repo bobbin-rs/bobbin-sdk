@@ -38,8 +38,8 @@ pub extern "C" fn main() -> ! {
     // t0.start(period as u16);
     // loop {
     //     println!("{} - Wait Compare", t0.counter());
-    //     ch.clr_compare_flag().wait_compare_flag();
+    //     ch.clr_compare().wait_test_compare();
     //     println!("{} - Wait Timeout", t0.counter());
-    //     t0.clr_timeout_flag().wait_timeout_flag();
+    //     t0.clr_timeout().wait_timeout();
     // }
 }

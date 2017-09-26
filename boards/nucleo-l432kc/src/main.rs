@@ -86,13 +86,13 @@ fn test_lptim() {
 
     fn check_progress(tim: &LptimPeriph) {
         let mut c_max = 0;
-        while !tim.timeout_flag() {
+        while !tim.test_timeout() {
             let c = tim.counter();
             if c > c_max {
                 c_max = c;
             }
         }
-        assert!(tim.compare_flag());
+        assert!(tim.test_compare());
         assert!(c_max > 0);
     }
 
@@ -104,20 +104,20 @@ fn test_lptim() {
 
     tim
         .set_compare(512)
-        .clr_compare_flag()
-        .clr_timeout_flag()
+        .clr_compare()
+        .clr_timeout()
         .start_up(1024);
     check_progress(&tim);
     tim
-        .clr_compare_flag()
-        .clr_timeout_flag();
+        .clr_compare()
+        .clr_timeout();
     check_progress(&tim);    
     
     // Single Up Counter
     tim
         .set_compare(512)
-        .clr_compare_flag()
-        .clr_timeout_flag()
+        .clr_compare()
+        .clr_timeout()
         .start_up_once(1024);
     check_progress(&tim);   
 
