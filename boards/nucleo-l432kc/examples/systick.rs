@@ -5,7 +5,7 @@
 extern crate nucleo_l432kc as board;
 
 use board::clock::*;
-use board::hal::systick;
+use board::hal::systick::*;
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
@@ -14,13 +14,13 @@ pub extern "C" fn main() -> ! {
 
     let reload_value = (CLK.systick().unwrap() / 1000) - 1;
     println!("Setting reload_value to {}", reload_value);    
-    systick::set_reload_value(reload_value);
-    systick::set_current_value(reload_value);
-    systick::set_enabled(true);
+    SYSTICK.set_reload_value(reload_value);
+    SYSTICK.set_current_value(reload_value);
+    SYSTICK.set_enabled(true);
 
     let mut counter = 0u32;
     loop {
-        if systick::count_flag() {
+        if SYSTICK.count_flag() {
             counter += 1;
             if counter % 1000 == 0 {
                 println!("Tick {}", counter);
