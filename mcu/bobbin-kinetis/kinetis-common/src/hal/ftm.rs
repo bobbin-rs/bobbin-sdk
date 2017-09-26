@@ -1,5 +1,6 @@
 pub use bobbin_common::timer::*;
 pub use chip::ftm::*;
+pub use core::ops::Deref;
 
 pub enum FtmPrescale {
     Div1 = 0b000,
@@ -72,20 +73,19 @@ impl FtmCh {
 
 impl Start<u16> for FtmPeriph {
     fn start(&self, value: u16) -> &Self {
-        self
-            .set_modulo(value - 1)
-            .set_center(false)
-            .set_clock(ClockSource::SystemClk)
+        self.start_up(value)
     }
 }
-
 
 impl StartUp<u16> for FtmPeriph {
     fn start_up(&self, value: u16) -> &Self {
         self
-            .set_modulo(value - 1)
-            .set_center(false)
+            .set_clock(ClockSource::Disabled)
+            .set_count(0)
+            .set_modulo(value)
+            .set_center(false)            
             .set_clock(ClockSource::SystemClk)
+            .clr_timeout()            
     }
 }
 
@@ -120,6 +120,7 @@ impl Timeout for FtmPeriph {
     }
 
     fn clr_timeout(&self) -> &Self {
+        let _ = self.sc();
         self.with_sc(|r| r.set_tof(0))
     }        
 }
@@ -142,7 +143,7 @@ impl Period<u16> for FtmPeriph {
 
 impl SetPeriod<u16> for FtmPeriph {
     fn set_period(&self, value: u16) -> &Self {
-        self.set_modulo(value - 1)
+        self.set_modulo(value)
     }
 }
 

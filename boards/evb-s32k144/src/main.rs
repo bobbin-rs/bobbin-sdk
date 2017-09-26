@@ -8,12 +8,12 @@ extern crate evb_s32k144 as board;
 pub extern "C" fn main() -> ! {
     board::init();
     println!("[start] Running tests for evb-s32k144");
+    test_systick();
     test_crc();
     test_gpio();
     test_ftm();
     test_lpit();
     test_lptmr();
-    test_systick();
     test_adc();
     test_dma();
     test_irq();
@@ -23,6 +23,14 @@ pub extern "C" fn main() -> ! {
     test_flexcan();    
     println!("[done] All tests passed");
     loop {}
+}
+
+fn test_systick() {
+    use board::hal::systick::*;
+
+    println!("# Testing SYSTICK");
+    test_systick(&SYSTICK, ClockSource::Internal);
+    println!("[pass] SYSTICK OK");
 }
 
 fn test_crc() {
@@ -121,42 +129,56 @@ fn test_ftm() {
     use board::hal::pcc;
     use board::hal::ftm::*;
 
-    fn check_progress(tim: &FtmPeriph, tim_ch: &FtmCh) {
-        let mut c_max = 0;
-        while !tim.test_timeout() {
-            let c = tim.counter();
-            if c > c_max {
-                c_max = c;
-            }
-        }
-        assert!(tim_ch.test_compare());
-        assert!(c_max > 0);
-    }
+    println!("# Test FTM");
 
     let tim = FTM0;
-    let tim_ch = FTM0_CH1;
-    tim
-        .pcc_set_clock_source(pcc::ClockSource::SOSCDIV2)
-        .pcc_enable();
-    // tim.set_enabled(true);
+    tim.pcc_set_clock_source(pcc::ClockSource::SOSCDIV2);
+    tim.pcc_enable();
 
-    // Repeat Up Counter
-    
-    tim_ch.with_csc(|r| r.set_chie(0).set_msb(0).set_msa(1).set_elsb(0).set_elsa(0));
-    tim_ch.set_compare(512);
 
-    tim_ch.clr_compare();
-    assert!(!tim_ch.test_compare());
-    tim
-        .start_up(1024)
-        .clr_timeout();
-    check_progress(&tim, &tim_ch);
-    tim.clr_timeout();
-    tim_ch.clr_compare();
-    check_progress(&tim, &tim_ch);    
-    
-    // tim.set_enabled(false);
+    println!("# Test Timer");
+    test_timer(tim.deref(), 1024);
+    println!("# Test Timer Up");
+    test_timer_up(tim.deref(), 1024);
+
     tim.pcc_disable();
+
+    // fn check_progress(tim: &FtmPeriph, tim_ch: &FtmCh) {
+    //     let mut c_max = 0;
+    //     while !tim.test_timeout() {
+    //         let c = tim.counter();
+    //         if c > c_max {
+    //             c_max = c;
+    //         }
+    //     }
+    //     assert!(tim_ch.test_compare());
+    //     assert!(c_max > 0);
+    // }
+
+    // let tim = FTM0;
+    // let tim_ch = FTM0_CH1;
+    // tim
+    //     .pcc_set_clock_source(pcc::ClockSource::SOSCDIV2)
+    //     .pcc_enable();
+    // // tim.set_enabled(true);
+
+    // // Repeat Up Counter
+    
+    // tim_ch.with_csc(|r| r.set_chie(0).set_msb(0).set_msa(1).set_elsb(0).set_elsa(0));
+    // tim_ch.set_compare(512);
+
+    // tim_ch.clr_compare();
+    // assert!(!tim_ch.test_compare());
+    // tim
+    //     .start_up(1024)
+    //     .clr_timeout();
+    // check_progress(&tim, &tim_ch);
+    // tim.clr_timeout();
+    // tim_ch.clr_compare();
+    // check_progress(&tim, &tim_ch);    
+    
+    // // tim.set_enabled(false);
+    // tim.pcc_disable();
 
     println!("[pass] FTM OK");
 }
@@ -166,14 +188,11 @@ fn test_lpit() {
     use board::hal::lpit::*;
 
     fn check_progress(tim: &LpitCh) {
-        let mut c_min = 4096;
+        let mut ticks: u32 = 0;
         while !tim.test_timeout() {
-            let c = tim.counter();
-            if c < c_min {
-                c_min = c;
-            }
+            ticks += 1;
         }
-        assert!(c_min < 4096);
+        assert!(ticks > 0);
     }
 
 
@@ -183,26 +202,22 @@ fn test_lpit() {
         .pcc_set_clock_source(pcc::ClockSource::SOSCDIV2)
         .pcc_enable();
 
-    // Repeat Up Counter    
-    tim_ch
-        .clr_timeout()
-        .start_down(4096);
+    tim.set_enabled(true);
+    // Repeat Down Counter    
+    tim_ch.start_down(4096);
+    assert!(!tim_ch.test_timeout());
     check_progress(&tim_ch);
     tim_ch.clr_timeout();
     check_progress(&tim_ch);
-
-    assert!(tim_ch.running());
     tim_ch.stop();
 
-    tim_ch
-        .clr_timeout()
-        .start_down_once(4096);
+    tim_ch.start_down_once(4096);
     check_progress(&tim_ch);
     tim_ch.clr_timeout();
-    assert_eq!(tim_ch.counter(), 4095);
-    assert_eq!(tim_ch.counter(), 4095);
+    assert_eq!(tim_ch.counter(), 4096);
+    assert_eq!(tim_ch.counter(), 4096);
 
-
+    tim.set_enabled(false);
     tim.pcc_disable();
 
     println!("[pass] LPIT OK");}
@@ -211,17 +226,7 @@ fn test_lptmr() {
     use board::hal::pcc;
     use board::hal::lptmr::*;
 
-    fn check_progress(tim: &LptmrPeriph) {
-        let mut c_max = 0;
-        while !tim.test_timeout() {
-            let c = tim.counter();
-            if c > c_max {
-                c_max = c;
-            }
-        }
-        assert!(tim.test_compare());
-        assert!(c_max > 0);
-    }
+    println!("# Testing LPTMR");
 
     let tim = LPTMR0;
     tim
@@ -233,27 +238,16 @@ fn test_lptmr() {
     // select PCC clock as input
     tim.with_psr(|r| r.set_pbyp(1).set_pcs(0b11));
 
-    // Repeat Up Counter    
-    tim
-        .set_compare(2048)
-        .clr_timeout()
-        .start_up(4096);
-    check_progress(&tim);
-    tim.clr_compare().clr_timeout();
-    check_progress(&tim);
+
+    println!("# Test Timer");
+    test_timer(tim.deref(), 1024);
+
+    println!("# Test Timer Up");
+    test_timer_up(tim.deref(), 1024);
     
-    // tim.set_enabled(false);
     tim.pcc_disable();
 
     println!("[pass] LPTMR OK");
-}
-
-fn test_systick() {
-    use board::hal::systick::*;
-
-    println!("# Testing SYSTICK");
-    test_systick(&SYSTICK, ClockSource::Internal);
-    println!("[pass] SYSTICK OK");
 }
 
 fn test_adc() {

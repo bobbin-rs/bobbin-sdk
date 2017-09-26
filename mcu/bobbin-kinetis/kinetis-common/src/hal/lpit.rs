@@ -1,5 +1,6 @@
 pub use bobbin_common::timer::*;
-use chip::lpit::*;
+pub use chip::lpit::*;
+pub use core::ops::Deref;
 
 impl LpitPeriph {
     pub fn enabled(&self) -> bool {
@@ -85,30 +86,23 @@ impl LpitCh {
 
 impl Start<u32> for LpitCh {
     fn start(&self, value: u32) -> &Self {       
-        self.periph
-            .with_tctrl(self.index, |r| r.set_tsoi(0))
-            .set_ch_value(self.index, value - 1)
-            .set_ch_enabled(self.index, true);
-        self
+        self.start_down(value)
     }
 }
 
 
 impl StartOnce<u32> for LpitCh {
     fn start_once(&self, value: u32) -> &Self {       
-        self.periph
-            .with_tctrl(self.index, |r| r.set_tsoi(1))
-            .set_ch_value(self.index, value - 1)
-            .set_ch_enabled(self.index, true);
-        self
+        self.start_down_once(value)
     }
 }
 
 impl StartDown<u32> for LpitCh {
-    fn start_down(&self, value: u32) -> &Self {       
+    fn start_down(&self, value: u32) -> &Self {               
         self.periph
             .with_tctrl(self.index, |r| r.set_tsoi(0))        
-            .set_ch_value(self.index, value - 1)
+            .set_ch_value(self.index, value)
+            .clr_ch_tif(self.index)
             .set_ch_enabled(self.index, true);
         self
     }
@@ -117,9 +111,11 @@ impl StartDown<u32> for LpitCh {
 
 impl StartDownOnce<u32> for LpitCh {
     fn start_down_once(&self, value: u32) -> &Self {       
+        self.clr_tif();
         self.periph
             .with_tctrl(self.index, |r| r.set_tsoi(1))
-            .set_ch_value(self.index, value - 1)
+            .set_ch_value(self.index, value)
+            .clr_ch_tif(self.index)
             .set_ch_enabled(self.index, true);
         self
     }
@@ -132,21 +128,15 @@ impl Stop for LpitCh {
     }
 }
 
-impl Running for LpitCh {
-    fn running(&self) -> bool {
-        self.periph.ch_enabled(self.index)        
-    }
-}
-
 impl Period<u32> for LpitCh {
     fn period(&self) -> u32 {
-        self.periph.ch_value(self.index) + 1        
+        self.periph.ch_value(self.index)
     }
 }
 
 impl SetPeriod<u32> for LpitCh {
     fn set_period(&self, value: u32) -> &Self {
-        self.periph.set_ch_value(self.index, value - 1);
+        self.periph.set_ch_value(self.index, value);
         self
     }
 }
@@ -154,13 +144,6 @@ impl SetPeriod<u32> for LpitCh {
 impl Counter<u32> for LpitCh {
     fn counter(&self) -> u32 {
         self.periph.ch_value(self.index)
-    }
-}
-
-impl SetCounter<u32> for LpitCh {
-    fn set_counter(&self, value: u32) -> &Self {
-        self.periph.set_ch_value(self.index, value);
-        self
     }
 }
 

@@ -1,6 +1,7 @@
 pub use bobbin_common::enabled::*;
 pub use bobbin_common::timer::*;
 pub use chip::lptmr::*;
+pub use core::ops::Deref;
 
 #[derive(Debug, PartialEq, Eq, Clone, Copy)]
 #[repr(u8)]
@@ -43,6 +44,7 @@ impl StartUp<u16> for LptmrPeriph {
         self
             .with_csr(|r| r.set_ten(0))
             .set_period(value)
+            .clr_timeout()
             .with_csr(|r| r.set_tfc(1).set_ten(1))
     }
 }
