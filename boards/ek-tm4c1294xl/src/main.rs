@@ -10,6 +10,7 @@ pub extern "C" fn main() -> ! {
     board::init();
     println!("[start] Running tests for ek-tm4c1294xl");
     test_systick();
+    test_timer();
     // test_crc();
     test_dma();
     // test_gpio();
@@ -25,6 +26,21 @@ fn test_systick() {
     println!("# Testing SYSTICK");
     test_systick(&SYSTICK, ClockSource::Internal);
     println!("[pass] SYSTICK OK");
+}
+
+fn test_timer() {
+    use board::hal::systick::*;
+    use board::hal::timer::*;    
+
+    SYSTICK.set_clock_source(ClockSource::Internal);    
+    let t = SYSTICK.elapsed(|| {
+        board::delay(10);
+    });
+    println!("T: {}", t.unwrap().value());
+    let t = SYSTICK.elapsed(|| {
+        board::delay(100);
+    });
+    println!("T: {}", t.unwrap().value());
 }
 
 // fn test_crc() {

@@ -32,6 +32,13 @@ pub trait Timeout {
     }        
 }
 
+pub trait Elapsed<T> {
+    // Returns the number of ticks elapsed while executing `f`.
+    // Returns None if the timer overflowed.
+    fn elapsed<F: FnOnce()>(&self, f: F) -> Option<T>;
+}
+
+
 pub trait Counter<T> {
     // Return the current counter value.
     fn counter(&self) -> T;
@@ -40,6 +47,11 @@ pub trait Counter<T> {
 pub trait SetCounter<T> {
     // Set the current counter value.
     fn set_counter(&self, value: T) -> &Self;
+}
+
+pub trait ClearCounter<T> {
+    // Set the current counter value to zero.
+    fn clr_counter(&self) -> &Self;
 }
 
 pub trait Prescale<T> {
