@@ -1,5 +1,6 @@
 pub use bobbin_common::timer::*;
 pub use chip::pit::*;
+pub use core::ops::Deref;
 
 impl PitPeriph {
     pub fn enabled(&self) -> bool {
@@ -63,6 +64,7 @@ impl StartDown<u32> for PitCh {
         self.periph
             .set_enabled(true)
             .set_load_value(self.index, value - 1)
+            .clr_interrupt_flag(self.index)
             .set_timer_enabled(self.index, true);
         self
     }
@@ -109,4 +111,9 @@ impl Timeout for PitCh {
         self.periph.clr_interrupt_flag(self.index);
         self
     }
+}
+
+pub fn test_pit(tim_ch: &PitCh) {
+    test_timer(tim_ch, 1024);
+    test_timer_down(tim_ch, 1024);
 }

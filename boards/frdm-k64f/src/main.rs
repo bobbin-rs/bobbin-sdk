@@ -128,36 +128,12 @@ fn test_systick() {
 fn test_ftm() {
     use board::hal::ftm::*;
 
-    fn check_progress(tim: &FtmPeriph, tim_ch: &FtmCh) {
-        let mut c_max = 0;
-        while !tim.test_timeout() {
-            let c = tim.counter();
-            if c > c_max {
-                c_max = c;
-            }
-        }
-        assert!(tim_ch.test_compare());
-        assert!(c_max > 0);
-    }
+    println!("# Testing FTM");
 
-    let tim = FTM0;
-    let tim_ch = FTM0_CH1;
+    let tim = FTM0;    
     tim.sim_enable();
 
-    // Repeat Up Counter
-    
-    tim_ch.with_csc(|r| r.set_chie(0).set_msb(0).set_msa(1).set_elsb(0).set_elsa(0));
-    tim_ch.set_compare(512);
-
-    tim_ch.clr_compare();
-    assert!(!tim_ch.test_compare());
-    tim
-        .start_up(1024)
-        .clr_timeout();
-    check_progress(&tim, &tim_ch);
-    tim.clr_timeout();
-    tim_ch.clr_compare();
-    check_progress(&tim, &tim_ch);    
+    test_ftm(&tim);
     
     tim.sim_disable();
 
@@ -167,32 +143,14 @@ fn test_ftm() {
 fn test_pit() {
     use board::hal::pit::*;
 
-    fn check_progress(tim: &PitCh) {
-        let mut c_min = 4096;
-        while !tim.test_timeout() {
-            let c = tim.counter();
-            if c < c_min {
-                c_min = c;
-            }
-        }
-        assert!(c_min < 4096);
-    }
-
+    println!("# Testing PIT");
 
     let tim = PIT;
     let tim_ch = PIT_CH0;
+
     tim.sim_enable();
 
-    // Repeat Up Counter    
-    tim_ch
-        .clr_timeout()
-        .start_down(4096);
-    check_progress(&tim_ch);
-    tim_ch.clr_timeout();
-    check_progress(&tim_ch);
-
-    assert!(tim_ch.running());
-    tim_ch.stop();
+    test_pit(&tim_ch);
 
     tim.sim_disable();
 
@@ -202,33 +160,15 @@ fn test_pit() {
 fn test_lptmr() {
     use board::hal::lptmr::*;
 
-    fn check_progress(tim: &LptmrPeriph) {
-        let mut c_max = 0;
-        while !tim.test_timeout() {
-            let c = tim.counter();
-            if c > c_max {
-                c_max = c;
-            }
-        }
-        assert!(tim.test_compare());
-        assert!(c_max > 0);
-    }
+    println!("# Testing LPTMR");
 
     let tim = LPTMR0;
     tim.sim_enable();
     tim.with_csr(|r| r.set_ten(0));
     tim.with_psr(|r| r.set_pbyp(1).set_pcs(0b11));
 
-    // Repeat Up Counter    
-    tim
-        .set_compare(2048)
-        .clr_timeout()
-        .start_up(4096);
-    check_progress(&tim);
-    tim.clr_compare().clr_timeout();
-    check_progress(&tim);
-    
-    // tim.set_enabled(false);
+    test_lptmr(&tim);
+
     tim.sim_disable();
 
     println!("[pass] LPTMR OK");
