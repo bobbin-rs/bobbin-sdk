@@ -25,6 +25,10 @@ pub trait Start<T> {
     fn start(&self, value: T) -> &Self;
 }
 
+pub trait StartOnce<T> {
+    fn start_once(&self, value: T) -> &Self;
+}
+
 pub trait StartDown<T> {
     fn start_down(&self, value: T) -> &Self;
 }
