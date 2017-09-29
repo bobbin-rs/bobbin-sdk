@@ -3,6 +3,7 @@
 pub use bobbin_cortexm::hal::*;
 
 pub mod sim;
+pub mod fpu;
 pub mod clock;
 
 pub mod port {

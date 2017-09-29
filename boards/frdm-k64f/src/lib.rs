@@ -33,6 +33,7 @@ pub use tim::delay;
 // }
 
 pub fn init() {
+    hal::fpu::init();
     clock::init();
     led::init();
     btn::init();    
