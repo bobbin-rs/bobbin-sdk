@@ -157,6 +157,14 @@ impl Target {
         self.periph.rdr().data().into()
     }    
 
+    pub fn write(&self, tx: &[u8]) {
+        self.transfer(tx, &mut []);
+    }
+
+    pub fn read(&self, rx: &mut [u8]) {
+        self.transfer(&[], rx);
+    }
+
     pub fn transfer(&self, tx: &[u8], rx: &mut [u8]) {
         while self.periph.sr().tdf() == 0 {}
         self.periph.set_tcr(|_| self.tcr.set_framesz(7));
