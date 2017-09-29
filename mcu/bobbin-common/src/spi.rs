@@ -34,3 +34,11 @@ pub trait SpiTx<T: Copy> {
 pub trait SpiRx<T: Copy> {   
     fn rx(&self) -> T;
 }
+
+pub trait Read {
+    fn read(&self, rx: &mut [u8]);
+}
+
+pub trait Write {
+    fn write(&self, tx: &[u8]);
+}
