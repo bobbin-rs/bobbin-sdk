@@ -156,4 +156,48 @@ impl Target {
         while self.periph.sr().rdf() == 0 {}
         self.periph.rdr().data().into()
     }    
+
+    pub fn transfer(&self, tx: &[u8], rx: &mut [u8]) {
+        while self.periph.sr().tdf() == 0 {}
+        self.periph.set_tcr(|_| self.tcr.set_framesz(7));
+
+        let mut tx_n = tx.len();
+        let mut tx_c = tx.len();
+        let mut tx_i = 0;
+
+        let mut rx_n = rx.len();
+        let mut rx_c = rx.len();
+        let mut rx_i = 0;
+
+        
+        loop {
+            let sr = self.periph.sr();
+            
+            if sr.test_tdf() {
+                if tx_n > 0 {
+                    self.periph.set_tdr(|r| r.set_data(tx[tx_i]));
+                    tx_i = tx_i + 1;
+                    tx_n = tx_n - 1;
+                } else if rx_n > 0 {
+                    self.periph.set_tdr(|r| r.set_data(rx_n));
+                    rx_n = rx_n - 1;
+                }            
+            }
+
+            if sr.test_rdf() {
+                if tx_c > 0 {
+                    let _ = self.periph.rdr().data();
+                    tx_c = tx_c - 1;
+                } else if rx_c > 0 {
+                    rx[rx_i] = self.periph.rdr().data().into();
+                    rx_i = rx_i + 1;
+                    rx_c = rx_c - 1;                
+                }
+            }
+            if tx_c == 0 && rx_c == 0 {
+                break;
+            }
+        }
+    }
+    
 }
