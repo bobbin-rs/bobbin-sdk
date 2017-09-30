@@ -22,7 +22,26 @@ impl SpiPeriph {
         );              
     }
 
-    pub fn write(&self, bytes: &[u8]) {
+    pub fn transfer(&self, bytes_out: &[u8], bytes_in: &mut [u8]) {
+        // Flush FIFOs
+        self.with_mcr(|r| r.set_halt(1).set_clr_txf(1).set_clr_rxf(1));
+        // Clear status bits
+        self.set_sr(|_| Sr(0).set_tcf(1).set_eoqf(1).set_tfuf(1).set_tfff(1).set_rfof(1).set_rfdf(1));
+        self.with_mcr(|r| r.set_halt(0)); 
+        let len = bytes_out.len();
+        for i in 0..len {
+            self.set_pushr(|_| Pushr(0).set_cont(1).set_ctas(0).set_txdata(bytes_out[i]).set_pcs(1));
+            while self.sr().rfdf() == 0 {}
+            bytes_in[i] = self.popr().rxdata().value() as u8;
+            self.set_sr(|_| Sr(0).set_rfdf(1));
+        }                        
+        self.with_mcr(|r| r.set_halt(1)); 
+        
+    }
+}
+
+impl Write for SpiPeriph {
+    fn write(&self, bytes: &[u8]) {
         // Flush FIFOs
         self.with_mcr(|r| r.set_halt(1).set_clr_txf(1).set_clr_rxf(1));
         
@@ -56,8 +75,9 @@ impl SpiPeriph {
         self.set_sr(|_| Sr(0).set_eoqf(1));
         self.with_mcr(|r| r.set_halt(1));
     }
-
-    pub fn read(&self, bytes: &mut [u8]) {
+}
+impl Read for SpiPeriph {
+    fn read(&self, bytes: &mut [u8]) {
         // Flush FIFOs
         self.with_mcr(|r| r.set_halt(1).set_clr_txf(1).set_clr_rxf(1));
         // Clear status bits
@@ -71,22 +91,5 @@ impl SpiPeriph {
             self.set_sr(|_| Sr(0).set_rfdf(1));
         }                        
         self.with_mcr(|r| r.set_halt(1)); 
-    }
-
-    pub fn transfer(&self, bytes_out: &[u8], bytes_in: &mut [u8]) {
-        // Flush FIFOs
-        self.with_mcr(|r| r.set_halt(1).set_clr_txf(1).set_clr_rxf(1));
-        // Clear status bits
-        self.set_sr(|_| Sr(0).set_tcf(1).set_eoqf(1).set_tfuf(1).set_tfff(1).set_rfof(1).set_rfdf(1));
-        self.with_mcr(|r| r.set_halt(0)); 
-        let len = bytes_out.len();
-        for i in 0..len {
-            self.set_pushr(|_| Pushr(0).set_cont(1).set_ctas(0).set_txdata(bytes_out[i]).set_pcs(1));
-            while self.sr().rfdf() == 0 {}
-            bytes_in[i] = self.popr().rxdata().value() as u8;
-            self.set_sr(|_| Sr(0).set_rfdf(1));
-        }                        
-        self.with_mcr(|r| r.set_halt(1)); 
-        
     }
 }
