@@ -1,3 +1,4 @@
+pub use bobbin_cortexm::hal::nvic;
 pub mod flexcan;
 pub mod gpio;
 pub mod lpit;
