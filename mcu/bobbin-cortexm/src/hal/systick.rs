@@ -1,10 +1,16 @@
 //! Extends the ```chip::systick``` module.
 //! See [4.4. System timer, SysTick](http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dui0552a/Babieigh.html)
 
+
 use bobbin_common::bits::*;
+pub use bobbin_common::HandleIrq;
 pub use bobbin_common::timer::*;
 pub use ::chip::systick::*;
 pub use ::chip::exc::{Handler, EXC_SYSTICK};
+
+pub trait HandleSystick {
+    fn handle_systick(&self);
+}
 
 
 /// The clock source to be used by self.
@@ -99,12 +105,23 @@ impl Systick {
         let _ = self.csr().countflag();
         self
     }
+    // /// Sets a handler for the Systick exception.
+    // pub fn set_handler(&self, handler: Option<Handler>) -> &Self {
+    //     EXC_SYSTICK.set_handler(handler);
+    //     self
+    // }
 
-    /// Sets a handler for the Systick exception.
-    pub fn set_handler(&self, handler: Option<Handler>) -> &Self {
-        EXC_SYSTICK.set_handler(handler);
-        self
-    }
+    pub fn set_handler<'a, F: HandleSystick>(&self, f: &F) {
+        static mut HANDLER: Option<usize> = None;                
+        unsafe { 
+            assert!(HANDLER.is_none(), "Irq is already wrapping a function");
+            HANDLER = Some(f as *const F as usize)
+        }
+        extern "C" fn wrapper<W: HandleSystick>() {
+            unsafe { (*(HANDLER.unwrap() as *const W)).handle_systick() }
+        }
+        EXC_SYSTICK.set_handler(Some(wrapper::<F>));                
+    }    
 }
 
 impl<V: Into<U24>> Start<V> for Systick {
