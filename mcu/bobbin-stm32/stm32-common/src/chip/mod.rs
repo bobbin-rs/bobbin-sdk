@@ -1,4 +1,6 @@
 #[allow(unused_imports)] use bobbin_common::*;
+pub use bobbin_cortexm::chip::nvic;
+
 pub mod sig;
 pub mod exti;
 pub mod dma;

@@ -1,3 +1,4 @@
+pub use bobbin_cortexm::hal::nvic;
 pub mod dma;
 pub mod dma_f3;
 pub mod gpio;

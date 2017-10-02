@@ -1,4 +1,8 @@
 (device
+    (crate
+        (name bobbin_cortexm)
+        (module (name chip::nvic))
+    )
     (peripheral-group
         (name EXTI)
         (has-channels)
