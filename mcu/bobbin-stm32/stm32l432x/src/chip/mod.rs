@@ -7,6 +7,7 @@ pub use bobbin_cortexm::chip::mpu;
 pub use bobbin_cortexm::chip::fpu;
 pub use bobbin_cortexm::chip::dcb;
 pub use bobbin_cortexm::chip::itm;
+pub use bobbin_cortexm::chip::dwt;
 
 
 pub mod irq;

@@ -1,4 +1,4 @@
-pub use bobbin_cortexm::hal::{nvic, scb, systick};
+pub use bobbin_cortexm::hal::*;
 
 pub mod pwr;
 pub mod rcc;

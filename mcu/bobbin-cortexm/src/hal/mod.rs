@@ -3,3 +3,4 @@ pub mod scb;
 pub mod systick;
 pub mod mpu;
 pub mod itm;
+pub mod dwt;

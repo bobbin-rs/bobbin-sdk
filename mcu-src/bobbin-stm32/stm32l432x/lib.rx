@@ -13,6 +13,7 @@
         (module (name chip::fpu))
         (module (name chip::dcb))
         (module (name chip::itm))
+        (module (name chip::dwt))
     )
     (crate (name stm32_common))
 

@@ -11,17 +11,19 @@ use board::common::clock::Millis;
 #[no_mangle]
 pub extern "C" fn main() -> ! {
     board::init();
-    println!("Millis Driver Test");
+    println!("Millis Driver Test");    
     let t = SystickCounter::init(&CLK);
     t.enable();
-    let mut n = t.millis() + 1000;
-    loop {    
+    let mut n = 1000;
+    let mut c = 0;
+    loop {            
         let ms = t.millis();            
         if ms >= n {
-            println!("{}", ms);
+            println!("{}, {}", ms, c);
             n = n + 1000;
         }        
-        // wfi();
+        wfi();
+        c += 1;
     }
 }
 

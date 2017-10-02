@@ -8,3 +8,4 @@ pub mod mpu;
 pub mod fpu;
 pub mod dcb;
 pub mod itm;
+pub mod dwt;

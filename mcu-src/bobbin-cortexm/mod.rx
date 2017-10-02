@@ -8,6 +8,7 @@
     (peripheral (include "periph/fpu.rx"))
     (peripheral (include "periph/dcb.rx"))
     (peripheral (include "periph/itm.rx"))
+    (peripheral (include "periph/dwt.rx"))
     (exceptions
         (exception (name reset) (description "Reset Handler"))
         (exception (name nmi) (description "Non-maskable interrupt."))
