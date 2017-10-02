@@ -8,7 +8,7 @@ extern crate r0;
 pub mod console;
 
 extern crate apollo2;
-pub use apollo2::{chip, hal, common};
+pub use apollo2::{chip, hal, cortexm, common};
 
 pub mod exceptions;
 #[cfg(target_os="none")]

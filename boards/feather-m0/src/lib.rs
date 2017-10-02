@@ -10,7 +10,7 @@ extern crate r0;
 pub mod console;
 
 extern crate samd21;
-pub use samd21::{common, chip, hal};
+pub use samd21::{chip, hal, cortexm, common};
 
 pub mod exceptions;
 #[cfg(target_os="none")]

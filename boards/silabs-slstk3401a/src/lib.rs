@@ -12,7 +12,7 @@ extern crate log;
 #[macro_use] pub mod logger;
 
 extern crate efm32pg12;
-pub use efm32pg12::{common, chip, hal};
+pub use efm32pg12::{chip, hal, cortexm, common};
 
 pub mod exceptions;
 #[cfg(target_os="none")]

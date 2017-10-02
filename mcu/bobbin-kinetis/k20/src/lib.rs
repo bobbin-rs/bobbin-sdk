@@ -7,6 +7,7 @@ extern crate bobbin_cortexm;
 extern crate kinetis_common;
 
 pub use bobbin_common as common;
+pub use bobbin_cortexm as cortexm;
 pub mod chip;
 pub mod hal;
 

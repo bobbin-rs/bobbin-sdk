@@ -8,7 +8,7 @@ extern crate r0;
 pub mod console;
 
 extern crate stm32l432x;
-pub use stm32l432x::{chip, hal, common};
+pub use stm32l432x::{chip, hal, common, cortexm};
 
 pub mod exceptions;
 #[cfg(target_os="none")]

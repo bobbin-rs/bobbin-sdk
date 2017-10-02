@@ -8,6 +8,7 @@ pub extern crate bobbin_cortexm;
 pub extern crate stm32_common;
 
 pub use bobbin_common as common;
+pub use bobbin_cortexm as cortexm;
 pub mod chip;
 pub mod hal;
 

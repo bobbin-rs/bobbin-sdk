@@ -12,7 +12,7 @@ extern crate log;
 #[macro_use] pub mod logger;
 
 extern crate stm32f40x;
-pub use stm32f40x::{common, chip, hal};
+pub use stm32f40x::{chip, hal, cortexm, common};
 
 pub mod exceptions;
 #[cfg(target_os="none")]

@@ -8,7 +8,7 @@ extern crate r0;
 extern crate log;
 
 extern crate k20;
-pub use k20::{common, chip, hal};
+pub use k20::{chip, hal, cortexm, common};
 
 #[macro_use] pub mod itm;
 #[macro_use] pub mod console;
