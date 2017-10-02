@@ -28,10 +28,11 @@ pub extern "C" fn main() -> ! {
 use board::common::clock::Systick;
 use board::common::enabled::*;
 use board::hal::systick::*;
+use core::cell::UnsafeCell;
 use core::ptr;
 
 pub struct SystickCounter {
-    counter: u32
+    counter: UnsafeCell<u32>,
 }
 
 impl SystickCounter {
@@ -41,18 +42,18 @@ impl SystickCounter {
         SYSTICK.set_reload_value(reload_value);
         SYSTICK.set_current_value(reload_value);
         SystickCounter {
-            counter: 0
+            counter: UnsafeCell::new(0)
         }
     }
     #[inline(always)]
     pub fn get(&self) -> u32 {
-        unsafe { ptr::read_volatile(&self.counter) }
+        unsafe { ptr::read_volatile(self.counter.get()) }
     }
 
     #[inline(always)]
     pub fn set(&self, value: u32) {
         unsafe { 
-            ptr::write_volatile(&self.counter as *const u32 as *mut u32, value)
+            ptr::write_volatile(self.counter.get(), value)
         }
     }
 }
