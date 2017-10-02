@@ -1246,14 +1246,14 @@
             (bit-offset 5)
             (bit-width 1)
             (description "TIM7 timer clock enable")
-            ; (link (name EN) (peripheral-group TIM_BAS) (peripheral TIM7))
+            (link (name EN) (peripheral-group TIM_BAS) (peripheral TIM7))
         )
         (field
             (name TIM6EN)
             (bit-offset 4)
             (bit-width 1)
             (description "TIM6 timer clock enable")
-            ; (link (name EN) (peripheral-group TIM_BAS) (peripheral TIM6))
+            (link (name EN) (peripheral-group TIM_BAS) (peripheral TIM6))
         )
         (field
             (name TIM5EN)

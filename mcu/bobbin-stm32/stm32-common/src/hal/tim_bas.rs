@@ -1,4 +1,10 @@
 pub use chip::tim_bas::*;
+pub use bobbin_common::{IrqNum, WrapHandler, HandleIrq};
+pub use bobbin_common::timer::{Counter, SetCounter};
+pub use core::ops::Deref;
+
+use core::ptr;
+use core::cell::UnsafeCell;
 
 impl TimBasPeriph {
     pub fn enabled(&self) -> bool {
@@ -44,5 +50,66 @@ impl TimBasPeriph {
     }
     pub fn set_reload(&self, value: u16) -> &Self {
         self.set_arr(|r| r.set_arr(value))        
+    }
+}
+
+pub struct TimBasCounter<I: Sync + Send + WrapHandler, T: Sync + Send + Deref<Target=TimBasPeriph>> {
+    irq: I,
+    tim: T,
+    count: UnsafeCell<u32>,
+}
+
+unsafe impl<I: Sync + Send + WrapHandler, T: Sync + Send + Deref<Target=TimBasPeriph>> Sync for TimBasCounter<I, T> {}
+
+impl<I: Sync + Send + WrapHandler, T: Sync + Send + Deref<Target=TimBasPeriph>> TimBasCounter<I, T> {
+    pub fn new(irq: I, tim: T) -> Self {
+        TimBasCounter {
+            irq: irq,
+            tim: tim,
+            count: UnsafeCell::new(0)
+        }
+    }
+
+    #[inline]
+    pub fn tim(&self) -> &TimBasPeriph {
+        self.tim.deref()
+    }
+
+    pub fn enable(&self) {
+        self.tim().with_dier(|r| r.set_uie(1));
+        self.tim().set_enabled(true);
+        self.irq.wrap_handler(self);            
+    }
+
+    #[inline]
+    pub fn get(&self) -> u32 {
+        unsafe { ptr::read_volatile(self.count.get()) }
+    }
+
+    #[inline]
+    pub fn set(&self, value: u32) {
+        unsafe { ptr::write_volatile(self.count.get(), value) }
+    }
+}
+
+impl<I: Sync + Send + WrapHandler, T: Sync + Send + Deref<Target=TimBasPeriph>> HandleIrq for TimBasCounter<I, T> {
+    fn handle_irq(&self) {
+        if self.tim().update_interrupt_flag() {
+            self.tim().clr_update_interrupt_flag();        
+            self.set(self.get().wrapping_add(1))
+        }
+    }
+}
+
+impl<I: Sync + Send + WrapHandler, T: Sync + Send + Deref<Target=TimBasPeriph>> Counter<u32> for TimBasCounter<I, T> {
+    fn counter(&self) -> u32 {
+        self.get()
+    }
+}
+
+impl<I: Sync + Send + WrapHandler, T: Sync + Send + Deref<Target=TimBasPeriph>> SetCounter<u32> for TimBasCounter<I, T> {
+    fn set_counter(&self, value: u32) -> &Self {
+        self.set(value);
+        self
     }
 }

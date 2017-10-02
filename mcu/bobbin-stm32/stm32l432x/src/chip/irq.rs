@@ -62,7 +62,7 @@ irq!(IRQ_TIM8_BRK, IrqTim8Brk, 43);
 irq!(IRQ_TIM8, IrqTim8, 44);
 irq!(IRQ_TIM8_TRG_COM, IrqTim8TrgCom, 45);
 irq!(IRQ_TIM8_CC, IrqTim8Cc, 46);
-irq!(IRQ_TIM6_DAC, IrqTim6Dac, 54);
+irq!(IRQ_TIM6, IrqTim6, 54);
 irq!(IRQ_TIM7, IrqTim7, 55);
 irq!(IRQ_TIM2, IrqTim2, 28);
 irq!(IRQ_TIM3, IrqTim3, 29);

@@ -4,7 +4,12 @@
 
 use bobbin_common::bits::*;
 pub use bobbin_common::HandleIrq;
+pub use bobbin_common::enabled::*;
 pub use bobbin_common::timer::*;
+pub use bobbin_common::clock::Millis;
+use core::cell::UnsafeCell;
+use core::ptr;
+
 pub use ::chip::systick::*;
 pub use ::chip::exc::{Handler, EXC_SYSTICK};
 
@@ -243,4 +248,59 @@ pub fn test_systick(s: &Systick, source: ClockSource) {
     assert!(value_min < reload_value);
     s.set_enabled(false);
     
+}
+
+pub struct SystickCounter {
+    counter: UnsafeCell<u32>,
+}
+
+impl SystickCounter {
+    pub fn init(period: u32) -> Self {
+        SYSTICK.set_enabled(false);
+        SYSTICK.set_reload_value(period);
+        SYSTICK.set_current_value(0);
+        SystickCounter {
+            counter: UnsafeCell::new(0)
+        }
+    }
+
+    #[inline(always)]
+    pub fn get(&self) -> u32 {
+        unsafe { ptr::read_volatile(self.counter.get()) }
+    }
+
+    #[inline(always)]
+    pub fn set(&self, value: u32) {
+        unsafe { 
+            ptr::write_volatile(self.counter.get(), value)
+        }
+    }
+}
+
+impl HandleSystick for SystickCounter {
+    fn handle_systick(&self) {
+        if SYSTICK.test_timeout() {
+            self.set(self.get().wrapping_add(1));
+        }
+    }
+}
+
+impl Enabled for SystickCounter {
+    fn enabled(&self) -> bool {
+        SYSTICK.enabled()
+    }
+
+    fn set_enabled(&self, value: bool) -> &Self {
+        SYSTICK.set_handler(self);
+        SYSTICK.set_tick_interrupt(true);        
+        SYSTICK.set_enabled(value);
+        self
+    }
+}
+
+impl Millis for SystickCounter {
+    #[inline(always)]
+    fn millis(&self) -> u32 {
+        self.get()
+    }
 }

@@ -7760,6 +7760,16 @@ impl En for super::wwdg::Wwdg {
     #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr1(|r| r.set_wwdgen(value)); }
 }
 
+impl En for super::tim_bas::Tim7 {
+    #[inline] fn en(&self) -> u32 { RCC.apb1enr1().tim7en().into() }
+    #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr1(|r| r.set_tim7en(value)); }
+}
+
+impl En for super::tim_bas::Tim6 {
+    #[inline] fn en(&self) -> u32 { RCC.apb1enr1().tim6en().into() }
+    #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr1(|r| r.set_tim6en(value)); }
+}
+
 impl En for super::tim_gen::Tim3 {
     #[inline] fn en(&self) -> u32 { RCC.apb1enr1().tim3en().into() }
     #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr1(|r| r.set_tim3en(value)); }

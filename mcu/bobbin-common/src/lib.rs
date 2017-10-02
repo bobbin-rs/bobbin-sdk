@@ -135,6 +135,7 @@ pub trait HandleIrq {
 
 pub trait WrapHandler {
     fn wrap_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleIrq>(&self, f: &F);
+    // fn wrap_handler<'a, F: HandleIrq>(&self, f: &F);
 }
 
 #[macro_export]
@@ -257,6 +258,7 @@ macro_rules! irq {
         }
         impl WrapHandler for $ty {
             fn wrap_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleIrq>(&self, f: &F) {
+            // fn wrap_handler<'a, F: HandleIrq>(&self, f: &F) {
                 static mut HANDLER: Option<usize> = None;                
                 unsafe { 
                     assert!(HANDLER.is_none(), "Irq is already wrapping a function");
@@ -272,6 +274,8 @@ macro_rules! irq {
             fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
                 write!(f, "[{} @ {}]", stringify!($id), $num)
             }
-        }        
+        }    
+        unsafe impl Sync for $ty {}
+        unsafe impl Send for $ty {}
     )
 }

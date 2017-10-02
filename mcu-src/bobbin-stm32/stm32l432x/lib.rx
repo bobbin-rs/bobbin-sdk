@@ -571,8 +571,9 @@
             (address 0x40001000)
             (description "Basic-timers")
             (interrupt
-                (name TIM6_DAC)
+                (name TIM6)
                 (value 54)
+                (type TIM)
                 (description "TIM6 global and DAC1 and 2 underrun error interrupts")
             )
         )        
@@ -582,6 +583,7 @@
             (interrupt
                 (name TIM7)
                 (value 55)
+                (type TIM)
                 (description "TIM7 global interrupt")
             )
         )
