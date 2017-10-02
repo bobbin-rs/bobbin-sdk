@@ -8,3 +8,8 @@ pub const GHZ: Hz = Some(1_000_000_000);
 pub trait Systick {
     fn systick(&self) -> Hz;
 }
+
+pub trait Millis {
+    /// Returns the number of milliseconds modulo 2^32 since the clock was started.
+    fn millis(&self) -> u32;
+}
