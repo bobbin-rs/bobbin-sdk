@@ -76,10 +76,15 @@ impl<I: Sync + Send + WrapHandler, T: Sync + Send + Deref<Target=TimBasPeriph>> 
     }
 
     pub fn enable(&self) {
+        self.irq.wrap_handler(self); 
         self.tim().with_dier(|r| r.set_uie(1));
         self.tim().set_enabled(true);
-        self.irq.wrap_handler(self);            
     }
+
+    pub fn disable(&self) {
+        self.tim().set_enabled(false);
+        self.tim().with_dier(|r| r.set_uie(0));        
+    }    
 
     #[inline]
     pub fn get(&self) -> u32 {
@@ -90,13 +95,19 @@ impl<I: Sync + Send + WrapHandler, T: Sync + Send + Deref<Target=TimBasPeriph>> 
     pub fn set(&self, value: u32) {
         unsafe { ptr::write_volatile(self.count.get(), value) }
     }
+
+    #[inline]
+    pub fn incr(&self, value: u32) {
+        self.set(self.get().wrapping_add(value))
+    }
+
 }
 
 impl<I: Sync + Send + WrapHandler, T: Sync + Send + Deref<Target=TimBasPeriph>> HandleIrq for TimBasCounter<I, T> {
     fn handle_irq(&self) {
         if self.tim().update_interrupt_flag() {
             self.tim().clr_update_interrupt_flag();        
-            self.set(self.get().wrapping_add(1))
+            self.incr(1);
         }
     }
 }
