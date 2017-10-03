@@ -5,6 +5,7 @@
 extern crate nucleo_l432kc as board;
 
 use board::hal::tim_bas::*;
+use board::hal::nvic;
 use board::clock::*;
 
 #[no_mangle]
@@ -21,7 +22,9 @@ pub extern "C" fn main() -> ! {
     t.set_prescale(prescale as u16);
     t.set_period(1);
 
-    let tc = TimBasCounter::new(irq, t);
+    let tc = TimBasCounter::new(t);
+    irq.wrap_handler(&tc); 
+    nvic::set_enabled(irq.irq_num() as usize, true);    
     tc.enable();
 
     let mut n = 1000;
