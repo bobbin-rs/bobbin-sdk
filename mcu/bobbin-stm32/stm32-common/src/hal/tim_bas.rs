@@ -4,8 +4,8 @@ pub use bobbin_common::enabled::*;
 pub use bobbin_common::timer::*;
 pub use core::ops::Deref;
 
-use core::ptr;
-use core::cell::UnsafeCell;
+// use core::ptr;
+use core::cell::Cell;
 
 impl TimBasPeriph {
     pub fn one_pulse_mode(&self) -> bool {
@@ -116,7 +116,7 @@ impl SetCounter<u16> for TimBasPeriph {
 
 pub struct TimBasCounter {
     tim: TimBasPeriph,
-    count: UnsafeCell<u32>,
+    count: Cell<u32>,
 }
 
 unsafe impl Sync for TimBasCounter {}
@@ -125,7 +125,7 @@ impl TimBasCounter {
     pub fn new(tim: TimBasPeriph) -> Self {
         TimBasCounter {
             tim: tim,
-            count: UnsafeCell::new(0)
+            count: Cell::new(0)
         }
     }
 
@@ -142,12 +142,16 @@ impl TimBasCounter {
 
     #[inline]
     pub fn get(&self) -> u32 {
-        unsafe { ptr::read_volatile(self.count.get()) }
+        // unsafe { ptr::read_volatile(self.count.get()) }
+        // unsafe { *self.count.get() }
+        self.count.get()
     }
 
     #[inline]
     fn set(&self, value: u32) {
-        unsafe { ptr::write_volatile(self.count.get(), value) }
+        // unsafe { ptr::write_volatile(self.count.get(), value) }
+        // unsafe { *self.count.get() = value; }
+        self.count.set(value);
     }
 
     #[inline]
