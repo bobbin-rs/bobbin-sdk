@@ -124,6 +124,12 @@ pub trait Poll {
    fn poll(&self);
 }
 
+impl<T: Fn()> Poll for T {
+    fn poll(&self) {
+        self()
+    }
+}
+
 #[macro_export]
 macro_rules! periph {
     ($id:ident, $ty:ident, $pid:ident, $pty:ident, $base:expr) => (

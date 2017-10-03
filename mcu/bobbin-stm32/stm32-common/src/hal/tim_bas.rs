@@ -151,7 +151,7 @@ impl TimBasCounter {
     }
 
     #[inline]
-    pub fn incr(&self, value: u32) {
+    pub fn inc(&self, value: u32) {
         self.set(self.get().wrapping_add(value))
     }
 
@@ -161,7 +161,7 @@ impl Poll for TimBasCounter {
     fn poll(&self) {
         if self.tim.test_timeout() {
             self.tim.clr_timeout();
-            self.incr(1);
+            self.inc(1);
         }
     }
 }
