@@ -5,7 +5,7 @@
 extern crate nucleo_l432kc as board;
 
 use board::hal::tim_bas::*;
-use board::hal::nvic::NvicEnabled;
+use board::hal::nvic::{NvicEnabled, RegisterPoll};
 use board::clock::*;
 use core::ptr;
 
@@ -26,6 +26,7 @@ pub extern "C" fn main() -> ! {
     static mut COUNT: u32 = 0;
 
     let irq = t.irq_tim();
+    println!("IRQ: {:?}", irq);
     irq.register_poll(&|| {
         if t.test_timeout() {
             t.clr_timeout();
