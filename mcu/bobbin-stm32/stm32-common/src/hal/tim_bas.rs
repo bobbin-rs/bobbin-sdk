@@ -146,12 +146,12 @@ impl TimBasCounter {
     }
 
     #[inline]
-    pub fn set(&self, value: u32) {
+    fn set(&self, value: u32) {
         unsafe { ptr::write_volatile(self.count.get(), value) }
     }
 
     #[inline]
-    pub fn inc(&self, value: u32) {
+    fn inc(&self, value: u32) {
         self.set(self.get().wrapping_add(value))
     }
 
