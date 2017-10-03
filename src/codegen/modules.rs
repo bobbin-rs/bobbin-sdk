@@ -6,7 +6,7 @@ use std::collections::HashSet;
 
 use {Access, Device, PeripheralGroup, Peripheral, Descriptor, Register, Cluster, Field, Interrupt, Exception};
 
-use super::{size_type, field_getter, field_setter, field_with, field_ptr, field_mut, field_name, to_camel};
+use super::{size_type, field_getter, field_setter, field_with, field_test, field_ptr, field_mut, field_name, to_camel};
 
 pub struct Config {
     pub path: PathBuf,
@@ -22,10 +22,10 @@ impl<'a> From<&'a ArgMatches<'a>> for Config {
     }
 }
 
-fn gen_doc<W: Write>(_cfg: &Config, out: &mut W, doc: &str) -> Result<()> {
+fn gen_doc<W: Write>(_cfg: &Config, out: &mut W, indent: usize, doc: &str) -> Result<()> {
     let doc = doc.trim();
     if doc.len() > 0 {
-        try!(writeln!(out, "#[doc=\"{}\"]", doc))
+        try!(writeln!(out, "{:indent$}#[doc=\"{}\"]", "", doc, indent=indent))
     }
     Ok(())
 }
@@ -132,9 +132,9 @@ pub fn gen_exceptions<W: Write>(_cfg: &Config, out: &mut W, exceptions: &Vec<Exc
     try!(writeln!(out, ""));
     
     try!(writeln!(out, "impl Exception {{"));
-    try!(writeln!(out, "   pub fn set_handler(&self, handler: Option<Handler>) {{"));
-    try!(writeln!(out, "      unsafe {{ R_EXCEPTION_HANDLERS[self.0] = handler }};"));
-    try!(writeln!(out, "   }}"));
+    try!(writeln!(out, "    pub fn set_handler(&self, handler: Option<Handler>) {{"));
+    try!(writeln!(out, "        unsafe {{ R_EXCEPTION_HANDLERS[self.0] = handler }};"));
+    try!(writeln!(out, "    }}"));
     try!(writeln!(out, "}}"));
     try!(writeln!(out, ""));
 
@@ -143,9 +143,9 @@ pub fn gen_exceptions<W: Write>(_cfg: &Config, out: &mut W, exceptions: &Vec<Exc
     try!(writeln!(out,"pub static EXCEPTION_HANDLERS: [Option<Handler>; {}] = [", exceptions.len()));
     for e in exceptions.iter() {
         if e.name != "" {
-            try!(writeln!(out, "   {:30} // {}", format!("Some(_{}),", e.name), e.description.as_ref().unwrap()));
+            try!(writeln!(out, "    {:30} // {}", format!("Some(_{}),", e.name), e.description.as_ref().unwrap()));
         } else {
-            try!(writeln!(out, "   None,"));
+            try!(writeln!(out, "    None,"));
         }        
     }
     try!(writeln!(out,"];"));
@@ -161,7 +161,7 @@ pub fn gen_exceptions<W: Write>(_cfg: &Config, out: &mut W, exceptions: &Vec<Exc
     try!(writeln!(out, "extern \"C\" {{"));
     for e in exceptions.iter() {
         if e.name != "" {
-            try!(writeln!(out, "   {:30} // {}", format!("pub fn _{}();", e.name), e.description.as_ref().unwrap()));
+            try!(writeln!(out, "    {:30} // {}", format!("pub fn _{}();", e.name), e.description.as_ref().unwrap()));
         }      
     }
     try!(writeln!(out,"}}"));    
@@ -252,9 +252,9 @@ pub fn gen_interrupts<W: Write>(_cfg: &Config, out: &mut W, d: &Device, interrup
     for irq in interrupts.iter() {
         if let &Some(irq) = irq { 
             let desc = irq.description.as_ref().map(|s| s.as_ref()).unwrap_or("No Description");
-            try!(writeln!(out, "   {:30} // IRQ {}: {}", format!("None,"), irq.value, desc));
+            try!(writeln!(out, "    {:30} // IRQ {}: {}", format!("None,"), irq.value, desc));
         } else {
-            try!(writeln!(out, "   None,"));
+            try!(writeln!(out, "    None,"));
         }
     }
 
@@ -393,7 +393,7 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
 
             if !link_traits.contains(&l_trait) {
                 try!(writeln!(out, "pub trait {} {{", l_trait));
-                try!(writeln!(out, "   fn {}(&self) -> T;", l_getter));
+                try!(writeln!(out, "    fn {}(&self) -> T;", l_getter));
                 try!(writeln!(out, "}}"));
                 try!(writeln!(out, ""));
                 link_traits.insert(l_trait);
@@ -407,7 +407,7 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
 
                 if !link_traits.contains(&l_trait) {
                     try!(writeln!(out, "pub trait {} {{", l_trait));
-                    try!(writeln!(out, "   fn {}(&self) -> T;", l_getter));
+                    try!(writeln!(out, "    fn {}(&self) -> T;", l_getter));
                     try!(writeln!(out, "}}"));
                     try!(writeln!(out, ""));
                     link_traits.insert(l_trait);
@@ -435,7 +435,7 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
     
     if pg.modules.len() == 0 {
         try!(writeln!(out, "#[derive(Clone, Copy, PartialEq, Eq)]"));
-        try!(gen_doc(cfg, out, &format!("{} Peripheral", pg.name.to_uppercase())));
+        try!(gen_doc(cfg, out, 0, &format!("{} Peripheral", pg.name.to_uppercase())));
         try!(writeln!(out, "pub struct {}(pub usize); ", pg_type));
         try!(writeln!(out, ""));        
     }
@@ -453,7 +453,7 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
             let p_const = l.peripheral.to_uppercase();            
                   
             try!(writeln!(out, "impl {}<{}> for {} {{", l_trait, l_type, p_type));
-            try!(writeln!(out, "   #[inline] fn {}(&self) -> {} {{ super::{}::{} }}", l_getter, l_type, pg_mod, p_const));
+            try!(writeln!(out, "    #[inline] fn {}(&self) -> {} {{ super::{}::{} }}", l_getter, l_type, pg_mod, p_const));
             try!(writeln!(out, "}}"));
             try!(writeln!(out, ""));
         }
@@ -471,7 +471,7 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
                 let pin_const = l.pin.to_uppercase();            
                     
                 try!(writeln!(out, "impl {}<{}> for {} {{", l_trait, l_type, pin_type));
-                try!(writeln!(out, "   #[inline] fn {}(&self) -> {} {{ super::{}::{} }}", l_getter, l_type, pg_mod, pin_const));
+                try!(writeln!(out, "    #[inline] fn {}(&self) -> {} {{ super::{}::{} }}", l_getter, l_type, pg_mod, pin_const));
                 try!(writeln!(out, "}}"));
                 try!(writeln!(out, ""));
             }            
@@ -558,7 +558,7 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
                 for af in pin.altfns.iter() {
                     let s_type = format!("super::sig::{}", to_camel(&af.signal));
 
-                    try!(writeln!(out, "   alt_fn!({ty}, {s_type}, {s_index});", 
+                    try!(writeln!(out, "    alt_fn!({ty}, {s_type}, {s_index});", 
                         ty=ty,
                         s_type=s_type,
                         s_index=af.index,
@@ -612,7 +612,7 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
                 if !interrupt_types.contains(&itype) {
                     let itype_itrait = format!("Irq{}", to_camel(itype));
                     try!(writeln!(out, "pub trait {}<T> {{", itype_itrait));
-                    try!(writeln!(out, "   fn irq_{}(&self) -> T;", itype.to_lowercase()));
+                    try!(writeln!(out, "    fn irq_{}(&self) -> T;", itype.to_lowercase()));
                     try!(writeln!(out, "}}"));        
                     try!(writeln!(out, ""));                
                     interrupt_types.insert(itype);
@@ -625,7 +625,7 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
                     if !interrupt_types.contains(&itype) {
                         let itype_itrait = format!("Irq{}", to_camel(itype));
                         try!(writeln!(out, "pub trait {}<T> {{", itype_itrait));
-                        try!(writeln!(out, "   fn irq_{}(&self) -> T;", itype.to_lowercase()));
+                        try!(writeln!(out, "    fn irq_{}(&self) -> T;", itype.to_lowercase()));
                         try!(writeln!(out, "}}"));        
                         try!(writeln!(out, ""));                
                         interrupt_types.insert(itype);
@@ -644,7 +644,7 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
             for itype in irq.types.iter() {
                 let itype_itrait = format!("Irq{}<{}>", to_camel(itype), irq_type);
                 try!(writeln!(out, "impl {} for {} {{", itype_itrait, p_type));
-                try!(writeln!(out, "   fn irq_{}(&self) -> {} {{ super::irq::IRQ_{} }}", itype.to_lowercase(), irq_type, irq.name.to_uppercase()));
+                try!(writeln!(out, "    fn irq_{}(&self) -> {} {{ super::irq::IRQ_{} }}", itype.to_lowercase(), irq_type, irq.name.to_uppercase()));
                 try!(writeln!(out, "}}"));
                 try!(writeln!(out, ""));
             }
@@ -657,7 +657,7 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
                 for itype in irq.types.iter() {
                     let itype_itrait = format!("Irq{}<{}>", to_camel(itype), irq_type);
                     try!(writeln!(out, "impl {} for {} {{", itype_itrait, ch_type));
-                    try!(writeln!(out, "   fn irq_{}(&self) -> {} {{ super::irq::IRQ_{} }}", itype.to_lowercase(), irq_type, irq.name.to_uppercase()));
+                    try!(writeln!(out, "    fn irq_{}(&self) -> {} {{ super::irq::IRQ_{} }}", itype.to_lowercase(), irq_type, irq.name.to_uppercase()));
                     try!(writeln!(out, "}}"));
                     try!(writeln!(out, ""));
                 }
@@ -695,7 +695,7 @@ pub fn gen_peripheral<W: Write>(cfg: &Config, out: &mut W, p: &Peripheral) -> Re
     try!(writeln!(out, ""));
     
     if let Some(ref desc) = p.description {
-        try!(gen_doc(cfg, out, desc));
+        try!(gen_doc(cfg, out, 0, desc));
     }
     
     try!(writeln!(out, "#[derive(Clone, Copy, PartialEq, Eq)]"));    
@@ -714,17 +714,17 @@ pub fn gen_peripheral<W: Write>(cfg: &Config, out: &mut W, p: &Peripheral) -> Re
     let p_size = size_type(p.size.or(Some(32)).unwrap());
     for link in p.links.iter() {
         try!(writeln!(out, "pub trait {} {{", to_camel(&link.name)));
-        try!(writeln!(out, "   fn {}(&self) -> {};", field_getter(&link.name), p_size));
-        try!(writeln!(out, "   fn {}(&self, value: {});", field_setter(&link.name), p_size));
+        try!(writeln!(out, "    fn {}(&self) -> {};", field_getter(&link.name), p_size));
+        try!(writeln!(out, "    fn {}(&self, value: {});", field_setter(&link.name), p_size));
         try!(writeln!(out, "}}"));
         try!(writeln!(out, ""));
         try!(writeln!(out, "impl {} {{", to_camel(&p.name)));
-        try!(writeln!(out, "   #[inline] pub fn {}<P: {}>(&self, p: &P) -> {} {{", field_getter(&link.name), to_camel(&link.name), p_size));
-        try!(writeln!(out, "      p.{}()", field_getter(&link.name)));
-        try!(writeln!(out, "   }}"));
-        try!(writeln!(out, "   #[inline] pub fn {}<P: {}>(&self, p: &P, value: {}) {{", field_setter(&link.name), to_camel(&link.name), p_size));
-        try!(writeln!(out, "      p.{}(value)", field_setter(&link.name)));
-        try!(writeln!(out, "   }}"));
+        try!(writeln!(out, "    #[inline] pub fn {}<P: {}>(&self, p: &P) -> {} {{", field_getter(&link.name), to_camel(&link.name), p_size));
+        try!(writeln!(out, "        p.{}()", field_getter(&link.name)));
+        try!(writeln!(out, "    }}"));
+        try!(writeln!(out, "    #[inline] pub fn {}<P: {}>(&self, p: &P, value: {}) {{", field_setter(&link.name), to_camel(&link.name), p_size));
+        try!(writeln!(out, "        p.{}(value)", field_setter(&link.name)));
+        try!(writeln!(out, "    }}"));
         try!(writeln!(out, "}}"));
         try!(writeln!(out, ""));
     }
@@ -739,8 +739,8 @@ pub fn gen_peripheral<W: Write>(cfg: &Config, out: &mut W, p: &Peripheral) -> Re
                 let pg_mod = link.peripheral_group.to_lowercase();
                 let l_type = format!("super::{}::{}", pg_mod, to_camel(&link.peripheral));
                 try!(writeln!(out, "impl {} for {} {{", to_camel(&link.name), l_type));
-                try!(writeln!(out, "   #[inline] fn {}(&self) -> {} {{ {}.{}().{}().into() }}", field_getter(&link.name),  p_size, p.name, r.name.to_lowercase(), field_getter(&f.name)));                
-                try!(writeln!(out, "   #[inline] fn {}(&self, value: {}) {{ {}.{}(|r| r.{}(value)); }}", field_setter(&link.name),  p_size, p.name, field_with(&r.name), field_setter(&f.name)));
+                try!(writeln!(out, "    #[inline] fn {}(&self) -> {} {{ {}.{}().{}().into() }}", field_getter(&link.name),  p_size, p.name, r.name.to_lowercase(), field_getter(&f.name)));                
+                try!(writeln!(out, "    #[inline] fn {}(&self, value: {}) {{ {}.{}(|r| r.{}(value)); }}", field_setter(&link.name),  p_size, p.name, field_with(&r.name), field_setter(&f.name)));
                 try!(writeln!(out, "}}"));
                 try!(writeln!(out, ""));
             }
@@ -787,13 +787,14 @@ pub fn gen_clusters<W: Write>(cfg: &Config, out: &mut W, p_type: &str, clusters:
         let c_type = format!("{}", to_camel(&c.name));
         let mod_name = c.name.to_lowercase();
         if let Some(ref desc) = c.description {
-            try!(gen_doc(cfg, out, &format!("Get {} Peripheral", desc)));
+            try!(gen_doc(cfg, out, 4, &format!("Get {} Peripheral", desc)));
         }               
-        try!(writeln!(out, "   #[inline] pub fn {}(&self) -> {}::{} {{", mod_name, mod_name, c_type));
-        try!(writeln!(out, "      {}::{}(self.0 + 0x{:x})", mod_name, c_type, c.offset));
-        try!(writeln!(out, "   }}"));
+        try!(writeln!(out, "    #[inline] pub fn {}(&self) -> {}::{} {{", mod_name, mod_name, c_type));
+        try!(writeln!(out, "        {}::{}(self.0 + 0x{:x})", mod_name, c_type, c.offset));
+        try!(writeln!(out, "    }}"));
     }
     try!(writeln!(out, "}}"));
+    try!(writeln!(out, ""));
 
     // Find the right place to generate the main periph trait if not already created
 
@@ -801,19 +802,20 @@ pub fn gen_clusters<W: Write>(cfg: &Config, out: &mut W, p_type: &str, clusters:
         let c_type = to_camel(&c.name);
         let mod_name = c.name.to_lowercase();        
         if let Some(ref desc) = c.description {
-            try!(gen_doc(cfg, out, &format!("{} Cluster", desc)));
+            try!(gen_doc(cfg, out, 0, &format!("{} Cluster", desc)));
         }                
         try!(writeln!(out, "pub mod {} {{", mod_name));
-        try!(writeln!(out, "#[allow(unused_imports)] use bobbin_common::*;"));
+        try!(writeln!(out, "    #[allow(unused_imports)] use bobbin_common::*;"));
         
-        try!(writeln!(out, "   #[derive(Clone, Copy, PartialEq, Eq)]"));
+        try!(writeln!(out, "    #[derive(Clone, Copy, PartialEq, Eq)]"));
         if let Some(ref desc) = c.description {
-            try!(gen_doc(cfg, out, &format!("{} Peripheral", desc)));
+            try!(gen_doc(cfg, out, 4, &format!("{} Peripheral", desc)));
         }                
-        try!(writeln!(out, "   pub struct {}(pub usize);", c_type));
+        try!(writeln!(out, "    pub struct {}(pub usize);", c_type));
         try!(gen_registers(cfg, out, &c_type, &c.registers[..], c.size.or(size), c.access.or(access)));
         try!(writeln!(out, "}}"));
         try!(writeln!(out, "// End of {}", mod_name));
+        try!(writeln!(out, ""));
     }
 
     Ok(())
@@ -826,7 +828,7 @@ pub fn gen_descriptor<W: Write>(cfg: &Config, out: &mut W, _p_type: &str, desc: 
     try!(writeln!(out, ""));
 
     if let Some(ref desc) = desc.description {
-        try!(gen_doc(cfg, out, desc));
+        try!(gen_doc(cfg, out, 0, desc));
     }
     try!(writeln!(out, "#[derive(Clone, Copy, PartialEq, Eq)]"));
     try!(writeln!(out, "pub struct {}(pub [u8; {}]);", d_type, d_size));
@@ -842,7 +844,6 @@ pub fn gen_descriptor<W: Write>(cfg: &Config, out: &mut W, _p_type: &str, desc: 
         let r_getter = field_getter(&r.name);
         let r_setter = field_setter(&r.name);
         let r_with = field_with(&r.name);
-        let r_size = size_type(r.size.unwrap());
         let r_access = r.access.or(Some(Access::ReadWrite)).unwrap();
         let r_offset = r.offset;        
 
@@ -872,75 +873,73 @@ pub fn gen_descriptor<W: Write>(cfg: &Config, out: &mut W, _p_type: &str, desc: 
 
 
             if r_access.is_readable() {
-                try!(gen_doc(cfg, out, &format!("Read the {} register.", r.name.to_uppercase())));
+                try!(gen_doc(cfg, out, 0, &format!("Read the {} register.", r.name.to_uppercase())));
                 try!(writeln!(out, "  #[inline] pub fn {}<I: Into<{}>>(&self, index: I) -> {} {{ ", r_getter, i_type, r_type));
-                try!(writeln!(out, "     let index: {} = index.into();", i_type));
-                try!(writeln!(out, "     let index: usize = index.value() as usize;"));
-                try!(writeln!(out, "     unsafe {{"));
-                try!(writeln!(out, "        {}(read_volatile(self.0.as_ptr().offset(0x{:x} + {}) as *const {}))", r_type, r_offset, r_shift, r_size));
-                try!(writeln!(out, "     }}"));
-                try!(writeln!(out, "  }}"));
-            }
-            if r_access.is_writable() {
-                try!(gen_doc(cfg, out, &format!("Write the {} register.", r.name.to_uppercase())));
-                try!(writeln!(out, "  #[inline] pub fn {}<I: Into<{}>, {}: FnOnce({}) -> {}>(&self, index: I, f: {}) -> &Self {{", r_setter, i_type, r_typevar, r_type, r_type, r_typevar));
-                try!(writeln!(out, "     let index: {} = index.into();", i_type));
-                try!(writeln!(out, "     let index: usize = index.value() as usize;"));
-                try!(writeln!(out, "     unsafe {{"));
-                try!(writeln!(out, "        write_volatile(self.0.as_mut_ptr().offset(0x{:x} + {}) as *mut {}, value.0);", r_offset, r_shift, r_size)); 
-                try!(writeln!(out, "     }}"));
-                try!(writeln!(out, "     self"));
-                try!(writeln!(out, "  }}"));
-            }
-            if r_access.is_readable() && r_access.is_writable() {
-                try!(gen_doc(cfg, out, &format!("Modify the {} register.", r.name.to_uppercase())));
-                try!(writeln!(out, "  #[inline] pub fn {}<I: Into<{}> + Copy, {}: FnOnce({}) -> {}>(&mut self, index: usize, f: {}) -> &mut Self {{", r_with, i_type, r_typevar, r_type, r_type, r_typevar));
-                try!(writeln!(out, "     let index: {} = index.into();", i_type));
-                try!(writeln!(out, "     let index: usize = index.value() as usize;"));                                
-                try!(writeln!(out, "     let tmp = self.{}(index);", r_getter));
-                try!(writeln!(out, "     let value = f(tmp);"));
-                try!(writeln!(out, "     unsafe {{"));
-                try!(writeln!(out, "        write_volatile(self.0.as_mut_ptr().offset(0x{:x} + {}) as *mut {}, value.0);", r_offset, r_shift, r_size)); 
-                try!(writeln!(out, "     }}"));
-                try!(writeln!(out, "     self"));
-                try!(writeln!(out, "  }}"));            
-            }            
-        } else {
-            // try!(writeln!(out, "  #[inline] pub fn {}(&self) -> *const {} {{ ", r_ptr, r_size));
-            // try!(writeln!(out, "     (&self.0 as *const {}).offset({})", r_size, r_offset));
-            // try!(writeln!(out, "  }}"));
-            // try!(writeln!(out, "  #[inline] pub fn {}(&mut self) -> *mut {} {{ ", r_mut, r_size));
-            // try!(writeln!(out, "     (&mut self.0 as *mut {}).offset({})", r_size, r_offset));
-            // try!(writeln!(out, "  }}"));
-            
-            if r_access.is_readable() {
-                try!(gen_doc(cfg, out, &format!("Read the {} register.", r.name.to_uppercase())));
-                try!(writeln!(out, "   #[inline] pub fn {}(&self) -> {} {{ ", r_getter, r_type));
+                try!(writeln!(out, "      let index: usize = index.into().value() as usize;"));
                 try!(writeln!(out, "      unsafe {{"));
-                try!(writeln!(out, "         {}(read_volatile(self.0.as_ptr().offset(0x{:x}) as *const {}))", r_type, r_offset, r_size));
+                try!(writeln!(out, "          read_volatile(self.0.as_ptr().offset(0x{:x} + {}) as *const {})", r_offset, r_shift, r_type));
                 try!(writeln!(out, "      }}"));
-                try!(writeln!(out, "   }}"));
+                try!(writeln!(out, "  }}"));
+                try!(writeln!(out, ""));
             }
             if r_access.is_writable() {
-                try!(gen_doc(cfg, out, &format!("Write the {} register.", r.name.to_uppercase())));
-                try!(writeln!(out, "   #[inline] pub fn {}<{}: FnOnce({}) -> {}>(&mut self, f: {}) -> &Self {{", r_setter, r_typevar, r_type, r_type, r_typevar));
-                try!(writeln!(out, "      let value = f({}(0));", r_type));
+                try!(gen_doc(cfg, out, 0, &format!("Write the {} register.", r.name.to_uppercase())));
+                try!(writeln!(out, "  #[inline] pub fn {}<I: Into<{}>, {}: FnOnce({}) -> {}>(&self, index: I, f: {}) -> &Self {{", r_setter, i_type, r_typevar, r_type, r_type, r_typevar));
+                try!(writeln!(out, "      let index: usize = index.into().value() as usize;"));
                 try!(writeln!(out, "      unsafe {{"));
-                try!(writeln!(out, "         write_volatile(self.0.as_mut_ptr().offset(0x{:x}) as *mut {}, value.0);", r_offset, r_size));                    
+                try!(writeln!(out, "          write_volatile(self.0.as_mut_ptr().offset(0x{:x} + {}) as *mut {}, f({}(0)));", r_offset, r_shift, r_type, r_type)); 
                 try!(writeln!(out, "      }}"));
                 try!(writeln!(out, "      self"));
                 try!(writeln!(out, "  }}"));
+                try!(writeln!(out, ""));
             }
             if r_access.is_readable() && r_access.is_writable() {
-                try!(gen_doc(cfg, out, &format!("Modfy the {} register.", r.name.to_uppercase())));
-                try!(writeln!(out, "   #[inline] pub fn {}<{}: FnOnce({}) -> {}>(&mut self, f: {}) -> &mut Self {{", r_with, r_typevar, r_type, r_type, r_typevar));
-                try!(writeln!(out, "      let tmp = self.{}();", r_getter));
-                try!(writeln!(out, "      let value = f(tmp);"));
+                try!(gen_doc(cfg, out, 0, &format!("Modify the {} register.", r.name.to_uppercase())));
+                try!(writeln!(out, "  #[inline] pub fn {}<I: Into<{}> + Copy, {}: FnOnce({}) -> {}>(&mut self, index: usize, f: {}) -> &mut Self {{", r_with, i_type, r_typevar, r_type, r_type, r_typevar));
+                try!(writeln!(out, "      let index: usize = index.into().value() as usize;"));                                
                 try!(writeln!(out, "      unsafe {{"));
-                try!(writeln!(out, "         write_volatile(self.0.as_mut_ptr().offset(0x{:x}) as *mut {}, value.0);", r_offset, r_size));                    
+                try!(writeln!(out, "          write_volatile(self.0.as_mut_ptr().offset(0x{:x} + {}) as *mut {}, f(self.{}(index)));", r_offset, r_shift, r_type, r_getter)); 
                 try!(writeln!(out, "      }}"));
-                try!(writeln!(out, "     self"));
-                try!(writeln!(out, "   }}"));            
+                try!(writeln!(out, "      self"));
+                try!(writeln!(out, "  }}"));            
+                try!(writeln!(out, ""));
+            }            
+        } else {
+            // try!(writeln!(out, "  #[inline] pub fn {}(&self) -> *const {} {{ ", r_ptr, r_size));
+            // try!(writeln!(out, "      (&self.0 as *const {}).offset({})", r_size, r_offset));
+            // try!(writeln!(out, "  }}"));
+            // try!(writeln!(out, "  #[inline] pub fn {}(&mut self) -> *mut {} {{ ", r_mut, r_size));
+            // try!(writeln!(out, "      (&mut self.0 as *mut {}).offset({})", r_size, r_offset));
+            // try!(writeln!(out, "  }}"));
+            
+            if r_access.is_readable() {
+                try!(gen_doc(cfg, out, 0, &format!("Read the {} register.", r.name.to_uppercase())));
+                try!(writeln!(out, "    #[inline] pub fn {}(&self) -> {} {{ ", r_getter, r_type));
+                try!(writeln!(out, "        unsafe {{"));
+                try!(writeln!(out, "            read_volatile(self.0.as_ptr().offset(0x{:x}) as *const {})", r_offset, r_type));
+                try!(writeln!(out, "        }}"));
+                try!(writeln!(out, "    }}"));
+                try!(writeln!(out, ""));
+            }
+            if r_access.is_writable() {
+                try!(gen_doc(cfg, out, 0, &format!("Write the {} register.", r.name.to_uppercase())));
+                try!(writeln!(out, "    #[inline] pub fn {}<{}: FnOnce({}) -> {}>(&mut self, f: {}) -> &Self {{", r_setter, r_typevar, r_type, r_type, r_typevar));
+                try!(writeln!(out, "        unsafe {{"));
+                try!(writeln!(out, "            write_volatile(self.0.as_mut_ptr().offset(0x{:x}) as *mut {}, f({}(0)));", r_offset, r_type, r_type));                    
+                try!(writeln!(out, "        }}"));
+                try!(writeln!(out, "        self"));
+                try!(writeln!(out, "  }}"));
+                try!(writeln!(out, ""));
+            }
+            if r_access.is_readable() && r_access.is_writable() {
+                try!(gen_doc(cfg, out, 0, &format!("Modfy the {} register.", r.name.to_uppercase())));
+                try!(writeln!(out, "    #[inline] pub fn {}<{}: FnOnce({}) -> {}>(&mut self, f: {}) -> &mut Self {{", r_with, r_typevar, r_type, r_type, r_typevar));
+                try!(writeln!(out, "        unsafe {{"));
+                try!(writeln!(out, "            write_volatile(self.0.as_mut_ptr().offset(0x{:x}) as *mut {}, f(self.{}()));", r_offset, r_type, r_getter));                    
+                try!(writeln!(out, "        }}"));
+                try!(writeln!(out, "      self"));
+                try!(writeln!(out, "    }}"));            
+                try!(writeln!(out, ""));
             }
         }
         try!(writeln!(out, ""));        
@@ -958,7 +957,7 @@ pub fn gen_registers<W: Write>(cfg: &Config, out: &mut W, p_type: &str, regs: &[
     Ok(())
 }
 
-pub fn gen_register_methods<W: Write>(cfg: &Config, out: &mut W, p_type: &str, regs: &[Register], size: Option<u64>, access: Option<Access>) -> Result<()> {
+pub fn gen_register_methods<W: Write>(cfg: &Config, out: &mut W, p_type: &str, regs: &[Register], _size: Option<u64>, access: Option<Access>) -> Result<()> {
     try!(writeln!(out, "impl {} {{", p_type));        
 
     for r in regs.iter() {  
@@ -968,7 +967,6 @@ pub fn gen_register_methods<W: Write>(cfg: &Config, out: &mut W, p_type: &str, r
         let r_getter = field_getter(&r.name);
         let r_setter = field_setter(&r.name);
         let r_with = field_with(&r.name);
-        let r_size = size_type(r.size.or(size).unwrap());
         let r_access = r.access.or(access).unwrap();
         let r_offset = r.offset;        
 
@@ -996,97 +994,91 @@ pub fn gen_register_methods<W: Write>(cfg: &Config, out: &mut W, p_type: &str, r
                 _ => panic!("Unsupported dim value for {}: {}", r.name, dim),
             };
 
-            try!(gen_doc(cfg, out, &format!("Get the *const pointer for the {} register.", r.name.to_uppercase())));
-            try!(writeln!(out, "   #[inline] pub fn {}<I: Into<{}>>(&self, index: I) -> *const {} {{ ", r_ptr, i_type, r_size));
-            try!(writeln!(out, "      let index: {} = index.into();", i_type));
-            try!(writeln!(out, "      let index: usize = index.value() as usize;"));
-            try!(writeln!(out, "      ((self.0 as usize) + 0x{:x} + {}) as *const {}", r_offset, r_shift, r_size));
-            try!(writeln!(out, "   }}"));
+            try!(gen_doc(cfg, out, 4, &format!("Get the *mut pointer for the {} register.", r.name.to_uppercase())));
+            try!(writeln!(out, "    #[inline] pub fn {}<I: Into<{}>>(&self, index: I) -> *mut {} {{ ", r_mut, i_type, r_type));
+            try!(writeln!(out, "        let index: usize = index.into().value() as usize;"));
+            try!(writeln!(out, "        (self.0 + 0x{:x} + {}) as *mut {}", r_offset, r_shift, r_type));
+            try!(writeln!(out, "    }}"));
+            try!(writeln!(out, ""));
 
-            try!(gen_doc(cfg, out, &format!("Get the *mut pointer for the {} register.", r.name.to_uppercase())));
-            try!(writeln!(out, "   #[inline] pub fn {}<I: Into<{}>>(&self, index: I) -> *mut {} {{ ", r_mut, i_type, r_size));
-            try!(writeln!(out, "      let index: {} = index.into();", i_type));
-            try!(writeln!(out, "      let index: usize = index.value() as usize;"));
-            try!(writeln!(out, "      ((self.0 as usize) + 0x{:x} + {}) as *mut {}", r_offset, r_shift, r_size));
-            try!(writeln!(out, "   }}"));
-
+            try!(gen_doc(cfg, out, 4, &format!("Get the *const pointer for the {} register.", r.name.to_uppercase())));
+            try!(writeln!(out, "    #[inline] pub fn {}<I: Into<{}>>(&self, index: I) -> *const {} {{ ", r_ptr, i_type, r_type));
+            try!(writeln!(out, "           self.{}(index)", r_mut));
+            try!(writeln!(out, "    }}"));
+            try!(writeln!(out, ""));
 
             if r_access.is_readable() {
-                try!(gen_doc(cfg, out, &format!("Read the {} register.", r.name.to_uppercase())));
-                try!(writeln!(out, "   #[inline] pub fn {}<I: Into<{}>>(&self, index: I) -> {} {{ ", r_getter, i_type, r_type));
-                try!(writeln!(out, "      let index: {} = index.into();", i_type));
-                try!(writeln!(out, "      let index: usize = index.value() as usize;"));
-                try!(writeln!(out, "      unsafe {{"));
-                try!(writeln!(out, "         {}(read_volatile((self.0 + 0x{:x} + {}) as *const {}))", r_type, r_offset, r_shift, r_size));
-                try!(writeln!(out, "      }}"));
-                try!(writeln!(out, "   }}"));
+                try!(gen_doc(cfg, out, 4, &format!("Read the {} register.", r.name.to_uppercase())));
+                try!(writeln!(out, "    #[inline] pub fn {}<I: Into<{}>>(&self, index: I) -> {} {{ ", r_getter, i_type, r_type));
+                try!(writeln!(out, "        unsafe {{"));
+                try!(writeln!(out, "            read_volatile(self.{}(index))", r_ptr));
+                try!(writeln!(out, "        }}"));
+                try!(writeln!(out, "    }}"));
+                try!(writeln!(out, ""));
             }
             if r_access.is_writable() {
-                try!(gen_doc(cfg, out, &format!("Write the {} register.", r.name.to_uppercase())));
-                try!(writeln!(out, "   #[inline] pub fn {}<I: Into<{}>, {}: FnOnce({}) -> {}>(&self, index: I, f: {}) -> &Self {{", r_setter, i_type, r_typevar, r_type, r_type, r_typevar));
-                try!(writeln!(out, "      let index: {} = index.into();", i_type));
-                try!(writeln!(out, "      let index: usize = index.value() as usize;"));
-                try!(writeln!(out, "      let value = f({}(0));", r_type));
-                try!(writeln!(out, "      unsafe {{"));
-                try!(writeln!(out, "         write_volatile((self.0 + 0x{:x} + {}) as *mut {}, value.0);", r_offset, r_shift, r_size)); 
-                try!(writeln!(out, "      }}"));
-                try!(writeln!(out, "      self"));
-                try!(writeln!(out, "   }}"));
+                try!(gen_doc(cfg, out, 4, &format!("Write the {} register.", r.name.to_uppercase())));
+                try!(writeln!(out, "    #[inline] pub fn {}<I: Into<{}>, {}: FnOnce({}) -> {}>(&self, index: I, f: {}) -> &Self {{", r_setter, i_type, r_typevar, r_type, r_type, r_typevar));
+                try!(writeln!(out, "        unsafe {{"));
+                try!(writeln!(out, "            write_volatile(self.{}(index), f({}(0)));", r_mut, r_type)); 
+                try!(writeln!(out, "        }}"));
+                try!(writeln!(out, "        self"));
+                try!(writeln!(out, "    }}"));
+                try!(writeln!(out, ""));
             }
             if r_access.is_readable() && r_access.is_writable() {
-                try!(gen_doc(cfg, out, &format!("Modify the {} register.", r.name.to_uppercase())));
-                try!(writeln!(out, "   #[inline] pub fn {}<I: Into<{}> + Copy, {}: FnOnce({}) -> {}>(&self, index: I, f: {}) -> &Self {{", r_with, i_type, r_typevar, r_type, r_type, r_typevar));
-                try!(writeln!(out, "      let index: {} = index.into();", i_type));
-                try!(writeln!(out, "      let index: usize = index.value() as usize;"));                
-                try!(writeln!(out, "      let tmp = self.{}(index);", r_getter));
-                try!(writeln!(out, "      let value = f(tmp);"));
-                try!(writeln!(out, "      unsafe {{"));
-                try!(writeln!(out, "         write_volatile((self.0 + 0x{:x} + {}) as *mut {}, value.0);", r_offset, r_shift, r_size)); 
-                try!(writeln!(out, "      }}"));
-                try!(writeln!(out, "      self"));
-                try!(writeln!(out, "   }}"));            
+                try!(gen_doc(cfg, out, 4, &format!("Modify the {} register.", r.name.to_uppercase())));
+                try!(writeln!(out, "    #[inline] pub fn {}<I: Into<{}> + Copy, {}: FnOnce({}) -> {}>(&self, index: I, f: {}) -> &Self {{", r_with, i_type, r_typevar, r_type, r_type, r_typevar));
+                try!(writeln!(out, "        unsafe {{"));
+                try!(writeln!(out, "            write_volatile(self.{}(index), f(self.{}(index)));", r_mut, r_getter)); 
+                try!(writeln!(out, "        }}"));
+                try!(writeln!(out, "        self"));
+                try!(writeln!(out, "    }}"));       
+                try!(writeln!(out, "")); 
             }            
         } else {
-            try!(gen_doc(cfg, out, &format!("Get the *const pointer for the {} register.", r.name.to_uppercase())));
-            try!(writeln!(out, "   #[inline] pub fn {}(&self) -> *const {} {{ ", r_ptr, r_size));
-            try!(writeln!(out, "      ((self.0 as usize) + 0x{:x}) as *const {}", r_offset, r_size));
-            try!(writeln!(out, "   }}"));
-            try!(gen_doc(cfg, out, &format!("Get the *mut pointer for the {} register.", r.name.to_uppercase())));
-            try!(writeln!(out, "   #[inline] pub fn {}(&self) -> *mut {} {{ ", r_mut, r_size));
-            try!(writeln!(out, "      ((self.0 as usize) + 0x{:x}) as *mut {}", r_offset, r_size));
-            try!(writeln!(out, "   }}"));
+            try!(gen_doc(cfg, out, 4, &format!("Get the *mut pointer for the {} register.", r.name.to_uppercase())));
+            try!(writeln!(out, "    #[inline] pub fn {}(&self) -> *mut {} {{ ", r_mut, r_type));
+            try!(writeln!(out, "        (self.0 + 0x{:x}) as *mut {}", r_offset, r_type));
+            try!(writeln!(out, "    }}"));
+            try!(writeln!(out, ""));
             
+            try!(gen_doc(cfg, out, 4, &format!("Get the *const pointer for the {} register.", r.name.to_uppercase())));
+            try!(writeln!(out, "    #[inline] pub fn {}(&self) -> *const {} {{ ", r_ptr, r_type));
+            try!(writeln!(out, "           self.{}()", r_mut));            
+            try!(writeln!(out, "    }}"));
+            try!(writeln!(out, "")); 
+
             if r_access.is_readable() {
-                try!(gen_doc(cfg, out, &format!("Read the {} register.", r.name.to_uppercase())));
-                try!(writeln!(out, "   #[inline] pub fn {}(&self) -> {} {{ ", r_getter, r_type));
-                try!(writeln!(out, "      unsafe {{"));
-                try!(writeln!(out, "         {}(read_volatile((self.0 + 0x{:x}) as *const {}))", r_type, r_offset, r_size));
-                try!(writeln!(out, "      }}"));
-                try!(writeln!(out, "   }}"));
+                try!(gen_doc(cfg, out, 4, &format!("Read the {} register.", r.name.to_uppercase())));
+                try!(writeln!(out, "    #[inline] pub fn {}(&self) -> {} {{ ", r_getter, r_type));
+                try!(writeln!(out, "        unsafe {{"));
+                try!(writeln!(out, "            read_volatile(self.{}())", r_ptr));
+                try!(writeln!(out, "        }}"));
+                try!(writeln!(out, "    }}"));
+                try!(writeln!(out, ""));
             }
             if r_access.is_writable() {
-                try!(gen_doc(cfg, out, &format!("Write the {} register.", r.name.to_uppercase())));
-                try!(writeln!(out, "   #[inline] pub fn {}<{}: FnOnce({}) -> {}>(&self, f: {}) -> &Self {{", r_setter, r_typevar, r_type, r_type, r_typevar));
-                try!(writeln!(out, "      let value = f({}(0));", r_type));
-                try!(writeln!(out, "      unsafe {{"));
-                try!(writeln!(out, "         write_volatile((self.0 + 0x{:x}) as *mut {}, value.0);", r_offset, r_size));                    
-                try!(writeln!(out, "      }}"));
-                try!(writeln!(out, "      self"));
-                try!(writeln!(out, "   }}"));                
+                try!(gen_doc(cfg, out, 4, &format!("Write the {} register.", r.name.to_uppercase())));
+                try!(writeln!(out, "    #[inline] pub fn {}<{}: FnOnce({}) -> {}>(&self, f: {}) -> &Self {{", r_setter, r_typevar, r_type, r_type, r_typevar));
+                try!(writeln!(out, "        unsafe {{"));
+                try!(writeln!(out, "            write_volatile(self.{}(), f({}(0)));", r_mut, r_type));                    
+                try!(writeln!(out, "        }}"));
+                try!(writeln!(out, "        self"));
+                try!(writeln!(out, "    }}"));                
+                try!(writeln!(out, ""));
             }
             if r_access.is_readable() && r_access.is_writable() {
-                try!(gen_doc(cfg, out, &format!("Modify the {} register.", r.name.to_uppercase())));
-                try!(writeln!(out, "   #[inline] pub fn {}<{}: FnOnce({}) -> {}>(&self, f: {}) -> &Self {{", r_with, r_typevar, r_type, r_type, r_typevar));
-                try!(writeln!(out, "      let tmp = self.{}();", r_getter));
-                try!(writeln!(out, "      let value = f(tmp);"));
-                try!(writeln!(out, "      unsafe {{"));
-                try!(writeln!(out, "         write_volatile((self.0 + 0x{:x}) as *mut {}, value.0);", r_offset, r_size));                    
-                try!(writeln!(out, "      }}"));
-                try!(writeln!(out, "      self"));
-                try!(writeln!(out, "   }}"));               
+                try!(gen_doc(cfg, out, 4, &format!("Modify the {} register.", r.name.to_uppercase())));
+                try!(writeln!(out, "    #[inline] pub fn {}<{}: FnOnce({}) -> {}>(&self, f: {}) -> &Self {{", r_with, r_typevar, r_type, r_type, r_typevar));
+                try!(writeln!(out, "        unsafe {{"));
+                try!(writeln!(out, "            write_volatile(self.{}(), f(self.{}()));", r_mut, r_getter));                    
+                try!(writeln!(out, "        }}"));
+                try!(writeln!(out, "        self"));
+                try!(writeln!(out, "    }}"));               
+                try!(writeln!(out, ""));
             }
         }
-        try!(writeln!(out, ""));
     }    
     try!(writeln!(out, "}}"));
     try!(writeln!(out, ""));
@@ -1099,7 +1091,7 @@ pub fn gen_register_types<W: Write>(cfg: &Config, out: &mut W, regs: &[Register]
         let r_size = size_type(r.size.or(size).unwrap());
 
         if let Some(ref desc) = r.description {
-            try!(gen_doc(cfg, out, desc));
+            try!(gen_doc(cfg, out, 0, desc));
         }        
         try!(writeln!(out, "#[derive(Default, Clone, Copy, PartialEq, Eq)]"));
         try!(writeln!(out, "pub struct {}(pub {});", r_type, r_size));
@@ -1108,16 +1100,26 @@ pub fn gen_register_types<W: Write>(cfg: &Config, out: &mut W, regs: &[Register]
             try!(gen_field(cfg, out, &f, &r_size, f.access.or(access)))
         }
         try!(writeln!(out, "}}"));
+        try!(writeln!(out, ""));
+
+        try!(writeln!(out, "impl From<{}> for {} {{", r_size, r_type));
+        try!(writeln!(out, "    #[inline]"));
+        try!(writeln!(out, "    fn from(other: {}) -> Self {{", r_size));
+        try!(writeln!(out, "         {}(other)", r_type));
+        try!(writeln!(out, "    }}"));
+        try!(writeln!(out, "}}"));        
+        try!(writeln!(out, ""));
 
         try!(writeln!(out, "impl ::core::fmt::Display for {} {{", r_type));
-        try!(writeln!(out, "   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {{"));
-        try!(writeln!(out, "       self.0.fmt(f)"));
-        try!(writeln!(out, "   }}"));
+        try!(writeln!(out, "    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {{"));
+        try!(writeln!(out, "         self.0.fmt(f)"));
+        try!(writeln!(out, "    }}"));
         try!(writeln!(out, "}}"));        
+        try!(writeln!(out, ""));
 
         try!(writeln!(out, "impl ::core::fmt::Debug for {} {{", r_type));
-        try!(writeln!(out, "   fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {{"));        
-        try!(writeln!(out, "      try!(write!(f, \"[0x{{:08x}}\", self.0));"));
+        try!(writeln!(out, "    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {{"));        
+        try!(writeln!(out, "        try!(write!(f, \"[0x{{:08x}}\", self.0));"));
         for f in r.fields.iter() {
             let f_name = field_name(&f.name);
             let f_getter = field_getter(&f.name);
@@ -1126,31 +1128,33 @@ pub fn gen_register_types<W: Write>(cfg: &Config, out: &mut W, regs: &[Register]
                 for i in 0..dim {
                     match f.bit_width {
                         1 => {
-                            try!(writeln!(out, "      if self.{}({}) != 0 {{ try!(write!(f, \" {}[{}]\"))}}", f_getter, i, f_getter, i));
+                            try!(writeln!(out, "        if self.{}({}) != 0 {{ try!(write!(f, \" {}[{}]\"))}}", f_getter, i, f_getter, i));
                         },
                         32 => {},
                         _ => {
-                            try!(writeln!(out, "      if self.{}({}) != 0 {{ try!(write!(f, \" {}[{}]=0x{{:x}}\", self.{}({})))}}", f_getter, i, f_name, i, f_getter, i));
+                            try!(writeln!(out, "        if self.{}({}) != 0 {{ try!(write!(f, \" {}[{}]=0x{{:x}}\", self.{}({})))}}", f_getter, i, f_name, i, f_getter, i));
                         }
                     }                    
                 }
             } else {
                 match f.bit_width {
                     1 => {
-                        try!(writeln!(out, "      if self.{}() != 0 {{ try!(write!(f, \" {}\"))}}", f_getter, f_getter));
+                        try!(writeln!(out, "        if self.{}() != 0 {{ try!(write!(f, \" {}\"))}}", f_getter, f_getter));
                     },
                     32 => {},
                     _ => {
-                        try!(writeln!(out, "      if self.{}() != 0 {{ try!(write!(f, \" {}=0x{{:x}}\", self.{}()))}}", f_getter, f_name, f_getter));
+                        try!(writeln!(out, "        if self.{}() != 0 {{ try!(write!(f, \" {}=0x{{:x}}\", self.{}()))}}", f_getter, f_name, f_getter));
                     }
                 }
             }
             
         }
-        try!(writeln!(out, "      try!(write!(f, \"]\"));"));
-        try!(writeln!(out, "      Ok(())"));
-        try!(writeln!(out, "   }}"));
+        try!(writeln!(out, "        try!(write!(f, \"]\"));"));
+        try!(writeln!(out, "        Ok(())"));
+        try!(writeln!(out, "    }}"));
         try!(writeln!(out, "}}"));        
+        try!(writeln!(out, ""));
+
     }
     Ok(())
 }
@@ -1158,6 +1162,7 @@ pub fn gen_register_types<W: Write>(cfg: &Config, out: &mut W, regs: &[Register]
 pub fn gen_field<W: Write>(cfg: &Config, out: &mut W, f: &Field, size: &str, _access: Option<Access>) -> Result<()> {
     let f_getter = field_getter(&f.name);
     let f_setter = field_setter(&f.name);
+    let f_tester = field_test(&f.name);
     let f_offset = f.bit_offset;
     let f_width = f.bit_width;
     let f_lo = f_offset;
@@ -1189,84 +1194,97 @@ pub fn gen_field<W: Write>(cfg: &Config, out: &mut W, f: &Field, size: &str, _ac
         let i_type = format!("bits::R{}", dim);
 
         if let Some(ref desc) = f.description {
-            try!(gen_doc(cfg, out, desc));
+            try!(gen_doc(cfg, out, 4, desc));
+        } else {
+            try!(gen_doc(cfg, out, 4, &format!("Gets the {} field.", f.name)));            
         }
-        try!(writeln!(out, "   #[inline] pub fn {}<I: Into<{}>>(&self, index: I) -> {} {{", f_getter, i_type, field_type));
-        // try!(writeln!(out, "     assert!(index < {});", dim));
-        try!(writeln!(out, "      let index: {} = index.into();", i_type));
-        try!(writeln!(out, "      let index: usize = index.value();"));
+        try!(writeln!(out, "    #[inline] pub fn {}<I: Into<{}>>(&self, index: I) -> {} {{", f_getter, i_type, field_type));
+        try!(writeln!(out, "        let index: usize = index.into().value() as usize;"));
         match f_incr {
             1 => {
-                try!(writeln!(out, "      let shift: usize = {} + index;", f_offset));
+                try!(writeln!(out, "        let shift: usize = {} + index;", f_offset));
             },
             2 => {
-                try!(writeln!(out, "      let shift: usize = {} + (index << 1);", f_offset));
+                try!(writeln!(out, "        let shift: usize = {} + (index << 1);", f_offset));
             },
             4 => {
-                try!(writeln!(out, "      let shift: usize = {} + (index << 2);", f_offset));
+                try!(writeln!(out, "        let shift: usize = {} + (index << 2);", f_offset));
             },
             8 => {
-                try!(writeln!(out, "      let shift: usize = {} + (index << 3);", f_offset));
+                try!(writeln!(out, "        let shift: usize = {} + (index << 3);", f_offset));
             },
             _ => {
-                try!(writeln!(out, "      let shift: usize = {} + (index * {});", f_offset, f_incr));                
+                try!(writeln!(out, "        let shift: usize = {} + (index * {});", f_offset, f_incr));                
             }
         }
-        try!(writeln!(out, "      unsafe {{ ::core::mem::transmute(((self.0 >> shift) & 0x{:x}) as {}) }} // {}", f_mask, min_size, f_bits));
-        try!(writeln!(out, "   }}"));    
+        try!(writeln!(out, "        unsafe {{ ::core::mem::transmute(((self.0 >> shift) & 0x{:x}) as {}) }} // {}", f_mask, min_size, f_bits));
+        try!(writeln!(out, "    }}"));    
+        try!(writeln!(out, ""));    
 
-        if let Some(ref desc) = f.description {
-            try!(gen_doc(cfg, out, desc));
-        }
+        try!(gen_doc(cfg, out, 4, &format!("Returns true if {} != 0", f.name)));
+        try!(writeln!(out, "    #[inline] pub fn {}<I: Into<{}>>(&self, index: I) -> bool{{", f_tester, i_type));
+        try!(writeln!(out, "        self.{}(index) != 0", f_getter));    
+        try!(writeln!(out, "    }}"));    
+        try!(writeln!(out, ""));    
 
-        try!(writeln!(out, "   #[inline] pub fn {}<I: Into<{}>, V: Into<{}>>(mut self, index: I, value: V) -> Self {{", f_setter, i_type, field_type));
-        try!(writeln!(out, "      let index: {} = index.into();", i_type));
-        try!(writeln!(out, "      let index: usize = index.value();"));            
-        try!(writeln!(out, "      let value: {} = value.into();", field_type));            
-        try!(writeln!(out, "      let value: {} = value.into();", size));
-        // try!(writeln!(out, "     assert!(index < {});", dim));
+        try!(gen_doc(cfg, out, 4, &format!("Sets the {} field.", f.name)));
+        try!(writeln!(out, "    #[inline] pub fn {}<I: Into<{}>, V: Into<{}>>(mut self, index: I, value: V) -> Self {{", f_setter, i_type, field_type));
+        try!(writeln!(out, "        let index: usize = index.into().value() as usize;"));            
+        try!(writeln!(out, "        let value: {} = value.into();", field_type));            
+        try!(writeln!(out, "        let value: {} = value.into();", size));
         match f_incr {
             1 => {
-                try!(writeln!(out, "      let shift: usize = {} + index;", f_offset));
+                try!(writeln!(out, "        let shift: usize = {} + index;", f_offset));
             },
             2 => {
-                try!(writeln!(out, "      let shift: usize = {} + (index << 1);", f_offset));
+                try!(writeln!(out, "        let shift: usize = {} + (index << 1);", f_offset));
             },
             4 => {
-                try!(writeln!(out, "      let shift: usize = {} + (index << 2);", f_offset));
+                try!(writeln!(out, "        let shift: usize = {} + (index << 2);", f_offset));
             },
             8 => {
-                try!(writeln!(out, "      let shift: usize = {} + (index << 3);", f_offset));
+                try!(writeln!(out, "        let shift: usize = {} + (index << 3);", f_offset));
             },
             _ => {
-                try!(writeln!(out, "      let shift: usize = {} + (index * {});", f_offset, f_incr));                
+                try!(writeln!(out, "        let shift: usize = {} + (index * {});", f_offset, f_incr));                
             }
         }        
-        try!(writeln!(out, "      self.0 &= !(0x{:x} << shift);", f_mask));
-        try!(writeln!(out, "      self.0 |= value << shift;"));
-        try!(writeln!(out, "      self"));
-        try!(writeln!(out, "   }}"));    
-        try!(writeln!(out, ""));
+        try!(writeln!(out, "        self.0 &= !(0x{:x} << shift);", f_mask));
+        try!(writeln!(out, "        self.0 |= value << shift;"));
+        try!(writeln!(out, "        self"));
+        try!(writeln!(out, "    }}"));    
+        try!(writeln!(out, ""));        
     } else {
-        if let Some(ref desc) = f.description {
-            try!(gen_doc(cfg, out, desc));
-        }
-        try!(writeln!(out, "   #[inline] pub fn {}(&self) -> {} {{", f_getter, field_type));
-        try!(writeln!(out, "      unsafe {{ ::core::mem::transmute(((self.0 >> {}) & 0x{:x}) as {}) }} // {}", f_offset, f_mask, min_size, f_bits));
-        try!(writeln!(out, "   }}"));    
+        // Field Getter
 
         if let Some(ref desc) = f.description {
-            try!(gen_doc(cfg, out, desc));
+            try!(gen_doc(cfg, out, 4, desc));
+        } else {
+            try!(gen_doc(cfg, out, 4, &format!("Gets the {} field.", f.name)));            
         }
+        try!(writeln!(out, "    #[inline] pub fn {}(&self) -> {} {{", f_getter, field_type));
+        try!(writeln!(out, "        unsafe {{ ::core::mem::transmute(((self.0 >> {}) & 0x{:x}) as {}) }} // {}", f_offset, f_mask, min_size, f_bits));
+        try!(writeln!(out, "    }}"));    
+        try!(writeln!(out, ""));    
 
+        // Field Tester
 
-        try!(writeln!(out, "   #[inline] pub fn {}<V: Into<{}>>(mut self, value: V) -> Self {{", f_setter, field_type));
-        try!(writeln!(out, "      let value: {} = value.into();", field_type));
-        try!(writeln!(out, "      let value: {} = value.into();", size));
-        try!(writeln!(out, "      self.0 &= !(0x{:x} << {});", f_mask, f_offset));
-        try!(writeln!(out, "      self.0 |= value << {};", f_offset));
-        try!(writeln!(out, "      self"));
-        try!(writeln!(out, "   }}"));    
+        try!(gen_doc(cfg, out, 4, &format!("Returns true if {} != 0", f.name)));
+        try!(writeln!(out, "    #[inline] pub fn {}(&self) -> bool {{", f_tester));
+        try!(writeln!(out, "        self.{}() != 0", f_getter));
+        try!(writeln!(out, "    }}"));    
+        try!(writeln!(out, ""));    
+
+        // Field Setter
+
+        try!(gen_doc(cfg, out, 4, &format!("Sets the {} field.", f.name)));
+        try!(writeln!(out, "    #[inline] pub fn {}<V: Into<{}>>(mut self, value: V) -> Self {{", f_setter, field_type));
+        try!(writeln!(out, "        let value: {} = value.into();", field_type));
+        try!(writeln!(out, "        let value: {} = value.into();", size));
+        try!(writeln!(out, "        self.0 &= !(0x{:x} << {});", f_mask, f_offset));
+        try!(writeln!(out, "        self.0 |= value << {};", f_offset));
+        try!(writeln!(out, "        self"));
+        try!(writeln!(out, "    }}"));    
         try!(writeln!(out, ""));
             
     }
