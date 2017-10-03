@@ -113,8 +113,6 @@ pub trait AltFn<T> {
 
 pub trait Irq {
     fn irq_num(&self) -> u8;
-    fn handler(&self) -> Option<Handler>;
-    fn set_handler(&self, Option<Handler>);
     fn wrap<'a, F: ::core::marker::Sync + ::core::marker::Send + Poll>(&self, f: &F) -> extern "C" fn();   
 }
 
@@ -236,16 +234,6 @@ macro_rules! irq {
             #[inline(always)]            
             fn irq_num(&self) -> u8 { $num }
 
-            #[inline]
-            fn handler(&self) ->  Option<Handler> {
-                handler($num)
-            }
-
-            #[inline]
-            fn set_handler(&self, h: Option<Handler>) {
-                set_handler($num, h);
-            }
-
             fn wrap<'a, F: ::core::marker::Sync + ::core::marker::Send + Poll>(&self, f: &F) -> extern "C" fn() {
                 static mut HANDLER: Option<usize> = None;                
                 unsafe { 
@@ -263,7 +251,7 @@ macro_rules! irq {
                 write!(f, "[{} @ {}]", stringify!($id), $num)
             }
         }    
-        unsafe impl Sync for $ty {}
-        unsafe impl Send for $ty {}
+        // unsafe impl Sync for $ty {}
+        // unsafe impl Send for $ty {}
     )
 }
