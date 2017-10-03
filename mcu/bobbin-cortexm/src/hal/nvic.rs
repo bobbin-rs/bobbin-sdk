@@ -1,6 +1,8 @@
 //! Extends the ```chip::nvic``` module.
 
+pub use bobbin_common::Irq;
 pub use ::chip::nvic::*;
+
 
 
 /// Returns `true` if IRQ `irq` is enabled.
@@ -49,4 +51,27 @@ pub fn set_priority(irq: usize, value: u8) {
 /// Trigger IRQ `irq`.
 pub fn trigger_interrupt(irq: usize) {
     NVIC.set_stir(|r| r.set_intid(irq));
+}
+
+pub trait NvicEnabled {
+    fn nvic_enabled(&self) -> bool;
+    fn nvic_set_enabled(&self, value: bool) -> &Self;
+    fn nvic_enable(&self) -> &Self {
+        self.nvic_set_enabled(true);
+        self
+    }
+    fn nvic_disable(&self) -> &Self {
+        self.nvic_set_enabled(false);
+        self
+    }
+}
+
+impl<I: Irq> NvicEnabled for I {
+    fn nvic_enabled(&self) -> bool {
+        enabled(self.irq_num() as usize)
+    }
+    fn nvic_set_enabled(&self, value: bool) -> &Self {
+        set_enabled(self.irq_num() as usize, value);
+        self
+    }
 }

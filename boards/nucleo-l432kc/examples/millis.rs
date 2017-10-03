@@ -5,7 +5,7 @@
 extern crate nucleo_l432kc as board;
 
 use board::hal::tim_bas::*;
-use board::hal::nvic;
+use board::hal::nvic::NvicEnabled;
 use board::clock::*;
 
 #[no_mangle]
@@ -23,8 +23,9 @@ pub extern "C" fn main() -> ! {
     t.set_period(1);
 
     let tc = TimBasCounter::new(t.into());
-    irq.register_poll(&tc); 
-    nvic::set_enabled(irq.irq_num() as usize, true);    
+    irq.register_poll(&tc);
+    irq.nvic_enable(); 
+    // nvic::set_enabled(irq.irq_num() as usize, true);    
     tc.enable();
 
     let mut n = 1000;
