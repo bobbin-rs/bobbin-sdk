@@ -231,19 +231,19 @@ pub fn gen_interrupts<W: Write>(_cfg: &Config, out: &mut W, d: &Device, interrup
     try!(writeln!(out, ""));
     
     // TODO: Assert that NVIC is disabled before setting handler to None
-    try!(writeln!(out, "pub fn handler(index: usize) -> Option<Handler> {{"));
-    try!(writeln!(out, "   unsafe {{ "));
-    try!(writeln!(out, "      R_INTERRUPT_HANDLERS[index]"));
-    try!(writeln!(out, "   }} "));
-    try!(writeln!(out, "}}"));
-    try!(writeln!(out, ""));
-    try!(writeln!(out, "pub fn set_handler(index: usize, handler: Option<Handler>) {{"));
-    try!(writeln!(out, "   unsafe {{ "));
-    try!(writeln!(out, "      assert!(R_INTERRUPT_HANDLERS[index].is_some() != handler.is_some());"));
-    try!(writeln!(out, "      R_INTERRUPT_HANDLERS[index] = handler"));
-    try!(writeln!(out, "  }};"));
-    try!(writeln!(out, "}}"));
-    try!(writeln!(out, ""));    
+    // try!(writeln!(out, "pub fn handler(index: usize) -> Option<Handler> {{"));
+    // try!(writeln!(out, "   unsafe {{ "));
+    // try!(writeln!(out, "      R_INTERRUPT_HANDLERS[index]"));
+    // try!(writeln!(out, "   }} "));
+    // try!(writeln!(out, "}}"));
+    // try!(writeln!(out, ""));
+    // try!(writeln!(out, "pub fn set_handler(index: usize, handler: Option<Handler>) {{"));
+    // try!(writeln!(out, "   unsafe {{ "));
+    // try!(writeln!(out, "      assert!(R_INTERRUPT_HANDLERS[index].is_some() != handler.is_some());"));
+    // try!(writeln!(out, "      R_INTERRUPT_HANDLERS[index] = handler"));
+    // try!(writeln!(out, "  }};"));
+    // try!(writeln!(out, "}}"));
+    // try!(writeln!(out, ""));    
 
     try!(writeln!(out,"#[cfg_attr(target_os=\"none\", link_section=\".vector.interrupts\")]"));
     try!(writeln!(out,"#[no_mangle]"));
