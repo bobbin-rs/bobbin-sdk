@@ -23,7 +23,7 @@ pub extern "C" fn main() -> ! {
     t.set_period(1);
 
     let tc = TimBasCounter::new(t.into());
-    irq.wrap_handler(&tc); 
+    irq.register_poll(&tc); 
     nvic::set_enabled(irq.irq_num() as usize, true);    
     tc.enable();
 

@@ -1,5 +1,5 @@
 pub use chip::tim_bas::*;
-pub use bobbin_common::{Irq, HandleIrq};
+pub use bobbin_common::{Irq, Poll};
 pub use bobbin_common::enabled::*;
 pub use bobbin_common::timer::*;
 pub use core::ops::Deref;
@@ -157,8 +157,8 @@ impl TimBasCounter {
 
 }
 
-impl HandleIrq for TimBasCounter {
-    fn handle_irq(&self) {
+impl Poll for TimBasCounter {
+    fn poll(&self) {
         if self.tim.test_timeout() {
             self.tim.clr_timeout();
             self.incr(1);

@@ -115,13 +115,13 @@ pub trait Irq {
     fn irq_num(&self) -> u8;
     fn handler(&self) -> Option<Handler>;
     fn set_handler(&self, Option<Handler>);
-    fn wrap_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleIrq>(&self, f: &F);
+    fn register_poll<'a, F: ::core::marker::Sync + ::core::marker::Send + Poll>(&self, f: &F);
 }
 
 pub type Handler = extern "C" fn();
 
-pub trait HandleIrq {
-   fn handle_irq(&self);
+pub trait Poll {
+   fn poll(&self);
 }
 
 #[macro_export]
@@ -240,14 +240,14 @@ macro_rules! irq {
                 set_handler($num, h);
             }
 
-            fn wrap_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleIrq>(&self, f: &F) {
+            fn register_poll<'a, F: ::core::marker::Sync + ::core::marker::Send + Poll>(&self, f: &F) {
                 static mut HANDLER: Option<usize> = None;                
                 unsafe { 
                     // assert!(HANDLER.is_none(), "Irq is already wrapping a function");
                     HANDLER = Some(f as *const F as usize)
                 }
-                extern "C" fn wrapper<W: HandleIrq>() {
-                    unsafe { (*(HANDLER.unwrap() as *const W)).handle_irq() }
+                extern "C" fn wrapper<W: Poll>() {
+                    unsafe { (*(HANDLER.unwrap() as *const W)).poll() }
                 }
                 set_handler($num, Some(wrapper::<F>));                
             }
