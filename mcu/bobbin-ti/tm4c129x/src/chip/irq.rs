@@ -91,19 +91,6 @@ irq!(IRQ_GPIOQ5, IrqGpioq5, 89);
 irq!(IRQ_GPIOQ6, IrqGpioq6, 90);
 irq!(IRQ_GPIOQ7, IrqGpioq7, 91);
 
-pub fn handler(index: usize) -> Option<Handler> {
-    unsafe { 
-        R_INTERRUPT_HANDLERS[index]
-    } 
-}
-
-pub fn set_handler(index: usize, handler: Option<Handler>) {
-    unsafe { 
-        assert!(R_INTERRUPT_HANDLERS[index].is_some() != handler.is_some());
-        R_INTERRUPT_HANDLERS[index] = handler
-  };
-}
-
 #[cfg_attr(target_os="none", link_section=".vector.interrupts")]
 #[no_mangle]
 pub static mut INTERRUPT_HANDLERS: [Option<Handler>; 114] = [

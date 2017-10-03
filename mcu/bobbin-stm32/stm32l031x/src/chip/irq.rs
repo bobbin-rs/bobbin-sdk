@@ -51,19 +51,6 @@ irq!(IRQ_LPUART1, IrqLpuart1, 29);
 irq!(IRQ_SPI1, IrqSpi1, 25);
 irq!(IRQ_ADC1, IrqAdc1, 12);
 
-pub fn handler(index: usize) -> Option<Handler> {
-    unsafe { 
-        R_INTERRUPT_HANDLERS[index]
-    } 
-}
-
-pub fn set_handler(index: usize, handler: Option<Handler>) {
-    unsafe { 
-        assert!(R_INTERRUPT_HANDLERS[index].is_some() != handler.is_some());
-        R_INTERRUPT_HANDLERS[index] = handler
-  };
-}
-
 #[cfg_attr(target_os="none", link_section=".vector.interrupts")]
 #[no_mangle]
 pub static mut INTERRUPT_HANDLERS: [Option<Handler>; 30] = [

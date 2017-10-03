@@ -92,19 +92,6 @@ irq!(IRQ_DMA2_CH3, IrqDma2Ch3, 58);
 irq!(IRQ_DMA2_CH4, IrqDma2Ch4, 59);
 irq!(IRQ_DMA2_CH5, IrqDma2Ch5, 60);
 
-pub fn handler(index: usize) -> Option<Handler> {
-    unsafe { 
-        R_INTERRUPT_HANDLERS[index]
-    } 
-}
-
-pub fn set_handler(index: usize, handler: Option<Handler>) {
-    unsafe { 
-        assert!(R_INTERRUPT_HANDLERS[index].is_some() != handler.is_some());
-        R_INTERRUPT_HANDLERS[index] = handler
-  };
-}
-
 #[cfg_attr(target_os="none", link_section=".vector.interrupts")]
 #[no_mangle]
 pub static mut INTERRUPT_HANDLERS: [Option<Handler>; 82] = [

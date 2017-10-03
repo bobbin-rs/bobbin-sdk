@@ -88,19 +88,6 @@ irq!(IRQ_DMA2_STREAM5, IrqDma2Stream5, 68);
 irq!(IRQ_DMA2_STREAM6, IrqDma2Stream6, 69);
 irq!(IRQ_DMA2_STREAM7, IrqDma2Stream7, 70);
 
-pub fn handler(index: usize) -> Option<Handler> {
-    unsafe { 
-        R_INTERRUPT_HANDLERS[index]
-    } 
-}
-
-pub fn set_handler(index: usize, handler: Option<Handler>) {
-    unsafe { 
-        assert!(R_INTERRUPT_HANDLERS[index].is_some() != handler.is_some());
-        R_INTERRUPT_HANDLERS[index] = handler
-  };
-}
-
 #[cfg_attr(target_os="none", link_section=".vector.interrupts")]
 #[no_mangle]
 pub static mut INTERRUPT_HANDLERS: [Option<Handler>; 91] = [
