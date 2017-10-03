@@ -1,5 +1,5 @@
 pub use chip::tim_bas::*;
-pub use bobbin_common::{IrqNum, WrapHandler, HandleIrq};
+pub use bobbin_common::{Irq, HandleIrq};
 pub use bobbin_common::enabled::*;
 pub use bobbin_common::timer::*;
 pub use core::ops::Deref;
@@ -116,15 +116,15 @@ impl SetCounter<u16> for TimBasPeriph {
 }
 
 
-pub struct TimBasCounter<I: Sync + Send + WrapHandler + IrqNum, T: Sync + Send + Deref<Target=TimBasPeriph>> {
+pub struct TimBasCounter<I: Sync + Send + Irq, T: Sync + Send + Deref<Target=TimBasPeriph>> {
     irq: I,
     tim: T,
     count: UnsafeCell<u32>,
 }
 
-unsafe impl<I: Sync + Send + WrapHandler + IrqNum, T: Sync + Send + Deref<Target=TimBasPeriph>> Sync for TimBasCounter<I, T> {}
+unsafe impl<I: Sync + Send + Irq, T: Sync + Send + Deref<Target=TimBasPeriph>> Sync for TimBasCounter<I, T> {}
 
-impl<I: Sync + Send + WrapHandler + IrqNum, T: Sync + Send + Deref<Target=TimBasPeriph>> TimBasCounter<I, T> {
+impl<I: Sync + Send + Irq, T: Sync + Send + Deref<Target=TimBasPeriph>> TimBasCounter<I, T> {
     pub fn new(irq: I, tim: T) -> Self {
         TimBasCounter {
             irq: irq,
@@ -169,7 +169,7 @@ impl<I: Sync + Send + WrapHandler + IrqNum, T: Sync + Send + Deref<Target=TimBas
 
 }
 
-impl<I: Sync + Send + WrapHandler + IrqNum, T: Sync + Send + Deref<Target=TimBasPeriph>> HandleIrq for TimBasCounter<I, T> {
+impl<I: Sync + Send + Irq, T: Sync + Send + Deref<Target=TimBasPeriph>> HandleIrq for TimBasCounter<I, T> {
     fn handle_irq(&self) {
         if self.tim().test_timeout() {
             self.tim().clr_timeout();
@@ -178,13 +178,13 @@ impl<I: Sync + Send + WrapHandler + IrqNum, T: Sync + Send + Deref<Target=TimBas
     }
 }
 
-impl<I: Sync + Send + WrapHandler + IrqNum, T: Sync + Send + Deref<Target=TimBasPeriph>> Counter<u32> for TimBasCounter<I, T> {
+impl<I: Sync + Send + Irq, T: Sync + Send + Deref<Target=TimBasPeriph>> Counter<u32> for TimBasCounter<I, T> {
     fn counter(&self) -> u32 {
         self.get()
     }
 }
 
-impl<I: Sync + Send + WrapHandler + IrqNum, T: Sync + Send + Deref<Target=TimBasPeriph>> SetCounter<u32> for TimBasCounter<I, T> {
+impl<I: Sync + Send + Irq, T: Sync + Send + Deref<Target=TimBasPeriph>> SetCounter<u32> for TimBasCounter<I, T> {
     fn set_counter(&self, value: u32) -> &Self {
         self.set(value);
         self

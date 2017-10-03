@@ -111,30 +111,17 @@ pub trait AltFn<T> {
     fn alt_fn(&self) -> usize;
 }
 
-pub trait Irq<T> {
-    fn irq(&self) -> T;
-}
-
-pub trait IrqNum {
+pub trait Irq {
     fn irq_num(&self) -> u8;
+    fn handler(&self) -> Option<Handler>;
+    fn set_handler(&self, Option<Handler>);
+    fn wrap_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleIrq>(&self, f: &F);
 }
 
 pub type Handler = extern "C" fn();
 
-pub trait GetHandler {
-    fn handler(&self) -> Option<Handler>;
-}
-
-pub trait SetHandler {
-    fn set_handler(&self, Option<Handler>);
-}
-
 pub trait HandleIrq {
    fn handle_irq(&self);
-}
-
-pub trait WrapHandler {
-    fn wrap_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleIrq>(&self, f: &F);
 }
 
 #[macro_export]
@@ -239,23 +226,20 @@ macro_rules! irq {
         pub const $id: $ty = $ty {};
         #[derive(PartialEq, Eq, Clone, Copy)]
         pub struct $ty {}
-        impl IrqNum for $ty {
+        impl Irq for $ty {
             #[inline(always)]            
             fn irq_num(&self) -> u8 { $num }
-        }
-        impl GetHandler for $ty {
+
             #[inline]
             fn handler(&self) ->  Option<Handler> {
                 handler($num)
             }
-        }        
-        impl SetHandler for $ty {
+
             #[inline]
             fn set_handler(&self, h: Option<Handler>) {
                 set_handler($num, h);
             }
-        }
-        impl WrapHandler for $ty {
+
             fn wrap_handler<'a, F: ::core::marker::Sync + ::core::marker::Send + HandleIrq>(&self, f: &F) {
                 static mut HANDLER: Option<usize> = None;                
                 unsafe { 
