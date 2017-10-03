@@ -22,7 +22,7 @@ pub extern "C" fn main() -> ! {
     t.set_prescale(prescale as u16);
     t.set_period(1);
 
-    let tc = TimBasCounter::new(t);
+    let tc = TimBasCounter::new(t.into());
     irq.wrap_handler(&tc); 
     nvic::set_enabled(irq.irq_num() as usize, true);    
     tc.enable();
