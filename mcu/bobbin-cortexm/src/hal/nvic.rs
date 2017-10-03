@@ -2,7 +2,6 @@
 
 pub use bobbin_common::{Handler, Irq, Poll};
 pub use ::chip::nvic::*;
-use ::hal::scb::SCB;
 
 /// Returns `true` if IRQ `irq` is enabled.
 pub fn enabled(irq: usize) -> bool {
@@ -74,14 +73,4 @@ impl<I: Irq> NvicEnabled for I {
         set_enabled(self.irq_num() as usize, value);
         self
     }
-}
-
-pub trait RegisterPoll {
-    fn register_poll<'a, F: ::core::marker::Sync + ::core::marker::Send + Poll>(&self, f: &F);    
-}
-
-impl<I: Irq> RegisterPoll for I {
-    fn register_poll<'a, F: ::core::marker::Sync + ::core::marker::Send + Poll>(&self, f: &F) {
-        SCB.set_irq_handler(self.irq_num() as usize, Some(self.wrap(f)));
-    }    
 }
