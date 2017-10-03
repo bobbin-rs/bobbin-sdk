@@ -4,8 +4,6 @@ pub use bobbin_common::enabled::*;
 pub use bobbin_common::timer::*;
 pub use core::ops::Deref;
 
-use ::hal::nvic;
-
 use core::ptr;
 use core::cell::UnsafeCell;
 
