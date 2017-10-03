@@ -15,7 +15,6 @@ pub extern "C" fn main() -> ! {
 
     let t = TIM6;    
     t.rcc_enable();
-    let irq = t.irq_tim();
 
     let prescale = t.clock(&CLK).unwrap() / 2000;
     println!("prescale: {}, {}", prescale, prescale as u16);
@@ -23,9 +22,11 @@ pub extern "C" fn main() -> ! {
     t.set_period(1);
 
     let tc = TimBasCounter::new(t.into());
+
+    let irq = t.irq_tim();
     irq.register_poll(&tc);
     irq.nvic_enable(); 
-    // nvic::set_enabled(irq.irq_num() as usize, true);    
+    
     tc.enable();
 
     let mut n = 1000;
