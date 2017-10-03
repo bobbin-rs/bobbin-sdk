@@ -3,8 +3,8 @@
 
 #[cfg(target_os="none")] extern crate compiler_builtins;
 pub extern crate bobbin_common;
-extern crate bobbin_cortexm;
-extern crate kinetis_common;
+pub extern crate bobbin_cortexm;
+pub extern crate kinetis_common;
 
 pub use bobbin_common as common;
 pub use bobbin_cortexm as cortexm;
