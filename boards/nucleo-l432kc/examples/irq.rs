@@ -30,15 +30,18 @@ pub extern "C" fn main() -> ! {
 
         let irq = t.irq_tim();
         println!("IRQ: {:?}", irq);
-        let _guard = irq.register_poll(&|| {
+
+        let poll = || {
             if t.test_timeout() {
                 t.clr_timeout();
                 unsafe { 
                     ptr::write_volatile(&mut COUNT, ptr::read_volatile(&COUNT).wrapping_add(1));
                 }
             }
-        });
-        // irq.nvic_enable(); 
+        };
+
+        let _guard = irq.register_poll(&poll);
+        
         t.with_dier(|r| r.set_uie(1)).set_enabled(true);
         
         loop {        
@@ -60,7 +63,7 @@ pub extern "C" fn main() -> ! {
 
         let irq = t.irq_tim();
         let _guard = irq.register_poll(&tc);
-        // irq.nvic_enable(); 
+        
         
         tc.enable();
 
