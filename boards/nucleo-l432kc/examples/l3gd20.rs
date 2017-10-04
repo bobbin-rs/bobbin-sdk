@@ -75,6 +75,8 @@ pub extern "C" fn main() -> ! {
 
     println!("Configuring Magnetometer");
     i2c.write_reg(addr_mag, 0x02, 0x00);
+    i2c.write_reg(addr_mag, 0x01, 0x20);
+    i2c.write_reg(addr_mag, 0x00, 0x80);
     // println!("V: {:02x}", i2c.read_reg(addr_mag, 0x00));
     println!("Gyro | Accelerometer | Magnetometer");
 
@@ -124,6 +126,16 @@ pub extern "C" fn main() -> ! {
             let z = (((zh as u16) << 8) | (zl as u16)) as i16;
             print!("{:6} {:6} {:6}", x, y, z);
         }
+        // print!(" | ");
+        // {
+        //     let (tl, th) = (
+        //         i2c.read_reg(addr_mag, 0x31),
+        //         i2c.read_reg(addr_mag, 0x32),
+        //     );
+        //     let t = (((th as u16) << 8) | (tl as u16)) as i16;
+        //     print!("{}", t);
+        // }
+
         println!("");
 
         // let mut buf = [0u8; 6];
