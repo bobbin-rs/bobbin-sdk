@@ -1,5 +1,6 @@
 #![no_std]
 #![feature(lang_items)]
+#![feature(macro_reexport)]
 #![feature(asm)]
 
 extern crate r0;
