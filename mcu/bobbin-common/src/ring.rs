@@ -1,18 +1,21 @@
 use core::cell::Cell;
 use core::cmp;
+use core::marker::PhantomData;
 
-pub struct Ring<T: Copy> {
+pub struct Ring<'a, T: 'a + Copy> {
     reader: Cell<usize>,
     writer: Cell<usize>,
     buffer: *mut [T],
+    _phantom: PhantomData<&'a mut[T]>,
 }
 
-impl<T: Copy> Ring<T> {
+impl<'a, T: 'a + Copy> Ring<'a, T> {
     pub fn new(buf: &mut[T]) -> Self {
         Ring {
             reader: Cell::new(0),
             writer: Cell::new(0),
-            buffer: buf
+            buffer: buf,
+            _phantom: PhantomData,
         }
     }
 
@@ -35,19 +38,19 @@ impl<T: Copy> Ring<T> {
         self.as_ref().len()
     }
 
-    fn len(&self) -> usize {
+    pub fn len(&self) -> usize {
         self.writer.get().wrapping_sub(self.reader.get())
     }
 
-    fn rem(&self) -> usize {
+    pub fn rem(&self) -> usize {
         self.cap().wrapping_sub(self.len())
     }
 
-    fn is_empty(&self) -> bool {
+    pub fn is_empty(&self) -> bool {
         self.reader.get() == self.writer.get()
     }
 
-    fn is_full(&self) -> bool {
+    pub fn is_full(&self) -> bool {
         self.len() == self.cap()
     }
 
@@ -105,7 +108,7 @@ impl<T: Copy> Ring<T> {
 }
 
 pub struct RingReader<'a, T: 'a + Copy> {
-    rb: &'a Ring<T>,
+    rb: &'a Ring<'a, T>,
 }
 
 impl<'a, T: Copy> RingReader<'a, T> {
@@ -118,7 +121,7 @@ impl<'a, T: Copy> RingReader<'a, T> {
 }
 
 pub struct RingWriter<'a, T: 'a + Copy> {
-    rb: &'a Ring<T>,
+    rb: &'a Ring<'a, T>,
 }
 
 impl<'a, T: Copy> RingWriter<'a, T> {
