@@ -5,11 +5,14 @@
 extern crate nucleo_l432kc as board;
 
 use board::hal::usart::*;
-use board::common::Poll;
-use board::hal::RegisterPoll;
+use board::common::{Irq, Poll};
 use board::console::USART;
 // use board::common::serial::*;
 use board::common::ring::*;
+use core::fmt::{self, Write};
+
+use board::hal::nvic;
+use board::hal::scb::*;
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
@@ -18,8 +21,10 @@ pub extern "C" fn main() -> ! {
     let irq = board::console::USART.irq_usart();
     let mut tx_buf = [0u8; 16];
     let mut rx_buf = [0u8; 16];
-    let s = UsartDriver::new(USART, &mut tx_buf, &mut rx_buf);
-    let _g = irq.register_poll(&s);
+    let mut s = UsartDriver::new(USART, &mut tx_buf, &mut rx_buf);
+    s.enable_irq(&irq);
+
+    write!(s, "Hello, World!\r\n").unwrap();
     s.enable_rx();
 
 
@@ -38,10 +43,11 @@ pub extern "C" fn main() -> ! {
     }
 }
 
-pub struct UsartDriver<'a> {
+pub struct UsartDriver<'a> {    
     usart: UsartPeriph,
     tx: Ring<'a, u8>,
-    rx: Ring<'a, u8>,
+    rx: Ring<'a, u8>,    
+    irq_num: Option<u8>,
 }
 
 impl<'a> UsartDriver<'a> {
@@ -53,7 +59,14 @@ impl<'a> UsartDriver<'a> {
             usart: usart.into(),
             tx: tx,
             rx: rx,
+            irq_num: None,
         }
+    }
+
+    pub fn enable_irq<I: Irq>(&mut self, irq: &I) {
+        self.irq_num = Some(irq.irq_num());
+        SCB.set_irq_handler(irq.irq_num() as usize, Some(irq.wrap(self)));
+        nvic::set_enabled(irq.irq_num() as usize, true);
     }
 
     pub fn enable_rx(&self) {
@@ -73,6 +86,15 @@ impl<'a> UsartDriver<'a> {
     }
 }
 
+impl<'a> Drop for UsartDriver<'a> {
+    fn drop(&mut self) {
+        if let Some(irq_num) = self.irq_num {
+            nvic::set_enabled(irq_num as usize, false);
+            SCB.set_irq_handler(irq_num as usize, None);
+        }
+    }
+}
+
 impl<'a> Poll for UsartDriver<'a> {
     fn poll(&self) {
         if self.usart.can_tx() {
@@ -88,6 +110,18 @@ impl<'a> Poll for UsartDriver<'a> {
             if !self.rx.is_full() {
                 self.rx.enqueue(b);
             }
+        }
+    }
+
+}
+
+impl<'a> Write for UsartDriver<'a> {
+    fn write_str(&mut self, buf: &str) -> fmt::Result {
+        let buf = buf.as_bytes();
+        let mut n = 0;
+        loop {
+            if n == buf.len() { return Ok(())}
+            n += self.write(&buf[n..])
         }
     }
 }
