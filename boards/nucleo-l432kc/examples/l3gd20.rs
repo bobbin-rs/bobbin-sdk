@@ -21,6 +21,7 @@ pub extern "C" fn main() -> ! {
     
     let addr_gyro: U7 = U7::from(0x6B);
     let addr_accel: U7 = U7::from(0x32 >> 1);
+    let addr_mag: U7 = U7::from(0x3d >> 1);
 
     let i2c = I2C1;
     let i2c_port = GPIOB;
@@ -59,20 +60,23 @@ pub extern "C" fn main() -> ! {
     /* Reset then switch to normal mode and enable all three channels */
     i2c.write_reg(addr_gyro, 0x20, 0x00);
     i2c.write_reg(addr_gyro, 0x20, 0x0f);
-    for i in 0x20..0x25 {
-        println!("{:02x}: {:02x}", i, i2c.read_reg(addr_gyro, i));
-    }
+    // for i in 0x20..0x25 {
+    //     println!("{:02x}: {:02x}", i, i2c.read_reg(addr_gyro, i));
+    // }
 
     println!("Configuring Accel");
     // i2c.write_reg(addr_accel, 0x20, 0x00);
     i2c.write_reg(addr_accel, 0x20, 0x57);
     // println!("v: {:02x}", i2c.read_reg(addr_accel, 0x20));
     
-    for i in 0x20..0x26 {
-        println!("{:02x}: {:02x}", i, i2c.read_reg(addr_accel, i));
-    }
+    // for i in 0x20..0x26 {
+    //     println!("{:02x}: {:02x}", i, i2c.read_reg(addr_accel, i));
+    // }
 
-
+    println!("Configuring Magnetometer");
+    i2c.write_reg(addr_mag, 0x02, 0x00);
+    // println!("V: {:02x}", i2c.read_reg(addr_mag, 0x00));
+    println!("Gyro | Accelerometer | Magnetometer");
 
     loop {
         // println!("STATUS: {:02x}", i2c.read_reg(addr_gyro, 0x27));
@@ -88,8 +92,9 @@ pub extern "C" fn main() -> ! {
             let x = (((xh as u16) << 8) | (xl as u16)) as i16;
             let y = (((yh as u16) << 8) | (yl as u16)) as i16;
             let z = (((zh as u16) << 8) | (zl as u16)) as i16;
-            print!("G {:4} {:4} {:4}    ", x, y, z);
+            print!("{:6} {:6} {:6}", x, y, z);
         }
+        print!(" | ");
         {
             let (xl, xh, yl, yh, zl, zh) = (
                 i2c.read_reg(addr_accel, 0x28),
@@ -102,7 +107,22 @@ pub extern "C" fn main() -> ! {
             let x = (((xh as u16) << 8) | (xl as u16)) as i16;
             let y = (((yh as u16) << 8) | (yl as u16)) as i16;
             let z = (((zh as u16) << 8) | (zl as u16)) as i16;
-            print!("A {:4} {:4} {:4}", x, y, z);
+            print!("{:6} {:6} {:6}", x, y, z);
+        }
+        print!(" | ");
+        {
+            let (xl, xh, yl, yh, zl, zh) = (
+                i2c.read_reg(addr_mag, 0x03),
+                i2c.read_reg(addr_mag, 0x04),
+                i2c.read_reg(addr_mag, 0x05),
+                i2c.read_reg(addr_mag, 0x06),
+                i2c.read_reg(addr_mag, 0x07),
+                i2c.read_reg(addr_mag, 0x08),
+            );
+            let x = (((xh as u16) << 8) | (xl as u16)) as i16;
+            let y = (((yh as u16) << 8) | (yl as u16)) as i16;
+            let z = (((zh as u16) << 8) | (zl as u16)) as i16;
+            print!("{:6} {:6} {:6}", x, y, z);
         }
         println!("");
 
