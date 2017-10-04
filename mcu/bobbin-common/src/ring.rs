@@ -1,25 +1,25 @@
 use core::cell::Cell;
 use core::cmp;
 
-pub struct RingBuf<T: Copy> {
+pub struct Ring<T: Copy> {
     reader: Cell<usize>,
     writer: Cell<usize>,
     buffer: *mut [T],
 }
 
-impl<T: Copy> RingBuf<T> {
+impl<T: Copy> Ring<T> {
     pub fn new(buf: &mut[T]) -> Self {
-        RingBuf {
+        Ring {
             reader: Cell::new(0),
             writer: Cell::new(0),
             buffer: buf
         }
     }
 
-    pub fn pair(&self) -> (RingBufReader<T>, RingBufWriter<T>) {
+    pub fn pair(&self) -> (RingReader<T>, RingWriter<T>) {
         (
-            RingBufReader { rb: self},
-            RingBufWriter { rb: self}
+            RingReader { rb: self},
+            RingWriter { rb: self}
         )
     }
 
@@ -104,11 +104,11 @@ impl<T: Copy> RingBuf<T> {
     }    
 }
 
-pub struct RingBufReader<'a, T: 'a + Copy> {
-    rb: &'a RingBuf<T>,
+pub struct RingReader<'a, T: 'a + Copy> {
+    rb: &'a Ring<T>,
 }
 
-impl<'a, T: Copy> RingBufReader<'a, T> {
+impl<'a, T: Copy> RingReader<'a, T> {
     pub fn dequeue(&self) -> Option<T> {
         self.rb.dequeue()
     }
@@ -117,11 +117,11 @@ impl<'a, T: Copy> RingBufReader<'a, T> {
     }
 }
 
-pub struct RingBufWriter<'a, T: 'a + Copy> {
-    rb: &'a RingBuf<T>,
+pub struct RingWriter<'a, T: 'a + Copy> {
+    rb: &'a Ring<T>,
 }
 
-impl<'a, T: Copy> RingBufWriter<'a, T> {
+impl<'a, T: Copy> RingWriter<'a, T> {
     pub fn enqueue(&self, value: T) -> bool {
         self.rb.enqueue(value)
     }
@@ -189,7 +189,7 @@ mod tests {
     }
 
     pub struct Driver<'a> {
-        w: RingBufWriter<'a, u8>
+        w: RingWriter<'a, u8>
     }
 
     impl<'a> Driver<'a> {
