@@ -2,6 +2,8 @@ use core::cell::Cell;
 use core::cmp;
 use core::marker::PhantomData;
 
+
+
 pub struct Ring<'a, T: 'a + Copy> {
     reader: Cell<usize>,
     writer: Cell<usize>,
@@ -107,6 +109,10 @@ impl<'a, T: 'a + Copy> Ring<'a, T> {
     }    
 }
 
+unsafe impl<'a, T: 'a + Copy> Send for Ring<'a, T> {}
+unsafe impl<'a, T: 'a + Copy> Sync for Ring<'a, T> {}
+
+
 pub struct RingReader<'a, T: 'a + Copy> {
     rb: &'a Ring<'a, T>,
 }
@@ -120,6 +126,9 @@ impl<'a, T: Copy> RingReader<'a, T> {
     }
 }
 
+unsafe impl<'a, T: 'a + Copy> Send for RingReader <'a, T> {}
+unsafe impl<'a, T: 'a + Copy> Sync for RingReader <'a, T> {}
+
 pub struct RingWriter<'a, T: 'a + Copy> {
     rb: &'a Ring<'a, T>,
 }
@@ -132,6 +141,9 @@ impl<'a, T: Copy> RingWriter<'a, T> {
         self.rb.write(buf)
     }
 }
+
+unsafe impl<'a, T: 'a + Copy> Send for RingWriter<'a, T> {}
+unsafe impl<'a, T: 'a + Copy> Sync for RingWriter<'a, T> {}
 
 
 #[cfg(test)]

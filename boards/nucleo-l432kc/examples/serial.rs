@@ -5,6 +5,8 @@
 extern crate nucleo_l432kc as board;
 
 use board::hal::usart::*;
+use board::common::Poll;
+use board::hal::RegisterPoll;
 // use board::common::serial::*;
 use board::common::ring::*;
 
@@ -12,17 +14,19 @@ use board::common::ring::*;
 pub extern "C" fn main() -> ! {
     board::init();
     println!("Running Serial Test");
-    // let irq = board::console::USART.irq_usart();
+    let irq = board::console::USART.irq_usart();
     let tx: board::hal::usart::UsartPeriph = board::console::USART.into();
     let mut buf = [0u8; 16];
 
     let rb = Ring::new(&mut buf);
    
     let s = UsartDriver::new(tx, rb);
-    s.write(b"Hello\r\n");
+    let _g = irq.register_poll(&s);
+
 
     loop {
-        s.poll();        
+        s.write(b"Hello\r\n");
+        board::delay(1000);
     }
 }
 
@@ -39,7 +43,15 @@ impl<'a> UsartDriver<'a> {
         }
     }
 
-    pub fn poll(&self) {
+    pub fn write(&self, buf: &[u8]) -> usize {
+        let n = self.rb.write(buf);
+        self.tx.with_cr1(|r| r.set_txeie(1));
+        n
+    }
+}
+
+impl<'a> Poll for UsartDriver<'a> {
+    fn poll(&self) {
         if self.tx.can_tx() {
             if let Some(b) = self.rb.dequeue() {
                 self.tx.tx(b);
@@ -48,11 +60,5 @@ impl<'a> UsartDriver<'a> {
                 }
             }
         }
-    }
-
-    pub fn write(&self, buf: &[u8]) -> usize {
-        let n = self.rb.write(buf);
-        self.tx.with_cr1(|r| r.set_txeie(1));
-        n
     }
 }

@@ -1056,6 +1056,7 @@
             (interrupt
                 (name USART1)
                 (value 37)
+                (type USART)
                 (description "USART1 global interrupt")
             )
         )        
@@ -1070,6 +1071,7 @@
             (interrupt
                 (name USART2)
                 (value 38)
+                (type USART)                
                 (description "USART2 global interrupt")
             )
         )
@@ -1084,6 +1086,7 @@
             (interrupt
                 (name USART3)
                 (value 39)
+                (type USART)                
                 (description "USART3 global interrupt")
             )
         )
@@ -1098,6 +1101,7 @@
             (interrupt
                 (name UART4)
                 (value 52)
+                (type USART)                
                 (description "UART4 global Interrupt")
             )
         )
@@ -1112,6 +1116,7 @@
             (interrupt
                 (name UART5)
                 (value 53)
+                (type USART)
                 (description "UART5 global Interrupt")
             )
         )
