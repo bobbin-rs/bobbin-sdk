@@ -19,7 +19,8 @@ pub extern "C" fn main() -> ! {
     board::init();
     println!("Running I2C");
     
-    let addr: U7 = U7::from(0x6B);
+    let addr_gyro: U7 = U7::from(0x6B);
+    let addr_accel: U7 = U7::from(0x32 >> 1);
 
     let i2c = I2C1;
     let i2c_port = GPIOB;
@@ -51,36 +52,62 @@ pub extern "C" fn main() -> ! {
 
     println!("I2C Configuration Complete");
 
-    println!("ID:   {:02x}", i2c.read_reg(addr, 0x0f));
-    println!("TEMP: {:02x}", i2c.read_reg(addr, 0x26));
+    println!("Configuring Gyro");
 
+    println!("ID:   {:02x}", i2c.read_reg(addr_gyro, 0x0f));
+    println!("TEMP: {:02x}", i2c.read_reg(addr_gyro, 0x26));
     /* Reset then switch to normal mode and enable all three channels */
-    i2c.write_reg(addr, 0x20, 0x00);
-    i2c.write_reg(addr, 0x20, 0x0f);
-
+    i2c.write_reg(addr_gyro, 0x20, 0x00);
+    i2c.write_reg(addr_gyro, 0x20, 0x0f);
     for i in 0x20..0x25 {
-        println!("{:02x}: {:02x}", i, i2c.read_reg(addr, i));
+        println!("{:02x}: {:02x}", i, i2c.read_reg(addr_gyro, i));
     }
 
+    println!("Configuring Accel");
+    // i2c.write_reg(addr_accel, 0x20, 0x00);
+    i2c.write_reg(addr_accel, 0x20, 0x57);
+    // println!("v: {:02x}", i2c.read_reg(addr_accel, 0x20));
+    
+    for i in 0x20..0x26 {
+        println!("{:02x}: {:02x}", i, i2c.read_reg(addr_accel, i));
+    }
+
+
+
     loop {
-        // println!("STATUS: {:02x}", i2c.read_reg(addr, 0x27));
-
-        let (xl, xh, yl, yh, zl, zh) = (
-            i2c.read_reg(addr, 0x28),
-            i2c.read_reg(addr, 0x29),
-            i2c.read_reg(addr, 0x2a),
-            i2c.read_reg(addr, 0x2b),
-            i2c.read_reg(addr, 0x2c),
-            i2c.read_reg(addr, 0x2d),
-        );
-        let x = (((xh as u16) << 8) | (xl as u16)) as i16;
-        let y = (((yh as u16) << 8) | (yl as u16)) as i16;
-        let z = (((zh as u16) << 8) | (zl as u16)) as i16;
-
-        println!("{:4} {:4} {:4}", x, y, z);
+        // println!("STATUS: {:02x}", i2c.read_reg(addr_gyro, 0x27));
+        { 
+            let (xl, xh, yl, yh, zl, zh) = (
+                i2c.read_reg(addr_gyro, 0x28),
+                i2c.read_reg(addr_gyro, 0x29),
+                i2c.read_reg(addr_gyro, 0x2a),
+                i2c.read_reg(addr_gyro, 0x2b),
+                i2c.read_reg(addr_gyro, 0x2c),
+                i2c.read_reg(addr_gyro, 0x2d),
+            );
+            let x = (((xh as u16) << 8) | (xl as u16)) as i16;
+            let y = (((yh as u16) << 8) | (yl as u16)) as i16;
+            let z = (((zh as u16) << 8) | (zl as u16)) as i16;
+            print!("G {:4} {:4} {:4}    ", x, y, z);
+        }
+        {
+            let (xl, xh, yl, yh, zl, zh) = (
+                i2c.read_reg(addr_accel, 0x28),
+                i2c.read_reg(addr_accel, 0x29),
+                i2c.read_reg(addr_accel, 0x2a),
+                i2c.read_reg(addr_accel, 0x2b),
+                i2c.read_reg(addr_accel, 0x2c),
+                i2c.read_reg(addr_accel, 0x2d),
+            );
+            let x = (((xh as u16) << 8) | (xl as u16)) as i16;
+            let y = (((yh as u16) << 8) | (yl as u16)) as i16;
+            let z = (((zh as u16) << 8) | (zl as u16)) as i16;
+            print!("A {:4} {:4} {:4}", x, y, z);
+        }
+        println!("");
 
         // let mut buf = [0u8; 6];
-        // i2c.transfer(addr, &[0x20], &mut buf);
+        // i2c.transfer(addr_gyro, &[0x20], &mut buf);
         // println!("# {:?}", buf);
         board::delay(500);
     }
