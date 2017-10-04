@@ -22,6 +22,7 @@ pub extern "C" fn main() -> ! {
     let addr_gyro: U7 = U7::from(0x6B);
     let addr_accel: U7 = U7::from(0x32 >> 1);
     let addr_mag: U7 = U7::from(0x3d >> 1);
+    let addr_alt: U7 = U7::from(0x60);
 
     let i2c = I2C1;
     let i2c_port = GPIOB;
@@ -78,6 +79,13 @@ pub extern "C" fn main() -> ! {
     i2c.write_reg(addr_mag, 0x01, 0x20);
     i2c.write_reg(addr_mag, 0x00, 0x80);
     // println!("V: {:02x}", i2c.read_reg(addr_mag, 0x00));
+
+    println!("Configuring Altimeter");
+    assert_eq!(i2c.read_reg(addr_alt, 0x0c), 0xc4);
+    i2c.write_reg(addr_alt, 0x26, 0xb8); // OSR = 128
+    i2c.write_reg(addr_alt, 0x13, 0x06); // Enable Data Flags
+    i2c.write_reg(addr_alt, 0x26, 0xb9); // Set Active
+
     println!("Gyro | Accelerometer | Magnetometer");
 
     loop {
@@ -125,7 +133,7 @@ pub extern "C" fn main() -> ! {
             let y = (((yh as u16) << 8) | (yl as u16)) as i16;
             let z = (((zh as u16) << 8) | (zl as u16)) as i16;
             print!("{:6} {:6} {:6}", x, y, z);
-        }
+        }        
         // print!(" | ");
         // {
         //     let (tl, th) = (
@@ -135,6 +143,20 @@ pub extern "C" fn main() -> ! {
         //     let t = (((th as u16) << 8) | (tl as u16)) as i16;
         //     print!("{}", t);
         // }
+        print!(" | ");
+        {
+            let (pm, pc, _pl, tm, _tl) = (
+                i2c.read_reg(addr_alt, 0x01),
+                i2c.read_reg(addr_alt, 0x02),
+                i2c.read_reg(addr_alt, 0x03),
+                i2c.read_reg(addr_alt, 0x04),
+                i2c.read_reg(addr_alt, 0x05),
+            );
+            let p = (((pm as u16) << 8) | (pc as u16)) as i16;
+            // let t = (((tm as u16) << 8) | (tl as u16)) as i16;
+            let t = tm as i8;
+            print!("{} {}", p, t);
+        }
 
         println!("");
 
