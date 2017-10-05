@@ -17,3 +17,35 @@ impl super::sig::SignalI2cSda<super::sig::I2c1Sda> for I2c1 {}
 
 
 
+pub trait IrqI2cEv<T> {
+    fn irq_i2c_ev(&self) -> T;
+}
+
+pub trait IrqI2cEr<T> {
+    fn irq_i2c_er(&self) -> T;
+}
+
+impl IrqI2cEv<super::irq::IrqI2c1Ev> for I2c1 {
+    fn irq_i2c_ev(&self) -> super::irq::IrqI2c1Ev { super::irq::IRQ_I2C1_EV }
+}
+
+impl IrqI2cEr<super::irq::IrqI2c1Er> for I2c1 {
+    fn irq_i2c_er(&self) -> super::irq::IrqI2c1Er { super::irq::IRQ_I2C1_ER }
+}
+
+impl IrqI2cEv<super::irq::IrqI2c2Ev> for I2c2 {
+    fn irq_i2c_ev(&self) -> super::irq::IrqI2c2Ev { super::irq::IRQ_I2C2_EV }
+}
+
+impl IrqI2cEr<super::irq::IrqI2c2Er> for I2c2 {
+    fn irq_i2c_er(&self) -> super::irq::IrqI2c2Er { super::irq::IRQ_I2C2_ER }
+}
+
+impl IrqI2cEv<super::irq::IrqI2c3Ev> for I2c3 {
+    fn irq_i2c_ev(&self) -> super::irq::IrqI2c3Ev { super::irq::IRQ_I2C3_EV }
+}
+
+impl IrqI2cEr<super::irq::IrqI2c3Er> for I2c3 {
+    fn irq_i2c_er(&self) -> super::irq::IrqI2c3Er { super::irq::IRQ_I2C3_ER }
+}
+

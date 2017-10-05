@@ -483,11 +483,13 @@
             (interrupt
                 (name I2C1_EV)
                 (value 31)
+                (type I2C_EV)
                 (description "I2C1 event interrupt")
             )
             (interrupt
                 (name I2C1_ER)
                 (value 32)
+                (type I2C_ER)
                 (description "I2C1 error interrupt")
             )
         )         
@@ -497,11 +499,13 @@
             (interrupt
                 (name I2C2_EV)
                 (value 33)
+                (type I2C_EV)
                 (description "I2C2 event interrupt")
             )
             (interrupt
                 (name I2C2_ER)
                 (value 34)
+                (type I2C_ER)
                 (description "I2C2 error interrupt")
             )
         )
@@ -511,11 +515,13 @@
             (interrupt
                 (name I2C3_EV)
                 (value 72)
+                (type I2C_EV)
                 (description "I2C3 event interrupt")
             )
             (interrupt
                 (name I2C3_ER)
                 (value 73)
+                (type I2C_ER)
                 (description "I2C3 error interrupt")
             )
         )
