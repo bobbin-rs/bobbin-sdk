@@ -210,7 +210,6 @@ impl<'a> I2cDriver<'a> {
         let addr = self.addr.unwrap();
         if (self.tx_len - self.tx_pos) > 0 {
             if !self.tx_start {
-                // println!("Start tx - {:?}", &self.tx_buf[..self.tx_len]);
                 self.i2c.with_cr2(|r| r
                         .set_sadd(addr.value() << 1)
                         .set_rd_wrn(0)
@@ -221,35 +220,31 @@ impl<'a> I2cDriver<'a> {
                 self.tx_start = true;
             } else {
                 if self.i2c.isr().txis() != 0 {
-                    // println!("Send tx[{}] = {}", self.tx_pos, self.tx_buf[self.tx_pos]);
                     self.i2c.set_txdr(|r| r.set_txdata(self.tx_buf[self.tx_pos]));
                     self.tx_pos += 1;
                 }
             }
         } else if (self.rx_len - self.rx_pos) > 0 {            
             if !self.rx_start {
-                // println!("Start rx - {}", self.rx_len);
-                self.i2c.with_cr2(|r| r
-                        .set_sadd(addr.value() << 1)
-                        .set_rd_wrn(1)
-                        .set_nbytes(self.rx_len)   
-                );
-                self.i2c.with_cr2(|r| r.set_start(1));               
-                self.rx_start = true;
+                if self.i2c.isr().tc() != 0 {                
+                    self.i2c.with_cr2(|r| r
+                            .set_sadd(addr.value() << 1)
+                            .set_rd_wrn(1)
+                            .set_nbytes(self.rx_len)   
+                    );
+                    self.i2c.with_cr2(|r| r.set_start(1));               
+                    self.i2c.with_cr2(|r| r.set_autoend(1));          
+                    self.rx_start = true;
+                }                
             } else {
                 if self.i2c.isr().rxne() != 0 {
-                    self.i2c.with_cr2(|r| r.set_autoend(1));          
                     let d = self.i2c.rxdr().rxdata().value();
-                    // println!("rx[{}] = {}", self.rx_pos, d);
                     self.rx_buf[self.rx_pos] = d;
                     self.rx_pos += 1;
                 }
             }
         } else {
             if self.addr.is_some() {                            
-                // self.i2c.with_cr2(|r| r.set_stop(1));                
-                // while self.i2c.cr2().stop() != 0 {}
-                // while self.i2c.isr().busy() == 0 {}
                 if self.i2c.isr().stopf() != 0 {
                     self.i2c.with_cr1(|r| r.set_txie(0).set_rxie(0).set_pe(0));
                     self.addr = None;
