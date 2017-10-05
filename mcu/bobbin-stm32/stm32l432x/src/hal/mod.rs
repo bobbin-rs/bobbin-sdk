@@ -128,7 +128,7 @@ pub mod i2c {
 
 pub mod spi {
     pub use chip::spi::*;
-    pub use stm32_common::hal::spi_v1::*;
+    pub use stm32_common::hal::spi_v2::*;
     pub use super::rcc::RccEnabled;
 }
 

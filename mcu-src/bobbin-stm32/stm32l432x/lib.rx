@@ -1149,7 +1149,7 @@
 
     (peripheral-group
         (name SPI)        
-        (module (name stm32_common::chip::spi_v1::*))
+        (module (name stm32_common::chip::spi_v2::*))
         (peripheral 
             (name SPI1)
             (address 0x40013000)

@@ -18,7 +18,7 @@ pub extern "C" fn main() -> ! {
     test_exti();
     // test_lpuart();
     // test_usart();
-    // // test_spi();
+    test_spi_lora();
     // test_i2c();
     println!("[done] All tests passed");
     loop {}
@@ -481,3 +481,82 @@ fn test_lpuart() {
 //     i2c.rcc_disable();
 //     println!("[pass] I2C OK");
 // }
+
+/// RFM9x LoRa Radio on pins D10-D13
+fn test_spi_lora() {
+    use board::hal::gpio::*;
+    use board::hal::spi::*;
+
+    let spi = SPI1;
+
+    let spi_miso = PB4; // D12
+    let spi_mosi = PB5; // D11
+    let spi_sck = PB3; // D13
+    let spi_nss = PA11; // D10
+
+    spi.rcc_enable();
+    GPIOA.rcc_enable();
+    GPIOB.rcc_enable();
+
+    // NOTE: Pins must be set with output speed HIGH or leading edge
+    // of transmission will occasionally be missed.
+
+    spi_miso.mode_spi_miso(&spi).speed_high().pull_up();
+    spi_mosi.mode_spi_mosi(&spi).speed_high().push_pull();
+    spi_sck.mode_spi_sck(&spi).speed_high().push_pull();
+    // spi_nss.mode_spi_nss(&spi).speed_high().push_pull();
+    spi_nss.mode_output();
+
+    spi.set_config(|cfg| cfg
+        .set_data_size(DataSize::Bits8)
+        .set_master(true)
+        .set_baud_divider(0b100.into())
+    );
+
+    spi.with_cr2(|r| r.set_frxth(1));
+    spi.set_output_enabled(true).set_enabled(true);
+
+    let test_data = [(0x42, 0x12), (0x01, 0x09), (0x02, 0x1a), (0x03, 0x0b), (0x04, 0x00), (0x05, 0x52), (0x06, 0x6c)];
+
+    for &(tx, rx) in test_data.iter() {
+        // println!("0x{:02x}: 0x{:02x}", tx, rx);
+        assert_eq!(reg_read(&spi, &spi_nss, tx), rx);
+    }
+
+
+
+    println!("[pass] SPI OK");
+    spi.rcc_disable();
+    spi_sck.mode_analog();
+    spi_mosi.mode_analog();
+    spi_miso.mode_analog();
+    spi_nss.mode_analog();
+
+    fn transfer(spi: &SpiPeriph, nss: &GpioPin, src: &[u8], dst: &mut[u8]) {
+        let mut i = 0;
+        let mut j = 0;
+        nss.set_output(false);
+        loop {
+            if i < src.len() && spi.can_tx() {
+                spi.tx(src[i]);
+                i += 1;
+            }
+            if j < dst.len() && spi.can_rx() {
+                dst[j] = spi.rx();
+                j += 1;
+            }
+            if j == dst.len() {
+                break;
+            }        
+        }
+        nss.set_output(true);
+    }
+
+    fn reg_read(spi: &SpiPeriph, nss: &GpioPin, reg: u8) -> u8 {
+        let cmd = [reg, 0xff];
+        let mut buf = [0u8, 0u8];
+        transfer(spi, nss, &cmd, &mut buf);
+        buf[1]
+    }
+
+}
