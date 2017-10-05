@@ -52,14 +52,6 @@ pub extern "C" fn main() -> ! {
 
     let d = I2cDriver::new(i2c, &mut tx_buf, &mut rx_buf);    
     d.enable_irq(&i2c.irq_i2c_ev());
-    // println!("irq: {:?}", irq);
-    // SCB.set_irq_handler(irq.irq_num() as usize, Some(irq.wrap(&d)));
-    // nvic::set_enabled(irq.irq_num() as usize, true);
-
-    // let irq_er = i2c.irq_i2c_er();
-    // SCB.set_irq_handler(irq_er.irq_num() as usize, Some(irq.wrap(&d)));
-    // nvic::set_enabled(irq_er.irq_num() as usize, true);
-
 
     println!("I2C Configuration Complete");
 
@@ -79,19 +71,10 @@ pub extern "C" fn main() -> ! {
         { 
             let mut buf = [0u8; 6];
             d.transfer(addr_gyro, &[0x28 | 0x80], &mut buf);
-            // println!("{:?}", buf);
             let (xl, xh, yl, yh, zl, zh) = (
                 buf[0], buf[1], buf[2], buf[3], buf[4], buf[5],
             );
-            // let (xl, xh, yl, yh, zl, zh) = (
-            //     d.read_reg(addr_gyro, 0x28),
-            //     d.read_reg(addr_gyro, 0x29),
-            //     d.read_reg(addr_gyro, 0x2a),
-            //     d.read_reg(addr_gyro, 0x2b),
-            //     d.read_reg(addr_gyro, 0x2c),
-            //     d.read_reg(addr_gyro, 0x2d),
-            // );
-            // println!("{:?}", (xl, xh, yl, yh, zl, zh));
+
             let x = (((xh as u16) << 8) | (xl as u16)) as i16;
             let y = (((yh as u16) << 8) | (yl as u16)) as i16;
             let z = (((zh as u16) << 8) | (zl as u16)) as i16;
@@ -99,9 +82,6 @@ pub extern "C" fn main() -> ! {
         }
         println!("");
 
-        // let mut buf = [0u8; 6];
-        // i2c.transfer(addr_gyro, &[0x20], &mut buf);
-        // println!("# {:?}", buf);
         board::delay(500);
     }
 }
