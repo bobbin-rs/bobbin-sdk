@@ -10,6 +10,10 @@ use board::common::bits::*;
 use board::common::Poll;
 use core::cell::{Cell, UnsafeCell};
 use core::marker::PhantomData;
+use board::common::Irq;
+use board::hal::scb::SCB;
+use board::hal::nvic;
+
 // use core::slice;
 
 // A5 = PB6 = I2C1_SCL
@@ -54,20 +58,15 @@ pub extern "C" fn main() -> ! {
     let mut tx_buf = [0u8; 64];
     let mut rx_buf = [0u8; 64];
 
-    let d = I2cDriver::new(i2c, &mut tx_buf, &mut rx_buf);
+    let d = I2cDriver::new(i2c, &mut tx_buf, &mut rx_buf);    
+    d.enable_irq(&i2c.irq_i2c_ev());
+    // println!("irq: {:?}", irq);
+    // SCB.set_irq_handler(irq.irq_num() as usize, Some(irq.wrap(&d)));
+    // nvic::set_enabled(irq.irq_num() as usize, true);
 
-    use board::common::Irq;
-    use board::hal::scb::SCB;
-    use board::hal::nvic;
-
-    let irq = i2c.irq_i2c_ev();
-    println!("irq: {:?}", irq);
-    SCB.set_irq_handler(irq.irq_num() as usize, Some(irq.wrap(&d)));
-    nvic::set_enabled(irq.irq_num() as usize, true);
-
-    let irq_er = i2c.irq_i2c_er();
-    SCB.set_irq_handler(irq_er.irq_num() as usize, Some(irq.wrap(&d)));
-    nvic::set_enabled(irq_er.irq_num() as usize, true);
+    // let irq_er = i2c.irq_i2c_er();
+    // SCB.set_irq_handler(irq_er.irq_num() as usize, Some(irq.wrap(&d)));
+    // nvic::set_enabled(irq_er.irq_num() as usize, true);
 
 
     println!("I2C Configuration Complete");
@@ -120,11 +119,9 @@ pub struct I2cDriver<'a> {
     done: UnsafeCell<bool>,
     addr: Cell<Option<U7>>,
     tx_buf: * mut [u8],
-    tx_start: Cell<bool>,
     tx_pos: Cell<usize>,
     tx_len: Cell<usize>,
     rx_buf: * mut [u8],
-    rx_start: Cell<bool>,
     rx_pos: Cell<usize>,
     rx_len: Cell<usize>,
     _phantom: PhantomData<&'a mut [u8]>,
@@ -140,15 +137,18 @@ impl<'a> I2cDriver<'a> {
             done: UnsafeCell::new(false),
             addr: Cell::new(None),
             tx_buf: tx_buf,
-            tx_start: Cell::new(false),
             tx_pos: Cell::new(0),
             tx_len: Cell::new(0),
             rx_buf: rx_buf,
-            rx_start: Cell::new(false),
             rx_pos: Cell::new(0),
             rx_len: Cell::new(0),
             _phantom: PhantomData,
         }
+    }
+    pub fn enable_irq<I: Irq>(&self, irq: &I) {
+        // self.irq_num = Some(irq.irq_num());
+        SCB.set_irq_handler(irq.irq_num() as usize, Some(irq.wrap(self)));
+        nvic::set_enabled(irq.irq_num() as usize, true);
     }
 
     pub fn tx(&self) -> &mut [u8] {        
@@ -168,10 +168,8 @@ impl<'a> I2cDriver<'a> {
     pub fn clear(&self) {
         self.set_transfer_complete(false);
         self.addr.set(None);
-        self.tx_start.set(false);
         self.tx_pos.set(0);
         self.tx_len.set(0);
-        self.rx_start.set(false);
         self.rx_pos.set(0);
         self.rx_len.set(0);
     }
@@ -230,7 +228,6 @@ impl<'a> I2cDriver<'a> {
             
         }
         self.i2c.with_cr2(|r| r.set_start(1));                
-        self.tx_start.set(true);
         self.i2c.with_cr1(|r| r.set_txie(1).set_rxie(1).set_tcie(1).set_stopie(1));
     }
 
