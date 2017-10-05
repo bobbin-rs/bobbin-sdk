@@ -7,7 +7,10 @@ extern crate nucleo_l432kc as board;
 use board::hal::i2c::*;
 use board::hal::gpio::*;
 use board::common::bits::*;
-
+use board::common::Poll;
+use core::cell::Cell;
+use core::marker::PhantomData;
+// use core::slice;
 
 // A5 = PB6 = I2C1_SCL
 // A4 = PB7 = I2C1_SDA
@@ -41,7 +44,7 @@ pub extern "C" fn main() -> ! {
     i2c.set_enabled(false);
     // i2c.set_timingr(|_| Timingr(0x00300619));
     i2c.set_timingr(|r| r
-        .set_presc(0x2)
+        .set_presc(0x0)
         .set_scldel(0x3)
         .set_sdadel(0x0)
         .set_sclh(0xF)
@@ -52,21 +55,6 @@ pub extern "C" fn main() -> ! {
     let mut rx_buf = [0u8; 64];
 
     let mut d = I2cDriver::new(i2c, &mut tx_buf, &mut rx_buf);
-
-    println!("ID: {:02x}", d.read_reg(addr_gyro, 0x0f));
-
-    // d.transfer(addr_gyro, &[0x0f], 0x1);
-
-    // loop {
-    //     d.poll();
-    //     if d.transfer_complete() {
-    //         println!("Data: {:02x}", d.as_slice()[0]);
-    //         d.clear();
-    //         break;
-    //     }
-    // }
-
-
 
     println!("I2C Configuration Complete");
 
@@ -115,48 +103,57 @@ pub extern "C" fn main() -> ! {
 
 pub struct I2cDriver<'a> {
     i2c: I2cPeriph,
-    addr: Option<U7>,
-    tx_buf: &'a mut [u8],
-    tx_start: bool,
-    tx_pos: usize,
-    tx_len: usize,
-    rx_buf: &'a mut [u8],
-    rx_start: bool,
-    rx_pos: usize,
-    rx_len: usize,
+    addr: Cell<Option<U7>>,
+    tx_buf: * mut [u8],
+    tx_start: Cell<bool>,
+    tx_pos: Cell<usize>,
+    tx_len: Cell<usize>,
+    rx_buf: * mut [u8],
+    rx_start: Cell<bool>,
+    rx_pos: Cell<usize>,
+    rx_len: Cell<usize>,
+    _phantom: PhantomData<&'a mut [u8]>,
 }
 
 impl<'a> I2cDriver<'a> {
     pub fn new<I: Into<I2cPeriph>>(i2c: I, tx_buf: &'a mut [u8], rx_buf: &'a mut [u8]) -> Self {
         I2cDriver { 
             i2c: i2c.into(),
-            addr: None,
+            addr: Cell::new(None),
             tx_buf: tx_buf,
-            tx_start: false,
-            tx_pos: 0,
-            tx_len: 0,
+            tx_start: Cell::new(false),
+            tx_pos: Cell::new(0),
+            tx_len: Cell::new(0),
             rx_buf: rx_buf,
-            rx_start: false,
-            rx_pos: 0,
-            rx_len: 0,
+            rx_start: Cell::new(false),
+            rx_pos: Cell::new(0),
+            rx_len: Cell::new(0),
+            _phantom: PhantomData,
         }
     }
 
-    pub fn clear(&mut self) {
-        self.addr = None;
-        for b in self.tx_buf.iter_mut() {
-            *b = 0;
+    pub fn tx(&self) -> &mut [u8] {        
+        unsafe {
+            core::slice::from_raw_parts_mut(self.tx_buf as *mut u8, self.tx_len.get())
         }
-        self.tx_start = false;
-        self.tx_pos = 0;
-        self.tx_len = 0;
+    }
 
-        for b in self.rx_buf.iter_mut() {
-            *b = 0;
+
+    pub fn rx(&self) -> &mut [u8] {        
+        unsafe {
+            core::slice::from_raw_parts_mut(self.rx_buf as *mut u8, self.rx_len.get())
         }
-        self.rx_start = false;
-        self.tx_pos = 0;
-        self.tx_len = 0;
+    }
+
+
+    pub fn clear(&mut self) {
+        self.addr.set(None);
+        self.tx_start.set(false);
+        self.tx_pos.set(0);
+        self.tx_len.set(0);
+        self.rx_start.set(false);
+        self.rx_pos.set(0);
+        self.rx_len.set(0);
     }
 
     pub fn read_reg(&mut self, addr: U7, reg: u8) -> u8 {
@@ -185,69 +182,75 @@ impl<'a> I2cDriver<'a> {
 
     pub fn start_transfer(&mut self, addr: U7, tx_buf: &[u8], rx_len: usize) {
         self.clear();
-        self.addr = Some(addr);
-        &self.tx_buf[..tx_buf.len()].copy_from_slice(tx_buf);
-        self.tx_pos = 0;
-        self.tx_len = tx_buf.len();        
-        self.rx_pos = 0;
-        self.rx_len = rx_len;
+        self.addr.set(Some(addr));
+        self.tx_len.set(tx_buf.len());                
+        &self.tx()[..tx_buf.len()].copy_from_slice(tx_buf);
+
+        self.rx_len.set(rx_len);
         self.i2c.with_cr1(|r| r.set_txie(1).set_rxie(1).set_pe(1));
     }
 
     pub fn transfer_complete(&self) -> bool {
         // self.tx_len == self.tx_pos && self.rx_len == self.rx_pos
-        self.addr.is_none()
+        self.addr.get().is_none()
     }
 
     pub fn as_slice(&self) -> &[u8] {
-        &self.rx_buf[..self.rx_len]
+        &self.rx()[..self.rx_len.get()]
     }
+}
 
-    pub fn poll(&mut self) {
-        if self.addr.is_none() {
+impl<'a> Poll for I2cDriver<'a> {
+    fn poll(&self) {
+        if self.addr.get().is_none() {
             return;
         }
-        let addr = self.addr.unwrap();
-        if (self.tx_len - self.tx_pos) > 0 {
-            if !self.tx_start {
+        let addr = self.addr.get().unwrap();
+        if (self.tx_len.get() - self.tx_pos.get()) > 0 {
+            if !self.tx_start.get() {
+                // println!("tx start");
                 self.i2c.with_cr2(|r| r
                         .set_sadd(addr.value() << 1)
                         .set_rd_wrn(0)
-                        .set_nbytes(self.tx_len)
-                        .set_autoend(self.rx_len == 0)
+                        .set_nbytes(self.tx_len.get())
+                        .set_autoend(self.rx_len.get() == 0)
                 );
                 self.i2c.with_cr2(|r| r.set_start(1));                
-                self.tx_start = true;
+                self.tx_start.set(true);
             } else {
                 if self.i2c.isr().txis() != 0 {
-                    self.i2c.set_txdr(|r| r.set_txdata(self.tx_buf[self.tx_pos]));
-                    self.tx_pos += 1;
+                    // println!("tx data");
+                    self.i2c.set_txdr(|r| r.set_txdata(self.tx()[self.tx_pos.get()]));
+                    self.tx_pos.set(self.tx_pos.get() + 1);
                 }
             }
-        } else if (self.rx_len - self.rx_pos) > 0 {            
-            if !self.rx_start {
-                if self.i2c.isr().tc() != 0 {                
+        } else if (self.rx_len.get() - self.rx_pos.get()) > 0 {            
+            if !self.rx_start.get() {
+                if self.i2c.isr().tc() != 0 {           
+                    // println!("rx start");
                     self.i2c.with_cr2(|r| r
                             .set_sadd(addr.value() << 1)
                             .set_rd_wrn(1)
-                            .set_nbytes(self.rx_len)   
+                            .set_nbytes(self.rx_len.get())   
                     );
                     self.i2c.with_cr2(|r| r.set_start(1));               
                     self.i2c.with_cr2(|r| r.set_autoend(1));          
-                    self.rx_start = true;
+                    self.rx_start.set(true);
                 }                
             } else {
                 if self.i2c.isr().rxne() != 0 {
+                    // println!("rx data");
                     let d = self.i2c.rxdr().rxdata().value();
-                    self.rx_buf[self.rx_pos] = d;
-                    self.rx_pos += 1;
+                    self.rx()[self.rx_pos.get()] = d;
+                    self.rx_pos.set(self.rx_pos.get() + 1);
                 }
             }
         } else {
-            if self.addr.is_some() {                            
-                if self.i2c.isr().stopf() != 0 {
+            if self.addr.get().is_some() {                            
+                if self.i2c.isr().stopf() != 0 {                    
+                    // println!("stop");
                     self.i2c.with_cr1(|r| r.set_txie(0).set_rxie(0).set_pe(0));
-                    self.addr = None;
+                    self.addr.set(None);
                 }
             }
         }
