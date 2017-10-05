@@ -42,7 +42,7 @@ fn test_spi_lora() {
     spi_mosi.mode_spi_mosi(&spi).speed_high().push_pull();
     spi_sck.mode_spi_sck(&spi).speed_high().push_pull();
     // spi_nss.mode_spi_nss(&spi).speed_high().push_pull();
-    spi_nss.mode_output();
+    spi_nss.mode_output().set_output(true);
 
     spi.set_config(|cfg| cfg
         .set_data_size(DataSize::Bits8)
@@ -56,15 +56,19 @@ fn test_spi_lora() {
     let mut tx_buf = [0u8; 16];
     let mut rx_buf = [0u8; 16];
     let s = SpiDriver::new(spi, &mut tx_buf, &mut rx_buf);
-
+    s.enable_irq(&spi.irq_spi());
 
     let test_data = [(0x42, 0x12), (0x01, 0x09), (0x02, 0x1a), (0x03, 0x0b), (0x04, 0x00), (0x05, 0x52), (0x06, 0x6c)];
 
     for &(tx, rx) in test_data.iter() {
         println!("0x{:02x}: 0x{:02x}", tx, rx);
-        let v = s.reg_read(&spi_nss, tx);
-        println!("   0x{:02x}", v);
+        let a = s.reg_read(&spi_nss, tx);
+        assert_eq!(rx, a);
+        // let b = reg_read(&spi, &spi_nss, tx);
+
+        // println!("   0x{:02x} 0x{:02x}", a, b);
         // assert_eq!(reg_read(&spi, &spi_nss, tx), rx);
+        // break;
     }
 
 
@@ -182,10 +186,53 @@ impl<'a> SpiDriver<'a> {
         }
     }
 
+    pub fn tx_pop(&self) -> Option<u8> {        
+        if self.tx_rem() > 0 {
+            let c = self.tx()[self.tx_pos()];
+            // println!("> 0x{:02x}", c);
+            self.tx_pos.set(self.tx_pos() + 1);
+            Some(c)
+        } else {
+            None
+        }
+    }
+
+    pub fn rx_push(&self, value: u8) {
+        if self.rx_rem() > 0 {
+            self.rx()[self.rx_pos()] = value;
+            // println!("< 0x{:02x}", value);
+            self.rx_pos.set(self.rx_pos() + 1);
+        }
+    }
+
+    pub fn tx_len(&self) -> usize {
+        self.tx_len.get()
+    }
+
+    pub fn tx_pos(&self) -> usize {
+        self.tx_pos.get()
+    }
+
+    pub fn tx_rem(&self) -> usize {
+        self.tx_len() - self.tx_pos()
+    }
+
+    pub fn rx_len(&self) -> usize {
+        self.rx_len.get()
+    }
+
+    pub fn rx_pos(&self) -> usize {
+        self.rx_pos.get()
+    }
+
+    pub fn rx_rem(&self) -> usize {
+        self.rx_len() - self.rx_pos()
+    }
+
     pub fn reg_read(&self, nss: &GpioPin, reg: u8) -> u8 {
-        let mut buf = [0u8];
-        self.transfer(nss, &[reg], &mut buf);
-        buf[0]
+        let mut buf = [0u8; 2];
+        self.transfer(nss, &[reg, 0x55], &mut buf);
+        buf[1]
     }
 
     pub fn reg_write(&self, nss: &GpioPin, reg: u8, value: u8) {
@@ -198,12 +245,13 @@ impl<'a> SpiDriver<'a> {
         nss.set_output(false);
         self.transfer_start(tx_buf, rx_buf.len());        
         loop {
+            // self.poll();
             if self.transfer_done() {
                 rx_buf.copy_from_slice(self.rx());
                 self.clear();
                 nss.set_output(true);
                 break
-            }            
+            }    
         }
     }
 
@@ -212,6 +260,12 @@ impl<'a> SpiDriver<'a> {
         self.tx_len.set(tx_buf.len());                
         &self.tx()[..tx_buf.len()].copy_from_slice(tx_buf);
         self.rx_len.set(rx_len);
+        self.spi.with_cr2(|r| r.set_txeie(true).set_rxneie(true));
+
+        self.spi.set_enabled(true);
+
+        // println!("start: {} {}", tx_buf.len(), rx_len);
+        // println!("SR: {:?} tx: {}/{} rx: {}/{}", self.spi.sr(), self.tx_pos(), self.tx_len(), self.rx_pos(), self.rx_len());
     }
 
     pub fn transfer_done(&self) -> bool {
@@ -221,6 +275,40 @@ impl<'a> SpiDriver<'a> {
 
 impl<'a> Poll for SpiDriver<'a> {
     fn poll(&self) {       
-        // let isr = self.spi.isr();
+        let sr = self.spi.sr();
+        // println!("SR: {:?} tx: {}/{} rx: {}/{}", sr, self.tx_pos(), self.tx_len(), self.rx_pos(), self.rx_len());
+        if sr.txe() != 0 {
+            if self.tx_rem() > 0 {
+                self.spi.tx(self.tx_pop().unwrap());
+            }
+        }
+        if sr.rxne() != 0 {
+            if self.rx_rem() > 0 {
+                // println!("rx...");
+                self.rx_push(self.spi.rx());
+            }
+        }
+        
+        if self.tx_rem() == 0 && self.rx_rem() == 0  {
+            // println!("DONE");
+            // println!("SR: {:?}", sr);
+            // self.spi.set_enabled(false);
+            self.spi.with_cr2(|r| r.set_txeie(false).set_rxneie(false));
+            self.set_done(true);
+        }
     }
 }
+
+        // loop {
+        //     if i < src.len() && spi.can_tx() {
+        //         spi.tx(src[i]);
+        //         i += 1;
+        //     }
+        //     if j < dst.len() && spi.can_rx() {
+        //         dst[j] = spi.rx();
+        //         j += 1;
+        //     }
+        //     if j == dst.len() {
+        //         break;
+        //     }        
+        // }
