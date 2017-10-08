@@ -71,7 +71,18 @@ fn test_spi_lora() {
         // break;
     }
 
-
+    let tx_buf = [0x01, 0x55, 0x55, 0x55, 0x55, 0x55, 0x55];
+    let mut rx_buf = [0u8; 7];    
+    s.transfer(&spi_nss, &tx_buf, &mut rx_buf);
+    for (i, b) in rx_buf.iter().enumerate() {
+        println!("{}: 0x{:02x}", i, b);
+    }
+    assert_eq!(rx_buf[1], 0x09);
+    assert_eq!(rx_buf[2], 0x1a);
+    assert_eq!(rx_buf[3], 0x0b);
+    assert_eq!(rx_buf[4], 0x00);
+    assert_eq!(rx_buf[5], 0x52);
+    assert_eq!(rx_buf[6], 0x6c);
 
     println!("[pass] SPI OK");
     spi.rcc_disable();
