@@ -61,8 +61,8 @@ fn test_spi_lora() {
     let test_data = [(0x42, 0x12), (0x01, 0x09), (0x02, 0x1a), (0x03, 0x0b), (0x04, 0x00), (0x05, 0x52), (0x06, 0x6c)];
 
     for &(tx, rx) in test_data.iter() {
-        println!("0x{:02x}: 0x{:02x}", tx, rx);
         let a = s.reg_read(&spi_nss, tx);
+        println!("0x{:02x}: 0x{:02x} = 0x{:02x}", tx, rx, a);
         assert_eq!(rx, a);
         // let b = reg_read(&spi, &spi_nss, tx);
 
@@ -80,34 +80,35 @@ fn test_spi_lora() {
     spi_miso.mode_analog();
     spi_nss.mode_analog();
 
-    fn transfer(spi: &SpiPeriph, nss: &GpioPin, src: &[u8], dst: &mut[u8]) {
-        let mut i = 0;
-        let mut j = 0;
-        nss.set_output(false);
-        loop {
-            if i < src.len() && spi.can_tx() {
-                spi.tx(src[i]);
-                i += 1;
-            }
-            if j < dst.len() && spi.can_rx() {
-                dst[j] = spi.rx();
-                j += 1;
-            }
-            if j == dst.len() {
-                break;
-            }        
-        }
-        nss.set_output(true);
-    }
+    // fn transfer(spi: &SpiPeriph, nss: &GpioPin, src: &[u8], dst: &mut[u8]) {
+    //     let mut i = 0;
+    //     let mut j = 0;
+    //     nss.set_output(false);
+    //     loop {
+    //         if i < src.len() && spi.can_tx() {
+    //             spi.tx(src[i]);
+    //             i += 1;
+    //         }
+    //         if j < dst.len() && spi.can_rx() {
+    //             dst[j] = spi.rx();
+    //             j += 1;
+    //         }
+    //         if j == dst.len() {
+    //             break;
+    //         }        
+    //     }
+    //     nss.set_output(true);
+    // }
 
-    fn reg_read(spi: &SpiPeriph, nss: &GpioPin, reg: u8) -> u8 {
-        let cmd = [reg, 0xff];
-        let mut buf = [0u8, 0u8];
-        transfer(spi, nss, &cmd, &mut buf);
-        buf[1]
-    }
+    // fn reg_read(spi: &SpiPeriph, nss: &GpioPin, reg: u8) -> u8 {
+    //     let cmd = [reg, 0xff];
+    //     let mut buf = [0u8, 0u8];
+    //     transfer(spi, nss, &cmd, &mut buf);
+    //     buf[1]
+    // }
 }
 
+use board::common::ring::Ring;
 use board::common::{Irq, Poll};
 use board::common::digital::DigitalOutput;
 use board::hal::gpio::GpioPin;
@@ -125,9 +126,7 @@ pub struct SpiDriver<'a> {
     tx_buf: *mut [u8],
     tx_len: Cell<usize>,
     tx_pos: Cell<usize>,
-    rx_buf: *mut [u8],
-    rx_len: Cell<usize>,
-    rx_pos: Cell<usize>,
+    rx: Ring<'a, u8>,
     _phantom: PhantomData<&'a mut [u8]>,
 }
 
@@ -142,9 +141,7 @@ impl<'a> SpiDriver<'a> {
             tx_buf: tx_buf,
             tx_pos: Cell::new(0),
             tx_len: Cell::new(0),
-            rx_buf: rx_buf,
-            rx_pos: Cell::new(0),
-            rx_len: Cell::new(0),
+            rx: Ring::new(rx_buf),
             _phantom: PhantomData,
         }
     }
@@ -158,8 +155,7 @@ impl<'a> SpiDriver<'a> {
         self.set_done(false);
         self.tx_pos.set(0);
         self.tx_len.set(0);
-        self.rx_pos.set(0);
-        self.rx_len.set(0);
+        // self.rx.clear();
     }
 
     pub fn done(&self) -> bool {
@@ -180,11 +176,11 @@ impl<'a> SpiDriver<'a> {
         }
     }
 
-    pub fn rx(&self) -> &mut [u8] {        
-        unsafe {
-            slice::from_raw_parts_mut(self.rx_buf as *mut u8, self.rx_len.get())
-        }
-    }
+    // pub fn rx(&self) -> &mut [u8] {        
+    //     unsafe {
+    //         slice::from_raw_parts_mut(self.rx_buf as *mut u8, self.rx_len.get())
+    //     }
+    // }
 
     pub fn tx_pop(&self) -> Option<u8> {        
         if self.tx_rem() > 0 {
@@ -198,11 +194,12 @@ impl<'a> SpiDriver<'a> {
     }
 
     pub fn rx_push(&self, value: u8) {
-        if self.rx_rem() > 0 {
-            self.rx()[self.rx_pos()] = value;
-            // println!("< 0x{:02x}", value);
-            self.rx_pos.set(self.rx_pos() + 1);
-        }
+        self.rx.enqueue(value);
+        // if self.rx_rem() > 0 {
+        //     self.rx()[self.rx_pos()] = value;
+        //     // println!("< 0x{:02x}", value);
+        //     self.rx_pos.set(self.rx_pos() + 1);
+        // }
     }
 
     pub fn tx_len(&self) -> usize {
@@ -218,15 +215,16 @@ impl<'a> SpiDriver<'a> {
     }
 
     pub fn rx_len(&self) -> usize {
-        self.rx_len.get()
+        self.rx.len()
     }
 
-    pub fn rx_pos(&self) -> usize {
-        self.rx_pos.get()
-    }
+    // pub fn rx_pos(&self) -> usize {
+    //     self.rx_pos.get()
+    // }
 
     pub fn rx_rem(&self) -> usize {
-        self.rx_len() - self.rx_pos()
+        // self.rx_len() - self.tx_len()
+        self.tx_len() - self.rx_len()
     }
 
     pub fn reg_read(&self, nss: &GpioPin, reg: u8) -> u8 {
@@ -243,11 +241,14 @@ impl<'a> SpiDriver<'a> {
 
     pub fn transfer(&self, nss: &GpioPin, tx_buf: &[u8], rx_buf: &mut [u8]) {
         nss.set_output(false);
-        self.transfer_start(tx_buf, rx_buf.len());        
+        self.transfer_start(tx_buf);
         loop {
             // self.poll();
             if self.transfer_done() {
-                rx_buf.copy_from_slice(self.rx());
+                for i in 0..rx_buf.len() {
+                    rx_buf[i] = self.rx.dequeue().unwrap();
+                }
+                // rx_buf.copy_from_slice(self.rx());
                 self.clear();
                 nss.set_output(true);
                 break
@@ -255,11 +256,11 @@ impl<'a> SpiDriver<'a> {
         }
     }
 
-    pub fn transfer_start(&self, tx_buf: &[u8], rx_len: usize) {
+    pub fn transfer_start(&self, tx_buf: &[u8]) {
         self.clear();        
         self.tx_len.set(tx_buf.len());                
         &self.tx()[..tx_buf.len()].copy_from_slice(tx_buf);
-        self.rx_len.set(rx_len);
+        // self.rx_len.set(rx_len);
         self.spi.with_cr2(|r| r.set_txeie(true).set_rxneie(true));
 
         self.spi.set_enabled(true);
@@ -283,10 +284,11 @@ impl<'a> Poll for SpiDriver<'a> {
             }
         }
         if sr.rxne() != 0 {
-            if self.rx_rem() > 0 {
-                // println!("rx...");
-                self.rx_push(self.spi.rx());
-            }
+            self.rx.enqueue(self.spi.rx());
+            // if self.rx_rem() > 0 {
+            //     // println!("rx...");
+            //     self.rx_push(self.spi.rx());
+            // }
         }
         
         if self.tx_rem() == 0 && self.rx_rem() == 0  {
