@@ -155,7 +155,7 @@ impl<'a> SpiDriver<'a> {
 
     pub fn enqueue(&self, action: SpiAction) {        
         self.tx.enqueue(action);
-        self.next_action();
+        self.next();
     }
 
     pub fn tx_len(&self) -> usize {
@@ -175,7 +175,7 @@ impl<'a> SpiDriver<'a> {
         self.action.get()
     }
 
-    pub fn next_action(&self) {
+    pub fn next(&self) {
         if self.action().is_none() {
             if let Some(action) = self.tx.dequeue() {
                 match action {
@@ -248,7 +248,7 @@ impl<'a> Poll for SpiDriver<'a> {
                 _ => {},
             }
             self.action.set(None);
-            self.next_action();
+            self.next();
         }
     }
 }
