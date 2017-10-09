@@ -53,39 +53,53 @@ fn test_spi_lora() {
     spi.with_cr2(|r| r.set_frxth(1));
     spi.set_output_enabled(true).set_enabled(true);
 
+    let pins: [GpioPin; 1] = [spi_nss.into()];
     let mut tx_buf = [SpiAction::Idle; 16];
     let mut rx_buf = [0u8; 16];
-    let s = SpiDriver::new(spi, &mut tx_buf, &mut rx_buf);
+    let s = SpiDriver::new(spi, &pins, &mut tx_buf, &mut rx_buf);
     s.enable_irq(&spi.irq_spi());
 
     let test_data = [(0x42, 0x12), (0x01, 0x09), (0x02, 0x1a), (0x03, 0x0b), (0x04, 0x00), (0x05, 0x52), (0x06, 0x6c)];
 
     for &(tx, rx) in test_data.iter() {
-        let a = s.reg_read(&spi_nss, tx);
+        let a = s.reg_read(0, tx);
         println!("0x{:02x}: 0x{:02x} = 0x{:02x}", tx, rx, a);
         assert_eq!(rx, a);
     }
 
+    println!("--- transfer ---");
+
     // let tx_buf: [u8; 7] = [0x01, 0x55, 0x55, 0x55, 0x55, 0x55, 0x55];    
-    
-    spi_nss.set_output(false);
+    let tx_buf = [0x01];
+    let mut rx_buf = [0u8; 6];    
+
+    s.transfer(0, &tx_buf, &mut rx_buf);
+    for i in 0..rx_buf.len() {        
+        println!("0x{:02x}", rx_buf[i]);
+    }
+        
+    assert_eq!(rx_buf[0], 0x09);
+    assert_eq!(rx_buf[1], 0x1a);
+    assert_eq!(rx_buf[2], 0x0b);
+    assert_eq!(rx_buf[3], 0x00);
+    assert_eq!(rx_buf[4], 0x52);
+    assert_eq!(rx_buf[5], 0x6c);
+
+    println!("--- commands --- ");
+
+    s.enqueue(SpiAction::Start(0));
     s.enqueue(SpiAction::Write(0x01));    
     s.enqueue(SpiAction::Repeat(5));
     s.enqueue(SpiAction::Transfer(0x55));
-    // s.enqueue(SpiAction::Transfer(0x55));
-    // s.enqueue(SpiAction::Transfer(0x55));
-    // s.enqueue(SpiAction::Transfer(0x55));
-    // s.enqueue(SpiAction::Transfer(0x55));
-    // s.enqueue(SpiAction::Transfer(0x55));    
+    s.enqueue(SpiAction::Stop(0));
 
     let mut rx_buf = [0u8; 6];    
 
-    for i in 0..rx_buf.len() {
-        rx_buf[i] = s.read_byte();
+    s.read(&mut rx_buf);
+    for i in 0..rx_buf.len() {        
         println!("0x{:02x}", rx_buf[i]);
     }
-    spi_nss.set_output(true);
-    
+        
     assert_eq!(rx_buf[0], 0x09);
     assert_eq!(rx_buf[1], 0x1a);
     assert_eq!(rx_buf[2], 0x0b);
@@ -111,15 +125,15 @@ use board::hal::nvic;
 
 use core::cell::Cell;
 use core::marker::PhantomData;
-// use core::slice;
-// use core::ptr;
 
 #[derive(Debug, PartialEq, Eq, Clone, Copy)]
 pub enum SpiAction {
     Idle,
+    Start(u8),
     Repeat(u8),
     Write(u8),
     Transfer(u8),
+    Stop(u8),
 }
 
 impl Default for SpiAction {
@@ -130,6 +144,7 @@ impl Default for SpiAction {
 
 pub struct SpiDriver<'a> {
     spi: SpiPeriph,
+    pins: &'a [GpioPin],
     repeat: Cell<u8>,
     action: Cell<Option<SpiAction>>,
     tx: Ring<'a, SpiAction>,
@@ -141,9 +156,10 @@ unsafe impl<'a> Sync for SpiDriver<'a> {}
 unsafe impl<'a> Send for SpiDriver<'a> {}
 
 impl<'a> SpiDriver<'a> {
-    pub fn new<P: Into<SpiPeriph>>(spi: P, tx_buf: &'a mut [SpiAction], rx_buf: &'a mut [u8]) -> Self {
+    pub fn new<P: Into<SpiPeriph>>(spi: P, pins: &'a [GpioPin], tx_buf: &'a mut [SpiAction], rx_buf: &'a mut [u8]) -> Self {
         SpiDriver { 
             spi: spi.into(),
+            pins: pins,
             repeat: Cell::new(0),
             action: Cell::new(None),
             tx: Ring::new(tx_buf),
@@ -170,6 +186,11 @@ impl<'a> SpiDriver<'a> {
         self.rx.len()
     }
 
+    pub fn read(&self, buf: &mut [u8]) {
+        while self.rx.len() < buf.len() {}
+        self.rx.read(buf);
+    }
+
     pub fn read_byte(&self) -> u8 {
         while self.rx.len() == 0 {}
         self.rx.dequeue().unwrap()
@@ -184,6 +205,9 @@ impl<'a> SpiDriver<'a> {
             loop {
                 if let Some(action) = self.tx.dequeue() {
                     match action {
+                        SpiAction::Start(pin) => {
+                            self.pins[pin as usize].set_output(false);
+                        },
                         SpiAction::Write(b) | SpiAction::Transfer(b) => { 
                             self.action.set(Some(action));
                             self.spi.tx(b);
@@ -193,6 +217,9 @@ impl<'a> SpiDriver<'a> {
                         SpiAction::Repeat(n) => {
                             self.repeat.set(n);
                         }
+                        SpiAction::Stop(pin) => {
+                            self.pins[pin as usize].set_output(true);
+                        },
                         SpiAction::Idle => {}
                     }
                 } else {
@@ -204,36 +231,36 @@ impl<'a> SpiDriver<'a> {
         }
     }
 
-    pub fn reg_read(&self, nss: &GpioPin, reg: u8) -> u8 {
+    pub fn reg_read(&self, pin: u8, reg: u8) -> u8 {
         assert!(self.rx.len() == 0);
-        nss.set_output(false);
+        
+        self.enqueue(SpiAction::Start(pin));
         self.enqueue(SpiAction::Write(reg));
         self.enqueue(SpiAction::Transfer(0x55));        
+        self.enqueue(SpiAction::Stop(pin));
         while self.rx.len() == 0 {}
-        nss.set_output(true);
         self.rx.dequeue().unwrap()
     }
 
-    pub fn reg_write(&self, nss: &GpioPin, reg: u8, value: u8) {
-        nss.set_output(false);
+    pub fn reg_write(&self, pin: u8, reg: u8, value: u8) {        
+        self.enqueue(SpiAction::Start(pin));
         self.enqueue(SpiAction::Write(reg));
         self.enqueue(SpiAction::Write(value));
+        self.enqueue(SpiAction::Stop(pin));
         while self.action().is_some() {}
-        nss.set_output(false);
     }
 
-    pub fn transfer(&self, nss: &GpioPin, tx_buf: &[SpiAction], rx_buf: &mut [u8]) {
-        nss.set_output(false);
+    pub fn transfer(&self, pin: u8, tx_buf: &[u8], rx_buf: &mut [u8]) {
+        self.enqueue(SpiAction::Start(pin));        
         for b in tx_buf.iter() {
-            self.enqueue(*b);
+            self.enqueue(SpiAction::Write(*b));
         }
-        loop {
-            if self.rx.len() >= rx_buf.len() {
-                self.rx.read(rx_buf);
-                nss.set_output(true);
-                break
-            }    
+        if rx_buf.len() > 0 {
+            self.enqueue(SpiAction::Repeat((rx_buf.len() - 1) as u8));
         }
+        self.enqueue(SpiAction::Transfer(0x55));
+        self.enqueue(SpiAction::Stop(pin));
+        self.read(rx_buf);
     }
 
     pub fn transfer_enable(&self) {        
