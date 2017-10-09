@@ -69,8 +69,10 @@ fn test_spi_lora() {
     // let tx_buf: [u8; 7] = [0x01, 0x55, 0x55, 0x55, 0x55, 0x55, 0x55];    
     
     spi_nss.set_output(false);
-    s.enqueue(SpiAction::Write(0x01));
+    s.enqueue(SpiAction::Write(0x01));    
+    s.enqueue(SpiAction::Repeat(0));
     s.enqueue(SpiAction::Transfer(0x55));
+    s.enqueue(SpiAction::Repeat(0));
     s.enqueue(SpiAction::Transfer(0x55));
     s.enqueue(SpiAction::Transfer(0x55));
     s.enqueue(SpiAction::Transfer(0x55));
@@ -116,6 +118,7 @@ use core::marker::PhantomData;
 #[derive(Debug, PartialEq, Eq, Clone, Copy)]
 pub enum SpiAction {
     Idle,
+    Repeat(u8),
     Write(u8),
     Transfer(u8),
 }
@@ -128,6 +131,7 @@ impl Default for SpiAction {
 
 pub struct SpiDriver<'a> {
     spi: SpiPeriph,
+    repeat: Cell<u8>,
     action: Cell<Option<SpiAction>>,
     tx: Ring<'a, SpiAction>,
     rx: Ring<'a, u8>,
@@ -141,6 +145,7 @@ impl<'a> SpiDriver<'a> {
     pub fn new<P: Into<SpiPeriph>>(spi: P, tx_buf: &'a mut [SpiAction], rx_buf: &'a mut [u8]) -> Self {
         SpiDriver { 
             spi: spi.into(),
+            repeat: Cell::new(0),
             action: Cell::new(None),
             tx: Ring::new(tx_buf),
             rx: Ring::new(rx_buf),
@@ -177,18 +182,25 @@ impl<'a> SpiDriver<'a> {
 
     pub fn next(&self) {
         if self.action().is_none() {
-            if let Some(action) = self.tx.dequeue() {
-                match action {
-                    SpiAction::Write(b) | SpiAction::Transfer(b) => { 
-                        self.action.set(Some(action));
-                        self.spi.tx(b);
-                        self.transfer_enable();                    
-                    },
-                    SpiAction::Idle => {}
+            loop {
+                if let Some(action) = self.tx.dequeue() {
+                    match action {
+                        SpiAction::Write(b) | SpiAction::Transfer(b) => { 
+                            self.action.set(Some(action));
+                            self.spi.tx(b);
+                            self.transfer_enable();
+                            break;
+                        },
+                        SpiAction::Repeat(n) => {
+                            self.repeat.set(n);
+                        }
+                        SpiAction::Idle => {}
+                    }
+                } else {
+                    self.action.set(None);
+                    self.transfer_disable();
+                    break;
                 }
-            } else {
-                self.action.set(None);
-                self.transfer_disable();
             }
         }
     }
