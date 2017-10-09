@@ -1,12 +1,13 @@
-use core::cell::Cell;
+use core::cell::UnsafeCell;
 use core::cmp;
+use core::ptr;
 use core::marker::PhantomData;
 
 
 
 pub struct Ring<'a, T: 'a + Copy> {
-    reader: Cell<usize>,
-    writer: Cell<usize>,
+    reader: UnsafeCell<usize>,
+    writer: UnsafeCell<usize>,
     buffer: *mut [T],
     _phantom: PhantomData<&'a mut[T]>,
 }
@@ -14,8 +15,8 @@ pub struct Ring<'a, T: 'a + Copy> {
 impl<'a, T: 'a + Copy> Ring<'a, T> {
     pub fn new(buf: &mut[T]) -> Self {
         Ring {
-            reader: Cell::new(0),
-            writer: Cell::new(0),
+            reader: UnsafeCell::new(0),
+            writer: UnsafeCell::new(0),
             buffer: buf,
             _phantom: PhantomData,
         }
@@ -40,8 +41,23 @@ impl<'a, T: 'a + Copy> Ring<'a, T> {
         self.as_ref().len()
     }
 
+    pub fn writer(&self) -> usize {
+        unsafe { ptr::read_volatile(self.writer.get()) }
+    }
+
+    pub fn set_writer(&self, value: usize) {
+        unsafe { ptr::write_volatile(self.writer.get(), value) }
+    }
+
+    pub fn reader(&self) -> usize {
+        unsafe { ptr::read_volatile(self.reader.get()) }
+    }
+
+    pub fn set_reader(&self, value: usize) {
+        unsafe { ptr::write_volatile(self.reader.get(), value) }
+    }
     pub fn len(&self) -> usize {
-        self.writer.get().wrapping_sub(self.reader.get())
+        self.writer().wrapping_sub(self.reader())
     }
 
     pub fn rem(&self) -> usize {
@@ -49,7 +65,7 @@ impl<'a, T: 'a + Copy> Ring<'a, T> {
     }
 
     pub fn is_empty(&self) -> bool {
-        self.reader.get() == self.writer.get()
+        self.reader() == self.writer()
     }
 
     pub fn is_full(&self) -> bool {
@@ -62,19 +78,19 @@ impl<'a, T: 'a + Copy> Ring<'a, T> {
 
     fn incr_reader(&self) {
         assert!(!self.is_empty(), "Attempted to increment empty reader");
-        self.reader.set(self.reader.get().wrapping_add(1));
+        self.set_reader(self.reader().wrapping_add(1));
     }
 
     fn incr_writer(&self) {        
         assert!(!self.is_full(), "Attempted to increment full writer");
-        self.writer.set(self.writer.get().wrapping_add(1));     
+        self.set_writer(self.writer().wrapping_add(1));     
     }
 
     pub fn enqueue(&self, value: T) -> bool {
         if self.is_full() {
             false
         } else {
-            let writer = self.phy(self.writer.get());
+            let writer = self.phy(self.writer());
             self.as_mut()[writer] = value;
             self.incr_writer();
             true
@@ -85,7 +101,7 @@ impl<'a, T: 'a + Copy> Ring<'a, T> {
         if self.is_empty() {
             None
         } else {
-            let reader = self.phy(self.reader.get());
+            let reader = self.phy(self.reader());
             let value = self.as_ref()[reader];
             self.incr_reader();
             Some(value)
