@@ -142,14 +142,7 @@ impl<'a> SpiDriver<'a> {
 
     pub fn enqueue_action(&self, action: SpiAction) {        
         if self.action().is_none() {
-            match action {
-                SpiAction::Write(b) | SpiAction::Transfer(b) => { 
-                    self.action.set(Some(action));
-                    self.spi.tx(b);
-                    self.transfer_start();                    
-                },
-                SpiAction::Idle => {}
-            }
+            self.set_action(action);
         } else {
             self.tx.enqueue(action);
         }        
@@ -157,6 +150,17 @@ impl<'a> SpiDriver<'a> {
 
     pub fn action(&self) -> Option<SpiAction> {
         self.action.get()
+    }
+
+    pub fn set_action(&self, action: SpiAction) {
+        match action {
+            SpiAction::Write(b) | SpiAction::Transfer(b) => { 
+                self.action.set(Some(action));
+                self.spi.tx(b);
+                self.transfer_enable();                    
+            },
+            SpiAction::Idle => {}
+        }
     }
 
     pub fn next_action(&self) {
@@ -190,9 +194,13 @@ impl<'a> SpiDriver<'a> {
         }
     }
 
-    pub fn transfer_start(&self) {        
-        self.spi.with_cr2(|r| r.set_txeie(false).set_rxneie(true));
+    pub fn transfer_enable(&self) {        
+        self.spi.with_cr2(|r| r.set_rxneie(true));
         self.spi.set_enabled(true);
+    }
+    
+    pub fn transfer_disable(&self) {        
+        self.spi.with_cr2(|r| r.set_rxneie(false));
     }
 }
 
@@ -206,27 +214,12 @@ impl<'a> Poll for SpiDriver<'a> {
                 Some(SpiAction::Transfer(_)) => { self.rx.enqueue(self.spi.rx()); },
                 _ => {},
             }
-            let action = self.tx.dequeue();             
-            match action {
-                Some(SpiAction::Write(b)) | Some(SpiAction::Transfer(b)) => { 
-                    self.spi.tx(b);
-                    self.action.set(action);
-                },
-                Some(SpiAction::Idle) => {
-                    panic!("Unexpected SpiAction::Idle in queue")
-                },
-                None => {
-                    self.spi.with_cr2(|r| r.set_rxneie(false));
-                    self.action.set(None);
-                },
-            }        
-            
+            if let Some(action) = self.tx.dequeue() {
+                self.set_action(action)
+            } else {
+                self.action.set(None);
+                self.transfer_disable();
+            }
         }
-        
-        // if self.tx_rem() == 0 && self.rx_rem() == 0  {
-        //     self.spi.with_cr2(|r| r.set_txeie(false).set_rxneie(false));
-        //     self.set_done(true);
-        // }
-        // board::delay(100);
     }
 }
