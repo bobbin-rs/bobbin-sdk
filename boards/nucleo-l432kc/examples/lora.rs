@@ -161,6 +161,10 @@ impl<'a> SpiDriver<'a> {
         }        
     }
 
+    pub fn tx_len(&self) -> usize {
+        self.tx.len()
+    }
+
     pub fn rx_len(&self) -> usize {
         self.rx.len()
     }
@@ -195,14 +199,21 @@ impl<'a> SpiDriver<'a> {
     }
 
     pub fn reg_read(&self, nss: &GpioPin, reg: u8) -> u8 {
-        let mut buf = [0u8; 2];
-        self.transfer(nss, &[SpiAction::Transfer(reg), SpiAction::Transfer(0x55)], &mut buf);
-        buf[1]
+        assert!(self.rx.len() == 0);
+        nss.set_output(false);
+        self.enqueue_action(SpiAction::Write(reg));
+        self.enqueue_action(SpiAction::Transfer(0x55));        
+        while self.rx.len() == 0 {}
+        nss.set_output(true);
+        self.rx.dequeue().unwrap()
     }
 
     pub fn reg_write(&self, nss: &GpioPin, reg: u8, value: u8) {
-        let mut buf = [];
-        self.transfer(nss, &[SpiAction::Transfer(reg), SpiAction::Transfer(value)], &mut buf);
+        nss.set_output(false);
+        self.enqueue_action(SpiAction::Write(reg));
+        self.enqueue_action(SpiAction::Write(value));
+        while self.action().is_some() {}
+        nss.set_output(false);
     }
 
     pub fn transfer(&self, nss: &GpioPin, tx_buf: &[SpiAction], rx_buf: &mut [u8]) {
