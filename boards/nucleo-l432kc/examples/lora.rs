@@ -70,14 +70,13 @@ fn test_spi_lora() {
     
     spi_nss.set_output(false);
     s.enqueue(SpiAction::Write(0x01));    
-    s.enqueue(SpiAction::Repeat(0));
+    s.enqueue(SpiAction::Repeat(5));
     s.enqueue(SpiAction::Transfer(0x55));
-    s.enqueue(SpiAction::Repeat(0));
-    s.enqueue(SpiAction::Transfer(0x55));
-    s.enqueue(SpiAction::Transfer(0x55));
-    s.enqueue(SpiAction::Transfer(0x55));
-    s.enqueue(SpiAction::Transfer(0x55));
-    s.enqueue(SpiAction::Transfer(0x55));    
+    // s.enqueue(SpiAction::Transfer(0x55));
+    // s.enqueue(SpiAction::Transfer(0x55));
+    // s.enqueue(SpiAction::Transfer(0x55));
+    // s.enqueue(SpiAction::Transfer(0x55));
+    // s.enqueue(SpiAction::Transfer(0x55));    
 
     let mut rx_buf = [0u8; 6];    
 
@@ -230,9 +229,7 @@ impl<'a> SpiDriver<'a> {
         }
         loop {
             if self.rx.len() >= rx_buf.len() {
-                for i in 0..rx_buf.len() {
-                    rx_buf[i] = self.rx.dequeue().unwrap();
-                }
+                self.rx.read(rx_buf);
                 nss.set_output(true);
                 break
             }    
@@ -252,14 +249,31 @@ impl<'a> SpiDriver<'a> {
 impl<'a> Poll for SpiDriver<'a> {
     fn poll(&self) {       
         let sr = self.spi.sr();
+        let action = self.action().unwrap();
+        let repeat = self.repeat.get();
         // println!("SR: {:?} Action: {:?}", sr, self.action());
         if sr.rxne() != 0 {
-            match self.action() {
-                Some(SpiAction::Write(_)) => { let _: u8  = self.spi.rx(); },
-                Some(SpiAction::Transfer(_)) => { self.rx.enqueue(self.spi.rx()); },
+            match action {
+                SpiAction::Write(b) => { 
+                    let _: u8  = self.spi.rx(); 
+                    if repeat > 0 {
+                        self.repeat.set(repeat - 1);
+                        self.spi.tx(b);
+                    } else {
+                        self.action.set(None);
+                    }
+                },
+                SpiAction::Transfer(b) => { 
+                    self.rx.enqueue(self.spi.rx()); 
+                    if repeat > 0 { 
+                        self.repeat.set(repeat - 1);
+                        self.spi.tx(b);
+                    } else {
+                        self.action.set(None);
+                    }
+                },
                 _ => {},
-            }
-            self.action.set(None);
+            }            
             self.next();
         }
     }
