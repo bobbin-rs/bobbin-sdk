@@ -15,6 +15,7 @@ use board::common::bits::*;
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
+    // use board::hal::i2c::*;
     board::init();
     println!("Running I2C");
     
@@ -48,6 +49,7 @@ pub extern "C" fn main() -> ! {
     );
 
     let mut tx_buf = [I2cAction::Idle; 64];
+    // let mut tx_buf = [0u8; 64];
     let mut rx_buf = [0u8; 64];
 
     let d = I2cDriver::new(i2c, &mut tx_buf, &mut rx_buf);    
@@ -149,10 +151,10 @@ impl<'a> I2cDriver<'a> {
 
 
     pub fn transfer(&self, addr: U7, tx_buf: &[u8], rx_buf: &mut [u8]) {
-        println!("transfer: addr={:?} tx_buf={:?} rx_buf={:?}", addr, tx_buf, rx_buf);
+        // println!("transfer: addr={:?} tx_buf={:?} rx_buf={:?}", addr, tx_buf, rx_buf);
         if tx_buf.len() > 0 {
-            self.tx.enqueue(I2cAction::Start(addr.value() << 1));
-            // self.tx.enqueue(I2cAction::WriteBytes(tx_buf.len() as u8));
+            self.tx.enqueue(I2cAction::Start(addr.value()));
+            self.tx.enqueue(I2cAction::WriteBytes(tx_buf.len() as u8));
             for b in tx_buf.iter() {
                 self.tx.enqueue(I2cAction::WriteByte(*b));
             }
@@ -162,21 +164,24 @@ impl<'a> I2cDriver<'a> {
         }
         if rx_buf.len() > 0 {
             if tx_buf.len() == 0 {
-                self.tx.enqueue(I2cAction::Start(addr.value() << 1 | 1));
+                self.tx.enqueue(I2cAction::Start(addr.value()));
             } else {
-                self.tx.enqueue(I2cAction::Restart(addr.value() << 1 | 1));
+                self.tx.enqueue(I2cAction::Restart(addr.value()));
             }
-            // self.tx.enqueue(I2cAction::ReadBytes(tx_buf.len() as u8));
+            self.tx.enqueue(I2cAction::ReadBytes(rx_buf.len() as u8));
             for _ in rx_buf.iter() {
                 self.tx.enqueue(I2cAction::ReadByte);
             }
             self.tx.enqueue(I2cAction::Stop);
         }
-        println!("tx_len: {}", self.tx.len());
         self.next();
         loop {
-            while self.rx.len() < rx_buf.len() {}
-            self.rx.read(rx_buf);
+            // println!("CR1 {:?} CR2 {:?} ISR {:?}", self.i2c.cr1(), self.i2c.cr2(), self.i2c.isr());
+            if self.rx.len() >= rx_buf.len() {
+                self.rx.read(rx_buf);
+                return
+            }
+            board::delay(100);
         }
     }
     
@@ -188,33 +193,46 @@ impl<'a> I2cDriver<'a> {
 
             // Get the next action off of the queue
             if let Some(action) = self.tx.dequeue() {
-                self.i2c.with_cr1(|r| r.set_txie(1).set_rxie(1).set_tcie(1).set_stopie(1));
+                // println!("next: {:?}", action);
+                // self.i2c.with_cr1(|r| r.set_txie(1).set_rxie(1).set_tcie(1).set_stopie(1).set_pe(1));
+                self.i2c.with_cr1(|r| r.set_pe(1));
                 match action {
                     I2cAction::Idle => panic!("Unexpected I2cAction::Idle"),
                     I2cAction::Start(addr) => {
-                        println!("Start: 0x{:02x} {}", addr >> 1, addr & 0b1);
-                        self.i2c.with_cr2(|r| r.set_start(1).set_sadd(addr >> 1).set_rd_wrn(addr & 0b1));
+                        // println!("Start: 0x{:02x}", addr << 1);
+                        self.i2c.with_cr2(|r| r.set_sadd(addr << 1));
+                        self.i2c.with_cr1(|r| r.set_txie(0).set_rxie(0));
                     },
                     I2cAction::Restart(addr) => {
-                        println!("Restart: 0x{:02x} {}", addr >> 1, addr & 0b1);
-                        self.i2c.with_cr2(|r| r.set_start(1).set_sadd(addr >> 1).set_rd_wrn(addr & 0b1));
+                        // println!("Restart: 0x{:02x}", addr << 1);
+                        self.i2c.with_cr2(|r| r.set_sadd(addr << 1));
+                        self.i2c.with_cr1(|r| r.set_txie(0).set_rxie(0));
                     },
-                    I2cAction::WriteBytes(_) => {},
+                    I2cAction::WriteBytes(n) => {
+                        self.i2c.with_cr2(|r| r.set_nbytes(n).set_rd_wrn(0));
+                        self.i2c.with_cr2(|r| r.set_start(1));                        
+                    },
                     I2cAction::WriteByte(_) => {
                         self.action.set(Some(action));
+                        self.i2c.with_cr1(|r| r.set_stopie(0).set_txie(1).set_rxie(0));
                     },
-                    I2cAction::ReadBytes(_) => {},
+                    I2cAction::ReadBytes(n) => {
+
+                        self.i2c.with_cr2(|r| r.set_nbytes(n).set_rd_wrn(1));
+                        self.i2c.with_cr2(|r| r.set_start(1));
+                    },
                     I2cAction::ReadByte => {
                         self.action.set(Some(action));
+                        self.i2c.with_cr1(|r| r.set_stopie(0).set_txie(0).set_rxie(1));
                     },
                     I2cAction::Stop => {
-                        self.i2c.with_cr2(|r| r.set_stop(1));
+                        self.i2c.with_cr1(|r| r.set_tcie(1));                        
                         self.action.set(Some(action));
                     },
                 }
                 
             } else {
-                self.i2c.with_cr1(|r| r.set_txie(0).set_rxie(0).set_tcie(0).set_stopie(0));
+                self.i2c.with_cr1(|r| r.set_txie(0).set_rxie(0).set_tcie(0).set_stopie(0).set_pe(0));
                 return
             }
         }
@@ -259,7 +277,7 @@ impl<'a> Poll for I2cDriver<'a> {
     fn poll(&self) {       
         let isr = self.i2c.isr();
         let action = self.action().unwrap();
-        println!("ISR: {:?} Action: {:?}", isr, action);
+        // println!("ISR: {:?} Action: {:?}", isr, action);
         match action {
             I2cAction::Idle => unimplemented!(),
             I2cAction::Start(_) => {
@@ -291,8 +309,11 @@ impl<'a> Poll for I2cDriver<'a> {
                 }
             },
             I2cAction::Stop => {
-                if isr.test_stopf() {
-                    self.i2c.set_icr(|r| r.set_stopcf(1));
+                if isr.test_tc() {
+                    self.i2c.with_cr2(|r| r.set_stop(1));                    
+                    self.i2c.with_cr1(|r| r.set_stopie(1).set_tcie(0));
+                } else if isr.test_stopf() {
+                    self.i2c.with_cr1(|r| r.set_stopie(0).set_pe(0));
                     self.action.set(None)
                 } else {
                     panic!("Unexpected Interrupt: {:?}", isr);
@@ -300,7 +321,6 @@ impl<'a> Poll for I2cDriver<'a> {
             },
         }
         self.next();
-        board::delay(100);
     }
 }
 
