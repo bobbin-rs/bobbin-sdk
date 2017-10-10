@@ -1,5 +1,5 @@
 pub use bobbin_common::digital::*;
-use chip::gpio::*;
+pub use chip::gpio::*;
 
 pub enum Dir {
     In = 0,

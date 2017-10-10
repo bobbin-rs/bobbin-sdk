@@ -2,6 +2,20 @@ pub use bobbin_common::configure::*;
 pub use bobbin_common::enabled::*;
 pub use bobbin_common::spi::*;
 
+
+use bobbin_common::ring::Ring;
+use bobbin_common::{Irq, Poll};
+use bobbin_common::digital::DigitalOutput;
+use bobbin_cortexm::wfi;
+use bobbin_cortexm::hal::nvic;
+use bobbin_cortexm::hal::scb::SCB;
+use ::hal::gpio::GpioPin;
+
+use core::cell::Cell;
+use core::marker::PhantomData;
+
+
+
 pub use ::chip::lpspi::*;
 
 pub enum Prescale {
@@ -219,5 +233,203 @@ impl Write for Target {
 impl Read for Target {
     fn read(&self, rx: &mut [u8]) {
         self.transfer(&[], rx);
+    }
+}
+
+
+
+
+#[derive(Debug, PartialEq, Eq, Clone, Copy)]
+pub enum SpiAction {
+    Idle,
+    Start(u8),
+    Repeat(u8),
+    Write(u8),
+    Transfer(u8),
+    Stop(u8),
+}
+
+impl Default for SpiAction {
+    fn default() -> Self {
+        SpiAction::Idle
+    }
+}
+
+pub struct SpiDriver<'a> {
+    spi: LpspiPeriph,
+    pins: &'a [GpioPin],
+    repeat: Cell<u8>,
+    action: Cell<Option<SpiAction>>,
+    tx: Ring<'a, SpiAction>,
+    rx: Ring<'a, u8>,
+    _phantom: PhantomData<&'a mut [u8]>,
+}
+
+unsafe impl<'a> Sync for SpiDriver<'a> {}
+unsafe impl<'a> Send for SpiDriver<'a> {}
+
+impl<'a> SpiDriver<'a> {
+    pub fn new<P: Into<LpspiPeriph>>(spi: P, pins: &'a [GpioPin], tx_buf: &'a mut [SpiAction], rx_buf: &'a mut [u8]) -> Self {
+        SpiDriver { 
+            spi: spi.into(),
+            pins: pins,
+            repeat: Cell::new(0),
+            action: Cell::new(None),
+            tx: Ring::new(tx_buf),
+            rx: Ring::new(rx_buf),
+            _phantom: PhantomData,
+        }
+    }
+
+    pub fn enable_irq<I: Irq>(&self, irq: &I) {        
+        SCB.set_irq_handler(irq.irq_num() as usize, Some(irq.wrap(self)));
+        nvic::set_enabled(irq.irq_num() as usize, true);
+    }
+
+    pub fn enqueue(&self, action: SpiAction) {        
+        self.tx.enqueue(action);
+        self.next();
+    }
+
+    pub fn tx_len(&self) -> usize {
+        self.tx.len()
+    }
+
+    pub fn rx_len(&self) -> usize {
+        self.rx.len()
+    }
+
+    pub fn read(&self, buf: &mut [u8]) {
+        while self.rx.len() < buf.len() {
+            wfi()
+        }
+        self.rx.read(buf);
+    }
+
+    pub fn read_byte(&self) -> u8 {
+        while self.rx.len() == 0 {
+            wfi()
+        }
+        self.rx.dequeue().unwrap()
+    }
+
+    pub fn action(&self) -> Option<SpiAction> {
+        self.action.get()
+    }
+
+    pub fn next(&self) {
+        if self.action().is_none() {
+            loop {
+                if let Some(action) = self.tx.dequeue() {
+                    match action {
+                        SpiAction::Start(pin) => {
+                            self.pins[pin as usize].set_output(false);
+                        },
+                        SpiAction::Write(b) | SpiAction::Transfer(b) => { 
+                            self.action.set(Some(action));
+                            self.spi.set_enabled(true);
+                            self.spi.set_tcr(|r| r.set_framesz(7));
+                            self.spi.tx(b);
+                            self.spi.with_ier(|r| r.set_tdie(true));
+                            break;
+                        },
+                        SpiAction::Repeat(n) => {
+                            self.repeat.set(n);
+                        }
+                        SpiAction::Stop(pin) => {
+                            self.pins[pin as usize].set_output(true);
+                            self.spi.set_enabled(false);                            
+                        },
+                        SpiAction::Idle => {}
+                    }
+                } else {
+                    self.action.set(None);
+                    self.transfer_disable();
+                    break;
+                }
+            }
+        }
+    }
+
+    pub fn reg_read(&self, pin: u8, reg: u8) -> u8 {
+        assert!(self.rx.len() == 0);
+        
+        self.enqueue(SpiAction::Start(pin));
+        self.enqueue(SpiAction::Write(reg));
+        self.enqueue(SpiAction::Transfer(0x55));        
+        self.enqueue(SpiAction::Stop(pin));
+        while self.rx.len() == 0 {
+            wfi()
+        }
+        self.rx.dequeue().unwrap()
+    }
+
+    pub fn reg_write(&self, pin: u8, reg: u8, value: u8) {        
+        self.enqueue(SpiAction::Start(pin));
+        self.enqueue(SpiAction::Write(reg));
+        self.enqueue(SpiAction::Write(value));
+        self.enqueue(SpiAction::Stop(pin));
+        while self.action().is_some() {
+            wfi()
+        }
+    }
+
+    pub fn transfer(&self, pin: u8, tx_buf: &[u8], rx_buf: &mut [u8]) {
+        self.enqueue(SpiAction::Start(pin));        
+        for b in tx_buf.iter() {
+            self.enqueue(SpiAction::Write(*b));
+        }
+        if rx_buf.len() > 0 {
+            self.enqueue(SpiAction::Repeat((rx_buf.len() - 1) as u8));
+        }
+        self.enqueue(SpiAction::Transfer(0x55));
+        self.enqueue(SpiAction::Stop(pin));
+        self.read(rx_buf);
+    }
+
+    pub fn transfer_enable(&self) {        
+        self.spi.with_ier(|r| r.set_tdie(true));
+        self.spi.set_enabled(true);
+    }
+    
+    pub fn transfer_disable(&self) {        
+        self.spi.set_ier(|r| r);
+        self.spi.set_enabled(false);
+    }
+
+}
+
+impl<'a> Poll for SpiDriver<'a> {
+    fn poll(&self) {       
+        let sr = self.spi.sr();
+        let action = self.action().unwrap();
+        let repeat = self.repeat.get();
+        // println!("SR: {:?} Action: {:?}", sr, self.action());        
+        match action {
+            SpiAction::Write(b) => { 
+                if sr.rdf() != 0 {
+                    let _: u8  = self.spi.rx(); 
+                    if repeat > 0 {
+                        self.repeat.set(repeat - 1);
+                        self.spi.tx(b);
+                    } else {
+                        self.action.set(None);
+                    }
+                }
+            },
+            SpiAction::Transfer(b) => { 
+                if sr.rdf() != 0 {
+                    self.rx.enqueue(self.spi.rx()); 
+                    if repeat > 0 { 
+                        self.repeat.set(repeat - 1);
+                        self.spi.tx(b);
+                    } else {
+                        self.action.set(None);
+                    }
+                }
+            },
+            _ => {},
+        }            
+        self.next();
     }
 }
