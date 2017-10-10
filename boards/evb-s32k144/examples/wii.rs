@@ -174,7 +174,6 @@ impl<'a> I2cDriver<'a> {
             self.tx.enqueue(I2cAction::ReadBytes(rx_buf.len() as u8));
             self.tx.enqueue(I2cAction::Stop);
         }
-        // println!("commands queued");
         self.next();
         loop {
             wfi();
@@ -201,24 +200,17 @@ impl<'a> I2cDriver<'a> {
                     I2cAction::Start(_) => {
                         self.action.set(Some(action));
                         self.i2c.with_mier(|r| r.set_tdie(1));
-                        // println!("mier: {:?}", self.i2c.mier());
                     },
                     I2cAction::Restart(_) => {
                         self.action.set(Some(action));
                         self.i2c.with_mier(|r| r.set_tdie(1));
                     },
-                    I2cAction::WriteBytes(_) => {
-                        // self.cmd_start(self.addr.get() << 1);
-                    },
+                    I2cAction::WriteBytes(_) => {},
                     I2cAction::WriteByte(_) => {
                         self.action.set(Some(action));
                         self.i2c.with_mier(|r| r.set_tdie(1));
                     },
                     I2cAction::ReadBytes(_) => {
-                        // self.i2c.with_cr2(|r| r.set_nbytes(n).set_rd_wrn(1));
-                        // self.i2c.with_cr2(|r| r.set_start(1));
-                        // self.i2c.with_cr1(|r| r.set_rxie(1));                        
-                        // self.cmd_start(self.addr.get() << 1 | 1);
                         self.action.set(Some(action));
                         self.i2c.with_mier(|r| r.set_tdie(1));
                     },
@@ -226,14 +218,11 @@ impl<'a> I2cDriver<'a> {
                         panic!("Unexpected ReadByte in Tx Queue")
                     },
                     I2cAction::Stop => {
-                        // self.i2c.with_cr1(|r| r.set_tcie(1));     
                         self.action.set(Some(action));
                         self.i2c.with_mier(|r| r.set_tdie(1));      
                     },
                 }                
             } else {                
-                // self.i2c.with_cr1(|r| r.set_txie(0).set_rxie(0).set_tcie(0).set_stopie(0).set_pe(0));
-                // println!("next_done");
                 return
             }
         }
@@ -272,49 +261,38 @@ impl<'a> Poll for I2cDriver<'a> {
         match action {
             I2cAction::Start(addr) => {
                 if msr.test_tdf() {
-                    // println!("[ {:02x}", addr);
                     self.i2c.cmd_start(addr);
-                    self.action.set(None);
                     self.i2c.with_mier(|r| r.set_tdie(0));
+                    self.action.set(None);
                 }
             },            
             I2cAction::Restart(addr) => {
                 if msr.test_tdf() {
-                    // println!("| {:02x}", addr);
                     self.i2c.cmd_start(addr);
-                    self.action.set(None);
                     self.i2c.with_mier(|r| r.set_tdie(0));
+                    self.action.set(None);
                 }
-            },            
-            I2cAction::WriteBytes(_) => {
-                unimplemented!()
             },            
             I2cAction::WriteByte(n) => {
                 if msr.test_tdf() {
-                    // println!("> {:02x}", n);
                     self.i2c.cmd_transmit(n);
-                    self.action.set(None);
                     self.i2c.with_mier(|r| r.set_tdie(0));
+                    self.action.set(None);
                 } 
             },
             I2cAction::ReadBytes(n) => {
                 if msr.test_tdf() {
                     self.i2c.cmd_receive(n - 1);
-                    self.action.set(None);
                     self.i2c.with_mier(|r| r.set_tdie(0));
+                    self.action.set(None);
                 }                
             }
-            I2cAction::ReadByte(_) => {
-                unimplemented!()
-            },
             I2cAction::Stop => {
                 if msr.test_sdf() {
-                    // println!("stop done");
                     self.i2c.with_msr(|r| r.set_sdf(1));
-                    self.action.set(None);
                     self.i2c.with_mier(|r| r.set_sdie(0));                    
+                    self.action.set(None);
                 } else if msr.test_tdf() && self.i2c.mier().test_tdie() {           
-                    // println!(".");
                     self.i2c.cmd_stop();                    
                     self.i2c.with_mier(|r| r.set_tdie(0).set_sdie(1));
                 }
@@ -323,45 +301,5 @@ impl<'a> Poll for I2cDriver<'a> {
         }
 
         self.next();
-        // board::delay(100);
     }
 }
-
-
-// impl I2cTransfer<u8> for Lpi2cPeriph {
-//     fn write(&self, addr: u8, tx_data: &[u8]) -> &Self {        
-//         self.wait_tdf().cmd_start(addr << 1);
-//         for b in tx_data.iter() {
-//             self.wait_tdf().cmd_transmit(*b);
-//         }
-//         self.wait_tdf().cmd_stop();
-//         self
-//     }
-
-//     fn read(&self, addr: u8, rx_data: &mut [u8]) -> &Self {
-//         self.wait_tdf().cmd_start(addr << 1 | 1);
-//         self.wait_tdf().cmd_receive(rx_data.len() as u8 - 1);
-//         self.wait_tdf().cmd_stop();
-//         for i in 0..rx_data.len() {
-//             while self.rx_empty() {}
-//             rx_data[i] = self.receive();
-//         }
-//         self
-//     }
-
-//     fn transfer(&self, addr: u8, tx_data: &[u8], rx_data: &mut [u8]) -> &Self {
-//         self.wait_tdf().cmd_start(addr << 1);
-//         for b in tx_data.iter() {
-//             self.wait_tdf().cmd_transmit(*b);
-//         }
-//         self.wait_tdf().cmd_start(addr << 1 | 1);
-//         self.wait_tdf().cmd_receive(rx_data.len() as u8 - 1);
-//         self.wait_tdf().cmd_stop();
-//         for i in 0..rx_data.len() {
-//             while self.rx_empty() {}
-//             rx_data[i] = self.receive();
-//         }        
-//         self
-//     }
-    
-// }
