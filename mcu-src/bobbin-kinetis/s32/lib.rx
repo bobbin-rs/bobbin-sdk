@@ -1422,10 +1422,12 @@
             (interrupt
                 (name LPI2C0_Master)
                 (value 24)
+                (type LPI2C_MASTER)
             )
             (interrupt
                 (name LPI2C0_Slave)
                 (value 25)
+                (type LPI2C_SLAVE)
             )
         )
     )

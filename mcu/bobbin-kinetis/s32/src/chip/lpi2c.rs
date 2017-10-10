@@ -17,3 +17,19 @@ impl super::sig::SignalI2cSdas<super::sig::Lpi2c0Sdas> for Lpi2c0 {}
 
 
 
+pub trait IrqLpi2cMaster<T> {
+    fn irq_lpi2c_master(&self) -> T;
+}
+
+pub trait IrqLpi2cSlave<T> {
+    fn irq_lpi2c_slave(&self) -> T;
+}
+
+impl IrqLpi2cMaster<super::irq::IrqLpi2c0Master> for Lpi2c0 {
+    fn irq_lpi2c_master(&self) -> super::irq::IrqLpi2c0Master { super::irq::IRQ_LPI2C0_MASTER }
+}
+
+impl IrqLpi2cSlave<super::irq::IrqLpi2c0Slave> for Lpi2c0 {
+    fn irq_lpi2c_slave(&self) -> super::irq::IrqLpi2c0Slave { super::irq::IRQ_LPI2C0_SLAVE }
+}
+
