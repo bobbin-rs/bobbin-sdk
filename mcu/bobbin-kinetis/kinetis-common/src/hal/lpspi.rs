@@ -70,6 +70,14 @@ impl LpspiPeriph {
             tcr: Tcr(0),
         }
     }
+
+    pub fn tx(&self, data: u8) {
+        self.set_tdr(|r| r.set_data(data));
+    }    
+
+    pub fn rx(&self) -> u8 {
+        self.rdr().data().value() as u8
+    }
 }
 
 pub struct Target {
