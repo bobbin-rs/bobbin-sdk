@@ -59,19 +59,33 @@ pub extern "C" fn main() -> ! {
     s.write_reg(i2c_addr, 0xfb, 0x00);
     board::delay(1);
     
-    println!("Identify");
+    print!("Id: ");
     s.write(i2c_addr, &[0xfa]);
     board::delay(1);
     let mut buf = [0u8; 6];
     s.read(i2c_addr, &mut buf);
+    board::delay(1);
     for b in buf.iter() {
         print!("{:02x} ", b);
     }
     println!("");
 
-
-
-    loop {}
+    let mut n = 0;
+    loop {
+        s.write(i2c_addr, &[0x00]);
+        board::delay(1);
+        s.read(i2c_addr, &mut buf);
+        board::delay(1);
+        if n == 100 {
+            for b in buf.iter() {
+                print!("{:02x} ", b);
+            }
+            println!("");
+            n = 0;
+        } else {
+            n += 1;
+        }
+    }
 }
 
 use board::common::{Irq, Poll};
