@@ -2,6 +2,17 @@ pub use bobbin_common::configure::*;
 pub use bobbin_common::enabled::*;
 pub use bobbin_common::serial::*;
 
+
+use bobbin_common::{Irq, Poll};
+use bobbin_common::ring::Ring;
+use bobbin_cortexm::hal::scb::SCB;
+use bobbin_cortexm::hal::nvic;
+use bobbin_cortexm::wfi;
+
+use core::marker::PhantomData;
+use core::fmt;
+
+
 use chip::uart::*;
 
 #[derive(Debug, Default)]
@@ -65,5 +76,107 @@ impl SerialRx<u8> for UartPeriph {
 
     fn rx(&self) -> u8 {
         self.d().rt().value()
+    }
+}
+
+pub struct UartDriver<'a> {
+    uart: UartPeriph,
+    tx: Ring<'a, u8>,
+    rx: Ring<'a, u8>,
+    _phantom: PhantomData<&'a mut [u8]>,
+}
+
+unsafe impl<'a> Sync for UartDriver<'a> {}
+unsafe impl<'a> Send for UartDriver<'a> {}
+
+impl<'a> UartDriver<'a> {
+    pub fn new<P: Into<UartPeriph>>(uart: P, tx_buf: &'a mut [u8], rx_buf: &'a mut [u8]) -> Self {
+        UartDriver { 
+            uart: uart.into(),
+            tx: Ring::new(tx_buf),
+            rx: Ring::new(rx_buf),
+            _phantom: PhantomData,
+        }
+    }
+
+    pub fn enable_irq<I: Irq>(&self, irq: &I) {        
+        nvic::set_enabled(irq.irq_num() as usize, false);
+        SCB.set_irq_handler(irq.irq_num() as usize, None);
+        SCB.set_irq_handler(irq.irq_num() as usize, Some(irq.wrap(self)));
+        nvic::set_enabled(irq.irq_num() as usize, true);
+    }
+
+    pub fn tx_len(&self) -> usize {
+        self.tx.len()
+    }
+
+    pub fn rx_len(&self) -> usize {
+        self.rx.len()
+    }
+
+    pub fn read(&self, buf: &mut [u8]) {
+        while self.rx.len() < buf.len() {
+            wfi()
+        }
+        self.rx.read(buf);
+    }
+
+    pub fn read_byte(&self) -> u8 {
+        while self.rx.len() == 0 {
+            wfi()
+        }
+        self.rx.dequeue().unwrap()
+    }
+
+    pub fn write(&self, buf: &[u8]) -> usize {
+        let v = self.tx.write(buf);
+        self.tx_enable();
+        v
+    }
+
+    pub fn tx_enable(&self) {
+        self.uart.with_c2(|r| r.set_tie(true).set_te(true));
+    }
+    
+    pub fn tx_disable(&self) {        
+        self.uart.with_c2(|r| r.set_tie(false).set_te(false));
+    }
+
+    pub fn rx_enable(&self) {        
+        self.uart.with_c2(|r| r.set_rie(true).set_re(true));
+    }
+    
+    pub fn rx_disable(&self) {        
+        self.uart.with_c2(|r| r.set_rie(false).set_re(false));
+    }    
+}
+
+impl<'a> Poll for UartDriver<'a> {
+    fn poll(&self) {       
+        let s1 = self.uart.s1();
+        
+        if s1.test_tdre() {
+            if let Some(b) = self.tx.dequeue() {
+                self.uart.set_d(|r| r.set_rt(b));
+            } else {
+                self.tx_disable();
+            }
+        }
+        if s1.test_rdrf() {
+            self.rx.enqueue(self.uart.d().rt().value());
+        }
+    }
+}
+
+impl<'a> fmt::Write for UartDriver<'a> {
+    fn write_str(&mut self, s: &str) -> fmt::Result {        
+        for byte in s.as_bytes().iter().cloned() {
+            if byte == b'\n' {
+                self.tx.enqueue(b'\r');
+            }
+            self.tx.enqueue(byte);
+        }
+        self.tx_enable();
+        Ok(())
     }
 }

@@ -549,7 +549,7 @@
             (interrupt
                 (name UART0_RX_TX)
                 (value 31)
-                (type UART_RX_TX)
+                (type UART)
             )
             (interrupt
                 (name UART0_ERR)
@@ -566,7 +566,7 @@
             (interrupt
                 (name UART1_RX_TX)
                 (value 33)
-                (type UART_RX_TX)
+                (type UART)
             )
             (interrupt
                 (name UART1_ERR)
@@ -582,8 +582,8 @@
             (signal (name UART2_RX) (type RX))
             (interrupt
                 (name UART2_RX_TX)
-                (type UART_RX_TX)
                 (value 35)
+                (type UART)
             )
             (interrupt
                 (name UART2_ERR)
@@ -600,7 +600,7 @@
             (interrupt
                 (name UART3_RX_TX)
                 (value 37)
-                (type UART_RX_TX)
+                (type UART)
             )
             (interrupt
                 (name UART3_ERR)
@@ -617,7 +617,7 @@
             (interrupt
                 (name UART4_RX_TX)
                 (value 66)
-                (type UART_RX_TX)
+                (type UART)
             )
             (interrupt
                 (name UART4_ERR)
@@ -634,7 +634,7 @@
             (interrupt
                 (name UART5_RX_TX)
                 (value 68)
-                (type UART_RX_TX)
+                (type UART)
             )
             (interrupt
                 (name UART5_ERR)

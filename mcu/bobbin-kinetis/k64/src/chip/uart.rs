@@ -45,8 +45,8 @@ pub trait IrqUartLon<T> {
     fn irq_uart_lon(&self) -> T;
 }
 
-pub trait IrqUartRxTx<T> {
-    fn irq_uart_rx_tx(&self) -> T;
+pub trait IrqUart<T> {
+    fn irq_uart(&self) -> T;
 }
 
 pub trait IrqUartErr<T> {
@@ -57,48 +57,48 @@ impl IrqUartLon<super::irq::IrqUart0Lon> for Uart0 {
     fn irq_uart_lon(&self) -> super::irq::IrqUart0Lon { super::irq::IRQ_UART0_LON }
 }
 
-impl IrqUartRxTx<super::irq::IrqUart0RxTx> for Uart0 {
-    fn irq_uart_rx_tx(&self) -> super::irq::IrqUart0RxTx { super::irq::IRQ_UART0_RX_TX }
+impl IrqUart<super::irq::IrqUart0RxTx> for Uart0 {
+    fn irq_uart(&self) -> super::irq::IrqUart0RxTx { super::irq::IRQ_UART0_RX_TX }
 }
 
 impl IrqUartErr<super::irq::IrqUart0Err> for Uart0 {
     fn irq_uart_err(&self) -> super::irq::IrqUart0Err { super::irq::IRQ_UART0_ERR }
 }
 
-impl IrqUartRxTx<super::irq::IrqUart1RxTx> for Uart1 {
-    fn irq_uart_rx_tx(&self) -> super::irq::IrqUart1RxTx { super::irq::IRQ_UART1_RX_TX }
+impl IrqUart<super::irq::IrqUart1RxTx> for Uart1 {
+    fn irq_uart(&self) -> super::irq::IrqUart1RxTx { super::irq::IRQ_UART1_RX_TX }
 }
 
 impl IrqUartErr<super::irq::IrqUart1Err> for Uart1 {
     fn irq_uart_err(&self) -> super::irq::IrqUart1Err { super::irq::IRQ_UART1_ERR }
 }
 
-impl IrqUartRxTx<super::irq::IrqUart2RxTx> for Uart2 {
-    fn irq_uart_rx_tx(&self) -> super::irq::IrqUart2RxTx { super::irq::IRQ_UART2_RX_TX }
+impl IrqUart<super::irq::IrqUart2RxTx> for Uart2 {
+    fn irq_uart(&self) -> super::irq::IrqUart2RxTx { super::irq::IRQ_UART2_RX_TX }
 }
 
 impl IrqUartErr<super::irq::IrqUart2Err> for Uart2 {
     fn irq_uart_err(&self) -> super::irq::IrqUart2Err { super::irq::IRQ_UART2_ERR }
 }
 
-impl IrqUartRxTx<super::irq::IrqUart3RxTx> for Uart3 {
-    fn irq_uart_rx_tx(&self) -> super::irq::IrqUart3RxTx { super::irq::IRQ_UART3_RX_TX }
+impl IrqUart<super::irq::IrqUart3RxTx> for Uart3 {
+    fn irq_uart(&self) -> super::irq::IrqUart3RxTx { super::irq::IRQ_UART3_RX_TX }
 }
 
 impl IrqUartErr<super::irq::IrqUart3Err> for Uart3 {
     fn irq_uart_err(&self) -> super::irq::IrqUart3Err { super::irq::IRQ_UART3_ERR }
 }
 
-impl IrqUartRxTx<super::irq::IrqUart4RxTx> for Uart4 {
-    fn irq_uart_rx_tx(&self) -> super::irq::IrqUart4RxTx { super::irq::IRQ_UART4_RX_TX }
+impl IrqUart<super::irq::IrqUart4RxTx> for Uart4 {
+    fn irq_uart(&self) -> super::irq::IrqUart4RxTx { super::irq::IRQ_UART4_RX_TX }
 }
 
 impl IrqUartErr<super::irq::IrqUart4Err> for Uart4 {
     fn irq_uart_err(&self) -> super::irq::IrqUart4Err { super::irq::IRQ_UART4_ERR }
 }
 
-impl IrqUartRxTx<super::irq::IrqUart5RxTx> for Uart5 {
-    fn irq_uart_rx_tx(&self) -> super::irq::IrqUart5RxTx { super::irq::IRQ_UART5_RX_TX }
+impl IrqUart<super::irq::IrqUart5RxTx> for Uart5 {
+    fn irq_uart(&self) -> super::irq::IrqUart5RxTx { super::irq::IRQ_UART5_RX_TX }
 }
 
 impl IrqUartErr<super::irq::IrqUart5Err> for Uart5 {
