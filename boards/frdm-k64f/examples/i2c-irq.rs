@@ -6,6 +6,7 @@ extern crate frdm_k64f as board;
 
 use board::hal::i2c::*;
 use board::hal::port::*;
+use board::hal::gpio::*;
 
 
 #[no_mangle]
@@ -26,6 +27,18 @@ pub extern "C" fn main() -> ! {
     I2C0.sim_enable();
 
     let i2c = I2C0;
+    // Reset hung I2C Bus
+    { 
+        PTE24.set_mux_gpio();
+        PTE25.set_mux_gpio();
+
+        for _ in 0..10 {
+            PTE24.gpio_pin().set_dir_output().toggle_output();
+            PTE25.gpio_pin().set_dir_output().toggle_output();
+            board::delay(10);
+        }
+    }
+
     let _i2c_scl = PTE24.mode_i2c_scl(&i2c).set_pull_none().set_ode(true);
     let _i2c_sda = PTE25.mode_i2c_sda(&i2c).set_pull_none().set_ode(true);
     
@@ -44,6 +57,8 @@ pub extern "C" fn main() -> ! {
 
     // Check WHO_AM_I @ 0x0d = 0xC7
     assert_eq!(i2c.reg_read(addr, 0x0d), 0xc7);
+
+    println!("WHO_AMI_:       0x{:02x} = 0xc7", i2c.reg_read(addr, 0x0d));
 
     // Standby Mode
     i2c.reg_write(addr, 0x2A, 0x00);
@@ -222,42 +237,45 @@ impl<'a> I2cDriver<'a> {
     
 
     pub fn next(&self) {            
-        self.i2c.with_c1(|r| r.set_iicen(1).set_iicie(1));
-        self.i2c.with_flt(|r| r.set_ssie(1));
+        self.i2c.with_c1(|r| r.set_iicen(1));
         loop {
             // If currently processing an action, return without any changes
             if self.action().is_some() { return }                    
             // Get the next action off of the queue
             if let Some(action) = self.tx.dequeue() {
-                println!("next: {:?}", action);                
+                // println!("next: {:?}", action);                
+                // board::delay(1);
                 match action {
                     I2cAction::Idle => {},
                     I2cAction::Start(_) => {
                         self.action.set(Some(action));
-                        self.i2c.with_c1(|r| r.set_mst(1).set_tx(1));
+                        self.i2c.with_flt(|r| r.set_startf(0).set_ssie(1));                        
+                        self.i2c.with_c1(|r| r.set_mst(1).set_tx(1).set_iicie(1));
                     },
                     I2cAction::Restart(_) => {
                         self.action.set(Some(action));
-                        self.i2c.with_c1(|r| r.set_mst(1).set_rsta(1).set_tx(1));
+                        self.i2c.with_c1(|r| r.set_iicie(1));                     
                     },
                     I2cAction::WriteBytes(_) => {},
-                    I2cAction::WriteByte(_) => {
+                    I2cAction::WriteByte(_) => {   
                         self.action.set(Some(action));
+                        self.i2c.with_c1(|r| r.set_iicie(1));                     
                     },
-                    I2cAction::ReadBytes(n) => {
-                        self.i2c.with_c1(|r| r.set_txak(n == 1));
-                        let _ = self.i2c.data();
-                        self.action.set(Some(I2cAction::ReadByte(n)));
+                    I2cAction::ReadBytes(_) => {
+                        self.action.set(Some(action));
+                        self.i2c.with_c1(|r| r.set_iicie(1));                     
                     },
                     I2cAction::ReadByte(_) => {
                         panic!("Unexpected ReadByte in Tx Queue")
                     },
                     I2cAction::Stop => {
-                        self.i2c.with_c1(|r| r.set_mst(0));
                         self.action.set(Some(action));
+                        self.i2c.with_c1(|r| r.set_iicie(1));                     
                     },
                 }                
             } else {                
+                // self.i2c.with_flt(|r| r.set_ssie(0));
+                // self.i2c.with_c1(|r| r.set_iicen(0).set_iicie(0));                
                 return
             }
         }
@@ -266,38 +284,60 @@ impl<'a> I2cDriver<'a> {
 
 impl<'a> Poll for I2cDriver<'a> {
     fn poll(&self) {       
-        let action = self.action().unwrap();
+        let action = self.action();
 
         let c1 = self.i2c.c1();
         let s = self.i2c.s();
         let flt = self.i2c.flt();
+
+        self.i2c.set_s(|r| r.set_iicif(1));
         
-        println!("S: {:?} FLT: {:?} C1: {:?} Action: {:?}", s, flt, c1, action);
+        // println!("S: {:?} FLT: {:?} C1: {:?} Action: {:?}", s, flt, c1, action);
         self.i2c.set_s(|r| r.set_iicif(true));
+        if action.is_none() { 
+            println!("ACTION=NONE");
+            loop {}
+        }
+        let action = action.unwrap();
         match action {
             I2cAction::Start(addr) => {
                 if flt.test_startf() {
+                    self.i2c.with_flt(|r| r.set_startf(1).set_ssie(0));
                     self.i2c.with_d(|r| r.set_data(addr));
+                    self.i2c.with_c1(|r| r.set_iicie(0));
                     self.action.set(None);
                 } 
             },
             I2cAction::Restart(addr) => {
                 if flt.test_startf() {
+                    self.i2c.with_flt(|r| r.set_startf(1).set_ssie(0));
                     self.i2c.with_d(|r| r.set_data(addr));
+                    self.i2c.with_c1(|r| r.set_iicie(0));                    
                     self.action.set(None);
-                } 
+                } else {
+                    self.i2c.with_flt(|r| r.set_startf(0).set_ssie(1));                        
+                    self.i2c.with_c1(|r| r.set_rsta(1).set_tx(1));
+                }
             },            
             I2cAction::WriteByte(data) => {
                 if s.test_tcf() {
                     self.i2c.with_d(|r| r.set_data(data));
+                    self.i2c.with_c1(|r| r.set_iicie(0));                    
                     self.action.set(None);
                 }
             },
+            I2cAction::ReadBytes(n) => {
+                if s.test_tcf() {
+                    self.i2c.with_c1(|r| r.set_tx(0).set_txak(n == 1));
+                    let _ = self.i2c.data();
+                    self.action.set(Some(I2cAction::ReadByte(n-1)));
+                }
+            }
             I2cAction::ReadByte(n) => {
                 if s.test_tcf() {
                     match n {
                         1 => {
-                            self.i2c.set_tx(true);
+                            // self.i2c.set_tx(true);
                             self.rx.enqueue(self.i2c.d().data().value());                                                        
                         },
                         2 => {
@@ -317,16 +357,18 @@ impl<'a> Poll for I2cDriver<'a> {
             },
             I2cAction::Stop => {
                 if flt.test_stopf() {
+                    self.i2c.with_flt(|r| r.set_stopf(1).set_ssie(0));
+                    self.i2c.with_c1(|r| r.set_mst(0).set_iicie(0));
                     self.action.set(None)
                 } else if s.test_tcf() {
-                    
-                }                 
+                    self.i2c.with_flt(|r| r.set_ssie(1));
+                    self.i2c.with_c1(|r| r.set_mst(0));
+                }        
             },            
 
             _ => unimplemented!()
         }
-
         self.next();
-        board::delay(100);
+        // board::delay(1);
     }
 }
