@@ -275,7 +275,7 @@ impl<'a> I2cDriver<'a> {
                 }                
             } else {                
                 // self.i2c.with_flt(|r| r.set_ssie(0));
-                // self.i2c.with_c1(|r| r.set_iicen(0).set_iicie(0));                
+                // self.i2c.with_c1(|r| r.set_iicie(0));                
                 return
             }
         }
@@ -286,9 +286,7 @@ impl<'a> Poll for I2cDriver<'a> {
     fn poll(&self) {       
         let action = self.action();
 
-        let c1 = self.i2c.c1();
         let s = self.i2c.s();
-        let flt = self.i2c.flt();
 
         self.i2c.set_s(|r| r.set_iicif(1));
         
@@ -301,6 +299,7 @@ impl<'a> Poll for I2cDriver<'a> {
         let action = action.unwrap();
         match action {
             I2cAction::Start(addr) => {
+                let flt = self.i2c.flt();
                 if flt.test_startf() {
                     self.i2c.with_flt(|r| r.set_startf(1).set_ssie(0));
                     self.i2c.with_d(|r| r.set_data(addr));
@@ -309,6 +308,7 @@ impl<'a> Poll for I2cDriver<'a> {
                 } 
             },
             I2cAction::Restart(addr) => {
+                let flt = self.i2c.flt();                
                 if flt.test_startf() {
                     self.i2c.with_flt(|r| r.set_startf(1).set_ssie(0));
                     self.i2c.with_d(|r| r.set_data(addr));
@@ -356,6 +356,7 @@ impl<'a> Poll for I2cDriver<'a> {
                 }
             },
             I2cAction::Stop => {
+                let flt = self.i2c.flt();
                 if flt.test_stopf() {
                     self.i2c.with_flt(|r| r.set_stopf(1).set_ssie(0));
                     self.i2c.with_c1(|r| r.set_mst(0).set_iicie(0));
