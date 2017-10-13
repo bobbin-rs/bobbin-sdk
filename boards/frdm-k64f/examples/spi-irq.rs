@@ -173,43 +173,10 @@ impl<'a> SpiDriver<'a> {
         self.action.get()
     }
 
-    pub fn next(&self) {
-        if self.action().is_none() {
-            loop {
-                if let Some(action) = self.tx.dequeue() {
-                    println!("next: {:?}", action);
-                    match action {
-                        SpiAction::Start(pin) => {
-                            self.pins[pin as usize].set_output(false);
-                        },
-                        SpiAction::Write(b) | SpiAction::Transfer(b) => { 
-                            self.action.set(Some(action));
-                            // self.spi.set_enabled(true);
-                            // self.spi.set_tcr(|r| r.set_framesz(7));
-                            // self.spi.tx(b);
-                            // self.spi.with_ier(|r| r.set_tdie(true));
-                            break;
-                        },
-                        SpiAction::Repeat(n) => {
-                            self.repeat.set(n);
-                        }
-                        SpiAction::Stop(pin) => {
-                            self.pins[pin as usize].set_output(true);
-                            // self.spi.set_enabled(false);                            
-                        },
-                        SpiAction::Idle => {}
-                    }
-                } else {
-                    self.action.set(None);
-                    self.transfer_disable();
-                    break;
-                }
-            }
-        }
-    }
+
 
     pub fn reg_read(&self, pin: u8, reg: u8) -> u8 {
-        println!("reg_read: {} {:02x}", pin, reg);
+        // println!("reg_read: {} {:02x}", pin, reg);
         self.enqueue(SpiAction::Start(pin));
         self.enqueue(SpiAction::Write(reg));
         self.enqueue(SpiAction::Transfer(0x55));        
@@ -255,41 +222,110 @@ impl<'a> SpiDriver<'a> {
         // self.spi.set_ier(|r| r);
         // self.spi.set_enabled(false);
     }
+    
+    pub fn tx(&self, value: u8) {
+        self.spi.set_pushr(|_| Pushr(0).set_txdata(value));
 
+    }
+
+    pub fn rx(&self) -> u8 {
+        self.spi.popr().rxdata().value() as u8
+    }
+
+    pub fn next(&self) {
+        if self.action().is_none() {
+            loop {
+                if let Some(action) = self.tx.dequeue() {
+                    println!("next: {:?}", action);
+                    match action {
+                        SpiAction::Start(pin) => {   
+                            // self.spi.with_mcr(|r| r.set_halt(1).set_clr_txf(1).set_clr_rxf(1));   
+                            self.spi.with_mcr(|r| r.set_mdis(0).set_dis_txf(0).set_dis_rxf(0).set_halt(1));                                                  
+                            self.spi.with_mcr(|r| r.set_mdis(0));                                                  
+                            self.pins[pin as usize].set_output(false);
+                            self.spi.with_mcr(|r| r.set_halt(0));
+                        },
+                        SpiAction::Write(b) | SpiAction::Transfer(b) => { 
+                            // while self.spi.sr().tfff() == 0 {}
+                            self.action.set(Some(action));              
+                            // self.tx(b);
+                            self.spi.with_rser(|r| r.set_tfff_re(1).set_rfdf_re(1));
+                            break;
+
+                        },
+                        SpiAction::Repeat(n) => {
+                            self.repeat.set(n);
+                        }
+                        SpiAction::Stop(pin) => {
+                            self.spi.with_mcr(|r| r.set_mdis(1).set_halt(1));
+                            self.pins[pin as usize].set_output(true);
+
+                            // self.spi.set_enabled(false);                            
+                        },
+                        SpiAction::Idle => {}
+                    }
+                } else {
+                    // println!("Loop Done");
+                    self.action.set(None);
+                    // self.transfer_disable();
+                    break;
+                }
+            }
+        }
+    }
 }
 
 impl<'a> Poll for SpiDriver<'a> {
     fn poll(&self) {       
-        println!("POLL");
         let sr = self.spi.sr();
-        let action = self.action().unwrap();
+        let action = self.action();
         let repeat = self.repeat.get();
-        println!("SR: {:?} Action: {:?}", sr, self.action());        
-        // match action {
-        //     SpiAction::Write(b) => { 
-        //         if sr.rdf() != 0 {
-        //             let _: u8  = self.spi.rx(); 
-        //             if repeat > 0 {
-        //                 self.repeat.set(repeat - 1);
-        //                 self.spi.tx(b);
-        //             } else {
-        //                 self.action.set(None);
-        //             }
-        //         }
-        //     },
-        //     SpiAction::Transfer(b) => { 
-        //         if sr.rdf() != 0 {
-        //             self.rx.enqueue(self.spi.rx()); 
-        //             if repeat > 0 { 
-        //                 self.repeat.set(repeat - 1);
-        //                 self.spi.tx(b);
-        //             } else {
-        //                 self.action.set(None);
-        //             }
-        //         }
-        //     },
-        //     _ => {},
-        // }            
-        // self.next();
+        // println!("SR: {:?} Action: {:?}", sr, self.action());        
+        // board::delay(1);
+        let action = action.unwrap();
+        match action {
+            SpiAction::Write(b) => { 
+                if sr.test_tfff() {
+                    self.tx(b);
+                    self.spi.with_sr(|r| r.set_tfff(1));
+                }
+                if sr.test_rfdf() {
+                    // board::delay(1);
+                    self.spi.with_sr(|r| r.set_rfdf(1));
+                    let _: u8  = self.rx(); 
+                    if repeat > 0 {
+                        self.repeat.set(repeat - 1);
+                        while self.spi.sr().tfff() == 0 {}
+                    } else {
+                        self.spi.with_rser(|r| r.set_tfff_re(0).set_rfdf_re(0));
+                        self.action.set(None);
+                    }
+                }
+            },
+            SpiAction::Transfer(b) => { 
+                if sr.test_tfff() {
+                    self.tx(b);
+                    self.spi.with_sr(|r| r.set_tfff(1));
+                }
+                if sr.test_rfdf() {
+                    // board::delay(1);
+                    self.spi.with_sr(|r| r.set_rfdf(1));
+                    self.rx.enqueue(self.rx()); 
+                    if repeat > 0 { 
+                        self.repeat.set(repeat - 1);
+                        // while self.spi.sr().tfff() == 0 {}
+                        // self.tx(b);
+                    } else {
+                        self.spi.with_rser(|r| r.set_tfff_re(0).set_rfdf_re(0));
+                        self.action.set(None);
+                    }
+                }
+            },
+
+            _ => {},
+        }            
+        self.next();
+        // println!(".");
+        // board::delay(100);
     }
 }
