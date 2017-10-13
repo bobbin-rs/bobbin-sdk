@@ -96,4 +96,8 @@
         (has-channels)
         (prototype "periph/adc.rx")
     )    
+    (peripheral-group
+        (name USB)
+        (prototype "periph/usb.rx")
+    )      
 )

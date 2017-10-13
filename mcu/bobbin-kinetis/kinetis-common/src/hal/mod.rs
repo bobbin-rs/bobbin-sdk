@@ -20,3 +20,4 @@ pub mod dmamux;
 pub mod wdog;
 pub mod adc;
 pub mod crc;
+pub mod usb;

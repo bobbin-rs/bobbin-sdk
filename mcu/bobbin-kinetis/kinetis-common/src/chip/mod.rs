@@ -23,3 +23,4 @@ pub mod dmamux;
 pub mod dma;
 pub mod edma;
 pub mod adc;
+pub mod usb;

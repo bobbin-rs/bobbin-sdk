@@ -48,6 +48,7 @@ irq!(IRQ_UART4_RX_TX, IrqUart4RxTx, 66);
 irq!(IRQ_UART4_ERR, IrqUart4Err, 67);
 irq!(IRQ_UART5_RX_TX, IrqUart5RxTx, 68);
 irq!(IRQ_UART5_ERR, IrqUart5Err, 69);
+irq!(IRQ_USB0, IrqUsb0, 53);
 irq!(IRQ_CAN0_ORED_MESSAGE_BUFFER, IrqCan0OredMessageBuffer, 75);
 irq!(IRQ_CAN0_BUS_OFF, IrqCan0BusOff, 76);
 irq!(IRQ_CAN0_ERROR, IrqCan0Error, 77);
@@ -61,6 +62,19 @@ irq!(IRQ_PORTD, IrqPortd, 62);
 irq!(IRQ_PORTE, IrqPorte, 63);
 irq!(IRQ_ADC0, IrqAdc0, 39);
 irq!(IRQ_ADC1, IrqAdc1, 73);
+
+pub fn handler(index: usize) -> Option<Handler> {
+    unsafe { 
+        R_INTERRUPT_HANDLERS[index]
+    } 
+}
+
+pub fn set_handler(index: usize, handler: Option<Handler>) {
+    unsafe { 
+        assert!(R_INTERRUPT_HANDLERS[index].is_some() != handler.is_some());
+        R_INTERRUPT_HANDLERS[index] = handler
+  };
+}
 
 #[cfg_attr(target_os="none", link_section=".vector.interrupts")]
 #[no_mangle]
@@ -118,7 +132,7 @@ pub static mut INTERRUPT_HANDLERS: [Option<Handler>; 86] = [
     None,
     None,
     None,
-    None,
+    None,                          // IRQ 53: No Description
     None,
     None,
     None,

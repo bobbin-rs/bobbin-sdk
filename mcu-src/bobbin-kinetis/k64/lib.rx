@@ -646,6 +646,20 @@
         )
     )
     (peripheral-group
+        (name USB)
+        (module (name kinetis_common::chip::usb::*))
+        (peripheral
+            (name USB0)
+            (address 0x40072000)
+            (description "Universal Serial Bus, OTG Capable Controller")
+            (interrupt
+                (name USB0)
+                (value 53)
+                (type USB)
+            )
+        )
+    )
+    (peripheral-group
         (name FLEXCAN)
         (module (name kinetis_common::chip::flexcan::*))
         (peripheral
