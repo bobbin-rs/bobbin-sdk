@@ -236,20 +236,19 @@ impl<'a> SpiDriver<'a> {
         if self.action().is_none() {
             loop {
                 if let Some(action) = self.tx.dequeue() {
-                    println!("next: {:?}", action);
+                    // println!("next: {:?}", action);
                     match action {
                         SpiAction::Start(pin) => {   
-                            // self.spi.with_mcr(|r| r.set_halt(1).set_clr_txf(1).set_clr_rxf(1));   
-                            self.spi.with_mcr(|r| r.set_mdis(0).set_dis_txf(0).set_dis_rxf(0).set_halt(1));                                                  
-                            self.spi.with_mcr(|r| r.set_mdis(0));                                                  
+                            self.spi.with_mcr(|r| r.set_mdis(0).set_halt(1));                                                  
                             self.pins[pin as usize].set_output(false);
                             self.spi.with_mcr(|r| r.set_halt(0));
                         },
                         SpiAction::Write(b) | SpiAction::Transfer(b) => { 
-                            // while self.spi.sr().tfff() == 0 {}
-                            self.action.set(Some(action));              
-                            // self.tx(b);
-                            self.spi.with_rser(|r| r.set_tfff_re(1).set_rfdf_re(1));
+                            self.action.set(Some(action));     
+                            self.tx(b);
+                            self.spi.with_rser(|r| r.set_tcf_re(1));
+         
+                            // self.spi.with_rser(|r| r.set_tfff_re(1).set_rfdf_re(1));
                             break;
 
                         },
@@ -257,7 +256,7 @@ impl<'a> SpiDriver<'a> {
                             self.repeat.set(n);
                         }
                         SpiAction::Stop(pin) => {
-                            self.spi.with_mcr(|r| r.set_mdis(1).set_halt(1));
+                            // self.spi.with_mcr(|r| r.set_mdis(0).set_halt(1));
                             self.pins[pin as usize].set_output(true);
 
                             // self.spi.set_enabled(false);                            
@@ -285,38 +284,27 @@ impl<'a> Poll for SpiDriver<'a> {
         let action = action.unwrap();
         match action {
             SpiAction::Write(b) => { 
-                if sr.test_tfff() {
-                    self.tx(b);
-                    self.spi.with_sr(|r| r.set_tfff(1));
-                }
-                if sr.test_rfdf() {
-                    // board::delay(1);
-                    self.spi.with_sr(|r| r.set_rfdf(1));
+                if sr.test_tcf() {
+                    self.spi.with_sr(|r| r.set_tcf(1));
                     let _: u8  = self.rx(); 
                     if repeat > 0 {
+                        self.tx(b);
                         self.repeat.set(repeat - 1);
-                        while self.spi.sr().tfff() == 0 {}
                     } else {
-                        self.spi.with_rser(|r| r.set_tfff_re(0).set_rfdf_re(0));
+                        self.spi.with_rser(|r| r.set_tcf_re(0));
                         self.action.set(None);
                     }
                 }
             },
             SpiAction::Transfer(b) => { 
-                if sr.test_tfff() {
-                    self.tx(b);
-                    self.spi.with_sr(|r| r.set_tfff(1));
-                }
-                if sr.test_rfdf() {
-                    // board::delay(1);
+                if sr.test_tcf() {
                     self.spi.with_sr(|r| r.set_rfdf(1));
                     self.rx.enqueue(self.rx()); 
                     if repeat > 0 { 
+                        self.tx(b);
                         self.repeat.set(repeat - 1);
-                        // while self.spi.sr().tfff() == 0 {}
-                        // self.tx(b);
                     } else {
-                        self.spi.with_rser(|r| r.set_tfff_re(0).set_rfdf_re(0));
+                        self.spi.with_rser(|r| r.set_tcf_re(0));
                         self.action.set(None);
                     }
                 }
