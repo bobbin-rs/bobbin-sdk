@@ -1683,6 +1683,7 @@
             (bit-width 1)
             (access read-write)
             (description "USB Clock Gate Control")
+            (link (name EN) (peripheral-group USB) (peripheral USB0))            
             (value
                 (value "#0")
                 (name "0")
@@ -1695,7 +1696,7 @@
             )
         )
         (field
-            (name CMP)
+            (name CMP)  
             (bit-offset 19)
             (bit-width 1)
             (access read-write)

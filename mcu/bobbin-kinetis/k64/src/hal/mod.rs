@@ -172,3 +172,9 @@ pub mod flexcan {
     pub use kinetis_common::hal::flexcan::*;
     pub use super::sim::SimEnabled;
 }
+
+pub mod usb {
+    pub use chip::usb::*;
+    pub use kinetis_common::hal::usb::*;
+    pub use super::sim::SimEnabled;
+}

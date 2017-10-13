@@ -3692,6 +3692,11 @@ impl En for super::uart::Uart3 {
     #[inline] fn set_en(&self, value: u32) { SIM.with_scgc4(|r| r.set_uart3(value)); }
 }
 
+impl En for super::usb::Usb0 {
+    #[inline] fn en(&self) -> u32 { SIM.scgc4().usbotg().into() }
+    #[inline] fn set_en(&self, value: u32) { SIM.with_scgc4(|r| r.set_usbotg(value)); }
+}
+
 impl En for super::lptmr::Lptmr0 {
     #[inline] fn en(&self) -> u32 { SIM.scgc5().lptmr().into() }
     #[inline] fn set_en(&self, value: u32) { SIM.with_scgc5(|r| r.set_lptmr(value)); }
