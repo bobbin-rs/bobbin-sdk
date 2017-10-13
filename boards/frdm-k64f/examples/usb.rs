@@ -1,5 +1,6 @@
 #![no_std]
 #![no_main]
+#![feature(repr_align, attr_literals)]
 
 #[macro_use]
 extern crate frdm_k64f as board;
@@ -9,11 +10,24 @@ use board::hal::usb::*;
 // use board::hal::clock::*;
 // use board::clock::CLK;
 
+#[derive(Debug, Default, Clone, Copy)]
+pub struct BufferDescriptor {
+    desc: u32,
+    addr: u32,
+}
+
+#[repr(align(512))]
+pub struct BufferDescriptorTable([BufferDescriptor; 16]);
+
 #[no_mangle]
 pub extern "C" fn main() -> ! {
     board::init();
     println!("Running USB");
     board::delay(100);
+    
+    let mut bdt = BufferDescriptorTable([BufferDescriptor::default() ; 16]);
+
+    println!("BDT: {:p}", &bdt);
 
     let usb = USB0;
 
@@ -52,6 +66,10 @@ pub extern "C" fn main() -> ! {
     // usb.reset();
     
     println!("Enabling usb");
+
+    usb.set_bdt(&mut bdt as *mut BufferDescriptorTable as u32);
+    usb.dump_bdt();
+
     usb.enable();
     usb.dump();
     println!("Done with Init");
@@ -110,6 +128,28 @@ impl UsbDriver {
         println!("ERRSTAT:  {:?}", self.usb.errstat());
         println!("OTGISTAT: {:?}", self.usb.otgistat());
         println!("USBTRC0:  {:?}", self.usb.usbtrc0());
+    }
+
+
+    pub fn set_bdt(&self, bdt: u32) {
+        self.usb.set_bdtpage1(|_| Bdtpage1((bdt >> 8) as u8));
+        self.usb.set_bdtpage2(|_| Bdtpage2((bdt >> 16) as u8));
+        self.usb.set_bdtpage3(|_| Bdtpage3((bdt >> 24) as u8));
+        // USB0->BDTPAGE1 = ((uint32_t) buf_desc_table) >> 8;  //bits 15-9
+        // USB0->BDTPAGE2 = ((uint32_t) buf_desc_table) >> 16; //bits 23-16
+        // USB0->BDTPAGE3 = ((uint32_t) buf_desc_table) >> 24; //bits 31-24
+    }
+    pub fn bdt_base(&self) -> u32 {
+        (self.usb.bdtpage1().0 as u32) << 8 |
+        (self.usb.bdtpage2().0 as u32) << 16 |
+        (self.usb.bdtpage3().0 as u32) << 24
+    }
+
+    pub fn dump_bdt(&self) {
+        println!("BDTPAGE1: {:?}", self.usb.bdtpage1());
+        println!("BDTPAGE2: {:?}", self.usb.bdtpage2());
+        println!("BDTPAGE3: {:?}", self.usb.bdtpage3());
+        println!("BDT:      0x{:08x}", self.bdt_base());
     }
 
     pub fn enable(&self) {
