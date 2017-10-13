@@ -38,6 +38,14 @@ impl SpiPeriph {
         self.with_mcr(|r| r.set_halt(1)); 
         
     }
+
+    pub fn reg_read(&self, reg: u8) -> u8 {
+        let mut buf = [0u8];
+        self.write(&[reg]);   
+        self.read(&mut buf);
+        buf[0]
+    }
+
 }
 
 impl Write for SpiPeriph {
