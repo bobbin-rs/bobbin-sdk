@@ -514,6 +514,7 @@
             (interrupt
                 (name I2C0)
                 (value 24)
+                (type I2C)
             )        
         )
         (peripheral
@@ -527,6 +528,7 @@
             (interrupt
                 (name I2C1)
                 (value 25)
+                (type I2C)
             )
         )
     )

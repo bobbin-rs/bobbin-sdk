@@ -11,19 +11,19 @@ impl I2cPeriph {
         self
     }
 
-    fn data(&self) -> u8 {
+    pub fn data(&self) -> u8 {
         self.d().data().value()
     }
 
-    fn set_data(&self, d: u8) {
+    pub fn set_data(&self, d: u8) {
         self.set_d(|_| D(0).set_data(d));
     }
 
-    fn set_tx(&self, value: bool) {
+    pub fn set_tx(&self, value: bool) {
         self.with_c1(|r| r.set_tx(value));
     }
 
-    fn set_txak(&self, value: bool) {
+    pub fn set_txak(&self, value: bool) {
         self.with_c1(|r| r.set_txak(value));
     }    
 

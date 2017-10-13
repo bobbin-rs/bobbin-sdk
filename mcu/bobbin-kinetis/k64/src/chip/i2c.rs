@@ -17,3 +17,15 @@ impl super::sig::SignalI2cSda<super::sig::I2c1Sda> for I2c1 {}
 
 
 
+pub trait IrqI2c<T> {
+    fn irq_i2c(&self) -> T;
+}
+
+impl IrqI2c<super::irq::IrqI2c0> for I2c0 {
+    fn irq_i2c(&self) -> super::irq::IrqI2c0 { super::irq::IRQ_I2C0 }
+}
+
+impl IrqI2c<super::irq::IrqI2c1> for I2c1 {
+    fn irq_i2c(&self) -> super::irq::IrqI2c1 { super::irq::IRQ_I2C1 }
+}
+
