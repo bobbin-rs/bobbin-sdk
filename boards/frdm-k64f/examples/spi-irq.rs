@@ -49,31 +49,26 @@ pub extern "C" fn main() -> ! {
         println!("{:02x}: {:02x}", r, spi.reg_read(0, r));
     }
 
-    // let mut buf = [0u8; 6];
-    // spi.transfer(&[0x0a, 0x55, 0x55, 0x55, 0x55, 0x55], &mut buf);
-    // cs.set_output(true);
-    // for i in 1..buf.len() {
-    //     print!("{:02x} ", buf[i]);
-    // }
-    // println!("");
+    let mut buf = [0u8; 6];
+    spi.transfer(0, &[0x0a, 0x55, 0x55, 0x55, 0x55, 0x55], &mut buf);
+    for i in 1..buf.len() {
+        print!("{:02x} ", buf[i]);
+    }
+    println!("");
 
-    // cs.set_output(false);
-    // let mut buf = [0u8; 6];
-    // spi.transfer(&[0x0b, 0x55, 0x55, 0x55, 0x55, 0x55], &mut buf);
-    // cs.set_output(true);
-    // for i in 1..buf.len() {
-    //     print!("{:02x} ", buf[i]);
-    // }
-    // println!("");
+    let mut buf = [0u8; 6];
+    spi.transfer(0, &[0x0b, 0x55, 0x55, 0x55, 0x55, 0x55], &mut buf);
+    for i in 1..buf.len() {
+        print!("{:02x} ", buf[i]);
+    }
+    println!("");
 
-    // cs.set_output(false);
-    // let mut buf = [0u8; 6];
-    // spi.transfer(&[0x10, 0x55, 0x55, 0x55, 0x55, 0x55], &mut buf);
-    // cs.set_output(true);
-    // for i in 1..buf.len() {
-    //     print!("{:02x} ", buf[i]);
-    // }
-    // println!("");
+    let mut buf = [0u8; 6];
+    spi.transfer(0, &[0x10, 0x55, 0x55, 0x55, 0x55, 0x55], &mut buf);
+    for i in 1..buf.len() {
+        print!("{:02x} ", buf[i]);
+    }
+    println!("");
 
 
 
@@ -201,6 +196,7 @@ impl<'a> SpiDriver<'a> {
     }
 
     pub fn transfer(&self, pin: u8, tx_buf: &[u8], rx_buf: &mut [u8]) {
+
         self.enqueue(SpiAction::Start(pin));        
         for b in tx_buf.iter() {
             self.enqueue(SpiAction::Write(*b));
@@ -210,6 +206,7 @@ impl<'a> SpiDriver<'a> {
         }
         self.enqueue(SpiAction::Transfer(0x55));
         self.enqueue(SpiAction::Stop(pin));
+        self.next();
         self.read(rx_buf);
     }
 
