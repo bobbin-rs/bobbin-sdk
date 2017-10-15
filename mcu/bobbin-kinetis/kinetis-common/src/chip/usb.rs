@@ -3836,10 +3836,10 @@ impl ::core::fmt::Debug for ClkRecoverIntStatus {
 
 
 #[doc="Buffer Descriptor"]
-#[derive(Clone, Copy, PartialEq, Eq)]
-pub struct Bd(pub [u8; 32]);
+#[derive(Default, Debug, Clone, Copy, PartialEq, Eq)]
+pub struct BufferDesc(pub [u8; 32]);
 
-impl Bd {
+impl BufferDesc {
 #[doc="Read the BDESC register."]
     #[inline] pub fn bdesc(&self) -> Bdesc { 
         unsafe {

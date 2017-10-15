@@ -1,7 +1,7 @@
 (peripheral
     (group-name USB)
     (descriptor
-        (name BD)
+        (name BUFFER_DESC)
         (size 0x20)
         (description "Buffer Descriptor")
         (register

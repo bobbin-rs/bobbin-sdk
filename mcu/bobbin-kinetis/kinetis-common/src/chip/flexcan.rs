@@ -6987,7 +6987,7 @@ impl ::core::fmt::Debug for Fdcrc {
 
 
 #[doc="CAN Message Buffer Header"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Debug, Clone, Copy, PartialEq, Eq)]
 pub struct Mbuf(pub [u8; 16]);
 
 impl Mbuf {

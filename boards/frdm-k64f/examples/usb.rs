@@ -10,14 +10,33 @@ use board::hal::usb::*;
 // use board::hal::clock::*;
 // use board::clock::CLK;
 
-#[derive(Debug, Default, Clone, Copy)]
-pub struct BufferDescriptor {
-    desc: u32,
-    addr: u32,
-}
+// #[derive(Debug, Default, Clone, Copy)]
+// pub struct BufferDescriptor {
+//     desc: u32,
+//     addr: u32,
+// }
+
+pub const ENDPOINT_BUF_SIZE: usize = 64;
 
 #[repr(align(512))]
-pub struct BufferDescriptorTable([BufferDescriptor; 16]);
+pub struct BufferDescriptorTable([BufferDesc; 8]);
+
+impl BufferDescriptorTable {
+    pub fn index(&self, index: usize, tx: bool, odd: bool) -> usize {
+        (index * 4) + if tx { 2 } else { 0 } + if odd { 1 } else { 0 }
+    }
+
+    pub fn bd(&self, index: usize, tx: bool, odd: bool) -> &BufferDesc {
+        &self.0[self.index(index, tx, odd)]
+    }
+
+
+    pub fn bd_mut(&mut self, index: usize, tx: bool, odd: bool) -> &mut BufferDesc {
+        &mut self.0[self.index(index, tx, odd)]
+    }
+    
+}
+
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
@@ -25,9 +44,34 @@ pub extern "C" fn main() -> ! {
     println!("Running USB");
     board::delay(100);
     
-    let mut bdt = BufferDescriptorTable([BufferDescriptor::default() ; 16]);
+    let buffers = [[0u8; ENDPOINT_BUF_SIZE]; 2];
+
+    let mut bdt = BufferDescriptorTable([BufferDesc::default() ; 8]);
+
+    for ep in 0..2 {
+        bdt.bd_mut(ep, false, false)
+            .set_bdesc(|r| r.set_own(1).set_bc(ENDPOINT_BUF_SIZE).set_data01(0));
+        bdt.bd_mut(ep, false, false)
+            .set_baddr(|r| r.set_addr(&buffers[0] as *const u8 as u32));
+        bdt.bd_mut(ep, false, true)
+            .set_bdesc(|r| r.set_own(1).set_bc(ENDPOINT_BUF_SIZE).set_data01(1));
+        bdt.bd_mut(ep, false, true)
+            .set_baddr(|r| r.set_addr(&buffers[1] as *const u8 as u32));
+    }
 
     println!("BDT: {:p}", &bdt);
+    for i in 0..8 {
+        let bd = bdt.0[i];
+        println!("BDT[{}] {:?} {:?}", i, bd.bdesc(), bd.baddr());
+    }
+
+    for i in 0..2 {
+        for (n, b) in buffers[i].iter().enumerate() {
+            if n % 8 == 0 { print!("\n"); }
+            print!("{:02x}", b);
+        }
+        println!("");
+    }
 
     let usb = USB0;
 
