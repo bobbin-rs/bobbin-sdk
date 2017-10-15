@@ -1,5 +1,72 @@
 (peripheral
     (group-name USB)
+    (descriptor
+        (name BD)
+        (size 0x20)
+        (description "Buffer Descriptor")
+        (register
+            (name BDESC)
+            (size 0x20)
+            (field
+                (name BC)
+                (bit-offset 16)
+                (bit-width 10)
+                (description "Byte Count")
+            )
+            (field
+                (name OWN)
+                (bit-offset 7)
+                (bit-width 1)
+                (description "Ownership: 0 = Processor, 1 = USB")
+            )
+            (field
+                (name DATA01)
+                (bit-offset 6)
+                (bit-width 1)
+                (description "DATA0 / DATA1")
+            )
+            (field
+                (name KEEP)
+                (bit-offset 5)
+                (bit-width 1)
+                (description "KEEP")
+            )
+            (field
+                (name NINC)
+                (bit-offset 4)
+                (bit-width 1)
+                (description "NINC")
+            )
+            (field
+                (name DTS)
+                (bit-offset 3)
+                (bit-width 1)
+                (description "DTS")
+            )
+            (field
+                (name BDT_STALL)
+                (bit-offset 1)
+                (bit-width 1)
+                (description "BDT_STALL")
+            )
+            (field
+                (name TOK_PID)
+                (bit-offset 1)
+                (bit-width 4)
+                (description "Token PID")
+            )            
+        )
+        (register
+            (name BADDR)
+            (size 0x20)
+            (field
+                (name ADDR)
+                (bit-offset 0)
+                (bit-width 32)
+                (description "Buffer Address")
+            )
+        )    
+    )
     (register
         (name PERID)
         (offset 0x0)

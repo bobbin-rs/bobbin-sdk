@@ -3835,3 +3835,289 @@ impl ::core::fmt::Debug for ClkRecoverIntStatus {
 }
 
 
+#[doc="Buffer Descriptor"]
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub struct Bd(pub [u8; 32]);
+
+impl Bd {
+#[doc="Read the BDESC register."]
+    #[inline] pub fn bdesc(&self) -> Bdesc { 
+        unsafe {
+            read_volatile(self.0.as_ptr().offset(0x0) as *const Bdesc)
+        }
+    }
+
+#[doc="Write the BDESC register."]
+    #[inline] pub fn set_bdesc<F: FnOnce(Bdesc) -> Bdesc>(&mut self, f: F) -> &Self {
+        unsafe {
+            write_volatile(self.0.as_mut_ptr().offset(0x0) as *mut Bdesc, f(Bdesc(0)));
+        }
+        self
+  }
+
+#[doc="Modfy the BDESC register."]
+    #[inline] pub fn with_bdesc<F: FnOnce(Bdesc) -> Bdesc>(&mut self, f: F) -> &mut Self {
+        unsafe {
+            write_volatile(self.0.as_mut_ptr().offset(0x0) as *mut Bdesc, f(self.bdesc()));
+        }
+      self
+    }
+
+
+#[doc="Read the BADDR register."]
+    #[inline] pub fn baddr(&self) -> Baddr { 
+        unsafe {
+            read_volatile(self.0.as_ptr().offset(0x0) as *const Baddr)
+        }
+    }
+
+#[doc="Write the BADDR register."]
+    #[inline] pub fn set_baddr<F: FnOnce(Baddr) -> Baddr>(&mut self, f: F) -> &Self {
+        unsafe {
+            write_volatile(self.0.as_mut_ptr().offset(0x0) as *mut Baddr, f(Baddr(0)));
+        }
+        self
+  }
+
+#[doc="Modfy the BADDR register."]
+    #[inline] pub fn with_baddr<F: FnOnce(Baddr) -> Baddr>(&mut self, f: F) -> &mut Self {
+        unsafe {
+            write_volatile(self.0.as_mut_ptr().offset(0x0) as *mut Baddr, f(self.baddr()));
+        }
+      self
+    }
+
+
+}
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct Bdesc(pub u32);
+impl Bdesc {
+    #[doc="Byte Count"]
+    #[inline] pub fn bc(&self) -> bits::U10 {
+        unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x3ff) as u16) } // [25:16]
+    }
+
+    #[doc="Returns true if BC != 0"]
+    #[inline] pub fn test_bc(&self) -> bool {
+        self.bc() != 0
+    }
+
+    #[doc="Sets the BC field."]
+    #[inline] pub fn set_bc<V: Into<bits::U10>>(mut self, value: V) -> Self {
+        let value: bits::U10 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x3ff << 16);
+        self.0 |= value << 16;
+        self
+    }
+
+    #[doc="Ownership: 0 = Processor, 1 = USB"]
+    #[inline] pub fn own(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
+    }
+
+    #[doc="Returns true if OWN != 0"]
+    #[inline] pub fn test_own(&self) -> bool {
+        self.own() != 0
+    }
+
+    #[doc="Sets the OWN field."]
+    #[inline] pub fn set_own<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 7);
+        self.0 |= value << 7;
+        self
+    }
+
+    #[doc="DATA0 / DATA1"]
+    #[inline] pub fn data01(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
+    }
+
+    #[doc="Returns true if DATA01 != 0"]
+    #[inline] pub fn test_data01(&self) -> bool {
+        self.data01() != 0
+    }
+
+    #[doc="Sets the DATA01 field."]
+    #[inline] pub fn set_data01<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 6);
+        self.0 |= value << 6;
+        self
+    }
+
+    #[doc="KEEP"]
+    #[inline] pub fn keep(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
+    }
+
+    #[doc="Returns true if KEEP != 0"]
+    #[inline] pub fn test_keep(&self) -> bool {
+        self.keep() != 0
+    }
+
+    #[doc="Sets the KEEP field."]
+    #[inline] pub fn set_keep<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 5);
+        self.0 |= value << 5;
+        self
+    }
+
+    #[doc="NINC"]
+    #[inline] pub fn ninc(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
+    }
+
+    #[doc="Returns true if NINC != 0"]
+    #[inline] pub fn test_ninc(&self) -> bool {
+        self.ninc() != 0
+    }
+
+    #[doc="Sets the NINC field."]
+    #[inline] pub fn set_ninc<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 4);
+        self.0 |= value << 4;
+        self
+    }
+
+    #[doc="DTS"]
+    #[inline] pub fn dts(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
+    }
+
+    #[doc="Returns true if DTS != 0"]
+    #[inline] pub fn test_dts(&self) -> bool {
+        self.dts() != 0
+    }
+
+    #[doc="Sets the DTS field."]
+    #[inline] pub fn set_dts<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 3);
+        self.0 |= value << 3;
+        self
+    }
+
+    #[doc="BDT_STALL"]
+    #[inline] pub fn bdt_stall(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
+    }
+
+    #[doc="Returns true if BDT_STALL != 0"]
+    #[inline] pub fn test_bdt_stall(&self) -> bool {
+        self.bdt_stall() != 0
+    }
+
+    #[doc="Sets the BDT_STALL field."]
+    #[inline] pub fn set_bdt_stall<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 1);
+        self.0 |= value << 1;
+        self
+    }
+
+    #[doc="Token PID"]
+    #[inline] pub fn tok_pid(&self) -> bits::U4 {
+        unsafe { ::core::mem::transmute(((self.0 >> 1) & 0xf) as u8) } // [4:1]
+    }
+
+    #[doc="Returns true if TOK_PID != 0"]
+    #[inline] pub fn test_tok_pid(&self) -> bool {
+        self.tok_pid() != 0
+    }
+
+    #[doc="Sets the TOK_PID field."]
+    #[inline] pub fn set_tok_pid<V: Into<bits::U4>>(mut self, value: V) -> Self {
+        let value: bits::U4 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0xf << 1);
+        self.0 |= value << 1;
+        self
+    }
+
+}
+
+impl From<u32> for Bdesc {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Bdesc(other)
+    }
+}
+
+impl ::core::fmt::Display for Bdesc {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
+    }
+}
+
+impl ::core::fmt::Debug for Bdesc {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        if self.bc() != 0 { try!(write!(f, " bc=0x{:x}", self.bc()))}
+        if self.own() != 0 { try!(write!(f, " own"))}
+        if self.data01() != 0 { try!(write!(f, " data01"))}
+        if self.keep() != 0 { try!(write!(f, " keep"))}
+        if self.ninc() != 0 { try!(write!(f, " ninc"))}
+        if self.dts() != 0 { try!(write!(f, " dts"))}
+        if self.bdt_stall() != 0 { try!(write!(f, " bdt_stall"))}
+        if self.tok_pid() != 0 { try!(write!(f, " tok_pid=0x{:x}", self.tok_pid()))}
+        try!(write!(f, "]"));
+        Ok(())
+    }
+}
+
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct Baddr(pub u32);
+impl Baddr {
+    #[doc="Buffer Address"]
+    #[inline] pub fn addr(&self) -> bits::U32 {
+        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffffffff) as u32) } // [31:0]
+    }
+
+    #[doc="Returns true if ADDR != 0"]
+    #[inline] pub fn test_addr(&self) -> bool {
+        self.addr() != 0
+    }
+
+    #[doc="Sets the ADDR field."]
+    #[inline] pub fn set_addr<V: Into<bits::U32>>(mut self, value: V) -> Self {
+        let value: bits::U32 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0xffffffff << 0);
+        self.0 |= value << 0;
+        self
+    }
+
+}
+
+impl From<u32> for Baddr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Baddr(other)
+    }
+}
+
+impl ::core::fmt::Display for Baddr {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
+    }
+}
+
+impl ::core::fmt::Debug for Baddr {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        try!(write!(f, "]"));
+        Ok(())
+    }
+}
+
+
