@@ -283,6 +283,47 @@ impl Poll for UsbDriver {
             unsafe {
                 let bd = BDT.bd(ep as usize, tx, odd);
                 println!("BD: {:?} {:?}", bd.bdesc(), bd.baddr());
+                match bd.bdesc().tok_pid().value() {
+                    0x1 => {
+                        println!("TOK_OUT");
+                    },
+                    0x9 => {
+                        println!("TOK_IN");
+                    },
+                    0x5 => {
+                        println!("TOK_SOF");
+                    }
+                    0xd => {
+                        let ep_buf = EP_BUFFERS[0];
+                        println!("TOK_SETUP");
+                        let t = UsbSetup([
+                            ep_buf[0],
+                            ep_buf[1],
+                            ep_buf[2],
+                            ep_buf[3],
+                            ep_buf[4],
+                            ep_buf[5],
+                            ep_buf[6],
+                            ep_buf[7],
+                        ]);
+                        println!("REQUEST_TYPE: {:?}", t.request_type());
+                        println!("REQUEST:      {:?}", t.request());
+                        println!("VALUE:        {:?}", t.value());
+                        println!("INDEX:        {:?}", t.index());
+                        println!("LENGTH:       {:?}", t.length());
+                        match (t.request().0, t.request_type().0) {
+                            (0x05, 0x00) => {
+                                println!("=> SETUP");
+                            },
+                            _ => {},
+                        }
+                    },
+                    _ => {},
+                }
+
+                // Send response packet
+
+
                 // for i in 0..4 {
                 //     for (n, b) in EP_BUFFERS[i].iter().enumerate() {
                 //         if n % 8 == 0 { print!("\n"); }

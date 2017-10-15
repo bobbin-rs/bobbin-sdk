@@ -4121,3 +4121,405 @@ impl ::core::fmt::Debug for Baddr {
 }
 
 
+#[doc="USB Setup Packet"]
+#[derive(Default, Debug, Clone, Copy, PartialEq, Eq)]
+pub struct UsbSetup(pub [u8; 8]);
+
+impl UsbSetup {
+#[doc="Read the REQUEST_TYPE register."]
+    #[inline] pub fn request_type(&self) -> RequestType { 
+        unsafe {
+            read_volatile(self.0.as_ptr().offset(0x0) as *const RequestType)
+        }
+    }
+
+#[doc="Write the REQUEST_TYPE register."]
+    #[inline] pub fn set_request_type<F: FnOnce(RequestType) -> RequestType>(&mut self, f: F) -> &Self {
+        unsafe {
+            write_volatile(self.0.as_mut_ptr().offset(0x0) as *mut RequestType, f(RequestType(0)));
+        }
+        self
+  }
+
+#[doc="Modfy the REQUEST_TYPE register."]
+    #[inline] pub fn with_request_type<F: FnOnce(RequestType) -> RequestType>(&mut self, f: F) -> &mut Self {
+        unsafe {
+            write_volatile(self.0.as_mut_ptr().offset(0x0) as *mut RequestType, f(self.request_type()));
+        }
+      self
+    }
+
+
+#[doc="Read the REQUEST register."]
+    #[inline] pub fn request(&self) -> Request { 
+        unsafe {
+            read_volatile(self.0.as_ptr().offset(0x1) as *const Request)
+        }
+    }
+
+#[doc="Write the REQUEST register."]
+    #[inline] pub fn set_request<F: FnOnce(Request) -> Request>(&mut self, f: F) -> &Self {
+        unsafe {
+            write_volatile(self.0.as_mut_ptr().offset(0x1) as *mut Request, f(Request(0)));
+        }
+        self
+  }
+
+#[doc="Modfy the REQUEST register."]
+    #[inline] pub fn with_request<F: FnOnce(Request) -> Request>(&mut self, f: F) -> &mut Self {
+        unsafe {
+            write_volatile(self.0.as_mut_ptr().offset(0x1) as *mut Request, f(self.request()));
+        }
+      self
+    }
+
+
+#[doc="Read the VALUE register."]
+    #[inline] pub fn value(&self) -> Value { 
+        unsafe {
+            read_volatile(self.0.as_ptr().offset(0x2) as *const Value)
+        }
+    }
+
+#[doc="Write the VALUE register."]
+    #[inline] pub fn set_value<F: FnOnce(Value) -> Value>(&mut self, f: F) -> &Self {
+        unsafe {
+            write_volatile(self.0.as_mut_ptr().offset(0x2) as *mut Value, f(Value(0)));
+        }
+        self
+  }
+
+#[doc="Modfy the VALUE register."]
+    #[inline] pub fn with_value<F: FnOnce(Value) -> Value>(&mut self, f: F) -> &mut Self {
+        unsafe {
+            write_volatile(self.0.as_mut_ptr().offset(0x2) as *mut Value, f(self.value()));
+        }
+      self
+    }
+
+
+#[doc="Read the INDEX register."]
+    #[inline] pub fn index(&self) -> Index { 
+        unsafe {
+            read_volatile(self.0.as_ptr().offset(0x4) as *const Index)
+        }
+    }
+
+#[doc="Write the INDEX register."]
+    #[inline] pub fn set_index<F: FnOnce(Index) -> Index>(&mut self, f: F) -> &Self {
+        unsafe {
+            write_volatile(self.0.as_mut_ptr().offset(0x4) as *mut Index, f(Index(0)));
+        }
+        self
+  }
+
+#[doc="Modfy the INDEX register."]
+    #[inline] pub fn with_index<F: FnOnce(Index) -> Index>(&mut self, f: F) -> &mut Self {
+        unsafe {
+            write_volatile(self.0.as_mut_ptr().offset(0x4) as *mut Index, f(self.index()));
+        }
+      self
+    }
+
+
+#[doc="Read the LENGTH register."]
+    #[inline] pub fn length(&self) -> Length { 
+        unsafe {
+            read_volatile(self.0.as_ptr().offset(0x6) as *const Length)
+        }
+    }
+
+#[doc="Write the LENGTH register."]
+    #[inline] pub fn set_length<F: FnOnce(Length) -> Length>(&mut self, f: F) -> &Self {
+        unsafe {
+            write_volatile(self.0.as_mut_ptr().offset(0x6) as *mut Length, f(Length(0)));
+        }
+        self
+  }
+
+#[doc="Modfy the LENGTH register."]
+    #[inline] pub fn with_length<F: FnOnce(Length) -> Length>(&mut self, f: F) -> &mut Self {
+        unsafe {
+            write_volatile(self.0.as_mut_ptr().offset(0x6) as *mut Length, f(self.length()));
+        }
+      self
+    }
+
+
+}
+#[doc="Request Type (bmRequestType)"]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct RequestType(pub u8);
+impl RequestType {
+    #[doc="Data Phase Transfer Direction. 0 = Host to Device, 1 = Device to Host"]
+    #[inline] pub fn dir(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
+    }
+
+    #[doc="Returns true if DIR != 0"]
+    #[inline] pub fn test_dir(&self) -> bool {
+        self.dir() != 0
+    }
+
+    #[doc="Sets the DIR field."]
+    #[inline] pub fn set_dir<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0x1 << 7);
+        self.0 |= value << 7;
+        self
+    }
+
+    #[doc="Type. 0 = Standard, 1 = Class, 2 = Vendor, 3 = Reserved"]
+    #[inline] pub fn _type(&self) -> bits::U2 {
+        unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x3) as u8) } // [6:5]
+    }
+
+    #[doc="Returns true if TYPE != 0"]
+    #[inline] pub fn test_type(&self) -> bool {
+        self._type() != 0
+    }
+
+    #[doc="Sets the TYPE field."]
+    #[inline] pub fn set_type<V: Into<bits::U2>>(mut self, value: V) -> Self {
+        let value: bits::U2 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0x3 << 5);
+        self.0 |= value << 5;
+        self
+    }
+
+    #[doc="Recipient. 0 = Device, 1 = Interface, 2 = Endpoint, 3 = Other"]
+    #[inline] pub fn recipient(&self) -> bits::U5 {
+        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1f) as u8) } // [4:0]
+    }
+
+    #[doc="Returns true if RECIPIENT != 0"]
+    #[inline] pub fn test_recipient(&self) -> bool {
+        self.recipient() != 0
+    }
+
+    #[doc="Sets the RECIPIENT field."]
+    #[inline] pub fn set_recipient<V: Into<bits::U5>>(mut self, value: V) -> Self {
+        let value: bits::U5 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0x1f << 0);
+        self.0 |= value << 0;
+        self
+    }
+
+}
+
+impl From<u8> for RequestType {
+    #[inline]
+    fn from(other: u8) -> Self {
+         RequestType(other)
+    }
+}
+
+impl ::core::fmt::Display for RequestType {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
+    }
+}
+
+impl ::core::fmt::Debug for RequestType {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        if self.dir() != 0 { try!(write!(f, " dir"))}
+        if self._type() != 0 { try!(write!(f, " type=0x{:x}", self._type()))}
+        if self.recipient() != 0 { try!(write!(f, " recipient=0x{:x}", self.recipient()))}
+        try!(write!(f, "]"));
+        Ok(())
+    }
+}
+
+#[doc="Request (bRequest)"]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct Request(pub u8);
+impl Request {
+    #[doc="Request"]
+    #[inline] pub fn request(&self) -> bits::U8 {
+        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
+    }
+
+    #[doc="Returns true if REQUEST != 0"]
+    #[inline] pub fn test_request(&self) -> bool {
+        self.request() != 0
+    }
+
+    #[doc="Sets the REQUEST field."]
+    #[inline] pub fn set_request<V: Into<bits::U8>>(mut self, value: V) -> Self {
+        let value: bits::U8 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0xff << 0);
+        self.0 |= value << 0;
+        self
+    }
+
+}
+
+impl From<u8> for Request {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Request(other)
+    }
+}
+
+impl ::core::fmt::Display for Request {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
+    }
+}
+
+impl ::core::fmt::Debug for Request {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        if self.request() != 0 { try!(write!(f, " request=0x{:x}", self.request()))}
+        try!(write!(f, "]"));
+        Ok(())
+    }
+}
+
+#[doc="Value (wValue)"]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct Value(pub u16);
+impl Value {
+    #[doc="Value"]
+    #[inline] pub fn value(&self) -> bits::U16 {
+        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffff) as u16) } // [15:0]
+    }
+
+    #[doc="Returns true if VALUE != 0"]
+    #[inline] pub fn test_value(&self) -> bool {
+        self.value() != 0
+    }
+
+    #[doc="Sets the VALUE field."]
+    #[inline] pub fn set_value<V: Into<bits::U16>>(mut self, value: V) -> Self {
+        let value: bits::U16 = value.into();
+        let value: u16 = value.into();
+        self.0 &= !(0xffff << 0);
+        self.0 |= value << 0;
+        self
+    }
+
+}
+
+impl From<u16> for Value {
+    #[inline]
+    fn from(other: u16) -> Self {
+         Value(other)
+    }
+}
+
+impl ::core::fmt::Display for Value {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
+    }
+}
+
+impl ::core::fmt::Debug for Value {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        if self.value() != 0 { try!(write!(f, " value=0x{:x}", self.value()))}
+        try!(write!(f, "]"));
+        Ok(())
+    }
+}
+
+#[doc="Index (wIndex)"]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct Index(pub u16);
+impl Index {
+    #[doc="Index"]
+    #[inline] pub fn index(&self) -> bits::U16 {
+        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffff) as u16) } // [15:0]
+    }
+
+    #[doc="Returns true if INDEX != 0"]
+    #[inline] pub fn test_index(&self) -> bool {
+        self.index() != 0
+    }
+
+    #[doc="Sets the INDEX field."]
+    #[inline] pub fn set_index<V: Into<bits::U16>>(mut self, value: V) -> Self {
+        let value: bits::U16 = value.into();
+        let value: u16 = value.into();
+        self.0 &= !(0xffff << 0);
+        self.0 |= value << 0;
+        self
+    }
+
+}
+
+impl From<u16> for Index {
+    #[inline]
+    fn from(other: u16) -> Self {
+         Index(other)
+    }
+}
+
+impl ::core::fmt::Display for Index {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
+    }
+}
+
+impl ::core::fmt::Debug for Index {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        if self.index() != 0 { try!(write!(f, " index=0x{:x}", self.index()))}
+        try!(write!(f, "]"));
+        Ok(())
+    }
+}
+
+#[doc="Length (wLength)"]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct Length(pub u16);
+impl Length {
+    #[doc="Length"]
+    #[inline] pub fn length(&self) -> bits::U16 {
+        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffff) as u16) } // [15:0]
+    }
+
+    #[doc="Returns true if LENGTH != 0"]
+    #[inline] pub fn test_length(&self) -> bool {
+        self.length() != 0
+    }
+
+    #[doc="Sets the LENGTH field."]
+    #[inline] pub fn set_length<V: Into<bits::U16>>(mut self, value: V) -> Self {
+        let value: bits::U16 = value.into();
+        let value: u16 = value.into();
+        self.0 &= !(0xffff << 0);
+        self.0 |= value << 0;
+        self
+    }
+
+}
+
+impl From<u16> for Length {
+    #[inline]
+    fn from(other: u16) -> Self {
+         Length(other)
+    }
+}
+
+impl ::core::fmt::Display for Length {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
+    }
+}
+
+impl ::core::fmt::Debug for Length {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        if self.length() != 0 { try!(write!(f, " length=0x{:x}", self.length()))}
+        try!(write!(f, "]"));
+        Ok(())
+    }
+}
+
+
