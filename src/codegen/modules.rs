@@ -830,7 +830,7 @@ pub fn gen_descriptor<W: Write>(cfg: &Config, out: &mut W, _p_type: &str, desc: 
     if let Some(ref desc) = desc.description {
         try!(gen_doc(cfg, out, 0, desc));
     }
-    try!(writeln!(out, "#[derive(Clone, Copy, PartialEq, Eq)]"));
+    try!(writeln!(out, "#[derive(Default, Debug, Clone, Copy, PartialEq, Eq)]"));
     try!(writeln!(out, "pub struct {}(pub [u8; {}]);", d_type, d_size));
     try!(writeln!(out, ""));
 
