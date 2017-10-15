@@ -2,11 +2,12 @@
     (group-name USB)
     (descriptor
         (name BUFFER_DESC)
-        (size 0x20)
+        (size 0x8)
         (description "Buffer Descriptor")
         (register
             (name BDESC)
             (size 0x20)
+            (offset 0x0)
             (field
                 (name BC)
                 (bit-offset 16)
@@ -57,8 +58,9 @@
             )            
         )
         (register
-            (name BADDR)
+            (name BADDR)            
             (size 0x20)
+            (offset 0x4)
             (field
                 (name ADDR)
                 (bit-offset 0)
@@ -1147,7 +1149,7 @@
         )
     )
     (register
-        (name "ENDPT")
+        (name ENDPT)
         (offset 0xc0)
         (size 0x8)
         (access read-write)
