@@ -173,6 +173,12 @@ impl Poll for UsbDriver {
             self.usb.set_istat(|r| r.set_usbrst(1));
             // println!("USBRST");
         }
+        if istat.test_softok() {
+            self.usb.set_istat(|r| r.set_softok(1));
+        }
+        if istat.test_sleep() {
+            self.usb.set_istat(|r| r.set_sleep(1));
+        }
 
         board::delay(100);
     }
