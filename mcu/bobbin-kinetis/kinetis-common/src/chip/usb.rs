@@ -3837,7 +3837,7 @@ impl ::core::fmt::Debug for ClkRecoverIntStatus {
 
 #[doc="Buffer Descriptor"]
 #[derive(Default, Debug, Clone, Copy, PartialEq, Eq)]
-pub struct BufferDesc(pub [u8; 32]);
+pub struct BufferDesc(pub [u8; 8]);
 
 impl BufferDesc {
 #[doc="Read the BDESC register."]
@@ -3867,14 +3867,14 @@ impl BufferDesc {
 #[doc="Read the BADDR register."]
     #[inline] pub fn baddr(&self) -> Baddr { 
         unsafe {
-            read_volatile(self.0.as_ptr().offset(0x0) as *const Baddr)
+            read_volatile(self.0.as_ptr().offset(0x4) as *const Baddr)
         }
     }
 
 #[doc="Write the BADDR register."]
     #[inline] pub fn set_baddr<F: FnOnce(Baddr) -> Baddr>(&mut self, f: F) -> &Self {
         unsafe {
-            write_volatile(self.0.as_mut_ptr().offset(0x0) as *mut Baddr, f(Baddr(0)));
+            write_volatile(self.0.as_mut_ptr().offset(0x4) as *mut Baddr, f(Baddr(0)));
         }
         self
   }
@@ -3882,7 +3882,7 @@ impl BufferDesc {
 #[doc="Modfy the BADDR register."]
     #[inline] pub fn with_baddr<F: FnOnce(Baddr) -> Baddr>(&mut self, f: F) -> &mut Self {
         unsafe {
-            write_volatile(self.0.as_mut_ptr().offset(0x0) as *mut Baddr, f(self.baddr()));
+            write_volatile(self.0.as_mut_ptr().offset(0x4) as *mut Baddr, f(self.baddr()));
         }
       self
     }
@@ -4027,7 +4027,7 @@ impl Bdesc {
 
     #[doc="Token PID"]
     #[inline] pub fn tok_pid(&self) -> bits::U4 {
-        unsafe { ::core::mem::transmute(((self.0 >> 1) & 0xf) as u8) } // [4:1]
+        unsafe { ::core::mem::transmute(((self.0 >> 2) & 0xf) as u8) } // [5:2]
     }
 
     #[doc="Returns true if TOK_PID != 0"]
@@ -4039,8 +4039,8 @@ impl Bdesc {
     #[inline] pub fn set_tok_pid<V: Into<bits::U4>>(mut self, value: V) -> Self {
         let value: bits::U4 = value.into();
         let value: u32 = value.into();
-        self.0 &= !(0xf << 1);
-        self.0 |= value << 1;
+        self.0 &= !(0xf << 2);
+        self.0 |= value << 2;
         self
     }
 

@@ -52,7 +52,7 @@
             )
             (field
                 (name TOK_PID)
-                (bit-offset 1)
+                (bit-offset 2)
                 (bit-width 4)
                 (description "Token PID")
             )            
