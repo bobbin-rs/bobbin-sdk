@@ -336,21 +336,45 @@ impl Poll for UsbDriver {
                         // println!("INDEX:        {:?}", t.index());
                         // println!("LENGTH:       {:?}", t.length());
                         println!("REQ: {:02x}{:02x}", t.request().0, t.request_type().0);
+                        let mut data_len = 0;
                         match (t.request().0, t.request_type().0) {
                             (0x05, 0x00) => {
                                 println!(" => SET_ADDRESS");
-                                self.set_addr(t.value().value().into());
+                                self.set_addr(t.value().value().into());                                
                             },
                             (0x06, 0x80) => {
                                 println!(" => GET_DESCRIPTOR");
                                 println!("VALUE:        {:?}", t.value());
                                 println!("INDEX:        {:?}", t.index());
-                            }
+                                println!("LENGTH:       {:?}", t.length());
+
+                            let device_descriptor = [
+                                0x12, // bLength
+                                0x01, // bDescriptorType
+                                0x01, // bcdUSB (lo)
+                                0x01, // bcdUSB (hi)
+                                0x00, // bDeviceClass
+                                0x00, // bDeviceSubClass
+                                0x00, // bDeviceProtocol
+                                0x40, // bMaxPacketSize
+                                0xad, // idVendor (lo)
+                                0xde, // idVendor (hi)
+                                0xef, // idProduct (lo)
+                                0xbe, // idProduct (hi)
+                                0x00, // bcdDevice (lo)
+                                0x00, // bcdDevice (hi)
+                                0x01, // iManufacturer "ACME Inc."
+                                0x02, // iProduct "Demo Device"
+                                0x03, // iSerial "00000000"
+                                0x01, // bNumConfigurations
+                            ];                            
+                            println!("desc_len: {}", device_descriptor.len());
+                            },
                             _ => {},
                         }
 
                         let tx_bd = BDT.bd_mut(ep as usize, true, odd);
-                        tx_bd.set_bdesc(|r| r.set_bc(0).set_own(1).set_data01(1));
+                        tx_bd.set_bdesc(|r| r.set_bc(data_len).set_own(1).set_data01(1));
 
 
 
