@@ -195,6 +195,9 @@ impl Poll for UsbDriver {
     fn poll(&self) {
         let istat = self.usb.istat();
         // println!("{:?}", istat);
+        // for i in 0..4 {
+        //     println!("{}: {:?}", i, unsafe { BDT.0[i].bdesc().own() });
+        // }        
         // println!("{:?} {:?} {:?}", istat, self.usb.stat(), self.usb.errstat());
         // println!("CTL   {:?}", self.usb.ctl());
         // println!("USBCTL   {:?}", self.usb.usbctrl());
@@ -206,7 +209,7 @@ impl Poll for UsbDriver {
         }
 
         if istat.test_usbrst() {
-            self.usb.with_ctl(|r| r.set_oddrst(1).set_txsuspendtokenbusy(0));
+            self.usb.with_ctl(|r| r.set_oddrst(1));
             // self.usb.with_ctl(|r| r.set_oddrst(1));
 
             unsafe {
@@ -230,7 +233,7 @@ impl Poll for UsbDriver {
                         .set_bdesc(|r| r.set_own(1).set_bc(ENDPOINT_BUF_SIZE).set_data01(1).set_dts(1));
                     BDT.bd_mut(ep, false, true)
                         .set_baddr(|r| r.set_addr(b_odd));                        
-                    // println!("{:?}", BDT.bd_mut(ep, false, true).baddr());
+                    // println!("e{:?}", BDT.bd_mut(ep, false, true).baddr());
                     self.usb.with_endpt(ep, |r| r.set_eprxen(1).set_eptxen(1).set_ephshk(1));
                     // println!("ENDPT[{}]: {:?}", ep, self.usb.endpt(ep));
                 }
@@ -271,31 +274,45 @@ impl Poll for UsbDriver {
         }
         if istat.test_softok() {
             self.usb.set_istat(|r| r.set_softok(1));
+            // for i in 0..4 {
+            //     println!("{}: {:?}", i, unsafe { BDT.0[i].bdesc() });
+            // }
             // println!("SOFTOK {:?}", self.usb.stat());
         }
         if istat.test_tokdne() {
-            self.usb.set_istat(|r| r.set_tokdne(1));
             let stat = self.usb.stat();
-            println!("TOKDNE {:?}", stat);
+            // println!("TOKDNE {:?}", stat);
             let ep = stat.endp().value();
             let tx = stat.test_tx();
             let odd = stat.test_odd();
             unsafe {
                 let bd = BDT.bd(ep as usize, tx, odd);
-                println!("BD: {:?} {:?}", bd.bdesc(), bd.baddr());
+                // println!("BD: {:?} {:?}", bd.bdesc(), bd.baddr());
                 match bd.bdesc().tok_pid().value() {
                     0x1 => {
                         println!("TOK_OUT");
                     },
                     0x9 => {
-                        println!("TOK_IN");
+                        println!("TOK_IN: {:?}", stat);
+
+                        let bd = BDT.bd(ep as usize, tx, odd);
+                        println!("BD: {:?}", bd.bdesc());
+                        let index = BDT.index(ep as usize, tx, odd);
+                        print!("{}: ", index);
+                        let buf = EP_BUFFERS[index];
+                        for b in buf.iter() {
+                            print!(" {:02x}", b);
+                        }
+                        println!("");
                     },
                     0x5 => {
                         println!("TOK_SOF");
                     }
                     0xd => {
-                        let ep_buf = EP_BUFFERS[0];
-                        println!("TOK_SETUP");
+                        println!("TOK_SETUP: {:?}", stat);
+                        let index = BDT.index(ep as usize, tx, odd);
+                        // println!("index: {}", index);
+                        let ep_buf = EP_BUFFERS[index];
                         let t = UsbSetup([
                             ep_buf[0],
                             ep_buf[1],
@@ -306,17 +323,25 @@ impl Poll for UsbDriver {
                             ep_buf[6],
                             ep_buf[7],
                         ]);
-                        println!("REQUEST_TYPE: {:?}", t.request_type());
-                        println!("REQUEST:      {:?}", t.request());
-                        println!("VALUE:        {:?}", t.value());
-                        println!("INDEX:        {:?}", t.index());
-                        println!("LENGTH:       {:?}", t.length());
+                        // println!("ADDR: {:?}", self.usb.addr());
+                        // println!("TOK_SETUP: {:?}", t);
+                        // println!("REQUEST_TYPE: {:?}", t.request_type());
+                        // println!("REQUEST:      {:?}", t.request());
+                        // println!("VALUE:        {:?}", t.value());
+                        // println!("INDEX:        {:?}", t.index());
+                        // println!("LENGTH:       {:?}", t.length());
                         match (t.request().0, t.request_type().0) {
                             (0x05, 0x00) => {
                                 println!("=> SETUP");
                             },
                             _ => {},
                         }
+                        let tx_bd = BDT.bd_mut(ep as usize, true, odd);
+                        tx_bd.set_bdesc(|r| r.set_bc(0).set_own(1));
+
+
+
+                        self.usb.with_ctl(|r| r.set_txsuspendtokenbusy(0));
                     },
                     _ => {},
                 }
@@ -332,6 +357,9 @@ impl Poll for UsbDriver {
                 //     println!("");
                 // }                            
             }
+            println!("tokdne done");
+            self.usb.set_istat(|r| r.set_tokdne(1));
+
         }
         if istat.test_sleep() {
             self.usb.set_istat(|r| r.set_sleep(1));
