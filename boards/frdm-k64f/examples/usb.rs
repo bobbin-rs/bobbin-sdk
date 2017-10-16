@@ -108,11 +108,12 @@ use board::common::{Irq, Poll};
 use board::cortexm::hal::nvic;
 use board::cortexm::hal::scb::SCB;
 
-// use core::cell::Cell;
+use core::cell::Cell;
 // use core::marker::PhantomData;
 
 pub struct UsbDriver {
     usb: UsbPeriph,    
+    addr: Cell<u8>,
 }
 
 unsafe impl Sync for UsbDriver {}
@@ -122,7 +123,16 @@ impl UsbDriver {
     pub fn new<U: Into<UsbPeriph>>(usb: U) -> Self {
         UsbDriver {
             usb: usb.into(),
+            addr: Cell::new(0),
         }
+    }
+
+    pub fn addr(&self) -> u8 {
+        self.addr.get()
+    }
+
+    pub fn set_addr(&self, value: u8) {
+        self.addr.set(value)
     }
 
     pub fn enable_irq<I: Irq>(&self, irq: &I) {        
@@ -271,13 +281,15 @@ impl Poll for UsbDriver {
             //     println!("");
             // }            
             // println!("USBRST");
+            println!("----");
         }
         if istat.test_softok() {
             self.usb.set_istat(|r| r.set_softok(1));
             // for i in 0..4 {
-            //     println!("{}: {:?}", i, unsafe { BDT.0[i].bdesc() });
+            //     let bd = unsafe { BDT.0[i].bdesc() };
+            //     println!("{}: {:?}", i, bd);
             // }
-            // println!("SOFTOK {:?}", self.usb.stat());
+            // println!("SOFTOK {:?} {:?}", self.usb.addr().addr(), self.usb.stat());
         }
         if istat.test_tokdne() {
             let stat = self.usb.stat();
@@ -286,24 +298,17 @@ impl Poll for UsbDriver {
             let tx = stat.test_tx();
             let odd = stat.test_odd();
             unsafe {
-                let bd = BDT.bd(ep as usize, tx, odd);
-                // println!("BD: {:?} {:?}", bd.bdesc(), bd.baddr());
+                let bd = BDT.bd_mut(ep as usize, tx, odd);
+                println!("BD: {:?} {:?}", bd.bdesc(), bd.baddr());
                 match bd.bdesc().tok_pid().value() {
                     0x1 => {
                         println!("TOK_OUT");
                     },
                     0x9 => {
                         println!("TOK_IN: {:?}", stat);
-
-                        let bd = BDT.bd(ep as usize, tx, odd);
-                        println!("BD: {:?}", bd.bdesc());
-                        let index = BDT.index(ep as usize, tx, odd);
-                        print!("{}: ", index);
-                        let buf = EP_BUFFERS[index];
-                        for b in buf.iter() {
-                            print!(" {:02x}", b);
-                        }
-                        println!("");
+                        println!("ADDR => 0x{:02x}", self.addr());
+                        println!("CTL: {:?}", self.usb.ctl());
+                        self.usb.set_addr(|r| r.set_addr(self.addr()));
                     },
                     0x5 => {
                         println!("TOK_SOF");
@@ -330,14 +335,22 @@ impl Poll for UsbDriver {
                         // println!("VALUE:        {:?}", t.value());
                         // println!("INDEX:        {:?}", t.index());
                         // println!("LENGTH:       {:?}", t.length());
+                        println!("REQ: {:02x}{:02x}", t.request().0, t.request_type().0);
                         match (t.request().0, t.request_type().0) {
                             (0x05, 0x00) => {
-                                println!("=> SETUP");
+                                println!(" => SET_ADDRESS");
+                                self.set_addr(t.value().value().into());
                             },
+                            (0x06, 0x80) => {
+                                println!(" => GET_DESCRIPTOR");
+                                println!("VALUE:        {:?}", t.value());
+                                println!("INDEX:        {:?}", t.index());
+                            }
                             _ => {},
                         }
+
                         let tx_bd = BDT.bd_mut(ep as usize, true, odd);
-                        tx_bd.set_bdesc(|r| r.set_bc(0).set_own(1));
+                        tx_bd.set_bdesc(|r| r.set_bc(0).set_own(1).set_data01(1));
 
 
 
@@ -345,7 +358,9 @@ impl Poll for UsbDriver {
                     },
                     _ => {},
                 }
-
+                if !stat.test_tx() {
+                    bd.set_bdesc(|r| r.set_own(1).set_bc(ENDPOINT_BUF_SIZE).set_data01(0).set_dts(1));
+                }
                 // Send response packet
 
 
