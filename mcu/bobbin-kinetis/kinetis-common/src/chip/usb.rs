@@ -3836,7 +3836,7 @@ impl ::core::fmt::Debug for ClkRecoverIntStatus {
 
 
 #[doc="Buffer Descriptor"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Debug, Clone, Copy, PartialEq, Eq)]
 pub struct BufferDesc(pub [u8; 8]);
 
 impl BufferDesc {
@@ -3848,7 +3848,7 @@ impl BufferDesc {
     }
 
 #[doc="Write the BDESC register."]
-    #[inline] pub fn set_bdesc<F: FnOnce(Bdesc) -> Bdesc>(&mut self, f: F) -> &Self {
+    #[inline] pub fn set_bdesc<F: FnOnce(Bdesc) -> Bdesc>(&mut self, f: F) -> &mut Self {
         unsafe {
             write_volatile(self.0.as_mut_ptr().offset(0x0) as *mut Bdesc, f(Bdesc(0)));
         }
@@ -3872,7 +3872,7 @@ impl BufferDesc {
     }
 
 #[doc="Write the BADDR register."]
-    #[inline] pub fn set_baddr<F: FnOnce(Baddr) -> Baddr>(&mut self, f: F) -> &Self {
+    #[inline] pub fn set_baddr<F: FnOnce(Baddr) -> Baddr>(&mut self, f: F) -> &mut Self {
         unsafe {
             write_volatile(self.0.as_mut_ptr().offset(0x4) as *mut Baddr, f(Baddr(0)));
         }

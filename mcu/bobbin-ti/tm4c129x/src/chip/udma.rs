@@ -2241,7 +2241,7 @@ impl ::core::fmt::Debug for Chmap3 {
 
 
 #[doc="DMA Descriptor"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Debug, Clone, Copy, PartialEq, Eq)]
 pub struct Chdesc(pub [u8; 16]);
 
 impl Chdesc {
@@ -2253,7 +2253,7 @@ impl Chdesc {
     }
 
 #[doc="Write the SRCENDP register."]
-    #[inline] pub fn set_srcendp<F: FnOnce(Srcendp) -> Srcendp>(&mut self, f: F) -> &Self {
+    #[inline] pub fn set_srcendp<F: FnOnce(Srcendp) -> Srcendp>(&mut self, f: F) -> &mut Self {
         unsafe {
             write_volatile(self.0.as_mut_ptr().offset(0x0) as *mut Srcendp, f(Srcendp(0)));
         }
@@ -2277,7 +2277,7 @@ impl Chdesc {
     }
 
 #[doc="Write the DSTENDP register."]
-    #[inline] pub fn set_dstendp<F: FnOnce(Dstendp) -> Dstendp>(&mut self, f: F) -> &Self {
+    #[inline] pub fn set_dstendp<F: FnOnce(Dstendp) -> Dstendp>(&mut self, f: F) -> &mut Self {
         unsafe {
             write_volatile(self.0.as_mut_ptr().offset(0x4) as *mut Dstendp, f(Dstendp(0)));
         }
@@ -2301,7 +2301,7 @@ impl Chdesc {
     }
 
 #[doc="Write the CHCTL register."]
-    #[inline] pub fn set_chctl<F: FnOnce(Chctl) -> Chctl>(&mut self, f: F) -> &Self {
+    #[inline] pub fn set_chctl<F: FnOnce(Chctl) -> Chctl>(&mut self, f: F) -> &mut Self {
         unsafe {
             write_volatile(self.0.as_mut_ptr().offset(0x8) as *mut Chctl, f(Chctl(0)));
         }

@@ -6987,7 +6987,7 @@ impl ::core::fmt::Debug for Fdcrc {
 
 
 #[doc="CAN Message Buffer Header"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Debug, Clone, Copy, PartialEq, Eq)]
 pub struct Mbuf(pub [u8; 16]);
 
 impl Mbuf {
@@ -6999,7 +6999,7 @@ impl Mbuf {
     }
 
 #[doc="Write the HDR1 register."]
-    #[inline] pub fn set_hdr1<F: FnOnce(Hdr1) -> Hdr1>(&mut self, f: F) -> &Self {
+    #[inline] pub fn set_hdr1<F: FnOnce(Hdr1) -> Hdr1>(&mut self, f: F) -> &mut Self {
         unsafe {
             write_volatile(self.0.as_mut_ptr().offset(0x0) as *mut Hdr1, f(Hdr1(0)));
         }
@@ -7023,7 +7023,7 @@ impl Mbuf {
     }
 
 #[doc="Write the HDR2 register."]
-    #[inline] pub fn set_hdr2<F: FnOnce(Hdr2) -> Hdr2>(&mut self, f: F) -> &Self {
+    #[inline] pub fn set_hdr2<F: FnOnce(Hdr2) -> Hdr2>(&mut self, f: F) -> &mut Self {
         unsafe {
             write_volatile(self.0.as_mut_ptr().offset(0x0) as *mut Hdr2, f(Hdr2(0)));
         }

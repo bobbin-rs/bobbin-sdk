@@ -2398,7 +2398,7 @@ impl ::core::fmt::Debug for Wrbaddr {
 
 
 #[doc="DMAC Block Transfer Descriptor"]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Debug, Clone, Copy, PartialEq, Eq)]
 pub struct Transfer(pub [u8; 16]);
 
 impl Transfer {
@@ -2410,7 +2410,7 @@ impl Transfer {
     }
 
 #[doc="Write the BTCTRL register."]
-    #[inline] pub fn set_btctrl<F: FnOnce(Btctrl) -> Btctrl>(&mut self, f: F) -> &Self {
+    #[inline] pub fn set_btctrl<F: FnOnce(Btctrl) -> Btctrl>(&mut self, f: F) -> &mut Self {
         unsafe {
             write_volatile(self.0.as_mut_ptr().offset(0x0) as *mut Btctrl, f(Btctrl(0)));
         }
@@ -2434,7 +2434,7 @@ impl Transfer {
     }
 
 #[doc="Write the BTCNT register."]
-    #[inline] pub fn set_btcnt<F: FnOnce(Btcnt) -> Btcnt>(&mut self, f: F) -> &Self {
+    #[inline] pub fn set_btcnt<F: FnOnce(Btcnt) -> Btcnt>(&mut self, f: F) -> &mut Self {
         unsafe {
             write_volatile(self.0.as_mut_ptr().offset(0x2) as *mut Btcnt, f(Btcnt(0)));
         }
@@ -2458,7 +2458,7 @@ impl Transfer {
     }
 
 #[doc="Write the SRCADDR register."]
-    #[inline] pub fn set_srcaddr<F: FnOnce(Srcaddr) -> Srcaddr>(&mut self, f: F) -> &Self {
+    #[inline] pub fn set_srcaddr<F: FnOnce(Srcaddr) -> Srcaddr>(&mut self, f: F) -> &mut Self {
         unsafe {
             write_volatile(self.0.as_mut_ptr().offset(0x4) as *mut Srcaddr, f(Srcaddr(0)));
         }
@@ -2482,7 +2482,7 @@ impl Transfer {
     }
 
 #[doc="Write the DSTADDR register."]
-    #[inline] pub fn set_dstaddr<F: FnOnce(Dstaddr) -> Dstaddr>(&mut self, f: F) -> &Self {
+    #[inline] pub fn set_dstaddr<F: FnOnce(Dstaddr) -> Dstaddr>(&mut self, f: F) -> &mut Self {
         unsafe {
             write_volatile(self.0.as_mut_ptr().offset(0x8) as *mut Dstaddr, f(Dstaddr(0)));
         }
@@ -2506,7 +2506,7 @@ impl Transfer {
     }
 
 #[doc="Write the DESCADDR register."]
-    #[inline] pub fn set_descaddr<F: FnOnce(Descaddr) -> Descaddr>(&mut self, f: F) -> &Self {
+    #[inline] pub fn set_descaddr<F: FnOnce(Descaddr) -> Descaddr>(&mut self, f: F) -> &mut Self {
         unsafe {
             write_volatile(self.0.as_mut_ptr().offset(0xc) as *mut Descaddr, f(Descaddr(0)));
         }
