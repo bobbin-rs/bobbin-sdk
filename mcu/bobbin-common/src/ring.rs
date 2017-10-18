@@ -2,6 +2,7 @@ use core::cell::UnsafeCell;
 use core::cmp;
 use core::ptr;
 use core::marker::PhantomData;
+use core::ops::Index;
 
 
 
@@ -128,6 +129,15 @@ impl<'a, T: 'a + Copy> Ring<'a, T> {
 unsafe impl<'a, T: 'a + Copy> Send for Ring<'a, T> {}
 unsafe impl<'a, T: 'a + Copy> Sync for Ring<'a, T> {}
 
+impl<'a, T: 'a + Copy> Index<usize> for Ring<'a, T> {
+    type Output = T;
+    fn index(&self, index: usize) -> &T {
+        if index >= self.len() {
+            panic!("Index is {} but len is {}", index, self.len());
+        }
+        self.as_ref().index(self.phy(index.wrapping_add(self.reader())))
+    }
+}
 
 pub struct RingReader<'a, T: 'a + Copy> {
     rb: &'a Ring<'a, T>,
