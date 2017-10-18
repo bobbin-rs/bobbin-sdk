@@ -884,7 +884,7 @@ pub fn gen_descriptor<W: Write>(cfg: &Config, out: &mut W, _p_type: &str, desc: 
             }
             if r_access.is_writable() {
                 try!(gen_doc(cfg, out, 0, &format!("Write the {} register.", r.name.to_uppercase())));
-                try!(writeln!(out, "  #[inline] pub fn {}<I: Into<{}>, {}: FnOnce({}) -> {}>(&self, index: I, f: {}) -> &Self {{", r_setter, i_type, r_typevar, r_type, r_type, r_typevar));
+                try!(writeln!(out, "  #[inline] pub fn {}<I: Into<{}>, {}: FnOnce({}) -> {}>(&self, index: I, f: {}) -> &mut Self {{", r_setter, i_type, r_typevar, r_type, r_type, r_typevar));
                 try!(writeln!(out, "      let index: usize = index.into().value() as usize;"));
                 try!(writeln!(out, "      unsafe {{"));
                 try!(writeln!(out, "          write_volatile(self.0.as_mut_ptr().offset(0x{:x} + {}) as *mut {}, f({}(0)));", r_offset, r_shift, r_type, r_type)); 
@@ -923,7 +923,7 @@ pub fn gen_descriptor<W: Write>(cfg: &Config, out: &mut W, _p_type: &str, desc: 
             }
             if r_access.is_writable() {
                 try!(gen_doc(cfg, out, 0, &format!("Write the {} register.", r.name.to_uppercase())));
-                try!(writeln!(out, "    #[inline] pub fn {}<{}: FnOnce({}) -> {}>(&mut self, f: {}) -> &Self {{", r_setter, r_typevar, r_type, r_type, r_typevar));
+                try!(writeln!(out, "    #[inline] pub fn {}<{}: FnOnce({}) -> {}>(&mut self, f: {}) -> &mut Self {{", r_setter, r_typevar, r_type, r_type, r_typevar));
                 try!(writeln!(out, "        unsafe {{"));
                 try!(writeln!(out, "            write_volatile(self.0.as_mut_ptr().offset(0x{:x}) as *mut {}, f({}(0)));", r_offset, r_type, r_type));                    
                 try!(writeln!(out, "        }}"));
