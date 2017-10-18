@@ -1,4 +1,5 @@
 #![no_std]
+#![feature(repr_align, attr_literals)]
 
 extern crate bobbin_common;
 extern crate bobbin_cortexm;
