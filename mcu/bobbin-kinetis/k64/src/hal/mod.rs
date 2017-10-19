@@ -177,4 +177,31 @@ pub mod usb {
     pub use chip::usb::*;
     pub use kinetis_common::hal::usb::*;
     pub use super::sim::SimEnabled;
+
+    pub trait InitUsbIrc {
+        fn init_usbsrc_irc(&self);
+    }
+
+    impl InitUsbIrc for UsbPeriph {
+        fn init_usbsrc_irc(&self) {
+            // Reset USB
+            
+            self.with_usbtrc0(|r| r.set_usbreset(1));
+            while self.usbtrc0().test_usbreset() {}
+
+            // Set clock source
+
+            ::chip::sim::SIM.with_sopt2(|r| r
+                .set_pllfllsel(0b11)
+                .set_usbsrc(1)
+            );        
+
+            // Enable IRC
+            self.with_clk_recover_irc_en(|r| r.set_irc_en(1));
+
+            // Enable Clock Recovery
+            self.with_clk_recover_ctrl(|r| r.set_clock_recover_en(1));
+
+        }
+    }
 }
