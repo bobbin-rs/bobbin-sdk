@@ -2,7 +2,7 @@ use core::cell::UnsafeCell;
 use core::cmp;
 use core::ptr;
 use core::marker::PhantomData;
-use core::ops::Index;
+// use core::ops::Index;
 
 
 
@@ -34,9 +34,9 @@ impl<'a, T: 'a + Copy> Ring<'a, T> {
         unsafe { &*self.buffer }
     }
 
-    fn as_mut(&self) -> &mut [T]{
-        unsafe { &mut *self.buffer }
-    }    
+    // fn as_mut(&self) -> &mut [T]{
+    //     unsafe { &mut *self.buffer }
+    // }    
 
     fn cap(&self) -> usize {
         self.as_ref().len()
@@ -91,8 +91,9 @@ impl<'a, T: 'a + Copy> Ring<'a, T> {
         if self.is_full() {
             false
         } else {
-            let writer = self.phy(self.writer());
-            self.as_mut()[writer] = value;
+            unsafe {
+                self.write_buf(self.phy(self.writer()) as isize, value);
+            }
             self.incr_writer();
             true
         }
@@ -101,11 +102,12 @@ impl<'a, T: 'a + Copy> Ring<'a, T> {
     pub fn dequeue(&self) -> Option<T> {
         if self.is_empty() {
             None
-        } else {
-            let reader = self.phy(self.reader());
-            let value = self.as_ref()[reader];
-            self.incr_reader();
-            Some(value)
+        } else {            
+            unsafe {
+                let value = self.read_buf(self.phy(self.reader()) as isize);
+                self.incr_reader();
+                Some(value)
+            }
         }
     }
 
@@ -124,20 +126,27 @@ impl<'a, T: 'a + Copy> Ring<'a, T> {
         }
         n
     }    
+
+    unsafe fn read_buf(&self, offset: isize) -> T {
+        ptr::read_volatile((&*self.buffer).as_ptr().offset(offset))
+    }
+
+    unsafe fn write_buf(&self, offset: isize, value: T) {
+        ptr::write_volatile((&mut *self.buffer).as_mut_ptr().offset(offset), value)
+    }
+
+    pub fn peek(&self, index: usize) -> T {
+        if index >= self.len() {
+            panic!("Index is {} but len is {}", index, self.len());
+        }
+        unsafe {
+            self.read_buf(self.phy(index.wrapping_add(self.reader())) as isize)
+        }
+    }
 }
 
 unsafe impl<'a, T: 'a + Copy> Send for Ring<'a, T> {}
 unsafe impl<'a, T: 'a + Copy> Sync for Ring<'a, T> {}
-
-impl<'a, T: 'a + Copy> Index<usize> for Ring<'a, T> {
-    type Output = T;
-    fn index(&self, index: usize) -> &T {
-        if index >= self.len() {
-            panic!("Index is {} but len is {}", index, self.len());
-        }
-        self.as_ref().index(self.phy(index.wrapping_add(self.reader())))
-    }
-}
 
 pub struct RingReader<'a, T: 'a + Copy> {
     rb: &'a Ring<'a, T>,
