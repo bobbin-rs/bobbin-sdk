@@ -183,7 +183,12 @@ pub mod usb {
     }
 
     impl InitUsbIrc for UsbPeriph {
-        fn init_usbsrc_irc(&self) {
+        fn init_usbsrc_irc(&self) {    
+            // DISABLE MPU    
+            // NOTE: MPU must be disabled to allow DMA from USBFS to memory.
+            ::chip::mpu::MPU.with_cesr(|r| r.set_vld(0));
+
+            
             // Reset USB
             
             self.with_usbtrc0(|r| r.set_usbreset(1));
