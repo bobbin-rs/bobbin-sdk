@@ -2,7 +2,7 @@
 #![no_main]
 
 #[macro_use]
-extern crate nucleo_f429zi as board;
+extern crate nucleo_f746zg as board;
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {

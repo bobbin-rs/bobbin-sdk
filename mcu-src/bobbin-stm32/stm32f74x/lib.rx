@@ -69,7 +69,7 @@
 
     (peripheral-group
         (name CRC)
-        (module (name stm32_common::chip::crc_24::*))
+        (module (name stm32_common::chip::crc::*))
         (peripheral
             (name CRC)
             (address 0x40023000)
