@@ -18,24 +18,24 @@ pub mod exceptions;
 #[cfg(target_os="none")]
 pub mod lang_items;
 
-// pub mod pin;
-// pub mod clock;
-// pub mod led;
-// pub mod btn;
-// pub mod tim;
+pub mod pin;
+pub mod clock;
+pub mod led;
+pub mod btn;
+pub mod tim;
 
-pub fn delay(ms: u32) {
-    for _ in 0..1_000_000 {
-        unsafe { asm!("nop") }
-    }
-}
+// pub fn delay(ms: u32) {
+//     for _ in 0..1_000_000 {
+//         unsafe { asm!("nop") }
+//     }
+// }
 
-// pub use tim::delay;
+pub use tim::delay;
 
 pub fn init() {
-    // clock::init();
-    // led::init();
-    // btn::init();
-    // tim::init();
-    // console::init();
+    clock::init();
+    led::init();
+    btn::init();
+    tim::init();
+    console::init();
 }
