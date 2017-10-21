@@ -1,6 +1,6 @@
 #[allow(unused_imports)] use bobbin_common::*;
 
-pub use stm32_common::chip::usart_f24::*;
+pub use stm32_common::chip::usart::*;
 
 periph!( USART1, Usart1, _USART1, UsartPeriph, 0x40011000);
 periph!( USART2, Usart2, _USART2, UsartPeriph, 0x40004400);

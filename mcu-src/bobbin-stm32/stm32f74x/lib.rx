@@ -2081,7 +2081,7 @@
     )    
     (peripheral-group 
         (name USART)
-        (module (name stm32_common::chip::usart_f24::*))
+        (module (name stm32_common::chip::usart::*))
         (peripheral 
             (name USART1)
             (address 0x40011000)
