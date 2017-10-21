@@ -1,0 +1,23 @@
+(device
+    (name STM32F74x)
+    (size 0x20)
+    (interrupt-count 98)
+    (description "STM32F74x")
+    (variants
+        (variant (name STM32F74xxE) (link "stm3274xxE.ld"))
+        (variant (name STM32F74xxG) (link "stm32f4xxG.ld"))
+    )
+
+    (crate
+        (name bobbin_cortexm)
+        (module (name chip::exc))
+        (module (name chip::nvic))
+        (module (name chip::scb))
+        (module (name chip::systick))
+        (module (name chip::mpu))
+        (module (name chip::fpu))
+        (module (name chip::dcb))
+        (module (name chip::itm))
+    )
+    (crate (name stm32_common))    
+)

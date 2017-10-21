@@ -1,0 +1,22 @@
+[package]
+name = "stm32f74x"
+version = "0.1.0"
+authors = ["Jonathan Soo <jcsoo@agora.com>"]
+
+[build-dependencies]
+bobbin-build = { path = "../../bobbin-build/" }
+
+[dependencies]
+bobbin-common = { path = "../../bobbin-common" }
+bobbin-cortexm = { path = "../../bobbin-cortexm" }
+stm32-common = { path = "../stm32-common" }
+
+[dependencies.compiler_builtins]
+git = "https://github.com/rust-lang-nursery/compiler-builtins"
+features = ["mem","c"]
+
+[features]
+default = []
+
+STM32F74xxE = []
+STM32F74xxG = []
