@@ -8,6 +8,8 @@
         (variant (name STM32F72xxE) (link "stm3272xxE.ld"))
         (variant (name STM32F74xxE) (link "stm3274xxE.ld"))
         (variant (name STM32F74xxG) (link "stm32f4xxG.ld"))
+        (variant (name STM32F76xxG) (link "stm32f6xxG.ld"))
+        (variant (name STM32F76xxI) (link "stm32f6xxI.ld"))
     )
 
     (crate
