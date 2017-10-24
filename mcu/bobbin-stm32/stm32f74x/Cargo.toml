@@ -18,5 +18,7 @@ features = ["mem","c"]
 [features]
 default = []
 
+STM32F72xxC = []
+STM32F72xxE = []
 STM32F74xxE = []
 STM32F74xxG = []

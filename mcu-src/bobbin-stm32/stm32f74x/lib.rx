@@ -4,6 +4,8 @@
     (interrupt-count 98)
     (description "STM32F74x")
     (variants
+        (variant (name STM32F72xxC) (link "stm3272xxC.ld"))
+        (variant (name STM32F72xxE) (link "stm3272xxE.ld"))
         (variant (name STM32F74xxE) (link "stm3274xxE.ld"))
         (variant (name STM32F74xxG) (link "stm32f4xxG.ld"))
     )
