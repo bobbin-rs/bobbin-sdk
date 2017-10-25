@@ -340,101 +340,36 @@ impl UsbFsDevicePeriph {
         self
     }
 
-    #[doc="Get the *mut pointer for the DIEPCTL1 register."]
-    #[inline] pub fn diepctl1_mut(&self) -> *mut Diepctl1 { 
-        (self.0 + 0x120) as *mut Diepctl1
+    #[doc="Get the *mut pointer for the DIEPCTL register."]
+    #[inline] pub fn diepctl_mut<I: Into<bits::R4>>(&self, index: I) -> *mut Diepctl { 
+        let index: usize = index.into().value() as usize;
+        (self.0 + 0x100 + (index * 32)) as *mut Diepctl
     }
 
-    #[doc="Get the *const pointer for the DIEPCTL1 register."]
-    #[inline] pub fn diepctl1_ptr(&self) -> *const Diepctl1 { 
-           self.diepctl1_mut()
+    #[doc="Get the *const pointer for the DIEPCTL register."]
+    #[inline] pub fn diepctl_ptr<I: Into<bits::R4>>(&self, index: I) -> *const Diepctl { 
+           self.diepctl_mut(index)
     }
 
-    #[doc="Read the DIEPCTL1 register."]
-    #[inline] pub fn diepctl1(&self) -> Diepctl1 { 
+    #[doc="Read the DIEPCTL register."]
+    #[inline] pub fn diepctl<I: Into<bits::R4>>(&self, index: I) -> Diepctl { 
         unsafe {
-            read_volatile(self.diepctl1_ptr())
+            read_volatile(self.diepctl_ptr(index))
         }
     }
 
-    #[doc="Write the DIEPCTL1 register."]
-    #[inline] pub fn set_diepctl1<F: FnOnce(Diepctl1) -> Diepctl1>(&self, f: F) -> &Self {
+    #[doc="Write the DIEPCTL register."]
+    #[inline] pub fn set_diepctl<I: Into<bits::R4>, F: FnOnce(Diepctl) -> Diepctl>(&self, index: I, f: F) -> &Self {
         unsafe {
-            write_volatile(self.diepctl1_mut(), f(Diepctl1(0)));
-        }
-        self
-    }
-
-    #[doc="Modify the DIEPCTL1 register."]
-    #[inline] pub fn with_diepctl1<F: FnOnce(Diepctl1) -> Diepctl1>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.diepctl1_mut(), f(self.diepctl1()));
+            write_volatile(self.diepctl_mut(index), f(Diepctl(0)));
         }
         self
     }
 
-    #[doc="Get the *mut pointer for the DIEPCTL2 register."]
-    #[inline] pub fn diepctl2_mut(&self) -> *mut Diepctl2 { 
-        (self.0 + 0x140) as *mut Diepctl2
-    }
-
-    #[doc="Get the *const pointer for the DIEPCTL2 register."]
-    #[inline] pub fn diepctl2_ptr(&self) -> *const Diepctl2 { 
-           self.diepctl2_mut()
-    }
-
-    #[doc="Read the DIEPCTL2 register."]
-    #[inline] pub fn diepctl2(&self) -> Diepctl2 { 
+    #[doc="Modify the DIEPCTL register."]
+    #[inline] pub fn with_diepctl<I: Into<bits::R4> + Copy, F: FnOnce(Diepctl) -> Diepctl>(&self, index: I, f: F) -> &Self {
         unsafe {
-            read_volatile(self.diepctl2_ptr())
-        }
-    }
-
-    #[doc="Write the DIEPCTL2 register."]
-    #[inline] pub fn set_diepctl2<F: FnOnce(Diepctl2) -> Diepctl2>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.diepctl2_mut(), f(Diepctl2(0)));
-        }
-        self
-    }
-
-    #[doc="Modify the DIEPCTL2 register."]
-    #[inline] pub fn with_diepctl2<F: FnOnce(Diepctl2) -> Diepctl2>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.diepctl2_mut(), f(self.diepctl2()));
-        }
-        self
-    }
-
-    #[doc="Get the *mut pointer for the DIEPCTL3 register."]
-    #[inline] pub fn diepctl3_mut(&self) -> *mut Diepctl3 { 
-        (self.0 + 0x160) as *mut Diepctl3
-    }
-
-    #[doc="Get the *const pointer for the DIEPCTL3 register."]
-    #[inline] pub fn diepctl3_ptr(&self) -> *const Diepctl3 { 
-           self.diepctl3_mut()
-    }
-
-    #[doc="Read the DIEPCTL3 register."]
-    #[inline] pub fn diepctl3(&self) -> Diepctl3 { 
-        unsafe {
-            read_volatile(self.diepctl3_ptr())
-        }
-    }
-
-    #[doc="Write the DIEPCTL3 register."]
-    #[inline] pub fn set_diepctl3<F: FnOnce(Diepctl3) -> Diepctl3>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.diepctl3_mut(), f(Diepctl3(0)));
-        }
-        self
-    }
-
-    #[doc="Modify the DIEPCTL3 register."]
-    #[inline] pub fn with_diepctl3<F: FnOnce(Diepctl3) -> Diepctl3>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.diepctl3_mut(), f(self.diepctl3()));
+            write_volatile(self.diepctl_mut(index), f(self.diepctl(index)));
         }
         self
     }
@@ -472,365 +407,104 @@ impl UsbFsDevicePeriph {
         self
     }
 
-    #[doc="Get the *mut pointer for the DOEPCTL1 register."]
-    #[inline] pub fn doepctl1_mut(&self) -> *mut Doepctl1 { 
-        (self.0 + 0x320) as *mut Doepctl1
+    #[doc="Get the *mut pointer for the DOEPCTL register."]
+    #[inline] pub fn doepctl_mut<I: Into<bits::R4>>(&self, index: I) -> *mut Doepctl { 
+        let index: usize = index.into().value() as usize;
+        (self.0 + 0x300 + (index * 32)) as *mut Doepctl
     }
 
-    #[doc="Get the *const pointer for the DOEPCTL1 register."]
-    #[inline] pub fn doepctl1_ptr(&self) -> *const Doepctl1 { 
-           self.doepctl1_mut()
+    #[doc="Get the *const pointer for the DOEPCTL register."]
+    #[inline] pub fn doepctl_ptr<I: Into<bits::R4>>(&self, index: I) -> *const Doepctl { 
+           self.doepctl_mut(index)
     }
 
-    #[doc="Read the DOEPCTL1 register."]
-    #[inline] pub fn doepctl1(&self) -> Doepctl1 { 
+    #[doc="Read the DOEPCTL register."]
+    #[inline] pub fn doepctl<I: Into<bits::R4>>(&self, index: I) -> Doepctl { 
         unsafe {
-            read_volatile(self.doepctl1_ptr())
+            read_volatile(self.doepctl_ptr(index))
         }
     }
 
-    #[doc="Write the DOEPCTL1 register."]
-    #[inline] pub fn set_doepctl1<F: FnOnce(Doepctl1) -> Doepctl1>(&self, f: F) -> &Self {
+    #[doc="Write the DOEPCTL register."]
+    #[inline] pub fn set_doepctl<I: Into<bits::R4>, F: FnOnce(Doepctl) -> Doepctl>(&self, index: I, f: F) -> &Self {
         unsafe {
-            write_volatile(self.doepctl1_mut(), f(Doepctl1(0)));
-        }
-        self
-    }
-
-    #[doc="Modify the DOEPCTL1 register."]
-    #[inline] pub fn with_doepctl1<F: FnOnce(Doepctl1) -> Doepctl1>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.doepctl1_mut(), f(self.doepctl1()));
+            write_volatile(self.doepctl_mut(index), f(Doepctl(0)));
         }
         self
     }
 
-    #[doc="Get the *mut pointer for the DOEPCTL2 register."]
-    #[inline] pub fn doepctl2_mut(&self) -> *mut Doepctl2 { 
-        (self.0 + 0x340) as *mut Doepctl2
-    }
-
-    #[doc="Get the *const pointer for the DOEPCTL2 register."]
-    #[inline] pub fn doepctl2_ptr(&self) -> *const Doepctl2 { 
-           self.doepctl2_mut()
-    }
-
-    #[doc="Read the DOEPCTL2 register."]
-    #[inline] pub fn doepctl2(&self) -> Doepctl2 { 
+    #[doc="Modify the DOEPCTL register."]
+    #[inline] pub fn with_doepctl<I: Into<bits::R4> + Copy, F: FnOnce(Doepctl) -> Doepctl>(&self, index: I, f: F) -> &Self {
         unsafe {
-            read_volatile(self.doepctl2_ptr())
-        }
-    }
-
-    #[doc="Write the DOEPCTL2 register."]
-    #[inline] pub fn set_doepctl2<F: FnOnce(Doepctl2) -> Doepctl2>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.doepctl2_mut(), f(Doepctl2(0)));
+            write_volatile(self.doepctl_mut(index), f(self.doepctl(index)));
         }
         self
     }
 
-    #[doc="Modify the DOEPCTL2 register."]
-    #[inline] pub fn with_doepctl2<F: FnOnce(Doepctl2) -> Doepctl2>(&self, f: F) -> &Self {
+    #[doc="Get the *mut pointer for the DIEPINT register."]
+    #[inline] pub fn diepint_mut<I: Into<bits::R4>>(&self, index: I) -> *mut Diepint { 
+        let index: usize = index.into().value() as usize;
+        (self.0 + 0x108 + (index * 32)) as *mut Diepint
+    }
+
+    #[doc="Get the *const pointer for the DIEPINT register."]
+    #[inline] pub fn diepint_ptr<I: Into<bits::R4>>(&self, index: I) -> *const Diepint { 
+           self.diepint_mut(index)
+    }
+
+    #[doc="Read the DIEPINT register."]
+    #[inline] pub fn diepint<I: Into<bits::R4>>(&self, index: I) -> Diepint { 
         unsafe {
-            write_volatile(self.doepctl2_mut(), f(self.doepctl2()));
+            read_volatile(self.diepint_ptr(index))
+        }
+    }
+
+    #[doc="Write the DIEPINT register."]
+    #[inline] pub fn set_diepint<I: Into<bits::R4>, F: FnOnce(Diepint) -> Diepint>(&self, index: I, f: F) -> &Self {
+        unsafe {
+            write_volatile(self.diepint_mut(index), f(Diepint(0)));
         }
         self
     }
 
-    #[doc="Get the *mut pointer for the DOEPCTL3 register."]
-    #[inline] pub fn doepctl3_mut(&self) -> *mut Doepctl3 { 
-        (self.0 + 0x360) as *mut Doepctl3
-    }
-
-    #[doc="Get the *const pointer for the DOEPCTL3 register."]
-    #[inline] pub fn doepctl3_ptr(&self) -> *const Doepctl3 { 
-           self.doepctl3_mut()
-    }
-
-    #[doc="Read the DOEPCTL3 register."]
-    #[inline] pub fn doepctl3(&self) -> Doepctl3 { 
+    #[doc="Modify the DIEPINT register."]
+    #[inline] pub fn with_diepint<I: Into<bits::R4> + Copy, F: FnOnce(Diepint) -> Diepint>(&self, index: I, f: F) -> &Self {
         unsafe {
-            read_volatile(self.doepctl3_ptr())
-        }
-    }
-
-    #[doc="Write the DOEPCTL3 register."]
-    #[inline] pub fn set_doepctl3<F: FnOnce(Doepctl3) -> Doepctl3>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.doepctl3_mut(), f(Doepctl3(0)));
+            write_volatile(self.diepint_mut(index), f(self.diepint(index)));
         }
         self
     }
 
-    #[doc="Modify the DOEPCTL3 register."]
-    #[inline] pub fn with_doepctl3<F: FnOnce(Doepctl3) -> Doepctl3>(&self, f: F) -> &Self {
+    #[doc="Get the *mut pointer for the DOEPINT register."]
+    #[inline] pub fn doepint_mut<I: Into<bits::R4>>(&self, index: I) -> *mut Doepint { 
+        let index: usize = index.into().value() as usize;
+        (self.0 + 0x308 + (index * 32)) as *mut Doepint
+    }
+
+    #[doc="Get the *const pointer for the DOEPINT register."]
+    #[inline] pub fn doepint_ptr<I: Into<bits::R4>>(&self, index: I) -> *const Doepint { 
+           self.doepint_mut(index)
+    }
+
+    #[doc="Read the DOEPINT register."]
+    #[inline] pub fn doepint<I: Into<bits::R4>>(&self, index: I) -> Doepint { 
         unsafe {
-            write_volatile(self.doepctl3_mut(), f(self.doepctl3()));
+            read_volatile(self.doepint_ptr(index))
+        }
+    }
+
+    #[doc="Write the DOEPINT register."]
+    #[inline] pub fn set_doepint<I: Into<bits::R4>, F: FnOnce(Doepint) -> Doepint>(&self, index: I, f: F) -> &Self {
+        unsafe {
+            write_volatile(self.doepint_mut(index), f(Doepint(0)));
         }
         self
     }
 
-    #[doc="Get the *mut pointer for the DIEPINT0 register."]
-    #[inline] pub fn diepint0_mut(&self) -> *mut Diepint0 { 
-        (self.0 + 0x108) as *mut Diepint0
-    }
-
-    #[doc="Get the *const pointer for the DIEPINT0 register."]
-    #[inline] pub fn diepint0_ptr(&self) -> *const Diepint0 { 
-           self.diepint0_mut()
-    }
-
-    #[doc="Read the DIEPINT0 register."]
-    #[inline] pub fn diepint0(&self) -> Diepint0 { 
+    #[doc="Modify the DOEPINT register."]
+    #[inline] pub fn with_doepint<I: Into<bits::R4> + Copy, F: FnOnce(Doepint) -> Doepint>(&self, index: I, f: F) -> &Self {
         unsafe {
-            read_volatile(self.diepint0_ptr())
-        }
-    }
-
-    #[doc="Write the DIEPINT0 register."]
-    #[inline] pub fn set_diepint0<F: FnOnce(Diepint0) -> Diepint0>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.diepint0_mut(), f(Diepint0(0)));
-        }
-        self
-    }
-
-    #[doc="Modify the DIEPINT0 register."]
-    #[inline] pub fn with_diepint0<F: FnOnce(Diepint0) -> Diepint0>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.diepint0_mut(), f(self.diepint0()));
-        }
-        self
-    }
-
-    #[doc="Get the *mut pointer for the DIEPINT1 register."]
-    #[inline] pub fn diepint1_mut(&self) -> *mut Diepint1 { 
-        (self.0 + 0x128) as *mut Diepint1
-    }
-
-    #[doc="Get the *const pointer for the DIEPINT1 register."]
-    #[inline] pub fn diepint1_ptr(&self) -> *const Diepint1 { 
-           self.diepint1_mut()
-    }
-
-    #[doc="Read the DIEPINT1 register."]
-    #[inline] pub fn diepint1(&self) -> Diepint1 { 
-        unsafe {
-            read_volatile(self.diepint1_ptr())
-        }
-    }
-
-    #[doc="Write the DIEPINT1 register."]
-    #[inline] pub fn set_diepint1<F: FnOnce(Diepint1) -> Diepint1>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.diepint1_mut(), f(Diepint1(0)));
-        }
-        self
-    }
-
-    #[doc="Modify the DIEPINT1 register."]
-    #[inline] pub fn with_diepint1<F: FnOnce(Diepint1) -> Diepint1>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.diepint1_mut(), f(self.diepint1()));
-        }
-        self
-    }
-
-    #[doc="Get the *mut pointer for the DIEPINT2 register."]
-    #[inline] pub fn diepint2_mut(&self) -> *mut Diepint2 { 
-        (self.0 + 0x148) as *mut Diepint2
-    }
-
-    #[doc="Get the *const pointer for the DIEPINT2 register."]
-    #[inline] pub fn diepint2_ptr(&self) -> *const Diepint2 { 
-           self.diepint2_mut()
-    }
-
-    #[doc="Read the DIEPINT2 register."]
-    #[inline] pub fn diepint2(&self) -> Diepint2 { 
-        unsafe {
-            read_volatile(self.diepint2_ptr())
-        }
-    }
-
-    #[doc="Write the DIEPINT2 register."]
-    #[inline] pub fn set_diepint2<F: FnOnce(Diepint2) -> Diepint2>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.diepint2_mut(), f(Diepint2(0)));
-        }
-        self
-    }
-
-    #[doc="Modify the DIEPINT2 register."]
-    #[inline] pub fn with_diepint2<F: FnOnce(Diepint2) -> Diepint2>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.diepint2_mut(), f(self.diepint2()));
-        }
-        self
-    }
-
-    #[doc="Get the *mut pointer for the DIEPINT3 register."]
-    #[inline] pub fn diepint3_mut(&self) -> *mut Diepint3 { 
-        (self.0 + 0x168) as *mut Diepint3
-    }
-
-    #[doc="Get the *const pointer for the DIEPINT3 register."]
-    #[inline] pub fn diepint3_ptr(&self) -> *const Diepint3 { 
-           self.diepint3_mut()
-    }
-
-    #[doc="Read the DIEPINT3 register."]
-    #[inline] pub fn diepint3(&self) -> Diepint3 { 
-        unsafe {
-            read_volatile(self.diepint3_ptr())
-        }
-    }
-
-    #[doc="Write the DIEPINT3 register."]
-    #[inline] pub fn set_diepint3<F: FnOnce(Diepint3) -> Diepint3>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.diepint3_mut(), f(Diepint3(0)));
-        }
-        self
-    }
-
-    #[doc="Modify the DIEPINT3 register."]
-    #[inline] pub fn with_diepint3<F: FnOnce(Diepint3) -> Diepint3>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.diepint3_mut(), f(self.diepint3()));
-        }
-        self
-    }
-
-    #[doc="Get the *mut pointer for the DOEPINT0 register."]
-    #[inline] pub fn doepint0_mut(&self) -> *mut Doepint0 { 
-        (self.0 + 0x308) as *mut Doepint0
-    }
-
-    #[doc="Get the *const pointer for the DOEPINT0 register."]
-    #[inline] pub fn doepint0_ptr(&self) -> *const Doepint0 { 
-           self.doepint0_mut()
-    }
-
-    #[doc="Read the DOEPINT0 register."]
-    #[inline] pub fn doepint0(&self) -> Doepint0 { 
-        unsafe {
-            read_volatile(self.doepint0_ptr())
-        }
-    }
-
-    #[doc="Write the DOEPINT0 register."]
-    #[inline] pub fn set_doepint0<F: FnOnce(Doepint0) -> Doepint0>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.doepint0_mut(), f(Doepint0(0)));
-        }
-        self
-    }
-
-    #[doc="Modify the DOEPINT0 register."]
-    #[inline] pub fn with_doepint0<F: FnOnce(Doepint0) -> Doepint0>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.doepint0_mut(), f(self.doepint0()));
-        }
-        self
-    }
-
-    #[doc="Get the *mut pointer for the DOEPINT1 register."]
-    #[inline] pub fn doepint1_mut(&self) -> *mut Doepint1 { 
-        (self.0 + 0x328) as *mut Doepint1
-    }
-
-    #[doc="Get the *const pointer for the DOEPINT1 register."]
-    #[inline] pub fn doepint1_ptr(&self) -> *const Doepint1 { 
-           self.doepint1_mut()
-    }
-
-    #[doc="Read the DOEPINT1 register."]
-    #[inline] pub fn doepint1(&self) -> Doepint1 { 
-        unsafe {
-            read_volatile(self.doepint1_ptr())
-        }
-    }
-
-    #[doc="Write the DOEPINT1 register."]
-    #[inline] pub fn set_doepint1<F: FnOnce(Doepint1) -> Doepint1>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.doepint1_mut(), f(Doepint1(0)));
-        }
-        self
-    }
-
-    #[doc="Modify the DOEPINT1 register."]
-    #[inline] pub fn with_doepint1<F: FnOnce(Doepint1) -> Doepint1>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.doepint1_mut(), f(self.doepint1()));
-        }
-        self
-    }
-
-    #[doc="Get the *mut pointer for the DOEPINT2 register."]
-    #[inline] pub fn doepint2_mut(&self) -> *mut Doepint2 { 
-        (self.0 + 0x348) as *mut Doepint2
-    }
-
-    #[doc="Get the *const pointer for the DOEPINT2 register."]
-    #[inline] pub fn doepint2_ptr(&self) -> *const Doepint2 { 
-           self.doepint2_mut()
-    }
-
-    #[doc="Read the DOEPINT2 register."]
-    #[inline] pub fn doepint2(&self) -> Doepint2 { 
-        unsafe {
-            read_volatile(self.doepint2_ptr())
-        }
-    }
-
-    #[doc="Write the DOEPINT2 register."]
-    #[inline] pub fn set_doepint2<F: FnOnce(Doepint2) -> Doepint2>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.doepint2_mut(), f(Doepint2(0)));
-        }
-        self
-    }
-
-    #[doc="Modify the DOEPINT2 register."]
-    #[inline] pub fn with_doepint2<F: FnOnce(Doepint2) -> Doepint2>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.doepint2_mut(), f(self.doepint2()));
-        }
-        self
-    }
-
-    #[doc="Get the *mut pointer for the DOEPINT3 register."]
-    #[inline] pub fn doepint3_mut(&self) -> *mut Doepint3 { 
-        (self.0 + 0x368) as *mut Doepint3
-    }
-
-    #[doc="Get the *const pointer for the DOEPINT3 register."]
-    #[inline] pub fn doepint3_ptr(&self) -> *const Doepint3 { 
-           self.doepint3_mut()
-    }
-
-    #[doc="Read the DOEPINT3 register."]
-    #[inline] pub fn doepint3(&self) -> Doepint3 { 
-        unsafe {
-            read_volatile(self.doepint3_ptr())
-        }
-    }
-
-    #[doc="Write the DOEPINT3 register."]
-    #[inline] pub fn set_doepint3<F: FnOnce(Doepint3) -> Doepint3>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.doepint3_mut(), f(Doepint3(0)));
-        }
-        self
-    }
-
-    #[doc="Modify the DOEPINT3 register."]
-    #[inline] pub fn with_doepint3<F: FnOnce(Doepint3) -> Doepint3>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.doepint3_mut(), f(self.doepint3()));
+            write_volatile(self.doepint_mut(index), f(self.doepint(index)));
         }
         self
     }
@@ -2828,10 +2502,10 @@ impl ::core::fmt::Debug for Diepctl0 {
     }
 }
 
-#[doc="OTG device endpoint-1 control register"]
+#[doc="OTG device endpoint-n control register"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
-pub struct Diepctl1(pub u32);
-impl Diepctl1 {
+pub struct Diepctl(pub u32);
+impl Diepctl {
     #[doc="EPENA"]
     #[inline] pub fn epena(&self) -> bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 31) & 0x1) as u8) } // [31]
@@ -3081,599 +2755,25 @@ impl Diepctl1 {
 
 }
 
-impl From<u32> for Diepctl1 {
+impl From<u32> for Diepctl {
     #[inline]
     fn from(other: u32) -> Self {
-         Diepctl1(other)
+         Diepctl(other)
     }
 }
 
-impl ::core::fmt::Display for Diepctl1 {
+impl ::core::fmt::Display for Diepctl {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
     }
 }
 
-impl ::core::fmt::Debug for Diepctl1 {
+impl ::core::fmt::Debug for Diepctl {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
         try!(write!(f, "[0x{:08x}", self.0));
         if self.epena() != 0 { try!(write!(f, " epena"))}
         if self.epdis() != 0 { try!(write!(f, " epdis"))}
         if self.soddfrm_sd1pid() != 0 { try!(write!(f, " soddfrm_sd1pid"))}
-        if self.sd0pid_sevnfrm() != 0 { try!(write!(f, " sd0pid_sevnfrm"))}
-        if self.snak() != 0 { try!(write!(f, " snak"))}
-        if self.cnak() != 0 { try!(write!(f, " cnak"))}
-        if self.txfnum() != 0 { try!(write!(f, " txfnum=0x{:x}", self.txfnum()))}
-        if self.stall() != 0 { try!(write!(f, " stall"))}
-        if self.eptyp() != 0 { try!(write!(f, " eptyp=0x{:x}", self.eptyp()))}
-        if self.naksts() != 0 { try!(write!(f, " naksts"))}
-        if self.eonum_dpid() != 0 { try!(write!(f, " eonum_dpid"))}
-        if self.usbaep() != 0 { try!(write!(f, " usbaep"))}
-        if self.mpsiz() != 0 { try!(write!(f, " mpsiz=0x{:x}", self.mpsiz()))}
-        try!(write!(f, "]"));
-        Ok(())
-    }
-}
-
-#[doc="OTG device endpoint-2 control register"]
-#[derive(Default, Clone, Copy, PartialEq, Eq)]
-pub struct Diepctl2(pub u32);
-impl Diepctl2 {
-    #[doc="EPENA"]
-    #[inline] pub fn epena(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 31) & 0x1) as u8) } // [31]
-    }
-
-    #[doc="Returns true if EPENA != 0"]
-    #[inline] pub fn test_epena(&self) -> bool {
-        self.epena() != 0
-    }
-
-    #[doc="Sets the EPENA field."]
-    #[inline] pub fn set_epena<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 31);
-        self.0 |= value << 31;
-        self
-    }
-
-    #[doc="EPDIS"]
-    #[inline] pub fn epdis(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 30) & 0x1) as u8) } // [30]
-    }
-
-    #[doc="Returns true if EPDIS != 0"]
-    #[inline] pub fn test_epdis(&self) -> bool {
-        self.epdis() != 0
-    }
-
-    #[doc="Sets the EPDIS field."]
-    #[inline] pub fn set_epdis<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 30);
-        self.0 |= value << 30;
-        self
-    }
-
-    #[doc="SODDFRM"]
-    #[inline] pub fn soddfrm(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 29) & 0x1) as u8) } // [29]
-    }
-
-    #[doc="Returns true if SODDFRM != 0"]
-    #[inline] pub fn test_soddfrm(&self) -> bool {
-        self.soddfrm() != 0
-    }
-
-    #[doc="Sets the SODDFRM field."]
-    #[inline] pub fn set_soddfrm<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 29);
-        self.0 |= value << 29;
-        self
-    }
-
-    #[doc="SD0PID/SEVNFRM"]
-    #[inline] pub fn sd0pid_sevnfrm(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 28) & 0x1) as u8) } // [28]
-    }
-
-    #[doc="Returns true if SD0PID_SEVNFRM != 0"]
-    #[inline] pub fn test_sd0pid_sevnfrm(&self) -> bool {
-        self.sd0pid_sevnfrm() != 0
-    }
-
-    #[doc="Sets the SD0PID_SEVNFRM field."]
-    #[inline] pub fn set_sd0pid_sevnfrm<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 28);
-        self.0 |= value << 28;
-        self
-    }
-
-    #[doc="SNAK"]
-    #[inline] pub fn snak(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 27) & 0x1) as u8) } // [27]
-    }
-
-    #[doc="Returns true if SNAK != 0"]
-    #[inline] pub fn test_snak(&self) -> bool {
-        self.snak() != 0
-    }
-
-    #[doc="Sets the SNAK field."]
-    #[inline] pub fn set_snak<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 27);
-        self.0 |= value << 27;
-        self
-    }
-
-    #[doc="CNAK"]
-    #[inline] pub fn cnak(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 26) & 0x1) as u8) } // [26]
-    }
-
-    #[doc="Returns true if CNAK != 0"]
-    #[inline] pub fn test_cnak(&self) -> bool {
-        self.cnak() != 0
-    }
-
-    #[doc="Sets the CNAK field."]
-    #[inline] pub fn set_cnak<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 26);
-        self.0 |= value << 26;
-        self
-    }
-
-    #[doc="TXFNUM"]
-    #[inline] pub fn txfnum(&self) -> bits::U4 {
-        unsafe { ::core::mem::transmute(((self.0 >> 22) & 0xf) as u8) } // [25:22]
-    }
-
-    #[doc="Returns true if TXFNUM != 0"]
-    #[inline] pub fn test_txfnum(&self) -> bool {
-        self.txfnum() != 0
-    }
-
-    #[doc="Sets the TXFNUM field."]
-    #[inline] pub fn set_txfnum<V: Into<bits::U4>>(mut self, value: V) -> Self {
-        let value: bits::U4 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0xf << 22);
-        self.0 |= value << 22;
-        self
-    }
-
-    #[doc="Stall"]
-    #[inline] pub fn stall(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 21) & 0x1) as u8) } // [21]
-    }
-
-    #[doc="Returns true if Stall != 0"]
-    #[inline] pub fn test_stall(&self) -> bool {
-        self.stall() != 0
-    }
-
-    #[doc="Sets the Stall field."]
-    #[inline] pub fn set_stall<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 21);
-        self.0 |= value << 21;
-        self
-    }
-
-    #[doc="EPTYP"]
-    #[inline] pub fn eptyp(&self) -> bits::U2 {
-        unsafe { ::core::mem::transmute(((self.0 >> 18) & 0x3) as u8) } // [19:18]
-    }
-
-    #[doc="Returns true if EPTYP != 0"]
-    #[inline] pub fn test_eptyp(&self) -> bool {
-        self.eptyp() != 0
-    }
-
-    #[doc="Sets the EPTYP field."]
-    #[inline] pub fn set_eptyp<V: Into<bits::U2>>(mut self, value: V) -> Self {
-        let value: bits::U2 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x3 << 18);
-        self.0 |= value << 18;
-        self
-    }
-
-    #[doc="NAKSTS"]
-    #[inline] pub fn naksts(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 17) & 0x1) as u8) } // [17]
-    }
-
-    #[doc="Returns true if NAKSTS != 0"]
-    #[inline] pub fn test_naksts(&self) -> bool {
-        self.naksts() != 0
-    }
-
-    #[doc="Sets the NAKSTS field."]
-    #[inline] pub fn set_naksts<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 17);
-        self.0 |= value << 17;
-        self
-    }
-
-    #[doc="EONUM/DPID"]
-    #[inline] pub fn eonum_dpid(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1) as u8) } // [16]
-    }
-
-    #[doc="Returns true if EONUM_DPID != 0"]
-    #[inline] pub fn test_eonum_dpid(&self) -> bool {
-        self.eonum_dpid() != 0
-    }
-
-    #[doc="Sets the EONUM_DPID field."]
-    #[inline] pub fn set_eonum_dpid<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 16);
-        self.0 |= value << 16;
-        self
-    }
-
-    #[doc="USBAEP"]
-    #[inline] pub fn usbaep(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 15) & 0x1) as u8) } // [15]
-    }
-
-    #[doc="Returns true if USBAEP != 0"]
-    #[inline] pub fn test_usbaep(&self) -> bool {
-        self.usbaep() != 0
-    }
-
-    #[doc="Sets the USBAEP field."]
-    #[inline] pub fn set_usbaep<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 15);
-        self.0 |= value << 15;
-        self
-    }
-
-    #[doc="MPSIZ"]
-    #[inline] pub fn mpsiz(&self) -> bits::U11 {
-        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x7ff) as u16) } // [10:0]
-    }
-
-    #[doc="Returns true if MPSIZ != 0"]
-    #[inline] pub fn test_mpsiz(&self) -> bool {
-        self.mpsiz() != 0
-    }
-
-    #[doc="Sets the MPSIZ field."]
-    #[inline] pub fn set_mpsiz<V: Into<bits::U11>>(mut self, value: V) -> Self {
-        let value: bits::U11 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x7ff << 0);
-        self.0 |= value << 0;
-        self
-    }
-
-}
-
-impl From<u32> for Diepctl2 {
-    #[inline]
-    fn from(other: u32) -> Self {
-         Diepctl2(other)
-    }
-}
-
-impl ::core::fmt::Display for Diepctl2 {
-    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-         self.0.fmt(f)
-    }
-}
-
-impl ::core::fmt::Debug for Diepctl2 {
-    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-        try!(write!(f, "[0x{:08x}", self.0));
-        if self.epena() != 0 { try!(write!(f, " epena"))}
-        if self.epdis() != 0 { try!(write!(f, " epdis"))}
-        if self.soddfrm() != 0 { try!(write!(f, " soddfrm"))}
-        if self.sd0pid_sevnfrm() != 0 { try!(write!(f, " sd0pid_sevnfrm"))}
-        if self.snak() != 0 { try!(write!(f, " snak"))}
-        if self.cnak() != 0 { try!(write!(f, " cnak"))}
-        if self.txfnum() != 0 { try!(write!(f, " txfnum=0x{:x}", self.txfnum()))}
-        if self.stall() != 0 { try!(write!(f, " stall"))}
-        if self.eptyp() != 0 { try!(write!(f, " eptyp=0x{:x}", self.eptyp()))}
-        if self.naksts() != 0 { try!(write!(f, " naksts"))}
-        if self.eonum_dpid() != 0 { try!(write!(f, " eonum_dpid"))}
-        if self.usbaep() != 0 { try!(write!(f, " usbaep"))}
-        if self.mpsiz() != 0 { try!(write!(f, " mpsiz=0x{:x}", self.mpsiz()))}
-        try!(write!(f, "]"));
-        Ok(())
-    }
-}
-
-#[doc="OTG device endpoint-3 control register"]
-#[derive(Default, Clone, Copy, PartialEq, Eq)]
-pub struct Diepctl3(pub u32);
-impl Diepctl3 {
-    #[doc="EPENA"]
-    #[inline] pub fn epena(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 31) & 0x1) as u8) } // [31]
-    }
-
-    #[doc="Returns true if EPENA != 0"]
-    #[inline] pub fn test_epena(&self) -> bool {
-        self.epena() != 0
-    }
-
-    #[doc="Sets the EPENA field."]
-    #[inline] pub fn set_epena<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 31);
-        self.0 |= value << 31;
-        self
-    }
-
-    #[doc="EPDIS"]
-    #[inline] pub fn epdis(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 30) & 0x1) as u8) } // [30]
-    }
-
-    #[doc="Returns true if EPDIS != 0"]
-    #[inline] pub fn test_epdis(&self) -> bool {
-        self.epdis() != 0
-    }
-
-    #[doc="Sets the EPDIS field."]
-    #[inline] pub fn set_epdis<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 30);
-        self.0 |= value << 30;
-        self
-    }
-
-    #[doc="SODDFRM"]
-    #[inline] pub fn soddfrm(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 29) & 0x1) as u8) } // [29]
-    }
-
-    #[doc="Returns true if SODDFRM != 0"]
-    #[inline] pub fn test_soddfrm(&self) -> bool {
-        self.soddfrm() != 0
-    }
-
-    #[doc="Sets the SODDFRM field."]
-    #[inline] pub fn set_soddfrm<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 29);
-        self.0 |= value << 29;
-        self
-    }
-
-    #[doc="SD0PID/SEVNFRM"]
-    #[inline] pub fn sd0pid_sevnfrm(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 28) & 0x1) as u8) } // [28]
-    }
-
-    #[doc="Returns true if SD0PID_SEVNFRM != 0"]
-    #[inline] pub fn test_sd0pid_sevnfrm(&self) -> bool {
-        self.sd0pid_sevnfrm() != 0
-    }
-
-    #[doc="Sets the SD0PID_SEVNFRM field."]
-    #[inline] pub fn set_sd0pid_sevnfrm<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 28);
-        self.0 |= value << 28;
-        self
-    }
-
-    #[doc="SNAK"]
-    #[inline] pub fn snak(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 27) & 0x1) as u8) } // [27]
-    }
-
-    #[doc="Returns true if SNAK != 0"]
-    #[inline] pub fn test_snak(&self) -> bool {
-        self.snak() != 0
-    }
-
-    #[doc="Sets the SNAK field."]
-    #[inline] pub fn set_snak<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 27);
-        self.0 |= value << 27;
-        self
-    }
-
-    #[doc="CNAK"]
-    #[inline] pub fn cnak(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 26) & 0x1) as u8) } // [26]
-    }
-
-    #[doc="Returns true if CNAK != 0"]
-    #[inline] pub fn test_cnak(&self) -> bool {
-        self.cnak() != 0
-    }
-
-    #[doc="Sets the CNAK field."]
-    #[inline] pub fn set_cnak<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 26);
-        self.0 |= value << 26;
-        self
-    }
-
-    #[doc="TXFNUM"]
-    #[inline] pub fn txfnum(&self) -> bits::U4 {
-        unsafe { ::core::mem::transmute(((self.0 >> 22) & 0xf) as u8) } // [25:22]
-    }
-
-    #[doc="Returns true if TXFNUM != 0"]
-    #[inline] pub fn test_txfnum(&self) -> bool {
-        self.txfnum() != 0
-    }
-
-    #[doc="Sets the TXFNUM field."]
-    #[inline] pub fn set_txfnum<V: Into<bits::U4>>(mut self, value: V) -> Self {
-        let value: bits::U4 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0xf << 22);
-        self.0 |= value << 22;
-        self
-    }
-
-    #[doc="Stall"]
-    #[inline] pub fn stall(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 21) & 0x1) as u8) } // [21]
-    }
-
-    #[doc="Returns true if Stall != 0"]
-    #[inline] pub fn test_stall(&self) -> bool {
-        self.stall() != 0
-    }
-
-    #[doc="Sets the Stall field."]
-    #[inline] pub fn set_stall<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 21);
-        self.0 |= value << 21;
-        self
-    }
-
-    #[doc="EPTYP"]
-    #[inline] pub fn eptyp(&self) -> bits::U2 {
-        unsafe { ::core::mem::transmute(((self.0 >> 18) & 0x3) as u8) } // [19:18]
-    }
-
-    #[doc="Returns true if EPTYP != 0"]
-    #[inline] pub fn test_eptyp(&self) -> bool {
-        self.eptyp() != 0
-    }
-
-    #[doc="Sets the EPTYP field."]
-    #[inline] pub fn set_eptyp<V: Into<bits::U2>>(mut self, value: V) -> Self {
-        let value: bits::U2 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x3 << 18);
-        self.0 |= value << 18;
-        self
-    }
-
-    #[doc="NAKSTS"]
-    #[inline] pub fn naksts(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 17) & 0x1) as u8) } // [17]
-    }
-
-    #[doc="Returns true if NAKSTS != 0"]
-    #[inline] pub fn test_naksts(&self) -> bool {
-        self.naksts() != 0
-    }
-
-    #[doc="Sets the NAKSTS field."]
-    #[inline] pub fn set_naksts<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 17);
-        self.0 |= value << 17;
-        self
-    }
-
-    #[doc="EONUM/DPID"]
-    #[inline] pub fn eonum_dpid(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1) as u8) } // [16]
-    }
-
-    #[doc="Returns true if EONUM_DPID != 0"]
-    #[inline] pub fn test_eonum_dpid(&self) -> bool {
-        self.eonum_dpid() != 0
-    }
-
-    #[doc="Sets the EONUM_DPID field."]
-    #[inline] pub fn set_eonum_dpid<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 16);
-        self.0 |= value << 16;
-        self
-    }
-
-    #[doc="USBAEP"]
-    #[inline] pub fn usbaep(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 15) & 0x1) as u8) } // [15]
-    }
-
-    #[doc="Returns true if USBAEP != 0"]
-    #[inline] pub fn test_usbaep(&self) -> bool {
-        self.usbaep() != 0
-    }
-
-    #[doc="Sets the USBAEP field."]
-    #[inline] pub fn set_usbaep<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 15);
-        self.0 |= value << 15;
-        self
-    }
-
-    #[doc="MPSIZ"]
-    #[inline] pub fn mpsiz(&self) -> bits::U11 {
-        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x7ff) as u16) } // [10:0]
-    }
-
-    #[doc="Returns true if MPSIZ != 0"]
-    #[inline] pub fn test_mpsiz(&self) -> bool {
-        self.mpsiz() != 0
-    }
-
-    #[doc="Sets the MPSIZ field."]
-    #[inline] pub fn set_mpsiz<V: Into<bits::U11>>(mut self, value: V) -> Self {
-        let value: bits::U11 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x7ff << 0);
-        self.0 |= value << 0;
-        self
-    }
-
-}
-
-impl From<u32> for Diepctl3 {
-    #[inline]
-    fn from(other: u32) -> Self {
-         Diepctl3(other)
-    }
-}
-
-impl ::core::fmt::Display for Diepctl3 {
-    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-         self.0.fmt(f)
-    }
-}
-
-impl ::core::fmt::Debug for Diepctl3 {
-    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-        try!(write!(f, "[0x{:08x}", self.0));
-        if self.epena() != 0 { try!(write!(f, " epena"))}
-        if self.epdis() != 0 { try!(write!(f, " epdis"))}
-        if self.soddfrm() != 0 { try!(write!(f, " soddfrm"))}
         if self.sd0pid_sevnfrm() != 0 { try!(write!(f, " sd0pid_sevnfrm"))}
         if self.snak() != 0 { try!(write!(f, " snak"))}
         if self.cnak() != 0 { try!(write!(f, " cnak"))}
@@ -3916,10 +3016,10 @@ impl ::core::fmt::Debug for Doepctl0 {
     }
 }
 
-#[doc="device endpoint-1 control register"]
+#[doc="device endpoint-n control register"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
-pub struct Doepctl1(pub u32);
-impl Doepctl1 {
+pub struct Doepctl(pub u32);
+impl Doepctl {
     #[doc="EPENA"]
     #[inline] pub fn epena(&self) -> bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 31) & 0x1) as u8) } // [31]
@@ -4169,594 +3269,20 @@ impl Doepctl1 {
 
 }
 
-impl From<u32> for Doepctl1 {
+impl From<u32> for Doepctl {
     #[inline]
     fn from(other: u32) -> Self {
-         Doepctl1(other)
+         Doepctl(other)
     }
 }
 
-impl ::core::fmt::Display for Doepctl1 {
+impl ::core::fmt::Display for Doepctl {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
     }
 }
 
-impl ::core::fmt::Debug for Doepctl1 {
-    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-        try!(write!(f, "[0x{:08x}", self.0));
-        if self.epena() != 0 { try!(write!(f, " epena"))}
-        if self.epdis() != 0 { try!(write!(f, " epdis"))}
-        if self.soddfrm() != 0 { try!(write!(f, " soddfrm"))}
-        if self.sd0pid_sevnfrm() != 0 { try!(write!(f, " sd0pid_sevnfrm"))}
-        if self.snak() != 0 { try!(write!(f, " snak"))}
-        if self.cnak() != 0 { try!(write!(f, " cnak"))}
-        if self.stall() != 0 { try!(write!(f, " stall"))}
-        if self.snpm() != 0 { try!(write!(f, " snpm"))}
-        if self.eptyp() != 0 { try!(write!(f, " eptyp=0x{:x}", self.eptyp()))}
-        if self.naksts() != 0 { try!(write!(f, " naksts"))}
-        if self.eonum_dpid() != 0 { try!(write!(f, " eonum_dpid"))}
-        if self.usbaep() != 0 { try!(write!(f, " usbaep"))}
-        if self.mpsiz() != 0 { try!(write!(f, " mpsiz=0x{:x}", self.mpsiz()))}
-        try!(write!(f, "]"));
-        Ok(())
-    }
-}
-
-#[doc="device endpoint-2 control register"]
-#[derive(Default, Clone, Copy, PartialEq, Eq)]
-pub struct Doepctl2(pub u32);
-impl Doepctl2 {
-    #[doc="EPENA"]
-    #[inline] pub fn epena(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 31) & 0x1) as u8) } // [31]
-    }
-
-    #[doc="Returns true if EPENA != 0"]
-    #[inline] pub fn test_epena(&self) -> bool {
-        self.epena() != 0
-    }
-
-    #[doc="Sets the EPENA field."]
-    #[inline] pub fn set_epena<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 31);
-        self.0 |= value << 31;
-        self
-    }
-
-    #[doc="EPDIS"]
-    #[inline] pub fn epdis(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 30) & 0x1) as u8) } // [30]
-    }
-
-    #[doc="Returns true if EPDIS != 0"]
-    #[inline] pub fn test_epdis(&self) -> bool {
-        self.epdis() != 0
-    }
-
-    #[doc="Sets the EPDIS field."]
-    #[inline] pub fn set_epdis<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 30);
-        self.0 |= value << 30;
-        self
-    }
-
-    #[doc="SODDFRM"]
-    #[inline] pub fn soddfrm(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 29) & 0x1) as u8) } // [29]
-    }
-
-    #[doc="Returns true if SODDFRM != 0"]
-    #[inline] pub fn test_soddfrm(&self) -> bool {
-        self.soddfrm() != 0
-    }
-
-    #[doc="Sets the SODDFRM field."]
-    #[inline] pub fn set_soddfrm<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 29);
-        self.0 |= value << 29;
-        self
-    }
-
-    #[doc="SD0PID/SEVNFRM"]
-    #[inline] pub fn sd0pid_sevnfrm(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 28) & 0x1) as u8) } // [28]
-    }
-
-    #[doc="Returns true if SD0PID_SEVNFRM != 0"]
-    #[inline] pub fn test_sd0pid_sevnfrm(&self) -> bool {
-        self.sd0pid_sevnfrm() != 0
-    }
-
-    #[doc="Sets the SD0PID_SEVNFRM field."]
-    #[inline] pub fn set_sd0pid_sevnfrm<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 28);
-        self.0 |= value << 28;
-        self
-    }
-
-    #[doc="SNAK"]
-    #[inline] pub fn snak(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 27) & 0x1) as u8) } // [27]
-    }
-
-    #[doc="Returns true if SNAK != 0"]
-    #[inline] pub fn test_snak(&self) -> bool {
-        self.snak() != 0
-    }
-
-    #[doc="Sets the SNAK field."]
-    #[inline] pub fn set_snak<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 27);
-        self.0 |= value << 27;
-        self
-    }
-
-    #[doc="CNAK"]
-    #[inline] pub fn cnak(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 26) & 0x1) as u8) } // [26]
-    }
-
-    #[doc="Returns true if CNAK != 0"]
-    #[inline] pub fn test_cnak(&self) -> bool {
-        self.cnak() != 0
-    }
-
-    #[doc="Sets the CNAK field."]
-    #[inline] pub fn set_cnak<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 26);
-        self.0 |= value << 26;
-        self
-    }
-
-    #[doc="Stall"]
-    #[inline] pub fn stall(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 21) & 0x1) as u8) } // [21]
-    }
-
-    #[doc="Returns true if Stall != 0"]
-    #[inline] pub fn test_stall(&self) -> bool {
-        self.stall() != 0
-    }
-
-    #[doc="Sets the Stall field."]
-    #[inline] pub fn set_stall<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 21);
-        self.0 |= value << 21;
-        self
-    }
-
-    #[doc="SNPM"]
-    #[inline] pub fn snpm(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 20) & 0x1) as u8) } // [20]
-    }
-
-    #[doc="Returns true if SNPM != 0"]
-    #[inline] pub fn test_snpm(&self) -> bool {
-        self.snpm() != 0
-    }
-
-    #[doc="Sets the SNPM field."]
-    #[inline] pub fn set_snpm<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 20);
-        self.0 |= value << 20;
-        self
-    }
-
-    #[doc="EPTYP"]
-    #[inline] pub fn eptyp(&self) -> bits::U2 {
-        unsafe { ::core::mem::transmute(((self.0 >> 18) & 0x3) as u8) } // [19:18]
-    }
-
-    #[doc="Returns true if EPTYP != 0"]
-    #[inline] pub fn test_eptyp(&self) -> bool {
-        self.eptyp() != 0
-    }
-
-    #[doc="Sets the EPTYP field."]
-    #[inline] pub fn set_eptyp<V: Into<bits::U2>>(mut self, value: V) -> Self {
-        let value: bits::U2 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x3 << 18);
-        self.0 |= value << 18;
-        self
-    }
-
-    #[doc="NAKSTS"]
-    #[inline] pub fn naksts(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 17) & 0x1) as u8) } // [17]
-    }
-
-    #[doc="Returns true if NAKSTS != 0"]
-    #[inline] pub fn test_naksts(&self) -> bool {
-        self.naksts() != 0
-    }
-
-    #[doc="Sets the NAKSTS field."]
-    #[inline] pub fn set_naksts<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 17);
-        self.0 |= value << 17;
-        self
-    }
-
-    #[doc="EONUM/DPID"]
-    #[inline] pub fn eonum_dpid(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1) as u8) } // [16]
-    }
-
-    #[doc="Returns true if EONUM_DPID != 0"]
-    #[inline] pub fn test_eonum_dpid(&self) -> bool {
-        self.eonum_dpid() != 0
-    }
-
-    #[doc="Sets the EONUM_DPID field."]
-    #[inline] pub fn set_eonum_dpid<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 16);
-        self.0 |= value << 16;
-        self
-    }
-
-    #[doc="USBAEP"]
-    #[inline] pub fn usbaep(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 15) & 0x1) as u8) } // [15]
-    }
-
-    #[doc="Returns true if USBAEP != 0"]
-    #[inline] pub fn test_usbaep(&self) -> bool {
-        self.usbaep() != 0
-    }
-
-    #[doc="Sets the USBAEP field."]
-    #[inline] pub fn set_usbaep<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 15);
-        self.0 |= value << 15;
-        self
-    }
-
-    #[doc="MPSIZ"]
-    #[inline] pub fn mpsiz(&self) -> bits::U11 {
-        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x7ff) as u16) } // [10:0]
-    }
-
-    #[doc="Returns true if MPSIZ != 0"]
-    #[inline] pub fn test_mpsiz(&self) -> bool {
-        self.mpsiz() != 0
-    }
-
-    #[doc="Sets the MPSIZ field."]
-    #[inline] pub fn set_mpsiz<V: Into<bits::U11>>(mut self, value: V) -> Self {
-        let value: bits::U11 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x7ff << 0);
-        self.0 |= value << 0;
-        self
-    }
-
-}
-
-impl From<u32> for Doepctl2 {
-    #[inline]
-    fn from(other: u32) -> Self {
-         Doepctl2(other)
-    }
-}
-
-impl ::core::fmt::Display for Doepctl2 {
-    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-         self.0.fmt(f)
-    }
-}
-
-impl ::core::fmt::Debug for Doepctl2 {
-    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-        try!(write!(f, "[0x{:08x}", self.0));
-        if self.epena() != 0 { try!(write!(f, " epena"))}
-        if self.epdis() != 0 { try!(write!(f, " epdis"))}
-        if self.soddfrm() != 0 { try!(write!(f, " soddfrm"))}
-        if self.sd0pid_sevnfrm() != 0 { try!(write!(f, " sd0pid_sevnfrm"))}
-        if self.snak() != 0 { try!(write!(f, " snak"))}
-        if self.cnak() != 0 { try!(write!(f, " cnak"))}
-        if self.stall() != 0 { try!(write!(f, " stall"))}
-        if self.snpm() != 0 { try!(write!(f, " snpm"))}
-        if self.eptyp() != 0 { try!(write!(f, " eptyp=0x{:x}", self.eptyp()))}
-        if self.naksts() != 0 { try!(write!(f, " naksts"))}
-        if self.eonum_dpid() != 0 { try!(write!(f, " eonum_dpid"))}
-        if self.usbaep() != 0 { try!(write!(f, " usbaep"))}
-        if self.mpsiz() != 0 { try!(write!(f, " mpsiz=0x{:x}", self.mpsiz()))}
-        try!(write!(f, "]"));
-        Ok(())
-    }
-}
-
-#[doc="device endpoint-3 control register"]
-#[derive(Default, Clone, Copy, PartialEq, Eq)]
-pub struct Doepctl3(pub u32);
-impl Doepctl3 {
-    #[doc="EPENA"]
-    #[inline] pub fn epena(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 31) & 0x1) as u8) } // [31]
-    }
-
-    #[doc="Returns true if EPENA != 0"]
-    #[inline] pub fn test_epena(&self) -> bool {
-        self.epena() != 0
-    }
-
-    #[doc="Sets the EPENA field."]
-    #[inline] pub fn set_epena<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 31);
-        self.0 |= value << 31;
-        self
-    }
-
-    #[doc="EPDIS"]
-    #[inline] pub fn epdis(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 30) & 0x1) as u8) } // [30]
-    }
-
-    #[doc="Returns true if EPDIS != 0"]
-    #[inline] pub fn test_epdis(&self) -> bool {
-        self.epdis() != 0
-    }
-
-    #[doc="Sets the EPDIS field."]
-    #[inline] pub fn set_epdis<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 30);
-        self.0 |= value << 30;
-        self
-    }
-
-    #[doc="SODDFRM"]
-    #[inline] pub fn soddfrm(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 29) & 0x1) as u8) } // [29]
-    }
-
-    #[doc="Returns true if SODDFRM != 0"]
-    #[inline] pub fn test_soddfrm(&self) -> bool {
-        self.soddfrm() != 0
-    }
-
-    #[doc="Sets the SODDFRM field."]
-    #[inline] pub fn set_soddfrm<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 29);
-        self.0 |= value << 29;
-        self
-    }
-
-    #[doc="SD0PID/SEVNFRM"]
-    #[inline] pub fn sd0pid_sevnfrm(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 28) & 0x1) as u8) } // [28]
-    }
-
-    #[doc="Returns true if SD0PID_SEVNFRM != 0"]
-    #[inline] pub fn test_sd0pid_sevnfrm(&self) -> bool {
-        self.sd0pid_sevnfrm() != 0
-    }
-
-    #[doc="Sets the SD0PID_SEVNFRM field."]
-    #[inline] pub fn set_sd0pid_sevnfrm<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 28);
-        self.0 |= value << 28;
-        self
-    }
-
-    #[doc="SNAK"]
-    #[inline] pub fn snak(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 27) & 0x1) as u8) } // [27]
-    }
-
-    #[doc="Returns true if SNAK != 0"]
-    #[inline] pub fn test_snak(&self) -> bool {
-        self.snak() != 0
-    }
-
-    #[doc="Sets the SNAK field."]
-    #[inline] pub fn set_snak<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 27);
-        self.0 |= value << 27;
-        self
-    }
-
-    #[doc="CNAK"]
-    #[inline] pub fn cnak(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 26) & 0x1) as u8) } // [26]
-    }
-
-    #[doc="Returns true if CNAK != 0"]
-    #[inline] pub fn test_cnak(&self) -> bool {
-        self.cnak() != 0
-    }
-
-    #[doc="Sets the CNAK field."]
-    #[inline] pub fn set_cnak<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 26);
-        self.0 |= value << 26;
-        self
-    }
-
-    #[doc="Stall"]
-    #[inline] pub fn stall(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 21) & 0x1) as u8) } // [21]
-    }
-
-    #[doc="Returns true if Stall != 0"]
-    #[inline] pub fn test_stall(&self) -> bool {
-        self.stall() != 0
-    }
-
-    #[doc="Sets the Stall field."]
-    #[inline] pub fn set_stall<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 21);
-        self.0 |= value << 21;
-        self
-    }
-
-    #[doc="SNPM"]
-    #[inline] pub fn snpm(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 20) & 0x1) as u8) } // [20]
-    }
-
-    #[doc="Returns true if SNPM != 0"]
-    #[inline] pub fn test_snpm(&self) -> bool {
-        self.snpm() != 0
-    }
-
-    #[doc="Sets the SNPM field."]
-    #[inline] pub fn set_snpm<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 20);
-        self.0 |= value << 20;
-        self
-    }
-
-    #[doc="EPTYP"]
-    #[inline] pub fn eptyp(&self) -> bits::U2 {
-        unsafe { ::core::mem::transmute(((self.0 >> 18) & 0x3) as u8) } // [19:18]
-    }
-
-    #[doc="Returns true if EPTYP != 0"]
-    #[inline] pub fn test_eptyp(&self) -> bool {
-        self.eptyp() != 0
-    }
-
-    #[doc="Sets the EPTYP field."]
-    #[inline] pub fn set_eptyp<V: Into<bits::U2>>(mut self, value: V) -> Self {
-        let value: bits::U2 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x3 << 18);
-        self.0 |= value << 18;
-        self
-    }
-
-    #[doc="NAKSTS"]
-    #[inline] pub fn naksts(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 17) & 0x1) as u8) } // [17]
-    }
-
-    #[doc="Returns true if NAKSTS != 0"]
-    #[inline] pub fn test_naksts(&self) -> bool {
-        self.naksts() != 0
-    }
-
-    #[doc="Sets the NAKSTS field."]
-    #[inline] pub fn set_naksts<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 17);
-        self.0 |= value << 17;
-        self
-    }
-
-    #[doc="EONUM/DPID"]
-    #[inline] pub fn eonum_dpid(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1) as u8) } // [16]
-    }
-
-    #[doc="Returns true if EONUM_DPID != 0"]
-    #[inline] pub fn test_eonum_dpid(&self) -> bool {
-        self.eonum_dpid() != 0
-    }
-
-    #[doc="Sets the EONUM_DPID field."]
-    #[inline] pub fn set_eonum_dpid<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 16);
-        self.0 |= value << 16;
-        self
-    }
-
-    #[doc="USBAEP"]
-    #[inline] pub fn usbaep(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 15) & 0x1) as u8) } // [15]
-    }
-
-    #[doc="Returns true if USBAEP != 0"]
-    #[inline] pub fn test_usbaep(&self) -> bool {
-        self.usbaep() != 0
-    }
-
-    #[doc="Sets the USBAEP field."]
-    #[inline] pub fn set_usbaep<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 15);
-        self.0 |= value << 15;
-        self
-    }
-
-    #[doc="MPSIZ"]
-    #[inline] pub fn mpsiz(&self) -> bits::U11 {
-        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x7ff) as u16) } // [10:0]
-    }
-
-    #[doc="Returns true if MPSIZ != 0"]
-    #[inline] pub fn test_mpsiz(&self) -> bool {
-        self.mpsiz() != 0
-    }
-
-    #[doc="Sets the MPSIZ field."]
-    #[inline] pub fn set_mpsiz<V: Into<bits::U11>>(mut self, value: V) -> Self {
-        let value: bits::U11 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x7ff << 0);
-        self.0 |= value << 0;
-        self
-    }
-
-}
-
-impl From<u32> for Doepctl3 {
-    #[inline]
-    fn from(other: u32) -> Self {
-         Doepctl3(other)
-    }
-}
-
-impl ::core::fmt::Display for Doepctl3 {
-    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-         self.0.fmt(f)
-    }
-}
-
-impl ::core::fmt::Debug for Doepctl3 {
+impl ::core::fmt::Debug for Doepctl {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
         try!(write!(f, "[0x{:08x}", self.0));
         if self.epena() != 0 { try!(write!(f, " epena"))}
@@ -4779,8 +3305,8 @@ impl ::core::fmt::Debug for Doepctl3 {
 
 #[doc="device endpoint-x interrupt register"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
-pub struct Diepint0(pub u32);
-impl Diepint0 {
+pub struct Diepint(pub u32);
+impl Diepint {
     #[doc="TXFE"]
     #[inline] pub fn txfe(&self) -> bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
@@ -4897,20 +3423,20 @@ impl Diepint0 {
 
 }
 
-impl From<u32> for Diepint0 {
+impl From<u32> for Diepint {
     #[inline]
     fn from(other: u32) -> Self {
-         Diepint0(other)
+         Diepint(other)
     }
 }
 
-impl ::core::fmt::Display for Diepint0 {
+impl ::core::fmt::Display for Diepint {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
     }
 }
 
-impl ::core::fmt::Debug for Diepint0 {
+impl ::core::fmt::Debug for Diepint {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
         try!(write!(f, "[0x{:08x}", self.0));
         if self.txfe() != 0 { try!(write!(f, " txfe"))}
@@ -4924,451 +3450,10 @@ impl ::core::fmt::Debug for Diepint0 {
     }
 }
 
-#[doc="device endpoint-1 interrupt register"]
+#[doc="device endpoint-n interrupt register"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
-pub struct Diepint1(pub u32);
-impl Diepint1 {
-    #[doc="TXFE"]
-    #[inline] pub fn txfe(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
-    }
-
-    #[doc="Returns true if TXFE != 0"]
-    #[inline] pub fn test_txfe(&self) -> bool {
-        self.txfe() != 0
-    }
-
-    #[doc="Sets the TXFE field."]
-    #[inline] pub fn set_txfe<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 7);
-        self.0 |= value << 7;
-        self
-    }
-
-    #[doc="INEPNE"]
-    #[inline] pub fn inepne(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
-    }
-
-    #[doc="Returns true if INEPNE != 0"]
-    #[inline] pub fn test_inepne(&self) -> bool {
-        self.inepne() != 0
-    }
-
-    #[doc="Sets the INEPNE field."]
-    #[inline] pub fn set_inepne<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 6);
-        self.0 |= value << 6;
-        self
-    }
-
-    #[doc="ITTXFE"]
-    #[inline] pub fn ittxfe(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
-    }
-
-    #[doc="Returns true if ITTXFE != 0"]
-    #[inline] pub fn test_ittxfe(&self) -> bool {
-        self.ittxfe() != 0
-    }
-
-    #[doc="Sets the ITTXFE field."]
-    #[inline] pub fn set_ittxfe<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 4);
-        self.0 |= value << 4;
-        self
-    }
-
-    #[doc="TOC"]
-    #[inline] pub fn toc(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
-    }
-
-    #[doc="Returns true if TOC != 0"]
-    #[inline] pub fn test_toc(&self) -> bool {
-        self.toc() != 0
-    }
-
-    #[doc="Sets the TOC field."]
-    #[inline] pub fn set_toc<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 3);
-        self.0 |= value << 3;
-        self
-    }
-
-    #[doc="EPDISD"]
-    #[inline] pub fn epdisd(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
-    }
-
-    #[doc="Returns true if EPDISD != 0"]
-    #[inline] pub fn test_epdisd(&self) -> bool {
-        self.epdisd() != 0
-    }
-
-    #[doc="Sets the EPDISD field."]
-    #[inline] pub fn set_epdisd<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 1);
-        self.0 |= value << 1;
-        self
-    }
-
-    #[doc="XFRC"]
-    #[inline] pub fn xfrc(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
-    }
-
-    #[doc="Returns true if XFRC != 0"]
-    #[inline] pub fn test_xfrc(&self) -> bool {
-        self.xfrc() != 0
-    }
-
-    #[doc="Sets the XFRC field."]
-    #[inline] pub fn set_xfrc<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 0);
-        self.0 |= value << 0;
-        self
-    }
-
-}
-
-impl From<u32> for Diepint1 {
-    #[inline]
-    fn from(other: u32) -> Self {
-         Diepint1(other)
-    }
-}
-
-impl ::core::fmt::Display for Diepint1 {
-    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-         self.0.fmt(f)
-    }
-}
-
-impl ::core::fmt::Debug for Diepint1 {
-    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-        try!(write!(f, "[0x{:08x}", self.0));
-        if self.txfe() != 0 { try!(write!(f, " txfe"))}
-        if self.inepne() != 0 { try!(write!(f, " inepne"))}
-        if self.ittxfe() != 0 { try!(write!(f, " ittxfe"))}
-        if self.toc() != 0 { try!(write!(f, " toc"))}
-        if self.epdisd() != 0 { try!(write!(f, " epdisd"))}
-        if self.xfrc() != 0 { try!(write!(f, " xfrc"))}
-        try!(write!(f, "]"));
-        Ok(())
-    }
-}
-
-#[doc="device endpoint-2 interrupt register"]
-#[derive(Default, Clone, Copy, PartialEq, Eq)]
-pub struct Diepint2(pub u32);
-impl Diepint2 {
-    #[doc="TXFE"]
-    #[inline] pub fn txfe(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
-    }
-
-    #[doc="Returns true if TXFE != 0"]
-    #[inline] pub fn test_txfe(&self) -> bool {
-        self.txfe() != 0
-    }
-
-    #[doc="Sets the TXFE field."]
-    #[inline] pub fn set_txfe<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 7);
-        self.0 |= value << 7;
-        self
-    }
-
-    #[doc="INEPNE"]
-    #[inline] pub fn inepne(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
-    }
-
-    #[doc="Returns true if INEPNE != 0"]
-    #[inline] pub fn test_inepne(&self) -> bool {
-        self.inepne() != 0
-    }
-
-    #[doc="Sets the INEPNE field."]
-    #[inline] pub fn set_inepne<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 6);
-        self.0 |= value << 6;
-        self
-    }
-
-    #[doc="ITTXFE"]
-    #[inline] pub fn ittxfe(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
-    }
-
-    #[doc="Returns true if ITTXFE != 0"]
-    #[inline] pub fn test_ittxfe(&self) -> bool {
-        self.ittxfe() != 0
-    }
-
-    #[doc="Sets the ITTXFE field."]
-    #[inline] pub fn set_ittxfe<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 4);
-        self.0 |= value << 4;
-        self
-    }
-
-    #[doc="TOC"]
-    #[inline] pub fn toc(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
-    }
-
-    #[doc="Returns true if TOC != 0"]
-    #[inline] pub fn test_toc(&self) -> bool {
-        self.toc() != 0
-    }
-
-    #[doc="Sets the TOC field."]
-    #[inline] pub fn set_toc<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 3);
-        self.0 |= value << 3;
-        self
-    }
-
-    #[doc="EPDISD"]
-    #[inline] pub fn epdisd(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
-    }
-
-    #[doc="Returns true if EPDISD != 0"]
-    #[inline] pub fn test_epdisd(&self) -> bool {
-        self.epdisd() != 0
-    }
-
-    #[doc="Sets the EPDISD field."]
-    #[inline] pub fn set_epdisd<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 1);
-        self.0 |= value << 1;
-        self
-    }
-
-    #[doc="XFRC"]
-    #[inline] pub fn xfrc(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
-    }
-
-    #[doc="Returns true if XFRC != 0"]
-    #[inline] pub fn test_xfrc(&self) -> bool {
-        self.xfrc() != 0
-    }
-
-    #[doc="Sets the XFRC field."]
-    #[inline] pub fn set_xfrc<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 0);
-        self.0 |= value << 0;
-        self
-    }
-
-}
-
-impl From<u32> for Diepint2 {
-    #[inline]
-    fn from(other: u32) -> Self {
-         Diepint2(other)
-    }
-}
-
-impl ::core::fmt::Display for Diepint2 {
-    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-         self.0.fmt(f)
-    }
-}
-
-impl ::core::fmt::Debug for Diepint2 {
-    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-        try!(write!(f, "[0x{:08x}", self.0));
-        if self.txfe() != 0 { try!(write!(f, " txfe"))}
-        if self.inepne() != 0 { try!(write!(f, " inepne"))}
-        if self.ittxfe() != 0 { try!(write!(f, " ittxfe"))}
-        if self.toc() != 0 { try!(write!(f, " toc"))}
-        if self.epdisd() != 0 { try!(write!(f, " epdisd"))}
-        if self.xfrc() != 0 { try!(write!(f, " xfrc"))}
-        try!(write!(f, "]"));
-        Ok(())
-    }
-}
-
-#[doc="device endpoint-3 interrupt register"]
-#[derive(Default, Clone, Copy, PartialEq, Eq)]
-pub struct Diepint3(pub u32);
-impl Diepint3 {
-    #[doc="TXFE"]
-    #[inline] pub fn txfe(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
-    }
-
-    #[doc="Returns true if TXFE != 0"]
-    #[inline] pub fn test_txfe(&self) -> bool {
-        self.txfe() != 0
-    }
-
-    #[doc="Sets the TXFE field."]
-    #[inline] pub fn set_txfe<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 7);
-        self.0 |= value << 7;
-        self
-    }
-
-    #[doc="INEPNE"]
-    #[inline] pub fn inepne(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
-    }
-
-    #[doc="Returns true if INEPNE != 0"]
-    #[inline] pub fn test_inepne(&self) -> bool {
-        self.inepne() != 0
-    }
-
-    #[doc="Sets the INEPNE field."]
-    #[inline] pub fn set_inepne<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 6);
-        self.0 |= value << 6;
-        self
-    }
-
-    #[doc="ITTXFE"]
-    #[inline] pub fn ittxfe(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
-    }
-
-    #[doc="Returns true if ITTXFE != 0"]
-    #[inline] pub fn test_ittxfe(&self) -> bool {
-        self.ittxfe() != 0
-    }
-
-    #[doc="Sets the ITTXFE field."]
-    #[inline] pub fn set_ittxfe<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 4);
-        self.0 |= value << 4;
-        self
-    }
-
-    #[doc="TOC"]
-    #[inline] pub fn toc(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
-    }
-
-    #[doc="Returns true if TOC != 0"]
-    #[inline] pub fn test_toc(&self) -> bool {
-        self.toc() != 0
-    }
-
-    #[doc="Sets the TOC field."]
-    #[inline] pub fn set_toc<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 3);
-        self.0 |= value << 3;
-        self
-    }
-
-    #[doc="EPDISD"]
-    #[inline] pub fn epdisd(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
-    }
-
-    #[doc="Returns true if EPDISD != 0"]
-    #[inline] pub fn test_epdisd(&self) -> bool {
-        self.epdisd() != 0
-    }
-
-    #[doc="Sets the EPDISD field."]
-    #[inline] pub fn set_epdisd<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 1);
-        self.0 |= value << 1;
-        self
-    }
-
-    #[doc="XFRC"]
-    #[inline] pub fn xfrc(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
-    }
-
-    #[doc="Returns true if XFRC != 0"]
-    #[inline] pub fn test_xfrc(&self) -> bool {
-        self.xfrc() != 0
-    }
-
-    #[doc="Sets the XFRC field."]
-    #[inline] pub fn set_xfrc<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 0);
-        self.0 |= value << 0;
-        self
-    }
-
-}
-
-impl From<u32> for Diepint3 {
-    #[inline]
-    fn from(other: u32) -> Self {
-         Diepint3(other)
-    }
-}
-
-impl ::core::fmt::Display for Diepint3 {
-    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-         self.0.fmt(f)
-    }
-}
-
-impl ::core::fmt::Debug for Diepint3 {
-    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-        try!(write!(f, "[0x{:08x}", self.0));
-        if self.txfe() != 0 { try!(write!(f, " txfe"))}
-        if self.inepne() != 0 { try!(write!(f, " inepne"))}
-        if self.ittxfe() != 0 { try!(write!(f, " ittxfe"))}
-        if self.toc() != 0 { try!(write!(f, " toc"))}
-        if self.epdisd() != 0 { try!(write!(f, " epdisd"))}
-        if self.xfrc() != 0 { try!(write!(f, " xfrc"))}
-        try!(write!(f, "]"));
-        Ok(())
-    }
-}
-
-#[doc="device endpoint-0 interrupt register"]
-#[derive(Default, Clone, Copy, PartialEq, Eq)]
-pub struct Doepint0(pub u32);
-impl Doepint0 {
+pub struct Doepint(pub u32);
+impl Doepint {
     #[doc="B2BSTUP"]
     #[inline] pub fn b2bstup(&self) -> bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
@@ -5466,401 +3551,20 @@ impl Doepint0 {
 
 }
 
-impl From<u32> for Doepint0 {
+impl From<u32> for Doepint {
     #[inline]
     fn from(other: u32) -> Self {
-         Doepint0(other)
+         Doepint(other)
     }
 }
 
-impl ::core::fmt::Display for Doepint0 {
+impl ::core::fmt::Display for Doepint {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
     }
 }
 
-impl ::core::fmt::Debug for Doepint0 {
-    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-        try!(write!(f, "[0x{:08x}", self.0));
-        if self.b2bstup() != 0 { try!(write!(f, " b2bstup"))}
-        if self.otepdis() != 0 { try!(write!(f, " otepdis"))}
-        if self.stup() != 0 { try!(write!(f, " stup"))}
-        if self.epdisd() != 0 { try!(write!(f, " epdisd"))}
-        if self.xfrc() != 0 { try!(write!(f, " xfrc"))}
-        try!(write!(f, "]"));
-        Ok(())
-    }
-}
-
-#[doc="device endpoint-1 interrupt register"]
-#[derive(Default, Clone, Copy, PartialEq, Eq)]
-pub struct Doepint1(pub u32);
-impl Doepint1 {
-    #[doc="B2BSTUP"]
-    #[inline] pub fn b2bstup(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
-    }
-
-    #[doc="Returns true if B2BSTUP != 0"]
-    #[inline] pub fn test_b2bstup(&self) -> bool {
-        self.b2bstup() != 0
-    }
-
-    #[doc="Sets the B2BSTUP field."]
-    #[inline] pub fn set_b2bstup<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 6);
-        self.0 |= value << 6;
-        self
-    }
-
-    #[doc="OTEPDIS"]
-    #[inline] pub fn otepdis(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
-    }
-
-    #[doc="Returns true if OTEPDIS != 0"]
-    #[inline] pub fn test_otepdis(&self) -> bool {
-        self.otepdis() != 0
-    }
-
-    #[doc="Sets the OTEPDIS field."]
-    #[inline] pub fn set_otepdis<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 4);
-        self.0 |= value << 4;
-        self
-    }
-
-    #[doc="STUP"]
-    #[inline] pub fn stup(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
-    }
-
-    #[doc="Returns true if STUP != 0"]
-    #[inline] pub fn test_stup(&self) -> bool {
-        self.stup() != 0
-    }
-
-    #[doc="Sets the STUP field."]
-    #[inline] pub fn set_stup<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 3);
-        self.0 |= value << 3;
-        self
-    }
-
-    #[doc="EPDISD"]
-    #[inline] pub fn epdisd(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
-    }
-
-    #[doc="Returns true if EPDISD != 0"]
-    #[inline] pub fn test_epdisd(&self) -> bool {
-        self.epdisd() != 0
-    }
-
-    #[doc="Sets the EPDISD field."]
-    #[inline] pub fn set_epdisd<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 1);
-        self.0 |= value << 1;
-        self
-    }
-
-    #[doc="XFRC"]
-    #[inline] pub fn xfrc(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
-    }
-
-    #[doc="Returns true if XFRC != 0"]
-    #[inline] pub fn test_xfrc(&self) -> bool {
-        self.xfrc() != 0
-    }
-
-    #[doc="Sets the XFRC field."]
-    #[inline] pub fn set_xfrc<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 0);
-        self.0 |= value << 0;
-        self
-    }
-
-}
-
-impl From<u32> for Doepint1 {
-    #[inline]
-    fn from(other: u32) -> Self {
-         Doepint1(other)
-    }
-}
-
-impl ::core::fmt::Display for Doepint1 {
-    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-         self.0.fmt(f)
-    }
-}
-
-impl ::core::fmt::Debug for Doepint1 {
-    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-        try!(write!(f, "[0x{:08x}", self.0));
-        if self.b2bstup() != 0 { try!(write!(f, " b2bstup"))}
-        if self.otepdis() != 0 { try!(write!(f, " otepdis"))}
-        if self.stup() != 0 { try!(write!(f, " stup"))}
-        if self.epdisd() != 0 { try!(write!(f, " epdisd"))}
-        if self.xfrc() != 0 { try!(write!(f, " xfrc"))}
-        try!(write!(f, "]"));
-        Ok(())
-    }
-}
-
-#[doc="device endpoint-2 interrupt register"]
-#[derive(Default, Clone, Copy, PartialEq, Eq)]
-pub struct Doepint2(pub u32);
-impl Doepint2 {
-    #[doc="B2BSTUP"]
-    #[inline] pub fn b2bstup(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
-    }
-
-    #[doc="Returns true if B2BSTUP != 0"]
-    #[inline] pub fn test_b2bstup(&self) -> bool {
-        self.b2bstup() != 0
-    }
-
-    #[doc="Sets the B2BSTUP field."]
-    #[inline] pub fn set_b2bstup<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 6);
-        self.0 |= value << 6;
-        self
-    }
-
-    #[doc="OTEPDIS"]
-    #[inline] pub fn otepdis(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
-    }
-
-    #[doc="Returns true if OTEPDIS != 0"]
-    #[inline] pub fn test_otepdis(&self) -> bool {
-        self.otepdis() != 0
-    }
-
-    #[doc="Sets the OTEPDIS field."]
-    #[inline] pub fn set_otepdis<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 4);
-        self.0 |= value << 4;
-        self
-    }
-
-    #[doc="STUP"]
-    #[inline] pub fn stup(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
-    }
-
-    #[doc="Returns true if STUP != 0"]
-    #[inline] pub fn test_stup(&self) -> bool {
-        self.stup() != 0
-    }
-
-    #[doc="Sets the STUP field."]
-    #[inline] pub fn set_stup<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 3);
-        self.0 |= value << 3;
-        self
-    }
-
-    #[doc="EPDISD"]
-    #[inline] pub fn epdisd(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
-    }
-
-    #[doc="Returns true if EPDISD != 0"]
-    #[inline] pub fn test_epdisd(&self) -> bool {
-        self.epdisd() != 0
-    }
-
-    #[doc="Sets the EPDISD field."]
-    #[inline] pub fn set_epdisd<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 1);
-        self.0 |= value << 1;
-        self
-    }
-
-    #[doc="XFRC"]
-    #[inline] pub fn xfrc(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
-    }
-
-    #[doc="Returns true if XFRC != 0"]
-    #[inline] pub fn test_xfrc(&self) -> bool {
-        self.xfrc() != 0
-    }
-
-    #[doc="Sets the XFRC field."]
-    #[inline] pub fn set_xfrc<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 0);
-        self.0 |= value << 0;
-        self
-    }
-
-}
-
-impl From<u32> for Doepint2 {
-    #[inline]
-    fn from(other: u32) -> Self {
-         Doepint2(other)
-    }
-}
-
-impl ::core::fmt::Display for Doepint2 {
-    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-         self.0.fmt(f)
-    }
-}
-
-impl ::core::fmt::Debug for Doepint2 {
-    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-        try!(write!(f, "[0x{:08x}", self.0));
-        if self.b2bstup() != 0 { try!(write!(f, " b2bstup"))}
-        if self.otepdis() != 0 { try!(write!(f, " otepdis"))}
-        if self.stup() != 0 { try!(write!(f, " stup"))}
-        if self.epdisd() != 0 { try!(write!(f, " epdisd"))}
-        if self.xfrc() != 0 { try!(write!(f, " xfrc"))}
-        try!(write!(f, "]"));
-        Ok(())
-    }
-}
-
-#[doc="device endpoint-3 interrupt register"]
-#[derive(Default, Clone, Copy, PartialEq, Eq)]
-pub struct Doepint3(pub u32);
-impl Doepint3 {
-    #[doc="B2BSTUP"]
-    #[inline] pub fn b2bstup(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
-    }
-
-    #[doc="Returns true if B2BSTUP != 0"]
-    #[inline] pub fn test_b2bstup(&self) -> bool {
-        self.b2bstup() != 0
-    }
-
-    #[doc="Sets the B2BSTUP field."]
-    #[inline] pub fn set_b2bstup<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 6);
-        self.0 |= value << 6;
-        self
-    }
-
-    #[doc="OTEPDIS"]
-    #[inline] pub fn otepdis(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
-    }
-
-    #[doc="Returns true if OTEPDIS != 0"]
-    #[inline] pub fn test_otepdis(&self) -> bool {
-        self.otepdis() != 0
-    }
-
-    #[doc="Sets the OTEPDIS field."]
-    #[inline] pub fn set_otepdis<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 4);
-        self.0 |= value << 4;
-        self
-    }
-
-    #[doc="STUP"]
-    #[inline] pub fn stup(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
-    }
-
-    #[doc="Returns true if STUP != 0"]
-    #[inline] pub fn test_stup(&self) -> bool {
-        self.stup() != 0
-    }
-
-    #[doc="Sets the STUP field."]
-    #[inline] pub fn set_stup<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 3);
-        self.0 |= value << 3;
-        self
-    }
-
-    #[doc="EPDISD"]
-    #[inline] pub fn epdisd(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
-    }
-
-    #[doc="Returns true if EPDISD != 0"]
-    #[inline] pub fn test_epdisd(&self) -> bool {
-        self.epdisd() != 0
-    }
-
-    #[doc="Sets the EPDISD field."]
-    #[inline] pub fn set_epdisd<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 1);
-        self.0 |= value << 1;
-        self
-    }
-
-    #[doc="XFRC"]
-    #[inline] pub fn xfrc(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
-    }
-
-    #[doc="Returns true if XFRC != 0"]
-    #[inline] pub fn test_xfrc(&self) -> bool {
-        self.xfrc() != 0
-    }
-
-    #[doc="Sets the XFRC field."]
-    #[inline] pub fn set_xfrc<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 0);
-        self.0 |= value << 0;
-        self
-    }
-
-}
-
-impl From<u32> for Doepint3 {
-    #[inline]
-    fn from(other: u32) -> Self {
-         Doepint3(other)
-    }
-}
-
-impl ::core::fmt::Display for Doepint3 {
-    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-         self.0.fmt(f)
-    }
-}
-
-impl ::core::fmt::Debug for Doepint3 {
+impl ::core::fmt::Debug for Doepint {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
         try!(write!(f, "[0x{:08x}", self.0));
         if self.b2bstup() != 0 { try!(write!(f, " b2bstup"))}
