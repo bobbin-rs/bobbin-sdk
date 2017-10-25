@@ -44,10 +44,60 @@
     (peripheral (include "periph/cryp.rx"))
     (peripheral (include "periph/dcmi.rx"))
 
-    (peripheral (include "periph/usb_fs_global.rx"))
-    (peripheral (include "periph/usb_fs_host.rx"))
-    (peripheral (include "periph/usb_fs_device.rx"))
-    (peripheral (include "periph/usb_fs_pwrclk.rx"))    
+    ;(peripheral (include "periph/usb_fs_global.rx"))
+    ;(peripheral (include "periph/usb_fs_host.rx"))
+    ;(peripheral (include "periph/usb_fs_device.rx"))
+    ;(peripheral (include "periph/usb_fs_pwrclk.rx"))    
+
+    (peripheral-group
+        (name USB_FS_GLOBAL)
+        (prototype "periph/usb_fs_global.rx")
+        (peripheral
+            (name USB_FS_GLOBAL)
+            (address 0x50000000)
+            (description "USB on the go full speed")
+            (interrupt
+                (name WKUP)
+                (value 42)
+                (description "USB On-The-Go FS Wakeup through EXTI line interrupt")
+            )            
+            (interrupt
+                (name OTG_FS)
+                (value 67)
+                (type USB)
+                (description "USB On The Go FS global interrupt")
+            )            
+        )
+    )
+    (peripheral-group
+        (name USB_FS_HOST)
+        (prototype "./periph/usb_fs_host.rx")
+        (peripheral
+            (name USB_FS_HOST)
+            (address 0x50000400)
+            (description "USB on the go full speed")        
+        )
+    )
+    (peripheral-group
+        (name USB_FS_DEVICE)
+        (prototype "./periph/usb_fs_device.rx")
+        (peripheral
+            (name USB_FS_DEVICE)
+            (address 0x50000800)
+            (description "USB on the go full speed")
+        )
+    )
+
+
+    (peripheral-group
+        (name USB_FS_PWRCLK)
+        (prototype "./periph/usb_fs_pwrclk.rx")
+        (peripheral
+            (name USB_FS_PWRCLK)
+            (address 0x50000e00)
+            (description "USB on the go full speed")
+        )
+    )
 
     (peripheral-group
         (name IWDG)

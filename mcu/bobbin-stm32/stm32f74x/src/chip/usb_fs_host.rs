@@ -1,12 +1,14 @@
-//! USB on the go full speed
 #[allow(unused_imports)] use bobbin_common::*;
 
-periph!(USB_FS_HOST, UsbFsHost, 0x50000400);
+periph!( USB_FS_HOST, UsbFsHost, _USB_FS_HOST, UsbFsHostPeriph, 0x50000400);
 
-#[doc="USB on the go full speed"]
 #[derive(Clone, Copy, PartialEq, Eq)]
-pub struct UsbFsHost(pub usize);
-impl UsbFsHost {
+#[doc="USB_FS_HOST Peripheral"]
+pub struct UsbFsHostPeriph(pub usize); 
+
+
+
+impl UsbFsHostPeriph {
     #[doc="Get the *mut pointer for the HCFG register."]
     #[inline] pub fn hcfg_mut(&self) -> *mut Hcfg { 
         (self.0 + 0x0) as *mut Hcfg

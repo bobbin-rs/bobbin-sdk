@@ -1,18 +1,5 @@
 (peripheral
     (group-name USB_FS_PWRCLK)
-    (name USB_FS_PWRCLK)
-    (address 0x50000e00)
-    (description "USB on the go full speed")
-    (interrupt
-        (name WKUP)
-        (value 42)
-        (description "USB On-The-Go FS Wakeup through EXTI line interrupt")
-    )
-    (interrupt
-        (name OTG_FS)
-        (value 67)
-        (description "USB On The Go FS global interrupt")
-    )
     (register
         (name PCGCCTL)
         (offset 0x0)

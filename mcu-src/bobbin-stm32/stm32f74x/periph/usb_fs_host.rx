@@ -1,8 +1,5 @@
 (peripheral
     (group-name USB_FS_HOST)
-    (name USB_FS_HOST)
-    (address 0x50000400)
-    (description "USB on the go full speed")
     (register
         (name HCFG)
         (offset 0x0)

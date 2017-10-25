@@ -1,12 +1,14 @@
-//! USB on the go full speed
 #[allow(unused_imports)] use bobbin_common::*;
 
-periph!(USB_FS_DEVICE, UsbFsDevice, 0x50000800);
+periph!( USB_FS_DEVICE, UsbFsDevice, _USB_FS_DEVICE, UsbFsDevicePeriph, 0x50000800);
 
-#[doc="USB on the go full speed"]
 #[derive(Clone, Copy, PartialEq, Eq)]
-pub struct UsbFsDevice(pub usize);
-impl UsbFsDevice {
+#[doc="USB_FS_DEVICE Peripheral"]
+pub struct UsbFsDevicePeriph(pub usize); 
+
+
+
+impl UsbFsDevicePeriph {
     #[doc="Get the *mut pointer for the DCFG register."]
     #[inline] pub fn dcfg_mut(&self) -> *mut Dcfg { 
         (self.0 + 0x0) as *mut Dcfg

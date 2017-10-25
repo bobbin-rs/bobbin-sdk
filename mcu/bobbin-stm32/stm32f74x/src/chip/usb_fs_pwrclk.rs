@@ -1,12 +1,14 @@
-//! USB on the go full speed
 #[allow(unused_imports)] use bobbin_common::*;
 
-periph!(USB_FS_PWRCLK, UsbFsPwrclk, 0x50000e00);
+periph!( USB_FS_PWRCLK, UsbFsPwrclk, _USB_FS_PWRCLK, UsbFsPwrclkPeriph, 0x50000e00);
 
-#[doc="USB on the go full speed"]
 #[derive(Clone, Copy, PartialEq, Eq)]
-pub struct UsbFsPwrclk(pub usize);
-impl UsbFsPwrclk {
+#[doc="USB_FS_PWRCLK Peripheral"]
+pub struct UsbFsPwrclkPeriph(pub usize); 
+
+
+
+impl UsbFsPwrclkPeriph {
     #[doc="Get the *mut pointer for the PCGCCTL register."]
     #[inline] pub fn pcgcctl_mut(&self) -> *mut Pcgcctl { 
         (self.0 + 0x0) as *mut Pcgcctl

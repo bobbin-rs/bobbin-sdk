@@ -1,8 +1,5 @@
 (peripheral
     (group-name USB_FS_GLOBAL)
-    (name USB_FS_GLOBAL)
-    (address 0x50000000)
-    (description "USB on the go full speed")
     (register
         (name GOTGCTL)
         (offset 0x0)

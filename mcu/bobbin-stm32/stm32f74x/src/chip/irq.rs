@@ -4,6 +4,8 @@
 
 pub type Handler = extern "C" fn();
 
+irq!(IRQ_WKUP, IrqWkup, 42);
+irq!(IRQ_OTG_FS, IrqOtgFs, 67);
 irq!(IRQ_WWDG, IrqWwdg, 0);
 irq!(IRQ_EXTI0, IrqExti0, 6);
 irq!(IRQ_EXTI1, IrqExti1, 7);

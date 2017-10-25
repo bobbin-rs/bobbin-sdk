@@ -1,12 +1,14 @@
-//! USB on the go full speed
 #[allow(unused_imports)] use bobbin_common::*;
 
-periph!(USB_FS_GLOBAL, UsbFsGlobal, 0x50000000);
+periph!( USB_FS_GLOBAL, UsbFsGlobal, _USB_FS_GLOBAL, UsbFsGlobalPeriph, 0x50000000);
 
-#[doc="USB on the go full speed"]
 #[derive(Clone, Copy, PartialEq, Eq)]
-pub struct UsbFsGlobal(pub usize);
-impl UsbFsGlobal {
+#[doc="USB_FS_GLOBAL Peripheral"]
+pub struct UsbFsGlobalPeriph(pub usize); 
+
+
+
+impl UsbFsGlobalPeriph {
     #[doc="Get the *mut pointer for the GOTGCTL register."]
     #[inline] pub fn gotgctl_mut(&self) -> *mut Gotgctl { 
         (self.0 + 0x0) as *mut Gotgctl
@@ -5228,4 +5230,12 @@ impl ::core::fmt::Debug for Glpmcfg {
     }
 }
 
+
+pub trait IrqUsb<T> {
+    fn irq_usb(&self) -> T;
+}
+
+impl IrqUsb<super::irq::IrqOtgFs> for UsbFsGlobal {
+    fn irq_usb(&self) -> super::irq::IrqOtgFs { super::irq::IRQ_OTG_FS }
+}
 
