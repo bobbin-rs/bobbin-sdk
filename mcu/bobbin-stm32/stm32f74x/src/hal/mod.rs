@@ -52,6 +52,10 @@ pub mod gpio {
     impl_mode!(ModeSpiMosi, mode_spi_mosi, SignalSpiMosi);
     impl_mode!(ModeSpiMiso, mode_spi_miso, SignalSpiMiso);
 
+    // impl_mode!(ModeUsbId, mode_usb_id, SignalUsbId);
+    // impl_mode!(ModeUsbDm, mode_usb_dm, SignalUsbDm);
+    // impl_mode!(ModeUsbDp, mode_usb_dp, SignalUsbDp);
+
 }
 
 pub mod usart {

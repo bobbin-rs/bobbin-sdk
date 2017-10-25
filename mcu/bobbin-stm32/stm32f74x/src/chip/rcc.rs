@@ -8267,6 +8267,16 @@ impl En for super::gpio::Gpioa {
     #[inline] fn set_en(&self, value: u32) { RCC.with_ahb1enr(|r| r.set_gpioaen(value)); }
 }
 
+impl En for super::usb_fs_device::UsbFsDevice {
+    #[inline] fn en(&self) -> u32 { RCC.ahb2enr().otgfsen().into() }
+    #[inline] fn set_en(&self, value: u32) { RCC.with_ahb2enr(|r| r.set_otgfsen(value)); }
+}
+
+impl En for super::usb_fs_host::UsbFsHost {
+    #[inline] fn en(&self) -> u32 { RCC.ahb2enr().otgfsen().into() }
+    #[inline] fn set_en(&self, value: u32) { RCC.with_ahb2enr(|r| r.set_otgfsen(value)); }
+}
+
 impl En for super::usart::Uart8 {
     #[inline] fn en(&self) -> u32 { RCC.apb1enr().uart8enr().into() }
     #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_uart8enr(value)); }

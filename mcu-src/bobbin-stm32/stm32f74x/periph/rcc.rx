@@ -1023,6 +1023,8 @@
             (bit-offset 7)
             (bit-width 1)
             (description "USB OTG FS clock enable")
+            (link (name EN) (peripheral-group USB_FS_DEVICE) (peripheral USB_FS_DEVICE))
+            (link (name EN) (peripheral-group USB_FS_HOST) (peripheral USB_FS_HOST))
         )
         (field
             (name RNGEN)
