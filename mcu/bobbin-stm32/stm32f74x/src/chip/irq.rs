@@ -136,7 +136,7 @@ pub static mut INTERRUPT_HANDLERS: [Option<Handler>; 98] = [
     None,                          // IRQ 39: USART3 global interrupt
     None,
     None,
-    None,
+    None,                          // IRQ 42: USB On-The-Go FS Wakeup through EXTI line interrupt
     None,                          // IRQ 43: TIM8 Break interrupt and TIM12 global interrupt
     None,                          // IRQ 44: TIM8 Update interrupt and TIM13 global interrupt
     None,                          // IRQ 45: TIM8 Trigger and Commutation interrupts and TIM14 global interrupt
@@ -161,7 +161,7 @@ pub static mut INTERRUPT_HANDLERS: [Option<Handler>; 98] = [
     None,
     None,
     None,
-    None,
+    None,                          // IRQ 67: USB On The Go FS global interrupt
     None,
     None,
     None,

@@ -43,7 +43,11 @@
     (peripheral (include "periph/hash.rx"))
     (peripheral (include "periph/cryp.rx"))
     (peripheral (include "periph/dcmi.rx"))
-    
+
+    (peripheral (include "periph/usb_fs_global.rx"))
+    (peripheral (include "periph/usb_fs_host.rx"))
+    (peripheral (include "periph/usb_fs_device.rx"))
+    (peripheral (include "periph/usb_fs_pwrclk.rx"))    
 
     (peripheral-group
         (name IWDG)

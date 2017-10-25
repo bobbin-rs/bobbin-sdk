@@ -1,0 +1,42 @@
+(peripheral
+    (group-name USB_FS_PWRCLK)
+    (name USB_FS_PWRCLK)
+    (address 0x50000e00)
+    (description "USB on the go full speed")
+    (interrupt
+        (name WKUP)
+        (value 42)
+        (description "USB On-The-Go FS Wakeup through EXTI line interrupt")
+    )
+    (interrupt
+        (name OTG_FS)
+        (value 67)
+        (description "USB On The Go FS global interrupt")
+    )
+    (register
+        (name PCGCCTL)
+        (offset 0x0)
+        (size 0x20)
+        (access read-write)
+        (reset-value 0x0)
+        (description "OTG_FS power and clock gating control register (OTG_FS_PCGCCTL)")
+        (field
+            (name STPPCLK)
+            (bit-offset 0)
+            (bit-width 1)
+            (description "Stop PHY clock")
+        )
+        (field
+            (name GATEHCLK)
+            (bit-offset 1)
+            (bit-width 1)
+            (description "Gate HCLK")
+        )
+        (field
+            (name PHYSUSP)
+            (bit-offset 4)
+            (bit-width 1)
+            (description "PHY Suspended")
+        )
+    )
+)

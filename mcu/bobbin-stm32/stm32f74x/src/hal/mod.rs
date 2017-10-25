@@ -163,3 +163,5 @@ pub mod syscfg {
         }
     }
 }
+
+pub mod usb;
