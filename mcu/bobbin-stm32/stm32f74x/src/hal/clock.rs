@@ -237,6 +237,8 @@ pub trait ClockTree {
     fn lse(&self) -> Hz;
     fn hse(&self) -> Hz;
     fn pllclk(&self) -> Hz;
+    fn pllq(&self) -> Hz;
+    fn pll48clk(&self) -> Hz;
     fn sysclk(&self) -> Hz;
     fn hclk(&self) -> Hz;
     fn systick(&self) -> Hz;
@@ -271,6 +273,22 @@ impl ClockTree for DynamicClock {
             U1::B1 => self.hse(),
         }.map(|v| v / cfgr.pllm().into_u32() * cfgr.plln().into_u32());
         vco.map(|v| v / (2 * (cfgr.pllp().into_u32() + 1)))
+    }
+
+    fn pllq(&self) -> Hz {
+        let cfgr = RCC.pllcfgr();
+        let vco = match cfgr.pllsrc() {
+            U1::B0 => self.hsi(),
+            U1::B1 => self.hse(),
+        }.map(|v| v / cfgr.pllm().into_u32() * cfgr.plln().into_u32());
+        vco.map(|v| v / cfgr.pllq().into_u32())
+    }    
+
+    fn pll48clk(&self) -> Hz {
+        match RCC.dkcfgr2().ck48msel() {
+            U1::B0 => self.pllq(),
+            U1::B1 => unimplemented!(),
+        }
     }
 
     fn sysclk(&self) -> Hz {
@@ -360,6 +378,8 @@ impl fmt::Debug for DynamicClock {
         write!(f, " LSE={:?}", self.lse())?;
         write!(f, " HSE={:?}", self.hse())?;
         write!(f, " PLLCLK={:?}", self.pllclk())?;
+        write!(f, " PLLQ={:?}", self.pllq())?;
+        write!(f, " PLL48CLK={:?}", self.pll48clk())?;
         write!(f, " SYSCLK={:?}", self.sysclk())?;
         write!(f, " SYSTICK={:?}", self.systick())?;
         write!(f, " HCLK={:?}", self.hclk())?;

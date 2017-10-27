@@ -2005,40 +2005,48 @@ impl ::core::fmt::Debug for Doepmsk {
 pub struct Daint(pub u32);
 impl Daint {
     #[doc="IN endpoint interrupt bits"]
-    #[inline] pub fn iepint(&self) -> bits::U16 {
-        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffff) as u16) } // [15:0]
+    #[inline] pub fn iepint<I: Into<bits::R16>>(&self, index: I) -> bits::U1 {
+        let index: usize = index.into().value() as usize;
+        let shift: usize = 0 + index;
+        unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
     #[doc="Returns true if IEPINT != 0"]
-    #[inline] pub fn test_iepint(&self) -> bool {
-        self.iepint() != 0
+    #[inline] pub fn test_iepint<I: Into<bits::R16>>(&self, index: I) -> bool{
+        self.iepint(index) != 0
     }
 
     #[doc="Sets the IEPINT field."]
-    #[inline] pub fn set_iepint<V: Into<bits::U16>>(mut self, value: V) -> Self {
-        let value: bits::U16 = value.into();
+    #[inline] pub fn set_iepint<I: Into<bits::R16>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+        let index: usize = index.into().value() as usize;
+        let value: bits::U1 = value.into();
         let value: u32 = value.into();
-        self.0 &= !(0xffff << 0);
-        self.0 |= value << 0;
+        let shift: usize = 0 + index;
+        self.0 &= !(0x1 << shift);
+        self.0 |= value << shift;
         self
     }
 
     #[doc="OUT endpoint interrupt bits"]
-    #[inline] pub fn oepint(&self) -> bits::U16 {
-        unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xffff) as u16) } // [31:16]
+    #[inline] pub fn oepint<I: Into<bits::R16>>(&self, index: I) -> bits::U1 {
+        let index: usize = index.into().value() as usize;
+        let shift: usize = 16 + index;
+        unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [16]
     }
 
     #[doc="Returns true if OEPINT != 0"]
-    #[inline] pub fn test_oepint(&self) -> bool {
-        self.oepint() != 0
+    #[inline] pub fn test_oepint<I: Into<bits::R16>>(&self, index: I) -> bool{
+        self.oepint(index) != 0
     }
 
     #[doc="Sets the OEPINT field."]
-    #[inline] pub fn set_oepint<V: Into<bits::U16>>(mut self, value: V) -> Self {
-        let value: bits::U16 = value.into();
+    #[inline] pub fn set_oepint<I: Into<bits::R16>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+        let index: usize = index.into().value() as usize;
+        let value: bits::U1 = value.into();
         let value: u32 = value.into();
-        self.0 &= !(0xffff << 16);
-        self.0 |= value << 16;
+        let shift: usize = 16 + index;
+        self.0 &= !(0x1 << shift);
+        self.0 |= value << shift;
         self
     }
 
@@ -2060,8 +2068,38 @@ impl ::core::fmt::Display for Daint {
 impl ::core::fmt::Debug for Daint {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
         try!(write!(f, "[0x{:08x}", self.0));
-        if self.iepint() != 0 { try!(write!(f, " iepint=0x{:x}", self.iepint()))}
-        if self.oepint() != 0 { try!(write!(f, " oepint=0x{:x}", self.oepint()))}
+        if self.iepint(0) != 0 { try!(write!(f, " iepint[0]"))}
+        if self.iepint(1) != 0 { try!(write!(f, " iepint[1]"))}
+        if self.iepint(2) != 0 { try!(write!(f, " iepint[2]"))}
+        if self.iepint(3) != 0 { try!(write!(f, " iepint[3]"))}
+        if self.iepint(4) != 0 { try!(write!(f, " iepint[4]"))}
+        if self.iepint(5) != 0 { try!(write!(f, " iepint[5]"))}
+        if self.iepint(6) != 0 { try!(write!(f, " iepint[6]"))}
+        if self.iepint(7) != 0 { try!(write!(f, " iepint[7]"))}
+        if self.iepint(8) != 0 { try!(write!(f, " iepint[8]"))}
+        if self.iepint(9) != 0 { try!(write!(f, " iepint[9]"))}
+        if self.iepint(10) != 0 { try!(write!(f, " iepint[10]"))}
+        if self.iepint(11) != 0 { try!(write!(f, " iepint[11]"))}
+        if self.iepint(12) != 0 { try!(write!(f, " iepint[12]"))}
+        if self.iepint(13) != 0 { try!(write!(f, " iepint[13]"))}
+        if self.iepint(14) != 0 { try!(write!(f, " iepint[14]"))}
+        if self.iepint(15) != 0 { try!(write!(f, " iepint[15]"))}
+        if self.oepint(0) != 0 { try!(write!(f, " oepint[0]"))}
+        if self.oepint(1) != 0 { try!(write!(f, " oepint[1]"))}
+        if self.oepint(2) != 0 { try!(write!(f, " oepint[2]"))}
+        if self.oepint(3) != 0 { try!(write!(f, " oepint[3]"))}
+        if self.oepint(4) != 0 { try!(write!(f, " oepint[4]"))}
+        if self.oepint(5) != 0 { try!(write!(f, " oepint[5]"))}
+        if self.oepint(6) != 0 { try!(write!(f, " oepint[6]"))}
+        if self.oepint(7) != 0 { try!(write!(f, " oepint[7]"))}
+        if self.oepint(8) != 0 { try!(write!(f, " oepint[8]"))}
+        if self.oepint(9) != 0 { try!(write!(f, " oepint[9]"))}
+        if self.oepint(10) != 0 { try!(write!(f, " oepint[10]"))}
+        if self.oepint(11) != 0 { try!(write!(f, " oepint[11]"))}
+        if self.oepint(12) != 0 { try!(write!(f, " oepint[12]"))}
+        if self.oepint(13) != 0 { try!(write!(f, " oepint[13]"))}
+        if self.oepint(14) != 0 { try!(write!(f, " oepint[14]"))}
+        if self.oepint(15) != 0 { try!(write!(f, " oepint[15]"))}
         try!(write!(f, "]"));
         Ok(())
     }
@@ -2072,40 +2110,48 @@ impl ::core::fmt::Debug for Daint {
 pub struct Daintmsk(pub u32);
 impl Daintmsk {
     #[doc="IN EP interrupt mask bits"]
-    #[inline] pub fn iepm(&self) -> bits::U16 {
-        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffff) as u16) } // [15:0]
+    #[inline] pub fn iepm<I: Into<bits::R16>>(&self, index: I) -> bits::U1 {
+        let index: usize = index.into().value() as usize;
+        let shift: usize = 0 + index;
+        unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
     #[doc="Returns true if IEPM != 0"]
-    #[inline] pub fn test_iepm(&self) -> bool {
-        self.iepm() != 0
+    #[inline] pub fn test_iepm<I: Into<bits::R16>>(&self, index: I) -> bool{
+        self.iepm(index) != 0
     }
 
     #[doc="Sets the IEPM field."]
-    #[inline] pub fn set_iepm<V: Into<bits::U16>>(mut self, value: V) -> Self {
-        let value: bits::U16 = value.into();
+    #[inline] pub fn set_iepm<I: Into<bits::R16>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+        let index: usize = index.into().value() as usize;
+        let value: bits::U1 = value.into();
         let value: u32 = value.into();
-        self.0 &= !(0xffff << 0);
-        self.0 |= value << 0;
+        let shift: usize = 0 + index;
+        self.0 &= !(0x1 << shift);
+        self.0 |= value << shift;
         self
     }
 
-    #[doc="OUT endpoint interrupt bits"]
-    #[inline] pub fn oepint(&self) -> bits::U16 {
-        unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xffff) as u16) } // [31:16]
+    #[doc="OUT EP interrupt mask bits"]
+    #[inline] pub fn oepm<I: Into<bits::R16>>(&self, index: I) -> bits::U1 {
+        let index: usize = index.into().value() as usize;
+        let shift: usize = 16 + index;
+        unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [16]
     }
 
-    #[doc="Returns true if OEPINT != 0"]
-    #[inline] pub fn test_oepint(&self) -> bool {
-        self.oepint() != 0
+    #[doc="Returns true if OEPM != 0"]
+    #[inline] pub fn test_oepm<I: Into<bits::R16>>(&self, index: I) -> bool{
+        self.oepm(index) != 0
     }
 
-    #[doc="Sets the OEPINT field."]
-    #[inline] pub fn set_oepint<V: Into<bits::U16>>(mut self, value: V) -> Self {
-        let value: bits::U16 = value.into();
+    #[doc="Sets the OEPM field."]
+    #[inline] pub fn set_oepm<I: Into<bits::R16>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+        let index: usize = index.into().value() as usize;
+        let value: bits::U1 = value.into();
         let value: u32 = value.into();
-        self.0 &= !(0xffff << 16);
-        self.0 |= value << 16;
+        let shift: usize = 16 + index;
+        self.0 &= !(0x1 << shift);
+        self.0 |= value << shift;
         self
     }
 
@@ -2127,8 +2173,38 @@ impl ::core::fmt::Display for Daintmsk {
 impl ::core::fmt::Debug for Daintmsk {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
         try!(write!(f, "[0x{:08x}", self.0));
-        if self.iepm() != 0 { try!(write!(f, " iepm=0x{:x}", self.iepm()))}
-        if self.oepint() != 0 { try!(write!(f, " oepint=0x{:x}", self.oepint()))}
+        if self.iepm(0) != 0 { try!(write!(f, " iepm[0]"))}
+        if self.iepm(1) != 0 { try!(write!(f, " iepm[1]"))}
+        if self.iepm(2) != 0 { try!(write!(f, " iepm[2]"))}
+        if self.iepm(3) != 0 { try!(write!(f, " iepm[3]"))}
+        if self.iepm(4) != 0 { try!(write!(f, " iepm[4]"))}
+        if self.iepm(5) != 0 { try!(write!(f, " iepm[5]"))}
+        if self.iepm(6) != 0 { try!(write!(f, " iepm[6]"))}
+        if self.iepm(7) != 0 { try!(write!(f, " iepm[7]"))}
+        if self.iepm(8) != 0 { try!(write!(f, " iepm[8]"))}
+        if self.iepm(9) != 0 { try!(write!(f, " iepm[9]"))}
+        if self.iepm(10) != 0 { try!(write!(f, " iepm[10]"))}
+        if self.iepm(11) != 0 { try!(write!(f, " iepm[11]"))}
+        if self.iepm(12) != 0 { try!(write!(f, " iepm[12]"))}
+        if self.iepm(13) != 0 { try!(write!(f, " iepm[13]"))}
+        if self.iepm(14) != 0 { try!(write!(f, " iepm[14]"))}
+        if self.iepm(15) != 0 { try!(write!(f, " iepm[15]"))}
+        if self.oepm(0) != 0 { try!(write!(f, " oepm[0]"))}
+        if self.oepm(1) != 0 { try!(write!(f, " oepm[1]"))}
+        if self.oepm(2) != 0 { try!(write!(f, " oepm[2]"))}
+        if self.oepm(3) != 0 { try!(write!(f, " oepm[3]"))}
+        if self.oepm(4) != 0 { try!(write!(f, " oepm[4]"))}
+        if self.oepm(5) != 0 { try!(write!(f, " oepm[5]"))}
+        if self.oepm(6) != 0 { try!(write!(f, " oepm[6]"))}
+        if self.oepm(7) != 0 { try!(write!(f, " oepm[7]"))}
+        if self.oepm(8) != 0 { try!(write!(f, " oepm[8]"))}
+        if self.oepm(9) != 0 { try!(write!(f, " oepm[9]"))}
+        if self.oepm(10) != 0 { try!(write!(f, " oepm[10]"))}
+        if self.oepm(11) != 0 { try!(write!(f, " oepm[11]"))}
+        if self.oepm(12) != 0 { try!(write!(f, " oepm[12]"))}
+        if self.oepm(13) != 0 { try!(write!(f, " oepm[13]"))}
+        if self.oepm(14) != 0 { try!(write!(f, " oepm[14]"))}
+        if self.oepm(15) != 0 { try!(write!(f, " oepm[15]"))}
         try!(write!(f, "]"));
         Ok(())
     }
