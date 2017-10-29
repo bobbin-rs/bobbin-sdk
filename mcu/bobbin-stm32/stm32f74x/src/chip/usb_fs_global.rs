@@ -307,35 +307,35 @@ impl UsbFsGlobalPeriph {
         self
     }
 
-    #[doc="Get the *mut pointer for the DIEPTXF0_DEVICE register."]
-    #[inline] pub fn dieptxf0_device_mut(&self) -> *mut Dieptxf0Device { 
-        (self.0 + 0x28) as *mut Dieptxf0Device
+    #[doc="Get the *mut pointer for the DIEPTXF0 register."]
+    #[inline] pub fn dieptxf0_mut(&self) -> *mut Dieptxf0 { 
+        (self.0 + 0x28) as *mut Dieptxf0
     }
 
-    #[doc="Get the *const pointer for the DIEPTXF0_DEVICE register."]
-    #[inline] pub fn dieptxf0_device_ptr(&self) -> *const Dieptxf0Device { 
-           self.dieptxf0_device_mut()
+    #[doc="Get the *const pointer for the DIEPTXF0 register."]
+    #[inline] pub fn dieptxf0_ptr(&self) -> *const Dieptxf0 { 
+           self.dieptxf0_mut()
     }
 
-    #[doc="Read the DIEPTXF0_DEVICE register."]
-    #[inline] pub fn dieptxf0_device(&self) -> Dieptxf0Device { 
+    #[doc="Read the DIEPTXF0 register."]
+    #[inline] pub fn dieptxf0(&self) -> Dieptxf0 { 
         unsafe {
-            read_volatile(self.dieptxf0_device_ptr())
+            read_volatile(self.dieptxf0_ptr())
         }
     }
 
-    #[doc="Write the DIEPTXF0_DEVICE register."]
-    #[inline] pub fn set_dieptxf0_device<F: FnOnce(Dieptxf0Device) -> Dieptxf0Device>(&self, f: F) -> &Self {
+    #[doc="Write the DIEPTXF0 register."]
+    #[inline] pub fn set_dieptxf0<F: FnOnce(Dieptxf0) -> Dieptxf0>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile(self.dieptxf0_device_mut(), f(Dieptxf0Device(0)));
+            write_volatile(self.dieptxf0_mut(), f(Dieptxf0(0)));
         }
         self
     }
 
-    #[doc="Modify the DIEPTXF0_DEVICE register."]
-    #[inline] pub fn with_dieptxf0_device<F: FnOnce(Dieptxf0Device) -> Dieptxf0Device>(&self, f: F) -> &Self {
+    #[doc="Modify the DIEPTXF0 register."]
+    #[inline] pub fn with_dieptxf0<F: FnOnce(Dieptxf0) -> Dieptxf0>(&self, f: F) -> &Self {
         unsafe {
-            write_volatile(self.dieptxf0_device_mut(), f(self.dieptxf0_device()));
+            write_volatile(self.dieptxf0_mut(), f(self.dieptxf0()));
         }
         self
     }
@@ -489,101 +489,36 @@ impl UsbFsGlobalPeriph {
         self
     }
 
-    #[doc="Get the *mut pointer for the DIEPTXF1 register."]
-    #[inline] pub fn dieptxf1_mut(&self) -> *mut Dieptxf1 { 
-        (self.0 + 0x104) as *mut Dieptxf1
+    #[doc="Get the *mut pointer for the DIEPTXF register."]
+    #[inline] pub fn dieptxf_mut<I: Into<bits::R6>>(&self, index: I) -> *mut Dieptxf { 
+        let index: usize = index.into().value() as usize;
+        (self.0 + 0x100 + (index << 2)) as *mut Dieptxf
     }
 
-    #[doc="Get the *const pointer for the DIEPTXF1 register."]
-    #[inline] pub fn dieptxf1_ptr(&self) -> *const Dieptxf1 { 
-           self.dieptxf1_mut()
+    #[doc="Get the *const pointer for the DIEPTXF register."]
+    #[inline] pub fn dieptxf_ptr<I: Into<bits::R6>>(&self, index: I) -> *const Dieptxf { 
+           self.dieptxf_mut(index)
     }
 
-    #[doc="Read the DIEPTXF1 register."]
-    #[inline] pub fn dieptxf1(&self) -> Dieptxf1 { 
+    #[doc="Read the DIEPTXF register."]
+    #[inline] pub fn dieptxf<I: Into<bits::R6>>(&self, index: I) -> Dieptxf { 
         unsafe {
-            read_volatile(self.dieptxf1_ptr())
+            read_volatile(self.dieptxf_ptr(index))
         }
     }
 
-    #[doc="Write the DIEPTXF1 register."]
-    #[inline] pub fn set_dieptxf1<F: FnOnce(Dieptxf1) -> Dieptxf1>(&self, f: F) -> &Self {
+    #[doc="Write the DIEPTXF register."]
+    #[inline] pub fn set_dieptxf<I: Into<bits::R6>, F: FnOnce(Dieptxf) -> Dieptxf>(&self, index: I, f: F) -> &Self {
         unsafe {
-            write_volatile(self.dieptxf1_mut(), f(Dieptxf1(0)));
-        }
-        self
-    }
-
-    #[doc="Modify the DIEPTXF1 register."]
-    #[inline] pub fn with_dieptxf1<F: FnOnce(Dieptxf1) -> Dieptxf1>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.dieptxf1_mut(), f(self.dieptxf1()));
+            write_volatile(self.dieptxf_mut(index), f(Dieptxf(0)));
         }
         self
     }
 
-    #[doc="Get the *mut pointer for the DIEPTXF2 register."]
-    #[inline] pub fn dieptxf2_mut(&self) -> *mut Dieptxf2 { 
-        (self.0 + 0x108) as *mut Dieptxf2
-    }
-
-    #[doc="Get the *const pointer for the DIEPTXF2 register."]
-    #[inline] pub fn dieptxf2_ptr(&self) -> *const Dieptxf2 { 
-           self.dieptxf2_mut()
-    }
-
-    #[doc="Read the DIEPTXF2 register."]
-    #[inline] pub fn dieptxf2(&self) -> Dieptxf2 { 
+    #[doc="Modify the DIEPTXF register."]
+    #[inline] pub fn with_dieptxf<I: Into<bits::R6> + Copy, F: FnOnce(Dieptxf) -> Dieptxf>(&self, index: I, f: F) -> &Self {
         unsafe {
-            read_volatile(self.dieptxf2_ptr())
-        }
-    }
-
-    #[doc="Write the DIEPTXF2 register."]
-    #[inline] pub fn set_dieptxf2<F: FnOnce(Dieptxf2) -> Dieptxf2>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.dieptxf2_mut(), f(Dieptxf2(0)));
-        }
-        self
-    }
-
-    #[doc="Modify the DIEPTXF2 register."]
-    #[inline] pub fn with_dieptxf2<F: FnOnce(Dieptxf2) -> Dieptxf2>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.dieptxf2_mut(), f(self.dieptxf2()));
-        }
-        self
-    }
-
-    #[doc="Get the *mut pointer for the DIEPTXF3 register."]
-    #[inline] pub fn dieptxf3_mut(&self) -> *mut Dieptxf3 { 
-        (self.0 + 0x10c) as *mut Dieptxf3
-    }
-
-    #[doc="Get the *const pointer for the DIEPTXF3 register."]
-    #[inline] pub fn dieptxf3_ptr(&self) -> *const Dieptxf3 { 
-           self.dieptxf3_mut()
-    }
-
-    #[doc="Read the DIEPTXF3 register."]
-    #[inline] pub fn dieptxf3(&self) -> Dieptxf3 { 
-        unsafe {
-            read_volatile(self.dieptxf3_ptr())
-        }
-    }
-
-    #[doc="Write the DIEPTXF3 register."]
-    #[inline] pub fn set_dieptxf3<F: FnOnce(Dieptxf3) -> Dieptxf3>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.dieptxf3_mut(), f(Dieptxf3(0)));
-        }
-        self
-    }
-
-    #[doc="Modify the DIEPTXF3 register."]
-    #[inline] pub fn with_dieptxf3<F: FnOnce(Dieptxf3) -> Dieptxf3>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.dieptxf3_mut(), f(self.dieptxf3()));
+            write_volatile(self.dieptxf_mut(index), f(self.dieptxf(index)));
         }
         self
     }
@@ -717,72 +652,6 @@ impl UsbFsGlobalPeriph {
     #[inline] pub fn with_gadpctl<F: FnOnce(Gadpctl) -> Gadpctl>(&self, f: F) -> &Self {
         unsafe {
             write_volatile(self.gadpctl_mut(), f(self.gadpctl()));
-        }
-        self
-    }
-
-    #[doc="Get the *mut pointer for the DIEPTXF4 register."]
-    #[inline] pub fn dieptxf4_mut(&self) -> *mut Dieptxf4 { 
-        (self.0 + 0x110) as *mut Dieptxf4
-    }
-
-    #[doc="Get the *const pointer for the DIEPTXF4 register."]
-    #[inline] pub fn dieptxf4_ptr(&self) -> *const Dieptxf4 { 
-           self.dieptxf4_mut()
-    }
-
-    #[doc="Read the DIEPTXF4 register."]
-    #[inline] pub fn dieptxf4(&self) -> Dieptxf4 { 
-        unsafe {
-            read_volatile(self.dieptxf4_ptr())
-        }
-    }
-
-    #[doc="Write the DIEPTXF4 register."]
-    #[inline] pub fn set_dieptxf4<F: FnOnce(Dieptxf4) -> Dieptxf4>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.dieptxf4_mut(), f(Dieptxf4(0)));
-        }
-        self
-    }
-
-    #[doc="Modify the DIEPTXF4 register."]
-    #[inline] pub fn with_dieptxf4<F: FnOnce(Dieptxf4) -> Dieptxf4>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.dieptxf4_mut(), f(self.dieptxf4()));
-        }
-        self
-    }
-
-    #[doc="Get the *mut pointer for the DIEPTXF5 register."]
-    #[inline] pub fn dieptxf5_mut(&self) -> *mut Dieptxf5 { 
-        (self.0 + 0x114) as *mut Dieptxf5
-    }
-
-    #[doc="Get the *const pointer for the DIEPTXF5 register."]
-    #[inline] pub fn dieptxf5_ptr(&self) -> *const Dieptxf5 { 
-           self.dieptxf5_mut()
-    }
-
-    #[doc="Read the DIEPTXF5 register."]
-    #[inline] pub fn dieptxf5(&self) -> Dieptxf5 { 
-        unsafe {
-            read_volatile(self.dieptxf5_ptr())
-        }
-    }
-
-    #[doc="Write the DIEPTXF5 register."]
-    #[inline] pub fn set_dieptxf5<F: FnOnce(Dieptxf5) -> Dieptxf5>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.dieptxf5_mut(), f(Dieptxf5(0)));
-        }
-        self
-    }
-
-    #[doc="Modify the DIEPTXF5 register."]
-    #[inline] pub fn with_dieptxf5<F: FnOnce(Dieptxf5) -> Dieptxf5>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.dieptxf5_mut(), f(self.dieptxf5()));
         }
         self
     }
@@ -3174,8 +3043,8 @@ impl ::core::fmt::Debug for Grxfsiz {
 
 #[doc="OTG_FS Endpoint 0 Transmit FIFO size"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
-pub struct Dieptxf0Device(pub u32);
-impl Dieptxf0Device {
+pub struct Dieptxf0(pub u32);
+impl Dieptxf0 {
     #[doc="Endpoint 0 transmit RAM start address"]
     #[inline] pub fn tx0fsa(&self) -> bits::U16 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffff) as u16) } // [15:0]
@@ -3216,20 +3085,20 @@ impl Dieptxf0Device {
 
 }
 
-impl From<u32> for Dieptxf0Device {
+impl From<u32> for Dieptxf0 {
     #[inline]
     fn from(other: u32) -> Self {
-         Dieptxf0Device(other)
+         Dieptxf0(other)
     }
 }
 
-impl ::core::fmt::Display for Dieptxf0Device {
+impl ::core::fmt::Display for Dieptxf0 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
     }
 }
 
-impl ::core::fmt::Debug for Dieptxf0Device {
+impl ::core::fmt::Debug for Dieptxf0 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
         try!(write!(f, "[0x{:08x}", self.0));
         if self.tx0fsa() != 0 { try!(write!(f, " tx0fsa=0x{:x}", self.tx0fsa()))}
@@ -3733,10 +3602,10 @@ impl ::core::fmt::Debug for Hptxfsiz {
     }
 }
 
-#[doc="OTG_FS device IN endpoint transmit FIFO size register (OTG_FS_DIEPTXF1)"]
+#[doc="OTG_FS device IN endpoint transmit FIFO size register (OTG_FS_DIEPTXFn)"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
-pub struct Dieptxf1(pub u32);
-impl Dieptxf1 {
+pub struct Dieptxf(pub u32);
+impl Dieptxf {
     #[doc="IN endpoint FIFO2 transmit RAM start address"]
     #[inline] pub fn ineptxsa(&self) -> bits::U16 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffff) as u16) } // [15:0]
@@ -3777,154 +3646,20 @@ impl Dieptxf1 {
 
 }
 
-impl From<u32> for Dieptxf1 {
+impl From<u32> for Dieptxf {
     #[inline]
     fn from(other: u32) -> Self {
-         Dieptxf1(other)
+         Dieptxf(other)
     }
 }
 
-impl ::core::fmt::Display for Dieptxf1 {
+impl ::core::fmt::Display for Dieptxf {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
     }
 }
 
-impl ::core::fmt::Debug for Dieptxf1 {
-    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-        try!(write!(f, "[0x{:08x}", self.0));
-        if self.ineptxsa() != 0 { try!(write!(f, " ineptxsa=0x{:x}", self.ineptxsa()))}
-        if self.ineptxfd() != 0 { try!(write!(f, " ineptxfd=0x{:x}", self.ineptxfd()))}
-        try!(write!(f, "]"));
-        Ok(())
-    }
-}
-
-#[doc="OTG_FS device IN endpoint transmit FIFO size register (OTG_FS_DIEPTXF2)"]
-#[derive(Default, Clone, Copy, PartialEq, Eq)]
-pub struct Dieptxf2(pub u32);
-impl Dieptxf2 {
-    #[doc="IN endpoint FIFO3 transmit RAM start address"]
-    #[inline] pub fn ineptxsa(&self) -> bits::U16 {
-        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffff) as u16) } // [15:0]
-    }
-
-    #[doc="Returns true if INEPTXSA != 0"]
-    #[inline] pub fn test_ineptxsa(&self) -> bool {
-        self.ineptxsa() != 0
-    }
-
-    #[doc="Sets the INEPTXSA field."]
-    #[inline] pub fn set_ineptxsa<V: Into<bits::U16>>(mut self, value: V) -> Self {
-        let value: bits::U16 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0xffff << 0);
-        self.0 |= value << 0;
-        self
-    }
-
-    #[doc="IN endpoint TxFIFO depth"]
-    #[inline] pub fn ineptxfd(&self) -> bits::U16 {
-        unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xffff) as u16) } // [31:16]
-    }
-
-    #[doc="Returns true if INEPTXFD != 0"]
-    #[inline] pub fn test_ineptxfd(&self) -> bool {
-        self.ineptxfd() != 0
-    }
-
-    #[doc="Sets the INEPTXFD field."]
-    #[inline] pub fn set_ineptxfd<V: Into<bits::U16>>(mut self, value: V) -> Self {
-        let value: bits::U16 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0xffff << 16);
-        self.0 |= value << 16;
-        self
-    }
-
-}
-
-impl From<u32> for Dieptxf2 {
-    #[inline]
-    fn from(other: u32) -> Self {
-         Dieptxf2(other)
-    }
-}
-
-impl ::core::fmt::Display for Dieptxf2 {
-    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-         self.0.fmt(f)
-    }
-}
-
-impl ::core::fmt::Debug for Dieptxf2 {
-    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-        try!(write!(f, "[0x{:08x}", self.0));
-        if self.ineptxsa() != 0 { try!(write!(f, " ineptxsa=0x{:x}", self.ineptxsa()))}
-        if self.ineptxfd() != 0 { try!(write!(f, " ineptxfd=0x{:x}", self.ineptxfd()))}
-        try!(write!(f, "]"));
-        Ok(())
-    }
-}
-
-#[doc="OTG_FS device IN endpoint transmit FIFO size register (OTG_FS_DIEPTXF3)"]
-#[derive(Default, Clone, Copy, PartialEq, Eq)]
-pub struct Dieptxf3(pub u32);
-impl Dieptxf3 {
-    #[doc="IN endpoint FIFO4 transmit RAM start address"]
-    #[inline] pub fn ineptxsa(&self) -> bits::U16 {
-        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffff) as u16) } // [15:0]
-    }
-
-    #[doc="Returns true if INEPTXSA != 0"]
-    #[inline] pub fn test_ineptxsa(&self) -> bool {
-        self.ineptxsa() != 0
-    }
-
-    #[doc="Sets the INEPTXSA field."]
-    #[inline] pub fn set_ineptxsa<V: Into<bits::U16>>(mut self, value: V) -> Self {
-        let value: bits::U16 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0xffff << 0);
-        self.0 |= value << 0;
-        self
-    }
-
-    #[doc="IN endpoint TxFIFO depth"]
-    #[inline] pub fn ineptxfd(&self) -> bits::U16 {
-        unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xffff) as u16) } // [31:16]
-    }
-
-    #[doc="Returns true if INEPTXFD != 0"]
-    #[inline] pub fn test_ineptxfd(&self) -> bool {
-        self.ineptxfd() != 0
-    }
-
-    #[doc="Sets the INEPTXFD field."]
-    #[inline] pub fn set_ineptxfd<V: Into<bits::U16>>(mut self, value: V) -> Self {
-        let value: bits::U16 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0xffff << 16);
-        self.0 |= value << 16;
-        self
-    }
-
-}
-
-impl From<u32> for Dieptxf3 {
-    #[inline]
-    fn from(other: u32) -> Self {
-         Dieptxf3(other)
-    }
-}
-
-impl ::core::fmt::Display for Dieptxf3 {
-    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-         self.0.fmt(f)
-    }
-}
-
-impl ::core::fmt::Debug for Dieptxf3 {
+impl ::core::fmt::Debug for Dieptxf {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
         try!(write!(f, "[0x{:08x}", self.0));
         if self.ineptxsa() != 0 { try!(write!(f, " ineptxsa=0x{:x}", self.ineptxsa()))}
@@ -4764,140 +4499,6 @@ impl ::core::fmt::Debug for Gadpctl {
         if self.adpsnsim() != 0 { try!(write!(f, " adpsnsim"))}
         if self.adptoim() != 0 { try!(write!(f, " adptoim"))}
         if self.ar() != 0 { try!(write!(f, " ar=0x{:x}", self.ar()))}
-        try!(write!(f, "]"));
-        Ok(())
-    }
-}
-
-#[doc="OTG_FS device IN endpoint transmit FIFO size register (OTG_FS_DIEPTXF4)"]
-#[derive(Default, Clone, Copy, PartialEq, Eq)]
-pub struct Dieptxf4(pub u32);
-impl Dieptxf4 {
-    #[doc="IN endpoint FIFOx transmit RAM start address"]
-    #[inline] pub fn ineptxsa(&self) -> bits::U16 {
-        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffff) as u16) } // [15:0]
-    }
-
-    #[doc="Returns true if INEPTXSA != 0"]
-    #[inline] pub fn test_ineptxsa(&self) -> bool {
-        self.ineptxsa() != 0
-    }
-
-    #[doc="Sets the INEPTXSA field."]
-    #[inline] pub fn set_ineptxsa<V: Into<bits::U16>>(mut self, value: V) -> Self {
-        let value: bits::U16 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0xffff << 0);
-        self.0 |= value << 0;
-        self
-    }
-
-    #[doc="IN endpoint Tx FIFO depth"]
-    #[inline] pub fn ineptxfd(&self) -> bits::U16 {
-        unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xffff) as u16) } // [31:16]
-    }
-
-    #[doc="Returns true if INEPTXFD != 0"]
-    #[inline] pub fn test_ineptxfd(&self) -> bool {
-        self.ineptxfd() != 0
-    }
-
-    #[doc="Sets the INEPTXFD field."]
-    #[inline] pub fn set_ineptxfd<V: Into<bits::U16>>(mut self, value: V) -> Self {
-        let value: bits::U16 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0xffff << 16);
-        self.0 |= value << 16;
-        self
-    }
-
-}
-
-impl From<u32> for Dieptxf4 {
-    #[inline]
-    fn from(other: u32) -> Self {
-         Dieptxf4(other)
-    }
-}
-
-impl ::core::fmt::Display for Dieptxf4 {
-    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-         self.0.fmt(f)
-    }
-}
-
-impl ::core::fmt::Debug for Dieptxf4 {
-    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-        try!(write!(f, "[0x{:08x}", self.0));
-        if self.ineptxsa() != 0 { try!(write!(f, " ineptxsa=0x{:x}", self.ineptxsa()))}
-        if self.ineptxfd() != 0 { try!(write!(f, " ineptxfd=0x{:x}", self.ineptxfd()))}
-        try!(write!(f, "]"));
-        Ok(())
-    }
-}
-
-#[doc="OTG_FS device IN endpoint transmit FIFO size register (OTG_FS_DIEPTXF5)"]
-#[derive(Default, Clone, Copy, PartialEq, Eq)]
-pub struct Dieptxf5(pub u32);
-impl Dieptxf5 {
-    #[doc="IN endpoint FIFOx transmit RAM start address"]
-    #[inline] pub fn ineptxsa(&self) -> bits::U16 {
-        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffff) as u16) } // [15:0]
-    }
-
-    #[doc="Returns true if INEPTXSA != 0"]
-    #[inline] pub fn test_ineptxsa(&self) -> bool {
-        self.ineptxsa() != 0
-    }
-
-    #[doc="Sets the INEPTXSA field."]
-    #[inline] pub fn set_ineptxsa<V: Into<bits::U16>>(mut self, value: V) -> Self {
-        let value: bits::U16 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0xffff << 0);
-        self.0 |= value << 0;
-        self
-    }
-
-    #[doc="IN endpoint Tx FIFO depth"]
-    #[inline] pub fn ineptxfd(&self) -> bits::U16 {
-        unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xffff) as u16) } // [31:16]
-    }
-
-    #[doc="Returns true if INEPTXFD != 0"]
-    #[inline] pub fn test_ineptxfd(&self) -> bool {
-        self.ineptxfd() != 0
-    }
-
-    #[doc="Sets the INEPTXFD field."]
-    #[inline] pub fn set_ineptxfd<V: Into<bits::U16>>(mut self, value: V) -> Self {
-        let value: bits::U16 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0xffff << 16);
-        self.0 |= value << 16;
-        self
-    }
-
-}
-
-impl From<u32> for Dieptxf5 {
-    #[inline]
-    fn from(other: u32) -> Self {
-         Dieptxf5(other)
-    }
-}
-
-impl ::core::fmt::Display for Dieptxf5 {
-    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-         self.0.fmt(f)
-    }
-}
-
-impl ::core::fmt::Debug for Dieptxf5 {
-    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-        try!(write!(f, "[0x{:08x}", self.0));
-        if self.ineptxsa() != 0 { try!(write!(f, " ineptxsa=0x{:x}", self.ineptxsa()))}
-        if self.ineptxfd() != 0 { try!(write!(f, " ineptxfd=0x{:x}", self.ineptxfd()))}
         try!(write!(f, "]"));
         Ok(())
     }
