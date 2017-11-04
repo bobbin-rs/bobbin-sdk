@@ -442,25 +442,25 @@ impl UsbFsDevicePeriph {
     }
 
     #[doc="Get the *mut pointer for the DIEPINT register."]
-    #[inline] pub fn diepint_mut<I: Into<bits::R4>>(&self, index: I) -> *mut Diepint { 
+    #[inline] pub fn diepint_mut<I: Into<bits::R6>>(&self, index: I) -> *mut Diepint { 
         let index: usize = index.into().value() as usize;
         (self.0 + 0x108 + (index * 32)) as *mut Diepint
     }
 
     #[doc="Get the *const pointer for the DIEPINT register."]
-    #[inline] pub fn diepint_ptr<I: Into<bits::R4>>(&self, index: I) -> *const Diepint { 
+    #[inline] pub fn diepint_ptr<I: Into<bits::R6>>(&self, index: I) -> *const Diepint { 
            self.diepint_mut(index)
     }
 
     #[doc="Read the DIEPINT register."]
-    #[inline] pub fn diepint<I: Into<bits::R4>>(&self, index: I) -> Diepint { 
+    #[inline] pub fn diepint<I: Into<bits::R6>>(&self, index: I) -> Diepint { 
         unsafe {
             read_volatile(self.diepint_ptr(index))
         }
     }
 
     #[doc="Write the DIEPINT register."]
-    #[inline] pub fn set_diepint<I: Into<bits::R4>, F: FnOnce(Diepint) -> Diepint>(&self, index: I, f: F) -> &Self {
+    #[inline] pub fn set_diepint<I: Into<bits::R6>, F: FnOnce(Diepint) -> Diepint>(&self, index: I, f: F) -> &Self {
         unsafe {
             write_volatile(self.diepint_mut(index), f(Diepint(0)));
         }
@@ -468,7 +468,7 @@ impl UsbFsDevicePeriph {
     }
 
     #[doc="Modify the DIEPINT register."]
-    #[inline] pub fn with_diepint<I: Into<bits::R4> + Copy, F: FnOnce(Diepint) -> Diepint>(&self, index: I, f: F) -> &Self {
+    #[inline] pub fn with_diepint<I: Into<bits::R6> + Copy, F: FnOnce(Diepint) -> Diepint>(&self, index: I, f: F) -> &Self {
         unsafe {
             write_volatile(self.diepint_mut(index), f(self.diepint(index)));
         }

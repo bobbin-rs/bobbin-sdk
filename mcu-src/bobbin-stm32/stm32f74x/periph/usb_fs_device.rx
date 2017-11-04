@@ -667,7 +667,7 @@
         (name DIEPINT)
         (offset 0x108)
         (size 0x20)
-        (dim 4)
+        (dim 6)
         (dim-increment 0x20)
         (reset-value 0x80)
         (description "device endpoint-x interrupt register")
