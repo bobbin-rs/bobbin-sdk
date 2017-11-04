@@ -6,5 +6,6 @@ pub const CLK: DynamicClock = DynamicClock {
 };
 
 pub fn init() {
-    clock::enable_pll_hse_mode(25, 336, 2, 7);
+    clock::enable_pll_hsi_mode();
+    // clock::enable_pll_hse_mode(25, 336, 2, 7);
 }
