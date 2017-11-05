@@ -153,7 +153,7 @@ pub fn enable_pll_hse_mode(m: u32, n: u32, p: u32, q: u32) {
 
     // Configure flash settings.
 
-    flash.with_acr(|r| r.set_icen(1).set_dcen(1).set_latency(5));
+    flash.with_acr(|r| r.set_icen(1).set_dcen(1).set_latency(7));
     
     // Select PLL as SYSCLK source.
 
