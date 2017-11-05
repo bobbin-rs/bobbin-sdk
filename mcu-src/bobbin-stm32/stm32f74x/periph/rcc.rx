@@ -1127,6 +1127,7 @@
             (bit-offset 24)
             (bit-width 1)
             (description "I2C4 clock enable")
+            (link (name EN) (peripheral-group I2C) (peripheral I2C4))
         )        
         (field
             (name I2C3EN)

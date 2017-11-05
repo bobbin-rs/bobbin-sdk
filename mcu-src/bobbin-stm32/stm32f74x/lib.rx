@@ -799,7 +799,7 @@
 
     (peripheral-group
         (name SPI)
-        (module (name stm32_common::chip::spi_v1::*))
+        (module (name stm32_common::chip::spi_v2::*))
         (peripheral 
             (name SPI1)
             (address 0x40013000)
@@ -890,7 +890,7 @@
 
     (peripheral-group
         (name I2C)
-        (module (name stm32_common::chip::i2c_v1::*))
+        (module (name stm32_common::chip::i2c_v2::*))
         (peripheral
             (name I2C1)
             (address 0x40005400)

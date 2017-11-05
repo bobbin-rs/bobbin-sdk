@@ -3,6 +3,8 @@ use ::chip::rcc::{self, RCC, En};
 use ::chip::flash;
 use ::chip::pwr;
 use ::chip::usart::*;
+use ::chip::i2c::*;
+use ::chip::spi::*;
 use ::chip::tim_bas::*;
 use ::chip::tim_gen::*;
 use ::chip::tim_adv::*;
@@ -431,3 +433,15 @@ impl_clock!(Tim11, tim_pclk2);
 impl_clock!(Tim12, tim_pclk1);
 impl_clock!(Tim13, tim_pclk1);
 impl_clock!(Tim14, tim_pclk1);
+
+impl_clock!(I2c1, pclk1);
+impl_clock!(I2c2, pclk1);
+impl_clock!(I2c3, pclk1);
+impl_clock!(I2c4, pclk1);
+
+impl_clock!(Spi1, pclk2);
+impl_clock!(Spi2, pclk1);
+impl_clock!(Spi3, pclk1);
+impl_clock!(Spi4, pclk2);
+impl_clock!(Spi5, pclk2);
+impl_clock!(Spi6, pclk2);

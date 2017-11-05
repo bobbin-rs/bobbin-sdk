@@ -1,6 +1,6 @@
 #[allow(unused_imports)] use bobbin_common::*;
 
-pub use stm32_common::chip::spi_v1::*;
+pub use stm32_common::chip::spi_v2::*;
 
 periph!( SPI1, Spi1, _SPI1, SpiPeriph, 0x40013000);
 periph!( SPI2, Spi2, _SPI2, SpiPeriph, 0x40003800);
