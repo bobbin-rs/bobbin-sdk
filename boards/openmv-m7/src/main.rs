@@ -12,8 +12,8 @@ pub extern "C" fn main() -> ! {
     test_systick();
     test_dma();
     test_adc();
-    test_i2c();
-    test_spi_lora();
+    // test_i2c();
+    // test_spi_lora();
     println!("[done] All tests passed");
     loop {}
 }
@@ -114,7 +114,7 @@ fn test_adc() {
     println!("[pass] ADC OK")
 }
 
-
+#[allow(dead_code)]
 fn test_i2c() {
     use board::hal::gpio::*;
     use board::hal::i2c::*;
@@ -175,7 +175,7 @@ fn test_i2c() {
     println!("[pass] I2C OK");
 }
 
-
+#[allow(dead_code)]
 fn test_spi_lora() {
     use board::hal::gpio::*;
     use board::hal::spi::*;
