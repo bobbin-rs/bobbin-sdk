@@ -6,5 +6,14 @@ pub const CLK: DynamicClock = DynamicClock {
 };
 
 pub fn init() {
-    clock::enable_pll_external_mode();
+    // 8 MHz External Clock
+    // VCO = 432MHz
+    // PLL = 216MHz
+    // PLLQ = 48MHz
+    // SYSCLK = 216MHz
+    // AHB = 216MHz
+    // APB1 = 54MHz
+    // APB2 = 108MHz
+
+    clock::enable_pll_hse_bypass_mode(8, 432, 0b00, 9);
 }

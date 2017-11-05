@@ -13,6 +13,10 @@ use core::fmt;
 
 
 pub fn enable_pll_external_mode() {
+    enable_pll_hse_bypass_mode(8, 336, 0, 7)
+}
+
+pub fn enable_pll_hse_bypass_mode(m: u32, n: u32, p: u32, q: u32) {
     let rcc = rcc::RCC;
     let flash = flash::FLASH;
     let pwr = pwr::PWR;
@@ -44,30 +48,14 @@ pub fn enable_pll_external_mode() {
     // PPRE1 = PPRE_DIV_4
     // PPRE2 = PPRE_DIV_2
     rcc.with_cfgr(|r| r.set_hpre(0).set_ppre1(0b101).set_ppre2(0b100));
-
-    // Configure PLL
-    // PLLSRC = HSE
-    // M = 8
-    // N = 336
-    // P = 2
-    // Q = 7
-    // R = 0
-    
+  
     rcc.with_pllcfgr(|r|
         r.set_pllsrc(1)
-            .set_pllm(8)
-            .set_plln(336)
-            .set_pllp(0)
-            .set_pllq(7)
+            .set_pllm(m)
+            .set_plln(n)
+            .set_pllp(p)
+            .set_pllq(q)
     );
-
-    // rcc.with_pllcfgr(|r|
-    //     r.set_pllsrc(1)
-    //         .set_pllq3(0).set_pllq2(1).set_pllq1(1).set_pllq0(1)
-    //         .set_pllp1(0).set_pllp0(0)
-    //         .set_plln8(1).set_plln7(0).set_plln6(1).set_plln5(0).set_plln4(1).set_plln3(0).set_plln2(0).set_plln1(0).set_plln0(0)
-    //         .set_pllm5(0).set_pllm4(0).set_pllm3(1).set_pllm2(0).set_pllm1(0).set_pllm0(0)                                
-    // );
 
     // Enable PLL oscillator and wait for it to stabilize.
     rcc.with_cr(|r| r.set_pllon(1));
@@ -77,7 +65,7 @@ pub fn enable_pll_external_mode() {
 
     // Configure flash settings.
 
-    flash.with_acr(|r| r.set_icen(1).set_dcen(1).set_latency(5));
+    flash.with_acr(|r| r.set_icen(1).set_dcen(1).set_latency(7));
     
     // Select PLL as SYSCLK source.
 
@@ -120,14 +108,6 @@ pub fn enable_pll_hse_mode(m: u32, n: u32, p: u32, q: u32) {
     // PPRE1 = PPRE_DIV_4
     // PPRE2 = PPRE_DIV_2
     rcc.with_cfgr(|r| r.set_hpre(0).set_ppre1(0b101).set_ppre2(0b100));
-
-    // Configure PLL
-    // PLLSRC = HSE
-    // M = 8
-    // N = 336
-    // P = 2
-    // Q = 7
-    // R = 0
     
     rcc.with_pllcfgr(|r|
         r.set_pllsrc(1)
@@ -136,14 +116,6 @@ pub fn enable_pll_hse_mode(m: u32, n: u32, p: u32, q: u32) {
             .set_pllp(p)
             .set_pllq(q)
     );
-
-    // rcc.with_pllcfgr(|r|
-    //     r.set_pllsrc(1)
-    //         .set_pllq3(0).set_pllq2(1).set_pllq1(1).set_pllq0(1)
-    //         .set_pllp1(0).set_pllp0(0)
-    //         .set_plln8(1).set_plln7(0).set_plln6(1).set_plln5(0).set_plln4(1).set_plln3(0).set_plln2(0).set_plln1(0).set_plln0(0)
-    //         .set_pllm5(0).set_pllm4(0).set_pllm3(1).set_pllm2(0).set_pllm1(0).set_pllm0(0)                                
-    // );
 
     // Enable PLL oscillator and wait for it to stabilize.
     rcc.with_cr(|r| r.set_pllon(1));
