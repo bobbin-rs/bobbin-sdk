@@ -1,7 +1,6 @@
 MEMORY
 {
-  FLASH             (rx) : ORIGIN = 0x08000000, LENGTH = 1024K
-  FLASH_TEXT        (rx) : ORIGIN = 0x08020000, LENGTH = 896K    /* sectors 4-7 1*128Kib 3*256KiB = 896K */
+  FLASH             (rx) : ORIGIN = 0x08000000, LENGTH = 2048K
   RAM              (xrw) : ORIGIN = 0x20000000, LENGTH = 512K
   DTCM             (xrw) : ORIGIN = 0x20000000, LENGTH = 128K 
   SRAM1            (xrw) : ORIGIN = 0x20020000, LENGTH = 368K
@@ -30,7 +29,7 @@ SECTIONS
     KEEP(*(.text._default_exception_handler_impl));
     *(.text.*);
     *(.rodata.*);
-  } > FLASH_TEXT
+  } > FLASH
 
   .bss : ALIGN(4)
   {
@@ -49,7 +48,7 @@ SECTIONS
     _sdata = .;
     *(.data.*);
     _edata = ALIGN(4);
-  } > RAM AT > FLASH_TEXT
+  } > RAM AT > FLASH
 
   _sidata = LOADADDR(.data);
   _sivector = LOADADDR(.vector);
