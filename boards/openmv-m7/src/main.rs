@@ -205,10 +205,6 @@ fn test_i2c() {
     i2c.rcc_enable();
     i2c_port.rcc_enable();
 
-    // Attached to MPL3115A2 
-    // NOTE: SCL and SCA must have pull-up resistors.
-    // NOTE: HSI Clock must be enabled.
-
     i2c_scl.mode_i2c_scl(&i2c).open_drain();
     i2c_sda.mode_i2c_sda(&i2c).open_drain();
 
@@ -216,6 +212,7 @@ fn test_i2c() {
     i2c.set_enabled(false);
 
     i2c.set_timingr(|_| Timingr(0x20404768));
+    println!("I2C_TIMINGR: {:?}", i2c.timingr());
 
     // i2c.set_timingr(|r| r
     //     .set_presc(0x0)
@@ -234,7 +231,13 @@ fn test_i2c() {
     
 
     println!("Reading I2C");
-    println!("{:?}: {:02x}", addr, i2c.read_reg(addr, 0x1c));
+
+    let mut buf = [0u8; 1];
+    i2c.transfer(addr, &[0x1c], &mut buf);
+    println!("BUF: {:?}", buf);
+
+
+    // println!("{:?}: {:02x}", addr, i2c.read_reg(addr, 0x1c));
     // println!("{:?}: {:02x} {:02x}", addr, i2c.read_reg(addr, 0x1c), i2c.read_reg(addr, 0x1d));
 
     // assert_eq!(i2c.read_reg(addr, 0x1c), 0xc4);
