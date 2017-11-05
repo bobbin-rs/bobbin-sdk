@@ -2,7 +2,10 @@ MEMORY
 {
   FLASH             (rx) : ORIGIN = 0x08000000, LENGTH = 1024K
   FLASH_TEXT        (rx) : ORIGIN = 0x08020000, LENGTH = 896K    /* sectors 4-7 1*128Kib 3*256KiB = 896K */
-  RAM              (xrw) : ORIGIN = 0x20000000, LENGTH = 2048K
+  RAM              (xrw) : ORIGIN = 0x20000000, LENGTH = 512K
+  DTCM             (xrw) : ORIGIN = 0x20000000, LENGTH = 128K 
+  SRAM1            (xrw) : ORIGIN = 0x20020000, LENGTH = 368K
+  SRAM2            (xrw) : ORIGIN = 0x2007C000, LENGTH = 16K
 }
 
 ENTRY(_reset)
