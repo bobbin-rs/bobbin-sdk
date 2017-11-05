@@ -15,6 +15,5 @@ pub extern "C" fn main() -> ! {
         println!("{:?}", CLK);
         board::delay(1000);
         board::led::LED0.toggle_output();
-
     }
 }
