@@ -8,10 +8,10 @@ extern crate openmv_m7 as board;
 pub extern "C" fn main() -> ! {
     board::init();
     println!("[start] Running tests for nucleo-f429zi");
-    test_crc();
-    test_systick();
-    test_dma();
-    test_adc();
+    // test_crc();
+    // test_systick();
+    // test_dma();
+    // test_adc();
     test_i2c();
     // test_spi_lora();
     println!("[done] All tests passed");
@@ -153,11 +153,6 @@ fn test_i2c() {
     println!("DCMI_PWDN_LOW");
     board::delay(10);
 
-    dcmi_pwdn.set_output(true);
-    println!("DCMI_RST_HIGH");
-    board::delay(10);
-
-
     // let tim = TIM4;
     // let tim_ch = TIM4_CH1;
     // let tim_pin = PD12;
@@ -213,11 +208,11 @@ fn test_i2c() {
     
     println!("Timer Enabled");
 
-    loop {
-        let (hsync, vsync, pxclk) = (dcmi_hsync.input(), dcmi_vsync.input(), dcmi_pxclk.input());
-        println!("{} {} {}", hsync, vsync, pxclk);
-        board::delay(100);
-    }
+    // loop {
+    //     let (hsync, vsync, pxclk) = (dcmi_hsync.input(), dcmi_vsync.input(), dcmi_pxclk.input());
+    //     println!("{} {} {}", hsync, vsync, pxclk);
+    //     board::delay(100);
+    // }
 
 
 
@@ -236,7 +231,128 @@ fn test_i2c() {
     i2c.set_enabled(false);
 
     i2c.set_timingr(|_| Timingr(0x20404768));
-    println!("I2C_TIMINGR: {:?}", i2c.timingr());
+    // println!("I2C_TIMINGR: {:?}", i2c.timingr());
+
+    // Scan I2C
+    println!("Scanning I2C - RST_HIGH");
+
+    dcmi_pwdn.set_output(true);
+    println!("DCMI_RST_HIGH");
+    board::delay(10);
+
+    // let mut found = false;
+    // for i in 0x00..0x7F {   
+    //     if is_device_ready(i2c.into(), U7::from(i)) {
+    //         found = true;
+    //         println!("  0x{:02x}", i);
+    //     }
+    // }
+    // if found {
+    //     println!("Found I2C Device");
+    // } else {
+    //     println!("No I2C Devices Found");
+    // }
+
+    // Scan I2C
+    println!("Scanning I2C - RST_LOW");
+
+    dcmi_pwdn.set_output(false);
+    // println!("DCMI_RST_LOW");
+    // board::delay(10);
+
+    // let mut found = false;
+    // for i in 0x00..0x7F {   
+    //     if is_device_ready(i2c.into(), U7::from(i)) {
+    //         found = true;
+    //         println!("  0x{:02x}", i);
+    //     }
+    // }
+    // if found {
+    //     println!("Found I2C Device");
+    // } else {
+    //     println!("No I2C Devices Found");
+    // }
+
+
+    fn is_device_ready(i2c: I2cPeriph, addr: U7) -> bool {        
+        // Stop and Start Peripheral
+        i2c
+            .with_cr1(|r| r.set_pe(0))
+            .with_cr1(|r| r.set_pe(1));
+
+        // Panic if bus is busy
+        if i2c.isr().test_busy() {
+            panic!("I2C Bus is Busy");            
+        }
+
+        i2c.with_cr2(|r| r.set_sadd(addr.value() << 1).set_autoend(1).set_start(1));
+        let mut timeout = 100_000;
+        loop {
+            if timeout == 0 {
+                return false;
+            }
+            let isr = i2c.isr();            
+            if isr.test_stopf() {
+                return true
+            } else if isr.test_nackf() {
+                return false
+            }
+            timeout -= 1;
+        }
+        i2c.with_cr1(|r| r.set_pe(0));
+    }
+
+    fn master_tx(i2c: I2cPeriph, addr: U7, buf: &[u8]) {
+        i2c.set_enabled(true);
+        i2c.wait_not_busy();
+        i2c.with_cr2(|r| r
+            .set_sadd(addr.value() << 1)
+            .set_rd_wrn(0)
+            .set_nbytes(buf.len() as u8)
+            .set_autoend(1)
+            .set_start(1));
+        for c in buf.iter() {
+            i2c.wait_txis();            
+            i2c.set_txdr(|r| r.set_txdata(*c));
+        }
+        i2c.wait_stopf();
+        i2c.set_enabled(false);
+    }
+
+    fn master_rx(i2c: I2cPeriph, addr: U7, buf: &mut [u8]) {
+        i2c.set_enabled(true);
+        i2c.wait_not_busy();
+        i2c.with_cr2(|r| r
+            .set_sadd(addr.value() << 1)
+            .set_rd_wrn(1)
+            .set_nbytes(buf.len() as u8)
+            .set_autoend(1) // Move to after start?
+            .set_start(1));
+        for i in 0..buf.len() {
+            i2c.wait_rxne();
+            buf[i] = i2c.rxdr().rxdata().value();
+        }
+        i2c.wait_stopf();
+        i2c.set_enabled(false);
+    }
+
+    fn master_xfer(i2c: I2cPeriph, addr: U7, out_buf: &[u8], in_buf: &mut[u8]) {        
+        master_tx(i2c, addr, out_buf);
+        master_rx(i2c, addr, in_buf);
+    }
+
+    fn read_reg(i2c: I2cPeriph, addr: U7, reg: u8) -> u8 {
+        let mut cmd = [reg];
+        let mut buf = [0u8; 1];
+        master_xfer(i2c.into(), addr, &cmd, &mut buf);
+        return buf[0]
+    }
+
+    fn write_reg(i2c: I2cPeriph, addr: U7, reg: u8, data: u8) {
+        let mut cmd = [reg, data];
+        let mut buf = [0u8; 1];
+        master_tx(i2c.into(), addr, &cmd);
+    }
 
     // i2c.set_timingr(|r| r
     //     .set_presc(0x0)
@@ -249,45 +365,17 @@ fn test_i2c() {
     // println!("DCMI_RST_HIGH");
     // dcmi_pwdn.set_output(1);
     // board::delay(10);
-    dcmi_pwdn.set_output(false);
-    println!("DCMI_RST_LOW");
-    board::delay(10);
-    dcmi_pwdn.set_output(true);
-    println!("DCMI_RST_HIGH");
-    board::delay(10);
-
-    
 
     println!("Reading I2C");
 
-    let mut buf = [0u8; 1];
-    i2c.transfer(addr, &[0x1c], &mut buf);
-    println!("BUF: {:?}", buf);
-
-
-    // println!("{:?}: {:02x}", addr, i2c.read_reg(addr, 0x1c));
-    // println!("{:?}: {:02x} {:02x}", addr, i2c.read_reg(addr, 0x1c), i2c.read_reg(addr, 0x1d));
-
-    // assert_eq!(i2c.read_reg(addr, 0x1c), 0xc4);
-   
-    // println!("Mode:  0x{:08x}", i2c.read_reg(addr, 0x26));
-    
-
-    // i2c.write_reg(addr, 0x26, 0xb8); // OSR = 128
-    // i2c.write_reg(addr, 0x13, 0x06); // Enable Data Flags
-    // i2c.write_reg(addr, 0x26, 0xb9); // Set Active
-    // // println!("Mode:  0x{:08x}", i2c.read_reg(addr, 0x26));
-
-    // loop {
-    //     while i2c.read_reg(addr, 0x00) != 0x04 {}    
-    //     let mut buf = [0u8; 5];
-    //     i2c.transfer(addr, &[0x01], &mut buf);
-    //     println!("# {:?}", buf);
-    //     // assert!(buf[0] == 0 && buf[1] != 0 && buf[2] != 0 && buf[3] != 0 && buf[4] != 0);
-    //     break
+    for r in [0x0au8, 0x0b, 0x1c, 0x1d].iter() {
+        println!("0x{:02x}: 0x{:02x}", *r, read_reg(i2c.into(), addr, *r));
+    }
+    println!("");
+    // for i in 0..0xAC {
+    //     println!("0x{:02x}: 0x{:02x}", i, read_reg(i2c.into(), addr, i));
     // }
 
-    
 
     i2c_port.rcc_disable();
     i2c.rcc_disable();

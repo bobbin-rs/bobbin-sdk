@@ -66,7 +66,17 @@ impl Enabled for I2cPeriph {
 }
 
 impl I2cPeriph {
-    fn wait_txis(&self) {
+    pub fn wait_not_busy(&self) {
+        let mut c = 100_000;
+        loop {
+            if c == 0 {
+                panic!("BUSY TIMEOUT");
+            }
+            if !self.isr().test_busy() { return }
+            c -= 1;
+        }
+    }    
+    pub fn wait_txis(&self) {
         let mut c = 100_000;
         loop {
             if c == 0 {
@@ -76,8 +86,8 @@ impl I2cPeriph {
             c -= 1;
         }
     }
-    fn wait_rxne(&self) {
-        let mut c = 100_000;
+    pub fn wait_rxne(&self) {
+        let mut c = 1_000_000;
         loop {
             if c == 0 {
                 panic!("RXNE TIMEOUT");
@@ -87,7 +97,18 @@ impl I2cPeriph {
         }
     }    
 
-    fn wait_tc(&self) {
+    pub fn wait_stopf(&self) {
+        let mut c = 100_000;
+        loop {
+            if c == 0 {
+                panic!("STOPF TIMEOUT");
+            }
+            if self.isr().test_stopf() { return }
+            c -= 1;
+        }
+    }    
+
+    pub fn wait_tc(&self) {
         let mut c = 100_000;
         loop {
             if c == 0 {

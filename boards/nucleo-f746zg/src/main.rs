@@ -139,7 +139,7 @@ fn test_i2c() {
 
     // i2c.set_config(|c| c.set_timing(0x8.into(), 0x3.into(), 0x0.into(), 0xd.into(), 0x12.into()));
     i2c.set_enabled(false);
-    
+
     i2c.set_timingr(|r| r
         .set_presc(0x0)
         .set_scldel(0x3)
@@ -147,6 +147,103 @@ fn test_i2c() {
         .set_sclh(0xF)
         .set_scll(0x12)
     );
+
+    // // Scan I2C
+    // println!("Scanning I2C");
+    // for i in 0x00..0x7F {   
+    //     if is_device_ready(i2c.into(), U7::from(i)) {
+    //         println!("  0x{:02x}", i);
+    //     }
+    // }
+
+    fn is_device_ready(i2c: I2cPeriph, addr: U7) -> bool {        
+        // Stop and Start Peripheral
+        i2c
+            .with_cr1(|r| r.set_pe(0))
+            .with_cr1(|r| r.set_pe(1));
+
+        // Panic if bus is busy
+        if i2c.isr().test_busy() {
+            panic!("I2C Bus is Busy");            
+        }
+
+        i2c.with_cr2(|r| r.set_sadd(addr.value() << 1).set_autoend(1).set_start(1));
+        let mut timeout = 100_000;
+        loop {
+            if timeout == 0 {
+                return false;
+            }
+            let isr = i2c.isr();            
+            if isr.test_stopf() {
+                return true
+            } else if isr.test_nackf() {
+                return false
+            }
+            timeout -= 1;
+        }
+    }
+
+
+    // fn master_tx(i2c: I2cPeriph, addr: U7, buf: &[u8]) {
+    //     i2c.set_enabled(true);
+    //     i2c.wait_not_busy();
+    //     i2c.with_cr2(|r| r
+    //         .set_sadd(addr.value() << 1)
+    //         .set_rd_wrn(0)
+    //         .set_nbytes(buf.len() as u8)
+    //         .set_autoend(1));
+    //     i2c.with_cr2(|r| r.set_start(1));
+    //     for c in buf.iter() {
+    //         i2c.wait_txis();            
+    //         i2c.set_txdr(|r| r.set_txdata(*c));
+    //     }
+    //     i2c.wait_stopf();
+    //     // i2c.wait_tc();
+    //     i2c.set_enabled(false);
+    // }
+
+    // fn master_rx(i2c: I2cPeriph, addr: U7, buf: &mut [u8]) {
+    //     i2c.set_enabled(true);
+    //     i2c.wait_not_busy();
+    //     i2c.with_cr2(|r| r
+    //         .set_sadd(addr.value() << 1)
+    //         .set_rd_wrn(1)
+    //         .set_nbytes(buf.len() as u8)
+    //         .set_autoend(1)
+    //     );
+    //     i2c.with_cr2(|r| r.set_start(1));
+    //     for i in 0..buf.len() {
+    //         i2c.wait_rxne();
+    //         buf[i] = i2c.rxdr().rxdata().value();
+    //     }
+    //     i2c.wait_stopf();
+    //     i2c.set_enabled(false);
+    // }
+
+    // fn master_xfer(i2c: I2cPeriph, addr: U7, out_buf: &[u8], in_buf: &mut[u8]) {
+    //     master_tx(i2c, addr, out_buf);
+    //     board::delay(10);
+    //     master_rx(i2c, addr, in_buf);
+    // }
+
+    // fn read_reg(i2c: I2cPeriph, addr: U7, reg: u8) -> u8 {
+    //     let mut cmd = [reg];
+    //     let mut buf = [0u8; 1];
+    //     master_xfer(i2c.into(), addr, &cmd, &mut buf);
+    //     return buf[0]
+    // }
+
+    // fn write_reg(i2c: I2cPeriph, addr: U7, reg: u8, data: u8) {
+    //     let mut cmd = [reg, data];
+    //     let mut buf = [0u8; 1];
+    //     master_tx(i2c.into(), addr, &cmd);
+    // }
+
+    // println!("0x{:02x}: 0x{:02x}", 0x0c, i2c.read_reg(addr, 0x0c));
+    // println!("0x{:02x}: 0x{:02x}", 0x0c, read_reg(i2c.into(), addr, 0x0c));
+    // println!("0x{:02x}: 0x{:02x}", 0x0c, i2c.read_reg(addr, 0x0c));
+    // println!("0x{:02x}: 0x{:02x}", 0x0c, read_reg(i2c.into(), addr, 0x0c));
+
 
     assert_eq!(i2c.read_reg(addr, 0x0c), 0xc4);
    
