@@ -124,17 +124,27 @@ fn test_i2c() {
     use board::common::bits::*;
 
     let addr: U7 = U7::from(0x21);
+    // let addr: U7 = U7::from(0x15);
 
     let dcmi_pwdn = PB5;
     let dcmi_rst = PA10;
+    let dcmi_hsync = PA4;
+    let dcmi_vsync = PB7;
+    let dcmi_pxclk = PA6;
 
     dcmi_pwdn.port().rcc_enable();
     dcmi_rst.port().rcc_enable();
+    dcmi_hsync.port().rcc_enable();
+    dcmi_vsync.port().rcc_enable();
+    dcmi_pxclk.port().rcc_enable();
 
     dcmi_pwdn.mode_output();
     dcmi_rst.mode_output();
     dcmi_rst.set_output(true);
 
+    dcmi_hsync.mode_input();
+    dcmi_vsync.mode_input();
+    dcmi_pxclk.mode_input();
     
     println!("DCMI_PWDN_HIGH");
     dcmi_pwdn.set_output(true);
@@ -142,6 +152,11 @@ fn test_i2c() {
     dcmi_pwdn.set_output(false);
     println!("DCMI_PWDN_LOW");
     board::delay(10);
+
+    dcmi_pwdn.set_output(true);
+    println!("DCMI_RST_HIGH");
+    board::delay(10);
+
 
     // let tim = TIM4;
     // let tim_ch = TIM4_CH1;
@@ -187,13 +202,22 @@ fn test_i2c() {
 
     tim.set_enabled(false);
     tim.with_cr1(|r| r.set_cms(0b00).set_dir(0));
+    tim.with_bdtr(|r| r.set_moe(1));
     tim.set_auto_reload(period);    
     tim_ch.set_output_compare_mode(OcMode::Pwm1);
+    tim_ch.set_preload_enable(true);
     tim_ch.set_capture_compare(compare);
     tim_ch.set_capture_compare_enabled(true);
+    tim.set_update_event();
     tim.set_enabled(true);
     
     println!("Timer Enabled");
+
+    loop {
+        let (hsync, vsync, pxclk) = (dcmi_hsync.input(), dcmi_vsync.input(), dcmi_pxclk.input());
+        println!("{} {} {}", hsync, vsync, pxclk);
+        board::delay(100);
+    }
 
 
 
@@ -225,8 +249,12 @@ fn test_i2c() {
     // println!("DCMI_RST_HIGH");
     // dcmi_pwdn.set_output(1);
     // board::delay(10);
-    // dcmi_pwdn.set_output(0);
-    // println!("DCMI_RST_LOW");
+    dcmi_pwdn.set_output(false);
+    println!("DCMI_RST_LOW");
+    board::delay(10);
+    dcmi_pwdn.set_output(true);
+    println!("DCMI_RST_HIGH");
+    board::delay(10);
 
     
 
