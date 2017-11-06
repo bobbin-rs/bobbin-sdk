@@ -65,6 +65,40 @@ impl Enabled for I2cPeriph {
     }
 }
 
+impl I2cPeriph {
+    fn wait_txis(&self) {
+        let mut c = 100_000;
+        loop {
+            if c == 0 {
+                panic!("TXIS TIMEOUT");
+            }
+            if self.isr().test_txis() { return }
+            c -= 1;
+        }
+    }
+    fn wait_rxne(&self) {
+        let mut c = 100_000;
+        loop {
+            if c == 0 {
+                panic!("RXNE TIMEOUT");
+            }
+            if self.isr().test_rxne() { return }
+            c -= 1;
+        }
+    }    
+
+    fn wait_tc(&self) {
+        let mut c = 100_000;
+        loop {
+            if c == 0 {
+                panic!("TC TIMEOUT");
+            }
+            if self.isr().test_tc() { return }
+            c -= 1;
+        }
+    }        
+}
+
 impl<A: Into<U7>> I2cTransfer<A> for I2cPeriph {
     fn transfer(&self, addr: A, out_buf: &[u8], in_buf: &mut[u8]) -> &Self {
         let addr = addr.into();
@@ -78,11 +112,13 @@ impl<A: Into<U7>> I2cTransfer<A> for I2cPeriph {
             );
             self.with_cr2(|r| r.set_start(1));
             for c in out_buf.iter() {
-                while self.isr().txis() == 0 {}
+                self.wait_txis();
+                // while self.isr().txis() == 0 {}
                 self.set_txdr(|r| r.set_txdata(*c));
             }
             if in_buf.len() > 0 {
-                while self.isr().tc() == 0 {}
+                self.wait_tc();
+                // while self.isr().tc() == 0 {}
             }
         }
         if in_buf.len() > 0 {
@@ -95,7 +131,8 @@ impl<A: Into<U7>> I2cTransfer<A> for I2cPeriph {
             self.with_cr2(|r| r.set_autoend(1));
 
             for i in 0..in_buf.len() {
-                while self.isr().rxne() == 0 {}
+                // while self.isr().rxne() == 0 {}
+                self.wait_rxne();
                 in_buf[i] = self.rxdr().rxdata().value();
             }
         }
