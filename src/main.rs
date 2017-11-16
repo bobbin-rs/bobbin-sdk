@@ -11,6 +11,7 @@ use xml::reader::EventReader;
 use std::path::Path;
 use std::fs::{File, create_dir};
 use std::io::{BufReader, BufWriter};
+use std::collections::{HashSet, HashMap};
 
 use clap::{Arg, App};
 
@@ -43,11 +44,42 @@ fn main() {
     let mut reader = EventReader::new(BufReader::new(File::open(input_path).unwrap()));
     let mut writer = BufWriter::new(File::create(&output_path).unwrap());
     let doc = read_document(&mut reader).unwrap();
-    let dev = doc.device;
+    let mut dev = doc.device;
 
     let mut ctx = Context {
         out: &mut writer,
     };
+
+    // Check for periphs that should not be grouped together in same group
+    {
+        let mut pg_map: HashMap<String, u64> = HashMap::new();
+        let mut pg_set: HashSet<String> = HashSet::new();
+
+        for p in dev.peripherals.iter() {
+            if let Some(ref group_name) = p.group_name {
+                let sig = p.signature();
+                if let Some(pg_sig) = pg_map.get(group_name) {
+                    if *pg_sig != sig {
+                        pg_set.insert(group_name.clone());
+                    }
+                }
+                pg_map.insert(group_name.clone(), sig);
+            }        
+        }
+        if !pg_set.is_empty() {
+            for p in dev.peripherals.iter_mut() {
+                let modify_p = if let Some(ref group_name) = p.group_name {
+                    pg_set.contains(group_name)
+                } else {
+                    false
+                };
+                if modify_p {
+                    p.group_name = Some(p.name.clone());
+                }
+            }
+        }
+
+    }
 
     write_device_open(&mut ctx, 0, &dev).unwrap();
     for p in dev.peripherals.iter() {
