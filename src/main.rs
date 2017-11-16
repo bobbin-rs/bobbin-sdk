@@ -46,6 +46,16 @@ fn main() {
     let doc = read_document(&mut reader).unwrap();
     let mut dev = doc.device;
 
+    // Set group name for all peripherals
+
+    for p in dev.peripherals.iter_mut() {
+        if p.group_name.is_none() {
+            p.group_name = Some(p.name.clone());
+        }
+        // println!("{} {:?}", p.name, p.group_name);
+    }
+
+
     // Check for periphs that should not be grouped together in same group
     {
         let mut pg_map: HashMap<String, u64> = HashMap::new();
@@ -158,7 +168,7 @@ fn main() {
                 if p.group_name.as_ref() != Some(pg) {
                     continue;
                 }
-                let periph_name = &p.name.to_uppercase();
+                let periph_name = &p.name;
                 writeln!(ctx.out, "{}(peripheral", indent(2)).unwrap();
                 writeln!(ctx.out, "{}(name {})", indent(3), periph_name).unwrap();                
                 writeln!(ctx.out, "{}(address 0x{:08x})", indent(3), p.address).unwrap();
