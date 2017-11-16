@@ -354,6 +354,31 @@ pub fn read_registers<R: std::io::Read>(r: &mut EventReader<R>)
     }
 }
 
+pub fn read_address_block<R: std::io::Read>(r: &mut EventReader<R>) -> Result<AddressBlock, Error> {
+    let mut b = AddressBlock::default();
+    loop {
+        let e = try!(r.next());
+        match e {
+            XmlEvent::StartElement { name, .. } => {
+                match name.local_name.as_ref() {
+                    "offset" => b.offset = try!(read_u64(r)),
+                    "size" => b.size = try!(read_u64(r)),
+                    "usage" => b.usage = try!(read_text(r)),
+                    _ => try!(read_unknown(r)),
+                }
+            }
+            XmlEvent::EndElement { name } => {
+                match name.local_name.as_ref() {
+                    "addressBlock" => return Ok(b),
+                    _ => return Err(Error::StateError(format!("expected </addressBlock>"))),
+                }
+            }
+            _ => {}
+        }
+    }
+    
+}
+
 pub fn read_interrupt<R: std::io::Read>(r: &mut EventReader<R>) -> Result<Interrupt, Error> {
     let mut i = Interrupt::default();
     loop {
@@ -399,6 +424,7 @@ pub fn read_peripheral<R: std::io::Read>(r: &mut EventReader<R>,
                     "name" => p.name = try!(read_text(r)),
                     "description" => p.description = try!(read_description(r)),
                     "baseAddress" => p.address = try!(read_u64(r)),
+                    "addressBlock" => p.address_blocks.push(try!(read_address_block(r))),
                     "groupName" => p.group_name = try!(read_opt_text(r)),
                     "dim" => p.dim = try!(read_opt_u64(r)),
                     "dimIncrement" => p.dim_increment = try!(read_opt_u64(r)),
