@@ -10,7 +10,7 @@ use xml::reader::EventReader;
 
 use std::path::Path;
 use std::fs::{File, create_dir};
-use std::io::{BufReader, BufWriter};
+use std::io::{BufReader, BufWriter, Write};
 use std::collections::{HashSet, HashMap};
 
 use clap::{Arg, App};
@@ -46,10 +46,6 @@ fn main() {
     let doc = read_document(&mut reader).unwrap();
     let mut dev = doc.device;
 
-    let mut ctx = Context {
-        out: &mut writer,
-    };
-
     // Check for periphs that should not be grouped together in same group
     {
         let mut pg_map: HashMap<String, u64> = HashMap::new();
@@ -78,28 +74,109 @@ fn main() {
                 }
             }
         }
-
     }
 
-    write_device_open(&mut ctx, 0, &dev).unwrap();
-    for p in dev.peripherals.iter() {
-        let periph_name = &p.name.to_lowercase();
-        write_peripheral_include(&mut ctx, 1, &format!("periph/{}.rx", periph_name)).unwrap();
+    // Set group name for derived peripherals or ones with same signature
+    {
+        let mut p_map: HashMap<String, String> = HashMap::new();
+        let mut s_map: HashMap<u64, String> = HashMap::new();
+        for p in dev.peripherals.iter() {            
+            if let Some(ref group_name) = p.group_name {
+                p_map.insert(p.name.clone(), group_name.clone());
+                let sig = p.signature();
+                if !s_map.contains_key(&sig) {
+                    s_map.insert(sig, group_name.clone());
+                }
+            }
+        }
+        for p in dev.peripherals.iter_mut() {
+            let sig = p.signature();
+            if let Some(ref derived_from) = p.derived_from {
+                if let Some(pg) = p_map.get(derived_from) {
+                    p.group_name = Some(pg.clone())
+                } else {
+                    println!("{}: attempted to derive from {} which does not exist", p.name, derived_from);
+                }
+            } else if s_map.contains_key(&sig) {
+                p.group_name = Some(s_map.get(&sig).unwrap().clone());
+            }
+        }
     }
-    write_device_close(&mut ctx, 0, &dev).unwrap();
 
-    let periph_dir = output_dir.join("periph");
-    if !periph_dir.exists() {
-        create_dir(&periph_dir).unwrap();
-    }
+    // Write peripheral groups
 
-    for p in dev.peripherals.iter() {
-        let periph_name = &p.name.to_lowercase();
-        let periph_path = periph_dir.join(periph_name).with_extension("rx");
-        let mut writer = BufWriter::new(File::create(periph_path).unwrap());
+    let pg_list = {
+        let mut pg_list: Vec<(String, u64)> = Vec::new();
+        let mut pg_set: HashSet<String> = HashSet::new();
+
+        let periph_dir = output_dir.join("periph");
+        if !periph_dir.exists() {
+            create_dir(&periph_dir).unwrap();
+        }
+
+        for p in dev.peripherals.iter() {
+            if let Some(ref pg_name) = p.group_name {
+                if pg_set.contains(pg_name) {
+                    continue
+                }
+                pg_set.insert(pg_name.clone());
+                pg_list.push((pg_name.clone(), p.signature()));
+
+                let mut p = p.clone();
+                p.name = String::new();
+                p.address = 0;
+                p.interrupts = Vec::new();
+
+
+                let pg_path = periph_dir.join(pg_name.to_lowercase()).with_extension("rx");
+                let mut writer = BufWriter::new(File::create(pg_path).unwrap());
+                let mut ctx = Context {
+                    out: &mut writer,
+                };        
+                write_peripheral(&mut ctx, 0, &p).unwrap();
+
+            }
+        }
+        pg_list
+    };
+
+    // Write main module
+
+    {
         let mut ctx = Context {
             out: &mut writer,
-        };        
-        write_peripheral(&mut ctx, 0, p).unwrap();
+        };
+        
+        write_device_open(&mut ctx, 0, &dev).unwrap();
+        for &(ref pg, sig) in pg_list.iter() {
+            writeln!(ctx.out, "{}(peripheral-group", indent(1)).unwrap();
+            writeln!(ctx.out, "{}; signature: {:016x}", indent(2), sig).unwrap();
+            writeln!(ctx.out, "{}(name {})", indent(2), pg).unwrap();
+            writeln!(ctx.out, "{}(prototype \"{}\")", indent(2), &format!("periph/{}.rx", pg.to_lowercase())).unwrap();
+
+            for p in dev.peripherals.iter() {
+                if p.group_name.as_ref() != Some(pg) {
+                    continue;
+                }
+                let periph_name = &p.name.to_uppercase();
+                writeln!(ctx.out, "{}(peripheral", indent(2)).unwrap();
+                writeln!(ctx.out, "{}(name {})", indent(3), periph_name).unwrap();                
+                writeln!(ctx.out, "{}(address 0x{:08x})", indent(3), p.address).unwrap();
+                for i in p.interrupts.iter() {
+                    write_interrupt(&mut ctx, 3, i).unwrap();
+                }                
+                writeln!(ctx.out, "{})", indent(2)).unwrap();
+            }
+            writeln!(ctx.out, "{})", indent(1)).unwrap();
+        }
+
+
+        // for p in dev.peripherals.iter() {
+        //     let periph_name = &p.name.to_lowercase();
+        //     write_peripheral_include(&mut ctx, 1, &format!("periph/{}.rx", periph_name)).unwrap();
+        // }
+        write_device_close(&mut ctx, 0, &dev).unwrap();
     }
+
+
 }
