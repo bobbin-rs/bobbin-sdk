@@ -5,7 +5,7 @@ use std::path::Path;
 use sexp::Sexp;
 use sexp::parser::{parse, ParseError};
 use sexp_tokenizer::Token;
-use {TopLevel, Access, Board, Connection, Device, Region, Crate, Module, Peripheral, PeripheralGroup, Interrupt, Signal};
+use {TopLevel, Access, Board, Connection, Device, Region, Crate, Module, Peripheral, PeripheralGroup, AddressBlock, Interrupt, Signal};
 use {Exception, Cluster, Descriptor, Register, Field, Link, EnumeratedValue};
 use {PathElement};
 use {Pin, AltFn, Channel, Clock, Variant};
@@ -404,6 +404,26 @@ fn read_region(ctx: &Context, s: &[Sexp]) -> Result<Region, ReadError> {
     Ok(r)
 }
 
+
+fn read_address_block(ctx: &Context, s: &[Sexp]) -> Result<AddressBlock, ReadError> {
+    let mut b = AddressBlock::default();
+
+    for s in s.iter() {
+        match s {
+            &Sexp::List(ref arr, _, _) => match arr[0].symbol() {
+                Some("size") => b.size = try!(expect_u64(ctx, &arr[1])),
+                Some("offset") => b.offset = try!(expect_u64(ctx, &arr[1])),
+                Some("usage") => b.usage = String::from(try!(expect_symbol(ctx, &arr[1]))),
+                _ => return Err(ReadError::Error(format!("{}: Unexpected item: {:?}", ctx.location_of(s), arr)))
+            },
+            _ => return Err(ReadError::Error(format!("{}: Unexpected item: {:?}", ctx.location_of(s), s)))
+        }        
+    }
+
+    Ok(b)
+}
+
+
 fn read_module(ctx: &Context, s: &[Sexp]) -> Result<Module, ReadError> {
     let mut m = Module::default();
     for s in s.iter() {
@@ -445,7 +465,10 @@ fn read_peripheral_group(ctx: &Context, s: &[Sexp]) -> Result<PeripheralGroup, R
                 Some("prototype") => {
                     let mut path_buf = path.parent().unwrap().to_path_buf();
                     path_buf.push(try!(expect_string(ctx, &arr[1])));                    
-                    let mut buf: Vec<u8> = Vec::new();                    
+                    let mut buf: Vec<u8> = Vec::new();     
+                    if !path_buf.exists() {
+                        return Err(ReadError::Error(format!("Could not include {:?}: file does not exist", path_buf)));
+                    }                                
                     let mut input = try!(File::open(&path_buf));
                     try!(input.read_to_end(&mut buf));
 
@@ -481,7 +504,10 @@ fn read_peripheral(ctx: &Context, s: &[Sexp]) -> Result<Peripheral, ReadError> {
                 Some("include") => {
                     let mut path_buf = path.parent().unwrap().to_path_buf();
                     path_buf.push(try!(expect_string(ctx, &arr[1])));                    
-                    let mut buf: Vec<u8> = Vec::new();                    
+                    let mut buf: Vec<u8> = Vec::new();   
+                    if !path_buf.exists() {
+                        return Err(ReadError::Error(format!("Could not include {:?}: file does not exist", path_buf)));
+                    }                 
                     let mut input = try!(File::open(&path_buf));
                     try!(input.read_to_end(&mut buf));
 
@@ -504,6 +530,7 @@ fn read_peripheral(ctx: &Context, s: &[Sexp]) -> Result<Peripheral, ReadError> {
                 Some("name") => p.name = String::from(try!(read_name(ctx, &arr[1]))),
                 Some("description") => p.description = Some(String::from(try!(expect_string(ctx, &arr[1])))),
                 Some("address") => p.address = try!(expect_u64(ctx, &arr[1])),
+                Some("address-block") => p.address_blocks.push(try!(read_address_block(ctx, &arr[1..]))),
                 Some("size") => p.size = Some(try!(expect_u64(ctx, &arr[1]))),
                 Some("access") => p.access = Some(try!(expect_access(ctx, &arr[1]))),
                 Some("reset-value") => p.reset_value = Some(try!(expect_u64(ctx, &arr[1]))),

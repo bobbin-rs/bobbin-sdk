@@ -47,6 +47,25 @@ pub fn gen_modules<W: Write>(matches: &ArgMatches, _out: &mut W, d: &Device) -> 
 pub fn gen_mod<W: Write>(cfg: &Config, out: &mut W, d: &Device, path: &Path) -> Result<()> {
     try!(writeln!(out, "#[allow(unused_imports)] use bobbin_common::*;"));
 
+    // Preflight Checks
+
+    // Check for duplicate module names
+    // let bool precheck_ok = true;
+
+    {
+        let mut mods: HashSet<String> = HashSet::new();
+        for p in d.peripherals.iter() {            
+            if let Some(ref group_name) = p.group_name {
+                if mods.contains(group_name) {
+                    panic!("Module {} defined more than once in {}", group_name, p.name);
+                }
+                mods.insert(group_name.clone());
+            }
+        }
+
+    }
+
+
     // Generate Imports
 
     for c in d.crates.iter() {

@@ -85,7 +85,14 @@ pub fn write_peripheral<W: Write>(ctx: &mut Context<W>,
                               d: &Peripheral)
                               -> std::io::Result<()> {
     try!(writeln!(&mut ctx.out, "{}(peripheral", indent(depth)));
-    try!(write_opt_attr_sym(ctx, depth + 1, "derived-from", &d.derived_from));
+    //try!(write_opt_attr_sym(ctx, depth + 1, "derived-from", &d.derived_from));
+    if let Some(ref include_from) = d.derived_from {
+        try!(writeln!(&mut ctx.out, "{}(include \"./{}.rx\")", 
+            indent(depth + 1),
+            include_from.to_lowercase()
+        ));
+    }
+
     try!(write_opt_attr_sym(ctx, depth + 1, "group-name", &d.group_name));
     if d.dim.is_some() {
         try!(write_attr_str(ctx, depth + 1, "name", &d.name.to_uppercase()));
