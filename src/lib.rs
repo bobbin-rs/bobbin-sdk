@@ -173,6 +173,7 @@ pub struct Peripheral {
     pub modules: Vec<Module>,
     pub features: Vec<String>,
     pub links: Vec<Link>,
+    pub address_blocks: Vec<AddressBlock>,
 
     pub interrupts: Vec<Interrupt>,
     pub clusters: Vec<Cluster>,
@@ -185,6 +186,13 @@ pub struct Peripheral {
     pub dim: Option<u64>,
     pub dim_increment: Option<u64>,
     pub dim_index: Option<String>,
+}
+
+#[derive(Debug, Clone, Default)]
+pub struct AddressBlock {
+    pub offset: u64,
+    pub size: u64,
+    pub usage: String,
 }
 
 #[derive(Debug, Clone, Default)]
@@ -396,6 +404,21 @@ impl Peripheral {
             }            
         }
     }    
+}
+
+impl AddressBlock {
+    pub fn signature(&self) -> u64 {
+        let mut h = DefaultHasher::new();
+        self.hash(&mut h);
+        h.finish()
+    }    
+
+    pub fn hash(&self, h: &mut Hasher) {
+        h.write_u64(self.offset);
+        h.write_u64(self.size);
+        h.write(self.usage.as_bytes());
+    }
+    
 }
 
 impl Cluster {

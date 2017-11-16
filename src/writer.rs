@@ -1,7 +1,7 @@
 use std;
 use std::fmt::{Debug, Display, LowerHex};
 use std::io::Write;
-use {Device, Peripheral, Interrupt, Cluster, Register, Field, EnumeratedValue};
+use {Device, Peripheral, AddressBlock, Interrupt, Cluster, Register, Field, EnumeratedValue};
 
 pub struct Context<'a, W: 'a + Write> {
     pub out: &'a mut W,
@@ -88,12 +88,17 @@ pub fn write_peripheral<W: Write>(ctx: &mut Context<W>,
     try!(write_opt_attr_sym(ctx, depth + 1, "derived-from", &d.derived_from));
     try!(write_opt_attr_sym(ctx, depth + 1, "group-name", &d.group_name));
     if d.dim.is_some() {
-        try!(write_attr_str(ctx, depth + 1, "name", &d.name));
+        try!(write_attr_str(ctx, depth + 1, "name", &d.name.to_uppercase()));
     } else {
-        try!(write_attr_sym(ctx, depth + 1, "name", &d.name));
+        try!(write_attr_sym(ctx, depth + 1, "name", &d.name.to_uppercase()));
     }
     
     try!(write_attr_hex(ctx, depth + 1, "address", &d.address));
+
+    for b in d.address_blocks.iter() {
+        try!(write_address_block(ctx, depth + 1, b))
+    }
+
     try!(write_opt_attr_hex(ctx, depth + 1, "size", &d.size));
     try!(write_opt_attr_sym(ctx, depth + 1, "access", &d.access));
     try!(write_opt_attr_hex(ctx, depth + 1, "reset-value", &d.reset_value));
@@ -118,12 +123,24 @@ pub fn write_peripheral<W: Write>(ctx: &mut Context<W>,
     Ok(())    
 }
 
+fn write_address_block<W: Write>(ctx: &mut Context<W>,
+                             depth: usize,
+                             d: &AddressBlock)
+                             -> std::io::Result<()> {
+    try!(writeln!(&mut ctx.out, "{}(address-block", indent(depth)));
+    try!(write_attr_hex(ctx, depth + 1, "offset", &d.offset));
+    try!(write_attr_hex(ctx, depth + 1, "size", &d.size));
+    try!(write_attr_sym(ctx, depth + 1, "usage", &d.usage));
+    try!(writeln!(&mut ctx.out, "{})", indent(depth)));
+    Ok(())
+}
+
 fn write_interrupt<W: Write>(ctx: &mut Context<W>,
                              depth: usize,
                              d: &Interrupt)
                              -> std::io::Result<()> {
     try!(writeln!(&mut ctx.out, "{}(interrupt", indent(depth)));
-    try!(write_attr_sym(ctx, depth + 1, "name", &d.name));
+    try!(write_attr_sym(ctx, depth + 1, "name", &d.name.to_uppercase()));
     try!(write_attr_sym(ctx, depth + 1, "value", &d.value));
     try!(write_opt_attr_str(ctx, depth + 1, "description", &d.description));
     try!(writeln!(&mut ctx.out, "{})", indent(depth)));
@@ -135,9 +152,9 @@ fn write_interrupt<W: Write>(ctx: &mut Context<W>,
 fn write_cluster<W: Write>(ctx: &mut Context<W>, depth: usize, d: &Cluster) -> std::io::Result<()> {
     try!(writeln!(&mut ctx.out, "{}(cluster", indent(depth)));
     if d.dim.is_some() {
-        try!(write_attr_str(ctx, depth + 1, "name", &d.name));
+        try!(write_attr_str(ctx, depth + 1, "name", &d.name.to_uppercase()));
     } else {
-        try!(write_attr_sym(ctx, depth + 1, "name", &d.name));
+        try!(write_attr_sym(ctx, depth + 1, "name", &d.name.to_uppercase()));
     }
     try!(write_attr_hex(ctx, depth + 1, "offset", &d.offset));
     try!(write_opt_attr_hex(ctx, depth + 1, "size", &d.size));
@@ -166,9 +183,9 @@ fn write_register<W: Write>(ctx: &mut Context<W>,
                             -> std::io::Result<()> {
     try!(writeln!(&mut ctx.out, "{}(register", indent(depth)));                                
     if d.dim.is_some() {
-        try!(write_attr_str(ctx, depth + 1, "name", &d.name));
+        try!(write_attr_str(ctx, depth + 1, "name", &d.name.to_uppercase()));
     } else {
-        try!(write_attr_sym(ctx, depth + 1, "name", &d.name));
+        try!(write_attr_sym(ctx, depth + 1, "name", &d.name.to_uppercase()));
     }    
     try!(write_attr_hex(ctx, depth + 1, "offset", &d.offset));
     try!(write_opt_attr_hex(ctx, depth + 1, "size", &d.size));
@@ -192,7 +209,7 @@ fn write_register<W: Write>(ctx: &mut Context<W>,
 fn write_field<W: Write>(ctx: &mut Context<W>, depth: usize, d: &Field) -> std::io::Result<()> {
 
     try!(writeln!(&mut ctx.out, "{}(field", indent(depth)));
-    try!(write_attr_sym(ctx, depth + 1, "name", &d.name));
+    try!(write_attr_sym(ctx, depth + 1, "name", &d.name.to_uppercase()));
     try!(write_attr_sym(ctx, depth + 1, "bit-offset", &d.bit_offset));
     try!(write_attr_sym(ctx, depth + 1, "bit-width", &d.bit_width));    
     try!(write_opt_attr_sym(ctx, depth + 1, "access", &d.access));
