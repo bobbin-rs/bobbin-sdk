@@ -1,6 +1,6 @@
 #![allow(dead_code, unused_imports)]
 
-extern crate chip;
+extern crate bobbin_chip as chip;
 extern crate xml;
 extern crate regex;
 #[macro_use]

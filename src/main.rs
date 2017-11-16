@@ -1,9 +1,9 @@
-extern crate chip;
+extern crate bobbin_chip as chip;
 extern crate xml;
 extern crate clap;
-extern crate svd2chip;
+extern crate bobbin_svd;
 
-use svd2chip::*;
+use bobbin_svd::*;
 use chip::writer::{Context, write_device};
 
 use xml::reader::EventReader;
