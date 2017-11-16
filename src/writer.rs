@@ -48,6 +48,15 @@ pub fn write_opt_attr_hex<W: Write, T: LowerHex>(ctx: &mut Context<W>, depth: us
 }
 
 pub fn write_device<W: Write>(ctx: &mut Context<W>, depth: usize, d: &Device) -> std::io::Result<()> {
+    write_device_open(ctx, depth, d)?;
+    for p in d.peripherals.iter() {
+        write_peripheral(ctx, depth + 1, p)?;
+    }
+    write_device_close(ctx, depth, d)?;
+    Ok(())
+}
+
+pub fn write_device_open<W: Write>(ctx: &mut Context<W>, depth: usize, d: &Device) -> std::io::Result<()> {
     try!(writeln!(&mut ctx.out, "{}(device", indent(depth)));
     try!(write_attr_sym(ctx, depth + 1, "name", &d.name));
     try!(write_opt_attr_str(ctx, depth + 1, "vendor", &d.vendor));
@@ -56,14 +65,22 @@ pub fn write_device<W: Write>(ctx: &mut Context<W>, depth: usize, d: &Device) ->
     try!(write_opt_attr_sym(ctx, depth + 1, "access", &d.access));
     try!(write_opt_attr_sym(ctx, depth + 1, "interrupt-count", &d.interrupt_count));
     try!(write_opt_attr_str(ctx, depth + 1, "description", &d.description));
-    for p in d.peripherals.iter() {
-        try!(write_peripheral(ctx, depth + 1, p));
-    }
+    Ok(())
+}
+pub fn write_device_close<W: Write>(ctx: &mut Context<W>, depth: usize, _d: &Device) -> std::io::Result<()> {
     try!(writeln!(&mut ctx.out, "{})", indent(depth)));
     Ok(())    
 }
 
-fn write_peripheral<W: Write>(ctx: &mut Context<W>,
+pub fn write_peripheral_include<W: Write>(ctx: &mut Context<W>,
+                              depth: usize,
+                              path: &str)
+                              -> std::io::Result<()> {
+    try!(writeln!(&mut ctx.out, "{}(peripheral (include \"{}\"))", indent(depth), path));
+    Ok(())
+}
+
+pub fn write_peripheral<W: Write>(ctx: &mut Context<W>,
                               depth: usize,
                               d: &Peripheral)
                               -> std::io::Result<()> {
