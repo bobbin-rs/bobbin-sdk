@@ -38,7 +38,7 @@ fn main() {
         std::process::exit(1);
     }
     
-    let output_path = output_dir.with_file_name("lib.rx");        
+    let output_path = output_dir.join("lib.rx");        
 
     let mut reader = EventReader::new(BufReader::new(File::open(input_path).unwrap()));
     let mut writer = BufWriter::new(File::create(&output_path).unwrap());
