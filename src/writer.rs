@@ -7,7 +7,7 @@ pub struct Context<'a, W: 'a + Write> {
     pub out: &'a mut W,
 }
 
-fn indent(size: usize) -> String {
+pub fn indent(size: usize) -> String {
     const INDENT: &'static str = "    ";
     (0..size)
         .map(|_| INDENT)
@@ -85,6 +85,7 @@ pub fn write_peripheral<W: Write>(ctx: &mut Context<W>,
                               d: &Peripheral)
                               -> std::io::Result<()> {
     try!(writeln!(&mut ctx.out, "{}(peripheral", indent(depth)));
+
     //try!(write_opt_attr_sym(ctx, depth + 1, "derived-from", &d.derived_from));
     if let Some(ref include_from) = d.derived_from {
         try!(writeln!(&mut ctx.out, "{}(include \"./{}.rx\")", 
@@ -92,15 +93,19 @@ pub fn write_peripheral<W: Write>(ctx: &mut Context<W>,
             include_from.to_lowercase()
         ));
     }
+    writeln!(ctx.out, "{}; signature: {:016x}", indent(depth + 1), d.signature()).unwrap();
 
     try!(write_opt_attr_sym(ctx, depth + 1, "group-name", &d.group_name));
-    if d.dim.is_some() {
-        try!(write_attr_str(ctx, depth + 1, "name", &d.name.to_uppercase()));
-    } else {
-        try!(write_attr_sym(ctx, depth + 1, "name", &d.name.to_uppercase()));
+    if d.name.len() > 0 {
+        if d.dim.is_some() {
+            try!(write_attr_str(ctx, depth + 1, "name", &d.name.to_uppercase()));
+        } else {
+            try!(write_attr_sym(ctx, depth + 1, "name", &d.name.to_uppercase()));
+        }
     }
-    
-    try!(write_attr_hex(ctx, depth + 1, "address", &d.address));
+    if d.address != 0 {
+        try!(write_attr_hex(ctx, depth + 1, "address", &d.address));
+    }
 
     for b in d.address_blocks.iter() {
         try!(write_address_block(ctx, depth + 1, b))
@@ -142,7 +147,7 @@ fn write_address_block<W: Write>(ctx: &mut Context<W>,
     Ok(())
 }
 
-fn write_interrupt<W: Write>(ctx: &mut Context<W>,
+pub fn write_interrupt<W: Write>(ctx: &mut Context<W>,
                              depth: usize,
                              d: &Interrupt)
                              -> std::io::Result<()> {
