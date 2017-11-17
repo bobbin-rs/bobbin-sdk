@@ -12,7 +12,7 @@ pub use self::registers::gen_registers;
 
 pub fn field_getter(name: &str) -> String {    
     match name {
-        "AS" | "DO" | "MOD" | "MATCH" | "TYPE" | "RESET" | "LOOP" | "IF" | "IN" | "BREAK" | "REF" => {
+        "AS" | "DO" | "MOD" | "MATCH" | "TYPE" | "RESET" | "LOOP" | "IF" | "IN" | "BREAK" | "REF" | "FN" => {
             format!("_{}", field_name(name))
         },
         _ => {
