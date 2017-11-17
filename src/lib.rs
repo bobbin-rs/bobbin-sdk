@@ -11,12 +11,26 @@ pub mod writer;
 pub mod codegen;
 pub mod builder;
 
+/// Access rights for the associated entity. Examples:
+/// 
+/// ```
+/// (access read-only)
+/// (access write-only)
+/// (access read-write)
+/// (access write-once)
+/// (access read-write-once)
+/// ```
 #[derive(Debug, Clone, Copy, PartialEq)]
 pub enum Access {
+    /// May only be read.
     ReadOnly,
+    /// May only be written.
     WriteOnly,
+    /// May be read or written.
     ReadWrite,
+    /// May be written once.
     WriteOnce,
+    /// May be read and written once.
     ReadWriteOnce,
 }
 
@@ -79,6 +93,7 @@ pub enum TopLevel {
     Peripheral(Peripheral),
 }
 
+/// A physical board containing an MCU and external components.
 #[derive(Debug, Default)]
 pub struct Board {
     pub name: String,
@@ -89,6 +104,7 @@ pub struct Board {
     pub clocks: Vec<Clock>,
 }
 
+/// An MCU Device with peripherals.
 #[derive(Debug, Default)]
 pub struct Device {
     pub vendor: Option<String>,
@@ -108,6 +124,8 @@ pub struct Device {
     pub variants: Vec<Variant>,
 }
 
+/// A variation of a MCU that may have different memory or flash capacity, peripherals,
+/// or other application-visible differences.
 #[derive(Debug, Clone, Default)] 
 pub struct Variant {
     pub name: String,
@@ -134,87 +152,145 @@ pub struct PathElement {
     pub signal: String,
 }
 
-
+/// A Rust crate to reference. Will result in an `extern crate` statement during code generation.
 #[derive(Debug, Default)] 
 pub struct Crate {
-    pub name: String,
-    pub modules: Vec<Module>,
+    /// This crate's name.
+    pub name: String, 
+    /// A list of modules to import from the crate.
+    pub modules: Vec<Module>, 
 }
 
-
+/// A Rust module to import. Will result in a `use` statement during code generation.
 #[derive(Debug, Clone, Default)] 
 pub struct Module {
+    /// This module's name.
     pub name: String,
+    /// An optional `as` clause for renaming the module.
     pub _as: Option<String>,
 }
 
+/// A group of peripherals sharing the same prototype and defined together within a Rust module.
 #[derive(Debug, Default)]
 pub struct PeripheralGroup {
+    /// This peripheral group's name.
     pub name: String,
+    /// Peripherals that belong to this group.
     pub peripherals: Vec<Peripheral>,
+    /// Optionally, the prototype to use for peripherals in this group.
     pub prototype: Option<Peripheral>,
+    /// Rust modules to import into this group's module.
     pub modules: Vec<Module>,
+    /// True if peripherals in this group has associated Pins.
     pub has_pins: bool,
+    /// True if peripherals in this group have associated Channels.
     pub has_channels: bool,
+    /// Text describing this peripheral group.
     pub description: Option<String>,
 }
 
+/// An MCU peripheral, including associated registers, interrupts, signals, pins, and channels.
 #[derive(Debug, Clone, Default)]
 pub struct Peripheral {
+    /// If specified, the name of the peripheral to use as the prototype.
     pub derived_from: Option<String>,
+    /// If specified, the name of the group that this peripheral belongs to.
     pub group_name: Option<String>,
+    /// The name of the peripheral. Will be used as an identifier during code generation.
     pub name: String,
+    /// The base address of the peripheral.
     pub address: u64,
+    /// The default size of the peripheral's registers, in bits. Inherits the device's default register size if not specified.
     pub size: Option<u64>,
+    /// The default access rights for this peripheral's registers. Inherits the devices's default register access rights if not specified.
     pub access: Option<Access>,
+    /// The default reset value for this peripheral's registers. Inherits the devices's default register reset value if not specified.
     pub reset_value: Option<u64>,
+    /// The default reset mask for this peripheral's registers. Inherits the devices's default register reset mask if not specified.
     pub reset_mask: Option<u64>,    
+    /// Text describing this peripheral.
     pub description: Option<String>,
+    /// The list of Rust modules to import for this peripheral. Currently not used in code generation.
     pub modules: Vec<Module>,
+    /// The list of Rust config features associated with this peripheral. Will result in a `#[cfg(any(feature_name))]` during code generation.
     pub features: Vec<String>,
+    /// The list of inter-peripheral links associated with this peripheral.
     pub links: Vec<Link>,
+    /// The list of address blocks associated with this peripheral.
     pub address_blocks: Vec<AddressBlock>,
-
+    /// The list of interrupts associated with this peripheral.
     pub interrupts: Vec<Interrupt>,
+    /// The list of register clusters associated with this peripheral.
     pub clusters: Vec<Cluster>,
+    /// The list of registers associated with this peripheral.
     pub registers: Vec<Register>,
+    /// The list of descriptors associated with this peripheral.
     pub descriptors: Vec<Descriptor>,
+    /// The list of signals associated with this peripheral.
     pub signals: Vec<Signal>,
+    /// The list of pins associated with this peripheral.
     pub pins: Vec<Pin>,
+    /// The list of channels associated with this peripheral.
     pub channels: Vec<Channel>,
 
+    /// If specified, the number of instances of this peripheral.
     pub dim: Option<u64>,
+    /// If specified, the number of bytes to skip for each instance following the first.
     pub dim_increment: Option<u64>,
+    /// Not currently used.
     pub dim_index: Option<String>,
 }
 
+/// An address range assigned to a peripheral. Example:
+/// 
+/// ```
+/// (address-block
+///    (offset 0)
+///    (size 0x400)
+///    (usage registers)
+/// )
+/// ```
 #[derive(Debug, Clone, Default)]
 pub struct AddressBlock {
+    /// The start of the address range in bytes relative to the peripheral base address.
     pub offset: u64,
+    /// The size of the address range in bytes.
     pub size: u64,
+    /// The usage of the address range - may be 'registers', 'buffer' or 'reserved'.
     pub usage: String,
 }
 
+/// An in-memory data structure used by a peripheral.
 #[derive(Debug, Clone, Default)]
 pub struct Descriptor {
+    /// This descriptor's symbolic name.
     pub name: String,
+    /// The size of the descriptor, in bytes.
     pub size: Option<u64>,
+    /// The list of registers in the descriptor.
     pub registers: Vec<Register>,
+    /// Text describing the descriptor.
     pub description: Option<String>,    
 }
 
+/// A device interrupt.
 #[derive(Debug, Clone, Default)]
 pub struct Interrupt {
-    pub name: String,
+    /// The interrupt's symbolic name.
+    pub name: String,        
     pub types: Vec<String>,
+    /// The IRQ number of this interrupt.
     pub value: u64,
+    /// Text describing this interrupt.
     pub description: Option<String>,
 }
 
 #[derive(Debug, Clone, Default)]
 pub struct Signal {
+    /// The signal's symbolic name.
     pub name: String,
     pub types: Vec<String>,
+    /// Text describing this signal.
     pub description: Option<String>,
 }
 
@@ -242,47 +318,76 @@ pub struct Cluster {
     pub dim_index: Option<String>,
 }
 
+/// A memory-mapped register.
 #[derive(Debug, Clone, Default)]
 pub struct Register {
+    /// The symbolic name of the register.
     pub name: String,
+    /// The offset of the register in bytes relative to its parent.
     pub offset: u64,
+    /// The size of the register in bits. Inherits the parent's default register size if not specified.
     pub size: Option<u64>,
+    /// The access rights of this register. Inherits the parent's default access rights if not specified.
     pub access: Option<Access>,
+    /// The reset value of this register. Inherits the parent's default reset value if not specified.
     pub reset_value: Option<u64>,
+    /// The reset mask of this register. Inherits the parent's default reset mask if not specified.
     pub reset_mask: Option<u64>,
+    /// Text describing the register.
     pub description: Option<String>,
-    
+    /// Fields within this register.
     pub fields: Vec<Field>,
 
+    /// If specified, the number of instances of this register.
     pub dim: Option<u64>,
+    /// If specified, the number of bytes to skip for each instance following the first.
     pub dim_increment: Option<u64>,
+    /// Not used.
     pub dim_index: Option<String>,
 }
 
+/// A field within a register.
 #[derive(Debug, Clone, Default)]
 pub struct Field {
+    /// The symbolic name of the field.
     pub name: String,
+    /// The offset of the first bit of the field within the register in bits, with the LSB as zero.
     pub bit_offset: u64,
+    /// The width of the field in bits.
     pub bit_width: u64,
+    /// The access rights of this field. Inherits the register's default access rights if not specified.
     pub access: Option<Access>,
+    /// Text describing this field.
     pub description: Option<String>,
+    /// A list of valid values for this field.
     pub enumerated_values: Vec<EnumeratedValue>,
+    /// A list of intra-device links for this field.
     pub links: Vec<Link>,
 
+    /// If specified, the number of instances of this field.
     pub dim: Option<u64>,
+    /// If specified, the number of bits to skip for each instance of this field following the first.
     pub dim_increment: Option<u64>,
+    /// Not used.
     pub dim_index: Option<String>,
 }
 
+/// An intra-device link.
 #[derive(Debug, Clone, Default)]
 pub struct Link {
+    /// The symbolic name of the link.
     pub name: String,
+    /// If not empty, the peripheral group that the entity links to.
     pub peripheral_group: String,
+    /// If not empty, the peripheral that the entity links to.
     pub peripheral: String,
+    /// If not empty, the channel that the entity links to.
     pub channel: String,
+    /// If not empty, the pin that the entity links to.
     pub pin: String,
 }
 
+/// An explicitly specified valid value for a field.
 #[derive(Debug, Clone, Default)]
 pub struct EnumeratedValue {
     pub value: String,
@@ -290,6 +395,7 @@ pub struct EnumeratedValue {
     pub description: Option<String>,
 }
 
+/// A range of address space.
 #[derive(Debug, Clone, Default)]
 pub struct Region {
     pub name: String,
@@ -299,40 +405,87 @@ pub struct Region {
     pub description: Option<String>,
 }
 
+/// A logical pin of an MCU.
 #[derive(Debug, Clone, Default)]
 pub struct Pin {
+    /// The symbolic name of the pin.
     pub name: String,
+    /// The index of the pin.
     pub index: Option<u64>,
+    /// Text describing the pin.
     pub description: Option<String>,
+    /// A list of Alternate Functions associated with the pin.
     pub altfns: Vec<AltFn>,
+    /// A list of Links associated with the pin.
     pub links: Vec<Link>,
 }
 
+/// An Alternate Function for a pin. Example:
+/// 
+/// ```
+/// (pin (name PA0) (index 0)
+///    (altfn 1 TIM2_CH1)
+///    (altfn 2 TIM5_CH1)
+///    (altfn 3 TIM8_ETR)
+///    (altfn 7 USART2_CTS)
+///    (altfn 8 UART4_TX)
+/// )
+/// ```
 #[derive(Debug, Clone, Default)]
 pub struct AltFn {
+    /// The index of the alternate function.
     pub index: u64,
+    /// The signal associated with the alternate function.
     pub signal: String,
+    /// Text describing the alternate function.
     pub description: Option<String>,
 }
 
+/// A peripheral channel. Example:
+/// 
+/// ```
+/// (channel
+///     (name TIM2_CH1)
+///     (index 0)
+///     (signal (name TIM2_CH1) (type TIM))
+/// )
+/// ```
 #[derive(Debug, Clone, Default)]
 pub struct Channel {
+    /// The symbolic name of the channel.
     pub name: String,
+    /// The index of the channel.
     pub index: Option<u64>,
+    /// Text describing the channel.
     pub description: Option<String>,
+    /// Signals associated with this channel.
     pub signals: Vec<Signal>,
+    /// Interrupts associated with this channel.
     pub interrupts: Vec<Interrupt>,
 }
 
+/// An internal or external clock. Example:
+/// 
+/// ```
+/// (clock
+///    (name HSI)
+///    (speed 16_000_000)
+///    (description "High Speed Internal Clock - 16MHz")
+/// )
+/// ```
 #[derive(Debug, Clone, Default)]
 pub struct Clock {
+    /// The symbolic name of the clock.
     pub name: String,
+    /// The speed of the clock, in Hz.
     pub speed: Option<u64>,
+    /// Text describing the clock.
     pub description: Option<String>,
 }
 
 
 impl Device {
+    /// Returns the peripheral with the specified name or None if not found.
     pub fn get_peripheral(&self, name: &str) -> Option<&Peripheral> {
         if let Some(p) = self.peripherals.iter().find(|p| p.name == name) {
             return Some(p)
@@ -364,18 +517,21 @@ impl Device {
 }
 
 impl PeripheralGroup {
+    /// Returns the peripheral with the specified name or None if not found.
     pub fn get_peripheral(&self, name: &str) -> Option<&Peripheral> {
         self.peripherals.iter().find(|p| p.name == name)
     }    
 }
 
-impl Peripheral {    
+impl Peripheral {
+    /// Returns a 64 bit signature describing the registers and fields within the peripheral.
     pub fn signature(&self) -> u64 {
         let mut h = DefaultHasher::new();
         self.hash(&mut h);
         h.finish()
     }
 
+    /// Constructs the hash used to generate the peripheral's signature.
     pub fn hash(&self, h: &mut Hasher) {
         for c in self.clusters.iter() {
             c.hash(h)
@@ -385,6 +541,7 @@ impl Peripheral {
         }
     }
 
+    /// Returns an interator for the peripheral instances.
     pub fn iter_dim(&self) -> DimIter {
         if let Some(dim) = self.dim {
             DimIter { 
@@ -407,12 +564,14 @@ impl Peripheral {
 }
 
 impl AddressBlock {
+    /// Returns a 64 bit signature describing the address block.
     pub fn signature(&self) -> u64 {
         let mut h = DefaultHasher::new();
         self.hash(&mut h);
         h.finish()
     }    
 
+    /// Constructs the hash used for the signature.
     pub fn hash(&self, h: &mut Hasher) {
         h.write_u64(self.offset);
         h.write_u64(self.size);
