@@ -3,10 +3,12 @@ use std::fmt::{Debug, Display, LowerHex};
 use std::io::Write;
 use {Device, Peripheral, AddressBlock, Interrupt, Cluster, Register, Field, EnumeratedValue};
 
+/// Encapsulates an output context.
 pub struct Context<'a, W: 'a + Write> {
     pub out: &'a mut W,
 }
 
+/// Returns a string of spaces for the given indentation level.
 pub fn indent(size: usize) -> String {
     const INDENT: &'static str = "    ";
     (0..size)
@@ -14,18 +16,22 @@ pub fn indent(size: usize) -> String {
         .fold(String::with_capacity(size * INDENT.len()), |r, s| r + s)
 }
 
+/// Writes a string attribute to the output context.
 pub fn write_attr_str<W: Write, T: Debug>(ctx: &mut Context<W>, depth: usize, name: &str, attr: &T) -> std::io::Result<()> {    
     writeln!(&mut ctx.out, "{}({} {:?})", indent(depth), name, attr)
 }
 
+/// Writes a symbol attribute to the output context.
 pub fn write_attr_sym<W: Write, T: Display>(ctx: &mut Context<W>, depth: usize, name: &str, attr: &T) -> std::io::Result<()> {    
     writeln!(&mut ctx.out, "{}({} {})", indent(depth), name, attr)
 }
 
+/// Writes a hex attribute to the output context.
 pub fn write_attr_hex<W: Write, T: LowerHex>(ctx: &mut Context<W>, depth: usize, name: &str, attr: &T) -> std::io::Result<()> {    
     writeln!(&mut ctx.out, "{}({} 0x{:x})", indent(depth), name, attr)
 }
 
+/// Writes an optional string attribute to the output context.
 pub fn write_opt_attr_str<W: Write, T: Debug>(ctx: &mut Context<W>, depth: usize, name: &str, attr: &Option<T>) -> std::io::Result<()> {
     if let &Some(ref attr) = attr {
         try!(writeln!(&mut ctx.out, "{}({} {:?})", indent(depth), name, attr));
@@ -33,6 +39,7 @@ pub fn write_opt_attr_str<W: Write, T: Debug>(ctx: &mut Context<W>, depth: usize
     Ok(())
 }
 
+/// Writes an optional symbol attribute to the output context.
 pub fn write_opt_attr_sym<W: Write, T: Display>(ctx: &mut Context<W>, depth: usize, name: &str, attr: &Option<T>) -> std::io::Result<()> {
     if let &Some(ref attr) = attr {
         try!(writeln!(&mut ctx.out, "{}({} {})", indent(depth), name, attr));
@@ -40,6 +47,7 @@ pub fn write_opt_attr_sym<W: Write, T: Display>(ctx: &mut Context<W>, depth: usi
     Ok(())
 }
 
+/// Writes an optional hex attribute to the output context.
 pub fn write_opt_attr_hex<W: Write, T: LowerHex>(ctx: &mut Context<W>, depth: usize, name: &str, attr: &Option<T>) -> std::io::Result<()> {
     if let &Some(ref attr) = attr {
         try!(writeln!(&mut ctx.out, "{}({} 0x{:x})", indent(depth), name, attr));
@@ -47,6 +55,7 @@ pub fn write_opt_attr_hex<W: Write, T: LowerHex>(ctx: &mut Context<W>, depth: us
     Ok(())
 }
 
+/// Writes a device to the output context.
 pub fn write_device<W: Write>(ctx: &mut Context<W>, depth: usize, d: &Device) -> std::io::Result<()> {
     write_device_open(ctx, depth, d)?;
     for p in d.peripherals.iter() {
@@ -56,6 +65,7 @@ pub fn write_device<W: Write>(ctx: &mut Context<W>, depth: usize, d: &Device) ->
     Ok(())
 }
 
+/// Writes the device open tag and attributes to the output context.
 pub fn write_device_open<W: Write>(ctx: &mut Context<W>, depth: usize, d: &Device) -> std::io::Result<()> {
     try!(writeln!(&mut ctx.out, "{}(device", indent(depth)));
     try!(write_attr_sym(ctx, depth + 1, "name", &d.name));
@@ -67,11 +77,14 @@ pub fn write_device_open<W: Write>(ctx: &mut Context<W>, depth: usize, d: &Devic
     try!(write_opt_attr_str(ctx, depth + 1, "description", &d.description));
     Ok(())
 }
+
+/// Writes the device close tag and attributes to the output context.
 pub fn write_device_close<W: Write>(ctx: &mut Context<W>, depth: usize, _d: &Device) -> std::io::Result<()> {
     try!(writeln!(&mut ctx.out, "{})", indent(depth)));
     Ok(())    
 }
 
+/// Writes a peripheral include expression to the output context.
 pub fn write_peripheral_include<W: Write>(ctx: &mut Context<W>,
                               depth: usize,
                               path: &str)
@@ -80,6 +93,7 @@ pub fn write_peripheral_include<W: Write>(ctx: &mut Context<W>,
     Ok(())
 }
 
+/// Writes a peripheral expressiom to the output context.
 pub fn write_peripheral<W: Write>(ctx: &mut Context<W>,
                               depth: usize,
                               d: &Peripheral)
@@ -135,6 +149,7 @@ pub fn write_peripheral<W: Write>(ctx: &mut Context<W>,
     Ok(())    
 }
 
+/// Writes an address block expresion to the output context.
 fn write_address_block<W: Write>(ctx: &mut Context<W>,
                              depth: usize,
                              d: &AddressBlock)
@@ -147,6 +162,7 @@ fn write_address_block<W: Write>(ctx: &mut Context<W>,
     Ok(())
 }
 
+/// Writes an interrupt expression to the output context.
 pub fn write_interrupt<W: Write>(ctx: &mut Context<W>,
                              depth: usize,
                              d: &Interrupt)
@@ -160,7 +176,7 @@ pub fn write_interrupt<W: Write>(ctx: &mut Context<W>,
 }
 
 
-
+/// Writes a cluster expression to the output context.
 fn write_cluster<W: Write>(ctx: &mut Context<W>, depth: usize, d: &Cluster) -> std::io::Result<()> {
     try!(writeln!(&mut ctx.out, "{}(cluster", indent(depth)));
     if d.dim.is_some() {
@@ -189,6 +205,7 @@ fn write_cluster<W: Write>(ctx: &mut Context<W>, depth: usize, d: &Cluster) -> s
     Ok(())
 }
 
+/// Writes a register expression to the output context.
 fn write_register<W: Write>(ctx: &mut Context<W>,
                             depth: usize,
                             d: &Register)
@@ -218,6 +235,7 @@ fn write_register<W: Write>(ctx: &mut Context<W>,
     Ok(())
 }
 
+/// Writes a field expression to the output context.
 fn write_field<W: Write>(ctx: &mut Context<W>, depth: usize, d: &Field) -> std::io::Result<()> {
 
     try!(writeln!(&mut ctx.out, "{}(field", indent(depth)));
@@ -235,6 +253,7 @@ fn write_field<W: Write>(ctx: &mut Context<W>, depth: usize, d: &Field) -> std::
     Ok(())
 }
 
+/// Writes an enumerated value expression to the output context.
 fn write_enumerated_value<W: Write>(ctx: &mut Context<W>,
                                     depth: usize,
                                     d: &EnumeratedValue)
