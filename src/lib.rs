@@ -86,6 +86,8 @@ impl From<String> for Access {
         Access::from(other.as_ref())
     }
 }
+
+/// The top-level item contained in a file.
 #[derive(Debug)]
 pub enum TopLevel {
     Board(Board),
@@ -285,6 +287,7 @@ pub struct Interrupt {
     pub description: Option<String>,
 }
 
+/// A logical input or output from a peripheral, channel, or pin.
 #[derive(Debug, Clone, Default)]
 pub struct Signal {
     /// The signal's symbolic name.
@@ -300,21 +303,34 @@ pub struct Exception {
     pub description: Option<String>,
 }
 
+/// A sequence of neighboring registers within a peripheral.
 #[derive(Debug, Clone, Default)]
 pub struct Cluster {
+    /// The symbolic name of the cluster.
     pub name: String,
+    /// The address offset in bytes relative to the peripheral base address.
     pub offset: u64,
+    /// The size in bytes of this cluster.
     pub size: Option<u64>,
+    /// The default access rights for this cluster. Inherits the parent's default access rights if not specified.
     pub access: Option<Access>,
+    /// The default reset value for this cluster. Inherits the parent's default reset value if not specified.
     pub reset_value: Option<u64>,
+    /// The default reset mask for this cluster. Inherits the parent's default reset mask if not specified.
     pub reset_mask: Option<u64>,
+    /// Text describing this cluster.
     pub description: Option<String>,
 
+    /// Clusters contained to this cluster.
     pub clusters: Vec<Cluster>,
+    /// Registers contained by this cluster.
     pub registers: Vec<Register>,
 
+    /// If specified, the number of cluster instances.
     pub dim: Option<u64>,
+    /// If specified, the number of bytes to skip for each instance following the first.
     pub dim_increment: Option<u64>,
+    /// Not used.
     pub dim_index: Option<String>,
 }
 
