@@ -2,6 +2,7 @@ pub use bobbin_cortexm::hal::*;
 
 pub mod rcc;
 pub mod clock;
+pub mod dcmi;
 
 pub mod dma {
     pub use chip::dma::*;
@@ -51,6 +52,23 @@ pub mod gpio {
     impl_mode!(ModeSpiNss, mode_spi_nss, SignalSpiNss);
     impl_mode!(ModeSpiMosi, mode_spi_mosi, SignalSpiMosi);
     impl_mode!(ModeSpiMiso, mode_spi_miso, SignalSpiMiso);
+    impl_mode!(ModeDcmiHsync, mode_dcmi_hsync, SignalSigDcmiHsync);
+    impl_mode!(ModeDcmiVsync, mode_dcmi_vsync, SignalSigDcmiVsync);
+    impl_mode!(ModeDcmiPxclk, mode_dcmi_pxclk, SignalSigDcmiPxclk);
+    impl_mode!(ModeDcmiD0, mode_dcmi_d0, SignalSigDcmiD0);
+    impl_mode!(ModeDcmiD1, mode_dcmi_d1, SignalSigDcmiD1);
+    impl_mode!(ModeDcmiD2, mode_dcmi_d2, SignalSigDcmiD2);
+    impl_mode!(ModeDcmiD3, mode_dcmi_d3, SignalSigDcmiD3);
+    impl_mode!(ModeDcmiD4, mode_dcmi_d4, SignalSigDcmiD4);
+    impl_mode!(ModeDcmiD5, mode_dcmi_d5, SignalSigDcmiD5);
+    impl_mode!(ModeDcmiD6, mode_dcmi_d6, SignalSigDcmiD6);
+    impl_mode!(ModeDcmiD7, mode_dcmi_d7, SignalSigDcmiD7);
+    impl_mode!(ModeDcmiD8, mode_dcmi_d8, SignalSigDcmiD8);
+    impl_mode!(ModeDcmiD9, mode_dcmi_d9, SignalSigDcmiD9);
+    impl_mode!(ModeDcmiD10, mode_dcmi_d10, SignalSigDcmiD10);
+    impl_mode!(ModeDcmiD11, mode_dcmi_d11, SignalSigDcmiD11);
+    impl_mode!(ModeDcmiD12, mode_dcmi_d12, SignalSigDcmiD12);
+    impl_mode!(ModeDcmiD13, mode_dcmi_d13, SignalSigDcmiD13);
 
     // impl_mode!(ModeUsbId, mode_usb_id, SignalUsbId);
     // impl_mode!(ModeUsbDm, mode_usb_dm, SignalUsbDm);
