@@ -42,12 +42,27 @@
     (peripheral (include "periph/dma2d.rx"))
     (peripheral (include "periph/hash.rx"))
     (peripheral (include "periph/cryp.rx"))
-    (peripheral (include "periph/dcmi.rx"))
 
     ;(peripheral (include "periph/usb_fs_global.rx"))
     ;(peripheral (include "periph/usb_fs_host.rx"))
     ;(peripheral (include "periph/usb_fs_device.rx"))
     ;(peripheral (include "periph/usb_fs_pwrclk.rx"))    
+
+    (peripheral-group
+        ; signature: 54d3fcda91047f2f
+        (name DCMI)
+        (prototype "periph/dcmi.rx")
+        (peripheral
+            (name DCMI)
+            (address 0x50050000)
+            (interrupt
+                (name DCMI)
+                (value 78)
+                (type DCMI)
+                (description "DCMI global interrupt")
+            )
+        )
+    )
 
     (peripheral-group
         (name USB_FS_GLOBAL)

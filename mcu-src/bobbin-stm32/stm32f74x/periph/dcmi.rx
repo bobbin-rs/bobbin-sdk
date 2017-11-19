@@ -1,13 +1,12 @@
 (peripheral
+    ; signature: 54d3fcda91047f2f
     (group-name DCMI)
-    (name DCMI)
-    (address 0x50050000)
-    (description "Digital camera interface")
-    (interrupt
-        (name DCMI)
-        (value 78)
-        (description "DCMI global interrupt")
+    (address-block
+        (offset 0x0)
+        (size 0x400)
+        (usage registers)
     )
+    (description "Digital camera interface")
     (register
         (name CR)
         (offset 0x0)
@@ -372,25 +371,25 @@
         (reset-value 0x0)
         (description "data register")
         (field
-            (name Byte3)
+            (name BYTE3)
             (bit-offset 24)
             (bit-width 8)
             (description "Data byte 3")
         )
         (field
-            (name Byte2)
+            (name BYTE2)
             (bit-offset 16)
             (bit-width 8)
             (description "Data byte 2")
         )
         (field
-            (name Byte1)
+            (name BYTE1)
             (bit-offset 8)
             (bit-width 8)
             (description "Data byte 1")
         )
         (field
-            (name Byte0)
+            (name BYTE0)
             (bit-offset 0)
             (bit-width 8)
             (description "Data byte 0")

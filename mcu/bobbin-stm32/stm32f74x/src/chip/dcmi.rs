@@ -1,12 +1,14 @@
-//! Digital camera interface
 #[allow(unused_imports)] use bobbin_common::*;
 
-periph!(DCMI, Dcmi, 0x50050000);
+periph!( DCMI, Dcmi, _DCMI, DcmiPeriph, 0x50050000);
 
-#[doc="Digital camera interface"]
 #[derive(Clone, Copy, PartialEq, Eq)]
-pub struct Dcmi(pub usize);
-impl Dcmi {
+#[doc="DCMI Peripheral"]
+pub struct DcmiPeriph(pub usize); 
+
+
+
+impl DcmiPeriph {
     #[doc="Get the *mut pointer for the CR register."]
     #[inline] pub fn cr_mut(&self) -> *mut Cr { 
         (self.0 + 0x0) as *mut Cr
@@ -1492,12 +1494,12 @@ impl Dr {
         unsafe { ::core::mem::transmute(((self.0 >> 24) & 0xff) as u8) } // [31:24]
     }
 
-    #[doc="Returns true if Byte3 != 0"]
+    #[doc="Returns true if BYTE3 != 0"]
     #[inline] pub fn test_byte3(&self) -> bool {
         self.byte3() != 0
     }
 
-    #[doc="Sets the Byte3 field."]
+    #[doc="Sets the BYTE3 field."]
     #[inline] pub fn set_byte3<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -1511,12 +1513,12 @@ impl Dr {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xff) as u8) } // [23:16]
     }
 
-    #[doc="Returns true if Byte2 != 0"]
+    #[doc="Returns true if BYTE2 != 0"]
     #[inline] pub fn test_byte2(&self) -> bool {
         self.byte2() != 0
     }
 
-    #[doc="Sets the Byte2 field."]
+    #[doc="Sets the BYTE2 field."]
     #[inline] pub fn set_byte2<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -1530,12 +1532,12 @@ impl Dr {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0xff) as u8) } // [15:8]
     }
 
-    #[doc="Returns true if Byte1 != 0"]
+    #[doc="Returns true if BYTE1 != 0"]
     #[inline] pub fn test_byte1(&self) -> bool {
         self.byte1() != 0
     }
 
-    #[doc="Sets the Byte1 field."]
+    #[doc="Sets the BYTE1 field."]
     #[inline] pub fn set_byte1<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -1549,12 +1551,12 @@ impl Dr {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
-    #[doc="Returns true if Byte0 != 0"]
+    #[doc="Returns true if BYTE0 != 0"]
     #[inline] pub fn test_byte0(&self) -> bool {
         self.byte0() != 0
     }
 
-    #[doc="Sets the Byte0 field."]
+    #[doc="Sets the BYTE0 field."]
     #[inline] pub fn set_byte0<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u32 = value.into();
@@ -1590,4 +1592,12 @@ impl ::core::fmt::Debug for Dr {
     }
 }
 
+
+pub trait IrqDcmi<T> {
+    fn irq_dcmi(&self) -> T;
+}
+
+impl IrqDcmi<super::irq::IrqDcmi> for Dcmi {
+    fn irq_dcmi(&self) -> super::irq::IrqDcmi { super::irq::IRQ_DCMI }
+}
 
