@@ -118,6 +118,69 @@ impl I2cPeriph {
             c -= 1;
         }
     }        
+
+    pub fn tx(&self, addr: U7, buf: &[u8]) {
+        self.set_enabled(true);
+        self.wait_not_busy();
+        self.with_cr2(|r| r
+            .set_sadd(addr.value() << 1)
+            .set_rd_wrn(0)
+            .set_nbytes(buf.len() as u8)
+            .set_autoend(1)
+            .set_start(1));
+        for c in buf.iter() {
+            self.wait_txis();            
+            self.set_txdr(|r| r.set_txdata(*c));
+        }
+        self.wait_stopf();
+        self.set_enabled(false);
+    }
+
+    pub fn rx(&self, addr: U7, buf: &mut [u8]) {
+        self.set_enabled(true);
+        self.wait_not_busy();
+        self.with_cr2(|r| r
+            .set_sadd(addr.value() << 1)
+            .set_rd_wrn(1)
+            .set_nbytes(buf.len() as u8)
+            .set_autoend(1) // Move to after start?
+            .set_start(1));
+        for i in 0..buf.len() {
+            self.wait_rxne();
+            buf[i] = self.rxdr().rxdata().value();
+        }
+        self.wait_stopf();
+        self.set_enabled(false);
+    }    
+
+    pub fn is_device_ready(&self, addr: U7, timeout: u32) -> bool {        
+        // Stop and Start Peripheral
+        self
+            .with_cr1(|r| r.set_pe(0))
+            .with_cr1(|r| r.set_pe(1));
+
+        // Panic if bus is busy
+        if self.isr().test_busy() {
+            panic!("I2C Bus is Busy");            
+        }
+
+        self.with_cr2(|r| r.set_sadd(addr.value() << 1).set_autoend(1).set_start(1));
+        let mut timeout = timeout;
+        loop {
+            if timeout == 0 {
+                return false;
+            }
+            let isr = self.isr();            
+            if isr.test_stopf() {
+                self.with_cr1(|r| r.set_pe(0));
+                return true
+            } else if isr.test_nackf() {
+                self.with_cr1(|r| r.set_pe(0));
+                return false
+            }
+            timeout -= 1;
+        }
+    }    
 }
 
 impl<A: Into<U7>> I2cTransfer<A> for I2cPeriph {
