@@ -10,8 +10,8 @@ impl super::sig::Signal<super::sig::DcmiHsync> for Dcmi {}
 impl super::sig::SignalSigDcmiHsync<super::sig::DcmiHsync> for Dcmi {}
 impl super::sig::Signal<super::sig::DcmiVsync> for Dcmi {}
 impl super::sig::SignalSigDcmiVsync<super::sig::DcmiVsync> for Dcmi {}
-impl super::sig::Signal<super::sig::DcmiPxclk> for Dcmi {}
-impl super::sig::SignalSigDcmiPxclk<super::sig::DcmiPxclk> for Dcmi {}
+impl super::sig::Signal<super::sig::DcmiPixclk> for Dcmi {}
+impl super::sig::SignalSigDcmiPixclk<super::sig::DcmiPixclk> for Dcmi {}
 impl super::sig::Signal<super::sig::DcmiD0> for Dcmi {}
 impl super::sig::SignalSigDcmiD0<super::sig::DcmiD0> for Dcmi {}
 impl super::sig::Signal<super::sig::DcmiD1> for Dcmi {}

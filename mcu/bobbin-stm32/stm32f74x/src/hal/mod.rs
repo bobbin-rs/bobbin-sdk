@@ -54,7 +54,7 @@ pub mod gpio {
     impl_mode!(ModeSpiMiso, mode_spi_miso, SignalSpiMiso);
     impl_mode!(ModeDcmiHsync, mode_dcmi_hsync, SignalSigDcmiHsync);
     impl_mode!(ModeDcmiVsync, mode_dcmi_vsync, SignalSigDcmiVsync);
-    impl_mode!(ModeDcmiPxclk, mode_dcmi_pxclk, SignalSigDcmiPxclk);
+    impl_mode!(ModeDcmiPixclk, mode_dcmi_pixclk, SignalSigDcmiPixclk);
     impl_mode!(ModeDcmiD0, mode_dcmi_d0, SignalSigDcmiD0);
     impl_mode!(ModeDcmiD1, mode_dcmi_d1, SignalSigDcmiD1);
     impl_mode!(ModeDcmiD2, mode_dcmi_d2, SignalSigDcmiD2);
