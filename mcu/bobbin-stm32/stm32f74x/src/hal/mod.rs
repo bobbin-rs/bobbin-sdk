@@ -1,5 +1,6 @@
 pub use bobbin_cortexm::hal::*;
 
+pub mod fpu;
 pub mod rcc;
 pub mod clock;
 pub mod dcmi;
