@@ -69,8 +69,8 @@ pub extern "C" fn main() -> ! {
     lox.init();
 
     loop {
-        let range = lox.read_range_single_millimeters();
-        println!("Range: {}", range);
+        let range = lox.read_range_single_millimeters();        
+        println!("{:5} | ", range);
         board::delay(500);
     }
 }
