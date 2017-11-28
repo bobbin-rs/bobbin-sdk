@@ -162,9 +162,7 @@ pub extern "C" fn main() -> ! {
         let gzl = reg_read(&spi, &spi_cs, icm20602::REG_GYRO_ZOUT_L);
         let gz = ((gzh as u16) << 8 | (gzl as u16)) as i16;
 
-        // println!("{:02x}{:02x}", th, tl);
-        let t = ((th as u16) << 8) | (tl as u16);
-        // println!("t: {:02x}", t);
+        let t = (((th as u16) << 8) | (tl as u16)) as i16;
         let tc = ((t as f32) / 326.8) + 25.0;
         println!("{:2.2} | {} {} {} | {} {} {}", tc, ax, ay, az, gx, gy, gz);
 
