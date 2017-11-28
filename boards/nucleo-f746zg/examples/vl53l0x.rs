@@ -71,7 +71,7 @@ pub extern "C" fn main() -> ! {
     loop {
         let range = lox.read_range_single_millimeters();
         println!("Range: {}", range);
-        board::delay(1000);
+        board::delay(500);
     }
 }
 
@@ -391,7 +391,7 @@ impl Vl53L0x {
     }
     
     pub fn write_reg(&self, reg: u8, val: u8) {
-        println!("0x{:02x} . 0x{:02x}", reg, val);
+        // println!("0x{:02x} . 0x{:02x}", reg, val);
         self.i2c.write_reg(self.addr, reg, val);
     }
 
