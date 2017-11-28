@@ -68,9 +68,11 @@ pub extern "C" fn main() -> ! {
 
     lox.init();
 
-    println!("Done");
-
-    loop {}
+    loop {
+        let range = lox.read_range_single_millimeters();
+        println!("Range: {}", range);
+        board::delay(1000);
+    }
 }
 
 pub const SYSRANGE_START                              :u8 = 0x00;
@@ -334,7 +336,50 @@ impl Vl53L0x {
         let measurement_timing_budget_us = self.get_measurement_timing_budget();
         println!("budget: {}", measurement_timing_budget_us);
 
+        // "Disable MSRC and TCC by default"
+        // MSRC = Minimum Signal Rate Check
+        // TCC = Target CentreCheck
+        // -- VL53L0X_SetSequenceStepEnable() begin
+
+        self.write_reg(SYSTEM_SEQUENCE_CONFIG, 0xE8);
+
+        // -- VL53L0X_SetSequenceStepEnable() end
+
+        // "Recalculate timing budget"
+        self.set_measurement_timing_budget(measurement_timing_budget_us);
+        
+        // VL53L0X_StaticInit() end
+
+        // VL53L0X_PerformRefCalibration() begin (VL53L0X_perform_ref_calibration())
+
+        // -- VL53L0X_perform_vhv_calibration() begin
+
+        self.write_reg(SYSTEM_SEQUENCE_CONFIG, 0x01);
+
+        self.perform_single_ref_calibration(0x40);
+        // if (!self.performSingleRefCalibration(0x40)) { return false; }
+
+        // -- VL53L0X_perform_vhv_calibration() end
+
+        // -- VL53L0X_perform_phase_calibration() begin
+
+        self.write_reg(SYSTEM_SEQUENCE_CONFIG, 0x02);
+
+        self.perform_single_ref_calibration(0x00);
+        // if (!performSingleRefCalibration(0x00)) { return false; }
+
+        // -- VL53L0X_perform_phase_calibration() end
+
+        // "restore the previous Sequence Config"
+        self.write_reg(SYSTEM_SEQUENCE_CONFIG, 0xE8);
+
+        // VL53L0X_PerformRefCalibration() end
+
         println!("Init Complete");
+    }
+
+    pub fn transfer(&self, tx_buf: &[u8], rx_buf: &mut [u8]) {
+        self.i2c.transfer(self.addr, tx_buf, rx_buf);
     }
 
     pub fn mod_reg<F: FnOnce(u8) -> u8>(&self, reg: u8, f: F) {        
@@ -351,11 +396,16 @@ impl Vl53L0x {
     }
 
     pub fn read_reg_16(&self, reg: u8) -> u16 {
-        unimplemented!()
+        let tx_buf = [reg];
+        let mut rx_buf = [0u8; 2];
+        self.transfer(&tx_buf, &mut rx_buf);
+        (rx_buf[0] as u16) << 8 | (rx_buf[1] as u16)
     }
 
     pub fn write_reg_16(&self, reg: u8, val: u16) {
-        unimplemented!()
+        let tx_buf = [reg, (val >> 8) as u8, val as u8];
+        let mut rx_buf = [];
+        self.transfer(&tx_buf, &mut rx_buf);
     }
 
     // Set the return signal rate limit check value in units of MCPS (mega counts
@@ -453,6 +503,88 @@ impl Vl53L0x {
         budget_us
     }    
 
+
+    // Set the measurement timing budget in microseconds, which is the time allowed
+    // for one measurement; the ST API and this library take care of splitting the
+    // timing budget among the sub-steps in the ranging sequence. A longer timing
+    // budget allows for more accurate measurements. Increasing the budget by a
+    // factor of N decreases the range measurement standard deviation by a factor of
+    // sqrt(N). Defaults to about 33 milliseconds; the minimum is 20 ms.
+    // based on VL53L0X_set_measurement_timing_budget_micro_seconds()
+    fn set_measurement_timing_budget(&self, budget_us: u32) -> bool {
+        let mut enables: SequenceStepEnables = SequenceStepEnables::default();
+        let mut timeouts: SequenceStepTimeouts = SequenceStepTimeouts::default();
+
+        const START_OVERHEAD: u32     = 1320; // note that this is different than the value in set_
+        const END_OVERHEAD: u32        = 960;
+        const MSRC_OVERHEAD: u32       = 660;
+        const TCC_OVERHEAD: u32        = 590;
+        const DSS_OVERHEAD: u32        = 690;
+        const PRE_RANGE_OVERHEAD: u32   = 660;
+        const FINAL_RANGE_OVERHEAD: u32 = 550;
+        const MIN_TIMING_BUDGET: u32 = 20000;
+
+        if budget_us < MIN_TIMING_BUDGET { return false; }
+
+        let mut used_budget_us: u32  = START_OVERHEAD + END_OVERHEAD;
+
+        self.get_sequence_step_enables(&mut enables);
+        self.get_sequence_step_timeouts(&enables, &mut timeouts);
+
+        if enables.tcc {        
+            used_budget_us += timeouts.msrc_dss_tcc_us + TCC_OVERHEAD;
+        }
+
+        if enables.dss {
+            used_budget_us += 2 * (timeouts.msrc_dss_tcc_us + DSS_OVERHEAD);
+        } else if enables.msrc {
+            used_budget_us += timeouts.msrc_dss_tcc_us + MSRC_OVERHEAD;
+        }
+
+        if enables.pre_range {
+            used_budget_us += timeouts.pre_range_us + PRE_RANGE_OVERHEAD;
+        }
+
+        if enables.final_range {
+            used_budget_us += FINAL_RANGE_OVERHEAD;
+
+            // "Note that the final range timeout is determined by the timing
+            // budget and the sum of all other timeouts within the sequence.
+            // If there is no room for the final range timeout, then an error
+            // will be set. Otherwise the remaining time will be applied to
+            // the final range."
+
+            if used_budget_us > budget_us {            
+                // "Requested timeout too big."
+                return false;
+            }
+
+            let final_range_timeout_us: u32 = budget_us - used_budget_us;
+
+            // set_sequence_step_timeout() begin
+            // (SequenceStepId == VL53L0X_SEQUENCESTEP_FINAL_RANGE)
+
+            // "For the final range timeout, the pre-range timeout
+            //  must be added. To do this both final and pre-range
+            //  timeouts must be expressed in macro periods MClks
+            //  because they have different vcsel periods."
+
+            let mut final_range_timeout_mclks: u32 = self.timeout_microseconds_to_mclks(final_range_timeout_us,
+                                        timeouts.final_range_vcsel_period_pclks);
+
+            if enables.pre_range {
+                final_range_timeout_mclks += timeouts.pre_range_mclks as u32;
+            }
+
+            self.write_reg_16(FINAL_RANGE_CONFIG_TIMEOUT_MACROP_HI, self.encode_timeout(final_range_timeout_mclks as u16));
+
+            // set_sequence_step_timeout() end
+            // measurement_timing_budget_us = budget_us; // store for internal reuse            
+        }
+        return true;
+    }
+
+
     // Get sequence step enables
     // based on VL53L0X_GetSequenceStepEnables()
     fn get_sequence_step_enables(&self, enables: &mut SequenceStepEnables) {
@@ -490,27 +622,111 @@ impl Vl53L0x {
         timeouts.final_range_us = self.timeout_mclks_to_microseconds(timeouts.final_range_mclks, timeouts.final_range_vcsel_period_pclks);
     }
 
-    fn get_vcsel_pulse_period(&self, period_type: VcselPeriodType) -> u8 {
-        unimplemented!()
+    fn decode_vcsel_period(&self, reg_val: u8) -> u8 {
+        (reg_val + 1) << 1
     }
+
+    fn encode_vcsel_period(&self, period_pclks: u8) -> u8 {
+        (period_pclks >> 1) - 1
+    }
+
+    fn get_vcsel_pulse_period(&self, period_type: VcselPeriodType) -> u8 {
+        match period_type {
+            VcselPeriodType::VcselPeriodPreRange => {
+                self.decode_vcsel_period(self.read_reg(PRE_RANGE_CONFIG_VCSEL_PERIOD))
+            },
+            VcselPeriodType::VcselPeriodFinalRange => {
+                self.decode_vcsel_period(self.read_reg(FINAL_RANGE_CONFIG_VCSEL_PERIOD))
+            },
+        }
+    }
+
     fn set_vcsel_pulse_period(&self, period_type: VcselPeriodType, period_pclks: u8) {
         unimplemented!()
     }
 
-    fn decode_timeout(&self, value: u16) -> u16 {
-        unimplemented!()
+    fn decode_timeout(&self, reg_val: u16) -> u16 {
+        // format: "(LSByte * 2^MSByte) + 1"
+        ((reg_val & 0x00ff) << (reg_val & 0xff00) as u8) + 1
+//   return (uint16_t)((reg_val & 0x00FF) <<
+//          (uint16_t)((reg_val & 0xFF00) >> 8)) + 1;
     }
     fn encode_timeout(&self, timeout_mclks: u16) -> u16 {
-        unimplemented!()
+        // format: "(LSByte * 2^MSByte) + 1"
+
+        let mut ls_byte: u32;
+        let mut ms_byte: u16 = 0;
+
+        if timeout_mclks > 0 {
+            ls_byte = (timeout_mclks as u32) - 1;
+
+            while (ls_byte & 0xFFFFFF00) > 0 {
+                ls_byte >>= 1;
+                ms_byte += 1;
+            }
+            ms_byte << 8 | (ls_byte & 0xFF) as u16
+        } else { 
+            0
+        }
+    }
+
+    fn calc_macro_period(&self, vcsel_period_pclks: u8) -> u32 {
+        ((2304 * (vcsel_period_pclks as u32) * 1655) + 500) / 1000
+        // ((((uint32_t)2304 * (vcsel_period_pclks) * 1655) + 500) / 1000)        
     }
 
     fn timeout_mclks_to_microseconds(&self, timeout_period_mclks: u16, vcsel_period_pclks: u8) -> u32 {
-        unimplemented!()
+        let timeout_period_mclks: u32 = timeout_period_mclks as u32;
+        let macro_period_ns: u32 = self.calc_macro_period(vcsel_period_pclks);
+        ((timeout_period_mclks * macro_period_ns) + (macro_period_ns / 2)) / 1000
     }
 
     fn timeout_microseconds_to_mclks(&self, timeout_period_us: u32, vcsel_period_pclks: u8) -> u32 {
-        unimplemented!()
+        let timeout_period_u2: u32 = timeout_period_us as u32;
+        let macro_period_ns: u32 = self.calc_macro_period(vcsel_period_pclks);
+        ((timeout_period_us * 1000) + (macro_period_ns / 2)) / macro_period_ns
     }    
+        
+    // based on VL53L0X_perform_single_ref_calibration()
+    fn perform_single_ref_calibration(&self, vhv_init_byte: u8) {
+        self.write_reg(SYSRANGE_START, 0x01 | vhv_init_byte); // VL53L0X_REG_SYSRANGE_MODE_START_STOP
+
+        while (self.read_reg(RESULT_INTERRUPT_STATUS) & 0x07) == 0 {}
+
+        self.write_reg(SYSTEM_INTERRUPT_CLEAR, 0x01);
+        self.write_reg(SYSRANGE_START, 0x00);        
+    }
+        
+    // Returns a range reading in millimeters when continuous mode is active
+    // (readRangeSingleMillimeters() also calls this function after starting a
+    // single-shot range measurement)
+    fn read_range_continuous_millimeters(&self) -> u16 {
+        while self.read_reg(RESULT_INTERRUPT_STATUS) & 0x7 == 0 {}
+        // assumptions: Linearity Corrective Gain is 1000 (default);
+        // fractional ranging is not enabled
+        let range: u16 = self.read_reg_16(RESULT_RANGE_STATUS + 10);
+        self.write_reg(SYSTEM_INTERRUPT_CLEAR, 0x01);
+        return range;
+    }
+
+    // Performs a single-shot range measurement and returns the reading in
+    // millimeters
+    // based on VL53L0X_PerformSingleRangingMeasurement()
+    pub fn read_range_single_millimeters(&self) -> u16 {
+        self.write_reg(0x80, 0x01);
+        self.write_reg(0xFF, 0x01);
+        self.write_reg(0x00, 0x00);
+        self.write_reg(0x91, self.stop_variable);
+        self.write_reg(0x00, 0x01);
+        self.write_reg(0xFF, 0x00);
+        self.write_reg(0x80, 0x00);
+
+        self.write_reg(SYSRANGE_START, 0x01);
+
+        while self.read_reg(SYSRANGE_START) & 0x01 != 0 {}
+
+        return self.read_range_continuous_millimeters();
+    }
     
 }
 
