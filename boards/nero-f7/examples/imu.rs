@@ -4,12 +4,13 @@
 
 #[macro_use]
 extern crate nero_f7 as board;
-extern crate icm20602;
 
 use board::hal::gpio::{DigitalOutput};
 
 use board::hal::gpio::*;
 use board::hal::spi::*;
+use board::icm20602;
+
 
 // ICM-20602 on SPI1
 // SCK = PA5

@@ -13,6 +13,7 @@ extern crate log;
 
 extern crate stm32f74x;
 pub use stm32f74x::{chip, hal, cortexm, common};
+pub mod icm20602;
 
 pub mod exceptions;
 #[cfg(target_os="none")]
