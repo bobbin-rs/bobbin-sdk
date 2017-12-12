@@ -118,6 +118,9 @@
             (name USB_FS_DEVICE)
             (address 0x50000800)
             (description "USB on the go full speed")
+            (signal (name OTG_FS_ID) (type USB_ID))
+            (signal (name OTG_FS_DM) (type USB_DM))
+            (signal (name OTG_FS_DP) (type USB_DP))            
         )
     )
 

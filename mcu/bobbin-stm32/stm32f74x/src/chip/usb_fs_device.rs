@@ -6,6 +6,12 @@ periph!( USB_FS_DEVICE, UsbFsDevice, _USB_FS_DEVICE, UsbFsDevicePeriph, 0x500008
 #[doc="USB_FS_DEVICE Peripheral"]
 pub struct UsbFsDevicePeriph(pub usize); 
 
+impl super::sig::Signal<super::sig::OtgFsId> for UsbFsDevice {}
+impl super::sig::SignalUsbId<super::sig::OtgFsId> for UsbFsDevice {}
+impl super::sig::Signal<super::sig::OtgFsDm> for UsbFsDevice {}
+impl super::sig::SignalUsbDm<super::sig::OtgFsDm> for UsbFsDevice {}
+impl super::sig::Signal<super::sig::OtgFsDp> for UsbFsDevice {}
+impl super::sig::SignalUsbDp<super::sig::OtgFsDp> for UsbFsDevice {}
 
 
 impl UsbFsDevicePeriph {

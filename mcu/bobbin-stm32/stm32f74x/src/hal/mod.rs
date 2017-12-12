@@ -71,9 +71,9 @@ pub mod gpio {
     impl_mode!(ModeDcmiD12, mode_dcmi_d12, SignalSigDcmiD12);
     impl_mode!(ModeDcmiD13, mode_dcmi_d13, SignalSigDcmiD13);
 
-    // impl_mode!(ModeUsbId, mode_usb_id, SignalUsbId);
-    // impl_mode!(ModeUsbDm, mode_usb_dm, SignalUsbDm);
-    // impl_mode!(ModeUsbDp, mode_usb_dp, SignalUsbDp);
+    impl_mode!(ModeUsbId, mode_usb_id, SignalUsbId);
+    impl_mode!(ModeUsbDm, mode_usb_dm, SignalUsbDm);
+    impl_mode!(ModeUsbDp, mode_usb_dp, SignalUsbDp);
 
 }
 
