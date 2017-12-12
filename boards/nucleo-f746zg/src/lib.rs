@@ -7,6 +7,9 @@ extern crate r0;
 extern crate log;
 extern crate alloc;
 
+pub use alloc::*;
+pub use alloc::boxed::Box;
+
 #[macro_use] pub mod itm;
 #[macro_use] pub mod console;
 #[macro_use] pub mod logger;
@@ -28,6 +31,10 @@ pub mod heap;
 
 #[global_allocator]
 static ALLOCATOR: heap::Heap = heap::Heap::empty();
+
+pub unsafe fn init_allocator(buf: &'static mut [u8]) {
+    ALLOCATOR.init(buf);
+}
 
 // pub fn delay(ms: u32) {
 //     for _ in 0..1_000_000 {

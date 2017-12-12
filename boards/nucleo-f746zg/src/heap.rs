@@ -19,7 +19,7 @@ impl Heap {
         }
     }
 
-    pub unsafe fn init(&mut self, buf: &'static mut [u8]) {
+    pub unsafe fn init(&self, buf: &'static mut [u8]) {
         let len = buf.len();
         let ptr = buf.as_ptr();
         let end = ptr.offset(len as isize);
