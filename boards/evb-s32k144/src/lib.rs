@@ -1,7 +1,6 @@
 #![no_std]
-#![feature(lang_items)]
-
-#![feature(asm, naked_functions)]
+#![feature(asm, lang_items, global_allocator)]
+#![feature(naked_functions)]
 
 extern crate r0;
 
@@ -28,6 +27,15 @@ pub mod tim;
 //pub mod can;
 //pub mod spi;
 pub mod uja1169;
+
+pub use common::heap::Heap;
+
+#[global_allocator]
+static ALLOCATOR: Heap = Heap::empty();
+
+pub unsafe fn init_allocator(buf: &'static mut [u8]) {
+    ALLOCATOR.init(buf);
+}
 
 pub use tim::delay;
 

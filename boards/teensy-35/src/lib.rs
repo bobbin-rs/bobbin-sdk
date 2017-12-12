@@ -1,10 +1,7 @@
 #![no_std]
-#![feature(lang_items)]
-
-#![feature(asm)]
+#![feature(asm, lang_items, global_allocator)]
 
 extern crate r0;
-
 extern crate log;
 
 extern crate k64;
@@ -21,6 +18,15 @@ pub mod lang_items;
 pub mod clock;
 pub mod led;
 pub mod tim;
+
+pub use common::heap::Heap;
+
+#[global_allocator]
+static ALLOCATOR: Heap = Heap::empty();
+
+pub unsafe fn init_allocator(buf: &'static mut [u8]) {
+    ALLOCATOR.init(buf);
+}
 
 pub use tim::delay;
 

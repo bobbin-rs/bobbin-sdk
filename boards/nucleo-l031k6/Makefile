@@ -1,10 +1,10 @@
 .PHONY: build test
 
 build:
-	@bobbin build
+	#@bobbin build
 
 test:
-	@bobbin test
+	#@bobbin test
 
 clean:
 	@cargo clean
