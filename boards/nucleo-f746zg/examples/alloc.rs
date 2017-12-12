@@ -4,8 +4,9 @@
 #[macro_use]
 extern crate nucleo_f746zg as board;
 
-use board::{Box, Vec, VecDeque};
+use board::{Box, Vec, VecDeque, String};
 use core::cell::RefCell;
+use core::fmt::Write;
 
 static mut HEAP: [u8; 4096] = [0u8; 4096];
 
@@ -76,6 +77,11 @@ pub extern "C" fn main() -> ! {
         bc.incr();
     }
     println!("BC: {}", bc.count());
+
+    let mut s = String::new();
+
+    write!(s, "Hello, World: {}", 1234).unwrap();
+    println!("S: {}", s);
 
     loop {}
 }
