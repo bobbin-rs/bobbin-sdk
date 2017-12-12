@@ -1,14 +1,8 @@
 #![no_std]
-#![feature(lang_items)]
-#![feature(alloc, core_intrinsics, offset_to, allocator_api, const_fn, global_allocator)]
-#![feature(asm)]
+#![feature(asm, lang_items, global_allocator)]
 
 extern crate r0;
 extern crate log;
-extern crate alloc;
-
-pub use alloc::*;
-pub use alloc::boxed::Box;
 
 #[macro_use] pub mod itm;
 #[macro_use] pub mod console;
@@ -27,10 +21,10 @@ pub mod led;
 pub mod btn;
 pub mod tim;
 
-pub mod heap;
+pub use common::heap::Heap;
 
 #[global_allocator]
-static ALLOCATOR: heap::Heap = heap::Heap::empty();
+static ALLOCATOR: Heap = Heap::empty();
 
 pub unsafe fn init_allocator(buf: &'static mut [u8]) {
     ALLOCATOR.init(buf);

@@ -1,9 +1,11 @@
 #![no_std]
+#![feature(const_fn, core_intrinsics, allocator_api, alloc)]
 
 #[cfg(not(target_os="none"))]
 #[macro_use]
 extern crate std;
 
+pub extern crate alloc;
 pub extern crate bobbin_bits as bits;
 pub mod clock;
 pub mod crc;
@@ -19,6 +21,7 @@ pub mod configure;
 pub mod enabled;
 pub mod reset;
 pub mod ring;
+pub mod heap;
 
 #[cfg(not(target_os="none"))]
 mod vm;

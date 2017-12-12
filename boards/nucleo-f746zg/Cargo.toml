@@ -12,7 +12,6 @@ doc = false
 stm32f74x = { path = "../../mcu/bobbin-stm32/stm32f74x"}
 r0 = "0.1.0"
 log = { version="0.3", default-features = false }
-#alloc = { git = "https://github.com/phil-opp/nightly-liballoc" }
 
 [features]
 default = ["stm32f74x/STM32F74xxG"]

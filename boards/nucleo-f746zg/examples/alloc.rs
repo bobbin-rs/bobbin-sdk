@@ -4,7 +4,8 @@
 #[macro_use]
 extern crate nucleo_f746zg as board;
 
-use board::{Box, Vec, VecDeque, String};
+use board::common::alloc::{Vec, VecDeque, String};
+use board::common::alloc::boxed::Box;
 use core::cell::RefCell;
 use core::fmt::Write;
 
