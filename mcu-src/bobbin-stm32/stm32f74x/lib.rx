@@ -997,7 +997,59 @@
         )                 
     )
 
-    ; Temporarily using pin assignments from STM32F429
+    (peripheral-group
+        ; signature: 5d3e5850351f7aa4
+        (name CAN)
+        (prototype "periph/can.rx")
+        (peripheral
+            (name CAN1)
+            (address 0x40006400)
+            (interrupt
+                (name CAN1_TX)
+                (value 19)
+                (description "CAN1 TX interrupts")
+            )
+            (interrupt
+                (name CAN1_RX0)
+                (value 20)
+                (description "CAN1 RX0 interrupts")
+            )
+            (interrupt
+                (name CAN1_RX1)
+                (value 21)
+                (description "CAN1 RX1 interrupts")
+            )
+            (interrupt
+                (name CAN1_SCE)
+                (value 22)
+                (description "CAN1 SCE interrupt")
+            )
+        )
+        (peripheral
+            (name CAN2)
+            (address 0x40006800)
+            (interrupt
+                (name CAN2_TX)
+                (value 63)
+                (description "CAN2 TX interrupts")
+            )
+            (interrupt
+                (name CAN2_RX0)
+                (value 64)
+                (description "CAN2 RX0 interrupts")
+            )
+            (interrupt
+                (name CAN2_RX1)
+                (value 65)
+                (description "CAN2 RX1 interrupts")
+            )
+            (interrupt
+                (name CAN2_SCE)
+                (value 66)
+                (description "CAN2 SCE interrupt")
+            )
+        )
+    )
 
     (peripheral-group 
         (name GPIO)

@@ -46,6 +46,7 @@ pub mod lptim;
 pub mod adc;
 pub mod spi;
 pub mod i2c;
+pub mod can;
 pub mod gpio;
 pub mod usart;
 pub mod dma;

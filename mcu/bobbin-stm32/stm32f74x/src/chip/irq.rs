@@ -69,6 +69,14 @@ irq!(IRQ_I2C3_EV, IrqI2c3Ev, 72);
 irq!(IRQ_I2C3_ER, IrqI2c3Er, 73);
 irq!(IRQ_I2C4_EV, IrqI2c4Ev, 95);
 irq!(IRQ_I2C4_ER, IrqI2c4Er, 96);
+irq!(IRQ_CAN1_TX, IrqCan1Tx, 19);
+irq!(IRQ_CAN1_RX0, IrqCan1Rx0, 20);
+irq!(IRQ_CAN1_RX1, IrqCan1Rx1, 21);
+irq!(IRQ_CAN1_SCE, IrqCan1Sce, 22);
+irq!(IRQ_CAN2_TX, IrqCan2Tx, 63);
+irq!(IRQ_CAN2_RX0, IrqCan2Rx0, 64);
+irq!(IRQ_CAN2_RX1, IrqCan2Rx1, 65);
+irq!(IRQ_CAN2_SCE, IrqCan2Sce, 66);
 irq!(IRQ_USART1, IrqUsart1, 37);
 irq!(IRQ_USART2, IrqUsart2, 38);
 irq!(IRQ_USART3, IrqUsart3, 39);
@@ -116,10 +124,10 @@ pub static mut INTERRUPT_HANDLERS: [Option<Handler>; 98] = [
     None,
     None,
     None,                          // IRQ 18: ADC3 global interrupts
-    None,
-    None,
-    None,
-    None,
+    None,                          // IRQ 19: CAN1 TX interrupts
+    None,                          // IRQ 20: CAN1 RX0 interrupts
+    None,                          // IRQ 21: CAN1 RX1 interrupts
+    None,                          // IRQ 22: CAN1 SCE interrupt
     None,
     None,                          // IRQ 24: TIM1 Break interrupt
     None,                          // IRQ 25: TIM1 Update interrupt
@@ -160,10 +168,10 @@ pub static mut INTERRUPT_HANDLERS: [Option<Handler>; 98] = [
     None,
     None,                          // IRQ 61: Ethernet global interrupt
     None,                          // IRQ 62: Ethernet Wakeup through EXTI line interrupt
-    None,
-    None,
-    None,
-    None,
+    None,                          // IRQ 63: CAN2 TX interrupts
+    None,                          // IRQ 64: CAN2 RX0 interrupts
+    None,                          // IRQ 65: CAN2 RX1 interrupts
+    None,                          // IRQ 66: CAN2 SCE interrupt
     None,                          // IRQ 67: USB On The Go FS global interrupt
     None,
     None,
