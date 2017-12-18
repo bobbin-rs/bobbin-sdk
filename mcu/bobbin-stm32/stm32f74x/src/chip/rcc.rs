@@ -8292,6 +8292,16 @@ impl En for super::usart::Uart7 {
     #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_uart7enr(value)); }
 }
 
+impl En for super::can::Can2 {
+    #[inline] fn en(&self) -> u32 { RCC.apb1enr().can2en().into() }
+    #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_can2en(value)); }
+}
+
+impl En for super::can::Can1 {
+    #[inline] fn en(&self) -> u32 { RCC.apb1enr().can1en().into() }
+    #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_can1en(value)); }
+}
+
 impl En for super::i2c::I2c4 {
     #[inline] fn en(&self) -> u32 { RCC.apb1enr().i2c4en().into() }
     #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr(|r| r.set_i2c4en(value)); }

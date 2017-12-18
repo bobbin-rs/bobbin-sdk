@@ -1116,12 +1116,14 @@
             (bit-offset 26)
             (bit-width 1)
             (description "CAN 2 clock enable")
+            (link (name EN) (peripheral-group CAN) (peripheral CAN2))
         )
         (field
             (name CAN1EN)
             (bit-offset 25)
             (bit-width 1)
             (description "CAN 1 clock enable")
+            (link (name EN) (peripheral-group CAN) (peripheral CAN1))
         )
         (field
             (name I2C4EN)

@@ -60,6 +60,10 @@ pub trait I2cSda {}
 pub trait SignalI2cSda<T> {}
 pub trait I2cSmbal {}
 pub trait SignalI2cSmbal<T> {}
+pub trait CanTx {}
+pub trait SignalCanTx<T> {}
+pub trait CanRx {}
+pub trait SignalCanRx<T> {}
 pub trait Tx {}
 pub trait SignalTx<T> {}
 pub trait Rx {}
@@ -207,6 +211,10 @@ pub struct I2c3Smbal {}
 pub struct I2c4Scl {}
 pub struct I2c4Sda {}
 pub struct I2c4Smbal {}
+pub struct Can1Tx {}
+pub struct Can1Rx {}
+pub struct Can2Tx {}
+pub struct Can2Rx {}
 pub struct Usart1Tx {}
 pub struct Usart1Rx {}
 pub struct Usart1Cts {}
@@ -294,10 +302,8 @@ pub struct LcdR5 {}
 pub struct LcdB4 {}
 pub struct LcdB1 {}
 pub struct I2s2Ws {}
-pub struct Can1Rx {}
 pub struct Tim1Etr {}
 pub struct Sai2FsB {}
-pub struct Can1Tx {}
 pub struct Jtms {}
 pub struct Swdio {}
 pub struct Jtck {}
@@ -329,13 +335,11 @@ pub struct Sdmmc2D2 {}
 pub struct Njtrst {}
 pub struct Sdmmc2D3 {}
 pub struct I2c1Smba {}
-pub struct Can2Rx {}
 pub struct OtgHsUlpiD7 {}
 pub struct EthPpsOut {}
 pub struct FmcSdcke1 {}
 pub struct LcdG7 {}
 pub struct Dfsdm1Datin5 {}
-pub struct Can2Tx {}
 pub struct QuadspiBk1Ncs {}
 pub struct FmcSdne1 {}
 pub struct Dfsdm1Ckin5 {}

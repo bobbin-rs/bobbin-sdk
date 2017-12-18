@@ -1004,6 +1004,8 @@
         (peripheral
             (name CAN1)
             (address 0x40006400)
+            (signal (name CAN1_TX) (type CAN_TX))
+            (signal (name CAN1_RX) (type CAN_RX))
             (interrupt
                 (name CAN1_TX)
                 (value 19)
@@ -1028,6 +1030,8 @@
         (peripheral
             (name CAN2)
             (address 0x40006800)
+            (signal (name CAN2_TX) (type CAN_TX))
+            (signal (name CAN2_RX) (type CAN_RX))            
             (interrupt
                 (name CAN2_TX)
                 (value 63)

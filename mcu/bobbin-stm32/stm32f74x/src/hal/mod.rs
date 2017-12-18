@@ -75,6 +75,10 @@ pub mod gpio {
     impl_mode!(ModeUsbDm, mode_usb_dm, SignalUsbDm);
     impl_mode!(ModeUsbDp, mode_usb_dp, SignalUsbDp);
 
+    impl_mode!(ModeCanTx, mode_can_tx, SignalCanTx);
+    impl_mode!(ModeCanRx, mode_can_rx, SignalCanRx);
+
+
 }
 
 pub mod usart {
@@ -92,6 +96,11 @@ pub mod i2c {
 pub mod spi {
     pub use chip::spi::*;
     pub use stm32_common::hal::spi_v2::*;
+    pub use super::rcc::RccEnabled;
+}
+
+pub mod can {
+    pub use chip::can::*;
     pub use super::rcc::RccEnabled;
 }
 

@@ -5,6 +5,7 @@ use ::chip::pwr;
 use ::chip::usart::*;
 use ::chip::i2c::*;
 use ::chip::spi::*;
+use ::chip::can::*;
 use ::chip::tim_bas::*;
 use ::chip::tim_gen::*;
 use ::chip::tim_adv::*;
@@ -417,3 +418,6 @@ impl_clock!(Spi3, pclk1);
 impl_clock!(Spi4, pclk2);
 impl_clock!(Spi5, pclk2);
 impl_clock!(Spi6, pclk2);
+
+impl_clock!(Can1, pclk1);
+impl_clock!(Can2, pclk1);
