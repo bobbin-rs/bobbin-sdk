@@ -65,10 +65,14 @@ pub extern "C" fn main() -> ! {
     let ts2 = 3 - 1;
     let sjw = 4 - 1;
 
+    let lbkm = true;
+    let silm = false;
+
     println!("Clock: {} Baud: {} Prescaler: {}", can_clk, can_baud, brp);
 
     can.set_btr(|r| r
-        .set_lbkm(1) // Loopback Mode
+        .set_silm(silm) // Silent Mode
+        .set_lbkm(lbkm) // Loopback Mode
         .set_sjw(sjw) // Resynchronization Jump Width
         .set_ts2(ts2) // Time Segment 2
         .set_ts1(ts1) // Time Segment 1
@@ -76,17 +80,75 @@ pub extern "C" fn main() -> ! {
     );
 
     println!("BTR: {:?}", can.btr());
-
-    // Setup Configuration
-
     println!("MCR: {:?}", can.mcr());
 
-    // Enter Normal Mode
+    // Setup Filter Registers
+
+    can.with_fmr(|r| r.set_finit(1));
+
+    // Activate Filter 0
+    // Set Mask - all zeros
+    // Set Identifier - zero
+
+    can.set_fm1r(|r| r.set_fbm(0, 0)); // Identifier Mask Mode
+    can.set_fs1r(|r| r.set_fsc(0, 1)); // Single 32 Bit Scale
+    can.set_ffa1r(|r| r.set_ffa(0, 0)); // Filter Assigned to FIFO
+    can.set_fa1r(|r| r.set_fact(0, 1)); // Filter Active
+
+    can.set_fr0(0, |r| r.set_fb(0x00000000)); // Set ID to 0
+    can.set_fr1(0, |r| r.set_fb(0x00000000)); // Set Mask to 0
+
+    can.with_fmr(|r| r.set_finit(0));
 
     println!("Enter Normal Mode");
 
     can.with_mcr(|r| r.set_inrq(0).set_sleep(0));
     while can.msr().test_inak() {}
+
+    assert!(!can.msr().test_inak(), "Still in Inactive Mode");
+    assert!(!can.msr().test_slak(), "Still in Sleep Mode");
+
+    // Enter Normal Mode
+
+    let id = 0x0123;
+    let dlc = 8;
+    let data = [0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07];
+
+    let mut ticks = 100;
+    let mut n = 0;
+    loop {
+        if can.rfr(0).test_fmp() {
+            println!("> RIR: {:?}", can.rir(0));
+            println!("> RDTR: {:?}", can.rdtr(0));
+            println!("> RDLR: {:?}", can.rdlr(0));
+            println!("> RDHR: {:?}", can.rdhr(0));            
+            can.with_rfr(0, |r| r.set_rfom(1));
+        }
+        // if let Some(msg) = recv(&can) {
+        //     println!("< {:?}", msg);
+        // }
+
+        if n > 0 {
+            n -= 1            
+        } else {
+            can.set_tdhr(0, |r| r.set_data4(data[4]).set_data5(data[5]).set_data6(data[6]).set_data7(data[7]));            
+            can.set_tdlr(0, |r| r.set_data0(data[0]).set_data1(data[1]).set_data2(data[2]).set_data3(data[3]));
+            can.set_tdtr(0, |r| r.set_dlc(dlc));
+            can.set_tir(0, |r| r.set_stid(id).set_ide(0).set_txrq(1));
+            println!("> TIR: {:?}", can.tir(0));
+            println!("> TDTR: {:?}", can.tdtr(0));
+            println!("> TDLR: {:?}", can.tdlr(0));
+            println!("> TDHR: {:?}", can.tdhr(0)); 
+
+            while can.tir(0).test_txrq() {}
+            println!("> TX Done");
+
+            n = ticks;
+        }
+        board::delay(10);
+    }
+
+
 
     println!("In Normal Mode");
 
@@ -100,5 +162,39 @@ pub extern "C" fn main() -> ! {
     println!("Done");
 
     loop {}
+}
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+enum Id {
+    Std(u16),
+    Ext(u32),    
+}
+
+#[derive(Debug)]
+struct Message {
+    id: Id,
+    dlc: u8,
+    data: [u8; 8],
+}
+
+impl Message {
+    pub fn new(id: Id, data: &[u8]) -> Message {
+        assert!(data.len() < 8);
+        let mut d = [0u8; 8];
+        &d[..data.len()].copy_from_slice(data);
+        Message {
+            id: id,
+            dlc: data.len() as u8,
+            data: d,
+        }        
+    }
+
+    pub fn id(&self) -> Id {
+        self.id
+    }
+
+    pub fn data(&self) -> &[u8] {
+        &self.data[..self.dlc as usize]
+    }
 }
 

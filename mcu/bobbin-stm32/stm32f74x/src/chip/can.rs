@@ -118,68 +118,36 @@ impl CanPeriph {
         self
     }
 
-    #[doc="Get the *mut pointer for the RF0R register."]
-    #[inline] pub fn rf0r_mut(&self) -> *mut Rf0r { 
-        (self.0 + 0xc) as *mut Rf0r
+    #[doc="Get the *mut pointer for the RFR register."]
+    #[inline] pub fn rfr_mut<I: Into<bits::R2>>(&self, index: I) -> *mut Rfr { 
+        let index: usize = index.into().value() as usize;
+        (self.0 + 0xc + (index << 2)) as *mut Rfr
     }
 
-    #[doc="Get the *const pointer for the RF0R register."]
-    #[inline] pub fn rf0r_ptr(&self) -> *const Rf0r { 
-           self.rf0r_mut()
+    #[doc="Get the *const pointer for the RFR register."]
+    #[inline] pub fn rfr_ptr<I: Into<bits::R2>>(&self, index: I) -> *const Rfr { 
+           self.rfr_mut(index)
     }
 
-    #[doc="Read the RF0R register."]
-    #[inline] pub fn rf0r(&self) -> Rf0r { 
+    #[doc="Read the RFR register."]
+    #[inline] pub fn rfr<I: Into<bits::R2>>(&self, index: I) -> Rfr { 
         unsafe {
-            read_volatile(self.rf0r_ptr())
+            read_volatile(self.rfr_ptr(index))
         }
     }
 
-    #[doc="Write the RF0R register."]
-    #[inline] pub fn set_rf0r<F: FnOnce(Rf0r) -> Rf0r>(&self, f: F) -> &Self {
+    #[doc="Write the RFR register."]
+    #[inline] pub fn set_rfr<I: Into<bits::R2>, F: FnOnce(Rfr) -> Rfr>(&self, index: I, f: F) -> &Self {
         unsafe {
-            write_volatile(self.rf0r_mut(), f(Rf0r(0)));
-        }
-        self
-    }
-
-    #[doc="Modify the RF0R register."]
-    #[inline] pub fn with_rf0r<F: FnOnce(Rf0r) -> Rf0r>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.rf0r_mut(), f(self.rf0r()));
+            write_volatile(self.rfr_mut(index), f(Rfr(0)));
         }
         self
     }
 
-    #[doc="Get the *mut pointer for the RF1R register."]
-    #[inline] pub fn rf1r_mut(&self) -> *mut Rf1r { 
-        (self.0 + 0x10) as *mut Rf1r
-    }
-
-    #[doc="Get the *const pointer for the RF1R register."]
-    #[inline] pub fn rf1r_ptr(&self) -> *const Rf1r { 
-           self.rf1r_mut()
-    }
-
-    #[doc="Read the RF1R register."]
-    #[inline] pub fn rf1r(&self) -> Rf1r { 
+    #[doc="Modify the RFR register."]
+    #[inline] pub fn with_rfr<I: Into<bits::R2> + Copy, F: FnOnce(Rfr) -> Rfr>(&self, index: I, f: F) -> &Self {
         unsafe {
-            read_volatile(self.rf1r_ptr())
-        }
-    }
-
-    #[doc="Write the RF1R register."]
-    #[inline] pub fn set_rf1r<F: FnOnce(Rf1r) -> Rf1r>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.rf1r_mut(), f(Rf1r(0)));
-        }
-        self
-    }
-
-    #[doc="Modify the RF1R register."]
-    #[inline] pub fn with_rf1r<F: FnOnce(Rf1r) -> Rf1r>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.rf1r_mut(), f(self.rf1r()));
+            write_volatile(self.rfr_mut(index), f(self.rfr(index)));
         }
         self
     }
@@ -283,535 +251,211 @@ impl CanPeriph {
         self
     }
 
-    #[doc="Get the *mut pointer for the TI0R register."]
-    #[inline] pub fn ti0r_mut(&self) -> *mut Ti0r { 
-        (self.0 + 0x180) as *mut Ti0r
+    #[doc="Get the *mut pointer for the TIR register."]
+    #[inline] pub fn tir_mut<I: Into<bits::R3>>(&self, index: I) -> *mut Tir { 
+        let index: usize = index.into().value() as usize;
+        (self.0 + 0x180 + (index << 4)) as *mut Tir
     }
 
-    #[doc="Get the *const pointer for the TI0R register."]
-    #[inline] pub fn ti0r_ptr(&self) -> *const Ti0r { 
-           self.ti0r_mut()
+    #[doc="Get the *const pointer for the TIR register."]
+    #[inline] pub fn tir_ptr<I: Into<bits::R3>>(&self, index: I) -> *const Tir { 
+           self.tir_mut(index)
     }
 
-    #[doc="Read the TI0R register."]
-    #[inline] pub fn ti0r(&self) -> Ti0r { 
+    #[doc="Read the TIR register."]
+    #[inline] pub fn tir<I: Into<bits::R3>>(&self, index: I) -> Tir { 
         unsafe {
-            read_volatile(self.ti0r_ptr())
+            read_volatile(self.tir_ptr(index))
         }
     }
 
-    #[doc="Write the TI0R register."]
-    #[inline] pub fn set_ti0r<F: FnOnce(Ti0r) -> Ti0r>(&self, f: F) -> &Self {
+    #[doc="Write the TIR register."]
+    #[inline] pub fn set_tir<I: Into<bits::R3>, F: FnOnce(Tir) -> Tir>(&self, index: I, f: F) -> &Self {
         unsafe {
-            write_volatile(self.ti0r_mut(), f(Ti0r(0)));
-        }
-        self
-    }
-
-    #[doc="Modify the TI0R register."]
-    #[inline] pub fn with_ti0r<F: FnOnce(Ti0r) -> Ti0r>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.ti0r_mut(), f(self.ti0r()));
+            write_volatile(self.tir_mut(index), f(Tir(0)));
         }
         self
     }
 
-    #[doc="Get the *mut pointer for the TDT0R register."]
-    #[inline] pub fn tdt0r_mut(&self) -> *mut Tdt0r { 
-        (self.0 + 0x184) as *mut Tdt0r
-    }
-
-    #[doc="Get the *const pointer for the TDT0R register."]
-    #[inline] pub fn tdt0r_ptr(&self) -> *const Tdt0r { 
-           self.tdt0r_mut()
-    }
-
-    #[doc="Read the TDT0R register."]
-    #[inline] pub fn tdt0r(&self) -> Tdt0r { 
+    #[doc="Modify the TIR register."]
+    #[inline] pub fn with_tir<I: Into<bits::R3> + Copy, F: FnOnce(Tir) -> Tir>(&self, index: I, f: F) -> &Self {
         unsafe {
-            read_volatile(self.tdt0r_ptr())
-        }
-    }
-
-    #[doc="Write the TDT0R register."]
-    #[inline] pub fn set_tdt0r<F: FnOnce(Tdt0r) -> Tdt0r>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.tdt0r_mut(), f(Tdt0r(0)));
+            write_volatile(self.tir_mut(index), f(self.tir(index)));
         }
         self
     }
 
-    #[doc="Modify the TDT0R register."]
-    #[inline] pub fn with_tdt0r<F: FnOnce(Tdt0r) -> Tdt0r>(&self, f: F) -> &Self {
+    #[doc="Get the *mut pointer for the TDTR register."]
+    #[inline] pub fn tdtr_mut<I: Into<bits::R3>>(&self, index: I) -> *mut Tdtr { 
+        let index: usize = index.into().value() as usize;
+        (self.0 + 0x184 + (index << 4)) as *mut Tdtr
+    }
+
+    #[doc="Get the *const pointer for the TDTR register."]
+    #[inline] pub fn tdtr_ptr<I: Into<bits::R3>>(&self, index: I) -> *const Tdtr { 
+           self.tdtr_mut(index)
+    }
+
+    #[doc="Read the TDTR register."]
+    #[inline] pub fn tdtr<I: Into<bits::R3>>(&self, index: I) -> Tdtr { 
         unsafe {
-            write_volatile(self.tdt0r_mut(), f(self.tdt0r()));
+            read_volatile(self.tdtr_ptr(index))
+        }
+    }
+
+    #[doc="Write the TDTR register."]
+    #[inline] pub fn set_tdtr<I: Into<bits::R3>, F: FnOnce(Tdtr) -> Tdtr>(&self, index: I, f: F) -> &Self {
+        unsafe {
+            write_volatile(self.tdtr_mut(index), f(Tdtr(0)));
         }
         self
     }
 
-    #[doc="Get the *mut pointer for the TDL0R register."]
-    #[inline] pub fn tdl0r_mut(&self) -> *mut Tdl0r { 
-        (self.0 + 0x188) as *mut Tdl0r
-    }
-
-    #[doc="Get the *const pointer for the TDL0R register."]
-    #[inline] pub fn tdl0r_ptr(&self) -> *const Tdl0r { 
-           self.tdl0r_mut()
-    }
-
-    #[doc="Read the TDL0R register."]
-    #[inline] pub fn tdl0r(&self) -> Tdl0r { 
+    #[doc="Modify the TDTR register."]
+    #[inline] pub fn with_tdtr<I: Into<bits::R3> + Copy, F: FnOnce(Tdtr) -> Tdtr>(&self, index: I, f: F) -> &Self {
         unsafe {
-            read_volatile(self.tdl0r_ptr())
-        }
-    }
-
-    #[doc="Write the TDL0R register."]
-    #[inline] pub fn set_tdl0r<F: FnOnce(Tdl0r) -> Tdl0r>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.tdl0r_mut(), f(Tdl0r(0)));
+            write_volatile(self.tdtr_mut(index), f(self.tdtr(index)));
         }
         self
     }
 
-    #[doc="Modify the TDL0R register."]
-    #[inline] pub fn with_tdl0r<F: FnOnce(Tdl0r) -> Tdl0r>(&self, f: F) -> &Self {
+    #[doc="Get the *mut pointer for the TDLR register."]
+    #[inline] pub fn tdlr_mut<I: Into<bits::R3>>(&self, index: I) -> *mut Tdlr { 
+        let index: usize = index.into().value() as usize;
+        (self.0 + 0x188 + (index << 4)) as *mut Tdlr
+    }
+
+    #[doc="Get the *const pointer for the TDLR register."]
+    #[inline] pub fn tdlr_ptr<I: Into<bits::R3>>(&self, index: I) -> *const Tdlr { 
+           self.tdlr_mut(index)
+    }
+
+    #[doc="Read the TDLR register."]
+    #[inline] pub fn tdlr<I: Into<bits::R3>>(&self, index: I) -> Tdlr { 
         unsafe {
-            write_volatile(self.tdl0r_mut(), f(self.tdl0r()));
+            read_volatile(self.tdlr_ptr(index))
+        }
+    }
+
+    #[doc="Write the TDLR register."]
+    #[inline] pub fn set_tdlr<I: Into<bits::R3>, F: FnOnce(Tdlr) -> Tdlr>(&self, index: I, f: F) -> &Self {
+        unsafe {
+            write_volatile(self.tdlr_mut(index), f(Tdlr(0)));
         }
         self
     }
 
-    #[doc="Get the *mut pointer for the TDH0R register."]
-    #[inline] pub fn tdh0r_mut(&self) -> *mut Tdh0r { 
-        (self.0 + 0x18c) as *mut Tdh0r
-    }
-
-    #[doc="Get the *const pointer for the TDH0R register."]
-    #[inline] pub fn tdh0r_ptr(&self) -> *const Tdh0r { 
-           self.tdh0r_mut()
-    }
-
-    #[doc="Read the TDH0R register."]
-    #[inline] pub fn tdh0r(&self) -> Tdh0r { 
+    #[doc="Modify the TDLR register."]
+    #[inline] pub fn with_tdlr<I: Into<bits::R3> + Copy, F: FnOnce(Tdlr) -> Tdlr>(&self, index: I, f: F) -> &Self {
         unsafe {
-            read_volatile(self.tdh0r_ptr())
-        }
-    }
-
-    #[doc="Write the TDH0R register."]
-    #[inline] pub fn set_tdh0r<F: FnOnce(Tdh0r) -> Tdh0r>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.tdh0r_mut(), f(Tdh0r(0)));
+            write_volatile(self.tdlr_mut(index), f(self.tdlr(index)));
         }
         self
     }
 
-    #[doc="Modify the TDH0R register."]
-    #[inline] pub fn with_tdh0r<F: FnOnce(Tdh0r) -> Tdh0r>(&self, f: F) -> &Self {
+    #[doc="Get the *mut pointer for the TDHR register."]
+    #[inline] pub fn tdhr_mut<I: Into<bits::R3>>(&self, index: I) -> *mut Tdhr { 
+        let index: usize = index.into().value() as usize;
+        (self.0 + 0x18c + (index << 4)) as *mut Tdhr
+    }
+
+    #[doc="Get the *const pointer for the TDHR register."]
+    #[inline] pub fn tdhr_ptr<I: Into<bits::R3>>(&self, index: I) -> *const Tdhr { 
+           self.tdhr_mut(index)
+    }
+
+    #[doc="Read the TDHR register."]
+    #[inline] pub fn tdhr<I: Into<bits::R3>>(&self, index: I) -> Tdhr { 
         unsafe {
-            write_volatile(self.tdh0r_mut(), f(self.tdh0r()));
+            read_volatile(self.tdhr_ptr(index))
+        }
+    }
+
+    #[doc="Write the TDHR register."]
+    #[inline] pub fn set_tdhr<I: Into<bits::R3>, F: FnOnce(Tdhr) -> Tdhr>(&self, index: I, f: F) -> &Self {
+        unsafe {
+            write_volatile(self.tdhr_mut(index), f(Tdhr(0)));
         }
         self
     }
 
-    #[doc="Get the *mut pointer for the TI1R register."]
-    #[inline] pub fn ti1r_mut(&self) -> *mut Ti1r { 
-        (self.0 + 0x190) as *mut Ti1r
-    }
-
-    #[doc="Get the *const pointer for the TI1R register."]
-    #[inline] pub fn ti1r_ptr(&self) -> *const Ti1r { 
-           self.ti1r_mut()
-    }
-
-    #[doc="Read the TI1R register."]
-    #[inline] pub fn ti1r(&self) -> Ti1r { 
+    #[doc="Modify the TDHR register."]
+    #[inline] pub fn with_tdhr<I: Into<bits::R3> + Copy, F: FnOnce(Tdhr) -> Tdhr>(&self, index: I, f: F) -> &Self {
         unsafe {
-            read_volatile(self.ti1r_ptr())
-        }
-    }
-
-    #[doc="Write the TI1R register."]
-    #[inline] pub fn set_ti1r<F: FnOnce(Ti1r) -> Ti1r>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.ti1r_mut(), f(Ti1r(0)));
+            write_volatile(self.tdhr_mut(index), f(self.tdhr(index)));
         }
         self
     }
 
-    #[doc="Modify the TI1R register."]
-    #[inline] pub fn with_ti1r<F: FnOnce(Ti1r) -> Ti1r>(&self, f: F) -> &Self {
+    #[doc="Get the *mut pointer for the RIR register."]
+    #[inline] pub fn rir_mut<I: Into<bits::R2>>(&self, index: I) -> *mut Rir { 
+        let index: usize = index.into().value() as usize;
+        (self.0 + 0x1b0 + (index << 4)) as *mut Rir
+    }
+
+    #[doc="Get the *const pointer for the RIR register."]
+    #[inline] pub fn rir_ptr<I: Into<bits::R2>>(&self, index: I) -> *const Rir { 
+           self.rir_mut(index)
+    }
+
+    #[doc="Read the RIR register."]
+    #[inline] pub fn rir<I: Into<bits::R2>>(&self, index: I) -> Rir { 
         unsafe {
-            write_volatile(self.ti1r_mut(), f(self.ti1r()));
-        }
-        self
-    }
-
-    #[doc="Get the *mut pointer for the TDT1R register."]
-    #[inline] pub fn tdt1r_mut(&self) -> *mut Tdt1r { 
-        (self.0 + 0x194) as *mut Tdt1r
-    }
-
-    #[doc="Get the *const pointer for the TDT1R register."]
-    #[inline] pub fn tdt1r_ptr(&self) -> *const Tdt1r { 
-           self.tdt1r_mut()
-    }
-
-    #[doc="Read the TDT1R register."]
-    #[inline] pub fn tdt1r(&self) -> Tdt1r { 
-        unsafe {
-            read_volatile(self.tdt1r_ptr())
+            read_volatile(self.rir_ptr(index))
         }
     }
 
-    #[doc="Write the TDT1R register."]
-    #[inline] pub fn set_tdt1r<F: FnOnce(Tdt1r) -> Tdt1r>(&self, f: F) -> &Self {
+    #[doc="Get the *mut pointer for the RDTR register."]
+    #[inline] pub fn rdtr_mut<I: Into<bits::R2>>(&self, index: I) -> *mut Rdtr { 
+        let index: usize = index.into().value() as usize;
+        (self.0 + 0x1b4 + (index << 4)) as *mut Rdtr
+    }
+
+    #[doc="Get the *const pointer for the RDTR register."]
+    #[inline] pub fn rdtr_ptr<I: Into<bits::R2>>(&self, index: I) -> *const Rdtr { 
+           self.rdtr_mut(index)
+    }
+
+    #[doc="Read the RDTR register."]
+    #[inline] pub fn rdtr<I: Into<bits::R2>>(&self, index: I) -> Rdtr { 
         unsafe {
-            write_volatile(self.tdt1r_mut(), f(Tdt1r(0)));
-        }
-        self
-    }
-
-    #[doc="Modify the TDT1R register."]
-    #[inline] pub fn with_tdt1r<F: FnOnce(Tdt1r) -> Tdt1r>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.tdt1r_mut(), f(self.tdt1r()));
-        }
-        self
-    }
-
-    #[doc="Get the *mut pointer for the TDL1R register."]
-    #[inline] pub fn tdl1r_mut(&self) -> *mut Tdl1r { 
-        (self.0 + 0x198) as *mut Tdl1r
-    }
-
-    #[doc="Get the *const pointer for the TDL1R register."]
-    #[inline] pub fn tdl1r_ptr(&self) -> *const Tdl1r { 
-           self.tdl1r_mut()
-    }
-
-    #[doc="Read the TDL1R register."]
-    #[inline] pub fn tdl1r(&self) -> Tdl1r { 
-        unsafe {
-            read_volatile(self.tdl1r_ptr())
+            read_volatile(self.rdtr_ptr(index))
         }
     }
 
-    #[doc="Write the TDL1R register."]
-    #[inline] pub fn set_tdl1r<F: FnOnce(Tdl1r) -> Tdl1r>(&self, f: F) -> &Self {
+    #[doc="Get the *mut pointer for the RDLR register."]
+    #[inline] pub fn rdlr_mut<I: Into<bits::R2>>(&self, index: I) -> *mut Rdlr { 
+        let index: usize = index.into().value() as usize;
+        (self.0 + 0x1b8 + (index << 4)) as *mut Rdlr
+    }
+
+    #[doc="Get the *const pointer for the RDLR register."]
+    #[inline] pub fn rdlr_ptr<I: Into<bits::R2>>(&self, index: I) -> *const Rdlr { 
+           self.rdlr_mut(index)
+    }
+
+    #[doc="Read the RDLR register."]
+    #[inline] pub fn rdlr<I: Into<bits::R2>>(&self, index: I) -> Rdlr { 
         unsafe {
-            write_volatile(self.tdl1r_mut(), f(Tdl1r(0)));
-        }
-        self
-    }
-
-    #[doc="Modify the TDL1R register."]
-    #[inline] pub fn with_tdl1r<F: FnOnce(Tdl1r) -> Tdl1r>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.tdl1r_mut(), f(self.tdl1r()));
-        }
-        self
-    }
-
-    #[doc="Get the *mut pointer for the TDH1R register."]
-    #[inline] pub fn tdh1r_mut(&self) -> *mut Tdh1r { 
-        (self.0 + 0x19c) as *mut Tdh1r
-    }
-
-    #[doc="Get the *const pointer for the TDH1R register."]
-    #[inline] pub fn tdh1r_ptr(&self) -> *const Tdh1r { 
-           self.tdh1r_mut()
-    }
-
-    #[doc="Read the TDH1R register."]
-    #[inline] pub fn tdh1r(&self) -> Tdh1r { 
-        unsafe {
-            read_volatile(self.tdh1r_ptr())
+            read_volatile(self.rdlr_ptr(index))
         }
     }
 
-    #[doc="Write the TDH1R register."]
-    #[inline] pub fn set_tdh1r<F: FnOnce(Tdh1r) -> Tdh1r>(&self, f: F) -> &Self {
+    #[doc="Get the *mut pointer for the RDHR register."]
+    #[inline] pub fn rdhr_mut<I: Into<bits::R2>>(&self, index: I) -> *mut Rdhr { 
+        let index: usize = index.into().value() as usize;
+        (self.0 + 0x1bc + (index << 4)) as *mut Rdhr
+    }
+
+    #[doc="Get the *const pointer for the RDHR register."]
+    #[inline] pub fn rdhr_ptr<I: Into<bits::R2>>(&self, index: I) -> *const Rdhr { 
+           self.rdhr_mut(index)
+    }
+
+    #[doc="Read the RDHR register."]
+    #[inline] pub fn rdhr<I: Into<bits::R2>>(&self, index: I) -> Rdhr { 
         unsafe {
-            write_volatile(self.tdh1r_mut(), f(Tdh1r(0)));
-        }
-        self
-    }
-
-    #[doc="Modify the TDH1R register."]
-    #[inline] pub fn with_tdh1r<F: FnOnce(Tdh1r) -> Tdh1r>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.tdh1r_mut(), f(self.tdh1r()));
-        }
-        self
-    }
-
-    #[doc="Get the *mut pointer for the TI2R register."]
-    #[inline] pub fn ti2r_mut(&self) -> *mut Ti2r { 
-        (self.0 + 0x1a0) as *mut Ti2r
-    }
-
-    #[doc="Get the *const pointer for the TI2R register."]
-    #[inline] pub fn ti2r_ptr(&self) -> *const Ti2r { 
-           self.ti2r_mut()
-    }
-
-    #[doc="Read the TI2R register."]
-    #[inline] pub fn ti2r(&self) -> Ti2r { 
-        unsafe {
-            read_volatile(self.ti2r_ptr())
-        }
-    }
-
-    #[doc="Write the TI2R register."]
-    #[inline] pub fn set_ti2r<F: FnOnce(Ti2r) -> Ti2r>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.ti2r_mut(), f(Ti2r(0)));
-        }
-        self
-    }
-
-    #[doc="Modify the TI2R register."]
-    #[inline] pub fn with_ti2r<F: FnOnce(Ti2r) -> Ti2r>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.ti2r_mut(), f(self.ti2r()));
-        }
-        self
-    }
-
-    #[doc="Get the *mut pointer for the TDT2R register."]
-    #[inline] pub fn tdt2r_mut(&self) -> *mut Tdt2r { 
-        (self.0 + 0x1a4) as *mut Tdt2r
-    }
-
-    #[doc="Get the *const pointer for the TDT2R register."]
-    #[inline] pub fn tdt2r_ptr(&self) -> *const Tdt2r { 
-           self.tdt2r_mut()
-    }
-
-    #[doc="Read the TDT2R register."]
-    #[inline] pub fn tdt2r(&self) -> Tdt2r { 
-        unsafe {
-            read_volatile(self.tdt2r_ptr())
-        }
-    }
-
-    #[doc="Write the TDT2R register."]
-    #[inline] pub fn set_tdt2r<F: FnOnce(Tdt2r) -> Tdt2r>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.tdt2r_mut(), f(Tdt2r(0)));
-        }
-        self
-    }
-
-    #[doc="Modify the TDT2R register."]
-    #[inline] pub fn with_tdt2r<F: FnOnce(Tdt2r) -> Tdt2r>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.tdt2r_mut(), f(self.tdt2r()));
-        }
-        self
-    }
-
-    #[doc="Get the *mut pointer for the TDL2R register."]
-    #[inline] pub fn tdl2r_mut(&self) -> *mut Tdl2r { 
-        (self.0 + 0x1a8) as *mut Tdl2r
-    }
-
-    #[doc="Get the *const pointer for the TDL2R register."]
-    #[inline] pub fn tdl2r_ptr(&self) -> *const Tdl2r { 
-           self.tdl2r_mut()
-    }
-
-    #[doc="Read the TDL2R register."]
-    #[inline] pub fn tdl2r(&self) -> Tdl2r { 
-        unsafe {
-            read_volatile(self.tdl2r_ptr())
-        }
-    }
-
-    #[doc="Write the TDL2R register."]
-    #[inline] pub fn set_tdl2r<F: FnOnce(Tdl2r) -> Tdl2r>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.tdl2r_mut(), f(Tdl2r(0)));
-        }
-        self
-    }
-
-    #[doc="Modify the TDL2R register."]
-    #[inline] pub fn with_tdl2r<F: FnOnce(Tdl2r) -> Tdl2r>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.tdl2r_mut(), f(self.tdl2r()));
-        }
-        self
-    }
-
-    #[doc="Get the *mut pointer for the TDH2R register."]
-    #[inline] pub fn tdh2r_mut(&self) -> *mut Tdh2r { 
-        (self.0 + 0x1ac) as *mut Tdh2r
-    }
-
-    #[doc="Get the *const pointer for the TDH2R register."]
-    #[inline] pub fn tdh2r_ptr(&self) -> *const Tdh2r { 
-           self.tdh2r_mut()
-    }
-
-    #[doc="Read the TDH2R register."]
-    #[inline] pub fn tdh2r(&self) -> Tdh2r { 
-        unsafe {
-            read_volatile(self.tdh2r_ptr())
-        }
-    }
-
-    #[doc="Write the TDH2R register."]
-    #[inline] pub fn set_tdh2r<F: FnOnce(Tdh2r) -> Tdh2r>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.tdh2r_mut(), f(Tdh2r(0)));
-        }
-        self
-    }
-
-    #[doc="Modify the TDH2R register."]
-    #[inline] pub fn with_tdh2r<F: FnOnce(Tdh2r) -> Tdh2r>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.tdh2r_mut(), f(self.tdh2r()));
-        }
-        self
-    }
-
-    #[doc="Get the *mut pointer for the RI0R register."]
-    #[inline] pub fn ri0r_mut(&self) -> *mut Ri0r { 
-        (self.0 + 0x1b0) as *mut Ri0r
-    }
-
-    #[doc="Get the *const pointer for the RI0R register."]
-    #[inline] pub fn ri0r_ptr(&self) -> *const Ri0r { 
-           self.ri0r_mut()
-    }
-
-    #[doc="Read the RI0R register."]
-    #[inline] pub fn ri0r(&self) -> Ri0r { 
-        unsafe {
-            read_volatile(self.ri0r_ptr())
-        }
-    }
-
-    #[doc="Get the *mut pointer for the RDT0R register."]
-    #[inline] pub fn rdt0r_mut(&self) -> *mut Rdt0r { 
-        (self.0 + 0x1b4) as *mut Rdt0r
-    }
-
-    #[doc="Get the *const pointer for the RDT0R register."]
-    #[inline] pub fn rdt0r_ptr(&self) -> *const Rdt0r { 
-           self.rdt0r_mut()
-    }
-
-    #[doc="Read the RDT0R register."]
-    #[inline] pub fn rdt0r(&self) -> Rdt0r { 
-        unsafe {
-            read_volatile(self.rdt0r_ptr())
-        }
-    }
-
-    #[doc="Get the *mut pointer for the RDL0R register."]
-    #[inline] pub fn rdl0r_mut(&self) -> *mut Rdl0r { 
-        (self.0 + 0x1b8) as *mut Rdl0r
-    }
-
-    #[doc="Get the *const pointer for the RDL0R register."]
-    #[inline] pub fn rdl0r_ptr(&self) -> *const Rdl0r { 
-           self.rdl0r_mut()
-    }
-
-    #[doc="Read the RDL0R register."]
-    #[inline] pub fn rdl0r(&self) -> Rdl0r { 
-        unsafe {
-            read_volatile(self.rdl0r_ptr())
-        }
-    }
-
-    #[doc="Get the *mut pointer for the RDH0R register."]
-    #[inline] pub fn rdh0r_mut(&self) -> *mut Rdh0r { 
-        (self.0 + 0x1bc) as *mut Rdh0r
-    }
-
-    #[doc="Get the *const pointer for the RDH0R register."]
-    #[inline] pub fn rdh0r_ptr(&self) -> *const Rdh0r { 
-           self.rdh0r_mut()
-    }
-
-    #[doc="Read the RDH0R register."]
-    #[inline] pub fn rdh0r(&self) -> Rdh0r { 
-        unsafe {
-            read_volatile(self.rdh0r_ptr())
-        }
-    }
-
-    #[doc="Get the *mut pointer for the RI1R register."]
-    #[inline] pub fn ri1r_mut(&self) -> *mut Ri1r { 
-        (self.0 + 0x1c0) as *mut Ri1r
-    }
-
-    #[doc="Get the *const pointer for the RI1R register."]
-    #[inline] pub fn ri1r_ptr(&self) -> *const Ri1r { 
-           self.ri1r_mut()
-    }
-
-    #[doc="Read the RI1R register."]
-    #[inline] pub fn ri1r(&self) -> Ri1r { 
-        unsafe {
-            read_volatile(self.ri1r_ptr())
-        }
-    }
-
-    #[doc="Get the *mut pointer for the RDT1R register."]
-    #[inline] pub fn rdt1r_mut(&self) -> *mut Rdt1r { 
-        (self.0 + 0x1c4) as *mut Rdt1r
-    }
-
-    #[doc="Get the *const pointer for the RDT1R register."]
-    #[inline] pub fn rdt1r_ptr(&self) -> *const Rdt1r { 
-           self.rdt1r_mut()
-    }
-
-    #[doc="Read the RDT1R register."]
-    #[inline] pub fn rdt1r(&self) -> Rdt1r { 
-        unsafe {
-            read_volatile(self.rdt1r_ptr())
-        }
-    }
-
-    #[doc="Get the *mut pointer for the RDL1R register."]
-    #[inline] pub fn rdl1r_mut(&self) -> *mut Rdl1r { 
-        (self.0 + 0x1c8) as *mut Rdl1r
-    }
-
-    #[doc="Get the *const pointer for the RDL1R register."]
-    #[inline] pub fn rdl1r_ptr(&self) -> *const Rdl1r { 
-           self.rdl1r_mut()
-    }
-
-    #[doc="Read the RDL1R register."]
-    #[inline] pub fn rdl1r(&self) -> Rdl1r { 
-        unsafe {
-            read_volatile(self.rdl1r_ptr())
-        }
-    }
-
-    #[doc="Get the *mut pointer for the RDH1R register."]
-    #[inline] pub fn rdh1r_mut(&self) -> *mut Rdh1r { 
-        (self.0 + 0x1cc) as *mut Rdh1r
-    }
-
-    #[doc="Get the *const pointer for the RDH1R register."]
-    #[inline] pub fn rdh1r_ptr(&self) -> *const Rdh1r { 
-           self.rdh1r_mut()
-    }
-
-    #[doc="Read the RDH1R register."]
-    #[inline] pub fn rdh1r(&self) -> Rdh1r { 
-        unsafe {
-            read_volatile(self.rdh1r_ptr())
+            read_volatile(self.rdhr_ptr(index))
         }
     }
 
@@ -980,35 +624,70 @@ impl CanPeriph {
         self
     }
 
-    #[doc="Get the *mut pointer for the FR register."]
-    #[inline] pub fn fr_mut(&self) -> *mut Fr { 
-        (self.0 + 0x240) as *mut Fr
+    #[doc="Get the *mut pointer for the FR0 register."]
+    #[inline] pub fn fr0_mut<I: Into<bits::R28>>(&self, index: I) -> *mut Fr0 { 
+        let index: usize = index.into().value() as usize;
+        (self.0 + 0x240 + (index << 3)) as *mut Fr0
     }
 
-    #[doc="Get the *const pointer for the FR register."]
-    #[inline] pub fn fr_ptr(&self) -> *const Fr { 
-           self.fr_mut()
+    #[doc="Get the *const pointer for the FR0 register."]
+    #[inline] pub fn fr0_ptr<I: Into<bits::R28>>(&self, index: I) -> *const Fr0 { 
+           self.fr0_mut(index)
     }
 
-    #[doc="Read the FR register."]
-    #[inline] pub fn fr(&self) -> Fr { 
+    #[doc="Read the FR0 register."]
+    #[inline] pub fn fr0<I: Into<bits::R28>>(&self, index: I) -> Fr0 { 
         unsafe {
-            read_volatile(self.fr_ptr())
+            read_volatile(self.fr0_ptr(index))
         }
     }
 
-    #[doc="Write the FR register."]
-    #[inline] pub fn set_fr<F: FnOnce(Fr) -> Fr>(&self, f: F) -> &Self {
+    #[doc="Write the FR0 register."]
+    #[inline] pub fn set_fr0<I: Into<bits::R28>, F: FnOnce(Fr0) -> Fr0>(&self, index: I, f: F) -> &Self {
         unsafe {
-            write_volatile(self.fr_mut(), f(Fr(0)));
+            write_volatile(self.fr0_mut(index), f(Fr0(0)));
         }
         self
     }
 
-    #[doc="Modify the FR register."]
-    #[inline] pub fn with_fr<F: FnOnce(Fr) -> Fr>(&self, f: F) -> &Self {
+    #[doc="Modify the FR0 register."]
+    #[inline] pub fn with_fr0<I: Into<bits::R28> + Copy, F: FnOnce(Fr0) -> Fr0>(&self, index: I, f: F) -> &Self {
         unsafe {
-            write_volatile(self.fr_mut(), f(self.fr()));
+            write_volatile(self.fr0_mut(index), f(self.fr0(index)));
+        }
+        self
+    }
+
+    #[doc="Get the *mut pointer for the FR1 register."]
+    #[inline] pub fn fr1_mut<I: Into<bits::R28>>(&self, index: I) -> *mut Fr1 { 
+        let index: usize = index.into().value() as usize;
+        (self.0 + 0x244 + (index << 3)) as *mut Fr1
+    }
+
+    #[doc="Get the *const pointer for the FR1 register."]
+    #[inline] pub fn fr1_ptr<I: Into<bits::R28>>(&self, index: I) -> *const Fr1 { 
+           self.fr1_mut(index)
+    }
+
+    #[doc="Read the FR1 register."]
+    #[inline] pub fn fr1<I: Into<bits::R28>>(&self, index: I) -> Fr1 { 
+        unsafe {
+            read_volatile(self.fr1_ptr(index))
+        }
+    }
+
+    #[doc="Write the FR1 register."]
+    #[inline] pub fn set_fr1<I: Into<bits::R28>, F: FnOnce(Fr1) -> Fr1>(&self, index: I, f: F) -> &Self {
+        unsafe {
+            write_volatile(self.fr1_mut(index), f(Fr1(0)));
+        }
+        self
+    }
+
+    #[doc="Modify the FR1 register."]
+    #[inline] pub fn with_fr1<I: Into<bits::R28> + Copy, F: FnOnce(Fr1) -> Fr1>(&self, index: I, f: F) -> &Self {
+        unsafe {
+            write_volatile(self.fr1_mut(index), f(self.fr1(index)));
         }
         self
     }
@@ -1916,22 +1595,22 @@ impl ::core::fmt::Debug for Tsr {
     }
 }
 
-#[doc="receive FIFO 0 register"]
+#[doc="receive FIFO register"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
-pub struct Rf0r(pub u32);
-impl Rf0r {
-    #[doc="RFOM0"]
-    #[inline] pub fn rfom0(&self) -> bits::U1 {
+pub struct Rfr(pub u32);
+impl Rfr {
+    #[doc="RFOM"]
+    #[inline] pub fn rfom(&self) -> bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="Returns true if RFOM0 != 0"]
-    #[inline] pub fn test_rfom0(&self) -> bool {
-        self.rfom0() != 0
+    #[doc="Returns true if RFOM != 0"]
+    #[inline] pub fn test_rfom(&self) -> bool {
+        self.rfom() != 0
     }
 
-    #[doc="Sets the RFOM0 field."]
-    #[inline] pub fn set_rfom0<V: Into<bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the RFOM field."]
+    #[inline] pub fn set_rfom<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 5);
@@ -1939,18 +1618,18 @@ impl Rf0r {
         self
     }
 
-    #[doc="FOVR0"]
-    #[inline] pub fn fovr0(&self) -> bits::U1 {
+    #[doc="FOVR"]
+    #[inline] pub fn fovr(&self) -> bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="Returns true if FOVR0 != 0"]
-    #[inline] pub fn test_fovr0(&self) -> bool {
-        self.fovr0() != 0
+    #[doc="Returns true if FOVR != 0"]
+    #[inline] pub fn test_fovr(&self) -> bool {
+        self.fovr() != 0
     }
 
-    #[doc="Sets the FOVR0 field."]
-    #[inline] pub fn set_fovr0<V: Into<bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the FOVR field."]
+    #[inline] pub fn set_fovr<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 4);
@@ -1958,18 +1637,18 @@ impl Rf0r {
         self
     }
 
-    #[doc="FULL0"]
-    #[inline] pub fn full0(&self) -> bits::U1 {
+    #[doc="FULL"]
+    #[inline] pub fn full(&self) -> bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="Returns true if FULL0 != 0"]
-    #[inline] pub fn test_full0(&self) -> bool {
-        self.full0() != 0
+    #[doc="Returns true if FULL != 0"]
+    #[inline] pub fn test_full(&self) -> bool {
+        self.full() != 0
     }
 
-    #[doc="Sets the FULL0 field."]
-    #[inline] pub fn set_full0<V: Into<bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the FULL field."]
+    #[inline] pub fn set_full<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 3);
@@ -1977,18 +1656,18 @@ impl Rf0r {
         self
     }
 
-    #[doc="FMP0"]
-    #[inline] pub fn fmp0(&self) -> bits::U2 {
+    #[doc="FMP"]
+    #[inline] pub fn fmp(&self) -> bits::U2 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x3) as u8) } // [1:0]
     }
 
-    #[doc="Returns true if FMP0 != 0"]
-    #[inline] pub fn test_fmp0(&self) -> bool {
-        self.fmp0() != 0
+    #[doc="Returns true if FMP != 0"]
+    #[inline] pub fn test_fmp(&self) -> bool {
+        self.fmp() != 0
     }
 
-    #[doc="Sets the FMP0 field."]
-    #[inline] pub fn set_fmp0<V: Into<bits::U2>>(mut self, value: V) -> Self {
+    #[doc="Sets the FMP field."]
+    #[inline] pub fn set_fmp<V: Into<bits::U2>>(mut self, value: V) -> Self {
         let value: bits::U2 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x3 << 0);
@@ -1998,133 +1677,26 @@ impl Rf0r {
 
 }
 
-impl From<u32> for Rf0r {
+impl From<u32> for Rfr {
     #[inline]
     fn from(other: u32) -> Self {
-         Rf0r(other)
+         Rfr(other)
     }
 }
 
-impl ::core::fmt::Display for Rf0r {
+impl ::core::fmt::Display for Rfr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
     }
 }
 
-impl ::core::fmt::Debug for Rf0r {
+impl ::core::fmt::Debug for Rfr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
         try!(write!(f, "[0x{:08x}", self.0));
-        if self.rfom0() != 0 { try!(write!(f, " rfom0"))}
-        if self.fovr0() != 0 { try!(write!(f, " fovr0"))}
-        if self.full0() != 0 { try!(write!(f, " full0"))}
-        if self.fmp0() != 0 { try!(write!(f, " fmp0=0x{:x}", self.fmp0()))}
-        try!(write!(f, "]"));
-        Ok(())
-    }
-}
-
-#[doc="receive FIFO 1 register"]
-#[derive(Default, Clone, Copy, PartialEq, Eq)]
-pub struct Rf1r(pub u32);
-impl Rf1r {
-    #[doc="RFOM1"]
-    #[inline] pub fn rfom1(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
-    }
-
-    #[doc="Returns true if RFOM1 != 0"]
-    #[inline] pub fn test_rfom1(&self) -> bool {
-        self.rfom1() != 0
-    }
-
-    #[doc="Sets the RFOM1 field."]
-    #[inline] pub fn set_rfom1<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 5);
-        self.0 |= value << 5;
-        self
-    }
-
-    #[doc="FOVR1"]
-    #[inline] pub fn fovr1(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
-    }
-
-    #[doc="Returns true if FOVR1 != 0"]
-    #[inline] pub fn test_fovr1(&self) -> bool {
-        self.fovr1() != 0
-    }
-
-    #[doc="Sets the FOVR1 field."]
-    #[inline] pub fn set_fovr1<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 4);
-        self.0 |= value << 4;
-        self
-    }
-
-    #[doc="FULL1"]
-    #[inline] pub fn full1(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
-    }
-
-    #[doc="Returns true if FULL1 != 0"]
-    #[inline] pub fn test_full1(&self) -> bool {
-        self.full1() != 0
-    }
-
-    #[doc="Sets the FULL1 field."]
-    #[inline] pub fn set_full1<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 3);
-        self.0 |= value << 3;
-        self
-    }
-
-    #[doc="FMP1"]
-    #[inline] pub fn fmp1(&self) -> bits::U2 {
-        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x3) as u8) } // [1:0]
-    }
-
-    #[doc="Returns true if FMP1 != 0"]
-    #[inline] pub fn test_fmp1(&self) -> bool {
-        self.fmp1() != 0
-    }
-
-    #[doc="Sets the FMP1 field."]
-    #[inline] pub fn set_fmp1<V: Into<bits::U2>>(mut self, value: V) -> Self {
-        let value: bits::U2 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x3 << 0);
-        self.0 |= value << 0;
-        self
-    }
-
-}
-
-impl From<u32> for Rf1r {
-    #[inline]
-    fn from(other: u32) -> Self {
-         Rf1r(other)
-    }
-}
-
-impl ::core::fmt::Display for Rf1r {
-    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-         self.0.fmt(f)
-    }
-}
-
-impl ::core::fmt::Debug for Rf1r {
-    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-        try!(write!(f, "[0x{:08x}", self.0));
-        if self.rfom1() != 0 { try!(write!(f, " rfom1"))}
-        if self.fovr1() != 0 { try!(write!(f, " fovr1"))}
-        if self.full1() != 0 { try!(write!(f, " full1"))}
-        if self.fmp1() != 0 { try!(write!(f, " fmp1=0x{:x}", self.fmp1()))}
+        if self.rfom() != 0 { try!(write!(f, " rfom"))}
+        if self.fovr() != 0 { try!(write!(f, " fovr"))}
+        if self.full() != 0 { try!(write!(f, " full"))}
+        if self.fmp() != 0 { try!(write!(f, " fmp=0x{:x}", self.fmp()))}
         try!(write!(f, "]"));
         Ok(())
     }
@@ -2733,8 +2305,8 @@ impl ::core::fmt::Debug for Btr {
 
 #[doc="TX mailbox identifier register"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
-pub struct Ti0r(pub u32);
-impl Ti0r {
+pub struct Tir(pub u32);
+impl Tir {
     #[doc="STID"]
     #[inline] pub fn stid(&self) -> bits::U11 {
         unsafe { ::core::mem::transmute(((self.0 >> 21) & 0x7ff) as u16) } // [31:21]
@@ -2832,20 +2404,20 @@ impl Ti0r {
 
 }
 
-impl From<u32> for Ti0r {
+impl From<u32> for Tir {
     #[inline]
     fn from(other: u32) -> Self {
-         Ti0r(other)
+         Tir(other)
     }
 }
 
-impl ::core::fmt::Display for Ti0r {
+impl ::core::fmt::Display for Tir {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
     }
 }
 
-impl ::core::fmt::Debug for Ti0r {
+impl ::core::fmt::Debug for Tir {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
         try!(write!(f, "[0x{:08x}", self.0));
         if self.stid() != 0 { try!(write!(f, " stid=0x{:x}", self.stid()))}
@@ -2860,8 +2432,8 @@ impl ::core::fmt::Debug for Ti0r {
 
 #[doc="mailbox data length control and time stamp register"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
-pub struct Tdt0r(pub u32);
-impl Tdt0r {
+pub struct Tdtr(pub u32);
+impl Tdtr {
     #[doc="TIME"]
     #[inline] pub fn time(&self) -> bits::U16 {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xffff) as u16) } // [31:16]
@@ -2921,20 +2493,20 @@ impl Tdt0r {
 
 }
 
-impl From<u32> for Tdt0r {
+impl From<u32> for Tdtr {
     #[inline]
     fn from(other: u32) -> Self {
-         Tdt0r(other)
+         Tdtr(other)
     }
 }
 
-impl ::core::fmt::Display for Tdt0r {
+impl ::core::fmt::Display for Tdtr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
     }
 }
 
-impl ::core::fmt::Debug for Tdt0r {
+impl ::core::fmt::Debug for Tdtr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
         try!(write!(f, "[0x{:08x}", self.0));
         if self.time() != 0 { try!(write!(f, " time=0x{:x}", self.time()))}
@@ -2947,8 +2519,8 @@ impl ::core::fmt::Debug for Tdt0r {
 
 #[doc="mailbox data low register"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
-pub struct Tdl0r(pub u32);
-impl Tdl0r {
+pub struct Tdlr(pub u32);
+impl Tdlr {
     #[doc="DATA3"]
     #[inline] pub fn data3(&self) -> bits::U8 {
         unsafe { ::core::mem::transmute(((self.0 >> 24) & 0xff) as u8) } // [31:24]
@@ -3027,20 +2599,20 @@ impl Tdl0r {
 
 }
 
-impl From<u32> for Tdl0r {
+impl From<u32> for Tdlr {
     #[inline]
     fn from(other: u32) -> Self {
-         Tdl0r(other)
+         Tdlr(other)
     }
 }
 
-impl ::core::fmt::Display for Tdl0r {
+impl ::core::fmt::Display for Tdlr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
     }
 }
 
-impl ::core::fmt::Debug for Tdl0r {
+impl ::core::fmt::Debug for Tdlr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
         try!(write!(f, "[0x{:08x}", self.0));
         if self.data3() != 0 { try!(write!(f, " data3=0x{:x}", self.data3()))}
@@ -3054,8 +2626,8 @@ impl ::core::fmt::Debug for Tdl0r {
 
 #[doc="mailbox data high register"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
-pub struct Tdh0r(pub u32);
-impl Tdh0r {
+pub struct Tdhr(pub u32);
+impl Tdhr {
     #[doc="DATA7"]
     #[inline] pub fn data7(&self) -> bits::U8 {
         unsafe { ::core::mem::transmute(((self.0 >> 24) & 0xff) as u8) } // [31:24]
@@ -3134,876 +2706,20 @@ impl Tdh0r {
 
 }
 
-impl From<u32> for Tdh0r {
+impl From<u32> for Tdhr {
     #[inline]
     fn from(other: u32) -> Self {
-         Tdh0r(other)
+         Tdhr(other)
     }
 }
 
-impl ::core::fmt::Display for Tdh0r {
+impl ::core::fmt::Display for Tdhr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
     }
 }
 
-impl ::core::fmt::Debug for Tdh0r {
-    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-        try!(write!(f, "[0x{:08x}", self.0));
-        if self.data7() != 0 { try!(write!(f, " data7=0x{:x}", self.data7()))}
-        if self.data6() != 0 { try!(write!(f, " data6=0x{:x}", self.data6()))}
-        if self.data5() != 0 { try!(write!(f, " data5=0x{:x}", self.data5()))}
-        if self.data4() != 0 { try!(write!(f, " data4=0x{:x}", self.data4()))}
-        try!(write!(f, "]"));
-        Ok(())
-    }
-}
-
-#[doc="mailbox identifier register"]
-#[derive(Default, Clone, Copy, PartialEq, Eq)]
-pub struct Ti1r(pub u32);
-impl Ti1r {
-    #[doc="STID"]
-    #[inline] pub fn stid(&self) -> bits::U11 {
-        unsafe { ::core::mem::transmute(((self.0 >> 21) & 0x7ff) as u16) } // [31:21]
-    }
-
-    #[doc="Returns true if STID != 0"]
-    #[inline] pub fn test_stid(&self) -> bool {
-        self.stid() != 0
-    }
-
-    #[doc="Sets the STID field."]
-    #[inline] pub fn set_stid<V: Into<bits::U11>>(mut self, value: V) -> Self {
-        let value: bits::U11 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x7ff << 21);
-        self.0 |= value << 21;
-        self
-    }
-
-    #[doc="EXID"]
-    #[inline] pub fn exid(&self) -> bits::U18 {
-        unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x3ffff) as u32) } // [20:3]
-    }
-
-    #[doc="Returns true if EXID != 0"]
-    #[inline] pub fn test_exid(&self) -> bool {
-        self.exid() != 0
-    }
-
-    #[doc="Sets the EXID field."]
-    #[inline] pub fn set_exid<V: Into<bits::U18>>(mut self, value: V) -> Self {
-        let value: bits::U18 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x3ffff << 3);
-        self.0 |= value << 3;
-        self
-    }
-
-    #[doc="IDE"]
-    #[inline] pub fn ide(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
-    }
-
-    #[doc="Returns true if IDE != 0"]
-    #[inline] pub fn test_ide(&self) -> bool {
-        self.ide() != 0
-    }
-
-    #[doc="Sets the IDE field."]
-    #[inline] pub fn set_ide<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 2);
-        self.0 |= value << 2;
-        self
-    }
-
-    #[doc="RTR"]
-    #[inline] pub fn rtr(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
-    }
-
-    #[doc="Returns true if RTR != 0"]
-    #[inline] pub fn test_rtr(&self) -> bool {
-        self.rtr() != 0
-    }
-
-    #[doc="Sets the RTR field."]
-    #[inline] pub fn set_rtr<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 1);
-        self.0 |= value << 1;
-        self
-    }
-
-    #[doc="TXRQ"]
-    #[inline] pub fn txrq(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
-    }
-
-    #[doc="Returns true if TXRQ != 0"]
-    #[inline] pub fn test_txrq(&self) -> bool {
-        self.txrq() != 0
-    }
-
-    #[doc="Sets the TXRQ field."]
-    #[inline] pub fn set_txrq<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 0);
-        self.0 |= value << 0;
-        self
-    }
-
-}
-
-impl From<u32> for Ti1r {
-    #[inline]
-    fn from(other: u32) -> Self {
-         Ti1r(other)
-    }
-}
-
-impl ::core::fmt::Display for Ti1r {
-    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-         self.0.fmt(f)
-    }
-}
-
-impl ::core::fmt::Debug for Ti1r {
-    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-        try!(write!(f, "[0x{:08x}", self.0));
-        if self.stid() != 0 { try!(write!(f, " stid=0x{:x}", self.stid()))}
-        if self.exid() != 0 { try!(write!(f, " exid=0x{:x}", self.exid()))}
-        if self.ide() != 0 { try!(write!(f, " ide"))}
-        if self.rtr() != 0 { try!(write!(f, " rtr"))}
-        if self.txrq() != 0 { try!(write!(f, " txrq"))}
-        try!(write!(f, "]"));
-        Ok(())
-    }
-}
-
-#[doc="mailbox data length control and time stamp register"]
-#[derive(Default, Clone, Copy, PartialEq, Eq)]
-pub struct Tdt1r(pub u32);
-impl Tdt1r {
-    #[doc="TIME"]
-    #[inline] pub fn time(&self) -> bits::U16 {
-        unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xffff) as u16) } // [31:16]
-    }
-
-    #[doc="Returns true if TIME != 0"]
-    #[inline] pub fn test_time(&self) -> bool {
-        self.time() != 0
-    }
-
-    #[doc="Sets the TIME field."]
-    #[inline] pub fn set_time<V: Into<bits::U16>>(mut self, value: V) -> Self {
-        let value: bits::U16 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0xffff << 16);
-        self.0 |= value << 16;
-        self
-    }
-
-    #[doc="TGT"]
-    #[inline] pub fn tgt(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
-    }
-
-    #[doc="Returns true if TGT != 0"]
-    #[inline] pub fn test_tgt(&self) -> bool {
-        self.tgt() != 0
-    }
-
-    #[doc="Sets the TGT field."]
-    #[inline] pub fn set_tgt<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 8);
-        self.0 |= value << 8;
-        self
-    }
-
-    #[doc="DLC"]
-    #[inline] pub fn dlc(&self) -> bits::U4 {
-        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xf) as u8) } // [3:0]
-    }
-
-    #[doc="Returns true if DLC != 0"]
-    #[inline] pub fn test_dlc(&self) -> bool {
-        self.dlc() != 0
-    }
-
-    #[doc="Sets the DLC field."]
-    #[inline] pub fn set_dlc<V: Into<bits::U4>>(mut self, value: V) -> Self {
-        let value: bits::U4 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0xf << 0);
-        self.0 |= value << 0;
-        self
-    }
-
-}
-
-impl From<u32> for Tdt1r {
-    #[inline]
-    fn from(other: u32) -> Self {
-         Tdt1r(other)
-    }
-}
-
-impl ::core::fmt::Display for Tdt1r {
-    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-         self.0.fmt(f)
-    }
-}
-
-impl ::core::fmt::Debug for Tdt1r {
-    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-        try!(write!(f, "[0x{:08x}", self.0));
-        if self.time() != 0 { try!(write!(f, " time=0x{:x}", self.time()))}
-        if self.tgt() != 0 { try!(write!(f, " tgt"))}
-        if self.dlc() != 0 { try!(write!(f, " dlc=0x{:x}", self.dlc()))}
-        try!(write!(f, "]"));
-        Ok(())
-    }
-}
-
-#[doc="mailbox data low register"]
-#[derive(Default, Clone, Copy, PartialEq, Eq)]
-pub struct Tdl1r(pub u32);
-impl Tdl1r {
-    #[doc="DATA3"]
-    #[inline] pub fn data3(&self) -> bits::U8 {
-        unsafe { ::core::mem::transmute(((self.0 >> 24) & 0xff) as u8) } // [31:24]
-    }
-
-    #[doc="Returns true if DATA3 != 0"]
-    #[inline] pub fn test_data3(&self) -> bool {
-        self.data3() != 0
-    }
-
-    #[doc="Sets the DATA3 field."]
-    #[inline] pub fn set_data3<V: Into<bits::U8>>(mut self, value: V) -> Self {
-        let value: bits::U8 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0xff << 24);
-        self.0 |= value << 24;
-        self
-    }
-
-    #[doc="DATA2"]
-    #[inline] pub fn data2(&self) -> bits::U8 {
-        unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xff) as u8) } // [23:16]
-    }
-
-    #[doc="Returns true if DATA2 != 0"]
-    #[inline] pub fn test_data2(&self) -> bool {
-        self.data2() != 0
-    }
-
-    #[doc="Sets the DATA2 field."]
-    #[inline] pub fn set_data2<V: Into<bits::U8>>(mut self, value: V) -> Self {
-        let value: bits::U8 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0xff << 16);
-        self.0 |= value << 16;
-        self
-    }
-
-    #[doc="DATA1"]
-    #[inline] pub fn data1(&self) -> bits::U8 {
-        unsafe { ::core::mem::transmute(((self.0 >> 8) & 0xff) as u8) } // [15:8]
-    }
-
-    #[doc="Returns true if DATA1 != 0"]
-    #[inline] pub fn test_data1(&self) -> bool {
-        self.data1() != 0
-    }
-
-    #[doc="Sets the DATA1 field."]
-    #[inline] pub fn set_data1<V: Into<bits::U8>>(mut self, value: V) -> Self {
-        let value: bits::U8 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0xff << 8);
-        self.0 |= value << 8;
-        self
-    }
-
-    #[doc="DATA0"]
-    #[inline] pub fn data0(&self) -> bits::U8 {
-        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
-    }
-
-    #[doc="Returns true if DATA0 != 0"]
-    #[inline] pub fn test_data0(&self) -> bool {
-        self.data0() != 0
-    }
-
-    #[doc="Sets the DATA0 field."]
-    #[inline] pub fn set_data0<V: Into<bits::U8>>(mut self, value: V) -> Self {
-        let value: bits::U8 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0xff << 0);
-        self.0 |= value << 0;
-        self
-    }
-
-}
-
-impl From<u32> for Tdl1r {
-    #[inline]
-    fn from(other: u32) -> Self {
-         Tdl1r(other)
-    }
-}
-
-impl ::core::fmt::Display for Tdl1r {
-    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-         self.0.fmt(f)
-    }
-}
-
-impl ::core::fmt::Debug for Tdl1r {
-    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-        try!(write!(f, "[0x{:08x}", self.0));
-        if self.data3() != 0 { try!(write!(f, " data3=0x{:x}", self.data3()))}
-        if self.data2() != 0 { try!(write!(f, " data2=0x{:x}", self.data2()))}
-        if self.data1() != 0 { try!(write!(f, " data1=0x{:x}", self.data1()))}
-        if self.data0() != 0 { try!(write!(f, " data0=0x{:x}", self.data0()))}
-        try!(write!(f, "]"));
-        Ok(())
-    }
-}
-
-#[doc="mailbox data high register"]
-#[derive(Default, Clone, Copy, PartialEq, Eq)]
-pub struct Tdh1r(pub u32);
-impl Tdh1r {
-    #[doc="DATA7"]
-    #[inline] pub fn data7(&self) -> bits::U8 {
-        unsafe { ::core::mem::transmute(((self.0 >> 24) & 0xff) as u8) } // [31:24]
-    }
-
-    #[doc="Returns true if DATA7 != 0"]
-    #[inline] pub fn test_data7(&self) -> bool {
-        self.data7() != 0
-    }
-
-    #[doc="Sets the DATA7 field."]
-    #[inline] pub fn set_data7<V: Into<bits::U8>>(mut self, value: V) -> Self {
-        let value: bits::U8 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0xff << 24);
-        self.0 |= value << 24;
-        self
-    }
-
-    #[doc="DATA6"]
-    #[inline] pub fn data6(&self) -> bits::U8 {
-        unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xff) as u8) } // [23:16]
-    }
-
-    #[doc="Returns true if DATA6 != 0"]
-    #[inline] pub fn test_data6(&self) -> bool {
-        self.data6() != 0
-    }
-
-    #[doc="Sets the DATA6 field."]
-    #[inline] pub fn set_data6<V: Into<bits::U8>>(mut self, value: V) -> Self {
-        let value: bits::U8 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0xff << 16);
-        self.0 |= value << 16;
-        self
-    }
-
-    #[doc="DATA5"]
-    #[inline] pub fn data5(&self) -> bits::U8 {
-        unsafe { ::core::mem::transmute(((self.0 >> 8) & 0xff) as u8) } // [15:8]
-    }
-
-    #[doc="Returns true if DATA5 != 0"]
-    #[inline] pub fn test_data5(&self) -> bool {
-        self.data5() != 0
-    }
-
-    #[doc="Sets the DATA5 field."]
-    #[inline] pub fn set_data5<V: Into<bits::U8>>(mut self, value: V) -> Self {
-        let value: bits::U8 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0xff << 8);
-        self.0 |= value << 8;
-        self
-    }
-
-    #[doc="DATA4"]
-    #[inline] pub fn data4(&self) -> bits::U8 {
-        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
-    }
-
-    #[doc="Returns true if DATA4 != 0"]
-    #[inline] pub fn test_data4(&self) -> bool {
-        self.data4() != 0
-    }
-
-    #[doc="Sets the DATA4 field."]
-    #[inline] pub fn set_data4<V: Into<bits::U8>>(mut self, value: V) -> Self {
-        let value: bits::U8 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0xff << 0);
-        self.0 |= value << 0;
-        self
-    }
-
-}
-
-impl From<u32> for Tdh1r {
-    #[inline]
-    fn from(other: u32) -> Self {
-         Tdh1r(other)
-    }
-}
-
-impl ::core::fmt::Display for Tdh1r {
-    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-         self.0.fmt(f)
-    }
-}
-
-impl ::core::fmt::Debug for Tdh1r {
-    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-        try!(write!(f, "[0x{:08x}", self.0));
-        if self.data7() != 0 { try!(write!(f, " data7=0x{:x}", self.data7()))}
-        if self.data6() != 0 { try!(write!(f, " data6=0x{:x}", self.data6()))}
-        if self.data5() != 0 { try!(write!(f, " data5=0x{:x}", self.data5()))}
-        if self.data4() != 0 { try!(write!(f, " data4=0x{:x}", self.data4()))}
-        try!(write!(f, "]"));
-        Ok(())
-    }
-}
-
-#[doc="mailbox identifier register"]
-#[derive(Default, Clone, Copy, PartialEq, Eq)]
-pub struct Ti2r(pub u32);
-impl Ti2r {
-    #[doc="STID"]
-    #[inline] pub fn stid(&self) -> bits::U11 {
-        unsafe { ::core::mem::transmute(((self.0 >> 21) & 0x7ff) as u16) } // [31:21]
-    }
-
-    #[doc="Returns true if STID != 0"]
-    #[inline] pub fn test_stid(&self) -> bool {
-        self.stid() != 0
-    }
-
-    #[doc="Sets the STID field."]
-    #[inline] pub fn set_stid<V: Into<bits::U11>>(mut self, value: V) -> Self {
-        let value: bits::U11 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x7ff << 21);
-        self.0 |= value << 21;
-        self
-    }
-
-    #[doc="EXID"]
-    #[inline] pub fn exid(&self) -> bits::U18 {
-        unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x3ffff) as u32) } // [20:3]
-    }
-
-    #[doc="Returns true if EXID != 0"]
-    #[inline] pub fn test_exid(&self) -> bool {
-        self.exid() != 0
-    }
-
-    #[doc="Sets the EXID field."]
-    #[inline] pub fn set_exid<V: Into<bits::U18>>(mut self, value: V) -> Self {
-        let value: bits::U18 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x3ffff << 3);
-        self.0 |= value << 3;
-        self
-    }
-
-    #[doc="IDE"]
-    #[inline] pub fn ide(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
-    }
-
-    #[doc="Returns true if IDE != 0"]
-    #[inline] pub fn test_ide(&self) -> bool {
-        self.ide() != 0
-    }
-
-    #[doc="Sets the IDE field."]
-    #[inline] pub fn set_ide<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 2);
-        self.0 |= value << 2;
-        self
-    }
-
-    #[doc="RTR"]
-    #[inline] pub fn rtr(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
-    }
-
-    #[doc="Returns true if RTR != 0"]
-    #[inline] pub fn test_rtr(&self) -> bool {
-        self.rtr() != 0
-    }
-
-    #[doc="Sets the RTR field."]
-    #[inline] pub fn set_rtr<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 1);
-        self.0 |= value << 1;
-        self
-    }
-
-    #[doc="TXRQ"]
-    #[inline] pub fn txrq(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
-    }
-
-    #[doc="Returns true if TXRQ != 0"]
-    #[inline] pub fn test_txrq(&self) -> bool {
-        self.txrq() != 0
-    }
-
-    #[doc="Sets the TXRQ field."]
-    #[inline] pub fn set_txrq<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 0);
-        self.0 |= value << 0;
-        self
-    }
-
-}
-
-impl From<u32> for Ti2r {
-    #[inline]
-    fn from(other: u32) -> Self {
-         Ti2r(other)
-    }
-}
-
-impl ::core::fmt::Display for Ti2r {
-    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-         self.0.fmt(f)
-    }
-}
-
-impl ::core::fmt::Debug for Ti2r {
-    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-        try!(write!(f, "[0x{:08x}", self.0));
-        if self.stid() != 0 { try!(write!(f, " stid=0x{:x}", self.stid()))}
-        if self.exid() != 0 { try!(write!(f, " exid=0x{:x}", self.exid()))}
-        if self.ide() != 0 { try!(write!(f, " ide"))}
-        if self.rtr() != 0 { try!(write!(f, " rtr"))}
-        if self.txrq() != 0 { try!(write!(f, " txrq"))}
-        try!(write!(f, "]"));
-        Ok(())
-    }
-}
-
-#[doc="mailbox data length control and time stamp register"]
-#[derive(Default, Clone, Copy, PartialEq, Eq)]
-pub struct Tdt2r(pub u32);
-impl Tdt2r {
-    #[doc="TIME"]
-    #[inline] pub fn time(&self) -> bits::U16 {
-        unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xffff) as u16) } // [31:16]
-    }
-
-    #[doc="Returns true if TIME != 0"]
-    #[inline] pub fn test_time(&self) -> bool {
-        self.time() != 0
-    }
-
-    #[doc="Sets the TIME field."]
-    #[inline] pub fn set_time<V: Into<bits::U16>>(mut self, value: V) -> Self {
-        let value: bits::U16 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0xffff << 16);
-        self.0 |= value << 16;
-        self
-    }
-
-    #[doc="TGT"]
-    #[inline] pub fn tgt(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
-    }
-
-    #[doc="Returns true if TGT != 0"]
-    #[inline] pub fn test_tgt(&self) -> bool {
-        self.tgt() != 0
-    }
-
-    #[doc="Sets the TGT field."]
-    #[inline] pub fn set_tgt<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 8);
-        self.0 |= value << 8;
-        self
-    }
-
-    #[doc="DLC"]
-    #[inline] pub fn dlc(&self) -> bits::U4 {
-        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xf) as u8) } // [3:0]
-    }
-
-    #[doc="Returns true if DLC != 0"]
-    #[inline] pub fn test_dlc(&self) -> bool {
-        self.dlc() != 0
-    }
-
-    #[doc="Sets the DLC field."]
-    #[inline] pub fn set_dlc<V: Into<bits::U4>>(mut self, value: V) -> Self {
-        let value: bits::U4 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0xf << 0);
-        self.0 |= value << 0;
-        self
-    }
-
-}
-
-impl From<u32> for Tdt2r {
-    #[inline]
-    fn from(other: u32) -> Self {
-         Tdt2r(other)
-    }
-}
-
-impl ::core::fmt::Display for Tdt2r {
-    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-         self.0.fmt(f)
-    }
-}
-
-impl ::core::fmt::Debug for Tdt2r {
-    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-        try!(write!(f, "[0x{:08x}", self.0));
-        if self.time() != 0 { try!(write!(f, " time=0x{:x}", self.time()))}
-        if self.tgt() != 0 { try!(write!(f, " tgt"))}
-        if self.dlc() != 0 { try!(write!(f, " dlc=0x{:x}", self.dlc()))}
-        try!(write!(f, "]"));
-        Ok(())
-    }
-}
-
-#[doc="mailbox data low register"]
-#[derive(Default, Clone, Copy, PartialEq, Eq)]
-pub struct Tdl2r(pub u32);
-impl Tdl2r {
-    #[doc="DATA3"]
-    #[inline] pub fn data3(&self) -> bits::U8 {
-        unsafe { ::core::mem::transmute(((self.0 >> 24) & 0xff) as u8) } // [31:24]
-    }
-
-    #[doc="Returns true if DATA3 != 0"]
-    #[inline] pub fn test_data3(&self) -> bool {
-        self.data3() != 0
-    }
-
-    #[doc="Sets the DATA3 field."]
-    #[inline] pub fn set_data3<V: Into<bits::U8>>(mut self, value: V) -> Self {
-        let value: bits::U8 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0xff << 24);
-        self.0 |= value << 24;
-        self
-    }
-
-    #[doc="DATA2"]
-    #[inline] pub fn data2(&self) -> bits::U8 {
-        unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xff) as u8) } // [23:16]
-    }
-
-    #[doc="Returns true if DATA2 != 0"]
-    #[inline] pub fn test_data2(&self) -> bool {
-        self.data2() != 0
-    }
-
-    #[doc="Sets the DATA2 field."]
-    #[inline] pub fn set_data2<V: Into<bits::U8>>(mut self, value: V) -> Self {
-        let value: bits::U8 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0xff << 16);
-        self.0 |= value << 16;
-        self
-    }
-
-    #[doc="DATA1"]
-    #[inline] pub fn data1(&self) -> bits::U8 {
-        unsafe { ::core::mem::transmute(((self.0 >> 8) & 0xff) as u8) } // [15:8]
-    }
-
-    #[doc="Returns true if DATA1 != 0"]
-    #[inline] pub fn test_data1(&self) -> bool {
-        self.data1() != 0
-    }
-
-    #[doc="Sets the DATA1 field."]
-    #[inline] pub fn set_data1<V: Into<bits::U8>>(mut self, value: V) -> Self {
-        let value: bits::U8 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0xff << 8);
-        self.0 |= value << 8;
-        self
-    }
-
-    #[doc="DATA0"]
-    #[inline] pub fn data0(&self) -> bits::U8 {
-        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
-    }
-
-    #[doc="Returns true if DATA0 != 0"]
-    #[inline] pub fn test_data0(&self) -> bool {
-        self.data0() != 0
-    }
-
-    #[doc="Sets the DATA0 field."]
-    #[inline] pub fn set_data0<V: Into<bits::U8>>(mut self, value: V) -> Self {
-        let value: bits::U8 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0xff << 0);
-        self.0 |= value << 0;
-        self
-    }
-
-}
-
-impl From<u32> for Tdl2r {
-    #[inline]
-    fn from(other: u32) -> Self {
-         Tdl2r(other)
-    }
-}
-
-impl ::core::fmt::Display for Tdl2r {
-    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-         self.0.fmt(f)
-    }
-}
-
-impl ::core::fmt::Debug for Tdl2r {
-    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-        try!(write!(f, "[0x{:08x}", self.0));
-        if self.data3() != 0 { try!(write!(f, " data3=0x{:x}", self.data3()))}
-        if self.data2() != 0 { try!(write!(f, " data2=0x{:x}", self.data2()))}
-        if self.data1() != 0 { try!(write!(f, " data1=0x{:x}", self.data1()))}
-        if self.data0() != 0 { try!(write!(f, " data0=0x{:x}", self.data0()))}
-        try!(write!(f, "]"));
-        Ok(())
-    }
-}
-
-#[doc="mailbox data high register"]
-#[derive(Default, Clone, Copy, PartialEq, Eq)]
-pub struct Tdh2r(pub u32);
-impl Tdh2r {
-    #[doc="DATA7"]
-    #[inline] pub fn data7(&self) -> bits::U8 {
-        unsafe { ::core::mem::transmute(((self.0 >> 24) & 0xff) as u8) } // [31:24]
-    }
-
-    #[doc="Returns true if DATA7 != 0"]
-    #[inline] pub fn test_data7(&self) -> bool {
-        self.data7() != 0
-    }
-
-    #[doc="Sets the DATA7 field."]
-    #[inline] pub fn set_data7<V: Into<bits::U8>>(mut self, value: V) -> Self {
-        let value: bits::U8 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0xff << 24);
-        self.0 |= value << 24;
-        self
-    }
-
-    #[doc="DATA6"]
-    #[inline] pub fn data6(&self) -> bits::U8 {
-        unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xff) as u8) } // [23:16]
-    }
-
-    #[doc="Returns true if DATA6 != 0"]
-    #[inline] pub fn test_data6(&self) -> bool {
-        self.data6() != 0
-    }
-
-    #[doc="Sets the DATA6 field."]
-    #[inline] pub fn set_data6<V: Into<bits::U8>>(mut self, value: V) -> Self {
-        let value: bits::U8 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0xff << 16);
-        self.0 |= value << 16;
-        self
-    }
-
-    #[doc="DATA5"]
-    #[inline] pub fn data5(&self) -> bits::U8 {
-        unsafe { ::core::mem::transmute(((self.0 >> 8) & 0xff) as u8) } // [15:8]
-    }
-
-    #[doc="Returns true if DATA5 != 0"]
-    #[inline] pub fn test_data5(&self) -> bool {
-        self.data5() != 0
-    }
-
-    #[doc="Sets the DATA5 field."]
-    #[inline] pub fn set_data5<V: Into<bits::U8>>(mut self, value: V) -> Self {
-        let value: bits::U8 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0xff << 8);
-        self.0 |= value << 8;
-        self
-    }
-
-    #[doc="DATA4"]
-    #[inline] pub fn data4(&self) -> bits::U8 {
-        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
-    }
-
-    #[doc="Returns true if DATA4 != 0"]
-    #[inline] pub fn test_data4(&self) -> bool {
-        self.data4() != 0
-    }
-
-    #[doc="Sets the DATA4 field."]
-    #[inline] pub fn set_data4<V: Into<bits::U8>>(mut self, value: V) -> Self {
-        let value: bits::U8 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0xff << 0);
-        self.0 |= value << 0;
-        self
-    }
-
-}
-
-impl From<u32> for Tdh2r {
-    #[inline]
-    fn from(other: u32) -> Self {
-         Tdh2r(other)
-    }
-}
-
-impl ::core::fmt::Display for Tdh2r {
-    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-         self.0.fmt(f)
-    }
-}
-
-impl ::core::fmt::Debug for Tdh2r {
+impl ::core::fmt::Debug for Tdhr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
         try!(write!(f, "[0x{:08x}", self.0));
         if self.data7() != 0 { try!(write!(f, " data7=0x{:x}", self.data7()))}
@@ -4017,8 +2733,8 @@ impl ::core::fmt::Debug for Tdh2r {
 
 #[doc="receive FIFO mailbox identifier register"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
-pub struct Ri0r(pub u32);
-impl Ri0r {
+pub struct Rir(pub u32);
+impl Rir {
     #[doc="STID"]
     #[inline] pub fn stid(&self) -> bits::U11 {
         unsafe { ::core::mem::transmute(((self.0 >> 21) & 0x7ff) as u16) } // [31:21]
@@ -4097,20 +2813,20 @@ impl Ri0r {
 
 }
 
-impl From<u32> for Ri0r {
+impl From<u32> for Rir {
     #[inline]
     fn from(other: u32) -> Self {
-         Ri0r(other)
+         Rir(other)
     }
 }
 
-impl ::core::fmt::Display for Ri0r {
+impl ::core::fmt::Display for Rir {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
     }
 }
 
-impl ::core::fmt::Debug for Ri0r {
+impl ::core::fmt::Debug for Rir {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
         try!(write!(f, "[0x{:08x}", self.0));
         if self.stid() != 0 { try!(write!(f, " stid=0x{:x}", self.stid()))}
@@ -4124,8 +2840,8 @@ impl ::core::fmt::Debug for Ri0r {
 
 #[doc="mailbox data high register"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
-pub struct Rdt0r(pub u32);
-impl Rdt0r {
+pub struct Rdtr(pub u32);
+impl Rdtr {
     #[doc="TIME"]
     #[inline] pub fn time(&self) -> bits::U16 {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xffff) as u16) } // [31:16]
@@ -4185,20 +2901,20 @@ impl Rdt0r {
 
 }
 
-impl From<u32> for Rdt0r {
+impl From<u32> for Rdtr {
     #[inline]
     fn from(other: u32) -> Self {
-         Rdt0r(other)
+         Rdtr(other)
     }
 }
 
-impl ::core::fmt::Display for Rdt0r {
+impl ::core::fmt::Display for Rdtr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
     }
 }
 
-impl ::core::fmt::Debug for Rdt0r {
+impl ::core::fmt::Debug for Rdtr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
         try!(write!(f, "[0x{:08x}", self.0));
         if self.time() != 0 { try!(write!(f, " time=0x{:x}", self.time()))}
@@ -4211,8 +2927,8 @@ impl ::core::fmt::Debug for Rdt0r {
 
 #[doc="mailbox data high register"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
-pub struct Rdl0r(pub u32);
-impl Rdl0r {
+pub struct Rdlr(pub u32);
+impl Rdlr {
     #[doc="DATA3"]
     #[inline] pub fn data3(&self) -> bits::U8 {
         unsafe { ::core::mem::transmute(((self.0 >> 24) & 0xff) as u8) } // [31:24]
@@ -4291,20 +3007,20 @@ impl Rdl0r {
 
 }
 
-impl From<u32> for Rdl0r {
+impl From<u32> for Rdlr {
     #[inline]
     fn from(other: u32) -> Self {
-         Rdl0r(other)
+         Rdlr(other)
     }
 }
 
-impl ::core::fmt::Display for Rdl0r {
+impl ::core::fmt::Display for Rdlr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
     }
 }
 
-impl ::core::fmt::Debug for Rdl0r {
+impl ::core::fmt::Debug for Rdlr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
         try!(write!(f, "[0x{:08x}", self.0));
         if self.data3() != 0 { try!(write!(f, " data3=0x{:x}", self.data3()))}
@@ -4318,8 +3034,8 @@ impl ::core::fmt::Debug for Rdl0r {
 
 #[doc="receive FIFO mailbox data high register"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
-pub struct Rdh0r(pub u32);
-impl Rdh0r {
+pub struct Rdhr(pub u32);
+impl Rdhr {
     #[doc="DATA7"]
     #[inline] pub fn data7(&self) -> bits::U8 {
         unsafe { ::core::mem::transmute(((self.0 >> 24) & 0xff) as u8) } // [31:24]
@@ -4398,428 +3114,20 @@ impl Rdh0r {
 
 }
 
-impl From<u32> for Rdh0r {
+impl From<u32> for Rdhr {
     #[inline]
     fn from(other: u32) -> Self {
-         Rdh0r(other)
+         Rdhr(other)
     }
 }
 
-impl ::core::fmt::Display for Rdh0r {
+impl ::core::fmt::Display for Rdhr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
     }
 }
 
-impl ::core::fmt::Debug for Rdh0r {
-    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-        try!(write!(f, "[0x{:08x}", self.0));
-        if self.data7() != 0 { try!(write!(f, " data7=0x{:x}", self.data7()))}
-        if self.data6() != 0 { try!(write!(f, " data6=0x{:x}", self.data6()))}
-        if self.data5() != 0 { try!(write!(f, " data5=0x{:x}", self.data5()))}
-        if self.data4() != 0 { try!(write!(f, " data4=0x{:x}", self.data4()))}
-        try!(write!(f, "]"));
-        Ok(())
-    }
-}
-
-#[doc="mailbox data high register"]
-#[derive(Default, Clone, Copy, PartialEq, Eq)]
-pub struct Ri1r(pub u32);
-impl Ri1r {
-    #[doc="STID"]
-    #[inline] pub fn stid(&self) -> bits::U11 {
-        unsafe { ::core::mem::transmute(((self.0 >> 21) & 0x7ff) as u16) } // [31:21]
-    }
-
-    #[doc="Returns true if STID != 0"]
-    #[inline] pub fn test_stid(&self) -> bool {
-        self.stid() != 0
-    }
-
-    #[doc="Sets the STID field."]
-    #[inline] pub fn set_stid<V: Into<bits::U11>>(mut self, value: V) -> Self {
-        let value: bits::U11 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x7ff << 21);
-        self.0 |= value << 21;
-        self
-    }
-
-    #[doc="EXID"]
-    #[inline] pub fn exid(&self) -> bits::U18 {
-        unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x3ffff) as u32) } // [20:3]
-    }
-
-    #[doc="Returns true if EXID != 0"]
-    #[inline] pub fn test_exid(&self) -> bool {
-        self.exid() != 0
-    }
-
-    #[doc="Sets the EXID field."]
-    #[inline] pub fn set_exid<V: Into<bits::U18>>(mut self, value: V) -> Self {
-        let value: bits::U18 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x3ffff << 3);
-        self.0 |= value << 3;
-        self
-    }
-
-    #[doc="IDE"]
-    #[inline] pub fn ide(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
-    }
-
-    #[doc="Returns true if IDE != 0"]
-    #[inline] pub fn test_ide(&self) -> bool {
-        self.ide() != 0
-    }
-
-    #[doc="Sets the IDE field."]
-    #[inline] pub fn set_ide<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 2);
-        self.0 |= value << 2;
-        self
-    }
-
-    #[doc="RTR"]
-    #[inline] pub fn rtr(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
-    }
-
-    #[doc="Returns true if RTR != 0"]
-    #[inline] pub fn test_rtr(&self) -> bool {
-        self.rtr() != 0
-    }
-
-    #[doc="Sets the RTR field."]
-    #[inline] pub fn set_rtr<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 1);
-        self.0 |= value << 1;
-        self
-    }
-
-}
-
-impl From<u32> for Ri1r {
-    #[inline]
-    fn from(other: u32) -> Self {
-         Ri1r(other)
-    }
-}
-
-impl ::core::fmt::Display for Ri1r {
-    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-         self.0.fmt(f)
-    }
-}
-
-impl ::core::fmt::Debug for Ri1r {
-    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-        try!(write!(f, "[0x{:08x}", self.0));
-        if self.stid() != 0 { try!(write!(f, " stid=0x{:x}", self.stid()))}
-        if self.exid() != 0 { try!(write!(f, " exid=0x{:x}", self.exid()))}
-        if self.ide() != 0 { try!(write!(f, " ide"))}
-        if self.rtr() != 0 { try!(write!(f, " rtr"))}
-        try!(write!(f, "]"));
-        Ok(())
-    }
-}
-
-#[doc="mailbox data high register"]
-#[derive(Default, Clone, Copy, PartialEq, Eq)]
-pub struct Rdt1r(pub u32);
-impl Rdt1r {
-    #[doc="TIME"]
-    #[inline] pub fn time(&self) -> bits::U16 {
-        unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xffff) as u16) } // [31:16]
-    }
-
-    #[doc="Returns true if TIME != 0"]
-    #[inline] pub fn test_time(&self) -> bool {
-        self.time() != 0
-    }
-
-    #[doc="Sets the TIME field."]
-    #[inline] pub fn set_time<V: Into<bits::U16>>(mut self, value: V) -> Self {
-        let value: bits::U16 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0xffff << 16);
-        self.0 |= value << 16;
-        self
-    }
-
-    #[doc="FMI"]
-    #[inline] pub fn fmi(&self) -> bits::U8 {
-        unsafe { ::core::mem::transmute(((self.0 >> 8) & 0xff) as u8) } // [15:8]
-    }
-
-    #[doc="Returns true if FMI != 0"]
-    #[inline] pub fn test_fmi(&self) -> bool {
-        self.fmi() != 0
-    }
-
-    #[doc="Sets the FMI field."]
-    #[inline] pub fn set_fmi<V: Into<bits::U8>>(mut self, value: V) -> Self {
-        let value: bits::U8 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0xff << 8);
-        self.0 |= value << 8;
-        self
-    }
-
-    #[doc="DLC"]
-    #[inline] pub fn dlc(&self) -> bits::U4 {
-        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xf) as u8) } // [3:0]
-    }
-
-    #[doc="Returns true if DLC != 0"]
-    #[inline] pub fn test_dlc(&self) -> bool {
-        self.dlc() != 0
-    }
-
-    #[doc="Sets the DLC field."]
-    #[inline] pub fn set_dlc<V: Into<bits::U4>>(mut self, value: V) -> Self {
-        let value: bits::U4 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0xf << 0);
-        self.0 |= value << 0;
-        self
-    }
-
-}
-
-impl From<u32> for Rdt1r {
-    #[inline]
-    fn from(other: u32) -> Self {
-         Rdt1r(other)
-    }
-}
-
-impl ::core::fmt::Display for Rdt1r {
-    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-         self.0.fmt(f)
-    }
-}
-
-impl ::core::fmt::Debug for Rdt1r {
-    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-        try!(write!(f, "[0x{:08x}", self.0));
-        if self.time() != 0 { try!(write!(f, " time=0x{:x}", self.time()))}
-        if self.fmi() != 0 { try!(write!(f, " fmi=0x{:x}", self.fmi()))}
-        if self.dlc() != 0 { try!(write!(f, " dlc=0x{:x}", self.dlc()))}
-        try!(write!(f, "]"));
-        Ok(())
-    }
-}
-
-#[doc="mailbox data high register"]
-#[derive(Default, Clone, Copy, PartialEq, Eq)]
-pub struct Rdl1r(pub u32);
-impl Rdl1r {
-    #[doc="DATA3"]
-    #[inline] pub fn data3(&self) -> bits::U8 {
-        unsafe { ::core::mem::transmute(((self.0 >> 24) & 0xff) as u8) } // [31:24]
-    }
-
-    #[doc="Returns true if DATA3 != 0"]
-    #[inline] pub fn test_data3(&self) -> bool {
-        self.data3() != 0
-    }
-
-    #[doc="Sets the DATA3 field."]
-    #[inline] pub fn set_data3<V: Into<bits::U8>>(mut self, value: V) -> Self {
-        let value: bits::U8 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0xff << 24);
-        self.0 |= value << 24;
-        self
-    }
-
-    #[doc="DATA2"]
-    #[inline] pub fn data2(&self) -> bits::U8 {
-        unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xff) as u8) } // [23:16]
-    }
-
-    #[doc="Returns true if DATA2 != 0"]
-    #[inline] pub fn test_data2(&self) -> bool {
-        self.data2() != 0
-    }
-
-    #[doc="Sets the DATA2 field."]
-    #[inline] pub fn set_data2<V: Into<bits::U8>>(mut self, value: V) -> Self {
-        let value: bits::U8 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0xff << 16);
-        self.0 |= value << 16;
-        self
-    }
-
-    #[doc="DATA1"]
-    #[inline] pub fn data1(&self) -> bits::U8 {
-        unsafe { ::core::mem::transmute(((self.0 >> 8) & 0xff) as u8) } // [15:8]
-    }
-
-    #[doc="Returns true if DATA1 != 0"]
-    #[inline] pub fn test_data1(&self) -> bool {
-        self.data1() != 0
-    }
-
-    #[doc="Sets the DATA1 field."]
-    #[inline] pub fn set_data1<V: Into<bits::U8>>(mut self, value: V) -> Self {
-        let value: bits::U8 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0xff << 8);
-        self.0 |= value << 8;
-        self
-    }
-
-    #[doc="DATA0"]
-    #[inline] pub fn data0(&self) -> bits::U8 {
-        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
-    }
-
-    #[doc="Returns true if DATA0 != 0"]
-    #[inline] pub fn test_data0(&self) -> bool {
-        self.data0() != 0
-    }
-
-    #[doc="Sets the DATA0 field."]
-    #[inline] pub fn set_data0<V: Into<bits::U8>>(mut self, value: V) -> Self {
-        let value: bits::U8 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0xff << 0);
-        self.0 |= value << 0;
-        self
-    }
-
-}
-
-impl From<u32> for Rdl1r {
-    #[inline]
-    fn from(other: u32) -> Self {
-         Rdl1r(other)
-    }
-}
-
-impl ::core::fmt::Display for Rdl1r {
-    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-         self.0.fmt(f)
-    }
-}
-
-impl ::core::fmt::Debug for Rdl1r {
-    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-        try!(write!(f, "[0x{:08x}", self.0));
-        if self.data3() != 0 { try!(write!(f, " data3=0x{:x}", self.data3()))}
-        if self.data2() != 0 { try!(write!(f, " data2=0x{:x}", self.data2()))}
-        if self.data1() != 0 { try!(write!(f, " data1=0x{:x}", self.data1()))}
-        if self.data0() != 0 { try!(write!(f, " data0=0x{:x}", self.data0()))}
-        try!(write!(f, "]"));
-        Ok(())
-    }
-}
-
-#[doc="mailbox data high register"]
-#[derive(Default, Clone, Copy, PartialEq, Eq)]
-pub struct Rdh1r(pub u32);
-impl Rdh1r {
-    #[doc="DATA7"]
-    #[inline] pub fn data7(&self) -> bits::U8 {
-        unsafe { ::core::mem::transmute(((self.0 >> 24) & 0xff) as u8) } // [31:24]
-    }
-
-    #[doc="Returns true if DATA7 != 0"]
-    #[inline] pub fn test_data7(&self) -> bool {
-        self.data7() != 0
-    }
-
-    #[doc="Sets the DATA7 field."]
-    #[inline] pub fn set_data7<V: Into<bits::U8>>(mut self, value: V) -> Self {
-        let value: bits::U8 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0xff << 24);
-        self.0 |= value << 24;
-        self
-    }
-
-    #[doc="DATA6"]
-    #[inline] pub fn data6(&self) -> bits::U8 {
-        unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xff) as u8) } // [23:16]
-    }
-
-    #[doc="Returns true if DATA6 != 0"]
-    #[inline] pub fn test_data6(&self) -> bool {
-        self.data6() != 0
-    }
-
-    #[doc="Sets the DATA6 field."]
-    #[inline] pub fn set_data6<V: Into<bits::U8>>(mut self, value: V) -> Self {
-        let value: bits::U8 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0xff << 16);
-        self.0 |= value << 16;
-        self
-    }
-
-    #[doc="DATA5"]
-    #[inline] pub fn data5(&self) -> bits::U8 {
-        unsafe { ::core::mem::transmute(((self.0 >> 8) & 0xff) as u8) } // [15:8]
-    }
-
-    #[doc="Returns true if DATA5 != 0"]
-    #[inline] pub fn test_data5(&self) -> bool {
-        self.data5() != 0
-    }
-
-    #[doc="Sets the DATA5 field."]
-    #[inline] pub fn set_data5<V: Into<bits::U8>>(mut self, value: V) -> Self {
-        let value: bits::U8 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0xff << 8);
-        self.0 |= value << 8;
-        self
-    }
-
-    #[doc="DATA4"]
-    #[inline] pub fn data4(&self) -> bits::U8 {
-        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
-    }
-
-    #[doc="Returns true if DATA4 != 0"]
-    #[inline] pub fn test_data4(&self) -> bool {
-        self.data4() != 0
-    }
-
-    #[doc="Sets the DATA4 field."]
-    #[inline] pub fn set_data4<V: Into<bits::U8>>(mut self, value: V) -> Self {
-        let value: bits::U8 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0xff << 0);
-        self.0 |= value << 0;
-        self
-    }
-
-}
-
-impl From<u32> for Rdh1r {
-    #[inline]
-    fn from(other: u32) -> Self {
-         Rdh1r(other)
-    }
-}
-
-impl ::core::fmt::Display for Rdh1r {
-    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-         self.0.fmt(f)
-    }
-}
-
-impl ::core::fmt::Debug for Rdh1r {
+impl ::core::fmt::Debug for Rdhr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
         try!(write!(f, "[0x{:08x}", self.0));
         if self.data7() != 0 { try!(write!(f, " data7=0x{:x}", self.data7()))}
@@ -4903,534 +3211,25 @@ impl ::core::fmt::Debug for Fmr {
 pub struct Fm1r(pub u32);
 impl Fm1r {
     #[doc="Filter mode"]
-    #[inline] pub fn fbm0(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
+    #[inline] pub fn fbm<I: Into<bits::R27>>(&self, index: I) -> bits::U1 {
+        let index: usize = index.into().value() as usize;
+        let shift: usize = 0 + index;
+        unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Returns true if FBM0 != 0"]
-    #[inline] pub fn test_fbm0(&self) -> bool {
-        self.fbm0() != 0
+    #[doc="Returns true if FBM != 0"]
+    #[inline] pub fn test_fbm<I: Into<bits::R27>>(&self, index: I) -> bool{
+        self.fbm(index) != 0
     }
 
-    #[doc="Sets the FBM0 field."]
-    #[inline] pub fn set_fbm0<V: Into<bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the FBM field."]
+    #[inline] pub fn set_fbm<I: Into<bits::R27>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+        let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
-        self.0 &= !(0x1 << 0);
-        self.0 |= value << 0;
-        self
-    }
-
-    #[doc="Filter mode"]
-    #[inline] pub fn fbm1(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
-    }
-
-    #[doc="Returns true if FBM1 != 0"]
-    #[inline] pub fn test_fbm1(&self) -> bool {
-        self.fbm1() != 0
-    }
-
-    #[doc="Sets the FBM1 field."]
-    #[inline] pub fn set_fbm1<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 1);
-        self.0 |= value << 1;
-        self
-    }
-
-    #[doc="Filter mode"]
-    #[inline] pub fn fbm2(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
-    }
-
-    #[doc="Returns true if FBM2 != 0"]
-    #[inline] pub fn test_fbm2(&self) -> bool {
-        self.fbm2() != 0
-    }
-
-    #[doc="Sets the FBM2 field."]
-    #[inline] pub fn set_fbm2<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 2);
-        self.0 |= value << 2;
-        self
-    }
-
-    #[doc="Filter mode"]
-    #[inline] pub fn fbm3(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
-    }
-
-    #[doc="Returns true if FBM3 != 0"]
-    #[inline] pub fn test_fbm3(&self) -> bool {
-        self.fbm3() != 0
-    }
-
-    #[doc="Sets the FBM3 field."]
-    #[inline] pub fn set_fbm3<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 3);
-        self.0 |= value << 3;
-        self
-    }
-
-    #[doc="Filter mode"]
-    #[inline] pub fn fbm4(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
-    }
-
-    #[doc="Returns true if FBM4 != 0"]
-    #[inline] pub fn test_fbm4(&self) -> bool {
-        self.fbm4() != 0
-    }
-
-    #[doc="Sets the FBM4 field."]
-    #[inline] pub fn set_fbm4<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 4);
-        self.0 |= value << 4;
-        self
-    }
-
-    #[doc="Filter mode"]
-    #[inline] pub fn fbm5(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
-    }
-
-    #[doc="Returns true if FBM5 != 0"]
-    #[inline] pub fn test_fbm5(&self) -> bool {
-        self.fbm5() != 0
-    }
-
-    #[doc="Sets the FBM5 field."]
-    #[inline] pub fn set_fbm5<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 5);
-        self.0 |= value << 5;
-        self
-    }
-
-    #[doc="Filter mode"]
-    #[inline] pub fn fbm6(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
-    }
-
-    #[doc="Returns true if FBM6 != 0"]
-    #[inline] pub fn test_fbm6(&self) -> bool {
-        self.fbm6() != 0
-    }
-
-    #[doc="Sets the FBM6 field."]
-    #[inline] pub fn set_fbm6<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 6);
-        self.0 |= value << 6;
-        self
-    }
-
-    #[doc="Filter mode"]
-    #[inline] pub fn fbm7(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
-    }
-
-    #[doc="Returns true if FBM7 != 0"]
-    #[inline] pub fn test_fbm7(&self) -> bool {
-        self.fbm7() != 0
-    }
-
-    #[doc="Sets the FBM7 field."]
-    #[inline] pub fn set_fbm7<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 7);
-        self.0 |= value << 7;
-        self
-    }
-
-    #[doc="Filter mode"]
-    #[inline] pub fn fbm8(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
-    }
-
-    #[doc="Returns true if FBM8 != 0"]
-    #[inline] pub fn test_fbm8(&self) -> bool {
-        self.fbm8() != 0
-    }
-
-    #[doc="Sets the FBM8 field."]
-    #[inline] pub fn set_fbm8<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 8);
-        self.0 |= value << 8;
-        self
-    }
-
-    #[doc="Filter mode"]
-    #[inline] pub fn fbm9(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
-    }
-
-    #[doc="Returns true if FBM9 != 0"]
-    #[inline] pub fn test_fbm9(&self) -> bool {
-        self.fbm9() != 0
-    }
-
-    #[doc="Sets the FBM9 field."]
-    #[inline] pub fn set_fbm9<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 9);
-        self.0 |= value << 9;
-        self
-    }
-
-    #[doc="Filter mode"]
-    #[inline] pub fn fbm10(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x1) as u8) } // [10]
-    }
-
-    #[doc="Returns true if FBM10 != 0"]
-    #[inline] pub fn test_fbm10(&self) -> bool {
-        self.fbm10() != 0
-    }
-
-    #[doc="Sets the FBM10 field."]
-    #[inline] pub fn set_fbm10<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 10);
-        self.0 |= value << 10;
-        self
-    }
-
-    #[doc="Filter mode"]
-    #[inline] pub fn fbm11(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 11) & 0x1) as u8) } // [11]
-    }
-
-    #[doc="Returns true if FBM11 != 0"]
-    #[inline] pub fn test_fbm11(&self) -> bool {
-        self.fbm11() != 0
-    }
-
-    #[doc="Sets the FBM11 field."]
-    #[inline] pub fn set_fbm11<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 11);
-        self.0 |= value << 11;
-        self
-    }
-
-    #[doc="Filter mode"]
-    #[inline] pub fn fbm12(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 12) & 0x1) as u8) } // [12]
-    }
-
-    #[doc="Returns true if FBM12 != 0"]
-    #[inline] pub fn test_fbm12(&self) -> bool {
-        self.fbm12() != 0
-    }
-
-    #[doc="Sets the FBM12 field."]
-    #[inline] pub fn set_fbm12<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 12);
-        self.0 |= value << 12;
-        self
-    }
-
-    #[doc="Filter mode"]
-    #[inline] pub fn fbm13(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 13) & 0x1) as u8) } // [13]
-    }
-
-    #[doc="Returns true if FBM13 != 0"]
-    #[inline] pub fn test_fbm13(&self) -> bool {
-        self.fbm13() != 0
-    }
-
-    #[doc="Sets the FBM13 field."]
-    #[inline] pub fn set_fbm13<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 13);
-        self.0 |= value << 13;
-        self
-    }
-
-    #[doc="Filter mode"]
-    #[inline] pub fn fbm14(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 14) & 0x1) as u8) } // [14]
-    }
-
-    #[doc="Returns true if FBM14 != 0"]
-    #[inline] pub fn test_fbm14(&self) -> bool {
-        self.fbm14() != 0
-    }
-
-    #[doc="Sets the FBM14 field."]
-    #[inline] pub fn set_fbm14<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 14);
-        self.0 |= value << 14;
-        self
-    }
-
-    #[doc="Filter mode"]
-    #[inline] pub fn fbm15(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 15) & 0x1) as u8) } // [15]
-    }
-
-    #[doc="Returns true if FBM15 != 0"]
-    #[inline] pub fn test_fbm15(&self) -> bool {
-        self.fbm15() != 0
-    }
-
-    #[doc="Sets the FBM15 field."]
-    #[inline] pub fn set_fbm15<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 15);
-        self.0 |= value << 15;
-        self
-    }
-
-    #[doc="Filter mode"]
-    #[inline] pub fn fbm16(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1) as u8) } // [16]
-    }
-
-    #[doc="Returns true if FBM16 != 0"]
-    #[inline] pub fn test_fbm16(&self) -> bool {
-        self.fbm16() != 0
-    }
-
-    #[doc="Sets the FBM16 field."]
-    #[inline] pub fn set_fbm16<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 16);
-        self.0 |= value << 16;
-        self
-    }
-
-    #[doc="Filter mode"]
-    #[inline] pub fn fbm17(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 17) & 0x1) as u8) } // [17]
-    }
-
-    #[doc="Returns true if FBM17 != 0"]
-    #[inline] pub fn test_fbm17(&self) -> bool {
-        self.fbm17() != 0
-    }
-
-    #[doc="Sets the FBM17 field."]
-    #[inline] pub fn set_fbm17<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 17);
-        self.0 |= value << 17;
-        self
-    }
-
-    #[doc="Filter mode"]
-    #[inline] pub fn fbm18(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 18) & 0x1) as u8) } // [18]
-    }
-
-    #[doc="Returns true if FBM18 != 0"]
-    #[inline] pub fn test_fbm18(&self) -> bool {
-        self.fbm18() != 0
-    }
-
-    #[doc="Sets the FBM18 field."]
-    #[inline] pub fn set_fbm18<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 18);
-        self.0 |= value << 18;
-        self
-    }
-
-    #[doc="Filter mode"]
-    #[inline] pub fn fbm19(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 19) & 0x1) as u8) } // [19]
-    }
-
-    #[doc="Returns true if FBM19 != 0"]
-    #[inline] pub fn test_fbm19(&self) -> bool {
-        self.fbm19() != 0
-    }
-
-    #[doc="Sets the FBM19 field."]
-    #[inline] pub fn set_fbm19<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 19);
-        self.0 |= value << 19;
-        self
-    }
-
-    #[doc="Filter mode"]
-    #[inline] pub fn fbm20(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 20) & 0x1) as u8) } // [20]
-    }
-
-    #[doc="Returns true if FBM20 != 0"]
-    #[inline] pub fn test_fbm20(&self) -> bool {
-        self.fbm20() != 0
-    }
-
-    #[doc="Sets the FBM20 field."]
-    #[inline] pub fn set_fbm20<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 20);
-        self.0 |= value << 20;
-        self
-    }
-
-    #[doc="Filter mode"]
-    #[inline] pub fn fbm21(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 21) & 0x1) as u8) } // [21]
-    }
-
-    #[doc="Returns true if FBM21 != 0"]
-    #[inline] pub fn test_fbm21(&self) -> bool {
-        self.fbm21() != 0
-    }
-
-    #[doc="Sets the FBM21 field."]
-    #[inline] pub fn set_fbm21<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 21);
-        self.0 |= value << 21;
-        self
-    }
-
-    #[doc="Filter mode"]
-    #[inline] pub fn fbm22(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 22) & 0x1) as u8) } // [22]
-    }
-
-    #[doc="Returns true if FBM22 != 0"]
-    #[inline] pub fn test_fbm22(&self) -> bool {
-        self.fbm22() != 0
-    }
-
-    #[doc="Sets the FBM22 field."]
-    #[inline] pub fn set_fbm22<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 22);
-        self.0 |= value << 22;
-        self
-    }
-
-    #[doc="Filter mode"]
-    #[inline] pub fn fbm23(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 23) & 0x1) as u8) } // [23]
-    }
-
-    #[doc="Returns true if FBM23 != 0"]
-    #[inline] pub fn test_fbm23(&self) -> bool {
-        self.fbm23() != 0
-    }
-
-    #[doc="Sets the FBM23 field."]
-    #[inline] pub fn set_fbm23<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 23);
-        self.0 |= value << 23;
-        self
-    }
-
-    #[doc="Filter mode"]
-    #[inline] pub fn fbm24(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 24) & 0x1) as u8) } // [24]
-    }
-
-    #[doc="Returns true if FBM24 != 0"]
-    #[inline] pub fn test_fbm24(&self) -> bool {
-        self.fbm24() != 0
-    }
-
-    #[doc="Sets the FBM24 field."]
-    #[inline] pub fn set_fbm24<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 24);
-        self.0 |= value << 24;
-        self
-    }
-
-    #[doc="Filter mode"]
-    #[inline] pub fn fbm25(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 25) & 0x1) as u8) } // [25]
-    }
-
-    #[doc="Returns true if FBM25 != 0"]
-    #[inline] pub fn test_fbm25(&self) -> bool {
-        self.fbm25() != 0
-    }
-
-    #[doc="Sets the FBM25 field."]
-    #[inline] pub fn set_fbm25<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 25);
-        self.0 |= value << 25;
-        self
-    }
-
-    #[doc="Filter mode"]
-    #[inline] pub fn fbm26(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 26) & 0x1) as u8) } // [26]
-    }
-
-    #[doc="Returns true if FBM26 != 0"]
-    #[inline] pub fn test_fbm26(&self) -> bool {
-        self.fbm26() != 0
-    }
-
-    #[doc="Sets the FBM26 field."]
-    #[inline] pub fn set_fbm26<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 26);
-        self.0 |= value << 26;
-        self
-    }
-
-    #[doc="Filter mode"]
-    #[inline] pub fn fbm27(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 27) & 0x1) as u8) } // [27]
-    }
-
-    #[doc="Returns true if FBM27 != 0"]
-    #[inline] pub fn test_fbm27(&self) -> bool {
-        self.fbm27() != 0
-    }
-
-    #[doc="Sets the FBM27 field."]
-    #[inline] pub fn set_fbm27<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 27);
-        self.0 |= value << 27;
+        let shift: usize = 0 + index;
+        self.0 &= !(0x1 << shift);
+        self.0 |= value << shift;
         self
     }
 
@@ -5452,34 +3251,33 @@ impl ::core::fmt::Display for Fm1r {
 impl ::core::fmt::Debug for Fm1r {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
         try!(write!(f, "[0x{:08x}", self.0));
-        if self.fbm0() != 0 { try!(write!(f, " fbm0"))}
-        if self.fbm1() != 0 { try!(write!(f, " fbm1"))}
-        if self.fbm2() != 0 { try!(write!(f, " fbm2"))}
-        if self.fbm3() != 0 { try!(write!(f, " fbm3"))}
-        if self.fbm4() != 0 { try!(write!(f, " fbm4"))}
-        if self.fbm5() != 0 { try!(write!(f, " fbm5"))}
-        if self.fbm6() != 0 { try!(write!(f, " fbm6"))}
-        if self.fbm7() != 0 { try!(write!(f, " fbm7"))}
-        if self.fbm8() != 0 { try!(write!(f, " fbm8"))}
-        if self.fbm9() != 0 { try!(write!(f, " fbm9"))}
-        if self.fbm10() != 0 { try!(write!(f, " fbm10"))}
-        if self.fbm11() != 0 { try!(write!(f, " fbm11"))}
-        if self.fbm12() != 0 { try!(write!(f, " fbm12"))}
-        if self.fbm13() != 0 { try!(write!(f, " fbm13"))}
-        if self.fbm14() != 0 { try!(write!(f, " fbm14"))}
-        if self.fbm15() != 0 { try!(write!(f, " fbm15"))}
-        if self.fbm16() != 0 { try!(write!(f, " fbm16"))}
-        if self.fbm17() != 0 { try!(write!(f, " fbm17"))}
-        if self.fbm18() != 0 { try!(write!(f, " fbm18"))}
-        if self.fbm19() != 0 { try!(write!(f, " fbm19"))}
-        if self.fbm20() != 0 { try!(write!(f, " fbm20"))}
-        if self.fbm21() != 0 { try!(write!(f, " fbm21"))}
-        if self.fbm22() != 0 { try!(write!(f, " fbm22"))}
-        if self.fbm23() != 0 { try!(write!(f, " fbm23"))}
-        if self.fbm24() != 0 { try!(write!(f, " fbm24"))}
-        if self.fbm25() != 0 { try!(write!(f, " fbm25"))}
-        if self.fbm26() != 0 { try!(write!(f, " fbm26"))}
-        if self.fbm27() != 0 { try!(write!(f, " fbm27"))}
+        if self.fbm(0) != 0 { try!(write!(f, " fbm[0]"))}
+        if self.fbm(1) != 0 { try!(write!(f, " fbm[1]"))}
+        if self.fbm(2) != 0 { try!(write!(f, " fbm[2]"))}
+        if self.fbm(3) != 0 { try!(write!(f, " fbm[3]"))}
+        if self.fbm(4) != 0 { try!(write!(f, " fbm[4]"))}
+        if self.fbm(5) != 0 { try!(write!(f, " fbm[5]"))}
+        if self.fbm(6) != 0 { try!(write!(f, " fbm[6]"))}
+        if self.fbm(7) != 0 { try!(write!(f, " fbm[7]"))}
+        if self.fbm(8) != 0 { try!(write!(f, " fbm[8]"))}
+        if self.fbm(9) != 0 { try!(write!(f, " fbm[9]"))}
+        if self.fbm(10) != 0 { try!(write!(f, " fbm[10]"))}
+        if self.fbm(11) != 0 { try!(write!(f, " fbm[11]"))}
+        if self.fbm(12) != 0 { try!(write!(f, " fbm[12]"))}
+        if self.fbm(13) != 0 { try!(write!(f, " fbm[13]"))}
+        if self.fbm(14) != 0 { try!(write!(f, " fbm[14]"))}
+        if self.fbm(15) != 0 { try!(write!(f, " fbm[15]"))}
+        if self.fbm(16) != 0 { try!(write!(f, " fbm[16]"))}
+        if self.fbm(17) != 0 { try!(write!(f, " fbm[17]"))}
+        if self.fbm(18) != 0 { try!(write!(f, " fbm[18]"))}
+        if self.fbm(19) != 0 { try!(write!(f, " fbm[19]"))}
+        if self.fbm(20) != 0 { try!(write!(f, " fbm[20]"))}
+        if self.fbm(21) != 0 { try!(write!(f, " fbm[21]"))}
+        if self.fbm(22) != 0 { try!(write!(f, " fbm[22]"))}
+        if self.fbm(23) != 0 { try!(write!(f, " fbm[23]"))}
+        if self.fbm(24) != 0 { try!(write!(f, " fbm[24]"))}
+        if self.fbm(25) != 0 { try!(write!(f, " fbm[25]"))}
+        if self.fbm(26) != 0 { try!(write!(f, " fbm[26]"))}
         try!(write!(f, "]"));
         Ok(())
     }
@@ -5490,534 +3288,25 @@ impl ::core::fmt::Debug for Fm1r {
 pub struct Fs1r(pub u32);
 impl Fs1r {
     #[doc="Filter scale configuration"]
-    #[inline] pub fn fsc0(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
+    #[inline] pub fn fsc<I: Into<bits::R27>>(&self, index: I) -> bits::U1 {
+        let index: usize = index.into().value() as usize;
+        let shift: usize = 0 + index;
+        unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Returns true if FSC0 != 0"]
-    #[inline] pub fn test_fsc0(&self) -> bool {
-        self.fsc0() != 0
+    #[doc="Returns true if FSC != 0"]
+    #[inline] pub fn test_fsc<I: Into<bits::R27>>(&self, index: I) -> bool{
+        self.fsc(index) != 0
     }
 
-    #[doc="Sets the FSC0 field."]
-    #[inline] pub fn set_fsc0<V: Into<bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the FSC field."]
+    #[inline] pub fn set_fsc<I: Into<bits::R27>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+        let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
-        self.0 &= !(0x1 << 0);
-        self.0 |= value << 0;
-        self
-    }
-
-    #[doc="Filter scale configuration"]
-    #[inline] pub fn fsc1(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
-    }
-
-    #[doc="Returns true if FSC1 != 0"]
-    #[inline] pub fn test_fsc1(&self) -> bool {
-        self.fsc1() != 0
-    }
-
-    #[doc="Sets the FSC1 field."]
-    #[inline] pub fn set_fsc1<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 1);
-        self.0 |= value << 1;
-        self
-    }
-
-    #[doc="Filter scale configuration"]
-    #[inline] pub fn fsc2(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
-    }
-
-    #[doc="Returns true if FSC2 != 0"]
-    #[inline] pub fn test_fsc2(&self) -> bool {
-        self.fsc2() != 0
-    }
-
-    #[doc="Sets the FSC2 field."]
-    #[inline] pub fn set_fsc2<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 2);
-        self.0 |= value << 2;
-        self
-    }
-
-    #[doc="Filter scale configuration"]
-    #[inline] pub fn fsc3(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
-    }
-
-    #[doc="Returns true if FSC3 != 0"]
-    #[inline] pub fn test_fsc3(&self) -> bool {
-        self.fsc3() != 0
-    }
-
-    #[doc="Sets the FSC3 field."]
-    #[inline] pub fn set_fsc3<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 3);
-        self.0 |= value << 3;
-        self
-    }
-
-    #[doc="Filter scale configuration"]
-    #[inline] pub fn fsc4(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
-    }
-
-    #[doc="Returns true if FSC4 != 0"]
-    #[inline] pub fn test_fsc4(&self) -> bool {
-        self.fsc4() != 0
-    }
-
-    #[doc="Sets the FSC4 field."]
-    #[inline] pub fn set_fsc4<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 4);
-        self.0 |= value << 4;
-        self
-    }
-
-    #[doc="Filter scale configuration"]
-    #[inline] pub fn fsc5(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
-    }
-
-    #[doc="Returns true if FSC5 != 0"]
-    #[inline] pub fn test_fsc5(&self) -> bool {
-        self.fsc5() != 0
-    }
-
-    #[doc="Sets the FSC5 field."]
-    #[inline] pub fn set_fsc5<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 5);
-        self.0 |= value << 5;
-        self
-    }
-
-    #[doc="Filter scale configuration"]
-    #[inline] pub fn fsc6(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
-    }
-
-    #[doc="Returns true if FSC6 != 0"]
-    #[inline] pub fn test_fsc6(&self) -> bool {
-        self.fsc6() != 0
-    }
-
-    #[doc="Sets the FSC6 field."]
-    #[inline] pub fn set_fsc6<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 6);
-        self.0 |= value << 6;
-        self
-    }
-
-    #[doc="Filter scale configuration"]
-    #[inline] pub fn fsc7(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
-    }
-
-    #[doc="Returns true if FSC7 != 0"]
-    #[inline] pub fn test_fsc7(&self) -> bool {
-        self.fsc7() != 0
-    }
-
-    #[doc="Sets the FSC7 field."]
-    #[inline] pub fn set_fsc7<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 7);
-        self.0 |= value << 7;
-        self
-    }
-
-    #[doc="Filter scale configuration"]
-    #[inline] pub fn fsc8(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
-    }
-
-    #[doc="Returns true if FSC8 != 0"]
-    #[inline] pub fn test_fsc8(&self) -> bool {
-        self.fsc8() != 0
-    }
-
-    #[doc="Sets the FSC8 field."]
-    #[inline] pub fn set_fsc8<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 8);
-        self.0 |= value << 8;
-        self
-    }
-
-    #[doc="Filter scale configuration"]
-    #[inline] pub fn fsc9(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
-    }
-
-    #[doc="Returns true if FSC9 != 0"]
-    #[inline] pub fn test_fsc9(&self) -> bool {
-        self.fsc9() != 0
-    }
-
-    #[doc="Sets the FSC9 field."]
-    #[inline] pub fn set_fsc9<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 9);
-        self.0 |= value << 9;
-        self
-    }
-
-    #[doc="Filter scale configuration"]
-    #[inline] pub fn fsc10(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x1) as u8) } // [10]
-    }
-
-    #[doc="Returns true if FSC10 != 0"]
-    #[inline] pub fn test_fsc10(&self) -> bool {
-        self.fsc10() != 0
-    }
-
-    #[doc="Sets the FSC10 field."]
-    #[inline] pub fn set_fsc10<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 10);
-        self.0 |= value << 10;
-        self
-    }
-
-    #[doc="Filter scale configuration"]
-    #[inline] pub fn fsc11(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 11) & 0x1) as u8) } // [11]
-    }
-
-    #[doc="Returns true if FSC11 != 0"]
-    #[inline] pub fn test_fsc11(&self) -> bool {
-        self.fsc11() != 0
-    }
-
-    #[doc="Sets the FSC11 field."]
-    #[inline] pub fn set_fsc11<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 11);
-        self.0 |= value << 11;
-        self
-    }
-
-    #[doc="Filter scale configuration"]
-    #[inline] pub fn fsc12(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 12) & 0x1) as u8) } // [12]
-    }
-
-    #[doc="Returns true if FSC12 != 0"]
-    #[inline] pub fn test_fsc12(&self) -> bool {
-        self.fsc12() != 0
-    }
-
-    #[doc="Sets the FSC12 field."]
-    #[inline] pub fn set_fsc12<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 12);
-        self.0 |= value << 12;
-        self
-    }
-
-    #[doc="Filter scale configuration"]
-    #[inline] pub fn fsc13(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 13) & 0x1) as u8) } // [13]
-    }
-
-    #[doc="Returns true if FSC13 != 0"]
-    #[inline] pub fn test_fsc13(&self) -> bool {
-        self.fsc13() != 0
-    }
-
-    #[doc="Sets the FSC13 field."]
-    #[inline] pub fn set_fsc13<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 13);
-        self.0 |= value << 13;
-        self
-    }
-
-    #[doc="Filter scale configuration"]
-    #[inline] pub fn fsc14(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 14) & 0x1) as u8) } // [14]
-    }
-
-    #[doc="Returns true if FSC14 != 0"]
-    #[inline] pub fn test_fsc14(&self) -> bool {
-        self.fsc14() != 0
-    }
-
-    #[doc="Sets the FSC14 field."]
-    #[inline] pub fn set_fsc14<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 14);
-        self.0 |= value << 14;
-        self
-    }
-
-    #[doc="Filter scale configuration"]
-    #[inline] pub fn fsc15(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 15) & 0x1) as u8) } // [15]
-    }
-
-    #[doc="Returns true if FSC15 != 0"]
-    #[inline] pub fn test_fsc15(&self) -> bool {
-        self.fsc15() != 0
-    }
-
-    #[doc="Sets the FSC15 field."]
-    #[inline] pub fn set_fsc15<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 15);
-        self.0 |= value << 15;
-        self
-    }
-
-    #[doc="Filter scale configuration"]
-    #[inline] pub fn fsc16(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1) as u8) } // [16]
-    }
-
-    #[doc="Returns true if FSC16 != 0"]
-    #[inline] pub fn test_fsc16(&self) -> bool {
-        self.fsc16() != 0
-    }
-
-    #[doc="Sets the FSC16 field."]
-    #[inline] pub fn set_fsc16<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 16);
-        self.0 |= value << 16;
-        self
-    }
-
-    #[doc="Filter scale configuration"]
-    #[inline] pub fn fsc17(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 17) & 0x1) as u8) } // [17]
-    }
-
-    #[doc="Returns true if FSC17 != 0"]
-    #[inline] pub fn test_fsc17(&self) -> bool {
-        self.fsc17() != 0
-    }
-
-    #[doc="Sets the FSC17 field."]
-    #[inline] pub fn set_fsc17<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 17);
-        self.0 |= value << 17;
-        self
-    }
-
-    #[doc="Filter scale configuration"]
-    #[inline] pub fn fsc18(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 18) & 0x1) as u8) } // [18]
-    }
-
-    #[doc="Returns true if FSC18 != 0"]
-    #[inline] pub fn test_fsc18(&self) -> bool {
-        self.fsc18() != 0
-    }
-
-    #[doc="Sets the FSC18 field."]
-    #[inline] pub fn set_fsc18<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 18);
-        self.0 |= value << 18;
-        self
-    }
-
-    #[doc="Filter scale configuration"]
-    #[inline] pub fn fsc19(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 19) & 0x1) as u8) } // [19]
-    }
-
-    #[doc="Returns true if FSC19 != 0"]
-    #[inline] pub fn test_fsc19(&self) -> bool {
-        self.fsc19() != 0
-    }
-
-    #[doc="Sets the FSC19 field."]
-    #[inline] pub fn set_fsc19<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 19);
-        self.0 |= value << 19;
-        self
-    }
-
-    #[doc="Filter scale configuration"]
-    #[inline] pub fn fsc20(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 20) & 0x1) as u8) } // [20]
-    }
-
-    #[doc="Returns true if FSC20 != 0"]
-    #[inline] pub fn test_fsc20(&self) -> bool {
-        self.fsc20() != 0
-    }
-
-    #[doc="Sets the FSC20 field."]
-    #[inline] pub fn set_fsc20<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 20);
-        self.0 |= value << 20;
-        self
-    }
-
-    #[doc="Filter scale configuration"]
-    #[inline] pub fn fsc21(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 21) & 0x1) as u8) } // [21]
-    }
-
-    #[doc="Returns true if FSC21 != 0"]
-    #[inline] pub fn test_fsc21(&self) -> bool {
-        self.fsc21() != 0
-    }
-
-    #[doc="Sets the FSC21 field."]
-    #[inline] pub fn set_fsc21<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 21);
-        self.0 |= value << 21;
-        self
-    }
-
-    #[doc="Filter scale configuration"]
-    #[inline] pub fn fsc22(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 22) & 0x1) as u8) } // [22]
-    }
-
-    #[doc="Returns true if FSC22 != 0"]
-    #[inline] pub fn test_fsc22(&self) -> bool {
-        self.fsc22() != 0
-    }
-
-    #[doc="Sets the FSC22 field."]
-    #[inline] pub fn set_fsc22<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 22);
-        self.0 |= value << 22;
-        self
-    }
-
-    #[doc="Filter scale configuration"]
-    #[inline] pub fn fsc23(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 23) & 0x1) as u8) } // [23]
-    }
-
-    #[doc="Returns true if FSC23 != 0"]
-    #[inline] pub fn test_fsc23(&self) -> bool {
-        self.fsc23() != 0
-    }
-
-    #[doc="Sets the FSC23 field."]
-    #[inline] pub fn set_fsc23<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 23);
-        self.0 |= value << 23;
-        self
-    }
-
-    #[doc="Filter scale configuration"]
-    #[inline] pub fn fsc24(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 24) & 0x1) as u8) } // [24]
-    }
-
-    #[doc="Returns true if FSC24 != 0"]
-    #[inline] pub fn test_fsc24(&self) -> bool {
-        self.fsc24() != 0
-    }
-
-    #[doc="Sets the FSC24 field."]
-    #[inline] pub fn set_fsc24<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 24);
-        self.0 |= value << 24;
-        self
-    }
-
-    #[doc="Filter scale configuration"]
-    #[inline] pub fn fsc25(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 25) & 0x1) as u8) } // [25]
-    }
-
-    #[doc="Returns true if FSC25 != 0"]
-    #[inline] pub fn test_fsc25(&self) -> bool {
-        self.fsc25() != 0
-    }
-
-    #[doc="Sets the FSC25 field."]
-    #[inline] pub fn set_fsc25<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 25);
-        self.0 |= value << 25;
-        self
-    }
-
-    #[doc="Filter scale configuration"]
-    #[inline] pub fn fsc26(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 26) & 0x1) as u8) } // [26]
-    }
-
-    #[doc="Returns true if FSC26 != 0"]
-    #[inline] pub fn test_fsc26(&self) -> bool {
-        self.fsc26() != 0
-    }
-
-    #[doc="Sets the FSC26 field."]
-    #[inline] pub fn set_fsc26<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 26);
-        self.0 |= value << 26;
-        self
-    }
-
-    #[doc="Filter scale configuration"]
-    #[inline] pub fn fsc27(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 27) & 0x1) as u8) } // [27]
-    }
-
-    #[doc="Returns true if FSC27 != 0"]
-    #[inline] pub fn test_fsc27(&self) -> bool {
-        self.fsc27() != 0
-    }
-
-    #[doc="Sets the FSC27 field."]
-    #[inline] pub fn set_fsc27<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 27);
-        self.0 |= value << 27;
+        let shift: usize = 0 + index;
+        self.0 &= !(0x1 << shift);
+        self.0 |= value << shift;
         self
     }
 
@@ -6039,34 +3328,33 @@ impl ::core::fmt::Display for Fs1r {
 impl ::core::fmt::Debug for Fs1r {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
         try!(write!(f, "[0x{:08x}", self.0));
-        if self.fsc0() != 0 { try!(write!(f, " fsc0"))}
-        if self.fsc1() != 0 { try!(write!(f, " fsc1"))}
-        if self.fsc2() != 0 { try!(write!(f, " fsc2"))}
-        if self.fsc3() != 0 { try!(write!(f, " fsc3"))}
-        if self.fsc4() != 0 { try!(write!(f, " fsc4"))}
-        if self.fsc5() != 0 { try!(write!(f, " fsc5"))}
-        if self.fsc6() != 0 { try!(write!(f, " fsc6"))}
-        if self.fsc7() != 0 { try!(write!(f, " fsc7"))}
-        if self.fsc8() != 0 { try!(write!(f, " fsc8"))}
-        if self.fsc9() != 0 { try!(write!(f, " fsc9"))}
-        if self.fsc10() != 0 { try!(write!(f, " fsc10"))}
-        if self.fsc11() != 0 { try!(write!(f, " fsc11"))}
-        if self.fsc12() != 0 { try!(write!(f, " fsc12"))}
-        if self.fsc13() != 0 { try!(write!(f, " fsc13"))}
-        if self.fsc14() != 0 { try!(write!(f, " fsc14"))}
-        if self.fsc15() != 0 { try!(write!(f, " fsc15"))}
-        if self.fsc16() != 0 { try!(write!(f, " fsc16"))}
-        if self.fsc17() != 0 { try!(write!(f, " fsc17"))}
-        if self.fsc18() != 0 { try!(write!(f, " fsc18"))}
-        if self.fsc19() != 0 { try!(write!(f, " fsc19"))}
-        if self.fsc20() != 0 { try!(write!(f, " fsc20"))}
-        if self.fsc21() != 0 { try!(write!(f, " fsc21"))}
-        if self.fsc22() != 0 { try!(write!(f, " fsc22"))}
-        if self.fsc23() != 0 { try!(write!(f, " fsc23"))}
-        if self.fsc24() != 0 { try!(write!(f, " fsc24"))}
-        if self.fsc25() != 0 { try!(write!(f, " fsc25"))}
-        if self.fsc26() != 0 { try!(write!(f, " fsc26"))}
-        if self.fsc27() != 0 { try!(write!(f, " fsc27"))}
+        if self.fsc(0) != 0 { try!(write!(f, " fsc[0]"))}
+        if self.fsc(1) != 0 { try!(write!(f, " fsc[1]"))}
+        if self.fsc(2) != 0 { try!(write!(f, " fsc[2]"))}
+        if self.fsc(3) != 0 { try!(write!(f, " fsc[3]"))}
+        if self.fsc(4) != 0 { try!(write!(f, " fsc[4]"))}
+        if self.fsc(5) != 0 { try!(write!(f, " fsc[5]"))}
+        if self.fsc(6) != 0 { try!(write!(f, " fsc[6]"))}
+        if self.fsc(7) != 0 { try!(write!(f, " fsc[7]"))}
+        if self.fsc(8) != 0 { try!(write!(f, " fsc[8]"))}
+        if self.fsc(9) != 0 { try!(write!(f, " fsc[9]"))}
+        if self.fsc(10) != 0 { try!(write!(f, " fsc[10]"))}
+        if self.fsc(11) != 0 { try!(write!(f, " fsc[11]"))}
+        if self.fsc(12) != 0 { try!(write!(f, " fsc[12]"))}
+        if self.fsc(13) != 0 { try!(write!(f, " fsc[13]"))}
+        if self.fsc(14) != 0 { try!(write!(f, " fsc[14]"))}
+        if self.fsc(15) != 0 { try!(write!(f, " fsc[15]"))}
+        if self.fsc(16) != 0 { try!(write!(f, " fsc[16]"))}
+        if self.fsc(17) != 0 { try!(write!(f, " fsc[17]"))}
+        if self.fsc(18) != 0 { try!(write!(f, " fsc[18]"))}
+        if self.fsc(19) != 0 { try!(write!(f, " fsc[19]"))}
+        if self.fsc(20) != 0 { try!(write!(f, " fsc[20]"))}
+        if self.fsc(21) != 0 { try!(write!(f, " fsc[21]"))}
+        if self.fsc(22) != 0 { try!(write!(f, " fsc[22]"))}
+        if self.fsc(23) != 0 { try!(write!(f, " fsc[23]"))}
+        if self.fsc(24) != 0 { try!(write!(f, " fsc[24]"))}
+        if self.fsc(25) != 0 { try!(write!(f, " fsc[25]"))}
+        if self.fsc(26) != 0 { try!(write!(f, " fsc[26]"))}
         try!(write!(f, "]"));
         Ok(())
     }
@@ -6077,534 +3365,25 @@ impl ::core::fmt::Debug for Fs1r {
 pub struct Ffa1r(pub u32);
 impl Ffa1r {
     #[doc="Filter FIFO assignment for filter 0"]
-    #[inline] pub fn ffa0(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
+    #[inline] pub fn ffa<I: Into<bits::R27>>(&self, index: I) -> bits::U1 {
+        let index: usize = index.into().value() as usize;
+        let shift: usize = 0 + index;
+        unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Returns true if FFA0 != 0"]
-    #[inline] pub fn test_ffa0(&self) -> bool {
-        self.ffa0() != 0
+    #[doc="Returns true if FFA != 0"]
+    #[inline] pub fn test_ffa<I: Into<bits::R27>>(&self, index: I) -> bool{
+        self.ffa(index) != 0
     }
 
-    #[doc="Sets the FFA0 field."]
-    #[inline] pub fn set_ffa0<V: Into<bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the FFA field."]
+    #[inline] pub fn set_ffa<I: Into<bits::R27>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+        let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
-        self.0 &= !(0x1 << 0);
-        self.0 |= value << 0;
-        self
-    }
-
-    #[doc="Filter FIFO assignment for filter 1"]
-    #[inline] pub fn ffa1(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
-    }
-
-    #[doc="Returns true if FFA1 != 0"]
-    #[inline] pub fn test_ffa1(&self) -> bool {
-        self.ffa1() != 0
-    }
-
-    #[doc="Sets the FFA1 field."]
-    #[inline] pub fn set_ffa1<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 1);
-        self.0 |= value << 1;
-        self
-    }
-
-    #[doc="Filter FIFO assignment for filter 2"]
-    #[inline] pub fn ffa2(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
-    }
-
-    #[doc="Returns true if FFA2 != 0"]
-    #[inline] pub fn test_ffa2(&self) -> bool {
-        self.ffa2() != 0
-    }
-
-    #[doc="Sets the FFA2 field."]
-    #[inline] pub fn set_ffa2<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 2);
-        self.0 |= value << 2;
-        self
-    }
-
-    #[doc="Filter FIFO assignment for filter 3"]
-    #[inline] pub fn ffa3(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
-    }
-
-    #[doc="Returns true if FFA3 != 0"]
-    #[inline] pub fn test_ffa3(&self) -> bool {
-        self.ffa3() != 0
-    }
-
-    #[doc="Sets the FFA3 field."]
-    #[inline] pub fn set_ffa3<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 3);
-        self.0 |= value << 3;
-        self
-    }
-
-    #[doc="Filter FIFO assignment for filter 4"]
-    #[inline] pub fn ffa4(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
-    }
-
-    #[doc="Returns true if FFA4 != 0"]
-    #[inline] pub fn test_ffa4(&self) -> bool {
-        self.ffa4() != 0
-    }
-
-    #[doc="Sets the FFA4 field."]
-    #[inline] pub fn set_ffa4<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 4);
-        self.0 |= value << 4;
-        self
-    }
-
-    #[doc="Filter FIFO assignment for filter 5"]
-    #[inline] pub fn ffa5(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
-    }
-
-    #[doc="Returns true if FFA5 != 0"]
-    #[inline] pub fn test_ffa5(&self) -> bool {
-        self.ffa5() != 0
-    }
-
-    #[doc="Sets the FFA5 field."]
-    #[inline] pub fn set_ffa5<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 5);
-        self.0 |= value << 5;
-        self
-    }
-
-    #[doc="Filter FIFO assignment for filter 6"]
-    #[inline] pub fn ffa6(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
-    }
-
-    #[doc="Returns true if FFA6 != 0"]
-    #[inline] pub fn test_ffa6(&self) -> bool {
-        self.ffa6() != 0
-    }
-
-    #[doc="Sets the FFA6 field."]
-    #[inline] pub fn set_ffa6<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 6);
-        self.0 |= value << 6;
-        self
-    }
-
-    #[doc="Filter FIFO assignment for filter 7"]
-    #[inline] pub fn ffa7(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
-    }
-
-    #[doc="Returns true if FFA7 != 0"]
-    #[inline] pub fn test_ffa7(&self) -> bool {
-        self.ffa7() != 0
-    }
-
-    #[doc="Sets the FFA7 field."]
-    #[inline] pub fn set_ffa7<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 7);
-        self.0 |= value << 7;
-        self
-    }
-
-    #[doc="Filter FIFO assignment for filter 8"]
-    #[inline] pub fn ffa8(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
-    }
-
-    #[doc="Returns true if FFA8 != 0"]
-    #[inline] pub fn test_ffa8(&self) -> bool {
-        self.ffa8() != 0
-    }
-
-    #[doc="Sets the FFA8 field."]
-    #[inline] pub fn set_ffa8<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 8);
-        self.0 |= value << 8;
-        self
-    }
-
-    #[doc="Filter FIFO assignment for filter 9"]
-    #[inline] pub fn ffa9(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
-    }
-
-    #[doc="Returns true if FFA9 != 0"]
-    #[inline] pub fn test_ffa9(&self) -> bool {
-        self.ffa9() != 0
-    }
-
-    #[doc="Sets the FFA9 field."]
-    #[inline] pub fn set_ffa9<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 9);
-        self.0 |= value << 9;
-        self
-    }
-
-    #[doc="Filter FIFO assignment for filter 10"]
-    #[inline] pub fn ffa10(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x1) as u8) } // [10]
-    }
-
-    #[doc="Returns true if FFA10 != 0"]
-    #[inline] pub fn test_ffa10(&self) -> bool {
-        self.ffa10() != 0
-    }
-
-    #[doc="Sets the FFA10 field."]
-    #[inline] pub fn set_ffa10<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 10);
-        self.0 |= value << 10;
-        self
-    }
-
-    #[doc="Filter FIFO assignment for filter 11"]
-    #[inline] pub fn ffa11(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 11) & 0x1) as u8) } // [11]
-    }
-
-    #[doc="Returns true if FFA11 != 0"]
-    #[inline] pub fn test_ffa11(&self) -> bool {
-        self.ffa11() != 0
-    }
-
-    #[doc="Sets the FFA11 field."]
-    #[inline] pub fn set_ffa11<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 11);
-        self.0 |= value << 11;
-        self
-    }
-
-    #[doc="Filter FIFO assignment for filter 12"]
-    #[inline] pub fn ffa12(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 12) & 0x1) as u8) } // [12]
-    }
-
-    #[doc="Returns true if FFA12 != 0"]
-    #[inline] pub fn test_ffa12(&self) -> bool {
-        self.ffa12() != 0
-    }
-
-    #[doc="Sets the FFA12 field."]
-    #[inline] pub fn set_ffa12<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 12);
-        self.0 |= value << 12;
-        self
-    }
-
-    #[doc="Filter FIFO assignment for filter 13"]
-    #[inline] pub fn ffa13(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 13) & 0x1) as u8) } // [13]
-    }
-
-    #[doc="Returns true if FFA13 != 0"]
-    #[inline] pub fn test_ffa13(&self) -> bool {
-        self.ffa13() != 0
-    }
-
-    #[doc="Sets the FFA13 field."]
-    #[inline] pub fn set_ffa13<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 13);
-        self.0 |= value << 13;
-        self
-    }
-
-    #[doc="Filter FIFO assignment for filter 14"]
-    #[inline] pub fn ffa14(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 14) & 0x1) as u8) } // [14]
-    }
-
-    #[doc="Returns true if FFA14 != 0"]
-    #[inline] pub fn test_ffa14(&self) -> bool {
-        self.ffa14() != 0
-    }
-
-    #[doc="Sets the FFA14 field."]
-    #[inline] pub fn set_ffa14<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 14);
-        self.0 |= value << 14;
-        self
-    }
-
-    #[doc="Filter FIFO assignment for filter 15"]
-    #[inline] pub fn ffa15(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 15) & 0x1) as u8) } // [15]
-    }
-
-    #[doc="Returns true if FFA15 != 0"]
-    #[inline] pub fn test_ffa15(&self) -> bool {
-        self.ffa15() != 0
-    }
-
-    #[doc="Sets the FFA15 field."]
-    #[inline] pub fn set_ffa15<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 15);
-        self.0 |= value << 15;
-        self
-    }
-
-    #[doc="Filter FIFO assignment for filter 16"]
-    #[inline] pub fn ffa16(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1) as u8) } // [16]
-    }
-
-    #[doc="Returns true if FFA16 != 0"]
-    #[inline] pub fn test_ffa16(&self) -> bool {
-        self.ffa16() != 0
-    }
-
-    #[doc="Sets the FFA16 field."]
-    #[inline] pub fn set_ffa16<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 16);
-        self.0 |= value << 16;
-        self
-    }
-
-    #[doc="Filter FIFO assignment for filter 17"]
-    #[inline] pub fn ffa17(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 17) & 0x1) as u8) } // [17]
-    }
-
-    #[doc="Returns true if FFA17 != 0"]
-    #[inline] pub fn test_ffa17(&self) -> bool {
-        self.ffa17() != 0
-    }
-
-    #[doc="Sets the FFA17 field."]
-    #[inline] pub fn set_ffa17<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 17);
-        self.0 |= value << 17;
-        self
-    }
-
-    #[doc="Filter FIFO assignment for filter 18"]
-    #[inline] pub fn ffa18(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 18) & 0x1) as u8) } // [18]
-    }
-
-    #[doc="Returns true if FFA18 != 0"]
-    #[inline] pub fn test_ffa18(&self) -> bool {
-        self.ffa18() != 0
-    }
-
-    #[doc="Sets the FFA18 field."]
-    #[inline] pub fn set_ffa18<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 18);
-        self.0 |= value << 18;
-        self
-    }
-
-    #[doc="Filter FIFO assignment for filter 19"]
-    #[inline] pub fn ffa19(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 19) & 0x1) as u8) } // [19]
-    }
-
-    #[doc="Returns true if FFA19 != 0"]
-    #[inline] pub fn test_ffa19(&self) -> bool {
-        self.ffa19() != 0
-    }
-
-    #[doc="Sets the FFA19 field."]
-    #[inline] pub fn set_ffa19<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 19);
-        self.0 |= value << 19;
-        self
-    }
-
-    #[doc="Filter FIFO assignment for filter 20"]
-    #[inline] pub fn ffa20(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 20) & 0x1) as u8) } // [20]
-    }
-
-    #[doc="Returns true if FFA20 != 0"]
-    #[inline] pub fn test_ffa20(&self) -> bool {
-        self.ffa20() != 0
-    }
-
-    #[doc="Sets the FFA20 field."]
-    #[inline] pub fn set_ffa20<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 20);
-        self.0 |= value << 20;
-        self
-    }
-
-    #[doc="Filter FIFO assignment for filter 21"]
-    #[inline] pub fn ffa21(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 21) & 0x1) as u8) } // [21]
-    }
-
-    #[doc="Returns true if FFA21 != 0"]
-    #[inline] pub fn test_ffa21(&self) -> bool {
-        self.ffa21() != 0
-    }
-
-    #[doc="Sets the FFA21 field."]
-    #[inline] pub fn set_ffa21<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 21);
-        self.0 |= value << 21;
-        self
-    }
-
-    #[doc="Filter FIFO assignment for filter 22"]
-    #[inline] pub fn ffa22(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 22) & 0x1) as u8) } // [22]
-    }
-
-    #[doc="Returns true if FFA22 != 0"]
-    #[inline] pub fn test_ffa22(&self) -> bool {
-        self.ffa22() != 0
-    }
-
-    #[doc="Sets the FFA22 field."]
-    #[inline] pub fn set_ffa22<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 22);
-        self.0 |= value << 22;
-        self
-    }
-
-    #[doc="Filter FIFO assignment for filter 23"]
-    #[inline] pub fn ffa23(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 23) & 0x1) as u8) } // [23]
-    }
-
-    #[doc="Returns true if FFA23 != 0"]
-    #[inline] pub fn test_ffa23(&self) -> bool {
-        self.ffa23() != 0
-    }
-
-    #[doc="Sets the FFA23 field."]
-    #[inline] pub fn set_ffa23<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 23);
-        self.0 |= value << 23;
-        self
-    }
-
-    #[doc="Filter FIFO assignment for filter 24"]
-    #[inline] pub fn ffa24(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 24) & 0x1) as u8) } // [24]
-    }
-
-    #[doc="Returns true if FFA24 != 0"]
-    #[inline] pub fn test_ffa24(&self) -> bool {
-        self.ffa24() != 0
-    }
-
-    #[doc="Sets the FFA24 field."]
-    #[inline] pub fn set_ffa24<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 24);
-        self.0 |= value << 24;
-        self
-    }
-
-    #[doc="Filter FIFO assignment for filter 25"]
-    #[inline] pub fn ffa25(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 25) & 0x1) as u8) } // [25]
-    }
-
-    #[doc="Returns true if FFA25 != 0"]
-    #[inline] pub fn test_ffa25(&self) -> bool {
-        self.ffa25() != 0
-    }
-
-    #[doc="Sets the FFA25 field."]
-    #[inline] pub fn set_ffa25<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 25);
-        self.0 |= value << 25;
-        self
-    }
-
-    #[doc="Filter FIFO assignment for filter 26"]
-    #[inline] pub fn ffa26(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 26) & 0x1) as u8) } // [26]
-    }
-
-    #[doc="Returns true if FFA26 != 0"]
-    #[inline] pub fn test_ffa26(&self) -> bool {
-        self.ffa26() != 0
-    }
-
-    #[doc="Sets the FFA26 field."]
-    #[inline] pub fn set_ffa26<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 26);
-        self.0 |= value << 26;
-        self
-    }
-
-    #[doc="Filter FIFO assignment for filter 27"]
-    #[inline] pub fn ffa27(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 27) & 0x1) as u8) } // [27]
-    }
-
-    #[doc="Returns true if FFA27 != 0"]
-    #[inline] pub fn test_ffa27(&self) -> bool {
-        self.ffa27() != 0
-    }
-
-    #[doc="Sets the FFA27 field."]
-    #[inline] pub fn set_ffa27<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 27);
-        self.0 |= value << 27;
+        let shift: usize = 0 + index;
+        self.0 &= !(0x1 << shift);
+        self.0 |= value << shift;
         self
     }
 
@@ -6626,34 +3405,33 @@ impl ::core::fmt::Display for Ffa1r {
 impl ::core::fmt::Debug for Ffa1r {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
         try!(write!(f, "[0x{:08x}", self.0));
-        if self.ffa0() != 0 { try!(write!(f, " ffa0"))}
-        if self.ffa1() != 0 { try!(write!(f, " ffa1"))}
-        if self.ffa2() != 0 { try!(write!(f, " ffa2"))}
-        if self.ffa3() != 0 { try!(write!(f, " ffa3"))}
-        if self.ffa4() != 0 { try!(write!(f, " ffa4"))}
-        if self.ffa5() != 0 { try!(write!(f, " ffa5"))}
-        if self.ffa6() != 0 { try!(write!(f, " ffa6"))}
-        if self.ffa7() != 0 { try!(write!(f, " ffa7"))}
-        if self.ffa8() != 0 { try!(write!(f, " ffa8"))}
-        if self.ffa9() != 0 { try!(write!(f, " ffa9"))}
-        if self.ffa10() != 0 { try!(write!(f, " ffa10"))}
-        if self.ffa11() != 0 { try!(write!(f, " ffa11"))}
-        if self.ffa12() != 0 { try!(write!(f, " ffa12"))}
-        if self.ffa13() != 0 { try!(write!(f, " ffa13"))}
-        if self.ffa14() != 0 { try!(write!(f, " ffa14"))}
-        if self.ffa15() != 0 { try!(write!(f, " ffa15"))}
-        if self.ffa16() != 0 { try!(write!(f, " ffa16"))}
-        if self.ffa17() != 0 { try!(write!(f, " ffa17"))}
-        if self.ffa18() != 0 { try!(write!(f, " ffa18"))}
-        if self.ffa19() != 0 { try!(write!(f, " ffa19"))}
-        if self.ffa20() != 0 { try!(write!(f, " ffa20"))}
-        if self.ffa21() != 0 { try!(write!(f, " ffa21"))}
-        if self.ffa22() != 0 { try!(write!(f, " ffa22"))}
-        if self.ffa23() != 0 { try!(write!(f, " ffa23"))}
-        if self.ffa24() != 0 { try!(write!(f, " ffa24"))}
-        if self.ffa25() != 0 { try!(write!(f, " ffa25"))}
-        if self.ffa26() != 0 { try!(write!(f, " ffa26"))}
-        if self.ffa27() != 0 { try!(write!(f, " ffa27"))}
+        if self.ffa(0) != 0 { try!(write!(f, " ffa[0]"))}
+        if self.ffa(1) != 0 { try!(write!(f, " ffa[1]"))}
+        if self.ffa(2) != 0 { try!(write!(f, " ffa[2]"))}
+        if self.ffa(3) != 0 { try!(write!(f, " ffa[3]"))}
+        if self.ffa(4) != 0 { try!(write!(f, " ffa[4]"))}
+        if self.ffa(5) != 0 { try!(write!(f, " ffa[5]"))}
+        if self.ffa(6) != 0 { try!(write!(f, " ffa[6]"))}
+        if self.ffa(7) != 0 { try!(write!(f, " ffa[7]"))}
+        if self.ffa(8) != 0 { try!(write!(f, " ffa[8]"))}
+        if self.ffa(9) != 0 { try!(write!(f, " ffa[9]"))}
+        if self.ffa(10) != 0 { try!(write!(f, " ffa[10]"))}
+        if self.ffa(11) != 0 { try!(write!(f, " ffa[11]"))}
+        if self.ffa(12) != 0 { try!(write!(f, " ffa[12]"))}
+        if self.ffa(13) != 0 { try!(write!(f, " ffa[13]"))}
+        if self.ffa(14) != 0 { try!(write!(f, " ffa[14]"))}
+        if self.ffa(15) != 0 { try!(write!(f, " ffa[15]"))}
+        if self.ffa(16) != 0 { try!(write!(f, " ffa[16]"))}
+        if self.ffa(17) != 0 { try!(write!(f, " ffa[17]"))}
+        if self.ffa(18) != 0 { try!(write!(f, " ffa[18]"))}
+        if self.ffa(19) != 0 { try!(write!(f, " ffa[19]"))}
+        if self.ffa(20) != 0 { try!(write!(f, " ffa[20]"))}
+        if self.ffa(21) != 0 { try!(write!(f, " ffa[21]"))}
+        if self.ffa(22) != 0 { try!(write!(f, " ffa[22]"))}
+        if self.ffa(23) != 0 { try!(write!(f, " ffa[23]"))}
+        if self.ffa(24) != 0 { try!(write!(f, " ffa[24]"))}
+        if self.ffa(25) != 0 { try!(write!(f, " ffa[25]"))}
+        if self.ffa(26) != 0 { try!(write!(f, " ffa[26]"))}
         try!(write!(f, "]"));
         Ok(())
     }
@@ -6664,534 +3442,25 @@ impl ::core::fmt::Debug for Ffa1r {
 pub struct Fa1r(pub u32);
 impl Fa1r {
     #[doc="Filter active"]
-    #[inline] pub fn fact0(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
+    #[inline] pub fn fact<I: Into<bits::R27>>(&self, index: I) -> bits::U1 {
+        let index: usize = index.into().value() as usize;
+        let shift: usize = 0 + index;
+        unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Returns true if FACT0 != 0"]
-    #[inline] pub fn test_fact0(&self) -> bool {
-        self.fact0() != 0
+    #[doc="Returns true if FACT != 0"]
+    #[inline] pub fn test_fact<I: Into<bits::R27>>(&self, index: I) -> bool{
+        self.fact(index) != 0
     }
 
-    #[doc="Sets the FACT0 field."]
-    #[inline] pub fn set_fact0<V: Into<bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the FACT field."]
+    #[inline] pub fn set_fact<I: Into<bits::R27>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+        let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
-        self.0 &= !(0x1 << 0);
-        self.0 |= value << 0;
-        self
-    }
-
-    #[doc="Filter active"]
-    #[inline] pub fn fact1(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
-    }
-
-    #[doc="Returns true if FACT1 != 0"]
-    #[inline] pub fn test_fact1(&self) -> bool {
-        self.fact1() != 0
-    }
-
-    #[doc="Sets the FACT1 field."]
-    #[inline] pub fn set_fact1<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 1);
-        self.0 |= value << 1;
-        self
-    }
-
-    #[doc="Filter active"]
-    #[inline] pub fn fact2(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
-    }
-
-    #[doc="Returns true if FACT2 != 0"]
-    #[inline] pub fn test_fact2(&self) -> bool {
-        self.fact2() != 0
-    }
-
-    #[doc="Sets the FACT2 field."]
-    #[inline] pub fn set_fact2<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 2);
-        self.0 |= value << 2;
-        self
-    }
-
-    #[doc="Filter active"]
-    #[inline] pub fn fact3(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
-    }
-
-    #[doc="Returns true if FACT3 != 0"]
-    #[inline] pub fn test_fact3(&self) -> bool {
-        self.fact3() != 0
-    }
-
-    #[doc="Sets the FACT3 field."]
-    #[inline] pub fn set_fact3<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 3);
-        self.0 |= value << 3;
-        self
-    }
-
-    #[doc="Filter active"]
-    #[inline] pub fn fact4(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
-    }
-
-    #[doc="Returns true if FACT4 != 0"]
-    #[inline] pub fn test_fact4(&self) -> bool {
-        self.fact4() != 0
-    }
-
-    #[doc="Sets the FACT4 field."]
-    #[inline] pub fn set_fact4<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 4);
-        self.0 |= value << 4;
-        self
-    }
-
-    #[doc="Filter active"]
-    #[inline] pub fn fact5(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
-    }
-
-    #[doc="Returns true if FACT5 != 0"]
-    #[inline] pub fn test_fact5(&self) -> bool {
-        self.fact5() != 0
-    }
-
-    #[doc="Sets the FACT5 field."]
-    #[inline] pub fn set_fact5<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 5);
-        self.0 |= value << 5;
-        self
-    }
-
-    #[doc="Filter active"]
-    #[inline] pub fn fact6(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
-    }
-
-    #[doc="Returns true if FACT6 != 0"]
-    #[inline] pub fn test_fact6(&self) -> bool {
-        self.fact6() != 0
-    }
-
-    #[doc="Sets the FACT6 field."]
-    #[inline] pub fn set_fact6<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 6);
-        self.0 |= value << 6;
-        self
-    }
-
-    #[doc="Filter active"]
-    #[inline] pub fn fact7(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
-    }
-
-    #[doc="Returns true if FACT7 != 0"]
-    #[inline] pub fn test_fact7(&self) -> bool {
-        self.fact7() != 0
-    }
-
-    #[doc="Sets the FACT7 field."]
-    #[inline] pub fn set_fact7<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 7);
-        self.0 |= value << 7;
-        self
-    }
-
-    #[doc="Filter active"]
-    #[inline] pub fn fact8(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
-    }
-
-    #[doc="Returns true if FACT8 != 0"]
-    #[inline] pub fn test_fact8(&self) -> bool {
-        self.fact8() != 0
-    }
-
-    #[doc="Sets the FACT8 field."]
-    #[inline] pub fn set_fact8<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 8);
-        self.0 |= value << 8;
-        self
-    }
-
-    #[doc="Filter active"]
-    #[inline] pub fn fact9(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
-    }
-
-    #[doc="Returns true if FACT9 != 0"]
-    #[inline] pub fn test_fact9(&self) -> bool {
-        self.fact9() != 0
-    }
-
-    #[doc="Sets the FACT9 field."]
-    #[inline] pub fn set_fact9<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 9);
-        self.0 |= value << 9;
-        self
-    }
-
-    #[doc="Filter active"]
-    #[inline] pub fn fact10(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x1) as u8) } // [10]
-    }
-
-    #[doc="Returns true if FACT10 != 0"]
-    #[inline] pub fn test_fact10(&self) -> bool {
-        self.fact10() != 0
-    }
-
-    #[doc="Sets the FACT10 field."]
-    #[inline] pub fn set_fact10<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 10);
-        self.0 |= value << 10;
-        self
-    }
-
-    #[doc="Filter active"]
-    #[inline] pub fn fact11(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 11) & 0x1) as u8) } // [11]
-    }
-
-    #[doc="Returns true if FACT11 != 0"]
-    #[inline] pub fn test_fact11(&self) -> bool {
-        self.fact11() != 0
-    }
-
-    #[doc="Sets the FACT11 field."]
-    #[inline] pub fn set_fact11<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 11);
-        self.0 |= value << 11;
-        self
-    }
-
-    #[doc="Filter active"]
-    #[inline] pub fn fact12(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 12) & 0x1) as u8) } // [12]
-    }
-
-    #[doc="Returns true if FACT12 != 0"]
-    #[inline] pub fn test_fact12(&self) -> bool {
-        self.fact12() != 0
-    }
-
-    #[doc="Sets the FACT12 field."]
-    #[inline] pub fn set_fact12<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 12);
-        self.0 |= value << 12;
-        self
-    }
-
-    #[doc="Filter active"]
-    #[inline] pub fn fact13(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 13) & 0x1) as u8) } // [13]
-    }
-
-    #[doc="Returns true if FACT13 != 0"]
-    #[inline] pub fn test_fact13(&self) -> bool {
-        self.fact13() != 0
-    }
-
-    #[doc="Sets the FACT13 field."]
-    #[inline] pub fn set_fact13<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 13);
-        self.0 |= value << 13;
-        self
-    }
-
-    #[doc="Filter active"]
-    #[inline] pub fn fact14(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 14) & 0x1) as u8) } // [14]
-    }
-
-    #[doc="Returns true if FACT14 != 0"]
-    #[inline] pub fn test_fact14(&self) -> bool {
-        self.fact14() != 0
-    }
-
-    #[doc="Sets the FACT14 field."]
-    #[inline] pub fn set_fact14<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 14);
-        self.0 |= value << 14;
-        self
-    }
-
-    #[doc="Filter active"]
-    #[inline] pub fn fact15(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 15) & 0x1) as u8) } // [15]
-    }
-
-    #[doc="Returns true if FACT15 != 0"]
-    #[inline] pub fn test_fact15(&self) -> bool {
-        self.fact15() != 0
-    }
-
-    #[doc="Sets the FACT15 field."]
-    #[inline] pub fn set_fact15<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 15);
-        self.0 |= value << 15;
-        self
-    }
-
-    #[doc="Filter active"]
-    #[inline] pub fn fact16(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1) as u8) } // [16]
-    }
-
-    #[doc="Returns true if FACT16 != 0"]
-    #[inline] pub fn test_fact16(&self) -> bool {
-        self.fact16() != 0
-    }
-
-    #[doc="Sets the FACT16 field."]
-    #[inline] pub fn set_fact16<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 16);
-        self.0 |= value << 16;
-        self
-    }
-
-    #[doc="Filter active"]
-    #[inline] pub fn fact17(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 17) & 0x1) as u8) } // [17]
-    }
-
-    #[doc="Returns true if FACT17 != 0"]
-    #[inline] pub fn test_fact17(&self) -> bool {
-        self.fact17() != 0
-    }
-
-    #[doc="Sets the FACT17 field."]
-    #[inline] pub fn set_fact17<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 17);
-        self.0 |= value << 17;
-        self
-    }
-
-    #[doc="Filter active"]
-    #[inline] pub fn fact18(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 18) & 0x1) as u8) } // [18]
-    }
-
-    #[doc="Returns true if FACT18 != 0"]
-    #[inline] pub fn test_fact18(&self) -> bool {
-        self.fact18() != 0
-    }
-
-    #[doc="Sets the FACT18 field."]
-    #[inline] pub fn set_fact18<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 18);
-        self.0 |= value << 18;
-        self
-    }
-
-    #[doc="Filter active"]
-    #[inline] pub fn fact19(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 19) & 0x1) as u8) } // [19]
-    }
-
-    #[doc="Returns true if FACT19 != 0"]
-    #[inline] pub fn test_fact19(&self) -> bool {
-        self.fact19() != 0
-    }
-
-    #[doc="Sets the FACT19 field."]
-    #[inline] pub fn set_fact19<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 19);
-        self.0 |= value << 19;
-        self
-    }
-
-    #[doc="Filter active"]
-    #[inline] pub fn fact20(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 20) & 0x1) as u8) } // [20]
-    }
-
-    #[doc="Returns true if FACT20 != 0"]
-    #[inline] pub fn test_fact20(&self) -> bool {
-        self.fact20() != 0
-    }
-
-    #[doc="Sets the FACT20 field."]
-    #[inline] pub fn set_fact20<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 20);
-        self.0 |= value << 20;
-        self
-    }
-
-    #[doc="Filter active"]
-    #[inline] pub fn fact21(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 21) & 0x1) as u8) } // [21]
-    }
-
-    #[doc="Returns true if FACT21 != 0"]
-    #[inline] pub fn test_fact21(&self) -> bool {
-        self.fact21() != 0
-    }
-
-    #[doc="Sets the FACT21 field."]
-    #[inline] pub fn set_fact21<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 21);
-        self.0 |= value << 21;
-        self
-    }
-
-    #[doc="Filter active"]
-    #[inline] pub fn fact22(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 22) & 0x1) as u8) } // [22]
-    }
-
-    #[doc="Returns true if FACT22 != 0"]
-    #[inline] pub fn test_fact22(&self) -> bool {
-        self.fact22() != 0
-    }
-
-    #[doc="Sets the FACT22 field."]
-    #[inline] pub fn set_fact22<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 22);
-        self.0 |= value << 22;
-        self
-    }
-
-    #[doc="Filter active"]
-    #[inline] pub fn fact23(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 23) & 0x1) as u8) } // [23]
-    }
-
-    #[doc="Returns true if FACT23 != 0"]
-    #[inline] pub fn test_fact23(&self) -> bool {
-        self.fact23() != 0
-    }
-
-    #[doc="Sets the FACT23 field."]
-    #[inline] pub fn set_fact23<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 23);
-        self.0 |= value << 23;
-        self
-    }
-
-    #[doc="Filter active"]
-    #[inline] pub fn fact24(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 24) & 0x1) as u8) } // [24]
-    }
-
-    #[doc="Returns true if FACT24 != 0"]
-    #[inline] pub fn test_fact24(&self) -> bool {
-        self.fact24() != 0
-    }
-
-    #[doc="Sets the FACT24 field."]
-    #[inline] pub fn set_fact24<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 24);
-        self.0 |= value << 24;
-        self
-    }
-
-    #[doc="Filter active"]
-    #[inline] pub fn fact25(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 25) & 0x1) as u8) } // [25]
-    }
-
-    #[doc="Returns true if FACT25 != 0"]
-    #[inline] pub fn test_fact25(&self) -> bool {
-        self.fact25() != 0
-    }
-
-    #[doc="Sets the FACT25 field."]
-    #[inline] pub fn set_fact25<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 25);
-        self.0 |= value << 25;
-        self
-    }
-
-    #[doc="Filter active"]
-    #[inline] pub fn fact26(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 26) & 0x1) as u8) } // [26]
-    }
-
-    #[doc="Returns true if FACT26 != 0"]
-    #[inline] pub fn test_fact26(&self) -> bool {
-        self.fact26() != 0
-    }
-
-    #[doc="Sets the FACT26 field."]
-    #[inline] pub fn set_fact26<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 26);
-        self.0 |= value << 26;
-        self
-    }
-
-    #[doc="Filter active"]
-    #[inline] pub fn fact27(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 27) & 0x1) as u8) } // [27]
-    }
-
-    #[doc="Returns true if FACT27 != 0"]
-    #[inline] pub fn test_fact27(&self) -> bool {
-        self.fact27() != 0
-    }
-
-    #[doc="Sets the FACT27 field."]
-    #[inline] pub fn set_fact27<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 27);
-        self.0 |= value << 27;
+        let shift: usize = 0 + index;
+        self.0 &= !(0x1 << shift);
+        self.0 |= value << shift;
         self
     }
 
@@ -7213,44 +3482,43 @@ impl ::core::fmt::Display for Fa1r {
 impl ::core::fmt::Debug for Fa1r {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
         try!(write!(f, "[0x{:08x}", self.0));
-        if self.fact0() != 0 { try!(write!(f, " fact0"))}
-        if self.fact1() != 0 { try!(write!(f, " fact1"))}
-        if self.fact2() != 0 { try!(write!(f, " fact2"))}
-        if self.fact3() != 0 { try!(write!(f, " fact3"))}
-        if self.fact4() != 0 { try!(write!(f, " fact4"))}
-        if self.fact5() != 0 { try!(write!(f, " fact5"))}
-        if self.fact6() != 0 { try!(write!(f, " fact6"))}
-        if self.fact7() != 0 { try!(write!(f, " fact7"))}
-        if self.fact8() != 0 { try!(write!(f, " fact8"))}
-        if self.fact9() != 0 { try!(write!(f, " fact9"))}
-        if self.fact10() != 0 { try!(write!(f, " fact10"))}
-        if self.fact11() != 0 { try!(write!(f, " fact11"))}
-        if self.fact12() != 0 { try!(write!(f, " fact12"))}
-        if self.fact13() != 0 { try!(write!(f, " fact13"))}
-        if self.fact14() != 0 { try!(write!(f, " fact14"))}
-        if self.fact15() != 0 { try!(write!(f, " fact15"))}
-        if self.fact16() != 0 { try!(write!(f, " fact16"))}
-        if self.fact17() != 0 { try!(write!(f, " fact17"))}
-        if self.fact18() != 0 { try!(write!(f, " fact18"))}
-        if self.fact19() != 0 { try!(write!(f, " fact19"))}
-        if self.fact20() != 0 { try!(write!(f, " fact20"))}
-        if self.fact21() != 0 { try!(write!(f, " fact21"))}
-        if self.fact22() != 0 { try!(write!(f, " fact22"))}
-        if self.fact23() != 0 { try!(write!(f, " fact23"))}
-        if self.fact24() != 0 { try!(write!(f, " fact24"))}
-        if self.fact25() != 0 { try!(write!(f, " fact25"))}
-        if self.fact26() != 0 { try!(write!(f, " fact26"))}
-        if self.fact27() != 0 { try!(write!(f, " fact27"))}
+        if self.fact(0) != 0 { try!(write!(f, " fact[0]"))}
+        if self.fact(1) != 0 { try!(write!(f, " fact[1]"))}
+        if self.fact(2) != 0 { try!(write!(f, " fact[2]"))}
+        if self.fact(3) != 0 { try!(write!(f, " fact[3]"))}
+        if self.fact(4) != 0 { try!(write!(f, " fact[4]"))}
+        if self.fact(5) != 0 { try!(write!(f, " fact[5]"))}
+        if self.fact(6) != 0 { try!(write!(f, " fact[6]"))}
+        if self.fact(7) != 0 { try!(write!(f, " fact[7]"))}
+        if self.fact(8) != 0 { try!(write!(f, " fact[8]"))}
+        if self.fact(9) != 0 { try!(write!(f, " fact[9]"))}
+        if self.fact(10) != 0 { try!(write!(f, " fact[10]"))}
+        if self.fact(11) != 0 { try!(write!(f, " fact[11]"))}
+        if self.fact(12) != 0 { try!(write!(f, " fact[12]"))}
+        if self.fact(13) != 0 { try!(write!(f, " fact[13]"))}
+        if self.fact(14) != 0 { try!(write!(f, " fact[14]"))}
+        if self.fact(15) != 0 { try!(write!(f, " fact[15]"))}
+        if self.fact(16) != 0 { try!(write!(f, " fact[16]"))}
+        if self.fact(17) != 0 { try!(write!(f, " fact[17]"))}
+        if self.fact(18) != 0 { try!(write!(f, " fact[18]"))}
+        if self.fact(19) != 0 { try!(write!(f, " fact[19]"))}
+        if self.fact(20) != 0 { try!(write!(f, " fact[20]"))}
+        if self.fact(21) != 0 { try!(write!(f, " fact[21]"))}
+        if self.fact(22) != 0 { try!(write!(f, " fact[22]"))}
+        if self.fact(23) != 0 { try!(write!(f, " fact[23]"))}
+        if self.fact(24) != 0 { try!(write!(f, " fact[24]"))}
+        if self.fact(25) != 0 { try!(write!(f, " fact[25]"))}
+        if self.fact(26) != 0 { try!(write!(f, " fact[26]"))}
         try!(write!(f, "]"));
         Ok(())
     }
 }
 
-#[doc="Filter Register Registers 1"]
+#[doc="Filter Bank Register 0"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
-pub struct Fr(pub u32);
-impl Fr {
-    #[doc="Filter bit"]
+pub struct Fr0(pub u32);
+impl Fr0 {
+    #[doc="Filter Word"]
     #[inline] pub fn fb(&self) -> bits::U32 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffffffff) as u32) } // [31:0]
     }
@@ -7271,20 +3539,66 @@ impl Fr {
 
 }
 
-impl From<u32> for Fr {
+impl From<u32> for Fr0 {
     #[inline]
     fn from(other: u32) -> Self {
-         Fr(other)
+         Fr0(other)
     }
 }
 
-impl ::core::fmt::Display for Fr {
+impl ::core::fmt::Display for Fr0 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
     }
 }
 
-impl ::core::fmt::Debug for Fr {
+impl ::core::fmt::Debug for Fr0 {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        try!(write!(f, "]"));
+        Ok(())
+    }
+}
+
+#[doc="Filter Bank Register 1"]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct Fr1(pub u32);
+impl Fr1 {
+    #[doc="Filter Word"]
+    #[inline] pub fn fb(&self) -> bits::U32 {
+        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffffffff) as u32) } // [31:0]
+    }
+
+    #[doc="Returns true if FB != 0"]
+    #[inline] pub fn test_fb(&self) -> bool {
+        self.fb() != 0
+    }
+
+    #[doc="Sets the FB field."]
+    #[inline] pub fn set_fb<V: Into<bits::U32>>(mut self, value: V) -> Self {
+        let value: bits::U32 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0xffffffff << 0);
+        self.0 |= value << 0;
+        self
+    }
+
+}
+
+impl From<u32> for Fr1 {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Fr1(other)
+    }
+}
+
+impl ::core::fmt::Display for Fr1 {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
+    }
+}
+
+impl ::core::fmt::Debug for Fr1 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
         try!(write!(f, "[0x{:08x}", self.0));
         try!(write!(f, "]"));
