@@ -25,8 +25,8 @@ pub extern "C" fn main() -> ! {
 
     println!("RCC Enabled");
 
-    can_tx.mode_can_tx(&can).open_drain();
-    can_rx.mode_can_rx(&can).open_drain();
+    can_tx.mode_can_tx(&can).push_pull();
+    can_rx.mode_can_rx(&can);
     
     println!("Pins Configured");
 
