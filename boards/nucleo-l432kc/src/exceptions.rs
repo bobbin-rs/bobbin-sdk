@@ -35,7 +35,11 @@ pub unsafe extern "C" fn reset() -> ! {
     // // Copy ISR vectors to RAM
     r0::init_data(&mut _srvector, &_ervector, &_svector); 
     hal::scb::set_tbloff(0x20000000 >> 7);
-        
+
+    // Initialize FPU        
+    ::chip::fpu::FPU.set_cpacr(|r| r.set_cp10(0x3).set_cp11(0x3));
+
+
     main();
     loop {}
 }
