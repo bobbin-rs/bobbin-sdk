@@ -5,6 +5,7 @@ pub mod rcc;
 pub mod clock;
 
 pub mod dma {
+    pub use bobbin_common::{Channel};
     pub use chip::dma::*;
     pub use stm32_common::hal::dma_f3::*;
     pub use super::rcc::RccEnabled;
