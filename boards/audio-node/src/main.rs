@@ -1,0 +1,563 @@
+#![no_std]
+#![no_main]
+#![allow(dead_code)]
+
+#[macro_use]
+extern crate nucleo_l432kc as board;
+
+#[no_mangle]
+pub extern "C" fn main() -> ! {
+    board::init();
+    println!("[start] Running tests for nucleo-l432KC");
+    // test_crc();
+    test_gpio();
+    test_lptim();
+    test_systick();
+    test_adc();
+    test_dma();
+    test_exti();
+    // test_lpuart();
+    // test_usart();
+    test_i2c();
+    // test_spi_lora();
+    
+    println!("[done] All tests passed");
+    loop {}
+}
+
+/// Pin PA10 / D0 must be connected to Pin PA9 / D1
+fn test_gpio() {
+    use board::hal::gpio::*;
+    let port = GPIOA;
+    let port_out = PA10; // D0
+    let port_in = PA9; // D1
+
+    // println!("# Setting up GPIO");
+
+    port.rcc_enable();
+    port_out.mode_output();
+    port_in.mode_input();
+
+    // println!("# Starting GPIO");
+
+    port_out.set_output(false);
+    assert_eq!(port_out.output(), false);
+    assert_eq!(port_in.input(), false);
+
+    port_out.set_output(true);
+    assert_eq!(port_out.output(), true);
+    assert_eq!(port_in.input(), true);
+
+    port_out.toggle_output();
+    assert_eq!(port_out.output(), false);
+    assert_eq!(port_in.input(), false);
+
+    port_out.mode_analog();
+    port_in.mode_analog();
+
+    println!("[pass] GPIO OK");
+}
+
+// fn test_crc() {
+//     use board::hal::crc::*;
+
+//     let crc = CRC;
+
+//     // println!("# Setting up CRC");
+
+//     crc.rcc_enable();
+//     crc.configure(Config::default()).initialize(0x1234);
+
+//     // println!("# Starting CRC");
+
+//     let expect = [0x00001234, 0x77951e50, 0x24934150, 0x87e34974];
+
+//     for i in 0..4 {
+//         assert_eq!(crc.read(), expect[i]);
+//         crc.write(i as u32);
+//     }
+
+//     crc.rcc_disable();
+
+//     println!("[pass] CRC OK");    
+// }
+
+fn test_lptim() {
+    use board::hal::lptim::*;
+
+    fn check_progress(tim: &LptimPeriph) {
+        let mut c_max = 0;
+        while !tim.test_timeout() {
+            let c = tim.counter();
+            if c > c_max {
+                c_max = c;
+            }
+        }
+        assert!(tim.test_compare());
+        assert!(c_max > 0);
+    }
+
+    let tim = LPTIM1;
+    tim.rcc_enable();
+    tim.set_enabled(true);
+
+    // Repeat Up Counter
+
+    tim
+        .set_compare(512)
+        .clr_compare()
+        .clr_timeout()
+        .start_up(1024);
+    check_progress(&tim);
+    tim
+        .clr_compare()
+        .clr_timeout();
+    check_progress(&tim);    
+    
+    // Single Up Counter
+    tim
+        .set_compare(512)
+        .clr_compare()
+        .clr_timeout()
+        .start_up_once(1024);
+    check_progress(&tim);   
+
+    tim.set_enabled(false);
+    tim.rcc_disable();
+
+    println!("[pass] LPTIM OK");
+}
+
+fn test_systick() {
+    use board::hal::systick::*;
+
+    println!("# Testing SYSTICK");
+    test_systick(&SYSTICK, ClockSource::Internal);
+    println!("[pass] SYSTICK OK");
+}
+
+fn test_adc() {
+    // use board::chip::rcc::*;
+    use board::hal::adc::*;
+    use board::chip::c_adc::C_ADC;
+
+    let adc = ADC1;
+    let adc_temp = ADC1_TEMP;
+    let adc_ref = ADC1_REFINT;
+
+    // NOTE: Set ADC prescaler to enable clock
+
+
+    adc.rcc_enable();
+    C_ADC.with_ccr(|r| r.set_ckmode(0b11).set_tsen(1).set_vrefen(1));
+    // init(&adc);
+    adc.init();
+    // adc.with_smpr1(|r| r.set_smp(0b111));
+
+    let t: u8 = <AdcCh as AnalogRead<u8>>::start(&adc_temp).analog_read();
+    let v: u8 = <AdcCh as AnalogRead<u8>>::start(&adc_ref).analog_read();
+
+    println!("# t: {} v: {}", t, v);
+
+    // assert!(t > 110 && t < 130);
+    // assert!(v > 220 && t < 240);
+
+
+    adc.rcc_disable();
+
+    println!("[pass] ADC OK");
+
+    fn init(adc: &AdcPeriph) {
+        adc.with_cr(|r| r.set_aden(0));
+        while adc.isr().adrdy() != 0 {}
+
+        // Enable Analog Voltage Regulator
+        adc.with_cr(|r| r.set_advregen(0b00));
+        adc.with_cr(|r| r.set_advregen(0b01));
+
+        // Calibrate
+        adc.with_cr(|r| r.set_adcaldif(0));
+        adc.with_cr(|r| r.set_adcal(1));
+
+        // Delay required in order for calibration
+        // update to work
+        for _ in 0..100 {
+            let _ = adc.cr();
+        }
+        // println!("calibrate");
+        while adc.cr().adcal() != 0 {}
+        // println!("a");
+
+        // Enable ADC
+        adc.with_cr(|r| r.set_aden(1));
+        // Wait until ADC is ready
+        while adc.isr().adrdy() == 0 {}
+        println!("ready");
+    }
+
+}
+
+fn test_dma() {
+    use board::hal::dma::*;    
+    let src = [0xffu8; 1024];
+    let dst = [0u8; 1024];
+    
+    let dma = DMA1;
+    let dma_ch = DMA1_CH1;
+
+    // ch.irq_dma().set_enabled(true);
+
+    dma.rcc_enable();
+    
+    dma_ch    
+        .set_pa(&src as *const u8 as u32)
+        .set_ma(&dst as *const u8 as u32)
+        .set_psize(Size::Bit8)
+        .set_pinc(true)
+        .set_msize(Size::Bit8)
+        .set_minc(true)
+        .set_mem2mem(true)
+        .set_ndt(1024)
+        .set_tcie(true)
+        .clr_teif()
+        .clr_tcif();
+
+    dma_ch.clr_tcif().set_enabled(true);
+
+    while !dma_ch.tcif() {}
+
+    for i in 0..1024 {
+        assert_eq!(src[i], dst[i]);
+    }    
+
+    dma.rcc_disable();
+    println!("[pass] DMA OK");
+}
+
+/// Pin PA10 / D0 must be connected to Pin PA9 / D1
+fn test_exti() {
+    use board::hal::gpio::*;
+    use board::hal::syscfg::*;
+    use board::hal::exti::*;    
+
+    let port = GPIOA;
+    let port_out = PA10; // D0
+    let port_in = PA9; // D1
+    let line = EXTI_LINE9;
+
+    port.rcc_enable();
+    port_out.mode_output().set_output(false);
+    port_in.mode_input();
+
+    SYSCFG.rcc_enable();
+    SYSCFG.set_exti(line.index, Source::GpioA);
+    
+    line.set_interrupt_mask(true);
+    line.set_rising_trigger(true);
+    line.set_falling_trigger(true);
+
+    // Test for rising edge trigger
+    line.clr_pending(); 
+    assert_eq!(line.pending(), false);
+    port_out.set_output(true);
+    assert_eq!(line.pending(), true);    
+
+    // Test for falling edge trigger
+    line.clr_pending(); 
+    port_out.set_output(false);
+    assert_eq!(line.pending(), true);    
+    line.clr_pending(); 
+
+    SYSCFG.rcc_disable();
+
+    println!("[pass] EXTI OK");
+}
+
+fn test_lpuart() {
+    use board::console;
+    use board::clock::{CLK, Clock};
+    use board::hal::gpio::*;
+    use board::hal::lpuart::*;
+
+    let uart = LPUART1;
+    let port = GPIOA;
+    let tx = PA2;
+
+    let f_ck = uart.clock(&CLK).unwrap();
+
+    board::delay(1);
+    console::disable();
+    uart.rcc_enable();
+    port.rcc_enable();
+    tx.mode_tx(&uart);
+    uart.with_config(|c| c.set_baud(115200, f_ck));
+    uart.set_brr(|r| r.set_brr(4096));
+    uart.with_cr3(|r| r.set_hdsel(1));
+    uart.set_enabled(true);
+
+    let src = b"# ABCD\r\n";;
+    let mut dst = [0u8; 8];
+
+    if uart.can_rx() {
+        let _ = uart.rx();
+    }
+
+    for i in 0..src.len() {
+        uart.putc(src[i]);
+        while !uart.isr().test_tc() {}
+        if uart.can_rx() {
+            dst[i] = uart.rx();
+        }
+    }
+    // while uart.isr().test_busy() {}
+    uart.rcc_disable();
+    console::init();
+    // println!("# src: {:?}", src);
+    // println!("# dst: {:?}", dst);
+    assert_eq!(src, &dst);
+    println!("[pass] LPUART OK");
+}
+
+
+// fn test_usart() {
+//     use board::console;
+//     use board::clock::{CLK, Clock};
+//     use board::hal::gpio::*;
+//     use board::hal::usart::*;
+
+//     let uart = USART2;
+//     let port = GPIOA;
+//     let tx = PA2;
+
+//     let f_ck = uart.clock(&CLK).unwrap();
+
+//     board::delay(1);
+//     console::disable();
+   
+//     uart.rcc_enable();
+//     port.rcc_enable();
+
+//     tx.mode_tx(&uart);
+
+//     uart.with_config(|c| c.set_baud(115200, f_ck));
+//     // uart.set_brr(|r| r.set_brr(71_111));
+//     uart.with_cr3(|r| r.set_hdsel(1));
+//     uart.set_enabled(true);
+
+//     let src = b"# ABCD\r\n";;
+//     let mut dst = [0u8; 8];
+
+//     if uart.can_rx() {
+//         let _ = uart.rx();
+//     }
+
+//     for i in 0..src.len() {
+//         uart.putc(src[i]);
+//         while !uart.isr().test_tc() {}
+//         if uart.can_rx() {
+//             dst[i] = uart.rx();
+//         }
+//     }
+//     // while uart.isr().test_busy() {}
+//     uart.rcc_disable();
+//     console::init();
+//     // println!("# src: {:?}", src);
+//     // println!("# dst: {:?}", dst);
+//     assert_eq!(src, &dst);
+//     println!("[pass] USART OK");
+// }
+
+// /// PA6(A5) and PA7(A6) must be jumpered together for loopback.
+// fn test_spi() {
+//     use board::hal::gpio::*;
+//     use board::hal::spi::*;
+
+//     let spi = SPI1;
+//     let port = GPIOA;
+//     let spi_miso = PA6; // A5
+//     let spi_mosi = PA7; // A6
+//     let spi_sck = PA5;
+
+//     spi.rcc_enable();
+//     port.rcc_enable();
+
+//     // NOTE: Pins must be set with output speed HIGH or leading edge
+//     // of transmission will occasionally be missed.
+
+//     spi_miso.mode_spi_miso(&spi).speed_high().pull_up();
+//     spi_mosi.mode_spi_mosi(&spi).speed_high().push_pull();
+//     spi_sck.mode_spi_sck(&spi).speed_high().push_pull();
+
+//     spi.set_config(|cfg| cfg
+//         .set_frame_size(FrameSize::Bits8)
+//         .set_master(true)
+//         .set_baud_divider(0b0.into())
+//     );
+
+//     spi.set_output_enabled(true).set_enabled(true);
+
+//     let src: [u8; 8] = [0xde, 0xad, 0xbe, 0xef, 0x12, 0x34, 0x56, 0x78];
+//     let mut dst = [0u8; 8];
+
+//     let mut i = 0;
+//     let mut j = 0;
+//     loop {
+//         if i < src.len() && spi.can_tx() {
+//             spi.tx(src[i]);
+//             i += 1;
+//         }
+//         if j < dst.len() && spi.can_rx() {
+//             dst[j] = spi.rx();
+//             j += 1;
+//         }
+//         if j == dst.len() {
+//             break;
+//         }        
+//     }
+//     // println!("# src: {:?}", src);
+//     // println!("# dst: {:?}", dst);
+//     assert_eq!(src, dst);
+    
+//     spi.set_enabled(false);
+//     spi.rcc_disable();
+
+//     println!("[pass] SPI OK");
+// }
+
+fn test_i2c() {
+    use board::hal::gpio::*;
+    use board::hal::i2c::*;
+    use board::common::bits::*;
+
+    let addr: U7 = U7::from(0x60);
+
+    let i2c = I2C1;
+    let i2c_port = GPIOB;
+    let i2c_scl = PB6; // D4
+    let i2c_sda = PB7; // D5
+
+    i2c.rcc_enable();
+    i2c_port.rcc_enable();
+
+    // Attached to MPL3115A2 
+    // NOTE: SCL and SCA must have pull-up resistors.
+
+    i2c_scl.mode_i2c_scl(&i2c).open_drain();
+    i2c_sda.mode_i2c_sda(&i2c).open_drain();
+
+    // println!("# Configuring I2C");
+
+    // i2c.set_config(|c| c.set_timing(0x8.into(), 0x3.into(), 0x0.into(), 0xd.into(), 0x12.into()));
+    i2c.set_enabled(false);
+    // i2c.set_timingr(|_| Timingr(0x00300619));
+    i2c.set_timingr(|r| r
+        .set_presc(0x0)
+        .set_scldel(0x3)
+        .set_sdadel(0x0)
+        .set_sclh(0xF)
+        .set_scll(0x12)
+    );
+    assert_eq!(i2c.read_reg(addr, 0x0c), 0xc4);
+    
+    // println!("Mode:  0x{:08x}", i2c.read_reg(addr, 0x26));
+    
+
+    i2c.write_reg(addr, 0x26, 0xb8); // OSR = 128
+    i2c.write_reg(addr, 0x13, 0x06); // Enable Data Flags
+    i2c.write_reg(addr, 0x26, 0xb9); // Set Active
+    // println!("Mode:  0x{:08x}", i2c.read_reg(addr, 0x26));
+
+    loop {
+        while i2c.read_reg(addr, 0x00) != 0x04 {}    
+        let mut buf = [0u8; 5];
+        i2c.transfer(addr, &[0x01], &mut buf);
+        println!("# {:?}", buf);
+        // assert!(buf[0] == 0 && buf[1] != 0 && buf[2] != 0 && buf[3] != 0 && buf[4] != 0);
+        break
+    }
+
+    
+
+    i2c_port.rcc_disable();
+    i2c.rcc_disable();
+    println!("[pass] I2C OK");
+}
+
+/// RFM9x LoRa Radio on pins D10-D13
+fn test_spi_lora() {
+    use board::hal::gpio::*;
+    use board::hal::spi::*;
+
+    let spi = SPI1;
+
+    let spi_miso = PB4; // D12
+    let spi_mosi = PB5; // D11
+    let spi_sck = PB3; // D13
+    let spi_nss = PA11; // D10
+
+    spi.rcc_enable();
+    GPIOA.rcc_enable();
+    GPIOB.rcc_enable();
+
+    // NOTE: Pins must be set with output speed HIGH or leading edge
+    // of transmission will occasionally be missed.
+
+    spi_miso.mode_spi_miso(&spi).speed_high().pull_up();
+    spi_mosi.mode_spi_mosi(&spi).speed_high().push_pull();
+    spi_sck.mode_spi_sck(&spi).speed_high().push_pull();
+    // spi_nss.mode_spi_nss(&spi).speed_high().push_pull();
+    spi_nss.mode_output();
+
+    spi.set_config(|cfg| cfg
+        .set_data_size(DataSize::Bits8)
+        .set_master(true)
+        .set_baud_divider(0b100.into())
+    );
+
+    spi.with_cr2(|r| r.set_frxth(1));
+    spi.set_output_enabled(true).set_enabled(true);
+
+    let test_data = [(0x42, 0x12), (0x01, 0x09), (0x02, 0x1a), (0x03, 0x0b), (0x04, 0x00), (0x05, 0x52), (0x06, 0x6c)];
+
+    for &(tx, rx) in test_data.iter() {
+        // println!("0x{:02x}: 0x{:02x}", tx, rx);
+        assert_eq!(reg_read(&spi, &spi_nss, tx), rx);
+    }
+
+
+
+    println!("[pass] SPI OK");
+    spi.rcc_disable();
+    spi_sck.mode_analog();
+    spi_mosi.mode_analog();
+    spi_miso.mode_analog();
+    spi_nss.mode_analog();
+
+    fn transfer(spi: &SpiPeriph, nss: &GpioPin, src: &[u8], dst: &mut[u8]) {
+        let mut i = 0;
+        let mut j = 0;
+        nss.set_output(false);
+        loop {
+            if i < src.len() && spi.can_tx() {
+                spi.tx(src[i]);
+                i += 1;
+            }
+            if j < dst.len() && spi.can_rx() {
+                dst[j] = spi.rx();
+                j += 1;
+            }
+            if j == dst.len() {
+                break;
+            }        
+        }
+        nss.set_output(true);
+    }
+
+    fn reg_read(spi: &SpiPeriph, nss: &GpioPin, reg: u8) -> u8 {
+        let cmd = [reg, 0xff];
+        let mut buf = [0u8, 0u8];
+        transfer(spi, nss, &cmd, &mut buf);
+        buf[1]
+    }
+
+}

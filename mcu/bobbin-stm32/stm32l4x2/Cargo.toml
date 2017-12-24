@@ -16,5 +16,4 @@ git = "https://github.com/rust-lang-nursery/compiler-builtins"
 features = ["mem","c"]
 
 [features]
-stm32l432xB = []
-stm32l432xC = []
+stm32l462xE = []

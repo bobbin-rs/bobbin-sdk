@@ -272,6 +272,18 @@ impl<T: ClockTree> Clock<T> for Usart2 {
     }
 }
 
+impl<T: ClockTree> Clock<T> for Usart3 {
+    #[inline]
+    fn clock(&self, t: &T) -> Hz {
+        match RCC.ccipr().usart3sel() {
+            U2::B00 => t.pclk1(),
+            U2::B01 => t.sysclk(),
+            U2::B10 => t.hsi16(),
+            U2::B11 => t.lse(),
+        }
+    }
+}
+
 
 impl<T: ClockTree> Clock<T> for Lptim1 {
     #[inline]
