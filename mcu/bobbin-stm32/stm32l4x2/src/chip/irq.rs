@@ -4,6 +4,7 @@
 
 pub type Handler = extern "C" fn();
 
+irq!(IRQ_TIM6_DACUNDER, IrqTim6Dacunder, 54);
 irq!(IRQ_DMA1_CH1, IrqDma1Ch1, 11);
 irq!(IRQ_DMA1_CH2, IrqDma1Ch2, 12);
 irq!(IRQ_DMA1_CH3, IrqDma1Ch3, 13);
@@ -30,7 +31,6 @@ irq!(IRQ_I2C3_EV, IrqI2c3Ev, 72);
 irq!(IRQ_I2C3_ER, IrqI2c3Er, 73);
 irq!(IRQ_I2C4_EV, IrqI2c4Ev, 83);
 irq!(IRQ_FLASH, IrqFlash, 4);
-irq!(IRQ_RCC, IrqRcc, 5);
 irq!(IRQ_RNG, IrqRng, 80);
 irq!(IRQ_AES, IrqAes, 79);
 irq!(IRQ_ADC1, IrqAdc1, 18);
@@ -39,9 +39,11 @@ irq!(IRQ_TIM2, IrqTim2, 28);
 irq!(IRQ_TIM3, IrqTim3, 29);
 irq!(IRQ_TIM1_BRK_TIM15, IrqTim1BrkTim15, 24);
 irq!(IRQ_TIM1_UP_TIM16, IrqTim1UpTim16, 25);
+irq!(IRQ_TIM1_BRK, IrqTim1Brk, 24);
+irq!(IRQ_TIM1_UP, IrqTim1Up, 25);
 irq!(IRQ_TIM1_TRG_COM, IrqTim1TrgCom, 26);
 irq!(IRQ_TIM1_CC, IrqTim1Cc, 27);
-irq!(IRQ_TIM6_DACUNDER, IrqTim6Dacunder, 54);
+irq!(IRQ_TIM6, IrqTim6, 54);
 irq!(IRQ_TIM7, IrqTim7, 55);
 irq!(IRQ_LPTIM1, IrqLptim1, 65);
 irq!(IRQ_LPTIM2, IrqLptim2, 66);
@@ -94,13 +96,13 @@ pub static mut INTERRUPT_HANDLERS: [Option<Handler>; 85] = [
     None,                          // IRQ 8: EXTI Line 2 interrupt
     None,                          // IRQ 9: EXTI Line 3 interrupt
     None,                          // IRQ 10: EXTI Line4 interrupt
-    None,                          // IRQ 11: DMA1 Channel1 global interrupt
-    None,                          // IRQ 12: DMA1 Channel2 global interrupt
-    None,                          // IRQ 13: DMA1 Channel3 interrupt
-    None,                          // IRQ 14: DMA1 Channel4 interrupt
-    None,                          // IRQ 15: DMA1 Channel5 interrupt
-    None,                          // IRQ 16: DMA1 Channel6 interrupt
-    None,                          // IRQ 17: DMA1 Channel 7 interrupt
+    None,
+    None,
+    None,
+    None,
+    None,
+    None,
+    None,
     None,                          // IRQ 18: ADC1 and ADC2 global interrupt
     None,                          // IRQ 19: CAN1 TX interrupts
     None,                          // IRQ 20: CAN1 RX0 interrupts
@@ -139,11 +141,11 @@ pub static mut INTERRUPT_HANDLERS: [Option<Handler>; 85] = [
     None,
     None,                          // IRQ 54: TIM6 global and DAC1 and 2 underrun error interrupts
     None,                          // IRQ 55: TIM7 global interrupt
-    None,                          // IRQ 56: DMA2 Channel 1 global Interrupt
-    None,                          // IRQ 57: DMA2 Channel 2 global Interrupt
-    None,                          // IRQ 58: DMA2 Channel 3 global Interrupt
-    None,                          // IRQ 59: DMA2 Channel 4 global Interrupt
-    None,                          // IRQ 60: DMA2 Channel 5 global Interrupt
+    None,
+    None,
+    None,
+    None,
+    None,
     None,                          // IRQ 61: DFSDM1_FLT0 global interrupt
     None,                          // IRQ 62: DFSDM1_FLT1 global interrupt
     None,                          // IRQ 63: DFSDM1_FLT2 global interrupt
@@ -151,8 +153,8 @@ pub static mut INTERRUPT_HANDLERS: [Option<Handler>; 85] = [
     None,                          // IRQ 65: LP TIM1 interrupt
     None,                          // IRQ 66: LP TIM2 interrupt
     None,                          // IRQ 67: USB event interrupt through EXTI
-    None,                          // IRQ 68: DMA2 Channel 6 global Interrupt
-    None,                          // IRQ 69: DMA2 Channel 7 global Interrupt
+    None,
+    None,
     None,                          // IRQ 70: LPUART1 global interrupt
     None,                          // IRQ 71: Quad SPI global interrupt
     None,                          // IRQ 72: I2C3 event interrupt

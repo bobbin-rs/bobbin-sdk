@@ -1,14 +1,12 @@
+//! Reset and clock control
 #[allow(unused_imports)] use bobbin_common::*;
 
-periph!( RCC, Rcc, _RCC, RccPeriph, 0x40021000);
+periph!(RCC, Rcc, 0x40021000);
 
+#[doc="Reset and clock control"]
 #[derive(Clone, Copy, PartialEq, Eq)]
-#[doc="RCC Peripheral"]
-pub struct RccPeriph(pub usize); 
-
-
-
-impl RccPeriph {
+pub struct Rcc(pub usize);
+impl Rcc {
     #[doc="Get the *mut pointer for the CR register."]
     #[inline] pub fn cr_mut(&self) -> *mut Cr { 
         (self.0 + 0x0) as *mut Cr
@@ -4326,18 +4324,18 @@ impl Apb1enr1 {
         self
     }
 
-    #[doc="USART1 clock enable"]
-    #[inline] pub fn usart1en(&self) -> bits::U1 {
+    #[doc="USART3 clock enable"]
+    #[inline] pub fn usart3en(&self) -> bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 18) & 0x1) as u8) } // [18]
     }
 
-    #[doc="Returns true if USART1EN != 0"]
-    #[inline] pub fn test_usart1en(&self) -> bool {
-        self.usart1en() != 0
+    #[doc="Returns true if USART3EN != 0"]
+    #[inline] pub fn test_usart3en(&self) -> bool {
+        self.usart3en() != 0
     }
 
-    #[doc="Sets the USART1EN field."]
-    #[inline] pub fn set_usart1en<V: Into<bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the USART3EN field."]
+    #[inline] pub fn set_usart3en<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 18);
@@ -4383,18 +4381,18 @@ impl Apb1enr1 {
         self
     }
 
-    #[doc="SPI1 clock enable"]
-    #[inline] pub fn spi1en(&self) -> bits::U1 {
+    #[doc="SPI2 clock enable"]
+    #[inline] pub fn spi2en(&self) -> bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 14) & 0x1) as u8) } // [14]
     }
 
-    #[doc="Returns true if SPI1EN != 0"]
-    #[inline] pub fn test_spi1en(&self) -> bool {
-        self.spi1en() != 0
+    #[doc="Returns true if SPI2EN != 0"]
+    #[inline] pub fn test_spi2en(&self) -> bool {
+        self.spi2en() != 0
     }
 
-    #[doc="Sets the SPI1EN field."]
-    #[inline] pub fn set_spi1en<V: Into<bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the SPI2EN field."]
+    #[inline] pub fn set_spi2en<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 14);
@@ -4636,10 +4634,10 @@ impl ::core::fmt::Debug for Apb1enr1 {
         if self.can1en() != 0 { try!(write!(f, " can1en"))}
         if self.i2c3en() != 0 { try!(write!(f, " i2c3en"))}
         if self.i2c1en() != 0 { try!(write!(f, " i2c1en"))}
-        if self.usart1en() != 0 { try!(write!(f, " usart1en"))}
+        if self.usart3en() != 0 { try!(write!(f, " usart3en"))}
         if self.usart2en() != 0 { try!(write!(f, " usart2en"))}
         if self.spi3en() != 0 { try!(write!(f, " spi3en"))}
-        if self.spi1en() != 0 { try!(write!(f, " spi1en"))}
+        if self.spi2en() != 0 { try!(write!(f, " spi2en"))}
         if self.wwdgen() != 0 { try!(write!(f, " wwdgen"))}
         if self.lcden() != 0 { try!(write!(f, " lcden"))}
         if self.tim7en() != 0 { try!(write!(f, " tim7en"))}
@@ -4844,7 +4842,7 @@ impl Apb2enr {
         self
     }
 
-    #[doc="USART1clock enable"]
+    #[doc="USART1 clock enable"]
     #[inline] pub fn usart1en(&self) -> bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 14) & 0x1) as u8) } // [14]
     }
@@ -6249,6 +6247,25 @@ impl Ccipr {
         self
     }
 
+    #[doc="I2C2 clock source selection"]
+    #[inline] pub fn i2c2sel(&self) -> bits::U2 {
+        unsafe { ::core::mem::transmute(((self.0 >> 14) & 0x3) as u8) } // [15:14]
+    }
+
+    #[doc="Returns true if I2C2SEL != 0"]
+    #[inline] pub fn test_i2c2sel(&self) -> bool {
+        self.i2c2sel() != 0
+    }
+
+    #[doc="Sets the I2C2SEL field."]
+    #[inline] pub fn set_i2c2sel<V: Into<bits::U2>>(mut self, value: V) -> Self {
+        let value: bits::U2 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x3 << 14);
+        self.0 |= value << 14;
+        self
+    }
+
     #[doc="I2C1 clock source selection"]
     #[inline] pub fn i2c1sel(&self) -> bits::U2 {
         unsafe { ::core::mem::transmute(((self.0 >> 12) & 0x3) as u8) } // [13:12]
@@ -6284,6 +6301,44 @@ impl Ccipr {
         let value: u32 = value.into();
         self.0 &= !(0x3 << 10);
         self.0 |= value << 10;
+        self
+    }
+
+    #[doc="USART4 clock source selection"]
+    #[inline] pub fn uart4sel(&self) -> bits::U2 {
+        unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x3) as u8) } // [7:6]
+    }
+
+    #[doc="Returns true if UART4SEL != 0"]
+    #[inline] pub fn test_uart4sel(&self) -> bool {
+        self.uart4sel() != 0
+    }
+
+    #[doc="Sets the UART4SEL field."]
+    #[inline] pub fn set_uart4sel<V: Into<bits::U2>>(mut self, value: V) -> Self {
+        let value: bits::U2 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x3 << 6);
+        self.0 |= value << 6;
+        self
+    }
+
+    #[doc="USART3 clock source selection"]
+    #[inline] pub fn usart3sel(&self) -> bits::U2 {
+        unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x3) as u8) } // [5:4]
+    }
+
+    #[doc="Returns true if USART3SEL != 0"]
+    #[inline] pub fn test_usart3sel(&self) -> bool {
+        self.usart3sel() != 0
+    }
+
+    #[doc="Sets the USART3SEL field."]
+    #[inline] pub fn set_usart3sel<V: Into<bits::U2>>(mut self, value: V) -> Self {
+        let value: bits::U2 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x3 << 4);
+        self.0 |= value << 4;
         self
     }
 
@@ -6325,63 +6380,6 @@ impl Ccipr {
         self
     }
 
-    #[doc="USART4 clock source selection"]
-    #[inline] pub fn usart4sel(&self) -> bits::U2 {
-        unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x3) as u8) } // [7:6]
-    }
-
-    #[doc="Returns true if USART4SEL != 0"]
-    #[inline] pub fn test_usart4sel(&self) -> bool {
-        self.usart4sel() != 0
-    }
-
-    #[doc="Sets the USART4SEL field."]
-    #[inline] pub fn set_usart4sel<V: Into<bits::U2>>(mut self, value: V) -> Self {
-        let value: bits::U2 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x3 << 6);
-        self.0 |= value << 6;
-        self
-    }
-
-    #[doc="USART3 clock source selection"]
-    #[inline] pub fn usart3sel(&self) -> bits::U2 {
-        unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x3) as u8) } // [5:4]
-    }
-
-    #[doc="Returns true if USART3SEL != 0"]
-    #[inline] pub fn test_usart3sel(&self) -> bool {
-        self.usart3sel() != 0
-    }
-
-    #[doc="Sets the USART3SEL field."]
-    #[inline] pub fn set_usart3sel<V: Into<bits::U2>>(mut self, value: V) -> Self {
-        let value: bits::U2 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x3 << 4);
-        self.0 |= value << 4;
-        self
-    }
-
-    #[doc="I2C2 clock source selection"]
-    #[inline] pub fn i2c2sel(&self) -> bits::U2 {
-        unsafe { ::core::mem::transmute(((self.0 >> 14) & 0x3) as u8) } // [15:14]
-    }
-
-    #[doc="Returns true if I2C2SEL != 0"]
-    #[inline] pub fn test_i2c2sel(&self) -> bool {
-        self.i2c2sel() != 0
-    }
-
-    #[doc="Sets the I2C2SEL field."]
-    #[inline] pub fn set_i2c2sel<V: Into<bits::U2>>(mut self, value: V) -> Self {
-        let value: bits::U2 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x3 << 14);
-        self.0 |= value << 14;
-        self
-    }
-
 }
 
 impl From<u32> for Ccipr {
@@ -6407,13 +6405,13 @@ impl ::core::fmt::Debug for Ccipr {
         if self.lptim2sel() != 0 { try!(write!(f, " lptim2sel=0x{:x}", self.lptim2sel()))}
         if self.lptim1sel() != 0 { try!(write!(f, " lptim1sel=0x{:x}", self.lptim1sel()))}
         if self.i2c3sel() != 0 { try!(write!(f, " i2c3sel=0x{:x}", self.i2c3sel()))}
+        if self.i2c2sel() != 0 { try!(write!(f, " i2c2sel=0x{:x}", self.i2c2sel()))}
         if self.i2c1sel() != 0 { try!(write!(f, " i2c1sel=0x{:x}", self.i2c1sel()))}
         if self.lpuart1sel() != 0 { try!(write!(f, " lpuart1sel=0x{:x}", self.lpuart1sel()))}
+        if self.uart4sel() != 0 { try!(write!(f, " uart4sel=0x{:x}", self.uart4sel()))}
+        if self.usart3sel() != 0 { try!(write!(f, " usart3sel=0x{:x}", self.usart3sel()))}
         if self.usart2sel() != 0 { try!(write!(f, " usart2sel=0x{:x}", self.usart2sel()))}
         if self.usart1sel() != 0 { try!(write!(f, " usart1sel=0x{:x}", self.usart1sel()))}
-        if self.usart4sel() != 0 { try!(write!(f, " usart4sel=0x{:x}", self.usart4sel()))}
-        if self.usart3sel() != 0 { try!(write!(f, " usart3sel=0x{:x}", self.usart3sel()))}
-        if self.i2c2sel() != 0 { try!(write!(f, " i2c2sel=0x{:x}", self.i2c2sel()))}
         try!(write!(f, "]"));
         Ok(())
     }
@@ -7018,6 +7016,348 @@ impl ::core::fmt::Debug for Crrcr {
         try!(write!(f, "]"));
         Ok(())
     }
+}
+
+pub trait En {
+    fn en(&self) -> u32;
+    fn set_en(&self, value: u32);
+}
+
+impl Rcc {
+    #[inline] pub fn en<P: En>(&self, p: &P) -> u32 {
+        p.en()
+    }
+    #[inline] pub fn set_en<P: En>(&self, p: &P, value: u32) {
+        p.set_en(value)
+    }
+}
+
+pub trait Rst {
+    fn rst(&self) -> u32;
+    fn set_rst(&self, value: u32);
+}
+
+impl Rcc {
+    #[inline] pub fn rst<P: Rst>(&self, p: &P) -> u32 {
+        p.rst()
+    }
+    #[inline] pub fn set_rst<P: Rst>(&self, p: &P, value: u32) {
+        p.set_rst(value)
+    }
+}
+
+pub trait Sel {
+    fn sel(&self) -> u32;
+    fn set_sel(&self, value: u32);
+}
+
+impl Rcc {
+    #[inline] pub fn sel<P: Sel>(&self, p: &P) -> u32 {
+        p.sel()
+    }
+    #[inline] pub fn set_sel<P: Sel>(&self, p: &P, value: u32) {
+        p.set_sel(value)
+    }
+}
+
+impl En for super::tsc::Tsc {
+    #[inline] fn en(&self) -> u32 { RCC.ahb1enr().tscen().into() }
+    #[inline] fn set_en(&self, value: u32) { RCC.with_ahb1enr(|r| r.set_tscen(value)); }
+}
+
+impl En for super::crc::Crc {
+    #[inline] fn en(&self) -> u32 { RCC.ahb1enr().crcen().into() }
+    #[inline] fn set_en(&self, value: u32) { RCC.with_ahb1enr(|r| r.set_crcen(value)); }
+}
+
+impl En for super::flash::Flash {
+    #[inline] fn en(&self) -> u32 { RCC.ahb1enr().flashen().into() }
+    #[inline] fn set_en(&self, value: u32) { RCC.with_ahb1enr(|r| r.set_flashen(value)); }
+}
+
+impl En for super::dma::Dma2 {
+    #[inline] fn en(&self) -> u32 { RCC.ahb1enr().dma2en().into() }
+    #[inline] fn set_en(&self, value: u32) { RCC.with_ahb1enr(|r| r.set_dma2en(value)); }
+}
+
+impl En for super::dma::Dma1 {
+    #[inline] fn en(&self) -> u32 { RCC.ahb1enr().dma1en().into() }
+    #[inline] fn set_en(&self, value: u32) { RCC.with_ahb1enr(|r| r.set_dma1en(value)); }
+}
+
+impl En for super::rng::Rng {
+    #[inline] fn en(&self) -> u32 { RCC.ahb2enr().rngen().into() }
+    #[inline] fn set_en(&self, value: u32) { RCC.with_ahb2enr(|r| r.set_rngen(value)); }
+}
+
+impl En for super::aes::Aes {
+    #[inline] fn en(&self) -> u32 { RCC.ahb2enr().aesen().into() }
+    #[inline] fn set_en(&self, value: u32) { RCC.with_ahb2enr(|r| r.set_aesen(value)); }
+}
+
+impl En for super::adc::Adc {
+    #[inline] fn en(&self) -> u32 { RCC.ahb2enr().adcen().into() }
+    #[inline] fn set_en(&self, value: u32) { RCC.with_ahb2enr(|r| r.set_adcen(value)); }
+}
+
+impl En for super::gpio::Gpioh {
+    #[inline] fn en(&self) -> u32 { RCC.ahb2enr().gpiohen().into() }
+    #[inline] fn set_en(&self, value: u32) { RCC.with_ahb2enr(|r| r.set_gpiohen(value)); }
+}
+
+impl En for super::gpio::Gpioe {
+    #[inline] fn en(&self) -> u32 { RCC.ahb2enr().gpioeen().into() }
+    #[inline] fn set_en(&self, value: u32) { RCC.with_ahb2enr(|r| r.set_gpioeen(value)); }
+}
+
+impl En for super::gpio::Gpiod {
+    #[inline] fn en(&self) -> u32 { RCC.ahb2enr().gpioden().into() }
+    #[inline] fn set_en(&self, value: u32) { RCC.with_ahb2enr(|r| r.set_gpioden(value)); }
+}
+
+impl En for super::gpio::Gpioc {
+    #[inline] fn en(&self) -> u32 { RCC.ahb2enr().gpiocen().into() }
+    #[inline] fn set_en(&self, value: u32) { RCC.with_ahb2enr(|r| r.set_gpiocen(value)); }
+}
+
+impl En for super::gpio::Gpiob {
+    #[inline] fn en(&self) -> u32 { RCC.ahb2enr().gpioben().into() }
+    #[inline] fn set_en(&self, value: u32) { RCC.with_ahb2enr(|r| r.set_gpioben(value)); }
+}
+
+impl En for super::gpio::Gpioa {
+    #[inline] fn en(&self) -> u32 { RCC.ahb2enr().gpioaen().into() }
+    #[inline] fn set_en(&self, value: u32) { RCC.with_ahb2enr(|r| r.set_gpioaen(value)); }
+}
+
+impl En for super::lptim::Lptim1 {
+    #[inline] fn en(&self) -> u32 { RCC.apb1enr1().lptim1en().into() }
+    #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr1(|r| r.set_lptim1en(value)); }
+}
+
+impl En for super::opamp::Opamp {
+    #[inline] fn en(&self) -> u32 { RCC.apb1enr1().opampen().into() }
+    #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr1(|r| r.set_opampen(value)); }
+}
+
+impl En for super::dac::Dac1 {
+    #[inline] fn en(&self) -> u32 { RCC.apb1enr1().dac1en().into() }
+    #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr1(|r| r.set_dac1en(value)); }
+}
+
+impl En for super::pwr::Pwr {
+    #[inline] fn en(&self) -> u32 { RCC.apb1enr1().pwren().into() }
+    #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr1(|r| r.set_pwren(value)); }
+}
+
+impl En for super::can::Can1 {
+    #[inline] fn en(&self) -> u32 { RCC.apb1enr1().can1en().into() }
+    #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr1(|r| r.set_can1en(value)); }
+}
+
+impl En for super::i2c::I2c3 {
+    #[inline] fn en(&self) -> u32 { RCC.apb1enr1().i2c3en().into() }
+    #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr1(|r| r.set_i2c3en(value)); }
+}
+
+impl En for super::i2c::I2c1 {
+    #[inline] fn en(&self) -> u32 { RCC.apb1enr1().i2c1en().into() }
+    #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr1(|r| r.set_i2c1en(value)); }
+}
+
+impl En for super::usart::Usart3 {
+    #[inline] fn en(&self) -> u32 { RCC.apb1enr1().usart3en().into() }
+    #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr1(|r| r.set_usart3en(value)); }
+}
+
+impl En for super::usart::Usart2 {
+    #[inline] fn en(&self) -> u32 { RCC.apb1enr1().usart2en().into() }
+    #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr1(|r| r.set_usart2en(value)); }
+}
+
+impl En for super::spi::Spi3 {
+    #[inline] fn en(&self) -> u32 { RCC.apb1enr1().spi3en().into() }
+    #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr1(|r| r.set_spi3en(value)); }
+}
+
+impl En for super::spi::Spi2 {
+    #[inline] fn en(&self) -> u32 { RCC.apb1enr1().spi2en().into() }
+    #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr1(|r| r.set_spi2en(value)); }
+}
+
+impl En for super::wwdg::Wwdg {
+    #[inline] fn en(&self) -> u32 { RCC.apb1enr1().wwdgen().into() }
+    #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr1(|r| r.set_wwdgen(value)); }
+}
+
+impl En for super::lcd::Lcd {
+    #[inline] fn en(&self) -> u32 { RCC.apb1enr1().lcden().into() }
+    #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr1(|r| r.set_lcden(value)); }
+}
+
+impl En for super::tim_bas::Tim7 {
+    #[inline] fn en(&self) -> u32 { RCC.apb1enr1().tim7en().into() }
+    #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr1(|r| r.set_tim7en(value)); }
+}
+
+impl En for super::tim_bas::Tim6 {
+    #[inline] fn en(&self) -> u32 { RCC.apb1enr1().tim6en().into() }
+    #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr1(|r| r.set_tim6en(value)); }
+}
+
+impl En for super::tim_gen::Tim2 {
+    #[inline] fn en(&self) -> u32 { RCC.apb1enr1().tim2en().into() }
+    #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr1(|r| r.set_tim2en(value)); }
+}
+
+impl En for super::crs::Crs {
+    #[inline] fn en(&self) -> u32 { RCC.apb1enr1().crsen().into() }
+    #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr1(|r| r.set_crsen(value)); }
+}
+
+impl En for super::tim_gen::Tim3 {
+    #[inline] fn en(&self) -> u32 { RCC.apb1enr1().tim3en().into() }
+    #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr1(|r| r.set_tim3en(value)); }
+}
+
+impl En for super::usart::Uart4 {
+    #[inline] fn en(&self) -> u32 { RCC.apb1enr1().uart4en().into() }
+    #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr1(|r| r.set_uart4en(value)); }
+}
+
+impl En for super::i2c::I2c2 {
+    #[inline] fn en(&self) -> u32 { RCC.apb1enr1().i2c2en().into() }
+    #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr1(|r| r.set_i2c2en(value)); }
+}
+
+impl En for super::lptim::Lptim2 {
+    #[inline] fn en(&self) -> u32 { RCC.apb1enr2().lptim2en().into() }
+    #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr2(|r| r.set_lptim2en(value)); }
+}
+
+impl En for super::swpmi::Swpmi1 {
+    #[inline] fn en(&self) -> u32 { RCC.apb1enr2().swpmi1en().into() }
+    #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr2(|r| r.set_swpmi1en(value)); }
+}
+
+impl En for super::lpuart::Lpuart1 {
+    #[inline] fn en(&self) -> u32 { RCC.apb1enr2().lpuart1en().into() }
+    #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr2(|r| r.set_lpuart1en(value)); }
+}
+
+impl En for super::i2c::I2c4 {
+    #[inline] fn en(&self) -> u32 { RCC.apb1enr2().i2c4en().into() }
+    #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr2(|r| r.set_i2c4en(value)); }
+}
+
+impl En for super::sai::Sai1 {
+    #[inline] fn en(&self) -> u32 { RCC.apb2enr().sai1en().into() }
+    #[inline] fn set_en(&self, value: u32) { RCC.with_apb2enr(|r| r.set_sai1en(value)); }
+}
+
+impl En for super::tim_gen::Tim16 {
+    #[inline] fn en(&self) -> u32 { RCC.apb2enr().tim16en().into() }
+    #[inline] fn set_en(&self, value: u32) { RCC.with_apb2enr(|r| r.set_tim16en(value)); }
+}
+
+impl En for super::tim_gen::Tim15 {
+    #[inline] fn en(&self) -> u32 { RCC.apb2enr().tim15en().into() }
+    #[inline] fn set_en(&self, value: u32) { RCC.with_apb2enr(|r| r.set_tim15en(value)); }
+}
+
+impl En for super::usart::Usart1 {
+    #[inline] fn en(&self) -> u32 { RCC.apb2enr().usart1en().into() }
+    #[inline] fn set_en(&self, value: u32) { RCC.with_apb2enr(|r| r.set_usart1en(value)); }
+}
+
+impl En for super::spi::Spi1 {
+    #[inline] fn en(&self) -> u32 { RCC.apb2enr().spi1en().into() }
+    #[inline] fn set_en(&self, value: u32) { RCC.with_apb2enr(|r| r.set_spi1en(value)); }
+}
+
+impl En for super::tim_adv::Tim1 {
+    #[inline] fn en(&self) -> u32 { RCC.apb2enr().tim1en().into() }
+    #[inline] fn set_en(&self, value: u32) { RCC.with_apb2enr(|r| r.set_tim1en(value)); }
+}
+
+impl En for super::firewall::Firewall {
+    #[inline] fn en(&self) -> u32 { RCC.apb2enr().firewallen().into() }
+    #[inline] fn set_en(&self, value: u32) { RCC.with_apb2enr(|r| r.set_firewallen(value)); }
+}
+
+impl En for super::syscfg::Syscfg {
+    #[inline] fn en(&self) -> u32 { RCC.apb2enr().syscfgen().into() }
+    #[inline] fn set_en(&self, value: u32) { RCC.with_apb2enr(|r| r.set_syscfgen(value)); }
+}
+
+impl Sel for super::adc::Adc {
+    #[inline] fn sel(&self) -> u32 { RCC.ccipr().adcsel().into() }
+    #[inline] fn set_sel(&self, value: u32) { RCC.with_ccipr(|r| r.set_adcsel(value)); }
+}
+
+impl Sel for super::sai::Sai1 {
+    #[inline] fn sel(&self) -> u32 { RCC.ccipr().sai1sel().into() }
+    #[inline] fn set_sel(&self, value: u32) { RCC.with_ccipr(|r| r.set_sai1sel(value)); }
+}
+
+impl Sel for super::lptim::Lptim2 {
+    #[inline] fn sel(&self) -> u32 { RCC.ccipr().lptim2sel().into() }
+    #[inline] fn set_sel(&self, value: u32) { RCC.with_ccipr(|r| r.set_lptim2sel(value)); }
+}
+
+impl Sel for super::lptim::Lptim1 {
+    #[inline] fn sel(&self) -> u32 { RCC.ccipr().lptim1sel().into() }
+    #[inline] fn set_sel(&self, value: u32) { RCC.with_ccipr(|r| r.set_lptim1sel(value)); }
+}
+
+impl Sel for super::i2c::I2c3 {
+    #[inline] fn sel(&self) -> u32 { RCC.ccipr().i2c3sel().into() }
+    #[inline] fn set_sel(&self, value: u32) { RCC.with_ccipr(|r| r.set_i2c3sel(value)); }
+}
+
+impl Sel for super::i2c::I2c2 {
+    #[inline] fn sel(&self) -> u32 { RCC.ccipr().i2c2sel().into() }
+    #[inline] fn set_sel(&self, value: u32) { RCC.with_ccipr(|r| r.set_i2c2sel(value)); }
+}
+
+impl Sel for super::i2c::I2c1 {
+    #[inline] fn sel(&self) -> u32 { RCC.ccipr().i2c1sel().into() }
+    #[inline] fn set_sel(&self, value: u32) { RCC.with_ccipr(|r| r.set_i2c1sel(value)); }
+}
+
+impl Sel for super::lpuart::Lpuart1 {
+    #[inline] fn sel(&self) -> u32 { RCC.ccipr().lpuart1sel().into() }
+    #[inline] fn set_sel(&self, value: u32) { RCC.with_ccipr(|r| r.set_lpuart1sel(value)); }
+}
+
+impl Sel for super::usart::Uart4 {
+    #[inline] fn sel(&self) -> u32 { RCC.ccipr().uart4sel().into() }
+    #[inline] fn set_sel(&self, value: u32) { RCC.with_ccipr(|r| r.set_uart4sel(value)); }
+}
+
+impl Sel for super::usart::Usart3 {
+    #[inline] fn sel(&self) -> u32 { RCC.ccipr().usart3sel().into() }
+    #[inline] fn set_sel(&self, value: u32) { RCC.with_ccipr(|r| r.set_usart3sel(value)); }
+}
+
+impl Sel for super::usart::Usart2 {
+    #[inline] fn sel(&self) -> u32 { RCC.ccipr().usart2sel().into() }
+    #[inline] fn set_sel(&self, value: u32) { RCC.with_ccipr(|r| r.set_usart2sel(value)); }
+}
+
+impl Sel for super::usart::Usart1 {
+    #[inline] fn sel(&self) -> u32 { RCC.ccipr().usart1sel().into() }
+    #[inline] fn set_sel(&self, value: u32) { RCC.with_ccipr(|r| r.set_usart1sel(value)); }
+}
+
+impl En for super::rtc::Rtc {
+    #[inline] fn en(&self) -> u32 { RCC.bdcr().rtcen().into() }
+    #[inline] fn set_en(&self, value: u32) { RCC.with_bdcr(|r| r.set_rtcen(value)); }
+}
+
+impl Sel for super::rtc::Rtc {
+    #[inline] fn sel(&self) -> u32 { RCC.bdcr().rtcsel().into() }
+    #[inline] fn set_sel(&self, value: u32) { RCC.with_bdcr(|r| r.set_rtcsel(value)); }
 }
 
 
