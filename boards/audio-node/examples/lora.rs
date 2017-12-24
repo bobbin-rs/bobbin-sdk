@@ -8,26 +8,27 @@ extern crate audio_node as board;
 #[no_mangle]
 pub extern "C" fn main() -> ! {
     board::init();
-    println!("Millis Driver Test");    
+    println!("LORA Driver Test");    
     test_spi_lora();    
     loop {}
 }
 
-/// RFM9x LoRa Radio on pins D10-D13
+/// RFM69 Radio on pins D10-D13
 fn test_spi_lora() {
     use board::hal::gpio::*;
     use board::hal::spi::*;
 
+    board::delay(100);
+
     let spi = SPI1;
 
-    let spi_miso = PB4; // D12
-    let spi_mosi = PB5; // D11
-    let spi_sck = PB3; // D13
-    let spi_nss = PA11; // D10
+    let spi_mosi = PA7;
+    let spi_miso = PA6;
+    let spi_sck = PA5;
+    let spi_nss = PA4;
 
     spi.rcc_enable();
     GPIOA.rcc_enable();
-    GPIOB.rcc_enable();
 
     // NOTE: Pins must be set with output speed HIGH or leading edge
     // of transmission will occasionally be missed.
@@ -53,7 +54,8 @@ fn test_spi_lora() {
     let s = SpiDriver::new(spi, &pins, &mut tx_buf, &mut rx_buf);
     s.enable_irq(&spi.irq_spi());
 
-    let test_data = [(0x42, 0x12), (0x01, 0x09), (0x02, 0x1a), (0x03, 0x0b), (0x04, 0x00), (0x05, 0x52), (0x06, 0x6c)];
+    let test_data = [(0x10, 0x24), (0x01, 0x00), (0x02, 0x00), (0x03, 0x1a), (0x04, 0x0b), (0x05, 0x00), (0x06, 0x52)];
+
 
     for &(tx, rx) in test_data.iter() {
         let a = s.reg_read(0, tx);
@@ -72,12 +74,12 @@ fn test_spi_lora() {
         println!("0x{:02x}", rx_buf[i]);
     }
         
-    assert_eq!(rx_buf[0], 0x09);
-    assert_eq!(rx_buf[1], 0x1a);
-    assert_eq!(rx_buf[2], 0x0b);
-    assert_eq!(rx_buf[3], 0x00);
-    assert_eq!(rx_buf[4], 0x52);
-    assert_eq!(rx_buf[5], 0x6c);
+    assert_eq!(rx_buf[0], 0x00);
+    assert_eq!(rx_buf[1], 0x00);
+    assert_eq!(rx_buf[2], 0x1a);
+    assert_eq!(rx_buf[3], 0x0b);
+    assert_eq!(rx_buf[4], 0x00);
+    assert_eq!(rx_buf[5], 0x52);
 
     println!("--- commands --- ");
 
@@ -94,12 +96,12 @@ fn test_spi_lora() {
         println!("0x{:02x}", rx_buf[i]);
     }
         
-    assert_eq!(rx_buf[0], 0x09);
-    assert_eq!(rx_buf[1], 0x1a);
-    assert_eq!(rx_buf[2], 0x0b);
-    assert_eq!(rx_buf[3], 0x00);
-    assert_eq!(rx_buf[4], 0x52);
-    assert_eq!(rx_buf[5], 0x6c);
+    assert_eq!(rx_buf[0], 0x00);
+    assert_eq!(rx_buf[1], 0x00);
+    assert_eq!(rx_buf[2], 0x1a);
+    assert_eq!(rx_buf[3], 0x0b);
+    assert_eq!(rx_buf[4], 0x00);
+    assert_eq!(rx_buf[5], 0x52);
 
     println!("[pass] SPI OK");
     spi.rcc_disable();

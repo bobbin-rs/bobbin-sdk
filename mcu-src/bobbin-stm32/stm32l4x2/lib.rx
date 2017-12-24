@@ -1466,22 +1466,9 @@
             
             (interrupt
                 (name SPI1)
+                (type SPI)
                 (value 35)
                 (description "SPI1 global interrupt")
-            )
-        )
-        (peripheral
-            (name SPI3)
-            (address 0x40003c00)
-            (signal (name SPI3_NSS) (type SPI_NSS))
-            (signal (name SPI3_MISO) (type SPI_MISO))
-            (signal (name SPI3_MOSI) (type SPI_MOSI))
-            (signal (name SPI3_SCK) (type SPI_SCK))
-            
-            (interrupt
-                (name SPI3)
-                (value 51)
-                (description "SPI3 global Interrupt")
             )
         )
         (peripheral
@@ -1494,8 +1481,24 @@
             
             (interrupt
                 (name SPI2)
+                (type SPI)
                 (value 36)
                 (description "SPI2 global interrupt")
+            )
+        )
+        (peripheral
+            (name SPI3)
+            (address 0x40003c00)
+            (signal (name SPI3_NSS) (type SPI_NSS))
+            (signal (name SPI3_MISO) (type SPI_MISO))
+            (signal (name SPI3_MOSI) (type SPI_MOSI))
+            (signal (name SPI3_SCK) (type SPI_SCK))
+            
+            (interrupt
+                (name SPI3)
+                (type SPI)
+                (value 51)
+                (description "SPI3 global Interrupt")
             )
         )
     )
