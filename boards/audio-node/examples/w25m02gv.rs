@@ -95,6 +95,22 @@ fn test_spi_flash() {
         dump(&buf);
     }
 
+    if false {
+        println!("Write Data");
+        s.write_enable();        
+        let mut out_buf = [0u8; 64];
+        for i in 0..out_buf.len() {
+            out_buf[i] = i as u8;
+        }
+        dump(&out_buf);
+        s.load_program_data(0x0000, &out_buf);
+       
+        println!("Read Data");
+        let mut buf = [0u8; 64];
+        s.read_page(0x0000, &mut buf);
+        dump(&buf);        
+    }
+
 
     if true {
         println!("Block Erase");
@@ -139,17 +155,6 @@ fn test_spi_flash() {
         }
         
         dump(&buf);
-
-        println!("Read Page 1");
-        let mut buf = [0u8; 64];
-        s.read_page(0x0001, &mut buf);
-
-        for r in [0xa0, 0xb0, 0xc0].iter() {
-            println!("{:02x}: {:02x}", r, s.read_status_register(*r));
-        }
-        
-        dump(&buf);
-
     }
 
     if false {
@@ -265,7 +270,7 @@ impl<'a> SpiFlash for board::hal::spi::SpiDriver<'a> {
     fn load_program_data(&self, addr: u16, buf: &[u8]) {
         while self.busy() {}        
         self.transfer_start(0);
-        self.send_blocking(&[0x03, (addr >> 8) as u8, addr as u8, 0xff]);
+        self.send_blocking(&[0x02, (addr >> 8) as u8, addr as u8]);
         self.send_blocking(buf);
         self.transfer_end(0);
     }
