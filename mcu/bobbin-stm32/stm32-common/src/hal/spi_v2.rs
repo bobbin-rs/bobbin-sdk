@@ -298,6 +298,44 @@ impl<'a> SpiDriver<'a> {
         }
     }
 
+    pub fn transfer_start(&self, pin: u8) {
+        self.pins[pin as usize].set_output(false);
+    }
+
+    pub fn send_blocking(&self, tx_buf: &[u8]) {
+        for b in tx_buf.iter() {
+            while !self.spi.can_tx() {}
+            self.spi.tx(*b);
+            while !self.spi.can_rx() {}
+            let _: u8 = self.spi.rx();
+        }
+    }
+
+    pub fn recv_blocking(&self, rx_buf: &mut [u8]) {
+        for b in rx_buf.iter_mut() {
+            while !self.spi.can_tx() {}
+            self.spi.tx(0xffu8);
+            while !self.spi.can_rx() {}
+            *b = self.spi.rx();            
+        }
+    }
+
+    pub fn transfer_blocking(&self, pin: u8, tx_buf: &[u8], rx_buf: &mut [u8]) {
+        self.transfer_start(pin);
+        if tx_buf.len() > 0 {
+            self.send_blocking(tx_buf);
+        }
+        if rx_buf.len() > 0 {
+            self.recv_blocking(rx_buf);
+        }
+        self.transfer_end(pin);
+    }
+
+    pub fn transfer_end(&self, pin: u8) {
+        self.pins[pin as usize].set_output(true);
+    }
+
+
     pub fn transfer(&self, pin: u8, tx_buf: &[u8], rx_buf: &mut [u8]) {
         self.enqueue(SpiAction::Start(pin));        
         for b in tx_buf.iter() {
