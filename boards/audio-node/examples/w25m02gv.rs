@@ -68,6 +68,9 @@ fn test_spi_flash() {
         }
     }
 
+    s.reset();
+    board::delay(100);
+
     // Status Register A0 => 0x7c | 0111 1100 | bp3 bp2 bp1 bp0 tb
     // Status Register B0 => 0x18 | 0001 1000 | ecc-e buf
     // Status Register C0 => 0x00 | 0000 0000 |
@@ -76,6 +79,10 @@ fn test_spi_flash() {
     for r in [0xa0, 0xb0, 0xc0].iter() {
         println!("{:02x}: {:02x}", r, s.read_status_register(*r));
     }
+
+    println!("Disable Write Protect");
+    s.write_status_register(0xa0, 0);
+
     board::delay(100);
     for r in [0xa0, 0xb0, 0xc0].iter() {
         println!("{:02x}: {:02x}", r, s.read_status_register(*r));
@@ -90,17 +97,59 @@ fn test_spi_flash() {
 
 
     if true {
-        println!("Write Enable");
-        s.write_enable();
-        println!("{:02x}: {:02x}", 0xC0, s.read_status_register(0xC0));        
+        println!("Block Erase");
+        s.write_enable();        
+        println!("  C0 = {:02x}", s.read_status_register(0xc0));
+        println!("  Write Enabled? {}", s.write_enabled());
+        s.block_erase(0x0000);
+        
         println!("Writing Data");
         let out_buf = [0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07];
         dump(&out_buf);
+        s.write_enable();        
         s.load_program_data(0x0000, &out_buf);
-        println!("Reading Data");
+        println!("  C0 = {:02x}", s.read_status_register(0xc0));
+        println!("  Write Enabled? {}", s.write_enabled());
+
+        println!("Program Execute");
+        s.program_execute(0x0000);
+        println!("  C0 = {:02x}", s.read_status_register(0xc0));
+        println!("  Write Enabled? {}", s.write_enabled());
+
+        while s.busy() {}
+
+        for r in [0xa0, 0xb0, 0xc0].iter() {
+            println!("{:02x}: {:02x}", r, s.read_status_register(*r));
+        }
+
+
+        println!("Page Data Read");
+        s.page_data_read(0x0000);
+
+        for r in [0xa0, 0xb0, 0xc0].iter() {
+            println!("{:02x}: {:02x}", r, s.read_status_register(*r));
+        }
+
+        println!("Read Page 0");
         let mut buf = [0u8; 64];
         s.read_page(0x0000, &mut buf);
+
+        for r in [0xa0, 0xb0, 0xc0].iter() {
+            println!("{:02x}: {:02x}", r, s.read_status_register(*r));
+        }
+        
         dump(&buf);
+
+        println!("Read Page 1");
+        let mut buf = [0u8; 64];
+        s.read_page(0x0001, &mut buf);
+
+        for r in [0xa0, 0xb0, 0xc0].iter() {
+            println!("{:02x}: {:02x}", r, s.read_status_register(*r));
+        }
+        
+        dump(&buf);
+
     }
 
     if false {
@@ -118,7 +167,7 @@ fn test_spi_flash() {
 
         println!("Reading Parameter Page");
         {
-            s.page_data_read(0x0001);
+            s.page_data_read(0x0000);
             while s.busy() {}
             let mut buf = [0u8; 256];
             s.read_page(0x0000, &mut buf);
@@ -141,18 +190,25 @@ fn dump(buf: &[u8]) {
 }
 
 pub trait SpiFlash {
+    fn reset(&self);
     fn read_id(&self) -> [u8; 3];
     fn read_status_register(&self, reg: u8) -> u8;
+    fn block_erase(&self, page: u16);
     fn page_data_read(&self, page: u16);
     fn read_page(&self, addr: u16, buf: &mut [u8]);
     fn load_program_data(&self, addr: u16, buf: &[u8]);
+    fn program_execute(&self, page: u16);
+
     fn write_enable(&self);
     fn write_disable(&self);
         
     fn write_status_register(&self, reg: u8, value: u8);
     fn with_status_register<F: FnOnce(u8) -> u8>(&self, reg: u8, f: F);
+    fn write_enabled(&self) -> bool {
+        self.read_status_register(0xc0) & 2 != 0
+    }
     fn busy(&self) -> bool {
-        self.read_status_register(0xc0) & 1 == 1
+        self.read_status_register(0xc0) & 1 != 0
     }
 }
 
@@ -178,6 +234,21 @@ impl<'a> SpiFlash for board::hal::spi::SpiDriver<'a> {
         let v = self.read_status_register(reg);
         self.write_status_register(reg, f(v));
     }
+
+    fn block_erase(&self, page: u16) {
+        while self.busy() {}        
+        let cmd = [0xd8, 0x00, (page >> 8) as u8, page as u8];
+        let mut tmp = [];
+        self.transfer_blocking(0, &cmd, &mut tmp);
+    }
+
+    fn program_execute(&self, page: u16) {
+        while self.busy() {}        
+        let cmd = [0x10, 0x00, (page >> 8) as u8, page as u8];
+        let mut tmp = [];
+        self.transfer_blocking(0, &cmd, &mut tmp);
+    }
+
 
     fn page_data_read(&self, page: u16) {
         while self.busy() {}        
@@ -207,5 +278,10 @@ impl<'a> SpiFlash for board::hal::spi::SpiDriver<'a> {
     fn write_disable(&self) {
         let mut tmp = [];
         self.transfer_blocking(0, &[0x04], &mut tmp);
+    }
+
+    fn reset(&self) {
+        let mut tmp = [];
+        self.transfer_blocking(0, &[0xff], &mut tmp);
     }
 }
