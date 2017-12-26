@@ -161,9 +161,13 @@ pub extern "C" fn main() -> ! {
 fn dump(buf: &[u32]) {
     for (i, b) in buf.iter().enumerate() {
         if i % 16 == 0 { println!("") }
-        if true {
-            print!("{:06x},", b);
-        }
+        let u = b << 8;
+        let s = u as i32;
+        let v = s >> 8;
+        print!("{},", v);
+        // if true {
+        //     print!("0x{:06x},", b);
+        // }
     }
 }
 
