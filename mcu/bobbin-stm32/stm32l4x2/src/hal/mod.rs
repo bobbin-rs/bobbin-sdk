@@ -103,6 +103,13 @@ pub mod crc {
 //     pub use super::rcc::RccEnabled;
 // }
 
+pub mod dfsdm {
+    pub use chip::dfsdm::*;
+    // pub use stm32_common::hal::dfsdm::*;
+    pub use super::rcc::RccEnabled;
+}
+
+
 pub mod iwdg {
     pub use chip::iwdg::*;
     pub use stm32_common::hal::iwdg::*;
