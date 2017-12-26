@@ -36,9 +36,8 @@ pub extern "C" fn main() -> ! {
 
     // Configure DFSDM
 
-    println!("Configuring DFSDM");
-
     {
+        println!("Configuring DFSDM");
         // Channel 0 => Filter 0
 
         // PCLK2 = 80Mhz, OUT=8Khz
@@ -74,7 +73,7 @@ pub extern "C" fn main() -> ! {
 
         pdm.with_chcfgr2(0, |r| r
             .set_offset(0) // Offset 0
-            .set_dtrbs(0) // Data Right Bit Shift
+            .set_dtrbs(0) // Data Right Bit Shift 16 bits
         );
 
          // Enable Channel 0
@@ -102,24 +101,28 @@ pub extern "C" fn main() -> ! {
 
         println!("FLT0CR1:  {:?}", pdm.fltcr1(0));
         println!("FLT0FCR:  {:?}", pdm.fltfcr(0));
+
+        println!("Configuration Complete");
     }
 
-    println!("Starting Regular Conversion");
-
-    let mut buf = [0u32; 2048];
     {
-        // Clear Flags
-        pdm.set_flticr(0, |_| Flticr(0xffffffff));
-        println!("FLTISR: {:?}", pdm.fltisr(0));
         println!("Checking for Clock");
         loop {
             if pdm.fltisr(0).test_ckabf(0) {
                 pdm.set_flticr(0, |r| r.set_clrckabf(0, 1));
             } else {
-                println!("Clock Present");
                 break;
             }
         }
+        println!("Clock Present");
+    }
+
+    let mut buf = [0u32; 4096];
+    {
+        println!("Starting Regular Conversion");
+        
+        // Clear Flags
+        pdm.set_flticr(0, |_| Flticr(0xffffffff));
 
         // Start Regular Conversion
 
@@ -142,8 +145,7 @@ pub extern "C" fn main() -> ! {
                     panic!("RCIP Not Set");
                 }
                 if n == 0 {
-                    println!("{:?}", isr);
-                    n = timeout;
+                    panic!("Timeout");
                 }
                 n -= 1;
             }
@@ -159,7 +161,9 @@ pub extern "C" fn main() -> ! {
 fn dump(buf: &[u32]) {
     for (i, b) in buf.iter().enumerate() {
         if i % 16 == 0 { println!("") }
-        print!("{:04x} ", b);
+        if true {
+            print!("{:06x},", b);
+        }
     }
 }
 
