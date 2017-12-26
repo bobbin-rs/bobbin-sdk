@@ -30,6 +30,7 @@ irq!(IRQ_I2C2_ER, IrqI2c2Er, 34);
 irq!(IRQ_I2C3_EV, IrqI2c3Ev, 72);
 irq!(IRQ_I2C3_ER, IrqI2c3Er, 73);
 irq!(IRQ_I2C4_EV, IrqI2c4Ev, 83);
+irq!(IRQ_I2C4_ER, IrqI2c4Er, 84);
 irq!(IRQ_FLASH, IrqFlash, 4);
 irq!(IRQ_RNG, IrqRng, 80);
 irq!(IRQ_AES, IrqAes, 79);
@@ -75,11 +76,8 @@ irq!(IRQ_RTC_ALARM, IrqRtcAlarm, 41);
 irq!(IRQ_SWPMI1, IrqSwpmi1, 76);
 irq!(IRQ_CRS, IrqCrs, 82);
 irq!(IRQ_USB_FS, IrqUsbFs, 67);
-irq!(IRQ_DFSDM1_FLT3, IrqDfsdm1Flt3, 42);
-irq!(IRQ_DFSDM1, IrqDfsdm1, 61);
-irq!(IRQ_DFSDM2, IrqDfsdm2, 62);
-irq!(IRQ_DFSDM1_FLT2, IrqDfsdm1Flt2, 63);
-irq!(IRQ_I2C4_ER, IrqI2c4Er, 84);
+irq!(IRQ_DFSDM1_FLT0, IrqDfsdm1Flt0, 61);
+irq!(IRQ_DFSDM2_FLT1, IrqDfsdm2Flt1, 62);
 irq!(IRQ_QUADSPI, IrqQuadspi, 71);
 
 #[cfg_attr(target_os="none", link_section=".vector.interrupts")]
@@ -127,7 +125,7 @@ pub static mut INTERRUPT_HANDLERS: [Option<Handler>; 85] = [
     None,                          // IRQ 39: USART3 global interrupt
     None,                          // IRQ 40: EXTI Lines 10 to 15 interrupts
     None,                          // IRQ 41: RTC alarms through EXTI line 18 interrupts
-    None,                          // IRQ 42: DFSDM1_FLT3 global interrupt
+    None,
     None,
     None,
     None,
@@ -148,7 +146,7 @@ pub static mut INTERRUPT_HANDLERS: [Option<Handler>; 85] = [
     None,
     None,                          // IRQ 61: DFSDM1_FLT0 global interrupt
     None,                          // IRQ 62: DFSDM1_FLT1 global interrupt
-    None,                          // IRQ 63: DFSDM1_FLT2 global interrupt
+    None,
     None,                          // IRQ 64: COMP1 and COMP2 interrupts
     None,                          // IRQ 65: LP TIM1 interrupt
     None,                          // IRQ 66: LP TIM2 interrupt

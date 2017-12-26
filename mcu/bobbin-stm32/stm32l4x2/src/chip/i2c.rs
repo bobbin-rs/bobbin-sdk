@@ -73,3 +73,7 @@ impl IrqI2cEv<super::irq::IrqI2c4Ev> for I2c4 {
     fn irq_i2c_ev(&self) -> super::irq::IrqI2c4Ev { super::irq::IRQ_I2C4_EV }
 }
 
+impl IrqI2cEr<super::irq::IrqI2c4Er> for I2c4 {
+    fn irq_i2c_er(&self) -> super::irq::IrqI2c4Er { super::irq::IRQ_I2C4_ER }
+}
+

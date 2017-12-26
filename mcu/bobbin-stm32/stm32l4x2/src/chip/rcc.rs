@@ -4715,25 +4715,6 @@ impl Apb1enr2 {
         self
     }
 
-    #[doc="DFSDMEN enable"]
-    #[inline] pub fn dfsdmen(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 24) & 0x1) as u8) } // [24]
-    }
-
-    #[doc="Returns true if DFSDMEN != 0"]
-    #[inline] pub fn test_dfsdmen(&self) -> bool {
-        self.dfsdmen() != 0
-    }
-
-    #[doc="Sets the DFSDMEN field."]
-    #[inline] pub fn set_dfsdmen<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
-        let value: u32 = value.into();
-        self.0 &= !(0x1 << 24);
-        self.0 |= value << 24;
-        self
-    }
-
     #[doc="I2C4 clock enable"]
     #[inline] pub fn i2c4en(&self) -> bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
@@ -4774,7 +4755,6 @@ impl ::core::fmt::Debug for Apb1enr2 {
         if self.lptim2en() != 0 { try!(write!(f, " lptim2en"))}
         if self.swpmi1en() != 0 { try!(write!(f, " swpmi1en"))}
         if self.lpuart1en() != 0 { try!(write!(f, " lpuart1en"))}
-        if self.dfsdmen() != 0 { try!(write!(f, " dfsdmen"))}
         if self.i2c4en() != 0 { try!(write!(f, " i2c4en"))}
         try!(write!(f, "]"));
         Ok(())
@@ -4785,6 +4765,25 @@ impl ::core::fmt::Debug for Apb1enr2 {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Apb2enr(pub u32);
 impl Apb2enr {
+    #[doc="DFSDMEN enable"]
+    #[inline] pub fn dfsdmen(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 24) & 0x1) as u8) } // [24]
+    }
+
+    #[doc="Returns true if DFSDMEN != 0"]
+    #[inline] pub fn test_dfsdmen(&self) -> bool {
+        self.dfsdmen() != 0
+    }
+
+    #[doc="Sets the DFSDMEN field."]
+    #[inline] pub fn set_dfsdmen<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 24);
+        self.0 |= value << 24;
+        self
+    }
+
     #[doc="SAI1 clock enable"]
     #[inline] pub fn sai1en(&self) -> bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 21) & 0x1) as u8) } // [21]
@@ -4974,6 +4973,7 @@ impl ::core::fmt::Display for Apb2enr {
 impl ::core::fmt::Debug for Apb2enr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
         try!(write!(f, "[0x{:08x}", self.0));
+        if self.dfsdmen() != 0 { try!(write!(f, " dfsdmen"))}
         if self.sai1en() != 0 { try!(write!(f, " sai1en"))}
         if self.tim16en() != 0 { try!(write!(f, " tim16en"))}
         if self.tim15en() != 0 { try!(write!(f, " tim15en"))}
@@ -7248,6 +7248,11 @@ impl En for super::lpuart::Lpuart1 {
 impl En for super::i2c::I2c4 {
     #[inline] fn en(&self) -> u32 { RCC.apb1enr2().i2c4en().into() }
     #[inline] fn set_en(&self, value: u32) { RCC.with_apb1enr2(|r| r.set_i2c4en(value)); }
+}
+
+impl En for super::dfsdm::Dfsdm {
+    #[inline] fn en(&self) -> u32 { RCC.apb2enr().dfsdmen().into() }
+    #[inline] fn set_en(&self, value: u32) { RCC.with_apb2enr(|r| r.set_dfsdmen(value)); }
 }
 
 impl En for super::sai::Sai1 {

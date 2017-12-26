@@ -1214,14 +1214,6 @@
             (link (name EN) (peripheral-group LPUART) (peripheral LPUART1))
         )
         (field
-            (name DFSDMEN)
-            (bit-offset 24)
-            (bit-width 1)
-            (description "DFSDMEN enable")
-            ; (link (name EN) (peripheral-group DFSDMEN) (peripheral DFSDMEN))
-            
-        )
-        (field
             (name I2C4EN)
             (bit-offset 1)
             (bit-width 1)
@@ -1236,6 +1228,14 @@
         (access read-write)
         (reset-value 0x0)
         (description "APB2ENR")
+        (field
+            (name DFSDMEN)
+            (bit-offset 24)
+            (bit-width 1)
+            (description "DFSDMEN enable")
+            (link (name EN) (peripheral-group DFSDM) (peripheral DFSDM))
+            
+        )        
         (field
             (name SAI1EN)
             (bit-offset 21)

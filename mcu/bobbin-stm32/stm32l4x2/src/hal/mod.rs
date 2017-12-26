@@ -53,6 +53,15 @@ pub mod gpio {
     impl_mode!(ModeSpiNss, mode_spi_nss, SignalSpiNss);
     impl_mode!(ModeSpiMosi, mode_spi_mosi, SignalSpiMosi);
     impl_mode!(ModeSpiMiso, mode_spi_miso, SignalSpiMiso);
+    impl_mode!(ModeDfsdmCkout, mode_dfsdm_ckout, SignalDfsdmCkout);
+    impl_mode!(ModeDfsdmCkin0, mode_dfsdm_ckin0, SignalDfsdmCkin0);
+    impl_mode!(ModeDfsdmCkin1, mode_dfsdm_ckin1, SignalDfsdmCkin1);
+    impl_mode!(ModeDfsdmCkin2, mode_dfsdm_ckin2, SignalDfsdmCkin2);
+    impl_mode!(ModeDfsdmCkin3, mode_dfsdm_ckin3, SignalDfsdmCkin3);
+    impl_mode!(ModeDfsdmDatin0, mode_dfsdm_datin0, SignalDfsdmDatin0);
+    impl_mode!(ModeDfsdmDatin1, mode_dfsdm_datin1, SignalDfsdmDatin1);
+    impl_mode!(ModeDfsdmDatin2, mode_dfsdm_datin2, SignalDfsdmDatin2);
+    impl_mode!(ModeDfsdmDatin3, mode_dfsdm_datin3, SignalDfsdmDatin3);
 }
 
 pub mod usart {
