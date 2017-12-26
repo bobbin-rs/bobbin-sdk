@@ -347,13 +347,17 @@
         (field
             (name SCDF)
             (bit-offset 24)
-            (bit-width 8)
+            (bit-width 1)
+            (dim 8)
+            (dim-increment 1)
             (description "short-circuit detector flag")
         )
         (field
             (name CKABF)
             (bit-offset 16)
-            (bit-width 8)
+            (bit-width 1)
+            (dim 8)
+            (dim-increment 1)
             (description "Clock absence flag")
         )
         (field
@@ -372,6 +376,8 @@
             (name AWDF)
             (bit-offset 4)
             (bit-width 1)
+            (dim 4)
+            (dim-increment 1)            
             (description "Analog watchdog")
         )
         (field
@@ -411,13 +417,17 @@
         (field
             (name CLRSCDF)
             (bit-offset 24)
-            (bit-width 8)
+            (bit-width 1)
+            (dim 8)
+            (dim-increment 1)            
             (description "Clear the short-circuit detector flag")
         )
         (field
             (name CLRCKABF)
             (bit-offset 16)
-            (bit-width 8)
+            (bit-width 1)
+            (dim 8)
+            (dim-increment 1)            
             (description "Clear the clock absence flag")
         )
         (field

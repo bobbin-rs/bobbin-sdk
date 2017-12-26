@@ -1651,40 +1651,48 @@ impl ::core::fmt::Debug for Fltcr2 {
 pub struct Fltisr(pub u32);
 impl Fltisr {
     #[doc="short-circuit detector flag"]
-    #[inline] pub fn scdf(&self) -> bits::U8 {
-        unsafe { ::core::mem::transmute(((self.0 >> 24) & 0xff) as u8) } // [31:24]
+    #[inline] pub fn scdf<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
+        let index: usize = index.into().value() as usize;
+        let shift: usize = 24 + index;
+        unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [24]
     }
 
     #[doc="Returns true if SCDF != 0"]
-    #[inline] pub fn test_scdf(&self) -> bool {
-        self.scdf() != 0
+    #[inline] pub fn test_scdf<I: Into<bits::R8>>(&self, index: I) -> bool{
+        self.scdf(index) != 0
     }
 
     #[doc="Sets the SCDF field."]
-    #[inline] pub fn set_scdf<V: Into<bits::U8>>(mut self, value: V) -> Self {
-        let value: bits::U8 = value.into();
+    #[inline] pub fn set_scdf<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+        let index: usize = index.into().value() as usize;
+        let value: bits::U1 = value.into();
         let value: u32 = value.into();
-        self.0 &= !(0xff << 24);
-        self.0 |= value << 24;
+        let shift: usize = 24 + index;
+        self.0 &= !(0x1 << shift);
+        self.0 |= value << shift;
         self
     }
 
     #[doc="Clock absence flag"]
-    #[inline] pub fn ckabf(&self) -> bits::U8 {
-        unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xff) as u8) } // [23:16]
+    #[inline] pub fn ckabf<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
+        let index: usize = index.into().value() as usize;
+        let shift: usize = 16 + index;
+        unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [16]
     }
 
     #[doc="Returns true if CKABF != 0"]
-    #[inline] pub fn test_ckabf(&self) -> bool {
-        self.ckabf() != 0
+    #[inline] pub fn test_ckabf<I: Into<bits::R8>>(&self, index: I) -> bool{
+        self.ckabf(index) != 0
     }
 
     #[doc="Sets the CKABF field."]
-    #[inline] pub fn set_ckabf<V: Into<bits::U8>>(mut self, value: V) -> Self {
-        let value: bits::U8 = value.into();
+    #[inline] pub fn set_ckabf<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+        let index: usize = index.into().value() as usize;
+        let value: bits::U1 = value.into();
         let value: u32 = value.into();
-        self.0 &= !(0xff << 16);
-        self.0 |= value << 16;
+        let shift: usize = 16 + index;
+        self.0 &= !(0x1 << shift);
+        self.0 |= value << shift;
         self
     }
 
@@ -1727,21 +1735,25 @@ impl Fltisr {
     }
 
     #[doc="Analog watchdog"]
-    #[inline] pub fn awdf(&self) -> bits::U1 {
-        unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
+    #[inline] pub fn awdf<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
+        let index: usize = index.into().value() as usize;
+        let shift: usize = 4 + index;
+        unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [4]
     }
 
     #[doc="Returns true if AWDF != 0"]
-    #[inline] pub fn test_awdf(&self) -> bool {
-        self.awdf() != 0
+    #[inline] pub fn test_awdf<I: Into<bits::R4>>(&self, index: I) -> bool{
+        self.awdf(index) != 0
     }
 
     #[doc="Sets the AWDF field."]
-    #[inline] pub fn set_awdf<V: Into<bits::U1>>(mut self, value: V) -> Self {
+    #[inline] pub fn set_awdf<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+        let index: usize = index.into().value() as usize;
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
-        self.0 &= !(0x1 << 4);
-        self.0 |= value << 4;
+        let shift: usize = 4 + index;
+        self.0 &= !(0x1 << shift);
+        self.0 |= value << shift;
         self
     }
 
@@ -1839,11 +1851,28 @@ impl ::core::fmt::Display for Fltisr {
 impl ::core::fmt::Debug for Fltisr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
         try!(write!(f, "[0x{:08x}", self.0));
-        if self.scdf() != 0 { try!(write!(f, " scdf=0x{:x}", self.scdf()))}
-        if self.ckabf() != 0 { try!(write!(f, " ckabf=0x{:x}", self.ckabf()))}
+        if self.scdf(0) != 0 { try!(write!(f, " scdf[0]"))}
+        if self.scdf(1) != 0 { try!(write!(f, " scdf[1]"))}
+        if self.scdf(2) != 0 { try!(write!(f, " scdf[2]"))}
+        if self.scdf(3) != 0 { try!(write!(f, " scdf[3]"))}
+        if self.scdf(4) != 0 { try!(write!(f, " scdf[4]"))}
+        if self.scdf(5) != 0 { try!(write!(f, " scdf[5]"))}
+        if self.scdf(6) != 0 { try!(write!(f, " scdf[6]"))}
+        if self.scdf(7) != 0 { try!(write!(f, " scdf[7]"))}
+        if self.ckabf(0) != 0 { try!(write!(f, " ckabf[0]"))}
+        if self.ckabf(1) != 0 { try!(write!(f, " ckabf[1]"))}
+        if self.ckabf(2) != 0 { try!(write!(f, " ckabf[2]"))}
+        if self.ckabf(3) != 0 { try!(write!(f, " ckabf[3]"))}
+        if self.ckabf(4) != 0 { try!(write!(f, " ckabf[4]"))}
+        if self.ckabf(5) != 0 { try!(write!(f, " ckabf[5]"))}
+        if self.ckabf(6) != 0 { try!(write!(f, " ckabf[6]"))}
+        if self.ckabf(7) != 0 { try!(write!(f, " ckabf[7]"))}
         if self.rcip() != 0 { try!(write!(f, " rcip"))}
         if self.jcip() != 0 { try!(write!(f, " jcip"))}
-        if self.awdf() != 0 { try!(write!(f, " awdf"))}
+        if self.awdf(0) != 0 { try!(write!(f, " awdf[0]"))}
+        if self.awdf(1) != 0 { try!(write!(f, " awdf[1]"))}
+        if self.awdf(2) != 0 { try!(write!(f, " awdf[2]"))}
+        if self.awdf(3) != 0 { try!(write!(f, " awdf[3]"))}
         if self.rovrf() != 0 { try!(write!(f, " rovrf"))}
         if self.jovrf() != 0 { try!(write!(f, " jovrf"))}
         if self.reocf() != 0 { try!(write!(f, " reocf"))}
@@ -1858,40 +1887,48 @@ impl ::core::fmt::Debug for Fltisr {
 pub struct Flticr(pub u32);
 impl Flticr {
     #[doc="Clear the short-circuit detector flag"]
-    #[inline] pub fn clrscdf(&self) -> bits::U8 {
-        unsafe { ::core::mem::transmute(((self.0 >> 24) & 0xff) as u8) } // [31:24]
+    #[inline] pub fn clrscdf<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
+        let index: usize = index.into().value() as usize;
+        let shift: usize = 24 + index;
+        unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [24]
     }
 
     #[doc="Returns true if CLRSCDF != 0"]
-    #[inline] pub fn test_clrscdf(&self) -> bool {
-        self.clrscdf() != 0
+    #[inline] pub fn test_clrscdf<I: Into<bits::R8>>(&self, index: I) -> bool{
+        self.clrscdf(index) != 0
     }
 
     #[doc="Sets the CLRSCDF field."]
-    #[inline] pub fn set_clrscdf<V: Into<bits::U8>>(mut self, value: V) -> Self {
-        let value: bits::U8 = value.into();
+    #[inline] pub fn set_clrscdf<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+        let index: usize = index.into().value() as usize;
+        let value: bits::U1 = value.into();
         let value: u32 = value.into();
-        self.0 &= !(0xff << 24);
-        self.0 |= value << 24;
+        let shift: usize = 24 + index;
+        self.0 &= !(0x1 << shift);
+        self.0 |= value << shift;
         self
     }
 
     #[doc="Clear the clock absence flag"]
-    #[inline] pub fn clrckabf(&self) -> bits::U8 {
-        unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xff) as u8) } // [23:16]
+    #[inline] pub fn clrckabf<I: Into<bits::R8>>(&self, index: I) -> bits::U1 {
+        let index: usize = index.into().value() as usize;
+        let shift: usize = 16 + index;
+        unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [16]
     }
 
     #[doc="Returns true if CLRCKABF != 0"]
-    #[inline] pub fn test_clrckabf(&self) -> bool {
-        self.clrckabf() != 0
+    #[inline] pub fn test_clrckabf<I: Into<bits::R8>>(&self, index: I) -> bool{
+        self.clrckabf(index) != 0
     }
 
     #[doc="Sets the CLRCKABF field."]
-    #[inline] pub fn set_clrckabf<V: Into<bits::U8>>(mut self, value: V) -> Self {
-        let value: bits::U8 = value.into();
+    #[inline] pub fn set_clrckabf<I: Into<bits::R8>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+        let index: usize = index.into().value() as usize;
+        let value: bits::U1 = value.into();
         let value: u32 = value.into();
-        self.0 &= !(0xff << 16);
-        self.0 |= value << 16;
+        let shift: usize = 16 + index;
+        self.0 &= !(0x1 << shift);
+        self.0 |= value << shift;
         self
     }
 
@@ -1951,8 +1988,22 @@ impl ::core::fmt::Display for Flticr {
 impl ::core::fmt::Debug for Flticr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
         try!(write!(f, "[0x{:08x}", self.0));
-        if self.clrscdf() != 0 { try!(write!(f, " clrscdf=0x{:x}", self.clrscdf()))}
-        if self.clrckabf() != 0 { try!(write!(f, " clrckabf=0x{:x}", self.clrckabf()))}
+        if self.clrscdf(0) != 0 { try!(write!(f, " clrscdf[0]"))}
+        if self.clrscdf(1) != 0 { try!(write!(f, " clrscdf[1]"))}
+        if self.clrscdf(2) != 0 { try!(write!(f, " clrscdf[2]"))}
+        if self.clrscdf(3) != 0 { try!(write!(f, " clrscdf[3]"))}
+        if self.clrscdf(4) != 0 { try!(write!(f, " clrscdf[4]"))}
+        if self.clrscdf(5) != 0 { try!(write!(f, " clrscdf[5]"))}
+        if self.clrscdf(6) != 0 { try!(write!(f, " clrscdf[6]"))}
+        if self.clrscdf(7) != 0 { try!(write!(f, " clrscdf[7]"))}
+        if self.clrckabf(0) != 0 { try!(write!(f, " clrckabf[0]"))}
+        if self.clrckabf(1) != 0 { try!(write!(f, " clrckabf[1]"))}
+        if self.clrckabf(2) != 0 { try!(write!(f, " clrckabf[2]"))}
+        if self.clrckabf(3) != 0 { try!(write!(f, " clrckabf[3]"))}
+        if self.clrckabf(4) != 0 { try!(write!(f, " clrckabf[4]"))}
+        if self.clrckabf(5) != 0 { try!(write!(f, " clrckabf[5]"))}
+        if self.clrckabf(6) != 0 { try!(write!(f, " clrckabf[6]"))}
+        if self.clrckabf(7) != 0 { try!(write!(f, " clrckabf[7]"))}
         if self.clrrovrf() != 0 { try!(write!(f, " clrrovrf"))}
         if self.clrjovrf() != 0 { try!(write!(f, " clrjovrf"))}
         try!(write!(f, "]"));
