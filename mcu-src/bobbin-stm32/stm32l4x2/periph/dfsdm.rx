@@ -178,7 +178,7 @@
         )
     )
     (register
-        (name DFSDM_CR1)
+        (name FLTCR1)
         (offset 0x100)
         (size 0x20)
         (dim 4)
@@ -272,7 +272,7 @@
         )
     )
     (register
-        (name DFSDM_CR2)
+        (name FLTCR2)
         (offset 0x104)
         (size 0x20)
         (dim 4)
@@ -336,7 +336,7 @@
         )
     )
     (register
-        (name DFSDM_ISR)
+        (name FLTISR)
         (offset 0x108)
         (size 0x20)
         (dim 4)
@@ -400,7 +400,7 @@
         )
     )
     (register
-        (name DFSDM_ICR)
+        (name FLTICR)
         (offset 0x10c)
         (size 0x20)
         (dim 4)
@@ -434,7 +434,7 @@
         )
     )
     (register
-        (name DFSDM_JCHGR)
+        (name FLTJCHGR)
         (offset 0x110)
         (size 0x20)
         (dim 4)
@@ -450,7 +450,7 @@
         )
     )
     (register
-        (name DFSDM_FCR)
+        (name FLTFCR)
         (offset 0x114)
         (size 0x20)
         (dim 4)
@@ -478,7 +478,7 @@
         )
     )
     (register
-        (name DFSDM_JDATAR)
+        (name FLTJDATAR)
         (offset 0x118)
         (size 0x20)
         (dim 4)
@@ -500,7 +500,7 @@
         )
     )
     (register
-        (name DFSDM_RDATAR)
+        (name FLTRDATAR)
         (offset 0x11c)
         (size 0x20)
         (dim 4)
@@ -528,7 +528,7 @@
         )
     )
     (register
-        (name DFSDM_AWHTR)
+        (name FLTAWHTR)
         (offset 0x120)
         (size 0x20)
         (dim 4)
@@ -550,7 +550,7 @@
         )
     )
     (register
-        (name DFSDM_AWLTR)
+        (name FLTAWLTR)
         (offset 0x124)
         (size 0x20)
         (dim 4)
@@ -572,7 +572,7 @@
         )
     )
     (register
-        (name DFSDM_AWSR)
+        (name FLTAWSR)
         (offset 0x128)
         (size 0x20)
         (dim 4)
@@ -594,7 +594,7 @@
         )
     )
     (register
-        (name DFSDM_AWCFR)
+        (name FLTAWCFR)
         (offset 0x12c)
         (size 0x20)
         (dim 4)
@@ -616,7 +616,7 @@
         )
     )
     (register
-        (name DFSDM_EXMAX)
+        (name FLTEXMAX)
         (offset 0x130)
         (size 0x20)
         (dim 4)
@@ -638,7 +638,7 @@
         )
     )
     (register
-        (name DFSDM_EXMIN)
+        (name FLTEXMIN)
         (offset 0x134)
         (size 0x20)
         (dim 4)
@@ -660,7 +660,7 @@
         )
     )
     (register
-        (name DFSDM_CNVTIMR)
+        (name FLTCNVTIMR)
         (offset 0x138)
         (size 0x20)
         (dim 4)
@@ -672,7 +672,7 @@
             (name CNVCNT)
             (bit-offset 4)
             (bit-width 28)
-            (description "28-bit timer counting conversion time t = CNVCNT[27:0] / fDFSDM_CKIN")
+            (description "28-bit timer counting conversion time t = CNVCNT[27:0] / fFLTCKIN")
         )
     )
 )
