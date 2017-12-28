@@ -161,6 +161,10 @@ pub extern "C" fn main() -> ! {
             loop {
                 let isr = pdm.fltisr(0);
                 if isr.reocf() != 0 { break; }
+                if isr.ckabf(0) != 0 {
+                    panic!("Clock Loss");
+                }
+
                 if isr.rovrf() != 0 {
                     panic!("OVERRUN");
                 }
@@ -180,7 +184,7 @@ pub extern "C" fn main() -> ! {
         }
     }
     // dump(&buf[..]);
-    send_24(&buf[..]);
+    send_8(&buf[..]);
     // send_u8(&buf[..]);
     LED0.set_output(false);    
     loop {}
@@ -200,12 +204,29 @@ fn play_square(period: u32, a: i8) {
 
 fn send_24(buf: &[u32]) {
     use board::console;
-    for b in buf.iter() {        
+    for b in buf.iter() {                
         console::putc((*b >> 24) as u8);
         console::putc((*b >> 16) as u8);
         console::putc((*b >> 8) as u8);
     }
 }
+
+fn send_16(buf: &[u32]) {
+    use board::console;
+    for b in buf.iter() {                
+        console::putc((*b >> 24) as u8);
+        console::putc((*b >> 16) as u8);
+    }
+}
+
+fn send_8(buf: &[u32]) {
+    use board::console;
+    for b in buf.iter() {                
+        console::putc((*b >> 24) as u8);
+    }
+}
+
+
 fn send_u8(buf: &[u8]) {
     use board::console;
     for b in buf.iter() {

@@ -200,7 +200,7 @@ impl DfsdmPeriph {
     #[doc="Get the *mut pointer for the FLTCR1 register."]
     #[inline] pub fn fltcr1_mut<I: Into<bits::R4>>(&self, index: I) -> *mut Fltcr1 { 
         let index: usize = index.into().value() as usize;
-        (self.0 + 0x100 + (index * 256)) as *mut Fltcr1
+        (self.0 + 0x100 + (index * 128)) as *mut Fltcr1
     }
 
     #[doc="Get the *const pointer for the FLTCR1 register."]
@@ -234,7 +234,7 @@ impl DfsdmPeriph {
     #[doc="Get the *mut pointer for the FLTCR2 register."]
     #[inline] pub fn fltcr2_mut<I: Into<bits::R4>>(&self, index: I) -> *mut Fltcr2 { 
         let index: usize = index.into().value() as usize;
-        (self.0 + 0x104 + (index * 256)) as *mut Fltcr2
+        (self.0 + 0x104 + (index * 128)) as *mut Fltcr2
     }
 
     #[doc="Get the *const pointer for the FLTCR2 register."]
@@ -268,7 +268,7 @@ impl DfsdmPeriph {
     #[doc="Get the *mut pointer for the FLTISR register."]
     #[inline] pub fn fltisr_mut<I: Into<bits::R4>>(&self, index: I) -> *mut Fltisr { 
         let index: usize = index.into().value() as usize;
-        (self.0 + 0x108 + (index * 256)) as *mut Fltisr
+        (self.0 + 0x108 + (index * 128)) as *mut Fltisr
     }
 
     #[doc="Get the *const pointer for the FLTISR register."]
@@ -286,7 +286,7 @@ impl DfsdmPeriph {
     #[doc="Get the *mut pointer for the FLTICR register."]
     #[inline] pub fn flticr_mut<I: Into<bits::R4>>(&self, index: I) -> *mut Flticr { 
         let index: usize = index.into().value() as usize;
-        (self.0 + 0x10c + (index * 256)) as *mut Flticr
+        (self.0 + 0x10c + (index * 128)) as *mut Flticr
     }
 
     #[doc="Get the *const pointer for the FLTICR register."]
@@ -320,7 +320,7 @@ impl DfsdmPeriph {
     #[doc="Get the *mut pointer for the FLTJCHGR register."]
     #[inline] pub fn fltjchgr_mut<I: Into<bits::R4>>(&self, index: I) -> *mut Fltjchgr { 
         let index: usize = index.into().value() as usize;
-        (self.0 + 0x110 + (index * 256)) as *mut Fltjchgr
+        (self.0 + 0x110 + (index * 128)) as *mut Fltjchgr
     }
 
     #[doc="Get the *const pointer for the FLTJCHGR register."]
@@ -354,7 +354,7 @@ impl DfsdmPeriph {
     #[doc="Get the *mut pointer for the FLTFCR register."]
     #[inline] pub fn fltfcr_mut<I: Into<bits::R4>>(&self, index: I) -> *mut Fltfcr { 
         let index: usize = index.into().value() as usize;
-        (self.0 + 0x114 + (index * 256)) as *mut Fltfcr
+        (self.0 + 0x114 + (index * 128)) as *mut Fltfcr
     }
 
     #[doc="Get the *const pointer for the FLTFCR register."]
@@ -388,7 +388,7 @@ impl DfsdmPeriph {
     #[doc="Get the *mut pointer for the FLTJDATAR register."]
     #[inline] pub fn fltjdatar_mut<I: Into<bits::R4>>(&self, index: I) -> *mut Fltjdatar { 
         let index: usize = index.into().value() as usize;
-        (self.0 + 0x118 + (index * 256)) as *mut Fltjdatar
+        (self.0 + 0x118 + (index * 128)) as *mut Fltjdatar
     }
 
     #[doc="Get the *const pointer for the FLTJDATAR register."]
@@ -406,7 +406,7 @@ impl DfsdmPeriph {
     #[doc="Get the *mut pointer for the FLTRDATAR register."]
     #[inline] pub fn fltrdatar_mut<I: Into<bits::R4>>(&self, index: I) -> *mut Fltrdatar { 
         let index: usize = index.into().value() as usize;
-        (self.0 + 0x11c + (index * 256)) as *mut Fltrdatar
+        (self.0 + 0x11c + (index * 128)) as *mut Fltrdatar
     }
 
     #[doc="Get the *const pointer for the FLTRDATAR register."]
@@ -424,7 +424,7 @@ impl DfsdmPeriph {
     #[doc="Get the *mut pointer for the FLTAWHTR register."]
     #[inline] pub fn fltawhtr_mut<I: Into<bits::R4>>(&self, index: I) -> *mut Fltawhtr { 
         let index: usize = index.into().value() as usize;
-        (self.0 + 0x120 + (index * 256)) as *mut Fltawhtr
+        (self.0 + 0x120 + (index * 128)) as *mut Fltawhtr
     }
 
     #[doc="Get the *const pointer for the FLTAWHTR register."]
@@ -458,7 +458,7 @@ impl DfsdmPeriph {
     #[doc="Get the *mut pointer for the FLTAWLTR register."]
     #[inline] pub fn fltawltr_mut<I: Into<bits::R4>>(&self, index: I) -> *mut Fltawltr { 
         let index: usize = index.into().value() as usize;
-        (self.0 + 0x124 + (index * 256)) as *mut Fltawltr
+        (self.0 + 0x124 + (index * 128)) as *mut Fltawltr
     }
 
     #[doc="Get the *const pointer for the FLTAWLTR register."]
@@ -492,7 +492,7 @@ impl DfsdmPeriph {
     #[doc="Get the *mut pointer for the FLTAWSR register."]
     #[inline] pub fn fltawsr_mut<I: Into<bits::R4>>(&self, index: I) -> *mut Fltawsr { 
         let index: usize = index.into().value() as usize;
-        (self.0 + 0x128 + (index * 256)) as *mut Fltawsr
+        (self.0 + 0x128 + (index * 128)) as *mut Fltawsr
     }
 
     #[doc="Get the *const pointer for the FLTAWSR register."]
@@ -510,7 +510,7 @@ impl DfsdmPeriph {
     #[doc="Get the *mut pointer for the FLTAWCFR register."]
     #[inline] pub fn fltawcfr_mut<I: Into<bits::R4>>(&self, index: I) -> *mut Fltawcfr { 
         let index: usize = index.into().value() as usize;
-        (self.0 + 0x12c + (index * 256)) as *mut Fltawcfr
+        (self.0 + 0x12c + (index * 128)) as *mut Fltawcfr
     }
 
     #[doc="Get the *const pointer for the FLTAWCFR register."]
@@ -544,7 +544,7 @@ impl DfsdmPeriph {
     #[doc="Get the *mut pointer for the FLTEXMAX register."]
     #[inline] pub fn fltexmax_mut<I: Into<bits::R4>>(&self, index: I) -> *mut Fltexmax { 
         let index: usize = index.into().value() as usize;
-        (self.0 + 0x130 + (index * 256)) as *mut Fltexmax
+        (self.0 + 0x130 + (index * 128)) as *mut Fltexmax
     }
 
     #[doc="Get the *const pointer for the FLTEXMAX register."]
@@ -562,7 +562,7 @@ impl DfsdmPeriph {
     #[doc="Get the *mut pointer for the FLTEXMIN register."]
     #[inline] pub fn fltexmin_mut<I: Into<bits::R4>>(&self, index: I) -> *mut Fltexmin { 
         let index: usize = index.into().value() as usize;
-        (self.0 + 0x134 + (index * 256)) as *mut Fltexmin
+        (self.0 + 0x134 + (index * 128)) as *mut Fltexmin
     }
 
     #[doc="Get the *const pointer for the FLTEXMIN register."]
@@ -580,7 +580,7 @@ impl DfsdmPeriph {
     #[doc="Get the *mut pointer for the FLTCNVTIMR register."]
     #[inline] pub fn fltcnvtimr_mut<I: Into<bits::R4>>(&self, index: I) -> *mut Fltcnvtimr { 
         let index: usize = index.into().value() as usize;
-        (self.0 + 0x138 + (index * 256)) as *mut Fltcnvtimr
+        (self.0 + 0x138 + (index * 128)) as *mut Fltcnvtimr
     }
 
     #[doc="Get the *const pointer for the FLTCNVTIMR register."]
