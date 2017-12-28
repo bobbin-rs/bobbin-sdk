@@ -6,11 +6,15 @@ extern crate audio_node as board;
 
 use board::hal::gpio::*;
 use board::hal::dfsdm::*;
+use board::console;
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
     board::init();
-    println!("DFSDM Test");
+
+    if true {
+        play_square(18, 50);
+    }
 
     // CLKOUT = PC2
     // DATIN0 = PB1
@@ -31,13 +35,13 @@ pub extern "C" fn main() -> ! {
 
     // Setup GPIO Configuration
 
-    pdm_clk.mode_dfsdm_ckout(&pdm);
-    pdm_dat.mode_dfsdm_datin0(&pdm);
+    pdm_clk.mode_dfsdm_ckout(&pdm).pull_none().speed_high();
+    pdm_dat.mode_dfsdm_datin0(&pdm).pull_none().speed_high();
 
     // Configure DFSDM
 
     {
-        println!("Configuring DFSDM");
+        // println!("Configuring DFSDM");
         // Channel 0 => Filter 0
 
         // PCLK2 = 80Mhz, OUT=8Khz
@@ -80,8 +84,8 @@ pub extern "C" fn main() -> ! {
 
         pdm.with_chcfgr1(0, |r| r.set_chen(1));
 
-        println!("CH0CFGR1: {:?}", pdm.chcfgr1(0));
-        println!("CH0CFGR2: {:?}", pdm.chcfgr2(0));
+        // println!("CH0CFGR1: {:?}", pdm.chcfgr1(0));
+        // println!("CH0CFGR2: {:?}", pdm.chcfgr2(0));
 
         // Configure Digital Filter 0
 
@@ -99,14 +103,14 @@ pub extern "C" fn main() -> ! {
         // Enable Filter 0
         pdm.with_fltcr1(0, |r| r.set_dfen(1)); 
 
-        println!("FLT0CR1:  {:?}", pdm.fltcr1(0));
-        println!("FLT0FCR:  {:?}", pdm.fltfcr(0));
+        // println!("FLT0CR1:  {:?}", pdm.fltcr1(0));
+        // println!("FLT0FCR:  {:?}", pdm.fltfcr(0));
 
-        println!("Configuration Complete");
+        // println!("Configuration Complete");
     }
 
     {
-        println!("Checking for Clock");
+        // println!("Checking for Clock");
         loop {
             if pdm.fltisr(0).test_ckabf(0) {
                 pdm.set_flticr(0, |r| r.set_clrckabf(0, 1));
@@ -114,12 +118,12 @@ pub extern "C" fn main() -> ! {
                 break;
             }
         }
-        println!("Clock Present");
+        // println!("Clock Present");
     }
 
-    let mut buf = [0u32; 4096];
+    let mut buf = [0u8; 4096];
     {
-        println!("Starting Regular Conversion");
+        // println!("Starting Regular Conversion");
         
         // Clear Flags
         pdm.set_flticr(0, |_| Flticr(0xffffffff));
@@ -134,9 +138,9 @@ pub extern "C" fn main() -> ! {
 
         let mut i = 0;
         loop {
-            if i == buf.len() {
-                break;
-            }
+            // if i == buf.len() {
+            //     break;
+            // }
             let mut n = timeout;
             loop {
                 let isr = pdm.fltisr(0);
@@ -149,13 +153,36 @@ pub extern "C" fn main() -> ! {
                 }
                 n -= 1;
             }
-            buf[i] = pdm.fltrdatar(0).rdata().value() as u32;
+            let v = pdm.fltrdatar(0).rdata().value() as u32;
+            let b = (v >> 16) as u8;
+            console::putc(b);
+            // buf[i] = b;
             i += 1;
         }
     }
-    println!("Conversion Complete");    
-    dump(&buf[..]);
+    // println!("Conversion Complete");    
+    // dump(&buf[..]);
+    send_u8(&buf[..]);
     loop {}
+}
+
+
+fn play_square(period: u32, a: i8) {
+    loop {
+        for _ in 0..period {
+            console::putc(a as u8);
+        }
+        for _ in 0..period {
+            console::putc(-a as u8);
+        }
+    }
+}
+
+fn send_u8(buf: &[u8]) {
+    use board::console;
+    for b in buf.iter() {
+        console::putc(*b);
+    }
 }
 
 fn dump(buf: &[u32]) {
