@@ -63,7 +63,7 @@ pub extern "C" fn main() -> ! {
 
         pdm.with_chcfgr1(0, |r| r
             .set_ckoutsrc(0) // System Clock
-            .set_ckoutdiv(clkdiv - 1) // CLKDIV = 250
+            .set_ckoutdiv(clkdiv - 1) // CLKDIV = 40
         );
 
         // Enable DFSDM
@@ -79,11 +79,11 @@ pub extern "C" fn main() -> ! {
             .set_ckaben(1) // Clock Absence Detector Enabled
             .set_scden(0) // Short Circuit Detector Disabled
             .set_spicksel(0b01) // Clock from CKOUT
-            .set_sitp(0b00) // Sample Rising Edge
+            .set_sitp(0b01) // Sample Rising Edge
         );
 
         pdm.with_chcfgr2(0, |r| r
-            .set_offset(0) // Offset 0
+            .set_offset(0x050000) // Offset 0
             .set_dtrbs(0) // Data Right Bit Shift 0 bits
         );
 
@@ -184,7 +184,7 @@ pub extern "C" fn main() -> ! {
         }
     }
     // dump(&buf[..]);
-    send_8(&buf[..]);
+    send_24(&buf[..]);
     // send_u8(&buf[..]);
     LED0.set_output(false);    
     loop {}
