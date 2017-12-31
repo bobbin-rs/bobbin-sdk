@@ -73,7 +73,8 @@ pub extern "C" fn main() -> ! {
 
         pdm.with_chcfgr1(0, |r| r
             .set_datpack(0) // Standard
-            .set_datmpx(0) // Use external 1-bit serial inputs
+            // .set_datmpx(0) // Use external 1-bit serial inputs
+            .set_datmpx(0b10) // Use parallel register input
             .set_chinsel(0) // Input from same Channel Pin #
             .set_chen(0) // Channel Disabled
             .set_ckaben(1) // Clock Absence Detector Enabled
@@ -115,23 +116,6 @@ pub extern "C" fn main() -> ! {
         // println!("Configuration Complete");
     }
 
-    // {
-    //     // println!("Checking for Clock");
-    //     let mut i = 100_000;
-    //     loop {
-    //         if i == 0 {
-    //             panic!("Unable to detect PDM clock");
-    //         }
-    //         if pdm.fltisr(0).test_ckabf(0) {
-    //             pdm.set_flticr(0, |r| r.set_clrckabf(0, 1));
-    //         } else {
-    //             break;
-    //         }
-    //         i -= 1;
-    //     }
-    // }
-
-    // board::delay(100);
 
     let mut buf = [0u32; 8000 * 1];
     {
@@ -162,19 +146,37 @@ pub extern "C" fn main() -> ! {
         let timeout = 10_000_000;
 
         let mut i = 0;
+        let mut x = 0;
         loop {
             if i == buf.len() {
                 // println!("{} {}", (pdm.fltexmax(0).0 as i32) >> 8, (pdm.fltexmin(0).0 as i32) >> 8);                
                 // i = 0;
                 break;
             }
+
             let mut n = timeout;
             loop {
+                if x < 5000 {
+                    if x % 4 == 0 {
+                        pdm.set_chdatinr(0, |r| r.set_indat0(-1_i16 as u16));
+                    } else {
+                        pdm.set_chdatinr(0, |r| r.set_indat0(1_i16 as u16));                        
+                    }
+                } else if x < 10000 {
+                    if x % 4 == 0 {
+                        pdm.set_chdatinr(0, |r| r.set_indat0(1_i16 as u16));
+                    } else {
+                        pdm.set_chdatinr(0, |r| r.set_indat0(-1_i16 as u16));                        
+                    }
+                }
+                // pdm.set_chdatinr(0, |r| r.set_indat0(0_i16 as u16));
+                // pdm.set_chdatinr(0, |r| r.set_indat0(-1_i16 as u16));
+    
                 let isr = pdm.fltisr(0);
                 if isr.reocf() != 0 { break; }
-                if isr.ckabf(0) != 0 {
-                    panic!("Clock Loss");
-                }
+                // if isr.ckabf(0) != 0 {
+                //     panic!("Clock Loss");
+                // }
 
                 if isr.rovrf() != 0 {
                     panic!("OVERRUN");
@@ -187,6 +189,10 @@ pub extern "C" fn main() -> ! {
                     panic!("Timeout");
                 }
                 n -= 1;
+                x += 1;
+                if x == 10000 {
+                    x = 0;
+                }
             }
             let v = pdm.fltrdatar(0).0;
             // let b = (v >> 24) as u8;
