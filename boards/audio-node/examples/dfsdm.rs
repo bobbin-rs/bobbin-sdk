@@ -37,8 +37,8 @@ pub extern "C" fn main() -> ! {
 
     // Setup GPIO Configuration
 
-    pdm_clk.mode_dfsdm_ckout(&pdm).pull_none().speed_high();
-    pdm_dat.mode_dfsdm_datin0(&pdm).pull_none().speed_high();
+    pdm_clk.mode_dfsdm_ckout(&pdm).speed_high();
+    pdm_dat.mode_dfsdm_datin0(&pdm).speed_high();
 
     // Configure DFSDM
 
@@ -79,12 +79,13 @@ pub extern "C" fn main() -> ! {
             .set_ckaben(1) // Clock Absence Detector Enabled
             .set_scden(0) // Short Circuit Detector Disabled
             .set_spicksel(0b01) // Clock from CKOUT
-            .set_sitp(0b01) // Sample Rising Edge
+            .set_sitp(0b00) // Sample Rising Edge
         );
 
         pdm.with_chcfgr2(0, |r| r
-            .set_offset(0x050000) // Offset 0
-            .set_dtrbs(0) // Data Right Bit Shift 0 bits
+            .set_offset(0) // Offset 0
+            // .set_offset(0x050000) // Offset 0
+            .set_dtrbs(8) // Data Right Bit Shift 0 bits
         );
 
          // Enable Channel 0
@@ -133,7 +134,7 @@ pub extern "C" fn main() -> ! {
 
     board::delay(100);
 
-    let mut buf = [0u32; 8000 * 1];
+    let mut buf = [0u32; 8000 * 4];
     {
         // println!("Starting Regular Conversion");
         
@@ -148,6 +149,15 @@ pub extern "C" fn main() -> ! {
             .set_rswstart(1)
         );
 
+        pdm.with_fltcr2(0, |r| r.set_exch(1));
+
+        // println!("CH0CFGR1: {:?}", pdm.chcfgr1(0));
+        // println!("CH0CFGR2: {:?}", pdm.chcfgr2(0));
+        // println!("FLT0CR1: {:?}", pdm.fltcr1(0));
+        // println!("FLTFCR: {:?}", pdm.fltfcr(0));
+        // loop {}
+
+
         while pdm.fltisr(0).rcip() == 0 {}
 
         let timeout = 10_000_000;
@@ -155,6 +165,8 @@ pub extern "C" fn main() -> ! {
         let mut i = 0;
         loop {
             if i == buf.len() {
+                // println!("{} {}", (pdm.fltexmax(0).0 as i32) >> 8, (pdm.fltexmin(0).0 as i32) >> 8);                
+                // i = 0;
                 break;
             }
             let mut n = timeout;
@@ -165,9 +177,9 @@ pub extern "C" fn main() -> ! {
                     panic!("Clock Loss");
                 }
 
-                if isr.rovrf() != 0 {
-                    panic!("OVERRUN");
-                }
+                // if isr.rovrf() != 0 {
+                //     panic!("OVERRUN");
+                // }
                 if isr.rcip() != 1 { 
                     panic!("RCIP Not Set");
                 }
@@ -180,9 +192,13 @@ pub extern "C" fn main() -> ! {
             // let b = (v >> 24) as u8;
             // console::putc(b);
             buf[i] = v;
+            
             i += 1;
         }
     }
+    // println!("{:?}", pdm.fltcnvtimr(0));
+    // loop {}
+
     // dump(&buf[..]);
     send_24(&buf[..]);
     // send_u8(&buf[..]);
