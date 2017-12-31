@@ -51,9 +51,9 @@ pub extern "C" fn main() -> ! {
         // OUT = SCK / 250 = 8Khz 
         // Range: +/- 16777216 == 24 bit
 
-        let clkdiv = 40;
+        let clkdiv = 160;
         let ford = 3; // Sinc3 Filter Type
-        let fosr = 250; 
+        let fosr = 1; 
         let iosr = 1;
 
 
@@ -73,24 +73,38 @@ pub extern "C" fn main() -> ! {
 
         pdm.with_chcfgr1(0, |r| r
             .set_datpack(0) // Standard
-            // .set_datmpx(0) // Use external 1-bit serial inputs
-            .set_datmpx(0b10) // Use parallel register input
+            .set_datmpx(0) // Use external 1-bit serial inputs
             .set_chinsel(0) // Input from same Channel Pin #
             .set_chen(0) // Channel Disabled
-            .set_ckaben(1) // Clock Absence Detector Enabled
+            .set_ckaben(0) // Clock Absence Detector Enabled
             .set_scden(0) // Short Circuit Detector Disabled
             .set_spicksel(0b01) // Clock from CKOUT
-            .set_sitp(0b01) // Sample Rising Edge
+            .set_sitp(0b00) // Sample Rising Edge
         );
 
         pdm.with_chcfgr2(0, |r| r
             .set_offset(0) // Offset 0
-            .set_dtrbs(2) // Data Right Bit Shift 0 bits
+            .set_dtrbs(4) // Data Right Bit Shift 0 bits
         );
 
          // Enable Channel 0
 
         pdm.with_chcfgr1(0, |r| r.set_chen(1));
+
+
+        // println!("Checking for Clock");
+        let mut i = 100_000;
+        loop {
+            if i == 0 {
+                panic!("Unable to detect PDM clock");
+            }
+            if pdm.fltisr(0).test_ckabf(0) {
+                pdm.set_flticr(0, |r| r.set_clrckabf(0, 1));
+            } else {
+                break;
+            }
+            i -= 1;
+        }
 
         // println!("CH0CFGR1: {:?}", pdm.chcfgr1(0));
         // println!("CH0CFGR2: {:?}", pdm.chcfgr2(0));
@@ -116,6 +130,8 @@ pub extern "C" fn main() -> ! {
         // println!("Configuration Complete");
     }
 
+
+    // board::delay(100);
 
     let mut buf = [0u32; 8000 * 1];
     {
@@ -146,37 +162,19 @@ pub extern "C" fn main() -> ! {
         let timeout = 10_000_000;
 
         let mut i = 0;
-        let mut x = 0;
         loop {
             if i == buf.len() {
                 // println!("{} {}", (pdm.fltexmax(0).0 as i32) >> 8, (pdm.fltexmin(0).0 as i32) >> 8);                
                 // i = 0;
                 break;
             }
-
             let mut n = timeout;
             loop {
-                if x < 50000 {
-                    if x % 4 == 0 {
-                        pdm.set_chdatinr(0, |r| r.set_indat0(-1_i16 as u16));
-                    } else {
-                        pdm.set_chdatinr(0, |r| r.set_indat0(1_i16 as u16));                        
-                    }
-                } else if x < 100000 {
-                    if x % 4 == 0 {
-                        pdm.set_chdatinr(0, |r| r.set_indat0(1_i16 as u16));
-                    } else {
-                        pdm.set_chdatinr(0, |r| r.set_indat0(-1_i16 as u16));                        
-                    }
-                }
-                // pdm.set_chdatinr(0, |r| r.set_indat0(0_i16 as u16));
-                // pdm.set_chdatinr(0, |r| r.set_indat0(-1_i16 as u16));
-    
                 let isr = pdm.fltisr(0);
                 if isr.reocf() != 0 { break; }
-                // if isr.ckabf(0) != 0 {
-                //     panic!("Clock Loss");
-                // }
+                if isr.ckabf(0) != 0 {
+                    panic!("Clock Loss");
+                }
 
                 if isr.rovrf() != 0 {
                     panic!("OVERRUN");
@@ -189,10 +187,6 @@ pub extern "C" fn main() -> ! {
                     panic!("Timeout");
                 }
                 n -= 1;
-                x += 1;
-                if x == 100000 {
-                    x = 0;
-                }
             }
             let v = pdm.fltrdatar(0).0;
             // let b = (v >> 24) as u8;
@@ -206,8 +200,8 @@ pub extern "C" fn main() -> ! {
     // loop {}
 
     // dump(&buf[..]);
-    // send_24(&buf[..]);
     send_8(&buf[..]);
+    // send_u8(&buf[..]);
     LED0.set_output(false);    
     loop {}
 }

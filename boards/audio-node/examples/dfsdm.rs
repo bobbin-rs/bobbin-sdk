@@ -38,7 +38,7 @@ pub extern "C" fn main() -> ! {
     // Setup GPIO Configuration
 
     pdm_clk.mode_dfsdm_ckout(&pdm).speed_high();
-    pdm_dat.mode_dfsdm_datin0(&pdm).speed_high();
+    pdm_dat.mode_dfsdm_datin0(&pdm).pull_down().speed_high();
 
     // Configure DFSDM
 
@@ -76,7 +76,8 @@ pub extern "C" fn main() -> ! {
             .set_datmpx(0) // Use external 1-bit serial inputs
             .set_chinsel(0) // Input from same Channel Pin #
             .set_chen(0) // Channel Disabled
-            .set_ckaben(1) // Clock Absence Detector Enabled
+            .set_ckaben(0) // Clock Absence Detector Enabled
+            .set_ckaben(0) // Clock Absence Detector Enabled
             .set_scden(0) // Short Circuit Detector Disabled
             .set_spicksel(0b01) // Clock from CKOUT
             .set_sitp(0b00) // Sample Rising Edge
@@ -84,12 +85,27 @@ pub extern "C" fn main() -> ! {
 
         pdm.with_chcfgr2(0, |r| r
             .set_offset(0) // Offset 0
-            .set_dtrbs(4) // Data Right Bit Shift 0 bits
+            .set_dtrbs(2) // Data Right Bit Shift 0 bits
         );
 
          // Enable Channel 0
 
         pdm.with_chcfgr1(0, |r| r.set_chen(1));
+
+
+        // println!("Checking for Clock");
+        let mut i = 100_000;
+        loop {
+            if i == 0 {
+                panic!("Unable to detect PDM clock");
+            }
+            if pdm.fltisr(0).test_ckabf(0) {
+                pdm.set_flticr(0, |r| r.set_clrckabf(0, 1));
+            } else {
+                break;
+            }
+            i -= 1;
+        }
 
         // println!("CH0CFGR1: {:?}", pdm.chcfgr1(0));
         // println!("CH0CFGR2: {:?}", pdm.chcfgr2(0));
@@ -115,25 +131,10 @@ pub extern "C" fn main() -> ! {
         // println!("Configuration Complete");
     }
 
-    // {
-    //     // println!("Checking for Clock");
-    //     let mut i = 100_000;
-    //     loop {
-    //         if i == 0 {
-    //             panic!("Unable to detect PDM clock");
-    //         }
-    //         if pdm.fltisr(0).test_ckabf(0) {
-    //             pdm.set_flticr(0, |r| r.set_clrckabf(0, 1));
-    //         } else {
-    //             break;
-    //         }
-    //         i -= 1;
-    //     }
-    // }
 
     // board::delay(100);
 
-    let mut buf = [0u32; 8000 * 1];
+    let mut buf = [0u32; 8000 * 4];
     {
         // println!("Starting Regular Conversion");
         
@@ -200,7 +201,7 @@ pub extern "C" fn main() -> ! {
     // loop {}
 
     // dump(&buf[..]);
-    send_24(&buf[..]);
+    send_8(&buf[..]);
     // send_u8(&buf[..]);
     LED0.set_output(false);    
     loop {}
@@ -238,7 +239,8 @@ fn send_16(buf: &[u32]) {
 fn send_8(buf: &[u32]) {
     use board::console;
     for b in buf.iter() {                
-        console::putc((*b >> 24) as u8);
+        // console::putc((*b >> 24) as u8);
+        console::putc(((*b as i32) >> 16) as u8);
     }
 }
 
