@@ -228,6 +228,7 @@ fn send_24(buf: &[u32]) {
     }
 }
 
+#[allow(dead_code)]
 fn send_16(buf: &[u32]) {
     use board::console;
     for b in buf.iter() {                
@@ -239,12 +240,12 @@ fn send_16(buf: &[u32]) {
 fn send_8(buf: &[u32]) {
     use board::console;
     for b in buf.iter() {                
-        // console::putc((*b >> 24) as u8);
-        console::putc(((*b as i32) >> 16) as u8);
+        console::putc((*b >> 24) as u8);
+        // console::putc(((*b as i32) >> 16) as u8);
     }
 }
 
-
+#[allow(dead_code)]
 fn send_u8(buf: &[u8]) {
     use board::console;
     for b in buf.iter() {
@@ -252,6 +253,7 @@ fn send_u8(buf: &[u8]) {
     }
 }
 
+#[allow(dead_code)]
 fn dump(buf: &[u32]) {
     for (i, b) in buf.iter().enumerate() {
         if i % 16 == 0 { println!("") }
