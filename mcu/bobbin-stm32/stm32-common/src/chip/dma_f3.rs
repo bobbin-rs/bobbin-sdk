@@ -178,6 +178,39 @@ impl DmaPeriph {
         self
     }
 
+    #[doc="Get the *mut pointer for the CSELR register."]
+    #[inline] pub fn cselr_mut(&self) -> *mut Cselr { 
+        (self.0 + 0xa8) as *mut Cselr
+    }
+
+    #[doc="Get the *const pointer for the CSELR register."]
+    #[inline] pub fn cselr_ptr(&self) -> *const Cselr { 
+           self.cselr_mut()
+    }
+
+    #[doc="Read the CSELR register."]
+    #[inline] pub fn cselr(&self) -> Cselr { 
+        unsafe {
+            read_volatile(self.cselr_ptr())
+        }
+    }
+
+    #[doc="Write the CSELR register."]
+    #[inline] pub fn set_cselr<F: FnOnce(Cselr) -> Cselr>(&self, f: F) -> &Self {
+        unsafe {
+            write_volatile(self.cselr_mut(), f(Cselr(0)));
+        }
+        self
+    }
+
+    #[doc="Modify the CSELR register."]
+    #[inline] pub fn with_cselr<F: FnOnce(Cselr) -> Cselr>(&self, f: F) -> &Self {
+        unsafe {
+            write_volatile(self.cselr_mut(), f(self.cselr()));
+        }
+        self
+    }
+
 }
 
 #[doc="DMA interrupt status register (DMA_ISR)"]
@@ -875,6 +908,63 @@ impl ::core::fmt::Display for Cmar {
 impl ::core::fmt::Debug for Cmar {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
         try!(write!(f, "[0x{:08x}", self.0));
+        try!(write!(f, "]"));
+        Ok(())
+    }
+}
+
+#[doc="channel selection register"]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct Cselr(pub u32);
+impl Cselr {
+    #[doc="DMA channel selection"]
+    #[inline] pub fn cs<I: Into<bits::R7>>(&self, index: I) -> bits::U4 {
+        let index: usize = index.into().value() as usize;
+        let shift: usize = 0 + (index << 2);
+        unsafe { ::core::mem::transmute(((self.0 >> shift) & 0xf) as u8) } // [3:0]
+    }
+
+    #[doc="Returns true if CS != 0"]
+    #[inline] pub fn test_cs<I: Into<bits::R7>>(&self, index: I) -> bool{
+        self.cs(index) != 0
+    }
+
+    #[doc="Sets the CS field."]
+    #[inline] pub fn set_cs<I: Into<bits::R7>, V: Into<bits::U4>>(mut self, index: I, value: V) -> Self {
+        let index: usize = index.into().value() as usize;
+        let value: bits::U4 = value.into();
+        let value: u32 = value.into();
+        let shift: usize = 0 + (index << 2);
+        self.0 &= !(0xf << shift);
+        self.0 |= value << shift;
+        self
+    }
+
+}
+
+impl From<u32> for Cselr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Cselr(other)
+    }
+}
+
+impl ::core::fmt::Display for Cselr {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
+    }
+}
+
+impl ::core::fmt::Debug for Cselr {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        if self.cs(0) != 0 { try!(write!(f, " cs[0]=0x{:x}", self.cs(0)))}
+        if self.cs(1) != 0 { try!(write!(f, " cs[1]=0x{:x}", self.cs(1)))}
+        if self.cs(2) != 0 { try!(write!(f, " cs[2]=0x{:x}", self.cs(2)))}
+        if self.cs(3) != 0 { try!(write!(f, " cs[3]=0x{:x}", self.cs(3)))}
+        if self.cs(4) != 0 { try!(write!(f, " cs[4]=0x{:x}", self.cs(4)))}
+        if self.cs(5) != 0 { try!(write!(f, " cs[5]=0x{:x}", self.cs(5)))}
+        if self.cs(6) != 0 { try!(write!(f, " cs[6]=0x{:x}", self.cs(6)))}
         try!(write!(f, "]"));
         Ok(())
     }
