@@ -297,6 +297,82 @@ impl DcmiPeriph {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Cr(pub u32);
 impl Cr {
+    #[doc="Odd / Even Line Select"]
+    #[inline] pub fn oels(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 20) & 0x1) as u8) } // [20]
+    }
+
+    #[doc="Returns true if OELS != 0"]
+    #[inline] pub fn test_oels(&self) -> bool {
+        self.oels() != 0
+    }
+
+    #[doc="Sets the OELS field."]
+    #[inline] pub fn set_oels<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 20);
+        self.0 |= value << 20;
+        self
+    }
+
+    #[doc="Line Select Mode"]
+    #[inline] pub fn lsm(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 19) & 0x1) as u8) } // [19]
+    }
+
+    #[doc="Returns true if LSM != 0"]
+    #[inline] pub fn test_lsm(&self) -> bool {
+        self.lsm() != 0
+    }
+
+    #[doc="Sets the LSM field."]
+    #[inline] pub fn set_lsm<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 19);
+        self.0 |= value << 19;
+        self
+    }
+
+    #[doc="Odd / Even Byte Select"]
+    #[inline] pub fn oebs(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 18) & 0x1) as u8) } // [18]
+    }
+
+    #[doc="Returns true if OEBS != 0"]
+    #[inline] pub fn test_oebs(&self) -> bool {
+        self.oebs() != 0
+    }
+
+    #[doc="Sets the OEBS field."]
+    #[inline] pub fn set_oebs<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 18);
+        self.0 |= value << 18;
+        self
+    }
+
+    #[doc="Byte Select Mode"]
+    #[inline] pub fn bsm(&self) -> bits::U2 {
+        unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x3) as u8) } // [17:16]
+    }
+
+    #[doc="Returns true if BSM != 0"]
+    #[inline] pub fn test_bsm(&self) -> bool {
+        self.bsm() != 0
+    }
+
+    #[doc="Sets the BSM field."]
+    #[inline] pub fn set_bsm<V: Into<bits::U2>>(mut self, value: V) -> Self {
+        let value: bits::U2 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x3 << 16);
+        self.0 |= value << 16;
+        self
+    }
+
     #[doc="DCMI enable"]
     #[inline] pub fn enable(&self) -> bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 14) & 0x1) as u8) } // [14]
@@ -524,6 +600,10 @@ impl ::core::fmt::Display for Cr {
 impl ::core::fmt::Debug for Cr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
         try!(write!(f, "[0x{:08x}", self.0));
+        if self.oels() != 0 { try!(write!(f, " oels"))}
+        if self.lsm() != 0 { try!(write!(f, " lsm"))}
+        if self.oebs() != 0 { try!(write!(f, " oebs"))}
+        if self.bsm() != 0 { try!(write!(f, " bsm=0x{:x}", self.bsm()))}
         if self.enable() != 0 { try!(write!(f, " enable"))}
         if self.edm() != 0 { try!(write!(f, " edm=0x{:x}", self.edm()))}
         if self.fcrc() != 0 { try!(write!(f, " fcrc=0x{:x}", self.fcrc()))}

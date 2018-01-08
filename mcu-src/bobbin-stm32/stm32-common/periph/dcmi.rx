@@ -15,6 +15,30 @@
         (reset-value 0x0)
         (description "control register 1")
         (field
+            (name OELS)
+            (bit-offset 20)
+            (bit-width 1)
+            (description "Odd / Even Line Select")
+        )
+        (field
+            (name LSM)
+            (bit-offset 19)
+            (bit-width 1)
+            (description "Line Select Mode")
+        )                
+        (field
+            (name OEBS)
+            (bit-offset 18)
+            (bit-width 1)
+            (description "Odd / Even Byte Select")
+        )        
+        (field
+            (name BSM)
+            (bit-offset 16)
+            (bit-width 2)
+            (description "Byte Select Mode")
+        )
+        (field
             (name ENABLE)
             (bit-offset 14)
             (bit-width 1)
