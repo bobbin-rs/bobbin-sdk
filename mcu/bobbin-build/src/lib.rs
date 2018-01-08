@@ -15,7 +15,7 @@ pub fn setup_linker() {
     if let Some(ld_script) = find_ld_script("link").unwrap() {
         copy_link_script(ld_script);
     } else {
-        panic!("No linker script found for variant");
+        // panic!("No linker script found for variant");
     }
 }
 
