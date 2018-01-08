@@ -117,5 +117,9 @@
         (name SPI_V2)
         (has-channels)
         (prototype "periph/spi_v2.rx")
+    )      
+    (peripheral-group
+        (name DCMI)
+        (prototype "periph/dcmi.rx")
     )        
 )

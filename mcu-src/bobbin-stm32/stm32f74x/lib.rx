@@ -51,7 +51,7 @@
     (peripheral-group
         ; signature: 54d3fcda91047f2f
         (name DCMI)
-        (prototype "periph/dcmi.rx")
+        (module (name stm32_common::chip::dcmi::*))
         (peripheral
             (name DCMI)
             (address 0x50050000)
