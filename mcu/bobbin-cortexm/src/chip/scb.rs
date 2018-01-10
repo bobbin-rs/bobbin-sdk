@@ -1,9 +1,9 @@
-//! Nested Vectored Interrupt Controller
+//! System Control Block
 #[allow(unused_imports)] use bobbin_common::*;
 
 periph!(SCB, Scb, 0xe000e000);
 
-#[doc="Nested Vectored Interrupt Controller"]
+#[doc="System Control Block"]
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct Scb(pub usize);
 impl Scb {
@@ -630,6 +630,666 @@ impl Scb {
     #[inline] pub fn with_afsr<F: FnOnce(Afsr) -> Afsr>(&self, f: F) -> &Self {
         unsafe {
             write_volatile(self.afsr_mut(), f(self.afsr()));
+        }
+        self
+    }
+
+    #[doc="Get the *mut pointer for the CLIDR register."]
+    #[inline] pub fn clidr_mut(&self) -> *mut Clidr { 
+        (self.0 + 0xd78) as *mut Clidr
+    }
+
+    #[doc="Get the *const pointer for the CLIDR register."]
+    #[inline] pub fn clidr_ptr(&self) -> *const Clidr { 
+           self.clidr_mut()
+    }
+
+    #[doc="Read the CLIDR register."]
+    #[inline] pub fn clidr(&self) -> Clidr { 
+        unsafe {
+            read_volatile(self.clidr_ptr())
+        }
+    }
+
+    #[doc="Write the CLIDR register."]
+    #[inline] pub fn set_clidr<F: FnOnce(Clidr) -> Clidr>(&self, f: F) -> &Self {
+        unsafe {
+            write_volatile(self.clidr_mut(), f(Clidr(0)));
+        }
+        self
+    }
+
+    #[doc="Modify the CLIDR register."]
+    #[inline] pub fn with_clidr<F: FnOnce(Clidr) -> Clidr>(&self, f: F) -> &Self {
+        unsafe {
+            write_volatile(self.clidr_mut(), f(self.clidr()));
+        }
+        self
+    }
+
+    #[doc="Get the *mut pointer for the CTR register."]
+    #[inline] pub fn ctr_mut(&self) -> *mut Ctr { 
+        (self.0 + 0xd7c) as *mut Ctr
+    }
+
+    #[doc="Get the *const pointer for the CTR register."]
+    #[inline] pub fn ctr_ptr(&self) -> *const Ctr { 
+           self.ctr_mut()
+    }
+
+    #[doc="Read the CTR register."]
+    #[inline] pub fn ctr(&self) -> Ctr { 
+        unsafe {
+            read_volatile(self.ctr_ptr())
+        }
+    }
+
+    #[doc="Write the CTR register."]
+    #[inline] pub fn set_ctr<F: FnOnce(Ctr) -> Ctr>(&self, f: F) -> &Self {
+        unsafe {
+            write_volatile(self.ctr_mut(), f(Ctr(0)));
+        }
+        self
+    }
+
+    #[doc="Modify the CTR register."]
+    #[inline] pub fn with_ctr<F: FnOnce(Ctr) -> Ctr>(&self, f: F) -> &Self {
+        unsafe {
+            write_volatile(self.ctr_mut(), f(self.ctr()));
+        }
+        self
+    }
+
+    #[doc="Get the *mut pointer for the CCSIDR register."]
+    #[inline] pub fn ccsidr_mut(&self) -> *mut Ccsidr { 
+        (self.0 + 0xd80) as *mut Ccsidr
+    }
+
+    #[doc="Get the *const pointer for the CCSIDR register."]
+    #[inline] pub fn ccsidr_ptr(&self) -> *const Ccsidr { 
+           self.ccsidr_mut()
+    }
+
+    #[doc="Read the CCSIDR register."]
+    #[inline] pub fn ccsidr(&self) -> Ccsidr { 
+        unsafe {
+            read_volatile(self.ccsidr_ptr())
+        }
+    }
+
+    #[doc="Write the CCSIDR register."]
+    #[inline] pub fn set_ccsidr<F: FnOnce(Ccsidr) -> Ccsidr>(&self, f: F) -> &Self {
+        unsafe {
+            write_volatile(self.ccsidr_mut(), f(Ccsidr(0)));
+        }
+        self
+    }
+
+    #[doc="Modify the CCSIDR register."]
+    #[inline] pub fn with_ccsidr<F: FnOnce(Ccsidr) -> Ccsidr>(&self, f: F) -> &Self {
+        unsafe {
+            write_volatile(self.ccsidr_mut(), f(self.ccsidr()));
+        }
+        self
+    }
+
+    #[doc="Get the *mut pointer for the CCSELR register."]
+    #[inline] pub fn ccselr_mut(&self) -> *mut Ccselr { 
+        (self.0 + 0xd84) as *mut Ccselr
+    }
+
+    #[doc="Get the *const pointer for the CCSELR register."]
+    #[inline] pub fn ccselr_ptr(&self) -> *const Ccselr { 
+           self.ccselr_mut()
+    }
+
+    #[doc="Read the CCSELR register."]
+    #[inline] pub fn ccselr(&self) -> Ccselr { 
+        unsafe {
+            read_volatile(self.ccselr_ptr())
+        }
+    }
+
+    #[doc="Write the CCSELR register."]
+    #[inline] pub fn set_ccselr<F: FnOnce(Ccselr) -> Ccselr>(&self, f: F) -> &Self {
+        unsafe {
+            write_volatile(self.ccselr_mut(), f(Ccselr(0)));
+        }
+        self
+    }
+
+    #[doc="Modify the CCSELR register."]
+    #[inline] pub fn with_ccselr<F: FnOnce(Ccselr) -> Ccselr>(&self, f: F) -> &Self {
+        unsafe {
+            write_volatile(self.ccselr_mut(), f(self.ccselr()));
+        }
+        self
+    }
+
+    #[doc="Get the *mut pointer for the CPACR register."]
+    #[inline] pub fn cpacr_mut(&self) -> *mut Cpacr { 
+        (self.0 + 0xd88) as *mut Cpacr
+    }
+
+    #[doc="Get the *const pointer for the CPACR register."]
+    #[inline] pub fn cpacr_ptr(&self) -> *const Cpacr { 
+           self.cpacr_mut()
+    }
+
+    #[doc="Read the CPACR register."]
+    #[inline] pub fn cpacr(&self) -> Cpacr { 
+        unsafe {
+            read_volatile(self.cpacr_ptr())
+        }
+    }
+
+    #[doc="Write the CPACR register."]
+    #[inline] pub fn set_cpacr<F: FnOnce(Cpacr) -> Cpacr>(&self, f: F) -> &Self {
+        unsafe {
+            write_volatile(self.cpacr_mut(), f(Cpacr(0)));
+        }
+        self
+    }
+
+    #[doc="Modify the CPACR register."]
+    #[inline] pub fn with_cpacr<F: FnOnce(Cpacr) -> Cpacr>(&self, f: F) -> &Self {
+        unsafe {
+            write_volatile(self.cpacr_mut(), f(self.cpacr()));
+        }
+        self
+    }
+
+    #[doc="Get the *mut pointer for the ICIALLU register."]
+    #[inline] pub fn iciallu_mut(&self) -> *mut Iciallu { 
+        (self.0 + 0xf50) as *mut Iciallu
+    }
+
+    #[doc="Get the *const pointer for the ICIALLU register."]
+    #[inline] pub fn iciallu_ptr(&self) -> *const Iciallu { 
+           self.iciallu_mut()
+    }
+
+    #[doc="Read the ICIALLU register."]
+    #[inline] pub fn iciallu(&self) -> Iciallu { 
+        unsafe {
+            read_volatile(self.iciallu_ptr())
+        }
+    }
+
+    #[doc="Write the ICIALLU register."]
+    #[inline] pub fn set_iciallu<F: FnOnce(Iciallu) -> Iciallu>(&self, f: F) -> &Self {
+        unsafe {
+            write_volatile(self.iciallu_mut(), f(Iciallu(0)));
+        }
+        self
+    }
+
+    #[doc="Modify the ICIALLU register."]
+    #[inline] pub fn with_iciallu<F: FnOnce(Iciallu) -> Iciallu>(&self, f: F) -> &Self {
+        unsafe {
+            write_volatile(self.iciallu_mut(), f(self.iciallu()));
+        }
+        self
+    }
+
+    #[doc="Get the *mut pointer for the ICIMVAU register."]
+    #[inline] pub fn icimvau_mut(&self) -> *mut Icimvau { 
+        (self.0 + 0xf58) as *mut Icimvau
+    }
+
+    #[doc="Get the *const pointer for the ICIMVAU register."]
+    #[inline] pub fn icimvau_ptr(&self) -> *const Icimvau { 
+           self.icimvau_mut()
+    }
+
+    #[doc="Read the ICIMVAU register."]
+    #[inline] pub fn icimvau(&self) -> Icimvau { 
+        unsafe {
+            read_volatile(self.icimvau_ptr())
+        }
+    }
+
+    #[doc="Write the ICIMVAU register."]
+    #[inline] pub fn set_icimvau<F: FnOnce(Icimvau) -> Icimvau>(&self, f: F) -> &Self {
+        unsafe {
+            write_volatile(self.icimvau_mut(), f(Icimvau(0)));
+        }
+        self
+    }
+
+    #[doc="Modify the ICIMVAU register."]
+    #[inline] pub fn with_icimvau<F: FnOnce(Icimvau) -> Icimvau>(&self, f: F) -> &Self {
+        unsafe {
+            write_volatile(self.icimvau_mut(), f(self.icimvau()));
+        }
+        self
+    }
+
+    #[doc="Get the *mut pointer for the DCIMVAC register."]
+    #[inline] pub fn dcimvac_mut(&self) -> *mut Dcimvac { 
+        (self.0 + 0xf5c) as *mut Dcimvac
+    }
+
+    #[doc="Get the *const pointer for the DCIMVAC register."]
+    #[inline] pub fn dcimvac_ptr(&self) -> *const Dcimvac { 
+           self.dcimvac_mut()
+    }
+
+    #[doc="Read the DCIMVAC register."]
+    #[inline] pub fn dcimvac(&self) -> Dcimvac { 
+        unsafe {
+            read_volatile(self.dcimvac_ptr())
+        }
+    }
+
+    #[doc="Write the DCIMVAC register."]
+    #[inline] pub fn set_dcimvac<F: FnOnce(Dcimvac) -> Dcimvac>(&self, f: F) -> &Self {
+        unsafe {
+            write_volatile(self.dcimvac_mut(), f(Dcimvac(0)));
+        }
+        self
+    }
+
+    #[doc="Modify the DCIMVAC register."]
+    #[inline] pub fn with_dcimvac<F: FnOnce(Dcimvac) -> Dcimvac>(&self, f: F) -> &Self {
+        unsafe {
+            write_volatile(self.dcimvac_mut(), f(self.dcimvac()));
+        }
+        self
+    }
+
+    #[doc="Get the *mut pointer for the DCISW register."]
+    #[inline] pub fn dcisw_mut(&self) -> *mut Dcisw { 
+        (self.0 + 0xf60) as *mut Dcisw
+    }
+
+    #[doc="Get the *const pointer for the DCISW register."]
+    #[inline] pub fn dcisw_ptr(&self) -> *const Dcisw { 
+           self.dcisw_mut()
+    }
+
+    #[doc="Read the DCISW register."]
+    #[inline] pub fn dcisw(&self) -> Dcisw { 
+        unsafe {
+            read_volatile(self.dcisw_ptr())
+        }
+    }
+
+    #[doc="Write the DCISW register."]
+    #[inline] pub fn set_dcisw<F: FnOnce(Dcisw) -> Dcisw>(&self, f: F) -> &Self {
+        unsafe {
+            write_volatile(self.dcisw_mut(), f(Dcisw(0)));
+        }
+        self
+    }
+
+    #[doc="Modify the DCISW register."]
+    #[inline] pub fn with_dcisw<F: FnOnce(Dcisw) -> Dcisw>(&self, f: F) -> &Self {
+        unsafe {
+            write_volatile(self.dcisw_mut(), f(self.dcisw()));
+        }
+        self
+    }
+
+    #[doc="Get the *mut pointer for the DCCMVAU register."]
+    #[inline] pub fn dccmvau_mut(&self) -> *mut Dccmvau { 
+        (self.0 + 0xf64) as *mut Dccmvau
+    }
+
+    #[doc="Get the *const pointer for the DCCMVAU register."]
+    #[inline] pub fn dccmvau_ptr(&self) -> *const Dccmvau { 
+           self.dccmvau_mut()
+    }
+
+    #[doc="Read the DCCMVAU register."]
+    #[inline] pub fn dccmvau(&self) -> Dccmvau { 
+        unsafe {
+            read_volatile(self.dccmvau_ptr())
+        }
+    }
+
+    #[doc="Write the DCCMVAU register."]
+    #[inline] pub fn set_dccmvau<F: FnOnce(Dccmvau) -> Dccmvau>(&self, f: F) -> &Self {
+        unsafe {
+            write_volatile(self.dccmvau_mut(), f(Dccmvau(0)));
+        }
+        self
+    }
+
+    #[doc="Modify the DCCMVAU register."]
+    #[inline] pub fn with_dccmvau<F: FnOnce(Dccmvau) -> Dccmvau>(&self, f: F) -> &Self {
+        unsafe {
+            write_volatile(self.dccmvau_mut(), f(self.dccmvau()));
+        }
+        self
+    }
+
+    #[doc="Get the *mut pointer for the DCCMVAC register."]
+    #[inline] pub fn dccmvac_mut(&self) -> *mut Dccmvac { 
+        (self.0 + 0xf68) as *mut Dccmvac
+    }
+
+    #[doc="Get the *const pointer for the DCCMVAC register."]
+    #[inline] pub fn dccmvac_ptr(&self) -> *const Dccmvac { 
+           self.dccmvac_mut()
+    }
+
+    #[doc="Read the DCCMVAC register."]
+    #[inline] pub fn dccmvac(&self) -> Dccmvac { 
+        unsafe {
+            read_volatile(self.dccmvac_ptr())
+        }
+    }
+
+    #[doc="Write the DCCMVAC register."]
+    #[inline] pub fn set_dccmvac<F: FnOnce(Dccmvac) -> Dccmvac>(&self, f: F) -> &Self {
+        unsafe {
+            write_volatile(self.dccmvac_mut(), f(Dccmvac(0)));
+        }
+        self
+    }
+
+    #[doc="Modify the DCCMVAC register."]
+    #[inline] pub fn with_dccmvac<F: FnOnce(Dccmvac) -> Dccmvac>(&self, f: F) -> &Self {
+        unsafe {
+            write_volatile(self.dccmvac_mut(), f(self.dccmvac()));
+        }
+        self
+    }
+
+    #[doc="Get the *mut pointer for the DCCSW register."]
+    #[inline] pub fn dccsw_mut(&self) -> *mut Dccsw { 
+        (self.0 + 0xf6c) as *mut Dccsw
+    }
+
+    #[doc="Get the *const pointer for the DCCSW register."]
+    #[inline] pub fn dccsw_ptr(&self) -> *const Dccsw { 
+           self.dccsw_mut()
+    }
+
+    #[doc="Read the DCCSW register."]
+    #[inline] pub fn dccsw(&self) -> Dccsw { 
+        unsafe {
+            read_volatile(self.dccsw_ptr())
+        }
+    }
+
+    #[doc="Write the DCCSW register."]
+    #[inline] pub fn set_dccsw<F: FnOnce(Dccsw) -> Dccsw>(&self, f: F) -> &Self {
+        unsafe {
+            write_volatile(self.dccsw_mut(), f(Dccsw(0)));
+        }
+        self
+    }
+
+    #[doc="Modify the DCCSW register."]
+    #[inline] pub fn with_dccsw<F: FnOnce(Dccsw) -> Dccsw>(&self, f: F) -> &Self {
+        unsafe {
+            write_volatile(self.dccsw_mut(), f(self.dccsw()));
+        }
+        self
+    }
+
+    #[doc="Get the *mut pointer for the DCCIMVAC register."]
+    #[inline] pub fn dccimvac_mut(&self) -> *mut Dccimvac { 
+        (self.0 + 0xf70) as *mut Dccimvac
+    }
+
+    #[doc="Get the *const pointer for the DCCIMVAC register."]
+    #[inline] pub fn dccimvac_ptr(&self) -> *const Dccimvac { 
+           self.dccimvac_mut()
+    }
+
+    #[doc="Read the DCCIMVAC register."]
+    #[inline] pub fn dccimvac(&self) -> Dccimvac { 
+        unsafe {
+            read_volatile(self.dccimvac_ptr())
+        }
+    }
+
+    #[doc="Write the DCCIMVAC register."]
+    #[inline] pub fn set_dccimvac<F: FnOnce(Dccimvac) -> Dccimvac>(&self, f: F) -> &Self {
+        unsafe {
+            write_volatile(self.dccimvac_mut(), f(Dccimvac(0)));
+        }
+        self
+    }
+
+    #[doc="Modify the DCCIMVAC register."]
+    #[inline] pub fn with_dccimvac<F: FnOnce(Dccimvac) -> Dccimvac>(&self, f: F) -> &Self {
+        unsafe {
+            write_volatile(self.dccimvac_mut(), f(self.dccimvac()));
+        }
+        self
+    }
+
+    #[doc="Get the *mut pointer for the DCCISW register."]
+    #[inline] pub fn dccisw_mut(&self) -> *mut Dccisw { 
+        (self.0 + 0xf74) as *mut Dccisw
+    }
+
+    #[doc="Get the *const pointer for the DCCISW register."]
+    #[inline] pub fn dccisw_ptr(&self) -> *const Dccisw { 
+           self.dccisw_mut()
+    }
+
+    #[doc="Read the DCCISW register."]
+    #[inline] pub fn dccisw(&self) -> Dccisw { 
+        unsafe {
+            read_volatile(self.dccisw_ptr())
+        }
+    }
+
+    #[doc="Write the DCCISW register."]
+    #[inline] pub fn set_dccisw<F: FnOnce(Dccisw) -> Dccisw>(&self, f: F) -> &Self {
+        unsafe {
+            write_volatile(self.dccisw_mut(), f(Dccisw(0)));
+        }
+        self
+    }
+
+    #[doc="Modify the DCCISW register."]
+    #[inline] pub fn with_dccisw<F: FnOnce(Dccisw) -> Dccisw>(&self, f: F) -> &Self {
+        unsafe {
+            write_volatile(self.dccisw_mut(), f(self.dccisw()));
+        }
+        self
+    }
+
+    #[doc="Get the *mut pointer for the ITCMCR register."]
+    #[inline] pub fn itcmcr_mut(&self) -> *mut Itcmcr { 
+        (self.0 + 0xf90) as *mut Itcmcr
+    }
+
+    #[doc="Get the *const pointer for the ITCMCR register."]
+    #[inline] pub fn itcmcr_ptr(&self) -> *const Itcmcr { 
+           self.itcmcr_mut()
+    }
+
+    #[doc="Read the ITCMCR register."]
+    #[inline] pub fn itcmcr(&self) -> Itcmcr { 
+        unsafe {
+            read_volatile(self.itcmcr_ptr())
+        }
+    }
+
+    #[doc="Write the ITCMCR register."]
+    #[inline] pub fn set_itcmcr<F: FnOnce(Itcmcr) -> Itcmcr>(&self, f: F) -> &Self {
+        unsafe {
+            write_volatile(self.itcmcr_mut(), f(Itcmcr(0)));
+        }
+        self
+    }
+
+    #[doc="Modify the ITCMCR register."]
+    #[inline] pub fn with_itcmcr<F: FnOnce(Itcmcr) -> Itcmcr>(&self, f: F) -> &Self {
+        unsafe {
+            write_volatile(self.itcmcr_mut(), f(self.itcmcr()));
+        }
+        self
+    }
+
+    #[doc="Get the *mut pointer for the DTCMCR register."]
+    #[inline] pub fn dtcmcr_mut(&self) -> *mut Dtcmcr { 
+        (self.0 + 0xf94) as *mut Dtcmcr
+    }
+
+    #[doc="Get the *const pointer for the DTCMCR register."]
+    #[inline] pub fn dtcmcr_ptr(&self) -> *const Dtcmcr { 
+           self.dtcmcr_mut()
+    }
+
+    #[doc="Read the DTCMCR register."]
+    #[inline] pub fn dtcmcr(&self) -> Dtcmcr { 
+        unsafe {
+            read_volatile(self.dtcmcr_ptr())
+        }
+    }
+
+    #[doc="Write the DTCMCR register."]
+    #[inline] pub fn set_dtcmcr<F: FnOnce(Dtcmcr) -> Dtcmcr>(&self, f: F) -> &Self {
+        unsafe {
+            write_volatile(self.dtcmcr_mut(), f(Dtcmcr(0)));
+        }
+        self
+    }
+
+    #[doc="Modify the DTCMCR register."]
+    #[inline] pub fn with_dtcmcr<F: FnOnce(Dtcmcr) -> Dtcmcr>(&self, f: F) -> &Self {
+        unsafe {
+            write_volatile(self.dtcmcr_mut(), f(self.dtcmcr()));
+        }
+        self
+    }
+
+    #[doc="Get the *mut pointer for the AHBPCR register."]
+    #[inline] pub fn ahbpcr_mut(&self) -> *mut Ahbpcr { 
+        (self.0 + 0xf98) as *mut Ahbpcr
+    }
+
+    #[doc="Get the *const pointer for the AHBPCR register."]
+    #[inline] pub fn ahbpcr_ptr(&self) -> *const Ahbpcr { 
+           self.ahbpcr_mut()
+    }
+
+    #[doc="Read the AHBPCR register."]
+    #[inline] pub fn ahbpcr(&self) -> Ahbpcr { 
+        unsafe {
+            read_volatile(self.ahbpcr_ptr())
+        }
+    }
+
+    #[doc="Write the AHBPCR register."]
+    #[inline] pub fn set_ahbpcr<F: FnOnce(Ahbpcr) -> Ahbpcr>(&self, f: F) -> &Self {
+        unsafe {
+            write_volatile(self.ahbpcr_mut(), f(Ahbpcr(0)));
+        }
+        self
+    }
+
+    #[doc="Modify the AHBPCR register."]
+    #[inline] pub fn with_ahbpcr<F: FnOnce(Ahbpcr) -> Ahbpcr>(&self, f: F) -> &Self {
+        unsafe {
+            write_volatile(self.ahbpcr_mut(), f(self.ahbpcr()));
+        }
+        self
+    }
+
+    #[doc="Get the *mut pointer for the CACR register."]
+    #[inline] pub fn cacr_mut(&self) -> *mut Cacr { 
+        (self.0 + 0xf9c) as *mut Cacr
+    }
+
+    #[doc="Get the *const pointer for the CACR register."]
+    #[inline] pub fn cacr_ptr(&self) -> *const Cacr { 
+           self.cacr_mut()
+    }
+
+    #[doc="Read the CACR register."]
+    #[inline] pub fn cacr(&self) -> Cacr { 
+        unsafe {
+            read_volatile(self.cacr_ptr())
+        }
+    }
+
+    #[doc="Write the CACR register."]
+    #[inline] pub fn set_cacr<F: FnOnce(Cacr) -> Cacr>(&self, f: F) -> &Self {
+        unsafe {
+            write_volatile(self.cacr_mut(), f(Cacr(0)));
+        }
+        self
+    }
+
+    #[doc="Modify the CACR register."]
+    #[inline] pub fn with_cacr<F: FnOnce(Cacr) -> Cacr>(&self, f: F) -> &Self {
+        unsafe {
+            write_volatile(self.cacr_mut(), f(self.cacr()));
+        }
+        self
+    }
+
+    #[doc="Get the *mut pointer for the AHBSCR register."]
+    #[inline] pub fn ahbscr_mut(&self) -> *mut Ahbscr { 
+        (self.0 + 0xf9c) as *mut Ahbscr
+    }
+
+    #[doc="Get the *const pointer for the AHBSCR register."]
+    #[inline] pub fn ahbscr_ptr(&self) -> *const Ahbscr { 
+           self.ahbscr_mut()
+    }
+
+    #[doc="Read the AHBSCR register."]
+    #[inline] pub fn ahbscr(&self) -> Ahbscr { 
+        unsafe {
+            read_volatile(self.ahbscr_ptr())
+        }
+    }
+
+    #[doc="Write the AHBSCR register."]
+    #[inline] pub fn set_ahbscr<F: FnOnce(Ahbscr) -> Ahbscr>(&self, f: F) -> &Self {
+        unsafe {
+            write_volatile(self.ahbscr_mut(), f(Ahbscr(0)));
+        }
+        self
+    }
+
+    #[doc="Modify the AHBSCR register."]
+    #[inline] pub fn with_ahbscr<F: FnOnce(Ahbscr) -> Ahbscr>(&self, f: F) -> &Self {
+        unsafe {
+            write_volatile(self.ahbscr_mut(), f(self.ahbscr()));
+        }
+        self
+    }
+
+    #[doc="Get the *mut pointer for the ABFSR register."]
+    #[inline] pub fn abfsr_mut(&self) -> *mut Abfsr { 
+        (self.0 + 0xf9c) as *mut Abfsr
+    }
+
+    #[doc="Get the *const pointer for the ABFSR register."]
+    #[inline] pub fn abfsr_ptr(&self) -> *const Abfsr { 
+           self.abfsr_mut()
+    }
+
+    #[doc="Read the ABFSR register."]
+    #[inline] pub fn abfsr(&self) -> Abfsr { 
+        unsafe {
+            read_volatile(self.abfsr_ptr())
+        }
+    }
+
+    #[doc="Write the ABFSR register."]
+    #[inline] pub fn set_abfsr<F: FnOnce(Abfsr) -> Abfsr>(&self, f: F) -> &Self {
+        unsafe {
+            write_volatile(self.abfsr_mut(), f(Abfsr(0)));
+        }
+        self
+    }
+
+    #[doc="Modify the ABFSR register."]
+    #[inline] pub fn with_abfsr<F: FnOnce(Abfsr) -> Abfsr>(&self, f: F) -> &Self {
+        unsafe {
+            write_volatile(self.abfsr_mut(), f(self.abfsr()));
         }
         self
     }
@@ -1342,6 +2002,63 @@ impl ::core::fmt::Debug for Scr {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ccr(pub u32);
 impl Ccr {
+    #[doc="Always reads-as-one. It indicates branch prediction is enabled."]
+    #[inline] pub fn bp(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 18) & 0x1) as u8) } // [18]
+    }
+
+    #[doc="Returns true if BP != 0"]
+    #[inline] pub fn test_bp(&self) -> bool {
+        self.bp() != 0
+    }
+
+    #[doc="Sets the BP field."]
+    #[inline] pub fn set_bp<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 18);
+        self.0 |= value << 18;
+        self
+    }
+
+    #[doc="Enables L1 instruction cache. 0 = L1 instruction cache disabled. 1 = L1 instruction cache enabled."]
+    #[inline] pub fn ic(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 17) & 0x1) as u8) } // [17]
+    }
+
+    #[doc="Returns true if IC != 0"]
+    #[inline] pub fn test_ic(&self) -> bool {
+        self.ic() != 0
+    }
+
+    #[doc="Sets the IC field."]
+    #[inline] pub fn set_ic<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 17);
+        self.0 |= value << 17;
+        self
+    }
+
+    #[doc="Enables L1 data cache. 0 = L1 data cache disabled. 1 = L1 data cache enabled."]
+    #[inline] pub fn dc(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1) as u8) } // [16]
+    }
+
+    #[doc="Returns true if DC != 0"]
+    #[inline] pub fn test_dc(&self) -> bool {
+        self.dc() != 0
+    }
+
+    #[doc="Sets the DC field."]
+    #[inline] pub fn set_dc<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 16);
+        self.0 |= value << 16;
+        self
+    }
+
     #[doc="Indicates stack alignment on exception entry: 0 = 4-byte aligned1 = 8-byte aligned. On exception entry, the processor uses bit[9] of the stacked PSR to indicate the stack alignment. On return from the exception it uses this stacked bit to restore the correct stack alignment."]
     #[inline] pub fn stkalign(&self) -> bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
@@ -1474,6 +2191,9 @@ impl ::core::fmt::Display for Ccr {
 impl ::core::fmt::Debug for Ccr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
         try!(write!(f, "[0x{:08x}", self.0));
+        if self.bp() != 0 { try!(write!(f, " bp"))}
+        if self.ic() != 0 { try!(write!(f, " ic"))}
+        if self.dc() != 0 { try!(write!(f, " dc"))}
         if self.stkalign() != 0 { try!(write!(f, " stkalign"))}
         if self.bfhfnmign() != 0 { try!(write!(f, " bfhfnmign"))}
         if self.div_0_trp() != 0 { try!(write!(f, " div_0_trp"))}
@@ -2659,6 +3379,806 @@ impl ::core::fmt::Display for Afsr {
 }
 
 impl ::core::fmt::Debug for Afsr {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        try!(write!(f, "]"));
+        Ok(())
+    }
+}
+
+#[doc="Cache Level ID Register"]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct Clidr(pub u32);
+impl Clidr {
+}
+
+impl From<u32> for Clidr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Clidr(other)
+    }
+}
+
+impl ::core::fmt::Display for Clidr {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
+    }
+}
+
+impl ::core::fmt::Debug for Clidr {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        try!(write!(f, "]"));
+        Ok(())
+    }
+}
+
+#[doc="Cache Type Register"]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct Ctr(pub u32);
+impl Ctr {
+}
+
+impl From<u32> for Ctr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Ctr(other)
+    }
+}
+
+impl ::core::fmt::Display for Ctr {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
+    }
+}
+
+impl ::core::fmt::Debug for Ctr {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        try!(write!(f, "]"));
+        Ok(())
+    }
+}
+
+#[doc="Cache Size ID Register"]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct Ccsidr(pub u32);
+impl Ccsidr {
+    #[doc="Indicates support available for Write-Through: 1 - Write-Through support available."]
+    #[inline] pub fn wt(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 31) & 0x1) as u8) } // [31]
+    }
+
+    #[doc="Returns true if WT != 0"]
+    #[inline] pub fn test_wt(&self) -> bool {
+        self.wt() != 0
+    }
+
+    #[doc="Sets the WT field."]
+    #[inline] pub fn set_wt<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 31);
+        self.0 |= value << 31;
+        self
+    }
+
+    #[doc="Indicates support available for Write-Back: 1 - Write-Back support available."]
+    #[inline] pub fn wb(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 30) & 0x1) as u8) } // [30]
+    }
+
+    #[doc="Returns true if WB != 0"]
+    #[inline] pub fn test_wb(&self) -> bool {
+        self.wb() != 0
+    }
+
+    #[doc="Sets the WB field."]
+    #[inline] pub fn set_wb<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 30);
+        self.0 |= value << 30;
+        self
+    }
+
+    #[doc="Indicates support available for read allocation: 1 - read allocation support available."]
+    #[inline] pub fn ra(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 29) & 0x1) as u8) } // [29]
+    }
+
+    #[doc="Returns true if RA != 0"]
+    #[inline] pub fn test_ra(&self) -> bool {
+        self.ra() != 0
+    }
+
+    #[doc="Sets the RA field."]
+    #[inline] pub fn set_ra<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 29);
+        self.0 |= value << 29;
+        self
+    }
+
+    #[doc="Indicates support available for write allocation: 1 - write allocation support available."]
+    #[inline] pub fn wa(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 28) & 0x1) as u8) } // [28]
+    }
+
+    #[doc="Returns true if WA != 0"]
+    #[inline] pub fn test_wa(&self) -> bool {
+        self.wa() != 0
+    }
+
+    #[doc="Sets the WA field."]
+    #[inline] pub fn set_wa<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 28);
+        self.0 |= value << 28;
+        self
+    }
+
+    #[doc="Indicates the number of sets as: (number of sets) - 1."]
+    #[inline] pub fn num_sets(&self) -> bits::U15 {
+        unsafe { ::core::mem::transmute(((self.0 >> 13) & 0x7fff) as u16) } // [27:13]
+    }
+
+    #[doc="Returns true if NUM_SETS != 0"]
+    #[inline] pub fn test_num_sets(&self) -> bool {
+        self.num_sets() != 0
+    }
+
+    #[doc="Sets the NUM_SETS field."]
+    #[inline] pub fn set_num_sets<V: Into<bits::U15>>(mut self, value: V) -> Self {
+        let value: bits::U15 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x7fff << 13);
+        self.0 |= value << 13;
+        self
+    }
+
+    #[doc="Indicates the number of ways as: (number of ways) - 1. 0x1 Represents two instruction caches. 0x3 Represents four data caches."]
+    #[inline] pub fn associativity(&self) -> bits::U10 {
+        unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x3ff) as u16) } // [12:3]
+    }
+
+    #[doc="Returns true if ASSOCIATIVITY != 0"]
+    #[inline] pub fn test_associativity(&self) -> bool {
+        self.associativity() != 0
+    }
+
+    #[doc="Sets the ASSOCIATIVITY field."]
+    #[inline] pub fn set_associativity<V: Into<bits::U10>>(mut self, value: V) -> Self {
+        let value: bits::U10 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x3ff << 3);
+        self.0 |= value << 3;
+        self
+    }
+
+    #[doc="Indicates the number of words in each cache line. 0x1 Represents 32 bytes."]
+    #[inline] pub fn linesize(&self) -> bits::U2 {
+        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x3) as u8) } // [1:0]
+    }
+
+    #[doc="Returns true if LINESIZE != 0"]
+    #[inline] pub fn test_linesize(&self) -> bool {
+        self.linesize() != 0
+    }
+
+    #[doc="Sets the LINESIZE field."]
+    #[inline] pub fn set_linesize<V: Into<bits::U2>>(mut self, value: V) -> Self {
+        let value: bits::U2 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x3 << 0);
+        self.0 |= value << 0;
+        self
+    }
+
+}
+
+impl From<u32> for Ccsidr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Ccsidr(other)
+    }
+}
+
+impl ::core::fmt::Display for Ccsidr {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
+    }
+}
+
+impl ::core::fmt::Debug for Ccsidr {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        if self.wt() != 0 { try!(write!(f, " wt"))}
+        if self.wb() != 0 { try!(write!(f, " wb"))}
+        if self.ra() != 0 { try!(write!(f, " ra"))}
+        if self.wa() != 0 { try!(write!(f, " wa"))}
+        if self.num_sets() != 0 { try!(write!(f, " num_sets=0x{:x}", self.num_sets()))}
+        if self.associativity() != 0 { try!(write!(f, " associativity=0x{:x}", self.associativity()))}
+        if self.linesize() != 0 { try!(write!(f, " linesize=0x{:x}", self.linesize()))}
+        try!(write!(f, "]"));
+        Ok(())
+    }
+}
+
+#[doc="Cache Size Selection Register"]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct Ccselr(pub u32);
+impl Ccselr {
+}
+
+impl From<u32> for Ccselr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Ccselr(other)
+    }
+}
+
+impl ::core::fmt::Display for Ccselr {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
+    }
+}
+
+impl ::core::fmt::Debug for Ccselr {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        try!(write!(f, "]"));
+        Ok(())
+    }
+}
+
+#[doc="Coprocessor Access Control Register"]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct Cpacr(pub u32);
+impl Cpacr {
+}
+
+impl From<u32> for Cpacr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Cpacr(other)
+    }
+}
+
+impl ::core::fmt::Display for Cpacr {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
+    }
+}
+
+impl ::core::fmt::Debug for Cpacr {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        try!(write!(f, "]"));
+        Ok(())
+    }
+}
+
+#[doc="I-Cache Invalidate All to PoU"]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct Iciallu(pub u32);
+impl Iciallu {
+}
+
+impl From<u32> for Iciallu {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Iciallu(other)
+    }
+}
+
+impl ::core::fmt::Display for Iciallu {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
+    }
+}
+
+impl ::core::fmt::Debug for Iciallu {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        try!(write!(f, "]"));
+        Ok(())
+    }
+}
+
+#[doc="I-Cache Invalidate by MVA to PoU"]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct Icimvau(pub u32);
+impl Icimvau {
+}
+
+impl From<u32> for Icimvau {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Icimvau(other)
+    }
+}
+
+impl ::core::fmt::Display for Icimvau {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
+    }
+}
+
+impl ::core::fmt::Debug for Icimvau {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        try!(write!(f, "]"));
+        Ok(())
+    }
+}
+
+#[doc="D-Cache Invalidate by MVA to PoC"]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct Dcimvac(pub u32);
+impl Dcimvac {
+}
+
+impl From<u32> for Dcimvac {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Dcimvac(other)
+    }
+}
+
+impl ::core::fmt::Display for Dcimvac {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
+    }
+}
+
+impl ::core::fmt::Debug for Dcimvac {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        try!(write!(f, "]"));
+        Ok(())
+    }
+}
+
+#[doc="D-Cache Invalidate by Set-way"]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct Dcisw(pub u32);
+impl Dcisw {
+    #[doc="Way"]
+    #[inline] pub fn way(&self) -> bits::U2 {
+        unsafe { ::core::mem::transmute(((self.0 >> 30) & 0x3) as u8) } // [31:30]
+    }
+
+    #[doc="Returns true if WAY != 0"]
+    #[inline] pub fn test_way(&self) -> bool {
+        self.way() != 0
+    }
+
+    #[doc="Sets the WAY field."]
+    #[inline] pub fn set_way<V: Into<bits::U2>>(mut self, value: V) -> Self {
+        let value: bits::U2 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x3 << 30);
+        self.0 |= value << 30;
+        self
+    }
+
+    #[doc="Set"]
+    #[inline] pub fn set(&self) -> bits::U9 {
+        unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1ff) as u16) } // [13:5]
+    }
+
+    #[doc="Returns true if SET != 0"]
+    #[inline] pub fn test_set(&self) -> bool {
+        self.set() != 0
+    }
+
+    #[doc="Sets the SET field."]
+    #[inline] pub fn set_set<V: Into<bits::U9>>(mut self, value: V) -> Self {
+        let value: bits::U9 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1ff << 5);
+        self.0 |= value << 5;
+        self
+    }
+
+}
+
+impl From<u32> for Dcisw {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Dcisw(other)
+    }
+}
+
+impl ::core::fmt::Display for Dcisw {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
+    }
+}
+
+impl ::core::fmt::Debug for Dcisw {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        if self.way() != 0 { try!(write!(f, " way=0x{:x}", self.way()))}
+        if self.set() != 0 { try!(write!(f, " set=0x{:x}", self.set()))}
+        try!(write!(f, "]"));
+        Ok(())
+    }
+}
+
+#[doc="D-Cache Clean by MVA to PoU"]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct Dccmvau(pub u32);
+impl Dccmvau {
+}
+
+impl From<u32> for Dccmvau {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Dccmvau(other)
+    }
+}
+
+impl ::core::fmt::Display for Dccmvau {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
+    }
+}
+
+impl ::core::fmt::Debug for Dccmvau {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        try!(write!(f, "]"));
+        Ok(())
+    }
+}
+
+#[doc="D-Cache Clean by MVA to PoC"]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct Dccmvac(pub u32);
+impl Dccmvac {
+}
+
+impl From<u32> for Dccmvac {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Dccmvac(other)
+    }
+}
+
+impl ::core::fmt::Display for Dccmvac {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
+    }
+}
+
+impl ::core::fmt::Debug for Dccmvac {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        try!(write!(f, "]"));
+        Ok(())
+    }
+}
+
+#[doc="D-Cache Clean by Set-way"]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct Dccsw(pub u32);
+impl Dccsw {
+    #[doc="Way"]
+    #[inline] pub fn way(&self) -> bits::U2 {
+        unsafe { ::core::mem::transmute(((self.0 >> 30) & 0x3) as u8) } // [31:30]
+    }
+
+    #[doc="Returns true if WAY != 0"]
+    #[inline] pub fn test_way(&self) -> bool {
+        self.way() != 0
+    }
+
+    #[doc="Sets the WAY field."]
+    #[inline] pub fn set_way<V: Into<bits::U2>>(mut self, value: V) -> Self {
+        let value: bits::U2 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x3 << 30);
+        self.0 |= value << 30;
+        self
+    }
+
+    #[doc="Set"]
+    #[inline] pub fn set(&self) -> bits::U9 {
+        unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1ff) as u16) } // [13:5]
+    }
+
+    #[doc="Returns true if SET != 0"]
+    #[inline] pub fn test_set(&self) -> bool {
+        self.set() != 0
+    }
+
+    #[doc="Sets the SET field."]
+    #[inline] pub fn set_set<V: Into<bits::U9>>(mut self, value: V) -> Self {
+        let value: bits::U9 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1ff << 5);
+        self.0 |= value << 5;
+        self
+    }
+
+}
+
+impl From<u32> for Dccsw {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Dccsw(other)
+    }
+}
+
+impl ::core::fmt::Display for Dccsw {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
+    }
+}
+
+impl ::core::fmt::Debug for Dccsw {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        if self.way() != 0 { try!(write!(f, " way=0x{:x}", self.way()))}
+        if self.set() != 0 { try!(write!(f, " set=0x{:x}", self.set()))}
+        try!(write!(f, "]"));
+        Ok(())
+    }
+}
+
+#[doc="D-Cache Clean and Invalidate by MVA to PoC"]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct Dccimvac(pub u32);
+impl Dccimvac {
+}
+
+impl From<u32> for Dccimvac {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Dccimvac(other)
+    }
+}
+
+impl ::core::fmt::Display for Dccimvac {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
+    }
+}
+
+impl ::core::fmt::Debug for Dccimvac {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        try!(write!(f, "]"));
+        Ok(())
+    }
+}
+
+#[doc="D-Cache Clean and Invalidate by Set-way"]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct Dccisw(pub u32);
+impl Dccisw {
+    #[doc="Way"]
+    #[inline] pub fn way(&self) -> bits::U2 {
+        unsafe { ::core::mem::transmute(((self.0 >> 30) & 0x3) as u8) } // [31:30]
+    }
+
+    #[doc="Returns true if WAY != 0"]
+    #[inline] pub fn test_way(&self) -> bool {
+        self.way() != 0
+    }
+
+    #[doc="Sets the WAY field."]
+    #[inline] pub fn set_way<V: Into<bits::U2>>(mut self, value: V) -> Self {
+        let value: bits::U2 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x3 << 30);
+        self.0 |= value << 30;
+        self
+    }
+
+    #[doc="Set"]
+    #[inline] pub fn set(&self) -> bits::U9 {
+        unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1ff) as u16) } // [13:5]
+    }
+
+    #[doc="Returns true if SET != 0"]
+    #[inline] pub fn test_set(&self) -> bool {
+        self.set() != 0
+    }
+
+    #[doc="Sets the SET field."]
+    #[inline] pub fn set_set<V: Into<bits::U9>>(mut self, value: V) -> Self {
+        let value: bits::U9 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1ff << 5);
+        self.0 |= value << 5;
+        self
+    }
+
+}
+
+impl From<u32> for Dccisw {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Dccisw(other)
+    }
+}
+
+impl ::core::fmt::Display for Dccisw {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
+    }
+}
+
+impl ::core::fmt::Debug for Dccisw {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        if self.way() != 0 { try!(write!(f, " way=0x{:x}", self.way()))}
+        if self.set() != 0 { try!(write!(f, " set=0x{:x}", self.set()))}
+        try!(write!(f, "]"));
+        Ok(())
+    }
+}
+
+#[doc="Instruction Tightly-Coupled Memory Control Register"]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct Itcmcr(pub u32);
+impl Itcmcr {
+}
+
+impl From<u32> for Itcmcr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Itcmcr(other)
+    }
+}
+
+impl ::core::fmt::Display for Itcmcr {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
+    }
+}
+
+impl ::core::fmt::Debug for Itcmcr {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        try!(write!(f, "]"));
+        Ok(())
+    }
+}
+
+#[doc="Data Tightly-Coupled Memory Control Registers"]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct Dtcmcr(pub u32);
+impl Dtcmcr {
+}
+
+impl From<u32> for Dtcmcr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Dtcmcr(other)
+    }
+}
+
+impl ::core::fmt::Display for Dtcmcr {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
+    }
+}
+
+impl ::core::fmt::Debug for Dtcmcr {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        try!(write!(f, "]"));
+        Ok(())
+    }
+}
+
+#[doc="AHBP Control Register"]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct Ahbpcr(pub u32);
+impl Ahbpcr {
+}
+
+impl From<u32> for Ahbpcr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Ahbpcr(other)
+    }
+}
+
+impl ::core::fmt::Display for Ahbpcr {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
+    }
+}
+
+impl ::core::fmt::Debug for Ahbpcr {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        try!(write!(f, "]"));
+        Ok(())
+    }
+}
+
+#[doc="L1 Cache Control Register"]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct Cacr(pub u32);
+impl Cacr {
+}
+
+impl From<u32> for Cacr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Cacr(other)
+    }
+}
+
+impl ::core::fmt::Display for Cacr {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
+    }
+}
+
+impl ::core::fmt::Debug for Cacr {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        try!(write!(f, "]"));
+        Ok(())
+    }
+}
+
+#[doc="AHB Slave Control Register"]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct Ahbscr(pub u32);
+impl Ahbscr {
+}
+
+impl From<u32> for Ahbscr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Ahbscr(other)
+    }
+}
+
+impl ::core::fmt::Display for Ahbscr {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
+    }
+}
+
+impl ::core::fmt::Debug for Ahbscr {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        try!(write!(f, "]"));
+        Ok(())
+    }
+}
+
+#[doc="Auxiliary Bus Fault Status Register"]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct Abfsr(pub u32);
+impl Abfsr {
+}
+
+impl From<u32> for Abfsr {
+    #[inline]
+    fn from(other: u32) -> Self {
+         Abfsr(other)
+    }
+}
+
+impl ::core::fmt::Display for Abfsr {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
+    }
+}
+
+impl ::core::fmt::Debug for Abfsr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
         try!(write!(f, "[0x{:08x}", self.0));
         try!(write!(f, "]"));

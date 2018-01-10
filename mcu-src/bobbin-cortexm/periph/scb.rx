@@ -3,7 +3,7 @@
     (name SCB)
     (size 0x20)
     (address 0xe000e000)
-    (description "Nested Vectored Interrupt Controller")
+    (description "System Control Block")
     (register
         (name ACTLR)
         (offset 0x008)
@@ -216,6 +216,25 @@
         (offset 0xd14)
         (size 0x20)
         (description "Configuration and Control Register")
+        (field
+            (name BP)
+            (bit-offset 18)
+            (bit-width 1)
+            (access read-only)
+            (description "Always reads-as-one. It indicates branch prediction is enabled.")
+        )        
+        (field
+            (name IC)
+            (bit-offset 17)
+            (bit-width 1)
+            (description "Enables L1 instruction cache. 0 = L1 instruction cache disabled. 1 = L1 instruction cache enabled.")
+        )
+        (field
+            (name DC)
+            (bit-offset 16)
+            (bit-width 1)
+            (description "Enables L1 data cache. 0 = L1 data cache disabled. 1 = L1 data cache enabled.")
+        )        
         (field
             (name STKALIGN)
             (bit-offset 9)
@@ -583,5 +602,227 @@
             (bit-width 32)
             (description "Implementation defined. The bits map to the AUXFAULT input signals.")
         )        
+    )
+
+
+    ; See http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.ddi0489c/CIHBIGGI.html
+    ; and https://github.com/ARM-software/CMSIS/blob/master/CMSIS/Include/core_cm7.h
+
+    (register
+        (name CLIDR)
+        (offset 0xd78)
+        (size 0x20)
+        (description "Cache Level ID Register")
+    )
+
+    (register
+        (name CTR)
+        (offset 0xd7c)
+        (size 0x20)
+        (description "Cache Type Register")
+    )    
+
+    (register
+        (name CCSIDR)
+        (offset 0xd80)
+        (size 0x20)
+        (description "Cache Size ID Register")
+        (field
+            (name WT)
+            (bit-offset 31)
+            (bit-width 1)
+            (description "Indicates support available for Write-Through: 1 - Write-Through support available.")
+        )        
+        (field
+            (name WB)
+            (bit-offset 30)
+            (bit-width 1)
+            (description "Indicates support available for Write-Back: 1 - Write-Back support available.")
+        )
+        (field
+            (name RA)
+            (bit-offset 29)
+            (bit-width 1)
+            (description "Indicates support available for read allocation: 1 - read allocation support available.")
+        )        
+        (field
+            (name WA)
+            (bit-offset 28)
+            (bit-width 1)
+            (description "Indicates support available for write allocation: 1 - write allocation support available.")
+        )        
+        (field
+            (name NUM_SETS)
+            (bit-offset 13)
+            (bit-width 15)
+            (description "Indicates the number of sets as: (number of sets) - 1.")
+        )
+        (field
+            (name ASSOCIATIVITY)
+            (bit-offset 3)
+            (bit-width 10)
+            (description "Indicates the number of ways as: (number of ways) - 1. 0x1 Represents two instruction caches. 0x3 Represents four data caches.")
+        )
+        (field
+            (name LINESIZE)
+            (bit-offset 0)
+            (bit-width 2)
+            (description "Indicates the number of words in each cache line. 0x1 Represents 32 bytes.")        
+        )                            
+    )
+
+    (register
+        (name CCSELR)
+        (offset 0xd84)
+        (size 0x20)
+        (description "Cache Size Selection Register")
+    )
+
+    (register
+        (name CPACR)
+        (offset 0xd88)
+        (size 0x20)
+        (description "Coprocessor Access Control Register")
+    )
+
+    (register
+        (name ICIALLU)
+        (offset 0xf50)
+        (size 0x20)
+        (description "I-Cache Invalidate All to PoU")
+    )
+
+    (register
+        (name ICIMVAU)
+        (offset 0xf58)
+        (size 0x20)
+        (description "I-Cache Invalidate by MVA to PoU")
+    )
+
+    (register
+        (name DCIMVAC)
+        (offset 0xf5c)
+        (size 0x20)
+        (description "D-Cache Invalidate by MVA to PoC")
+    )
+
+    (register
+        (name DCISW)
+        (offset 0xf60)
+        (size 0x20)
+        (description "D-Cache Invalidate by Set-way")
+        (field
+            (name WAY)
+            (bit-offset 30)
+            (bit-width 2)
+            (description "Way")        
+        )
+        (field
+            (name SET)
+            (bit-offset 5)
+            (bit-width 9)
+            (description "Set")
+        )        
+    )
+
+    (register
+        (name DCCMVAU)
+        (offset 0xf64)
+        (size 0x20)
+        (description "D-Cache Clean by MVA to PoU")
+    )
+
+    (register
+        (name DCCMVAC)
+        (offset 0xf68)
+        (size 0x20)
+        (description "D-Cache Clean by MVA to PoC")
+    )
+
+    (register
+        (name DCCSW)
+        (offset 0xf6c)
+        (size 0x20)
+        (description "D-Cache Clean by Set-way")
+        (field
+            (name WAY)
+            (bit-offset 30)
+            (bit-width 2)
+            (description "Way")        
+        )
+        (field
+            (name SET)
+            (bit-offset 5)
+            (bit-width 9)
+            (description "Set")
+        )             
+    )
+
+    (register
+        (name DCCIMVAC)
+        (offset 0xf70)
+        (size 0x20)
+        (description "D-Cache Clean and Invalidate by MVA to PoC")
+    )
+
+    (register
+        (name DCCISW)
+        (offset 0xf74)
+        (size 0x20)
+        (description "D-Cache Clean and Invalidate by Set-way")
+        (field
+            (name WAY)
+            (bit-offset 30)
+            (bit-width 2)
+            (description "Way")        
+        )
+        (field
+            (name SET)
+            (bit-offset 5)
+            (bit-width 9)
+            (description "Set")
+        )
+    )
+
+    (register
+        (name ITCMCR)
+        (offset 0xf90)
+        (size 0x20)
+        (description "Instruction Tightly-Coupled Memory Control Register")
+    )
+
+    (register
+        (name DTCMCR)
+        (offset 0xf94)
+        (size 0x20)
+        (description "Data Tightly-Coupled Memory Control Registers")
+    )
+
+    (register
+        (name AHBPCR)
+        (offset 0xf98)
+        (size 0x20)
+        (description "AHBP Control Register")
+    )
+
+    (register
+        (name CACR)
+        (offset 0xf9c)
+        (size 0x20)
+        (description "L1 Cache Control Register")
+    )
+
+    (register
+        (name AHBSCR)
+        (offset 0xf9c)
+        (size 0x20)
+        (description "AHB Slave Control Register")
+    )
+
+    (register
+        (name ABFSR)
+        (offset 0xf9c)
+        (size 0x20)
+        (description "Auxiliary Bus Fault Status Register")
     )
 )
