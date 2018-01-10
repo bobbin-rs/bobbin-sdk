@@ -38,6 +38,12 @@ pub unsafe fn init_allocator(buf: &'static mut [u8]) {
 pub use tim::delay;
 
 pub fn init() {
+    unsafe {
+        cortexm::hal::scb::invalidate_icache();
+        cortexm::hal::scb::enable_icache();
+        // cortexm::hal::scb::invalidate_dcache();
+        // cortexm::hal::scb::enable_dcache();
+    }
     clock::init();
     led::init();
     tim::init();
