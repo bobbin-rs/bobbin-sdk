@@ -69,7 +69,7 @@ impl Sim {
         [self.uidh().0, self.uidmh().0, self.uidml().0, self.uidl().0]
     }
 
-    pub fn write_uid_hex<'a>(&self, buf: &'a mut[u8]) -> &'a [u8] {
+    pub fn write_uid(&self, buf: &mut[u8]) -> usize {
         assert!(buf.len() >= 32);
         let uid = self.uid();
         for i in 0..4 {
@@ -82,7 +82,7 @@ impl Sim {
                 
             }        
         }
-        &buf[..32]
+        32
     }
 
 }
