@@ -1,5 +1,7 @@
 pub use bobbin_cortexm::hal::*;
 
+pub use stm32_common::hal::uid;
+
 pub mod fpu;
 pub mod rcc;
 pub mod clock;
