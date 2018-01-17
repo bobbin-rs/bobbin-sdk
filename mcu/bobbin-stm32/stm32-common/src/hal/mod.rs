@@ -23,4 +23,3 @@ pub mod i2c_v2;
 pub mod spi_v1;
 pub mod spi_v2;
 pub mod dcmi;
-pub mod uid;

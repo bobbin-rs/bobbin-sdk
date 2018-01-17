@@ -1,7 +1,13 @@
 use core::ptr;
 
+#[cfg(any(feature="STM32F72xxC", feature="STM32F72xxE"))]
+pub const UID_BASE: *const u32 = 0x1ff0_7a10 as *const u32;
+
+#[cfg(any(feature="STM32F74xxE", feature="STM32F74xxG", feature="STM32F76xxG", feature="STM32F76xxI"))]
+pub const UID_BASE: *const u32 = 0x1ff0_f420 as *const u32;
+
+#[cfg(any(feature="STM32F72xxC", feature="STM32F72xxE", feature="STM32F74xxE", feature="STM32F74xxG", feature="STM32F76xxG", feature="STM32F76xxI"))]
 pub fn uid() -> [u32; 3] {
-    pub const UID_BASE: *const u32 = 0x1ff0_f420 as *const u32;
     unsafe {
         [
             ptr::read_volatile(UID_BASE.offset(0)),
@@ -28,6 +34,7 @@ fn to_hex(v: u8) -> [u8; 2] {
     ]    
 }
 
+#[cfg(any(feature="STM32F72xxC", feature="STM32F72xxE", feature="STM32F74xxE", feature="STM32F74xxG", feature="STM32F76xxG", feature="STM32F76xxI"))]
 pub fn write_uid(buf: &mut [u8]) -> usize {
     assert!(buf.len() >= 24);
     let uid = uid();

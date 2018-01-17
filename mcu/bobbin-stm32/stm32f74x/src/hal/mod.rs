@@ -1,11 +1,10 @@
 pub use bobbin_cortexm::hal::*;
 
-pub use stm32_common::hal::uid;
-
 pub mod fpu;
 pub mod rcc;
 pub mod clock;
 pub mod dcmi;
+pub mod uid;
 
 pub mod dma {
     pub use chip::dma::*;
