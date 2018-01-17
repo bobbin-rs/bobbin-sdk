@@ -46,3 +46,43 @@ impl<P> SimEnabled for P where P: En {
         self
     }
 }
+
+fn to_u8_be(v: u32) -> [u8; 4] {
+    [
+        (v >> 24) as u8,
+        (v >> 16) as u8,
+        (v >> 8) as u8,
+        (v >> 0) as u8,
+    ]
+}
+
+fn to_hex(v: u8) -> [u8; 2] {
+    pub const HEX: &[u8] = b"0123456789abcdef";
+    [
+        HEX[((v >> 4) & 0xf) as usize],
+        HEX[((v >> 0) & 0xf) as usize],
+    ]    
+}
+
+impl Sim {
+    pub fn uid(&self) -> [u32; 4] {
+        [self.uidh().0, self.uidmh().0, self.uidml().0, self.uidl().0]
+    }
+
+    pub fn write_uid_hex<'a>(&self, buf: &'a mut[u8]) -> &'a [u8] {
+        assert!(buf.len() >= 32);
+        let uid = self.uid();
+        for i in 0..4 {
+            let v = to_u8_be(uid[i]);
+            for j in 0..4 {
+                let h = to_hex(v[j]);
+                for k in 0..2 {
+                    buf[i * 8 + j * 2 + k] = h[k];
+                }
+                
+            }        
+        }
+        &buf[..32]
+    }
+
+}
