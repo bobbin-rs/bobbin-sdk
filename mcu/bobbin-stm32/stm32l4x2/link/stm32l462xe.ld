@@ -17,7 +17,7 @@ SECTIONS
     _evector = ALIGN(4);    
   } > FLASH
 
-  .text : ALIGN(4)
+  .text : ALIGN(8)
   {
     /* Entry point: reset handler */
     _reset = .;
@@ -28,7 +28,7 @@ SECTIONS
     *(.rodata.*);
   } > FLASH
 
-  .bss : ALIGN(4)
+  .bss : ALIGN(8)
   {
     _srvector = .;
     . = . + 4;
@@ -40,7 +40,7 @@ SECTIONS
     _ebss = ALIGN(4);
   } > RAM
 
-  .data : ALIGN(4)
+  .data : ALIGN(8)
   {
     _sdata = .;
     *(.data.*);
