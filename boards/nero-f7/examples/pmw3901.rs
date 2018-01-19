@@ -81,13 +81,15 @@ pub extern "C" fn main() -> ! {
     loop {
         let mut dx: i32 = 0;
         let mut dy: i32 = 0;
+        let mut sq: u32 = 0;
         for i in 0..100 {
             let b = read_burst(&spi, &spi_nss);
             // println!("X: {:4} Y: {:4} SQ: {:4}", b.dx, b.dy, b.sq);
             dx += b.dx as i32;
             dy += b.dy as i32;
+            sq += b.sq as u32;
         }
-        println!("x: {:4} y: {:4}", dx, dy);
+        println!("x: {:4} y: {:4} sq: {:4}", dx, dy, sq);
     }
 
     loop {
