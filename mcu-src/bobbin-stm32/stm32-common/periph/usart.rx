@@ -9,6 +9,12 @@
         (reset-value 0x0)
         (description "Control register 1")
         (field
+            (name M1)
+            (bit-offset 28)
+            (bit-width 1)
+            (description "Word length - Bit 1")
+        )        
+        (field
             (name EOBIE)
             (bit-offset 27)
             (bit-width 1)
@@ -51,11 +57,11 @@
             (description "Mute mode enable")
         )
         (field
-            (name M)
+            (name M0)
             (bit-offset 12)
             (bit-width 1)
-            (description "Word length")
-        )
+            (description "Word length - Bit 0")
+        )            
         (field
             (name WAKE)
             (bit-offset 11)

@@ -79,7 +79,7 @@ impl Enabled for UsartPeriph {
 
     fn set_enabled(&self, value: bool) -> &Self {
         self
-            .set_cr1(|r| r
+            .with_cr1(|r| r
                 .set_ue(value)
                 .set_re(value)
                 .set_te(value)

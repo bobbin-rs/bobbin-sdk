@@ -344,6 +344,25 @@ impl UsartPeriph {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Cr1(pub u32);
 impl Cr1 {
+    #[doc="Word length - Bit 1"]
+    #[inline] pub fn m1(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 28) & 0x1) as u8) } // [28]
+    }
+
+    #[doc="Returns true if M1 != 0"]
+    #[inline] pub fn test_m1(&self) -> bool {
+        self.m1() != 0
+    }
+
+    #[doc="Sets the M1 field."]
+    #[inline] pub fn set_m1<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 28);
+        self.0 |= value << 28;
+        self
+    }
+
     #[doc="End of Block interrupt enable"]
     #[inline] pub fn eobie(&self) -> bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 27) & 0x1) as u8) } // [27]
@@ -477,18 +496,18 @@ impl Cr1 {
         self
     }
 
-    #[doc="Word length"]
-    #[inline] pub fn m(&self) -> bits::U1 {
+    #[doc="Word length - Bit 0"]
+    #[inline] pub fn m0(&self) -> bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 12) & 0x1) as u8) } // [12]
     }
 
-    #[doc="Returns true if M != 0"]
-    #[inline] pub fn test_m(&self) -> bool {
-        self.m() != 0
+    #[doc="Returns true if M0 != 0"]
+    #[inline] pub fn test_m0(&self) -> bool {
+        self.m0() != 0
     }
 
-    #[doc="Sets the M field."]
-    #[inline] pub fn set_m<V: Into<bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the M0 field."]
+    #[inline] pub fn set_m0<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 12);
@@ -742,6 +761,7 @@ impl ::core::fmt::Display for Cr1 {
 impl ::core::fmt::Debug for Cr1 {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
         try!(write!(f, "[0x{:08x}", self.0));
+        if self.m1() != 0 { try!(write!(f, " m1"))}
         if self.eobie() != 0 { try!(write!(f, " eobie"))}
         if self.rtoie() != 0 { try!(write!(f, " rtoie"))}
         if self.deat() != 0 { try!(write!(f, " deat=0x{:x}", self.deat()))}
@@ -749,7 +769,7 @@ impl ::core::fmt::Debug for Cr1 {
         if self.over8() != 0 { try!(write!(f, " over8"))}
         if self.cmie() != 0 { try!(write!(f, " cmie"))}
         if self.mme() != 0 { try!(write!(f, " mme"))}
-        if self.m() != 0 { try!(write!(f, " m"))}
+        if self.m0() != 0 { try!(write!(f, " m0"))}
         if self.wake() != 0 { try!(write!(f, " wake"))}
         if self.pce() != 0 { try!(write!(f, " pce"))}
         if self.ps() != 0 { try!(write!(f, " ps"))}
