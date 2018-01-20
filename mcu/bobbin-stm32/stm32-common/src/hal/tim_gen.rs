@@ -98,6 +98,10 @@ impl TimGenPeriph {
         self.with_ccer(|r| r.set_cce(index, value))
     }
 
+    pub fn capture_compare(&self, index: usize) -> u32 {
+        self.ccr(index).0
+    }
+
     pub fn set_capture_compare(&self, index: usize, value: u32) -> &Self {
         self.set_ccr(index, |r| r.set_ccrl(value))
     }    
@@ -112,6 +116,11 @@ impl TimGenCh {
         self.periph.set_capture_compare_enabled(self.index, value);
         self
     }
+
+    pub fn capture_compare(&self) -> u32 {
+        self.periph.capture_compare(self.index)
+    }
+
     pub fn set_capture_compare(&self, value: u32) -> &Self {
         self.periph.set_capture_compare(self.index, value);
         self
