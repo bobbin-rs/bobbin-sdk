@@ -9,10 +9,6 @@ use board::hal::i2c::*;
 use board::hal::gpio::*;
 use board::common::bits::*;
 
-
-// A5 = PB6 = I2C1_SCL
-// A4 = PB7 = I2C1_SDA
-
 // Address = 0x35
 
 #[no_mangle]
