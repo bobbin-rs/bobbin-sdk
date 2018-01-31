@@ -17,5 +17,7 @@ features = ["mem","c"]
 
 [features]
 default = []
+stm32f303xb = []
+stm32f303xc = []
 stm32f303xd = []
 stm32f303xe = []
