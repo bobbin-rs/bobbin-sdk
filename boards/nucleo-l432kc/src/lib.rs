@@ -2,9 +2,10 @@
 #![feature(asm, lang_items, global_allocator)]
 
 extern crate r0;
+extern crate log;
 
-#[macro_use]
-pub mod console;
+#[macro_use] pub mod console;
+#[macro_use] pub mod logger;
 
 extern crate stm32l432x;
 pub use stm32l432x::{chip, hal, common, cortexm};
