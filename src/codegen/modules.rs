@@ -93,7 +93,9 @@ pub fn gen_mod<W: Write>(cfg: &Config, out: &mut W, d: &Device, path: &Path) -> 
     }
 
     // Generate Interrupts
-    if let Some(interrupt_count) = d.interrupt_count {    
+
+    {
+        let interrupt_count = d.interrupt_count();
         let p_name = "irq";
         try!(writeln!(out, "pub mod {};", p_name));
         let p_mod = path.join(format!("{}.rs", p_name));
@@ -159,9 +161,9 @@ pub fn gen_exceptions<W: Write>(_cfg: &Config, out: &mut W, exceptions: &Vec<Exc
     try!(writeln!(out, "}}"));
     try!(writeln!(out, ""));
 
-    try!(writeln!(out,"#[cfg_attr(target_os=\"none\", link_section=\".vector.exceptions\")]"));
+    try!(writeln!(out,"#[cfg_attr(target_os=\"none\", link_section=\".vector_table.exceptions\")]"));
     try!(writeln!(out,"#[no_mangle]"));
-    try!(writeln!(out,"pub static EXCEPTION_HANDLERS: [Option<Handler>; {}] = [", exceptions.len()));
+    try!(writeln!(out,"pub static EXCEPTIONS: [Option<Handler>; {}] = [", exceptions.len()));
     for e in exceptions.iter() {
         if e.name != "" {
             try!(writeln!(out, "    {:30} // {}", format!("Some(_{}),", e.name), e.description.as_ref().unwrap()));
@@ -215,7 +217,7 @@ pub fn gen_interrupts<W: Write>(cfg: &Config, out: &mut W, d: &Device, interrupt
     }
 
     // try!(writeln!(out, "use ::core::marker::PhantomData;"));
-    try!(writeln!(out, "pub type Handler = extern \"C\" fn();"));
+    try!(writeln!(out, "pub type Handler = unsafe extern \"C\" fn();"));
     try!(writeln!(out, ""));
 
 
@@ -266,14 +268,46 @@ pub fn gen_interrupts<W: Write>(cfg: &Config, out: &mut W, d: &Device, interrupt
     // try!(writeln!(out, "}}"));
     // try!(writeln!(out, ""));    
 
-    try!(writeln!(out,"#[cfg_attr(target_os=\"none\", link_section=\".vector.interrupts\")]"));
+    let gen_irq_extern = true;
+
+    if gen_irq_extern {
+        try!(writeln!(out, "extern \"C\" {{"));
+        try!(writeln!(out, "   fn DEFAULT_HANDLER();"));
+        try!(writeln!(out, "}}"));
+        try!(writeln!(out, ""));
+        
+        try!(writeln!(out, "#[allow(non_snake_case)]"));
+        try!(writeln!(out, "#[no_mangle]"));
+        try!(writeln!(out, "pub unsafe extern \"C\" fn DH_TRAMPOLINE() {{"));
+        try!(writeln!(out, "   DEFAULT_HANDLER();"));
+        try!(writeln!(out, "}}"));
+        try!(writeln!(out, ""));
+
+        try!(writeln!(out, "global_asm!(\""));
+        for irq in interrupts.iter() {
+            if let &Some(irq) = irq { 
+                let sym = irq.name.to_uppercase();
+                try!(writeln!(out, ".weak {}", sym));
+                try!(writeln!(out, "   {} = DH_TRAMPOLINE", sym));
+            }
+        }        
+        try!(writeln!(out, "\");"));
+        try!(writeln!(out, ""));
+    }
+
+    try!(writeln!(out,"#[cfg_attr(target_os=\"none\", link_section=\".vector_table.interrupts\")]"));
     try!(writeln!(out,"#[no_mangle]"));
-    try!(writeln!(out,"pub static mut INTERRUPT_HANDLERS: [Option<Handler>; {}] = [", interrupts.len()));
+    try!(writeln!(out,"pub static mut INTERRUPTS: [Option<Handler>; {}] = [", interrupts.len()));
 
     for irq in interrupts.iter() {
         if let &Some(irq) = irq { 
             let desc = irq.description.as_ref().map(|s| s.as_ref()).unwrap_or("No Description");
-            try!(writeln!(out, "    {:30} // IRQ {}: {}", format!("None,"), irq.value, desc));
+            if gen_irq_extern {
+                let sym = irq.name.to_uppercase();
+                try!(writeln!(out, "    {:30} // IRQ {}: {}", format!("Some({}),", sym), irq.value, desc));
+            } else {
+                try!(writeln!(out, "    {:30} // IRQ {}: {}", format!("None,"), irq.value, desc));
+            }
         } else {
             try!(writeln!(out, "    None,"));
         }
@@ -283,11 +317,24 @@ pub fn gen_interrupts<W: Write>(cfg: &Config, out: &mut W, d: &Device, interrupt
     try!(writeln!(out,""));
     
     try!(writeln!(out,"#[cfg_attr(target_os=\"none\", link_section=\".bss.r_interrupts\")]"));    
+    try!(writeln!(out,"#[doc(hidden)]"));
     try!(writeln!(out,"#[no_mangle]"));
+    try!(writeln!(out,"#[used]"));
     try!(writeln!(out,"pub static mut R_INTERRUPT_HANDLERS: [Option<Handler>; {}] = [None; {}];",
          interrupts.len(), interrupts.len()));
     try!(writeln!(out,""));    
 
+    if gen_irq_extern {
+        try!(writeln!(out, "extern \"C\" {{"));
+        for irq in interrupts.iter() {
+            if let &Some(irq) = irq { 
+                let sym = irq.name.to_uppercase();
+                let desc = irq.description.as_ref().map(|s| s.as_ref()).unwrap_or("No Description");
+                try!(writeln!(out, "    {:30} // {}", format!("pub fn {}();", sym), desc));            
+            }      
+        }
+        try!(writeln!(out,"}}"));    
+    }
     Ok(())
 }
 

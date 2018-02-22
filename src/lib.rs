@@ -126,6 +126,35 @@ pub struct Device {
     pub variants: Vec<Variant>,
 }
 
+impl Device {
+    pub fn interrupt_count(&self) -> u64 {
+        if let Some(interrupt_count) = self.interrupt_count {
+            interrupt_count
+        } else {
+            let mut max_irq = 0;
+            for p in self.peripherals.iter() {
+                for i in p.interrupts.iter() {
+                    if i.value > max_irq {
+                        max_irq = i.value
+                    }
+                }
+            }
+            for pg in self.peripheral_groups.iter() {
+                for p in pg.peripherals.iter() {
+                    for i in p.interrupts.iter() {
+                        if i.value > max_irq {
+                            max_irq = i.value
+                        }
+                    }
+                }
+            }                                
+            // Round to mod 16 to account for missing IRQs and to align code.
+            max_irq = (max_irq + 15) & 0xf0;
+            max_irq
+        }
+    }
+}
+
 /// A variation of a MCU that may have different memory or flash capacity, peripherals,
 /// or other application-visible differences.
 #[derive(Debug, Clone, Default)] 

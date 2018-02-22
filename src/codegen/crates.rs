@@ -38,6 +38,7 @@ pub fn gen_crate<W: Write>(cfg: Config, _out: &mut W, d: &Device) -> Result<()> 
     };
     let mut out = File::create(src_path.clone().join("lib.rs"))?;
     writeln!(out, "#![no_std]")?;
+    writeln!(out, "#![feature(global_asm, used)]")?;
     writeln!(out, "#![cfg_attr(target_os=\"none\", feature(compiler_builtins_lib))]")?;
     writeln!(out, "#[cfg(target_os=\"none\")] extern crate compiler_builtins;")?;
     writeln!(out, "#[macro_use] extern crate bobbin_chip_common;")?;
