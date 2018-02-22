@@ -3,7 +3,7 @@ extern crate bobbin_chip as chip;
 
 use clap::{Arg, App, ArgMatches};
 use std::fs::File;
-use std::path::Path;
+use std::path::{Path, PathBuf};
 use std::io::{self, Write};
 
 use chip::{TopLevel, Device};
@@ -40,12 +40,19 @@ fn main() {
             .long("resets"))            
         .arg(Arg::with_name("modules")
             .long("modules")) 
+        .arg(Arg::with_name("crate")
+            .long("crate")) 
         .arg(Arg::with_name("registers")
             .long("registers"))
         .arg(Arg::with_name("panic")
             .long("panic"))
         .arg(Arg::with_name("root")
             .long("root"))     
+        .arg(Arg::with_name("cargo-template")
+            .long("cargo-template")
+            .value_name("CARGO_TEMPLATE")
+            .takes_value(true)
+        )     
         .arg(Arg::with_name("input"))
         .arg(Arg::with_name("output"))
         .get_matches();
@@ -88,6 +95,12 @@ fn main() {
             std::process::exit(1);
         }
         cmd_modules
+    } else if matches.is_present("crate") {
+        if !matches.is_present("output") {
+            println!("No output directory specified");
+            std::process::exit(1);
+        }
+        cmd_crate       
     } else if matches.is_present("registers") {
         cmd_registers
     } else {
@@ -126,6 +139,14 @@ fn cmd_resets(_matches: &ArgMatches, device: &Device) -> Result<(), AppError> {
 
 fn cmd_modules(matches: &ArgMatches, device: &Device) -> Result<(), AppError> {
     Ok(try!(chip::codegen::gen_modules(matches, &mut std::io::stdout(), &device)))
+}
+
+fn cmd_crate(matches: &ArgMatches, device: &Device) -> Result<(), AppError> {
+    let cfg = chip::codegen::crates::Config {
+        out_path: PathBuf::from(matches.value_of("output").expect("No output path specified")),
+        cargo_template:  PathBuf::from(matches.value_of("cargo-template").expect("Required parameter cargo-template missing")),
+    };
+    Ok(try!(chip::codegen::gen_crate(cfg, &mut std::io::stdout(), &device)))
 }
 
 fn cmd_registers(matches: &ArgMatches, device: &Device) -> Result<(), AppError> {

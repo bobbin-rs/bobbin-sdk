@@ -11,6 +11,7 @@ use super::{size_type, field_getter, field_setter, field_with, field_test, field
 pub struct Config {
     pub path: PathBuf,
     pub is_root: bool,
+    pub common: String,
 }
 
 impl<'a> From<&'a ArgMatches<'a>> for Config {
@@ -18,6 +19,7 @@ impl<'a> From<&'a ArgMatches<'a>> for Config {
         Config {
             path: PathBuf::from(matches.value_of("output").expect("No output path specified")),
             is_root: matches.is_present("root"),
+            common: String::from("bobbin_common"),
         }
     }
 }
@@ -39,14 +41,14 @@ pub fn gen_modules<W: Write>(matches: &ArgMatches, _out: &mut W, d: &Device) -> 
         out_path.join("mod.rs")
     };
     let mut f_mod = try!(File::create(p_mod));
+    try!(writeln!(f_mod, "#[allow(unused_imports)] use {}::*;", cfg.common));
     try!(gen_mod(&cfg, &mut f_mod, d, out_path));
 
     Ok(())
 }
 
 pub fn gen_mod<W: Write>(cfg: &Config, out: &mut W, d: &Device, path: &Path) -> Result<()> {
-    try!(writeln!(out, "#[allow(unused_imports)] use bobbin_common::*;"));
-
+    try!(writeln!(out, ""));
     // Preflight Checks
 
     // Check for duplicate module names
@@ -186,12 +188,12 @@ pub fn gen_exceptions<W: Write>(_cfg: &Config, out: &mut W, exceptions: &Vec<Exc
     try!(writeln!(out,"}}"));    
     Ok(())
 }
-pub fn gen_interrupts<W: Write>(_cfg: &Config, out: &mut W, d: &Device, interrupt_count: u64) -> Result<()> {
+pub fn gen_interrupts<W: Write>(cfg: &Config, out: &mut W, d: &Device, interrupt_count: u64) -> Result<()> {
     let mut interrupts: Vec<Option<&Interrupt>> = Vec::with_capacity(interrupt_count as usize);
 
     try!(writeln!(out, "//! Interrupts"));
     try!(writeln!(out, ""));
-    try!(writeln!(out, "#[allow(unused_imports)] use bobbin_common::*;"));
+    try!(writeln!(out, "#[allow(unused_imports)] use {}::*;", cfg.common));
     try!(writeln!(out, ""));
 
     for _ in 0..interrupt_count {
@@ -389,7 +391,7 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
         }
     }       
 
-    try!(writeln!(out, "#[allow(unused_imports)] use bobbin_common::*;"));
+    try!(writeln!(out, "#[allow(unused_imports)] use {}::*;", cfg.common));
     try!(writeln!(out, ""));
 
     if pg.modules.len() > 0 {
@@ -698,7 +700,7 @@ pub fn gen_peripheral<W: Write>(cfg: &Config, out: &mut W, p: &Peripheral) -> Re
         }
     }       
 
-    try!(writeln!(out, "#[allow(unused_imports)] use bobbin_common::*;"));
+    try!(writeln!(out, "#[allow(unused_imports)] use {}::*;", cfg.common));
     try!(writeln!(out, ""));
 
     if let Some(_) = p.dim {
@@ -824,7 +826,7 @@ pub fn gen_clusters<W: Write>(cfg: &Config, out: &mut W, p_type: &str, clusters:
             try!(gen_doc(cfg, out, 0, &format!("{} Cluster", desc)));
         }                
         try!(writeln!(out, "pub mod {} {{", mod_name));
-        try!(writeln!(out, "    #[allow(unused_imports)] use bobbin_common::*;"));
+        try!(writeln!(out, "    #[allow(unused_imports)] use {}::*;", cfg.common));
         
         try!(writeln!(out, "    #[derive(Clone, Copy, PartialEq, Eq)]"));
         if let Some(ref desc) = c.description {

@@ -39,6 +39,7 @@ pub fn build_inner<S: AsRef<Path>, D: AsRef<Path>>(src_path: S, dst_path: D, set
         let cfg = codegen::modules::Config { 
             path: PathBuf::from(dst_path), 
             is_root: dst_path.file_name() == Some(::std::ffi::OsStr::new("lib.rs")),
+            common: String::from("bobbin_common"),
         };
         codegen::modules::gen_mod(&cfg, &mut f_mod, &device, dst_path.parent().expect("Destination file name must be lib.rs or mod.rs"))?;
         if in_cargo {

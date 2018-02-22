@@ -1,0 +1,10 @@
+[package]
+name = "%name%"
+version = "0.1.0"
+
+[dependencies]
+bobbin-chip-common = { path = "../../../bobbin-chip-common" }
+
+[dependencies.compiler_builtins]
+git = "https://github.com/rust-lang-nursery/compiler-builtins"
+features = ["mem","c"]
