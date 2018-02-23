@@ -99,10 +99,7 @@ pub fn gen_crate<W: Write>(cfg: Config, _out: &mut W, d: &Device) -> Result<()> 
 
         writeln!(out, "pub mod map;")?;    
         let mut map_out = File::create(map_path.clone().join("mod.rs"))?;
-        gen_map_mod(&cfg, &mut map_out, d, &map_path)?;
-
-        writeln!(out, "")?;    
-        writeln!(out, "pub use map::*;")?;
+        gen_map_mod(&cfg, &mut out, &mut map_out, d, &map_path)?;
         writeln!(out, "")?;    
 
         
@@ -207,13 +204,16 @@ pub fn gen_hal_mod<W: Write>(_cfg: &modules::Config, out: &mut W, d: &Device, pa
     Ok(())
 }
 
-pub fn gen_map_mod<W: Write>(cfg: &modules::Config, out: &mut W, d: &Device, path: &Path) -> Result<()> {
+pub fn gen_map_mod<W: Write>(cfg: &modules::Config, p_out: &mut W, out: &mut W, d: &Device, path: &Path) -> Result<()> {
 
     let mut ord = 0;
+
+    writeln!(p_out, "")?;
 
     for p in d.peripherals.iter() {
         let p_name = p.group_name.as_ref().unwrap_or(&p.name).to_lowercase();
         writeln!(out, "pub mod {};", p_name)?;;
+        writeln!(p_out, "pub use map::{};", p_name)?;;
         let p_mod = path.join(format!("{}.rs", p_name));
         let mut f_mod = try!(File::create(p_mod));
         writeln!(f_mod, "use hal::{}::*;", p_name)?;
@@ -225,6 +225,7 @@ pub fn gen_map_mod<W: Write>(cfg: &modules::Config, out: &mut W, d: &Device, pat
     for pg in d.peripheral_groups.iter() {
         let pg_name = pg.name.to_lowercase();
         writeln!(out, "pub mod {};", pg_name)?;;
+        writeln!(p_out, "pub use map::{};", pg_name)?;;
         let p_mod = path.join(format!("{}.rs", pg_name));
         let mut f_mod = try!(File::create(p_mod));
         writeln!(f_mod, "use hal::{}::*;", pg_name)?;
@@ -232,8 +233,13 @@ pub fn gen_map_mod<W: Write>(cfg: &modules::Config, out: &mut W, d: &Device, pat
         try!(modules::gen_peripheral_group(&cfg, &mut f_mod, pg, &mut ord));
     }
 
+
     gen_signals_mod(&cfg, out, d, path)?;
     gen_interrupts_mod(&cfg, out, d, path)?; 
+
+    writeln!(p_out, "pub use map::sig;")?;;
+    writeln!(p_out, "pub use map::irq;")?;;
+
 
     Ok(())
 }
