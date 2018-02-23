@@ -456,7 +456,7 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
             try!(writeln!(out, "))]"));
         }
         let p_name = p.name.to_uppercase();
-        let p_const = format!("_{}", p_name);
+        let p_const = format!("{}_PERIPH", p_name);
         let p_type = to_camel(&p.name);
         try!(writeln!(out, "periph!( {p_name}, {p_type}, {p_const}, {pg_type}, 0x{p_addr:08x}, 0x{p_ord:02x});", 
             p_const=p_const, pg_type=pg_type, p_name=p_name, p_type=p_type, p_addr=p.address, p_ord=ord));
@@ -737,7 +737,7 @@ pub fn gen_peripheral_group_impl<W: Write>(cfg: &Config, out: &mut W, pg: &Perip
 }
 
 pub fn gen_peripheral<W: Write>(cfg: &Config, out: &mut W, p: &Peripheral, ord: usize) -> Result<()> {
-    let p_const = format!("_{}", p.name);
+    let p_const = format!("{}_PERIPH", p.name);
     let p_type = to_camel(&p.group_name.as_ref().unwrap());
     let pg_type = format!("{}Periph", to_camel(&p.group_name.as_ref().unwrap()));
     let ch_type = format!("{}Ch", to_camel(&p.group_name.as_ref().unwrap()));
