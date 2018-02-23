@@ -35,6 +35,7 @@ pub fn gen_crate<W: Write>(cfg: Config, _out: &mut W, d: &Device) -> Result<()> 
         let mut dst = File::create(xargo_toml_dst)?;
         dst.write(&data.as_bytes())?;
     }
+
     // Copy .cargo/config
     {
         let ccfg_dir = cfg.out_path.join(".cargo");
@@ -55,6 +56,7 @@ pub fn gen_crate<W: Write>(cfg: Config, _out: &mut W, d: &Device) -> Result<()> 
         fs::create_dir(&src_path)?;
     }
 
+
     let periph_path = src_path.join("periph/");
     if !periph_path.exists() {
         fs::create_dir(&periph_path)?;
@@ -70,39 +72,41 @@ pub fn gen_crate<W: Write>(cfg: Config, _out: &mut W, d: &Device) -> Result<()> 
         fs::create_dir(&map_path)?;
     }    
 
+    // Copy src/lib.rs
+    {
+        let lib_src = cfg.cargo_template.join("src/lib.rs");
+        let mut src = File::open(lib_src)?;
+        let mut data = String::new();
+        src.read_to_string(&mut data)?;    
+        let lib_dst = src_path.join("src");
+        let mut out = File::create(lib_dst)?;
+        out.write(&data.as_bytes())?;             
 
-    let mut out = File::create(src_path.clone().join("lib.rs"))?;
-    writeln!(out, "#![no_std]")?;
-    writeln!(out, "#![feature(global_asm, used)]")?;
-    // writeln!(out, "#![cfg_attr(target_os=\"none\", feature(compiler_builtins_lib))]")?;
-    // writeln!(out, "#[cfg(target_os=\"none\")] extern crate compiler_builtins;")?;
-    writeln!(out, "#[macro_use] extern crate bobbin_chip_common;")?;
-    writeln!(out, "#[allow(unused_imports)] use bobbin_chip_common::*;")?;    
-    writeln!(out, "")?;    
+        let cfg = modules::Config { 
+            path: src_path.clone(), 
+            is_root: false, 
+            common: String::from("bobbin_chip_common"),
+        };
 
-    let cfg = modules::Config { 
-        path: src_path.clone(), 
-        is_root: false, 
-        common: String::from("bobbin_chip_common"),
-    };
+        writeln!(out, "pub mod periph;")?;    
+        let mut periph_out = File::create(periph_path.clone().join("mod.rs"))?;
+        gen_periph_mod(&cfg, &mut periph_out, d, &periph_path)?;
 
-    writeln!(out, "pub mod periph;")?;    
-    let mut periph_out = File::create(periph_path.clone().join("mod.rs"))?;
-    gen_periph_mod(&cfg, &mut periph_out, d, &periph_path)?;
-
-    writeln!(out, "pub mod hal;")?;    
-    let mut hal_out = File::create(hal_path.clone().join("mod.rs"))?;
-    gen_hal_mod(&cfg, &mut hal_out, d, &hal_path)?;
+        writeln!(out, "pub mod hal;")?;    
+        let mut hal_out = File::create(hal_path.clone().join("mod.rs"))?;
+        gen_hal_mod(&cfg, &mut hal_out, d, &hal_path)?;
 
 
-    writeln!(out, "pub mod map;")?;    
-    let mut map_out = File::create(map_path.clone().join("mod.rs"))?;
-    gen_map_mod(&cfg, &mut map_out, d, &map_path)?;
+        writeln!(out, "pub mod map;")?;    
+        let mut map_out = File::create(map_path.clone().join("mod.rs"))?;
+        gen_map_mod(&cfg, &mut map_out, d, &map_path)?;
 
-    writeln!(out, "")?;    
-    writeln!(out, "pub use map::*;")?;
-    writeln!(out, "")?;    
+        writeln!(out, "")?;    
+        writeln!(out, "pub use map::*;")?;
+        writeln!(out, "")?;    
 
+        
+    }
     Ok(())
 }
 
