@@ -130,7 +130,7 @@ pub fn gen_mod<W: Write>(cfg: &Config, out: &mut W, d: &Device, path: &Path) -> 
         try!(writeln!(out, "pub mod {};", pg_name));
         let p_mod = path.join(format!("{}.rs", pg_name));
         let mut f_mod = try!(File::create(p_mod));
-        try!(gen_peripheral_group(cfg, &mut f_mod, pg, ord));
+        try!(gen_peripheral_group(cfg, &mut f_mod, pg, &mut ord));
         try!(gen_peripheral_group_impl(cfg, &mut f_mod, pg));
         ord += 1;
     }
@@ -419,7 +419,7 @@ pub fn gen_signals<W: Write>(_cfg: &Config, out: &mut W, d: &Device) -> Result<(
     Ok(())
 }
 
-pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &PeripheralGroup, ord: usize) -> Result<()> {
+pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &PeripheralGroup, ord: &mut usize) -> Result<()> {
     let pg_name = if let Some(ref prototype) = pg.prototype {
         if let Some(ref name) = prototype.group_name {
             format!("{}", name)
@@ -445,6 +445,25 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
 
     try!(writeln!(out, "#[allow(unused_imports)] use {}::*;", cfg.common));
     try!(writeln!(out, ""));
+
+
+    for p in pg.peripherals.iter() {
+        if p.features.len() > 0 {
+            try!(writeln!(out, "#[cfg(any("));
+            for f in p.features.iter() {
+                try!(writeln!(out, "feature=\"{}\",", f));
+            }
+            try!(writeln!(out, "))]"));
+        }
+        let p_name = p.name.to_uppercase();
+        let p_const = format!("_{}", p_name);
+        let p_type = to_camel(&p.name);
+        try!(writeln!(out, "periph!( {p_name}, {p_type}, {p_const}, {pg_type}, 0x{p_addr:08x}, 0x{p_ord:02x});", 
+            p_const=p_const, pg_type=pg_type, p_name=p_name, p_type=p_type, p_addr=p.address, p_ord=ord));
+        *ord += 1;
+    }
+    try!(writeln!(out, ""));
+    
 
     // Generate Link Traits
     for p in pg.peripherals.iter() {
@@ -478,23 +497,6 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
         }
     }
 
-    for p in pg.peripherals.iter() {
-        if p.features.len() > 0 {
-            try!(writeln!(out, "#[cfg(any("));
-            for f in p.features.iter() {
-                try!(writeln!(out, "feature=\"{}\",", f));
-            }
-            try!(writeln!(out, "))]"));
-        }
-        let p_name = p.name.to_uppercase();
-        let p_const = format!("_{}", p_name);
-        let p_type = to_camel(&p.name);
-        try!(writeln!(out, "periph!( {p_name}, {p_type}, {p_const}, {pg_type}, 0x{p_addr:08x}, 0x{p_ord:02x});", 
-            p_const=p_const, pg_type=pg_type, p_name=p_name, p_type=p_type, p_addr=p.address, p_ord=ord));
-        
-    }
-    try!(writeln!(out, ""));
-    
     for p in pg.peripherals.iter() {
         let p_type = to_camel(&p.name);
 

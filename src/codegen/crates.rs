@@ -229,8 +229,7 @@ pub fn gen_map_mod<W: Write>(cfg: &modules::Config, out: &mut W, d: &Device, pat
         let mut f_mod = try!(File::create(p_mod));
         writeln!(f_mod, "use hal::{}::*;", pg_name)?;
         writeln!(f_mod, "")?;
-        try!(modules::gen_peripheral_group(&cfg, &mut f_mod, pg, ord));
-        ord += 1;
+        try!(modules::gen_peripheral_group(&cfg, &mut f_mod, pg, &mut ord));
     }
 
     gen_signals_mod(&cfg, out, d, path)?;
