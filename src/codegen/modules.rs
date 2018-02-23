@@ -113,14 +113,16 @@ pub fn gen_mod<W: Write>(cfg: &Config, out: &mut W, d: &Device, path: &Path) -> 
         try!(gen_signals(cfg, &mut f_mod, &d));
     }
 
+    let mut ord = 0;
 
     for p in d.peripherals.iter() {
         let p_name = p.group_name.as_ref().unwrap_or(&p.name).to_lowercase();
         try!(writeln!(out, "pub mod {};", p_name));
         let p_mod = path.join(format!("{}.rs", p_name));
         let mut f_mod = try!(File::create(p_mod));
-        try!(gen_peripheral(cfg, &mut f_mod, p));
+        try!(gen_peripheral(cfg, &mut f_mod, p, ord));
         try!(gen_peripheral_impl(cfg, &mut f_mod, p));
+        ord += 1;
     }
 
     for pg in d.peripheral_groups.iter() {
@@ -128,8 +130,9 @@ pub fn gen_mod<W: Write>(cfg: &Config, out: &mut W, d: &Device, path: &Path) -> 
         try!(writeln!(out, "pub mod {};", pg_name));
         let p_mod = path.join(format!("{}.rs", pg_name));
         let mut f_mod = try!(File::create(p_mod));
-        try!(gen_peripheral_group(cfg, &mut f_mod, pg));
+        try!(gen_peripheral_group(cfg, &mut f_mod, pg, ord));
         try!(gen_peripheral_group_impl(cfg, &mut f_mod, pg));
+        ord += 1;
     }
     Ok(())
 }
@@ -416,7 +419,7 @@ pub fn gen_signals<W: Write>(_cfg: &Config, out: &mut W, d: &Device) -> Result<(
     Ok(())
 }
 
-pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &PeripheralGroup) -> Result<()> {
+pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &PeripheralGroup, ord: usize) -> Result<()> {
     let pg_name = if let Some(ref prototype) = pg.prototype {
         if let Some(ref name) = prototype.group_name {
             format!("{}", name)
@@ -486,11 +489,11 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
         let p_name = p.name.to_uppercase();
         let p_const = format!("_{}", p_name);
         let p_type = to_camel(&p.name);
-        try!(writeln!(out, "periph!( {p_name}, {p_type}, {p_const}, {pg_type}, 0x{p_addr:08x});", 
-            p_const=p_const, pg_type=pg_type, p_name=p_name, p_type=p_type, p_addr=p.address));
+        try!(writeln!(out, "periph!( {p_name}, {p_type}, {p_const}, {pg_type}, 0x{p_addr:08x}, 0x{p_ord:02x});", 
+            p_const=p_const, pg_type=pg_type, p_name=p_name, p_type=p_type, p_addr=p.address, p_ord=ord));
         
     }
-    // try!(writeln!(out, ""));
+    try!(writeln!(out, ""));
     
     for p in pg.peripherals.iter() {
         let p_type = to_camel(&p.name);
@@ -669,35 +672,6 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
         }
     }
 
-    for p in pg.peripherals.iter() {
-        let p_type = to_camel(&p.name);            
-
-        for irq in p.interrupts.iter() {
-            let irq_type = format!("super::irq::Irq{}", to_camel(&irq.name));
-                        
-            for itype in irq.types.iter() {
-                let itype_itrait = format!("Irq{}<{}>", to_camel(itype), irq_type);
-                try!(writeln!(out, "impl {} for {} {{", itype_itrait, p_type));
-                try!(writeln!(out, "    fn irq_{}(&self) -> {} {{ super::irq::IRQ_{} }}", itype.to_lowercase(), irq_type, irq.name.to_uppercase()));
-                try!(writeln!(out, "}}"));
-                try!(writeln!(out, ""));
-            }
-        }
-        for ch in p.channels.iter() {
-            let ch_type = to_camel(&ch.name);
-            for irq in ch.interrupts.iter() {
-                let irq_type = format!("super::irq::Irq{}", to_camel(&irq.name));
-                            
-                for itype in irq.types.iter() {
-                    let itype_itrait = format!("Irq{}<{}>", to_camel(itype), irq_type);
-                    try!(writeln!(out, "impl {} for {} {{", itype_itrait, ch_type));
-                    try!(writeln!(out, "    fn irq_{}(&self) -> {} {{ super::irq::IRQ_{} }}", itype.to_lowercase(), irq_type, irq.name.to_uppercase()));
-                    try!(writeln!(out, "}}"));
-                    try!(writeln!(out, ""));
-                }
-            }            
-        }
-    }
 
     Ok(())
 }
@@ -760,8 +734,10 @@ pub fn gen_peripheral_group_impl<W: Write>(cfg: &Config, out: &mut W, pg: &Perip
     Ok(())
 }
 
-pub fn gen_peripheral<W: Write>(cfg: &Config, out: &mut W, p: &Peripheral) -> Result<()> {
+pub fn gen_peripheral<W: Write>(cfg: &Config, out: &mut W, p: &Peripheral, ord: usize) -> Result<()> {
+    let p_const = format!("_{}", p.name);
     let p_type = to_camel(&p.group_name.as_ref().unwrap());
+    let pg_type = format!("{}Periph", to_camel(&p.group_name.as_ref().unwrap()));
     let ch_type = format!("{}Ch", to_camel(&p.group_name.as_ref().unwrap()));
 
     try!(writeln!(out, "#[allow(unused_imports)] use {}::*;", cfg.common));
@@ -775,7 +751,9 @@ pub fn gen_peripheral<W: Write>(cfg: &Config, out: &mut W, p: &Peripheral) -> Re
         // }
         // try!(writeln!(out, ""));
     } else {
-        try!(writeln!(out, "periph!({p_name}, {p_type}, 0x{p_addr:08x});", p_name=p.name, p_type=p_type, p_addr=p.address));
+        // try!(writeln!(out, "periph!({p_name}, {p_type}, 0x{p_addr:08x}, 0x{p_ord:02x});", p_name=p.name, p_type=p_type, p_addr=p.address, p_ord=ord));
+        try!(writeln!(out, "periph!( {p_name}, {p_type}, {p_const}, {pg_type}, 0x{p_addr:08x}, 0x{p_ord:02x});", 
+            p_const=p_const, pg_type=pg_type, p_name=p.name, p_type=p_type, p_addr=p.address, p_ord=ord));
         try!(writeln!(out, ""));
     }
     
@@ -849,7 +827,7 @@ pub fn gen_peripheral<W: Write>(cfg: &Config, out: &mut W, p: &Peripheral) -> Re
 }
 
 pub fn gen_peripheral_impl<W: Write>(cfg: &Config, out: &mut W, p: &Peripheral) -> Result<()> {
-    let p_type = to_camel(&p.group_name.as_ref().unwrap());
+    let p_type = format!("{}Periph", to_camel(&p.group_name.as_ref().unwrap()));
 
     if let Some(ref desc) = p.description {
         let desc = desc.trim();

@@ -78,7 +78,7 @@ pub fn gen_crate<W: Write>(cfg: Config, _out: &mut W, d: &Device) -> Result<()> 
         let mut src = File::open(lib_src)?;
         let mut data = String::new();
         src.read_to_string(&mut data)?;    
-        let lib_dst = src_path.join("src");
+        let lib_dst = src_path.join("lib.rs");
         let mut out = File::create(lib_dst)?;
         out.write(&data.as_bytes())?;             
 
@@ -209,6 +209,8 @@ pub fn gen_hal_mod<W: Write>(_cfg: &modules::Config, out: &mut W, d: &Device, pa
 
 pub fn gen_map_mod<W: Write>(cfg: &modules::Config, out: &mut W, d: &Device, path: &Path) -> Result<()> {
 
+    let mut ord = 0;
+
     for p in d.peripherals.iter() {
         let p_name = p.group_name.as_ref().unwrap_or(&p.name).to_lowercase();
         writeln!(out, "pub mod {};", p_name)?;;
@@ -216,7 +218,8 @@ pub fn gen_map_mod<W: Write>(cfg: &modules::Config, out: &mut W, d: &Device, pat
         let mut f_mod = try!(File::create(p_mod));
         writeln!(f_mod, "use hal::{}::*;", p_name)?;
         writeln!(f_mod, "")?;
-        try!(modules::gen_peripheral(cfg, &mut f_mod, p));
+        try!(modules::gen_peripheral(cfg, &mut f_mod, p, ord));
+        ord += 1;
     }
 
     for pg in d.peripheral_groups.iter() {
@@ -226,7 +229,8 @@ pub fn gen_map_mod<W: Write>(cfg: &modules::Config, out: &mut W, d: &Device, pat
         let mut f_mod = try!(File::create(p_mod));
         writeln!(f_mod, "use hal::{}::*;", pg_name)?;
         writeln!(f_mod, "")?;
-        try!(modules::gen_peripheral_group(&cfg, &mut f_mod, pg));
+        try!(modules::gen_peripheral_group(&cfg, &mut f_mod, pg, ord));
+        ord += 1;
     }
 
     gen_signals_mod(&cfg, out, d, path)?;
