@@ -85,7 +85,7 @@ pub fn gen_crate<W: Write>(cfg: Config, _out: &mut W, d: &Device) -> Result<()> 
         let cfg = modules::Config { 
             path: src_path.clone(), 
             is_root: false, 
-            common: String::from("bobbin_chip_common"),
+            common: String::from("common"),
         };
 
         writeln!(out, "pub mod periph;")?;    
@@ -216,7 +216,7 @@ pub fn gen_map_mod<W: Write>(cfg: &modules::Config, p_out: &mut W, out: &mut W, 
         writeln!(p_out, "pub use map::{};", p_name)?;;
         let p_mod = path.join(format!("{}.rs", p_name));
         let mut f_mod = try!(File::create(p_mod));
-        writeln!(f_mod, "use hal::{}::*;", p_name)?;
+        writeln!(f_mod, "pub use hal::{}::*;", p_name)?;
         writeln!(f_mod, "")?;
         try!(modules::gen_peripheral(cfg, &mut f_mod, p, ord));
         ord += 1;
@@ -228,7 +228,7 @@ pub fn gen_map_mod<W: Write>(cfg: &modules::Config, p_out: &mut W, out: &mut W, 
         writeln!(p_out, "pub use map::{};", pg_name)?;;
         let p_mod = path.join(format!("{}.rs", pg_name));
         let mut f_mod = try!(File::create(p_mod));
-        writeln!(f_mod, "use hal::{}::*;", pg_name)?;
+        writeln!(f_mod, "pub use hal::{}::*;", pg_name)?;
         writeln!(f_mod, "")?;
         try!(modules::gen_peripheral_group(&cfg, &mut f_mod, pg, &mut ord));
     }

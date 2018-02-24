@@ -19,7 +19,7 @@ impl<'a> From<&'a ArgMatches<'a>> for Config {
         Config {
             path: PathBuf::from(matches.value_of("output").expect("No output path specified")),
             is_root: matches.is_present("root"),
-            common: String::from("bobbin_common"),
+            common: String::from("common"),
         }
     }
 }
@@ -42,6 +42,7 @@ pub fn gen_modules<W: Write>(matches: &ArgMatches, _out: &mut W, d: &Device) -> 
     };
     let mut f_mod = try!(File::create(p_mod));
     try!(writeln!(f_mod, "#[allow(unused_imports)] use {}::*;", cfg.common));
+    
     try!(gen_mod(&cfg, &mut f_mod, d, out_path));
 
     Ok(())
@@ -72,7 +73,7 @@ pub fn gen_mod<W: Write>(cfg: &Config, out: &mut W, d: &Device, path: &Path) -> 
 
     for c in d.crates.iter() {
         // NOTE: crates now need to be imported from crate root
-        // try!(writeln!(out, "extern crate {};", c.name));
+        try!(writeln!(out, "extern crate {};", c.name));
         for m in c.modules.iter() {
             if let Some(ref use_as) = m._as {
                 try!(writeln!(out, "pub use {}::{} as {};", c.name, m.name, use_as));
@@ -200,7 +201,7 @@ pub fn gen_interrupts<W: Write>(cfg: &Config, out: &mut W, d: &Device, interrupt
 
     try!(writeln!(out, "//! Interrupts"));
     try!(writeln!(out, ""));
-    try!(writeln!(out, "#[allow(unused_imports)] use {}::*;", cfg.common));
+    try!(writeln!(out, "#[allow(unused_imports)] use {}::*;", cfg.common));    
     try!(writeln!(out, ""));
 
     for _ in 0..interrupt_count {
@@ -440,10 +441,11 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
         let desc = desc.trim();
         if desc.len() > 0 {
             try!(writeln!(out, "//! {}", desc));
+            try!(writeln!(out, ""));
         }
     }       
 
-    try!(writeln!(out, "#[allow(unused_imports)] use {}::*;", cfg.common));
+    try!(writeln!(out, "#[allow(unused_imports)] use {}::*;", cfg.common));    
     try!(writeln!(out, ""));
 
 
@@ -579,9 +581,9 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
             for pin in p.pins.iter() {
                 let id = pin.name.to_uppercase();                
                 let ty = to_camel(&pin.name);
-                let base_name = format!("_{}", id);
+                let base_name = format!("{}_PIN", id);
                 let base_type = format!("{}Pin", to_camel(&pg.name));
-                let base_port = format!("_{}", p_name);
+                let base_port = format!("{}_PERIPH", p_name);
 
                 try!(writeln!(out, "pin!({id}, {ty}, {port_id}, {port_type}, {base_id}, {base_type}, {base_port}, {index});",
                     id=id,
@@ -621,9 +623,9 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
         for ch in p.channels.iter() {
             let id = ch.name.to_uppercase();                
             let ty = to_camel(&ch.name);
-            let base_name = format!("_{}", id);
+            let base_name = format!("{}_CH", id);
             let base_type = format!("{}Ch", to_camel(&pg.name));
-            let base_periph = format!("_{}", p_name);
+            let base_periph = format!("{}_PERIPH", p_name);
             
             try!(writeln!(out, "channel!({id}, {ty}, {port_id}, {port_type}, {base_id}, {base_type}, {base_periph}, {index});",
                 id=id,
@@ -690,6 +692,9 @@ pub fn gen_peripheral_group_impl<W: Write>(cfg: &Config, out: &mut W, pg: &Perip
     let pg_type = format!("{}Periph", to_camel(&pg_name));
 
 
+    try!(writeln!(out, "#[allow(unused_imports)] use {}::*;", cfg.common));
+    try!(writeln!(out, ""));
+
     if pg.modules.len() > 0 {
         for m in pg.modules.iter() {
             if let Some(ref use_as) = m._as {
@@ -703,9 +708,6 @@ pub fn gen_peripheral_group_impl<W: Write>(cfg: &Config, out: &mut W, pg: &Perip
 
 
     // Generate Periphal Group Impl
-
-    try!(writeln!(out, "#[allow(unused_imports)] use {}::*;", cfg.common));
-    try!(writeln!(out, ""));
 
     if pg.modules.len() == 0 {
         try!(writeln!(out, "#[derive(Clone, Copy, PartialEq, Eq)]"));
@@ -761,42 +763,50 @@ pub fn gen_peripheral<W: Write>(cfg: &Config, out: &mut W, p: &Peripheral, ord: 
     
     // Generate Links
 
-    let p_size = size_type(p.size.or(Some(32)).unwrap());
-    for link in p.links.iter() {
-        try!(writeln!(out, "pub trait {} {{", to_camel(&link.name)));
-        try!(writeln!(out, "    fn {}(&self) -> {};", field_getter(&link.name), p_size));
-        try!(writeln!(out, "    fn {}(&self, value: {});", field_setter(&link.name), p_size));
-        try!(writeln!(out, "}}"));
-        try!(writeln!(out, ""));
-        try!(writeln!(out, "impl {} {{", to_camel(&p.name)));
-        try!(writeln!(out, "    #[inline] pub fn {}<P: {}>(&self, p: &P) -> {} {{", field_getter(&link.name), to_camel(&link.name), p_size));
-        try!(writeln!(out, "        p.{}()", field_getter(&link.name)));
-        try!(writeln!(out, "    }}"));
-        try!(writeln!(out, "    #[inline] pub fn {}<P: {}>(&self, p: &P, value: {}) {{", field_setter(&link.name), to_camel(&link.name), p_size));
-        try!(writeln!(out, "        p.{}(value)", field_setter(&link.name)));
-        try!(writeln!(out, "    }}"));
-        try!(writeln!(out, "}}"));
-        try!(writeln!(out, ""));
-    }
+    let gen_link_traits = false;
 
-
-    // Generate Links
-
-    for r in p.registers.iter() {
-        for f in r.fields.iter() {
-            for link in f.links.iter() {
-                // FIXME: Should not be using peripheral size as return value
-                let pg_mod = link.peripheral_group.to_lowercase();
-                let l_type = format!("super::{}::{}", pg_mod, to_camel(&link.peripheral));
-                try!(writeln!(out, "impl {} for {} {{", to_camel(&link.name), l_type));
-                try!(writeln!(out, "    #[inline] fn {}(&self) -> {} {{ {}.{}().{}().into() }}", field_getter(&link.name),  p_size, p.name, r.name.to_lowercase(), field_getter(&f.name)));                
-                try!(writeln!(out, "    #[inline] fn {}(&self, value: {}) {{ {}.{}(|r| r.{}(value)); }}", field_setter(&link.name),  p_size, p.name, field_with(&r.name), field_setter(&f.name)));
-                try!(writeln!(out, "}}"));
-                try!(writeln!(out, ""));
-            }
+    if gen_link_traits {
+        let p_size = size_type(p.size.or(Some(32)).unwrap());
+        for link in p.links.iter() {
+            try!(writeln!(out, "pub trait {} {{", to_camel(&link.name)));
+            try!(writeln!(out, "    fn {}(&self) -> {};", field_getter(&link.name), p_size));
+            try!(writeln!(out, "    fn {}(&self, value: {});", field_setter(&link.name), p_size));
+            try!(writeln!(out, "}}"));
+            try!(writeln!(out, ""));
+            try!(writeln!(out, "impl {} {{", to_camel(&p.name)));
+            try!(writeln!(out, "    #[inline] pub fn {}<P: {}>(&self, p: &P) -> {} {{", field_getter(&link.name), to_camel(&link.name), p_size));
+            try!(writeln!(out, "        p.{}()", field_getter(&link.name)));
+            try!(writeln!(out, "    }}"));
+            try!(writeln!(out, "    #[inline] pub fn {}<P: {}>(&self, p: &P, value: {}) {{", field_setter(&link.name), to_camel(&link.name), p_size));
+            try!(writeln!(out, "        p.{}(value)", field_setter(&link.name)));
+            try!(writeln!(out, "    }}"));
+            try!(writeln!(out, "}}"));
+            try!(writeln!(out, ""));
         }
     }
 
+    {
+        // Generate Links
+
+        // let p_size = size_type(p.size.or(Some(32)).unwrap());
+
+        for r in p.registers.iter() {
+            for f in r.fields.iter() {
+                let f_width = f.bit_width;
+                let field_type = format!("::common::bits::U{}", f_width);
+                for link in f.links.iter() {
+                    // FIXME: Should not be using peripheral size as return value
+                    let pg_mod = link.peripheral_group.to_lowercase();
+                    let l_type = format!("super::{}::{}", pg_mod, to_camel(&link.peripheral));
+                    try!(writeln!(out, "impl {} for {} {{", to_camel(&link.name), l_type));
+                    try!(writeln!(out, "    #[inline] fn {}(&self) -> {} {{ {}.{}().{}() }}", field_getter(&link.name), field_type, p.name, r.name.to_lowercase(), field_getter(&f.name)));                
+                    try!(writeln!(out, "    #[inline] fn {}<V: Into<{}>>(&self, value: V) {{ {}.{}(|r| r.{}(value)); }}", field_setter(&link.name),  field_type, p.name, field_with(&r.name), field_setter(&f.name)));
+                    try!(writeln!(out, "}}"));
+                    try!(writeln!(out, ""));
+                }
+            }
+        }
+    }
     // Generate Signals
 
     for s in p.signals.iter() {
@@ -835,6 +845,7 @@ pub fn gen_peripheral_impl<W: Write>(cfg: &Config, out: &mut W, p: &Peripheral) 
         let desc = desc.trim();
         if desc.len() > 0 {
             try!(writeln!(out, "//! {}", desc));
+            try!(writeln!(out, ""));
         }
     }
 
@@ -943,10 +954,10 @@ pub fn gen_descriptor<W: Write>(cfg: &Config, out: &mut W, _p_type: &str, desc: 
                 _ => format!("(index * {})", r_incr),
             };  
             let i_type = match dim {
-                1...32 => format!("bits::R{}", dim),
-                64 => format!("bits::U6"),
-                128 => format!("bits::U7"),
-                256 => format!("bits::U8"),
+                1...32 => format!("::common::bits::R{}", dim),
+                64 => format!("::common::bits::U6"),
+                128 => format!("::common::bits::U7"),
+                256 => format!("::common::bits::U8"),
                 _ => panic!("Unsupported dim value for {}: {}", r.name, dim),
             };
 
@@ -1066,10 +1077,10 @@ pub fn gen_register_methods<W: Write>(cfg: &Config, out: &mut W, p_type: &str, r
                 _ => format!("(index * {})", r_incr),
             };  
             let i_type = match dim {
-                1...32 => format!("bits::R{}", dim),
-                64 => format!("bits::U6"),
-                128 => format!("bits::U7"),
-                256 => format!("bits::U8"),
+                1...32 => format!("::common::bits::R{}", dim),
+                64 => format!("::common::bits::U6"),
+                128 => format!("::common::bits::U7"),
+                256 => format!("::common::bits::U8"),
                 _ => panic!("Unsupported dim value for {}: {}", r.name, dim),
             };
 
@@ -1256,7 +1267,7 @@ pub fn gen_field<W: Write>(cfg: &Config, out: &mut W, f: &Field, size: &str, _ac
     } else {
         format!("[{}]", f_lo)
     };    
-    let field_type = format!("bits::U{}", f_width);
+    let field_type = format!("::common::bits::U{}", f_width);
 
     let min_size = if f_width <= 8 {
         "u8"
@@ -1270,7 +1281,7 @@ pub fn gen_field<W: Write>(cfg: &Config, out: &mut W, f: &Field, size: &str, _ac
         let f_incr = f.dim_increment.unwrap();
         let f_getter = field_getter(&f.name.replace("%s","x"));
         let f_setter = field_setter(&f.name.replace("%s","x"));
-        let i_type = format!("bits::R{}", dim);
+        let i_type = format!("::common::bits::R{}", dim);
 
         if let Some(ref desc) = f.description {
             try!(gen_doc(cfg, out, 4, desc));

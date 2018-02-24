@@ -2,7 +2,20 @@
 name = "%name%"
 version = "0.1.0"
 
+[build-dependencies]
+bobbin-build = { path = "../../bobbin-dev/mcu/bobbin-build/" }
+
 [dependencies]
-bobbin-chip-common = { path = "../../bobbin-chip-common" }
-bobbin-cortexm = { path = "../../bobbin-dev/mcu/bobbin-cortexm" }
+#bobbin-chip-common = { path = "../../bobbin-chip-common" }
+#bobbin-cortexm = { path = "../../bobbin-dev/mcu/bobbin-cortexm" }
 stm32-common = { path = "../../bobbin-dev/mcu/bobbin-stm32/stm32-common" }
+
+[features]
+default = []
+
+STM32F72xxC = []
+STM32F72xxE = []
+STM32F74xxE = []
+STM32F74xxG = []
+STM32F76xxG = []
+STM32F76xxI = []

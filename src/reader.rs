@@ -74,6 +74,13 @@ impl<'a> Context<'a> {
         
     }
 }
+fn expect_string_or_symbol<'a>(ctx: &Context, s: &'a Sexp) -> Result<&'a str, ReadError> {
+    match s {
+        &Sexp::Token(Token::Symbol(s)) => Ok(s),
+        &Sexp::Token(Token::String(s)) => Ok(&s[1..(s.len() - 1)]),
+        _ => Err(ReadError::Error(format!("{}: Expected String or Symbol, got {:?}", ctx.location_of(s), s)))
+    }
+}
 
 
 fn expect_symbol<'a>(ctx: &Context, s: &'a Sexp) -> Result<&'a str, ReadError> {
@@ -429,8 +436,8 @@ fn read_module(ctx: &Context, s: &[Sexp]) -> Result<Module, ReadError> {
     for s in s.iter() {
         match s {
             &Sexp::List(ref arr, _, _) => match arr[0].symbol() {
-                Some("name") => m.name = String::from(try!(expect_symbol(ctx, &arr[1]))),
-                Some("as") => m._as = Some(String::from(try!(expect_symbol(ctx, &arr[1])))),
+                Some("name") => m.name = String::from(try!(expect_string_or_symbol(ctx, &arr[1]))),
+                Some("as") => m._as = Some(String::from(try!(expect_string_or_symbol(ctx, &arr[1])))),
                 _ => return Err(ReadError::Error(format!("{}: Unexpected item: {:?}", ctx.location_of(s), arr)))
             },
             _ => return Err(ReadError::Error(format!("{}: Unexpected item: {:?}", ctx.location_of(s), s))),
