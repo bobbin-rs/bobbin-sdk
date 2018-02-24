@@ -1,3 +1,15 @@
+pub mod dcb {
+    pub use ::chip::dcb::*;
+}
+
+pub mod exc {
+    pub use ::chip::exc::*;
+}
+
+pub mod fpu {
+    pub use ::chip::fpu::*;
+}
+
 pub mod nvic;
 pub mod scb;
 pub mod systick;
