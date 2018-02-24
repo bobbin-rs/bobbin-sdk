@@ -12,15 +12,15 @@
         (variant (name STM32F76xxI) (link "stm32f6xxI.ld"))
     )
     (crate
-        (name stm32_common) (as common)
-        (module (name bobbin_cortexm::hal::exc))
-        (module (name bobbin_cortexm::hal::nvic))
-        (module (name bobbin_cortexm::hal::scb))
-        (module (name bobbin_cortexm::hal::systick))
-        (module (name bobbin_cortexm::hal::mpu))
-        (module (name bobbin_cortexm::hal::fpu))
-        (module (name bobbin_cortexm::hal::dcb))
-        (module (name bobbin_cortexm::hal::itm))
+        (name stm32_common)
+        (module (name exc))
+        (module (name nvic))
+        (module (name scb))
+        (module (name systick))
+        (module (name mpu))
+        (module (name fpu))
+        (module (name dcb))
+        (module (name itm))
     )
     (peripheral (include "periph/rcc.rx"))
     (peripheral (include "periph/flash.rx"))
@@ -49,7 +49,7 @@
     (peripheral-group
         ; signature: 54d3fcda91047f2f
         (name DCMI)
-        (module (name "::common::hal::dcmi::*"))
+        (module (name "::stm32_common::dcmi::*"))
         (peripheral
             (name DCMI)
             (address 0x50050000)
@@ -135,7 +135,7 @@
 
     (peripheral-group
         (name IWDG)
-        (module (name "::common::hal::iwdg::*"))
+        (module (name "::stm32_common::iwdg::*"))
         (peripheral
             (name IWDG)
             (address 0x40003000)
@@ -145,7 +145,7 @@
 
     (peripheral-group
         (name WWDG)
-        (module (name "::common::hal::wwdg::*"))
+        (module (name "::stm32_common::wwdg::*"))
         (peripheral
             (name WWDG)
             (address 0x40002c00)
@@ -161,7 +161,7 @@
 
     (peripheral-group
         (name CRC)
-        (module (name "::common::hal::crc::*"))
+        (module (name "::stm32_common::crc::*"))
         (peripheral
             (name CRC)
             (address 0x40023000)
@@ -171,7 +171,7 @@
 
     (peripheral-group
         (name EXTI)
-        (module (name "::common::hal::exti::*"))
+        (module (name "::stm32_common::exti::*"))
         (peripheral
             (name EXTI)
             (address 0x40013c00)
@@ -365,7 +365,7 @@
 
     (peripheral-group
         (name TIM_BAS)
-        (module (name "::common::hal::tim_bas::*"))
+        (module (name "::stm32_common::tim_bas::*"))
         (peripheral
             (name TIM6)
             (address 0x40001000)
@@ -391,7 +391,7 @@
 
     (peripheral-group
         (name TIM_GEN)
-        (module (name "::common::hal::tim_gen::*"))
+        (module (name "::stm32_common::tim_gen::*"))
         (peripheral
             (name TIM2)
             (address 0x40000000)
@@ -622,7 +622,7 @@
 
     (peripheral-group
         (name TIM_ADV)
-        (module (name "::common::hal::tim_adv::*"))
+        (module (name "::stm32_common::tim_adv::*"))
         (peripheral
             (name TIM1)
             (address 0x40010000)
@@ -724,7 +724,7 @@
 
     (peripheral-group
         (name LPTIM)
-        (module (name "::common::hal::lptim::*"))
+        (module (name "::stm32_common::lptim::*"))
         (peripheral
             (name LPTIM1)
             (address 0x40002400)
@@ -740,7 +740,7 @@
     (peripheral (include "periph/c_adc.rx"))
     (peripheral-group    
         (name ADC)
-        (module (name "::common::hal::adc_f24::*"))
+        (module (name "::stm32_common::adc_f24::*"))
         (peripheral 
             (name ADC1)
             (address 0x40012000)
@@ -833,7 +833,7 @@
 
     (peripheral-group
         (name SPI)
-        (module (name "::common::hal::spi_v2::*"))
+        (module (name "::stm32_common::spi_v2::*"))
         (peripheral 
             (name SPI1)
             (address 0x40013000)
@@ -924,7 +924,7 @@
 
     (peripheral-group
         (name I2C)
-        (module (name "::common::hal::i2c_v2::*"))
+        (module (name "::stm32_common::i2c_v2::*"))
         (peripheral
             (name I2C1)
             (address 0x40005400)
@@ -1055,7 +1055,7 @@
 
     (peripheral-group 
         (name GPIO)
-        (module (name "::common::hal::gpio::*"))
+        (module (name "::stm32_common::gpio::*"))
         (peripheral 
             (name GPIOA)
             (address 0x40020000)
@@ -2488,7 +2488,7 @@
     )    
     (peripheral-group 
         (name USART)
-        (module (name "::common::hal::usart::*"))
+        (module (name "::stm32_common::usart::*"))
         (peripheral 
             (name USART1)
             (address 0x40011000)
@@ -2612,7 +2612,7 @@
     )
     (peripheral-group
         (name DMA)
-        (module (name "::common::hal::dma::*"))
+        (module (name "::stm32_common::dma::*"))
         (peripheral
             (name DMA1)
             (address 0x40026000)

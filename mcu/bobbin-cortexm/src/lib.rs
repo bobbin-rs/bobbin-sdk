@@ -6,6 +6,8 @@ extern crate bobbin_common;
 pub mod chip;
 pub mod hal;
 
+pub use hal::*;
+
 #[inline(always)]
 pub fn wfi() {
     #[cfg(target_os="none")]
