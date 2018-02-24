@@ -91,8 +91,13 @@ pub fn gen_crate<W: Write>(cfg: Config, _out: &mut W, d: &Device) -> Result<()> 
                     try!(writeln!(out, "#[macro_use] pub extern crate {};", c.name));
                 }                            
             }
+            let c_name = if let Some(ref use_as) = c._as {
+                use_as
+            } else {
+                &c.name
+            };
             for m in c.modules.iter() {
-                let m_name = if c.name != "" { format!("{}::{}", c.name, m.name) } else { format!("{}", m.name) };
+                let m_name = if c_name != "" { format!("{}::{}", c_name, m.name) } else { format!("{}", m.name) };
                 if let Some(ref use_as) = m._as {
                     try!(writeln!(out, "pub use {} as {};", m_name, use_as));
                 } else {
@@ -141,7 +146,6 @@ pub fn gen_cargo_toml(path: &Path) -> Result<()> {
 
 
 pub fn gen_periph_mod<W: Write>(cfg: &modules::Config, out: &mut W, d: &Device, path: &Path) -> Result<()> {
-    try!(writeln!(out, ""));
     // Preflight Checks
 
     // Check for duplicate module names
@@ -163,18 +167,18 @@ pub fn gen_periph_mod<W: Write>(cfg: &modules::Config, out: &mut W, d: &Device, 
 
     // Generate Imports
 
-    for c in d.crates.iter() {
-        // NOTE: crates now need to be imported from crate root
-        // try!(writeln!(out, "extern crate {};", c.name));
-        for m in c.modules.iter() {
-            if let Some(ref use_as) = m._as {
-                try!(writeln!(out, "pub use {}::{} as {};", c.name, m.name, use_as));
-            } else {
-                try!(writeln!(out, "pub use {}::{};", c.name, m.name));
-            }
-        }
-        try!(writeln!(out, ""));
-    }
+    // for c in d.crates.iter() {
+    //     // NOTE: crates now need to be imported from crate root
+    //     // try!(writeln!(out, "extern crate {};", c.name));
+    //     for m in c.modules.iter() {
+    //         if let Some(ref use_as) = m._as {
+    //             try!(writeln!(out, "pub use {}::{} as {};", c.name, m.name, use_as));
+    //         } else {
+    //             try!(writeln!(out, "pub use {}::{};", c.name, m.name));
+    //         }
+    //     }
+    //     try!(writeln!(out, ""));
+    // }
 
     // Generate Exceptions
     if d.exceptions.len() > 0 {
