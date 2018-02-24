@@ -12,24 +12,29 @@ pub fn setup_linker() {
         return
     }
 
-    if let Some(ld_script) = find_ld_script("link").unwrap() {
-        copy_link_script(ld_script);
+    if let Some((ld_script, dst)) = find_ld_script("link").unwrap() {
+        copy_link_script(ld_script, dst);
     } else {
         // panic!("No linker script found for variant");
     }
 }
 
 
-pub fn find_ld_script<P: AsRef<Path>>(ld_dir: P) -> io::Result<Option<PathBuf>> {
+pub fn find_ld_script<P: AsRef<Path>>(ld_dir: P) -> io::Result<Option<(PathBuf, &'static str)>> {
     for dir_entry in ld_dir.as_ref().read_dir()? {
         if let Ok(dir_entry) = dir_entry {
             let path = dir_entry.path();
             if let Some(ext) = path.extension() {
-                if ext == "ld" {
+                if ext == "ld"{
                     let var = format!("CARGO_FEATURE_{}", path.file_stem().unwrap().to_str().unwrap().to_uppercase());
                     if let Ok(_) = env::var(var) {
-                        return Ok(Some(path.clone()))
+                        return Ok(Some((path.clone(), "link.ld")))
                     }
+                } else if ext == "x" {
+                    let var = format!("CARGO_FEATURE_{}", path.file_stem().unwrap().to_str().unwrap().to_uppercase());
+                    if let Ok(_) = env::var(var) {
+                        return Ok(Some((path.clone(), "memory.x")))
+                    }                    
                 }
             }            
         }        
@@ -37,9 +42,9 @@ pub fn find_ld_script<P: AsRef<Path>>(ld_dir: P) -> io::Result<Option<PathBuf>> 
     Ok(None)
 }
 
-pub fn copy_link_script<P: AsRef<Path>>(src: P) {
+pub fn copy_link_script<P: AsRef<Path>>(src: P, dst: &str) {
     // Pass our linker script to the top crate
     let out = PathBuf::from(env::var_os("OUT_DIR").unwrap());
-    fs::copy(src, out.join("link.ld")).unwrap();
+    fs::copy(src, out.join(dst)).unwrap();
     println!("cargo:rustc-link-search={}", out.display());    
 }
