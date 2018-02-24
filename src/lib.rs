@@ -188,6 +188,8 @@ pub struct PathElement {
 pub struct Crate {
     /// This crate's name.
     pub name: String, 
+    /// An optional `as` clause for renaming the crate.
+    pub _as: Option<String>, 
     /// A list of modules to import from the crate.
     pub modules: Vec<Module>, 
 }

@@ -80,7 +80,20 @@ pub fn gen_crate<W: Write>(cfg: Config, _out: &mut W, d: &Device) -> Result<()> 
         src.read_to_string(&mut data)?;    
         let lib_dst = src_path.join("lib.rs");
         let mut out = File::create(lib_dst)?;
-        out.write(&data.as_bytes())?;             
+        out.write(&data.as_bytes())?;
+
+        let mut wrote_crate = false;
+        for c in d.crates.iter() {
+            if let Some(ref use_as) = c._as {
+                try!(writeln!(out, "#[macro_use] pub extern crate {} as {};", c.name, use_as));
+            } else {
+                try!(writeln!(out, "#[macro_use] pub extern crate {};", c.name));
+            }            
+            wrote_crate = true;
+        }         
+        if wrote_crate {
+            try!(writeln!(out, ""));
+        }
 
         let cfg = modules::Config { 
             path: src_path.clone(), 
