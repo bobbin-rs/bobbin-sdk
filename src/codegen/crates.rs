@@ -72,6 +72,11 @@ pub fn gen_crate<W: Write>(cfg: Config, _out: &mut W, d: &Device) -> Result<()> 
         fs::create_dir(&map_path)?;
     }    
 
+    let mcu_path = src_path.join("mcu/");
+    if !mcu_path.exists() {
+        fs::create_dir(&mcu_path)?;
+    }    
+
     // Copy src/lib.rs
     {
         let lib_src = cfg.cargo_template.join("src/lib.rs");
@@ -125,12 +130,17 @@ pub fn gen_crate<W: Write>(cfg: Config, _out: &mut W, d: &Device) -> Result<()> 
         gen_hal_mod(&cfg, &mut hal_out, d, &hal_path)?;
 
 
-        writeln!(out, "pub mod map;")?;    
+        writeln!(out, "pub mod map;")?;
         let mut map_out = File::create(map_path.clone().join("mod.rs"))?;
         gen_map_mod(&cfg, &mut out, &mut map_out, d, &map_path)?;
-        writeln!(out, "")?;    
+        writeln!(out, "")?;
 
-        
+        writeln!(out, "pub mod mcu;")?;
+        let mut mcu_out = File::create(mcu_path.clone().join("mod.rs"))?;
+        gen_mcu_mod(&cfg, &mut out, &mut mcu_out, d, &mcu_path)?;
+        writeln!(out, "pub use mcu::*;")?;
+        writeln!(out, "")?;
+
     }
     Ok(())
 }
@@ -272,6 +282,12 @@ pub fn gen_map_mod<W: Write>(cfg: &modules::Config, p_out: &mut W, out: &mut W, 
     Ok(())
 }
 
+pub fn gen_mcu_mod<W: Write>(_cfg: &modules::Config, _p_out: &mut W, out: &mut W, _d: &Device, _path: &Path) -> Result<()> {
+    writeln!(out, "pub struct Mcu {{}}")?;
+    writeln!(out, "pub const MCU: Mcu = Mcu {{}};")?;
+    writeln!(out, "")?;
+    Ok(())
+}
 
 pub fn gen_signals_mod<W: Write>(cfg: &modules::Config, out: &mut W, d: &Device, path: &Path) -> Result<()> {
     // Generate Signals
