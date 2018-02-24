@@ -41,7 +41,7 @@ pub fn gen_modules<W: Write>(matches: &ArgMatches, _out: &mut W, d: &Device) -> 
         out_path.join("mod.rs")
     };
     let mut f_mod = try!(File::create(p_mod));
-    try!(writeln!(f_mod, "#[allow(unused_imports)] use {}::*;", cfg.common));
+    // try!(writeln!(f_mod, "#[allow(unused_imports)] use {}::*;", cfg.common));
     
     try!(gen_mod(&cfg, &mut f_mod, d, out_path));
 
@@ -810,7 +810,7 @@ pub fn gen_peripheral<W: Write>(cfg: &Config, out: &mut W, p: &Peripheral, ord: 
         for r in p.registers.iter() {
             for f in r.fields.iter() {
                 let f_width = f.bit_width;
-                let field_type = format!("::common::bits::U{}", f_width);
+                let field_type = format!("bits::U{}", f_width);
                 for link in f.links.iter() {
                     // FIXME: Should not be using peripheral size as return value
                     let pg_mod = link.peripheral_group.to_lowercase();
@@ -912,7 +912,7 @@ pub fn gen_clusters<W: Write>(cfg: &Config, out: &mut W, p_type: &str, clusters:
             try!(gen_doc(cfg, out, 0, &format!("{} Cluster", desc)));
         }                
         try!(writeln!(out, "pub mod {} {{", mod_name));
-        try!(writeln!(out, "    #[allow(unused_imports)] use {}::*;", cfg.common));
+        // try!(writeln!(out, "    #[allow(unused_imports)] use {}::*;", cfg.common));
         
         try!(writeln!(out, "    #[derive(Clone, Copy, PartialEq, Eq)]"));
         if let Some(ref desc) = c.description {
@@ -971,10 +971,10 @@ pub fn gen_descriptor<W: Write>(cfg: &Config, out: &mut W, _p_type: &str, desc: 
                 _ => format!("(index * {})", r_incr),
             };  
             let i_type = match dim {
-                1...32 => format!("::common::bits::R{}", dim),
-                64 => format!("::common::bits::U6"),
-                128 => format!("::common::bits::U7"),
-                256 => format!("::common::bits::U8"),
+                1...32 => format!("bits::R{}", dim),
+                64 => format!("bits::U6"),
+                128 => format!("bits::U7"),
+                256 => format!("bits::U8"),
                 _ => panic!("Unsupported dim value for {}: {}", r.name, dim),
             };
 
@@ -1094,10 +1094,10 @@ pub fn gen_register_methods<W: Write>(cfg: &Config, out: &mut W, p_type: &str, r
                 _ => format!("(index * {})", r_incr),
             };  
             let i_type = match dim {
-                1...32 => format!("::common::bits::R{}", dim),
-                64 => format!("::common::bits::U6"),
-                128 => format!("::common::bits::U7"),
-                256 => format!("::common::bits::U8"),
+                1...32 => format!("bits::R{}", dim),
+                64 => format!("bits::U6"),
+                128 => format!("bits::U7"),
+                256 => format!("bits::U8"),
                 _ => panic!("Unsupported dim value for {}: {}", r.name, dim),
             };
 
@@ -1284,7 +1284,7 @@ pub fn gen_field<W: Write>(cfg: &Config, out: &mut W, f: &Field, size: &str, _ac
     } else {
         format!("[{}]", f_lo)
     };    
-    let field_type = format!("::common::bits::U{}", f_width);
+    let field_type = format!("bits::U{}", f_width);
 
     let min_size = if f_width <= 8 {
         "u8"
@@ -1298,7 +1298,7 @@ pub fn gen_field<W: Write>(cfg: &Config, out: &mut W, f: &Field, size: &str, _ac
         let f_incr = f.dim_increment.unwrap();
         let f_getter = field_getter(&f.name.replace("%s","x"));
         let f_setter = field_setter(&f.name.replace("%s","x"));
-        let i_type = format!("::common::bits::R{}", dim);
+        let i_type = format!("bits::R{}", dim);
 
         if let Some(ref desc) = f.description {
             try!(gen_doc(cfg, out, 4, desc));

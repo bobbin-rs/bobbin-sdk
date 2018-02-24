@@ -86,9 +86,9 @@ pub fn gen_crate<W: Write>(cfg: Config, _out: &mut W, d: &Device) -> Result<()> 
         for c in d.crates.iter() {
             if c.name != "" {
                 if let Some(ref use_as) = c._as {
-                    try!(writeln!(out, "#[macro_use] pub extern crate {} as {};", c.name, use_as));
+                    try!(writeln!(out, "pub extern crate {} as {};", c.name, use_as));
                 } else {
-                    try!(writeln!(out, "#[macro_use] pub extern crate {};", c.name));
+                    try!(writeln!(out, "pub extern crate {};", c.name));
                 }                            
             }
             let c_name = if let Some(ref use_as) = c._as {
@@ -113,7 +113,7 @@ pub fn gen_crate<W: Write>(cfg: Config, _out: &mut W, d: &Device) -> Result<()> 
         let cfg = modules::Config { 
             path: src_path.clone(), 
             is_root: false, 
-            common: String::from("common"),
+            common: String::from("bobbin_common"),
         };
 
         writeln!(out, "pub mod periph;")?;    

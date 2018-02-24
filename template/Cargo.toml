@@ -6,8 +6,7 @@ version = "0.1.0"
 bobbin-build = { path = "../../bobbin-dev/mcu/bobbin-build/" }
 
 [dependencies]
-#bobbin-chip-common = { path = "../../bobbin-chip-common" }
-#bobbin-cortexm = { path = "../../bobbin-dev/mcu/bobbin-cortexm" }
+bobbin-common = { path = "../../bobbin-dev/mcu/bobbin-common" }
 stm32-common = { path = "../../bobbin-dev/mcu/bobbin-stm32/stm32-common" }
 
 [features]
