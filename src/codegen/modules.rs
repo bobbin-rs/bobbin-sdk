@@ -448,6 +448,20 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
     try!(writeln!(out, "#[allow(unused_imports)] use {}::*;", cfg.common));    
     try!(writeln!(out, ""));
 
+    if pg.modules.len() > 0 {
+        for m in pg.modules.iter() {
+            if let Some(ref use_as) = m._as {
+                try!(writeln!(out, "pub use {} as {};", m.name, use_as));
+            } else {
+                try!(writeln!(out, "pub use {};", m.name));
+            }
+        }
+    } else {
+        writeln!(out, "pub use hal::{}::*;", pg_name.to_lowercase())?;
+        writeln!(out, "")?;        
+        
+    }
+    try!(writeln!(out, ""));
 
     for p in pg.peripherals.iter() {
         if p.features.len() > 0 {
@@ -695,18 +709,6 @@ pub fn gen_peripheral_group_impl<W: Write>(cfg: &Config, out: &mut W, pg: &Perip
     try!(writeln!(out, "#[allow(unused_imports)] use {}::*;", cfg.common));
     try!(writeln!(out, ""));
 
-    if pg.modules.len() > 0 {
-        for m in pg.modules.iter() {
-            if let Some(ref use_as) = m._as {
-                try!(writeln!(out, "pub use {} as {};", m.name, use_as));
-            } else {
-                try!(writeln!(out, "pub use {};", m.name));
-            }
-        }
-        try!(writeln!(out, ""));
-    }
-
-
     // Generate Periphal Group Impl
 
     if pg.modules.len() == 0 {
@@ -745,6 +747,21 @@ pub fn gen_peripheral<W: Write>(cfg: &Config, out: &mut W, p: &Peripheral, ord: 
     let ch_type = format!("{}Ch", to_camel(&p.group_name.as_ref().unwrap()));
 
     try!(writeln!(out, "#[allow(unused_imports)] use {}::*;", cfg.common));
+    try!(writeln!(out, ""));
+
+    if p.modules.len() > 0 {
+        for m in p.modules.iter() {
+            if let Some(ref use_as) = m._as {
+                try!(writeln!(out, "pub use {} as {};", m.name, use_as));
+            } else {
+                try!(writeln!(out, "pub use {};", m.name));
+            }
+        }
+    } else {
+        let p_name = p.group_name.as_ref().unwrap_or(&p.name).to_lowercase();
+        writeln!(out, "pub use hal::{}::*;", p_name)?;
+        writeln!(out, "")?;        
+    }
     try!(writeln!(out, ""));
 
     if let Some(_) = p.dim {

@@ -186,6 +186,7 @@ pub fn gen_periph_mod<W: Write>(cfg: &modules::Config, out: &mut W, d: &Device, 
     }
 
     for p in d.peripherals.iter() {
+        if p.modules.len() > 0 { continue }
         let p_name = p.group_name.as_ref().unwrap_or(&p.name).to_lowercase();
         try!(writeln!(out, "pub mod {};", p_name));
         let p_mod = path.join(format!("{}.rs", p_name));
@@ -194,6 +195,7 @@ pub fn gen_periph_mod<W: Write>(cfg: &modules::Config, out: &mut W, d: &Device, 
     }
 
     for pg in d.peripheral_groups.iter() {
+        if pg.modules.len() > 0 { continue }
         let pg_name = pg.name.to_lowercase();
         try!(writeln!(out, "pub mod {};", pg_name));
         let p_mod = path.join(format!("{}.rs", pg_name));
@@ -206,6 +208,7 @@ pub fn gen_periph_mod<W: Write>(cfg: &modules::Config, out: &mut W, d: &Device, 
 pub fn gen_hal_mod<W: Write>(_cfg: &modules::Config, out: &mut W, d: &Device, path: &Path) -> Result<()> {
 
     for p in d.peripherals.iter() {
+        if p.modules.len() > 0 { continue }        
         let p_name = p.group_name.as_ref().unwrap_or(&p.name).to_lowercase();
         try!(writeln!(out, "pub mod {};", p_name));
         let p_mod = path.join(format!("{}.rs", p_name));
@@ -216,6 +219,7 @@ pub fn gen_hal_mod<W: Write>(_cfg: &modules::Config, out: &mut W, d: &Device, pa
     }
 
     for pg in d.peripheral_groups.iter() {
+        if pg.modules.len() > 0 { continue }
         let pg_name = pg.name.to_lowercase();
         try!(writeln!(out, "pub mod {};", pg_name));
         let p_mod = path.join(format!("{}.rs", pg_name));
@@ -239,8 +243,7 @@ pub fn gen_map_mod<W: Write>(cfg: &modules::Config, p_out: &mut W, out: &mut W, 
         writeln!(p_out, "pub use map::{};", p_name)?;;
         let p_mod = path.join(format!("{}.rs", p_name));
         let mut f_mod = try!(File::create(p_mod));
-        writeln!(f_mod, "pub use hal::{}::*;", p_name)?;
-        writeln!(f_mod, "")?;
+
         try!(modules::gen_peripheral(cfg, &mut f_mod, p, ord));
         ord += 1;
     }
@@ -251,9 +254,7 @@ pub fn gen_map_mod<W: Write>(cfg: &modules::Config, p_out: &mut W, out: &mut W, 
         writeln!(p_out, "pub use map::{};", pg_name)?;;
         let p_mod = path.join(format!("{}.rs", pg_name));
         let mut f_mod = try!(File::create(p_mod));
-        writeln!(f_mod, "pub use hal::{}::*;", pg_name)?;
-        writeln!(f_mod, "")?;
-        try!(modules::gen_peripheral_group(&cfg, &mut f_mod, pg, &mut ord));
+        try!(modules::gen_peripheral_group(&cfg, &mut f_mod, pg, &mut ord));        
     }
 
 
