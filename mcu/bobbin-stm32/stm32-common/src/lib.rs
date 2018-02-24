@@ -4,6 +4,7 @@
 pub extern crate bobbin_common;
 pub extern crate bobbin_cortexm;
 pub use bobbin_common::*;
+
 pub mod chip;
 pub mod hal;
 
