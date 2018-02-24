@@ -5,7 +5,7 @@
 #[macro_use]
 extern crate std;
 
-pub extern crate alloc;
+// pub extern crate alloc;
 pub extern crate bobbin_bits as bits;
 pub mod clock;
 pub mod crc;
@@ -21,7 +21,7 @@ pub mod configure;
 pub mod enabled;
 pub mod reset;
 pub mod ring;
-pub mod heap;
+// pub mod heap;
 
 #[cfg(not(target_os="none"))]
 mod vm;
@@ -100,6 +100,12 @@ pub mod rw {
 #[cfg(not(target_os="none"))]
 pub use rw::*;
 
+pub trait Periph {
+    fn id(&self) -> &'static str;
+    fn base(&self) -> *mut u32;
+    fn ord(&self) -> usize;
+}
+
 pub trait Pin<T> {
     fn port(&self) -> T;
     fn index(&self) -> usize;
@@ -119,6 +125,11 @@ pub trait Irq {
     fn wrap<'a, F: ::core::marker::Sync + ::core::marker::Send + Poll>(&self, f: &F) -> extern "C" fn();   
 }
 
+pub trait En {
+    fn en(&self) -> bits::U1;
+    fn set_en<V: Into<bits::U1>>(&self, value: V);
+}    
+
 pub type Handler = extern "C" fn();
 
 pub trait Poll {
@@ -133,7 +144,7 @@ impl<T: Fn()> Poll for T {
 
 #[macro_export]
 macro_rules! periph {
-    ($id:ident, $ty:ident, $pid:ident, $pty:ident, $base:expr) => (
+    ($id:ident, $ty:ident, $pid:ident, $pty:ident, $base:expr, $ord:expr) => (
         pub const $id: $ty = $ty {};     
         pub const $pid: $pty = $pty($base);
         #[derive(Debug, PartialEq, Eq, Clone, Copy)]
@@ -150,7 +161,21 @@ macro_rules! periph {
             fn into(self) -> $pty {
                 $pid
             }
-        }        
+        }    
+        impl Periph for $ty {
+            #[inline]
+            fn id(&self) -> &'static str {
+                stringify!($id)
+            }
+            #[inline]
+            fn base(&self) -> *mut u32 {
+                $base as *mut u32
+            }
+            #[inline]
+            fn ord(&self) -> usize {
+                $ord
+            }
+        }    
     );
     ($id:ident, $ty:ident, $base:expr) => (    
         pub const $id: $ty = $ty($base);
