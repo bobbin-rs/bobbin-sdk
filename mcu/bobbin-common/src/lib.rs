@@ -10,6 +10,8 @@ pub extern crate bobbin_bits as bits;
 
 #[macro_use] pub mod periph;
 #[macro_use] pub mod pin;
+#[macro_use] pub mod channel;
+#[macro_use] pub mod irq;
 #[macro_use] pub mod signal;
 
 pub mod clock;
@@ -30,6 +32,8 @@ pub mod ring;
 
 pub use periph::*;
 pub use pin::*;
+pub use channel::*;
+pub use irq::*;
 
 
 #[cfg(not(target_os="none"))]
@@ -52,36 +56,36 @@ pub use rw::*;
 //     fn index(&self) -> usize;
 // }
 
-pub trait Channel<T> {
-    fn periph(&self) -> T;
-    fn index(&self) -> usize;
-}
+// pub trait Channel<T> {
+//     fn periph(&self) -> T;
+//     fn index(&self) -> usize;
+// }
 
 // pub trait AltFn<T> {
 //     fn alt_fn(&self) -> usize;
 // }
 
-pub trait Irq {
-    fn irq_num(&self) -> u8;
-    fn wrap<'a, F: ::core::marker::Sync + ::core::marker::Send + Poll>(&self, f: &F) -> extern "C" fn();   
-}
+// pub trait Irq {
+//     fn irq_num(&self) -> u8;
+//     fn wrap<'a, F: ::core::marker::Sync + ::core::marker::Send + Poll>(&self, f: &F) -> extern "C" fn();   
+// }
 
-pub trait En {
-    fn en(&self) -> bits::U1;
-    fn set_en<V: Into<bits::U1>>(&self, value: V);
-}    
+// pub trait En {
+//     fn en(&self) -> bits::U1;
+//     fn set_en<V: Into<bits::U1>>(&self, value: V);
+// }    
 
-pub type Handler = extern "C" fn();
+// pub type Handler = extern "C" fn();
 
-pub trait Poll {
-   fn poll(&self);
-}
+// pub trait Poll {
+//    fn poll(&self);
+// }
 
-impl<T: Fn()> Poll for T {
-    fn poll(&self) {
-        self()
-    }
-}
+// impl<T: Fn()> Poll for T {
+//     fn poll(&self) {
+//         self()
+//     }
+// }
 
 #[macro_export]
 macro_rules! xperiph {
@@ -193,34 +197,34 @@ macro_rules! channel {
 
 // }
 
-#[macro_export]
-macro_rules! irq {
-    ($id:ident, $ty:ident, $num:expr) => (
-        pub const $id: $ty = $ty {};
-        #[derive(PartialEq, Eq, Clone, Copy)]
-        pub struct $ty {}
-        impl Irq for $ty {
-            #[inline(always)]            
-            fn irq_num(&self) -> u8 { $num }
+// #[macro_export]
+// macro_rules! irq {
+//     ($id:ident, $ty:ident, $num:expr) => (
+//         pub const $id: $ty = $ty {};
+//         #[derive(PartialEq, Eq, Clone, Copy)]
+//         pub struct $ty {}
+//         impl Irq for $ty {
+//             #[inline(always)]            
+//             fn irq_num(&self) -> u8 { $num }
 
-            fn wrap<'a, F: ::core::marker::Sync + ::core::marker::Send + Poll>(&self, f: &F) -> extern "C" fn() {
-                static mut HANDLER: Option<usize> = None;                
-                unsafe { 
-                    // assert!(HANDLER.is_none(), "Irq is already wrapping a function");
-                    HANDLER = Some(f as *const F as usize)
-                }
-                extern "C" fn wrapper<W: Poll>() {
-                    unsafe { (*(HANDLER.unwrap() as *const W)).poll() }
-                }
-                wrapper::<F>
-            }
-        }
-        impl ::core::fmt::Debug for $ty {
-            fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-                write!(f, "[{} @ {}]", stringify!($id), $num)
-            }
-        }    
-        // unsafe impl Sync for $ty {}
-        // unsafe impl Send for $ty {}
-    )
-}
+//             fn wrap<'a, F: ::core::marker::Sync + ::core::marker::Send + Poll>(&self, f: &F) -> extern "C" fn() {
+//                 static mut HANDLER: Option<usize> = None;                
+//                 unsafe { 
+//                     // assert!(HANDLER.is_none(), "Irq is already wrapping a function");
+//                     HANDLER = Some(f as *const F as usize)
+//                 }
+//                 extern "C" fn wrapper<W: Poll>() {
+//                     unsafe { (*(HANDLER.unwrap() as *const W)).poll() }
+//                 }
+//                 wrapper::<F>
+//             }
+//         }
+//         impl ::core::fmt::Debug for $ty {
+//             fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+//                 write!(f, "[{} @ {}]", stringify!($id), $num)
+//             }
+//         }    
+//         // unsafe impl Sync for $ty {}
+//         // unsafe impl Send for $ty {}
+//     )
+// }
