@@ -2,7 +2,7 @@ use std::io::{Write, Result};
 use std::path::{Path, PathBuf};
 use clap::{ArgMatches};
 use std::fs::File;
-use std::collections::HashSet;
+use std::collections::{HashSet, HashMap};
 
 use {Access, Device, PeripheralGroup, Peripheral, Descriptor, Register, Cluster, Field, Interrupt, Exception};
 
@@ -436,6 +436,8 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
     let ch_type = format!("{}Ch", to_camel(&pg_name));
     
     let mut link_traits = HashSet::new();
+    let mut signal_types = HashSet::new();
+    let mut signals = HashMap::new();
 
     if let Some(ref desc) = pg.description {
         let desc = desc.trim();
@@ -553,11 +555,25 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
 
         // Generate Signals
 
+        println!("{}", p.name);
         for s in p.signals.iter() {
             let s_type = to_camel(&s.name);
+            println!("   {}", s_type);
+
+
             try!(writeln!(out, "impl super::sig::Signal<super::sig::{}> for {} {{}}", s_type, p_type));
             for st in s.types.iter() {
                 let st_type = to_camel(&st);
+                if !signal_types.contains(&st_type) {
+                    println!("-- {}", st_type);
+                    signal_types.insert(st_type.clone());
+                }
+                let key = s_type.clone();
+                let value = (to_camel(&p.name), st_type.clone());
+                println!("{} => {:?}", key, value);
+                signals.insert(key, value);
+
+                // println!("      {}", st_type);
                 try!(writeln!(out, "impl super::sig::Signal{}<super::sig::{}> for {} {{}}", st_type, s_type, p_type));
             }
         }
@@ -612,8 +628,9 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
 
                 for af in pin.altfns.iter() {
                     let s_type = format!("super::sig::{}", to_camel(&af.signal));
+                        // ($pin_ty:ident, $src:ident, $sty:ident, $num:expr) => {
 
-                    try!(writeln!(out, "    alt_fn!({ty}, {s_type}, {s_index});", 
+                    try!(writeln!(out, "    pin_source!({ty}, {s_type}, {s_index});", 
                         ty=ty,
                         s_type=s_type,
                         s_index=af.index,
