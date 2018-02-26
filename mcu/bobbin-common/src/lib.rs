@@ -7,6 +7,11 @@ extern crate std;
 
 // pub extern crate alloc;
 pub extern crate bobbin_bits as bits;
+
+#[macro_use] pub mod periph;
+#[macro_use] pub mod pin;
+#[macro_use] pub mod signal;
+
 pub mod clock;
 pub mod crc;
 pub mod timer;
@@ -23,6 +28,10 @@ pub mod reset;
 pub mod ring;
 // pub mod heap;
 
+pub use periph::*;
+pub use pin::*;
+
+
 #[cfg(not(target_os="none"))]
 mod vm;
 
@@ -32,93 +41,25 @@ pub use core::ops::Deref;
 pub use core::ptr::{read_volatile, write_volatile};
 
 #[cfg(not(target_os="none"))]
-pub mod rw {
-    use vm::Vm;
-    use std::cell::RefCell;
-
-    thread_local!(pub static MEM: RefCell<Vm> = RefCell::new(Vm::new()));
-
-    pub fn reset_vm() {
-        MEM.with(|m| m.borrow_mut().reset());
-    }    
-
-    pub fn add_region(addr: usize, len: usize) {
-        MEM.with(|m| m.borrow_mut().add_region(addr, len));
-    }    
-
-    pub unsafe fn read_volatile<T>(addr: *const T) -> T {
-        MEM.with(|m| m.borrow().read(addr))
-    }
-
-    pub unsafe fn write_volatile<T>(addr: *mut T, value: T) {
-        MEM.with(|m| m.borrow_mut().write(addr, value));
-    }
-
-
-
-    #[inline]
-    pub fn read<T>(addr: usize) -> T {
-        unsafe { read_volatile(addr as *const T) }
-    }
-
-    #[inline]
-    pub fn read_u32(addr: usize) -> u32 {
-        read(addr)
-    }
-
-    #[inline]
-    pub fn read_u16(addr: usize) -> u16 {
-        read(addr)
-    }
-
-    #[inline]
-    pub fn read_u8(addr: usize) -> u8 {
-        read(addr)
-    }
-
-    #[inline]
-    pub fn write<T>(addr: usize, value: T) {
-        unsafe { write_volatile(addr as *mut T, value) }
-    }
-
-    #[inline]
-    pub fn write_u32(addr: usize, value: u32) {
-        write(addr, value)
-    }
-
-    #[inline]
-    pub fn write_u16(addr: usize, value: u16) {
-        write(addr, value)
-    }
-
-    #[inline]
-    pub fn write_u8(addr: usize, value: u8) {
-        write(addr, value)
-    }    
-}
+pub mod rw;
 
 #[cfg(not(target_os="none"))]
 pub use rw::*;
 
-pub trait Periph {
-    fn id(&self) -> &'static str;
-    fn base(&self) -> *mut u32;
-    fn ord(&self) -> usize;
-}
 
-pub trait Pin<T> {
-    fn port(&self) -> T;
-    fn index(&self) -> usize;
-}
+// pub trait Pin<T> {
+//     fn port(&self) -> T;
+//     fn index(&self) -> usize;
+// }
 
 pub trait Channel<T> {
     fn periph(&self) -> T;
     fn index(&self) -> usize;
 }
 
-pub trait AltFn<T> {
-    fn alt_fn(&self) -> usize;
-}
+// pub trait AltFn<T> {
+//     fn alt_fn(&self) -> usize;
+// }
 
 pub trait Irq {
     fn irq_num(&self) -> u8;
@@ -143,7 +84,7 @@ impl<T: Fn()> Poll for T {
 }
 
 #[macro_export]
-macro_rules! periph {
+macro_rules! xperiph {
     ($id:ident, $ty:ident, $pid:ident, $pty:ident, $base:expr, $ord:expr) => (
         pub const $id: $ty = $ty {};     
         pub const $pid: $pty = $pty($base);
@@ -183,7 +124,7 @@ macro_rules! periph {
 }
 
 #[macro_export]
-macro_rules! pin {
+macro_rules! xpin {
     ($id:ident, $ty:ident, $port_id:ident, $port_type:ident, $base_id:ident, $base_type:ident, $base_port:ident, $index:expr) => (
         pub const $id: $ty = $ty {};     
         pub const $base_id: $base_type = $base_type { port: $base_port, index: $index };
@@ -240,17 +181,17 @@ macro_rules! channel {
     )    
 }
 
-#[macro_export]
-macro_rules! alt_fn {
-    ($ty:ty, $sig:ty, $num:expr) => (
-        impl AltFn<$sig> for $ty {
-            #[inline(always)]            
-            fn alt_fn(&self) -> usize { $num }
-        }
+// #[macro_export]
+// macro_rules! alt_fn {
+//     ($ty:ty, $sig:ty, $num:expr) => (
+//         impl AltFn<$sig> for $ty {
+//             #[inline(always)]            
+//             fn alt_fn(&self) -> usize { $num }
+//         }
         
-    )
+//     )
 
-}
+// }
 
 #[macro_export]
 macro_rules! irq {
