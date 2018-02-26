@@ -1,5 +1,5 @@
 pub use chip::tim_bas::*;
-pub use bobbin_common::{Irq, Poll};
+// pub use bobbin_common::{Irq, Poll};
 pub use bobbin_common::enabled::*;
 pub use bobbin_common::timer::*;
 pub use core::ops::Deref;
@@ -154,21 +154,21 @@ impl TimBasCounter {
         self.count.set(value);
     }
 
-    #[inline]
-    fn inc(&self, value: u32) {
-        self.set(self.get().wrapping_add(value))
-    }
+    // #[inline]
+    // fn inc(&self, value: u32) {
+    //     self.set(self.get().wrapping_add(value))
+    // }
 
 }
 
-impl Poll for TimBasCounter {
-    fn poll(&self) {
-        if self.tim.test_timeout() {
-            self.tim.clr_timeout();
-            self.inc(1);
-        }
-    }
-}
+// impl Poll for TimBasCounter {
+//     fn poll(&self) {
+//         if self.tim.test_timeout() {
+//             self.tim.clr_timeout();
+//             self.inc(1);
+//         }
+//     }
+// }
 
 impl Counter<u32> for TimBasCounter {
     fn counter(&self) -> u32 {

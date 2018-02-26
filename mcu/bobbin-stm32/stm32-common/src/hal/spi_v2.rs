@@ -5,11 +5,11 @@ pub use ::chip::spi_v2::*;
 
 
 use bobbin_common::ring::Ring;
-use bobbin_common::{Irq, Poll};
+// use bobbin_common::{Irq, Poll};
 use bobbin_common::digital::DigitalOutput;
 use bobbin_cortexm::wfi;
-use bobbin_cortexm::hal::nvic;
-use bobbin_cortexm::hal::scb::*;
+// use bobbin_cortexm::hal::nvic;
+// use bobbin_cortexm::hal::scb::*;
 use ::hal::gpio::GpioPin;
 
 use core::cell::Cell;
@@ -208,10 +208,10 @@ impl<'a> SpiDriver<'a> {
         }
     }
 
-    pub fn enable_irq<I: Irq>(&self, irq: &I) {        
-        SCB.set_irq_handler(irq.irq_num() as usize, Some(irq.wrap(self)));
-        nvic::set_enabled(irq.irq_num() as usize, true);
-    }
+    // pub fn enable_irq<I: Irq>(&self, irq: &I) {        
+    //     SCB.set_irq_handler(irq.irq_num() as usize, Some(irq.wrap(self)));
+    //     nvic::set_enabled(irq.irq_num() as usize, true);
+    // }
 
     pub fn enqueue(&self, action: SpiAction) {        
         self.tx.enqueue(action);
@@ -359,35 +359,35 @@ impl<'a> SpiDriver<'a> {
     }
 }
 
-impl<'a> Poll for SpiDriver<'a> {
-    fn poll(&self) {       
-        let sr = self.spi.sr();
-        let action = self.action().unwrap();
-        let repeat = self.repeat.get();
-        // println!("SR: {:?} Action: {:?}", sr, self.action());
-        if sr.rxne() != 0 {
-            match action {
-                SpiAction::Write(b) => { 
-                    let _: u8  = self.spi.rx(); 
-                    if repeat > 0 {
-                        self.repeat.set(repeat - 1);
-                        self.spi.tx(b);
-                    } else {
-                        self.action.set(None);
-                    }
-                },
-                SpiAction::Transfer(b) => { 
-                    self.rx.enqueue(self.spi.rx()); 
-                    if repeat > 0 { 
-                        self.repeat.set(repeat - 1);
-                        self.spi.tx(b);
-                    } else {
-                        self.action.set(None);
-                    }
-                },
-                _ => {},
-            }            
-            self.next();
-        }
-    }
-}
+// impl<'a> Poll for SpiDriver<'a> {
+//     fn poll(&self) {       
+//         let sr = self.spi.sr();
+//         let action = self.action().unwrap();
+//         let repeat = self.repeat.get();
+//         // println!("SR: {:?} Action: {:?}", sr, self.action());
+//         if sr.rxne() != 0 {
+//             match action {
+//                 SpiAction::Write(b) => { 
+//                     let _: u8  = self.spi.rx(); 
+//                     if repeat > 0 {
+//                         self.repeat.set(repeat - 1);
+//                         self.spi.tx(b);
+//                     } else {
+//                         self.action.set(None);
+//                     }
+//                 },
+//                 SpiAction::Transfer(b) => { 
+//                     self.rx.enqueue(self.spi.rx()); 
+//                     if repeat > 0 { 
+//                         self.repeat.set(repeat - 1);
+//                         self.spi.tx(b);
+//                     } else {
+//                         self.action.set(None);
+//                     }
+//                 },
+//                 _ => {},
+//             }            
+//             self.next();
+//         }
+//     }
+// }

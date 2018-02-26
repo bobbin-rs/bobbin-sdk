@@ -1,6 +1,6 @@
 //! Extends the ```chip::nvic``` module.
 
-pub use bobbin_common::{Handler, Irq, Poll};
+// pub use bobbin_common::{Handler, Irq, Poll};
 pub use ::chip::nvic::*;
 
 /// Returns `true` if IRQ `irq` is enabled.
@@ -65,12 +65,12 @@ pub trait NvicEnabled {
     }
 }
 
-impl<I: Irq> NvicEnabled for I {
-    fn nvic_enabled(&self) -> bool {
-        enabled(self.irq_num() as usize)
-    }
-    fn nvic_set_enabled(&self, value: bool) -> &Self {
-        set_enabled(self.irq_num() as usize, value);
-        self
-    }
-}
+// impl<I: Irq> NvicEnabled for I {
+//     fn nvic_enabled(&self) -> bool {
+//         enabled(self.irq_num() as usize)
+//     }
+//     fn nvic_set_enabled(&self, value: bool) -> &Self {
+//         set_enabled(self.irq_num() as usize, value);
+//         self
+//     }
+// }

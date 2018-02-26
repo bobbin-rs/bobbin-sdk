@@ -5,11 +5,11 @@ pub use ::chip::i2c_v2::*;
 
 use bobbin_common::bits::*;
 
-use bobbin_common::{Irq, Poll};
+// use bobbin_common::{Irq, Poll};
 use bobbin_common::ring::Ring;
 use bobbin_cortexm::wfi;
-use bobbin_cortexm::hal::nvic;
-use bobbin_cortexm::hal::scb::*;
+// use bobbin_cortexm::hal::nvic;
+// use bobbin_cortexm::hal::scb::*;
 
 use core::cell::Cell;
 use core::marker::PhantomData;
@@ -259,10 +259,10 @@ impl<'a> I2cDriver<'a> {
             _phantom: PhantomData,
         }
     }
-    pub fn enable_irq<I: Irq>(&self, irq: &I) {
-        SCB.set_irq_handler(irq.irq_num() as usize, Some(irq.wrap(self)));
-        nvic::set_enabled(irq.irq_num() as usize, true);
-    }
+    // pub fn enable_irq<I: Irq>(&self, irq: &I) {
+    //     SCB.set_irq_handler(irq.irq_num() as usize, Some(irq.wrap(self)));
+    //     nvic::set_enabled(irq.irq_num() as usize, true);
+    // }
 
     pub fn action(&self) -> Option<I2cAction> {
         self.action.get()
@@ -359,45 +359,45 @@ impl<'a> I2cDriver<'a> {
     }
 }
 
-impl<'a> Poll for I2cDriver<'a> {
-    fn poll(&self) {       
-        let isr = self.i2c.isr();
-        let action = self.action().unwrap();
-        // println!("ISR: {:?} Action: {:?}", isr, action);
-        match action {
-            I2cAction::WriteByte(n) => {
-                if isr.test_txis() {
-                    self.i2c.set_txdr(|r| r.set_txdata(n));
-                    self.action.set(None)
-                } else {
-                    panic!("Unexpected Interrupt: {:?}", isr);
-                }
-            },
-            I2cAction::ReadByte(n) => {
-                if isr.test_rxne() {
-                    self.rx.enqueue(self.i2c.rxdr().rxdata().value());
-                    if n > 0 {
-                        self.action.set(Some(I2cAction::ReadByte(n - 1)))
-                    } else {
-                        self.action.set(None)
-                    }                    
-                } else {                    
-                    panic!("Unexpected Interrupt: {:?}", isr);
-                }
-            },
-            I2cAction::Stop => {
-                if isr.test_tc() {
-                    self.i2c.with_cr2(|r| r.set_stop(1));                    
-                    self.i2c.with_cr1(|r| r.set_stopie(1).set_tcie(0));
-                } else if isr.test_stopf() {
-                    self.i2c.with_cr1(|r| r.set_stopie(0).set_pe(0));
-                    self.action.set(None)
-                } else {
-                    panic!("Unexpected Interrupt: {:?}", isr);
-                }
-            },
-            _ => panic!("Poll in unexpected state: {:?}", action),
-        }
-        self.next();
-    }
-}
+// impl<'a> Poll for I2cDriver<'a> {
+//     fn poll(&self) {       
+//         let isr = self.i2c.isr();
+//         let action = self.action().unwrap();
+//         // println!("ISR: {:?} Action: {:?}", isr, action);
+//         match action {
+//             I2cAction::WriteByte(n) => {
+//                 if isr.test_txis() {
+//                     self.i2c.set_txdr(|r| r.set_txdata(n));
+//                     self.action.set(None)
+//                 } else {
+//                     panic!("Unexpected Interrupt: {:?}", isr);
+//                 }
+//             },
+//             I2cAction::ReadByte(n) => {
+//                 if isr.test_rxne() {
+//                     self.rx.enqueue(self.i2c.rxdr().rxdata().value());
+//                     if n > 0 {
+//                         self.action.set(Some(I2cAction::ReadByte(n - 1)))
+//                     } else {
+//                         self.action.set(None)
+//                     }                    
+//                 } else {                    
+//                     panic!("Unexpected Interrupt: {:?}", isr);
+//                 }
+//             },
+//             I2cAction::Stop => {
+//                 if isr.test_tc() {
+//                     self.i2c.with_cr2(|r| r.set_stop(1));                    
+//                     self.i2c.with_cr1(|r| r.set_stopie(1).set_tcie(0));
+//                 } else if isr.test_stopf() {
+//                     self.i2c.with_cr1(|r| r.set_stopie(0).set_pe(0));
+//                     self.action.set(None)
+//                 } else {
+//                     panic!("Unexpected Interrupt: {:?}", isr);
+//                 }
+//             },
+//             _ => panic!("Poll in unexpected state: {:?}", action),
+//         }
+//         self.next();
+//     }
+// }
