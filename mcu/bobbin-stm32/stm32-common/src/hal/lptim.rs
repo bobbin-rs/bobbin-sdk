@@ -56,7 +56,7 @@ impl SetPeriod<u16> for LptimPeriph {
     fn set_period(&self, value: u16) -> &Self {
         self
             .set_enabled(true)
-            .set_arr(|r| r.set_arr((value - 1)));
+            .set_arr(|r| r.set_arr(value - 1));
         while self.isr().arrok() == 0 {}            
         self
     }

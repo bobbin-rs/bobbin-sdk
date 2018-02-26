@@ -224,7 +224,7 @@ impl Period<u16> for TimGenPeriph {
 
 impl SetPeriod<u16> for TimGenPeriph {  
     fn set_period(&self, value: u16) -> &Self {
-        self.set_arr(|r| r.set_arrl((value - 1 )))
+        self.set_arr(|r| r.set_arrl(value - 1 ))
     }
 }
 
