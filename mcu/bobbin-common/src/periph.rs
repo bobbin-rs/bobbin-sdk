@@ -105,13 +105,13 @@ pub trait Periph: Default {
     fn ord(&self) -> usize;
 }
 
-pub trait PeriphEnabled {
-    fn periph_enabled(&self) -> bool;
-    fn set_periph_enabled(&self, value: bool);
-    fn enable_periph(&self) { self.set_periph_enabled(true) }
-    fn disable_periph(&self) { self.set_periph_enabled(true) }
+pub trait ClockEnabled : Periph {
+    fn clock_enabled(&self) -> bool;
+    fn set_clock_enabled(&self, value: bool);
+    fn enable_clock(&self) { self.set_clock_enabled(true) }
+    fn disable_clock(&self) { self.set_clock_enabled(true) }
 }
 
-pub trait PeriphReset<P> {
-    fn periph_reset(&self) -> bool;
+pub trait Reset : Periph {
+    fn clock_reset(&self) -> bool;
 }

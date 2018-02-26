@@ -26,7 +26,6 @@ pub mod can;
 pub mod watchdog;
 pub mod configure;
 pub mod enabled;
-pub mod reset;
 pub mod ring;
 // pub mod heap;
 
