@@ -3,7 +3,7 @@ use periph::Periph;
 
 #[macro_export]
 macro_rules! pin {
-    ($id:ident, $ty:ident, $port_id:ident, $port_type:ident, $base_id:ident, $base_type:ident, $base_port:ident, $index:expr) => (
+    ($id:ident, $ty:ident, $port_id:ident, $port_type:ident, $base_id:ident, $base_type:ident, $base_port:ident, $index:expr) => {
         pub const $id: $ty = $ty {};
         pub const $base_id: $base_type = $base_type { port: $base_port, index: $index };
        
@@ -30,7 +30,7 @@ macro_rules! pin {
                 $base_id
             }
         }        
-    )
+    }
 }
 
 
@@ -76,7 +76,7 @@ macro_rules! alt_fn {
 
 #[macro_export]
 macro_rules! pin_source {
-    ($pin_ty:ident, $src:ident, $sty:ident, $num:expr) => {
+    ($pin_ty:ident, $src:path, $sty:path, $num:expr) => {
         impl $crate::pin::PinSource<$sty, $src> for $pin_ty {
             fn alt_fn(&self) -> u8 { $num}
         }
