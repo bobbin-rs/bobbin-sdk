@@ -271,8 +271,8 @@ pub fn gen_map_mod<W: Write>(cfg: &modules::Config, p_out: &mut W, out: &mut W, 
         try!(modules::gen_peripheral_group(&cfg, &mut f_mod, pg, &mut ord));        
     }
 
-    gen_signals_mod(&cfg, out, d, path)?;
-    gen_pins_mod(&cfg, out, d, path)?;
+    let signals = gen_signals_mod(&cfg, out, d, path)?;
+    gen_pins_mod(&cfg, out, d, path, &signals)?;
     gen_interrupts_mod(&cfg, out, d, path)?; 
 
     writeln!(p_out, "pub use map::pin;")?;;
@@ -290,7 +290,7 @@ pub fn gen_mcu_mod<W: Write>(_cfg: &modules::Config, _p_out: &mut W, out: &mut W
     Ok(())
 }
 
-pub fn gen_signals_mod<W: Write>(cfg: &modules::Config, out: &mut W, d: &Device, path: &Path) -> Result<()> {
+pub fn gen_signals_mod<W: Write>(cfg: &modules::Config, out: &mut W, d: &Device, path: &Path) -> Result<modules::SignalMap> {
     // Generate Signals
 
     {    
@@ -300,14 +300,12 @@ pub fn gen_signals_mod<W: Write>(cfg: &modules::Config, out: &mut W, d: &Device,
         let mut f_mod = try!(File::create(p_mod));
         try!(writeln!(f_mod, "pub use ::bobbin_common::signal::*;"));
         try!(writeln!(out, ""));
-        try!(modules::gen_signals(cfg, &mut f_mod, &d));
-    }
-    
-    Ok(())
+        modules::gen_signals(cfg, &mut f_mod, &d)
+    }    
 }
 
 
-pub fn gen_pins_mod<W: Write>(cfg: &modules::Config, out: &mut W, d: &Device, path: &Path) -> Result<()> {
+pub fn gen_pins_mod<W: Write>(cfg: &modules::Config, out: &mut W, d: &Device, path: &Path, signals: &modules::SignalMap) -> Result<()> {
     // Generate Pins
 
     {    
@@ -317,7 +315,7 @@ pub fn gen_pins_mod<W: Write>(cfg: &modules::Config, out: &mut W, d: &Device, pa
         let mut f_mod = try!(File::create(p_mod));
         try!(writeln!(f_mod, "pub use ::bobbin_common::pin::*;"));
         try!(writeln!(out, ""));
-        try!(modules::gen_pins(cfg, &mut f_mod, &d));
+        try!(modules::gen_pins(cfg, &mut f_mod, &d, signals));
     }
     
     Ok(())

@@ -8,6 +8,8 @@ use {Access, Device, PeripheralGroup, Peripheral, Descriptor, Register, Cluster,
 
 use super::{size_type, field_getter, field_setter, field_with, field_test, field_ptr, field_mut, field_name, to_camel};
 
+pub type SignalMap = HashMap<String, (String, String, String)>;
+
 pub struct Config {
     pub path: PathBuf,
     pub is_root: bool,
@@ -343,7 +345,7 @@ pub fn gen_interrupts<W: Write>(cfg: &Config, out: &mut W, d: &Device, interrupt
     }
     Ok(())
 }
-pub fn gen_pins<W: Write>(_cfg: &Config, out: &mut W, d: &Device) -> Result<()> {
+pub fn gen_pins<W: Write>(_cfg: &Config, out: &mut W, d: &Device, signals: &SignalMap) -> Result<()> {
     let mut mod_set = HashSet::new();
 
     for pg in &d.peripheral_groups {
@@ -364,6 +366,7 @@ pub fn gen_pins<W: Write>(_cfg: &Config, out: &mut W, d: &Device) -> Result<()> 
                 let ty = to_camel(&pin.name);
                 let base_name = format!("{}_PIN", id);
                 let base_port = format!("{}_PERIPH", p_name);
+                let pin_index = pin.index.unwrap();
 
                 try!(writeln!(out, "pin!({id}, {ty}, {port_id}, {port_type}, {base_id}, {base_type}, {base_port}, {index});",
                     id=id,
@@ -373,15 +376,30 @@ pub fn gen_pins<W: Write>(_cfg: &Config, out: &mut W, d: &Device) -> Result<()> 
                     base_id=base_name,
                     base_type=base_type,
                     base_port=base_port,
-                    index=pin.index.unwrap(),
+                    index=pin_index,
                 ));
+
+                for af in pin.altfns.iter() {
+                    let sig = to_camel(&af.signal);
+                    if let Some(&(ref src_mod, ref src_type, ref sig_type)) = signals.get(&sig) {
+                        try!(writeln!(out, "   pin_source!({}, super::{}::{}, super::sig::{}, {});",
+                            ty,
+                            src_mod,
+                            src_type,
+                            sig_type,
+                            af.index,
+                        ));
+                    } else {
+                        // println!("Error: Signal {} has not been defined.", sig);
+                    }                
+                }                
             }
         }
     }    
     Ok(())
 }
 
-pub fn gen_signals<W: Write>(_cfg: &Config, out: &mut W, d: &Device) -> Result<()> {
+pub fn gen_signals<W: Write>(_cfg: &Config, out: &mut W, d: &Device) -> Result<SignalMap> {
     let mut signal_types = HashSet::new();
     let mut signals = HashMap::new();
 
@@ -477,7 +495,7 @@ pub fn gen_signals<W: Write>(_cfg: &Config, out: &mut W, d: &Device) -> Result<(
         }
     }       
 
-    Ok(())
+    Ok(signals)
 }
 
 pub fn gen_signals_orig<W: Write>(_cfg: &Config, out: &mut W, d: &Device) -> Result<()> {
