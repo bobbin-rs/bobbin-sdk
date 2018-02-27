@@ -1,5 +1,5 @@
 #![no_std]
-#![feature(const_fn, core_intrinsics, allocator_api, alloc)]
+#![feature(use_extern_macros, const_fn, core_intrinsics, allocator_api, alloc)]
 
 #[cfg(not(target_os="none"))]
 #[macro_use]
@@ -8,11 +8,14 @@ extern crate std;
 // pub extern crate alloc;
 pub extern crate bobbin_bits as bits;
 
-#[macro_use] pub mod periph;
-#[macro_use] pub mod pin;
-#[macro_use] pub mod channel;
-#[macro_use] pub mod irq;
-#[macro_use] pub mod signal;
+#[macro_use]
+mod macros;
+
+pub mod periph;
+pub mod pin;
+pub mod channel;
+pub mod irq;
+pub mod signal;
 
 pub mod clock;
 pub mod crc;
@@ -53,3 +56,25 @@ pub trait En {
     fn en(&self) -> bits::U1;
     fn set_en<V: Into<bits::U1>>(&self, value: V);
 }    
+
+impl<PORT: En + periph::Periph> En for pin::Pin<PORT>
+{
+    fn en(&self) -> bits::U1 {
+        self.port().en()
+    }
+
+    fn set_en<V: Into<bits::U1>>(&self, value: V) {
+        self.port().set_en(value);
+    }
+}
+
+// impl<PIN: En> En for ::core::ops::Deref<Target=PIN> 
+// {
+//     fn en(&self) -> bits::U1 {
+//         self.deref().en()
+//     }
+
+//     fn set_en<V: Into<bits::U1>>(&self, value: V) {
+//         self.deref().set_en(value);
+//     }
+// }

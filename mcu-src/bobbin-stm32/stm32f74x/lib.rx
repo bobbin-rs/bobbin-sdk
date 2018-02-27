@@ -12,7 +12,7 @@
         (variant (name STM32F76xxI) (link "stm32f6xxI.ld"))
     )
     (crate
-        (name stm32_common)
+        ;(name stm32_common)
         (module (name exc))
         (module (name nvic))
         (module (name scb))
