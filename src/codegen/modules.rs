@@ -345,6 +345,105 @@ pub fn gen_interrupts<W: Write>(cfg: &Config, out: &mut W, d: &Device, interrupt
 }
 
 pub fn gen_signals<W: Write>(_cfg: &Config, out: &mut W, d: &Device) -> Result<()> {
+    let mut signal_types = HashSet::new();
+    let mut signals = HashMap::new();
+
+    // Collect signals and generate signal types
+
+    for pg in &d.peripheral_groups {
+        let pg_mod = pg.name.to_lowercase();
+        for p in &pg.peripherals {
+            for s in p.signals.iter() {
+                let s_type = to_camel(&s.name);
+                for st in s.types.iter() {
+                    let st_type = format!("Sig{}", to_camel(&st));
+                    if !signal_types.contains(&st_type) {
+                        try!(writeln!(out, "signal_type!({}, {});", &st, st_type));
+                        signal_types.insert(st_type.clone());
+                    }
+                    let key = s_type.clone();
+                    let value = (pg_mod.clone(), to_camel(&p.name), st_type.clone());
+                    println!("   {} => {:?}", key, value);
+                    signals.insert(key, value);
+                }
+            }
+
+            for ch in p.channels.iter() {
+                let ch_type = to_camel(&ch.name);
+                for s in ch.signals.iter() {
+                    let s_type = to_camel(&s.name);
+                    for st in s.types.iter() {
+                        let st_type = format!("Sig{}", to_camel(&st));
+                        if !signal_types.contains(&st_type) {
+                            try!(writeln!(out, "signal_type!({}, {});", &st, st_type));                            
+                            signal_types.insert(st_type.clone());
+                        }                 
+                        let key = s_type.clone();
+                        let value = (pg_mod.clone(), ch_type.clone(), st_type.clone());
+                        println!("  {} => {:?}", key, value);
+                        signals.insert(key, value);
+                    }
+                }          
+            }
+        }
+    }
+
+    try!(writeln!(out, ""));
+
+    // Generate periph_signals and channel_signals
+
+    for pg in &d.peripheral_groups {
+        try!(writeln!(out, "// {}", pg.name));
+        let pg_mod = pg.name.to_lowercase();
+        for p in &pg.peripherals {
+            for s in p.signals.iter() {
+                for st in s.types.iter() {
+                    let st_type = format!("Sig{}", to_camel(&st));                    
+                    try!(writeln!(out, "periph_signal!(super::{}::{}, {});", pg_mod, to_camel(&p.name), st_type));
+                }
+            }
+
+            for ch in p.channels.iter() {
+                for s in ch.signals.iter() {
+                    for st in s.types.iter() {
+                        let st_type = format!("Sig{}", to_camel(&st));                    
+                        try!(writeln!(out, "channel_signal!(super::{}::{}, {});", pg_mod, to_camel(&ch.name), st_type));
+                    }
+                }          
+            }
+        }
+        try!(writeln!(out, ""));
+    }    
+    // Generate pin_source maps
+
+    for pg in &d.peripheral_groups {
+        for p in &pg.peripherals {
+            for pin in p.pins.iter() {
+                let pin_type = to_camel(&pin.name);
+                let pin_index = pin.index.unwrap();
+                for af in pin.altfns.iter() {
+                    let sig = &af.signal;
+                    if let Some(&(ref src_mod, ref src_type, ref sig_type)) = signals.get(sig) {
+                        try!(writeln!(out, "pin_source!({}, super::{}::{}, {}, {}",
+                            pin_type,
+                            src_mod,
+                            src_type,
+                            sig_type,
+                            pin_index,
+                        ));
+                    } else {
+                        // println!("Error: Signal {} has not been defined.", sig);
+                    }                
+                }
+                try!(writeln!(out, ""));
+            }        
+        }
+    }       
+
+    Ok(())
+}
+
+pub fn gen_signals_orig<W: Write>(_cfg: &Config, out: &mut W, d: &Device) -> Result<()> {
     let mut signals = HashSet::new();
     let mut signal_types = HashSet::new();
 
@@ -561,7 +660,7 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
             println!("   {}", s_type);
 
 
-            try!(writeln!(out, "impl super::sig::Signal<super::sig::{}> for {} {{}}", s_type, p_type));
+            // try!(writeln!(out, "impl super::sig::Signal<super::sig::{}> for {} {{}}", s_type, p_type));
             for st in s.types.iter() {
                 let st_type = to_camel(&st);
                 if !signal_types.contains(&st_type) {
@@ -570,22 +669,35 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
                 }
                 let key = s_type.clone();
                 let value = (to_camel(&p.name), st_type.clone());
-                println!("{} => {:?}", key, value);
+                println!("   {} => {:?}", key, value);
                 signals.insert(key, value);
 
                 // println!("      {}", st_type);
-                try!(writeln!(out, "impl super::sig::Signal{}<super::sig::{}> for {} {{}}", st_type, s_type, p_type));
+                // try!(writeln!(out, "impl super::sig::Signal{}<super::sig::{}> for {} {{}}", st_type, s_type, p_type));
             }
         }
 
         for ch in p.channels.iter() {
             let ch_type = to_camel(&ch.name);
+            println!("  {}", ch_type);
+
             for s in ch.signals.iter() {
                 let s_type = to_camel(&s.name);
-                try!(writeln!(out, "impl super::sig::Signal<super::sig::{}> for {} {{}}", s_type, ch_type));
+                println!("     {}", s_type);                
+
+                // try!(writeln!(out, "impl super::sig::Signal<super::sig::{}> for {} {{}}", s_type, ch_type));
                 for st in s.types.iter() {
                     let st_type = to_camel(&st);
-                    try!(writeln!(out, "impl super::sig::Signal{}<super::sig::{}> for {} {{}}", st_type, s_type, ch_type));
+                    if !signal_types.contains(&st_type) {
+                        println!("--   {}", st_type);
+                        signal_types.insert(st_type.clone());
+                    }                 
+                    let key = s_type.clone();
+                    let value = (ch_type.clone(), st_type.clone());
+                    println!("  {} => {:?}", key, value);
+                    signals.insert(key, value);
+                       
+                    // try!(writeln!(out, "impl super::sig::Signal{}<super::sig::{}> for {} {{}}", st_type, s_type, ch_type));
                 }
             }            
         }
@@ -626,17 +738,17 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
                     index=pin.index.unwrap(),
                 ));
 
-                for af in pin.altfns.iter() {
-                    let s_type = format!("super::sig::{}", to_camel(&af.signal));
-                        // ($pin_ty:ident, $src:ident, $sty:ident, $num:expr) => {
+                // for af in pin.altfns.iter() {
+                //     let s_type = format!("super::sig::{}", to_camel(&af.signal));
+                //         // ($pin_ty:ident, $src:ident, $sty:ident, $num:expr) => {
 
-                    try!(writeln!(out, "    pin_source!({ty}, {s_type}, {s_index});", 
-                        ty=ty,
-                        s_type=s_type,
-                        s_index=af.index,
-                    ));
-                }
-                try!(writeln!(out, ""));
+                //     // try!(writeln!(out, "    pin_source!({ty}, {s_type}, {s_index});", 
+                //     //     ty=ty,
+                //     //     s_type=s_type,
+                //     //     s_index=af.index,
+                //     // ));
+                // }
+                // try!(writeln!(out, ""));
             }        
         }       
     }
