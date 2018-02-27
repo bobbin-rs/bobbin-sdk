@@ -1,6 +1,8 @@
+pub use chip::gpio::*;
 pub use bobbin_common::digital::*;
 use bobbin_common::bits::*;
-pub use chip::gpio::*;
+use bobbin_common::pin::SetSource;
+
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum Mode {
@@ -219,21 +221,8 @@ impl DigitalOutput for GpioPin {
     }
 }
 
-use bobbin_common::signal::SignalType;
-use bobbin_common::pin::PinSource;
-
-pub trait SetSource<STY: SignalType, SRC> {
-    fn set_source(&self, src: SRC) -> &Self;
-}
-
-impl<SRC, STY, PIN> SetSource<STY, SRC> for PIN
-where
-    STY: SignalType,
-    Self: ::core::ops::Deref<Target=GpioPin> + PinSource<STY, SRC>
-{
-    #[inline]
-    fn set_source(&self, src: SRC) -> &Self {
-        self.deref().mode_alt_fn(self.alt_fn_for(src) as usize);
-        self
+impl SetSource for GpioPin {
+    fn set_source(&self, src: u8) {
+        self.mode_alt_fn(src as usize);
     }
 }

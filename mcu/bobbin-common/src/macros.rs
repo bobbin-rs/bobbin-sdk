@@ -87,6 +87,13 @@ macro_rules! pin {
                 $base_id
             }
         }        
+
+        impl PeriphPin<$base_type> for $ty {
+            #[inline(always)]
+            fn periph_pin(&self) -> &$base_type {
+                &$base_id
+            }
+        }
     }
 }
 
