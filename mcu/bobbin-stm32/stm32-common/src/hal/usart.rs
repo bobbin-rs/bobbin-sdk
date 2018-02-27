@@ -44,6 +44,10 @@ impl Config {
         self.set_brr(clock / baud)
     }
 
+    pub fn set_baud_clock(self, baud: u32, clock: u32) -> Self {
+        self.set_brr(clock / baud)
+    }
+
     pub fn set_brr(mut self, brr: u32) -> Self {
         self.brr = Brr(0)
             .set_div_fraction((brr & 0b1111) as u32)
