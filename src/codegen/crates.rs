@@ -271,10 +271,11 @@ pub fn gen_map_mod<W: Write>(cfg: &modules::Config, p_out: &mut W, out: &mut W, 
         try!(modules::gen_peripheral_group(&cfg, &mut f_mod, pg, &mut ord));        
     }
 
-
     gen_signals_mod(&cfg, out, d, path)?;
+    gen_pins_mod(&cfg, out, d, path)?;
     gen_interrupts_mod(&cfg, out, d, path)?; 
 
+    writeln!(p_out, "pub use map::pin;")?;;
     writeln!(p_out, "pub use map::sig;")?;;
     writeln!(p_out, "pub use map::irq;")?;;
 
@@ -297,7 +298,26 @@ pub fn gen_signals_mod<W: Write>(cfg: &modules::Config, out: &mut W, d: &Device,
         try!(writeln!(out, "pub mod {};", p_name));
         let p_mod = path.join(format!("{}.rs", p_name));
         let mut f_mod = try!(File::create(p_mod));
+        try!(writeln!(f_mod, "pub use ::bobbin_common::signal::*;"));
+        try!(writeln!(out, ""));
         try!(modules::gen_signals(cfg, &mut f_mod, &d));
+    }
+    
+    Ok(())
+}
+
+
+pub fn gen_pins_mod<W: Write>(cfg: &modules::Config, out: &mut W, d: &Device, path: &Path) -> Result<()> {
+    // Generate Pins
+
+    {    
+        let p_name = "pin";
+        try!(writeln!(out, "pub mod {};", p_name));
+        let p_mod = path.join(format!("{}.rs", p_name));
+        let mut f_mod = try!(File::create(p_mod));
+        try!(writeln!(f_mod, "pub use ::bobbin_common::pin::*;"));
+        try!(writeln!(out, ""));
+        try!(modules::gen_pins(cfg, &mut f_mod, &d));
     }
     
     Ok(())

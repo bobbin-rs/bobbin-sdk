@@ -343,6 +343,43 @@ pub fn gen_interrupts<W: Write>(cfg: &Config, out: &mut W, d: &Device, interrupt
     }
     Ok(())
 }
+pub fn gen_pins<W: Write>(_cfg: &Config, out: &mut W, d: &Device) -> Result<()> {
+    let mut mod_set = HashSet::new();
+
+    for pg in &d.peripheral_groups {
+        let pg_mod = pg.name.to_lowercase();
+        for p in &pg.peripherals {
+            let p_name = p.name.to_uppercase();
+            let p_type = to_camel(&p.name);
+            let base_type = format!("{}Pin", to_camel(&pg.name));
+            
+            for pin in p.pins.iter() {
+                if !mod_set.contains(&pg_mod) {
+                    try!(writeln!(out, "pub use super::{}::*;", pg_mod));
+                    try!(writeln!(out, ""));
+                    mod_set.insert(pg_mod.clone());
+                }
+
+                let id = pin.name.to_uppercase();                
+                let ty = to_camel(&pin.name);
+                let base_name = format!("{}_PIN", id);
+                let base_port = format!("{}_PERIPH", p_name);
+
+                try!(writeln!(out, "pin!({id}, {ty}, {port_id}, {port_type}, {base_id}, {base_type}, {base_port}, {index});",
+                    id=id,
+                    ty=ty,
+                    port_id=p_name,
+                    port_type=p_type,
+                    base_id=base_name,
+                    base_type=base_type,
+                    base_port=base_port,
+                    index=pin.index.unwrap(),
+                ));
+            }
+        }
+    }    
+    Ok(())
+}
 
 pub fn gen_signals<W: Write>(_cfg: &Config, out: &mut W, d: &Device) -> Result<()> {
     let mut signal_types = HashSet::new();
@@ -531,7 +568,7 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
     };
 
     let pg_type = format!("{}Periph", to_camel(&pg_name));
-    let pin_type = format!("{}Pin", to_camel(&pg_name));
+    // let pin_type = format!("{}Pin", to_camel(&pg_name));
     let ch_type = format!("{}Ch", to_camel(&pg_name));
     
     let mut link_traits = HashSet::new();
@@ -706,52 +743,52 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
     }    
     // try!(writeln!(out, ""));
 
-    let mut pin_count = 0;
-    for p in pg.peripherals.iter() {
-        pin_count += p.pins.len();
-    }
+    // let mut pin_count = 0;
+    // for p in pg.peripherals.iter() {
+    //     pin_count += p.pins.len();
+    // }
 
-    if pg.has_pins {
-        try!(writeln!(out, "pub struct {} {{ pub port: {}, pub index: usize }}", pin_type, pg_type));
-    }
+    // if pg.has_pins || pin_count > 0 {
+    //     try!(writeln!(out, "pub struct {} {{ pub port: {}, pub index: usize }}", pin_type, pg_type));
+    // }
 
-    if pin_count > 0 {       
-        for p in pg.peripherals.iter() {
-            let p_name = p.name.to_uppercase();
-            let p_type = to_camel(&p.name);
+    // if pin_count > 0 {       
+    //     for p in pg.peripherals.iter() {
+    //         let p_name = p.name.to_uppercase();
+    //         let p_type = to_camel(&p.name);
             
-            for pin in p.pins.iter() {
-                let id = pin.name.to_uppercase();                
-                let ty = to_camel(&pin.name);
-                let base_name = format!("{}_PIN", id);
-                let base_type = format!("{}Pin", to_camel(&pg.name));
-                let base_port = format!("{}_PERIPH", p_name);
+    //         for pin in p.pins.iter() {
+    //             let id = pin.name.to_uppercase();                
+    //             let ty = to_camel(&pin.name);
+    //             let base_name = format!("{}_PIN", id);
+    //             let base_type = format!("{}Pin", to_camel(&pg.name));
+    //             let base_port = format!("{}_PERIPH", p_name);
 
-                try!(writeln!(out, "pin!({id}, {ty}, {port_id}, {port_type}, {base_id}, {base_type}, {base_port}, {index});",
-                    id=id,
-                    ty=ty,
-                    port_id=p_name,
-                    port_type=p_type,
-                    base_id=base_name,
-                    base_type=base_type,
-                    base_port=base_port,
-                    index=pin.index.unwrap(),
-                ));
+    //             try!(writeln!(out, "pin!({id}, {ty}, {port_id}, {port_type}, {base_id}, {base_type}, {base_port}, {index});",
+    //                 id=id,
+    //                 ty=ty,
+    //                 port_id=p_name,
+    //                 port_type=p_type,
+    //                 base_id=base_name,
+    //                 base_type=base_type,
+    //                 base_port=base_port,
+    //                 index=pin.index.unwrap(),
+    //             ));
 
-                // for af in pin.altfns.iter() {
-                //     let s_type = format!("super::sig::{}", to_camel(&af.signal));
-                //         // ($pin_ty:ident, $src:ident, $sty:ident, $num:expr) => {
+    //             // for af in pin.altfns.iter() {
+    //             //     let s_type = format!("super::sig::{}", to_camel(&af.signal));
+    //             //         // ($pin_ty:ident, $src:ident, $sty:ident, $num:expr) => {
 
-                //     // try!(writeln!(out, "    pin_source!({ty}, {s_type}, {s_index});", 
-                //     //     ty=ty,
-                //     //     s_type=s_type,
-                //     //     s_index=af.index,
-                //     // ));
-                // }
-                // try!(writeln!(out, ""));
-            }        
-        }       
-    }
+    //             //     // try!(writeln!(out, "    pin_source!({ty}, {s_type}, {s_index});", 
+    //             //     //     ty=ty,
+    //             //     //     s_type=s_type,
+    //             //     //     s_index=af.index,
+    //             //     // ));
+    //             // }
+    //             // try!(writeln!(out, ""));
+    //         }        
+    //     }       
+    // }
 
     // Generate Peripheral Group Channels
 
@@ -845,6 +882,16 @@ pub fn gen_peripheral_group_impl<W: Write>(cfg: &Config, out: &mut W, pg: &Perip
         try!(gen_doc(cfg, out, 0, &format!("{} Peripheral", pg.name.to_uppercase())));
         try!(writeln!(out, "pub struct {}(pub usize); ", pg_type));
         try!(writeln!(out, ""));        
+    }
+
+    let mut pin_count = 0;
+    for p in pg.peripherals.iter() {
+        pin_count += p.pins.len();
+    }
+
+    if pg.has_pins || pin_count > 0 {
+        let pin_type = format!("{}Pin", pg_type);
+        try!(writeln!(out, "pub struct {} {{ pub port: {}, pub index: usize }}", pin_type, pg_type));
     }
 
     let p0 = if let Some(ref p0) = pg.prototype {
