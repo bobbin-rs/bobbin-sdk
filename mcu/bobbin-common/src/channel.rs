@@ -73,7 +73,7 @@ macro_rules! channel_irq {
 
 #[macro_export]
 macro_rules! channel_signal {
-    ($ty:ident, $sty:ident) => {
+    ($ty:path, $sty:ident) => {
         signal!($ty, $sty);
     }
 }

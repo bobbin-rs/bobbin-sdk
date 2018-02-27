@@ -94,7 +94,7 @@ macro_rules! periph_irq {
 
 #[macro_export]
 macro_rules! periph_signal {
-    ($ty:ident, $sty:ident) => {
+    ($ty:path, $sty:ident) => {
         signal!($ty, $sty);
     }
 }

@@ -18,7 +18,7 @@ macro_rules! signal_type {
 
 #[macro_export]
 macro_rules! signal {
-    ($ty:ident, $sty:ident) => {
-        impl Signal<$sty> for $ty {}
+    ($ty:path, $sty:ident) => {
+        impl $crate::signal::Signal<$sty> for $ty {}
     }
 }
