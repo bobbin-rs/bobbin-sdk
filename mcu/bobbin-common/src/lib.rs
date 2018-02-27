@@ -57,13 +57,13 @@ pub trait En {
     fn set_en<V: Into<bits::U1>>(&self, value: V);
 }    
 
-impl<PORT: En + periph::Periph> En for pin::Pin<PORT>
-{
-    fn en(&self) -> bits::U1 {
-        self.port().en()
-    }
+// impl<PORT: En + periph::Periph> En for pin::Pin<PORT>
+// {
+//     fn en(&self) -> bits::U1 {
+//         self.port().en()
+//     }
 
-    fn set_en<V: Into<bits::U1>>(&self, value: V) {
-        self.port().set_en(value);
-    }
-}
+//     fn set_en<V: Into<bits::U1>>(&self, value: V) {
+//         self.port().set_en(value);
+//     }
+// }
