@@ -118,7 +118,7 @@ pub fn gen_crate<W: Write>(cfg: Config, _out: &mut W, d: &Device) -> Result<()> 
         let cfg = modules::Config { 
             path: src_path.clone(), 
             is_root: false, 
-            common: String::from("bobbin_common"),
+            common: String::from("::bobbin_common"),
         };
 
         writeln!(out, "pub mod periph;")?;    
@@ -298,7 +298,7 @@ pub fn gen_signals_mod<W: Write>(cfg: &modules::Config, out: &mut W, d: &Device,
         try!(writeln!(out, "pub mod {};", p_name));
         let p_mod = path.join(format!("{}.rs", p_name));
         let mut f_mod = try!(File::create(p_mod));
-        try!(writeln!(f_mod, "pub use ::bobbin_common::signal::*;"));
+        try!(writeln!(f_mod, "pub use ::bobbin_common::*;"));
         try!(writeln!(out, ""));
         modules::gen_signals(cfg, &mut f_mod, &d)
     }    
@@ -313,7 +313,7 @@ pub fn gen_pins_mod<W: Write>(cfg: &modules::Config, out: &mut W, d: &Device, pa
         try!(writeln!(out, "pub mod {};", p_name));
         let p_mod = path.join(format!("{}.rs", p_name));
         let mut f_mod = try!(File::create(p_mod));
-        try!(writeln!(f_mod, "pub use ::bobbin_common::pin::*;"));
+        try!(writeln!(f_mod, "pub use ::bobbin_common::*;"));
         try!(writeln!(out, ""));
         try!(modules::gen_pins(cfg, &mut f_mod, &d, signals));
     }
