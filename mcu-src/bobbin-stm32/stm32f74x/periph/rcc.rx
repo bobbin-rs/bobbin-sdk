@@ -2165,7 +2165,7 @@
         )
     )
     (register
-        (name DKCFGR1)
+        (name DCKCFGR1)
         (offset 0x8c)
         (size 0x20)
         (access read-write)
