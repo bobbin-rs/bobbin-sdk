@@ -126,7 +126,7 @@ macro_rules! channel {
             fn into(self) -> $base_type {
                 $base_id
             }
-        }            
+        }
     )
 }
 

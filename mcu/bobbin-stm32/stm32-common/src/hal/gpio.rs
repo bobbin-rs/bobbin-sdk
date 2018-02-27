@@ -219,25 +219,21 @@ impl DigitalOutput for GpioPin {
     }
 }
 
-// pub trait SetSource<SRC, STY, PERIPH, PIN> {
-//     fn set_source(&self, signal_type: STY, src: SRC);
-// }
+use bobbin_common::signal::SignalType;
+use bobbin_common::pin::PinSource;
 
-// use core::ops::Deref;
+pub trait SetSource<STY: SignalType, SRC> {
+    fn set_source(&self, src: SRC) -> &Self;
+}
 
-// use ::bobbin_common::periph::Periph;
-// use ::bobbin_common::pin::{Pin, PinSource};
-// use ::bobbin_common::signal::{Signal, SignalType};
-
-
-// impl<SRC, STY, PERIPH, PIN> SetSource<SRC, STY, PERIPH, PIN> for PIN
-// where
-//     STY: SignalType,
-//     PERIPH: Periph + Deref<Target=GpioPeriph>,
-//     PIN: Pin<PERIPH, GpioPin> + PinSource<STY, SRC>,
-//     SRC: Signal<STY>,
-// {
-//     fn set_source(&self, _signal_type: STY, _src: SRC) {
-//         self.pin().mode_alt_fn(self.alt_fn().into());
-//     }
-// }
+impl<SRC, STY, PIN> SetSource<STY, SRC> for PIN
+where
+    STY: SignalType,
+    Self: ::core::ops::Deref<Target=GpioPin> + PinSource<STY, SRC>
+{
+    #[inline]
+    fn set_source(&self, src: SRC) -> &Self {
+        self.deref().mode_alt_fn(self.alt_fn_for(src) as usize);
+        self
+    }
+}
