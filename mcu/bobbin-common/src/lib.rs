@@ -67,14 +67,3 @@ impl<PORT: En + periph::Periph> En for pin::Pin<PORT>
         self.port().set_en(value);
     }
 }
-
-// impl<PIN: En> En for ::core::ops::Deref<Target=PIN> 
-// {
-//     fn en(&self) -> bits::U1 {
-//         self.deref().en()
-//     }
-
-//     fn set_en<V: Into<bits::U1>>(&self, value: V) {
-//         self.deref().set_en(value);
-//     }
-// }
