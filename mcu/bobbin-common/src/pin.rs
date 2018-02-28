@@ -1,5 +1,6 @@
 use signal::SignalType;
 use periph::Periph;
+use gate::GateEn;
 
 pub trait PinSource<STY: SignalType, SRC> {
     fn alt_fn(&self) -> u8;
@@ -35,3 +36,14 @@ where
         self.periph_pin().set_source(alt_fn);
     }
 }
+
+pub trait PortGateEn<PORT> : Pin<PORT> where PORT: GateEn + Periph {
+    #[inline]
+    fn port_gate_enable(&self) -> &Self { self.port().gate_enable(); self }
+}
+
+impl<PORT, T> PortGateEn<PORT> for T
+where 
+    PORT: GateEn + Periph,
+    Self: Pin<PORT>
+{}
