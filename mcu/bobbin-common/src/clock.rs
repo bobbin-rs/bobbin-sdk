@@ -22,3 +22,8 @@ pub trait Millis {
     /// Returns the number of milliseconds modulo 2^32 since the clock was started.
     fn millis(&self) -> u32;
 }
+
+pub trait ClockSource<T> {
+    fn clock_source(&self) -> T;
+    fn set_clock_source(&self, clk: T) -> &Self;
+}
