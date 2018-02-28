@@ -544,6 +544,12 @@ pub struct Clock {
     pub description: Option<String>,
 }
 
+impl Clock {
+    pub fn trait_method(&self) -> String {
+        self.name.to_lowercase()
+    }
+}
+
 #[derive(Debug, Clone, Default)]
 pub struct Gate {
     pub name: Option<String>,

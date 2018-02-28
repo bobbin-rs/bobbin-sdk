@@ -351,6 +351,5 @@ pub fn gen_interrupts_mod<W: Write>(cfg: &modules::Config, out: &mut W, d: &Devi
 
 pub fn gen_clocks_mod<W: Write>(cfg: &modules::Config, out: &mut W, d: &Device, path: &Path) -> Result<()> {
     try!(modules::gen_clocks(&cfg, out, &d, path));
-    
     Ok(())
 }

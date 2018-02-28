@@ -1594,6 +1594,29 @@ pub fn gen_field<W: Write>(cfg: &Config, out: &mut W, f: &Field, size: &str, _ac
     Ok(())
 }
 
-pub fn gen_clocks<W: Write>(cfg: &Config, out: &mut W, d: &Device, path: &Path) -> Result<()> {
+pub fn gen_clocks<W: Write>(_cfg: &Config, out: &mut W, d: &Device, _path: &Path) -> Result<()> {
+    // pub trait ClockTree { ... }
+
+    let clocks = if let Some(ref clocks) = d.clocks {
+        clocks
+    } else {
+        return Ok(())
+    };
+    writeln!(out, "pub type Hz = Option<u32>;")?;
+    writeln!(out, "")?;
+
+    writeln!(out, "pub trait ClockTree {{")?;
+    for clock in &clocks.inputs {
+        writeln!(out, "    fn {}(&self) -> Hz;", clock.trait_method())?
+    }
+    for clock in &clocks.sources {
+        writeln!(out, "    fn {}(&self) -> Hz;", clock.trait_method())?
+    }
+    for clock in &clocks.outputs {
+        writeln!(out, "    fn {}(&self) -> Hz;", clock.trait_method())?
+    }
+    writeln!(out, "}}")?;
+    writeln!(out, "")?;
+
     Ok(())
 }
