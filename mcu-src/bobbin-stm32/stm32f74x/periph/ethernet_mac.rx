@@ -1,7 +1,13 @@
 (peripheral
-    (group-name ETHERNET)
+    (group-name ETHERNET_MAC)
     (name ETHERNET_MAC)
     (address 0x40028000)
+    (clock
+        (input (name HCLK))
+        (gate (type RST) (periph RCC) (register AHB1RSTR) (field ETHMACRST))
+        (gate (type EN) (periph RCC) (register AHB1ENR) (field ETHMACEN))
+        (gate (type SLEEP_EN) (periph RCC) (register AHB1LPENR) (field ETHMACLPEN))
+    )    
     (description "Ethernet: media access control (MAC)")
     (register
         (name MACCR)

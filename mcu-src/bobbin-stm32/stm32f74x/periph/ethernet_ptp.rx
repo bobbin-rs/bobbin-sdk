@@ -2,6 +2,12 @@
     (group-name ETHERNET_PTP)
     (name ETHERNET_PTP)
     (address 0x40028700)
+    (clock
+        (input (name HCLK))
+        (gate (type EN) (periph RCC) (register AHB1ENR) (field ETHMACPTPEN))
+        (gate (type SLEEP_EN) (periph RCC) (register AHB1LPENR) (field ETHMACPTPLPEN))
+    )    
+    
     (description "Ethernet: Precision time protocol")
     (register
         (name PTPTSCR)

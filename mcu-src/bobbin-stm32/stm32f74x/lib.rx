@@ -74,7 +74,7 @@
     (peripheral (include "periph/pwr.rx"))
     (peripheral (include "periph/syscfg.rx"))
     (peripheral (include "periph/dbg.rx"))    
-    (peripheral (include "periph/ethernet.rx"))
+    (peripheral (include "periph/ethernet_mac.rx"))
     (peripheral (include "periph/ethernet_mmc.rx"))
     (peripheral (include "periph/ethernet_ptp.rx"))
     (peripheral (include "periph/ethernet_dma.rx"))    
@@ -100,6 +100,12 @@
         (peripheral
             (name DCMI)
             (address 0x50050000)
+            (clock
+                (input (name HCLK))
+                (gate (type RST) (periph RCC) (register AHB2RSTR) (field DCMIRST))
+                (gate (type EN) (periph RCC) (register AHB2ENR) (field DCMIEN))
+                (gate (type SLEEP_EN) (periph RCC) (register AHB2LPENR) (field DCMILPEN))
+            )
             (signal (name DCMI_HSYNC) (type DCMI_HSYNC))
             (signal (name DCMI_VSYNC) (type DCMI_VSYNC))
             (signal (name DCMI_PIXCLK) (type DCMI_PIXCLK))
@@ -153,6 +159,12 @@
         (peripheral
             (name USB_FS_HOST)
             (address 0x50000400)
+            (clock
+                (input (name HCLK))
+                (gate (type RST) (periph RCC) (register AHB2RSTR) (field OTGFSRST))
+                (gate (type EN) (periph RCC) (register AHB2ENR) (field OTGFSEN))
+                (gate (type SLEEP_EN) (periph RCC) (register AHB2LPENR) (field OTGFSLPEN))
+            )            
             (description "USB on the go full speed")        
         )
     )
@@ -162,6 +174,12 @@
         (peripheral
             (name USB_FS_DEVICE)
             (address 0x50000800)
+            (clock
+                (input (name HCLK))
+                (gate (type RST) (periph RCC) (register AHB2RSTR) (field OTGFSRST))
+                (gate (type EN) (periph RCC) (register AHB2ENR) (field OTGFSEN))
+                (gate (type SLEEP_EN) (periph RCC) (register AHB2LPENR) (field OTGFSLPEN))
+            )            
             (description "USB on the go full speed")
             (signal (name OTG_FS_ID) (type USB_ID))
             (signal (name OTG_FS_DM) (type USB_DM))
@@ -196,6 +214,12 @@
         (peripheral
             (name WWDG)
             (address 0x40002c00)
+            (clock
+                (input (name PCLK1))
+                (gate (type RST) (periph RCC) (register APB1RSTR) (field WWDGRST))
+                (gate (type EN) (periph RCC) (register APB1ENR) (field WWDGEN))
+                (gate (type SLEEP_EN) (periph RCC) (register APB1LPENR) (field WWDGLPEN))
+            )            
             (description "System window watchdog")
             (interrupt
                 (name WWDG)
@@ -212,6 +236,12 @@
         (peripheral
             (name CRC)
             (address 0x40023000)
+            (clock
+                (input (name HCLK))
+                (gate (type RST) (periph RCC) (register AHB1RSTR) (field CRCRST))
+                (gate (type EN) (periph RCC) (register AHB1ENR) (field CRCEN))
+                (gate (type SLEEP_EN) (periph RCC) (register AHB1LPENR) (field CRCLPEN))
+            )
             (description "Cyclic redundancy check calculation unit")
         )
     )
@@ -416,6 +446,12 @@
         (peripheral
             (name TIM6)
             (address 0x40001000)
+            (clock
+                (input (name TIM_PCLK1))
+                (gate (type RST) (periph RCC) (register APB1RSTR) (field TIM6RST))
+                (gate (type EN) (periph RCC) (register APB1ENR) (field TIM6EN))
+                (gate (type SLEEP_EN) (periph RCC) (register APB1LPENR) (field TIM6LPEN))
+            )            
             (description "Basic timers")
             (interrupt
                 (name TIM6)
@@ -427,6 +463,12 @@
         (peripheral
             (name TIM7)
             (address 0x40001400)
+            (clock
+                (input (name TIM_PCLK1))
+                (gate (type RST) (periph RCC) (register APB1RSTR) (field TIM7RST))
+                (gate (type EN) (periph RCC) (register APB1ENR) (field TIM7EN))
+                (gate (type SLEEP_EN) (periph RCC) (register APB1LPENR) (field TIM7LPEN))
+            )            
             (interrupt
                 (name TIM7)
                 (type TIM)
@@ -442,6 +484,12 @@
         (peripheral
             (name TIM2)
             (address 0x40000000)
+            (clock
+                (input (name TIM_PCLK1))
+                (gate (type RST) (periph RCC) (register APB1RSTR) (field TIM2RST))
+                (gate (type EN) (periph RCC) (register APB1ENR) (field TIM2EN))
+                (gate (type SLEEP_EN) (periph RCC) (register APB1LPENR) (field TIM2LPEN))
+            )            
             (description "General purpose timers")
             (channel
                 (name TIM2_CH1)
@@ -473,6 +521,12 @@
         (peripheral
             (name TIM3)
             (address 0x40000400)
+            (clock
+                (input (name TIM_PCLK1))
+                (gate (type RST) (periph RCC) (register APB1RSTR) (field TIM3RST))
+                (gate (type EN) (periph RCC) (register APB1ENR) (field TIM3EN))
+                (gate (type SLEEP_EN) (periph RCC) (register APB1LPENR) (field TIM3LPEN))
+            )
             (description "General purpose timers")
             (channel
                 (name TIM3_CH1)
@@ -503,6 +557,12 @@
         )
         (peripheral
             (name TIM4)
+            (clock
+                (input (name TIM_PCLK1))
+                (gate (type RST) (periph RCC) (register APB1RSTR) (field TIM4RST))
+                (gate (type EN) (periph RCC) (register APB1ENR) (field TIM4EN))
+                (gate (type SLEEP_EN) (periph RCC) (register APB1LPENR) (field TIM4LPEN))
+            )
             (address 0x40000800)
             (channel
                 (name TIM4_CH1)
@@ -534,6 +594,12 @@
         (peripheral
             (name TIM5)
             (address 0x40000c00)
+            (clock
+                (input (name TIM_PCLK1))
+                (gate (type RST) (periph RCC) (register APB1RSTR) (field TIM5RST))
+                (gate (type EN) (periph RCC) (register APB1ENR) (field TIM5EN))
+                (gate (type SLEEP_EN) (periph RCC) (register APB1LPENR) (field TIM5LPEN))
+            )
             (description "General-purpose-timers")
             (channel
                 (name TIM5_CH1)
@@ -565,6 +631,12 @@
         (peripheral
             (name TIM9)
             (address 0x40014000)
+            (clock
+                (input (name TIM_PCLK2))
+                (gate (type RST) (periph RCC) (register APB2RSTR) (field TIM9RST))
+                (gate (type EN) (periph RCC) (register APB2ENR) (field TIM9EN))
+                (gate (type SLEEP_EN) (periph RCC) (register APB2LPENR) (field TIM9LPEN))
+            )                        
             (description "General purpose timers")
             (channel
                 (name TIM9_CH1)
@@ -586,6 +658,12 @@
         (peripheral
             (name TIM10)
             (address 0x40014400)
+            (clock
+                (input (name TIM_PCLK2))
+                (gate (type RST) (periph RCC) (register APB2RSTR) (field TIM10RST))
+                (gate (type EN) (periph RCC) (register APB2ENR) (field TIM10EN))
+                (gate (type SLEEP_EN) (periph RCC) (register APB2LPENR) (field TIM10LPEN))
+            )                        
             (description "General-purpose-timers")
             (channel
                 (name TIM10_CH1)
@@ -602,6 +680,12 @@
         (peripheral
             (name TIM11)
             (address 0x40014800)
+            (clock
+                (input (name TIM_PCLK2))
+                (gate (type RST) (periph RCC) (register APB2RSTR) (field TIM11RST))
+                (gate (type EN) (periph RCC) (register APB2ENR) (field TIM11EN))
+                (gate (type SLEEP_EN) (periph RCC) (register APB2LPENR) (field TIM11LPEN))
+            )                        
             (description "General-purpose-timers")
             (channel
                 (name TIM11_CH1)
@@ -618,6 +702,12 @@
         (peripheral
             (name TIM12)
             (address 0x40001800)
+            (clock
+                (input (name TIM_PCLK1))
+                (gate (type RST) (periph RCC) (register APB1RSTR) (field TIM12RST))
+                (gate (type EN) (periph RCC) (register APB1ENR) (field TIM12EN))
+                (gate (type SLEEP_EN) (periph RCC) (register APB1LPENR) (field TIM12LPEN))
+            )            
             (channel
                 (name TIM12_CH1)
                 (index 0)
@@ -638,6 +728,12 @@
         (peripheral
             (name TIM13)
             (address 0x40001c00)
+            (clock
+                (input (name TIM_PCLK1))
+                (gate (type RST) (periph RCC) (register APB1RSTR) (field TIM13RST))
+                (gate (type EN) (periph RCC) (register APB1ENR) (field TIM13EN))
+                (gate (type SLEEP_EN) (periph RCC) (register APB1LPENR) (field TIM13LPEN))
+            )
             (channel
                 (name TIM13_CH1)
                 (index 0)
@@ -653,6 +749,12 @@
         (peripheral
             (name TIM14)
             (address 0x40002000)
+            (clock
+                (input (name TIM_PCLK1))
+                (gate (type RST) (periph RCC) (register APB1RSTR) (field TIM14RST))
+                (gate (type EN) (periph RCC) (register APB1ENR) (field TIM14EN))
+                (gate (type SLEEP_EN) (periph RCC) (register APB1LPENR) (field TIM14LPEN))
+            )            
             (channel
                 (name TIM14_CH1)
                 (index 0)
@@ -673,6 +775,12 @@
         (peripheral
             (name TIM1)
             (address 0x40010000)
+            (clock
+                (input (name TIM_PCLK2))
+                (gate (type RST) (periph RCC) (register APB2RSTR) (field TIM1RST))
+                (gate (type EN) (periph RCC) (register APB2ENR) (field TIM1EN))
+                (gate (type SLEEP_EN) (periph RCC) (register APB2LPENR) (field TIM1LPEN))
+            )
             (description "Advanced-timers")
             (channel
                 (name TIM1_CH1)
@@ -722,6 +830,12 @@
         (peripheral
             (name TIM8)
             (address 0x40010400)
+            (clock
+                (input (name TIM_PCLK2))
+                (gate (type RST) (periph RCC) (register APB2RSTR) (field TIM8RST))
+                (gate (type EN) (periph RCC) (register APB2ENR) (field TIM8EN))
+                (gate (type SLEEP_EN) (periph RCC) (register APB2LPENR) (field TIM8LPEN))
+            )
             (channel
                 (name TIM8_CH1)
                 (index 0)
@@ -775,6 +889,12 @@
         (peripheral
             (name LPTIM1)
             (address 0x40002400)
+            (clock
+                (input (name TIM_PCLK1))
+                (gate (type RST) (periph RCC) (register APB1RSTR) (field LPTIM1RST))
+                (gate (type EN) (periph RCC) (register APB1ENR) (field LPTIM1EN))
+                (gate (type SLEEP_EN) (periph RCC) (register APB1LPENR) (field LPTIM1LPEN))
+            )            
             (description "Low power timer")
             (interrupt
                 (name LPTIM1)
@@ -791,7 +911,12 @@
         (peripheral 
             (name ADC1)
             (address 0x40012000)
-
+            (clock
+                (input (name PCLK2))
+                (gate (type RST) (periph RCC) (register APB2RSTR) (field ADCRST))
+                (gate (type EN) (periph RCC) (register APB2ENR) (field ADC1EN))
+                (gate (type SLEEP_EN) (periph RCC) (register APB2LPENR) (field ADC1LPEN))
+            )
             (channel (name ADC1_CH0) (index 0) (signal (name ADC1_IN0) (type ADC)))
             (channel (name ADC1_CH1) (index 1) (signal (name ADC1_IN1) (type ADC)))
             (channel (name ADC1_CH2) (index 2) (signal (name ADC1_IN2) (type ADC)))
@@ -823,6 +948,12 @@
         (peripheral
             (name ADC2)
             (address 0x40012100)
+            (clock
+                (input (name PCLK2))
+                (gate (type RST) (periph RCC) (register APB2RSTR) (field ADCRST))
+                (gate (type EN) (periph RCC) (register APB2ENR) (field ADC2EN))
+                (gate (type SLEEP_EN) (periph RCC) (register APB2LPENR) (field ADC2LPEN))
+            )
 
             (channel (name ADC2_CH0) (index 0) (signal (name ADC2_IN0) (type ADC)))
             (channel (name ADC2_CH1) (index 1) (signal (name ADC2_IN1) (type ADC)))
@@ -851,6 +982,12 @@
         (peripheral
             (name ADC3)
             (address 0x40012200)
+            (clock
+                (input (name PCLK2))
+                (gate (type RST) (periph RCC) (register APB2RSTR) (field ADCRST))
+                (gate (type EN) (periph RCC) (register APB2ENR) (field ADC3EN))
+                (gate (type SLEEP_EN) (periph RCC) (register APB2LPENR) (field ADC3LPEN))
+            )
 
             (channel (name ADC3_CH0) (index 0) (signal (name ADC3_IN0) (type ADC)))
             (channel (name ADC3_CH1) (index 1) (signal (name ADC3_IN1) (type ADC)))
@@ -884,6 +1021,12 @@
         (peripheral 
             (name SPI1)
             (address 0x40013000)
+            (clock
+                (input (name PCLK2))
+                (gate (type RST) (periph RCC) (register APB2RSTR) (field SPI1RST))
+                (gate (type EN) (periph RCC) (register APB2ENR) (field SPI1EN))
+                (gate (type SLEEP_EN) (periph RCC) (register APB2LPENR) (field SPI1LPEN))
+            )            
             (signal (name SPI1_NSS) (type SPI_NSS))
             (signal (name SPI1_MISO) (type SPI_MISO))
             (signal (name SPI1_MOSI) (type SPI_MOSI))
@@ -897,6 +1040,12 @@
         (peripheral
             (name SPI2)
             (address 0x40003800)
+            (clock
+                (input (name PCLK1))
+                (gate (type RST) (periph RCC) (register APB1RSTR) (field SPI2RST))
+                (gate (type EN) (periph RCC) (register APB1ENR) (field SPI2EN))
+                (gate (type SLEEP_EN) (periph RCC) (register APB1LPENR) (field SPI2LPEN))
+            )         
             (signal (name SPI2_NSS) (type SPI_NSS))
             (signal (name SPI2_MISO) (type SPI_MISO))
             (signal (name SPI2_MOSI) (type SPI_MOSI))
@@ -910,6 +1059,12 @@
         (peripheral
             (name SPI3)
             (address 0x40003c00)
+            (clock
+                (input (name PCLK1))
+                (gate (type RST) (periph RCC) (register APB1RSTR) (field SPI3RST))
+                (gate (type EN) (periph RCC) (register APB1ENR) (field SPI3EN))
+                (gate (type SLEEP_EN) (periph RCC) (register APB1LPENR) (field SPI3LPEN))
+            )         
             (signal (name SPI3_NSS) (type SPI_NSS))
             (signal (name SPI3_MISO) (type SPI_MISO))
             (signal (name SPI3_MOSI) (type SPI_MOSI))
@@ -931,6 +1086,12 @@
         (peripheral
             (name SPI4)
             (address 0x40013400)
+            (clock
+                (input (name PCLK2))
+                (gate (type RST) (periph RCC) (register APB2RSTR) (field SPI4RST))
+                (gate (type EN) (periph RCC) (register APB2ENR) (field SPI4EN))
+                (gate (type SLEEP_EN) (periph RCC) (register APB2LPENR) (field SPI4LPEN))
+            )            
             (signal (name SPI4_NSS) (type SPI_NSS))
             (signal (name SPI4_MISO) (type SPI_MISO))
             (signal (name SPI4_MOSI) (type SPI_MOSI))
@@ -944,6 +1105,12 @@
         (peripheral
             (name SPI5)
             (address 0x40015000)
+            (clock
+                (input (name PCLK2))
+                (gate (type RST) (periph RCC) (register APB2RSTR) (field SPI5RST))
+                (gate (type EN) (periph RCC) (register APB2ENR) (field SPI5EN))
+                (gate (type SLEEP_EN) (periph RCC) (register APB2LPENR) (field SPI5LPEN))
+            )                        
             (signal (name SPI5_NSS) (type SPI_NSS))
             (signal (name SPI5_MISO) (type SPI_MISO))
             (signal (name SPI5_MOSI) (type SPI_MOSI))
@@ -957,6 +1124,12 @@
         (peripheral
             (name SPI6)
             (address 0x40015400)
+            (clock
+                (input (name PCLK2))
+                (gate (type RST) (periph RCC) (register APB2RSTR) (field SPI6RST))
+                (gate (type EN) (periph RCC) (register APB2ENR) (field SPI6EN))
+                (gate (type SLEEP_EN) (periph RCC) (register APB2LPENR) (field SPI6LPEN))
+            )                        
             (signal (name SPI6_NSS) (type SPI_NSS))
             (signal (name SPI6_MISO) (type SPI_MISO))
             (signal (name SPI6_MOSI) (type SPI_MOSI))
@@ -975,6 +1148,12 @@
         (peripheral
             (name I2C1)
             (address 0x40005400)
+            (clock
+                (input (name PCLK1))
+                (gate (type RST) (periph RCC) (register APB1RSTR) (field I2C1RST))
+                (gate (type EN) (periph RCC) (register APB1ENR) (field I2C1EN))
+                (gate (type SLEEP_EN) (periph RCC) (register APB1LPENR) (field I2C1LPEN))
+            )
             (signal (name I2C1_SCL) (type I2C_SCL))
             (signal (name I2C1_SDA) (type I2C_SDA))
             (signal (name I2C1_SMBAL) (type I2C_SMBAL))
@@ -992,6 +1171,12 @@
         (peripheral
             (name I2C2)
             (address 0x40005800)
+            (clock
+                (input (name PCLK1))
+                (gate (type RST) (periph RCC) (register APB1RSTR) (field I2C2RST))
+                (gate (type EN) (periph RCC) (register APB1ENR) (field I2C2EN))
+                (gate (type SLEEP_EN) (periph RCC) (register APB1LPENR) (field I2C2LPEN))
+            )
             (signal (name I2C2_SCL) (type I2C_SCL))
             (signal (name I2C2_SDA) (type I2C_SDA))
             (signal (name I2C2_SMBAL) (type I2C_SMBAL))
@@ -1009,6 +1194,12 @@
         (peripheral 
             (name I2C3)
             (address 0x40005c00)
+            (clock
+                (input (name PCLK1))
+                (gate (type RST) (periph RCC) (register APB1RSTR) (field I2C3RST))
+                (gate (type EN) (periph RCC) (register APB1ENR) (field I2C3EN))
+                (gate (type SLEEP_EN) (periph RCC) (register APB1LPENR) (field I2C3LPEN))
+            )
             (signal (name I2C3_SCL) (type I2C_SCL))
             (signal (name I2C3_SDA) (type I2C_SDA))
             (signal (name I2C3_SMBAL) (type I2C_SMBAL))            
@@ -1026,6 +1217,12 @@
         (peripheral 
             (name I2C4)
             (address 0x40006000)
+            (clock
+                (input (name PCLK1))
+                (gate (type RST) (periph RCC) (register APB1RSTR) (field I2C4RST))
+                (gate (type EN) (periph RCC) (register APB1ENR) (field I2C4EN))
+                (gate (type SLEEP_EN) (periph RCC) (register APB1LPENR) (field I2C4LPEN))
+            )            
             (signal (name I2C4_SCL) (type I2C_SCL))
             (signal (name I2C4_SDA) (type I2C_SDA))
             (signal (name I2C4_SMBAL) (type I2C_SMBAL))            
@@ -1049,6 +1246,12 @@
         (peripheral
             (name CAN1)
             (address 0x40006400)
+            (clock
+                (input (name PCLK1))
+                (gate (type RST) (periph RCC) (register APB1RSTR) (field CAN1RST))
+                (gate (type EN) (periph RCC) (register APB1ENR) (field CAN1EN))
+                (gate (type SLEEP_EN) (periph RCC) (register APB1LPENR) (field CAN1LPEN))
+            )            
             (signal (name CAN1_TX) (type CAN_TX))
             (signal (name CAN1_RX) (type CAN_RX))
             (interrupt
@@ -1107,7 +1310,7 @@
             (name GPIOA)
             (address 0x40020000)
             (clock
-                (input (name PCLK1))
+                (input (name HCLK))
                 (gate (type RST) (periph RCC) (register AHB1RSTR) (field GPIOARST))
                 (gate (type EN) (periph RCC) (register AHB1ENR) (field GPIOAEN))
                 (gate (type SLEEP_EN) (periph RCC) (register AHB1LPENR) (field GPIOALPEN))
@@ -1311,7 +1514,7 @@
             (name GPIOB)
             (address 0x40020400)
             (clock
-                (input (name PCLK1))
+                (input (name HCLK))
                 (gate (type RST) (periph RCC) (register AHB1RSTR) (field GPIOBRST))
                 (gate (type EN) (periph RCC) (register AHB1ENR) (field GPIOBEN))
                 (gate (type SLEEP_EN) (periph RCC) (register AHB1LPENR) (field GPIOBLPEN))
@@ -1536,7 +1739,7 @@
             (name GPIOC)
             (address 0x40020800)
             (clock
-                (input (name PCLK1))
+                (input (name HCLK))
                 (gate (type RST) (periph RCC) (register AHB1RSTR) (field GPIOCRST))
                 (gate (type EN) (periph RCC) (register AHB1ENR) (field GPIOCEN))
                 (gate (type SLEEP_EN) (periph RCC) (register AHB1LPENR) (field GPIOCLPEN))
@@ -1710,7 +1913,7 @@
             (name GPIOD)
             (address 0x40020c00)
             (clock
-                (input (name PCLK1))
+                (input (name HCLK))
                 (gate (type RST) (periph RCC) (register AHB1RSTR) (field GPIODRST))
                 (gate (type EN) (periph RCC) (register AHB1ENR) (field GPIODEN))
                 (gate (type SLEEP_EN) (periph RCC) (register AHB1LPENR) (field GPIODLPEN))
@@ -1851,7 +2054,7 @@
             (name GPIOE)
             (address 0x40021000)
             (clock
-                (input (name PCLK1))
+                (input (name HCLK))
                 (gate (type RST) (periph RCC) (register AHB1RSTR) (field GPIOERST))
                 (gate (type EN) (periph RCC) (register AHB1ENR) (field GPIOEEN))
                 (gate (type SLEEP_EN) (periph RCC) (register AHB1LPENR) (field GPIOELPEN))
@@ -1998,7 +2201,7 @@
             (name GPIOF)
             (address 0x40021400)
             (clock
-                (input (name PCLK1))
+                (input (name HCLK))
                 (gate (type RST) (periph RCC) (register AHB1RSTR) (field GPIOFRST))
                 (gate (type EN) (periph RCC) (register AHB1ENR) (field GPIOFEN))
                 (gate (type SLEEP_EN) (periph RCC) (register AHB1LPENR) (field GPIOFLPEN))
@@ -2109,7 +2312,7 @@
             (name GPIOG)
             (address 0x40021800)
             (clock
-                (input (name PCLK1))
+                (input (name HCLK))
                 (gate (type RST) (periph RCC) (register AHB1RSTR) (field GPIOGRST))
                 (gate (type EN) (periph RCC) (register AHB1ENR) (field GPIOGEN))
                 (gate (type SLEEP_EN) (periph RCC) (register AHB1LPENR) (field GPIOGLPEN))
@@ -2243,7 +2446,7 @@
             (name GPIOH)
             (address 0x40021c00)
             (clock
-                (input (name PCLK1))
+                (input (name HCLK))
                 (gate (type RST) (periph RCC) (register AHB1RSTR) (field GPIOHRST))
                 (gate (type EN) (periph RCC) (register AHB1ENR) (field GPIOHEN))
                 (gate (type SLEEP_EN) (periph RCC) (register AHB1LPENR) (field GPIOHLPEN))
@@ -2369,7 +2572,7 @@
             (name GPIOI)
             (address 0x40022000)
             (clock
-                (input (name PCLK1))
+                (input (name HCLK))
                 (gate (type RST) (periph RCC) (register AHB1RSTR) (field GPIOIRST))
                 (gate (type EN) (periph RCC) (register AHB1ENR) (field GPIOIEN))
                 (gate (type SLEEP_EN) (periph RCC) (register AHB1LPENR) (field GPIOILPEN))
@@ -2483,7 +2686,7 @@
             (name GPIOJ)
             (address 0x40022400)
             (clock
-                (input (name PCLK1))
+                (input (name HCLK))
                 (gate (type RST) (periph RCC) (register AHB1RSTR) (field GPIOJRST))
                 (gate (type EN) (periph RCC) (register AHB1ENR) (field GPIOJEN))
                 (gate (type SLEEP_EN) (periph RCC) (register AHB1LPENR) (field GPIOJLPEN))
@@ -2561,7 +2764,7 @@
             (name GPIOK)
             (address 0x40022800)
             (clock
-                (input (name PCLK1))
+                (input (name HCLK))
                 (gate (type RST) (periph RCC) (register AHB1RSTR) (field GPIOKRST))
                 (gate (type EN) (periph RCC) (register AHB1ENR) (field GPIOKEN))
                 (gate (type SLEEP_EN) (periph RCC) (register AHB1LPENR) (field GPIOKLPEN))
@@ -2778,6 +2981,12 @@
         (peripheral
             (name DMA1)
             (address 0x40026000)
+            (clock
+                (input (name HCLK))
+                (gate (type RST) (periph RCC) (register AHB1RSTR) (field DMA1RST))
+                (gate (type EN) (periph RCC) (register AHB1ENR) (field DMA1EN))
+                (gate (type SLEEP_EN) (periph RCC) (register AHB1LPENR) (field DMA1LPEN))
+            )
             (channel 
                 (name DMA1_STREAM0)
                 (index 0)
@@ -2863,6 +3072,12 @@
         (peripheral
             (name DMA2)
             (address 0x40026400)
+            (clock
+                (input (name HCLK))
+                (gate (type RST) (periph RCC) (register AHB1RSTR) (field DMA2RST))
+                (gate (type EN) (periph RCC) (register AHB1ENR) (field DMA2EN))
+                (gate (type SLEEP_EN) (periph RCC) (register AHB1LPENR) (field DMA2LPEN))
+            )
             (description "DMA controller")
             (channel
                 (name DMA2_STREAM0)

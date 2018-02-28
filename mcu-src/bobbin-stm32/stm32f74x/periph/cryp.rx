@@ -2,6 +2,12 @@
     (group-name CRYP)
     (name CRYP)
     (address 0x50060000)
+    (clock
+        (input (name HCLK))
+        (gate (type RST) (periph RCC) (register AHB2RSTR) (field CRYPRST))
+        (gate (type EN) (periph RCC) (register AHB2ENR) (field CRYPEN))
+        (gate (type SLEEP_EN) (periph RCC) (register AHB2LPENR) (field CRYPLPEN))
+    )    
     (description "Cryptographic processor")
     (register
         (name CR)

@@ -2,6 +2,12 @@
     (group-name SYSCFG)
     (name SYSCFG)
     (address 0x40013800)
+    (clock
+        (input (name PCLK2))
+        (gate (type RST) (periph RCC) (register APB2RSTR) (field SYSCFGRST))
+        (gate (type EN) (periph RCC) (register APB2ENR) (field SYSCFGEN))
+        (gate (type SLEEP_EN) (periph RCC) (register APB2LPENR) (field SYSCFGLPEN))
+    )                            
     (description "System configuration controller")
     (register
         (name MEMRM)

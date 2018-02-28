@@ -521,7 +521,7 @@
             (description "Random number generator module reset")
         )
         (field
-            (name HSAHRST)
+            (name HASHRST)
             (bit-offset 5)
             (bit-width 1)
             (description "Hash module reset")
@@ -1209,7 +1209,7 @@
             (link (name EN) (peripheral-group WWDG) (peripheral WWDG))
         )
         (field
-            (name LPTMI1EN)
+            (name LPTIM1EN)
             (bit-offset 9)
             (bit-width 1)
             (description "Low power timer 1 clock enable")

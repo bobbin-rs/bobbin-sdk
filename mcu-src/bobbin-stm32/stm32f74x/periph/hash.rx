@@ -2,6 +2,12 @@
     (group-name HASH)
     (name HASH)
     (address 0x50060400)
+    (clock
+        (input (name HCLK))
+        (gate (type RST) (periph RCC) (register AHB2RSTR) (field HASHRST))
+        (gate (type EN) (periph RCC) (register AHB2ENR) (field HASHEN))
+        (gate (type SLEEP_EN) (periph RCC) (register AHB2LPENR) (field HASHLPEN))
+    )    
     (description "Hash processor")
     (register
         (name CR)
