@@ -11,6 +11,41 @@
         (variant (name STM32F76xxG) (link "stm32f6xxG.ld"))
         (variant (name STM32F76xxI) (link "stm32f6xxI.ld"))
     )
+    (clocks
+        (input (name OSC) (min 4_000_000) (max 26_000_000))
+        (input (name OSC32) (min 32_768) (max 32_768))
+        (source (name HSI) (speed 16_000_000))
+        (source (name HSE) (input (name OSC)))
+        (source (name LSI) (speed 32_000))
+        (source (name LSE) (input (name OSC32)))
+        (output (name LPTIMER))
+        (output (name USART))
+        (output (name I2C))
+        (output (name IWDG))
+        (output (name RTC))
+        (output (name SYSCLK) (max 216_000_000))
+        (output (name SDMMC))
+        (output (name HDMI_CEC))
+        (output (name ETHERNET_PTP))
+        (output (name HCLK))
+        (output (name SYSTICK))
+        (output (name FCLK))
+        (output (name APB1))
+        (output (name APB2))
+        (output (name TIM_APB1))
+        (output (name TIM_APB2))
+        (output (name USB))
+        (output (name RNG))
+        (output (name SPDIF))
+        (output (name I2S))
+        (output (name SAI1))
+        (output (name SAI2))
+        (output (name LCD_TFT))
+        (output (name MACTX))
+        (output (name MACRX))
+        (output (name MACRMII))
+        (output (name USBHS))
+    )
     (crate
         ;(name stm32_common)
         (module (name exc))
@@ -1059,6 +1094,12 @@
         (peripheral 
             (name GPIOA)
             (address 0x40020000)
+            (clock
+                (input (name AHB1))
+                (gate (type RST) (periph RCC) (register AHB1RSTR) (field GPIOARST))
+                (gate (type EN) (periph RCC) (register AHB1ENR) (field GPIOAEN))
+                (gate (type LPEN) (periph RCC) (register AHB1LPENR) (field GPIOALPEN))
+            )            
             (pin (name PA0) (index 0)
                 (altfn 0 ADC1_IN0)
                 (altfn 0 ADC2_IN0)
@@ -1257,6 +1298,12 @@
         (peripheral
             (name GPIOB)
             (address 0x40020400)
+            (clock
+                (input (name AHB1))
+                (gate (type RST) (periph RCC) (register AHB1RSTR) (field GPIOBRST))
+                (gate (type EN) (periph RCC) (register AHB1ENR) (field GPIOBEN))
+                (gate (type LPEN) (periph RCC) (register AHB1LPENR) (field GPIOBLPEN))
+            )            
             (pin (name PB0) (index 0)
                 (altfn 0 ADC1_IN8)
                 (altfn 0 ADC2_IN8)
@@ -1476,6 +1523,12 @@
         (peripheral
             (name GPIOC)
             (address 0x40020800)
+            (clock
+                (input (name AHB1))
+                (gate (type RST) (periph RCC) (register AHB1RSTR) (field GPIOCRST))
+                (gate (type EN) (periph RCC) (register AHB1ENR) (field GPIOCEN))
+                (gate (type LPEN) (periph RCC) (register AHB1LPENR) (field GPIOCLPEN))
+            )            
             (pin (name PC0) (index 0)
                 (altfn 0 ADC1_IN10)
                 (altfn 0 ADC2_IN10)
@@ -1644,6 +1697,12 @@
         (peripheral
             (name GPIOD)
             (address 0x40020c00)
+            (clock
+                (input (name AHB1))
+                (gate (type RST) (periph RCC) (register AHB1RSTR) (field GPIODRST))
+                (gate (type EN) (periph RCC) (register AHB1ENR) (field GPIODEN))
+                (gate (type LPEN) (periph RCC) (register AHB1LPENR) (field GPIODLPEN))
+            )            
             (pin (name PD0) (index 0)
                 (altfn 3 DFSDM1_CKIN6)
                 (altfn 6 DFSDM1_DATAIN7)
@@ -1779,6 +1838,12 @@
         (peripheral
             (name GPIOE)
             (address 0x40021000)
+            (clock
+                (input (name AHB1))
+                (gate (type RST) (periph RCC) (register AHB1RSTR) (field GPIOERST))
+                (gate (type EN) (periph RCC) (register AHB1ENR) (field GPIOEEN))
+                (gate (type LPEN) (periph RCC) (register AHB1LPENR) (field GPIOELPEN))
+            )            
             (pin (name PE0) (index 0)
                 (altfn 2 TIM4_ETR)
                 (altfn 3 LPTIM1_ETR)
@@ -1920,6 +1985,12 @@
         (peripheral
             (name GPIOF)
             (address 0x40021400)
+            (clock
+                (input (name AHB1))
+                (gate (type RST) (periph RCC) (register AHB1RSTR) (field GPIOFRST))
+                (gate (type EN) (periph RCC) (register AHB1ENR) (field GPIOFEN))
+                (gate (type LPEN) (periph RCC) (register AHB1LPENR) (field GPIOFLPEN))
+            )                        
             (pin (name PF0) (index 0)
                 (altfn 4 I2C2_SDA)
                 (altfn 12 FMC_A0)
@@ -2025,6 +2096,13 @@
         (peripheral
             (name GPIOG)
             (address 0x40021800)
+            (clock
+                (input (name AHB1))
+                (gate (type RST) (periph RCC) (register AHB1RSTR) (field GPIOGRST))
+                (gate (type EN) (periph RCC) (register AHB1ENR) (field GPIOGEN))
+                (gate (type LPEN) (periph RCC) (register AHB1LPENR) (field GPIOGLPEN))
+            )            
+           
             (pin (name PG0) (index 0)
                 (altfn 12 FMC_A10)
                 (altfn 15 EVENTOUT)
@@ -2152,6 +2230,12 @@
         (peripheral
             (name GPIOH)
             (address 0x40021c00)
+            (clock
+                (input (name AHB1))
+                (gate (type RST) (periph RCC) (register AHB1RSTR) (field GPIOHRST))
+                (gate (type EN) (periph RCC) (register AHB1ENR) (field GPIOHEN))
+                (gate (type LPEN) (periph RCC) (register AHB1LPENR) (field GPIOHLPEN))
+            )                        
             (pin (name PH0) (index 0)
                 (altfn 15 EVENTOUT)
             )
@@ -2272,6 +2356,12 @@
         (peripheral
             (name GPIOI)
             (address 0x40022000)
+            (clock
+                (input (name AHB1))
+                (gate (type RST) (periph RCC) (register AHB1RSTR) (field GPIOIRST))
+                (gate (type EN) (periph RCC) (register AHB1ENR) (field GPIOIEN))
+                (gate (type LPEN) (periph RCC) (register AHB1LPENR) (field GPIOILPEN))
+            )                        
             (pin (name PI0) (index 0)
                 (altfn 2 TIM5_CH4)
                 (altfn 5 SPI2_NSS)
@@ -2380,6 +2470,12 @@
         (peripheral
             (name GPIOJ)
             (address 0x40022400)
+            (clock
+                (input (name AHB1))
+                (gate (type RST) (periph RCC) (register AHB1RSTR) (field GPIOJRST))
+                (gate (type EN) (periph RCC) (register AHB1ENR) (field GPIOJEN))
+                (gate (type LPEN) (periph RCC) (register AHB1LPENR) (field GPIOJLPEN))
+            )                        
             (pin (name PJ0) (index 0)
                 (altfn 9 LCD_R7)
                 (altfn 14 LCD_R1)
@@ -2452,6 +2548,12 @@
         (peripheral
             (name GPIOK)
             (address 0x40022800)
+            (clock
+                (input (name AHB1))
+                (gate (type RST) (periph RCC) (register AHB1RSTR) (field GPIOKRST))
+                (gate (type EN) (periph RCC) (register AHB1ENR) (field GPIOKEN))
+                (gate (type LPEN) (periph RCC) (register AHB1LPENR) (field GPIOKLPEN))
+            )                        
             (pin (name PK0) (index 0)
                 (altfn 14 LCD_G5)
                 (altfn 15 EVENTOUT)
@@ -2492,6 +2594,12 @@
         (peripheral 
             (name USART1)
             (address 0x40011000)
+            (clock
+                (input (name APB2))
+                (gate (type RST) (periph RCC) (register APB2RSTR) (field USART1RST))
+                (gate (type EN) (periph RCC) (register APB2ENR) (field USART1EN))
+                (gate (type LPEN) (periph RCC) (register APB2LPENR) (field USART1LPEN))
+            )                        
             (signal (name USART1_TX) (type USART_TX))
             (signal (name USART1_RX) (type USART_RX))
             (signal (name USART1_CTS) (type USART_CTS))
@@ -2507,6 +2615,12 @@
         (peripheral
             (name USART2)
             (address 0x40004400)
+            (clock
+                (input (name APB1))
+                (gate (type RST) (periph RCC) (register APB1RSTR) (field UART2RST))
+                (gate (type EN) (periph RCC) (register APB1ENR) (field UART2EN))
+                (gate (type LPEN) (periph RCC) (register APB1LPENR) (field UART2LPEN))
+            )                                    
             (signal (name USART2_TX) (type USART_TX))
             (signal (name USART2_RX) (type USART_RX))
             (signal (name USART2_CTS) (type USART_CTS))
@@ -2522,6 +2636,12 @@
         (peripheral
             (name USART3)
             (address 0x40004800)
+            (clock
+                (input (name APB1))
+                (gate (type RST) (periph RCC) (register APB1RSTR) (field UART3RST))
+                (gate (type EN) (periph RCC) (register APB1ENR) (field UART3EN))
+                (gate (type LPEN) (periph RCC) (register APB1LPENR) (field UART3LPEN))
+            )            
             (signal (name USART3_TX) (type USART_TX))
             (signal (name USART3_RX) (type USART_RX))
             (signal (name USART3_CTS) (type USART_CTS))
@@ -2537,6 +2657,12 @@
         (peripheral
             (name UART4)
             (address 0x40004c00)
+            (clock
+                (input (name APB1))
+                (gate (type RST) (periph RCC) (register APB1RSTR) (field UART4RST))
+                (gate (type EN) (periph RCC) (register APB1ENR) (field UART4EN))
+                (gate (type LPEN) (periph RCC) (register APB1LPENR) (field UART4LPEN))
+            )            
             (signal (name UART4_TX) (type USART_TX))
             (signal (name UART4_RX) (type USART_RX))
             (signal (name UART4_CTS) (type USART_CTS))
@@ -2552,6 +2678,12 @@
         (peripheral
             (name UART5)
             (address 0x40005000)
+            (clock
+                (input (name APB1))
+                (gate (type RST) (periph RCC) (register APB1RSTR) (field UART5RST))
+                (gate (type EN) (periph RCC) (register APB1ENR) (field UART5EN))
+                (gate (type LPEN) (periph RCC) (register APB1LPENR) (field UART5LPEN))
+            )            
             (signal (name UART5_TX) (type USART_TX))
             (signal (name UART5_RX) (type USART_RX))
             (signal (name UART5_CTS) (type USART_CTS))
@@ -2567,6 +2699,12 @@
         (peripheral
             (name USART6)
             (address 0x40011400)
+            (clock
+                (input (name APB2))
+                (gate (type RST) (periph RCC) (register APB2RSTR) (field USART6RST))
+                (gate (type EN) (periph RCC) (register APB2ENR) (field USART6EN))
+                (gate (type LPEN) (periph RCC) (register APB2LPENR) (field USART6LPEN))
+            )                                    
             (signal (name USART6_TX) (type USART_TX))
             (signal (name USART6_RX) (type USART_RX))
             (signal (name USART6_CTS) (type USART_CTS))
@@ -2582,6 +2720,12 @@
         (peripheral
             (name UART7)
             (address 0x40007800)
+            (clock
+                (input (name APB1))
+                (gate (type RST) (periph RCC) (register APB1RSTR) (field UART7RST))
+                (gate (type EN) (periph RCC) (register APB1ENR) (field UART7EN))
+                (gate (type LPEN) (periph RCC) (register APB1LPENR) (field UART7LPEN))
+            )                        
             (signal (name UART7_TX) (type USART_TX))
             (signal (name UART7_RX) (type USART_RX))
             (signal (name UART7_CTS) (type USART_CTS))
@@ -2597,6 +2741,12 @@
         (peripheral
             (name UART8)
             (address 0x40007c00)
+            (clock
+                (input (name APB1))
+                (gate (type RST) (periph RCC) (register APB1RSTR) (field UART8RST))
+                (gate (type EN) (periph RCC) (register APB1ENR) (field UART8EN))
+                (gate (type LPEN) (periph RCC) (register APB1LPENR) (field UART8LPEN))
+            )                        
             (signal (name UART8_TX) (type USART_TX))
             (signal (name UART8_RX) (type USART_RX))
             (signal (name UART8_CTS) (type USART_CTS))
