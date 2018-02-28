@@ -326,6 +326,7 @@ pub fn gen_pins_mod<W: Write>(cfg: &modules::Config, out: &mut W, d: &Device, pa
         let p_mod = path.join(format!("{}.rs", p_name));
         let mut f_mod = try!(File::create(p_mod));
         try!(writeln!(f_mod, "pub use ::bobbin_common::*;"));
+        try!(writeln!(f_mod, "pub use ::bobbin_common::gate::*;"));
         try!(writeln!(out, ""));
         try!(modules::gen_pins(cfg, &mut f_mod, &d, signals));
     }

@@ -1706,7 +1706,9 @@ pub fn gen_peripheral_clock_gates<W: Write>(_cfg: &Config, out: &mut W, d: &Devi
 
             writeln!(out, "// {:?}", gate)?;
             writeln!(out, "impl {} for {} {{", g_type, p_type)?;
+            writeln!(out, "    #[inline]",)?;
             writeln!(out, "    fn {}(&self) -> bits::U1 {{ {}::{}.{}().{}() }}", g_name, pg_name, p_name, r_name, f_name)?;
+            writeln!(out, "    #[inline]",)?;
             writeln!(out, "    fn set_{}<V: Into<bits::U1>>(&self, value: V) -> &Self {{", g_name)?;
             writeln!(out, "        {}::{}.with_{}(|r| r.set_{}(value));",  pg_name, p_name, r_name, f_name)?;
             writeln!(out, "        self")?;            
