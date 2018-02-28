@@ -21,7 +21,15 @@ macro_rules! periph {
             fn into(self) -> $pty {
                 $pid
             }
-        }    
+        }
+
+        impl IntoPeriph for $ty {
+            type Target = $pty;
+            #[inline(always)]
+            fn into_periph(&self) -> Self::Target {
+                $pid
+            }
+        }
 
         impl $crate::periph::Periph for $ty {
             #[inline]
@@ -35,7 +43,7 @@ macro_rules! periph {
             #[inline]
             fn ord(&self) -> usize {
                 $ord
-            }            
+            }        
         }
     };
     ($id:ident, $ty:ident, $base:expr) => (    

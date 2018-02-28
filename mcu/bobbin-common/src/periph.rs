@@ -4,6 +4,11 @@ pub trait Periph: Default {
     fn ord(&self) -> usize;
 }
 
+pub trait IntoPeriph {
+    type Target;
+    fn into_periph(&self) -> Self::Target;
+}
+
 pub trait ClockEnabled : Periph {
     fn clock_enabled(&self) -> bool;
     fn set_clock_enabled(&self, value: bool);
