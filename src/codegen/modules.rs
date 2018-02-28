@@ -1605,12 +1605,43 @@ pub fn gen_clocks<W: Write>(_cfg: &Config, out: &mut W, d: &Device, _path: &Path
     writeln!(out, "pub type Hz = Option<u32>;")?;
     writeln!(out, "")?;
 
+    {
+        // Generate Input Constants
+        let mut wrote_const = false;
+
+        for clock in &clocks.inputs {
+            writeln!(out, "pub const {}: Hz = {:?};", 
+                clock.const_id(),
+                clock.speed,
+            )?;
+            wrote_const = true;
+        }
+
+        for clock in &clocks.sources {
+            writeln!(out, "pub const {}: Hz = {:?};", 
+                clock.const_id(),
+                clock.speed,
+            )?;
+            wrote_const = true;
+        }
+
+        if wrote_const {
+            writeln!(out, "")?;
+        }
+    }
+
     writeln!(out, "pub trait ClockTree {{")?;
     for clock in &clocks.inputs {
-        writeln!(out, "    fn {}(&self) -> Hz;", clock.trait_method())?
+        writeln!(out, "    fn {}(&self) -> Hz {{ {} }}", 
+            clock.trait_method(),
+            clock.const_id(),
+        )?;
     }
     for clock in &clocks.sources {
-        writeln!(out, "    fn {}(&self) -> Hz;", clock.trait_method())?
+        writeln!(out, "    fn {}(&self) -> Hz {{ {} }}", 
+            clock.trait_method(),
+            clock.const_id(),
+        )?;
     }
     for clock in &clocks.outputs {
         writeln!(out, "    fn {}(&self) -> Hz;", clock.trait_method())?

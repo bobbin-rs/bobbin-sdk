@@ -545,6 +545,10 @@ pub struct Clock {
 }
 
 impl Clock {
+    pub fn const_id(&self) -> String {
+        self.name.to_uppercase()
+    }
+
     pub fn trait_method(&self) -> String {
         self.name.to_lowercase()
     }
