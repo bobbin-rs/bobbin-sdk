@@ -45,6 +45,18 @@
         (output (name ETH_MACRX))
         (output (name ETH_MACRMII))
         (output (name USBHS_ULPI))
+        (output (name USART1))
+        (output (name USART2))
+        (output (name USART3))
+        (output (name UART4))
+        (output (name UART5))
+        (output (name USART6))
+        (output (name UART7))
+        (output (name UART8))
+        (output (name I2C1))
+        (output (name I2C2))
+        (output (name I2C3))
+        (output (name I2C4))
     )
     (crate
         ;(name stm32_common)
@@ -2595,6 +2607,7 @@
             (name USART1)
             (address 0x40011000)
             (clock
+                (input (name USART1))
                 (gate (type RST) (periph RCC) (register APB2RSTR) (field USART1RST))
                 (gate (type EN) (periph RCC) (register APB2ENR) (field USART1EN))
                 (gate (type SLEEP_EN) (periph RCC) (register APB2LPENR) (field USART1LPEN))
@@ -2615,6 +2628,7 @@
             (name USART2)
             (address 0x40004400)
             (clock
+                (input (name USART2))
                 (gate (type RST) (periph RCC) (register APB1RSTR) (field USART2RST))
                 (gate (type EN) (periph RCC) (register APB1ENR) (field USART2EN))
                 (gate (type SLEEP_EN) (periph RCC) (register APB1LPENR) (field USART2LPEN))
@@ -2635,6 +2649,7 @@
             (name USART3)
             (address 0x40004800)
             (clock
+                (input (name USART3))
                 (gate (type RST) (periph RCC) (register APB1RSTR) (field USART3RST))
                 (gate (type EN) (periph RCC) (register APB1ENR) (field USART3EN))
                 (gate (type SLEEP_EN) (periph RCC) (register APB1LPENR) (field USART3LPEN))
@@ -2655,6 +2670,7 @@
             (name UART4)
             (address 0x40004c00)
             (clock
+                (input (name UART4))
                 (gate (type RST) (periph RCC) (register APB1RSTR) (field UART4RST))
                 (gate (type EN) (periph RCC) (register APB1ENR) (field UART4EN))
                 (gate (type SLEEP_EN) (periph RCC) (register APB1LPENR) (field UART4LPEN))
@@ -2675,6 +2691,7 @@
             (name UART5)
             (address 0x40005000)
             (clock
+                (input (name UART5))
                 (gate (type RST) (periph RCC) (register APB1RSTR) (field UART5RST))
                 (gate (type EN) (periph RCC) (register APB1ENR) (field UART5EN))
                 (gate (type SLEEP_EN) (periph RCC) (register APB1LPENR) (field UART5LPEN))
@@ -2695,6 +2712,7 @@
             (name USART6)
             (address 0x40011400)
             (clock
+                (input (name USART6))
                 (gate (type RST) (periph RCC) (register APB2RSTR) (field USART6RST))
                 (gate (type EN) (periph RCC) (register APB2ENR) (field USART6EN))
                 (gate (type SLEEP_EN) (periph RCC) (register APB2LPENR) (field USART6LPEN))
@@ -2715,6 +2733,7 @@
             (name UART7)
             (address 0x40007800)
             (clock
+                (input (name UART7))
                 (gate (type RST) (periph RCC) (register APB1RSTR) (field UART7RST))
                 (gate (type EN) (periph RCC) (register APB1ENR) (field UART7EN))
                 (gate (type SLEEP_EN) (periph RCC) (register APB1LPENR) (field UART7LPEN))
@@ -2735,6 +2754,7 @@
             (name UART8)
             (address 0x40007c00)
             (clock
+                (input (name UART8))
                 (gate (type RST) (periph RCC) (register APB1RSTR) (field UART8RST))
                 (gate (type EN) (periph RCC) (register APB1ENR) (field UART8EN))
                 (gate (type SLEEP_EN) (periph RCC) (register APB1LPENR) (field UART8LPEN))
