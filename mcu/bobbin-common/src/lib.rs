@@ -16,6 +16,7 @@ pub mod pin;
 pub mod channel;
 pub mod irq;
 pub mod signal;
+pub mod gate;
 
 pub mod clock;
 pub mod crc;
