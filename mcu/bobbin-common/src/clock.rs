@@ -9,7 +9,7 @@ pub trait SystemClock {}
 
 pub trait Clock<A> {
     fn clock(&self) -> Hz;
-    fn clock_for(&self, _a: A) -> Hz {
+    fn clock_for(&self, _a: &A) -> Hz {
         self.clock()
     }
 }
