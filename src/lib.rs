@@ -153,6 +153,7 @@ impl Device {
             max_irq
         }
     }
+
 }
 
 /// A variation of a MCU that may have different memory or flash capacity, peripherals,

@@ -1668,16 +1668,49 @@ pub fn gen_peripheral_clocks<W: Write>(_cfg: &Config, out: &mut W, d: &Device, p
     Ok(())
 }
 
-pub fn gen_peripheral_clock_gates<W: Write>(_cfg: &Config, out: &mut W, _d: &Device, p: &Peripheral, c: &Clock) -> Result<()> {
+pub fn gen_peripheral_clock_gates<W: Write>(_cfg: &Config, out: &mut W, d: &Device, p: &Peripheral, c: &Clock) -> Result<()> {
     for ref gate in c.gates.iter() {
         if let &Some(ref gate_type) = &gate.gate_type {
             let p_type = to_camel(&p.name);
             let g_type = format!("::bobbin_common::gate::Gate{}", to_camel(gate_type));
             let g_name = format!("gate_{}", gate_type.to_lowercase());
+
+
+            let p_name = if let Some(ref p_name) = gate.periph {
+                p_name.to_uppercase()
+            } else {
+                panic!("No register name specified for gate {} in {}", gate_type, p.name);
+            };
+            let r_name = if let Some(ref r_name) = gate.register {
+                r_name.to_lowercase()
+            } else {
+                panic!("No register name specified for gate {} in {}", gate_type, p.name);
+            };
+            let f_name = if let Some(ref f_name) = gate.field {
+                f_name.to_lowercase()
+            } else {
+                panic!("No field name specified for gate {} in {}", gate_type, p.name);
+            };
+
+            let pg_name = if let Some(ref p) = d.get_peripheral(&p_name) {
+                if let Some(ref group_name) = p.group_name {
+                    format!("::{}", group_name.to_lowercase())
+                } else {
+                    panic!("No group name specified for peripheral {}", p.name);
+                }
+            } else {
+                panic!("Could not find peripheral {} for gate {} in {}", r_name, gate_type, p.name);
+            };
+
+
+
             writeln!(out, "// {:?}", gate)?;
             writeln!(out, "impl {} for {} {{", g_type, p_type)?;
-            writeln!(out, "    fn {}(&self) -> bits::U1 {{ unimplemented!() }}", g_name)?;
-            writeln!(out, "    fn set_{}<V: Into<bits::U1>>(&self, value: V) -> &Self {{ unimplemented!() }}", g_name)?;
+            writeln!(out, "    fn {}(&self) -> bits::U1 {{ {}::{}.{}().{}() }}", g_name, pg_name, p_name, r_name, f_name)?;
+            writeln!(out, "    fn set_{}<V: Into<bits::U1>>(&self, value: V) -> &Self {{", g_name)?;
+            writeln!(out, "        {}::{}.with_{}(|r| r.set_{}(value));",  pg_name, p_name, r_name, f_name)?;
+            writeln!(out, "        self")?;            
+            writeln!(out, "    }}")?;            
             writeln!(out, "}}")?;            
             writeln!(out, "")?;
         }
