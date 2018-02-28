@@ -270,7 +270,7 @@ pub fn gen_map_mod<W: Write>(cfg: &modules::Config, p_out: &mut W, out: &mut W, 
         let p_mod = path.join(format!("{}.rs", p_name));
         let mut f_mod = try!(File::create(p_mod));
 
-        try!(modules::gen_peripheral(cfg, &mut f_mod, p, ord));
+        try!(modules::gen_peripheral(cfg, &mut f_mod, d, p, ord));
         ord += 1;
     }
 
@@ -280,7 +280,7 @@ pub fn gen_map_mod<W: Write>(cfg: &modules::Config, p_out: &mut W, out: &mut W, 
         writeln!(p_out, "pub use map::{};", pg_name)?;;
         let p_mod = path.join(format!("{}.rs", pg_name));
         let mut f_mod = try!(File::create(p_mod));
-        try!(modules::gen_peripheral_group(&cfg, &mut f_mod, pg, &mut ord));        
+        try!(modules::gen_peripheral_group(&cfg, &mut f_mod, d, pg, &mut ord));        
     }
 
     let signals = gen_signals_mod(&cfg, out, d, path)?;

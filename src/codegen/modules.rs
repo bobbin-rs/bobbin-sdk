@@ -4,7 +4,7 @@ use clap::{ArgMatches};
 use std::fs::File;
 use std::collections::{HashSet, HashMap};
 
-use {Access, Device, PeripheralGroup, Peripheral, Descriptor, Register, Cluster, Field, Interrupt, Exception};
+use {Access, Device, PeripheralGroup, Peripheral, Descriptor, Register, Cluster, Field, Interrupt, Exception, Clock};
 
 use super::{size_type, field_getter, field_setter, field_with, field_test, field_ptr, field_mut, field_name, to_camel};
 
@@ -123,7 +123,7 @@ pub fn gen_mod<W: Write>(cfg: &Config, out: &mut W, d: &Device, path: &Path) -> 
         try!(writeln!(out, "pub mod {};", p_name));
         let p_mod = path.join(format!("{}.rs", p_name));
         let mut f_mod = try!(File::create(p_mod));
-        try!(gen_peripheral(cfg, &mut f_mod, p, ord));
+        try!(gen_peripheral(cfg, &mut f_mod, d, p, ord));
         try!(gen_peripheral_impl(cfg, &mut f_mod, p));
         ord += 1;
     }
@@ -133,7 +133,7 @@ pub fn gen_mod<W: Write>(cfg: &Config, out: &mut W, d: &Device, path: &Path) -> 
         try!(writeln!(out, "pub mod {};", pg_name));
         let p_mod = path.join(format!("{}.rs", pg_name));
         let mut f_mod = try!(File::create(p_mod));
-        try!(gen_peripheral_group(cfg, &mut f_mod, pg, &mut ord));
+        try!(gen_peripheral_group(cfg, &mut f_mod, d, pg, &mut ord));
         try!(gen_peripheral_group_impl(cfg, &mut f_mod, pg));
         ord += 1;
     }
@@ -574,7 +574,7 @@ pub fn gen_signals_orig<W: Write>(_cfg: &Config, out: &mut W, d: &Device) -> Res
     Ok(())
 }
 
-pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &PeripheralGroup, ord: &mut usize) -> Result<()> {
+pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, d: &Device, pg: &PeripheralGroup, ord: &mut usize) -> Result<()> {
     let pg_name = if let Some(ref prototype) = pg.prototype {
         if let Some(ref name) = prototype.group_name {
             format!("{}", name)
@@ -838,6 +838,12 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
         }        
     }
 
+    // Generate Peripheral Group Clocks
+
+    for p in pg.peripherals.iter() {
+        gen_peripheral_clocks(cfg, out, d, p)?;
+    }
+
 
     // Generate Peripheral Group Interrupts
 
@@ -934,7 +940,7 @@ pub fn gen_peripheral_group_impl<W: Write>(cfg: &Config, out: &mut W, pg: &Perip
     Ok(())
 }
 
-pub fn gen_peripheral<W: Write>(cfg: &Config, out: &mut W, p: &Peripheral, ord: usize) -> Result<()> {
+pub fn gen_peripheral<W: Write>(cfg: &Config, out: &mut W, d: &Device, p: &Peripheral, ord: usize) -> Result<()> {
     let p_const = format!("{}_PERIPH", p.name);
     let p_type = to_camel(&p.group_name.as_ref().unwrap());
     let pg_type = format!("{}Periph", to_camel(&p.group_name.as_ref().unwrap()));
@@ -1046,7 +1052,10 @@ pub fn gen_peripheral<W: Write>(cfg: &Config, out: &mut W, p: &Peripheral, ord: 
         }        
     }
     try!(writeln!(out, ""));
-    Ok(())
+
+    gen_peripheral_clocks(cfg, out, d, p)?;
+    
+    Ok(())    
 }
 
 pub fn gen_peripheral_impl<W: Write>(cfg: &Config, out: &mut W, p: &Peripheral) -> Result<()> {
@@ -1651,3 +1660,27 @@ pub fn gen_clocks<W: Write>(_cfg: &Config, out: &mut W, d: &Device, _path: &Path
 
     Ok(())
 }
+
+pub fn gen_peripheral_clocks<W: Write>(_cfg: &Config, out: &mut W, d: &Device, p: &Peripheral) -> Result<()> {
+    for ref clock in p.clocks.iter() {
+        gen_peripheral_clock_gates(_cfg, out, d, p, clock)?;
+    }
+    Ok(())
+}
+
+pub fn gen_peripheral_clock_gates<W: Write>(_cfg: &Config, out: &mut W, _d: &Device, p: &Peripheral, c: &Clock) -> Result<()> {
+    for ref gate in c.gates.iter() {
+        if let &Some(ref gate_type) = &gate.gate_type {
+            let p_type = to_camel(&p.name);
+            let g_type = format!("::bobbin_common::gate::Gate{}", to_camel(gate_type));
+            let g_name = format!("gate_{}", gate_type.to_lowercase());
+            writeln!(out, "// {:?}", gate)?;
+            writeln!(out, "impl {} for {} {{", g_type, p_type)?;
+            writeln!(out, "    fn {}(&self) -> bits::U1 {{ unimplemented!() }}", g_name)?;
+            writeln!(out, "    fn set_{}<V: Into<bits::U1>>(&self, value: V) -> &Self {{ unimplemented!() }}", g_name)?;
+            writeln!(out, "}}")?;            
+            writeln!(out, "")?;
+        }
+    }
+    Ok(())
+}    
