@@ -272,6 +272,8 @@ pub struct Peripheral {
     pub dim_increment: Option<u64>,
     /// Not currently used.
     pub dim_index: Option<String>,
+
+    pub clocks: Vec<Clock>,
 }
 
 /// An address range assigned to a peripheral. Example:

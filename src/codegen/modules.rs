@@ -418,7 +418,7 @@ pub fn gen_signals<W: Write>(_cfg: &Config, out: &mut W, d: &Device) -> Result<S
                     }
                     let key = s_type.clone();
                     let value = (pg_mod.clone(), to_camel(&p.name), st_type.clone());
-                    println!("   {} => {:?}", key, value);
+                    // println!("   {} => {:?}", key, value);
                     signals.insert(key, value);
                 }
             }
@@ -435,7 +435,7 @@ pub fn gen_signals<W: Write>(_cfg: &Config, out: &mut W, d: &Device) -> Result<S
                         }                 
                         let key = s_type.clone();
                         let value = (pg_mod.clone(), ch_type.clone(), st_type.clone());
-                        println!("  {} => {:?}", key, value);
+                        // println!("  {} => {:?}", key, value);
                         signals.insert(key, value);
                     }
                 }          
@@ -709,22 +709,22 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
 
         // Generate Signals
 
-        println!("{}", p.name);
+        // println!("{}", p.name);
         for s in p.signals.iter() {
             let s_type = to_camel(&s.name);
-            println!("   {}", s_type);
+            // println!("   {}", s_type);
 
 
             // try!(writeln!(out, "impl super::sig::Signal<super::sig::{}> for {} {{}}", s_type, p_type));
             for st in s.types.iter() {
                 let st_type = to_camel(&st);
                 if !signal_types.contains(&st_type) {
-                    println!("-- {}", st_type);
+                    // println!("-- {}", st_type);
                     signal_types.insert(st_type.clone());
                 }
                 let key = s_type.clone();
                 let value = (to_camel(&p.name), st_type.clone());
-                println!("   {} => {:?}", key, value);
+                // println!("   {} => {:?}", key, value);
                 signals.insert(key, value);
 
                 // println!("      {}", st_type);
@@ -734,22 +734,22 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, pg: &Peripheral
 
         for ch in p.channels.iter() {
             let ch_type = to_camel(&ch.name);
-            println!("  {}", ch_type);
+            // println!("  {}", ch_type);
 
             for s in ch.signals.iter() {
                 let s_type = to_camel(&s.name);
-                println!("     {}", s_type);                
+                // println!("     {}", s_type);                
 
                 // try!(writeln!(out, "impl super::sig::Signal<super::sig::{}> for {} {{}}", s_type, ch_type));
                 for st in s.types.iter() {
                     let st_type = to_camel(&st);
                     if !signal_types.contains(&st_type) {
-                        println!("--   {}", st_type);
+                        // println!("--   {}", st_type);
                         signal_types.insert(st_type.clone());
                     }                 
                     let key = s_type.clone();
                     let value = (ch_type.clone(), st_type.clone());
-                    println!("  {} => {:?}", key, value);
+                    // println!("  {} => {:?}", key, value);
                     signals.insert(key, value);
                        
                     // try!(writeln!(out, "impl super::sig::Signal{}<super::sig::{}> for {} {{}}", st_type, s_type, ch_type));

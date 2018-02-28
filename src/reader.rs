@@ -551,6 +551,7 @@ fn read_peripheral(ctx: &Context, s: &[Sexp]) -> Result<Peripheral, ReadError> {
                 Some("register") => p.registers.push(try!(read_register(ctx, &arr[1..]))),                
                 Some("descriptor") => p.descriptors.push(try!(read_descriptor(ctx, &arr[1..]))),                
                 Some("link") => p.links.push(try!(read_link(ctx, &arr[1..]))),
+                Some("clock") => p.clocks.push(try!(read_clock(ctx, &arr[1..]))),                
                 Some("dim") => p.dim = Some(try!(expect_u64(ctx, &arr[1]))),
                 Some("dim-increment") => p.dim_increment = Some(try!(expect_u64(ctx, &arr[1]))),
                 Some("dim-index") => p.dim_index = Some(String::from(try!(expect_string(ctx, &arr[1])))),                
@@ -666,7 +667,6 @@ fn read_clocks(ctx: &Context, s: &[Sexp]) -> Result<Clocks, ReadError> {
 
 }
 
-
 fn read_clock(ctx: &Context, s: &[Sexp]) -> Result<Clock, ReadError> {
     let mut clk = Clock::default();
     for s in s.iter() {
@@ -694,7 +694,7 @@ fn read_gate(ctx: &Context, s: &[Sexp]) -> Result<Gate, ReadError> {
         match s {
             &Sexp::List(ref arr, _, _) => match arr[0].symbol() {
                 Some("name") => gate.name = Some(String::from(try!(expect_symbol(ctx, &arr[1])))),
-                Some("gate_type") => gate.gate_type = Some(String::from(try!(expect_symbol(ctx, &arr[1])))),
+                Some("type") => gate.gate_type = Some(String::from(try!(expect_symbol(ctx, &arr[1])))),
                 Some("periph") => gate.periph = Some(String::from(try!(expect_symbol(ctx, &arr[1])))),
                 Some("register") => gate.register = Some(String::from(try!(expect_symbol(ctx, &arr[1])))),
                 Some("field") => gate.field = Some(String::from(try!(expect_symbol(ctx, &arr[1])))),
