@@ -639,13 +639,13 @@
             (description "SPI 3 reset")
         )
         (field
-            (name UART2RST)
+            (name USART2RST)
             (bit-offset 17)
             (bit-width 1)
             (description "USART 2 reset")
         )
         (field
-            (name UART3RST)
+            (name USART3RST)
             (bit-offset 18)
             (bit-width 1)
             (description "USART 3 reset")
@@ -654,7 +654,7 @@
             (name UART4RST)
             (bit-offset 19)
             (bit-width 1)
-            (description "USART 4 reset")
+            (description "UART 4 reset")
         )
         (field
             (name UART5RST)
@@ -1080,14 +1080,14 @@
         (reset-value 0x0)
         (description "APB1 peripheral clock enable register")
         (field
-            (name UART8ENR)
+            (name UART8EN)
             (bit-offset 31)
             (bit-width 1)
             (description "UART8 clock enable")
             (link (name EN) (peripheral-group USART) (peripheral UART8))
         )
         (field
-            (name UART7ENR)
+            (name UART7EN)
             (bit-offset 30)
             (bit-width 1)
             (description "UART7 clock enable")
