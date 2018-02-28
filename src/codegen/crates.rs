@@ -148,8 +148,8 @@ pub fn gen_crate<W: Write>(cfg: Config, _out: &mut W, d: &Device) -> Result<()> 
         writeln!(out, "")?;
 
         writeln!(out, "pub mod clock;")?;
-        let mut mcu_out = File::create(clk_path.clone().join("mod.rs"))?;
-        gen_clocks_mod(&cfg,  &mut mcu_out, d, &mcu_path)?;
+        let mut clk_out = File::create(clk_path.clone().join("mod.rs"))?;
+        gen_clocks_mod(&cfg,  &mut clk_out, d, &clk_path)?;
         writeln!(out, "pub use clock::*;")?;
         writeln!(out, "")?;
 
@@ -350,6 +350,16 @@ pub fn gen_interrupts_mod<W: Write>(cfg: &modules::Config, out: &mut W, d: &Devi
 
 
 pub fn gen_clocks_mod<W: Write>(cfg: &modules::Config, out: &mut W, d: &Device, path: &Path) -> Result<()> {
+    let impl_name = "clock_impl";
+    let impl_path = path.join("clock_impl.rs");
+    if !impl_path.exists() {
+        let _= File::create(impl_path);
+    }
+
+    writeln!(out, "pub mod {};", impl_name)?;
+    writeln!(out, "pub use {}::*;", impl_name)?;
+    writeln!(out, "")?;
+
     try!(modules::gen_clocks(&cfg, out, &d, path));
     Ok(())
 }

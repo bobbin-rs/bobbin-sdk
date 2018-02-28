@@ -1644,7 +1644,7 @@ pub fn gen_clocks<W: Write>(_cfg: &Config, out: &mut W, d: &Device, _path: &Path
         )?;
     }
     for clock in &clocks.outputs {
-        writeln!(out, "    fn {}(&self) -> Hz;", clock.trait_method())?
+        writeln!(out, "    fn {}(&self) -> Hz {{ unimplemented!() }}", clock.trait_method())?
     }
     writeln!(out, "}}")?;
     writeln!(out, "")?;
