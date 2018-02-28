@@ -122,7 +122,7 @@ pub struct Device {
     pub crates: Vec<Crate>,
     pub regions: Vec<Region>,
     pub signals: Vec<Signal>,
-    pub clocks: Vec<Clock>,
+    pub clocks: Option<Clocks>,
     pub variants: Vec<Variant>,
 }
 
@@ -511,6 +511,14 @@ pub struct Channel {
     pub interrupts: Vec<Interrupt>,
 }
 
+#[derive(Debug, Clone, Default)]
+pub struct Clocks {
+    pub inputs: Vec<Clock>,
+    pub sources: Vec<Clock>,
+    pub outputs: Vec<Clock>,
+}
+
+
 /// An internal or external clock. Example:
 /// 
 /// ```
@@ -524,12 +532,25 @@ pub struct Channel {
 pub struct Clock {
     /// The symbolic name of the clock.
     pub name: String,
-    /// The speed of the clock, in Hz.
+    pub clock_type: String,
+    pub min: Option<u64>,
+    pub max: Option<u64>,
     pub speed: Option<u64>,
+    pub inputs: Vec<Clock>,
+    pub gates: Vec<Gate>,
     /// Text describing the clock.
     pub description: Option<String>,
 }
 
+#[derive(Debug, Clone, Default)]
+pub struct Gate {
+    pub name: Option<String>,
+    pub gate_type: Option<String>,
+    pub periph: Option<String>,
+    pub register: Option<String>,
+    pub field: Option<String>,
+    pub description: Option<String>,
+}
 
 impl Device {
     /// Returns the peripheral with the specified name or None if not found.

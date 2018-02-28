@@ -8,7 +8,7 @@ use sexp_tokenizer::Token;
 use {TopLevel, Access, Board, Connection, Device, Region, Crate, Module, Peripheral, PeripheralGroup, AddressBlock, Interrupt, Signal};
 use {Exception, Cluster, Descriptor, Register, Field, Link, EnumeratedValue};
 use {PathElement};
-use {Pin, AltFn, Channel, Clock, Variant};
+use {Pin, AltFn, Channel, Clocks, Clock, Gate, Variant};
 
 #[derive(Debug)]
 pub enum ReadError {
@@ -283,7 +283,7 @@ fn read_device(ctx: &Context, s: &[Sexp]) -> Result<Device, ReadError> {
                     Some("regions") => d.regions.extend(try!(read_regions(ctx, &arr[1..]))),
                     Some("variants") => d.variants.extend(try!(read_variants(ctx, &arr[1..]))),
                     Some("signal") => d.signals.push(try!(read_signal(ctx, &arr[1..]))),
-                    Some("clock") => d.clocks.push(try!(read_clock(ctx, &arr[1..]))),
+                    Some("clocks") => d.clocks = Some(try!(read_clocks(ctx, &arr[1..]))),
                     _ => return Err(ReadError::Error(format!("{}: Unexpected item: {:?}", ctx.location_of(s), arr)))
                 }
             }
@@ -649,13 +649,36 @@ fn read_signal(ctx: &Context, s: &[Sexp]) -> Result<Signal, ReadError> {
     Ok(sig)
 }
 
+fn read_clocks(ctx: &Context, s: &[Sexp]) -> Result<Clocks, ReadError> {
+    let mut clocks = Clocks::default();
+    for s in s.iter() {
+        match s {
+            &Sexp::List(ref arr, _, _) => match arr[0].symbol() {
+                Some("input") => clocks.inputs.push(try!(read_clock(ctx, &arr[1..]))),
+                Some("source") => clocks.sources.push(try!(read_clock(ctx, &arr[1..]))),
+                Some("output") => clocks.outputs.push(try!(read_clock(ctx, &arr[1..]))),
+                _ => return Err(ReadError::Error(format!("{}: Unexpected item: {:?}", ctx.location_of(s), arr)))
+            },            
+            _ => return Err(ReadError::Error(format!("{}: Unexpected item: {:?}", ctx.location_of(s), s))),
+        }
+    }
+    Ok(clocks)
+
+}
+
+
 fn read_clock(ctx: &Context, s: &[Sexp]) -> Result<Clock, ReadError> {
     let mut clk = Clock::default();
     for s in s.iter() {
         match s {
             &Sexp::List(ref arr, _, _) => match arr[0].symbol() {
                 Some("name") => clk.name = String::from(try!(expect_symbol(ctx, &arr[1]))),
+                Some("clock_type") => clk.name = String::from(try!(expect_symbol(ctx, &arr[1]))),
                 Some("speed") => clk.speed = Some(try!(expect_u64(ctx, &arr[1]))),
+                Some("min") => clk.speed = Some(try!(expect_u64(ctx, &arr[1]))),
+                Some("max") => clk.speed = Some(try!(expect_u64(ctx, &arr[1]))),
+                Some("input") => clk.inputs.push(try!(read_clock(ctx, &arr[1..]))),
+                Some("gate") => clk.gates.push(try!(read_gate(ctx, &arr[1..]))),
                 Some("description") => clk.description = Some(String::from(try!(expect_string(ctx, &arr[1])))),
                 _ => return Err(ReadError::Error(format!("{}: Unexpected item: {:?}", ctx.location_of(s), arr)))
             },
@@ -665,6 +688,24 @@ fn read_clock(ctx: &Context, s: &[Sexp]) -> Result<Clock, ReadError> {
     Ok(clk)
 }
 
+fn read_gate(ctx: &Context, s: &[Sexp]) -> Result<Gate, ReadError> {
+    let mut gate = Gate::default();
+    for s in s.iter() {
+        match s {
+            &Sexp::List(ref arr, _, _) => match arr[0].symbol() {
+                Some("name") => gate.name = Some(String::from(try!(expect_symbol(ctx, &arr[1])))),
+                Some("gate_type") => gate.gate_type = Some(String::from(try!(expect_symbol(ctx, &arr[1])))),
+                Some("periph") => gate.periph = Some(String::from(try!(expect_symbol(ctx, &arr[1])))),
+                Some("register") => gate.register = Some(String::from(try!(expect_symbol(ctx, &arr[1])))),
+                Some("field") => gate.field = Some(String::from(try!(expect_symbol(ctx, &arr[1])))),
+                Some("description") => gate.description = Some(String::from(try!(expect_string(ctx, &arr[1])))),
+                _ => return Err(ReadError::Error(format!("{}: Unexpected item: {:?}", ctx.location_of(s), arr)))
+            },
+            _ => return Err(ReadError::Error(format!("{}: Unexpected item: {:?}", ctx.location_of(s), s))),
+        }
+    }
+    Ok(gate)
+}
 
 fn read_cluster(ctx: &Context, s: &[Sexp]) -> Result<Cluster, ReadError> {
     let mut c = Cluster::default();
