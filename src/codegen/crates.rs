@@ -245,13 +245,22 @@ pub fn gen_hal_mod<W: Write>(_cfg: &modules::Config, out: &mut W, d: &Device, pa
     }
 
     for pg in d.peripheral_groups.iter() {
-        if pg.modules.len() > 0 { continue }
         let pg_name = pg.name.to_lowercase();
         try!(writeln!(out, "pub mod {};", pg_name));
         let p_mod = path.join(format!("{}.rs", pg_name));
         if !p_mod.exists() {
             let mut f_mod = try!(File::create(p_mod));
-            try!(write!(f_mod, "pub use periph::{}::*;", pg_name));
+            if pg.modules.len() > 0 {
+                for m in &pg.modules {
+                    if let Some(ref use_as) = m._as {
+                        try!(writeln!(f_mod, "pub use {} as {};", m.name, use_as));
+                    } else {
+                        try!(writeln!(f_mod, "pub use {};", m.name));
+                    }
+                }
+            } else {
+                try!(write!(f_mod, "pub use periph::{}::*;", pg_name));
+            }
         }
     }
     Ok(())

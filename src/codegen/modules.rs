@@ -604,19 +604,7 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, d: &Device, pg:
     try!(writeln!(out, "#[allow(unused_imports)] use {}::*;", cfg.common));    
     try!(writeln!(out, ""));
 
-    if pg.modules.len() > 0 {
-        for m in pg.modules.iter() {
-            if let Some(ref use_as) = m._as {
-                try!(writeln!(out, "pub use {} as {};", m.name, use_as));
-            } else {
-                try!(writeln!(out, "pub use {};", m.name));
-            }
-        }
-    } else {
-        writeln!(out, "pub use hal::{}::*;", pg_name.to_lowercase())?;
-        writeln!(out, "")?;        
-        
-    }
+    writeln!(out, "pub use ::hal::{}::*;", pg_name.to_lowercase())?;
     try!(writeln!(out, ""));
 
     for p in pg.peripherals.iter() {
