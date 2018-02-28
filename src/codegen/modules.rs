@@ -1593,3 +1593,7 @@ pub fn gen_field<W: Write>(cfg: &Config, out: &mut W, f: &Field, size: &str, _ac
 
     Ok(())
 }
+
+pub fn gen_clocks<W: Write>(cfg: &Config, out: &mut W, d: &Device, path: &Path) -> Result<()> {
+    Ok(())
+}

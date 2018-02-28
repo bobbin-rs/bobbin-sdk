@@ -72,6 +72,12 @@ pub fn gen_crate<W: Write>(cfg: Config, _out: &mut W, d: &Device) -> Result<()> 
         fs::create_dir(&map_path)?;
     }    
 
+    let clk_path = src_path.join("clock/");
+    if !clk_path.exists() {
+        fs::create_dir(&clk_path)?;
+    }    
+
+
     let mcu_path = src_path.join("mcu/");
     if !mcu_path.exists() {
         fs::create_dir(&mcu_path)?;
@@ -139,6 +145,12 @@ pub fn gen_crate<W: Write>(cfg: Config, _out: &mut W, d: &Device) -> Result<()> 
         let mut mcu_out = File::create(mcu_path.clone().join("mod.rs"))?;
         gen_mcu_mod(&cfg, &mut out, &mut mcu_out, d, &mcu_path)?;
         writeln!(out, "pub use mcu::*;")?;
+        writeln!(out, "")?;
+
+        writeln!(out, "pub mod clock;")?;
+        let mut mcu_out = File::create(clk_path.clone().join("mod.rs"))?;
+        gen_clocks_mod(&cfg,  &mut mcu_out, d, &mcu_path)?;
+        writeln!(out, "pub use clock::*;")?;
         writeln!(out, "")?;
 
     }
@@ -332,6 +344,13 @@ pub fn gen_interrupts_mod<W: Write>(cfg: &modules::Config, out: &mut W, d: &Devi
         let mut f_mod = try!(File::create(p_mod));
         try!(modules::gen_interrupts(&cfg, &mut f_mod, &d, interrupt_count));
     }
+    
+    Ok(())
+}
+
+
+pub fn gen_clocks_mod<W: Write>(cfg: &modules::Config, out: &mut W, d: &Device, path: &Path) -> Result<()> {
+    try!(modules::gen_clocks(&cfg, out, &d, path));
     
     Ok(())
 }
