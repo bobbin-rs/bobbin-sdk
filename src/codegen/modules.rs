@@ -1599,6 +1599,8 @@ pub fn gen_clocks<W: Write>(_cfg: &Config, out: &mut W, d: &Device, _path: &Path
     } else {
         return Ok(())
     };
+    writeln!(out, "pub use ::bobbin_common::clock::Clock;")?;
+    writeln!(out, "")?;
     writeln!(out, "pub type Hz = Option<u32>;")?;
     writeln!(out, "")?;
 
@@ -1645,6 +1647,48 @@ pub fn gen_clocks<W: Write>(_cfg: &Config, out: &mut W, d: &Device, _path: &Path
     }
     writeln!(out, "}}")?;
     writeln!(out, "")?;
+
+    // impl Clock<T> for Peripherals
+
+    for p in &d.peripherals {
+        let p_mod = if let Some(ref group_name) = p.group_name {
+            group_name.to_lowercase()
+        } else {
+            panic!("No group name specified for {}", p.name);
+        };
+        let p_type = to_camel(&p.name);
+        for clock in &p.clocks {
+            for input in &clock.inputs {
+                if input.name.len() > 0 {
+                    let i_name = input.name.to_lowercase();
+                    writeln!(out, "impl Clock<::{}::{}> for ClockTree {{", p_mod, p_type)?;
+                    writeln!(out, "   fn clock(&self) -> Hz {{ self.{}() }}", i_name)?;
+                    writeln!(out, "}}")?;
+                    writeln!(out, "")?;
+                }
+            }
+        }
+    }
+
+    // impl Clock<T> for Peripheral Groups
+
+    for pg in &d.peripheral_groups {
+        let p_mod = pg.name.to_lowercase();
+        for p in &pg.peripherals {
+            let p_type = to_camel(&p.name);
+            for clock in &p.clocks {
+                for input in &clock.inputs {
+                    if input.name.len() > 0 {
+                        let i_name = input.name.to_lowercase();
+                        writeln!(out, "impl Clock<::{}::{}> for ClockTree {{", p_mod, p_type)?;
+                        writeln!(out, "   fn clock(&self) -> Hz {{ self.{}() }}", i_name)?;
+                        writeln!(out, "}}")?;
+                        writeln!(out, "")?;
+                    }
+                }
+            }
+        }
+    }
 
     Ok(())
 }
