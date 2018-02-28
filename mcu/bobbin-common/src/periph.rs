@@ -6,7 +6,7 @@ pub trait Periph: Default {
 
 pub trait IntoPeriph {
     type Target;
-    fn into_periph(&self) -> Self::Target;
+    fn into_periph(&self) -> &'static Self::Target;
 }
 
 pub trait ClockEnabled : Periph {

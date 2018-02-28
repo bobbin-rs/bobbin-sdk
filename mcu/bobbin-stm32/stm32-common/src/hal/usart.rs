@@ -1,3 +1,4 @@
+pub use bobbin_common::console::Putc;
 pub use bobbin_common::configure::*;
 pub use bobbin_common::enabled::*;
 pub use bobbin_common::serial::*;
@@ -91,7 +92,6 @@ impl Enabled for UsartPeriph {
     }
 }
 
-
 impl Write for UsartPeriph {
     fn write_str(&mut self, s: &str) -> fmt::Result {
         for byte in s.bytes() {
@@ -122,6 +122,11 @@ impl SerialRx<u8> for UsartPeriph {
     }
 }
 
+impl Putc for UsartPeriph {
+    fn console_putc(&self, c: u8) {
+        self.putc(c);
+    }
+}
 
 pub struct UsartDriver<'a> {    
     usart: UsartPeriph,

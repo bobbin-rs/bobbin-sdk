@@ -19,6 +19,8 @@ pub mod signal;
 pub mod gate;
 
 pub mod clock;
+pub mod console;
+
 pub mod crc;
 pub mod timer;
 pub mod digital;

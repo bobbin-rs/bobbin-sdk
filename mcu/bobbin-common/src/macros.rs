@@ -26,8 +26,8 @@ macro_rules! periph {
         impl IntoPeriph for $ty {
             type Target = $pty;
             #[inline(always)]
-            fn into_periph(&self) -> Self::Target {
-                $pid
+            fn into_periph(&self) -> &'static Self::Target {
+                &$pid
             }
         }
 
