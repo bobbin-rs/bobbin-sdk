@@ -266,7 +266,7 @@ macro_rules! clock {
             fn hz() -> Hz { $expr }
         }
 
-        impl super::$tr for LocalTree<$tree> {
+        impl $tr for LocalTree<$tree> {
             type Out = LocalClock<$clock>;
         }               
     };
