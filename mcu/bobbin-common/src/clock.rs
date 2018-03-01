@@ -1,21 +1,19 @@
-pub type Hz = Option<u32>;
+pub use hz::Hz;
 
-pub const HZ: Hz = Some(1);
-pub const KHZ: Hz = Some(1_000);
-pub const MHZ: Hz = Some(1_000_000);
-pub const GHZ: Hz = Some(1_000_000_000);
+pub trait ClockTree {}
 
-pub trait SystemClock {}
-
-pub trait Clock<A> {
-    fn clock(&self) -> Hz;
-    fn clock_for(&self, _a: &A) -> Hz {
-        self.clock()
-    }
+pub trait Clock: Default {
+    fn hz() -> Hz;
+    fn hz_of(&self) -> Hz { Self::hz() }
+    fn value(&self) -> u32 { Self::hz().into() }
 }
 
-pub trait Systick {
-    fn systick(&self) -> Hz;
+pub trait ClockFor<P> 
+where 
+    Self::Out : Clock
+{
+    type Out;
+    fn clock_for(&self, _p: &P) -> Self::Out { Self::Out::default() }
 }
 
 pub trait Millis {

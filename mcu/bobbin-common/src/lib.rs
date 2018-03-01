@@ -18,6 +18,7 @@ pub mod irq;
 pub mod signal;
 pub mod gate;
 
+pub mod hz;
 pub mod clock;
 pub mod console;
 

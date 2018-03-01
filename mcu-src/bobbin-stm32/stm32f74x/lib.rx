@@ -21,7 +21,6 @@
         (output (name LPTIMER))
         (output (name USART))
         (output (name I2C))
-        (output (name IWDG))
         (output (name RTC))
         (output (name SYSCLK) (max 216000000))
         (output (name SDMMC))
@@ -204,6 +203,9 @@
         (peripheral
             (name IWDG)
             (address 0x40003000)
+            (clock
+                (input (name LSI))
+            )                 
             (description "Independent watchdog")        
         )
     )

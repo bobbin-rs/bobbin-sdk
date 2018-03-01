@@ -208,6 +208,68 @@ macro_rules! irq_type {
     }
 }
 
+#[macro_export]
+macro_rules! clocktree {
+    ($id:ident, $ty:ident) => {
+        pub const $id: $ty = $ty {};
+        pub struct $ty {}
+        impl $crate::clock::ClockTree for $ty {}
+    };
+}
+
+#[macro_export]
+macro_rules! clocktree_clock {
+    ($tr:ident, $meth:ident) => {
+        pub trait $tr: $crate::clock::ClockTree where Self::Out: $crate::clock::Clock {
+            type Out;
+            fn $meth(&self) -> Self::Out { Self::Out::default() }
+        } 
+    };
+}
+
+#[macro_export]
+macro_rules! clocktree_periph {
+    ($pty:path, $clk:ident) => {
+        impl<CLK: $clk> $crate::clock::ClockFor<$pty> for LocalClock<CLK>
+        {
+            type Out = CLK::Out;
+        }        
+    };
+}
+
+#[macro_export]
+macro_rules! clock_global {
+    ($tr:ident, $clock:ident, $expr:expr) => {
+        #[derive(Debug, Clone, Copy, Default)]
+        pub struct $clock {}
+
+        impl $crate::clock::Clock for LocalClock<$clock> {
+            fn hz() -> Hz { $expr }
+        }
+
+        impl<T: $crate::clock::ClockTree> $tr for T {
+            type Out = LocalClock<$clock>;
+        }               
+    };
+}
+
+#[macro_export]
+macro_rules! clock {
+    ($tree:ident, $tr:ident, $clock:ident, $expr:expr) => {
+        #[derive(Debug, Clone, Copy, Default)]
+        pub struct $clock {}
+
+        impl $crate::clock::Clock for LocalClock<$clock> {
+            fn hz() -> Hz { $expr }
+        }
+
+        impl super::$tr for $tree {
+            type Out = LocalClock<$clock>;
+        }               
+    };
+}
+
+
 /// Macro for sending `print!`-formatted messages over the Console
 #[macro_export]
 macro_rules! print {
@@ -230,3 +292,4 @@ macro_rules! println {
         print!(concat!($fmt, "\n"), $($arg)*)
     };
 }
+
