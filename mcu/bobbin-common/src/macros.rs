@@ -211,9 +211,10 @@ macro_rules! irq_type {
 #[macro_export]
 macro_rules! clocktree {
     ($id:ident, $ty:ident) => {
-        pub const $id: $ty = $ty {};
+        pub const $id: LocalTree<$ty> = LocalTree($ty {});
+        #[derive(Debug, Clone, Copy, Default)]        
         pub struct $ty {}
-        impl $crate::clock::ClockTree for $ty {}
+        impl $crate::clock::ClockTree for LocalTree<$ty> {}
     };
 }
 
@@ -229,10 +230,12 @@ macro_rules! clocktree_clock {
 
 #[macro_export]
 macro_rules! clocktree_periph {
-    ($pty:path, $clk:ident) => {
-        impl<CLK: $clk> $crate::clock::ClockFor<$pty> for LocalClock<CLK>
+    ($pty:path, $tr:ident) => {
+        impl<TR> $crate::clock::ClockFor<$pty> for LocalTree<TR>
+        where
+            Self: $tr
         {
-            type Out = CLK::Out;
+            type Out = <Self as $tr>::Out;
         }        
     };
 }
@@ -263,7 +266,7 @@ macro_rules! clock {
             fn hz() -> Hz { $expr }
         }
 
-        impl super::$tr for $tree {
+        impl super::$tr for LocalTree<$tree> {
             type Out = LocalClock<$clock>;
         }               
     };
