@@ -361,16 +361,22 @@ pub fn gen_interrupts_mod<W: Write>(cfg: &modules::Config, out: &mut W, d: &Devi
 
 
 pub fn gen_clocks_mod<W: Write>(cfg: &modules::Config, out: &mut W, d: &Device, path: &Path) -> Result<()> {
-    let impl_name = "clock_impl";
-    let impl_path = path.join("clock_impl.rs");
+    let defn_name = "tree_defn";
+    let defn_path = path.join("tree_defn.rs");
+
+    let impl_name = "tree_impl";
+    let impl_path = path.join("tree_impl.rs");
     if !impl_path.exists() {
         let _= File::create(impl_path);
     }
 
+    writeln!(out, "pub mod {};", defn_name)?;
+    writeln!(out, "pub use {}::*;", defn_name)?;
     writeln!(out, "pub mod {};", impl_name)?;
     writeln!(out, "pub use {}::*;", impl_name)?;
     writeln!(out, "")?;
 
-    try!(modules::gen_clocks(&cfg, out, &d, path));
+    let mut out = try!(File::create(defn_path));
+    try!(modules::gen_clocks(&cfg, &mut out, &d, path));
     Ok(())
 }

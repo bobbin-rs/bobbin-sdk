@@ -1599,6 +1599,201 @@ pub fn gen_clocks<W: Write>(_cfg: &Config, out: &mut W, d: &Device, _path: &Path
     } else {
         return Ok(())
     };
+    writeln!(out, "pub use ::bobbin_common::*;")?;
+    writeln!(out, "pub use ::bobbin_common::tree::*;")?;
+    writeln!(out, "pub use ::hz::Hz;")?;    
+    writeln!(out, "")?;
+
+    {
+        // Define Global Clocks
+        writeln!(out, "")?;
+        writeln!(out, "// Define Global Clocks")?;
+        writeln!(out, "")?;
+
+        for clock in &clocks.sources {
+            if let Some(speed) = clock.speed {
+                writeln!(out, "pub const {}_HZ: Hz = Hz::from_num({});", clock.const_id(), speed)?;
+            }
+        }        
+
+        writeln!(out, "")?;
+    }   
+
+    writeln!(out, "tree_defn! {{")?;
+    writeln!(out, "    id: TREE_DEFN: TreeDefn,")?;
+    writeln!(out, "    clock: {{")?;
+    {
+        for clock in &clocks.inputs {
+            writeln!(out, "        {}: {},", 
+                clock.const_id(),
+                to_camel(&clock.name),
+            )?;
+        }
+        for clock in &clocks.sources {
+            writeln!(out, "        {}: {},", 
+                clock.const_id(),
+                to_camel(&clock.name),
+            )?;
+        }
+        for clock in &clocks.outputs {
+            writeln!(out, "        {}: {},", 
+                clock.const_id(),
+                to_camel(&clock.name),
+            )?;
+        }
+    }
+    writeln!(out, "    }},")?;
+    writeln!(out, "    type: {{")?;
+    {
+        for p in &d.peripherals {
+            let p_mod = if let Some(ref group_name) = p.group_name {
+                group_name.to_lowercase()
+            } else {
+                panic!("No group name specified for {}", p.name);
+            };
+            let p_type = to_camel(&p.name);
+            for clock in &p.clocks {
+                for input in &clock.inputs {
+                    if input.name.len() > 0 {
+                        let i_type = to_camel(&input.name);
+                        writeln!(out, "        ::{}::{}: {},", p_mod, p_type, i_type)?;
+                    }
+                }
+            }
+        }
+
+        // impl Clock<T> for Peripheral Groups
+
+        for pg in &d.peripheral_groups {
+            let p_mod = pg.name.to_lowercase();
+            for p in &pg.peripherals {
+                let p_type = to_camel(&p.name);
+                for clock in &p.clocks {
+                    for input in &clock.inputs {
+                        if input.name.len() > 0 {
+                            let i_type = to_camel(&input.name);
+                            writeln!(out, "        ::{}::{}: {},", p_mod, p_type, i_type)?;
+                        }
+                    }
+                }
+            }
+        }
+    }    
+    writeln!(out, "    }},")?;
+    writeln!(out, "}}")?;
+    
+
+    return Ok(());
+
+    writeln!(out, "#[derive(Default, Debug, Clone, Copy)]")?;
+    writeln!(out, "pub struct LocalClock<T>(T);")?;
+    writeln!(out, "#[derive(Default, Debug, Clone, Copy)]")?;
+    writeln!(out, "pub struct LocalTree<T>(T);")?;
+    writeln!(out, "")?;
+
+    writeln!(out, "clocktree!(TREE, Tree);")?;
+    writeln!(out, "")?;
+
+    {
+        // Generate Clock Accessor Traits
+        writeln!(out, "// Clock Accessor Traits")?;
+        writeln!(out, "")?;
+        for clock in &clocks.inputs {
+            writeln!(out, "clocktree_clock!({}, {});", 
+                to_camel(&clock.name),
+                clock.trait_method(),
+            )?;
+        }
+        for clock in &clocks.sources {
+            writeln!(out, "clocktree_clock!({}, {});", 
+                to_camel(&clock.name),
+                clock.trait_method(),
+            )?;
+        }
+        for clock in &clocks.outputs {
+            writeln!(out, "clocktree_clock!({}, {});", 
+                to_camel(&clock.name),
+                clock.trait_method(),
+            )?;
+        }
+    }
+    writeln!(out, "")?;
+    {
+        // Peripheral Clock Accessor Traits
+        writeln!(out, "// Peripheral Clock Accessor Traits")?;
+        writeln!(out, "")?;      
+
+        for p in &d.peripherals {
+            let p_mod = if let Some(ref group_name) = p.group_name {
+                group_name.to_lowercase()
+            } else {
+                panic!("No group name specified for {}", p.name);
+            };
+            let p_type = to_camel(&p.name);
+            for clock in &p.clocks {
+                for input in &clock.inputs {
+                    if input.name.len() > 0 {
+                        let i_type = to_camel(&input.name);
+                        writeln!(out, "clocktree_periph!(::{}::{}, {});", p_mod, p_type, i_type)?;
+                    }
+                }
+            }
+        }
+
+        // impl Clock<T> for Peripheral Groups
+
+        for pg in &d.peripheral_groups {
+            let p_mod = pg.name.to_lowercase();
+            for p in &pg.peripherals {
+                let p_type = to_camel(&p.name);
+                for clock in &p.clocks {
+                    for input in &clock.inputs {
+                        if input.name.len() > 0 {
+                            let i_type = to_camel(&input.name);
+                            writeln!(out, "clocktree_periph!(::{}::{}, {});", p_mod, p_type, i_type)?;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    {
+        // Define Global Clocks
+        writeln!(out, "")?;
+        writeln!(out, "// Define Global Clocks")?;
+        writeln!(out, "")?;
+
+        for clock in &clocks.sources {
+            if let Some(speed) = clock.speed {
+                writeln!(out, "pub const {}: Hz = Hz::from_num({});", clock.const_id(), speed)?;
+            }
+        }        
+
+        writeln!(out, "")?;
+
+        for clock in &clocks.sources {
+            if let Some(_) = clock.speed {
+                let clock_trait = to_camel(&clock.name);
+                let clock_type = format!("Clk{}", to_camel(&clock.name));
+                let clock_value = clock.const_id();
+                writeln!(out, "clock_global!({}, {}, {});", clock_trait, clock_type, clock_value)?;
+            }
+        }
+        writeln!(out, "")?;
+    }
+
+    Ok(())
+}
+
+pub fn gen_clocks_orig<W: Write>(_cfg: &Config, out: &mut W, d: &Device, _path: &Path) -> Result<()> {
+    // pub trait ClockTree { ... }
+
+    let clocks = if let Some(ref clocks) = d.clocks {
+        clocks
+    } else {
+        return Ok(())
+    };
     writeln!(out, "pub use ::bobbin_common::clock::Clock;")?;
     writeln!(out, "")?;
     writeln!(out, "pub type Hz = Option<u32>;")?;
