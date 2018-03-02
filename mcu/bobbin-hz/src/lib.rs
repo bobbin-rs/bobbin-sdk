@@ -109,19 +109,37 @@ impl Hz {
 }
 
 impl core::ops::Mul<u32> for Hz {
-    type Output = Hz;
+    type Output = Self;
     fn mul(self, rhs: u32) -> Hz {
         Hz { num: self.num * rhs, den: self.den }
     }
 }
 
 impl core::ops::Div<u32> for Hz {
-    type Output = Hz;
+    type Output = Self;
     fn div(self, rhs: u32) -> Hz {
         assert!(rhs != 0);
         Hz { num: self.num, den: self.den * rhs }
     }
 }
+
+impl core::ops::Shr<u32> for Hz {
+    type Output = Self;
+
+    fn shr(self, rhs: u32) -> Self {
+        // Shift denominator left to avoid truncation
+        Hz { num: self.num, den: self.den << rhs }
+    }
+}
+
+impl core::ops::Shl<u32> for Hz {
+    type Output = Self;
+
+    fn shl(self, rhs: u32) -> Self {
+        Hz { num: self.num << rhs, den: self.den }
+    }
+}
+
 
 impl From<u32> for Hz {
     fn from(other: u32) -> Hz {
@@ -148,6 +166,7 @@ mod tests {
         let hz_3 = hz_2 / 2;
         assert_eq!(hz_3.as_u32(), 1u32);
     }
+    
     #[test]
     fn test_reduce() {
         let hz = Hz::from(1);
@@ -157,5 +176,21 @@ mod tests {
         let hz = hz.reduced();
         assert_eq!(hz.num(), 1);
         assert_eq!(hz.den(), 1);
+    }
+
+    #[test]
+    fn test_shl() {
+        let hz = Hz::from(1);
+        let hz = hz << 2;
+        assert_eq!(hz.num(), 4);
+        assert_eq!(hz.den(), 1);
+    }    
+
+    #[test]
+    fn test_shr() {
+        let hz = Hz::from(8);
+        let hz = hz >> 2;
+        assert_eq!(hz.num(), 8);
+        assert_eq!(hz.den(), 4);
     }
 }
