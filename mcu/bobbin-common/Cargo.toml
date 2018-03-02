@@ -5,3 +5,5 @@ authors = ["Jonathan Soo <jcsoo@agora.com>"]
 
 [dependencies]
 bobbin-bits = { path = "../../../bobbin-bits" }
+bobbin-hz = { path = "../bobbin-hz" }
+bobbin-tree = { path = "../bobbin-tree" }

@@ -5,8 +5,9 @@
 #[macro_use]
 extern crate std;
 
-// pub extern crate alloc;
 pub extern crate bobbin_bits as bits;
+pub extern crate bobbin_hz as hz;
+pub extern crate bobbin_tree as tree;
 
 #[macro_use]
 mod macros;
@@ -18,7 +19,6 @@ pub mod irq;
 pub mod signal;
 pub mod gate;
 
-pub mod hz;
 pub mod clock;
 pub mod console;
 
