@@ -19,8 +19,9 @@
         (source (name HSE) (input (name OSC)))
         (source (name LSI) (speed 32000))
         (source (name LSE) (input (name OSC32)))
-        (output (name SYSCLK) (max 216000000))
+        (output (name PLLCLK))
         (output (name PLL48CLK))
+        (output (name SYSCLK) (max 216000000))
         (output (name I2S))
         (output (name OTG_HS_SCL))
 

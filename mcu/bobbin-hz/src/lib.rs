@@ -166,7 +166,7 @@ mod tests {
         let hz_3 = hz_2 / 2;
         assert_eq!(hz_3.as_u32(), 1u32);
     }
-    
+
     #[test]
     fn test_reduce() {
         let hz = Hz::from(1);
@@ -192,5 +192,11 @@ mod tests {
         let hz = hz >> 2;
         assert_eq!(hz.num(), 8);
         assert_eq!(hz.den(), 4);
+    }
+    #[test]
+    fn test_pclk() {
+        let pclk1 = Hz::from_num(54000000);
+        let tim_pclk1 = pclk1 << 1;
+        assert_eq!(tim_pclk1.as_u32(), 54000000 << 1);
     }
 }
