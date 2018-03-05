@@ -1164,11 +1164,13 @@
             (interrupt
                 (name I2C1_EV)
                 (value 31)
+                (type I2C_EV)
                 (description "I2C1 event interrupt")
             )
             (interrupt
                 (name I2C1_ER)
                 (value 32)
+                (type I2C_ER)
                 (description "I2C1 error interrupt")
             )
         )      
@@ -1187,11 +1189,13 @@
             (interrupt
                 (name I2C2_EV)
                 (value 33)
+                (type I2C_EV)                
                 (description "I2C2 event interrupt")
             )
             (interrupt
                 (name I2C2_ER)
                 (value 34)
+                (type I2C_ER)                
                 (description "I2C2 error interrupt")
             )
         )
@@ -1210,11 +1214,13 @@
             (interrupt
                 (name I2C3_EV)
                 (value 72)
+                (type I2C_EV)                
                 (description "I2C3 event interrupt")
             )
             (interrupt
                 (name I2C3_ER)
                 (value 73)
+                (type I2C_ER)                
                 (description "I2C3 error interrupt")
             )
         )     
@@ -1233,11 +1239,13 @@
             (interrupt
                 (name I2C4_EV)
                 (value 95)
+                (type I2C_EV)                
                 (description "I2C4 event interrupt")
             )
             (interrupt
                 (name I2C4_ER)
                 (value 96)
+                (type I2C_ER)                
                 (description "I2C4 error interrupt")
             )
         )                 
@@ -1261,21 +1269,25 @@
             (interrupt
                 (name CAN1_TX)
                 (value 19)
+                (type CAN_TX)
                 (description "CAN1 TX interrupts")
             )
             (interrupt
                 (name CAN1_RX0)
                 (value 20)
+                (type CAN_RX0)
                 (description "CAN1 RX0 interrupts")
             )
             (interrupt
                 (name CAN1_RX1)
                 (value 21)
+                (type CAN_RX1)
                 (description "CAN1 RX1 interrupts")
             )
             (interrupt
                 (name CAN1_SCE)
                 (value 22)
+                (type CAN_SCE)
                 (description "CAN1 SCE interrupt")
             )
         )
@@ -1287,21 +1299,25 @@
             (interrupt
                 (name CAN2_TX)
                 (value 63)
+                (type CAN_TX)                
                 (description "CAN2 TX interrupts")
             )
             (interrupt
                 (name CAN2_RX0)
                 (value 64)
+                (type CAN_RX0)            
                 (description "CAN2 RX0 interrupts")
             )
             (interrupt
                 (name CAN2_RX1)
                 (value 65)
+                (type CAN_RX1)                
                 (description "CAN2 RX1 interrupts")
             )
             (interrupt
                 (name CAN2_SCE)
                 (value 66)
+                (type CAN_SCE)                
                 (description "CAN2 SCE interrupt")
             )
         )
