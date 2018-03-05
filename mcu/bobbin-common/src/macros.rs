@@ -187,13 +187,13 @@ macro_rules! signal {
 }
 
 #[macro_export]
-macro_rules! irq {
+macro_rules! irq_number {
     ($id:ident, $ty:ident, $num:expr) => {
         pub const $id: $ty = $ty {};
-        #[derive(Debug, Default, Clone, Copy, PartialEq, Eq)]
+        #[derive(Debug, Default, Clone, Copy)]
         pub struct $ty {}
         impl $crate::irq::IrqNumber for $ty {
-            fn number(&self) -> u8 { $num }
+            fn irq_number() -> u8 { $num }
         }
     }    
 }
@@ -202,9 +202,17 @@ macro_rules! irq {
 macro_rules! irq_type {
     ($id:ident, $ty:ident) => {
         pub const $id: $ty = $ty {};
-        #[derive(Debug, Default, Clone, Copy, PartialEq, Eq)]
+        #[derive(Debug, Default, Clone, Copy)]
         pub struct $ty {}
-        impl IrqType for $ty {}        
+        impl $crate::irq::IrqType for $ty {}
+        
+    };
+}
+
+#[macro_export]
+macro_rules! irq {
+    ($ty:ident, $ity:ident, $inum:ident ) => {
+        impl $crate::irq::Irq<$ity> for $ty { type Output = $inum; }        
     }
 }
 

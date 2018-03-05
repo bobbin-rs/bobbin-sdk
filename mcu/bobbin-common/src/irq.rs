@@ -1,9 +1,10 @@
-pub trait IrqType {}
-
-pub trait IrqNumber {
-    fn number(&self) -> u8;
+pub trait IrqNumber : Default {
+    fn irq_number() -> u8;
 }
 
-pub trait Irq<IT: IrqType, IN: IrqNumber> {
-    fn irq(&self) -> IN;
+pub trait IrqType : Default {}
+
+pub trait Irq<IT: IrqType> : Default {
+    type Output: IrqNumber;
+    fn irq_number_for(&self, IT) -> u8 { Self::Output::irq_number() }
 }
