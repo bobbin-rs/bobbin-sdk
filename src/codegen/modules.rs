@@ -295,12 +295,25 @@ pub fn gen_interrupts<W: Write>(cfg: &Config, out: &mut W, d: &Device, interrupt
         try!(writeln!(out, "}}"));
         try!(writeln!(out, ""));
 
-        try!(writeln!(out, "global_asm!(\""));
-        for i in 0..interrupt_count {
-            try!(writeln!(out, ".weak IRQ_{}", i));
-            try!(writeln!(out, "   IRQ_{} = DH_TRAMPOLINE", i));
-        }                
-        try!(writeln!(out, "\");"));
+        // try!(writeln!(out, "global_asm!(\""));
+        // for i in 0..interrupt_count {
+        //     try!(writeln!(out, ".weak IRQ_{}", i));
+        //     try!(writeln!(out, "   IRQ_{} = DH_TRAMPOLINE", i));
+        // }                
+        // try!(writeln!(out, "\");"));
+        // try!(writeln!(out, ""));
+    }
+
+    for i in 0..interrupt_count {
+        try!(writeln!(out, "#[linkage = \"weak\"]"));
+        try!(writeln!(out, "#[naked]"));
+        try!(writeln!(out, "#[no_mangle]"));
+        try!(writeln!(out, "extern \"C\" fn IRQ_{}_HANDLER() {{", i));
+        try!(writeln!(out, "    unsafe {{"));
+        try!(writeln!(out, "        asm!(\"b DEFAULT_HANDLER\" :::: \"volatile\");"));
+        try!(writeln!(out, "        ::core::intrinsics::unreachable();"));
+        try!(writeln!(out, "    }}"));
+        try!(writeln!(out, "}}"));
         try!(writeln!(out, ""));
     }
 
@@ -321,8 +334,8 @@ pub fn gen_interrupts<W: Write>(cfg: &Config, out: &mut W, d: &Device, interrupt
     //         try!(writeln!(out, "    None,"));
     //     }
     // }
-    for _ in 0..interrupt_count {
-        try!(writeln!(out, "    None,"));        
+    for i in 0..interrupt_count {
+        try!(writeln!(out, "    Some(IRQ_{}_HANDLER),", i));        
     }
 
     try!(writeln!(out,"];"));
@@ -336,20 +349,20 @@ pub fn gen_interrupts<W: Write>(cfg: &Config, out: &mut W, d: &Device, interrupt
     //      interrupts.len(), interrupts.len()));
     // try!(writeln!(out,""));    
 
-    if gen_irq_extern {
-        try!(writeln!(out, "extern \"C\" {{"));
-        for i in 0..interrupt_count {
-            try!(writeln!(out, "    {:30}", format!("pub fn irq_{}();", i)));
-        }
-        // for irq in interrupts.iter() {
-        //     if let &Some(irq) = irq { 
-        //         let sym = irq.name.to_uppercase();
-        //         let desc = irq.description.as_ref().map(|s| s.as_ref()).unwrap_or("No Description");
-        //         try!(writeln!(out, "    {:30} // {}", format!("pub fn {}();", sym), desc));            
-        //     }      
-        // }
-        try!(writeln!(out,"}}"));    
-    }
+    // if gen_irq_extern {
+    //     try!(writeln!(out, "extern \"C\" {{"));
+    //     for i in 0..interrupt_count {
+    //         try!(writeln!(out, "    {:30}", format!("pub fn irq_{}();", i)));
+    //     }
+    //     // for irq in interrupts.iter() {
+    //     //     if let &Some(irq) = irq { 
+    //     //         let sym = irq.name.to_uppercase();
+    //     //         let desc = irq.description.as_ref().map(|s| s.as_ref()).unwrap_or("No Description");
+    //     //         try!(writeln!(out, "    {:30} // {}", format!("pub fn {}();", sym), desc));            
+    //     //     }      
+    //     // }
+    //     try!(writeln!(out,"}}"));    
+    // }
 
     // Generate Defined Interrupt Types
 
