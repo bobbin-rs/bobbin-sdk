@@ -7,6 +7,7 @@ use sexp::parser::{parse, ParseError};
 use sexp_tokenizer::Token;
 use {TopLevel, Access, Board, Connection, Device, Region, Crate, Module, Peripheral, PeripheralGroup, AddressBlock, Interrupt, Signal};
 use {Exception, Cluster, Descriptor, Register, Field, Link, EnumeratedValue};
+use {InterruptType};
 use {PathElement};
 use {Pin, AltFn, Channel, Clocks, Clock, Gate, Variant};
 
@@ -467,6 +468,7 @@ fn read_peripheral_group(ctx: &Context, s: &[Sexp]) -> Result<PeripheralGroup, R
                 Some("name") => pg.name = String::from(try!(read_name(ctx, &arr[1]))),
                 Some("peripheral") => pg.peripherals.push(try!(read_peripheral(ctx, &arr[1..]))),
                 Some("module") => pg.modules.push(try!(read_module(ctx, &arr[1..]))),
+                Some("interrupt-type") => pg.interrupt_types.push(try!(read_interrupt_type(ctx, &arr[1..]))),
                 Some("has-pins") => pg.has_pins = true,
                 Some("has-channels") => pg.has_channels = true,
                 Some("description") => pg.description = Some(String::from(try!(expect_string(ctx, &arr[1])))),
@@ -543,6 +545,7 @@ fn read_peripheral(ctx: &Context, s: &[Sexp]) -> Result<Peripheral, ReadError> {
                 Some("access") => p.access = Some(try!(expect_access(ctx, &arr[1]))),
                 Some("reset-value") => p.reset_value = Some(try!(expect_u64(ctx, &arr[1]))),
                 Some("reset-mask") => p.reset_mask = Some(try!(expect_u64(ctx, &arr[1]))),
+                Some("interrupt-type") => p.interrupt_types.push(try!(read_interrupt_type(ctx, &arr[1..]))),
                 Some("interrupt") => p.interrupts.push(try!(read_interrupt(ctx, &arr[1..]))),
                 Some("signal") => p.signals.push(try!(read_signal(ctx, &arr[1..]))),
                 Some("pin") => p.pins.push(try!(read_pin(ctx, &arr[1..]))),
@@ -632,6 +635,23 @@ fn read_interrupt(ctx: &Context, s: &[Sexp]) -> Result<Interrupt, ReadError> {
         }
     }
     Ok(i)
+}
+
+
+
+fn read_interrupt_type(ctx: &Context, s: &[Sexp]) -> Result<InterruptType, ReadError> {
+    let mut ity = InterruptType::default();
+    for s in s.iter() {
+        match s {
+            &Sexp::List(ref arr, _, _) => match arr[0].symbol() {
+                Some("name") => ity.name = String::from(try!(expect_symbol(ctx, &arr[1]))),
+                Some("description") => ity.description = Some(String::from(try!(expect_string(ctx, &arr[1])))),
+                _ => return Err(ReadError::Error(format!("{}: Unexpected item: {:?}", ctx.location_of(s), arr)))
+            },
+            _ => return Err(ReadError::Error(format!("{}: Unexpected item: {:?}", ctx.location_of(s), s))),
+        }
+    }
+    Ok(ity)
 }
 
 fn read_signal(ctx: &Context, s: &[Sexp]) -> Result<Signal, ReadError> {

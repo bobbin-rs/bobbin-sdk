@@ -350,6 +350,135 @@ pub fn gen_interrupts<W: Write>(cfg: &Config, out: &mut W, d: &Device, interrupt
         // }
         try!(writeln!(out,"}}"));    
     }
+
+    // Generate Defined Interrupt Types
+
+    let mut interrupt_types = HashSet::new();
+
+    for pg in d.peripheral_groups.iter() {
+        for p in pg.peripherals.iter() {
+            for irq in p.interrupts.iter() {
+                for itype in irq.types.iter() {
+                    if !interrupt_types.contains(&itype) {
+                        try!(writeln!(out, "irq_type!(IRQ_{}, Irq{});", 
+                            itype.to_uppercase(),
+                            to_camel(&itype),
+                        ));            
+                        interrupt_types.insert(itype);
+                    }
+                }
+            }
+            for ch in p.channels.iter() {
+                for irq in ch.interrupts.iter() {
+                    for itype in irq.types.iter() {
+                        if !interrupt_types.contains(&itype) {
+                            try!(writeln!(out, "irq_type!(IRQ_{}, Irq{});", 
+                                itype.to_uppercase(),
+                                to_camel(&itype),
+                            ));
+                            interrupt_types.insert(itype);
+                        }
+                    }
+                }
+            }
+        }    
+    }
+
+
+    for p in d.peripherals.iter() {
+        for irq in p.interrupts.iter() {
+            for itype in irq.types.iter() {
+                if !interrupt_types.contains(&itype) {               
+                    try!(writeln!(out, "irq_type!(IRQ_{}, Irq{});", 
+                        itype.to_uppercase(),
+                        to_camel(&itype),
+                    ));
+                    interrupt_types.insert(itype);
+                }
+            }
+        }
+        for ch in p.channels.iter() {
+            for irq in ch.interrupts.iter() {
+                for itype in irq.types.iter() {
+                    if !interrupt_types.contains(&itype) {
+                        try!(writeln!(out, "irq_type!(IRQ_{}, Irq{});", 
+                            itype.to_uppercase(),
+                            to_camel(&itype),
+                        ));                                  
+                        interrupt_types.insert(itype);
+                    }
+                }
+            }
+        }
+    }      
+
+    // Generate Interrupt Mappings
+
+    try!(writeln!(out, ""));
+
+    for pg in d.peripheral_groups.iter() {
+        let mut use_local_irq_type = false;
+        let pg_mod = pg.name.to_lowercase();
+        for p in pg.peripherals.iter() {
+            for irq in p.interrupts.iter() {
+                if irq.types.len() == 0 {
+                    try!(writeln!(out, "irq!(::{}::{}, Irq{}, Irq{});", pg_mod, to_camel(&p.name), to_camel(&pg.name), irq.value));
+                    use_local_irq_type = true;
+                }
+                for itype in irq.types.iter() {
+                    try!(writeln!(out, "irq!(::{}::{}, Irq{}, Irq{});",  pg_mod, to_camel(&p.name), to_camel(&itype), irq.value));
+                }
+            }
+            for ch in p.channels.iter() {
+                for irq in ch.interrupts.iter() {
+                    if irq.types.len() == 0 {
+                        try!(writeln!(out, "irq!(::{}::{}, Irq{}, Irq{});",  pg_mod, to_camel(&p.name), to_camel(&pg.name), irq.value));
+                        use_local_irq_type = true;
+                    }
+                    for itype in irq.types.iter() {
+                        try!(writeln!(out, "irq!(::{}::{}, Irq{}, Irq{});",  pg_mod, to_camel(&ch.name), to_camel(&itype), irq.value));
+                    }
+                }
+            }
+        }
+        if use_local_irq_type {
+            try!(writeln!(out, "irq_type!(IRQ_{}, Irq{});",
+                pg.name.to_uppercase(),
+                to_camel(&pg.name),
+            ));
+        }
+    }  
+
+    for p in d.peripherals.iter() {
+        let p_mod = p.group_name.as_ref().unwrap().to_lowercase();
+        let mut use_local_irq_type = false;    
+        for irq in p.interrupts.iter() {
+            for itype in irq.types.iter() {
+                if irq.types.len() == 0 {
+                    try!(writeln!(out, "irq!(::{}::{}, Irq{}, Irq{});", p_mod, to_camel(&p.name), to_camel(&p.name), irq.value));
+                    use_local_irq_type = true;
+                }            
+                try!(writeln!(out, "irq!(::{}::{}, {}, Irq{});", p_mod, to_camel(&p.name), to_camel(&itype), irq.value));
+            }
+        }
+        for ch in p.channels.iter() {
+            for irq in ch.interrupts.iter() {
+                if irq.types.len() == 0 {
+                    try!(writeln!(out, "irq!(::{}::{}, Irq{}, Irq{});", p_mod, to_camel(&p.name), to_camel(&p.name), irq.value));
+                    use_local_irq_type = true;
+                }            
+                for itype in irq.types.iter() {
+                    try!(writeln!(out, "irq!(::{}::{}, Irq{}, Irq{});", p_mod, to_camel(&ch.name), to_camel(&itype), irq.value));
+                }
+            }
+        }
+        if use_local_irq_type {
+            try!(writeln!(out, "irq_type!(IRQ_{}, Irq{});",
+                p.name.to_uppercase(),
+                to_camel(&p.name),
+            ));
+        } 
+    }   
     Ok(())
 }
 pub fn gen_pins<W: Write>(_cfg: &Config, out: &mut W, d: &Device, signals: &SignalMap) -> Result<()> {
@@ -840,42 +969,6 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, d: &Device, pg:
     }
 
 
-    // Generate Peripheral Group Interrupts
-
-    try!(writeln!(out, ""));
-
-    let mut interrupt_types = HashSet::new();
-
-    for p in pg.peripherals.iter() {
-        for irq in p.interrupts.iter() {
-            for itype in irq.types.iter() {
-                if !interrupt_types.contains(&itype) {
-                    let itype_itrait = format!("Irq{}", to_camel(itype));
-                    try!(writeln!(out, "pub trait {}<T> {{", itype_itrait));
-                    try!(writeln!(out, "    fn irq_{}(&self) -> T;", itype.to_lowercase()));
-                    try!(writeln!(out, "}}"));        
-                    try!(writeln!(out, ""));                
-                    interrupt_types.insert(itype);
-                }
-            }
-        }
-        for ch in p.channels.iter() {
-            for irq in ch.interrupts.iter() {
-                for itype in irq.types.iter() {
-                    if !interrupt_types.contains(&itype) {
-                        let itype_itrait = format!("Irq{}", to_camel(itype));
-                        try!(writeln!(out, "pub trait {}<T> {{", itype_itrait));
-                        try!(writeln!(out, "    fn irq_{}(&self) -> T;", itype.to_lowercase()));
-                        try!(writeln!(out, "}}"));        
-                        try!(writeln!(out, ""));                
-                        interrupt_types.insert(itype);
-                    }
-                }
-            }
-        }
-    }
-
-
     Ok(())
 }
 pub fn gen_peripheral_group_impl<W: Write>(cfg: &Config, out: &mut W, pg: &PeripheralGroup) -> Result<()> {
@@ -1045,9 +1138,9 @@ pub fn gen_peripheral<W: Write>(cfg: &Config, out: &mut W, d: &Device, p: &Perip
                 try!(writeln!(out, "impl super::sig::Signal{}<super::sig::{}> for {} {{}}", st_type, s_type, p_type));
             }
         }        
-    }
+    }    
+    
     try!(writeln!(out, ""));
-
     gen_peripheral_clocks(cfg, out, d, p)?;
     
     Ok(())    

@@ -217,6 +217,8 @@ pub struct PeripheralGroup {
     pub modules: Vec<Module>,
     /// True if peripherals in this group has associated Pins.
     pub has_pins: bool,
+    /// The list of interrupt types associated with this peripheral group.
+    pub interrupt_types: Vec<InterruptType>,    
     /// True if peripherals in this group have associated Channels.
     pub has_channels: bool,
     /// Text describing this peripheral group.
@@ -252,6 +254,8 @@ pub struct Peripheral {
     pub links: Vec<Link>,
     /// The list of address blocks associated with this peripheral.
     pub address_blocks: Vec<AddressBlock>,
+    /// The list of interrupt types associated with this peripheral.
+    pub interrupt_types: Vec<InterruptType>,
     /// The list of interrupts associated with this peripheral.
     pub interrupts: Vec<Interrupt>,
     /// The list of register clusters associated with this peripheral.
@@ -318,6 +322,14 @@ pub struct Interrupt {
     /// The IRQ number of this interrupt.
     pub value: u64,
     /// Text describing this interrupt.
+    pub description: Option<String>,
+}
+
+/// A device interrupt type.
+#[derive(Debug, Clone, Default)]
+pub struct InterruptType {
+    /// The interrupt's symbolic name.
+    pub name: String,        
     pub description: Option<String>,
 }
 
