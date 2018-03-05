@@ -211,7 +211,7 @@ macro_rules! irq_type {
 
 #[macro_export]
 macro_rules! irq {
-    ($ty:ident, $ity:ident, $inum:ident ) => {
+    ($ty:path, $ity:ident, $inum:ident ) => {
         impl $crate::irq::Irq<$ity> for $ty { type Output = $inum; }        
     }
 }
