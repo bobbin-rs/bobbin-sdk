@@ -93,7 +93,9 @@
         (field
             (name HAINT)
             (bit-offset 0)
-            (bit-width 16)
+            (bit-width 1)
+            (dim 16)
+            (dim-increment 1)
             (description "Channel interrupts")
         )
     )
@@ -107,7 +109,9 @@
         (field
             (name HAINTM)
             (bit-offset 0)
-            (bit-width 16)
+            (bit-width 1)
+            (dim 16)
+            (dim-increment 1)
             (description "Channel interrupt mask")
         )
     )
