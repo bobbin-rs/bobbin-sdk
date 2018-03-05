@@ -229,36 +229,40 @@ pub fn gen_interrupts<W: Write>(cfg: &Config, out: &mut W, d: &Device, interrupt
     try!(writeln!(out, ""));
 
 
-    for pg in d.peripheral_groups.iter() {
-        for p in pg.peripherals.iter() {
-            for irq in p.interrupts.iter() {
-                let id = format!("IRQ_{}", irq.name.to_uppercase());
-                let ty = format!("Irq{}", to_camel(&irq.name));
-                let num = irq.value;
-                // let desc = irq.description.as_ref().map(|s| s.as_ref()).unwrap_or("No Description");
-                try!(writeln!(out, "irq!({id}, {ty}, {num});",
-                    id=id,
-                    ty=ty,
-                    num=num,
-                ));
+    // for pg in d.peripheral_groups.iter() {
+    //     for p in pg.peripherals.iter() {
+    //         for irq in p.interrupts.iter() {
+    //             let id = format!("IRQ_{}", irq.name.to_uppercase());
+    //             let ty = format!("Irq{}", to_camel(&irq.name));
+    //             let num = irq.value;
+    //             // let desc = irq.description.as_ref().map(|s| s.as_ref()).unwrap_or("No Description");
+    //             try!(writeln!(out, "irq!({id}, {ty}, {num});",
+    //                 id=id,
+    //                 ty=ty,
+    //                 num=num,
+    //             ));
 
-            }
-            for ch in p.channels.iter() {
-                for irq in ch.interrupts.iter() {
-                    let id = format!("IRQ_{}", irq.name.to_uppercase());
-                    let ty = format!("Irq{}", to_camel(&irq.name));
-                    let num = irq.value;
-                    // let desc = irq.description.as_ref().map(|s| s.as_ref()).unwrap_or("No Description");
-                    try!(writeln!(out, "irq!({id}, {ty}, {num});",
-                        id=id,
-                        ty=ty,
-                        num=num,
-                    ));
-                }
-            }
+    //         }
+    //         for ch in p.channels.iter() {
+    //             for irq in ch.interrupts.iter() {
+    //                 let id = format!("IRQ_{}", irq.name.to_uppercase());
+    //                 let ty = format!("Irq{}", to_camel(&irq.name));
+    //                 let num = irq.value;
+    //                 // let desc = irq.description.as_ref().map(|s| s.as_ref()).unwrap_or("No Description");
+    //                 try!(writeln!(out, "irq!({id}, {ty}, {num});",
+    //                     id=id,
+    //                     ty=ty,
+    //                     num=num,
+    //                 ));
+    //             }
+    //         }
 
-        }
+    //     }
+    // }
+    for i in 0..interrupt_count {
+        try!(writeln!(out, "irq_number!(IRQ_{}, Irq{}, {});", i, i, i));
     }
+
     try!(writeln!(out, ""));
     
     // TODO: Assert that NVIC is disabled before setting handler to None
@@ -292,13 +296,10 @@ pub fn gen_interrupts<W: Write>(cfg: &Config, out: &mut W, d: &Device, interrupt
         try!(writeln!(out, ""));
 
         try!(writeln!(out, "global_asm!(\""));
-        for irq in interrupts.iter() {
-            if let &Some(irq) = irq { 
-                let sym = irq.name.to_uppercase();
-                try!(writeln!(out, ".weak {}", sym));
-                try!(writeln!(out, "   {} = DH_TRAMPOLINE", sym));
-            }
-        }        
+        for i in 0..interrupt_count {
+            try!(writeln!(out, ".weak IRQ_{}", i));
+            try!(writeln!(out, "   IRQ_{} = DH_TRAMPOLINE", i));
+        }                
         try!(writeln!(out, "\");"));
         try!(writeln!(out, ""));
     }
@@ -307,40 +308,46 @@ pub fn gen_interrupts<W: Write>(cfg: &Config, out: &mut W, d: &Device, interrupt
     try!(writeln!(out,"#[no_mangle]"));
     try!(writeln!(out,"pub static mut INTERRUPTS: [Option<Handler>; {}] = [", interrupts.len()));
 
-    for irq in interrupts.iter() {
-        if let &Some(irq) = irq { 
-            let desc = irq.description.as_ref().map(|s| s.as_ref()).unwrap_or("No Description");
-            if gen_irq_extern {
-                let sym = irq.name.to_uppercase();
-                try!(writeln!(out, "    {:30} // IRQ {}: {}", format!("Some({}),", sym), irq.value, desc));
-            } else {
-                try!(writeln!(out, "    {:30} // IRQ {}: {}", format!("None,"), irq.value, desc));
-            }
-        } else {
-            try!(writeln!(out, "    None,"));
-        }
+    // for irq in interrupts.iter() {
+    //     if let &Some(irq) = irq { 
+    //         let desc = irq.description.as_ref().map(|s| s.as_ref()).unwrap_or("No Description");
+    //         if gen_irq_extern {
+    //             let sym = irq.name.to_uppercase();
+    //             try!(writeln!(out, "    {:30} // IRQ {}: {}", format!("Some({}),", sym), irq.value, desc));
+    //         } else {
+    //             try!(writeln!(out, "    {:30} // IRQ {}: {}", format!("None,"), irq.value, desc));
+    //         }
+    //     } else {
+    //         try!(writeln!(out, "    None,"));
+    //     }
+    // }
+    for _ in 0..interrupt_count {
+        try!(writeln!(out, "    None,"));        
     }
 
     try!(writeln!(out,"];"));
     try!(writeln!(out,""));
     
-    try!(writeln!(out,"#[cfg_attr(target_os=\"none\", link_section=\".bss.r_interrupts\")]"));    
-    try!(writeln!(out,"#[doc(hidden)]"));
-    try!(writeln!(out,"#[no_mangle]"));
-    try!(writeln!(out,"#[used]"));
-    try!(writeln!(out,"pub static mut R_INTERRUPT_HANDLERS: [Option<Handler>; {}] = [None; {}];",
-         interrupts.len(), interrupts.len()));
-    try!(writeln!(out,""));    
+    // try!(writeln!(out,"#[cfg_attr(target_os=\"none\", link_section=\".bss.r_interrupts\")]"));    
+    // try!(writeln!(out,"#[doc(hidden)]"));
+    // try!(writeln!(out,"#[no_mangle]"));
+    // try!(writeln!(out,"#[used]"));
+    // try!(writeln!(out,"pub static mut R_INTERRUPT_HANDLERS: [Option<Handler>; {}] = [None; {}];",
+    //      interrupts.len(), interrupts.len()));
+    // try!(writeln!(out,""));    
 
     if gen_irq_extern {
         try!(writeln!(out, "extern \"C\" {{"));
-        for irq in interrupts.iter() {
-            if let &Some(irq) = irq { 
-                let sym = irq.name.to_uppercase();
-                let desc = irq.description.as_ref().map(|s| s.as_ref()).unwrap_or("No Description");
-                try!(writeln!(out, "    {:30} // {}", format!("pub fn {}();", sym), desc));            
-            }      
+        for i in 0..interrupt_count {
+            try!(writeln!(out, "    {:30}", format!("pub fn irq_{}();", i)));
         }
+        // for irq in interrupts.iter() {
+        //     if let &Some(irq) = irq { 
+        //         let sym = irq.name.to_uppercase();
+        //         let desc = irq.description.as_ref().map(|s| s.as_ref()).unwrap_or("No Description");
+        //         try!(writeln!(out, "    {:30} // {}", format!("pub fn {}();", sym), desc));            
+        //     }      
+        // }
         try!(writeln!(out,"}}"));    
     }
     Ok(())
