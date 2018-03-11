@@ -17,6 +17,20 @@
         (reset-value 0x83)
         (description "clock control register")
         (field
+            (name PLLSAIRDY)
+            (bit-offset 29)
+            (bit-width 1)
+            (access read-only)
+            (description "PLLSAI clock ready flag")
+        )
+        (field
+            (name PLLSAION)
+            (bit-offset 28)
+            (bit-width 1)
+            (access read-write)
+            (description "PLLSAI enable")
+        )        
+        (field
             (name PLLI2SRDY)
             (bit-offset 27)
             (bit-width 1)
