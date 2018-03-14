@@ -4,18 +4,16 @@
     (interrupt-count 84)
     (description "STM32L432x")
     (crate
-        (name bobbin_cortexm)
-        (module (name chip::exc))
-        (module (name chip::nvic))
-        (module (name chip::scb))
-        (module (name chip::systick))
-        (module (name chip::mpu))
-        (module (name chip::fpu))
-        (module (name chip::dcb))
-        (module (name chip::itm))
-        (module (name chip::dwt))
+        (module (name exc))
+        (module (name nvic))
+        (module (name scb))
+        (module (name systick))
+        (module (name mpu))
+        (module (name fpu))
+        (module (name dcb))
+        (module (name itm))
+        (module (name dwt))
     )
-    (crate (name stm32_common))
 
     (peripheral (include "periph/flash.rx"))
     (peripheral (include "periph/pwr.rx"))
@@ -28,7 +26,7 @@
     )
     (peripheral-group
         (name RNG)
-        (module (name stm32_common::chip::rng::*))
+        (module (name "::stm32_common::rng::*"))
         (peripheral
             (group-name RNG)
             (name RNG)
@@ -43,7 +41,7 @@
     )
     (peripheral-group
         (name IWDG)
-        (module (name stm32_common::chip::iwdg::*))
+        (module (name "::stm32_common::iwdg::*"))
         (peripheral
             (name IWDG)
             (address 0x40003000)
@@ -53,7 +51,7 @@
 
     (peripheral-group
         (name WWDG)
-        (module (name stm32_common::chip::wwdg::*))
+        (module (name "::stm32_common::wwdg::*"))
         (peripheral
             (name WWDG)
             (address 0x40002c00)
@@ -69,7 +67,7 @@
 
     (peripheral-group
         (name CRC)
-        (module (name stm32_common::chip::crc::*))
+        (module (name "::stm32_common::crc::*"))
         (peripheral
             (name CRC)
             (address 0x40023000)
@@ -79,7 +77,7 @@
 
     (peripheral-group
         (name RTC)
-        (module (name stm32_common::chip::rtc::*))
+        (module (name "::stm32_common::rtc::*"))
         (peripheral
             (name RTC)
             (address 0x40002800)
@@ -95,7 +93,7 @@
 
     (peripheral-group
         (name LPTIM)
-        (module (name stm32_common::chip::lptim::*))
+        (module (name "::stm32_common::lptim::*"))
         (peripheral
             (name LPTIM1)
             (address 0x40007c00)
@@ -119,7 +117,7 @@
 
     (peripheral-group
         (name EXTI)
-        (module (name stm32_common::chip::exti::*))
+        (module (name "::stm32_common::exti::*"))
         (peripheral
             (name EXTI)
             (address 0x40010400)
@@ -356,7 +354,7 @@
 
     (peripheral-group
         (name DMA)
-        (module (name stm32_common::chip::dma_f3::*))
+        (module (name "::stm32_common::dma_f3::*"))
         (peripheral
             (name DMA1)
             (address 0x40020000)
@@ -426,6 +424,7 @@
                 (index 6)
                 (interrupt
                     (name DMA1_CH7)
+                    (type DMA)
                     (value 11)
                     (description "DMA1 Channel 6 global interrupt")
                 )
@@ -433,47 +432,82 @@
         )
         (peripheral
             (name DMA2)
-            (address 0x40020400)
-            (interrupt
+            (address 0x40020400)            
+            (channel
                 (name DMA2_CH1)
-                (value 56)
-                (description "DMA2 Channel 1 global Interrupt")
+                (index 0)
+                (interrupt
+                    (name DMA2_CH1)
+                    (type DMA)
+                    (value 56)
+                    (description "DMA2 Channel 1 global Interrupt")
+                )
             )
-            (interrupt
+            (channel
                 (name DMA2_CH2)
-                (value 57)
-                (description "DMA2 Channel 2 global Interrupt")
+                (index 1)
+                (interrupt
+                    (name DMA2_CH2)
+                    (type DMA)
+                    (value 57)
+                    (description "DMA2 Channel 2 global Interrupt")
+                )
             )
-            (interrupt
+            (channel
                 (name DMA2_CH3)
-                (value 58)
-                (description "DMA2 Channel 3 global Interrupt")
+                (index 2)            
+                (interrupt
+                    (name DMA2_CH3)
+                    (type DMA)
+                    (value 58)
+                    (description "DMA2 Channel 3 global Interrupt")
+                )
             )
-            (interrupt
+            (channel
                 (name DMA2_CH4)
-                (value 59)
-                (description "DMA2 Channel 4 global Interrupt")
+                (index 3)
+                (interrupt
+                    (name DMA2_CH4)
+                    (type DMA)
+                    (value 59)
+                    (description "DMA2 Channel 4 global Interrupt")
+                )
             )
-            (interrupt
+            (channel
                 (name DMA2_CH5)
-                (value 60)
-                (description "DMA2 Channel 5 global Interrupt")
+                (index 4)
+                (interrupt
+                    (name DMA2_CH5)
+                    (type DMA)
+                    (value 60)
+                    (description "DMA2 Channel 5 global Interrupt")
+                )
             )
-            (interrupt
+            (channel
                 (name DMA2_CH6)
-                (value 68)
-                (description "DMA2 Channel 6 global Interrupt")
+                (index 5)
+                (interrupt
+                    (name DMA2_CH6)
+                    (type DMA)
+                    (value 68)
+                    (description "DMA2 Channel 6 global Interrupt")
+                )
             )
-            (interrupt
+            (channel
                 (name DMA2_CH7)
-                (value 69)
-                (description "DMA2 Channel 7 global Interrupt")
+                (index 6)            
+                (interrupt
+                    (name DMA2_CH7)
+                    (type DMA)
+                    (value 69)
+                    (description "DMA2 Channel 7 global Interrupt")
+                )
             )
         )        
     )
     (peripheral-group
         (name I2C)
-        (module (name stm32_common::chip::i2c_v2::*))
+        (module (name "::stm32_common::i2c_v2::*"))
         (peripheral 
             (name I2C1)
             (address 0x40005400)
@@ -529,7 +563,7 @@
 
     (peripheral-group
         (name TIM_ADV)
-        (module (name stm32_common::chip::tim_adv::*))
+        (module (name "::stm32_common::tim_adv::*"))
         (peripheral
             (group-name TIM)
             (name TIM1)
@@ -548,21 +582,25 @@
             (description "Advanced-timers")
             (interrupt
                 (name TIM8_BRK)
+                (type BRK)
                 (value 43)
                 (description "TIM8 Break Interrupt")
             )
             (interrupt
                 (name TIM8)
+                (type UP)
                 (value 44)
                 (description "TIM8 Update Interrupt")
             )
             (interrupt
                 (name TIM8_TRG_COM)
+                (type TRG_COM)
                 (value 45)
                 (description "TIM8 Trigger and Commutation Interrupt")
             )
             (interrupt
                 (name TIM8_CC)
+                (type CC)
                 (value 46)
                 (description "TIM8 Capture Compare Interrupt")
             )        
@@ -571,7 +609,7 @@
 
     (peripheral-group
         (name TIM_BAS)
-        (module (name stm32_common::chip::tim_bas::*))
+        (module (name "::stm32_common::tim_bas::*"))
         (peripheral
             (name TIM6)
             (address 0x40001000)
@@ -597,7 +635,7 @@
 
     (peripheral-group
         (name TIM_GEN)
-        (module (name stm32_common::chip::tim_gen::*))
+        (module (name "::stm32_common::tim_gen::*"))
         (peripheral            
             (name TIM2)
             (address 0x40000000)
@@ -767,10 +805,16 @@
     )
     (peripheral-group
         (name GPIO)
-        (module (name stm32_common::chip::gpio::*))
+        (module (name "::stm32_common::gpio::*"))
         (peripheral 
             (name GPIOA)
             (address 0x48000000)
+            (clock
+                ;(input (name HCLK))
+                (gate (type RST) (periph RCC) (register AHB2RSTR) (field GPIOARST))
+                (gate (type EN) (periph RCC) (register AHB2ENR) (field GPIOAEN))
+                (gate (type SLEEP_EN) (periph RCC) (register AHB2SMENR) (field GPIOASMEN))
+            )            
             (pin (name PA0) (index 0)
                 (altfn 0 ADC1_IN5)
                 (altfn 1 TIM2_CH1)
@@ -925,6 +969,12 @@
         (peripheral
             (name GPIOB)
             (address 0x48000400)
+            (clock
+                ;(input (name HCLK))
+                (gate (type RST) (periph RCC) (register AHB2RSTR) (field GPIOBRST))
+                (gate (type EN) (periph RCC) (register AHB2ENR) (field GPIOBEN))
+                (gate (type SLEEP_EN) (periph RCC) (register AHB2SMENR) (field GPIOBSMEN))
+            )    
             (pin (name PB0) (index 0)
                 (altfn 0 ADC1_IN15)
                 (altfn 1 TIM1_CH2N)
@@ -1008,6 +1058,12 @@
         (peripheral
             (name GPIOC)
             (address 0x48000800)
+            (clock
+                ;(input (name HCLK))
+                (gate (type RST) (periph RCC) (register AHB2RSTR) (field GPIOCRST))
+                (gate (type EN) (periph RCC) (register AHB2ENR) (field GPIOCEN))
+                (gate (type SLEEP_EN) (periph RCC) (register AHB2SMENR) (field GPIOCSMEN))
+            )    
             (pin (name PC0) (index 0)
                 (altfn 0 LPTIM1_IN1)
                 (altfn 2 EVENTOUT)
@@ -1048,7 +1104,7 @@
 
     (peripheral-group
         (name USART)
-        (module (name stm32_common::chip::usart::*))
+        (module (name "::stm32_common::usart::*"))
         (peripheral
             (group-name USART)
             (name USART1)
@@ -1069,6 +1125,12 @@
         (peripheral
             (name USART2)
             (address 0x40004400)
+            (clock
+                (input (name USART2))
+                (gate (type RST) (periph RCC) (register APB1RSTR1) (field USART2RST))
+                (gate (type EN) (periph RCC) (register APB1ENR1) (field USART2EN))
+                (gate (type SLEEP_EN) (periph RCC) (register APB1SMENR1) (field USART2SMEN))
+            )            
             (signal (name USART2_TX) (type TX))
             (signal (name USART2_RX) (type RX))
             (signal (name USART2_CTS) (type CTS))
@@ -1130,7 +1192,7 @@
 
     (peripheral-group    
         (name LPUART)
-        (module (name stm32_common::chip::lpuart::*))
+        (module (name "::stm32_common::lpuart::*"))
         (peripheral 
             (name LPUART1)
             (address 0x40008000)
@@ -1149,7 +1211,7 @@
 
     (peripheral-group
         (name SPI)        
-        (module (name stm32_common::chip::spi_v2::*))
+        (module (name "::stm32_common::spi_v2::*"))
         (peripheral 
             (name SPI1)
             (address 0x40013000)
@@ -1189,7 +1251,7 @@
     (peripheral (include "periph/c_adc.rx"))
     (peripheral-group    
         (name ADC)
-        (module (name stm32_common::chip::adc_f3::*))
+        (module (name "::stm32_common::adc_f3::*"))
         (peripheral
             (group-name ADC)
             (name ADC1)

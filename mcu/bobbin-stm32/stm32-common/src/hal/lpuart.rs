@@ -2,7 +2,7 @@ pub use bobbin_common::configure::*;
 pub use bobbin_common::enabled::*;
 pub use bobbin_common::serial::*;
 use core::fmt::{self, Write};
-use chip::lpuart::*;
+pub use chip::lpuart::*;
 
 use bobbin_common::bits::*;
 
