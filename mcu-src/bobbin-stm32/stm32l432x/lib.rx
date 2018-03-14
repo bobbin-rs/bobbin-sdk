@@ -784,6 +784,12 @@
             (group-name TIM)
             (name TIM16)
             (address 0x40014400)
+            (clock
+                (input (name TIM_PCLK2))
+                (gate (type RST) (periph RCC) (register APB2RSTR) (field TIM16RST))
+                (gate (type EN) (periph RCC) (register APB2ENR) (field TIM16EN))
+                (gate (type SLEEP_EN) (periph RCC) (register APB2SMENR) (field TIM16SMEN))
+            )            
             (description "General purpose timers")
             (channel
                 (name TIM16_CH1)
