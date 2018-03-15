@@ -596,14 +596,14 @@ pub static mut INTERRUPTS: [Option<Handler>; 48] = [
     Some(IRQ_47_HANDLER),
 ];
 
+irq_type!(IRQ_DMA, IrqDma);
 irq_type!(IRQ_LPTMR, IrqLptmr);
 irq_type!(IRQ_SPI, IrqSpi);
 
-irq!(::dma::Dma, IrqDma, Irq0);
-irq!(::dma::Dma, IrqDma, Irq1);
-irq!(::dma::Dma, IrqDma, Irq2);
-irq!(::dma::Dma, IrqDma, Irq3);
-irq_type!(IRQ_DMA, IrqDma);
+irq!(::dma::Dma0, IrqDma, Irq0);
+irq!(::dma::Dma1, IrqDma, Irq1);
+irq!(::dma::Dma2, IrqDma, Irq2);
+irq!(::dma::Dma3, IrqDma, Irq3);
 irq!(::tpm::Tpm0, IrqTpm, Irq17);
 irq!(::tpm::Tpm1, IrqTpm, Irq18);
 irq!(::tpm::Tpm2, IrqTpm, Irq19);
