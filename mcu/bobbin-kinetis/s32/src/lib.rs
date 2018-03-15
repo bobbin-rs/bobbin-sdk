@@ -4,16 +4,14 @@
 extern crate kinetis_common;
 pub use kinetis_common::*;
 
-pub extern crate bobbin_cortexm;
-pub use bobbin_cortexm::chip::exc;
-pub use bobbin_cortexm::chip::nvic;
-pub use bobbin_cortexm::chip::scb;
-pub use bobbin_cortexm::chip::systick;
-pub use bobbin_cortexm::chip::mpu;
-pub use bobbin_cortexm::chip::fpu;
-pub use bobbin_cortexm::chip::dcb;
-pub use bobbin_cortexm::chip::itm;
-pub extern crate kinetis_common;
+pub use exc;
+pub use nvic;
+pub use scb;
+pub use systick;
+pub use mpu;
+pub use fpu;
+pub use dcb;
+pub use itm;
 
 pub mod periph;
 pub mod hal;

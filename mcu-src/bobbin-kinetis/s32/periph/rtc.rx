@@ -6,12 +6,10 @@
     (interrupt
         (name RTC)
         (value 46)
-        (type RTC)
     )
     (interrupt
         (name RTC_Seconds)
         (value 47)
-        (type RTC_SECONDS)
     )
     (register
         (name TSR)
