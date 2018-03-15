@@ -1,18 +1,19 @@
-pub use mcu::bobbin_common::console::*;
-use mcu::bobbin_common::periph::IntoPeriph;
+#![no_std]
+#![feature(asm)]
 
-use mcu::rcc::*;
-use mcu::usart::*;
-use mcu::pin::*;
+extern crate nucleo_f746zg as board;
 
-const USART: Usart2 = USART2;
-const USART_TX: Pd5 = PD5;
-const USART_RX: Pd6 = PD6;
+// use board::mcu::rcc::*;
+use board::mcu::usart::*;
+use board::mcu::pin::*;
+
+const USART: Usart3 = USART3;
+const USART_TX: Pd8 = PD8;
+const USART_RX: Pd9 = PD9;
 const USART_CLOCK: u32 = 16_000_000; // Use HSI Clock
 const USART_BAUD: u32 = 115_200;
 
-
-pub fn init() {
+fn main() {
     USART_TX
         .port_gate_enable()
         .connect_to(USART);
@@ -27,5 +28,8 @@ pub fn init() {
         .set_config(|c| c.set_baud_clock(USART_BAUD, USART_CLOCK))
         .enable();
 
-    set_console(Console::new(USART.into_periph()));
+    loop {
+        USART.write(b"Tick...\n");
+        board::delay(500);
+    }
 }

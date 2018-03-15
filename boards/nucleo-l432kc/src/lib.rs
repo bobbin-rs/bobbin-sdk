@@ -1,46 +1,49 @@
 #![no_std]
-#![feature(asm, lang_items, global_allocator)]
+#![feature(asm, lang_items, use_extern_macros, core_intrinsics)]
 
-extern crate r0;
-extern crate log;
+pub extern crate log;
+#[cfg(target_os="none")]
+pub extern crate cortex_m_rt;
+extern crate stm32l432x as mcu;
 
-#[macro_use] pub mod console;
+pub use mcu::bobbin_common::{print, println};
+pub use mcu::bobbin_common as common;
+
 #[macro_use] pub mod logger;
 
-extern crate stm32l432x;
-pub use stm32l432x::{chip, hal, common, cortexm};
-
-pub mod exceptions;
 #[cfg(target_os="none")]
-pub mod lang_items;
+pub use cortex_m_rt::default_handler;
 
-// pub mod pin;
+#[cfg(target_os="none")]
+mod lang_items;
+// pub mod cache;
 pub mod clock;
+pub mod console;
 pub mod led;
 pub mod btn;
 pub mod tim;
 
-pub use common::heap::Heap;
-
-#[global_allocator]
-static ALLOCATOR: Heap = Heap::empty();
-
-pub unsafe fn init_allocator(buf: &'static mut [u8]) {
-    ALLOCATOR.init(buf);
-}
+// pub fn delay(n: u32) {
+//     for _ in 0..(n * 10_000) { unsafe { asm!("nop") } }
+// }
 
 pub use tim::delay;
 
-// pub fn delay(n: u32) {
-//     for _ in 0..(n * 100_000) {
-//         unsafe { asm!("nop") }
-//     }
-// }
-
-pub fn init() {
+pub fn init() {    
+    // cache::init();
     clock::init();
+    console::init();
     led::init();
     btn::init();
     tim::init();
-    console::init();
 }
+
+#[cfg(target_os="none")]
+default_handler!(handle_exception);
+
+pub fn handle_exception() {
+    console::write_str("EXCEPTION\n");
+    unsafe { asm!("bkpt") }
+    loop {}
+}
+

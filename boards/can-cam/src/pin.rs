@@ -1,4 +1,4 @@
-use hal::gpio::*;
+use mcu::pin::*;
 
 pub const D0: Pg9 = PG9;
 pub const D1: Pg14 = PG14;

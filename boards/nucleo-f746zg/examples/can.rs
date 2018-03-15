@@ -2,7 +2,7 @@
 #![no_main]
 
 #[macro_use]
-extern crate can_cam as board;
+extern crate nucleo_f746zg as board;
 
 use board::mcu::pin::*;
 use board::mcu::can::*;
@@ -121,7 +121,7 @@ pub extern "C" fn main() -> ! {
     let dlc = 8;
     let data = [0xf0, 0xf1, 0xf2, 0xf3, 0xf4, 0xf5, 0xf6, 0xf7];
 
-    let mut ticks = 50;
+    let mut ticks = 100;
     let mut n = 0;
     loop {
         if can.rfr(0).test_fmp() {
@@ -138,7 +138,7 @@ pub extern "C" fn main() -> ! {
         if n > 0 {
             n -= 1            
         } else {
-            while !can.tsr().test_tme(0) {}
+            while !can.tsr().test_tme0() {}
             can.set_tir(0, |r| r.set_stid(id).set_ide(0));
             can.set_tdtr(0, |r| r.set_dlc(dlc));
             can.set_tdlr(0, |r| r.set_data0(data[0]).set_data1(data[1]).set_data2(data[2]).set_data3(data[3]));
@@ -150,7 +150,7 @@ pub extern "C" fn main() -> ! {
             println!("> TDTR: {:?}", can.tdtr(0));
             println!("> TDLR: {:?}", can.tdlr(0));
             println!("> TDHR: {:?}", can.tdhr(0)); 
-            while !can.tsr().test_txok(0) {}
+            while !can.tsr().test_txok0() {}
             // while can.tir(0).test_txrq() {}
             println!("> TX Done");
 
@@ -175,37 +175,37 @@ pub extern "C" fn main() -> ! {
     // loop {}
 }
 
-// #[derive(Debug, Clone, Copy, PartialEq, Eq)]
-// enum Id {
-//     Std(u16),
-//     Ext(u32),    
-// }
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+enum Id {
+    Std(u16),
+    Ext(u32),    
+}
 
-// #[derive(Debug)]
-// struct Message {
-//     id: Id,
-//     dlc: u8,
-//     data: [u8; 8],
-// }
+#[derive(Debug)]
+struct Message {
+    id: Id,
+    dlc: u8,
+    data: [u8; 8],
+}
 
-// impl Message {
-//     pub fn new(id: Id, data: &[u8]) -> Message {
-//         assert!(data.len() < 8);
-//         let mut d = [0u8; 8];
-//         &d[..data.len()].copy_from_slice(data);
-//         Message {
-//             id: id,
-//             dlc: data.len() as u8,
-//             data: d,
-//         }        
-//     }
+impl Message {
+    pub fn new(id: Id, data: &[u8]) -> Message {
+        assert!(data.len() < 8);
+        let mut d = [0u8; 8];
+        &d[..data.len()].copy_from_slice(data);
+        Message {
+            id: id,
+            dlc: data.len() as u8,
+            data: d,
+        }        
+    }
 
-//     pub fn id(&self) -> Id {
-//         self.id
-//     }
+    pub fn id(&self) -> Id {
+        self.id
+    }
 
-//     pub fn data(&self) -> &[u8] {
-//         &self.data[..self.dlc as usize]
-//     }
-// }
+    pub fn data(&self) -> &[u8] {
+        &self.data[..self.dlc as usize]
+    }
+}
 

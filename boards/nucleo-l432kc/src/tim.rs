@@ -1,8 +1,8 @@
-use clock::CLK;
-use hal::clock::Clock;
-use hal::tim::*;
+use mcu::tim_gen::*;
+use mcu::pin::*;
 
 pub const TIM: Tim16 = TIM16;
+pub const TIM_CLK: u32 = 80_000_000;
 pub const TIM_PRESCALE: u16 = 15999;
 
 // Clock at 4MHz
@@ -13,6 +13,8 @@ pub fn init() {
 }
 
 pub fn delay(ms: u16) {    
-    TIM.rcc_enable().set_prescale((TIM.clock(&CLK).unwrap() / 2000) as u16);
+    // TIM.rcc_enable().set_prescale((TIM.clock(&CLK).unwrap() / 2000) as u16);
+    TIM.gate_enable();
+    TIM.set_prescale((TIM_CLK / 2000) as u16);
     TIM.delay(ms << 1);
 }

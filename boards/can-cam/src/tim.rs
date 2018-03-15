@@ -1,28 +1,18 @@
-use hal::tim::*;
-use hal::clock::Clock;
-use clock::CLK;
+use mcu::tim_gen::*;
+use mcu::pin::*;
+use clock::*;
 
 pub const TIM: Tim14 = TIM14;
 pub const TIM_PRESCALE: u16 = 41999;
 
-// PLL Mode with 16Mhz Internal Oscillator
-//   168Mhz System Clock
-//   168Mhz AHB Clock
-//   84Mhz APB1 Clock
-//   168Mhz APB2 Clock
-// TIM14 is APB1 Clock = 84MHz
-
-// Clock at 84MHz
-// Divide by 2KHz = 48,000
-// Set auto_reload to ms x 2
-
 pub fn init() {
-    TIM.rcc_enable();
+    TIM.gate_enable();
 }
 
-pub fn delay(ms: u32) {    
+pub fn delay(ms: u32) { 
+    TIM.gate_enable();
+    let tim_clk = tree().u32_for(TIM);
     TIM
-        .set_prescale(((TIM.clock(&CLK).unwrap() / 2000) - 1) as u16)
-        // .set_prescale(TIM_PRESCALE)
+        .set_prescale(((tim_clk / 2000) - 1) as u16)
         .delay((ms << 1) as u16);
 }

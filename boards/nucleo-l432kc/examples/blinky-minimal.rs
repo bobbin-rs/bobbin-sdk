@@ -4,7 +4,7 @@
 
 extern crate nucleo_l432kc as board;
 
-use board::hal::gpio::*;
+use board::common::digital::DigitalOutput;
 use board::led::LED0;
 
 #[no_mangle]

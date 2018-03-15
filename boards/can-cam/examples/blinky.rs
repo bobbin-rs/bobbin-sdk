@@ -3,14 +3,14 @@
 
 extern crate can_cam as board;
 
-use board::hal::gpio::{DigitalOutput};
+use board::led::*;
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
     board::init();
-    let led0 = board::led::LED0;
-    let led1 = board::led::LED1;
-    let led2 = board::led::LED2;
+    let led0 = LED0;
+    let led1 = LED1;
+    let led2 = LED2;
     loop {
         led0.toggle_output();
         board::delay(500);

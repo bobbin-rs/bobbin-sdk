@@ -1,6 +1,6 @@
-use hal::tim::*;
-use hal::clock::Clock;
-use clock::CLK;
+use mcu::tim_gen::*;
+use mcu::pin::*;
+use clock::*;
 
 pub const TIM: Tim14 = TIM14;
 pub const TIM_PRESCALE: u16 = 41999;
@@ -17,11 +17,13 @@ pub const TIM_PRESCALE: u16 = 41999;
 // Set auto_reload to ms x 2
 
 pub fn init() {
-    TIM.rcc_enable();
+    TIM.gate_enable();
 }
 
-pub fn delay(ms: u32) {    
+pub fn delay(ms: u32) { 
+    TIM.gate_enable();
+    let tim_clk = tree().u32_for(TIM);
     TIM
-        .set_prescale(((TIM.clock(&CLK).unwrap() / 2000) - 1) as u16)
+        .set_prescale(((tim_clk / 2000) - 1) as u16)
         .delay((ms << 1) as u16);
 }

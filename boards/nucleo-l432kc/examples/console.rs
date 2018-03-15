@@ -3,8 +3,10 @@
 
 #[macro_use]
 extern crate nucleo_l432kc as board;
+use board::led::*;
+use board::common::digital::DigitalOutput;
 
-use board::console;
+// use board::console;
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
@@ -12,9 +14,7 @@ pub extern "C" fn main() -> ! {
     println!("Running Console");
     let mut i = 0u32;
     loop {
-        if let Some(c) = console::try_getc() {
-            println!("Read {:?}", c);
-        }
+        LED0.toggle_output();
         println!("Hello, World! {}", i);
         i = i.wrapping_add(1);
         board::delay(1000);
