@@ -88,11 +88,6 @@ pub fn gen_crate<W: Write>(cfg: Config, _out: &mut W, d: &Device) -> Result<()> 
         fs::create_dir(&hal_path)?;
     }
 
-    let map_path = src_path.join("map/");
-    if !map_path.exists() {
-        fs::create_dir(&map_path)?;
-    }    
-
     let clk_path = src_path.join("clock/");
     if !clk_path.exists() {
         fs::create_dir(&clk_path)?;
@@ -155,12 +150,6 @@ pub fn gen_crate<W: Write>(cfg: Config, _out: &mut W, d: &Device) -> Result<()> 
         writeln!(out, "pub mod hal;")?;    
         let mut hal_out = File::create(hal_path.clone().join("mod.rs"))?;
         gen_hal_mod(&cfg, &mut hal_out, d, &hal_path)?;
-
-
-        writeln!(out, "pub mod map;")?;
-        let mut map_out = File::create(map_path.clone().join("mod.rs"))?;
-        gen_map_mod(&cfg, &mut out, &mut map_out, d, &map_path)?;
-        writeln!(out, "")?;
 
         writeln!(out, "pub mod mcu;")?;
         let mut mcu_out = File::create(mcu_path.clone().join("mod.rs"))?;
@@ -287,7 +276,7 @@ pub fn gen_hal_mod<W: Write>(_cfg: &modules::Config, out: &mut W, d: &Device, pa
     Ok(())
 }
 
-pub fn gen_map_mod<W: Write>(cfg: &modules::Config, p_out: &mut W, out: &mut W, d: &Device, path: &Path) -> Result<()> {
+pub fn gen_mcu_mod<W: Write>(cfg: &modules::Config, p_out: &mut W, out: &mut W, d: &Device, path: &Path) -> Result<()> {
 
     let mut ord = 0;
 
@@ -296,7 +285,7 @@ pub fn gen_map_mod<W: Write>(cfg: &modules::Config, p_out: &mut W, out: &mut W, 
     for p in d.peripherals.iter() {
         let p_name = p.group_name.as_ref().unwrap_or(&p.name).to_lowercase();
         writeln!(out, "pub mod {};", p_name)?;;
-        writeln!(p_out, "pub use map::{};", p_name)?;;
+        writeln!(p_out, "pub use mcu::{};", p_name)?;;
         let p_mod = path.join(format!("{}.rs", p_name));
         let mut f_mod = try!(File::create(p_mod));
 
@@ -307,7 +296,7 @@ pub fn gen_map_mod<W: Write>(cfg: &modules::Config, p_out: &mut W, out: &mut W, 
     for pg in d.peripheral_groups.iter() {
         let pg_name = pg.name.to_lowercase();
         writeln!(out, "pub mod {};", pg_name)?;;
-        writeln!(p_out, "pub use map::{};", pg_name)?;;
+        writeln!(p_out, "pub use mcu::{};", pg_name)?;;
         let p_mod = path.join(format!("{}.rs", pg_name));
         let mut f_mod = try!(File::create(p_mod));
         try!(modules::gen_peripheral_group(&cfg, &mut f_mod, d, pg, &mut ord));        
@@ -317,20 +306,20 @@ pub fn gen_map_mod<W: Write>(cfg: &modules::Config, p_out: &mut W, out: &mut W, 
     gen_pins_mod(&cfg, out, d, path, &signals)?;
     gen_interrupts_mod(&cfg, out, d, path)?; 
 
-    writeln!(p_out, "pub use map::pin;")?;;
-    writeln!(p_out, "pub use map::sig;")?;;
-    writeln!(p_out, "pub use map::irq;")?;;
+    writeln!(p_out, "pub use mcu::pin;")?;;
+    writeln!(p_out, "pub use mcu::sig;")?;;
+    writeln!(p_out, "pub use mcu::irq;")?;;
 
 
     Ok(())
 }
 
-pub fn gen_mcu_mod<W: Write>(_cfg: &modules::Config, _p_out: &mut W, out: &mut W, _d: &Device, _path: &Path) -> Result<()> {
-    writeln!(out, "pub struct Mcu {{}}")?;
-    writeln!(out, "pub const MCU: Mcu = Mcu {{}};")?;
-    writeln!(out, "")?;
-    Ok(())
-}
+// pub fn gen_mcu_mod<W: Write>(_cfg: &modules::Config, _p_out: &mut W, out: &mut W, _d: &Device, _path: &Path) -> Result<()> {
+//     writeln!(out, "pub struct Mcu {{}}")?;
+//     writeln!(out, "pub const MCU: Mcu = Mcu {{}};")?;
+//     writeln!(out, "")?;
+//     Ok(())
+// }
 
 pub fn gen_signals_mod<W: Write>(cfg: &modules::Config, out: &mut W, d: &Device, path: &Path) -> Result<modules::SignalMap> {
     // Generate Signals
