@@ -1522,50 +1522,58 @@
             )
         )
     )
+    ;; NOTE: EXTI should have channels defined
     (peripheral-group
         ; signature: ae2903baaa535e43
         (name EXTI)
-        (module (name "::stm32_common::chip::exti::*"))
+        (module (name "::stm32_common::chip::exti::*"))        
         (peripheral
             (name EXTI)
             (address 0x40010400)
             (interrupt
-                (name PVD_PVM)
+                (name PVD_PVM)                
                 (value 1)
                 (description "PVD through EXTI line detection")
             )
             (interrupt
                 (name EXTI0)
+                (type EXTI0)
                 (value 6)
                 (description "EXTI Line 0 interrupt")
             )
             (interrupt
                 (name EXTI1)
+                (type EXTI1)
                 (value 7)
                 (description "EXTI Line 1 interrupt")
             )
             (interrupt
                 (name EXTI2)
+                (type EXTI2)
                 (value 8)
                 (description "EXTI Line 2 interrupt")
             )
             (interrupt
                 (name EXTI3)
+                (type EXTI3)
                 (value 9)
                 (description "EXTI Line 3 interrupt")
             )
             (interrupt
                 (name EXTI4)
+                (type EXTI4)
                 (value 10)
                 (description "EXTI Line4 interrupt")
             )
             (interrupt
                 (name EXTI9_5)
+                (type EXTI9_5)
                 (value 23)
                 (description "EXTI Line5 to Line9 interrupts")
             )
             (interrupt
                 (name EXTI15_10)
+                (type EXTI15_10)
                 (value 40)
                 (description "EXTI Lines 10 to 15 interrupts")
             )
@@ -1594,21 +1602,25 @@
             (address 0x40006400)
             (interrupt
                 (name CAN1_TX)
+                (type CAN_TX)
                 (value 19)
                 (description "CAN1 TX interrupts")
             )
             (interrupt
                 (name CAN1_RX0)
+                (type CAN_RX0)
                 (value 20)
                 (description "CAN1 RX0 interrupts")
             )
             (interrupt
                 (name CAN1_RX1)
+                (type CAN_RX1)
                 (value 21)
                 (description "CAN1 RX1 interrupts")
             )
             (interrupt
                 (name CAN1_SCE)
+                (type CAN_SCE)
                 (value 22)
                 (description "CAN1 SCE interrupt")
             )
@@ -1714,13 +1726,13 @@
             (signal (name DFSDM4_DATIN3) (type DFSDM_DATIN3))
             (interrupt
                 (name DFSDM1_FLT0)
-                (type DFSDM_FLT)
+                (type DFSDM_FLT0)
                 (value 61)
                 (description "DFSDM1_FLT0 global interrupt")
             )
             (interrupt
                 (name DFSDM2_FLT1)
-                (type DFSDM_FLT)
+                (type DFSDM_FLT1)
                 (value 62)
                 (description "DFSDM1_FLT1 global interrupt")
             )

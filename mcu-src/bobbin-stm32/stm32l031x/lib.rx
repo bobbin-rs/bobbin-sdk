@@ -401,6 +401,7 @@
                 (index 6)
                 (interrupt
                     (name DMA1_CH7)
+                    (type DMA)
                     (value 11)
                     (description "DMA1 Channel 6 global interrupt")
                 )
