@@ -1,8 +1,8 @@
 (device
-    (crate
-        (name bobbin_cortexm)
-        (module (name chip::nvic))
-    )
+    ;(crate
+    ;    (name bobbin_cortexm)
+    ;    (module (name chip::nvic))
+    ;)
     (peripheral-group
         (name CRC)
         (prototype "periph/crc.rx")

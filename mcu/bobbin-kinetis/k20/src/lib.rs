@@ -1,15 +1,40 @@
 #![no_std]
-#![cfg_attr(target_os="none", feature(compiler_builtins_lib))]
+#![feature(asm, naked_functions, linkage, core_intrinsics, global_asm, used, use_extern_macros)]
 
-#[cfg(target_os="none")] extern crate compiler_builtins;
-pub extern crate bobbin_common;
-pub extern crate bobbin_cortexm;
-pub extern crate kinetis_common;
+extern crate kinetis_common;
+pub use kinetis_common::*;
 
-pub use bobbin_common as common;
-pub use bobbin_cortexm as cortexm;
-pub mod chip;
+pub use exc;
+pub use nvic;
+pub use scb;
+pub use systick;
+pub use mpu;
+pub use fpu;
+pub use dcb;
+pub use itm;
+
+pub mod periph;
 pub mod hal;
+pub mod mcu;
 
-#[cfg(test)]
-mod tests;
+pub use mcu::sim;
+pub use mcu::mcg;
+pub use mcu::osc;
+pub use mcu::crc;
+pub use mcu::dmamux;
+pub use mcu::edma;
+pub use mcu::ftm;
+pub use mcu::pit;
+pub use mcu::spi;
+pub use mcu::i2c;
+pub use mcu::uart;
+pub use mcu::gpio;
+pub use mcu::port;
+pub use mcu::pin;
+pub use mcu::sig;
+pub use mcu::irq;
+pub use mcu::*;
+
+pub mod clock;
+pub use clock::*;
+

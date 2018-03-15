@@ -10,17 +10,15 @@
     )
 
     (crate
-        (name bobbin_cortexm)
-        (module (name chip::exc))
-        (module (name chip::nvic))
-        (module (name chip::scb))
-        (module (name chip::systick))
-        ;(module (name chip::mpu))
-        (module (name chip::fpu))
-        (module (name chip::dcb))
-        (module (name chip::itm))        
+        (module (name exc))
+        (module (name nvic))
+        (module (name scb))
+        (module (name systick))
+        ;(module (name mpu))
+        (module (name fpu))
+        (module (name dcb))
+        (module (name itm))        
     )    
-    (crate (name kinetis_common))    
     (peripheral (include "periph/sim.rx"))
     (peripheral (include "periph/mcg.rx"))
     (peripheral (include "periph/mpu.rx"))
@@ -30,7 +28,7 @@
 
     (peripheral-group
         (name CRC)
-        (module (name kinetis_common::chip::crc::*))
+        (module (name kinetis_common::crc::*))
         (peripheral
             (name CRC)
             (address 0x40032000)
@@ -39,7 +37,7 @@
 
     (peripheral-group
         (name WDOG)
-        (module (name kinetis_common::chip::wdog::*))
+        (module (name kinetis_common::wdog::*))
         (peripheral
             (name WDOG)
             (address 0x40052000)
@@ -54,7 +52,7 @@
 
     (peripheral-group
         (name DMAMUX)
-        (module (name kinetis_common::chip::dmamux::*))
+        (module (name kinetis_common::dmamux::*))
         (peripheral
             (name DMAMUX)
             (address 0x40021000)
@@ -63,7 +61,7 @@
 
     (peripheral-group
         (name EDMA)
-        (module (name kinetis_common::chip::edma::*))
+        (module (name kinetis_common::edma::*))
         (peripheral
             (name DMA)
             (address 0x40008000)
@@ -222,7 +220,7 @@
 
     (peripheral-group
         (name FTM)
-        (module (name kinetis_common::chip::ftm::*))
+        (module (name kinetis_common::ftm::*))
         (peripheral
             (name FTM0)
             (address 0x40038000)
@@ -377,7 +375,7 @@
 
     (peripheral-group
         (name PIT)
-        (module (name kinetis_common::chip::pit::*))
+        (module (name kinetis_common::pit::*))
         (peripheral
             (name PIT)
             (address 0x40037000)
@@ -423,7 +421,7 @@
 
     (peripheral-group
         (name LPTMR)  
-        (module (name kinetis_common::chip::lptmr::*))
+        (module (name kinetis_common::lptmr::*))
         (peripheral
             (name LPTMR0)
             (address 0x40040000)
@@ -438,7 +436,7 @@
 
     (peripheral-group
         (name SPI)  
-        (module (name kinetis_common::chip::spi::*))
+        (module (name kinetis_common::spi::*))
         (peripheral 
             (name SPI0)
             (address 0x4002c000)
@@ -503,7 +501,7 @@
 
     (peripheral-group
         (name I2C)
-        (module (name kinetis_common::chip::i2c::*))
+        (module (name kinetis_common::i2c::*))
         (peripheral 
             (name I2C0)
             (address 0x40066000)
@@ -537,7 +535,7 @@
     (peripheral-group
         (name UART)
         ;(prototype "periph/uart.rx")
-        (module (name kinetis_common::chip::uart::*))
+        (module (name kinetis_common::uart::*))
         (peripheral 
             (name UART0)
             (address 0x4006a000)
@@ -648,7 +646,7 @@
     )
     (peripheral-group
         (name USB)
-        (module (name kinetis_common::chip::usb::*))
+        (module (name kinetis_common::usb::*))
         (peripheral
             (name USB0)
             (address 0x40072000)
@@ -662,7 +660,7 @@
     )
     (peripheral-group
         (name FLEXCAN)
-        (module (name kinetis_common::chip::flexcan::*))
+        (module (name kinetis_common::flexcan::*))
         (peripheral
             (name CAN0)
             (address 0x40024000)
@@ -695,7 +693,7 @@
     )
     (peripheral-group
         (name GPIO)
-        (module (name kinetis_common::chip::gpio::*))
+        (module (name kinetis_common::gpio::*))
         (peripheral 
             (name GPIOA)
             (address 0x400ff000)
@@ -831,7 +829,7 @@
     )
     (peripheral-group
         (name PORT)
-        (module (name kinetis_common::chip::port::*))
+        (module (name kinetis_common::port::*))
         (peripheral 
             (name PORTA)
             (address 0x40049000)
@@ -1635,7 +1633,7 @@
 
     (peripheral-group
         (name ADC)
-        (module (name kinetis_common::chip::adc::*))
+        (module (name kinetis_common::adc::*))
         (peripheral
             (name ADC0)
             (address 0x4003b000)

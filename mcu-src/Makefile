@@ -1,6 +1,7 @@
 CHIP=bobbin-chip
 CHIP_ARGS="--build"
 STM32_ARGS=--crate --cargo-template bobbin-stm32/template
+KINETIS_ARGS=--crate --cargo-template bobbin-kinetis/template
 
 .PHONY: build bobbin-cortexm bobbin-kinetis bobbin-sam bobbin-stm32 bobbin-ti
 
@@ -25,16 +26,16 @@ kinetis-common:
 	$(CHIP) $(CHIP_ARGS) bobbin-kinetis/$@/mod.rx ../mcu/bobbin-kinetis/$@/src/chip/mod.rs
 
 k20:
-	$(CHIP) $(CHIP_ARGS) bobbin-kinetis/$@/lib.rx ../mcu/bobbin-kinetis/$@/src/chip/mod.rs
+	$(CHIP) $(KINETIS_ARGS) bobbin-kinetis/$@/lib.rx ../mcu/bobbin-kinetis/$@/
 
 k64:
-	$(CHIP) $(CHIP_ARGS) bobbin-kinetis/$@/lib.rx ../mcu/bobbin-kinetis/$@/src/chip/mod.rs
+	$(CHIP) $(KINETIS_ARGS) bobbin-kinetis/$@/lib.rx ../mcu/bobbin-kinetis/$@/
 
 kl26:
-	$(CHIP) $(CHIP_ARGS) bobbin-kinetis/$@/lib.rx ../mcu/bobbin-kinetis/$@/src/chip/mod.rs
+	$(CHIP) $(KINETIS_ARGS) bobbin-kinetis/$@/lib.rx ../mcu/bobbin-kinetis/$@/
 
 s32:
-	$(CHIP) $(CHIP_ARGS) bobbin-kinetis/$@/lib.rx ../mcu/bobbin-kinetis/$@/src/chip/mod.rs
+	$(CHIP) $(KINETIS_ARGS) bobbin-kinetis/$@/lib.rx ../mcu/bobbin-kinetis/$@/
 
 samd21:
 	$(CHIP) $(CHIP_ARGS) bobbin-sam/$@/lib.rx ../mcu/bobbin-sam/$@/src/chip/mod.rs

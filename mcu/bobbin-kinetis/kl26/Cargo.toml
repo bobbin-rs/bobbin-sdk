@@ -1,20 +1,16 @@
 [package]
 name = "kl26"
 version = "0.1.0"
-authors = ["Jonathan Soo <jcsoo@agora.com>"]
+build = "build.rs"
 
 [build-dependencies]
 bobbin-build = { path = "../../bobbin-build/" }
 
 [dependencies]
-bobbin-common = { path = "../../bobbin-common" }
-bobbin-cortexm = { path = "../../bobbin-cortexm" }
-kinetis-common = { path = "../kinetis-common"}
-
-[dependencies.compiler_builtins]
-git = "https://github.com/rust-lang-nursery/compiler-builtins"
-features = ["mem","c"]
+kinetis-common = { path = "../kinetis-common" }
 
 [features]
+default = []
+
 Z128 = []
 Z64 = []

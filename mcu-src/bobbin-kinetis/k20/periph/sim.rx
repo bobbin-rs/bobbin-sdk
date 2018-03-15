@@ -3,8 +3,6 @@
     (name SIM)
     (address 0x40047000)
     (description "System Integration Module")
-    (link (name EN))
-    (link (name RST))
     (register
         (name SOPT1)
         (offset 0x0)
@@ -1304,7 +1302,6 @@
             (bit-width 1)
             (access read-write)
             (description "I2C2 Clock Gate Control")
-            ;(link (name EN) (peripheral-group I2C) (peripheral I2C2))
             (value
                 (value "#0")
                 (name "0")
@@ -1322,7 +1319,7 @@
             (bit-width 1)
             (access read-write)
             (description "UART4 Clock Gate Control")
-            (link (name EN) (peripheral-group UART) (peripheral UART4))
+            
             (value
                 (value "#0")
                 (name "0")
@@ -1340,7 +1337,7 @@
             (bit-width 1)
             (access read-write)
             (description "UART5 Clock Gate Control")
-            (link (name EN) (peripheral-group UART) (peripheral UART5))
+            
             (value
                 (value "#0")
                 (name "0")
@@ -1444,7 +1441,7 @@
             (bit-width 1)
             (access read-write)
             (description "SPI2 Clock Gate Control")
-            (link (name EN) (peripheral-group SPI) (peripheral SPI2))
+            
             (value
                 (value "#0")
                 (name "0")
@@ -1573,7 +1570,7 @@
             (bit-width 1)
             (access read-write)
             (description "I2C0 Clock Gate Control")
-            (link (name EN) (peripheral-group I2C) (peripheral I2C0))
+            
             (value
                 (value "#0")
                 (name "0")
@@ -1591,7 +1588,7 @@
             (bit-width 1)
             (access read-write)
             (description "I2C1 Clock Gate Control")
-            (link (name EN) (peripheral-group I2C) (peripheral I2C1))
+            
             (value
                 (value "#0")
                 (name "0")
@@ -1609,7 +1606,7 @@
             (bit-width 1)
             (access read-write)
             (description "UART0 Clock Gate Control")
-            (link (name EN) (peripheral-group UART) (peripheral UART0))
+            
             (value
                 (value "#0")
                 (name "0")
@@ -1627,7 +1624,7 @@
             (bit-width 1)
             (access read-write)
             (description "UART1 Clock Gate Control")
-            (link (name EN) (peripheral-group UART) (peripheral UART1))
+            
             (value
                 (value "#0")
                 (name "0")
@@ -1645,7 +1642,7 @@
             (bit-width 1)
             (access read-write)
             (description "UART2 Clock Gate Control")
-            (link (name EN) (peripheral-group UART) (peripheral UART2))
+            
             (value
                 (value "#0")
                 (name "0")
@@ -1663,7 +1660,7 @@
             (bit-width 1)
             (access read-write)
             (description "UART3 Clock Gate Control")
-            (link (name EN) (peripheral-group UART) (peripheral UART3))
+            
             (value
                 (value "#0")
                 (name "0")
@@ -1758,7 +1755,7 @@
             (bit-width 1)
             (access read-write)
             (description "Port A Clock Gate Control")
-            (link (name EN) (peripheral-group PORT) (peripheral PORTA))
+            
             (value
                 (value "#0")
                 (name "0")
@@ -1776,7 +1773,7 @@
             (bit-width 1)
             (access read-write)
             (description "Port B Clock Gate Control")
-            (link (name EN) (peripheral-group PORT) (peripheral PORTB))
+            
             (value
                 (value "#0")
                 (name "0")
@@ -1794,7 +1791,7 @@
             (bit-width 1)
             (access read-write)
             (description "Port C Clock Gate Control")
-            (link (name EN) (peripheral-group PORT) (peripheral PORTC))
+            
             (value
                 (value "#0")
                 (name "0")
@@ -1812,7 +1809,7 @@
             (bit-width 1)
             (access read-write)
             (description "Port D Clock Gate Control")
-            (link (name EN) (peripheral-group PORT) (peripheral PORTD))
+            
             (value
                 (value "#0")
                 (name "0")
@@ -1830,7 +1827,7 @@
             (bit-width 1)
             (access read-write)
             (description "Port E Clock Gate Control")
-            (link (name EN) (peripheral-group PORT) (peripheral PORTE))
+            
             (value
                 (value "#0")
                 (name "0")
@@ -1915,7 +1912,7 @@
             (bit-width 1)
             (access read-write)
             (description "SPI0 Clock Gate Control")
-            (link (name EN) (peripheral-group SPI) (peripheral SPI0))
+            
             (value
                 (value "#0")
                 (name "0")
@@ -1933,7 +1930,7 @@
             (bit-width 1)
             (access read-write)
             (description "SPI1 Clock Gate Control")
-            (link (name EN) (peripheral-group SPI) (peripheral SPI1))
+            
             (value
                 (value "#0")
                 (name "0")
@@ -2019,7 +2016,7 @@
             (bit-width 1)
             (access read-write)
             (description "PIT Clock Gate Control")
-            (link (name EN) (peripheral-group PIT) (peripheral PIT))
+            
             (value
                 (value "#0")
                 (name "0")
@@ -2037,7 +2034,7 @@
             (bit-width 1)
             (access read-write)
             (description "FTM0 Clock Gate Control")
-            (link (name EN) (peripheral-group FTM) (peripheral FTM0))
+            
             (value
                 (value "#0")
                 (name "0")
@@ -2055,7 +2052,7 @@
             (bit-width 1)
             (access read-write)
             (description "FTM1 Clock Gate Control")
-            (link (name EN) (peripheral-group FTM) (peripheral FTM1))
+            
             (value
                 (value "#0")
                 (name "0")
@@ -2073,7 +2070,7 @@
             (bit-width 1)
             (access read-write)
             (description "FTM2 Clock Gate Control")
-            (link (name EN) (peripheral-group FTM) (peripheral FTM2))
+            
             (value
                 (value "#0")
                 (name "0")
@@ -2168,7 +2165,7 @@
             (bit-width 1)
             (access read-write)
             (description "DMA Clock Gate Control")
-            (link (name EN) (peripheral-group EDMA) (peripheral DMA))
+            
             (value
                 (value "#0")
                 (name "0")
