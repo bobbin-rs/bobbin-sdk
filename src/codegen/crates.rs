@@ -279,7 +279,7 @@ pub fn gen_hal_mod<W: Write>(_cfg: &modules::Config, out: &mut W, d: &Device, pa
 pub fn gen_mcu_mod<W: Write>(cfg: &modules::Config, p_out: &mut W, out: &mut W, d: &Device, path: &Path) -> Result<()> {
 
     let mut ord = 0;
-
+    
     writeln!(p_out, "")?;
 
     for p in d.peripherals.iter() {
@@ -288,7 +288,9 @@ pub fn gen_mcu_mod<W: Write>(cfg: &modules::Config, p_out: &mut W, out: &mut W, 
         writeln!(p_out, "pub use mcu::{};", p_name)?;;
         let p_mod = path.join(format!("{}.rs", p_name));
         let mut f_mod = try!(File::create(p_mod));
-
+        writeln!(f_mod, "#[allow(unused_imports)] use ::bobbin_common::*;")?;
+        writeln!(f_mod, "pub use ::hal::{}::*;", p_name)?;
+        writeln!(f_mod, "")?;
         try!(modules::gen_peripheral(cfg, &mut f_mod, d, p, ord));
         ord += 1;
     }
@@ -299,6 +301,9 @@ pub fn gen_mcu_mod<W: Write>(cfg: &modules::Config, p_out: &mut W, out: &mut W, 
         writeln!(p_out, "pub use mcu::{};", pg_name)?;;
         let p_mod = path.join(format!("{}.rs", pg_name));
         let mut f_mod = try!(File::create(p_mod));
+        writeln!(f_mod, "#[allow(unused_imports)] use ::bobbin_common::*;")?;
+        writeln!(f_mod, "pub use ::hal::{}::*;", pg_name)?;
+        writeln!(f_mod, "")?;
         try!(modules::gen_peripheral_group(&cfg, &mut f_mod, d, pg, &mut ord));        
     }
 
@@ -329,7 +334,7 @@ pub fn gen_signals_mod<W: Write>(cfg: &modules::Config, out: &mut W, d: &Device,
         try!(writeln!(out, "pub mod {};", p_name));
         let p_mod = path.join(format!("{}.rs", p_name));
         let mut f_mod = try!(File::create(p_mod));
-        try!(writeln!(f_mod, "pub use ::bobbin_common::*;"));
+        try!(writeln!(f_mod, "#[allow(unused_imports)] pub use ::bobbin_common::*;"));
         try!(writeln!(out, ""));
         modules::gen_signals(cfg, &mut f_mod, &d)
     }    
@@ -344,7 +349,7 @@ pub fn gen_pins_mod<W: Write>(cfg: &modules::Config, out: &mut W, d: &Device, pa
         try!(writeln!(out, "pub mod {};", p_name));
         let p_mod = path.join(format!("{}.rs", p_name));
         let mut f_mod = try!(File::create(p_mod));
-        try!(writeln!(f_mod, "use ::bobbin_common::*;"));
+        try!(writeln!(f_mod, "#[allow(unused_imports)] use ::bobbin_common::*;"));
         try!(writeln!(f_mod, "pub use ::bobbin_common::pin::*;"));
         try!(writeln!(f_mod, "pub use ::bobbin_common::gate::*;"));
         try!(writeln!(out, ""));

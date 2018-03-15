@@ -750,11 +750,11 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, d: &Device, pg:
         }
     }       
 
-    try!(writeln!(out, "#[allow(unused_imports)] use {}::*;", cfg.common));    
-    try!(writeln!(out, ""));
+    // try!(writeln!(out, "#[allow(unused_imports)] use {}::*;", cfg.common));    
+    // try!(writeln!(out, ""));
 
-    writeln!(out, "pub use ::hal::{}::*;", pg_name.to_lowercase())?;
-    try!(writeln!(out, ""));
+    // writeln!(out, "pub use ::hal::{}::*;", pg_name.to_lowercase())?;
+    // try!(writeln!(out, ""));
 
     for p in pg.peripherals.iter() {
         if p.features.len() > 0 {
@@ -1015,7 +1015,7 @@ pub fn gen_peripheral_group_impl<W: Write>(cfg: &Config, out: &mut W, pg: &Perip
     }
 
     if pg.has_pins || pin_count > 0 {
-        let pin_type = format!("{}Pin", pg_type);
+        let pin_type = format!("{}Pin", to_camel(&pg_name));
         try!(writeln!(out, "pub struct {} {{ pub port: {}, pub index: usize }}", pin_type, pg_type));
     }
 
@@ -1059,9 +1059,9 @@ pub fn gen_peripheral<W: Write>(cfg: &Config, out: &mut W, d: &Device, p: &Perip
             }
         }
     } else {
-        let p_name = p.group_name.as_ref().unwrap_or(&p.name).to_lowercase();
-        writeln!(out, "pub use hal::{}::*;", p_name)?;
-        writeln!(out, "")?;        
+        // let p_name = p.group_name.as_ref().unwrap_or(&p.name).to_lowercase();
+        // writeln!(out, "pub use hal::{}::*;", p_name)?;
+        // writeln!(out, "")?;        
     }
     try!(writeln!(out, ""));
 
