@@ -23,6 +23,15 @@ pub fn gen_crate<W: Write>(cfg: Config, _out: &mut W, d: &Device) -> Result<()> 
         let cargo_toml_dst = cfg.out_path.join("Cargo.toml");
         let mut dst = File::create(cargo_toml_dst)?;
         dst.write(&data.as_bytes())?;
+
+        // Generate Variants
+
+        writeln!(dst, "")?;
+
+        for v in d.variants.iter() {
+            writeln!(dst, "{} = []", v.name)?;
+        }
+
     }
 
     // Copy cargo.toml from template
