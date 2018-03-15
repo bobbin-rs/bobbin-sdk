@@ -1,10 +1,10 @@
-#[allow(unused_imports)] use bobbin_common::*;
 
+pub struct I2cCh { pub periph: I2cPeriph, pub index: usize }
+#[allow(unused_imports)] use bobbin_common::*;
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="I2C_V2 Peripheral"]
 pub struct I2cPeriph(pub usize); 
-
 
 impl I2cPeriph {
     #[doc="Get the *mut pointer for the CR1 register."]
@@ -2141,6 +2141,4 @@ impl ::core::fmt::Debug for Txdr {
         Ok(())
     }
 }
-
-pub struct I2cCh { pub periph: I2cPeriph, pub index: usize }
 

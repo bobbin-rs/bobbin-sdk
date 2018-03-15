@@ -1,10 +1,10 @@
-#[allow(unused_imports)] use bobbin_common::*;
 
+pub struct AdcCh { pub periph: AdcPeriph, pub index: usize }
+#[allow(unused_imports)] use bobbin_common::*;
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="ADC_L0 Peripheral"]
 pub struct AdcPeriph(pub usize); 
-
 
 impl AdcPeriph {
     #[doc="Get the *mut pointer for the ISR register."]
@@ -1774,6 +1774,4 @@ impl ::core::fmt::Debug for Ccr {
         Ok(())
     }
 }
-
-pub struct AdcCh { pub periph: AdcPeriph, pub index: usize }
 

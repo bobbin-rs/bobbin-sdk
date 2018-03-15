@@ -1,0 +1,13 @@
+[package]
+name = "%name%"
+version = "0.1.0"
+build = "build.rs"
+
+[build-dependencies]
+bobbin-build = { path = "../../bobbin-build/" }
+
+[dependencies]
+stm32-common = { path = "../stm32-common" }
+
+[features]
+default = []

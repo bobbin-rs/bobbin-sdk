@@ -1,10 +1,10 @@
-#[allow(unused_imports)] use bobbin_common::*;
 
+pub struct ExtiCh { pub periph: ExtiPeriph, pub index: usize }
+#[allow(unused_imports)] use bobbin_common::*;
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="EXTI Peripheral"]
 pub struct ExtiPeriph(pub usize); 
-
 
 impl ExtiPeriph {
     #[doc="Get the *mut pointer for the IMR register."]
@@ -698,6 +698,4 @@ impl ::core::fmt::Debug for Pr {
         Ok(())
     }
 }
-
-pub struct ExtiCh { pub periph: ExtiPeriph, pub index: usize }
 

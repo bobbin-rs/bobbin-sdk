@@ -57,7 +57,7 @@
         (output (name I2C4))
     )
     (crate
-        ;(name stm32_common)
+        ;(name "::stm32_common)
         (module (name exc))
         (module (name nvic))
         (module (name scb))

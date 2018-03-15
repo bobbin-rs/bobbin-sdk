@@ -1,2 +1,1 @@
-pub use ::chip::dcmi::*;
-pub use hal::rcc::RccEnabled;
+pub use ::stm32_common::dcmi::*;

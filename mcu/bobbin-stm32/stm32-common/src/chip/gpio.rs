@@ -1,11 +1,11 @@
-#[allow(unused_imports)] use bobbin_common::*;
 
+#[allow(unused_imports)] use bobbin_common::*;
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="GPIO Peripheral"]
 pub struct GpioPeriph(pub usize); 
 
-
+pub struct GpioPin { pub port: GpioPeriph, pub index: usize }
 impl GpioPeriph {
     #[doc="Get the *mut pointer for the MODER register."]
     #[inline] pub fn moder_mut(&self) -> *mut Moder { 
@@ -1094,6 +1094,4 @@ impl ::core::fmt::Debug for Brr {
         Ok(())
     }
 }
-
-pub struct GpioPin { pub port: GpioPeriph, pub index: usize }
 

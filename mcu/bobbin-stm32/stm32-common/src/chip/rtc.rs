@@ -1,10 +1,9 @@
-#[allow(unused_imports)] use bobbin_common::*;
 
+#[allow(unused_imports)] use bobbin_common::*;
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="RTC Peripheral"]
 pub struct RtcPeriph(pub usize); 
-
 
 impl RtcPeriph {
     #[doc="Get the *mut pointer for the TR register."]
@@ -3594,5 +3593,4 @@ impl ::core::fmt::Debug for Bkpr {
         Ok(())
     }
 }
-
 

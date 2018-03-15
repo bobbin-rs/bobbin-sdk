@@ -8,16 +8,16 @@
         (variant (name STM32F103xB) (link "stm32f10xxB.ld"))
     )
     (crate
-        (name bobbin_cortexm)
-        (module (name chip::exc))
-        (module (name chip::nvic))
-        (module (name chip::scb))
-        (module (name chip::systick))
-        (module (name chip::mpu))
-        (module (name chip::dcb))
-        (module (name chip::itm))        
+        
+        (module (name exc))
+        (module (name nvic))
+        (module (name scb))
+        (module (name systick))
+        (module (name mpu))
+        (module (name dcb))
+        (module (name itm))        
     )
-    (crate (name stm32_common))    
+    
     (peripheral (include "periph/rcc.rx"))
     (peripheral (include "periph/flash.rx"))
     (peripheral (include "periph/pwr.rx"))
@@ -29,7 +29,7 @@
 
     (peripheral-group
         (name IWDG)
-        (module (name stm32_common::chip::iwdg::*))
+        (module (name "::stm32_common::chip::iwdg::*"))
         (peripheral
             (name IWDG)
             (address 0x40003000)
@@ -39,7 +39,7 @@
 
     (peripheral-group
         (name WWDG)
-        (module (name stm32_common::chip::wwdg::*))
+        (module (name "::stm32_common::chip::wwdg::*"))
         (peripheral
             (name WWDG)
             (address 0x40002c00)
@@ -55,7 +55,7 @@
 
     (peripheral-group
         (name CRC)
-        (module (name stm32_common::chip::crc_24::*))
+        (module (name "::stm32_common::chip::crc_24::*"))
         (peripheral
             (name CRC)
             (address 0x40023000)
@@ -65,7 +65,7 @@
 
     (peripheral-group
         (name EXTI)
-        (module (name stm32_common::chip::exti::*))
+        (module (name "::stm32_common::chip::exti::*"))
         (peripheral
             (name EXTI)
             (address 0x40010400)
@@ -261,7 +261,7 @@
 
     (peripheral-group
         (name TIM_GEN)
-        (module (name stm32_common::chip::tim_gen::*))
+        (module (name "::stm32_common::chip::tim_gen::*"))
         (peripheral
             (name TIM2)
             (address 0x40000000)
@@ -355,7 +355,7 @@
 
     (peripheral-group
         (name TIM_ADV)
-        (module (name stm32_common::chip::tim_adv::*))
+        (module (name "::stm32_common::chip::tim_adv::*"))
         (peripheral
             (name TIM1)
             (address 0x40012c00)
@@ -386,7 +386,7 @@
     (peripheral (include "periph/c_adc.rx"))
     (peripheral-group    
         (name ADC)
-        (module (name stm32_common::chip::adc_f1::*))
+        (module (name "::stm32_common::chip::adc_f1::*"))
         (peripheral 
             (name ADC1)
             (address 0x40012400)
@@ -448,7 +448,7 @@
 
     (peripheral-group
         (name SPI)
-        (module (name stm32_common::chip::spi_v1::*))
+        (module (name "::stm32_common::chip::spi_v1::*"))
         (peripheral 
             (name SPI1)
             (address 0x40013000)
@@ -479,7 +479,7 @@
     )
     (peripheral-group
         (name I2C)
-        (module (name stm32_common::chip::i2c_v1::*))
+        (module (name "::stm32_common::chip::i2c_v1::*"))
         (peripheral
             (name I2C2)
             (address 0x40005800)
@@ -512,7 +512,7 @@
 
     (peripheral-group 
         (name GPIO)
-        ;(module (name stm32_common::chip::gpio::*))
+        ;(module (name "::stm32_common::chip::gpio::*"))
         (prototype "periph/gpio.rx")
         (has-pins)
         (peripheral 
@@ -660,7 +660,7 @@
     (peripheral-group 
         (name USART)
         ;(prototype "periph/usart.rx")
-        (module (name stm32_common::chip::usart_f24::*))
+        (module (name "::stm32_common::chip::usart_f24::*"))
         (peripheral 
             (name USART1)
             (address 0x40013800)
@@ -706,7 +706,7 @@
     )
     (peripheral-group
         (name DMA)
-        (module (name stm32_common::chip::dma_f3::*))
+        (module (name "::stm32_common::chip::dma_f3::*"))
         (peripheral
             (name DMA1)
             (address 0x40020000)

@@ -1,10 +1,9 @@
-#[allow(unused_imports)] use bobbin_common::*;
 
+#[allow(unused_imports)] use bobbin_common::*;
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="RNG Peripheral"]
 pub struct RngPeriph(pub usize); 
-
 
 impl RngPeriph {
     #[doc="Get the *mut pointer for the CR register."]
@@ -331,5 +330,4 @@ impl ::core::fmt::Debug for Dr {
         Ok(())
     }
 }
-
 

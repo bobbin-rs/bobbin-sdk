@@ -1,10 +1,9 @@
-#[allow(unused_imports)] use bobbin_common::*;
 
+#[allow(unused_imports)] use bobbin_common::*;
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="CRC_24 Peripheral"]
 pub struct CrcPeriph(pub usize); 
-
 
 impl CrcPeriph {
     #[doc="Get the *mut pointer for the DR register."]
@@ -446,5 +445,4 @@ impl ::core::fmt::Debug for Dummy {
         Ok(())
     }
 }
-
 

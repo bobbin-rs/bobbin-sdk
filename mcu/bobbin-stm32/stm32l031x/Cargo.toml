@@ -1,20 +1,16 @@
 [package]
 name = "stm32l031x"
 version = "0.1.0"
-authors = ["Jonathan Soo <jcsoo@agora.com>"]
+build = "build.rs"
 
 [build-dependencies]
 bobbin-build = { path = "../../bobbin-build/" }
 
 [dependencies]
-bobbin-common = { path = "../../bobbin-common" }
-bobbin-cortexm = { path = "../../bobbin-cortexm" }
 stm32-common = { path = "../stm32-common" }
 
-[dependencies.compiler_builtins]
-git = "https://github.com/rust-lang-nursery/compiler-builtins"
-features = ["mem","c"]
-
 [features]
-stm32l031x4 = []
-stm32l031x6 = []
+default = []
+
+STM32L031x4 = []
+STM32L031x6 = []

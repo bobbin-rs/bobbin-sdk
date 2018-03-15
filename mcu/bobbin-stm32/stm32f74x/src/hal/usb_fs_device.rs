@@ -1,0 +1,1 @@
+pub use periph::usb_fs_device::*;

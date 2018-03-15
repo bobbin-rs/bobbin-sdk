@@ -1,6 +1,8 @@
-#[allow(unused_imports)] use bobbin_common::*;
+
+extern crate bobbin_cortexm;
 pub use bobbin_cortexm::chip::nvic;
 
+pub mod irq;
 pub mod sig;
 pub mod exti;
 pub mod dma;

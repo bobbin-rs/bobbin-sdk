@@ -1,10 +1,9 @@
-#[allow(unused_imports)] use bobbin_common::*;
 
+#[allow(unused_imports)] use bobbin_common::*;
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="LPTIM Peripheral"]
 pub struct LptimPeriph(pub usize); 
-
 
 impl LptimPeriph {
     #[doc="Get the *mut pointer for the ISR register."]
@@ -1241,5 +1240,4 @@ impl ::core::fmt::Debug for Cnt {
         Ok(())
     }
 }
-
 

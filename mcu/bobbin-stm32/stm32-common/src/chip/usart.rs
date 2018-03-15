@@ -1,10 +1,9 @@
-#[allow(unused_imports)] use bobbin_common::*;
 
+#[allow(unused_imports)] use bobbin_common::*;
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="USART Peripheral"]
 pub struct UsartPeriph(pub usize); 
-
 
 impl UsartPeriph {
     #[doc="Get the *mut pointer for the CR1 register."]
@@ -2756,5 +2755,4 @@ impl ::core::fmt::Debug for Tdr {
         Ok(())
     }
 }
-
 

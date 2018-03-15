@@ -1,10 +1,10 @@
-#[allow(unused_imports)] use bobbin_common::*;
 
+pub struct SpiCh { pub periph: SpiPeriph, pub index: usize }
+#[allow(unused_imports)] use bobbin_common::*;
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="SPI_V2 Peripheral"]
 pub struct SpiPeriph(pub usize); 
-
 
 impl SpiPeriph {
     #[doc="Get the *mut pointer for the CR1 register."]
@@ -1636,6 +1636,4 @@ impl ::core::fmt::Debug for I2spr {
         Ok(())
     }
 }
-
-pub struct SpiCh { pub periph: SpiPeriph, pub index: usize }
 

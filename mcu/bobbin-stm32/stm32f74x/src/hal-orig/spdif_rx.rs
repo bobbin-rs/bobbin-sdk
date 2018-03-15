@@ -1,0 +1,1 @@
+pub use periph::spdif_rx::*;

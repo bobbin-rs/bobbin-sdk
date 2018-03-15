@@ -1,10 +1,9 @@
-#[allow(unused_imports)] use bobbin_common::*;
 
+#[allow(unused_imports)] use bobbin_common::*;
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="DCMI Peripheral"]
 pub struct DcmiPeriph(pub usize); 
-
 
 impl DcmiPeriph {
     #[doc="Get the *mut pointer for the CR register."]
@@ -1669,5 +1668,4 @@ impl ::core::fmt::Debug for Dr {
         Ok(())
     }
 }
-
 

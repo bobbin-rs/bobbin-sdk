@@ -1,5 +1,6 @@
 CHIP=bobbin-chip
 CHIP_ARGS="--build"
+STM32_ARGS=--crate --cargo-template bobbin-stm32/template
 
 .PHONY: build bobbin-cortexm bobbin-kinetis bobbin-sam bobbin-stm32 bobbin-ti
 
@@ -42,34 +43,34 @@ stm32-common:
 	$(CHIP) $(CHIP_ARGS) bobbin-stm32/$@/mod.rx ../mcu/bobbin-stm32/$@/src/chip/mod.rs
 
 stm32f10x:
-	$(CHIP) $(CHIP_ARGS) bobbin-stm32/$@/lib.rx ../mcu/bobbin-stm32/$@/src/chip/mod.rs
+	$(CHIP) $(STM32_ARGS) bobbin-stm32/$@/lib.rx ../mcu/bobbin-stm32/$@/
 
 stm32f20x:
-	$(CHIP) $(CHIP_ARGS) bobbin-stm32/$@/lib.rx ../mcu/bobbin-stm32/$@/src/chip/mod.rs
+	$(CHIP) $(STM32_ARGS) bobbin-stm32/$@/lib.rx ../mcu/bobbin-stm32/$@/
 
 stm32f40x:
-	$(CHIP) $(CHIP_ARGS) bobbin-stm32/$@/lib.rx ../mcu/bobbin-stm32/$@/src/chip/mod.rs
+	$(CHIP) $(STM32_ARGS) bobbin-stm32/$@/lib.rx ../mcu/bobbin-stm32/$@/
 
 stm32f42x:
-	$(CHIP) $(CHIP_ARGS) bobbin-stm32/$@/lib.rx ../mcu/bobbin-stm32/$@/src/chip/mod.rs
+	$(CHIP) $(STM32_ARGS) bobbin-stm32/$@/lib.rx ../mcu/bobbin-stm32/$@/
 
 stm32f302x:
-	$(CHIP) $(CHIP_ARGS) bobbin-stm32/$@/lib.rx ../mcu/bobbin-stm32/$@/src/chip/mod.rs
+	$(CHIP) $(STM32_ARGS) bobbin-stm32/$@/lib.rx ../mcu/bobbin-stm32/$@/
 
 stm32f303x:
-	$(CHIP) $(CHIP_ARGS) bobbin-stm32/$@/lib.rx ../mcu/bobbin-stm32/$@/src/chip/mod.rs
+	$(CHIP) $(STM32_ARGS) bobbin-stm32/$@/lib.rx ../mcu/bobbin-stm32/$@/
 
 stm32l031x:
-	$(CHIP) $(CHIP_ARGS) bobbin-stm32/$@/lib.rx ../mcu/bobbin-stm32/$@/src/chip/mod.rs
+	$(CHIP) $(STM32_ARGS) bobbin-stm32/$@/lib.rx ../mcu/bobbin-stm32/$@/
 
 stm32l432x:
-	$(CHIP) $(CHIP_ARGS) bobbin-stm32/$@/lib.rx ../mcu/bobbin-stm32/$@/src/chip/mod.rs
+	$(CHIP) $(STM32_ARGS) bobbin-stm32/$@/lib.rx ../mcu/bobbin-stm32/$@/
 
 stm32l4x2:
-	$(CHIP) $(CHIP_ARGS) bobbin-stm32/$@/lib.rx ../mcu/bobbin-stm32/$@/src/chip/mod.rs
+	$(CHIP) $(STM32_ARGS) bobbin-stm32/$@/lib.rx ../mcu/bobbin-stm32/$@/
 
 stm32f74x:
-	$(CHIP) $(CHIP_ARGS) bobbin-stm32/$@/lib.rx ../mcu/bobbin-stm32/$@/src/chip/mod.rs
+	$(CHIP) $(STM32_ARGS) bobbin-stm32/$@/lib.rx ../mcu/bobbin-stm32/$@/
 
 tm4c129x:
 	$(CHIP) $(CHIP_ARGS) bobbin-ti/$@/lib.rx ../mcu/bobbin-ti/$@/src/chip/mod.rs

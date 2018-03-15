@@ -1,10 +1,10 @@
-#[allow(unused_imports)] use bobbin_common::*;
 
+pub struct DmaCh { pub periph: DmaPeriph, pub index: usize }
+#[allow(unused_imports)] use bobbin_common::*;
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="DMA_F3 Peripheral"]
 pub struct DmaPeriph(pub usize); 
-
 
 impl DmaPeriph {
     #[doc="Get the *mut pointer for the ISR register."]
@@ -969,6 +969,4 @@ impl ::core::fmt::Debug for Cselr {
         Ok(())
     }
 }
-
-pub struct DmaCh { pub periph: DmaPeriph, pub index: usize }
 

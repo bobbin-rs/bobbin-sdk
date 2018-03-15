@@ -1,10 +1,9 @@
-#[allow(unused_imports)] use bobbin_common::*;
 
+#[allow(unused_imports)] use bobbin_common::*;
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="USART_F24 Peripheral"]
 pub struct UsartPeriph(pub usize); 
-
 
 impl UsartPeriph {
     #[doc="Get the *mut pointer for the SR register."]
@@ -1448,5 +1447,4 @@ impl ::core::fmt::Debug for Gtpr {
         Ok(())
     }
 }
-
 

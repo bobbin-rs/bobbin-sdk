@@ -1,10 +1,9 @@
-#[allow(unused_imports)] use bobbin_common::*;
 
+#[allow(unused_imports)] use bobbin_common::*;
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="IWDG Peripheral"]
 pub struct IwdgPeriph(pub usize); 
-
 
 impl IwdgPeriph {
     #[doc="Get the *mut pointer for the KR register."]
@@ -417,5 +416,4 @@ impl ::core::fmt::Debug for Winr {
         Ok(())
     }
 }
-
 

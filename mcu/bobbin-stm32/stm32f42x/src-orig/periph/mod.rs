@@ -1,0 +1,10 @@
+pub mod rcc;
+pub mod flash;
+pub mod pwr;
+pub mod syscfg;
+pub mod dbg;
+pub mod ethernet;
+pub mod ethernet_ptp;
+pub mod ethernet_dma;
+pub mod dac;
+pub mod c_adc;
