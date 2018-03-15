@@ -817,11 +817,13 @@
             (signal (name I2C3_SMBAL) (type I2C_SMBAL))            
             (interrupt
                 (name I2C3_EV)
+                (type I2C_EV)
                 (value 72)
                 (description "I2C3 event interrupt")
             )
             (interrupt
                 (name I2C3_ER)
+                (type I2C_ER)
                 (value 73)
                 (description "I2C3 error interrupt")
             )
@@ -834,11 +836,13 @@
             (signal (name I2C2_SMBAL) (type I2C_SMBAL))
             (interrupt
                 (name I2C2_EV)
+                (type I2C_EV)
                 (value 33)
                 (description "I2C2 event interrupt")
             )
             (interrupt
                 (name I2C2_ER)
+                (type I2C_ER)
                 (value 34)
                 (description "I2C2 error interrupt")
             )
@@ -851,11 +855,13 @@
             (signal (name I2C1_SMBAL) (type I2C_SMBAL))
             (interrupt
                 (name I2C1_EV)
+                (type I2C_EV)
                 (value 31)
                 (description "I2C1 event interrupt")
             )
             (interrupt
                 (name I2C1_ER)
+                (type I2C_ER)
                 (value 32)
                 (description "I2C1 error interrupt")
             )
