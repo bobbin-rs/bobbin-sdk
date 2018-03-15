@@ -34,7 +34,7 @@ pub fn gen_crate<W: Write>(cfg: Config, _out: &mut W, d: &Device) -> Result<()> 
 
     }
 
-    // Copy cargo.toml from template
+    // Copy Xargo.toml from template
     {
         let xargo_toml_src = cfg.cargo_template.join("Xargo.toml");
         let mut src = File::open(xargo_toml_src)?;
@@ -59,6 +59,18 @@ pub fn gen_crate<W: Write>(cfg: Config, _out: &mut W, d: &Device) -> Result<()> 
         let mut dst = File::create(ccfg_dst)?;
         dst.write(&data.as_bytes())?;        
     }
+
+    // Copy build.rs from template
+    {
+        let build_src = cfg.cargo_template.join("build.rs");
+        let mut src = File::open(build_src)?;
+        let mut data = String::new();
+        src.read_to_string(&mut data)?;    
+        let build_dst = cfg.out_path.join("build.rs");
+        let mut dst = File::create(build_dst)?;
+        dst.write(&data.as_bytes())?;
+    }
+    
 
     let src_path = cfg.out_path.join("src");
     if !src_path.exists() {
