@@ -230,30 +230,6 @@
                     (description "EXTI interrupt")
                 )
             )
-            (channel (name EXTI_LINE20) (index 20)
-                (interrupt
-                    (name EXTI20)
-                    (value 76)
-                    (type EXTI)
-                    (description "EXTI interrupt")
-                )
-            )
-            (channel (name EXTI_LINE21) (index 21)
-                (interrupt
-                    (name EXTI21)
-                    (value 2)
-                    (type EXTI)
-                    (description "EXTI interrupt")
-                )            
-            )
-            (channel (name EXTI_LINE22) (index 22)
-                (interrupt
-                    (name EXTI22)
-                    (value 3)
-                    (type EXTI)
-                    (description "EXTI interrupt")
-                )                
-            )
         )
     )
 
@@ -288,6 +264,7 @@
             )
             (interrupt
                 (name TIM2)
+                (type TIM)
                 (value 28)
                 (description "TIM2 global interrupt")
             )
@@ -318,6 +295,7 @@
             )                
             (interrupt
                 (name TIM3)
+                (type TIM)
                 (value 29)
                 (description "TIM3 global interrupt")
             )
@@ -347,6 +325,7 @@
             )                      
             (interrupt
                 (name TIM4)
+                (type TIM)
                 (value 30)
                 (description "TIM4 global interrupt")
             )
@@ -362,21 +341,25 @@
             (description "Advanced-timers")
             (interrupt
                 (name TIM1_BRK)
+                (type TIM_BRK)
                 (value 24)
                 (description "TIM1 Break interrupt")
             )
             (interrupt
                 (name TIM1_UP)
+                (type TIM_UP)
                 (value 25)
                 (description "TIM1 Update interrupt")
             )
             (interrupt
                 (name TIM1_TRG_COM)
+                (type TIM_TRG_COM)
                 (value 26)
                 (description "TIM1 Trigger and Commutation interrupt")
             )
             (interrupt
                 (name TIM1_CC)
+                (type TIM_CC)
                 (value 27)
                 (description "TIM1 Capture Compare interrupt")
             )
@@ -485,11 +468,13 @@
             (address 0x40005800)
             (interrupt
                 (name I2C2_EV)
+                (type I2C_EV)
                 (value 33)
                 (description "I2C2 event interrupt")
             )
             (interrupt
                 (name I2C2_ER)
+                (type I2C_ER)
                 (value 34)
                 (description "I2C2 error interrupt")
             )
@@ -499,11 +484,13 @@
             (address 0x40005400)
             (interrupt
                 (name I2C1_EV)
+                (type I2C_EV)
                 (value 31)
                 (description "I2C1 event interrupt")
             )
             (interrupt
                 (name I2C1_ER)
+                (type I2C_ER)
                 (value 32)
                 (description "I2C1 error interrupt")
             )
