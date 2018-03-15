@@ -1234,7 +1234,8 @@
             (signal (name USART1_RTS) (type RTS))
             (signal (name USART1_CK) (type CK))            
             (interrupt
-                (name USART1_EXTI25)
+                (name USART1)
+                (type UART)
                 (value 37)
                 (description "USART1 global interrupt and EXTI Line 25 interrupt")
             )
@@ -1248,7 +1249,8 @@
             (signal (name USART2_RTS) (type RTS))
             (signal (name USART2_CK) (type CK))            
             (interrupt
-                (name USART2_EXTI26)
+                (name USART2)
+                (type UART)
                 (value 38)
                 (description "USART2 global interrupt and EXTI Line 26 interrupt")
             )
@@ -1262,7 +1264,8 @@
             (signal (name USART3_RTS) (type RTS))
             (signal (name USART3_CK) (type CK))            
             (interrupt
-                (name USART3_EXTI28)
+                (name USART3)
+                (type UART)
                 (value 39)
                 (description "USART3 global interrupt and EXTI Line 28 interrupt")
             )
@@ -1276,7 +1279,8 @@
             (signal (name UART4_RTS) (type RTS))
             (signal (name UART4_CK) (type CK))            
             (interrupt
-                (name UART4_EXTI34)
+                (name UART4)
+                (type UART)
                 (value 52)
                 (description "UART4 global and EXTI Line 34 interrupts")
             )
@@ -1290,7 +1294,8 @@
             (signal (name UART5_RTS) (type RTS))
             (signal (name UART5_CK) (type CK))            
             (interrupt
-                (name UART5_EXTI35)
+                (name UART5)
+                (type UART)
                 (value 53)
                 (description "UART5 global and EXTI Line 35 interrupts")
             )
@@ -1310,12 +1315,14 @@
             (signal (name I2C1_SMBAL) (type I2C_SMBAL))
             
             (interrupt
-                (name I2C1_EV_EXTI23)
+                (name I2C1_EV)
+                (type I2C_EV)
                 (value 31)
                 (description "I2C1 event interrupt and EXTI Line23 interrupt")
             )
             (interrupt
                 (name I2C1_ER)
+                (type I2C_ER)
                 (value 32)
                 (description "I2C1 error interrupt")
             )      
@@ -1327,12 +1334,14 @@
             (signal (name I2C2_SDA) (type I2C_SDA))
             (signal (name I2C2_SMBAL) (type I2C_SMBAL))
             (interrupt
-                (name I2C2_EV_EXTI24)
+                (name I2C2_EV)
+                (type I2C_EV)
                 (value 33)
                 (description "I2C2 event interrupt & EXTI Line24 interrupt")
             )
             (interrupt
                 (name I2C2_ER)
+                (type I2C_ER)
                 (value 34)
                 (description "I2C2 error interrupt")
             )      
@@ -1345,11 +1354,13 @@
             (signal (name I2C3_SMBAL) (type I2C_SMBAL))
             (interrupt
                 (name I2C3_EV)
-                (value 72)
+                (type I2C_EV)
+                (value 72)                
                 (description "I2C3 event interrupt")
             )
             (interrupt
                 (name I2C3_ER)
+                (type I2C_ER)
                 (value 73)
                 (description "I2C3 error interrupt")
             )    
@@ -1569,6 +1580,7 @@
             (description "Basic Timer")
             (interrupt
                 (name TIM7)
+                (type TIM)
                 (value 55)
                 (description "TIM7 global interrupt")
             )
@@ -1604,6 +1616,7 @@
             )                 
             (interrupt
                 (name TIM2)
+                (type TIM)
                 (value 28)
                 (description "TIM2 global interrupt")
             )
@@ -1633,6 +1646,7 @@
             )         
             (interrupt
                 (name TIM3)
+                (type TIM)
                 (value 29)
                 (description "TIM3 global interrupt")
             )
@@ -1662,6 +1676,7 @@
             )                
             (interrupt
                 (name TIM4)
+                (type TIM)
                 (value 30)
                 (description "TIM4 global interrupt")
             )
@@ -1682,6 +1697,7 @@
             )                              
             (interrupt
                 (name TIM15)
+                (type TIM)
                 (value 24)
                 (description "TIM1 Break/TIM15 global interruts")
             )
@@ -1698,6 +1714,7 @@
             )      
             (interrupt
                 (name TIM16)
+                (type TIM)
                 (value 25)
                 (description "TIM16 global interrupts")
             )
@@ -1714,6 +1731,7 @@
             )                  
             (interrupt
                 (name TIM17)
+                (type TIM)
                 (value 26)
                 (description "TIM17 global interrupt")
             )
@@ -1748,21 +1766,25 @@
             )   
             (interrupt
                 (name TIM1_BRK)
+                (type TIM_BRK)
                 (value 24)
                 (description "TIM1 break interrupt")
             )
             (interrupt
                 (name TIM1_UP)
+                (type TIM_UP)
                 (value 25)
                 (description "TIM1 update interrupt")
             )
             (interrupt
                 (name TIM1_TRG_COM)
+                (type TIM_TRG_COM)
                 (value 26)
                 (description "TIM1 trigger and commutation interrupt")
             )                                                                     
             (interrupt
                 (name TIM1_CC)
+                (type TIM_CC)
                 (value 27)
                 (description "TIM1 capture compare interrupt")
             )
@@ -1793,21 +1815,25 @@
             )               
             (interrupt
                 (name TIM8_BRK)
+                (type TIM_BRK)
                 (value 43)
                 (description "TIM8 break interrupt")
             )
             (interrupt
                 (name TIM8_UP)
+                (type TIM_UP)
                 (value 44)
                 (description "TIM8 update interrupt")
             )
             (interrupt
                 (name TIM8_TRG_COM)
+                (type TRG_COM)
                 (value 45)
                 (description "TIM8 Trigger and commutation interrupts")
             )
             (interrupt
                 (name TIM8_CC)
+                (type TIM_CC)
                 (value 46)
                 (description "TIM8 capture compare interrupt")
             )
@@ -1842,16 +1868,19 @@
             )
             (interrupt
                 (name TIM20_UP)
+                (type TIM_UP)
                 (value 78)
                 (description "TIM20 update interrupt")
             )
             (interrupt
                 (name TIM20_TRG_COM)
+                (type TIM_TRG_COM)
                 (value 79)
                 (description "TIM20 Trigger and commutation interrupts")
             )
             (interrupt
                 (name TIM20_CC)
+                (type TIM_CC)
                 (value 80)
                 (description "TIM20 capture compare interrupt")
             )

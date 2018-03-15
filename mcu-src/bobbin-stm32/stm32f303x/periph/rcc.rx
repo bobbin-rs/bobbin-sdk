@@ -8,8 +8,6 @@
         (value 5)
         (description "RCC global interrupt")
     )
-    (link (name EN))
-    (link (name RST))    
     (register
         (name CR)
         (offset 0x0)
@@ -495,14 +493,14 @@
             (bit-offset 0)
             (bit-width 1)
             (description "DMA1 clock enable")
-            (link (name EN) (peripheral-group DMA) (peripheral DMA1))
+
         )
         (field
             (name DMA2EN)
             (bit-offset 1)
             (bit-width 1)
             (description "DMA2 clock enable")
-            (link (name EN) (peripheral-group DMA) (peripheral DMA2))
+
         )
         (field
             (name SRAMEN)
@@ -521,63 +519,63 @@
             (bit-offset 6)
             (bit-width 1)
             (description "CRC clock enable")
-            (link (name EN) (peripheral-group CRC) (peripheral CRC))
+
         )
         (field
             (name IOPHEN)
             (bit-offset 16)
             (bit-width 1)
             (description "I/O port H clock enable")
-            (link (name EN) (peripheral-group GPIO) (peripheral GPIOH))
+
         )        
         (field
             (name IOPAEN)
             (bit-offset 17)
             (bit-width 1)
             (description "I/O port A clock enable")
-            (link (name EN) (peripheral-group GPIO) (peripheral GPIOA))
+
         )
         (field
             (name IOPBEN)
             (bit-offset 18)
             (bit-width 1)
             (description "I/O port B clock enable")
-            (link (name EN) (peripheral-group GPIO) (peripheral GPIOB))
+
         )
         (field
             (name IOPCEN)
             (bit-offset 19)
             (bit-width 1)
             (description "I/O port C clock enable")
-            (link (name EN) (peripheral-group GPIO) (peripheral GPIOC)) 
+
         )
         (field
             (name IOPDEN)
             (bit-offset 20)
             (bit-width 1)
             (description "I/O port D clock enable")
-            (link (name EN) (peripheral-group GPIO) (peripheral GPIOD))
+
         )
         (field
             (name IOPEEN)
             (bit-offset 21)
             (bit-width 1)
             (description "I/O port E clock enable")
-            (link (name EN) (peripheral-group GPIO) (peripheral GPIOE))
+
         )
         (field
             (name IOPFEN)
             (bit-offset 22)
             (bit-width 1)
             (description "I/O port F clock enable")
-            (link (name EN) (peripheral-group GPIO) (peripheral GPIOF))
+
         )
         (field
             (name IOPGEN)
             (bit-offset 23)
             (bit-width 1)
             (description "I/O port G clock enable")
-            (link (name EN) (peripheral-group GPIO) (peripheral GPIOG))
+
         )        
         (field
             (name TSCEN)
@@ -590,16 +588,16 @@
             (bit-offset 28)
             (bit-width 1)
             (description "ADC1 and ADC2 clock enable")
-            (link (name EN) (peripheral-group ADC) (peripheral ADC1))
-            (link (name EN) (peripheral-group ADC) (peripheral ADC2))
+
+
         )
         (field
             (name ADC34EN)
             (bit-offset 29)
             (bit-width 1)
             (description "ADC3 and ADC4 clock enable")
-            (link (name EN) (peripheral-group ADC) (peripheral ADC3))
-            (link (name EN) (peripheral-group ADC) (peripheral ADC4))
+
+
         )
     )
     (register
@@ -614,63 +612,63 @@
             (bit-offset 0)
             (bit-width 1)
             (description "SYSCFG clock enable")
-            (link (name EN) (peripheral-group SYSCFG) (peripheral SYSCFG))
+
         )
         (field
             (name TIM1EN)
             (bit-offset 11)
             (bit-width 1)
             (description "TIM1 Timer clock enable")
-            (link (name EN) (peripheral-group TIM_ADV) (peripheral TIM1))
+
         )
         (field
             (name SPI1EN)
             (bit-offset 12)
             (bit-width 1)
             (description "SPI 1 clock enable")
-            (link (name EN) (peripheral-group SPI) (peripheral SPI1))
+
         )
         (field
             (name TIM8EN)
             (bit-offset 13)
             (bit-width 1)
             (description "TIM8 Timer clock enable")
-            (link (name EN) (peripheral-group TIM_ADV) (peripheral TIM8))
+
         )
         (field
             (name USART1EN)
             (bit-offset 14)
             (bit-width 1)
             (description "USART1 clock enable")
-            (link (name EN) (peripheral-group USART) (peripheral USART1))
+
         )
         (field
             (name TIM15EN)
             (bit-offset 16)
             (bit-width 1)
             (description "TIM15 timer clock enable")
-            (link (name EN) (peripheral-group TIM_GEN) (peripheral TIM15))
+
         )
         (field
             (name TIM16EN)
             (bit-offset 17)
             (bit-width 1)
             (description "TIM16 timer clock enable")
-            (link (name EN) (peripheral-group TIM_GEN) (peripheral TIM16))
+
         )
         (field
             (name TIM17EN)
             (bit-offset 18)
             (bit-width 1)
             (description "TIM17 timer clock enable")
-            (link (name EN) (peripheral-group TIM_GEN) (peripheral TIM17))
+
         )
         (field
             (name TIM20EN)
             (bit-offset 20)
             (bit-width 1)
             (description "TIM20 timer clock enable")
-            (link (name EN) (peripheral-group TIM_ADV) (peripheral TIM20))
+
         )
     )
     (register
@@ -685,98 +683,98 @@
             (bit-offset 0)
             (bit-width 1)
             (description "Timer 2 clock enable")
-            (link (name EN) (peripheral-group TIM_GEN) (peripheral TIM2))
+
         )
         (field
             (name TIM3EN)
             (bit-offset 1)
             (bit-width 1)
             (description "Timer 3 clock enable")
-            (link (name EN) (peripheral-group TIM_GEN) (peripheral TIM3))
+
         )
         (field
             (name TIM4EN)
             (bit-offset 2)
             (bit-width 1)
             (description "Timer 4 clock enable")
-            (link (name EN) (peripheral-group TIM_GEN) (peripheral TIM4))
+
         )
         (field
             (name TIM6EN)
             (bit-offset 4)
             (bit-width 1)
             (description "Timer 6 clock enable")
-            (link (name EN) (peripheral-group TIM_BAS) (peripheral TIM6))
+
         )
         (field
             (name TIM7EN)
             (bit-offset 5)
             (bit-width 1)
             (description "Timer 7 clock enable")
-            (link (name EN) (peripheral-group TIM_BAS) (peripheral TIM7))
+
         )
         (field
             (name WWDGEN)
             (bit-offset 11)
             (bit-width 1)
             (description "Window watchdog clock enable")
-            (link (name EN) (peripheral-group WWDG) (peripheral WWDG))
+
         )
         (field
             (name SPI2EN)
             (bit-offset 14)
             (bit-width 1)
             (description "SPI 2 clock enable")
-            (link (name EN) (peripheral-group SPI) (peripheral SPI2))
+
         )
         (field
             (name SPI3EN)
             (bit-offset 15)
             (bit-width 1)
             (description "SPI 3 clock enable")
-            (link (name EN) (peripheral-group SPI) (peripheral SPI3))
+
         )
         (field
             (name USART2EN)
             (bit-offset 17)
             (bit-width 1)
             (description "USART 2 clock enable")
-            (link (name EN) (peripheral-group USART) (peripheral USART2))
+
         )
         (field
             (name USART3EN)
             (bit-offset 18)
             (bit-width 1)
             (description "USART 3 clock enable")
-            (link (name EN) (peripheral-group USART) (peripheral USART3))
+
         )      
         (field
             (name UART4EN)
             (bit-offset 19)
             (bit-width 1)
             (description "UART 4 clock enable")
-            (link (name EN) (peripheral-group USART) (peripheral UART4))
+
         )        
         (field
             (name UART5EN)
             (bit-offset 20)
             (bit-width 1)
             (description "UART 5 clock enable")
-            (link (name EN) (peripheral-group USART) (peripheral UART5))
+
         )                    
         (field
             (name I2C1EN)
             (bit-offset 21)
             (bit-width 1)
             (description "I2C 1 clock enable")
-            (link (name EN) (peripheral-group I2C) (peripheral I2C1))
+
         )
         (field
             (name I2C2EN)
             (bit-offset 22)
             (bit-width 1)
             (description "I2C 2 clock enable")
-            (link (name EN) (peripheral-group I2C) (peripheral I2C2))
+
         )
         (field
             (name USBEN)
@@ -795,7 +793,7 @@
             (bit-offset 28)
             (bit-width 1)
             (description "Power interface clock enable")
-            (link (name EN) (peripheral-group PWR) (peripheral PWR))
+
         )
         (field
             (name DACEN)
@@ -808,7 +806,7 @@
             (bit-offset 30)
             (bit-width 1)
             (description "I2C 3 clock enable")
-            (link (name EN) (peripheral-group I2C) (peripheral I2C3))
+
         )        
     )
     (register
