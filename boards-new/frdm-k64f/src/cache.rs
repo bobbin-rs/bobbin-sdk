@@ -1,24 +1,16 @@
+use core::ptr;
+
+pub const WDOG_STCTRLH: *mut u16 = 0x4005_2000 as *mut u16;
+pub const WDOG_UNLOCK: *mut u16 = 0x4005_200e as *mut u16;
+
 pub fn init() {
     // Disable Watchdog
-//     // Write 0xC520 followed by 0xD928 within 20 bus clock cycles to a specific unlock register (WDOG_UNLOCK).
-//     unsafe { 
-//         asm!("
+    unsafe {
+        // Unlock Watchdog
+        ptr::write_volatile(WDOG_UNLOCK, 0xc520);
+        ptr::write_volatile(WDOG_UNLOCK, 0xd928);
+        // Disable Watchdog
+        ptr::write_volatile(WDOG_STCTRLH, 0x00d2);
+    }
 
-//         /* unlock */
-
-//         ldr r1, =0x4005200e
-//         ldr r0, =0xc520
-//         strh r0, [r1]
-//         ldr r0, =0xd928
-//         strh r0, [r1]
-
-//         /* disable */
-
-//         ldr r1, =0x40052000
-//         /* ldr r0, =0x01d2 */
-//         ldr r0, =0x00d2 
-//         strh r0, [r1]
-//         ");
-//     }
-// }
 }
