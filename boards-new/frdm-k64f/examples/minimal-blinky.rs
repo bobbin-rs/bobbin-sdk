@@ -24,7 +24,7 @@ pub extern "C" fn main() -> ! {
     loop {
         // Toggle PTB22
         GPIOB.set_ptor(|r| r.set_ptto(22, 1));
-        for _ in 0..2_000_000 {
+        for _ in 0..8_000_000 {
             unsafe { asm!("nop") }
         }
     }

@@ -25,7 +25,7 @@ pub extern "C" fn main() -> ! {
     loop {
         // Toggle PTB22
         PB22.toggle_output();
-        for _ in 0..2_000_000 {
+        for _ in 0..8_000_000 {
             unsafe { asm!("nop") }
         }
     }
