@@ -6,6 +6,18 @@ MEMORY
   RAM (rwx) : ORIGIN = 0x1FFFF000, LENGTH = 64K + 128K
 }
 
+SECTIONS {
+  .flash_protect :
+  {
+      KEEP(*(.kinetis_flash_config_field))
+      . = ALIGN(4);
+      LONG(0xffffffff)
+      LONG(0xffffffff)
+      LONG(0xffffffff)
+      LONG(0xfffffffe)
+  } > FLASH_PROTECTION
+}
+
 /* This is where the call stack will be allocated. */
 /* The stack is of the full descending type. */
 /* NOTE Do NOT modify `_stack_start` unless you know what you are doing */
