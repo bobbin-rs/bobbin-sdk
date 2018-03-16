@@ -95,26 +95,26 @@ pub fn gen_mod<W: Write>(cfg: &Config, out: &mut W, d: &Device, path: &Path) -> 
         try!(gen_exceptions(cfg, &mut f_mod, &d.exceptions));
     }
 
-    // Generate Interrupts
+    // // Generate Interrupts
 
-    {
-        let interrupt_count = d.interrupt_count();
-        let p_name = "irq";
-        try!(writeln!(out, "pub mod {};", p_name));
-        let p_mod = path.join(format!("{}.rs", p_name));
-        let mut f_mod = try!(File::create(p_mod));
-        try!(gen_interrupts(cfg, &mut f_mod, &d, interrupt_count));
-    }
+    // {
+    //     let interrupt_count = d.interrupt_count();
+    //     let p_name = "irq";
+    //     try!(writeln!(out, "pub mod {};", p_name));
+    //     let p_mod = path.join(format!("{}.rs", p_name));
+    //     let mut f_mod = try!(File::create(p_mod));
+    //     try!(gen_interrupts(cfg, &mut f_mod, &d, interrupt_count));
+    // }
 
-    // Generate Signals
+    // // Generate Signals
 
-    {    
-        let p_name = "sig";
-        try!(writeln!(out, "pub mod {};", p_name));
-        let p_mod = path.join(format!("{}.rs", p_name));
-        let mut f_mod = try!(File::create(p_mod));
-        try!(gen_signals(cfg, &mut f_mod, &d));
-    }
+    // {    
+    //     let p_name = "sig";
+    //     try!(writeln!(out, "pub mod {};", p_name));
+    //     let p_mod = path.join(format!("{}.rs", p_name));
+    //     let mut f_mod = try!(File::create(p_mod));
+    //     try!(gen_signals(cfg, &mut f_mod, &d));
+    // }
 
     let mut ord = 0;
 
