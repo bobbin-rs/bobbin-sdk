@@ -71,7 +71,7 @@ pub fn gen_board<W: Write>(cfg: Config, _out: &mut W, b: &Board) -> Result<()> {
 
     let src_dir = tmpl_path.join("src");
     let dst_dir = out_path.join("src");
-    // mkdir(&dst_dir)?;
+    mkdir(&dst_dir)?;
     // copy_file_with(&tmpl_path.join("src/lib.rs"), &out_path.join("src/lib.rs"), |s| {
     //     s.replace("%name%", &b.name)        
     // })?;
