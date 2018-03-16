@@ -337,6 +337,7 @@ fn read_crate(ctx: &Context, s: &[Sexp]) -> Result<Crate, ReadError> {
                 Some("as") => c._as = Some(String::from(try!(expect_string_or_symbol(ctx, &arr[1])))),                
                 Some("module") => c.modules.push(try!(read_module(ctx, &arr[1..]))),
                 Some("version") => c.version = Some(String::from(try!(expect_string(ctx, &arr[1])))),                
+                Some("path") => c.path = Some(String::from(try!(expect_string(ctx, &arr[1])))),                
                 Some("feature") => c.features.extend(try!(read_feature(ctx, &arr[1..]))),
                 Some("default-features") => c.default_features = Some(String::from(try!(expect_symbol(ctx, &arr[1])))),                
                 _ => return Err(ReadError::Error(format!("{}: Unexpected item: {:?}", ctx.location_of(s), arr)))

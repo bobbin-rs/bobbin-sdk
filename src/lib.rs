@@ -191,6 +191,7 @@ pub struct Crate {
     /// An optional `as` clause for renaming the crate.
     pub _as: Option<String>, 
     /// A list of modules to import from the crate.
+    pub path: Option<String>,
     pub modules: Vec<Module>, 
     pub version: Option<String>,
     pub features: Vec<String>,
