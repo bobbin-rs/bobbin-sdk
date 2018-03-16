@@ -1,0 +1,76 @@
+pub use ::bobbin_common::*;
+pub use ::bobbin_common::tree::*;
+pub use ::hz::Hz;
+
+
+// Define Global Clocks
+
+pub const HSI16_HZ: Hz = Hz::from_num(16000000);
+pub const LSI_HZ: Hz = Hz::from_num(32000);
+
+tree_defn! {
+    id: TREE_DEFN: TreeDefn,
+    clock: {
+        OSC: Osc,
+        OSC32: Osc32,
+        HSI16: Hsi16,
+        HSE: Hse,
+        MSI: Msi,
+        LSI: Lsi,
+        LSE: Lse,
+        PLLCLK: Pllclk,
+        PLL48CLK: Pll48clk,
+        SYSCLK: Sysclk,
+        HCLK: Hclk,
+        SYSTICK: Systick,
+        PCLK1: Pclk1,
+        PCLK2: Pclk2,
+        TIM_PCLK1: TimPclk1,
+        TIM_PCLK2: TimPclk2,
+        USART1: Usart1,
+        USART2: Usart2,
+        USART3: Usart3,
+        LPUART1: Lpuart1,
+        I2C1: I2c1,
+        I2C2: I2c2,
+        I2C3: I2c3,
+        LPTIM1: Lptim1,
+        LPTIM2: Lptim2,
+    },
+    type: {
+        ::flash::Flash: Hclk,
+        ::pwr::Pwr: Pclk1,
+        ::syscfg::Syscfg: Pclk2,
+        ::rng::Rng: Hclk,
+        ::crc::Crc: Hclk,
+        ::lptim::Lptim1: Lptim1,
+        ::lptim::Lptim2: Lptim2,
+        ::dma::Dma1: Hclk,
+        ::dma::Dma2: Hclk,
+        ::i2c::I2c1: Pclk1,
+        ::i2c::I2c2: Pclk1,
+        ::i2c::I2c3: Pclk1,
+        ::tim_adv::Tim1: Pclk2,
+        ::tim_bas::Tim6: TimPclk1,
+        ::tim_bas::Tim7: TimPclk1,
+        ::tim_gen::Tim2: TimPclk1,
+        ::tim_gen::Tim15: Pclk2,
+        ::tim_gen::Tim16: TimPclk2,
+        ::gpio::Gpioa: Hclk,
+        ::gpio::Gpiob: Hclk,
+        ::gpio::Gpioc: Hclk,
+        ::gpio::Gpiod: Hclk,
+        ::gpio::Gpioe: Hclk,
+        ::gpio::Gpioh: Hclk,
+        ::usart::Usart1: Pclk2,
+        ::usart::Usart2: Usart2,
+        ::usart::Usart3: Pclk1,
+        ::lpuart::Lpuart1: Lpuart1,
+        ::spi::Spi1: Pclk2,
+        ::spi::Spi2: Pclk1,
+        ::spi::Spi3: Pclk1,
+        ::adc::Adc1: Hclk,
+        ::adc::Adc2: Hclk,
+        ::adc::Adc3: Hclk,
+    },
+}
