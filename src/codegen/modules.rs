@@ -745,7 +745,7 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, d: &Device, pg:
     if let Some(ref desc) = pg.description {
         let desc = desc.trim();
         if desc.len() > 0 {
-            try!(writeln!(out, "//! {}", desc));
+            try!(writeln!(out, "// //! {}", desc));
             try!(writeln!(out, ""));
         }
     }       
@@ -1217,6 +1217,7 @@ pub fn gen_clusters<W: Write>(cfg: &Config, out: &mut W, p_type: &str, clusters:
         }                
         try!(writeln!(out, "pub mod {} {{", mod_name));
         // try!(writeln!(out, "    #[allow(unused_imports)] use {}::*;", cfg.common));
+        try!(writeln!(out, "    #[allow(unused_imports)] use super::*;"));
         
         try!(writeln!(out, "    #[derive(Clone, Copy, PartialEq, Eq)]"));
         if let Some(ref desc) = c.description {
