@@ -1,2 +1,1 @@
-pub use chip::wdt::*;
-pub use super::pm::PmEnabled;
+pub use periph::wdt::*;

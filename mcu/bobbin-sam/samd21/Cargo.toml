@@ -1,18 +1,15 @@
 [package]
-name = "samd21"
+name = "atsamd"
 version = "0.1.0"
-authors = ["Jonathan Soo <jcsoo@agora.com>"]
+build = "build.rs"
 
 [build-dependencies]
 bobbin-build = { path = "../../bobbin-build/" }
 
 [dependencies]
-bobbin-common = { path = "../../bobbin-common" }
-bobbin-cortexm = { path = "../../bobbin-cortexm" }
-
-[dependencies.compiler_builtins]
-git = "https://github.com/rust-lang-nursery/compiler-builtins"
-features = ["mem","c"]
+sam-common = { path = "../sam-common" }
 
 [features]
-SAMD21x18 = []
+default = []
+
+SAMD21G18 = []
