@@ -275,6 +275,10 @@
         (peripheral 
             (name PORTA)
             (address 0x41004400)
+            (clock
+                (input (name APBB))
+                (gate (type EN) (periph PM) (register APBBMASK) (field PORT))
+            )               
             (pin (name PA00) (index 0)
                 (altfn 0 EXTINT_0)
                 (altfn 3 SERCOM1_PAD_0)
@@ -525,6 +529,10 @@
         (peripheral
             (name PORTB)
             (address 0x41004480)
+            (clock
+                (input (name APBB))
+                (gate (type EN) (periph PM) (register APBBMASK) (field PORT))
+            )               
             (pin (name PB00) (index 0)
                 (altfn 0 EXTINT_0)
                 (altfn 1 AIN_8)
