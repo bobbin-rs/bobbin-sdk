@@ -100,9 +100,8 @@ pub enum TopLevel {
 pub struct Board {
     pub name: String,
     pub description: Option<String>,
-    pub devices: Vec<Device>,
-    pub connections: Vec<Connection>,
-    pub paths: Vec<Path>,
+    pub target: String,
+    pub crates: Vec<Crate>,
     pub clocks: Vec<Clock>,
 }
 
@@ -193,6 +192,8 @@ pub struct Crate {
     pub _as: Option<String>, 
     /// A list of modules to import from the crate.
     pub modules: Vec<Module>, 
+    pub version: Option<String>,
+    pub default_features: Option<String>,
 }
 
 /// A Rust module to import. Will result in a `use` statement during code generation.
