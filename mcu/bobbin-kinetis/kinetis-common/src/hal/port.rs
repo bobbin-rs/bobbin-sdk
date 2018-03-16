@@ -1,4 +1,5 @@
 use bobbin_common::bits::*;
+use bobbin_common::pin::SetSource;
 use chip::port::*;
 
 #[derive(Debug, PartialEq, Eq, Clone, Copy)]
@@ -89,4 +90,11 @@ impl PortPin {
         self.port.with_pcr(self.index, |r| r.set_irqc(value as u8));
         self
     }    
+}
+
+
+impl SetSource for PortPin {
+    fn set_source(&self, src: u8) {
+        self.set_mux(src as usize);
+    }
 }
