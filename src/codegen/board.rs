@@ -5,7 +5,7 @@ use std::io::{Write, Read, Result};
 use std::fs::{self, File, OpenOptions};
 use std::path::{Path, PathBuf};
 
-// use std::collections::HashSet;
+// use std::collections::HashMap;
 
 pub struct Config {
     pub out_path: PathBuf,
@@ -31,10 +31,20 @@ pub fn gen_board<W: Write>(cfg: Config, _out: &mut W, b: &Board) -> Result<()> {
         s.replace("%name%", &b.name)
     })?;
 
+    let mut imports = String::new();
+
     {
         let mut out = OpenOptions::new().append(true).open(out_path.join("Cargo.toml"))?;
         writeln!(out, "")?;
         for c in b.crates.iter() {
+            let c_name = c.name.replace("-","_");
+
+            imports.push_str(&format!("pub extern crate {}", c_name));
+            if let Some(ref c_as) = c._as {
+                imports.push_str(&format!(" as {}", c_as));
+            }
+            imports.push_str(";\n");
+
             writeln!(out, "[dependencies.{}]", c.name)?;
             if let Some(ref path) = c.path {
                 writeln!(out, "path = {:?}", path)?;
@@ -59,8 +69,6 @@ pub fn gen_board<W: Write>(cfg: Config, _out: &mut W, b: &Board) -> Result<()> {
         }
     }
 
-
-
     let src_dir = tmpl_path.join("src");
     let dst_dir = out_path.join("src");
     // mkdir(&dst_dir)?;
@@ -76,8 +84,11 @@ pub fn gen_board<W: Write>(cfg: Config, _out: &mut W, b: &Board) -> Result<()> {
             let src = src_dir.join(name);
             let dst = dst_dir.join(name);
             if !dst.exists() || name == "lib.rs" {
-                let mcu_name = b.name.replace("-","_");
-                copy_file_with(&src, &dst, |s| s.replace("%name%", &mcu_name))?;
+                let board_name = b.name.replace("-","_");
+                copy_file_with(&src, &dst, |s| s
+                    .replace("%imports%", &imports)
+                    .replace("%board%", &board_name)
+                )?;
             }
         }
     }
