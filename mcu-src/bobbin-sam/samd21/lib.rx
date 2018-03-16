@@ -4,7 +4,7 @@
     (interrupt-count 28)
     (description "ATSAMD")
     (variants
-        (variant (name SAMD21G18) (link "samd21x18.ld"))
+        (variant (name SAMD21x18) (link "samd21x18.ld"))
     )
     (crate
         (module (name exc))

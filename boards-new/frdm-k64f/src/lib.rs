@@ -5,7 +5,6 @@
 pub extern crate cortex_m_rt;
 pub extern crate log;
 pub extern crate k64 as mcu;
-pub extern crate log;
 
 
 pub use mcu::bobbin_common::{print, println};

@@ -5,6 +5,6 @@
         (name samd21) 
         (as mcu)
         (path "../../mcu/bobbin-sam/samd21")
-        (feature SAMD21G18)
+        (feature SAMD21x18)
     )
 )

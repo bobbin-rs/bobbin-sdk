@@ -12,4 +12,4 @@ sam-common = { path = "../sam-common" }
 [features]
 default = []
 
-SAMD21G18 = []
+SAMD21x18 = []

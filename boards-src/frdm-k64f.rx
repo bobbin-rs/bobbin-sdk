@@ -7,9 +7,4 @@
         (path "../../mcu/bobbin-kinetis/k64")
         (feature K64FN1M0)
     )
-    (crate
-        (name log)
-        (version "0.3")
-        (default-features false)
-    )
 )
