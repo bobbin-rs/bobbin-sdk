@@ -61,6 +61,39 @@ impl ::bobbin_common::gate::GateSleepEn for Tim2 {
     }
 }
 
+// Gate { name: None, gate_type: Some("RST"), periph: Some("RCC"), register: Some("APB2RSTR"), field: Some("TIM15RST"), description: None }
+impl ::bobbin_common::gate::GateRst for Tim15 {
+    #[inline]
+    fn gate_rst(&self) -> bits::U1 { ::rcc::RCC.apb2rstr().tim15rst() }
+    #[inline]
+    fn set_gate_rst<V: Into<bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_apb2rstr(|r| r.set_tim15rst(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("EN"), periph: Some("RCC"), register: Some("APB2ENR"), field: Some("TIM15EN"), description: None }
+impl ::bobbin_common::gate::GateEn for Tim15 {
+    #[inline]
+    fn gate_en(&self) -> bits::U1 { ::rcc::RCC.apb2enr().tim15en() }
+    #[inline]
+    fn set_gate_en<V: Into<bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_apb2enr(|r| r.set_tim15en(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("SLEEP_EN"), periph: Some("RCC"), register: Some("APB2SMENR"), field: Some("TIM15SMEN"), description: None }
+impl ::bobbin_common::gate::GateSleepEn for Tim15 {
+    #[inline]
+    fn gate_sleep_en(&self) -> bits::U1 { ::rcc::RCC.apb2smenr().tim15smen() }
+    #[inline]
+    fn set_gate_sleep_en<V: Into<bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_apb2smenr(|r| r.set_tim15smen(value));
+        self
+    }
+}
+
 // Gate { name: None, gate_type: Some("RST"), periph: Some("RCC"), register: Some("APB2RSTR"), field: Some("TIM16RST"), description: None }
 impl ::bobbin_common::gate::GateRst for Tim16 {
     #[inline]

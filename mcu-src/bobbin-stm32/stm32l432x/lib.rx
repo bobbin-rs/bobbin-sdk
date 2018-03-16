@@ -854,6 +854,12 @@
             (group-name TIM)
             (name TIM15)
             (address 0x40014000)
+            (clock
+                (input (name PCLK2))
+                (gate (type RST) (periph RCC) (register APB2RSTR) (field TIM15RST))
+                (gate (type EN) (periph RCC) (register APB2ENR) (field TIM15EN))
+                (gate (type SLEEP_EN) (periph RCC) (register APB2SMENR) (field TIM15SMEN))
+            )            
             (description "General purpose timers")
             (channel
                 (name TIM15_CH1)
@@ -875,7 +881,7 @@
         (peripheral
             (group-name TIM)
             (name TIM16)
-            (address 0x40014400)
+            (address 0x40014400)        
             (clock
                 (input (name TIM_PCLK2))
                 (gate (type RST) (periph RCC) (register APB2RSTR) (field TIM16RST))
@@ -1225,6 +1231,12 @@
             (group-name USART)
             (name USART1)
             (address 0x40013800)
+            (clock
+                (input (name PCLK2))
+                (gate (type RST) (periph RCC) (register APB2RSTR) (field USART1RST))
+                (gate (type EN) (periph RCC) (register APB2ENR) (field USART1EN))
+                (gate (type SLEEP_EN) (periph RCC) (register APB2SMENR) (field USART1SMEN))
+            )               
             (description "Universal synchronous asynchronous receiver transmitter")
             (signal (name USART1_TX) (type TX))
             (signal (name USART1_RX) (type RX))
@@ -1343,6 +1355,12 @@
         (peripheral 
             (name SPI1)
             (address 0x40013000)
+            (clock
+                (input (name PCLK2))
+                (gate (type RST) (periph RCC) (register APB2RSTR) (field SPI1RST))
+                (gate (type EN) (periph RCC) (register APB2ENR) (field SPI1EN))
+                (gate (type SLEEP_EN) (periph RCC) (register APB2SMENR) (field SPI1SMEN))
+            )               
             (signal (name SPI1_NSS) (type SPI_NSS))
             (signal (name SPI1_MISO) (type SPI_MISO))
             (signal (name SPI1_MOSI) (type SPI_MOSI))
