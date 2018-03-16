@@ -19,6 +19,27 @@
         (module (name dcb))
         (module (name itm))        
     )    
+
+
+    (clocks
+        (input (name EXTAL) (min 3000000) (max 32000000))
+        (input (name EXTAL32) (min 32768) (max 32768))
+        
+        (source (name IRC48M) (speed 48000000))
+        (source (name IRC4M) (speed 4000000))
+        (source (name IRC32K) (speed 32000))
+        (source (name LPO) (speed 1000))
+
+        (output (name SYSTEM))
+        (output (name BUS))
+        (output (name FLEXBUS))
+        (output (name FLASH))
+        (output (name MCGIRCLK))
+        (output (name ERCLK32K))
+        (output (name OSCERCLK))
+        (output (name SYSTICK))
+    )    
+
     (peripheral (include "periph/sim.rx"))
     (peripheral (include "periph/mcg.rx"))
     (peripheral (include "periph/mpu.rx"))
