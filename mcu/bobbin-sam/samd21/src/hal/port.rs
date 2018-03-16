@@ -1,4 +1,5 @@
 pub use periph::port::*;
+use bobbin_common::pin::SetSource;
 
 // pub use bobbin_common::{Pin, AltFn};
 pub use bobbin_common::analog::*;
@@ -77,6 +78,11 @@ impl DigitalOutput for PortPin {
     }    
 }
 
+impl SetSource for PortPin {
+    fn set_source(&self, src: u8) {
+        self.set_mode_pmux(src as usize);
+    }
+}
 // pub trait ModePad0<SIG, PERIPH> {
 //     fn mode_pad_0(&self, _: &PERIPH) -> &Self;
 // }

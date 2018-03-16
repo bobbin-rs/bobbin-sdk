@@ -25,8 +25,8 @@ pub fn init() {
     while gclk::GCLK.status().syncbusy() != 0 {}
 
     // Set Pin Configuration
-    SERCOM_TX.mode_pad_2(&SERCOM);
-    SERCOM_RX.mode_pad_3(&SERCOM);
+    SERCOM_TX.connect_to(SERCOM);
+    SERCOM_RX.connect_to(SERCOM);
 
     SERCOM
         .set_config(|c| c
