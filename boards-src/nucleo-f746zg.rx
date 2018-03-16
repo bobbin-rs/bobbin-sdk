@@ -1,0 +1,10 @@
+(board
+    (name nucleo-f746zg)
+    (target thumbv7em-none-eabihf)
+    (crate 
+        (name stm32f74x) 
+        (as mcu)
+        (path "../../mcu/bobbin-stm32/stm32f74x")
+        (feature STM32F74xxG)
+    )
+)
