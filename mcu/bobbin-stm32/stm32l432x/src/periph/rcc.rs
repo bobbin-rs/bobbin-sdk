@@ -6128,17 +6128,17 @@ impl Apb1smenr1 {
     }
 
     #[doc="SPI3 clocks enable during Sleep and Stop modes"]
-    #[inline] pub fn sp3smen(&self) -> bits::U1 {
+    #[inline] pub fn spi3smen(&self) -> bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 15) & 0x1) as u8) } // [15]
     }
 
-    #[doc="Returns true if SP3SMEN != 0"]
-    #[inline] pub fn test_sp3smen(&self) -> bool {
-        self.sp3smen() != 0
+    #[doc="Returns true if SPI3SMEN != 0"]
+    #[inline] pub fn test_spi3smen(&self) -> bool {
+        self.spi3smen() != 0
     }
 
-    #[doc="Sets the SP3SMEN field."]
-    #[inline] pub fn set_sp3smen<V: Into<bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the SPI3SMEN field."]
+    #[inline] pub fn set_spi3smen<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 15);
@@ -6347,7 +6347,7 @@ impl ::core::fmt::Debug for Apb1smenr1 {
         if self.uart4smen() != 0 { try!(write!(f, " uart4smen"))}
         if self.usart3smen() != 0 { try!(write!(f, " usart3smen"))}
         if self.usart2smen() != 0 { try!(write!(f, " usart2smen"))}
-        if self.sp3smen() != 0 { try!(write!(f, " sp3smen"))}
+        if self.spi3smen() != 0 { try!(write!(f, " spi3smen"))}
         if self.spi2smen() != 0 { try!(write!(f, " spi2smen"))}
         if self.wwdgsmen() != 0 { try!(write!(f, " wwdgsmen"))}
         if self.lcdsmen() != 0 { try!(write!(f, " lcdsmen"))}

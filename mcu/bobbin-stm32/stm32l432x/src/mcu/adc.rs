@@ -53,3 +53,69 @@ channel!(ADC3_CH12, Adc3Ch12, ADC3, Adc3, ADC3_CH12_CH, AdcCh, ADC3_PERIPH, 12);
 channel!(ADC3_CH13, Adc3Ch13, ADC3, Adc3, ADC3_CH13_CH, AdcCh, ADC3_PERIPH, 13);
 channel!(ADC3_CH14, Adc3Ch14, ADC3, Adc3, ADC3_CH14_CH, AdcCh, ADC3_PERIPH, 14);
 channel!(ADC3_CH15, Adc3Ch15, ADC3, Adc3, ADC3_CH15_CH, AdcCh, ADC3_PERIPH, 15);
+// Gate { name: None, gate_type: Some("RST"), periph: Some("RCC"), register: Some("AHB2RSTR"), field: Some("ADCRST"), description: None }
+impl ::bobbin_common::gate::GateRst for Adc1 {
+    #[inline]
+    fn gate_rst(&self) -> bits::U1 { ::rcc::RCC.ahb2rstr().adcrst() }
+    #[inline]
+    fn set_gate_rst<V: Into<bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_ahb2rstr(|r| r.set_adcrst(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("EN"), periph: Some("RCC"), register: Some("AHB2ENR"), field: Some("ADCEN"), description: None }
+impl ::bobbin_common::gate::GateEn for Adc1 {
+    #[inline]
+    fn gate_en(&self) -> bits::U1 { ::rcc::RCC.ahb2enr().adcen() }
+    #[inline]
+    fn set_gate_en<V: Into<bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_ahb2enr(|r| r.set_adcen(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("RST"), periph: Some("RCC"), register: Some("AHB2RSTR"), field: Some("ADCRST"), description: None }
+impl ::bobbin_common::gate::GateRst for Adc2 {
+    #[inline]
+    fn gate_rst(&self) -> bits::U1 { ::rcc::RCC.ahb2rstr().adcrst() }
+    #[inline]
+    fn set_gate_rst<V: Into<bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_ahb2rstr(|r| r.set_adcrst(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("EN"), periph: Some("RCC"), register: Some("AHB2ENR"), field: Some("ADCEN"), description: None }
+impl ::bobbin_common::gate::GateEn for Adc2 {
+    #[inline]
+    fn gate_en(&self) -> bits::U1 { ::rcc::RCC.ahb2enr().adcen() }
+    #[inline]
+    fn set_gate_en<V: Into<bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_ahb2enr(|r| r.set_adcen(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("RST"), periph: Some("RCC"), register: Some("AHB2RSTR"), field: Some("ADCRST"), description: None }
+impl ::bobbin_common::gate::GateRst for Adc3 {
+    #[inline]
+    fn gate_rst(&self) -> bits::U1 { ::rcc::RCC.ahb2rstr().adcrst() }
+    #[inline]
+    fn set_gate_rst<V: Into<bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_ahb2rstr(|r| r.set_adcrst(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("EN"), periph: Some("RCC"), register: Some("AHB2ENR"), field: Some("ADCEN"), description: None }
+impl ::bobbin_common::gate::GateEn for Adc3 {
+    #[inline]
+    fn gate_en(&self) -> bits::U1 { ::rcc::RCC.ahb2enr().adcen() }
+    #[inline]
+    fn set_gate_en<V: Into<bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_ahb2enr(|r| r.set_adcen(value));
+        self
+    }
+}
+

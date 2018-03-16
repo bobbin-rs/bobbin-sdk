@@ -2,6 +2,12 @@
         (group-name PWR)
         (name PWR)
         (address 0x40007000)
+        (clock
+            (input (name PCLK1))
+            (gate (type RST) (periph RCC) (register APB1RSTR1) (field PWRRST))
+            (gate (type EN) (periph RCC) (register APB1ENR1) (field PWREN))
+            (gate (type SLEEP_EN) (periph RCC) (register APB1SMENR1) (field PWRSMEN))
+        )               
         (description "Power control")
         (register
             (name CR1)

@@ -1633,7 +1633,7 @@
             (description "USART2 clocks enable during Sleep and Stop modes")
         )
         (field
-            (name SP3SMEN)
+            (name SPI3SMEN)
             (bit-offset 15)
             (bit-width 1)
             (description "SPI3 clocks enable during Sleep and Stop modes")

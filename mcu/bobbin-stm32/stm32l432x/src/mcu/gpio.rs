@@ -109,3 +109,102 @@ impl ::bobbin_common::gate::GateSleepEn for Gpioc {
     }
 }
 
+// Gate { name: None, gate_type: Some("RST"), periph: Some("RCC"), register: Some("AHB2RSTR"), field: Some("GPIODRST"), description: None }
+impl ::bobbin_common::gate::GateRst for Gpiod {
+    #[inline]
+    fn gate_rst(&self) -> bits::U1 { ::rcc::RCC.ahb2rstr().gpiodrst() }
+    #[inline]
+    fn set_gate_rst<V: Into<bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_ahb2rstr(|r| r.set_gpiodrst(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("EN"), periph: Some("RCC"), register: Some("AHB2ENR"), field: Some("GPIODEN"), description: None }
+impl ::bobbin_common::gate::GateEn for Gpiod {
+    #[inline]
+    fn gate_en(&self) -> bits::U1 { ::rcc::RCC.ahb2enr().gpioden() }
+    #[inline]
+    fn set_gate_en<V: Into<bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_ahb2enr(|r| r.set_gpioden(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("SLEEP_EN"), periph: Some("RCC"), register: Some("AHB2SMENR"), field: Some("GPIODSMEN"), description: None }
+impl ::bobbin_common::gate::GateSleepEn for Gpiod {
+    #[inline]
+    fn gate_sleep_en(&self) -> bits::U1 { ::rcc::RCC.ahb2smenr().gpiodsmen() }
+    #[inline]
+    fn set_gate_sleep_en<V: Into<bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_ahb2smenr(|r| r.set_gpiodsmen(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("RST"), periph: Some("RCC"), register: Some("AHB2RSTR"), field: Some("GPIOERST"), description: None }
+impl ::bobbin_common::gate::GateRst for Gpioe {
+    #[inline]
+    fn gate_rst(&self) -> bits::U1 { ::rcc::RCC.ahb2rstr().gpioerst() }
+    #[inline]
+    fn set_gate_rst<V: Into<bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_ahb2rstr(|r| r.set_gpioerst(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("EN"), periph: Some("RCC"), register: Some("AHB2ENR"), field: Some("GPIOEEN"), description: None }
+impl ::bobbin_common::gate::GateEn for Gpioe {
+    #[inline]
+    fn gate_en(&self) -> bits::U1 { ::rcc::RCC.ahb2enr().gpioeen() }
+    #[inline]
+    fn set_gate_en<V: Into<bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_ahb2enr(|r| r.set_gpioeen(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("SLEEP_EN"), periph: Some("RCC"), register: Some("AHB2SMENR"), field: Some("GPIOESMEN"), description: None }
+impl ::bobbin_common::gate::GateSleepEn for Gpioe {
+    #[inline]
+    fn gate_sleep_en(&self) -> bits::U1 { ::rcc::RCC.ahb2smenr().gpioesmen() }
+    #[inline]
+    fn set_gate_sleep_en<V: Into<bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_ahb2smenr(|r| r.set_gpioesmen(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("RST"), periph: Some("RCC"), register: Some("AHB2RSTR"), field: Some("GPIOHRST"), description: None }
+impl ::bobbin_common::gate::GateRst for Gpioh {
+    #[inline]
+    fn gate_rst(&self) -> bits::U1 { ::rcc::RCC.ahb2rstr().gpiohrst() }
+    #[inline]
+    fn set_gate_rst<V: Into<bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_ahb2rstr(|r| r.set_gpiohrst(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("EN"), periph: Some("RCC"), register: Some("AHB2ENR"), field: Some("GPIOHEN"), description: None }
+impl ::bobbin_common::gate::GateEn for Gpioh {
+    #[inline]
+    fn gate_en(&self) -> bits::U1 { ::rcc::RCC.ahb2enr().gpiohen() }
+    #[inline]
+    fn set_gate_en<V: Into<bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_ahb2enr(|r| r.set_gpiohen(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("SLEEP_EN"), periph: Some("RCC"), register: Some("AHB2SMENR"), field: Some("GPIOHSMEN"), description: None }
+impl ::bobbin_common::gate::GateSleepEn for Gpioh {
+    #[inline]
+    fn gate_sleep_en(&self) -> bits::U1 { ::rcc::RCC.ahb2smenr().gpiohsmen() }
+    #[inline]
+    fn set_gate_sleep_en<V: Into<bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_ahb2smenr(|r| r.set_gpiohsmen(value));
+        self
+    }
+}
+

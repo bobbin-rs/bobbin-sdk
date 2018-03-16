@@ -40,3 +40,36 @@ impl ::bobbin_common::gate::GateSleepEn for Usart2 {
     }
 }
 
+// Gate { name: None, gate_type: Some("RST"), periph: Some("RCC"), register: Some("APB1RSTR1"), field: Some("USART2RST"), description: None }
+impl ::bobbin_common::gate::GateRst for Usart3 {
+    #[inline]
+    fn gate_rst(&self) -> bits::U1 { ::rcc::RCC.apb1rstr1().usart2rst() }
+    #[inline]
+    fn set_gate_rst<V: Into<bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_apb1rstr1(|r| r.set_usart2rst(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("EN"), periph: Some("RCC"), register: Some("APB1ENR1"), field: Some("USART3EN"), description: None }
+impl ::bobbin_common::gate::GateEn for Usart3 {
+    #[inline]
+    fn gate_en(&self) -> bits::U1 { ::rcc::RCC.apb1enr1().usart3en() }
+    #[inline]
+    fn set_gate_en<V: Into<bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_apb1enr1(|r| r.set_usart3en(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("SLEEP_EN"), periph: Some("RCC"), register: Some("APB1SMENR1"), field: Some("USART3SMEN"), description: None }
+impl ::bobbin_common::gate::GateSleepEn for Usart3 {
+    #[inline]
+    fn gate_sleep_en(&self) -> bits::U1 { ::rcc::RCC.apb1smenr1().usart3smen() }
+    #[inline]
+    fn set_gate_sleep_en<V: Into<bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_apb1smenr1(|r| r.set_usart3smen(value));
+        self
+    }
+}
+

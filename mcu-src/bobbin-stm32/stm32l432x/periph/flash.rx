@@ -2,6 +2,12 @@
     (group-name FLASH)
     (name FLASH)
     (address 0x40022000)
+    (clock
+        (input (name HCLK))
+        (gate (type RST) (periph RCC) (register AHB1RSTR) (field FLASHRST))
+        (gate (type EN) (periph RCC) (register AHB1ENR) (field FLASHEN))
+        (gate (type SLEEP_EN) (periph RCC) (register AHB1SMENR) (field FLASHSMEN))
+    )                    
     (description "Flash")
     (interrupt
         (name FLASH)
