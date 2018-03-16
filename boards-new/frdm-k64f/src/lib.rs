@@ -1,10 +1,12 @@
 #![no_std]
 #![feature(asm, lang_items, use_extern_macros, core_intrinsics)]
 
-pub extern crate log;
 #[cfg(target_os="none")]
 pub extern crate cortex_m_rt;
-%imports%
+pub extern crate log;
+pub extern crate k64 as mcu;
+pub extern crate log;
+
 
 pub use mcu::bobbin_common::{print, println};
 pub use mcu::bobbin_common as common;

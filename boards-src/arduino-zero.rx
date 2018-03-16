@@ -1,0 +1,10 @@
+(board
+    (name arduino-zero)
+    (target thumbv6m-none-eabi)
+    (crate 
+        (name samd21) 
+        (as mcu)
+        (path "../../mcu/bobbin-sam/samd21")
+        (feature SAMD21G18)
+    )
+)

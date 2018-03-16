@@ -1,9 +1,9 @@
 #![no_std]
 #![feature(asm, lang_items, use_extern_macros, core_intrinsics)]
 
-pub extern crate log;
 #[cfg(target_os="none")]
 pub extern crate cortex_m_rt;
+pub extern crate log;
 pub extern crate stm32f74x as mcu;
 
 

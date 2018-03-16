@@ -4,8 +4,7 @@
 #[cfg(target_os="none")]
 pub extern crate cortex_m_rt;
 pub extern crate log;
-pub extern crate stm32l432x as mcu;
-
+%imports%
 
 pub use mcu::bobbin_common::{print, println};
 pub use mcu::bobbin_common as common;
