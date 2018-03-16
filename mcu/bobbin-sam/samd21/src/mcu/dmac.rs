@@ -18,3 +18,14 @@ channel!(DMAC_CH8, DmacCh8, DMAC, Dmac, DMAC_CH8_CH, DmacCh, DMAC_PERIPH, 8);
 channel!(DMAC_CH9, DmacCh9, DMAC, Dmac, DMAC_CH9_CH, DmacCh, DMAC_PERIPH, 9);
 channel!(DMAC_CH10, DmacCh10, DMAC, Dmac, DMAC_CH10_CH, DmacCh, DMAC_PERIPH, 10);
 channel!(DMAC_CH11, DmacCh11, DMAC, Dmac, DMAC_CH11_CH, DmacCh, DMAC_PERIPH, 11);
+// Gate { name: None, gate_type: Some("EN"), periph: Some("PM"), register: Some("AHBMASK"), field: Some("DMAC"), description: None }
+impl ::bobbin_common::gate::GateEn for Dmac {
+    #[inline]
+    fn gate_en(&self) -> bits::U1 { ::pm::PM.ahbmask().dmac() }
+    #[inline]
+    fn set_gate_en<V: Into<bits::U1>>(&self, value: V) -> &Self {
+        ::pm::PM.with_ahbmask(|r| r.set_dmac(value));
+        self
+    }
+}
+

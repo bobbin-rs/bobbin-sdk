@@ -2,6 +2,10 @@
     (group-name GCLK)
     (name GCLK)
     (address 0x40000c00)
+    (clock
+        (input (name APBA))
+        (gate (type EN) (periph PM) (register APBAMASK) (field GCLK))
+    )               
     (description "Generic Clock Generator")
     (register
         (name CLKCTRL)

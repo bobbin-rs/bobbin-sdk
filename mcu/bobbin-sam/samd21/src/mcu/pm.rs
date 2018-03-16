@@ -6,11 +6,6 @@ pub use ::hal::pm::*;
 
 periph!( PM, Pm, PM_PERIPH, PmPeriph, 0x40000400, 0x02);
 
-impl En for super::pm::Pm {
-    #[inline] fn en(&self) -> bits::U1 { PM.apbamask().pm() }
-    #[inline] fn set_en<V: Into<bits::U1>>(&self, value: V) { PM.with_apbamask(|r| r.set_pm(value)); }
-}
-
 impl En for super::sysctrl::Sysctrl {
     #[inline] fn en(&self) -> bits::U1 { PM.apbamask().sysctrl() }
     #[inline] fn set_en<V: Into<bits::U1>>(&self, value: V) { PM.with_apbamask(|r| r.set_sysctrl(value)); }
@@ -106,4 +101,15 @@ impl En for super::adc::Adc {
     #[inline] fn set_en<V: Into<bits::U1>>(&self, value: V) { PM.with_apbcmask(|r| r.set_adc(value)); }
 }
 
+
+// Gate { name: None, gate_type: Some("EN"), periph: Some("PM"), register: Some("APBAMASK"), field: Some("PM"), description: None }
+impl ::bobbin_common::gate::GateEn for Pm {
+    #[inline]
+    fn gate_en(&self) -> bits::U1 { ::pm::PM.apbamask().pm() }
+    #[inline]
+    fn set_gate_en<V: Into<bits::U1>>(&self, value: V) -> &Self {
+        ::pm::PM.with_apbamask(|r| r.set_pm(value));
+        self
+    }
+}
 

@@ -3,6 +3,10 @@
     (name NVMCTRL)
     (address 0x41004000)
     (description "Non-Volatile Memory Controller")
+    (clock
+        (input (name AHB))
+        (gate (type EN) (periph PM) (register AHBMASK) (field NVMCTRL))
+    )  
     (interrupt
         (name NVMCTRL)
         (value 5)

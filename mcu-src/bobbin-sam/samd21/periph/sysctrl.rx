@@ -2,6 +2,10 @@
     (group-name SYSCTRL)
     (name SYSCTRL)
     (address 0x40000800)
+    (clock
+        (input (name APBA))
+        (gate (type EN) (periph PM) (register APBAMASK) (field SYSCTRL))
+    )
     (description "System Control")
     (interrupt
         (name SYSCTRL)

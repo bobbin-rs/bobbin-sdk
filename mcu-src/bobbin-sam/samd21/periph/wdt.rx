@@ -2,6 +2,10 @@
     (group-name WDT)
     (name WDT)
     (address 0x40001000)
+    (clock
+        (input (name APBA))
+        (gate (type EN) (periph PM) (register APBAMASK) (field WDT))
+    )               
     (description "Watchdog Timer")
     (interrupt
         (name WDT)

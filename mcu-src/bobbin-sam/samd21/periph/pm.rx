@@ -3,6 +3,11 @@
     (name PM)
     (address 0x40000400)
     (description "Power Manager")
+    (clock
+        (input (name APBA))
+        (gate (type EN) (periph PM) (register APBAMASK) (field PM))
+    )           
+    
     (link (name EN))
     (interrupt
         (name PM)
@@ -75,7 +80,6 @@
             (bit-offset 1)
             (bit-width 1)
             (description "PM APB Clock Enable")
-            (link (name EN) (peripheral-group PM) (peripheral PM))
         )
         (field
             (name SYSCTRL)

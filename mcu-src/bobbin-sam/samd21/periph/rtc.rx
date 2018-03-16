@@ -2,6 +2,10 @@
     (group-name RTC)
     (name RTC)
     (address 0x40001400)
+    (clock
+        (input (name APBA))
+        (gate (type EN) (periph PM) (register APBAMASK) (field RTC))
+    )               
     (description "Real-Time Counter")
     (interrupt
         (name RTC)

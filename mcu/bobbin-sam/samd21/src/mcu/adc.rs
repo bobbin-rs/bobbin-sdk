@@ -31,3 +31,14 @@ channel!(ADC_BANDGAP, AdcBandgap, ADC, Adc, ADC_BANDGAP_CH, AdcCh, ADC_PERIPH, 2
 channel!(ADC_SCALED_CORE, AdcScaledCore, ADC, Adc, ADC_SCALED_CORE_CH, AdcCh, ADC_PERIPH, 26);
 channel!(ADC_SCALED_IO, AdcScaledIo, ADC, Adc, ADC_SCALED_IO_CH, AdcCh, ADC_PERIPH, 27);
 channel!(ADC_DAC, AdcDac, ADC, Adc, ADC_DAC_CH, AdcCh, ADC_PERIPH, 28);
+// Gate { name: None, gate_type: Some("EN"), periph: Some("PM"), register: Some("APBCMASK"), field: Some("ADC"), description: None }
+impl ::bobbin_common::gate::GateEn for Adc {
+    #[inline]
+    fn gate_en(&self) -> bits::U1 { ::pm::PM.apbcmask().adc() }
+    #[inline]
+    fn set_gate_en<V: Into<bits::U1>>(&self, value: V) -> &Self {
+        ::pm::PM.with_apbcmask(|r| r.set_adc(value));
+        self
+    }
+}
+

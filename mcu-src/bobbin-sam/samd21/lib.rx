@@ -27,6 +27,10 @@
         (peripheral
             (name DMAC)
             (address 0x41004800)
+            (clock
+                (input (name AHB))
+                (gate (type EN) (periph PM) (register AHBMASK) (field DMAC))
+            )           
             (description "Direct Memory Access Controller")
             (channel (name DMAC_CH0) (index 0))
             (channel (name DMAC_CH1) (index 1))
@@ -56,6 +60,10 @@
         (peripheral 
             (name ADC)
             (address 0x42004000)
+            (clock
+                (input (name APBC))
+                (gate (type EN) (periph PM) (register APBCMASK) (field ADC))
+            )           
             (description "Analog Digital Converter")
             (channel (name ADC_CH0) (index 0) (signal (name AIN_0) (type AIN)))
             (channel (name ADC_CH1) (index 1) (signal (name AIN_1) (type AIN)))
@@ -98,6 +106,10 @@
         (peripheral 
             (name TCC0)
             (address 0x42002000)
+            (clock
+                (input (name APBC))
+                (gate (type EN) (periph PM) (register APBCMASK) (field TCC0))
+            )           
             (description "Timer Counter Control 0")
             (channel
                 (name TCC0_CH0)
@@ -132,6 +144,10 @@
         (peripheral
             (name TCC1)
             (address 0x42002400)
+            (clock
+                (input (name APBC))
+                (gate (type EN) (periph PM) (register APBCMASK) (field TCC1))
+            )           
             (description "Timer Counter Control 1")
             (channel
                 (name TCC1_CH0)
@@ -153,6 +169,10 @@
         (peripheral
             (name TCC2)
             (address 0x42002800)
+            (clock
+                (input (name APBC))
+                (gate (type EN) (periph PM) (register APBCMASK) (field TCC2))
+            )           
             (description "Timer Counter Control 2")
             (channel
                 (name TCC2_CH0)
@@ -178,6 +198,10 @@
         (peripheral 
             (name TC3)
             (address 0x42002c00)
+            (clock
+                (input (name APBC))
+                (gate (type EN) (periph PM) (register APBCMASK) (field TC3))
+            )           
             (description "Basic Timer Counter 3")
             (channel
                 (name TC3_CH0)
@@ -197,6 +221,10 @@
         (peripheral
             (name TC4)
             (address 0x42003000)
+            (clock
+                (input (name APBC))
+                (gate (type EN) (periph PM) (register APBCMASK) (field TC4))
+            )           
             (description "Basic Timer Counter 4")
             (channel
                 (name TC4_CH0)
@@ -216,6 +244,10 @@
         (peripheral
             (name TC5)
             (address 0x42003400)
+            (clock
+                (input (name APBC))
+                (gate (type EN) (periph PM) (register APBCMASK) (field TC5))
+            )           
             (description "Basic Timer Counter 5")
             (channel
                 (name TC5_CH0)
@@ -653,6 +685,10 @@
         (peripheral 
             (name SERCOM0)
             (address 0x42000800)            
+            (clock
+                (input (name APBC))
+                (gate (type EN) (periph PM) (register APBCMASK) (field SERCOM0))
+            )           
             (signal (name SERCOM0_PAD_0) (type PAD_0))
             (signal (name SERCOM0_PAD_1) (type PAD_1))
             (signal (name SERCOM0_PAD_2) (type PAD_2))
@@ -665,6 +701,10 @@
         (peripheral
             (name SERCOM1)
             (address 0x42000c00)
+            (clock
+                (input (name APBC))
+                (gate (type EN) (periph PM) (register APBCMASK) (field SERCOM1))
+            )           
             (signal (name SERCOM1_PAD_0) (type PAD_0))
             (signal (name SERCOM1_PAD_1) (type PAD_1))
             (signal (name SERCOM1_PAD_2) (type PAD_2))
@@ -677,6 +717,10 @@
         (peripheral
             (name SERCOM2)
             (address 0x42001000)
+            (clock
+                (input (name APBC))
+                (gate (type EN) (periph PM) (register APBCMASK) (field SERCOM2))
+            )           
             (signal (name SERCOM2_PAD_0) (type PAD_0))
             (signal (name SERCOM2_PAD_1) (type PAD_1))
             (signal (name SERCOM2_PAD_2) (type PAD_2))
@@ -689,6 +733,10 @@
         (peripheral
             (name SERCOM3)
             (address 0x42001400)
+            (clock
+                (input (name APBC))
+                (gate (type EN) (periph PM) (register APBCMASK) (field SERCOM3))
+            )           
             (signal (name SERCOM3_PAD_0) (type PAD_0))
             (signal (name SERCOM3_PAD_1) (type PAD_1))
             (signal (name SERCOM3_PAD_2) (type PAD_2))
@@ -701,6 +749,10 @@
         (peripheral
             (name SERCOM4)
             (address 0x42001800)
+            (clock
+                (input (name APBC))
+                (gate (type EN) (periph PM) (register APBCMASK) (field SERCOM4))
+            )           
             (signal (name SERCOM4_PAD_0) (type PAD_0))
             (signal (name SERCOM4_PAD_1) (type PAD_1))
             (signal (name SERCOM4_PAD_2) (type PAD_2))
@@ -713,6 +765,10 @@
         (peripheral
             (name SERCOM5)        
             (address 0x42001c00)
+            (clock
+                (input (name APBC))
+                (gate (type EN) (periph PM) (register APBCMASK) (field SERCOM5))
+            )           
             (signal (name SERCOM5_PAD_0) (type PAD_0))
             (signal (name SERCOM5_PAD_1) (type PAD_1))
             (signal (name SERCOM5_PAD_2) (type PAD_2))
