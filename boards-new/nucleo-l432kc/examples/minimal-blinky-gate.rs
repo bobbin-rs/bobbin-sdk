@@ -10,8 +10,6 @@ use board::mcu::pin::*;
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
-    board::init();
-
     PB3.port().gate_enable();
 
     // Set PB3 Mode = Output

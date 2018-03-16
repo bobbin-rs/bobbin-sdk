@@ -11,8 +11,6 @@ use board::mcu::gpio::*;
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
-    board::init();
-
     RCC.with_ahb1enr(|r| r.set_gpioben(1));
 
     // Set PB3 Mode = Output
