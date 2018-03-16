@@ -10,6 +10,8 @@ use board::mcu::port::*;
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {    
+    board::init();  
+
     // Set PA17 DIR = OUTPUT
     PORTA.with_dir(|r| r.set_dir(17, 1));
     loop {
