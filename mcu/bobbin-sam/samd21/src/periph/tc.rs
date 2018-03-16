@@ -21,6 +21,7 @@ impl TcPeriph {
 
 #[doc="8-bit Counter Mode Cluster"]
 pub mod count8 {
+    #[allow(unused_imports)] use super::*;
     #[derive(Clone, Copy, PartialEq, Eq)]
     #[doc="8-bit Counter Mode Peripheral"]
     pub struct Count8(pub usize);
@@ -1817,6 +1818,7 @@ impl ::core::fmt::Debug for Status {
 
 #[doc="16-bit Counter Mode Cluster"]
 pub mod count16 {
+    #[allow(unused_imports)] use super::*;
     #[derive(Clone, Copy, PartialEq, Eq)]
     #[doc="16-bit Counter Mode Peripheral"]
     pub struct Count16(pub usize);
@@ -3533,6 +3535,7 @@ impl ::core::fmt::Debug for Status {
 
 #[doc="32-bit Counter Mode Cluster"]
 pub mod count32 {
+    #[allow(unused_imports)] use super::*;
     #[derive(Clone, Copy, PartialEq, Eq)]
     #[doc="32-bit Counter Mode Peripheral"]
     pub struct Count32(pub usize);
