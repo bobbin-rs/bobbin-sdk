@@ -1,3 +1,4 @@
+pub use common::digital::DigitalOutput;
 use mcu::pin::*;
 
 pub const LED0: Pb3 = PB3;
