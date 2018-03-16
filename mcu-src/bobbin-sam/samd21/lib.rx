@@ -1,5 +1,5 @@
 (device
-    (name ATSAMD)
+    (name SAMD21)
     (size 0x20)
     (interrupt-count 28)
     (description "ATSAMD")

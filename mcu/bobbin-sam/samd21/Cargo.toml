@@ -1,5 +1,5 @@
 [package]
-name = "atsamd"
+name = "samd21"
 version = "0.1.0"
 build = "build.rs"
 
