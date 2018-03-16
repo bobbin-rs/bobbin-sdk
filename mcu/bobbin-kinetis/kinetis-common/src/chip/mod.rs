@@ -1,6 +1,4 @@
 
-pub mod irq;
-pub mod sig;
 pub mod crc;
 pub mod wdog;
 pub mod gpio;

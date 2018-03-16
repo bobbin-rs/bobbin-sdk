@@ -19,14 +19,14 @@ version = "0.3.13"
 [features]
 default = ["stm32f74x/STM32F74xxG"]
 
-# [profile.dev]
-# panic = "abort"
-# opt-level = "s"
-# codegen-units = 1
-# incremental = false
-# lto = true
+[profile.dev]
+panic = "abort"
+opt-level = "s"
+codegen-units = 1
+incremental = false
+lto = true
 
-# [profile.release]
-# panic = "abort"
-# debug = true
-# lto = true
+[profile.release]
+panic = "abort"
+debug = true
+lto = true
