@@ -31,3 +31,58 @@ impl LinkGpio<super::gpio::Gpioe > for Porte {
     #[inline] fn gpio(&self) -> super::gpio::Gpioe  { super::gpio::GPIOE }
 }
 
+// Gate { name: None, gate_type: Some("EN"), periph: Some("SIM"), register: Some("SCGC5"), field: Some("PORTA"), description: None }
+impl ::bobbin_common::gate::GateEn for Porta {
+    #[inline]
+    fn gate_en(&self) -> bits::U1 { ::sim::SIM.scgc5().porta() }
+    #[inline]
+    fn set_gate_en<V: Into<bits::U1>>(&self, value: V) -> &Self {
+        ::sim::SIM.with_scgc5(|r| r.set_porta(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("EN"), periph: Some("SIM"), register: Some("SCGC5"), field: Some("PORTB"), description: None }
+impl ::bobbin_common::gate::GateEn for Portb {
+    #[inline]
+    fn gate_en(&self) -> bits::U1 { ::sim::SIM.scgc5().portb() }
+    #[inline]
+    fn set_gate_en<V: Into<bits::U1>>(&self, value: V) -> &Self {
+        ::sim::SIM.with_scgc5(|r| r.set_portb(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("EN"), periph: Some("SIM"), register: Some("SCGC5"), field: Some("PORTC"), description: None }
+impl ::bobbin_common::gate::GateEn for Portc {
+    #[inline]
+    fn gate_en(&self) -> bits::U1 { ::sim::SIM.scgc5().portc() }
+    #[inline]
+    fn set_gate_en<V: Into<bits::U1>>(&self, value: V) -> &Self {
+        ::sim::SIM.with_scgc5(|r| r.set_portc(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("EN"), periph: Some("SIM"), register: Some("SCGC5"), field: Some("PORTD"), description: None }
+impl ::bobbin_common::gate::GateEn for Portd {
+    #[inline]
+    fn gate_en(&self) -> bits::U1 { ::sim::SIM.scgc5().portd() }
+    #[inline]
+    fn set_gate_en<V: Into<bits::U1>>(&self, value: V) -> &Self {
+        ::sim::SIM.with_scgc5(|r| r.set_portd(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("EN"), periph: Some("SIM"), register: Some("SCGC5"), field: Some("PORTE"), description: None }
+impl ::bobbin_common::gate::GateEn for Porte {
+    #[inline]
+    fn gate_en(&self) -> bits::U1 { ::sim::SIM.scgc5().porte() }
+    #[inline]
+    fn set_gate_en<V: Into<bits::U1>>(&self, value: V) -> &Self {
+        ::sim::SIM.with_scgc5(|r| r.set_porte(value));
+        self
+    }
+}
+

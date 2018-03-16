@@ -60,3 +60,25 @@ channel!(ADC1_TEMP, Adc1Temp, ADC1, Adc1, ADC1_TEMP_CH, AdcCh, ADC1_PERIPH, 26);
 channel!(ADC1_BANDGAP, Adc1Bandgap, ADC1, Adc1, ADC1_BANDGAP_CH, AdcCh, ADC1_PERIPH, 27);
 channel!(ADC1_REFSH, Adc1Refsh, ADC1, Adc1, ADC1_REFSH_CH, AdcCh, ADC1_PERIPH, 29);
 channel!(ADC1_REFSL, Adc1Refsl, ADC1, Adc1, ADC1_REFSL_CH, AdcCh, ADC1_PERIPH, 30);
+// Gate { name: None, gate_type: Some("EN"), periph: Some("SIM"), register: Some("SCGC6"), field: Some("ADC0"), description: None }
+impl ::bobbin_common::gate::GateEn for Adc0 {
+    #[inline]
+    fn gate_en(&self) -> bits::U1 { ::sim::SIM.scgc6().adc0() }
+    #[inline]
+    fn set_gate_en<V: Into<bits::U1>>(&self, value: V) -> &Self {
+        ::sim::SIM.with_scgc6(|r| r.set_adc0(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("EN"), periph: Some("SIM"), register: Some("SCGC3"), field: Some("ADC1"), description: None }
+impl ::bobbin_common::gate::GateEn for Adc1 {
+    #[inline]
+    fn gate_en(&self) -> bits::U1 { ::sim::SIM.scgc3().adc1() }
+    #[inline]
+    fn set_gate_en<V: Into<bits::U1>>(&self, value: V) -> &Self {
+        ::sim::SIM.with_scgc3(|r| r.set_adc1(value));
+        self
+    }
+}
+

@@ -32,6 +32,10 @@
         (peripheral
             (name CRC)
             (address 0x40032000)
+            (clock
+                (input (name BUS))
+                (gate (type EN) (periph SIM) (register SCGC6) (field CRC))
+            )                                                       
         )
     )
 
@@ -56,6 +60,10 @@
         (peripheral
             (name DMAMUX)
             (address 0x40021000)
+            (clock
+                (input (name BUS))
+                (gate (type EN) (periph SIM) (register SCGC6) (field DMAMUX))
+            )
         )
     )
 
@@ -224,6 +232,10 @@
         (peripheral
             (name FTM0)
             (address 0x40038000)
+            (clock
+                (input (name BUS))
+                (gate (type EN) (periph SIM) (register SCGC6) (field FTM0))
+            )                                                                   
             (description "FlexTimer Module")
             (channel
                 (name FTM0_CH0)
@@ -274,6 +286,10 @@
         (peripheral
             (name FTM1)
             (address 0x40039000)
+            (clock
+                (input (name BUS))
+                (gate (type EN) (periph SIM) (register SCGC6) (field FTM1))
+            )                                                                               
             (description "FlexTimer Module")
             (channel
                 (name FTM1_CH0)
@@ -324,6 +340,10 @@
         (peripheral
             (name FTM2)
             (address 0x4003a000)
+            (clock
+                (input (name BUS))
+                (gate (type EN) (periph SIM) (register SCGC3) (field FTM2))
+            )                           
             (description "FlexTimer Module")
             (channel
                 (name FTM2_CH0)
@@ -379,6 +399,10 @@
         (peripheral
             (name PIT)
             (address 0x40037000)
+            (clock
+                (input (name BUS))
+                (gate (type EN) (periph SIM) (register SCGC6) (field PIT))
+            )                                                                   
             (description "Periodic Interrupt Timer")
             (channel
                 (name PIT_CH0)
@@ -425,6 +449,10 @@
         (peripheral
             (name LPTMR0)
             (address 0x40040000)
+            (clock
+                (input (name BUS))
+                (gate (type EN) (periph SIM) (register SCGC5) (field LPTMR))
+            )                                                   
             (description "Low Power Timer")
             (interrupt
                 (name LPTMR0)
@@ -440,6 +468,10 @@
         (peripheral 
             (name SPI0)
             (address 0x4002c000)
+            (clock
+                (input (name BUS))
+                (gate (type EN) (periph SIM) (register SCGC6) (field SPI0))
+            )                                                       
             (description "Serial Peripheral Interface")
             (signal (name SPI0_SCK) (type SPI_SCK))
             (signal (name SPI0_SOUT) (type SPI_SOUT))
@@ -461,6 +493,10 @@
         (peripheral
             (name SPI1)
             (address 0x4002d000)
+            (clock
+                (input (name BUS))
+                (gate (type EN) (periph SIM) (register SCGC6) (field SPI1))
+            )                                                       
             (description "Serial Peripheral Interface")
 
             (signal (name SPI1_SCK) (type SPI_SCK))
@@ -481,6 +517,10 @@
         (peripheral
             (name SPI2)
             (address 0x400ac000)
+            (clock
+                (input (name BUS))
+                (gate (type EN) (periph SIM) (register SCGC3) (field SPI2))
+            )            
             (description "Serial Peripheral Interface")
 
             (signal (name SPI2_SCK) (type SPI_SCK))
@@ -505,6 +545,10 @@
         (peripheral 
             (name I2C0)
             (address 0x40066000)
+            (clock
+                (input (name BUS))
+                (gate (type EN) (periph SIM) (register SCGC4) (field I2C0))
+            )           
             (description "Inter-Integrated Circuit")
 
             (signal (name I2C0_SCL) (type I2C_SCL))
@@ -519,6 +563,10 @@
         (peripheral
             (name I2C1)
             (address 0x40067000)
+            (clock
+                (input (name BUS))
+                (gate (type EN) (periph SIM) (register SCGC4) (field I2C1))
+            )            
             (description "Inter-Integrated Circuit")
 
             (signal (name I2C1_SCL) (type I2C_SCL))
@@ -539,6 +587,10 @@
         (peripheral 
             (name UART0)
             (address 0x4006a000)
+            (clock
+                (input (name BUS))
+                (gate (type EN) (periph SIM) (register SCGC4) (field UART0))
+            )             
             (description "Serial Communication Interface")
             (signal (name UART0_TX) (type TX))
             (signal (name UART0_RX) (type RX))
@@ -561,6 +613,10 @@
         (peripheral
             (name UART1)
             (address 0x4006b000)
+            (clock
+                (input (name BUS))
+                (gate (type EN) (periph SIM) (register SCGC4) (field UART1))
+            )             
             (description "Serial Communication Interface")
             (signal (name UART1_TX) (type TX))
             (signal (name UART1_RX) (type RX))            
@@ -578,6 +634,10 @@
         (peripheral
             (name UART2)
             (address 0x4006c000)
+            (clock
+                (input (name BUS))
+                (gate (type EN) (periph SIM) (register SCGC4) (field UART2))
+            )                         
             (description "Serial Communication Interface")
             (signal (name UART2_TX) (type TX))
             (signal (name UART2_RX) (type RX))
@@ -595,6 +655,10 @@
         (peripheral
             (name UART3)
             (address 0x4006d000)
+            (clock
+                (input (name BUS))
+                (gate (type EN) (periph SIM) (register SCGC4) (field UART3))
+            )                         
             (description "Serial Communication Interface")
             (signal (name UART3_TX) (type TX))
             (signal (name UART3_RX) (type RX))
@@ -612,6 +676,10 @@
         (peripheral
             (name UART4)
             (address 0x400ea000)
+            (clock
+                (input (name BUS))
+                (gate (type EN) (periph SIM) (register SCGC1) (field UART4))
+            )               
             (description "Serial Communication Interface")
             (signal (name UART4_TX) (type TX))
             (signal (name UART4_RX) (type RX))
@@ -629,6 +697,10 @@
         (peripheral
             (name UART5)
             (address 0x400eb000)
+            (clock
+                (input (name BUS))
+                (gate (type EN) (periph SIM) (register SCGC1) (field UART5))
+            )                           
             (description "Serial Communication Interface")
             (signal (name UART5_TX) (type TX))
             (signal (name UART5_RX) (type RX))
@@ -650,6 +722,10 @@
         (peripheral
             (name USB0)
             (address 0x40072000)
+            (clock
+                (input (name BUS))
+                (gate (type EN) (periph SIM) (register SCGC4) (field USBOTG))
+            )                         
             (description "Universal Serial Bus, OTG Capable Controller")
             (interrupt
                 (name USB0)
@@ -664,6 +740,10 @@
         (peripheral
             (name CAN0)
             (address 0x40024000)
+            (clock
+                (input (name BUS))
+                (gate (type EN) (periph SIM) (register SCGC6) (field FLEXCAN0))
+            )                                           
             (description "Flex Controller Area Network module")
             (interrupt
                 (name CAN0_ORed_Message_buffer)
@@ -839,6 +919,10 @@
         (peripheral 
             (name PORTA)
             (address 0x40049000)
+            (clock
+                (input (name BUS))
+                (gate (type EN) (periph SIM) (register SCGC5) (field PORTA))
+            )                                           
             (description "Pin Control and Interrupts")
             (link (name GPIO) (peripheral-group GPIO) (peripheral GPIOA))
             (interrupt
@@ -1036,6 +1120,10 @@
             (name PORTB)
             (address 0x4004a000)
             (description "Pin Control and Interrupts")
+            (clock
+                (input (name BUS))
+                (gate (type EN) (periph SIM) (register SCGC5) (field PORTB))
+            )                                                       
             (link (name GPIO) (peripheral-group GPIO) (peripheral GPIOB))
             (interrupt
                 (name PORTB)
@@ -1202,6 +1290,10 @@
         (peripheral
             (name PORTC)
             (address 0x4004b000)
+            (clock
+                (input (name BUS))
+                (gate (type EN) (periph SIM) (register SCGC5) (field PORTC))
+            )    
             (description "Pin Control and Interrupts")
             (link (name GPIO) (peripheral-group GPIO) (peripheral GPIOC))
             (interrupt
@@ -1370,6 +1462,10 @@
         (peripheral
             (name PORTD)
             (address 0x4004c000)
+            (clock
+                (input (name BUS))
+                (gate (type EN) (periph SIM) (register SCGC5) (field PORTD))
+            )                                           
             (description "Pin Control and Interrupts")
             (link (name GPIO) (peripheral-group GPIO) (peripheral GPIOD))
             (interrupt
@@ -1501,6 +1597,10 @@
         (peripheral
             (name PORTE)
             (address 0x4004d000)
+            (clock
+                (input (name BUS))
+                (gate (type EN) (periph SIM) (register SCGC5) (field PORTE))
+            )
             (description "Pin Control and Interrupts")
             (link (name GPIO) (peripheral-group GPIO) (peripheral GPIOE))
             (interrupt
@@ -1643,6 +1743,10 @@
         (peripheral
             (name ADC0)
             (address 0x4003b000)
+            (clock
+                (input (name BUS))
+                (gate (type EN) (periph SIM) (register SCGC6) (field ADC0))
+            )                                                                               
             (description "Analog-to-Digital Converter")
 
             (channel (name ADC0_CH0) (index 0)
@@ -1710,6 +1814,10 @@
         (peripheral
             (name ADC1)
             (address 0x400bb000)
+            (clock
+                (input (name BUS))
+                (gate (type EN) (periph SIM) (register SCGC3) (field ADC1))
+            )                                       
             (description "Analog-to-Digital Converter")
 
             (channel (name ADC1_CH0) (index 0)

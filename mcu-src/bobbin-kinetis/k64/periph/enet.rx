@@ -2,6 +2,10 @@
     (group-name ENET)
     (name ENET)
     (address 0x400c0000)
+        (clock
+            (input (name BUS))
+            (gate (type EN) (periph SIM) (register SCGC2) (field ENET))
+        )                   
     (description "Ethernet MAC-NET Core")
     (interrupt
         (name ENET_1588_Timer)

@@ -29,3 +29,36 @@ channel!(FTM2_CH4, Ftm2Ch4, FTM2, Ftm2, FTM2_CH4_CH, FtmCh, FTM2_PERIPH, 4);
 channel!(FTM2_CH5, Ftm2Ch5, FTM2, Ftm2, FTM2_CH5_CH, FtmCh, FTM2_PERIPH, 5);
 channel!(FTM2_CH6, Ftm2Ch6, FTM2, Ftm2, FTM2_CH6_CH, FtmCh, FTM2_PERIPH, 6);
 channel!(FTM2_CH7, Ftm2Ch7, FTM2, Ftm2, FTM2_CH7_CH, FtmCh, FTM2_PERIPH, 7);
+// Gate { name: None, gate_type: Some("EN"), periph: Some("SIM"), register: Some("SCGC6"), field: Some("FTM0"), description: None }
+impl ::bobbin_common::gate::GateEn for Ftm0 {
+    #[inline]
+    fn gate_en(&self) -> bits::U1 { ::sim::SIM.scgc6().ftm0() }
+    #[inline]
+    fn set_gate_en<V: Into<bits::U1>>(&self, value: V) -> &Self {
+        ::sim::SIM.with_scgc6(|r| r.set_ftm0(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("EN"), periph: Some("SIM"), register: Some("SCGC6"), field: Some("FTM1"), description: None }
+impl ::bobbin_common::gate::GateEn for Ftm1 {
+    #[inline]
+    fn gate_en(&self) -> bits::U1 { ::sim::SIM.scgc6().ftm1() }
+    #[inline]
+    fn set_gate_en<V: Into<bits::U1>>(&self, value: V) -> &Self {
+        ::sim::SIM.with_scgc6(|r| r.set_ftm1(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("EN"), periph: Some("SIM"), register: Some("SCGC3"), field: Some("FTM2"), description: None }
+impl ::bobbin_common::gate::GateEn for Ftm2 {
+    #[inline]
+    fn gate_en(&self) -> bits::U1 { ::sim::SIM.scgc3().ftm2() }
+    #[inline]
+    fn set_gate_en<V: Into<bits::U1>>(&self, value: V) -> &Self {
+        ::sim::SIM.with_scgc3(|r| r.set_ftm2(value));
+        self
+    }
+}
+
