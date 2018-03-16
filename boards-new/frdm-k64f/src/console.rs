@@ -1,7 +1,10 @@
 pub use mcu::bobbin_common::console::*;
 use common::periph::IntoPeriph;
+use common::configure::Configure;
+use mcu::enabled::Enabled;
 use mcu::uart::*;
 use mcu::pin::*;
+use clock::*;
 
 pub const UART: Uart0 = UART0;
 pub const UART_RX: Ptb16 = PTB16;
@@ -17,9 +20,10 @@ pub fn init() {
     UART_RX.port().gate_enable();
     UART_RX.connect_to(UART);
 
+    let baud_div = tree().u32_for(UART) / (16 * UART_BAUD);
     // let baud_div = UART.clock(&CLK).expect("No bus clock") / (16 * UART_BAUD);
     UART
-        .set_config(|c| c.set_baud_divisor(65))
+        .set_config(|c| c.set_baud_divisor(baud_div as u16))
         .enable();
     set_console(Console::new(UART.into_periph()));
     
