@@ -193,6 +193,7 @@ pub struct Crate {
     /// A list of modules to import from the crate.
     pub modules: Vec<Module>, 
     pub version: Option<String>,
+    pub features: Vec<String>,
     pub default_features: Option<String>,
 }
 
