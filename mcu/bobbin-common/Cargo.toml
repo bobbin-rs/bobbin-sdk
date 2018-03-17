@@ -4,6 +4,6 @@ version = "0.1.0"
 authors = ["Jonathan Soo <jcsoo@agora.com>"]
 
 [dependencies]
-bobbin-bits = "0.1.0"
+bobbin-bits = "0.1.1"
 bobbin-hz = { path = "../bobbin-hz" }
 bobbin-tree = { path = "../bobbin-tree" }
