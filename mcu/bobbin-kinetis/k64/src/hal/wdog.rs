@@ -1,1 +1,1 @@
-pub use kinetis_common::chip::wdog::*;
+pub use kinetis_common::wdog::*;

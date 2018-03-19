@@ -1,6 +1,6 @@
 use bobbin_common::bits::*;
-use bobbin_common::pin::SetSource;
-use chip::port::*;
+pub use bobbin_common::pin::SetSource;
+pub use chip::port::*;
 
 #[derive(Debug, PartialEq, Eq, Clone, Copy)]
 #[repr(u8)]

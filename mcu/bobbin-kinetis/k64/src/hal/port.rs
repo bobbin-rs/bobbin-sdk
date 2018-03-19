@@ -1,1 +1,1 @@
-pub use kinetis_common::chip::port::*;
+pub use kinetis_common::port::*;

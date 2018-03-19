@@ -1,1 +1,1 @@
-pub use kinetis_common::chip::usb::*;
+pub use kinetis_common::usb::*;

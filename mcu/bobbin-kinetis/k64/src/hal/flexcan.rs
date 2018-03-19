@@ -1,1 +1,1 @@
-pub use kinetis_common::chip::flexcan::*;
+pub use kinetis_common::flexcan::*;

@@ -1,1 +1,1 @@
-pub use kinetis_common::chip::edma::*;
+pub use kinetis_common::edma::*;

@@ -1,1 +1,1 @@
-pub use kinetis_common::chip::spi::*;
+pub use kinetis_common::spi::*;

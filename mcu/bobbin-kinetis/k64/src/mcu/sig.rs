@@ -13,6 +13,8 @@ signal_type!(I2C_SCL, SigI2cScl);
 signal_type!(I2C_SDA, SigI2cSda);
 signal_type!(UART_TX, SigUartTx);
 signal_type!(UART_RX, SigUartRx);
+signal_type!(CAN_TX, SigCanTx);
+signal_type!(CAN_RX, SigCanRx);
 signal_type!(GPIO, SigGpio);
 signal_type!(ADC_DP, SigAdcDp);
 signal_type!(ADC_DM, SigAdcDm);
@@ -104,6 +106,8 @@ periph_signal!(super::uart::Uart5, SigUartRx);
 // USB
 
 // FLEXCAN
+periph_signal!(super::flexcan::Can0, SigCanTx);
+periph_signal!(super::flexcan::Can0, SigCanRx);
 
 // GPIO
 channel_signal!(super::gpio::Pa0, SigGpio);

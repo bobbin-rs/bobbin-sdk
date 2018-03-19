@@ -1,1 +1,1 @@
-pub use kinetis_common::chip::dmamux::*;
+pub use kinetis_common::dmamux::*;

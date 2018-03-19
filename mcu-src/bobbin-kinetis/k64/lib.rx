@@ -766,6 +766,8 @@
                 (gate (type EN) (periph SIM) (register SCGC6) (field FLEXCAN0))
             )                                           
             (description "Flex Controller Area Network module")
+            (signal (name CAN0_TX) (type CAN_TX))
+            (signal (name CAN0_RX) (type CAN_RX))
             (interrupt
                 (name CAN0_ORed_Message_buffer)
                 (type CAN_MB)

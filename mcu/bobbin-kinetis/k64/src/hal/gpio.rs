@@ -1,1 +1,1 @@
-pub use kinetis_common::chip::gpio::*;
+pub use kinetis_common::gpio::*;

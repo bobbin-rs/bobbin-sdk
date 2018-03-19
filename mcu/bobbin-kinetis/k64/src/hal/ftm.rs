@@ -1,1 +1,1 @@
-pub use kinetis_common::chip::ftm::*;
+pub use kinetis_common::ftm::*;

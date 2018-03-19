@@ -2,19 +2,7 @@ pub use bobbin_common::console::Putc;
 pub use bobbin_common::configure::*;
 pub use bobbin_common::enabled::*;
 pub use bobbin_common::serial::*;
-
-
-// use bobbin_common::{Irq, Poll};
-// use bobbin_common::ring::Ring;
-// use bobbin_cortexm::hal::scb::SCB;
-// use bobbin_cortexm::hal::nvic;
-// use bobbin_cortexm::wfi;
-
-// use core::marker::PhantomData;
-// use core::fmt;
-
-
-use chip::uart::*;
+pub use chip::uart::*;
 
 #[derive(Debug, Default)]
 pub struct Config {

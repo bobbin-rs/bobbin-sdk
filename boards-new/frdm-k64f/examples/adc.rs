@@ -7,9 +7,7 @@ extern crate frdm_k64f as board;
 use board::common::analog::*;
 use board::common::bits::*;
 use board::mcu::pin::*;
-use board::mcu::sim::*;
 use board::mcu::adc::*;
-use board::mcu::port::*;
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {

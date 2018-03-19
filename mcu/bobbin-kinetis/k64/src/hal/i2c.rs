@@ -1,1 +1,1 @@
-pub use kinetis_common::chip::i2c::*;
+pub use kinetis_common::i2c::*;

@@ -1,1 +1,1 @@
-pub use kinetis_common::chip::lptmr::*;
+pub use kinetis_common::lptmr::*;
