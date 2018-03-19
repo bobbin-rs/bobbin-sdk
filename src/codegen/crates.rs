@@ -289,6 +289,7 @@ pub fn gen_mcu_mod<W: Write>(cfg: &modules::Config, p_out: &mut W, out: &mut W, 
         let p_mod = path.join(format!("{}.rs", p_name));
         let mut f_mod = try!(File::create(p_mod));
         writeln!(f_mod, "#[allow(unused_imports)] use ::bobbin_common::*;")?;
+        writeln!(f_mod, "#[allow(unused_imports)] pub use ::bobbin_common::gate::GateEn;")?;
         writeln!(f_mod, "pub use ::hal::{}::*;", p_name)?;
         writeln!(f_mod, "")?;
         try!(modules::gen_peripheral(cfg, &mut f_mod, d, p, ord));
@@ -302,6 +303,7 @@ pub fn gen_mcu_mod<W: Write>(cfg: &modules::Config, p_out: &mut W, out: &mut W, 
         let p_mod = path.join(format!("{}.rs", pg_name));
         let mut f_mod = try!(File::create(p_mod));
         writeln!(f_mod, "#[allow(unused_imports)] use ::bobbin_common::*;")?;
+        writeln!(f_mod, "#[allow(unused_imports)] pub use ::bobbin_common::gate::GateEn;")?;
         writeln!(f_mod, "pub use ::hal::{}::*;", pg_name)?;
         writeln!(f_mod, "")?;
         try!(modules::gen_peripheral_group(&cfg, &mut f_mod, d, pg, &mut ord));        
