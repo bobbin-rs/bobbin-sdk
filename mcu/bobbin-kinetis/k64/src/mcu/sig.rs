@@ -11,8 +11,8 @@ signal_type!(SPI_PCS4, SigSpiPcs4);
 signal_type!(SPI_PCS5, SigSpiPcs5);
 signal_type!(I2C_SCL, SigI2cScl);
 signal_type!(I2C_SDA, SigI2cSda);
-signal_type!(TX, SigTx);
-signal_type!(RX, SigRx);
+signal_type!(UART_TX, SigUartTx);
+signal_type!(UART_RX, SigUartRx);
 signal_type!(ADC_DP, SigAdcDp);
 signal_type!(ADC_DM, SigAdcDm);
 signal_type!(ADC_SEA, SigAdcSea);
@@ -87,18 +87,18 @@ periph_signal!(super::i2c::I2c1, SigI2cScl);
 periph_signal!(super::i2c::I2c1, SigI2cSda);
 
 // UART
-periph_signal!(super::uart::Uart0, SigTx);
-periph_signal!(super::uart::Uart0, SigRx);
-periph_signal!(super::uart::Uart1, SigTx);
-periph_signal!(super::uart::Uart1, SigRx);
-periph_signal!(super::uart::Uart2, SigTx);
-periph_signal!(super::uart::Uart2, SigRx);
-periph_signal!(super::uart::Uart3, SigTx);
-periph_signal!(super::uart::Uart3, SigRx);
-periph_signal!(super::uart::Uart4, SigTx);
-periph_signal!(super::uart::Uart4, SigRx);
-periph_signal!(super::uart::Uart5, SigTx);
-periph_signal!(super::uart::Uart5, SigRx);
+periph_signal!(super::uart::Uart0, SigUartTx);
+periph_signal!(super::uart::Uart0, SigUartRx);
+periph_signal!(super::uart::Uart1, SigUartTx);
+periph_signal!(super::uart::Uart1, SigUartRx);
+periph_signal!(super::uart::Uart2, SigUartTx);
+periph_signal!(super::uart::Uart2, SigUartRx);
+periph_signal!(super::uart::Uart3, SigUartTx);
+periph_signal!(super::uart::Uart3, SigUartRx);
+periph_signal!(super::uart::Uart4, SigUartTx);
+periph_signal!(super::uart::Uart4, SigUartRx);
+periph_signal!(super::uart::Uart5, SigUartTx);
+periph_signal!(super::uart::Uart5, SigUartRx);
 
 // USB
 
