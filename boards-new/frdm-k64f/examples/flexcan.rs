@@ -40,7 +40,22 @@ pub extern "C" fn main() -> ! {
     // // If Pretended Networking mode is enabled, configure the necessary registers for selective Wake Up
     // // Negate the HALT bit in CAN_MCR
 
-        
+    // Initialize the Module Configuration Register
+    // • Enable the individual filtering per MB and reception queue features by setting the IRMQ bit
+    // • Enable the warning interrupts by setting the WRNEN bit
+    // • If required, disable frame self reception by setting the SRXDIS bit
+    // • Enable the Rx FIFO by setting the RFEN bit
+    // • Enable the abort mechanism by setting the AEN bit
+    // • Enable the local priority feature by setting the LPRIOEN bit
+    // • Initialize the Control Register
+    // • Determine the bit timing parameters: PROPSEG, PSEG1, PSEG2, RJW • Determine the bit rate by programming the PRESDIV field
+    // • Determine the internal arbitration mode (LBUF bit)
+    // • Initialize the Message Buffers
+    // • The Control and Status word of all Message Buffers must be initialized • If Rx FIFO was enabled, the ID filter table must be initialized
+    // • Other entries in each Message Buffer should be initialized as required
+    // • Initialize the Rx Individual Mask Registers
+    // • Set required interrupt mask bits in the IMASK Registers (for all MB interrupts), in MCR Register for Wake-Up interrupt and in CTRL Register (for Bus Off and Error interrupts)
+    // • Negate the HALT bit in MCR        
 
     dump_can(c0);
 
