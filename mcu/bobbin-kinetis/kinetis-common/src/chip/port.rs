@@ -6,6 +6,7 @@
 pub struct PortPeriph(pub usize); 
 
 pub struct PortPin { pub port: PortPeriph, pub index: usize }
+
 impl PortPeriph {
     #[doc="Get the *mut pointer for the PCR register."]
     #[inline] pub fn pcr_mut<I: Into<bits::R32>>(&self, index: I) -> *mut Pcr { 

@@ -1,10 +1,11 @@
 
-pub struct LpitCh { pub periph: LpitPeriph, pub index: usize }
 #[allow(unused_imports)] use bobbin_common::*;
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="LPIT Peripheral"]
 pub struct LpitPeriph(pub usize); 
+
+pub struct LpitCh { pub periph: LpitPeriph, pub index: usize }
 
 impl LpitPeriph {
     #[doc="Get the *mut pointer for the VERID register."]

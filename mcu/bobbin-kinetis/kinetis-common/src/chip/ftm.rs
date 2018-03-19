@@ -1,10 +1,11 @@
 
-pub struct FtmCh { pub periph: FtmPeriph, pub index: usize }
 #[allow(unused_imports)] use bobbin_common::*;
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="FTM Peripheral"]
 pub struct FtmPeriph(pub usize); 
+
+pub struct FtmCh { pub periph: FtmPeriph, pub index: usize }
 
 impl FtmPeriph {
     #[doc="Get the *mut pointer for the SC register."]

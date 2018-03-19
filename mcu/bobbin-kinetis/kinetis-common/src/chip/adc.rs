@@ -1,10 +1,11 @@
 
-pub struct AdcCh { pub periph: AdcPeriph, pub index: usize }
 #[allow(unused_imports)] use bobbin_common::*;
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="ADC Peripheral"]
 pub struct AdcPeriph(pub usize); 
+
+pub struct AdcCh { pub periph: AdcPeriph, pub index: usize }
 
 impl AdcPeriph {
     #[doc="Get the *mut pointer for the SC1 register."]

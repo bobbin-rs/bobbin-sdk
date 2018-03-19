@@ -1,10 +1,11 @@
 
-pub struct PitCh { pub periph: PitPeriph, pub index: usize }
 #[allow(unused_imports)] use bobbin_common::*;
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="PIT Peripheral"]
 pub struct PitPeriph(pub usize); 
+
+pub struct PitCh { pub periph: PitPeriph, pub index: usize }
 
 impl PitPeriph {
     #[doc="Get the *mut pointer for the MCR register."]

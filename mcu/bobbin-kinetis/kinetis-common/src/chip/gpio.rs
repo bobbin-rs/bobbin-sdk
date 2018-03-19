@@ -5,7 +5,8 @@
 #[doc="GPIO Peripheral"]
 pub struct GpioPeriph(pub usize); 
 
-pub struct GpioPin { pub port: GpioPeriph, pub index: usize }
+pub struct GpioCh { pub periph: GpioPeriph, pub index: usize }
+
 impl GpioPeriph {
     #[doc="Get the *mut pointer for the PDOR register."]
     #[inline] pub fn pdor_mut(&self) -> *mut Pdor { 

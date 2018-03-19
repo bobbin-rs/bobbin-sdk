@@ -1,10 +1,11 @@
 
-pub struct EdmaCh { pub periph: EdmaPeriph, pub index: usize }
 #[allow(unused_imports)] use bobbin_common::*;
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="EDMA Peripheral"]
 pub struct EdmaPeriph(pub usize); 
+
+pub struct EdmaCh { pub periph: EdmaPeriph, pub index: usize }
 
 impl EdmaPeriph {
     #[doc="Get the *mut pointer for the CR register."]

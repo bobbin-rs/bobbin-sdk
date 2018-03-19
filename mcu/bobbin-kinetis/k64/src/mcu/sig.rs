@@ -13,6 +13,7 @@ signal_type!(I2C_SCL, SigI2cScl);
 signal_type!(I2C_SDA, SigI2cSda);
 signal_type!(UART_TX, SigUartTx);
 signal_type!(UART_RX, SigUartRx);
+signal_type!(GPIO, SigGpio);
 signal_type!(ADC_DP, SigAdcDp);
 signal_type!(ADC_DM, SigAdcDm);
 signal_type!(ADC_SEA, SigAdcSea);
@@ -105,6 +106,108 @@ periph_signal!(super::uart::Uart5, SigUartRx);
 // FLEXCAN
 
 // GPIO
+channel_signal!(super::gpio::Pa0, SigGpio);
+channel_signal!(super::gpio::Pa1, SigGpio);
+channel_signal!(super::gpio::Pa2, SigGpio);
+channel_signal!(super::gpio::Pa3, SigGpio);
+channel_signal!(super::gpio::Pa4, SigGpio);
+channel_signal!(super::gpio::Pa5, SigGpio);
+channel_signal!(super::gpio::Pa6, SigGpio);
+channel_signal!(super::gpio::Pa7, SigGpio);
+channel_signal!(super::gpio::Pa8, SigGpio);
+channel_signal!(super::gpio::Pa9, SigGpio);
+channel_signal!(super::gpio::Pa10, SigGpio);
+channel_signal!(super::gpio::Pa11, SigGpio);
+channel_signal!(super::gpio::Pa12, SigGpio);
+channel_signal!(super::gpio::Pa13, SigGpio);
+channel_signal!(super::gpio::Pa14, SigGpio);
+channel_signal!(super::gpio::Pa15, SigGpio);
+channel_signal!(super::gpio::Pa16, SigGpio);
+channel_signal!(super::gpio::Pa17, SigGpio);
+channel_signal!(super::gpio::Pa18, SigGpio);
+channel_signal!(super::gpio::Pa19, SigGpio);
+channel_signal!(super::gpio::Pa24, SigGpio);
+channel_signal!(super::gpio::Pa25, SigGpio);
+channel_signal!(super::gpio::Pa26, SigGpio);
+channel_signal!(super::gpio::Pa27, SigGpio);
+channel_signal!(super::gpio::Pa28, SigGpio);
+channel_signal!(super::gpio::Pa29, SigGpio);
+channel_signal!(super::gpio::Pb0, SigGpio);
+channel_signal!(super::gpio::Pb1, SigGpio);
+channel_signal!(super::gpio::Pb2, SigGpio);
+channel_signal!(super::gpio::Pb3, SigGpio);
+channel_signal!(super::gpio::Pb4, SigGpio);
+channel_signal!(super::gpio::Pb5, SigGpio);
+channel_signal!(super::gpio::Pb6, SigGpio);
+channel_signal!(super::gpio::Pb7, SigGpio);
+channel_signal!(super::gpio::Pb8, SigGpio);
+channel_signal!(super::gpio::Pb9, SigGpio);
+channel_signal!(super::gpio::Pb10, SigGpio);
+channel_signal!(super::gpio::Pb11, SigGpio);
+channel_signal!(super::gpio::Pb12, SigGpio);
+channel_signal!(super::gpio::Pb13, SigGpio);
+channel_signal!(super::gpio::Pb16, SigGpio);
+channel_signal!(super::gpio::Pb17, SigGpio);
+channel_signal!(super::gpio::Pb18, SigGpio);
+channel_signal!(super::gpio::Pb19, SigGpio);
+channel_signal!(super::gpio::Pb20, SigGpio);
+channel_signal!(super::gpio::Pb21, SigGpio);
+channel_signal!(super::gpio::Pb22, SigGpio);
+channel_signal!(super::gpio::Pb23, SigGpio);
+channel_signal!(super::gpio::Pc0, SigGpio);
+channel_signal!(super::gpio::Pc1, SigGpio);
+channel_signal!(super::gpio::Pc2, SigGpio);
+channel_signal!(super::gpio::Pc3, SigGpio);
+channel_signal!(super::gpio::Pc4, SigGpio);
+channel_signal!(super::gpio::Pc5, SigGpio);
+channel_signal!(super::gpio::Pc6, SigGpio);
+channel_signal!(super::gpio::Pc7, SigGpio);
+channel_signal!(super::gpio::Pc8, SigGpio);
+channel_signal!(super::gpio::Pc9, SigGpio);
+channel_signal!(super::gpio::Pc10, SigGpio);
+channel_signal!(super::gpio::Pc11, SigGpio);
+channel_signal!(super::gpio::Pc12, SigGpio);
+channel_signal!(super::gpio::Pc13, SigGpio);
+channel_signal!(super::gpio::Pc14, SigGpio);
+channel_signal!(super::gpio::Pc15, SigGpio);
+channel_signal!(super::gpio::Pc16, SigGpio);
+channel_signal!(super::gpio::Pc17, SigGpio);
+channel_signal!(super::gpio::Pc18, SigGpio);
+channel_signal!(super::gpio::Pc19, SigGpio);
+channel_signal!(super::gpio::Pd0, SigGpio);
+channel_signal!(super::gpio::Pd1, SigGpio);
+channel_signal!(super::gpio::Pd2, SigGpio);
+channel_signal!(super::gpio::Pd3, SigGpio);
+channel_signal!(super::gpio::Pd4, SigGpio);
+channel_signal!(super::gpio::Pd5, SigGpio);
+channel_signal!(super::gpio::Pd6, SigGpio);
+channel_signal!(super::gpio::Pd7, SigGpio);
+channel_signal!(super::gpio::Pd8, SigGpio);
+channel_signal!(super::gpio::Pd9, SigGpio);
+channel_signal!(super::gpio::Pd10, SigGpio);
+channel_signal!(super::gpio::Pd11, SigGpio);
+channel_signal!(super::gpio::Pd12, SigGpio);
+channel_signal!(super::gpio::Pd13, SigGpio);
+channel_signal!(super::gpio::Pd14, SigGpio);
+channel_signal!(super::gpio::Pd15, SigGpio);
+channel_signal!(super::gpio::Pe0, SigGpio);
+channel_signal!(super::gpio::Pe1, SigGpio);
+channel_signal!(super::gpio::Pe2, SigGpio);
+channel_signal!(super::gpio::Pe3, SigGpio);
+channel_signal!(super::gpio::Pe4, SigGpio);
+channel_signal!(super::gpio::Pe5, SigGpio);
+channel_signal!(super::gpio::Pe6, SigGpio);
+channel_signal!(super::gpio::Pe7, SigGpio);
+channel_signal!(super::gpio::Pe8, SigGpio);
+channel_signal!(super::gpio::Pe9, SigGpio);
+channel_signal!(super::gpio::Pe10, SigGpio);
+channel_signal!(super::gpio::Pe11, SigGpio);
+channel_signal!(super::gpio::Pe12, SigGpio);
+channel_signal!(super::gpio::Pe24, SigGpio);
+channel_signal!(super::gpio::Pe25, SigGpio);
+channel_signal!(super::gpio::Pe26, SigGpio);
+channel_signal!(super::gpio::Pe27, SigGpio);
+channel_signal!(super::gpio::Pe28, SigGpio);
 
 // PORT
 
@@ -173,108 +276,6 @@ channel_signal!(super::adc::Adc1Ch20, SigAdc);
 channel_signal!(super::adc::Adc1Ch21, SigAdc);
 channel_signal!(super::adc::Adc1Ch22, SigAdc);
 channel_signal!(super::adc::Adc1Ch23, SigAdc);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

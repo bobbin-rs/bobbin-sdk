@@ -1,10 +1,11 @@
 
-pub struct TpmCh { pub periph: TpmPeriph, pub index: usize }
 #[allow(unused_imports)] use bobbin_common::*;
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="TPM Peripheral"]
 pub struct TpmPeriph(pub usize); 
+
+pub struct TpmCh { pub periph: TpmPeriph, pub index: usize }
 
 impl TpmPeriph {
     #[doc="Get the *mut pointer for the SC register."]

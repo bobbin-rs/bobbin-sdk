@@ -5,6 +5,7 @@
 extern crate frdm_k64f as board;
 
 use board::led::*;
+use board::btn::*;
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
@@ -12,6 +13,10 @@ pub extern "C" fn main() -> ! {
 
     loop {
         LED0.toggle_output();
-        board::delay(500);
+        if BTN0.input() {
+            board::delay(100);
+        } else {
+            board::delay(500);
+        }
     }
 }

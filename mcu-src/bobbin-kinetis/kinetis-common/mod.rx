@@ -13,7 +13,7 @@
     )
     (peripheral-group
         (name GPIO)
-        (has-pins)
+        (has-channels)
         (prototype "periph/gpio.rx")
     )
     (peripheral-group
