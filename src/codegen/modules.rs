@@ -736,7 +736,7 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, d: &Device, pg:
 
     let pg_type = format!("{}Periph", to_camel(&pg_name));
     // let pin_type = format!("{}Pin", to_camel(&pg_name));
-    let ch_type = format!("{}Ch", to_camel(&pg_name));
+    // let ch_type = format!("{}Ch", to_camel(&pg_name));
     
     let mut link_traits = HashSet::new();
     let mut signal_types = HashSet::new();
@@ -947,10 +947,6 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, d: &Device, pg:
 
     // Generate Peripheral Group Channels
 
-    if pg.has_channels {
-        try!(writeln!(out, "pub struct {} {{ pub periph: {}, pub index: usize }}", ch_type, pg_type));
-    }
-
     for p in pg.peripherals.iter() {
         let p_name = p.name.to_uppercase();
         let p_type = to_camel(&p.name);
@@ -995,6 +991,7 @@ pub fn gen_peripheral_group_impl<W: Write>(cfg: &Config, out: &mut W, pg: &Perip
         format!("{}", pg.name)
     };
     let pg_type = format!("{}Periph", to_camel(&pg_name));
+    let ch_type = format!("{}Ch", to_camel(&pg_name));
 
 
     try!(writeln!(out, "#[allow(unused_imports)] use {}::*;", cfg.common));
@@ -1017,6 +1014,12 @@ pub fn gen_peripheral_group_impl<W: Write>(cfg: &Config, out: &mut W, pg: &Perip
     if pg.has_pins || pin_count > 0 {
         let pin_type = format!("{}Pin", to_camel(&pg_name));
         try!(writeln!(out, "pub struct {} {{ pub port: {}, pub index: usize }}", pin_type, pg_type));
+        try!(writeln!(out, ""));
+    }
+
+    if pg.has_channels {
+        try!(writeln!(out, "pub struct {} {{ pub periph: {}, pub index: usize }}", ch_type, pg_type));
+        try!(writeln!(out, ""));
     }
 
     let p0 = if let Some(ref p0) = pg.prototype {
@@ -1045,8 +1048,7 @@ pub fn gen_peripheral<W: Write>(cfg: &Config, out: &mut W, d: &Device, p: &Perip
     let p_const = format!("{}_PERIPH", p.name);
     let p_type = to_camel(&p.group_name.as_ref().unwrap());
     let pg_type = format!("{}Periph", to_camel(&p.group_name.as_ref().unwrap()));
-    let ch_type = format!("{}Ch", to_camel(&p.group_name.as_ref().unwrap()));
-
+    
     try!(writeln!(out, "#[allow(unused_imports)] use {}::*;", cfg.common));
     try!(writeln!(out, ""));
 
@@ -1138,10 +1140,6 @@ pub fn gen_peripheral<W: Write>(cfg: &Config, out: &mut W, d: &Device, p: &Perip
 
     // Generate Channels
 
-    if p.channels.len() > 0 {
-        try!(writeln!(out, "pub struct {} {{ pub periph: {}, pub index: usize);", ch_type, p_type));
-    }
-
     for ch in p.channels.iter() {
         for s in ch.signals.iter() {
             let s_type = to_camel(&s.name);
@@ -1161,6 +1159,7 @@ pub fn gen_peripheral<W: Write>(cfg: &Config, out: &mut W, d: &Device, p: &Perip
 
 pub fn gen_peripheral_impl<W: Write>(cfg: &Config, out: &mut W, p: &Peripheral) -> Result<()> {
     let p_type = format!("{}Periph", to_camel(&p.group_name.as_ref().unwrap()));
+    let ch_type = format!("{}Ch", to_camel(&p.group_name.as_ref().unwrap()));
 
     if let Some(ref desc) = p.description {
         let desc = desc.trim();
@@ -1179,6 +1178,9 @@ pub fn gen_peripheral_impl<W: Write>(cfg: &Config, out: &mut W, p: &Peripheral) 
     
     try!(writeln!(out, "#[derive(Clone, Copy, PartialEq, Eq)]"));    
     try!(writeln!(out, "pub struct {}(pub usize);", p_type));    
+    if p.channels.len() > 0 {
+        try!(writeln!(out, "pub struct {} {{ pub periph: {}, pub index: usize);", ch_type, p_type));
+    }
 
     if p.registers.len() > 0 {
         try!(gen_registers(cfg, out, &p_type, &p.registers[..], p.size.or(Some(32)), p.access.or(Some(Access::ReadWrite))));
