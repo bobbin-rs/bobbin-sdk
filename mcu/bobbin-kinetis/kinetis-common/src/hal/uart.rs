@@ -82,7 +82,8 @@ impl SerialRx<u8> for UartPeriph {
 
 impl Putc for UartPeriph {
     fn console_putc(&self, c: u8) {
-        self.putc(c);
+        while !self.can_tx() {}
+        self.tx(c);
     }
 }
 
