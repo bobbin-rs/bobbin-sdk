@@ -1,4 +1,5 @@
 use mcu::pin::*;
+pub use common::digital::DigitalOutput;
 
 pub const LED0: Pb22 = PB22;
 
