@@ -4,6 +4,8 @@
 #[doc="ADC Peripheral"]
 pub struct AdcPeriph(pub usize); 
 
+pub struct AdcCh { pub periph: AdcPeriph, pub index: usize }
+
 impl AdcPeriph {
     #[doc="Get the *mut pointer for the AVGCTRL register."]
     #[inline] pub fn avgctrl_mut(&self) -> *mut Avgctrl { 

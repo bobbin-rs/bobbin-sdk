@@ -4,6 +4,8 @@
 #[doc="DMAC Peripheral"]
 pub struct DmacPeriph(pub usize); 
 
+pub struct DmacCh { pub periph: DmacPeriph, pub index: usize }
+
 impl DmacPeriph {
     #[doc="Get the *mut pointer for the ACTIVE register."]
     #[inline] pub fn active_mut(&self) -> *mut Active { 

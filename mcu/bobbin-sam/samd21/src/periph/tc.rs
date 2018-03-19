@@ -4,6 +4,8 @@
 #[doc="TC Peripheral"]
 pub struct TcPeriph(pub usize); 
 
+pub struct TcCh { pub periph: TcPeriph, pub index: usize }
+
 impl TcPeriph {
     #[doc="Get 8-bit Counter Mode Peripheral"]
     #[inline] pub fn count8(&self) -> count8::Count8 {

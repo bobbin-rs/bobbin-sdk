@@ -4,6 +4,8 @@
 #[doc="TCC Peripheral"]
 pub struct TccPeriph(pub usize); 
 
+pub struct TccCh { pub periph: TccPeriph, pub index: usize }
+
 impl TccPeriph {
     #[doc="Get the *mut pointer for the CC register."]
     #[inline] pub fn cc_mut<I: Into<bits::R4>>(&self, index: I) -> *mut Cc { 

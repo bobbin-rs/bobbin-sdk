@@ -5,6 +5,7 @@
 pub struct PortPeriph(pub usize); 
 
 pub struct PortPin { pub port: PortPeriph, pub index: usize }
+
 impl PortPeriph {
     #[doc="Get the *mut pointer for the CTRL register."]
     #[inline] pub fn ctrl_mut(&self) -> *mut Ctrl { 

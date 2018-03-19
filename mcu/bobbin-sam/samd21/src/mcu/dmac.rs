@@ -5,7 +5,6 @@ pub use ::hal::dmac::*;
 
 periph!( DMAC, Dmac, DMAC_PERIPH, DmacPeriph, 0x41004800, 0x06);
 
-pub struct DmacCh { pub periph: DmacPeriph, pub index: usize }
 channel!(DMAC_CH0, DmacCh0, DMAC, Dmac, DMAC_CH0_CH, DmacCh, DMAC_PERIPH, 0);
 channel!(DMAC_CH1, DmacCh1, DMAC, Dmac, DMAC_CH1_CH, DmacCh, DMAC_PERIPH, 1);
 channel!(DMAC_CH2, DmacCh2, DMAC, Dmac, DMAC_CH2_CH, DmacCh, DMAC_PERIPH, 2);
