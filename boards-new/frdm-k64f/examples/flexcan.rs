@@ -134,7 +134,7 @@ pub extern "C" fn main() -> ! {
 
     while c0.mcr().test_notrdy() {}
 
-    c0.with_mcr(|r| r.set_rfen(1));
+    // c0.with_mcr(|r| r.set_rfen(1));
     // dump_can(c0);
 
     println!("Loop");
