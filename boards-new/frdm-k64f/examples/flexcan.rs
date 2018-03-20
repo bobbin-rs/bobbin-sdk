@@ -57,9 +57,9 @@ pub extern "C" fn main() -> ! {
     // • Set required interrupt mask bits in the IMASK Registers (for all MB interrupts), in MCR Register for Wake-Up interrupt and in CTRL Register (for Bus Off and Error interrupts)
     // • Negate the HALT bit in MCR        
 
-    dump_can(c0);
+    // dump_can(c0);
 
-    c0.with_ctrl1(|r| r.set_clksrc(1));
+    // c0.with_ctrl1(|r| r.set_clksrc(1));
 
     // // Check for Low Power Mode    
 
@@ -90,7 +90,9 @@ pub extern "C" fn main() -> ! {
 
     // // propseg: 0x04, phaseseg1: 0x07, phaseseg2: 0x01, predivider: 0x00, rjumpwidth: 1
     c0.with_ctrl1(|r| {
-        r.set_propseg(0x4).set_pseg1(0x07).set_pseg2(0x01).set_presdiv(0).set_rjw(1)
+        r.set_propseg(0x3).set_pseg1(0x07).set_pseg2(0x01).set_presdiv(0x7).set_rjw(1)
+        // r.set_propseg(0x4).set_pseg1(0x07).set_pseg2(0x01).set_presdiv(0).set_rjw(1)
+        // r.set_propseg(0x2).set_rjw(1).set_pseg1(0x07).set_pseg2(0x3).set_presdiv(1)
     });
 
     // // Set Self Reception Disabled = False
@@ -101,9 +103,9 @@ pub extern "C" fn main() -> ! {
     // // Enable Individual Request Masking
 
 
-    // // Set Loopback Mode = True
-    // c0.set_lpb(true);
-    c0.with_ctrl1(|r| r.set_lpb(false));
+    // Set Loopback Mode = True
+    // Use OSC as clock source
+    c0.with_ctrl1(|r| r.set_lpb(false).set_clksrc(false));
 
     // // Setup RX Mailbox
 
@@ -114,7 +116,7 @@ pub extern "C" fn main() -> ! {
     tx.set_code(Code::TxInactive);
 
 
-    dump_can(c0);
+    // dump_can(c0);
     // println!("RX: Code = {:?} DLC: {} ID: {:08x} TS: {:08x}", rx.code(), rx.dlc(), rx.id_std(), rx.time_stamp());
     // println!("TX: Code = {:?} DLC: {} ID: {:08x} TS: {:08x}", tx.code(), tx.dlc(), tx.id_std(), tx.time_stamp());
 
@@ -123,35 +125,55 @@ pub extern "C" fn main() -> ! {
     // c0.exit_freeze_mode();
     c0.with_mcr(|r| r.set_frz(0).set_halt(0));
     while c0.mcr().test_frzack() {}
-    dump_can(c0);
+
+    while c0.mcr().test_notrdy() {}
+
+    c0.with_mcr(|r| r.set_rfen(1));
+    // dump_can(c0);
 
     println!("Loop");
-
+    let mut n = 0;
     loop {
-        println!("Tick...");
+        if n == 500_000 {
+            println!("Tick...");
+            let id = CanId::Ext(ExtendedId(0x018DB33F1));
+            tx.write(id, &[0x02, 0x01, 0x0c, 0x55, 0x55, 0x55, 0x55, 0x55]);            
+            n = 0;
+        }        
 
-        // Transmit Message
-        if let Code::TxInactive = tx.code() {
-            // tx.set_code(Code::TxData);
-            // tx.set_id_std(0x230);
-            let tx_id = std_id(0x230);
-            tx.write(tx_id, &[0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08]);
-            let mut count = 0;
-            while tx.code() != Code::TxInactive {
-                if count == 500_000 {
-                    println!("Timeout: code = {:?}", tx.code());
-                    println!("{:?}", tx);
-                    dump_can(c0);
-                    panic!("Timeout");
-                }
-                count += 1;
+        if rx.flag() {
+            //println!("RX: Code = {:?} DLC: {} ID: {:08x} TS: {:08x}", rx.code(), rx.dlc(), rx.id_std(), rx.time_stamp());
+            let mut buf = [0u8; 16];
+            let (id, n) = rx.read(&mut buf);
+            //println!("RX: {:?} {:?}", rx.mb8h0(), rx.mb8h1());
+            print!("< {:04x}: {:?}", rx.time_stamp(), id);
+            for i in 0..n {
+                print!(" {:02x}", buf[i]);
             }
+            println!("");
+            
+            rx.set_id(CanId::Ext(ExtendedId(0x018DAF10E)));
+            rx.set_code(Code::RxEmpty);            
+            let _ = c0.timer();
+            rx.clr_flag();
         }
-        board::delay(500);
+        if tx.flag() {
+            tx.clr_flag();
+            let mut buf = [0u8; 16];
+            let (id, n) = tx.read(&mut buf);            
+            //println!("TX: {:?} {:?}", tx.mb8h0(), tx.mb8h1());
+            print!("> {:04x}: {:?}", tx.time_stamp(), id);
+            for i in 0..n {
+                print!(" {:02x}", buf[i]);
+            }            
+            println!("");
+            //println!("TX: Code = {:?} DLC: {} ID: {:08x} TS: {:08x}", tx.code(), tx.dlc(), tx.id_std(), tx.time_stamp());
+        }        
+        n += 1;
     }
 }
 
-fn dump_can(can: Can0) {
+pub fn dump_can(can: Can0) {
     println!("MCR: {:?}\nCTRL1: {:?}\nCTRL2: {:?}", can.mcr(), can.ctrl1(), can.ctrl2());
     println!("IFLAG1: {:?}\nESR1: {:?}\nESR2: {:?}\nECR: {:?}\nTIMER: {:?}", 
         can.iflag1(), can.esr1(), can.esr2(), can.ecr(), can.timer()

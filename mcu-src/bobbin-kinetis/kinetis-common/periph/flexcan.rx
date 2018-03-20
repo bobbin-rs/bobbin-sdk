@@ -1097,7 +1097,7 @@
         (reset-mask 0xffffffff)
         (description "Interrupt Masks 1 register")
         (field
-            (name BUF31TO0M)
+            (name BUFM)
             (bit-offset 0)
             (bit-width 32)
             (access read-write)

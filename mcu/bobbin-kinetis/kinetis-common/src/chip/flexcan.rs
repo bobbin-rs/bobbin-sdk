@@ -2955,17 +2955,17 @@ impl ::core::fmt::Debug for Esr1 {
 pub struct Imask1(pub u32);
 impl Imask1 {
     #[doc="Buffer MB i Mask"]
-    #[inline] pub fn buf31to0m(&self) -> bits::U32 {
+    #[inline] pub fn bufm(&self) -> bits::U32 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffffffff) as u32) } // [31:0]
     }
 
-    #[doc="Returns true if BUF31TO0M != 0"]
-    #[inline] pub fn test_buf31to0m(&self) -> bool {
-        self.buf31to0m() != 0
+    #[doc="Returns true if BUFM != 0"]
+    #[inline] pub fn test_bufm(&self) -> bool {
+        self.bufm() != 0
     }
 
-    #[doc="Sets the BUF31TO0M field."]
-    #[inline] pub fn set_buf31to0m<V: Into<bits::U32>>(mut self, value: V) -> Self {
+    #[doc="Sets the BUFM field."]
+    #[inline] pub fn set_bufm<V: Into<bits::U32>>(mut self, value: V) -> Self {
         let value: bits::U32 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0xffffffff << 0);
