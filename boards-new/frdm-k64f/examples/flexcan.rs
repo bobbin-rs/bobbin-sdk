@@ -90,7 +90,12 @@ pub extern "C" fn main() -> ! {
 
     // // propseg: 0x04, phaseseg1: 0x07, phaseseg2: 0x01, predivider: 0x00, rjumpwidth: 1
     c0.with_ctrl1(|r| {
-        r.set_propseg(0x3).set_pseg1(0x07).set_pseg2(0x01).set_presdiv(0x7).set_rjw(1)
+        // Input Clock 50MHz, 500Kbaud
+        r.set_presdiv(0x4).set_propseg(0x7).set_pseg1(0x07).set_pseg2(0x02).set_rjw(1)
+
+        // Input Clock 60MHz, 500Kbaud
+        // r.set_presdiv(0x7).set_propseg(0x3).set_pseg1(0x07).set_pseg2(0x01).set_rjw(1)
+
         // r.set_propseg(0x4).set_pseg1(0x07).set_pseg2(0x01).set_presdiv(0).set_rjw(1)
         // r.set_propseg(0x2).set_rjw(1).set_pseg1(0x07).set_pseg2(0x3).set_presdiv(1)
     });
