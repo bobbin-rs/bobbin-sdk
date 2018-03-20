@@ -105,11 +105,12 @@ pub extern "C" fn main() -> ! {
 
     // Set Loopback Mode = True
     // Use OSC as clock source
-    c0.with_ctrl1(|r| r.set_lpb(false).set_clksrc(false));
+    // c0.with_ctrl1(|r| r.set_lpb(false).set_clksrc(false));
 
     // // Setup RX Mailbox
 
-    rx.set_idmask(0x0);
+    // rx.set_idmask(0x1fffffff);
+    rx.set_id(CanId::Ext(ExtendedId(0x018DB33F1)));
     rx.set_code(Code::RxEmpty);    
 
     // Setup TX Mailbox
@@ -132,13 +133,15 @@ pub extern "C" fn main() -> ! {
     // dump_can(c0);
 
     println!("Loop");
+    let mut c = 0u32;
     let mut n = 0;
     loop {
         if n == 500_000 {
-            println!("Tick...");
+            // println!("Ping... {:?}", c0.esr1);
             let id = CanId::Ext(ExtendedId(0x018DB33F1));
-            tx.write(id, &[0x02, 0x01, 0x0c, 0x55, 0x55, 0x55, 0x55, 0x55]);            
+            tx.write(id, &[c as u8, 0x01, 0x0c, 0x55, 0x55, 0x55, 0x55, 0x55]);            
             n = 0;
+            c = c.wrapping_add(1);
         }        
 
         if rx.flag() {
@@ -152,7 +155,8 @@ pub extern "C" fn main() -> ! {
             }
             println!("");
             
-            rx.set_id(CanId::Ext(ExtendedId(0x018DAF10E)));
+            // rx.set_id(CanId::Ext(ExtendedId(0x018DAF10E)));
+            rx.set_id(CanId::Ext(ExtendedId(0x018DB33F1)));
             rx.set_code(Code::RxEmpty);            
             let _ = c0.timer();
             rx.clr_flag();
