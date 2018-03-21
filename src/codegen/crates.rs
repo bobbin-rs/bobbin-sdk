@@ -152,6 +152,8 @@ pub fn gen_crate<W: Write>(cfg: Config, _out: &mut W, d: &Device) -> Result<()> 
         gen_hal_mod(&cfg, &mut hal_out, d, &hal_path)?;
 
         writeln!(out, "pub mod mcu;")?;
+        writeln!(out, "")?;
+        
         let mut mcu_out = File::create(mcu_path.clone().join("mod.rs"))?;
         gen_mcu_mod(&cfg, &mut out, &mut mcu_out, d, &mcu_path)?;
         // writeln!(out, "pub use mcu::*;")?;
@@ -277,15 +279,12 @@ pub fn gen_hal_mod<W: Write>(_cfg: &modules::Config, out: &mut W, d: &Device, pa
 }
 
 pub fn gen_mcu_mod<W: Write>(cfg: &modules::Config, p_out: &mut W, out: &mut W, d: &Device, path: &Path) -> Result<()> {
-
     let mut ord = 0;
-    
-    writeln!(p_out, "")?;
 
     for p in d.peripherals.iter() {
         let p_name = p.group_name.as_ref().unwrap_or(&p.name).to_lowercase();
-        writeln!(out, "pub mod {};", p_name)?;;
-        writeln!(p_out, "pub use mcu::{};", p_name)?;;
+        writeln!(out, "pub mod {};", p_name)?;
+        writeln!(p_out, "pub use mcu::{};", p_name)?;
         let p_mod = path.join(format!("{}.rs", p_name));
         let mut f_mod = try!(File::create(p_mod));
         writeln!(f_mod, "#[allow(unused_imports)] use ::bobbin_common::*;")?;
@@ -298,8 +297,8 @@ pub fn gen_mcu_mod<W: Write>(cfg: &modules::Config, p_out: &mut W, out: &mut W, 
 
     for pg in d.peripheral_groups.iter() {
         let pg_name = pg.name.to_lowercase();
-        writeln!(out, "pub mod {};", pg_name)?;;
-        writeln!(p_out, "pub use mcu::{};", pg_name)?;;
+        writeln!(out, "pub mod {};", pg_name)?;
+        writeln!(p_out, "pub use mcu::{};", pg_name)?;
         let p_mod = path.join(format!("{}.rs", pg_name));
         let mut f_mod = try!(File::create(p_mod));
         writeln!(f_mod, "#[allow(unused_imports)] use ::bobbin_common::*;")?;
@@ -313,11 +312,38 @@ pub fn gen_mcu_mod<W: Write>(cfg: &modules::Config, p_out: &mut W, out: &mut W, 
     gen_pins_mod(&cfg, out, d, path, &signals)?;
     gen_interrupts_mod(&cfg, out, d, path)?; 
 
-    writeln!(p_out, "pub use mcu::pin;")?;;
-    writeln!(p_out, "pub use mcu::sig;")?;;
-    writeln!(p_out, "pub use mcu::irq;")?;;
+    writeln!(p_out, "pub use mcu::pin;")?;
+    writeln!(p_out, "pub use mcu::sig;")?;
+    writeln!(p_out, "pub use mcu::irq;")?;
 
+    // Generate MCU and peripheral accessors
 
+    writeln!(p_out, "pub use mcu::{{MCU, Mcu}};")?;
+
+    writeln!(out, "")?;   
+    writeln!(out, "pub struct Mcu {{}}")?;
+    writeln!(out, "pub const MCU: Mcu = Mcu {{}};")?;
+    writeln!(out, "")?;   
+    writeln!(out, "impl Mcu {{")?;
+    for p in d.peripherals.iter() {
+        let pg_mod = p.group_name.as_ref().unwrap_or(&p.name).to_lowercase();
+        let p_name = p.name.to_lowercase();
+        let p_type = super::to_camel(&pg_mod);
+        let p_id = p.name.to_uppercase();
+        writeln!(out, "    pub fn {}(&self) -> {}::{} {{ {}::{} }}", p_name, pg_mod, p_type, pg_mod, p_id)?;
+    }
+
+    for pg in d.peripheral_groups.iter() {
+        let pg_mod = pg.name.to_lowercase();
+        for p in pg.peripherals.iter() {
+            let p_name = p.name.to_lowercase();
+            let p_type = super::to_camel(&p.name);
+            let p_id = p.name.to_uppercase();
+            writeln!(out, "    pub fn {}(&self) -> {}::{} {{ {}::{} }}", p_name, pg_mod, p_type, pg_mod, p_id)?;            
+        }
+    }
+
+    writeln!(out, "}}")?;
     Ok(())
 }
 
