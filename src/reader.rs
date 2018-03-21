@@ -186,6 +186,7 @@ fn read_board(ctx: &Context, s: &[Sexp]) -> Result<Board, ReadError> {
                 match arr[0].symbol() {
                     Some("name") => b.name = String::from(try!(read_name(ctx, &arr[1]))),
                     Some("target") => b.target = String::from(expect_symbol(ctx, &arr[1])?),
+                    Some("mcu") => b.mcu = String::from(expect_symbol(ctx, &arr[1])?),
                     Some("crate") => b.crates.push(try!(read_crate(ctx, &arr[1..]))),
                     Some("description") => b.description = Some(String::from(try!(expect_string(ctx, &arr[1])))),
                     // Some("device") => b.devices.push(try!(read_device(ctx, &arr[1..]))),

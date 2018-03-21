@@ -93,6 +93,29 @@ pub fn gen_board<W: Write>(cfg: Config, _out: &mut W, b: &Board) -> Result<()> {
         }
     }
 
+    {
+        // Generate Board Type and Traits
+        let board_ty = super::to_camel(&b.name.replace("-","_"));
+        let board_id = b.name.replace("-","_").to_uppercase();
+        let mcu_ty = super::to_camel(&b.mcu);
+        let mcu_id = b.mcu.to_uppercase();
+
+
+        let mut out = OpenOptions::new().append(true).open(out_path.join("src/lib.rs"))?;
+        writeln!(out, "")?;
+        writeln!(out, "pub const {}: {} = {} {{}};", board_id, board_ty, board_ty)?;
+        writeln!(out, "pub struct {} {{}}", board_ty)?;
+        writeln!(out, "")?;
+        writeln!(out, "impl common::board::Board for {} {{", board_ty)?;
+        writeln!(out, "   type Mcu = mcu::{};", mcu_ty)?;
+        writeln!(out, "   fn id(&self) -> &'static str {{ {:?} }}", b.name)?;
+        writeln!(out, "   fn mcu(&self) -> Self::Mcu {{ mcu::{} }}", mcu_id)?;
+        writeln!(out, "}}")?;
+        writeln!(out, "")?;
+        writeln!(out, "pub const fn board() -> {} {{ {} }}", board_ty, board_id)?;
+        writeln!(out, "")?;
+    }
+
     Ok(())
 }
 

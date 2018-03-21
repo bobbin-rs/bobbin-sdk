@@ -101,6 +101,7 @@ pub struct Board {
     pub name: String,
     pub description: Option<String>,
     pub target: String,
+    pub mcu: String,
     pub crates: Vec<Crate>,
     pub clocks: Vec<Clock>,
 }
