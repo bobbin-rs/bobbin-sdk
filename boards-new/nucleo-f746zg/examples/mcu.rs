@@ -41,9 +41,15 @@ pub extern "C" fn main() -> ! {
     let wwdg: wwdg::WwdgPeriph = MCU.get_periph();
     println!("WWDG_CFR: {:?}", wwdg.cfr());
 
+    use_wwdg(MCU);
     
     loop {
         println!("Tick...");
         board::delay(500);
     }
+}
+
+fn use_wwdg<M: GetPeriph<wwdg::WwdgPeriph>>(mcu: M) {
+    let w: wwdg::WwdgPeriph = mcu.get_periph();
+    println!("WWDG_CFG: {:?}", w.cfr());
 }
