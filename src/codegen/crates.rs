@@ -281,6 +281,9 @@ pub fn gen_hal_mod<W: Write>(_cfg: &modules::Config, out: &mut W, d: &Device, pa
 pub fn gen_mcu_mod<W: Write>(cfg: &modules::Config, p_out: &mut W, out: &mut W, d: &Device, path: &Path) -> Result<()> {
     let mut ord = 0;
 
+    writeln!(out, "pub use ::bobbin_common::mcu::*;")?;
+    writeln!(out, "")?;
+
     for p in d.peripherals.iter() {
         let p_name = p.group_name.as_ref().unwrap_or(&p.name).to_lowercase();
         writeln!(out, "pub mod {};", p_name)?;
@@ -324,6 +327,7 @@ pub fn gen_mcu_mod<W: Write>(cfg: &modules::Config, p_out: &mut W, out: &mut W, 
     writeln!(out, "pub struct Mcu {{}}")?;
     writeln!(out, "pub const MCU: Mcu = Mcu {{}};")?;
     writeln!(out, "")?;   
+
     writeln!(out, "impl Mcu {{")?;
     for p in d.peripherals.iter() {
         let pg_mod = p.group_name.as_ref().unwrap_or(&p.name).to_lowercase();
@@ -344,6 +348,46 @@ pub fn gen_mcu_mod<W: Write>(cfg: &modules::Config, p_out: &mut W, out: &mut W, 
     }
 
     writeln!(out, "}}")?;
+    writeln!(out, "")?;
+    
+    for p in d.peripherals.iter() {
+        let pg_mod = p.group_name.as_ref().unwrap_or(&p.name).to_lowercase();
+        let p_type = super::to_camel(&pg_mod);
+        let p_id = p.name.to_uppercase();
+        let p_periph_type = format!("{}Periph", p_type);
+        let p_periph_id = format!("{}_PERIPH", p_id);
+        writeln!(out, "impl Get<{}::{}> for Mcu {{", pg_mod, p_type)?;        
+        writeln!(out, "    fn get(&self) -> {}::{} {{ {}::{} }}", pg_mod, p_type, pg_mod, p_id)?;
+        writeln!(out, "}}")?;    
+        writeln!(out, "")?;
+        writeln!(out, "impl GetPeriph<{}::{}> for Mcu {{", pg_mod, p_periph_type)?;
+        writeln!(out, "    fn get_periph(&self) -> {}::{} {{ {}::{} }}", pg_mod, p_periph_type, pg_mod, p_periph_id)?;
+        writeln!(out, "}}")?;    
+        writeln!(out, "")?;        
+    }
+
+    for pg in d.peripheral_groups.iter() {
+        let pg_mod = pg.name.to_lowercase();
+        let pg_len = pg.peripherals.len();
+        for (_, p) in pg.peripherals.iter().enumerate() {
+            let p_type = super::to_camel(&p.name);
+            let p_id = p.name.to_uppercase();
+            let p_periph_type = format!("{}Periph", super::to_camel(&pg.name));
+            let p_periph_id = format!("{}_PERIPH", p_id);            
+            writeln!(out, "impl Get<{}::{}> for Mcu {{", pg_mod, p_type)?;        
+            writeln!(out, "    fn get(&self) -> {}::{} {{ {}::{} }}", pg_mod, p_type, pg_mod, p_id)?;            
+            writeln!(out, "}}")?;    
+            writeln!(out, "")?;
+            if pg_len == 1 {
+                writeln!(out, "impl GetPeriph<{}::{}> for Mcu {{", pg_mod, p_periph_type)?;
+                writeln!(out, "    fn get_periph(&self) -> {}::{} {{ {}::{} }}", pg_mod, p_periph_type, pg_mod, p_periph_id)?;
+                writeln!(out, "}}")?;    
+                writeln!(out, "")?;                   
+            }
+        }
+    }
+
+
     Ok(())
 }
 
