@@ -1,6 +1,7 @@
 (board
     (name can-cam)
     (target thumbv7em-none-eabihf)
+    (mcu stm32f74x)
     (crate 
         (name stm32f74x) 
         (as mcu)

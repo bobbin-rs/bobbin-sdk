@@ -1,6 +1,7 @@
 (board
     (name arduino-zero)
     (target thumbv6m-none-eabi)
+    (mcu samd21)
     (crate 
         (name samd21) 
         (as mcu)

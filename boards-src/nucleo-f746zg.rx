@@ -1,5 +1,6 @@
 (board
     (name nucleo-f746zg)
+    (mcu stm32f74x)
     (target thumbv7em-none-eabihf)
     (crate 
         (name stm32f74x) 

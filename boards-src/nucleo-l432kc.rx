@@ -1,5 +1,6 @@
 (board
     (name nucleo-l432kc)
+    (mcu stm32l432x)
     (target thumbv7em-none-eabihf)
     (crate 
         (name stm32l432x) 

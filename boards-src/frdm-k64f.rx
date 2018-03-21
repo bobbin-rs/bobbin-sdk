@@ -1,5 +1,6 @@
 (board
     (name frdm-k64f)
+    (mcu k64)
     (target thumbv7em-none-eabihf)
     (crate 
         (name k64) 
