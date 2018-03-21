@@ -4,6 +4,7 @@
 #[macro_use]
 extern crate nucleo_f746zg as board;
 
+use board::common::board::*;
 use board::common::mcu::*;
 use board::common::periph::*;
 use board::mcu::gpio;
@@ -14,10 +15,13 @@ use board::mcu::*;
 pub extern "C" fn main() -> ! {
     board::init();
 
-    let mcu = STM32F74X;
+    let brd = board::board();
+    let mcu = brd.mcu();
 
-    println!("MCU Test");
-    println!("ID: {:?}", mcu.id());
+    println!("Board Test");
+    println!("Board: {}", brd.id());
+    println!("MCU:   {}", mcu.id());
+    
     // Get Instance
 
     let gpioa = mcu.gpioa();

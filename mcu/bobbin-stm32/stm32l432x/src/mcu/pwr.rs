@@ -1,10 +1,11 @@
 #[allow(unused_imports)] use ::bobbin_common::*;
+#[allow(unused_imports)] pub use ::bobbin_common::gate::GateEn;
 pub use ::hal::pwr::*;
 
 #[allow(unused_imports)] use ::bobbin_common::*;
 
 
-periph!( PWR, Pwr, PWR_PERIPH, PwrPeriph, 0x40007000, 0x01);
+periph!( PWR, Pwr, PWR_PERIPH, PwrPeriph, 0x40007000, 0x00, 0x01);
 
 
 // Gate { name: None, gate_type: Some("RST"), periph: Some("RCC"), register: Some("APB1RSTR1"), field: Some("PWRRST"), description: None }

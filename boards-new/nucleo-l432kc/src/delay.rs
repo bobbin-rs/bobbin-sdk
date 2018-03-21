@@ -1,5 +1,4 @@
 use mcu::tim_gen::*;
-use mcu::pin::*;
 
 pub const TIM: Tim16 = TIM16;
 pub const TIM_CLK: u32 = 80_000_000;

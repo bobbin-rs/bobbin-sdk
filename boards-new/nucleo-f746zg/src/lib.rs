@@ -1,5 +1,5 @@
 #![no_std]
-#![feature(asm, lang_items, use_extern_macros, core_intrinsics)]
+#![feature(asm, lang_items, use_extern_macros, core_intrinsics, const_fn)]
 
 #[cfg(target_os="none")]
 pub extern crate cortex_m_rt;
@@ -43,4 +43,16 @@ pub fn handle_exception() {
     unsafe { asm!("bkpt") }
     loop {}
 }
+
+
+#[derive(Debug, Default)]
+pub struct NucleoF746zg {}
+
+impl common::board::Board for NucleoF746zg {
+   type Mcu = mcu::Stm32f74x;
+   fn id(&self) -> &'static str { "nucleo-f746zg" }
+   fn mcu(&self) -> Self::Mcu { Self::Mcu::default() }
+}
+
+pub const fn board() -> NucleoF746zg { NucleoF746zg{} }
 

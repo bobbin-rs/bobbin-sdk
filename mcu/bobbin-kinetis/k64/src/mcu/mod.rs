@@ -25,10 +25,14 @@ pub mod sig;
 pub mod pin;
 pub mod irq;
 
-pub struct Mcu {}
-pub const MCU: Mcu = Mcu {};
+#[derive(Debug, Default)]
+pub struct K64 {}
 
-impl Mcu {
+impl Mcu for K64 {
+    fn id(&self) -> &'static str { "K64" }
+}
+
+impl K64 {
     pub fn sim(&self) -> sim::Sim { sim::SIM }
     pub fn mcg(&self) -> mcg::Mcg { mcg::MCG }
     pub fn mpu(&self) -> mpu::Mpu { mpu::MPU }
@@ -71,15 +75,15 @@ impl Mcu {
     pub fn adc1(&self) -> adc::Adc1 { adc::ADC1 }
 }
 
-impl Get<sim::Sim> for Mcu {
+impl Get<sim::Sim> for K64 {
     fn get(&self) -> sim::Sim { sim::SIM }
 }
 
-impl GetPeriph<sim::SimPeriph> for Mcu {
+impl GetPeriph<sim::SimPeriph> for K64 {
     fn get_periph(&self) -> sim::SimPeriph { sim::SIM_PERIPH }
 }
 
-impl GetPeriphInstance<sim::SimPeriph> for Mcu {
+impl GetPeriphInstance<sim::SimPeriph> for K64 {
     fn get_periph_instance(&self, index: usize) -> Option<sim::SimPeriph> {
         match index { 
             0 => Some(sim::SIM_PERIPH),
@@ -89,15 +93,15 @@ impl GetPeriphInstance<sim::SimPeriph> for Mcu {
     fn get_periph_instance_count(&self) -> usize { 1 }
 }
 
-impl Get<mcg::Mcg> for Mcu {
+impl Get<mcg::Mcg> for K64 {
     fn get(&self) -> mcg::Mcg { mcg::MCG }
 }
 
-impl GetPeriph<mcg::McgPeriph> for Mcu {
+impl GetPeriph<mcg::McgPeriph> for K64 {
     fn get_periph(&self) -> mcg::McgPeriph { mcg::MCG_PERIPH }
 }
 
-impl GetPeriphInstance<mcg::McgPeriph> for Mcu {
+impl GetPeriphInstance<mcg::McgPeriph> for K64 {
     fn get_periph_instance(&self, index: usize) -> Option<mcg::McgPeriph> {
         match index { 
             0 => Some(mcg::MCG_PERIPH),
@@ -107,15 +111,15 @@ impl GetPeriphInstance<mcg::McgPeriph> for Mcu {
     fn get_periph_instance_count(&self) -> usize { 1 }
 }
 
-impl Get<mpu::Mpu> for Mcu {
+impl Get<mpu::Mpu> for K64 {
     fn get(&self) -> mpu::Mpu { mpu::MPU }
 }
 
-impl GetPeriph<mpu::MpuPeriph> for Mcu {
+impl GetPeriph<mpu::MpuPeriph> for K64 {
     fn get_periph(&self) -> mpu::MpuPeriph { mpu::MPU_PERIPH }
 }
 
-impl GetPeriphInstance<mpu::MpuPeriph> for Mcu {
+impl GetPeriphInstance<mpu::MpuPeriph> for K64 {
     fn get_periph_instance(&self, index: usize) -> Option<mpu::MpuPeriph> {
         match index { 
             0 => Some(mpu::MPU_PERIPH),
@@ -125,15 +129,15 @@ impl GetPeriphInstance<mpu::MpuPeriph> for Mcu {
     fn get_periph_instance_count(&self) -> usize { 1 }
 }
 
-impl Get<osc::Osc> for Mcu {
+impl Get<osc::Osc> for K64 {
     fn get(&self) -> osc::Osc { osc::OSC }
 }
 
-impl GetPeriph<osc::OscPeriph> for Mcu {
+impl GetPeriph<osc::OscPeriph> for K64 {
     fn get_periph(&self) -> osc::OscPeriph { osc::OSC_PERIPH }
 }
 
-impl GetPeriphInstance<osc::OscPeriph> for Mcu {
+impl GetPeriphInstance<osc::OscPeriph> for K64 {
     fn get_periph_instance(&self, index: usize) -> Option<osc::OscPeriph> {
         match index { 
             0 => Some(osc::OSC_PERIPH),
@@ -143,15 +147,15 @@ impl GetPeriphInstance<osc::OscPeriph> for Mcu {
     fn get_periph_instance_count(&self) -> usize { 1 }
 }
 
-impl Get<rcm::Rcm> for Mcu {
+impl Get<rcm::Rcm> for K64 {
     fn get(&self) -> rcm::Rcm { rcm::RCM }
 }
 
-impl GetPeriph<rcm::RcmPeriph> for Mcu {
+impl GetPeriph<rcm::RcmPeriph> for K64 {
     fn get_periph(&self) -> rcm::RcmPeriph { rcm::RCM_PERIPH }
 }
 
-impl GetPeriphInstance<rcm::RcmPeriph> for Mcu {
+impl GetPeriphInstance<rcm::RcmPeriph> for K64 {
     fn get_periph_instance(&self, index: usize) -> Option<rcm::RcmPeriph> {
         match index { 
             0 => Some(rcm::RCM_PERIPH),
@@ -161,15 +165,15 @@ impl GetPeriphInstance<rcm::RcmPeriph> for Mcu {
     fn get_periph_instance_count(&self) -> usize { 1 }
 }
 
-impl Get<enet::Enet> for Mcu {
+impl Get<enet::Enet> for K64 {
     fn get(&self) -> enet::Enet { enet::ENET }
 }
 
-impl GetPeriph<enet::EnetPeriph> for Mcu {
+impl GetPeriph<enet::EnetPeriph> for K64 {
     fn get_periph(&self) -> enet::EnetPeriph { enet::ENET_PERIPH }
 }
 
-impl GetPeriphInstance<enet::EnetPeriph> for Mcu {
+impl GetPeriphInstance<enet::EnetPeriph> for K64 {
     fn get_periph_instance(&self, index: usize) -> Option<enet::EnetPeriph> {
         match index { 
             0 => Some(enet::ENET_PERIPH),
@@ -179,15 +183,15 @@ impl GetPeriphInstance<enet::EnetPeriph> for Mcu {
     fn get_periph_instance_count(&self) -> usize { 1 }
 }
 
-impl Get<crc::Crc> for Mcu {
+impl Get<crc::Crc> for K64 {
     fn get(&self) -> crc::Crc { crc::CRC }
 }
 
-impl GetPeriph<crc::CrcPeriph> for Mcu {
+impl GetPeriph<crc::CrcPeriph> for K64 {
     fn get_periph(&self) -> crc::CrcPeriph { crc::CRC_PERIPH }
 }
 
-impl GetPeriphInstance<crc::CrcPeriph> for Mcu {
+impl GetPeriphInstance<crc::CrcPeriph> for K64 {
     fn get_periph_instance(&self, index: usize) -> Option<crc::CrcPeriph> {
         match index {
             0 => Some(crc::CRC_PERIPH),
@@ -197,15 +201,15 @@ impl GetPeriphInstance<crc::CrcPeriph> for Mcu {
     fn get_periph_instance_count(&self) -> usize { 1 }
 }
 
-impl Get<wdog::Wdog> for Mcu {
+impl Get<wdog::Wdog> for K64 {
     fn get(&self) -> wdog::Wdog { wdog::WDOG }
 }
 
-impl GetPeriph<wdog::WdogPeriph> for Mcu {
+impl GetPeriph<wdog::WdogPeriph> for K64 {
     fn get_periph(&self) -> wdog::WdogPeriph { wdog::WDOG_PERIPH }
 }
 
-impl GetPeriphInstance<wdog::WdogPeriph> for Mcu {
+impl GetPeriphInstance<wdog::WdogPeriph> for K64 {
     fn get_periph_instance(&self, index: usize) -> Option<wdog::WdogPeriph> {
         match index {
             0 => Some(wdog::WDOG_PERIPH),
@@ -215,15 +219,15 @@ impl GetPeriphInstance<wdog::WdogPeriph> for Mcu {
     fn get_periph_instance_count(&self) -> usize { 1 }
 }
 
-impl Get<dmamux::Dmamux> for Mcu {
+impl Get<dmamux::Dmamux> for K64 {
     fn get(&self) -> dmamux::Dmamux { dmamux::DMAMUX }
 }
 
-impl GetPeriph<dmamux::DmamuxPeriph> for Mcu {
+impl GetPeriph<dmamux::DmamuxPeriph> for K64 {
     fn get_periph(&self) -> dmamux::DmamuxPeriph { dmamux::DMAMUX_PERIPH }
 }
 
-impl GetPeriphInstance<dmamux::DmamuxPeriph> for Mcu {
+impl GetPeriphInstance<dmamux::DmamuxPeriph> for K64 {
     fn get_periph_instance(&self, index: usize) -> Option<dmamux::DmamuxPeriph> {
         match index {
             0 => Some(dmamux::DMAMUX_PERIPH),
@@ -233,15 +237,15 @@ impl GetPeriphInstance<dmamux::DmamuxPeriph> for Mcu {
     fn get_periph_instance_count(&self) -> usize { 1 }
 }
 
-impl Get<edma::Dma> for Mcu {
+impl Get<edma::Dma> for K64 {
     fn get(&self) -> edma::Dma { edma::DMA }
 }
 
-impl GetPeriph<edma::EdmaPeriph> for Mcu {
+impl GetPeriph<edma::EdmaPeriph> for K64 {
     fn get_periph(&self) -> edma::EdmaPeriph { edma::DMA_PERIPH }
 }
 
-impl GetPeriphInstance<edma::EdmaPeriph> for Mcu {
+impl GetPeriphInstance<edma::EdmaPeriph> for K64 {
     fn get_periph_instance(&self, index: usize) -> Option<edma::EdmaPeriph> {
         match index {
             0 => Some(edma::DMA_PERIPH),
@@ -251,19 +255,19 @@ impl GetPeriphInstance<edma::EdmaPeriph> for Mcu {
     fn get_periph_instance_count(&self) -> usize { 1 }
 }
 
-impl Get<ftm::Ftm0> for Mcu {
+impl Get<ftm::Ftm0> for K64 {
     fn get(&self) -> ftm::Ftm0 { ftm::FTM0 }
 }
 
-impl Get<ftm::Ftm1> for Mcu {
+impl Get<ftm::Ftm1> for K64 {
     fn get(&self) -> ftm::Ftm1 { ftm::FTM1 }
 }
 
-impl Get<ftm::Ftm2> for Mcu {
+impl Get<ftm::Ftm2> for K64 {
     fn get(&self) -> ftm::Ftm2 { ftm::FTM2 }
 }
 
-impl GetPeriphInstance<ftm::FtmPeriph> for Mcu {
+impl GetPeriphInstance<ftm::FtmPeriph> for K64 {
     fn get_periph_instance(&self, index: usize) -> Option<ftm::FtmPeriph> {
         match index {
             0 => Some(ftm::FTM0_PERIPH),
@@ -275,15 +279,15 @@ impl GetPeriphInstance<ftm::FtmPeriph> for Mcu {
     fn get_periph_instance_count(&self) -> usize { 3 }
 }
 
-impl Get<pit::Pit> for Mcu {
+impl Get<pit::Pit> for K64 {
     fn get(&self) -> pit::Pit { pit::PIT }
 }
 
-impl GetPeriph<pit::PitPeriph> for Mcu {
+impl GetPeriph<pit::PitPeriph> for K64 {
     fn get_periph(&self) -> pit::PitPeriph { pit::PIT_PERIPH }
 }
 
-impl GetPeriphInstance<pit::PitPeriph> for Mcu {
+impl GetPeriphInstance<pit::PitPeriph> for K64 {
     fn get_periph_instance(&self, index: usize) -> Option<pit::PitPeriph> {
         match index {
             0 => Some(pit::PIT_PERIPH),
@@ -293,15 +297,15 @@ impl GetPeriphInstance<pit::PitPeriph> for Mcu {
     fn get_periph_instance_count(&self) -> usize { 1 }
 }
 
-impl Get<lptmr::Lptmr0> for Mcu {
+impl Get<lptmr::Lptmr0> for K64 {
     fn get(&self) -> lptmr::Lptmr0 { lptmr::LPTMR0 }
 }
 
-impl GetPeriph<lptmr::LptmrPeriph> for Mcu {
+impl GetPeriph<lptmr::LptmrPeriph> for K64 {
     fn get_periph(&self) -> lptmr::LptmrPeriph { lptmr::LPTMR0_PERIPH }
 }
 
-impl GetPeriphInstance<lptmr::LptmrPeriph> for Mcu {
+impl GetPeriphInstance<lptmr::LptmrPeriph> for K64 {
     fn get_periph_instance(&self, index: usize) -> Option<lptmr::LptmrPeriph> {
         match index {
             0 => Some(lptmr::LPTMR0_PERIPH),
@@ -311,19 +315,19 @@ impl GetPeriphInstance<lptmr::LptmrPeriph> for Mcu {
     fn get_periph_instance_count(&self) -> usize { 1 }
 }
 
-impl Get<spi::Spi0> for Mcu {
+impl Get<spi::Spi0> for K64 {
     fn get(&self) -> spi::Spi0 { spi::SPI0 }
 }
 
-impl Get<spi::Spi1> for Mcu {
+impl Get<spi::Spi1> for K64 {
     fn get(&self) -> spi::Spi1 { spi::SPI1 }
 }
 
-impl Get<spi::Spi2> for Mcu {
+impl Get<spi::Spi2> for K64 {
     fn get(&self) -> spi::Spi2 { spi::SPI2 }
 }
 
-impl GetPeriphInstance<spi::SpiPeriph> for Mcu {
+impl GetPeriphInstance<spi::SpiPeriph> for K64 {
     fn get_periph_instance(&self, index: usize) -> Option<spi::SpiPeriph> {
         match index {
             0 => Some(spi::SPI0_PERIPH),
@@ -335,15 +339,15 @@ impl GetPeriphInstance<spi::SpiPeriph> for Mcu {
     fn get_periph_instance_count(&self) -> usize { 3 }
 }
 
-impl Get<i2c::I2c0> for Mcu {
+impl Get<i2c::I2c0> for K64 {
     fn get(&self) -> i2c::I2c0 { i2c::I2C0 }
 }
 
-impl Get<i2c::I2c1> for Mcu {
+impl Get<i2c::I2c1> for K64 {
     fn get(&self) -> i2c::I2c1 { i2c::I2C1 }
 }
 
-impl GetPeriphInstance<i2c::I2cPeriph> for Mcu {
+impl GetPeriphInstance<i2c::I2cPeriph> for K64 {
     fn get_periph_instance(&self, index: usize) -> Option<i2c::I2cPeriph> {
         match index {
             0 => Some(i2c::I2C0_PERIPH),
@@ -354,31 +358,31 @@ impl GetPeriphInstance<i2c::I2cPeriph> for Mcu {
     fn get_periph_instance_count(&self) -> usize { 2 }
 }
 
-impl Get<uart::Uart0> for Mcu {
+impl Get<uart::Uart0> for K64 {
     fn get(&self) -> uart::Uart0 { uart::UART0 }
 }
 
-impl Get<uart::Uart1> for Mcu {
+impl Get<uart::Uart1> for K64 {
     fn get(&self) -> uart::Uart1 { uart::UART1 }
 }
 
-impl Get<uart::Uart2> for Mcu {
+impl Get<uart::Uart2> for K64 {
     fn get(&self) -> uart::Uart2 { uart::UART2 }
 }
 
-impl Get<uart::Uart3> for Mcu {
+impl Get<uart::Uart3> for K64 {
     fn get(&self) -> uart::Uart3 { uart::UART3 }
 }
 
-impl Get<uart::Uart4> for Mcu {
+impl Get<uart::Uart4> for K64 {
     fn get(&self) -> uart::Uart4 { uart::UART4 }
 }
 
-impl Get<uart::Uart5> for Mcu {
+impl Get<uart::Uart5> for K64 {
     fn get(&self) -> uart::Uart5 { uart::UART5 }
 }
 
-impl GetPeriphInstance<uart::UartPeriph> for Mcu {
+impl GetPeriphInstance<uart::UartPeriph> for K64 {
     fn get_periph_instance(&self, index: usize) -> Option<uart::UartPeriph> {
         match index {
             0 => Some(uart::UART0_PERIPH),
@@ -393,15 +397,15 @@ impl GetPeriphInstance<uart::UartPeriph> for Mcu {
     fn get_periph_instance_count(&self) -> usize { 6 }
 }
 
-impl Get<usb::Usb0> for Mcu {
+impl Get<usb::Usb0> for K64 {
     fn get(&self) -> usb::Usb0 { usb::USB0 }
 }
 
-impl GetPeriph<usb::UsbPeriph> for Mcu {
+impl GetPeriph<usb::UsbPeriph> for K64 {
     fn get_periph(&self) -> usb::UsbPeriph { usb::USB0_PERIPH }
 }
 
-impl GetPeriphInstance<usb::UsbPeriph> for Mcu {
+impl GetPeriphInstance<usb::UsbPeriph> for K64 {
     fn get_periph_instance(&self, index: usize) -> Option<usb::UsbPeriph> {
         match index {
             0 => Some(usb::USB0_PERIPH),
@@ -411,15 +415,15 @@ impl GetPeriphInstance<usb::UsbPeriph> for Mcu {
     fn get_periph_instance_count(&self) -> usize { 1 }
 }
 
-impl Get<flexcan::Can0> for Mcu {
+impl Get<flexcan::Can0> for K64 {
     fn get(&self) -> flexcan::Can0 { flexcan::CAN0 }
 }
 
-impl GetPeriph<flexcan::FlexcanPeriph> for Mcu {
+impl GetPeriph<flexcan::FlexcanPeriph> for K64 {
     fn get_periph(&self) -> flexcan::FlexcanPeriph { flexcan::CAN0_PERIPH }
 }
 
-impl GetPeriphInstance<flexcan::FlexcanPeriph> for Mcu {
+impl GetPeriphInstance<flexcan::FlexcanPeriph> for K64 {
     fn get_periph_instance(&self, index: usize) -> Option<flexcan::FlexcanPeriph> {
         match index {
             0 => Some(flexcan::CAN0_PERIPH),
@@ -429,27 +433,27 @@ impl GetPeriphInstance<flexcan::FlexcanPeriph> for Mcu {
     fn get_periph_instance_count(&self) -> usize { 1 }
 }
 
-impl Get<gpio::Gpioa> for Mcu {
+impl Get<gpio::Gpioa> for K64 {
     fn get(&self) -> gpio::Gpioa { gpio::GPIOA }
 }
 
-impl Get<gpio::Gpiob> for Mcu {
+impl Get<gpio::Gpiob> for K64 {
     fn get(&self) -> gpio::Gpiob { gpio::GPIOB }
 }
 
-impl Get<gpio::Gpioc> for Mcu {
+impl Get<gpio::Gpioc> for K64 {
     fn get(&self) -> gpio::Gpioc { gpio::GPIOC }
 }
 
-impl Get<gpio::Gpiod> for Mcu {
+impl Get<gpio::Gpiod> for K64 {
     fn get(&self) -> gpio::Gpiod { gpio::GPIOD }
 }
 
-impl Get<gpio::Gpioe> for Mcu {
+impl Get<gpio::Gpioe> for K64 {
     fn get(&self) -> gpio::Gpioe { gpio::GPIOE }
 }
 
-impl GetPeriphInstance<gpio::GpioPeriph> for Mcu {
+impl GetPeriphInstance<gpio::GpioPeriph> for K64 {
     fn get_periph_instance(&self, index: usize) -> Option<gpio::GpioPeriph> {
         match index {
             0 => Some(gpio::GPIOA_PERIPH),
@@ -463,27 +467,27 @@ impl GetPeriphInstance<gpio::GpioPeriph> for Mcu {
     fn get_periph_instance_count(&self) -> usize { 5 }
 }
 
-impl Get<port::Porta> for Mcu {
+impl Get<port::Porta> for K64 {
     fn get(&self) -> port::Porta { port::PORTA }
 }
 
-impl Get<port::Portb> for Mcu {
+impl Get<port::Portb> for K64 {
     fn get(&self) -> port::Portb { port::PORTB }
 }
 
-impl Get<port::Portc> for Mcu {
+impl Get<port::Portc> for K64 {
     fn get(&self) -> port::Portc { port::PORTC }
 }
 
-impl Get<port::Portd> for Mcu {
+impl Get<port::Portd> for K64 {
     fn get(&self) -> port::Portd { port::PORTD }
 }
 
-impl Get<port::Porte> for Mcu {
+impl Get<port::Porte> for K64 {
     fn get(&self) -> port::Porte { port::PORTE }
 }
 
-impl GetPeriphInstance<port::PortPeriph> for Mcu {
+impl GetPeriphInstance<port::PortPeriph> for K64 {
     fn get_periph_instance(&self, index: usize) -> Option<port::PortPeriph> {
         match index {
             0 => Some(port::PORTA_PERIPH),
@@ -497,15 +501,15 @@ impl GetPeriphInstance<port::PortPeriph> for Mcu {
     fn get_periph_instance_count(&self) -> usize { 5 }
 }
 
-impl Get<adc::Adc0> for Mcu {
+impl Get<adc::Adc0> for K64 {
     fn get(&self) -> adc::Adc0 { adc::ADC0 }
 }
 
-impl Get<adc::Adc1> for Mcu {
+impl Get<adc::Adc1> for K64 {
     fn get(&self) -> adc::Adc1 { adc::ADC1 }
 }
 
-impl GetPeriphInstance<adc::AdcPeriph> for Mcu {
+impl GetPeriphInstance<adc::AdcPeriph> for K64 {
     fn get_periph_instance(&self, index: usize) -> Option<adc::AdcPeriph> {
         match index {
             0 => Some(adc::ADC0_PERIPH),

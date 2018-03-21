@@ -3,7 +3,7 @@ CHIP_ARGS_THUMBV6=--board --cargo-template template-thumbv6/
 CHIP_ARGS_THUMBV7=--board --cargo-template template-thumbv7/
 BOARD_DST=../boards-new
 
-all: arduino-zero frdm-k64f nucleo-l432kc nucleo-f746zg can-am
+all: arduino-zero frdm-k64f nucleo-l432kc nucleo-f746zg can-cam
 
 arduino-zero: arduino-zero.rx
 	$(CHIP) $(CHIP_ARGS_THUMBV6) $< $(BOARD_DST)/$@/

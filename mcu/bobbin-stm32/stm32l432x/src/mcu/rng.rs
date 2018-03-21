@@ -1,7 +1,8 @@
 #[allow(unused_imports)] use ::bobbin_common::*;
+#[allow(unused_imports)] pub use ::bobbin_common::gate::GateEn;
 pub use ::hal::rng::*;
 
-periph!( RNG, Rng, RNG_PERIPH, RngPeriph, 0x50060800, 0x05);
+periph!( RNG, Rng, RNG_PERIPH, RngPeriph, 0x50060800, 0x00, 0x05);
 
 // Gate { name: None, gate_type: Some("RST"), periph: Some("RCC"), register: Some("AHB2RSTR"), field: Some("RNGRST"), description: None }
 impl ::bobbin_common::gate::GateRst for Rng {

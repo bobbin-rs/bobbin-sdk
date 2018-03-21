@@ -1,6 +1,7 @@
 #[allow(unused_imports)] use ::bobbin_common::*;
 pub use ::bobbin_common::pin::*;
 pub use ::bobbin_common::gate::*;
+
 pub use super::gpio::*;
 
 pin!(PA0, Pa0, GPIOA, Gpioa, PA0_PIN, GpioPin, GPIOA_PERIPH, 0);

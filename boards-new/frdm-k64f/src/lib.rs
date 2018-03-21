@@ -1,5 +1,5 @@
 #![no_std]
-#![feature(asm, lang_items, use_extern_macros, core_intrinsics)]
+#![feature(asm, lang_items, use_extern_macros, core_intrinsics, const_fn)]
 
 #[cfg(target_os="none")]
 pub extern crate cortex_m_rt;
@@ -43,4 +43,16 @@ pub fn handle_exception() {
     unsafe { asm!("bkpt") }
     loop {}
 }
+
+
+#[derive(Debug, Default)]
+pub struct FrdmK64f {}
+
+impl common::board::Board for FrdmK64f {
+   type Mcu = mcu::K64;
+   fn id(&self) -> &'static str { "frdm-k64f" }
+   fn mcu(&self) -> Self::Mcu { Self::Mcu::default() }
+}
+
+pub const fn board() -> FrdmK64f { FrdmK64f{} }
 

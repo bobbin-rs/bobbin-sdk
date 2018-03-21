@@ -1,11 +1,12 @@
 #[allow(unused_imports)] use ::bobbin_common::*;
+#[allow(unused_imports)] pub use ::bobbin_common::gate::GateEn;
 pub use ::hal::usart::*;
 
-periph!( USART1, Usart1, USART1_PERIPH, UsartPeriph, 0x40013800, 0x24);
-periph!( USART2, Usart2, USART2_PERIPH, UsartPeriph, 0x40004400, 0x25);
-periph!( USART3, Usart3, USART3_PERIPH, UsartPeriph, 0x40004800, 0x26);
-periph!( UART4, Uart4, UART4_PERIPH, UsartPeriph, 0x40004c00, 0x27);
-periph!( UART5, Uart5, UART5_PERIPH, UsartPeriph, 0x40005000, 0x28);
+periph!( USART1, Usart1, USART1_PERIPH, UsartPeriph, 0x40013800, 0x00, 0x24);
+periph!( USART2, Usart2, USART2_PERIPH, UsartPeriph, 0x40004400, 0x01, 0x25);
+periph!( USART3, Usart3, USART3_PERIPH, UsartPeriph, 0x40004800, 0x02, 0x26);
+periph!( UART4, Uart4, UART4_PERIPH, UsartPeriph, 0x40004c00, 0x03, 0x27);
+periph!( UART5, Uart5, UART5_PERIPH, UsartPeriph, 0x40005000, 0x04, 0x28);
 
 // Gate { name: None, gate_type: Some("RST"), periph: Some("RCC"), register: Some("APB2RSTR"), field: Some("USART1RST"), description: None }
 impl ::bobbin_common::gate::GateRst for Usart1 {

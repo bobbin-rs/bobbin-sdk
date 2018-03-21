@@ -1,10 +1,11 @@
 #[allow(unused_imports)] use ::bobbin_common::*;
+#[allow(unused_imports)] pub use ::bobbin_common::gate::GateEn;
 pub use ::hal::flash::*;
 
 #[allow(unused_imports)] use ::bobbin_common::*;
 
 
-periph!( FLASH, Flash, FLASH_PERIPH, FlashPeriph, 0x40022000, 0x00);
+periph!( FLASH, Flash, FLASH_PERIPH, FlashPeriph, 0x40022000, 0x00, 0x00);
 
 
 // Gate { name: None, gate_type: Some("RST"), periph: Some("RCC"), register: Some("AHB1RSTR"), field: Some("FLASHRST"), description: None }

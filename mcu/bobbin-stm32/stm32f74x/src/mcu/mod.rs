@@ -45,7 +45,6 @@ pub mod irq;
 
 #[derive(Debug, Default)]
 pub struct Stm32f74x {}
-pub const STM32F74X: Stm32f74x = Stm32f74x {};
 
 impl Mcu for Stm32f74x {
     fn id(&self) -> &'static str { "STM32F74x" }

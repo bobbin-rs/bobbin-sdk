@@ -1,5 +1,5 @@
 #![no_std]
-#![feature(asm, lang_items, use_extern_macros, core_intrinsics)]
+#![feature(asm, lang_items, use_extern_macros, core_intrinsics, const_fn)]
 
 #[cfg(target_os="none")]
 pub extern crate cortex_m_rt;
@@ -40,4 +40,16 @@ pub fn handle_exception() {
     unsafe { asm!("bkpt") }
     loop {}
 }
+
+
+#[derive(Debug, Default)]
+pub struct ArduinoZero {}
+
+impl common::board::Board for ArduinoZero {
+   type Mcu = mcu::Samd21;
+   fn id(&self) -> &'static str { "arduino-zero" }
+   fn mcu(&self) -> Self::Mcu { Self::Mcu::default() }
+}
+
+pub const fn board() -> ArduinoZero { ArduinoZero{} }
 

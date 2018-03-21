@@ -43,7 +43,7 @@ pub use mcu::adc;
 pub use mcu::pin;
 pub use mcu::sig;
 pub use mcu::irq;
-pub use mcu::*;
+pub use mcu::Stm32l432x;
 
 pub mod clock;
 pub use clock::*;
