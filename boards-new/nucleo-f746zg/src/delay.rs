@@ -1,5 +1,4 @@
 use mcu::tim_gen::*;
-use mcu::pin::*;
 use clock::*;
 
 pub const TIM: Tim14 = TIM14;
