@@ -282,7 +282,6 @@ pub fn gen_mcu_mod<W: Write>(cfg: &modules::Config, p_out: &mut W, out: &mut W, 
     let mut ord = 0;
 
     let mcu_type = super::to_camel(&d.name);
-    let mcu_id = d.name.to_uppercase();
 
     writeln!(out, "pub use ::bobbin_common::mcu::*;")?;
     writeln!(out, "")?;
@@ -324,12 +323,11 @@ pub fn gen_mcu_mod<W: Write>(cfg: &modules::Config, p_out: &mut W, out: &mut W, 
 
     // Generate MCU and peripheral accessors
 
-    writeln!(p_out, "pub use mcu::{{{}, {}}};", mcu_id, mcu_type)?;
+    writeln!(p_out, "pub use mcu::{};", mcu_type)?;
 
     writeln!(out, "")?;   
     writeln!(out, "#[derive(Debug, Default)]")?;
     writeln!(out, "pub struct {} {{}}", mcu_type)?;
-    writeln!(out, "pub const {}: {} = {} {{}};", mcu_id, mcu_type, mcu_type)?;
     writeln!(out, "")?;   
 
     writeln!(out, "impl Mcu for {} {{", mcu_type)?;
