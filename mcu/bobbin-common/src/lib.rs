@@ -12,6 +12,7 @@ pub extern crate bobbin_tree as tree;
 #[macro_use]
 mod macros;
 
+pub mod mcu;
 pub mod periph;
 pub mod pin;
 pub mod channel;
