@@ -1,4 +1,5 @@
 #[allow(unused_imports)] use ::bobbin_common::*;
+#[allow(unused_imports)] pub use ::bobbin_common::gate::GateEn;
 pub use ::hal::usb_fs_device::*;
 
 periph!( USB_FS_DEVICE, UsbFsDevice, USB_FS_DEVICE_PERIPH, UsbFsDevicePeriph, 0x50000800, 0x16);

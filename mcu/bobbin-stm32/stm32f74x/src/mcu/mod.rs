@@ -38,7 +38,5 @@ pub mod gpio;
 pub mod usart;
 pub mod dma;
 pub mod sig;
-
 pub mod pin;
-
 pub mod irq;

@@ -1,4 +1,5 @@
 #[allow(unused_imports)] use ::bobbin_common::*;
+#[allow(unused_imports)] pub use ::bobbin_common::gate::GateEn;
 pub use ::hal::tim_gen::*;
 
 periph!( TIM2, Tim2, TIM2_PERIPH, TimGenPeriph, 0x40000000, 0x1e);

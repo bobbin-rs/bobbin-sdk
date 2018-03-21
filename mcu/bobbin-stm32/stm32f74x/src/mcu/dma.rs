@@ -1,4 +1,5 @@
 #[allow(unused_imports)] use ::bobbin_common::*;
+#[allow(unused_imports)] pub use ::bobbin_common::gate::GateEn;
 pub use ::hal::dma::*;
 
 periph!( DMA1, Dma1, DMA1_PERIPH, DmaPeriph, 0x40026000, 0x4f);

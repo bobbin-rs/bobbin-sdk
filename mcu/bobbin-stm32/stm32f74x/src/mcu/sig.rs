@@ -1,4 +1,5 @@
 #[allow(unused_imports)] pub use ::bobbin_common::*;
+
 signal_type!(DCMI_HSYNC, SigDcmiHsync);
 signal_type!(DCMI_VSYNC, SigDcmiVsync);
 signal_type!(DCMI_PIXCLK, SigDcmiPixclk);

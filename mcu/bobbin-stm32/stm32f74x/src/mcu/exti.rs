@@ -1,4 +1,5 @@
 #[allow(unused_imports)] use ::bobbin_common::*;
+#[allow(unused_imports)] pub use ::bobbin_common::gate::GateEn;
 pub use ::hal::exti::*;
 
 periph!( EXTI, Exti, EXTI_PERIPH, ExtiPeriph, 0x40013c00, 0x1b);
