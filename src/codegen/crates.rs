@@ -154,7 +154,7 @@ pub fn gen_crate<W: Write>(cfg: Config, _out: &mut W, d: &Device) -> Result<()> 
         writeln!(out, "pub mod mcu;")?;
         let mut mcu_out = File::create(mcu_path.clone().join("mod.rs"))?;
         gen_mcu_mod(&cfg, &mut out, &mut mcu_out, d, &mcu_path)?;
-        writeln!(out, "pub use mcu::*;")?;
+        // writeln!(out, "pub use mcu::*;")?;
         writeln!(out, "")?;
 
         writeln!(out, "pub mod clock;")?;
@@ -337,7 +337,7 @@ pub fn gen_signals_mod<W: Write>(cfg: &modules::Config, out: &mut W, d: &Device,
         let p_mod = path.join(format!("{}.rs", p_name));
         let mut f_mod = try!(File::create(p_mod));
         try!(writeln!(f_mod, "#[allow(unused_imports)] pub use ::bobbin_common::*;"));
-        try!(writeln!(out, ""));
+        try!(writeln!(f_mod, ""));
         modules::gen_signals(cfg, &mut f_mod, &d)
     }    
 }
@@ -354,7 +354,7 @@ pub fn gen_pins_mod<W: Write>(cfg: &modules::Config, out: &mut W, d: &Device, pa
         try!(writeln!(f_mod, "#[allow(unused_imports)] use ::bobbin_common::*;"));
         try!(writeln!(f_mod, "pub use ::bobbin_common::pin::*;"));
         try!(writeln!(f_mod, "pub use ::bobbin_common::gate::*;"));
-        try!(writeln!(out, ""));
+        try!(writeln!(f_mod, ""));
         try!(modules::gen_pins(cfg, &mut f_mod, &d, signals));
     }
     
