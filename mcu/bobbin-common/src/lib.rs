@@ -24,6 +24,7 @@ pub mod board;
 pub mod clock;
 pub mod console;
 
+pub mod delay;
 pub mod crc;
 pub mod timer;
 pub mod digital;

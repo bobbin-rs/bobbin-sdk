@@ -19,3 +19,9 @@ pub fn delay(ms: u32) {
     while !PIT.interrupt_flag(PIT_CH) {}
     PIT.clr_interrupt_flag(PIT_CH);
 }
+
+impl ::common::delay::Delay for ::FrdmK64f {
+    fn delay_ms(&self, ms: u32) {
+        delay(ms)
+    }
+}

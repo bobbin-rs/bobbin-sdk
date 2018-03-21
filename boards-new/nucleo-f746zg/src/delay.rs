@@ -26,3 +26,9 @@ pub fn delay(ms: u32) {
         .set_prescale(((tim_clk / 2000) - 1) as u16)
         .delay((ms << 1) as u16);
 }
+
+impl ::common::delay::Delay for ::NucleoF746zg {
+    fn delay_ms(&self, ms: u32) {
+        delay(ms)
+    }
+}
