@@ -756,7 +756,7 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, d: &Device, pg:
     // writeln!(out, "pub use ::hal::{}::*;", pg_name.to_lowercase())?;
     // try!(writeln!(out, ""));
 
-    for p in pg.peripherals.iter() {
+    for (i, p) in pg.peripherals.iter().enumerate() {
         if p.features.len() > 0 {
             try!(writeln!(out, "#[cfg(any("));
             for f in p.features.iter() {
@@ -767,8 +767,8 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, d: &Device, pg:
         let p_name = p.name.to_uppercase();
         let p_const = format!("{}_PERIPH", p_name);
         let p_type = to_camel(&p.name);
-        try!(writeln!(out, "periph!( {p_name}, {p_type}, {p_const}, {pg_type}, 0x{p_addr:08x}, 0x{p_ord:02x});", 
-            p_const=p_const, pg_type=pg_type, p_name=p_name, p_type=p_type, p_addr=p.address, p_ord=ord));
+        try!(writeln!(out, "periph!( {p_name}, {p_type}, {p_const}, {pg_type}, 0x{p_addr:08x}, 0x{p_index:02x}, 0x{p_ord:02x});", 
+            p_const=p_const, pg_type=pg_type, p_name=p_name, p_type=p_type, p_addr=p.address, p_index=i, p_ord=ord));
         *ord += 1;
     }
     try!(writeln!(out, ""));
@@ -1076,8 +1076,8 @@ pub fn gen_peripheral<W: Write>(cfg: &Config, out: &mut W, d: &Device, p: &Perip
         // try!(writeln!(out, ""));
     } else {
         // try!(writeln!(out, "periph!({p_name}, {p_type}, 0x{p_addr:08x}, 0x{p_ord:02x});", p_name=p.name, p_type=p_type, p_addr=p.address, p_ord=ord));
-        try!(writeln!(out, "periph!( {p_name}, {p_type}, {p_const}, {pg_type}, 0x{p_addr:08x}, 0x{p_ord:02x});", 
-            p_const=p_const, pg_type=pg_type, p_name=p.name, p_type=p_type, p_addr=p.address, p_ord=ord));
+        try!(writeln!(out, "periph!( {p_name}, {p_type}, {p_const}, {pg_type}, 0x{p_addr:08x}, 0x{p_index:02x}, 0x{p_ord:02x});", 
+            p_const=p_const, pg_type=pg_type, p_name=p.name, p_type=p_type, p_addr=p.address, p_index=0, p_ord=ord));
         try!(writeln!(out, ""));
     }
     

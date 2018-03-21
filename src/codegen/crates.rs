@@ -281,6 +281,9 @@ pub fn gen_hal_mod<W: Write>(_cfg: &modules::Config, out: &mut W, d: &Device, pa
 pub fn gen_mcu_mod<W: Write>(cfg: &modules::Config, p_out: &mut W, out: &mut W, d: &Device, path: &Path) -> Result<()> {
     let mut ord = 0;
 
+    let mcu_type = super::to_camel(&d.name);
+    let mcu_id = d.name.to_uppercase();
+
     writeln!(out, "pub use ::bobbin_common::mcu::*;")?;
     writeln!(out, "")?;
 
@@ -321,14 +324,20 @@ pub fn gen_mcu_mod<W: Write>(cfg: &modules::Config, p_out: &mut W, out: &mut W, 
 
     // Generate MCU and peripheral accessors
 
-    writeln!(p_out, "pub use mcu::{{MCU, Mcu}};")?;
+    writeln!(p_out, "pub use mcu::{{{}, {}}};", mcu_id, mcu_type)?;
 
     writeln!(out, "")?;   
-    writeln!(out, "pub struct Mcu {{}}")?;
-    writeln!(out, "pub const MCU: Mcu = Mcu {{}};")?;
+    writeln!(out, "#[derive(Debug, Default)]")?;
+    writeln!(out, "pub struct {} {{}}", mcu_type)?;
+    writeln!(out, "pub const {}: {} = {} {{}};", mcu_id, mcu_type, mcu_type)?;
     writeln!(out, "")?;   
 
-    writeln!(out, "impl Mcu {{")?;
+    writeln!(out, "impl Mcu for {} {{", mcu_type)?;
+    writeln!(out, "    fn id(&self) -> &'static str {{ {:?} }}", d.name)?;
+    writeln!(out, "}}")?;
+    writeln!(out, "")?;
+
+    writeln!(out, "impl {} {{", mcu_type)?;
     for p in d.peripherals.iter() {
         let pg_mod = p.group_name.as_ref().unwrap_or(&p.name).to_lowercase();
         let p_name = p.name.to_lowercase();
@@ -356,15 +365,15 @@ pub fn gen_mcu_mod<W: Write>(cfg: &modules::Config, p_out: &mut W, out: &mut W, 
         let p_id = p.name.to_uppercase();
         let p_periph_type = format!("{}Periph", p_type);
         let p_periph_id = format!("{}_PERIPH", p_id);
-        writeln!(out, "impl Get<{}::{}> for Mcu {{", pg_mod, p_type)?;        
+        writeln!(out, "impl Get<{}::{}> for {} {{", pg_mod, p_type, mcu_type)?;
         writeln!(out, "    fn get(&self) -> {}::{} {{ {}::{} }}", pg_mod, p_type, pg_mod, p_id)?;
         writeln!(out, "}}")?;    
         writeln!(out, "")?;
-        writeln!(out, "impl GetPeriph<{}::{}> for Mcu {{", pg_mod, p_periph_type)?;
+        writeln!(out, "impl GetPeriph<{}::{}> for {} {{", pg_mod, p_periph_type, mcu_type)?;
         writeln!(out, "    fn get_periph(&self) -> {}::{} {{ {}::{} }}", pg_mod, p_periph_type, pg_mod, p_periph_id)?;
         writeln!(out, "}}")?;    
         writeln!(out, "")?;
-        writeln!(out, "impl GetPeriphInstance<{}::{}> for Mcu {{", pg_mod, p_periph_type)?;
+        writeln!(out, "impl GetPeriphInstance<{}::{}> for {} {{", pg_mod, p_periph_type, mcu_type)?;
         writeln!(out, "    fn get_periph_instance(&self, index: usize) -> Option<{}::{}> {{", pg_mod, p_periph_type)?;
         writeln!(out, "        match index {{ ")?;
         writeln!(out, "            0 => Some({}::{}),", pg_mod, p_periph_id)?;
@@ -384,18 +393,18 @@ pub fn gen_mcu_mod<W: Write>(cfg: &modules::Config, p_out: &mut W, out: &mut W, 
             let p_type = super::to_camel(&p.name);
             let p_id = p.name.to_uppercase();
             let p_periph_id = format!("{}_PERIPH", p_id);            
-            writeln!(out, "impl Get<{}::{}> for Mcu {{", pg_mod, p_type)?;        
+            writeln!(out, "impl Get<{}::{}> for {} {{", pg_mod, p_type, mcu_type)?;
             writeln!(out, "    fn get(&self) -> {}::{} {{ {}::{} }}", pg_mod, p_type, pg_mod, p_id)?;            
             writeln!(out, "}}")?;    
             writeln!(out, "")?;
             if pg_len == 1 {
-                writeln!(out, "impl GetPeriph<{}::{}> for Mcu {{", pg_mod, p_periph_type)?;
+                writeln!(out, "impl GetPeriph<{}::{}> for {} {{", pg_mod, p_periph_type, mcu_type)?;
                 writeln!(out, "    fn get_periph(&self) -> {}::{} {{ {}::{} }}", pg_mod, p_periph_type, pg_mod, p_periph_id)?;
                 writeln!(out, "}}")?;    
                 writeln!(out, "")?;                   
             }
         }
-        writeln!(out, "impl GetPeriphInstance<{}::{}> for Mcu {{", pg_mod, p_periph_type)?;
+        writeln!(out, "impl GetPeriphInstance<{}::{}> for {} {{", pg_mod, p_periph_type, mcu_type)?;
         writeln!(out, "    fn get_periph_instance(&self, index: usize) -> Option<{}::{}> {{", pg_mod, p_periph_type)?;
         writeln!(out, "        match index {{")?;
         for (i, p) in pg.peripherals.iter().enumerate() {
