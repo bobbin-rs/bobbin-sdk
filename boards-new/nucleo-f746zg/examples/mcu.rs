@@ -5,9 +5,10 @@
 extern crate nucleo_f746zg as board;
 
 use board::common::mcu::*;
+use board::common::periph::*;
 use board::mcu::gpio;
 use board::mcu::wwdg;
-use board::mcu::MCU;
+use board::mcu::{MCU, Mcu};
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
@@ -18,6 +19,9 @@ pub extern "C" fn main() -> ! {
     // Get Instance
 
     let gpioa = MCU.gpioa();
+
+    println!("GPIOA is {} of {}", gpioa.index(), <Mcu as GetPeriphInstance<gpio::GpioPeriph>>::get_periph_instance_count(&MCU));
+
     println!("GPIOA_MODER: {:?}", gpioa.moder());
 
     // Get Instance by Type
