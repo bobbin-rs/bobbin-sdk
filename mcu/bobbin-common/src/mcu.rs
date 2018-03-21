@@ -1,4 +1,4 @@
-pub trait Mcu {
+pub trait Mcu : Default {
     fn id(&self) -> &'static str;
 }
 
