@@ -2,8 +2,8 @@
 #[allow(unused_imports)] pub use ::bobbin_common::gate::GateEn;
 pub use ::hal::adc::*;
 
-periph!( ADC0, Adc0, ADC0_PERIPH, AdcPeriph, 0x4003b000, 0x26);
-periph!( ADC1, Adc1, ADC1_PERIPH, AdcPeriph, 0x400bb000, 0x27);
+periph!( ADC0, Adc0, ADC0_PERIPH, AdcPeriph, 0x4003b000, 0x00, 0x26);
+periph!( ADC1, Adc1, ADC1_PERIPH, AdcPeriph, 0x400bb000, 0x01, 0x27);
 
 channel!(ADC0_CH0, Adc0Ch0, ADC0, Adc0, ADC0_CH0_CH, AdcCh, ADC0_PERIPH, 0);
 channel!(ADC0_CH1, Adc0Ch1, ADC0, Adc0, ADC0_CH1_CH, AdcCh, ADC0_PERIPH, 1);

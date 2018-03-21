@@ -1,9 +1,10 @@
 #[allow(unused_imports)] use ::bobbin_common::*;
+#[allow(unused_imports)] pub use ::bobbin_common::gate::GateEn;
 pub use ::hal::dmac::*;
 
 // //! Direct Memory Access Controller
 
-periph!( DMAC, Dmac, DMAC_PERIPH, DmacPeriph, 0x41004800, 0x06);
+periph!( DMAC, Dmac, DMAC_PERIPH, DmacPeriph, 0x41004800, 0x00, 0x06);
 
 channel!(DMAC_CH0, DmacCh0, DMAC, Dmac, DMAC_CH0_CH, DmacCh, DMAC_PERIPH, 0);
 channel!(DMAC_CH1, DmacCh1, DMAC, Dmac, DMAC_CH1_CH, DmacCh, DMAC_PERIPH, 1);

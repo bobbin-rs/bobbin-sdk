@@ -1,10 +1,11 @@
 
-pub struct TimBasCh { pub periph: TimBasPeriph, pub index: usize }
 #[allow(unused_imports)] use bobbin_common::*;
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="TIM_BAS Peripheral"]
 pub struct TimBasPeriph(pub usize); 
+
+pub struct TimBasCh { pub periph: TimBasPeriph, pub index: usize }
 
 impl TimBasPeriph {
     #[doc="Get the *mut pointer for the CR1 register."]

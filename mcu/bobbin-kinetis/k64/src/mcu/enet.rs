@@ -5,7 +5,7 @@ pub use ::hal::enet::*;
 #[allow(unused_imports)] use ::bobbin_common::*;
 
 
-periph!( ENET, Enet, ENET_PERIPH, EnetPeriph, 0x400c0000, 0x05);
+periph!( ENET, Enet, ENET_PERIPH, EnetPeriph, 0x400c0000, 0x00, 0x05);
 
 
 // Gate { name: None, gate_type: Some("EN"), periph: Some("SIM"), register: Some("SCGC2"), field: Some("ENET"), description: None }

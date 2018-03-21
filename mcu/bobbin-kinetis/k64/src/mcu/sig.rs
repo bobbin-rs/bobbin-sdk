@@ -1,4 +1,5 @@
 #[allow(unused_imports)] pub use ::bobbin_common::*;
+
 signal_type!(FTM, SigFtm);
 signal_type!(SPI_SCK, SigSpiSck);
 signal_type!(SPI_SOUT, SigSpiSout);

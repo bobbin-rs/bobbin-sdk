@@ -1,11 +1,12 @@
 #[allow(unused_imports)] use ::bobbin_common::*;
+#[allow(unused_imports)] pub use ::bobbin_common::gate::GateEn;
 pub use ::hal::tcc::*;
 
 // //! Timer/Counter for Control Applications
 
-periph!( TCC0, Tcc0, TCC0_PERIPH, TccPeriph, 0x42002000, 0x08);
-periph!( TCC1, Tcc1, TCC1_PERIPH, TccPeriph, 0x42002400, 0x09);
-periph!( TCC2, Tcc2, TCC2_PERIPH, TccPeriph, 0x42002800, 0x0a);
+periph!( TCC0, Tcc0, TCC0_PERIPH, TccPeriph, 0x42002000, 0x00, 0x08);
+periph!( TCC1, Tcc1, TCC1_PERIPH, TccPeriph, 0x42002400, 0x01, 0x09);
+periph!( TCC2, Tcc2, TCC2_PERIPH, TccPeriph, 0x42002800, 0x02, 0x0a);
 
 channel!(TCC0_CH0, Tcc0Ch0, TCC0, Tcc0, TCC0_CH0_CH, TccCh, TCC0_PERIPH, 0);
 channel!(TCC0_CH1, Tcc0Ch1, TCC0, Tcc0, TCC0_CH1_CH, TccCh, TCC0_PERIPH, 1);

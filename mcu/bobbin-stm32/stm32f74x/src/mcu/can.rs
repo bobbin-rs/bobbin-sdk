@@ -2,8 +2,8 @@
 #[allow(unused_imports)] pub use ::bobbin_common::gate::GateEn;
 pub use ::hal::can::*;
 
-periph!( CAN1, Can1, CAN1_PERIPH, CanPeriph, 0x40006400, 0x3a);
-periph!( CAN2, Can2, CAN2_PERIPH, CanPeriph, 0x40006800, 0x3b);
+periph!( CAN1, Can1, CAN1_PERIPH, CanPeriph, 0x40006400, 0x00, 0x3a);
+periph!( CAN2, Can2, CAN2_PERIPH, CanPeriph, 0x40006800, 0x01, 0x3b);
 
 // Gate { name: None, gate_type: Some("RST"), periph: Some("RCC"), register: Some("APB1RSTR"), field: Some("CAN1RST"), description: None }
 impl ::bobbin_common::gate::GateRst for Can1 {

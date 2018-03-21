@@ -2,17 +2,17 @@
 #[allow(unused_imports)] pub use ::bobbin_common::gate::GateEn;
 pub use ::hal::gpio::*;
 
-periph!( GPIOA, Gpioa, GPIOA_PERIPH, GpioPeriph, 0x40020000, 0x3c);
-periph!( GPIOB, Gpiob, GPIOB_PERIPH, GpioPeriph, 0x40020400, 0x3d);
-periph!( GPIOC, Gpioc, GPIOC_PERIPH, GpioPeriph, 0x40020800, 0x3e);
-periph!( GPIOD, Gpiod, GPIOD_PERIPH, GpioPeriph, 0x40020c00, 0x3f);
-periph!( GPIOE, Gpioe, GPIOE_PERIPH, GpioPeriph, 0x40021000, 0x40);
-periph!( GPIOF, Gpiof, GPIOF_PERIPH, GpioPeriph, 0x40021400, 0x41);
-periph!( GPIOG, Gpiog, GPIOG_PERIPH, GpioPeriph, 0x40021800, 0x42);
-periph!( GPIOH, Gpioh, GPIOH_PERIPH, GpioPeriph, 0x40021c00, 0x43);
-periph!( GPIOI, Gpioi, GPIOI_PERIPH, GpioPeriph, 0x40022000, 0x44);
-periph!( GPIOJ, Gpioj, GPIOJ_PERIPH, GpioPeriph, 0x40022400, 0x45);
-periph!( GPIOK, Gpiok, GPIOK_PERIPH, GpioPeriph, 0x40022800, 0x46);
+periph!( GPIOA, Gpioa, GPIOA_PERIPH, GpioPeriph, 0x40020000, 0x00, 0x3c);
+periph!( GPIOB, Gpiob, GPIOB_PERIPH, GpioPeriph, 0x40020400, 0x01, 0x3d);
+periph!( GPIOC, Gpioc, GPIOC_PERIPH, GpioPeriph, 0x40020800, 0x02, 0x3e);
+periph!( GPIOD, Gpiod, GPIOD_PERIPH, GpioPeriph, 0x40020c00, 0x03, 0x3f);
+periph!( GPIOE, Gpioe, GPIOE_PERIPH, GpioPeriph, 0x40021000, 0x04, 0x40);
+periph!( GPIOF, Gpiof, GPIOF_PERIPH, GpioPeriph, 0x40021400, 0x05, 0x41);
+periph!( GPIOG, Gpiog, GPIOG_PERIPH, GpioPeriph, 0x40021800, 0x06, 0x42);
+periph!( GPIOH, Gpioh, GPIOH_PERIPH, GpioPeriph, 0x40021c00, 0x07, 0x43);
+periph!( GPIOI, Gpioi, GPIOI_PERIPH, GpioPeriph, 0x40022000, 0x08, 0x44);
+periph!( GPIOJ, Gpioj, GPIOJ_PERIPH, GpioPeriph, 0x40022400, 0x09, 0x45);
+periph!( GPIOK, Gpiok, GPIOK_PERIPH, GpioPeriph, 0x40022800, 0x0a, 0x46);
 
 // Gate { name: None, gate_type: Some("RST"), periph: Some("RCC"), register: Some("AHB1RSTR"), field: Some("GPIOARST"), description: None }
 impl ::bobbin_common::gate::GateRst for Gpioa {

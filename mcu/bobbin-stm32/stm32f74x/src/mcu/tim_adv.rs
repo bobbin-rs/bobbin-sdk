@@ -2,8 +2,8 @@
 #[allow(unused_imports)] pub use ::bobbin_common::gate::GateEn;
 pub use ::hal::tim_adv::*;
 
-periph!( TIM1, Tim1, TIM1_PERIPH, TimAdvPeriph, 0x40010000, 0x28);
-periph!( TIM8, Tim8, TIM8_PERIPH, TimAdvPeriph, 0x40010400, 0x29);
+periph!( TIM1, Tim1, TIM1_PERIPH, TimAdvPeriph, 0x40010000, 0x00, 0x28);
+periph!( TIM8, Tim8, TIM8_PERIPH, TimAdvPeriph, 0x40010400, 0x01, 0x29);
 
 channel!(TIM1_CH1, Tim1Ch1, TIM1, Tim1, TIM1_CH1_CH, TimAdvCh, TIM1_PERIPH, 0);
 channel!(TIM1_CH2, Tim1Ch2, TIM1, Tim1, TIM1_CH2_CH, TimAdvCh, TIM1_PERIPH, 1);

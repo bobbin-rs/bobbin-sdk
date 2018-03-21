@@ -6,6 +6,7 @@
 pub struct GpioPeriph(pub usize); 
 
 pub struct GpioPin { pub port: GpioPeriph, pub index: usize }
+
 impl GpioPeriph {
     #[doc="Get the *mut pointer for the MODER register."]
     #[inline] pub fn moder_mut(&self) -> *mut Moder { 

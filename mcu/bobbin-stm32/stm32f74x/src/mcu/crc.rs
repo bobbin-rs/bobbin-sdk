@@ -2,7 +2,7 @@
 #[allow(unused_imports)] pub use ::bobbin_common::gate::GateEn;
 pub use ::hal::crc::*;
 
-periph!( CRC, Crc, CRC_PERIPH, CrcPeriph, 0x40023000, 0x1a);
+periph!( CRC, Crc, CRC_PERIPH, CrcPeriph, 0x40023000, 0x00, 0x1a);
 
 // Gate { name: None, gate_type: Some("RST"), periph: Some("RCC"), register: Some("AHB1RSTR"), field: Some("CRCRST"), description: None }
 impl ::bobbin_common::gate::GateRst for Crc {

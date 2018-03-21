@@ -2,11 +2,11 @@
 #[allow(unused_imports)] pub use ::bobbin_common::gate::GateEn;
 pub use ::hal::port::*;
 
-periph!( PORTA, Porta, PORTA_PERIPH, PortPeriph, 0x40049000, 0x21);
-periph!( PORTB, Portb, PORTB_PERIPH, PortPeriph, 0x4004a000, 0x22);
-periph!( PORTC, Portc, PORTC_PERIPH, PortPeriph, 0x4004b000, 0x23);
-periph!( PORTD, Portd, PORTD_PERIPH, PortPeriph, 0x4004c000, 0x24);
-periph!( PORTE, Porte, PORTE_PERIPH, PortPeriph, 0x4004d000, 0x25);
+periph!( PORTA, Porta, PORTA_PERIPH, PortPeriph, 0x40049000, 0x00, 0x21);
+periph!( PORTB, Portb, PORTB_PERIPH, PortPeriph, 0x4004a000, 0x01, 0x22);
+periph!( PORTC, Portc, PORTC_PERIPH, PortPeriph, 0x4004b000, 0x02, 0x23);
+periph!( PORTD, Portd, PORTD_PERIPH, PortPeriph, 0x4004c000, 0x03, 0x24);
+periph!( PORTE, Porte, PORTE_PERIPH, PortPeriph, 0x4004d000, 0x04, 0x25);
 
 pub trait LinkGpio<T> {
     fn gpio(&self) -> T;

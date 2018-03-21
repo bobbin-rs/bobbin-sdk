@@ -5,7 +5,7 @@ pub use ::hal::syscfg::*;
 #[allow(unused_imports)] use ::bobbin_common::*;
 
 
-periph!( SYSCFG, Syscfg, SYSCFG_PERIPH, SyscfgPeriph, 0x40013800, 0x03);
+periph!( SYSCFG, Syscfg, SYSCFG_PERIPH, SyscfgPeriph, 0x40013800, 0x00, 0x03);
 
 
 // Gate { name: None, gate_type: Some("RST"), periph: Some("RCC"), register: Some("APB2RSTR"), field: Some("SYSCFGRST"), description: None }

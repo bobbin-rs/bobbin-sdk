@@ -1,6 +1,7 @@
 #[allow(unused_imports)] use ::bobbin_common::*;
 pub use ::bobbin_common::pin::*;
 pub use ::bobbin_common::gate::*;
+
 pub use super::port::*;
 
 pin!(PA00, Pa00, PORTA, Porta, PA00_PIN, PortPin, PORTA_PERIPH, 0);

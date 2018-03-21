@@ -2,7 +2,7 @@
 #[allow(unused_imports)] pub use ::bobbin_common::gate::GateEn;
 pub use ::hal::edma::*;
 
-periph!( DMA, Dma, DMA_PERIPH, EdmaPeriph, 0x40008000, 0x09);
+periph!( DMA, Dma, DMA_PERIPH, EdmaPeriph, 0x40008000, 0x00, 0x09);
 
 channel!(DMA0, Dma0, DMA, Dma, DMA0_CH, EdmaCh, DMA_PERIPH, 0);
 channel!(DMA1, Dma1, DMA, Dma, DMA1_CH, EdmaCh, DMA_PERIPH, 1);

@@ -2,7 +2,7 @@
 #[allow(unused_imports)] pub use ::bobbin_common::gate::GateEn;
 pub use ::hal::usb_fs_device::*;
 
-periph!( USB_FS_DEVICE, UsbFsDevice, USB_FS_DEVICE_PERIPH, UsbFsDevicePeriph, 0x50000800, 0x16);
+periph!( USB_FS_DEVICE, UsbFsDevice, USB_FS_DEVICE_PERIPH, UsbFsDevicePeriph, 0x50000800, 0x00, 0x16);
 
 // Gate { name: None, gate_type: Some("RST"), periph: Some("RCC"), register: Some("AHB2RSTR"), field: Some("OTGFSRST"), description: None }
 impl ::bobbin_common::gate::GateRst for UsbFsDevice {

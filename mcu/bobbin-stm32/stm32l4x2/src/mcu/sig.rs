@@ -1,4 +1,5 @@
 #[allow(unused_imports)] pub use ::bobbin_common::*;
+
 signal_type!(I2C_SMBA, SigI2cSmba);
 signal_type!(I2C_SCL, SigI2cScl);
 signal_type!(I2C_SDA, SigI2cSda);

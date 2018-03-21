@@ -1,10 +1,11 @@
 #[allow(unused_imports)] use ::bobbin_common::*;
+#[allow(unused_imports)] pub use ::bobbin_common::gate::GateEn;
 pub use ::hal::gclk::*;
 
 #[allow(unused_imports)] use ::bobbin_common::*;
 
 
-periph!( GCLK, Gclk, GCLK_PERIPH, GclkPeriph, 0x40000c00, 0x00);
+periph!( GCLK, Gclk, GCLK_PERIPH, GclkPeriph, 0x40000c00, 0x00, 0x00);
 
 
 // Gate { name: None, gate_type: Some("EN"), periph: Some("PM"), register: Some("APBAMASK"), field: Some("GCLK"), description: None }

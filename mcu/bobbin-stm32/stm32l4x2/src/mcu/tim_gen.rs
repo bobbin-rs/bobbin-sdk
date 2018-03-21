@@ -1,10 +1,11 @@
 #[allow(unused_imports)] use ::bobbin_common::*;
+#[allow(unused_imports)] pub use ::bobbin_common::gate::GateEn;
 pub use ::hal::tim_gen::*;
 
-periph!( TIM2, Tim2, TIM2_PERIPH, TimGenPeriph, 0x40000000, 0x1e);
-periph!( TIM3, Tim3, TIM3_PERIPH, TimGenPeriph, 0x40000400, 0x1f);
-periph!( TIM15, Tim15, TIM15_PERIPH, TimGenPeriph, 0x40014000, 0x20);
-periph!( TIM16, Tim16, TIM16_PERIPH, TimGenPeriph, 0x40014400, 0x21);
+periph!( TIM2, Tim2, TIM2_PERIPH, TimGenPeriph, 0x40000000, 0x00, 0x1e);
+periph!( TIM3, Tim3, TIM3_PERIPH, TimGenPeriph, 0x40000400, 0x01, 0x1f);
+periph!( TIM15, Tim15, TIM15_PERIPH, TimGenPeriph, 0x40014000, 0x02, 0x20);
+periph!( TIM16, Tim16, TIM16_PERIPH, TimGenPeriph, 0x40014400, 0x03, 0x21);
 
 channel!(TIM2_CH1, Tim2Ch1, TIM2, Tim2, TIM2_CH1_CH, TimGenCh, TIM2_PERIPH, 0);
 channel!(TIM2_CH2, Tim2Ch2, TIM2, Tim2, TIM2_CH2_CH, TimGenCh, TIM2_PERIPH, 1);

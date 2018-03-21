@@ -2,8 +2,8 @@
 #[allow(unused_imports)] pub use ::bobbin_common::gate::GateEn;
 pub use ::hal::dma::*;
 
-periph!( DMA1, Dma1, DMA1_PERIPH, DmaPeriph, 0x40026000, 0x4f);
-periph!( DMA2, Dma2, DMA2_PERIPH, DmaPeriph, 0x40026400, 0x50);
+periph!( DMA1, Dma1, DMA1_PERIPH, DmaPeriph, 0x40026000, 0x00, 0x4f);
+periph!( DMA2, Dma2, DMA2_PERIPH, DmaPeriph, 0x40026400, 0x01, 0x50);
 
 channel!(DMA1_STREAM0, Dma1Stream0, DMA1, Dma1, DMA1_STREAM0_CH, DmaCh, DMA1_PERIPH, 0);
 channel!(DMA1_STREAM1, Dma1Stream1, DMA1, Dma1, DMA1_STREAM1_CH, DmaCh, DMA1_PERIPH, 1);

@@ -2,16 +2,16 @@
 #[allow(unused_imports)] pub use ::bobbin_common::gate::GateEn;
 pub use ::hal::tim_gen::*;
 
-periph!( TIM2, Tim2, TIM2_PERIPH, TimGenPeriph, 0x40000000, 0x1e);
-periph!( TIM3, Tim3, TIM3_PERIPH, TimGenPeriph, 0x40000400, 0x1f);
-periph!( TIM4, Tim4, TIM4_PERIPH, TimGenPeriph, 0x40000800, 0x20);
-periph!( TIM5, Tim5, TIM5_PERIPH, TimGenPeriph, 0x40000c00, 0x21);
-periph!( TIM9, Tim9, TIM9_PERIPH, TimGenPeriph, 0x40014000, 0x22);
-periph!( TIM10, Tim10, TIM10_PERIPH, TimGenPeriph, 0x40014400, 0x23);
-periph!( TIM11, Tim11, TIM11_PERIPH, TimGenPeriph, 0x40014800, 0x24);
-periph!( TIM12, Tim12, TIM12_PERIPH, TimGenPeriph, 0x40001800, 0x25);
-periph!( TIM13, Tim13, TIM13_PERIPH, TimGenPeriph, 0x40001c00, 0x26);
-periph!( TIM14, Tim14, TIM14_PERIPH, TimGenPeriph, 0x40002000, 0x27);
+periph!( TIM2, Tim2, TIM2_PERIPH, TimGenPeriph, 0x40000000, 0x00, 0x1e);
+periph!( TIM3, Tim3, TIM3_PERIPH, TimGenPeriph, 0x40000400, 0x01, 0x1f);
+periph!( TIM4, Tim4, TIM4_PERIPH, TimGenPeriph, 0x40000800, 0x02, 0x20);
+periph!( TIM5, Tim5, TIM5_PERIPH, TimGenPeriph, 0x40000c00, 0x03, 0x21);
+periph!( TIM9, Tim9, TIM9_PERIPH, TimGenPeriph, 0x40014000, 0x04, 0x22);
+periph!( TIM10, Tim10, TIM10_PERIPH, TimGenPeriph, 0x40014400, 0x05, 0x23);
+periph!( TIM11, Tim11, TIM11_PERIPH, TimGenPeriph, 0x40014800, 0x06, 0x24);
+periph!( TIM12, Tim12, TIM12_PERIPH, TimGenPeriph, 0x40001800, 0x07, 0x25);
+periph!( TIM13, Tim13, TIM13_PERIPH, TimGenPeriph, 0x40001c00, 0x08, 0x26);
+periph!( TIM14, Tim14, TIM14_PERIPH, TimGenPeriph, 0x40002000, 0x09, 0x27);
 
 channel!(TIM2_CH1, Tim2Ch1, TIM2, Tim2, TIM2_CH1_CH, TimGenCh, TIM2_PERIPH, 0);
 channel!(TIM2_CH2, Tim2Ch2, TIM2, Tim2, TIM2_CH2_CH, TimGenCh, TIM2_PERIPH, 1);

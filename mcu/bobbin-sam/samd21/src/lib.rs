@@ -28,7 +28,7 @@ pub use mcu::sercom;
 pub use mcu::pin;
 pub use mcu::sig;
 pub use mcu::irq;
-pub use mcu::*;
+pub use mcu::{MCU, Mcu};
 
 pub mod clock;
 pub use clock::*;

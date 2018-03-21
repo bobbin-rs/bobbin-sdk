@@ -5,6 +5,6 @@ pub use ::hal::pwr::*;
 #[allow(unused_imports)] use ::bobbin_common::*;
 
 
-periph!( PWR, Pwr, PWR_PERIPH, PwrPeriph, 0x40007000, 0x02);
+periph!( PWR, Pwr, PWR_PERIPH, PwrPeriph, 0x40007000, 0x00, 0x02);
 
 

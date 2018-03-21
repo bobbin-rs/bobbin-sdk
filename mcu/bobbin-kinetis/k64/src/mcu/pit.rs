@@ -2,7 +2,7 @@
 #[allow(unused_imports)] pub use ::bobbin_common::gate::GateEn;
 pub use ::hal::pit::*;
 
-periph!( PIT, Pit, PIT_PERIPH, PitPeriph, 0x40037000, 0x0d);
+periph!( PIT, Pit, PIT_PERIPH, PitPeriph, 0x40037000, 0x00, 0x0d);
 
 channel!(PIT_CH0, PitCh0, PIT, Pit, PIT_CH0_CH, PitCh, PIT_PERIPH, 0);
 channel!(PIT_CH1, PitCh1, PIT, Pit, PIT_CH1_CH, PitCh, PIT_PERIPH, 1);

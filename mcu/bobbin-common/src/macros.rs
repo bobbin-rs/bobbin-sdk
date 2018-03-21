@@ -1,7 +1,7 @@
 
 #[macro_export]
 macro_rules! periph {
-    ($id:ident, $ty:ident, $pid:ident, $pty:ident, $base:expr, $ord:expr) => {
+    ($id:ident, $ty:ident, $pid:ident, $pty:ident, $base:expr, $index: expr, $ord:expr) => {
         pub const $id: $ty = $ty{};
         pub const $pid: $pty = $pty($base);
         
@@ -40,6 +40,10 @@ macro_rules! periph {
             fn base(&self) -> *mut u32 {
                 $base as *mut u32
             }
+            #[inline]
+            fn index(&self) -> usize {
+                $index
+            }                 
             #[inline]
             fn ord(&self) -> usize {
                 $ord

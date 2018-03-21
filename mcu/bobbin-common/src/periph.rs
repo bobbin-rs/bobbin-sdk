@@ -1,6 +1,7 @@
 pub trait Periph: Default {
     fn id(&self) -> &'static str;
     fn base(&self) -> *mut u32;
+    fn index(&self) -> usize;
     fn ord(&self) -> usize;
 }
 

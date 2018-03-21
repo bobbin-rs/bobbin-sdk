@@ -5,7 +5,7 @@ pub use ::hal::hash::*;
 #[allow(unused_imports)] use ::bobbin_common::*;
 
 
-periph!( HASH, Hash, HASH_PERIPH, HashPeriph, 0x50060400, 0x10);
+periph!( HASH, Hash, HASH_PERIPH, HashPeriph, 0x50060400, 0x00, 0x10);
 
 
 // Gate { name: None, gate_type: Some("RST"), periph: Some("RCC"), register: Some("AHB2RSTR"), field: Some("HASHRST"), description: None }

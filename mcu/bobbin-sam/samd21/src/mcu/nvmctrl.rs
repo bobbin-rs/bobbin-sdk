@@ -1,10 +1,11 @@
 #[allow(unused_imports)] use ::bobbin_common::*;
+#[allow(unused_imports)] pub use ::bobbin_common::gate::GateEn;
 pub use ::hal::nvmctrl::*;
 
 #[allow(unused_imports)] use ::bobbin_common::*;
 
 
-periph!( NVMCTRL, Nvmctrl, NVMCTRL_PERIPH, NvmctrlPeriph, 0x41004000, 0x01);
+periph!( NVMCTRL, Nvmctrl, NVMCTRL_PERIPH, NvmctrlPeriph, 0x41004000, 0x00, 0x01);
 
 
 // Gate { name: None, gate_type: Some("EN"), periph: Some("PM"), register: Some("AHBMASK"), field: Some("NVMCTRL"), description: None }
