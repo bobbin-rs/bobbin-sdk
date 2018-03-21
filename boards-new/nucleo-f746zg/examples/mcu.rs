@@ -8,40 +8,42 @@ use board::common::mcu::*;
 use board::common::periph::*;
 use board::mcu::gpio;
 use board::mcu::wwdg;
-use board::mcu::{MCU, Mcu};
+use board::mcu::*;
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
     board::init();
 
-    println!("MCU Test");
+    let mcu = STM32F74X;
 
+    println!("MCU Test");
+    println!("ID: {:?}", mcu.id());
     // Get Instance
 
-    let gpioa = MCU.gpioa();
+    let gpioa = mcu.gpioa();
 
-    println!("GPIOA is {} of {}", gpioa.index(), <Mcu as GetPeriphInstance<gpio::GpioPeriph>>::get_periph_instance_count(&MCU));
+    println!("GPIOA is {} of {}", gpioa.index(), <Stm32f74x as GetPeriphInstance<gpio::GpioPeriph>>::get_periph_instance_count(&mcu));
 
     println!("GPIOA_MODER: {:?}", gpioa.moder());
 
     // Get Instance by Type
 
-    let gpioa: gpio::Gpioa = MCU.get();
+    let gpioa: gpio::Gpioa = mcu.get();
     println!("GPIOA_MODER: {:?}", gpioa.moder());
 
     // Get Periph by Type and Index
 
-    let gpioa: Option<gpio::GpioPeriph> = MCU.get_periph_instance(0);
+    let gpioa: Option<gpio::GpioPeriph> = mcu.get_periph_instance(0);
     if let Some(gpioa) = gpioa {
         println!("GPIOA_MODER: {:?}", gpioa.moder());    
     }
 
     // Get Periph by Type
 
-    let wwdg: wwdg::WwdgPeriph = MCU.get_periph();
+    let wwdg: wwdg::WwdgPeriph = mcu.get_periph();
     println!("WWDG_CFR: {:?}", wwdg.cfr());
 
-    use_wwdg(MCU);
+    use_wwdg(mcu);
     
     loop {
         println!("Tick...");

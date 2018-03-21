@@ -1,3 +1,7 @@
+pub trait Mcu {
+    fn id(&self) -> &'static str;
+}
+
 pub trait Get<T> {
     fn get(&self) -> T;
 }

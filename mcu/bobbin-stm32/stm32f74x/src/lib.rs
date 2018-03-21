@@ -59,7 +59,7 @@ pub use mcu::dma;
 pub use mcu::pin;
 pub use mcu::sig;
 pub use mcu::irq;
-pub use mcu::{MCU, Mcu};
+pub use mcu::{STM32F74X, Stm32f74x};
 
 pub mod clock;
 pub use clock::*;
