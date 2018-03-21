@@ -28,6 +28,8 @@ panic = "abort"
 debug = true
 lto = true
 
+[dev-dependencies]
+examples = { path = "../../apps/examples" }
 
 [dependencies.stm32l432x]
 path = "../../mcu/bobbin-stm32/stm32l432x"

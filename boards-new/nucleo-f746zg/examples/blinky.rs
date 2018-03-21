@@ -8,10 +8,17 @@ use board::led::*;
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
-    board::init();
+    board::init();    
+    let brd = board::board();
 
     loop {
-        LED0.toggle_output();
-        board::delay(500);
+        for i in 0..brd.get_led_count() {
+            brd.get_led(i).on();
+            board::delay(500);
+        }
+        for i in 0..brd.get_led_count() {
+            brd.get_led(i).off();
+            board::delay(500);
+        }
     }
 }

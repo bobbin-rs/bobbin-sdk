@@ -1,13 +1,35 @@
+pub use common::led::*;
 use mcu::gpio::*;
 use mcu::pin::*;
 pub use common::digital::DigitalOutput;
 
-pub const LED0: Pb22 = PB22;
+pub const LED0: LedHigh<GpioCh> = LedHigh::new(PB22_CH);
+pub const LED1: LedHigh<GpioCh> = LedHigh::new(PB21_CH);
+pub const LED2: LedHigh<GpioCh> = LedHigh::new(PE26_CH);
 
-pub fn init() {
-    // Connect LED0 to GPIO
+pub fn init() {    
     PTB22.port().gate_enable();
-    PTB22.connect_to(LED0);
-    
-    LED0.set_dir_output().set_output(true);
+    PTB22.connect_to(PB22);    
+    PB22.set_dir_output().set_output(true);
+
+    PTB21.port().gate_enable();
+    PTB21.connect_to(PB21);
+    PB21.set_dir_output().set_output(true);
+
+    PTE26.port().gate_enable();
+    PTE26.connect_to(PE26);
+    PE26.set_dir_output().set_output(true);
+
+}
+
+impl GetLed for ::FrdmK64f {
+    fn get_led(&self, index: usize) -> &Led {
+        match index {
+            0 => &LED0,
+            1 => &LED1,
+            2 => &LED2,
+            _ => unimplemented!()
+        }
+    }
+    fn get_led_count(&self) -> usize { 3 }
 }

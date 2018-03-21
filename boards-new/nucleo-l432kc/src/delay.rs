@@ -17,3 +17,10 @@ pub fn delay(ms: u16) {
     TIM.set_prescale((TIM_CLK / 2000) as u16);
     TIM.delay(ms << 1);
 }
+
+impl ::common::delay::Delay for ::NucleoL432kc {
+    fn delay_ms(&self, ms: u32) {
+        // NOTE: Need to make delay support u32
+        delay(ms as u16)
+    }
+}

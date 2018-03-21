@@ -1,8 +1,20 @@
-use mcu::pin::*;
+pub use common::led::*;
+pub use mcu::pin::*;
+pub use mcu::port::*;
 
-pub const LED0: Pa17 = PA17;
+pub const LED0: LedHigh<PortPin> = LedHigh::new(PA17_PIN);
 
 pub fn init() {
-    LED0.port().gate_enable();
-    LED0.set_mode_output();
+    PA17.port().gate_enable();
+    PA17.set_mode_output();
+}
+
+impl GetLed for ::ArduinoZero {
+    fn get_led(&self, index: usize) -> &Led {
+        match index {
+            0 => &LED0,
+            _ => unimplemented!()
+        }
+    }
+    fn get_led_count(&self) -> usize { 1 }
 }

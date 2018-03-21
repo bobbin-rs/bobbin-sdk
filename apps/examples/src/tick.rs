@@ -1,3 +1,4 @@
+#[allow(unused_imports)]
 use common::*;
 use common::board::Board;
 use common::delay::Delay;

@@ -24,6 +24,8 @@ panic = "abort"
 debug = true
 lto = true
 
+[dev-dependencies]
+examples = { path = "../../apps/examples" }
 
 [dependencies.samd21]
 path = "../../mcu/bobbin-sam/samd21"

@@ -18,3 +18,11 @@ pub fn init() {
 pub fn delay(ticks: u16) {
     TC.delay(ticks);
 }
+
+
+impl ::common::delay::Delay for ::ArduinoZero {
+    fn delay_ms(&self, ms: u32) {
+        // Need to support u32
+        delay(ms as u16)
+    }
+}
