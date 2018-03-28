@@ -1331,7 +1331,9 @@ impl<RW: TryReadWrite> Rfm95<RW> {
 
 pub mod reg {
 
+    #[doc="FIFO read/write access"]
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct Fifo(u8);
 
     impl From<u8> for Fifo {
@@ -1345,6 +1347,7 @@ pub mod reg {
     impl Fifo {
         pub fn value(&self) -> u8 { self.0 }
 
+        #[doc="FIFO data input/output"]
         pub fn fifo(&self) -> u8 {
             ((self.0 as u8) >> 0) & 0xff // [7:0]
         }
@@ -1374,6 +1377,7 @@ pub mod reg {
     }
 
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct Opmode(u8);
 
     impl From<u8> for Opmode {
@@ -1451,7 +1455,9 @@ pub mod reg {
         }
     }
 
+    #[doc="MSB of RF carrier frequency"]
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct FrfMsb(u8);
 
     impl From<u8> for FrfMsb {
@@ -1493,7 +1499,9 @@ pub mod reg {
         }
     }
 
+    #[doc="MSB of RF carrier frequency"]
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct FrfMid(u8);
 
     impl From<u8> for FrfMid {
@@ -1535,7 +1543,9 @@ pub mod reg {
         }
     }
 
+    #[doc="LSB of RF carrier frequency"]
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct FrfLsb(u8);
 
     impl From<u8> for FrfLsb {
@@ -1578,6 +1588,7 @@ pub mod reg {
     }
 
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct PaConfig(u8);
 
     impl From<u8> for PaConfig {
@@ -1644,6 +1655,7 @@ pub mod reg {
     }
 
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct PaRamp(u8);
 
     impl From<u8> for PaRamp {
@@ -1686,6 +1698,7 @@ pub mod reg {
     }
 
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct Ocp(u8);
 
     impl From<u8> for Ocp {
@@ -1740,6 +1753,7 @@ pub mod reg {
     }
 
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct Lna(u8);
 
     impl From<u8> for Lna {
@@ -1806,6 +1820,7 @@ pub mod reg {
     }
 
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct FifoAddrPtr(u8);
 
     impl From<u8> for FifoAddrPtr {
@@ -1848,6 +1863,7 @@ pub mod reg {
     }
 
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct FifoTxBaseAddr(u8);
 
     impl From<u8> for FifoTxBaseAddr {
@@ -1890,6 +1906,7 @@ pub mod reg {
     }
 
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct FifoRxBaseAddr(u8);
 
     impl From<u8> for FifoRxBaseAddr {
@@ -1932,6 +1949,7 @@ pub mod reg {
     }
 
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct FifoRxCurrentAddr(u8);
 
     impl From<u8> for FifoRxCurrentAddr {
@@ -1974,6 +1992,7 @@ pub mod reg {
     }
 
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct IrqFlagsMask(u8);
 
     impl From<u8> for IrqFlagsMask {
@@ -2100,6 +2119,7 @@ pub mod reg {
     }
 
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct IrqFlags(u8);
 
     impl From<u8> for IrqFlags {
@@ -2226,6 +2246,7 @@ pub mod reg {
     }
 
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct RxNbBytes(u8);
 
     impl From<u8> for RxNbBytes {
@@ -2268,6 +2289,7 @@ pub mod reg {
     }
 
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct RxHeaderCntValueMsb(u8);
 
     impl From<u8> for RxHeaderCntValueMsb {
@@ -2310,6 +2332,7 @@ pub mod reg {
     }
 
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct RxHeaderCntValueLsb(u8);
 
     impl From<u8> for RxHeaderCntValueLsb {
@@ -2352,6 +2375,7 @@ pub mod reg {
     }
 
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct RxPacketCntValueMsb(u8);
 
     impl From<u8> for RxPacketCntValueMsb {
@@ -2394,6 +2418,7 @@ pub mod reg {
     }
 
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct RxPacketCntValueLsb(u8);
 
     impl From<u8> for RxPacketCntValueLsb {
@@ -2436,6 +2461,7 @@ pub mod reg {
     }
 
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct ModemStat(u8);
 
     impl From<u8> for ModemStat {
@@ -2490,6 +2516,7 @@ pub mod reg {
     }
 
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct PktSnrValue(u8);
 
     impl From<u8> for PktSnrValue {
@@ -2532,6 +2559,7 @@ pub mod reg {
     }
 
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct PktRssiValue(u8);
 
     impl From<u8> for PktRssiValue {
@@ -2574,6 +2602,7 @@ pub mod reg {
     }
 
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct RssiValue(u8);
 
     impl From<u8> for RssiValue {
@@ -2616,6 +2645,7 @@ pub mod reg {
     }
 
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct HopChannel(u8);
 
     impl From<u8> for HopChannel {
@@ -2682,6 +2712,7 @@ pub mod reg {
     }
 
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct ModemConfig1(u8);
 
     impl From<u8> for ModemConfig1 {
@@ -2748,6 +2779,7 @@ pub mod reg {
     }
 
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct ModemConfig2(u8);
 
     impl From<u8> for ModemConfig2 {
@@ -2826,6 +2858,7 @@ pub mod reg {
     }
 
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct SymbTimeoutLsb(u8);
 
     impl From<u8> for SymbTimeoutLsb {
@@ -2868,6 +2901,7 @@ pub mod reg {
     }
 
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct PreambleMsb(u8);
 
     impl From<u8> for PreambleMsb {
@@ -2910,6 +2944,7 @@ pub mod reg {
     }
 
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct PreambleLsb(u8);
 
     impl From<u8> for PreambleLsb {
@@ -2952,6 +2987,7 @@ pub mod reg {
     }
 
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct PayloadLength(u8);
 
     impl From<u8> for PayloadLength {
@@ -2994,6 +3030,7 @@ pub mod reg {
     }
 
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct MaxPayloadLength(u8);
 
     impl From<u8> for MaxPayloadLength {
@@ -3036,6 +3073,7 @@ pub mod reg {
     }
 
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct HopPeriod(u8);
 
     impl From<u8> for HopPeriod {
@@ -3078,6 +3116,7 @@ pub mod reg {
     }
 
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct FifoRxByteAddr(u8);
 
     impl From<u8> for FifoRxByteAddr {
@@ -3120,6 +3159,7 @@ pub mod reg {
     }
 
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct ModemConfig3(u8);
 
     impl From<u8> for ModemConfig3 {
@@ -3174,6 +3214,7 @@ pub mod reg {
     }
 
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct PpmCorrection(u8);
 
     impl From<u8> for PpmCorrection {
@@ -3216,6 +3257,7 @@ pub mod reg {
     }
 
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct FeiMsb(u8);
 
     impl From<u8> for FeiMsb {
@@ -3258,6 +3300,7 @@ pub mod reg {
     }
 
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct FeiMid(u8);
 
     impl From<u8> for FeiMid {
@@ -3300,6 +3343,7 @@ pub mod reg {
     }
 
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct FeiLsb(u8);
 
     impl From<u8> for FeiLsb {
@@ -3342,6 +3386,7 @@ pub mod reg {
     }
 
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct RssiWideband(u8);
 
     impl From<u8> for RssiWideband {
@@ -3384,6 +3429,7 @@ pub mod reg {
     }
 
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct DetectOptimize(u8);
 
     impl From<u8> for DetectOptimize {
@@ -3426,6 +3472,7 @@ pub mod reg {
     }
 
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct InvertIq(u8);
 
     impl From<u8> for InvertIq {
@@ -3468,6 +3515,7 @@ pub mod reg {
     }
 
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct DetectionThreshold(u8);
 
     impl From<u8> for DetectionThreshold {
@@ -3510,6 +3558,7 @@ pub mod reg {
     }
 
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct SyncWord(u8);
 
     impl From<u8> for SyncWord {
@@ -3552,6 +3601,7 @@ pub mod reg {
     }
 
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct DioMapping1(u8);
 
     impl From<u8> for DioMapping1 {
@@ -3630,6 +3680,7 @@ pub mod reg {
     }
 
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct DioMapping2(u8);
 
     impl From<u8> for DioMapping2 {
@@ -3696,6 +3747,7 @@ pub mod reg {
     }
 
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct Version(u8);
 
     impl From<u8> for Version {
@@ -3738,6 +3790,7 @@ pub mod reg {
     }
 
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct PllHop(u8);
 
     impl From<u8> for PllHop {
@@ -3780,6 +3833,7 @@ pub mod reg {
     }
 
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct Tcxo(u8);
 
     impl From<u8> for Tcxo {
@@ -3822,6 +3876,7 @@ pub mod reg {
     }
 
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct PaDac(u8);
 
     impl From<u8> for PaDac {
@@ -3864,6 +3919,7 @@ pub mod reg {
     }
 
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct FormerTemp(u8);
 
     impl From<u8> for FormerTemp {
@@ -3906,6 +3962,7 @@ pub mod reg {
     }
 
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct AgcRef(u8);
 
     impl From<u8> for AgcRef {
@@ -3948,6 +4005,7 @@ pub mod reg {
     }
 
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct AgcThresh1(u8);
 
     impl From<u8> for AgcThresh1 {
@@ -3990,6 +4048,7 @@ pub mod reg {
     }
 
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct AgcThresh2(u8);
 
     impl From<u8> for AgcThresh2 {
@@ -4044,6 +4103,7 @@ pub mod reg {
     }
 
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct AgcThresh3(u8);
 
     impl From<u8> for AgcThresh3 {
@@ -4098,6 +4158,7 @@ pub mod reg {
     }
 
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct PllHf(u8);
 
     impl From<u8> for PllHf {

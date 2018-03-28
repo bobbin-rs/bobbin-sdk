@@ -1413,7 +1413,9 @@ impl<RW: TryReadWrite> Rfm69<RW> {
 
 pub mod reg {
 
+    #[doc="FIFO read/write access"]
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct Fifo(u8);
 
     impl From<u8> for Fifo {
@@ -1427,6 +1429,7 @@ pub mod reg {
     impl Fifo {
         pub fn value(&self) -> u8 { self.0 }
 
+        #[doc="FIFO data input/output"]
         pub fn fifo(&self) -> u8 {
             ((self.0 as u8) >> 0) & 0xff // [7:0]
         }
@@ -1455,7 +1458,9 @@ pub mod reg {
         }
     }
 
+    #[doc="Operating modes of the transceiver"]
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct Opmode(u8);
 
     impl From<u8> for Opmode {
@@ -1469,6 +1474,7 @@ pub mod reg {
     impl Opmode {
         pub fn value(&self) -> u8 { self.0 }
 
+        #[doc="Controls the automatic Sequencer (see section 4.2 ): 0 -> Operating mode as selected with Mode bits in RegOpMode is automatically reached with the Sequencer 1 -> Mode is forced by the user"]
         pub fn sequencer_off(&self) -> u8 {
             ((self.0 as u8) >> 7) & 0x1 // [7]
         }
@@ -1480,6 +1486,7 @@ pub mod reg {
             self
         }
     
+        #[doc="Enables Listen mode, should be enabled whilst in Standby mode: 0 → Off (see section 4.3) 1 → On"]
         pub fn listen_on(&self) -> u8 {
             ((self.0 as u8) >> 6) & 0x1 // [6]
         }
@@ -1491,6 +1498,7 @@ pub mod reg {
             self
         }
     
+        #[doc="Aborts Listen mode when set together with ListenOn=0 See section 4.3.4 for details Always reads 0."]
         pub fn listen_abort(&self) -> u8 {
             ((self.0 as u8) >> 5) & 0x1 // [5]
         }
@@ -1502,6 +1510,7 @@ pub mod reg {
             self
         }
     
+        #[doc="Transceiver’s operating modes: 000 → Sleep mode (SLEEP) 001 → Standby mode (STDBY) 010 → Frequency Synthesizer mode (FS) 011 → Transmitter mode (TX) 100 → Receiver mode (RX) others → reserved; Reads the value corresponding to the current module mode"]
         pub fn mode(&self) -> u8 {
             ((self.0 as u8) >> 2) & 0x7 // [4:2]
         }
@@ -1533,7 +1542,9 @@ pub mod reg {
         }
     }
 
+    #[doc="Data operation mode and Modulation settings"]
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct Datamodul(u8);
 
     impl From<u8> for Datamodul {
@@ -1547,6 +1558,7 @@ pub mod reg {
     impl Datamodul {
         pub fn value(&self) -> u8 { self.0 }
 
+        #[doc="Data processing mode: 00 → Packet mode 01 → reserved 10 → Continuous mode with bit synchronizer 11 → Continuous mode without bit synchronizer"]
         pub fn data_mode(&self) -> u8 {
             ((self.0 as u8) >> 5) & 0x3 // [6:5]
         }
@@ -1558,6 +1570,7 @@ pub mod reg {
             self
         }
     
+        #[doc="Modulation scheme: 00 → FSK 01 → OOK 10 - 11 → reserved"]
         pub fn modulation_type(&self) -> u8 {
             ((self.0 as u8) >> 3) & 0x3 // [4:3]
         }
@@ -1599,7 +1612,9 @@ pub mod reg {
         }
     }
 
+    #[doc="Bit Rate setting, Most Significant Bits"]
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct Bitratemsb(u8);
 
     impl From<u8> for Bitratemsb {
@@ -1641,7 +1656,9 @@ pub mod reg {
         }
     }
 
+    #[doc="Bit Rate setting, Least Significant Bits"]
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct Bitratelsb(u8);
 
     impl From<u8> for Bitratelsb {
@@ -1683,7 +1700,9 @@ pub mod reg {
         }
     }
 
+    #[doc="Frequency Deviation setting, Most Significant Bits"]
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct Fdevmsb(u8);
 
     impl From<u8> for Fdevmsb {
@@ -1725,7 +1744,9 @@ pub mod reg {
         }
     }
 
+    #[doc="Frequency Deviation setting, Least Significant Bits"]
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct Fdevlsb(u8);
 
     impl From<u8> for Fdevlsb {
@@ -1767,7 +1788,9 @@ pub mod reg {
         }
     }
 
+    #[doc="RF Carrier Frequency, Most Significant Bits"]
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct Frfmsb(u8);
 
     impl From<u8> for Frfmsb {
@@ -1809,7 +1832,9 @@ pub mod reg {
         }
     }
 
+    #[doc="RF Carrier Frequency, Intermediate Bits"]
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct Frfmid(u8);
 
     impl From<u8> for Frfmid {
@@ -1851,7 +1876,9 @@ pub mod reg {
         }
     }
 
+    #[doc="RF Carrier Frequency, Least Significant Bits"]
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct Frflsb(u8);
 
     impl From<u8> for Frflsb {
@@ -1893,7 +1920,9 @@ pub mod reg {
         }
     }
 
+    #[doc="RC Oscillators Settings"]
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct Osc1(u8);
 
     impl From<u8> for Osc1 {
@@ -1947,7 +1976,9 @@ pub mod reg {
         }
     }
 
+    #[doc="AFC control in low modulation index situations"]
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct Afcctrl(u8);
 
     impl From<u8> for Afcctrl {
@@ -1989,7 +2020,9 @@ pub mod reg {
         }
     }
 
+    #[doc="Listen Mode settings"]
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct Listen1(u8);
 
     impl From<u8> for Listen1 {
@@ -2067,7 +2100,9 @@ pub mod reg {
         }
     }
 
+    #[doc="Listen Mode Idle duration"]
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct Listen2(u8);
 
     impl From<u8> for Listen2 {
@@ -2109,7 +2144,9 @@ pub mod reg {
         }
     }
 
+    #[doc="Listen Mode Rx duration"]
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct Listen3(u8);
 
     impl From<u8> for Listen3 {
@@ -2152,6 +2189,7 @@ pub mod reg {
     }
 
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct Version(u8);
 
     impl From<u8> for Version {
@@ -2193,7 +2231,9 @@ pub mod reg {
         }
     }
 
+    #[doc="PA selection and Output Power control"]
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct Palevel(u8);
 
     impl From<u8> for Palevel {
@@ -2271,7 +2311,9 @@ pub mod reg {
         }
     }
 
+    #[doc="Control of the PA ramp time in FSK mode"]
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct Paramp(u8);
 
     impl From<u8> for Paramp {
@@ -2313,7 +2355,9 @@ pub mod reg {
         }
     }
 
+    #[doc="Over Current Protection control"]
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct Ocp(u8);
 
     impl From<u8> for Ocp {
@@ -2367,7 +2411,9 @@ pub mod reg {
         }
     }
 
+    #[doc="LNA settings"]
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct Lna(u8);
 
     impl From<u8> for Lna {
@@ -2433,7 +2479,9 @@ pub mod reg {
         }
     }
 
+    #[doc="Channel Filter BW Control"]
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct Rxbw(u8);
 
     impl From<u8> for Rxbw {
@@ -2499,7 +2547,9 @@ pub mod reg {
         }
     }
 
+    #[doc="Channel Filter BW control during the AFC routine"]
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct Afcbw(u8);
 
     impl From<u8> for Afcbw {
@@ -2565,7 +2615,9 @@ pub mod reg {
         }
     }
 
+    #[doc="OOK demodulator selection and control in peak mode"]
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct Ookpeak(u8);
 
     impl From<u8> for Ookpeak {
@@ -2631,7 +2683,9 @@ pub mod reg {
         }
     }
 
+    #[doc="Average threshold control of the OOK demodulator"]
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct Ookavg(u8);
 
     impl From<u8> for Ookavg {
@@ -2673,7 +2727,9 @@ pub mod reg {
         }
     }
 
+    #[doc="Fixed threshold control of the OOK demodulator"]
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct Ookfix(u8);
 
     impl From<u8> for Ookfix {
@@ -2715,7 +2771,9 @@ pub mod reg {
         }
     }
 
+    #[doc="AFC and FEI control and status"]
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct Afcfei(u8);
 
     impl From<u8> for Afcfei {
@@ -2829,7 +2887,9 @@ pub mod reg {
         }
     }
 
+    #[doc="MSB of the frequency correction of the AFC"]
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct Afcmsb(u8);
 
     impl From<u8> for Afcmsb {
@@ -2871,7 +2931,9 @@ pub mod reg {
         }
     }
 
+    #[doc="LSB of the frequency correction of the AFC"]
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct Afclsb(u8);
 
     impl From<u8> for Afclsb {
@@ -2913,7 +2975,9 @@ pub mod reg {
         }
     }
 
+    #[doc="MSB of the calculated frequency error"]
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct Feimsb(u8);
 
     impl From<u8> for Feimsb {
@@ -2955,7 +3019,9 @@ pub mod reg {
         }
     }
 
+    #[doc="LSB of the calculated frequency error"]
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct Feilsb(u8);
 
     impl From<u8> for Feilsb {
@@ -2997,7 +3063,9 @@ pub mod reg {
         }
     }
 
+    #[doc="RSSI-related settings"]
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct Rssiconfig(u8);
 
     impl From<u8> for Rssiconfig {
@@ -3051,7 +3119,9 @@ pub mod reg {
         }
     }
 
+    #[doc="RSSI value in dBm"]
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct Rssivalue(u8);
 
     impl From<u8> for Rssivalue {
@@ -3093,7 +3163,9 @@ pub mod reg {
         }
     }
 
+    #[doc="Mapping of pins DIO0 to DIO3"]
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct Diomapping1(u8);
 
     impl From<u8> for Diomapping1 {
@@ -3171,7 +3243,9 @@ pub mod reg {
         }
     }
 
+    #[doc="Mapping of pins DIO4 and DIO5, ClkOut frequency"]
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct Diomapping2(u8);
 
     impl From<u8> for Diomapping2 {
@@ -3237,7 +3311,9 @@ pub mod reg {
         }
     }
 
+    #[doc="Status register: PLL Lock state, Timeout, RSSI > Threshold..."]
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct Irqflags1(u8);
 
     impl From<u8> for Irqflags1 {
@@ -3363,7 +3439,9 @@ pub mod reg {
         }
     }
 
+    #[doc="Status register: FIFO handling flags..."]
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct Irqflags2(u8);
 
     impl From<u8> for Irqflags2 {
@@ -3477,7 +3555,9 @@ pub mod reg {
         }
     }
 
+    #[doc="RSSI Threshold control"]
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct Rssithresh(u8);
 
     impl From<u8> for Rssithresh {
@@ -3519,7 +3599,9 @@ pub mod reg {
         }
     }
 
+    #[doc="Timeout duration between Rx request and RSSI detection"]
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct Rxtimeout1(u8);
 
     impl From<u8> for Rxtimeout1 {
@@ -3561,7 +3643,9 @@ pub mod reg {
         }
     }
 
+    #[doc="Timeout duration between RSSI detection and PayloadReady"]
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct Rxtimeout2(u8);
 
     impl From<u8> for Rxtimeout2 {
@@ -3603,7 +3687,9 @@ pub mod reg {
         }
     }
 
+    #[doc="Preamble length, MSB"]
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct Preamblemsb(u8);
 
     impl From<u8> for Preamblemsb {
@@ -3645,7 +3731,9 @@ pub mod reg {
         }
     }
 
+    #[doc="Preamble length, LSB"]
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct Preamblelsb(u8);
 
     impl From<u8> for Preamblelsb {
@@ -3687,7 +3775,9 @@ pub mod reg {
         }
     }
 
+    #[doc="Sync Word Recognition control"]
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct Syncconfig(u8);
 
     impl From<u8> for Syncconfig {
@@ -3765,7 +3855,9 @@ pub mod reg {
         }
     }
 
+    #[doc="Sync Word bytes, 1 through 8"]
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct Syncvalue(u8);
 
     impl From<u8> for Syncvalue {
@@ -3807,7 +3899,9 @@ pub mod reg {
         }
     }
 
+    #[doc="Packet mode settings"]
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct Packetconfig1(u8);
 
     impl From<u8> for Packetconfig1 {
@@ -3897,7 +3991,9 @@ pub mod reg {
         }
     }
 
+    #[doc="Payload length setting"]
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct Payloadlength(u8);
 
     impl From<u8> for Payloadlength {
@@ -3939,7 +4035,9 @@ pub mod reg {
         }
     }
 
+    #[doc="Node address"]
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct Nodeadrs(u8);
 
     impl From<u8> for Nodeadrs {
@@ -3981,7 +4079,9 @@ pub mod reg {
         }
     }
 
+    #[doc="Broadcast address"]
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct Broadcastadrs(u8);
 
     impl From<u8> for Broadcastadrs {
@@ -4023,7 +4123,9 @@ pub mod reg {
         }
     }
 
+    #[doc="Auto modes settings"]
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct Automodes(u8);
 
     impl From<u8> for Automodes {
@@ -4089,7 +4191,9 @@ pub mod reg {
         }
     }
 
+    #[doc="Fifo threshold, Tx start condition"]
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct Fifothresh(u8);
 
     impl From<u8> for Fifothresh {
@@ -4143,7 +4247,9 @@ pub mod reg {
         }
     }
 
+    #[doc="Packet mode settings"]
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct Packetconfig2(u8);
 
     impl From<u8> for Packetconfig2 {
@@ -4221,7 +4327,9 @@ pub mod reg {
         }
     }
 
+    #[doc="16 bytes of the cypher key"]
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct Aeskey(u8);
 
     impl From<u8> for Aeskey {
@@ -4263,7 +4371,9 @@ pub mod reg {
         }
     }
 
+    #[doc="Temperature Sensor control"]
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct Temp1(u8);
 
     impl From<u8> for Temp1 {
@@ -4317,7 +4427,9 @@ pub mod reg {
         }
     }
 
+    #[doc="Temperature readout"]
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct Temp2(u8);
 
     impl From<u8> for Temp2 {
@@ -4359,7 +4471,9 @@ pub mod reg {
         }
     }
 
+    #[doc="Sensitivity boost"]
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct Testlna(u8);
 
     impl From<u8> for Testlna {
@@ -4401,7 +4515,9 @@ pub mod reg {
         }
     }
 
+    #[doc="High Power PA settings"]
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct Testpa1(u8);
 
     impl From<u8> for Testpa1 {
@@ -4443,7 +4559,9 @@ pub mod reg {
         }
     }
 
+    #[doc="High Power PA settings"]
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct Testpa2(u8);
 
     impl From<u8> for Testpa2 {
@@ -4485,7 +4603,9 @@ pub mod reg {
         }
     }
 
+    #[doc="Fading Margin Improvement"]
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct Testdagc(u8);
 
     impl From<u8> for Testdagc {
@@ -4527,7 +4647,9 @@ pub mod reg {
         }
     }
 
+    #[doc="AFC offset for low modulation index AFC"]
     #[derive(PartialEq, Eq, Clone, Copy)]
+
     pub struct Testafc(u8);
 
     impl From<u8> for Testafc {
