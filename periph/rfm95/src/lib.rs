@@ -1,5 +1,6 @@
 #![no_std]
 
+extern crate bobbin_bits;
 pub type Addr = u8;
 pub type Value = u8;
 
@@ -1330,2875 +1331,3254 @@ impl<RW: TryReadWrite> Rfm95<RW> {
 }
 
 pub mod reg {
+    use ::bobbin_bits as bits;
 
-    #[doc="FIFO read/write access"]
-    #[derive(PartialEq, Eq, Clone, Copy)]
-
-    pub struct Fifo(u8);
-
-    impl From<u8> for Fifo {
-        fn from(other: u8) -> Self { Fifo(other) }
-    }
-
-    impl From<Fifo> for u8 {
-        fn from(other: Fifo) -> Self { other.0 }
-    }
-
-    impl Fifo {
-        pub fn value(&self) -> u8 { self.0 }
-
-        #[doc="FIFO data input/output"]
-        pub fn fifo(&self) -> u8 {
-            ((self.0 as u8) >> 0) & 0xff // [7:0]
-        }
-    
-        pub fn set_fifo(mut self, value: u8) -> Self {
-            assert!((value & !0xff) == 0);
-            self.0 &= !(0xff << 0);
-            self.0 |= value << 0;
-            self
-        }
-    
-    }
-
-    impl ::core::fmt::Display for Fifo {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            self.0.fmt(f)
-        }
-    }
-
-    impl ::core::fmt::Debug for Fifo {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            write!(f, "[0x{:02x}", self.0)?;
-            if self.fifo() != 0 { write!(f, " fifo=0x{:x}", self.fifo())? }
-            write!(f, "]")?;
-            Ok(())
-        }
-    }
-
-    #[derive(PartialEq, Eq, Clone, Copy)]
-
-    pub struct Opmode(u8);
-
-    impl From<u8> for Opmode {
-        fn from(other: u8) -> Self { Opmode(other) }
-    }
-
-    impl From<Opmode> for u8 {
-        fn from(other: Opmode) -> Self { other.0 }
-    }
-
-    impl Opmode {
-        pub fn value(&self) -> u8 { self.0 }
-
-        pub fn long_range_mode(&self) -> u8 {
-            ((self.0 as u8) >> 7) & 0x1 // [7]
-        }
-    
-        pub fn set_long_range_mode(mut self, value: u8) -> Self {
-            assert!((value & !0x1) == 0);
-            self.0 &= !(0x1 << 7);
-            self.0 |= value << 7;
-            self
-        }
-    
-        pub fn access_shared_reg(&self) -> u8 {
-            ((self.0 as u8) >> 6) & 0x1 // [6]
-        }
-    
-        pub fn set_access_shared_reg(mut self, value: u8) -> Self {
-            assert!((value & !0x1) == 0);
-            self.0 &= !(0x1 << 6);
-            self.0 |= value << 6;
-            self
-        }
-    
-        pub fn low_frequency_mode_on(&self) -> u8 {
-            ((self.0 as u8) >> 3) & 0x1 // [3]
-        }
-    
-        pub fn set_low_frequency_mode_on(mut self, value: u8) -> Self {
-            assert!((value & !0x1) == 0);
-            self.0 &= !(0x1 << 3);
-            self.0 |= value << 3;
-            self
-        }
-    
-        pub fn mode(&self) -> u8 {
-            ((self.0 as u8) >> 0) & 0x7 // [2:0]
-        }
-    
-        pub fn set_mode(mut self, value: u8) -> Self {
-            assert!((value & !0x7) == 0);
-            self.0 &= !(0x7 << 0);
-            self.0 |= value << 0;
-            self
-        }
-    
+#[doc="FIFO read/write access"]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct Fifo(pub u8);
+impl Fifo {
+    #[doc="FIFO data input/output"]
+    #[inline] pub fn fifo(&self) -> bits::U8 {
+        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
-    impl ::core::fmt::Display for Opmode {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            self.0.fmt(f)
-        }
+    #[doc="Returns true if FIFO != 0"]
+    #[inline] pub fn test_fifo(&self) -> bool {
+        self.fifo() != 0
     }
 
-    impl ::core::fmt::Debug for Opmode {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            write!(f, "[0x{:02x}", self.0)?;
-            if self.long_range_mode() != 0 { write!(f, " long_range_mode")? }
-            if self.access_shared_reg() != 0 { write!(f, " access_shared_reg")? }
-            if self.low_frequency_mode_on() != 0 { write!(f, " low_frequency_mode_on")? }
-            if self.mode() != 0 { write!(f, " mode=0x{:x}", self.mode())? }
-            write!(f, "]")?;
-            Ok(())
-        }
+    #[doc="Sets the FIFO field."]
+    #[inline] pub fn set_fifo<V: Into<bits::U8>>(mut self, value: V) -> Self {
+        let value: bits::U8 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0xff << 0);
+        self.0 |= value << 0;
+        self
     }
 
-    #[doc="MSB of RF carrier frequency"]
-    #[derive(PartialEq, Eq, Clone, Copy)]
+}
 
-    pub struct FrfMsb(u8);
+impl From<u8> for Fifo {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Fifo(other)
+    }
+}
+
+impl ::core::fmt::Display for Fifo {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
+    }
+}
+
+impl ::core::fmt::Debug for Fifo {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        if self.fifo() != 0 { try!(write!(f, " fifo=0x{:x}", self.fifo()))}
+        try!(write!(f, "]"));
+        Ok(())
+    }
+}
+
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct Opmode(pub u8);
+impl Opmode {
+    #[inline] pub fn long_range_mode(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
+    }
+
+    #[doc="Returns true if LONG_RANGE_MODE != 0"]
+    #[inline] pub fn test_long_range_mode(&self) -> bool {
+        self.long_range_mode() != 0
+    }
+
+    #[doc="Sets the LONG_RANGE_MODE field."]
+    #[inline] pub fn set_long_range_mode<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0x1 << 7);
+        self.0 |= value << 7;
+        self
+    }
+
+    #[inline] pub fn access_shared_reg(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
+    }
+
+    #[doc="Returns true if ACCESS_SHARED_REG != 0"]
+    #[inline] pub fn test_access_shared_reg(&self) -> bool {
+        self.access_shared_reg() != 0
+    }
+
+    #[doc="Sets the ACCESS_SHARED_REG field."]
+    #[inline] pub fn set_access_shared_reg<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0x1 << 6);
+        self.0 |= value << 6;
+        self
+    }
+
+    #[inline] pub fn low_frequency_mode_on(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
+    }
+
+    #[doc="Returns true if LOW_FREQUENCY_MODE_ON != 0"]
+    #[inline] pub fn test_low_frequency_mode_on(&self) -> bool {
+        self.low_frequency_mode_on() != 0
+    }
+
+    #[doc="Sets the LOW_FREQUENCY_MODE_ON field."]
+    #[inline] pub fn set_low_frequency_mode_on<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0x1 << 3);
+        self.0 |= value << 3;
+        self
+    }
+
+    #[inline] pub fn mode(&self) -> bits::U3 {
+        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x7) as u8) } // [2:0]
+    }
+
+    #[doc="Returns true if MODE != 0"]
+    #[inline] pub fn test_mode(&self) -> bool {
+        self.mode() != 0
+    }
+
+    #[doc="Sets the MODE field."]
+    #[inline] pub fn set_mode<V: Into<bits::U3>>(mut self, value: V) -> Self {
+        let value: bits::U3 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0x7 << 0);
+        self.0 |= value << 0;
+        self
+    }
+
+}
+
+impl From<u8> for Opmode {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Opmode(other)
+    }
+}
+
+impl ::core::fmt::Display for Opmode {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
+    }
+}
+
+impl ::core::fmt::Debug for Opmode {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        if self.long_range_mode() != 0 { try!(write!(f, " long_range_mode"))}
+        if self.access_shared_reg() != 0 { try!(write!(f, " access_shared_reg"))}
+        if self.low_frequency_mode_on() != 0 { try!(write!(f, " low_frequency_mode_on"))}
+        if self.mode() != 0 { try!(write!(f, " mode=0x{:x}", self.mode()))}
+        try!(write!(f, "]"));
+        Ok(())
+    }
+}
+
+#[doc="MSB of RF carrier frequency"]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct FrfMsb(pub u8);
+impl FrfMsb {
+    #[inline] pub fn frf(&self) -> bits::U8 {
+        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
+    }
+
+    #[doc="Returns true if FRF != 0"]
+    #[inline] pub fn test_frf(&self) -> bool {
+        self.frf() != 0
+    }
+
+    #[doc="Sets the FRF field."]
+    #[inline] pub fn set_frf<V: Into<bits::U8>>(mut self, value: V) -> Self {
+        let value: bits::U8 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0xff << 0);
+        self.0 |= value << 0;
+        self
+    }
+
+}
+
+impl From<u8> for FrfMsb {
+    #[inline]
+    fn from(other: u8) -> Self {
+         FrfMsb(other)
+    }
+}
+
+impl ::core::fmt::Display for FrfMsb {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
+    }
+}
+
+impl ::core::fmt::Debug for FrfMsb {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        if self.frf() != 0 { try!(write!(f, " frf=0x{:x}", self.frf()))}
+        try!(write!(f, "]"));
+        Ok(())
+    }
+}
+
+#[doc="MSB of RF carrier frequency"]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct FrfMid(pub u8);
+impl FrfMid {
+    #[inline] pub fn frf(&self) -> bits::U8 {
+        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
+    }
+
+    #[doc="Returns true if FRF != 0"]
+    #[inline] pub fn test_frf(&self) -> bool {
+        self.frf() != 0
+    }
+
+    #[doc="Sets the FRF field."]
+    #[inline] pub fn set_frf<V: Into<bits::U8>>(mut self, value: V) -> Self {
+        let value: bits::U8 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0xff << 0);
+        self.0 |= value << 0;
+        self
+    }
+
+}
+
+impl From<u8> for FrfMid {
+    #[inline]
+    fn from(other: u8) -> Self {
+         FrfMid(other)
+    }
+}
+
+impl ::core::fmt::Display for FrfMid {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
+    }
+}
+
+impl ::core::fmt::Debug for FrfMid {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        if self.frf() != 0 { try!(write!(f, " frf=0x{:x}", self.frf()))}
+        try!(write!(f, "]"));
+        Ok(())
+    }
+}
+
+#[doc="LSB of RF carrier frequency"]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct FrfLsb(pub u8);
+impl FrfLsb {
+    #[inline] pub fn frf(&self) -> bits::U8 {
+        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
+    }
+
+    #[doc="Returns true if FRF != 0"]
+    #[inline] pub fn test_frf(&self) -> bool {
+        self.frf() != 0
+    }
+
+    #[doc="Sets the FRF field."]
+    #[inline] pub fn set_frf<V: Into<bits::U8>>(mut self, value: V) -> Self {
+        let value: bits::U8 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0xff << 0);
+        self.0 |= value << 0;
+        self
+    }
+
+}
+
+impl From<u8> for FrfLsb {
+    #[inline]
+    fn from(other: u8) -> Self {
+         FrfLsb(other)
+    }
+}
+
+impl ::core::fmt::Display for FrfLsb {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
+    }
+}
+
+impl ::core::fmt::Debug for FrfLsb {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        if self.frf() != 0 { try!(write!(f, " frf=0x{:x}", self.frf()))}
+        try!(write!(f, "]"));
+        Ok(())
+    }
+}
+
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct PaConfig(pub u8);
+impl PaConfig {
+    #[inline] pub fn pa_select(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
+    }
+
+    #[doc="Returns true if PA_SELECT != 0"]
+    #[inline] pub fn test_pa_select(&self) -> bool {
+        self.pa_select() != 0
+    }
+
+    #[doc="Sets the PA_SELECT field."]
+    #[inline] pub fn set_pa_select<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0x1 << 7);
+        self.0 |= value << 7;
+        self
+    }
+
+    #[inline] pub fn max_power(&self) -> bits::U3 {
+        unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x7) as u8) } // [6:4]
+    }
+
+    #[doc="Returns true if MAX_POWER != 0"]
+    #[inline] pub fn test_max_power(&self) -> bool {
+        self.max_power() != 0
+    }
+
+    #[doc="Sets the MAX_POWER field."]
+    #[inline] pub fn set_max_power<V: Into<bits::U3>>(mut self, value: V) -> Self {
+        let value: bits::U3 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0x7 << 4);
+        self.0 |= value << 4;
+        self
+    }
+
+    #[inline] pub fn output_power(&self) -> bits::U4 {
+        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xf) as u8) } // [3:0]
+    }
+
+    #[doc="Returns true if OUTPUT_POWER != 0"]
+    #[inline] pub fn test_output_power(&self) -> bool {
+        self.output_power() != 0
+    }
+
+    #[doc="Sets the OUTPUT_POWER field."]
+    #[inline] pub fn set_output_power<V: Into<bits::U4>>(mut self, value: V) -> Self {
+        let value: bits::U4 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0xf << 0);
+        self.0 |= value << 0;
+        self
+    }
+
+}
+
+impl From<u8> for PaConfig {
+    #[inline]
+    fn from(other: u8) -> Self {
+         PaConfig(other)
+    }
+}
+
+impl ::core::fmt::Display for PaConfig {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
+    }
+}
+
+impl ::core::fmt::Debug for PaConfig {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        if self.pa_select() != 0 { try!(write!(f, " pa_select"))}
+        if self.max_power() != 0 { try!(write!(f, " max_power=0x{:x}", self.max_power()))}
+        if self.output_power() != 0 { try!(write!(f, " output_power=0x{:x}", self.output_power()))}
+        try!(write!(f, "]"));
+        Ok(())
+    }
+}
+
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct PaRamp(pub u8);
+impl PaRamp {
+    #[inline] pub fn pa_ramp(&self) -> bits::U4 {
+        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xf) as u8) } // [3:0]
+    }
+
+    #[doc="Returns true if PA_RAMP != 0"]
+    #[inline] pub fn test_pa_ramp(&self) -> bool {
+        self.pa_ramp() != 0
+    }
+
+    #[doc="Sets the PA_RAMP field."]
+    #[inline] pub fn set_pa_ramp<V: Into<bits::U4>>(mut self, value: V) -> Self {
+        let value: bits::U4 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0xf << 0);
+        self.0 |= value << 0;
+        self
+    }
+
+}
+
+impl From<u8> for PaRamp {
+    #[inline]
+    fn from(other: u8) -> Self {
+         PaRamp(other)
+    }
+}
+
+impl ::core::fmt::Display for PaRamp {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
+    }
+}
+
+impl ::core::fmt::Debug for PaRamp {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        if self.pa_ramp() != 0 { try!(write!(f, " pa_ramp=0x{:x}", self.pa_ramp()))}
+        try!(write!(f, "]"));
+        Ok(())
+    }
+}
+
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct Ocp(pub u8);
+impl Ocp {
+    #[inline] pub fn ocp_on(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
+    }
+
+    #[doc="Returns true if OCP_ON != 0"]
+    #[inline] pub fn test_ocp_on(&self) -> bool {
+        self.ocp_on() != 0
+    }
+
+    #[doc="Sets the OCP_ON field."]
+    #[inline] pub fn set_ocp_on<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0x1 << 5);
+        self.0 |= value << 5;
+        self
+    }
+
+    #[inline] pub fn ocp_trim(&self) -> bits::U5 {
+        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1f) as u8) } // [4:0]
+    }
+
+    #[doc="Returns true if OCP_TRIM != 0"]
+    #[inline] pub fn test_ocp_trim(&self) -> bool {
+        self.ocp_trim() != 0
+    }
+
+    #[doc="Sets the OCP_TRIM field."]
+    #[inline] pub fn set_ocp_trim<V: Into<bits::U5>>(mut self, value: V) -> Self {
+        let value: bits::U5 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0x1f << 0);
+        self.0 |= value << 0;
+        self
+    }
+
+}
+
+impl From<u8> for Ocp {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Ocp(other)
+    }
+}
+
+impl ::core::fmt::Display for Ocp {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
+    }
+}
+
+impl ::core::fmt::Debug for Ocp {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        if self.ocp_on() != 0 { try!(write!(f, " ocp_on"))}
+        if self.ocp_trim() != 0 { try!(write!(f, " ocp_trim=0x{:x}", self.ocp_trim()))}
+        try!(write!(f, "]"));
+        Ok(())
+    }
+}
+
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct Lna(pub u8);
+impl Lna {
+    #[inline] pub fn lna_gain(&self) -> bits::U3 {
+        unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x7) as u8) } // [7:5]
+    }
+
+    #[doc="Returns true if LNA_GAIN != 0"]
+    #[inline] pub fn test_lna_gain(&self) -> bool {
+        self.lna_gain() != 0
+    }
+
+    #[doc="Sets the LNA_GAIN field."]
+    #[inline] pub fn set_lna_gain<V: Into<bits::U3>>(mut self, value: V) -> Self {
+        let value: bits::U3 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0x7 << 5);
+        self.0 |= value << 5;
+        self
+    }
+
+    #[inline] pub fn lna_boost_lf(&self) -> bits::U2 {
+        unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x3) as u8) } // [4:3]
+    }
+
+    #[doc="Returns true if LNA_BOOST_LF != 0"]
+    #[inline] pub fn test_lna_boost_lf(&self) -> bool {
+        self.lna_boost_lf() != 0
+    }
+
+    #[doc="Sets the LNA_BOOST_LF field."]
+    #[inline] pub fn set_lna_boost_lf<V: Into<bits::U2>>(mut self, value: V) -> Self {
+        let value: bits::U2 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0x3 << 3);
+        self.0 |= value << 3;
+        self
+    }
+
+    #[inline] pub fn lna_boost_hf(&self) -> bits::U2 {
+        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x3) as u8) } // [1:0]
+    }
+
+    #[doc="Returns true if LNA_BOOST_HF != 0"]
+    #[inline] pub fn test_lna_boost_hf(&self) -> bool {
+        self.lna_boost_hf() != 0
+    }
+
+    #[doc="Sets the LNA_BOOST_HF field."]
+    #[inline] pub fn set_lna_boost_hf<V: Into<bits::U2>>(mut self, value: V) -> Self {
+        let value: bits::U2 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0x3 << 0);
+        self.0 |= value << 0;
+        self
+    }
+
+}
+
+impl From<u8> for Lna {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Lna(other)
+    }
+}
+
+impl ::core::fmt::Display for Lna {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
+    }
+}
+
+impl ::core::fmt::Debug for Lna {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        if self.lna_gain() != 0 { try!(write!(f, " lna_gain=0x{:x}", self.lna_gain()))}
+        if self.lna_boost_lf() != 0 { try!(write!(f, " lna_boost_lf=0x{:x}", self.lna_boost_lf()))}
+        if self.lna_boost_hf() != 0 { try!(write!(f, " lna_boost_hf=0x{:x}", self.lna_boost_hf()))}
+        try!(write!(f, "]"));
+        Ok(())
+    }
+}
+
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct FifoAddrPtr(pub u8);
+impl FifoAddrPtr {
+    #[inline] pub fn fifo_addr_ptr(&self) -> bits::U8 {
+        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
+    }
+
+    #[doc="Returns true if FIFO_ADDR_PTR != 0"]
+    #[inline] pub fn test_fifo_addr_ptr(&self) -> bool {
+        self.fifo_addr_ptr() != 0
+    }
+
+    #[doc="Sets the FIFO_ADDR_PTR field."]
+    #[inline] pub fn set_fifo_addr_ptr<V: Into<bits::U8>>(mut self, value: V) -> Self {
+        let value: bits::U8 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0xff << 0);
+        self.0 |= value << 0;
+        self
+    }
+
+}
+
+impl From<u8> for FifoAddrPtr {
+    #[inline]
+    fn from(other: u8) -> Self {
+         FifoAddrPtr(other)
+    }
+}
+
+impl ::core::fmt::Display for FifoAddrPtr {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
+    }
+}
+
+impl ::core::fmt::Debug for FifoAddrPtr {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        if self.fifo_addr_ptr() != 0 { try!(write!(f, " fifo_addr_ptr=0x{:x}", self.fifo_addr_ptr()))}
+        try!(write!(f, "]"));
+        Ok(())
+    }
+}
+
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct FifoTxBaseAddr(pub u8);
+impl FifoTxBaseAddr {
+    #[inline] pub fn fifo_tx_base_addr(&self) -> bits::U8 {
+        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
+    }
+
+    #[doc="Returns true if FIFO_TX_BASE_ADDR != 0"]
+    #[inline] pub fn test_fifo_tx_base_addr(&self) -> bool {
+        self.fifo_tx_base_addr() != 0
+    }
+
+    #[doc="Sets the FIFO_TX_BASE_ADDR field."]
+    #[inline] pub fn set_fifo_tx_base_addr<V: Into<bits::U8>>(mut self, value: V) -> Self {
+        let value: bits::U8 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0xff << 0);
+        self.0 |= value << 0;
+        self
+    }
+
+}
+
+impl From<u8> for FifoTxBaseAddr {
+    #[inline]
+    fn from(other: u8) -> Self {
+         FifoTxBaseAddr(other)
+    }
+}
+
+impl ::core::fmt::Display for FifoTxBaseAddr {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
+    }
+}
+
+impl ::core::fmt::Debug for FifoTxBaseAddr {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        if self.fifo_tx_base_addr() != 0 { try!(write!(f, " fifo_tx_base_addr=0x{:x}", self.fifo_tx_base_addr()))}
+        try!(write!(f, "]"));
+        Ok(())
+    }
+}
+
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct FifoRxBaseAddr(pub u8);
+impl FifoRxBaseAddr {
+    #[inline] pub fn fifo_rx_base_addr(&self) -> bits::U8 {
+        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
+    }
+
+    #[doc="Returns true if FIFO_RX_BASE_ADDR != 0"]
+    #[inline] pub fn test_fifo_rx_base_addr(&self) -> bool {
+        self.fifo_rx_base_addr() != 0
+    }
+
+    #[doc="Sets the FIFO_RX_BASE_ADDR field."]
+    #[inline] pub fn set_fifo_rx_base_addr<V: Into<bits::U8>>(mut self, value: V) -> Self {
+        let value: bits::U8 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0xff << 0);
+        self.0 |= value << 0;
+        self
+    }
+
+}
+
+impl From<u8> for FifoRxBaseAddr {
+    #[inline]
+    fn from(other: u8) -> Self {
+         FifoRxBaseAddr(other)
+    }
+}
+
+impl ::core::fmt::Display for FifoRxBaseAddr {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
+    }
+}
+
+impl ::core::fmt::Debug for FifoRxBaseAddr {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        if self.fifo_rx_base_addr() != 0 { try!(write!(f, " fifo_rx_base_addr=0x{:x}", self.fifo_rx_base_addr()))}
+        try!(write!(f, "]"));
+        Ok(())
+    }
+}
+
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct FifoRxCurrentAddr(pub u8);
+impl FifoRxCurrentAddr {
+    #[inline] pub fn fifo_rx_current_addr(&self) -> bits::U8 {
+        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
+    }
+
+    #[doc="Returns true if FIFO_RX_CURRENT_ADDR != 0"]
+    #[inline] pub fn test_fifo_rx_current_addr(&self) -> bool {
+        self.fifo_rx_current_addr() != 0
+    }
+
+    #[doc="Sets the FIFO_RX_CURRENT_ADDR field."]
+    #[inline] pub fn set_fifo_rx_current_addr<V: Into<bits::U8>>(mut self, value: V) -> Self {
+        let value: bits::U8 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0xff << 0);
+        self.0 |= value << 0;
+        self
+    }
+
+}
+
+impl From<u8> for FifoRxCurrentAddr {
+    #[inline]
+    fn from(other: u8) -> Self {
+         FifoRxCurrentAddr(other)
+    }
+}
+
+impl ::core::fmt::Display for FifoRxCurrentAddr {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
+    }
+}
+
+impl ::core::fmt::Debug for FifoRxCurrentAddr {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        if self.fifo_rx_current_addr() != 0 { try!(write!(f, " fifo_rx_current_addr=0x{:x}", self.fifo_rx_current_addr()))}
+        try!(write!(f, "]"));
+        Ok(())
+    }
+}
+
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct IrqFlagsMask(pub u8);
+impl IrqFlagsMask {
+    #[inline] pub fn rx_timeout_mask(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
+    }
+
+    #[doc="Returns true if RX_TIMEOUT_MASK != 0"]
+    #[inline] pub fn test_rx_timeout_mask(&self) -> bool {
+        self.rx_timeout_mask() != 0
+    }
+
+    #[doc="Sets the RX_TIMEOUT_MASK field."]
+    #[inline] pub fn set_rx_timeout_mask<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0x1 << 7);
+        self.0 |= value << 7;
+        self
+    }
+
+    #[inline] pub fn rx_done_mask(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
+    }
+
+    #[doc="Returns true if RX_DONE_MASK != 0"]
+    #[inline] pub fn test_rx_done_mask(&self) -> bool {
+        self.rx_done_mask() != 0
+    }
+
+    #[doc="Sets the RX_DONE_MASK field."]
+    #[inline] pub fn set_rx_done_mask<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0x1 << 6);
+        self.0 |= value << 6;
+        self
+    }
+
+    #[inline] pub fn payload_crc_error_mask(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
+    }
+
+    #[doc="Returns true if PAYLOAD_CRC_ERROR_MASK != 0"]
+    #[inline] pub fn test_payload_crc_error_mask(&self) -> bool {
+        self.payload_crc_error_mask() != 0
+    }
+
+    #[doc="Sets the PAYLOAD_CRC_ERROR_MASK field."]
+    #[inline] pub fn set_payload_crc_error_mask<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0x1 << 5);
+        self.0 |= value << 5;
+        self
+    }
+
+    #[inline] pub fn valid_header_mask(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
+    }
+
+    #[doc="Returns true if VALID_HEADER_MASK != 0"]
+    #[inline] pub fn test_valid_header_mask(&self) -> bool {
+        self.valid_header_mask() != 0
+    }
+
+    #[doc="Sets the VALID_HEADER_MASK field."]
+    #[inline] pub fn set_valid_header_mask<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0x1 << 4);
+        self.0 |= value << 4;
+        self
+    }
+
+    #[inline] pub fn tx_done_mask(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
+    }
+
+    #[doc="Returns true if TX_DONE_MASK != 0"]
+    #[inline] pub fn test_tx_done_mask(&self) -> bool {
+        self.tx_done_mask() != 0
+    }
+
+    #[doc="Sets the TX_DONE_MASK field."]
+    #[inline] pub fn set_tx_done_mask<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0x1 << 3);
+        self.0 |= value << 3;
+        self
+    }
+
+    #[inline] pub fn cad_done_mask(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
+    }
+
+    #[doc="Returns true if CAD_DONE_MASK != 0"]
+    #[inline] pub fn test_cad_done_mask(&self) -> bool {
+        self.cad_done_mask() != 0
+    }
+
+    #[doc="Sets the CAD_DONE_MASK field."]
+    #[inline] pub fn set_cad_done_mask<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0x1 << 2);
+        self.0 |= value << 2;
+        self
+    }
+
+    #[inline] pub fn fhss_change_channel_mask(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
+    }
+
+    #[doc="Returns true if FHSS_CHANGE_CHANNEL_MASK != 0"]
+    #[inline] pub fn test_fhss_change_channel_mask(&self) -> bool {
+        self.fhss_change_channel_mask() != 0
+    }
+
+    #[doc="Sets the FHSS_CHANGE_CHANNEL_MASK field."]
+    #[inline] pub fn set_fhss_change_channel_mask<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0x1 << 1);
+        self.0 |= value << 1;
+        self
+    }
+
+    #[inline] pub fn cad_detected_mask(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
+    }
+
+    #[doc="Returns true if CAD_DETECTED_MASK != 0"]
+    #[inline] pub fn test_cad_detected_mask(&self) -> bool {
+        self.cad_detected_mask() != 0
+    }
+
+    #[doc="Sets the CAD_DETECTED_MASK field."]
+    #[inline] pub fn set_cad_detected_mask<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0x1 << 0);
+        self.0 |= value << 0;
+        self
+    }
+
+}
+
+impl From<u8> for IrqFlagsMask {
+    #[inline]
+    fn from(other: u8) -> Self {
+         IrqFlagsMask(other)
+    }
+}
+
+impl ::core::fmt::Display for IrqFlagsMask {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
+    }
+}
+
+impl ::core::fmt::Debug for IrqFlagsMask {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        if self.rx_timeout_mask() != 0 { try!(write!(f, " rx_timeout_mask"))}
+        if self.rx_done_mask() != 0 { try!(write!(f, " rx_done_mask"))}
+        if self.payload_crc_error_mask() != 0 { try!(write!(f, " payload_crc_error_mask"))}
+        if self.valid_header_mask() != 0 { try!(write!(f, " valid_header_mask"))}
+        if self.tx_done_mask() != 0 { try!(write!(f, " tx_done_mask"))}
+        if self.cad_done_mask() != 0 { try!(write!(f, " cad_done_mask"))}
+        if self.fhss_change_channel_mask() != 0 { try!(write!(f, " fhss_change_channel_mask"))}
+        if self.cad_detected_mask() != 0 { try!(write!(f, " cad_detected_mask"))}
+        try!(write!(f, "]"));
+        Ok(())
+    }
+}
+
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct IrqFlags(pub u8);
+impl IrqFlags {
+    #[inline] pub fn rx_timeout(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
+    }
+
+    #[doc="Returns true if RX_TIMEOUT != 0"]
+    #[inline] pub fn test_rx_timeout(&self) -> bool {
+        self.rx_timeout() != 0
+    }
+
+    #[doc="Sets the RX_TIMEOUT field."]
+    #[inline] pub fn set_rx_timeout<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0x1 << 7);
+        self.0 |= value << 7;
+        self
+    }
+
+    #[inline] pub fn rx_done(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
+    }
+
+    #[doc="Returns true if RX_DONE != 0"]
+    #[inline] pub fn test_rx_done(&self) -> bool {
+        self.rx_done() != 0
+    }
+
+    #[doc="Sets the RX_DONE field."]
+    #[inline] pub fn set_rx_done<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0x1 << 6);
+        self.0 |= value << 6;
+        self
+    }
+
+    #[inline] pub fn payload_crc_error(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
+    }
+
+    #[doc="Returns true if PAYLOAD_CRC_ERROR != 0"]
+    #[inline] pub fn test_payload_crc_error(&self) -> bool {
+        self.payload_crc_error() != 0
+    }
+
+    #[doc="Sets the PAYLOAD_CRC_ERROR field."]
+    #[inline] pub fn set_payload_crc_error<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0x1 << 5);
+        self.0 |= value << 5;
+        self
+    }
+
+    #[inline] pub fn valid_header(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
+    }
+
+    #[doc="Returns true if VALID_HEADER != 0"]
+    #[inline] pub fn test_valid_header(&self) -> bool {
+        self.valid_header() != 0
+    }
+
+    #[doc="Sets the VALID_HEADER field."]
+    #[inline] pub fn set_valid_header<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0x1 << 4);
+        self.0 |= value << 4;
+        self
+    }
+
+    #[inline] pub fn tx_done(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
+    }
+
+    #[doc="Returns true if TX_DONE != 0"]
+    #[inline] pub fn test_tx_done(&self) -> bool {
+        self.tx_done() != 0
+    }
+
+    #[doc="Sets the TX_DONE field."]
+    #[inline] pub fn set_tx_done<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0x1 << 3);
+        self.0 |= value << 3;
+        self
+    }
+
+    #[inline] pub fn cad_done(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
+    }
+
+    #[doc="Returns true if CAD_DONE != 0"]
+    #[inline] pub fn test_cad_done(&self) -> bool {
+        self.cad_done() != 0
+    }
+
+    #[doc="Sets the CAD_DONE field."]
+    #[inline] pub fn set_cad_done<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0x1 << 2);
+        self.0 |= value << 2;
+        self
+    }
+
+    #[inline] pub fn fhss_change_channel(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
+    }
+
+    #[doc="Returns true if FHSS_CHANGE_CHANNEL != 0"]
+    #[inline] pub fn test_fhss_change_channel(&self) -> bool {
+        self.fhss_change_channel() != 0
+    }
+
+    #[doc="Sets the FHSS_CHANGE_CHANNEL field."]
+    #[inline] pub fn set_fhss_change_channel<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0x1 << 1);
+        self.0 |= value << 1;
+        self
+    }
+
+    #[inline] pub fn cad_detected(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
+    }
+
+    #[doc="Returns true if CAD_DETECTED != 0"]
+    #[inline] pub fn test_cad_detected(&self) -> bool {
+        self.cad_detected() != 0
+    }
+
+    #[doc="Sets the CAD_DETECTED field."]
+    #[inline] pub fn set_cad_detected<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0x1 << 0);
+        self.0 |= value << 0;
+        self
+    }
+
+}
+
+impl From<u8> for IrqFlags {
+    #[inline]
+    fn from(other: u8) -> Self {
+         IrqFlags(other)
+    }
+}
+
+impl ::core::fmt::Display for IrqFlags {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
+    }
+}
+
+impl ::core::fmt::Debug for IrqFlags {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        if self.rx_timeout() != 0 { try!(write!(f, " rx_timeout"))}
+        if self.rx_done() != 0 { try!(write!(f, " rx_done"))}
+        if self.payload_crc_error() != 0 { try!(write!(f, " payload_crc_error"))}
+        if self.valid_header() != 0 { try!(write!(f, " valid_header"))}
+        if self.tx_done() != 0 { try!(write!(f, " tx_done"))}
+        if self.cad_done() != 0 { try!(write!(f, " cad_done"))}
+        if self.fhss_change_channel() != 0 { try!(write!(f, " fhss_change_channel"))}
+        if self.cad_detected() != 0 { try!(write!(f, " cad_detected"))}
+        try!(write!(f, "]"));
+        Ok(())
+    }
+}
+
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct RxNbBytes(pub u8);
+impl RxNbBytes {
+    #[inline] pub fn fifo_rx_bytes_nb(&self) -> bits::U8 {
+        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
+    }
+
+    #[doc="Returns true if FIFO_RX_BYTES_NB != 0"]
+    #[inline] pub fn test_fifo_rx_bytes_nb(&self) -> bool {
+        self.fifo_rx_bytes_nb() != 0
+    }
 
-    impl From<u8> for FrfMsb {
-        fn from(other: u8) -> Self { FrfMsb(other) }
+    #[doc="Sets the FIFO_RX_BYTES_NB field."]
+    #[inline] pub fn set_fifo_rx_bytes_nb<V: Into<bits::U8>>(mut self, value: V) -> Self {
+        let value: bits::U8 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0xff << 0);
+        self.0 |= value << 0;
+        self
     }
 
-    impl From<FrfMsb> for u8 {
-        fn from(other: FrfMsb) -> Self { other.0 }
+}
+
+impl From<u8> for RxNbBytes {
+    #[inline]
+    fn from(other: u8) -> Self {
+         RxNbBytes(other)
+    }
+}
+
+impl ::core::fmt::Display for RxNbBytes {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
+    }
+}
+
+impl ::core::fmt::Debug for RxNbBytes {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        if self.fifo_rx_bytes_nb() != 0 { try!(write!(f, " fifo_rx_bytes_nb=0x{:x}", self.fifo_rx_bytes_nb()))}
+        try!(write!(f, "]"));
+        Ok(())
+    }
+}
+
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct RxHeaderCntValueMsb(pub u8);
+impl RxHeaderCntValueMsb {
+    #[inline] pub fn valid_header_cnt_msb(&self) -> bits::U8 {
+        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
+    }
+
+    #[doc="Returns true if VALID_HEADER_CNT_MSB != 0"]
+    #[inline] pub fn test_valid_header_cnt_msb(&self) -> bool {
+        self.valid_header_cnt_msb() != 0
+    }
+
+    #[doc="Sets the VALID_HEADER_CNT_MSB field."]
+    #[inline] pub fn set_valid_header_cnt_msb<V: Into<bits::U8>>(mut self, value: V) -> Self {
+        let value: bits::U8 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0xff << 0);
+        self.0 |= value << 0;
+        self
+    }
+
+}
+
+impl From<u8> for RxHeaderCntValueMsb {
+    #[inline]
+    fn from(other: u8) -> Self {
+         RxHeaderCntValueMsb(other)
+    }
+}
+
+impl ::core::fmt::Display for RxHeaderCntValueMsb {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
+    }
+}
+
+impl ::core::fmt::Debug for RxHeaderCntValueMsb {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        if self.valid_header_cnt_msb() != 0 { try!(write!(f, " valid_header_cnt_msb=0x{:x}", self.valid_header_cnt_msb()))}
+        try!(write!(f, "]"));
+        Ok(())
+    }
+}
+
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct RxHeaderCntValueLsb(pub u8);
+impl RxHeaderCntValueLsb {
+    #[inline] pub fn valid_header_cnt_lsb(&self) -> bits::U8 {
+        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
+    }
+
+    #[doc="Returns true if VALID_HEADER_CNT_LSB != 0"]
+    #[inline] pub fn test_valid_header_cnt_lsb(&self) -> bool {
+        self.valid_header_cnt_lsb() != 0
+    }
+
+    #[doc="Sets the VALID_HEADER_CNT_LSB field."]
+    #[inline] pub fn set_valid_header_cnt_lsb<V: Into<bits::U8>>(mut self, value: V) -> Self {
+        let value: bits::U8 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0xff << 0);
+        self.0 |= value << 0;
+        self
+    }
+
+}
+
+impl From<u8> for RxHeaderCntValueLsb {
+    #[inline]
+    fn from(other: u8) -> Self {
+         RxHeaderCntValueLsb(other)
+    }
+}
+
+impl ::core::fmt::Display for RxHeaderCntValueLsb {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
+    }
+}
+
+impl ::core::fmt::Debug for RxHeaderCntValueLsb {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        if self.valid_header_cnt_lsb() != 0 { try!(write!(f, " valid_header_cnt_lsb=0x{:x}", self.valid_header_cnt_lsb()))}
+        try!(write!(f, "]"));
+        Ok(())
+    }
+}
+
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct RxPacketCntValueMsb(pub u8);
+impl RxPacketCntValueMsb {
+    #[inline] pub fn valid_packet_cnt_msb(&self) -> bits::U8 {
+        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
+    }
+
+    #[doc="Returns true if VALID_PACKET_CNT_MSB != 0"]
+    #[inline] pub fn test_valid_packet_cnt_msb(&self) -> bool {
+        self.valid_packet_cnt_msb() != 0
+    }
+
+    #[doc="Sets the VALID_PACKET_CNT_MSB field."]
+    #[inline] pub fn set_valid_packet_cnt_msb<V: Into<bits::U8>>(mut self, value: V) -> Self {
+        let value: bits::U8 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0xff << 0);
+        self.0 |= value << 0;
+        self
+    }
+
+}
+
+impl From<u8> for RxPacketCntValueMsb {
+    #[inline]
+    fn from(other: u8) -> Self {
+         RxPacketCntValueMsb(other)
+    }
+}
+
+impl ::core::fmt::Display for RxPacketCntValueMsb {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
+    }
+}
+
+impl ::core::fmt::Debug for RxPacketCntValueMsb {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        if self.valid_packet_cnt_msb() != 0 { try!(write!(f, " valid_packet_cnt_msb=0x{:x}", self.valid_packet_cnt_msb()))}
+        try!(write!(f, "]"));
+        Ok(())
+    }
+}
+
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct RxPacketCntValueLsb(pub u8);
+impl RxPacketCntValueLsb {
+    #[inline] pub fn valid_packet_cnt_lsb(&self) -> bits::U8 {
+        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
+    }
+
+    #[doc="Returns true if VALID_PACKET_CNT_LSB != 0"]
+    #[inline] pub fn test_valid_packet_cnt_lsb(&self) -> bool {
+        self.valid_packet_cnt_lsb() != 0
+    }
+
+    #[doc="Sets the VALID_PACKET_CNT_LSB field."]
+    #[inline] pub fn set_valid_packet_cnt_lsb<V: Into<bits::U8>>(mut self, value: V) -> Self {
+        let value: bits::U8 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0xff << 0);
+        self.0 |= value << 0;
+        self
+    }
+
+}
+
+impl From<u8> for RxPacketCntValueLsb {
+    #[inline]
+    fn from(other: u8) -> Self {
+         RxPacketCntValueLsb(other)
+    }
+}
+
+impl ::core::fmt::Display for RxPacketCntValueLsb {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
+    }
+}
+
+impl ::core::fmt::Debug for RxPacketCntValueLsb {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        if self.valid_packet_cnt_lsb() != 0 { try!(write!(f, " valid_packet_cnt_lsb=0x{:x}", self.valid_packet_cnt_lsb()))}
+        try!(write!(f, "]"));
+        Ok(())
+    }
+}
+
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct ModemStat(pub u8);
+impl ModemStat {
+    #[inline] pub fn rx_coding_rate(&self) -> bits::U3 {
+        unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x7) as u8) } // [7:5]
+    }
+
+    #[doc="Returns true if RX_CODING_RATE != 0"]
+    #[inline] pub fn test_rx_coding_rate(&self) -> bool {
+        self.rx_coding_rate() != 0
+    }
+
+    #[doc="Sets the RX_CODING_RATE field."]
+    #[inline] pub fn set_rx_coding_rate<V: Into<bits::U3>>(mut self, value: V) -> Self {
+        let value: bits::U3 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0x7 << 5);
+        self.0 |= value << 5;
+        self
+    }
+
+    #[inline] pub fn modem_status(&self) -> bits::U5 {
+        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1f) as u8) } // [4:0]
+    }
+
+    #[doc="Returns true if MODEM_STATUS != 0"]
+    #[inline] pub fn test_modem_status(&self) -> bool {
+        self.modem_status() != 0
+    }
+
+    #[doc="Sets the MODEM_STATUS field."]
+    #[inline] pub fn set_modem_status<V: Into<bits::U5>>(mut self, value: V) -> Self {
+        let value: bits::U5 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0x1f << 0);
+        self.0 |= value << 0;
+        self
+    }
+
+}
+
+impl From<u8> for ModemStat {
+    #[inline]
+    fn from(other: u8) -> Self {
+         ModemStat(other)
+    }
+}
+
+impl ::core::fmt::Display for ModemStat {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
+    }
+}
+
+impl ::core::fmt::Debug for ModemStat {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        if self.rx_coding_rate() != 0 { try!(write!(f, " rx_coding_rate=0x{:x}", self.rx_coding_rate()))}
+        if self.modem_status() != 0 { try!(write!(f, " modem_status=0x{:x}", self.modem_status()))}
+        try!(write!(f, "]"));
+        Ok(())
+    }
+}
+
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct PktSnrValue(pub u8);
+impl PktSnrValue {
+    #[inline] pub fn packet_snr(&self) -> bits::U8 {
+        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
+    }
+
+    #[doc="Returns true if PACKET_SNR != 0"]
+    #[inline] pub fn test_packet_snr(&self) -> bool {
+        self.packet_snr() != 0
+    }
+
+    #[doc="Sets the PACKET_SNR field."]
+    #[inline] pub fn set_packet_snr<V: Into<bits::U8>>(mut self, value: V) -> Self {
+        let value: bits::U8 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0xff << 0);
+        self.0 |= value << 0;
+        self
+    }
+
+}
+
+impl From<u8> for PktSnrValue {
+    #[inline]
+    fn from(other: u8) -> Self {
+         PktSnrValue(other)
+    }
+}
+
+impl ::core::fmt::Display for PktSnrValue {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
+    }
+}
+
+impl ::core::fmt::Debug for PktSnrValue {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        if self.packet_snr() != 0 { try!(write!(f, " packet_snr=0x{:x}", self.packet_snr()))}
+        try!(write!(f, "]"));
+        Ok(())
+    }
+}
+
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct PktRssiValue(pub u8);
+impl PktRssiValue {
+    #[inline] pub fn packet_rssi(&self) -> bits::U8 {
+        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
+    }
+
+    #[doc="Returns true if PACKET_RSSI != 0"]
+    #[inline] pub fn test_packet_rssi(&self) -> bool {
+        self.packet_rssi() != 0
+    }
+
+    #[doc="Sets the PACKET_RSSI field."]
+    #[inline] pub fn set_packet_rssi<V: Into<bits::U8>>(mut self, value: V) -> Self {
+        let value: bits::U8 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0xff << 0);
+        self.0 |= value << 0;
+        self
+    }
+
+}
+
+impl From<u8> for PktRssiValue {
+    #[inline]
+    fn from(other: u8) -> Self {
+         PktRssiValue(other)
+    }
+}
+
+impl ::core::fmt::Display for PktRssiValue {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
+    }
+}
+
+impl ::core::fmt::Debug for PktRssiValue {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        if self.packet_rssi() != 0 { try!(write!(f, " packet_rssi=0x{:x}", self.packet_rssi()))}
+        try!(write!(f, "]"));
+        Ok(())
+    }
+}
+
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct RssiValue(pub u8);
+impl RssiValue {
+    #[inline] pub fn rssi(&self) -> bits::U8 {
+        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
+    }
+
+    #[doc="Returns true if RSSI != 0"]
+    #[inline] pub fn test_rssi(&self) -> bool {
+        self.rssi() != 0
+    }
+
+    #[doc="Sets the RSSI field."]
+    #[inline] pub fn set_rssi<V: Into<bits::U8>>(mut self, value: V) -> Self {
+        let value: bits::U8 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0xff << 0);
+        self.0 |= value << 0;
+        self
+    }
+
+}
+
+impl From<u8> for RssiValue {
+    #[inline]
+    fn from(other: u8) -> Self {
+         RssiValue(other)
+    }
+}
+
+impl ::core::fmt::Display for RssiValue {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
+    }
+}
+
+impl ::core::fmt::Debug for RssiValue {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        if self.rssi() != 0 { try!(write!(f, " rssi=0x{:x}", self.rssi()))}
+        try!(write!(f, "]"));
+        Ok(())
+    }
+}
+
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct HopChannel(pub u8);
+impl HopChannel {
+    #[inline] pub fn pll_timeout(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
+    }
+
+    #[doc="Returns true if PLL_TIMEOUT != 0"]
+    #[inline] pub fn test_pll_timeout(&self) -> bool {
+        self.pll_timeout() != 0
+    }
+
+    #[doc="Sets the PLL_TIMEOUT field."]
+    #[inline] pub fn set_pll_timeout<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0x1 << 7);
+        self.0 |= value << 7;
+        self
+    }
+
+    #[inline] pub fn rx_payload_crc_on(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
+    }
+
+    #[doc="Returns true if RX_PAYLOAD_CRC_ON != 0"]
+    #[inline] pub fn test_rx_payload_crc_on(&self) -> bool {
+        self.rx_payload_crc_on() != 0
+    }
+
+    #[doc="Sets the RX_PAYLOAD_CRC_ON field."]
+    #[inline] pub fn set_rx_payload_crc_on<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0x1 << 6);
+        self.0 |= value << 6;
+        self
+    }
+
+    #[inline] pub fn fhss_present_channel(&self) -> bits::U6 {
+        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x3f) as u8) } // [5:0]
+    }
+
+    #[doc="Returns true if FHSS_PRESENT_CHANNEL != 0"]
+    #[inline] pub fn test_fhss_present_channel(&self) -> bool {
+        self.fhss_present_channel() != 0
+    }
+
+    #[doc="Sets the FHSS_PRESENT_CHANNEL field."]
+    #[inline] pub fn set_fhss_present_channel<V: Into<bits::U6>>(mut self, value: V) -> Self {
+        let value: bits::U6 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0x3f << 0);
+        self.0 |= value << 0;
+        self
+    }
+
+}
+
+impl From<u8> for HopChannel {
+    #[inline]
+    fn from(other: u8) -> Self {
+         HopChannel(other)
+    }
+}
+
+impl ::core::fmt::Display for HopChannel {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
+    }
+}
+
+impl ::core::fmt::Debug for HopChannel {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        if self.pll_timeout() != 0 { try!(write!(f, " pll_timeout"))}
+        if self.rx_payload_crc_on() != 0 { try!(write!(f, " rx_payload_crc_on"))}
+        if self.fhss_present_channel() != 0 { try!(write!(f, " fhss_present_channel=0x{:x}", self.fhss_present_channel()))}
+        try!(write!(f, "]"));
+        Ok(())
+    }
+}
+
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct ModemConfig1(pub u8);
+impl ModemConfig1 {
+    #[inline] pub fn bw(&self) -> bits::U4 {
+        unsafe { ::core::mem::transmute(((self.0 >> 4) & 0xf) as u8) } // [7:4]
+    }
+
+    #[doc="Returns true if BW != 0"]
+    #[inline] pub fn test_bw(&self) -> bool {
+        self.bw() != 0
+    }
+
+    #[doc="Sets the BW field."]
+    #[inline] pub fn set_bw<V: Into<bits::U4>>(mut self, value: V) -> Self {
+        let value: bits::U4 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0xf << 4);
+        self.0 |= value << 4;
+        self
+    }
+
+    #[inline] pub fn coding_rate(&self) -> bits::U3 {
+        unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x7) as u8) } // [3:1]
+    }
+
+    #[doc="Returns true if CODING_RATE != 0"]
+    #[inline] pub fn test_coding_rate(&self) -> bool {
+        self.coding_rate() != 0
+    }
+
+    #[doc="Sets the CODING_RATE field."]
+    #[inline] pub fn set_coding_rate<V: Into<bits::U3>>(mut self, value: V) -> Self {
+        let value: bits::U3 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0x7 << 1);
+        self.0 |= value << 1;
+        self
+    }
+
+    #[inline] pub fn implicit_header_mode_on(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
+    }
+
+    #[doc="Returns true if IMPLICIT_HEADER_MODE_ON != 0"]
+    #[inline] pub fn test_implicit_header_mode_on(&self) -> bool {
+        self.implicit_header_mode_on() != 0
+    }
+
+    #[doc="Sets the IMPLICIT_HEADER_MODE_ON field."]
+    #[inline] pub fn set_implicit_header_mode_on<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0x1 << 0);
+        self.0 |= value << 0;
+        self
+    }
+
+}
+
+impl From<u8> for ModemConfig1 {
+    #[inline]
+    fn from(other: u8) -> Self {
+         ModemConfig1(other)
+    }
+}
+
+impl ::core::fmt::Display for ModemConfig1 {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
+    }
+}
+
+impl ::core::fmt::Debug for ModemConfig1 {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        if self.bw() != 0 { try!(write!(f, " bw=0x{:x}", self.bw()))}
+        if self.coding_rate() != 0 { try!(write!(f, " coding_rate=0x{:x}", self.coding_rate()))}
+        if self.implicit_header_mode_on() != 0 { try!(write!(f, " implicit_header_mode_on"))}
+        try!(write!(f, "]"));
+        Ok(())
+    }
+}
+
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct ModemConfig2(pub u8);
+impl ModemConfig2 {
+    #[inline] pub fn spreading_factor(&self) -> bits::U4 {
+        unsafe { ::core::mem::transmute(((self.0 >> 4) & 0xf) as u8) } // [7:4]
+    }
+
+    #[doc="Returns true if SPREADING_FACTOR != 0"]
+    #[inline] pub fn test_spreading_factor(&self) -> bool {
+        self.spreading_factor() != 0
+    }
+
+    #[doc="Sets the SPREADING_FACTOR field."]
+    #[inline] pub fn set_spreading_factor<V: Into<bits::U4>>(mut self, value: V) -> Self {
+        let value: bits::U4 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0xf << 4);
+        self.0 |= value << 4;
+        self
+    }
+
+    #[inline] pub fn tx_continuous_mode(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    impl FrfMsb {
-        pub fn value(&self) -> u8 { self.0 }
+    #[doc="Returns true if TX_CONTINUOUS_MODE != 0"]
+    #[inline] pub fn test_tx_continuous_mode(&self) -> bool {
+        self.tx_continuous_mode() != 0
+    }
 
-        pub fn frf(&self) -> u8 {
-            ((self.0 as u8) >> 0) & 0xff // [7:0]
-        }
-    
-        pub fn set_frf(mut self, value: u8) -> Self {
-            assert!((value & !0xff) == 0);
-            self.0 &= !(0xff << 0);
-            self.0 |= value << 0;
-            self
-        }
-    
+    #[doc="Sets the TX_CONTINUOUS_MODE field."]
+    #[inline] pub fn set_tx_continuous_mode<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0x1 << 3);
+        self.0 |= value << 3;
+        self
     }
 
-    impl ::core::fmt::Display for FrfMsb {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            self.0.fmt(f)
-        }
+    #[inline] pub fn rx_payload_crc_on(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    impl ::core::fmt::Debug for FrfMsb {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            write!(f, "[0x{:02x}", self.0)?;
-            if self.frf() != 0 { write!(f, " frf=0x{:x}", self.frf())? }
-            write!(f, "]")?;
-            Ok(())
-        }
+    #[doc="Returns true if RX_PAYLOAD_CRC_ON != 0"]
+    #[inline] pub fn test_rx_payload_crc_on(&self) -> bool {
+        self.rx_payload_crc_on() != 0
     }
 
-    #[doc="MSB of RF carrier frequency"]
-    #[derive(PartialEq, Eq, Clone, Copy)]
+    #[doc="Sets the RX_PAYLOAD_CRC_ON field."]
+    #[inline] pub fn set_rx_payload_crc_on<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0x1 << 2);
+        self.0 |= value << 2;
+        self
+    }
 
-    pub struct FrfMid(u8);
+    #[inline] pub fn symb_timeout(&self) -> bits::U2 {
+        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x3) as u8) } // [1:0]
+    }
 
-    impl From<u8> for FrfMid {
-        fn from(other: u8) -> Self { FrfMid(other) }
+    #[doc="Returns true if SYMB_TIMEOUT != 0"]
+    #[inline] pub fn test_symb_timeout(&self) -> bool {
+        self.symb_timeout() != 0
     }
 
-    impl From<FrfMid> for u8 {
-        fn from(other: FrfMid) -> Self { other.0 }
+    #[doc="Sets the SYMB_TIMEOUT field."]
+    #[inline] pub fn set_symb_timeout<V: Into<bits::U2>>(mut self, value: V) -> Self {
+        let value: bits::U2 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0x3 << 0);
+        self.0 |= value << 0;
+        self
     }
 
-    impl FrfMid {
-        pub fn value(&self) -> u8 { self.0 }
+}
 
-        pub fn frf(&self) -> u8 {
-            ((self.0 as u8) >> 0) & 0xff // [7:0]
-        }
-    
-        pub fn set_frf(mut self, value: u8) -> Self {
-            assert!((value & !0xff) == 0);
-            self.0 &= !(0xff << 0);
-            self.0 |= value << 0;
-            self
-        }
-    
+impl From<u8> for ModemConfig2 {
+    #[inline]
+    fn from(other: u8) -> Self {
+         ModemConfig2(other)
     }
+}
 
-    impl ::core::fmt::Display for FrfMid {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            self.0.fmt(f)
-        }
+impl ::core::fmt::Display for ModemConfig2 {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
     }
+}
 
-    impl ::core::fmt::Debug for FrfMid {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            write!(f, "[0x{:02x}", self.0)?;
-            if self.frf() != 0 { write!(f, " frf=0x{:x}", self.frf())? }
-            write!(f, "]")?;
-            Ok(())
-        }
+impl ::core::fmt::Debug for ModemConfig2 {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        if self.spreading_factor() != 0 { try!(write!(f, " spreading_factor=0x{:x}", self.spreading_factor()))}
+        if self.tx_continuous_mode() != 0 { try!(write!(f, " tx_continuous_mode"))}
+        if self.rx_payload_crc_on() != 0 { try!(write!(f, " rx_payload_crc_on"))}
+        if self.symb_timeout() != 0 { try!(write!(f, " symb_timeout=0x{:x}", self.symb_timeout()))}
+        try!(write!(f, "]"));
+        Ok(())
     }
+}
 
-    #[doc="LSB of RF carrier frequency"]
-    #[derive(PartialEq, Eq, Clone, Copy)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct SymbTimeoutLsb(pub u8);
+impl SymbTimeoutLsb {
+    #[inline] pub fn symb_timeout(&self) -> bits::U8 {
+        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
+    }
 
-    pub struct FrfLsb(u8);
+    #[doc="Returns true if SYMB_TIMEOUT != 0"]
+    #[inline] pub fn test_symb_timeout(&self) -> bool {
+        self.symb_timeout() != 0
+    }
 
-    impl From<u8> for FrfLsb {
-        fn from(other: u8) -> Self { FrfLsb(other) }
+    #[doc="Sets the SYMB_TIMEOUT field."]
+    #[inline] pub fn set_symb_timeout<V: Into<bits::U8>>(mut self, value: V) -> Self {
+        let value: bits::U8 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0xff << 0);
+        self.0 |= value << 0;
+        self
     }
 
-    impl From<FrfLsb> for u8 {
-        fn from(other: FrfLsb) -> Self { other.0 }
+}
+
+impl From<u8> for SymbTimeoutLsb {
+    #[inline]
+    fn from(other: u8) -> Self {
+         SymbTimeoutLsb(other)
     }
+}
 
-    impl FrfLsb {
-        pub fn value(&self) -> u8 { self.0 }
+impl ::core::fmt::Display for SymbTimeoutLsb {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
+    }
+}
 
-        pub fn frf(&self) -> u8 {
-            ((self.0 as u8) >> 0) & 0xff // [7:0]
-        }
-    
-        pub fn set_frf(mut self, value: u8) -> Self {
-            assert!((value & !0xff) == 0);
-            self.0 &= !(0xff << 0);
-            self.0 |= value << 0;
-            self
-        }
-    
+impl ::core::fmt::Debug for SymbTimeoutLsb {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        if self.symb_timeout() != 0 { try!(write!(f, " symb_timeout=0x{:x}", self.symb_timeout()))}
+        try!(write!(f, "]"));
+        Ok(())
     }
+}
 
-    impl ::core::fmt::Display for FrfLsb {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            self.0.fmt(f)
-        }
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct PreambleMsb(pub u8);
+impl PreambleMsb {
+    #[inline] pub fn preamble_length(&self) -> bits::U8 {
+        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
-    impl ::core::fmt::Debug for FrfLsb {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            write!(f, "[0x{:02x}", self.0)?;
-            if self.frf() != 0 { write!(f, " frf=0x{:x}", self.frf())? }
-            write!(f, "]")?;
-            Ok(())
-        }
+    #[doc="Returns true if PREAMBLE_LENGTH != 0"]
+    #[inline] pub fn test_preamble_length(&self) -> bool {
+        self.preamble_length() != 0
     }
 
-    #[derive(PartialEq, Eq, Clone, Copy)]
+    #[doc="Sets the PREAMBLE_LENGTH field."]
+    #[inline] pub fn set_preamble_length<V: Into<bits::U8>>(mut self, value: V) -> Self {
+        let value: bits::U8 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0xff << 0);
+        self.0 |= value << 0;
+        self
+    }
 
-    pub struct PaConfig(u8);
+}
 
-    impl From<u8> for PaConfig {
-        fn from(other: u8) -> Self { PaConfig(other) }
+impl From<u8> for PreambleMsb {
+    #[inline]
+    fn from(other: u8) -> Self {
+         PreambleMsb(other)
     }
+}
 
-    impl From<PaConfig> for u8 {
-        fn from(other: PaConfig) -> Self { other.0 }
+impl ::core::fmt::Display for PreambleMsb {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
     }
+}
 
-    impl PaConfig {
-        pub fn value(&self) -> u8 { self.0 }
+impl ::core::fmt::Debug for PreambleMsb {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        if self.preamble_length() != 0 { try!(write!(f, " preamble_length=0x{:x}", self.preamble_length()))}
+        try!(write!(f, "]"));
+        Ok(())
+    }
+}
 
-        pub fn pa_select(&self) -> u8 {
-            ((self.0 as u8) >> 7) & 0x1 // [7]
-        }
-    
-        pub fn set_pa_select(mut self, value: u8) -> Self {
-            assert!((value & !0x1) == 0);
-            self.0 &= !(0x1 << 7);
-            self.0 |= value << 7;
-            self
-        }
-    
-        pub fn max_power(&self) -> u8 {
-            ((self.0 as u8) >> 4) & 0x7 // [6:4]
-        }
-    
-        pub fn set_max_power(mut self, value: u8) -> Self {
-            assert!((value & !0x7) == 0);
-            self.0 &= !(0x7 << 4);
-            self.0 |= value << 4;
-            self
-        }
-    
-        pub fn output_power(&self) -> u8 {
-            ((self.0 as u8) >> 0) & 0xf // [3:0]
-        }
-    
-        pub fn set_output_power(mut self, value: u8) -> Self {
-            assert!((value & !0xf) == 0);
-            self.0 &= !(0xf << 0);
-            self.0 |= value << 0;
-            self
-        }
-    
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct PreambleLsb(pub u8);
+impl PreambleLsb {
+    #[inline] pub fn preamble_length(&self) -> bits::U8 {
+        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
-    impl ::core::fmt::Display for PaConfig {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            self.0.fmt(f)
-        }
+    #[doc="Returns true if PREAMBLE_LENGTH != 0"]
+    #[inline] pub fn test_preamble_length(&self) -> bool {
+        self.preamble_length() != 0
     }
 
-    impl ::core::fmt::Debug for PaConfig {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            write!(f, "[0x{:02x}", self.0)?;
-            if self.pa_select() != 0 { write!(f, " pa_select")? }
-            if self.max_power() != 0 { write!(f, " max_power=0x{:x}", self.max_power())? }
-            if self.output_power() != 0 { write!(f, " output_power=0x{:x}", self.output_power())? }
-            write!(f, "]")?;
-            Ok(())
-        }
+    #[doc="Sets the PREAMBLE_LENGTH field."]
+    #[inline] pub fn set_preamble_length<V: Into<bits::U8>>(mut self, value: V) -> Self {
+        let value: bits::U8 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0xff << 0);
+        self.0 |= value << 0;
+        self
     }
 
-    #[derive(PartialEq, Eq, Clone, Copy)]
+}
 
-    pub struct PaRamp(u8);
+impl From<u8> for PreambleLsb {
+    #[inline]
+    fn from(other: u8) -> Self {
+         PreambleLsb(other)
+    }
+}
 
-    impl From<u8> for PaRamp {
-        fn from(other: u8) -> Self { PaRamp(other) }
+impl ::core::fmt::Display for PreambleLsb {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
     }
+}
 
-    impl From<PaRamp> for u8 {
-        fn from(other: PaRamp) -> Self { other.0 }
+impl ::core::fmt::Debug for PreambleLsb {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        if self.preamble_length() != 0 { try!(write!(f, " preamble_length=0x{:x}", self.preamble_length()))}
+        try!(write!(f, "]"));
+        Ok(())
     }
+}
 
-    impl PaRamp {
-        pub fn value(&self) -> u8 { self.0 }
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct PayloadLength(pub u8);
+impl PayloadLength {
+    #[inline] pub fn payload_length(&self) -> bits::U8 {
+        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
+    }
 
-        pub fn pa_ramp(&self) -> u8 {
-            ((self.0 as u8) >> 0) & 0xf // [3:0]
-        }
-    
-        pub fn set_pa_ramp(mut self, value: u8) -> Self {
-            assert!((value & !0xf) == 0);
-            self.0 &= !(0xf << 0);
-            self.0 |= value << 0;
-            self
-        }
-    
+    #[doc="Returns true if PAYLOAD_LENGTH != 0"]
+    #[inline] pub fn test_payload_length(&self) -> bool {
+        self.payload_length() != 0
     }
 
-    impl ::core::fmt::Display for PaRamp {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            self.0.fmt(f)
-        }
+    #[doc="Sets the PAYLOAD_LENGTH field."]
+    #[inline] pub fn set_payload_length<V: Into<bits::U8>>(mut self, value: V) -> Self {
+        let value: bits::U8 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0xff << 0);
+        self.0 |= value << 0;
+        self
     }
 
-    impl ::core::fmt::Debug for PaRamp {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            write!(f, "[0x{:02x}", self.0)?;
-            if self.pa_ramp() != 0 { write!(f, " pa_ramp=0x{:x}", self.pa_ramp())? }
-            write!(f, "]")?;
-            Ok(())
-        }
-    }
-
-    #[derive(PartialEq, Eq, Clone, Copy)]
-
-    pub struct Ocp(u8);
-
-    impl From<u8> for Ocp {
-        fn from(other: u8) -> Self { Ocp(other) }
-    }
-
-    impl From<Ocp> for u8 {
-        fn from(other: Ocp) -> Self { other.0 }
-    }
+}
 
-    impl Ocp {
-        pub fn value(&self) -> u8 { self.0 }
-
-        pub fn ocp_on(&self) -> u8 {
-            ((self.0 as u8) >> 5) & 0x1 // [5]
-        }
-    
-        pub fn set_ocp_on(mut self, value: u8) -> Self {
-            assert!((value & !0x1) == 0);
-            self.0 &= !(0x1 << 5);
-            self.0 |= value << 5;
-            self
-        }
-    
-        pub fn ocp_trim(&self) -> u8 {
-            ((self.0 as u8) >> 0) & 0x1f // [4:0]
-        }
-    
-        pub fn set_ocp_trim(mut self, value: u8) -> Self {
-            assert!((value & !0x1f) == 0);
-            self.0 &= !(0x1f << 0);
-            self.0 |= value << 0;
-            self
-        }
-    
+impl From<u8> for PayloadLength {
+    #[inline]
+    fn from(other: u8) -> Self {
+         PayloadLength(other)
     }
+}
 
-    impl ::core::fmt::Display for Ocp {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            self.0.fmt(f)
-        }
+impl ::core::fmt::Display for PayloadLength {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
     }
+}
 
-    impl ::core::fmt::Debug for Ocp {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            write!(f, "[0x{:02x}", self.0)?;
-            if self.ocp_on() != 0 { write!(f, " ocp_on")? }
-            if self.ocp_trim() != 0 { write!(f, " ocp_trim=0x{:x}", self.ocp_trim())? }
-            write!(f, "]")?;
-            Ok(())
-        }
+impl ::core::fmt::Debug for PayloadLength {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        if self.payload_length() != 0 { try!(write!(f, " payload_length=0x{:x}", self.payload_length()))}
+        try!(write!(f, "]"));
+        Ok(())
     }
+}
 
-    #[derive(PartialEq, Eq, Clone, Copy)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct MaxPayloadLength(pub u8);
+impl MaxPayloadLength {
+    #[inline] pub fn payload_max_length(&self) -> bits::U8 {
+        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
+    }
 
-    pub struct Lna(u8);
+    #[doc="Returns true if PAYLOAD_MAX_LENGTH != 0"]
+    #[inline] pub fn test_payload_max_length(&self) -> bool {
+        self.payload_max_length() != 0
+    }
 
-    impl From<u8> for Lna {
-        fn from(other: u8) -> Self { Lna(other) }
+    #[doc="Sets the PAYLOAD_MAX_LENGTH field."]
+    #[inline] pub fn set_payload_max_length<V: Into<bits::U8>>(mut self, value: V) -> Self {
+        let value: bits::U8 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0xff << 0);
+        self.0 |= value << 0;
+        self
     }
 
-    impl From<Lna> for u8 {
-        fn from(other: Lna) -> Self { other.0 }
+}
+
+impl From<u8> for MaxPayloadLength {
+    #[inline]
+    fn from(other: u8) -> Self {
+         MaxPayloadLength(other)
     }
+}
 
-    impl Lna {
-        pub fn value(&self) -> u8 { self.0 }
+impl ::core::fmt::Display for MaxPayloadLength {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
+    }
+}
 
-        pub fn lna_gain(&self) -> u8 {
-            ((self.0 as u8) >> 5) & 0x7 // [7:5]
-        }
-    
-        pub fn set_lna_gain(mut self, value: u8) -> Self {
-            assert!((value & !0x7) == 0);
-            self.0 &= !(0x7 << 5);
-            self.0 |= value << 5;
-            self
-        }
-    
-        pub fn lna_boost_lf(&self) -> u8 {
-            ((self.0 as u8) >> 3) & 0x3 // [4:3]
-        }
-    
-        pub fn set_lna_boost_lf(mut self, value: u8) -> Self {
-            assert!((value & !0x3) == 0);
-            self.0 &= !(0x3 << 3);
-            self.0 |= value << 3;
-            self
-        }
-    
-        pub fn lna_boost_hf(&self) -> u8 {
-            ((self.0 as u8) >> 0) & 0x3 // [1:0]
-        }
-    
-        pub fn set_lna_boost_hf(mut self, value: u8) -> Self {
-            assert!((value & !0x3) == 0);
-            self.0 &= !(0x3 << 0);
-            self.0 |= value << 0;
-            self
-        }
-    
+impl ::core::fmt::Debug for MaxPayloadLength {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        if self.payload_max_length() != 0 { try!(write!(f, " payload_max_length=0x{:x}", self.payload_max_length()))}
+        try!(write!(f, "]"));
+        Ok(())
     }
+}
 
-    impl ::core::fmt::Display for Lna {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            self.0.fmt(f)
-        }
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct HopPeriod(pub u8);
+impl HopPeriod {
+    #[inline] pub fn freq_hopping_period(&self) -> bits::U8 {
+        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
-    impl ::core::fmt::Debug for Lna {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            write!(f, "[0x{:02x}", self.0)?;
-            if self.lna_gain() != 0 { write!(f, " lna_gain=0x{:x}", self.lna_gain())? }
-            if self.lna_boost_lf() != 0 { write!(f, " lna_boost_lf=0x{:x}", self.lna_boost_lf())? }
-            if self.lna_boost_hf() != 0 { write!(f, " lna_boost_hf=0x{:x}", self.lna_boost_hf())? }
-            write!(f, "]")?;
-            Ok(())
-        }
+    #[doc="Returns true if FREQ_HOPPING_PERIOD != 0"]
+    #[inline] pub fn test_freq_hopping_period(&self) -> bool {
+        self.freq_hopping_period() != 0
     }
 
-    #[derive(PartialEq, Eq, Clone, Copy)]
+    #[doc="Sets the FREQ_HOPPING_PERIOD field."]
+    #[inline] pub fn set_freq_hopping_period<V: Into<bits::U8>>(mut self, value: V) -> Self {
+        let value: bits::U8 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0xff << 0);
+        self.0 |= value << 0;
+        self
+    }
 
-    pub struct FifoAddrPtr(u8);
+}
 
-    impl From<u8> for FifoAddrPtr {
-        fn from(other: u8) -> Self { FifoAddrPtr(other) }
+impl From<u8> for HopPeriod {
+    #[inline]
+    fn from(other: u8) -> Self {
+         HopPeriod(other)
     }
+}
 
-    impl From<FifoAddrPtr> for u8 {
-        fn from(other: FifoAddrPtr) -> Self { other.0 }
+impl ::core::fmt::Display for HopPeriod {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
     }
+}
 
-    impl FifoAddrPtr {
-        pub fn value(&self) -> u8 { self.0 }
+impl ::core::fmt::Debug for HopPeriod {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        if self.freq_hopping_period() != 0 { try!(write!(f, " freq_hopping_period=0x{:x}", self.freq_hopping_period()))}
+        try!(write!(f, "]"));
+        Ok(())
+    }
+}
 
-        pub fn fifo_addr_ptr(&self) -> u8 {
-            ((self.0 as u8) >> 0) & 0xff // [7:0]
-        }
-    
-        pub fn set_fifo_addr_ptr(mut self, value: u8) -> Self {
-            assert!((value & !0xff) == 0);
-            self.0 &= !(0xff << 0);
-            self.0 |= value << 0;
-            self
-        }
-    
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct FifoRxByteAddr(pub u8);
+impl FifoRxByteAddr {
+    #[inline] pub fn fifo_rx_byte_addr_ptr(&self) -> bits::U8 {
+        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
-    impl ::core::fmt::Display for FifoAddrPtr {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            self.0.fmt(f)
-        }
+    #[doc="Returns true if FIFO_RX_BYTE_ADDR_PTR != 0"]
+    #[inline] pub fn test_fifo_rx_byte_addr_ptr(&self) -> bool {
+        self.fifo_rx_byte_addr_ptr() != 0
     }
 
-    impl ::core::fmt::Debug for FifoAddrPtr {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            write!(f, "[0x{:02x}", self.0)?;
-            if self.fifo_addr_ptr() != 0 { write!(f, " fifo_addr_ptr=0x{:x}", self.fifo_addr_ptr())? }
-            write!(f, "]")?;
-            Ok(())
-        }
+    #[doc="Sets the FIFO_RX_BYTE_ADDR_PTR field."]
+    #[inline] pub fn set_fifo_rx_byte_addr_ptr<V: Into<bits::U8>>(mut self, value: V) -> Self {
+        let value: bits::U8 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0xff << 0);
+        self.0 |= value << 0;
+        self
     }
 
-    #[derive(PartialEq, Eq, Clone, Copy)]
+}
+
+impl From<u8> for FifoRxByteAddr {
+    #[inline]
+    fn from(other: u8) -> Self {
+         FifoRxByteAddr(other)
+    }
+}
 
-    pub struct FifoTxBaseAddr(u8);
+impl ::core::fmt::Display for FifoRxByteAddr {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
+    }
+}
 
-    impl From<u8> for FifoTxBaseAddr {
-        fn from(other: u8) -> Self { FifoTxBaseAddr(other) }
+impl ::core::fmt::Debug for FifoRxByteAddr {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        if self.fifo_rx_byte_addr_ptr() != 0 { try!(write!(f, " fifo_rx_byte_addr_ptr=0x{:x}", self.fifo_rx_byte_addr_ptr()))}
+        try!(write!(f, "]"));
+        Ok(())
     }
+}
 
-    impl From<FifoTxBaseAddr> for u8 {
-        fn from(other: FifoTxBaseAddr) -> Self { other.0 }
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct ModemConfig3(pub u8);
+impl ModemConfig3 {
+    #[inline] pub fn mobile_node(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    impl FifoTxBaseAddr {
-        pub fn value(&self) -> u8 { self.0 }
+    #[doc="Returns true if MOBILE_NODE != 0"]
+    #[inline] pub fn test_mobile_node(&self) -> bool {
+        self.mobile_node() != 0
+    }
 
-        pub fn fifo_tx_base_addr(&self) -> u8 {
-            ((self.0 as u8) >> 0) & 0xff // [7:0]
-        }
-    
-        pub fn set_fifo_tx_base_addr(mut self, value: u8) -> Self {
-            assert!((value & !0xff) == 0);
-            self.0 &= !(0xff << 0);
-            self.0 |= value << 0;
-            self
-        }
-    
+    #[doc="Sets the MOBILE_NODE field."]
+    #[inline] pub fn set_mobile_node<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0x1 << 3);
+        self.0 |= value << 3;
+        self
     }
 
-    impl ::core::fmt::Display for FifoTxBaseAddr {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            self.0.fmt(f)
-        }
+    #[inline] pub fn agc_auto_on(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    impl ::core::fmt::Debug for FifoTxBaseAddr {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            write!(f, "[0x{:02x}", self.0)?;
-            if self.fifo_tx_base_addr() != 0 { write!(f, " fifo_tx_base_addr=0x{:x}", self.fifo_tx_base_addr())? }
-            write!(f, "]")?;
-            Ok(())
-        }
+    #[doc="Returns true if AGC_AUTO_ON != 0"]
+    #[inline] pub fn test_agc_auto_on(&self) -> bool {
+        self.agc_auto_on() != 0
     }
 
-    #[derive(PartialEq, Eq, Clone, Copy)]
+    #[doc="Sets the AGC_AUTO_ON field."]
+    #[inline] pub fn set_agc_auto_on<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0x1 << 2);
+        self.0 |= value << 2;
+        self
+    }
 
-    pub struct FifoRxBaseAddr(u8);
+}
 
-    impl From<u8> for FifoRxBaseAddr {
-        fn from(other: u8) -> Self { FifoRxBaseAddr(other) }
+impl From<u8> for ModemConfig3 {
+    #[inline]
+    fn from(other: u8) -> Self {
+         ModemConfig3(other)
     }
+}
 
-    impl From<FifoRxBaseAddr> for u8 {
-        fn from(other: FifoRxBaseAddr) -> Self { other.0 }
+impl ::core::fmt::Display for ModemConfig3 {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
     }
+}
 
-    impl FifoRxBaseAddr {
-        pub fn value(&self) -> u8 { self.0 }
+impl ::core::fmt::Debug for ModemConfig3 {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        if self.mobile_node() != 0 { try!(write!(f, " mobile_node"))}
+        if self.agc_auto_on() != 0 { try!(write!(f, " agc_auto_on"))}
+        try!(write!(f, "]"));
+        Ok(())
+    }
+}
 
-        pub fn fifo_rx_base_addr(&self) -> u8 {
-            ((self.0 as u8) >> 0) & 0xff // [7:0]
-        }
-    
-        pub fn set_fifo_rx_base_addr(mut self, value: u8) -> Self {
-            assert!((value & !0xff) == 0);
-            self.0 &= !(0xff << 0);
-            self.0 |= value << 0;
-            self
-        }
-    
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct PpmCorrection(pub u8);
+impl PpmCorrection {
+    #[inline] pub fn ppm_correction(&self) -> bits::U8 {
+        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
-    impl ::core::fmt::Display for FifoRxBaseAddr {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            self.0.fmt(f)
-        }
+    #[doc="Returns true if PPM_CORRECTION != 0"]
+    #[inline] pub fn test_ppm_correction(&self) -> bool {
+        self.ppm_correction() != 0
     }
 
-    impl ::core::fmt::Debug for FifoRxBaseAddr {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            write!(f, "[0x{:02x}", self.0)?;
-            if self.fifo_rx_base_addr() != 0 { write!(f, " fifo_rx_base_addr=0x{:x}", self.fifo_rx_base_addr())? }
-            write!(f, "]")?;
-            Ok(())
-        }
+    #[doc="Sets the PPM_CORRECTION field."]
+    #[inline] pub fn set_ppm_correction<V: Into<bits::U8>>(mut self, value: V) -> Self {
+        let value: bits::U8 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0xff << 0);
+        self.0 |= value << 0;
+        self
     }
 
-    #[derive(PartialEq, Eq, Clone, Copy)]
+}
 
-    pub struct FifoRxCurrentAddr(u8);
+impl From<u8> for PpmCorrection {
+    #[inline]
+    fn from(other: u8) -> Self {
+         PpmCorrection(other)
+    }
+}
 
-    impl From<u8> for FifoRxCurrentAddr {
-        fn from(other: u8) -> Self { FifoRxCurrentAddr(other) }
+impl ::core::fmt::Display for PpmCorrection {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
     }
-
-    impl From<FifoRxCurrentAddr> for u8 {
-        fn from(other: FifoRxCurrentAddr) -> Self { other.0 }
-    }
-
-    impl FifoRxCurrentAddr {
-        pub fn value(&self) -> u8 { self.0 }
-
-        pub fn fifo_rx_current_addr(&self) -> u8 {
-            ((self.0 as u8) >> 0) & 0xff // [7:0]
-        }
-    
-        pub fn set_fifo_rx_current_addr(mut self, value: u8) -> Self {
-            assert!((value & !0xff) == 0);
-            self.0 &= !(0xff << 0);
-            self.0 |= value << 0;
-            self
-        }
-    
-    }
-
-    impl ::core::fmt::Display for FifoRxCurrentAddr {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            self.0.fmt(f)
-        }
-    }
-
-    impl ::core::fmt::Debug for FifoRxCurrentAddr {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            write!(f, "[0x{:02x}", self.0)?;
-            if self.fifo_rx_current_addr() != 0 { write!(f, " fifo_rx_current_addr=0x{:x}", self.fifo_rx_current_addr())? }
-            write!(f, "]")?;
-            Ok(())
-        }
-    }
-
-    #[derive(PartialEq, Eq, Clone, Copy)]
-
-    pub struct IrqFlagsMask(u8);
-
-    impl From<u8> for IrqFlagsMask {
-        fn from(other: u8) -> Self { IrqFlagsMask(other) }
-    }
-
-    impl From<IrqFlagsMask> for u8 {
-        fn from(other: IrqFlagsMask) -> Self { other.0 }
-    }
-
-    impl IrqFlagsMask {
-        pub fn value(&self) -> u8 { self.0 }
-
-        pub fn rx_timeout_mask(&self) -> u8 {
-            ((self.0 as u8) >> 7) & 0x1 // [7]
-        }
-    
-        pub fn set_rx_timeout_mask(mut self, value: u8) -> Self {
-            assert!((value & !0x1) == 0);
-            self.0 &= !(0x1 << 7);
-            self.0 |= value << 7;
-            self
-        }
-    
-        pub fn rx_done_mask(&self) -> u8 {
-            ((self.0 as u8) >> 6) & 0x1 // [6]
-        }
-    
-        pub fn set_rx_done_mask(mut self, value: u8) -> Self {
-            assert!((value & !0x1) == 0);
-            self.0 &= !(0x1 << 6);
-            self.0 |= value << 6;
-            self
-        }
-    
-        pub fn payload_crc_error_mask(&self) -> u8 {
-            ((self.0 as u8) >> 5) & 0x1 // [5]
-        }
-    
-        pub fn set_payload_crc_error_mask(mut self, value: u8) -> Self {
-            assert!((value & !0x1) == 0);
-            self.0 &= !(0x1 << 5);
-            self.0 |= value << 5;
-            self
-        }
-    
-        pub fn valid_header_mask(&self) -> u8 {
-            ((self.0 as u8) >> 4) & 0x1 // [4]
-        }
-    
-        pub fn set_valid_header_mask(mut self, value: u8) -> Self {
-            assert!((value & !0x1) == 0);
-            self.0 &= !(0x1 << 4);
-            self.0 |= value << 4;
-            self
-        }
-    
-        pub fn tx_done_mask(&self) -> u8 {
-            ((self.0 as u8) >> 3) & 0x1 // [3]
-        }
-    
-        pub fn set_tx_done_mask(mut self, value: u8) -> Self {
-            assert!((value & !0x1) == 0);
-            self.0 &= !(0x1 << 3);
-            self.0 |= value << 3;
-            self
-        }
-    
-        pub fn cad_done_mask(&self) -> u8 {
-            ((self.0 as u8) >> 2) & 0x1 // [2]
-        }
-    
-        pub fn set_cad_done_mask(mut self, value: u8) -> Self {
-            assert!((value & !0x1) == 0);
-            self.0 &= !(0x1 << 2);
-            self.0 |= value << 2;
-            self
-        }
-    
-        pub fn fhss_change_channel_mask(&self) -> u8 {
-            ((self.0 as u8) >> 1) & 0x1 // [1]
-        }
-    
-        pub fn set_fhss_change_channel_mask(mut self, value: u8) -> Self {
-            assert!((value & !0x1) == 0);
-            self.0 &= !(0x1 << 1);
-            self.0 |= value << 1;
-            self
-        }
-    
-        pub fn cad_detected_mask(&self) -> u8 {
-            ((self.0 as u8) >> 0) & 0x1 // [0]
-        }
-    
-        pub fn set_cad_detected_mask(mut self, value: u8) -> Self {
-            assert!((value & !0x1) == 0);
-            self.0 &= !(0x1 << 0);
-            self.0 |= value << 0;
-            self
-        }
-    
-    }
-
-    impl ::core::fmt::Display for IrqFlagsMask {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            self.0.fmt(f)
-        }
-    }
-
-    impl ::core::fmt::Debug for IrqFlagsMask {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            write!(f, "[0x{:02x}", self.0)?;
-            if self.rx_timeout_mask() != 0 { write!(f, " rx_timeout_mask")? }
-            if self.rx_done_mask() != 0 { write!(f, " rx_done_mask")? }
-            if self.payload_crc_error_mask() != 0 { write!(f, " payload_crc_error_mask")? }
-            if self.valid_header_mask() != 0 { write!(f, " valid_header_mask")? }
-            if self.tx_done_mask() != 0 { write!(f, " tx_done_mask")? }
-            if self.cad_done_mask() != 0 { write!(f, " cad_done_mask")? }
-            if self.fhss_change_channel_mask() != 0 { write!(f, " fhss_change_channel_mask")? }
-            if self.cad_detected_mask() != 0 { write!(f, " cad_detected_mask")? }
-            write!(f, "]")?;
-            Ok(())
-        }
-    }
-
-    #[derive(PartialEq, Eq, Clone, Copy)]
-
-    pub struct IrqFlags(u8);
-
-    impl From<u8> for IrqFlags {
-        fn from(other: u8) -> Self { IrqFlags(other) }
-    }
-
-    impl From<IrqFlags> for u8 {
-        fn from(other: IrqFlags) -> Self { other.0 }
-    }
-
-    impl IrqFlags {
-        pub fn value(&self) -> u8 { self.0 }
-
-        pub fn rx_timeout(&self) -> u8 {
-            ((self.0 as u8) >> 7) & 0x1 // [7]
-        }
-    
-        pub fn set_rx_timeout(mut self, value: u8) -> Self {
-            assert!((value & !0x1) == 0);
-            self.0 &= !(0x1 << 7);
-            self.0 |= value << 7;
-            self
-        }
-    
-        pub fn rx_done(&self) -> u8 {
-            ((self.0 as u8) >> 6) & 0x1 // [6]
-        }
-    
-        pub fn set_rx_done(mut self, value: u8) -> Self {
-            assert!((value & !0x1) == 0);
-            self.0 &= !(0x1 << 6);
-            self.0 |= value << 6;
-            self
-        }
-    
-        pub fn payload_crc_error(&self) -> u8 {
-            ((self.0 as u8) >> 5) & 0x1 // [5]
-        }
-    
-        pub fn set_payload_crc_error(mut self, value: u8) -> Self {
-            assert!((value & !0x1) == 0);
-            self.0 &= !(0x1 << 5);
-            self.0 |= value << 5;
-            self
-        }
-    
-        pub fn valid_header(&self) -> u8 {
-            ((self.0 as u8) >> 4) & 0x1 // [4]
-        }
-    
-        pub fn set_valid_header(mut self, value: u8) -> Self {
-            assert!((value & !0x1) == 0);
-            self.0 &= !(0x1 << 4);
-            self.0 |= value << 4;
-            self
-        }
-    
-        pub fn tx_done(&self) -> u8 {
-            ((self.0 as u8) >> 3) & 0x1 // [3]
-        }
-    
-        pub fn set_tx_done(mut self, value: u8) -> Self {
-            assert!((value & !0x1) == 0);
-            self.0 &= !(0x1 << 3);
-            self.0 |= value << 3;
-            self
-        }
-    
-        pub fn cad_done(&self) -> u8 {
-            ((self.0 as u8) >> 2) & 0x1 // [2]
-        }
-    
-        pub fn set_cad_done(mut self, value: u8) -> Self {
-            assert!((value & !0x1) == 0);
-            self.0 &= !(0x1 << 2);
-            self.0 |= value << 2;
-            self
-        }
-    
-        pub fn fhss_change_channel(&self) -> u8 {
-            ((self.0 as u8) >> 1) & 0x1 // [1]
-        }
-    
-        pub fn set_fhss_change_channel(mut self, value: u8) -> Self {
-            assert!((value & !0x1) == 0);
-            self.0 &= !(0x1 << 1);
-            self.0 |= value << 1;
-            self
-        }
-    
-        pub fn cad_detected(&self) -> u8 {
-            ((self.0 as u8) >> 0) & 0x1 // [0]
-        }
-    
-        pub fn set_cad_detected(mut self, value: u8) -> Self {
-            assert!((value & !0x1) == 0);
-            self.0 &= !(0x1 << 0);
-            self.0 |= value << 0;
-            self
-        }
-    
-    }
-
-    impl ::core::fmt::Display for IrqFlags {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            self.0.fmt(f)
-        }
-    }
-
-    impl ::core::fmt::Debug for IrqFlags {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            write!(f, "[0x{:02x}", self.0)?;
-            if self.rx_timeout() != 0 { write!(f, " rx_timeout")? }
-            if self.rx_done() != 0 { write!(f, " rx_done")? }
-            if self.payload_crc_error() != 0 { write!(f, " payload_crc_error")? }
-            if self.valid_header() != 0 { write!(f, " valid_header")? }
-            if self.tx_done() != 0 { write!(f, " tx_done")? }
-            if self.cad_done() != 0 { write!(f, " cad_done")? }
-            if self.fhss_change_channel() != 0 { write!(f, " fhss_change_channel")? }
-            if self.cad_detected() != 0 { write!(f, " cad_detected")? }
-            write!(f, "]")?;
-            Ok(())
-        }
-    }
-
-    #[derive(PartialEq, Eq, Clone, Copy)]
-
-    pub struct RxNbBytes(u8);
-
-    impl From<u8> for RxNbBytes {
-        fn from(other: u8) -> Self { RxNbBytes(other) }
-    }
-
-    impl From<RxNbBytes> for u8 {
-        fn from(other: RxNbBytes) -> Self { other.0 }
-    }
-
-    impl RxNbBytes {
-        pub fn value(&self) -> u8 { self.0 }
-
-        pub fn fifo_rx_bytes_nb(&self) -> u8 {
-            ((self.0 as u8) >> 0) & 0xff // [7:0]
-        }
-    
-        pub fn set_fifo_rx_bytes_nb(mut self, value: u8) -> Self {
-            assert!((value & !0xff) == 0);
-            self.0 &= !(0xff << 0);
-            self.0 |= value << 0;
-            self
-        }
-    
-    }
-
-    impl ::core::fmt::Display for RxNbBytes {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            self.0.fmt(f)
-        }
-    }
-
-    impl ::core::fmt::Debug for RxNbBytes {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            write!(f, "[0x{:02x}", self.0)?;
-            if self.fifo_rx_bytes_nb() != 0 { write!(f, " fifo_rx_bytes_nb=0x{:x}", self.fifo_rx_bytes_nb())? }
-            write!(f, "]")?;
-            Ok(())
-        }
-    }
-
-    #[derive(PartialEq, Eq, Clone, Copy)]
-
-    pub struct RxHeaderCntValueMsb(u8);
-
-    impl From<u8> for RxHeaderCntValueMsb {
-        fn from(other: u8) -> Self { RxHeaderCntValueMsb(other) }
-    }
-
-    impl From<RxHeaderCntValueMsb> for u8 {
-        fn from(other: RxHeaderCntValueMsb) -> Self { other.0 }
-    }
-
-    impl RxHeaderCntValueMsb {
-        pub fn value(&self) -> u8 { self.0 }
-
-        pub fn valid_header_cnt_msb(&self) -> u8 {
-            ((self.0 as u8) >> 0) & 0xff // [7:0]
-        }
-    
-        pub fn set_valid_header_cnt_msb(mut self, value: u8) -> Self {
-            assert!((value & !0xff) == 0);
-            self.0 &= !(0xff << 0);
-            self.0 |= value << 0;
-            self
-        }
-    
-    }
-
-    impl ::core::fmt::Display for RxHeaderCntValueMsb {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            self.0.fmt(f)
-        }
-    }
-
-    impl ::core::fmt::Debug for RxHeaderCntValueMsb {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            write!(f, "[0x{:02x}", self.0)?;
-            if self.valid_header_cnt_msb() != 0 { write!(f, " valid_header_cnt_msb=0x{:x}", self.valid_header_cnt_msb())? }
-            write!(f, "]")?;
-            Ok(())
-        }
-    }
-
-    #[derive(PartialEq, Eq, Clone, Copy)]
-
-    pub struct RxHeaderCntValueLsb(u8);
-
-    impl From<u8> for RxHeaderCntValueLsb {
-        fn from(other: u8) -> Self { RxHeaderCntValueLsb(other) }
-    }
-
-    impl From<RxHeaderCntValueLsb> for u8 {
-        fn from(other: RxHeaderCntValueLsb) -> Self { other.0 }
-    }
-
-    impl RxHeaderCntValueLsb {
-        pub fn value(&self) -> u8 { self.0 }
-
-        pub fn valid_header_cnt_lsb(&self) -> u8 {
-            ((self.0 as u8) >> 0) & 0xff // [7:0]
-        }
-    
-        pub fn set_valid_header_cnt_lsb(mut self, value: u8) -> Self {
-            assert!((value & !0xff) == 0);
-            self.0 &= !(0xff << 0);
-            self.0 |= value << 0;
-            self
-        }
-    
-    }
-
-    impl ::core::fmt::Display for RxHeaderCntValueLsb {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            self.0.fmt(f)
-        }
-    }
-
-    impl ::core::fmt::Debug for RxHeaderCntValueLsb {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            write!(f, "[0x{:02x}", self.0)?;
-            if self.valid_header_cnt_lsb() != 0 { write!(f, " valid_header_cnt_lsb=0x{:x}", self.valid_header_cnt_lsb())? }
-            write!(f, "]")?;
-            Ok(())
-        }
-    }
-
-    #[derive(PartialEq, Eq, Clone, Copy)]
-
-    pub struct RxPacketCntValueMsb(u8);
-
-    impl From<u8> for RxPacketCntValueMsb {
-        fn from(other: u8) -> Self { RxPacketCntValueMsb(other) }
-    }
-
-    impl From<RxPacketCntValueMsb> for u8 {
-        fn from(other: RxPacketCntValueMsb) -> Self { other.0 }
-    }
-
-    impl RxPacketCntValueMsb {
-        pub fn value(&self) -> u8 { self.0 }
-
-        pub fn valid_packet_cnt_msb(&self) -> u8 {
-            ((self.0 as u8) >> 0) & 0xff // [7:0]
-        }
-    
-        pub fn set_valid_packet_cnt_msb(mut self, value: u8) -> Self {
-            assert!((value & !0xff) == 0);
-            self.0 &= !(0xff << 0);
-            self.0 |= value << 0;
-            self
-        }
-    
-    }
-
-    impl ::core::fmt::Display for RxPacketCntValueMsb {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            self.0.fmt(f)
-        }
-    }
-
-    impl ::core::fmt::Debug for RxPacketCntValueMsb {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            write!(f, "[0x{:02x}", self.0)?;
-            if self.valid_packet_cnt_msb() != 0 { write!(f, " valid_packet_cnt_msb=0x{:x}", self.valid_packet_cnt_msb())? }
-            write!(f, "]")?;
-            Ok(())
-        }
-    }
-
-    #[derive(PartialEq, Eq, Clone, Copy)]
-
-    pub struct RxPacketCntValueLsb(u8);
-
-    impl From<u8> for RxPacketCntValueLsb {
-        fn from(other: u8) -> Self { RxPacketCntValueLsb(other) }
-    }
-
-    impl From<RxPacketCntValueLsb> for u8 {
-        fn from(other: RxPacketCntValueLsb) -> Self { other.0 }
-    }
-
-    impl RxPacketCntValueLsb {
-        pub fn value(&self) -> u8 { self.0 }
-
-        pub fn valid_packet_cnt_lsb(&self) -> u8 {
-            ((self.0 as u8) >> 0) & 0xff // [7:0]
-        }
-    
-        pub fn set_valid_packet_cnt_lsb(mut self, value: u8) -> Self {
-            assert!((value & !0xff) == 0);
-            self.0 &= !(0xff << 0);
-            self.0 |= value << 0;
-            self
-        }
-    
-    }
-
-    impl ::core::fmt::Display for RxPacketCntValueLsb {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            self.0.fmt(f)
-        }
-    }
-
-    impl ::core::fmt::Debug for RxPacketCntValueLsb {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            write!(f, "[0x{:02x}", self.0)?;
-            if self.valid_packet_cnt_lsb() != 0 { write!(f, " valid_packet_cnt_lsb=0x{:x}", self.valid_packet_cnt_lsb())? }
-            write!(f, "]")?;
-            Ok(())
-        }
-    }
-
-    #[derive(PartialEq, Eq, Clone, Copy)]
-
-    pub struct ModemStat(u8);
-
-    impl From<u8> for ModemStat {
-        fn from(other: u8) -> Self { ModemStat(other) }
-    }
-
-    impl From<ModemStat> for u8 {
-        fn from(other: ModemStat) -> Self { other.0 }
-    }
-
-    impl ModemStat {
-        pub fn value(&self) -> u8 { self.0 }
-
-        pub fn rx_coding_rate(&self) -> u8 {
-            ((self.0 as u8) >> 5) & 0x7 // [7:5]
-        }
-    
-        pub fn set_rx_coding_rate(mut self, value: u8) -> Self {
-            assert!((value & !0x7) == 0);
-            self.0 &= !(0x7 << 5);
-            self.0 |= value << 5;
-            self
-        }
-    
-        pub fn modem_status(&self) -> u8 {
-            ((self.0 as u8) >> 0) & 0x1f // [4:0]
-        }
-    
-        pub fn set_modem_status(mut self, value: u8) -> Self {
-            assert!((value & !0x1f) == 0);
-            self.0 &= !(0x1f << 0);
-            self.0 |= value << 0;
-            self
-        }
-    
-    }
-
-    impl ::core::fmt::Display for ModemStat {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            self.0.fmt(f)
-        }
-    }
-
-    impl ::core::fmt::Debug for ModemStat {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            write!(f, "[0x{:02x}", self.0)?;
-            if self.rx_coding_rate() != 0 { write!(f, " rx_coding_rate=0x{:x}", self.rx_coding_rate())? }
-            if self.modem_status() != 0 { write!(f, " modem_status=0x{:x}", self.modem_status())? }
-            write!(f, "]")?;
-            Ok(())
-        }
-    }
-
-    #[derive(PartialEq, Eq, Clone, Copy)]
-
-    pub struct PktSnrValue(u8);
-
-    impl From<u8> for PktSnrValue {
-        fn from(other: u8) -> Self { PktSnrValue(other) }
-    }
-
-    impl From<PktSnrValue> for u8 {
-        fn from(other: PktSnrValue) -> Self { other.0 }
-    }
-
-    impl PktSnrValue {
-        pub fn value(&self) -> u8 { self.0 }
-
-        pub fn packet_snr(&self) -> u8 {
-            ((self.0 as u8) >> 0) & 0xff // [7:0]
-        }
-    
-        pub fn set_packet_snr(mut self, value: u8) -> Self {
-            assert!((value & !0xff) == 0);
-            self.0 &= !(0xff << 0);
-            self.0 |= value << 0;
-            self
-        }
-    
-    }
-
-    impl ::core::fmt::Display for PktSnrValue {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            self.0.fmt(f)
-        }
-    }
-
-    impl ::core::fmt::Debug for PktSnrValue {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            write!(f, "[0x{:02x}", self.0)?;
-            if self.packet_snr() != 0 { write!(f, " packet_snr=0x{:x}", self.packet_snr())? }
-            write!(f, "]")?;
-            Ok(())
-        }
-    }
-
-    #[derive(PartialEq, Eq, Clone, Copy)]
-
-    pub struct PktRssiValue(u8);
-
-    impl From<u8> for PktRssiValue {
-        fn from(other: u8) -> Self { PktRssiValue(other) }
-    }
-
-    impl From<PktRssiValue> for u8 {
-        fn from(other: PktRssiValue) -> Self { other.0 }
-    }
-
-    impl PktRssiValue {
-        pub fn value(&self) -> u8 { self.0 }
-
-        pub fn packet_rssi(&self) -> u8 {
-            ((self.0 as u8) >> 0) & 0xff // [7:0]
-        }
-    
-        pub fn set_packet_rssi(mut self, value: u8) -> Self {
-            assert!((value & !0xff) == 0);
-            self.0 &= !(0xff << 0);
-            self.0 |= value << 0;
-            self
-        }
-    
-    }
-
-    impl ::core::fmt::Display for PktRssiValue {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            self.0.fmt(f)
-        }
-    }
-
-    impl ::core::fmt::Debug for PktRssiValue {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            write!(f, "[0x{:02x}", self.0)?;
-            if self.packet_rssi() != 0 { write!(f, " packet_rssi=0x{:x}", self.packet_rssi())? }
-            write!(f, "]")?;
-            Ok(())
-        }
-    }
-
-    #[derive(PartialEq, Eq, Clone, Copy)]
-
-    pub struct RssiValue(u8);
-
-    impl From<u8> for RssiValue {
-        fn from(other: u8) -> Self { RssiValue(other) }
-    }
-
-    impl From<RssiValue> for u8 {
-        fn from(other: RssiValue) -> Self { other.0 }
-    }
-
-    impl RssiValue {
-        pub fn value(&self) -> u8 { self.0 }
-
-        pub fn rssi(&self) -> u8 {
-            ((self.0 as u8) >> 0) & 0xff // [7:0]
-        }
-    
-        pub fn set_rssi(mut self, value: u8) -> Self {
-            assert!((value & !0xff) == 0);
-            self.0 &= !(0xff << 0);
-            self.0 |= value << 0;
-            self
-        }
-    
-    }
-
-    impl ::core::fmt::Display for RssiValue {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            self.0.fmt(f)
-        }
-    }
-
-    impl ::core::fmt::Debug for RssiValue {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            write!(f, "[0x{:02x}", self.0)?;
-            if self.rssi() != 0 { write!(f, " rssi=0x{:x}", self.rssi())? }
-            write!(f, "]")?;
-            Ok(())
-        }
-    }
-
-    #[derive(PartialEq, Eq, Clone, Copy)]
-
-    pub struct HopChannel(u8);
-
-    impl From<u8> for HopChannel {
-        fn from(other: u8) -> Self { HopChannel(other) }
-    }
-
-    impl From<HopChannel> for u8 {
-        fn from(other: HopChannel) -> Self { other.0 }
-    }
-
-    impl HopChannel {
-        pub fn value(&self) -> u8 { self.0 }
-
-        pub fn pll_timeout(&self) -> u8 {
-            ((self.0 as u8) >> 7) & 0x1 // [7]
-        }
-    
-        pub fn set_pll_timeout(mut self, value: u8) -> Self {
-            assert!((value & !0x1) == 0);
-            self.0 &= !(0x1 << 7);
-            self.0 |= value << 7;
-            self
-        }
-    
-        pub fn rx_payload_crc_on(&self) -> u8 {
-            ((self.0 as u8) >> 6) & 0x1 // [6]
-        }
-    
-        pub fn set_rx_payload_crc_on(mut self, value: u8) -> Self {
-            assert!((value & !0x1) == 0);
-            self.0 &= !(0x1 << 6);
-            self.0 |= value << 6;
-            self
-        }
-    
-        pub fn fhss_present_channel(&self) -> u8 {
-            ((self.0 as u8) >> 0) & 0x3f // [5:0]
-        }
-    
-        pub fn set_fhss_present_channel(mut self, value: u8) -> Self {
-            assert!((value & !0x3f) == 0);
-            self.0 &= !(0x3f << 0);
-            self.0 |= value << 0;
-            self
-        }
-    
-    }
-
-    impl ::core::fmt::Display for HopChannel {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            self.0.fmt(f)
-        }
-    }
-
-    impl ::core::fmt::Debug for HopChannel {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            write!(f, "[0x{:02x}", self.0)?;
-            if self.pll_timeout() != 0 { write!(f, " pll_timeout")? }
-            if self.rx_payload_crc_on() != 0 { write!(f, " rx_payload_crc_on")? }
-            if self.fhss_present_channel() != 0 { write!(f, " fhss_present_channel=0x{:x}", self.fhss_present_channel())? }
-            write!(f, "]")?;
-            Ok(())
-        }
-    }
-
-    #[derive(PartialEq, Eq, Clone, Copy)]
-
-    pub struct ModemConfig1(u8);
-
-    impl From<u8> for ModemConfig1 {
-        fn from(other: u8) -> Self { ModemConfig1(other) }
-    }
-
-    impl From<ModemConfig1> for u8 {
-        fn from(other: ModemConfig1) -> Self { other.0 }
-    }
-
-    impl ModemConfig1 {
-        pub fn value(&self) -> u8 { self.0 }
-
-        pub fn bw(&self) -> u8 {
-            ((self.0 as u8) >> 4) & 0xf // [7:4]
-        }
-    
-        pub fn set_bw(mut self, value: u8) -> Self {
-            assert!((value & !0xf) == 0);
-            self.0 &= !(0xf << 4);
-            self.0 |= value << 4;
-            self
-        }
-    
-        pub fn coding_rate(&self) -> u8 {
-            ((self.0 as u8) >> 1) & 0x7 // [3:1]
-        }
-    
-        pub fn set_coding_rate(mut self, value: u8) -> Self {
-            assert!((value & !0x7) == 0);
-            self.0 &= !(0x7 << 1);
-            self.0 |= value << 1;
-            self
-        }
-    
-        pub fn implicit_header_mode_on(&self) -> u8 {
-            ((self.0 as u8) >> 0) & 0x1 // [0]
-        }
-    
-        pub fn set_implicit_header_mode_on(mut self, value: u8) -> Self {
-            assert!((value & !0x1) == 0);
-            self.0 &= !(0x1 << 0);
-            self.0 |= value << 0;
-            self
-        }
-    
-    }
-
-    impl ::core::fmt::Display for ModemConfig1 {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            self.0.fmt(f)
-        }
-    }
-
-    impl ::core::fmt::Debug for ModemConfig1 {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            write!(f, "[0x{:02x}", self.0)?;
-            if self.bw() != 0 { write!(f, " bw=0x{:x}", self.bw())? }
-            if self.coding_rate() != 0 { write!(f, " coding_rate=0x{:x}", self.coding_rate())? }
-            if self.implicit_header_mode_on() != 0 { write!(f, " implicit_header_mode_on")? }
-            write!(f, "]")?;
-            Ok(())
-        }
-    }
-
-    #[derive(PartialEq, Eq, Clone, Copy)]
-
-    pub struct ModemConfig2(u8);
-
-    impl From<u8> for ModemConfig2 {
-        fn from(other: u8) -> Self { ModemConfig2(other) }
-    }
-
-    impl From<ModemConfig2> for u8 {
-        fn from(other: ModemConfig2) -> Self { other.0 }
-    }
-
-    impl ModemConfig2 {
-        pub fn value(&self) -> u8 { self.0 }
-
-        pub fn spreading_factor(&self) -> u8 {
-            ((self.0 as u8) >> 4) & 0xf // [7:4]
-        }
-    
-        pub fn set_spreading_factor(mut self, value: u8) -> Self {
-            assert!((value & !0xf) == 0);
-            self.0 &= !(0xf << 4);
-            self.0 |= value << 4;
-            self
-        }
-    
-        pub fn tx_continuous_mode(&self) -> u8 {
-            ((self.0 as u8) >> 3) & 0x1 // [3]
-        }
-    
-        pub fn set_tx_continuous_mode(mut self, value: u8) -> Self {
-            assert!((value & !0x1) == 0);
-            self.0 &= !(0x1 << 3);
-            self.0 |= value << 3;
-            self
-        }
-    
-        pub fn rx_payload_crc_on(&self) -> u8 {
-            ((self.0 as u8) >> 2) & 0x1 // [2]
-        }
-    
-        pub fn set_rx_payload_crc_on(mut self, value: u8) -> Self {
-            assert!((value & !0x1) == 0);
-            self.0 &= !(0x1 << 2);
-            self.0 |= value << 2;
-            self
-        }
-    
-        pub fn symb_timeout(&self) -> u8 {
-            ((self.0 as u8) >> 0) & 0x3 // [1:0]
-        }
-    
-        pub fn set_symb_timeout(mut self, value: u8) -> Self {
-            assert!((value & !0x3) == 0);
-            self.0 &= !(0x3 << 0);
-            self.0 |= value << 0;
-            self
-        }
-    
-    }
-
-    impl ::core::fmt::Display for ModemConfig2 {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            self.0.fmt(f)
-        }
-    }
-
-    impl ::core::fmt::Debug for ModemConfig2 {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            write!(f, "[0x{:02x}", self.0)?;
-            if self.spreading_factor() != 0 { write!(f, " spreading_factor=0x{:x}", self.spreading_factor())? }
-            if self.tx_continuous_mode() != 0 { write!(f, " tx_continuous_mode")? }
-            if self.rx_payload_crc_on() != 0 { write!(f, " rx_payload_crc_on")? }
-            if self.symb_timeout() != 0 { write!(f, " symb_timeout=0x{:x}", self.symb_timeout())? }
-            write!(f, "]")?;
-            Ok(())
-        }
-    }
-
-    #[derive(PartialEq, Eq, Clone, Copy)]
-
-    pub struct SymbTimeoutLsb(u8);
-
-    impl From<u8> for SymbTimeoutLsb {
-        fn from(other: u8) -> Self { SymbTimeoutLsb(other) }
-    }
-
-    impl From<SymbTimeoutLsb> for u8 {
-        fn from(other: SymbTimeoutLsb) -> Self { other.0 }
-    }
-
-    impl SymbTimeoutLsb {
-        pub fn value(&self) -> u8 { self.0 }
-
-        pub fn symb_timeout(&self) -> u8 {
-            ((self.0 as u8) >> 0) & 0xff // [7:0]
-        }
-    
-        pub fn set_symb_timeout(mut self, value: u8) -> Self {
-            assert!((value & !0xff) == 0);
-            self.0 &= !(0xff << 0);
-            self.0 |= value << 0;
-            self
-        }
-    
-    }
-
-    impl ::core::fmt::Display for SymbTimeoutLsb {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            self.0.fmt(f)
-        }
-    }
-
-    impl ::core::fmt::Debug for SymbTimeoutLsb {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            write!(f, "[0x{:02x}", self.0)?;
-            if self.symb_timeout() != 0 { write!(f, " symb_timeout=0x{:x}", self.symb_timeout())? }
-            write!(f, "]")?;
-            Ok(())
-        }
-    }
-
-    #[derive(PartialEq, Eq, Clone, Copy)]
-
-    pub struct PreambleMsb(u8);
-
-    impl From<u8> for PreambleMsb {
-        fn from(other: u8) -> Self { PreambleMsb(other) }
-    }
-
-    impl From<PreambleMsb> for u8 {
-        fn from(other: PreambleMsb) -> Self { other.0 }
-    }
-
-    impl PreambleMsb {
-        pub fn value(&self) -> u8 { self.0 }
-
-        pub fn preamble_length(&self) -> u8 {
-            ((self.0 as u8) >> 0) & 0xff // [7:0]
-        }
-    
-        pub fn set_preamble_length(mut self, value: u8) -> Self {
-            assert!((value & !0xff) == 0);
-            self.0 &= !(0xff << 0);
-            self.0 |= value << 0;
-            self
-        }
-    
-    }
-
-    impl ::core::fmt::Display for PreambleMsb {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            self.0.fmt(f)
-        }
-    }
-
-    impl ::core::fmt::Debug for PreambleMsb {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            write!(f, "[0x{:02x}", self.0)?;
-            if self.preamble_length() != 0 { write!(f, " preamble_length=0x{:x}", self.preamble_length())? }
-            write!(f, "]")?;
-            Ok(())
-        }
-    }
-
-    #[derive(PartialEq, Eq, Clone, Copy)]
-
-    pub struct PreambleLsb(u8);
-
-    impl From<u8> for PreambleLsb {
-        fn from(other: u8) -> Self { PreambleLsb(other) }
-    }
-
-    impl From<PreambleLsb> for u8 {
-        fn from(other: PreambleLsb) -> Self { other.0 }
-    }
-
-    impl PreambleLsb {
-        pub fn value(&self) -> u8 { self.0 }
-
-        pub fn preamble_length(&self) -> u8 {
-            ((self.0 as u8) >> 0) & 0xff // [7:0]
-        }
-    
-        pub fn set_preamble_length(mut self, value: u8) -> Self {
-            assert!((value & !0xff) == 0);
-            self.0 &= !(0xff << 0);
-            self.0 |= value << 0;
-            self
-        }
-    
-    }
-
-    impl ::core::fmt::Display for PreambleLsb {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            self.0.fmt(f)
-        }
-    }
-
-    impl ::core::fmt::Debug for PreambleLsb {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            write!(f, "[0x{:02x}", self.0)?;
-            if self.preamble_length() != 0 { write!(f, " preamble_length=0x{:x}", self.preamble_length())? }
-            write!(f, "]")?;
-            Ok(())
-        }
-    }
-
-    #[derive(PartialEq, Eq, Clone, Copy)]
-
-    pub struct PayloadLength(u8);
-
-    impl From<u8> for PayloadLength {
-        fn from(other: u8) -> Self { PayloadLength(other) }
-    }
-
-    impl From<PayloadLength> for u8 {
-        fn from(other: PayloadLength) -> Self { other.0 }
-    }
-
-    impl PayloadLength {
-        pub fn value(&self) -> u8 { self.0 }
-
-        pub fn payload_length(&self) -> u8 {
-            ((self.0 as u8) >> 0) & 0xff // [7:0]
-        }
-    
-        pub fn set_payload_length(mut self, value: u8) -> Self {
-            assert!((value & !0xff) == 0);
-            self.0 &= !(0xff << 0);
-            self.0 |= value << 0;
-            self
-        }
-    
-    }
-
-    impl ::core::fmt::Display for PayloadLength {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            self.0.fmt(f)
-        }
-    }
-
-    impl ::core::fmt::Debug for PayloadLength {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            write!(f, "[0x{:02x}", self.0)?;
-            if self.payload_length() != 0 { write!(f, " payload_length=0x{:x}", self.payload_length())? }
-            write!(f, "]")?;
-            Ok(())
-        }
-    }
-
-    #[derive(PartialEq, Eq, Clone, Copy)]
-
-    pub struct MaxPayloadLength(u8);
-
-    impl From<u8> for MaxPayloadLength {
-        fn from(other: u8) -> Self { MaxPayloadLength(other) }
-    }
-
-    impl From<MaxPayloadLength> for u8 {
-        fn from(other: MaxPayloadLength) -> Self { other.0 }
-    }
-
-    impl MaxPayloadLength {
-        pub fn value(&self) -> u8 { self.0 }
-
-        pub fn payload_max_length(&self) -> u8 {
-            ((self.0 as u8) >> 0) & 0xff // [7:0]
-        }
-    
-        pub fn set_payload_max_length(mut self, value: u8) -> Self {
-            assert!((value & !0xff) == 0);
-            self.0 &= !(0xff << 0);
-            self.0 |= value << 0;
-            self
-        }
-    
-    }
-
-    impl ::core::fmt::Display for MaxPayloadLength {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            self.0.fmt(f)
-        }
-    }
-
-    impl ::core::fmt::Debug for MaxPayloadLength {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            write!(f, "[0x{:02x}", self.0)?;
-            if self.payload_max_length() != 0 { write!(f, " payload_max_length=0x{:x}", self.payload_max_length())? }
-            write!(f, "]")?;
-            Ok(())
-        }
-    }
-
-    #[derive(PartialEq, Eq, Clone, Copy)]
-
-    pub struct HopPeriod(u8);
-
-    impl From<u8> for HopPeriod {
-        fn from(other: u8) -> Self { HopPeriod(other) }
-    }
-
-    impl From<HopPeriod> for u8 {
-        fn from(other: HopPeriod) -> Self { other.0 }
-    }
-
-    impl HopPeriod {
-        pub fn value(&self) -> u8 { self.0 }
-
-        pub fn freq_hopping_period(&self) -> u8 {
-            ((self.0 as u8) >> 0) & 0xff // [7:0]
-        }
-    
-        pub fn set_freq_hopping_period(mut self, value: u8) -> Self {
-            assert!((value & !0xff) == 0);
-            self.0 &= !(0xff << 0);
-            self.0 |= value << 0;
-            self
-        }
-    
-    }
-
-    impl ::core::fmt::Display for HopPeriod {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            self.0.fmt(f)
-        }
-    }
-
-    impl ::core::fmt::Debug for HopPeriod {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            write!(f, "[0x{:02x}", self.0)?;
-            if self.freq_hopping_period() != 0 { write!(f, " freq_hopping_period=0x{:x}", self.freq_hopping_period())? }
-            write!(f, "]")?;
-            Ok(())
-        }
-    }
-
-    #[derive(PartialEq, Eq, Clone, Copy)]
-
-    pub struct FifoRxByteAddr(u8);
-
-    impl From<u8> for FifoRxByteAddr {
-        fn from(other: u8) -> Self { FifoRxByteAddr(other) }
-    }
-
-    impl From<FifoRxByteAddr> for u8 {
-        fn from(other: FifoRxByteAddr) -> Self { other.0 }
-    }
-
-    impl FifoRxByteAddr {
-        pub fn value(&self) -> u8 { self.0 }
-
-        pub fn fifo_rx_byte_addr_ptr(&self) -> u8 {
-            ((self.0 as u8) >> 0) & 0xff // [7:0]
-        }
-    
-        pub fn set_fifo_rx_byte_addr_ptr(mut self, value: u8) -> Self {
-            assert!((value & !0xff) == 0);
-            self.0 &= !(0xff << 0);
-            self.0 |= value << 0;
-            self
-        }
-    
-    }
-
-    impl ::core::fmt::Display for FifoRxByteAddr {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            self.0.fmt(f)
-        }
-    }
-
-    impl ::core::fmt::Debug for FifoRxByteAddr {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            write!(f, "[0x{:02x}", self.0)?;
-            if self.fifo_rx_byte_addr_ptr() != 0 { write!(f, " fifo_rx_byte_addr_ptr=0x{:x}", self.fifo_rx_byte_addr_ptr())? }
-            write!(f, "]")?;
-            Ok(())
-        }
-    }
-
-    #[derive(PartialEq, Eq, Clone, Copy)]
-
-    pub struct ModemConfig3(u8);
-
-    impl From<u8> for ModemConfig3 {
-        fn from(other: u8) -> Self { ModemConfig3(other) }
-    }
-
-    impl From<ModemConfig3> for u8 {
-        fn from(other: ModemConfig3) -> Self { other.0 }
-    }
-
-    impl ModemConfig3 {
-        pub fn value(&self) -> u8 { self.0 }
-
-        pub fn mobile_node(&self) -> u8 {
-            ((self.0 as u8) >> 3) & 0x1 // [3]
-        }
-    
-        pub fn set_mobile_node(mut self, value: u8) -> Self {
-            assert!((value & !0x1) == 0);
-            self.0 &= !(0x1 << 3);
-            self.0 |= value << 3;
-            self
-        }
-    
-        pub fn agc_auto_on(&self) -> u8 {
-            ((self.0 as u8) >> 2) & 0x1 // [2]
-        }
-    
-        pub fn set_agc_auto_on(mut self, value: u8) -> Self {
-            assert!((value & !0x1) == 0);
-            self.0 &= !(0x1 << 2);
-            self.0 |= value << 2;
-            self
-        }
-    
-    }
-
-    impl ::core::fmt::Display for ModemConfig3 {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            self.0.fmt(f)
-        }
-    }
-
-    impl ::core::fmt::Debug for ModemConfig3 {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            write!(f, "[0x{:02x}", self.0)?;
-            if self.mobile_node() != 0 { write!(f, " mobile_node")? }
-            if self.agc_auto_on() != 0 { write!(f, " agc_auto_on")? }
-            write!(f, "]")?;
-            Ok(())
-        }
-    }
-
-    #[derive(PartialEq, Eq, Clone, Copy)]
-
-    pub struct PpmCorrection(u8);
-
-    impl From<u8> for PpmCorrection {
-        fn from(other: u8) -> Self { PpmCorrection(other) }
-    }
-
-    impl From<PpmCorrection> for u8 {
-        fn from(other: PpmCorrection) -> Self { other.0 }
-    }
-
-    impl PpmCorrection {
-        pub fn value(&self) -> u8 { self.0 }
-
-        pub fn ppm_correction(&self) -> u8 {
-            ((self.0 as u8) >> 0) & 0xff // [7:0]
-        }
-    
-        pub fn set_ppm_correction(mut self, value: u8) -> Self {
-            assert!((value & !0xff) == 0);
-            self.0 &= !(0xff << 0);
-            self.0 |= value << 0;
-            self
-        }
-    
-    }
-
-    impl ::core::fmt::Display for PpmCorrection {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            self.0.fmt(f)
-        }
-    }
-
-    impl ::core::fmt::Debug for PpmCorrection {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            write!(f, "[0x{:02x}", self.0)?;
-            if self.ppm_correction() != 0 { write!(f, " ppm_correction=0x{:x}", self.ppm_correction())? }
-            write!(f, "]")?;
-            Ok(())
-        }
-    }
-
-    #[derive(PartialEq, Eq, Clone, Copy)]
-
-    pub struct FeiMsb(u8);
-
-    impl From<u8> for FeiMsb {
-        fn from(other: u8) -> Self { FeiMsb(other) }
-    }
-
-    impl From<FeiMsb> for u8 {
-        fn from(other: FeiMsb) -> Self { other.0 }
-    }
-
-    impl FeiMsb {
-        pub fn value(&self) -> u8 { self.0 }
-
-        pub fn freq_error(&self) -> u8 {
-            ((self.0 as u8) >> 0) & 0xf // [3:0]
-        }
-    
-        pub fn set_freq_error(mut self, value: u8) -> Self {
-            assert!((value & !0xf) == 0);
-            self.0 &= !(0xf << 0);
-            self.0 |= value << 0;
-            self
-        }
-    
-    }
-
-    impl ::core::fmt::Display for FeiMsb {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            self.0.fmt(f)
-        }
-    }
-
-    impl ::core::fmt::Debug for FeiMsb {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            write!(f, "[0x{:02x}", self.0)?;
-            if self.freq_error() != 0 { write!(f, " freq_error=0x{:x}", self.freq_error())? }
-            write!(f, "]")?;
-            Ok(())
-        }
+}
+
+impl ::core::fmt::Debug for PpmCorrection {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        if self.ppm_correction() != 0 { try!(write!(f, " ppm_correction=0x{:x}", self.ppm_correction()))}
+        try!(write!(f, "]"));
+        Ok(())
     }
+}
 
-    #[derive(PartialEq, Eq, Clone, Copy)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct FeiMsb(pub u8);
+impl FeiMsb {
+    #[inline] pub fn freq_error(&self) -> bits::U4 {
+        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xf) as u8) } // [3:0]
+    }
 
-    pub struct FeiMid(u8);
+    #[doc="Returns true if FREQ_ERROR != 0"]
+    #[inline] pub fn test_freq_error(&self) -> bool {
+        self.freq_error() != 0
+    }
 
-    impl From<u8> for FeiMid {
-        fn from(other: u8) -> Self { FeiMid(other) }
+    #[doc="Sets the FREQ_ERROR field."]
+    #[inline] pub fn set_freq_error<V: Into<bits::U4>>(mut self, value: V) -> Self {
+        let value: bits::U4 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0xf << 0);
+        self.0 |= value << 0;
+        self
     }
 
-    impl From<FeiMid> for u8 {
-        fn from(other: FeiMid) -> Self { other.0 }
-    }
-
-    impl FeiMid {
-        pub fn value(&self) -> u8 { self.0 }
+}
 
-        pub fn freq_error(&self) -> u8 {
-            ((self.0 as u8) >> 0) & 0xff // [7:0]
-        }
-    
-        pub fn set_freq_error(mut self, value: u8) -> Self {
-            assert!((value & !0xff) == 0);
-            self.0 &= !(0xff << 0);
-            self.0 |= value << 0;
-            self
-        }
-    
-    }
-
-    impl ::core::fmt::Display for FeiMid {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            self.0.fmt(f)
-        }
+impl From<u8> for FeiMsb {
+    #[inline]
+    fn from(other: u8) -> Self {
+         FeiMsb(other)
     }
+}
 
-    impl ::core::fmt::Debug for FeiMid {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            write!(f, "[0x{:02x}", self.0)?;
-            if self.freq_error() != 0 { write!(f, " freq_error=0x{:x}", self.freq_error())? }
-            write!(f, "]")?;
-            Ok(())
-        }
+impl ::core::fmt::Display for FeiMsb {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
     }
+}
 
-    #[derive(PartialEq, Eq, Clone, Copy)]
+impl ::core::fmt::Debug for FeiMsb {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        if self.freq_error() != 0 { try!(write!(f, " freq_error=0x{:x}", self.freq_error()))}
+        try!(write!(f, "]"));
+        Ok(())
+    }
+}
+
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct FeiMid(pub u8);
+impl FeiMid {
+    #[inline] pub fn freq_error(&self) -> bits::U8 {
+        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
+    }
 
-    pub struct FeiLsb(u8);
+    #[doc="Returns true if FREQ_ERROR != 0"]
+    #[inline] pub fn test_freq_error(&self) -> bool {
+        self.freq_error() != 0
+    }
 
-    impl From<u8> for FeiLsb {
-        fn from(other: u8) -> Self { FeiLsb(other) }
+    #[doc="Sets the FREQ_ERROR field."]
+    #[inline] pub fn set_freq_error<V: Into<bits::U8>>(mut self, value: V) -> Self {
+        let value: bits::U8 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0xff << 0);
+        self.0 |= value << 0;
+        self
     }
 
-    impl From<FeiLsb> for u8 {
-        fn from(other: FeiLsb) -> Self { other.0 }
+}
+
+impl From<u8> for FeiMid {
+    #[inline]
+    fn from(other: u8) -> Self {
+         FeiMid(other)
     }
+}
 
-    impl FeiLsb {
-        pub fn value(&self) -> u8 { self.0 }
+impl ::core::fmt::Display for FeiMid {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
+    }
+}
 
-        pub fn freq_error(&self) -> u8 {
-            ((self.0 as u8) >> 0) & 0xff // [7:0]
-        }
-    
-        pub fn set_freq_error(mut self, value: u8) -> Self {
-            assert!((value & !0xff) == 0);
-            self.0 &= !(0xff << 0);
-            self.0 |= value << 0;
-            self
-        }
-    
+impl ::core::fmt::Debug for FeiMid {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        if self.freq_error() != 0 { try!(write!(f, " freq_error=0x{:x}", self.freq_error()))}
+        try!(write!(f, "]"));
+        Ok(())
     }
+}
 
-    impl ::core::fmt::Display for FeiLsb {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            self.0.fmt(f)
-        }
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct FeiLsb(pub u8);
+impl FeiLsb {
+    #[inline] pub fn freq_error(&self) -> bits::U8 {
+        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
-    impl ::core::fmt::Debug for FeiLsb {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            write!(f, "[0x{:02x}", self.0)?;
-            if self.freq_error() != 0 { write!(f, " freq_error=0x{:x}", self.freq_error())? }
-            write!(f, "]")?;
-            Ok(())
-        }
+    #[doc="Returns true if FREQ_ERROR != 0"]
+    #[inline] pub fn test_freq_error(&self) -> bool {
+        self.freq_error() != 0
     }
 
-    #[derive(PartialEq, Eq, Clone, Copy)]
+    #[doc="Sets the FREQ_ERROR field."]
+    #[inline] pub fn set_freq_error<V: Into<bits::U8>>(mut self, value: V) -> Self {
+        let value: bits::U8 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0xff << 0);
+        self.0 |= value << 0;
+        self
+    }
 
-    pub struct RssiWideband(u8);
+}
 
-    impl From<u8> for RssiWideband {
-        fn from(other: u8) -> Self { RssiWideband(other) }
+impl From<u8> for FeiLsb {
+    #[inline]
+    fn from(other: u8) -> Self {
+         FeiLsb(other)
     }
+}
 
-    impl From<RssiWideband> for u8 {
-        fn from(other: RssiWideband) -> Self { other.0 }
+impl ::core::fmt::Display for FeiLsb {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
     }
+}
 
-    impl RssiWideband {
-        pub fn value(&self) -> u8 { self.0 }
+impl ::core::fmt::Debug for FeiLsb {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        if self.freq_error() != 0 { try!(write!(f, " freq_error=0x{:x}", self.freq_error()))}
+        try!(write!(f, "]"));
+        Ok(())
+    }
+}
 
-        pub fn rssi_wideband(&self) -> u8 {
-            ((self.0 as u8) >> 0) & 0xff // [7:0]
-        }
-    
-        pub fn set_rssi_wideband(mut self, value: u8) -> Self {
-            assert!((value & !0xff) == 0);
-            self.0 &= !(0xff << 0);
-            self.0 |= value << 0;
-            self
-        }
-    
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct RssiWideband(pub u8);
+impl RssiWideband {
+    #[inline] pub fn rssi_wideband(&self) -> bits::U8 {
+        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
-    impl ::core::fmt::Display for RssiWideband {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            self.0.fmt(f)
-        }
+    #[doc="Returns true if RSSI_WIDEBAND != 0"]
+    #[inline] pub fn test_rssi_wideband(&self) -> bool {
+        self.rssi_wideband() != 0
     }
 
-    impl ::core::fmt::Debug for RssiWideband {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            write!(f, "[0x{:02x}", self.0)?;
-            if self.rssi_wideband() != 0 { write!(f, " rssi_wideband=0x{:x}", self.rssi_wideband())? }
-            write!(f, "]")?;
-            Ok(())
-        }
+    #[doc="Sets the RSSI_WIDEBAND field."]
+    #[inline] pub fn set_rssi_wideband<V: Into<bits::U8>>(mut self, value: V) -> Self {
+        let value: bits::U8 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0xff << 0);
+        self.0 |= value << 0;
+        self
     }
 
-    #[derive(PartialEq, Eq, Clone, Copy)]
+}
 
-    pub struct DetectOptimize(u8);
+impl From<u8> for RssiWideband {
+    #[inline]
+    fn from(other: u8) -> Self {
+         RssiWideband(other)
+    }
+}
+
+impl ::core::fmt::Display for RssiWideband {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
+    }
+}
 
-    impl From<u8> for DetectOptimize {
-        fn from(other: u8) -> Self { DetectOptimize(other) }
+impl ::core::fmt::Debug for RssiWideband {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        if self.rssi_wideband() != 0 { try!(write!(f, " rssi_wideband=0x{:x}", self.rssi_wideband()))}
+        try!(write!(f, "]"));
+        Ok(())
     }
+}
 
-    impl From<DetectOptimize> for u8 {
-        fn from(other: DetectOptimize) -> Self { other.0 }
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct DetectOptimize(pub u8);
+impl DetectOptimize {
+    #[inline] pub fn detection_optimize(&self) -> bits::U3 {
+        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x7) as u8) } // [2:0]
     }
 
-    impl DetectOptimize {
-        pub fn value(&self) -> u8 { self.0 }
+    #[doc="Returns true if DETECTION_OPTIMIZE != 0"]
+    #[inline] pub fn test_detection_optimize(&self) -> bool {
+        self.detection_optimize() != 0
+    }
 
-        pub fn detection_optimize(&self) -> u8 {
-            ((self.0 as u8) >> 0) & 0x7 // [2:0]
-        }
-    
-        pub fn set_detection_optimize(mut self, value: u8) -> Self {
-            assert!((value & !0x7) == 0);
-            self.0 &= !(0x7 << 0);
-            self.0 |= value << 0;
-            self
-        }
-    
+    #[doc="Sets the DETECTION_OPTIMIZE field."]
+    #[inline] pub fn set_detection_optimize<V: Into<bits::U3>>(mut self, value: V) -> Self {
+        let value: bits::U3 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0x7 << 0);
+        self.0 |= value << 0;
+        self
     }
 
-    impl ::core::fmt::Display for DetectOptimize {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            self.0.fmt(f)
-        }
+}
+
+impl From<u8> for DetectOptimize {
+    #[inline]
+    fn from(other: u8) -> Self {
+         DetectOptimize(other)
     }
+}
 
-    impl ::core::fmt::Debug for DetectOptimize {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            write!(f, "[0x{:02x}", self.0)?;
-            if self.detection_optimize() != 0 { write!(f, " detection_optimize=0x{:x}", self.detection_optimize())? }
-            write!(f, "]")?;
-            Ok(())
-        }
+impl ::core::fmt::Display for DetectOptimize {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
     }
+}
 
-    #[derive(PartialEq, Eq, Clone, Copy)]
+impl ::core::fmt::Debug for DetectOptimize {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        if self.detection_optimize() != 0 { try!(write!(f, " detection_optimize=0x{:x}", self.detection_optimize()))}
+        try!(write!(f, "]"));
+        Ok(())
+    }
+}
 
-    pub struct InvertIq(u8);
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct InvertIq(pub u8);
+impl InvertIq {
+    #[inline] pub fn invert_iq(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
+    }
 
-    impl From<u8> for InvertIq {
-        fn from(other: u8) -> Self { InvertIq(other) }
+    #[doc="Returns true if INVERT_IQ != 0"]
+    #[inline] pub fn test_invert_iq(&self) -> bool {
+        self.invert_iq() != 0
     }
 
-    impl From<InvertIq> for u8 {
-        fn from(other: InvertIq) -> Self { other.0 }
+    #[doc="Sets the INVERT_IQ field."]
+    #[inline] pub fn set_invert_iq<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0x1 << 6);
+        self.0 |= value << 6;
+        self
     }
 
-    impl InvertIq {
-        pub fn value(&self) -> u8 { self.0 }
+}
 
-        pub fn invert_iq(&self) -> u8 {
-            ((self.0 as u8) >> 6) & 0x1 // [6]
-        }
-    
-        pub fn set_invert_iq(mut self, value: u8) -> Self {
-            assert!((value & !0x1) == 0);
-            self.0 &= !(0x1 << 6);
-            self.0 |= value << 6;
-            self
-        }
-    
+impl From<u8> for InvertIq {
+    #[inline]
+    fn from(other: u8) -> Self {
+         InvertIq(other)
     }
+}
 
-    impl ::core::fmt::Display for InvertIq {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            self.0.fmt(f)
-        }
+impl ::core::fmt::Display for InvertIq {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
     }
+}
 
-    impl ::core::fmt::Debug for InvertIq {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            write!(f, "[0x{:02x}", self.0)?;
-            if self.invert_iq() != 0 { write!(f, " invert_iq")? }
-            write!(f, "]")?;
-            Ok(())
-        }
+impl ::core::fmt::Debug for InvertIq {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        if self.invert_iq() != 0 { try!(write!(f, " invert_iq"))}
+        try!(write!(f, "]"));
+        Ok(())
     }
+}
 
-    #[derive(PartialEq, Eq, Clone, Copy)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct DetectionThreshold(pub u8);
+impl DetectionThreshold {
+    #[inline] pub fn detection_threshold(&self) -> bits::U8 {
+        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
+    }
 
-    pub struct DetectionThreshold(u8);
+    #[doc="Returns true if DETECTION_THRESHOLD != 0"]
+    #[inline] pub fn test_detection_threshold(&self) -> bool {
+        self.detection_threshold() != 0
+    }
 
-    impl From<u8> for DetectionThreshold {
-        fn from(other: u8) -> Self { DetectionThreshold(other) }
+    #[doc="Sets the DETECTION_THRESHOLD field."]
+    #[inline] pub fn set_detection_threshold<V: Into<bits::U8>>(mut self, value: V) -> Self {
+        let value: bits::U8 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0xff << 0);
+        self.0 |= value << 0;
+        self
     }
+
+}
 
-    impl From<DetectionThreshold> for u8 {
-        fn from(other: DetectionThreshold) -> Self { other.0 }
+impl From<u8> for DetectionThreshold {
+    #[inline]
+    fn from(other: u8) -> Self {
+         DetectionThreshold(other)
     }
+}
 
-    impl DetectionThreshold {
-        pub fn value(&self) -> u8 { self.0 }
+impl ::core::fmt::Display for DetectionThreshold {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
+    }
+}
 
-        pub fn detection_threshold(&self) -> u8 {
-            ((self.0 as u8) >> 0) & 0xff // [7:0]
-        }
-    
-        pub fn set_detection_threshold(mut self, value: u8) -> Self {
-            assert!((value & !0xff) == 0);
-            self.0 &= !(0xff << 0);
-            self.0 |= value << 0;
-            self
-        }
-    
+impl ::core::fmt::Debug for DetectionThreshold {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        if self.detection_threshold() != 0 { try!(write!(f, " detection_threshold=0x{:x}", self.detection_threshold()))}
+        try!(write!(f, "]"));
+        Ok(())
     }
+}
 
-    impl ::core::fmt::Display for DetectionThreshold {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            self.0.fmt(f)
-        }
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct SyncWord(pub u8);
+impl SyncWord {
+    #[inline] pub fn sync_word(&self) -> bits::U8 {
+        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
-    impl ::core::fmt::Debug for DetectionThreshold {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            write!(f, "[0x{:02x}", self.0)?;
-            if self.detection_threshold() != 0 { write!(f, " detection_threshold=0x{:x}", self.detection_threshold())? }
-            write!(f, "]")?;
-            Ok(())
-        }
+    #[doc="Returns true if SYNC_WORD != 0"]
+    #[inline] pub fn test_sync_word(&self) -> bool {
+        self.sync_word() != 0
     }
 
-    #[derive(PartialEq, Eq, Clone, Copy)]
+    #[doc="Sets the SYNC_WORD field."]
+    #[inline] pub fn set_sync_word<V: Into<bits::U8>>(mut self, value: V) -> Self {
+        let value: bits::U8 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0xff << 0);
+        self.0 |= value << 0;
+        self
+    }
 
-    pub struct SyncWord(u8);
+}
 
-    impl From<u8> for SyncWord {
-        fn from(other: u8) -> Self { SyncWord(other) }
+impl From<u8> for SyncWord {
+    #[inline]
+    fn from(other: u8) -> Self {
+         SyncWord(other)
     }
+}
 
-    impl From<SyncWord> for u8 {
-        fn from(other: SyncWord) -> Self { other.0 }
+impl ::core::fmt::Display for SyncWord {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
     }
+}
 
-    impl SyncWord {
-        pub fn value(&self) -> u8 { self.0 }
+impl ::core::fmt::Debug for SyncWord {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        if self.sync_word() != 0 { try!(write!(f, " sync_word=0x{:x}", self.sync_word()))}
+        try!(write!(f, "]"));
+        Ok(())
+    }
+}
 
-        pub fn sync_word(&self) -> u8 {
-            ((self.0 as u8) >> 0) & 0xff // [7:0]
-        }
-    
-        pub fn set_sync_word(mut self, value: u8) -> Self {
-            assert!((value & !0xff) == 0);
-            self.0 &= !(0xff << 0);
-            self.0 |= value << 0;
-            self
-        }
-    
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct DioMapping1(pub u8);
+impl DioMapping1 {
+    #[inline] pub fn dio0_mapping(&self) -> bits::U2 {
+        unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x3) as u8) } // [7:6]
     }
 
-    impl ::core::fmt::Display for SyncWord {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            self.0.fmt(f)
-        }
+    #[doc="Returns true if DIO0_MAPPING != 0"]
+    #[inline] pub fn test_dio0_mapping(&self) -> bool {
+        self.dio0_mapping() != 0
     }
 
-    impl ::core::fmt::Debug for SyncWord {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            write!(f, "[0x{:02x}", self.0)?;
-            if self.sync_word() != 0 { write!(f, " sync_word=0x{:x}", self.sync_word())? }
-            write!(f, "]")?;
-            Ok(())
-        }
+    #[doc="Sets the DIO0_MAPPING field."]
+    #[inline] pub fn set_dio0_mapping<V: Into<bits::U2>>(mut self, value: V) -> Self {
+        let value: bits::U2 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0x3 << 6);
+        self.0 |= value << 6;
+        self
     }
 
-    #[derive(PartialEq, Eq, Clone, Copy)]
+    #[inline] pub fn dio1_mapping(&self) -> bits::U2 {
+        unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x3) as u8) } // [5:4]
+    }
 
-    pub struct DioMapping1(u8);
+    #[doc="Returns true if DIO1_MAPPING != 0"]
+    #[inline] pub fn test_dio1_mapping(&self) -> bool {
+        self.dio1_mapping() != 0
+    }
 
-    impl From<u8> for DioMapping1 {
-        fn from(other: u8) -> Self { DioMapping1(other) }
+    #[doc="Sets the DIO1_MAPPING field."]
+    #[inline] pub fn set_dio1_mapping<V: Into<bits::U2>>(mut self, value: V) -> Self {
+        let value: bits::U2 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0x3 << 4);
+        self.0 |= value << 4;
+        self
     }
 
-    impl From<DioMapping1> for u8 {
-        fn from(other: DioMapping1) -> Self { other.0 }
+    #[inline] pub fn dio2_mapping(&self) -> bits::U2 {
+        unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x3) as u8) } // [3:2]
     }
 
-    impl DioMapping1 {
-        pub fn value(&self) -> u8 { self.0 }
+    #[doc="Returns true if DIO2_MAPPING != 0"]
+    #[inline] pub fn test_dio2_mapping(&self) -> bool {
+        self.dio2_mapping() != 0
+    }
 
-        pub fn dio0_mapping(&self) -> u8 {
-            ((self.0 as u8) >> 6) & 0x3 // [7:6]
-        }
-    
-        pub fn set_dio0_mapping(mut self, value: u8) -> Self {
-            assert!((value & !0x3) == 0);
-            self.0 &= !(0x3 << 6);
-            self.0 |= value << 6;
-            self
-        }
-    
-        pub fn dio1_mapping(&self) -> u8 {
-            ((self.0 as u8) >> 4) & 0x3 // [5:4]
-        }
-    
-        pub fn set_dio1_mapping(mut self, value: u8) -> Self {
-            assert!((value & !0x3) == 0);
-            self.0 &= !(0x3 << 4);
-            self.0 |= value << 4;
-            self
-        }
-    
-        pub fn dio2_mapping(&self) -> u8 {
-            ((self.0 as u8) >> 2) & 0x3 // [3:2]
-        }
-    
-        pub fn set_dio2_mapping(mut self, value: u8) -> Self {
-            assert!((value & !0x3) == 0);
-            self.0 &= !(0x3 << 2);
-            self.0 |= value << 2;
-            self
-        }
-    
-        pub fn dio3_mapping(&self) -> u8 {
-            ((self.0 as u8) >> 0) & 0x3 // [1:0]
-        }
-    
-        pub fn set_dio3_mapping(mut self, value: u8) -> Self {
-            assert!((value & !0x3) == 0);
-            self.0 &= !(0x3 << 0);
-            self.0 |= value << 0;
-            self
-        }
-    
+    #[doc="Sets the DIO2_MAPPING field."]
+    #[inline] pub fn set_dio2_mapping<V: Into<bits::U2>>(mut self, value: V) -> Self {
+        let value: bits::U2 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0x3 << 2);
+        self.0 |= value << 2;
+        self
     }
 
-    impl ::core::fmt::Display for DioMapping1 {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            self.0.fmt(f)
-        }
+    #[inline] pub fn dio3_mapping(&self) -> bits::U2 {
+        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x3) as u8) } // [1:0]
     }
 
-    impl ::core::fmt::Debug for DioMapping1 {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            write!(f, "[0x{:02x}", self.0)?;
-            if self.dio0_mapping() != 0 { write!(f, " dio0_mapping=0x{:x}", self.dio0_mapping())? }
-            if self.dio1_mapping() != 0 { write!(f, " dio1_mapping=0x{:x}", self.dio1_mapping())? }
-            if self.dio2_mapping() != 0 { write!(f, " dio2_mapping=0x{:x}", self.dio2_mapping())? }
-            if self.dio3_mapping() != 0 { write!(f, " dio3_mapping=0x{:x}", self.dio3_mapping())? }
-            write!(f, "]")?;
-            Ok(())
-        }
+    #[doc="Returns true if DIO3_MAPPING != 0"]
+    #[inline] pub fn test_dio3_mapping(&self) -> bool {
+        self.dio3_mapping() != 0
     }
 
-    #[derive(PartialEq, Eq, Clone, Copy)]
+    #[doc="Sets the DIO3_MAPPING field."]
+    #[inline] pub fn set_dio3_mapping<V: Into<bits::U2>>(mut self, value: V) -> Self {
+        let value: bits::U2 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0x3 << 0);
+        self.0 |= value << 0;
+        self
+    }
 
-    pub struct DioMapping2(u8);
+}
 
-    impl From<u8> for DioMapping2 {
-        fn from(other: u8) -> Self { DioMapping2(other) }
+impl From<u8> for DioMapping1 {
+    #[inline]
+    fn from(other: u8) -> Self {
+         DioMapping1(other)
     }
+}
 
-    impl From<DioMapping2> for u8 {
-        fn from(other: DioMapping2) -> Self { other.0 }
+impl ::core::fmt::Display for DioMapping1 {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
     }
+}
 
-    impl DioMapping2 {
-        pub fn value(&self) -> u8 { self.0 }
+impl ::core::fmt::Debug for DioMapping1 {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        if self.dio0_mapping() != 0 { try!(write!(f, " dio0_mapping=0x{:x}", self.dio0_mapping()))}
+        if self.dio1_mapping() != 0 { try!(write!(f, " dio1_mapping=0x{:x}", self.dio1_mapping()))}
+        if self.dio2_mapping() != 0 { try!(write!(f, " dio2_mapping=0x{:x}", self.dio2_mapping()))}
+        if self.dio3_mapping() != 0 { try!(write!(f, " dio3_mapping=0x{:x}", self.dio3_mapping()))}
+        try!(write!(f, "]"));
+        Ok(())
+    }
+}
 
-        pub fn dio4_mapping(&self) -> u8 {
-            ((self.0 as u8) >> 6) & 0x3 // [7:6]
-        }
-    
-        pub fn set_dio4_mapping(mut self, value: u8) -> Self {
-            assert!((value & !0x3) == 0);
-            self.0 &= !(0x3 << 6);
-            self.0 |= value << 6;
-            self
-        }
-    
-        pub fn dio5_mapping(&self) -> u8 {
-            ((self.0 as u8) >> 4) & 0x3 // [5:4]
-        }
-    
-        pub fn set_dio5_mapping(mut self, value: u8) -> Self {
-            assert!((value & !0x3) == 0);
-            self.0 &= !(0x3 << 4);
-            self.0 |= value << 4;
-            self
-        }
-    
-        pub fn map_preamble_detect(&self) -> u8 {
-            ((self.0 as u8) >> 0) & 0x1 // [0]
-        }
-    
-        pub fn set_map_preamble_detect(mut self, value: u8) -> Self {
-            assert!((value & !0x1) == 0);
-            self.0 &= !(0x1 << 0);
-            self.0 |= value << 0;
-            self
-        }
-    
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct DioMapping2(pub u8);
+impl DioMapping2 {
+    #[inline] pub fn dio4_mapping(&self) -> bits::U2 {
+        unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x3) as u8) } // [7:6]
     }
 
-    impl ::core::fmt::Display for DioMapping2 {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            self.0.fmt(f)
-        }
+    #[doc="Returns true if DIO4_MAPPING != 0"]
+    #[inline] pub fn test_dio4_mapping(&self) -> bool {
+        self.dio4_mapping() != 0
     }
 
-    impl ::core::fmt::Debug for DioMapping2 {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            write!(f, "[0x{:02x}", self.0)?;
-            if self.dio4_mapping() != 0 { write!(f, " dio4_mapping=0x{:x}", self.dio4_mapping())? }
-            if self.dio5_mapping() != 0 { write!(f, " dio5_mapping=0x{:x}", self.dio5_mapping())? }
-            if self.map_preamble_detect() != 0 { write!(f, " map_preamble_detect")? }
-            write!(f, "]")?;
-            Ok(())
-        }
+    #[doc="Sets the DIO4_MAPPING field."]
+    #[inline] pub fn set_dio4_mapping<V: Into<bits::U2>>(mut self, value: V) -> Self {
+        let value: bits::U2 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0x3 << 6);
+        self.0 |= value << 6;
+        self
     }
 
-    #[derive(PartialEq, Eq, Clone, Copy)]
+    #[inline] pub fn dio5_mapping(&self) -> bits::U2 {
+        unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x3) as u8) } // [5:4]
+    }
 
-    pub struct Version(u8);
+    #[doc="Returns true if DIO5_MAPPING != 0"]
+    #[inline] pub fn test_dio5_mapping(&self) -> bool {
+        self.dio5_mapping() != 0
+    }
 
-    impl From<u8> for Version {
-        fn from(other: u8) -> Self { Version(other) }
+    #[doc="Sets the DIO5_MAPPING field."]
+    #[inline] pub fn set_dio5_mapping<V: Into<bits::U2>>(mut self, value: V) -> Self {
+        let value: bits::U2 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0x3 << 4);
+        self.0 |= value << 4;
+        self
     }
 
-    impl From<Version> for u8 {
-        fn from(other: Version) -> Self { other.0 }
+    #[inline] pub fn map_preamble_detect(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    impl Version {
-        pub fn value(&self) -> u8 { self.0 }
+    #[doc="Returns true if MAP_PREAMBLE_DETECT != 0"]
+    #[inline] pub fn test_map_preamble_detect(&self) -> bool {
+        self.map_preamble_detect() != 0
+    }
 
-        pub fn version(&self) -> u8 {
-            ((self.0 as u8) >> 0) & 0xff // [7:0]
-        }
-    
-        pub fn set_version(mut self, value: u8) -> Self {
-            assert!((value & !0xff) == 0);
-            self.0 &= !(0xff << 0);
-            self.0 |= value << 0;
-            self
-        }
-    
+    #[doc="Sets the MAP_PREAMBLE_DETECT field."]
+    #[inline] pub fn set_map_preamble_detect<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0x1 << 0);
+        self.0 |= value << 0;
+        self
     }
+
+}
 
-    impl ::core::fmt::Display for Version {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            self.0.fmt(f)
-        }
+impl From<u8> for DioMapping2 {
+    #[inline]
+    fn from(other: u8) -> Self {
+         DioMapping2(other)
     }
+}
 
-    impl ::core::fmt::Debug for Version {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            write!(f, "[0x{:02x}", self.0)?;
-            if self.version() != 0 { write!(f, " version=0x{:x}", self.version())? }
-            write!(f, "]")?;
-            Ok(())
-        }
+impl ::core::fmt::Display for DioMapping2 {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
     }
+}
 
-    #[derive(PartialEq, Eq, Clone, Copy)]
+impl ::core::fmt::Debug for DioMapping2 {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        if self.dio4_mapping() != 0 { try!(write!(f, " dio4_mapping=0x{:x}", self.dio4_mapping()))}
+        if self.dio5_mapping() != 0 { try!(write!(f, " dio5_mapping=0x{:x}", self.dio5_mapping()))}
+        if self.map_preamble_detect() != 0 { try!(write!(f, " map_preamble_detect"))}
+        try!(write!(f, "]"));
+        Ok(())
+    }
+}
 
-    pub struct PllHop(u8);
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct Version(pub u8);
+impl Version {
+    #[inline] pub fn version(&self) -> bits::U8 {
+        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
+    }
 
-    impl From<u8> for PllHop {
-        fn from(other: u8) -> Self { PllHop(other) }
+    #[doc="Returns true if VERSION != 0"]
+    #[inline] pub fn test_version(&self) -> bool {
+        self.version() != 0
     }
 
-    impl From<PllHop> for u8 {
-        fn from(other: PllHop) -> Self { other.0 }
+    #[doc="Sets the VERSION field."]
+    #[inline] pub fn set_version<V: Into<bits::U8>>(mut self, value: V) -> Self {
+        let value: bits::U8 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0xff << 0);
+        self.0 |= value << 0;
+        self
     }
 
-    impl PllHop {
-        pub fn value(&self) -> u8 { self.0 }
+}
 
-        pub fn fast_hop_on(&self) -> u8 {
-            ((self.0 as u8) >> 7) & 0x1 // [7]
-        }
-    
-        pub fn set_fast_hop_on(mut self, value: u8) -> Self {
-            assert!((value & !0x1) == 0);
-            self.0 &= !(0x1 << 7);
-            self.0 |= value << 7;
-            self
-        }
-    
+impl From<u8> for Version {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Version(other)
     }
+}
 
-    impl ::core::fmt::Display for PllHop {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            self.0.fmt(f)
-        }
+impl ::core::fmt::Display for Version {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
     }
+}
 
-    impl ::core::fmt::Debug for PllHop {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            write!(f, "[0x{:02x}", self.0)?;
-            if self.fast_hop_on() != 0 { write!(f, " fast_hop_on")? }
-            write!(f, "]")?;
-            Ok(())
-        }
+impl ::core::fmt::Debug for Version {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        if self.version() != 0 { try!(write!(f, " version=0x{:x}", self.version()))}
+        try!(write!(f, "]"));
+        Ok(())
     }
+}
 
-    #[derive(PartialEq, Eq, Clone, Copy)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct PllHop(pub u8);
+impl PllHop {
+    #[inline] pub fn fast_hop_on(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
+    }
 
-    pub struct Tcxo(u8);
+    #[doc="Returns true if FAST_HOP_ON != 0"]
+    #[inline] pub fn test_fast_hop_on(&self) -> bool {
+        self.fast_hop_on() != 0
+    }
 
-    impl From<u8> for Tcxo {
-        fn from(other: u8) -> Self { Tcxo(other) }
+    #[doc="Sets the FAST_HOP_ON field."]
+    #[inline] pub fn set_fast_hop_on<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0x1 << 7);
+        self.0 |= value << 7;
+        self
     }
 
-    impl From<Tcxo> for u8 {
-        fn from(other: Tcxo) -> Self { other.0 }
+}
+
+impl From<u8> for PllHop {
+    #[inline]
+    fn from(other: u8) -> Self {
+         PllHop(other)
     }
+}
 
-    impl Tcxo {
-        pub fn value(&self) -> u8 { self.0 }
+impl ::core::fmt::Display for PllHop {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
+    }
+}
 
-        pub fn tcxo_input_on(&self) -> u8 {
-            ((self.0 as u8) >> 4) & 0x1 // [4]
-        }
-    
-        pub fn set_tcxo_input_on(mut self, value: u8) -> Self {
-            assert!((value & !0x1) == 0);
-            self.0 &= !(0x1 << 4);
-            self.0 |= value << 4;
-            self
-        }
-    
+impl ::core::fmt::Debug for PllHop {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        if self.fast_hop_on() != 0 { try!(write!(f, " fast_hop_on"))}
+        try!(write!(f, "]"));
+        Ok(())
     }
+}
 
-    impl ::core::fmt::Display for Tcxo {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            self.0.fmt(f)
-        }
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct Tcxo(pub u8);
+impl Tcxo {
+    #[inline] pub fn tcxo_input_on(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    impl ::core::fmt::Debug for Tcxo {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            write!(f, "[0x{:02x}", self.0)?;
-            if self.tcxo_input_on() != 0 { write!(f, " tcxo_input_on")? }
-            write!(f, "]")?;
-            Ok(())
-        }
+    #[doc="Returns true if TCXO_INPUT_ON != 0"]
+    #[inline] pub fn test_tcxo_input_on(&self) -> bool {
+        self.tcxo_input_on() != 0
     }
 
-    #[derive(PartialEq, Eq, Clone, Copy)]
+    #[doc="Sets the TCXO_INPUT_ON field."]
+    #[inline] pub fn set_tcxo_input_on<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0x1 << 4);
+        self.0 |= value << 4;
+        self
+    }
 
-    pub struct PaDac(u8);
+}
 
-    impl From<u8> for PaDac {
-        fn from(other: u8) -> Self { PaDac(other) }
+impl From<u8> for Tcxo {
+    #[inline]
+    fn from(other: u8) -> Self {
+         Tcxo(other)
     }
+}
 
-    impl From<PaDac> for u8 {
-        fn from(other: PaDac) -> Self { other.0 }
+impl ::core::fmt::Display for Tcxo {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
     }
+}
 
-    impl PaDac {
-        pub fn value(&self) -> u8 { self.0 }
+impl ::core::fmt::Debug for Tcxo {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        if self.tcxo_input_on() != 0 { try!(write!(f, " tcxo_input_on"))}
+        try!(write!(f, "]"));
+        Ok(())
+    }
+}
 
-        pub fn pa_dac(&self) -> u8 {
-            ((self.0 as u8) >> 0) & 0x7 // [2:0]
-        }
-    
-        pub fn set_pa_dac(mut self, value: u8) -> Self {
-            assert!((value & !0x7) == 0);
-            self.0 &= !(0x7 << 0);
-            self.0 |= value << 0;
-            self
-        }
-    
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct PaDac(pub u8);
+impl PaDac {
+    #[inline] pub fn pa_dac(&self) -> bits::U3 {
+        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x7) as u8) } // [2:0]
     }
 
-    impl ::core::fmt::Display for PaDac {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            self.0.fmt(f)
-        }
+    #[doc="Returns true if PA_DAC != 0"]
+    #[inline] pub fn test_pa_dac(&self) -> bool {
+        self.pa_dac() != 0
     }
 
-    impl ::core::fmt::Debug for PaDac {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            write!(f, "[0x{:02x}", self.0)?;
-            if self.pa_dac() != 0 { write!(f, " pa_dac=0x{:x}", self.pa_dac())? }
-            write!(f, "]")?;
-            Ok(())
-        }
+    #[doc="Sets the PA_DAC field."]
+    #[inline] pub fn set_pa_dac<V: Into<bits::U3>>(mut self, value: V) -> Self {
+        let value: bits::U3 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0x7 << 0);
+        self.0 |= value << 0;
+        self
     }
 
-    #[derive(PartialEq, Eq, Clone, Copy)]
+}
+
+impl From<u8> for PaDac {
+    #[inline]
+    fn from(other: u8) -> Self {
+         PaDac(other)
+    }
+}
 
-    pub struct FormerTemp(u8);
+impl ::core::fmt::Display for PaDac {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
+    }
+}
 
-    impl From<u8> for FormerTemp {
-        fn from(other: u8) -> Self { FormerTemp(other) }
+impl ::core::fmt::Debug for PaDac {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        if self.pa_dac() != 0 { try!(write!(f, " pa_dac=0x{:x}", self.pa_dac()))}
+        try!(write!(f, "]"));
+        Ok(())
     }
+}
 
-    impl From<FormerTemp> for u8 {
-        fn from(other: FormerTemp) -> Self { other.0 }
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct FormerTemp(pub u8);
+impl FormerTemp {
+    #[inline] pub fn former_temp(&self) -> bits::U8 {
+        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
-    impl FormerTemp {
-        pub fn value(&self) -> u8 { self.0 }
+    #[doc="Returns true if FORMER_TEMP != 0"]
+    #[inline] pub fn test_former_temp(&self) -> bool {
+        self.former_temp() != 0
+    }
 
-        pub fn former_temp(&self) -> u8 {
-            ((self.0 as u8) >> 0) & 0xff // [7:0]
-        }
-    
-        pub fn set_former_temp(mut self, value: u8) -> Self {
-            assert!((value & !0xff) == 0);
-            self.0 &= !(0xff << 0);
-            self.0 |= value << 0;
-            self
-        }
-    
+    #[doc="Sets the FORMER_TEMP field."]
+    #[inline] pub fn set_former_temp<V: Into<bits::U8>>(mut self, value: V) -> Self {
+        let value: bits::U8 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0xff << 0);
+        self.0 |= value << 0;
+        self
     }
 
-    impl ::core::fmt::Display for FormerTemp {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            self.0.fmt(f)
-        }
+}
+
+impl From<u8> for FormerTemp {
+    #[inline]
+    fn from(other: u8) -> Self {
+         FormerTemp(other)
     }
+}
 
-    impl ::core::fmt::Debug for FormerTemp {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            write!(f, "[0x{:02x}", self.0)?;
-            if self.former_temp() != 0 { write!(f, " former_temp=0x{:x}", self.former_temp())? }
-            write!(f, "]")?;
-            Ok(())
-        }
+impl ::core::fmt::Display for FormerTemp {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
     }
+}
 
-    #[derive(PartialEq, Eq, Clone, Copy)]
+impl ::core::fmt::Debug for FormerTemp {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        if self.former_temp() != 0 { try!(write!(f, " former_temp=0x{:x}", self.former_temp()))}
+        try!(write!(f, "]"));
+        Ok(())
+    }
+}
 
-    pub struct AgcRef(u8);
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct AgcRef(pub u8);
+impl AgcRef {
+    #[inline] pub fn agc_reference_level(&self) -> bits::U6 {
+        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x3f) as u8) } // [5:0]
+    }
 
-    impl From<u8> for AgcRef {
-        fn from(other: u8) -> Self { AgcRef(other) }
+    #[doc="Returns true if AGC_REFERENCE_LEVEL != 0"]
+    #[inline] pub fn test_agc_reference_level(&self) -> bool {
+        self.agc_reference_level() != 0
     }
 
-    impl From<AgcRef> for u8 {
-        fn from(other: AgcRef) -> Self { other.0 }
+    #[doc="Sets the AGC_REFERENCE_LEVEL field."]
+    #[inline] pub fn set_agc_reference_level<V: Into<bits::U6>>(mut self, value: V) -> Self {
+        let value: bits::U6 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0x3f << 0);
+        self.0 |= value << 0;
+        self
     }
 
-    impl AgcRef {
-        pub fn value(&self) -> u8 { self.0 }
+}
 
-        pub fn agc_reference_level(&self) -> u8 {
-            ((self.0 as u8) >> 0) & 0x3f // [5:0]
-        }
-    
-        pub fn set_agc_reference_level(mut self, value: u8) -> Self {
-            assert!((value & !0x3f) == 0);
-            self.0 &= !(0x3f << 0);
-            self.0 |= value << 0;
-            self
-        }
-    
+impl From<u8> for AgcRef {
+    #[inline]
+    fn from(other: u8) -> Self {
+         AgcRef(other)
     }
+}
 
-    impl ::core::fmt::Display for AgcRef {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            self.0.fmt(f)
-        }
+impl ::core::fmt::Display for AgcRef {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
     }
+}
 
-    impl ::core::fmt::Debug for AgcRef {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            write!(f, "[0x{:02x}", self.0)?;
-            if self.agc_reference_level() != 0 { write!(f, " agc_reference_level=0x{:x}", self.agc_reference_level())? }
-            write!(f, "]")?;
-            Ok(())
-        }
+impl ::core::fmt::Debug for AgcRef {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        if self.agc_reference_level() != 0 { try!(write!(f, " agc_reference_level=0x{:x}", self.agc_reference_level()))}
+        try!(write!(f, "]"));
+        Ok(())
     }
+}
 
-    #[derive(PartialEq, Eq, Clone, Copy)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct AgcThresh1(pub u8);
+impl AgcThresh1 {
+    #[inline] pub fn agc_step1(&self) -> bits::U5 {
+        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1f) as u8) } // [4:0]
+    }
 
-    pub struct AgcThresh1(u8);
+    #[doc="Returns true if AGC_STEP1 != 0"]
+    #[inline] pub fn test_agc_step1(&self) -> bool {
+        self.agc_step1() != 0
+    }
 
-    impl From<u8> for AgcThresh1 {
-        fn from(other: u8) -> Self { AgcThresh1(other) }
+    #[doc="Sets the AGC_STEP1 field."]
+    #[inline] pub fn set_agc_step1<V: Into<bits::U5>>(mut self, value: V) -> Self {
+        let value: bits::U5 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0x1f << 0);
+        self.0 |= value << 0;
+        self
     }
+
+}
 
-    impl From<AgcThresh1> for u8 {
-        fn from(other: AgcThresh1) -> Self { other.0 }
+impl From<u8> for AgcThresh1 {
+    #[inline]
+    fn from(other: u8) -> Self {
+         AgcThresh1(other)
     }
+}
 
-    impl AgcThresh1 {
-        pub fn value(&self) -> u8 { self.0 }
+impl ::core::fmt::Display for AgcThresh1 {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
+    }
+}
 
-        pub fn agc_step1(&self) -> u8 {
-            ((self.0 as u8) >> 0) & 0x1f // [4:0]
-        }
-    
-        pub fn set_agc_step1(mut self, value: u8) -> Self {
-            assert!((value & !0x1f) == 0);
-            self.0 &= !(0x1f << 0);
-            self.0 |= value << 0;
-            self
-        }
-    
+impl ::core::fmt::Debug for AgcThresh1 {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        if self.agc_step1() != 0 { try!(write!(f, " agc_step1=0x{:x}", self.agc_step1()))}
+        try!(write!(f, "]"));
+        Ok(())
     }
+}
 
-    impl ::core::fmt::Display for AgcThresh1 {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            self.0.fmt(f)
-        }
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct AgcThresh2(pub u8);
+impl AgcThresh2 {
+    #[inline] pub fn agc_step2(&self) -> bits::U4 {
+        unsafe { ::core::mem::transmute(((self.0 >> 4) & 0xf) as u8) } // [7:4]
     }
 
-    impl ::core::fmt::Debug for AgcThresh1 {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            write!(f, "[0x{:02x}", self.0)?;
-            if self.agc_step1() != 0 { write!(f, " agc_step1=0x{:x}", self.agc_step1())? }
-            write!(f, "]")?;
-            Ok(())
-        }
+    #[doc="Returns true if AGC_STEP2 != 0"]
+    #[inline] pub fn test_agc_step2(&self) -> bool {
+        self.agc_step2() != 0
     }
 
-    #[derive(PartialEq, Eq, Clone, Copy)]
+    #[doc="Sets the AGC_STEP2 field."]
+    #[inline] pub fn set_agc_step2<V: Into<bits::U4>>(mut self, value: V) -> Self {
+        let value: bits::U4 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0xf << 4);
+        self.0 |= value << 4;
+        self
+    }
 
-    pub struct AgcThresh2(u8);
+    #[inline] pub fn agc_step3(&self) -> bits::U4 {
+        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xf) as u8) } // [3:0]
+    }
 
-    impl From<u8> for AgcThresh2 {
-        fn from(other: u8) -> Self { AgcThresh2(other) }
+    #[doc="Returns true if AGC_STEP3 != 0"]
+    #[inline] pub fn test_agc_step3(&self) -> bool {
+        self.agc_step3() != 0
     }
 
-    impl From<AgcThresh2> for u8 {
-        fn from(other: AgcThresh2) -> Self { other.0 }
+    #[doc="Sets the AGC_STEP3 field."]
+    #[inline] pub fn set_agc_step3<V: Into<bits::U4>>(mut self, value: V) -> Self {
+        let value: bits::U4 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0xf << 0);
+        self.0 |= value << 0;
+        self
     }
 
-    impl AgcThresh2 {
-        pub fn value(&self) -> u8 { self.0 }
+}
 
-        pub fn agc_step2(&self) -> u8 {
-            ((self.0 as u8) >> 4) & 0xf // [7:4]
-        }
-    
-        pub fn set_agc_step2(mut self, value: u8) -> Self {
-            assert!((value & !0xf) == 0);
-            self.0 &= !(0xf << 4);
-            self.0 |= value << 4;
-            self
-        }
-    
-        pub fn agc_step3(&self) -> u8 {
-            ((self.0 as u8) >> 0) & 0xf // [3:0]
-        }
-    
-        pub fn set_agc_step3(mut self, value: u8) -> Self {
-            assert!((value & !0xf) == 0);
-            self.0 &= !(0xf << 0);
-            self.0 |= value << 0;
-            self
-        }
-    
+impl From<u8> for AgcThresh2 {
+    #[inline]
+    fn from(other: u8) -> Self {
+         AgcThresh2(other)
     }
+}
 
-    impl ::core::fmt::Display for AgcThresh2 {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            self.0.fmt(f)
-        }
+impl ::core::fmt::Display for AgcThresh2 {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
     }
+}
 
-    impl ::core::fmt::Debug for AgcThresh2 {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            write!(f, "[0x{:02x}", self.0)?;
-            if self.agc_step2() != 0 { write!(f, " agc_step2=0x{:x}", self.agc_step2())? }
-            if self.agc_step3() != 0 { write!(f, " agc_step3=0x{:x}", self.agc_step3())? }
-            write!(f, "]")?;
-            Ok(())
-        }
+impl ::core::fmt::Debug for AgcThresh2 {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        if self.agc_step2() != 0 { try!(write!(f, " agc_step2=0x{:x}", self.agc_step2()))}
+        if self.agc_step3() != 0 { try!(write!(f, " agc_step3=0x{:x}", self.agc_step3()))}
+        try!(write!(f, "]"));
+        Ok(())
     }
+}
 
-    #[derive(PartialEq, Eq, Clone, Copy)]
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct AgcThresh3(pub u8);
+impl AgcThresh3 {
+    #[inline] pub fn agc_step4(&self) -> bits::U4 {
+        unsafe { ::core::mem::transmute(((self.0 >> 4) & 0xf) as u8) } // [7:4]
+    }
 
-    pub struct AgcThresh3(u8);
+    #[doc="Returns true if AGC_STEP4 != 0"]
+    #[inline] pub fn test_agc_step4(&self) -> bool {
+        self.agc_step4() != 0
+    }
 
-    impl From<u8> for AgcThresh3 {
-        fn from(other: u8) -> Self { AgcThresh3(other) }
+    #[doc="Sets the AGC_STEP4 field."]
+    #[inline] pub fn set_agc_step4<V: Into<bits::U4>>(mut self, value: V) -> Self {
+        let value: bits::U4 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0xf << 4);
+        self.0 |= value << 4;
+        self
     }
 
-    impl From<AgcThresh3> for u8 {
-        fn from(other: AgcThresh3) -> Self { other.0 }
+    #[inline] pub fn agc_step5(&self) -> bits::U4 {
+        unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xf) as u8) } // [3:0]
     }
 
-    impl AgcThresh3 {
-        pub fn value(&self) -> u8 { self.0 }
+    #[doc="Returns true if AGC_STEP5 != 0"]
+    #[inline] pub fn test_agc_step5(&self) -> bool {
+        self.agc_step5() != 0
+    }
 
-        pub fn agc_step4(&self) -> u8 {
-            ((self.0 as u8) >> 4) & 0xf // [7:4]
-        }
-    
-        pub fn set_agc_step4(mut self, value: u8) -> Self {
-            assert!((value & !0xf) == 0);
-            self.0 &= !(0xf << 4);
-            self.0 |= value << 4;
-            self
-        }
-    
-        pub fn agc_step5(&self) -> u8 {
-            ((self.0 as u8) >> 0) & 0xf // [3:0]
-        }
-    
-        pub fn set_agc_step5(mut self, value: u8) -> Self {
-            assert!((value & !0xf) == 0);
-            self.0 &= !(0xf << 0);
-            self.0 |= value << 0;
-            self
-        }
-    
+    #[doc="Sets the AGC_STEP5 field."]
+    #[inline] pub fn set_agc_step5<V: Into<bits::U4>>(mut self, value: V) -> Self {
+        let value: bits::U4 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0xf << 0);
+        self.0 |= value << 0;
+        self
     }
 
-    impl ::core::fmt::Display for AgcThresh3 {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            self.0.fmt(f)
-        }
+}
+
+impl From<u8> for AgcThresh3 {
+    #[inline]
+    fn from(other: u8) -> Self {
+         AgcThresh3(other)
     }
+}
 
-    impl ::core::fmt::Debug for AgcThresh3 {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            write!(f, "[0x{:02x}", self.0)?;
-            if self.agc_step4() != 0 { write!(f, " agc_step4=0x{:x}", self.agc_step4())? }
-            if self.agc_step5() != 0 { write!(f, " agc_step5=0x{:x}", self.agc_step5())? }
-            write!(f, "]")?;
-            Ok(())
-        }
+impl ::core::fmt::Display for AgcThresh3 {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
     }
+}
 
-    #[derive(PartialEq, Eq, Clone, Copy)]
+impl ::core::fmt::Debug for AgcThresh3 {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        if self.agc_step4() != 0 { try!(write!(f, " agc_step4=0x{:x}", self.agc_step4()))}
+        if self.agc_step5() != 0 { try!(write!(f, " agc_step5=0x{:x}", self.agc_step5()))}
+        try!(write!(f, "]"));
+        Ok(())
+    }
+}
 
-    pub struct PllHf(u8);
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub struct PllHf(pub u8);
+impl PllHf {
+    #[inline] pub fn pll_bandwidth(&self) -> bits::U2 {
+        unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x3) as u8) } // [7:6]
+    }
 
-    impl From<u8> for PllHf {
-        fn from(other: u8) -> Self { PllHf(other) }
+    #[doc="Returns true if PLL_BANDWIDTH != 0"]
+    #[inline] pub fn test_pll_bandwidth(&self) -> bool {
+        self.pll_bandwidth() != 0
     }
 
-    impl From<PllHf> for u8 {
-        fn from(other: PllHf) -> Self { other.0 }
+    #[doc="Sets the PLL_BANDWIDTH field."]
+    #[inline] pub fn set_pll_bandwidth<V: Into<bits::U2>>(mut self, value: V) -> Self {
+        let value: bits::U2 = value.into();
+        let value: u8 = value.into();
+        self.0 &= !(0x3 << 6);
+        self.0 |= value << 6;
+        self
     }
 
-    impl PllHf {
-        pub fn value(&self) -> u8 { self.0 }
+}
 
-        pub fn pll_bandwidth(&self) -> u8 {
-            ((self.0 as u8) >> 6) & 0x3 // [7:6]
-        }
-    
-        pub fn set_pll_bandwidth(mut self, value: u8) -> Self {
-            assert!((value & !0x3) == 0);
-            self.0 &= !(0x3 << 6);
-            self.0 |= value << 6;
-            self
-        }
-    
+impl From<u8> for PllHf {
+    #[inline]
+    fn from(other: u8) -> Self {
+         PllHf(other)
     }
+}
 
-    impl ::core::fmt::Display for PllHf {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            self.0.fmt(f)
-        }
+impl ::core::fmt::Display for PllHf {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+         self.0.fmt(f)
     }
+}
 
-    impl ::core::fmt::Debug for PllHf {
-        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-            write!(f, "[0x{:02x}", self.0)?;
-            if self.pll_bandwidth() != 0 { write!(f, " pll_bandwidth=0x{:x}", self.pll_bandwidth())? }
-            write!(f, "]")?;
-            Ok(())
-        }
+impl ::core::fmt::Debug for PllHf {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
+        try!(write!(f, "[0x{:08x}", self.0));
+        if self.pll_bandwidth() != 0 { try!(write!(f, " pll_bandwidth=0x{:x}", self.pll_bandwidth()))}
+        try!(write!(f, "]"));
+        Ok(())
     }
+}
 
 
 }
