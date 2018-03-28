@@ -212,7 +212,11 @@ pub fn copy_file_with<F: FnOnce(String) -> String>(src_path: &Path, dst_path: &P
 pub fn gen_register<W: Write>(out: &mut W, r: &Register, size: &'static str) -> Result<()> {
     let reg_struct = to_camel(&r.name);    
 
+    if let Some(ref description) = r.description {
+        gen_doc(out, 4, description)?;
+    }
     writeln!(out, "    #[derive(PartialEq, Eq, Clone, Copy)]")?;
+    writeln!(out, "")?;
     writeln!(out, "    pub struct {}({});", reg_struct, size)?;
     writeln!(out, "")?;
 
@@ -248,7 +252,10 @@ pub fn gen_register<W: Write>(out: &mut W, r: &Register, size: &'static str) -> 
             format!("[{}:{}]", f_hi, f_lo)
         } else {
             format!("[{}]", f_lo)
-        };            
+        };  
+        if let Some(ref description) = f.description {
+            gen_doc(out, 8, description)?;
+        }                  
         writeln!(out, "        pub fn {}(&self) -> {} {{", f_getter, size)?;
         writeln!(out, "            ((self.0 as {}) >> {}) & 0x{:x} // {}", size, f_offset, f_mask, f_bits)?;
         writeln!(out, "        }}")?;    
@@ -317,5 +324,14 @@ pub fn gen_register<W: Write>(out: &mut W, r: &Register, size: &'static str) -> 
     writeln!(out, "    }}")?;        
     writeln!(out, "")?;    
 
+    Ok(())
+}
+
+
+fn gen_doc<W: Write>(out: &mut W, indent: usize, doc: &str) -> Result<()> {
+    let doc = doc.trim();
+    if doc.len() > 0 {
+        try!(writeln!(out, "{:indent$}#[doc=\"{}\"]", "", doc, indent=indent))
+    }
     Ok(())
 }
