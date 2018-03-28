@@ -1,5 +1,6 @@
 use {Peripheral, Register};
 use super::{to_camel, size_type, field_name, field_getter, field_setter, field_with, gen_doc};
+use super::modules::gen_register_types;
 use std::io::{Write, Read, Result};
 use std::fs::{self, File, OpenOptions};
 use std::path::{Path, PathBuf};
@@ -176,10 +177,12 @@ pub fn gen_periph<W: Write>(cfg: Config, _out: &mut W, p: &Peripheral) -> Result
         writeln!(out, "")?;                
 
         writeln!(out, "pub mod reg {{")?;
+        writeln!(out, "    use ::bobbin_bits as bits;")?;
         writeln!(out, "")?;                
-        for r in p.registers.iter() {
-            gen_register(&mut out, r, r_size)?;
-        }        
+        gen_register_types(&mut out, &p.registers, p.size, p.access)?;
+        // for r in p.registers.iter() {
+        //     gen_register(&mut out, r, r_size)?;
+        // }        
         writeln!(out, "")?;                
         writeln!(out, "}}")?;
         writeln!(out, "")?;                
