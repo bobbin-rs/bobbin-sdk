@@ -203,7 +203,7 @@ pub fn copy_file_with<F: FnOnce(String) -> String>(src_path: &Path, dst_path: &P
 pub fn gen_register<W: Write>(out: &mut W, r: &Register, size: &'static str) -> Result<()> {
     let reg_struct = to_camel(&r.name);    
 
-    writeln!(out, "pub struct {}(pub {});", reg_struct, size)?;
+    writeln!(out, "pub struct {}({});", reg_struct, size)?;
     writeln!(out, "")?;
 
     writeln!(out, "impl From<{}> for {} {{", size, reg_struct)?;
