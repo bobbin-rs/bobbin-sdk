@@ -43,14 +43,16 @@ pub fn gen_periph<W: Write>(cfg: Config, _out: &mut W, p: &Peripheral) -> Result
         writeln!(out, "pub type Value = {};", r_size)?;
         writeln!(out, "")?;    
 
+        writeln!(out, "pub mod addr {{")?;
+        writeln!(out, "    use super::Addr;")?;
         for r in p.registers.iter() {
-            try!(writeln!(out, "pub const REG_{}: Addr = 0x{:02x};",
+            try!(writeln!(out, "    pub const REG_{}: Addr = 0x{:02x};",
                 r.name,
                 r.offset,
             ));
             if let Some(dim) = r.dim {
                 for i in 0..dim {
-                    try!(writeln!(out, "pub const REG_{}{}: Addr = 0x{:02x};",
+                    try!(writeln!(out, "    pub const REG_{}{}: Addr = 0x{:02x};",
                         r.name,
                         i + 1,
                         r.offset + i,
@@ -59,6 +61,7 @@ pub fn gen_periph<W: Write>(cfg: Config, _out: &mut W, p: &Peripheral) -> Result
                 }
             }
         }
+        writeln!(out, "}}")?;    
         writeln!(out, "")?;
 
         writeln!(out, "pub struct {}<RW> {{ rw: RW }}", p_type)?;
@@ -98,35 +101,35 @@ pub fn gen_periph<W: Write>(cfg: Config, _out: &mut W, p: &Peripheral) -> Result
 
         writeln!(out, "impl<RW: ReadWrite> {}<RW> {{", p_type)?;
         for r in p.registers.iter() {
-            let reg_struct = to_camel(&r.name);
+            let reg_struct = format!("reg::{}", to_camel(&r.name));
             let reg_getter = field_getter(&r.name);
             let reg_setter = field_setter(&r.name);
             let reg_with = field_with(&r.name);
             if let Some(dim) = r.dim {
                 writeln!(out, "    pub fn {}(&self, index: usize) -> {} {{", reg_getter, reg_struct)?;
                 writeln!(out, "        assert!(index < {});", dim)?;
-                writeln!(out, "        {}(self.read(REG_{} + index as {}))", reg_struct, r.name, r_size)?;
+                writeln!(out, "        {}(self.read(addr::REG_{} + index as {}))", reg_struct, r.name, r_size)?;
                 writeln!(out, "    }}")?;
                 writeln!(out, "    pub fn {}(&self, index: usize, value: {}) {{", reg_setter, reg_struct)?;
                 writeln!(out, "        assert!(index < {});", dim)?;            
-                writeln!(out, "        self.write(REG_{} + index as {}, value.0)", r.name, r_size)?;
+                writeln!(out, "        self.write(addr::REG_{} + index as {}, value.0)", r.name, r_size)?;
                 writeln!(out, "    }}")?;       
                 writeln!(out, "    pub fn {}<F: FnOnce({}) -> {}>(&self, index: usize, f: F) {{", reg_with, reg_struct, reg_struct)?;
                 writeln!(out, "        assert!(index < {});", dim)?;
-                writeln!(out, "        let tmp = {}(self.read(REG_{} + index as {}));", reg_struct, r.name, r_size)?;
-                writeln!(out, "        self.write(REG_{} + index as {}, f(tmp).0)", r.name, r_size)?;
+                writeln!(out, "        let tmp = {}(self.read(addr::REG_{} + index as {}));", reg_struct, r.name, r_size)?;
+                writeln!(out, "        self.write(addr::REG_{} + index as {}, f(tmp).0)", r.name, r_size)?;
                 writeln!(out, "    }}")?;          
                 writeln!(out, "")?;            
             } else {
                 writeln!(out, "    pub fn {}(&self) -> {} {{", reg_getter, reg_struct)?;
-                writeln!(out, "        {}(self.read(REG_{}))", reg_struct, r.name)?;
+                writeln!(out, "        {}(self.read(addr::REG_{}))", reg_struct, r.name)?;
                 writeln!(out, "    }}")?;
                 writeln!(out, "    pub fn {}(&self, value: {}) {{", reg_setter, reg_struct)?;
-                writeln!(out, "        self.write(REG_{}, value.0)", r.name)?;
+                writeln!(out, "        self.write(addr::REG_{}, value.0)", r.name)?;
                 writeln!(out, "    }}")?;       
                 writeln!(out, "    pub fn {}<F: FnOnce({}) -> {}>(&self, f: F) {{", reg_with, reg_struct, reg_struct)?;
-                writeln!(out, "        let tmp = {}(self.read(REG_{}));", reg_struct, r.name)?;
-                writeln!(out, "        self.write(REG_{}, f(tmp).0)", r.name)?;
+                writeln!(out, "        let tmp = {}(self.read(addr::REG_{}));", reg_struct, r.name)?;
+                writeln!(out, "        self.write(addr::REG_{}, f(tmp).0)", r.name)?;
                 writeln!(out, "    }}")?;          
                 writeln!(out, "")?;
             }
@@ -136,7 +139,7 @@ pub fn gen_periph<W: Write>(cfg: Config, _out: &mut W, p: &Peripheral) -> Result
 
         writeln!(out, "impl<RW: TryReadWrite> {}<RW> {{", p_type)?;
         for r in p.registers.iter() {
-            let reg_struct = to_camel(&r.name);
+            let reg_struct = format!("reg::{}", to_camel(&r.name));
             let reg_getter = field_getter(&r.name);
             let reg_setter = field_setter(&r.name);
             let reg_with = field_with(&r.name);
@@ -172,9 +175,15 @@ pub fn gen_periph<W: Write>(cfg: Config, _out: &mut W, p: &Peripheral) -> Result
         writeln!(out, "}}")?;
         writeln!(out, "")?;                
 
+        writeln!(out, "pub mod reg {{")?;
+        writeln!(out, "")?;                
         for r in p.registers.iter() {
             gen_register(&mut out, r, r_size)?;
         }        
+        writeln!(out, "")?;                
+        writeln!(out, "}}")?;
+        writeln!(out, "")?;                
+
     }
 
     Ok(())
@@ -203,22 +212,23 @@ pub fn copy_file_with<F: FnOnce(String) -> String>(src_path: &Path, dst_path: &P
 pub fn gen_register<W: Write>(out: &mut W, r: &Register, size: &'static str) -> Result<()> {
     let reg_struct = to_camel(&r.name);    
 
-    writeln!(out, "pub struct {}({});", reg_struct, size)?;
+    writeln!(out, "    #[derive(PartialEq, Eq, Clone, Copy)]")?;
+    writeln!(out, "    pub struct {}({});", reg_struct, size)?;
     writeln!(out, "")?;
 
-    writeln!(out, "impl From<{}> for {} {{", size, reg_struct)?;
-    writeln!(out, "    fn from(other: {}) -> Self {{ {}(other) }}", size, reg_struct)?;
-    writeln!(out, "}}")?;    
+    writeln!(out, "    impl From<{}> for {} {{", size, reg_struct)?;
+    writeln!(out, "        fn from(other: {}) -> Self {{ {}(other) }}", size, reg_struct)?;
+    writeln!(out, "    }}")?;    
     writeln!(out, "")?;
 
-    writeln!(out, "impl From<{}> for {} {{", reg_struct, size)?;
-    writeln!(out, "    fn from(other: {}) -> Self {{ other.0 }}", reg_struct)?;
-    writeln!(out, "}}")?;
+    writeln!(out, "    impl From<{}> for {} {{", reg_struct, size)?;
+    writeln!(out, "        fn from(other: {}) -> Self {{ other.0 }}", reg_struct)?;
+    writeln!(out, "    }}")?;
     writeln!(out, "")?;
 
 
-    writeln!(out, "impl {} {{", reg_struct)?;
-    writeln!(out, "    pub fn value(&self) -> {} {{ self.0 }}", size)?;
+    writeln!(out, "    impl {} {{", reg_struct)?;
+    writeln!(out, "        pub fn value(&self) -> {} {{ self.0 }}", size)?;
     writeln!(out, "")?;
 
     for f in r.fields.iter() {
@@ -239,36 +249,36 @@ pub fn gen_register<W: Write>(out: &mut W, r: &Register, size: &'static str) -> 
         } else {
             format!("[{}]", f_lo)
         };            
-        writeln!(out, "    pub fn {}(&self) -> {} {{", f_getter, size)?;
-        writeln!(out, "        ((self.0 as {}) >> {}) & 0x{:x} // {}", size, f_offset, f_mask, f_bits)?;
-        writeln!(out, "    }}")?;    
-        writeln!(out, "")?;
+        writeln!(out, "        pub fn {}(&self) -> {} {{", f_getter, size)?;
+        writeln!(out, "            ((self.0 as {}) >> {}) & 0x{:x} // {}", size, f_offset, f_mask, f_bits)?;
+        writeln!(out, "        }}")?;    
+        writeln!(out, "    ")?;
 
-        writeln!(out, "    pub fn {}(mut self, value: {}) -> Self {{", f_setter, size)?;
-        writeln!(out, "        assert!((value & !0x{:x}) == 0);", f_mask)?;
-        writeln!(out, "        self.0 &= !(0x{:x} << {});", f_mask, f_offset)?;
-        writeln!(out, "        self.0 |= value << {};", f_offset)?;
-        writeln!(out, "        self")?;
-        writeln!(out, "    }}")?;    
-        writeln!(out, "")?;
+        writeln!(out, "        pub fn {}(mut self, value: {}) -> Self {{", f_setter, size)?;
+        writeln!(out, "            assert!((value & !0x{:x}) == 0);", f_mask)?;
+        writeln!(out, "            self.0 &= !(0x{:x} << {});", f_mask, f_offset)?;
+        writeln!(out, "            self.0 |= value << {};", f_offset)?;
+        writeln!(out, "            self")?;
+        writeln!(out, "        }}")?;    
+        writeln!(out, "    ")?;
     }
-    writeln!(out, "}}")?;
-    writeln!(out, "")?;
-
-    writeln!(out, "impl ::core::fmt::Display for {} {{", reg_struct)?;
-    writeln!(out, "    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {{")?;
-    writeln!(out, "        self.0.fmt(f)")?;
     writeln!(out, "    }}")?;
-    writeln!(out, "}}")?;        
+    writeln!(out, "")?;
+
+    writeln!(out, "    impl ::core::fmt::Display for {} {{", reg_struct)?;
+    writeln!(out, "        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {{")?;
+    writeln!(out, "            self.0.fmt(f)")?;
+    writeln!(out, "        }}")?;
+    writeln!(out, "    }}")?;        
     writeln!(out, "")?;
 
 
-    writeln!(out, "impl ::core::fmt::Debug for {} {{", reg_struct)?;
-    writeln!(out, "    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {{")?;
+    writeln!(out, "    impl ::core::fmt::Debug for {} {{", reg_struct)?;
+    writeln!(out, "        fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {{")?;
     match size {
-        "u8" => writeln!(out, "        write!(f, \"[0x{{:02x}}\", self.0)?;")?,
-        "u16" => writeln!(out, "        write!(f, \"[0x{{:04x}}\", self.0)?;")?,
-        "u32" => writeln!(out, "        write!(f, \"[0x{{:08x}}\", self.0)?;")?,
+        "u8" => writeln!(out, "            write!(f, \"[0x{{:02x}}\", self.0)?;")?,
+        "u16" => writeln!(out, "            write!(f, \"[0x{{:04x}}\", self.0)?;")?,
+        "u32" => writeln!(out, "            write!(f, \"[0x{{:08x}}\", self.0)?;")?,
         s @ _ => panic!("invalid size: {}", s),
     }        
     
@@ -280,31 +290,31 @@ pub fn gen_register<W: Write>(out: &mut W, r: &Register, size: &'static str) -> 
             for i in 0..dim {
                 match f.bit_width {
                     1 => {
-                        writeln!(out, "        if self.{}({}) != 0 {{ write!(f, \" {}[{}]\")? }}", f_getter, i, f_getter, i)?;
+                        writeln!(out, "            if self.{}({}) != 0 {{ write!(f, \" {}[{}]\")? }}", f_getter, i, f_getter, i)?;
                     },
                     32 => {},
                     _ => {
-                        writeln!(out, "        if self.{}({}) != 0 {{ write!(f, \" {}[{}]=0x{{:x}}\", self.{}({})? }}", f_getter, i, f_name, i, f_getter, i)?;
+                        writeln!(out, "            if self.{}({}) != 0 {{ write!(f, \" {}[{}]=0x{{:x}}\", self.{}({})? }}", f_getter, i, f_name, i, f_getter, i)?;
                     }
                 }                    
             }
         } else {
             match f.bit_width {
                 1 => {
-                    writeln!(out, "        if self.{}() != 0 {{ write!(f, \" {}\")? }}", f_getter, f_getter)?;
+                    writeln!(out, "            if self.{}() != 0 {{ write!(f, \" {}\")? }}", f_getter, f_getter)?;
                 },
                 32 => {},
                 _ => {
-                    writeln!(out, "        if self.{}() != 0 {{ write!(f, \" {}=0x{{:x}}\", self.{}())? }}", f_getter, f_name, f_getter)?;
+                    writeln!(out, "            if self.{}() != 0 {{ write!(f, \" {}=0x{{:x}}\", self.{}())? }}", f_getter, f_name, f_getter)?;
                 }
             }
         }
         
     }
-    writeln!(out, "        write!(f, \"]\")?;")?;
-    writeln!(out, "        Ok(())")?;
-    writeln!(out, "    }}")?;
-    writeln!(out, "}}")?;        
+    writeln!(out, "            write!(f, \"]\")?;")?;
+    writeln!(out, "            Ok(())")?;
+    writeln!(out, "        }}")?;
+    writeln!(out, "    }}")?;        
     writeln!(out, "")?;    
 
     Ok(())
