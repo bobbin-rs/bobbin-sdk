@@ -188,7 +188,10 @@ fn read_board(ctx: &Context, s: &[Sexp]) -> Result<Board, ReadError> {
                     Some("target") => b.target = String::from(expect_symbol(ctx, &arr[1])?),
                     Some("mcu") => b.mcu = String::from(expect_symbol(ctx, &arr[1])?),
                     Some("crate") => b.crates.push(try!(read_crate(ctx, &arr[1..]))),
-                    Some("description") => b.description = Some(String::from(try!(expect_string(ctx, &arr[1])))),
+                    Some("author") => b.author = read_author(ctx, &arr[1])?,
+                    Some("version") => b.version = read_version(ctx, &arr[1])?,
+                    Some("description") => b.description = read_description(ctx, &arr[1])?,
+                    Some("documentation") => b.documentation = read_documentation(ctx, &arr[1])?,                
                     // Some("device") => b.devices.push(try!(read_device(ctx, &arr[1..]))),
                     // Some("connections") => b.connections.extend(try!(read_connections(ctx, &arr[1..]))),
                     Some("clock") => b.clocks.push(try!(read_clock(ctx, &arr[1..]))),
@@ -202,67 +205,21 @@ fn read_board(ctx: &Context, s: &[Sexp]) -> Result<Board, ReadError> {
     Ok(b)
 }
 
-// fn read_connections(ctx: &Context, s: &[Sexp]) -> Result<Vec<Connection>, ReadError> {
-//     let mut connections: Vec<Connection> = Vec::new();
+fn read_author(ctx: &Context, s: &Sexp) -> Result<Option<String>, ReadError> {
+    Ok(Some(String::from(expect_string(ctx, s)?)))
+}
 
-//     for s in s.iter() {
-//         match s {
-//             &Sexp::List(ref arr, _, _) => match arr[0].symbol() {
-//                 Some("connection") => connections.push(try!(read_connection(ctx, &arr[1..]))),
-//                 _ => return Err(ReadError::Error(format!("{}: Unexpected item: {:?}", ctx.location_of(s), arr)))
-//             },
-//             _ => return Err(ReadError::Error(format!("{}: Unexpected item: {:?}", ctx.location_of(s), s)))
-//         }        
-//     }
+fn read_version(ctx: &Context, s: &Sexp) -> Result<Option<String>, ReadError> {
+    Ok(Some(String::from(expect_string(ctx, s)?)))
+}
 
-//     Ok(connections)
-// }
+fn read_description(ctx: &Context, s: &Sexp) -> Result<Option<String>, ReadError> {
+    Ok(Some(String::from(expect_string(ctx, s)?)))
+}
 
-// fn read_connection(ctx: &Context, s: &[Sexp]) -> Result<Connection, ReadError> {
-//     let mut connection: Connection = Connection::default();
-
-//     if s.len() != 2 {
-//         return Err(ReadError::Error(format!("Expected (src, dst) for Connection, got {:?}", s)));
-//     }
-//     if let Sexp::List(ref arr, _, _) = s[0] {
-//         if arr.len() != 2 {
-//             return Err(ReadError::Error(format!("Expected (obj, signal) for Src, got {:?}", s)));            
-//         }
-//         connection.device_a = String::from(try!(expect_symbol(ctx, &arr[0])));
-//         connection.signal_a = String::from(try!(expect_symbol(ctx, &arr[1])));
-//     }
-//     if let Sexp::List(ref arr, _, _) = s[1] {
-//         if arr.len() != 2 {
-//             return Err(ReadError::Error(format!("Expected (obj, signal) for Dst, got {:?}", s)));            
-//         }
-//         connection.device_b = String::from(try!(expect_symbol(ctx, &arr[0])));
-//         connection.signal_b = String::from(try!(expect_symbol(ctx, &arr[1])));
-//     }
-
-//     Ok(connection)
-// }
-
-
-// fn read_path(ctx: &Context, s: &[Sexp]) -> Result<::Path, ReadError> {
-//     let mut path: ::Path = ::Path::default();
-
-//     for s in s.iter() {
-//         match s {
-//             &Sexp::List(ref arr, _, _) => {
-//                 if arr.len() != 2 {
-//                     return Err(ReadError::Error(format!("Expected (src, dst) for Path Element, got {:?}", s)));
-//                 }
-//                 let mut pe = PathElement::default();
-//                 pe.device = String::from(try!(expect_symbol(ctx, &arr[0])));
-//                 pe.signal = String::from(try!(expect_symbol(ctx, &arr[1])));
-//                 path.path_elements.push(pe)
-//             },
-//             _ => return Err(ReadError::Error(format!("{}: Unexpected item: {:?}", ctx.location_of(s), s)))
-//         }        
-//     }
-
-//     Ok(path)
-// }
+fn read_documentation(ctx: &Context, s: &Sexp) -> Result<Option<String>, ReadError> {
+    Ok(Some(String::from(expect_string(ctx, s)?)))
+}
 
 fn read_device(ctx: &Context, s: &[Sexp]) -> Result<Device, ReadError> {
     let mut d = Device::default();
@@ -276,7 +233,10 @@ fn read_device(ctx: &Context, s: &[Sexp]) -> Result<Device, ReadError> {
                     Some("name") => d.name = String::from(try!(read_name(ctx, &arr[1]))),
                     Some("size") => d.size = Some(try!(expect_u64(ctx, &arr[1]))),
                     Some("access") => d.access = Some(try!(expect_access(ctx, &arr[1]))),
-                    Some("description") => d.description = Some(String::from(try!(expect_string(ctx, &arr[1])))),
+                    Some("author") => d.author = read_author(ctx, &arr[1])?,
+                    Some("version") => d.version = read_version(ctx, &arr[1])?,
+                    Some("description") => d.description = read_description(ctx, &arr[1])?,
+                    Some("documentation") => d.documentation = read_documentation(ctx, &arr[1])?,                                    
                     Some("interrupt-count") => d.interrupt_count = Some(try!(expect_u64(ctx, &arr[1]))),
                     Some("peripheral") => d.peripherals.push(try!(read_peripheral(ctx, &arr[1..]))),
                     Some("peripheral-group") => d.peripheral_groups.push(try!(read_peripheral_group(ctx, &arr[1..]))),
@@ -543,7 +503,10 @@ fn read_peripheral(ctx: &Context, s: &[Sexp]) -> Result<Peripheral, ReadError> {
                 Some("derived-from") => p.derived_from = Some(String::from(try!(expect_symbol(ctx, &arr[1])))),
                 Some("group-name") => p.group_name = Some(String::from(try!(expect_symbol(ctx, &arr[1])))),
                 Some("name") => p.name = String::from(try!(read_name(ctx, &arr[1]))),
-                Some("description") => p.description = Some(String::from(try!(expect_string(ctx, &arr[1])))),
+                Some("author") => p.author = read_author(ctx, &arr[1])?,
+                Some("version") => p.version = read_version(ctx, &arr[1])?,
+                Some("description") => p.description = read_description(ctx, &arr[1])?,
+                Some("documentation") => p.documentation = read_documentation(ctx, &arr[1])?,
                 Some("address") => p.address = try!(expect_u64(ctx, &arr[1])),
                 Some("address-block") => p.address_blocks.push(try!(read_address_block(ctx, &arr[1..]))),
                 Some("size") => p.size = Some(try!(expect_u64(ctx, &arr[1]))),

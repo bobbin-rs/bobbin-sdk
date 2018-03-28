@@ -1,8 +1,8 @@
 use {Peripheral};
-use super::{to_camel, size_type, field_getter, field_setter, field_with};
+use super::{to_camel, size_type, field_getter, field_setter, field_with, gen_crate_doc};
 use super::modules::gen_register_types;
 use std::io::{Write, Read, Result};
-use std::fs::{self, File, OpenOptions};
+use std::fs::{self, File};
 use std::path::{Path, PathBuf};
 
 // use std::collections::HashMap;
@@ -14,6 +14,8 @@ pub struct Config {
 
 pub fn gen_periph<W: Write>(cfg: Config, _out: &mut W, p: &Peripheral) -> Result<()> {    
     let p_name = p.name.to_lowercase();
+    let p_author = p.author.clone().unwrap_or(String::from("-- NO AUTHOR --"));
+    let p_version = p.version.clone().unwrap_or(String::from("0.1"));
     let p_type = to_camel(&p_name);
     let r_size = size_type(p.size.unwrap_or(32));
 
@@ -22,7 +24,7 @@ pub fn gen_periph<W: Write>(cfg: Config, _out: &mut W, p: &Peripheral) -> Result
     mkdir(out_path)?;
 
     copy_file_with(&tmpl_path.join("Cargo.toml"), &out_path.join("Cargo.toml"), |s| {
-        s.replace("%name%", &p_name)
+        s.replace("%name%", &p_name).replace("%author%", &p_author).replace("%version%", &p_version)
     })?;
 
     copy_file(&tmpl_path.join("Makefile"), &out_path.join("Makefile"))?;
@@ -31,14 +33,12 @@ pub fn gen_periph<W: Write>(cfg: Config, _out: &mut W, p: &Peripheral) -> Result
     let dst_dir = out_path.join("src");
     mkdir(&dst_dir)?;
 
-    copy_file_with(&tmpl_path.join("src/lib.rs"), &out_path.join("src/lib.rs"), |s| {
-        s.replace("%name%", &p_name)        
-    })?;
-
-
-    let mut out = OpenOptions::new().append(true).open(out_path.join("src/lib.rs"))?;
+    let mut out = File::create(out_path.join("src/lib.rs"))?;
+    if let Some(ref doc) = p.description {
+        gen_crate_doc(&mut out, doc)?;
+    }
+    append_file(&mut out, &tmpl_path.join("src/lib.rs"))?;
     {
-
         writeln!(out, "")?;
         writeln!(out, "pub type Addr = {};", r_size)?;
         writeln!(out, "pub type Value = {};", r_size)?;
@@ -210,5 +210,13 @@ pub fn copy_file_with<F: FnOnce(String) -> String>(src_path: &Path, dst_path: &P
     src.read_to_string(&mut data)?;    
     let data = f(data);
     dst.write(&data.as_bytes())?;    
+    Ok(())
+}
+
+pub fn append_file<W: Write>(out: &mut W, src_path: &Path) -> Result<()> {
+    let mut src = File::open(src_path)?;
+    let mut data = String::new();
+    src.read_to_string(&mut data)?;    
+    out.write(&data.as_bytes())?;    
     Ok(())
 }

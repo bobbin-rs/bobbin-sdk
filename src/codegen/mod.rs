@@ -205,3 +205,11 @@ fn gen_doc<W: Write>(out: &mut W, indent: usize, doc: &str) -> Result<()> {
     }
     Ok(())
 }
+
+fn gen_crate_doc<W: Write>(out: &mut W, doc: &str) -> Result<()> {
+    let doc = doc.trim();
+    if doc.len() > 0 {
+        try!(writeln!(out, "#![doc=\"{}\"]", doc))
+    }
+    Ok(())
+}

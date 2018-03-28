@@ -326,7 +326,9 @@ pub struct Descriptor {
     /// The list of registers in the descriptor.
     pub registers: Vec<Register>,
     /// Text describing the descriptor.
-    pub description: Option<String>,    
+    pub description: Option<String>,
+    /// Documentation for this descriptor.
+    pub documentation: Option<String>,        
 }
 
 /// A device interrupt.
@@ -339,6 +341,8 @@ pub struct Interrupt {
     pub value: u64,
     /// Text describing this interrupt.
     pub description: Option<String>,
+    /// Documentation for this interrupt.
+    pub documentation: Option<String>,        
 }
 
 /// A device interrupt type.
@@ -382,6 +386,8 @@ pub struct Cluster {
     pub reset_mask: Option<u64>,
     /// Text describing this cluster.
     pub description: Option<String>,
+    /// Documentation for this cluster.
+    pub documentation: Option<String>,        
 
     /// Clusters contained to this cluster.
     pub clusters: Vec<Cluster>,
@@ -413,6 +419,8 @@ pub struct Register {
     pub reset_mask: Option<u64>,
     /// Text describing the register.
     pub description: Option<String>,
+    /// Documentation for this register.
+    pub documentation: Option<String>,            
     /// Fields within this register.
     pub fields: Vec<Field>,
 
@@ -437,6 +445,8 @@ pub struct Field {
     pub access: Option<Access>,
     /// Text describing this field.
     pub description: Option<String>,
+    /// Documentation for this field.
+    pub documentation: Option<String>,            
     /// A list of valid values for this field.
     pub enumerated_values: Vec<EnumeratedValue>,
     /// A list of intra-device links for this field.
