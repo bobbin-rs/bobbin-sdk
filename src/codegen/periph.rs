@@ -37,69 +37,66 @@ pub fn gen_periph<W: Write>(cfg: Config, _out: &mut W, p: &Peripheral) -> Result
 
     let mut out = OpenOptions::new().append(true).open(out_path.join("src/lib.rs"))?;
     {
+
+        writeln!(out, "")?;
+        writeln!(out, "pub type Addr = {};", r_size)?;
+        writeln!(out, "pub type Value = {};", r_size)?;
+        writeln!(out, "")?;    
+
         for r in p.registers.iter() {
-            try!(writeln!(out, "pub const REG_{}: {} = 0x{:02x};",
+            try!(writeln!(out, "pub const REG_{}: Addr = 0x{:02x};",
                 r.name,
-                r_size,
                 r.offset,
             ));
             if let Some(dim) = r.dim {
                 for i in 0..dim {
-                    try!(writeln!(out, "pub const REG_{}{}: {} = 0x{:02x};",
+                    try!(writeln!(out, "pub const REG_{}{}: Addr = 0x{:02x};",
                         r.name,
                         i + 1,
-                        r_size,
                         r.offset + i,
                     ));
                     
                 }
             }
         }
-    }
-
-    {
-        writeln!(out, "pub trait ReadWrite {{")?;
-        writeln!(out, "    type Addr: Copy;")?;
-        writeln!(out, "    type Value: Copy;")?;
-        writeln!(out, "    fn read(&self, addr: Self::Addr) -> Self::Value;")?;
-        writeln!(out, "    fn write(&self, addr: Self::Addr, val: Self::Value);")?;
-        // writeln!(out, "    fn with<F: FnOnce(Self::Value) -> Self::Value>(&self, addr: Self::Addr, f: F) {{ let val = self.read(addr); let val = f(val); self.write(addr, val) }}")?;        
-        writeln!(out, "}}")?;
-        writeln!(out, "")?;
-        writeln!(out, "pub trait TryReadWrite {{")?;
-        writeln!(out, "    type Addr: Copy;")?;
-        writeln!(out, "    type Value: Copy;")?;
-        writeln!(out, "    type Error;")?;
-        writeln!(out, "    fn try_read(&self, addr: Self::Addr) -> Result<Self::Value, Self::Error>;")?;
-        writeln!(out, "    fn try_write(&self, addr: Self::Addr, val: Self::Value) -> Result<(), Self::Error>;")?;
-        writeln!(out, "}}")?;
         writeln!(out, "")?;
 
-        writeln!(out, "")?;
         writeln!(out, "pub struct {}<RW> {{ rw: RW }}", p_type)?;
         writeln!(out, "")?;
-        writeln!(out, "impl<RW: ReadWrite<Addr={}, Value={}>> ReadWrite for {}<RW> {{", r_size, r_size, p_type)?;
-        writeln!(out, "    type Addr = RW::Addr;")?;
-        writeln!(out, "    type Value = RW::Value;")?;
-        writeln!(out, "    fn read(&self, addr: Self::Addr) -> Self::Value {{ self.rw.read(addr) }}")?;
-        writeln!(out, "    fn write(&self, addr: Self::Addr, val: Self::Value) {{ self.rw.write(addr, val) }}")?;
+
+        writeln!(out, "pub trait ReadWrite {{")?;
+        writeln!(out, "    fn read(&self, addr: Addr) -> Value;")?;
+        writeln!(out, "    fn write(&self, addr: Addr, val: Value);")?;
         writeln!(out, "}}")?;
         writeln!(out, "")?;
-        writeln!(out, "impl<RW: TryReadWrite<Addr={}, Value={}>> TryReadWrite for {}<RW> {{", r_size, r_size, p_type)?;
-        writeln!(out, "    type Addr = RW::Addr;")?;
-        writeln!(out, "    type Value = RW::Value;")?;
+
+        writeln!(out, "pub trait TryReadWrite {{")?;
+        writeln!(out, "    type Error;")?;
+        writeln!(out, "    fn try_read(&self, addr: Addr) -> Result<Value, Self::Error>;")?;
+        writeln!(out, "    fn try_write(&self, addr: Addr, val: Value) -> Result<(), Self::Error>;")?;
+        writeln!(out, "}}")?;
+        writeln!(out, "")?;
+
+        writeln!(out, "impl<RW: ReadWrite> ReadWrite for {}<RW> {{", p_type)?;
+        writeln!(out, "    fn read(&self, addr: Addr) -> Value {{ self.rw.read(addr) }}")?;
+        writeln!(out, "    fn write(&self, addr: Addr, val: Value) {{ self.rw.write(addr, val) }}")?;
+        writeln!(out, "}}")?;
+        writeln!(out, "")?;
+
+        writeln!(out, "impl<RW: TryReadWrite> TryReadWrite for {}<RW> {{", p_type)?;
         writeln!(out, "    type Error = RW::Error;")?;
-        writeln!(out, "    fn try_read(&self, addr: Self::Addr) -> Result<Self::Value, Self::Error> {{ self.rw.try_read(addr) }}")?;
-        writeln!(out, "    fn try_write(&self, addr: Self::Addr, val: Self::Value) -> Result<(), Self::Error> {{ self.rw.try_write(addr, val) }}")?;
+        writeln!(out, "    fn try_read(&self, addr: Addr) -> Result<Value, Self::Error> {{ self.rw.try_read(addr) }}")?;
+        writeln!(out, "    fn try_write(&self, addr: Addr, val: Value) -> Result<(), Self::Error> {{ self.rw.try_write(addr, val) }}")?;
         writeln!(out, "}}")?;
         writeln!(out, "")?;
+
         writeln!(out, "impl<RW> {}<RW> {{", p_type)?;
         writeln!(out, "    pub fn new(rw: RW) -> Self {{ {} {{ rw }} }}", p_type)?;
         writeln!(out, "}}")?;
         writeln!(out, "")?;
         
 
-        writeln!(out, "impl<RW: ReadWrite<Addr={}, Value={}>> {}<RW> {{", r_size, r_size, p_type)?;
+        writeln!(out, "impl<RW: ReadWrite> {}<RW> {{", p_type)?;
         for r in p.registers.iter() {
             let reg_struct = to_camel(&r.name);
             let reg_getter = field_getter(&r.name);
@@ -108,28 +105,28 @@ pub fn gen_periph<W: Write>(cfg: Config, _out: &mut W, p: &Peripheral) -> Result
             if let Some(dim) = r.dim {
                 writeln!(out, "    pub fn {}(&self, index: usize) -> {} {{", reg_getter, reg_struct)?;
                 writeln!(out, "        assert!(index < {});", dim)?;
-                writeln!(out, "        {}(self.rw.read(REG_{} + index as {}))", reg_struct, r.name, r_size)?;
+                writeln!(out, "        {}(self.read(REG_{} + index as {}))", reg_struct, r.name, r_size)?;
                 writeln!(out, "    }}")?;
                 writeln!(out, "    pub fn {}(&self, index: usize, value: {}) {{", reg_setter, reg_struct)?;
                 writeln!(out, "        assert!(index < {});", dim)?;            
-                writeln!(out, "        self.rw.write(REG_{} + index as {}, value.0)", r.name, r_size)?;
+                writeln!(out, "        self.write(REG_{} + index as {}, value.0)", r.name, r_size)?;
                 writeln!(out, "    }}")?;       
                 writeln!(out, "    pub fn {}<F: FnOnce({}) -> {}>(&self, index: usize, f: F) {{", reg_with, reg_struct, reg_struct)?;
                 writeln!(out, "        assert!(index < {});", dim)?;
-                writeln!(out, "        let tmp = {}(self.rw.read(REG_{} + index as {}));", reg_struct, r.name, r_size)?;
-                writeln!(out, "        self.rw.write(REG_{} + index as {}, f(tmp).0)", r.name, r_size)?;
+                writeln!(out, "        let tmp = {}(self.read(REG_{} + index as {}));", reg_struct, r.name, r_size)?;
+                writeln!(out, "        self.write(REG_{} + index as {}, f(tmp).0)", r.name, r_size)?;
                 writeln!(out, "    }}")?;          
                 writeln!(out, "")?;            
             } else {
                 writeln!(out, "    pub fn {}(&self) -> {} {{", reg_getter, reg_struct)?;
-                writeln!(out, "        {}(self.rw.read(REG_{}))", reg_struct, r.name)?;
+                writeln!(out, "        {}(self.read(REG_{}))", reg_struct, r.name)?;
                 writeln!(out, "    }}")?;
                 writeln!(out, "    pub fn {}(&self, value: {}) {{", reg_setter, reg_struct)?;
-                writeln!(out, "        self.rw.write(REG_{}, value.0)", r.name)?;
+                writeln!(out, "        self.write(REG_{}, value.0)", r.name)?;
                 writeln!(out, "    }}")?;       
                 writeln!(out, "    pub fn {}<F: FnOnce({}) -> {}>(&self, f: F) {{", reg_with, reg_struct, reg_struct)?;
-                writeln!(out, "        let tmp = {}(self.rw.read(REG_{}));", reg_struct, r.name)?;
-                writeln!(out, "        self.rw.write(REG_{}, f(tmp).0)", r.name)?;
+                writeln!(out, "        let tmp = {}(self.read(REG_{}));", reg_struct, r.name)?;
+                writeln!(out, "        self.write(REG_{}, f(tmp).0)", r.name)?;
                 writeln!(out, "    }}")?;          
                 writeln!(out, "")?;
             }
@@ -137,7 +134,7 @@ pub fn gen_periph<W: Write>(cfg: Config, _out: &mut W, p: &Peripheral) -> Result
         writeln!(out, "}}")?;
         writeln!(out, "")?;        
 
-        writeln!(out, "impl<RW: TryReadWrite<Addr={}, Value={}>> {}<RW> {{", r_size, r_size, p_type)?;
+        writeln!(out, "impl<RW: TryReadWrite> {}<RW> {{", p_type)?;
         for r in p.registers.iter() {
             let reg_struct = to_camel(&r.name);
             let reg_getter = field_getter(&r.name);
@@ -146,28 +143,28 @@ pub fn gen_periph<W: Write>(cfg: Config, _out: &mut W, p: &Peripheral) -> Result
             if let Some(dim) = r.dim {
                 writeln!(out, "    pub fn try_{}(&self, index: usize) -> Result<{}, RW::Error> {{", reg_getter, reg_struct)?;
                 writeln!(out, "        assert!(index < {});", dim)?;
-                writeln!(out, "        Ok({}(self.rw.try_read(REG_{} + index as {})?))", reg_struct, r.name, r_size)?;
+                writeln!(out, "        Ok({}(self.try_read(REG_{} + index as {})?))", reg_struct, r.name, r_size)?;
                 writeln!(out, "    }}")?;
                 writeln!(out, "    pub fn try_{}(&self, index: usize, value: {}) -> Result<(), RW::Error> {{", reg_setter, reg_struct)?;
                 writeln!(out, "        assert!(index < {});", dim)?;            
-                writeln!(out, "        self.rw.try_write(REG_{} + index as {}, value.0)", r.name, r_size)?;
+                writeln!(out, "        self.try_write(REG_{} + index as {}, value.0)", r.name, r_size)?;
                 writeln!(out, "    }}")?;       
                 writeln!(out, "    pub fn try_{}<F: FnOnce({}) -> {}>(&self, index: usize, f: F) -> Result<(), RW::Error> {{", reg_with, reg_struct, reg_struct)?;
                 writeln!(out, "        assert!(index < {});", dim)?;
-                writeln!(out, "        let tmp = {}(self.rw.try_read(REG_{} + index as {})?);", reg_struct, r.name, r_size)?;
-                writeln!(out, "        self.rw.try_write(REG_{} + index as {}, f(tmp).0)", r.name, r_size)?;
+                writeln!(out, "        let tmp = {}(self.try_read(REG_{} + index as {})?);", reg_struct, r.name, r_size)?;
+                writeln!(out, "        self.try_write(REG_{} + index as {}, f(tmp).0)", r.name, r_size)?;
                 writeln!(out, "    }}")?;          
                 writeln!(out, "")?;            
             } else {
                 writeln!(out, "    pub fn try_{}(&self) -> Result<{}, RW::Error> {{", reg_getter, reg_struct)?;
-                writeln!(out, "        Ok({}(self.rw.try_read(REG_{})?))", reg_struct, r.name)?;
+                writeln!(out, "        Ok({}(self.try_read(REG_{})?))", reg_struct, r.name)?;
                 writeln!(out, "    }}")?;
                 writeln!(out, "    pub fn try_{}(&self, value: {}) -> Result<(), RW::Error> {{", reg_setter, reg_struct)?;
-                writeln!(out, "        self.rw.try_write(REG_{}, value.0)", r.name)?;
+                writeln!(out, "        self.try_write(REG_{}, value.0)", r.name)?;
                 writeln!(out, "    }}")?;       
                 writeln!(out, "    pub fn try_{}<F: FnOnce({}) -> {}>(&self, f: F) -> Result<(), RW::Error> {{", reg_with, reg_struct, reg_struct)?;
-                writeln!(out, "        let tmp = {}(self.rw.try_read(REG_{})?);", reg_struct, r.name)?;
-                writeln!(out, "        self.rw.try_write(REG_{}, f(tmp).0)", r.name)?;
+                writeln!(out, "        let tmp = {}(self.try_read(REG_{})?);", reg_struct, r.name)?;
+                writeln!(out, "        self.try_write(REG_{}, f(tmp).0)", r.name)?;
                 writeln!(out, "    }}")?;          
                 writeln!(out, "")?;
             }
