@@ -102,7 +102,7 @@ pub fn gen_periph<W: Write>(cfg: Config, _out: &mut W, p: &Peripheral) -> Result
 
         writeln!(out, "impl<RW: ReadWrite> {}<RW> {{", p_type)?;
         for r in p.registers.iter() {
-            let reg_struct = format!("reg::{}", to_camel(&r.name));
+            let reg_struct = format!("types::{}", to_camel(&r.name));
             let reg_getter = field_getter(&r.name);
             let reg_setter = field_setter(&r.name);
             let reg_with = field_with(&r.name);
@@ -140,7 +140,7 @@ pub fn gen_periph<W: Write>(cfg: Config, _out: &mut W, p: &Peripheral) -> Result
 
         writeln!(out, "impl<RW: TryReadWrite> {}<RW> {{", p_type)?;
         for r in p.registers.iter() {
-            let reg_struct = format!("reg::{}", to_camel(&r.name));
+            let reg_struct = format!("types::{}", to_camel(&r.name));
             let reg_getter = field_getter(&r.name);
             let reg_setter = field_setter(&r.name);
             let reg_with = field_with(&r.name);
@@ -176,7 +176,7 @@ pub fn gen_periph<W: Write>(cfg: Config, _out: &mut W, p: &Peripheral) -> Result
         writeln!(out, "}}")?;
         writeln!(out, "")?;                
 
-        writeln!(out, "pub mod reg {{")?;
+        writeln!(out, "pub mod types {{")?;
         writeln!(out, "    use ::bobbin_bits as bits;")?;
         writeln!(out, "")?;                
         gen_register_types(&mut out, &p.registers, p.size, p.access)?;
