@@ -1,5 +1,5 @@
-use {Peripheral, Register};
-use super::{to_camel, size_type, field_name, field_getter, field_setter, field_with, gen_doc};
+use {Peripheral};
+use super::{to_camel, size_type, field_getter, field_setter, field_with};
 use super::modules::gen_register_types;
 use std::io::{Write, Read, Result};
 use std::fs::{self, File, OpenOptions};
