@@ -2,6 +2,7 @@ pub mod constants;
 pub mod modules;
 pub mod crates;
 pub mod board;
+pub mod periph;
 pub mod registers;
 pub mod interrupts;
 
@@ -11,6 +12,7 @@ pub use self::constants::gen_constants;
 pub use self::modules::gen_modules;
 pub use self::crates::gen_crate;
 pub use self::board::gen_board;
+pub use self::periph::gen_periph;
 pub use self::registers::gen_registers;
 
 

@@ -6,7 +6,7 @@ use std::fs::File;
 use std::path::{Path, PathBuf};
 use std::io::{self, Write};
 
-use chip::{TopLevel, Device, Board};
+use chip::{TopLevel, Device, Board, Peripheral};
 use chip::reader;
 use chip::builder;
 
@@ -44,6 +44,8 @@ fn main() {
             .long("crate")) 
         .arg(Arg::with_name("board")
             .long("board")) 
+        .arg(Arg::with_name("periph")
+            .long("periph")) 
         .arg(Arg::with_name("registers")
             .long("registers"))
         .arg(Arg::with_name("panic")
@@ -114,6 +116,25 @@ fn main() {
                 std::process::exit(code);
             }
         }
+    } else if matches.is_present("periph") {
+        if !matches.is_present("output") {
+            println!("No output directory specified");
+            std::process::exit(1);
+        }
+        let periph = match load_periph(matches.value_of("input").unwrap()) {
+            Ok(periph) => periph,
+            Err(AppError(code, reason)) => {
+                writeln!(std::io::stderr(), "Error 0x{:x}: {}", code, reason).unwrap();
+                std::process::exit(code);            
+            }
+        };
+        match cmd_periph(&matches, &periph) {
+            Ok(_) => std::process::exit(0),
+            Err(AppError(code, reason)) => {
+                writeln!(std::io::stderr(), "Error 0x{:x}: {}", code, reason).unwrap();
+                std::process::exit(code);
+            }
+        }
 
     } else if matches.is_present("registers") {
         cmd_registers
@@ -178,6 +199,15 @@ fn cmd_board(matches: &ArgMatches, board: &Board) -> Result<(), AppError> {
     Ok(try!(chip::codegen::gen_board(cfg, &mut std::io::stdout(), &board)))
 }
 
+fn cmd_periph(matches: &ArgMatches, periph: &Peripheral) -> Result<(), AppError> {
+    let cfg = chip::codegen::periph::Config {
+        out_path: PathBuf::from(matches.value_of("output").expect("No output path specified")),
+        cargo_template:  PathBuf::from(matches.value_of("cargo-template").expect("Required parameter cargo-template missing")),
+    };
+    Ok(try!(chip::codegen::gen_periph(cfg, &mut std::io::stdout(), &periph)))
+}
+
+
 
 fn cmd_registers(matches: &ArgMatches, device: &Device) -> Result<(), AppError> {
     Ok(try!(chip::codegen::gen_registers(matches, &mut std::io::stdout(), &device)))
@@ -199,5 +229,14 @@ fn load_board<P: AsRef<Path>>(p: P) -> Result<Board, AppError> {
         TopLevel::Device(_) => Err(AppError(1, format!("Expected Board, got Device"))),
         TopLevel::Board(board) => Ok(board),
         TopLevel::Peripheral(_) => Err(AppError(1, format!("Expected Board, got Peripheral"))),
+    }
+}
+
+fn load_periph<P: AsRef<Path>>(p: P) -> Result<Peripheral, AppError> {
+    let mut input = try!(File::open(&p));
+    match try!(reader::read(&mut input, p.as_ref())) {
+        TopLevel::Device(_) => Err(AppError(1, format!("Expected Peripheral, got Device"))),
+        TopLevel::Board(_) => Err(AppError(1, format!("Expected Peripheral, got Board"))),
+        TopLevel::Peripheral(periph) => Ok(periph),
     }
 }
