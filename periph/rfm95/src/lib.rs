@@ -1326,7 +1326,7 @@ impl<RW: TryReadWrite> Rfm95<RW> {
 
 }
 
-pub struct Fifo(pub u8);
+pub struct Fifo(u8);
 
 impl From<u8> for Fifo {
     fn from(other: u8) -> Self { Fifo(other) }
@@ -1367,7 +1367,7 @@ impl ::core::fmt::Debug for Fifo {
     }
 }
 
-pub struct Opmode(pub u8);
+pub struct Opmode(u8);
 
 impl From<u8> for Opmode {
     fn from(other: u8) -> Self { Opmode(other) }
@@ -1444,7 +1444,7 @@ impl ::core::fmt::Debug for Opmode {
     }
 }
 
-pub struct FrfMsb(pub u8);
+pub struct FrfMsb(u8);
 
 impl From<u8> for FrfMsb {
     fn from(other: u8) -> Self { FrfMsb(other) }
@@ -1485,7 +1485,7 @@ impl ::core::fmt::Debug for FrfMsb {
     }
 }
 
-pub struct FrfMid(pub u8);
+pub struct FrfMid(u8);
 
 impl From<u8> for FrfMid {
     fn from(other: u8) -> Self { FrfMid(other) }
@@ -1526,7 +1526,7 @@ impl ::core::fmt::Debug for FrfMid {
     }
 }
 
-pub struct FrfLsb(pub u8);
+pub struct FrfLsb(u8);
 
 impl From<u8> for FrfLsb {
     fn from(other: u8) -> Self { FrfLsb(other) }
@@ -1567,7 +1567,7 @@ impl ::core::fmt::Debug for FrfLsb {
     }
 }
 
-pub struct PaConfig(pub u8);
+pub struct PaConfig(u8);
 
 impl From<u8> for PaConfig {
     fn from(other: u8) -> Self { PaConfig(other) }
@@ -1632,7 +1632,7 @@ impl ::core::fmt::Debug for PaConfig {
     }
 }
 
-pub struct PaRamp(pub u8);
+pub struct PaRamp(u8);
 
 impl From<u8> for PaRamp {
     fn from(other: u8) -> Self { PaRamp(other) }
@@ -1673,7 +1673,7 @@ impl ::core::fmt::Debug for PaRamp {
     }
 }
 
-pub struct Ocp(pub u8);
+pub struct Ocp(u8);
 
 impl From<u8> for Ocp {
     fn from(other: u8) -> Self { Ocp(other) }
@@ -1726,7 +1726,7 @@ impl ::core::fmt::Debug for Ocp {
     }
 }
 
-pub struct Lna(pub u8);
+pub struct Lna(u8);
 
 impl From<u8> for Lna {
     fn from(other: u8) -> Self { Lna(other) }
@@ -1791,7 +1791,7 @@ impl ::core::fmt::Debug for Lna {
     }
 }
 
-pub struct FifoAddrPtr(pub u8);
+pub struct FifoAddrPtr(u8);
 
 impl From<u8> for FifoAddrPtr {
     fn from(other: u8) -> Self { FifoAddrPtr(other) }
@@ -1832,7 +1832,7 @@ impl ::core::fmt::Debug for FifoAddrPtr {
     }
 }
 
-pub struct FifoTxBaseAddr(pub u8);
+pub struct FifoTxBaseAddr(u8);
 
 impl From<u8> for FifoTxBaseAddr {
     fn from(other: u8) -> Self { FifoTxBaseAddr(other) }
@@ -1873,7 +1873,7 @@ impl ::core::fmt::Debug for FifoTxBaseAddr {
     }
 }
 
-pub struct FifoRxBaseAddr(pub u8);
+pub struct FifoRxBaseAddr(u8);
 
 impl From<u8> for FifoRxBaseAddr {
     fn from(other: u8) -> Self { FifoRxBaseAddr(other) }
@@ -1914,7 +1914,7 @@ impl ::core::fmt::Debug for FifoRxBaseAddr {
     }
 }
 
-pub struct FifoRxCurrentAddr(pub u8);
+pub struct FifoRxCurrentAddr(u8);
 
 impl From<u8> for FifoRxCurrentAddr {
     fn from(other: u8) -> Self { FifoRxCurrentAddr(other) }
@@ -1955,7 +1955,7 @@ impl ::core::fmt::Debug for FifoRxCurrentAddr {
     }
 }
 
-pub struct IrqFlagsMask(pub u8);
+pub struct IrqFlagsMask(u8);
 
 impl From<u8> for IrqFlagsMask {
     fn from(other: u8) -> Self { IrqFlagsMask(other) }
@@ -2080,7 +2080,7 @@ impl ::core::fmt::Debug for IrqFlagsMask {
     }
 }
 
-pub struct IrqFlags(pub u8);
+pub struct IrqFlags(u8);
 
 impl From<u8> for IrqFlags {
     fn from(other: u8) -> Self { IrqFlags(other) }
@@ -2205,7 +2205,7 @@ impl ::core::fmt::Debug for IrqFlags {
     }
 }
 
-pub struct RxNbBytes(pub u8);
+pub struct RxNbBytes(u8);
 
 impl From<u8> for RxNbBytes {
     fn from(other: u8) -> Self { RxNbBytes(other) }
@@ -2246,7 +2246,7 @@ impl ::core::fmt::Debug for RxNbBytes {
     }
 }
 
-pub struct RxHeaderCntValueMsb(pub u8);
+pub struct RxHeaderCntValueMsb(u8);
 
 impl From<u8> for RxHeaderCntValueMsb {
     fn from(other: u8) -> Self { RxHeaderCntValueMsb(other) }
@@ -2287,7 +2287,7 @@ impl ::core::fmt::Debug for RxHeaderCntValueMsb {
     }
 }
 
-pub struct RxHeaderCntValueLsb(pub u8);
+pub struct RxHeaderCntValueLsb(u8);
 
 impl From<u8> for RxHeaderCntValueLsb {
     fn from(other: u8) -> Self { RxHeaderCntValueLsb(other) }
@@ -2328,7 +2328,7 @@ impl ::core::fmt::Debug for RxHeaderCntValueLsb {
     }
 }
 
-pub struct RxPacketCntValueMsb(pub u8);
+pub struct RxPacketCntValueMsb(u8);
 
 impl From<u8> for RxPacketCntValueMsb {
     fn from(other: u8) -> Self { RxPacketCntValueMsb(other) }
@@ -2369,7 +2369,7 @@ impl ::core::fmt::Debug for RxPacketCntValueMsb {
     }
 }
 
-pub struct RxPacketCntValueLsb(pub u8);
+pub struct RxPacketCntValueLsb(u8);
 
 impl From<u8> for RxPacketCntValueLsb {
     fn from(other: u8) -> Self { RxPacketCntValueLsb(other) }
@@ -2410,7 +2410,7 @@ impl ::core::fmt::Debug for RxPacketCntValueLsb {
     }
 }
 
-pub struct ModemStat(pub u8);
+pub struct ModemStat(u8);
 
 impl From<u8> for ModemStat {
     fn from(other: u8) -> Self { ModemStat(other) }
@@ -2463,7 +2463,7 @@ impl ::core::fmt::Debug for ModemStat {
     }
 }
 
-pub struct PktSnrValue(pub u8);
+pub struct PktSnrValue(u8);
 
 impl From<u8> for PktSnrValue {
     fn from(other: u8) -> Self { PktSnrValue(other) }
@@ -2504,7 +2504,7 @@ impl ::core::fmt::Debug for PktSnrValue {
     }
 }
 
-pub struct PktRssiValue(pub u8);
+pub struct PktRssiValue(u8);
 
 impl From<u8> for PktRssiValue {
     fn from(other: u8) -> Self { PktRssiValue(other) }
@@ -2545,7 +2545,7 @@ impl ::core::fmt::Debug for PktRssiValue {
     }
 }
 
-pub struct RssiValue(pub u8);
+pub struct RssiValue(u8);
 
 impl From<u8> for RssiValue {
     fn from(other: u8) -> Self { RssiValue(other) }
@@ -2586,7 +2586,7 @@ impl ::core::fmt::Debug for RssiValue {
     }
 }
 
-pub struct HopChannel(pub u8);
+pub struct HopChannel(u8);
 
 impl From<u8> for HopChannel {
     fn from(other: u8) -> Self { HopChannel(other) }
@@ -2651,7 +2651,7 @@ impl ::core::fmt::Debug for HopChannel {
     }
 }
 
-pub struct ModemConfig1(pub u8);
+pub struct ModemConfig1(u8);
 
 impl From<u8> for ModemConfig1 {
     fn from(other: u8) -> Self { ModemConfig1(other) }
@@ -2716,7 +2716,7 @@ impl ::core::fmt::Debug for ModemConfig1 {
     }
 }
 
-pub struct ModemConfig2(pub u8);
+pub struct ModemConfig2(u8);
 
 impl From<u8> for ModemConfig2 {
     fn from(other: u8) -> Self { ModemConfig2(other) }
@@ -2793,7 +2793,7 @@ impl ::core::fmt::Debug for ModemConfig2 {
     }
 }
 
-pub struct SymbTimeoutLsb(pub u8);
+pub struct SymbTimeoutLsb(u8);
 
 impl From<u8> for SymbTimeoutLsb {
     fn from(other: u8) -> Self { SymbTimeoutLsb(other) }
@@ -2834,7 +2834,7 @@ impl ::core::fmt::Debug for SymbTimeoutLsb {
     }
 }
 
-pub struct PreambleMsb(pub u8);
+pub struct PreambleMsb(u8);
 
 impl From<u8> for PreambleMsb {
     fn from(other: u8) -> Self { PreambleMsb(other) }
@@ -2875,7 +2875,7 @@ impl ::core::fmt::Debug for PreambleMsb {
     }
 }
 
-pub struct PreambleLsb(pub u8);
+pub struct PreambleLsb(u8);
 
 impl From<u8> for PreambleLsb {
     fn from(other: u8) -> Self { PreambleLsb(other) }
@@ -2916,7 +2916,7 @@ impl ::core::fmt::Debug for PreambleLsb {
     }
 }
 
-pub struct PayloadLength(pub u8);
+pub struct PayloadLength(u8);
 
 impl From<u8> for PayloadLength {
     fn from(other: u8) -> Self { PayloadLength(other) }
@@ -2957,7 +2957,7 @@ impl ::core::fmt::Debug for PayloadLength {
     }
 }
 
-pub struct MaxPayloadLength(pub u8);
+pub struct MaxPayloadLength(u8);
 
 impl From<u8> for MaxPayloadLength {
     fn from(other: u8) -> Self { MaxPayloadLength(other) }
@@ -2998,7 +2998,7 @@ impl ::core::fmt::Debug for MaxPayloadLength {
     }
 }
 
-pub struct HopPeriod(pub u8);
+pub struct HopPeriod(u8);
 
 impl From<u8> for HopPeriod {
     fn from(other: u8) -> Self { HopPeriod(other) }
@@ -3039,7 +3039,7 @@ impl ::core::fmt::Debug for HopPeriod {
     }
 }
 
-pub struct FifoRxByteAddr(pub u8);
+pub struct FifoRxByteAddr(u8);
 
 impl From<u8> for FifoRxByteAddr {
     fn from(other: u8) -> Self { FifoRxByteAddr(other) }
@@ -3080,7 +3080,7 @@ impl ::core::fmt::Debug for FifoRxByteAddr {
     }
 }
 
-pub struct ModemConfig3(pub u8);
+pub struct ModemConfig3(u8);
 
 impl From<u8> for ModemConfig3 {
     fn from(other: u8) -> Self { ModemConfig3(other) }
@@ -3133,7 +3133,7 @@ impl ::core::fmt::Debug for ModemConfig3 {
     }
 }
 
-pub struct PpmCorrection(pub u8);
+pub struct PpmCorrection(u8);
 
 impl From<u8> for PpmCorrection {
     fn from(other: u8) -> Self { PpmCorrection(other) }
@@ -3174,7 +3174,7 @@ impl ::core::fmt::Debug for PpmCorrection {
     }
 }
 
-pub struct FeiMsb(pub u8);
+pub struct FeiMsb(u8);
 
 impl From<u8> for FeiMsb {
     fn from(other: u8) -> Self { FeiMsb(other) }
@@ -3215,7 +3215,7 @@ impl ::core::fmt::Debug for FeiMsb {
     }
 }
 
-pub struct FeiMid(pub u8);
+pub struct FeiMid(u8);
 
 impl From<u8> for FeiMid {
     fn from(other: u8) -> Self { FeiMid(other) }
@@ -3256,7 +3256,7 @@ impl ::core::fmt::Debug for FeiMid {
     }
 }
 
-pub struct FeiLsb(pub u8);
+pub struct FeiLsb(u8);
 
 impl From<u8> for FeiLsb {
     fn from(other: u8) -> Self { FeiLsb(other) }
@@ -3297,7 +3297,7 @@ impl ::core::fmt::Debug for FeiLsb {
     }
 }
 
-pub struct RssiWideband(pub u8);
+pub struct RssiWideband(u8);
 
 impl From<u8> for RssiWideband {
     fn from(other: u8) -> Self { RssiWideband(other) }
@@ -3338,7 +3338,7 @@ impl ::core::fmt::Debug for RssiWideband {
     }
 }
 
-pub struct DetectOptimize(pub u8);
+pub struct DetectOptimize(u8);
 
 impl From<u8> for DetectOptimize {
     fn from(other: u8) -> Self { DetectOptimize(other) }
@@ -3379,7 +3379,7 @@ impl ::core::fmt::Debug for DetectOptimize {
     }
 }
 
-pub struct InvertIq(pub u8);
+pub struct InvertIq(u8);
 
 impl From<u8> for InvertIq {
     fn from(other: u8) -> Self { InvertIq(other) }
@@ -3420,7 +3420,7 @@ impl ::core::fmt::Debug for InvertIq {
     }
 }
 
-pub struct DetectionThreshold(pub u8);
+pub struct DetectionThreshold(u8);
 
 impl From<u8> for DetectionThreshold {
     fn from(other: u8) -> Self { DetectionThreshold(other) }
@@ -3461,7 +3461,7 @@ impl ::core::fmt::Debug for DetectionThreshold {
     }
 }
 
-pub struct SyncWord(pub u8);
+pub struct SyncWord(u8);
 
 impl From<u8> for SyncWord {
     fn from(other: u8) -> Self { SyncWord(other) }
@@ -3502,7 +3502,7 @@ impl ::core::fmt::Debug for SyncWord {
     }
 }
 
-pub struct DioMapping1(pub u8);
+pub struct DioMapping1(u8);
 
 impl From<u8> for DioMapping1 {
     fn from(other: u8) -> Self { DioMapping1(other) }
@@ -3579,7 +3579,7 @@ impl ::core::fmt::Debug for DioMapping1 {
     }
 }
 
-pub struct DioMapping2(pub u8);
+pub struct DioMapping2(u8);
 
 impl From<u8> for DioMapping2 {
     fn from(other: u8) -> Self { DioMapping2(other) }
@@ -3644,7 +3644,7 @@ impl ::core::fmt::Debug for DioMapping2 {
     }
 }
 
-pub struct Version(pub u8);
+pub struct Version(u8);
 
 impl From<u8> for Version {
     fn from(other: u8) -> Self { Version(other) }
@@ -3685,7 +3685,7 @@ impl ::core::fmt::Debug for Version {
     }
 }
 
-pub struct PllHop(pub u8);
+pub struct PllHop(u8);
 
 impl From<u8> for PllHop {
     fn from(other: u8) -> Self { PllHop(other) }
@@ -3726,7 +3726,7 @@ impl ::core::fmt::Debug for PllHop {
     }
 }
 
-pub struct Tcxo(pub u8);
+pub struct Tcxo(u8);
 
 impl From<u8> for Tcxo {
     fn from(other: u8) -> Self { Tcxo(other) }
@@ -3767,7 +3767,7 @@ impl ::core::fmt::Debug for Tcxo {
     }
 }
 
-pub struct PaDac(pub u8);
+pub struct PaDac(u8);
 
 impl From<u8> for PaDac {
     fn from(other: u8) -> Self { PaDac(other) }
@@ -3808,7 +3808,7 @@ impl ::core::fmt::Debug for PaDac {
     }
 }
 
-pub struct FormerTemp(pub u8);
+pub struct FormerTemp(u8);
 
 impl From<u8> for FormerTemp {
     fn from(other: u8) -> Self { FormerTemp(other) }
@@ -3849,7 +3849,7 @@ impl ::core::fmt::Debug for FormerTemp {
     }
 }
 
-pub struct AgcRef(pub u8);
+pub struct AgcRef(u8);
 
 impl From<u8> for AgcRef {
     fn from(other: u8) -> Self { AgcRef(other) }
@@ -3890,7 +3890,7 @@ impl ::core::fmt::Debug for AgcRef {
     }
 }
 
-pub struct AgcThresh1(pub u8);
+pub struct AgcThresh1(u8);
 
 impl From<u8> for AgcThresh1 {
     fn from(other: u8) -> Self { AgcThresh1(other) }
@@ -3931,7 +3931,7 @@ impl ::core::fmt::Debug for AgcThresh1 {
     }
 }
 
-pub struct AgcThresh2(pub u8);
+pub struct AgcThresh2(u8);
 
 impl From<u8> for AgcThresh2 {
     fn from(other: u8) -> Self { AgcThresh2(other) }
@@ -3984,7 +3984,7 @@ impl ::core::fmt::Debug for AgcThresh2 {
     }
 }
 
-pub struct AgcThresh3(pub u8);
+pub struct AgcThresh3(u8);
 
 impl From<u8> for AgcThresh3 {
     fn from(other: u8) -> Self { AgcThresh3(other) }
@@ -4037,7 +4037,7 @@ impl ::core::fmt::Debug for AgcThresh3 {
     }
 }
 
-pub struct PllHf(pub u8);
+pub struct PllHf(u8);
 
 impl From<u8> for PllHf {
     fn from(other: u8) -> Self { PllHf(other) }
