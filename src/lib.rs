@@ -99,7 +99,10 @@ pub enum TopLevel {
 #[derive(Debug, Default)]
 pub struct Board {
     pub name: String,
+    pub author: Option<String>,
+    pub version: Option<String>,
     pub description: Option<String>,
+    pub documentation: Option<String>,
     pub target: String,
     pub mcu: String,
     pub crates: Vec<Crate>,
@@ -114,7 +117,10 @@ pub struct Device {
     pub name: String,
     pub size: Option<u64>,
     pub access: Option<Access>,
+    pub author: Option<String>,
+    pub version: Option<String>,
     pub description: Option<String>,
+    pub documentation: Option<String>,    
     pub interrupt_count: Option<u64>,
     pub exceptions: Vec<Exception>,
     pub peripheral_groups: Vec<PeripheralGroup>,
@@ -248,8 +254,14 @@ pub struct Peripheral {
     pub reset_value: Option<u64>,
     /// The default reset mask for this peripheral's registers. Inherits the devices's default register reset mask if not specified.
     pub reset_mask: Option<u64>,    
+    /// The author of this periheral
+    pub author: Option<String>,
+    /// The version of this periheral
+    pub version: Option<String>,
     /// Text describing this peripheral.
     pub description: Option<String>,
+    /// Documentation for this peripheral.
+    pub documentation: Option<String>,    
     /// The list of Rust modules to import for this peripheral. Currently not used in code generation.
     pub modules: Vec<Module>,
     /// The list of Rust config features associated with this peripheral. Will result in a `#[cfg(any(feature_name))]` during code generation.
