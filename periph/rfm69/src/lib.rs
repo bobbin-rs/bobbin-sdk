@@ -2,6 +2,8 @@
 #![no_std]
 
 extern crate bobbin_bits;
+pub mod ext;
+pub use ext::*;
 
 pub type Addr = u8;
 pub type Value = u8;
@@ -769,647 +771,647 @@ impl<RW: ReadWrite> Rfm69<RW> {
 
 impl<RW: TryReadWrite> Rfm69<RW> {
     pub fn try_fifo(&self) -> Result<types::Fifo, RW::Error> {
-        Ok(types::Fifo(self.try_read(REG_FIFO)?))
+        Ok(types::Fifo(self.try_read(addr::REG_FIFO)?))
     }
     pub fn try_set_fifo(&self, value: types::Fifo) -> Result<(), RW::Error> {
-        self.try_write(REG_FIFO, value.0)
+        self.try_write(addr::REG_FIFO, value.0)
     }
     pub fn try_with_fifo<F: FnOnce(types::Fifo) -> types::Fifo>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = types::Fifo(self.try_read(REG_FIFO)?);
-        self.try_write(REG_FIFO, f(tmp).0)
+        let tmp = types::Fifo(self.try_read(addr::REG_FIFO)?);
+        self.try_write(addr::REG_FIFO, f(tmp).0)
     }
 
     pub fn try_opmode(&self) -> Result<types::Opmode, RW::Error> {
-        Ok(types::Opmode(self.try_read(REG_OPMODE)?))
+        Ok(types::Opmode(self.try_read(addr::REG_OPMODE)?))
     }
     pub fn try_set_opmode(&self, value: types::Opmode) -> Result<(), RW::Error> {
-        self.try_write(REG_OPMODE, value.0)
+        self.try_write(addr::REG_OPMODE, value.0)
     }
     pub fn try_with_opmode<F: FnOnce(types::Opmode) -> types::Opmode>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = types::Opmode(self.try_read(REG_OPMODE)?);
-        self.try_write(REG_OPMODE, f(tmp).0)
+        let tmp = types::Opmode(self.try_read(addr::REG_OPMODE)?);
+        self.try_write(addr::REG_OPMODE, f(tmp).0)
     }
 
     pub fn try_datamodul(&self) -> Result<types::Datamodul, RW::Error> {
-        Ok(types::Datamodul(self.try_read(REG_DATAMODUL)?))
+        Ok(types::Datamodul(self.try_read(addr::REG_DATAMODUL)?))
     }
     pub fn try_set_datamodul(&self, value: types::Datamodul) -> Result<(), RW::Error> {
-        self.try_write(REG_DATAMODUL, value.0)
+        self.try_write(addr::REG_DATAMODUL, value.0)
     }
     pub fn try_with_datamodul<F: FnOnce(types::Datamodul) -> types::Datamodul>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = types::Datamodul(self.try_read(REG_DATAMODUL)?);
-        self.try_write(REG_DATAMODUL, f(tmp).0)
+        let tmp = types::Datamodul(self.try_read(addr::REG_DATAMODUL)?);
+        self.try_write(addr::REG_DATAMODUL, f(tmp).0)
     }
 
     pub fn try_bitratemsb(&self) -> Result<types::Bitratemsb, RW::Error> {
-        Ok(types::Bitratemsb(self.try_read(REG_BITRATEMSB)?))
+        Ok(types::Bitratemsb(self.try_read(addr::REG_BITRATEMSB)?))
     }
     pub fn try_set_bitratemsb(&self, value: types::Bitratemsb) -> Result<(), RW::Error> {
-        self.try_write(REG_BITRATEMSB, value.0)
+        self.try_write(addr::REG_BITRATEMSB, value.0)
     }
     pub fn try_with_bitratemsb<F: FnOnce(types::Bitratemsb) -> types::Bitratemsb>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = types::Bitratemsb(self.try_read(REG_BITRATEMSB)?);
-        self.try_write(REG_BITRATEMSB, f(tmp).0)
+        let tmp = types::Bitratemsb(self.try_read(addr::REG_BITRATEMSB)?);
+        self.try_write(addr::REG_BITRATEMSB, f(tmp).0)
     }
 
     pub fn try_bitratelsb(&self) -> Result<types::Bitratelsb, RW::Error> {
-        Ok(types::Bitratelsb(self.try_read(REG_BITRATELSB)?))
+        Ok(types::Bitratelsb(self.try_read(addr::REG_BITRATELSB)?))
     }
     pub fn try_set_bitratelsb(&self, value: types::Bitratelsb) -> Result<(), RW::Error> {
-        self.try_write(REG_BITRATELSB, value.0)
+        self.try_write(addr::REG_BITRATELSB, value.0)
     }
     pub fn try_with_bitratelsb<F: FnOnce(types::Bitratelsb) -> types::Bitratelsb>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = types::Bitratelsb(self.try_read(REG_BITRATELSB)?);
-        self.try_write(REG_BITRATELSB, f(tmp).0)
+        let tmp = types::Bitratelsb(self.try_read(addr::REG_BITRATELSB)?);
+        self.try_write(addr::REG_BITRATELSB, f(tmp).0)
     }
 
     pub fn try_fdevmsb(&self) -> Result<types::Fdevmsb, RW::Error> {
-        Ok(types::Fdevmsb(self.try_read(REG_FDEVMSB)?))
+        Ok(types::Fdevmsb(self.try_read(addr::REG_FDEVMSB)?))
     }
     pub fn try_set_fdevmsb(&self, value: types::Fdevmsb) -> Result<(), RW::Error> {
-        self.try_write(REG_FDEVMSB, value.0)
+        self.try_write(addr::REG_FDEVMSB, value.0)
     }
     pub fn try_with_fdevmsb<F: FnOnce(types::Fdevmsb) -> types::Fdevmsb>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = types::Fdevmsb(self.try_read(REG_FDEVMSB)?);
-        self.try_write(REG_FDEVMSB, f(tmp).0)
+        let tmp = types::Fdevmsb(self.try_read(addr::REG_FDEVMSB)?);
+        self.try_write(addr::REG_FDEVMSB, f(tmp).0)
     }
 
     pub fn try_fdevlsb(&self) -> Result<types::Fdevlsb, RW::Error> {
-        Ok(types::Fdevlsb(self.try_read(REG_FDEVLSB)?))
+        Ok(types::Fdevlsb(self.try_read(addr::REG_FDEVLSB)?))
     }
     pub fn try_set_fdevlsb(&self, value: types::Fdevlsb) -> Result<(), RW::Error> {
-        self.try_write(REG_FDEVLSB, value.0)
+        self.try_write(addr::REG_FDEVLSB, value.0)
     }
     pub fn try_with_fdevlsb<F: FnOnce(types::Fdevlsb) -> types::Fdevlsb>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = types::Fdevlsb(self.try_read(REG_FDEVLSB)?);
-        self.try_write(REG_FDEVLSB, f(tmp).0)
+        let tmp = types::Fdevlsb(self.try_read(addr::REG_FDEVLSB)?);
+        self.try_write(addr::REG_FDEVLSB, f(tmp).0)
     }
 
     pub fn try_frfmsb(&self) -> Result<types::Frfmsb, RW::Error> {
-        Ok(types::Frfmsb(self.try_read(REG_FRFMSB)?))
+        Ok(types::Frfmsb(self.try_read(addr::REG_FRFMSB)?))
     }
     pub fn try_set_frfmsb(&self, value: types::Frfmsb) -> Result<(), RW::Error> {
-        self.try_write(REG_FRFMSB, value.0)
+        self.try_write(addr::REG_FRFMSB, value.0)
     }
     pub fn try_with_frfmsb<F: FnOnce(types::Frfmsb) -> types::Frfmsb>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = types::Frfmsb(self.try_read(REG_FRFMSB)?);
-        self.try_write(REG_FRFMSB, f(tmp).0)
+        let tmp = types::Frfmsb(self.try_read(addr::REG_FRFMSB)?);
+        self.try_write(addr::REG_FRFMSB, f(tmp).0)
     }
 
     pub fn try_frfmid(&self) -> Result<types::Frfmid, RW::Error> {
-        Ok(types::Frfmid(self.try_read(REG_FRFMID)?))
+        Ok(types::Frfmid(self.try_read(addr::REG_FRFMID)?))
     }
     pub fn try_set_frfmid(&self, value: types::Frfmid) -> Result<(), RW::Error> {
-        self.try_write(REG_FRFMID, value.0)
+        self.try_write(addr::REG_FRFMID, value.0)
     }
     pub fn try_with_frfmid<F: FnOnce(types::Frfmid) -> types::Frfmid>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = types::Frfmid(self.try_read(REG_FRFMID)?);
-        self.try_write(REG_FRFMID, f(tmp).0)
+        let tmp = types::Frfmid(self.try_read(addr::REG_FRFMID)?);
+        self.try_write(addr::REG_FRFMID, f(tmp).0)
     }
 
     pub fn try_frflsb(&self) -> Result<types::Frflsb, RW::Error> {
-        Ok(types::Frflsb(self.try_read(REG_FRFLSB)?))
+        Ok(types::Frflsb(self.try_read(addr::REG_FRFLSB)?))
     }
     pub fn try_set_frflsb(&self, value: types::Frflsb) -> Result<(), RW::Error> {
-        self.try_write(REG_FRFLSB, value.0)
+        self.try_write(addr::REG_FRFLSB, value.0)
     }
     pub fn try_with_frflsb<F: FnOnce(types::Frflsb) -> types::Frflsb>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = types::Frflsb(self.try_read(REG_FRFLSB)?);
-        self.try_write(REG_FRFLSB, f(tmp).0)
+        let tmp = types::Frflsb(self.try_read(addr::REG_FRFLSB)?);
+        self.try_write(addr::REG_FRFLSB, f(tmp).0)
     }
 
     pub fn try_osc1(&self) -> Result<types::Osc1, RW::Error> {
-        Ok(types::Osc1(self.try_read(REG_OSC1)?))
+        Ok(types::Osc1(self.try_read(addr::REG_OSC1)?))
     }
     pub fn try_set_osc1(&self, value: types::Osc1) -> Result<(), RW::Error> {
-        self.try_write(REG_OSC1, value.0)
+        self.try_write(addr::REG_OSC1, value.0)
     }
     pub fn try_with_osc1<F: FnOnce(types::Osc1) -> types::Osc1>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = types::Osc1(self.try_read(REG_OSC1)?);
-        self.try_write(REG_OSC1, f(tmp).0)
+        let tmp = types::Osc1(self.try_read(addr::REG_OSC1)?);
+        self.try_write(addr::REG_OSC1, f(tmp).0)
     }
 
     pub fn try_afcctrl(&self) -> Result<types::Afcctrl, RW::Error> {
-        Ok(types::Afcctrl(self.try_read(REG_AFCCTRL)?))
+        Ok(types::Afcctrl(self.try_read(addr::REG_AFCCTRL)?))
     }
     pub fn try_set_afcctrl(&self, value: types::Afcctrl) -> Result<(), RW::Error> {
-        self.try_write(REG_AFCCTRL, value.0)
+        self.try_write(addr::REG_AFCCTRL, value.0)
     }
     pub fn try_with_afcctrl<F: FnOnce(types::Afcctrl) -> types::Afcctrl>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = types::Afcctrl(self.try_read(REG_AFCCTRL)?);
-        self.try_write(REG_AFCCTRL, f(tmp).0)
+        let tmp = types::Afcctrl(self.try_read(addr::REG_AFCCTRL)?);
+        self.try_write(addr::REG_AFCCTRL, f(tmp).0)
     }
 
     pub fn try_listen1(&self) -> Result<types::Listen1, RW::Error> {
-        Ok(types::Listen1(self.try_read(REG_LISTEN1)?))
+        Ok(types::Listen1(self.try_read(addr::REG_LISTEN1)?))
     }
     pub fn try_set_listen1(&self, value: types::Listen1) -> Result<(), RW::Error> {
-        self.try_write(REG_LISTEN1, value.0)
+        self.try_write(addr::REG_LISTEN1, value.0)
     }
     pub fn try_with_listen1<F: FnOnce(types::Listen1) -> types::Listen1>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = types::Listen1(self.try_read(REG_LISTEN1)?);
-        self.try_write(REG_LISTEN1, f(tmp).0)
+        let tmp = types::Listen1(self.try_read(addr::REG_LISTEN1)?);
+        self.try_write(addr::REG_LISTEN1, f(tmp).0)
     }
 
     pub fn try_listen2(&self) -> Result<types::Listen2, RW::Error> {
-        Ok(types::Listen2(self.try_read(REG_LISTEN2)?))
+        Ok(types::Listen2(self.try_read(addr::REG_LISTEN2)?))
     }
     pub fn try_set_listen2(&self, value: types::Listen2) -> Result<(), RW::Error> {
-        self.try_write(REG_LISTEN2, value.0)
+        self.try_write(addr::REG_LISTEN2, value.0)
     }
     pub fn try_with_listen2<F: FnOnce(types::Listen2) -> types::Listen2>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = types::Listen2(self.try_read(REG_LISTEN2)?);
-        self.try_write(REG_LISTEN2, f(tmp).0)
+        let tmp = types::Listen2(self.try_read(addr::REG_LISTEN2)?);
+        self.try_write(addr::REG_LISTEN2, f(tmp).0)
     }
 
     pub fn try_listen3(&self) -> Result<types::Listen3, RW::Error> {
-        Ok(types::Listen3(self.try_read(REG_LISTEN3)?))
+        Ok(types::Listen3(self.try_read(addr::REG_LISTEN3)?))
     }
     pub fn try_set_listen3(&self, value: types::Listen3) -> Result<(), RW::Error> {
-        self.try_write(REG_LISTEN3, value.0)
+        self.try_write(addr::REG_LISTEN3, value.0)
     }
     pub fn try_with_listen3<F: FnOnce(types::Listen3) -> types::Listen3>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = types::Listen3(self.try_read(REG_LISTEN3)?);
-        self.try_write(REG_LISTEN3, f(tmp).0)
+        let tmp = types::Listen3(self.try_read(addr::REG_LISTEN3)?);
+        self.try_write(addr::REG_LISTEN3, f(tmp).0)
     }
 
     pub fn try_version(&self) -> Result<types::Version, RW::Error> {
-        Ok(types::Version(self.try_read(REG_VERSION)?))
+        Ok(types::Version(self.try_read(addr::REG_VERSION)?))
     }
     pub fn try_set_version(&self, value: types::Version) -> Result<(), RW::Error> {
-        self.try_write(REG_VERSION, value.0)
+        self.try_write(addr::REG_VERSION, value.0)
     }
     pub fn try_with_version<F: FnOnce(types::Version) -> types::Version>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = types::Version(self.try_read(REG_VERSION)?);
-        self.try_write(REG_VERSION, f(tmp).0)
+        let tmp = types::Version(self.try_read(addr::REG_VERSION)?);
+        self.try_write(addr::REG_VERSION, f(tmp).0)
     }
 
     pub fn try_palevel(&self) -> Result<types::Palevel, RW::Error> {
-        Ok(types::Palevel(self.try_read(REG_PALEVEL)?))
+        Ok(types::Palevel(self.try_read(addr::REG_PALEVEL)?))
     }
     pub fn try_set_palevel(&self, value: types::Palevel) -> Result<(), RW::Error> {
-        self.try_write(REG_PALEVEL, value.0)
+        self.try_write(addr::REG_PALEVEL, value.0)
     }
     pub fn try_with_palevel<F: FnOnce(types::Palevel) -> types::Palevel>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = types::Palevel(self.try_read(REG_PALEVEL)?);
-        self.try_write(REG_PALEVEL, f(tmp).0)
+        let tmp = types::Palevel(self.try_read(addr::REG_PALEVEL)?);
+        self.try_write(addr::REG_PALEVEL, f(tmp).0)
     }
 
     pub fn try_paramp(&self) -> Result<types::Paramp, RW::Error> {
-        Ok(types::Paramp(self.try_read(REG_PARAMP)?))
+        Ok(types::Paramp(self.try_read(addr::REG_PARAMP)?))
     }
     pub fn try_set_paramp(&self, value: types::Paramp) -> Result<(), RW::Error> {
-        self.try_write(REG_PARAMP, value.0)
+        self.try_write(addr::REG_PARAMP, value.0)
     }
     pub fn try_with_paramp<F: FnOnce(types::Paramp) -> types::Paramp>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = types::Paramp(self.try_read(REG_PARAMP)?);
-        self.try_write(REG_PARAMP, f(tmp).0)
+        let tmp = types::Paramp(self.try_read(addr::REG_PARAMP)?);
+        self.try_write(addr::REG_PARAMP, f(tmp).0)
     }
 
     pub fn try_ocp(&self) -> Result<types::Ocp, RW::Error> {
-        Ok(types::Ocp(self.try_read(REG_OCP)?))
+        Ok(types::Ocp(self.try_read(addr::REG_OCP)?))
     }
     pub fn try_set_ocp(&self, value: types::Ocp) -> Result<(), RW::Error> {
-        self.try_write(REG_OCP, value.0)
+        self.try_write(addr::REG_OCP, value.0)
     }
     pub fn try_with_ocp<F: FnOnce(types::Ocp) -> types::Ocp>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = types::Ocp(self.try_read(REG_OCP)?);
-        self.try_write(REG_OCP, f(tmp).0)
+        let tmp = types::Ocp(self.try_read(addr::REG_OCP)?);
+        self.try_write(addr::REG_OCP, f(tmp).0)
     }
 
     pub fn try_lna(&self) -> Result<types::Lna, RW::Error> {
-        Ok(types::Lna(self.try_read(REG_LNA)?))
+        Ok(types::Lna(self.try_read(addr::REG_LNA)?))
     }
     pub fn try_set_lna(&self, value: types::Lna) -> Result<(), RW::Error> {
-        self.try_write(REG_LNA, value.0)
+        self.try_write(addr::REG_LNA, value.0)
     }
     pub fn try_with_lna<F: FnOnce(types::Lna) -> types::Lna>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = types::Lna(self.try_read(REG_LNA)?);
-        self.try_write(REG_LNA, f(tmp).0)
+        let tmp = types::Lna(self.try_read(addr::REG_LNA)?);
+        self.try_write(addr::REG_LNA, f(tmp).0)
     }
 
     pub fn try_rxbw(&self) -> Result<types::Rxbw, RW::Error> {
-        Ok(types::Rxbw(self.try_read(REG_RXBW)?))
+        Ok(types::Rxbw(self.try_read(addr::REG_RXBW)?))
     }
     pub fn try_set_rxbw(&self, value: types::Rxbw) -> Result<(), RW::Error> {
-        self.try_write(REG_RXBW, value.0)
+        self.try_write(addr::REG_RXBW, value.0)
     }
     pub fn try_with_rxbw<F: FnOnce(types::Rxbw) -> types::Rxbw>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = types::Rxbw(self.try_read(REG_RXBW)?);
-        self.try_write(REG_RXBW, f(tmp).0)
+        let tmp = types::Rxbw(self.try_read(addr::REG_RXBW)?);
+        self.try_write(addr::REG_RXBW, f(tmp).0)
     }
 
     pub fn try_afcbw(&self) -> Result<types::Afcbw, RW::Error> {
-        Ok(types::Afcbw(self.try_read(REG_AFCBW)?))
+        Ok(types::Afcbw(self.try_read(addr::REG_AFCBW)?))
     }
     pub fn try_set_afcbw(&self, value: types::Afcbw) -> Result<(), RW::Error> {
-        self.try_write(REG_AFCBW, value.0)
+        self.try_write(addr::REG_AFCBW, value.0)
     }
     pub fn try_with_afcbw<F: FnOnce(types::Afcbw) -> types::Afcbw>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = types::Afcbw(self.try_read(REG_AFCBW)?);
-        self.try_write(REG_AFCBW, f(tmp).0)
+        let tmp = types::Afcbw(self.try_read(addr::REG_AFCBW)?);
+        self.try_write(addr::REG_AFCBW, f(tmp).0)
     }
 
     pub fn try_ookpeak(&self) -> Result<types::Ookpeak, RW::Error> {
-        Ok(types::Ookpeak(self.try_read(REG_OOKPEAK)?))
+        Ok(types::Ookpeak(self.try_read(addr::REG_OOKPEAK)?))
     }
     pub fn try_set_ookpeak(&self, value: types::Ookpeak) -> Result<(), RW::Error> {
-        self.try_write(REG_OOKPEAK, value.0)
+        self.try_write(addr::REG_OOKPEAK, value.0)
     }
     pub fn try_with_ookpeak<F: FnOnce(types::Ookpeak) -> types::Ookpeak>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = types::Ookpeak(self.try_read(REG_OOKPEAK)?);
-        self.try_write(REG_OOKPEAK, f(tmp).0)
+        let tmp = types::Ookpeak(self.try_read(addr::REG_OOKPEAK)?);
+        self.try_write(addr::REG_OOKPEAK, f(tmp).0)
     }
 
     pub fn try_ookavg(&self) -> Result<types::Ookavg, RW::Error> {
-        Ok(types::Ookavg(self.try_read(REG_OOKAVG)?))
+        Ok(types::Ookavg(self.try_read(addr::REG_OOKAVG)?))
     }
     pub fn try_set_ookavg(&self, value: types::Ookavg) -> Result<(), RW::Error> {
-        self.try_write(REG_OOKAVG, value.0)
+        self.try_write(addr::REG_OOKAVG, value.0)
     }
     pub fn try_with_ookavg<F: FnOnce(types::Ookavg) -> types::Ookavg>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = types::Ookavg(self.try_read(REG_OOKAVG)?);
-        self.try_write(REG_OOKAVG, f(tmp).0)
+        let tmp = types::Ookavg(self.try_read(addr::REG_OOKAVG)?);
+        self.try_write(addr::REG_OOKAVG, f(tmp).0)
     }
 
     pub fn try_ookfix(&self) -> Result<types::Ookfix, RW::Error> {
-        Ok(types::Ookfix(self.try_read(REG_OOKFIX)?))
+        Ok(types::Ookfix(self.try_read(addr::REG_OOKFIX)?))
     }
     pub fn try_set_ookfix(&self, value: types::Ookfix) -> Result<(), RW::Error> {
-        self.try_write(REG_OOKFIX, value.0)
+        self.try_write(addr::REG_OOKFIX, value.0)
     }
     pub fn try_with_ookfix<F: FnOnce(types::Ookfix) -> types::Ookfix>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = types::Ookfix(self.try_read(REG_OOKFIX)?);
-        self.try_write(REG_OOKFIX, f(tmp).0)
+        let tmp = types::Ookfix(self.try_read(addr::REG_OOKFIX)?);
+        self.try_write(addr::REG_OOKFIX, f(tmp).0)
     }
 
     pub fn try_afcfei(&self) -> Result<types::Afcfei, RW::Error> {
-        Ok(types::Afcfei(self.try_read(REG_AFCFEI)?))
+        Ok(types::Afcfei(self.try_read(addr::REG_AFCFEI)?))
     }
     pub fn try_set_afcfei(&self, value: types::Afcfei) -> Result<(), RW::Error> {
-        self.try_write(REG_AFCFEI, value.0)
+        self.try_write(addr::REG_AFCFEI, value.0)
     }
     pub fn try_with_afcfei<F: FnOnce(types::Afcfei) -> types::Afcfei>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = types::Afcfei(self.try_read(REG_AFCFEI)?);
-        self.try_write(REG_AFCFEI, f(tmp).0)
+        let tmp = types::Afcfei(self.try_read(addr::REG_AFCFEI)?);
+        self.try_write(addr::REG_AFCFEI, f(tmp).0)
     }
 
     pub fn try_afcmsb(&self) -> Result<types::Afcmsb, RW::Error> {
-        Ok(types::Afcmsb(self.try_read(REG_AFCMSB)?))
+        Ok(types::Afcmsb(self.try_read(addr::REG_AFCMSB)?))
     }
     pub fn try_set_afcmsb(&self, value: types::Afcmsb) -> Result<(), RW::Error> {
-        self.try_write(REG_AFCMSB, value.0)
+        self.try_write(addr::REG_AFCMSB, value.0)
     }
     pub fn try_with_afcmsb<F: FnOnce(types::Afcmsb) -> types::Afcmsb>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = types::Afcmsb(self.try_read(REG_AFCMSB)?);
-        self.try_write(REG_AFCMSB, f(tmp).0)
+        let tmp = types::Afcmsb(self.try_read(addr::REG_AFCMSB)?);
+        self.try_write(addr::REG_AFCMSB, f(tmp).0)
     }
 
     pub fn try_afclsb(&self) -> Result<types::Afclsb, RW::Error> {
-        Ok(types::Afclsb(self.try_read(REG_AFCLSB)?))
+        Ok(types::Afclsb(self.try_read(addr::REG_AFCLSB)?))
     }
     pub fn try_set_afclsb(&self, value: types::Afclsb) -> Result<(), RW::Error> {
-        self.try_write(REG_AFCLSB, value.0)
+        self.try_write(addr::REG_AFCLSB, value.0)
     }
     pub fn try_with_afclsb<F: FnOnce(types::Afclsb) -> types::Afclsb>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = types::Afclsb(self.try_read(REG_AFCLSB)?);
-        self.try_write(REG_AFCLSB, f(tmp).0)
+        let tmp = types::Afclsb(self.try_read(addr::REG_AFCLSB)?);
+        self.try_write(addr::REG_AFCLSB, f(tmp).0)
     }
 
     pub fn try_feimsb(&self) -> Result<types::Feimsb, RW::Error> {
-        Ok(types::Feimsb(self.try_read(REG_FEIMSB)?))
+        Ok(types::Feimsb(self.try_read(addr::REG_FEIMSB)?))
     }
     pub fn try_set_feimsb(&self, value: types::Feimsb) -> Result<(), RW::Error> {
-        self.try_write(REG_FEIMSB, value.0)
+        self.try_write(addr::REG_FEIMSB, value.0)
     }
     pub fn try_with_feimsb<F: FnOnce(types::Feimsb) -> types::Feimsb>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = types::Feimsb(self.try_read(REG_FEIMSB)?);
-        self.try_write(REG_FEIMSB, f(tmp).0)
+        let tmp = types::Feimsb(self.try_read(addr::REG_FEIMSB)?);
+        self.try_write(addr::REG_FEIMSB, f(tmp).0)
     }
 
     pub fn try_feilsb(&self) -> Result<types::Feilsb, RW::Error> {
-        Ok(types::Feilsb(self.try_read(REG_FEILSB)?))
+        Ok(types::Feilsb(self.try_read(addr::REG_FEILSB)?))
     }
     pub fn try_set_feilsb(&self, value: types::Feilsb) -> Result<(), RW::Error> {
-        self.try_write(REG_FEILSB, value.0)
+        self.try_write(addr::REG_FEILSB, value.0)
     }
     pub fn try_with_feilsb<F: FnOnce(types::Feilsb) -> types::Feilsb>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = types::Feilsb(self.try_read(REG_FEILSB)?);
-        self.try_write(REG_FEILSB, f(tmp).0)
+        let tmp = types::Feilsb(self.try_read(addr::REG_FEILSB)?);
+        self.try_write(addr::REG_FEILSB, f(tmp).0)
     }
 
     pub fn try_rssiconfig(&self) -> Result<types::Rssiconfig, RW::Error> {
-        Ok(types::Rssiconfig(self.try_read(REG_RSSICONFIG)?))
+        Ok(types::Rssiconfig(self.try_read(addr::REG_RSSICONFIG)?))
     }
     pub fn try_set_rssiconfig(&self, value: types::Rssiconfig) -> Result<(), RW::Error> {
-        self.try_write(REG_RSSICONFIG, value.0)
+        self.try_write(addr::REG_RSSICONFIG, value.0)
     }
     pub fn try_with_rssiconfig<F: FnOnce(types::Rssiconfig) -> types::Rssiconfig>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = types::Rssiconfig(self.try_read(REG_RSSICONFIG)?);
-        self.try_write(REG_RSSICONFIG, f(tmp).0)
+        let tmp = types::Rssiconfig(self.try_read(addr::REG_RSSICONFIG)?);
+        self.try_write(addr::REG_RSSICONFIG, f(tmp).0)
     }
 
     pub fn try_rssivalue(&self) -> Result<types::Rssivalue, RW::Error> {
-        Ok(types::Rssivalue(self.try_read(REG_RSSIVALUE)?))
+        Ok(types::Rssivalue(self.try_read(addr::REG_RSSIVALUE)?))
     }
     pub fn try_set_rssivalue(&self, value: types::Rssivalue) -> Result<(), RW::Error> {
-        self.try_write(REG_RSSIVALUE, value.0)
+        self.try_write(addr::REG_RSSIVALUE, value.0)
     }
     pub fn try_with_rssivalue<F: FnOnce(types::Rssivalue) -> types::Rssivalue>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = types::Rssivalue(self.try_read(REG_RSSIVALUE)?);
-        self.try_write(REG_RSSIVALUE, f(tmp).0)
+        let tmp = types::Rssivalue(self.try_read(addr::REG_RSSIVALUE)?);
+        self.try_write(addr::REG_RSSIVALUE, f(tmp).0)
     }
 
     pub fn try_diomapping1(&self) -> Result<types::Diomapping1, RW::Error> {
-        Ok(types::Diomapping1(self.try_read(REG_DIOMAPPING1)?))
+        Ok(types::Diomapping1(self.try_read(addr::REG_DIOMAPPING1)?))
     }
     pub fn try_set_diomapping1(&self, value: types::Diomapping1) -> Result<(), RW::Error> {
-        self.try_write(REG_DIOMAPPING1, value.0)
+        self.try_write(addr::REG_DIOMAPPING1, value.0)
     }
     pub fn try_with_diomapping1<F: FnOnce(types::Diomapping1) -> types::Diomapping1>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = types::Diomapping1(self.try_read(REG_DIOMAPPING1)?);
-        self.try_write(REG_DIOMAPPING1, f(tmp).0)
+        let tmp = types::Diomapping1(self.try_read(addr::REG_DIOMAPPING1)?);
+        self.try_write(addr::REG_DIOMAPPING1, f(tmp).0)
     }
 
     pub fn try_diomapping2(&self) -> Result<types::Diomapping2, RW::Error> {
-        Ok(types::Diomapping2(self.try_read(REG_DIOMAPPING2)?))
+        Ok(types::Diomapping2(self.try_read(addr::REG_DIOMAPPING2)?))
     }
     pub fn try_set_diomapping2(&self, value: types::Diomapping2) -> Result<(), RW::Error> {
-        self.try_write(REG_DIOMAPPING2, value.0)
+        self.try_write(addr::REG_DIOMAPPING2, value.0)
     }
     pub fn try_with_diomapping2<F: FnOnce(types::Diomapping2) -> types::Diomapping2>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = types::Diomapping2(self.try_read(REG_DIOMAPPING2)?);
-        self.try_write(REG_DIOMAPPING2, f(tmp).0)
+        let tmp = types::Diomapping2(self.try_read(addr::REG_DIOMAPPING2)?);
+        self.try_write(addr::REG_DIOMAPPING2, f(tmp).0)
     }
 
     pub fn try_irqflags1(&self) -> Result<types::Irqflags1, RW::Error> {
-        Ok(types::Irqflags1(self.try_read(REG_IRQFLAGS1)?))
+        Ok(types::Irqflags1(self.try_read(addr::REG_IRQFLAGS1)?))
     }
     pub fn try_set_irqflags1(&self, value: types::Irqflags1) -> Result<(), RW::Error> {
-        self.try_write(REG_IRQFLAGS1, value.0)
+        self.try_write(addr::REG_IRQFLAGS1, value.0)
     }
     pub fn try_with_irqflags1<F: FnOnce(types::Irqflags1) -> types::Irqflags1>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = types::Irqflags1(self.try_read(REG_IRQFLAGS1)?);
-        self.try_write(REG_IRQFLAGS1, f(tmp).0)
+        let tmp = types::Irqflags1(self.try_read(addr::REG_IRQFLAGS1)?);
+        self.try_write(addr::REG_IRQFLAGS1, f(tmp).0)
     }
 
     pub fn try_irqflags2(&self) -> Result<types::Irqflags2, RW::Error> {
-        Ok(types::Irqflags2(self.try_read(REG_IRQFLAGS2)?))
+        Ok(types::Irqflags2(self.try_read(addr::REG_IRQFLAGS2)?))
     }
     pub fn try_set_irqflags2(&self, value: types::Irqflags2) -> Result<(), RW::Error> {
-        self.try_write(REG_IRQFLAGS2, value.0)
+        self.try_write(addr::REG_IRQFLAGS2, value.0)
     }
     pub fn try_with_irqflags2<F: FnOnce(types::Irqflags2) -> types::Irqflags2>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = types::Irqflags2(self.try_read(REG_IRQFLAGS2)?);
-        self.try_write(REG_IRQFLAGS2, f(tmp).0)
+        let tmp = types::Irqflags2(self.try_read(addr::REG_IRQFLAGS2)?);
+        self.try_write(addr::REG_IRQFLAGS2, f(tmp).0)
     }
 
     pub fn try_rssithresh(&self) -> Result<types::Rssithresh, RW::Error> {
-        Ok(types::Rssithresh(self.try_read(REG_RSSITHRESH)?))
+        Ok(types::Rssithresh(self.try_read(addr::REG_RSSITHRESH)?))
     }
     pub fn try_set_rssithresh(&self, value: types::Rssithresh) -> Result<(), RW::Error> {
-        self.try_write(REG_RSSITHRESH, value.0)
+        self.try_write(addr::REG_RSSITHRESH, value.0)
     }
     pub fn try_with_rssithresh<F: FnOnce(types::Rssithresh) -> types::Rssithresh>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = types::Rssithresh(self.try_read(REG_RSSITHRESH)?);
-        self.try_write(REG_RSSITHRESH, f(tmp).0)
+        let tmp = types::Rssithresh(self.try_read(addr::REG_RSSITHRESH)?);
+        self.try_write(addr::REG_RSSITHRESH, f(tmp).0)
     }
 
     pub fn try_rxtimeout1(&self) -> Result<types::Rxtimeout1, RW::Error> {
-        Ok(types::Rxtimeout1(self.try_read(REG_RXTIMEOUT1)?))
+        Ok(types::Rxtimeout1(self.try_read(addr::REG_RXTIMEOUT1)?))
     }
     pub fn try_set_rxtimeout1(&self, value: types::Rxtimeout1) -> Result<(), RW::Error> {
-        self.try_write(REG_RXTIMEOUT1, value.0)
+        self.try_write(addr::REG_RXTIMEOUT1, value.0)
     }
     pub fn try_with_rxtimeout1<F: FnOnce(types::Rxtimeout1) -> types::Rxtimeout1>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = types::Rxtimeout1(self.try_read(REG_RXTIMEOUT1)?);
-        self.try_write(REG_RXTIMEOUT1, f(tmp).0)
+        let tmp = types::Rxtimeout1(self.try_read(addr::REG_RXTIMEOUT1)?);
+        self.try_write(addr::REG_RXTIMEOUT1, f(tmp).0)
     }
 
     pub fn try_rxtimeout2(&self) -> Result<types::Rxtimeout2, RW::Error> {
-        Ok(types::Rxtimeout2(self.try_read(REG_RXTIMEOUT2)?))
+        Ok(types::Rxtimeout2(self.try_read(addr::REG_RXTIMEOUT2)?))
     }
     pub fn try_set_rxtimeout2(&self, value: types::Rxtimeout2) -> Result<(), RW::Error> {
-        self.try_write(REG_RXTIMEOUT2, value.0)
+        self.try_write(addr::REG_RXTIMEOUT2, value.0)
     }
     pub fn try_with_rxtimeout2<F: FnOnce(types::Rxtimeout2) -> types::Rxtimeout2>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = types::Rxtimeout2(self.try_read(REG_RXTIMEOUT2)?);
-        self.try_write(REG_RXTIMEOUT2, f(tmp).0)
+        let tmp = types::Rxtimeout2(self.try_read(addr::REG_RXTIMEOUT2)?);
+        self.try_write(addr::REG_RXTIMEOUT2, f(tmp).0)
     }
 
     pub fn try_preamblemsb(&self) -> Result<types::Preamblemsb, RW::Error> {
-        Ok(types::Preamblemsb(self.try_read(REG_PREAMBLEMSB)?))
+        Ok(types::Preamblemsb(self.try_read(addr::REG_PREAMBLEMSB)?))
     }
     pub fn try_set_preamblemsb(&self, value: types::Preamblemsb) -> Result<(), RW::Error> {
-        self.try_write(REG_PREAMBLEMSB, value.0)
+        self.try_write(addr::REG_PREAMBLEMSB, value.0)
     }
     pub fn try_with_preamblemsb<F: FnOnce(types::Preamblemsb) -> types::Preamblemsb>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = types::Preamblemsb(self.try_read(REG_PREAMBLEMSB)?);
-        self.try_write(REG_PREAMBLEMSB, f(tmp).0)
+        let tmp = types::Preamblemsb(self.try_read(addr::REG_PREAMBLEMSB)?);
+        self.try_write(addr::REG_PREAMBLEMSB, f(tmp).0)
     }
 
     pub fn try_preamblelsb(&self) -> Result<types::Preamblelsb, RW::Error> {
-        Ok(types::Preamblelsb(self.try_read(REG_PREAMBLELSB)?))
+        Ok(types::Preamblelsb(self.try_read(addr::REG_PREAMBLELSB)?))
     }
     pub fn try_set_preamblelsb(&self, value: types::Preamblelsb) -> Result<(), RW::Error> {
-        self.try_write(REG_PREAMBLELSB, value.0)
+        self.try_write(addr::REG_PREAMBLELSB, value.0)
     }
     pub fn try_with_preamblelsb<F: FnOnce(types::Preamblelsb) -> types::Preamblelsb>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = types::Preamblelsb(self.try_read(REG_PREAMBLELSB)?);
-        self.try_write(REG_PREAMBLELSB, f(tmp).0)
+        let tmp = types::Preamblelsb(self.try_read(addr::REG_PREAMBLELSB)?);
+        self.try_write(addr::REG_PREAMBLELSB, f(tmp).0)
     }
 
     pub fn try_syncconfig(&self) -> Result<types::Syncconfig, RW::Error> {
-        Ok(types::Syncconfig(self.try_read(REG_SYNCCONFIG)?))
+        Ok(types::Syncconfig(self.try_read(addr::REG_SYNCCONFIG)?))
     }
     pub fn try_set_syncconfig(&self, value: types::Syncconfig) -> Result<(), RW::Error> {
-        self.try_write(REG_SYNCCONFIG, value.0)
+        self.try_write(addr::REG_SYNCCONFIG, value.0)
     }
     pub fn try_with_syncconfig<F: FnOnce(types::Syncconfig) -> types::Syncconfig>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = types::Syncconfig(self.try_read(REG_SYNCCONFIG)?);
-        self.try_write(REG_SYNCCONFIG, f(tmp).0)
+        let tmp = types::Syncconfig(self.try_read(addr::REG_SYNCCONFIG)?);
+        self.try_write(addr::REG_SYNCCONFIG, f(tmp).0)
     }
 
     pub fn try_syncvalue(&self, index: usize) -> Result<types::Syncvalue, RW::Error> {
         assert!(index < 8);
-        Ok(types::Syncvalue(self.try_read(REG_SYNCVALUE + index as u8)?))
+        Ok(types::Syncvalue(self.try_read(addr::REG_SYNCVALUE + index as u8)?))
     }
     pub fn try_set_syncvalue(&self, index: usize, value: types::Syncvalue) -> Result<(), RW::Error> {
         assert!(index < 8);
-        self.try_write(REG_SYNCVALUE + index as u8, value.0)
+        self.try_write(addr::REG_SYNCVALUE + index as u8, value.0)
     }
     pub fn try_with_syncvalue<F: FnOnce(types::Syncvalue) -> types::Syncvalue>(&self, index: usize, f: F) -> Result<(), RW::Error> {
         assert!(index < 8);
-        let tmp = types::Syncvalue(self.try_read(REG_SYNCVALUE + index as u8)?);
-        self.try_write(REG_SYNCVALUE + index as u8, f(tmp).0)
+        let tmp = types::Syncvalue(self.try_read(addr::REG_SYNCVALUE + index as u8)?);
+        self.try_write(addr::REG_SYNCVALUE + index as u8, f(tmp).0)
     }
 
     pub fn try_packetconfig1(&self) -> Result<types::Packetconfig1, RW::Error> {
-        Ok(types::Packetconfig1(self.try_read(REG_PACKETCONFIG1)?))
+        Ok(types::Packetconfig1(self.try_read(addr::REG_PACKETCONFIG1)?))
     }
     pub fn try_set_packetconfig1(&self, value: types::Packetconfig1) -> Result<(), RW::Error> {
-        self.try_write(REG_PACKETCONFIG1, value.0)
+        self.try_write(addr::REG_PACKETCONFIG1, value.0)
     }
     pub fn try_with_packetconfig1<F: FnOnce(types::Packetconfig1) -> types::Packetconfig1>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = types::Packetconfig1(self.try_read(REG_PACKETCONFIG1)?);
-        self.try_write(REG_PACKETCONFIG1, f(tmp).0)
+        let tmp = types::Packetconfig1(self.try_read(addr::REG_PACKETCONFIG1)?);
+        self.try_write(addr::REG_PACKETCONFIG1, f(tmp).0)
     }
 
     pub fn try_payloadlength(&self) -> Result<types::Payloadlength, RW::Error> {
-        Ok(types::Payloadlength(self.try_read(REG_PAYLOADLENGTH)?))
+        Ok(types::Payloadlength(self.try_read(addr::REG_PAYLOADLENGTH)?))
     }
     pub fn try_set_payloadlength(&self, value: types::Payloadlength) -> Result<(), RW::Error> {
-        self.try_write(REG_PAYLOADLENGTH, value.0)
+        self.try_write(addr::REG_PAYLOADLENGTH, value.0)
     }
     pub fn try_with_payloadlength<F: FnOnce(types::Payloadlength) -> types::Payloadlength>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = types::Payloadlength(self.try_read(REG_PAYLOADLENGTH)?);
-        self.try_write(REG_PAYLOADLENGTH, f(tmp).0)
+        let tmp = types::Payloadlength(self.try_read(addr::REG_PAYLOADLENGTH)?);
+        self.try_write(addr::REG_PAYLOADLENGTH, f(tmp).0)
     }
 
     pub fn try_nodeadrs(&self) -> Result<types::Nodeadrs, RW::Error> {
-        Ok(types::Nodeadrs(self.try_read(REG_NODEADRS)?))
+        Ok(types::Nodeadrs(self.try_read(addr::REG_NODEADRS)?))
     }
     pub fn try_set_nodeadrs(&self, value: types::Nodeadrs) -> Result<(), RW::Error> {
-        self.try_write(REG_NODEADRS, value.0)
+        self.try_write(addr::REG_NODEADRS, value.0)
     }
     pub fn try_with_nodeadrs<F: FnOnce(types::Nodeadrs) -> types::Nodeadrs>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = types::Nodeadrs(self.try_read(REG_NODEADRS)?);
-        self.try_write(REG_NODEADRS, f(tmp).0)
+        let tmp = types::Nodeadrs(self.try_read(addr::REG_NODEADRS)?);
+        self.try_write(addr::REG_NODEADRS, f(tmp).0)
     }
 
     pub fn try_broadcastadrs(&self) -> Result<types::Broadcastadrs, RW::Error> {
-        Ok(types::Broadcastadrs(self.try_read(REG_BROADCASTADRS)?))
+        Ok(types::Broadcastadrs(self.try_read(addr::REG_BROADCASTADRS)?))
     }
     pub fn try_set_broadcastadrs(&self, value: types::Broadcastadrs) -> Result<(), RW::Error> {
-        self.try_write(REG_BROADCASTADRS, value.0)
+        self.try_write(addr::REG_BROADCASTADRS, value.0)
     }
     pub fn try_with_broadcastadrs<F: FnOnce(types::Broadcastadrs) -> types::Broadcastadrs>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = types::Broadcastadrs(self.try_read(REG_BROADCASTADRS)?);
-        self.try_write(REG_BROADCASTADRS, f(tmp).0)
+        let tmp = types::Broadcastadrs(self.try_read(addr::REG_BROADCASTADRS)?);
+        self.try_write(addr::REG_BROADCASTADRS, f(tmp).0)
     }
 
     pub fn try_automodes(&self) -> Result<types::Automodes, RW::Error> {
-        Ok(types::Automodes(self.try_read(REG_AUTOMODES)?))
+        Ok(types::Automodes(self.try_read(addr::REG_AUTOMODES)?))
     }
     pub fn try_set_automodes(&self, value: types::Automodes) -> Result<(), RW::Error> {
-        self.try_write(REG_AUTOMODES, value.0)
+        self.try_write(addr::REG_AUTOMODES, value.0)
     }
     pub fn try_with_automodes<F: FnOnce(types::Automodes) -> types::Automodes>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = types::Automodes(self.try_read(REG_AUTOMODES)?);
-        self.try_write(REG_AUTOMODES, f(tmp).0)
+        let tmp = types::Automodes(self.try_read(addr::REG_AUTOMODES)?);
+        self.try_write(addr::REG_AUTOMODES, f(tmp).0)
     }
 
     pub fn try_fifothresh(&self) -> Result<types::Fifothresh, RW::Error> {
-        Ok(types::Fifothresh(self.try_read(REG_FIFOTHRESH)?))
+        Ok(types::Fifothresh(self.try_read(addr::REG_FIFOTHRESH)?))
     }
     pub fn try_set_fifothresh(&self, value: types::Fifothresh) -> Result<(), RW::Error> {
-        self.try_write(REG_FIFOTHRESH, value.0)
+        self.try_write(addr::REG_FIFOTHRESH, value.0)
     }
     pub fn try_with_fifothresh<F: FnOnce(types::Fifothresh) -> types::Fifothresh>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = types::Fifothresh(self.try_read(REG_FIFOTHRESH)?);
-        self.try_write(REG_FIFOTHRESH, f(tmp).0)
+        let tmp = types::Fifothresh(self.try_read(addr::REG_FIFOTHRESH)?);
+        self.try_write(addr::REG_FIFOTHRESH, f(tmp).0)
     }
 
     pub fn try_packetconfig2(&self) -> Result<types::Packetconfig2, RW::Error> {
-        Ok(types::Packetconfig2(self.try_read(REG_PACKETCONFIG2)?))
+        Ok(types::Packetconfig2(self.try_read(addr::REG_PACKETCONFIG2)?))
     }
     pub fn try_set_packetconfig2(&self, value: types::Packetconfig2) -> Result<(), RW::Error> {
-        self.try_write(REG_PACKETCONFIG2, value.0)
+        self.try_write(addr::REG_PACKETCONFIG2, value.0)
     }
     pub fn try_with_packetconfig2<F: FnOnce(types::Packetconfig2) -> types::Packetconfig2>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = types::Packetconfig2(self.try_read(REG_PACKETCONFIG2)?);
-        self.try_write(REG_PACKETCONFIG2, f(tmp).0)
+        let tmp = types::Packetconfig2(self.try_read(addr::REG_PACKETCONFIG2)?);
+        self.try_write(addr::REG_PACKETCONFIG2, f(tmp).0)
     }
 
     pub fn try_aeskey(&self, index: usize) -> Result<types::Aeskey, RW::Error> {
         assert!(index < 16);
-        Ok(types::Aeskey(self.try_read(REG_AESKEY + index as u8)?))
+        Ok(types::Aeskey(self.try_read(addr::REG_AESKEY + index as u8)?))
     }
     pub fn try_set_aeskey(&self, index: usize, value: types::Aeskey) -> Result<(), RW::Error> {
         assert!(index < 16);
-        self.try_write(REG_AESKEY + index as u8, value.0)
+        self.try_write(addr::REG_AESKEY + index as u8, value.0)
     }
     pub fn try_with_aeskey<F: FnOnce(types::Aeskey) -> types::Aeskey>(&self, index: usize, f: F) -> Result<(), RW::Error> {
         assert!(index < 16);
-        let tmp = types::Aeskey(self.try_read(REG_AESKEY + index as u8)?);
-        self.try_write(REG_AESKEY + index as u8, f(tmp).0)
+        let tmp = types::Aeskey(self.try_read(addr::REG_AESKEY + index as u8)?);
+        self.try_write(addr::REG_AESKEY + index as u8, f(tmp).0)
     }
 
     pub fn try_temp1(&self) -> Result<types::Temp1, RW::Error> {
-        Ok(types::Temp1(self.try_read(REG_TEMP1)?))
+        Ok(types::Temp1(self.try_read(addr::REG_TEMP1)?))
     }
     pub fn try_set_temp1(&self, value: types::Temp1) -> Result<(), RW::Error> {
-        self.try_write(REG_TEMP1, value.0)
+        self.try_write(addr::REG_TEMP1, value.0)
     }
     pub fn try_with_temp1<F: FnOnce(types::Temp1) -> types::Temp1>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = types::Temp1(self.try_read(REG_TEMP1)?);
-        self.try_write(REG_TEMP1, f(tmp).0)
+        let tmp = types::Temp1(self.try_read(addr::REG_TEMP1)?);
+        self.try_write(addr::REG_TEMP1, f(tmp).0)
     }
 
     pub fn try_temp2(&self) -> Result<types::Temp2, RW::Error> {
-        Ok(types::Temp2(self.try_read(REG_TEMP2)?))
+        Ok(types::Temp2(self.try_read(addr::REG_TEMP2)?))
     }
     pub fn try_set_temp2(&self, value: types::Temp2) -> Result<(), RW::Error> {
-        self.try_write(REG_TEMP2, value.0)
+        self.try_write(addr::REG_TEMP2, value.0)
     }
     pub fn try_with_temp2<F: FnOnce(types::Temp2) -> types::Temp2>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = types::Temp2(self.try_read(REG_TEMP2)?);
-        self.try_write(REG_TEMP2, f(tmp).0)
+        let tmp = types::Temp2(self.try_read(addr::REG_TEMP2)?);
+        self.try_write(addr::REG_TEMP2, f(tmp).0)
     }
 
     pub fn try_testlna(&self) -> Result<types::Testlna, RW::Error> {
-        Ok(types::Testlna(self.try_read(REG_TESTLNA)?))
+        Ok(types::Testlna(self.try_read(addr::REG_TESTLNA)?))
     }
     pub fn try_set_testlna(&self, value: types::Testlna) -> Result<(), RW::Error> {
-        self.try_write(REG_TESTLNA, value.0)
+        self.try_write(addr::REG_TESTLNA, value.0)
     }
     pub fn try_with_testlna<F: FnOnce(types::Testlna) -> types::Testlna>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = types::Testlna(self.try_read(REG_TESTLNA)?);
-        self.try_write(REG_TESTLNA, f(tmp).0)
+        let tmp = types::Testlna(self.try_read(addr::REG_TESTLNA)?);
+        self.try_write(addr::REG_TESTLNA, f(tmp).0)
     }
 
     pub fn try_testpa1(&self) -> Result<types::Testpa1, RW::Error> {
-        Ok(types::Testpa1(self.try_read(REG_TESTPA1)?))
+        Ok(types::Testpa1(self.try_read(addr::REG_TESTPA1)?))
     }
     pub fn try_set_testpa1(&self, value: types::Testpa1) -> Result<(), RW::Error> {
-        self.try_write(REG_TESTPA1, value.0)
+        self.try_write(addr::REG_TESTPA1, value.0)
     }
     pub fn try_with_testpa1<F: FnOnce(types::Testpa1) -> types::Testpa1>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = types::Testpa1(self.try_read(REG_TESTPA1)?);
-        self.try_write(REG_TESTPA1, f(tmp).0)
+        let tmp = types::Testpa1(self.try_read(addr::REG_TESTPA1)?);
+        self.try_write(addr::REG_TESTPA1, f(tmp).0)
     }
 
     pub fn try_testpa2(&self) -> Result<types::Testpa2, RW::Error> {
-        Ok(types::Testpa2(self.try_read(REG_TESTPA2)?))
+        Ok(types::Testpa2(self.try_read(addr::REG_TESTPA2)?))
     }
     pub fn try_set_testpa2(&self, value: types::Testpa2) -> Result<(), RW::Error> {
-        self.try_write(REG_TESTPA2, value.0)
+        self.try_write(addr::REG_TESTPA2, value.0)
     }
     pub fn try_with_testpa2<F: FnOnce(types::Testpa2) -> types::Testpa2>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = types::Testpa2(self.try_read(REG_TESTPA2)?);
-        self.try_write(REG_TESTPA2, f(tmp).0)
+        let tmp = types::Testpa2(self.try_read(addr::REG_TESTPA2)?);
+        self.try_write(addr::REG_TESTPA2, f(tmp).0)
     }
 
     pub fn try_testdagc(&self) -> Result<types::Testdagc, RW::Error> {
-        Ok(types::Testdagc(self.try_read(REG_TESTDAGC)?))
+        Ok(types::Testdagc(self.try_read(addr::REG_TESTDAGC)?))
     }
     pub fn try_set_testdagc(&self, value: types::Testdagc) -> Result<(), RW::Error> {
-        self.try_write(REG_TESTDAGC, value.0)
+        self.try_write(addr::REG_TESTDAGC, value.0)
     }
     pub fn try_with_testdagc<F: FnOnce(types::Testdagc) -> types::Testdagc>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = types::Testdagc(self.try_read(REG_TESTDAGC)?);
-        self.try_write(REG_TESTDAGC, f(tmp).0)
+        let tmp = types::Testdagc(self.try_read(addr::REG_TESTDAGC)?);
+        self.try_write(addr::REG_TESTDAGC, f(tmp).0)
     }
 
     pub fn try_testafc(&self) -> Result<types::Testafc, RW::Error> {
-        Ok(types::Testafc(self.try_read(REG_TESTAFC)?))
+        Ok(types::Testafc(self.try_read(addr::REG_TESTAFC)?))
     }
     pub fn try_set_testafc(&self, value: types::Testafc) -> Result<(), RW::Error> {
-        self.try_write(REG_TESTAFC, value.0)
+        self.try_write(addr::REG_TESTAFC, value.0)
     }
     pub fn try_with_testafc<F: FnOnce(types::Testafc) -> types::Testafc>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = types::Testafc(self.try_read(REG_TESTAFC)?);
-        self.try_write(REG_TESTAFC, f(tmp).0)
+        let tmp = types::Testafc(self.try_read(addr::REG_TESTAFC)?);
+        self.try_write(addr::REG_TESTAFC, f(tmp).0)
     }
 
 }
