@@ -1,5 +1,5 @@
 use {Peripheral, Register};
-use super::{to_camel, size_type, field_name, field_getter, field_setter, field_with};
+use super::{to_camel, size_type, field_name, field_getter, field_setter, field_with, gen_doc};
 use std::io::{Write, Read, Result};
 use std::fs::{self, File, OpenOptions};
 use std::path::{Path, PathBuf};
@@ -327,11 +327,3 @@ pub fn gen_register<W: Write>(out: &mut W, r: &Register, size: &'static str) -> 
     Ok(())
 }
 
-
-fn gen_doc<W: Write>(out: &mut W, indent: usize, doc: &str) -> Result<()> {
-    let doc = doc.trim();
-    if doc.len() > 0 {
-        try!(writeln!(out, "{:indent$}#[doc=\"{}\"]", "", doc, indent=indent))
-    }
-    Ok(())
-}

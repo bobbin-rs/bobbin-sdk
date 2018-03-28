@@ -197,3 +197,11 @@ pub fn gen_resets<W: Write>(out: &mut W, d: &Device) -> Result<()> {
 
     Ok(())   
 }
+
+fn gen_doc<W: Write>(out: &mut W, indent: usize, doc: &str) -> Result<()> {
+    let doc = doc.trim();
+    if doc.len() > 0 {
+        try!(writeln!(out, "{:indent$}#[doc=\"{}\"]", "", doc, indent=indent))
+    }
+    Ok(())
+}
