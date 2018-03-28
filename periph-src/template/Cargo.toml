@@ -1,7 +1,7 @@
 [package]
 name = "%name%"
-version = "0.1.0"
-authors = ["Jonathan Soo <jcsoo@agora.com>"]
+version = "%version%"
+authors = ["%author%"]
 
 [dependencies]
 bobbin-bits = "0.1.1"

@@ -1,6 +1,8 @@
+#![doc="The RFM95/96/97/98(W) transceivers feature the LoRa long range modem that provides ultra-long range spread spectrum communication and high interference immunity whilst minimising current consumption."]
 #![no_std]
 
 extern crate bobbin_bits;
+
 pub type Addr = u8;
 pub type Value = u8;
 

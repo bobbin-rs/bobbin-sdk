@@ -1,6 +1,8 @@
+#![doc="The RFM69HCW is a transceiver module capable of operation over a wide frequency range, including the 315,433,868 and 915MHz license-free ISM (Industry Scientific and Medical) frequency bands."]
 #![no_std]
 
 extern crate bobbin_bits;
+
 pub type Addr = u8;
 pub type Value = u8;
 

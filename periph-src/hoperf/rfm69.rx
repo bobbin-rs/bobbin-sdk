@@ -1,5 +1,8 @@
 (peripheral
     (name RFM69)
+    (author "Jonathan Soo <jcsoo@agora.com>")
+    (version "0.1.0")
+    (description "The RFM69HCW is a transceiver module capable of operation over a wide frequency range, including the 315,433,868 and 915MHz license-free ISM (Industry Scientific and Medical) frequency bands.")
     (size 0x8)
     (register
         (name FIFO)

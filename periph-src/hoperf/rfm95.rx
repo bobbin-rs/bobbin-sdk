@@ -1,5 +1,8 @@
 (peripheral 
     (name RFM95)
+    (author "Jonathan Soo <jcsoo@agora.com>")
+    (version "0.1.0")
+    (description "The RFM95/96/97/98(W) transceivers feature the LoRa long range modem that provides ultra-long range spread spectrum communication and high interference immunity whilst minimising current consumption.")
     (size 0x8)
     (register
         (name FIFO)
