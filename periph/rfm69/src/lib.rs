@@ -1,1414 +1,1409 @@
 #![no_std]
-pub const REG_FIFO: u8 = 0x00;
-pub const REG_OPMODE: u8 = 0x01;
-pub const REG_DATAMODUL: u8 = 0x02;
-pub const REG_BITRATEMSB: u8 = 0x03;
-pub const REG_BITRATELSB: u8 = 0x04;
-pub const REG_FDEVMSB: u8 = 0x05;
-pub const REG_FDEVLSB: u8 = 0x06;
-pub const REG_FRFMSB: u8 = 0x07;
-pub const REG_FRFMID: u8 = 0x08;
-pub const REG_FRFLSB: u8 = 0x09;
-pub const REG_OSC1: u8 = 0x0a;
-pub const REG_AFCCTRL: u8 = 0x0b;
-pub const REG_LISTEN1: u8 = 0x0d;
-pub const REG_LISTEN2: u8 = 0x0e;
-pub const REG_LISTEN3: u8 = 0x0f;
-pub const REG_VERSION: u8 = 0x10;
-pub const REG_PALEVEL: u8 = 0x11;
-pub const REG_PARAMP: u8 = 0x12;
-pub const REG_OCP: u8 = 0x13;
-pub const REG_LNA: u8 = 0x18;
-pub const REG_RXBW: u8 = 0x19;
-pub const REG_AFCBW: u8 = 0x1a;
-pub const REG_OOKPEAK: u8 = 0x1b;
-pub const REG_OOKAVG: u8 = 0x1c;
-pub const REG_OOKFIX: u8 = 0x1d;
-pub const REG_AFCFEI: u8 = 0x1e;
-pub const REG_AFCMSB: u8 = 0x1f;
-pub const REG_AFCLSB: u8 = 0x20;
-pub const REG_FEIMSB: u8 = 0x21;
-pub const REG_FEILSB: u8 = 0x22;
-pub const REG_RSSICONFIG: u8 = 0x23;
-pub const REG_RSSIVALUE: u8 = 0x24;
-pub const REG_DIOMAPPING1: u8 = 0x25;
-pub const REG_DIOMAPPING2: u8 = 0x26;
-pub const REG_IRQFLAGS1: u8 = 0x27;
-pub const REG_IRQFLAGS2: u8 = 0x28;
-pub const REG_RSSITHRESH: u8 = 0x29;
-pub const REG_RXTIMEOUT1: u8 = 0x2a;
-pub const REG_RXTIMEOUT2: u8 = 0x2b;
-pub const REG_PREAMBLEMSB: u8 = 0x2c;
-pub const REG_PREAMBLELSB: u8 = 0x2d;
-pub const REG_SYNCCONFIG: u8 = 0x2e;
-pub const REG_SYNCVALUE: u8 = 0x2f;
-pub const REG_SYNCVALUE1: u8 = 0x2f;
-pub const REG_SYNCVALUE2: u8 = 0x30;
-pub const REG_SYNCVALUE3: u8 = 0x31;
-pub const REG_SYNCVALUE4: u8 = 0x32;
-pub const REG_SYNCVALUE5: u8 = 0x33;
-pub const REG_SYNCVALUE6: u8 = 0x34;
-pub const REG_SYNCVALUE7: u8 = 0x35;
-pub const REG_SYNCVALUE8: u8 = 0x36;
-pub const REG_PACKETCONFIG1: u8 = 0x37;
-pub const REG_PAYLOADLENGTH: u8 = 0x38;
-pub const REG_NODEADRS: u8 = 0x39;
-pub const REG_BROADCASTADRS: u8 = 0x3a;
-pub const REG_AUTOMODES: u8 = 0x3b;
-pub const REG_FIFOTHRESH: u8 = 0x3c;
-pub const REG_PACKETCONFIG2: u8 = 0x3d;
-pub const REG_AESKEY: u8 = 0x3e;
-pub const REG_AESKEY1: u8 = 0x3e;
-pub const REG_AESKEY2: u8 = 0x3f;
-pub const REG_AESKEY3: u8 = 0x40;
-pub const REG_AESKEY4: u8 = 0x41;
-pub const REG_AESKEY5: u8 = 0x42;
-pub const REG_AESKEY6: u8 = 0x43;
-pub const REG_AESKEY7: u8 = 0x44;
-pub const REG_AESKEY8: u8 = 0x45;
-pub const REG_AESKEY9: u8 = 0x46;
-pub const REG_AESKEY10: u8 = 0x47;
-pub const REG_AESKEY11: u8 = 0x48;
-pub const REG_AESKEY12: u8 = 0x49;
-pub const REG_AESKEY13: u8 = 0x4a;
-pub const REG_AESKEY14: u8 = 0x4b;
-pub const REG_AESKEY15: u8 = 0x4c;
-pub const REG_AESKEY16: u8 = 0x4d;
-pub const REG_TEMP1: u8 = 0x4e;
-pub const REG_TEMP2: u8 = 0x4f;
-pub const REG_TESTLNA: u8 = 0x58;
-pub const REG_TESTPA1: u8 = 0x5a;
-pub const REG_TESTPA2: u8 = 0x5c;
-pub const REG_TESTDAGC: u8 = 0x6f;
-pub const REG_TESTAFC: u8 = 0x71;
 
-pub trait ReadWrite {
-    type Addr: Copy;
-    type Value: Copy;
-    fn read(&self, addr: Self::Addr) -> Self::Value;
-    fn write(&self, addr: Self::Addr, val: Self::Value);
-}
+pub type Addr = u8;
+pub type Value = u8;
 
-pub trait TryReadWrite {
-    type Addr: Copy;
-    type Value: Copy;
-    type Error;
-    fn try_read(&self, addr: Self::Addr) -> Result<Self::Value, Self::Error>;
-    fn try_write(&self, addr: Self::Addr, val: Self::Value) -> Result<(), Self::Error>;
-}
-
+pub const REG_FIFO: Addr = 0x00;
+pub const REG_OPMODE: Addr = 0x01;
+pub const REG_DATAMODUL: Addr = 0x02;
+pub const REG_BITRATEMSB: Addr = 0x03;
+pub const REG_BITRATELSB: Addr = 0x04;
+pub const REG_FDEVMSB: Addr = 0x05;
+pub const REG_FDEVLSB: Addr = 0x06;
+pub const REG_FRFMSB: Addr = 0x07;
+pub const REG_FRFMID: Addr = 0x08;
+pub const REG_FRFLSB: Addr = 0x09;
+pub const REG_OSC1: Addr = 0x0a;
+pub const REG_AFCCTRL: Addr = 0x0b;
+pub const REG_LISTEN1: Addr = 0x0d;
+pub const REG_LISTEN2: Addr = 0x0e;
+pub const REG_LISTEN3: Addr = 0x0f;
+pub const REG_VERSION: Addr = 0x10;
+pub const REG_PALEVEL: Addr = 0x11;
+pub const REG_PARAMP: Addr = 0x12;
+pub const REG_OCP: Addr = 0x13;
+pub const REG_LNA: Addr = 0x18;
+pub const REG_RXBW: Addr = 0x19;
+pub const REG_AFCBW: Addr = 0x1a;
+pub const REG_OOKPEAK: Addr = 0x1b;
+pub const REG_OOKAVG: Addr = 0x1c;
+pub const REG_OOKFIX: Addr = 0x1d;
+pub const REG_AFCFEI: Addr = 0x1e;
+pub const REG_AFCMSB: Addr = 0x1f;
+pub const REG_AFCLSB: Addr = 0x20;
+pub const REG_FEIMSB: Addr = 0x21;
+pub const REG_FEILSB: Addr = 0x22;
+pub const REG_RSSICONFIG: Addr = 0x23;
+pub const REG_RSSIVALUE: Addr = 0x24;
+pub const REG_DIOMAPPING1: Addr = 0x25;
+pub const REG_DIOMAPPING2: Addr = 0x26;
+pub const REG_IRQFLAGS1: Addr = 0x27;
+pub const REG_IRQFLAGS2: Addr = 0x28;
+pub const REG_RSSITHRESH: Addr = 0x29;
+pub const REG_RXTIMEOUT1: Addr = 0x2a;
+pub const REG_RXTIMEOUT2: Addr = 0x2b;
+pub const REG_PREAMBLEMSB: Addr = 0x2c;
+pub const REG_PREAMBLELSB: Addr = 0x2d;
+pub const REG_SYNCCONFIG: Addr = 0x2e;
+pub const REG_SYNCVALUE: Addr = 0x2f;
+pub const REG_SYNCVALUE1: Addr = 0x2f;
+pub const REG_SYNCVALUE2: Addr = 0x30;
+pub const REG_SYNCVALUE3: Addr = 0x31;
+pub const REG_SYNCVALUE4: Addr = 0x32;
+pub const REG_SYNCVALUE5: Addr = 0x33;
+pub const REG_SYNCVALUE6: Addr = 0x34;
+pub const REG_SYNCVALUE7: Addr = 0x35;
+pub const REG_SYNCVALUE8: Addr = 0x36;
+pub const REG_PACKETCONFIG1: Addr = 0x37;
+pub const REG_PAYLOADLENGTH: Addr = 0x38;
+pub const REG_NODEADRS: Addr = 0x39;
+pub const REG_BROADCASTADRS: Addr = 0x3a;
+pub const REG_AUTOMODES: Addr = 0x3b;
+pub const REG_FIFOTHRESH: Addr = 0x3c;
+pub const REG_PACKETCONFIG2: Addr = 0x3d;
+pub const REG_AESKEY: Addr = 0x3e;
+pub const REG_AESKEY1: Addr = 0x3e;
+pub const REG_AESKEY2: Addr = 0x3f;
+pub const REG_AESKEY3: Addr = 0x40;
+pub const REG_AESKEY4: Addr = 0x41;
+pub const REG_AESKEY5: Addr = 0x42;
+pub const REG_AESKEY6: Addr = 0x43;
+pub const REG_AESKEY7: Addr = 0x44;
+pub const REG_AESKEY8: Addr = 0x45;
+pub const REG_AESKEY9: Addr = 0x46;
+pub const REG_AESKEY10: Addr = 0x47;
+pub const REG_AESKEY11: Addr = 0x48;
+pub const REG_AESKEY12: Addr = 0x49;
+pub const REG_AESKEY13: Addr = 0x4a;
+pub const REG_AESKEY14: Addr = 0x4b;
+pub const REG_AESKEY15: Addr = 0x4c;
+pub const REG_AESKEY16: Addr = 0x4d;
+pub const REG_TEMP1: Addr = 0x4e;
+pub const REG_TEMP2: Addr = 0x4f;
+pub const REG_TESTLNA: Addr = 0x58;
+pub const REG_TESTPA1: Addr = 0x5a;
+pub const REG_TESTPA2: Addr = 0x5c;
+pub const REG_TESTDAGC: Addr = 0x6f;
+pub const REG_TESTAFC: Addr = 0x71;
 
 pub struct Rfm69<RW> { rw: RW }
 
-impl<RW: ReadWrite<Addr=u8, Value=u8>> ReadWrite for Rfm69<RW> {
-    type Addr = RW::Addr;
-    type Value = RW::Value;
-    fn read(&self, addr: Self::Addr) -> Self::Value { self.rw.read(addr) }
-    fn write(&self, addr: Self::Addr, val: Self::Value) { self.rw.write(addr, val) }
+pub trait ReadWrite {
+    fn read(&self, addr: Addr) -> Value;
+    fn write(&self, addr: Addr, val: Value);
 }
 
-impl<RW: TryReadWrite<Addr=u8, Value=u8>> TryReadWrite for Rfm69<RW> {
-    type Addr = RW::Addr;
-    type Value = RW::Value;
+pub trait TryReadWrite {
+    type Error;
+    fn try_read(&self, addr: Addr) -> Result<Value, Self::Error>;
+    fn try_write(&self, addr: Addr, val: Value) -> Result<(), Self::Error>;
+}
+
+impl<RW: ReadWrite> ReadWrite for Rfm69<RW> {
+    fn read(&self, addr: Addr) -> Value { self.rw.read(addr) }
+    fn write(&self, addr: Addr, val: Value) { self.rw.write(addr, val) }
+}
+
+impl<RW: TryReadWrite> TryReadWrite for Rfm69<RW> {
     type Error = RW::Error;
-    fn try_read(&self, addr: Self::Addr) -> Result<Self::Value, Self::Error> { self.rw.try_read(addr) }
-    fn try_write(&self, addr: Self::Addr, val: Self::Value) -> Result<(), Self::Error> { self.rw.try_write(addr, val) }
+    fn try_read(&self, addr: Addr) -> Result<Value, Self::Error> { self.rw.try_read(addr) }
+    fn try_write(&self, addr: Addr, val: Value) -> Result<(), Self::Error> { self.rw.try_write(addr, val) }
 }
 
 impl<RW> Rfm69<RW> {
     pub fn new(rw: RW) -> Self { Rfm69 { rw } }
 }
 
-impl<RW: ReadWrite<Addr=u8, Value=u8>> Rfm69<RW> {
+impl<RW: ReadWrite> Rfm69<RW> {
     pub fn fifo(&self) -> Fifo {
-        Fifo(self.rw.read(REG_FIFO))
+        Fifo(self.read(REG_FIFO))
     }
     pub fn set_fifo(&self, value: Fifo) {
-        self.rw.write(REG_FIFO, value.0)
+        self.write(REG_FIFO, value.0)
     }
     pub fn with_fifo<F: FnOnce(Fifo) -> Fifo>(&self, f: F) {
-        let tmp = Fifo(self.rw.read(REG_FIFO));
-        self.rw.write(REG_FIFO, f(tmp).0)
+        let tmp = Fifo(self.read(REG_FIFO));
+        self.write(REG_FIFO, f(tmp).0)
     }
 
     pub fn opmode(&self) -> Opmode {
-        Opmode(self.rw.read(REG_OPMODE))
+        Opmode(self.read(REG_OPMODE))
     }
     pub fn set_opmode(&self, value: Opmode) {
-        self.rw.write(REG_OPMODE, value.0)
+        self.write(REG_OPMODE, value.0)
     }
     pub fn with_opmode<F: FnOnce(Opmode) -> Opmode>(&self, f: F) {
-        let tmp = Opmode(self.rw.read(REG_OPMODE));
-        self.rw.write(REG_OPMODE, f(tmp).0)
+        let tmp = Opmode(self.read(REG_OPMODE));
+        self.write(REG_OPMODE, f(tmp).0)
     }
 
     pub fn datamodul(&self) -> Datamodul {
-        Datamodul(self.rw.read(REG_DATAMODUL))
+        Datamodul(self.read(REG_DATAMODUL))
     }
     pub fn set_datamodul(&self, value: Datamodul) {
-        self.rw.write(REG_DATAMODUL, value.0)
+        self.write(REG_DATAMODUL, value.0)
     }
     pub fn with_datamodul<F: FnOnce(Datamodul) -> Datamodul>(&self, f: F) {
-        let tmp = Datamodul(self.rw.read(REG_DATAMODUL));
-        self.rw.write(REG_DATAMODUL, f(tmp).0)
+        let tmp = Datamodul(self.read(REG_DATAMODUL));
+        self.write(REG_DATAMODUL, f(tmp).0)
     }
 
     pub fn bitratemsb(&self) -> Bitratemsb {
-        Bitratemsb(self.rw.read(REG_BITRATEMSB))
+        Bitratemsb(self.read(REG_BITRATEMSB))
     }
     pub fn set_bitratemsb(&self, value: Bitratemsb) {
-        self.rw.write(REG_BITRATEMSB, value.0)
+        self.write(REG_BITRATEMSB, value.0)
     }
     pub fn with_bitratemsb<F: FnOnce(Bitratemsb) -> Bitratemsb>(&self, f: F) {
-        let tmp = Bitratemsb(self.rw.read(REG_BITRATEMSB));
-        self.rw.write(REG_BITRATEMSB, f(tmp).0)
+        let tmp = Bitratemsb(self.read(REG_BITRATEMSB));
+        self.write(REG_BITRATEMSB, f(tmp).0)
     }
 
     pub fn bitratelsb(&self) -> Bitratelsb {
-        Bitratelsb(self.rw.read(REG_BITRATELSB))
+        Bitratelsb(self.read(REG_BITRATELSB))
     }
     pub fn set_bitratelsb(&self, value: Bitratelsb) {
-        self.rw.write(REG_BITRATELSB, value.0)
+        self.write(REG_BITRATELSB, value.0)
     }
     pub fn with_bitratelsb<F: FnOnce(Bitratelsb) -> Bitratelsb>(&self, f: F) {
-        let tmp = Bitratelsb(self.rw.read(REG_BITRATELSB));
-        self.rw.write(REG_BITRATELSB, f(tmp).0)
+        let tmp = Bitratelsb(self.read(REG_BITRATELSB));
+        self.write(REG_BITRATELSB, f(tmp).0)
     }
 
     pub fn fdevmsb(&self) -> Fdevmsb {
-        Fdevmsb(self.rw.read(REG_FDEVMSB))
+        Fdevmsb(self.read(REG_FDEVMSB))
     }
     pub fn set_fdevmsb(&self, value: Fdevmsb) {
-        self.rw.write(REG_FDEVMSB, value.0)
+        self.write(REG_FDEVMSB, value.0)
     }
     pub fn with_fdevmsb<F: FnOnce(Fdevmsb) -> Fdevmsb>(&self, f: F) {
-        let tmp = Fdevmsb(self.rw.read(REG_FDEVMSB));
-        self.rw.write(REG_FDEVMSB, f(tmp).0)
+        let tmp = Fdevmsb(self.read(REG_FDEVMSB));
+        self.write(REG_FDEVMSB, f(tmp).0)
     }
 
     pub fn fdevlsb(&self) -> Fdevlsb {
-        Fdevlsb(self.rw.read(REG_FDEVLSB))
+        Fdevlsb(self.read(REG_FDEVLSB))
     }
     pub fn set_fdevlsb(&self, value: Fdevlsb) {
-        self.rw.write(REG_FDEVLSB, value.0)
+        self.write(REG_FDEVLSB, value.0)
     }
     pub fn with_fdevlsb<F: FnOnce(Fdevlsb) -> Fdevlsb>(&self, f: F) {
-        let tmp = Fdevlsb(self.rw.read(REG_FDEVLSB));
-        self.rw.write(REG_FDEVLSB, f(tmp).0)
+        let tmp = Fdevlsb(self.read(REG_FDEVLSB));
+        self.write(REG_FDEVLSB, f(tmp).0)
     }
 
     pub fn frfmsb(&self) -> Frfmsb {
-        Frfmsb(self.rw.read(REG_FRFMSB))
+        Frfmsb(self.read(REG_FRFMSB))
     }
     pub fn set_frfmsb(&self, value: Frfmsb) {
-        self.rw.write(REG_FRFMSB, value.0)
+        self.write(REG_FRFMSB, value.0)
     }
     pub fn with_frfmsb<F: FnOnce(Frfmsb) -> Frfmsb>(&self, f: F) {
-        let tmp = Frfmsb(self.rw.read(REG_FRFMSB));
-        self.rw.write(REG_FRFMSB, f(tmp).0)
+        let tmp = Frfmsb(self.read(REG_FRFMSB));
+        self.write(REG_FRFMSB, f(tmp).0)
     }
 
     pub fn frfmid(&self) -> Frfmid {
-        Frfmid(self.rw.read(REG_FRFMID))
+        Frfmid(self.read(REG_FRFMID))
     }
     pub fn set_frfmid(&self, value: Frfmid) {
-        self.rw.write(REG_FRFMID, value.0)
+        self.write(REG_FRFMID, value.0)
     }
     pub fn with_frfmid<F: FnOnce(Frfmid) -> Frfmid>(&self, f: F) {
-        let tmp = Frfmid(self.rw.read(REG_FRFMID));
-        self.rw.write(REG_FRFMID, f(tmp).0)
+        let tmp = Frfmid(self.read(REG_FRFMID));
+        self.write(REG_FRFMID, f(tmp).0)
     }
 
     pub fn frflsb(&self) -> Frflsb {
-        Frflsb(self.rw.read(REG_FRFLSB))
+        Frflsb(self.read(REG_FRFLSB))
     }
     pub fn set_frflsb(&self, value: Frflsb) {
-        self.rw.write(REG_FRFLSB, value.0)
+        self.write(REG_FRFLSB, value.0)
     }
     pub fn with_frflsb<F: FnOnce(Frflsb) -> Frflsb>(&self, f: F) {
-        let tmp = Frflsb(self.rw.read(REG_FRFLSB));
-        self.rw.write(REG_FRFLSB, f(tmp).0)
+        let tmp = Frflsb(self.read(REG_FRFLSB));
+        self.write(REG_FRFLSB, f(tmp).0)
     }
 
     pub fn osc1(&self) -> Osc1 {
-        Osc1(self.rw.read(REG_OSC1))
+        Osc1(self.read(REG_OSC1))
     }
     pub fn set_osc1(&self, value: Osc1) {
-        self.rw.write(REG_OSC1, value.0)
+        self.write(REG_OSC1, value.0)
     }
     pub fn with_osc1<F: FnOnce(Osc1) -> Osc1>(&self, f: F) {
-        let tmp = Osc1(self.rw.read(REG_OSC1));
-        self.rw.write(REG_OSC1, f(tmp).0)
+        let tmp = Osc1(self.read(REG_OSC1));
+        self.write(REG_OSC1, f(tmp).0)
     }
 
     pub fn afcctrl(&self) -> Afcctrl {
-        Afcctrl(self.rw.read(REG_AFCCTRL))
+        Afcctrl(self.read(REG_AFCCTRL))
     }
     pub fn set_afcctrl(&self, value: Afcctrl) {
-        self.rw.write(REG_AFCCTRL, value.0)
+        self.write(REG_AFCCTRL, value.0)
     }
     pub fn with_afcctrl<F: FnOnce(Afcctrl) -> Afcctrl>(&self, f: F) {
-        let tmp = Afcctrl(self.rw.read(REG_AFCCTRL));
-        self.rw.write(REG_AFCCTRL, f(tmp).0)
+        let tmp = Afcctrl(self.read(REG_AFCCTRL));
+        self.write(REG_AFCCTRL, f(tmp).0)
     }
 
     pub fn listen1(&self) -> Listen1 {
-        Listen1(self.rw.read(REG_LISTEN1))
+        Listen1(self.read(REG_LISTEN1))
     }
     pub fn set_listen1(&self, value: Listen1) {
-        self.rw.write(REG_LISTEN1, value.0)
+        self.write(REG_LISTEN1, value.0)
     }
     pub fn with_listen1<F: FnOnce(Listen1) -> Listen1>(&self, f: F) {
-        let tmp = Listen1(self.rw.read(REG_LISTEN1));
-        self.rw.write(REG_LISTEN1, f(tmp).0)
+        let tmp = Listen1(self.read(REG_LISTEN1));
+        self.write(REG_LISTEN1, f(tmp).0)
     }
 
     pub fn listen2(&self) -> Listen2 {
-        Listen2(self.rw.read(REG_LISTEN2))
+        Listen2(self.read(REG_LISTEN2))
     }
     pub fn set_listen2(&self, value: Listen2) {
-        self.rw.write(REG_LISTEN2, value.0)
+        self.write(REG_LISTEN2, value.0)
     }
     pub fn with_listen2<F: FnOnce(Listen2) -> Listen2>(&self, f: F) {
-        let tmp = Listen2(self.rw.read(REG_LISTEN2));
-        self.rw.write(REG_LISTEN2, f(tmp).0)
+        let tmp = Listen2(self.read(REG_LISTEN2));
+        self.write(REG_LISTEN2, f(tmp).0)
     }
 
     pub fn listen3(&self) -> Listen3 {
-        Listen3(self.rw.read(REG_LISTEN3))
+        Listen3(self.read(REG_LISTEN3))
     }
     pub fn set_listen3(&self, value: Listen3) {
-        self.rw.write(REG_LISTEN3, value.0)
+        self.write(REG_LISTEN3, value.0)
     }
     pub fn with_listen3<F: FnOnce(Listen3) -> Listen3>(&self, f: F) {
-        let tmp = Listen3(self.rw.read(REG_LISTEN3));
-        self.rw.write(REG_LISTEN3, f(tmp).0)
+        let tmp = Listen3(self.read(REG_LISTEN3));
+        self.write(REG_LISTEN3, f(tmp).0)
     }
 
     pub fn version(&self) -> Version {
-        Version(self.rw.read(REG_VERSION))
+        Version(self.read(REG_VERSION))
     }
     pub fn set_version(&self, value: Version) {
-        self.rw.write(REG_VERSION, value.0)
+        self.write(REG_VERSION, value.0)
     }
     pub fn with_version<F: FnOnce(Version) -> Version>(&self, f: F) {
-        let tmp = Version(self.rw.read(REG_VERSION));
-        self.rw.write(REG_VERSION, f(tmp).0)
+        let tmp = Version(self.read(REG_VERSION));
+        self.write(REG_VERSION, f(tmp).0)
     }
 
     pub fn palevel(&self) -> Palevel {
-        Palevel(self.rw.read(REG_PALEVEL))
+        Palevel(self.read(REG_PALEVEL))
     }
     pub fn set_palevel(&self, value: Palevel) {
-        self.rw.write(REG_PALEVEL, value.0)
+        self.write(REG_PALEVEL, value.0)
     }
     pub fn with_palevel<F: FnOnce(Palevel) -> Palevel>(&self, f: F) {
-        let tmp = Palevel(self.rw.read(REG_PALEVEL));
-        self.rw.write(REG_PALEVEL, f(tmp).0)
+        let tmp = Palevel(self.read(REG_PALEVEL));
+        self.write(REG_PALEVEL, f(tmp).0)
     }
 
     pub fn paramp(&self) -> Paramp {
-        Paramp(self.rw.read(REG_PARAMP))
+        Paramp(self.read(REG_PARAMP))
     }
     pub fn set_paramp(&self, value: Paramp) {
-        self.rw.write(REG_PARAMP, value.0)
+        self.write(REG_PARAMP, value.0)
     }
     pub fn with_paramp<F: FnOnce(Paramp) -> Paramp>(&self, f: F) {
-        let tmp = Paramp(self.rw.read(REG_PARAMP));
-        self.rw.write(REG_PARAMP, f(tmp).0)
+        let tmp = Paramp(self.read(REG_PARAMP));
+        self.write(REG_PARAMP, f(tmp).0)
     }
 
     pub fn ocp(&self) -> Ocp {
-        Ocp(self.rw.read(REG_OCP))
+        Ocp(self.read(REG_OCP))
     }
     pub fn set_ocp(&self, value: Ocp) {
-        self.rw.write(REG_OCP, value.0)
+        self.write(REG_OCP, value.0)
     }
     pub fn with_ocp<F: FnOnce(Ocp) -> Ocp>(&self, f: F) {
-        let tmp = Ocp(self.rw.read(REG_OCP));
-        self.rw.write(REG_OCP, f(tmp).0)
+        let tmp = Ocp(self.read(REG_OCP));
+        self.write(REG_OCP, f(tmp).0)
     }
 
     pub fn lna(&self) -> Lna {
-        Lna(self.rw.read(REG_LNA))
+        Lna(self.read(REG_LNA))
     }
     pub fn set_lna(&self, value: Lna) {
-        self.rw.write(REG_LNA, value.0)
+        self.write(REG_LNA, value.0)
     }
     pub fn with_lna<F: FnOnce(Lna) -> Lna>(&self, f: F) {
-        let tmp = Lna(self.rw.read(REG_LNA));
-        self.rw.write(REG_LNA, f(tmp).0)
+        let tmp = Lna(self.read(REG_LNA));
+        self.write(REG_LNA, f(tmp).0)
     }
 
     pub fn rxbw(&self) -> Rxbw {
-        Rxbw(self.rw.read(REG_RXBW))
+        Rxbw(self.read(REG_RXBW))
     }
     pub fn set_rxbw(&self, value: Rxbw) {
-        self.rw.write(REG_RXBW, value.0)
+        self.write(REG_RXBW, value.0)
     }
     pub fn with_rxbw<F: FnOnce(Rxbw) -> Rxbw>(&self, f: F) {
-        let tmp = Rxbw(self.rw.read(REG_RXBW));
-        self.rw.write(REG_RXBW, f(tmp).0)
+        let tmp = Rxbw(self.read(REG_RXBW));
+        self.write(REG_RXBW, f(tmp).0)
     }
 
     pub fn afcbw(&self) -> Afcbw {
-        Afcbw(self.rw.read(REG_AFCBW))
+        Afcbw(self.read(REG_AFCBW))
     }
     pub fn set_afcbw(&self, value: Afcbw) {
-        self.rw.write(REG_AFCBW, value.0)
+        self.write(REG_AFCBW, value.0)
     }
     pub fn with_afcbw<F: FnOnce(Afcbw) -> Afcbw>(&self, f: F) {
-        let tmp = Afcbw(self.rw.read(REG_AFCBW));
-        self.rw.write(REG_AFCBW, f(tmp).0)
+        let tmp = Afcbw(self.read(REG_AFCBW));
+        self.write(REG_AFCBW, f(tmp).0)
     }
 
     pub fn ookpeak(&self) -> Ookpeak {
-        Ookpeak(self.rw.read(REG_OOKPEAK))
+        Ookpeak(self.read(REG_OOKPEAK))
     }
     pub fn set_ookpeak(&self, value: Ookpeak) {
-        self.rw.write(REG_OOKPEAK, value.0)
+        self.write(REG_OOKPEAK, value.0)
     }
     pub fn with_ookpeak<F: FnOnce(Ookpeak) -> Ookpeak>(&self, f: F) {
-        let tmp = Ookpeak(self.rw.read(REG_OOKPEAK));
-        self.rw.write(REG_OOKPEAK, f(tmp).0)
+        let tmp = Ookpeak(self.read(REG_OOKPEAK));
+        self.write(REG_OOKPEAK, f(tmp).0)
     }
 
     pub fn ookavg(&self) -> Ookavg {
-        Ookavg(self.rw.read(REG_OOKAVG))
+        Ookavg(self.read(REG_OOKAVG))
     }
     pub fn set_ookavg(&self, value: Ookavg) {
-        self.rw.write(REG_OOKAVG, value.0)
+        self.write(REG_OOKAVG, value.0)
     }
     pub fn with_ookavg<F: FnOnce(Ookavg) -> Ookavg>(&self, f: F) {
-        let tmp = Ookavg(self.rw.read(REG_OOKAVG));
-        self.rw.write(REG_OOKAVG, f(tmp).0)
+        let tmp = Ookavg(self.read(REG_OOKAVG));
+        self.write(REG_OOKAVG, f(tmp).0)
     }
 
     pub fn ookfix(&self) -> Ookfix {
-        Ookfix(self.rw.read(REG_OOKFIX))
+        Ookfix(self.read(REG_OOKFIX))
     }
     pub fn set_ookfix(&self, value: Ookfix) {
-        self.rw.write(REG_OOKFIX, value.0)
+        self.write(REG_OOKFIX, value.0)
     }
     pub fn with_ookfix<F: FnOnce(Ookfix) -> Ookfix>(&self, f: F) {
-        let tmp = Ookfix(self.rw.read(REG_OOKFIX));
-        self.rw.write(REG_OOKFIX, f(tmp).0)
+        let tmp = Ookfix(self.read(REG_OOKFIX));
+        self.write(REG_OOKFIX, f(tmp).0)
     }
 
     pub fn afcfei(&self) -> Afcfei {
-        Afcfei(self.rw.read(REG_AFCFEI))
+        Afcfei(self.read(REG_AFCFEI))
     }
     pub fn set_afcfei(&self, value: Afcfei) {
-        self.rw.write(REG_AFCFEI, value.0)
+        self.write(REG_AFCFEI, value.0)
     }
     pub fn with_afcfei<F: FnOnce(Afcfei) -> Afcfei>(&self, f: F) {
-        let tmp = Afcfei(self.rw.read(REG_AFCFEI));
-        self.rw.write(REG_AFCFEI, f(tmp).0)
+        let tmp = Afcfei(self.read(REG_AFCFEI));
+        self.write(REG_AFCFEI, f(tmp).0)
     }
 
     pub fn afcmsb(&self) -> Afcmsb {
-        Afcmsb(self.rw.read(REG_AFCMSB))
+        Afcmsb(self.read(REG_AFCMSB))
     }
     pub fn set_afcmsb(&self, value: Afcmsb) {
-        self.rw.write(REG_AFCMSB, value.0)
+        self.write(REG_AFCMSB, value.0)
     }
     pub fn with_afcmsb<F: FnOnce(Afcmsb) -> Afcmsb>(&self, f: F) {
-        let tmp = Afcmsb(self.rw.read(REG_AFCMSB));
-        self.rw.write(REG_AFCMSB, f(tmp).0)
+        let tmp = Afcmsb(self.read(REG_AFCMSB));
+        self.write(REG_AFCMSB, f(tmp).0)
     }
 
     pub fn afclsb(&self) -> Afclsb {
-        Afclsb(self.rw.read(REG_AFCLSB))
+        Afclsb(self.read(REG_AFCLSB))
     }
     pub fn set_afclsb(&self, value: Afclsb) {
-        self.rw.write(REG_AFCLSB, value.0)
+        self.write(REG_AFCLSB, value.0)
     }
     pub fn with_afclsb<F: FnOnce(Afclsb) -> Afclsb>(&self, f: F) {
-        let tmp = Afclsb(self.rw.read(REG_AFCLSB));
-        self.rw.write(REG_AFCLSB, f(tmp).0)
+        let tmp = Afclsb(self.read(REG_AFCLSB));
+        self.write(REG_AFCLSB, f(tmp).0)
     }
 
     pub fn feimsb(&self) -> Feimsb {
-        Feimsb(self.rw.read(REG_FEIMSB))
+        Feimsb(self.read(REG_FEIMSB))
     }
     pub fn set_feimsb(&self, value: Feimsb) {
-        self.rw.write(REG_FEIMSB, value.0)
+        self.write(REG_FEIMSB, value.0)
     }
     pub fn with_feimsb<F: FnOnce(Feimsb) -> Feimsb>(&self, f: F) {
-        let tmp = Feimsb(self.rw.read(REG_FEIMSB));
-        self.rw.write(REG_FEIMSB, f(tmp).0)
+        let tmp = Feimsb(self.read(REG_FEIMSB));
+        self.write(REG_FEIMSB, f(tmp).0)
     }
 
     pub fn feilsb(&self) -> Feilsb {
-        Feilsb(self.rw.read(REG_FEILSB))
+        Feilsb(self.read(REG_FEILSB))
     }
     pub fn set_feilsb(&self, value: Feilsb) {
-        self.rw.write(REG_FEILSB, value.0)
+        self.write(REG_FEILSB, value.0)
     }
     pub fn with_feilsb<F: FnOnce(Feilsb) -> Feilsb>(&self, f: F) {
-        let tmp = Feilsb(self.rw.read(REG_FEILSB));
-        self.rw.write(REG_FEILSB, f(tmp).0)
+        let tmp = Feilsb(self.read(REG_FEILSB));
+        self.write(REG_FEILSB, f(tmp).0)
     }
 
     pub fn rssiconfig(&self) -> Rssiconfig {
-        Rssiconfig(self.rw.read(REG_RSSICONFIG))
+        Rssiconfig(self.read(REG_RSSICONFIG))
     }
     pub fn set_rssiconfig(&self, value: Rssiconfig) {
-        self.rw.write(REG_RSSICONFIG, value.0)
+        self.write(REG_RSSICONFIG, value.0)
     }
     pub fn with_rssiconfig<F: FnOnce(Rssiconfig) -> Rssiconfig>(&self, f: F) {
-        let tmp = Rssiconfig(self.rw.read(REG_RSSICONFIG));
-        self.rw.write(REG_RSSICONFIG, f(tmp).0)
+        let tmp = Rssiconfig(self.read(REG_RSSICONFIG));
+        self.write(REG_RSSICONFIG, f(tmp).0)
     }
 
     pub fn rssivalue(&self) -> Rssivalue {
-        Rssivalue(self.rw.read(REG_RSSIVALUE))
+        Rssivalue(self.read(REG_RSSIVALUE))
     }
     pub fn set_rssivalue(&self, value: Rssivalue) {
-        self.rw.write(REG_RSSIVALUE, value.0)
+        self.write(REG_RSSIVALUE, value.0)
     }
     pub fn with_rssivalue<F: FnOnce(Rssivalue) -> Rssivalue>(&self, f: F) {
-        let tmp = Rssivalue(self.rw.read(REG_RSSIVALUE));
-        self.rw.write(REG_RSSIVALUE, f(tmp).0)
+        let tmp = Rssivalue(self.read(REG_RSSIVALUE));
+        self.write(REG_RSSIVALUE, f(tmp).0)
     }
 
     pub fn diomapping1(&self) -> Diomapping1 {
-        Diomapping1(self.rw.read(REG_DIOMAPPING1))
+        Diomapping1(self.read(REG_DIOMAPPING1))
     }
     pub fn set_diomapping1(&self, value: Diomapping1) {
-        self.rw.write(REG_DIOMAPPING1, value.0)
+        self.write(REG_DIOMAPPING1, value.0)
     }
     pub fn with_diomapping1<F: FnOnce(Diomapping1) -> Diomapping1>(&self, f: F) {
-        let tmp = Diomapping1(self.rw.read(REG_DIOMAPPING1));
-        self.rw.write(REG_DIOMAPPING1, f(tmp).0)
+        let tmp = Diomapping1(self.read(REG_DIOMAPPING1));
+        self.write(REG_DIOMAPPING1, f(tmp).0)
     }
 
     pub fn diomapping2(&self) -> Diomapping2 {
-        Diomapping2(self.rw.read(REG_DIOMAPPING2))
+        Diomapping2(self.read(REG_DIOMAPPING2))
     }
     pub fn set_diomapping2(&self, value: Diomapping2) {
-        self.rw.write(REG_DIOMAPPING2, value.0)
+        self.write(REG_DIOMAPPING2, value.0)
     }
     pub fn with_diomapping2<F: FnOnce(Diomapping2) -> Diomapping2>(&self, f: F) {
-        let tmp = Diomapping2(self.rw.read(REG_DIOMAPPING2));
-        self.rw.write(REG_DIOMAPPING2, f(tmp).0)
+        let tmp = Diomapping2(self.read(REG_DIOMAPPING2));
+        self.write(REG_DIOMAPPING2, f(tmp).0)
     }
 
     pub fn irqflags1(&self) -> Irqflags1 {
-        Irqflags1(self.rw.read(REG_IRQFLAGS1))
+        Irqflags1(self.read(REG_IRQFLAGS1))
     }
     pub fn set_irqflags1(&self, value: Irqflags1) {
-        self.rw.write(REG_IRQFLAGS1, value.0)
+        self.write(REG_IRQFLAGS1, value.0)
     }
     pub fn with_irqflags1<F: FnOnce(Irqflags1) -> Irqflags1>(&self, f: F) {
-        let tmp = Irqflags1(self.rw.read(REG_IRQFLAGS1));
-        self.rw.write(REG_IRQFLAGS1, f(tmp).0)
+        let tmp = Irqflags1(self.read(REG_IRQFLAGS1));
+        self.write(REG_IRQFLAGS1, f(tmp).0)
     }
 
     pub fn irqflags2(&self) -> Irqflags2 {
-        Irqflags2(self.rw.read(REG_IRQFLAGS2))
+        Irqflags2(self.read(REG_IRQFLAGS2))
     }
     pub fn set_irqflags2(&self, value: Irqflags2) {
-        self.rw.write(REG_IRQFLAGS2, value.0)
+        self.write(REG_IRQFLAGS2, value.0)
     }
     pub fn with_irqflags2<F: FnOnce(Irqflags2) -> Irqflags2>(&self, f: F) {
-        let tmp = Irqflags2(self.rw.read(REG_IRQFLAGS2));
-        self.rw.write(REG_IRQFLAGS2, f(tmp).0)
+        let tmp = Irqflags2(self.read(REG_IRQFLAGS2));
+        self.write(REG_IRQFLAGS2, f(tmp).0)
     }
 
     pub fn rssithresh(&self) -> Rssithresh {
-        Rssithresh(self.rw.read(REG_RSSITHRESH))
+        Rssithresh(self.read(REG_RSSITHRESH))
     }
     pub fn set_rssithresh(&self, value: Rssithresh) {
-        self.rw.write(REG_RSSITHRESH, value.0)
+        self.write(REG_RSSITHRESH, value.0)
     }
     pub fn with_rssithresh<F: FnOnce(Rssithresh) -> Rssithresh>(&self, f: F) {
-        let tmp = Rssithresh(self.rw.read(REG_RSSITHRESH));
-        self.rw.write(REG_RSSITHRESH, f(tmp).0)
+        let tmp = Rssithresh(self.read(REG_RSSITHRESH));
+        self.write(REG_RSSITHRESH, f(tmp).0)
     }
 
     pub fn rxtimeout1(&self) -> Rxtimeout1 {
-        Rxtimeout1(self.rw.read(REG_RXTIMEOUT1))
+        Rxtimeout1(self.read(REG_RXTIMEOUT1))
     }
     pub fn set_rxtimeout1(&self, value: Rxtimeout1) {
-        self.rw.write(REG_RXTIMEOUT1, value.0)
+        self.write(REG_RXTIMEOUT1, value.0)
     }
     pub fn with_rxtimeout1<F: FnOnce(Rxtimeout1) -> Rxtimeout1>(&self, f: F) {
-        let tmp = Rxtimeout1(self.rw.read(REG_RXTIMEOUT1));
-        self.rw.write(REG_RXTIMEOUT1, f(tmp).0)
+        let tmp = Rxtimeout1(self.read(REG_RXTIMEOUT1));
+        self.write(REG_RXTIMEOUT1, f(tmp).0)
     }
 
     pub fn rxtimeout2(&self) -> Rxtimeout2 {
-        Rxtimeout2(self.rw.read(REG_RXTIMEOUT2))
+        Rxtimeout2(self.read(REG_RXTIMEOUT2))
     }
     pub fn set_rxtimeout2(&self, value: Rxtimeout2) {
-        self.rw.write(REG_RXTIMEOUT2, value.0)
+        self.write(REG_RXTIMEOUT2, value.0)
     }
     pub fn with_rxtimeout2<F: FnOnce(Rxtimeout2) -> Rxtimeout2>(&self, f: F) {
-        let tmp = Rxtimeout2(self.rw.read(REG_RXTIMEOUT2));
-        self.rw.write(REG_RXTIMEOUT2, f(tmp).0)
+        let tmp = Rxtimeout2(self.read(REG_RXTIMEOUT2));
+        self.write(REG_RXTIMEOUT2, f(tmp).0)
     }
 
     pub fn preamblemsb(&self) -> Preamblemsb {
-        Preamblemsb(self.rw.read(REG_PREAMBLEMSB))
+        Preamblemsb(self.read(REG_PREAMBLEMSB))
     }
     pub fn set_preamblemsb(&self, value: Preamblemsb) {
-        self.rw.write(REG_PREAMBLEMSB, value.0)
+        self.write(REG_PREAMBLEMSB, value.0)
     }
     pub fn with_preamblemsb<F: FnOnce(Preamblemsb) -> Preamblemsb>(&self, f: F) {
-        let tmp = Preamblemsb(self.rw.read(REG_PREAMBLEMSB));
-        self.rw.write(REG_PREAMBLEMSB, f(tmp).0)
+        let tmp = Preamblemsb(self.read(REG_PREAMBLEMSB));
+        self.write(REG_PREAMBLEMSB, f(tmp).0)
     }
 
     pub fn preamblelsb(&self) -> Preamblelsb {
-        Preamblelsb(self.rw.read(REG_PREAMBLELSB))
+        Preamblelsb(self.read(REG_PREAMBLELSB))
     }
     pub fn set_preamblelsb(&self, value: Preamblelsb) {
-        self.rw.write(REG_PREAMBLELSB, value.0)
+        self.write(REG_PREAMBLELSB, value.0)
     }
     pub fn with_preamblelsb<F: FnOnce(Preamblelsb) -> Preamblelsb>(&self, f: F) {
-        let tmp = Preamblelsb(self.rw.read(REG_PREAMBLELSB));
-        self.rw.write(REG_PREAMBLELSB, f(tmp).0)
+        let tmp = Preamblelsb(self.read(REG_PREAMBLELSB));
+        self.write(REG_PREAMBLELSB, f(tmp).0)
     }
 
     pub fn syncconfig(&self) -> Syncconfig {
-        Syncconfig(self.rw.read(REG_SYNCCONFIG))
+        Syncconfig(self.read(REG_SYNCCONFIG))
     }
     pub fn set_syncconfig(&self, value: Syncconfig) {
-        self.rw.write(REG_SYNCCONFIG, value.0)
+        self.write(REG_SYNCCONFIG, value.0)
     }
     pub fn with_syncconfig<F: FnOnce(Syncconfig) -> Syncconfig>(&self, f: F) {
-        let tmp = Syncconfig(self.rw.read(REG_SYNCCONFIG));
-        self.rw.write(REG_SYNCCONFIG, f(tmp).0)
+        let tmp = Syncconfig(self.read(REG_SYNCCONFIG));
+        self.write(REG_SYNCCONFIG, f(tmp).0)
     }
 
     pub fn syncvalue(&self, index: usize) -> Syncvalue {
         assert!(index < 8);
-        Syncvalue(self.rw.read(REG_SYNCVALUE + index as u8))
+        Syncvalue(self.read(REG_SYNCVALUE + index as u8))
     }
     pub fn set_syncvalue(&self, index: usize, value: Syncvalue) {
         assert!(index < 8);
-        self.rw.write(REG_SYNCVALUE + index as u8, value.0)
+        self.write(REG_SYNCVALUE + index as u8, value.0)
     }
     pub fn with_syncvalue<F: FnOnce(Syncvalue) -> Syncvalue>(&self, index: usize, f: F) {
         assert!(index < 8);
-        let tmp = Syncvalue(self.rw.read(REG_SYNCVALUE + index as u8));
-        self.rw.write(REG_SYNCVALUE + index as u8, f(tmp).0)
+        let tmp = Syncvalue(self.read(REG_SYNCVALUE + index as u8));
+        self.write(REG_SYNCVALUE + index as u8, f(tmp).0)
     }
 
     pub fn packetconfig1(&self) -> Packetconfig1 {
-        Packetconfig1(self.rw.read(REG_PACKETCONFIG1))
+        Packetconfig1(self.read(REG_PACKETCONFIG1))
     }
     pub fn set_packetconfig1(&self, value: Packetconfig1) {
-        self.rw.write(REG_PACKETCONFIG1, value.0)
+        self.write(REG_PACKETCONFIG1, value.0)
     }
     pub fn with_packetconfig1<F: FnOnce(Packetconfig1) -> Packetconfig1>(&self, f: F) {
-        let tmp = Packetconfig1(self.rw.read(REG_PACKETCONFIG1));
-        self.rw.write(REG_PACKETCONFIG1, f(tmp).0)
+        let tmp = Packetconfig1(self.read(REG_PACKETCONFIG1));
+        self.write(REG_PACKETCONFIG1, f(tmp).0)
     }
 
     pub fn payloadlength(&self) -> Payloadlength {
-        Payloadlength(self.rw.read(REG_PAYLOADLENGTH))
+        Payloadlength(self.read(REG_PAYLOADLENGTH))
     }
     pub fn set_payloadlength(&self, value: Payloadlength) {
-        self.rw.write(REG_PAYLOADLENGTH, value.0)
+        self.write(REG_PAYLOADLENGTH, value.0)
     }
     pub fn with_payloadlength<F: FnOnce(Payloadlength) -> Payloadlength>(&self, f: F) {
-        let tmp = Payloadlength(self.rw.read(REG_PAYLOADLENGTH));
-        self.rw.write(REG_PAYLOADLENGTH, f(tmp).0)
+        let tmp = Payloadlength(self.read(REG_PAYLOADLENGTH));
+        self.write(REG_PAYLOADLENGTH, f(tmp).0)
     }
 
     pub fn nodeadrs(&self) -> Nodeadrs {
-        Nodeadrs(self.rw.read(REG_NODEADRS))
+        Nodeadrs(self.read(REG_NODEADRS))
     }
     pub fn set_nodeadrs(&self, value: Nodeadrs) {
-        self.rw.write(REG_NODEADRS, value.0)
+        self.write(REG_NODEADRS, value.0)
     }
     pub fn with_nodeadrs<F: FnOnce(Nodeadrs) -> Nodeadrs>(&self, f: F) {
-        let tmp = Nodeadrs(self.rw.read(REG_NODEADRS));
-        self.rw.write(REG_NODEADRS, f(tmp).0)
+        let tmp = Nodeadrs(self.read(REG_NODEADRS));
+        self.write(REG_NODEADRS, f(tmp).0)
     }
 
     pub fn broadcastadrs(&self) -> Broadcastadrs {
-        Broadcastadrs(self.rw.read(REG_BROADCASTADRS))
+        Broadcastadrs(self.read(REG_BROADCASTADRS))
     }
     pub fn set_broadcastadrs(&self, value: Broadcastadrs) {
-        self.rw.write(REG_BROADCASTADRS, value.0)
+        self.write(REG_BROADCASTADRS, value.0)
     }
     pub fn with_broadcastadrs<F: FnOnce(Broadcastadrs) -> Broadcastadrs>(&self, f: F) {
-        let tmp = Broadcastadrs(self.rw.read(REG_BROADCASTADRS));
-        self.rw.write(REG_BROADCASTADRS, f(tmp).0)
+        let tmp = Broadcastadrs(self.read(REG_BROADCASTADRS));
+        self.write(REG_BROADCASTADRS, f(tmp).0)
     }
 
     pub fn automodes(&self) -> Automodes {
-        Automodes(self.rw.read(REG_AUTOMODES))
+        Automodes(self.read(REG_AUTOMODES))
     }
     pub fn set_automodes(&self, value: Automodes) {
-        self.rw.write(REG_AUTOMODES, value.0)
+        self.write(REG_AUTOMODES, value.0)
     }
     pub fn with_automodes<F: FnOnce(Automodes) -> Automodes>(&self, f: F) {
-        let tmp = Automodes(self.rw.read(REG_AUTOMODES));
-        self.rw.write(REG_AUTOMODES, f(tmp).0)
+        let tmp = Automodes(self.read(REG_AUTOMODES));
+        self.write(REG_AUTOMODES, f(tmp).0)
     }
 
     pub fn fifothresh(&self) -> Fifothresh {
-        Fifothresh(self.rw.read(REG_FIFOTHRESH))
+        Fifothresh(self.read(REG_FIFOTHRESH))
     }
     pub fn set_fifothresh(&self, value: Fifothresh) {
-        self.rw.write(REG_FIFOTHRESH, value.0)
+        self.write(REG_FIFOTHRESH, value.0)
     }
     pub fn with_fifothresh<F: FnOnce(Fifothresh) -> Fifothresh>(&self, f: F) {
-        let tmp = Fifothresh(self.rw.read(REG_FIFOTHRESH));
-        self.rw.write(REG_FIFOTHRESH, f(tmp).0)
+        let tmp = Fifothresh(self.read(REG_FIFOTHRESH));
+        self.write(REG_FIFOTHRESH, f(tmp).0)
     }
 
     pub fn packetconfig2(&self) -> Packetconfig2 {
-        Packetconfig2(self.rw.read(REG_PACKETCONFIG2))
+        Packetconfig2(self.read(REG_PACKETCONFIG2))
     }
     pub fn set_packetconfig2(&self, value: Packetconfig2) {
-        self.rw.write(REG_PACKETCONFIG2, value.0)
+        self.write(REG_PACKETCONFIG2, value.0)
     }
     pub fn with_packetconfig2<F: FnOnce(Packetconfig2) -> Packetconfig2>(&self, f: F) {
-        let tmp = Packetconfig2(self.rw.read(REG_PACKETCONFIG2));
-        self.rw.write(REG_PACKETCONFIG2, f(tmp).0)
+        let tmp = Packetconfig2(self.read(REG_PACKETCONFIG2));
+        self.write(REG_PACKETCONFIG2, f(tmp).0)
     }
 
     pub fn aeskey(&self, index: usize) -> Aeskey {
         assert!(index < 16);
-        Aeskey(self.rw.read(REG_AESKEY + index as u8))
+        Aeskey(self.read(REG_AESKEY + index as u8))
     }
     pub fn set_aeskey(&self, index: usize, value: Aeskey) {
         assert!(index < 16);
-        self.rw.write(REG_AESKEY + index as u8, value.0)
+        self.write(REG_AESKEY + index as u8, value.0)
     }
     pub fn with_aeskey<F: FnOnce(Aeskey) -> Aeskey>(&self, index: usize, f: F) {
         assert!(index < 16);
-        let tmp = Aeskey(self.rw.read(REG_AESKEY + index as u8));
-        self.rw.write(REG_AESKEY + index as u8, f(tmp).0)
+        let tmp = Aeskey(self.read(REG_AESKEY + index as u8));
+        self.write(REG_AESKEY + index as u8, f(tmp).0)
     }
 
     pub fn temp1(&self) -> Temp1 {
-        Temp1(self.rw.read(REG_TEMP1))
+        Temp1(self.read(REG_TEMP1))
     }
     pub fn set_temp1(&self, value: Temp1) {
-        self.rw.write(REG_TEMP1, value.0)
+        self.write(REG_TEMP1, value.0)
     }
     pub fn with_temp1<F: FnOnce(Temp1) -> Temp1>(&self, f: F) {
-        let tmp = Temp1(self.rw.read(REG_TEMP1));
-        self.rw.write(REG_TEMP1, f(tmp).0)
+        let tmp = Temp1(self.read(REG_TEMP1));
+        self.write(REG_TEMP1, f(tmp).0)
     }
 
     pub fn temp2(&self) -> Temp2 {
-        Temp2(self.rw.read(REG_TEMP2))
+        Temp2(self.read(REG_TEMP2))
     }
     pub fn set_temp2(&self, value: Temp2) {
-        self.rw.write(REG_TEMP2, value.0)
+        self.write(REG_TEMP2, value.0)
     }
     pub fn with_temp2<F: FnOnce(Temp2) -> Temp2>(&self, f: F) {
-        let tmp = Temp2(self.rw.read(REG_TEMP2));
-        self.rw.write(REG_TEMP2, f(tmp).0)
+        let tmp = Temp2(self.read(REG_TEMP2));
+        self.write(REG_TEMP2, f(tmp).0)
     }
 
     pub fn testlna(&self) -> Testlna {
-        Testlna(self.rw.read(REG_TESTLNA))
+        Testlna(self.read(REG_TESTLNA))
     }
     pub fn set_testlna(&self, value: Testlna) {
-        self.rw.write(REG_TESTLNA, value.0)
+        self.write(REG_TESTLNA, value.0)
     }
     pub fn with_testlna<F: FnOnce(Testlna) -> Testlna>(&self, f: F) {
-        let tmp = Testlna(self.rw.read(REG_TESTLNA));
-        self.rw.write(REG_TESTLNA, f(tmp).0)
+        let tmp = Testlna(self.read(REG_TESTLNA));
+        self.write(REG_TESTLNA, f(tmp).0)
     }
 
     pub fn testpa1(&self) -> Testpa1 {
-        Testpa1(self.rw.read(REG_TESTPA1))
+        Testpa1(self.read(REG_TESTPA1))
     }
     pub fn set_testpa1(&self, value: Testpa1) {
-        self.rw.write(REG_TESTPA1, value.0)
+        self.write(REG_TESTPA1, value.0)
     }
     pub fn with_testpa1<F: FnOnce(Testpa1) -> Testpa1>(&self, f: F) {
-        let tmp = Testpa1(self.rw.read(REG_TESTPA1));
-        self.rw.write(REG_TESTPA1, f(tmp).0)
+        let tmp = Testpa1(self.read(REG_TESTPA1));
+        self.write(REG_TESTPA1, f(tmp).0)
     }
 
     pub fn testpa2(&self) -> Testpa2 {
-        Testpa2(self.rw.read(REG_TESTPA2))
+        Testpa2(self.read(REG_TESTPA2))
     }
     pub fn set_testpa2(&self, value: Testpa2) {
-        self.rw.write(REG_TESTPA2, value.0)
+        self.write(REG_TESTPA2, value.0)
     }
     pub fn with_testpa2<F: FnOnce(Testpa2) -> Testpa2>(&self, f: F) {
-        let tmp = Testpa2(self.rw.read(REG_TESTPA2));
-        self.rw.write(REG_TESTPA2, f(tmp).0)
+        let tmp = Testpa2(self.read(REG_TESTPA2));
+        self.write(REG_TESTPA2, f(tmp).0)
     }
 
     pub fn testdagc(&self) -> Testdagc {
-        Testdagc(self.rw.read(REG_TESTDAGC))
+        Testdagc(self.read(REG_TESTDAGC))
     }
     pub fn set_testdagc(&self, value: Testdagc) {
-        self.rw.write(REG_TESTDAGC, value.0)
+        self.write(REG_TESTDAGC, value.0)
     }
     pub fn with_testdagc<F: FnOnce(Testdagc) -> Testdagc>(&self, f: F) {
-        let tmp = Testdagc(self.rw.read(REG_TESTDAGC));
-        self.rw.write(REG_TESTDAGC, f(tmp).0)
+        let tmp = Testdagc(self.read(REG_TESTDAGC));
+        self.write(REG_TESTDAGC, f(tmp).0)
     }
 
     pub fn testafc(&self) -> Testafc {
-        Testafc(self.rw.read(REG_TESTAFC))
+        Testafc(self.read(REG_TESTAFC))
     }
     pub fn set_testafc(&self, value: Testafc) {
-        self.rw.write(REG_TESTAFC, value.0)
+        self.write(REG_TESTAFC, value.0)
     }
     pub fn with_testafc<F: FnOnce(Testafc) -> Testafc>(&self, f: F) {
-        let tmp = Testafc(self.rw.read(REG_TESTAFC));
-        self.rw.write(REG_TESTAFC, f(tmp).0)
+        let tmp = Testafc(self.read(REG_TESTAFC));
+        self.write(REG_TESTAFC, f(tmp).0)
     }
 
 }
 
-impl<RW: TryReadWrite<Addr=u8, Value=u8>> Rfm69<RW> {
+impl<RW: TryReadWrite> Rfm69<RW> {
     pub fn try_fifo(&self) -> Result<Fifo, RW::Error> {
-        Ok(Fifo(self.rw.try_read(REG_FIFO)?))
+        Ok(Fifo(self.try_read(REG_FIFO)?))
     }
     pub fn try_set_fifo(&self, value: Fifo) -> Result<(), RW::Error> {
-        self.rw.try_write(REG_FIFO, value.0)
+        self.try_write(REG_FIFO, value.0)
     }
     pub fn try_with_fifo<F: FnOnce(Fifo) -> Fifo>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = Fifo(self.rw.try_read(REG_FIFO)?);
-        self.rw.try_write(REG_FIFO, f(tmp).0)
+        let tmp = Fifo(self.try_read(REG_FIFO)?);
+        self.try_write(REG_FIFO, f(tmp).0)
     }
 
     pub fn try_opmode(&self) -> Result<Opmode, RW::Error> {
-        Ok(Opmode(self.rw.try_read(REG_OPMODE)?))
+        Ok(Opmode(self.try_read(REG_OPMODE)?))
     }
     pub fn try_set_opmode(&self, value: Opmode) -> Result<(), RW::Error> {
-        self.rw.try_write(REG_OPMODE, value.0)
+        self.try_write(REG_OPMODE, value.0)
     }
     pub fn try_with_opmode<F: FnOnce(Opmode) -> Opmode>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = Opmode(self.rw.try_read(REG_OPMODE)?);
-        self.rw.try_write(REG_OPMODE, f(tmp).0)
+        let tmp = Opmode(self.try_read(REG_OPMODE)?);
+        self.try_write(REG_OPMODE, f(tmp).0)
     }
 
     pub fn try_datamodul(&self) -> Result<Datamodul, RW::Error> {
-        Ok(Datamodul(self.rw.try_read(REG_DATAMODUL)?))
+        Ok(Datamodul(self.try_read(REG_DATAMODUL)?))
     }
     pub fn try_set_datamodul(&self, value: Datamodul) -> Result<(), RW::Error> {
-        self.rw.try_write(REG_DATAMODUL, value.0)
+        self.try_write(REG_DATAMODUL, value.0)
     }
     pub fn try_with_datamodul<F: FnOnce(Datamodul) -> Datamodul>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = Datamodul(self.rw.try_read(REG_DATAMODUL)?);
-        self.rw.try_write(REG_DATAMODUL, f(tmp).0)
+        let tmp = Datamodul(self.try_read(REG_DATAMODUL)?);
+        self.try_write(REG_DATAMODUL, f(tmp).0)
     }
 
     pub fn try_bitratemsb(&self) -> Result<Bitratemsb, RW::Error> {
-        Ok(Bitratemsb(self.rw.try_read(REG_BITRATEMSB)?))
+        Ok(Bitratemsb(self.try_read(REG_BITRATEMSB)?))
     }
     pub fn try_set_bitratemsb(&self, value: Bitratemsb) -> Result<(), RW::Error> {
-        self.rw.try_write(REG_BITRATEMSB, value.0)
+        self.try_write(REG_BITRATEMSB, value.0)
     }
     pub fn try_with_bitratemsb<F: FnOnce(Bitratemsb) -> Bitratemsb>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = Bitratemsb(self.rw.try_read(REG_BITRATEMSB)?);
-        self.rw.try_write(REG_BITRATEMSB, f(tmp).0)
+        let tmp = Bitratemsb(self.try_read(REG_BITRATEMSB)?);
+        self.try_write(REG_BITRATEMSB, f(tmp).0)
     }
 
     pub fn try_bitratelsb(&self) -> Result<Bitratelsb, RW::Error> {
-        Ok(Bitratelsb(self.rw.try_read(REG_BITRATELSB)?))
+        Ok(Bitratelsb(self.try_read(REG_BITRATELSB)?))
     }
     pub fn try_set_bitratelsb(&self, value: Bitratelsb) -> Result<(), RW::Error> {
-        self.rw.try_write(REG_BITRATELSB, value.0)
+        self.try_write(REG_BITRATELSB, value.0)
     }
     pub fn try_with_bitratelsb<F: FnOnce(Bitratelsb) -> Bitratelsb>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = Bitratelsb(self.rw.try_read(REG_BITRATELSB)?);
-        self.rw.try_write(REG_BITRATELSB, f(tmp).0)
+        let tmp = Bitratelsb(self.try_read(REG_BITRATELSB)?);
+        self.try_write(REG_BITRATELSB, f(tmp).0)
     }
 
     pub fn try_fdevmsb(&self) -> Result<Fdevmsb, RW::Error> {
-        Ok(Fdevmsb(self.rw.try_read(REG_FDEVMSB)?))
+        Ok(Fdevmsb(self.try_read(REG_FDEVMSB)?))
     }
     pub fn try_set_fdevmsb(&self, value: Fdevmsb) -> Result<(), RW::Error> {
-        self.rw.try_write(REG_FDEVMSB, value.0)
+        self.try_write(REG_FDEVMSB, value.0)
     }
     pub fn try_with_fdevmsb<F: FnOnce(Fdevmsb) -> Fdevmsb>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = Fdevmsb(self.rw.try_read(REG_FDEVMSB)?);
-        self.rw.try_write(REG_FDEVMSB, f(tmp).0)
+        let tmp = Fdevmsb(self.try_read(REG_FDEVMSB)?);
+        self.try_write(REG_FDEVMSB, f(tmp).0)
     }
 
     pub fn try_fdevlsb(&self) -> Result<Fdevlsb, RW::Error> {
-        Ok(Fdevlsb(self.rw.try_read(REG_FDEVLSB)?))
+        Ok(Fdevlsb(self.try_read(REG_FDEVLSB)?))
     }
     pub fn try_set_fdevlsb(&self, value: Fdevlsb) -> Result<(), RW::Error> {
-        self.rw.try_write(REG_FDEVLSB, value.0)
+        self.try_write(REG_FDEVLSB, value.0)
     }
     pub fn try_with_fdevlsb<F: FnOnce(Fdevlsb) -> Fdevlsb>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = Fdevlsb(self.rw.try_read(REG_FDEVLSB)?);
-        self.rw.try_write(REG_FDEVLSB, f(tmp).0)
+        let tmp = Fdevlsb(self.try_read(REG_FDEVLSB)?);
+        self.try_write(REG_FDEVLSB, f(tmp).0)
     }
 
     pub fn try_frfmsb(&self) -> Result<Frfmsb, RW::Error> {
-        Ok(Frfmsb(self.rw.try_read(REG_FRFMSB)?))
+        Ok(Frfmsb(self.try_read(REG_FRFMSB)?))
     }
     pub fn try_set_frfmsb(&self, value: Frfmsb) -> Result<(), RW::Error> {
-        self.rw.try_write(REG_FRFMSB, value.0)
+        self.try_write(REG_FRFMSB, value.0)
     }
     pub fn try_with_frfmsb<F: FnOnce(Frfmsb) -> Frfmsb>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = Frfmsb(self.rw.try_read(REG_FRFMSB)?);
-        self.rw.try_write(REG_FRFMSB, f(tmp).0)
+        let tmp = Frfmsb(self.try_read(REG_FRFMSB)?);
+        self.try_write(REG_FRFMSB, f(tmp).0)
     }
 
     pub fn try_frfmid(&self) -> Result<Frfmid, RW::Error> {
-        Ok(Frfmid(self.rw.try_read(REG_FRFMID)?))
+        Ok(Frfmid(self.try_read(REG_FRFMID)?))
     }
     pub fn try_set_frfmid(&self, value: Frfmid) -> Result<(), RW::Error> {
-        self.rw.try_write(REG_FRFMID, value.0)
+        self.try_write(REG_FRFMID, value.0)
     }
     pub fn try_with_frfmid<F: FnOnce(Frfmid) -> Frfmid>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = Frfmid(self.rw.try_read(REG_FRFMID)?);
-        self.rw.try_write(REG_FRFMID, f(tmp).0)
+        let tmp = Frfmid(self.try_read(REG_FRFMID)?);
+        self.try_write(REG_FRFMID, f(tmp).0)
     }
 
     pub fn try_frflsb(&self) -> Result<Frflsb, RW::Error> {
-        Ok(Frflsb(self.rw.try_read(REG_FRFLSB)?))
+        Ok(Frflsb(self.try_read(REG_FRFLSB)?))
     }
     pub fn try_set_frflsb(&self, value: Frflsb) -> Result<(), RW::Error> {
-        self.rw.try_write(REG_FRFLSB, value.0)
+        self.try_write(REG_FRFLSB, value.0)
     }
     pub fn try_with_frflsb<F: FnOnce(Frflsb) -> Frflsb>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = Frflsb(self.rw.try_read(REG_FRFLSB)?);
-        self.rw.try_write(REG_FRFLSB, f(tmp).0)
+        let tmp = Frflsb(self.try_read(REG_FRFLSB)?);
+        self.try_write(REG_FRFLSB, f(tmp).0)
     }
 
     pub fn try_osc1(&self) -> Result<Osc1, RW::Error> {
-        Ok(Osc1(self.rw.try_read(REG_OSC1)?))
+        Ok(Osc1(self.try_read(REG_OSC1)?))
     }
     pub fn try_set_osc1(&self, value: Osc1) -> Result<(), RW::Error> {
-        self.rw.try_write(REG_OSC1, value.0)
+        self.try_write(REG_OSC1, value.0)
     }
     pub fn try_with_osc1<F: FnOnce(Osc1) -> Osc1>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = Osc1(self.rw.try_read(REG_OSC1)?);
-        self.rw.try_write(REG_OSC1, f(tmp).0)
+        let tmp = Osc1(self.try_read(REG_OSC1)?);
+        self.try_write(REG_OSC1, f(tmp).0)
     }
 
     pub fn try_afcctrl(&self) -> Result<Afcctrl, RW::Error> {
-        Ok(Afcctrl(self.rw.try_read(REG_AFCCTRL)?))
+        Ok(Afcctrl(self.try_read(REG_AFCCTRL)?))
     }
     pub fn try_set_afcctrl(&self, value: Afcctrl) -> Result<(), RW::Error> {
-        self.rw.try_write(REG_AFCCTRL, value.0)
+        self.try_write(REG_AFCCTRL, value.0)
     }
     pub fn try_with_afcctrl<F: FnOnce(Afcctrl) -> Afcctrl>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = Afcctrl(self.rw.try_read(REG_AFCCTRL)?);
-        self.rw.try_write(REG_AFCCTRL, f(tmp).0)
+        let tmp = Afcctrl(self.try_read(REG_AFCCTRL)?);
+        self.try_write(REG_AFCCTRL, f(tmp).0)
     }
 
     pub fn try_listen1(&self) -> Result<Listen1, RW::Error> {
-        Ok(Listen1(self.rw.try_read(REG_LISTEN1)?))
+        Ok(Listen1(self.try_read(REG_LISTEN1)?))
     }
     pub fn try_set_listen1(&self, value: Listen1) -> Result<(), RW::Error> {
-        self.rw.try_write(REG_LISTEN1, value.0)
+        self.try_write(REG_LISTEN1, value.0)
     }
     pub fn try_with_listen1<F: FnOnce(Listen1) -> Listen1>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = Listen1(self.rw.try_read(REG_LISTEN1)?);
-        self.rw.try_write(REG_LISTEN1, f(tmp).0)
+        let tmp = Listen1(self.try_read(REG_LISTEN1)?);
+        self.try_write(REG_LISTEN1, f(tmp).0)
     }
 
     pub fn try_listen2(&self) -> Result<Listen2, RW::Error> {
-        Ok(Listen2(self.rw.try_read(REG_LISTEN2)?))
+        Ok(Listen2(self.try_read(REG_LISTEN2)?))
     }
     pub fn try_set_listen2(&self, value: Listen2) -> Result<(), RW::Error> {
-        self.rw.try_write(REG_LISTEN2, value.0)
+        self.try_write(REG_LISTEN2, value.0)
     }
     pub fn try_with_listen2<F: FnOnce(Listen2) -> Listen2>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = Listen2(self.rw.try_read(REG_LISTEN2)?);
-        self.rw.try_write(REG_LISTEN2, f(tmp).0)
+        let tmp = Listen2(self.try_read(REG_LISTEN2)?);
+        self.try_write(REG_LISTEN2, f(tmp).0)
     }
 
     pub fn try_listen3(&self) -> Result<Listen3, RW::Error> {
-        Ok(Listen3(self.rw.try_read(REG_LISTEN3)?))
+        Ok(Listen3(self.try_read(REG_LISTEN3)?))
     }
     pub fn try_set_listen3(&self, value: Listen3) -> Result<(), RW::Error> {
-        self.rw.try_write(REG_LISTEN3, value.0)
+        self.try_write(REG_LISTEN3, value.0)
     }
     pub fn try_with_listen3<F: FnOnce(Listen3) -> Listen3>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = Listen3(self.rw.try_read(REG_LISTEN3)?);
-        self.rw.try_write(REG_LISTEN3, f(tmp).0)
+        let tmp = Listen3(self.try_read(REG_LISTEN3)?);
+        self.try_write(REG_LISTEN3, f(tmp).0)
     }
 
     pub fn try_version(&self) -> Result<Version, RW::Error> {
-        Ok(Version(self.rw.try_read(REG_VERSION)?))
+        Ok(Version(self.try_read(REG_VERSION)?))
     }
     pub fn try_set_version(&self, value: Version) -> Result<(), RW::Error> {
-        self.rw.try_write(REG_VERSION, value.0)
+        self.try_write(REG_VERSION, value.0)
     }
     pub fn try_with_version<F: FnOnce(Version) -> Version>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = Version(self.rw.try_read(REG_VERSION)?);
-        self.rw.try_write(REG_VERSION, f(tmp).0)
+        let tmp = Version(self.try_read(REG_VERSION)?);
+        self.try_write(REG_VERSION, f(tmp).0)
     }
 
     pub fn try_palevel(&self) -> Result<Palevel, RW::Error> {
-        Ok(Palevel(self.rw.try_read(REG_PALEVEL)?))
+        Ok(Palevel(self.try_read(REG_PALEVEL)?))
     }
     pub fn try_set_palevel(&self, value: Palevel) -> Result<(), RW::Error> {
-        self.rw.try_write(REG_PALEVEL, value.0)
+        self.try_write(REG_PALEVEL, value.0)
     }
     pub fn try_with_palevel<F: FnOnce(Palevel) -> Palevel>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = Palevel(self.rw.try_read(REG_PALEVEL)?);
-        self.rw.try_write(REG_PALEVEL, f(tmp).0)
+        let tmp = Palevel(self.try_read(REG_PALEVEL)?);
+        self.try_write(REG_PALEVEL, f(tmp).0)
     }
 
     pub fn try_paramp(&self) -> Result<Paramp, RW::Error> {
-        Ok(Paramp(self.rw.try_read(REG_PARAMP)?))
+        Ok(Paramp(self.try_read(REG_PARAMP)?))
     }
     pub fn try_set_paramp(&self, value: Paramp) -> Result<(), RW::Error> {
-        self.rw.try_write(REG_PARAMP, value.0)
+        self.try_write(REG_PARAMP, value.0)
     }
     pub fn try_with_paramp<F: FnOnce(Paramp) -> Paramp>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = Paramp(self.rw.try_read(REG_PARAMP)?);
-        self.rw.try_write(REG_PARAMP, f(tmp).0)
+        let tmp = Paramp(self.try_read(REG_PARAMP)?);
+        self.try_write(REG_PARAMP, f(tmp).0)
     }
 
     pub fn try_ocp(&self) -> Result<Ocp, RW::Error> {
-        Ok(Ocp(self.rw.try_read(REG_OCP)?))
+        Ok(Ocp(self.try_read(REG_OCP)?))
     }
     pub fn try_set_ocp(&self, value: Ocp) -> Result<(), RW::Error> {
-        self.rw.try_write(REG_OCP, value.0)
+        self.try_write(REG_OCP, value.0)
     }
     pub fn try_with_ocp<F: FnOnce(Ocp) -> Ocp>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = Ocp(self.rw.try_read(REG_OCP)?);
-        self.rw.try_write(REG_OCP, f(tmp).0)
+        let tmp = Ocp(self.try_read(REG_OCP)?);
+        self.try_write(REG_OCP, f(tmp).0)
     }
 
     pub fn try_lna(&self) -> Result<Lna, RW::Error> {
-        Ok(Lna(self.rw.try_read(REG_LNA)?))
+        Ok(Lna(self.try_read(REG_LNA)?))
     }
     pub fn try_set_lna(&self, value: Lna) -> Result<(), RW::Error> {
-        self.rw.try_write(REG_LNA, value.0)
+        self.try_write(REG_LNA, value.0)
     }
     pub fn try_with_lna<F: FnOnce(Lna) -> Lna>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = Lna(self.rw.try_read(REG_LNA)?);
-        self.rw.try_write(REG_LNA, f(tmp).0)
+        let tmp = Lna(self.try_read(REG_LNA)?);
+        self.try_write(REG_LNA, f(tmp).0)
     }
 
     pub fn try_rxbw(&self) -> Result<Rxbw, RW::Error> {
-        Ok(Rxbw(self.rw.try_read(REG_RXBW)?))
+        Ok(Rxbw(self.try_read(REG_RXBW)?))
     }
     pub fn try_set_rxbw(&self, value: Rxbw) -> Result<(), RW::Error> {
-        self.rw.try_write(REG_RXBW, value.0)
+        self.try_write(REG_RXBW, value.0)
     }
     pub fn try_with_rxbw<F: FnOnce(Rxbw) -> Rxbw>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = Rxbw(self.rw.try_read(REG_RXBW)?);
-        self.rw.try_write(REG_RXBW, f(tmp).0)
+        let tmp = Rxbw(self.try_read(REG_RXBW)?);
+        self.try_write(REG_RXBW, f(tmp).0)
     }
 
     pub fn try_afcbw(&self) -> Result<Afcbw, RW::Error> {
-        Ok(Afcbw(self.rw.try_read(REG_AFCBW)?))
+        Ok(Afcbw(self.try_read(REG_AFCBW)?))
     }
     pub fn try_set_afcbw(&self, value: Afcbw) -> Result<(), RW::Error> {
-        self.rw.try_write(REG_AFCBW, value.0)
+        self.try_write(REG_AFCBW, value.0)
     }
     pub fn try_with_afcbw<F: FnOnce(Afcbw) -> Afcbw>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = Afcbw(self.rw.try_read(REG_AFCBW)?);
-        self.rw.try_write(REG_AFCBW, f(tmp).0)
+        let tmp = Afcbw(self.try_read(REG_AFCBW)?);
+        self.try_write(REG_AFCBW, f(tmp).0)
     }
 
     pub fn try_ookpeak(&self) -> Result<Ookpeak, RW::Error> {
-        Ok(Ookpeak(self.rw.try_read(REG_OOKPEAK)?))
+        Ok(Ookpeak(self.try_read(REG_OOKPEAK)?))
     }
     pub fn try_set_ookpeak(&self, value: Ookpeak) -> Result<(), RW::Error> {
-        self.rw.try_write(REG_OOKPEAK, value.0)
+        self.try_write(REG_OOKPEAK, value.0)
     }
     pub fn try_with_ookpeak<F: FnOnce(Ookpeak) -> Ookpeak>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = Ookpeak(self.rw.try_read(REG_OOKPEAK)?);
-        self.rw.try_write(REG_OOKPEAK, f(tmp).0)
+        let tmp = Ookpeak(self.try_read(REG_OOKPEAK)?);
+        self.try_write(REG_OOKPEAK, f(tmp).0)
     }
 
     pub fn try_ookavg(&self) -> Result<Ookavg, RW::Error> {
-        Ok(Ookavg(self.rw.try_read(REG_OOKAVG)?))
+        Ok(Ookavg(self.try_read(REG_OOKAVG)?))
     }
     pub fn try_set_ookavg(&self, value: Ookavg) -> Result<(), RW::Error> {
-        self.rw.try_write(REG_OOKAVG, value.0)
+        self.try_write(REG_OOKAVG, value.0)
     }
     pub fn try_with_ookavg<F: FnOnce(Ookavg) -> Ookavg>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = Ookavg(self.rw.try_read(REG_OOKAVG)?);
-        self.rw.try_write(REG_OOKAVG, f(tmp).0)
+        let tmp = Ookavg(self.try_read(REG_OOKAVG)?);
+        self.try_write(REG_OOKAVG, f(tmp).0)
     }
 
     pub fn try_ookfix(&self) -> Result<Ookfix, RW::Error> {
-        Ok(Ookfix(self.rw.try_read(REG_OOKFIX)?))
+        Ok(Ookfix(self.try_read(REG_OOKFIX)?))
     }
     pub fn try_set_ookfix(&self, value: Ookfix) -> Result<(), RW::Error> {
-        self.rw.try_write(REG_OOKFIX, value.0)
+        self.try_write(REG_OOKFIX, value.0)
     }
     pub fn try_with_ookfix<F: FnOnce(Ookfix) -> Ookfix>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = Ookfix(self.rw.try_read(REG_OOKFIX)?);
-        self.rw.try_write(REG_OOKFIX, f(tmp).0)
+        let tmp = Ookfix(self.try_read(REG_OOKFIX)?);
+        self.try_write(REG_OOKFIX, f(tmp).0)
     }
 
     pub fn try_afcfei(&self) -> Result<Afcfei, RW::Error> {
-        Ok(Afcfei(self.rw.try_read(REG_AFCFEI)?))
+        Ok(Afcfei(self.try_read(REG_AFCFEI)?))
     }
     pub fn try_set_afcfei(&self, value: Afcfei) -> Result<(), RW::Error> {
-        self.rw.try_write(REG_AFCFEI, value.0)
+        self.try_write(REG_AFCFEI, value.0)
     }
     pub fn try_with_afcfei<F: FnOnce(Afcfei) -> Afcfei>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = Afcfei(self.rw.try_read(REG_AFCFEI)?);
-        self.rw.try_write(REG_AFCFEI, f(tmp).0)
+        let tmp = Afcfei(self.try_read(REG_AFCFEI)?);
+        self.try_write(REG_AFCFEI, f(tmp).0)
     }
 
     pub fn try_afcmsb(&self) -> Result<Afcmsb, RW::Error> {
-        Ok(Afcmsb(self.rw.try_read(REG_AFCMSB)?))
+        Ok(Afcmsb(self.try_read(REG_AFCMSB)?))
     }
     pub fn try_set_afcmsb(&self, value: Afcmsb) -> Result<(), RW::Error> {
-        self.rw.try_write(REG_AFCMSB, value.0)
+        self.try_write(REG_AFCMSB, value.0)
     }
     pub fn try_with_afcmsb<F: FnOnce(Afcmsb) -> Afcmsb>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = Afcmsb(self.rw.try_read(REG_AFCMSB)?);
-        self.rw.try_write(REG_AFCMSB, f(tmp).0)
+        let tmp = Afcmsb(self.try_read(REG_AFCMSB)?);
+        self.try_write(REG_AFCMSB, f(tmp).0)
     }
 
     pub fn try_afclsb(&self) -> Result<Afclsb, RW::Error> {
-        Ok(Afclsb(self.rw.try_read(REG_AFCLSB)?))
+        Ok(Afclsb(self.try_read(REG_AFCLSB)?))
     }
     pub fn try_set_afclsb(&self, value: Afclsb) -> Result<(), RW::Error> {
-        self.rw.try_write(REG_AFCLSB, value.0)
+        self.try_write(REG_AFCLSB, value.0)
     }
     pub fn try_with_afclsb<F: FnOnce(Afclsb) -> Afclsb>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = Afclsb(self.rw.try_read(REG_AFCLSB)?);
-        self.rw.try_write(REG_AFCLSB, f(tmp).0)
+        let tmp = Afclsb(self.try_read(REG_AFCLSB)?);
+        self.try_write(REG_AFCLSB, f(tmp).0)
     }
 
     pub fn try_feimsb(&self) -> Result<Feimsb, RW::Error> {
-        Ok(Feimsb(self.rw.try_read(REG_FEIMSB)?))
+        Ok(Feimsb(self.try_read(REG_FEIMSB)?))
     }
     pub fn try_set_feimsb(&self, value: Feimsb) -> Result<(), RW::Error> {
-        self.rw.try_write(REG_FEIMSB, value.0)
+        self.try_write(REG_FEIMSB, value.0)
     }
     pub fn try_with_feimsb<F: FnOnce(Feimsb) -> Feimsb>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = Feimsb(self.rw.try_read(REG_FEIMSB)?);
-        self.rw.try_write(REG_FEIMSB, f(tmp).0)
+        let tmp = Feimsb(self.try_read(REG_FEIMSB)?);
+        self.try_write(REG_FEIMSB, f(tmp).0)
     }
 
     pub fn try_feilsb(&self) -> Result<Feilsb, RW::Error> {
-        Ok(Feilsb(self.rw.try_read(REG_FEILSB)?))
+        Ok(Feilsb(self.try_read(REG_FEILSB)?))
     }
     pub fn try_set_feilsb(&self, value: Feilsb) -> Result<(), RW::Error> {
-        self.rw.try_write(REG_FEILSB, value.0)
+        self.try_write(REG_FEILSB, value.0)
     }
     pub fn try_with_feilsb<F: FnOnce(Feilsb) -> Feilsb>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = Feilsb(self.rw.try_read(REG_FEILSB)?);
-        self.rw.try_write(REG_FEILSB, f(tmp).0)
+        let tmp = Feilsb(self.try_read(REG_FEILSB)?);
+        self.try_write(REG_FEILSB, f(tmp).0)
     }
 
     pub fn try_rssiconfig(&self) -> Result<Rssiconfig, RW::Error> {
-        Ok(Rssiconfig(self.rw.try_read(REG_RSSICONFIG)?))
+        Ok(Rssiconfig(self.try_read(REG_RSSICONFIG)?))
     }
     pub fn try_set_rssiconfig(&self, value: Rssiconfig) -> Result<(), RW::Error> {
-        self.rw.try_write(REG_RSSICONFIG, value.0)
+        self.try_write(REG_RSSICONFIG, value.0)
     }
     pub fn try_with_rssiconfig<F: FnOnce(Rssiconfig) -> Rssiconfig>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = Rssiconfig(self.rw.try_read(REG_RSSICONFIG)?);
-        self.rw.try_write(REG_RSSICONFIG, f(tmp).0)
+        let tmp = Rssiconfig(self.try_read(REG_RSSICONFIG)?);
+        self.try_write(REG_RSSICONFIG, f(tmp).0)
     }
 
     pub fn try_rssivalue(&self) -> Result<Rssivalue, RW::Error> {
-        Ok(Rssivalue(self.rw.try_read(REG_RSSIVALUE)?))
+        Ok(Rssivalue(self.try_read(REG_RSSIVALUE)?))
     }
     pub fn try_set_rssivalue(&self, value: Rssivalue) -> Result<(), RW::Error> {
-        self.rw.try_write(REG_RSSIVALUE, value.0)
+        self.try_write(REG_RSSIVALUE, value.0)
     }
     pub fn try_with_rssivalue<F: FnOnce(Rssivalue) -> Rssivalue>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = Rssivalue(self.rw.try_read(REG_RSSIVALUE)?);
-        self.rw.try_write(REG_RSSIVALUE, f(tmp).0)
+        let tmp = Rssivalue(self.try_read(REG_RSSIVALUE)?);
+        self.try_write(REG_RSSIVALUE, f(tmp).0)
     }
 
     pub fn try_diomapping1(&self) -> Result<Diomapping1, RW::Error> {
-        Ok(Diomapping1(self.rw.try_read(REG_DIOMAPPING1)?))
+        Ok(Diomapping1(self.try_read(REG_DIOMAPPING1)?))
     }
     pub fn try_set_diomapping1(&self, value: Diomapping1) -> Result<(), RW::Error> {
-        self.rw.try_write(REG_DIOMAPPING1, value.0)
+        self.try_write(REG_DIOMAPPING1, value.0)
     }
     pub fn try_with_diomapping1<F: FnOnce(Diomapping1) -> Diomapping1>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = Diomapping1(self.rw.try_read(REG_DIOMAPPING1)?);
-        self.rw.try_write(REG_DIOMAPPING1, f(tmp).0)
+        let tmp = Diomapping1(self.try_read(REG_DIOMAPPING1)?);
+        self.try_write(REG_DIOMAPPING1, f(tmp).0)
     }
 
     pub fn try_diomapping2(&self) -> Result<Diomapping2, RW::Error> {
-        Ok(Diomapping2(self.rw.try_read(REG_DIOMAPPING2)?))
+        Ok(Diomapping2(self.try_read(REG_DIOMAPPING2)?))
     }
     pub fn try_set_diomapping2(&self, value: Diomapping2) -> Result<(), RW::Error> {
-        self.rw.try_write(REG_DIOMAPPING2, value.0)
+        self.try_write(REG_DIOMAPPING2, value.0)
     }
     pub fn try_with_diomapping2<F: FnOnce(Diomapping2) -> Diomapping2>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = Diomapping2(self.rw.try_read(REG_DIOMAPPING2)?);
-        self.rw.try_write(REG_DIOMAPPING2, f(tmp).0)
+        let tmp = Diomapping2(self.try_read(REG_DIOMAPPING2)?);
+        self.try_write(REG_DIOMAPPING2, f(tmp).0)
     }
 
     pub fn try_irqflags1(&self) -> Result<Irqflags1, RW::Error> {
-        Ok(Irqflags1(self.rw.try_read(REG_IRQFLAGS1)?))
+        Ok(Irqflags1(self.try_read(REG_IRQFLAGS1)?))
     }
     pub fn try_set_irqflags1(&self, value: Irqflags1) -> Result<(), RW::Error> {
-        self.rw.try_write(REG_IRQFLAGS1, value.0)
+        self.try_write(REG_IRQFLAGS1, value.0)
     }
     pub fn try_with_irqflags1<F: FnOnce(Irqflags1) -> Irqflags1>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = Irqflags1(self.rw.try_read(REG_IRQFLAGS1)?);
-        self.rw.try_write(REG_IRQFLAGS1, f(tmp).0)
+        let tmp = Irqflags1(self.try_read(REG_IRQFLAGS1)?);
+        self.try_write(REG_IRQFLAGS1, f(tmp).0)
     }
 
     pub fn try_irqflags2(&self) -> Result<Irqflags2, RW::Error> {
-        Ok(Irqflags2(self.rw.try_read(REG_IRQFLAGS2)?))
+        Ok(Irqflags2(self.try_read(REG_IRQFLAGS2)?))
     }
     pub fn try_set_irqflags2(&self, value: Irqflags2) -> Result<(), RW::Error> {
-        self.rw.try_write(REG_IRQFLAGS2, value.0)
+        self.try_write(REG_IRQFLAGS2, value.0)
     }
     pub fn try_with_irqflags2<F: FnOnce(Irqflags2) -> Irqflags2>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = Irqflags2(self.rw.try_read(REG_IRQFLAGS2)?);
-        self.rw.try_write(REG_IRQFLAGS2, f(tmp).0)
+        let tmp = Irqflags2(self.try_read(REG_IRQFLAGS2)?);
+        self.try_write(REG_IRQFLAGS2, f(tmp).0)
     }
 
     pub fn try_rssithresh(&self) -> Result<Rssithresh, RW::Error> {
-        Ok(Rssithresh(self.rw.try_read(REG_RSSITHRESH)?))
+        Ok(Rssithresh(self.try_read(REG_RSSITHRESH)?))
     }
     pub fn try_set_rssithresh(&self, value: Rssithresh) -> Result<(), RW::Error> {
-        self.rw.try_write(REG_RSSITHRESH, value.0)
+        self.try_write(REG_RSSITHRESH, value.0)
     }
     pub fn try_with_rssithresh<F: FnOnce(Rssithresh) -> Rssithresh>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = Rssithresh(self.rw.try_read(REG_RSSITHRESH)?);
-        self.rw.try_write(REG_RSSITHRESH, f(tmp).0)
+        let tmp = Rssithresh(self.try_read(REG_RSSITHRESH)?);
+        self.try_write(REG_RSSITHRESH, f(tmp).0)
     }
 
     pub fn try_rxtimeout1(&self) -> Result<Rxtimeout1, RW::Error> {
-        Ok(Rxtimeout1(self.rw.try_read(REG_RXTIMEOUT1)?))
+        Ok(Rxtimeout1(self.try_read(REG_RXTIMEOUT1)?))
     }
     pub fn try_set_rxtimeout1(&self, value: Rxtimeout1) -> Result<(), RW::Error> {
-        self.rw.try_write(REG_RXTIMEOUT1, value.0)
+        self.try_write(REG_RXTIMEOUT1, value.0)
     }
     pub fn try_with_rxtimeout1<F: FnOnce(Rxtimeout1) -> Rxtimeout1>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = Rxtimeout1(self.rw.try_read(REG_RXTIMEOUT1)?);
-        self.rw.try_write(REG_RXTIMEOUT1, f(tmp).0)
+        let tmp = Rxtimeout1(self.try_read(REG_RXTIMEOUT1)?);
+        self.try_write(REG_RXTIMEOUT1, f(tmp).0)
     }
 
     pub fn try_rxtimeout2(&self) -> Result<Rxtimeout2, RW::Error> {
-        Ok(Rxtimeout2(self.rw.try_read(REG_RXTIMEOUT2)?))
+        Ok(Rxtimeout2(self.try_read(REG_RXTIMEOUT2)?))
     }
     pub fn try_set_rxtimeout2(&self, value: Rxtimeout2) -> Result<(), RW::Error> {
-        self.rw.try_write(REG_RXTIMEOUT2, value.0)
+        self.try_write(REG_RXTIMEOUT2, value.0)
     }
     pub fn try_with_rxtimeout2<F: FnOnce(Rxtimeout2) -> Rxtimeout2>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = Rxtimeout2(self.rw.try_read(REG_RXTIMEOUT2)?);
-        self.rw.try_write(REG_RXTIMEOUT2, f(tmp).0)
+        let tmp = Rxtimeout2(self.try_read(REG_RXTIMEOUT2)?);
+        self.try_write(REG_RXTIMEOUT2, f(tmp).0)
     }
 
     pub fn try_preamblemsb(&self) -> Result<Preamblemsb, RW::Error> {
-        Ok(Preamblemsb(self.rw.try_read(REG_PREAMBLEMSB)?))
+        Ok(Preamblemsb(self.try_read(REG_PREAMBLEMSB)?))
     }
     pub fn try_set_preamblemsb(&self, value: Preamblemsb) -> Result<(), RW::Error> {
-        self.rw.try_write(REG_PREAMBLEMSB, value.0)
+        self.try_write(REG_PREAMBLEMSB, value.0)
     }
     pub fn try_with_preamblemsb<F: FnOnce(Preamblemsb) -> Preamblemsb>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = Preamblemsb(self.rw.try_read(REG_PREAMBLEMSB)?);
-        self.rw.try_write(REG_PREAMBLEMSB, f(tmp).0)
+        let tmp = Preamblemsb(self.try_read(REG_PREAMBLEMSB)?);
+        self.try_write(REG_PREAMBLEMSB, f(tmp).0)
     }
 
     pub fn try_preamblelsb(&self) -> Result<Preamblelsb, RW::Error> {
-        Ok(Preamblelsb(self.rw.try_read(REG_PREAMBLELSB)?))
+        Ok(Preamblelsb(self.try_read(REG_PREAMBLELSB)?))
     }
     pub fn try_set_preamblelsb(&self, value: Preamblelsb) -> Result<(), RW::Error> {
-        self.rw.try_write(REG_PREAMBLELSB, value.0)
+        self.try_write(REG_PREAMBLELSB, value.0)
     }
     pub fn try_with_preamblelsb<F: FnOnce(Preamblelsb) -> Preamblelsb>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = Preamblelsb(self.rw.try_read(REG_PREAMBLELSB)?);
-        self.rw.try_write(REG_PREAMBLELSB, f(tmp).0)
+        let tmp = Preamblelsb(self.try_read(REG_PREAMBLELSB)?);
+        self.try_write(REG_PREAMBLELSB, f(tmp).0)
     }
 
     pub fn try_syncconfig(&self) -> Result<Syncconfig, RW::Error> {
-        Ok(Syncconfig(self.rw.try_read(REG_SYNCCONFIG)?))
+        Ok(Syncconfig(self.try_read(REG_SYNCCONFIG)?))
     }
     pub fn try_set_syncconfig(&self, value: Syncconfig) -> Result<(), RW::Error> {
-        self.rw.try_write(REG_SYNCCONFIG, value.0)
+        self.try_write(REG_SYNCCONFIG, value.0)
     }
     pub fn try_with_syncconfig<F: FnOnce(Syncconfig) -> Syncconfig>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = Syncconfig(self.rw.try_read(REG_SYNCCONFIG)?);
-        self.rw.try_write(REG_SYNCCONFIG, f(tmp).0)
+        let tmp = Syncconfig(self.try_read(REG_SYNCCONFIG)?);
+        self.try_write(REG_SYNCCONFIG, f(tmp).0)
     }
 
     pub fn try_syncvalue(&self, index: usize) -> Result<Syncvalue, RW::Error> {
         assert!(index < 8);
-        Ok(Syncvalue(self.rw.try_read(REG_SYNCVALUE + index as u8)?))
+        Ok(Syncvalue(self.try_read(REG_SYNCVALUE + index as u8)?))
     }
     pub fn try_set_syncvalue(&self, index: usize, value: Syncvalue) -> Result<(), RW::Error> {
         assert!(index < 8);
-        self.rw.try_write(REG_SYNCVALUE + index as u8, value.0)
+        self.try_write(REG_SYNCVALUE + index as u8, value.0)
     }
     pub fn try_with_syncvalue<F: FnOnce(Syncvalue) -> Syncvalue>(&self, index: usize, f: F) -> Result<(), RW::Error> {
         assert!(index < 8);
-        let tmp = Syncvalue(self.rw.try_read(REG_SYNCVALUE + index as u8)?);
-        self.rw.try_write(REG_SYNCVALUE + index as u8, f(tmp).0)
+        let tmp = Syncvalue(self.try_read(REG_SYNCVALUE + index as u8)?);
+        self.try_write(REG_SYNCVALUE + index as u8, f(tmp).0)
     }
 
     pub fn try_packetconfig1(&self) -> Result<Packetconfig1, RW::Error> {
-        Ok(Packetconfig1(self.rw.try_read(REG_PACKETCONFIG1)?))
+        Ok(Packetconfig1(self.try_read(REG_PACKETCONFIG1)?))
     }
     pub fn try_set_packetconfig1(&self, value: Packetconfig1) -> Result<(), RW::Error> {
-        self.rw.try_write(REG_PACKETCONFIG1, value.0)
+        self.try_write(REG_PACKETCONFIG1, value.0)
     }
     pub fn try_with_packetconfig1<F: FnOnce(Packetconfig1) -> Packetconfig1>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = Packetconfig1(self.rw.try_read(REG_PACKETCONFIG1)?);
-        self.rw.try_write(REG_PACKETCONFIG1, f(tmp).0)
+        let tmp = Packetconfig1(self.try_read(REG_PACKETCONFIG1)?);
+        self.try_write(REG_PACKETCONFIG1, f(tmp).0)
     }
 
     pub fn try_payloadlength(&self) -> Result<Payloadlength, RW::Error> {
-        Ok(Payloadlength(self.rw.try_read(REG_PAYLOADLENGTH)?))
+        Ok(Payloadlength(self.try_read(REG_PAYLOADLENGTH)?))
     }
     pub fn try_set_payloadlength(&self, value: Payloadlength) -> Result<(), RW::Error> {
-        self.rw.try_write(REG_PAYLOADLENGTH, value.0)
+        self.try_write(REG_PAYLOADLENGTH, value.0)
     }
     pub fn try_with_payloadlength<F: FnOnce(Payloadlength) -> Payloadlength>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = Payloadlength(self.rw.try_read(REG_PAYLOADLENGTH)?);
-        self.rw.try_write(REG_PAYLOADLENGTH, f(tmp).0)
+        let tmp = Payloadlength(self.try_read(REG_PAYLOADLENGTH)?);
+        self.try_write(REG_PAYLOADLENGTH, f(tmp).0)
     }
 
     pub fn try_nodeadrs(&self) -> Result<Nodeadrs, RW::Error> {
-        Ok(Nodeadrs(self.rw.try_read(REG_NODEADRS)?))
+        Ok(Nodeadrs(self.try_read(REG_NODEADRS)?))
     }
     pub fn try_set_nodeadrs(&self, value: Nodeadrs) -> Result<(), RW::Error> {
-        self.rw.try_write(REG_NODEADRS, value.0)
+        self.try_write(REG_NODEADRS, value.0)
     }
     pub fn try_with_nodeadrs<F: FnOnce(Nodeadrs) -> Nodeadrs>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = Nodeadrs(self.rw.try_read(REG_NODEADRS)?);
-        self.rw.try_write(REG_NODEADRS, f(tmp).0)
+        let tmp = Nodeadrs(self.try_read(REG_NODEADRS)?);
+        self.try_write(REG_NODEADRS, f(tmp).0)
     }
 
     pub fn try_broadcastadrs(&self) -> Result<Broadcastadrs, RW::Error> {
-        Ok(Broadcastadrs(self.rw.try_read(REG_BROADCASTADRS)?))
+        Ok(Broadcastadrs(self.try_read(REG_BROADCASTADRS)?))
     }
     pub fn try_set_broadcastadrs(&self, value: Broadcastadrs) -> Result<(), RW::Error> {
-        self.rw.try_write(REG_BROADCASTADRS, value.0)
+        self.try_write(REG_BROADCASTADRS, value.0)
     }
     pub fn try_with_broadcastadrs<F: FnOnce(Broadcastadrs) -> Broadcastadrs>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = Broadcastadrs(self.rw.try_read(REG_BROADCASTADRS)?);
-        self.rw.try_write(REG_BROADCASTADRS, f(tmp).0)
+        let tmp = Broadcastadrs(self.try_read(REG_BROADCASTADRS)?);
+        self.try_write(REG_BROADCASTADRS, f(tmp).0)
     }
 
     pub fn try_automodes(&self) -> Result<Automodes, RW::Error> {
-        Ok(Automodes(self.rw.try_read(REG_AUTOMODES)?))
+        Ok(Automodes(self.try_read(REG_AUTOMODES)?))
     }
     pub fn try_set_automodes(&self, value: Automodes) -> Result<(), RW::Error> {
-        self.rw.try_write(REG_AUTOMODES, value.0)
+        self.try_write(REG_AUTOMODES, value.0)
     }
     pub fn try_with_automodes<F: FnOnce(Automodes) -> Automodes>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = Automodes(self.rw.try_read(REG_AUTOMODES)?);
-        self.rw.try_write(REG_AUTOMODES, f(tmp).0)
+        let tmp = Automodes(self.try_read(REG_AUTOMODES)?);
+        self.try_write(REG_AUTOMODES, f(tmp).0)
     }
 
     pub fn try_fifothresh(&self) -> Result<Fifothresh, RW::Error> {
-        Ok(Fifothresh(self.rw.try_read(REG_FIFOTHRESH)?))
+        Ok(Fifothresh(self.try_read(REG_FIFOTHRESH)?))
     }
     pub fn try_set_fifothresh(&self, value: Fifothresh) -> Result<(), RW::Error> {
-        self.rw.try_write(REG_FIFOTHRESH, value.0)
+        self.try_write(REG_FIFOTHRESH, value.0)
     }
     pub fn try_with_fifothresh<F: FnOnce(Fifothresh) -> Fifothresh>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = Fifothresh(self.rw.try_read(REG_FIFOTHRESH)?);
-        self.rw.try_write(REG_FIFOTHRESH, f(tmp).0)
+        let tmp = Fifothresh(self.try_read(REG_FIFOTHRESH)?);
+        self.try_write(REG_FIFOTHRESH, f(tmp).0)
     }
 
     pub fn try_packetconfig2(&self) -> Result<Packetconfig2, RW::Error> {
-        Ok(Packetconfig2(self.rw.try_read(REG_PACKETCONFIG2)?))
+        Ok(Packetconfig2(self.try_read(REG_PACKETCONFIG2)?))
     }
     pub fn try_set_packetconfig2(&self, value: Packetconfig2) -> Result<(), RW::Error> {
-        self.rw.try_write(REG_PACKETCONFIG2, value.0)
+        self.try_write(REG_PACKETCONFIG2, value.0)
     }
     pub fn try_with_packetconfig2<F: FnOnce(Packetconfig2) -> Packetconfig2>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = Packetconfig2(self.rw.try_read(REG_PACKETCONFIG2)?);
-        self.rw.try_write(REG_PACKETCONFIG2, f(tmp).0)
+        let tmp = Packetconfig2(self.try_read(REG_PACKETCONFIG2)?);
+        self.try_write(REG_PACKETCONFIG2, f(tmp).0)
     }
 
     pub fn try_aeskey(&self, index: usize) -> Result<Aeskey, RW::Error> {
         assert!(index < 16);
-        Ok(Aeskey(self.rw.try_read(REG_AESKEY + index as u8)?))
+        Ok(Aeskey(self.try_read(REG_AESKEY + index as u8)?))
     }
     pub fn try_set_aeskey(&self, index: usize, value: Aeskey) -> Result<(), RW::Error> {
         assert!(index < 16);
-        self.rw.try_write(REG_AESKEY + index as u8, value.0)
+        self.try_write(REG_AESKEY + index as u8, value.0)
     }
     pub fn try_with_aeskey<F: FnOnce(Aeskey) -> Aeskey>(&self, index: usize, f: F) -> Result<(), RW::Error> {
         assert!(index < 16);
-        let tmp = Aeskey(self.rw.try_read(REG_AESKEY + index as u8)?);
-        self.rw.try_write(REG_AESKEY + index as u8, f(tmp).0)
+        let tmp = Aeskey(self.try_read(REG_AESKEY + index as u8)?);
+        self.try_write(REG_AESKEY + index as u8, f(tmp).0)
     }
 
     pub fn try_temp1(&self) -> Result<Temp1, RW::Error> {
-        Ok(Temp1(self.rw.try_read(REG_TEMP1)?))
+        Ok(Temp1(self.try_read(REG_TEMP1)?))
     }
     pub fn try_set_temp1(&self, value: Temp1) -> Result<(), RW::Error> {
-        self.rw.try_write(REG_TEMP1, value.0)
+        self.try_write(REG_TEMP1, value.0)
     }
     pub fn try_with_temp1<F: FnOnce(Temp1) -> Temp1>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = Temp1(self.rw.try_read(REG_TEMP1)?);
-        self.rw.try_write(REG_TEMP1, f(tmp).0)
+        let tmp = Temp1(self.try_read(REG_TEMP1)?);
+        self.try_write(REG_TEMP1, f(tmp).0)
     }
 
     pub fn try_temp2(&self) -> Result<Temp2, RW::Error> {
-        Ok(Temp2(self.rw.try_read(REG_TEMP2)?))
+        Ok(Temp2(self.try_read(REG_TEMP2)?))
     }
     pub fn try_set_temp2(&self, value: Temp2) -> Result<(), RW::Error> {
-        self.rw.try_write(REG_TEMP2, value.0)
+        self.try_write(REG_TEMP2, value.0)
     }
     pub fn try_with_temp2<F: FnOnce(Temp2) -> Temp2>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = Temp2(self.rw.try_read(REG_TEMP2)?);
-        self.rw.try_write(REG_TEMP2, f(tmp).0)
+        let tmp = Temp2(self.try_read(REG_TEMP2)?);
+        self.try_write(REG_TEMP2, f(tmp).0)
     }
 
     pub fn try_testlna(&self) -> Result<Testlna, RW::Error> {
-        Ok(Testlna(self.rw.try_read(REG_TESTLNA)?))
+        Ok(Testlna(self.try_read(REG_TESTLNA)?))
     }
     pub fn try_set_testlna(&self, value: Testlna) -> Result<(), RW::Error> {
-        self.rw.try_write(REG_TESTLNA, value.0)
+        self.try_write(REG_TESTLNA, value.0)
     }
     pub fn try_with_testlna<F: FnOnce(Testlna) -> Testlna>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = Testlna(self.rw.try_read(REG_TESTLNA)?);
-        self.rw.try_write(REG_TESTLNA, f(tmp).0)
+        let tmp = Testlna(self.try_read(REG_TESTLNA)?);
+        self.try_write(REG_TESTLNA, f(tmp).0)
     }
 
     pub fn try_testpa1(&self) -> Result<Testpa1, RW::Error> {
-        Ok(Testpa1(self.rw.try_read(REG_TESTPA1)?))
+        Ok(Testpa1(self.try_read(REG_TESTPA1)?))
     }
     pub fn try_set_testpa1(&self, value: Testpa1) -> Result<(), RW::Error> {
-        self.rw.try_write(REG_TESTPA1, value.0)
+        self.try_write(REG_TESTPA1, value.0)
     }
     pub fn try_with_testpa1<F: FnOnce(Testpa1) -> Testpa1>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = Testpa1(self.rw.try_read(REG_TESTPA1)?);
-        self.rw.try_write(REG_TESTPA1, f(tmp).0)
+        let tmp = Testpa1(self.try_read(REG_TESTPA1)?);
+        self.try_write(REG_TESTPA1, f(tmp).0)
     }
 
     pub fn try_testpa2(&self) -> Result<Testpa2, RW::Error> {
-        Ok(Testpa2(self.rw.try_read(REG_TESTPA2)?))
+        Ok(Testpa2(self.try_read(REG_TESTPA2)?))
     }
     pub fn try_set_testpa2(&self, value: Testpa2) -> Result<(), RW::Error> {
-        self.rw.try_write(REG_TESTPA2, value.0)
+        self.try_write(REG_TESTPA2, value.0)
     }
     pub fn try_with_testpa2<F: FnOnce(Testpa2) -> Testpa2>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = Testpa2(self.rw.try_read(REG_TESTPA2)?);
-        self.rw.try_write(REG_TESTPA2, f(tmp).0)
+        let tmp = Testpa2(self.try_read(REG_TESTPA2)?);
+        self.try_write(REG_TESTPA2, f(tmp).0)
     }
 
     pub fn try_testdagc(&self) -> Result<Testdagc, RW::Error> {
-        Ok(Testdagc(self.rw.try_read(REG_TESTDAGC)?))
+        Ok(Testdagc(self.try_read(REG_TESTDAGC)?))
     }
     pub fn try_set_testdagc(&self, value: Testdagc) -> Result<(), RW::Error> {
-        self.rw.try_write(REG_TESTDAGC, value.0)
+        self.try_write(REG_TESTDAGC, value.0)
     }
     pub fn try_with_testdagc<F: FnOnce(Testdagc) -> Testdagc>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = Testdagc(self.rw.try_read(REG_TESTDAGC)?);
-        self.rw.try_write(REG_TESTDAGC, f(tmp).0)
+        let tmp = Testdagc(self.try_read(REG_TESTDAGC)?);
+        self.try_write(REG_TESTDAGC, f(tmp).0)
     }
 
     pub fn try_testafc(&self) -> Result<Testafc, RW::Error> {
-        Ok(Testafc(self.rw.try_read(REG_TESTAFC)?))
+        Ok(Testafc(self.try_read(REG_TESTAFC)?))
     }
     pub fn try_set_testafc(&self, value: Testafc) -> Result<(), RW::Error> {
-        self.rw.try_write(REG_TESTAFC, value.0)
+        self.try_write(REG_TESTAFC, value.0)
     }
     pub fn try_with_testafc<F: FnOnce(Testafc) -> Testafc>(&self, f: F) -> Result<(), RW::Error> {
-        let tmp = Testafc(self.rw.try_read(REG_TESTAFC)?);
-        self.rw.try_write(REG_TESTAFC, f(tmp).0)
+        let tmp = Testafc(self.try_read(REG_TESTAFC)?);
+        self.try_write(REG_TESTAFC, f(tmp).0)
     }
 
 }
