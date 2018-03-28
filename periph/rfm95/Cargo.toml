@@ -1,0 +1,7 @@
+[package]
+name = "rfm95"
+version = "0.1.0"
+authors = ["Jonathan Soo <jcsoo@agora.com>"]
+
+[dependencies]
+bobbin-common = { path = "../../mcu/bobbin-common" }
