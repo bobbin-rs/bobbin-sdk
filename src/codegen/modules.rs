@@ -734,13 +734,15 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, d: &Device, pg:
     let mut signal_types = HashSet::new();
     let mut signals = HashMap::new();
 
-    if let Some(ref desc) = pg.description {
-        let desc = desc.trim();
-        if desc.len() > 0 {
-            try!(writeln!(out, "// //! {}", desc));
-            try!(writeln!(out, ""));
-        }
-    }       
+    // TODO: Description must be added at top of crate
+
+    // if let Some(ref desc) = pg.description {
+    //     let desc = desc.trim();
+    //     if desc.len() > 0 {
+    //         try!(writeln!(out, "// //! {}", desc));
+    //         try!(writeln!(out, ""));
+    //     }
+    // }       
 
     // try!(writeln!(out, "#[allow(unused_imports)] use {}::*;", cfg.common));    
     // try!(writeln!(out, ""));
@@ -1153,13 +1155,15 @@ pub fn gen_peripheral_impl<W: Write>(cfg: &Config, out: &mut W, p: &Peripheral) 
     let p_type = format!("{}Periph", to_camel(&p.group_name.as_ref().unwrap()));
     let ch_type = format!("{}Ch", to_camel(&p.group_name.as_ref().unwrap()));
 
-    if let Some(ref desc) = p.description {
-        let desc = desc.trim();
-        if desc.len() > 0 {
-            try!(writeln!(out, "//! {}", desc));
-            try!(writeln!(out, ""));
-        }
-    }
+
+    // TODO: Description must be added at top of file
+    // if let Some(ref desc) = p.description {
+    //     let desc = desc.trim();
+    //     if desc.len() > 0 {
+    //         try!(writeln!(out, "// //! {}", desc));
+    //         try!(writeln!(out, ""));
+    //     }
+    // }
 
     try!(writeln!(out, "#[allow(unused_imports)] use {}::*;", cfg.common));
     try!(writeln!(out, ""));
