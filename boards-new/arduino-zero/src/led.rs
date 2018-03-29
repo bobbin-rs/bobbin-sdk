@@ -18,3 +18,9 @@ impl GetLed for ::ArduinoZero {
     }
     fn get_led_count(&self) -> usize { 1 }
 }
+
+impl ::ArduinoZero {
+    pub fn led0(&self) -> LedHigh<PortPin> {
+        LedHigh::new(PA17_PIN)
+    }
+}

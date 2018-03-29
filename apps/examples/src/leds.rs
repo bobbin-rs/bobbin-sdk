@@ -2,20 +2,27 @@ use common::board::Board;
 use common::delay::Delay;
 use common::led::*;
 
-pub fn run<B>(b: B) -> !
-where
-    B: Board + Delay + GetLed
-{    
-    let n = b.get_led_count();
-    loop {
-        for i in 0..n {
-            b.get_led(i).on();
-            b.delay_ms(500);
-        }
-        for i in 0..n {
-            b.get_led(i).off();
-            b.delay_ms(500);
-        }
-    }        
+pub struct BlinkLeds<'a, LED: 'a + Led, DEL: Delay> {
+    leds: &'a [LED],
+    del: DEL,
+    delay_ms: u32,
+}
 
+impl<'a, LED, DEL> BlinkLeds<'a, LED, DEL> 
+where
+    LED: 'a + Led,
+    DEL: Delay
+{
+    pub fn new(leds: &'a [LED], del: DEL, delay_ms: u32) -> Self {
+        Self { leds, del, delay_ms }
+    }
+
+    pub fn run(&self) -> ! {
+        loop {
+            for i in 0..self.leds.len() {
+                self.leds[i].toggle();
+                self.del.delay_ms(self.delay_ms);
+            }
+        }
+    }
 }

@@ -33,3 +33,10 @@ impl GetLed for ::FrdmK64f {
     }
     fn get_led_count(&self) -> usize { 3 }
 }
+
+impl ::FrdmK64f {
+    pub fn led0(&self) -> LedHigh<GpioCh> { LedHigh::new(PB22_CH) }
+    pub fn led1(&self) -> LedHigh<GpioCh> { LedHigh::new(PB21_CH) }
+    pub fn led2(&self) -> LedHigh<GpioCh> { LedHigh::new(PE26_CH) }
+
+}

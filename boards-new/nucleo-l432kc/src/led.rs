@@ -18,3 +18,7 @@ impl GetLed for ::NucleoL432kc {
     }
     fn get_led_count(&self) -> usize { 1 }
 }
+
+impl ::NucleoL432kc {
+    pub fn led0(&self) -> LedHigh<GpioPin> { LedHigh::new(PB3_PIN) }
+}

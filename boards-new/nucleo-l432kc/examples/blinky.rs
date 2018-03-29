@@ -3,15 +3,12 @@
 #![feature(asm)]
 
 extern crate nucleo_l432kc as board;
-
-use board::led::*;
+extern crate examples;
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
-    board::init();
-
-    loop {
-        LED0.toggle_output();
-        board::delay(500);
-    }
+    board::init();    
+    let brd = board::board();
+    let app = examples::led::BlinkLed::new(brd.led0(), brd, 500);
+    app.run()
 }

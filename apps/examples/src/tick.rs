@@ -1,14 +1,27 @@
 #[allow(unused_imports)]
-use common::*;
-use common::board::Board;
+
+use core::fmt::Write;
 use common::delay::Delay;
 
-pub fn run<B>(b: B) -> !
+pub struct Tick<OUT: Write, DEL: Delay> {
+    out: OUT,
+    del: DEL,
+    delay_ms: u32,
+}
+
+impl<OUT, DEL> Tick<OUT, DEL> 
 where
-    B: Board + Delay     
-{    
-    loop {
-        println!("Tick");
-        b.delay_ms(500);
+    OUT: Write,
+    DEL: Delay,
+{
+    pub fn new(out: OUT, del: DEL, delay_ms: u32) -> Self {
+        Self { out, del, delay_ms }
+    }
+
+    pub fn run(&mut self) -> ! {
+        loop {
+            let _ = self.out.write_str("Tick...\r\n");
+            self.del.delay_ms(self.delay_ms);
+        }
     }
 }
