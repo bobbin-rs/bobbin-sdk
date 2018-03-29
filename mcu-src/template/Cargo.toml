@@ -1,6 +1,0 @@
-[package]
-name = "%name%"
-version = "%version%"
-authors = ["%author%"]
-
-[dependencies]
