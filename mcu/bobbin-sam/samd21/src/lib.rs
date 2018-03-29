@@ -4,7 +4,6 @@
 extern crate sam_common;
 pub use sam_common::*;
 
-pub use exc;
 pub use nvic;
 pub use scb;
 pub use systick;

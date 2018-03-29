@@ -1,5 +1,3 @@
-//! Secure digital input/output interface
-
 #[allow(unused_imports)] use ::bobbin_common::*;
 
 #[doc="Secure digital input/output interface"]

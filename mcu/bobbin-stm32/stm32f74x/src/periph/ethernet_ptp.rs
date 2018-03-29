@@ -1,5 +1,3 @@
-//! Ethernet: Precision time protocol
-
 #[allow(unused_imports)] use ::bobbin_common::*;
 
 #[doc="Ethernet: Precision time protocol"]

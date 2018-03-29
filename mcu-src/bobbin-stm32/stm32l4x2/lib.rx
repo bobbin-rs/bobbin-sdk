@@ -4,9 +4,7 @@
     (description "STM32L4x2")
     (interrupt-count 85)
 
-    (crate
-        
-        (module (name exc))
+    (crate        
         (module (name nvic))
         (module (name scb))
         (module (name systick))

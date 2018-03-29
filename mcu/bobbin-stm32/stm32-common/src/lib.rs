@@ -5,11 +5,8 @@
 pub extern crate bobbin_cortexm;
 pub extern crate bobbin_common;
 
-pub mod chip;
-pub mod hal;
+pub mod periph;
+pub mod ext;
 
 pub use bobbin_cortexm::*;
-pub use hal::*;
-
-#[cfg(test)]
-mod tests;
+pub use ext::*;

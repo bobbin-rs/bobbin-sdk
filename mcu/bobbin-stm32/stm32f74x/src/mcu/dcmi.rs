@@ -1,6 +1,6 @@
 #[allow(unused_imports)] use ::bobbin_common::*;
 #[allow(unused_imports)] pub use ::bobbin_common::gate::GateEn;
-pub use ::hal::dcmi::*;
+pub use ext::dcmi::*;
 
 periph!( DCMI, Dcmi, DCMI_PERIPH, DcmiPeriph, 0x50050000, 0x00, 0x13);
 

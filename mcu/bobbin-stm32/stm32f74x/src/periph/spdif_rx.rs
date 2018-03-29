@@ -1,5 +1,3 @@
-//! Receiver Interface
-
 #[allow(unused_imports)] use ::bobbin_common::*;
 
 #[doc="Receiver Interface"]

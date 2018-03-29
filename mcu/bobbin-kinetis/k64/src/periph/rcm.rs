@@ -1,5 +1,3 @@
-//! Reset Control Module
-
 #[allow(unused_imports)] use ::bobbin_common::*;
 
 #[doc="Reset Control Module"]

@@ -2,8 +2,6 @@
 #[allow(unused_imports)] pub use ::bobbin_common::gate::GateEn;
 pub use ::hal::adc::*;
 
-// //! Analog-to-Digital Converter
-
 periph!( ADC, Adc, ADC_PERIPH, AdcPeriph, 0x42004000, 0x00, 0x07);
 
 channel!(ADC_CH0, AdcCh0, ADC, Adc, ADC_CH0_CH, AdcCh, ADC_PERIPH, 0);

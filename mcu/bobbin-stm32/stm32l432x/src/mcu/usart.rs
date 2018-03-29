@@ -1,6 +1,6 @@
 #[allow(unused_imports)] use ::bobbin_common::*;
 #[allow(unused_imports)] pub use ::bobbin_common::gate::GateEn;
-pub use ::hal::usart::*;
+pub use ext::usart::*;
 
 periph!( USART1, Usart1, USART1_PERIPH, UsartPeriph, 0x40013800, 0x00, 0x24);
 periph!( USART2, Usart2, USART2_PERIPH, UsartPeriph, 0x40004400, 0x01, 0x25);

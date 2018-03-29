@@ -1,5 +1,3 @@
-//! Memory protection unit
-
 #[allow(unused_imports)] use ::bobbin_common::*;
 
 #[doc="Memory protection unit"]

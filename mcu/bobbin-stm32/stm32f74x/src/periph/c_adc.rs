@@ -1,5 +1,3 @@
-//! Common ADC registers
-
 #[allow(unused_imports)] use ::bobbin_common::*;
 
 #[doc="Common ADC registers"]

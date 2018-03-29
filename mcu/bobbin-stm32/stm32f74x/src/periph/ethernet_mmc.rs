@@ -1,5 +1,3 @@
-//! Ethernet: MAC management counters
-
 #[allow(unused_imports)] use ::bobbin_common::*;
 
 #[doc="Ethernet: MAC management counters"]

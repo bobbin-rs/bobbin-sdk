@@ -1,5 +1,3 @@
-//! Watchdog Timer
-
 #[allow(unused_imports)] use ::bobbin_common::*;
 
 #[doc="Watchdog Timer"]

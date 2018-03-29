@@ -1,6 +1,6 @@
 #[allow(unused_imports)] use ::bobbin_common::*;
 #[allow(unused_imports)] pub use ::bobbin_common::gate::GateEn;
-pub use ::hal::adc::*;
+pub use ext::adc::*;
 
 periph!( ADC1, Adc1, ADC1_PERIPH, AdcPeriph, 0x50040000, 0x00, 0x2d);
 periph!( ADC2, Adc2, ADC2_PERIPH, AdcPeriph, 0x50040100, 0x01, 0x2e);

@@ -1,6 +1,6 @@
 #[allow(unused_imports)] use ::bobbin_common::*;
 #[allow(unused_imports)] pub use ::bobbin_common::gate::GateEn;
-pub use ::hal::lptim::*;
+pub use ext::lptim::*;
 
 periph!( LPTIM1, Lptim1, LPTIM1_PERIPH, LptimPeriph, 0x40002400, 0x00, 0x2a);
 

@@ -1,5 +1,3 @@
-//! Real-Time Counter
-
 #[allow(unused_imports)] use ::bobbin_common::*;
 
 #[doc="Real-Time Counter"]

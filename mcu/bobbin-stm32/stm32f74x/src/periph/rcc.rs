@@ -1,5 +1,3 @@
-//! Reset and clock control
-
 #[allow(unused_imports)] use ::bobbin_common::*;
 
 #[doc="Reset and clock control"]

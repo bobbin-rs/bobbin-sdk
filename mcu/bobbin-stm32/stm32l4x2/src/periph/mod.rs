@@ -16,6 +16,3 @@ pub mod swpmi;
 pub mod opamp;
 pub mod crs;
 pub mod usb;
-pub mod dfsdm;
-pub mod quadspi;
-pub mod dbgmcu;

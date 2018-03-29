@@ -1,5 +1,3 @@
-//! Ethernet MAC-NET Core
-
 #[allow(unused_imports)] use ::bobbin_common::*;
 
 #[doc="Ethernet MAC-NET Core"]

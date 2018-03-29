@@ -1,6 +1,6 @@
 #[allow(unused_imports)] use ::bobbin_common::*;
 #[allow(unused_imports)] pub use ::bobbin_common::gate::GateEn;
-pub use ::hal::ethernet_mac::*;
+pub use ext::ethernet_mac::*;
 
 #[allow(unused_imports)] use ::bobbin_common::*;
 

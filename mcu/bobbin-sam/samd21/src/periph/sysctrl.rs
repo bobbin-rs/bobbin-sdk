@@ -1,5 +1,3 @@
-//! System Control
-
 #[allow(unused_imports)] use ::bobbin_common::*;
 
 #[doc="System Control"]

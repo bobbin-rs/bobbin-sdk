@@ -1,5 +1,3 @@
-//! Multipurpose Clock Generator module
-
 #[allow(unused_imports)] use ::bobbin_common::*;
 
 #[doc="Multipurpose Clock Generator module"]

@@ -1,5 +1,3 @@
-//! Power Manager
-
 #[allow(unused_imports)] use ::bobbin_common::*;
 
 #[doc="Power Manager"]

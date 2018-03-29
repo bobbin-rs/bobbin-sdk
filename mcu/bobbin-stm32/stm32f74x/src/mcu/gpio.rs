@@ -1,6 +1,6 @@
 #[allow(unused_imports)] use ::bobbin_common::*;
 #[allow(unused_imports)] pub use ::bobbin_common::gate::GateEn;
-pub use ::hal::gpio::*;
+pub use ext::gpio::*;
 
 periph!( GPIOA, Gpioa, GPIOA_PERIPH, GpioPeriph, 0x40020000, 0x00, 0x3c);
 periph!( GPIOB, Gpiob, GPIOB_PERIPH, GpioPeriph, 0x40020400, 0x01, 0x3d);

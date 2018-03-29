@@ -1,5 +1,3 @@
-//! Non-Volatile Memory Controller
-
 #[allow(unused_imports)] use ::bobbin_common::*;
 
 #[doc="Non-Volatile Memory Controller"]

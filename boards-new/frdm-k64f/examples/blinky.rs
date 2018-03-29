@@ -12,7 +12,7 @@ pub extern "C" fn main() -> ! {
     board::init();
 
     loop {
-        LED0.toggle_output();
+        LED0.toggle();
         if BTN0.input() {
             board::delay(100);
         } else {

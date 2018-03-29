@@ -1,5 +1,3 @@
-//! Debug support
-
 #[allow(unused_imports)] use ::bobbin_common::*;
 
 #[doc="Debug support"]

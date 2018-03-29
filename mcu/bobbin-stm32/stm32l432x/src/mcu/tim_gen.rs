@@ -1,6 +1,6 @@
 #[allow(unused_imports)] use ::bobbin_common::*;
 #[allow(unused_imports)] pub use ::bobbin_common::gate::GateEn;
-pub use ::hal::tim_gen::*;
+pub use ext::tim_gen::*;
 
 periph!( TIM2, Tim2, TIM2_PERIPH, TimGenPeriph, 0x40000000, 0x00, 0x16);
 periph!( TIM3, Tim3, TIM3_PERIPH, TimGenPeriph, 0x40000400, 0x01, 0x17);

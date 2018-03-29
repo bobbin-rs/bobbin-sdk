@@ -4,7 +4,6 @@
 extern crate stm32_common;
 pub use stm32_common::*;
 
-pub use exc;
 pub use nvic;
 pub use scb;
 pub use systick;
@@ -15,7 +14,7 @@ pub use itm;
 pub use dwt;
 
 pub mod periph;
-pub mod hal;
+pub mod ext;
 pub mod mcu;
 
 pub use mcu::flash;

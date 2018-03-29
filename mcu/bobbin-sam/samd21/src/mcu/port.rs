@@ -2,8 +2,6 @@
 #[allow(unused_imports)] pub use ::bobbin_common::gate::GateEn;
 pub use ::hal::port::*;
 
-// //! I/O Pin Controller
-
 periph!( PORTA, Porta, PORTA_PERIPH, PortPeriph, 0x41004400, 0x00, 0x0e);
 periph!( PORTB, Portb, PORTB_PERIPH, PortPeriph, 0x41004480, 0x01, 0x0f);
 

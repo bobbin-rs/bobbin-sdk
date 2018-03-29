@@ -4,7 +4,6 @@
 extern crate kinetis_common;
 pub use kinetis_common::*;
 
-pub use exc;
 pub use nvic;
 pub use scb;
 pub use systick;

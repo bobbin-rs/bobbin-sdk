@@ -1,5 +1,3 @@
-//! Ethernet: media access control (MAC)
-
 #[allow(unused_imports)] use ::bobbin_common::*;
 
 #[doc="Ethernet: media access control (MAC)"]

@@ -1,5 +1,3 @@
-//! Analog-to-Digital Converter
-
 #[allow(unused_imports)] use ::bobbin_common::*;
 
 #[doc="Analog-to-Digital Converter"]

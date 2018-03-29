@@ -1,5 +1,3 @@
-//! QuadSPI interface
-
 #[allow(unused_imports)] use ::bobbin_common::*;
 
 #[doc="QuadSPI interface"]

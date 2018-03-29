@@ -1,1 +1,3 @@
-(device)
+(device
+    (name SAM-COMMON)
+)

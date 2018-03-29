@@ -1,5 +1,3 @@
-//! FLASH
-
 #[allow(unused_imports)] use ::bobbin_common::*;
 
 #[doc="FLASH"]

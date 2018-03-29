@@ -1,5 +1,3 @@
-//! DMA2D controller
-
 #[allow(unused_imports)] use ::bobbin_common::*;
 
 #[doc="DMA2D controller"]

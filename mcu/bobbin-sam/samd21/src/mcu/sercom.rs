@@ -2,8 +2,6 @@
 #[allow(unused_imports)] pub use ::bobbin_common::gate::GateEn;
 pub use ::hal::sercom::*;
 
-// //! Serial Communication Interface
-
 periph!( SERCOM0, Sercom0, SERCOM0_PERIPH, SercomPeriph, 0x42000800, 0x00, 0x10);
 periph!( SERCOM1, Sercom1, SERCOM1_PERIPH, SercomPeriph, 0x42000c00, 0x01, 0x11);
 periph!( SERCOM2, Sercom2, SERCOM2_PERIPH, SercomPeriph, 0x42001000, 0x02, 0x12);

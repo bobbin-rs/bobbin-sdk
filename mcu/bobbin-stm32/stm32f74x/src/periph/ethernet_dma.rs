@@ -1,5 +1,3 @@
-//! Ethernet: DMA controller operation
-
 #[allow(unused_imports)] use ::bobbin_common::*;
 
 #[doc="Ethernet: DMA controller operation"]

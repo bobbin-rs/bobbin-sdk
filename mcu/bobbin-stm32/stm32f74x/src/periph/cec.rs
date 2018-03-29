@@ -1,5 +1,3 @@
-//! HDMI-CEC controller
-
 #[allow(unused_imports)] use ::bobbin_common::*;
 
 #[doc="HDMI-CEC controller"]

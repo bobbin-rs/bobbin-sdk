@@ -1,5 +1,3 @@
-//! Oscillator
-
 #[allow(unused_imports)] use ::bobbin_common::*;
 
 #[doc="Oscillator"]

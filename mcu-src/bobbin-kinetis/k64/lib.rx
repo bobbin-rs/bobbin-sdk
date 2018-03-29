@@ -10,7 +10,6 @@
     )
 
     (crate
-        (module (name exc))
         (module (name nvic))
         (module (name scb))
         (module (name systick))
