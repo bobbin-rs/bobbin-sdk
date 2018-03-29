@@ -27,17 +27,7 @@ impl From<reader::ReadError> for AppError {
 fn main() {
     let matches = App::new("chip")
         .arg(Arg::with_name("build")
-            .long("build"))
-        .arg(Arg::with_name("groups")
-            .long("groups"))
-        .arg(Arg::with_name("constants")
-            .long("constants"))
-        .arg(Arg::with_name("interrupts")
-            .long("interrupts"))
-        .arg(Arg::with_name("signatures")
-            .long("signatures"))
-        .arg(Arg::with_name("resets")
-            .long("resets"))            
+            .long("build"))     
         .arg(Arg::with_name("modules")
             .long("modules")) 
         .arg(Arg::with_name("crate")
@@ -46,10 +36,6 @@ fn main() {
             .long("board")) 
         .arg(Arg::with_name("periph")
             .long("periph")) 
-        .arg(Arg::with_name("registers")
-            .long("registers"))
-        .arg(Arg::with_name("panic")
-            .long("panic"))
         .arg(Arg::with_name("root")
             .long("root"))     
         .arg(Arg::with_name("cargo-template")
@@ -75,17 +61,7 @@ fn main() {
     }
 
 
-    let cmd = if matches.is_present("constants") {
-        cmd_constants
-    } else if matches.is_present("interrupts") {
-        cmd_interrupts
-    } else if matches.is_present("signatures") {
-        cmd_signatures
-    } else if matches.is_present("groups") {
-        cmd_groups
-    } else if matches.is_present("resets") {
-        cmd_resets
-    } else if matches.is_present("modules") {
+    let cmd = if matches.is_present("modules") {
         if !matches.is_present("output") {
             println!("No output directory specified");
             std::process::exit(1);
@@ -135,9 +111,6 @@ fn main() {
                 std::process::exit(code);
             }
         }
-
-    } else if matches.is_present("registers") {
-        cmd_registers
     } else {
         println!("{}", matches.usage());
         std::process::exit(1);
@@ -157,26 +130,6 @@ fn main() {
             std::process::exit(code);
         }
     }
-}
-
-fn cmd_constants(_matches: &ArgMatches, device: &Device) -> Result<(), AppError> {    
-    Ok(try!(chip::codegen::gen_constants(&mut std::io::stdout(), &device)))
-}
-
-fn cmd_interrupts(_matches: &ArgMatches, device: &Device) -> Result<(), AppError> {    
-    Ok(try!(chip::codegen::interrupts::display_interrupts(&mut std::io::stdout(), &device)))
-}
-
-fn cmd_groups(_matches: &ArgMatches, device: &Device) -> Result<(), AppError> {
-    Ok(try!(chip::codegen::gen_groups(&mut std::io::stdout(), &device)))
-}
-
-fn cmd_signatures(_matches: &ArgMatches, device: &Device) -> Result<(), AppError> {
-    Ok(try!(chip::codegen::gen_signatures(&mut std::io::stdout(), &device)))
-}
-
-fn cmd_resets(_matches: &ArgMatches, device: &Device) -> Result<(), AppError> {
-    Ok(try!(chip::codegen::gen_resets(&mut std::io::stdout(), &device)))
 }
 
 fn cmd_modules(matches: &ArgMatches, device: &Device) -> Result<(), AppError> {
@@ -205,12 +158,6 @@ fn cmd_periph(matches: &ArgMatches, periph: &Peripheral) -> Result<(), AppError>
         cargo_template:  PathBuf::from(matches.value_of("cargo-template").expect("Required parameter cargo-template missing")),
     };
     Ok(try!(chip::codegen::gen_periph(cfg, &mut std::io::stdout(), &periph)))
-}
-
-
-
-fn cmd_registers(matches: &ArgMatches, device: &Device) -> Result<(), AppError> {
-    Ok(try!(chip::codegen::gen_registers(matches, &mut std::io::stdout(), &device)))
 }
 
 
