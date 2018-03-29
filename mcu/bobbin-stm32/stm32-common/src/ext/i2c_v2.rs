@@ -77,7 +77,7 @@ impl I2cPeriph {
         }
     }    
     pub fn wait_txis(&self) {
-        let mut c = 100_000;
+        let mut c = 1_000_000;
         loop {
             if c == 0 {
                 panic!("TXIS TIMEOUT");
