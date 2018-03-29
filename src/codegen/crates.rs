@@ -83,9 +83,9 @@ pub fn gen_crate<W: Write>(cfg: Config, _out: &mut W, d: &Device) -> Result<()> 
         fs::create_dir(&periph_path)?;
     }
 
-    let hal_path = src_path.join("hal/");
-    if !hal_path.exists() {
-        fs::create_dir(&hal_path)?;
+    let ext_path = src_path.join("ext/");
+    if !ext_path.exists() {
+        fs::create_dir(&ext_path)?;
     }
 
     let clk_path = src_path.join("clock/");
@@ -147,9 +147,9 @@ pub fn gen_crate<W: Write>(cfg: Config, _out: &mut W, d: &Device) -> Result<()> 
         let mut periph_out = File::create(periph_path.clone().join("mod.rs"))?;
         gen_periph_mod(&cfg, &mut periph_out, d, &periph_path)?;
 
-        writeln!(out, "pub mod hal;")?;    
-        let mut hal_out = File::create(hal_path.clone().join("mod.rs"))?;
-        gen_hal_mod(&cfg, &mut hal_out, d, &hal_path)?;
+        writeln!(out, "pub mod ext;")?;    
+        let mut ext_out = File::create(ext_path.clone().join("mod.rs"))?;
+        gen_ext_mod(&cfg, &mut ext_out, d, &ext_path)?;
 
         writeln!(out, "pub mod mcu;")?;
         writeln!(out, "")?;
@@ -243,7 +243,7 @@ pub fn gen_periph_mod<W: Write>(cfg: &modules::Config, out: &mut W, d: &Device, 
     Ok(())
 }
 
-pub fn gen_hal_mod<W: Write>(_cfg: &modules::Config, out: &mut W, d: &Device, path: &Path) -> Result<()> {
+pub fn gen_ext_mod<W: Write>(_cfg: &modules::Config, out: &mut W, d: &Device, path: &Path) -> Result<()> {
 
     for p in d.peripherals.iter() {
         if p.modules.len() > 0 { continue }        
@@ -294,7 +294,7 @@ pub fn gen_mcu_mod<W: Write>(cfg: &modules::Config, p_out: &mut W, out: &mut W, 
         let mut f_mod = try!(File::create(p_mod));
         writeln!(f_mod, "#[allow(unused_imports)] use ::bobbin_common::*;")?;
         writeln!(f_mod, "#[allow(unused_imports)] pub use ::bobbin_common::gate::GateEn;")?;
-        writeln!(f_mod, "pub use ::hal::{}::*;", p_name)?;
+        writeln!(f_mod, "pub use ext::{}::*;", p_name)?;
         writeln!(f_mod, "")?;
         try!(modules::gen_peripheral(cfg, &mut f_mod, d, p, ord));
         ord += 1;
@@ -308,7 +308,7 @@ pub fn gen_mcu_mod<W: Write>(cfg: &modules::Config, p_out: &mut W, out: &mut W, 
         let mut f_mod = try!(File::create(p_mod));
         writeln!(f_mod, "#[allow(unused_imports)] use ::bobbin_common::*;")?;
         writeln!(f_mod, "#[allow(unused_imports)] pub use ::bobbin_common::gate::GateEn;")?;
-        writeln!(f_mod, "pub use ::hal::{}::*;", pg_name)?;
+        writeln!(f_mod, "pub use ext::{}::*;", pg_name)?;
         writeln!(f_mod, "")?;
         try!(modules::gen_peripheral_group(&cfg, &mut f_mod, d, pg, &mut ord));        
     }
