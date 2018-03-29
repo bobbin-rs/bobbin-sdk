@@ -2,8 +2,6 @@
 #![no_std]
 
 extern crate bobbin_bits;
-pub mod ext;
-pub use ext::*;
 
 pub type Addr = u8;
 pub type Value = u8;
@@ -4587,3 +4585,5 @@ impl ::core::fmt::Debug for PllHf {
 
 }
 
+pub mod ext;
+pub use ext::*;

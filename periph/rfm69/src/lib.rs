@@ -2,8 +2,6 @@
 #![no_std]
 
 extern crate bobbin_bits;
-pub mod ext;
-pub use ext::*;
 
 pub type Addr = u8;
 pub type Value = u8;
@@ -5237,3 +5235,5 @@ impl ::core::fmt::Debug for Testafc {
 
 }
 
+pub mod ext;
+pub use ext::*;
