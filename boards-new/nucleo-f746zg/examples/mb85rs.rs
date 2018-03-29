@@ -55,8 +55,7 @@ pub extern "C" fn main() -> ! {
 
     println!("I2C Configuration Complete");
 
-    let buf = fram.device_id(addr);
-    // i2c.transfer(addr_id, &[0b1010_0000], &mut buf);    
+    let buf = fram.device_id();
     
     print!("ID: ");
     for i in 0..buf.len() {
@@ -112,9 +111,9 @@ pub struct Mb85rs {
 }
 
 impl Mb85rs {
-    pub fn device_id(&self, i2c_addr: U7) -> [u8; 3] {
+    pub fn device_id(&self) -> [u8; 3] {
         let mut buf = [0u8; 3];
-        self.i2c.transfer(U7::from(0x7c), &[i2c_addr.value() << 1], &mut buf);
+        self.i2c.transfer(U7::from(0x7c), &[self.addr.value() << 1], &mut buf);
         buf
     }
     pub fn write(&self, addr: u16, val: u8) {
