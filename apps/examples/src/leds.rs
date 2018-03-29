@@ -1,4 +1,3 @@
-use common::board::Board;
 use common::delay::Delay;
 use common::led::*;
 
