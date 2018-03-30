@@ -2,9 +2,9 @@ use embedded_hal::blocking::spi;
 use embedded_hal::digital;
 use core::fmt;
 
-pub struct FramExample<OUT, SPI, NSS> { out: OUT, fram: Mb85rs64<SPI, NSS> }
+pub struct Example<OUT, SPI, NSS> { out: OUT, fram: Mb85rs64<SPI, NSS> }
 
-impl<OUT, SPI, NSS, E> FramExample<OUT, SPI, NSS>
+impl<OUT, SPI, NSS, E> Example<OUT, SPI, NSS>
 where 
     OUT: fmt::Write,
     SPI: spi::Transfer<u8, Error=E> + spi::Write<u8, Error=E>,

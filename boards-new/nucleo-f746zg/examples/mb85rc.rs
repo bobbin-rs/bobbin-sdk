@@ -1,8 +1,9 @@
 #![no_std]
 #![no_main]
 
-#[macro_use]
 extern crate nucleo_f746zg as board;
+extern crate embedded_hal as hal;
+extern crate examples;
 
 use board::mcu::pin::*;
 use board::mcu::spi::*;
@@ -11,7 +12,7 @@ use board::mcu::spi::*;
 #[no_mangle]
 pub extern "C" fn main() -> ! {
     board::init();
-    println!("Running SPI");
+    let brd = board::board();
 
     let spi = SPI1;
 
@@ -47,128 +48,67 @@ pub extern "C" fn main() -> ! {
     spi.with_cr2(|r| r.set_frxth(1));
     spi.set_output_enabled(true).set_enabled(true);
 
-    println!("SPI Configuration Complete");
 
-    let fram = Mb85rs64 { spi: spi.into(), nss: spi_nss.into() };
-    let buf = fram.device_id();
-    print!("ID: ");
-    for i in 0..buf.len() {
-        print!("{:02x} ", buf[i]);
-    }
-    println!("");
+    let nss_drv = PinDriver::new(spi_nss.into());
+    let spi_drv = SpiDriver::new(spi.into());
+    let mut app = examples::mb85rc::Example::new(brd.console(), spi_drv, nss_drv);
+    let _ = app.run();
    
-    {
-        let mut out_buf = [0u8; 0x40];
-        let mut in_buf = [0u8; 0x40];
-        for i in 0..0x40 {
-            out_buf[i] = i as u8;
-        }    
-        fram.write(0x00, &out_buf);        
-        fram.read(0x00, &mut in_buf);
-        dump(&in_buf);
-    }
-
-    {
-        let out_buf = [0u8; 0x40];
-        let mut in_buf = [0u8; 0x40];
-        fram.write(0x00, &out_buf);        
-        fram.read(0x00, &mut in_buf);
-        dump(&in_buf);
-    }       
     loop {}
 
 }
 
-pub fn dump(buf: &[u8]) {
-    for i in 0..buf.len() {
-        if i % 16 == 0 {
-            if i > 0 {
-                println!("");
-            }
-            print!("{:04x}:", i)
-        }
-        if i % 8 == 0 {
-            print!(" ");
-        }
-        print!(" {:02x}", buf[i]);
+pub struct PinDriver { pin: GpioPin }
+impl PinDriver {
+    pub fn new(pin: GpioPin) -> Self {
+        Self { pin }
     }
-    println!("");    
+}
+
+impl hal::digital::OutputPin for PinDriver {
+    fn is_high(&self) -> bool {
+        self.pin.output()
+    }
+
+    fn is_low(&self) -> bool {
+        !self.pin.output()
+    }
+
+    fn set_low(&mut self) { self.pin.set_output(false); }
+    fn set_high(&mut self) { self.pin.set_output(true); }
 }
 
 
-pub const WREN: u8 = 0b0000_0110;
-pub const WRDI: u8 = 0b0000_0100;
-pub const RDSR: u8 = 0b0000_0101;
-pub const WRSR: u8 = 0b0000_0001;
-pub const READ: u8 = 0b0000_0011;
-pub const WRITE: u8 = 0b0000_0010;
-pub const RDID: u8 = 0b1001_1111;
+pub struct Error;
 
-pub struct Mb85rs64 {
-    spi: SpiPeriph,
-    nss: GpioPin,
+pub struct SpiDriver { spi: SpiPeriph }
+
+impl SpiDriver {
+    pub fn new(spi: SpiPeriph) -> Self {
+        Self { spi }
+    }
 }
 
-impl Mb85rs64 {
-    pub fn with_nss<F: FnOnce()->R, R>(&self, f: F) -> R {
-        self.nss.set_output(false);
-        let r = f();
-        while self.spi.busy() {}
-        self.nss.set_output(true);
-        r
-    }
+// pub trait Transfer<W> {
+//     type Error;
+//     fn transfer<'w>(
+//         &mut self, 
+//         words: &'w mut [W]
+//     ) -> Result<&'w [W], Self::Error>;
+// }
 
-    pub fn transfer(&self, tx_buf: &[u8], rx_buf: &mut[u8]) {
-        self.spi.transfer(tx_buf, rx_buf)
+impl hal::blocking::spi::Write<u8> for SpiDriver {
+    type Error = Error;
+    fn write<'w>(&mut self, words: &'w [u8]) -> Result<(), Self::Error> {
+        self.spi.transfer(words, &mut []);
+        Ok(())
     }
+}
 
-
-    pub fn device_id(&self) -> [u8; 4] {
-        self.with_nss(|| {
-            let mut buf = [0u8; 4];
-            self.transfer(&[RDID], &mut buf);
-            buf
-        })
-    }
-
-    pub fn wren(&self) {
-        self.transfer(&[WREN], &mut []);
-    }
-
-    pub fn wrdi(&self) {
-        self.transfer(&[WRDI], &mut []);
-    }
-    
-    pub fn rdsr(&self) -> u8 {
-        let mut buf = [0u8];
-        self.transfer(&[RDSR], &mut buf);
-        buf[0]
-    }
-
-    pub fn status(&self) -> u8 {
-        self.with_nss(|| self.rdsr())
-    }
-
-    pub fn write_enable(&self) {
-        self.with_nss(|| self.wren())
-    }
-
-    pub fn write_disable(&self) {
-        self.with_nss(|| self.wrdi())        
-    }
-
-    pub fn write(&self, addr: u16, buf: &[u8]) {
-        self.with_nss(|| self.wren());
-        self.with_nss(|| {
-            // println!("{:02x} {:02x}", addr, self.rdsr());
-            self.transfer(&[WRITE, (addr >> 8) as u8, addr as u8], &mut[]);
-            self.transfer(buf, &mut []);
-        })
-    }
-
-    pub fn read(&self, addr: u16, buf: &mut [u8]) {
-        self.with_nss(|| {
-            self.transfer(&[READ, (addr >> 8) as u8, addr as u8], buf);
-        })
+impl hal::blocking::spi::Transfer<u8> for SpiDriver {
+    type Error = Error;
+    fn transfer<'w>(&mut self, words: &'w mut [u8]) -> Result<&'w [u8], Self::Error> {
+        self.spi.transfer(&[], words);
+        Ok(words)
     }
 }
