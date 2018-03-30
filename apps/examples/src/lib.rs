@@ -6,6 +6,7 @@ extern crate embedded_hal;
 pub mod tick;
 pub mod led;
 pub mod leds;
+pub mod pwm;
 
 pub mod mb85rc;
 pub mod mb85rs;

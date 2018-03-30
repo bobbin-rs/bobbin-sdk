@@ -58,7 +58,11 @@ impl TimGenPeriph {
         self.with_sr(|r| r.set_uif(0))
     }    
 
-    pub fn set_auto_reload(&self, value: u32) -> &Self {
+    pub fn auto_reload(&self) -> u16 {
+        self.arr().arrl().value()
+    }
+
+    pub fn set_auto_reload(&self, value: u16) -> &Self {
         self.set_arr(|r| r.set_arrl(value))
     }
 
