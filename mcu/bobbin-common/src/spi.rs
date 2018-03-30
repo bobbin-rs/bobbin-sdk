@@ -35,10 +35,17 @@ pub trait SpiRx<T: Copy> {
     fn rx(&self) -> T;
 }
 
-pub trait Read {
+pub trait SpiRead {
     fn read(&self, rx: &mut [u8]);
 }
 
-pub trait Write {
+pub trait SpiWrite {
     fn write(&self, tx: &[u8]);
+}
+
+pub trait SpiTransfer : SpiRead + SpiWrite {
+    fn transfer(&self, tx: &[u8], rx: &mut [u8]) {
+        self.write(tx);
+        self.read(rx);
+    }
 }

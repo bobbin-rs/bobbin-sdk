@@ -113,25 +113,13 @@ impl Mb85rs64 {
     pub fn with_nss<F: FnOnce()->R, R>(&self, f: F) -> R {
         self.nss.set_output(false);
         let r = f();
+        while self.spi.busy() {}
         self.nss.set_output(true);
         r
     }
 
     pub fn transfer(&self, tx_buf: &[u8], rx_buf: &mut[u8]) {
-        while self.spi.busy() {}
-        for i in 0..tx_buf.len() {
-            while !self.spi.can_tx() {}
-            self.spi.tx(tx_buf[i]);
-            while !self.spi.can_rx() {}
-            let _: u8 = self.spi.rx();
-        }
-        for i in 0..rx_buf.len() {
-            while !self.spi.can_tx() {}
-            self.spi.tx(0xffu8);
-            while !self.spi.can_rx() {}
-            rx_buf[i] = self.spi.rx();
-        }
-        while self.spi.busy() {}
+        self.spi.transfer(tx_buf, rx_buf)
     }
 
 

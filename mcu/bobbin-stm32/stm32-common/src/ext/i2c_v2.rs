@@ -181,8 +181,9 @@ impl I2cPeriph {
             timeout -= 1;
         }
     }    
-
-    pub fn transfer_iovecs<A: Into<U7>>(&self, addr: A, out_bufs: &[&[u8]], in_bufs: &mut [&mut[u8]]) -> &Self {
+}
+impl<A: Into<U7>> I2cTransferIovecs<A> for I2cPeriph {
+    fn transfer_iovecs(&self, addr: A, out_bufs: &[&[u8]], in_bufs: &mut [&mut[u8]]) -> &Self {
         use core::ops::IndexMut;
         let addr = addr.into();
         self.set_enabled(true);
