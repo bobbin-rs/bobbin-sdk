@@ -1,27 +1,27 @@
 #[allow(unused_imports)]
 
+use embedded_hal::blocking::delay::DelayMs;
 use core::fmt::Write;
-use common::delay::Delay;
 
-pub struct Tick<OUT: Write, DEL: Delay> {
+pub struct Tick<OUT: Write, TIM: DelayMs<u16>> {
     out: OUT,
-    del: DEL,
-    delay_ms: u32,
+    tim: TIM,
+    delay_ms: u16,
 }
 
-impl<OUT, DEL> Tick<OUT, DEL> 
+impl<OUT, TIM> Tick<OUT, TIM> 
 where
     OUT: Write,
-    DEL: Delay,
+    TIM: DelayMs<u16>,
 {
-    pub fn new(out: OUT, del: DEL, delay_ms: u32) -> Self {
-        Self { out, del, delay_ms }
+    pub fn new(out: OUT, tim: TIM, delay_ms: u16) -> Self {
+        Self { out, tim, delay_ms }
     }
 
     pub fn run(&mut self) -> ! {
         loop {
             let _ = self.out.write_str("Tick...\r\n");
-            self.del.delay_ms(self.delay_ms);
+            self.tim.delay_ms(self.delay_ms);
         }
     }
 }
