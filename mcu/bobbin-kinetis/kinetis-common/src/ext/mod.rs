@@ -7,3 +7,4 @@ pub mod pit;
 pub mod adc;
 pub mod flexcan;
 pub mod i2c;
+pub mod spi;
