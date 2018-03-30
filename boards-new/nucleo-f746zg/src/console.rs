@@ -5,7 +5,7 @@ use mcu::rcc::*;
 use mcu::usart::*;
 use mcu::pin::*;
 
-const USART: Usart3 = USART3;
+pub const USART: Usart3 = USART3;
 const USART_TX: Pd8 = PD8;
 const USART_RX: Pd9 = PD9;
 const USART_CLOCK: u32 = 16_000_000; // Use HSI Clock
