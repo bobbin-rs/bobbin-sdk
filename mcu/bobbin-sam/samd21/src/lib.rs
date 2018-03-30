@@ -9,7 +9,7 @@ pub use scb;
 pub use systick;
 
 pub mod periph;
-pub mod hal;
+pub mod ext;
 pub mod mcu;
 
 pub use mcu::gclk;

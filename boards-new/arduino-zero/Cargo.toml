@@ -26,6 +26,7 @@ lto = true
 
 [dev-dependencies]
 examples = { path = "../../apps/examples" }
+embedded-hal = "0.1.2"
 
 [dependencies.samd21]
 path = "../../mcu/bobbin-sam/samd21"

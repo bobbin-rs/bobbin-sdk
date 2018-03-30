@@ -1,6 +1,6 @@
 #[allow(unused_imports)] use ::bobbin_common::*;
 #[allow(unused_imports)] pub use ::bobbin_common::gate::GateEn;
-pub use ::hal::tc::*;
+pub use ext::tc::*;
 
 periph!( TC3, Tc3, TC3_PERIPH, TcPeriph, 0x42002c00, 0x00, 0x0b);
 periph!( TC4, Tc4, TC4_PERIPH, TcPeriph, 0x42003000, 0x01, 0x0c);

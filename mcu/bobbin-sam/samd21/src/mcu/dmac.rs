@@ -1,6 +1,6 @@
 #[allow(unused_imports)] use ::bobbin_common::*;
 #[allow(unused_imports)] pub use ::bobbin_common::gate::GateEn;
-pub use ::hal::dmac::*;
+pub use ext::dmac::*;
 
 periph!( DMAC, Dmac, DMAC_PERIPH, DmacPeriph, 0x41004800, 0x00, 0x06);
 

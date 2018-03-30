@@ -1,6 +1,6 @@
 #[allow(unused_imports)] use ::bobbin_common::*;
 #[allow(unused_imports)] pub use ::bobbin_common::gate::GateEn;
-pub use ::hal::sercom::*;
+pub use ext::sercom::*;
 
 periph!( SERCOM0, Sercom0, SERCOM0_PERIPH, SercomPeriph, 0x42000800, 0x00, 0x10);
 periph!( SERCOM1, Sercom1, SERCOM1_PERIPH, SercomPeriph, 0x42000c00, 0x01, 0x11);
