@@ -1,114 +1,84 @@
 #![no_std]
 #![no_main]
 
+#[macro_use]
 extern crate nucleo_f746zg as board;
 extern crate embedded_hal as hal;
 extern crate examples;
 
 use board::mcu::pin::*;
-use board::mcu::spi::*;
+use board::mcu::i2c::*;
 
+// A5 = PB6 = I2C1_SCL
+// A4 = PB7 = I2C1_SDA
+
+// Address = 0x35
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
     board::init();
     let brd = board::board();
+    println!("Running I2C");
+    
+    let i2c = I2C1;
+    let i2c_port = GPIOB;
+    let i2c_scl = PB8; // D15
+    let i2c_sda = PB9; // D14
 
-    let spi = SPI1;
+    GPIOA.gate_enable();
+    PA6.mode_input().open_drain();
+    PA5.mode_input().open_drain();
 
-    let spi_sck = PA5;  // D13
-    let spi_miso = PA6; // D12
-    let spi_mosi = PA7; // D11
-    let spi_nss = PD14; // D10
+    i2c.gate_enable();
+    i2c_port.gate_enable();
 
-    spi.gate_enable();
-    spi_sck.port().gate_enable();
-    spi_miso.port().gate_enable();
-    spi_mosi.port().gate_enable();
-    spi_nss.port().gate_enable();    
+    i2c_scl.connect_to(i2c);
+    i2c_sda.connect_to(i2c);
 
-    spi_sck.connect_to(spi);
-    spi_miso.connect_to(spi);
-    spi_mosi.connect_to(spi);
+    i2c_scl.open_drain();
+    i2c_sda.open_drain();
 
-    // NOTE: Pins must be set with output speed HIGH or leading edge
-    // of transmission will occasionally be missed.
+    println!("# Configuring I2C");
 
-    spi_sck.speed_high().push_pull();
-    spi_miso.speed_high().pull_up();
-    spi_mosi.speed_high().push_pull();
-    spi_nss.mode_output().set_output(true).set_output(false).set_output(true);
-
-    spi.set_config(|cfg| cfg
-        .set_data_size(DataSize::Bits8)
-        .set_master(true)
-        .set_baud_divider(0b011.into())
+    // i2c.set_config(|c| c.set_timing(0x8.into(), 0x3.into(), 0x0.into(), 0xd.into(), 0x12.into()));
+    i2c.set_enabled(false);
+    // i2c.set_timingr(|_| Timingr(0x00300619));
+    i2c.set_timingr(|r| r
+        .set_presc(0x0)
+        .set_scldel(0x3)
+        .set_sdadel(0x0)
+        .set_sclh(0xF)
+        .set_scll(0x12)
     );
-    spi.with_cr1(|r| r.set_cpha(0).set_cpol(0));
-    spi.with_cr2(|r| r.set_frxth(1));
-    spi.set_output_enabled(true).set_enabled(true);
 
-
-    let nss_drv = PinDriver::new(spi_nss.into());
-    let spi_drv = SpiDriver::new(spi.into());
-    let mut app = examples::mb85rc::Example::new(brd.console(), spi_drv, nss_drv);
+    let i2c_drv = I2cDriver::new(i2c.into());
+    let mut app = examples::mb85rc::Example::new(brd.console(), i2c_drv);
     let _ = app.run();
-   
     loop {}
 
 }
 
-pub struct PinDriver { pin: GpioPin }
-impl PinDriver {
-    pub fn new(pin: GpioPin) -> Self {
-        Self { pin }
-    }
-}
-
-impl hal::digital::OutputPin for PinDriver {
-    fn is_high(&self) -> bool {
-        self.pin.output()
-    }
-
-    fn is_low(&self) -> bool {
-        !self.pin.output()
-    }
-
-    fn set_low(&mut self) { self.pin.set_output(false); }
-    fn set_high(&mut self) { self.pin.set_output(true); }
-}
-
-
 pub struct Error;
 
-pub struct SpiDriver { spi: SpiPeriph }
+pub struct I2cDriver { i2c: I2cPeriph }
 
-impl SpiDriver {
-    pub fn new(spi: SpiPeriph) -> Self {
-        Self { spi }
-    }
+impl I2cDriver {
+    pub fn new(i2c: I2cPeriph) -> Self {
+        Self { i2c }
+    }    
 }
 
-// pub trait Transfer<W> {
-//     type Error;
-//     fn transfer<'w>(
-//         &mut self, 
-//         words: &'w mut [W]
-//     ) -> Result<&'w [W], Self::Error>;
-// }
-
-impl hal::blocking::spi::Write<u8> for SpiDriver {
+impl hal::blocking::i2c::WriteRead for I2cDriver {
     type Error = Error;
-    fn write<'w>(&mut self, words: &'w [u8]) -> Result<(), Self::Error> {
-        self.spi.transfer(words, &mut []);
+
+    fn write_read(
+        &mut self, 
+        address: u8, 
+        bytes: &[u8], 
+        buffer: &mut [u8]
+    ) -> Result<(), Self::Error> {
+        self.i2c.transfer(address, bytes, buffer);
         Ok(())
     }
-}
 
-impl hal::blocking::spi::Transfer<u8> for SpiDriver {
-    type Error = Error;
-    fn transfer<'w>(&mut self, words: &'w mut [u8]) -> Result<&'w [u8], Self::Error> {
-        self.spi.transfer(&[], words);
-        Ok(words)
-    }
 }
