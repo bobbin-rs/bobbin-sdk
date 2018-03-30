@@ -3,8 +3,9 @@
 
 #[macro_use]
 extern crate nucleo_f746zg as board;
+extern crate embedded_hal as hal;
+extern crate examples;
 
-use board::common::bits::*;
 use board::mcu::pin::*;
 use board::mcu::i2c::*;
 
@@ -16,10 +17,9 @@ use board::mcu::i2c::*;
 #[no_mangle]
 pub extern "C" fn main() -> ! {
     board::init();
+    let brd = board::board();
     println!("Running I2C");
     
-    let addr: U7 = U7::from(0b1010_000);
-
     let i2c = I2C1;
     let i2c_port = GPIOB;
     let i2c_scl = PB8; // D15
@@ -51,75 +51,34 @@ pub extern "C" fn main() -> ! {
         .set_scll(0x12)
     );
 
-    let fram = Mb85rs { i2c: i2c.into(), addr };
-
-    println!("I2C Configuration Complete");
-
-    let buf = fram.device_id();
-    
-    print!("ID: ");
-    for i in 0..buf.len() {
-        print!("{:02x} ", buf[i]);
-    }
-    println!("");
-
-    {
-        let mut out_buf = [0u8; 0x40];
-        let mut in_buf = [0u8; 0x40];
-        for i in 0..0x40 {
-            out_buf[i] = i as u8;
-        }    
-        fram.write(0x00, &out_buf);        
-        fram.read(0x00, &mut in_buf);
-        dump(&in_buf);
-    }
-
-    {
-        let out_buf = [0u8; 0x40];
-        let mut in_buf = [0u8; 0x40];
-        fram.write(0x00, &out_buf);        
-        fram.read(0x00, &mut in_buf);
-        dump(&in_buf);
-    }    
-
+    let i2c_drv = I2cDriver::new(i2c.into());
+    let mut app = examples::mb85rs::Example::new(brd.console(), i2c_drv);
+    let _ = app.run();
     loop {}
 
 }
 
-pub fn dump(buf: &[u8]) {
-    for i in 0..buf.len() {
-        if i % 16 == 0 {
-            if i > 0 {
-                println!("");
-            }
-            print!("{:04x}:", i)
-        }
-        if i % 8 == 0 {
-            print!(" ");
-        }
-        print!(" {:02x}", buf[i]);
-    }
-    println!("");    
+pub struct Error;
+
+pub struct I2cDriver { i2c: I2cPeriph }
+
+impl I2cDriver {
+    pub fn new(i2c: I2cPeriph) -> Self {
+        Self { i2c }
+    }    
 }
 
-pub struct Mb85rs {
-    i2c: I2cPeriph,
-    addr: U7,
-}
+impl hal::blocking::i2c::WriteRead for I2cDriver {
+    type Error = Error;
 
-impl Mb85rs {
-    pub fn device_id(&self) -> [u8; 3] {
-        let mut buf = [0u8; 3];
-        self.i2c.transfer(U7::from(0x7c), &[self.addr.value() << 1], &mut buf);
-        buf
-    }
-    pub fn write(&self, addr: u16, buf: &[u8]) {
-        let out = [(addr >> 8) as u8, addr as u8];
-        self.i2c.transfer_iovecs(self.addr, &[&out, buf], &mut []);
+    fn write_read(
+        &mut self, 
+        address: u8, 
+        bytes: &[u8], 
+        buffer: &mut [u8]
+    ) -> Result<(), Self::Error> {
+        self.i2c.transfer(address, bytes, buffer);
+        Ok(())
     }
 
-    pub fn read(&self, addr: u16, buf: &mut [u8]) {
-        let out = [(addr >> 8) as u8, addr as u8];
-        self.i2c.transfer(self.addr, &out, buf);
-    }
 }

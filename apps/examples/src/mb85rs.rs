@@ -85,8 +85,12 @@ where
     }
 
     pub fn write(&mut self, addr: u16, buf: &[u8])  -> Result<(), I2C::Error> {
-        self.i2c.write_read(self.addr, &[(addr >> 8) as u8, addr as u8], &mut[])?;
-        self.i2c.write_read(self.addr, buf, &mut[])
+        let mut addr = addr;
+        for i in 0..buf.len() {
+            self.i2c.write_read(self.addr, &[(addr >> 8) as u8, addr as u8, buf[i]], &mut[])?;
+            addr = addr.wrapping_add(1);
+        }
+        Ok(())
     }
 
     pub fn read(&mut self, addr: u16, buf: &mut [u8])  -> Result<(), I2C::Error> {
