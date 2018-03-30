@@ -30,6 +30,7 @@ lto = true
 
 [dev-dependencies]
 examples = { path = "../../apps/examples" }
+embedded-hal = "0.1.2"
 
 [dependencies.k64]
 path = "../../mcu/bobbin-kinetis/k64"

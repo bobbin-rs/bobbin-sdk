@@ -6,3 +6,7 @@ authors = ["Jonathan Soo <jcsoo@agora.com>"]
 [dependencies]
 bobbin-common = { path = "../../bobbin-common" }
 bobbin-cortexm = { path = "../../bobbin-cortexm" }
+
+[dependencies.log]
+version = "0.3"
+default-features = false
