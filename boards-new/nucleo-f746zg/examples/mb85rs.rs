@@ -65,11 +65,12 @@ pub extern "C" fn main() -> ! {
     
 
     for i in 0..0x40 {
-        fram.write(i, i as u8);
+        fram.write(i, &[i as u8]);
     }    
 
     for i in 0..0x40 {
-        let v = fram.read(i);
+        let mut buf = [0u8];
+        fram.read(i, &mut buf);
         if i % 16 == 0 {
             if i > 0 {
                 println!("");
@@ -79,16 +80,17 @@ pub extern "C" fn main() -> ! {
         if i % 8 == 0 {
             print!(" ");
         }
-        print!(" {:02x}", v);
+        print!(" {:02x}", buf[0]);
     }
     println!("");
 
     for i in 0..0x40 {
-        fram.write(i, 0);
+        fram.write(i, &[0]);
     }    
 
     for i in 0..0x40 {
-        let v = fram.read(i);
+        let mut buf = [0u8];
+        fram.read(i, &mut buf);
         if i % 16 == 0 {
             if i > 0 {
                 println!("");
@@ -98,9 +100,9 @@ pub extern "C" fn main() -> ! {
         if i % 8 == 0 {
             print!(" ");
         }
-        print!(" {:02x}", v);
+        print!(" {:02x}", buf[0]);
     }
-    println!("");    
+    println!("");
     loop {}
 
 }
@@ -116,15 +118,15 @@ impl Mb85rs {
         self.i2c.transfer(U7::from(0x7c), &[self.addr.value() << 1], &mut buf);
         buf
     }
-    pub fn write(&self, addr: u16, val: u8) {
-        let out = [(addr >> 8) as u8, addr as u8, val];
-        self.i2c.transfer(self.addr, &out, &mut []);        
+    pub fn write(&self, addr: u16, buf: &[u8]) {
+        for i in 0..buf.len() {
+            let out = [(addr >> 8) as u8, addr as u8, buf[i]];
+            self.i2c.transfer(self.addr, &out, &mut []);
+        }
     }
 
-    pub fn read(&self, addr: u16) -> u8 {
+    pub fn read(&self, addr: u16, buf: &mut [u8]) {
         let out = [(addr >> 8) as u8, addr as u8];
-        let mut buf = [0x00];
-        self.i2c.transfer(self.addr, &out, &mut buf);
-        buf[0]    
+        self.i2c.transfer(self.addr, &out, buf);
     }
 }
