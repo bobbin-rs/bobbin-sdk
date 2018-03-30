@@ -181,6 +181,54 @@ impl I2cPeriph {
             timeout -= 1;
         }
     }    
+
+    pub fn transfer_iovecs<A: Into<U7>>(&self, addr: A, out_bufs: &[&[u8]], in_bufs: &mut [&mut[u8]]) -> &Self {
+        use core::ops::IndexMut;
+        let addr = addr.into();
+        self.set_enabled(true);
+
+        let out_len: usize = out_bufs.iter().map(|b| b.len()).sum();
+        let in_len: usize = in_bufs.iter().map(|b| b.len()).sum();
+
+        if out_len > 0 {
+            self.with_cr2(|r| r
+                .set_sadd(addr.value() << 1)
+                .set_rd_wrn(0)
+                .set_nbytes(out_len)
+                .set_autoend(in_len == 0)
+            );
+            self.with_cr2(|r| r.set_start(1));
+            for out_buf in out_bufs.iter() {
+                for c in out_buf.iter() {
+                    self.wait_txis();
+                    self.set_txdr(|r| r.set_txdata(*c));
+                }
+            }
+            if in_len > 0 {
+                self.wait_tc();
+            }
+        }
+        if in_len > 0 {
+            self.with_cr2(|r| r
+                .set_sadd(addr.value() << 1)
+                .set_rd_wrn(1)
+                .set_nbytes(in_len)        
+            );
+            self.with_cr2(|r| r.set_start(1));
+            self.with_cr2(|r| r.set_autoend(1));
+
+            for i in 0..in_bufs.len() {
+                let in_buf = &mut in_bufs[i];                
+                for j in 0..in_buf.len() {
+                    self.wait_rxne();                    
+                    *(*in_buf).index_mut(j) = self.rxdr().rxdata().value();
+                }
+            }
+        }
+        while self.isr().busy() != 0 {}        
+        self.set_enabled(false);
+        self
+    }        
 }
 
 impl<A: Into<U7>> I2cTransfer<A> for I2cPeriph {

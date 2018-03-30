@@ -62,49 +62,44 @@ pub extern "C" fn main() -> ! {
         print!("{:02x} ", buf[i]);
     }
     println!("");
-    
 
-    for i in 0..0x40 {
-        fram.write(i, &[i as u8]);
+    {
+        let mut out_buf = [0u8; 0x40];
+        let mut in_buf = [0u8; 0x40];
+        for i in 0..0x40 {
+            out_buf[i] = i as u8;
+        }    
+        fram.write(0x00, &out_buf);        
+        fram.read(0x00, &mut in_buf);
+        dump(&in_buf);
+    }
+
+    {
+        let out_buf = [0u8; 0x40];
+        let mut in_buf = [0u8; 0x40];
+        fram.write(0x00, &out_buf);        
+        fram.read(0x00, &mut in_buf);
+        dump(&in_buf);
     }    
 
-    for i in 0..0x40 {
-        let mut buf = [0u8];
-        fram.read(i, &mut buf);
-        if i % 16 == 0 {
-            if i > 0 {
-                println!("");
-            }
-            print!("{:04x}:", i)
-        }
-        if i % 8 == 0 {
-            print!(" ");
-        }
-        print!(" {:02x}", buf[0]);
-    }
-    println!("");
-
-    for i in 0..0x40 {
-        fram.write(i, &[0]);
-    }    
-
-    for i in 0..0x40 {
-        let mut buf = [0u8];
-        fram.read(i, &mut buf);
-        if i % 16 == 0 {
-            if i > 0 {
-                println!("");
-            }
-            print!("{:04x}:", i)
-        }
-        if i % 8 == 0 {
-            print!(" ");
-        }
-        print!(" {:02x}", buf[0]);
-    }
-    println!("");
     loop {}
 
+}
+
+pub fn dump(buf: &[u8]) {
+    for i in 0..buf.len() {
+        if i % 16 == 0 {
+            if i > 0 {
+                println!("");
+            }
+            print!("{:04x}:", i)
+        }
+        if i % 8 == 0 {
+            print!(" ");
+        }
+        print!(" {:02x}", buf[i]);
+    }
+    println!("");    
 }
 
 pub struct Mb85rs {
@@ -119,10 +114,8 @@ impl Mb85rs {
         buf
     }
     pub fn write(&self, addr: u16, buf: &[u8]) {
-        for i in 0..buf.len() {
-            let out = [(addr >> 8) as u8, addr as u8, buf[i]];
-            self.i2c.transfer(self.addr, &out, &mut []);
-        }
+        let out = [(addr >> 8) as u8, addr as u8];
+        self.i2c.transfer_iovecs(self.addr, &[&out, buf], &mut []);
     }
 
     pub fn read(&self, addr: u16, buf: &mut [u8]) {

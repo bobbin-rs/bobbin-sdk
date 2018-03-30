@@ -57,46 +57,42 @@ pub extern "C" fn main() -> ! {
     }
     println!("");
    
-    for i in 0..0x40 {
-        fram.write(i, &[i as u8]);
-    }    
-
-    for i in 0..0x40 {
-        let mut buf = [0u8;1];
-        fram.read(i, &mut buf);
-        if i % 16 == 0 {
-            if i > 0 {
-                println!("");
-            }
-            print!("{:04x}:", i)
-        }
-        if i % 8 == 0 {
-            print!(" ");
-        }
-        print!(" {:02x}", buf[0]);
+    {
+        let mut out_buf = [0u8; 0x40];
+        let mut in_buf = [0u8; 0x40];
+        for i in 0..0x40 {
+            out_buf[i] = i as u8;
+        }    
+        fram.write(0x00, &out_buf);        
+        fram.read(0x00, &mut in_buf);
+        dump(&in_buf);
     }
-    println!("");
 
-    for i in 0..0x40 {
-        fram.write(i, &[0]);
-    }    
-    for i in 0..0x40 {
-        let mut buf = [0u8;1];
-        fram.read(i, &mut buf);
-        if i % 16 == 0 {
-            if i > 0 {
-                println!("");
-            }
-            print!("{:04x}:", i)
-        }
-        if i % 8 == 0 {
-            print!(" ");
-        }
-        print!(" {:02x}", buf[0]);
-    }
-    println!("");    
+    {
+        let out_buf = [0u8; 0x40];
+        let mut in_buf = [0u8; 0x40];
+        fram.write(0x00, &out_buf);        
+        fram.read(0x00, &mut in_buf);
+        dump(&in_buf);
+    }       
     loop {}
 
+}
+
+pub fn dump(buf: &[u8]) {
+    for i in 0..buf.len() {
+        if i % 16 == 0 {
+            if i > 0 {
+                println!("");
+            }
+            print!("{:04x}:", i)
+        }
+        if i % 8 == 0 {
+            print!(" ");
+        }
+        print!(" {:02x}", buf[i]);
+    }
+    println!("");    
 }
 
 
