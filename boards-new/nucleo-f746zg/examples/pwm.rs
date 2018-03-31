@@ -5,7 +5,6 @@ extern crate nucleo_f746zg as board;
 extern crate embedded_hal as hal;
 extern crate examples;
 
-use hal::PwmPin;
 use board::mcu::pin::*;
 use board::mcu::tim_gen::*;
 

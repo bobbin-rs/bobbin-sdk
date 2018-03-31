@@ -7,7 +7,6 @@ pub mod ethernet_mac;
 pub mod ethernet_mmc;
 pub mod ethernet_ptp;
 pub mod ethernet_dma;
-pub mod dac;
 pub mod sdmmc;
 pub mod quadspi;
 pub mod cec;

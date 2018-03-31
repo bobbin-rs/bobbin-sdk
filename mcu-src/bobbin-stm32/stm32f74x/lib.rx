@@ -76,7 +76,6 @@
     (peripheral (include "periph/ethernet_mmc.rx"))
     (peripheral (include "periph/ethernet_ptp.rx"))
     (peripheral (include "periph/ethernet_dma.rx"))    
-    (peripheral (include "periph/dac.rx"))
     (peripheral (include "periph/sdmmc.rx"))
     (peripheral (include "periph/quadspi.rx"))
     (peripheral (include "periph/cec.rx"))
@@ -86,10 +85,29 @@
     (peripheral (include "periph/hash.rx"))
     (peripheral (include "periph/cryp.rx"))
 
+    ;(peripheral (include "periph/dac.rx"))
     ;(peripheral (include "periph/usb_fs_global.rx"))
     ;(peripheral (include "periph/usb_fs_host.rx"))
     ;(peripheral (include "periph/usb_fs_device.rx"))
     ;(peripheral (include "periph/usb_fs_pwrclk.rx"))    
+
+    (peripheral-group
+        (name DAC)
+        (module (name "::stm32_common::dac::*"))
+        (peripheral
+            (name DAC)
+            (address 0x40007400)
+            (description "Digital-to-analog converter")
+            (clock
+                (input (name PCLK1))
+                (gate (type RST) (periph RCC) (register APB1RSTR) (field DACRST))
+                (gate (type EN) (periph RCC) (register APB1ENR) (field DACEN))
+                (gate (type SLEEP_EN) (periph RCC) (register APB1LPENR) (field DACLPEN))
+            )            
+            (channel (name DAC_CH1) (index 0) (signal (name DAC_OUT1) (type DAC)))
+            (channel (name DAC_CH2) (index 1) (signal (name DAC_OUT2) (type DAC)))            
+        )
+    )
 
     (peripheral-group
         ; signature: 54d3fcda91047f2f
@@ -1395,6 +1413,7 @@
             (pin (name PA4) (index 4)
                 (altfn 0 ADC1_IN4)
                 (altfn 0 ADC2_IN4)
+                (altfn 0 DAC_OUT1)
                 (altfn 5 SPI1_NSS)
                 (altfn 5 I2S1_WS)
                 (altfn 6 SPI3_NSS)
@@ -1409,6 +1428,7 @@
             (pin (name PA5) (index 5)
                 (altfn 0 ADC1_IN5)
                 (altfn 0 ADC2_IN5)
+                (altfn 0 DAC_OUT2)
                 (altfn 1 TIM2_CH1)
                 (altfn 1 TIM2_ETR)
                 (altfn 3 TIM8_CH1N)

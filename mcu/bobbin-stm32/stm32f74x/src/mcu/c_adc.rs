@@ -5,6 +5,6 @@ pub use ext::c_adc::*;
 #[allow(unused_imports)] use ::bobbin_common::*;
 
 
-periph!( C_ADC, CAdc, C_ADC_PERIPH, CAdcPeriph, 0x40012300, 0x00, 0x12);
+periph!( C_ADC, CAdc, C_ADC_PERIPH, CAdcPeriph, 0x40012300, 0x00, 0x11);
 
 

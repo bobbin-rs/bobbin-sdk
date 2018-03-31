@@ -120,5 +120,10 @@
     (peripheral-group
         (name DCMI)
         (prototype "periph/dcmi.rx")
-    )        
+    )
+    (peripheral-group
+        (name DAC)
+        (has-channels)
+        (prototype "periph/dac.rx")
+    )
 )

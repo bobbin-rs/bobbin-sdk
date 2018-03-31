@@ -57,6 +57,7 @@ tree_defn! {
         ::ethernet_ptp::EthernetPtp: Hclk,
         ::hash::Hash: Hclk,
         ::cryp::Cryp: Hclk,
+        ::dac::Dac: Pclk1,
         ::dcmi::Dcmi: Hclk,
         ::usb_fs_host::UsbFsHost: Pll48clk,
         ::usb_fs_device::UsbFsDevice: Pll48clk,

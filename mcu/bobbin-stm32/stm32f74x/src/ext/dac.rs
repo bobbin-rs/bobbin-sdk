@@ -1,1 +1,1 @@
-pub use periph::dac::*;
+pub use ::stm32_common::dac::*;

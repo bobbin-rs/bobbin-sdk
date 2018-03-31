@@ -5,6 +5,6 @@ pub use ext::ltdc::*;
 #[allow(unused_imports)] use ::bobbin_common::*;
 
 
-periph!( LTDC, Ltdc, LTDC_PERIPH, LtdcPeriph, 0x40016800, 0x00, 0x0e);
+periph!( LTDC, Ltdc, LTDC_PERIPH, LtdcPeriph, 0x40016800, 0x00, 0x0d);
 
 

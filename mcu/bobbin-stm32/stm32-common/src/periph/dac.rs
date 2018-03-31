@@ -1,8 +1,12 @@
-#[allow(unused_imports)] use ::bobbin_common::*;
 
-#[doc="Digital-to-analog converter"]
+#[allow(unused_imports)] use bobbin_common::*;
+
 #[derive(Clone, Copy, PartialEq, Eq)]
-pub struct DacPeriph(pub usize);
+#[doc="DAC Peripheral"]
+pub struct DacPeriph(pub usize); 
+
+pub struct DacCh { pub periph: DacPeriph, pub index: usize }
+
 impl DacPeriph {
     #[doc="Get the *mut pointer for the CR register."]
     #[inline] pub fn cr_mut(&self) -> *mut Cr { 

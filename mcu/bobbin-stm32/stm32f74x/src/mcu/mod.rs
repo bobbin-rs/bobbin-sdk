@@ -9,7 +9,6 @@ pub mod ethernet_mac;
 pub mod ethernet_mmc;
 pub mod ethernet_ptp;
 pub mod ethernet_dma;
-pub mod dac;
 pub mod sdmmc;
 pub mod quadspi;
 pub mod cec;
@@ -19,6 +18,7 @@ pub mod dma2d;
 pub mod hash;
 pub mod cryp;
 pub mod c_adc;
+pub mod dac;
 pub mod dcmi;
 pub mod usb_fs_global;
 pub mod usb_fs_host;
@@ -60,7 +60,6 @@ impl Stm32f74x {
     pub fn ethernet_mmc(&self) -> ethernet_mmc::EthernetMmc { ethernet_mmc::ETHERNET_MMC }
     pub fn ethernet_ptp(&self) -> ethernet_ptp::EthernetPtp { ethernet_ptp::ETHERNET_PTP }
     pub fn ethernet_dma(&self) -> ethernet_dma::EthernetDma { ethernet_dma::ETHERNET_DMA }
-    pub fn dac(&self) -> dac::Dac { dac::DAC }
     pub fn sdmmc1(&self) -> sdmmc::Sdmmc { sdmmc::SDMMC1 }
     pub fn quadspi(&self) -> quadspi::Quadspi { quadspi::QUADSPI }
     pub fn cec(&self) -> cec::Cec { cec::CEC }
@@ -70,6 +69,7 @@ impl Stm32f74x {
     pub fn hash(&self) -> hash::Hash { hash::HASH }
     pub fn cryp(&self) -> cryp::Cryp { cryp::CRYP }
     pub fn c_adc(&self) -> c_adc::CAdc { c_adc::C_ADC }
+    pub fn dac(&self) -> dac::Dac { dac::DAC }
     pub fn dcmi(&self) -> dcmi::Dcmi { dcmi::DCMI }
     pub fn usb_fs_global(&self) -> usb_fs_global::UsbFsGlobal { usb_fs_global::USB_FS_GLOBAL }
     pub fn usb_fs_host(&self) -> usb_fs_host::UsbFsHost { usb_fs_host::USB_FS_HOST }
@@ -296,24 +296,6 @@ impl GetPeriphInstance<ethernet_dma::EthernetDmaPeriph> for Stm32f74x {
     fn get_periph_instance_count(&self) -> usize { 1 }
 }
 
-impl Get<dac::Dac> for Stm32f74x {
-    fn get(&self) -> dac::Dac { dac::DAC }
-}
-
-impl GetPeriph<dac::DacPeriph> for Stm32f74x {
-    fn get_periph(&self) -> dac::DacPeriph { dac::DAC_PERIPH }
-}
-
-impl GetPeriphInstance<dac::DacPeriph> for Stm32f74x {
-    fn get_periph_instance(&self, index: usize) -> Option<dac::DacPeriph> {
-        match index { 
-            0 => Some(dac::DAC_PERIPH),
-            _ => None,
-        }
-    }
-    fn get_periph_instance_count(&self) -> usize { 1 }
-}
-
 impl Get<sdmmc::Sdmmc> for Stm32f74x {
     fn get(&self) -> sdmmc::Sdmmc { sdmmc::SDMMC1 }
 }
@@ -470,6 +452,24 @@ impl GetPeriphInstance<c_adc::CAdcPeriph> for Stm32f74x {
     fn get_periph_instance(&self, index: usize) -> Option<c_adc::CAdcPeriph> {
         match index { 
             0 => Some(c_adc::C_ADC_PERIPH),
+            _ => None,
+        }
+    }
+    fn get_periph_instance_count(&self) -> usize { 1 }
+}
+
+impl Get<dac::Dac> for Stm32f74x {
+    fn get(&self) -> dac::Dac { dac::DAC }
+}
+
+impl GetPeriph<dac::DacPeriph> for Stm32f74x {
+    fn get_periph(&self) -> dac::DacPeriph { dac::DAC_PERIPH }
+}
+
+impl GetPeriphInstance<dac::DacPeriph> for Stm32f74x {
+    fn get_periph_instance(&self, index: usize) -> Option<dac::DacPeriph> {
+        match index {
+            0 => Some(dac::DAC_PERIPH),
             _ => None,
         }
     }

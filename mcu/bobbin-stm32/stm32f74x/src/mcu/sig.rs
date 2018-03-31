@@ -1,5 +1,6 @@
 #[allow(unused_imports)] pub use ::bobbin_common::*;
 
+signal_type!(DAC, SigDac);
 signal_type!(DCMI_HSYNC, SigDcmiHsync);
 signal_type!(DCMI_VSYNC, SigDcmiVsync);
 signal_type!(DCMI_PIXCLK, SigDcmiPixclk);
@@ -36,6 +37,10 @@ signal_type!(USART_RX, SigUsartRx);
 signal_type!(USART_CTS, SigUsartCts);
 signal_type!(USART_RTS, SigUsartRts);
 signal_type!(USART_CK, SigUsartCk);
+
+// DAC
+channel_signal!(super::dac::DacCh1, SigDac);
+channel_signal!(super::dac::DacCh2, SigDac);
 
 // DCMI
 periph_signal!(super::dcmi::Dcmi, SigDcmiHsync);

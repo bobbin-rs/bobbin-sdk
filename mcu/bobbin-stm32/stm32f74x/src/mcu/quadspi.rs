@@ -5,6 +5,6 @@ pub use ext::quadspi::*;
 #[allow(unused_imports)] use ::bobbin_common::*;
 
 
-periph!( QUADSPI, Quadspi, QUADSPI_PERIPH, QuadspiPeriph, 0xa0001000, 0x00, 0x0b);
+periph!( QUADSPI, Quadspi, QUADSPI_PERIPH, QuadspiPeriph, 0xa0001000, 0x00, 0x0a);
 
 
