@@ -25,9 +25,7 @@ pub extern "C" fn main() -> ! {
 
     adc.gate_enable();
     a0.port().gate_enable();
-
     a0.connect_to(ch1);
-
     a0.mode_analog();
 
     println!("Initializing");
