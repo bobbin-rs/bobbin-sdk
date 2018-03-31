@@ -1357,6 +1357,25 @@ impl Cr {
         self
     }
 
+    #[doc="Deep Power Down"]
+    #[inline] pub fn deeppwd(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 29) & 0x1) as u8) } // [29]
+    }
+
+    #[doc="Returns true if DEEPPWD != 0"]
+    #[inline] pub fn test_deeppwd(&self) -> bool {
+        self.deeppwd() != 0
+    }
+
+    #[doc="Sets the DEEPPWD field."]
+    #[inline] pub fn set_deeppwd<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 29);
+        self.0 |= value << 29;
+        self
+    }
+
     #[doc="ADVREGEN"]
     #[inline] pub fn advregen(&self) -> bits::U2 {
         unsafe { ::core::mem::transmute(((self.0 >> 28) & 0x3) as u8) } // [29:28]
@@ -1510,6 +1529,7 @@ impl ::core::fmt::Debug for Cr {
         try!(write!(f, "[0x{:08x}", self.0));
         if self.adcal() != 0 { try!(write!(f, " adcal"))}
         if self.adcaldif() != 0 { try!(write!(f, " adcaldif"))}
+        if self.deeppwd() != 0 { try!(write!(f, " deeppwd"))}
         if self.advregen() != 0 { try!(write!(f, " advregen=0x{:x}", self.advregen()))}
         if self.jadstp() != 0 { try!(write!(f, " jadstp"))}
         if self.adstp() != 0 { try!(write!(f, " adstp"))}

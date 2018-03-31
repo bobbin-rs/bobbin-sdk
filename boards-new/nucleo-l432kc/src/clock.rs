@@ -4,6 +4,9 @@ pub fn init() {
     clock_init::init_pll()
 }
 
+pub fn tree() -> Tree {
+    TREE
+}
 // Main System Clock = 80 MHz
 // APB2 = 80 MHz
 // APB1 = 80 MHz

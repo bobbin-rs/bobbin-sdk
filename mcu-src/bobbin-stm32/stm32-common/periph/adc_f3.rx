@@ -168,6 +168,12 @@
             (description "ADCALDIF")
         )
         (field
+            (name DEEPPWD)
+            (bit-offset 29)
+            (bit-width 1)
+            (description "Deep Power Down")
+        )        
+        (field
             (name ADVREGEN)
             (bit-offset 28)
             (bit-width 2)
