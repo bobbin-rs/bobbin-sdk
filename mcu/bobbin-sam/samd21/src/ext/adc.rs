@@ -50,7 +50,8 @@ impl AdcPeriph {
         // 1/2 VDDANA
         self.set_refctrl(|r| r.set_refsel(0x2));
         // Use VREFA
-        //ADC.set_refctrl(adc::Refctrl(0).set_refsel(0x3));
+        // self.set_refctrl(|r| r.set_refsel(0x3));
+        
 
         //enable();
     }
