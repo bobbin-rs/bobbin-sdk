@@ -29,8 +29,11 @@ pub extern "C" fn main() -> ! {
     a0.port().gate_enable();
     a1.port().gate_enable();
 
-    // a0.connect_to(ch1);
-    // a1.connect_to(ch2);
+    a0.connect_to(ch1);
+    a1.connect_to(ch2);
+
+    a0.mode_analog();
+    a1.mode_analog();
 
     println!("Initializing");
     C_ADC.with_ccr(|r| r.set_ckmode(0b01));
