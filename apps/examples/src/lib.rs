@@ -7,6 +7,7 @@ pub mod tick;
 pub mod led;
 pub mod leds;
 pub mod pwm;
+pub mod adc;
 
 pub mod mb85rc;
 pub mod mb85rs;
