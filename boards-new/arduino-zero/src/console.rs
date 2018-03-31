@@ -1,7 +1,6 @@
 pub use mcu::bobbin_common::console::*;
 use common::periph::IntoPeriph;
 use common::configure::Configure;
-use common::enabled::Enabled;
 use mcu::pin::*;
 use mcu::sercom::*;
 use mcu::gclk;

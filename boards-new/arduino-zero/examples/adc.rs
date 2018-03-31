@@ -17,17 +17,16 @@ pub extern "C" fn main() -> ! {
     println!("Analog Test");
 
     ADC.gate_enable();
-    board::mcu::adc::init();
-    
-    let a0 = PA02;
+    ADC.init();
 
-    let ch0 = adc::ADC_CH0;
+    let a0 = PA02;
+    let ch0 = ADC_CH0;
 
     // a0.mode_ain(&ch0);
     a0.connect_to(ch0);
 
     let ch0: AdcCh = ch0.into();
-    let mut app = examples::adc::AdcExample::new(brd.console(), ch0, brd, 500, U16::from(0));
+    let mut app = examples::adc::AdcExample::new(brd.console(), ch0, brd, 500, U12::from(0));
     app.run()
     // loop {
     //     let v0: U12 = ch0.analog_read();
