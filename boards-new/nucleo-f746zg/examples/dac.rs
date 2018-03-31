@@ -25,14 +25,14 @@ pub extern "C" fn main() -> ! {
     dac_pin.mode_analog();
     dac_pin.connect_to(dac_ch);
     
-    dac.with_cr(|r| r.set_en2(1));
+    dac.with_cr(|r| r.set_en(1, 1));
     
 
     let mut v: u8 = 16;
     let s: u8 = 4;
     let mut d: bool = true;
     loop {
-        dac.with_dhr8r2(|r| r.set_dacc2dhr(v));
+        dac.with_dhr8r(1, |r| r.set_daccdhr(v));
         if d {
             v += s;
             if v == 240 {
