@@ -5,6 +5,7 @@ pub mod pwr;
 pub mod rcc;
 pub mod syscfg;
 pub mod c_adc;
+pub mod dac;
 pub mod rng;
 pub mod iwdg;
 pub mod wwdg;
@@ -39,6 +40,7 @@ impl Stm32l432x {
     pub fn rcc(&self) -> rcc::Rcc { rcc::RCC }
     pub fn syscfg(&self) -> syscfg::Syscfg { syscfg::SYSCFG }
     pub fn c_adc(&self) -> c_adc::CAdc { c_adc::C_ADC }
+    pub fn dac1(&self) -> dac::Dac1 { dac::DAC1 }
     pub fn rng(&self) -> rng::Rng { rng::RNG }
     pub fn iwdg(&self) -> iwdg::Iwdg { iwdg::IWDG }
     pub fn wwdg(&self) -> wwdg::Wwdg { wwdg::WWDG }
@@ -168,6 +170,24 @@ impl GetPeriphInstance<c_adc::CAdcPeriph> for Stm32l432x {
     fn get_periph_instance(&self, index: usize) -> Option<c_adc::CAdcPeriph> {
         match index { 
             0 => Some(c_adc::C_ADC_PERIPH),
+            _ => None,
+        }
+    }
+    fn get_periph_instance_count(&self) -> usize { 1 }
+}
+
+impl Get<dac::Dac1> for Stm32l432x {
+    fn get(&self) -> dac::Dac1 { dac::DAC1 }
+}
+
+impl GetPeriph<dac::DacPeriph> for Stm32l432x {
+    fn get_periph(&self) -> dac::DacPeriph { dac::DAC1_PERIPH }
+}
+
+impl GetPeriphInstance<dac::DacPeriph> for Stm32l432x {
+    fn get_periph_instance(&self, index: usize) -> Option<dac::DacPeriph> {
+        match index {
+            0 => Some(dac::DAC1_PERIPH),
             _ => None,
         }
     }

@@ -22,6 +22,7 @@ pub use mcu::pwr;
 pub use mcu::rcc;
 pub use mcu::syscfg;
 pub use mcu::c_adc;
+pub use mcu::dac;
 pub use mcu::rng;
 pub use mcu::iwdg;
 pub use mcu::wwdg;

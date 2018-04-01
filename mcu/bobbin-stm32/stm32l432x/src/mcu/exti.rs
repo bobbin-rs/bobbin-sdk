@@ -2,7 +2,7 @@
 #[allow(unused_imports)] pub use ::bobbin_common::gate::GateEn;
 pub use ext::exti::*;
 
-periph!( EXTI, Exti, EXTI_PERIPH, ExtiPeriph, 0x40010400, 0x00, 0x0c);
+periph!( EXTI, Exti, EXTI_PERIPH, ExtiPeriph, 0x40010400, 0x00, 0x0d);
 
 channel!(EXTI_LINE0, ExtiLine0, EXTI, Exti, EXTI_LINE0_CH, ExtiCh, EXTI_PERIPH, 0);
 channel!(EXTI_LINE1, ExtiLine1, EXTI, Exti, EXTI_LINE1_CH, ExtiCh, EXTI_PERIPH, 1);

@@ -2,7 +2,7 @@
 #[allow(unused_imports)] pub use ::bobbin_common::gate::GateEn;
 pub use ext::lpuart::*;
 
-periph!( LPUART1, Lpuart1, LPUART1_PERIPH, LpuartPeriph, 0x40008000, 0x00, 0x29);
+periph!( LPUART1, Lpuart1, LPUART1_PERIPH, LpuartPeriph, 0x40008000, 0x00, 0x2a);
 
 // Gate { name: None, gate_type: Some("RST"), periph: Some("RCC"), register: Some("APB1RSTR2"), field: Some("LPUART1RST"), description: None }
 impl ::bobbin_common::gate::GateRst for Lpuart1 {

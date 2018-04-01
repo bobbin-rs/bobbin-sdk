@@ -51,7 +51,26 @@
         (output (name I2C3))
         (output (name LPTIM1))
         (output (name LPTIM2))
-    )    
+    )
+
+    (peripheral-group
+        (name DAC)
+        (module (name "::stm32_common::dac::*"))
+        (peripheral
+            (name DAC1)
+            (address 0x40007400)
+            (description "Digital-to-analog converter")
+            (clock
+                (input (name PCLK1))
+                (gate (type RST) (periph RCC) (register APB1RSTR1) (field DAC1RST))
+                (gate (type EN) (periph RCC) (register APB1ENR1) (field DAC1EN))
+                (gate (type SLEEP_EN) (periph RCC) (register APB1SMENR1) (field DAC1SMEN))
+            )            
+            (channel (name DAC1_CH1) (index 0) (signal (name DAC1_OUT1) (type DAC)))
+            (channel (name DAC1_CH2) (index 1) (signal (name DAC1_OUT2) (type DAC)))            
+        )
+    )
+
     (peripheral-group
         (name RNG)
         (module (name "::stm32_common::rng::*"))
@@ -987,6 +1006,7 @@
             )
             (pin (name PA4) (index 4)
                 (altfn 0 ADC1_IN9)
+                (altfn 0 DAC1_OUT1)
                 (altfn 5 SPI1_NSS)
                 (altfn 6 SPI3_NSS)
                 (altfn 7 USART2_CK)
@@ -996,6 +1016,7 @@
             )
             (pin (name PA5) (index 5)
                 (altfn 0 ADC1_IN10)
+                (altfn 0 DAC1_OUT2)
                 (altfn 1 TIM2_CH1)
                 (altfn 2 TIM2_ETR)
                 (altfn 5 SPI1_SCK)

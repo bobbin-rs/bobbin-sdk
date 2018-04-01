@@ -2,9 +2,9 @@
 #[allow(unused_imports)] pub use ::bobbin_common::gate::GateEn;
 pub use ext::i2c::*;
 
-periph!( I2C1, I2c1, I2C1_PERIPH, I2cPeriph, 0x40005400, 0x00, 0x0f);
-periph!( I2C2, I2c2, I2C2_PERIPH, I2cPeriph, 0x40005800, 0x01, 0x10);
-periph!( I2C3, I2c3, I2C3_PERIPH, I2cPeriph, 0x40005c00, 0x02, 0x11);
+periph!( I2C1, I2c1, I2C1_PERIPH, I2cPeriph, 0x40005400, 0x00, 0x10);
+periph!( I2C2, I2c2, I2C2_PERIPH, I2cPeriph, 0x40005800, 0x01, 0x11);
+periph!( I2C3, I2c3, I2C3_PERIPH, I2cPeriph, 0x40005c00, 0x02, 0x12);
 
 // Gate { name: None, gate_type: Some("RST"), periph: Some("RCC"), register: Some("APB1RSTR1"), field: Some("I2C1RST"), description: None }
 impl ::bobbin_common::gate::GateRst for I2c1 {

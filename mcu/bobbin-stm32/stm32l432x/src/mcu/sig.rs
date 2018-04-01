@@ -1,5 +1,6 @@
 #[allow(unused_imports)] pub use ::bobbin_common::*;
 
+signal_type!(DAC, SigDac);
 signal_type!(I2C_SMBA, SigI2cSmba);
 signal_type!(I2C_SCL, SigI2cScl);
 signal_type!(I2C_SDA, SigI2cSda);
@@ -15,6 +16,10 @@ signal_type!(SPI_MISO, SigSpiMiso);
 signal_type!(SPI_MOSI, SigSpiMosi);
 signal_type!(SPI_SCK, SigSpiSck);
 signal_type!(ADC, SigAdc);
+
+// DAC
+channel_signal!(super::dac::Dac1Ch1, SigDac);
+channel_signal!(super::dac::Dac1Ch2, SigDac);
 
 // RNG
 

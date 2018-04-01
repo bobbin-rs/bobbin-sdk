@@ -41,6 +41,7 @@ tree_defn! {
         ::flash::Flash: Hclk,
         ::pwr::Pwr: Pclk1,
         ::syscfg::Syscfg: Pclk2,
+        ::dac::Dac1: Pclk1,
         ::rng::Rng: Hclk,
         ::crc::Crc: Hclk,
         ::lptim::Lptim1: Lptim1,

@@ -2,8 +2,8 @@
 #[allow(unused_imports)] pub use ::bobbin_common::gate::GateEn;
 pub use ext::tim_bas::*;
 
-periph!( TIM6, Tim6, TIM6_PERIPH, TimBasPeriph, 0x40001000, 0x00, 0x14);
-periph!( TIM7, Tim7, TIM7_PERIPH, TimBasPeriph, 0x40001400, 0x01, 0x15);
+periph!( TIM6, Tim6, TIM6_PERIPH, TimBasPeriph, 0x40001000, 0x00, 0x15);
+periph!( TIM7, Tim7, TIM7_PERIPH, TimBasPeriph, 0x40001400, 0x01, 0x16);
 
 // Gate { name: None, gate_type: Some("RST"), periph: Some("RCC"), register: Some("APB1RSTR1"), field: Some("TIM6RST"), description: None }
 impl ::bobbin_common::gate::GateRst for Tim6 {
