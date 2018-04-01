@@ -1,0 +1,11 @@
+(board
+    (name feather-m0)
+    (target thumbv6m-none-eabi)
+    (mcu samd21)
+    (crate 
+        (name samd21) 
+        (as mcu)
+        (path "../../mcu/bobbin-sam/samd21")
+        (feature SAMD21x18)
+    )
+)

@@ -5,9 +5,9 @@ use mcu::pin::*;
 use mcu::sercom::*;
 use mcu::gclk;
 
-pub const SERCOM: Sercom5 = SERCOM5;
-pub const SERCOM_TX: Pb22 = PB22;
-pub const SERCOM_RX: Pb23 = PB23;
+pub const SERCOM: Sercom0 = SERCOM0;
+pub const SERCOM_TX: Pa10 = PA10;
+pub const SERCOM_RX: Pa11 = PA11;
 
 pub fn init() {
     SERCOM.gate_enable();
@@ -16,7 +16,7 @@ pub fn init() {
     // Set GCLK_GEN0 as source for SERCOM
 
     gclk::GCLK.set_clkctrl(|r| r
-        .set_id(0x14 + 5) // ID corresponds to SERCOM
+        .set_id(0x14 + 0) // ID corresponds to SERCOM
         .set_gen(0x0)
         .set_clken(1)
     );
@@ -39,7 +39,7 @@ pub fn init() {
     set_console(Console::new(SERCOM.into_periph()));
 }
 
-impl ::ArduinoZero {
+impl ::FeatherM0 {
     pub fn console(&self) -> Console {
         Console::new(SERCOM.into_periph())
     }

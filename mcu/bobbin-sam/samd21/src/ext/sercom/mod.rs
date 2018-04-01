@@ -1,5 +1,4 @@
 pub use periph::sercom::*;
-
 pub use bobbin_common::console::Putc;
 pub use bobbin_common::configure::*;
 pub use bobbin_common::enabled::*;
@@ -7,6 +6,13 @@ pub use bobbin_common::serial::*;
 // pub use super::pm::PmEnabled;
 
 use bobbin_common::bits::*;
+
+pub mod i2c;
+pub mod spi;
+
+// pub use self::i2c::*;
+// pub use self::spi::*;
+
 
 // NOTE: Before usage, power up and set clocks
 
