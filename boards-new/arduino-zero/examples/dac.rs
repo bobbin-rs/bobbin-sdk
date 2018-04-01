@@ -33,7 +33,7 @@ pub extern "C" fn main() -> ! {
 
         // Set GCLK_GEN0 as source for ADC
         gclk::GCLK.set_clkctrl(|r| r
-
+            // NOTE - Datasheet claims GCLK_DAC is 0x23
             .set_id(0x21) // GCLK_DAC
             .set_gen(0x0)
             .set_clken(true)
@@ -52,7 +52,7 @@ pub extern "C" fn main() -> ! {
     let s: u8 = 4;
     let mut d: bool = true;
     loop {
-        DAC.set_data(|r| r.set_data(v << 1));
+        DAC.set_data(|r| r.set_data((v as u16) << 2));
         if d {
             v += s;
             if v == 240 {
