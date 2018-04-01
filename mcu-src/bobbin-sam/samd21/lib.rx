@@ -108,7 +108,6 @@
                 (input (name APBC))
                 (gate (type EN) (periph PM) (register APBCMASK) (field DAC))
             )
-            (signal (name DAC) (type DAC))
             (interrupt
                 (name DAC)
                 (value 25)
