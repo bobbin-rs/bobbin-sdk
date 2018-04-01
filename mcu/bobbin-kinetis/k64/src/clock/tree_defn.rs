@@ -50,6 +50,8 @@ tree_defn! {
         ::uart::Uart5: Bus,
         ::usb::Usb0: Bus,
         ::flexcan::Can0: Bus,
+        ::dac::Dac0: Bus,
+        ::dac::Dac1: Bus,
         ::port::Porta: Bus,
         ::port::Portb: Bus,
         ::port::Portc: Bus,

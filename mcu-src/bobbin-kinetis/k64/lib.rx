@@ -800,6 +800,35 @@
         )
     )
     (peripheral-group
+        ; signature: d0f2a7432af00375
+        (name DAC)
+        (prototype "periph/dac.rx")
+        (peripheral
+            (name DAC0)
+            (address 0x400cc000)
+            (clock
+                (input (name BUS))
+                (gate (type EN) (periph SIM) (register SCGC2) (field DAC0))
+            )                                                       
+            (interrupt
+                (name DAC0)
+                (value 56)
+            )
+        )
+        (peripheral
+            (name DAC1)
+            (address 0x400cd000)
+            (clock
+                (input (name BUS))
+                (gate (type EN) (periph SIM) (register SCGC2) (field DAC1))
+            )
+            (interrupt
+                (name DAC1)
+                (value 72)
+            )
+        )
+    )    
+    (peripheral-group
         (name GPIO)
         (module (name kinetis_common::gpio::*))
         (peripheral 

@@ -110,6 +110,8 @@ periph_signal!(super::uart::Uart5, SigUartRx);
 periph_signal!(super::flexcan::Can0, SigCanTx);
 periph_signal!(super::flexcan::Can0, SigCanRx);
 
+// DAC
+
 // GPIO
 channel_signal!(super::gpio::Pa0, SigGpio);
 channel_signal!(super::gpio::Pa1, SigGpio);

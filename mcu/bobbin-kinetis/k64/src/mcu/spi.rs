@@ -1,6 +1,6 @@
 #[allow(unused_imports)] use ::bobbin_common::*;
 #[allow(unused_imports)] pub use ::bobbin_common::gate::GateEn;
-pub use ::hal::spi::*;
+pub use ext::spi::*;
 
 periph!( SPI0, Spi0, SPI0_PERIPH, SpiPeriph, 0x4002c000, 0x00, 0x0f);
 periph!( SPI1, Spi1, SPI1_PERIPH, SpiPeriph, 0x4002d000, 0x01, 0x10);

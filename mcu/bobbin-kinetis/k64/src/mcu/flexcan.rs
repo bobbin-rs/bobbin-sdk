@@ -1,6 +1,6 @@
 #[allow(unused_imports)] use ::bobbin_common::*;
 #[allow(unused_imports)] pub use ::bobbin_common::gate::GateEn;
-pub use ::hal::flexcan::*;
+pub use ext::flexcan::*;
 
 periph!( CAN0, Can0, CAN0_PERIPH, FlexcanPeriph, 0x40024000, 0x00, 0x1b);
 

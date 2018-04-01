@@ -12,7 +12,7 @@ pub use dcb;
 pub use itm;
 
 pub mod periph;
-pub mod hal;
+pub mod ext;
 pub mod mcu;
 
 pub use mcu::sim;
@@ -33,6 +33,7 @@ pub use mcu::i2c;
 pub use mcu::uart;
 pub use mcu::usb;
 pub use mcu::flexcan;
+pub use mcu::dac;
 pub use mcu::gpio;
 pub use mcu::port;
 pub use mcu::adc;

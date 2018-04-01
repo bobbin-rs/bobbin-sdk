@@ -18,6 +18,7 @@ pub mod i2c;
 pub mod uart;
 pub mod usb;
 pub mod flexcan;
+pub mod dac;
 pub mod gpio;
 pub mod port;
 pub mod adc;
@@ -61,6 +62,8 @@ impl K64 {
     pub fn uart5(&self) -> uart::Uart5 { uart::UART5 }
     pub fn usb0(&self) -> usb::Usb0 { usb::USB0 }
     pub fn can0(&self) -> flexcan::Can0 { flexcan::CAN0 }
+    pub fn dac0(&self) -> dac::Dac0 { dac::DAC0 }
+    pub fn dac1(&self) -> dac::Dac1 { dac::DAC1 }
     pub fn gpioa(&self) -> gpio::Gpioa { gpio::GPIOA }
     pub fn gpiob(&self) -> gpio::Gpiob { gpio::GPIOB }
     pub fn gpioc(&self) -> gpio::Gpioc { gpio::GPIOC }
@@ -431,6 +434,25 @@ impl GetPeriphInstance<flexcan::FlexcanPeriph> for K64 {
         }
     }
     fn get_periph_instance_count(&self) -> usize { 1 }
+}
+
+impl Get<dac::Dac0> for K64 {
+    fn get(&self) -> dac::Dac0 { dac::DAC0 }
+}
+
+impl Get<dac::Dac1> for K64 {
+    fn get(&self) -> dac::Dac1 { dac::DAC1 }
+}
+
+impl GetPeriphInstance<dac::DacPeriph> for K64 {
+    fn get_periph_instance(&self, index: usize) -> Option<dac::DacPeriph> {
+        match index {
+            0 => Some(dac::DAC0_PERIPH),
+            1 => Some(dac::DAC1_PERIPH),
+            _ => None,
+        }
+    }
+    fn get_periph_instance_count(&self) -> usize { 2 }
 }
 
 impl Get<gpio::Gpioa> for K64 {

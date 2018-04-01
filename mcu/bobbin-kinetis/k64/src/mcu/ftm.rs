@@ -1,6 +1,6 @@
 #[allow(unused_imports)] use ::bobbin_common::*;
 #[allow(unused_imports)] pub use ::bobbin_common::gate::GateEn;
-pub use ::hal::ftm::*;
+pub use ext::ftm::*;
 
 periph!( FTM0, Ftm0, FTM0_PERIPH, FtmPeriph, 0x40038000, 0x00, 0x0a);
 periph!( FTM1, Ftm1, FTM1_PERIPH, FtmPeriph, 0x40039000, 0x01, 0x0b);

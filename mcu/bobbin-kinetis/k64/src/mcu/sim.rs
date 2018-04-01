@@ -1,6 +1,6 @@
 #[allow(unused_imports)] use ::bobbin_common::*;
 #[allow(unused_imports)] pub use ::bobbin_common::gate::GateEn;
-pub use ::hal::sim::*;
+pub use ext::sim::*;
 
 #[allow(unused_imports)] use ::bobbin_common::*;
 

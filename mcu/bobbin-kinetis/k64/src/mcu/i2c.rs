@@ -1,6 +1,6 @@
 #[allow(unused_imports)] use ::bobbin_common::*;
 #[allow(unused_imports)] pub use ::bobbin_common::gate::GateEn;
-pub use ::hal::i2c::*;
+pub use ext::i2c::*;
 
 periph!( I2C0, I2c0, I2C0_PERIPH, I2cPeriph, 0x40066000, 0x00, 0x12);
 periph!( I2C1, I2c1, I2C1_PERIPH, I2cPeriph, 0x40067000, 0x01, 0x13);

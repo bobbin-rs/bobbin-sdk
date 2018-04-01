@@ -4,3 +4,4 @@ pub mod mpu;
 pub mod osc;
 pub mod rcm;
 pub mod enet;
+pub mod dac;
