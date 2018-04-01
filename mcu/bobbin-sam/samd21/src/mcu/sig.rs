@@ -1,6 +1,7 @@
 #[allow(unused_imports)] pub use ::bobbin_common::*;
 
 signal_type!(AIN, SigAin);
+signal_type!(DAC, SigDac);
 signal_type!(WO_0, SigWo0);
 signal_type!(WO_1, SigWo1);
 signal_type!(WO_2, SigWo2);
@@ -38,6 +39,9 @@ channel_signal!(super::adc::AdcCh16, SigAin);
 channel_signal!(super::adc::AdcCh17, SigAin);
 channel_signal!(super::adc::AdcCh18, SigAin);
 channel_signal!(super::adc::AdcCh19, SigAin);
+
+// DAC
+periph_signal!(super::dac::Dac, SigDac);
 
 // TCC
 periph_signal!(super::tcc::Tcc0, SigWo0);

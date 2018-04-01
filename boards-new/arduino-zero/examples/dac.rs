@@ -17,7 +17,7 @@ pub extern "C" fn main() -> ! {
     println!("DAC Test");
 
     let dac = DAC;
-    PA02.connect_to(dac);
+    // PA02.connect_to(dac); // NOTE - this may burn out chip!!!!
     dac.gate_enable();
     {
         while gclk::GCLK.status().syncbusy() != 0 {}

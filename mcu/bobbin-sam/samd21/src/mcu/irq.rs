@@ -361,6 +361,8 @@ irq_type!(IRQ_DMA, IrqDma);
 irq!(::dmac::Dmac, IrqDma, Irq6);
 irq!(::adc::Adc, IrqAdc, Irq23);
 irq_type!(IRQ_ADC, IrqAdc);
+irq!(::dac::Dac, IrqDac, Irq25);
+irq_type!(IRQ_DAC, IrqDac);
 irq!(::tcc::Tcc0, IrqTcc, Irq15);
 irq!(::tcc::Tcc1, IrqTcc, Irq16);
 irq!(::tcc::Tcc2, IrqTcc, Irq17);

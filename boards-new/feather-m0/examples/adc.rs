@@ -16,7 +16,7 @@ pub extern "C" fn main() -> ! {
 
     ADC.gate_enable();
     ADC.init();
-
+    
     let a0 = PA02;
     let ch0 = ADC_CH0;
 

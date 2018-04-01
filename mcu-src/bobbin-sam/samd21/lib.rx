@@ -97,24 +97,24 @@
             )
         )
     )
-    ;(peripheral-group
-    ;    ; signature: 0a8c569a91066543
-    ;    (name DAC)
-    ;    (prototype "periph/dac.rx")
-    ;    (peripheral
-    ;        (name DAC)
-    ;        (address 0x42004800)
-    ;        (clock
-    ;            (input (name APBC))
-    ;            (gate (type EN) (periph PM) (register APBCMASK) (field DAC))
-    ;        )
-    ;        (signal (name DAC) (type DAC))
-    ;        (interrupt
-    ;            (name DAC)
-    ;            (value 25)
-    ;        )
-    ;    )
-    ;)
+    (peripheral-group
+        ; signature: 0a8c569a91066543
+        (name DAC)
+        (prototype "periph/dac.rx")
+        (peripheral
+            (name DAC)
+            (address 0x42004800)
+            (clock
+                (input (name APBC))
+                (gate (type EN) (periph PM) (register APBCMASK) (field DAC))
+            )
+            (signal (name DAC) (type DAC))
+            (interrupt
+                (name DAC)
+                (value 25)
+            )
+        )
+    )
     (peripheral-group
         (name TCC)
         (prototype "periph/tcc.rx")

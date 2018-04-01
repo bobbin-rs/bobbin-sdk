@@ -12,6 +12,7 @@ pin!(PA01, Pa01, PORTA, Porta, PA01_PIN, PortPin, PORTA_PERIPH, 1);
    pin_source!(Pa01, super::tcc::Tcc2, super::sig::SigWo1, 4);
 pin!(PA02, Pa02, PORTA, Porta, PA02_PIN, PortPin, PORTA_PERIPH, 2);
    pin_source!(Pa02, super::adc::AdcCh0, super::sig::SigAin, 1);
+   pin_source!(Pa02, super::dac::Dac, super::sig::SigDac, 1);
 pin!(PA03, Pa03, PORTA, Porta, PA03_PIN, PortPin, PORTA_PERIPH, 3);
    pin_source!(Pa03, super::adc::AdcCh1, super::sig::SigAin, 1);
 pin!(PA04, Pa04, PORTA, Porta, PA04_PIN, PortPin, PORTA_PERIPH, 4);

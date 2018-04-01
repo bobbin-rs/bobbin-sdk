@@ -6,6 +6,7 @@ pub mod wdt;
 pub mod rtc;
 pub mod dmac;
 pub mod adc;
+pub mod dac;
 pub mod tcc;
 pub mod tc;
 pub mod port;

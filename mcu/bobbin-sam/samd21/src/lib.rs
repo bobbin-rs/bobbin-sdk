@@ -20,6 +20,7 @@ pub use mcu::wdt;
 pub use mcu::rtc;
 pub use mcu::dmac;
 pub use mcu::adc;
+pub use mcu::dac;
 pub use mcu::tcc;
 pub use mcu::tc;
 pub use mcu::port;

@@ -8,6 +8,7 @@ pub mod wdt;
 pub mod rtc;
 pub mod dmac;
 pub mod adc;
+pub mod dac;
 pub mod tcc;
 pub mod tc;
 pub mod port;
@@ -32,6 +33,7 @@ impl Samd21 {
     pub fn rtc(&self) -> rtc::Rtc { rtc::RTC }
     pub fn dmac(&self) -> dmac::Dmac { dmac::DMAC }
     pub fn adc(&self) -> adc::Adc { adc::ADC }
+    pub fn dac(&self) -> dac::Dac { dac::DAC }
     pub fn tcc0(&self) -> tcc::Tcc0 { tcc::TCC0 }
     pub fn tcc1(&self) -> tcc::Tcc1 { tcc::TCC1 }
     pub fn tcc2(&self) -> tcc::Tcc2 { tcc::TCC2 }
@@ -186,6 +188,24 @@ impl GetPeriphInstance<adc::AdcPeriph> for Samd21 {
     fn get_periph_instance(&self, index: usize) -> Option<adc::AdcPeriph> {
         match index {
             0 => Some(adc::ADC_PERIPH),
+            _ => None,
+        }
+    }
+    fn get_periph_instance_count(&self) -> usize { 1 }
+}
+
+impl Get<dac::Dac> for Samd21 {
+    fn get(&self) -> dac::Dac { dac::DAC }
+}
+
+impl GetPeriph<dac::DacPeriph> for Samd21 {
+    fn get_periph(&self) -> dac::DacPeriph { dac::DAC_PERIPH }
+}
+
+impl GetPeriphInstance<dac::DacPeriph> for Samd21 {
+    fn get_periph_instance(&self, index: usize) -> Option<dac::DacPeriph> {
+        match index {
+            0 => Some(dac::DAC_PERIPH),
             _ => None,
         }
     }
