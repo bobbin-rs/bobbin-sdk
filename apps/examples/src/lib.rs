@@ -5,6 +5,7 @@ extern crate embedded_hal;
 
 pub mod tick;
 pub mod led;
+pub mod btn;
 pub mod leds;
 pub mod pwm;
 pub mod adc;

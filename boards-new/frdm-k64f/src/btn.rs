@@ -1,5 +1,6 @@
 use mcu::pin::*;
 use mcu::gpio::*;
+pub use common::btn::*;
 
 pub use common::digital::DigitalInput;
 
@@ -19,4 +20,10 @@ pub fn init() {
 
     BTN0.set_dir_input();
     BTN1.set_dir_input();
+}
+
+
+impl ::FrdmK64f {
+    pub fn btn0(&self) -> BtnLow<GpioCh> { BtnLow::new(PC6_CH) }
+    pub fn btn1(&self) -> BtnLow<GpioCh> { BtnLow::new(PA4_CH) }
 }

@@ -17,6 +17,11 @@ impl PortPin {
         self
     }
 
+    pub fn set_input_enabled(&self, value: bool) -> &Self {
+        self.port.with_pincfg(self.index, |r| r.set_inen(value));
+        self
+    }
+
     pub fn set_pmux_enabled(&self, value: bool) -> &Self {
         let value = if value { 1 } else { 0 };
         self.port.with_pincfg(self.index, |r| r.set_pmuxen(value));
@@ -42,11 +47,11 @@ impl PortPin {
     }
 
     pub fn set_mode_input(&self) -> &Self {
-        self.set_dir_input().set_pmux(0)
+        self.set_dir_input().set_input_enabled(true).set_pmux_enabled(false).set_pmux(0)
     }
 
     pub fn set_mode_output(&self) -> &Self {
-        self.set_dir_output().set_pmux(0)
+        self.set_dir_output().set_input_enabled(false).set_pmux_enabled(false).set_pmux(0)
     }
 
     pub fn set_mode_pmux(&self, value: usize) -> &Self {
