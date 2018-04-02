@@ -37,3 +37,9 @@ impl AnalogWrite<U8> for DacPeriph {
         self.write_u8_left(data)
     }
 }
+
+impl AnalogWrite<u8> for DacPeriph {
+    fn analog_write(&self, data: u8) -> &Self {
+        self.write_u8_left(data)
+    }
+}

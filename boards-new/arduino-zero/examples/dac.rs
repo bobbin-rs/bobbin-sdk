@@ -33,27 +33,4 @@ pub extern "C" fn main() -> ! {
 
     let mut app = examples::dac::DacExample::new(dac, brd, 5);
     app.run()
-
-    // println!("Running Loop");
-
-    // let mut v: u8 = 16;
-    // let s: u8 = 4;
-    // let mut d: bool = true;
-    // loop {
-    //     // DAC.set_data(|r| r.set_data((v as u16) << 2));
-    //     DAC.analog_write(v);
-    //     if d {
-    //         v += s;
-    //         if v == 240 {
-    //             d = !d;
-    //         }
-            
-    //     } else {
-    //         v -= s;
-    //         if v == 16 {
-    //             d = !d;
-    //         }
-    //     }
-    //     board::delay(5);
-    // }
 }

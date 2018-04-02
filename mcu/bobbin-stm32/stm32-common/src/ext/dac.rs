@@ -46,3 +46,9 @@ impl AnalogWrite<U8> for DacCh {
         self.set_data_u8(data)
     }
 }
+
+impl AnalogWrite<u8> for DacCh {
+    fn analog_write(&self, data: u8) -> &Self {
+        self.set_data_u8(data)
+    }
+}
