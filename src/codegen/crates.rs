@@ -343,6 +343,18 @@ pub fn gen_mcu_mod<W: Write>(cfg: &modules::Config, p_out: &mut W, out: &mut W, 
         let p_type = super::to_camel(&pg_mod);
         // let p_id = p.name.to_uppercase();
         writeln!(out, "    pub fn {}(&self) -> Option<Owned<{}::{}>> {{ {}::{}::acquire() }}", p_name, pg_mod, p_type, pg_mod, p_type)?;
+
+        for pin in p.pins.iter() {
+            let pin_meth = pin.name.to_lowercase();
+            let pin_type = super::to_camel(&pin.name);
+            writeln!(out, "        pub fn {}(&self) -> Option<Owned<pin::{}>> {{ pin::{}::acquire() }}", pin_meth, pin_type, pin_type)?;
+        }
+
+        for ch in p.channels.iter() {
+            let ch_meth = ch.name.to_lowercase();
+            let ch_type = super::to_camel(&ch.name);
+            writeln!(out, "        pub fn {}(&self) -> Option<Owned<{}::{}>> {{ {}::{}::acquire() }}", ch_meth, pg_mod, ch_type, pg_mod, ch_type)?;
+        }                        
     }
 
     for pg in d.peripheral_groups.iter() {
@@ -351,7 +363,19 @@ pub fn gen_mcu_mod<W: Write>(cfg: &modules::Config, p_out: &mut W, out: &mut W, 
             let p_name = p.name.to_lowercase();
             let p_type = super::to_camel(&p.name);
             //let p_id = p.name.to_uppercase();
-            writeln!(out, "    pub fn {}(&self) -> Option<Owned<{}::{}>> {{ {}::{}::acquire() }}", p_name, pg_mod, p_type, pg_mod, p_type)?;            
+            writeln!(out, "    pub fn {}(&self) -> Option<Owned<{}::{}>> {{ {}::{}::acquire() }}", p_name, pg_mod, p_type, pg_mod, p_type)?;
+
+            for pin in p.pins.iter() {
+                let pin_meth = pin.name.to_lowercase();
+                let pin_type = super::to_camel(&pin.name);
+                writeln!(out, "        pub fn {}(&self) -> Option<Owned<pin::{}>> {{ pin::{}::acquire() }}", pin_meth, pin_type, pin_type)?;
+            }
+
+            for ch in p.channels.iter() {
+                let ch_meth = ch.name.to_lowercase();
+                let ch_type = super::to_camel(&ch.name);
+                writeln!(out, "        pub fn {}(&self) -> Option<Owned<{}::{}>> {{ {}::{}::acquire() }}", ch_meth, pg_mod, ch_type, pg_mod, ch_type)?;
+            }                        
         }
     }
 
