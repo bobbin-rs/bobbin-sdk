@@ -1,4 +1,7 @@
 pub use periph::dac::*;
+pub use bobbin_common::bits::*;
+pub use bobbin_common::analog::AnalogWrite;
+
 use gclk;
 
 impl DacPeriph {
@@ -25,5 +28,28 @@ impl DacPeriph {
 
     pub fn wait_busy(&self) {
         while self.status().syncbusy() != 0 {}
+    }
+
+    pub fn write_u10<V: Into<U10>>(&self, data: V) -> &Self {        
+        self.set_data(|r| r.set_data(data.into().value()));
+        self
+    }
+}
+
+impl AnalogWrite<U10> for DacPeriph {
+    fn analog_write(&self, value: U10) -> &Self {
+        self.write_u10(value)
+    }
+}
+
+impl AnalogWrite<U8> for DacPeriph {
+    fn analog_write(&self, data: U8) -> &Self {
+        self.analog_write(data.value())
+    }
+}
+
+impl AnalogWrite<u8> for DacPeriph {
+    fn analog_write(&self, data: u8) -> &Self {
+        self.write_u10((data as u16) << 2)
     }
 }

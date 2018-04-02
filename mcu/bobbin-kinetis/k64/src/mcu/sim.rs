@@ -5,7 +5,7 @@ pub use ext::sim::*;
 #[allow(unused_imports)] use ::bobbin_common::*;
 
 
-periph!( SIM, Sim, SIM_PERIPH, SimPeriph, 0x40047000, 0x00, 0x00);
+periph!( SIM, Sim, SIM_PERIPH, SimPeriph, SIM_OWNED, SIM_REF_COUNT, 0x40047000, 0x00, 0x00);
 
 impl En for super::uart::Uart4 {
     #[inline] fn en(&self) -> bits::U1 { SIM.scgc1().uart4() }

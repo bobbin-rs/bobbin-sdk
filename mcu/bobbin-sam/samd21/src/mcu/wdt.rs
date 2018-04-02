@@ -5,7 +5,7 @@ pub use ext::wdt::*;
 #[allow(unused_imports)] use ::bobbin_common::*;
 
 
-periph!( WDT, Wdt, WDT_PERIPH, WdtPeriph, 0x40001000, 0x00, 0x04);
+periph!( WDT, Wdt, WDT_PERIPH, WdtPeriph, WDT_OWNED, WDT_REF_COUNT, 0x40001000, 0x00, 0x04);
 
 
 // Gate { name: None, gate_type: Some("EN"), periph: Some("PM"), register: Some("APBAMASK"), field: Some("WDT"), description: None }

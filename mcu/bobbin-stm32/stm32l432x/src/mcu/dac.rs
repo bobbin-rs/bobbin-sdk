@@ -2,10 +2,10 @@
 #[allow(unused_imports)] pub use ::bobbin_common::gate::GateEn;
 pub use ext::dac::*;
 
-periph!( DAC1, Dac1, DAC1_PERIPH, DacPeriph, 0x40007400, 0x00, 0x05);
+periph!( DAC1, Dac1, DAC1_PERIPH, DacPeriph, DAC1_OWNED, DAC1_REF_COUNT, 0x40007400, 0x00, 0x05);
 
-channel!(DAC1_CH1, Dac1Ch1, DAC1, Dac1, DAC1_CH1_CH, DacCh, DAC1_PERIPH, 0);
-channel!(DAC1_CH2, Dac1Ch2, DAC1, Dac1, DAC1_CH2_CH, DacCh, DAC1_PERIPH, 1);
+channel!(DAC1_CH1, Dac1Ch1, dac1_ch1, DAC1, Dac1, DAC1_CH1_CH, DacCh, DAC1_PERIPH, DAC1_CH1_OWNED, DAC1_CH1_REF_COUNT, 0);
+channel!(DAC1_CH2, Dac1Ch2, dac1_ch2, DAC1, Dac1, DAC1_CH2_CH, DacCh, DAC1_PERIPH, DAC1_CH2_OWNED, DAC1_CH2_REF_COUNT, 1);
 // Gate { name: None, gate_type: Some("RST"), periph: Some("RCC"), register: Some("APB1RSTR1"), field: Some("DAC1RST"), description: None }
 impl ::bobbin_common::gate::GateRst for Dac1 {
     #[inline]

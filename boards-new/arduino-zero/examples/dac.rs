@@ -36,7 +36,8 @@ pub extern "C" fn main() -> ! {
     let s: u8 = 4;
     let mut d: bool = true;
     loop {
-        DAC.set_data(|r| r.set_data((v as u16) << 2));
+        // DAC.set_data(|r| r.set_data((v as u16) << 2));
+        DAC.analog_write(v);
         if d {
             v += s;
             if v == 240 {

@@ -5,6 +5,6 @@ pub use ext::mpu::*;
 #[allow(unused_imports)] use ::bobbin_common::*;
 
 
-periph!( MPU, Mpu, MPU_PERIPH, MpuPeriph, 0x4000d000, 0x00, 0x02);
+periph!( MPU, Mpu, MPU_PERIPH, MpuPeriph, MPU_OWNED, MPU_REF_COUNT, 0x4000d000, 0x00, 0x02);
 
 

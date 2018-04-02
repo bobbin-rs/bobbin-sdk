@@ -5,7 +5,7 @@ pub use ext::sysctrl::*;
 #[allow(unused_imports)] use ::bobbin_common::*;
 
 
-periph!( SYSCTRL, Sysctrl, SYSCTRL_PERIPH, SysctrlPeriph, 0x40000800, 0x00, 0x03);
+periph!( SYSCTRL, Sysctrl, SYSCTRL_PERIPH, SysctrlPeriph, SYSCTRL_OWNED, SYSCTRL_REF_COUNT, 0x40000800, 0x00, 0x03);
 
 
 // Gate { name: None, gate_type: Some("EN"), periph: Some("PM"), register: Some("APBAMASK"), field: Some("SYSCTRL"), description: None }

@@ -5,7 +5,7 @@ pub use ext::nvmctrl::*;
 #[allow(unused_imports)] use ::bobbin_common::*;
 
 
-periph!( NVMCTRL, Nvmctrl, NVMCTRL_PERIPH, NvmctrlPeriph, 0x41004000, 0x00, 0x01);
+periph!( NVMCTRL, Nvmctrl, NVMCTRL_PERIPH, NvmctrlPeriph, NVMCTRL_OWNED, NVMCTRL_REF_COUNT, 0x41004000, 0x00, 0x01);
 
 
 // Gate { name: None, gate_type: Some("EN"), periph: Some("PM"), register: Some("AHBMASK"), field: Some("NVMCTRL"), description: None }

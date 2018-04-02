@@ -2,7 +2,7 @@
 #[allow(unused_imports)] pub use ::bobbin_common::gate::GateEn;
 pub use ext::lptmr::*;
 
-periph!( LPTMR0, Lptmr0, LPTMR0_PERIPH, LptmrPeriph, 0x40040000, 0x00, 0x0e);
+periph!( LPTMR0, Lptmr0, LPTMR0_PERIPH, LptmrPeriph, LPTMR0_OWNED, LPTMR0_REF_COUNT, 0x40040000, 0x00, 0x0e);
 
 // Gate { name: None, gate_type: Some("EN"), periph: Some("SIM"), register: Some("SCGC5"), field: Some("LPTMR"), description: None }
 impl ::bobbin_common::gate::GateEn for Lptmr0 {

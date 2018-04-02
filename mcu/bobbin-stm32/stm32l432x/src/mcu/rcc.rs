@@ -5,7 +5,7 @@ pub use ext::rcc::*;
 #[allow(unused_imports)] use ::bobbin_common::*;
 
 
-periph!( RCC, Rcc, RCC_PERIPH, RccPeriph, 0x40021000, 0x00, 0x02);
+periph!( RCC, Rcc, RCC_PERIPH, RccPeriph, RCC_OWNED, RCC_REF_COUNT, 0x40021000, 0x00, 0x02);
 
 impl En for super::dma::Dma2 {
     #[inline] fn en(&self) -> bits::U1 { RCC.ahb1enr().dma2en() }

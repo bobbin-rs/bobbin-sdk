@@ -5,7 +5,7 @@ pub use ext::pm::*;
 #[allow(unused_imports)] use ::bobbin_common::*;
 
 
-periph!( PM, Pm, PM_PERIPH, PmPeriph, 0x40000400, 0x00, 0x02);
+periph!( PM, Pm, PM_PERIPH, PmPeriph, PM_OWNED, PM_REF_COUNT, 0x40000400, 0x00, 0x02);
 
 impl En for super::sysctrl::Sysctrl {
     #[inline] fn en(&self) -> bits::U1 { PM.apbamask().sysctrl() }

@@ -5,7 +5,7 @@ pub use ext::rtc::*;
 #[allow(unused_imports)] use ::bobbin_common::*;
 
 
-periph!( RTC, Rtc, RTC_PERIPH, RtcPeriph, 0x40001400, 0x00, 0x05);
+periph!( RTC, Rtc, RTC_PERIPH, RtcPeriph, RTC_OWNED, RTC_REF_COUNT, 0x40001400, 0x00, 0x05);
 
 
 // Gate { name: None, gate_type: Some("EN"), periph: Some("PM"), register: Some("APBAMASK"), field: Some("RTC"), description: None }
