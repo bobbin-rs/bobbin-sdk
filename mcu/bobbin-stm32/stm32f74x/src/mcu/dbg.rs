@@ -5,6 +5,6 @@ pub use ext::dbg::*;
 #[allow(unused_imports)] use ::bobbin_common::*;
 
 
-periph!( DBG, Dbg, DBG_PERIPH, DbgPeriph, DBG_OWNED, 0xe0042000, 0x00, 0x04);
+periph!( DBG, Dbg, DBG_PERIPH, DbgPeriph, DBG_OWNED, DBG_REF_COUNT, 0xe0042000, 0x00, 0x04);
 
 

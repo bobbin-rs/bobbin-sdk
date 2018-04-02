@@ -5,7 +5,7 @@ pub use ext::ethernet_mac::*;
 #[allow(unused_imports)] use ::bobbin_common::*;
 
 
-periph!( ETHERNET_MAC, EthernetMac, ETHERNET_MAC_PERIPH, EthernetMacPeriph, ETHERNET_MAC_OWNED, 0x40028000, 0x00, 0x05);
+periph!( ETHERNET_MAC, EthernetMac, ETHERNET_MAC_PERIPH, EthernetMacPeriph, ETHERNET_MAC_OWNED, ETHERNET_MAC_REF_COUNT, 0x40028000, 0x00, 0x05);
 
 
 // Gate { name: None, gate_type: Some("RST"), periph: Some("RCC"), register: Some("AHB1RSTR"), field: Some("ETHMACRST"), description: None }

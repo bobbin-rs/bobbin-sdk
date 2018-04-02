@@ -2,7 +2,7 @@
 #[allow(unused_imports)] pub use ::bobbin_common::gate::GateEn;
 pub use ext::wwdg::*;
 
-periph!( WWDG, Wwdg, WWDG_PERIPH, WwdgPeriph, WWDG_OWNED, 0x40002c00, 0x00, 0x19);
+periph!( WWDG, Wwdg, WWDG_PERIPH, WwdgPeriph, WWDG_OWNED, WWDG_REF_COUNT, 0x40002c00, 0x00, 0x19);
 
 // Gate { name: None, gate_type: Some("RST"), periph: Some("RCC"), register: Some("APB1RSTR"), field: Some("WWDGRST"), description: None }
 impl ::bobbin_common::gate::GateRst for Wwdg {

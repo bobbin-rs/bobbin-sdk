@@ -2,7 +2,7 @@
 #[allow(unused_imports)] pub use ::bobbin_common::gate::GateEn;
 pub use ext::dcmi::*;
 
-periph!( DCMI, Dcmi, DCMI_PERIPH, DcmiPeriph, DCMI_OWNED, 0x50050000, 0x00, 0x13);
+periph!( DCMI, Dcmi, DCMI_PERIPH, DcmiPeriph, DCMI_OWNED, DCMI_REF_COUNT, 0x50050000, 0x00, 0x13);
 
 // Gate { name: None, gate_type: Some("RST"), periph: Some("RCC"), register: Some("AHB2RSTR"), field: Some("DCMIRST"), description: None }
 impl ::bobbin_common::gate::GateRst for Dcmi {

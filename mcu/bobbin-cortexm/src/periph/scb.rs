@@ -1,7 +1,7 @@
 #[allow(unused_imports)] use bobbin_common::*;
 
 
-periph!( SCB, Scb, SCB_PERIPH, ScbPeriph, SCB_OWNED, 0xe000e000, 0x00, 0x01);
+periph!( SCB, Scb, SCB_PERIPH, ScbPeriph, SCB_OWNED, SCB_REF_COUNT, 0xe000e000, 0x00, 0x01);
 
 
 #[allow(unused_imports)] use bobbin_common::*;
