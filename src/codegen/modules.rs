@@ -404,11 +404,12 @@ pub fn gen_pins<W: Write>(_cfg: &Config, out: &mut W, d: &Device, signals: &Sign
                 let ty = to_camel(&pin.name);
                 let meth = pin.name.to_lowercase();
                 let owned = format!("{}_OWNED", id);
+                let ref_count = format!("{}_REF_COUNT", id);
                 let base_name = format!("{}_PIN", id);
                 let base_port = format!("{}_PERIPH", p_name);
                 let pin_index = pin.index.unwrap();
 
-                try!(writeln!(out, "pin!({id}, {ty}, {meth}, {port_id}, {port_type}, {base_id}, {base_type}, {base_port}, {owned}, {index});",
+                try!(writeln!(out, "pin!({id}, {ty}, {meth}, {port_id}, {port_type}, {base_id}, {base_type}, {base_port}, {owned}, {ref_count}, {index});",
                     id=id,
                     ty=ty,
                     meth=meth,
@@ -418,6 +419,7 @@ pub fn gen_pins<W: Write>(_cfg: &Config, out: &mut W, d: &Device, signals: &Sign
                     base_type=base_type,
                     base_port=base_port,
                     owned=owned,
+                    ref_count=ref_count,
                     index=pin_index,
                 ));
 
@@ -583,8 +585,9 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, d: &Device, pg:
         let p_const = format!("{}_PERIPH", p_name);
         let p_type = to_camel(&p.name);
         let p_owned = format!("{}_OWNED", p_name);
-        try!(writeln!(out, "periph!( {p_name}, {p_type}, {p_const}, {pg_type}, {p_owned}, 0x{p_addr:08x}, 0x{p_index:02x}, 0x{p_ord:02x});", 
-            p_const=p_const, pg_type=pg_type, p_name=p_name, p_type=p_type, p_owned=p_owned, p_addr=p.address, p_index=i, p_ord=ord));
+        let p_ref_count = format!("{}_REF_COUNT", p_name);
+        try!(writeln!(out, "periph!( {p_name}, {p_type}, {p_const}, {pg_type}, {p_owned}, {p_ref_count}, 0x{p_addr:08x}, 0x{p_index:02x}, 0x{p_ord:02x});", 
+            p_const=p_const, pg_type=pg_type, p_name=p_name, p_type=p_type, p_owned=p_owned, p_ref_count=p_ref_count, p_addr=p.address, p_index=i, p_ord=ord));
         *ord += 1;
     }
     try!(writeln!(out, ""));
@@ -708,8 +711,9 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, d: &Device, pg:
             let base_type = format!("{}Ch", to_camel(&pg.name));
             let base_periph = format!("{}_PERIPH", p_name);
             let owned = format!("{}_OWNED", id);
+            let ref_count = format!("{}_REF_COUNT", id);
             
-            try!(writeln!(out, "channel!({id}, {ty}, {meth}, {port_id}, {port_type}, {base_id}, {base_type}, {base_periph}, {owned}, {index});",
+            try!(writeln!(out, "channel!({id}, {ty}, {meth}, {port_id}, {port_type}, {base_id}, {base_type}, {base_periph}, {owned}, {ref_count}, {index});",
                 id=id,
                 ty=ty,
                 meth=meth,
@@ -719,6 +723,7 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, d: &Device, pg:
                 base_type=base_type,
                 base_periph=base_periph,
                 owned=owned,
+                ref_count=ref_count,
                 index=ch.index.unwrap(),
             ));            
         }        
@@ -800,6 +805,7 @@ pub fn gen_peripheral_group_impl<W: Write>(cfg: &Config, out: &mut W, pg: &Perip
 pub fn gen_peripheral<W: Write>(cfg: &Config, out: &mut W, d: &Device, p: &Peripheral, ord: usize) -> Result<()> {
     let p_const = format!("{}_PERIPH", p.name);
     let p_owned = format!("{}_OWNED", p.name);
+    let p_ref_count = format!("{}_REF_COUNT", p.name);
     let p_type = to_camel(&p.group_name.as_ref().unwrap());
     let pg_type = format!("{}Periph", to_camel(&p.group_name.as_ref().unwrap()));
 
@@ -821,8 +827,8 @@ pub fn gen_peripheral<W: Write>(cfg: &Config, out: &mut W, d: &Device, p: &Perip
     if let Some(_) = p.dim {
         unimplemented!()
     } else {
-        try!(writeln!(out, "periph!( {p_name}, {p_type}, {p_const}, {pg_type}, {p_owned}, 0x{p_addr:08x}, 0x{p_index:02x}, 0x{p_ord:02x});", 
-            p_const=p_const, pg_type=pg_type, p_name=p.name, p_type=p_type, p_owned=p_owned, p_addr=p.address, p_index=0, p_ord=ord));
+        try!(writeln!(out, "periph!( {p_name}, {p_type}, {p_const}, {pg_type}, {p_owned}, {p_ref_count}, 0x{p_addr:08x}, 0x{p_index:02x}, 0x{p_ord:02x});", 
+            p_const=p_const, pg_type=pg_type, p_name=p.name, p_type=p_type, p_owned=p_owned, p_ref_count=p_ref_count, p_addr=p.address, p_index=0, p_ord=ord));
         try!(writeln!(out, ""));
     }
     
