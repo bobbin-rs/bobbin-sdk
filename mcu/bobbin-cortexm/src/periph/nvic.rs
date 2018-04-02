@@ -1,7 +1,7 @@
 #[allow(unused_imports)] use bobbin_common::*;
 
 
-periph!( NVIC, Nvic, NVIC_PERIPH, NvicPeriph, 0xe000e000, 0x00, 0x00);
+periph!( NVIC, Nvic, NVIC_PERIPH, NvicPeriph, NVIC_OWNED, 0xe000e000, 0x00, 0x00);
 
 
 #[allow(unused_imports)] use bobbin_common::*;

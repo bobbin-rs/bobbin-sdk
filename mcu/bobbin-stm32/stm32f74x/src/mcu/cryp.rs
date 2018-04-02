@@ -5,7 +5,7 @@ pub use ext::cryp::*;
 #[allow(unused_imports)] use ::bobbin_common::*;
 
 
-periph!( CRYP, Cryp, CRYP_PERIPH, CrypPeriph, 0x50060000, 0x00, 0x10);
+periph!( CRYP, Cryp, CRYP_PERIPH, CrypPeriph, CRYP_OWNED, 0x50060000, 0x00, 0x10);
 
 
 // Gate { name: None, gate_type: Some("RST"), periph: Some("RCC"), register: Some("AHB2RSTR"), field: Some("CRYPRST"), description: None }

@@ -1,7 +1,7 @@
 #[allow(unused_imports)] use bobbin_common::*;
 
 
-periph!( DWT, Dwt, DWT_PERIPH, DwtPeriph, 0xe0001000, 0x00, 0x07);
+periph!( DWT, Dwt, DWT_PERIPH, DwtPeriph, DWT_OWNED, 0xe0001000, 0x00, 0x07);
 
 
 #[allow(unused_imports)] use bobbin_common::*;

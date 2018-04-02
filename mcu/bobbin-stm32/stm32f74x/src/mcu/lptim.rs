@@ -2,7 +2,7 @@
 #[allow(unused_imports)] pub use ::bobbin_common::gate::GateEn;
 pub use ext::lptim::*;
 
-periph!( LPTIM1, Lptim1, LPTIM1_PERIPH, LptimPeriph, 0x40002400, 0x00, 0x2a);
+periph!( LPTIM1, Lptim1, LPTIM1_PERIPH, LptimPeriph, LPTIM1_OWNED, 0x40002400, 0x00, 0x2a);
 
 // Gate { name: None, gate_type: Some("RST"), periph: Some("RCC"), register: Some("APB1RSTR"), field: Some("LPTIM1RST"), description: None }
 impl ::bobbin_common::gate::GateRst for Lptim1 {

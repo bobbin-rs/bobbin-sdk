@@ -1,7 +1,7 @@
 #[allow(unused_imports)] use bobbin_common::*;
 
 
-periph!( MPU, Mpu, MPU_PERIPH, MpuPeriph, 0xe000ed90, 0x00, 0x03);
+periph!( MPU, Mpu, MPU_PERIPH, MpuPeriph, MPU_OWNED, 0xe000ed90, 0x00, 0x03);
 
 
 #[allow(unused_imports)] use bobbin_common::*;

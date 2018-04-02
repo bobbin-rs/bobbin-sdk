@@ -1,7 +1,7 @@
 #[allow(unused_imports)] use bobbin_common::*;
 
 
-periph!( FPU, Fpu, FPU_PERIPH, FpuPeriph, 0xe000e000, 0x00, 0x04);
+periph!( FPU, Fpu, FPU_PERIPH, FpuPeriph, FPU_OWNED, 0xe000e000, 0x00, 0x04);
 
 
 #[allow(unused_imports)] use bobbin_common::*;

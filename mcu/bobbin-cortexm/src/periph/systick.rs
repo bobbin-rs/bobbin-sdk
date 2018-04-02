@@ -1,7 +1,7 @@
 #[allow(unused_imports)] use bobbin_common::*;
 
 
-periph!( SYSTICK, Systick, SYSTICK_PERIPH, SystickPeriph, 0xe000e000, 0x00, 0x02);
+periph!( SYSTICK, Systick, SYSTICK_PERIPH, SystickPeriph, SYSTICK_OWNED, 0xe000e000, 0x00, 0x02);
 
 
 #[allow(unused_imports)] use bobbin_common::*;

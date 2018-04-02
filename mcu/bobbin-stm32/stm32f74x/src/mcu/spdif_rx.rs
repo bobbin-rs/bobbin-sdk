@@ -5,6 +5,6 @@ pub use ext::spdif_rx::*;
 #[allow(unused_imports)] use ::bobbin_common::*;
 
 
-periph!( SPDIF_RX, SpdifRx, SPDIF_RX_PERIPH, SpdifRxPeriph, 0x40004000, 0x00, 0x0c);
+periph!( SPDIF_RX, SpdifRx, SPDIF_RX_PERIPH, SpdifRxPeriph, SPDIF_RX_OWNED, 0x40004000, 0x00, 0x0c);
 
 

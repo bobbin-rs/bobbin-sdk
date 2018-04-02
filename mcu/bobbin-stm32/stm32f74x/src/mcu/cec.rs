@@ -5,6 +5,6 @@ pub use ext::cec::*;
 #[allow(unused_imports)] use ::bobbin_common::*;
 
 
-periph!( CEC, Cec, CEC_PERIPH, CecPeriph, 0x40006c00, 0x00, 0x0b);
+periph!( CEC, Cec, CEC_PERIPH, CecPeriph, CEC_OWNED, 0x40006c00, 0x00, 0x0b);
 
 

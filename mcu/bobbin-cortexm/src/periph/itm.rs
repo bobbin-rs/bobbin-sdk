@@ -1,7 +1,7 @@
 #[allow(unused_imports)] use bobbin_common::*;
 
 
-periph!( ITM, Itm, ITM_PERIPH, ItmPeriph, 0xe0000000, 0x00, 0x06);
+periph!( ITM, Itm, ITM_PERIPH, ItmPeriph, ITM_OWNED, 0xe0000000, 0x00, 0x06);
 
 
 #[allow(unused_imports)] use bobbin_common::*;
