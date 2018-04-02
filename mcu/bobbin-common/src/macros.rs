@@ -1,9 +1,10 @@
 
 #[macro_export]
 macro_rules! periph {
-    ($id:ident, $ty:ident, $pid:ident, $pty:ident, $base:expr, $index: expr, $ord:expr) => {
+    ($id:ident, $ty:ident, $pid:ident, $pty:ident, $owned:ident, $base:expr, $index: expr, $ord:expr) => {
         pub const $id: $ty = $ty{};
         pub const $pid: $pty = $pty($base);
+        static mut $owned: bool = false;
         
         #[derive(Debug, Default, Clone, Copy, PartialEq, Eq)]
         pub struct $ty {}
@@ -49,6 +50,12 @@ macro_rules! periph {
                 $ord
             }        
         }
+        
+        impl $crate::owned::Acquire for $ty {
+            fn ref_cnt_mut() -> &'static mut bool {
+                unsafe { &mut $owned }
+            }
+        }
     };
     ($id:ident, $ty:ident, $base:expr) => (    
         pub const $id: $ty = $ty($base);
@@ -72,9 +79,10 @@ macro_rules! periph_signal {
 }
 #[macro_export]
 macro_rules! pin {
-    ($id:ident, $ty:ident, $port_id:ident, $port_type:ident, $base_id:ident, $base_type:ident, $base_port:ident, $index:expr) => {
+    ($id:ident, $ty:ident, $port_id:ident, $port_type:ident, $base_id:ident, $base_type:ident, $base_port:ident, $owned:ident, $index:expr) => {
         pub const $id: $ty = $ty {};
         pub const $base_id: $base_type = $base_type { port: $base_port, index: $index };
+        static mut $owned: bool = false;
        
         #[derive(Debug, Default, Clone, Copy, PartialEq, Eq)]
         pub struct $ty {}
@@ -106,6 +114,12 @@ macro_rules! pin {
                 &$base_id
             }
         }
+
+        impl $crate::owned::Acquire for $ty {
+            fn ref_cnt_mut() -> &'static mut bool {
+                unsafe { &mut $owned }
+            }
+        }        
     }
 }
 
@@ -120,9 +134,11 @@ macro_rules! pin_source {
 
 #[macro_export]
 macro_rules! channel {
-    ($id:ident, $ty:ident, $periph_id:ident, $periph_type:ident, $base_id:ident, $base_type:ident, $base_periph:ident, $index:expr) => (    
+    ($id:ident, $ty:ident, $periph_id:ident, $periph_type:ident, $base_id:ident, $base_type:ident, $base_periph:ident, $owned:ident, $index:expr) => (    
         pub const $id: $ty = $ty {};
         pub const $base_id: $base_type = $base_type { periph: $base_periph, index: $index };
+        static mut $owned: bool = false;
+
         #[derive(Debug, Default, Clone, Copy, PartialEq, Eq)]
         pub struct $ty {}
         impl $crate::channel::Channel<$periph_type> for $ty {
@@ -146,6 +162,12 @@ macro_rules! channel {
                 $base_id
             }
         }
+
+        impl $crate::owned::Acquire for $ty {
+            fn ref_cnt_mut() -> &'static mut bool {
+                unsafe { &mut $owned }
+            }
+        }        
     )
 }
 

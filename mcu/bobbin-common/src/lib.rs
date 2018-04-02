@@ -20,6 +20,7 @@ pub mod irq;
 pub mod signal;
 pub mod gate;
 pub mod board;
+pub mod owned;
 
 pub mod clock;
 pub mod console;
