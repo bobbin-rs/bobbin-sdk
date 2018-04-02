@@ -13,8 +13,7 @@ pub extern "C" fn main() -> ! {
     board::init();
     let brd = board::board();
     let mcu = brd.mcu();
-    let pin = mcu.gpiob().and_then(|gpio| gpio.pb0());
-    if let Some(pin) = pin {
+    if let Some(pin) = mcu.pb0() {
         loop {
             pin.toggle_output();
             board::delay(500);
