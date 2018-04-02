@@ -14,7 +14,7 @@ use board::mcu::dac::*;
 #[no_mangle]
 pub extern "C" fn main() -> ! {
     board::init();
-    board::delay(500);
+    let brd = board::board();
     println!("DAC Test");
 
     PA02.port().gate_enable();
@@ -26,30 +26,34 @@ pub extern "C" fn main() -> ! {
     let dac = DAC;
     dac.gate_enable();
     {
-        DAC.init();
-        DAC.enable();
+        dac.init();
+        dac.enable();
     }
+    let dac: DacPeriph = dac.into();
 
-    println!("Running Loop");
+    let mut app = examples::dac::DacExample::new(dac, brd, 5);
+    app.run()
 
-    let mut v: u8 = 16;
-    let s: u8 = 4;
-    let mut d: bool = true;
-    loop {
-        // DAC.set_data(|r| r.set_data((v as u16) << 2));
-        DAC.analog_write(v);
-        if d {
-            v += s;
-            if v == 240 {
-                d = !d;
-            }
+    // println!("Running Loop");
+
+    // let mut v: u8 = 16;
+    // let s: u8 = 4;
+    // let mut d: bool = true;
+    // loop {
+    //     // DAC.set_data(|r| r.set_data((v as u16) << 2));
+    //     DAC.analog_write(v);
+    //     if d {
+    //         v += s;
+    //         if v == 240 {
+    //             d = !d;
+    //         }
             
-        } else {
-            v -= s;
-            if v == 16 {
-                d = !d;
-            }
-        }
-        board::delay(5);
-    }
+    //     } else {
+    //         v -= s;
+    //         if v == 16 {
+    //             d = !d;
+    //         }
+    //     }
+    //     board::delay(5);
+    // }
 }
