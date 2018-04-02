@@ -284,6 +284,7 @@ pub fn gen_mcu_mod<W: Write>(cfg: &modules::Config, p_out: &mut W, out: &mut W, 
     let mcu_type = super::to_camel(&d.name);
 
     writeln!(out, "pub use ::bobbin_common::mcu::*;")?;
+    writeln!(out, "use ::bobbin_common::owned::*;")?;
     writeln!(out, "")?;
 
     for p in d.peripherals.iter() {
@@ -340,8 +341,8 @@ pub fn gen_mcu_mod<W: Write>(cfg: &modules::Config, p_out: &mut W, out: &mut W, 
         let pg_mod = p.group_name.as_ref().unwrap_or(&p.name).to_lowercase();
         let p_name = p.name.to_lowercase();
         let p_type = super::to_camel(&pg_mod);
-        let p_id = p.name.to_uppercase();
-        writeln!(out, "    pub fn {}(&self) -> {}::{} {{ {}::{} }}", p_name, pg_mod, p_type, pg_mod, p_id)?;
+        // let p_id = p.name.to_uppercase();
+        writeln!(out, "    pub fn {}(&self) -> Option<Owned<{}::{}>> {{ {}::{}::acquire() }}", p_name, pg_mod, p_type, pg_mod, p_type)?;
     }
 
     for pg in d.peripheral_groups.iter() {
@@ -349,8 +350,8 @@ pub fn gen_mcu_mod<W: Write>(cfg: &modules::Config, p_out: &mut W, out: &mut W, 
         for p in pg.peripherals.iter() {
             let p_name = p.name.to_lowercase();
             let p_type = super::to_camel(&p.name);
-            let p_id = p.name.to_uppercase();
-            writeln!(out, "    pub fn {}(&self) -> {}::{} {{ {}::{} }}", p_name, pg_mod, p_type, pg_mod, p_id)?;            
+            //let p_id = p.name.to_uppercase();
+            writeln!(out, "    pub fn {}(&self) -> Option<Owned<{}::{}>> {{ {}::{}::acquire() }}", p_name, pg_mod, p_type, pg_mod, p_type)?;            
         }
     }
 

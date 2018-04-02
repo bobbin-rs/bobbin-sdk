@@ -402,14 +402,16 @@ pub fn gen_pins<W: Write>(_cfg: &Config, out: &mut W, d: &Device, signals: &Sign
 
                 let id = pin.name.to_uppercase();                
                 let ty = to_camel(&pin.name);
+                let meth = pin.name.to_lowercase();
                 let owned = format!("{}_OWNED", id);
                 let base_name = format!("{}_PIN", id);
                 let base_port = format!("{}_PERIPH", p_name);
                 let pin_index = pin.index.unwrap();
 
-                try!(writeln!(out, "pin!({id}, {ty}, {port_id}, {port_type}, {base_id}, {base_type}, {base_port}, {owned}, {index});",
+                try!(writeln!(out, "pin!({id}, {ty}, {meth}, {port_id}, {port_type}, {base_id}, {base_type}, {base_port}, {owned}, {index});",
                     id=id,
                     ty=ty,
+                    meth=meth,
                     port_id=p_name,
                     port_type=p_type,
                     base_id=base_name,
@@ -701,14 +703,16 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, d: &Device, pg:
         for ch in p.channels.iter() {
             let id = ch.name.to_uppercase();                
             let ty = to_camel(&ch.name);
+            let meth = ch.name.to_lowercase();
             let base_name = format!("{}_CH", id);
             let base_type = format!("{}Ch", to_camel(&pg.name));
             let base_periph = format!("{}_PERIPH", p_name);
             let owned = format!("{}_OWNED", id);
             
-            try!(writeln!(out, "channel!({id}, {ty}, {port_id}, {port_type}, {base_id}, {base_type}, {base_periph}, {owned}, {index});",
+            try!(writeln!(out, "channel!({id}, {ty}, {meth}, {port_id}, {port_type}, {base_id}, {base_type}, {base_periph}, {owned}, {index});",
                 id=id,
                 ty=ty,
+                meth=meth,
                 port_id=p_name,
                 port_type=p_type,
                 base_id=base_name,
