@@ -50,7 +50,7 @@ macro_rules! periph {
                 $ord
             }        
         }
-        
+
         impl $crate::owned::Acquire for $ty {
             fn ref_cnt_mut() -> &'static mut bool {
                 unsafe { &mut $owned }
@@ -79,7 +79,7 @@ macro_rules! periph_signal {
 }
 #[macro_export]
 macro_rules! pin {
-    ($id:ident, $ty:ident, $port_id:ident, $port_type:ident, $base_id:ident, $base_type:ident, $base_port:ident, $owned:ident, $index:expr) => {
+    ($id:ident, $ty:ident, $meth:ident, $port_id:ident, $port_type:ident, $base_id:ident, $base_type:ident, $base_port:ident, $owned:ident, $index:expr) => {
         pub const $id: $ty = $ty {};
         pub const $base_id: $base_type = $base_type { port: $base_port, index: $index };
         static mut $owned: bool = false;
@@ -115,6 +115,13 @@ macro_rules! pin {
             }
         }
 
+        impl $port_type {
+            pub fn $meth(&self) -> Option<$crate::owned::Owned<$ty>> { 
+                use $crate::owned::Acquire;
+                $ty::acquire() 
+            }
+        }
+
         impl $crate::owned::Acquire for $ty {
             fn ref_cnt_mut() -> &'static mut bool {
                 unsafe { &mut $owned }
@@ -134,7 +141,7 @@ macro_rules! pin_source {
 
 #[macro_export]
 macro_rules! channel {
-    ($id:ident, $ty:ident, $periph_id:ident, $periph_type:ident, $base_id:ident, $base_type:ident, $base_periph:ident, $owned:ident, $index:expr) => (    
+    ($id:ident, $ty:ident, $meth:ident, $periph_id:ident, $periph_type:ident, $base_id:ident, $base_type:ident, $base_periph:ident, $owned:ident, $index:expr) => (    
         pub const $id: $ty = $ty {};
         pub const $base_id: $base_type = $base_type { periph: $base_periph, index: $index };
         static mut $owned: bool = false;
@@ -162,6 +169,13 @@ macro_rules! channel {
                 $base_id
             }
         }
+
+        impl $periph_type {
+            pub fn $meth(&self) -> Option<$crate::owned::Owned<$ty>> { 
+                use $crate::owned::Acquire;
+                $ty::acquire() 
+            }
+        }        
 
         impl $crate::owned::Acquire for $ty {
             fn ref_cnt_mut() -> &'static mut bool {

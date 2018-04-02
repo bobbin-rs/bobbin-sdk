@@ -4,8 +4,8 @@ pub use ext::dac::*;
 
 periph!( DAC, Dac, DAC_PERIPH, DacPeriph, DAC_OWNED, 0x40007400, 0x00, 0x12);
 
-channel!(DAC_CH1, DacCh1, DAC, Dac, DAC_CH1_CH, DacCh, DAC_PERIPH, DAC_CH1_OWNED, 0);
-channel!(DAC_CH2, DacCh2, DAC, Dac, DAC_CH2_CH, DacCh, DAC_PERIPH, DAC_CH2_OWNED, 1);
+channel!(DAC_CH1, DacCh1, dac_ch1, DAC, Dac, DAC_CH1_CH, DacCh, DAC_PERIPH, DAC_CH1_OWNED, 0);
+channel!(DAC_CH2, DacCh2, dac_ch2, DAC, Dac, DAC_CH2_CH, DacCh, DAC_PERIPH, DAC_CH2_OWNED, 1);
 // Gate { name: None, gate_type: Some("RST"), periph: Some("RCC"), register: Some("APB1RSTR"), field: Some("DACRST"), description: None }
 impl ::bobbin_common::gate::GateRst for Dac {
     #[inline]
