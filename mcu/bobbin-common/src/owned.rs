@@ -35,18 +35,25 @@ impl<T: Acquire> Drop for Owned<T> {
 }
 
 pub trait Acquire : Sized + Default {
-    fn ref_cnt_mut() -> &'static mut bool;
+    fn owned_mut() -> &'static mut bool;
     fn acquire() -> Option<Owned<Self>> {
-        if !mem::replace(Self::ref_cnt_mut(), true) {
+        if !mem::replace(Self::owned_mut(), true) {
             Some(Owned::new(Self::default()))
         } else {
             None
         }
     }
     fn release() {
-        mem::replace(Self::ref_cnt_mut(), false);
+        mem::replace(Self::owned_mut(), false);
     }
     fn acquired() -> bool {
-        *Self::ref_cnt_mut()
+        *Self::owned_mut()
     }
+}
+
+pub trait RefCount {
+    fn ref_count_mut() -> &'static mut u8;
+    fn incr_ref() { *Self::ref_count_mut() += 1 }
+    fn decr_ref() { *Self::ref_count_mut() -= 1 }
+    fn ref_count() -> u8 { *Self::ref_count_mut() }
 }

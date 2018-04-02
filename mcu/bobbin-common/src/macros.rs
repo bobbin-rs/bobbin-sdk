@@ -1,10 +1,11 @@
 
 #[macro_export]
 macro_rules! periph {
-    ($id:ident, $ty:ident, $pid:ident, $pty:ident, $owned:ident, $base:expr, $index: expr, $ord:expr) => {
+    ($id:ident, $ty:ident, $pid:ident, $pty:ident, $owned:ident, $ref_count:ident, $base:expr, $index: expr, $ord:expr) => {
         pub const $id: $ty = $ty{};
         pub const $pid: $pty = $pty($base);
         static mut $owned: bool = false;
+        static mut $ref_count: u8 = 0;
         
         #[derive(Debug, Default, Clone, Copy, PartialEq, Eq)]
         pub struct $ty {}
@@ -52,10 +53,16 @@ macro_rules! periph {
         }
 
         impl $crate::owned::Acquire for $ty {
-            fn ref_cnt_mut() -> &'static mut bool {
+            fn owned_mut() -> &'static mut bool {
                 unsafe { &mut $owned }
             }
         }
+        impl $crate::owned::RefCount for $ty {
+            fn ref_count_mut() -> &'static mut u8 {
+                unsafe { &mut $ref_count }
+            }
+        }        
+        
     };
     ($id:ident, $ty:ident, $base:expr) => (    
         pub const $id: $ty = $ty($base);
@@ -79,10 +86,11 @@ macro_rules! periph_signal {
 }
 #[macro_export]
 macro_rules! pin {
-    ($id:ident, $ty:ident, $meth:ident, $port_id:ident, $port_type:ident, $base_id:ident, $base_type:ident, $base_port:ident, $owned:ident, $index:expr) => {
+    ($id:ident, $ty:ident, $meth:ident, $port_id:ident, $port_type:ident, $base_id:ident, $base_type:ident, $base_port:ident, $owned:ident, $ref_count: ident, $index:expr) => {
         pub const $id: $ty = $ty {};
         pub const $base_id: $base_type = $base_type { port: $base_port, index: $index };
         static mut $owned: bool = false;
+        static mut $ref_count: u8 = 0;
        
         #[derive(Debug, Default, Clone, Copy, PartialEq, Eq)]
         pub struct $ty {}
@@ -123,8 +131,28 @@ macro_rules! pin {
         }
 
         impl $crate::owned::Acquire for $ty {
-            fn ref_cnt_mut() -> &'static mut bool {
+            fn owned_mut() -> &'static mut bool {
                 unsafe { &mut $owned }
+            }
+            fn acquire() -> Option<$crate::owned::Owned<Self>> {
+                use $crate::owned::RefCount;
+                if !::core::mem::replace(Self::owned_mut(), true) {
+                    $port_type::incr_ref();
+                    Some($crate::owned::Owned::new(Self::default()))
+                } else {
+                    None
+                }
+            }
+            fn release() {
+                use $crate::owned::RefCount;
+                ::core::mem::replace(Self::owned_mut(), false);
+                $port_type::decr_ref();
+            }            
+        }
+
+        impl $crate::owned::RefCount for $ty {
+            fn ref_count_mut() -> &'static mut u8 {
+                unsafe { &mut $ref_count }
             }
         }        
     }
@@ -141,10 +169,11 @@ macro_rules! pin_source {
 
 #[macro_export]
 macro_rules! channel {
-    ($id:ident, $ty:ident, $meth:ident, $periph_id:ident, $periph_type:ident, $base_id:ident, $base_type:ident, $base_periph:ident, $owned:ident, $index:expr) => (    
+    ($id:ident, $ty:ident, $meth:ident, $periph_id:ident, $periph_type:ident, $base_id:ident, $base_type:ident, $base_periph:ident, $owned:ident, $ref_count: ident, $index:expr) => (    
         pub const $id: $ty = $ty {};
         pub const $base_id: $base_type = $base_type { periph: $base_periph, index: $index };
         static mut $owned: bool = false;
+        static mut $ref_count: u8 = 0;
 
         #[derive(Debug, Default, Clone, Copy, PartialEq, Eq)]
         pub struct $ty {}
@@ -178,10 +207,30 @@ macro_rules! channel {
         }        
 
         impl $crate::owned::Acquire for $ty {
-            fn ref_cnt_mut() -> &'static mut bool {
+            fn owned_mut() -> &'static mut bool {
                 unsafe { &mut $owned }
             }
-        }        
+            fn acquire() -> Option<$crate::owned::Owned<Self>> {
+                use $crate::owned::RefCount;
+                if !::core::mem::replace(Self::owned_mut(), true) {
+                    $periph_type::incr_ref();
+                    Some($crate::owned::Owned::new(Self::default()))
+                } else {
+                    None
+                }
+            }
+            fn release() {
+                use $crate::owned::RefCount;
+                ::core::mem::replace(Self::owned_mut(), false);
+                $periph_type::decr_ref();
+            }                
+        }
+
+        impl $crate::owned::RefCount for $ty {
+            fn ref_count_mut() -> &'static mut u8 {
+                unsafe { &mut $ref_count }
+            }
+        }            
     )
 }
 
