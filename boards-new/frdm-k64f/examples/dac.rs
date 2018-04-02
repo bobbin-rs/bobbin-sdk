@@ -5,10 +5,9 @@
 extern crate frdm_k64f as board;
 extern crate examples;
 
-// use board::common::bits::*;
+use board::common::bits::*;
 use board::mcu::pin::*;
 use board::mcu::dac::*;
-
 // DAC_CH2 = DAC_OUT2 = PA5 = D13
 
 #[no_mangle]
@@ -25,9 +24,7 @@ pub extern "C" fn main() -> ! {
     let s: u8 = 4;
     let mut d: bool = true;
     loop {
-        // dac_ch.set_data_8(v);
-        dac.set_datsl(0, |r| r.set_data0(v << 4));
-        dac.set_datsh(0, |r| r.set_data1(v >> 4));
+        dac.analog_write(U8::from(v));
         if d {
             v += s;
             if v == 240 {
