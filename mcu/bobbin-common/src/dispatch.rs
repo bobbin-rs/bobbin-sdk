@@ -103,3 +103,14 @@ impl Dispatcher {
     }
 }
 
+pub enum RegisterError {
+    Unavailable,
+}
+
+pub trait RegisterExc {
+    fn register_exc(&self, irq: u8, handler: *mut HandleIrq) -> Result<IrqHandle, RegisterError>;
+}
+
+pub trait RegisterIrq {
+    fn register_irq(&self, irq: u8, handler: *mut HandleIrq) -> Result<IrqHandle, RegisterError>;
+}

@@ -23,6 +23,7 @@ pub mod console;
 pub mod led;
 pub mod btn;
 pub mod delay;
+pub mod ext;
 
 pub use delay::delay;
 
@@ -41,9 +42,8 @@ default_handler!(handle_exception);
 pub fn handle_exception() {
     use common::dispatch::*;
 
-    let exc_id = mcu::scb::SCB.icsr().vectactive().value();
     unsafe {
-        match Dispatcher::dispatch_irq(exc_id) {
+        match Dispatcher::dispatch_irq(mcu::scb::SCB.icsr().vectactive().value()) {
             IrqResult::End => {},
             IrqResult::Continue => {
                 console::write_str("EXCEPTION\n");
