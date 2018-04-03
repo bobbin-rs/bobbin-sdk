@@ -1,4 +1,5 @@
 pub use periph::*;
+pub mod systick_ext;
 
 #[inline(always)]
 pub fn wfi() {

@@ -39,11 +39,20 @@ pub fn init() {
 default_handler!(handle_exception);
 
 pub fn handle_exception() {
-    console::write_str("EXCEPTION\n");
-    unsafe { asm!("bkpt") }
-    loop {}
-}
+    use common::dispatch::*;
 
+    let exc_id = mcu::scb::SCB.icsr().vectactive().value();
+    unsafe {
+        match Dispatcher::dispatch_irq(exc_id) {
+            IrqResult::End => {},
+            IrqResult::Continue => {
+                console::write_str("EXCEPTION\n");
+                asm!("bkpt");
+                loop {}
+            }
+        }
+    }
+}
 
 #[derive(Debug, Default)]
 pub struct NucleoF746zg {}
