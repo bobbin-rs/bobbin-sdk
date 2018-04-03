@@ -36,15 +36,19 @@ pub extern "C" fn main() -> ! {
     }
 }
 
-pub struct SerialDriver<USART: 'static> {    
+pub struct SerialDriver<USART>
+where
+    USART: 'static + Irq<IrqUsart>,
+{
     usart: USART,
     irq_number: u8,
     irq_handle: Option<IrqHandle>,
+
 }
 
-impl<USART: 'static> SerialDriver<USART> 
+impl<USART> SerialDriver<USART> 
 where
-    USART: Irq<IrqUsart>,
+    USART: 'static + Irq<IrqUsart>,
 {
     pub fn new(usart: USART) -> Self {
         let irq_number = usart.irq_number_for(IRQ_USART);
@@ -61,7 +65,10 @@ where
     }
 }
 
-impl<USART: 'static> HandleIrq for SerialDriver<USART> {
+impl<USART> HandleIrq for SerialDriver<USART>
+where
+    USART: 'static + Irq<IrqUsart>,
+{    
     unsafe fn handle_irq(&mut self, _irq: u8) -> IrqResult {
         IrqResult::Continue
     }
