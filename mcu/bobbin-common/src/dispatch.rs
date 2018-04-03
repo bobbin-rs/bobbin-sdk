@@ -114,3 +114,10 @@ pub trait RegisterExc {
 pub trait RegisterIrq {
     fn register_irq(&self, irq: u8, handler: *mut HandleIrq) -> Result<IrqHandle, RegisterError>;
 }
+
+pub trait EnableIrq {
+    fn enable_irq(&self, irq: u8);
+}
+pub trait DisableIrq {
+    fn disable_irq(&self, irq: u8);
+}
