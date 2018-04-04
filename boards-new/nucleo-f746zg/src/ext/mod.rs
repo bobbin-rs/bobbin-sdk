@@ -24,8 +24,9 @@ impl IrqHandler {
 }
 
 #[must_use]
+#[derive(Debug)]
 pub struct IrqHandle {
-    pub irq: u8,
+    irq: u8,
     index: usize,
 }
 
@@ -88,7 +89,7 @@ impl Dispatcher {
             if irq_handlers[i].is_none() {
                 irq_handlers[i] = Some(irq_handler);
                 if irq_handler.irq >= 16 {
-                    NVIC.set_enabled(irq_handler.irq, true);
+                    NVIC.set_enabled(irq_handler.irq - 16, true);
                 }
                 return Some(IrqHandle { irq: irq_handler.irq, index: i })
             }
