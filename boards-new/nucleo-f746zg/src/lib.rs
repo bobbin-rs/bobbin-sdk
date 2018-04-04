@@ -43,7 +43,7 @@ pub fn handle_exception() {
     use ext::dispatch::*;
 
     unsafe {
-        match Dispatcher::dispatch_irq(mcu::scb::SCB.icsr().vectactive().value()) {
+        match ext::Dispatcher::dispatch_irq(mcu::scb::SCB.icsr().vectactive().value()) {
             IrqResult::End => {},
             IrqResult::Continue => {
                 console::write_str("EXCEPTION\n");

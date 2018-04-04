@@ -7,7 +7,8 @@ extern crate nucleo_f746zg as board;
 extern crate examples;
 
 use board::console::USART;
-use board::mcu::bobbin_common::dispatch::*;
+use board::ext::dispatch::*;
+use board::ext::{Dispatcher, IrqHandler};
 use board::common::irq::*;
 use board::mcu::irq::*;
 // use board::mcu::usart::*;
@@ -39,18 +40,18 @@ pub extern "C" fn main() -> ! {
 pub struct SerialDriver<USART, R>
 where    
     USART: 'static + Irq<IrqUsart>,
-    R: 'static + RegisterIrq + EnableIrq + DisableIrq,
+    R: 'static + RegisterIrq,
 {
     usart: USART,
     irq_number: u8,
-    irq_handle: Option<IrqHandle>,
+    irq_handle: Option<R::Handle>,
     r: R,
 }
 
 impl<USART, R> SerialDriver<USART, R> 
 where
     USART: 'static + Irq<IrqUsart>,
-    R: 'static + RegisterIrq + EnableIrq + DisableIrq,
+    R: 'static + RegisterIrq,
 {
     pub fn new(usart: USART, r: R) -> Self {
         let irq_number = usart.irq_number_for(IRQ_USART);
@@ -64,30 +65,17 @@ where
     }
 
     pub fn enable(&self) {
-        println!("enabling {}", self.irq_number);
-        self.r.enable_irq(self.irq_number);
+        // println!("enabling {}", self.irq_number);
+        // self.r.enable_irq(self.irq_number);
     }
 }
 
 impl<USART, R> HandleIrq for SerialDriver<USART, R>
 where
     USART: 'static + Irq<IrqUsart>,
-    R: 'static + RegisterIrq + EnableIrq + DisableIrq,
+    R: 'static + RegisterIrq,
 {    
     unsafe fn handle_irq(&mut self, _irq: u8) -> IrqResult {
         IrqResult::Continue
-    }
-}
-
-impl<USART, R> Drop for SerialDriver<USART, R>
-where
-    USART: 'static + Irq<IrqUsart>,
-    R: 'static + RegisterIrq + EnableIrq + DisableIrq,
-{    
-    fn drop(&mut self) {
-        if let Some(handle) = self.irq_handle.take() {
-            println!("disabling {}", handle.irq());
-            self.r.disable_irq(handle.irq())            
-        }
     }
 }
