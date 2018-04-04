@@ -10,7 +10,7 @@ use board::console::USART;
 use board::mcu::bobbin_common::dispatch::*;
 use board::common::irq::*;
 use board::mcu::irq::*;
-use board::mcu::usart::*;
+// use board::mcu::usart::*;
 
 
 static mut HANDLER_SLOTS: [Option<IrqHandler>; 2] = [None; 2];
@@ -28,48 +28,66 @@ pub extern "C" fn main() -> ! {
     // let irq_num = USART.irq_number_for(IRQ_USART);
     // println!("irq number for {:?} = {}", USART, irq_num);
 
-    let s = SerialDriver::new(USART);
+    let mut s = SerialDriver::new(USART, brd);
     println!("{:?} - {}", s.usart, s.irq_number);
-
+    let _ = s.register();
     loop {
         board::delay(1000);
     }
 }
 
-pub struct SerialDriver<USART>
-where
+pub struct SerialDriver<USART, R>
+where    
     USART: 'static + Irq<IrqUsart>,
+    R: 'static + RegisterIrq + EnableIrq + DisableIrq,
 {
     usart: USART,
     irq_number: u8,
     irq_handle: Option<IrqHandle>,
-
+    r: R,
 }
 
-impl<USART> SerialDriver<USART> 
+impl<USART, R> SerialDriver<USART, R> 
 where
     USART: 'static + Irq<IrqUsart>,
+    R: 'static + RegisterIrq + EnableIrq + DisableIrq,
 {
-    pub fn new(usart: USART) -> Self {
+    pub fn new(usart: USART, r: R) -> Self {
         let irq_number = usart.irq_number_for(IRQ_USART);
-        Self { usart, irq_number, irq_handle: None }
+        Self { usart, irq_number, irq_handle: None, r }
     }
 
-    pub fn register<R: RegisterIrq>(&mut self, r: R) -> Result<(), RegisterError> {
-        self.irq_handle = Some(r.register_irq(self.irq_number, self)?);
+    pub fn register(&mut self) -> Result<(), RegisterError> {
+        let h = self as *mut Self;
+        self.irq_handle = Some(self.r.register_irq(self.irq_number, h)?);
         Ok(())
     }
 
-    pub fn enable<E: EnableIrq>(&self, e: E) {
-        e.enable_irq(self.irq_number);
+    pub fn enable(&self) {
+        println!("enabling {}", self.irq_number);
+        self.r.enable_irq(self.irq_number);
     }
 }
 
-impl<USART> HandleIrq for SerialDriver<USART>
+impl<USART, R> HandleIrq for SerialDriver<USART, R>
 where
     USART: 'static + Irq<IrqUsart>,
+    R: 'static + RegisterIrq + EnableIrq + DisableIrq,
 {    
     unsafe fn handle_irq(&mut self, _irq: u8) -> IrqResult {
         IrqResult::Continue
+    }
+}
+
+impl<USART, R> Drop for SerialDriver<USART, R>
+where
+    USART: 'static + Irq<IrqUsart>,
+    R: 'static + RegisterIrq + EnableIrq + DisableIrq,
+{    
+    fn drop(&mut self) {
+        if let Some(handle) = self.irq_handle.take() {
+            println!("disabling {}", handle.irq());
+            self.r.disable_irq(handle.irq())            
+        }
     }
 }

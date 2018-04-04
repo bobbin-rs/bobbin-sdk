@@ -9,17 +9,19 @@ impl RegisterExc for ::NucleoF746zg {
 
 impl RegisterIrq for ::NucleoF746zg {
     fn register_irq(&self, irq: u8, handler: *mut HandleIrq) -> Result<IrqHandle, RegisterError> {
-        Dispatcher::register_handler(IrqHandler::new(irq + 16, handler)).ok_or(RegisterError::Unavailable)
+        if let Ok(handle) = Dispatcher::register_handler(IrqHandler::new(irq + 16, handler)).ok_or(RegisterError::Unavailable) {
+            self.enable_irq(handle.irq);
+        }
     }
 }
 
-pub trait EnableIrq {
+impl EnableIrq for ::NucleoF746zg {
     fn enable_irq(&self, irq: u8) {
         NVIC.set_enabled(irq, true);
     }
 }
 
-pub trait DisableIrq {
+impl DisableIrq for ::NucleoF746zg {
     fn disable_irq(&self, irq: u8) {
         NVIC.set_enabled(irq, false);
     }

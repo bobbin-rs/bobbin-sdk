@@ -62,6 +62,18 @@ impl Dispatcher {
         Self::handlers().iter().filter(|h| h.is_some()).count()
     }
 
+    pub fn slots_used_for_irq(&self, irq: u8) -> usize {
+        let mut count = 0;
+        for h in Self::handlers().iter() {
+            if let Some(h) = h {
+                if h.irq == irq {
+                    count += 1;
+                }
+            }
+        }
+        count
+    }
+
     #[inline]
     pub fn handlers() -> &'static mut [Option<IrqHandler>] {
         unsafe {
