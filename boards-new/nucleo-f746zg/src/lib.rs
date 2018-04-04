@@ -40,7 +40,7 @@ pub fn init() {
 default_handler!(handle_exception);
 
 pub fn handle_exception() {
-    use common::dispatch::*;
+    use ext::dispatch::*;
 
     unsafe {
         match Dispatcher::dispatch_irq(mcu::scb::SCB.icsr().vectactive().value()) {

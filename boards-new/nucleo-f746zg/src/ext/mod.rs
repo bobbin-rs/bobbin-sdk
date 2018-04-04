@@ -1,4 +1,7 @@
-use common::dispatch::*;
+pub mod dispatch;
+
+use self::dispatch::*;
+
 use mcu::nvic::*;
 
 impl RegisterExc for ::NucleoF746zg {
@@ -11,6 +14,9 @@ impl RegisterIrq for ::NucleoF746zg {
     fn register_irq(&self, irq: u8, handler: *mut HandleIrq) -> Result<IrqHandle, RegisterError> {
         if let Ok(handle) = Dispatcher::register_handler(IrqHandler::new(irq + 16, handler)).ok_or(RegisterError::Unavailable) {
             self.enable_irq(handle.irq);
+            Ok(handle)
+        } else {
+            Err(RegisterError::Unavailable)
         }
     }
 }
