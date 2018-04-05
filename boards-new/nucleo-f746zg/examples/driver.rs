@@ -14,6 +14,7 @@ use board::mcu::irq::*;
 use board::mcu::usart::*;
 
 use core::ops::Deref;
+use core::cell::UnsafeCell;
 // use board::mcu::usart::*;
 
 
@@ -34,7 +35,6 @@ pub extern "C" fn main() -> ! {
     println!("{:?} - {:?}", s.usart, s.irq_handle);
     loop {
         let _ = s.write(b"Hello, World\r\n");
-        println!("done");
         board::delay(1000);
     }
 }
@@ -83,13 +83,8 @@ where
         self.tx_desc = Some(Descriptor::from_slice(buf));
         self.usart.with_cr1(|r| r.set_te(1).set_txeie(1));
         if let Some(ref desc) = self.tx_desc {
-            loop {
-                if desc.done() {
-                    // println!("write_done");
-                    break;
-                }
-                // unsafe { asm!("wfi") }
-            }
+            while !desc.done() { unsafe { asm!("wfi") } }
+            self.usart.with_cr1(|r| r.set_txeie(0));
         }
         self.tx_desc = None;
         return Ok(buf.len())
@@ -133,23 +128,28 @@ where
     }
 }
 
-
+#[derive(Debug, PartialEq, Eq, Clone, Copy)]
 pub enum State {
-    Empty,
-    Idle(Descriptor),
-    Busy(Descriptor),
-    Done(Descriptor),
+    Idle,
+    Busy,
+    Done,
 }
 
 pub struct Descriptor {
-    ptr: *mut u8,
-    pos: usize,
-    len: usize,
+    ptr: *mut u8,    
+    pos: UnsafeCell<usize>,
+    len: UnsafeCell<usize>,
+    state: UnsafeCell<State>,
 }
 
 impl Descriptor {    
     pub fn new(ptr: *mut u8, pos: usize, len: usize) -> Descriptor {
-        Descriptor { ptr, pos, len}
+        Descriptor { 
+            ptr, 
+            pos: UnsafeCell::new(pos), 
+            len: UnsafeCell::new(len), 
+            state: UnsafeCell::new(State::Idle),
+        }
     }
 
     pub fn from_slice(s: &[u8]) -> Descriptor {
@@ -161,15 +161,31 @@ impl Descriptor {
     }
 
     pub fn len(&self) -> usize { 
-        unsafe { core::ptr::read_volatile(&self.len) }
+        unsafe { core::ptr::read_volatile(self.len.get()) }
     }
 
     pub fn pos(&self) -> usize {
-        unsafe { core::ptr::read_volatile(&self.pos) }
+        unsafe { core::ptr::read_volatile(self.pos.get()) }
+    }
+
+    pub fn set_pos(&self, value: usize) {
+        unsafe { core::ptr::write_volatile(self.pos.get(), value) }        
+    }
+
+    pub fn incr_pos(&self, value: usize) {
+        self.set_pos(self.pos() + value);
+    }
+
+    pub fn state(&self) -> State {
+        unsafe { core::ptr::read_volatile(self.state.get()) }
+    }
+
+    pub fn set_state(&self, value: State) {
+        unsafe { core::ptr::write_volatile(self.state.get(), value) }        
     }
 
     pub fn reset(&mut self) {
-        self.pos = 0;
+        self.set_pos(0);
     }
 
     pub fn done(&self) -> bool {
@@ -177,37 +193,39 @@ impl Descriptor {
     }
 
     pub fn read<T>(&mut self) -> T {
-        assert!(self.pos + core::mem::size_of::<T>() <= self.len);
-        let v = unsafe { core::ptr::read_volatile(self.ptr.offset(self.pos as isize) as *const T) };
-        self.pos += core::mem::size_of::<T>();
+        assert!(self.pos() + core::mem::size_of::<T>() <= self.len());
+        let v = unsafe { core::ptr::read_volatile(self.ptr.offset(self.pos() as isize) as *const T) };
+        self.incr_pos(core::mem::size_of::<T>());
         v
     }
 
     pub fn write<T>(&mut self, v: T) {
-        assert!(self.pos + core::mem::size_of::<T>() <= self.len);
-        unsafe { core::ptr::write_volatile(self.ptr.offset(self.pos as isize) as *mut T, v) };
-        self.pos += core::mem::size_of::<T>();
+        assert!(self.pos() + core::mem::size_of::<T>() <= self.len());
+        unsafe { 
+            core::ptr::write_volatile(self.ptr.offset(self.pos() as isize) as *mut T, v);
+        }
+        self.incr_pos(core::mem::size_of::<T>());
     }
 
     pub fn slice_to_pos(&self) -> &[u8] {
-        let range = ..self.pos;
+        let range = ..self.pos();
         &self.as_ref()[range]
     }
 
     pub fn slice_from_pos(&mut self) -> &mut [u8] {
-        let range = self.pos..;
+        let range = self.pos()..;
         &mut self.as_mut()[range]
     }
 }
 
 impl AsRef<[u8]> for Descriptor {
     fn as_ref(&self) -> &[u8] {
-        unsafe { ::core::slice::from_raw_parts(self.ptr, self.len) }
+        unsafe { ::core::slice::from_raw_parts(self.ptr, self.len()) }
     }
 }
 
 impl AsMut<[u8]> for Descriptor {
     fn as_mut(&mut self) -> &mut [u8] {
-        unsafe { ::core::slice::from_raw_parts_mut(self.ptr, self.len) }
+        unsafe { ::core::slice::from_raw_parts_mut(self.ptr, self.len()) }
     }
 }
