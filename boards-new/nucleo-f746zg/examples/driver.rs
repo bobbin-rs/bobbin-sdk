@@ -51,8 +51,8 @@ where
     R: 'static + RegisterIrq,
 {
     usart: USART,
-    rx_desc: Option<Descriptor>,
-    tx_desc: Option<Descriptor>,
+    rx_desc: Option<Buffer>,
+    tx_desc: Option<Buffer>,
     irq_handle: Option<R::Handle>,
     r: R,
 }
@@ -80,7 +80,7 @@ where
     }
 
     pub fn write(&mut self, buf: &[u8]) -> Result<usize, Error> {
-        self.tx_desc = Some(Descriptor::from_slice(buf));
+        self.tx_desc = Some(Buffer::from_slice(buf));
         self.usart.with_cr1(|r| r.set_te(1).set_txeie(1));
         if let Some(ref desc) = self.tx_desc {
             while !desc.done() { unsafe { asm!("wfi") } }
@@ -91,7 +91,7 @@ where
     }
 
     pub fn read(&mut self, buf: &mut [u8]) -> Result<usize, Error> {
-        self.rx_desc = Some(Descriptor::from_slice(buf));
+        self.rx_desc = Some(Buffer::from_slice(buf));
         self.usart.with_cr1(|r| r.set_re(1).set_rxneie(1));
         loop {
             if let Some(ref desc) = self.rx_desc {
@@ -135,16 +135,16 @@ pub enum State {
     Done,
 }
 
-pub struct Descriptor {
+pub struct Buffer {
     ptr: *mut u8,    
     pos: UnsafeCell<usize>,
     len: UnsafeCell<usize>,
     state: UnsafeCell<State>,
 }
 
-impl Descriptor {    
-    pub fn new(ptr: *mut u8, pos: usize, len: usize) -> Descriptor {
-        Descriptor { 
+impl Buffer {    
+    pub fn new(ptr: *mut u8, pos: usize, len: usize) -> Buffer {
+        Buffer { 
             ptr, 
             pos: UnsafeCell::new(pos), 
             len: UnsafeCell::new(len), 
@@ -152,12 +152,12 @@ impl Descriptor {
         }
     }
 
-    pub fn from_slice(s: &[u8]) -> Descriptor {
-        Descriptor::new(s.as_ptr() as *mut u8, 0, s.len())
+    pub fn from_slice(s: &[u8]) -> Buffer {
+        Buffer::new(s.as_ptr() as *mut u8, 0, s.len())
     }
 
-    pub fn from_mut_slice(s: &mut [u8]) -> Descriptor {
-        Descriptor::new(s.as_mut_ptr(), 0, s.len())
+    pub fn from_mut_slice(s: &mut [u8]) -> Buffer {
+        Buffer::new(s.as_mut_ptr(), 0, s.len())
     }
 
     pub fn len(&self) -> usize { 
@@ -218,13 +218,13 @@ impl Descriptor {
     }
 }
 
-impl AsRef<[u8]> for Descriptor {
+impl AsRef<[u8]> for Buffer {
     fn as_ref(&self) -> &[u8] {
         unsafe { ::core::slice::from_raw_parts(self.ptr, self.len()) }
     }
 }
 
-impl AsMut<[u8]> for Descriptor {
+impl AsMut<[u8]> for Buffer {
     fn as_mut(&mut self) -> &mut [u8] {
         unsafe { ::core::slice::from_raw_parts_mut(self.ptr, self.len()) }
     }
