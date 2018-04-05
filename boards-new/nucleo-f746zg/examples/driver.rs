@@ -82,11 +82,13 @@ where
     pub fn write(&mut self, buf: &[u8]) -> Result<usize, Error> {
         self.tx_desc = Some(Descriptor::from_slice(buf));
         self.usart.with_cr1(|r| r.set_te(1).set_txeie(1));
-        loop {
-            if let Some(ref desc) = self.tx_desc {
-                if desc.len == desc.pos {
+        if let Some(ref desc) = self.tx_desc {
+            loop {
+                if desc.done() {
+                    // println!("write_done");
                     break;
                 }
+                // unsafe { asm!("wfi") }
             }
         }
         self.tx_desc = None;
@@ -98,7 +100,7 @@ where
         self.usart.with_cr1(|r| r.set_re(1).set_rxneie(1));
         loop {
             if let Some(ref desc) = self.rx_desc {
-                if desc.len == desc.pos {
+                if desc.done() {
                     break;
                 }
             }
@@ -119,7 +121,7 @@ where
         // println!("ISR: {:?}", isr);
         if isr.test_txe() {
             if let Some(ref mut tx_desc) = self.tx_desc {
-                if tx_desc.len == tx_desc.pos {
+                if tx_desc.done() {
                     self.usart.with_cr1(|r| r.set_txeie(0));
                 } else {
                     let b: u8 = tx_desc.read();
@@ -159,15 +161,19 @@ impl Descriptor {
     }
 
     pub fn len(&self) -> usize { 
-        self.len
+        unsafe { core::ptr::read_volatile(&self.len) }
     }
 
     pub fn pos(&self) -> usize {
-        self.pos
+        unsafe { core::ptr::read_volatile(&self.pos) }
     }
 
     pub fn reset(&mut self) {
         self.pos = 0;
+    }
+
+    pub fn done(&self) -> bool {
+        self.len() == self.pos()
     }
 
     pub fn read<T>(&mut self) -> T {
