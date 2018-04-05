@@ -2,6 +2,7 @@
 #![no_main]
 #![feature(asm)]
 
+#[macro_use]
 extern crate nucleo_f746zg as board;
 extern crate examples;
 
@@ -27,9 +28,11 @@ pub extern "C" fn main() -> ! {
     unsafe {
         Dispatcher::init(&mut HANDLER_SLOTS)
     }
-    
-    let mut s = SerialDriver::new(USART, brd);
-    let _ = s.register();
+    let irq_number = USART.irq_number_for(IRQ_USART);
+    let h = SerialHandler::new(USART);
+    let _h = brd.register_irq(irq_number, h).unwrap();
+
+    let mut s = SerialDriver::new(USART);
     // println!("{:?} - {:?}", s.usart, s.irq_handle);
     let mut buf = [0u8; 64];
     let _ = s.write(b"Serial Driver Echo Test\r\n");
@@ -60,101 +63,115 @@ pub enum Error {
     NoTxBuffer,
 }
 
-pub struct SerialDriver<USART, R>
+static mut TX_DESC: Option<Buffer> = None;
+static mut RX_DESC: Option<Buffer> = None;
+
+pub struct SerialDriver<USART>
 where    
-    USART: 'static + Irq<IrqUsart> + Deref<Target=UsartPeriph>,
-    R: 'static + RegisterIrq,
+    USART: 'static + Irq<IrqUsart> + Deref<Target=UsartPeriph> + Copy,
 {
     usart: USART,
-    rx_desc: Option<Buffer>,
-    tx_desc: Option<Buffer>,
-    irq_handle: Option<R::Handle>,
-    r: R,
 }
 
-impl<USART, R> SerialDriver<USART, R> 
+impl<USART> SerialDriver<USART> 
 where
-    USART: 'static + Irq<IrqUsart> + Deref<Target=UsartPeriph>,
-    R: 'static + RegisterIrq,
+    USART: 'static + Irq<IrqUsart> + Deref<Target=UsartPeriph> + Copy,
 {
-    pub fn new(usart: USART, r: R) -> Self {
-        Self { usart, rx_desc: None, tx_desc: None, irq_handle: None, r }
+    pub fn new(usart: USART) -> Self {
+        Self { usart }
     }
 
-    pub fn register(&mut self) -> Result<(), RegisterError> {
-        let h = self as *mut Self;
-        let irq_number = self.usart.irq_number_for(IRQ_USART);
-        // println!("irq_number: {}", irq_number);
-        self.irq_handle = Some(self.r.register_irq(irq_number, h)?);
-        Ok(())
+    fn tx_desc(&mut self) -> &mut Option<Buffer> {
+        unsafe { &mut TX_DESC }
     }
-
-    pub fn enable(&self) {
-        // println!("enabling {}", self.irq_number);
-        // self.r.enable_irq(self.irq_number);
+    
+    fn rx_desc(&mut self) -> &mut Option<Buffer> {
+        unsafe { &mut RX_DESC }
     }
 
     pub fn write(&mut self, buf: &[u8]) -> Result<usize, Error> {
-        self.tx_desc = Some(Buffer::from_slice(buf));
-        if let Some(ref desc) = self.tx_desc {
-            desc.set_state(State::Busy);
-            self.usart.with_cr1(|r| r.set_te(1).set_txeie(1));
+        *self.tx_desc() = Some(Buffer::from_slice(buf));
+        self.tx_desc().as_mut().unwrap().set_state(State::Busy);
+        self.usart.with_cr1(|r| r.set_te(1).set_txeie(1));
+        if let &mut Some(ref desc) = self.tx_desc() {
             while desc.state() == State::Busy { unsafe { asm!("wfi") } }
-            // while desc.state() == State::Busy { }
-            // println!("write_done");
-            self.usart.with_cr1(|r| r.set_txeie(0));
         }
-        self.tx_desc = None;
+        self.usart.with_cr1(|r| r.set_txeie(0));
+        *self.tx_desc() = None;
         return Ok(buf.len())
     }
 
     pub fn read(&mut self, buf: &mut [u8]) -> Result<usize, Error> {
-        self.rx_desc = Some(Buffer::from_slice(buf));
-        if let Some(ref desc) = self.rx_desc {
-            desc.set_state(State::Busy);            
-            self.usart.with_cr1(|r| r.set_re(1).set_rxneie(1));
+        *self.rx_desc() = Some(Buffer::from_slice(buf));
+        self.rx_desc().as_mut().unwrap().set_state(State::Busy);            
+        self.usart.with_cr1(|r| r.set_re(1).set_rxneie(1));
+        if let &mut Some(ref desc) = self.rx_desc() {
             while desc.state() == State::Busy { unsafe { asm!("wfi") } }
-            // self.usart.with_cr1(|r| r.set_rxneie(0));
         }
-        self.rx_desc = None;
+        self.usart.with_cr1(|r| r.set_rxneie(0));
+        *self.rx_desc() = None;
         return Ok(buf.len())
     }
 
 }
 
-impl<USART, R> HandleIrq for SerialDriver<USART, R>
+pub struct SerialHandler<USART>
+where    
+    USART: 'static + Irq<IrqUsart> + Deref<Target=UsartPeriph> + Copy,
+{
+    usart: USART,
+}
+
+impl<USART> SerialHandler<USART> 
 where
-    USART: 'static + Irq<IrqUsart> + Deref<Target=UsartPeriph>,
-    R: 'static + RegisterIrq,
+    USART: 'static + Irq<IrqUsart> + Deref<Target=UsartPeriph> + Copy,
+{
+    pub fn new(usart: USART) -> Self {
+        Self { usart }
+    }
+
+    fn tx_desc(&mut self) -> &mut Option<Buffer> {
+        unsafe { &mut TX_DESC }
+    }
+
+    fn rx_desc(&mut self) -> &mut Option<Buffer> {
+        unsafe { &mut RX_DESC }
+    }    
+}
+impl<USART> HandleIrq for SerialHandler<USART>
+where
+    USART: 'static + Irq<IrqUsart> + Deref<Target=UsartPeriph> + Copy,
 {    
     unsafe fn handle_irq(&mut self, _irq: u8) -> IrqResult {
+        let usart = self.usart;
         let isr = self.usart.isr();
         let cr1 = self.usart.cr1();
+        // println!("irq: {:p}", self);
         // println!("irq: {}", irq);
         // println!("  ISR: {:?}", isr);
         // println!("  CR1: {:?}", cr1);
         if isr.test_txe() && cr1.test_txeie() {
-            if let Some(ref mut tx_desc) = self.tx_desc {
+            if let &mut Some(ref mut tx_desc) = self.tx_desc() {
                 let b: u8 = tx_desc.read();
-                self.usart.set_tdr(|r| r.set_tdr(b));
+                usart.set_tdr(|r| r.set_tdr(b));
                 if tx_desc.pos() == tx_desc.len() {
                     tx_desc.set_state(State::Done);
-                    self.usart.with_cr1(|r| r.set_txeie(0));
+                    usart.with_cr1(|r| r.set_txeie(0));
                 }
             }
         }
         if isr.test_rxne() && cr1.test_rxneie() {
-            if let Some(ref mut rx_desc) = self.rx_desc {
-                let b: u8 = self.usart.rdr().rdr().value() as u8;
+            if let &mut Some(ref mut rx_desc) = self.rx_desc() {
+                let b: u8 = usart.rdr().rdr().value() as u8;
                 rx_desc.write(b);
                 if rx_desc.pos() == rx_desc.len() {
                     rx_desc.set_state(State::Done);
-                    self.usart.with_cr1(|r| r.set_rxneie(0));                    
+                    usart.with_cr1(|r| r.set_rxneie(0));                    
                 }
             }
         }
         if isr.test_ore() {
-            self.usart.with_icr(|r| r.set_orecf(1));
+            usart.with_icr(|r| r.set_orecf(1));
         }
         IrqResult::Continue
     }

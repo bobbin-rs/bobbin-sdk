@@ -7,19 +7,19 @@ pub trait HandleIrq {
     unsafe fn handle_irq(&mut self, irq: u8) -> IrqResult;
 }
 
-
+#[derive(Debug)]
 pub enum RegisterError {
     Unavailable,
 }
 
-pub trait RegisterExc {
+pub trait RegisterExc<H: HandleIrq> {
     type Handle;
-    fn register_exc(&self, irq: u8, handler: *mut HandleIrq) -> Result<Self::Handle, RegisterError>;
+    fn register_exc(&self, irq: u8, handler: H) -> Result<Self::Handle, RegisterError>;
 }
 
-pub trait RegisterIrq {
+pub trait RegisterIrq<H: HandleIrq> {
     type Handle;
-    fn register_irq(&self, irq: u8, handler: *mut HandleIrq) -> Result<Self::Handle, RegisterError>;
+    fn register_irq(&self, irq: u8, handler: H) -> Result<Self::Handle, RegisterError>;
 }
 
 pub trait EnableIrq {
