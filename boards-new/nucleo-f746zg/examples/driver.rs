@@ -2,7 +2,6 @@
 #![no_main]
 #![feature(asm)]
 
-#[macro_use]
 extern crate nucleo_f746zg as board;
 extern crate examples;
 
@@ -24,7 +23,6 @@ static mut HANDLER_SLOTS: [Option<IrqHandler>; 2] = [None; 2];
 pub extern "C" fn main() -> ! {
     board::init();
     let brd = board::board();
-    println!("Driver Test");
 
     unsafe {
         Dispatcher::init(&mut HANDLER_SLOTS)
@@ -32,10 +30,27 @@ pub extern "C" fn main() -> ! {
     
     let mut s = SerialDriver::new(USART, brd);
     let _ = s.register();
-    println!("{:?} - {:?}", s.usart, s.irq_handle);
+    // println!("{:?} - {:?}", s.usart, s.irq_handle);
+    let mut buf = [0u8; 64];
+    let _ = s.write(b"Serial Driver Echo Test\r\n");
+    for _i in 0..10 {
+        let _ = s.write(b"-");
+        // board::delay(100);
+    }
+    let _ = s.write(b"\r\n");
     loop {
-        let _ = s.write(b"Hello, World\r\n");
-        board::delay(1000);
+        let n = s.read(&mut buf[..1]).unwrap();
+        if n != 0 {
+            if buf[0] == 13 {
+                let _ = s.write(b"\r\n");
+            } else {
+                let _ = s.write(&buf[..n]);
+                // println!(".");
+
+                // print!("{}", buf[0] as char);
+            }
+        }
+        // board::delay(1000);
     }
 }
 
@@ -69,7 +84,7 @@ where
     pub fn register(&mut self) -> Result<(), RegisterError> {
         let h = self as *mut Self;
         let irq_number = self.usart.irq_number_for(IRQ_USART);
-        println!("irq_number: {}", irq_number);
+        // println!("irq_number: {}", irq_number);
         self.irq_handle = Some(self.r.register_irq(irq_number, h)?);
         Ok(())
     }
@@ -81,9 +96,12 @@ where
 
     pub fn write(&mut self, buf: &[u8]) -> Result<usize, Error> {
         self.tx_desc = Some(Buffer::from_slice(buf));
-        self.usart.with_cr1(|r| r.set_te(1).set_txeie(1));
         if let Some(ref desc) = self.tx_desc {
-            while !desc.done() { unsafe { asm!("wfi") } }
+            desc.set_state(State::Busy);
+            self.usart.with_cr1(|r| r.set_te(1).set_txeie(1));
+            while desc.state() == State::Busy { unsafe { asm!("wfi") } }
+            // while desc.state() == State::Busy { }
+            // println!("write_done");
             self.usart.with_cr1(|r| r.set_txeie(0));
         }
         self.tx_desc = None;
@@ -92,13 +110,11 @@ where
 
     pub fn read(&mut self, buf: &mut [u8]) -> Result<usize, Error> {
         self.rx_desc = Some(Buffer::from_slice(buf));
-        self.usart.with_cr1(|r| r.set_re(1).set_rxneie(1));
-        loop {
-            if let Some(ref desc) = self.rx_desc {
-                if desc.done() {
-                    break;
-                }
-            }
+        if let Some(ref desc) = self.rx_desc {
+            desc.set_state(State::Busy);            
+            self.usart.with_cr1(|r| r.set_re(1).set_rxneie(1));
+            while desc.state() == State::Busy { unsafe { asm!("wfi") } }
+            // self.usart.with_cr1(|r| r.set_rxneie(0));
         }
         self.rx_desc = None;
         return Ok(buf.len())
@@ -113,16 +129,32 @@ where
 {    
     unsafe fn handle_irq(&mut self, _irq: u8) -> IrqResult {
         let isr = self.usart.isr();
-        // println!("ISR: {:?}", isr);
-        if isr.test_txe() {
+        let cr1 = self.usart.cr1();
+        // println!("irq: {}", irq);
+        // println!("  ISR: {:?}", isr);
+        // println!("  CR1: {:?}", cr1);
+        if isr.test_txe() && cr1.test_txeie() {
             if let Some(ref mut tx_desc) = self.tx_desc {
-                if tx_desc.done() {
+                let b: u8 = tx_desc.read();
+                self.usart.set_tdr(|r| r.set_tdr(b));
+                if tx_desc.pos() == tx_desc.len() {
+                    tx_desc.set_state(State::Done);
                     self.usart.with_cr1(|r| r.set_txeie(0));
-                } else {
-                    let b: u8 = tx_desc.read();
-                    self.usart.set_tdr(|r| r.set_tdr(b));
                 }
             }
+        }
+        if isr.test_rxne() && cr1.test_rxneie() {
+            if let Some(ref mut rx_desc) = self.rx_desc {
+                let b: u8 = self.usart.rdr().rdr().value() as u8;
+                rx_desc.write(b);
+                if rx_desc.pos() == rx_desc.len() {
+                    rx_desc.set_state(State::Done);
+                    self.usart.with_cr1(|r| r.set_rxneie(0));                    
+                }
+            }
+        }
+        if isr.test_ore() {
+            self.usart.with_icr(|r| r.set_orecf(1));
         }
         IrqResult::Continue
     }
