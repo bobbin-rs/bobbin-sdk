@@ -12,14 +12,14 @@ pub enum RegisterError {
     Unavailable,
 }
 
-pub trait RegisterExc<H: HandleIrq> {
+pub trait RegisterExc {
     type Handle;
-    fn register_exc(&self, irq: u8, handler: H) -> Result<Self::Handle, RegisterError>;
+    fn register_exc<H: 'static + HandleIrq>(&self, irq: u8, handler: H) -> Result<Self::Handle, RegisterError>;
 }
 
-pub trait RegisterIrq<H: HandleIrq> {
+pub trait RegisterIrq {
     type Handle;
-    fn register_irq(&self, irq: u8, handler: H) -> Result<Self::Handle, RegisterError>;
+    fn register_irq<H: 'static + HandleIrq>(&self, irq: u8, handler: H) -> Result<Self::Handle, RegisterError>;
 }
 
 pub trait EnableIrq {

@@ -2,7 +2,6 @@
 #![no_main]
 #![feature(asm)]
 
-#[macro_use]
 extern crate nucleo_f746zg as board;
 extern crate examples;
 
@@ -17,7 +16,6 @@ use core::ops::Deref;
 use core::cell::UnsafeCell;
 // use board::mcu::usart::*;
 
-
 static mut HANDLER_SLOTS: [Option<IrqHandler>; 2] = [None; 2];
 
 #[no_mangle]
@@ -28,11 +26,8 @@ pub extern "C" fn main() -> ! {
     unsafe {
         Dispatcher::init(&mut HANDLER_SLOTS)
     }
-    let irq_number = USART.irq_number_for(IRQ_USART);
-    let h = SerialHandler::new(USART);
-    let _h = brd.register_irq(irq_number, h).unwrap();
 
-    let mut s = SerialDriver::new(USART);
+    let mut s = SerialDriver::new(USART, brd);
     // println!("{:?} - {:?}", s.usart, s.irq_handle);
     let mut buf = [0u8; 64];
     let _ = s.write(b"Serial Driver Echo Test\r\n");
@@ -48,9 +43,6 @@ pub extern "C" fn main() -> ! {
                 let _ = s.write(b"\r\n");
             } else {
                 let _ = s.write(&buf[..n]);
-                // println!(".");
-
-                // print!("{}", buf[0] as char);
             }
         }
         // board::delay(1000);
@@ -66,19 +58,25 @@ pub enum Error {
 static mut TX_DESC: Option<Buffer> = None;
 static mut RX_DESC: Option<Buffer> = None;
 
-pub struct SerialDriver<USART>
+pub struct SerialDriver<USART, R>
 where    
     USART: 'static + Irq<IrqUsart> + Deref<Target=UsartPeriph> + Copy,
+    R: RegisterIrq,
 {
     usart: USART,
+    _irq_handle: R::Handle,
 }
 
-impl<USART> SerialDriver<USART> 
+impl<USART, R> SerialDriver<USART, R> 
 where
     USART: 'static + Irq<IrqUsart> + Deref<Target=UsartPeriph> + Copy,
+    R: RegisterIrq,
 {
-    pub fn new(usart: USART) -> Self {
-        Self { usart }
+    pub fn new(usart: USART, r: R) -> Self {
+        let irq_number = usart.irq_number_for(IRQ_USART);
+        let h = SerialHandler::new(usart);
+        let _irq_handle = r.register_irq(irq_number, h).unwrap();        
+        Self { usart, _irq_handle }
     }
 
     fn tx_desc(&mut self) -> &mut Option<Buffer> {

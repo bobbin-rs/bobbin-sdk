@@ -123,16 +123,16 @@ impl Dispatcher {
 
 
 
-impl<H: 'static + HandleIrq> RegisterExc<H> for ::NucleoF746zg {
+impl RegisterExc for ::NucleoF746zg {
     type Handle = IrqHandle;
-    fn register_exc(&self, exc: u8, handler: H) -> Result<IrqHandle, RegisterError> {
+    fn register_exc<H: 'static + HandleIrq>(&self, exc: u8, handler: H) -> Result<IrqHandle, RegisterError> {
         Dispatcher::register_handler(exc, handler).ok_or(RegisterError::Unavailable)
     }
 }
 
-impl<H: 'static + HandleIrq> RegisterIrq<H> for ::NucleoF746zg {
+impl RegisterIrq for ::NucleoF746zg {
     type Handle = IrqHandle;
-    fn register_irq(&self, irq: u8, handler: H) -> Result<IrqHandle, RegisterError> {
+    fn register_irq<H: 'static + HandleIrq>(&self, irq: u8, handler: H) -> Result<IrqHandle, RegisterError> {
         if let Ok(handle) = Dispatcher::register_handler(irq + 16, handler).ok_or(RegisterError::Unavailable) {
             Ok(handle)
         } else {
