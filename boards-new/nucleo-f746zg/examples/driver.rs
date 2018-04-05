@@ -7,7 +7,7 @@ extern crate examples;
 
 use board::console::USART;
 use board::ext::dispatch::*;
-use board::ext::{Dispatcher, IrqHandler};
+use board::ext::{Dispatcher, IrqHandler, IrqHandle};
 use board::common::irq::*;
 use board::mcu::irq::*;
 use board::mcu::usart::*;
@@ -26,8 +26,8 @@ pub extern "C" fn main() -> ! {
     unsafe {
         Dispatcher::init(&mut HANDLER_SLOTS)
     }
-
-    let mut s = SerialDriver::new(USART, brd);
+    let irq_handle = brd.register_irq(USART.irq_number_for(IRQ_USART), SerialHandler::new(USART)).unwrap();
+    let mut s = SerialDriver::new(USART, irq_handle);
     // println!("{:?} - {:?}", s.usart, s.irq_handle);
     let mut buf = [0u8; 64];
     let _ = s.write(b"Serial Driver Echo Test\r\n");
@@ -58,25 +58,20 @@ pub enum Error {
 static mut TX_DESC: Option<Buffer> = None;
 static mut RX_DESC: Option<Buffer> = None;
 
-pub struct SerialDriver<USART, R>
+pub struct SerialDriver<USART>
 where    
     USART: 'static + Irq<IrqUsart> + Deref<Target=UsartPeriph> + Copy,
-    R: RegisterIrq,
 {
     usart: USART,
-    _irq_handle: R::Handle,
+    _irq_handle: IrqHandle,
 }
 
-impl<USART, R> SerialDriver<USART, R> 
+impl<USART> SerialDriver<USART> 
 where
     USART: 'static + Irq<IrqUsart> + Deref<Target=UsartPeriph> + Copy,
-    R: RegisterIrq,
 {
-    pub fn new(usart: USART, r: R) -> Self {
-        let irq_number = usart.irq_number_for(IRQ_USART);
-        let h = SerialHandler::new(usart);
-        let _irq_handle = r.register_irq(irq_number, h).unwrap();        
-        Self { usart, _irq_handle }
+    pub fn new(usart: USART, irq_handle: IrqHandle) -> Self {
+        Self { usart, _irq_handle: irq_handle }
     }
 
     fn tx_desc(&mut self) -> &mut Option<Buffer> {
