@@ -6,8 +6,7 @@ extern crate nucleo_f746zg as board;
 extern crate examples;
 
 use board::console::USART;
-use board::ext::dispatch::*;
-use board::ext::{Dispatcher, IrqHandler};
+use board::ext::{Dispatcher, IrqHandler, HandleIrq};
 use board::common::irq::*;
 use board::mcu::irq::*;
 use board::mcu::usart::*;
@@ -128,7 +127,7 @@ impl TxHandler {
 
 impl HandleIrq for TxHandler
 {    
-    unsafe fn handle_irq(&self, _: u8) -> IrqResult {
+    unsafe fn handle_irq(&self, _: u8) {
         let usart = &self.usart;
         let isr = usart.isr();
         let cr1 = usart.cr1();
@@ -142,8 +141,7 @@ impl HandleIrq for TxHandler
         if isr.test_ore() {
             usart.with_icr(|r| r.set_orecf(1));
             // panic!("overrun");
-        }        
-        IrqResult::Continue
+        }
     }
 }
 
@@ -188,7 +186,7 @@ impl RxHandler {
 
 impl HandleIrq for RxHandler
 {    
-    unsafe fn handle_irq(&self, _: u8) -> IrqResult {
+    unsafe fn handle_irq(&self, _: u8) {
         let usart = &self.usart;
         let isr = usart.isr();
         let cr1 = usart.cr1();
@@ -205,7 +203,6 @@ impl HandleIrq for RxHandler
             usart.with_icr(|r| r.set_orecf(1));
             // panic!("overrun");
         }
-        IrqResult::Continue
     }
 }
 

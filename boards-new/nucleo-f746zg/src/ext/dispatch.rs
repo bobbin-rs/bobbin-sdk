@@ -3,9 +3,7 @@ pub enum IrqResult {
     Continue,
 }
 
-pub trait HandleIrq {
-    unsafe fn handle_irq(&self, irq: u8) -> IrqResult;
-}
+
 
 #[derive(Debug)]
 pub enum RegisterError {

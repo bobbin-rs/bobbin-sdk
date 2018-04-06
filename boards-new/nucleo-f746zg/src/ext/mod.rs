@@ -8,6 +8,10 @@ use core::ops::Deref;
 static mut IRQ_HANDLERS_PTR: *mut Option<IrqHandler> = ::core::ptr::null_mut();
 static mut IRQ_HANDLERS_LEN: usize = 0;
 
+pub trait HandleIrq {
+    unsafe fn handle_irq(&self, irq: u8);
+}
+
 #[derive(Clone, Copy)]
 pub struct IrqHandler {
     irq: u8,
@@ -107,6 +111,18 @@ impl Dispatcher {
         None
     }
 
+    pub fn register_svcall_handler<H: 'static + HandleIrq>(handler: &H) -> Option<IrqGuard<H>> {        
+        Self::register_handler(11, handler)
+    }
+
+    pub fn register_pendsv_handler<H: 'static + HandleIrq>(handler: &H) -> Option<IrqGuard<H>> {        
+        Self::register_handler(14, handler)
+    }
+
+    pub fn register_systick_handler<H: 'static + HandleIrq>(handler: &H) -> Option<IrqGuard<H>> {        
+        Self::register_handler(15, handler)
+    }
+
     pub fn register_irq_handler<H: 'static + HandleIrq>(irq: u8, handler: &H) -> Option<IrqGuard<H>> {        
         Self::register_handler(irq + 16, handler)
     }
@@ -118,10 +134,8 @@ impl Dispatcher {
         for i in 0..irq_handlers.len() {
             if let Some(handler) = irq_handlers[i] {                    
                 if handler.irq == irq {
-                    match (*handler.handler).handle_irq(irq) {
-                        IrqResult::End => return IrqResult::End,
-                        IrqResult::Continue => handled = true,
-                    }
+                    (*handler.handler).handle_irq(irq);
+                    handled = true;
                 }
             }
         }
@@ -132,7 +146,6 @@ impl Dispatcher {
         }
     }
 }
-
 
 
 // impl RegisterExc for ::NucleoF746zg {

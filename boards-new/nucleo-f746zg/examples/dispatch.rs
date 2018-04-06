@@ -8,8 +8,7 @@ extern crate examples;
 
 use board::mcu::systick;
 
-use board::ext::dispatch::*;
-use board::ext::{Dispatcher, IrqHandler};
+use board::ext::{Dispatcher, IrqHandler, HandleIrq};
 
 use core::cell::UnsafeCell;
 
@@ -66,8 +65,7 @@ impl TickHandler {
 }
 
 impl HandleIrq for TickHandler {
-    unsafe fn handle_irq(&self, _irq: u8) -> IrqResult {
+    unsafe fn handle_irq(&self, _: u8) {
         *self.count.get() += 1;
-        IrqResult::Continue
     }
 }
