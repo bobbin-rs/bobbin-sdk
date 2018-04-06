@@ -45,6 +45,24 @@ impl From<u8> for Exception {
     }
 }
 
+impl From<Exception> for u8 {
+    fn from(other: Exception) -> u8 {
+        match other {
+            Exception::Reset => 1,
+            Exception::NMI => 2,
+            Exception::HardFault => 3,
+            Exception::MemManage => 4,
+            Exception::BusFault => 5,
+            Exception::UsageFault => 6,
+            Exception::SVCall => 11,
+            Exception::PendSV => 14,
+            Exception::SysTick => 15,
+            Exception::Interrupt(n) => n + 16,
+            Exception::Reserved(n) => n,
+        }
+    }
+}
+
 pub trait HandleException {
     unsafe fn handle_exception(&self, exc: Exception);
 }
@@ -79,7 +97,7 @@ impl<'a, H: 'a> Drop for Guard<'a, H> {
     fn drop(&mut self) {
         if Dispatcher::slots_used_for_exc(self.exc_num) <= 1 {
             match self.exc_num {
-                15 => { SYSTICK.set_enabled(false); },
+                15 => { SYSTICK.set_tick_interrupt(false); },
                 e @ _ if e >= 16 => { NVIC.set_enabled(e, false); },
                 _ => {},
             }

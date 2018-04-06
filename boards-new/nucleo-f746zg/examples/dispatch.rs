@@ -6,7 +6,7 @@
 extern crate nucleo_f746zg as board;
 extern crate examples;
 
-use board::mcu::systick;
+use board::mcu::systick::SYSTICK;
 
 use board::ext::{Dispatcher, ExceptionHandler, HandleException, Exception};
 
@@ -24,16 +24,20 @@ pub extern "C" fn main() -> ! {
     }
 
     let reload_value = (216_000_000 / 8000) - 1;
+    SYSTICK.set_reload_value(reload_value);
+    SYSTICK.set_current_value(reload_value);
+    SYSTICK.set_enabled(true);        
 
+    
     let t = TickHandler::new();    
     let t = Dispatcher::register_handler(15, &t).unwrap();
-    t.configure(reload_value);
-    t.enable();
 
     board::delay(100);
 
     let t2 = TickHandler::new();    
     let t2 = Dispatcher::register_handler(15, &t2).unwrap();
+
+
 
 
     loop {
@@ -42,7 +46,7 @@ pub extern "C" fn main() -> ! {
     }
 }
 
-use systick::SYSTICK;
+
 
 pub struct TickHandler {
     count: UnsafeCell<u32>,
@@ -51,16 +55,6 @@ pub struct TickHandler {
 impl TickHandler {
     pub fn new() -> Self {
         Self { count: UnsafeCell::new(0) }
-    }
-    
-    pub fn configure(&self, reload_value: u32) {
-        SYSTICK.set_reload_value(reload_value);
-        SYSTICK.set_current_value(reload_value);
-    }
-
-    pub fn enable(&self) {
-        SYSTICK.set_tick_interrupt(true);
-        SYSTICK.set_enabled(true);        
     }
 }
 
