@@ -40,7 +40,6 @@ pub fn init() {
 default_handler!(handle_exception);
 
 pub fn handle_exception() {
-
     unsafe {
         if !ext::Dispatcher::dispatch(mcu::scb::SCB.icsr().vectactive().value()) {
             console::write_str("EXCEPTION\n");
