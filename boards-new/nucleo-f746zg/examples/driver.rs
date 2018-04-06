@@ -26,8 +26,8 @@ pub extern "C" fn main() -> ! {
         Dispatcher::init(&mut HANDLER_SLOTS)
     }
     let mut h = SerialHandler::new(USART);
-    let _irq_guard = Dispatcher::register_handler(USART.irq_number_for(IRQ_USART) + 16, &mut h).unwrap();
-    let mut s = SerialDriver::new(USART);
+    let guard = Dispatcher::register_handler(USART.irq_number_for(IRQ_USART) + 16, &mut h).unwrap();
+    let mut s = SerialDriver::new(USART, guard);
 
     // println!("{:?} - {:?}", s.usart, s.irq_guard);
     let mut buf = [0u8; 64];
@@ -59,19 +59,24 @@ pub enum Error {
 static mut TX_DESC: Option<Buffer> = None;
 static mut RX_DESC: Option<Buffer> = None;
 
-pub struct SerialDriver<USART>
+pub struct SerialDriver<'a, USART>
 where    
     USART: 'static + Irq<IrqUsart> + Deref<Target=UsartPeriph> + Copy,
 {
     usart: USART,
+    guard: IrqGuard<'a, SerialHandler<USART>>,
 }
 
-impl<USART> SerialDriver<USART> 
+impl<'a, USART> SerialDriver<'a, USART> 
 where
     USART: 'static + Irq<IrqUsart> + Deref<Target=UsartPeriph> + Copy,
 {
-    pub fn new(usart: USART) -> Self {
-        Self { usart }
+    pub fn new(usart: USART, guard: IrqGuard<'a, SerialHandler<USART>>) -> Self {
+        Self { usart, guard }
+    }
+
+    pub fn irq(&self) -> u8 {
+        self.guard.irq()
     }
 
     fn tx_desc(&mut self) -> &mut Option<Buffer> {
