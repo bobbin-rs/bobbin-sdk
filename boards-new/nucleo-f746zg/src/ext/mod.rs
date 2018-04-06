@@ -92,8 +92,8 @@ impl Dispatcher {
 
     }
     
-    pub fn register_handler<H: 'static + HandleIrq>(irq: u8, handler: &H) -> Option<IrqGuard<H>> {        
-        let irq_handler = IrqHandler::new(irq, handler as *const H);
+    pub fn register_handler<H: 'static + HandleIrq>(irq: u8, handler: &H) -> Option<IrqGuard<H>> {
+        let irq_handler = IrqHandler::new(irq, handler);
         let irq_handlers = Self::handlers();
         for i in 0..irq_handlers.len() {
             if irq_handlers[i].is_none() {

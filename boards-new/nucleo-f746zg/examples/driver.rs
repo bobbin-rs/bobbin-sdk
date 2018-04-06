@@ -77,15 +77,14 @@ impl<'a> SerialDriver<'a>
         self.guard.rx_desc()
     }
 
-    // pub fn write_tx(&mut self, buf: &[u8]) -> Result<usize, Error> {
-    //     let tx_handler = TxHandler::new(self.usart, buf);
-    //     let guard = Dispatcher::register_irq_handler(self.irq_number, &tx_handler).unwrap();
-    //     while !guard.done() {}
-    //     return Ok(buf.len())
-    // }
-
     pub fn write(&mut self, buf: &[u8]) -> Result<usize, Error> {
         let tx_handler = TxHandler::new(self.usart, buf);
+        let guard = Dispatcher::register_irq_handler(self.irq_number, &tx_handler).unwrap();
+        while !guard.done() {}
+        return Ok(buf.len())
+    }
+
+    pub fn write_abc(&mut self, buf: &[u8]) -> Result<usize, Error> {
         *self.tx_desc() = Some(Buffer::from_slice(buf));
         self.usart.with_cr1(|r| r.set_txeie(1));
         if let &mut Some(ref desc) = self.tx_desc() {
@@ -107,22 +106,25 @@ impl<'a> SerialDriver<'a>
 
 }
 
-pub struct TxHandler<'a> {
+pub struct TxHandler {
     usart: UsartPeriph,
-    buf: &'a [u8],
+    ptr: *const u8,
+    len: usize,
     pos: Cell<usize>,
 }
 
-impl<'a> TxHandler<'a> {
-    pub fn new(usart: UsartPeriph, buf: &'a [u8]) -> Self {
-        TxHandler { usart, buf, pos: Cell::new(0) }
+impl TxHandler {
+    pub fn new(usart: UsartPeriph, buf: &[u8]) -> Self {
+        let ptr = buf.as_ptr();
+        let len = buf.len();
+        TxHandler { usart, ptr, len, pos: Cell::new(0) }
     }
 
     pub fn done(&self) -> bool {
-        self.pos.get() == self.buf.len()
+        self.pos.get() == self.len
     }
 }
-impl<'a> HandleIrq for TxHandler<'a>
+impl HandleIrq for TxHandler
 {    
     unsafe fn handle_irq(&self, _: u8) -> IrqResult {
         let usart = &self.usart;
@@ -130,7 +132,7 @@ impl<'a> HandleIrq for TxHandler<'a>
         let cr1 = usart.cr1();
         if isr.test_txe() && cr1.test_txeie() {
             let pos = self.pos.get();           
-            usart.set_tdr(|r| r.set_tdr(self.buf[pos]));
+            usart.set_tdr(|r| r.set_tdr( *self.ptr.offset(pos as isize) ));
             self.pos.set(pos + 1);
             if self.done() {
                 usart.with_cr1(|r| r.set_txeie(0));
