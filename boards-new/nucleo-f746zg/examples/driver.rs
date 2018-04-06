@@ -55,9 +55,6 @@ pub enum Error {
     NoTxBuffer,
 }
 
-static mut TX_DESC: Option<Buffer> = None;
-static mut RX_DESC: Option<Buffer> = None;
-
 pub struct SerialDriver<'a, USART>
 where    
     USART: 'static + Irq<IrqUsart> + Deref<Target=UsartPeriph> + Copy,
@@ -81,11 +78,11 @@ where
     }
 
     fn tx_desc(&mut self) -> &mut Option<Buffer> {
-        unsafe { &mut TX_DESC }
+        self.handler.tx_desc()
     }
     
     fn rx_desc(&mut self) -> &mut Option<Buffer> {
-        unsafe { &mut RX_DESC }
+        self.handler.rx_desc()
     }
 
     pub fn write(&mut self, buf: &[u8]) -> Result<usize, Error> {
@@ -130,10 +127,12 @@ where
     }
 
     fn tx_desc(&self) -> &mut Option<Buffer> {
+        static mut TX_DESC: Option<Buffer> = None;
         unsafe { &mut TX_DESC }
     }
 
     fn rx_desc(&self) -> &mut Option<Buffer> {
+        static mut RX_DESC: Option<Buffer> = None;
         unsafe { &mut RX_DESC }
     }    
 }
