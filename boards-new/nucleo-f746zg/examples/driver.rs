@@ -60,7 +60,6 @@ where
     USART: 'static + Irq<IrqUsart> + Deref<Target=UsartPeriph> + Copy,
 {
     usart: USART,
-    handler: &'a SerialHandler<USART>,
     guard: IrqGuard<'a, SerialHandler<USART>>,
 }
 
@@ -70,7 +69,7 @@ where
 {
     pub fn new(usart: USART, handler: &'a mut SerialHandler<USART>) -> Self {
         let guard = Dispatcher::register_irq_handler(USART.irq_number_for(IRQ_USART), handler).unwrap();        
-        Self { usart, handler, guard }
+        Self { usart, guard }
     }
 
     pub fn irq(&self) -> u8 {
@@ -78,11 +77,11 @@ where
     }
 
     fn tx_desc(&mut self) -> &mut Option<Buffer> {
-        self.handler.tx_desc()
+        self.guard.tx_desc()
     }
     
     fn rx_desc(&mut self) -> &mut Option<Buffer> {
-        self.handler.rx_desc()
+        self.guard.rx_desc()
     }
 
     pub fn write(&mut self, buf: &[u8]) -> Result<usize, Error> {
@@ -113,14 +112,14 @@ where
 
 pub struct SerialHandler<USART>
 where    
-    USART: 'static + Irq<IrqUsart> + Deref<Target=UsartPeriph> + Copy,
+    USART: 'static + Deref<Target=UsartPeriph>,
 {
     usart: USART,
 }
 
 impl<USART> SerialHandler<USART> 
 where
-    USART: 'static + Irq<IrqUsart> + Deref<Target=UsartPeriph> + Copy,
+    USART: 'static + Deref<Target=UsartPeriph>,
 {
     pub fn new(usart: USART) -> Self {
         Self { usart }
@@ -138,10 +137,10 @@ where
 }
 impl<USART> HandleIrq for SerialHandler<USART>
 where
-    USART: 'static + Irq<IrqUsart> + Deref<Target=UsartPeriph> + Copy,
+    USART: 'static + Irq<IrqUsart> + Deref<Target=UsartPeriph>,
 {    
     unsafe fn handle_irq(&self, _irq: u8) -> IrqResult {
-        let usart = self.usart;
+        let usart = &self.usart;
         let isr = self.usart.isr();
         let cr1 = self.usart.cr1();
         // println!("irq: {:p}", self);
