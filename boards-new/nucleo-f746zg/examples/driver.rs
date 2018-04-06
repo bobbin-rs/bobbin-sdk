@@ -61,8 +61,9 @@ pub struct SerialDriver<'a>
 impl<'a> SerialDriver<'a> 
 {
     pub fn new<USART: Irq<IrqUsart> + Into<UsartPeriph>>(usart: USART, handler: &'a mut SerialHandler) -> Self {
-        let guard = Dispatcher::register_irq_handler(USART.irq_number_for(IRQ_USART), handler).unwrap();
         let usart = usart.into();
+        let guard = Dispatcher::register_irq_handler(USART.irq_number_for(IRQ_USART), handler).unwrap();
+        usart.with_cr1(|r| r.set_ue(1).set_te(1).set_re(1));
         Self { usart, guard }
     }
 
@@ -80,24 +81,20 @@ impl<'a> SerialDriver<'a>
 
     pub fn write(&mut self, buf: &[u8]) -> Result<usize, Error> {
         *self.tx_desc() = Some(Buffer::from_slice(buf));
-        self.tx_desc().as_mut().unwrap().set_state(State::Busy);
-        self.usart.with_cr1(|r| r.set_te(1).set_txeie(1));
+        self.usart.with_cr1(|r| r.set_txeie(1));
         if let &mut Some(ref desc) = self.tx_desc() {
-            while desc.state() == State::Busy { unsafe { asm!("nop") } }
+            while !desc.done() { unsafe { asm!("wfi") } }
         }
-        self.usart.with_cr1(|r| r.set_txeie(0));
         *self.tx_desc() = None;
         return Ok(buf.len())
     }
 
     pub fn read(&mut self, buf: &mut [u8]) -> Result<usize, Error> {
         *self.rx_desc() = Some(Buffer::from_slice(buf));
-        self.rx_desc().as_mut().unwrap().set_state(State::Busy);            
-        self.usart.with_cr1(|r| r.set_re(1).set_rxneie(1));
+        self.usart.with_cr1(|r| r.set_rxneie(1));
         if let &mut Some(ref desc) = self.rx_desc() {
-            while desc.state() == State::Busy { unsafe { asm!("wfi") } }
+            while !desc.done() { unsafe { asm!("wfi") } }
         }
-        self.usart.with_cr1(|r| r.set_rxneie(0));
         *self.rx_desc() = None;
         return Ok(buf.len())
     }
@@ -139,18 +136,16 @@ impl HandleIrq for SerialHandler
             if let &mut Some(ref mut tx_desc) = self.tx_desc() {
                 let b: u8 = tx_desc.read();
                 usart.set_tdr(|r| r.set_tdr(b));
-                if tx_desc.pos() == tx_desc.len() {
-                    tx_desc.set_state(State::Done);
+                if tx_desc.done() {
                     usart.with_cr1(|r| r.set_txeie(0));
                 }
             }
-        }
+        } 
         if isr.test_rxne() && cr1.test_rxneie() {
             if let &mut Some(ref mut rx_desc) = self.rx_desc() {
                 let b: u8 = usart.rdr().rdr().value() as u8;
                 rx_desc.write(b);
-                if rx_desc.pos() == rx_desc.len() {
-                    rx_desc.set_state(State::Done);
+                if rx_desc.done() {                
                     usart.with_cr1(|r| r.set_rxneie(0));                    
                 }
             }
@@ -162,18 +157,10 @@ impl HandleIrq for SerialHandler
     }
 }
 
-#[derive(Debug, PartialEq, Eq, Clone, Copy)]
-pub enum State {
-    Idle,
-    Busy,
-    Done,
-}
-
 pub struct Buffer {
     ptr: *mut u8,    
     pos: UnsafeCell<usize>,
     len: UnsafeCell<usize>,
-    state: UnsafeCell<State>,
 }
 
 impl Buffer {    
@@ -182,7 +169,6 @@ impl Buffer {
             ptr, 
             pos: UnsafeCell::new(pos), 
             len: UnsafeCell::new(len), 
-            state: UnsafeCell::new(State::Idle),
         }
     }
 
@@ -208,15 +194,6 @@ impl Buffer {
 
     pub fn incr_pos(&self, value: usize) {
         self.set_pos(self.pos() + value);
-    }
-
-    #[inline]
-    pub fn state(&self) -> State {
-        unsafe { core::ptr::read_volatile(self.state.get()) }
-    }
-
-    pub fn set_state(&self, value: State) {
-        unsafe { core::ptr::write_volatile(self.state.get(), value) }        
     }
 
     pub fn reset(&mut self) {
