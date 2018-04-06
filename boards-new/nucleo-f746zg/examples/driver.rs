@@ -91,19 +91,28 @@ pub struct TxHandler {
     usart: UsartPeriph,
     ptr: *const u8,
     len: usize,
-    pos: Pos,
+    pos: VIndex,
 }
 
 impl TxHandler {
     pub fn new(usart: UsartPeriph, buf: &[u8]) -> Self {
         let ptr = buf.as_ptr();
         let len = buf.len();
-        TxHandler { usart, ptr, len, pos: Pos::new(0) }
+        TxHandler { usart, ptr, len, pos: VIndex::new(0) }
+    }
+
+    #[inline]
+    fn sleep(&self) {
+        unsafe { asm!("
+            cpsid i
+            wfi
+            cpsie i
+        ")}
     }
 
     pub fn run(&self) -> usize {
         self.start();
-        while !self.done() { unsafe { asm!("nop") }}
+        while !self.done() { self.sleep() }
         self.pos.get()
     }
 
@@ -124,11 +133,16 @@ impl HandleIrq for TxHandler
         let isr = usart.isr();
         let cr1 = usart.cr1();
         if isr.test_txe() && cr1.test_txeie() {
+            assert!(self.pos.get() < self.len);
             usart.set_tdr(|r| r.set_tdr( *self.ptr.offset(self.pos.post_incr(1) as isize) ));
             if self.done() {
                 usart.with_cr1(|r| r.set_txeie(0));
             }
         }
+        if isr.test_ore() {
+            usart.with_icr(|r| r.set_orecf(1));
+            // panic!("overrun");
+        }        
         IrqResult::Continue
     }
 }
@@ -137,19 +151,28 @@ pub struct RxHandler {
     usart: UsartPeriph,
     ptr: *mut u8,
     len: usize,
-    pos: Pos,
+    pos: VIndex,
 }
 
 impl RxHandler {
     pub fn new(usart: UsartPeriph, buf: &mut [u8]) -> Self {
         let ptr = buf.as_mut_ptr();
         let len = buf.len();
-        RxHandler { usart, ptr, len, pos: Pos::new(0) }
+        RxHandler { usart, ptr, len, pos: VIndex::new(0) }
+    }
+
+    #[inline]
+    fn sleep(&self) {
+        unsafe { asm!("
+            cpsid i
+            wfi
+            cpsie i
+        ")}
     }
 
     pub fn run(&self) -> usize {
         self.start();
-        while !self.done() { unsafe { asm!("nop") }}
+        while !self.done() { self.sleep() }
         self.pos.get()
     }
 
@@ -171,6 +194,7 @@ impl HandleIrq for RxHandler
         let cr1 = usart.cr1();
 
         if isr.test_rxne() && cr1.test_rxneie() {
+            assert!(self.pos.get() < self.len);
             let b: u8 = usart.rdr().rdr().value() as u8;
             *self.ptr.offset(self.pos.post_incr(1) as isize) = b;                
             if self.done() {                
@@ -179,6 +203,7 @@ impl HandleIrq for RxHandler
         }
         if isr.test_ore() {
             usart.with_icr(|r| r.set_orecf(1));
+            // panic!("overrun");
         }
         IrqResult::Continue
     }
@@ -186,11 +211,11 @@ impl HandleIrq for RxHandler
 
 
 
-pub struct Pos(UnsafeCell<usize>);
+pub struct VIndex(UnsafeCell<usize>);
 
-impl Pos {
+impl VIndex {
     pub fn new(value: usize) -> Self {
-        Pos(UnsafeCell::new(value))
+        VIndex(UnsafeCell::new(value))
     }
     #[inline]    
     pub fn get(&self) -> usize {
