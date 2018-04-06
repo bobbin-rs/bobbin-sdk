@@ -24,8 +24,8 @@ pub extern "C" fn main() -> ! {
     unsafe {
         Dispatcher::init(&mut HANDLER_SLOTS)
     }
-    let mut h = SerialHandler::new(USART);
-    let mut s = SerialDriver::new(USART, &mut h);    
+    // let mut h = SerialHandler::new(USART);
+    let mut s = SerialDriver::new(USART);
     let mut buf = [0u8; 64];
     let _ = s.write(b"Serial Driver Echo Test\r\n");
     for _i in 0..10 {
@@ -52,31 +52,20 @@ pub enum Error {
     NoTxBuffer,
 }
 
-pub struct SerialDriver<'a>
+pub struct SerialDriver
 {
     usart: UsartPeriph,
     irq_number: u8,
-    guard: IrqGuard<'a, SerialHandler>,
 }
 
-impl<'a> SerialDriver<'a> 
+impl SerialDriver
 {
-    pub fn new<USART: Irq<IrqUsart> + Into<UsartPeriph>>(usart: USART, handler: &'a mut SerialHandler) -> Self {
+    pub fn new<USART: Irq<IrqUsart> + Into<UsartPeriph>>(usart: USART) -> Self {
         let usart = usart.into();
         let irq_number = USART.irq_number_for(IRQ_USART);
-        let guard = Dispatcher::register_irq_handler(irq_number, handler).unwrap();
-        usart.with_cr1(|r| r.set_ue(1).set_te(1).set_re(1));
-        Self { usart, irq_number, guard }
-    }
-
-    fn tx_desc(&mut self) -> &mut Option<Buffer> {
-        self.guard.tx_desc()
+        Self { usart, irq_number }
     }
     
-    fn rx_desc(&mut self) -> &mut Option<Buffer> {
-        self.guard.rx_desc()
-    }
-
     pub fn write(&mut self, buf: &[u8]) -> Result<usize, Error> {
         let handler = TxHandler::new(self.usart, buf);
         let guard = Dispatcher::register_irq_handler(self.irq_number, &handler).unwrap();
@@ -89,25 +78,25 @@ impl<'a> SerialDriver<'a>
         Ok(guard.run())
     }
 
-    pub fn write_abc(&mut self, buf: &[u8]) -> Result<usize, Error> {
-        *self.tx_desc() = Some(Buffer::from_slice(buf));
-        self.usart.with_cr1(|r| r.set_txeie(1));
-        if let &mut Some(ref desc) = self.tx_desc() {
-            while !desc.done() { unsafe { asm!("wfi") } }
-        }
-        *self.tx_desc() = None;
-        return Ok(buf.len())
-    }
+    // pub fn write_abc(&mut self, buf: &[u8]) -> Result<usize, Error> {
+    //     *self.tx_desc() = Some(Buffer::from_slice(buf));
+    //     self.usart.with_cr1(|r| r.set_txeie(1));
+    //     if let &mut Some(ref desc) = self.tx_desc() {
+    //         while !desc.done() { unsafe { asm!("wfi") } }
+    //     }
+    //     *self.tx_desc() = None;
+    //     return Ok(buf.len())
+    // }
 
-    pub fn read_abc(&mut self, buf: &mut [u8]) -> Result<usize, Error> {
-        *self.rx_desc() = Some(Buffer::from_slice(buf));
-        self.usart.with_cr1(|r| r.set_rxneie(1));
-        if let &mut Some(ref desc) = self.rx_desc() {
-            while !desc.done() { unsafe { asm!("wfi") } }
-        }
-        *self.rx_desc() = None;
-        return Ok(buf.len())
-    }
+    // pub fn read_abc(&mut self, buf: &mut [u8]) -> Result<usize, Error> {
+    //     *self.rx_desc() = Some(Buffer::from_slice(buf));
+    //     self.usart.with_cr1(|r| r.set_rxneie(1));
+    //     if let &mut Some(ref desc) = self.rx_desc() {
+    //         while !desc.done() { unsafe { asm!("wfi") } }
+    //     }
+    //     *self.rx_desc() = None;
+    //     return Ok(buf.len())
+    // }
 
 }
 
