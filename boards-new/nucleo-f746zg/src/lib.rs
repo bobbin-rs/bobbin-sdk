@@ -40,16 +40,12 @@ pub fn init() {
 default_handler!(handle_exception);
 
 pub fn handle_exception() {
-    use ext::dispatch::*;
 
     unsafe {
-        match ext::Dispatcher::dispatch_irq(mcu::scb::SCB.icsr().vectactive().value()) {
-            IrqResult::End => {},
-            IrqResult::Continue => {
-                console::write_str("EXCEPTION\n");
-                asm!("bkpt");
-                loop {}
-            }
+        if !ext::Dispatcher::dispatch(mcu::scb::SCB.icsr().vectactive().value()) {
+            console::write_str("EXCEPTION\n");
+            asm!("bkpt");
+            loop {}
         }
     }
 }

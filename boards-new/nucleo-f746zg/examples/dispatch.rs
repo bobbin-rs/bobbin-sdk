@@ -8,11 +8,11 @@ extern crate examples;
 
 use board::mcu::systick;
 
-use board::ext::{Dispatcher, IrqHandler, HandleIrq};
+use board::ext::{Dispatcher, ExceptionHandler, HandleException, Exception};
 
 use core::cell::UnsafeCell;
 
-static mut HANDLER_SLOTS: [Option<IrqHandler>; 2] = [None; 2];
+static mut HANDLER_SLOTS: [Option<ExceptionHandler>; 2] = [None; 2];
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
@@ -64,8 +64,8 @@ impl TickHandler {
     }
 }
 
-impl HandleIrq for TickHandler {
-    unsafe fn handle_irq(&self) {
+impl HandleException for TickHandler {
+    unsafe fn handle_exception(&self, _exc: Exception) {
         *self.count.get() += 1;
     }
 }

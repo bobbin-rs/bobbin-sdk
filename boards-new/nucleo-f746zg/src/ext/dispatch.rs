@@ -1,14 +1,3 @@
-pub enum IrqResult {
-    End,
-    Continue,
-}
-
-
-
-#[derive(Debug)]
-pub enum RegisterError {
-    Unavailable,
-}
 
 // pub trait RegisterExc {
 //     type Handle;

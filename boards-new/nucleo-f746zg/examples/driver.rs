@@ -6,7 +6,7 @@ extern crate nucleo_f746zg as board;
 extern crate examples;
 
 use board::console::USART;
-use board::ext::{Dispatcher, IrqHandler, HandleIrq};
+use board::ext::{Dispatcher, ExceptionHandler, HandleException, Exception};
 use board::common::irq::*;
 use board::mcu::irq::*;
 use board::mcu::usart::*;
@@ -14,7 +14,7 @@ use board::mcu::usart::*;
 use core::cell::UnsafeCell;
 // use board::mcu::usart::*;
 
-static mut HANDLER_SLOTS: [Option<IrqHandler>; 2] = [None; 2];
+static mut HANDLER_SLOTS: [Option<ExceptionHandler>; 2] = [None; 2];
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
@@ -68,7 +68,7 @@ impl SerialDriver
     pub fn write(&mut self, buf: &[u8]) -> Result<usize, Error> {
         let handler = TxHandler::new(self.usart, buf);
         let guard = Dispatcher::register_irq_handler(self.irq_number, &handler);
-        if let Some(guard) = guard {
+        if let Ok(guard) = guard {
             Ok(guard.run())
         } else {
             Err(Error::NoIrqSlots)
@@ -78,7 +78,7 @@ impl SerialDriver
     pub fn read(&mut self, buf: &mut [u8]) -> Result<usize, Error> {
         let handler = RxHandler::new(self.usart, buf);
         let guard = Dispatcher::register_irq_handler(self.irq_number, &handler);        
-        if let Some(guard) = guard {
+        if let Ok(guard) = guard {
             Ok(guard.run())
         } else {
             Err(Error::NoIrqSlots)
@@ -125,9 +125,9 @@ impl TxHandler {
     }
 }
 
-impl HandleIrq for TxHandler
+impl HandleException for TxHandler
 {    
-    unsafe fn handle_irq(&self) {
+    unsafe fn handle_exception(&self, _: Exception) {
         let usart = &self.usart;
         let isr = usart.isr();
         let cr1 = usart.cr1();
@@ -184,9 +184,9 @@ impl RxHandler {
     }
 }
 
-impl HandleIrq for RxHandler
+impl HandleException for RxHandler
 {    
-    unsafe fn handle_irq(&self) {
+    unsafe fn handle_exception(&self, _: Exception) {
         let usart = &self.usart;
         let isr = usart.isr();
         let cr1 = usart.cr1();
