@@ -127,7 +127,7 @@ impl TxHandler {
 
 impl HandleIrq for TxHandler
 {    
-    unsafe fn handle_irq(&self, _: u8) {
+    unsafe fn handle_irq(&self) {
         let usart = &self.usart;
         let isr = usart.isr();
         let cr1 = usart.cr1();
@@ -186,7 +186,7 @@ impl RxHandler {
 
 impl HandleIrq for RxHandler
 {    
-    unsafe fn handle_irq(&self, _: u8) {
+    unsafe fn handle_irq(&self) {
         let usart = &self.usart;
         let isr = usart.isr();
         let cr1 = usart.cr1();

@@ -65,7 +65,7 @@ impl TickHandler {
 }
 
 impl HandleIrq for TickHandler {
-    unsafe fn handle_irq(&self, _: u8) {
+    unsafe fn handle_irq(&self) {
         *self.count.get() += 1;
     }
 }

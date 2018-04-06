@@ -9,7 +9,7 @@ static mut IRQ_HANDLERS_PTR: *mut Option<IrqHandler> = ::core::ptr::null_mut();
 static mut IRQ_HANDLERS_LEN: usize = 0;
 
 pub trait HandleIrq {
-    unsafe fn handle_irq(&self, irq: u8);
+    unsafe fn handle_irq(&self);
 }
 
 #[derive(Clone, Copy)]
@@ -119,7 +119,7 @@ impl Dispatcher {
         Self::register_handler(14, handler)
     }
 
-    pub fn register_systick_handler<H: 'static + HandleIrq>(handler: &H) -> Option<IrqGuard<H>> {        
+    pub fn register_systick_handler<H: 'static + HandleIrq>(handler: &H) -> Option<IrqGuard<H>> {
         Self::register_handler(15, handler)
     }
 
@@ -134,7 +134,7 @@ impl Dispatcher {
         for i in 0..irq_handlers.len() {
             if let Some(handler) = irq_handlers[i] {                    
                 if handler.irq == irq {
-                    (*handler.handler).handle_irq(irq);
+                    (*handler.handler).handle_irq();
                     handled = true;
                 }
             }
@@ -146,7 +146,6 @@ impl Dispatcher {
         }
     }
 }
-
 
 // impl RegisterExc for ::NucleoF746zg {
 //     type Handle = IrqGuard;
