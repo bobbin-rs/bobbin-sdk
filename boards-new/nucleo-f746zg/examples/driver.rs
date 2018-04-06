@@ -80,17 +80,13 @@ impl<'a> SerialDriver<'a>
     pub fn write(&mut self, buf: &[u8]) -> Result<usize, Error> {
         let handler = TxHandler::new(self.usart, buf);
         let guard = Dispatcher::register_irq_handler(self.irq_number, &handler).unwrap();
-        handler.start();
-        while !guard.done() {}
-        return Ok(buf.len())
+        Ok(guard.run())
     }
 
     pub fn read(&mut self, buf: &mut [u8]) -> Result<usize, Error> {
         let handler = RxHandler::new(self.usart, buf);
         let guard = Dispatcher::register_irq_handler(self.irq_number, &handler).unwrap();
-        handler.run();
-        while !guard.done() {}
-        return Ok(buf.len())
+        Ok(guard.run())
     }
 
     pub fn write_abc(&mut self, buf: &[u8]) -> Result<usize, Error> {
@@ -131,7 +127,7 @@ impl TxHandler {
 
     pub fn run(&self) -> usize {
         self.start();
-        while !self.done() { unsafe { asm!("wfi" )}}
+        while !self.done() { unsafe { asm!("nop") }}
         self.pos.get()
     }
 
@@ -176,7 +172,7 @@ impl RxHandler {
 
     pub fn run(&self) -> usize {
         self.start();
-        while !self.done() { unsafe { asm!("wfi" )}}
+        while !self.done() { unsafe { asm!("nop") }}
         self.pos.get()
     }
 
