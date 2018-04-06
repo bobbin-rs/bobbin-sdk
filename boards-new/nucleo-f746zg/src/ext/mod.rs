@@ -11,11 +11,11 @@ static mut IRQ_HANDLERS_LEN: usize = 0;
 #[derive(Clone, Copy)]
 pub struct IrqHandler {
     irq: u8,
-    handler: *mut HandleIrq,
+    handler: *const HandleIrq,
 }
 
 impl IrqHandler {
-    pub fn new(irq: u8, handler: *mut HandleIrq) -> Self {
+    pub fn new(irq: u8, handler: *const HandleIrq) -> Self {
         Self { irq, handler }
     }
 
@@ -29,7 +29,7 @@ impl IrqHandler {
 pub struct IrqGuard<'a, H: 'a> {
     irq: u8,
     index: usize,
-    _phantom: PhantomData<&'a mut H>,
+    _phantom: PhantomData<&'a H>,
 }
 
 impl<'a, H: 'a> IrqGuard<'a, H> {
@@ -85,8 +85,8 @@ impl Dispatcher {
 
     }
     
-    pub fn register_handler<H: 'static + HandleIrq>(irq: u8, handler: &mut H) -> Option<IrqGuard<H>> {        
-        let irq_handler = IrqHandler::new(irq, handler as *mut H);
+    pub fn register_handler<H: 'static + HandleIrq>(irq: u8, handler: &H) -> Option<IrqGuard<H>> {        
+        let irq_handler = IrqHandler::new(irq, handler as *const H);
         let irq_handlers = Self::handlers();
         for i in 0..irq_handlers.len() {
             if irq_handlers[i].is_none() {
@@ -100,7 +100,7 @@ impl Dispatcher {
         None
     }
 
-    pub fn register_irq_handler<H: 'static + HandleIrq>(irq: u8, handler: &mut H) -> Option<IrqGuard<H>> {        
+    pub fn register_irq_handler<H: 'static + HandleIrq>(irq: u8, handler: &H) -> Option<IrqGuard<H>> {        
         Self::register_handler(irq + 16, handler)
     }
 

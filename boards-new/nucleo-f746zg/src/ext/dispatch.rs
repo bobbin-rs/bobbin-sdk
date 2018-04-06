@@ -4,7 +4,7 @@ pub enum IrqResult {
 }
 
 pub trait HandleIrq {
-    unsafe fn handle_irq(&mut self, irq: u8) -> IrqResult;
+    unsafe fn handle_irq(&self, irq: u8) -> IrqResult;
 }
 
 #[derive(Debug)]
