@@ -100,6 +100,10 @@ impl Dispatcher {
         None
     }
 
+    pub fn register_irq_handler<H: 'static + HandleIrq>(irq: u8, handler: &mut H) -> Option<IrqGuard<H>> {        
+        Self::register_handler(irq + 16, handler)
+    }
+
     #[inline]
     pub unsafe fn dispatch_irq(irq: u8) -> IrqResult {
         let mut handled: bool = false;

@@ -26,8 +26,7 @@ pub extern "C" fn main() -> ! {
         Dispatcher::init(&mut HANDLER_SLOTS)
     }
     let mut h = SerialHandler::new(USART);
-    let guard = Dispatcher::register_handler(USART.irq_number_for(IRQ_USART) + 16, &mut h).unwrap();
-    let mut s = SerialDriver::new(USART, guard);
+    let mut s = SerialDriver::new(USART, &mut h);
 
     // println!("{:?} - {:?}", s.usart, s.irq_guard);
     let mut buf = [0u8; 64];
@@ -71,7 +70,8 @@ impl<'a, USART> SerialDriver<'a, USART>
 where
     USART: 'static + Irq<IrqUsart> + Deref<Target=UsartPeriph> + Copy,
 {
-    pub fn new(usart: USART, guard: IrqGuard<'a, SerialHandler<USART>>) -> Self {
+    pub fn new(usart: USART, handler: &'a mut SerialHandler<USART>) -> Self {
+        let guard = Dispatcher::register_irq_handler(USART.irq_number_for(IRQ_USART), handler).unwrap();        
         Self { usart, guard }
     }
 
