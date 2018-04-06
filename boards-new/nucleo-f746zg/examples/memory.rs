@@ -33,6 +33,9 @@ pub extern "C" fn main() -> ! {
         println!("_eheap:     {:p}", &_eheap);
         println!("");
 
+
+        println!("{:?}", ::board::ext::memory::Memory {});
+
         println!("_heap_size: {:p}", &_heap_size);
 
         let stack_size = 0x2000;
@@ -42,6 +45,10 @@ pub extern "C" fn main() -> ! {
         let heap = ::core::slice::from_raw_parts_mut(_free_start, _free_len as usize);
 
         println!("heap len: {:08x} ({} bytes)", heap.len(), heap.len());
+
+
+
+
         for i in 0..heap.len() {
             heap[i] = i as u8;
         }
