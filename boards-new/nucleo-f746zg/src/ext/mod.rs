@@ -3,7 +3,7 @@ pub mod dispatch;
 use self::dispatch::*;
 use mcu::nvic::*;
 
-use core::marker::PhantomData;
+use core::ops::Deref;
 
 static mut IRQ_HANDLERS_PTR: *mut Option<IrqHandler> = ::core::ptr::null_mut();
 static mut IRQ_HANDLERS_LEN: usize = 0;
@@ -29,7 +29,7 @@ impl IrqHandler {
 pub struct IrqGuard<'a, H: 'a> {
     irq: u8,
     index: usize,
-    _phantom: PhantomData<&'a H>,
+    handler: &'a H,
 }
 
 impl<'a, H: 'a> IrqGuard<'a, H> {
@@ -44,6 +44,13 @@ impl<'a, H: 'a> Drop for IrqGuard<'a, H> {
             NVIC.set_enabled(self.irq, true);
         }
         Dispatcher::handlers()[self.index] = None
+    }
+}
+
+impl<'a, H: 'a> Deref for IrqGuard<'a, H> {
+    type Target = H;
+    fn deref(&self) -> &H {
+        self.handler
     }
 }
 
@@ -94,7 +101,7 @@ impl Dispatcher {
                 if irq_handler.irq >= 16 {
                     NVIC.set_enabled(irq_handler.irq - 16, true);
                 }
-                return Some(IrqGuard { irq: irq_handler.irq, index: i, _phantom: PhantomData })
+                return Some(IrqGuard { irq: irq_handler.irq, index: i, handler})
             }
         }
         None
