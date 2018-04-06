@@ -35,26 +35,35 @@ pub extern "C" fn main() -> ! {
 
 
         println!("{:?}", ::board::ext::memory::Memory {});
-
-        println!("_heap_size: {:p}", &_heap_size);
-
-        let stack_size = 0x2000;
-        let _free_start = &mut _sheap as *mut u32 as *mut u8;
-        let _free_end = (&mut _estack as *mut u32 as *mut u8).offset(-stack_size);
-        let _free_len = _free_end as u32 - _free_start as u32;
-        let heap = ::core::slice::from_raw_parts_mut(_free_start, _free_len as usize);
-
-        println!("heap len: {:08x} ({} bytes)", heap.len(), heap.len());
-
-
-
-
-        for i in 0..heap.len() {
-            heap[i] = i as u8;
-        }
-        println!("Memory Updated");
     }
 
+    let heap = board::ext::Heap {};
+
+    println!("{:?}", heap);
+
+    unsafe { heap.extend(4096) }
+
+    println!("{:?}", heap);
+
+    #[derive(Debug)]
+    pub struct Abc { 
+        a: u32,
+        b: u32,
+        c: u32,
+    };
+
+    let v = heap.new(Abc { a: 10, b: 20, c: 30 });
+    println!("v @ {:p}: {:?}", v, v);
+    println!("{:?}", heap);
+
+    let data = heap.slice(0u16, 1024);
+    println!("data @ {:p}", data);
+    println!("{:?}", heap);
+
+    heap.align(512);
+    println!("{:?}", heap);    
+    heap.freeze();
+    println!("{:?}", heap);    
     loop {}
 }
 

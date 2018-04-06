@@ -1,23 +1,22 @@
-use ::core::slice;
 use ::core::ops::Range;
 use ::core::fmt;
 
 pub struct Memory {}
 
 impl Memory {
-    fn bss() -> Range<usize> {
+    pub fn bss() -> Range<usize> {
         unsafe { &_sbss as *const u32 as usize .. &_ebss as *const u32 as usize }
     }
 
-    fn data() -> Range<usize> {
+    pub fn data() -> Range<usize> {
         unsafe { &_sdata as *const u32 as usize .. &_edata as *const u32 as usize }
     }
 
-    fn stack() -> Range<usize> {
+    pub fn stack() -> Range<usize> {
         unsafe { &_sstack as *const u32 as usize .. &_estack as *const u32 as usize }
     }
 
-    fn heap() -> Range<usize> {
+    pub fn heap() -> Range<usize> {
         unsafe { &_sheap as *const u32 as usize .. &_eheap as *const u32 as usize }
     }
 }

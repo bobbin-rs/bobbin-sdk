@@ -1,5 +1,5 @@
 #![no_std]
-#![feature(asm, lang_items, use_extern_macros, core_intrinsics, const_fn)]
+#![feature(asm, lang_items, use_extern_macros, core_intrinsics, const_fn, align_offset, offset_to)]
 
 #[cfg(target_os="none")]
 pub extern crate cortex_m_rt;
