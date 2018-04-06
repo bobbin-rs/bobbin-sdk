@@ -12,7 +12,6 @@ use board::common::irq::*;
 use board::mcu::irq::*;
 use board::mcu::usart::*;
 
-use core::ops::Deref;
 use core::cell::UnsafeCell;
 // use board::mcu::usart::*;
 
@@ -26,9 +25,7 @@ pub extern "C" fn main() -> ! {
         Dispatcher::init(&mut HANDLER_SLOTS)
     }
     let mut h = SerialHandler::new(USART);
-    let mut s = SerialDriver::new(USART, &mut h);
-
-    // println!("{:?} - {:?}", s.usart, s.irq_guard);
+    let mut s = SerialDriver::new(USART, &mut h);    
     let mut buf = [0u8; 64];
     let _ = s.write(b"Serial Driver Echo Test\r\n");
     for _i in 0..10 {
@@ -55,20 +52,17 @@ pub enum Error {
     NoTxBuffer,
 }
 
-pub struct SerialDriver<'a, USART>
-where    
-    USART: 'static + Irq<IrqUsart> + Deref<Target=UsartPeriph> + Copy,
+pub struct SerialDriver<'a>
 {
-    usart: USART,
-    guard: IrqGuard<'a, SerialHandler<USART>>,
+    usart: UsartPeriph,
+    guard: IrqGuard<'a, SerialHandler>,
 }
 
-impl<'a, USART> SerialDriver<'a, USART> 
-where
-    USART: 'static + Irq<IrqUsart> + Deref<Target=UsartPeriph> + Copy,
+impl<'a> SerialDriver<'a> 
 {
-    pub fn new(usart: USART, handler: &'a mut SerialHandler<USART>) -> Self {
-        let guard = Dispatcher::register_irq_handler(USART.irq_number_for(IRQ_USART), handler).unwrap();        
+    pub fn new<USART: Irq<IrqUsart> + Into<UsartPeriph>>(usart: USART, handler: &'a mut SerialHandler) -> Self {
+        let guard = Dispatcher::register_irq_handler(USART.irq_number_for(IRQ_USART), handler).unwrap();
+        let usart = usart.into();
         Self { usart, guard }
     }
 
@@ -89,7 +83,7 @@ where
         self.tx_desc().as_mut().unwrap().set_state(State::Busy);
         self.usart.with_cr1(|r| r.set_te(1).set_txeie(1));
         if let &mut Some(ref desc) = self.tx_desc() {
-            while desc.state() == State::Busy { unsafe { asm!("wfi") } }
+            while desc.state() == State::Busy { unsafe { asm!("nop") } }
         }
         self.usart.with_cr1(|r| r.set_txeie(0));
         *self.tx_desc() = None;
@@ -110,19 +104,15 @@ where
 
 }
 
-pub struct SerialHandler<USART>
-where    
-    USART: 'static + Deref<Target=UsartPeriph>,
+pub struct SerialHandler
 {
-    usart: USART,
+    usart: UsartPeriph,
 }
 
-impl<USART> SerialHandler<USART> 
-where
-    USART: 'static + Deref<Target=UsartPeriph>,
+impl SerialHandler 
 {
-    pub fn new(usart: USART) -> Self {
-        Self { usart }
+    pub fn new<USART: Into<UsartPeriph>>(usart: USART) -> Self {
+        Self { usart: usart.into() }
     }
 
     fn tx_desc(&self) -> &mut Option<Buffer> {
@@ -135,14 +125,12 @@ where
         unsafe { &mut RX_DESC }
     }    
 }
-impl<USART> HandleIrq for SerialHandler<USART>
-where
-    USART: 'static + Irq<IrqUsart> + Deref<Target=UsartPeriph>,
+impl HandleIrq for SerialHandler
 {    
     unsafe fn handle_irq(&self, _irq: u8) -> IrqResult {
         let usart = &self.usart;
-        let isr = self.usart.isr();
-        let cr1 = self.usart.cr1();
+        let isr = usart.isr();
+        let cr1 = usart.cr1();
         // println!("irq: {:p}", self);
         // println!("irq: {}", irq);
         // println!("  ISR: {:?}", isr);
@@ -222,6 +210,7 @@ impl Buffer {
         self.set_pos(self.pos() + value);
     }
 
+    #[inline]
     pub fn state(&self) -> State {
         unsafe { core::ptr::read_volatile(self.state.get()) }
     }
