@@ -144,9 +144,6 @@ impl Dispatcher {
                     e @ _ if e >= 16 => { NVIC.set_enabled(e- 16, true); },
                     _ => {},
                 }
-                if exc_handler.exc_num >= 16 {
-
-                }
                 return Ok(Guard { exc_num: exc_num, index: i, handler})
             }
         }
