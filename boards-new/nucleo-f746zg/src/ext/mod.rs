@@ -1,12 +1,10 @@
-pub mod dispatch;
-
 use mcu::systick::SYSTICK;
 use mcu::nvic::*;
 
 use core::ops::Deref;
 
-static mut IRQ_HANDLERS_PTR: *mut Option<ExceptionHandler> = ::core::ptr::null_mut();
-static mut IRQ_HANDLERS_LEN: usize = 0;
+static mut EXC_HANDLERS_PTR: *mut Option<ExceptionHandler> = ::core::ptr::null_mut();
+static mut EXC_HANDLERS_LEN: usize = 0;
 
 #[derive(Debug)]
 pub enum Error {
@@ -102,8 +100,8 @@ pub struct Dispatcher {}
 impl Dispatcher {
     pub fn init(slots: &'static mut [Option<ExceptionHandler>]) {
         unsafe {
-            IRQ_HANDLERS_PTR = slots.as_mut_ptr();
-            IRQ_HANDLERS_LEN = slots.len();
+            EXC_HANDLERS_PTR = slots.as_mut_ptr();
+            EXC_HANDLERS_LEN = slots.len();
         }
     }
 
@@ -130,7 +128,7 @@ impl Dispatcher {
     #[inline]
     pub fn handlers() -> &'static mut [Option<ExceptionHandler>] {
         unsafe {
-            ::core::slice::from_raw_parts_mut(IRQ_HANDLERS_PTR, IRQ_HANDLERS_LEN)
+            ::core::slice::from_raw_parts_mut(EXC_HANDLERS_PTR, EXC_HANDLERS_LEN)
         }
 
     }
@@ -186,33 +184,3 @@ impl Dispatcher {
         handled
     }
 }
-
-// impl RegisterExc for ::NucleoF746zg {
-//     type Handle = Guard;
-//     fn register_exc<H: 'static + HandleException>(&self, exc: u8, handler: H) -> Result<IrqHandle, RegisterError> {
-//         Dispatcher::register_handler(exc, handler).ok_or(RegisterError::Unavailable)
-//     }
-// }
-
-// impl RegisterIrq for ::NucleoF746zg {
-//     type Handle = Guard;
-//     fn register_irq<H: 'static + HandleException>(&self, irq: u8, handler: H) -> Result<IrqHandle, RegisterError> {
-//         if let Ok(handle) = Dispatcher::register_handler(irq + 16, handler).ok_or(RegisterError::Unavailable) {
-//             Ok(handle)
-//         } else {
-//             Err(RegisterError::Unavailable)
-//         }
-//     }
-// }
-
-// impl EnableIrq for ::NucleoF746zg {
-//     fn enable_irq(&self, irq: u8) {
-//         NVIC.set_enabled(irq, true);
-//     }
-// }
-
-// impl DisableIrq for ::NucleoF746zg {
-//     fn disable_irq(&self, irq: u8) {
-//         NVIC.set_enabled(irq, false);
-//     }
-// }
