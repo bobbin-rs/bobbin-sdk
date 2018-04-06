@@ -12,7 +12,7 @@ use board::common::irq::*;
 use board::mcu::irq::*;
 use board::mcu::usart::*;
 
-use core::cell::UnsafeCell;
+use core::cell::{Cell, UnsafeCell};
 // use board::mcu::usart::*;
 
 static mut HANDLER_SLOTS: [Option<IrqHandler>; 2] = [None; 2];
@@ -55,6 +55,7 @@ pub enum Error {
 pub struct SerialDriver<'a>
 {
     usart: UsartPeriph,
+    irq_number: u8,
     guard: IrqGuard<'a, SerialHandler>,
 }
 
@@ -62,13 +63,10 @@ impl<'a> SerialDriver<'a>
 {
     pub fn new<USART: Irq<IrqUsart> + Into<UsartPeriph>>(usart: USART, handler: &'a mut SerialHandler) -> Self {
         let usart = usart.into();
-        let guard = Dispatcher::register_irq_handler(USART.irq_number_for(IRQ_USART), handler).unwrap();
+        let irq_number = USART.irq_number_for(IRQ_USART);
+        let guard = Dispatcher::register_irq_handler(irq_number, handler).unwrap();
         usart.with_cr1(|r| r.set_ue(1).set_te(1).set_re(1));
-        Self { usart, guard }
-    }
-
-    pub fn irq(&self) -> u8 {
-        self.guard.irq()
+        Self { usart, irq_number, guard }
     }
 
     fn tx_desc(&mut self) -> &mut Option<Buffer> {
@@ -79,7 +77,15 @@ impl<'a> SerialDriver<'a>
         self.guard.rx_desc()
     }
 
+    // pub fn write_tx(&mut self, buf: &[u8]) -> Result<usize, Error> {
+    //     let tx_handler = TxHandler::new(self.usart, buf);
+    //     let guard = Dispatcher::register_irq_handler(self.irq_number, &tx_handler).unwrap();
+    //     while !guard.done() {}
+    //     return Ok(buf.len())
+    // }
+
     pub fn write(&mut self, buf: &[u8]) -> Result<usize, Error> {
+        let tx_handler = TxHandler::new(self.usart, buf);
         *self.tx_desc() = Some(Buffer::from_slice(buf));
         self.usart.with_cr1(|r| r.set_txeie(1));
         if let &mut Some(ref desc) = self.tx_desc() {
@@ -99,6 +105,39 @@ impl<'a> SerialDriver<'a>
         return Ok(buf.len())
     }
 
+}
+
+pub struct TxHandler<'a> {
+    usart: UsartPeriph,
+    buf: &'a [u8],
+    pos: Cell<usize>,
+}
+
+impl<'a> TxHandler<'a> {
+    pub fn new(usart: UsartPeriph, buf: &'a [u8]) -> Self {
+        TxHandler { usart, buf, pos: Cell::new(0) }
+    }
+
+    pub fn done(&self) -> bool {
+        self.pos.get() == self.buf.len()
+    }
+}
+impl<'a> HandleIrq for TxHandler<'a>
+{    
+    unsafe fn handle_irq(&self, _: u8) -> IrqResult {
+        let usart = &self.usart;
+        let isr = usart.isr();
+        let cr1 = usart.cr1();
+        if isr.test_txe() && cr1.test_txeie() {
+            let pos = self.pos.get();           
+            usart.set_tdr(|r| r.set_tdr(self.buf[pos]));
+            self.pos.set(pos + 1);
+            if self.done() {
+                usart.with_cr1(|r| r.set_txeie(0));
+            }
+        }
+        IrqResult::Continue
+    }
 }
 
 pub struct SerialHandler
@@ -122,6 +161,7 @@ impl SerialHandler
         unsafe { &mut RX_DESC }
     }    
 }
+
 impl HandleIrq for SerialHandler
 {    
     unsafe fn handle_irq(&self, _irq: u8) -> IrqResult {
