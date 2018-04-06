@@ -12,7 +12,7 @@ use board::common::irq::*;
 use board::mcu::irq::*;
 use board::mcu::usart::*;
 
-use core::cell::{Cell, UnsafeCell};
+use core::cell::UnsafeCell;
 // use board::mcu::usart::*;
 
 static mut HANDLER_SLOTS: [Option<IrqHandler>; 2] = [None; 2];
@@ -78,8 +78,17 @@ impl<'a> SerialDriver<'a>
     }
 
     pub fn write(&mut self, buf: &[u8]) -> Result<usize, Error> {
-        let tx_handler = TxHandler::new(self.usart, buf);
-        let guard = Dispatcher::register_irq_handler(self.irq_number, &tx_handler).unwrap();
+        let handler = TxHandler::new(self.usart, buf);
+        let guard = Dispatcher::register_irq_handler(self.irq_number, &handler).unwrap();
+        handler.start();
+        while !guard.done() {}
+        return Ok(buf.len())
+    }
+
+    pub fn read(&mut self, buf: &mut [u8]) -> Result<usize, Error> {
+        let handler = RxHandler::new(self.usart, buf);
+        let guard = Dispatcher::register_irq_handler(self.irq_number, &handler).unwrap();
+        handler.run();
         while !guard.done() {}
         return Ok(buf.len())
     }
@@ -94,7 +103,7 @@ impl<'a> SerialDriver<'a>
         return Ok(buf.len())
     }
 
-    pub fn read(&mut self, buf: &mut [u8]) -> Result<usize, Error> {
+    pub fn read_abc(&mut self, buf: &mut [u8]) -> Result<usize, Error> {
         *self.rx_desc() = Some(Buffer::from_slice(buf));
         self.usart.with_cr1(|r| r.set_rxneie(1));
         if let &mut Some(ref desc) = self.rx_desc() {
@@ -110,20 +119,31 @@ pub struct TxHandler {
     usart: UsartPeriph,
     ptr: *const u8,
     len: usize,
-    pos: Cell<usize>,
+    pos: Pos,
 }
 
 impl TxHandler {
     pub fn new(usart: UsartPeriph, buf: &[u8]) -> Self {
         let ptr = buf.as_ptr();
         let len = buf.len();
-        TxHandler { usart, ptr, len, pos: Cell::new(0) }
+        TxHandler { usart, ptr, len, pos: Pos::new(0) }
+    }
+
+    pub fn run(&self) -> usize {
+        self.start();
+        while !self.done() { unsafe { asm!("wfi" )}}
+        self.pos.get()
+    }
+
+    pub fn start(&self) {
+        self.usart.with_cr1(|r| r.set_txeie(1));
     }
 
     pub fn done(&self) -> bool {
         self.pos.get() == self.len
     }
 }
+
 impl HandleIrq for TxHandler
 {    
     unsafe fn handle_irq(&self, _: u8) -> IrqResult {
@@ -131,15 +151,84 @@ impl HandleIrq for TxHandler
         let isr = usart.isr();
         let cr1 = usart.cr1();
         if isr.test_txe() && cr1.test_txeie() {
-            let pos = self.pos.get();           
-            usart.set_tdr(|r| r.set_tdr( *self.ptr.offset(pos as isize) ));
-            self.pos.set(pos + 1);
+            usart.set_tdr(|r| r.set_tdr( *self.ptr.offset(self.pos.post_incr(1) as isize) ));
             if self.done() {
                 usart.with_cr1(|r| r.set_txeie(0));
             }
         }
         IrqResult::Continue
     }
+}
+
+pub struct RxHandler {
+    usart: UsartPeriph,
+    ptr: *mut u8,
+    len: usize,
+    pos: Pos,
+}
+
+impl RxHandler {
+    pub fn new(usart: UsartPeriph, buf: &mut [u8]) -> Self {
+        let ptr = buf.as_mut_ptr();
+        let len = buf.len();
+        RxHandler { usart, ptr, len, pos: Pos::new(0) }
+    }
+
+    pub fn run(&self) -> usize {
+        self.start();
+        while !self.done() { unsafe { asm!("wfi" )}}
+        self.pos.get()
+    }
+
+    pub fn start(&self) {
+        self.usart.with_cr1(|r| r.set_rxneie(1));   
+    }
+
+    pub fn done(&self) -> bool {
+        self.pos.get() == self.len
+    }
+}
+
+impl HandleIrq for RxHandler
+{    
+    unsafe fn handle_irq(&self, _: u8) -> IrqResult {
+        let usart = &self.usart;
+        let isr = usart.isr();
+        let cr1 = usart.cr1();
+
+        if isr.test_rxne() && cr1.test_rxneie() {
+            let b: u8 = usart.rdr().rdr().value() as u8;
+            *self.ptr.offset(self.pos.post_incr(1) as isize) = b;                
+            if self.done() {                
+                usart.with_cr1(|r| r.set_rxneie(0));                    
+            }
+        }
+        if isr.test_ore() {
+            usart.with_icr(|r| r.set_orecf(1));
+        }
+        IrqResult::Continue
+    }
+}
+
+
+
+pub struct Pos(UnsafeCell<usize>);
+
+impl Pos {
+    pub fn new(value: usize) -> Self {
+        Pos(UnsafeCell::new(value))
+    }
+    pub fn get(&self) -> usize {
+        unsafe { core::ptr::read_volatile(self.0.get()) }        
+    }
+    pub fn set(&self, value: usize) {
+        unsafe { core::ptr::write_volatile(self.0.get(), value) }        
+    }    
+    pub fn post_incr(&self, value: usize) -> usize {        
+        let v = self.get();
+        self.set(v + value);
+        v
+    }    
 }
 
 pub struct SerialHandler
