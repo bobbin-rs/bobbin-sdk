@@ -7,7 +7,7 @@ extern crate examples;
 
 use board::console::USART;
 use board::ext::dispatch::*;
-use board::ext::{Dispatcher, IrqHandler, IrqHandle};
+use board::ext::{Dispatcher, IrqHandler, IrqGuard};
 use board::common::irq::*;
 use board::mcu::irq::*;
 use board::mcu::usart::*;
@@ -21,14 +21,15 @@ static mut HANDLER_SLOTS: [Option<IrqHandler>; 2] = [None; 2];
 #[no_mangle]
 pub extern "C" fn main() -> ! {
     board::init();
-    let brd = board::board();
 
     unsafe {
         Dispatcher::init(&mut HANDLER_SLOTS)
     }
-    let irq_handle = brd.register_irq(USART.irq_number_for(IRQ_USART), SerialHandler::new(USART)).unwrap();
-    let mut s = SerialDriver::new(USART, irq_handle);
-    // println!("{:?} - {:?}", s.usart, s.irq_handle);
+    let mut h = SerialHandler::new(USART);
+    let _irq_guard = Dispatcher::register_handler(USART.irq_number_for(IRQ_USART) + 16, &mut h).unwrap();
+    let mut s = SerialDriver::new(USART);
+
+    // println!("{:?} - {:?}", s.usart, s.irq_guard);
     let mut buf = [0u8; 64];
     let _ = s.write(b"Serial Driver Echo Test\r\n");
     for _i in 0..10 {
@@ -63,15 +64,14 @@ where
     USART: 'static + Irq<IrqUsart> + Deref<Target=UsartPeriph> + Copy,
 {
     usart: USART,
-    _irq_handle: IrqHandle,
 }
 
 impl<USART> SerialDriver<USART> 
 where
     USART: 'static + Irq<IrqUsart> + Deref<Target=UsartPeriph> + Copy,
 {
-    pub fn new(usart: USART, irq_handle: IrqHandle) -> Self {
-        Self { usart, _irq_handle: irq_handle }
+    pub fn new(usart: USART) -> Self {
+        Self { usart }
     }
 
     fn tx_desc(&mut self) -> &mut Option<Buffer> {

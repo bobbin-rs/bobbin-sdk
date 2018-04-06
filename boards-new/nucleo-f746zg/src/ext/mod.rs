@@ -3,6 +3,8 @@ pub mod dispatch;
 use self::dispatch::*;
 use mcu::nvic::*;
 
+use core::marker::PhantomData;
+
 static mut IRQ_HANDLERS_PTR: *mut Option<IrqHandler> = ::core::ptr::null_mut();
 static mut IRQ_HANDLERS_LEN: usize = 0;
 
@@ -24,18 +26,19 @@ impl IrqHandler {
 
 #[must_use]
 #[derive(Debug)]
-pub struct IrqHandle {
+pub struct IrqGuard<'a, H: 'a> {
     irq: u8,
     index: usize,
+    _phantom: PhantomData<&'a mut H>,
 }
 
-impl IrqHandle {
+impl<'a, H: 'a> IrqGuard<'a, H> {
     pub fn irq(&self) -> u8 {
         self.irq
     }    
 }
 
-impl Drop for IrqHandle {
+impl<'a, H: 'a> Drop for IrqGuard<'a, H> {
     fn drop(&mut self) {
         if Dispatcher::slots_used_for_irq(self.irq) <= 1 {
             NVIC.set_enabled(self.irq, true);
@@ -82,10 +85,8 @@ impl Dispatcher {
 
     }
     
-    pub fn register_handler<H: 'static + HandleIrq>(irq: u8, mut handler: H) -> Option<IrqHandle> {
-        let h = &mut handler as *mut H;
-        ::core::mem::forget(handler);
-        let irq_handler = IrqHandler::new(irq, h);
+    pub fn register_handler<H: 'static + HandleIrq>(irq: u8, handler: &mut H) -> Option<IrqGuard<H>> {        
+        let irq_handler = IrqHandler::new(irq, handler as *mut H);
         let irq_handlers = Self::handlers();
         for i in 0..irq_handlers.len() {
             if irq_handlers[i].is_none() {
@@ -93,7 +94,7 @@ impl Dispatcher {
                 if irq_handler.irq >= 16 {
                     NVIC.set_enabled(irq_handler.irq - 16, true);
                 }
-                return Some(IrqHandle { irq: irq_handler.irq, index: i })
+                return Some(IrqGuard { irq: irq_handler.irq, index: i, _phantom: PhantomData })
             }
         }
         None
@@ -123,23 +124,23 @@ impl Dispatcher {
 
 
 
-impl RegisterExc for ::NucleoF746zg {
-    type Handle = IrqHandle;
-    fn register_exc<H: 'static + HandleIrq>(&self, exc: u8, handler: H) -> Result<IrqHandle, RegisterError> {
-        Dispatcher::register_handler(exc, handler).ok_or(RegisterError::Unavailable)
-    }
-}
+// impl RegisterExc for ::NucleoF746zg {
+//     type Handle = IrqGuard;
+//     fn register_exc<H: 'static + HandleIrq>(&self, exc: u8, handler: H) -> Result<IrqHandle, RegisterError> {
+//         Dispatcher::register_handler(exc, handler).ok_or(RegisterError::Unavailable)
+//     }
+// }
 
-impl RegisterIrq for ::NucleoF746zg {
-    type Handle = IrqHandle;
-    fn register_irq<H: 'static + HandleIrq>(&self, irq: u8, handler: H) -> Result<IrqHandle, RegisterError> {
-        if let Ok(handle) = Dispatcher::register_handler(irq + 16, handler).ok_or(RegisterError::Unavailable) {
-            Ok(handle)
-        } else {
-            Err(RegisterError::Unavailable)
-        }
-    }
-}
+// impl RegisterIrq for ::NucleoF746zg {
+//     type Handle = IrqGuard;
+//     fn register_irq<H: 'static + HandleIrq>(&self, irq: u8, handler: H) -> Result<IrqHandle, RegisterError> {
+//         if let Ok(handle) = Dispatcher::register_handler(irq + 16, handler).ok_or(RegisterError::Unavailable) {
+//             Ok(handle)
+//         } else {
+//             Err(RegisterError::Unavailable)
+//         }
+//     }
+// }
 
 // impl EnableIrq for ::NucleoF746zg {
 //     fn enable_irq(&self, irq: u8) {
