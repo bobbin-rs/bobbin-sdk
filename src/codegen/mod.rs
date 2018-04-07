@@ -67,7 +67,7 @@ pub fn field_name(name: &str) -> String {
     result    
 }
 
-fn to_camel(word: &str) -> String {
+pub fn to_camel(word: &str) -> String {
     let mut result = String::new();
     
     let mut last_dash = false;

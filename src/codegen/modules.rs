@@ -1470,7 +1470,8 @@ pub fn gen_clocks<W: Write>(_cfg: &Config, out: &mut W, d: &Device, _path: &Path
     writeln!(out, "pub use ::bobbin_common::tree::*;")?;
     writeln!(out, "pub use ::hz::Hz;")?;    
     writeln!(out, "")?;
-
+    writeln!(out, "pub struct ClockTree<T>(T);")?;
+    writeln!(out, "")?;
     {
         // Define Global Clocks
         writeln!(out, "")?;
@@ -1479,38 +1480,38 @@ pub fn gen_clocks<W: Write>(_cfg: &Config, out: &mut W, d: &Device, _path: &Path
 
         for clock in &clocks.sources {
             if let Some(speed) = clock.speed {
-                writeln!(out, "pub const {}_HZ: Hz = Hz::from_num({});", clock.const_id(), speed)?;
+                // writeln!(out, "pub const {}_HZ: Hz = Hz::from_num({});", clock.const_id(), speed)?;
+                writeln!(out, "pub struct {} {{}}", clock.type_id())?;
+                writeln!(out, "impl Clock for {} {{ fn hz() -> Hz {{ Hz::from_num({}) }} }}", clock.type_id(), speed)?;
+                writeln!(out, "")?;
             }
         }        
 
         writeln!(out, "")?;
     }   
 
-    writeln!(out, "tree_defn! {{")?;
-    writeln!(out, "    id: TREE_DEFN: TreeDefn,")?;
-    writeln!(out, "    clock: {{")?;
-    {
-        for clock in &clocks.inputs {
-            writeln!(out, "        {}: {},", 
-                clock.const_id(),
-                to_camel(&clock.name),
-            )?;
-        }
-        for clock in &clocks.sources {
-            writeln!(out, "        {}: {},", 
-                clock.const_id(),
-                to_camel(&clock.name),
-            )?;
-        }
-        for clock in &clocks.outputs {
-            writeln!(out, "        {}: {},", 
-                clock.const_id(),
-                to_camel(&clock.name),
-            )?;
+    writeln!(out, "pub trait Clocks {{")?;
+    for clock in &clocks.inputs {
+        writeln!(out, "    type {}: Clock;", clock.type_id())?;
+    }
+    for clock in &clocks.inputs {
+        writeln!(out, "    fn {}() -> Hz {{ Self::{}::hz() }}", clock.trait_method(), clock.type_id())?;
+    }
+    for clock in &clocks.sources {
+        if let Some(speed) = clock.speed {
+            writeln!(out, "    fn {}() -> Hz {{ Hz::from_num({}) }}", clock.trait_method(), speed)?;
+        } else {
+            for input in &clock.inputs {
+                writeln!(out, "    fn {}() -> Hz {{ Self::{}() }}", clock.trait_method(), input.trait_method())?;
+            }            
         }
     }
-    writeln!(out, "    }},")?;
-    writeln!(out, "    type: {{")?;
+    for clock in &clocks.outputs {
+        writeln!(out, "    fn {}() -> Hz {{ unimplemented!() }}", clock.trait_method())?;
+    }    
+    writeln!(out, "}}")?;
+    writeln!(out, "")?;
+
     {
         for p in &d.peripherals {
             let p_mod = if let Some(ref group_name) = p.group_name {
@@ -1522,8 +1523,11 @@ pub fn gen_clocks<W: Write>(_cfg: &Config, out: &mut W, d: &Device, _path: &Path
             for clock in &p.clocks {
                 for input in &clock.inputs {
                     if input.name.len() > 0 {
-                        let i_type = to_camel(&input.name);
-                        writeln!(out, "        ::{}::{}: {},", p_mod, p_type, i_type)?;
+                        // let i_type = to_camel(&input.name);
+                        writeln!(out, "impl<T> ClockFor<::{}::{}> for ClockTree<T> where Self: Clocks {{", p_mod, p_type)?;
+                        writeln!(out, "    fn clock_for(_: ::{}::{}) -> Hz {{ Self::{}() }}", p_mod, p_type, input.trait_method())?;
+                        writeln!(out, "}}")?;
+                        writeln!(out, "")?;
                     }
                 }
             }
@@ -1538,16 +1542,16 @@ pub fn gen_clocks<W: Write>(_cfg: &Config, out: &mut W, d: &Device, _path: &Path
                 for clock in &p.clocks {
                     for input in &clock.inputs {
                         if input.name.len() > 0 {
-                            let i_type = to_camel(&input.name);
-                            writeln!(out, "        ::{}::{}: {},", p_mod, p_type, i_type)?;
+                            writeln!(out, "impl<T> ClockFor<::{}::{}> for ClockTree<T> where Self: Clocks {{", p_mod, p_type)?;
+                            writeln!(out, "    fn clock_for(_: ::{}::{}) -> Hz {{ Self::{}() }}", p_mod, p_type, input.trait_method())?;
+                            writeln!(out, "}}")?;
+                            writeln!(out, "")?;
                         }
                     }
                 }
             }
         }
     }    
-    writeln!(out, "    }},")?;
-    writeln!(out, "}}")?;    
     Ok(())
 }
 

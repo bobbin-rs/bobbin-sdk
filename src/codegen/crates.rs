@@ -504,22 +504,21 @@ pub fn gen_interrupts_mod<W: Write>(cfg: &modules::Config, out: &mut W, d: &Devi
 
 
 pub fn gen_clocks_mod<W: Write>(cfg: &modules::Config, out: &mut W, d: &Device, path: &Path) -> Result<()> {
-    let defn_name = "tree_defn";
-    let defn_path = path.join("tree_defn.rs");
+    // let defn_name = "tree_defn";
+    // let defn_path = path.join("tree_defn.rs");
 
-    let impl_name = "tree_impl";
-    let impl_path = path.join("tree_impl.rs");
-    if !impl_path.exists() {
-        let _= File::create(impl_path);
-    }
+    // let impl_name = "tree_impl";
+    // let impl_path = path.join("tree_impl.rs");
+    // if !impl_path.exists() {
+    //     let _= File::create(impl_path);
+    // }
 
-    writeln!(out, "pub mod {};", defn_name)?;
-    writeln!(out, "pub use {}::*;", defn_name)?;
-    writeln!(out, "pub mod {};", impl_name)?;
-    writeln!(out, "pub use {}::*;", impl_name)?;
-    writeln!(out, "")?;
-
-    let mut out = try!(File::create(defn_path));
-    try!(modules::gen_clocks(&cfg, &mut out, &d, path));
+    // writeln!(out, "pub mod {};", defn_name)?;
+    // writeln!(out, "pub use {}::*;", defn_name)?;
+    // writeln!(out, "pub mod {};", impl_name)?;
+    // writeln!(out, "pub use {}::*;", impl_name)?;
+    // writeln!(out, "")?;
+    // let mut out = try!(File::create(defn_path));
+    try!(modules::gen_clocks(&cfg, out, &d, path));
     Ok(())
 }

@@ -588,6 +588,11 @@ impl Clock {
         self.name.to_uppercase()
     }
 
+    pub fn type_id(&self) -> String {
+        codegen::to_camel(&self.name)
+    }
+
+
     pub fn trait_method(&self) -> String {
         self.name.to_lowercase()
     }
