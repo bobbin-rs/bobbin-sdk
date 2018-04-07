@@ -21,7 +21,7 @@ pub fn init() {
 
 pub fn delay(ms: u32) { 
     TIM.gate_enable();
-    let tim_clk = tree().u32_for(TIM);
+    let tim_clk: u32 = Tree::clock_for(TIM).into();
     TIM
         .set_prescale(((tim_clk / 2000) - 1) as u16)
         .delay((ms << 1) as u16);
