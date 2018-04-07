@@ -1507,7 +1507,7 @@ pub fn gen_clocks<W: Write>(_cfg: &Config, out: &mut W, d: &Device, _path: &Path
         }
     }
     for clock in &clocks.outputs {
-        writeln!(out, "    fn {}() -> Hz {{ unimplemented!() }}", clock.trait_method())?;
+        writeln!(out, "    fn {}() -> Hz {{ Hz::from_num(0) }}", clock.trait_method())?;
     }    
     writeln!(out, "}}")?;
     writeln!(out, "")?;
@@ -1524,8 +1524,8 @@ pub fn gen_clocks<W: Write>(_cfg: &Config, out: &mut W, d: &Device, _path: &Path
                 for input in &clock.inputs {
                     if input.name.len() > 0 {
                         // let i_type = to_camel(&input.name);
-                        writeln!(out, "impl<T> ClockFor<::{}::{}> for ClockTree<T> where Self: Clocks {{", p_mod, p_type)?;
-                        writeln!(out, "    fn clock_for(_: ::{}::{}) -> Hz {{ Self::{}() }}", p_mod, p_type, input.trait_method())?;
+                        writeln!(out, "impl<T> ClockFor<::{}::{}> for ClockTree<T> where T: Clocks {{", p_mod, p_type)?;
+                        writeln!(out, "    fn clock_for(_: ::{}::{}) -> Hz {{ T::{}() }}", p_mod, p_type, input.trait_method())?;
                         writeln!(out, "}}")?;
                         writeln!(out, "")?;
                     }
@@ -1542,8 +1542,8 @@ pub fn gen_clocks<W: Write>(_cfg: &Config, out: &mut W, d: &Device, _path: &Path
                 for clock in &p.clocks {
                     for input in &clock.inputs {
                         if input.name.len() > 0 {
-                            writeln!(out, "impl<T> ClockFor<::{}::{}> for ClockTree<T> where Self: Clocks {{", p_mod, p_type)?;
-                            writeln!(out, "    fn clock_for(_: ::{}::{}) -> Hz {{ Self::{}() }}", p_mod, p_type, input.trait_method())?;
+                            writeln!(out, "impl<T> ClockFor<::{}::{}> for ClockTree<T> where T: Clocks {{", p_mod, p_type)?;
+                            writeln!(out, "    fn clock_for(_: ::{}::{}) -> Hz {{ T::{}() }}", p_mod, p_type, input.trait_method())?;
                             writeln!(out, "}}")?;
                             writeln!(out, "")?;
                         }
