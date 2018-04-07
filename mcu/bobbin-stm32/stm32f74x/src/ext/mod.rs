@@ -37,3 +37,4 @@ pub mod can;
 pub mod gpio;
 pub mod usart;
 pub mod dma;
+pub mod clock;
