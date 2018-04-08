@@ -15,7 +15,9 @@
     (clocks
         (input (name XOSC))
         (input (name XOSC32K) (min 32768) (max 32768))
+        (source (name OSC32K) (speed 32768))
         (source (name OSC8M) (speed 8000000))
+        (source (name OSCULP32K) (speed 32000))
         (source (name DFLL48M) (speed 48000000))
         (source (name FDPLL96M) (speed 96000000))
         (output (name GCLKGEN0))
@@ -84,7 +86,6 @@
             (name DMAC)
             (address 0x41004800)
             (clock
-                (input (name AHB))
                 (gate (type EN) (periph PM) (register AHBMASK) (field DMAC))
             )           
             (description "Direct Memory Access Controller")
@@ -117,7 +118,7 @@
             (name ADC)
             (address 0x42004000)
             (clock
-                (input (name APBC))
+                (input (name GCLK_ADC))
                 (gate (type EN) (periph PM) (register APBCMASK) (field ADC))
             )           
             (description "Analog Digital Converter")
@@ -162,7 +163,7 @@
             (name DAC)
             (address 0x42004800)
             (clock
-                (input (name APBC))
+                (input (name GCLK_DAC))
                 (gate (type EN) (periph PM) (register APBCMASK) (field DAC))
             )
             (interrupt
@@ -180,7 +181,7 @@
             (name TCC0)
             (address 0x42002000)
             (clock
-                (input (name APBC))
+                (input (name GCLK_TCC0_TCC1))
                 (gate (type EN) (periph PM) (register APBCMASK) (field TCC0))
             )           
             (description "Timer Counter Control 0")
@@ -218,7 +219,7 @@
             (name TCC1)
             (address 0x42002400)
             (clock
-                (input (name APBC))
+                (input (name GCLK_TCC0_TCC1))
                 (gate (type EN) (periph PM) (register APBCMASK) (field TCC1))
             )           
             (description "Timer Counter Control 1")
@@ -243,7 +244,7 @@
             (name TCC2)
             (address 0x42002800)
             (clock
-                (input (name APBC))
+                (input (name GCLK_TCC2_TC3))
                 (gate (type EN) (periph PM) (register APBCMASK) (field TCC2))
             )           
             (description "Timer Counter Control 2")
@@ -272,7 +273,7 @@
             (name TC3)
             (address 0x42002c00)
             (clock
-                (input (name APBC))
+                (input (name GCLK_TCC2_TC3))
                 (gate (type EN) (periph PM) (register APBCMASK) (field TC3))
             )           
             (description "Basic Timer Counter 3")
@@ -295,7 +296,7 @@
             (name TC4)
             (address 0x42003000)
             (clock
-                (input (name APBC))
+                (input (name GCLK_TC4_TC5))
                 (gate (type EN) (periph PM) (register APBCMASK) (field TC4))
             )           
             (description "Basic Timer Counter 4")
@@ -318,7 +319,7 @@
             (name TC5)
             (address 0x42003400)
             (clock
-                (input (name APBC))
+                (input (name GCLK_TC4_TC5))
                 (gate (type EN) (periph PM) (register APBCMASK) (field TC5))
             )           
             (description "Basic Timer Counter 5")
@@ -349,7 +350,6 @@
             (name PORTA)
             (address 0x41004400)
             (clock
-                (input (name APBB))
                 (gate (type EN) (periph PM) (register APBBMASK) (field PORT))
             )               
             (pin (name PA00) (index 0)
@@ -604,7 +604,6 @@
             (name PORTB)
             (address 0x41004480)
             (clock
-                (input (name APBB))
                 (gate (type EN) (periph PM) (register APBBMASK) (field PORT))
             )               
             (pin (name PB00) (index 0)
@@ -768,7 +767,7 @@
             (name SERCOM0)
             (address 0x42000800)            
             (clock
-                (input (name APBC))
+                (input (name GCLK_SERCOM0_CORE))
                 (gate (type EN) (periph PM) (register APBCMASK) (field SERCOM0))
             )           
             (signal (name SERCOM0_PAD_0) (type PAD_0))
@@ -784,7 +783,7 @@
             (name SERCOM1)
             (address 0x42000c00)
             (clock
-                (input (name APBC))
+                (input (name GCLK_SERCOM1_CORE))
                 (gate (type EN) (periph PM) (register APBCMASK) (field SERCOM1))
             )           
             (signal (name SERCOM1_PAD_0) (type PAD_0))
@@ -800,7 +799,7 @@
             (name SERCOM2)
             (address 0x42001000)
             (clock
-                (input (name APBC))
+                (input (name GCLK_SERCOM2_CORE))
                 (gate (type EN) (periph PM) (register APBCMASK) (field SERCOM2))
             )           
             (signal (name SERCOM2_PAD_0) (type PAD_0))
@@ -816,7 +815,7 @@
             (name SERCOM3)
             (address 0x42001400)
             (clock
-                (input (name APBC))
+                (input (name GCLK_SERCOM3_CORE))
                 (gate (type EN) (periph PM) (register APBCMASK) (field SERCOM3))
             )           
             (signal (name SERCOM3_PAD_0) (type PAD_0))
@@ -832,7 +831,7 @@
             (name SERCOM4)
             (address 0x42001800)
             (clock
-                (input (name APBC))
+                (input (name GCLK_SERCOM4_CORE))
                 (gate (type EN) (periph PM) (register APBCMASK) (field SERCOM4))
             )           
             (signal (name SERCOM4_PAD_0) (type PAD_0))
@@ -848,7 +847,7 @@
             (name SERCOM5)        
             (address 0x42001c00)
             (clock
-                (input (name APBC))
+                (input (name GCLK_SERCOM5_CORE))
                 (gate (type EN) (periph PM) (register APBCMASK) (field SERCOM5))
             )           
             (signal (name SERCOM5_PAD_0) (type PAD_0))

@@ -3,7 +3,7 @@
     (name WDT)
     (address 0x40001000)
     (clock
-        (input (name APBA))
+        (input (name GCLK_WDT))
         (gate (type EN) (periph PM) (register APBAMASK) (field WDT))
     )               
     (description "Watchdog Timer")

@@ -7,8 +7,14 @@ pub struct ClockTree<T>(T);
 
 // Define Global Clocks
 
+pub struct Osc32k {}
+impl Clock for Osc32k { fn hz() -> Hz { Hz::from_num(32768) } }
+
 pub struct Osc8m {}
 impl Clock for Osc8m { fn hz() -> Hz { Hz::from_num(8000000) } }
+
+pub struct Osculp32k {}
+impl Clock for Osculp32k { fn hz() -> Hz { Hz::from_num(32000) } }
 
 pub struct Dfll48m {}
 impl Clock for Dfll48m { fn hz() -> Hz { Hz::from_num(48000000) } }
@@ -22,7 +28,9 @@ pub trait Clocks {
     type Xosc32k: Clock;
     fn xosc() -> Hz { Self::Xosc::hz() }
     fn xosc32k() -> Hz { Self::Xosc32k::hz() }
+    fn osc32k() -> Hz { Hz::from_num(32768) }
     fn osc8m() -> Hz { Hz::from_num(8000000) }
+    fn osculp32k() -> Hz { Hz::from_num(32000) }
     fn dfll48m() -> Hz { Hz::from_num(48000000) }
     fn fdpll96m() -> Hz { Hz::from_num(96000000) }
     fn gclkgen0() -> Hz { Hz::from_num(0) }
@@ -75,95 +83,67 @@ pub trait Clocks {
     fn gclk_i2s_1() -> Hz { Hz::from_num(0) }
 }
 
-impl<T> ClockFor<::gclk::Gclk> for ClockTree<T> where T: Clocks {
-    fn clock_for(_: ::gclk::Gclk) -> Hz { T::apba() }
-}
-
-impl<T> ClockFor<::nvmctrl::Nvmctrl> for ClockTree<T> where T: Clocks {
-    fn clock_for(_: ::nvmctrl::Nvmctrl) -> Hz { T::ahb() }
-}
-
-impl<T> ClockFor<::pm::Pm> for ClockTree<T> where T: Clocks {
-    fn clock_for(_: ::pm::Pm) -> Hz { T::apba() }
-}
-
-impl<T> ClockFor<::sysctrl::Sysctrl> for ClockTree<T> where T: Clocks {
-    fn clock_for(_: ::sysctrl::Sysctrl) -> Hz { T::apba() }
-}
-
 impl<T> ClockFor<::wdt::Wdt> for ClockTree<T> where T: Clocks {
-    fn clock_for(_: ::wdt::Wdt) -> Hz { T::apba() }
+    fn clock_for(_: ::wdt::Wdt) -> Hz { T::gclk_wdt() }
 }
 
 impl<T> ClockFor<::rtc::Rtc> for ClockTree<T> where T: Clocks {
-    fn clock_for(_: ::rtc::Rtc) -> Hz { T::apba() }
-}
-
-impl<T> ClockFor<::dmac::Dmac> for ClockTree<T> where T: Clocks {
-    fn clock_for(_: ::dmac::Dmac) -> Hz { T::ahb() }
+    fn clock_for(_: ::rtc::Rtc) -> Hz { T::gclk_rtc() }
 }
 
 impl<T> ClockFor<::adc::Adc> for ClockTree<T> where T: Clocks {
-    fn clock_for(_: ::adc::Adc) -> Hz { T::apbc() }
+    fn clock_for(_: ::adc::Adc) -> Hz { T::gclk_adc() }
 }
 
 impl<T> ClockFor<::dac::Dac> for ClockTree<T> where T: Clocks {
-    fn clock_for(_: ::dac::Dac) -> Hz { T::apbc() }
+    fn clock_for(_: ::dac::Dac) -> Hz { T::gclk_dac() }
 }
 
 impl<T> ClockFor<::tcc::Tcc0> for ClockTree<T> where T: Clocks {
-    fn clock_for(_: ::tcc::Tcc0) -> Hz { T::apbc() }
+    fn clock_for(_: ::tcc::Tcc0) -> Hz { T::gclk_tcc0_tcc1() }
 }
 
 impl<T> ClockFor<::tcc::Tcc1> for ClockTree<T> where T: Clocks {
-    fn clock_for(_: ::tcc::Tcc1) -> Hz { T::apbc() }
+    fn clock_for(_: ::tcc::Tcc1) -> Hz { T::gclk_tcc0_tcc1() }
 }
 
 impl<T> ClockFor<::tcc::Tcc2> for ClockTree<T> where T: Clocks {
-    fn clock_for(_: ::tcc::Tcc2) -> Hz { T::apbc() }
+    fn clock_for(_: ::tcc::Tcc2) -> Hz { T::gclk_tcc2_tc3() }
 }
 
 impl<T> ClockFor<::tc::Tc3> for ClockTree<T> where T: Clocks {
-    fn clock_for(_: ::tc::Tc3) -> Hz { T::apbc() }
+    fn clock_for(_: ::tc::Tc3) -> Hz { T::gclk_tcc2_tc3() }
 }
 
 impl<T> ClockFor<::tc::Tc4> for ClockTree<T> where T: Clocks {
-    fn clock_for(_: ::tc::Tc4) -> Hz { T::apbc() }
+    fn clock_for(_: ::tc::Tc4) -> Hz { T::gclk_tc4_tc5() }
 }
 
 impl<T> ClockFor<::tc::Tc5> for ClockTree<T> where T: Clocks {
-    fn clock_for(_: ::tc::Tc5) -> Hz { T::apbc() }
-}
-
-impl<T> ClockFor<::port::Porta> for ClockTree<T> where T: Clocks {
-    fn clock_for(_: ::port::Porta) -> Hz { T::apbb() }
-}
-
-impl<T> ClockFor<::port::Portb> for ClockTree<T> where T: Clocks {
-    fn clock_for(_: ::port::Portb) -> Hz { T::apbb() }
+    fn clock_for(_: ::tc::Tc5) -> Hz { T::gclk_tc4_tc5() }
 }
 
 impl<T> ClockFor<::sercom::Sercom0> for ClockTree<T> where T: Clocks {
-    fn clock_for(_: ::sercom::Sercom0) -> Hz { T::apbc() }
+    fn clock_for(_: ::sercom::Sercom0) -> Hz { T::gclk_sercom0_core() }
 }
 
 impl<T> ClockFor<::sercom::Sercom1> for ClockTree<T> where T: Clocks {
-    fn clock_for(_: ::sercom::Sercom1) -> Hz { T::apbc() }
+    fn clock_for(_: ::sercom::Sercom1) -> Hz { T::gclk_sercom1_core() }
 }
 
 impl<T> ClockFor<::sercom::Sercom2> for ClockTree<T> where T: Clocks {
-    fn clock_for(_: ::sercom::Sercom2) -> Hz { T::apbc() }
+    fn clock_for(_: ::sercom::Sercom2) -> Hz { T::gclk_sercom2_core() }
 }
 
 impl<T> ClockFor<::sercom::Sercom3> for ClockTree<T> where T: Clocks {
-    fn clock_for(_: ::sercom::Sercom3) -> Hz { T::apbc() }
+    fn clock_for(_: ::sercom::Sercom3) -> Hz { T::gclk_sercom3_core() }
 }
 
 impl<T> ClockFor<::sercom::Sercom4> for ClockTree<T> where T: Clocks {
-    fn clock_for(_: ::sercom::Sercom4) -> Hz { T::apbc() }
+    fn clock_for(_: ::sercom::Sercom4) -> Hz { T::gclk_sercom4_core() }
 }
 
 impl<T> ClockFor<::sercom::Sercom5> for ClockTree<T> where T: Clocks {
-    fn clock_for(_: ::sercom::Sercom5) -> Hz { T::apbc() }
+    fn clock_for(_: ::sercom::Sercom5) -> Hz { T::gclk_sercom5_core() }
 }
 

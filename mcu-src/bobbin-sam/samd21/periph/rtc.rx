@@ -3,7 +3,7 @@
     (name RTC)
     (address 0x40001400)
     (clock
-        (input (name APBA))
+        (input (name GCLK_RTC))
         (gate (type EN) (periph PM) (register APBAMASK) (field RTC))
     )               
     (description "Real-Time Counter")

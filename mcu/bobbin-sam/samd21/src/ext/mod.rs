@@ -11,3 +11,4 @@ pub mod tcc;
 pub mod tc;
 pub mod port;
 pub mod sercom;
+pub mod clock;
