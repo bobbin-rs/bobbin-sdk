@@ -36,12 +36,14 @@ pub fn init() {
     delay::init();
 }
 
+pub type Dispatcher = ext::Dispatcher<ext::ExcHandlers8>;
+
 #[cfg(target_os="none")]
 default_handler!(handle_exception);
 
 pub fn handle_exception() {
     unsafe {
-        if !ext::Dispatcher::dispatch(mcu::scb::SCB.icsr().vectactive().value()) {
+        if !Dispatcher::dispatch(mcu::scb::SCB.icsr().vectactive().value()) {
             console::write_str("EXCEPTION\n");
             asm!("bkpt");
             loop {}

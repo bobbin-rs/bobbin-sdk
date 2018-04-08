@@ -9,23 +9,23 @@ extern crate examples;
 use board::mcu::systick::SYSTICK;
 use board::mcu::scb::SCB;
 
-use board::ext::{Dispatcher, ExceptionHandler, HandleException, Exception};
+use board::ext::{HandleException, Exception};
+use board::Dispatcher;
 
 use core::cell::UnsafeCell;
-
-static mut HANDLER_SLOTS: [Option<ExceptionHandler>; 4] = [None; 4];
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
     board::init();
     println!("Dispatch Test");
 
-    unsafe {
-        Dispatcher::init(&mut HANDLER_SLOTS)
-    }
+    pub type Dispatcher = board::ext::Dispatcher<board::ext::ExcHandlers4>;
+
+    println!("{} / {} slots allocated", Dispatcher::slots_used(), Dispatcher::slots());
 
     let p = PendSVHandler::new();
     let p = Dispatcher::register_pendsv_handler(&p).unwrap();
+    println!("{} / {} slots allocated", Dispatcher::slots_used(), Dispatcher::slots());
 
     let reload_value = (216_000_000 / 8000) - 1;
     SYSTICK.set_reload_value(reload_value);
@@ -35,12 +35,14 @@ pub extern "C" fn main() -> ! {
     
     let t = TickHandler::new();    
     let t = Dispatcher::register_systick_handler(&t).unwrap();
+    println!("{} / {} slots allocated", Dispatcher::slots_used(), Dispatcher::slots());
 
     board::delay(100);
 
     let t2 = TickHandler::new();    
     let t2 = Dispatcher::register_systick_handler(&t2).unwrap();
 
+    println!("{} / {} slots allocated", Dispatcher::slots_used(), Dispatcher::slots());
 
     loop {
         println!("tick: {} {} {}", unsafe { *t.count.get()}, unsafe { *t2.count.get()} , unsafe { *p.count.get()} );

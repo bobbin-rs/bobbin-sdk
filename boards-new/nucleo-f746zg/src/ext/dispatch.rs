@@ -3,6 +3,29 @@ use mcu::nvic::*;
 
 use core::ops::Deref;
 
+
+macro_rules! impl_handlers {
+    ($id:ident, $ty:ident, $len:expr) => {
+        static mut $id: [Option<ExceptionHandler>; $len] = [None; $len];
+        pub struct $ty;
+        impl ExceptionHandlers for $ty {
+            fn exc_handlers() -> &'static mut [Option<ExceptionHandler>] { unsafe { &mut $id }}
+        }
+    }
+}
+
+impl_handlers!(EXC_HANDLERS_0, ExcHandlers0, 0);
+impl_handlers!(EXC_HANDLERS_1, ExcHandlers1, 1);
+impl_handlers!(EXC_HANDLERS_2, ExcHandlers2, 2);
+impl_handlers!(EXC_HANDLERS_4, ExcHandlers4, 4);
+impl_handlers!(EXC_HANDLERS_8, ExcHandlers8, 8);
+impl_handlers!(EXC_HANDLERS_12, ExcHandlers12, 12);
+impl_handlers!(EXC_HANDLERS_16, ExcHandlers16, 16);
+
+pub trait ExceptionHandlers {
+    fn exc_handlers() -> &'static mut [Option<ExceptionHandler>];
+}
+
 static mut EXC_HANDLERS_PTR: *mut Option<ExceptionHandler> = ::core::ptr::null_mut();
 static mut EXC_HANDLERS_LEN: usize = 0;
 
@@ -90,45 +113,13 @@ pub struct Guard<'a, H: 'a> {
 impl<'a, H: 'a> Guard<'a, H> {
     pub fn exc_num(&self) -> u8 {
         self.exc_num
-    }    
-}
-
-impl<'a, H: 'a> Drop for Guard<'a, H> {
-    fn drop(&mut self) {
-        if Dispatcher::slots_used_for_exc(self.exc_num) <= 1 {
-            match self.exc_num {
-                15 => { SYSTICK.set_tick_interrupt(false); },
-                e @ _ if e >= 16 => { NVIC.set_enabled(e, false); },
-                _ => {},
-            }
-        }
-        Dispatcher::handlers()[self.index] = None
     }
-}
 
-impl<'a, H: 'a> Deref for Guard<'a, H> {
-    type Target = H;
-    fn deref(&self) -> &H {
-        self.handler
-    }
-}
-
-pub struct Dispatcher {}
-
-impl Dispatcher {
-    pub fn init(slots: &'static mut [Option<ExceptionHandler>]) {
+    #[inline]
+    pub fn handlers() -> &'static mut [Option<ExceptionHandler>] {
         unsafe {
-            EXC_HANDLERS_PTR = slots.as_mut_ptr();
-            EXC_HANDLERS_LEN = slots.len();
-        }
-    }
-
-    pub fn slots() -> usize {
-        Self::handlers().len()
-    }
-
-    pub fn slots_used() -> usize {
-        Self::handlers().iter().filter(|h| h.is_some()).count()
+            ::core::slice::from_raw_parts_mut(EXC_HANDLERS_PTR, EXC_HANDLERS_LEN)
+        }        
     }
 
     pub fn slots_used_for_exc(exc_num: u8) -> usize {
@@ -142,13 +133,59 @@ impl Dispatcher {
         }
         count
     }
+}
+
+impl<'a, H: 'a> Drop for Guard<'a, H> {
+    fn drop(&mut self) {
+        if Self::slots_used_for_exc(self.exc_num) <= 1 {
+            match self.exc_num {
+                15 => { SYSTICK.set_tick_interrupt(false); },
+                e @ _ if e >= 16 => { NVIC.set_enabled(e, false); },
+                _ => {},
+            }
+        }
+        Self::handlers()[self.index] = None
+    }
+}
+
+impl<'a, H: 'a> Deref for Guard<'a, H> {
+    type Target = H;
+    fn deref(&self) -> &H {
+        self.handler
+    }
+}
+
+pub struct Dispatcher<T: ExceptionHandlers>(T);
+
+impl<T: ExceptionHandlers> Dispatcher<T> {
+    pub fn slots() -> usize {
+        Self::handlers().len()
+    }
+
+    pub fn slots_used() -> usize {
+        Self::handlers().iter().filter(|h| h.is_some()).count()
+    }
+
+    pub fn slots_avail() -> usize {
+        Self::slots() - Self::slots_used()
+    }
 
     #[inline]
     pub fn handlers() -> &'static mut [Option<ExceptionHandler>] {
+        Self::require_slots();
         unsafe {
             ::core::slice::from_raw_parts_mut(EXC_HANDLERS_PTR, EXC_HANDLERS_LEN)
         }
-
+    }
+    #[inline]
+    pub fn require_slots() {
+        unsafe {
+            if EXC_HANDLERS_PTR == ::core::ptr::null_mut() {
+                let slots = T::exc_handlers();
+                EXC_HANDLERS_PTR = slots.as_mut_ptr();
+                EXC_HANDLERS_LEN = slots.len();
+            }
+        }
     }
     
     pub fn register_handler<H: 'static + HandleException>(exc_num: u8, handler: &H) -> Result<Guard<H>, Error> {
