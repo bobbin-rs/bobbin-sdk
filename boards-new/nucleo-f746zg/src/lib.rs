@@ -36,7 +36,7 @@ pub fn init() {
     delay::init();
 }
 
-pub type Dispatcher = ext::Dispatcher<ext::ExcHandlers8>;
+pub type Dispatcher = mcu::dispatch::Dispatcher<mcu::dispatch::ExcHandlers8>;
 
 #[cfg(target_os="none")]
 default_handler!(handle_exception);

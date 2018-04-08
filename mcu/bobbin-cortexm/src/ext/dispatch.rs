@@ -1,5 +1,5 @@
-use mcu::systick::SYSTICK;
-use mcu::nvic::*;
+use ::systick::SYSTICK;
+use ::nvic::*;
 
 use core::ops::Deref;
 

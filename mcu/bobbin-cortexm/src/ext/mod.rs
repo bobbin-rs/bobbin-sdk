@@ -2,6 +2,7 @@ pub use periph::*;
 
 pub mod systick_ext;
 pub mod nvic_ext;
+pub mod dispatch;
 
 #[inline(always)]
 pub fn wfi() {

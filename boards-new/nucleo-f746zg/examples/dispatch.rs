@@ -9,7 +9,7 @@ extern crate examples;
 use board::mcu::systick::SYSTICK;
 use board::mcu::scb::SCB;
 
-use board::ext::{HandleException, Exception};
+use board::mcu::dispatch::{HandleException, Exception};
 use board::Dispatcher;
 
 use core::cell::UnsafeCell;
@@ -18,8 +18,6 @@ use core::cell::UnsafeCell;
 pub extern "C" fn main() -> ! {
     board::init();
     println!("Dispatch Test");
-
-    pub type Dispatcher = board::ext::Dispatcher<board::ext::ExcHandlers4>;
 
     println!("{} / {} slots allocated", Dispatcher::slots_used(), Dispatcher::slots());
 
