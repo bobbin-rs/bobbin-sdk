@@ -1,4 +1,5 @@
 pub use ::clock::*;
+pub use systick_ext::SystickHz;
 
 use mcu::rcc::{RCC, DedicatedClock, ClockSource};
 use bobbin_common::bits::*;
@@ -144,4 +145,10 @@ impl<OSC: Clock, OSC32: Clock> Clocks for DynamicClock<OSC, OSC32> {
     impl_clock_source!(::mcu::i2c::I2C3, i2c3, pclk1);
     impl_clock_source!(::mcu::i2c::I2C4, i2c4, pclk1);
     
+}
+
+impl<OSC: Clock, OSC32: Clock> SystickHz for DynamicClock<OSC, OSC32> {
+    fn systick_hz() -> Hz {
+        Self::systick()
+    }
 }

@@ -7,6 +7,7 @@ extern crate frdm_k64f as board;
 extern crate examples;
 
 use board::mcu::systick::SYSTICK;
+use board::mcu::systick_ext::SystickHz;
 use board::mcu::systick_ext::ClockSource;
 use board::mcu::scb::SCB;
 
@@ -27,7 +28,7 @@ pub extern "C" fn main() -> ! {
     let p = Dispatcher::register_pendsv_handler(&p).unwrap();
     println!("{} / {} slots allocated", Dispatcher::slots_used(), Dispatcher::slots());
 
-    let reload_value = (Clk::systick() / 1000).as_u32() - 1;
+    let reload_value = (Clk::systick_hz() / 1000).as_u32() - 1;
     SYSTICK.set_clock_source(ClockSource::Internal);
     SYSTICK.set_reload_value(reload_value);
     SYSTICK.set_current_value(reload_value);

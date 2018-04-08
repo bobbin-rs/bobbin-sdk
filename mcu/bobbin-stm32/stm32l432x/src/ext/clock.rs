@@ -1,4 +1,5 @@
 pub use ::clock::*;
+pub use systick_ext::SystickHz;
 
 use mcu::rcc::*;
 use bobbin_common::bits::*;
@@ -179,6 +180,11 @@ impl<OSC: Clock, OSC32: Clock> Clocks for DynamicClock<OSC, OSC32> {
     impl_lptim_clock_source!(::mcu::lptim::LPTIM2, lptim2, pclk2);   
 }
 
+impl<OSC: Clock, OSC32: Clock> SystickHz for DynamicClock<OSC, OSC32> {
+    fn systick_hz() -> Hz {
+        Self::systick()
+    }
+}
 
 
 pub mod clock_init {
@@ -227,3 +233,4 @@ pub mod clock_init {
         while RCC.cfgr().sws() != 0b11 {}
     }
 }
+

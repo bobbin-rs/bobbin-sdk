@@ -1,4 +1,6 @@
 pub use ::clock::*;
+pub use systick_ext::SystickHz;
+
 use bobbin_common::bits::*;
 use mcu::sim::SIM;
 use mcu::osc::OSC;
@@ -171,4 +173,10 @@ impl<EXTAL: Clock, EXTAL32: Clock> Clocks for DynamicClock<EXTAL, EXTAL32> {
         Self::system()
     }
 
+}
+
+impl<EXTAL: Clock, EXTAL32: Clock> SystickHz for DynamicClock<EXTAL, EXTAL32> {
+    fn systick_hz() -> Hz {
+        Self::systick()
+    }
 }

@@ -7,7 +7,9 @@ extern crate nucleo_f746zg as board;
 extern crate examples;
 
 use board::mcu::systick::SYSTICK;
+use board::mcu::systick_ext::SystickHz;
 use board::mcu::scb::SCB;
+use board::clock::*;
 
 use board::mcu::dispatch::{HandleException, Exception};
 use board::Dispatcher;
@@ -25,7 +27,7 @@ pub extern "C" fn main() -> ! {
     let p = Dispatcher::register_pendsv_handler(&p).unwrap();
     println!("{} / {} slots allocated", Dispatcher::slots_used(), Dispatcher::slots());
 
-    let reload_value = (216_000_000 / 8000) - 1;
+    let reload_value = (Clk::systick_hz() / 1000).as_u32() - 1;
     SYSTICK.set_reload_value(reload_value);
     SYSTICK.set_current_value(reload_value);
     SYSTICK.set_enabled(true);        
