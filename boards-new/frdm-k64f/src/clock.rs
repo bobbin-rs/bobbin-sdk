@@ -1,223 +1,23 @@
 pub use mcu::clock::*;
+pub use mcu::ext::clock::*;
 
 pub fn init() {
     clock_init::init();
 }
 
-pub fn tree() -> Tree {
-    TREE
+pub type Clk = DynamicClock<Extal50m, Extal32k>;
+pub type Tree = ClockTree<Clk>;
+
+pub struct Extal50m {}
+impl Clock for Extal50m {
+    fn hz() -> Hz { Hz::from_num(50_000_000) }
 }
 
-use common::bits::*;
-use mcu::sim::SIM;
-use mcu::osc::OSC;
-use mcu::mcg::MCG;
-
-
-static mut EXTAL_HZ: Hz = Hz::from_num(50_000_000);
-static mut EXTAL32_HZ: Hz = Hz::from_num(32767);
-
-tree_impl! {
-    id: TREE,
-    defn: TREE_DEFN: TreeDefn,
-    clock_impl: {
-        Extal:     ClkExtal      { extal() },
-        Extal32:   ClkExtal32    { extal32() },
-        Irc48m:    ClkIrc48m     { irc48m() },
-        Irc4m:     ClkIrc4m      { irc4m() },
-        Irc32k:    ClkIrc32k     { irc32k() },
-        Lpo:       ClkLpo        { lpo() },
-        
-
-        System:    ClkSystem     { system() },
-        Bus:       ClkBus        { bus() },
-        Flexbus:   ClkFlexbus    { flexbus() },
-        Flash:     ClkFlash      { flash() },
-        Mcgirclk:  ClkMcgirclk   { mcgirclk() },
-        Erclk32k:  ClkErclk32k   { erclk32k() },
-        Oscerclk:  ClkOscerclk   { oscerclk() },
-        Systick:   ClkSystick    { systick() },
-    }
+pub struct Extal32k {}
+impl Clock for Extal32k {
+    fn hz() -> Hz { Hz::from_num(32767) }
 }
 
-pub fn extal() -> Hz {
-    unsafe { EXTAL_HZ }
-}
-
-pub fn extal32() -> Hz {
-    unsafe { EXTAL32_HZ }
-}
-
-pub fn irc48m() -> Hz {
-    IRC48M_HZ
-}
-
-pub fn irc4m() -> Hz {
-    IRC4M_HZ
-}
-
-pub fn irc32k() -> Hz {
-    IRC32K_HZ
-}
-
-pub fn lpo() -> Hz {
-    LPO_HZ
-}
-
-pub fn core() -> Hz {
-    let outdiv1: u32 = SIM.clkdiv1().outdiv1().into();;
-    mcgoutclk() / (outdiv1 + 1)
-}
-
-pub fn ircclk() -> Hz {
-    if MCG.c2().ircs() != 0 {
-        let fcrdiv: u32 = MCG.sc().fcrdiv().into();
-        irc4m() >> fcrdiv
-    } else {
-        irc32k()
-    }
-}
-
-pub fn oscselclk() -> Hz {
-    match MCG.c7().oscsel() {
-        U2::B00 => oscclk(),
-        U2::B01 => rtc32k(),
-        U2::B10 => irc48mclk(),
-        _ => panic!("Invalid Value"),
-    }
-}
-
-pub fn mcgffclk() -> Hz {
-    if MCG.s().irefst() != 0 {
-        irc32k()
-    } else {
-        oscselclk() / (MCG.c1().frdiv() as u32)
-    }
-}        
-
-pub fn mcgoutclk() -> Hz {
-    match MCG.s().clkst() {
-        U2::B00 => mcgfllclk(),
-        U2::B01 => ircclk(),
-        U2::B10 => oscselclk(),
-        U2::B11 => mcgpllclk(),
-    }
-}        
-
-pub fn mcgfllclk() -> Hz {
-    let c4 = MCG.c4();
-    let div = MCG.c1().frdiv() as u32;
-    if div == 0 {
-        return Hz::from(0)
-    }
-    let div = if MCG.c2().range() == 0 || MCG.c7().oscsel() == 1 {
-        div
-    } else {
-        div << 5
-    };
-    let mul = match (c4.drst_drs(), c4.dmx32()) {
-        (U2::B00, U1::B0) => 640,
-        (U2::B00, U1::B1) => 732,
-        (U2::B01, U1::B0) => 1280,
-        (U2::B01, U1::B1) => 1464,
-        (U2::B10, U1::B0) => 1920,
-        (U2::B10, U1::B1) => 2197,
-        (U2::B11, U1::B0) => 2560,
-        (U2::B11, U1::B1) => 2929,
-    };        
-    (mcgffclk() / div) * mul
-}        
-
-pub fn mcgpllclk() -> Hz {        
-    if MCG.s().lock0() != 0 {
-        let prdiv0: u32 = MCG.c5().prdiv0().into();
-        let vdiv0: u32 = MCG.c6().vdiv0().into();
-        let div: u32 = prdiv0 + 1u32;
-        let mul: u32 = vdiv0 + 24u32;
-        (oscselclk() / div) * mul
-    } else {
-        Hz::from(0)
-    }
-    
-}        
-
-pub fn irc48mclk() -> Hz {
-    if SIM.sopt2().pllfllsel() == 0b11 {
-        irc48m()
-    } else if MCG.c7().oscsel() == 0b10 {
-        irc48m()
-    } else {
-        Hz::from(0)
-    }
-}
-
-pub fn oscclk() -> Hz {
-    if MCG.c2().erefs() != 0 && MCG.s().oscinit0() != 0 {
-        // check if osc is active
-        // S[OSCINIT0]
-        extal()
-    } else {
-        extal()
-    }
-}        
-
-pub fn osc32kclk() -> Hz {
-    // Only handling case when external clock is used
-    unimplemented!()
-}
-
-pub fn rtc32k() -> Hz {
-    // RTC_CR[OSCE]
-    unimplemented!()
-}
-
-pub fn rtc() -> Hz {
-    unimplemented!()
-}
-
-pub fn system() -> Hz {
-    let outdiv1: u32 = SIM.clkdiv1().outdiv1().into();
-    mcgoutclk() / (outdiv1 + 1)
-}
-
-pub fn bus() -> Hz {
-    let outdiv2: u32 = SIM.clkdiv1().outdiv2().into();
-    mcgoutclk() / (outdiv2 + 1)
-}
-
-pub fn flexbus() -> Hz {
-    let outdiv3: u32 = SIM.clkdiv1().outdiv3().into();
-    mcgoutclk() / (outdiv3 + 1)
-}    
-
-pub fn flash() -> Hz {
-    let outdiv4: u32 = SIM.clkdiv1().outdiv4().into();
-    mcgoutclk() / (outdiv4 + 1)
-}     
-
-pub fn mcgirclk() -> Hz {
-    if MCG.c1().irclken() != 0 {
-        ircclk()
-    } else {
-        Hz::from(0)
-    }
-}        
-
-pub fn oscerclk() -> Hz {
-    if OSC.cr().erclken() != 0 {
-        oscclk()
-    } else {
-        Hz::from(0)
-    }
-}
-
-pub fn erclk32k() -> Hz {
-    unimplemented!()
-}   
-
-pub fn systick() -> Hz {
-    unimplemented!()
-}
 
 pub mod clock_init {
     use mcu::sim::SIM;

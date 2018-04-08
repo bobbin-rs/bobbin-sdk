@@ -20,3 +20,4 @@ pub mod dac;
 pub mod gpio;
 pub mod port;
 pub mod adc;
+pub mod clock;

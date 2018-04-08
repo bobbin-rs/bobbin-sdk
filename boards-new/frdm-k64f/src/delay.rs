@@ -10,7 +10,7 @@ pub fn init() {
 }
 
 pub fn delay(ms: u32) {
-    let pit_clk = tree().u32_for(PIT);
+    let pit_clk = Tree::clock_for(PIT).as_u32();
     PIT
         // .set_load_value(PIT_CH, (PIT.clock(&CLK).expect("No bus clock") / 1000) * ms)
         .set_load_value(PIT_CH, (pit_clk / 1000) * ms)
