@@ -70,6 +70,18 @@ impl Config {
         self
     }
 
+    pub fn set_baud_clock(mut self, baud: u32, clock: u32) -> Self {
+        let baud_times_8 = clock * 8 / (16 * baud);
+        let baud_fp = baud_times_8 % 8;
+        let baud = baud_times_8 / 8;
+        let baud_val = (baud as u16) | (baud_fp as u16) << 13;
+        self.baud = usart::Baud(baud_val);
+        self.ctrla = self.ctrla.set_sampr(1);
+        self
+    }
+
+
+
     pub fn set_baud(mut self, value: u16) -> Self {
         self.baud = usart::Baud(value);
         self

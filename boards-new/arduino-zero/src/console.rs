@@ -1,6 +1,7 @@
 pub use mcu::bobbin_common::console::*;
 use common::periph::IntoPeriph;
 use common::configure::Configure;
+use clock::*;
 use mcu::pin::*;
 use mcu::sercom::*;
 use mcu::gclk;
@@ -8,6 +9,7 @@ use mcu::gclk;
 pub const SERCOM: Sercom5 = SERCOM5;
 pub const SERCOM_TX: Pb22 = PB22;
 pub const SERCOM_RX: Pb23 = PB23;
+pub const SERCOM_BAUD: u32 = 115200;
 
 pub fn init() {
     SERCOM.gate_enable();
@@ -30,13 +32,12 @@ pub fn init() {
     SERCOM
         .set_config(|c| c
             .set_mode_usart_int()
-            .set_baud(63018)
+            .set_baud_clock(SERCOM_BAUD, Tree::clock_for(SERCOM).as_u32())
             .set_txpo(1)
             .set_rxpo(3)
-        )
+        )        
         .set_enabled(true);
-
-    set_console(Console::new(SERCOM.into_periph()));
+    set_console(Console::new(SERCOM.into_periph()));    
 }
 
 impl ::ArduinoZero {
