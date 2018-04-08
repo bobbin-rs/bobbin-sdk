@@ -4,8 +4,13 @@
 pub use bobbin_common::enabled::*;
 pub use bobbin_common::timer::*;
 pub use bobbin_common::clock::Millis;
+use bobbin_common::hz::Hz;
 use periph::systick::*;
 use bobbin_common::bits::*;
+
+pub trait SystickHz {
+    fn systick_hz() -> Hz;
+}
 
 /// The clock source to be used by self.
 #[derive(Debug, PartialEq, Eq, Clone, Copy)]

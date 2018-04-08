@@ -168,7 +168,7 @@ impl<EXTAL: Clock, EXTAL32: Clock> Clocks for DynamicClock<EXTAL, EXTAL32> {
     }   
 
     fn systick() -> Hz {
-        unimplemented!()
+        Self::system()
     }
 
 }
