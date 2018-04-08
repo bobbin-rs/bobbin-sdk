@@ -21,3 +21,4 @@ pub mod usart;
 pub mod lpuart;
 pub mod spi;
 pub mod adc;
+pub mod clock;
