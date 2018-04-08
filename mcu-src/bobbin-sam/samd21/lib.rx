@@ -11,6 +11,63 @@
         (module (name scb))
         (module (name systick))
     )    
+
+    (clocks
+        (input (name XOSC))
+        (input (name XOSC32K) (min 32768) (max 32768))
+        (source (name OSC8M) (speed 8000000))
+        (source (name DFLL48M) (speed 48000000))
+        (source (name FDPLL96M) (speed 96000000))
+        (output (name GCLKGEN0))
+        (output (name GCLKGEN1))
+        (output (name GCLKGEN2))
+        (output (name GCLKGEN3))
+        (output (name GCLKGEN4))
+        (output (name GCLKGEN5))
+        (output (name GCLKGEN6))
+        (output (name GCLKGEN7))
+        (output (name GCLKGEN8))
+        (output (name GCLK_DFFL48M_REF)) ; 0x00
+        (output (name GCLK_DPLL)) ; 0x01
+        (output (name GCLK_DPLL_32K)) ; 0x02
+        (output (name GCLK_WDT)) ; 0x03
+        (output (name GCLK_RTC)) ; 0x04
+        (output (name GCLK_EIC)) ; 0x05
+        (output (name GCLK_USB)) ; 0x06
+        (output (name GCLK_EVSYS_CHANNEL_0)) ; 0x07
+        (output (name GCLK_EVSYS_CHANNEL_1)) ; 0x08
+        (output (name GCLK_EVSYS_CHANNEL_2)) ; 0x09
+        (output (name GCLK_EVSYS_CHANNEL_3)) ; 0x0a
+        (output (name GCLK_EVSYS_CHANNEL_4)) ; 0x0b
+        (output (name GCLK_EVSYS_CHANNEL_5)) ; 0x0c          
+        (output (name GCLK_EVSYS_CHANNEL_6)) ; 0x0d
+        (output (name GCLK_EVSYS_CHANNEL_7)) ; 0x0e
+        (output (name GCLK_EVSYS_CHANNEL_8)) ; 0x0f
+        (output (name GCLK_EVSYS_CHANNEL_9)) ; 0x10
+        (output (name GCLK_EVSYS_CHANNEL_10)) ; 0x11
+        (output (name GCLK_EVSYS_CHANNEL_11)) ; 0x12
+        (output (name GCLK_SERCOMX_SLOW)) ; 0x13
+        (output (name GCLK_SERCOM0_CORE)) ; 0x14
+        (output (name GCLK_SERCOM1_CORE)) ; 0x15
+        (output (name GCLK_SERCOM2_CORE)) ; 0x16
+        (output (name GCLK_SERCOM3_CORE)) ; 0x17
+        (output (name GCLK_SERCOM4_CORE)) ; 0x18
+        (output (name GCLK_SERCOM5_CORE)) ; 0x19
+        (output (name GCLK_TCC0_TCC1)) ; 0x1a
+        (output (name GCLK_TCC2_TC3)) ; 0x1b
+        (output (name GCLK_TC4_TC5)) ; 0x1c
+        (output (name GCLK_TC6_TC7)) ; 0x1d
+        (output (name GCLK_ADC)) ; 0x1e
+        (output (name GCLK_ADC_DIG)) ; 0x1f
+        (output (name GCLK_20)) ; 0x20
+        (output (name GCLK_AC_ANA)) ; 0x21
+        (output (name GCLK_22)) ; 0x22
+        (output (name GCLK_DAC)) ; 0x23
+        (output (name GCLK_PTC)) ; 0x24
+        (output (name GCLK_I2S_0)) ; 0x25
+        (output (name GCLK_I2S_1)) ; 0x26
+    )
+
     (peripheral (include "periph/gclk.rx"))
     (peripheral (include "periph/nvmctrl.rx"))
     (peripheral (include "periph/pm.rx"))
