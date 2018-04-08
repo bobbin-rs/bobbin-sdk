@@ -20,6 +20,7 @@ pub mod console;
 pub mod led;
 pub mod btn;
 pub mod delay;
+pub mod ext;
 
 pub use delay::delay;
 
