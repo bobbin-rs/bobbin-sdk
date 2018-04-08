@@ -2,7 +2,7 @@
 #![no_main]
 
 #[macro_use]
-extern crate nucleo_f746zg as board;
+extern crate nucleo_l432kc as board;
 
 static mut DATA: [u8; 1024] = [0u8; 1024];
 

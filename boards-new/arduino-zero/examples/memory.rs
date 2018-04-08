@@ -15,8 +15,8 @@ pub extern "C" fn main() -> ! {
     }
 
     println!("Memory Test");
-    println!("{:?}", ::board::ext::Memory {});
-    let heap = board::ext::Heap {};
+    println!("{:?}", ::board::Memory {});
+    let heap = board::Heap {};
 
     println!("{:?}", heap);
 

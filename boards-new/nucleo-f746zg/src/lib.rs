@@ -49,6 +49,9 @@ pub fn handle_exception() {
     }
 }
 
+pub use mcu::bobbin_common::memory::Memory;
+pub use mcu::bobbin_common::heap::Heap;
+
 #[derive(Debug, Default)]
 pub struct NucleoF746zg {}
 
@@ -60,3 +63,4 @@ impl common::board::Board for NucleoF746zg {
 
 pub const fn board() -> NucleoF746zg { NucleoF746zg{} }
 
+pub type Board = NucleoF746zg;

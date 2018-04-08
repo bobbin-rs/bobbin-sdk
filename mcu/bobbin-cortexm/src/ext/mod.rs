@@ -1,12 +1,7 @@
 pub use periph::*;
 
-pub mod memory;
-pub mod heap;
 pub mod systick_ext;
 pub mod nvic_ext;
-
-pub use memory::*;
-pub use heap::*;
 
 #[inline(always)]
 pub fn wfi() {

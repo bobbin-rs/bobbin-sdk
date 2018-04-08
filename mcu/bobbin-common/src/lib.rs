@@ -41,7 +41,8 @@ pub mod enabled;
 pub mod ring;
 pub mod led;
 pub mod btn;
-// pub mod heap;
+pub mod heap;
+pub mod memory;
 
 pub use periph::*;
 pub use pin::*;

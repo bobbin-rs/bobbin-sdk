@@ -44,6 +44,8 @@ pub fn handle_exception() {
     loop {}
 }
 
+pub use mcu::bobbin_common::memory::Memory;
+pub use mcu::bobbin_common::heap::Heap;
 
 #[derive(Debug, Default)]
 pub struct FrdmK64f {}
@@ -56,3 +58,4 @@ impl common::board::Board for FrdmK64f {
 
 pub const fn board() -> FrdmK64f { FrdmK64f{} }
 
+pub type Board = FrdmK64f;

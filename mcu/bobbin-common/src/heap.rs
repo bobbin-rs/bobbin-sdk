@@ -1,85 +1,251 @@
-use core::cell::UnsafeCell;
-// use core::mem;
-use core::ptr;
-use core::intrinsics;
-use alloc::allocator::{Alloc, Layout, AllocErr};
+use ::core::{mem, ptr, slice, str, fmt};
 
-pub struct Heap {
-    ptr: UnsafeCell<usize>,
-    end: UnsafeCell<usize>,
-    allocated: UnsafeCell<usize>,
+extern "C" {
+    static mut _sheap: u32;
+    static mut _eheap: u32;
+    static mut _estack: u32;
 }
+
+static mut HEAP_START: *mut u8 = unsafe { &_sheap as *const u32 as *mut u8 };
+static mut HEAP_END: *mut u8 = unsafe { &_sheap as *const u32 as *mut u8 };
+
+#[derive(Debug)]
+pub enum Error {
+    OutOfSpace,
+    InvalidAlign,
+}
+
+pub struct Heap {}
 
 impl Heap {
-    pub const fn empty() -> Self {
-        Heap {
-            ptr: UnsafeCell::new(0),
-            end: UnsafeCell::new(0),
-            allocated: UnsafeCell::new(0),
+    pub unsafe fn extend(&self, size: usize) {
+        HEAP_END = HEAP_START.offset(size as isize);
+    }
+
+    #[inline]
+    pub fn ptr(&self) -> *mut u8 {
+        unsafe { HEAP_START }
+    }
+
+    #[inline]
+    pub fn set_ptr(&self, ptr: *mut u8) {
+        unsafe { HEAP_START = ptr }
+    }
+
+    #[inline]
+    pub fn end(&self) -> *mut u8 {
+        unsafe { HEAP_END }
+    }
+
+    #[inline]
+    pub fn set_end(&self, ptr: *mut u8) {
+        unsafe { HEAP_END = ptr }
+    }
+
+
+    #[inline]
+    pub fn size(&self) -> usize {
+        self.end() as usize - self.ptr() as usize
+    }
+
+    #[inline]
+    pub fn freeze(&self) {
+        self.set_end(self.ptr())
+    }
+
+    #[inline]
+    pub fn try_advance(&self, len: usize) -> Result<*mut u8, Error> {
+        let new = unsafe { self.ptr().offset(len as isize) };
+        if new as usize <= self.end() as usize {
+        // if new.offset_to(self.end()).unwrap() >= 0 {
+            let ptr = self.ptr();
+            self.set_ptr(new);
+            Ok(ptr)
+        } else {
+            Err(Error::OutOfSpace)            
         }
     }
 
-    pub unsafe fn init(&self, buf: &'static mut [u8]) {
-        let len = buf.len();
-        let ptr = buf.as_ptr();
-        let end = ptr.offset(len as isize);
-        self.set_ptr(ptr as *const u8 as usize);
-        self.set_end(end as *const u8 as usize);
-        self.set_allocated(0);
+    #[inline]
+    pub fn advance(&self, len: usize) -> *mut u8 {
+        self.try_advance(len).expect("Out of space")
     }
 
     #[inline]
-    pub fn ptr(&self) -> usize {
-        unsafe { ptr::read_volatile(self.ptr.get()) }
+    pub fn try_align(&self, align: usize) -> Result<(), Error> {
+        Ok({
+            if align != 1 {
+                if align.count_ones() == 1 {
+                    self.try_advance(unsafe { align_offset(self.ptr() as *const (), align) } )?;
+                } else {
+                    return Err(Error::InvalidAlign)
+                }
+            }
+        })
     }
 
     #[inline]
-    pub fn set_ptr(&self, value: usize) {
-        unsafe { ptr::write_volatile(self.ptr.get(), value) }
+    pub fn align(&self, align: usize) {
+        self.try_align(align).expect("Invalid alignment")
+    }    
+
+    #[inline]
+    pub fn try_align_to<T>(&self) -> Result<(), Error> {
+        self.try_align(mem::align_of::<T>())
+    }    
+
+    #[inline]
+    pub fn align_to<T>(&self) {
+        self.align(mem::align_of::<T>())
     }
 
     #[inline]
-    pub fn end(&self) -> usize {
-        unsafe { ptr::read_volatile(self.end.get()) }
+    pub unsafe fn try_alloc<T>(&self, len: usize) -> Result<*mut T, Error> {
+        Ok({
+            self.try_align_to::<T>()?;
+            self.try_advance(mem::size_of::<T>() * len)? as *mut T
+        })
     }
 
     #[inline]
-    pub fn set_end(&self, value: usize) {
-        unsafe { ptr::write_volatile(self.end.get(), value) }
+    pub unsafe fn alloc<T>(&self, len: usize) -> *mut T {
+        self.align_to::<T>();
+        self.advance(mem::size_of::<T>() * len) as *mut T
     }
 
     #[inline]
-    pub fn allocated(&self) -> usize {
-        unsafe { ptr::read_volatile(self.allocated.get()) }
+    pub unsafe fn try_alloc_one<T>(&self) -> Result<*mut T, Error> {
+        Ok({
+            self.try_align_to::<T>()?;
+            self.try_advance(mem::size_of::<T>())? as *mut T
+        })
     }
 
     #[inline]
-    pub fn set_allocated(&self, value: usize) {
-        unsafe { ptr::write_volatile(self.allocated.get(), value) }
+    pub unsafe fn alloc_one<T>(&self) -> *mut T {
+        self.align_to::<T>();
+        self.advance(mem::size_of::<T>()) as *mut T
     }
 
-    pub fn available(&self) -> usize {
-        self.end() - self.allocated()
+    #[inline]
+    pub unsafe fn try_slice_uninitialized<T>(&self, len: usize) -> Result<&'static mut [T], Error> {        
+        Ok({
+            slice::from_raw_parts_mut(self.try_alloc(len)?, len)
+        })
+    }
+
+    #[inline]
+    pub unsafe fn slice_uninitialized<T>(&self, len: usize) -> &'static mut [T] {
+        slice::from_raw_parts_mut(self.alloc(len), len)
+    }
+
+    #[inline]
+    pub fn try_slice<T: Copy>(&self, val: T, len: usize) -> Result<&'static mut [T], Error> {
+        Ok({
+            let dst = unsafe { self.try_slice_uninitialized(len)? };
+            for i in 0..len { 
+                dst[i] = val;
+            }
+            dst
+        })
+    }    
+
+    #[inline]
+    pub fn slice<T: Copy>(&self, val: T, len: usize) -> &'static mut [T] {
+        let dst = unsafe { self.slice_uninitialized(len) };
+        for i in 0..len { 
+            dst[i] = val;
+        }
+        dst
+    }    
+
+    #[inline]
+    pub fn try_new<T>(&self, src: T) -> Result<&'static mut T, Error> {
+        Ok({
+            unsafe {
+                let dst = self.try_alloc_one::<T>()?;
+                ptr::write(dst, src);
+                &mut *dst
+            }
+        })
+    }
+
+    #[inline]
+    pub fn new<T>(&self, src: T) -> &'static mut T {
+        unsafe {
+            let dst = self.alloc_one::<T>();
+            ptr::write(dst, src);
+            &mut *dst
+        }
+    }
+
+    #[inline]
+    pub fn try_copy<T: Copy>(&self, src: &T) -> Result<&'static mut T, Error> {
+        Ok({
+            unsafe {
+                let dst = self.alloc_one::<T>();
+                *dst = *src;
+                &mut *dst
+            }
+        })
+    }
+
+    #[inline]
+    pub fn copy<T: Copy>(&self, src: &T) -> &'static mut T {
+        unsafe {
+            let dst = self.alloc_one::<T>();
+            *dst = *src;
+            &mut *dst
+        }
+    }
+
+    #[inline]
+    pub fn try_copy_slice<T>(&self, src: &[T]) -> Result<&'static mut [T], Error> {
+        Ok({
+            unsafe {
+                let len = src.len();
+                let dst: *mut T = self.alloc(len);
+                ptr::copy_nonoverlapping(src.as_ptr(), dst, len);
+                slice::from_raw_parts_mut(dst, len)
+            }
+        })
+    }
+
+    #[inline]
+    pub fn copy_slice<T>(&self, src: &[T]) -> &'static mut [T] {
+        unsafe {
+            let len = src.len();
+            let dst: *mut T = self.alloc(len);
+            ptr::copy_nonoverlapping(src.as_ptr(), dst, len);
+            slice::from_raw_parts_mut(dst, len)
+        }
+    }
+
+    #[inline]
+    pub fn try_copy_str(&self, src: &str) -> Result<&'static str, Error> {
+        Ok({
+            unsafe { str::from_utf8_unchecked(self.try_copy_slice(src.as_bytes())?) }
+        })
+    }
+
+    #[inline]
+    pub fn copy_str(&self, src: &str) -> &'static str {
+        unsafe { str::from_utf8_unchecked(self.copy_slice(src.as_bytes())) }
+    }    
+}
+
+impl fmt::Debug for Heap {
+    fn fmt(&self, out: &mut fmt::Formatter) -> fmt::Result {
+        write!(out, "Heap {{ ptr: {:p} end: {:p} size: 0x{:x} }}", self.ptr(), self.end(), self.size())?;
+        Ok(())
     }
 }
 
-unsafe impl Sync for Heap {}
-
-unsafe impl<'a> Alloc for &'a Heap {
-    unsafe fn alloc(&mut self, layout: Layout) -> Result<*mut u8, AllocErr> {
-        let ptr = self.ptr();
-        let size = layout.size();
-        let next = ptr + size;
-        if next <= self.end() {
-            self.set_ptr(next);
-            self.set_allocated(self.allocated() +size);
-            Ok(ptr as *mut u8)
-        } else {
-            intrinsics::abort()
-        }
-    }
-
-    unsafe fn dealloc(&mut self, _ptr: *mut u8, _layout: Layout) {
-        
+pub unsafe fn align_offset(ptr: *const (), align: usize) -> usize {
+    let offset = ptr as usize % align;
+    if offset == 0 {
+        0
+    } else {
+        align - offset
     }
 }

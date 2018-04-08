@@ -42,6 +42,8 @@ pub fn handle_exception() {
     loop {}
 }
 
+pub use mcu::bobbin_common::memory::Memory;
+pub use mcu::bobbin_common::heap::Heap;
 
 #[derive(Debug, Default)]
 pub struct ArduinoZero {}
@@ -54,3 +56,4 @@ impl common::board::Board for ArduinoZero {
 
 pub const fn board() -> ArduinoZero { ArduinoZero{} }
 
+pub type Board = ArduinoZero;
