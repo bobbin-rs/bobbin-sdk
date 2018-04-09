@@ -50,10 +50,14 @@ impl<'a, T: 'a> Ring<'a, T> {
     pub fn cap(&self) -> usize {
         self.cap
     }
-
     #[inline]
     pub fn len(&self) -> usize {
         self.head().wrapping_sub(self.tail())
+    }
+
+    #[inline]
+    pub fn rem(&self) -> usize {
+        self.cap() - self.len()
     }
 
     #[inline]
@@ -215,6 +219,10 @@ pub struct Writer<'a, T: 'a> {
 }
 
 impl<'a, T: 'a> Writer<'a, T> {
+    pub fn rem(&self) -> usize {
+        self.inner.rem()
+    }
+
     pub fn head_elt(&self) -> Option<&mut T> {
         self.inner.head_elt()
     }

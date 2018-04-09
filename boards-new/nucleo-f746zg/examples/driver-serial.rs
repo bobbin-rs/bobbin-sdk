@@ -36,32 +36,24 @@ pub extern "C" fn main() -> ! {
     let guard = Dispatcher::register_irq_handler(USART.irq_number_for(IRQ_USART), handler).unwrap();
     let s = SerialDriver::new(guard, tx_ring, rx_ring);
 
-    for _ in 0..100 {
+    for _ in 0..4 {
         s.write_all(b"Serial Driver Echo Test\r\n");        
     }
-    s.write_all(b"DONE\r\n");
-
-
-    // let mut s = SerialDriver::new(USART);
-    // let mut buf = [0u8; 64];
-    // for _i in 0..10 {
-    //     let _ = s.write(b"-");
-    // }
-    // let _ = s.write(b"\r\n");
-    // loop {
-    //     if let Ok(n) = s.read(&mut buf[..1]) {        
-    //         if n != 0 {
-    //             if buf[0] == 13 {
-    //                 let _ = s.write(b"\r\n");
-    //             } else {
-    //                 let _ = s.write(&buf[..n]);
-    //             }
-    //         }
-    //     }
-    // }
+    let mut buf = [0u8; 64];
     loop {
-        unsafe { asm!("nop")}
+        let n = s.read(&mut buf);
+        if n > 0 {
+            for b in &buf[..n] {
+                if *b == 13 {
+                    s.write_all(b"\r\n");
+                } else {
+                    s.write_all(&[*b]);
+                }
+            }
+        }
+        s.sleep();
     }
+    loop {}
 }
 
 pub struct SerialDriver {
@@ -102,6 +94,12 @@ impl SerialDriver {
         self.guard.start_tx();
         len
     }
+
+    pub fn read(&self, buf: &mut [u8]) -> usize {
+        let len = self.rx_ring.read(buf);
+        self.guard.start_rx();
+        len
+    }    
 }
 
 pub struct SerialHandler {
@@ -127,6 +125,18 @@ impl SerialHandler {
     pub fn tx(&self, b: u8) {
         self.usart.set_tdr(|r| r.set_tdr(b));
     }
+
+    pub fn start_rx(&self) {
+        self.usart.with_cr1(|r| r.set_rxneie(1));
+    }
+
+    pub fn stop_rx(&self) {
+        self.usart.with_cr1(|r| r.set_rxneie(0));
+    }
+
+    pub fn rx(&self) -> u8 {
+        self.usart.rdr().rdr().value() as u8
+    }    
 }
 
 impl HandleException for SerialHandler {
@@ -142,6 +152,15 @@ impl HandleException for SerialHandler {
                 usart.with_cr1(|r| r.set_txeie(0));
             }
         }
+        if isr.test_rxne() && cr1.test_rxneie() {
+            if let Some(elt) = self.rx_writer.head_elt() {
+                *elt = self.rx();
+                self.rx_writer.incr_head();
+            }
+            if self.rx_writer.rem() == 0 {
+                usart.with_cr1(|r| r.set_rxneie(0));
+            }
+        }        
         if isr.test_ore() {
             usart.with_icr(|r| r.set_orecf(1));
             // panic!("overrun");
