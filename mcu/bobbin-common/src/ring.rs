@@ -184,6 +184,10 @@ pub struct Reader<'a, T: 'a> {
 }
 
 impl<'a, T: 'a> Reader<'a, T> {
+    pub fn len(&self) -> usize {
+        self.inner.len()
+    }
+
     pub fn tail_elt(&self) -> Option<&mut T> {
         self.inner.tail_elt()
     }
