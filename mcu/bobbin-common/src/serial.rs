@@ -51,3 +51,17 @@ pub trait SerialRx<T: Copy> {
         }
     }        
 }
+
+pub trait SerialTxIrq {
+    fn tx_irq(&self) -> bool;
+    fn set_tx_irq(&self, value: bool) -> &Self;
+    fn enable_tx_irq(&self) -> &Self { self.set_tx_irq(true) }
+    fn disable_tx_irq(&self) -> &Self { self.set_tx_irq(false) }
+}
+
+pub trait SerialRxIrq {
+    fn rx_irq(&self) -> bool;
+    fn set_rx_irq(&self, value: bool) -> &Self;
+    fn enable_rx_irq(&self) -> &Self { self.set_rx_irq(true) }
+    fn disable_rx_irq(&self) -> &Self { self.set_rx_irq(false) }
+}

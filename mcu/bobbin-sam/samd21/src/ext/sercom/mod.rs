@@ -164,6 +164,39 @@ impl SerialRx<u8> for SercomPeriph {
         self.usart().data().data().value() as u8
     }
 }
+
+
+impl SerialTxIrq for SercomPeriph {
+    fn tx_irq(&self) -> bool {
+        self.usart().intenset().test_dre()
+    }
+
+    fn set_tx_irq(&self, value: bool) -> &Self {
+        if value {
+            self.usart().set_intenset(|r| r.set_dre(1));
+        } else {
+            self.usart().set_intenclr(|r| r.set_dre(1));
+        }
+        self
+    }
+}
+
+impl SerialRxIrq for SercomPeriph {
+    fn rx_irq(&self) -> bool {
+        self.usart().intenset().test_rxc()
+    }
+
+    fn set_rx_irq(&self, value: bool) -> &Self {
+        if value {
+            self.usart().set_intenset(|r| r.set_rxc(1));
+        } else {
+            self.usart().set_intenclr(|r| r.set_rxc(1));
+        }
+        self
+    }
+}
+
+
 impl Putc for SercomPeriph {
     fn console_putc(&self, c: u8) {
         while !self.can_tx() {}

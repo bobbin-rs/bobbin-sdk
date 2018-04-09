@@ -75,6 +75,27 @@ impl Putc for UartPeriph {
     }
 }
 
+impl SerialTxIrq for UartPeriph {
+    fn tx_irq(&self) -> bool {
+        self.c2().test_tie()
+    }
+
+    fn set_tx_irq(&self, value: bool) -> &Self {
+        self.with_c2(|r| r.set_tie(value))
+    }
+}
+
+impl SerialRxIrq for UartPeriph {
+    fn rx_irq(&self) -> bool {
+        self.c2().test_rie()
+    }
+
+    fn set_rx_irq(&self, value: bool) -> &Self {
+        self.with_c2(|r| r.set_rie(value))
+    }
+}
+
+
 
 // pub struct UartDriver<'a> {
 //     uart: UartPeriph,

@@ -2,10 +2,10 @@
 #![no_main]
 #![feature(asm)]
 
-extern crate arduino_zero as board;
+extern crate frdm_k64f as board;
 extern crate examples;
 
-use board::console::SERCOM;
+use board::console::UART;
 
 use board::mcu::dispatch::{HandleException, Exception, Guard};
 use board::Dispatcher;
@@ -14,7 +14,7 @@ use board::common::ring::*;
 
 use board::common::irq::*;
 use board::mcu::irq::*;
-use board::mcu::sercom::*;
+use board::mcu::uart::*;
 
 // use core::cell::UnsafeCell;
 
@@ -23,7 +23,7 @@ pub extern "C" fn main() -> ! {
     board::init();
 
     unsafe { Heap::extend(1024) };
-    let mut s = SerialDriver::new();
+    let mut s = SerialDriver::new(UART);
 
     s.write_all(b"Serial Driver Echo Test\r\n");        
 
@@ -64,11 +64,11 @@ pub struct SerialDriver {
 }
 
 impl SerialDriver {
-    pub fn new() -> Self {
-        Self::new_with_config(Config::default())
+    pub fn new<U: Into<UartPeriph> + Irq<IrqUart>>(uart: U) -> Self {
+        Self::new_with_config(uart, Config::default())
     }
 
-    pub fn new_with_config(cfg: Config) -> Self {
+    pub fn new_with_config<U: Into<UartPeriph> + Irq<IrqUart>>(uart: U, cfg: Config) -> Self {
         let tx_buf = Heap::slice(0u8, cfg.tx_len);
         let tx_ring = Heap::new(Ring::new(tx_buf));
         let tx_reader = Heap::new(tx_ring.reader());
@@ -76,9 +76,11 @@ impl SerialDriver {
         let rx_buf = Heap::slice(0u8, cfg.rx_len);
         let rx_ring = Heap::new(Ring::new(rx_buf));
         let rx_writer = Heap::new(rx_ring.writer());
+
+        let irq_number = uart.irq_number_for(IRQ_UART);
+        let handler = Heap::new(SerialHandler::new(uart, tx_reader, rx_writer));
+        let guard = Dispatcher::register_irq_handler(irq_number, handler).unwrap();
         
-        let handler = Heap::new(SerialHandler::new(SERCOM, tx_reader, rx_writer));
-        let guard = Dispatcher::register_irq_handler(SERCOM.irq_number_for(IRQ_SERCOM), handler).unwrap();        
         Self { guard, tx_ring, rx_ring }
     }
 
@@ -106,74 +108,64 @@ impl SerialDriver {
 
     pub fn write(&mut self, buf: &[u8]) -> usize {
         let len = self.tx_ring.write(buf);
-        self.guard.tx_start();
+        if self.tx_ring.len() > 0 {
+            self.guard.tx_start();
+        }
         len
     }
 
     pub fn read(&mut self, buf: &mut [u8]) -> usize {
         let len = self.rx_ring.read(buf);
-        if len > 0 {
+        if self.rx_ring.rem() > 0 {
+            self.guard.rx_start();
         }
-        self.guard.rx_start();
         len
     }    
 }
 
 pub struct SerialHandler {
-    sercom: SercomPeriph,
+    uart: UartPeriph,
     reader: &'static Reader<'static, u8>,
     writer: &'static Writer<'static, u8>,
 }
 
 impl SerialHandler {
-    pub fn new<U: Into<SercomPeriph>>(sercom: U, reader: &'static Reader<'static, u8>, writer: &'static Writer<'static, u8>) -> Self {
-        let sercom = sercom.into();
-        Self { sercom, reader, writer }
+    pub fn new<U: Into<UartPeriph>>(uart: U, reader: &'static Reader<'static, u8>, writer: &'static Writer<'static, u8>) -> Self 
+    {
+        let uart = uart.into();
+        Self { uart, reader, writer }
     }
 
     pub fn tx_start(&self) {
-        self.sercom.usart().set_intenset(|r| r.set_dre(1));
+        self.uart.enable_tx_irq();
     }
 
     pub fn tx_stop(&self) {
-        self.sercom.usart().set_intenclr(|r| r.set_dre(1));
-    }
-    pub fn tx(&self, c: u8) {
-        self.sercom.usart().set_data(|r| r.set_data(c));
+        self.uart.disable_tx_irq();
     }
 
     pub fn rx_start(&self) {
-        self.sercom.usart().set_intenset(|r| r.set_rxc(1));
+        self.uart.enable_rx_irq();
     }
 
     pub fn rx_stop(&self) {
-        self.sercom.usart().set_intenclr(|r| r.set_rxc(1));
+        self.uart.disable_rx_irq();
     }
-
-    pub fn rx(&self) -> u8 {
-        self.sercom.usart().data().data().value() as u8
-    }    
 }
 
 impl HandleException for SerialHandler {
     unsafe fn handle_exception(&self, _: Exception) {
-        let usart = self.sercom.usart();
-        let intflag = usart.intflag() ;
-        // let intmask = usart.intenset();
-        if intflag.test_dre() {
+        if self.uart.can_tx() {
             if let Some(b) = self.reader.get() {
-                self.tx(b);
-            } 
-            if self.reader.len() == 0 {
+                self.uart.tx(b);
+            } else {
                 self.tx_stop();
             }
         }
-        if intflag.test_rxc() {
-            if let Some(elt) = self.writer.head_elt() {                
-                *elt = self.rx();
-                self.writer.incr_head();
-            }
-            if self.writer.rem() == 0 {
+        if self.uart.can_rx() {
+            if self.writer.rem() > 0 {
+                self.writer.put(self.uart.rx());
+            } else {
                 self.rx_stop();
             }
         }        
