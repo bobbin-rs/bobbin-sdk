@@ -6,23 +6,19 @@ extern crate nucleo_f746zg as board;
 extern crate examples;
 
 use board::console::USART;
-use board::ext::{Dispatcher, ExceptionHandler, HandleException, Exception};
+
+use board::mcu::dispatch::{HandleException, Exception};
+use board::Dispatcher;
+
 use board::common::irq::*;
 use board::mcu::irq::*;
 use board::mcu::usart::*;
 
 use core::cell::UnsafeCell;
-// use board::mcu::usart::*;
-
-static mut HANDLER_SLOTS: [Option<ExceptionHandler>; 2] = [None; 2];
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
     board::init();
-
-    unsafe {
-        Dispatcher::init(&mut HANDLER_SLOTS)
-    }
 
     let mut s = SerialDriver::new(USART);
     let mut buf = [0u8; 64];
