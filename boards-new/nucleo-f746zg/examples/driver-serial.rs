@@ -23,22 +23,9 @@ pub extern "C" fn main() -> ! {
     board::init();
 
     unsafe { Heap::extend(1024) };
+    let mut s = SerialDriver::new();
 
-    let tx_buf = Heap::slice(0u8, 64);
-    let tx_ring = Heap::new(Ring::new(tx_buf));
-    let tx_reader = Heap::new(tx_ring.reader());
-
-    let rx_buf = Heap::slice(0u8, 64);
-    let rx_ring = Heap::new(Ring::new(rx_buf));
-    let rx_writer = Heap::new(rx_ring.writer());
-    
-    let handler = Heap::new(SerialHandler::new(USART, tx_reader, rx_writer));
-    let guard = Dispatcher::register_irq_handler(USART.irq_number_for(IRQ_USART), handler).unwrap();
-    let s = SerialDriver::new(guard, tx_ring, rx_ring);
-
-    for _ in 0..4 {
-        s.write_all(b"Serial Driver Echo Test\r\n");        
-    }
+    s.write_all(b"Serial Driver Echo Test\r\n");        
     let mut buf = [0u8; 64];
     loop {
         let n = s.read(&mut buf);
@@ -53,7 +40,20 @@ pub extern "C" fn main() -> ! {
         }
         s.sleep();
     }
-    loop {}
+}
+
+pub struct Config {
+    pub tx_len: usize,
+    pub rx_len: usize,
+}
+
+impl Default for Config {
+    fn default() -> Config {
+        Config {
+            tx_len: 64,
+            rx_len: 64,
+        }
+    }
 }
 
 pub struct SerialDriver {
@@ -63,7 +63,21 @@ pub struct SerialDriver {
 }
 
 impl SerialDriver {
-    pub fn new(guard: Guard<'static, SerialHandler>, tx_ring: &'static Ring<'static, u8>, rx_ring: &'static Ring<'static, u8>) -> Self {
+    pub fn new() -> Self {
+        Self::new_with_config(Config::default())
+    }
+
+    pub fn new_with_config(cfg: Config) -> Self {
+        let tx_buf = Heap::slice(0u8, cfg.tx_len);
+        let tx_ring = Heap::new(Ring::new(tx_buf));
+        let tx_reader = Heap::new(tx_ring.reader());
+
+        let rx_buf = Heap::slice(0u8, cfg.rx_len);
+        let rx_ring = Heap::new(Ring::new(rx_buf));
+        let rx_writer = Heap::new(rx_ring.writer());
+        
+        let handler = Heap::new(SerialHandler::new(USART, tx_reader, rx_writer));
+        let guard = Dispatcher::register_irq_handler(USART.irq_number_for(IRQ_USART), handler).unwrap();        
         Self { guard, tx_ring, rx_ring }
     }
 
@@ -76,7 +90,7 @@ impl SerialDriver {
         ")}
     }    
 
-    pub fn write_all(&self, buf: &[u8]) -> usize {        
+    pub fn write_all(&mut self, buf: &[u8]) -> usize {        
         let mut n = 0;
         while n < buf.len() {            
             let sent = self.write(&buf[n..]);
@@ -89,13 +103,13 @@ impl SerialDriver {
         n
     }
 
-    pub fn write(&self, buf: &[u8]) -> usize {
+    pub fn write(&mut self, buf: &[u8]) -> usize {
         let len = self.tx_ring.write(buf);
         self.guard.tx_start();
         len
     }
 
-    pub fn read(&self, buf: &mut [u8]) -> usize {
+    pub fn read(&mut self, buf: &mut [u8]) -> usize {
         let len = self.rx_ring.read(buf);
         self.guard.rx_start();
         len
