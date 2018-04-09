@@ -4,16 +4,16 @@ pub use bobbin_common::spi::*;
 pub use periph::spi_v2::*;
 
 
-use bobbin_common::ring::Ring;
+// use bobbin_common::ring::Ring;
 // use bobbin_common::{Irq, Poll};
-use bobbin_common::digital::DigitalOutput;
-use bobbin_cortexm::wfi;
+// use bobbin_common::digital::DigitalOutput;
+// use bobbin_cortexm::wfi;
 // use bobbin_cortexm::hal::nvic;
 // use bobbin_cortexm::hal::scb::*;
-use periph::gpio::GpioPin;
+// use periph::gpio::GpioPin;
 
-use core::cell::Cell;
-use core::marker::PhantomData;
+// use core::cell::Cell;
+// use core::marker::PhantomData;
 
 use bobbin_common::bits::*;
 
@@ -206,182 +206,182 @@ impl Default for SpiAction {
     }
 }
 
-pub struct SpiDriver<'a> {
-    spi: SpiPeriph,
-    pins: &'a [GpioPin],
-    repeat: Cell<u8>,
-    action: Cell<Option<SpiAction>>,
-    tx: Ring<'a, SpiAction>,
-    rx: Ring<'a, u8>,
-    _phantom: PhantomData<&'a mut [u8]>,
-}
+// pub struct SpiDriver<'a> {
+//     spi: SpiPeriph,
+//     pins: &'a [GpioPin],
+//     repeat: Cell<u8>,
+//     action: Cell<Option<SpiAction>>,
+//     tx: Ring<'a, SpiAction>,
+//     rx: Ring<'a, u8>,
+//     _phantom: PhantomData<&'a mut [u8]>,
+// }
 
-unsafe impl<'a> Sync for SpiDriver<'a> {}
-unsafe impl<'a> Send for SpiDriver<'a> {}
+// unsafe impl<'a> Sync for SpiDriver<'a> {}
+// unsafe impl<'a> Send for SpiDriver<'a> {}
 
-impl<'a> SpiDriver<'a> {
-    pub fn new<P: Into<SpiPeriph>>(spi: P, pins: &'a [GpioPin], tx_buf: &'a mut [SpiAction], rx_buf: &'a mut [u8]) -> Self {
-        SpiDriver { 
-            spi: spi.into(),
-            pins: pins,
-            repeat: Cell::new(0),
-            action: Cell::new(None),
-            tx: Ring::new(tx_buf),
-            rx: Ring::new(rx_buf),
-            _phantom: PhantomData,
-        }
-    }
+// impl<'a> SpiDriver<'a> {
+//     pub fn new<P: Into<SpiPeriph>>(spi: P, pins: &'a [GpioPin], tx_buf: &'a mut [SpiAction], rx_buf: &'a mut [u8]) -> Self {
+//         SpiDriver { 
+//             spi: spi.into(),
+//             pins: pins,
+//             repeat: Cell::new(0),
+//             action: Cell::new(None),
+//             tx: Ring::new(tx_buf),
+//             rx: Ring::new(rx_buf),
+//             _phantom: PhantomData,
+//         }
+//     }
 
-    // pub fn enable_irq<I: Irq>(&self, irq: &I) {        
-    //     SCB.set_irq_handler(irq.irq_num() as usize, Some(irq.wrap(self)));
-    //     nvic::set_enabled(irq.irq_num() as usize, true);
-    // }
+//     // pub fn enable_irq<I: Irq>(&self, irq: &I) {        
+//     //     SCB.set_irq_handler(irq.irq_num() as usize, Some(irq.wrap(self)));
+//     //     nvic::set_enabled(irq.irq_num() as usize, true);
+//     // }
 
-    pub fn enqueue(&self, action: SpiAction) {        
-        self.tx.enqueue(action);
-        self.next();
-    }
+//     pub fn enqueue(&self, action: SpiAction) {        
+//         self.tx.enqueue(action);
+//         self.next();
+//     }
 
-    pub fn tx_len(&self) -> usize {
-        self.tx.len()
-    }
+//     pub fn tx_len(&self) -> usize {
+//         self.tx.len()
+//     }
 
-    pub fn rx_len(&self) -> usize {
-        self.rx.len()
-    }
+//     pub fn rx_len(&self) -> usize {
+//         self.rx.len()
+//     }
 
-    pub fn read(&self, buf: &mut [u8]) {
-        while self.rx.len() < buf.len() {
-            wfi()
-        }
-        self.rx.read(buf);
-    }
+//     pub fn read(&self, buf: &mut [u8]) {
+//         while self.rx.len() < buf.len() {
+//             wfi()
+//         }
+//         self.rx.read(buf);
+//     }
 
-    pub fn read_byte(&self) -> u8 {
-        while self.rx.len() == 0 {
-            wfi()
-        }
-        self.rx.dequeue().unwrap()
-    }
+//     pub fn read_byte(&self) -> u8 {
+//         while self.rx.len() == 0 {
+//             wfi()
+//         }
+//         self.rx.dequeue().unwrap()
+//     }
 
-    pub fn action(&self) -> Option<SpiAction> {
-        self.action.get()
-    }
+//     pub fn action(&self) -> Option<SpiAction> {
+//         self.action.get()
+//     }
 
-    pub fn next(&self) {
-        if self.action().is_none() {
-            loop {
-                if let Some(action) = self.tx.dequeue() {
-                    match action {
-                        SpiAction::Start(pin) => {
-                            self.pins[pin as usize].set_output(false);
-                        },
-                        SpiAction::Write(b) | SpiAction::Transfer(b) => { 
-                            self.action.set(Some(action));
-                            self.spi.tx(b);
-                            self.transfer_enable();
-                            break;
-                        },
-                        SpiAction::Repeat(n) => {
-                            self.repeat.set(n);
-                        }
-                        SpiAction::Stop(pin) => {
-                            self.pins[pin as usize].set_output(true);
-                        },
-                        SpiAction::Idle => {}
-                    }
-                } else {
-                    self.action.set(None);
-                    self.transfer_disable();
-                    break;
-                }
-            }
-        }
-    }
+//     pub fn next(&self) {
+//         if self.action().is_none() {
+//             loop {
+//                 if let Some(action) = self.tx.dequeue() {
+//                     match action {
+//                         SpiAction::Start(pin) => {
+//                             self.pins[pin as usize].set_output(false);
+//                         },
+//                         SpiAction::Write(b) | SpiAction::Transfer(b) => { 
+//                             self.action.set(Some(action));
+//                             self.spi.tx(b);
+//                             self.transfer_enable();
+//                             break;
+//                         },
+//                         SpiAction::Repeat(n) => {
+//                             self.repeat.set(n);
+//                         }
+//                         SpiAction::Stop(pin) => {
+//                             self.pins[pin as usize].set_output(true);
+//                         },
+//                         SpiAction::Idle => {}
+//                     }
+//                 } else {
+//                     self.action.set(None);
+//                     self.transfer_disable();
+//                     break;
+//                 }
+//             }
+//         }
+//     }
 
-    pub fn reg_read(&self, pin: u8, reg: u8) -> u8 {
-        assert!(self.rx.len() == 0);
+//     pub fn reg_read(&self, pin: u8, reg: u8) -> u8 {
+//         assert!(self.rx.len() == 0);
         
-        self.enqueue(SpiAction::Start(pin));
-        self.enqueue(SpiAction::Write(reg));
-        self.enqueue(SpiAction::Transfer(0x55));        
-        self.enqueue(SpiAction::Stop(pin));
-        while self.rx.len() == 0 {
-            wfi()
-        }
-        self.rx.dequeue().unwrap()
-    }
+//         self.enqueue(SpiAction::Start(pin));
+//         self.enqueue(SpiAction::Write(reg));
+//         self.enqueue(SpiAction::Transfer(0x55));        
+//         self.enqueue(SpiAction::Stop(pin));
+//         while self.rx.len() == 0 {
+//             wfi()
+//         }
+//         self.rx.dequeue().unwrap()
+//     }
 
-    pub fn reg_write(&self, pin: u8, reg: u8, value: u8) {        
-        self.enqueue(SpiAction::Start(pin));
-        self.enqueue(SpiAction::Write(reg));
-        self.enqueue(SpiAction::Write(value));
-        self.enqueue(SpiAction::Stop(pin));
-        while self.action().is_some() {
-            wfi()
-        }
-    }
+//     pub fn reg_write(&self, pin: u8, reg: u8, value: u8) {        
+//         self.enqueue(SpiAction::Start(pin));
+//         self.enqueue(SpiAction::Write(reg));
+//         self.enqueue(SpiAction::Write(value));
+//         self.enqueue(SpiAction::Stop(pin));
+//         while self.action().is_some() {
+//             wfi()
+//         }
+//     }
 
-    pub fn transfer_start(&self, pin: u8) {
-        self.pins[pin as usize].set_output(false);
-    }
+//     pub fn transfer_start(&self, pin: u8) {
+//         self.pins[pin as usize].set_output(false);
+//     }
 
-    pub fn send_blocking(&self, tx_buf: &[u8]) {
-        for b in tx_buf.iter() {
-            while !self.spi.can_tx() {}
-            self.spi.tx(*b);
-            while !self.spi.can_rx() {}
-            let _: u8 = self.spi.rx();
-        }
-    }
+//     pub fn send_blocking(&self, tx_buf: &[u8]) {
+//         for b in tx_buf.iter() {
+//             while !self.spi.can_tx() {}
+//             self.spi.tx(*b);
+//             while !self.spi.can_rx() {}
+//             let _: u8 = self.spi.rx();
+//         }
+//     }
 
-    pub fn recv_blocking(&self, rx_buf: &mut [u8]) {
-        for b in rx_buf.iter_mut() {
-            while !self.spi.can_tx() {}
-            self.spi.tx(0xffu8);
-            while !self.spi.can_rx() {}
-            *b = self.spi.rx();            
-        }
-    }
+//     pub fn recv_blocking(&self, rx_buf: &mut [u8]) {
+//         for b in rx_buf.iter_mut() {
+//             while !self.spi.can_tx() {}
+//             self.spi.tx(0xffu8);
+//             while !self.spi.can_rx() {}
+//             *b = self.spi.rx();            
+//         }
+//     }
 
-    pub fn transfer_blocking(&self, pin: u8, tx_buf: &[u8], rx_buf: &mut [u8]) {
-        self.transfer_start(pin);
-        if tx_buf.len() > 0 {
-            self.send_blocking(tx_buf);
-        }
-        if rx_buf.len() > 0 {
-            self.recv_blocking(rx_buf);
-        }
-        self.transfer_end(pin);
-    }
+//     pub fn transfer_blocking(&self, pin: u8, tx_buf: &[u8], rx_buf: &mut [u8]) {
+//         self.transfer_start(pin);
+//         if tx_buf.len() > 0 {
+//             self.send_blocking(tx_buf);
+//         }
+//         if rx_buf.len() > 0 {
+//             self.recv_blocking(rx_buf);
+//         }
+//         self.transfer_end(pin);
+//     }
 
-    pub fn transfer_end(&self, pin: u8) {
-        self.pins[pin as usize].set_output(true);
-    }
+//     pub fn transfer_end(&self, pin: u8) {
+//         self.pins[pin as usize].set_output(true);
+//     }
 
 
-    pub fn transfer(&self, pin: u8, tx_buf: &[u8], rx_buf: &mut [u8]) {
-        self.enqueue(SpiAction::Start(pin));        
-        for b in tx_buf.iter() {
-            self.enqueue(SpiAction::Write(*b));
-        }
-        if rx_buf.len() > 0 {
-            self.enqueue(SpiAction::Repeat((rx_buf.len() - 1) as u8));
-        }
-        self.enqueue(SpiAction::Transfer(0x55));
-        self.enqueue(SpiAction::Stop(pin));
-        self.read(rx_buf);
-    }
+//     pub fn transfer(&self, pin: u8, tx_buf: &[u8], rx_buf: &mut [u8]) {
+//         self.enqueue(SpiAction::Start(pin));        
+//         for b in tx_buf.iter() {
+//             self.enqueue(SpiAction::Write(*b));
+//         }
+//         if rx_buf.len() > 0 {
+//             self.enqueue(SpiAction::Repeat((rx_buf.len() - 1) as u8));
+//         }
+//         self.enqueue(SpiAction::Transfer(0x55));
+//         self.enqueue(SpiAction::Stop(pin));
+//         self.read(rx_buf);
+//     }
 
-    pub fn transfer_enable(&self) {        
-        self.spi.with_cr2(|r| r.set_rxneie(true));
-        self.spi.set_enabled(true);
-    }
+//     pub fn transfer_enable(&self) {        
+//         self.spi.with_cr2(|r| r.set_rxneie(true));
+//         self.spi.set_enabled(true);
+//     }
     
-    pub fn transfer_disable(&self) {        
-        self.spi.with_cr2(|r| r.set_rxneie(false));
-    }
-}
+//     pub fn transfer_disable(&self) {        
+//         self.spi.with_cr2(|r| r.set_rxneie(false));
+//     }
+// }
 
 // impl<'a> Poll for SpiDriver<'a> {
 //     fn poll(&self) {       

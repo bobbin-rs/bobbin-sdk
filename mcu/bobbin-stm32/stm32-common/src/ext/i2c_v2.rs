@@ -6,13 +6,13 @@ pub use periph::i2c_v2::*;
 use bobbin_common::bits::*;
 
 // use bobbin_common::{Irq, Poll};
-use bobbin_common::ring::Ring;
-use bobbin_cortexm::wfi;
+// use bobbin_common::ring::Ring;
+// use bobbin_cortexm::wfi;
 // use bobbin_cortexm::hal::nvic;
 // use bobbin_cortexm::hal::scb::*;
 
-use core::cell::Cell;
-use core::marker::PhantomData;
+// use core::cell::Cell;
+// use core::marker::PhantomData;
 
 
 #[derive(Debug, Default)]
@@ -287,126 +287,126 @@ pub enum I2cAction {
     Stop,
 }
 
-pub struct I2cDriver<'a> {
-    i2c: I2cPeriph,
-    action: Cell<Option<I2cAction>>,
-    tx: Ring<'a, I2cAction>,
-    rx: Ring<'a, u8>,
-    _phantom: PhantomData<&'a mut [u8]>,
-}
+// pub struct I2cDriver<'a> {
+//     i2c: I2cPeriph,
+//     action: Cell<Option<I2cAction>>,
+//     tx: Ring<'a, I2cAction>,
+//     rx: Ring<'a, u8>,
+//     _phantom: PhantomData<&'a mut [u8]>,
+// }
 
-unsafe impl<'a> Sync for I2cDriver<'a> {}
-unsafe impl<'a> Send for I2cDriver<'a> {}
+// unsafe impl<'a> Sync for I2cDriver<'a> {}
+// unsafe impl<'a> Send for I2cDriver<'a> {}
 
-impl<'a> I2cDriver<'a> {
-    pub fn new<I: Into<I2cPeriph>>(i2c: I, tx_buf: &'a mut [I2cAction], rx_buf: &'a mut [u8]) -> Self {
-        I2cDriver { 
-            i2c: i2c.into(),
-            action: Cell::new(None),
-            tx: Ring::new(tx_buf),
-            rx: Ring::new(rx_buf),
-            _phantom: PhantomData,
-        }
-    }
-    // pub fn enable_irq<I: Irq>(&self, irq: &I) {
-    //     SCB.set_irq_handler(irq.irq_num() as usize, Some(irq.wrap(self)));
-    //     nvic::set_enabled(irq.irq_num() as usize, true);
-    // }
+// impl<'a> I2cDriver<'a> {
+//     pub fn new<I: Into<I2cPeriph>>(i2c: I, tx_buf: &'a mut [I2cAction], rx_buf: &'a mut [u8]) -> Self {
+//         I2cDriver { 
+//             i2c: i2c.into(),
+//             action: Cell::new(None),
+//             tx: Ring::new(tx_buf),
+//             rx: Ring::new(rx_buf),
+//             _phantom: PhantomData,
+//         }
+//     }
+//     // pub fn enable_irq<I: Irq>(&self, irq: &I) {
+//     //     SCB.set_irq_handler(irq.irq_num() as usize, Some(irq.wrap(self)));
+//     //     nvic::set_enabled(irq.irq_num() as usize, true);
+//     // }
 
-    pub fn action(&self) -> Option<I2cAction> {
-        self.action.get()
-    }
+//     pub fn action(&self) -> Option<I2cAction> {
+//         self.action.get()
+//     }
 
-    pub fn read_reg(&self, addr: U7, reg: u8) -> u8 {
-        let mut buf = [0u8];
-        self.transfer(addr, &[reg], &mut buf);
-        buf[0]
-    }
+//     pub fn read_reg(&self, addr: U7, reg: u8) -> u8 {
+//         let mut buf = [0u8];
+//         self.transfer(addr, &[reg], &mut buf);
+//         buf[0]
+//     }
 
-    pub fn write_reg(&self, addr: U7, reg: u8, value: u8) {
-        let mut buf = [];
-        self.transfer(addr, &[reg, value], &mut buf);
-    }
+//     pub fn write_reg(&self, addr: U7, reg: u8, value: u8) {
+//         let mut buf = [];
+//         self.transfer(addr, &[reg, value], &mut buf);
+//     }
 
 
-    pub fn transfer(&self, addr: U7, tx_buf: &[u8], rx_buf: &mut [u8]) {
-        // println!("transfer: addr={:?} tx_buf={:?} rx_buf={:?}", addr, tx_buf, rx_buf);
-        if tx_buf.len() > 0 {
-            self.tx.enqueue(I2cAction::Start(addr.value()));
-            self.tx.enqueue(I2cAction::WriteBytes(tx_buf.len() as u8));
-            for b in tx_buf.iter() {
-                self.tx.enqueue(I2cAction::WriteByte(*b));
-            }
-            if rx_buf.len() == 0 {
-                self.tx.enqueue(I2cAction::Stop);
-            }
-        }
-        if rx_buf.len() > 0 {
-            if tx_buf.len() == 0 {
-                self.tx.enqueue(I2cAction::Start(addr.value()));
-            } else {
-                self.tx.enqueue(I2cAction::Restart(addr.value()));
-            }
-            self.tx.enqueue(I2cAction::ReadBytes(rx_buf.len() as u8));
-            self.tx.enqueue(I2cAction::Stop);
-        }
-        self.next();
-        loop {
-            wfi();
-            if self.rx.len() >= rx_buf.len() {
-                self.rx.read(rx_buf);
-                return
-            }
-        }
-    }
+//     pub fn transfer(&self, addr: U7, tx_buf: &[u8], rx_buf: &mut [u8]) {
+//         // println!("transfer: addr={:?} tx_buf={:?} rx_buf={:?}", addr, tx_buf, rx_buf);
+//         if tx_buf.len() > 0 {
+//             self.tx.enqueue(I2cAction::Start(addr.value()));
+//             self.tx.enqueue(I2cAction::WriteBytes(tx_buf.len() as u8));
+//             for b in tx_buf.iter() {
+//                 self.tx.enqueue(I2cAction::WriteByte(*b));
+//             }
+//             if rx_buf.len() == 0 {
+//                 self.tx.enqueue(I2cAction::Stop);
+//             }
+//         }
+//         if rx_buf.len() > 0 {
+//             if tx_buf.len() == 0 {
+//                 self.tx.enqueue(I2cAction::Start(addr.value()));
+//             } else {
+//                 self.tx.enqueue(I2cAction::Restart(addr.value()));
+//             }
+//             self.tx.enqueue(I2cAction::ReadBytes(rx_buf.len() as u8));
+//             self.tx.enqueue(I2cAction::Stop);
+//         }
+//         self.next();
+//         loop {
+//             wfi();
+//             if self.rx.len() >= rx_buf.len() {
+//                 self.rx.read(rx_buf);
+//                 return
+//             }
+//         }
+//     }
     
 
-    pub fn next(&self) {
-        loop {
-            // If currently processing an action, return without any changes
-            if self.action().is_some() { return }        
+//     pub fn next(&self) {
+//         loop {
+//             // If currently processing an action, return without any changes
+//             if self.action().is_some() { return }        
 
-            // Get the next action off of the queue
-            if let Some(action) = self.tx.dequeue() {
-                // println!("next: {:?}", action);                
-                match action {
-                    I2cAction::Idle => {},
-                    I2cAction::Start(addr) => {
-                        self.i2c.with_cr1(|r| r.set_pe(1));
-                        self.i2c.with_cr2(|r| r.set_sadd(addr << 1));
-                    },
-                    I2cAction::Restart(addr) => {
-                        self.i2c.with_cr2(|r| r.set_sadd(addr << 1));
-                    },
-                    I2cAction::WriteBytes(n) => {
-                        self.i2c.with_cr2(|r| r.set_nbytes(n).set_rd_wrn(0));
-                        self.i2c.with_cr2(|r| r.set_start(1));                        
-                    },
-                    I2cAction::WriteByte(_) => {
-                        self.action.set(Some(action));
-                        self.i2c.with_cr1(|r| r.set_txie(1));
-                    },
-                    I2cAction::ReadBytes(n) => {
-                        self.i2c.with_cr2(|r| r.set_nbytes(n).set_rd_wrn(1));
-                        self.i2c.with_cr2(|r| r.set_start(1));
-                        self.i2c.with_cr1(|r| r.set_rxie(1));
-                        self.action.set(Some(I2cAction::ReadByte(n - 1)));
-                    },
-                    I2cAction::ReadByte(_) => {
-                        panic!("Unexpected ReadByte in Tx Queue")
-                    },
-                    I2cAction::Stop => {
-                        self.i2c.with_cr1(|r| r.set_tcie(1));                        
-                        self.action.set(Some(action));
-                    },
-                }                
-            } else {                
-                self.i2c.with_cr1(|r| r.set_txie(0).set_rxie(0).set_tcie(0).set_stopie(0).set_pe(0));
-                return
-            }
-        }
-    }
-}
+//             // Get the next action off of the queue
+//             if let Some(action) = self.tx.dequeue() {
+//                 // println!("next: {:?}", action);                
+//                 match action {
+//                     I2cAction::Idle => {},
+//                     I2cAction::Start(addr) => {
+//                         self.i2c.with_cr1(|r| r.set_pe(1));
+//                         self.i2c.with_cr2(|r| r.set_sadd(addr << 1));
+//                     },
+//                     I2cAction::Restart(addr) => {
+//                         self.i2c.with_cr2(|r| r.set_sadd(addr << 1));
+//                     },
+//                     I2cAction::WriteBytes(n) => {
+//                         self.i2c.with_cr2(|r| r.set_nbytes(n).set_rd_wrn(0));
+//                         self.i2c.with_cr2(|r| r.set_start(1));                        
+//                     },
+//                     I2cAction::WriteByte(_) => {
+//                         self.action.set(Some(action));
+//                         self.i2c.with_cr1(|r| r.set_txie(1));
+//                     },
+//                     I2cAction::ReadBytes(n) => {
+//                         self.i2c.with_cr2(|r| r.set_nbytes(n).set_rd_wrn(1));
+//                         self.i2c.with_cr2(|r| r.set_start(1));
+//                         self.i2c.with_cr1(|r| r.set_rxie(1));
+//                         self.action.set(Some(I2cAction::ReadByte(n - 1)));
+//                     },
+//                     I2cAction::ReadByte(_) => {
+//                         panic!("Unexpected ReadByte in Tx Queue")
+//                     },
+//                     I2cAction::Stop => {
+//                         self.i2c.with_cr1(|r| r.set_tcie(1));                        
+//                         self.action.set(Some(action));
+//                     },
+//                 }                
+//             } else {                
+//                 self.i2c.with_cr1(|r| r.set_txie(0).set_rxie(0).set_tcie(0).set_stopie(0).set_pe(0));
+//                 return
+//             }
+//         }
+//     }
+// }
 
 // impl<'a> Poll for I2cDriver<'a> {
 //     fn poll(&self) {       
