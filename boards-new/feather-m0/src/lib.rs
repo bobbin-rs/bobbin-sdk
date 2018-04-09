@@ -32,22 +32,29 @@ pub fn init() {
     delay::init();
 }
 
-#[cfg(target_os="none")]
-default_handler!(handle_exception);
+pub type Memory = mcu::bobbin_common::memory::Memory;
+pub type Heap = mcu::bobbin_common::heap::Heap;
+pub type Dispatcher = mcu::dispatch::Dispatcher<mcu::dispatch::ExcHandlers8>;
 
 pub fn handle_exception() {
-    console::write_str("EXCEPTION\n");
-    unsafe { asm!("bkpt") }
-    loop {}
+    unsafe {
+        if !Dispatcher::dispatch(mcu::scb::SCB.icsr().vectactive().value()) {
+            console::write_str("EXCEPTION\n");
+            asm!("bkpt");
+            loop {}
+        }
+    }
 }
 
+#[cfg(target_os="none")]
+default_handler!(handle_exception);
 
 #[derive(Debug, Default)]
 pub struct FeatherM0 {}
 
 impl common::board::Board for FeatherM0 {
    type Mcu = mcu::Samd21;
-   fn id(&self) -> &'static str { "arduino-zero" }
+   fn id(&self) -> &'static str { "feather-m0" }
    fn mcu(&self) -> Self::Mcu { Self::Mcu::default() }
 }
 
