@@ -91,34 +91,34 @@ impl SerialDriver {
 
     pub fn write(&self, buf: &[u8]) -> usize {
         let len = self.tx_ring.write(buf);
-        self.guard.start_tx();
+        self.guard.tx_start();
         len
     }
 
     pub fn read(&self, buf: &mut [u8]) -> usize {
         let len = self.rx_ring.read(buf);
-        self.guard.start_rx();
+        self.guard.rx_start();
         len
     }    
 }
 
 pub struct SerialHandler {
     usart: UsartPeriph,
-    tx_reader: &'static Reader<'static, u8>,
-    rx_writer: &'static Writer<'static, u8>,
+    reader: &'static Reader<'static, u8>,
+    writer: &'static Writer<'static, u8>,
 }
 
 impl SerialHandler {
-    pub fn new<U: Into<UsartPeriph>>(usart: U, tx_reader: &'static Reader<'static, u8>, rx_writer: &'static Writer<'static, u8>) -> Self {
+    pub fn new<U: Into<UsartPeriph>>(usart: U, reader: &'static Reader<'static, u8>, writer: &'static Writer<'static, u8>) -> Self {
         let usart = usart.into();
-        Self { usart, tx_reader, rx_writer }
+        Self { usart, reader, writer }
     }
 
-    pub fn start_tx(&self) {
+    pub fn tx_start(&self) {
         self.usart.with_cr1(|r| r.set_txeie(1));
     }
 
-    pub fn stop_tx(&self) {
+    pub fn tx_stop(&self) {
         self.usart.with_cr1(|r| r.set_txeie(0));
     }
 
@@ -126,11 +126,11 @@ impl SerialHandler {
         self.usart.set_tdr(|r| r.set_tdr(b));
     }
 
-    pub fn start_rx(&self) {
+    pub fn rx_start(&self) {
         self.usart.with_cr1(|r| r.set_rxneie(1));
     }
 
-    pub fn stop_rx(&self) {
+    pub fn rx_stop(&self) {
         self.usart.with_cr1(|r| r.set_rxneie(0));
     }
 
@@ -145,19 +145,19 @@ impl HandleException for SerialHandler {
         let isr = usart.isr();
         let cr1 = usart.cr1();
         if isr.test_txe() && cr1.test_txeie() {
-            if let Some(b) = self.tx_reader.get() {
+            if let Some(b) = self.reader.get() {
                 self.tx(b);
             } 
-            if self.tx_reader.len() == 0 {
+            if self.reader.len() == 0 {
                 usart.with_cr1(|r| r.set_txeie(0));
             }
         }
         if isr.test_rxne() && cr1.test_rxneie() {
-            if let Some(elt) = self.rx_writer.head_elt() {
+            if let Some(elt) = self.writer.head_elt() {
                 *elt = self.rx();
-                self.rx_writer.incr_head();
+                self.writer.incr_head();
             }
-            if self.rx_writer.rem() == 0 {
+            if self.writer.rem() == 0 {
                 usart.with_cr1(|r| r.set_rxneie(0));
             }
         }        
