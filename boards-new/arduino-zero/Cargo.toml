@@ -18,6 +18,7 @@ opt-level = "s"
 codegen-units = 1
 incremental = false
 lto = true
+debug = false
 
 [profile.release]
 panic = "abort"
