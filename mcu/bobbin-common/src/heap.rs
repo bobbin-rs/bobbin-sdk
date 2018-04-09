@@ -18,48 +18,48 @@ pub enum Error {
 pub struct Heap {}
 
 impl Heap {
-    pub unsafe fn extend(&self, size: usize) {
+    pub unsafe fn extend(size: usize) {
         HEAP_END = HEAP_START.offset(size as isize);
     }
 
     #[inline]
-    pub fn ptr(&self) -> *mut u8 {
+    pub fn ptr() -> *mut u8 {
         unsafe { HEAP_START }
     }
 
     #[inline]
-    pub fn set_ptr(&self, ptr: *mut u8) {
+    pub fn set_ptr(ptr: *mut u8) {
         unsafe { HEAP_START = ptr }
     }
 
     #[inline]
-    pub fn end(&self) -> *mut u8 {
+    pub fn end() -> *mut u8 {
         unsafe { HEAP_END }
     }
 
     #[inline]
-    pub fn set_end(&self, ptr: *mut u8) {
+    pub fn set_end(ptr: *mut u8) {
         unsafe { HEAP_END = ptr }
     }
 
 
     #[inline]
-    pub fn size(&self) -> usize {
-        self.end() as usize - self.ptr() as usize
+    pub fn size() -> usize {
+        Self::end() as usize - Self::ptr() as usize
     }
 
     #[inline]
-    pub fn freeze(&self) {
-        self.set_end(self.ptr())
+    pub fn freeze() {
+        Self::set_end(Self::ptr())
     }
 
     #[inline]
-    pub fn try_advance(&self, len: usize) -> Result<*mut u8, Error> {
-        let new = unsafe { self.ptr().offset(len as isize) };
-        if new as usize <= self.end() as usize {
-        // if new.offset_to(self.end()).unwrap() >= 0 {
-            let ptr = self.ptr();
-            self.set_ptr(new);
+    pub fn try_advance(len: usize) -> Result<*mut u8, Error> {
+        let new = unsafe { Self::ptr().offset(len as isize) };
+        if new as usize <= Self::end() as usize {
+        // if new.offset_to(Self::end()).unwrap() >= 0 {
+            let ptr = Self::ptr();
+            Self::set_ptr(new);
             Ok(ptr)
         } else {
             Err(Error::OutOfSpace)            
@@ -67,16 +67,16 @@ impl Heap {
     }
 
     #[inline]
-    pub fn advance(&self, len: usize) -> *mut u8 {
-        self.try_advance(len).expect("Out of space")
+    pub fn advance(len: usize) -> *mut u8 {
+        Self::try_advance(len).expect("Out of space")
     }
 
     #[inline]
-    pub fn try_align(&self, align: usize) -> Result<(), Error> {
+    pub fn try_align(align: usize) -> Result<(), Error> {
         Ok({
             if align != 1 {
                 if align.count_ones() == 1 {
-                    self.try_advance(unsafe { align_offset(self.ptr() as *const (), align) } )?;
+                    Self::try_advance(unsafe { align_offset(Self::ptr() as *const (), align) } )?;
                 } else {
                     return Err(Error::InvalidAlign)
                 }
@@ -85,64 +85,64 @@ impl Heap {
     }
 
     #[inline]
-    pub fn align(&self, align: usize) {
-        self.try_align(align).expect("Invalid alignment")
+    pub fn align(align: usize) {
+        Self::try_align(align).expect("Invalid alignment")
     }    
 
     #[inline]
-    pub fn try_align_to<T>(&self) -> Result<(), Error> {
-        self.try_align(mem::align_of::<T>())
+    pub fn try_align_to<T>() -> Result<(), Error> {
+        Self::try_align(mem::align_of::<T>())
     }    
 
     #[inline]
-    pub fn align_to<T>(&self) {
-        self.align(mem::align_of::<T>())
+    pub fn align_to<T>() {
+        Self::align(mem::align_of::<T>())
     }
 
     #[inline]
-    pub unsafe fn try_alloc<T>(&self, len: usize) -> Result<*mut T, Error> {
+    pub unsafe fn try_alloc<T>(len: usize) -> Result<*mut T, Error> {
         Ok({
-            self.try_align_to::<T>()?;
-            self.try_advance(mem::size_of::<T>() * len)? as *mut T
+            Self::try_align_to::<T>()?;
+            Self::try_advance(mem::size_of::<T>() * len)? as *mut T
         })
     }
 
     #[inline]
-    pub unsafe fn alloc<T>(&self, len: usize) -> *mut T {
-        self.align_to::<T>();
-        self.advance(mem::size_of::<T>() * len) as *mut T
+    pub unsafe fn alloc<T>(len: usize) -> *mut T {
+        Self::align_to::<T>();
+        Self::advance(mem::size_of::<T>() * len) as *mut T
     }
 
     #[inline]
-    pub unsafe fn try_alloc_one<T>(&self) -> Result<*mut T, Error> {
+    pub unsafe fn try_alloc_one<T>() -> Result<*mut T, Error> {
         Ok({
-            self.try_align_to::<T>()?;
-            self.try_advance(mem::size_of::<T>())? as *mut T
+            Self::try_align_to::<T>()?;
+            Self::try_advance(mem::size_of::<T>())? as *mut T
         })
     }
 
     #[inline]
-    pub unsafe fn alloc_one<T>(&self) -> *mut T {
-        self.align_to::<T>();
-        self.advance(mem::size_of::<T>()) as *mut T
+    pub unsafe fn alloc_one<T>() -> *mut T {
+        Self::align_to::<T>();
+        Self::advance(mem::size_of::<T>()) as *mut T
     }
 
     #[inline]
-    pub unsafe fn try_slice_uninitialized<T>(&self, len: usize) -> Result<&'static mut [T], Error> {        
+    pub unsafe fn try_slice_uninitialized<T>(len: usize) -> Result<&'static mut [T], Error> {        
         Ok({
-            slice::from_raw_parts_mut(self.try_alloc(len)?, len)
+            slice::from_raw_parts_mut(Self::try_alloc(len)?, len)
         })
     }
 
     #[inline]
-    pub unsafe fn slice_uninitialized<T>(&self, len: usize) -> &'static mut [T] {
-        slice::from_raw_parts_mut(self.alloc(len), len)
+    pub unsafe fn slice_uninitialized<T>(len: usize) -> &'static mut [T] {
+        slice::from_raw_parts_mut(Self::alloc(len), len)
     }
 
     #[inline]
-    pub fn try_slice<T: Copy>(&self, val: T, len: usize) -> Result<&'static mut [T], Error> {
+    pub fn try_slice<T: Copy>(val: T, len: usize) -> Result<&'static mut [T], Error> {
         Ok({
-            let dst = unsafe { self.try_slice_uninitialized(len)? };
+            let dst = unsafe { Self::try_slice_uninitialized(len)? };
             for i in 0..len { 
                 dst[i] = val;
             }
@@ -151,8 +151,8 @@ impl Heap {
     }    
 
     #[inline]
-    pub fn slice<T: Copy>(&self, val: T, len: usize) -> &'static mut [T] {
-        let dst = unsafe { self.slice_uninitialized(len) };
+    pub fn slice<T: Copy>(val: T, len: usize) -> &'static mut [T] {
+        let dst = unsafe { Self::slice_uninitialized(len) };
         for i in 0..len { 
             dst[i] = val;
         }
@@ -160,10 +160,10 @@ impl Heap {
     }    
 
     #[inline]
-    pub fn try_new<T>(&self, src: T) -> Result<&'static mut T, Error> {
+    pub fn try_new<T>(src: T) -> Result<&'static mut T, Error> {
         Ok({
             unsafe {
-                let dst = self.try_alloc_one::<T>()?;
+                let dst = Self::try_alloc_one::<T>()?;
                 ptr::write(dst, src);
                 &mut *dst
             }
@@ -171,19 +171,19 @@ impl Heap {
     }
 
     #[inline]
-    pub fn new<T>(&self, src: T) -> &'static mut T {
+    pub fn new<T>(src: T) -> &'static mut T {
         unsafe {
-            let dst = self.alloc_one::<T>();
+            let dst = Self::alloc_one::<T>();
             ptr::write(dst, src);
             &mut *dst
         }
     }
 
     #[inline]
-    pub fn try_copy<T: Copy>(&self, src: &T) -> Result<&'static mut T, Error> {
+    pub fn try_copy<T: Copy>(src: &T) -> Result<&'static mut T, Error> {
         Ok({
             unsafe {
-                let dst = self.alloc_one::<T>();
+                let dst = Self::alloc_one::<T>();
                 *dst = *src;
                 &mut *dst
             }
@@ -191,20 +191,20 @@ impl Heap {
     }
 
     #[inline]
-    pub fn copy<T: Copy>(&self, src: &T) -> &'static mut T {
+    pub fn copy<T: Copy>(src: &T) -> &'static mut T {
         unsafe {
-            let dst = self.alloc_one::<T>();
+            let dst = Self::alloc_one::<T>();
             *dst = *src;
             &mut *dst
         }
     }
 
     #[inline]
-    pub fn try_copy_slice<T>(&self, src: &[T]) -> Result<&'static mut [T], Error> {
+    pub fn try_copy_slice<T>(src: &[T]) -> Result<&'static mut [T], Error> {
         Ok({
             unsafe {
                 let len = src.len();
-                let dst: *mut T = self.alloc(len);
+                let dst: *mut T = Self::alloc(len);
                 ptr::copy_nonoverlapping(src.as_ptr(), dst, len);
                 slice::from_raw_parts_mut(dst, len)
             }
@@ -212,31 +212,31 @@ impl Heap {
     }
 
     #[inline]
-    pub fn copy_slice<T>(&self, src: &[T]) -> &'static mut [T] {
+    pub fn copy_slice<T>(src: &[T]) -> &'static mut [T] {
         unsafe {
             let len = src.len();
-            let dst: *mut T = self.alloc(len);
+            let dst: *mut T = Self::alloc(len);
             ptr::copy_nonoverlapping(src.as_ptr(), dst, len);
             slice::from_raw_parts_mut(dst, len)
         }
     }
 
     #[inline]
-    pub fn try_copy_str(&self, src: &str) -> Result<&'static str, Error> {
+    pub fn try_copy_str(src: &str) -> Result<&'static str, Error> {
         Ok({
-            unsafe { str::from_utf8_unchecked(self.try_copy_slice(src.as_bytes())?) }
+            unsafe { str::from_utf8_unchecked(Self::try_copy_slice(src.as_bytes())?) }
         })
     }
 
     #[inline]
-    pub fn copy_str(&self, src: &str) -> &'static str {
-        unsafe { str::from_utf8_unchecked(self.copy_slice(src.as_bytes())) }
+    pub fn copy_str(src: &str) -> &'static str {
+        unsafe { str::from_utf8_unchecked(Self::copy_slice(src.as_bytes())) }
     }    
 }
 
 impl fmt::Debug for Heap {
     fn fmt(&self, out: &mut fmt::Formatter) -> fmt::Result {
-        write!(out, "Heap {{ ptr: {:p} end: {:p} size: 0x{:x} }}", self.ptr(), self.end(), self.size())?;
+        write!(out, "Heap {{ ptr: {:p} end: {:p} size: 0x{:x} }}", Self::ptr(), Self::end(), Self::size())?;
         Ok(())
     }
 }
