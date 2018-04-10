@@ -29,16 +29,30 @@
         (output (name TIM_PCLK1))
         (output (name TIM_PCLK2))
 
-        (output (name I2C1_2))
-        (output (name I2C3_4))
+        (output (name I2C1))
+        (output (name I2C2))
+        (output (name I2C3))
+
         (output (name I2S2))
         (output (name I2S3))
 
         (output (name USBCLK))
 
         (output (name USART1))
-        (output (name USART2_5))
-        (output (name TIM1_8))
+        (output (name USART2))
+        (output (name USART3))
+        (output (name UART4))
+        (output (name UART5))
+
+        (output (name TIM1))
+        (output (name TIM2))
+        (output (name TIM3))
+        (output (name TIM4))
+        (output (name TIM8))
+        (output (name TIM15))
+        (output (name TIM16))
+        (output (name TIM17))
+        (output (name TIM20))
 
         (output (name RTCCLK))
         (output (name ADC12))
@@ -1333,7 +1347,7 @@
             (name USART2)
             (address 0x40004400)
             (clock
-                (input (name USART2_5))
+                (input (name USART2))
                 (gate (type RST) (periph RCC) (register APB1RSTR) (field USART2RST))
                 (gate (type EN) (periph RCC) (register APB1ENR) (field USART2EN))
             )
@@ -1353,7 +1367,7 @@
             (name USART3)
             (address 0x40004800)
             (clock
-                (input (name USART2_5))
+                (input (name USART3))
                 (gate (type RST) (periph RCC) (register APB1RSTR) (field USART3RST))
                 (gate (type EN) (periph RCC) (register APB1ENR) (field USART3EN))
             )
@@ -1373,7 +1387,7 @@
             (name UART4)
             (address 0x40004c00)
             (clock
-                (input (name USART2_5))
+                (input (name UART4))
                 (gate (type RST) (periph RCC) (register APB1RSTR) (field UART4RST))
                 (gate (type EN) (periph RCC) (register APB1ENR) (field UART4EN))
             )
@@ -1393,7 +1407,7 @@
             (name UART5)
             (address 0x40005000)
             (clock
-                (input (name USART2_5))
+                (input (name UART5))
                 (gate (type RST) (periph RCC) (register APB1RSTR) (field UART5RST))
                 (gate (type EN) (periph RCC) (register APB1ENR) (field UART5EN))
             )
@@ -1419,7 +1433,7 @@
             (name I2C1)
             (address 0x40005400)
             (clock
-                (input (name I2C1_2))
+                (input (name I2C1))
                 (gate (type RST) (periph RCC) (register APB1RSTR) (field I2C1RST))
                 (gate (type EN) (periph RCC) (register APB1ENR) (field I2C1EN))
             )
@@ -1445,7 +1459,7 @@
             (name I2C2)
             (address 0x40005800)
             (clock
-                (input (name I2C1_2))
+                (input (name I2C2))
                 (gate (type RST) (periph RCC) (register APB1RSTR) (field I2C2RST))
                 (gate (type EN) (periph RCC) (register APB1ENR) (field I2C2EN))
             )
@@ -1469,7 +1483,7 @@
             (name I2C3)
             (address 0x40007800)
             (clock
-                (input (name I2C3_4))
+                (input (name I2C3))
                 (gate (type RST) (periph RCC) (register APB1RSTR) (field I2C3RST))
                 (gate (type EN) (periph RCC) (register APB1ENR) (field I2C3EN))
             )
@@ -1762,7 +1776,7 @@
             (name TIM2)
             (address 0x40000000)
             (clock
-                (input (name TIM_PCLK1))
+                (input (name TIM2))
                 (gate (type RST) (periph RCC) (register APB1RSTR) (field TIM2RST))
                 (gate (type EN) (periph RCC) (register APB1ENR) (field TIM2EN))
             )
@@ -1798,7 +1812,7 @@
             (name TIM3)
             (address 0x40000400)
             (clock
-                (input (name TIM_PCLK1))
+                (input (name TIM3))
                 (gate (type RST) (periph RCC) (register APB1RSTR) (field TIM3RST))
                 (gate (type EN) (periph RCC) (register APB1ENR) (field TIM3EN))
             )
@@ -1833,7 +1847,7 @@
             (name TIM4)
             (address 0x40000800)
             (clock
-                (input (name TIM_PCLK1))
+                (input (name TIM4))
                 (gate (type RST) (periph RCC) (register APB1RSTR) (field TIM4RST))
                 (gate (type EN) (periph RCC) (register APB1ENR) (field TIM4EN))
             )
@@ -1869,7 +1883,7 @@
             (name TIM15)
             (address 0x40014000)
             (clock
-                (input (name TIM_PCLK2))
+                (input (name TIM15))
                 (gate (type RST) (periph RCC) (register APB2RSTR) (field TIM15RST))
                 (gate (type EN) (periph RCC) (register APB2ENR) (field TIM15EN))
             )
@@ -1895,7 +1909,7 @@
             (name TIM16)
             (address 0x40014400)
             (clock
-                (input (name TIM_PCLK2))
+                (input (name TIM16))
                 (gate (type RST) (periph RCC) (register APB2RSTR) (field TIM16RST))
                 (gate (type EN) (periph RCC) (register APB2ENR) (field TIM16EN))
             )
@@ -1917,7 +1931,7 @@
             (name TIM17)
             (address 0x40014800)
             (clock
-                (input (name TIM_PCLK2))
+                (input (name TIM17))
                 (gate (type RST) (periph RCC) (register APB2RSTR) (field TIM17RST))
                 (gate (type EN) (periph RCC) (register APB2ENR) (field TIM17EN))
             )
@@ -1943,7 +1957,7 @@
             (name TIM1)
             (address 0x40012c00)
             (clock
-                (input (name TIM1_8))
+                (input (name TIM1))
                 (gate (type RST) (periph RCC) (register APB2RSTR) (field TIM1RST))
                 (gate (type EN) (periph RCC) (register APB2ENR) (field TIM1EN))
             )            
@@ -1997,7 +2011,7 @@
             (name TIM8)
             (address 0x40013400)
             (clock
-                (input (name TIM1_8))
+                (input (name TIM8))
                 (gate (type RST) (periph RCC) (register APB2RSTR) (field TIM8RST))
                 (gate (type EN) (periph RCC) (register APB2ENR) (field TIM8EN))
             )
@@ -2049,6 +2063,11 @@
         )
         (peripheral
             (name TIM20)
+            (clock
+                (input (name TIM20))
+                (gate (type RST) (periph RCC) (register APB2RSTR) (field TIM20RST))
+                (gate (type EN) (periph RCC) (register APB2ENR) (field TIM20EN))
+            )            
             (address 0x40015000)
             (channel
                 (name TIM20_CH1)

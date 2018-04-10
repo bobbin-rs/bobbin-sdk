@@ -27,25 +27,33 @@ pub extern "C" fn main() -> ! {
     let p = Dispatcher::register_pendsv_handler(&p).unwrap();
     println!("{} / {} slots allocated", Dispatcher::slots_used(), Dispatcher::slots());
 
+    println!("Systick Hz: {}", Clk::systick_hz().as_u32());
+
     let reload_value = (Clk::systick_hz() / 1000).as_u32() - 1;
+    println!("Systick Reload Value: {}", reload_value);
+
     SYSTICK.set_reload_value(reload_value);
     SYSTICK.set_current_value(reload_value);
     SYSTICK.set_enabled(true);        
 
-    
+    println!("Systick Enabled");
+
     let t = TickHandler::new();    
     let t = Dispatcher::register_systick_handler(&t).unwrap();
     println!("{} / {} slots allocated", Dispatcher::slots_used(), Dispatcher::slots());
 
-    board::delay(100);
+    // board::delay(100);
 
-    let t2 = TickHandler::new();    
-    let t2 = Dispatcher::register_systick_handler(&t2).unwrap();
+    // let t2 = TickHandler::new();    
+    // let t2 = Dispatcher::register_systick_handler(&t2).unwrap();
 
-    println!("{} / {} slots allocated", Dispatcher::slots_used(), Dispatcher::slots());
+    // println!("{} / {} slots allocated", Dispatcher::slots_used(), Dispatcher::slots());
+
+    println!("Starting Loop");
 
     loop {
-        println!("tick: {} {} {}", unsafe { *t.count.get()}, unsafe { *t2.count.get()} , unsafe { *p.count.get()} );
+        // println!("tick: {} {} {}", unsafe { *t.count.get()}, unsafe { *t2.count.get()} , unsafe { *p.count.get()} );
+        println!("tick");
         board::delay(1000);
     }
 }

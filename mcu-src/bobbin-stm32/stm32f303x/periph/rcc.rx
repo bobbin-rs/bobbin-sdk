@@ -364,6 +364,12 @@
             (bit-width 1)
             (description "TIM17 timer reset")
         )
+        (field
+            (name TIM20RST)
+            (bit-offset 20)
+            (bit-width 1)
+            (description "TIM20 timer reset")
+        )        
     )
     (register
         (name APB1RSTR)

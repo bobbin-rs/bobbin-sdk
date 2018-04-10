@@ -32,14 +32,26 @@ pub trait Clocks {
     fn pclk2() -> Hz { Hz::from_num(0) }
     fn tim_pclk1() -> Hz { Hz::from_num(0) }
     fn tim_pclk2() -> Hz { Hz::from_num(0) }
-    fn i2c1_2() -> Hz { Hz::from_num(0) }
-    fn i2c3_4() -> Hz { Hz::from_num(0) }
+    fn i2c1() -> Hz { Hz::from_num(0) }
+    fn i2c2() -> Hz { Hz::from_num(0) }
+    fn i2c3() -> Hz { Hz::from_num(0) }
     fn i2s2() -> Hz { Hz::from_num(0) }
     fn i2s3() -> Hz { Hz::from_num(0) }
     fn usbclk() -> Hz { Hz::from_num(0) }
     fn usart1() -> Hz { Hz::from_num(0) }
-    fn usart2_5() -> Hz { Hz::from_num(0) }
-    fn tim1_8() -> Hz { Hz::from_num(0) }
+    fn usart2() -> Hz { Hz::from_num(0) }
+    fn usart3() -> Hz { Hz::from_num(0) }
+    fn uart4() -> Hz { Hz::from_num(0) }
+    fn uart5() -> Hz { Hz::from_num(0) }
+    fn tim1() -> Hz { Hz::from_num(0) }
+    fn tim2() -> Hz { Hz::from_num(0) }
+    fn tim3() -> Hz { Hz::from_num(0) }
+    fn tim4() -> Hz { Hz::from_num(0) }
+    fn tim8() -> Hz { Hz::from_num(0) }
+    fn tim15() -> Hz { Hz::from_num(0) }
+    fn tim16() -> Hz { Hz::from_num(0) }
+    fn tim17() -> Hz { Hz::from_num(0) }
+    fn tim20() -> Hz { Hz::from_num(0) }
     fn rtcclk() -> Hz { Hz::from_num(0) }
     fn adc12() -> Hz { Hz::from_num(0) }
     fn adc34() -> Hz { Hz::from_num(0) }
@@ -90,31 +102,31 @@ impl<T> ClockFor<::usart::Usart1> for ClockTree<T> where T: Clocks {
 }
 
 impl<T> ClockFor<::usart::Usart2> for ClockTree<T> where T: Clocks {
-    fn clock_for(_: ::usart::Usart2) -> Hz { T::usart2_5() }
+    fn clock_for(_: ::usart::Usart2) -> Hz { T::usart2() }
 }
 
 impl<T> ClockFor<::usart::Usart3> for ClockTree<T> where T: Clocks {
-    fn clock_for(_: ::usart::Usart3) -> Hz { T::usart2_5() }
+    fn clock_for(_: ::usart::Usart3) -> Hz { T::usart3() }
 }
 
 impl<T> ClockFor<::usart::Uart4> for ClockTree<T> where T: Clocks {
-    fn clock_for(_: ::usart::Uart4) -> Hz { T::usart2_5() }
+    fn clock_for(_: ::usart::Uart4) -> Hz { T::uart4() }
 }
 
 impl<T> ClockFor<::usart::Uart5> for ClockTree<T> where T: Clocks {
-    fn clock_for(_: ::usart::Uart5) -> Hz { T::usart2_5() }
+    fn clock_for(_: ::usart::Uart5) -> Hz { T::uart5() }
 }
 
 impl<T> ClockFor<::i2c::I2c1> for ClockTree<T> where T: Clocks {
-    fn clock_for(_: ::i2c::I2c1) -> Hz { T::i2c1_2() }
+    fn clock_for(_: ::i2c::I2c1) -> Hz { T::i2c1() }
 }
 
 impl<T> ClockFor<::i2c::I2c2> for ClockTree<T> where T: Clocks {
-    fn clock_for(_: ::i2c::I2c2) -> Hz { T::i2c1_2() }
+    fn clock_for(_: ::i2c::I2c2) -> Hz { T::i2c2() }
 }
 
 impl<T> ClockFor<::i2c::I2c3> for ClockTree<T> where T: Clocks {
-    fn clock_for(_: ::i2c::I2c3) -> Hz { T::i2c3_4() }
+    fn clock_for(_: ::i2c::I2c3) -> Hz { T::i2c3() }
 }
 
 impl<T> ClockFor<::spi::Spi1> for ClockTree<T> where T: Clocks {
@@ -158,34 +170,38 @@ impl<T> ClockFor<::tim_bas::Tim7> for ClockTree<T> where T: Clocks {
 }
 
 impl<T> ClockFor<::tim_gen::Tim2> for ClockTree<T> where T: Clocks {
-    fn clock_for(_: ::tim_gen::Tim2) -> Hz { T::tim_pclk1() }
+    fn clock_for(_: ::tim_gen::Tim2) -> Hz { T::tim2() }
 }
 
 impl<T> ClockFor<::tim_gen::Tim3> for ClockTree<T> where T: Clocks {
-    fn clock_for(_: ::tim_gen::Tim3) -> Hz { T::tim_pclk1() }
+    fn clock_for(_: ::tim_gen::Tim3) -> Hz { T::tim3() }
 }
 
 impl<T> ClockFor<::tim_gen::Tim4> for ClockTree<T> where T: Clocks {
-    fn clock_for(_: ::tim_gen::Tim4) -> Hz { T::tim_pclk1() }
+    fn clock_for(_: ::tim_gen::Tim4) -> Hz { T::tim4() }
 }
 
 impl<T> ClockFor<::tim_gen::Tim15> for ClockTree<T> where T: Clocks {
-    fn clock_for(_: ::tim_gen::Tim15) -> Hz { T::tim_pclk2() }
+    fn clock_for(_: ::tim_gen::Tim15) -> Hz { T::tim15() }
 }
 
 impl<T> ClockFor<::tim_gen::Tim16> for ClockTree<T> where T: Clocks {
-    fn clock_for(_: ::tim_gen::Tim16) -> Hz { T::tim_pclk2() }
+    fn clock_for(_: ::tim_gen::Tim16) -> Hz { T::tim16() }
 }
 
 impl<T> ClockFor<::tim_gen::Tim17> for ClockTree<T> where T: Clocks {
-    fn clock_for(_: ::tim_gen::Tim17) -> Hz { T::tim_pclk2() }
+    fn clock_for(_: ::tim_gen::Tim17) -> Hz { T::tim17() }
 }
 
 impl<T> ClockFor<::tim_adv::Tim1> for ClockTree<T> where T: Clocks {
-    fn clock_for(_: ::tim_adv::Tim1) -> Hz { T::tim1_8() }
+    fn clock_for(_: ::tim_adv::Tim1) -> Hz { T::tim1() }
 }
 
 impl<T> ClockFor<::tim_adv::Tim8> for ClockTree<T> where T: Clocks {
-    fn clock_for(_: ::tim_adv::Tim8) -> Hz { T::tim1_8() }
+    fn clock_for(_: ::tim_adv::Tim8) -> Hz { T::tim8() }
+}
+
+impl<T> ClockFor<::tim_adv::Tim20> for ClockTree<T> where T: Clocks {
+    fn clock_for(_: ::tim_adv::Tim20) -> Hz { T::tim20() }
 }
 

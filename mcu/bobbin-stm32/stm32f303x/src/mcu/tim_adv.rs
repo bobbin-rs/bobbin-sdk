@@ -62,3 +62,25 @@ impl ::bobbin_common::gate::GateEn for Tim8 {
     }
 }
 
+// Gate { name: None, gate_type: Some("RST"), periph: Some("RCC"), register: Some("APB2RSTR"), field: Some("TIM20RST"), description: None }
+impl ::bobbin_common::gate::GateRst for Tim20 {
+    #[inline]
+    fn gate_rst(&self) -> bits::U1 { ::rcc::RCC.apb2rstr().tim20rst() }
+    #[inline]
+    fn set_gate_rst<V: Into<bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_apb2rstr(|r| r.set_tim20rst(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("EN"), periph: Some("RCC"), register: Some("APB2ENR"), field: Some("TIM20EN"), description: None }
+impl ::bobbin_common::gate::GateEn for Tim20 {
+    #[inline]
+    fn gate_en(&self) -> bits::U1 { ::rcc::RCC.apb2enr().tim20en() }
+    #[inline]
+    fn set_gate_en<V: Into<bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_apb2enr(|r| r.set_tim20en(value));
+        self
+    }
+}
+

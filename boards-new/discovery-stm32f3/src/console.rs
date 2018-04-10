@@ -4,7 +4,7 @@ use mcu::bobbin_common::periph::IntoPeriph;
 use mcu::rcc::*;
 use mcu::usart::*;
 use mcu::pin::*;
-use ::clock::*;
+// use ::clock::*;
 
 pub const USART: Usart1 = USART1;
 pub const USART_TX: Pc4 = PC4;

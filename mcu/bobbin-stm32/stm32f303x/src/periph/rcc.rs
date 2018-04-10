@@ -1472,6 +1472,25 @@ impl Apb2rstr {
         self
     }
 
+    #[doc="TIM20 timer reset"]
+    #[inline] pub fn tim20rst(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 20) & 0x1) as u8) } // [20]
+    }
+
+    #[doc="Returns true if TIM20RST != 0"]
+    #[inline] pub fn test_tim20rst(&self) -> bool {
+        self.tim20rst() != 0
+    }
+
+    #[doc="Sets the TIM20RST field."]
+    #[inline] pub fn set_tim20rst<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 20);
+        self.0 |= value << 20;
+        self
+    }
+
 }
 
 impl From<u32> for Apb2rstr {
@@ -1498,6 +1517,7 @@ impl ::core::fmt::Debug for Apb2rstr {
         if self.tim15rst() != 0 { try!(write!(f, " tim15rst"))}
         if self.tim16rst() != 0 { try!(write!(f, " tim16rst"))}
         if self.tim17rst() != 0 { try!(write!(f, " tim17rst"))}
+        if self.tim20rst() != 0 { try!(write!(f, " tim20rst"))}
         try!(write!(f, "]"));
         Ok(())
     }
