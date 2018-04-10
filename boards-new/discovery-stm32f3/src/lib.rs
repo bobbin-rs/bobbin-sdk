@@ -53,7 +53,7 @@ pub fn handle_exception() {
 pub struct DiscoveryStm32f3 {}
 
 impl common::board::Board for DiscoveryStm32f3 {
-   type Mcu = mcu::Stm32f303x;
+   type Mcu = mcu::Stm32f3x;
    fn id(&self) -> &'static str { "discovery-stm32f3" }
    fn mcu(&self) -> Self::Mcu { Self::Mcu::default() }
 }

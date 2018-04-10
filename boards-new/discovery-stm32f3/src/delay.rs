@@ -16,12 +16,21 @@ pub const TIM_PRESCALE: u16 = 41_999;
 // Divide by 42,000 => 2khz
 // Set auto_reload to ms x 2
 
+
 pub fn init() {
-    TIM.rcc_enable();
+    TIM.gate_enable();
 }
 
-pub fn delay(ms: u32) {    
-    TIM
-        .set_prescale((TIM.clock(&CLK).unwrap() / 2000) as u16)
-        .delay((ms << 1) as u16);
+pub fn delay(ms: u32) { 
+    // TIM.gate_enable();
+    // let tim_clk: u32 = Tree::clock_for(TIM).into();
+    // TIM
+    //     .set_prescale(((tim_clk / 2000) - 1) as u16)
+    //     .delay((ms << 1) as u16);
+}
+
+impl ::common::delay::Delay for ::DiscoveryStm32f3 {
+    fn delay_ms(&self, ms: u32) {
+        delay(ms)
+    }
 }

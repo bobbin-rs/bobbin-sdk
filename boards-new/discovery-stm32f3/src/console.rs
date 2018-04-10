@@ -22,7 +22,7 @@ pub fn init() {
         .connect_to(USART);
 
     USART
-        .set_clock_source(DedicatedClock::Hsi)
+        // .set_clock_source(DedicatedClock::Hsi)
         .gate_enable()
         .set_config(|c| c.set_baud_clock(USART_BAUD, USART_CLOCK))
         .enable();
