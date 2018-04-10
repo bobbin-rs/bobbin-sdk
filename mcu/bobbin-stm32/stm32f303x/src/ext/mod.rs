@@ -18,3 +18,4 @@ pub mod tim_bas;
 pub mod tim_gen;
 pub mod tim_adv;
 pub mod dma;
+pub mod clock;

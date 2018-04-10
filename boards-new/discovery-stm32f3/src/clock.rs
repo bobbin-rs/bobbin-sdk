@@ -5,6 +5,7 @@ use mcu::{tim_adv, tim_gen, i2c, usart};
 use ::common::bits::*;
 
 pub fn init() {
+    ::mcu::ext::clock::enable_pll_external_mode();
 }
 
 pub type Clk = DynamicClock<Osc8m, Osc32k>;
