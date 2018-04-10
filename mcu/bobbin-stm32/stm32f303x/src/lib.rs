@@ -4,7 +4,6 @@
 extern crate stm32_common;
 pub use stm32_common::*;
 
-pub use exc;
 pub use nvic;
 pub use scb;
 pub use systick;
@@ -14,7 +13,7 @@ pub use dcb;
 pub use itm;
 
 pub mod periph;
-pub mod hal;
+pub mod ext;
 pub mod mcu;
 
 pub use mcu::rcc;
@@ -40,7 +39,7 @@ pub use mcu::dma;
 pub use mcu::pin;
 pub use mcu::sig;
 pub use mcu::irq;
-pub use mcu::*;
+pub use mcu::Stm32f3x;
 
 pub mod clock;
 pub use clock::*;

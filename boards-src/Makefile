@@ -19,3 +19,6 @@ nucleo-f746zg: nucleo-f746zg.rx
 
 can-cam: can-cam.rx
 	$(CHIP) $(CHIP_ARGS_THUMBV7) $< $(BOARD_DST)/$@/
+
+discovery-stm32f3: discovery-stm32f3.rx
+	$(CHIP) $(CHIP_ARGS_THUMBV7) $< $(BOARD_DST)/$@/

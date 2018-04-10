@@ -5,13 +5,13 @@
     (description "STM32F3x")
 
     (variants
+        (variant (name STM32F303xB) (link "f303xb.ld"))
+        (variant (name STM32F303xC) (link "f303xc.ld"))
         (variant (name STM32F303xD) (link "f303xd.ld"))
         (variant (name STM32F303xE) (link "f303xe.ld"))
     )
     
     (crate
-        
-        (module (name exc))
         (module (name nvic))
         (module (name scb))
         (module (name systick))
@@ -30,7 +30,7 @@
 
     (peripheral-group
         (name IWDG)
-        (module (name "::stm32_common::chip::iwdg::*"))
+        (module (name "::stm32_common::iwdg::*"))
         (peripheral
             (name IWDG)
             (address 0x40003000)
@@ -40,7 +40,7 @@
 
     (peripheral-group
         (name WWDG)
-        (module (name "::stm32_common::chip::wwdg::*"))
+        (module (name "::stm32_common::wwdg::*"))
         (peripheral
             (name WWDG)
             (address 0x40002c00)
@@ -56,7 +56,7 @@
 
     (peripheral-group
         (name CRC)
-        (module (name "::stm32_common::chip::crc::*"))
+        (module (name "::stm32_common::crc::*"))
         (peripheral
             (name CRC)
             (address 0x40023000)
@@ -66,7 +66,7 @@
 
     (peripheral-group
         (name EXTI)
-        (module (name "::stm32_common::chip::exti::*"))
+        (module (name "::stm32_common::exti::*"))
         (peripheral
             (name EXTI)
             (address 0x40010400)
@@ -356,7 +356,7 @@
     )
     (peripheral-group
         (name GPIO)
-        (module (name "::stm32_common::chip::gpio::*"))
+        (module (name "::stm32_common::gpio::*"))
         (peripheral
             (name GPIOA)
             (address 0x48000000)
@@ -1223,7 +1223,7 @@
 
     (peripheral-group 
         (name USART)
-        (module (name "::stm32_common::chip::usart::*"))
+        (module (name "::stm32_common::usart::*"))
         (peripheral             
             (name USART1)
             (address 0x40013800)
@@ -1304,7 +1304,7 @@
 
     (peripheral-group
         (name I2C)
-        (module (name "::stm32_common::chip::i2c_v2::*"))
+        (module (name "::stm32_common::i2c_v2::*"))
         
         (peripheral
             (name I2C1)
@@ -1368,7 +1368,7 @@
     )
     (peripheral-group
         (name SPI)
-        (module (name "::stm32_common::chip::spi_v2::*"))
+        (module (name "::stm32_common::spi_v2::*"))
         (peripheral
             (name SPI1)
             (address 0x40013000)
@@ -1413,7 +1413,7 @@
 
     (peripheral-group
         (name ADC)
-        (module (name "::stm32_common::chip::adc_f3::*"))
+        (module (name "::stm32_common::adc_f3::*"))
         (peripheral            
             (name ADC1)
             (address 0x50000000)
@@ -1563,7 +1563,7 @@
 
     (peripheral-group
         (name TIM_BAS)
-        (module (name "::stm32_common::chip::tim_bas::*"))        
+        (module (name "::stm32_common::tim_bas::*"))        
         (peripheral            
             (name TIM6)
             (address 0x40001000)
@@ -1589,7 +1589,7 @@
 
     (peripheral-group
         (name TIM_GEN)
-        (module (name "::stm32_common::chip::tim_gen::*"))
+        (module (name "::stm32_common::tim_gen::*"))
         (peripheral            
             (name TIM2)
             (address 0x40000000)
@@ -1739,7 +1739,7 @@
     )
     (peripheral-group
         (name TIM_ADV)
-        (module (name "::stm32_common::chip::tim_adv::*"))
+        (module (name "::stm32_common::tim_adv::*"))
         (peripheral
             (name TIM1)
             (address 0x40012c00)
@@ -1888,7 +1888,7 @@
     )
     (peripheral-group
         (name DMA)
-        (module (name "::stm32_common::chip::dma_f3::*"))
+        (module (name "::stm32_common::dma_f3::*"))
         (peripheral
             (name DMA1)
             (address 0x40020000)

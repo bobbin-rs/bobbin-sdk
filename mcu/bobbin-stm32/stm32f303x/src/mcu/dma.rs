@@ -1,18 +1,19 @@
 #[allow(unused_imports)] use ::bobbin_common::*;
-pub use ::hal::dma::*;
+#[allow(unused_imports)] pub use ::bobbin_common::gate::GateEn;
+pub use ext::dma::*;
 
-periph!( DMA1, Dma1, DMA1_PERIPH, DmaPeriph, 0x40020000, 0x2e);
-periph!( DMA2, Dma2, DMA2_PERIPH, DmaPeriph, 0x40020400, 0x2f);
+periph!( DMA1, Dma1, DMA1_PERIPH, DmaPeriph, DMA1_OWNED, DMA1_REF_COUNT, 0x40020000, 0x00, 0x2e);
+periph!( DMA2, Dma2, DMA2_PERIPH, DmaPeriph, DMA2_OWNED, DMA2_REF_COUNT, 0x40020400, 0x01, 0x2f);
 
-channel!(DMA1_CH1, Dma1Ch1, DMA1, Dma1, DMA1_CH1_CH, DmaCh, DMA1_PERIPH, 0);
-channel!(DMA1_CH2, Dma1Ch2, DMA1, Dma1, DMA1_CH2_CH, DmaCh, DMA1_PERIPH, 1);
-channel!(DMA1_CH3, Dma1Ch3, DMA1, Dma1, DMA1_CH3_CH, DmaCh, DMA1_PERIPH, 2);
-channel!(DMA1_CH4, Dma1Ch4, DMA1, Dma1, DMA1_CH4_CH, DmaCh, DMA1_PERIPH, 3);
-channel!(DMA1_CH5, Dma1Ch5, DMA1, Dma1, DMA1_CH5_CH, DmaCh, DMA1_PERIPH, 4);
-channel!(DMA1_CH6, Dma1Ch6, DMA1, Dma1, DMA1_CH6_CH, DmaCh, DMA1_PERIPH, 5);
-channel!(DMA1_CH7, Dma1Ch7, DMA1, Dma1, DMA1_CH7_CH, DmaCh, DMA1_PERIPH, 6);
-channel!(DMA2_CH1, Dma2Ch1, DMA2, Dma2, DMA2_CH1_CH, DmaCh, DMA2_PERIPH, 0);
-channel!(DMA2_CH2, Dma2Ch2, DMA2, Dma2, DMA2_CH2_CH, DmaCh, DMA2_PERIPH, 1);
-channel!(DMA2_CH3, Dma2Ch3, DMA2, Dma2, DMA2_CH3_CH, DmaCh, DMA2_PERIPH, 2);
-channel!(DMA2_CH4, Dma2Ch4, DMA2, Dma2, DMA2_CH4_CH, DmaCh, DMA2_PERIPH, 3);
-channel!(DMA2_CH5, Dma2Ch5, DMA2, Dma2, DMA2_CH5_CH, DmaCh, DMA2_PERIPH, 4);
+channel!(DMA1_CH1, Dma1Ch1, dma1_ch1, DMA1, Dma1, DMA1_CH1_CH, DmaCh, DMA1_PERIPH, DMA1_CH1_OWNED, DMA1_CH1_REF_COUNT, 0);
+channel!(DMA1_CH2, Dma1Ch2, dma1_ch2, DMA1, Dma1, DMA1_CH2_CH, DmaCh, DMA1_PERIPH, DMA1_CH2_OWNED, DMA1_CH2_REF_COUNT, 1);
+channel!(DMA1_CH3, Dma1Ch3, dma1_ch3, DMA1, Dma1, DMA1_CH3_CH, DmaCh, DMA1_PERIPH, DMA1_CH3_OWNED, DMA1_CH3_REF_COUNT, 2);
+channel!(DMA1_CH4, Dma1Ch4, dma1_ch4, DMA1, Dma1, DMA1_CH4_CH, DmaCh, DMA1_PERIPH, DMA1_CH4_OWNED, DMA1_CH4_REF_COUNT, 3);
+channel!(DMA1_CH5, Dma1Ch5, dma1_ch5, DMA1, Dma1, DMA1_CH5_CH, DmaCh, DMA1_PERIPH, DMA1_CH5_OWNED, DMA1_CH5_REF_COUNT, 4);
+channel!(DMA1_CH6, Dma1Ch6, dma1_ch6, DMA1, Dma1, DMA1_CH6_CH, DmaCh, DMA1_PERIPH, DMA1_CH6_OWNED, DMA1_CH6_REF_COUNT, 5);
+channel!(DMA1_CH7, Dma1Ch7, dma1_ch7, DMA1, Dma1, DMA1_CH7_CH, DmaCh, DMA1_PERIPH, DMA1_CH7_OWNED, DMA1_CH7_REF_COUNT, 6);
+channel!(DMA2_CH1, Dma2Ch1, dma2_ch1, DMA2, Dma2, DMA2_CH1_CH, DmaCh, DMA2_PERIPH, DMA2_CH1_OWNED, DMA2_CH1_REF_COUNT, 0);
+channel!(DMA2_CH2, Dma2Ch2, dma2_ch2, DMA2, Dma2, DMA2_CH2_CH, DmaCh, DMA2_PERIPH, DMA2_CH2_OWNED, DMA2_CH2_REF_COUNT, 1);
+channel!(DMA2_CH3, Dma2Ch3, dma2_ch3, DMA2, Dma2, DMA2_CH3_CH, DmaCh, DMA2_PERIPH, DMA2_CH3_OWNED, DMA2_CH3_REF_COUNT, 2);
+channel!(DMA2_CH4, Dma2Ch4, dma2_ch4, DMA2, Dma2, DMA2_CH4_CH, DmaCh, DMA2_PERIPH, DMA2_CH4_OWNED, DMA2_CH4_REF_COUNT, 3);
+channel!(DMA2_CH5, Dma2Ch5, dma2_ch5, DMA2, Dma2, DMA2_CH5_CH, DmaCh, DMA2_PERIPH, DMA2_CH5_OWNED, DMA2_CH5_REF_COUNT, 4);

@@ -1,4 +1,5 @@
 #[allow(unused_imports)] pub use ::bobbin_common::*;
+
 signal_type!(TX, SigTx);
 signal_type!(RX, SigRx);
 signal_type!(CTS, SigCts);

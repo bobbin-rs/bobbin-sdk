@@ -1,5 +1,3 @@
-//! Real-time clock
-
 #[allow(unused_imports)] use ::bobbin_common::*;
 
 #[doc="Real-time clock"]

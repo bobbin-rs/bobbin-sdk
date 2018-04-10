@@ -12,5 +12,7 @@ stm32-common = { path = "../stm32-common" }
 [features]
 default = []
 
+STM32F303xB = []
+STM32F303xC = []
 STM32F303xD = []
 STM32F303xE = []
