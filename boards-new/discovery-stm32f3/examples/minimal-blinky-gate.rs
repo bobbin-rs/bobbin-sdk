@@ -4,19 +4,19 @@
 
 extern crate discovery_stm32f3 as board;
 
-// LED0 = PB0;
+// LED0 = PE9;
 
 use board::mcu::pin::*;
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
-    PB0.port().gate_enable();
+    PE9.port().gate_enable();
 
     // Set PB3 Mode = Output
-    PB0.mode_output();
+    PE9.mode_output();
 
     loop {
-        PB0.toggle_output();
+        PE9.toggle_output();
         // Delay approx 1/2 second
         for _ in 0..4_000_000 { unsafe { asm!("nop") } } 
     }

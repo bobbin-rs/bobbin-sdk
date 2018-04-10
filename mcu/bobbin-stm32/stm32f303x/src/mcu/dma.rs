@@ -17,3 +17,25 @@ channel!(DMA2_CH2, Dma2Ch2, dma2_ch2, DMA2, Dma2, DMA2_CH2_CH, DmaCh, DMA2_PERIP
 channel!(DMA2_CH3, Dma2Ch3, dma2_ch3, DMA2, Dma2, DMA2_CH3_CH, DmaCh, DMA2_PERIPH, DMA2_CH3_OWNED, DMA2_CH3_REF_COUNT, 2);
 channel!(DMA2_CH4, Dma2Ch4, dma2_ch4, DMA2, Dma2, DMA2_CH4_CH, DmaCh, DMA2_PERIPH, DMA2_CH4_OWNED, DMA2_CH4_REF_COUNT, 3);
 channel!(DMA2_CH5, Dma2Ch5, dma2_ch5, DMA2, Dma2, DMA2_CH5_CH, DmaCh, DMA2_PERIPH, DMA2_CH5_OWNED, DMA2_CH5_REF_COUNT, 4);
+// Gate { name: None, gate_type: Some("EN"), periph: Some("RCC"), register: Some("AHBENR"), field: Some("DMA1EN"), description: None }
+impl ::bobbin_common::gate::GateEn for Dma1 {
+    #[inline]
+    fn gate_en(&self) -> bits::U1 { ::rcc::RCC.ahbenr().dma1en() }
+    #[inline]
+    fn set_gate_en<V: Into<bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_ahbenr(|r| r.set_dma1en(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("EN"), periph: Some("RCC"), register: Some("AHBENR"), field: Some("DMA2EN"), description: None }
+impl ::bobbin_common::gate::GateEn for Dma2 {
+    #[inline]
+    fn gate_en(&self) -> bits::U1 { ::rcc::RCC.ahbenr().dma2en() }
+    #[inline]
+    fn set_gate_en<V: Into<bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_ahbenr(|r| r.set_dma2en(value));
+        self
+    }
+}
+

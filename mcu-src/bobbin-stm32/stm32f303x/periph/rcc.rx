@@ -469,17 +469,29 @@
             (description "CAN reset")
         )
         (field
+            (name DAC2RST)
+            (bit-offset 26)
+            (bit-width 1)
+            (description "DAC 2 interface reset")
+        )        
+        (field
             (name PWRRST)
             (bit-offset 28)
             (bit-width 1)
             (description "Power interface reset")
         )
         (field
-            (name DACRST)
+            (name DAC1RST)
             (bit-offset 29)
             (bit-width 1)
-            (description "DAC interface reset")
+            (description "DAC 1 interface reset")
         )
+        (field
+            (name I2C3RST)
+            (bit-offset 30)
+            (bit-width 1)
+            (description "I2C3 reset")
+        )        
     )
     (register
         (name AHBENR)
@@ -489,7 +501,7 @@
         (reset-value 0x14)
         (description "AHB Peripheral Clock enable register (RCC_AHBENR)")
         (field
-            (name DMAEN)
+            (name DMA1EN)
             (bit-offset 0)
             (bit-width 1)
             (description "DMA1 clock enable")
@@ -789,6 +801,12 @@
             (description "CAN clock enable")
         )
         (field
+            (name DAC2EN)
+            (bit-offset 26)
+            (bit-width 1)
+            (description "DAC 2 interface clock enable")
+        )        
+        (field
             (name PWREN)
             (bit-offset 28)
             (bit-width 1)
@@ -796,10 +814,10 @@
 
         )
         (field
-            (name DACEN)
+            (name DAC1EN)
             (bit-offset 29)
             (bit-width 1)
-            (description "DAC interface clock enable")
+            (description "DAC 1 interface clock enable")
         )
         (field
             (name I2C3EN)
@@ -950,6 +968,12 @@
         (reset-value 0x0)
         (description "AHB peripheral reset register")
         (field
+            (name IOPHRST)
+            (bit-offset 16)
+            (bit-width 1)
+            (description "I/O port H reset")
+        )        
+        (field
             (name IOPARST)
             (bit-offset 17)
             (bit-width 1)
@@ -985,6 +1009,12 @@
             (bit-width 1)
             (description "I/O port F reset")
         )
+        (field
+            (name IOPGRST)
+            (bit-offset 23)
+            (bit-width 1)
+            (description "I/O port G reset")
+        )        
         (field
             (name TSCRST)
             (bit-offset 24)

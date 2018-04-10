@@ -73,3 +73,47 @@ channel!(ADC4_CH13, Adc4Ch13, adc4_ch13, ADC4, Adc4, ADC4_CH13_CH, AdcCh, ADC4_P
 channel!(ADC4_CH14, Adc4Ch14, adc4_ch14, ADC4, Adc4, ADC4_CH14_CH, AdcCh, ADC4_PERIPH, ADC4_CH14_OWNED, ADC4_CH14_REF_COUNT, 14);
 channel!(ADC4_CH15, Adc4Ch15, adc4_ch15, ADC4, Adc4, ADC4_CH15_CH, AdcCh, ADC4_PERIPH, ADC4_CH15_OWNED, ADC4_CH15_REF_COUNT, 15);
 channel!(ADC4_REFINT, Adc4Refint, adc4_refint, ADC4, Adc4, ADC4_REFINT_CH, AdcCh, ADC4_PERIPH, ADC4_REFINT_OWNED, ADC4_REFINT_REF_COUNT, 18);
+// Gate { name: None, gate_type: Some("EN"), periph: Some("RCC"), register: Some("AHBENR"), field: Some("ADC12EN"), description: None }
+impl ::bobbin_common::gate::GateEn for Adc1 {
+    #[inline]
+    fn gate_en(&self) -> bits::U1 { ::rcc::RCC.ahbenr().adc12en() }
+    #[inline]
+    fn set_gate_en<V: Into<bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_ahbenr(|r| r.set_adc12en(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("EN"), periph: Some("RCC"), register: Some("AHBENR"), field: Some("ADC12EN"), description: None }
+impl ::bobbin_common::gate::GateEn for Adc2 {
+    #[inline]
+    fn gate_en(&self) -> bits::U1 { ::rcc::RCC.ahbenr().adc12en() }
+    #[inline]
+    fn set_gate_en<V: Into<bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_ahbenr(|r| r.set_adc12en(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("EN"), periph: Some("RCC"), register: Some("AHBENR"), field: Some("ADC34EN"), description: None }
+impl ::bobbin_common::gate::GateEn for Adc3 {
+    #[inline]
+    fn gate_en(&self) -> bits::U1 { ::rcc::RCC.ahbenr().adc34en() }
+    #[inline]
+    fn set_gate_en<V: Into<bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_ahbenr(|r| r.set_adc34en(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("EN"), periph: Some("RCC"), register: Some("AHBENR"), field: Some("ADC34EN"), description: None }
+impl ::bobbin_common::gate::GateEn for Adc4 {
+    #[inline]
+    fn gate_en(&self) -> bits::U1 { ::rcc::RCC.ahbenr().adc34en() }
+    #[inline]
+    fn set_gate_en<V: Into<bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_ahbenr(|r| r.set_adc34en(value));
+        self
+    }
+}
+

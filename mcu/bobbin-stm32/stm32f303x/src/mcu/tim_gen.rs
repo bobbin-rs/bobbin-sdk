@@ -25,3 +25,135 @@ channel!(TIM15_CH1, Tim15Ch1, tim15_ch1, TIM15, Tim15, TIM15_CH1_CH, TimGenCh, T
 channel!(TIM15_CH2, Tim15Ch2, tim15_ch2, TIM15, Tim15, TIM15_CH2_CH, TimGenCh, TIM15_PERIPH, TIM15_CH2_OWNED, TIM15_CH2_REF_COUNT, 1);
 channel!(TIM16_CH1, Tim16Ch1, tim16_ch1, TIM16, Tim16, TIM16_CH1_CH, TimGenCh, TIM16_PERIPH, TIM16_CH1_OWNED, TIM16_CH1_REF_COUNT, 0);
 channel!(TIM17_CH1, Tim17Ch1, tim17_ch1, TIM17, Tim17, TIM17_CH1_CH, TimGenCh, TIM17_PERIPH, TIM17_CH1_OWNED, TIM17_CH1_REF_COUNT, 0);
+// Gate { name: None, gate_type: Some("RST"), periph: Some("RCC"), register: Some("APB1RSTR"), field: Some("TIM2RST"), description: None }
+impl ::bobbin_common::gate::GateRst for Tim2 {
+    #[inline]
+    fn gate_rst(&self) -> bits::U1 { ::rcc::RCC.apb1rstr().tim2rst() }
+    #[inline]
+    fn set_gate_rst<V: Into<bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_apb1rstr(|r| r.set_tim2rst(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("EN"), periph: Some("RCC"), register: Some("APB1ENR"), field: Some("TIM2EN"), description: None }
+impl ::bobbin_common::gate::GateEn for Tim2 {
+    #[inline]
+    fn gate_en(&self) -> bits::U1 { ::rcc::RCC.apb1enr().tim2en() }
+    #[inline]
+    fn set_gate_en<V: Into<bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_apb1enr(|r| r.set_tim2en(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("RST"), periph: Some("RCC"), register: Some("APB1RSTR"), field: Some("TIM3RST"), description: None }
+impl ::bobbin_common::gate::GateRst for Tim3 {
+    #[inline]
+    fn gate_rst(&self) -> bits::U1 { ::rcc::RCC.apb1rstr().tim3rst() }
+    #[inline]
+    fn set_gate_rst<V: Into<bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_apb1rstr(|r| r.set_tim3rst(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("EN"), periph: Some("RCC"), register: Some("APB1ENR"), field: Some("TIM3EN"), description: None }
+impl ::bobbin_common::gate::GateEn for Tim3 {
+    #[inline]
+    fn gate_en(&self) -> bits::U1 { ::rcc::RCC.apb1enr().tim3en() }
+    #[inline]
+    fn set_gate_en<V: Into<bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_apb1enr(|r| r.set_tim3en(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("RST"), periph: Some("RCC"), register: Some("APB1RSTR"), field: Some("TIM4RST"), description: None }
+impl ::bobbin_common::gate::GateRst for Tim4 {
+    #[inline]
+    fn gate_rst(&self) -> bits::U1 { ::rcc::RCC.apb1rstr().tim4rst() }
+    #[inline]
+    fn set_gate_rst<V: Into<bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_apb1rstr(|r| r.set_tim4rst(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("EN"), periph: Some("RCC"), register: Some("APB1ENR"), field: Some("TIM4EN"), description: None }
+impl ::bobbin_common::gate::GateEn for Tim4 {
+    #[inline]
+    fn gate_en(&self) -> bits::U1 { ::rcc::RCC.apb1enr().tim4en() }
+    #[inline]
+    fn set_gate_en<V: Into<bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_apb1enr(|r| r.set_tim4en(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("RST"), periph: Some("RCC"), register: Some("APB2RSTR"), field: Some("TIM15RST"), description: None }
+impl ::bobbin_common::gate::GateRst for Tim15 {
+    #[inline]
+    fn gate_rst(&self) -> bits::U1 { ::rcc::RCC.apb2rstr().tim15rst() }
+    #[inline]
+    fn set_gate_rst<V: Into<bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_apb2rstr(|r| r.set_tim15rst(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("EN"), periph: Some("RCC"), register: Some("APB2ENR"), field: Some("TIM15EN"), description: None }
+impl ::bobbin_common::gate::GateEn for Tim15 {
+    #[inline]
+    fn gate_en(&self) -> bits::U1 { ::rcc::RCC.apb2enr().tim15en() }
+    #[inline]
+    fn set_gate_en<V: Into<bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_apb2enr(|r| r.set_tim15en(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("RST"), periph: Some("RCC"), register: Some("APB2RSTR"), field: Some("TIM16RST"), description: None }
+impl ::bobbin_common::gate::GateRst for Tim16 {
+    #[inline]
+    fn gate_rst(&self) -> bits::U1 { ::rcc::RCC.apb2rstr().tim16rst() }
+    #[inline]
+    fn set_gate_rst<V: Into<bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_apb2rstr(|r| r.set_tim16rst(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("EN"), periph: Some("RCC"), register: Some("APB2ENR"), field: Some("TIM16EN"), description: None }
+impl ::bobbin_common::gate::GateEn for Tim16 {
+    #[inline]
+    fn gate_en(&self) -> bits::U1 { ::rcc::RCC.apb2enr().tim16en() }
+    #[inline]
+    fn set_gate_en<V: Into<bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_apb2enr(|r| r.set_tim16en(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("RST"), periph: Some("RCC"), register: Some("APB2RSTR"), field: Some("TIM17RST"), description: None }
+impl ::bobbin_common::gate::GateRst for Tim17 {
+    #[inline]
+    fn gate_rst(&self) -> bits::U1 { ::rcc::RCC.apb2rstr().tim17rst() }
+    #[inline]
+    fn set_gate_rst<V: Into<bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_apb2rstr(|r| r.set_tim17rst(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("EN"), periph: Some("RCC"), register: Some("APB2ENR"), field: Some("TIM17EN"), description: None }
+impl ::bobbin_common::gate::GateEn for Tim17 {
+    #[inline]
+    fn gate_en(&self) -> bits::U1 { ::rcc::RCC.apb2enr().tim17en() }
+    #[inline]
+    fn set_gate_en<V: Into<bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_apb2enr(|r| r.set_tim17en(value));
+        self
+    }
+}
+

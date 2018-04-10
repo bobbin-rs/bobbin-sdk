@@ -4,7 +4,7 @@
 
 extern crate discovery_stm32f3 as board;
 
-// LED0 = PB0;
+// LED0 = PE9;
 
 use board::mcu::rcc::*;
 use board::mcu::gpio::*;

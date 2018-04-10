@@ -1811,6 +1811,25 @@ impl Apb1rstr {
         self
     }
 
+    #[doc="DAC 2 interface reset"]
+    #[inline] pub fn dac2rst(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 26) & 0x1) as u8) } // [26]
+    }
+
+    #[doc="Returns true if DAC2RST != 0"]
+    #[inline] pub fn test_dac2rst(&self) -> bool {
+        self.dac2rst() != 0
+    }
+
+    #[doc="Sets the DAC2RST field."]
+    #[inline] pub fn set_dac2rst<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 26);
+        self.0 |= value << 26;
+        self
+    }
+
     #[doc="Power interface reset"]
     #[inline] pub fn pwrrst(&self) -> bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 28) & 0x1) as u8) } // [28]
@@ -1830,22 +1849,41 @@ impl Apb1rstr {
         self
     }
 
-    #[doc="DAC interface reset"]
-    #[inline] pub fn dacrst(&self) -> bits::U1 {
+    #[doc="DAC 1 interface reset"]
+    #[inline] pub fn dac1rst(&self) -> bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 29) & 0x1) as u8) } // [29]
     }
 
-    #[doc="Returns true if DACRST != 0"]
-    #[inline] pub fn test_dacrst(&self) -> bool {
-        self.dacrst() != 0
+    #[doc="Returns true if DAC1RST != 0"]
+    #[inline] pub fn test_dac1rst(&self) -> bool {
+        self.dac1rst() != 0
     }
 
-    #[doc="Sets the DACRST field."]
-    #[inline] pub fn set_dacrst<V: Into<bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the DAC1RST field."]
+    #[inline] pub fn set_dac1rst<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 29);
         self.0 |= value << 29;
+        self
+    }
+
+    #[doc="I2C3 reset"]
+    #[inline] pub fn i2c3rst(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 30) & 0x1) as u8) } // [30]
+    }
+
+    #[doc="Returns true if I2C3RST != 0"]
+    #[inline] pub fn test_i2c3rst(&self) -> bool {
+        self.i2c3rst() != 0
+    }
+
+    #[doc="Sets the I2C3RST field."]
+    #[inline] pub fn set_i2c3rst<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 30);
+        self.0 |= value << 30;
         self
     }
 
@@ -1883,8 +1921,10 @@ impl ::core::fmt::Debug for Apb1rstr {
         if self.i2c2rst() != 0 { try!(write!(f, " i2c2rst"))}
         if self.usbrst() != 0 { try!(write!(f, " usbrst"))}
         if self.canrst() != 0 { try!(write!(f, " canrst"))}
+        if self.dac2rst() != 0 { try!(write!(f, " dac2rst"))}
         if self.pwrrst() != 0 { try!(write!(f, " pwrrst"))}
-        if self.dacrst() != 0 { try!(write!(f, " dacrst"))}
+        if self.dac1rst() != 0 { try!(write!(f, " dac1rst"))}
+        if self.i2c3rst() != 0 { try!(write!(f, " i2c3rst"))}
         try!(write!(f, "]"));
         Ok(())
     }
@@ -1895,17 +1935,17 @@ impl ::core::fmt::Debug for Apb1rstr {
 pub struct Ahbenr(pub u32);
 impl Ahbenr {
     #[doc="DMA1 clock enable"]
-    #[inline] pub fn dmaen(&self) -> bits::U1 {
+    #[inline] pub fn dma1en(&self) -> bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Returns true if DMAEN != 0"]
-    #[inline] pub fn test_dmaen(&self) -> bool {
-        self.dmaen() != 0
+    #[doc="Returns true if DMA1EN != 0"]
+    #[inline] pub fn test_dma1en(&self) -> bool {
+        self.dma1en() != 0
     }
 
-    #[doc="Sets the DMAEN field."]
-    #[inline] pub fn set_dmaen<V: Into<bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the DMA1EN field."]
+    #[inline] pub fn set_dma1en<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 0);
@@ -2216,7 +2256,7 @@ impl ::core::fmt::Display for Ahbenr {
 impl ::core::fmt::Debug for Ahbenr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
         try!(write!(f, "[0x{:08x}", self.0));
-        if self.dmaen() != 0 { try!(write!(f, " dmaen"))}
+        if self.dma1en() != 0 { try!(write!(f, " dma1en"))}
         if self.dma2en() != 0 { try!(write!(f, " dma2en"))}
         if self.sramen() != 0 { try!(write!(f, " sramen"))}
         if self.flitfen() != 0 { try!(write!(f, " flitfen"))}
@@ -2752,6 +2792,25 @@ impl Apb1enr {
         self
     }
 
+    #[doc="DAC 2 interface clock enable"]
+    #[inline] pub fn dac2en(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 26) & 0x1) as u8) } // [26]
+    }
+
+    #[doc="Returns true if DAC2EN != 0"]
+    #[inline] pub fn test_dac2en(&self) -> bool {
+        self.dac2en() != 0
+    }
+
+    #[doc="Sets the DAC2EN field."]
+    #[inline] pub fn set_dac2en<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 26);
+        self.0 |= value << 26;
+        self
+    }
+
     #[doc="Power interface clock enable"]
     #[inline] pub fn pwren(&self) -> bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 28) & 0x1) as u8) } // [28]
@@ -2771,18 +2830,18 @@ impl Apb1enr {
         self
     }
 
-    #[doc="DAC interface clock enable"]
-    #[inline] pub fn dacen(&self) -> bits::U1 {
+    #[doc="DAC 1 interface clock enable"]
+    #[inline] pub fn dac1en(&self) -> bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 29) & 0x1) as u8) } // [29]
     }
 
-    #[doc="Returns true if DACEN != 0"]
-    #[inline] pub fn test_dacen(&self) -> bool {
-        self.dacen() != 0
+    #[doc="Returns true if DAC1EN != 0"]
+    #[inline] pub fn test_dac1en(&self) -> bool {
+        self.dac1en() != 0
     }
 
-    #[doc="Sets the DACEN field."]
-    #[inline] pub fn set_dacen<V: Into<bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the DAC1EN field."]
+    #[inline] pub fn set_dac1en<V: Into<bits::U1>>(mut self, value: V) -> Self {
         let value: bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 29);
@@ -2843,8 +2902,9 @@ impl ::core::fmt::Debug for Apb1enr {
         if self.i2c2en() != 0 { try!(write!(f, " i2c2en"))}
         if self.usben() != 0 { try!(write!(f, " usben"))}
         if self.canen() != 0 { try!(write!(f, " canen"))}
+        if self.dac2en() != 0 { try!(write!(f, " dac2en"))}
         if self.pwren() != 0 { try!(write!(f, " pwren"))}
-        if self.dacen() != 0 { try!(write!(f, " dacen"))}
+        if self.dac1en() != 0 { try!(write!(f, " dac1en"))}
         if self.i2c3en() != 0 { try!(write!(f, " i2c3en"))}
         try!(write!(f, "]"));
         Ok(())
@@ -3249,6 +3309,25 @@ impl ::core::fmt::Debug for Csr {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ahbrstr(pub u32);
 impl Ahbrstr {
+    #[doc="I/O port H reset"]
+    #[inline] pub fn iophrst(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1) as u8) } // [16]
+    }
+
+    #[doc="Returns true if IOPHRST != 0"]
+    #[inline] pub fn test_iophrst(&self) -> bool {
+        self.iophrst() != 0
+    }
+
+    #[doc="Sets the IOPHRST field."]
+    #[inline] pub fn set_iophrst<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 16);
+        self.0 |= value << 16;
+        self
+    }
+
     #[doc="I/O port A reset"]
     #[inline] pub fn ioparst(&self) -> bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 17) & 0x1) as u8) } // [17]
@@ -3363,6 +3442,25 @@ impl Ahbrstr {
         self
     }
 
+    #[doc="I/O port G reset"]
+    #[inline] pub fn iopgrst(&self) -> bits::U1 {
+        unsafe { ::core::mem::transmute(((self.0 >> 23) & 0x1) as u8) } // [23]
+    }
+
+    #[doc="Returns true if IOPGRST != 0"]
+    #[inline] pub fn test_iopgrst(&self) -> bool {
+        self.iopgrst() != 0
+    }
+
+    #[doc="Sets the IOPGRST field."]
+    #[inline] pub fn set_iopgrst<V: Into<bits::U1>>(mut self, value: V) -> Self {
+        let value: bits::U1 = value.into();
+        let value: u32 = value.into();
+        self.0 &= !(0x1 << 23);
+        self.0 |= value << 23;
+        self
+    }
+
     #[doc="Touch sensing controller reset"]
     #[inline] pub fn tscrst(&self) -> bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 24) & 0x1) as u8) } // [24]
@@ -3438,12 +3536,14 @@ impl ::core::fmt::Display for Ahbrstr {
 impl ::core::fmt::Debug for Ahbrstr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
         try!(write!(f, "[0x{:08x}", self.0));
+        if self.iophrst() != 0 { try!(write!(f, " iophrst"))}
         if self.ioparst() != 0 { try!(write!(f, " ioparst"))}
         if self.iopbrst() != 0 { try!(write!(f, " iopbrst"))}
         if self.iopcrst() != 0 { try!(write!(f, " iopcrst"))}
         if self.iopdrst() != 0 { try!(write!(f, " iopdrst"))}
         if self.ioperst() != 0 { try!(write!(f, " ioperst"))}
         if self.iopfrst() != 0 { try!(write!(f, " iopfrst"))}
+        if self.iopgrst() != 0 { try!(write!(f, " iopgrst"))}
         if self.tscrst() != 0 { try!(write!(f, " tscrst"))}
         if self.adc12rst() != 0 { try!(write!(f, " adc12rst"))}
         if self.adc34rst() != 0 { try!(write!(f, " adc34rst"))}
