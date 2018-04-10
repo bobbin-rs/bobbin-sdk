@@ -14,9 +14,9 @@
         (input (name OSC) (min 4000000) (max 26000000))
         (input (name OSC32) (min 32768) (max 32768))
         
-        (source (name HSI) (speed 16000000))
+        (source (name HSI) (speed 8000000))
         (source (name HSE) (input (name OSC)))
-        (source (name LSI) (speed 32000))
+        (source (name LSI) (speed 40000))
         (source (name LSE) (input (name OSC32)))
         (output (name PLLCLK))
         (output (name SYSCLK) (max 216000000))

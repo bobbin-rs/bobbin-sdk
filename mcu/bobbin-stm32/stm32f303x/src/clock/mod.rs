@@ -8,10 +8,10 @@ pub struct ClockTree<T>(T);
 // Define Global Clocks
 
 pub struct Hsi {}
-impl Clock for Hsi { fn hz() -> Hz { Hz::from_num(16000000) } }
+impl Clock for Hsi { fn hz() -> Hz { Hz::from_num(8000000) } }
 
 pub struct Lsi {}
-impl Clock for Lsi { fn hz() -> Hz { Hz::from_num(32000) } }
+impl Clock for Lsi { fn hz() -> Hz { Hz::from_num(40000) } }
 
 
 pub trait Clocks {
@@ -19,9 +19,9 @@ pub trait Clocks {
     type Osc32: Clock;
     fn osc() -> Hz { Self::Osc::hz() }
     fn osc32() -> Hz { Self::Osc32::hz() }
-    fn hsi() -> Hz { Hz::from_num(16000000) }
+    fn hsi() -> Hz { Hz::from_num(8000000) }
     fn hse() -> Hz { Self::osc() }
-    fn lsi() -> Hz { Hz::from_num(32000) }
+    fn lsi() -> Hz { Hz::from_num(40000) }
     fn lse() -> Hz { Self::osc32() }
     fn pllclk() -> Hz { Hz::from_num(0) }
     fn sysclk() -> Hz { Hz::from_num(0) }
