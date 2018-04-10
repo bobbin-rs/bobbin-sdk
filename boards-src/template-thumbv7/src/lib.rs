@@ -47,3 +47,6 @@ pub fn handle_exception() {
         }
     }
 }
+
+#[cfg(target_os="none")]
+default_handler!(handle_exception);

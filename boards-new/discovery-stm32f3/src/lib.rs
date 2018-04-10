@@ -49,6 +49,9 @@ pub fn handle_exception() {
     }
 }
 
+#[cfg(target_os="none")]
+default_handler!(handle_exception);
+
 #[derive(Debug, Default)]
 pub struct DiscoveryStm32f3 {}
 
