@@ -28,6 +28,9 @@ panic = "abort"
 debug = true
 lto = true
 
+[dev-dependencies]
+examples = { path = "../../apps/examples" }
+embedded-hal = "0.1.2"
 
 [dependencies.stm32f3x]
 path = "../../mcu/bobbin-stm32/stm32f303x"

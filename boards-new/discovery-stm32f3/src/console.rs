@@ -4,12 +4,13 @@ use mcu::bobbin_common::periph::IntoPeriph;
 use mcu::rcc::*;
 use mcu::usart::*;
 use mcu::pin::*;
+use ::clock::*;
 
 pub const USART: Usart1 = USART1;
 pub const USART_TX: Pc4 = PC4;
 pub const USART_RX: Pc5 = PC5;
-pub const USART_CLOCK: u32 = 84_000_000;
-pub const USART_BAUD: u32 = 115_200;
+const USART_CLOCK: u32 = 8_000_000; // Use HSI Clock
+const USART_BAUD: u32 = 115_200;
 
 
 pub fn init() {
@@ -22,7 +23,7 @@ pub fn init() {
         .connect_to(USART);
 
     USART
-        // .set_clock_source(DedicatedClock::Hsi)
+        .set_clock_source(UsartClock::Hsi)
         .gate_enable()
         .set_config(|c| c.set_baud_clock(USART_BAUD, USART_CLOCK))
         .enable();

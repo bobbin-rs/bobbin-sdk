@@ -22,11 +22,11 @@ pub fn init() {
 }
 
 pub fn delay(ms: u32) { 
-    // TIM.gate_enable();
-    // let tim_clk: u32 = Tree::clock_for(TIM).into();
-    // TIM
-    //     .set_prescale(((tim_clk / 2000) - 1) as u16)
-    //     .delay((ms << 1) as u16);
+    TIM.gate_enable();
+    let tim_clk: u32 = Tree::clock_for(TIM).into();
+    TIM
+        .set_prescale(((tim_clk / 2000) - 1) as u16)
+        .delay((ms << 1) as u16);
 }
 
 impl ::common::delay::Delay for ::DiscoveryStm32f3 {

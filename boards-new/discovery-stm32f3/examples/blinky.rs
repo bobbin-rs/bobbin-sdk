@@ -2,7 +2,7 @@
 #![no_main]
 #![feature(asm)]
 
-extern crate discover_stm32f3 as board;
+extern crate discovery_stm32f3 as board;
 extern crate examples;
 
 #[no_mangle]
