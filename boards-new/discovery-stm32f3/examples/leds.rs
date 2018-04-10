@@ -9,7 +9,7 @@ pub extern "C" fn main() -> ! {
     board::init();    
     
     let b = board::board();
-    let leds = [b.led0(), b.led1(), b.led2()];
-    let app = examples::leds::BlinkLeds::new(&leds, b, 500);
+    let leds = [b.led0(), b.led1(), b.led2(), b.led3(), b.led4(), b.led5(), b.led6(), b.led7()];
+    let app = examples::leds::BlinkLeds::new(&leds, b, 100);
     app.run()    
 }
