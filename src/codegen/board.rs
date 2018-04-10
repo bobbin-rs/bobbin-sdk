@@ -124,7 +124,11 @@ pub fn mkdir(path: &Path) -> Result<()> {
     Ok(())
 }
 pub fn copy_file(src_path: &Path, dst_path: &Path) -> Result<()> {
-    copy_file_with(src_path, dst_path, |s| s)
+    if src_path.exists() {
+        copy_file_with(src_path, dst_path, |s| s)
+    } else {
+        Ok(())
+    }
 }
 pub fn copy_file_with<F: FnOnce(String) -> String>(src_path: &Path, dst_path: &Path, f: F) -> Result<()> {
     let mut src = File::open(src_path)?;
