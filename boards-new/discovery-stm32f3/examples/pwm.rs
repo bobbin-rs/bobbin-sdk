@@ -1,34 +1,41 @@
 #![no_std]
 #![no_main]
 
+#[macro_use]
 extern crate discovery_stm32f3 as board;
 extern crate embedded_hal as hal;
 extern crate examples;
 
 use board::mcu::pin::*;
-use board::mcu::tim_gen::*;
+use board::mcu::tim_adv::*;
 
-// PWM output on PB0 / TIM3_CH3 = AF_2
+// PWM output on PE9 / TIM1_CH1
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
     board::init();
-    let led0 = PB0;
+    let led0 = PE9;
 
-    let tim = TIM3;
-    let tim_ch = TIM3_CH3;
+    let tim = TIM1;
+    let tim_ch = TIM1_CH1;
 
     led0.port().gate_enable();    
+
     led0.connect_to(tim_ch);
+    led0.push_pull();
 
     tim.gate_enable();
     tim.set_auto_reload(2000);
 
     tim_ch.set_output_compare_mode(OcMode::Pwm1);
     tim_ch.set_capture_compare_enabled(true);
-    tim_ch.set_capture_compare(0);
+    // tim_ch.set_capture_compare_selection(CcSelect::Output);
+    tim_ch.set_capture_compare(0);    
+    tim_ch.set_output_enable(true);    
 
+    tim.set_main_output_enable(true);
     tim.set_enabled(true);
+    
 
     let pwm = PwmCh::new(tim_ch.into());
     let del = DelayTimer::new();
@@ -51,11 +58,11 @@ impl hal::blocking::delay::DelayMs<u16> for DelayTimer {
 
 
 pub struct PwmCh {
-    tim_ch: TimGenCh,
+    tim_ch: TimAdvCh,
 }
 
 impl PwmCh {
-    pub fn new(tim_ch: TimGenCh) -> Self {
+    pub fn new(tim_ch: TimAdvCh) -> Self {
         Self { tim_ch }
     }
 }

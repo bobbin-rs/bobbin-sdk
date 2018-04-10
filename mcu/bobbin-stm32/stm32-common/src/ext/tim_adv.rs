@@ -1,4 +1,5 @@
 pub use periph::tim_adv::*;
+use bobbin_common::bits::*;
 
 pub enum Direction {
     Up = 0,
@@ -27,6 +28,17 @@ pub enum CcSelect {
     InputTRC = 0b11,
 }
 
+impl From<CcSelect> for U2 {
+    fn from(other: CcSelect) -> U2 {
+        match other {
+            CcSelect::Output => U2::B00,
+            CcSelect::InputA => U2::B01,
+            CcSelect::InputB => U2::B10,
+            CcSelect::InputTRC => U2::B11,
+        }
+    }
+}
+
 impl TimAdvPeriph {
     pub fn set_enabled(&self, value: bool) -> &Self {
         self.with_cr1(|r| r.set_cen(value))
@@ -52,8 +64,12 @@ impl TimAdvPeriph {
         self.with_sr(|r| r.set_uif(0))
     }    
 
-    pub fn set_auto_reload(&self, value: u32) -> &Self {
+    pub fn set_auto_reload(&self, value: u16) -> &Self {
         self.set_arr(|r| r.set_arr(value))
+    }
+
+    pub fn auto_reload(&self) -> u16 {
+        self.arr().arr().value()
     }
 
     pub fn counter(&self) -> u32 {
@@ -65,7 +81,7 @@ impl TimAdvPeriph {
     }
     
 
-    pub fn delay(&self, reload: u32, prescaler: u16) {
+    pub fn delay(&self, reload: u16, prescaler: u16) {
         self
             .set_prescaler(prescaler)
             .set_update_event()
@@ -107,14 +123,40 @@ impl TimAdvPeriph {
         }
     }       
 
+    pub fn set_capture_compare_selection(&self, index: usize, value: CcSelect) -> &Self {
+        let value: U2 = value.into();
+        match index {
+            0...1 => self.with_ccmr_output(0, |r| r.set_ccs(index, value)),
+            2...3 => self.with_ccmr_output(1, |r| r.set_ccs(index - 2, value)),
+            _ => panic!("Invalid channel index"),
+        }
+    }    
+
     pub fn set_capture_compare_enabled(&self, index: usize, value: bool) -> &Self {
         let value = if value { 1 } else { 0 };
         self.with_ccer(|r| r.set_cce(index, value))
     }
 
-    pub fn set_capture_compare(&self, index: usize, value: u32) -> &Self {
+    pub fn set_capture_compare(&self, index: usize, value: u16) -> &Self {
         self.set_ccr(index, |r| r.set_ccr(value))
     }    
+
+    pub fn capture_compare(&self, index: usize) -> u16 {
+        self.ccr(index).ccr().value()
+    }
+
+    pub fn output_enable(&self, index: usize) -> bool {
+        self.ccer().test_cce(index)
+    }
+
+    pub fn set_output_enable(&self, index: usize, value: bool) -> &Self {
+        self.with_ccer(|r| r.set_cce(index, value))
+    }
+
+    pub fn set_main_output_enable(&self, value: bool) -> &Self {
+        self.with_bdtr(|r| r.set_moe(value))
+    }
+
 
 }
 
@@ -127,12 +169,26 @@ impl TimAdvCh {
         self.periph.set_output_compare_mode(self.index, value);
         self
     }
+    pub fn set_capture_compare_selection(&self, value: CcSelect) -> &Self {
+        self.periph.set_capture_compare_selection(self.index, value);
+        self
+    }    
     pub fn set_capture_compare_enabled(&self, value: bool) -> &Self {
         self.periph.set_capture_compare_enabled(self.index, value);
         self
     }
-    pub fn set_capture_compare(&self, value: u32) -> &Self {
+    pub fn set_capture_compare(&self, value: u16) -> &Self {
         self.periph.set_capture_compare(self.index, value);
+        self
+    }
+    pub fn capture_compare(&self) -> u16 {
+        self.periph.capture_compare(self.index)
+    }
+    pub fn output_enable(&self) -> bool {
+        self.periph.output_enable(self.index)
+    }
+    pub fn set_output_enable(&self, value: bool) -> &Self {
+        self.periph.set_output_enable(self.index, value);
         self
     }
 }
