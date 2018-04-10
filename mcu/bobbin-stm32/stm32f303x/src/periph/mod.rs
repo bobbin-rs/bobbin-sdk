@@ -4,4 +4,3 @@ pub mod flash;
 pub mod pwr;
 pub mod rtc;
 pub mod c_adc;
-pub mod dac;

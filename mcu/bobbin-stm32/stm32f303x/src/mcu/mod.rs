@@ -284,6 +284,8 @@ impl Stm32f3x {
     pub fn c_adc12(&self) -> Option<Owned<c_adc::CAdc12>> { c_adc::CAdc12::acquire() }
     pub fn c_adc34(&self) -> Option<Owned<c_adc::CAdc34>> { c_adc::CAdc34::acquire() }
     pub fn dac(&self) -> Option<Owned<dac::Dac>> { dac::Dac::acquire() }
+        pub fn dac_ch1(&self) -> Option<Owned<dac::DacCh1>> { dac::DacCh1::acquire() }
+        pub fn dac_ch2(&self) -> Option<Owned<dac::DacCh2>> { dac::DacCh2::acquire() }
     pub fn tim6(&self) -> Option<Owned<tim_bas::Tim6>> { tim_bas::Tim6::acquire() }
     pub fn tim7(&self) -> Option<Owned<tim_bas::Tim7>> { tim_bas::Tim7::acquire() }
     pub fn tim2(&self) -> Option<Owned<tim_gen::Tim2>> { tim_gen::Tim2::acquire() }

@@ -24,12 +24,14 @@ pin!(PA3, Pa3, pa3, GPIOA, Gpioa, PA3_PIN, GpioPin, GPIOA_PERIPH, PA3_OWNED, PA3
    pin_source!(Pa3, super::tim_gen::Tim15Ch2, super::sig::SigTim, 9);
 pin!(PA4, Pa4, pa4, GPIOA, Gpioa, PA4_PIN, GpioPin, GPIOA_PERIPH, PA4_OWNED, PA4_REF_COUNT, 4);
    pin_source!(Pa4, super::adc::Adc2Ch1, super::sig::SigAdc, 0);
+   pin_source!(Pa4, super::dac::DacCh1, super::sig::SigDac, 0);
    pin_source!(Pa4, super::tim_gen::Tim3Ch2, super::sig::SigTim, 2);
    pin_source!(Pa4, super::spi::Spi1, super::sig::SigSpiNss, 5);
    pin_source!(Pa4, super::spi::Spi3, super::sig::SigSpiNss, 6);
    pin_source!(Pa4, super::usart::Usart2, super::sig::SigCk, 7);
 pin!(PA5, Pa5, pa5, GPIOA, Gpioa, PA5_PIN, GpioPin, GPIOA_PERIPH, PA5_OWNED, PA5_REF_COUNT, 5);
    pin_source!(Pa5, super::adc::Adc2Ch2, super::sig::SigAdc, 0);
+   pin_source!(Pa5, super::dac::DacCh2, super::sig::SigDac, 0);
    pin_source!(Pa5, super::tim_gen::Tim2Ch1, super::sig::SigTim, 1);
    pin_source!(Pa5, super::spi::Spi1, super::sig::SigSpiSck, 5);
 pin!(PA6, Pa6, pa6, GPIOA, Gpioa, PA6_PIN, GpioPin, GPIOA_PERIPH, PA6_OWNED, PA6_REF_COUNT, 6);

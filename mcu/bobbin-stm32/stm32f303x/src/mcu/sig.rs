@@ -13,6 +13,7 @@ signal_type!(SPI_MISO, SigSpiMiso);
 signal_type!(SPI_MOSI, SigSpiMosi);
 signal_type!(SPI_SCK, SigSpiSck);
 signal_type!(ADC, SigAdc);
+signal_type!(DAC, SigDac);
 signal_type!(TIM, SigTim);
 signal_type!(TIMN, SigTimn);
 
@@ -143,6 +144,8 @@ channel_signal!(super::adc::Adc4Ch15, SigAdc);
 // C_ADC
 
 // DAC
+channel_signal!(super::dac::DacCh1, SigDac);
+channel_signal!(super::dac::DacCh2, SigDac);
 
 // TIM_BAS
 

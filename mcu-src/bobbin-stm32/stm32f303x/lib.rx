@@ -462,6 +462,7 @@
             )
             (pin (name PA4) (index 4)
                 (altfn 0 ADC2_IN1)
+                (altfn 0 DAC_OUT1)
                 (altfn 2 TIM3_CH2)
                 (altfn 3 TSC_G2_IO1)
                 (altfn 5 SPI1_NSS)
@@ -472,6 +473,7 @@
             )
             (pin (name PA5) (index 5)
                 (altfn 0 ADC2_IN2)
+                (altfn 0 DAC_OUT2)
                 (altfn 1 TIM2_CH1)
                 (altfn 1 TIM2_ETR)
                 (altfn 3 TSC_G2_IO2)
@@ -1715,7 +1717,7 @@
 
     (peripheral-group
         (name DAC)
-        (prototype "periph/dac.rx")
+        (module (name "::stm32_common::dac::*"))
         (peripheral
             (name DAC)
             (address 0x40007400)
@@ -1730,6 +1732,8 @@
                 (value 54)
                 (description "TIM6 global and DAC12 underrun interrupts")
             )
+            (channel (name DAC_CH1) (index 0) (signal (name DAC_OUT1) (type DAC)))
+            (channel (name DAC_CH2) (index 1) (signal (name DAC_OUT2) (type DAC)))            
         )
     )
 
