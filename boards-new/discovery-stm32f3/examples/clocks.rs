@@ -41,5 +41,6 @@ pub extern "C" fn main() -> ! {
     println!("TIM6:      {:>12}", Tree::clock_for(TIM6).as_u32());
     println!("TIM7:      {:>12}", Tree::clock_for(TIM7).as_u32());
     println!("TIM8:      {:>12}", Tree::clock_for(TIM8).as_u32());
+    println!("TIM15:     {:>12}", Tree::clock_for(TIM15).as_u32());
     loop {}
 }
