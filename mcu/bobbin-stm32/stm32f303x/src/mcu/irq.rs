@@ -1006,7 +1006,7 @@ pub static mut INTERRUPTS: [Option<Handler>; 82] = [
 
 irq_type!(IRQ_WWDG, IrqWwdg);
 irq_type!(IRQ_EXTI, IrqExti);
-irq_type!(IRQ_UART, IrqUart);
+irq_type!(IRQ_USART, IrqUsart);
 irq_type!(IRQ_I2C_EV, IrqI2cEv);
 irq_type!(IRQ_I2C_ER, IrqI2cEr);
 irq_type!(IRQ_TIM, IrqTim);
@@ -1053,11 +1053,11 @@ irq!(::exti::ExtiLine32, IrqExti, Irq65);
 irq!(::exti::ExtiLine33, IrqExti, Irq66);
 irq!(::exti::ExtiLine34, IrqExti, Irq52);
 irq!(::exti::ExtiLine35, IrqExti, Irq53);
-irq!(::usart::Usart1, IrqUart, Irq37);
-irq!(::usart::Usart2, IrqUart, Irq38);
-irq!(::usart::Usart3, IrqUart, Irq39);
-irq!(::usart::Uart4, IrqUart, Irq52);
-irq!(::usart::Uart5, IrqUart, Irq53);
+irq!(::usart::Usart1, IrqUsart, Irq37);
+irq!(::usart::Usart2, IrqUsart, Irq38);
+irq!(::usart::Usart3, IrqUsart, Irq39);
+irq!(::usart::Uart4, IrqUsart, Irq52);
+irq!(::usart::Uart5, IrqUsart, Irq53);
 irq!(::i2c::I2c1, IrqI2cEv, Irq31);
 irq!(::i2c::I2c1, IrqI2cEr, Irq32);
 irq!(::i2c::I2c2, IrqI2cEv, Irq33);
