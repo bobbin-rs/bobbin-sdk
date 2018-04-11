@@ -131,9 +131,10 @@ impl FlashErase for FlashPeriph {
             0x0808_0000 => 6,
             0x080c_0000 => 7,
             _ => panic!("Invalid flash sector address"),
-        };
+        };        
         self.with_cr(|r| r.set_snb(snb).set_ser(1).set_strt(1));
         while self.flash_busy() {}
+        self.with_cr(|r| r.set_ser(0));
     }
 }
 
@@ -148,6 +149,7 @@ impl FlashWrite<u8> for FlashPeriph {
             }
             while self.flash_busy() {}
         }
+        self.with_cr(|r| r.set_pg(0));        
         data.len()
     }
 }
@@ -164,6 +166,7 @@ impl FlashWrite<u16> for FlashPeriph {
             }
             while self.flash_busy() {}
         }
+        self.with_cr(|r| r.set_pg(0));        
         data.len()
     }
 }
@@ -180,6 +183,7 @@ impl FlashWrite<u32> for FlashPeriph {
             }
             while self.flash_busy() {}
         }
+        self.with_cr(|r| r.set_pg(0));
         data.len()
     }
 }
