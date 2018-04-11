@@ -23,6 +23,7 @@ pub use mcu::rcm;
 pub use mcu::enet;
 pub use mcu::crc;
 pub use mcu::wdog;
+pub use mcu::ftfe;
 pub use mcu::dmamux;
 pub use mcu::edma;
 pub use mcu::ftm;

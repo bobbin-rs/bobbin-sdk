@@ -2,7 +2,7 @@
 #[allow(unused_imports)] pub use ::bobbin_common::gate::GateEn;
 pub use ext::usb::*;
 
-periph!( USB0, Usb0, USB0_PERIPH, UsbPeriph, USB0_OWNED, USB0_REF_COUNT, 0x40072000, 0x00, 0x1a);
+periph!( USB0, Usb0, USB0_PERIPH, UsbPeriph, USB0_OWNED, USB0_REF_COUNT, 0x40072000, 0x00, 0x1b);
 
 // Gate { name: None, gate_type: Some("EN"), periph: Some("SIM"), register: Some("SCGC4"), field: Some("USBOTG"), description: None }
 impl ::bobbin_common::gate::GateEn for Usb0 {

@@ -2,9 +2,9 @@
 #[allow(unused_imports)] pub use ::bobbin_common::gate::GateEn;
 pub use ext::ftm::*;
 
-periph!( FTM0, Ftm0, FTM0_PERIPH, FtmPeriph, FTM0_OWNED, FTM0_REF_COUNT, 0x40038000, 0x00, 0x0a);
-periph!( FTM1, Ftm1, FTM1_PERIPH, FtmPeriph, FTM1_OWNED, FTM1_REF_COUNT, 0x40039000, 0x01, 0x0b);
-periph!( FTM2, Ftm2, FTM2_PERIPH, FtmPeriph, FTM2_OWNED, FTM2_REF_COUNT, 0x4003a000, 0x02, 0x0c);
+periph!( FTM0, Ftm0, FTM0_PERIPH, FtmPeriph, FTM0_OWNED, FTM0_REF_COUNT, 0x40038000, 0x00, 0x0b);
+periph!( FTM1, Ftm1, FTM1_PERIPH, FtmPeriph, FTM1_OWNED, FTM1_REF_COUNT, 0x40039000, 0x01, 0x0c);
+periph!( FTM2, Ftm2, FTM2_PERIPH, FtmPeriph, FTM2_OWNED, FTM2_REF_COUNT, 0x4003a000, 0x02, 0x0d);
 
 channel!(FTM0_CH0, Ftm0Ch0, ftm0_ch0, FTM0, Ftm0, FTM0_CH0_CH, FtmCh, FTM0_PERIPH, FTM0_CH0_OWNED, FTM0_CH0_REF_COUNT, 0);
 channel!(FTM0_CH1, Ftm0Ch1, ftm0_ch1, FTM0, Ftm0, FTM0_CH1_CH, FtmCh, FTM0_PERIPH, FTM0_CH1_OWNED, FTM0_CH1_REF_COUNT, 1);

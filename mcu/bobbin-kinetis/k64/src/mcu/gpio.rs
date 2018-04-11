@@ -2,11 +2,11 @@
 #[allow(unused_imports)] pub use ::bobbin_common::gate::GateEn;
 pub use ext::gpio::*;
 
-periph!( GPIOA, Gpioa, GPIOA_PERIPH, GpioPeriph, GPIOA_OWNED, GPIOA_REF_COUNT, 0x400ff000, 0x00, 0x1e);
-periph!( GPIOB, Gpiob, GPIOB_PERIPH, GpioPeriph, GPIOB_OWNED, GPIOB_REF_COUNT, 0x400ff040, 0x01, 0x1f);
-periph!( GPIOC, Gpioc, GPIOC_PERIPH, GpioPeriph, GPIOC_OWNED, GPIOC_REF_COUNT, 0x400ff080, 0x02, 0x20);
-periph!( GPIOD, Gpiod, GPIOD_PERIPH, GpioPeriph, GPIOD_OWNED, GPIOD_REF_COUNT, 0x400ff0c0, 0x03, 0x21);
-periph!( GPIOE, Gpioe, GPIOE_PERIPH, GpioPeriph, GPIOE_OWNED, GPIOE_REF_COUNT, 0x400ff100, 0x04, 0x22);
+periph!( GPIOA, Gpioa, GPIOA_PERIPH, GpioPeriph, GPIOA_OWNED, GPIOA_REF_COUNT, 0x400ff000, 0x00, 0x1f);
+periph!( GPIOB, Gpiob, GPIOB_PERIPH, GpioPeriph, GPIOB_OWNED, GPIOB_REF_COUNT, 0x400ff040, 0x01, 0x20);
+periph!( GPIOC, Gpioc, GPIOC_PERIPH, GpioPeriph, GPIOC_OWNED, GPIOC_REF_COUNT, 0x400ff080, 0x02, 0x21);
+periph!( GPIOD, Gpiod, GPIOD_PERIPH, GpioPeriph, GPIOD_OWNED, GPIOD_REF_COUNT, 0x400ff0c0, 0x03, 0x22);
+periph!( GPIOE, Gpioe, GPIOE_PERIPH, GpioPeriph, GPIOE_OWNED, GPIOE_REF_COUNT, 0x400ff100, 0x04, 0x23);
 
 channel!(PA0, Pa0, pa0, GPIOA, Gpioa, PA0_CH, GpioCh, GPIOA_PERIPH, PA0_OWNED, PA0_REF_COUNT, 0);
 channel!(PA1, Pa1, pa1, GPIOA, Gpioa, PA1_CH, GpioCh, GPIOA_PERIPH, PA1_OWNED, PA1_REF_COUNT, 1);

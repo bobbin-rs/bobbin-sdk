@@ -27,6 +27,8 @@ signal_type!(ADC, SigAdc);
 
 // WDOG
 
+// FTFE
+
 // DMAMUX
 
 // EDMA

@@ -73,7 +73,25 @@
             )
         )
     )
-
+    (peripheral-group
+        ; signature: 3c69c9ae35c8c115
+        (name FTFE)
+        (prototype "periph/ftfe.rx")
+        (peripheral
+            (name FTFE)
+            (address 0x40020000)
+            (interrupt
+                (name FTFE)
+                (type FTFE)
+                (value 18)
+            )
+            (interrupt
+                (name READ_COLLISION)
+                (type READ_COLLISION)
+                (value 19)
+            )
+        )
+    )
     (peripheral-group
         (name DMAMUX)
         (module (name kinetis_common::dmamux::*))

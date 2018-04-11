@@ -6,6 +6,7 @@ pub mod rcm;
 pub mod enet;
 pub mod crc;
 pub mod wdog;
+pub mod ftfe;
 pub mod dmamux;
 pub mod edma;
 pub mod ftm;

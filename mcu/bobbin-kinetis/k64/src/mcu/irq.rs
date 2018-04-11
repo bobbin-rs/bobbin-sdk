@@ -1053,6 +1053,8 @@ pub static mut INTERRUPTS: [Option<Handler>; 86] = [
 ];
 
 irq_type!(IRQ_WDOG, IrqWdog);
+irq_type!(IRQ_FTFE, IrqFtfe);
+irq_type!(IRQ_READ_COLLISION, IrqReadCollision);
 irq_type!(IRQ_DMA_ERROR, IrqDmaError);
 irq_type!(IRQ_DMA, IrqDma);
 irq_type!(IRQ_FTM, IrqFtm);
@@ -1074,6 +1076,8 @@ irq_type!(IRQ_PORT, IrqPort);
 irq_type!(IRQ_ADC, IrqAdc);
 
 irq!(::wdog::Wdog, IrqWdog, Irq22);
+irq!(::ftfe::Ftfe, IrqFtfe, Irq18);
+irq!(::ftfe::Ftfe, IrqReadCollision, Irq19);
 irq!(::edma::Dma, IrqDmaError, Irq16);
 irq!(::edma::Dma0, IrqDma, Irq0);
 irq!(::edma::Dma1, IrqDma, Irq1);

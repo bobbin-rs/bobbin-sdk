@@ -2,7 +2,7 @@
 #[allow(unused_imports)] pub use ::bobbin_common::gate::GateEn;
 pub use ext::flexcan::*;
 
-periph!( CAN0, Can0, CAN0_PERIPH, FlexcanPeriph, CAN0_OWNED, CAN0_REF_COUNT, 0x40024000, 0x00, 0x1b);
+periph!( CAN0, Can0, CAN0_PERIPH, FlexcanPeriph, CAN0_OWNED, CAN0_REF_COUNT, 0x40024000, 0x00, 0x1c);
 
 // Gate { name: None, gate_type: Some("EN"), periph: Some("SIM"), register: Some("SCGC6"), field: Some("FLEXCAN0"), description: None }
 impl ::bobbin_common::gate::GateEn for Can0 {

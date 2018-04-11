@@ -2,8 +2,8 @@
 #[allow(unused_imports)] pub use ::bobbin_common::gate::GateEn;
 pub use ext::dac::*;
 
-periph!( DAC0, Dac0, DAC0_PERIPH, DacPeriph, DAC0_OWNED, DAC0_REF_COUNT, 0x400cc000, 0x00, 0x1c);
-periph!( DAC1, Dac1, DAC1_PERIPH, DacPeriph, DAC1_OWNED, DAC1_REF_COUNT, 0x400cd000, 0x01, 0x1d);
+periph!( DAC0, Dac0, DAC0_PERIPH, DacPeriph, DAC0_OWNED, DAC0_REF_COUNT, 0x400cc000, 0x00, 0x1d);
+periph!( DAC1, Dac1, DAC1_PERIPH, DacPeriph, DAC1_OWNED, DAC1_REF_COUNT, 0x400cd000, 0x01, 0x1e);
 
 // Gate { name: None, gate_type: Some("EN"), periph: Some("SIM"), register: Some("SCGC2"), field: Some("DAC0"), description: None }
 impl ::bobbin_common::gate::GateEn for Dac0 {

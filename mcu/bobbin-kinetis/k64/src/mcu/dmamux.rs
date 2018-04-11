@@ -2,7 +2,7 @@
 #[allow(unused_imports)] pub use ::bobbin_common::gate::GateEn;
 pub use ext::dmamux::*;
 
-periph!( DMAMUX, Dmamux, DMAMUX_PERIPH, DmamuxPeriph, DMAMUX_OWNED, DMAMUX_REF_COUNT, 0x40021000, 0x00, 0x08);
+periph!( DMAMUX, Dmamux, DMAMUX_PERIPH, DmamuxPeriph, DMAMUX_OWNED, DMAMUX_REF_COUNT, 0x40021000, 0x00, 0x09);
 
 // Gate { name: None, gate_type: Some("EN"), periph: Some("SIM"), register: Some("SCGC6"), field: Some("DMAMUX"), description: None }
 impl ::bobbin_common::gate::GateEn for Dmamux {

@@ -9,6 +9,7 @@ pub mod rcm;
 pub mod enet;
 pub mod crc;
 pub mod wdog;
+pub mod ftfe;
 pub mod dmamux;
 pub mod edma;
 pub mod ftm;
@@ -43,6 +44,7 @@ impl K64 {
     pub fn enet(&self) -> Option<Owned<enet::Enet>> { enet::Enet::acquire() }
     pub fn crc(&self) -> Option<Owned<crc::Crc>> { crc::Crc::acquire() }
     pub fn wdog(&self) -> Option<Owned<wdog::Wdog>> { wdog::Wdog::acquire() }
+    pub fn ftfe(&self) -> Option<Owned<ftfe::Ftfe>> { ftfe::Ftfe::acquire() }
     pub fn dmamux(&self) -> Option<Owned<dmamux::Dmamux>> { dmamux::Dmamux::acquire() }
     pub fn dma(&self) -> Option<Owned<edma::Dma>> { edma::Dma::acquire() }
         pub fn dma0(&self) -> Option<Owned<edma::Dma0>> { edma::Dma0::acquire() }
@@ -521,6 +523,24 @@ impl GetPeriphInstance<wdog::WdogPeriph> for K64 {
     fn get_periph_instance(&self, index: usize) -> Option<wdog::WdogPeriph> {
         match index {
             0 => Some(wdog::WDOG_PERIPH),
+            _ => None,
+        }
+    }
+    fn get_periph_instance_count(&self) -> usize { 1 }
+}
+
+impl Get<ftfe::Ftfe> for K64 {
+    fn get(&self) -> ftfe::Ftfe { ftfe::FTFE }
+}
+
+impl GetPeriph<ftfe::FtfePeriph> for K64 {
+    fn get_periph(&self) -> ftfe::FtfePeriph { ftfe::FTFE_PERIPH }
+}
+
+impl GetPeriphInstance<ftfe::FtfePeriph> for K64 {
+    fn get_periph_instance(&self, index: usize) -> Option<ftfe::FtfePeriph> {
+        match index {
+            0 => Some(ftfe::FTFE_PERIPH),
             _ => None,
         }
     }
