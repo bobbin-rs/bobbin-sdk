@@ -30,24 +30,22 @@ pub extern "C" fn main() -> ! {
     dump(FLASH_ADDR as *const u8, FLASH_LEN);    
     {
         println!("flash erase {:p}", FLASH_ADDR);
-        FLASH.flash_unlock();
-        FLASH.flash_erase(FLASH_ADDR);
-        FLASH.flash_lock();
+        FLASH.unlocked(|f| f.flash_erase(FLASH_ADDR));
         println!("flash erase done")
     }
     dump(FLASH_ADDR as *const u8, FLASH_LEN);    
     {
         println!("Flash write");
-        let mut buf = [0u8; 0x100];
+        let mut buf = [0u16; 0x100];
         for i in 0..buf.len() {
-            buf[i] = i as u8;
+            buf[i] = i as u16;
         }
-        FLASH.flash_unlock();
-        FLASH.flash_write(FLASH_ADDR as *mut u8, &buf);
-        FLASH.flash_lock();
+        FLASH.unlocked(|f| {
+            f.flash_write(FLASH_ADDR as *mut u16, &buf);
+        });
+        dump(FLASH_ADDR as *const u8, buf.len() * 2);    
     }
-    dump(FLASH_ADDR as *const u8, FLASH_LEN);    
-
+    println!("done");
     loop {}
 }
 
@@ -76,6 +74,12 @@ pub trait FlashLockUnlock {
     fn flash_locked(&self) -> bool;
     fn flash_unlock(&self);
     fn flash_lock(&self);
+    fn unlocked<T, F: FnOnce(&Self)->T>(&self, f: F) -> T {
+        self.flash_unlock();
+        let ret = f(self);
+        self.flash_lock();
+        ret
+    }
 }
 
 pub trait FlashBusy {
