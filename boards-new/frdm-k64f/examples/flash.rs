@@ -12,14 +12,27 @@ extern "C" {
 use core::slice;
 use board::mcu::ftfe::*;
 
-pub const FLASH_ADDR: *mut u32 = 0x001_0000 as *mut u32;
+pub const FLASH_ADDR: *mut u32 = 0x008_0000 as *mut u32;
 pub const FLASH_LEN: usize = 0x100;
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
     board::init();
-
+    use board::mcu::sim::*;
+    board::delay(1000);
     println!("Flash Test");
+    println!("Disable MPU");
+
+    println!("SIM_FCFG1: {:?}", SIM.fcfg1());
+    println!("FCNFG: {:?}", FTFE.fcnfg());
+    println!("FSEC:  {:?}", FTFE.fsec());
+    println!("FOPT:  {:?}", FTFE.fopt());
+
+    for i in 0..4 {
+        println!("FPROT{}: {:?}", i, FTFE.fprot(i));
+    }
+    println!("FEPROT: {:?}", FTFE.feprot());
+    println!("FDPROT: {:?}", FTFE.fdprot());
 
     dump(FLASH_ADDR as *const u8, FLASH_LEN);    
     {
@@ -27,7 +40,7 @@ pub extern "C" fn main() -> ! {
         FTFE.unlocked(|f| f.flash_erase(FLASH_ADDR));
         println!("flash erase done")
     }
-    dump(FLASH_ADDR as *const u8, FLASH_LEN);    
+    // dump(FLASH_ADDR as *const u8, FLASH_LEN);    
     {
         println!("Flash write");
         let mut buf = [0u32; 0x100 / 4];
@@ -70,11 +83,16 @@ pub trait FtfeWriteCommand {
 
 impl FtfeWriteCommand for FtfePeriph {
     fn write_command(&self, buf: &[u8]) {
+        self.set_fstat(|_| Fstat(0x70));
+        while self.flash_busy() {}
+        println!("fstat: {:?}", self.fstat());
         for i in 0..buf.len() {
             self.set_fccob(i, |_| Fccob(buf[i]));
+            print!("{:02x} ", self.fccob(i).0);
         }
-        self.with_fstat(|r| r.set_ccif(0));
-        while self.flash_busy() {}
+        println!("");
+        self.set_fstat(|_| Fstat(0x80));
+        println!("fstat: {:?}", self.fstat());
     }
 }
 
@@ -125,12 +143,11 @@ impl FlashErase for FtfePeriph {
     fn flash_erase(&self, addr: *const u32) {
         let addr = addr as u32;
         self.write_command(&[
-            0x08,
-            (addr >> 16) as u8,
-            (addr >> 8) as u8,
             (addr >> 0) as u8,
+            (addr >> 8) as u8,
+            (addr >> 16) as u8,
+            0x08,
         ]);
-        println!("FSTAT: {:?}", self.fstat());
     }
 }
 
@@ -140,26 +157,26 @@ impl FlashWrite<u32> for FtfePeriph {
         let addr = addr as u32;
         let mut i = 0;
         while i < data.len() {
-            let daddr = addr + (i as u32 * 8);
+            let daddr = addr + (i as u32 * 4);
             let data_1 = data[i];
             let data_2 = data[i + 1];
             self.write_command(&[
-                0x07,
-                (daddr >> 16) as u8,
-                (daddr >> 8) as u8,
                 (daddr >> 0) as u8,
-                (data_1 >> 24) as u8,
-                (data_1 >> 16) as u8,
-                (data_1 >> 8) as u8,
+                (daddr >> 8) as u8,
+                (daddr >> 16) as u8,
+                0x07,
                 (data_1 >> 0) as u8,
-                (data_2 >> 24) as u8,
-                (data_2 >> 16) as u8,
-                (data_2 >> 8) as u8,
+                (data_1 >> 8) as u8,
+                (data_1 >> 16) as u8,
+                (data_1 >> 24) as u8,
                 (data_2 >> 0) as u8,                
+                (data_2 >> 8) as u8,
+                (data_2 >> 16) as u8,
+                (data_2 >> 24) as u8,
             ]);
             i += 2;
         }
-        println!("FSTAT: {:?}", self.fstat());        
+        // println!("FSTAT: {:?}", self.fstat());        
         data.len()
     }
 }
