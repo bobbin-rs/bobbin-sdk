@@ -714,17 +714,17 @@ impl ::core::fmt::Debug for Fopt {
 pub struct Fccob(pub u8);
 impl Fccob {
     #[doc="The FCCOB register provides a command code and relevant parameters to the memory controller"]
-    #[inline] pub fn ccobn(&self) -> bits::U8 {
+    #[inline] pub fn ccob(&self) -> bits::U8 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
-    #[doc="Returns true if CCOBN != 0"]
-    #[inline] pub fn test_ccobn(&self) -> bool {
-        self.ccobn() != 0
+    #[doc="Returns true if CCOB != 0"]
+    #[inline] pub fn test_ccob(&self) -> bool {
+        self.ccob() != 0
     }
 
-    #[doc="Sets the CCOBN field."]
-    #[inline] pub fn set_ccobn<V: Into<bits::U8>>(mut self, value: V) -> Self {
+    #[doc="Sets the CCOB field."]
+    #[inline] pub fn set_ccob<V: Into<bits::U8>>(mut self, value: V) -> Self {
         let value: bits::U8 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0xff << 0);
@@ -750,7 +750,7 @@ impl ::core::fmt::Display for Fccob {
 impl ::core::fmt::Debug for Fccob {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
         try!(write!(f, "[0x{:08x}", self.0));
-        if self.ccobn() != 0 { try!(write!(f, " ccobn=0x{:x}", self.ccobn()))}
+        if self.ccob() != 0 { try!(write!(f, " ccob=0x{:x}", self.ccob()))}
         try!(write!(f, "]"));
         Ok(())
     }

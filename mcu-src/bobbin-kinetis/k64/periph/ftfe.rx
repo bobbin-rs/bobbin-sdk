@@ -380,7 +380,7 @@
         (dim-increment 1)
         (dim-index "3,2,1,0,7,6,5,4,B,A,9,8")
         (field
-            (name CCOBN)
+            (name CCOB)
             (bit-offset 0)
             (bit-width 8)
             (access read-write)
