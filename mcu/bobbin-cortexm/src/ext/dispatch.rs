@@ -2,11 +2,13 @@ use ::systick::SYSTICK;
 use ::nvic::*;
 
 use core::ops::Deref;
+use core::fmt;
 
 
 macro_rules! impl_handlers {
     ($id:ident, $ty:ident, $len:expr) => {
         static mut $id: [Option<ExceptionHandler>; $len] = [None; $len];
+        #[derive(Default)]
         pub struct $ty;
         impl ExceptionHandlers for $ty {
             fn exc_handlers() -> &'static mut [Option<ExceptionHandler>] { unsafe { &mut $id }}
@@ -155,9 +157,12 @@ impl<'a, H: 'a> Deref for Guard<'a, H> {
     }
 }
 
-pub struct Dispatcher<T: ExceptionHandlers>(T);
+pub struct Dispatcher<T: Default + ExceptionHandlers>(T);
 
-impl<T: ExceptionHandlers> Dispatcher<T> {
+impl<T: Default + ExceptionHandlers> Dispatcher<T> {
+    pub unsafe fn new() -> Self {
+        Dispatcher(T::default())
+    }
     pub fn slots() -> usize {
         Self::handlers().len()
     }
@@ -234,5 +239,12 @@ impl<T: ExceptionHandlers> Dispatcher<T> {
             }
         }
         handled
+    }
+}
+
+impl<T: Default + ExceptionHandlers> fmt::Debug for Dispatcher<T> {
+    fn fmt(&self, out: &mut fmt::Formatter) -> fmt::Result {
+        write!(out, "Dispatcher {{ slots: {} used: {} }}", Self::slots(), Self::slots_used())?;
+        Ok(())
     }
 }
