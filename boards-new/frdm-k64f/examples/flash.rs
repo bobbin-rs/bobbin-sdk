@@ -85,14 +85,14 @@ impl FtfeWriteCommand for FtfePeriph {
     fn write_command(&self, buf: &[u8]) {
         self.set_fstat(|_| Fstat(0x70));
         while self.flash_busy() {}
-        println!("fstat: {:?}", self.fstat());
+        // println!("fstat: {:?}", self.fstat());
         for i in 0..buf.len() {
             self.set_fccob(i, |_| Fccob(buf[i]));
-            print!("{:02x} ", self.fccob(i).0);
+            // print!("{:02x} ", self.fccob(i).0);
         }
-        println!("");
+        // println!("");
         self.set_fstat(|_| Fstat(0x80));
-        println!("fstat: {:?}", self.fstat());
+        // println!("fstat: {:?}", self.fstat());
     }
 }
 
