@@ -7,8 +7,8 @@ extern crate examples;
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
-    board::init();    
+    let mut sys = board::ext::System::init();
     let brd = board::board();
     let app = examples::led::BlinkLed::new(brd.led0(), brd, 500);
-    app.run()
+    sys.run(|_| app.run())
 }
