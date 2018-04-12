@@ -1,5 +1,8 @@
 use ::common::memory::Memory;
 use ::common::heap::Heap;
+use ::common::console::{Console, with_console};
+
+use ::mcu::Stm32f74x as Mcu;
 use ::mcu::dispatch::{Dispatcher, ExcHandlers8};
 
 use core::cell::UnsafeCell;
@@ -27,6 +30,7 @@ impl Default for Config {
 
 #[must_use]
 pub struct System {
+    mcu: Mcu,
     memory: Memory,
     heap: Heap,
     dispatcher: Dispatcher<ExcHandlers8>,
@@ -47,8 +51,9 @@ impl System {
         ::led::init();
         ::btn::init();
         ::delay::init();        
-        
+
         System {
+            mcu: Mcu {},
             memory: Memory {},
             heap: Heap {},
             dispatcher: unsafe { Dispatcher::new() },
@@ -82,6 +87,14 @@ impl System {
         Self::data().locked = false;
     }
 
+    pub fn mcu(&self) -> &Mcu {
+        &self.mcu
+    }
+
+    pub fn mcu_mut(&mut self) -> &mut Mcu {
+        &mut self.mcu
+    }
+
     pub fn memory(&self) -> &Memory {
         &self.memory
     }
@@ -102,7 +115,11 @@ impl System {
         &mut self.dispatcher
     }
 
-    pub fn run<T, F: FnOnce(&mut Self) -> T>(&mut self, f: F) -> T {
+    pub fn with_console<F: FnOnce(&mut Console)>(&self, f: F) {
+        with_console(f)
+    }
+
+    pub fn run<T, F: FnOnce(&Self) -> T>(&mut self, f: F) -> T {
         Self::enable_interrupts();
         let ret = f(self);
         Self::disable_interrupts();

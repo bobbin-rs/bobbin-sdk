@@ -193,7 +193,7 @@ impl<T: Default + ExceptionHandlers> Dispatcher<T> {
         }
     }
     
-    pub fn register_handler<H: 'static + HandleException>(exc_num: u8, handler: &H) -> Result<Guard<H>, Error> {
+    pub fn register_handler<'h, H: 'static + HandleException>(&mut self, exc_num: u8, handler: &'h H) -> Result<Guard<'h, H>, Error> {
         let exc_handler = ExceptionHandler::new(exc_num, handler);
         let exc_handlers = Self::handlers();
         for i in 0..exc_handlers.len() {
@@ -210,20 +210,20 @@ impl<T: Default + ExceptionHandlers> Dispatcher<T> {
         Err(Error::Unavailable)
     }
 
-    pub fn register_svcall_handler<H: 'static + HandleException>(handler: &H) -> Result<Guard<H>, Error> {        
-        Self::register_handler(11, handler)
+    pub fn register_svcall_handler<'h, H: 'static + HandleException>(&mut self, handler: &'h H) -> Result<Guard<'h, H>, Error> {        
+        self.register_handler(11, handler)
     }
 
-    pub fn register_pendsv_handler<H: 'static + HandleException>(handler: &H) -> Result<Guard<H>, Error> {        
-        Self::register_handler(14, handler)
+    pub fn register_pendsv_handler<'h,H: 'static + HandleException>(&mut self, handler: &'h H) -> Result<Guard<'h, H>, Error> {        
+        self.register_handler(14, handler)
     }
 
-    pub fn register_systick_handler<H: 'static + HandleException>(handler: &H) -> Result<Guard<H>, Error> {
-        Self::register_handler(15, handler)
+    pub fn register_systick_handler<'h,H: 'static + HandleException>(&mut self, handler: &'h H) -> Result<Guard<'h, H>, Error> {
+        self.register_handler(15, handler)
     }
 
-    pub fn register_irq_handler<H: 'static + HandleException>(irq: u8, handler: &H) -> Result<Guard<H>, Error> {        
-        Self::register_handler(irq + 16, handler)
+    pub fn register_irq_handler<'h,H: 'static + HandleException>(&mut self, irq: u8, handler: &'h H) -> Result<Guard<'h, H>, Error> {        
+        self.register_handler(irq + 16, handler)
     }
 
     #[inline]
