@@ -1,6 +1,6 @@
 #![no_std]
 #![no_main]
-#![feature(asm)]
+#![feature(asm, nll)]
 
 extern crate nucleo_l432kc as board;
 extern crate examples;
@@ -8,8 +8,7 @@ extern crate examples;
 use board::console::USART;
 
 use board::mcu::dispatch::{HandleException, Exception, Guard};
-use board::Dispatcher;
-use board::Heap;
+use board::System;
 use board::common::ring::*;
 
 use board::common::irq::*;
@@ -20,10 +19,10 @@ use board::mcu::usart::*;
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
-    board::init();
+    let mut sys = board::init();
 
-    unsafe { Heap::extend(1024) };
-    let mut s = SerialDriver::new(USART);
+    unsafe { sys.heap_mut().extend(1024) };
+    let mut s = SerialDriver::new(&mut sys, USART);
 
     s.write_all(b"Serial Driver Echo Test\r\n");        
     let mut buf = [0u8; 64];
@@ -63,22 +62,23 @@ pub struct SerialDriver {
 }
 
 impl SerialDriver {
-    pub fn new<U: Into<UsartPeriph> + Irq<IrqUsart>>(usart: U) -> Self {
-        Self::new_with_config(usart, Config::default())
+    pub fn new<U: Into<UsartPeriph> + Irq<IrqUsart>>(sys: &mut System, usart: U) -> Self {
+        Self::new_with_config(sys, usart, Config::default())
     }
 
-    pub fn new_with_config<U: Into<UsartPeriph> + Irq<IrqUsart>>(usart: U, cfg: Config) -> Self {
-        let tx_buf = Heap::slice(0u8, cfg.tx_len);
-        let tx_ring = Heap::new(Ring::new(tx_buf));
-        let tx_reader = Heap::new(tx_ring.reader());
+    pub fn new_with_config<U: Into<UsartPeriph> + Irq<IrqUsart>>(sys: &mut System, usart: U, cfg: Config) -> Self {
+        let heap = sys.heap_mut();
+        let tx_buf = heap.slice(0u8, cfg.tx_len);
+        let tx_ring = heap.new(Ring::new(tx_buf));
+        let tx_reader = heap.new(tx_ring.reader());
 
-        let rx_buf = Heap::slice(0u8, cfg.rx_len);
-        let rx_ring = Heap::new(Ring::new(rx_buf));
-        let rx_writer = Heap::new(rx_ring.writer());
+        let rx_buf = heap.slice(0u8, cfg.rx_len);
+        let rx_ring = heap.new(Ring::new(rx_buf));
+        let rx_writer = heap.new(rx_ring.writer());
         
         let irq_number = usart.irq_number_for(IRQ_USART);
-        let handler = Heap::new(SerialHandler::new(usart, tx_reader, rx_writer));
-        let guard = Dispatcher::register_irq_handler(irq_number, handler).unwrap();        
+        let handler = heap.new(SerialHandler::new(usart, tx_reader, rx_writer));
+        let guard = sys.dispatcher_mut().register_irq_handler(irq_number, handler).unwrap();        
         Self { guard, tx_ring, rx_ring }
     }
 

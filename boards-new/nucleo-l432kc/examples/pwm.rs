@@ -12,7 +12,7 @@ use board::mcu::tim_gen::*;
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
-    board::init();
+    let _ = board::init();
     let led0 = PB3;
 
     let tim = TIM2;
