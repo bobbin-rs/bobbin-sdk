@@ -16,7 +16,7 @@ use board::logger;
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
-    board::init();
+    let _ = board::init();
     
     logger::set_log_level(log::LogLevelFilter::Info).unwrap();
 

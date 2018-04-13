@@ -12,7 +12,7 @@ use board::mcu::spi::*;
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
-    board::init();
+    let _ = board::init();
     let brd = board::board();
 
     let spi = SPI0;

@@ -8,7 +8,7 @@ static mut DATA: [u8; 1024] = [0u8; 1024];
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
-    board::init();
+    let _ = board::init();
 
     for i in 0..1024 {
         unsafe { DATA[i] = i as u8; }

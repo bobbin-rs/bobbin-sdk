@@ -17,7 +17,7 @@ pub const FLASH_LEN: usize = 0x100;
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
-    board::init();
+    let _ = board::init();
     use board::mcu::sim::*;
     board::delay(1000);
     println!("Flash Test");

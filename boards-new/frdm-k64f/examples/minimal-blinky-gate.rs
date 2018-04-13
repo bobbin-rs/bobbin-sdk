@@ -14,7 +14,7 @@ use board::mcu::pin::*;
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
-    board::init();
+    let _ = board::init();
 
     // Enable PORTB
     PORTB.gate_enable();

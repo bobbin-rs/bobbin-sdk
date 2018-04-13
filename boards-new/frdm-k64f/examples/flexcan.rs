@@ -13,7 +13,7 @@ use board::mcu::flexcan::*;
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
-    board::init();
+    let _ = board::init();
     println!("FLEXCAN Test");    
 
     let c0 = CAN0;

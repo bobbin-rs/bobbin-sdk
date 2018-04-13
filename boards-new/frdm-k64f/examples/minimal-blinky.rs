@@ -12,7 +12,7 @@ use board::mcu::gpio::*;
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
-    board::init();
+    let _ = board::init();
 
     // Enable PORTB
     SIM.with_scgc5(|r| r.set_portb(1));

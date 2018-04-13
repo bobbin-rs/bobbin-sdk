@@ -6,7 +6,7 @@ extern crate examples;
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
-    board::init();    
+    let _ = board::init();    
     
     let b = board::board();
     let leds = [b.led0(), b.led1(), b.led2()];
