@@ -6,7 +6,7 @@ extern crate nucleo_f746zg as board;
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
-    let mut sys = board::System::init();
+    let mut sys = board::init();
 
     println!("Running System");
     println!("MCU: {:?}", sys.mcu());

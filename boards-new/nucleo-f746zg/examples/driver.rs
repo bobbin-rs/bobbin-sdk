@@ -18,7 +18,7 @@ use core::cell::UnsafeCell;
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
-    board::init();
+    let sys = board::init();
 
     let mut s = SerialDriver::new(USART);
     let mut buf = [0u8; 64];

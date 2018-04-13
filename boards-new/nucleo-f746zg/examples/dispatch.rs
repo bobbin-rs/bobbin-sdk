@@ -9,7 +9,6 @@ extern crate examples;
 use board::mcu::systick::SYSTICK;
 use board::mcu::systick_ext::SystickHz;
 use board::mcu::scb::SCB;
-use board::clock::*;
 
 use board::mcu::dispatch::{HandleException, Exception};
 
@@ -17,7 +16,7 @@ use core::cell::UnsafeCell;
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
-    let mut sys = board::ext::System::init();
+    let mut sys = board::init();
     println!("Dispatch Test");
 
     // println!("{:?}", sys.dispatcher());
@@ -26,7 +25,7 @@ pub extern "C" fn main() -> ! {
     let p = sys.dispatcher_mut().register_pendsv_handler(&p).unwrap();
     // println!("{:?}", sys.dispatcher());
 
-    let reload_value = (Clk::systick_hz() / 1000).as_u32() - 1;
+    let reload_value = (sys.clock().systick_hz() / 1000).as_u32() - 1;
     SYSTICK.set_reload_value(reload_value);
     SYSTICK.set_current_value(reload_value);
     SYSTICK.set_enabled(true);        
@@ -45,15 +44,14 @@ pub extern "C" fn main() -> ! {
 
     sys.run(|sys| loop {
         // println!("tick: {} {} {}", t.count(), t2.count(), p.count());
-        sys.with_console(|c| {
-            c.write(b"Tick: ");
-            c.write_u32(t.count(), 10);
-            c.write(b" ");
-            c.write_u32(t2.count(), 10);
-            c.write(b" ");
-            c.write_u32(p.count(), 10);
-            c.write(b"\n");
-        });
+        let c = sys.console();
+        c.write(b"Tick: ");
+        c.write_u32(t.count(), 10);
+        c.write(b" ");
+        c.write_u32(t2.count(), 10);
+        c.write(b" ");
+        c.write_u32(p.count(), 10);
+        c.write(b"\n");
         board::delay(1000);        
     })
 

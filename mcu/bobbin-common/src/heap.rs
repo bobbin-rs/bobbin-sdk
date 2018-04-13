@@ -18,7 +18,7 @@ pub enum Error {
 pub struct Heap {}
 
 impl Heap {
-    pub unsafe fn extend(size: usize) {
+    pub unsafe fn extend(&mut self, size: usize) {
         HEAP_END = HEAP_START.offset(size as isize);
     }
 
