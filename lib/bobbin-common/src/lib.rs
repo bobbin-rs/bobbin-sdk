@@ -5,12 +5,18 @@
 #[macro_use]
 extern crate std;
 
+#[cfg(feature="logger")]
+extern crate log;
+
 pub extern crate bobbin_bits as bits;
 pub extern crate bobbin_hz as hz;
 pub extern crate bobbin_tree as tree;
 
 #[macro_use]
 mod macros;
+
+#[cfg(feature="logger")]
+pub mod logger;
 
 pub mod mcu;
 pub mod periph;
