@@ -16,7 +16,7 @@ pub fn init() {
 // FLASH: 4 wait states
 
 pub type SystemClockProvider = DynamicClock<Osc8m, Osc32k>;
-pub type SystemClocks = Clocks<SystemClockProvider>;
+pub type SystemClock = Clocks<SystemClockProvider>;
 
 #[derive(Default)]
 pub struct Osc8m {}

@@ -10,7 +10,7 @@ pub fn init() {
 }
 
 pub fn delay(ms: u32) {
-    let pit_clk = SystemClocks::default().clock_for(PIT).as_u32();
+    let pit_clk = SystemClock::default().clock_for(PIT).as_u32();
     PIT
         // .set_load_value(PIT_CH, (PIT.clock(&CLK).expect("No bus clock") / 1000) * ms)
         .set_load_value(PIT_CH, (pit_clk / 1000) * ms)

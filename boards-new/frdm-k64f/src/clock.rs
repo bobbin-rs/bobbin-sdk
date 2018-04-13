@@ -6,7 +6,7 @@ pub fn init() {
 }
 
 pub type SystemClockProvider = DynamicClock<Extal50m, Extal32k>;
-pub type SystemClocks = Clocks<SystemClockProvider>;
+pub type SystemClock = Clocks<SystemClockProvider>;
 
 #[derive(Default)]
 pub struct Extal50m {}

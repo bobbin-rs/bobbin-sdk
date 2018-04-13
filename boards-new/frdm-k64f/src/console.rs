@@ -21,7 +21,7 @@ pub fn init() {
     UART_TX.connect_to(UART);
     UART_RX.connect_to(UART);
 
-    let baud_div = SystemClocks::default().clock_for(UART).as_u32() / (16 * UART_BAUD);
+    let baud_div = SystemClock::default().clock_for(UART).as_u32() / (16 * UART_BAUD);
     // let baud_div = UART.clock(&CLK).expect("No bus clock") / (16 * UART_BAUD);
     // let baud_div = UART_BD;
     UART

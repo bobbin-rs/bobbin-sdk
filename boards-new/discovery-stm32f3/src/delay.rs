@@ -23,7 +23,7 @@ pub fn init() {
 
 pub fn delay(ms: u32) { 
     TIM.gate_enable();
-    let tim_clk: u32 = SystemClocks::default().clock_for(TIM).into();
+    let tim_clk: u32 = SystemClock::default().clock_for(TIM).into();
     TIM
         .set_prescale(((tim_clk / 2000) - 1) as u16)
         .delay((ms << 1) as u16);

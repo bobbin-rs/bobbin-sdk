@@ -3,7 +3,7 @@ pub use mcu::ext::clock::DynamicClock;
 
 
 pub type SystemClockProvider = DynamicClock<Osc48m, Osc32k>;
-pub type SystemClocks = Clocks<SystemClockProvider>;
+pub type SystemClock = Clocks<SystemClockProvider>;
 
 #[derive(Default)]
 pub struct Osc48m {}
