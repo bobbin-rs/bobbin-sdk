@@ -249,8 +249,9 @@ pub fn gen_ext_mod<W: Write>(_cfg: &modules::Config, out: &mut W, d: &Device, pa
         if p.modules.len() > 0 { continue }        
         let p_name = p.group_name.as_ref().unwrap_or(&p.name).to_lowercase();
         try!(writeln!(out, "pub mod {};", p_name));
+        let p_dir = path.join(&p_name);
         let p_mod = path.join(format!("{}.rs", p_name));
-        if !p_mod.exists() {
+        if !p_dir.exists() && !p_mod.exists() {
             let mut f_mod = try!(File::create(p_mod));
             try!(writeln!(f_mod, "pub use periph::{}::*;", p_name));
         }
@@ -259,8 +260,9 @@ pub fn gen_ext_mod<W: Write>(_cfg: &modules::Config, out: &mut W, d: &Device, pa
     for pg in d.peripheral_groups.iter() {
         let pg_name = pg.name.to_lowercase();
         try!(writeln!(out, "pub mod {};", pg_name));
+        let p_dir = path.join(&pg_name);
         let p_mod = path.join(format!("{}.rs", pg_name));
-        if !p_mod.exists() {
+        if !p_dir.exists() && !p_mod.exists() {
             let mut f_mod = try!(File::create(p_mod));
             if pg.modules.len() > 0 {
                 for m in &pg.modules {
