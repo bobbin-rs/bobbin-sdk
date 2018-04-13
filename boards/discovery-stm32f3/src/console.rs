@@ -30,9 +30,3 @@ pub fn init() {
 
     set_console(Console::new(USART.into_periph()));
 }
-
-impl super::DiscoveryStm32f3 {
-    pub fn console(&self) -> Console {
-        Console::new(USART.into_periph())
-    }
-}

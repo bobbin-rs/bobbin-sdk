@@ -40,9 +40,3 @@ pub fn init() {
 
     set_console(Console::new(SERCOM.into_periph()));
 }
-
-impl ::FeatherM0 {
-    pub fn console(&self) -> Console {
-        Console::new(SERCOM.into_periph())
-    }
-}

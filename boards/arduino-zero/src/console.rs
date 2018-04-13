@@ -39,9 +39,3 @@ pub fn init() {
         .set_enabled(true);
     set_console(Console::new(SERCOM.into_periph()));    
 }
-
-impl ::ArduinoZero {
-    pub fn console(&self) -> Console {
-        Console::new(SERCOM.into_periph())
-    }
-}

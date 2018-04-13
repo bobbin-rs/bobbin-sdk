@@ -22,17 +22,8 @@ pub fn init() {
     UART_RX.connect_to(UART);
 
     let baud_div = SystemClock::default().clock_for(UART).as_u32() / (16 * UART_BAUD);
-    // let baud_div = UART.clock(&CLK).expect("No bus clock") / (16 * UART_BAUD);
-    // let baud_div = UART_BD;
     UART
         .set_config(|c| c.set_baud_divisor(baud_div as u16))
         .set_enabled(true);
-    set_console(Console::new(UART.into_periph()));
-    
-}
-
-impl ::FrdmK64f {
-    pub fn console(&self) -> Console {
-        Console::new(UART0.into_periph())
-    }
+    set_console(Console::new(UART.into_periph()));   
 }

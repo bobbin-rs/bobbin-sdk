@@ -29,9 +29,3 @@ pub fn init() {
 
     set_console(Console::new(USART.into_periph()));
 }
-
-impl ::NucleoL432kc {
-    pub fn console(&self) -> Console {
-        Console::new(USART.into_periph())
-    }
-}
