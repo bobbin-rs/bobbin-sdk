@@ -6,59 +6,60 @@ use bobbin_common::bits::*;
 
 macro_rules! impl_gclk {
     ($id:ident, $index:expr) => {
-        fn $id() -> Hz { Self::gclk($index)}        
+        fn $id(&self) -> Hz { self.gclk($index)}        
     };
 }
 
 macro_rules! impl_gclkgen {
     ($id:ident, $index:expr) => {
-        fn $id() -> Hz { Self::gclkgen($index)}        
+        fn $id(&self) -> Hz { self.gclkgen($index)}        
     };
 }
 
+#[derive(Default)]
 pub struct DynamicClock<XOSC: Clock, XOSC32K: Clock>(XOSC, XOSC32K);
 
 impl<XOSC: Clock, XOSC32K: Clock> DynamicClock<XOSC, XOSC32K> {
-    pub fn read_clkctrl(id: U6) -> Clkctrl {
+    pub fn read_clkctrl(&self, id: U6) -> Clkctrl {
         unsafe {
             ::core::ptr::write_volatile(GCLK.clkctrl_mut() as *mut u8, id.value());
         }
         GCLK.clkctrl()
     }
 
-    pub fn read_genctrl(id: U4) -> Genctrl {
+    pub fn read_genctrl(&self, id: U4) -> Genctrl {
         unsafe {
             ::core::ptr::write_volatile(GCLK.genctrl_mut() as *mut u8, id.value());
         }
         GCLK.genctrl()
     }
 
-    pub fn read_gendiv(id: U4) -> Gendiv {
+    pub fn read_gendiv(&self, id: U4) -> Gendiv {
         unsafe {
             ::core::ptr::write_volatile(GCLK.gendiv_mut() as *mut u8, id.value());
         }
         GCLK.gendiv()
     }
 
-    pub fn src(id: U5) -> Hz {
+    pub fn src(&self, id: U5) -> Hz {
         match id {
-            U5::B00000 => Self::xosc(),
+            U5::B00000 => self.xosc(),
             // GCLKIN is not supported
-            // U5::B00001 => Self::gclkin(),
-            U5::B00010 => Self::gclkgen1(),
-            U5::B00011 => Self::osculp32k(),
-            U5::B00100 => Self::osc32k(),
-            U5::B00101 => Self::xosc32k(),
-            U5::B00110 => Self::osc8m(),
-            U5::B00111 => Self::dfll48m(),
-            U5::B01000 => Self::fdpll96m(),
+            // U5::B00001 => self.gclkin(),
+            U5::B00010 => self.gclkgen1(),
+            U5::B00011 => self.osculp32k(),
+            U5::B00100 => self.osc32k(),
+            U5::B00101 => self.xosc32k(),
+            U5::B00110 => self.osc8m(),
+            U5::B00111 => self.dfll48m(),
+            U5::B01000 => self.fdpll96m(),
             _ => Hz::from_num(0),            
         }
     }
 
-    pub fn gclkgen(id: U4) -> Hz {
-        let gc = Self::read_genctrl(id);
-        let gd = Self::read_gendiv(id);
+    pub fn gclkgen(&self, id: U4) -> Hz {
+        let gc = self.read_genctrl(id);
+        let gd = self.read_gendiv(id);
         if gc.test_genen() {
             let div = match gc.divsel() {
                 U1::B0 => match gd.div().value() {
@@ -67,23 +68,23 @@ impl<XOSC: Clock, XOSC32K: Clock> DynamicClock<XOSC, XOSC32K> {
                 },
                 U1::B1 => 1 << (gd.div().value() + 1),
             };
-            Self::src(gc.src()) / div as u32
+            self.src(gc.src()) / div as u32
         } else {
             Hz::from_num(0)
         }
     }
 
-    pub fn gclk(id: U6) -> Hz {
-        let cc = Self::read_clkctrl(id);
+    pub fn gclk(&self, id: U6) -> Hz {
+        let cc = self.read_clkctrl(id);
         if cc.test_clken() {
-            Self::gclkgen(cc.gen())
+            self.gclkgen(cc.gen())
         } else {
             Hz::from_num(0)
         }
     }
 }
 
-impl <XOSC: Clock, XOSC32K: Clock> Clocks for DynamicClock<XOSC, XOSC32K> {
+impl <XOSC: Clock, XOSC32K: Clock> ClockProvider for DynamicClock<XOSC, XOSC32K> {
     type Xosc = XOSC;
     type Xosc32k = XOSC32K;
     impl_gclkgen!(gclkgen0, U4::B0000);
@@ -138,7 +139,7 @@ impl <XOSC: Clock, XOSC32K: Clock> Clocks for DynamicClock<XOSC, XOSC32K> {
 }
 
 impl <XOSC: Clock, XOSC32K: Clock> SystickHz for DynamicClock<XOSC, XOSC32K> {
-    fn systick_hz() -> Hz {
-        Self::gclkgen0()
+    fn systick_hz(&self, ) -> Hz {
+        self.gclkgen0()
     }
 }

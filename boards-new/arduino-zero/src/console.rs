@@ -32,7 +32,7 @@ pub fn init() {
     SERCOM
         .set_config(|c| c
             .set_mode_usart_int()
-            .set_baud_clock(SERCOM_BAUD, Tree::clock_for(SERCOM).as_u32())
+            .set_baud_clock(SERCOM_BAUD, SystemClocks::default().clock_for(SERCOM).as_u32())
             .set_txpo(1)
             .set_rxpo(3)
         )        

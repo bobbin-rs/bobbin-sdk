@@ -4,10 +4,12 @@ use common::configure::Configure;
 use mcu::pin::*;
 use mcu::sercom::*;
 use mcu::gclk;
+use clock::*;
 
 pub const SERCOM: Sercom0 = SERCOM0;
 pub const SERCOM_TX: Pa10 = PA10;
 pub const SERCOM_RX: Pa11 = PA11;
+pub const SERCOM_BAUD: u32 = 115200;
 
 pub fn init() {
     SERCOM.gate_enable();
@@ -30,7 +32,7 @@ pub fn init() {
     SERCOM
         .set_config(|c| c
             .set_mode_usart_int()
-            .set_baud(63018)
+            .set_baud_clock(SERCOM_BAUD, SystemClocks::default().clock_for(SERCOM).as_u32())
             .set_txpo(1)
             .set_rxpo(3)
         )

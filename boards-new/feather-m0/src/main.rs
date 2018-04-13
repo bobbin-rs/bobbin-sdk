@@ -2,7 +2,7 @@
 #![no_main]
 
 #[macro_use]
-extern crate arduino_zero as board;
+extern crate feather_m0 as board;
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {

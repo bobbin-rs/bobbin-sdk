@@ -6,12 +6,12 @@ use bobbin_common::bits::*;
 
 macro_rules! impl_usart_clock_source {
     ($periph:path, $id:ident, $default:ident) => {
-        fn $id() -> Hz {
+        fn $id(&self) -> Hz {
             match $periph.clock_source() {
-                UsartClock::Pclk => Self::$default(),
-                UsartClock::Sysclk => Self::sysclk(),
-                UsartClock::Hsi16 => Self::hsi16(),
-                UsartClock::Lse => Self::lse(),
+                UsartClock::Pclk => self.$default(),
+                UsartClock::Sysclk => self.sysclk(),
+                UsartClock::Hsi16 => self.hsi16(),
+                UsartClock::Lse => self.lse(),
             }
         }        
     };
@@ -20,11 +20,11 @@ macro_rules! impl_usart_clock_source {
 
 macro_rules! impl_i2c_clock_source {
     ($periph:path, $id:ident, $default:ident) => {
-        fn $id() -> Hz {
+        fn $id(&self) -> Hz {
             match $periph.clock_source() {
-                I2cClock::Pclk => Self::$default(),
-                I2cClock::Sysclk => Self::sysclk(),
-                I2cClock::Hsi16 => Self::hsi16(),
+                I2cClock::Pclk => self.$default(),
+                I2cClock::Sysclk => self.sysclk(),
+                I2cClock::Hsi16 => self.hsi16(),
             }
         }        
     };
@@ -32,22 +32,22 @@ macro_rules! impl_i2c_clock_source {
 
 macro_rules! impl_lptim_clock_source {
     ($periph:path, $id:ident, $default:ident) => {
-        fn $id() -> Hz {
+        fn $id(&self) -> Hz {
             match $periph.clock_source() {
-                LptimClock::Pclk => Self::$default(),
-                LptimClock::Lsi => Self::lsi(),
-                LptimClock::Hsi16 => Self::hsi16(),
-                LptimClock::Lse => Self::lse(),
+                LptimClock::Pclk => self.$default(),
+                LptimClock::Lsi => self.lsi(),
+                LptimClock::Hsi16 => self.hsi16(),
+                LptimClock::Lse => self.lse(),
             }
         }        
     };
 }
 
-
+#[derive(Default)]
 pub struct DynamicClock<OSC: Clock, OSC32: Clock>(OSC, OSC32);
 
 impl<OSC: Clock, OSC32: Clock> DynamicClock<OSC, OSC32> {
-    fn msi() -> Hz {
+    fn msi(&self) -> Hz {
         Hz::from(match RCC.cr().msirange() {
             U4::B0000 => 100_000,
             U4::B0001 => 200_000,
@@ -66,13 +66,11 @@ impl<OSC: Clock, OSC32: Clock> DynamicClock<OSC, OSC32> {
     }    
 }
 
-impl<OSC: Clock, OSC32: Clock> Clocks for DynamicClock<OSC, OSC32> {
+impl<OSC: Clock, OSC32: Clock> ClockProvider for DynamicClock<OSC, OSC32> {
     type Osc = OSC;
     type Osc32 = OSC32;
 
-
-
-    fn pllclk() -> Hz {
+    fn pllclk(&self) -> Hz {
         let cfgr = RCC.pllcfgr();
         let plln = cfgr.plln().into_u32();
         let pllm = 1 + cfgr.pllm().into_u32();
@@ -84,23 +82,23 @@ impl<OSC: Clock, OSC32: Clock> Clocks for DynamicClock<OSC, OSC32> {
         };
         let v = match cfgr.pllsrc() {
             U2::B00 => Hz::from(0),
-            U2::B01 => Self::msi(),
-            U2::B10 => Self::hsi16(),
-            U2::B11 => Self::hse(),
+            U2::B01 => self.msi(),
+            U2::B10 => self.hsi16(),
+            U2::B11 => self.hse(),
         };
         (v * plln / pllm) / pllr
     }
 
-    fn sysclk() -> Hz {
+    fn sysclk(&self) -> Hz {
         match RCC.cfgr().sws() {
-            U2::B00 => Self::msi(),
-            U2::B01 => Self::hsi16(),
-            U2::B10 => Self::hse(),
-            U2::B11 => Self::pllclk(),
+            U2::B00 => self.msi(),
+            U2::B01 => self.hsi16(),
+            U2::B10 => self.hse(),
+            U2::B11 => self.pllclk(),
         }
     }
 
-    fn hclk() -> Hz {
+    fn hclk(&self) -> Hz {
         let shift = match RCC.cfgr().hpre() {
             U4::B0000 => 0,
             U4::B0001 => 0,
@@ -120,14 +118,14 @@ impl<OSC: Clock, OSC32: Clock> Clocks for DynamicClock<OSC, OSC32> {
             U4::B1110 => 8,
             U4::B1111 => 9,
         };
-        Self::sysclk() >> shift
+        self.sysclk() >> shift
     }
 
-    fn systick() -> Hz {
-        Self::hclk() >> 3
+    fn systick(&self) -> Hz {
+        self.hclk() >> 3
     }
 
-    fn pclk1() -> Hz {
+    fn pclk1(&self) -> Hz {
         let shift = match RCC.cfgr().ppre1() {
             U3::B000 => 0,
             U3::B001 => 0,
@@ -138,17 +136,17 @@ impl<OSC: Clock, OSC32: Clock> Clocks for DynamicClock<OSC, OSC32> {
             U3::B110 => 3,
             U3::B111 => 4,
         };
-        Self::hclk()  >> shift
+        self.hclk()  >> shift
     }
 
-    fn tim_pclk1() -> Hz {
+    fn tim_pclk1(&self) -> Hz {
         match RCC.cfgr().ppre1() {
-            v if (v as u8) < 0b100  => Self::pclk1(),
-            _ => Self::pclk1() << 1,
+            v if (v as u8) < 0b100  => self.pclk1(),
+            _ => self.pclk1() << 1,
         }
     }
 
-    fn pclk2() -> Hz {
+    fn pclk2(&self) -> Hz {
         let shift = match RCC.cfgr().ppre2() {
             v if (v as u8) < 0b100  => 0,
             U3::B100 => 1,
@@ -157,13 +155,13 @@ impl<OSC: Clock, OSC32: Clock> Clocks for DynamicClock<OSC, OSC32> {
             U3::B111 => 4,
             _ => 0,
         };
-        Self::hclk() >> shift
+        self.hclk() >> shift
     }
 
-    fn tim_pclk2() -> Hz {
+    fn tim_pclk2(&self) -> Hz {
         match RCC.cfgr().ppre2() {
-            v if (v as u8) < 0b100  => Self::pclk2(),
-            _ => Self::pclk2() << 1,
+            v if (v as u8) < 0b100  => self.pclk2(),
+            _ => self.pclk2() << 1,
         }
     }    
 
@@ -181,8 +179,8 @@ impl<OSC: Clock, OSC32: Clock> Clocks for DynamicClock<OSC, OSC32> {
 }
 
 impl<OSC: Clock, OSC32: Clock> SystickHz for DynamicClock<OSC, OSC32> {
-    fn systick_hz() -> Hz {
-        Self::systick()
+    fn systick_hz(&self) -> Hz {
+        self.systick()
     }
 }
 

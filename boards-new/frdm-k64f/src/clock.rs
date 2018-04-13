@@ -5,14 +5,16 @@ pub fn init() {
     clock_init::init();
 }
 
-pub type Clk = DynamicClock<Extal50m, Extal32k>;
-pub type Tree = ClockTree<Clk>;
+pub type SystemClockProvider = DynamicClock<Extal50m, Extal32k>;
+pub type SystemClocks = Clocks<SystemClockProvider>;
 
+#[derive(Default)]
 pub struct Extal50m {}
 impl Clock for Extal50m {
     fn hz() -> Hz { Hz::from_num(50_000_000) }
 }
 
+#[derive(Default)]
 pub struct Extal32k {}
 impl Clock for Extal32k {
     fn hz() -> Hz { Hz::from_num(32767) }

@@ -6,51 +6,52 @@ use mcu::sim::SIM;
 use mcu::osc::OSC;
 use mcu::mcg::MCG;
 
+#[derive(Default)]
 pub struct DynamicClock<EXTAL: Clock, EXTAL32: Clock>(EXTAL, EXTAL32);
 
 impl<EXTAL: Clock, EXTAL32: Clock> DynamicClock<EXTAL, EXTAL32> {
     #[allow(dead_code)]
-    fn core() -> Hz {
+    fn core(&self) -> Hz {
         let outdiv1: u32 = SIM.clkdiv1().outdiv1().into();;
-        Self::mcgoutclk() / (outdiv1 + 1)
+        self.mcgoutclk() / (outdiv1 + 1)
     }
 
-    fn ircclk() -> Hz {
+    fn ircclk(&self) -> Hz {
         if MCG.c2().ircs() != 0 {
             let fcrdiv: u32 = MCG.sc().fcrdiv().into();
-            Self::irc4m() >> fcrdiv
+            self.irc4m() >> fcrdiv
         } else {
-            Self::irc32k()
+            self.irc32k()
         }
     }
 
-    fn oscselclk() -> Hz {
+    fn oscselclk(&self) -> Hz {
         match MCG.c7().oscsel() {
-            U2::B00 => Self::oscclk(),
-            U2::B01 => Self::rtc32k(),
-            U2::B10 => Self::irc48mclk(),
+            U2::B00 => self.oscclk(),
+            U2::B01 => self.rtc32k(),
+            U2::B10 => self.irc48mclk(),
             _ => panic!("Invalid Value"),
         }
     }
 
-    fn mcgffclk() -> Hz {
+    fn mcgffclk(&self) -> Hz {
         if MCG.s().irefst() != 0 {
-            Self::irc32k()
+            self.irc32k()
         } else {
-            Self::oscselclk() / (MCG.c1().frdiv() as u32)
+            self.oscselclk() / (MCG.c1().frdiv() as u32)
         }
     }        
 
-    fn mcgoutclk() -> Hz {
+    fn mcgoutclk(&self) -> Hz {
         match MCG.s().clkst() {
-            U2::B00 => Self::mcgfllclk(),
-            U2::B01 => Self::ircclk(),
-            U2::B10 => Self::oscselclk(),
-            U2::B11 => Self::mcgpllclk(),
+            U2::B00 => self.mcgfllclk(),
+            U2::B01 => self.ircclk(),
+            U2::B10 => self.oscselclk(),
+            U2::B11 => self.mcgpllclk(),
         }
     }        
 
-    fn mcgfllclk() -> Hz {
+    fn mcgfllclk(&self) -> Hz {
         let c4 = MCG.c4();
         let div = MCG.c1().frdiv() as u32;
         if div == 0 {
@@ -71,112 +72,112 @@ impl<EXTAL: Clock, EXTAL32: Clock> DynamicClock<EXTAL, EXTAL32> {
             (U2::B11, U1::B0) => 2560,
             (U2::B11, U1::B1) => 2929,
         };        
-        (Self::mcgffclk() / div) * mul
+        (self.mcgffclk() / div) * mul
     }        
 
-    fn mcgpllclk() -> Hz {        
+    fn mcgpllclk(&self) -> Hz {        
         if MCG.s().lock0() != 0 {
             let prdiv0: u32 = MCG.c5().prdiv0().into();
             let vdiv0: u32 = MCG.c6().vdiv0().into();
             let div: u32 = prdiv0 + 1u32;
             let mul: u32 = vdiv0 + 24u32;
-            (Self::oscselclk() / div) * mul
+            (self.oscselclk() / div) * mul
         } else {
             Hz::from(0)
         }
         
     }        
 
-    fn irc48mclk() -> Hz {
+    fn irc48mclk(&self) -> Hz {
         if SIM.sopt2().pllfllsel() == 0b11 {
-            Self::irc48m()
+            self.irc48m()
         } else if MCG.c7().oscsel() == 0b10 {
-            Self::irc48m()
+            self.irc48m()
         } else {
             Hz::from(0)
         }
     }
 
-    fn oscclk() -> Hz {
+    fn oscclk(&self) -> Hz {
         if MCG.c2().erefs() != 0 && MCG.s().oscinit0() != 0 {
             // check if osc is active
             // S[OSCINIT0]
-            Self::extal()
+            self.extal()
         } else {
-            Self::extal()
+            self.extal()
         }
     }        
 
     #[allow(dead_code)]
-    fn osc32kclk() -> Hz {
+    fn osc32kclk(&self) -> Hz {
         // Only handling case when external clock is used
         unimplemented!()
     }
 
-    fn rtc32k() -> Hz {
+    fn rtc32k(&self) -> Hz {
         // RTC_CR[OSCE]
         unimplemented!()
     }
 
     #[allow(dead_code)]
-    fn rtc() -> Hz {
+    fn rtc(&self) -> Hz {
         unimplemented!()
     }
 
 }
 
-impl<EXTAL: Clock, EXTAL32: Clock> Clocks for DynamicClock<EXTAL, EXTAL32> {
+impl<EXTAL: Clock, EXTAL32: Clock> ClockProvider for DynamicClock<EXTAL, EXTAL32> {
     type Extal = EXTAL;
     type Extal32 = EXTAL32;
 
-    fn system() -> Hz {
+    fn system(&self) -> Hz {
         let outdiv1: u32 = SIM.clkdiv1().outdiv1().into();
-        Self::mcgoutclk() / (outdiv1 + 1)
+        self.mcgoutclk() / (outdiv1 + 1)
     }
 
-    fn bus() -> Hz {
+    fn bus(&self) -> Hz {
         let outdiv2: u32 = SIM.clkdiv1().outdiv2().into();
-        Self::mcgoutclk() / (outdiv2 + 1)
+        self.mcgoutclk() / (outdiv2 + 1)
     }
 
-    fn flexbus() -> Hz {
+    fn flexbus(&self) -> Hz {
         let outdiv3: u32 = SIM.clkdiv1().outdiv3().into();
-        Self::mcgoutclk() / (outdiv3 + 1)
+        self.mcgoutclk() / (outdiv3 + 1)
     }    
 
-    fn flash() -> Hz {
+    fn flash(&self) -> Hz {
         let outdiv4: u32 = SIM.clkdiv1().outdiv4().into();
-        Self::mcgoutclk() / (outdiv4 + 1)
+        self.mcgoutclk() / (outdiv4 + 1)
     }     
 
-    fn mcgirclk() -> Hz {
+    fn mcgirclk(&self) -> Hz {
         if MCG.c1().irclken() != 0 {
-            Self::ircclk()
+            self.ircclk()
         } else {
             Hz::from(0)
         }
     }        
 
-    fn oscerclk() -> Hz {
+    fn oscerclk(&self) -> Hz {
         if OSC.cr().erclken() != 0 {
-            Self::oscclk()
+            self.oscclk()
         } else {
             Hz::from(0)
         }
     }
 
-    fn erclk32k() -> Hz {
+    fn erclk32k(&self) -> Hz {
         unimplemented!()
     }   
 
-    fn systick() -> Hz {
-        Self::system()
+    fn systick(&self) -> Hz {
+        self.system()
     }
 
 }
 
 impl<EXTAL: Clock, EXTAL32: Clock> SystickHz for DynamicClock<EXTAL, EXTAL32> {
-    fn systick_hz() -> Hz {
-        Self::systick()
+    fn systick_hz(&self) -> Hz {
+        self.systick()
     }
 }

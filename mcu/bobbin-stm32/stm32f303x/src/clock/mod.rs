@@ -2,206 +2,214 @@ pub use ::bobbin_common::*;
 pub use ::bobbin_common::tree::*;
 pub use ::hz::Hz;
 
-pub struct ClockTree<T>(T);
+#[derive(Default)]
+pub struct Clocks<CP: ClockProvider> { provider: CP }
+
+impl<CP: ClockProvider> Deref for Clocks<CP> {
+    type Target = CP;
+    fn deref(&self) -> &CP { &self.provider }
+}
 
 
 // Define Global Clocks
 
+#[derive(Default)]
 pub struct Hsi {}
 impl Clock for Hsi { fn hz() -> Hz { Hz::from_num(8000000) } }
 
+#[derive(Default)]
 pub struct Lsi {}
 impl Clock for Lsi { fn hz() -> Hz { Hz::from_num(40000) } }
 
 
-pub trait Clocks {
+pub trait ClockProvider : Default {
     type Osc: Clock;
     type Osc32: Clock;
-    fn osc() -> Hz { Self::Osc::hz() }
-    fn osc32() -> Hz { Self::Osc32::hz() }
-    fn hsi() -> Hz { Hz::from_num(8000000) }
-    fn hse() -> Hz { Self::osc() }
-    fn lsi() -> Hz { Hz::from_num(40000) }
-    fn lse() -> Hz { Self::osc32() }
-    fn pllclk() -> Hz { Hz::from_num(0) }
-    fn sysclk() -> Hz { Hz::from_num(0) }
-    fn hclk() -> Hz { Hz::from_num(0) }
-    fn systick() -> Hz { Hz::from_num(0) }
-    fn fhclk() -> Hz { Hz::from_num(0) }
-    fn pclk1() -> Hz { Hz::from_num(0) }
-    fn pclk2() -> Hz { Hz::from_num(0) }
-    fn tim_pclk1() -> Hz { Hz::from_num(0) }
-    fn tim_pclk2() -> Hz { Hz::from_num(0) }
-    fn i2c1() -> Hz { Hz::from_num(0) }
-    fn i2c2() -> Hz { Hz::from_num(0) }
-    fn i2c3() -> Hz { Hz::from_num(0) }
-    fn i2s2() -> Hz { Hz::from_num(0) }
-    fn i2s3() -> Hz { Hz::from_num(0) }
-    fn usbclk() -> Hz { Hz::from_num(0) }
-    fn usart1() -> Hz { Hz::from_num(0) }
-    fn usart2() -> Hz { Hz::from_num(0) }
-    fn usart3() -> Hz { Hz::from_num(0) }
-    fn uart4() -> Hz { Hz::from_num(0) }
-    fn uart5() -> Hz { Hz::from_num(0) }
-    fn tim1() -> Hz { Hz::from_num(0) }
-    fn tim2() -> Hz { Hz::from_num(0) }
-    fn tim3() -> Hz { Hz::from_num(0) }
-    fn tim4() -> Hz { Hz::from_num(0) }
-    fn tim8() -> Hz { Hz::from_num(0) }
-    fn tim15() -> Hz { Hz::from_num(0) }
-    fn tim16() -> Hz { Hz::from_num(0) }
-    fn tim17() -> Hz { Hz::from_num(0) }
-    fn tim20() -> Hz { Hz::from_num(0) }
-    fn rtcclk() -> Hz { Hz::from_num(0) }
-    fn adc12() -> Hz { Hz::from_num(0) }
-    fn adc34() -> Hz { Hz::from_num(0) }
+    fn osc(&self) -> Hz { Self::Osc::hz() }
+    fn osc32(&self) -> Hz { Self::Osc32::hz() }
+    fn hsi(&self) -> Hz { Hz::from_num(8000000) }
+    fn hse(&self) -> Hz { self.osc() }
+    fn lsi(&self) -> Hz { Hz::from_num(40000) }
+    fn lse(&self) -> Hz { self.osc32() }
+    fn pllclk(&self) -> Hz { unimplemented!() }
+    fn sysclk(&self) -> Hz { unimplemented!() }
+    fn hclk(&self) -> Hz { unimplemented!() }
+    fn systick(&self) -> Hz { unimplemented!() }
+    fn fhclk(&self) -> Hz { unimplemented!() }
+    fn pclk1(&self) -> Hz { unimplemented!() }
+    fn pclk2(&self) -> Hz { unimplemented!() }
+    fn tim_pclk1(&self) -> Hz { unimplemented!() }
+    fn tim_pclk2(&self) -> Hz { unimplemented!() }
+    fn i2c1(&self) -> Hz { unimplemented!() }
+    fn i2c2(&self) -> Hz { unimplemented!() }
+    fn i2c3(&self) -> Hz { unimplemented!() }
+    fn i2s2(&self) -> Hz { unimplemented!() }
+    fn i2s3(&self) -> Hz { unimplemented!() }
+    fn usbclk(&self) -> Hz { unimplemented!() }
+    fn usart1(&self) -> Hz { unimplemented!() }
+    fn usart2(&self) -> Hz { unimplemented!() }
+    fn usart3(&self) -> Hz { unimplemented!() }
+    fn uart4(&self) -> Hz { unimplemented!() }
+    fn uart5(&self) -> Hz { unimplemented!() }
+    fn tim1(&self) -> Hz { unimplemented!() }
+    fn tim2(&self) -> Hz { unimplemented!() }
+    fn tim3(&self) -> Hz { unimplemented!() }
+    fn tim4(&self) -> Hz { unimplemented!() }
+    fn tim8(&self) -> Hz { unimplemented!() }
+    fn tim15(&self) -> Hz { unimplemented!() }
+    fn tim16(&self) -> Hz { unimplemented!() }
+    fn tim17(&self) -> Hz { unimplemented!() }
+    fn tim20(&self) -> Hz { unimplemented!() }
+    fn rtcclk(&self) -> Hz { unimplemented!() }
+    fn adc12(&self) -> Hz { unimplemented!() }
+    fn adc34(&self) -> Hz { unimplemented!() }
 }
 
-impl<T> ClockFor<::iwdg::Iwdg> for ClockTree<T> where T: Clocks {
-    fn clock_for(_: ::iwdg::Iwdg) -> Hz { T::lsi() }
+impl<CP> ClockFor<::iwdg::Iwdg> for Clocks<CP> where CP: ClockProvider {
+    fn clock_for(&self, _: ::iwdg::Iwdg) -> Hz { self.lsi() }
 }
 
-impl<T> ClockFor<::wwdg::Wwdg> for ClockTree<T> where T: Clocks {
-    fn clock_for(_: ::wwdg::Wwdg) -> Hz { T::pclk1() }
+impl<CP> ClockFor<::wwdg::Wwdg> for Clocks<CP> where CP: ClockProvider {
+    fn clock_for(&self, _: ::wwdg::Wwdg) -> Hz { self.pclk1() }
 }
 
-impl<T> ClockFor<::gpio::Gpioa> for ClockTree<T> where T: Clocks {
-    fn clock_for(_: ::gpio::Gpioa) -> Hz { T::hclk() }
+impl<CP> ClockFor<::gpio::Gpioa> for Clocks<CP> where CP: ClockProvider {
+    fn clock_for(&self, _: ::gpio::Gpioa) -> Hz { self.hclk() }
 }
 
-impl<T> ClockFor<::gpio::Gpiob> for ClockTree<T> where T: Clocks {
-    fn clock_for(_: ::gpio::Gpiob) -> Hz { T::hclk() }
+impl<CP> ClockFor<::gpio::Gpiob> for Clocks<CP> where CP: ClockProvider {
+    fn clock_for(&self, _: ::gpio::Gpiob) -> Hz { self.hclk() }
 }
 
-impl<T> ClockFor<::gpio::Gpioc> for ClockTree<T> where T: Clocks {
-    fn clock_for(_: ::gpio::Gpioc) -> Hz { T::hclk() }
+impl<CP> ClockFor<::gpio::Gpioc> for Clocks<CP> where CP: ClockProvider {
+    fn clock_for(&self, _: ::gpio::Gpioc) -> Hz { self.hclk() }
 }
 
-impl<T> ClockFor<::gpio::Gpiod> for ClockTree<T> where T: Clocks {
-    fn clock_for(_: ::gpio::Gpiod) -> Hz { T::hclk() }
+impl<CP> ClockFor<::gpio::Gpiod> for Clocks<CP> where CP: ClockProvider {
+    fn clock_for(&self, _: ::gpio::Gpiod) -> Hz { self.hclk() }
 }
 
-impl<T> ClockFor<::gpio::Gpioe> for ClockTree<T> where T: Clocks {
-    fn clock_for(_: ::gpio::Gpioe) -> Hz { T::hclk() }
+impl<CP> ClockFor<::gpio::Gpioe> for Clocks<CP> where CP: ClockProvider {
+    fn clock_for(&self, _: ::gpio::Gpioe) -> Hz { self.hclk() }
 }
 
-impl<T> ClockFor<::gpio::Gpiof> for ClockTree<T> where T: Clocks {
-    fn clock_for(_: ::gpio::Gpiof) -> Hz { T::hclk() }
+impl<CP> ClockFor<::gpio::Gpiof> for Clocks<CP> where CP: ClockProvider {
+    fn clock_for(&self, _: ::gpio::Gpiof) -> Hz { self.hclk() }
 }
 
-impl<T> ClockFor<::gpio::Gpiog> for ClockTree<T> where T: Clocks {
-    fn clock_for(_: ::gpio::Gpiog) -> Hz { T::hclk() }
+impl<CP> ClockFor<::gpio::Gpiog> for Clocks<CP> where CP: ClockProvider {
+    fn clock_for(&self, _: ::gpio::Gpiog) -> Hz { self.hclk() }
 }
 
-impl<T> ClockFor<::gpio::Gpioh> for ClockTree<T> where T: Clocks {
-    fn clock_for(_: ::gpio::Gpioh) -> Hz { T::hclk() }
+impl<CP> ClockFor<::gpio::Gpioh> for Clocks<CP> where CP: ClockProvider {
+    fn clock_for(&self, _: ::gpio::Gpioh) -> Hz { self.hclk() }
 }
 
-impl<T> ClockFor<::usart::Usart1> for ClockTree<T> where T: Clocks {
-    fn clock_for(_: ::usart::Usart1) -> Hz { T::usart1() }
+impl<CP> ClockFor<::usart::Usart1> for Clocks<CP> where CP: ClockProvider {
+    fn clock_for(&self, _: ::usart::Usart1) -> Hz { self.usart1() }
 }
 
-impl<T> ClockFor<::usart::Usart2> for ClockTree<T> where T: Clocks {
-    fn clock_for(_: ::usart::Usart2) -> Hz { T::usart2() }
+impl<CP> ClockFor<::usart::Usart2> for Clocks<CP> where CP: ClockProvider {
+    fn clock_for(&self, _: ::usart::Usart2) -> Hz { self.usart2() }
 }
 
-impl<T> ClockFor<::usart::Usart3> for ClockTree<T> where T: Clocks {
-    fn clock_for(_: ::usart::Usart3) -> Hz { T::usart3() }
+impl<CP> ClockFor<::usart::Usart3> for Clocks<CP> where CP: ClockProvider {
+    fn clock_for(&self, _: ::usart::Usart3) -> Hz { self.usart3() }
 }
 
-impl<T> ClockFor<::usart::Uart4> for ClockTree<T> where T: Clocks {
-    fn clock_for(_: ::usart::Uart4) -> Hz { T::uart4() }
+impl<CP> ClockFor<::usart::Uart4> for Clocks<CP> where CP: ClockProvider {
+    fn clock_for(&self, _: ::usart::Uart4) -> Hz { self.uart4() }
 }
 
-impl<T> ClockFor<::usart::Uart5> for ClockTree<T> where T: Clocks {
-    fn clock_for(_: ::usart::Uart5) -> Hz { T::uart5() }
+impl<CP> ClockFor<::usart::Uart5> for Clocks<CP> where CP: ClockProvider {
+    fn clock_for(&self, _: ::usart::Uart5) -> Hz { self.uart5() }
 }
 
-impl<T> ClockFor<::i2c::I2c1> for ClockTree<T> where T: Clocks {
-    fn clock_for(_: ::i2c::I2c1) -> Hz { T::i2c1() }
+impl<CP> ClockFor<::i2c::I2c1> for Clocks<CP> where CP: ClockProvider {
+    fn clock_for(&self, _: ::i2c::I2c1) -> Hz { self.i2c1() }
 }
 
-impl<T> ClockFor<::i2c::I2c2> for ClockTree<T> where T: Clocks {
-    fn clock_for(_: ::i2c::I2c2) -> Hz { T::i2c2() }
+impl<CP> ClockFor<::i2c::I2c2> for Clocks<CP> where CP: ClockProvider {
+    fn clock_for(&self, _: ::i2c::I2c2) -> Hz { self.i2c2() }
 }
 
-impl<T> ClockFor<::i2c::I2c3> for ClockTree<T> where T: Clocks {
-    fn clock_for(_: ::i2c::I2c3) -> Hz { T::i2c3() }
+impl<CP> ClockFor<::i2c::I2c3> for Clocks<CP> where CP: ClockProvider {
+    fn clock_for(&self, _: ::i2c::I2c3) -> Hz { self.i2c3() }
 }
 
-impl<T> ClockFor<::spi::Spi1> for ClockTree<T> where T: Clocks {
-    fn clock_for(_: ::spi::Spi1) -> Hz { T::pclk2() }
+impl<CP> ClockFor<::spi::Spi1> for Clocks<CP> where CP: ClockProvider {
+    fn clock_for(&self, _: ::spi::Spi1) -> Hz { self.pclk2() }
 }
 
-impl<T> ClockFor<::spi::Spi2> for ClockTree<T> where T: Clocks {
-    fn clock_for(_: ::spi::Spi2) -> Hz { T::pclk1() }
+impl<CP> ClockFor<::spi::Spi2> for Clocks<CP> where CP: ClockProvider {
+    fn clock_for(&self, _: ::spi::Spi2) -> Hz { self.pclk1() }
 }
 
-impl<T> ClockFor<::spi::Spi3> for ClockTree<T> where T: Clocks {
-    fn clock_for(_: ::spi::Spi3) -> Hz { T::pclk1() }
+impl<CP> ClockFor<::spi::Spi3> for Clocks<CP> where CP: ClockProvider {
+    fn clock_for(&self, _: ::spi::Spi3) -> Hz { self.pclk1() }
 }
 
-impl<T> ClockFor<::adc::Adc1> for ClockTree<T> where T: Clocks {
-    fn clock_for(_: ::adc::Adc1) -> Hz { T::adc12() }
+impl<CP> ClockFor<::adc::Adc1> for Clocks<CP> where CP: ClockProvider {
+    fn clock_for(&self, _: ::adc::Adc1) -> Hz { self.adc12() }
 }
 
-impl<T> ClockFor<::adc::Adc2> for ClockTree<T> where T: Clocks {
-    fn clock_for(_: ::adc::Adc2) -> Hz { T::adc12() }
+impl<CP> ClockFor<::adc::Adc2> for Clocks<CP> where CP: ClockProvider {
+    fn clock_for(&self, _: ::adc::Adc2) -> Hz { self.adc12() }
 }
 
-impl<T> ClockFor<::adc::Adc3> for ClockTree<T> where T: Clocks {
-    fn clock_for(_: ::adc::Adc3) -> Hz { T::adc34() }
+impl<CP> ClockFor<::adc::Adc3> for Clocks<CP> where CP: ClockProvider {
+    fn clock_for(&self, _: ::adc::Adc3) -> Hz { self.adc34() }
 }
 
-impl<T> ClockFor<::adc::Adc4> for ClockTree<T> where T: Clocks {
-    fn clock_for(_: ::adc::Adc4) -> Hz { T::adc34() }
+impl<CP> ClockFor<::adc::Adc4> for Clocks<CP> where CP: ClockProvider {
+    fn clock_for(&self, _: ::adc::Adc4) -> Hz { self.adc34() }
 }
 
-impl<T> ClockFor<::dac::Dac> for ClockTree<T> where T: Clocks {
-    fn clock_for(_: ::dac::Dac) -> Hz { T::pclk1() }
+impl<CP> ClockFor<::dac::Dac> for Clocks<CP> where CP: ClockProvider {
+    fn clock_for(&self, _: ::dac::Dac) -> Hz { self.pclk1() }
 }
 
-impl<T> ClockFor<::tim_bas::Tim6> for ClockTree<T> where T: Clocks {
-    fn clock_for(_: ::tim_bas::Tim6) -> Hz { T::tim_pclk1() }
+impl<CP> ClockFor<::tim_bas::Tim6> for Clocks<CP> where CP: ClockProvider {
+    fn clock_for(&self, _: ::tim_bas::Tim6) -> Hz { self.tim_pclk1() }
 }
 
-impl<T> ClockFor<::tim_bas::Tim7> for ClockTree<T> where T: Clocks {
-    fn clock_for(_: ::tim_bas::Tim7) -> Hz { T::tim_pclk1() }
+impl<CP> ClockFor<::tim_bas::Tim7> for Clocks<CP> where CP: ClockProvider {
+    fn clock_for(&self, _: ::tim_bas::Tim7) -> Hz { self.tim_pclk1() }
 }
 
-impl<T> ClockFor<::tim_gen::Tim2> for ClockTree<T> where T: Clocks {
-    fn clock_for(_: ::tim_gen::Tim2) -> Hz { T::tim2() }
+impl<CP> ClockFor<::tim_gen::Tim2> for Clocks<CP> where CP: ClockProvider {
+    fn clock_for(&self, _: ::tim_gen::Tim2) -> Hz { self.tim2() }
 }
 
-impl<T> ClockFor<::tim_gen::Tim3> for ClockTree<T> where T: Clocks {
-    fn clock_for(_: ::tim_gen::Tim3) -> Hz { T::tim3() }
+impl<CP> ClockFor<::tim_gen::Tim3> for Clocks<CP> where CP: ClockProvider {
+    fn clock_for(&self, _: ::tim_gen::Tim3) -> Hz { self.tim3() }
 }
 
-impl<T> ClockFor<::tim_gen::Tim4> for ClockTree<T> where T: Clocks {
-    fn clock_for(_: ::tim_gen::Tim4) -> Hz { T::tim4() }
+impl<CP> ClockFor<::tim_gen::Tim4> for Clocks<CP> where CP: ClockProvider {
+    fn clock_for(&self, _: ::tim_gen::Tim4) -> Hz { self.tim4() }
 }
 
-impl<T> ClockFor<::tim_gen::Tim15> for ClockTree<T> where T: Clocks {
-    fn clock_for(_: ::tim_gen::Tim15) -> Hz { T::tim15() }
+impl<CP> ClockFor<::tim_gen::Tim15> for Clocks<CP> where CP: ClockProvider {
+    fn clock_for(&self, _: ::tim_gen::Tim15) -> Hz { self.tim15() }
 }
 
-impl<T> ClockFor<::tim_gen::Tim16> for ClockTree<T> where T: Clocks {
-    fn clock_for(_: ::tim_gen::Tim16) -> Hz { T::tim16() }
+impl<CP> ClockFor<::tim_gen::Tim16> for Clocks<CP> where CP: ClockProvider {
+    fn clock_for(&self, _: ::tim_gen::Tim16) -> Hz { self.tim16() }
 }
 
-impl<T> ClockFor<::tim_gen::Tim17> for ClockTree<T> where T: Clocks {
-    fn clock_for(_: ::tim_gen::Tim17) -> Hz { T::tim17() }
+impl<CP> ClockFor<::tim_gen::Tim17> for Clocks<CP> where CP: ClockProvider {
+    fn clock_for(&self, _: ::tim_gen::Tim17) -> Hz { self.tim17() }
 }
 
-impl<T> ClockFor<::tim_adv::Tim1> for ClockTree<T> where T: Clocks {
-    fn clock_for(_: ::tim_adv::Tim1) -> Hz { T::tim1() }
+impl<CP> ClockFor<::tim_adv::Tim1> for Clocks<CP> where CP: ClockProvider {
+    fn clock_for(&self, _: ::tim_adv::Tim1) -> Hz { self.tim1() }
 }
 
-impl<T> ClockFor<::tim_adv::Tim8> for ClockTree<T> where T: Clocks {
-    fn clock_for(_: ::tim_adv::Tim8) -> Hz { T::tim8() }
+impl<CP> ClockFor<::tim_adv::Tim8> for Clocks<CP> where CP: ClockProvider {
+    fn clock_for(&self, _: ::tim_adv::Tim8) -> Hz { self.tim8() }
 }
 
-impl<T> ClockFor<::tim_adv::Tim20> for ClockTree<T> where T: Clocks {
-    fn clock_for(_: ::tim_adv::Tim20) -> Hz { T::tim20() }
+impl<CP> ClockFor<::tim_adv::Tim20> for Clocks<CP> where CP: ClockProvider {
+    fn clock_for(&self, _: ::tim_adv::Tim20) -> Hz { self.tim20() }
 }
 

@@ -1,22 +1,3 @@
-pub use mcu::clock::*;
-pub use mcu::ext::clock::DynamicClock;
-
-
-pub type SystemClockProvider = DynamicClock<Osc48m, Osc32k>;
-pub type SystemClocks = Clocks<SystemClockProvider>;
-
-#[derive(Default)]
-pub struct Osc48m {}
-impl Clock for Osc48m {
-    fn hz() -> Hz { Hz::from(48_000_000)}
-}
-
-#[derive(Default)]
-pub struct Osc32k {}
-impl Clock for Osc32k {
-    fn hz() -> Hz { Hz::from(32768)}
-}
-
 use ::mcu::{gclk, sysctrl, nvmctrl, pm};
 // use ::mcu::sysctrl::SYSCTRL;
 // use ::mcu::gclk::GCLK;
