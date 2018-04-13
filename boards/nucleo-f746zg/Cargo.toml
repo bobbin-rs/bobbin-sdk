@@ -12,7 +12,7 @@ doc = false
 features = []
 version = "0.4.0"
 
-[dependencies.log]
+[dev-dependencies.log]
 version = "0.4"
 default-features = false
 
@@ -35,6 +35,6 @@ embedded-hal = "0.1.2"
 
 [dependencies.stm32f74x]
 path = "../../mcu/bobbin-stm32/stm32f74x"
-features = ["STM32F74xxG"]
+features = ["STM32F74xxG", "logger"]
 
 

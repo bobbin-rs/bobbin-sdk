@@ -3,14 +3,11 @@
 
 #[cfg(target_os="none")]
 pub extern crate cortex_m_rt;
-pub extern crate log;
 pub extern crate k64 as mcu;
 
 
 pub use mcu::bobbin_common::{print, println};
 pub use mcu::bobbin_common as common;
-
-#[macro_use] pub mod logger;
 
 #[cfg(target_os="none")]
 pub use cortex_m_rt::default_handler;
@@ -40,6 +37,7 @@ pub type Mcu = mcu::K64;
 pub type Clock = clock::SystemClock;
 pub type Memory = mcu::bobbin_common::memory::Memory;
 pub type Heap = mcu::bobbin_common::heap::Heap;
+pub type Logger = mcu::bobbin_common::logger::Logger;
 pub type Dispatcher = mcu::dispatch::Dispatcher<mcu::dispatch::ExcHandlers8>;
 
 pub fn handle_exception() {

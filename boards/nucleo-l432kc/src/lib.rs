@@ -37,6 +37,7 @@ pub type Mcu = mcu::Stm32l432x;
 pub type Clock = clock::SystemClock;
 pub type Memory = mcu::bobbin_common::memory::Memory;
 pub type Heap = mcu::bobbin_common::heap::Heap;
+pub type Logger = mcu::bobbin_common::logger::Logger;
 pub type Dispatcher = mcu::dispatch::Dispatcher<mcu::dispatch::ExcHandlers8>;
 
 pub fn handle_exception() {

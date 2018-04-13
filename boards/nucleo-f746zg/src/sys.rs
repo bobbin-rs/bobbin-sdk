@@ -1,6 +1,7 @@
 use ::common::memory::Memory;
 use ::common::heap::Heap;
 use ::common::console::{Console, console_borrow};
+use ::common::logger::Logger;
 
 use ::mcu::dispatch::{Dispatcher, ExcHandlers8};
 
@@ -37,6 +38,7 @@ where
     memory: Memory,
     heap: Heap,
     clock: CLK,
+    logger: Logger,
     dispatcher: Dispatcher<ExcHandlers8>,
 }
 
@@ -58,13 +60,15 @@ where
         ::console::init();
         ::led::init();
         ::btn::init();
-        ::delay::init();        
+        ::delay::init();
+        Logger::init();  
 
         System {
             mcu: MCU::default(),
             memory: Memory {},
             heap: Heap {},
             clock: CLK::default(),
+            logger: Logger::default(),
             dispatcher: unsafe { Dispatcher::new() },
         }
     }
@@ -122,6 +126,10 @@ where
 
     pub fn console(&self) -> &Console {
         console_borrow().unwrap()
+    }
+
+    pub fn logger(&self) -> &Logger {
+        &self.logger
     }
 
     pub fn dispatcher(&self) -> &Dispatcher<ExcHandlers8> {

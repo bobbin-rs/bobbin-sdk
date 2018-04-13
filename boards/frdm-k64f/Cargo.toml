@@ -12,7 +12,7 @@ doc = false
 features = []
 version = "0.4.0"
 
-[dependencies.log]
+[dev-dependencies.log]
 version = "0.4"
 default-features = false
 
@@ -35,5 +35,5 @@ embedded-hal = "0.1.2"
 
 [dependencies.k64]
 path = "../../mcu/bobbin-kinetis/k64"
-features = ["K64FN1M0"]
+features = ["K64FN1M0", "logger"]
 
