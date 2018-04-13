@@ -8,5 +8,5 @@ bobbin-common = { path = "../../../lib/bobbin-common" }
 bobbin-cortexm = { path = "../../bobbin-cortexm" }
 
 [dependencies.log]
-version = "0.3"
+version = "0.4"
 default-features = false
