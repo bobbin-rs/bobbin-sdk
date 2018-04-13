@@ -6,22 +6,20 @@ extern crate nucleo_f746zg as board;
 
 static mut DATA: [u8; 1024] = [0u8; 1024];
 
-use board::{Memory, Heap};
-
 #[no_mangle]
 pub extern "C" fn main() -> ! {
-    board::init();
+    let mut sys = board::init();
 
     for i in 0..1024 {
         unsafe { DATA[i] = i as u8; }
     }
 
     println!("Memory Test");
-    println!("{:?}", ::board::Memory {});
+    println!("{:?}", sys.memory());
 
-    let heap = Heap {};
+    let heap = sys.heap_mut();
 
-    unsafe { Heap::extend(4096) }
+    unsafe { heap.extend(4096) }
 
     println!("{:?}", heap);
 
@@ -32,17 +30,17 @@ pub extern "C" fn main() -> ! {
         c: u32,
     };
 
-    let v = Heap::new(Abc { a: 10, b: 20, c: 30 });
+    let v = heap.new(Abc { a: 10, b: 20, c: 30 });
     println!("v @ {:p}: {:?}", v, v);
     println!("{:?}", heap);
 
-    let data = Heap::slice(0u16, 1024);
+    let data = heap.slice(0u16, 1024);
     println!("data @ {:p}", data);
     println!("{:?}", heap);
 
-    Heap::align(512);
+    heap.align(512);
     println!("{:?}", heap);    
-    Heap::freeze();
+    heap.freeze();
     println!("{:?}", heap);    
     loop {}
 }
