@@ -252,7 +252,7 @@ pub fn gen_ext_mod<W: Write>(_cfg: &modules::Config, out: &mut W, d: &Device, pa
         let p_mod = path.join(format!("{}.rs", p_name));
         if !p_mod.exists() {
             let mut f_mod = try!(File::create(p_mod));
-            try!(write!(f_mod, "pub use periph::{}::*;", p_name));
+            try!(writeln!(f_mod, "pub use periph::{}::*;", p_name));
         }
     }
 
@@ -271,10 +271,12 @@ pub fn gen_ext_mod<W: Write>(_cfg: &modules::Config, out: &mut W, d: &Device, pa
                     }
                 }
             } else {
-                try!(write!(f_mod, "pub use periph::{}::*;", pg_name));
+                try!(writeln!(f_mod, "pub use periph::{}::*;", pg_name));
             }
         }
     }
+
+    try!(writeln!(out, "pub mod clock;"));
     Ok(())
 }
 
