@@ -102,7 +102,7 @@ impl Heap {
     }
 
     #[inline]
-    pub unsafe fn try_alloc<T>(&mut self, len: usize) -> Result<*mut T, Error> {
+    pub fn try_alloc<T>(&mut self, len: usize) -> Result<*mut T, Error> {
         Ok({
             self.try_align_to::<T>()?;
             self.try_advance(mem::size_of::<T>() * len)? as *mut T
@@ -110,13 +110,13 @@ impl Heap {
     }
 
     #[inline]
-    pub unsafe fn alloc<T>(&mut self, len: usize) -> *mut T {
+    pub fn alloc<T>(&mut self, len: usize) -> *mut T {
         self.align_to::<T>();
         self.advance(mem::size_of::<T>() * len) as *mut T
     }
 
     #[inline]
-    pub unsafe fn try_alloc_one<T>(&mut self, ) -> Result<*mut T, Error> {
+    pub fn try_alloc_one<T>(&mut self) -> Result<*mut T, Error> {
         Ok({
             self.try_align_to::<T>()?;
             self.try_advance(mem::size_of::<T>())? as *mut T
@@ -124,7 +124,7 @@ impl Heap {
     }
 
     #[inline]
-    pub unsafe fn alloc_one<T>(&mut self, ) -> *mut T {
+    pub fn alloc_one<T>(&mut self) -> *mut T {
         self.align_to::<T>();
         self.advance(mem::size_of::<T>()) as *mut T
     }
