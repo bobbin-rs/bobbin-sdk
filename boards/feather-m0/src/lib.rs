@@ -36,18 +36,8 @@ pub type Memory = mcu::bobbin_common::memory::Memory;
 pub type Heap = mcu::bobbin_common::heap::Heap;
 pub type Dispatcher = mcu::dispatch::Dispatcher<mcu::dispatch::ExcHandlers8>;
 
-pub fn handle_exception() {
-    unsafe {
-        if !Dispatcher::dispatch(mcu::scb::SCB.icsr().vectactive().value()) {
-            console::write_str("EXCEPTION\n");
-            asm!("bkpt");
-            loop {}
-        }
-    }
-}
-
 #[cfg(target_os="none")]
-default_handler!(handle_exception);
+default_handler!(Dispatcher::handle_exception);
 
 #[derive(Debug, Default)]
 pub struct FeatherM0 {}

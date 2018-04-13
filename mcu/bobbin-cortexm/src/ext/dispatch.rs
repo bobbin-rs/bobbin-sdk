@@ -1,9 +1,10 @@
+use ::bobbin_common::console;
 use ::systick::SYSTICK;
 use ::nvic::*;
+use ::scb::*;
 
 use core::ops::Deref;
 use core::fmt;
-
 
 macro_rules! impl_handlers {
     ($id:ident, $ty:ident, $len:expr) => {
@@ -160,6 +161,15 @@ impl<'a, H: 'a> Deref for Guard<'a, H> {
 pub struct Dispatcher<T: Default + ExceptionHandlers>(T);
 
 impl<T: Default + ExceptionHandlers> Dispatcher<T> {
+    pub fn handle_exception() {
+        unsafe {
+            if !Self::dispatch(SCB.icsr().vectactive().value()) {
+                console::write_str("EXCEPTION\n");
+                asm!("bkpt");
+                loop {}
+            }
+        }
+    }    
     pub unsafe fn new() -> Self {
         Dispatcher(T::default())
     }
