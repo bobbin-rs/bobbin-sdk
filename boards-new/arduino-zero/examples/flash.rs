@@ -118,6 +118,9 @@ pub trait FlashWrite<T> {
 
 impl FlashErase for NvmctrlPeriph {    
     fn flash_erase(&self, addr: *const u32) {
+        // Note from https://github.com/blacksphere/blackmagic/blob/master/src/target/samd.c
+        /* Write address of first word in row to erase it */
+		/* Must be shifted right for 16-bit address, see Datasheet §20.8.8 Address */
         self.set_addr(|_| Addr(addr as u32 >> 1));
         self.set_ctrla(|r| r.set_cmdex(0xa5).set_cmd(0x41));
         self.set_ctrla(|r| r.set_cmdex(0xa5).set_cmd(0x02));
