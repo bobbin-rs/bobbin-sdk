@@ -14,7 +14,7 @@ use board::mcu::c_adc::*;
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
-    board::init();
+    let _ = board::init();
     let brd = board::board();
     
     let a0 = PA3;  // A0

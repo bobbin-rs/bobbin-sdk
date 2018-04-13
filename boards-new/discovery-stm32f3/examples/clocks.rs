@@ -13,7 +13,7 @@ use board::mcu::tim_adv::*;
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
-    board::init();
+    let _ = board::init();
 
     println!("Clocks");
     println!("lsi:       {:>12}", Clk::lsi().as_u32());

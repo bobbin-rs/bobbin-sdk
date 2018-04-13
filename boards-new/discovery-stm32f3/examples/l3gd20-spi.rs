@@ -18,7 +18,7 @@ use board::mcu::spi::*;
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
-    board::init();
+    let _ = board::init();
     println!("Running L3GD20 SPI");
     
     match run() {

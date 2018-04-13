@@ -23,18 +23,21 @@ pub mod console;
 pub mod led;
 pub mod btn;
 pub mod delay;
+pub mod sys;
 
 pub use delay::delay;
 
-pub fn init() {    
-    cache::init();
-    clock::init();
-    console::init();
-    led::init();
-    btn::init();
-    delay::init();
+pub fn init() -> System {    
+    System::init()
 }
 
+pub type System = sys::System<
+        Mcu,
+        Clock,
+>;
+
+pub type Mcu = mcu::Stm32f3x;
+pub type Clock = clock::SystemClock;
 pub type Memory = mcu::bobbin_common::memory::Memory;
 pub type Heap = mcu::bobbin_common::heap::Heap;
 pub type Dispatcher = mcu::dispatch::Dispatcher<mcu::dispatch::ExcHandlers8>;

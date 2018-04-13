@@ -13,7 +13,7 @@ use board::common::bits::*;
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
-    board::init();
+    let _ = board::init();
     println!("Running I2C");
     
     let addr_accel: U7 = U7::from(0x32 >> 1);

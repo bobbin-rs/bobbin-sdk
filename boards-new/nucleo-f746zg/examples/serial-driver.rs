@@ -9,8 +9,6 @@ use board::console::USART;
 
 use board::mcu::dispatch::{HandleException, Exception, Guard};
 use board::System;
-use board::Dispatcher;
-use board::Heap;
 use board::common::ring::*;
 
 use board::common::irq::*;

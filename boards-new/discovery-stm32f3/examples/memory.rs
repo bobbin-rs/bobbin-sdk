@@ -10,7 +10,7 @@ use board::{Memory, Heap};
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
-    board::init();
+    let _ = board::init();
 
     for i in 0..1024 {
         unsafe { DATA[i] = i as u8; }
