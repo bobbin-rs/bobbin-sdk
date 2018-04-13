@@ -14,7 +14,7 @@ use board::mcu::tcc::*;
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
-    board::init();
+    let _ = board::init();
     let led0 = PA17;
 
     let tcc = TCC0;

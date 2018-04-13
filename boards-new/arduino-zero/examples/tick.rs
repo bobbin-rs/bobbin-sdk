@@ -7,7 +7,7 @@ extern crate examples;
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
-    board::init();    
+    let _ = board::init();    
     let con = ConsoleWriter::new();
     let del = DelayTimer::new();
     let mut app = examples::tick::Tick::new(con, del, 500);

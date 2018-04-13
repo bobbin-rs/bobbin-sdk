@@ -11,7 +11,7 @@ use board::mcu::adc::*;
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
-    board::init();
+    let _ = board::init();
     let brd = board::board();
 
     ADC.gate_enable();

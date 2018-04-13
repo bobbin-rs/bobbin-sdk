@@ -11,7 +11,7 @@ use board::mcu::pin::*;
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {  
-    board::init();  
+    let _ = board::init();  
     
     // Set PA17 DIR = OUTPUT
     PA17.port().gate_enable();

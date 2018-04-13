@@ -1,6 +1,6 @@
 #![no_std]
 #![no_main]
-#![feature(asm)]
+#![feature(asm, nll)]
 
 extern crate arduino_zero as board;
 extern crate examples;
@@ -8,8 +8,7 @@ extern crate examples;
 use board::console::SERCOM;
 
 use board::mcu::dispatch::{HandleException, Exception, Guard};
-use board::Dispatcher;
-use board::Heap;
+use board::System;
 use board::common::ring::*;
 
 use board::common::irq::*;
@@ -20,13 +19,12 @@ use board::mcu::sercom::*;
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
-    board::init();
+    let mut sys = board::init();
 
-    unsafe { Heap::extend(1024) };
-    let mut s = SerialDriver::new(SERCOM);
+    unsafe { sys.heap_mut().extend(1024) };
+    let mut s = SerialDriver::new(&mut sys, SERCOM);
 
     s.write_all(b"Serial Driver Echo Test\r\n");        
-
     let mut buf = [0u8; 64];
     loop {
         let n = s.read(&mut buf);
@@ -64,22 +62,23 @@ pub struct SerialDriver {
 }
 
 impl SerialDriver {
-    pub fn new<S: Into<SercomPeriph> + Irq<IrqSercom>>(sercom: S) -> Self {
-        Self::new_with_config(sercom, Config::default())
+    pub fn new<U: Into<SercomPeriph> + Irq<IrqSercom>>(sys: &mut System, sercom: U) -> Self {
+        Self::new_with_config(sys, sercom, Config::default())
     }
 
-    pub fn new_with_config<S: Into<SercomPeriph> + Irq<IrqSercom>>(sercom: S, cfg: Config) -> Self {
-        let tx_buf = Heap::slice(0u8, cfg.tx_len);
-        let tx_ring = Heap::new(Ring::new(tx_buf));
-        let tx_reader = Heap::new(tx_ring.reader());
+    pub fn new_with_config<U: Into<SercomPeriph> + Irq<IrqSercom>>(sys: &mut System, sercom: U, cfg: Config) -> Self {
+        let heap = sys.heap_mut();
+        let tx_buf = heap.slice(0u8, cfg.tx_len);
+        let tx_ring = heap.new(Ring::new(tx_buf));
+        let tx_reader = heap.new(tx_ring.reader());
 
-        let rx_buf = Heap::slice(0u8, cfg.rx_len);
-        let rx_ring = Heap::new(Ring::new(rx_buf));
-        let rx_writer = Heap::new(rx_ring.writer());
+        let rx_buf = heap.slice(0u8, cfg.rx_len);
+        let rx_ring = heap.new(Ring::new(rx_buf));
+        let rx_writer = heap.new(rx_ring.writer());
         
         let irq_number = sercom.irq_number_for(IRQ_SERCOM);
-        let handler = Heap::new(SerialHandler::new(sercom, tx_reader, rx_writer));
-        let guard = Dispatcher::register_irq_handler(irq_number, handler).unwrap();        
+        let handler = heap.new(SerialHandler::new(sercom, tx_reader, rx_writer));
+        let guard = sys.dispatcher_mut().register_irq_handler(irq_number, handler).unwrap();        
         Self { guard, tx_ring, rx_ring }
     }
 
@@ -94,10 +93,10 @@ impl SerialDriver {
 
     pub fn write_all(&mut self, buf: &[u8]) -> usize {        
         let mut n = 0;
-        while n < buf.len() {          
+        while n < buf.len() {            
             let sent = self.write(&buf[n..]);
             if sent == 0 {
-                // self.sleep();
+                self.sleep();
             } else {
                 n += sent;
             }
@@ -113,8 +112,6 @@ impl SerialDriver {
 
     pub fn read(&mut self, buf: &mut [u8]) -> usize {
         let len = self.rx_ring.read(buf);
-        if len > 0 {
-        }
         self.guard.rx_start();
         len
     }    
@@ -148,7 +145,6 @@ impl SerialHandler {
         self.sercom.disable_rx_irq();
     }
 }
-
 
 impl HandleException for SerialHandler {
     unsafe fn handle_exception(&self, _: Exception) {

@@ -17,7 +17,7 @@ use board::mcu::sercom::*;
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
-    board::init();
+    let _ = board::init();
     let brd = board::board();
 
     let spi = SERCOM1;

@@ -6,7 +6,7 @@ extern crate arduino_zero as board;
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
-    board::init();
+    let _ = board::init();
 
     println!("Running Console");
     loop {

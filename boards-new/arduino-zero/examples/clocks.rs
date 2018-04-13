@@ -10,7 +10,7 @@ use board::mcu::sercom::*;
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
-    board::init();
+    let _ = board::init();
 
     println!("Sources");
     println!("---");
