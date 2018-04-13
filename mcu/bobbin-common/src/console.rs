@@ -60,6 +60,10 @@ impl fmt::Write for Console {
     }
 }
 
+pub fn console_borrow() -> Option<&'static Console> {
+    unsafe { CONSOLE.as_ref() }
+}
+
 #[doc(hidden)]
 pub fn with_console<F: FnOnce(&mut Console)>(f: F) {
     unsafe {

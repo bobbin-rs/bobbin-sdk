@@ -1,11 +1,8 @@
 use ::common::memory::Memory;
 use ::common::heap::Heap;
-use ::common::periph::IntoPeriph;
-use ::common::console::{Console, with_console};
+use ::common::console::{Console, console_borrow};
 
 use ::mcu::dispatch::{Dispatcher, ExcHandlers8};
-
-use console::USART;
 
 use core::cell::UnsafeCell;
 
@@ -40,7 +37,6 @@ where
     memory: Memory,
     heap: Heap,
     clock: CLK,
-    console: Console,
     dispatcher: Dispatcher<ExcHandlers8>,
 }
 
@@ -69,7 +65,6 @@ where
             memory: Memory {},
             heap: Heap {},
             clock: CLK::default(),
-            console: Console::new(USART.into_periph()),
             dispatcher: unsafe { Dispatcher::new() },
         }
     }
@@ -126,7 +121,7 @@ where
     }
 
     pub fn console(&self) -> &Console {
-        &self.console
+        console_borrow().unwrap()
     }
 
     pub fn dispatcher(&self) -> &Dispatcher<ExcHandlers8> {
@@ -135,10 +130,6 @@ where
 
     pub fn dispatcher_mut(&mut self) -> &mut Dispatcher<ExcHandlers8> {
         &mut self.dispatcher
-    }
-
-    pub fn with_console<F: FnOnce(&mut Console)>(&self, f: F) {
-        with_console(f)
     }
 
     pub fn run<T, F: FnOnce(&Self) -> T>(&mut self, f: F) -> T {

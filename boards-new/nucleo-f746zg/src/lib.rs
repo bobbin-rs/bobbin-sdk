@@ -27,8 +27,8 @@ pub mod ext;
 
 pub use delay::delay;
 
-pub fn init() {    
-
+pub fn init() -> System {    
+    System::init()
 }
 
 pub type System = ext::sys::System<
