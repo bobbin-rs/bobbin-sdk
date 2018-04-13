@@ -24,6 +24,7 @@ pub mod led;
 pub mod btn;
 pub mod delay;
 pub mod ext;
+pub mod sys;
 
 pub use delay::delay;
 
@@ -31,11 +32,13 @@ pub fn init() -> System {
     System::init()
 }
 
-pub type System = ext::sys::System<
-        mcu::Stm32f74x,
-        clock::SystemClocks,
+pub type System = sys::System<
+        Mcu,
+        Clock,
 >;
 
+pub type Mcu = mcu::Stm32f74x;
+pub type Clock = clock::SystemClock;
 pub type Memory = mcu::bobbin_common::memory::Memory;
 pub type Heap = mcu::bobbin_common::heap::Heap;
 pub type Dispatcher = mcu::dispatch::Dispatcher<mcu::dispatch::ExcHandlers8>;
