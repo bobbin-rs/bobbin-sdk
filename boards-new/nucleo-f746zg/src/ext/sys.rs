@@ -1,11 +1,11 @@
 use ::common::memory::Memory;
 use ::common::heap::Heap;
+use ::common::periph::IntoPeriph;
 use ::common::console::{Console, with_console};
 
-use ::mcu::Stm32f74x as Mcu;
 use ::mcu::dispatch::{Dispatcher, ExcHandlers8};
 
-use clock::SystemClocks;
+use console::USART;
 
 use core::cell::UnsafeCell;
 
@@ -31,15 +31,24 @@ impl Default for Config {
 }
 
 #[must_use]
-pub struct System {
-    mcu: Mcu,
+pub struct System<MCU, CLK> 
+where
+    MCU: Default,
+    CLK: Default,
+{
+    mcu: MCU,
     memory: Memory,
     heap: Heap,
-    clocks: SystemClocks,
+    clock: CLK,
+    console: Console,
     dispatcher: Dispatcher<ExcHandlers8>,
 }
 
-impl System {
+impl<MCU, CLK> System<MCU, CLK> 
+where
+    MCU: Default,
+    CLK: Default,
+{
     pub fn init() -> Self {
         Self::init_with_config(Config::default())
     }
@@ -56,10 +65,11 @@ impl System {
         ::delay::init();        
 
         System {
-            mcu: Mcu {},
+            mcu: MCU::default(),
             memory: Memory {},
             heap: Heap {},
-            clocks: SystemClocks::default(),
+            clock: CLK::default(),
+            console: Console::new(USART.into_periph()),
             dispatcher: unsafe { Dispatcher::new() },
         }
     }
@@ -91,11 +101,11 @@ impl System {
         Self::data().locked = false;
     }
 
-    pub fn mcu(&self) -> &Mcu {
+    pub fn mcu(&self) -> &MCU {
         &self.mcu
     }
 
-    pub fn mcu_mut(&mut self) -> &mut Mcu {
+    pub fn mcu_mut(&mut self) -> &mut MCU {
         &mut self.mcu
     }
 
@@ -111,8 +121,12 @@ impl System {
         &mut self.heap
     }
 
-    pub fn clocks(&self) -> &SystemClocks {
-        &self.clocks
+    pub fn clock(&self) -> &CLK {
+        &self.clock
+    }
+
+    pub fn console(&self) -> &Console {
+        &self.console
     }
 
     pub fn dispatcher(&self) -> &Dispatcher<ExcHandlers8> {
@@ -135,7 +149,11 @@ impl System {
     }
 }
 
-impl Drop for System {
+impl<MCU, CLK> Drop for System<MCU, CLK> 
+where
+    MCU: Default,
+    CLK: Default,
+{
     fn drop(&mut self) {
         Self::unlock();
         Self::enable_interrupts()

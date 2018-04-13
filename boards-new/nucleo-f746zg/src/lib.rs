@@ -28,13 +28,13 @@ pub mod ext;
 pub use delay::delay;
 
 pub fn init() {    
-    cache::init();
-    clock::init();
-    console::init();
-    led::init();
-    btn::init();
-    delay::init();
+
 }
+
+pub type System = ext::sys::System<
+        mcu::Stm32f74x,
+        clock::SystemClocks,
+>;
 
 pub type Memory = mcu::bobbin_common::memory::Memory;
 pub type Heap = mcu::bobbin_common::heap::Heap;

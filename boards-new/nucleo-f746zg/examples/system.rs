@@ -4,11 +4,9 @@
 #[macro_use]
 extern crate nucleo_f746zg as board;
 
-use core::fmt::Write;
-
 #[no_mangle]
 pub extern "C" fn main() -> ! {
-    let mut sys = board::ext::System::init();
+    let mut sys = board::System::init();
 
     println!("Running System");
     println!("MCU: {:?}", sys.mcu());
@@ -18,9 +16,7 @@ pub extern "C" fn main() -> ! {
 
     sys.run(|sys| {
         loop {
-            sys.with_console(|c| {
-                let _ = c.write_str("Tick\n");
-            });
+            sys.console().write(b"Tick\n");
             board::delay(500);
         }
     })
