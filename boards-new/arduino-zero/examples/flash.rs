@@ -96,26 +96,6 @@ pub trait FlashWrite<T> {
     fn flash_write(&self, addr: *mut T, data: &[T]) -> usize;
 }
 
-// impl FlashLockUnlock for FlashPeriph {
-//     fn flash_locked(&self) -> bool {
-//         unimplemented!()
-//     }
-
-//     fn flash_lock(&self) {
-//         unimplemented!()
-//     }
-
-//     fn flash_unlock(&self) {
-//         unimplemented!()
-//     }
-// }
-
-// impl FlashBusy for FlashPeriph {
-//     fn flash_busy(&self) -> bool {
-//         unimplemented!()
-//     }
-// }
-
 impl FlashErase for NvmctrlPeriph {    
     fn flash_erase(&self, addr: *const u32) {
         // Note from https://github.com/blacksphere/blackmagic/blob/master/src/target/samd.c
