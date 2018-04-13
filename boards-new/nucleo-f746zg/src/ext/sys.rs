@@ -5,6 +5,8 @@ use ::common::console::{Console, with_console};
 use ::mcu::Stm32f74x as Mcu;
 use ::mcu::dispatch::{Dispatcher, ExcHandlers8};
 
+use clock::SystemClocks;
+
 use core::cell::UnsafeCell;
 
 static mut SYSTEM_DATA: UnsafeCell<SystemData> = UnsafeCell::new(SystemData::new(false));
@@ -33,6 +35,7 @@ pub struct System {
     mcu: Mcu,
     memory: Memory,
     heap: Heap,
+    clocks: SystemClocks,
     dispatcher: Dispatcher<ExcHandlers8>,
 }
 
@@ -56,6 +59,7 @@ impl System {
             mcu: Mcu {},
             memory: Memory {},
             heap: Heap {},
+            clocks: SystemClocks::default(),
             dispatcher: unsafe { Dispatcher::new() },
         }
     }
@@ -105,6 +109,10 @@ impl System {
 
     pub fn heap_mut(&mut self) -> &mut Heap {
         &mut self.heap
+    }
+
+    pub fn clocks(&self) -> &SystemClocks {
+        &self.clocks
     }
 
     pub fn dispatcher(&self) -> &Dispatcher<ExcHandlers8> {

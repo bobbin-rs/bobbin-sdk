@@ -8,6 +8,10 @@ pub struct Hz {
 }
 
 impl Hz {
+    pub const fn zero() -> Hz {
+        Hz::from_num(0)
+    }
+
     pub const fn from_num(num: u32) -> Hz {
         Hz::from_num_den((num, 1))
     }

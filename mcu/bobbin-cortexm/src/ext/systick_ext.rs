@@ -9,7 +9,7 @@ use periph::systick::*;
 use bobbin_common::bits::*;
 
 pub trait SystickHz {
-    fn systick_hz() -> Hz;
+    fn systick_hz(&self) -> Hz;
 }
 
 /// The clock source to be used by self.

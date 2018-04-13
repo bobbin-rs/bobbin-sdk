@@ -20,13 +20,13 @@ pub trait IdFor<T> {
 //     fn read() -> Hz;
 // }
 
-pub trait Clock {
+pub trait Clock : Default {
     fn hz() -> Hz;
 }
 
 
 pub trait ClockFor<T> {
-    fn clock_for(T) -> Hz;    
+    fn clock_for(&self, T) -> Hz;    
 }
 
 // pub trait Clock : Debug + Default + Clone + Copy  {

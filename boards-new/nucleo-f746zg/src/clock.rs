@@ -15,15 +15,16 @@ pub fn init() {
     clock_init::enable_pll_hse_bypass_mode(8, 432, 0b00, 9);
 }
 
-pub type Clk = DynamicClock<Osc8m, Osc32k>;
-pub type Tree = ClockTree<Clk>;
+pub type SystemClockProvider = DynamicClock<Osc8m, Osc32k>;
+pub type SystemClocks = Clocks<SystemClockProvider>;
 
-
+#[derive(Default)]
 pub struct Osc8m {}
 impl Clock for Osc8m {
     fn hz() -> Hz { Hz::from_num(8_000_000) }
 }
 
+#[derive(Default)]
 pub struct Osc32k {}
 impl Clock for Osc32k {
     fn hz() -> Hz { Hz::from_num(32768) }
