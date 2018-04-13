@@ -1,95 +1,38 @@
-use core::fmt::{self, Write, Arguments};
-use hal::port::*;
-use hal::uart::*;
-use hal::clock::Clock;
-use clock::CLK;
+pub use mcu::bobbin_common::console::*;
+// use common::periph::IntoPeriph;
+use common::configure::Configure;
+use mcu::enabled::Enabled;
+use mcu::uart::*;
+use mcu::pin::*;
+use clock::*;
 
 pub const UART: Uart0 = UART0;
 pub const UART_RX: Ptb16 = PTB16;
 pub const UART_TX: Ptb17 = PTB17;
-// pub const UART_BD: u16 = 65;
+pub const UART_BD: u16 = 65;
 pub const UART_BAUD: u32 = 115_200;
 
 pub fn init() {
     // Enable Clocks
-    UART.sim_enable();
-    UART_TX.port().sim_enable();
-    UART_RX.port().sim_enable();
+    UART.gate_enable();
+    UART_TX.port().gate_enable();
+    UART_RX.port().gate_enable();
 
-    // Set Pin Configuration
-    UART_TX.mode_tx(&UART);
-    UART_RX.mode_rx(&UART);
+    UART_TX.connect_to(UART);
+    UART_RX.connect_to(UART);
 
-    // Set Baud and Enable USART
-    enable();
-}
-
-pub fn disable() {
-    UART.disable();
-}
-
-pub fn enable() {
-    let baud_div = UART.clock(&CLK).expect("No bus clock") / (16 * UART_BAUD);
+    let baud_div = SystemClock::default().clock_for(UART).as_u32() / (16 * UART_BAUD);
+    // let baud_div = UART.clock(&CLK).expect("No bus clock") / (16 * UART_BAUD);
+    // let baud_div = UART_BD;
     UART
         .set_config(|c| c.set_baud_divisor(baud_div as u16))
-        .enable();
+        .set_enabled(true);
+    set_console(Console::new(UART.into_periph()));
+    
 }
 
-/// Macro for sending `print!`-formatted messages over the Console
-#[macro_export]
-macro_rules! print {
-    ($s:expr) => {
-        $crate::console::write_str($s)
-    };
-    ($($arg:tt)*) => {
-        $crate::console::write_fmt(format_args!($($arg)*))
-    };
-}
-
-/// Macro for sending `print!`-formatted messages over the Console, with a
-/// newline
-#[macro_export]
-macro_rules! println {
-    ($fmt:expr) => {
-        print!(concat!($fmt, "\n"))
-    };
-    ($fmt:expr, $($arg:tt)*) => {
-        print!(concat!($fmt, "\n"), $($arg)*)
-    };
-}
-
-pub const CONSOLE: Console = Console {};
-
-pub struct Console {}
-
-impl Write for Console {
-    fn write_str(&mut self, s: &str) -> fmt::Result {        
-        let uart = UART;
-        for byte in s.as_bytes().iter().cloned() {
-            if byte == b'\n' {
-                uart.putc(b'\r');
-            }
-            uart.putc(byte);
-        }
-        Ok(())
+impl ::FrdmK64f {
+    pub fn console(&self) -> Console {
+        Console::new(UART0.into_periph())
     }
-}
-
-#[doc(hidden)]
-pub fn write_fmt(args: Arguments) {    
-    CONSOLE.write_fmt(args).ok();
-}
-
-#[doc(hidden)]
-pub fn write_str(s: &str) {
-    CONSOLE.write_str(s).ok();
-}
-
-#[doc(hidden)]
-pub fn write(buf: &[u8]) {
-    UART.write(buf);
-}
-
-pub fn try_getc() -> Option<u8> {
-    UART.try_getc()
 }

@@ -1,9 +1,16 @@
 use core::fmt::Arguments;
+use ::console::{write_str, write_u32};
 
 #[lang = "panic_fmt"]
 unsafe extern "C" fn panic_fmt(_msg: Arguments,
-                               _file: &'static str,
-                               _line: u32)
+                               file: &'static str,
+                               line: u32)
                                -> ! {
-    loop {}
+    write_str("[panic] ");
+    write_str(file);
+    write_str(" at ");
+    write_u32(line, 10);
+    write_str("\n");
+    ::core::intrinsics::abort()
 }
+

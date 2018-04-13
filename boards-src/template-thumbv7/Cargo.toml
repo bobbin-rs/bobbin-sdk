@@ -19,7 +19,6 @@ default-features = false
 [profile.dev]
 panic = "abort"
 opt-level = "s"
-codegen-units = 1
 incremental = false
 lto = true
 

@@ -1,7 +1,5 @@
 [workspace]
 members = [
-    "bobbin-build",
-    "bobbin-common",
     "bobbin-cortexm",
     "bobbin-kinetis/*/",
     "bobbin-sam/*/",

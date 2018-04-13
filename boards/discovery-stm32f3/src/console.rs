@@ -1,89 +1,38 @@
-use core::fmt::{self, Write, Arguments};
-use hal::gpio::*;
-use hal::usart::*;
-use hal::clock::Clock;
-use clock::CLK;
+pub use mcu::bobbin_common::console::*;
+use mcu::bobbin_common::periph::IntoPeriph;
+
+use mcu::rcc::*;
+use mcu::usart::*;
+use mcu::pin::*;
+// use ::clock::*;
 
 pub const USART: Usart1 = USART1;
 pub const USART_TX: Pc4 = PC4;
 pub const USART_RX: Pc5 = PC5;
-pub const USART_CLOCK: u32 = 84_000_000;
-pub const USART_BAUD: u32 = 115_200;
+const USART_CLOCK: u32 = 8_000_000; // Use HSI Clock
+const USART_BAUD: u32 = 115_200;
 
-// USART 1 / PB6 / PB7
-// Clock @ 168_000_000
-// APB2 @ Clock / 2 = 84_000_000
 
 pub fn init() {
-    // Enable Clocks
-    USART.rcc_enable();
-    USART_TX.port().rcc_enable();
-    USART_RX.port().rcc_enable();
+    USART_TX
+        .port_gate_enable()
+        .connect_to(USART);
 
-    // Set Pin Configuration
-    USART_TX.mode_tx(&USART);
-    USART_RX.mode_rx(&USART);
+    USART_RX
+        .port_gate_enable()
+        .connect_to(USART);
 
-    enable();
-}
-
-pub fn enable() {
-    // Set Baud and Enable USART    
     USART
-        .set_config(|c| c.set_baud(USART_BAUD, USART.clock(&CLK).unwrap()))
+        .set_clock_source(UsartClock::Hsi)
+        .gate_enable()
+        .set_config(|c| c.set_baud_clock(USART_BAUD, USART_CLOCK))
         .enable();
+
+    set_console(Console::new(USART.into_periph()));
 }
 
-pub fn disable() {
-    USART.disable();
-}
-
-/// Macro for sending `print!`-formatted messages over the Console
-#[macro_export]
-macro_rules! print {
-    ($s:expr) => {
-        $crate::console::write_str($s)
-    };
-    ($($arg:tt)*) => {
-        $crate::console::write_fmt(format_args!($($arg)*))
-    };
-}
-
-/// Macro for sending `print!`-formatted messages over the Console, with a
-/// newline
-#[macro_export]
-macro_rules! println {
-    ($fmt:expr) => {
-        print!(concat!($fmt, "\n"))
-    };
-    ($fmt:expr, $($arg:tt)*) => {
-        print!(concat!($fmt, "\n"), $($arg)*)
-    };
-}
-
-pub const CONSOLE: Console = Console {};
-pub struct Console {}
-
-impl Write for Console {
-    fn write_str(&mut self, s: &str) -> fmt::Result {        
-        let usart = USART;
-        for byte in s.as_bytes().iter().cloned() {
-            if byte == b'\n' {
-                usart.putc(b'\r');
-            }
-            usart.putc(byte);
-        }
-        Ok(())
+impl super::DiscoveryStm32f3 {
+    pub fn console(&self) -> Console {
+        Console::new(USART.into_periph())
     }
 }
-
-#[doc(hidden)]
-pub fn write_fmt(args: Arguments) {    
-    CONSOLE.write_fmt(args).ok();
-}
-
-#[doc(hidden)]
-pub fn write_str(s: &str) {
-    CONSOLE.write_str(s).ok();
-}
-

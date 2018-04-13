@@ -1,4 +1,4 @@
-.PHONY: build test clean
+.PHONY: build test
 
 build:
 	@bobbin build

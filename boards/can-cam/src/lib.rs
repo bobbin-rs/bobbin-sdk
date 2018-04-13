@@ -1,10 +1,11 @@
 #![no_std]
-#![feature(asm, lang_items, use_extern_macros, core_intrinsics)]
+#![feature(asm, lang_items, use_extern_macros, core_intrinsics, const_fn)]
 
-pub extern crate log;
 #[cfg(target_os="none")]
 pub extern crate cortex_m_rt;
+pub extern crate log;
 pub extern crate stm32f74x as mcu;
+
 
 pub use mcu::bobbin_common::{print, println};
 pub use mcu::bobbin_common as common;
@@ -21,13 +22,9 @@ pub mod clock;
 pub mod console;
 pub mod led;
 pub mod btn;
-pub mod tim;
+pub mod delay;
 
-// pub fn delay(n: u32) {
-//     for _ in 0..(n * 100_000) { unsafe { asm!("nop") } }
-// }
-
-pub use tim::delay;
+pub use delay::delay;
 
 pub fn init() {    
     cache::init();
@@ -35,7 +32,7 @@ pub fn init() {
     console::init();
     led::init();
     btn::init();
-    tim::init();
+    delay::init();
 }
 
 #[cfg(target_os="none")]
@@ -46,4 +43,16 @@ pub fn handle_exception() {
     unsafe { asm!("bkpt") }
     loop {}
 }
+
+
+#[derive(Debug, Default)]
+pub struct CanCam {}
+
+impl common::board::Board for CanCam {
+   type Mcu = mcu::Stm32f74x;
+   fn id(&self) -> &'static str { "can-cam" }
+   fn mcu(&self) -> Self::Mcu { Self::Mcu::default() }
+}
+
+pub const fn board() -> CanCam { CanCam{} }
 

@@ -1,18 +1,14 @@
 #![no_std]
+#![no_main]
 #![feature(asm)]
 
 extern crate nucleo_f746zg as board;
-use board::led::*;
-use board::btn::*;
+extern crate examples;
 
-fn main() {
-    board::init();
-    loop {
-        LED0.toggle_output();
-        if BTN0.input() {
-            board::delay(500);
-        } else {
-            board::delay(100);
-        }
-    }
+#[no_mangle]
+pub extern "C" fn main() -> ! {
+    let mut sys = board::init();
+    let brd = board::board();
+    let app = examples::led::BlinkLed::new(brd.led0(), brd, 500);
+    sys.run(|_| app.run())
 }

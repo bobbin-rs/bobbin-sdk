@@ -1,21 +1,14 @@
 #![no_std]
 #![no_main]
+#![feature(asm)]
 
 extern crate discovery_stm32f3 as board;
-
-use board::hal::gpio::{DigitalInput, DigitalOutput};
+extern crate examples;
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
-    board::init();
-    let led0 = board::led::LED0;
-    let btn0 = board::btn::BTN0;
-    loop {
-        led0.toggle_output();
-        if btn0.input() {
-            board::delay(100);
-        } else {
-            board::delay(500);
-        }
-    }
+    let _ = board::init();    
+    let brd = board::board();
+    let app = examples::led::BlinkLed::new(brd.led0(), brd, 500);
+    app.run()
 }

@@ -4,15 +4,16 @@
 #[macro_use]
 extern crate discovery_stm32f3 as board;
 
-use board::hal::i2c::*;
-use board::hal::gpio::*;
+use board::mcu::pin::*;
+use board::mcu::i2c::*;
+use board::mcu::gpio::*;
 use board::common::bits::*;
 
 // Address = 0x35
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
-    board::init();
+    let _ = board::init();
     println!("Running I2C");
     
     let addr_accel: U7 = U7::from(0x32 >> 1);
@@ -23,15 +24,15 @@ pub extern "C" fn main() -> ! {
     let i2c_scl = PB6;
     let i2c_sda = PB7;
 
-    GPIOA.rcc_enable();
-    PA6.mode_input().open_drain();
-    PA5.mode_input().open_drain();
+    i2c.gate_enable();
+    i2c_scl.port().gate_enable();
+    i2c_sda.port().gate_enable();
 
-    i2c.rcc_enable();
-    i2c_port.rcc_enable();
-
-    i2c_scl.mode_i2c_scl(&i2c).open_drain();
-    i2c_sda.mode_i2c_sda(&i2c).open_drain();
+    i2c_scl.connect_to(i2c);
+    i2c_sda.connect_to(i2c);
+    
+    i2c_scl.open_drain();
+    i2c_sda.open_drain();
 
     println!("# Configuring I2C");
 

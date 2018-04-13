@@ -1,42 +1,68 @@
 #![no_std]
-#![feature(asm, lang_items, global_allocator)]
+#![feature(asm, lang_items, use_extern_macros, core_intrinsics, const_fn)]
 
-extern crate r0;
+#[cfg(target_os="none")]
+pub extern crate cortex_m_rt;
+pub extern crate log;
+pub extern crate stm32f3x as mcu;
 
-extern crate log;
 
-#[macro_use] pub mod itm;
-#[macro_use] pub mod console;
+pub use mcu::bobbin_common::{print, println};
+pub use mcu::bobbin_common as common;
+
 #[macro_use] pub mod logger;
 
-extern crate stm32f303x;
-pub use stm32f303x::{chip, hal, cortexm, common};
-
-pub mod exceptions;
 #[cfg(target_os="none")]
-pub mod lang_items;
+pub use cortex_m_rt::default_handler;
 
-pub mod pin;
+#[cfg(target_os="none")]
+mod lang_items;
+pub mod cache;
 pub mod clock;
+pub mod console;
 pub mod led;
 pub mod btn;
-pub mod tim;
+pub mod delay;
+pub mod sys;
 
-pub use common::heap::Heap;
+pub use delay::delay;
 
-#[global_allocator]
-static ALLOCATOR: Heap = Heap::empty();
-
-pub unsafe fn init_allocator(buf: &'static mut [u8]) {
-    ALLOCATOR.init(buf);
+pub fn init() -> System {    
+    System::init()
 }
 
-pub use tim::delay;
+pub type System = sys::System<
+        Mcu,
+        Clock,
+>;
 
-pub fn init() {
-    clock::init();
-    led::init();
-    btn::init();
-    tim::init();
-    console::init();
+pub type Mcu = mcu::Stm32f3x;
+pub type Clock = clock::SystemClock;
+pub type Memory = mcu::bobbin_common::memory::Memory;
+pub type Heap = mcu::bobbin_common::heap::Heap;
+pub type Dispatcher = mcu::dispatch::Dispatcher<mcu::dispatch::ExcHandlers8>;
+
+pub fn handle_exception() {
+    unsafe {
+        if !Dispatcher::dispatch(mcu::scb::SCB.icsr().vectactive().value()) {
+            console::write_str("EXCEPTION\n");
+            asm!("bkpt");
+            loop {}
+        }
+    }
 }
+
+#[cfg(target_os="none")]
+default_handler!(handle_exception);
+
+#[derive(Debug, Default)]
+pub struct DiscoveryStm32f3 {}
+
+impl common::board::Board for DiscoveryStm32f3 {
+   type Mcu = mcu::Stm32f3x;
+   fn id(&self) -> &'static str { "discovery-stm32f3" }
+   fn mcu(&self) -> Self::Mcu { Self::Mcu::default() }
+}
+
+pub const fn board() -> DiscoveryStm32f3 { DiscoveryStm32f3{} }
+

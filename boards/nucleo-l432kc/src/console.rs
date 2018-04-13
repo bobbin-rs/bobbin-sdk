@@ -22,10 +22,16 @@ pub fn init() {
         .connect_to(USART);
 
     USART
-        .set_clock_source(DedicatedClock::Hsi16)
+        .set_clock_source(UsartClock::Hsi16)
         .gate_enable()
         .set_config(|c| c.set_baud(USART_BAUD, USART_CLOCK))
         .enable();
 
     set_console(Console::new(USART.into_periph()));
+}
+
+impl ::NucleoL432kc {
+    pub fn console(&self) -> Console {
+        Console::new(USART.into_periph())
+    }
 }

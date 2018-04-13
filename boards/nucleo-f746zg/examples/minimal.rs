@@ -1,8 +1,9 @@
 #![no_std]
-#![feature(asm)]
+#![no_main]
 
 extern crate nucleo_f746zg as board;
 
-fn main() {
+#[no_mangle]
+pub extern "C" fn main() -> ! {
     loop {}
 }

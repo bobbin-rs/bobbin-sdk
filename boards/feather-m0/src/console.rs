@@ -1,20 +1,24 @@
-use core::fmt::{self, Write, Arguments};
-use hal::port::*;
-use hal::sercom::*;
-use hal::gclk;
+pub use mcu::bobbin_common::console::*;
+use common::periph::IntoPeriph;
+use common::configure::Configure;
+use mcu::pin::*;
+use mcu::sercom::*;
+use mcu::gclk;
+use clock::*;
 
 pub const SERCOM: Sercom0 = SERCOM0;
 pub const SERCOM_TX: Pa10 = PA10;
 pub const SERCOM_RX: Pa11 = PA11;
+pub const SERCOM_BAUD: u32 = 115200;
 
 pub fn init() {
-    SERCOM.pm_set_enabled(true);
-    SERCOM_RX.port().pm_set_enabled(true);
-    SERCOM_TX.port().pm_set_enabled(true);
+    SERCOM.gate_enable();
+    SERCOM_RX.port().gate_enable();
+    SERCOM_TX.port().gate_enable();
     // Set GCLK_GEN0 as source for SERCOM
 
     gclk::GCLK.set_clkctrl(|r| r
-        .set_id(0x14 + 5)
+        .set_id(0x14 + 0) // ID corresponds to SERCOM
         .set_gen(0x0)
         .set_clken(1)
     );
@@ -22,73 +26,23 @@ pub fn init() {
     while gclk::GCLK.status().syncbusy() != 0 {}
 
     // Set Pin Configuration
-    SERCOM_TX.mode_pad_2(&SERCOM);
-    SERCOM_RX.mode_pad_3(&SERCOM);
+    SERCOM_TX.connect_to(SERCOM);
+    SERCOM_RX.connect_to(SERCOM);
 
-    enable();
-}
-
-pub fn enable() {
     SERCOM
         .set_config(|c| c
             .set_mode_usart_int()
-            .set_baud(63018)
+            .set_baud_clock(SERCOM_BAUD, SystemClock::default().clock_for(SERCOM).as_u32())
             .set_txpo(1)
             .set_rxpo(3)
         )
         .set_enabled(true);
+
+    set_console(Console::new(SERCOM.into_periph()));
 }
 
-pub fn disable() {
-    SERCOM.disable();
-}
-
-/// Macro for sending `print!`-formatted messages over the Console
-#[macro_export]
-macro_rules! print {
-    ($s:expr) => {
-        $crate::console::write_str($s)
-    };
-    ($($arg:tt)*) => {
-        $crate::console::write_fmt(format_args!($($arg)*))
-    };
-}
-
-/// Macro for sending `print!`-formatted messages over the Console, with a
-/// newline
-#[macro_export]
-macro_rules! println {
-    ($fmt:expr) => {
-        print!(concat!($fmt, "\n"))
-    };
-    ($fmt:expr, $($arg:tt)*) => {
-        print!(concat!($fmt, "\n"), $($arg)*)
-    };
-}
-
-pub const CONSOLE: Console = Console {};
-
-pub struct Console {}
-
-impl Write for Console {
-    fn write_str(&mut self, s: &str) -> fmt::Result {        
-        let uart = SERCOM;
-        for byte in s.as_bytes().iter().cloned() {
-            if byte == b'\n' {
-                uart.putc(b'\r');
-            }
-            uart.putc(byte);
-        }
-        Ok(())
+impl ::FeatherM0 {
+    pub fn console(&self) -> Console {
+        Console::new(SERCOM.into_periph())
     }
-}
-
-#[doc(hidden)]
-pub fn write_fmt(args: Arguments) {    
-    CONSOLE.write_fmt(args).ok();
-}
-
-#[doc(hidden)]
-pub fn write_str(s: &str) {
-    CONSOLE.write_str(s).ok();
 }

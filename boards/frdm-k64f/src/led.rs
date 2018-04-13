@@ -1,23 +1,42 @@
-use hal::port::*;
-use hal::gpio::*;
-
+pub use common::led::*;
+use mcu::gpio::*;
+use mcu::pin::*;
 pub use common::digital::DigitalOutput;
 
-pub const LED0: Pb22 = PB22; // Red
-pub const LED1: Pb21 = PB21; // Blue
-pub const LED2: Pe26 = PE26; // Green
+pub const LED0: LedHigh<GpioCh> = LedHigh::new(PB22_CH);
+pub const LED1: LedHigh<GpioCh> = LedHigh::new(PB21_CH);
+pub const LED2: LedHigh<GpioCh> = LedHigh::new(PE26_CH);
 
-pub fn init() {
-    LED0.port_pin().port().sim_enable();
-    LED0.port_pin().set_mux_gpio();
-    LED0.set_dir_output().set_output(true);    
+pub fn init() {    
+    PTB22.port().gate_enable();
+    PTB22.connect_to(PB22);    
+    PB22.set_dir_output().set_output(true);
 
-    LED1.port_pin().port().sim_enable();
-    LED1.port_pin().set_mux_gpio();
-    LED1.set_dir_output().set_output(true);    
+    PTB21.port().gate_enable();
+    PTB21.connect_to(PB21);
+    PB21.set_dir_output().set_output(true);
 
-    LED2.port_pin().port().sim_enable();
-    LED2.port_pin().set_mux_gpio();
-    LED2.set_dir_output().set_output(true);    
+    PTE26.port().gate_enable();
+    PTE26.connect_to(PE26);
+    PE26.set_dir_output().set_output(true);
+
+}
+
+impl GetLed for ::FrdmK64f {
+    fn get_led(&self, index: usize) -> &Led {
+        match index {
+            0 => &LED0,
+            1 => &LED1,
+            2 => &LED2,
+            _ => unimplemented!()
+        }
+    }
+    fn get_led_count(&self) -> usize { 3 }
+}
+
+impl ::FrdmK64f {
+    pub fn led0(&self) -> LedHigh<GpioCh> { LedHigh::new(PB22_CH) }
+    pub fn led1(&self) -> LedHigh<GpioCh> { LedHigh::new(PB21_CH) }
+    pub fn led2(&self) -> LedHigh<GpioCh> { LedHigh::new(PE26_CH) }
 
 }

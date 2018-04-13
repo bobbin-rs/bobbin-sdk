@@ -2,33 +2,28 @@
 #![no_main]
 #![feature(asm)]
 
-#[macro_use]
 extern crate arduino_zero as board;
+extern crate examples;
 
 use board::common::bits::*;
-use board::pin;
-use board::hal::port::Ain;
-use board::hal::adc::{self, AnalogRead};
+use board::mcu::pin::*;
+use board::mcu::adc::*;
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
-    board::init();
-    println!("Analog Test");
-    adc::init();
-    let a0 = pin::A0;
-    let a1 = pin::A1;
+    let _ = board::init();
+    let brd = board::board();
 
-    let ch0 = adc::ADC_CH0;
-    let ch2 = adc::ADC_CH2;
+    ADC.gate_enable();
+    ADC.init();
 
-    a0.mode_ain(&ch0);
-    a1.mode_ain(&ch2);
+    let a0 = PA02;
+    let ch0 = ADC_CH0;
 
-    loop {
-        let v0: U12 = ch0.analog_read();
-        let v1: U8 = ch2.analog_read();
-        println!("{}, {}", v0, v1);
-        board::delay(500);
-    }
+    a0.connect_to(ch0);
+    
 
+    let ch0: AdcCh = ch0.into();
+    let mut app = examples::adc::AdcExample::new(brd.console(), ch0, brd, 500, U12::from(0));
+    app.run()
 }

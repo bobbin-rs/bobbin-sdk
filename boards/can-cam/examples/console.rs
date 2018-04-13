@@ -9,10 +9,8 @@ pub extern "C" fn main() -> ! {
     board::init();
     println!("Running Console");
     
-    let mut i = 0u32;
     loop {
-        println!("Hello, World! {}", i);
-        i = i.wrapping_add(1);
+        println!("Tick...");
         board::delay(1000);
     }
 }

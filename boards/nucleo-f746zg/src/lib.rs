@@ -1,10 +1,11 @@
 #![no_std]
-#![feature(asm, lang_items, use_extern_macros, core_intrinsics)]
+#![feature(asm, lang_items, use_extern_macros, core_intrinsics, const_fn, align_offset, offset_to)]
 
-pub extern crate log;
 #[cfg(target_os="none")]
 pub extern crate cortex_m_rt;
+pub extern crate log;
 pub extern crate stm32f74x as mcu;
+
 
 pub use mcu::bobbin_common::{print, println};
 pub use mcu::bobbin_common as common;
@@ -21,29 +22,48 @@ pub mod clock;
 pub mod console;
 pub mod led;
 pub mod btn;
-pub mod tim;
+pub mod delay;
+pub mod sys;
 
-// pub fn delay(n: u32) {
-//     for _ in 0..(n * 10_000) { unsafe { asm!("nop") } }
-// }
+pub use delay::delay;
 
-pub use tim::delay;
+pub fn init() -> System {    
+    System::init()
+}
 
-pub fn init() {    
-    cache::init();
-    clock::init();
-    console::init();
-    led::init();
-    btn::init();
-    // tim::init();
+pub type System = sys::System<
+        Mcu,
+        Clock,
+>;
+
+pub type Mcu = mcu::Stm32f74x;
+pub type Clock = clock::SystemClock;
+pub type Memory = mcu::bobbin_common::memory::Memory;
+pub type Heap = mcu::bobbin_common::heap::Heap;
+pub type Dispatcher = mcu::dispatch::Dispatcher<mcu::dispatch::ExcHandlers8>;
+
+pub fn handle_exception() {
+    unsafe {
+        if !Dispatcher::dispatch(mcu::scb::SCB.icsr().vectactive().value()) {
+            console::write_str("EXCEPTION\n");
+            asm!("bkpt");
+            loop {}
+        }
+    }
 }
 
 #[cfg(target_os="none")]
 default_handler!(handle_exception);
 
-pub fn handle_exception() {
-    console::write_str("EXCEPTION\n");
-    unsafe { asm!("bkpt") }
-    loop {}
+#[derive(Debug, Default)]
+pub struct NucleoF746zg {}
+
+impl common::board::Board for NucleoF746zg {
+   type Mcu = mcu::Stm32f74x;
+   fn id(&self) -> &'static str { "nucleo-f746zg" }
+   fn mcu(&self) -> Self::Mcu { Self::Mcu::default() }
 }
 
+pub const fn board() -> NucleoF746zg { NucleoF746zg{} }
+
+pub type Board = NucleoF746zg;

@@ -1,49 +1,80 @@
 #![no_std]
 #![no_main]
 
-#[macro_use]
 extern crate nucleo_f746zg as board;
+extern crate embedded_hal as hal;
+extern crate examples;
 
-use board::hal::tim::*;
-use board::hal::gpio::{PinExt, ModeTim};
+use board::mcu::pin::*;
+use board::mcu::tim_gen::*;
 
 // PWM output on PB0 / TIM3_CH3 = AF_2
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
-    board::init();
-    let led0 = board::led::LED0;
+    let _ = board::init();
+    let led0 = PB0;
 
-    let ch = TIM3_CH3;
+    let tim = TIM3;
+    let tim_ch = TIM3_CH3;
+
+    led0.port().gate_enable();    
+    led0.connect_to(tim_ch);
+
+    tim.gate_enable();
+    tim.set_auto_reload(2000);
+
+    tim_ch.set_output_compare_mode(OcMode::Pwm1);
+    tim_ch.set_capture_compare_enabled(true);
+    tim_ch.set_capture_compare(0);
+
+    tim.set_enabled(true);
+
+    let pwm = PwmCh::new(tim_ch.into());
+    let del = DelayTimer::new();
     
-    led0.mode_tim(&ch).push_pull();
+    let mut app = examples::pwm::Pwm::new(pwm, del, 10);
+    app.run()
+}
 
-    let t = ch.periph();
-    t.rcc_set_enabled(true);
-    t.set_auto_reload(2000);
+pub struct DelayTimer;
 
-    ch.set_output_compare_mode(OcMode::Pwm1);
-    ch.set_capture_compare_enabled(true);
-    ch.set_capture_compare(0);
+impl DelayTimer {
+    pub fn new() -> Self { Self {} }
+}
 
-    t.set_enabled(true);
+impl hal::blocking::delay::DelayMs<u16> for DelayTimer {
+    fn delay_ms(&mut self, ms: u16) {
+        board::delay(ms.into())
+    }
+}
 
-    println!("PWM Test");
 
-    let max = 2000;
-    let step = 20;
-    let mut i: u32 = step; 
-    let mut dir: bool = true;
-    loop {        
-        //t.set_capture_compare(ch.index(), i as u32);
-        ch.set_capture_compare(i);
-        
-        if i == max { dir = false } else if i == 0 { dir = true }
-        if dir {
-            i += step 
-        } else {
-            i -= step;
-        }
-        board::delay(10);
+pub struct PwmCh {
+    tim_ch: TimGenCh,
+}
+
+impl PwmCh {
+    pub fn new(tim_ch: TimGenCh) -> Self {
+        Self { tim_ch }
+    }
+}
+
+impl hal::PwmPin for PwmCh {
+    type Duty = u16;
+    fn disable(&mut self) {
+        self.tim_ch.set_capture_compare_enabled(false);
+    }
+    fn enable(&mut self) {
+        self.tim_ch.set_capture_compare_enabled(true);
+    }
+    fn get_duty(&self) -> Self::Duty {
+        self.tim_ch.capture_compare() as u16
+    }
+    fn get_max_duty(&self) -> Self::Duty {
+        self.tim_ch.periph.auto_reload()
+    }
+    fn set_duty(&mut self, duty: Self::Duty) {
+        self.tim_ch.set_capture_compare(duty.into());
     }
 }

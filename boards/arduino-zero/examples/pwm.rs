@@ -1,59 +1,80 @@
 #![no_std]
 #![no_main]
-#![feature(asm)]
 
 #[macro_use]
 extern crate arduino_zero as board;
+extern crate embedded_hal as hal;
+extern crate examples;
 
-use board::hal::gclk;
-use board::hal::tcc::*;
-use board::hal::port::{PmEnabled, ModeWo7};
+use board::mcu::pin::*;
+use board::mcu::gclk::{self, GCLK};
+use board::mcu::tcc::*;
+
+// LED0 = PWM / TIM2_CH2
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
-    board::init();
-    let led0 = board::led::LED0;
+    let _ = board::init();
+    let led0 = PA17;
 
-    let ch = TCC0_CH3;
-    let tcc = ch.periph();
-    tcc.pm_set_enabled(true);
-    led0.mode_wo_7(tcc);
+    let tcc = TCC0;
+    let tcc_ch = TCC0_CH3;
+    tcc.gate_enable();
+    // led0.mode_wo_7(tcc);
+    led0.connect_to(tcc);
 
     println!("Running PWM");    
 
-    gclk::set_clk(gclk::GenericClock::TCC0_TCC1, gclk::GenericClockGen::GClkGen3);
+    GCLK.set_clk(gclk::GenericClock::TCC0_TCC1, gclk::GenericClockGen::GClkGen3);
     println!("Clock Set");
 
-    // tcc.set_period(2000);
+    tcc_ch.pwm_up_low(0, 2000);
 
-    // tcc.with_per(|r| r.set_per(2000));
-    println!("Period Set");
-    // tcc.with_cc(ch.index(), |r| r.set_cc(1));
-    // ch.set_compare(1);
-    println!("CC Set");
-    // tcc.with_wave(|r| r.set_wavegen(0x02));
-    // tcc.with_ctrla(|r| r.set_cpten(ch.index(), 1).set_enable(1));
-    // tcc.with_ctrla(|r| r.set_enable(1));
-
-    println!("Setup Complete");
-
-    let max = 2000u16;
-    let step = 40u16;
-    let mut i: u16 = step; 
-    let mut dir: bool = true;
+    let pwm = PwmCh::new(tcc_ch.into());
+    let del = DelayTimer::new();
     
-    ch.pwm_up_low(step, max);
+    let mut app = examples::pwm::Pwm::new(pwm, del, 10);
+    app.run()
+}
 
-    loop {        
-        // tcc.with_cc(ch.index(), |r| r.set_cc(i));
-        ch.set_compare(i);
-        
-        if i == max { dir = false } else if i == 0 { dir = true; board::delay(500) }
-        if dir {
-            i += step 
-        } else {
-            i -= step;
-        }
-        board::delay(1);
+pub struct DelayTimer;
+
+impl DelayTimer {
+    pub fn new() -> Self { Self {} }
+}
+
+impl hal::blocking::delay::DelayMs<u16> for DelayTimer {
+    fn delay_ms(&mut self, ms: u16) {
+        board::delay(ms.into())
+    }
+}
+
+
+pub struct PwmCh {
+    tim_ch: TccCh,
+}
+
+impl PwmCh {
+    pub fn new(tim_ch: TccCh) -> Self {
+        Self { tim_ch }
+    }
+}
+
+impl hal::PwmPin for PwmCh {
+    type Duty = u16;
+    fn disable(&mut self) {        
+        self.tim_ch.periph.with_cc(self.tim_ch.index, |r| r.set_cc(0));        
+    }
+    fn enable(&mut self) {
+        self.tim_ch.periph.with_cc(self.tim_ch.index, |r| r.set_cc(1));        
+    }
+    fn get_duty(&self) -> Self::Duty {
+        self.tim_ch.compare()
+    }
+    fn get_max_duty(&self) -> Self::Duty {
+        self.tim_ch.periph.per().per().value() as u16
+    }
+    fn set_duty(&mut self, duty: Self::Duty) {
+        self.tim_ch.set_compare(duty.into());
     }
 }

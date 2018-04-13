@@ -1,8 +1,24 @@
-use mcu::pin::*;
+pub use common::led::*;
+pub use mcu::pin::*;
+pub use mcu::gpio::*;
 
-pub const LED0: Pb3 = PB3;
+pub const LED0: LedHigh<GpioPin> = LedHigh::new(PB3_PIN);
 
 pub fn init() {
-    LED0.port().gate_enable();
-    LED0.mode_output();
+    PB3.port().gate_enable();
+    PB3.mode_output();
+}
+
+impl GetLed for ::NucleoL432kc {
+    fn get_led(&self, index: usize) -> &Led {
+        match index {
+            0 => &LED0,
+            _ => unimplemented!()
+        }
+    }
+    fn get_led_count(&self) -> usize { 1 }
+}
+
+impl ::NucleoL432kc {
+    pub fn led0(&self) -> LedHigh<GpioPin> { LedHigh::new(PB3_PIN) }
 }

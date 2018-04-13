@@ -1,9 +1,9 @@
 [package]
-name = "stm32-common"
+name = "stm32-common-orig"
 version = "0.1.0"
 authors = ["Jonathan Soo <jcsoo@agora.com>"]
 #build = "build.rs"
 
 [dependencies]
-bobbin-common = { path = "../../bobbin-common" }
+bobbin-common = { path = "../../../lib/bobbin-common" }
 bobbin-cortexm = { path = "../../bobbin-cortexm" }

@@ -15,7 +15,6 @@ version = "0.3.13"
 [profile.dev]
 panic = "abort"
 opt-level = "s"
-codegen-units = 1
 incremental = false
 lto = true
 

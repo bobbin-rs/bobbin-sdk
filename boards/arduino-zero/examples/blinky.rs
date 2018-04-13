@@ -3,17 +3,12 @@
 #![feature(asm)]
 
 extern crate arduino_zero as board;
-
-use board::hal::port::DigitalOutput;
+extern crate examples;
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
-    board::init();
-    let led0 = board::led::LED0;
-    loop {
-        led0.set_output(true);
-        board::delay(1024);
-        led0.set_output(false);
-        board::delay(1024);
-    }
+    let _ = board::init();    
+    let brd = board::board();
+    let app = examples::led::BlinkLed::new(brd.led0(), brd, 500);
+    app.run()
 }

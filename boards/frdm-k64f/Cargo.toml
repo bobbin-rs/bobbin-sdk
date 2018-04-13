@@ -8,21 +8,32 @@ name = "main"
 path = "src/main.rs"
 doc = false
 
-[dependencies]
-#k64 = { git = "https://github.com/bobbin-rs/bobbin-kinetis"}
-k64 = { path = "../../mcu/bobbin-kinetis/k64"}
-r0 = "0.1.0"
-log = { version="0.3", default-features = false }
+[dependencies.cortex-m-rt]
+features = []
+version = "0.3.13"
 
-[features]
-default = ["k64/K64FN1M0"]
+[dependencies.log]
+version = "0.3"
+default-features = false
 
 [profile.dev]
 panic = "abort"
 opt-level = "s"
-lto = false
+codegen-units = 1
+incremental = false
+lto = true
+debug = false
 
 [profile.release]
 panic = "abort"
 debug = true
 lto = true
+
+[dev-dependencies]
+examples = { path = "../../apps/examples" }
+embedded-hal = "0.1.2"
+
+[dependencies.k64]
+path = "../../mcu/bobbin-kinetis/k64"
+features = ["K64FN1M0"]
+

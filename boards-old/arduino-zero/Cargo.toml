@@ -1,0 +1,26 @@
+[package]
+name = "arduino-zero"
+version = "0.1.0"
+authors = ["Jonathan Soo <jcsoo@agora.com>"]
+
+[[bin]]
+name = "main"
+path = "src/main.rs"
+doc = false
+
+[dependencies]
+samd21 = { path = "../../mcu/bobbin-sam/samd21"}
+r0 = "0.1.0"
+
+[features]
+default = ["samd21/SAMD21x18"]
+
+[profile.dev]
+panic = "abort"
+opt-level = "s"
+lto = false
+
+[profile.release]
+panic = "abort"
+debug = true
+lto = true

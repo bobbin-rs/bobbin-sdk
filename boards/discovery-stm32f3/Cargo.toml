@@ -8,20 +8,32 @@ name = "main"
 path = "src/main.rs"
 doc = false
 
-[dependencies]
-stm32f303x = { path = "../../mcu/bobbin-stm32/stm32f303x"}
-r0 = "0.1.0"
-log = { version="0.3", default-features = false }
+[dependencies.cortex-m-rt]
+features = []
+version = "0.3.13"
 
-[features]
-default = ["stm32f303x/stm32f303xc"]
+[dependencies.log]
+version = "0.3"
+default-features = false
 
 [profile.dev]
 panic = "abort"
 opt-level = "s"
-lto = false
+codegen-units = 1
+incremental = false
+lto = true
+debug = false
 
 [profile.release]
 panic = "abort"
 debug = true
 lto = true
+
+[dev-dependencies]
+examples = { path = "../../apps/examples" }
+embedded-hal = "0.1.2"
+
+[dependencies.stm32f3x]
+path = "../../mcu/bobbin-stm32/stm32f303x"
+features = ["STM32F303xC"]
+

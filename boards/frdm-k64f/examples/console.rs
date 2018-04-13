@@ -6,12 +6,11 @@ extern crate frdm_k64f as board;
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
-    board::init();
+    let _ = board::init();
     println!("Running Console");
-    let mut i = 0u32;
+
     loop {
-        println!("Hello, World! {}", i);
-        i = i.wrapping_add(1);
-        board::delay(1000);
+        println!("Tick...");
+        board::delay(500);
     }
 }

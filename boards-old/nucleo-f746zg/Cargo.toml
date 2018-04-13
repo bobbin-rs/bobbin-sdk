@@ -1,0 +1,32 @@
+[package]
+name = "nucleo-f746zg"
+version = "0.1.0"
+authors = ["Jonathan Soo <jcsoo@agora.com>"]
+
+#[[bin]]
+#name = "main"
+#path = "src/main.rs"
+#doc = false
+
+[dependencies]
+stm32f74x = { path = "../../mcu/bobbin-stm32/stm32f74x"}
+log = { version="0.3", default-features = false }
+
+[dependencies.cortex-m-rt]
+features = []
+version = "0.3.13"
+
+[features]
+default = ["stm32f74x/STM32F74xxG"]
+
+[profile.dev]
+panic = "abort"
+opt-level = "s"
+codegen-units = 1
+incremental = false
+lto = true
+
+[profile.release]
+panic = "abort"
+debug = true
+lto = true

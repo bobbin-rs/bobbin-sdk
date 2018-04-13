@@ -1,5 +1,5 @@
 use log::{self, LogRecord, LogLevel, LogMetadata, SetLoggerError, LogLevelFilter};
-
+use common::{println, print};
 pub const LOGGER: Logger = Logger {};
 
 pub struct Logger {}

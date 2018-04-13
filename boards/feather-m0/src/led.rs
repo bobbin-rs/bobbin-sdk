@@ -1,16 +1,26 @@
-use hal::port::*;
+pub use common::led::*;
+pub use mcu::pin::*;
+pub use mcu::port::*;
 
-pub const LED0: Pa17 = PA17;
+pub const LED0: LedHigh<PortPin> = LedHigh::new(PA17_PIN);
 
 pub fn init() {
-    LED0.set_mode_output();
+    PA17.port().gate_enable();
+    PA17.set_mode_output();
 }
 
-// pub type Led = port::PinOutput;
+impl GetLed for ::FeatherM0 {
+    fn get_led(&self, index: usize) -> &Led {
+        match index {
+            0 => &LED0,
+            _ => unimplemented!()
+        }
+    }
+    fn get_led_count(&self) -> usize { 1 }
+}
 
-
-
-// // LED @ D13 = PA17
-// pub fn led0() -> Led {
-//     pin::pa17().into_digital_output()
-// }
+impl ::FeatherM0 {
+    pub fn led0(&self) -> LedHigh<PortPin> {
+        LedHigh::new(PA17_PIN)
+    }
+}

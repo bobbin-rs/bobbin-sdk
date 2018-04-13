@@ -1,40 +1,36 @@
 #![no_std]
 #![no_main]
 
-#[macro_use]
 extern crate nucleo_l432kc as board;
+extern crate examples;
 
 use board::common::bits::*;
-use board::pin::*;
-use board::hal::gpio::ModeAdc;
-use board::hal::adc::*;
+use board::mcu::pin::*;
+use board::mcu::adc::*;
+use board::mcu::c_adc::*;
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
-    board::init();
-    println!("ADC Test");
+    let _ = board::init();
+    let brd = board::board();
     
-    let a0 = A0;    
-    let a1 = A1;
+    let a0 = PA0;  // A0
 
-    let ch1 = ADC1_CH0;
-    let ch2 = ADC1_CH1;
+    let adc = ADC1;
+    let ch1 = ADC1_CH5;
 
-    a0.port().rcc_set_enabled(true);
-    a1.port().rcc_set_enabled(true);
+    adc.gate_enable();
+    a0.port().gate_enable();
+    a0.connect_to(ch1);
+    a0.mode_analog();
 
-    a0.mode_adc(&ch1);
-    a1.mode_adc(&ch2);
-
-    let adc = ch1.periph();
-    adc
-        .rcc_set_enabled(true)
-        .init();
+    C_ADC.with_ccr(|r| r.set_ckmode(0b01));
+    adc.with_cr(|r| r.set_deeppwd(0));
+    adc.init();
     
-    loop {        
-        let v0: U12 = ch1.analog_read();
-        let v1: U10 = ch2.analog_read();
-        println!("{} {}", v0, v1);
-        board::delay(1_000);
-    }
+    let ch1: AdcCh = ch1.into();
+
+    let mut app = examples::adc::AdcExample::new(brd.console(), ch1, brd, 500, U12::from(0));
+    app.run()
+
 }
