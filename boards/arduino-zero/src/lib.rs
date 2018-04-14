@@ -37,7 +37,6 @@ pub type Mcu = mcu::Samd21;
 pub type Clock = clock::SystemClock;
 pub type Memory = mcu::bobbin_common::memory::Memory;
 pub type Heap = mcu::bobbin_common::heap::Heap;
-pub type Logger = mcu::bobbin_common::logger::Logger;
 pub type Dispatcher = mcu::dispatch::Dispatcher<mcu::dispatch::ExcHandlers8>;
 
 #[cfg(target_os="none")]

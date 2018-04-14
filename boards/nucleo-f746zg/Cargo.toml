@@ -29,12 +29,15 @@ panic = "abort"
 debug = true
 lto = true
 
+[features]
+logger = ["stm32f74x/logger"]
+
 [dev-dependencies]
 examples = { path = "../../apps/examples" }
 embedded-hal = "0.1.2"
 
 [dependencies.stm32f74x]
 path = "../../mcu/bobbin-stm32/stm32f74x"
-features = ["STM32F74xxG", "logger"]
+features = ["STM32F74xxG"]
 
 

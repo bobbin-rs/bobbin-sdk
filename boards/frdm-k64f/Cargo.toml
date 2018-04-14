@@ -29,11 +29,14 @@ panic = "abort"
 debug = true
 lto = true
 
+[features]
+logger = ["k64/logger"]
+
 [dev-dependencies]
 examples = { path = "../../apps/examples" }
 embedded-hal = "0.1.2"
 
 [dependencies.k64]
 path = "../../mcu/bobbin-kinetis/k64"
-features = ["K64FN1M0", "logger"]
+features = ["K64FN1M0"]
 

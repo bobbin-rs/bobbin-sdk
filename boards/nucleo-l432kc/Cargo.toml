@@ -29,11 +29,14 @@ panic = "abort"
 debug = true
 lto = true
 
+[features]
+logger = ["stm32l432x/logger"]
+
 [dev-dependencies]
 examples = { path = "../../apps/examples" }
 embedded-hal = "0.1.2"
 
 [dependencies.stm32l432x]
 path = "../../mcu/bobbin-stm32/stm32l432x"
-features = ["STM32L432xC", "logger"]
+features = ["STM32L432xC"]
 

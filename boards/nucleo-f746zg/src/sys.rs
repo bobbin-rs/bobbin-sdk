@@ -1,6 +1,8 @@
 use ::common::memory::Memory;
 use ::common::heap::Heap;
 use ::common::console::{Console, console_borrow};
+
+#[cfg(feature="logger")]
 use ::common::logger::Logger;
 
 use ::mcu::dispatch::{Dispatcher, ExcHandlers8};
@@ -38,6 +40,7 @@ where
     memory: Memory,
     heap: Heap,
     clock: CLK,
+    #[cfg(feature="logger")]
     logger: Logger,
     dispatcher: Dispatcher<ExcHandlers8>,
 }
@@ -61,6 +64,8 @@ where
         ::led::init();
         ::btn::init();
         ::delay::init();
+
+        #[cfg(feature="logger")]
         Logger::init();  
 
         System {
@@ -68,6 +73,7 @@ where
             memory: Memory {},
             heap: Heap {},
             clock: CLK::default(),
+            #[cfg(feature="logger")]
             logger: Logger::default(),
             dispatcher: unsafe { Dispatcher::new() },
         }
@@ -128,6 +134,7 @@ where
         console_borrow().unwrap()
     }
 
+    #[cfg(feature="logger")]
     pub fn logger(&self) -> &Logger {
         &self.logger
     }
