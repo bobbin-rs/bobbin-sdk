@@ -1,4 +1,4 @@
-pub use mcu::bobbin_common::console::*;
+pub use mcu::bobbin_common::sys::console::*;
 use common::periph::IntoPeriph;
 use common::configure::Configure;
 use mcu::pin::*;

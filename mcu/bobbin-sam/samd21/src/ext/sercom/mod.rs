@@ -1,5 +1,5 @@
 pub use periph::sercom::*;
-pub use bobbin_common::console::Putc;
+pub use bobbin_common::sys::console::Putc;
 pub use bobbin_common::configure::*;
 pub use bobbin_common::enabled::*;
 pub use bobbin_common::serial::*;

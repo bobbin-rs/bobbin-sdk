@@ -35,8 +35,8 @@ pub type System = sys::System<
 
 pub type Mcu = mcu::Stm32f3x;
 pub type Clock = clock::SystemClock;
-pub type Memory = mcu::bobbin_common::memory::Memory;
-pub type Heap = mcu::bobbin_common::heap::Heap;
+pub type Memory = mcu::bobbin_common::sys::memory::Memory;
+pub type Heap = mcu::bobbin_common::sys::heap::Heap;
 #[cfg(feature="logger")]
 pub type Logger = mcu::bobbin_common::logger::Logger;
 pub type Dispatcher = mcu::dispatch::Dispatcher<mcu::dispatch::ExcHandlers8>;

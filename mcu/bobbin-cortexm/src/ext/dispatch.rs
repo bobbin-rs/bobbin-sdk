@@ -1,4 +1,4 @@
-use ::bobbin_common::console;
+use ::bobbin_common::sys::console;
 use ::systick::SYSTICK;
 use ::nvic::*;
 use ::scb::*;

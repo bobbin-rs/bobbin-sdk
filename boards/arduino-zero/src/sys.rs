@@ -1,6 +1,6 @@
-use ::common::memory::Memory;
-use ::common::heap::Heap;
-use ::common::console::{Console, console_borrow};
+use ::common::sys::memory::Memory;
+use ::common::sys::heap::Heap;
+use ::common::sys::console::{Console, console_borrow};
 
 use ::mcu::dispatch::{Dispatcher, ExcHandlers8};
 

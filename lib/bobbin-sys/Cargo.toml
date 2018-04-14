@@ -3,4 +3,10 @@ name = "bobbin-sys"
 version = "0.1.0"
 authors = ["Jonathan Soo <jcsoo@agora.com>"]
 
-[dependencies]
+[dependencies.log]
+version = "0.4"
+default-features = false
+optional = true
+
+[features]
+logger = ["log"]

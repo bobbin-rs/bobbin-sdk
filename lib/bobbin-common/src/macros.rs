@@ -310,10 +310,10 @@ macro_rules! irq {
 #[macro_export]
 macro_rules! print {
     ($s:expr) => {
-        $crate::console::write_str($s)
+        $crate::sys::console::write_str($s)
     };
     ($($arg:tt)*) => {
-        $crate::console::write_fmt(format_args!($($arg)*))
+        $crate::sys::console::write_fmt(format_args!($($arg)*))
     };
 }
 

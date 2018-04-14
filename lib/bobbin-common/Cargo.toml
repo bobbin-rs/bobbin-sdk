@@ -7,11 +7,7 @@ authors = ["Jonathan Soo <jcsoo@agora.com>"]
 bobbin-bits = "0.1.1"
 bobbin-hz = { path = "../bobbin-hz" }
 bobbin-tree = { path = "../bobbin-tree" }
-
-[dependencies.log]
-version = "0.4"
-default-features = false
-optional = true
+bobbin-sys = { path = "../bobbin-sys" }
 
 [features]
-logger = ["log"]
+logger = ["bobbin-sys/logger"]

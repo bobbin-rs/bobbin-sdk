@@ -5,18 +5,13 @@
 #[macro_use]
 extern crate std;
 
-#[cfg(feature="logger")]
-extern crate log;
-
 pub extern crate bobbin_bits as bits;
 pub extern crate bobbin_hz as hz;
 pub extern crate bobbin_tree as tree;
+pub extern crate bobbin_sys as sys;
 
 #[macro_use]
 mod macros;
-
-#[cfg(feature="logger")]
-pub mod logger;
 
 pub mod mcu;
 pub mod periph;
@@ -30,7 +25,6 @@ pub mod owned;
 //pub mod dispatch;
 
 pub mod clock;
-pub mod console;
 
 pub mod delay;
 pub mod crc;
@@ -47,8 +41,6 @@ pub mod enabled;
 pub mod ring;
 pub mod led;
 pub mod btn;
-pub mod heap;
-pub mod memory;
 
 pub use periph::*;
 pub use pin::*;
