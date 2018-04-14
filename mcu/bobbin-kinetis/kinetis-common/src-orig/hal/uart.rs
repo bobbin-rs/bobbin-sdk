@@ -4,7 +4,7 @@ pub use bobbin_common::hal::serial::*;
 
 
 use bobbin_common::{Irq, Poll};
-use bobbin_common::ring::Ring;
+use bobbin_common::sys::ring::Ring;
 use bobbin_cortexm::hal::scb::SCB;
 use bobbin_cortexm::hal::nvic;
 use bobbin_cortexm::wfi;

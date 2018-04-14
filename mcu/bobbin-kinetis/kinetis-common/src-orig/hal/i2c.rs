@@ -3,7 +3,7 @@ pub use bobbin_common::enabled::*;
 pub use bobbin_common::hal::i2c::*;
 
 use bobbin_common::{Irq, Poll};
-use bobbin_common::ring::Ring;
+use bobbin_common::sys::ring::Ring;
 use bobbin_cortexm::wfi;
 use bobbin_cortexm::hal::nvic;
 use bobbin_cortexm::hal::scb::*;

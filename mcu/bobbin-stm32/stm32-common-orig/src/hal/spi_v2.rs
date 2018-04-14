@@ -4,7 +4,7 @@ pub use bobbin_common::hal::spi::*;
 pub use ::chip::spi_v2::*;
 
 
-use bobbin_common::ring::Ring;
+use bobbin_common::sys::ring::Ring;
 // use bobbin_common::{Irq, Poll};
 use bobbin_common::hal::digital::DigitalOutput;
 use bobbin_cortexm::wfi;

@@ -9,7 +9,7 @@ use board::console::UART;
 
 use board::mcu::dispatch::{HandleException, Exception, Guard};
 use board::System;
-use board::common::ring::*;
+use board::common::sys::ring::*;
 
 use board::common::irq::*;
 use board::mcu::irq::*;

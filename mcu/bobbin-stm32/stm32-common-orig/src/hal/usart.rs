@@ -5,7 +5,7 @@ pub use bobbin_common::hal::serial::*;
 // pub use bobbin_common::{Irq, Poll};
 pub use chip::usart::*;
 
-use bobbin_common::ring::*;
+use bobbin_common::sys::ring::*;
 // use bobbin_cortexm::hal::nvic;
 // use bobbin_cortexm::hal::scb::*;
 

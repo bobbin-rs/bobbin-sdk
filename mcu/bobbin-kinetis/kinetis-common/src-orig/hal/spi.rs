@@ -2,7 +2,7 @@ pub use bobbin_common::configure::*;
 pub use bobbin_common::enabled::*;
 pub use bobbin_common::hal::spi::*;
 
-use bobbin_common::ring::Ring;
+use bobbin_common::sys::ring::Ring;
 use bobbin_common::{Irq, Poll};
 use bobbin_common::hal::digital::DigitalOutput;
 use bobbin_cortexm::wfi;
