@@ -4,8 +4,12 @@
 #[macro_use]
 extern crate std;
 
+extern crate bobbin_hz as hz;
+extern crate bobbin_tree as tree;
 extern crate bobbin_bits as bits;
 
+pub mod mcu;
+pub mod clock;
 pub mod periph;
 pub mod pin;
 pub mod channel;
