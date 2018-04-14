@@ -1473,7 +1473,7 @@ pub fn gen_clocks<W: Write>(_cfg: &Config, out: &mut W, d: &Device, _path: &Path
     writeln!(out, "#[derive(Default)]")?;
     writeln!(out, "pub struct Clocks<CP: ClockProvider> {{ provider: CP }}")?;
     writeln!(out, "")?;
-    writeln!(out, "impl<CP: ClockProvider> Deref for Clocks<CP> {{")?;
+    writeln!(out, "impl<CP: ClockProvider> ::core::ops::Deref for Clocks<CP> {{")?;
     writeln!(out, "    type Target = CP;")?;
     writeln!(out, "    fn deref(&self) -> &CP {{ &self.provider }}")?;
     writeln!(out, "}}")?;
