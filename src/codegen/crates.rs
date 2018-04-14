@@ -37,12 +37,14 @@ pub fn gen_crate<W: Write>(cfg: Config, _out: &mut W, d: &Device) -> Result<()> 
     // Copy Xargo.toml from template
     {
         let xargo_toml_src = cfg.cargo_template.join("Xargo.toml");
-        let mut src = File::open(xargo_toml_src)?;
-        let mut data = String::new();
-        src.read_to_string(&mut data)?;    
-        let xargo_toml_dst = cfg.out_path.join("Xargo.toml");
-        let mut dst = File::create(xargo_toml_dst)?;
-        dst.write(&data.as_bytes())?;
+        if xargo_toml_src.exists() {
+            let mut src = File::open(xargo_toml_src)?;
+            let mut data = String::new();
+            src.read_to_string(&mut data)?;    
+            let xargo_toml_dst = cfg.out_path.join("Xargo.toml");
+            let mut dst = File::create(xargo_toml_dst)?;
+            dst.write(&data.as_bytes())?;
+        }
     }
 
     // Copy .cargo/config
