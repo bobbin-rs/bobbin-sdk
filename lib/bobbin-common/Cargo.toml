@@ -7,6 +7,7 @@ authors = ["Jonathan Soo <jcsoo@agora.com>"]
 bobbin-bits = "0.1.1"
 bobbin-hz = { path = "../bobbin-hz" }
 bobbin-tree = { path = "../bobbin-tree" }
+bobbin-hal = { path = "../bobbin-hal" }
 bobbin-sys = { path = "../bobbin-sys" }
 
 [features]
