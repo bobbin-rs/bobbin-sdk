@@ -22,8 +22,6 @@ pub mod configure;
 pub mod enabled;
 // pub mod ring;
 
-pub use core::ops::Deref;
-
 pub trait En {
     fn en(&self) -> bits::U1;
     fn set_en<V: Into<bits::U1>>(&self, value: V);

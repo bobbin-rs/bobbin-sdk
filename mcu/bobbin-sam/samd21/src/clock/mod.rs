@@ -5,7 +5,7 @@ pub use ::hz::Hz;
 #[derive(Default)]
 pub struct Clocks<CP: ClockProvider> { provider: CP }
 
-impl<CP: ClockProvider> Deref for Clocks<CP> {
+impl<CP: ClockProvider> ::core::ops::Deref for Clocks<CP> {
     type Target = CP;
     fn deref(&self) -> &CP { &self.provider }
 }
