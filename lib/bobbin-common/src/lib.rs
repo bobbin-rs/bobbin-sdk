@@ -8,7 +8,6 @@ extern crate std;
 pub extern crate bobbin_bits as bits;
 pub extern crate bobbin_mcu as mcu;
 pub extern crate bobbin_hz as hz;
-pub extern crate bobbin_tree as tree;
 pub extern crate bobbin_hal as hal;
 pub extern crate bobbin_sys as sys;
 
@@ -17,8 +16,6 @@ mod macros;
 
 pub use mcu::*;
 pub mod board;
-
-pub mod clock;
 
 pub mod delay;
 pub mod configure;

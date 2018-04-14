@@ -5,8 +5,8 @@
 extern crate std;
 
 extern crate bobbin_hz as hz;
-extern crate bobbin_tree as tree;
 extern crate bobbin_bits as bits;
+pub extern crate bobbin_tree as tree;
 
 pub mod mcu;
 pub mod clock;
