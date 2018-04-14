@@ -1,4 +1,4 @@
-pub use common::digital::DigitalOutput;
+pub use common::hal::digital::DigitalOutput;
 use hal::gpio::*;
 
 // LED0 = P17

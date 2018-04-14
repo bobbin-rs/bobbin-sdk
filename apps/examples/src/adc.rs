@@ -1,5 +1,5 @@
-use common::delay::*;
-use common::analog::*;
+use common::hal::delay::*;
+use common::hal::analog::*;
 use core::fmt;
 
 use core::marker::PhantomData;

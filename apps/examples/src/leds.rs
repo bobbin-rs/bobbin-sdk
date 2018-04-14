@@ -1,4 +1,4 @@
-use common::delay::Delay;
+use common::hal::delay::Delay;
 use common::hal::led::*;
 
 pub struct BlinkLeds<'a, LED: 'a + Led, DEL: Delay> {

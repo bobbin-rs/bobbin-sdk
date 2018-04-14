@@ -1,4 +1,4 @@
-pub use common::analog::AnalogRead;
+pub use common::hal::analog::AnalogRead;
 use hal::adc::*;
 use hal::pcc::*;
 use hal::port::*;

@@ -6,7 +6,7 @@
 extern crate frdm_k64f as board;
 
 use board::common::*;
-use board::common::digital::*;
+use board::common::hal::digital::*;
 use board::hal::port::*;
 use board::hal::uart::*;
 use board::btn::*;

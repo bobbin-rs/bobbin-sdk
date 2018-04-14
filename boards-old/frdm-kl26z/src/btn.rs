@@ -1,6 +1,6 @@
 use hal::gpio::*;
 
-pub use common::digital::DigitalInput;
+pub use common::hal::digital::DigitalInput;
 
 pub const BTN0: Pc3 = PC3;
 

@@ -20,7 +20,7 @@ pub fn delay(ticks: u16) {
 }
 
 
-impl ::common::delay::Delay for ::FeatherM0 {
+impl ::common::hal::delay::Delay for ::FeatherM0 {
     fn delay_ms(&self, ms: u32) {
         // Need to support u32
         delay(ms as u16)

@@ -1,7 +1,7 @@
 use hal::port::*;
 use hal::gpio::*;
 
-pub use common::digital::DigitalInput;
+pub use common::hal::digital::DigitalInput;
 
 pub const BTN0: Pc6 = PC6;
 pub const BTN0_PT: Ptc6 = PTC6;

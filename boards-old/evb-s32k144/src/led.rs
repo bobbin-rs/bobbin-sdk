@@ -1,7 +1,7 @@
 use hal::gpio::*;
 
 pub use common::Pin;
-pub use common::digital::DigitalOutput;
+pub use common::hal::digital::DigitalOutput;
 pub use hal::gpio::LinkPortPin;
 
 pub const LED0: Pd0 = PD0;

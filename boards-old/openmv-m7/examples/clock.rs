@@ -5,7 +5,7 @@
 extern crate openmv_m7 as board;
 
 use board::clock::CLK;
-use board::common::digital::DigitalOutput;
+use board::common::hal::digital::DigitalOutput;
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {

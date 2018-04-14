@@ -4,7 +4,7 @@
 #[macro_use]
 extern crate nucleo_l432kc as board;
 use board::led::*;
-use board::common::digital::DigitalOutput;
+use board::common::hal::digital::DigitalOutput;
 
 // use board::console;
 

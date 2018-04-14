@@ -1,4 +1,4 @@
-pub use common::digital::DigitalInput;
+pub use common::hal::digital::DigitalInput;
 use hal::gpio::*;
 
 // BTN2 = GP16

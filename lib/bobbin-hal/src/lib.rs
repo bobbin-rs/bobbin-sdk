@@ -10,6 +10,7 @@ pub mod serial;
 pub mod spi;
 pub mod timer;
 pub mod watchdog;
+pub mod delay;
 
 pub mod led;
 pub mod btn;

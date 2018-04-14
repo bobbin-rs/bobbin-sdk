@@ -1,7 +1,7 @@
 use hal::port::*;
 use hal::gpio::*;
 
-pub use common::digital::DigitalOutput;
+pub use common::hal::digital::DigitalOutput;
 
 pub const LED0: Pb22 = PB22; // Red
 pub const LED1: Pb21 = PB21; // Blue

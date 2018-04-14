@@ -1,5 +1,5 @@
 use hal::gpio::*;
-pub use common::digital::DigitalOutput;
+pub use common::hal::digital::DigitalOutput;
 
 pub const LED0: Pc5 = PC5; // Red
 

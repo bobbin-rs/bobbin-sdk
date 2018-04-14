@@ -17,13 +17,10 @@ mod macros;
 pub use mcu::*;
 pub mod board;
 
-pub mod delay;
+// pub mod delay;
 pub mod configure;
 pub mod enabled;
-pub mod ring;
-
-// pub mod led;
-// pub mod btn;
+// pub mod ring;
 
 pub use core::ops::Deref;
 

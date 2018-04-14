@@ -1,6 +1,6 @@
 use hal::gpio::*;
 
-pub use common::digital::DigitalOutput;
+pub use common::hal::digital::DigitalOutput;
 
 
 pub const LED0: Pe29 = PE29;

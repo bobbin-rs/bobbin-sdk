@@ -3,7 +3,7 @@
 
 extern crate nucleo_l432kc as board;
 
-use board::common::digital::*;
+use board::common::hal::digital::*;
 use board::led::LED0;
 use board::btn::BTN0;
 

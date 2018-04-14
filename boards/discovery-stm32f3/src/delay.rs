@@ -29,7 +29,7 @@ pub fn delay(ms: u32) {
         .delay((ms << 1) as u16);
 }
 
-impl ::common::delay::Delay for ::DiscoveryStm32f3 {
+impl ::common::hal::delay::Delay for ::DiscoveryStm32f3 {
     fn delay_ms(&self, ms: u32) {
         delay(ms)
     }

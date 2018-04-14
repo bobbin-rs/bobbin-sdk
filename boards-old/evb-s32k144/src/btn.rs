@@ -1,7 +1,7 @@
 use hal::port::*;
 use hal::gpio::*;
 
-pub use common::digital::DigitalInput;
+pub use common::hal::digital::DigitalInput;
 pub use hal::gpio::LinkPortPin;
 
 pub const BTN0: Pc12 = PC12;

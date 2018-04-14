@@ -27,7 +27,7 @@ pub fn delay(ms: u32) {
         .delay((ms << 1) as u16);
 }
 
-impl ::common::delay::Delay for ::NucleoF746zg {
+impl ::common::hal::delay::Delay for ::NucleoF746zg {
     fn delay_ms(&self, ms: u32) {
         delay(ms)
     }
