@@ -6,7 +6,7 @@ extern crate nucleo_f746zg as board;
 extern crate examples;
 
 use board::common::board::*;
-use board::common::digital::DigitalOutput;
+use board::common::hal::digital::DigitalOutput;
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {

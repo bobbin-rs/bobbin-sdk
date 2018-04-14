@@ -1,5 +1,5 @@
 pub use bobbin_common::enabled::*;
-pub use bobbin_common::timer::*;
+pub use bobbin_common::hal::timer::*;
 pub use chip::lptmr::*;
 pub use core::ops::Deref;
 

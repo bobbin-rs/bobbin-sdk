@@ -1,5 +1,5 @@
 pub use periph::gpio::*;
-pub use bobbin_common::digital::*;
+pub use bobbin_common::hal::digital::*;
 use bobbin_common::bits::*;
 use bobbin_common::pin::SetSource;
 

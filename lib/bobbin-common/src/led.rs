@@ -1,4 +1,4 @@
-use ::digital::DigitalOutput;
+use hal::digital::DigitalOutput;
 
 pub trait GetLed {
     fn get_led(&self, index: usize) -> &Led;

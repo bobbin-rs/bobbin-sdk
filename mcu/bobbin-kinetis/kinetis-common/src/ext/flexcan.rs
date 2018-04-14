@@ -1,6 +1,6 @@
 pub use bobbin_common::configure::*;
 pub use bobbin_common::enabled::*;
-pub use bobbin_common::can::*;
+pub use bobbin_common::hal::can::*;
 pub use ::periph::flexcan::*;
 
 use bobbin_common::bits::*;

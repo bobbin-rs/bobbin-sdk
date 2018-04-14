@@ -1,5 +1,5 @@
 pub use periph::tcc::*;
-pub use bobbin_common::timer::*;
+pub use bobbin_common::hal::timer::*;
 
 // Review for register synchronization
 

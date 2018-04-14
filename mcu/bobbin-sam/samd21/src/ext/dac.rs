@@ -1,6 +1,6 @@
 pub use periph::dac::*;
 pub use bobbin_common::bits::*;
-pub use bobbin_common::analog::AnalogWrite;
+pub use bobbin_common::hal::analog::AnalogWrite;
 
 use gclk;
 

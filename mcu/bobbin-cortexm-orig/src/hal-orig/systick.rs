@@ -4,7 +4,7 @@
 
 use bobbin_common::bits::*;
 pub use bobbin_common::enabled::*;
-pub use bobbin_common::timer::*;
+pub use bobbin_common::hal::timer::*;
 pub use bobbin_common::clock::Millis;
 use core::cell::UnsafeCell;
 use core::ptr;

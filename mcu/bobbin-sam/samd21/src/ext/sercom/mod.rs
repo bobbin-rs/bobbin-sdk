@@ -2,7 +2,7 @@ pub use periph::sercom::*;
 pub use bobbin_common::sys::console::Putc;
 pub use bobbin_common::configure::*;
 pub use bobbin_common::enabled::*;
-pub use bobbin_common::serial::*;
+pub use bobbin_common::hal::serial::*;
 // pub use super::pm::PmEnabled;
 
 use bobbin_common::bits::*;

@@ -1,6 +1,6 @@
 pub use bobbin_common::configure::*;
 pub use bobbin_common::enabled::*;
-pub use bobbin_common::serial::*;
+pub use bobbin_common::hal::serial::*;
 use core::fmt::{self, Write};
 use chip::usart_f24::*;
 

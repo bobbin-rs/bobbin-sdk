@@ -1,6 +1,6 @@
 pub use bobbin_common::{Pin, AltFn};
 pub use chip::port::*;    
-pub use kinetis_common::hal::port::*;
+pub use kinetis_common::ext::port::*;
 pub use super::pcc::PccEnabled;
 // use chip::sig::{SignalTx, SignalRx, SignalFtm, SignalAdc};
 // use chip::sig::{SignalSpiSck, SignalSpiSin, SignalSpiSout};

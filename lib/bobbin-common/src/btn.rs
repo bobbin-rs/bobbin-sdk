@@ -1,4 +1,4 @@
-use ::digital::DigitalInput;
+use hal::digital::DigitalInput;
 
 pub trait Btn {
     fn on(&self) -> bool;

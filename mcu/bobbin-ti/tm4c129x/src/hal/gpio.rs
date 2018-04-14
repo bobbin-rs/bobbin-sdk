@@ -1,4 +1,4 @@
-pub use bobbin_common::digital::*;
+pub use bobbin_common::hal::digital::*;
 pub use bobbin_common::{Pin, AltFn};
 pub use chip::gpio::*;
 pub use super::sysctl::SysctlEnabled;

@@ -1,4 +1,4 @@
-pub use bobbin_common::spi::*;
+pub use bobbin_common::hal::spi::*;
 pub use ::periph::sercom::*;
 use gclk;
 

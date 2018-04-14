@@ -2,7 +2,7 @@
 //! See [4.4. System timer, SysTick](http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dui0552a/Babieigh.html)
 
 pub use bobbin_common::enabled::*;
-pub use bobbin_common::timer::*;
+pub use bobbin_common::hal::timer::*;
 pub use bobbin_common::clock::Millis;
 use bobbin_common::hz::Hz;
 use periph::systick::*;

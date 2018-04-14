@@ -8,6 +8,7 @@ extern crate std;
 pub extern crate bobbin_bits as bits;
 pub extern crate bobbin_hz as hz;
 pub extern crate bobbin_tree as tree;
+pub extern crate bobbin_hal as hal;
 pub extern crate bobbin_sys as sys;
 
 #[macro_use]
@@ -27,15 +28,6 @@ pub mod owned;
 pub mod clock;
 
 pub mod delay;
-pub mod crc;
-pub mod timer;
-pub mod digital;
-pub mod analog;
-pub mod serial;
-pub mod spi;
-pub mod i2c;
-pub mod can;
-pub mod watchdog;
 pub mod configure;
 pub mod enabled;
 pub mod ring;

@@ -1,5 +1,5 @@
 use bobbin_common::bits::*;
-pub use bobbin_common::analog::AnalogRead;
+pub use bobbin_common::hal::analog::AnalogRead;
 pub use ::periph::adc_f1::*;
 
 impl AdcPeriph {

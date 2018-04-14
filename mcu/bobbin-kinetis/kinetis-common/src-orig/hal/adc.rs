@@ -1,6 +1,6 @@
 use bobbin_common::bits::*;
 pub use chip::adc::*;
-pub use bobbin_common::analog::AnalogRead;
+pub use bobbin_common::hal::analog::AnalogRead;
 
 #[derive(Debug, PartialEq, Eq, Clone, Copy)]
 #[repr(u8)]

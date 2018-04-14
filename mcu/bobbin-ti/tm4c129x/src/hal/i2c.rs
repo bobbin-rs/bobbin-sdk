@@ -1,4 +1,4 @@
-pub use bobbin_common::i2c::*;
+pub use bobbin_common::hal::i2c::*;
 pub use super::sysctl::SysctlEnabled;
 pub use ::chip::i2c::*;
 
