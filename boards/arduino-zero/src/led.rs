@@ -1,4 +1,4 @@
-pub use common::led::*;
+pub use common::hal::led::*;
 pub use mcu::pin::*;
 pub use mcu::port::*;
 

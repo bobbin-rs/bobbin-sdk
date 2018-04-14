@@ -1,6 +1,6 @@
 use mcu::pin::*;
 use mcu::gpio::*;
-pub use common::btn::*;
+pub use common::hal::btn::*;
 
 pub use common::hal::digital::DigitalInput;
 

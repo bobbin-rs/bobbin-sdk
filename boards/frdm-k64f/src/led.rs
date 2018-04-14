@@ -1,4 +1,4 @@
-pub use common::led::*;
+pub use common::hal::led::*;
 use mcu::gpio::*;
 use mcu::pin::*;
 pub use common::hal::digital::DigitalOutput;

@@ -1,5 +1,5 @@
 pub use mcu::pin::*;
-pub use common::btn::*;
+pub use common::hal::btn::*;
 
 pub const BTN0: Pa0 = PA0;
 

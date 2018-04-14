@@ -1,4 +1,5 @@
 #![no_std]
+#![feature(const_fn)]
 
 pub mod analog;
 pub mod can;
@@ -9,3 +10,6 @@ pub mod serial;
 pub mod spi;
 pub mod timer;
 pub mod watchdog;
+
+pub mod led;
+pub mod btn;

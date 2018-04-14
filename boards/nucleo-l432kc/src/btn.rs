@@ -1,5 +1,5 @@
 pub use mcu::pin::*;
-pub use common::btn::*;
+pub use common::hal::btn::*;
 
 // BTN0 / PA12 / D2 - Active Low
 
