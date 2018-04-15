@@ -3,10 +3,11 @@
 
 #[cfg(target_os="none")]
 pub extern crate cortex_m_rt;
-pub extern crate log;
+pub extern crate bobbin_sys;
+
 %imports%
 
-pub use mcu::bobbin_common::{print, println};
+pub use bobbin_sys::{system, memory, heap, print, println};
 pub use mcu::bobbin_common as common;
 
 #[macro_use] pub mod logger;
@@ -25,28 +26,32 @@ pub mod delay;
 
 pub use delay::delay;
 
-pub fn init() {    
-    cache::init();
-    clock::init();
-    console::init();
-    led::init();
-    btn::init();
-    delay::init();
+pub fn init() -> System {    
+    system::System::init(|| {
+        ::cache::init();
+        ::clock::init();
+        ::console::init();
+        ::led::init();
+        ::btn::init();
+        ::delay::init();
+        #[cfg(feature="logger")]
+        Logger::init();          
+    })
 }
 
-pub type Memory = mcu::bobbin_common::sys::memory::Memory;
-pub type Heap = mcu::bobbin_common::sys::heap::Heap;
+pub type System = system::System<
+        Mcu,
+        Clock,
+        Dispatcher,
+>;
+
+pub type Mcu = mcu::%mcu%;
+pub type Clock = clock::SystemClock;
+pub type Memory = memory::Memory;
+pub type Heap = heap::Heap;
+#[cfg(feature="logger")]
+pub type Logger = logger::Logger;
 pub type Dispatcher = mcu::dispatch::Dispatcher<mcu::dispatch::ExcHandlers8>;
-
-pub fn handle_exception() {
-    unsafe {
-        if !Dispatcher::dispatch(mcu::scb::SCB.icsr().vectactive().value()) {
-            console::write_str("EXCEPTION\n");
-            asm!("bkpt");
-            loop {}
-        }
-    }
-}
 
 #[cfg(target_os="none")]
 default_handler!(handle_exception);

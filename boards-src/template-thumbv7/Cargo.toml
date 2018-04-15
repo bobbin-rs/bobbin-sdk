@@ -12,9 +12,8 @@ doc = false
 features = []
 version = "0.4.0"
 
-[dependencies.log]
-version = "0.4"
-default-features = false
+[dependencies.bobbin-sys]
+path = " ../../../../lib/bobbin-sys/"
 
 [profile.dev]
 panic = "abort"
