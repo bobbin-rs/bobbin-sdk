@@ -13,6 +13,10 @@ pub struct Config {
 }
 
 pub fn gen_board<W: Write>(cfg: Config, _out: &mut W, b: &Board) -> Result<()> {
+    // Generate Board Type and Traits
+    let board_ty = super::to_camel(&b.name.replace("-","_"));
+    let mcu_ty = super::to_camel(&b.mcu);
+
     let tmpl_path = &cfg.cargo_template;
     let out_path = &cfg.out_path;
     mkdir(out_path)?;
@@ -88,15 +92,13 @@ pub fn gen_board<W: Write>(cfg: Config, _out: &mut W, b: &Board) -> Result<()> {
                 copy_file_with(&src, &dst, |s| s
                     .replace("%imports%", &imports)
                     .replace("%board%", &board_name)
+                    .replace("%mcu_type%", &mcu_ty)
                 )?;
             }
         }
     }
 
     {
-        // Generate Board Type and Traits
-        let board_ty = super::to_camel(&b.name.replace("-","_"));
-        let mcu_ty = super::to_camel(&b.mcu);
 
 
         let mut out = OpenOptions::new().append(true).open(out_path.join("src/lib.rs"))?;
@@ -112,6 +114,7 @@ pub fn gen_board<W: Write>(cfg: Config, _out: &mut W, b: &Board) -> Result<()> {
         writeln!(out, "")?;
         writeln!(out, "pub const fn board() -> {} {{ {}{{}} }}", board_ty, board_ty)?;
         writeln!(out, "")?;
+        writeln!(out, "pub type Board = {};", board_ty)?;
     }
 
     Ok(())
