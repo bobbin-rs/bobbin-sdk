@@ -6,8 +6,8 @@ pub extern crate cortex_m_rt;
 pub extern crate stm32f74x as mcu;
 pub extern crate bobbin_sys;
 
+pub use bobbin_sys::{print, println};
 
-pub use mcu::bobbin_common::{print, println};
 pub use mcu::bobbin_common as common;
 
 #[cfg(target_os="none")]

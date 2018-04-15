@@ -3,6 +3,9 @@
 #[cfg(feature="logger")]
 extern crate log;
 
+#[macro_use]
+mod macros;
+
 pub mod console;
 pub mod heap;
 pub mod memory;
