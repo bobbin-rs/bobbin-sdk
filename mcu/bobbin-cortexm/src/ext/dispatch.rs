@@ -1,4 +1,4 @@
-use ::bobbin_common::sys::console;
+// use ::bobbin_common::sys::console;
 use ::systick::SYSTICK;
 use ::nvic::*;
 use ::scb::*;
@@ -164,7 +164,7 @@ impl<T: Default + ExceptionHandlers> Dispatcher<T> {
     pub fn handle_exception() {
         unsafe {
             if !Self::dispatch(SCB.icsr().vectactive().value()) {
-                console::write_str("EXCEPTION\n");
+                // console::write_str("EXCEPTION\n");
                 asm!("bkpt");
                 loop {}
             }

@@ -8,7 +8,7 @@ bobbin-bits = "0.1.1"
 bobbin-mcu = { path = "../bobbin-mcu" }
 bobbin-hz = { path = "../bobbin-hz" }
 bobbin-hal = { path = "../bobbin-hal" }
-bobbin-sys = { path = "../bobbin-sys" }
+#bobbin-sys = { path = "../bobbin-sys" }
 
 [features]
-logger = ["bobbin-sys/logger"]
+#logger = ["bobbin-sys/logger"]

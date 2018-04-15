@@ -9,7 +9,7 @@ pub extern crate bobbin_bits as bits;
 pub extern crate bobbin_mcu as mcu;
 pub extern crate bobbin_hz as hz;
 pub extern crate bobbin_hal as hal;
-pub extern crate bobbin_sys as sys;
+// pub extern crate bobbin_sys as sys;
 
 #[macro_use]
 mod macros;

@@ -1,4 +1,4 @@
-pub use mcu::bobbin_common::sys::console::*;
+pub use bobbin_sys::console::*;
 use mcu::bobbin_common::periph::IntoPeriph;
 
 use mcu::rcc::*;
@@ -27,5 +27,12 @@ pub fn init() {
         .set_config(|c| c.set_baud_clock(USART_BAUD, USART_CLOCK))
         .enable();
 
-    set_console(Console::new(USART.into_periph()));
+    set_console(Console::new(UsartConsole(USART.into_periph())));
+}
+
+pub struct UsartConsole(UsartPeriph);
+impl Putc for UsartConsole {
+    fn console_putc(&self, c: u8) {
+        self.0.putc(c);
+    }
 }

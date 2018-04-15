@@ -1,4 +1,4 @@
-pub use bobbin_common::sys::console::Putc;
+// pub use bobbin_common::sys::console::Putc;
 pub use bobbin_common::configure::*;
 pub use bobbin_common::enabled::*;
 pub use bobbin_common::hal::serial::*;
@@ -142,11 +142,11 @@ impl SerialRxIrq for UsartPeriph {
     }
 }
 
-impl Putc for UsartPeriph {
-    fn console_putc(&self, c: u8) {
-        self.putc(c);
-    }
-}
+// impl Putc for UsartPeriph {
+//     fn console_putc(&self, c: u8) {
+//         self.putc(c);
+//     }
+// }
 
 // pub struct UsartDriver<'a> {    
 //     usart: UsartPeriph,
