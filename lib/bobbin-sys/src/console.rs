@@ -1,30 +1,57 @@
+use bobbin_hal::serial::SerialTx;
+
 use core::fmt::{self, Write};
 
-pub trait Putc {
-    fn console_putc(&self, c: u8);
-}
-
 pub const DIGITS: &[u8; 16] = b"0123456789abcdef";    
-pub static mut CONSOLE: Option<Console> = None;
+pub static mut CONSOLE: Option<(&'static ConsoleWrite, ConsoleMode)> = None;
 
-pub fn set_console(c: Console) {
-    unsafe { CONSOLE = Some(c) }
+#[derive(Debug, PartialEq, Eq, Clone, Copy)]
+pub enum ConsoleMode {
+    Raw,
+    Cooked,
 }
 
-pub struct Console(&'static Putc);
+pub trait ConsoleWrite {
+    fn write(&self, buf: &[u8]);
+    fn putc(&self, b: u8);
+}
 
-impl Console {
-    pub fn new(other: &'static Putc) -> Self {
-        Console(other)
+impl<T: SerialTx<u8>> ConsoleWrite for T {
+    fn write(&self, buf: &[u8]) {
+        <Self as SerialTx<u8>>::write(self, buf);
+    }
+    fn putc(&self, b: u8) {
+        <Self as SerialTx<u8>>::putc(self, b);
+    }
+}
+
+
+pub fn set_console(c: &'static ConsoleWrite, mode: ConsoleMode) {
+    unsafe { CONSOLE = Some((c, mode)) }
+}
+
+pub struct Console<'a>(&'a ConsoleWrite, ConsoleMode);
+
+impl<'a> Console<'a> {
+    pub fn new(other: &'a ConsoleWrite, mode: ConsoleMode) -> Self {
+        Console(other, mode)
     }
 
+    #[inline]
     pub fn write(&self, buf: &[u8]) {
+        match self.1 {
+            ConsoleMode::Raw => self.0.write(buf),
+            ConsoleMode::Cooked => self.write_cooked(buf),
+        }
+    }
+
+    pub fn write_cooked(&self, buf: &[u8]) {
         for byte in buf {
             if *byte == b'\n' {
-                self.0.console_putc(b'\r');
+                self.0.putc(b'\r');
             }
-            self.0.console_putc(*byte);
-        }
+            self.0.putc(*byte);
+        }        
     }
 
     pub fn write_u32(&self, mut v: u32, base: u32) {
@@ -48,27 +75,22 @@ impl Console {
     }
 }
 
-impl fmt::Write for Console {
+impl<'a> fmt::Write for Console<'a> {
     fn write_str(&mut self, s: &str) -> fmt::Result {        
-        for byte in s.as_bytes().iter().cloned() {
-            if byte == b'\n' {
-                self.0.console_putc(b'\r');
-            }
-            self.0.console_putc(byte);
-        }
+        self.0.write(s.as_bytes());
         Ok(())
     }
 }
 
-pub fn console_borrow() -> Option<&'static Console> {
-    unsafe { CONSOLE.as_ref() }
-}
+// pub fn console_borrow() -> Option<&'static Console> {
+//     unsafe { CONSOLE.as_ref() }
+// }
 
 #[doc(hidden)]
 pub fn with_console<F: FnOnce(&mut Console)>(f: F) {
     unsafe {
-        if let Some(ref mut console) = CONSOLE {
-            f(console)
+        if let Some((console, mode)) = CONSOLE {
+            f(&mut Console(console, mode))
         }
     }
 }

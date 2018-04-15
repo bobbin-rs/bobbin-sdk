@@ -1,7 +1,7 @@
 // pub use bobbin_common::sys::console::Putc;
 pub use bobbin_common::configure::*;
 pub use bobbin_common::enabled::*;
-pub use bobbin_common::hal::serial::*;
+pub use bobbin_hal::serial::*;
 // pub use bobbin_common::{Irq, Poll};
 pub use periph::usart::*;
 

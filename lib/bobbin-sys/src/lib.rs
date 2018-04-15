@@ -3,6 +3,8 @@
 #[cfg(feature="logger")]
 extern crate log;
 
+extern crate bobbin_hal;
+
 #[macro_use]
 mod macros;
 

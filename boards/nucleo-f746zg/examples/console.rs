@@ -10,7 +10,8 @@ pub extern "C" fn main() -> ! {
 
     println!("Running Console");
     loop {
-        sys.console().write(b"Tick...\r\n");
+        // sys.console().write(b"Tick...\r\n");
+        println!("Tick...");
         board::delay(500);
     }
 }

@@ -10,7 +10,7 @@ const USART_RX: Pd9 = PD9;
 const USART_CLOCK: u32 = 16_000_000; // Use HSI Clock
 const USART_BAUD: u32 = 115_200;
 
-pub const CONSOLE: UsartConsole = UsartConsole(USART3_PERIPH);
+// pub const CONSOLE: UsartConsole = UsartConsole { periph: USART3_PERIPH };
 
 pub fn init() {
     USART_TX
@@ -27,12 +27,5 @@ pub fn init() {
         .set_config(|c| c.set_baud_clock(USART_BAUD, USART_CLOCK))
         .enable();
 
-    set_console(Console::new(&CONSOLE));
-}
-
-pub struct UsartConsole(UsartPeriph);
-impl Putc for UsartConsole {
-    fn console_putc(&self, c: u8) {
-        self.0.putc(c);
-    }
+    set_console(&USART3_PERIPH, ConsoleMode::Cooked);
 }

@@ -4,6 +4,7 @@
 
 pub extern crate bobbin_cortexm;
 pub extern crate bobbin_common;
+pub extern crate bobbin_hal;
 
 pub mod periph;
 pub mod ext;
