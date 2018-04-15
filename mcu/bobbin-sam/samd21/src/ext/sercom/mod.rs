@@ -1,8 +1,7 @@
 pub use periph::sercom::*;
-pub use bobbin_common::sys::console::Putc;
 pub use bobbin_common::configure::*;
 pub use bobbin_common::enabled::*;
-pub use bobbin_common::hal::serial::*;
+pub use bobbin_hal::serial::*;
 // pub use super::pm::PmEnabled;
 
 use bobbin_common::bits::*;
@@ -193,13 +192,5 @@ impl SerialRxIrq for SercomPeriph {
             self.usart().set_intenclr(|r| r.set_rxc(1));
         }
         self
-    }
-}
-
-
-impl Putc for SercomPeriph {
-    fn console_putc(&self, c: u8) {
-        while !self.can_tx() {}
-        self.tx(c);
     }
 }

@@ -1,4 +1,4 @@
-pub use mcu::bobbin_common::sys::console::*;
+pub use bobbin_sys::console::*;
 use common::periph::AsPeriph;
 use common::configure::Configure;
 use clock::*;
@@ -37,5 +37,5 @@ pub fn init() {
             .set_rxpo(3)
         )        
         .set_enabled(true);
-    set_console(Console::new(SERCOM.as_periph()));    
+    set_console(Console::new(SERCOM.as_periph(), ConsoleMode::Cooked));    
 }

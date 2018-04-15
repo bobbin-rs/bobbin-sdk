@@ -33,3 +33,5 @@ embedded-hal = "0.1.2"
 path = "../../mcu/bobbin-sam/samd21"
 features = ["SAMD21x18"]
 
+[dependencies.bobbin-sys]
+path = " ../../../../lib/bobbin-sys/"
