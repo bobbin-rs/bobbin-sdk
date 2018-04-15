@@ -9,4 +9,4 @@ bobbin-hal = { path = "../../../lib/bobbin-hal" }
 bobbin-cortexm = { path = "../../bobbin-cortexm" }
 
 [features]
-logger = ["bobbin-common/logger"]
+#logger = ["bobbin-common/logger"]
