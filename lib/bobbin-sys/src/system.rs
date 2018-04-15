@@ -1,24 +1,16 @@
-use bobbin_sys::memory::Memory;
-use bobbin_sys::heap::Heap;
-use bobbin_sys::console::{Console, console_ref};
+use memory::Memory;
+use heap::Heap;
+use console::{Console, console_ref};
 
 #[cfg(feature="logger")]
-use bobbin_sys::logger::Logger;
-
-use ::mcu::dispatch::{Dispatcher, ExcHandlers8};
+use logger::Logger;
 
 use core::cell::UnsafeCell;
 
-static mut SYSTEM_DATA: UnsafeCell<SystemData> = UnsafeCell::new(SystemData::new(false));
+static mut SYSTEM_DATA: UnsafeCell<SystemData> = UnsafeCell::new(SystemData { locked: false });
 
 struct SystemData {
     locked: bool,
-}
-
-impl SystemData {
-    const fn new(locked: bool) -> Self {
-        Self { locked: locked }
-    }
 }
 
 pub struct Config {
@@ -31,10 +23,11 @@ impl Default for Config {
 }
 
 #[must_use]
-pub struct System<MCU, CLK> 
+pub struct System<MCU, CLK, DIS> 
 where
     MCU: Default,
     CLK: Default,
+    DIS: Default,
 {
     mcu: MCU,
     memory: Memory,
@@ -42,13 +35,14 @@ where
     clock: CLK,
     #[cfg(feature="logger")]
     logger: Logger,
-    dispatcher: Dispatcher<ExcHandlers8>,
+    dispatcher: DIS,
 }
 
-impl<MCU, CLK> System<MCU, CLK> 
+impl<MCU, CLK, DIS> System<MCU, CLK, DIS> 
 where
     MCU: Default,
     CLK: Default,
+    DIS: Default,
 {
 
     pub fn init<F: FnOnce()>(f: F) -> Self {
@@ -64,7 +58,7 @@ where
             clock: CLK::default(),
             #[cfg(feature="logger")]
             logger: Logger::default(),
-            dispatcher: unsafe { Dispatcher::new() },
+            dispatcher: DIS::default(),
         }
     }
 
@@ -74,12 +68,12 @@ where
 
     #[inline]
     fn enable_interrupts() {
-        unsafe { asm!("cpsie i") }
+        // unsafe { asm!("cpsie i") }
     }
 
     #[inline]
     fn disable_interrupts() {
-        unsafe { asm!("cpsid i") }
+        // unsafe { asm!("cpsid i") }
     }
 
     fn locked() -> bool {
@@ -128,11 +122,11 @@ where
         &self.logger
     }
 
-    pub fn dispatcher(&self) -> &Dispatcher<ExcHandlers8> {
+    pub fn dispatcher(&self) -> &DIS {
         &self.dispatcher
     }
 
-    pub fn dispatcher_mut(&mut self) -> &mut Dispatcher<ExcHandlers8> {
+    pub fn dispatcher_mut(&mut self) -> &mut DIS {
         &mut self.dispatcher
     }
 
@@ -144,10 +138,11 @@ where
     }
 }
 
-impl<MCU, CLK> Drop for System<MCU, CLK> 
+impl<MCU, CLK, DIS> Drop for System<MCU, CLK, DIS> 
 where
     MCU: Default,
     CLK: Default,
+    DIS: Default,
 {
     fn drop(&mut self) {
         Self::unlock();

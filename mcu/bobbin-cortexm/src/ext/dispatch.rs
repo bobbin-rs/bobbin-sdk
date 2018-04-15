@@ -160,6 +160,12 @@ impl<'a, H: 'a> Deref for Guard<'a, H> {
 
 pub struct Dispatcher<T: Default + ExceptionHandlers>(T);
 
+impl<T: Default + ExceptionHandlers> Default for Dispatcher<T> {
+    fn default() -> Self {
+        Dispatcher(T::default())
+    }
+}
+
 impl<T: Default + ExceptionHandlers> Dispatcher<T> {
     pub fn handle_exception() {
         unsafe {
@@ -170,9 +176,7 @@ impl<T: Default + ExceptionHandlers> Dispatcher<T> {
             }
         }
     }    
-    pub unsafe fn new() -> Self {
-        Dispatcher(T::default())
-    }
+
     pub fn slots() -> usize {
         Self::handlers().len()
     }

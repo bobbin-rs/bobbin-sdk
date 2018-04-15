@@ -12,6 +12,7 @@ pub mod console;
 pub mod heap;
 pub mod memory;
 pub mod ring;
+pub mod system;
 
 #[cfg(feature="logger")]
 pub mod logger;
