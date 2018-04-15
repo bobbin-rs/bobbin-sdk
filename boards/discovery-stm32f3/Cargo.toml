@@ -12,33 +12,26 @@ doc = false
 features = []
 version = "0.4.0"
 
-[dev-dependencies.log]
-version = "0.4"
-default-features = false
+[dependencies.bobbin-sys]
+path = " ../../../../lib/bobbin-sys/"
+
+[dev-dependencies]
+examples = { path = "../../apps/examples" }
+embedded-hal = "0.1.2"
 
 [profile.dev]
 panic = "abort"
 opt-level = "s"
-codegen-units = 1
 incremental = false
 lto = true
-debug = false
 
 [profile.release]
 panic = "abort"
 debug = true
 lto = true
 
-[features]
-#logger = ["stm32f3x/logger"]
-
-[dev-dependencies]
-examples = { path = "../../apps/examples" }
-embedded-hal = "0.1.2"
 
 [dependencies.stm32f3x]
 path = "../../mcu/bobbin-stm32/stm32f303x"
 features = ["STM32F303xC"]
 
-[dependencies.bobbin-sys]
-path = " ../../../../lib/bobbin-sys/"

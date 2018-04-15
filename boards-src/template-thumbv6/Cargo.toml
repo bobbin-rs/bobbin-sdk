@@ -15,6 +15,10 @@ version = "0.4.0"
 [dependencies.bobbin-sys]
 path = " ../../../../lib/bobbin-sys/"
 
+[dev-dependencies]
+examples = { path = "../../apps/examples" }
+embedded-hal = "0.1.2"
+
 [profile.dev]
 panic = "abort"
 opt-level = "s"

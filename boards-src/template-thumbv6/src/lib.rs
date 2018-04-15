@@ -5,7 +5,6 @@
 pub extern crate cortex_m_rt;
 pub extern crate bobbin_sys;
 %imports%
-
 pub use bobbin_sys::{system, memory, heap, print, println};
 pub use mcu::bobbin_common as common;
 
@@ -31,8 +30,6 @@ pub fn init() -> System {
         ::led::init();
         ::btn::init();
         ::delay::init();
-        #[cfg(feature="logger")]
-        Logger::init();          
     })
 }
 
@@ -42,12 +39,10 @@ pub type System = system::System<
         Dispatcher,
 >;
 
-pub type Mcu = mcu::%mcu%;
+pub type Mcu = mcu::%mcu_type%;
 pub type Clock = clock::SystemClock;
 pub type Memory = memory::Memory;
 pub type Heap = heap::Heap;
-#[cfg(feature="logger")]
-pub type Logger = logger::Logger;
 pub type Dispatcher = mcu::dispatch::Dispatcher<mcu::dispatch::ExcHandlers8>;
 
 #[cfg(target_os="none")]

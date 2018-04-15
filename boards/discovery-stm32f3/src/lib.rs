@@ -3,8 +3,8 @@
 
 #[cfg(target_os="none")]
 pub extern crate cortex_m_rt;
-pub extern crate stm32f3x as mcu;
 pub extern crate bobbin_sys;
+pub extern crate stm32f3x as mcu;
 
 pub use bobbin_sys::{system, memory, heap, print, println};
 #[cfg(feature="logger")]
@@ -67,3 +67,4 @@ impl common::board::Board for DiscoveryStm32f3 {
 
 pub const fn board() -> DiscoveryStm32f3 { DiscoveryStm32f3{} }
 
+pub type Board = DiscoveryStm32f3;

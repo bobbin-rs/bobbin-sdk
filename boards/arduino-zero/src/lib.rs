@@ -3,11 +3,10 @@
 
 #[cfg(target_os="none")]
 pub extern crate cortex_m_rt;
-pub extern crate samd21 as mcu;
 pub extern crate bobbin_sys;
+pub extern crate samd21 as mcu;
 
 pub use bobbin_sys::{system, memory, heap, print, println};
-
 pub use mcu::bobbin_common as common;
 
 #[cfg(target_os="none")]
@@ -32,8 +31,6 @@ pub fn init() -> System {
         ::led::init();
         ::btn::init();
         ::delay::init();
-        #[cfg(feature="logger")]
-        Logger::init();          
     })
 }
 

@@ -3,8 +3,8 @@
 
 #[cfg(target_os="none")]
 pub extern crate cortex_m_rt;
-pub extern crate stm32l432x as mcu;
 pub extern crate bobbin_sys;
+pub extern crate stm32l432x as mcu;
 
 pub use bobbin_sys::{system, memory, heap, print, println};
 #[cfg(feature="logger")]

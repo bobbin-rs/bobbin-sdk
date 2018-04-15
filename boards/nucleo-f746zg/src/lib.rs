@@ -1,10 +1,10 @@
 #![no_std]
-#![feature(asm, lang_items, use_extern_macros, core_intrinsics, const_fn, align_offset, offset_to)]
+#![feature(asm, lang_items, use_extern_macros, core_intrinsics, const_fn)]
 
 #[cfg(target_os="none")]
 pub extern crate cortex_m_rt;
-pub extern crate stm32f74x as mcu;
 pub extern crate bobbin_sys;
+pub extern crate stm32f74x as mcu;
 
 pub use bobbin_sys::{system, memory, heap, print, println};
 #[cfg(feature="logger")]
@@ -23,7 +23,6 @@ pub mod console;
 pub mod led;
 pub mod btn;
 pub mod delay;
-// pub mod sys;
 
 pub use delay::delay;
 

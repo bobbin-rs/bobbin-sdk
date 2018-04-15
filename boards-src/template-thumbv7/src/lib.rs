@@ -4,13 +4,12 @@
 #[cfg(target_os="none")]
 pub extern crate cortex_m_rt;
 pub extern crate bobbin_sys;
-
 %imports%
-
 pub use bobbin_sys::{system, memory, heap, print, println};
-pub use mcu::bobbin_common as common;
+#[cfg(feature="logger")]
+pub use bobbin_sys::logger;
 
-#[macro_use] pub mod logger;
+pub use mcu::bobbin_common as common;
 
 #[cfg(target_os="none")]
 pub use cortex_m_rt::default_handler;
@@ -45,7 +44,7 @@ pub type System = system::System<
         Dispatcher,
 >;
 
-pub type Mcu = mcu::%mcu%;
+pub type Mcu = mcu::%mcu_type%;
 pub type Clock = clock::SystemClock;
 pub type Memory = memory::Memory;
 pub type Heap = heap::Heap;
@@ -54,4 +53,4 @@ pub type Logger = logger::Logger;
 pub type Dispatcher = mcu::dispatch::Dispatcher<mcu::dispatch::ExcHandlers8>;
 
 #[cfg(target_os="none")]
-default_handler!(handle_exception);
+default_handler!(Dispatcher::handle_exception);

@@ -12,26 +12,26 @@ doc = false
 features = []
 version = "0.4.0"
 
+[dependencies.bobbin-sys]
+path = " ../../../../lib/bobbin-sys/"
+
+[dev-dependencies]
+examples = { path = "../../apps/examples" }
+embedded-hal = "0.1.2"
+
 [profile.dev]
 panic = "abort"
 opt-level = "s"
-codegen-units = 1
 incremental = false
 lto = true
-debug = false
 
 [profile.release]
 panic = "abort"
 debug = true
 lto = true
 
-[dev-dependencies]
-examples = { path = "../../apps/examples" }
-embedded-hal = "0.1.2"
 
 [dependencies.samd21]
 path = "../../mcu/bobbin-sam/samd21"
 features = ["SAMD21x18"]
 
-[dependencies.bobbin-sys]
-path = " ../../../../lib/bobbin-sys/"

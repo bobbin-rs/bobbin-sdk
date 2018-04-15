@@ -6,6 +6,6 @@
         (name stm32f3x) 
         (as mcu)
         (path "../../mcu/bobbin-stm32/stm32f303x")
-        (feature stm32f303xc)
+        (feature STM32F303xC)
     )
 )
