@@ -11,7 +11,7 @@ stm32-common = { path = "../stm32-common" }
 
 [features]
 default = []
-logger = ["stm32-common/logger"]
+#logger = ["stm32-common/logger"]
 
 STM32L432xB = []
 STM32L432xC = []
