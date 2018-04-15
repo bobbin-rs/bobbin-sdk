@@ -1,6 +1,6 @@
 use bobbin_sys::memory::Memory;
 use bobbin_sys::heap::Heap;
-// use bobbin_sys::console::{Console};
+use bobbin_sys::console::{Console, console_ref};
 
 #[cfg(feature="logger")]
 use bobbin_sys::logger::Logger;
@@ -130,9 +130,9 @@ where
         &self.clock
     }
 
-    // pub fn console(&self) -> &Console {
-    //     console_borrow().unwrap()
-    // }
+    pub fn console(&self) -> Option<&Console> {
+        console_ref()
+    }
 
     #[cfg(feature="logger")]
     pub fn logger(&self) -> &Logger {

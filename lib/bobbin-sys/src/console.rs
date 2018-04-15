@@ -3,7 +3,10 @@ use bobbin_hal::serial::SerialTx;
 use core::fmt::{self, Write};
 
 pub const DIGITS: &[u8; 16] = b"0123456789abcdef";    
-pub static mut CONSOLE: Option<(&'static ConsoleWrite, ConsoleMode)> = None;
+// pub static mut CONSOLE: Option<(&'static ConsoleWrite, ConsoleMode)> = None;
+
+pub static mut CONSOLE: Option<Console<'static>> = None;
+
 
 #[derive(Debug, PartialEq, Eq, Clone, Copy)]
 pub enum ConsoleMode {
@@ -26,10 +29,11 @@ impl<T: SerialTx<u8>> ConsoleWrite for T {
 }
 
 
-pub fn set_console(c: &'static ConsoleWrite, mode: ConsoleMode) {
-    unsafe { CONSOLE = Some((c, mode)) }
+pub fn set_console(console: Console<'static>) {
+    unsafe { CONSOLE = Some(console) }
 }
 
+#[derive(Clone)]
 pub struct Console<'a>(&'a ConsoleWrite, ConsoleMode);
 
 impl<'a> Console<'a> {
@@ -57,21 +61,24 @@ impl<'a> Console<'a> {
     pub fn write_u32(&self, mut v: u32, base: u32) {
         let mut buf = [0u8; 6];
         let mut i = buf.len();
-        if base == 16 {
-            while v > 0 && i > 0 {
-                i -= 1;
-                buf[i] = DIGITS[(v % 16) as usize];
-                v = v / 16;
-            }
+        if v == 0 {
+            self.write(b"0");            
         } else {
-            while v > 0 && i > 0 {
-                i -= 1;
-                buf[i] = DIGITS[(v % 10) as usize];
-                v = v / 10;
-            }        
+            if base == 16 {
+                while v > 0 && i > 0 {
+                    i -= 1;
+                    buf[i] = DIGITS[(v % 16) as usize];
+                    v = v / 16;
+                }
+            } else {
+                while v > 0 && i > 0 {
+                    i -= 1;
+                    buf[i] = DIGITS[(v % 10) as usize];
+                    v = v / 10;
+                }        
+            }
+            self.write(&buf[i..])
         }
-
-        self.write(&buf[i..])
     }
 }
 
@@ -82,15 +89,15 @@ impl<'a> fmt::Write for Console<'a> {
     }
 }
 
-// pub fn console_borrow() -> Option<&'static Console> {
-//     unsafe { CONSOLE.as_ref() }
-// }
+pub fn console_ref() -> Option<&'static Console<'static>> {
+    unsafe { CONSOLE.as_ref() }
+}
 
 #[doc(hidden)]
 pub fn with_console<F: FnOnce(&mut Console)>(f: F) {
     unsafe {
-        if let Some((console, mode)) = CONSOLE {
-            f(&mut Console(console, mode))
+        if let Some(ref mut console) = CONSOLE {
+            f(console)
         }
     }
 }

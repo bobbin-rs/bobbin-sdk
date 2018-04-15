@@ -28,5 +28,5 @@ pub fn init() {
         .set_config(|c| c.set_baud_clock(USART_BAUD, USART_CLOCK))
         .enable();
 
-    set_console(USART.as_periph(), ConsoleMode::Cooked);
+    set_console(Console::new(USART.as_periph(), ConsoleMode::Cooked));
 }
