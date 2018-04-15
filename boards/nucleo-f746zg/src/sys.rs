@@ -1,9 +1,9 @@
-use ::common::sys::memory::Memory;
-use ::common::sys::heap::Heap;
-use ::common::sys::console::{Console, console_borrow};
+use bobbin_sys::memory::Memory;
+use bobbin_sys::heap::Heap;
+use bobbin_sys::console::{Console, console_borrow};
 
 #[cfg(feature="logger")]
-use ::common::logger::Logger;
+use bobbin_sys::logger::Logger;
 
 use ::mcu::dispatch::{Dispatcher, ExcHandlers8};
 

@@ -30,7 +30,7 @@ debug = true
 lto = true
 
 [features]
-logger = ["stm32f74x/logger"]
+#logger = ["stm32f74x/logger"]
 
 [dev-dependencies]
 examples = { path = "../../apps/examples" }
@@ -40,4 +40,5 @@ embedded-hal = "0.1.2"
 path = "../../mcu/bobbin-stm32/stm32f74x"
 features = ["STM32F74xxG"]
 
-
+[dependencies.bobbin-sys]
+path = " ../../../../lib/bobbin-sys/"
