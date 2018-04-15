@@ -50,23 +50,12 @@ where
     MCU: Default,
     CLK: Default,
 {
-    pub fn init() -> Self {
-        Self::init_with_config(Config::default())
-    }
 
-    pub fn init_with_config(_cfg: Config) -> Self {
+    pub fn init<F: FnOnce()>(f: F) -> Self {
         Self::disable_interrupts();
         Self::lock();
 
-        ::cache::init();
-        ::clock::init();
-        ::console::init();
-        ::led::init();
-        ::btn::init();
-        ::delay::init();
-
-        #[cfg(feature="logger")]
-        Logger::init();  
+        f();
 
         System {
             mcu: MCU::default(),

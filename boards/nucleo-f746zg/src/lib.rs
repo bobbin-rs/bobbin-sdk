@@ -26,7 +26,16 @@ pub mod sys;
 pub use delay::delay;
 
 pub fn init() -> System {    
-    System::init()
+    System::init(|| {
+        ::cache::init();
+        ::clock::init();
+        ::console::init();
+        ::led::init();
+        ::btn::init();
+        ::delay::init();
+        #[cfg(feature="logger")]
+        Logger::init();          
+    })
 }
 
 pub type System = sys::System<
