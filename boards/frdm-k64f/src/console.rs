@@ -1,4 +1,5 @@
-pub use mcu::bobbin_common::sys::console::*;
+pub use bobbin_sys::console::*;
+
 // use common::periph::AsPeriph;
 use common::configure::Configure;
 use mcu::enabled::Enabled;
@@ -25,5 +26,5 @@ pub fn init() {
     UART
         .set_config(|c| c.set_baud_divisor(baud_div as u16))
         .set_enabled(true);
-    set_console(Console::new(UART.as_periph()));   
+    set_console(Console::new(UART.as_periph(), ConsoleMode::Cooked));
 }

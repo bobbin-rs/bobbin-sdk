@@ -1,7 +1,6 @@
-pub use bobbin_common::sys::console::Putc;
 pub use bobbin_common::configure::*;
 pub use bobbin_common::enabled::*;
-pub use bobbin_common::hal::serial::*;
+pub use bobbin_hal::serial::*;
 pub use periph::uart::*;
 
 #[derive(Debug, Default)]
@@ -65,13 +64,6 @@ impl SerialRx<u8> for UartPeriph {
 
     fn rx(&self) -> u8 {
         self.d().rt().value()
-    }
-}
-
-impl Putc for UartPeriph {
-    fn console_putc(&self, c: u8) {
-        while !self.can_tx() {}
-        self.tx(c);
     }
 }
 

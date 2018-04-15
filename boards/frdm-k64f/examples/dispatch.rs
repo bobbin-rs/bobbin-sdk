@@ -46,14 +46,15 @@ pub extern "C" fn main() -> ! {
 
     sys.run(|sys| loop {
         // println!("tick: {} {} {}", t.count(), t2.count(), p.count());
-        let c = sys.console();
-        c.write(b"Tick: ");
-        c.write_u32(t.count(), 10);
-        c.write(b" ");
-        c.write_u32(t2.count(), 10);
-        c.write(b" ");
-        c.write_u32(p.count(), 10);
-        c.write(b"\n");
+        if let Some(c) = sys.console() {
+            c.write(b"Tick: ");
+            c.write_u32(t.count(), 10);
+            c.write(b" ");
+            c.write_u32(t2.count(), 10);
+            c.write(b" ");
+            c.write_u32(p.count(), 10);
+            c.write(b"\n");
+        }
         board::delay(1000);        
     })
 

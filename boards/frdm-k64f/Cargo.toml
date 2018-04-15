@@ -30,7 +30,7 @@ debug = true
 lto = true
 
 [features]
-logger = ["k64/logger"]
+logger = ["bobbin-sys/logger"]
 
 [dev-dependencies]
 examples = { path = "../../apps/examples" }
@@ -40,3 +40,5 @@ embedded-hal = "0.1.2"
 path = "../../mcu/bobbin-kinetis/k64"
 features = ["K64FN1M0"]
 
+[dependencies.bobbin-sys]
+path = " ../../../../lib/bobbin-sys/"

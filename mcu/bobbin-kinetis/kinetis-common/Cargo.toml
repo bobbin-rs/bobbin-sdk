@@ -5,7 +5,8 @@ authors = ["Jonathan Soo <jcsoo@agora.com>"]
 
 [dependencies]
 bobbin-common = { path = "../../../lib/bobbin-common" }
+bobbin-hal = { path = "../../../lib/bobbin-hal" }
 bobbin-cortexm = { path = "../../bobbin-cortexm" }
 
-[features]
-logger = ["bobbin-common/logger"]
+#[features]
+#logger = ["bobbin-common/logger"]

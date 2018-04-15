@@ -11,7 +11,7 @@ kinetis-common = { path = "../kinetis-common" }
 
 [features]
 default = []
-logger = ["kinetis-common/logger"]
+#logger = ["kinetis-common/logger"]
 
 K64FN1M0 = []
 K64FX512 = []
