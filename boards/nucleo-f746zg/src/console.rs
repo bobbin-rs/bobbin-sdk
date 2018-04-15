@@ -3,6 +3,7 @@ pub use bobbin_sys::console::*;
 use mcu::rcc::*;
 use mcu::usart::*;
 use mcu::pin::*;
+use mcu::AsPeriph;
 
 pub const USART: Usart3 = USART3;
 const USART_TX: Pd8 = PD8;
@@ -27,5 +28,5 @@ pub fn init() {
         .set_config(|c| c.set_baud_clock(USART_BAUD, USART_CLOCK))
         .enable();
 
-    set_console(&USART3_PERIPH, ConsoleMode::Cooked);
+    set_console(USART.as_periph(), ConsoleMode::Cooked);
 }

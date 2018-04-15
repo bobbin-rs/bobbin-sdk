@@ -5,9 +5,9 @@ pub trait Periph: Default {
     fn ord(&self) -> usize;
 }
 
-pub trait IntoPeriph {
+pub trait AsPeriph {
     type Target;
-    fn into_periph(&self) -> &'static Self::Target;
+    fn as_periph(&self) -> &'static Self::Target;
 }
 
 pub trait ClockEnabled : Periph {

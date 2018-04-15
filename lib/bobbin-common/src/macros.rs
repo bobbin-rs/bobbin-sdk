@@ -25,10 +25,10 @@ macro_rules! periph {
             }
         }
 
-        impl $crate::mcu::IntoPeriph for $ty {
+        impl $crate::mcu::AsPeriph for $ty {
             type Target = $pty;
             #[inline(always)]
-            fn into_periph(&self) -> &'static Self::Target {
+            fn as_periph(&self) -> &'static Self::Target {
                 &$pid
             }
         }

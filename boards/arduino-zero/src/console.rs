@@ -1,5 +1,5 @@
 pub use mcu::bobbin_common::sys::console::*;
-use common::periph::IntoPeriph;
+use common::periph::AsPeriph;
 use common::configure::Configure;
 use clock::*;
 use mcu::pin::*;
@@ -37,5 +37,5 @@ pub fn init() {
             .set_rxpo(3)
         )        
         .set_enabled(true);
-    set_console(Console::new(SERCOM.into_periph()));    
+    set_console(Console::new(SERCOM.as_periph()));    
 }

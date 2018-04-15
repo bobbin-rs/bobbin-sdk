@@ -1,5 +1,5 @@
 pub use mcu::bobbin_common::sys::console::*;
-use mcu::bobbin_common::periph::IntoPeriph;
+use mcu::bobbin_common::periph::AsPeriph;
 
 use mcu::rcc::*;
 use mcu::usart::*;
@@ -27,5 +27,5 @@ pub fn init() {
         .set_config(|c| c.set_baud(USART_BAUD, USART_CLOCK))
         .enable();
 
-    set_console(Console::new(USART.into_periph()));
+    set_console(Console::new(USART.as_periph()));
 }
