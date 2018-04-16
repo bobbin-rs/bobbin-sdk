@@ -13,17 +13,17 @@ macro_rules! register {
 
 pub struct Register<T: Copy + Default> {
     base: *mut T,
-    offset: isize
+    offset: usize
 }
 
 impl<T: Copy + Default> Register<T> {
     #[inline]
-    pub const fn new(base: *mut T, offset: isize) -> Self {
+    pub const fn new(base: *mut T, offset: usize) -> Self {
         Self { base, offset }
     }
 
     #[inline]
-    pub fn ptr(&self) -> *mut T { unsafe { self.base.offset(self.offset) } }
+    pub fn ptr(&self) -> *mut T { unsafe { self.base.offset(self.offset as isize) } }
 
     #[inline]
     pub fn read(&self) -> T { unsafe { read_volatile(self.ptr()) } }
@@ -47,24 +47,25 @@ impl<T: Copy + Default> Register<T> {
     }
 }
 
-pub struct RegisterArray<T: Copy + Default, I: Copy + ::core::ops::Mul<isize, Output=isize>> {
+pub struct RegisterArray<T: Copy + Default, I: Copy + Into<usize>> {
     base: *mut T,
-    offset: isize,
-    incr: isize,
+    offset: usize,
+    incr: usize,
     _phantom: PhantomData<I>,
 }
 
-impl<T: Copy + Default, I: Copy + ::core::ops::Mul<isize, Output=isize>> RegisterArray<T, I>
+impl<T: Copy + Default, I: Copy + Into<usize>> RegisterArray<T, I>
 {
     #[inline]
-    pub const fn new(base: *mut T, offset: isize, incr: isize) -> Self {
+    pub const fn new(base: *mut T, offset: usize, incr: usize) -> Self {
         Self { base, offset, incr, _phantom: PhantomData }
     }
 
     #[inline]
     pub fn ptr(&self, index: I) -> *mut T { 
         unsafe { 
-            (self.base as *mut u8).offset(self.offset + index * self.incr) as *mut T 
+            let index: usize = index.into();
+            (self.base as *mut u8).offset((self.offset + index * self.incr) as isize) as *mut T 
         } 
     }
 
@@ -96,7 +97,7 @@ mod tests {
     use super::*;
 
     register!(GPIOA_MODER, u32, 0x1000_0000, 0x0);
-    register!(REG_ARR, u32, 0x1000_0000, 0x0, isize, 0x10);
+    register!(REG_ARR, u32, 0x1000_0000, 0x0, usize, 0x10);
 
 
     struct Gpioa {}
