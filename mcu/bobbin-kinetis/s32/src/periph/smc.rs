@@ -1,159 +1,181 @@
-//! System Mode Controller
-
 #[allow(unused_imports)] use ::bobbin_common::*;
 
 #[doc="System Mode Controller"]
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct SmcPeriph(pub usize);
 impl SmcPeriph {
+    #[doc="Get the VERID Register."]
+    #[inline] pub fn verid_reg(&self) -> Register<Verid> { 
+        Register::new(self.0 as *mut Verid, 0x0)
+    }
+
     #[doc="Get the *mut pointer for the VERID register."]
     #[inline] pub fn verid_mut(&self) -> *mut Verid { 
-        (self.0 + 0x0) as *mut Verid
+        self.verid_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the VERID register."]
     #[inline] pub fn verid_ptr(&self) -> *const Verid { 
-           self.verid_mut()
+        self.verid_reg().ptr()
     }
 
     #[doc="Read the VERID register."]
     #[inline] pub fn verid(&self) -> Verid { 
-        unsafe {
-            read_volatile(self.verid_ptr())
-        }
+        self.verid_reg().read()
+    }
+
+    #[doc="Get the PARAM Register."]
+    #[inline] pub fn param_reg(&self) -> Register<Param> { 
+        Register::new(self.0 as *mut Param, 0x4)
     }
 
     #[doc="Get the *mut pointer for the PARAM register."]
     #[inline] pub fn param_mut(&self) -> *mut Param { 
-        (self.0 + 0x4) as *mut Param
+        self.param_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the PARAM register."]
     #[inline] pub fn param_ptr(&self) -> *const Param { 
-           self.param_mut()
+        self.param_reg().ptr()
     }
 
     #[doc="Read the PARAM register."]
     #[inline] pub fn param(&self) -> Param { 
-        unsafe {
-            read_volatile(self.param_ptr())
-        }
+        self.param_reg().read()
+    }
+
+    #[doc="Get the PMPROT Register."]
+    #[inline] pub fn pmprot_reg(&self) -> Register<Pmprot> { 
+        Register::new(self.0 as *mut Pmprot, 0x8)
     }
 
     #[doc="Get the *mut pointer for the PMPROT register."]
     #[inline] pub fn pmprot_mut(&self) -> *mut Pmprot { 
-        (self.0 + 0x8) as *mut Pmprot
+        self.pmprot_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the PMPROT register."]
     #[inline] pub fn pmprot_ptr(&self) -> *const Pmprot { 
-           self.pmprot_mut()
+        self.pmprot_reg().ptr()
     }
 
     #[doc="Read the PMPROT register."]
     #[inline] pub fn pmprot(&self) -> Pmprot { 
-        unsafe {
-            read_volatile(self.pmprot_ptr())
-        }
+        self.pmprot_reg().read()
     }
 
     #[doc="Write the PMPROT register."]
+    #[inline] pub fn write_pmprot(&self, value: Pmprot) -> &Self { 
+        self.pmprot_reg().write(value);
+        self
+    }
+
+    #[doc="Set the PMPROT register."]
     #[inline] pub fn set_pmprot<F: FnOnce(Pmprot) -> Pmprot>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.pmprot_mut(), f(Pmprot(0)));
-        }
+        self.pmprot_reg().set(f);
         self
     }
 
     #[doc="Modify the PMPROT register."]
     #[inline] pub fn with_pmprot<F: FnOnce(Pmprot) -> Pmprot>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.pmprot_mut(), f(self.pmprot()));
-        }
+        self.pmprot_reg().with(f);
         self
+    }
+
+    #[doc="Get the PMCTRL Register."]
+    #[inline] pub fn pmctrl_reg(&self) -> Register<Pmctrl> { 
+        Register::new(self.0 as *mut Pmctrl, 0xc)
     }
 
     #[doc="Get the *mut pointer for the PMCTRL register."]
     #[inline] pub fn pmctrl_mut(&self) -> *mut Pmctrl { 
-        (self.0 + 0xc) as *mut Pmctrl
+        self.pmctrl_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the PMCTRL register."]
     #[inline] pub fn pmctrl_ptr(&self) -> *const Pmctrl { 
-           self.pmctrl_mut()
+        self.pmctrl_reg().ptr()
     }
 
     #[doc="Read the PMCTRL register."]
     #[inline] pub fn pmctrl(&self) -> Pmctrl { 
-        unsafe {
-            read_volatile(self.pmctrl_ptr())
-        }
+        self.pmctrl_reg().read()
     }
 
     #[doc="Write the PMCTRL register."]
+    #[inline] pub fn write_pmctrl(&self, value: Pmctrl) -> &Self { 
+        self.pmctrl_reg().write(value);
+        self
+    }
+
+    #[doc="Set the PMCTRL register."]
     #[inline] pub fn set_pmctrl<F: FnOnce(Pmctrl) -> Pmctrl>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.pmctrl_mut(), f(Pmctrl(0)));
-        }
+        self.pmctrl_reg().set(f);
         self
     }
 
     #[doc="Modify the PMCTRL register."]
     #[inline] pub fn with_pmctrl<F: FnOnce(Pmctrl) -> Pmctrl>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.pmctrl_mut(), f(self.pmctrl()));
-        }
+        self.pmctrl_reg().with(f);
         self
+    }
+
+    #[doc="Get the STOPCTRL Register."]
+    #[inline] pub fn stopctrl_reg(&self) -> Register<Stopctrl> { 
+        Register::new(self.0 as *mut Stopctrl, 0x10)
     }
 
     #[doc="Get the *mut pointer for the STOPCTRL register."]
     #[inline] pub fn stopctrl_mut(&self) -> *mut Stopctrl { 
-        (self.0 + 0x10) as *mut Stopctrl
+        self.stopctrl_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the STOPCTRL register."]
     #[inline] pub fn stopctrl_ptr(&self) -> *const Stopctrl { 
-           self.stopctrl_mut()
+        self.stopctrl_reg().ptr()
     }
 
     #[doc="Read the STOPCTRL register."]
     #[inline] pub fn stopctrl(&self) -> Stopctrl { 
-        unsafe {
-            read_volatile(self.stopctrl_ptr())
-        }
+        self.stopctrl_reg().read()
     }
 
     #[doc="Write the STOPCTRL register."]
+    #[inline] pub fn write_stopctrl(&self, value: Stopctrl) -> &Self { 
+        self.stopctrl_reg().write(value);
+        self
+    }
+
+    #[doc="Set the STOPCTRL register."]
     #[inline] pub fn set_stopctrl<F: FnOnce(Stopctrl) -> Stopctrl>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.stopctrl_mut(), f(Stopctrl(0)));
-        }
+        self.stopctrl_reg().set(f);
         self
     }
 
     #[doc="Modify the STOPCTRL register."]
     #[inline] pub fn with_stopctrl<F: FnOnce(Stopctrl) -> Stopctrl>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.stopctrl_mut(), f(self.stopctrl()));
-        }
+        self.stopctrl_reg().with(f);
         self
+    }
+
+    #[doc="Get the PMSTAT Register."]
+    #[inline] pub fn pmstat_reg(&self) -> Register<Pmstat> { 
+        Register::new(self.0 as *mut Pmstat, 0x14)
     }
 
     #[doc="Get the *mut pointer for the PMSTAT register."]
     #[inline] pub fn pmstat_mut(&self) -> *mut Pmstat { 
-        (self.0 + 0x14) as *mut Pmstat
+        self.pmstat_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the PMSTAT register."]
     #[inline] pub fn pmstat_ptr(&self) -> *const Pmstat { 
-           self.pmstat_mut()
+        self.pmstat_reg().ptr()
     }
 
     #[doc="Read the PMSTAT register."]
     #[inline] pub fn pmstat(&self) -> Pmstat { 
-        unsafe {
-            read_volatile(self.pmstat_ptr())
-        }
+        self.pmstat_reg().read()
     }
 
 }

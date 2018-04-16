@@ -8,173 +8,218 @@ pub struct GpioPeriph(pub usize);
 pub struct GpioCh { pub periph: GpioPeriph, pub index: usize }
 
 impl GpioPeriph {
+    #[doc="Get the PDOR Register."]
+    #[inline] pub fn pdor_reg(&self) -> Register<Pdor> { 
+        Register::new(self.0 as *mut Pdor, 0x0)
+    }
+
     #[doc="Get the *mut pointer for the PDOR register."]
     #[inline] pub fn pdor_mut(&self) -> *mut Pdor { 
-        (self.0 + 0x0) as *mut Pdor
+        self.pdor_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the PDOR register."]
     #[inline] pub fn pdor_ptr(&self) -> *const Pdor { 
-           self.pdor_mut()
+        self.pdor_reg().ptr()
     }
 
     #[doc="Read the PDOR register."]
     #[inline] pub fn pdor(&self) -> Pdor { 
-        unsafe {
-            read_volatile(self.pdor_ptr())
-        }
+        self.pdor_reg().read()
     }
 
     #[doc="Write the PDOR register."]
+    #[inline] pub fn write_pdor(&self, value: Pdor) -> &Self { 
+        self.pdor_reg().write(value);
+        self
+    }
+
+    #[doc="Set the PDOR register."]
     #[inline] pub fn set_pdor<F: FnOnce(Pdor) -> Pdor>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.pdor_mut(), f(Pdor(0)));
-        }
+        self.pdor_reg().set(f);
         self
     }
 
     #[doc="Modify the PDOR register."]
     #[inline] pub fn with_pdor<F: FnOnce(Pdor) -> Pdor>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.pdor_mut(), f(self.pdor()));
-        }
+        self.pdor_reg().with(f);
         self
+    }
+
+    #[doc="Get the PSOR Register."]
+    #[inline] pub fn psor_reg(&self) -> Register<Psor> { 
+        Register::new(self.0 as *mut Psor, 0x4)
     }
 
     #[doc="Get the *mut pointer for the PSOR register."]
     #[inline] pub fn psor_mut(&self) -> *mut Psor { 
-        (self.0 + 0x4) as *mut Psor
+        self.psor_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the PSOR register."]
     #[inline] pub fn psor_ptr(&self) -> *const Psor { 
-           self.psor_mut()
+        self.psor_reg().ptr()
     }
 
     #[doc="Write the PSOR register."]
-    #[inline] pub fn set_psor<F: FnOnce(Psor) -> Psor>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.psor_mut(), f(Psor(0)));
-        }
+    #[inline] pub fn write_psor(&self, value: Psor) -> &Self { 
+        self.psor_reg().write(value);
         self
+    }
+
+    #[doc="Set the PSOR register."]
+    #[inline] pub fn set_psor<F: FnOnce(Psor) -> Psor>(&self, f: F) -> &Self {
+        self.psor_reg().set(f);
+        self
+    }
+
+    #[doc="Get the PCOR Register."]
+    #[inline] pub fn pcor_reg(&self) -> Register<Pcor> { 
+        Register::new(self.0 as *mut Pcor, 0x8)
     }
 
     #[doc="Get the *mut pointer for the PCOR register."]
     #[inline] pub fn pcor_mut(&self) -> *mut Pcor { 
-        (self.0 + 0x8) as *mut Pcor
+        self.pcor_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the PCOR register."]
     #[inline] pub fn pcor_ptr(&self) -> *const Pcor { 
-           self.pcor_mut()
+        self.pcor_reg().ptr()
     }
 
     #[doc="Write the PCOR register."]
-    #[inline] pub fn set_pcor<F: FnOnce(Pcor) -> Pcor>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.pcor_mut(), f(Pcor(0)));
-        }
+    #[inline] pub fn write_pcor(&self, value: Pcor) -> &Self { 
+        self.pcor_reg().write(value);
         self
+    }
+
+    #[doc="Set the PCOR register."]
+    #[inline] pub fn set_pcor<F: FnOnce(Pcor) -> Pcor>(&self, f: F) -> &Self {
+        self.pcor_reg().set(f);
+        self
+    }
+
+    #[doc="Get the PTOR Register."]
+    #[inline] pub fn ptor_reg(&self) -> Register<Ptor> { 
+        Register::new(self.0 as *mut Ptor, 0xc)
     }
 
     #[doc="Get the *mut pointer for the PTOR register."]
     #[inline] pub fn ptor_mut(&self) -> *mut Ptor { 
-        (self.0 + 0xc) as *mut Ptor
+        self.ptor_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the PTOR register."]
     #[inline] pub fn ptor_ptr(&self) -> *const Ptor { 
-           self.ptor_mut()
+        self.ptor_reg().ptr()
     }
 
     #[doc="Write the PTOR register."]
-    #[inline] pub fn set_ptor<F: FnOnce(Ptor) -> Ptor>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.ptor_mut(), f(Ptor(0)));
-        }
+    #[inline] pub fn write_ptor(&self, value: Ptor) -> &Self { 
+        self.ptor_reg().write(value);
         self
+    }
+
+    #[doc="Set the PTOR register."]
+    #[inline] pub fn set_ptor<F: FnOnce(Ptor) -> Ptor>(&self, f: F) -> &Self {
+        self.ptor_reg().set(f);
+        self
+    }
+
+    #[doc="Get the PDIR Register."]
+    #[inline] pub fn pdir_reg(&self) -> Register<Pdir> { 
+        Register::new(self.0 as *mut Pdir, 0x10)
     }
 
     #[doc="Get the *mut pointer for the PDIR register."]
     #[inline] pub fn pdir_mut(&self) -> *mut Pdir { 
-        (self.0 + 0x10) as *mut Pdir
+        self.pdir_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the PDIR register."]
     #[inline] pub fn pdir_ptr(&self) -> *const Pdir { 
-           self.pdir_mut()
+        self.pdir_reg().ptr()
     }
 
     #[doc="Read the PDIR register."]
     #[inline] pub fn pdir(&self) -> Pdir { 
-        unsafe {
-            read_volatile(self.pdir_ptr())
-        }
+        self.pdir_reg().read()
+    }
+
+    #[doc="Get the PDDR Register."]
+    #[inline] pub fn pddr_reg(&self) -> Register<Pddr> { 
+        Register::new(self.0 as *mut Pddr, 0x14)
     }
 
     #[doc="Get the *mut pointer for the PDDR register."]
     #[inline] pub fn pddr_mut(&self) -> *mut Pddr { 
-        (self.0 + 0x14) as *mut Pddr
+        self.pddr_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the PDDR register."]
     #[inline] pub fn pddr_ptr(&self) -> *const Pddr { 
-           self.pddr_mut()
+        self.pddr_reg().ptr()
     }
 
     #[doc="Read the PDDR register."]
     #[inline] pub fn pddr(&self) -> Pddr { 
-        unsafe {
-            read_volatile(self.pddr_ptr())
-        }
+        self.pddr_reg().read()
     }
 
     #[doc="Write the PDDR register."]
+    #[inline] pub fn write_pddr(&self, value: Pddr) -> &Self { 
+        self.pddr_reg().write(value);
+        self
+    }
+
+    #[doc="Set the PDDR register."]
     #[inline] pub fn set_pddr<F: FnOnce(Pddr) -> Pddr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.pddr_mut(), f(Pddr(0)));
-        }
+        self.pddr_reg().set(f);
         self
     }
 
     #[doc="Modify the PDDR register."]
     #[inline] pub fn with_pddr<F: FnOnce(Pddr) -> Pddr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.pddr_mut(), f(self.pddr()));
-        }
+        self.pddr_reg().with(f);
         self
+    }
+
+    #[doc="Get the PIDR Register."]
+    #[inline] pub fn pidr_reg(&self) -> Register<Pidr> { 
+        Register::new(self.0 as *mut Pidr, 0x18)
     }
 
     #[doc="Get the *mut pointer for the PIDR register."]
     #[inline] pub fn pidr_mut(&self) -> *mut Pidr { 
-        (self.0 + 0x18) as *mut Pidr
+        self.pidr_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the PIDR register."]
     #[inline] pub fn pidr_ptr(&self) -> *const Pidr { 
-           self.pidr_mut()
+        self.pidr_reg().ptr()
     }
 
     #[doc="Read the PIDR register."]
     #[inline] pub fn pidr(&self) -> Pidr { 
-        unsafe {
-            read_volatile(self.pidr_ptr())
-        }
+        self.pidr_reg().read()
     }
 
     #[doc="Write the PIDR register."]
+    #[inline] pub fn write_pidr(&self, value: Pidr) -> &Self { 
+        self.pidr_reg().write(value);
+        self
+    }
+
+    #[doc="Set the PIDR register."]
     #[inline] pub fn set_pidr<F: FnOnce(Pidr) -> Pidr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.pidr_mut(), f(Pidr(0)));
-        }
+        self.pidr_reg().set(f);
         self
     }
 
     #[doc="Modify the PIDR register."]
     #[inline] pub fn with_pidr<F: FnOnce(Pidr) -> Pidr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.pidr_mut(), f(self.pidr()));
-        }
+        self.pidr_reg().with(f);
         self
     }
 

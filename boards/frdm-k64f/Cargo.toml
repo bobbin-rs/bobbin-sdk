@@ -22,7 +22,7 @@ opt-level = "s"
 codegen-units = 1
 incremental = false
 lto = true
-debug = false
+#debug = false
 
 [profile.release]
 panic = "abort"

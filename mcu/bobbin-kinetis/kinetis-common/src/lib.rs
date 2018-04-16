@@ -6,6 +6,7 @@
 // #[macro_use] extern crate log;
 
 pub extern crate bobbin_common;
+pub extern crate bobbin_mcu;
 pub extern crate bobbin_hal;
 pub extern crate bobbin_cortexm;
 

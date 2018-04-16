@@ -7,6 +7,7 @@ build = "build.rs"
 bobbin-build = { path = "../../../lib/bobbin-build/" }
 
 [dependencies]
+bobbin-hal = { path = "../../../lib/bobbin-hal/" }
 sam-common = { path = "../sam-common" }
 
 [features]

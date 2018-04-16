@@ -4,255 +4,296 @@
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct EthernetMmcPeriph(pub usize);
 impl EthernetMmcPeriph {
+    #[doc="Get the MMCCR Register."]
+    #[inline] pub fn mmccr_reg(&self) -> Register<Mmccr> { 
+        Register::new(self.0 as *mut Mmccr, 0x0)
+    }
+
     #[doc="Get the *mut pointer for the MMCCR register."]
     #[inline] pub fn mmccr_mut(&self) -> *mut Mmccr { 
-        (self.0 + 0x0) as *mut Mmccr
+        self.mmccr_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the MMCCR register."]
     #[inline] pub fn mmccr_ptr(&self) -> *const Mmccr { 
-           self.mmccr_mut()
+        self.mmccr_reg().ptr()
     }
 
     #[doc="Read the MMCCR register."]
     #[inline] pub fn mmccr(&self) -> Mmccr { 
-        unsafe {
-            read_volatile(self.mmccr_ptr())
-        }
+        self.mmccr_reg().read()
     }
 
     #[doc="Write the MMCCR register."]
+    #[inline] pub fn write_mmccr(&self, value: Mmccr) -> &Self { 
+        self.mmccr_reg().write(value);
+        self
+    }
+
+    #[doc="Set the MMCCR register."]
     #[inline] pub fn set_mmccr<F: FnOnce(Mmccr) -> Mmccr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.mmccr_mut(), f(Mmccr(0)));
-        }
+        self.mmccr_reg().set(f);
         self
     }
 
     #[doc="Modify the MMCCR register."]
     #[inline] pub fn with_mmccr<F: FnOnce(Mmccr) -> Mmccr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.mmccr_mut(), f(self.mmccr()));
-        }
+        self.mmccr_reg().with(f);
         self
+    }
+
+    #[doc="Get the MMCRIR Register."]
+    #[inline] pub fn mmcrir_reg(&self) -> Register<Mmcrir> { 
+        Register::new(self.0 as *mut Mmcrir, 0x4)
     }
 
     #[doc="Get the *mut pointer for the MMCRIR register."]
     #[inline] pub fn mmcrir_mut(&self) -> *mut Mmcrir { 
-        (self.0 + 0x4) as *mut Mmcrir
+        self.mmcrir_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the MMCRIR register."]
     #[inline] pub fn mmcrir_ptr(&self) -> *const Mmcrir { 
-           self.mmcrir_mut()
+        self.mmcrir_reg().ptr()
     }
 
     #[doc="Read the MMCRIR register."]
     #[inline] pub fn mmcrir(&self) -> Mmcrir { 
-        unsafe {
-            read_volatile(self.mmcrir_ptr())
-        }
+        self.mmcrir_reg().read()
     }
 
     #[doc="Write the MMCRIR register."]
+    #[inline] pub fn write_mmcrir(&self, value: Mmcrir) -> &Self { 
+        self.mmcrir_reg().write(value);
+        self
+    }
+
+    #[doc="Set the MMCRIR register."]
     #[inline] pub fn set_mmcrir<F: FnOnce(Mmcrir) -> Mmcrir>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.mmcrir_mut(), f(Mmcrir(0)));
-        }
+        self.mmcrir_reg().set(f);
         self
     }
 
     #[doc="Modify the MMCRIR register."]
     #[inline] pub fn with_mmcrir<F: FnOnce(Mmcrir) -> Mmcrir>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.mmcrir_mut(), f(self.mmcrir()));
-        }
+        self.mmcrir_reg().with(f);
         self
+    }
+
+    #[doc="Get the MMCTIR Register."]
+    #[inline] pub fn mmctir_reg(&self) -> Register<Mmctir> { 
+        Register::new(self.0 as *mut Mmctir, 0x8)
     }
 
     #[doc="Get the *mut pointer for the MMCTIR register."]
     #[inline] pub fn mmctir_mut(&self) -> *mut Mmctir { 
-        (self.0 + 0x8) as *mut Mmctir
+        self.mmctir_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the MMCTIR register."]
     #[inline] pub fn mmctir_ptr(&self) -> *const Mmctir { 
-           self.mmctir_mut()
+        self.mmctir_reg().ptr()
     }
 
     #[doc="Read the MMCTIR register."]
     #[inline] pub fn mmctir(&self) -> Mmctir { 
-        unsafe {
-            read_volatile(self.mmctir_ptr())
-        }
+        self.mmctir_reg().read()
+    }
+
+    #[doc="Get the MMCRIMR Register."]
+    #[inline] pub fn mmcrimr_reg(&self) -> Register<Mmcrimr> { 
+        Register::new(self.0 as *mut Mmcrimr, 0xc)
     }
 
     #[doc="Get the *mut pointer for the MMCRIMR register."]
     #[inline] pub fn mmcrimr_mut(&self) -> *mut Mmcrimr { 
-        (self.0 + 0xc) as *mut Mmcrimr
+        self.mmcrimr_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the MMCRIMR register."]
     #[inline] pub fn mmcrimr_ptr(&self) -> *const Mmcrimr { 
-           self.mmcrimr_mut()
+        self.mmcrimr_reg().ptr()
     }
 
     #[doc="Read the MMCRIMR register."]
     #[inline] pub fn mmcrimr(&self) -> Mmcrimr { 
-        unsafe {
-            read_volatile(self.mmcrimr_ptr())
-        }
+        self.mmcrimr_reg().read()
     }
 
     #[doc="Write the MMCRIMR register."]
+    #[inline] pub fn write_mmcrimr(&self, value: Mmcrimr) -> &Self { 
+        self.mmcrimr_reg().write(value);
+        self
+    }
+
+    #[doc="Set the MMCRIMR register."]
     #[inline] pub fn set_mmcrimr<F: FnOnce(Mmcrimr) -> Mmcrimr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.mmcrimr_mut(), f(Mmcrimr(0)));
-        }
+        self.mmcrimr_reg().set(f);
         self
     }
 
     #[doc="Modify the MMCRIMR register."]
     #[inline] pub fn with_mmcrimr<F: FnOnce(Mmcrimr) -> Mmcrimr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.mmcrimr_mut(), f(self.mmcrimr()));
-        }
+        self.mmcrimr_reg().with(f);
         self
+    }
+
+    #[doc="Get the MMCTIMR Register."]
+    #[inline] pub fn mmctimr_reg(&self) -> Register<Mmctimr> { 
+        Register::new(self.0 as *mut Mmctimr, 0x10)
     }
 
     #[doc="Get the *mut pointer for the MMCTIMR register."]
     #[inline] pub fn mmctimr_mut(&self) -> *mut Mmctimr { 
-        (self.0 + 0x10) as *mut Mmctimr
+        self.mmctimr_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the MMCTIMR register."]
     #[inline] pub fn mmctimr_ptr(&self) -> *const Mmctimr { 
-           self.mmctimr_mut()
+        self.mmctimr_reg().ptr()
     }
 
     #[doc="Read the MMCTIMR register."]
     #[inline] pub fn mmctimr(&self) -> Mmctimr { 
-        unsafe {
-            read_volatile(self.mmctimr_ptr())
-        }
+        self.mmctimr_reg().read()
     }
 
     #[doc="Write the MMCTIMR register."]
+    #[inline] pub fn write_mmctimr(&self, value: Mmctimr) -> &Self { 
+        self.mmctimr_reg().write(value);
+        self
+    }
+
+    #[doc="Set the MMCTIMR register."]
     #[inline] pub fn set_mmctimr<F: FnOnce(Mmctimr) -> Mmctimr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.mmctimr_mut(), f(Mmctimr(0)));
-        }
+        self.mmctimr_reg().set(f);
         self
     }
 
     #[doc="Modify the MMCTIMR register."]
     #[inline] pub fn with_mmctimr<F: FnOnce(Mmctimr) -> Mmctimr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.mmctimr_mut(), f(self.mmctimr()));
-        }
+        self.mmctimr_reg().with(f);
         self
+    }
+
+    #[doc="Get the MMCTGFSCCR Register."]
+    #[inline] pub fn mmctgfsccr_reg(&self) -> Register<Mmctgfsccr> { 
+        Register::new(self.0 as *mut Mmctgfsccr, 0x4c)
     }
 
     #[doc="Get the *mut pointer for the MMCTGFSCCR register."]
     #[inline] pub fn mmctgfsccr_mut(&self) -> *mut Mmctgfsccr { 
-        (self.0 + 0x4c) as *mut Mmctgfsccr
+        self.mmctgfsccr_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the MMCTGFSCCR register."]
     #[inline] pub fn mmctgfsccr_ptr(&self) -> *const Mmctgfsccr { 
-           self.mmctgfsccr_mut()
+        self.mmctgfsccr_reg().ptr()
     }
 
     #[doc="Read the MMCTGFSCCR register."]
     #[inline] pub fn mmctgfsccr(&self) -> Mmctgfsccr { 
-        unsafe {
-            read_volatile(self.mmctgfsccr_ptr())
-        }
+        self.mmctgfsccr_reg().read()
+    }
+
+    #[doc="Get the MMCTGFMSCCR Register."]
+    #[inline] pub fn mmctgfmsccr_reg(&self) -> Register<Mmctgfmsccr> { 
+        Register::new(self.0 as *mut Mmctgfmsccr, 0x50)
     }
 
     #[doc="Get the *mut pointer for the MMCTGFMSCCR register."]
     #[inline] pub fn mmctgfmsccr_mut(&self) -> *mut Mmctgfmsccr { 
-        (self.0 + 0x50) as *mut Mmctgfmsccr
+        self.mmctgfmsccr_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the MMCTGFMSCCR register."]
     #[inline] pub fn mmctgfmsccr_ptr(&self) -> *const Mmctgfmsccr { 
-           self.mmctgfmsccr_mut()
+        self.mmctgfmsccr_reg().ptr()
     }
 
     #[doc="Read the MMCTGFMSCCR register."]
     #[inline] pub fn mmctgfmsccr(&self) -> Mmctgfmsccr { 
-        unsafe {
-            read_volatile(self.mmctgfmsccr_ptr())
-        }
+        self.mmctgfmsccr_reg().read()
+    }
+
+    #[doc="Get the MMCTGFCR Register."]
+    #[inline] pub fn mmctgfcr_reg(&self) -> Register<Mmctgfcr> { 
+        Register::new(self.0 as *mut Mmctgfcr, 0x68)
     }
 
     #[doc="Get the *mut pointer for the MMCTGFCR register."]
     #[inline] pub fn mmctgfcr_mut(&self) -> *mut Mmctgfcr { 
-        (self.0 + 0x68) as *mut Mmctgfcr
+        self.mmctgfcr_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the MMCTGFCR register."]
     #[inline] pub fn mmctgfcr_ptr(&self) -> *const Mmctgfcr { 
-           self.mmctgfcr_mut()
+        self.mmctgfcr_reg().ptr()
     }
 
     #[doc="Read the MMCTGFCR register."]
     #[inline] pub fn mmctgfcr(&self) -> Mmctgfcr { 
-        unsafe {
-            read_volatile(self.mmctgfcr_ptr())
-        }
+        self.mmctgfcr_reg().read()
+    }
+
+    #[doc="Get the MMCRFCECR Register."]
+    #[inline] pub fn mmcrfcecr_reg(&self) -> Register<Mmcrfcecr> { 
+        Register::new(self.0 as *mut Mmcrfcecr, 0x94)
     }
 
     #[doc="Get the *mut pointer for the MMCRFCECR register."]
     #[inline] pub fn mmcrfcecr_mut(&self) -> *mut Mmcrfcecr { 
-        (self.0 + 0x94) as *mut Mmcrfcecr
+        self.mmcrfcecr_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the MMCRFCECR register."]
     #[inline] pub fn mmcrfcecr_ptr(&self) -> *const Mmcrfcecr { 
-           self.mmcrfcecr_mut()
+        self.mmcrfcecr_reg().ptr()
     }
 
     #[doc="Read the MMCRFCECR register."]
     #[inline] pub fn mmcrfcecr(&self) -> Mmcrfcecr { 
-        unsafe {
-            read_volatile(self.mmcrfcecr_ptr())
-        }
+        self.mmcrfcecr_reg().read()
+    }
+
+    #[doc="Get the MMCRFAECR Register."]
+    #[inline] pub fn mmcrfaecr_reg(&self) -> Register<Mmcrfaecr> { 
+        Register::new(self.0 as *mut Mmcrfaecr, 0x98)
     }
 
     #[doc="Get the *mut pointer for the MMCRFAECR register."]
     #[inline] pub fn mmcrfaecr_mut(&self) -> *mut Mmcrfaecr { 
-        (self.0 + 0x98) as *mut Mmcrfaecr
+        self.mmcrfaecr_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the MMCRFAECR register."]
     #[inline] pub fn mmcrfaecr_ptr(&self) -> *const Mmcrfaecr { 
-           self.mmcrfaecr_mut()
+        self.mmcrfaecr_reg().ptr()
     }
 
     #[doc="Read the MMCRFAECR register."]
     #[inline] pub fn mmcrfaecr(&self) -> Mmcrfaecr { 
-        unsafe {
-            read_volatile(self.mmcrfaecr_ptr())
-        }
+        self.mmcrfaecr_reg().read()
+    }
+
+    #[doc="Get the MMCRGUFCR Register."]
+    #[inline] pub fn mmcrgufcr_reg(&self) -> Register<Mmcrgufcr> { 
+        Register::new(self.0 as *mut Mmcrgufcr, 0xc4)
     }
 
     #[doc="Get the *mut pointer for the MMCRGUFCR register."]
     #[inline] pub fn mmcrgufcr_mut(&self) -> *mut Mmcrgufcr { 
-        (self.0 + 0xc4) as *mut Mmcrgufcr
+        self.mmcrgufcr_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the MMCRGUFCR register."]
     #[inline] pub fn mmcrgufcr_ptr(&self) -> *const Mmcrgufcr { 
-           self.mmcrgufcr_mut()
+        self.mmcrgufcr_reg().ptr()
     }
 
     #[doc="Read the MMCRGUFCR register."]
     #[inline] pub fn mmcrgufcr(&self) -> Mmcrgufcr { 
-        unsafe {
-            read_volatile(self.mmcrgufcr_ptr())
-        }
+        self.mmcrgufcr_reg().read()
     }
 
 }

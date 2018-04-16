@@ -4,242 +4,271 @@
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct MpuPeriph(pub usize);
 impl MpuPeriph {
+    #[doc="Get the CESR Register."]
+    #[inline] pub fn cesr_reg(&self) -> Register<Cesr> { 
+        Register::new(self.0 as *mut Cesr, 0x0)
+    }
+
     #[doc="Get the *mut pointer for the CESR register."]
     #[inline] pub fn cesr_mut(&self) -> *mut Cesr { 
-        (self.0 + 0x0) as *mut Cesr
+        self.cesr_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the CESR register."]
     #[inline] pub fn cesr_ptr(&self) -> *const Cesr { 
-           self.cesr_mut()
+        self.cesr_reg().ptr()
     }
 
     #[doc="Read the CESR register."]
     #[inline] pub fn cesr(&self) -> Cesr { 
-        unsafe {
-            read_volatile(self.cesr_ptr())
-        }
+        self.cesr_reg().read()
     }
 
     #[doc="Write the CESR register."]
+    #[inline] pub fn write_cesr(&self, value: Cesr) -> &Self { 
+        self.cesr_reg().write(value);
+        self
+    }
+
+    #[doc="Set the CESR register."]
     #[inline] pub fn set_cesr<F: FnOnce(Cesr) -> Cesr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.cesr_mut(), f(Cesr(0)));
-        }
+        self.cesr_reg().set(f);
         self
     }
 
     #[doc="Modify the CESR register."]
     #[inline] pub fn with_cesr<F: FnOnce(Cesr) -> Cesr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.cesr_mut(), f(self.cesr()));
-        }
+        self.cesr_reg().with(f);
         self
+    }
+
+    #[doc="Get the EAR Register."]
+    #[inline] pub fn ear_reg(&self) -> RegisterArray<Ear, bits::R5> { 
+        RegisterArray::new(self.0 as *mut Ear, 0x10, 0x8)
     }
 
     #[doc="Get the *mut pointer for the EAR register."]
     #[inline] pub fn ear_mut<I: Into<bits::R5>>(&self, index: I) -> *mut Ear { 
-        let index: usize = index.into().value() as usize;
-        (self.0 + 0x10 + (index << 3)) as *mut Ear
+        self.ear_reg().ptr(index.into())
     }
 
     #[doc="Get the *const pointer for the EAR register."]
     #[inline] pub fn ear_ptr<I: Into<bits::R5>>(&self, index: I) -> *const Ear { 
-           self.ear_mut(index)
+        self.ear_reg().ptr(index.into())
     }
 
     #[doc="Read the EAR register."]
     #[inline] pub fn ear<I: Into<bits::R5>>(&self, index: I) -> Ear { 
-        unsafe {
-            read_volatile(self.ear_ptr(index))
-        }
+        self.ear_reg().read(index.into())
+    }
+
+    #[doc="Get the EDR Register."]
+    #[inline] pub fn edr_reg(&self) -> RegisterArray<Edr, bits::R5> { 
+        RegisterArray::new(self.0 as *mut Edr, 0x14, 0x8)
     }
 
     #[doc="Get the *mut pointer for the EDR register."]
     #[inline] pub fn edr_mut<I: Into<bits::R5>>(&self, index: I) -> *mut Edr { 
-        let index: usize = index.into().value() as usize;
-        (self.0 + 0x14 + (index << 3)) as *mut Edr
+        self.edr_reg().ptr(index.into())
     }
 
     #[doc="Get the *const pointer for the EDR register."]
     #[inline] pub fn edr_ptr<I: Into<bits::R5>>(&self, index: I) -> *const Edr { 
-           self.edr_mut(index)
+        self.edr_reg().ptr(index.into())
     }
 
     #[doc="Read the EDR register."]
     #[inline] pub fn edr<I: Into<bits::R5>>(&self, index: I) -> Edr { 
-        unsafe {
-            read_volatile(self.edr_ptr(index))
-        }
+        self.edr_reg().read(index.into())
+    }
+
+    #[doc="Get the RGD_WORD0 Register."]
+    #[inline] pub fn rgd_word0_reg(&self) -> RegisterArray<RgdWord0, bits::R12> { 
+        RegisterArray::new(self.0 as *mut RgdWord0, 0x400, 0x10)
     }
 
     #[doc="Get the *mut pointer for the RGD_WORD0 register."]
     #[inline] pub fn rgd_word0_mut<I: Into<bits::R12>>(&self, index: I) -> *mut RgdWord0 { 
-        let index: usize = index.into().value() as usize;
-        (self.0 + 0x400 + (index << 4)) as *mut RgdWord0
+        self.rgd_word0_reg().ptr(index.into())
     }
 
     #[doc="Get the *const pointer for the RGD_WORD0 register."]
     #[inline] pub fn rgd_word0_ptr<I: Into<bits::R12>>(&self, index: I) -> *const RgdWord0 { 
-           self.rgd_word0_mut(index)
+        self.rgd_word0_reg().ptr(index.into())
     }
 
     #[doc="Read the RGD_WORD0 register."]
     #[inline] pub fn rgd_word0<I: Into<bits::R12>>(&self, index: I) -> RgdWord0 { 
-        unsafe {
-            read_volatile(self.rgd_word0_ptr(index))
-        }
+        self.rgd_word0_reg().read(index.into())
     }
 
     #[doc="Write the RGD_WORD0 register."]
+    #[inline] pub fn write_rgd_word0<I: Into<bits::R12>>(&self, index: I, value: RgdWord0) -> &Self {
+        self.rgd_word0_reg().write(index.into(), value);
+        self
+    }
+
+    #[doc="Set the RGD_WORD0 register."]
     #[inline] pub fn set_rgd_word0<I: Into<bits::R12>, F: FnOnce(RgdWord0) -> RgdWord0>(&self, index: I, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.rgd_word0_mut(index), f(RgdWord0(0)));
-        }
+        self.rgd_word0_reg().set(index.into(), f);
         self
     }
 
     #[doc="Modify the RGD_WORD0 register."]
     #[inline] pub fn with_rgd_word0<I: Into<bits::R12> + Copy, F: FnOnce(RgdWord0) -> RgdWord0>(&self, index: I, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.rgd_word0_mut(index), f(self.rgd_word0(index)));
-        }
+        self.rgd_word0_reg().with(index.into(), f);
         self
+    }
+
+    #[doc="Get the RGD_WORD1 Register."]
+    #[inline] pub fn rgd_word1_reg(&self) -> RegisterArray<RgdWord1, bits::R12> { 
+        RegisterArray::new(self.0 as *mut RgdWord1, 0x404, 0x10)
     }
 
     #[doc="Get the *mut pointer for the RGD_WORD1 register."]
     #[inline] pub fn rgd_word1_mut<I: Into<bits::R12>>(&self, index: I) -> *mut RgdWord1 { 
-        let index: usize = index.into().value() as usize;
-        (self.0 + 0x404 + (index << 4)) as *mut RgdWord1
+        self.rgd_word1_reg().ptr(index.into())
     }
 
     #[doc="Get the *const pointer for the RGD_WORD1 register."]
     #[inline] pub fn rgd_word1_ptr<I: Into<bits::R12>>(&self, index: I) -> *const RgdWord1 { 
-           self.rgd_word1_mut(index)
+        self.rgd_word1_reg().ptr(index.into())
     }
 
     #[doc="Read the RGD_WORD1 register."]
     #[inline] pub fn rgd_word1<I: Into<bits::R12>>(&self, index: I) -> RgdWord1 { 
-        unsafe {
-            read_volatile(self.rgd_word1_ptr(index))
-        }
+        self.rgd_word1_reg().read(index.into())
     }
 
     #[doc="Write the RGD_WORD1 register."]
+    #[inline] pub fn write_rgd_word1<I: Into<bits::R12>>(&self, index: I, value: RgdWord1) -> &Self {
+        self.rgd_word1_reg().write(index.into(), value);
+        self
+    }
+
+    #[doc="Set the RGD_WORD1 register."]
     #[inline] pub fn set_rgd_word1<I: Into<bits::R12>, F: FnOnce(RgdWord1) -> RgdWord1>(&self, index: I, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.rgd_word1_mut(index), f(RgdWord1(0)));
-        }
+        self.rgd_word1_reg().set(index.into(), f);
         self
     }
 
     #[doc="Modify the RGD_WORD1 register."]
     #[inline] pub fn with_rgd_word1<I: Into<bits::R12> + Copy, F: FnOnce(RgdWord1) -> RgdWord1>(&self, index: I, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.rgd_word1_mut(index), f(self.rgd_word1(index)));
-        }
+        self.rgd_word1_reg().with(index.into(), f);
         self
+    }
+
+    #[doc="Get the RGD_WORD2 Register."]
+    #[inline] pub fn rgd_word2_reg(&self) -> RegisterArray<RgdWord2, bits::R12> { 
+        RegisterArray::new(self.0 as *mut RgdWord2, 0x408, 0x10)
     }
 
     #[doc="Get the *mut pointer for the RGD_WORD2 register."]
     #[inline] pub fn rgd_word2_mut<I: Into<bits::R12>>(&self, index: I) -> *mut RgdWord2 { 
-        let index: usize = index.into().value() as usize;
-        (self.0 + 0x408 + (index << 4)) as *mut RgdWord2
+        self.rgd_word2_reg().ptr(index.into())
     }
 
     #[doc="Get the *const pointer for the RGD_WORD2 register."]
     #[inline] pub fn rgd_word2_ptr<I: Into<bits::R12>>(&self, index: I) -> *const RgdWord2 { 
-           self.rgd_word2_mut(index)
+        self.rgd_word2_reg().ptr(index.into())
     }
 
     #[doc="Read the RGD_WORD2 register."]
     #[inline] pub fn rgd_word2<I: Into<bits::R12>>(&self, index: I) -> RgdWord2 { 
-        unsafe {
-            read_volatile(self.rgd_word2_ptr(index))
-        }
+        self.rgd_word2_reg().read(index.into())
     }
 
     #[doc="Write the RGD_WORD2 register."]
+    #[inline] pub fn write_rgd_word2<I: Into<bits::R12>>(&self, index: I, value: RgdWord2) -> &Self {
+        self.rgd_word2_reg().write(index.into(), value);
+        self
+    }
+
+    #[doc="Set the RGD_WORD2 register."]
     #[inline] pub fn set_rgd_word2<I: Into<bits::R12>, F: FnOnce(RgdWord2) -> RgdWord2>(&self, index: I, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.rgd_word2_mut(index), f(RgdWord2(0)));
-        }
+        self.rgd_word2_reg().set(index.into(), f);
         self
     }
 
     #[doc="Modify the RGD_WORD2 register."]
     #[inline] pub fn with_rgd_word2<I: Into<bits::R12> + Copy, F: FnOnce(RgdWord2) -> RgdWord2>(&self, index: I, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.rgd_word2_mut(index), f(self.rgd_word2(index)));
-        }
+        self.rgd_word2_reg().with(index.into(), f);
         self
+    }
+
+    #[doc="Get the RGD_WORD3 Register."]
+    #[inline] pub fn rgd_word3_reg(&self) -> RegisterArray<RgdWord3, bits::R12> { 
+        RegisterArray::new(self.0 as *mut RgdWord3, 0x40c, 0x10)
     }
 
     #[doc="Get the *mut pointer for the RGD_WORD3 register."]
     #[inline] pub fn rgd_word3_mut<I: Into<bits::R12>>(&self, index: I) -> *mut RgdWord3 { 
-        let index: usize = index.into().value() as usize;
-        (self.0 + 0x40c + (index << 4)) as *mut RgdWord3
+        self.rgd_word3_reg().ptr(index.into())
     }
 
     #[doc="Get the *const pointer for the RGD_WORD3 register."]
     #[inline] pub fn rgd_word3_ptr<I: Into<bits::R12>>(&self, index: I) -> *const RgdWord3 { 
-           self.rgd_word3_mut(index)
+        self.rgd_word3_reg().ptr(index.into())
     }
 
     #[doc="Read the RGD_WORD3 register."]
     #[inline] pub fn rgd_word3<I: Into<bits::R12>>(&self, index: I) -> RgdWord3 { 
-        unsafe {
-            read_volatile(self.rgd_word3_ptr(index))
-        }
+        self.rgd_word3_reg().read(index.into())
     }
 
     #[doc="Write the RGD_WORD3 register."]
+    #[inline] pub fn write_rgd_word3<I: Into<bits::R12>>(&self, index: I, value: RgdWord3) -> &Self {
+        self.rgd_word3_reg().write(index.into(), value);
+        self
+    }
+
+    #[doc="Set the RGD_WORD3 register."]
     #[inline] pub fn set_rgd_word3<I: Into<bits::R12>, F: FnOnce(RgdWord3) -> RgdWord3>(&self, index: I, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.rgd_word3_mut(index), f(RgdWord3(0)));
-        }
+        self.rgd_word3_reg().set(index.into(), f);
         self
     }
 
     #[doc="Modify the RGD_WORD3 register."]
     #[inline] pub fn with_rgd_word3<I: Into<bits::R12> + Copy, F: FnOnce(RgdWord3) -> RgdWord3>(&self, index: I, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.rgd_word3_mut(index), f(self.rgd_word3(index)));
-        }
+        self.rgd_word3_reg().with(index.into(), f);
         self
+    }
+
+    #[doc="Get the RGDAAC Register."]
+    #[inline] pub fn rgdaac_reg(&self) -> RegisterArray<Rgdaac, bits::R12> { 
+        RegisterArray::new(self.0 as *mut Rgdaac, 0x800, 0x4)
     }
 
     #[doc="Get the *mut pointer for the RGDAAC register."]
     #[inline] pub fn rgdaac_mut<I: Into<bits::R12>>(&self, index: I) -> *mut Rgdaac { 
-        let index: usize = index.into().value() as usize;
-        (self.0 + 0x800 + (index << 2)) as *mut Rgdaac
+        self.rgdaac_reg().ptr(index.into())
     }
 
     #[doc="Get the *const pointer for the RGDAAC register."]
     #[inline] pub fn rgdaac_ptr<I: Into<bits::R12>>(&self, index: I) -> *const Rgdaac { 
-           self.rgdaac_mut(index)
+        self.rgdaac_reg().ptr(index.into())
     }
 
     #[doc="Read the RGDAAC register."]
     #[inline] pub fn rgdaac<I: Into<bits::R12>>(&self, index: I) -> Rgdaac { 
-        unsafe {
-            read_volatile(self.rgdaac_ptr(index))
-        }
+        self.rgdaac_reg().read(index.into())
     }
 
     #[doc="Write the RGDAAC register."]
+    #[inline] pub fn write_rgdaac<I: Into<bits::R12>>(&self, index: I, value: Rgdaac) -> &Self {
+        self.rgdaac_reg().write(index.into(), value);
+        self
+    }
+
+    #[doc="Set the RGDAAC register."]
     #[inline] pub fn set_rgdaac<I: Into<bits::R12>, F: FnOnce(Rgdaac) -> Rgdaac>(&self, index: I, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.rgdaac_mut(index), f(Rgdaac(0)));
-        }
+        self.rgdaac_reg().set(index.into(), f);
         self
     }
 
     #[doc="Modify the RGDAAC register."]
     #[inline] pub fn with_rgdaac<I: Into<bits::R12> + Copy, F: FnOnce(Rgdaac) -> Rgdaac>(&self, index: I, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.rgdaac_mut(index), f(self.rgdaac(index)));
-        }
+        self.rgdaac_reg().with(index.into(), f);
         self
     }
 

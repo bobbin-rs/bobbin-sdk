@@ -5,6 +5,7 @@ authors = ["Jonathan Soo <jcsoo@agora.com>"]
 
 [dependencies]
 bobbin-common = { path = "../../../lib/bobbin-common" }
+bobbin-mcu = { path = "../../../lib/bobbin-mcu" }
 bobbin-hal = { path = "../../../lib/bobbin-hal" }
 bobbin-cortexm = { path = "../../bobbin-cortexm" }
 

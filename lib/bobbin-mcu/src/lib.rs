@@ -20,6 +20,7 @@ pub mod signal;
 pub mod gate;
 pub mod owned;
 
+pub use register::*;
 pub use periph::*;
 pub use pin::*;
 pub use channel::*;

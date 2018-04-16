@@ -4,680 +4,783 @@
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct EthernetMacPeriph(pub usize);
 impl EthernetMacPeriph {
+    #[doc="Get the MACCR Register."]
+    #[inline] pub fn maccr_reg(&self) -> Register<Maccr> { 
+        Register::new(self.0 as *mut Maccr, 0x0)
+    }
+
     #[doc="Get the *mut pointer for the MACCR register."]
     #[inline] pub fn maccr_mut(&self) -> *mut Maccr { 
-        (self.0 + 0x0) as *mut Maccr
+        self.maccr_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the MACCR register."]
     #[inline] pub fn maccr_ptr(&self) -> *const Maccr { 
-           self.maccr_mut()
+        self.maccr_reg().ptr()
     }
 
     #[doc="Read the MACCR register."]
     #[inline] pub fn maccr(&self) -> Maccr { 
-        unsafe {
-            read_volatile(self.maccr_ptr())
-        }
+        self.maccr_reg().read()
     }
 
     #[doc="Write the MACCR register."]
+    #[inline] pub fn write_maccr(&self, value: Maccr) -> &Self { 
+        self.maccr_reg().write(value);
+        self
+    }
+
+    #[doc="Set the MACCR register."]
     #[inline] pub fn set_maccr<F: FnOnce(Maccr) -> Maccr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.maccr_mut(), f(Maccr(0)));
-        }
+        self.maccr_reg().set(f);
         self
     }
 
     #[doc="Modify the MACCR register."]
     #[inline] pub fn with_maccr<F: FnOnce(Maccr) -> Maccr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.maccr_mut(), f(self.maccr()));
-        }
+        self.maccr_reg().with(f);
         self
+    }
+
+    #[doc="Get the MACFFR Register."]
+    #[inline] pub fn macffr_reg(&self) -> Register<Macffr> { 
+        Register::new(self.0 as *mut Macffr, 0x4)
     }
 
     #[doc="Get the *mut pointer for the MACFFR register."]
     #[inline] pub fn macffr_mut(&self) -> *mut Macffr { 
-        (self.0 + 0x4) as *mut Macffr
+        self.macffr_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the MACFFR register."]
     #[inline] pub fn macffr_ptr(&self) -> *const Macffr { 
-           self.macffr_mut()
+        self.macffr_reg().ptr()
     }
 
     #[doc="Read the MACFFR register."]
     #[inline] pub fn macffr(&self) -> Macffr { 
-        unsafe {
-            read_volatile(self.macffr_ptr())
-        }
+        self.macffr_reg().read()
     }
 
     #[doc="Write the MACFFR register."]
+    #[inline] pub fn write_macffr(&self, value: Macffr) -> &Self { 
+        self.macffr_reg().write(value);
+        self
+    }
+
+    #[doc="Set the MACFFR register."]
     #[inline] pub fn set_macffr<F: FnOnce(Macffr) -> Macffr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.macffr_mut(), f(Macffr(0)));
-        }
+        self.macffr_reg().set(f);
         self
     }
 
     #[doc="Modify the MACFFR register."]
     #[inline] pub fn with_macffr<F: FnOnce(Macffr) -> Macffr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.macffr_mut(), f(self.macffr()));
-        }
+        self.macffr_reg().with(f);
         self
+    }
+
+    #[doc="Get the MACHTHR Register."]
+    #[inline] pub fn machthr_reg(&self) -> Register<Machthr> { 
+        Register::new(self.0 as *mut Machthr, 0x8)
     }
 
     #[doc="Get the *mut pointer for the MACHTHR register."]
     #[inline] pub fn machthr_mut(&self) -> *mut Machthr { 
-        (self.0 + 0x8) as *mut Machthr
+        self.machthr_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the MACHTHR register."]
     #[inline] pub fn machthr_ptr(&self) -> *const Machthr { 
-           self.machthr_mut()
+        self.machthr_reg().ptr()
     }
 
     #[doc="Read the MACHTHR register."]
     #[inline] pub fn machthr(&self) -> Machthr { 
-        unsafe {
-            read_volatile(self.machthr_ptr())
-        }
+        self.machthr_reg().read()
     }
 
     #[doc="Write the MACHTHR register."]
+    #[inline] pub fn write_machthr(&self, value: Machthr) -> &Self { 
+        self.machthr_reg().write(value);
+        self
+    }
+
+    #[doc="Set the MACHTHR register."]
     #[inline] pub fn set_machthr<F: FnOnce(Machthr) -> Machthr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.machthr_mut(), f(Machthr(0)));
-        }
+        self.machthr_reg().set(f);
         self
     }
 
     #[doc="Modify the MACHTHR register."]
     #[inline] pub fn with_machthr<F: FnOnce(Machthr) -> Machthr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.machthr_mut(), f(self.machthr()));
-        }
+        self.machthr_reg().with(f);
         self
+    }
+
+    #[doc="Get the MACHTLR Register."]
+    #[inline] pub fn machtlr_reg(&self) -> Register<Machtlr> { 
+        Register::new(self.0 as *mut Machtlr, 0xc)
     }
 
     #[doc="Get the *mut pointer for the MACHTLR register."]
     #[inline] pub fn machtlr_mut(&self) -> *mut Machtlr { 
-        (self.0 + 0xc) as *mut Machtlr
+        self.machtlr_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the MACHTLR register."]
     #[inline] pub fn machtlr_ptr(&self) -> *const Machtlr { 
-           self.machtlr_mut()
+        self.machtlr_reg().ptr()
     }
 
     #[doc="Read the MACHTLR register."]
     #[inline] pub fn machtlr(&self) -> Machtlr { 
-        unsafe {
-            read_volatile(self.machtlr_ptr())
-        }
+        self.machtlr_reg().read()
     }
 
     #[doc="Write the MACHTLR register."]
+    #[inline] pub fn write_machtlr(&self, value: Machtlr) -> &Self { 
+        self.machtlr_reg().write(value);
+        self
+    }
+
+    #[doc="Set the MACHTLR register."]
     #[inline] pub fn set_machtlr<F: FnOnce(Machtlr) -> Machtlr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.machtlr_mut(), f(Machtlr(0)));
-        }
+        self.machtlr_reg().set(f);
         self
     }
 
     #[doc="Modify the MACHTLR register."]
     #[inline] pub fn with_machtlr<F: FnOnce(Machtlr) -> Machtlr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.machtlr_mut(), f(self.machtlr()));
-        }
+        self.machtlr_reg().with(f);
         self
+    }
+
+    #[doc="Get the MACMIIAR Register."]
+    #[inline] pub fn macmiiar_reg(&self) -> Register<Macmiiar> { 
+        Register::new(self.0 as *mut Macmiiar, 0x10)
     }
 
     #[doc="Get the *mut pointer for the MACMIIAR register."]
     #[inline] pub fn macmiiar_mut(&self) -> *mut Macmiiar { 
-        (self.0 + 0x10) as *mut Macmiiar
+        self.macmiiar_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the MACMIIAR register."]
     #[inline] pub fn macmiiar_ptr(&self) -> *const Macmiiar { 
-           self.macmiiar_mut()
+        self.macmiiar_reg().ptr()
     }
 
     #[doc="Read the MACMIIAR register."]
     #[inline] pub fn macmiiar(&self) -> Macmiiar { 
-        unsafe {
-            read_volatile(self.macmiiar_ptr())
-        }
+        self.macmiiar_reg().read()
     }
 
     #[doc="Write the MACMIIAR register."]
+    #[inline] pub fn write_macmiiar(&self, value: Macmiiar) -> &Self { 
+        self.macmiiar_reg().write(value);
+        self
+    }
+
+    #[doc="Set the MACMIIAR register."]
     #[inline] pub fn set_macmiiar<F: FnOnce(Macmiiar) -> Macmiiar>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.macmiiar_mut(), f(Macmiiar(0)));
-        }
+        self.macmiiar_reg().set(f);
         self
     }
 
     #[doc="Modify the MACMIIAR register."]
     #[inline] pub fn with_macmiiar<F: FnOnce(Macmiiar) -> Macmiiar>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.macmiiar_mut(), f(self.macmiiar()));
-        }
+        self.macmiiar_reg().with(f);
         self
+    }
+
+    #[doc="Get the MACMIIDR Register."]
+    #[inline] pub fn macmiidr_reg(&self) -> Register<Macmiidr> { 
+        Register::new(self.0 as *mut Macmiidr, 0x14)
     }
 
     #[doc="Get the *mut pointer for the MACMIIDR register."]
     #[inline] pub fn macmiidr_mut(&self) -> *mut Macmiidr { 
-        (self.0 + 0x14) as *mut Macmiidr
+        self.macmiidr_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the MACMIIDR register."]
     #[inline] pub fn macmiidr_ptr(&self) -> *const Macmiidr { 
-           self.macmiidr_mut()
+        self.macmiidr_reg().ptr()
     }
 
     #[doc="Read the MACMIIDR register."]
     #[inline] pub fn macmiidr(&self) -> Macmiidr { 
-        unsafe {
-            read_volatile(self.macmiidr_ptr())
-        }
+        self.macmiidr_reg().read()
     }
 
     #[doc="Write the MACMIIDR register."]
+    #[inline] pub fn write_macmiidr(&self, value: Macmiidr) -> &Self { 
+        self.macmiidr_reg().write(value);
+        self
+    }
+
+    #[doc="Set the MACMIIDR register."]
     #[inline] pub fn set_macmiidr<F: FnOnce(Macmiidr) -> Macmiidr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.macmiidr_mut(), f(Macmiidr(0)));
-        }
+        self.macmiidr_reg().set(f);
         self
     }
 
     #[doc="Modify the MACMIIDR register."]
     #[inline] pub fn with_macmiidr<F: FnOnce(Macmiidr) -> Macmiidr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.macmiidr_mut(), f(self.macmiidr()));
-        }
+        self.macmiidr_reg().with(f);
         self
+    }
+
+    #[doc="Get the MACFCR Register."]
+    #[inline] pub fn macfcr_reg(&self) -> Register<Macfcr> { 
+        Register::new(self.0 as *mut Macfcr, 0x18)
     }
 
     #[doc="Get the *mut pointer for the MACFCR register."]
     #[inline] pub fn macfcr_mut(&self) -> *mut Macfcr { 
-        (self.0 + 0x18) as *mut Macfcr
+        self.macfcr_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the MACFCR register."]
     #[inline] pub fn macfcr_ptr(&self) -> *const Macfcr { 
-           self.macfcr_mut()
+        self.macfcr_reg().ptr()
     }
 
     #[doc="Read the MACFCR register."]
     #[inline] pub fn macfcr(&self) -> Macfcr { 
-        unsafe {
-            read_volatile(self.macfcr_ptr())
-        }
+        self.macfcr_reg().read()
     }
 
     #[doc="Write the MACFCR register."]
+    #[inline] pub fn write_macfcr(&self, value: Macfcr) -> &Self { 
+        self.macfcr_reg().write(value);
+        self
+    }
+
+    #[doc="Set the MACFCR register."]
     #[inline] pub fn set_macfcr<F: FnOnce(Macfcr) -> Macfcr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.macfcr_mut(), f(Macfcr(0)));
-        }
+        self.macfcr_reg().set(f);
         self
     }
 
     #[doc="Modify the MACFCR register."]
     #[inline] pub fn with_macfcr<F: FnOnce(Macfcr) -> Macfcr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.macfcr_mut(), f(self.macfcr()));
-        }
+        self.macfcr_reg().with(f);
         self
+    }
+
+    #[doc="Get the MACVLANTR Register."]
+    #[inline] pub fn macvlantr_reg(&self) -> Register<Macvlantr> { 
+        Register::new(self.0 as *mut Macvlantr, 0x1c)
     }
 
     #[doc="Get the *mut pointer for the MACVLANTR register."]
     #[inline] pub fn macvlantr_mut(&self) -> *mut Macvlantr { 
-        (self.0 + 0x1c) as *mut Macvlantr
+        self.macvlantr_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the MACVLANTR register."]
     #[inline] pub fn macvlantr_ptr(&self) -> *const Macvlantr { 
-           self.macvlantr_mut()
+        self.macvlantr_reg().ptr()
     }
 
     #[doc="Read the MACVLANTR register."]
     #[inline] pub fn macvlantr(&self) -> Macvlantr { 
-        unsafe {
-            read_volatile(self.macvlantr_ptr())
-        }
+        self.macvlantr_reg().read()
     }
 
     #[doc="Write the MACVLANTR register."]
+    #[inline] pub fn write_macvlantr(&self, value: Macvlantr) -> &Self { 
+        self.macvlantr_reg().write(value);
+        self
+    }
+
+    #[doc="Set the MACVLANTR register."]
     #[inline] pub fn set_macvlantr<F: FnOnce(Macvlantr) -> Macvlantr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.macvlantr_mut(), f(Macvlantr(0)));
-        }
+        self.macvlantr_reg().set(f);
         self
     }
 
     #[doc="Modify the MACVLANTR register."]
     #[inline] pub fn with_macvlantr<F: FnOnce(Macvlantr) -> Macvlantr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.macvlantr_mut(), f(self.macvlantr()));
-        }
+        self.macvlantr_reg().with(f);
         self
+    }
+
+    #[doc="Get the MACPMTCSR Register."]
+    #[inline] pub fn macpmtcsr_reg(&self) -> Register<Macpmtcsr> { 
+        Register::new(self.0 as *mut Macpmtcsr, 0x2c)
     }
 
     #[doc="Get the *mut pointer for the MACPMTCSR register."]
     #[inline] pub fn macpmtcsr_mut(&self) -> *mut Macpmtcsr { 
-        (self.0 + 0x2c) as *mut Macpmtcsr
+        self.macpmtcsr_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the MACPMTCSR register."]
     #[inline] pub fn macpmtcsr_ptr(&self) -> *const Macpmtcsr { 
-           self.macpmtcsr_mut()
+        self.macpmtcsr_reg().ptr()
     }
 
     #[doc="Read the MACPMTCSR register."]
     #[inline] pub fn macpmtcsr(&self) -> Macpmtcsr { 
-        unsafe {
-            read_volatile(self.macpmtcsr_ptr())
-        }
+        self.macpmtcsr_reg().read()
     }
 
     #[doc="Write the MACPMTCSR register."]
+    #[inline] pub fn write_macpmtcsr(&self, value: Macpmtcsr) -> &Self { 
+        self.macpmtcsr_reg().write(value);
+        self
+    }
+
+    #[doc="Set the MACPMTCSR register."]
     #[inline] pub fn set_macpmtcsr<F: FnOnce(Macpmtcsr) -> Macpmtcsr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.macpmtcsr_mut(), f(Macpmtcsr(0)));
-        }
+        self.macpmtcsr_reg().set(f);
         self
     }
 
     #[doc="Modify the MACPMTCSR register."]
     #[inline] pub fn with_macpmtcsr<F: FnOnce(Macpmtcsr) -> Macpmtcsr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.macpmtcsr_mut(), f(self.macpmtcsr()));
-        }
+        self.macpmtcsr_reg().with(f);
         self
+    }
+
+    #[doc="Get the MACDBGR Register."]
+    #[inline] pub fn macdbgr_reg(&self) -> Register<Macdbgr> { 
+        Register::new(self.0 as *mut Macdbgr, 0x34)
     }
 
     #[doc="Get the *mut pointer for the MACDBGR register."]
     #[inline] pub fn macdbgr_mut(&self) -> *mut Macdbgr { 
-        (self.0 + 0x34) as *mut Macdbgr
+        self.macdbgr_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the MACDBGR register."]
     #[inline] pub fn macdbgr_ptr(&self) -> *const Macdbgr { 
-           self.macdbgr_mut()
+        self.macdbgr_reg().ptr()
     }
 
     #[doc="Read the MACDBGR register."]
     #[inline] pub fn macdbgr(&self) -> Macdbgr { 
-        unsafe {
-            read_volatile(self.macdbgr_ptr())
-        }
+        self.macdbgr_reg().read()
+    }
+
+    #[doc="Get the MACSR Register."]
+    #[inline] pub fn macsr_reg(&self) -> Register<Macsr> { 
+        Register::new(self.0 as *mut Macsr, 0x38)
     }
 
     #[doc="Get the *mut pointer for the MACSR register."]
     #[inline] pub fn macsr_mut(&self) -> *mut Macsr { 
-        (self.0 + 0x38) as *mut Macsr
+        self.macsr_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the MACSR register."]
     #[inline] pub fn macsr_ptr(&self) -> *const Macsr { 
-           self.macsr_mut()
+        self.macsr_reg().ptr()
     }
 
     #[doc="Read the MACSR register."]
     #[inline] pub fn macsr(&self) -> Macsr { 
-        unsafe {
-            read_volatile(self.macsr_ptr())
-        }
+        self.macsr_reg().read()
     }
 
     #[doc="Write the MACSR register."]
+    #[inline] pub fn write_macsr(&self, value: Macsr) -> &Self { 
+        self.macsr_reg().write(value);
+        self
+    }
+
+    #[doc="Set the MACSR register."]
     #[inline] pub fn set_macsr<F: FnOnce(Macsr) -> Macsr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.macsr_mut(), f(Macsr(0)));
-        }
+        self.macsr_reg().set(f);
         self
     }
 
     #[doc="Modify the MACSR register."]
     #[inline] pub fn with_macsr<F: FnOnce(Macsr) -> Macsr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.macsr_mut(), f(self.macsr()));
-        }
+        self.macsr_reg().with(f);
         self
+    }
+
+    #[doc="Get the MACIMR Register."]
+    #[inline] pub fn macimr_reg(&self) -> Register<Macimr> { 
+        Register::new(self.0 as *mut Macimr, 0x3c)
     }
 
     #[doc="Get the *mut pointer for the MACIMR register."]
     #[inline] pub fn macimr_mut(&self) -> *mut Macimr { 
-        (self.0 + 0x3c) as *mut Macimr
+        self.macimr_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the MACIMR register."]
     #[inline] pub fn macimr_ptr(&self) -> *const Macimr { 
-           self.macimr_mut()
+        self.macimr_reg().ptr()
     }
 
     #[doc="Read the MACIMR register."]
     #[inline] pub fn macimr(&self) -> Macimr { 
-        unsafe {
-            read_volatile(self.macimr_ptr())
-        }
+        self.macimr_reg().read()
     }
 
     #[doc="Write the MACIMR register."]
+    #[inline] pub fn write_macimr(&self, value: Macimr) -> &Self { 
+        self.macimr_reg().write(value);
+        self
+    }
+
+    #[doc="Set the MACIMR register."]
     #[inline] pub fn set_macimr<F: FnOnce(Macimr) -> Macimr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.macimr_mut(), f(Macimr(0)));
-        }
+        self.macimr_reg().set(f);
         self
     }
 
     #[doc="Modify the MACIMR register."]
     #[inline] pub fn with_macimr<F: FnOnce(Macimr) -> Macimr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.macimr_mut(), f(self.macimr()));
-        }
+        self.macimr_reg().with(f);
         self
+    }
+
+    #[doc="Get the MACA0HR Register."]
+    #[inline] pub fn maca0hr_reg(&self) -> Register<Maca0hr> { 
+        Register::new(self.0 as *mut Maca0hr, 0x40)
     }
 
     #[doc="Get the *mut pointer for the MACA0HR register."]
     #[inline] pub fn maca0hr_mut(&self) -> *mut Maca0hr { 
-        (self.0 + 0x40) as *mut Maca0hr
+        self.maca0hr_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the MACA0HR register."]
     #[inline] pub fn maca0hr_ptr(&self) -> *const Maca0hr { 
-           self.maca0hr_mut()
+        self.maca0hr_reg().ptr()
     }
 
     #[doc="Read the MACA0HR register."]
     #[inline] pub fn maca0hr(&self) -> Maca0hr { 
-        unsafe {
-            read_volatile(self.maca0hr_ptr())
-        }
+        self.maca0hr_reg().read()
     }
 
     #[doc="Write the MACA0HR register."]
+    #[inline] pub fn write_maca0hr(&self, value: Maca0hr) -> &Self { 
+        self.maca0hr_reg().write(value);
+        self
+    }
+
+    #[doc="Set the MACA0HR register."]
     #[inline] pub fn set_maca0hr<F: FnOnce(Maca0hr) -> Maca0hr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.maca0hr_mut(), f(Maca0hr(0)));
-        }
+        self.maca0hr_reg().set(f);
         self
     }
 
     #[doc="Modify the MACA0HR register."]
     #[inline] pub fn with_maca0hr<F: FnOnce(Maca0hr) -> Maca0hr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.maca0hr_mut(), f(self.maca0hr()));
-        }
+        self.maca0hr_reg().with(f);
         self
+    }
+
+    #[doc="Get the MACA0LR Register."]
+    #[inline] pub fn maca0lr_reg(&self) -> Register<Maca0lr> { 
+        Register::new(self.0 as *mut Maca0lr, 0x44)
     }
 
     #[doc="Get the *mut pointer for the MACA0LR register."]
     #[inline] pub fn maca0lr_mut(&self) -> *mut Maca0lr { 
-        (self.0 + 0x44) as *mut Maca0lr
+        self.maca0lr_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the MACA0LR register."]
     #[inline] pub fn maca0lr_ptr(&self) -> *const Maca0lr { 
-           self.maca0lr_mut()
+        self.maca0lr_reg().ptr()
     }
 
     #[doc="Read the MACA0LR register."]
     #[inline] pub fn maca0lr(&self) -> Maca0lr { 
-        unsafe {
-            read_volatile(self.maca0lr_ptr())
-        }
+        self.maca0lr_reg().read()
     }
 
     #[doc="Write the MACA0LR register."]
+    #[inline] pub fn write_maca0lr(&self, value: Maca0lr) -> &Self { 
+        self.maca0lr_reg().write(value);
+        self
+    }
+
+    #[doc="Set the MACA0LR register."]
     #[inline] pub fn set_maca0lr<F: FnOnce(Maca0lr) -> Maca0lr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.maca0lr_mut(), f(Maca0lr(0)));
-        }
+        self.maca0lr_reg().set(f);
         self
     }
 
     #[doc="Modify the MACA0LR register."]
     #[inline] pub fn with_maca0lr<F: FnOnce(Maca0lr) -> Maca0lr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.maca0lr_mut(), f(self.maca0lr()));
-        }
+        self.maca0lr_reg().with(f);
         self
+    }
+
+    #[doc="Get the MACA1HR Register."]
+    #[inline] pub fn maca1hr_reg(&self) -> Register<Maca1hr> { 
+        Register::new(self.0 as *mut Maca1hr, 0x48)
     }
 
     #[doc="Get the *mut pointer for the MACA1HR register."]
     #[inline] pub fn maca1hr_mut(&self) -> *mut Maca1hr { 
-        (self.0 + 0x48) as *mut Maca1hr
+        self.maca1hr_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the MACA1HR register."]
     #[inline] pub fn maca1hr_ptr(&self) -> *const Maca1hr { 
-           self.maca1hr_mut()
+        self.maca1hr_reg().ptr()
     }
 
     #[doc="Read the MACA1HR register."]
     #[inline] pub fn maca1hr(&self) -> Maca1hr { 
-        unsafe {
-            read_volatile(self.maca1hr_ptr())
-        }
+        self.maca1hr_reg().read()
     }
 
     #[doc="Write the MACA1HR register."]
+    #[inline] pub fn write_maca1hr(&self, value: Maca1hr) -> &Self { 
+        self.maca1hr_reg().write(value);
+        self
+    }
+
+    #[doc="Set the MACA1HR register."]
     #[inline] pub fn set_maca1hr<F: FnOnce(Maca1hr) -> Maca1hr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.maca1hr_mut(), f(Maca1hr(0)));
-        }
+        self.maca1hr_reg().set(f);
         self
     }
 
     #[doc="Modify the MACA1HR register."]
     #[inline] pub fn with_maca1hr<F: FnOnce(Maca1hr) -> Maca1hr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.maca1hr_mut(), f(self.maca1hr()));
-        }
+        self.maca1hr_reg().with(f);
         self
+    }
+
+    #[doc="Get the MACA1LR Register."]
+    #[inline] pub fn maca1lr_reg(&self) -> Register<Maca1lr> { 
+        Register::new(self.0 as *mut Maca1lr, 0x4c)
     }
 
     #[doc="Get the *mut pointer for the MACA1LR register."]
     #[inline] pub fn maca1lr_mut(&self) -> *mut Maca1lr { 
-        (self.0 + 0x4c) as *mut Maca1lr
+        self.maca1lr_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the MACA1LR register."]
     #[inline] pub fn maca1lr_ptr(&self) -> *const Maca1lr { 
-           self.maca1lr_mut()
+        self.maca1lr_reg().ptr()
     }
 
     #[doc="Read the MACA1LR register."]
     #[inline] pub fn maca1lr(&self) -> Maca1lr { 
-        unsafe {
-            read_volatile(self.maca1lr_ptr())
-        }
+        self.maca1lr_reg().read()
     }
 
     #[doc="Write the MACA1LR register."]
+    #[inline] pub fn write_maca1lr(&self, value: Maca1lr) -> &Self { 
+        self.maca1lr_reg().write(value);
+        self
+    }
+
+    #[doc="Set the MACA1LR register."]
     #[inline] pub fn set_maca1lr<F: FnOnce(Maca1lr) -> Maca1lr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.maca1lr_mut(), f(Maca1lr(0)));
-        }
+        self.maca1lr_reg().set(f);
         self
     }
 
     #[doc="Modify the MACA1LR register."]
     #[inline] pub fn with_maca1lr<F: FnOnce(Maca1lr) -> Maca1lr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.maca1lr_mut(), f(self.maca1lr()));
-        }
+        self.maca1lr_reg().with(f);
         self
+    }
+
+    #[doc="Get the MACA2HR Register."]
+    #[inline] pub fn maca2hr_reg(&self) -> Register<Maca2hr> { 
+        Register::new(self.0 as *mut Maca2hr, 0x50)
     }
 
     #[doc="Get the *mut pointer for the MACA2HR register."]
     #[inline] pub fn maca2hr_mut(&self) -> *mut Maca2hr { 
-        (self.0 + 0x50) as *mut Maca2hr
+        self.maca2hr_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the MACA2HR register."]
     #[inline] pub fn maca2hr_ptr(&self) -> *const Maca2hr { 
-           self.maca2hr_mut()
+        self.maca2hr_reg().ptr()
     }
 
     #[doc="Read the MACA2HR register."]
     #[inline] pub fn maca2hr(&self) -> Maca2hr { 
-        unsafe {
-            read_volatile(self.maca2hr_ptr())
-        }
+        self.maca2hr_reg().read()
     }
 
     #[doc="Write the MACA2HR register."]
+    #[inline] pub fn write_maca2hr(&self, value: Maca2hr) -> &Self { 
+        self.maca2hr_reg().write(value);
+        self
+    }
+
+    #[doc="Set the MACA2HR register."]
     #[inline] pub fn set_maca2hr<F: FnOnce(Maca2hr) -> Maca2hr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.maca2hr_mut(), f(Maca2hr(0)));
-        }
+        self.maca2hr_reg().set(f);
         self
     }
 
     #[doc="Modify the MACA2HR register."]
     #[inline] pub fn with_maca2hr<F: FnOnce(Maca2hr) -> Maca2hr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.maca2hr_mut(), f(self.maca2hr()));
-        }
+        self.maca2hr_reg().with(f);
         self
+    }
+
+    #[doc="Get the MACA2LR Register."]
+    #[inline] pub fn maca2lr_reg(&self) -> Register<Maca2lr> { 
+        Register::new(self.0 as *mut Maca2lr, 0x54)
     }
 
     #[doc="Get the *mut pointer for the MACA2LR register."]
     #[inline] pub fn maca2lr_mut(&self) -> *mut Maca2lr { 
-        (self.0 + 0x54) as *mut Maca2lr
+        self.maca2lr_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the MACA2LR register."]
     #[inline] pub fn maca2lr_ptr(&self) -> *const Maca2lr { 
-           self.maca2lr_mut()
+        self.maca2lr_reg().ptr()
     }
 
     #[doc="Read the MACA2LR register."]
     #[inline] pub fn maca2lr(&self) -> Maca2lr { 
-        unsafe {
-            read_volatile(self.maca2lr_ptr())
-        }
+        self.maca2lr_reg().read()
     }
 
     #[doc="Write the MACA2LR register."]
+    #[inline] pub fn write_maca2lr(&self, value: Maca2lr) -> &Self { 
+        self.maca2lr_reg().write(value);
+        self
+    }
+
+    #[doc="Set the MACA2LR register."]
     #[inline] pub fn set_maca2lr<F: FnOnce(Maca2lr) -> Maca2lr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.maca2lr_mut(), f(Maca2lr(0)));
-        }
+        self.maca2lr_reg().set(f);
         self
     }
 
     #[doc="Modify the MACA2LR register."]
     #[inline] pub fn with_maca2lr<F: FnOnce(Maca2lr) -> Maca2lr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.maca2lr_mut(), f(self.maca2lr()));
-        }
+        self.maca2lr_reg().with(f);
         self
+    }
+
+    #[doc="Get the MACA3HR Register."]
+    #[inline] pub fn maca3hr_reg(&self) -> Register<Maca3hr> { 
+        Register::new(self.0 as *mut Maca3hr, 0x58)
     }
 
     #[doc="Get the *mut pointer for the MACA3HR register."]
     #[inline] pub fn maca3hr_mut(&self) -> *mut Maca3hr { 
-        (self.0 + 0x58) as *mut Maca3hr
+        self.maca3hr_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the MACA3HR register."]
     #[inline] pub fn maca3hr_ptr(&self) -> *const Maca3hr { 
-           self.maca3hr_mut()
+        self.maca3hr_reg().ptr()
     }
 
     #[doc="Read the MACA3HR register."]
     #[inline] pub fn maca3hr(&self) -> Maca3hr { 
-        unsafe {
-            read_volatile(self.maca3hr_ptr())
-        }
+        self.maca3hr_reg().read()
     }
 
     #[doc="Write the MACA3HR register."]
+    #[inline] pub fn write_maca3hr(&self, value: Maca3hr) -> &Self { 
+        self.maca3hr_reg().write(value);
+        self
+    }
+
+    #[doc="Set the MACA3HR register."]
     #[inline] pub fn set_maca3hr<F: FnOnce(Maca3hr) -> Maca3hr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.maca3hr_mut(), f(Maca3hr(0)));
-        }
+        self.maca3hr_reg().set(f);
         self
     }
 
     #[doc="Modify the MACA3HR register."]
     #[inline] pub fn with_maca3hr<F: FnOnce(Maca3hr) -> Maca3hr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.maca3hr_mut(), f(self.maca3hr()));
-        }
+        self.maca3hr_reg().with(f);
         self
+    }
+
+    #[doc="Get the MACA3LR Register."]
+    #[inline] pub fn maca3lr_reg(&self) -> Register<Maca3lr> { 
+        Register::new(self.0 as *mut Maca3lr, 0x5c)
     }
 
     #[doc="Get the *mut pointer for the MACA3LR register."]
     #[inline] pub fn maca3lr_mut(&self) -> *mut Maca3lr { 
-        (self.0 + 0x5c) as *mut Maca3lr
+        self.maca3lr_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the MACA3LR register."]
     #[inline] pub fn maca3lr_ptr(&self) -> *const Maca3lr { 
-           self.maca3lr_mut()
+        self.maca3lr_reg().ptr()
     }
 
     #[doc="Read the MACA3LR register."]
     #[inline] pub fn maca3lr(&self) -> Maca3lr { 
-        unsafe {
-            read_volatile(self.maca3lr_ptr())
-        }
+        self.maca3lr_reg().read()
     }
 
     #[doc="Write the MACA3LR register."]
+    #[inline] pub fn write_maca3lr(&self, value: Maca3lr) -> &Self { 
+        self.maca3lr_reg().write(value);
+        self
+    }
+
+    #[doc="Set the MACA3LR register."]
     #[inline] pub fn set_maca3lr<F: FnOnce(Maca3lr) -> Maca3lr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.maca3lr_mut(), f(Maca3lr(0)));
-        }
+        self.maca3lr_reg().set(f);
         self
     }
 
     #[doc="Modify the MACA3LR register."]
     #[inline] pub fn with_maca3lr<F: FnOnce(Maca3lr) -> Maca3lr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.maca3lr_mut(), f(self.maca3lr()));
-        }
+        self.maca3lr_reg().with(f);
         self
+    }
+
+    #[doc="Get the MACRWUFFER Register."]
+    #[inline] pub fn macrwuffer_reg(&self) -> Register<Macrwuffer> { 
+        Register::new(self.0 as *mut Macrwuffer, 0x60)
     }
 
     #[doc="Get the *mut pointer for the MACRWUFFER register."]
     #[inline] pub fn macrwuffer_mut(&self) -> *mut Macrwuffer { 
-        (self.0 + 0x60) as *mut Macrwuffer
+        self.macrwuffer_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the MACRWUFFER register."]
     #[inline] pub fn macrwuffer_ptr(&self) -> *const Macrwuffer { 
-           self.macrwuffer_mut()
+        self.macrwuffer_reg().ptr()
     }
 
     #[doc="Read the MACRWUFFER register."]
     #[inline] pub fn macrwuffer(&self) -> Macrwuffer { 
-        unsafe {
-            read_volatile(self.macrwuffer_ptr())
-        }
+        self.macrwuffer_reg().read()
     }
 
     #[doc="Write the MACRWUFFER register."]
+    #[inline] pub fn write_macrwuffer(&self, value: Macrwuffer) -> &Self { 
+        self.macrwuffer_reg().write(value);
+        self
+    }
+
+    #[doc="Set the MACRWUFFER register."]
     #[inline] pub fn set_macrwuffer<F: FnOnce(Macrwuffer) -> Macrwuffer>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.macrwuffer_mut(), f(Macrwuffer(0)));
-        }
+        self.macrwuffer_reg().set(f);
         self
     }
 
     #[doc="Modify the MACRWUFFER register."]
     #[inline] pub fn with_macrwuffer<F: FnOnce(Macrwuffer) -> Macrwuffer>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.macrwuffer_mut(), f(self.macrwuffer()));
-        }
+        self.macrwuffer_reg().with(f);
         self
     }
 

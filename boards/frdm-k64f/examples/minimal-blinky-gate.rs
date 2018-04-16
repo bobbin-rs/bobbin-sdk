@@ -7,6 +7,7 @@ extern crate frdm_k64f as board;
 use board::common::gate::*;
 use board::common::hal::digital::DigitalOutput;
 use board::mcu::port::*;
+use board::mcu::gpio::*;
 use board::mcu::pin::*;
 
 

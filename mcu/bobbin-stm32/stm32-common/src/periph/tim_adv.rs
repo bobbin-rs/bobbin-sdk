@@ -8,684 +8,790 @@ pub struct TimAdvPeriph(pub usize);
 pub struct TimAdvCh { pub periph: TimAdvPeriph, pub index: usize }
 
 impl TimAdvPeriph {
+    #[doc="Get the CR1 Register."]
+    #[inline] pub fn cr1_reg(&self) -> Register<Cr1> { 
+        Register::new(self.0 as *mut Cr1, 0x0)
+    }
+
     #[doc="Get the *mut pointer for the CR1 register."]
     #[inline] pub fn cr1_mut(&self) -> *mut Cr1 { 
-        (self.0 + 0x0) as *mut Cr1
+        self.cr1_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the CR1 register."]
     #[inline] pub fn cr1_ptr(&self) -> *const Cr1 { 
-           self.cr1_mut()
+        self.cr1_reg().ptr()
     }
 
     #[doc="Read the CR1 register."]
     #[inline] pub fn cr1(&self) -> Cr1 { 
-        unsafe {
-            read_volatile(self.cr1_ptr())
-        }
+        self.cr1_reg().read()
     }
 
     #[doc="Write the CR1 register."]
+    #[inline] pub fn write_cr1(&self, value: Cr1) -> &Self { 
+        self.cr1_reg().write(value);
+        self
+    }
+
+    #[doc="Set the CR1 register."]
     #[inline] pub fn set_cr1<F: FnOnce(Cr1) -> Cr1>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.cr1_mut(), f(Cr1(0)));
-        }
+        self.cr1_reg().set(f);
         self
     }
 
     #[doc="Modify the CR1 register."]
     #[inline] pub fn with_cr1<F: FnOnce(Cr1) -> Cr1>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.cr1_mut(), f(self.cr1()));
-        }
+        self.cr1_reg().with(f);
         self
+    }
+
+    #[doc="Get the CR2 Register."]
+    #[inline] pub fn cr2_reg(&self) -> Register<Cr2> { 
+        Register::new(self.0 as *mut Cr2, 0x4)
     }
 
     #[doc="Get the *mut pointer for the CR2 register."]
     #[inline] pub fn cr2_mut(&self) -> *mut Cr2 { 
-        (self.0 + 0x4) as *mut Cr2
+        self.cr2_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the CR2 register."]
     #[inline] pub fn cr2_ptr(&self) -> *const Cr2 { 
-           self.cr2_mut()
+        self.cr2_reg().ptr()
     }
 
     #[doc="Read the CR2 register."]
     #[inline] pub fn cr2(&self) -> Cr2 { 
-        unsafe {
-            read_volatile(self.cr2_ptr())
-        }
+        self.cr2_reg().read()
     }
 
     #[doc="Write the CR2 register."]
+    #[inline] pub fn write_cr2(&self, value: Cr2) -> &Self { 
+        self.cr2_reg().write(value);
+        self
+    }
+
+    #[doc="Set the CR2 register."]
     #[inline] pub fn set_cr2<F: FnOnce(Cr2) -> Cr2>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.cr2_mut(), f(Cr2(0)));
-        }
+        self.cr2_reg().set(f);
         self
     }
 
     #[doc="Modify the CR2 register."]
     #[inline] pub fn with_cr2<F: FnOnce(Cr2) -> Cr2>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.cr2_mut(), f(self.cr2()));
-        }
+        self.cr2_reg().with(f);
         self
+    }
+
+    #[doc="Get the SMCR Register."]
+    #[inline] pub fn smcr_reg(&self) -> Register<Smcr> { 
+        Register::new(self.0 as *mut Smcr, 0x8)
     }
 
     #[doc="Get the *mut pointer for the SMCR register."]
     #[inline] pub fn smcr_mut(&self) -> *mut Smcr { 
-        (self.0 + 0x8) as *mut Smcr
+        self.smcr_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the SMCR register."]
     #[inline] pub fn smcr_ptr(&self) -> *const Smcr { 
-           self.smcr_mut()
+        self.smcr_reg().ptr()
     }
 
     #[doc="Read the SMCR register."]
     #[inline] pub fn smcr(&self) -> Smcr { 
-        unsafe {
-            read_volatile(self.smcr_ptr())
-        }
+        self.smcr_reg().read()
     }
 
     #[doc="Write the SMCR register."]
+    #[inline] pub fn write_smcr(&self, value: Smcr) -> &Self { 
+        self.smcr_reg().write(value);
+        self
+    }
+
+    #[doc="Set the SMCR register."]
     #[inline] pub fn set_smcr<F: FnOnce(Smcr) -> Smcr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.smcr_mut(), f(Smcr(0)));
-        }
+        self.smcr_reg().set(f);
         self
     }
 
     #[doc="Modify the SMCR register."]
     #[inline] pub fn with_smcr<F: FnOnce(Smcr) -> Smcr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.smcr_mut(), f(self.smcr()));
-        }
+        self.smcr_reg().with(f);
         self
+    }
+
+    #[doc="Get the DIER Register."]
+    #[inline] pub fn dier_reg(&self) -> Register<Dier> { 
+        Register::new(self.0 as *mut Dier, 0xc)
     }
 
     #[doc="Get the *mut pointer for the DIER register."]
     #[inline] pub fn dier_mut(&self) -> *mut Dier { 
-        (self.0 + 0xc) as *mut Dier
+        self.dier_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the DIER register."]
     #[inline] pub fn dier_ptr(&self) -> *const Dier { 
-           self.dier_mut()
+        self.dier_reg().ptr()
     }
 
     #[doc="Read the DIER register."]
     #[inline] pub fn dier(&self) -> Dier { 
-        unsafe {
-            read_volatile(self.dier_ptr())
-        }
+        self.dier_reg().read()
     }
 
     #[doc="Write the DIER register."]
+    #[inline] pub fn write_dier(&self, value: Dier) -> &Self { 
+        self.dier_reg().write(value);
+        self
+    }
+
+    #[doc="Set the DIER register."]
     #[inline] pub fn set_dier<F: FnOnce(Dier) -> Dier>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.dier_mut(), f(Dier(0)));
-        }
+        self.dier_reg().set(f);
         self
     }
 
     #[doc="Modify the DIER register."]
     #[inline] pub fn with_dier<F: FnOnce(Dier) -> Dier>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.dier_mut(), f(self.dier()));
-        }
+        self.dier_reg().with(f);
         self
+    }
+
+    #[doc="Get the SR Register."]
+    #[inline] pub fn sr_reg(&self) -> Register<Sr> { 
+        Register::new(self.0 as *mut Sr, 0x10)
     }
 
     #[doc="Get the *mut pointer for the SR register."]
     #[inline] pub fn sr_mut(&self) -> *mut Sr { 
-        (self.0 + 0x10) as *mut Sr
+        self.sr_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the SR register."]
     #[inline] pub fn sr_ptr(&self) -> *const Sr { 
-           self.sr_mut()
+        self.sr_reg().ptr()
     }
 
     #[doc="Read the SR register."]
     #[inline] pub fn sr(&self) -> Sr { 
-        unsafe {
-            read_volatile(self.sr_ptr())
-        }
+        self.sr_reg().read()
     }
 
     #[doc="Write the SR register."]
+    #[inline] pub fn write_sr(&self, value: Sr) -> &Self { 
+        self.sr_reg().write(value);
+        self
+    }
+
+    #[doc="Set the SR register."]
     #[inline] pub fn set_sr<F: FnOnce(Sr) -> Sr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.sr_mut(), f(Sr(0)));
-        }
+        self.sr_reg().set(f);
         self
     }
 
     #[doc="Modify the SR register."]
     #[inline] pub fn with_sr<F: FnOnce(Sr) -> Sr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.sr_mut(), f(self.sr()));
-        }
+        self.sr_reg().with(f);
         self
+    }
+
+    #[doc="Get the EGR Register."]
+    #[inline] pub fn egr_reg(&self) -> Register<Egr> { 
+        Register::new(self.0 as *mut Egr, 0x14)
     }
 
     #[doc="Get the *mut pointer for the EGR register."]
     #[inline] pub fn egr_mut(&self) -> *mut Egr { 
-        (self.0 + 0x14) as *mut Egr
+        self.egr_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the EGR register."]
     #[inline] pub fn egr_ptr(&self) -> *const Egr { 
-           self.egr_mut()
+        self.egr_reg().ptr()
     }
 
     #[doc="Write the EGR register."]
-    #[inline] pub fn set_egr<F: FnOnce(Egr) -> Egr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.egr_mut(), f(Egr(0)));
-        }
+    #[inline] pub fn write_egr(&self, value: Egr) -> &Self { 
+        self.egr_reg().write(value);
         self
+    }
+
+    #[doc="Set the EGR register."]
+    #[inline] pub fn set_egr<F: FnOnce(Egr) -> Egr>(&self, f: F) -> &Self {
+        self.egr_reg().set(f);
+        self
+    }
+
+    #[doc="Get the CCMR_OUTPUT Register."]
+    #[inline] pub fn ccmr_output_reg(&self) -> RegisterArray<CcmrOutput, bits::R2> { 
+        RegisterArray::new(self.0 as *mut CcmrOutput, 0x18, 0x4)
     }
 
     #[doc="Get the *mut pointer for the CCMR_OUTPUT register."]
     #[inline] pub fn ccmr_output_mut<I: Into<bits::R2>>(&self, index: I) -> *mut CcmrOutput { 
-        let index: usize = index.into().value() as usize;
-        (self.0 + 0x18 + (index << 2)) as *mut CcmrOutput
+        self.ccmr_output_reg().ptr(index.into())
     }
 
     #[doc="Get the *const pointer for the CCMR_OUTPUT register."]
     #[inline] pub fn ccmr_output_ptr<I: Into<bits::R2>>(&self, index: I) -> *const CcmrOutput { 
-           self.ccmr_output_mut(index)
+        self.ccmr_output_reg().ptr(index.into())
     }
 
     #[doc="Read the CCMR_OUTPUT register."]
     #[inline] pub fn ccmr_output<I: Into<bits::R2>>(&self, index: I) -> CcmrOutput { 
-        unsafe {
-            read_volatile(self.ccmr_output_ptr(index))
-        }
+        self.ccmr_output_reg().read(index.into())
     }
 
     #[doc="Write the CCMR_OUTPUT register."]
+    #[inline] pub fn write_ccmr_output<I: Into<bits::R2>>(&self, index: I, value: CcmrOutput) -> &Self {
+        self.ccmr_output_reg().write(index.into(), value);
+        self
+    }
+
+    #[doc="Set the CCMR_OUTPUT register."]
     #[inline] pub fn set_ccmr_output<I: Into<bits::R2>, F: FnOnce(CcmrOutput) -> CcmrOutput>(&self, index: I, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.ccmr_output_mut(index), f(CcmrOutput(0)));
-        }
+        self.ccmr_output_reg().set(index.into(), f);
         self
     }
 
     #[doc="Modify the CCMR_OUTPUT register."]
     #[inline] pub fn with_ccmr_output<I: Into<bits::R2> + Copy, F: FnOnce(CcmrOutput) -> CcmrOutput>(&self, index: I, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.ccmr_output_mut(index), f(self.ccmr_output(index)));
-        }
+        self.ccmr_output_reg().with(index.into(), f);
         self
+    }
+
+    #[doc="Get the CCMR_INPUT Register."]
+    #[inline] pub fn ccmr_input_reg(&self) -> RegisterArray<CcmrInput, bits::R2> { 
+        RegisterArray::new(self.0 as *mut CcmrInput, 0x18, 0x4)
     }
 
     #[doc="Get the *mut pointer for the CCMR_INPUT register."]
     #[inline] pub fn ccmr_input_mut<I: Into<bits::R2>>(&self, index: I) -> *mut CcmrInput { 
-        let index: usize = index.into().value() as usize;
-        (self.0 + 0x18 + (index << 2)) as *mut CcmrInput
+        self.ccmr_input_reg().ptr(index.into())
     }
 
     #[doc="Get the *const pointer for the CCMR_INPUT register."]
     #[inline] pub fn ccmr_input_ptr<I: Into<bits::R2>>(&self, index: I) -> *const CcmrInput { 
-           self.ccmr_input_mut(index)
+        self.ccmr_input_reg().ptr(index.into())
     }
 
     #[doc="Read the CCMR_INPUT register."]
     #[inline] pub fn ccmr_input<I: Into<bits::R2>>(&self, index: I) -> CcmrInput { 
-        unsafe {
-            read_volatile(self.ccmr_input_ptr(index))
-        }
+        self.ccmr_input_reg().read(index.into())
     }
 
     #[doc="Write the CCMR_INPUT register."]
+    #[inline] pub fn write_ccmr_input<I: Into<bits::R2>>(&self, index: I, value: CcmrInput) -> &Self {
+        self.ccmr_input_reg().write(index.into(), value);
+        self
+    }
+
+    #[doc="Set the CCMR_INPUT register."]
     #[inline] pub fn set_ccmr_input<I: Into<bits::R2>, F: FnOnce(CcmrInput) -> CcmrInput>(&self, index: I, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.ccmr_input_mut(index), f(CcmrInput(0)));
-        }
+        self.ccmr_input_reg().set(index.into(), f);
         self
     }
 
     #[doc="Modify the CCMR_INPUT register."]
     #[inline] pub fn with_ccmr_input<I: Into<bits::R2> + Copy, F: FnOnce(CcmrInput) -> CcmrInput>(&self, index: I, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.ccmr_input_mut(index), f(self.ccmr_input(index)));
-        }
+        self.ccmr_input_reg().with(index.into(), f);
         self
+    }
+
+    #[doc="Get the CCER Register."]
+    #[inline] pub fn ccer_reg(&self) -> Register<Ccer> { 
+        Register::new(self.0 as *mut Ccer, 0x20)
     }
 
     #[doc="Get the *mut pointer for the CCER register."]
     #[inline] pub fn ccer_mut(&self) -> *mut Ccer { 
-        (self.0 + 0x20) as *mut Ccer
+        self.ccer_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the CCER register."]
     #[inline] pub fn ccer_ptr(&self) -> *const Ccer { 
-           self.ccer_mut()
+        self.ccer_reg().ptr()
     }
 
     #[doc="Read the CCER register."]
     #[inline] pub fn ccer(&self) -> Ccer { 
-        unsafe {
-            read_volatile(self.ccer_ptr())
-        }
+        self.ccer_reg().read()
     }
 
     #[doc="Write the CCER register."]
+    #[inline] pub fn write_ccer(&self, value: Ccer) -> &Self { 
+        self.ccer_reg().write(value);
+        self
+    }
+
+    #[doc="Set the CCER register."]
     #[inline] pub fn set_ccer<F: FnOnce(Ccer) -> Ccer>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.ccer_mut(), f(Ccer(0)));
-        }
+        self.ccer_reg().set(f);
         self
     }
 
     #[doc="Modify the CCER register."]
     #[inline] pub fn with_ccer<F: FnOnce(Ccer) -> Ccer>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.ccer_mut(), f(self.ccer()));
-        }
+        self.ccer_reg().with(f);
         self
+    }
+
+    #[doc="Get the CNT Register."]
+    #[inline] pub fn cnt_reg(&self) -> Register<Cnt> { 
+        Register::new(self.0 as *mut Cnt, 0x24)
     }
 
     #[doc="Get the *mut pointer for the CNT register."]
     #[inline] pub fn cnt_mut(&self) -> *mut Cnt { 
-        (self.0 + 0x24) as *mut Cnt
+        self.cnt_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the CNT register."]
     #[inline] pub fn cnt_ptr(&self) -> *const Cnt { 
-           self.cnt_mut()
+        self.cnt_reg().ptr()
     }
 
     #[doc="Read the CNT register."]
     #[inline] pub fn cnt(&self) -> Cnt { 
-        unsafe {
-            read_volatile(self.cnt_ptr())
-        }
+        self.cnt_reg().read()
     }
 
     #[doc="Write the CNT register."]
+    #[inline] pub fn write_cnt(&self, value: Cnt) -> &Self { 
+        self.cnt_reg().write(value);
+        self
+    }
+
+    #[doc="Set the CNT register."]
     #[inline] pub fn set_cnt<F: FnOnce(Cnt) -> Cnt>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.cnt_mut(), f(Cnt(0)));
-        }
+        self.cnt_reg().set(f);
         self
     }
 
     #[doc="Modify the CNT register."]
     #[inline] pub fn with_cnt<F: FnOnce(Cnt) -> Cnt>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.cnt_mut(), f(self.cnt()));
-        }
+        self.cnt_reg().with(f);
         self
+    }
+
+    #[doc="Get the PSC Register."]
+    #[inline] pub fn psc_reg(&self) -> Register<Psc> { 
+        Register::new(self.0 as *mut Psc, 0x28)
     }
 
     #[doc="Get the *mut pointer for the PSC register."]
     #[inline] pub fn psc_mut(&self) -> *mut Psc { 
-        (self.0 + 0x28) as *mut Psc
+        self.psc_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the PSC register."]
     #[inline] pub fn psc_ptr(&self) -> *const Psc { 
-           self.psc_mut()
+        self.psc_reg().ptr()
     }
 
     #[doc="Read the PSC register."]
     #[inline] pub fn psc(&self) -> Psc { 
-        unsafe {
-            read_volatile(self.psc_ptr())
-        }
+        self.psc_reg().read()
     }
 
     #[doc="Write the PSC register."]
+    #[inline] pub fn write_psc(&self, value: Psc) -> &Self { 
+        self.psc_reg().write(value);
+        self
+    }
+
+    #[doc="Set the PSC register."]
     #[inline] pub fn set_psc<F: FnOnce(Psc) -> Psc>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.psc_mut(), f(Psc(0)));
-        }
+        self.psc_reg().set(f);
         self
     }
 
     #[doc="Modify the PSC register."]
     #[inline] pub fn with_psc<F: FnOnce(Psc) -> Psc>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.psc_mut(), f(self.psc()));
-        }
+        self.psc_reg().with(f);
         self
+    }
+
+    #[doc="Get the ARR Register."]
+    #[inline] pub fn arr_reg(&self) -> Register<Arr> { 
+        Register::new(self.0 as *mut Arr, 0x2c)
     }
 
     #[doc="Get the *mut pointer for the ARR register."]
     #[inline] pub fn arr_mut(&self) -> *mut Arr { 
-        (self.0 + 0x2c) as *mut Arr
+        self.arr_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the ARR register."]
     #[inline] pub fn arr_ptr(&self) -> *const Arr { 
-           self.arr_mut()
+        self.arr_reg().ptr()
     }
 
     #[doc="Read the ARR register."]
     #[inline] pub fn arr(&self) -> Arr { 
-        unsafe {
-            read_volatile(self.arr_ptr())
-        }
+        self.arr_reg().read()
     }
 
     #[doc="Write the ARR register."]
+    #[inline] pub fn write_arr(&self, value: Arr) -> &Self { 
+        self.arr_reg().write(value);
+        self
+    }
+
+    #[doc="Set the ARR register."]
     #[inline] pub fn set_arr<F: FnOnce(Arr) -> Arr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.arr_mut(), f(Arr(0)));
-        }
+        self.arr_reg().set(f);
         self
     }
 
     #[doc="Modify the ARR register."]
     #[inline] pub fn with_arr<F: FnOnce(Arr) -> Arr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.arr_mut(), f(self.arr()));
-        }
+        self.arr_reg().with(f);
         self
+    }
+
+    #[doc="Get the RCR Register."]
+    #[inline] pub fn rcr_reg(&self) -> Register<Rcr> { 
+        Register::new(self.0 as *mut Rcr, 0x30)
     }
 
     #[doc="Get the *mut pointer for the RCR register."]
     #[inline] pub fn rcr_mut(&self) -> *mut Rcr { 
-        (self.0 + 0x30) as *mut Rcr
+        self.rcr_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the RCR register."]
     #[inline] pub fn rcr_ptr(&self) -> *const Rcr { 
-           self.rcr_mut()
+        self.rcr_reg().ptr()
     }
 
     #[doc="Read the RCR register."]
     #[inline] pub fn rcr(&self) -> Rcr { 
-        unsafe {
-            read_volatile(self.rcr_ptr())
-        }
+        self.rcr_reg().read()
     }
 
     #[doc="Write the RCR register."]
+    #[inline] pub fn write_rcr(&self, value: Rcr) -> &Self { 
+        self.rcr_reg().write(value);
+        self
+    }
+
+    #[doc="Set the RCR register."]
     #[inline] pub fn set_rcr<F: FnOnce(Rcr) -> Rcr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.rcr_mut(), f(Rcr(0)));
-        }
+        self.rcr_reg().set(f);
         self
     }
 
     #[doc="Modify the RCR register."]
     #[inline] pub fn with_rcr<F: FnOnce(Rcr) -> Rcr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.rcr_mut(), f(self.rcr()));
-        }
+        self.rcr_reg().with(f);
         self
+    }
+
+    #[doc="Get the CCR Register."]
+    #[inline] pub fn ccr_reg(&self) -> RegisterArray<Ccr, bits::R4> { 
+        RegisterArray::new(self.0 as *mut Ccr, 0x34, 0x4)
     }
 
     #[doc="Get the *mut pointer for the CCR register."]
     #[inline] pub fn ccr_mut<I: Into<bits::R4>>(&self, index: I) -> *mut Ccr { 
-        let index: usize = index.into().value() as usize;
-        (self.0 + 0x34 + (index << 2)) as *mut Ccr
+        self.ccr_reg().ptr(index.into())
     }
 
     #[doc="Get the *const pointer for the CCR register."]
     #[inline] pub fn ccr_ptr<I: Into<bits::R4>>(&self, index: I) -> *const Ccr { 
-           self.ccr_mut(index)
+        self.ccr_reg().ptr(index.into())
     }
 
     #[doc="Read the CCR register."]
     #[inline] pub fn ccr<I: Into<bits::R4>>(&self, index: I) -> Ccr { 
-        unsafe {
-            read_volatile(self.ccr_ptr(index))
-        }
+        self.ccr_reg().read(index.into())
     }
 
     #[doc="Write the CCR register."]
+    #[inline] pub fn write_ccr<I: Into<bits::R4>>(&self, index: I, value: Ccr) -> &Self {
+        self.ccr_reg().write(index.into(), value);
+        self
+    }
+
+    #[doc="Set the CCR register."]
     #[inline] pub fn set_ccr<I: Into<bits::R4>, F: FnOnce(Ccr) -> Ccr>(&self, index: I, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.ccr_mut(index), f(Ccr(0)));
-        }
+        self.ccr_reg().set(index.into(), f);
         self
     }
 
     #[doc="Modify the CCR register."]
     #[inline] pub fn with_ccr<I: Into<bits::R4> + Copy, F: FnOnce(Ccr) -> Ccr>(&self, index: I, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.ccr_mut(index), f(self.ccr(index)));
-        }
+        self.ccr_reg().with(index.into(), f);
         self
+    }
+
+    #[doc="Get the BDTR Register."]
+    #[inline] pub fn bdtr_reg(&self) -> Register<Bdtr> { 
+        Register::new(self.0 as *mut Bdtr, 0x44)
     }
 
     #[doc="Get the *mut pointer for the BDTR register."]
     #[inline] pub fn bdtr_mut(&self) -> *mut Bdtr { 
-        (self.0 + 0x44) as *mut Bdtr
+        self.bdtr_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the BDTR register."]
     #[inline] pub fn bdtr_ptr(&self) -> *const Bdtr { 
-           self.bdtr_mut()
+        self.bdtr_reg().ptr()
     }
 
     #[doc="Read the BDTR register."]
     #[inline] pub fn bdtr(&self) -> Bdtr { 
-        unsafe {
-            read_volatile(self.bdtr_ptr())
-        }
+        self.bdtr_reg().read()
     }
 
     #[doc="Write the BDTR register."]
+    #[inline] pub fn write_bdtr(&self, value: Bdtr) -> &Self { 
+        self.bdtr_reg().write(value);
+        self
+    }
+
+    #[doc="Set the BDTR register."]
     #[inline] pub fn set_bdtr<F: FnOnce(Bdtr) -> Bdtr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.bdtr_mut(), f(Bdtr(0)));
-        }
+        self.bdtr_reg().set(f);
         self
     }
 
     #[doc="Modify the BDTR register."]
     #[inline] pub fn with_bdtr<F: FnOnce(Bdtr) -> Bdtr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.bdtr_mut(), f(self.bdtr()));
-        }
+        self.bdtr_reg().with(f);
         self
+    }
+
+    #[doc="Get the DCR Register."]
+    #[inline] pub fn dcr_reg(&self) -> Register<Dcr> { 
+        Register::new(self.0 as *mut Dcr, 0x48)
     }
 
     #[doc="Get the *mut pointer for the DCR register."]
     #[inline] pub fn dcr_mut(&self) -> *mut Dcr { 
-        (self.0 + 0x48) as *mut Dcr
+        self.dcr_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the DCR register."]
     #[inline] pub fn dcr_ptr(&self) -> *const Dcr { 
-           self.dcr_mut()
+        self.dcr_reg().ptr()
     }
 
     #[doc="Read the DCR register."]
     #[inline] pub fn dcr(&self) -> Dcr { 
-        unsafe {
-            read_volatile(self.dcr_ptr())
-        }
+        self.dcr_reg().read()
     }
 
     #[doc="Write the DCR register."]
+    #[inline] pub fn write_dcr(&self, value: Dcr) -> &Self { 
+        self.dcr_reg().write(value);
+        self
+    }
+
+    #[doc="Set the DCR register."]
     #[inline] pub fn set_dcr<F: FnOnce(Dcr) -> Dcr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.dcr_mut(), f(Dcr(0)));
-        }
+        self.dcr_reg().set(f);
         self
     }
 
     #[doc="Modify the DCR register."]
     #[inline] pub fn with_dcr<F: FnOnce(Dcr) -> Dcr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.dcr_mut(), f(self.dcr()));
-        }
+        self.dcr_reg().with(f);
         self
+    }
+
+    #[doc="Get the DMAR Register."]
+    #[inline] pub fn dmar_reg(&self) -> Register<Dmar> { 
+        Register::new(self.0 as *mut Dmar, 0x4c)
     }
 
     #[doc="Get the *mut pointer for the DMAR register."]
     #[inline] pub fn dmar_mut(&self) -> *mut Dmar { 
-        (self.0 + 0x4c) as *mut Dmar
+        self.dmar_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the DMAR register."]
     #[inline] pub fn dmar_ptr(&self) -> *const Dmar { 
-           self.dmar_mut()
+        self.dmar_reg().ptr()
     }
 
     #[doc="Read the DMAR register."]
     #[inline] pub fn dmar(&self) -> Dmar { 
-        unsafe {
-            read_volatile(self.dmar_ptr())
-        }
+        self.dmar_reg().read()
     }
 
     #[doc="Write the DMAR register."]
+    #[inline] pub fn write_dmar(&self, value: Dmar) -> &Self { 
+        self.dmar_reg().write(value);
+        self
+    }
+
+    #[doc="Set the DMAR register."]
     #[inline] pub fn set_dmar<F: FnOnce(Dmar) -> Dmar>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.dmar_mut(), f(Dmar(0)));
-        }
+        self.dmar_reg().set(f);
         self
     }
 
     #[doc="Modify the DMAR register."]
     #[inline] pub fn with_dmar<F: FnOnce(Dmar) -> Dmar>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.dmar_mut(), f(self.dmar()));
-        }
+        self.dmar_reg().with(f);
         self
+    }
+
+    #[doc="Get the CCMR3_OUTPUT Register."]
+    #[inline] pub fn ccmr3_output_reg(&self) -> Register<Ccmr3Output> { 
+        Register::new(self.0 as *mut Ccmr3Output, 0x54)
     }
 
     #[doc="Get the *mut pointer for the CCMR3_OUTPUT register."]
     #[inline] pub fn ccmr3_output_mut(&self) -> *mut Ccmr3Output { 
-        (self.0 + 0x54) as *mut Ccmr3Output
+        self.ccmr3_output_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the CCMR3_OUTPUT register."]
     #[inline] pub fn ccmr3_output_ptr(&self) -> *const Ccmr3Output { 
-           self.ccmr3_output_mut()
+        self.ccmr3_output_reg().ptr()
     }
 
     #[doc="Read the CCMR3_OUTPUT register."]
     #[inline] pub fn ccmr3_output(&self) -> Ccmr3Output { 
-        unsafe {
-            read_volatile(self.ccmr3_output_ptr())
-        }
+        self.ccmr3_output_reg().read()
     }
 
     #[doc="Write the CCMR3_OUTPUT register."]
+    #[inline] pub fn write_ccmr3_output(&self, value: Ccmr3Output) -> &Self { 
+        self.ccmr3_output_reg().write(value);
+        self
+    }
+
+    #[doc="Set the CCMR3_OUTPUT register."]
     #[inline] pub fn set_ccmr3_output<F: FnOnce(Ccmr3Output) -> Ccmr3Output>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.ccmr3_output_mut(), f(Ccmr3Output(0)));
-        }
+        self.ccmr3_output_reg().set(f);
         self
     }
 
     #[doc="Modify the CCMR3_OUTPUT register."]
     #[inline] pub fn with_ccmr3_output<F: FnOnce(Ccmr3Output) -> Ccmr3Output>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.ccmr3_output_mut(), f(self.ccmr3_output()));
-        }
+        self.ccmr3_output_reg().with(f);
         self
+    }
+
+    #[doc="Get the CCR5 Register."]
+    #[inline] pub fn ccr5_reg(&self) -> Register<Ccr5> { 
+        Register::new(self.0 as *mut Ccr5, 0x58)
     }
 
     #[doc="Get the *mut pointer for the CCR5 register."]
     #[inline] pub fn ccr5_mut(&self) -> *mut Ccr5 { 
-        (self.0 + 0x58) as *mut Ccr5
+        self.ccr5_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the CCR5 register."]
     #[inline] pub fn ccr5_ptr(&self) -> *const Ccr5 { 
-           self.ccr5_mut()
+        self.ccr5_reg().ptr()
     }
 
     #[doc="Read the CCR5 register."]
     #[inline] pub fn ccr5(&self) -> Ccr5 { 
-        unsafe {
-            read_volatile(self.ccr5_ptr())
-        }
+        self.ccr5_reg().read()
     }
 
     #[doc="Write the CCR5 register."]
+    #[inline] pub fn write_ccr5(&self, value: Ccr5) -> &Self { 
+        self.ccr5_reg().write(value);
+        self
+    }
+
+    #[doc="Set the CCR5 register."]
     #[inline] pub fn set_ccr5<F: FnOnce(Ccr5) -> Ccr5>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.ccr5_mut(), f(Ccr5(0)));
-        }
+        self.ccr5_reg().set(f);
         self
     }
 
     #[doc="Modify the CCR5 register."]
     #[inline] pub fn with_ccr5<F: FnOnce(Ccr5) -> Ccr5>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.ccr5_mut(), f(self.ccr5()));
-        }
+        self.ccr5_reg().with(f);
         self
+    }
+
+    #[doc="Get the CCR6 Register."]
+    #[inline] pub fn ccr6_reg(&self) -> Register<Ccr6> { 
+        Register::new(self.0 as *mut Ccr6, 0x5c)
     }
 
     #[doc="Get the *mut pointer for the CCR6 register."]
     #[inline] pub fn ccr6_mut(&self) -> *mut Ccr6 { 
-        (self.0 + 0x5c) as *mut Ccr6
+        self.ccr6_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the CCR6 register."]
     #[inline] pub fn ccr6_ptr(&self) -> *const Ccr6 { 
-           self.ccr6_mut()
+        self.ccr6_reg().ptr()
     }
 
     #[doc="Read the CCR6 register."]
     #[inline] pub fn ccr6(&self) -> Ccr6 { 
-        unsafe {
-            read_volatile(self.ccr6_ptr())
-        }
+        self.ccr6_reg().read()
     }
 
     #[doc="Write the CCR6 register."]
+    #[inline] pub fn write_ccr6(&self, value: Ccr6) -> &Self { 
+        self.ccr6_reg().write(value);
+        self
+    }
+
+    #[doc="Set the CCR6 register."]
     #[inline] pub fn set_ccr6<F: FnOnce(Ccr6) -> Ccr6>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.ccr6_mut(), f(Ccr6(0)));
-        }
+        self.ccr6_reg().set(f);
         self
     }
 
     #[doc="Modify the CCR6 register."]
     #[inline] pub fn with_ccr6<F: FnOnce(Ccr6) -> Ccr6>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.ccr6_mut(), f(self.ccr6()));
-        }
+        self.ccr6_reg().with(f);
         self
+    }
+
+    #[doc="Get the OR Register."]
+    #[inline] pub fn or_reg(&self) -> Register<Or> { 
+        Register::new(self.0 as *mut Or, 0x60)
     }
 
     #[doc="Get the *mut pointer for the OR register."]
     #[inline] pub fn or_mut(&self) -> *mut Or { 
-        (self.0 + 0x60) as *mut Or
+        self.or_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the OR register."]
     #[inline] pub fn or_ptr(&self) -> *const Or { 
-           self.or_mut()
+        self.or_reg().ptr()
     }
 
     #[doc="Read the OR register."]
     #[inline] pub fn or(&self) -> Or { 
-        unsafe {
-            read_volatile(self.or_ptr())
-        }
+        self.or_reg().read()
     }
 
     #[doc="Write the OR register."]
+    #[inline] pub fn write_or(&self, value: Or) -> &Self { 
+        self.or_reg().write(value);
+        self
+    }
+
+    #[doc="Set the OR register."]
     #[inline] pub fn set_or<F: FnOnce(Or) -> Or>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.or_mut(), f(Or(0)));
-        }
+        self.or_reg().set(f);
         self
     }
 
     #[doc="Modify the OR register."]
     #[inline] pub fn with_or<F: FnOnce(Or) -> Or>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.or_mut(), f(self.or()));
-        }
+        self.or_reg().with(f);
         self
     }
 

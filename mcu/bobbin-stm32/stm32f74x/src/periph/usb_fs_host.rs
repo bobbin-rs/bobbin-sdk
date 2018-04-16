@@ -5,338 +5,385 @@
 pub struct UsbFsHostPeriph(pub usize); 
 
 impl UsbFsHostPeriph {
+    #[doc="Get the HCFG Register."]
+    #[inline] pub fn hcfg_reg(&self) -> Register<Hcfg> { 
+        Register::new(self.0 as *mut Hcfg, 0x0)
+    }
+
     #[doc="Get the *mut pointer for the HCFG register."]
     #[inline] pub fn hcfg_mut(&self) -> *mut Hcfg { 
-        (self.0 + 0x0) as *mut Hcfg
+        self.hcfg_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the HCFG register."]
     #[inline] pub fn hcfg_ptr(&self) -> *const Hcfg { 
-           self.hcfg_mut()
+        self.hcfg_reg().ptr()
     }
 
     #[doc="Read the HCFG register."]
     #[inline] pub fn hcfg(&self) -> Hcfg { 
-        unsafe {
-            read_volatile(self.hcfg_ptr())
-        }
+        self.hcfg_reg().read()
     }
 
     #[doc="Write the HCFG register."]
+    #[inline] pub fn write_hcfg(&self, value: Hcfg) -> &Self { 
+        self.hcfg_reg().write(value);
+        self
+    }
+
+    #[doc="Set the HCFG register."]
     #[inline] pub fn set_hcfg<F: FnOnce(Hcfg) -> Hcfg>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.hcfg_mut(), f(Hcfg(0)));
-        }
+        self.hcfg_reg().set(f);
         self
     }
 
     #[doc="Modify the HCFG register."]
     #[inline] pub fn with_hcfg<F: FnOnce(Hcfg) -> Hcfg>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.hcfg_mut(), f(self.hcfg()));
-        }
+        self.hcfg_reg().with(f);
         self
+    }
+
+    #[doc="Get the HFIR Register."]
+    #[inline] pub fn hfir_reg(&self) -> Register<Hfir> { 
+        Register::new(self.0 as *mut Hfir, 0x4)
     }
 
     #[doc="Get the *mut pointer for the HFIR register."]
     #[inline] pub fn hfir_mut(&self) -> *mut Hfir { 
-        (self.0 + 0x4) as *mut Hfir
+        self.hfir_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the HFIR register."]
     #[inline] pub fn hfir_ptr(&self) -> *const Hfir { 
-           self.hfir_mut()
+        self.hfir_reg().ptr()
     }
 
     #[doc="Read the HFIR register."]
     #[inline] pub fn hfir(&self) -> Hfir { 
-        unsafe {
-            read_volatile(self.hfir_ptr())
-        }
+        self.hfir_reg().read()
     }
 
     #[doc="Write the HFIR register."]
+    #[inline] pub fn write_hfir(&self, value: Hfir) -> &Self { 
+        self.hfir_reg().write(value);
+        self
+    }
+
+    #[doc="Set the HFIR register."]
     #[inline] pub fn set_hfir<F: FnOnce(Hfir) -> Hfir>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.hfir_mut(), f(Hfir(0)));
-        }
+        self.hfir_reg().set(f);
         self
     }
 
     #[doc="Modify the HFIR register."]
     #[inline] pub fn with_hfir<F: FnOnce(Hfir) -> Hfir>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.hfir_mut(), f(self.hfir()));
-        }
+        self.hfir_reg().with(f);
         self
+    }
+
+    #[doc="Get the HFNUM Register."]
+    #[inline] pub fn hfnum_reg(&self) -> Register<Hfnum> { 
+        Register::new(self.0 as *mut Hfnum, 0x8)
     }
 
     #[doc="Get the *mut pointer for the HFNUM register."]
     #[inline] pub fn hfnum_mut(&self) -> *mut Hfnum { 
-        (self.0 + 0x8) as *mut Hfnum
+        self.hfnum_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the HFNUM register."]
     #[inline] pub fn hfnum_ptr(&self) -> *const Hfnum { 
-           self.hfnum_mut()
+        self.hfnum_reg().ptr()
     }
 
     #[doc="Read the HFNUM register."]
     #[inline] pub fn hfnum(&self) -> Hfnum { 
-        unsafe {
-            read_volatile(self.hfnum_ptr())
-        }
+        self.hfnum_reg().read()
+    }
+
+    #[doc="Get the HPTXSTS Register."]
+    #[inline] pub fn hptxsts_reg(&self) -> Register<Hptxsts> { 
+        Register::new(self.0 as *mut Hptxsts, 0x10)
     }
 
     #[doc="Get the *mut pointer for the HPTXSTS register."]
     #[inline] pub fn hptxsts_mut(&self) -> *mut Hptxsts { 
-        (self.0 + 0x10) as *mut Hptxsts
+        self.hptxsts_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the HPTXSTS register."]
     #[inline] pub fn hptxsts_ptr(&self) -> *const Hptxsts { 
-           self.hptxsts_mut()
+        self.hptxsts_reg().ptr()
     }
 
     #[doc="Read the HPTXSTS register."]
     #[inline] pub fn hptxsts(&self) -> Hptxsts { 
-        unsafe {
-            read_volatile(self.hptxsts_ptr())
-        }
+        self.hptxsts_reg().read()
     }
 
     #[doc="Write the HPTXSTS register."]
+    #[inline] pub fn write_hptxsts(&self, value: Hptxsts) -> &Self { 
+        self.hptxsts_reg().write(value);
+        self
+    }
+
+    #[doc="Set the HPTXSTS register."]
     #[inline] pub fn set_hptxsts<F: FnOnce(Hptxsts) -> Hptxsts>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.hptxsts_mut(), f(Hptxsts(0)));
-        }
+        self.hptxsts_reg().set(f);
         self
     }
 
     #[doc="Modify the HPTXSTS register."]
     #[inline] pub fn with_hptxsts<F: FnOnce(Hptxsts) -> Hptxsts>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.hptxsts_mut(), f(self.hptxsts()));
-        }
+        self.hptxsts_reg().with(f);
         self
+    }
+
+    #[doc="Get the HAINT Register."]
+    #[inline] pub fn haint_reg(&self) -> Register<Haint> { 
+        Register::new(self.0 as *mut Haint, 0x14)
     }
 
     #[doc="Get the *mut pointer for the HAINT register."]
     #[inline] pub fn haint_mut(&self) -> *mut Haint { 
-        (self.0 + 0x14) as *mut Haint
+        self.haint_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the HAINT register."]
     #[inline] pub fn haint_ptr(&self) -> *const Haint { 
-           self.haint_mut()
+        self.haint_reg().ptr()
     }
 
     #[doc="Read the HAINT register."]
     #[inline] pub fn haint(&self) -> Haint { 
-        unsafe {
-            read_volatile(self.haint_ptr())
-        }
+        self.haint_reg().read()
+    }
+
+    #[doc="Get the HAINTMSK Register."]
+    #[inline] pub fn haintmsk_reg(&self) -> Register<Haintmsk> { 
+        Register::new(self.0 as *mut Haintmsk, 0x18)
     }
 
     #[doc="Get the *mut pointer for the HAINTMSK register."]
     #[inline] pub fn haintmsk_mut(&self) -> *mut Haintmsk { 
-        (self.0 + 0x18) as *mut Haintmsk
+        self.haintmsk_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the HAINTMSK register."]
     #[inline] pub fn haintmsk_ptr(&self) -> *const Haintmsk { 
-           self.haintmsk_mut()
+        self.haintmsk_reg().ptr()
     }
 
     #[doc="Read the HAINTMSK register."]
     #[inline] pub fn haintmsk(&self) -> Haintmsk { 
-        unsafe {
-            read_volatile(self.haintmsk_ptr())
-        }
+        self.haintmsk_reg().read()
     }
 
     #[doc="Write the HAINTMSK register."]
+    #[inline] pub fn write_haintmsk(&self, value: Haintmsk) -> &Self { 
+        self.haintmsk_reg().write(value);
+        self
+    }
+
+    #[doc="Set the HAINTMSK register."]
     #[inline] pub fn set_haintmsk<F: FnOnce(Haintmsk) -> Haintmsk>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.haintmsk_mut(), f(Haintmsk(0)));
-        }
+        self.haintmsk_reg().set(f);
         self
     }
 
     #[doc="Modify the HAINTMSK register."]
     #[inline] pub fn with_haintmsk<F: FnOnce(Haintmsk) -> Haintmsk>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.haintmsk_mut(), f(self.haintmsk()));
-        }
+        self.haintmsk_reg().with(f);
         self
+    }
+
+    #[doc="Get the HPRT Register."]
+    #[inline] pub fn hprt_reg(&self) -> Register<Hprt> { 
+        Register::new(self.0 as *mut Hprt, 0x40)
     }
 
     #[doc="Get the *mut pointer for the HPRT register."]
     #[inline] pub fn hprt_mut(&self) -> *mut Hprt { 
-        (self.0 + 0x40) as *mut Hprt
+        self.hprt_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the HPRT register."]
     #[inline] pub fn hprt_ptr(&self) -> *const Hprt { 
-           self.hprt_mut()
+        self.hprt_reg().ptr()
     }
 
     #[doc="Read the HPRT register."]
     #[inline] pub fn hprt(&self) -> Hprt { 
-        unsafe {
-            read_volatile(self.hprt_ptr())
-        }
+        self.hprt_reg().read()
     }
 
     #[doc="Write the HPRT register."]
+    #[inline] pub fn write_hprt(&self, value: Hprt) -> &Self { 
+        self.hprt_reg().write(value);
+        self
+    }
+
+    #[doc="Set the HPRT register."]
     #[inline] pub fn set_hprt<F: FnOnce(Hprt) -> Hprt>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.hprt_mut(), f(Hprt(0)));
-        }
+        self.hprt_reg().set(f);
         self
     }
 
     #[doc="Modify the HPRT register."]
     #[inline] pub fn with_hprt<F: FnOnce(Hprt) -> Hprt>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.hprt_mut(), f(self.hprt()));
-        }
+        self.hprt_reg().with(f);
         self
+    }
+
+    #[doc="Get the HCCHAR Register."]
+    #[inline] pub fn hcchar_reg(&self) -> RegisterArray<Hcchar, bits::R12> { 
+        RegisterArray::new(self.0 as *mut Hcchar, 0x100, 0x20)
     }
 
     #[doc="Get the *mut pointer for the HCCHAR register."]
     #[inline] pub fn hcchar_mut<I: Into<bits::R12>>(&self, index: I) -> *mut Hcchar { 
-        let index: usize = index.into().value() as usize;
-        (self.0 + 0x100 + (index * 32)) as *mut Hcchar
+        self.hcchar_reg().ptr(index.into())
     }
 
     #[doc="Get the *const pointer for the HCCHAR register."]
     #[inline] pub fn hcchar_ptr<I: Into<bits::R12>>(&self, index: I) -> *const Hcchar { 
-           self.hcchar_mut(index)
+        self.hcchar_reg().ptr(index.into())
     }
 
     #[doc="Read the HCCHAR register."]
     #[inline] pub fn hcchar<I: Into<bits::R12>>(&self, index: I) -> Hcchar { 
-        unsafe {
-            read_volatile(self.hcchar_ptr(index))
-        }
+        self.hcchar_reg().read(index.into())
     }
 
     #[doc="Write the HCCHAR register."]
+    #[inline] pub fn write_hcchar<I: Into<bits::R12>>(&self, index: I, value: Hcchar) -> &Self {
+        self.hcchar_reg().write(index.into(), value);
+        self
+    }
+
+    #[doc="Set the HCCHAR register."]
     #[inline] pub fn set_hcchar<I: Into<bits::R12>, F: FnOnce(Hcchar) -> Hcchar>(&self, index: I, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.hcchar_mut(index), f(Hcchar(0)));
-        }
+        self.hcchar_reg().set(index.into(), f);
         self
     }
 
     #[doc="Modify the HCCHAR register."]
     #[inline] pub fn with_hcchar<I: Into<bits::R12> + Copy, F: FnOnce(Hcchar) -> Hcchar>(&self, index: I, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.hcchar_mut(index), f(self.hcchar(index)));
-        }
+        self.hcchar_reg().with(index.into(), f);
         self
+    }
+
+    #[doc="Get the HCINT Register."]
+    #[inline] pub fn hcint_reg(&self) -> RegisterArray<Hcint, bits::R12> { 
+        RegisterArray::new(self.0 as *mut Hcint, 0x108, 0x20)
     }
 
     #[doc="Get the *mut pointer for the HCINT register."]
     #[inline] pub fn hcint_mut<I: Into<bits::R12>>(&self, index: I) -> *mut Hcint { 
-        let index: usize = index.into().value() as usize;
-        (self.0 + 0x108 + (index * 32)) as *mut Hcint
+        self.hcint_reg().ptr(index.into())
     }
 
     #[doc="Get the *const pointer for the HCINT register."]
     #[inline] pub fn hcint_ptr<I: Into<bits::R12>>(&self, index: I) -> *const Hcint { 
-           self.hcint_mut(index)
+        self.hcint_reg().ptr(index.into())
     }
 
     #[doc="Read the HCINT register."]
     #[inline] pub fn hcint<I: Into<bits::R12>>(&self, index: I) -> Hcint { 
-        unsafe {
-            read_volatile(self.hcint_ptr(index))
-        }
+        self.hcint_reg().read(index.into())
     }
 
     #[doc="Write the HCINT register."]
+    #[inline] pub fn write_hcint<I: Into<bits::R12>>(&self, index: I, value: Hcint) -> &Self {
+        self.hcint_reg().write(index.into(), value);
+        self
+    }
+
+    #[doc="Set the HCINT register."]
     #[inline] pub fn set_hcint<I: Into<bits::R12>, F: FnOnce(Hcint) -> Hcint>(&self, index: I, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.hcint_mut(index), f(Hcint(0)));
-        }
+        self.hcint_reg().set(index.into(), f);
         self
     }
 
     #[doc="Modify the HCINT register."]
     #[inline] pub fn with_hcint<I: Into<bits::R12> + Copy, F: FnOnce(Hcint) -> Hcint>(&self, index: I, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.hcint_mut(index), f(self.hcint(index)));
-        }
+        self.hcint_reg().with(index.into(), f);
         self
+    }
+
+    #[doc="Get the HCINTMSK Register."]
+    #[inline] pub fn hcintmsk_reg(&self) -> RegisterArray<Hcintmsk, bits::R12> { 
+        RegisterArray::new(self.0 as *mut Hcintmsk, 0x10c, 0x20)
     }
 
     #[doc="Get the *mut pointer for the HCINTMSK register."]
     #[inline] pub fn hcintmsk_mut<I: Into<bits::R12>>(&self, index: I) -> *mut Hcintmsk { 
-        let index: usize = index.into().value() as usize;
-        (self.0 + 0x10c + (index * 32)) as *mut Hcintmsk
+        self.hcintmsk_reg().ptr(index.into())
     }
 
     #[doc="Get the *const pointer for the HCINTMSK register."]
     #[inline] pub fn hcintmsk_ptr<I: Into<bits::R12>>(&self, index: I) -> *const Hcintmsk { 
-           self.hcintmsk_mut(index)
+        self.hcintmsk_reg().ptr(index.into())
     }
 
     #[doc="Read the HCINTMSK register."]
     #[inline] pub fn hcintmsk<I: Into<bits::R12>>(&self, index: I) -> Hcintmsk { 
-        unsafe {
-            read_volatile(self.hcintmsk_ptr(index))
-        }
+        self.hcintmsk_reg().read(index.into())
     }
 
     #[doc="Write the HCINTMSK register."]
+    #[inline] pub fn write_hcintmsk<I: Into<bits::R12>>(&self, index: I, value: Hcintmsk) -> &Self {
+        self.hcintmsk_reg().write(index.into(), value);
+        self
+    }
+
+    #[doc="Set the HCINTMSK register."]
     #[inline] pub fn set_hcintmsk<I: Into<bits::R12>, F: FnOnce(Hcintmsk) -> Hcintmsk>(&self, index: I, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.hcintmsk_mut(index), f(Hcintmsk(0)));
-        }
+        self.hcintmsk_reg().set(index.into(), f);
         self
     }
 
     #[doc="Modify the HCINTMSK register."]
     #[inline] pub fn with_hcintmsk<I: Into<bits::R12> + Copy, F: FnOnce(Hcintmsk) -> Hcintmsk>(&self, index: I, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.hcintmsk_mut(index), f(self.hcintmsk(index)));
-        }
+        self.hcintmsk_reg().with(index.into(), f);
         self
+    }
+
+    #[doc="Get the HCTSIZ Register."]
+    #[inline] pub fn hctsiz_reg(&self) -> RegisterArray<Hctsiz, bits::R12> { 
+        RegisterArray::new(self.0 as *mut Hctsiz, 0x110, 0x20)
     }
 
     #[doc="Get the *mut pointer for the HCTSIZ register."]
     #[inline] pub fn hctsiz_mut<I: Into<bits::R12>>(&self, index: I) -> *mut Hctsiz { 
-        let index: usize = index.into().value() as usize;
-        (self.0 + 0x110 + (index * 32)) as *mut Hctsiz
+        self.hctsiz_reg().ptr(index.into())
     }
 
     #[doc="Get the *const pointer for the HCTSIZ register."]
     #[inline] pub fn hctsiz_ptr<I: Into<bits::R12>>(&self, index: I) -> *const Hctsiz { 
-           self.hctsiz_mut(index)
+        self.hctsiz_reg().ptr(index.into())
     }
 
     #[doc="Read the HCTSIZ register."]
     #[inline] pub fn hctsiz<I: Into<bits::R12>>(&self, index: I) -> Hctsiz { 
-        unsafe {
-            read_volatile(self.hctsiz_ptr(index))
-        }
+        self.hctsiz_reg().read(index.into())
     }
 
     #[doc="Write the HCTSIZ register."]
+    #[inline] pub fn write_hctsiz<I: Into<bits::R12>>(&self, index: I, value: Hctsiz) -> &Self {
+        self.hctsiz_reg().write(index.into(), value);
+        self
+    }
+
+    #[doc="Set the HCTSIZ register."]
     #[inline] pub fn set_hctsiz<I: Into<bits::R12>, F: FnOnce(Hctsiz) -> Hctsiz>(&self, index: I, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.hctsiz_mut(index), f(Hctsiz(0)));
-        }
+        self.hctsiz_reg().set(index.into(), f);
         self
     }
 
     #[doc="Modify the HCTSIZ register."]
     #[inline] pub fn with_hctsiz<I: Into<bits::R12> + Copy, F: FnOnce(Hctsiz) -> Hctsiz>(&self, index: I, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.hctsiz_mut(index), f(self.hctsiz(index)));
-        }
+        self.hctsiz_reg().with(index.into(), f);
         self
     }
 

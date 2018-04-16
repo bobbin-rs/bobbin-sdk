@@ -4,303 +4,350 @@
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct EthernetPtpPeriph(pub usize);
 impl EthernetPtpPeriph {
+    #[doc="Get the PTPTSCR Register."]
+    #[inline] pub fn ptptscr_reg(&self) -> Register<Ptptscr> { 
+        Register::new(self.0 as *mut Ptptscr, 0x0)
+    }
+
     #[doc="Get the *mut pointer for the PTPTSCR register."]
     #[inline] pub fn ptptscr_mut(&self) -> *mut Ptptscr { 
-        (self.0 + 0x0) as *mut Ptptscr
+        self.ptptscr_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the PTPTSCR register."]
     #[inline] pub fn ptptscr_ptr(&self) -> *const Ptptscr { 
-           self.ptptscr_mut()
+        self.ptptscr_reg().ptr()
     }
 
     #[doc="Read the PTPTSCR register."]
     #[inline] pub fn ptptscr(&self) -> Ptptscr { 
-        unsafe {
-            read_volatile(self.ptptscr_ptr())
-        }
+        self.ptptscr_reg().read()
     }
 
     #[doc="Write the PTPTSCR register."]
+    #[inline] pub fn write_ptptscr(&self, value: Ptptscr) -> &Self { 
+        self.ptptscr_reg().write(value);
+        self
+    }
+
+    #[doc="Set the PTPTSCR register."]
     #[inline] pub fn set_ptptscr<F: FnOnce(Ptptscr) -> Ptptscr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.ptptscr_mut(), f(Ptptscr(0)));
-        }
+        self.ptptscr_reg().set(f);
         self
     }
 
     #[doc="Modify the PTPTSCR register."]
     #[inline] pub fn with_ptptscr<F: FnOnce(Ptptscr) -> Ptptscr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.ptptscr_mut(), f(self.ptptscr()));
-        }
+        self.ptptscr_reg().with(f);
         self
+    }
+
+    #[doc="Get the PTPSSIR Register."]
+    #[inline] pub fn ptpssir_reg(&self) -> Register<Ptpssir> { 
+        Register::new(self.0 as *mut Ptpssir, 0x4)
     }
 
     #[doc="Get the *mut pointer for the PTPSSIR register."]
     #[inline] pub fn ptpssir_mut(&self) -> *mut Ptpssir { 
-        (self.0 + 0x4) as *mut Ptpssir
+        self.ptpssir_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the PTPSSIR register."]
     #[inline] pub fn ptpssir_ptr(&self) -> *const Ptpssir { 
-           self.ptpssir_mut()
+        self.ptpssir_reg().ptr()
     }
 
     #[doc="Read the PTPSSIR register."]
     #[inline] pub fn ptpssir(&self) -> Ptpssir { 
-        unsafe {
-            read_volatile(self.ptpssir_ptr())
-        }
+        self.ptpssir_reg().read()
     }
 
     #[doc="Write the PTPSSIR register."]
+    #[inline] pub fn write_ptpssir(&self, value: Ptpssir) -> &Self { 
+        self.ptpssir_reg().write(value);
+        self
+    }
+
+    #[doc="Set the PTPSSIR register."]
     #[inline] pub fn set_ptpssir<F: FnOnce(Ptpssir) -> Ptpssir>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.ptpssir_mut(), f(Ptpssir(0)));
-        }
+        self.ptpssir_reg().set(f);
         self
     }
 
     #[doc="Modify the PTPSSIR register."]
     #[inline] pub fn with_ptpssir<F: FnOnce(Ptpssir) -> Ptpssir>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.ptpssir_mut(), f(self.ptpssir()));
-        }
+        self.ptpssir_reg().with(f);
         self
+    }
+
+    #[doc="Get the PTPTSHR Register."]
+    #[inline] pub fn ptptshr_reg(&self) -> Register<Ptptshr> { 
+        Register::new(self.0 as *mut Ptptshr, 0x8)
     }
 
     #[doc="Get the *mut pointer for the PTPTSHR register."]
     #[inline] pub fn ptptshr_mut(&self) -> *mut Ptptshr { 
-        (self.0 + 0x8) as *mut Ptptshr
+        self.ptptshr_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the PTPTSHR register."]
     #[inline] pub fn ptptshr_ptr(&self) -> *const Ptptshr { 
-           self.ptptshr_mut()
+        self.ptptshr_reg().ptr()
     }
 
     #[doc="Read the PTPTSHR register."]
     #[inline] pub fn ptptshr(&self) -> Ptptshr { 
-        unsafe {
-            read_volatile(self.ptptshr_ptr())
-        }
+        self.ptptshr_reg().read()
+    }
+
+    #[doc="Get the PTPTSLR Register."]
+    #[inline] pub fn ptptslr_reg(&self) -> Register<Ptptslr> { 
+        Register::new(self.0 as *mut Ptptslr, 0xc)
     }
 
     #[doc="Get the *mut pointer for the PTPTSLR register."]
     #[inline] pub fn ptptslr_mut(&self) -> *mut Ptptslr { 
-        (self.0 + 0xc) as *mut Ptptslr
+        self.ptptslr_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the PTPTSLR register."]
     #[inline] pub fn ptptslr_ptr(&self) -> *const Ptptslr { 
-           self.ptptslr_mut()
+        self.ptptslr_reg().ptr()
     }
 
     #[doc="Read the PTPTSLR register."]
     #[inline] pub fn ptptslr(&self) -> Ptptslr { 
-        unsafe {
-            read_volatile(self.ptptslr_ptr())
-        }
+        self.ptptslr_reg().read()
+    }
+
+    #[doc="Get the PTPTSHUR Register."]
+    #[inline] pub fn ptptshur_reg(&self) -> Register<Ptptshur> { 
+        Register::new(self.0 as *mut Ptptshur, 0x10)
     }
 
     #[doc="Get the *mut pointer for the PTPTSHUR register."]
     #[inline] pub fn ptptshur_mut(&self) -> *mut Ptptshur { 
-        (self.0 + 0x10) as *mut Ptptshur
+        self.ptptshur_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the PTPTSHUR register."]
     #[inline] pub fn ptptshur_ptr(&self) -> *const Ptptshur { 
-           self.ptptshur_mut()
+        self.ptptshur_reg().ptr()
     }
 
     #[doc="Read the PTPTSHUR register."]
     #[inline] pub fn ptptshur(&self) -> Ptptshur { 
-        unsafe {
-            read_volatile(self.ptptshur_ptr())
-        }
+        self.ptptshur_reg().read()
     }
 
     #[doc="Write the PTPTSHUR register."]
+    #[inline] pub fn write_ptptshur(&self, value: Ptptshur) -> &Self { 
+        self.ptptshur_reg().write(value);
+        self
+    }
+
+    #[doc="Set the PTPTSHUR register."]
     #[inline] pub fn set_ptptshur<F: FnOnce(Ptptshur) -> Ptptshur>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.ptptshur_mut(), f(Ptptshur(0)));
-        }
+        self.ptptshur_reg().set(f);
         self
     }
 
     #[doc="Modify the PTPTSHUR register."]
     #[inline] pub fn with_ptptshur<F: FnOnce(Ptptshur) -> Ptptshur>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.ptptshur_mut(), f(self.ptptshur()));
-        }
+        self.ptptshur_reg().with(f);
         self
+    }
+
+    #[doc="Get the PTPTSLUR Register."]
+    #[inline] pub fn ptptslur_reg(&self) -> Register<Ptptslur> { 
+        Register::new(self.0 as *mut Ptptslur, 0x14)
     }
 
     #[doc="Get the *mut pointer for the PTPTSLUR register."]
     #[inline] pub fn ptptslur_mut(&self) -> *mut Ptptslur { 
-        (self.0 + 0x14) as *mut Ptptslur
+        self.ptptslur_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the PTPTSLUR register."]
     #[inline] pub fn ptptslur_ptr(&self) -> *const Ptptslur { 
-           self.ptptslur_mut()
+        self.ptptslur_reg().ptr()
     }
 
     #[doc="Read the PTPTSLUR register."]
     #[inline] pub fn ptptslur(&self) -> Ptptslur { 
-        unsafe {
-            read_volatile(self.ptptslur_ptr())
-        }
+        self.ptptslur_reg().read()
     }
 
     #[doc="Write the PTPTSLUR register."]
+    #[inline] pub fn write_ptptslur(&self, value: Ptptslur) -> &Self { 
+        self.ptptslur_reg().write(value);
+        self
+    }
+
+    #[doc="Set the PTPTSLUR register."]
     #[inline] pub fn set_ptptslur<F: FnOnce(Ptptslur) -> Ptptslur>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.ptptslur_mut(), f(Ptptslur(0)));
-        }
+        self.ptptslur_reg().set(f);
         self
     }
 
     #[doc="Modify the PTPTSLUR register."]
     #[inline] pub fn with_ptptslur<F: FnOnce(Ptptslur) -> Ptptslur>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.ptptslur_mut(), f(self.ptptslur()));
-        }
+        self.ptptslur_reg().with(f);
         self
+    }
+
+    #[doc="Get the PTPTSAR Register."]
+    #[inline] pub fn ptptsar_reg(&self) -> Register<Ptptsar> { 
+        Register::new(self.0 as *mut Ptptsar, 0x18)
     }
 
     #[doc="Get the *mut pointer for the PTPTSAR register."]
     #[inline] pub fn ptptsar_mut(&self) -> *mut Ptptsar { 
-        (self.0 + 0x18) as *mut Ptptsar
+        self.ptptsar_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the PTPTSAR register."]
     #[inline] pub fn ptptsar_ptr(&self) -> *const Ptptsar { 
-           self.ptptsar_mut()
+        self.ptptsar_reg().ptr()
     }
 
     #[doc="Read the PTPTSAR register."]
     #[inline] pub fn ptptsar(&self) -> Ptptsar { 
-        unsafe {
-            read_volatile(self.ptptsar_ptr())
-        }
+        self.ptptsar_reg().read()
     }
 
     #[doc="Write the PTPTSAR register."]
+    #[inline] pub fn write_ptptsar(&self, value: Ptptsar) -> &Self { 
+        self.ptptsar_reg().write(value);
+        self
+    }
+
+    #[doc="Set the PTPTSAR register."]
     #[inline] pub fn set_ptptsar<F: FnOnce(Ptptsar) -> Ptptsar>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.ptptsar_mut(), f(Ptptsar(0)));
-        }
+        self.ptptsar_reg().set(f);
         self
     }
 
     #[doc="Modify the PTPTSAR register."]
     #[inline] pub fn with_ptptsar<F: FnOnce(Ptptsar) -> Ptptsar>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.ptptsar_mut(), f(self.ptptsar()));
-        }
+        self.ptptsar_reg().with(f);
         self
+    }
+
+    #[doc="Get the PTPTTHR Register."]
+    #[inline] pub fn ptptthr_reg(&self) -> Register<Ptptthr> { 
+        Register::new(self.0 as *mut Ptptthr, 0x1c)
     }
 
     #[doc="Get the *mut pointer for the PTPTTHR register."]
     #[inline] pub fn ptptthr_mut(&self) -> *mut Ptptthr { 
-        (self.0 + 0x1c) as *mut Ptptthr
+        self.ptptthr_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the PTPTTHR register."]
     #[inline] pub fn ptptthr_ptr(&self) -> *const Ptptthr { 
-           self.ptptthr_mut()
+        self.ptptthr_reg().ptr()
     }
 
     #[doc="Read the PTPTTHR register."]
     #[inline] pub fn ptptthr(&self) -> Ptptthr { 
-        unsafe {
-            read_volatile(self.ptptthr_ptr())
-        }
+        self.ptptthr_reg().read()
     }
 
     #[doc="Write the PTPTTHR register."]
+    #[inline] pub fn write_ptptthr(&self, value: Ptptthr) -> &Self { 
+        self.ptptthr_reg().write(value);
+        self
+    }
+
+    #[doc="Set the PTPTTHR register."]
     #[inline] pub fn set_ptptthr<F: FnOnce(Ptptthr) -> Ptptthr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.ptptthr_mut(), f(Ptptthr(0)));
-        }
+        self.ptptthr_reg().set(f);
         self
     }
 
     #[doc="Modify the PTPTTHR register."]
     #[inline] pub fn with_ptptthr<F: FnOnce(Ptptthr) -> Ptptthr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.ptptthr_mut(), f(self.ptptthr()));
-        }
+        self.ptptthr_reg().with(f);
         self
+    }
+
+    #[doc="Get the PTPTTLR Register."]
+    #[inline] pub fn ptpttlr_reg(&self) -> Register<Ptpttlr> { 
+        Register::new(self.0 as *mut Ptpttlr, 0x20)
     }
 
     #[doc="Get the *mut pointer for the PTPTTLR register."]
     #[inline] pub fn ptpttlr_mut(&self) -> *mut Ptpttlr { 
-        (self.0 + 0x20) as *mut Ptpttlr
+        self.ptpttlr_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the PTPTTLR register."]
     #[inline] pub fn ptpttlr_ptr(&self) -> *const Ptpttlr { 
-           self.ptpttlr_mut()
+        self.ptpttlr_reg().ptr()
     }
 
     #[doc="Read the PTPTTLR register."]
     #[inline] pub fn ptpttlr(&self) -> Ptpttlr { 
-        unsafe {
-            read_volatile(self.ptpttlr_ptr())
-        }
+        self.ptpttlr_reg().read()
     }
 
     #[doc="Write the PTPTTLR register."]
+    #[inline] pub fn write_ptpttlr(&self, value: Ptpttlr) -> &Self { 
+        self.ptpttlr_reg().write(value);
+        self
+    }
+
+    #[doc="Set the PTPTTLR register."]
     #[inline] pub fn set_ptpttlr<F: FnOnce(Ptpttlr) -> Ptpttlr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.ptpttlr_mut(), f(Ptpttlr(0)));
-        }
+        self.ptpttlr_reg().set(f);
         self
     }
 
     #[doc="Modify the PTPTTLR register."]
     #[inline] pub fn with_ptpttlr<F: FnOnce(Ptpttlr) -> Ptpttlr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.ptpttlr_mut(), f(self.ptpttlr()));
-        }
+        self.ptpttlr_reg().with(f);
         self
+    }
+
+    #[doc="Get the PTPTSSR Register."]
+    #[inline] pub fn ptptssr_reg(&self) -> Register<Ptptssr> { 
+        Register::new(self.0 as *mut Ptptssr, 0x28)
     }
 
     #[doc="Get the *mut pointer for the PTPTSSR register."]
     #[inline] pub fn ptptssr_mut(&self) -> *mut Ptptssr { 
-        (self.0 + 0x28) as *mut Ptptssr
+        self.ptptssr_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the PTPTSSR register."]
     #[inline] pub fn ptptssr_ptr(&self) -> *const Ptptssr { 
-           self.ptptssr_mut()
+        self.ptptssr_reg().ptr()
     }
 
     #[doc="Read the PTPTSSR register."]
     #[inline] pub fn ptptssr(&self) -> Ptptssr { 
-        unsafe {
-            read_volatile(self.ptptssr_ptr())
-        }
+        self.ptptssr_reg().read()
+    }
+
+    #[doc="Get the PTPPPSCR Register."]
+    #[inline] pub fn ptpppscr_reg(&self) -> Register<Ptpppscr> { 
+        Register::new(self.0 as *mut Ptpppscr, 0x2c)
     }
 
     #[doc="Get the *mut pointer for the PTPPPSCR register."]
     #[inline] pub fn ptpppscr_mut(&self) -> *mut Ptpppscr { 
-        (self.0 + 0x2c) as *mut Ptpppscr
+        self.ptpppscr_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the PTPPPSCR register."]
     #[inline] pub fn ptpppscr_ptr(&self) -> *const Ptpppscr { 
-           self.ptpppscr_mut()
+        self.ptpppscr_reg().ptr()
     }
 
     #[doc="Read the PTPPPSCR register."]
     #[inline] pub fn ptpppscr(&self) -> Ptpppscr { 
-        unsafe {
-            read_volatile(self.ptpppscr_ptr())
-        }
+        self.ptpppscr_reg().read()
     }
 
 }

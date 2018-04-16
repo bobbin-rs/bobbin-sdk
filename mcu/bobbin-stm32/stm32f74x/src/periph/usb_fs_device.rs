@@ -5,655 +5,747 @@
 pub struct UsbFsDevicePeriph(pub usize); 
 
 impl UsbFsDevicePeriph {
+    #[doc="Get the DCFG Register."]
+    #[inline] pub fn dcfg_reg(&self) -> Register<Dcfg> { 
+        Register::new(self.0 as *mut Dcfg, 0x0)
+    }
+
     #[doc="Get the *mut pointer for the DCFG register."]
     #[inline] pub fn dcfg_mut(&self) -> *mut Dcfg { 
-        (self.0 + 0x0) as *mut Dcfg
+        self.dcfg_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the DCFG register."]
     #[inline] pub fn dcfg_ptr(&self) -> *const Dcfg { 
-           self.dcfg_mut()
+        self.dcfg_reg().ptr()
     }
 
     #[doc="Read the DCFG register."]
     #[inline] pub fn dcfg(&self) -> Dcfg { 
-        unsafe {
-            read_volatile(self.dcfg_ptr())
-        }
+        self.dcfg_reg().read()
     }
 
     #[doc="Write the DCFG register."]
+    #[inline] pub fn write_dcfg(&self, value: Dcfg) -> &Self { 
+        self.dcfg_reg().write(value);
+        self
+    }
+
+    #[doc="Set the DCFG register."]
     #[inline] pub fn set_dcfg<F: FnOnce(Dcfg) -> Dcfg>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.dcfg_mut(), f(Dcfg(0)));
-        }
+        self.dcfg_reg().set(f);
         self
     }
 
     #[doc="Modify the DCFG register."]
     #[inline] pub fn with_dcfg<F: FnOnce(Dcfg) -> Dcfg>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.dcfg_mut(), f(self.dcfg()));
-        }
+        self.dcfg_reg().with(f);
         self
+    }
+
+    #[doc="Get the DCTL Register."]
+    #[inline] pub fn dctl_reg(&self) -> Register<Dctl> { 
+        Register::new(self.0 as *mut Dctl, 0x4)
     }
 
     #[doc="Get the *mut pointer for the DCTL register."]
     #[inline] pub fn dctl_mut(&self) -> *mut Dctl { 
-        (self.0 + 0x4) as *mut Dctl
+        self.dctl_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the DCTL register."]
     #[inline] pub fn dctl_ptr(&self) -> *const Dctl { 
-           self.dctl_mut()
+        self.dctl_reg().ptr()
     }
 
     #[doc="Read the DCTL register."]
     #[inline] pub fn dctl(&self) -> Dctl { 
-        unsafe {
-            read_volatile(self.dctl_ptr())
-        }
+        self.dctl_reg().read()
     }
 
     #[doc="Write the DCTL register."]
+    #[inline] pub fn write_dctl(&self, value: Dctl) -> &Self { 
+        self.dctl_reg().write(value);
+        self
+    }
+
+    #[doc="Set the DCTL register."]
     #[inline] pub fn set_dctl<F: FnOnce(Dctl) -> Dctl>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.dctl_mut(), f(Dctl(0)));
-        }
+        self.dctl_reg().set(f);
         self
     }
 
     #[doc="Modify the DCTL register."]
     #[inline] pub fn with_dctl<F: FnOnce(Dctl) -> Dctl>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.dctl_mut(), f(self.dctl()));
-        }
+        self.dctl_reg().with(f);
         self
+    }
+
+    #[doc="Get the DSTS Register."]
+    #[inline] pub fn dsts_reg(&self) -> Register<Dsts> { 
+        Register::new(self.0 as *mut Dsts, 0x8)
     }
 
     #[doc="Get the *mut pointer for the DSTS register."]
     #[inline] pub fn dsts_mut(&self) -> *mut Dsts { 
-        (self.0 + 0x8) as *mut Dsts
+        self.dsts_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the DSTS register."]
     #[inline] pub fn dsts_ptr(&self) -> *const Dsts { 
-           self.dsts_mut()
+        self.dsts_reg().ptr()
     }
 
     #[doc="Read the DSTS register."]
     #[inline] pub fn dsts(&self) -> Dsts { 
-        unsafe {
-            read_volatile(self.dsts_ptr())
-        }
+        self.dsts_reg().read()
+    }
+
+    #[doc="Get the DIEPMSK Register."]
+    #[inline] pub fn diepmsk_reg(&self) -> Register<Diepmsk> { 
+        Register::new(self.0 as *mut Diepmsk, 0x10)
     }
 
     #[doc="Get the *mut pointer for the DIEPMSK register."]
     #[inline] pub fn diepmsk_mut(&self) -> *mut Diepmsk { 
-        (self.0 + 0x10) as *mut Diepmsk
+        self.diepmsk_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the DIEPMSK register."]
     #[inline] pub fn diepmsk_ptr(&self) -> *const Diepmsk { 
-           self.diepmsk_mut()
+        self.diepmsk_reg().ptr()
     }
 
     #[doc="Read the DIEPMSK register."]
     #[inline] pub fn diepmsk(&self) -> Diepmsk { 
-        unsafe {
-            read_volatile(self.diepmsk_ptr())
-        }
+        self.diepmsk_reg().read()
     }
 
     #[doc="Write the DIEPMSK register."]
+    #[inline] pub fn write_diepmsk(&self, value: Diepmsk) -> &Self { 
+        self.diepmsk_reg().write(value);
+        self
+    }
+
+    #[doc="Set the DIEPMSK register."]
     #[inline] pub fn set_diepmsk<F: FnOnce(Diepmsk) -> Diepmsk>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.diepmsk_mut(), f(Diepmsk(0)));
-        }
+        self.diepmsk_reg().set(f);
         self
     }
 
     #[doc="Modify the DIEPMSK register."]
     #[inline] pub fn with_diepmsk<F: FnOnce(Diepmsk) -> Diepmsk>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.diepmsk_mut(), f(self.diepmsk()));
-        }
+        self.diepmsk_reg().with(f);
         self
+    }
+
+    #[doc="Get the DOEPMSK Register."]
+    #[inline] pub fn doepmsk_reg(&self) -> Register<Doepmsk> { 
+        Register::new(self.0 as *mut Doepmsk, 0x14)
     }
 
     #[doc="Get the *mut pointer for the DOEPMSK register."]
     #[inline] pub fn doepmsk_mut(&self) -> *mut Doepmsk { 
-        (self.0 + 0x14) as *mut Doepmsk
+        self.doepmsk_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the DOEPMSK register."]
     #[inline] pub fn doepmsk_ptr(&self) -> *const Doepmsk { 
-           self.doepmsk_mut()
+        self.doepmsk_reg().ptr()
     }
 
     #[doc="Read the DOEPMSK register."]
     #[inline] pub fn doepmsk(&self) -> Doepmsk { 
-        unsafe {
-            read_volatile(self.doepmsk_ptr())
-        }
+        self.doepmsk_reg().read()
     }
 
     #[doc="Write the DOEPMSK register."]
+    #[inline] pub fn write_doepmsk(&self, value: Doepmsk) -> &Self { 
+        self.doepmsk_reg().write(value);
+        self
+    }
+
+    #[doc="Set the DOEPMSK register."]
     #[inline] pub fn set_doepmsk<F: FnOnce(Doepmsk) -> Doepmsk>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.doepmsk_mut(), f(Doepmsk(0)));
-        }
+        self.doepmsk_reg().set(f);
         self
     }
 
     #[doc="Modify the DOEPMSK register."]
     #[inline] pub fn with_doepmsk<F: FnOnce(Doepmsk) -> Doepmsk>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.doepmsk_mut(), f(self.doepmsk()));
-        }
+        self.doepmsk_reg().with(f);
         self
+    }
+
+    #[doc="Get the DAINT Register."]
+    #[inline] pub fn daint_reg(&self) -> Register<Daint> { 
+        Register::new(self.0 as *mut Daint, 0x18)
     }
 
     #[doc="Get the *mut pointer for the DAINT register."]
     #[inline] pub fn daint_mut(&self) -> *mut Daint { 
-        (self.0 + 0x18) as *mut Daint
+        self.daint_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the DAINT register."]
     #[inline] pub fn daint_ptr(&self) -> *const Daint { 
-           self.daint_mut()
+        self.daint_reg().ptr()
     }
 
     #[doc="Read the DAINT register."]
     #[inline] pub fn daint(&self) -> Daint { 
-        unsafe {
-            read_volatile(self.daint_ptr())
-        }
+        self.daint_reg().read()
+    }
+
+    #[doc="Get the DAINTMSK Register."]
+    #[inline] pub fn daintmsk_reg(&self) -> Register<Daintmsk> { 
+        Register::new(self.0 as *mut Daintmsk, 0x1c)
     }
 
     #[doc="Get the *mut pointer for the DAINTMSK register."]
     #[inline] pub fn daintmsk_mut(&self) -> *mut Daintmsk { 
-        (self.0 + 0x1c) as *mut Daintmsk
+        self.daintmsk_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the DAINTMSK register."]
     #[inline] pub fn daintmsk_ptr(&self) -> *const Daintmsk { 
-           self.daintmsk_mut()
+        self.daintmsk_reg().ptr()
     }
 
     #[doc="Read the DAINTMSK register."]
     #[inline] pub fn daintmsk(&self) -> Daintmsk { 
-        unsafe {
-            read_volatile(self.daintmsk_ptr())
-        }
+        self.daintmsk_reg().read()
     }
 
     #[doc="Write the DAINTMSK register."]
+    #[inline] pub fn write_daintmsk(&self, value: Daintmsk) -> &Self { 
+        self.daintmsk_reg().write(value);
+        self
+    }
+
+    #[doc="Set the DAINTMSK register."]
     #[inline] pub fn set_daintmsk<F: FnOnce(Daintmsk) -> Daintmsk>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.daintmsk_mut(), f(Daintmsk(0)));
-        }
+        self.daintmsk_reg().set(f);
         self
     }
 
     #[doc="Modify the DAINTMSK register."]
     #[inline] pub fn with_daintmsk<F: FnOnce(Daintmsk) -> Daintmsk>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.daintmsk_mut(), f(self.daintmsk()));
-        }
+        self.daintmsk_reg().with(f);
         self
+    }
+
+    #[doc="Get the DVBUSDIS Register."]
+    #[inline] pub fn dvbusdis_reg(&self) -> Register<Dvbusdis> { 
+        Register::new(self.0 as *mut Dvbusdis, 0x28)
     }
 
     #[doc="Get the *mut pointer for the DVBUSDIS register."]
     #[inline] pub fn dvbusdis_mut(&self) -> *mut Dvbusdis { 
-        (self.0 + 0x28) as *mut Dvbusdis
+        self.dvbusdis_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the DVBUSDIS register."]
     #[inline] pub fn dvbusdis_ptr(&self) -> *const Dvbusdis { 
-           self.dvbusdis_mut()
+        self.dvbusdis_reg().ptr()
     }
 
     #[doc="Read the DVBUSDIS register."]
     #[inline] pub fn dvbusdis(&self) -> Dvbusdis { 
-        unsafe {
-            read_volatile(self.dvbusdis_ptr())
-        }
+        self.dvbusdis_reg().read()
     }
 
     #[doc="Write the DVBUSDIS register."]
+    #[inline] pub fn write_dvbusdis(&self, value: Dvbusdis) -> &Self { 
+        self.dvbusdis_reg().write(value);
+        self
+    }
+
+    #[doc="Set the DVBUSDIS register."]
     #[inline] pub fn set_dvbusdis<F: FnOnce(Dvbusdis) -> Dvbusdis>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.dvbusdis_mut(), f(Dvbusdis(0)));
-        }
+        self.dvbusdis_reg().set(f);
         self
     }
 
     #[doc="Modify the DVBUSDIS register."]
     #[inline] pub fn with_dvbusdis<F: FnOnce(Dvbusdis) -> Dvbusdis>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.dvbusdis_mut(), f(self.dvbusdis()));
-        }
+        self.dvbusdis_reg().with(f);
         self
+    }
+
+    #[doc="Get the DVBUSPULSE Register."]
+    #[inline] pub fn dvbuspulse_reg(&self) -> Register<Dvbuspulse> { 
+        Register::new(self.0 as *mut Dvbuspulse, 0x2c)
     }
 
     #[doc="Get the *mut pointer for the DVBUSPULSE register."]
     #[inline] pub fn dvbuspulse_mut(&self) -> *mut Dvbuspulse { 
-        (self.0 + 0x2c) as *mut Dvbuspulse
+        self.dvbuspulse_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the DVBUSPULSE register."]
     #[inline] pub fn dvbuspulse_ptr(&self) -> *const Dvbuspulse { 
-           self.dvbuspulse_mut()
+        self.dvbuspulse_reg().ptr()
     }
 
     #[doc="Read the DVBUSPULSE register."]
     #[inline] pub fn dvbuspulse(&self) -> Dvbuspulse { 
-        unsafe {
-            read_volatile(self.dvbuspulse_ptr())
-        }
+        self.dvbuspulse_reg().read()
     }
 
     #[doc="Write the DVBUSPULSE register."]
+    #[inline] pub fn write_dvbuspulse(&self, value: Dvbuspulse) -> &Self { 
+        self.dvbuspulse_reg().write(value);
+        self
+    }
+
+    #[doc="Set the DVBUSPULSE register."]
     #[inline] pub fn set_dvbuspulse<F: FnOnce(Dvbuspulse) -> Dvbuspulse>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.dvbuspulse_mut(), f(Dvbuspulse(0)));
-        }
+        self.dvbuspulse_reg().set(f);
         self
     }
 
     #[doc="Modify the DVBUSPULSE register."]
     #[inline] pub fn with_dvbuspulse<F: FnOnce(Dvbuspulse) -> Dvbuspulse>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.dvbuspulse_mut(), f(self.dvbuspulse()));
-        }
+        self.dvbuspulse_reg().with(f);
         self
+    }
+
+    #[doc="Get the DIEPEMPMSK Register."]
+    #[inline] pub fn diepempmsk_reg(&self) -> Register<Diepempmsk> { 
+        Register::new(self.0 as *mut Diepempmsk, 0x34)
     }
 
     #[doc="Get the *mut pointer for the DIEPEMPMSK register."]
     #[inline] pub fn diepempmsk_mut(&self) -> *mut Diepempmsk { 
-        (self.0 + 0x34) as *mut Diepempmsk
+        self.diepempmsk_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the DIEPEMPMSK register."]
     #[inline] pub fn diepempmsk_ptr(&self) -> *const Diepempmsk { 
-           self.diepempmsk_mut()
+        self.diepempmsk_reg().ptr()
     }
 
     #[doc="Read the DIEPEMPMSK register."]
     #[inline] pub fn diepempmsk(&self) -> Diepempmsk { 
-        unsafe {
-            read_volatile(self.diepempmsk_ptr())
-        }
+        self.diepempmsk_reg().read()
     }
 
     #[doc="Write the DIEPEMPMSK register."]
+    #[inline] pub fn write_diepempmsk(&self, value: Diepempmsk) -> &Self { 
+        self.diepempmsk_reg().write(value);
+        self
+    }
+
+    #[doc="Set the DIEPEMPMSK register."]
     #[inline] pub fn set_diepempmsk<F: FnOnce(Diepempmsk) -> Diepempmsk>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.diepempmsk_mut(), f(Diepempmsk(0)));
-        }
+        self.diepempmsk_reg().set(f);
         self
     }
 
     #[doc="Modify the DIEPEMPMSK register."]
     #[inline] pub fn with_diepempmsk<F: FnOnce(Diepempmsk) -> Diepempmsk>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.diepempmsk_mut(), f(self.diepempmsk()));
-        }
+        self.diepempmsk_reg().with(f);
         self
+    }
+
+    #[doc="Get the DIEPCTL0 Register."]
+    #[inline] pub fn diepctl0_reg(&self) -> Register<Diepctl0> { 
+        Register::new(self.0 as *mut Diepctl0, 0x100)
     }
 
     #[doc="Get the *mut pointer for the DIEPCTL0 register."]
     #[inline] pub fn diepctl0_mut(&self) -> *mut Diepctl0 { 
-        (self.0 + 0x100) as *mut Diepctl0
+        self.diepctl0_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the DIEPCTL0 register."]
     #[inline] pub fn diepctl0_ptr(&self) -> *const Diepctl0 { 
-           self.diepctl0_mut()
+        self.diepctl0_reg().ptr()
     }
 
     #[doc="Read the DIEPCTL0 register."]
     #[inline] pub fn diepctl0(&self) -> Diepctl0 { 
-        unsafe {
-            read_volatile(self.diepctl0_ptr())
-        }
+        self.diepctl0_reg().read()
     }
 
     #[doc="Write the DIEPCTL0 register."]
+    #[inline] pub fn write_diepctl0(&self, value: Diepctl0) -> &Self { 
+        self.diepctl0_reg().write(value);
+        self
+    }
+
+    #[doc="Set the DIEPCTL0 register."]
     #[inline] pub fn set_diepctl0<F: FnOnce(Diepctl0) -> Diepctl0>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.diepctl0_mut(), f(Diepctl0(0)));
-        }
+        self.diepctl0_reg().set(f);
         self
     }
 
     #[doc="Modify the DIEPCTL0 register."]
     #[inline] pub fn with_diepctl0<F: FnOnce(Diepctl0) -> Diepctl0>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.diepctl0_mut(), f(self.diepctl0()));
-        }
+        self.diepctl0_reg().with(f);
         self
+    }
+
+    #[doc="Get the DIEPCTL Register."]
+    #[inline] pub fn diepctl_reg(&self) -> RegisterArray<Diepctl, bits::R6> { 
+        RegisterArray::new(self.0 as *mut Diepctl, 0x100, 0x20)
     }
 
     #[doc="Get the *mut pointer for the DIEPCTL register."]
     #[inline] pub fn diepctl_mut<I: Into<bits::R6>>(&self, index: I) -> *mut Diepctl { 
-        let index: usize = index.into().value() as usize;
-        (self.0 + 0x100 + (index * 32)) as *mut Diepctl
+        self.diepctl_reg().ptr(index.into())
     }
 
     #[doc="Get the *const pointer for the DIEPCTL register."]
     #[inline] pub fn diepctl_ptr<I: Into<bits::R6>>(&self, index: I) -> *const Diepctl { 
-           self.diepctl_mut(index)
+        self.diepctl_reg().ptr(index.into())
     }
 
     #[doc="Read the DIEPCTL register."]
     #[inline] pub fn diepctl<I: Into<bits::R6>>(&self, index: I) -> Diepctl { 
-        unsafe {
-            read_volatile(self.diepctl_ptr(index))
-        }
+        self.diepctl_reg().read(index.into())
     }
 
     #[doc="Write the DIEPCTL register."]
+    #[inline] pub fn write_diepctl<I: Into<bits::R6>>(&self, index: I, value: Diepctl) -> &Self {
+        self.diepctl_reg().write(index.into(), value);
+        self
+    }
+
+    #[doc="Set the DIEPCTL register."]
     #[inline] pub fn set_diepctl<I: Into<bits::R6>, F: FnOnce(Diepctl) -> Diepctl>(&self, index: I, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.diepctl_mut(index), f(Diepctl(0)));
-        }
+        self.diepctl_reg().set(index.into(), f);
         self
     }
 
     #[doc="Modify the DIEPCTL register."]
     #[inline] pub fn with_diepctl<I: Into<bits::R6> + Copy, F: FnOnce(Diepctl) -> Diepctl>(&self, index: I, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.diepctl_mut(index), f(self.diepctl(index)));
-        }
+        self.diepctl_reg().with(index.into(), f);
         self
+    }
+
+    #[doc="Get the DOEPCTL0 Register."]
+    #[inline] pub fn doepctl0_reg(&self) -> Register<Doepctl0> { 
+        Register::new(self.0 as *mut Doepctl0, 0x300)
     }
 
     #[doc="Get the *mut pointer for the DOEPCTL0 register."]
     #[inline] pub fn doepctl0_mut(&self) -> *mut Doepctl0 { 
-        (self.0 + 0x300) as *mut Doepctl0
+        self.doepctl0_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the DOEPCTL0 register."]
     #[inline] pub fn doepctl0_ptr(&self) -> *const Doepctl0 { 
-           self.doepctl0_mut()
+        self.doepctl0_reg().ptr()
     }
 
     #[doc="Read the DOEPCTL0 register."]
     #[inline] pub fn doepctl0(&self) -> Doepctl0 { 
-        unsafe {
-            read_volatile(self.doepctl0_ptr())
-        }
+        self.doepctl0_reg().read()
     }
 
     #[doc="Write the DOEPCTL0 register."]
+    #[inline] pub fn write_doepctl0(&self, value: Doepctl0) -> &Self { 
+        self.doepctl0_reg().write(value);
+        self
+    }
+
+    #[doc="Set the DOEPCTL0 register."]
     #[inline] pub fn set_doepctl0<F: FnOnce(Doepctl0) -> Doepctl0>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.doepctl0_mut(), f(Doepctl0(0)));
-        }
+        self.doepctl0_reg().set(f);
         self
     }
 
     #[doc="Modify the DOEPCTL0 register."]
     #[inline] pub fn with_doepctl0<F: FnOnce(Doepctl0) -> Doepctl0>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.doepctl0_mut(), f(self.doepctl0()));
-        }
+        self.doepctl0_reg().with(f);
         self
+    }
+
+    #[doc="Get the DOEPCTL Register."]
+    #[inline] pub fn doepctl_reg(&self) -> RegisterArray<Doepctl, bits::R6> { 
+        RegisterArray::new(self.0 as *mut Doepctl, 0x300, 0x20)
     }
 
     #[doc="Get the *mut pointer for the DOEPCTL register."]
     #[inline] pub fn doepctl_mut<I: Into<bits::R6>>(&self, index: I) -> *mut Doepctl { 
-        let index: usize = index.into().value() as usize;
-        (self.0 + 0x300 + (index * 32)) as *mut Doepctl
+        self.doepctl_reg().ptr(index.into())
     }
 
     #[doc="Get the *const pointer for the DOEPCTL register."]
     #[inline] pub fn doepctl_ptr<I: Into<bits::R6>>(&self, index: I) -> *const Doepctl { 
-           self.doepctl_mut(index)
+        self.doepctl_reg().ptr(index.into())
     }
 
     #[doc="Read the DOEPCTL register."]
     #[inline] pub fn doepctl<I: Into<bits::R6>>(&self, index: I) -> Doepctl { 
-        unsafe {
-            read_volatile(self.doepctl_ptr(index))
-        }
+        self.doepctl_reg().read(index.into())
     }
 
     #[doc="Write the DOEPCTL register."]
+    #[inline] pub fn write_doepctl<I: Into<bits::R6>>(&self, index: I, value: Doepctl) -> &Self {
+        self.doepctl_reg().write(index.into(), value);
+        self
+    }
+
+    #[doc="Set the DOEPCTL register."]
     #[inline] pub fn set_doepctl<I: Into<bits::R6>, F: FnOnce(Doepctl) -> Doepctl>(&self, index: I, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.doepctl_mut(index), f(Doepctl(0)));
-        }
+        self.doepctl_reg().set(index.into(), f);
         self
     }
 
     #[doc="Modify the DOEPCTL register."]
     #[inline] pub fn with_doepctl<I: Into<bits::R6> + Copy, F: FnOnce(Doepctl) -> Doepctl>(&self, index: I, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.doepctl_mut(index), f(self.doepctl(index)));
-        }
+        self.doepctl_reg().with(index.into(), f);
         self
+    }
+
+    #[doc="Get the DIEPINT Register."]
+    #[inline] pub fn diepint_reg(&self) -> RegisterArray<Diepint, bits::R6> { 
+        RegisterArray::new(self.0 as *mut Diepint, 0x108, 0x20)
     }
 
     #[doc="Get the *mut pointer for the DIEPINT register."]
     #[inline] pub fn diepint_mut<I: Into<bits::R6>>(&self, index: I) -> *mut Diepint { 
-        let index: usize = index.into().value() as usize;
-        (self.0 + 0x108 + (index * 32)) as *mut Diepint
+        self.diepint_reg().ptr(index.into())
     }
 
     #[doc="Get the *const pointer for the DIEPINT register."]
     #[inline] pub fn diepint_ptr<I: Into<bits::R6>>(&self, index: I) -> *const Diepint { 
-           self.diepint_mut(index)
+        self.diepint_reg().ptr(index.into())
     }
 
     #[doc="Read the DIEPINT register."]
     #[inline] pub fn diepint<I: Into<bits::R6>>(&self, index: I) -> Diepint { 
-        unsafe {
-            read_volatile(self.diepint_ptr(index))
-        }
+        self.diepint_reg().read(index.into())
     }
 
     #[doc="Write the DIEPINT register."]
+    #[inline] pub fn write_diepint<I: Into<bits::R6>>(&self, index: I, value: Diepint) -> &Self {
+        self.diepint_reg().write(index.into(), value);
+        self
+    }
+
+    #[doc="Set the DIEPINT register."]
     #[inline] pub fn set_diepint<I: Into<bits::R6>, F: FnOnce(Diepint) -> Diepint>(&self, index: I, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.diepint_mut(index), f(Diepint(0)));
-        }
+        self.diepint_reg().set(index.into(), f);
         self
     }
 
     #[doc="Modify the DIEPINT register."]
     #[inline] pub fn with_diepint<I: Into<bits::R6> + Copy, F: FnOnce(Diepint) -> Diepint>(&self, index: I, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.diepint_mut(index), f(self.diepint(index)));
-        }
+        self.diepint_reg().with(index.into(), f);
         self
+    }
+
+    #[doc="Get the DOEPINT Register."]
+    #[inline] pub fn doepint_reg(&self) -> RegisterArray<Doepint, bits::R6> { 
+        RegisterArray::new(self.0 as *mut Doepint, 0x308, 0x20)
     }
 
     #[doc="Get the *mut pointer for the DOEPINT register."]
     #[inline] pub fn doepint_mut<I: Into<bits::R6>>(&self, index: I) -> *mut Doepint { 
-        let index: usize = index.into().value() as usize;
-        (self.0 + 0x308 + (index * 32)) as *mut Doepint
+        self.doepint_reg().ptr(index.into())
     }
 
     #[doc="Get the *const pointer for the DOEPINT register."]
     #[inline] pub fn doepint_ptr<I: Into<bits::R6>>(&self, index: I) -> *const Doepint { 
-           self.doepint_mut(index)
+        self.doepint_reg().ptr(index.into())
     }
 
     #[doc="Read the DOEPINT register."]
     #[inline] pub fn doepint<I: Into<bits::R6>>(&self, index: I) -> Doepint { 
-        unsafe {
-            read_volatile(self.doepint_ptr(index))
-        }
+        self.doepint_reg().read(index.into())
     }
 
     #[doc="Write the DOEPINT register."]
+    #[inline] pub fn write_doepint<I: Into<bits::R6>>(&self, index: I, value: Doepint) -> &Self {
+        self.doepint_reg().write(index.into(), value);
+        self
+    }
+
+    #[doc="Set the DOEPINT register."]
     #[inline] pub fn set_doepint<I: Into<bits::R6>, F: FnOnce(Doepint) -> Doepint>(&self, index: I, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.doepint_mut(index), f(Doepint(0)));
-        }
+        self.doepint_reg().set(index.into(), f);
         self
     }
 
     #[doc="Modify the DOEPINT register."]
     #[inline] pub fn with_doepint<I: Into<bits::R6> + Copy, F: FnOnce(Doepint) -> Doepint>(&self, index: I, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.doepint_mut(index), f(self.doepint(index)));
-        }
+        self.doepint_reg().with(index.into(), f);
         self
+    }
+
+    #[doc="Get the DIEPTSIZ0 Register."]
+    #[inline] pub fn dieptsiz0_reg(&self) -> Register<Dieptsiz0> { 
+        Register::new(self.0 as *mut Dieptsiz0, 0x110)
     }
 
     #[doc="Get the *mut pointer for the DIEPTSIZ0 register."]
     #[inline] pub fn dieptsiz0_mut(&self) -> *mut Dieptsiz0 { 
-        (self.0 + 0x110) as *mut Dieptsiz0
+        self.dieptsiz0_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the DIEPTSIZ0 register."]
     #[inline] pub fn dieptsiz0_ptr(&self) -> *const Dieptsiz0 { 
-           self.dieptsiz0_mut()
+        self.dieptsiz0_reg().ptr()
     }
 
     #[doc="Read the DIEPTSIZ0 register."]
     #[inline] pub fn dieptsiz0(&self) -> Dieptsiz0 { 
-        unsafe {
-            read_volatile(self.dieptsiz0_ptr())
-        }
+        self.dieptsiz0_reg().read()
     }
 
     #[doc="Write the DIEPTSIZ0 register."]
+    #[inline] pub fn write_dieptsiz0(&self, value: Dieptsiz0) -> &Self { 
+        self.dieptsiz0_reg().write(value);
+        self
+    }
+
+    #[doc="Set the DIEPTSIZ0 register."]
     #[inline] pub fn set_dieptsiz0<F: FnOnce(Dieptsiz0) -> Dieptsiz0>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.dieptsiz0_mut(), f(Dieptsiz0(0)));
-        }
+        self.dieptsiz0_reg().set(f);
         self
     }
 
     #[doc="Modify the DIEPTSIZ0 register."]
     #[inline] pub fn with_dieptsiz0<F: FnOnce(Dieptsiz0) -> Dieptsiz0>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.dieptsiz0_mut(), f(self.dieptsiz0()));
-        }
+        self.dieptsiz0_reg().with(f);
         self
+    }
+
+    #[doc="Get the DOEPTSIZ0 Register."]
+    #[inline] pub fn doeptsiz0_reg(&self) -> Register<Doeptsiz0> { 
+        Register::new(self.0 as *mut Doeptsiz0, 0x310)
     }
 
     #[doc="Get the *mut pointer for the DOEPTSIZ0 register."]
     #[inline] pub fn doeptsiz0_mut(&self) -> *mut Doeptsiz0 { 
-        (self.0 + 0x310) as *mut Doeptsiz0
+        self.doeptsiz0_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the DOEPTSIZ0 register."]
     #[inline] pub fn doeptsiz0_ptr(&self) -> *const Doeptsiz0 { 
-           self.doeptsiz0_mut()
+        self.doeptsiz0_reg().ptr()
     }
 
     #[doc="Read the DOEPTSIZ0 register."]
     #[inline] pub fn doeptsiz0(&self) -> Doeptsiz0 { 
-        unsafe {
-            read_volatile(self.doeptsiz0_ptr())
-        }
+        self.doeptsiz0_reg().read()
     }
 
     #[doc="Write the DOEPTSIZ0 register."]
+    #[inline] pub fn write_doeptsiz0(&self, value: Doeptsiz0) -> &Self { 
+        self.doeptsiz0_reg().write(value);
+        self
+    }
+
+    #[doc="Set the DOEPTSIZ0 register."]
     #[inline] pub fn set_doeptsiz0<F: FnOnce(Doeptsiz0) -> Doeptsiz0>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.doeptsiz0_mut(), f(Doeptsiz0(0)));
-        }
+        self.doeptsiz0_reg().set(f);
         self
     }
 
     #[doc="Modify the DOEPTSIZ0 register."]
     #[inline] pub fn with_doeptsiz0<F: FnOnce(Doeptsiz0) -> Doeptsiz0>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.doeptsiz0_mut(), f(self.doeptsiz0()));
-        }
+        self.doeptsiz0_reg().with(f);
         self
+    }
+
+    #[doc="Get the DIEPTSIZ Register."]
+    #[inline] pub fn dieptsiz_reg(&self) -> RegisterArray<Dieptsiz, bits::R6> { 
+        RegisterArray::new(self.0 as *mut Dieptsiz, 0x110, 0x20)
     }
 
     #[doc="Get the *mut pointer for the DIEPTSIZ register."]
     #[inline] pub fn dieptsiz_mut<I: Into<bits::R6>>(&self, index: I) -> *mut Dieptsiz { 
-        let index: usize = index.into().value() as usize;
-        (self.0 + 0x110 + (index * 32)) as *mut Dieptsiz
+        self.dieptsiz_reg().ptr(index.into())
     }
 
     #[doc="Get the *const pointer for the DIEPTSIZ register."]
     #[inline] pub fn dieptsiz_ptr<I: Into<bits::R6>>(&self, index: I) -> *const Dieptsiz { 
-           self.dieptsiz_mut(index)
+        self.dieptsiz_reg().ptr(index.into())
     }
 
     #[doc="Read the DIEPTSIZ register."]
     #[inline] pub fn dieptsiz<I: Into<bits::R6>>(&self, index: I) -> Dieptsiz { 
-        unsafe {
-            read_volatile(self.dieptsiz_ptr(index))
-        }
+        self.dieptsiz_reg().read(index.into())
     }
 
     #[doc="Write the DIEPTSIZ register."]
+    #[inline] pub fn write_dieptsiz<I: Into<bits::R6>>(&self, index: I, value: Dieptsiz) -> &Self {
+        self.dieptsiz_reg().write(index.into(), value);
+        self
+    }
+
+    #[doc="Set the DIEPTSIZ register."]
     #[inline] pub fn set_dieptsiz<I: Into<bits::R6>, F: FnOnce(Dieptsiz) -> Dieptsiz>(&self, index: I, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.dieptsiz_mut(index), f(Dieptsiz(0)));
-        }
+        self.dieptsiz_reg().set(index.into(), f);
         self
     }
 
     #[doc="Modify the DIEPTSIZ register."]
     #[inline] pub fn with_dieptsiz<I: Into<bits::R6> + Copy, F: FnOnce(Dieptsiz) -> Dieptsiz>(&self, index: I, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.dieptsiz_mut(index), f(self.dieptsiz(index)));
-        }
+        self.dieptsiz_reg().with(index.into(), f);
         self
+    }
+
+    #[doc="Get the DTXFSTS Register."]
+    #[inline] pub fn dtxfsts_reg(&self) -> RegisterArray<Dtxfsts, bits::R6> { 
+        RegisterArray::new(self.0 as *mut Dtxfsts, 0x118, 0x20)
     }
 
     #[doc="Get the *mut pointer for the DTXFSTS register."]
     #[inline] pub fn dtxfsts_mut<I: Into<bits::R6>>(&self, index: I) -> *mut Dtxfsts { 
-        let index: usize = index.into().value() as usize;
-        (self.0 + 0x118 + (index * 32)) as *mut Dtxfsts
+        self.dtxfsts_reg().ptr(index.into())
     }
 
     #[doc="Get the *const pointer for the DTXFSTS register."]
     #[inline] pub fn dtxfsts_ptr<I: Into<bits::R6>>(&self, index: I) -> *const Dtxfsts { 
-           self.dtxfsts_mut(index)
+        self.dtxfsts_reg().ptr(index.into())
     }
 
     #[doc="Read the DTXFSTS register."]
     #[inline] pub fn dtxfsts<I: Into<bits::R6>>(&self, index: I) -> Dtxfsts { 
-        unsafe {
-            read_volatile(self.dtxfsts_ptr(index))
-        }
+        self.dtxfsts_reg().read(index.into())
+    }
+
+    #[doc="Get the DOEPTSIZ Register."]
+    #[inline] pub fn doeptsiz_reg(&self) -> RegisterArray<Doeptsiz, bits::R6> { 
+        RegisterArray::new(self.0 as *mut Doeptsiz, 0x310, 0x20)
     }
 
     #[doc="Get the *mut pointer for the DOEPTSIZ register."]
     #[inline] pub fn doeptsiz_mut<I: Into<bits::R6>>(&self, index: I) -> *mut Doeptsiz { 
-        let index: usize = index.into().value() as usize;
-        (self.0 + 0x310 + (index * 32)) as *mut Doeptsiz
+        self.doeptsiz_reg().ptr(index.into())
     }
 
     #[doc="Get the *const pointer for the DOEPTSIZ register."]
     #[inline] pub fn doeptsiz_ptr<I: Into<bits::R6>>(&self, index: I) -> *const Doeptsiz { 
-           self.doeptsiz_mut(index)
+        self.doeptsiz_reg().ptr(index.into())
     }
 
     #[doc="Read the DOEPTSIZ register."]
     #[inline] pub fn doeptsiz<I: Into<bits::R6>>(&self, index: I) -> Doeptsiz { 
-        unsafe {
-            read_volatile(self.doeptsiz_ptr(index))
-        }
+        self.doeptsiz_reg().read(index.into())
     }
 
     #[doc="Write the DOEPTSIZ register."]
+    #[inline] pub fn write_doeptsiz<I: Into<bits::R6>>(&self, index: I, value: Doeptsiz) -> &Self {
+        self.doeptsiz_reg().write(index.into(), value);
+        self
+    }
+
+    #[doc="Set the DOEPTSIZ register."]
     #[inline] pub fn set_doeptsiz<I: Into<bits::R6>, F: FnOnce(Doeptsiz) -> Doeptsiz>(&self, index: I, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.doeptsiz_mut(index), f(Doeptsiz(0)));
-        }
+        self.doeptsiz_reg().set(index.into(), f);
         self
     }
 
     #[doc="Modify the DOEPTSIZ register."]
     #[inline] pub fn with_doeptsiz<I: Into<bits::R6> + Copy, F: FnOnce(Doeptsiz) -> Doeptsiz>(&self, index: I, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.doeptsiz_mut(index), f(self.doeptsiz(index)));
-        }
+        self.doeptsiz_reg().with(index.into(), f);
         self
     }
 

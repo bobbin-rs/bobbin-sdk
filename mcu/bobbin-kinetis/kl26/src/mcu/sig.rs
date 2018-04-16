@@ -1,4 +1,5 @@
 #[allow(unused_imports)] pub use ::bobbin_common::*;
+
 signal_type!(TPM, SigTpm);
 signal_type!(LPTMR_ALT1, SigLptmrAlt1);
 signal_type!(LPTMR_ALT2, SigLptmrAlt2);

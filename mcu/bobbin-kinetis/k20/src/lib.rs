@@ -14,7 +14,7 @@ pub use dcb;
 pub use itm;
 
 pub mod periph;
-pub mod hal;
+pub mod ext;
 pub mod mcu;
 
 pub use mcu::sim;
@@ -33,7 +33,7 @@ pub use mcu::port;
 pub use mcu::pin;
 pub use mcu::sig;
 pub use mcu::irq;
-pub use mcu::*;
+pub use mcu::K20;
 
 pub mod clock;
 pub use clock::*;

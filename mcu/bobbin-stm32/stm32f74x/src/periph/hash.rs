@@ -4,2172 +4,2506 @@
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct HashPeriph(pub usize);
 impl HashPeriph {
+    #[doc="Get the CR Register."]
+    #[inline] pub fn cr_reg(&self) -> Register<Cr> { 
+        Register::new(self.0 as *mut Cr, 0x0)
+    }
+
     #[doc="Get the *mut pointer for the CR register."]
     #[inline] pub fn cr_mut(&self) -> *mut Cr { 
-        (self.0 + 0x0) as *mut Cr
+        self.cr_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the CR register."]
     #[inline] pub fn cr_ptr(&self) -> *const Cr { 
-           self.cr_mut()
+        self.cr_reg().ptr()
     }
 
     #[doc="Read the CR register."]
     #[inline] pub fn cr(&self) -> Cr { 
-        unsafe {
-            read_volatile(self.cr_ptr())
-        }
+        self.cr_reg().read()
     }
 
     #[doc="Write the CR register."]
+    #[inline] pub fn write_cr(&self, value: Cr) -> &Self { 
+        self.cr_reg().write(value);
+        self
+    }
+
+    #[doc="Set the CR register."]
     #[inline] pub fn set_cr<F: FnOnce(Cr) -> Cr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.cr_mut(), f(Cr(0)));
-        }
+        self.cr_reg().set(f);
         self
     }
 
     #[doc="Modify the CR register."]
     #[inline] pub fn with_cr<F: FnOnce(Cr) -> Cr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.cr_mut(), f(self.cr()));
-        }
+        self.cr_reg().with(f);
         self
+    }
+
+    #[doc="Get the DIN Register."]
+    #[inline] pub fn din_reg(&self) -> Register<Din> { 
+        Register::new(self.0 as *mut Din, 0x4)
     }
 
     #[doc="Get the *mut pointer for the DIN register."]
     #[inline] pub fn din_mut(&self) -> *mut Din { 
-        (self.0 + 0x4) as *mut Din
+        self.din_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the DIN register."]
     #[inline] pub fn din_ptr(&self) -> *const Din { 
-           self.din_mut()
+        self.din_reg().ptr()
     }
 
     #[doc="Read the DIN register."]
     #[inline] pub fn din(&self) -> Din { 
-        unsafe {
-            read_volatile(self.din_ptr())
-        }
+        self.din_reg().read()
     }
 
     #[doc="Write the DIN register."]
+    #[inline] pub fn write_din(&self, value: Din) -> &Self { 
+        self.din_reg().write(value);
+        self
+    }
+
+    #[doc="Set the DIN register."]
     #[inline] pub fn set_din<F: FnOnce(Din) -> Din>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.din_mut(), f(Din(0)));
-        }
+        self.din_reg().set(f);
         self
     }
 
     #[doc="Modify the DIN register."]
     #[inline] pub fn with_din<F: FnOnce(Din) -> Din>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.din_mut(), f(self.din()));
-        }
+        self.din_reg().with(f);
         self
+    }
+
+    #[doc="Get the STR Register."]
+    #[inline] pub fn str_reg(&self) -> Register<Str> { 
+        Register::new(self.0 as *mut Str, 0x8)
     }
 
     #[doc="Get the *mut pointer for the STR register."]
     #[inline] pub fn str_mut(&self) -> *mut Str { 
-        (self.0 + 0x8) as *mut Str
+        self.str_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the STR register."]
     #[inline] pub fn str_ptr(&self) -> *const Str { 
-           self.str_mut()
+        self.str_reg().ptr()
     }
 
     #[doc="Read the STR register."]
     #[inline] pub fn str(&self) -> Str { 
-        unsafe {
-            read_volatile(self.str_ptr())
-        }
+        self.str_reg().read()
     }
 
     #[doc="Write the STR register."]
+    #[inline] pub fn write_str(&self, value: Str) -> &Self { 
+        self.str_reg().write(value);
+        self
+    }
+
+    #[doc="Set the STR register."]
     #[inline] pub fn set_str<F: FnOnce(Str) -> Str>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.str_mut(), f(Str(0)));
-        }
+        self.str_reg().set(f);
         self
     }
 
     #[doc="Modify the STR register."]
     #[inline] pub fn with_str<F: FnOnce(Str) -> Str>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.str_mut(), f(self.str()));
-        }
+        self.str_reg().with(f);
         self
+    }
+
+    #[doc="Get the HR0 Register."]
+    #[inline] pub fn hr0_reg(&self) -> Register<Hr0> { 
+        Register::new(self.0 as *mut Hr0, 0xc)
     }
 
     #[doc="Get the *mut pointer for the HR0 register."]
     #[inline] pub fn hr0_mut(&self) -> *mut Hr0 { 
-        (self.0 + 0xc) as *mut Hr0
+        self.hr0_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the HR0 register."]
     #[inline] pub fn hr0_ptr(&self) -> *const Hr0 { 
-           self.hr0_mut()
+        self.hr0_reg().ptr()
     }
 
     #[doc="Read the HR0 register."]
     #[inline] pub fn hr0(&self) -> Hr0 { 
-        unsafe {
-            read_volatile(self.hr0_ptr())
-        }
+        self.hr0_reg().read()
+    }
+
+    #[doc="Get the HR1 Register."]
+    #[inline] pub fn hr1_reg(&self) -> Register<Hr1> { 
+        Register::new(self.0 as *mut Hr1, 0x10)
     }
 
     #[doc="Get the *mut pointer for the HR1 register."]
     #[inline] pub fn hr1_mut(&self) -> *mut Hr1 { 
-        (self.0 + 0x10) as *mut Hr1
+        self.hr1_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the HR1 register."]
     #[inline] pub fn hr1_ptr(&self) -> *const Hr1 { 
-           self.hr1_mut()
+        self.hr1_reg().ptr()
     }
 
     #[doc="Read the HR1 register."]
     #[inline] pub fn hr1(&self) -> Hr1 { 
-        unsafe {
-            read_volatile(self.hr1_ptr())
-        }
+        self.hr1_reg().read()
+    }
+
+    #[doc="Get the HR2 Register."]
+    #[inline] pub fn hr2_reg(&self) -> Register<Hr2> { 
+        Register::new(self.0 as *mut Hr2, 0x14)
     }
 
     #[doc="Get the *mut pointer for the HR2 register."]
     #[inline] pub fn hr2_mut(&self) -> *mut Hr2 { 
-        (self.0 + 0x14) as *mut Hr2
+        self.hr2_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the HR2 register."]
     #[inline] pub fn hr2_ptr(&self) -> *const Hr2 { 
-           self.hr2_mut()
+        self.hr2_reg().ptr()
     }
 
     #[doc="Read the HR2 register."]
     #[inline] pub fn hr2(&self) -> Hr2 { 
-        unsafe {
-            read_volatile(self.hr2_ptr())
-        }
+        self.hr2_reg().read()
+    }
+
+    #[doc="Get the HR3 Register."]
+    #[inline] pub fn hr3_reg(&self) -> Register<Hr3> { 
+        Register::new(self.0 as *mut Hr3, 0x18)
     }
 
     #[doc="Get the *mut pointer for the HR3 register."]
     #[inline] pub fn hr3_mut(&self) -> *mut Hr3 { 
-        (self.0 + 0x18) as *mut Hr3
+        self.hr3_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the HR3 register."]
     #[inline] pub fn hr3_ptr(&self) -> *const Hr3 { 
-           self.hr3_mut()
+        self.hr3_reg().ptr()
     }
 
     #[doc="Read the HR3 register."]
     #[inline] pub fn hr3(&self) -> Hr3 { 
-        unsafe {
-            read_volatile(self.hr3_ptr())
-        }
+        self.hr3_reg().read()
+    }
+
+    #[doc="Get the HR4 Register."]
+    #[inline] pub fn hr4_reg(&self) -> Register<Hr4> { 
+        Register::new(self.0 as *mut Hr4, 0x1c)
     }
 
     #[doc="Get the *mut pointer for the HR4 register."]
     #[inline] pub fn hr4_mut(&self) -> *mut Hr4 { 
-        (self.0 + 0x1c) as *mut Hr4
+        self.hr4_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the HR4 register."]
     #[inline] pub fn hr4_ptr(&self) -> *const Hr4 { 
-           self.hr4_mut()
+        self.hr4_reg().ptr()
     }
 
     #[doc="Read the HR4 register."]
     #[inline] pub fn hr4(&self) -> Hr4 { 
-        unsafe {
-            read_volatile(self.hr4_ptr())
-        }
+        self.hr4_reg().read()
+    }
+
+    #[doc="Get the IMR Register."]
+    #[inline] pub fn imr_reg(&self) -> Register<Imr> { 
+        Register::new(self.0 as *mut Imr, 0x20)
     }
 
     #[doc="Get the *mut pointer for the IMR register."]
     #[inline] pub fn imr_mut(&self) -> *mut Imr { 
-        (self.0 + 0x20) as *mut Imr
+        self.imr_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the IMR register."]
     #[inline] pub fn imr_ptr(&self) -> *const Imr { 
-           self.imr_mut()
+        self.imr_reg().ptr()
     }
 
     #[doc="Read the IMR register."]
     #[inline] pub fn imr(&self) -> Imr { 
-        unsafe {
-            read_volatile(self.imr_ptr())
-        }
+        self.imr_reg().read()
     }
 
     #[doc="Write the IMR register."]
+    #[inline] pub fn write_imr(&self, value: Imr) -> &Self { 
+        self.imr_reg().write(value);
+        self
+    }
+
+    #[doc="Set the IMR register."]
     #[inline] pub fn set_imr<F: FnOnce(Imr) -> Imr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.imr_mut(), f(Imr(0)));
-        }
+        self.imr_reg().set(f);
         self
     }
 
     #[doc="Modify the IMR register."]
     #[inline] pub fn with_imr<F: FnOnce(Imr) -> Imr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.imr_mut(), f(self.imr()));
-        }
+        self.imr_reg().with(f);
         self
+    }
+
+    #[doc="Get the SR Register."]
+    #[inline] pub fn sr_reg(&self) -> Register<Sr> { 
+        Register::new(self.0 as *mut Sr, 0x24)
     }
 
     #[doc="Get the *mut pointer for the SR register."]
     #[inline] pub fn sr_mut(&self) -> *mut Sr { 
-        (self.0 + 0x24) as *mut Sr
+        self.sr_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the SR register."]
     #[inline] pub fn sr_ptr(&self) -> *const Sr { 
-           self.sr_mut()
+        self.sr_reg().ptr()
     }
 
     #[doc="Read the SR register."]
     #[inline] pub fn sr(&self) -> Sr { 
-        unsafe {
-            read_volatile(self.sr_ptr())
-        }
+        self.sr_reg().read()
     }
 
     #[doc="Write the SR register."]
+    #[inline] pub fn write_sr(&self, value: Sr) -> &Self { 
+        self.sr_reg().write(value);
+        self
+    }
+
+    #[doc="Set the SR register."]
     #[inline] pub fn set_sr<F: FnOnce(Sr) -> Sr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.sr_mut(), f(Sr(0)));
-        }
+        self.sr_reg().set(f);
         self
     }
 
     #[doc="Modify the SR register."]
     #[inline] pub fn with_sr<F: FnOnce(Sr) -> Sr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.sr_mut(), f(self.sr()));
-        }
+        self.sr_reg().with(f);
         self
+    }
+
+    #[doc="Get the CSR0 Register."]
+    #[inline] pub fn csr0_reg(&self) -> Register<Csr0> { 
+        Register::new(self.0 as *mut Csr0, 0xf8)
     }
 
     #[doc="Get the *mut pointer for the CSR0 register."]
     #[inline] pub fn csr0_mut(&self) -> *mut Csr0 { 
-        (self.0 + 0xf8) as *mut Csr0
+        self.csr0_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the CSR0 register."]
     #[inline] pub fn csr0_ptr(&self) -> *const Csr0 { 
-           self.csr0_mut()
+        self.csr0_reg().ptr()
     }
 
     #[doc="Read the CSR0 register."]
     #[inline] pub fn csr0(&self) -> Csr0 { 
-        unsafe {
-            read_volatile(self.csr0_ptr())
-        }
+        self.csr0_reg().read()
     }
 
     #[doc="Write the CSR0 register."]
+    #[inline] pub fn write_csr0(&self, value: Csr0) -> &Self { 
+        self.csr0_reg().write(value);
+        self
+    }
+
+    #[doc="Set the CSR0 register."]
     #[inline] pub fn set_csr0<F: FnOnce(Csr0) -> Csr0>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr0_mut(), f(Csr0(0)));
-        }
+        self.csr0_reg().set(f);
         self
     }
 
     #[doc="Modify the CSR0 register."]
     #[inline] pub fn with_csr0<F: FnOnce(Csr0) -> Csr0>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr0_mut(), f(self.csr0()));
-        }
+        self.csr0_reg().with(f);
         self
+    }
+
+    #[doc="Get the CSR1 Register."]
+    #[inline] pub fn csr1_reg(&self) -> Register<Csr1> { 
+        Register::new(self.0 as *mut Csr1, 0xfc)
     }
 
     #[doc="Get the *mut pointer for the CSR1 register."]
     #[inline] pub fn csr1_mut(&self) -> *mut Csr1 { 
-        (self.0 + 0xfc) as *mut Csr1
+        self.csr1_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the CSR1 register."]
     #[inline] pub fn csr1_ptr(&self) -> *const Csr1 { 
-           self.csr1_mut()
+        self.csr1_reg().ptr()
     }
 
     #[doc="Read the CSR1 register."]
     #[inline] pub fn csr1(&self) -> Csr1 { 
-        unsafe {
-            read_volatile(self.csr1_ptr())
-        }
+        self.csr1_reg().read()
     }
 
     #[doc="Write the CSR1 register."]
+    #[inline] pub fn write_csr1(&self, value: Csr1) -> &Self { 
+        self.csr1_reg().write(value);
+        self
+    }
+
+    #[doc="Set the CSR1 register."]
     #[inline] pub fn set_csr1<F: FnOnce(Csr1) -> Csr1>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr1_mut(), f(Csr1(0)));
-        }
+        self.csr1_reg().set(f);
         self
     }
 
     #[doc="Modify the CSR1 register."]
     #[inline] pub fn with_csr1<F: FnOnce(Csr1) -> Csr1>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr1_mut(), f(self.csr1()));
-        }
+        self.csr1_reg().with(f);
         self
+    }
+
+    #[doc="Get the CSR2 Register."]
+    #[inline] pub fn csr2_reg(&self) -> Register<Csr2> { 
+        Register::new(self.0 as *mut Csr2, 0x100)
     }
 
     #[doc="Get the *mut pointer for the CSR2 register."]
     #[inline] pub fn csr2_mut(&self) -> *mut Csr2 { 
-        (self.0 + 0x100) as *mut Csr2
+        self.csr2_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the CSR2 register."]
     #[inline] pub fn csr2_ptr(&self) -> *const Csr2 { 
-           self.csr2_mut()
+        self.csr2_reg().ptr()
     }
 
     #[doc="Read the CSR2 register."]
     #[inline] pub fn csr2(&self) -> Csr2 { 
-        unsafe {
-            read_volatile(self.csr2_ptr())
-        }
+        self.csr2_reg().read()
     }
 
     #[doc="Write the CSR2 register."]
+    #[inline] pub fn write_csr2(&self, value: Csr2) -> &Self { 
+        self.csr2_reg().write(value);
+        self
+    }
+
+    #[doc="Set the CSR2 register."]
     #[inline] pub fn set_csr2<F: FnOnce(Csr2) -> Csr2>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr2_mut(), f(Csr2(0)));
-        }
+        self.csr2_reg().set(f);
         self
     }
 
     #[doc="Modify the CSR2 register."]
     #[inline] pub fn with_csr2<F: FnOnce(Csr2) -> Csr2>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr2_mut(), f(self.csr2()));
-        }
+        self.csr2_reg().with(f);
         self
+    }
+
+    #[doc="Get the CSR3 Register."]
+    #[inline] pub fn csr3_reg(&self) -> Register<Csr3> { 
+        Register::new(self.0 as *mut Csr3, 0x104)
     }
 
     #[doc="Get the *mut pointer for the CSR3 register."]
     #[inline] pub fn csr3_mut(&self) -> *mut Csr3 { 
-        (self.0 + 0x104) as *mut Csr3
+        self.csr3_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the CSR3 register."]
     #[inline] pub fn csr3_ptr(&self) -> *const Csr3 { 
-           self.csr3_mut()
+        self.csr3_reg().ptr()
     }
 
     #[doc="Read the CSR3 register."]
     #[inline] pub fn csr3(&self) -> Csr3 { 
-        unsafe {
-            read_volatile(self.csr3_ptr())
-        }
+        self.csr3_reg().read()
     }
 
     #[doc="Write the CSR3 register."]
+    #[inline] pub fn write_csr3(&self, value: Csr3) -> &Self { 
+        self.csr3_reg().write(value);
+        self
+    }
+
+    #[doc="Set the CSR3 register."]
     #[inline] pub fn set_csr3<F: FnOnce(Csr3) -> Csr3>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr3_mut(), f(Csr3(0)));
-        }
+        self.csr3_reg().set(f);
         self
     }
 
     #[doc="Modify the CSR3 register."]
     #[inline] pub fn with_csr3<F: FnOnce(Csr3) -> Csr3>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr3_mut(), f(self.csr3()));
-        }
+        self.csr3_reg().with(f);
         self
+    }
+
+    #[doc="Get the CSR4 Register."]
+    #[inline] pub fn csr4_reg(&self) -> Register<Csr4> { 
+        Register::new(self.0 as *mut Csr4, 0x108)
     }
 
     #[doc="Get the *mut pointer for the CSR4 register."]
     #[inline] pub fn csr4_mut(&self) -> *mut Csr4 { 
-        (self.0 + 0x108) as *mut Csr4
+        self.csr4_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the CSR4 register."]
     #[inline] pub fn csr4_ptr(&self) -> *const Csr4 { 
-           self.csr4_mut()
+        self.csr4_reg().ptr()
     }
 
     #[doc="Read the CSR4 register."]
     #[inline] pub fn csr4(&self) -> Csr4 { 
-        unsafe {
-            read_volatile(self.csr4_ptr())
-        }
+        self.csr4_reg().read()
     }
 
     #[doc="Write the CSR4 register."]
+    #[inline] pub fn write_csr4(&self, value: Csr4) -> &Self { 
+        self.csr4_reg().write(value);
+        self
+    }
+
+    #[doc="Set the CSR4 register."]
     #[inline] pub fn set_csr4<F: FnOnce(Csr4) -> Csr4>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr4_mut(), f(Csr4(0)));
-        }
+        self.csr4_reg().set(f);
         self
     }
 
     #[doc="Modify the CSR4 register."]
     #[inline] pub fn with_csr4<F: FnOnce(Csr4) -> Csr4>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr4_mut(), f(self.csr4()));
-        }
+        self.csr4_reg().with(f);
         self
+    }
+
+    #[doc="Get the CSR5 Register."]
+    #[inline] pub fn csr5_reg(&self) -> Register<Csr5> { 
+        Register::new(self.0 as *mut Csr5, 0x10c)
     }
 
     #[doc="Get the *mut pointer for the CSR5 register."]
     #[inline] pub fn csr5_mut(&self) -> *mut Csr5 { 
-        (self.0 + 0x10c) as *mut Csr5
+        self.csr5_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the CSR5 register."]
     #[inline] pub fn csr5_ptr(&self) -> *const Csr5 { 
-           self.csr5_mut()
+        self.csr5_reg().ptr()
     }
 
     #[doc="Read the CSR5 register."]
     #[inline] pub fn csr5(&self) -> Csr5 { 
-        unsafe {
-            read_volatile(self.csr5_ptr())
-        }
+        self.csr5_reg().read()
     }
 
     #[doc="Write the CSR5 register."]
+    #[inline] pub fn write_csr5(&self, value: Csr5) -> &Self { 
+        self.csr5_reg().write(value);
+        self
+    }
+
+    #[doc="Set the CSR5 register."]
     #[inline] pub fn set_csr5<F: FnOnce(Csr5) -> Csr5>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr5_mut(), f(Csr5(0)));
-        }
+        self.csr5_reg().set(f);
         self
     }
 
     #[doc="Modify the CSR5 register."]
     #[inline] pub fn with_csr5<F: FnOnce(Csr5) -> Csr5>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr5_mut(), f(self.csr5()));
-        }
+        self.csr5_reg().with(f);
         self
+    }
+
+    #[doc="Get the CSR6 Register."]
+    #[inline] pub fn csr6_reg(&self) -> Register<Csr6> { 
+        Register::new(self.0 as *mut Csr6, 0x110)
     }
 
     #[doc="Get the *mut pointer for the CSR6 register."]
     #[inline] pub fn csr6_mut(&self) -> *mut Csr6 { 
-        (self.0 + 0x110) as *mut Csr6
+        self.csr6_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the CSR6 register."]
     #[inline] pub fn csr6_ptr(&self) -> *const Csr6 { 
-           self.csr6_mut()
+        self.csr6_reg().ptr()
     }
 
     #[doc="Read the CSR6 register."]
     #[inline] pub fn csr6(&self) -> Csr6 { 
-        unsafe {
-            read_volatile(self.csr6_ptr())
-        }
+        self.csr6_reg().read()
     }
 
     #[doc="Write the CSR6 register."]
+    #[inline] pub fn write_csr6(&self, value: Csr6) -> &Self { 
+        self.csr6_reg().write(value);
+        self
+    }
+
+    #[doc="Set the CSR6 register."]
     #[inline] pub fn set_csr6<F: FnOnce(Csr6) -> Csr6>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr6_mut(), f(Csr6(0)));
-        }
+        self.csr6_reg().set(f);
         self
     }
 
     #[doc="Modify the CSR6 register."]
     #[inline] pub fn with_csr6<F: FnOnce(Csr6) -> Csr6>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr6_mut(), f(self.csr6()));
-        }
+        self.csr6_reg().with(f);
         self
+    }
+
+    #[doc="Get the CSR7 Register."]
+    #[inline] pub fn csr7_reg(&self) -> Register<Csr7> { 
+        Register::new(self.0 as *mut Csr7, 0x114)
     }
 
     #[doc="Get the *mut pointer for the CSR7 register."]
     #[inline] pub fn csr7_mut(&self) -> *mut Csr7 { 
-        (self.0 + 0x114) as *mut Csr7
+        self.csr7_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the CSR7 register."]
     #[inline] pub fn csr7_ptr(&self) -> *const Csr7 { 
-           self.csr7_mut()
+        self.csr7_reg().ptr()
     }
 
     #[doc="Read the CSR7 register."]
     #[inline] pub fn csr7(&self) -> Csr7 { 
-        unsafe {
-            read_volatile(self.csr7_ptr())
-        }
+        self.csr7_reg().read()
     }
 
     #[doc="Write the CSR7 register."]
+    #[inline] pub fn write_csr7(&self, value: Csr7) -> &Self { 
+        self.csr7_reg().write(value);
+        self
+    }
+
+    #[doc="Set the CSR7 register."]
     #[inline] pub fn set_csr7<F: FnOnce(Csr7) -> Csr7>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr7_mut(), f(Csr7(0)));
-        }
+        self.csr7_reg().set(f);
         self
     }
 
     #[doc="Modify the CSR7 register."]
     #[inline] pub fn with_csr7<F: FnOnce(Csr7) -> Csr7>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr7_mut(), f(self.csr7()));
-        }
+        self.csr7_reg().with(f);
         self
+    }
+
+    #[doc="Get the CSR8 Register."]
+    #[inline] pub fn csr8_reg(&self) -> Register<Csr8> { 
+        Register::new(self.0 as *mut Csr8, 0x118)
     }
 
     #[doc="Get the *mut pointer for the CSR8 register."]
     #[inline] pub fn csr8_mut(&self) -> *mut Csr8 { 
-        (self.0 + 0x118) as *mut Csr8
+        self.csr8_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the CSR8 register."]
     #[inline] pub fn csr8_ptr(&self) -> *const Csr8 { 
-           self.csr8_mut()
+        self.csr8_reg().ptr()
     }
 
     #[doc="Read the CSR8 register."]
     #[inline] pub fn csr8(&self) -> Csr8 { 
-        unsafe {
-            read_volatile(self.csr8_ptr())
-        }
+        self.csr8_reg().read()
     }
 
     #[doc="Write the CSR8 register."]
+    #[inline] pub fn write_csr8(&self, value: Csr8) -> &Self { 
+        self.csr8_reg().write(value);
+        self
+    }
+
+    #[doc="Set the CSR8 register."]
     #[inline] pub fn set_csr8<F: FnOnce(Csr8) -> Csr8>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr8_mut(), f(Csr8(0)));
-        }
+        self.csr8_reg().set(f);
         self
     }
 
     #[doc="Modify the CSR8 register."]
     #[inline] pub fn with_csr8<F: FnOnce(Csr8) -> Csr8>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr8_mut(), f(self.csr8()));
-        }
+        self.csr8_reg().with(f);
         self
+    }
+
+    #[doc="Get the CSR9 Register."]
+    #[inline] pub fn csr9_reg(&self) -> Register<Csr9> { 
+        Register::new(self.0 as *mut Csr9, 0x11c)
     }
 
     #[doc="Get the *mut pointer for the CSR9 register."]
     #[inline] pub fn csr9_mut(&self) -> *mut Csr9 { 
-        (self.0 + 0x11c) as *mut Csr9
+        self.csr9_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the CSR9 register."]
     #[inline] pub fn csr9_ptr(&self) -> *const Csr9 { 
-           self.csr9_mut()
+        self.csr9_reg().ptr()
     }
 
     #[doc="Read the CSR9 register."]
     #[inline] pub fn csr9(&self) -> Csr9 { 
-        unsafe {
-            read_volatile(self.csr9_ptr())
-        }
+        self.csr9_reg().read()
     }
 
     #[doc="Write the CSR9 register."]
+    #[inline] pub fn write_csr9(&self, value: Csr9) -> &Self { 
+        self.csr9_reg().write(value);
+        self
+    }
+
+    #[doc="Set the CSR9 register."]
     #[inline] pub fn set_csr9<F: FnOnce(Csr9) -> Csr9>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr9_mut(), f(Csr9(0)));
-        }
+        self.csr9_reg().set(f);
         self
     }
 
     #[doc="Modify the CSR9 register."]
     #[inline] pub fn with_csr9<F: FnOnce(Csr9) -> Csr9>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr9_mut(), f(self.csr9()));
-        }
+        self.csr9_reg().with(f);
         self
+    }
+
+    #[doc="Get the CSR10 Register."]
+    #[inline] pub fn csr10_reg(&self) -> Register<Csr10> { 
+        Register::new(self.0 as *mut Csr10, 0x120)
     }
 
     #[doc="Get the *mut pointer for the CSR10 register."]
     #[inline] pub fn csr10_mut(&self) -> *mut Csr10 { 
-        (self.0 + 0x120) as *mut Csr10
+        self.csr10_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the CSR10 register."]
     #[inline] pub fn csr10_ptr(&self) -> *const Csr10 { 
-           self.csr10_mut()
+        self.csr10_reg().ptr()
     }
 
     #[doc="Read the CSR10 register."]
     #[inline] pub fn csr10(&self) -> Csr10 { 
-        unsafe {
-            read_volatile(self.csr10_ptr())
-        }
+        self.csr10_reg().read()
     }
 
     #[doc="Write the CSR10 register."]
+    #[inline] pub fn write_csr10(&self, value: Csr10) -> &Self { 
+        self.csr10_reg().write(value);
+        self
+    }
+
+    #[doc="Set the CSR10 register."]
     #[inline] pub fn set_csr10<F: FnOnce(Csr10) -> Csr10>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr10_mut(), f(Csr10(0)));
-        }
+        self.csr10_reg().set(f);
         self
     }
 
     #[doc="Modify the CSR10 register."]
     #[inline] pub fn with_csr10<F: FnOnce(Csr10) -> Csr10>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr10_mut(), f(self.csr10()));
-        }
+        self.csr10_reg().with(f);
         self
+    }
+
+    #[doc="Get the CSR11 Register."]
+    #[inline] pub fn csr11_reg(&self) -> Register<Csr11> { 
+        Register::new(self.0 as *mut Csr11, 0x124)
     }
 
     #[doc="Get the *mut pointer for the CSR11 register."]
     #[inline] pub fn csr11_mut(&self) -> *mut Csr11 { 
-        (self.0 + 0x124) as *mut Csr11
+        self.csr11_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the CSR11 register."]
     #[inline] pub fn csr11_ptr(&self) -> *const Csr11 { 
-           self.csr11_mut()
+        self.csr11_reg().ptr()
     }
 
     #[doc="Read the CSR11 register."]
     #[inline] pub fn csr11(&self) -> Csr11 { 
-        unsafe {
-            read_volatile(self.csr11_ptr())
-        }
+        self.csr11_reg().read()
     }
 
     #[doc="Write the CSR11 register."]
+    #[inline] pub fn write_csr11(&self, value: Csr11) -> &Self { 
+        self.csr11_reg().write(value);
+        self
+    }
+
+    #[doc="Set the CSR11 register."]
     #[inline] pub fn set_csr11<F: FnOnce(Csr11) -> Csr11>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr11_mut(), f(Csr11(0)));
-        }
+        self.csr11_reg().set(f);
         self
     }
 
     #[doc="Modify the CSR11 register."]
     #[inline] pub fn with_csr11<F: FnOnce(Csr11) -> Csr11>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr11_mut(), f(self.csr11()));
-        }
+        self.csr11_reg().with(f);
         self
+    }
+
+    #[doc="Get the CSR12 Register."]
+    #[inline] pub fn csr12_reg(&self) -> Register<Csr12> { 
+        Register::new(self.0 as *mut Csr12, 0x128)
     }
 
     #[doc="Get the *mut pointer for the CSR12 register."]
     #[inline] pub fn csr12_mut(&self) -> *mut Csr12 { 
-        (self.0 + 0x128) as *mut Csr12
+        self.csr12_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the CSR12 register."]
     #[inline] pub fn csr12_ptr(&self) -> *const Csr12 { 
-           self.csr12_mut()
+        self.csr12_reg().ptr()
     }
 
     #[doc="Read the CSR12 register."]
     #[inline] pub fn csr12(&self) -> Csr12 { 
-        unsafe {
-            read_volatile(self.csr12_ptr())
-        }
+        self.csr12_reg().read()
     }
 
     #[doc="Write the CSR12 register."]
+    #[inline] pub fn write_csr12(&self, value: Csr12) -> &Self { 
+        self.csr12_reg().write(value);
+        self
+    }
+
+    #[doc="Set the CSR12 register."]
     #[inline] pub fn set_csr12<F: FnOnce(Csr12) -> Csr12>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr12_mut(), f(Csr12(0)));
-        }
+        self.csr12_reg().set(f);
         self
     }
 
     #[doc="Modify the CSR12 register."]
     #[inline] pub fn with_csr12<F: FnOnce(Csr12) -> Csr12>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr12_mut(), f(self.csr12()));
-        }
+        self.csr12_reg().with(f);
         self
+    }
+
+    #[doc="Get the CSR13 Register."]
+    #[inline] pub fn csr13_reg(&self) -> Register<Csr13> { 
+        Register::new(self.0 as *mut Csr13, 0x12c)
     }
 
     #[doc="Get the *mut pointer for the CSR13 register."]
     #[inline] pub fn csr13_mut(&self) -> *mut Csr13 { 
-        (self.0 + 0x12c) as *mut Csr13
+        self.csr13_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the CSR13 register."]
     #[inline] pub fn csr13_ptr(&self) -> *const Csr13 { 
-           self.csr13_mut()
+        self.csr13_reg().ptr()
     }
 
     #[doc="Read the CSR13 register."]
     #[inline] pub fn csr13(&self) -> Csr13 { 
-        unsafe {
-            read_volatile(self.csr13_ptr())
-        }
+        self.csr13_reg().read()
     }
 
     #[doc="Write the CSR13 register."]
+    #[inline] pub fn write_csr13(&self, value: Csr13) -> &Self { 
+        self.csr13_reg().write(value);
+        self
+    }
+
+    #[doc="Set the CSR13 register."]
     #[inline] pub fn set_csr13<F: FnOnce(Csr13) -> Csr13>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr13_mut(), f(Csr13(0)));
-        }
+        self.csr13_reg().set(f);
         self
     }
 
     #[doc="Modify the CSR13 register."]
     #[inline] pub fn with_csr13<F: FnOnce(Csr13) -> Csr13>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr13_mut(), f(self.csr13()));
-        }
+        self.csr13_reg().with(f);
         self
+    }
+
+    #[doc="Get the CSR14 Register."]
+    #[inline] pub fn csr14_reg(&self) -> Register<Csr14> { 
+        Register::new(self.0 as *mut Csr14, 0x130)
     }
 
     #[doc="Get the *mut pointer for the CSR14 register."]
     #[inline] pub fn csr14_mut(&self) -> *mut Csr14 { 
-        (self.0 + 0x130) as *mut Csr14
+        self.csr14_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the CSR14 register."]
     #[inline] pub fn csr14_ptr(&self) -> *const Csr14 { 
-           self.csr14_mut()
+        self.csr14_reg().ptr()
     }
 
     #[doc="Read the CSR14 register."]
     #[inline] pub fn csr14(&self) -> Csr14 { 
-        unsafe {
-            read_volatile(self.csr14_ptr())
-        }
+        self.csr14_reg().read()
     }
 
     #[doc="Write the CSR14 register."]
+    #[inline] pub fn write_csr14(&self, value: Csr14) -> &Self { 
+        self.csr14_reg().write(value);
+        self
+    }
+
+    #[doc="Set the CSR14 register."]
     #[inline] pub fn set_csr14<F: FnOnce(Csr14) -> Csr14>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr14_mut(), f(Csr14(0)));
-        }
+        self.csr14_reg().set(f);
         self
     }
 
     #[doc="Modify the CSR14 register."]
     #[inline] pub fn with_csr14<F: FnOnce(Csr14) -> Csr14>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr14_mut(), f(self.csr14()));
-        }
+        self.csr14_reg().with(f);
         self
+    }
+
+    #[doc="Get the CSR15 Register."]
+    #[inline] pub fn csr15_reg(&self) -> Register<Csr15> { 
+        Register::new(self.0 as *mut Csr15, 0x134)
     }
 
     #[doc="Get the *mut pointer for the CSR15 register."]
     #[inline] pub fn csr15_mut(&self) -> *mut Csr15 { 
-        (self.0 + 0x134) as *mut Csr15
+        self.csr15_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the CSR15 register."]
     #[inline] pub fn csr15_ptr(&self) -> *const Csr15 { 
-           self.csr15_mut()
+        self.csr15_reg().ptr()
     }
 
     #[doc="Read the CSR15 register."]
     #[inline] pub fn csr15(&self) -> Csr15 { 
-        unsafe {
-            read_volatile(self.csr15_ptr())
-        }
+        self.csr15_reg().read()
     }
 
     #[doc="Write the CSR15 register."]
+    #[inline] pub fn write_csr15(&self, value: Csr15) -> &Self { 
+        self.csr15_reg().write(value);
+        self
+    }
+
+    #[doc="Set the CSR15 register."]
     #[inline] pub fn set_csr15<F: FnOnce(Csr15) -> Csr15>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr15_mut(), f(Csr15(0)));
-        }
+        self.csr15_reg().set(f);
         self
     }
 
     #[doc="Modify the CSR15 register."]
     #[inline] pub fn with_csr15<F: FnOnce(Csr15) -> Csr15>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr15_mut(), f(self.csr15()));
-        }
+        self.csr15_reg().with(f);
         self
+    }
+
+    #[doc="Get the CSR16 Register."]
+    #[inline] pub fn csr16_reg(&self) -> Register<Csr16> { 
+        Register::new(self.0 as *mut Csr16, 0x138)
     }
 
     #[doc="Get the *mut pointer for the CSR16 register."]
     #[inline] pub fn csr16_mut(&self) -> *mut Csr16 { 
-        (self.0 + 0x138) as *mut Csr16
+        self.csr16_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the CSR16 register."]
     #[inline] pub fn csr16_ptr(&self) -> *const Csr16 { 
-           self.csr16_mut()
+        self.csr16_reg().ptr()
     }
 
     #[doc="Read the CSR16 register."]
     #[inline] pub fn csr16(&self) -> Csr16 { 
-        unsafe {
-            read_volatile(self.csr16_ptr())
-        }
+        self.csr16_reg().read()
     }
 
     #[doc="Write the CSR16 register."]
+    #[inline] pub fn write_csr16(&self, value: Csr16) -> &Self { 
+        self.csr16_reg().write(value);
+        self
+    }
+
+    #[doc="Set the CSR16 register."]
     #[inline] pub fn set_csr16<F: FnOnce(Csr16) -> Csr16>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr16_mut(), f(Csr16(0)));
-        }
+        self.csr16_reg().set(f);
         self
     }
 
     #[doc="Modify the CSR16 register."]
     #[inline] pub fn with_csr16<F: FnOnce(Csr16) -> Csr16>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr16_mut(), f(self.csr16()));
-        }
+        self.csr16_reg().with(f);
         self
+    }
+
+    #[doc="Get the CSR17 Register."]
+    #[inline] pub fn csr17_reg(&self) -> Register<Csr17> { 
+        Register::new(self.0 as *mut Csr17, 0x13c)
     }
 
     #[doc="Get the *mut pointer for the CSR17 register."]
     #[inline] pub fn csr17_mut(&self) -> *mut Csr17 { 
-        (self.0 + 0x13c) as *mut Csr17
+        self.csr17_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the CSR17 register."]
     #[inline] pub fn csr17_ptr(&self) -> *const Csr17 { 
-           self.csr17_mut()
+        self.csr17_reg().ptr()
     }
 
     #[doc="Read the CSR17 register."]
     #[inline] pub fn csr17(&self) -> Csr17 { 
-        unsafe {
-            read_volatile(self.csr17_ptr())
-        }
+        self.csr17_reg().read()
     }
 
     #[doc="Write the CSR17 register."]
+    #[inline] pub fn write_csr17(&self, value: Csr17) -> &Self { 
+        self.csr17_reg().write(value);
+        self
+    }
+
+    #[doc="Set the CSR17 register."]
     #[inline] pub fn set_csr17<F: FnOnce(Csr17) -> Csr17>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr17_mut(), f(Csr17(0)));
-        }
+        self.csr17_reg().set(f);
         self
     }
 
     #[doc="Modify the CSR17 register."]
     #[inline] pub fn with_csr17<F: FnOnce(Csr17) -> Csr17>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr17_mut(), f(self.csr17()));
-        }
+        self.csr17_reg().with(f);
         self
+    }
+
+    #[doc="Get the CSR18 Register."]
+    #[inline] pub fn csr18_reg(&self) -> Register<Csr18> { 
+        Register::new(self.0 as *mut Csr18, 0x140)
     }
 
     #[doc="Get the *mut pointer for the CSR18 register."]
     #[inline] pub fn csr18_mut(&self) -> *mut Csr18 { 
-        (self.0 + 0x140) as *mut Csr18
+        self.csr18_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the CSR18 register."]
     #[inline] pub fn csr18_ptr(&self) -> *const Csr18 { 
-           self.csr18_mut()
+        self.csr18_reg().ptr()
     }
 
     #[doc="Read the CSR18 register."]
     #[inline] pub fn csr18(&self) -> Csr18 { 
-        unsafe {
-            read_volatile(self.csr18_ptr())
-        }
+        self.csr18_reg().read()
     }
 
     #[doc="Write the CSR18 register."]
+    #[inline] pub fn write_csr18(&self, value: Csr18) -> &Self { 
+        self.csr18_reg().write(value);
+        self
+    }
+
+    #[doc="Set the CSR18 register."]
     #[inline] pub fn set_csr18<F: FnOnce(Csr18) -> Csr18>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr18_mut(), f(Csr18(0)));
-        }
+        self.csr18_reg().set(f);
         self
     }
 
     #[doc="Modify the CSR18 register."]
     #[inline] pub fn with_csr18<F: FnOnce(Csr18) -> Csr18>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr18_mut(), f(self.csr18()));
-        }
+        self.csr18_reg().with(f);
         self
+    }
+
+    #[doc="Get the CSR19 Register."]
+    #[inline] pub fn csr19_reg(&self) -> Register<Csr19> { 
+        Register::new(self.0 as *mut Csr19, 0x144)
     }
 
     #[doc="Get the *mut pointer for the CSR19 register."]
     #[inline] pub fn csr19_mut(&self) -> *mut Csr19 { 
-        (self.0 + 0x144) as *mut Csr19
+        self.csr19_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the CSR19 register."]
     #[inline] pub fn csr19_ptr(&self) -> *const Csr19 { 
-           self.csr19_mut()
+        self.csr19_reg().ptr()
     }
 
     #[doc="Read the CSR19 register."]
     #[inline] pub fn csr19(&self) -> Csr19 { 
-        unsafe {
-            read_volatile(self.csr19_ptr())
-        }
+        self.csr19_reg().read()
     }
 
     #[doc="Write the CSR19 register."]
+    #[inline] pub fn write_csr19(&self, value: Csr19) -> &Self { 
+        self.csr19_reg().write(value);
+        self
+    }
+
+    #[doc="Set the CSR19 register."]
     #[inline] pub fn set_csr19<F: FnOnce(Csr19) -> Csr19>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr19_mut(), f(Csr19(0)));
-        }
+        self.csr19_reg().set(f);
         self
     }
 
     #[doc="Modify the CSR19 register."]
     #[inline] pub fn with_csr19<F: FnOnce(Csr19) -> Csr19>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr19_mut(), f(self.csr19()));
-        }
+        self.csr19_reg().with(f);
         self
+    }
+
+    #[doc="Get the CSR20 Register."]
+    #[inline] pub fn csr20_reg(&self) -> Register<Csr20> { 
+        Register::new(self.0 as *mut Csr20, 0x148)
     }
 
     #[doc="Get the *mut pointer for the CSR20 register."]
     #[inline] pub fn csr20_mut(&self) -> *mut Csr20 { 
-        (self.0 + 0x148) as *mut Csr20
+        self.csr20_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the CSR20 register."]
     #[inline] pub fn csr20_ptr(&self) -> *const Csr20 { 
-           self.csr20_mut()
+        self.csr20_reg().ptr()
     }
 
     #[doc="Read the CSR20 register."]
     #[inline] pub fn csr20(&self) -> Csr20 { 
-        unsafe {
-            read_volatile(self.csr20_ptr())
-        }
+        self.csr20_reg().read()
     }
 
     #[doc="Write the CSR20 register."]
+    #[inline] pub fn write_csr20(&self, value: Csr20) -> &Self { 
+        self.csr20_reg().write(value);
+        self
+    }
+
+    #[doc="Set the CSR20 register."]
     #[inline] pub fn set_csr20<F: FnOnce(Csr20) -> Csr20>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr20_mut(), f(Csr20(0)));
-        }
+        self.csr20_reg().set(f);
         self
     }
 
     #[doc="Modify the CSR20 register."]
     #[inline] pub fn with_csr20<F: FnOnce(Csr20) -> Csr20>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr20_mut(), f(self.csr20()));
-        }
+        self.csr20_reg().with(f);
         self
+    }
+
+    #[doc="Get the CSR21 Register."]
+    #[inline] pub fn csr21_reg(&self) -> Register<Csr21> { 
+        Register::new(self.0 as *mut Csr21, 0x14c)
     }
 
     #[doc="Get the *mut pointer for the CSR21 register."]
     #[inline] pub fn csr21_mut(&self) -> *mut Csr21 { 
-        (self.0 + 0x14c) as *mut Csr21
+        self.csr21_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the CSR21 register."]
     #[inline] pub fn csr21_ptr(&self) -> *const Csr21 { 
-           self.csr21_mut()
+        self.csr21_reg().ptr()
     }
 
     #[doc="Read the CSR21 register."]
     #[inline] pub fn csr21(&self) -> Csr21 { 
-        unsafe {
-            read_volatile(self.csr21_ptr())
-        }
+        self.csr21_reg().read()
     }
 
     #[doc="Write the CSR21 register."]
+    #[inline] pub fn write_csr21(&self, value: Csr21) -> &Self { 
+        self.csr21_reg().write(value);
+        self
+    }
+
+    #[doc="Set the CSR21 register."]
     #[inline] pub fn set_csr21<F: FnOnce(Csr21) -> Csr21>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr21_mut(), f(Csr21(0)));
-        }
+        self.csr21_reg().set(f);
         self
     }
 
     #[doc="Modify the CSR21 register."]
     #[inline] pub fn with_csr21<F: FnOnce(Csr21) -> Csr21>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr21_mut(), f(self.csr21()));
-        }
+        self.csr21_reg().with(f);
         self
+    }
+
+    #[doc="Get the CSR22 Register."]
+    #[inline] pub fn csr22_reg(&self) -> Register<Csr22> { 
+        Register::new(self.0 as *mut Csr22, 0x150)
     }
 
     #[doc="Get the *mut pointer for the CSR22 register."]
     #[inline] pub fn csr22_mut(&self) -> *mut Csr22 { 
-        (self.0 + 0x150) as *mut Csr22
+        self.csr22_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the CSR22 register."]
     #[inline] pub fn csr22_ptr(&self) -> *const Csr22 { 
-           self.csr22_mut()
+        self.csr22_reg().ptr()
     }
 
     #[doc="Read the CSR22 register."]
     #[inline] pub fn csr22(&self) -> Csr22 { 
-        unsafe {
-            read_volatile(self.csr22_ptr())
-        }
+        self.csr22_reg().read()
     }
 
     #[doc="Write the CSR22 register."]
+    #[inline] pub fn write_csr22(&self, value: Csr22) -> &Self { 
+        self.csr22_reg().write(value);
+        self
+    }
+
+    #[doc="Set the CSR22 register."]
     #[inline] pub fn set_csr22<F: FnOnce(Csr22) -> Csr22>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr22_mut(), f(Csr22(0)));
-        }
+        self.csr22_reg().set(f);
         self
     }
 
     #[doc="Modify the CSR22 register."]
     #[inline] pub fn with_csr22<F: FnOnce(Csr22) -> Csr22>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr22_mut(), f(self.csr22()));
-        }
+        self.csr22_reg().with(f);
         self
+    }
+
+    #[doc="Get the CSR23 Register."]
+    #[inline] pub fn csr23_reg(&self) -> Register<Csr23> { 
+        Register::new(self.0 as *mut Csr23, 0x154)
     }
 
     #[doc="Get the *mut pointer for the CSR23 register."]
     #[inline] pub fn csr23_mut(&self) -> *mut Csr23 { 
-        (self.0 + 0x154) as *mut Csr23
+        self.csr23_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the CSR23 register."]
     #[inline] pub fn csr23_ptr(&self) -> *const Csr23 { 
-           self.csr23_mut()
+        self.csr23_reg().ptr()
     }
 
     #[doc="Read the CSR23 register."]
     #[inline] pub fn csr23(&self) -> Csr23 { 
-        unsafe {
-            read_volatile(self.csr23_ptr())
-        }
+        self.csr23_reg().read()
     }
 
     #[doc="Write the CSR23 register."]
+    #[inline] pub fn write_csr23(&self, value: Csr23) -> &Self { 
+        self.csr23_reg().write(value);
+        self
+    }
+
+    #[doc="Set the CSR23 register."]
     #[inline] pub fn set_csr23<F: FnOnce(Csr23) -> Csr23>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr23_mut(), f(Csr23(0)));
-        }
+        self.csr23_reg().set(f);
         self
     }
 
     #[doc="Modify the CSR23 register."]
     #[inline] pub fn with_csr23<F: FnOnce(Csr23) -> Csr23>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr23_mut(), f(self.csr23()));
-        }
+        self.csr23_reg().with(f);
         self
+    }
+
+    #[doc="Get the CSR24 Register."]
+    #[inline] pub fn csr24_reg(&self) -> Register<Csr24> { 
+        Register::new(self.0 as *mut Csr24, 0x158)
     }
 
     #[doc="Get the *mut pointer for the CSR24 register."]
     #[inline] pub fn csr24_mut(&self) -> *mut Csr24 { 
-        (self.0 + 0x158) as *mut Csr24
+        self.csr24_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the CSR24 register."]
     #[inline] pub fn csr24_ptr(&self) -> *const Csr24 { 
-           self.csr24_mut()
+        self.csr24_reg().ptr()
     }
 
     #[doc="Read the CSR24 register."]
     #[inline] pub fn csr24(&self) -> Csr24 { 
-        unsafe {
-            read_volatile(self.csr24_ptr())
-        }
+        self.csr24_reg().read()
     }
 
     #[doc="Write the CSR24 register."]
+    #[inline] pub fn write_csr24(&self, value: Csr24) -> &Self { 
+        self.csr24_reg().write(value);
+        self
+    }
+
+    #[doc="Set the CSR24 register."]
     #[inline] pub fn set_csr24<F: FnOnce(Csr24) -> Csr24>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr24_mut(), f(Csr24(0)));
-        }
+        self.csr24_reg().set(f);
         self
     }
 
     #[doc="Modify the CSR24 register."]
     #[inline] pub fn with_csr24<F: FnOnce(Csr24) -> Csr24>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr24_mut(), f(self.csr24()));
-        }
+        self.csr24_reg().with(f);
         self
+    }
+
+    #[doc="Get the CSR25 Register."]
+    #[inline] pub fn csr25_reg(&self) -> Register<Csr25> { 
+        Register::new(self.0 as *mut Csr25, 0x15c)
     }
 
     #[doc="Get the *mut pointer for the CSR25 register."]
     #[inline] pub fn csr25_mut(&self) -> *mut Csr25 { 
-        (self.0 + 0x15c) as *mut Csr25
+        self.csr25_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the CSR25 register."]
     #[inline] pub fn csr25_ptr(&self) -> *const Csr25 { 
-           self.csr25_mut()
+        self.csr25_reg().ptr()
     }
 
     #[doc="Read the CSR25 register."]
     #[inline] pub fn csr25(&self) -> Csr25 { 
-        unsafe {
-            read_volatile(self.csr25_ptr())
-        }
+        self.csr25_reg().read()
     }
 
     #[doc="Write the CSR25 register."]
+    #[inline] pub fn write_csr25(&self, value: Csr25) -> &Self { 
+        self.csr25_reg().write(value);
+        self
+    }
+
+    #[doc="Set the CSR25 register."]
     #[inline] pub fn set_csr25<F: FnOnce(Csr25) -> Csr25>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr25_mut(), f(Csr25(0)));
-        }
+        self.csr25_reg().set(f);
         self
     }
 
     #[doc="Modify the CSR25 register."]
     #[inline] pub fn with_csr25<F: FnOnce(Csr25) -> Csr25>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr25_mut(), f(self.csr25()));
-        }
+        self.csr25_reg().with(f);
         self
+    }
+
+    #[doc="Get the CSR26 Register."]
+    #[inline] pub fn csr26_reg(&self) -> Register<Csr26> { 
+        Register::new(self.0 as *mut Csr26, 0x160)
     }
 
     #[doc="Get the *mut pointer for the CSR26 register."]
     #[inline] pub fn csr26_mut(&self) -> *mut Csr26 { 
-        (self.0 + 0x160) as *mut Csr26
+        self.csr26_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the CSR26 register."]
     #[inline] pub fn csr26_ptr(&self) -> *const Csr26 { 
-           self.csr26_mut()
+        self.csr26_reg().ptr()
     }
 
     #[doc="Read the CSR26 register."]
     #[inline] pub fn csr26(&self) -> Csr26 { 
-        unsafe {
-            read_volatile(self.csr26_ptr())
-        }
+        self.csr26_reg().read()
     }
 
     #[doc="Write the CSR26 register."]
+    #[inline] pub fn write_csr26(&self, value: Csr26) -> &Self { 
+        self.csr26_reg().write(value);
+        self
+    }
+
+    #[doc="Set the CSR26 register."]
     #[inline] pub fn set_csr26<F: FnOnce(Csr26) -> Csr26>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr26_mut(), f(Csr26(0)));
-        }
+        self.csr26_reg().set(f);
         self
     }
 
     #[doc="Modify the CSR26 register."]
     #[inline] pub fn with_csr26<F: FnOnce(Csr26) -> Csr26>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr26_mut(), f(self.csr26()));
-        }
+        self.csr26_reg().with(f);
         self
+    }
+
+    #[doc="Get the CSR27 Register."]
+    #[inline] pub fn csr27_reg(&self) -> Register<Csr27> { 
+        Register::new(self.0 as *mut Csr27, 0x164)
     }
 
     #[doc="Get the *mut pointer for the CSR27 register."]
     #[inline] pub fn csr27_mut(&self) -> *mut Csr27 { 
-        (self.0 + 0x164) as *mut Csr27
+        self.csr27_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the CSR27 register."]
     #[inline] pub fn csr27_ptr(&self) -> *const Csr27 { 
-           self.csr27_mut()
+        self.csr27_reg().ptr()
     }
 
     #[doc="Read the CSR27 register."]
     #[inline] pub fn csr27(&self) -> Csr27 { 
-        unsafe {
-            read_volatile(self.csr27_ptr())
-        }
+        self.csr27_reg().read()
     }
 
     #[doc="Write the CSR27 register."]
+    #[inline] pub fn write_csr27(&self, value: Csr27) -> &Self { 
+        self.csr27_reg().write(value);
+        self
+    }
+
+    #[doc="Set the CSR27 register."]
     #[inline] pub fn set_csr27<F: FnOnce(Csr27) -> Csr27>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr27_mut(), f(Csr27(0)));
-        }
+        self.csr27_reg().set(f);
         self
     }
 
     #[doc="Modify the CSR27 register."]
     #[inline] pub fn with_csr27<F: FnOnce(Csr27) -> Csr27>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr27_mut(), f(self.csr27()));
-        }
+        self.csr27_reg().with(f);
         self
+    }
+
+    #[doc="Get the CSR28 Register."]
+    #[inline] pub fn csr28_reg(&self) -> Register<Csr28> { 
+        Register::new(self.0 as *mut Csr28, 0x168)
     }
 
     #[doc="Get the *mut pointer for the CSR28 register."]
     #[inline] pub fn csr28_mut(&self) -> *mut Csr28 { 
-        (self.0 + 0x168) as *mut Csr28
+        self.csr28_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the CSR28 register."]
     #[inline] pub fn csr28_ptr(&self) -> *const Csr28 { 
-           self.csr28_mut()
+        self.csr28_reg().ptr()
     }
 
     #[doc="Read the CSR28 register."]
     #[inline] pub fn csr28(&self) -> Csr28 { 
-        unsafe {
-            read_volatile(self.csr28_ptr())
-        }
+        self.csr28_reg().read()
     }
 
     #[doc="Write the CSR28 register."]
+    #[inline] pub fn write_csr28(&self, value: Csr28) -> &Self { 
+        self.csr28_reg().write(value);
+        self
+    }
+
+    #[doc="Set the CSR28 register."]
     #[inline] pub fn set_csr28<F: FnOnce(Csr28) -> Csr28>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr28_mut(), f(Csr28(0)));
-        }
+        self.csr28_reg().set(f);
         self
     }
 
     #[doc="Modify the CSR28 register."]
     #[inline] pub fn with_csr28<F: FnOnce(Csr28) -> Csr28>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr28_mut(), f(self.csr28()));
-        }
+        self.csr28_reg().with(f);
         self
+    }
+
+    #[doc="Get the CSR29 Register."]
+    #[inline] pub fn csr29_reg(&self) -> Register<Csr29> { 
+        Register::new(self.0 as *mut Csr29, 0x16c)
     }
 
     #[doc="Get the *mut pointer for the CSR29 register."]
     #[inline] pub fn csr29_mut(&self) -> *mut Csr29 { 
-        (self.0 + 0x16c) as *mut Csr29
+        self.csr29_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the CSR29 register."]
     #[inline] pub fn csr29_ptr(&self) -> *const Csr29 { 
-           self.csr29_mut()
+        self.csr29_reg().ptr()
     }
 
     #[doc="Read the CSR29 register."]
     #[inline] pub fn csr29(&self) -> Csr29 { 
-        unsafe {
-            read_volatile(self.csr29_ptr())
-        }
+        self.csr29_reg().read()
     }
 
     #[doc="Write the CSR29 register."]
+    #[inline] pub fn write_csr29(&self, value: Csr29) -> &Self { 
+        self.csr29_reg().write(value);
+        self
+    }
+
+    #[doc="Set the CSR29 register."]
     #[inline] pub fn set_csr29<F: FnOnce(Csr29) -> Csr29>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr29_mut(), f(Csr29(0)));
-        }
+        self.csr29_reg().set(f);
         self
     }
 
     #[doc="Modify the CSR29 register."]
     #[inline] pub fn with_csr29<F: FnOnce(Csr29) -> Csr29>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr29_mut(), f(self.csr29()));
-        }
+        self.csr29_reg().with(f);
         self
+    }
+
+    #[doc="Get the CSR30 Register."]
+    #[inline] pub fn csr30_reg(&self) -> Register<Csr30> { 
+        Register::new(self.0 as *mut Csr30, 0x170)
     }
 
     #[doc="Get the *mut pointer for the CSR30 register."]
     #[inline] pub fn csr30_mut(&self) -> *mut Csr30 { 
-        (self.0 + 0x170) as *mut Csr30
+        self.csr30_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the CSR30 register."]
     #[inline] pub fn csr30_ptr(&self) -> *const Csr30 { 
-           self.csr30_mut()
+        self.csr30_reg().ptr()
     }
 
     #[doc="Read the CSR30 register."]
     #[inline] pub fn csr30(&self) -> Csr30 { 
-        unsafe {
-            read_volatile(self.csr30_ptr())
-        }
+        self.csr30_reg().read()
     }
 
     #[doc="Write the CSR30 register."]
+    #[inline] pub fn write_csr30(&self, value: Csr30) -> &Self { 
+        self.csr30_reg().write(value);
+        self
+    }
+
+    #[doc="Set the CSR30 register."]
     #[inline] pub fn set_csr30<F: FnOnce(Csr30) -> Csr30>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr30_mut(), f(Csr30(0)));
-        }
+        self.csr30_reg().set(f);
         self
     }
 
     #[doc="Modify the CSR30 register."]
     #[inline] pub fn with_csr30<F: FnOnce(Csr30) -> Csr30>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr30_mut(), f(self.csr30()));
-        }
+        self.csr30_reg().with(f);
         self
+    }
+
+    #[doc="Get the CSR31 Register."]
+    #[inline] pub fn csr31_reg(&self) -> Register<Csr31> { 
+        Register::new(self.0 as *mut Csr31, 0x174)
     }
 
     #[doc="Get the *mut pointer for the CSR31 register."]
     #[inline] pub fn csr31_mut(&self) -> *mut Csr31 { 
-        (self.0 + 0x174) as *mut Csr31
+        self.csr31_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the CSR31 register."]
     #[inline] pub fn csr31_ptr(&self) -> *const Csr31 { 
-           self.csr31_mut()
+        self.csr31_reg().ptr()
     }
 
     #[doc="Read the CSR31 register."]
     #[inline] pub fn csr31(&self) -> Csr31 { 
-        unsafe {
-            read_volatile(self.csr31_ptr())
-        }
+        self.csr31_reg().read()
     }
 
     #[doc="Write the CSR31 register."]
+    #[inline] pub fn write_csr31(&self, value: Csr31) -> &Self { 
+        self.csr31_reg().write(value);
+        self
+    }
+
+    #[doc="Set the CSR31 register."]
     #[inline] pub fn set_csr31<F: FnOnce(Csr31) -> Csr31>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr31_mut(), f(Csr31(0)));
-        }
+        self.csr31_reg().set(f);
         self
     }
 
     #[doc="Modify the CSR31 register."]
     #[inline] pub fn with_csr31<F: FnOnce(Csr31) -> Csr31>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr31_mut(), f(self.csr31()));
-        }
+        self.csr31_reg().with(f);
         self
+    }
+
+    #[doc="Get the CSR32 Register."]
+    #[inline] pub fn csr32_reg(&self) -> Register<Csr32> { 
+        Register::new(self.0 as *mut Csr32, 0x178)
     }
 
     #[doc="Get the *mut pointer for the CSR32 register."]
     #[inline] pub fn csr32_mut(&self) -> *mut Csr32 { 
-        (self.0 + 0x178) as *mut Csr32
+        self.csr32_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the CSR32 register."]
     #[inline] pub fn csr32_ptr(&self) -> *const Csr32 { 
-           self.csr32_mut()
+        self.csr32_reg().ptr()
     }
 
     #[doc="Read the CSR32 register."]
     #[inline] pub fn csr32(&self) -> Csr32 { 
-        unsafe {
-            read_volatile(self.csr32_ptr())
-        }
+        self.csr32_reg().read()
     }
 
     #[doc="Write the CSR32 register."]
+    #[inline] pub fn write_csr32(&self, value: Csr32) -> &Self { 
+        self.csr32_reg().write(value);
+        self
+    }
+
+    #[doc="Set the CSR32 register."]
     #[inline] pub fn set_csr32<F: FnOnce(Csr32) -> Csr32>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr32_mut(), f(Csr32(0)));
-        }
+        self.csr32_reg().set(f);
         self
     }
 
     #[doc="Modify the CSR32 register."]
     #[inline] pub fn with_csr32<F: FnOnce(Csr32) -> Csr32>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr32_mut(), f(self.csr32()));
-        }
+        self.csr32_reg().with(f);
         self
+    }
+
+    #[doc="Get the CSR33 Register."]
+    #[inline] pub fn csr33_reg(&self) -> Register<Csr33> { 
+        Register::new(self.0 as *mut Csr33, 0x17c)
     }
 
     #[doc="Get the *mut pointer for the CSR33 register."]
     #[inline] pub fn csr33_mut(&self) -> *mut Csr33 { 
-        (self.0 + 0x17c) as *mut Csr33
+        self.csr33_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the CSR33 register."]
     #[inline] pub fn csr33_ptr(&self) -> *const Csr33 { 
-           self.csr33_mut()
+        self.csr33_reg().ptr()
     }
 
     #[doc="Read the CSR33 register."]
     #[inline] pub fn csr33(&self) -> Csr33 { 
-        unsafe {
-            read_volatile(self.csr33_ptr())
-        }
+        self.csr33_reg().read()
     }
 
     #[doc="Write the CSR33 register."]
+    #[inline] pub fn write_csr33(&self, value: Csr33) -> &Self { 
+        self.csr33_reg().write(value);
+        self
+    }
+
+    #[doc="Set the CSR33 register."]
     #[inline] pub fn set_csr33<F: FnOnce(Csr33) -> Csr33>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr33_mut(), f(Csr33(0)));
-        }
+        self.csr33_reg().set(f);
         self
     }
 
     #[doc="Modify the CSR33 register."]
     #[inline] pub fn with_csr33<F: FnOnce(Csr33) -> Csr33>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr33_mut(), f(self.csr33()));
-        }
+        self.csr33_reg().with(f);
         self
+    }
+
+    #[doc="Get the CSR34 Register."]
+    #[inline] pub fn csr34_reg(&self) -> Register<Csr34> { 
+        Register::new(self.0 as *mut Csr34, 0x180)
     }
 
     #[doc="Get the *mut pointer for the CSR34 register."]
     #[inline] pub fn csr34_mut(&self) -> *mut Csr34 { 
-        (self.0 + 0x180) as *mut Csr34
+        self.csr34_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the CSR34 register."]
     #[inline] pub fn csr34_ptr(&self) -> *const Csr34 { 
-           self.csr34_mut()
+        self.csr34_reg().ptr()
     }
 
     #[doc="Read the CSR34 register."]
     #[inline] pub fn csr34(&self) -> Csr34 { 
-        unsafe {
-            read_volatile(self.csr34_ptr())
-        }
+        self.csr34_reg().read()
     }
 
     #[doc="Write the CSR34 register."]
+    #[inline] pub fn write_csr34(&self, value: Csr34) -> &Self { 
+        self.csr34_reg().write(value);
+        self
+    }
+
+    #[doc="Set the CSR34 register."]
     #[inline] pub fn set_csr34<F: FnOnce(Csr34) -> Csr34>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr34_mut(), f(Csr34(0)));
-        }
+        self.csr34_reg().set(f);
         self
     }
 
     #[doc="Modify the CSR34 register."]
     #[inline] pub fn with_csr34<F: FnOnce(Csr34) -> Csr34>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr34_mut(), f(self.csr34()));
-        }
+        self.csr34_reg().with(f);
         self
+    }
+
+    #[doc="Get the CSR35 Register."]
+    #[inline] pub fn csr35_reg(&self) -> Register<Csr35> { 
+        Register::new(self.0 as *mut Csr35, 0x184)
     }
 
     #[doc="Get the *mut pointer for the CSR35 register."]
     #[inline] pub fn csr35_mut(&self) -> *mut Csr35 { 
-        (self.0 + 0x184) as *mut Csr35
+        self.csr35_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the CSR35 register."]
     #[inline] pub fn csr35_ptr(&self) -> *const Csr35 { 
-           self.csr35_mut()
+        self.csr35_reg().ptr()
     }
 
     #[doc="Read the CSR35 register."]
     #[inline] pub fn csr35(&self) -> Csr35 { 
-        unsafe {
-            read_volatile(self.csr35_ptr())
-        }
+        self.csr35_reg().read()
     }
 
     #[doc="Write the CSR35 register."]
+    #[inline] pub fn write_csr35(&self, value: Csr35) -> &Self { 
+        self.csr35_reg().write(value);
+        self
+    }
+
+    #[doc="Set the CSR35 register."]
     #[inline] pub fn set_csr35<F: FnOnce(Csr35) -> Csr35>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr35_mut(), f(Csr35(0)));
-        }
+        self.csr35_reg().set(f);
         self
     }
 
     #[doc="Modify the CSR35 register."]
     #[inline] pub fn with_csr35<F: FnOnce(Csr35) -> Csr35>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr35_mut(), f(self.csr35()));
-        }
+        self.csr35_reg().with(f);
         self
+    }
+
+    #[doc="Get the CSR36 Register."]
+    #[inline] pub fn csr36_reg(&self) -> Register<Csr36> { 
+        Register::new(self.0 as *mut Csr36, 0x188)
     }
 
     #[doc="Get the *mut pointer for the CSR36 register."]
     #[inline] pub fn csr36_mut(&self) -> *mut Csr36 { 
-        (self.0 + 0x188) as *mut Csr36
+        self.csr36_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the CSR36 register."]
     #[inline] pub fn csr36_ptr(&self) -> *const Csr36 { 
-           self.csr36_mut()
+        self.csr36_reg().ptr()
     }
 
     #[doc="Read the CSR36 register."]
     #[inline] pub fn csr36(&self) -> Csr36 { 
-        unsafe {
-            read_volatile(self.csr36_ptr())
-        }
+        self.csr36_reg().read()
     }
 
     #[doc="Write the CSR36 register."]
+    #[inline] pub fn write_csr36(&self, value: Csr36) -> &Self { 
+        self.csr36_reg().write(value);
+        self
+    }
+
+    #[doc="Set the CSR36 register."]
     #[inline] pub fn set_csr36<F: FnOnce(Csr36) -> Csr36>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr36_mut(), f(Csr36(0)));
-        }
+        self.csr36_reg().set(f);
         self
     }
 
     #[doc="Modify the CSR36 register."]
     #[inline] pub fn with_csr36<F: FnOnce(Csr36) -> Csr36>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr36_mut(), f(self.csr36()));
-        }
+        self.csr36_reg().with(f);
         self
+    }
+
+    #[doc="Get the CSR37 Register."]
+    #[inline] pub fn csr37_reg(&self) -> Register<Csr37> { 
+        Register::new(self.0 as *mut Csr37, 0x18c)
     }
 
     #[doc="Get the *mut pointer for the CSR37 register."]
     #[inline] pub fn csr37_mut(&self) -> *mut Csr37 { 
-        (self.0 + 0x18c) as *mut Csr37
+        self.csr37_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the CSR37 register."]
     #[inline] pub fn csr37_ptr(&self) -> *const Csr37 { 
-           self.csr37_mut()
+        self.csr37_reg().ptr()
     }
 
     #[doc="Read the CSR37 register."]
     #[inline] pub fn csr37(&self) -> Csr37 { 
-        unsafe {
-            read_volatile(self.csr37_ptr())
-        }
+        self.csr37_reg().read()
     }
 
     #[doc="Write the CSR37 register."]
+    #[inline] pub fn write_csr37(&self, value: Csr37) -> &Self { 
+        self.csr37_reg().write(value);
+        self
+    }
+
+    #[doc="Set the CSR37 register."]
     #[inline] pub fn set_csr37<F: FnOnce(Csr37) -> Csr37>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr37_mut(), f(Csr37(0)));
-        }
+        self.csr37_reg().set(f);
         self
     }
 
     #[doc="Modify the CSR37 register."]
     #[inline] pub fn with_csr37<F: FnOnce(Csr37) -> Csr37>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr37_mut(), f(self.csr37()));
-        }
+        self.csr37_reg().with(f);
         self
+    }
+
+    #[doc="Get the CSR38 Register."]
+    #[inline] pub fn csr38_reg(&self) -> Register<Csr38> { 
+        Register::new(self.0 as *mut Csr38, 0x190)
     }
 
     #[doc="Get the *mut pointer for the CSR38 register."]
     #[inline] pub fn csr38_mut(&self) -> *mut Csr38 { 
-        (self.0 + 0x190) as *mut Csr38
+        self.csr38_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the CSR38 register."]
     #[inline] pub fn csr38_ptr(&self) -> *const Csr38 { 
-           self.csr38_mut()
+        self.csr38_reg().ptr()
     }
 
     #[doc="Read the CSR38 register."]
     #[inline] pub fn csr38(&self) -> Csr38 { 
-        unsafe {
-            read_volatile(self.csr38_ptr())
-        }
+        self.csr38_reg().read()
     }
 
     #[doc="Write the CSR38 register."]
+    #[inline] pub fn write_csr38(&self, value: Csr38) -> &Self { 
+        self.csr38_reg().write(value);
+        self
+    }
+
+    #[doc="Set the CSR38 register."]
     #[inline] pub fn set_csr38<F: FnOnce(Csr38) -> Csr38>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr38_mut(), f(Csr38(0)));
-        }
+        self.csr38_reg().set(f);
         self
     }
 
     #[doc="Modify the CSR38 register."]
     #[inline] pub fn with_csr38<F: FnOnce(Csr38) -> Csr38>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr38_mut(), f(self.csr38()));
-        }
+        self.csr38_reg().with(f);
         self
+    }
+
+    #[doc="Get the CSR39 Register."]
+    #[inline] pub fn csr39_reg(&self) -> Register<Csr39> { 
+        Register::new(self.0 as *mut Csr39, 0x194)
     }
 
     #[doc="Get the *mut pointer for the CSR39 register."]
     #[inline] pub fn csr39_mut(&self) -> *mut Csr39 { 
-        (self.0 + 0x194) as *mut Csr39
+        self.csr39_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the CSR39 register."]
     #[inline] pub fn csr39_ptr(&self) -> *const Csr39 { 
-           self.csr39_mut()
+        self.csr39_reg().ptr()
     }
 
     #[doc="Read the CSR39 register."]
     #[inline] pub fn csr39(&self) -> Csr39 { 
-        unsafe {
-            read_volatile(self.csr39_ptr())
-        }
+        self.csr39_reg().read()
     }
 
     #[doc="Write the CSR39 register."]
+    #[inline] pub fn write_csr39(&self, value: Csr39) -> &Self { 
+        self.csr39_reg().write(value);
+        self
+    }
+
+    #[doc="Set the CSR39 register."]
     #[inline] pub fn set_csr39<F: FnOnce(Csr39) -> Csr39>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr39_mut(), f(Csr39(0)));
-        }
+        self.csr39_reg().set(f);
         self
     }
 
     #[doc="Modify the CSR39 register."]
     #[inline] pub fn with_csr39<F: FnOnce(Csr39) -> Csr39>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr39_mut(), f(self.csr39()));
-        }
+        self.csr39_reg().with(f);
         self
+    }
+
+    #[doc="Get the CSR40 Register."]
+    #[inline] pub fn csr40_reg(&self) -> Register<Csr40> { 
+        Register::new(self.0 as *mut Csr40, 0x198)
     }
 
     #[doc="Get the *mut pointer for the CSR40 register."]
     #[inline] pub fn csr40_mut(&self) -> *mut Csr40 { 
-        (self.0 + 0x198) as *mut Csr40
+        self.csr40_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the CSR40 register."]
     #[inline] pub fn csr40_ptr(&self) -> *const Csr40 { 
-           self.csr40_mut()
+        self.csr40_reg().ptr()
     }
 
     #[doc="Read the CSR40 register."]
     #[inline] pub fn csr40(&self) -> Csr40 { 
-        unsafe {
-            read_volatile(self.csr40_ptr())
-        }
+        self.csr40_reg().read()
     }
 
     #[doc="Write the CSR40 register."]
+    #[inline] pub fn write_csr40(&self, value: Csr40) -> &Self { 
+        self.csr40_reg().write(value);
+        self
+    }
+
+    #[doc="Set the CSR40 register."]
     #[inline] pub fn set_csr40<F: FnOnce(Csr40) -> Csr40>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr40_mut(), f(Csr40(0)));
-        }
+        self.csr40_reg().set(f);
         self
     }
 
     #[doc="Modify the CSR40 register."]
     #[inline] pub fn with_csr40<F: FnOnce(Csr40) -> Csr40>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr40_mut(), f(self.csr40()));
-        }
+        self.csr40_reg().with(f);
         self
+    }
+
+    #[doc="Get the CSR41 Register."]
+    #[inline] pub fn csr41_reg(&self) -> Register<Csr41> { 
+        Register::new(self.0 as *mut Csr41, 0x19c)
     }
 
     #[doc="Get the *mut pointer for the CSR41 register."]
     #[inline] pub fn csr41_mut(&self) -> *mut Csr41 { 
-        (self.0 + 0x19c) as *mut Csr41
+        self.csr41_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the CSR41 register."]
     #[inline] pub fn csr41_ptr(&self) -> *const Csr41 { 
-           self.csr41_mut()
+        self.csr41_reg().ptr()
     }
 
     #[doc="Read the CSR41 register."]
     #[inline] pub fn csr41(&self) -> Csr41 { 
-        unsafe {
-            read_volatile(self.csr41_ptr())
-        }
+        self.csr41_reg().read()
     }
 
     #[doc="Write the CSR41 register."]
+    #[inline] pub fn write_csr41(&self, value: Csr41) -> &Self { 
+        self.csr41_reg().write(value);
+        self
+    }
+
+    #[doc="Set the CSR41 register."]
     #[inline] pub fn set_csr41<F: FnOnce(Csr41) -> Csr41>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr41_mut(), f(Csr41(0)));
-        }
+        self.csr41_reg().set(f);
         self
     }
 
     #[doc="Modify the CSR41 register."]
     #[inline] pub fn with_csr41<F: FnOnce(Csr41) -> Csr41>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr41_mut(), f(self.csr41()));
-        }
+        self.csr41_reg().with(f);
         self
+    }
+
+    #[doc="Get the CSR42 Register."]
+    #[inline] pub fn csr42_reg(&self) -> Register<Csr42> { 
+        Register::new(self.0 as *mut Csr42, 0x1a0)
     }
 
     #[doc="Get the *mut pointer for the CSR42 register."]
     #[inline] pub fn csr42_mut(&self) -> *mut Csr42 { 
-        (self.0 + 0x1a0) as *mut Csr42
+        self.csr42_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the CSR42 register."]
     #[inline] pub fn csr42_ptr(&self) -> *const Csr42 { 
-           self.csr42_mut()
+        self.csr42_reg().ptr()
     }
 
     #[doc="Read the CSR42 register."]
     #[inline] pub fn csr42(&self) -> Csr42 { 
-        unsafe {
-            read_volatile(self.csr42_ptr())
-        }
+        self.csr42_reg().read()
     }
 
     #[doc="Write the CSR42 register."]
+    #[inline] pub fn write_csr42(&self, value: Csr42) -> &Self { 
+        self.csr42_reg().write(value);
+        self
+    }
+
+    #[doc="Set the CSR42 register."]
     #[inline] pub fn set_csr42<F: FnOnce(Csr42) -> Csr42>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr42_mut(), f(Csr42(0)));
-        }
+        self.csr42_reg().set(f);
         self
     }
 
     #[doc="Modify the CSR42 register."]
     #[inline] pub fn with_csr42<F: FnOnce(Csr42) -> Csr42>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr42_mut(), f(self.csr42()));
-        }
+        self.csr42_reg().with(f);
         self
+    }
+
+    #[doc="Get the CSR43 Register."]
+    #[inline] pub fn csr43_reg(&self) -> Register<Csr43> { 
+        Register::new(self.0 as *mut Csr43, 0x1a4)
     }
 
     #[doc="Get the *mut pointer for the CSR43 register."]
     #[inline] pub fn csr43_mut(&self) -> *mut Csr43 { 
-        (self.0 + 0x1a4) as *mut Csr43
+        self.csr43_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the CSR43 register."]
     #[inline] pub fn csr43_ptr(&self) -> *const Csr43 { 
-           self.csr43_mut()
+        self.csr43_reg().ptr()
     }
 
     #[doc="Read the CSR43 register."]
     #[inline] pub fn csr43(&self) -> Csr43 { 
-        unsafe {
-            read_volatile(self.csr43_ptr())
-        }
+        self.csr43_reg().read()
     }
 
     #[doc="Write the CSR43 register."]
+    #[inline] pub fn write_csr43(&self, value: Csr43) -> &Self { 
+        self.csr43_reg().write(value);
+        self
+    }
+
+    #[doc="Set the CSR43 register."]
     #[inline] pub fn set_csr43<F: FnOnce(Csr43) -> Csr43>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr43_mut(), f(Csr43(0)));
-        }
+        self.csr43_reg().set(f);
         self
     }
 
     #[doc="Modify the CSR43 register."]
     #[inline] pub fn with_csr43<F: FnOnce(Csr43) -> Csr43>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr43_mut(), f(self.csr43()));
-        }
+        self.csr43_reg().with(f);
         self
+    }
+
+    #[doc="Get the CSR44 Register."]
+    #[inline] pub fn csr44_reg(&self) -> Register<Csr44> { 
+        Register::new(self.0 as *mut Csr44, 0x1a8)
     }
 
     #[doc="Get the *mut pointer for the CSR44 register."]
     #[inline] pub fn csr44_mut(&self) -> *mut Csr44 { 
-        (self.0 + 0x1a8) as *mut Csr44
+        self.csr44_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the CSR44 register."]
     #[inline] pub fn csr44_ptr(&self) -> *const Csr44 { 
-           self.csr44_mut()
+        self.csr44_reg().ptr()
     }
 
     #[doc="Read the CSR44 register."]
     #[inline] pub fn csr44(&self) -> Csr44 { 
-        unsafe {
-            read_volatile(self.csr44_ptr())
-        }
+        self.csr44_reg().read()
     }
 
     #[doc="Write the CSR44 register."]
+    #[inline] pub fn write_csr44(&self, value: Csr44) -> &Self { 
+        self.csr44_reg().write(value);
+        self
+    }
+
+    #[doc="Set the CSR44 register."]
     #[inline] pub fn set_csr44<F: FnOnce(Csr44) -> Csr44>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr44_mut(), f(Csr44(0)));
-        }
+        self.csr44_reg().set(f);
         self
     }
 
     #[doc="Modify the CSR44 register."]
     #[inline] pub fn with_csr44<F: FnOnce(Csr44) -> Csr44>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr44_mut(), f(self.csr44()));
-        }
+        self.csr44_reg().with(f);
         self
+    }
+
+    #[doc="Get the CSR45 Register."]
+    #[inline] pub fn csr45_reg(&self) -> Register<Csr45> { 
+        Register::new(self.0 as *mut Csr45, 0x1ac)
     }
 
     #[doc="Get the *mut pointer for the CSR45 register."]
     #[inline] pub fn csr45_mut(&self) -> *mut Csr45 { 
-        (self.0 + 0x1ac) as *mut Csr45
+        self.csr45_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the CSR45 register."]
     #[inline] pub fn csr45_ptr(&self) -> *const Csr45 { 
-           self.csr45_mut()
+        self.csr45_reg().ptr()
     }
 
     #[doc="Read the CSR45 register."]
     #[inline] pub fn csr45(&self) -> Csr45 { 
-        unsafe {
-            read_volatile(self.csr45_ptr())
-        }
+        self.csr45_reg().read()
     }
 
     #[doc="Write the CSR45 register."]
+    #[inline] pub fn write_csr45(&self, value: Csr45) -> &Self { 
+        self.csr45_reg().write(value);
+        self
+    }
+
+    #[doc="Set the CSR45 register."]
     #[inline] pub fn set_csr45<F: FnOnce(Csr45) -> Csr45>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr45_mut(), f(Csr45(0)));
-        }
+        self.csr45_reg().set(f);
         self
     }
 
     #[doc="Modify the CSR45 register."]
     #[inline] pub fn with_csr45<F: FnOnce(Csr45) -> Csr45>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr45_mut(), f(self.csr45()));
-        }
+        self.csr45_reg().with(f);
         self
+    }
+
+    #[doc="Get the CSR46 Register."]
+    #[inline] pub fn csr46_reg(&self) -> Register<Csr46> { 
+        Register::new(self.0 as *mut Csr46, 0x1b0)
     }
 
     #[doc="Get the *mut pointer for the CSR46 register."]
     #[inline] pub fn csr46_mut(&self) -> *mut Csr46 { 
-        (self.0 + 0x1b0) as *mut Csr46
+        self.csr46_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the CSR46 register."]
     #[inline] pub fn csr46_ptr(&self) -> *const Csr46 { 
-           self.csr46_mut()
+        self.csr46_reg().ptr()
     }
 
     #[doc="Read the CSR46 register."]
     #[inline] pub fn csr46(&self) -> Csr46 { 
-        unsafe {
-            read_volatile(self.csr46_ptr())
-        }
+        self.csr46_reg().read()
     }
 
     #[doc="Write the CSR46 register."]
+    #[inline] pub fn write_csr46(&self, value: Csr46) -> &Self { 
+        self.csr46_reg().write(value);
+        self
+    }
+
+    #[doc="Set the CSR46 register."]
     #[inline] pub fn set_csr46<F: FnOnce(Csr46) -> Csr46>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr46_mut(), f(Csr46(0)));
-        }
+        self.csr46_reg().set(f);
         self
     }
 
     #[doc="Modify the CSR46 register."]
     #[inline] pub fn with_csr46<F: FnOnce(Csr46) -> Csr46>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr46_mut(), f(self.csr46()));
-        }
+        self.csr46_reg().with(f);
         self
+    }
+
+    #[doc="Get the CSR47 Register."]
+    #[inline] pub fn csr47_reg(&self) -> Register<Csr47> { 
+        Register::new(self.0 as *mut Csr47, 0x1b4)
     }
 
     #[doc="Get the *mut pointer for the CSR47 register."]
     #[inline] pub fn csr47_mut(&self) -> *mut Csr47 { 
-        (self.0 + 0x1b4) as *mut Csr47
+        self.csr47_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the CSR47 register."]
     #[inline] pub fn csr47_ptr(&self) -> *const Csr47 { 
-           self.csr47_mut()
+        self.csr47_reg().ptr()
     }
 
     #[doc="Read the CSR47 register."]
     #[inline] pub fn csr47(&self) -> Csr47 { 
-        unsafe {
-            read_volatile(self.csr47_ptr())
-        }
+        self.csr47_reg().read()
     }
 
     #[doc="Write the CSR47 register."]
+    #[inline] pub fn write_csr47(&self, value: Csr47) -> &Self { 
+        self.csr47_reg().write(value);
+        self
+    }
+
+    #[doc="Set the CSR47 register."]
     #[inline] pub fn set_csr47<F: FnOnce(Csr47) -> Csr47>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr47_mut(), f(Csr47(0)));
-        }
+        self.csr47_reg().set(f);
         self
     }
 
     #[doc="Modify the CSR47 register."]
     #[inline] pub fn with_csr47<F: FnOnce(Csr47) -> Csr47>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr47_mut(), f(self.csr47()));
-        }
+        self.csr47_reg().with(f);
         self
+    }
+
+    #[doc="Get the CSR48 Register."]
+    #[inline] pub fn csr48_reg(&self) -> Register<Csr48> { 
+        Register::new(self.0 as *mut Csr48, 0x1b8)
     }
 
     #[doc="Get the *mut pointer for the CSR48 register."]
     #[inline] pub fn csr48_mut(&self) -> *mut Csr48 { 
-        (self.0 + 0x1b8) as *mut Csr48
+        self.csr48_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the CSR48 register."]
     #[inline] pub fn csr48_ptr(&self) -> *const Csr48 { 
-           self.csr48_mut()
+        self.csr48_reg().ptr()
     }
 
     #[doc="Read the CSR48 register."]
     #[inline] pub fn csr48(&self) -> Csr48 { 
-        unsafe {
-            read_volatile(self.csr48_ptr())
-        }
+        self.csr48_reg().read()
     }
 
     #[doc="Write the CSR48 register."]
+    #[inline] pub fn write_csr48(&self, value: Csr48) -> &Self { 
+        self.csr48_reg().write(value);
+        self
+    }
+
+    #[doc="Set the CSR48 register."]
     #[inline] pub fn set_csr48<F: FnOnce(Csr48) -> Csr48>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr48_mut(), f(Csr48(0)));
-        }
+        self.csr48_reg().set(f);
         self
     }
 
     #[doc="Modify the CSR48 register."]
     #[inline] pub fn with_csr48<F: FnOnce(Csr48) -> Csr48>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr48_mut(), f(self.csr48()));
-        }
+        self.csr48_reg().with(f);
         self
+    }
+
+    #[doc="Get the CSR49 Register."]
+    #[inline] pub fn csr49_reg(&self) -> Register<Csr49> { 
+        Register::new(self.0 as *mut Csr49, 0x1bc)
     }
 
     #[doc="Get the *mut pointer for the CSR49 register."]
     #[inline] pub fn csr49_mut(&self) -> *mut Csr49 { 
-        (self.0 + 0x1bc) as *mut Csr49
+        self.csr49_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the CSR49 register."]
     #[inline] pub fn csr49_ptr(&self) -> *const Csr49 { 
-           self.csr49_mut()
+        self.csr49_reg().ptr()
     }
 
     #[doc="Read the CSR49 register."]
     #[inline] pub fn csr49(&self) -> Csr49 { 
-        unsafe {
-            read_volatile(self.csr49_ptr())
-        }
+        self.csr49_reg().read()
     }
 
     #[doc="Write the CSR49 register."]
+    #[inline] pub fn write_csr49(&self, value: Csr49) -> &Self { 
+        self.csr49_reg().write(value);
+        self
+    }
+
+    #[doc="Set the CSR49 register."]
     #[inline] pub fn set_csr49<F: FnOnce(Csr49) -> Csr49>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr49_mut(), f(Csr49(0)));
-        }
+        self.csr49_reg().set(f);
         self
     }
 
     #[doc="Modify the CSR49 register."]
     #[inline] pub fn with_csr49<F: FnOnce(Csr49) -> Csr49>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr49_mut(), f(self.csr49()));
-        }
+        self.csr49_reg().with(f);
         self
+    }
+
+    #[doc="Get the CSR50 Register."]
+    #[inline] pub fn csr50_reg(&self) -> Register<Csr50> { 
+        Register::new(self.0 as *mut Csr50, 0x1c0)
     }
 
     #[doc="Get the *mut pointer for the CSR50 register."]
     #[inline] pub fn csr50_mut(&self) -> *mut Csr50 { 
-        (self.0 + 0x1c0) as *mut Csr50
+        self.csr50_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the CSR50 register."]
     #[inline] pub fn csr50_ptr(&self) -> *const Csr50 { 
-           self.csr50_mut()
+        self.csr50_reg().ptr()
     }
 
     #[doc="Read the CSR50 register."]
     #[inline] pub fn csr50(&self) -> Csr50 { 
-        unsafe {
-            read_volatile(self.csr50_ptr())
-        }
+        self.csr50_reg().read()
     }
 
     #[doc="Write the CSR50 register."]
+    #[inline] pub fn write_csr50(&self, value: Csr50) -> &Self { 
+        self.csr50_reg().write(value);
+        self
+    }
+
+    #[doc="Set the CSR50 register."]
     #[inline] pub fn set_csr50<F: FnOnce(Csr50) -> Csr50>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr50_mut(), f(Csr50(0)));
-        }
+        self.csr50_reg().set(f);
         self
     }
 
     #[doc="Modify the CSR50 register."]
     #[inline] pub fn with_csr50<F: FnOnce(Csr50) -> Csr50>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr50_mut(), f(self.csr50()));
-        }
+        self.csr50_reg().with(f);
         self
+    }
+
+    #[doc="Get the CSR51 Register."]
+    #[inline] pub fn csr51_reg(&self) -> Register<Csr51> { 
+        Register::new(self.0 as *mut Csr51, 0x1c4)
     }
 
     #[doc="Get the *mut pointer for the CSR51 register."]
     #[inline] pub fn csr51_mut(&self) -> *mut Csr51 { 
-        (self.0 + 0x1c4) as *mut Csr51
+        self.csr51_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the CSR51 register."]
     #[inline] pub fn csr51_ptr(&self) -> *const Csr51 { 
-           self.csr51_mut()
+        self.csr51_reg().ptr()
     }
 
     #[doc="Read the CSR51 register."]
     #[inline] pub fn csr51(&self) -> Csr51 { 
-        unsafe {
-            read_volatile(self.csr51_ptr())
-        }
+        self.csr51_reg().read()
     }
 
     #[doc="Write the CSR51 register."]
+    #[inline] pub fn write_csr51(&self, value: Csr51) -> &Self { 
+        self.csr51_reg().write(value);
+        self
+    }
+
+    #[doc="Set the CSR51 register."]
     #[inline] pub fn set_csr51<F: FnOnce(Csr51) -> Csr51>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr51_mut(), f(Csr51(0)));
-        }
+        self.csr51_reg().set(f);
         self
     }
 
     #[doc="Modify the CSR51 register."]
     #[inline] pub fn with_csr51<F: FnOnce(Csr51) -> Csr51>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr51_mut(), f(self.csr51()));
-        }
+        self.csr51_reg().with(f);
         self
+    }
+
+    #[doc="Get the CSR52 Register."]
+    #[inline] pub fn csr52_reg(&self) -> Register<Csr52> { 
+        Register::new(self.0 as *mut Csr52, 0x1c8)
     }
 
     #[doc="Get the *mut pointer for the CSR52 register."]
     #[inline] pub fn csr52_mut(&self) -> *mut Csr52 { 
-        (self.0 + 0x1c8) as *mut Csr52
+        self.csr52_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the CSR52 register."]
     #[inline] pub fn csr52_ptr(&self) -> *const Csr52 { 
-           self.csr52_mut()
+        self.csr52_reg().ptr()
     }
 
     #[doc="Read the CSR52 register."]
     #[inline] pub fn csr52(&self) -> Csr52 { 
-        unsafe {
-            read_volatile(self.csr52_ptr())
-        }
+        self.csr52_reg().read()
     }
 
     #[doc="Write the CSR52 register."]
+    #[inline] pub fn write_csr52(&self, value: Csr52) -> &Self { 
+        self.csr52_reg().write(value);
+        self
+    }
+
+    #[doc="Set the CSR52 register."]
     #[inline] pub fn set_csr52<F: FnOnce(Csr52) -> Csr52>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr52_mut(), f(Csr52(0)));
-        }
+        self.csr52_reg().set(f);
         self
     }
 
     #[doc="Modify the CSR52 register."]
     #[inline] pub fn with_csr52<F: FnOnce(Csr52) -> Csr52>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr52_mut(), f(self.csr52()));
-        }
+        self.csr52_reg().with(f);
         self
+    }
+
+    #[doc="Get the CSR53 Register."]
+    #[inline] pub fn csr53_reg(&self) -> Register<Csr53> { 
+        Register::new(self.0 as *mut Csr53, 0x1cc)
     }
 
     #[doc="Get the *mut pointer for the CSR53 register."]
     #[inline] pub fn csr53_mut(&self) -> *mut Csr53 { 
-        (self.0 + 0x1cc) as *mut Csr53
+        self.csr53_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the CSR53 register."]
     #[inline] pub fn csr53_ptr(&self) -> *const Csr53 { 
-           self.csr53_mut()
+        self.csr53_reg().ptr()
     }
 
     #[doc="Read the CSR53 register."]
     #[inline] pub fn csr53(&self) -> Csr53 { 
-        unsafe {
-            read_volatile(self.csr53_ptr())
-        }
+        self.csr53_reg().read()
     }
 
     #[doc="Write the CSR53 register."]
+    #[inline] pub fn write_csr53(&self, value: Csr53) -> &Self { 
+        self.csr53_reg().write(value);
+        self
+    }
+
+    #[doc="Set the CSR53 register."]
     #[inline] pub fn set_csr53<F: FnOnce(Csr53) -> Csr53>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr53_mut(), f(Csr53(0)));
-        }
+        self.csr53_reg().set(f);
         self
     }
 
     #[doc="Modify the CSR53 register."]
     #[inline] pub fn with_csr53<F: FnOnce(Csr53) -> Csr53>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr53_mut(), f(self.csr53()));
-        }
+        self.csr53_reg().with(f);
         self
+    }
+
+    #[doc="Get the HASH_HR0 Register."]
+    #[inline] pub fn hash_hr0_reg(&self) -> Register<HashHr0> { 
+        Register::new(self.0 as *mut HashHr0, 0x310)
     }
 
     #[doc="Get the *mut pointer for the HASH_HR0 register."]
     #[inline] pub fn hash_hr0_mut(&self) -> *mut HashHr0 { 
-        (self.0 + 0x310) as *mut HashHr0
+        self.hash_hr0_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the HASH_HR0 register."]
     #[inline] pub fn hash_hr0_ptr(&self) -> *const HashHr0 { 
-           self.hash_hr0_mut()
+        self.hash_hr0_reg().ptr()
     }
 
     #[doc="Read the HASH_HR0 register."]
     #[inline] pub fn hash_hr0(&self) -> HashHr0 { 
-        unsafe {
-            read_volatile(self.hash_hr0_ptr())
-        }
+        self.hash_hr0_reg().read()
+    }
+
+    #[doc="Get the HASH_HR1 Register."]
+    #[inline] pub fn hash_hr1_reg(&self) -> Register<HashHr1> { 
+        Register::new(self.0 as *mut HashHr1, 0x314)
     }
 
     #[doc="Get the *mut pointer for the HASH_HR1 register."]
     #[inline] pub fn hash_hr1_mut(&self) -> *mut HashHr1 { 
-        (self.0 + 0x314) as *mut HashHr1
+        self.hash_hr1_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the HASH_HR1 register."]
     #[inline] pub fn hash_hr1_ptr(&self) -> *const HashHr1 { 
-           self.hash_hr1_mut()
+        self.hash_hr1_reg().ptr()
     }
 
     #[doc="Read the HASH_HR1 register."]
     #[inline] pub fn hash_hr1(&self) -> HashHr1 { 
-        unsafe {
-            read_volatile(self.hash_hr1_ptr())
-        }
+        self.hash_hr1_reg().read()
+    }
+
+    #[doc="Get the HASH_HR2 Register."]
+    #[inline] pub fn hash_hr2_reg(&self) -> Register<HashHr2> { 
+        Register::new(self.0 as *mut HashHr2, 0x318)
     }
 
     #[doc="Get the *mut pointer for the HASH_HR2 register."]
     #[inline] pub fn hash_hr2_mut(&self) -> *mut HashHr2 { 
-        (self.0 + 0x318) as *mut HashHr2
+        self.hash_hr2_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the HASH_HR2 register."]
     #[inline] pub fn hash_hr2_ptr(&self) -> *const HashHr2 { 
-           self.hash_hr2_mut()
+        self.hash_hr2_reg().ptr()
     }
 
     #[doc="Read the HASH_HR2 register."]
     #[inline] pub fn hash_hr2(&self) -> HashHr2 { 
-        unsafe {
-            read_volatile(self.hash_hr2_ptr())
-        }
+        self.hash_hr2_reg().read()
+    }
+
+    #[doc="Get the HASH_HR3 Register."]
+    #[inline] pub fn hash_hr3_reg(&self) -> Register<HashHr3> { 
+        Register::new(self.0 as *mut HashHr3, 0x31c)
     }
 
     #[doc="Get the *mut pointer for the HASH_HR3 register."]
     #[inline] pub fn hash_hr3_mut(&self) -> *mut HashHr3 { 
-        (self.0 + 0x31c) as *mut HashHr3
+        self.hash_hr3_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the HASH_HR3 register."]
     #[inline] pub fn hash_hr3_ptr(&self) -> *const HashHr3 { 
-           self.hash_hr3_mut()
+        self.hash_hr3_reg().ptr()
     }
 
     #[doc="Read the HASH_HR3 register."]
     #[inline] pub fn hash_hr3(&self) -> HashHr3 { 
-        unsafe {
-            read_volatile(self.hash_hr3_ptr())
-        }
+        self.hash_hr3_reg().read()
+    }
+
+    #[doc="Get the HASH_HR4 Register."]
+    #[inline] pub fn hash_hr4_reg(&self) -> Register<HashHr4> { 
+        Register::new(self.0 as *mut HashHr4, 0x320)
     }
 
     #[doc="Get the *mut pointer for the HASH_HR4 register."]
     #[inline] pub fn hash_hr4_mut(&self) -> *mut HashHr4 { 
-        (self.0 + 0x320) as *mut HashHr4
+        self.hash_hr4_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the HASH_HR4 register."]
     #[inline] pub fn hash_hr4_ptr(&self) -> *const HashHr4 { 
-           self.hash_hr4_mut()
+        self.hash_hr4_reg().ptr()
     }
 
     #[doc="Read the HASH_HR4 register."]
     #[inline] pub fn hash_hr4(&self) -> HashHr4 { 
-        unsafe {
-            read_volatile(self.hash_hr4_ptr())
-        }
+        self.hash_hr4_reg().read()
+    }
+
+    #[doc="Get the HASH_HR5 Register."]
+    #[inline] pub fn hash_hr5_reg(&self) -> Register<HashHr5> { 
+        Register::new(self.0 as *mut HashHr5, 0x324)
     }
 
     #[doc="Get the *mut pointer for the HASH_HR5 register."]
     #[inline] pub fn hash_hr5_mut(&self) -> *mut HashHr5 { 
-        (self.0 + 0x324) as *mut HashHr5
+        self.hash_hr5_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the HASH_HR5 register."]
     #[inline] pub fn hash_hr5_ptr(&self) -> *const HashHr5 { 
-           self.hash_hr5_mut()
+        self.hash_hr5_reg().ptr()
     }
 
     #[doc="Read the HASH_HR5 register."]
     #[inline] pub fn hash_hr5(&self) -> HashHr5 { 
-        unsafe {
-            read_volatile(self.hash_hr5_ptr())
-        }
+        self.hash_hr5_reg().read()
+    }
+
+    #[doc="Get the HASH_HR6 Register."]
+    #[inline] pub fn hash_hr6_reg(&self) -> Register<HashHr6> { 
+        Register::new(self.0 as *mut HashHr6, 0x328)
     }
 
     #[doc="Get the *mut pointer for the HASH_HR6 register."]
     #[inline] pub fn hash_hr6_mut(&self) -> *mut HashHr6 { 
-        (self.0 + 0x328) as *mut HashHr6
+        self.hash_hr6_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the HASH_HR6 register."]
     #[inline] pub fn hash_hr6_ptr(&self) -> *const HashHr6 { 
-           self.hash_hr6_mut()
+        self.hash_hr6_reg().ptr()
     }
 
     #[doc="Read the HASH_HR6 register."]
     #[inline] pub fn hash_hr6(&self) -> HashHr6 { 
-        unsafe {
-            read_volatile(self.hash_hr6_ptr())
-        }
+        self.hash_hr6_reg().read()
+    }
+
+    #[doc="Get the HASH_HR7 Register."]
+    #[inline] pub fn hash_hr7_reg(&self) -> Register<HashHr7> { 
+        Register::new(self.0 as *mut HashHr7, 0x32c)
     }
 
     #[doc="Get the *mut pointer for the HASH_HR7 register."]
     #[inline] pub fn hash_hr7_mut(&self) -> *mut HashHr7 { 
-        (self.0 + 0x32c) as *mut HashHr7
+        self.hash_hr7_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the HASH_HR7 register."]
     #[inline] pub fn hash_hr7_ptr(&self) -> *const HashHr7 { 
-           self.hash_hr7_mut()
+        self.hash_hr7_reg().ptr()
     }
 
     #[doc="Read the HASH_HR7 register."]
     #[inline] pub fn hash_hr7(&self) -> HashHr7 { 
-        unsafe {
-            read_volatile(self.hash_hr7_ptr())
-        }
+        self.hash_hr7_reg().read()
     }
 
 }

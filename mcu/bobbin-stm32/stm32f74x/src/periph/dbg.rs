@@ -4,119 +4,137 @@
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct DbgPeriph(pub usize);
 impl DbgPeriph {
+    #[doc="Get the DBGMCU_IDCODE Register."]
+    #[inline] pub fn dbgmcu_idcode_reg(&self) -> Register<DbgmcuIdcode> { 
+        Register::new(self.0 as *mut DbgmcuIdcode, 0x0)
+    }
+
     #[doc="Get the *mut pointer for the DBGMCU_IDCODE register."]
     #[inline] pub fn dbgmcu_idcode_mut(&self) -> *mut DbgmcuIdcode { 
-        (self.0 + 0x0) as *mut DbgmcuIdcode
+        self.dbgmcu_idcode_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the DBGMCU_IDCODE register."]
     #[inline] pub fn dbgmcu_idcode_ptr(&self) -> *const DbgmcuIdcode { 
-           self.dbgmcu_idcode_mut()
+        self.dbgmcu_idcode_reg().ptr()
     }
 
     #[doc="Read the DBGMCU_IDCODE register."]
     #[inline] pub fn dbgmcu_idcode(&self) -> DbgmcuIdcode { 
-        unsafe {
-            read_volatile(self.dbgmcu_idcode_ptr())
-        }
+        self.dbgmcu_idcode_reg().read()
+    }
+
+    #[doc="Get the DBGMCU_CR Register."]
+    #[inline] pub fn dbgmcu_cr_reg(&self) -> Register<DbgmcuCr> { 
+        Register::new(self.0 as *mut DbgmcuCr, 0x4)
     }
 
     #[doc="Get the *mut pointer for the DBGMCU_CR register."]
     #[inline] pub fn dbgmcu_cr_mut(&self) -> *mut DbgmcuCr { 
-        (self.0 + 0x4) as *mut DbgmcuCr
+        self.dbgmcu_cr_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the DBGMCU_CR register."]
     #[inline] pub fn dbgmcu_cr_ptr(&self) -> *const DbgmcuCr { 
-           self.dbgmcu_cr_mut()
+        self.dbgmcu_cr_reg().ptr()
     }
 
     #[doc="Read the DBGMCU_CR register."]
     #[inline] pub fn dbgmcu_cr(&self) -> DbgmcuCr { 
-        unsafe {
-            read_volatile(self.dbgmcu_cr_ptr())
-        }
+        self.dbgmcu_cr_reg().read()
     }
 
     #[doc="Write the DBGMCU_CR register."]
+    #[inline] pub fn write_dbgmcu_cr(&self, value: DbgmcuCr) -> &Self { 
+        self.dbgmcu_cr_reg().write(value);
+        self
+    }
+
+    #[doc="Set the DBGMCU_CR register."]
     #[inline] pub fn set_dbgmcu_cr<F: FnOnce(DbgmcuCr) -> DbgmcuCr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.dbgmcu_cr_mut(), f(DbgmcuCr(0)));
-        }
+        self.dbgmcu_cr_reg().set(f);
         self
     }
 
     #[doc="Modify the DBGMCU_CR register."]
     #[inline] pub fn with_dbgmcu_cr<F: FnOnce(DbgmcuCr) -> DbgmcuCr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.dbgmcu_cr_mut(), f(self.dbgmcu_cr()));
-        }
+        self.dbgmcu_cr_reg().with(f);
         self
+    }
+
+    #[doc="Get the DBGMCU_APB1_FZ Register."]
+    #[inline] pub fn dbgmcu_apb1_fz_reg(&self) -> Register<DbgmcuApb1Fz> { 
+        Register::new(self.0 as *mut DbgmcuApb1Fz, 0x8)
     }
 
     #[doc="Get the *mut pointer for the DBGMCU_APB1_FZ register."]
     #[inline] pub fn dbgmcu_apb1_fz_mut(&self) -> *mut DbgmcuApb1Fz { 
-        (self.0 + 0x8) as *mut DbgmcuApb1Fz
+        self.dbgmcu_apb1_fz_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the DBGMCU_APB1_FZ register."]
     #[inline] pub fn dbgmcu_apb1_fz_ptr(&self) -> *const DbgmcuApb1Fz { 
-           self.dbgmcu_apb1_fz_mut()
+        self.dbgmcu_apb1_fz_reg().ptr()
     }
 
     #[doc="Read the DBGMCU_APB1_FZ register."]
     #[inline] pub fn dbgmcu_apb1_fz(&self) -> DbgmcuApb1Fz { 
-        unsafe {
-            read_volatile(self.dbgmcu_apb1_fz_ptr())
-        }
+        self.dbgmcu_apb1_fz_reg().read()
     }
 
     #[doc="Write the DBGMCU_APB1_FZ register."]
+    #[inline] pub fn write_dbgmcu_apb1_fz(&self, value: DbgmcuApb1Fz) -> &Self { 
+        self.dbgmcu_apb1_fz_reg().write(value);
+        self
+    }
+
+    #[doc="Set the DBGMCU_APB1_FZ register."]
     #[inline] pub fn set_dbgmcu_apb1_fz<F: FnOnce(DbgmcuApb1Fz) -> DbgmcuApb1Fz>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.dbgmcu_apb1_fz_mut(), f(DbgmcuApb1Fz(0)));
-        }
+        self.dbgmcu_apb1_fz_reg().set(f);
         self
     }
 
     #[doc="Modify the DBGMCU_APB1_FZ register."]
     #[inline] pub fn with_dbgmcu_apb1_fz<F: FnOnce(DbgmcuApb1Fz) -> DbgmcuApb1Fz>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.dbgmcu_apb1_fz_mut(), f(self.dbgmcu_apb1_fz()));
-        }
+        self.dbgmcu_apb1_fz_reg().with(f);
         self
+    }
+
+    #[doc="Get the DBGMCU_APB2_FZ Register."]
+    #[inline] pub fn dbgmcu_apb2_fz_reg(&self) -> Register<DbgmcuApb2Fz> { 
+        Register::new(self.0 as *mut DbgmcuApb2Fz, 0xc)
     }
 
     #[doc="Get the *mut pointer for the DBGMCU_APB2_FZ register."]
     #[inline] pub fn dbgmcu_apb2_fz_mut(&self) -> *mut DbgmcuApb2Fz { 
-        (self.0 + 0xc) as *mut DbgmcuApb2Fz
+        self.dbgmcu_apb2_fz_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the DBGMCU_APB2_FZ register."]
     #[inline] pub fn dbgmcu_apb2_fz_ptr(&self) -> *const DbgmcuApb2Fz { 
-           self.dbgmcu_apb2_fz_mut()
+        self.dbgmcu_apb2_fz_reg().ptr()
     }
 
     #[doc="Read the DBGMCU_APB2_FZ register."]
     #[inline] pub fn dbgmcu_apb2_fz(&self) -> DbgmcuApb2Fz { 
-        unsafe {
-            read_volatile(self.dbgmcu_apb2_fz_ptr())
-        }
+        self.dbgmcu_apb2_fz_reg().read()
     }
 
     #[doc="Write the DBGMCU_APB2_FZ register."]
+    #[inline] pub fn write_dbgmcu_apb2_fz(&self, value: DbgmcuApb2Fz) -> &Self { 
+        self.dbgmcu_apb2_fz_reg().write(value);
+        self
+    }
+
+    #[doc="Set the DBGMCU_APB2_FZ register."]
     #[inline] pub fn set_dbgmcu_apb2_fz<F: FnOnce(DbgmcuApb2Fz) -> DbgmcuApb2Fz>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.dbgmcu_apb2_fz_mut(), f(DbgmcuApb2Fz(0)));
-        }
+        self.dbgmcu_apb2_fz_reg().set(f);
         self
     }
 
     #[doc="Modify the DBGMCU_APB2_FZ register."]
     #[inline] pub fn with_dbgmcu_apb2_fz<F: FnOnce(DbgmcuApb2Fz) -> DbgmcuApb2Fz>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.dbgmcu_apb2_fz_mut(), f(self.dbgmcu_apb2_fz()));
-        }
+        self.dbgmcu_apb2_fz_reg().with(f);
         self
     }
 

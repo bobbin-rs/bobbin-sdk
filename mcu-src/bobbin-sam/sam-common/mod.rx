@@ -1,3 +1,5 @@
 (device
-    (name SAM-COMMON)
+    (crate
+        (name bobbin_cortexm)
+    )    
 )

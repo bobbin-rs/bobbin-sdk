@@ -6,37 +6,41 @@
 pub struct DmamuxPeriph(pub usize); 
 
 impl DmamuxPeriph {
+    #[doc="Get the CHCFG Register."]
+    #[inline] pub fn chcfg_reg(&self) -> RegisterArray<Chcfg, bits::R16> { 
+        RegisterArray::new(self.0 as *mut Chcfg, 0x0, 0x1)
+    }
+
     #[doc="Get the *mut pointer for the CHCFG register."]
     #[inline] pub fn chcfg_mut<I: Into<bits::R16>>(&self, index: I) -> *mut Chcfg { 
-        let index: usize = index.into().value() as usize;
-        (self.0 + 0x0 + (index)) as *mut Chcfg
+        self.chcfg_reg().ptr(index.into())
     }
 
     #[doc="Get the *const pointer for the CHCFG register."]
     #[inline] pub fn chcfg_ptr<I: Into<bits::R16>>(&self, index: I) -> *const Chcfg { 
-           self.chcfg_mut(index)
+        self.chcfg_reg().ptr(index.into())
     }
 
     #[doc="Read the CHCFG register."]
     #[inline] pub fn chcfg<I: Into<bits::R16>>(&self, index: I) -> Chcfg { 
-        unsafe {
-            read_volatile(self.chcfg_ptr(index))
-        }
+        self.chcfg_reg().read(index.into())
     }
 
     #[doc="Write the CHCFG register."]
+    #[inline] pub fn write_chcfg<I: Into<bits::R16>>(&self, index: I, value: Chcfg) -> &Self {
+        self.chcfg_reg().write(index.into(), value);
+        self
+    }
+
+    #[doc="Set the CHCFG register."]
     #[inline] pub fn set_chcfg<I: Into<bits::R16>, F: FnOnce(Chcfg) -> Chcfg>(&self, index: I, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.chcfg_mut(index), f(Chcfg(0)));
-        }
+        self.chcfg_reg().set(index.into(), f);
         self
     }
 
     #[doc="Modify the CHCFG register."]
     #[inline] pub fn with_chcfg<I: Into<bits::R16> + Copy, F: FnOnce(Chcfg) -> Chcfg>(&self, index: I, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.chcfg_mut(index), f(self.chcfg(index)));
-        }
+        self.chcfg_reg().with(index.into(), f);
         self
     }
 

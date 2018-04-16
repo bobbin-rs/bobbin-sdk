@@ -10,7 +10,7 @@ pub use scb;
 pub use systick;
 
 pub mod periph;
-pub mod hal;
+pub mod ext;
 pub mod mcu;
 
 pub use mcu::ftfa;
@@ -33,7 +33,7 @@ pub use mcu::adc;
 pub use mcu::pin;
 pub use mcu::sig;
 pub use mcu::irq;
-pub use mcu::*;
+pub use mcu::Kl26;
 
 pub mod clock;
 pub use clock::*;

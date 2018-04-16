@@ -5,36 +5,41 @@
 pub struct UsbFsPwrclkPeriph(pub usize); 
 
 impl UsbFsPwrclkPeriph {
+    #[doc="Get the PCGCCTL Register."]
+    #[inline] pub fn pcgcctl_reg(&self) -> Register<Pcgcctl> { 
+        Register::new(self.0 as *mut Pcgcctl, 0x0)
+    }
+
     #[doc="Get the *mut pointer for the PCGCCTL register."]
     #[inline] pub fn pcgcctl_mut(&self) -> *mut Pcgcctl { 
-        (self.0 + 0x0) as *mut Pcgcctl
+        self.pcgcctl_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the PCGCCTL register."]
     #[inline] pub fn pcgcctl_ptr(&self) -> *const Pcgcctl { 
-           self.pcgcctl_mut()
+        self.pcgcctl_reg().ptr()
     }
 
     #[doc="Read the PCGCCTL register."]
     #[inline] pub fn pcgcctl(&self) -> Pcgcctl { 
-        unsafe {
-            read_volatile(self.pcgcctl_ptr())
-        }
+        self.pcgcctl_reg().read()
     }
 
     #[doc="Write the PCGCCTL register."]
+    #[inline] pub fn write_pcgcctl(&self, value: Pcgcctl) -> &Self { 
+        self.pcgcctl_reg().write(value);
+        self
+    }
+
+    #[doc="Set the PCGCCTL register."]
     #[inline] pub fn set_pcgcctl<F: FnOnce(Pcgcctl) -> Pcgcctl>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.pcgcctl_mut(), f(Pcgcctl(0)));
-        }
+        self.pcgcctl_reg().set(f);
         self
     }
 
     #[doc="Modify the PCGCCTL register."]
     #[inline] pub fn with_pcgcctl<F: FnOnce(Pcgcctl) -> Pcgcctl>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.pcgcctl_mut(), f(self.pcgcctl()));
-        }
+        self.pcgcctl_reg().with(f);
         self
     }
 
