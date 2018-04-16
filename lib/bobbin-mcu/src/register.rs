@@ -1,6 +1,16 @@
 use {read_volatile, write_volatile};
 use core::marker::PhantomData;
 
+#[macro_export]
+macro_rules! register {
+    ($rid:ident, $rval:ty, $raddr:expr, $roff:expr) => {
+        pub const $rid: Register<$rval> = Register::new($raddr as *mut $rval, $roff);
+    };
+    ($rid:ident, $rval:ty, $raddr:expr, $roff:expr, $rdim:ty, $incr:expr) => {
+        pub const $rid: RegisterArray<$rval, $rdim> = RegisterArray::new($raddr as *mut $rval, $roff, $incr);
+    };    
+}
+
 pub struct Register<T: Copy + Default> {
     base: *mut T,
     offset: isize
@@ -43,6 +53,7 @@ pub struct RegisterArray<T: Copy + Default, I: Copy + ::core::ops::Mul<isize, Ou
     incr: isize,
     _phantom: PhantomData<I>,
 }
+
 impl<T: Copy + Default, I: Copy + ::core::ops::Mul<isize, Output=isize>> RegisterArray<T, I>
 {
     #[inline]
@@ -77,16 +88,6 @@ impl<T: Copy + Default, I: Copy + ::core::ops::Mul<isize, Output=isize>> Registe
     pub fn clear(&self, index: I) {
         self.write(index, T::default())
     }
-}
-
-#[macro_export]
-macro_rules! register {
-    ($rid:ident, $rval:ty, $raddr:expr, $roff:expr) => {
-        pub const $rid: Register<$rval> = Register::new($raddr as *mut $rval, $roff);
-    };
-    ($rid:ident, $rval:ty, $raddr:expr, $roff:expr, $rdim:ty, $incr:expr) => {
-        pub const $rid: RegisterArray<$rval, $rdim> = RegisterArray::new($raddr as *mut $rval, $roff, $incr);
-    };    
 }
 
 #[cfg(test)]
