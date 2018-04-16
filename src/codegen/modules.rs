@@ -174,8 +174,8 @@ pub fn gen_interrupts<W: Write>(cfg: &Config, out: &mut W, d: &Device, interrupt
 
     try!(writeln!(out, "//! Interrupts"));
     try!(writeln!(out, ""));
-    try!(writeln!(out, "#[allow(unused_imports)] use {}::*;", cfg.common));    
-    try!(writeln!(out, ""));
+    // try!(writeln!(out, "#[allow(unused_imports)] use {}::*;", cfg.common));    
+    // try!(writeln!(out, ""));
 
     for _ in 0..interrupt_count {
         interrupts.push(None);
@@ -200,7 +200,7 @@ pub fn gen_interrupts<W: Write>(cfg: &Config, out: &mut W, d: &Device, interrupt
     try!(writeln!(out, ""));
 
     for i in 0..interrupt_count {
-        try!(writeln!(out, "irq_number!(IRQ_{}, Irq{}, {});", i, i, i));
+        try!(writeln!(out, "::bobbin_mcu::irq_number!(IRQ_{}, Irq{}, {});", i, i, i));
     }
 
     try!(writeln!(out, ""));
@@ -262,7 +262,7 @@ pub fn gen_interrupts<W: Write>(cfg: &Config, out: &mut W, d: &Device, interrupt
             for irq in p.interrupts.iter() {
                 for itype in irq.types.iter() {
                     if !interrupt_types.contains(&itype) {
-                        try!(writeln!(out, "irq_type!(IRQ_{}, Irq{});", 
+                        try!(writeln!(out, "::bobbin_mcu::irq_type!(IRQ_{}, Irq{});", 
                             itype.to_uppercase(),
                             to_camel(&itype),
                         ));            
@@ -274,7 +274,7 @@ pub fn gen_interrupts<W: Write>(cfg: &Config, out: &mut W, d: &Device, interrupt
                 for irq in ch.interrupts.iter() {
                     for itype in irq.types.iter() {
                         if !interrupt_types.contains(&itype) {
-                            try!(writeln!(out, "irq_type!(IRQ_{}, Irq{});", 
+                            try!(writeln!(out, "::bobbin_mcu::irq_type!(IRQ_{}, Irq{});", 
                                 itype.to_uppercase(),
                                 to_camel(&itype),
                             ));
@@ -291,7 +291,7 @@ pub fn gen_interrupts<W: Write>(cfg: &Config, out: &mut W, d: &Device, interrupt
         for irq in p.interrupts.iter() {
             for itype in irq.types.iter() {
                 if !interrupt_types.contains(&itype) {               
-                    try!(writeln!(out, "irq_type!(IRQ_{}, Irq{});", 
+                    try!(writeln!(out, "::bobbin_mcu::irq_type!(IRQ_{}, Irq{});", 
                         itype.to_uppercase(),
                         to_camel(&itype),
                     ));
@@ -303,7 +303,7 @@ pub fn gen_interrupts<W: Write>(cfg: &Config, out: &mut W, d: &Device, interrupt
             for irq in ch.interrupts.iter() {
                 for itype in irq.types.iter() {
                     if !interrupt_types.contains(&itype) {
-                        try!(writeln!(out, "irq_type!(IRQ_{}, Irq{});", 
+                        try!(writeln!(out, "::bobbin_mcu::irq_type!(IRQ_{}, Irq{});", 
                             itype.to_uppercase(),
                             to_camel(&itype),
                         ));                                  
@@ -324,27 +324,27 @@ pub fn gen_interrupts<W: Write>(cfg: &Config, out: &mut W, d: &Device, interrupt
         for p in pg.peripherals.iter() {
             for irq in p.interrupts.iter() {
                 if irq.types.len() == 0 {
-                    try!(writeln!(out, "irq!(::{}::{}, Irq{}, Irq{});", pg_mod, to_camel(&p.name), to_camel(&pg.name), irq.value));
+                    try!(writeln!(out, "::bobbin_mcu::irq!(::{}::{}, Irq{}, Irq{});", pg_mod, to_camel(&p.name), to_camel(&pg.name), irq.value));
                     use_local_irq_type = true;
                 }
                 for itype in irq.types.iter() {
-                    try!(writeln!(out, "irq!(::{}::{}, Irq{}, Irq{});",  pg_mod, to_camel(&p.name), to_camel(&itype), irq.value));
+                    try!(writeln!(out, "::bobbin_mcu::irq!(::{}::{}, Irq{}, Irq{});",  pg_mod, to_camel(&p.name), to_camel(&itype), irq.value));
                 }
             }
             for ch in p.channels.iter() {
                 for irq in ch.interrupts.iter() {
                     if irq.types.len() == 0 {
-                        try!(writeln!(out, "irq!(::{}::{}, Irq{}, Irq{});",  pg_mod, to_camel(&p.name), to_camel(&pg.name), irq.value));
+                        try!(writeln!(out, "::bobbin_mcu::irq!(::{}::{}, Irq{}, Irq{});",  pg_mod, to_camel(&p.name), to_camel(&pg.name), irq.value));
                         use_local_irq_type = true;
                     }
                     for itype in irq.types.iter() {
-                        try!(writeln!(out, "irq!(::{}::{}, Irq{}, Irq{});",  pg_mod, to_camel(&ch.name), to_camel(&itype), irq.value));
+                        try!(writeln!(out, "::bobbin_mcu::irq!(::{}::{}, Irq{}, Irq{});",  pg_mod, to_camel(&ch.name), to_camel(&itype), irq.value));
                     }
                 }
             }
         }
         if use_local_irq_type {
-            try!(writeln!(out, "irq_type!(IRQ_{}, Irq{});",
+            try!(writeln!(out, "::bobbin_mcu::irq_type!(IRQ_{}, Irq{});",
                 pg.name.to_uppercase(),
                 to_camel(&pg.name),
             ));
@@ -357,25 +357,25 @@ pub fn gen_interrupts<W: Write>(cfg: &Config, out: &mut W, d: &Device, interrupt
         for irq in p.interrupts.iter() {
             for itype in irq.types.iter() {
                 if irq.types.len() == 0 {
-                    try!(writeln!(out, "irq!(::{}::{}, Irq{}, Irq{});", p_mod, to_camel(&p.name), to_camel(&p.name), irq.value));
+                    try!(writeln!(out, "::bobbin_mcu::irq!(::{}::{}, Irq{}, Irq{});", p_mod, to_camel(&p.name), to_camel(&p.name), irq.value));
                     use_local_irq_type = true;
                 }            
-                try!(writeln!(out, "irq!(::{}::{}, {}, Irq{});", p_mod, to_camel(&p.name), to_camel(&itype), irq.value));
+                try!(writeln!(out, "::bobbin_mcu::irq!(::{}::{}, {}, Irq{});", p_mod, to_camel(&p.name), to_camel(&itype), irq.value));
             }
         }
         for ch in p.channels.iter() {
             for irq in ch.interrupts.iter() {
                 if irq.types.len() == 0 {
-                    try!(writeln!(out, "irq!(::{}::{}, Irq{}, Irq{});", p_mod, to_camel(&p.name), to_camel(&p.name), irq.value));
+                    try!(writeln!(out, "::bobbin_mcu::irq!(::{}::{}, Irq{}, Irq{});", p_mod, to_camel(&p.name), to_camel(&p.name), irq.value));
                     use_local_irq_type = true;
                 }            
                 for itype in irq.types.iter() {
-                    try!(writeln!(out, "irq!(::{}::{}, Irq{}, Irq{});", p_mod, to_camel(&ch.name), to_camel(&itype), irq.value));
+                    try!(writeln!(out, "::bobbin_mcu::irq!(::{}::{}, Irq{}, Irq{});", p_mod, to_camel(&ch.name), to_camel(&itype), irq.value));
                 }
             }
         }
         if use_local_irq_type {
-            try!(writeln!(out, "irq_type!(IRQ_{}, Irq{});",
+            try!(writeln!(out, "::bobbin_mcu::irq_type!(IRQ_{}, Irq{});",
                 p.name.to_uppercase(),
                 to_camel(&p.name),
             ));
@@ -409,7 +409,7 @@ pub fn gen_pins<W: Write>(_cfg: &Config, out: &mut W, d: &Device, signals: &Sign
                 let base_port = format!("{}_PERIPH", p_name);
                 let pin_index = pin.index.unwrap();
 
-                try!(writeln!(out, "pin!({id}, {ty}, {meth}, {port_id}, {port_type}, {base_id}, {base_type}, {base_port}, {owned}, {ref_count}, {index});",
+                try!(writeln!(out, "::bobbin_mcu::pin!({id}, {ty}, {meth}, {port_id}, {port_type}, {base_id}, {base_type}, {base_port}, {owned}, {ref_count}, {index});",
                     id=id,
                     ty=ty,
                     meth=meth,
@@ -426,7 +426,7 @@ pub fn gen_pins<W: Write>(_cfg: &Config, out: &mut W, d: &Device, signals: &Sign
                 for af in pin.altfns.iter() {
                     let sig = to_camel(&af.signal);
                     if let Some(&(ref src_mod, ref src_type, ref sig_type)) = signals.get(&sig) {
-                        try!(writeln!(out, "   pin_source!({}, super::{}::{}, super::sig::{}, {});",
+                        try!(writeln!(out, "   ::bobbin_mcu::pin_source!({}, super::{}::{}, super::sig::{}, {});",
                             ty,
                             src_mod,
                             src_type,
@@ -457,7 +457,7 @@ pub fn gen_signals<W: Write>(_cfg: &Config, out: &mut W, d: &Device) -> Result<S
                 for st in s.types.iter() {
                     let st_type = format!("Sig{}", to_camel(&st));
                     if !signal_types.contains(&st_type) {
-                        try!(writeln!(out, "signal_type!({}, {});", &st, st_type));
+                        try!(writeln!(out, "::bobbin_mcu::signal_type!({}, {});", &st, st_type));
                         signal_types.insert(st_type.clone());
                     }
                     let key = s_type.clone();
@@ -474,7 +474,7 @@ pub fn gen_signals<W: Write>(_cfg: &Config, out: &mut W, d: &Device) -> Result<S
                     for st in s.types.iter() {
                         let st_type = format!("Sig{}", to_camel(&st));
                         if !signal_types.contains(&st_type) {
-                            try!(writeln!(out, "signal_type!({}, {});", &st, st_type));                            
+                            try!(writeln!(out, "::bobbin_mcu::signal_type!({}, {});", &st, st_type));                            
                             signal_types.insert(st_type.clone());
                         }                 
                         let key = s_type.clone();
@@ -498,7 +498,7 @@ pub fn gen_signals<W: Write>(_cfg: &Config, out: &mut W, d: &Device) -> Result<S
             for s in p.signals.iter() {
                 for st in s.types.iter() {
                     let st_type = format!("Sig{}", to_camel(&st));                    
-                    try!(writeln!(out, "periph_signal!(super::{}::{}, {});", pg_mod, to_camel(&p.name), st_type));
+                    try!(writeln!(out, "::bobbin_mcu::periph_signal!(super::{}::{}, {});", pg_mod, to_camel(&p.name), st_type));
                 }
             }
 
@@ -506,7 +506,7 @@ pub fn gen_signals<W: Write>(_cfg: &Config, out: &mut W, d: &Device) -> Result<S
                 for s in ch.signals.iter() {
                     for st in s.types.iter() {
                         let st_type = format!("Sig{}", to_camel(&st));                    
-                        try!(writeln!(out, "channel_signal!(super::{}::{}, {});", pg_mod, to_camel(&ch.name), st_type));
+                        try!(writeln!(out, "::bobbin_mcu::channel_signal!(super::{}::{}, {});", pg_mod, to_camel(&ch.name), st_type));
                     }
                 }          
             }
@@ -523,7 +523,7 @@ pub fn gen_signals<W: Write>(_cfg: &Config, out: &mut W, d: &Device) -> Result<S
                 for af in pin.altfns.iter() {
                     let sig = &af.signal;
                     if let Some(&(ref src_mod, ref src_type, ref sig_type)) = signals.get(sig) {
-                        try!(writeln!(out, "pin_source!({}, super::{}::{}, {}, {}",
+                        try!(writeln!(out, "::bobbin_mcu::pin_source!({}, super::{}::{}, {}, {}",
                             pin_type,
                             src_mod,
                             src_type,
@@ -586,7 +586,7 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, d: &Device, pg:
         let p_type = to_camel(&p.name);
         let p_owned = format!("{}_OWNED", p_name);
         let p_ref_count = format!("{}_REF_COUNT", p_name);
-        try!(writeln!(out, "periph!( {p_name}, {p_type}, {p_const}, {pg_type}, {p_owned}, {p_ref_count}, 0x{p_addr:08x}, 0x{p_index:02x}, 0x{p_ord:02x});", 
+        try!(writeln!(out, "::bobbin_mcu::periph!( {p_name}, {p_type}, {p_const}, {pg_type}, {p_owned}, {p_ref_count}, 0x{p_addr:08x}, 0x{p_index:02x}, 0x{p_ord:02x});", 
             p_const=p_const, pg_type=pg_type, p_name=p_name, p_type=p_type, p_owned=p_owned, p_ref_count=p_ref_count, p_addr=p.address, p_index=i, p_ord=ord));
         *ord += 1;
     }
@@ -713,7 +713,7 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, d: &Device, pg:
             let owned = format!("{}_OWNED", id);
             let ref_count = format!("{}_REF_COUNT", id);
             
-            try!(writeln!(out, "channel!({id}, {ty}, {meth}, {port_id}, {port_type}, {base_id}, {base_type}, {base_periph}, {owned}, {ref_count}, {index});",
+            try!(writeln!(out, "::bobbin_mcu::channel!({id}, {ty}, {meth}, {port_id}, {port_type}, {base_id}, {base_type}, {base_periph}, {owned}, {ref_count}, {index});",
                 id=id,
                 ty=ty,
                 meth=meth,
@@ -827,7 +827,7 @@ pub fn gen_peripheral<W: Write>(cfg: &Config, out: &mut W, d: &Device, p: &Perip
     if let Some(_) = p.dim {
         unimplemented!()
     } else {
-        try!(writeln!(out, "periph!( {p_name}, {p_type}, {p_const}, {pg_type}, {p_owned}, {p_ref_count}, 0x{p_addr:08x}, 0x{p_index:02x}, 0x{p_ord:02x});", 
+        try!(writeln!(out, "::bobbin_mcu::periph!( {p_name}, {p_type}, {p_const}, {pg_type}, {p_owned}, {p_ref_count}, 0x{p_addr:08x}, 0x{p_index:02x}, 0x{p_ord:02x});", 
             p_const=p_const, pg_type=pg_type, p_name=p.name, p_type=p_type, p_owned=p_owned, p_ref_count=p_ref_count, p_addr=p.address, p_index=0, p_ord=ord));
         try!(writeln!(out, ""));
     }
@@ -856,26 +856,26 @@ pub fn gen_peripheral<W: Write>(cfg: &Config, out: &mut W, d: &Device, p: &Perip
         }
     }
 
-    {
-        // Generate Links
+    // {
+    //     // Generate Links
 
-        for r in p.registers.iter() {
-            for f in r.fields.iter() {
-                let f_width = f.bit_width;
-                let field_type = format!("bits::U{}", f_width);
-                for link in f.links.iter() {
-                    // FIXME: Should not be using peripheral size as return value
-                    let pg_mod = link.peripheral_group.to_lowercase();
-                    let l_type = format!("super::{}::{}", pg_mod, to_camel(&link.peripheral));
-                    try!(writeln!(out, "impl {} for {} {{", to_camel(&link.name), l_type));
-                    try!(writeln!(out, "    #[inline] fn {}(&self) -> {} {{ {}.{}().{}() }}", field_getter(&link.name), field_type, p.name, r.name.to_lowercase(), field_getter(&f.name)));                
-                    try!(writeln!(out, "    #[inline] fn {}<V: Into<{}>>(&self, value: V) {{ {}.{}(|r| r.{}(value)); }}", field_setter(&link.name),  field_type, p.name, field_with(&r.name), field_setter(&f.name)));
-                    try!(writeln!(out, "}}"));
-                    try!(writeln!(out, ""));
-                }
-            }
-        }
-    }
+    //     for r in p.registers.iter() {
+    //         for f in r.fields.iter() {
+    //             let f_width = f.bit_width;
+    //             let field_type = format!("::bobbin_bits::U{}", f_width);
+    //             for link in f.links.iter() {
+    //                 // FIXME: Should not be using peripheral size as return value
+    //                 let pg_mod = link.peripheral_group.to_lowercase();
+    //                 let l_type = format!("super::{}::{}", pg_mod, to_camel(&link.peripheral));
+    //                 try!(writeln!(out, "impl {} for {} {{", to_camel(&link.name), l_type));
+    //                 try!(writeln!(out, "    #[inline] fn {}(&self) -> {} {{ {}.{}().{}() }}", field_getter(&link.name), field_type, p.name, r.name.to_lowercase(), field_getter(&f.name)));                
+    //                 try!(writeln!(out, "    #[inline] fn {}<V: Into<{}>>(&self, value: V) {{ {}.{}(|r| r.{}(value)); }}", field_setter(&link.name),  field_type, p.name, field_with(&r.name), field_setter(&f.name)));
+    //                 try!(writeln!(out, "}}"));
+    //                 try!(writeln!(out, ""));
+    //             }
+    //         }
+    //     }
+    // }
     // Generate Signals
 
     for s in p.signals.iter() {
@@ -1029,10 +1029,10 @@ pub fn gen_descriptor<W: Write>(out: &mut W, _p_type: &str, desc: &Descriptor) -
                 _ => format!("(index * {})", r_incr),
             };  
             let i_type = match dim {
-                1...32 => format!("bits::R{}", dim),
-                64 => format!("bits::U6"),
-                128 => format!("bits::U7"),
-                256 => format!("bits::U8"),
+                1...32 => format!("::bobbin_bits::R{}", dim),
+                64 => format!("::bobbin_bits::U6"),
+                128 => format!("::bobbin_bits::U7"),
+                256 => format!("::bobbin_bits::U8"),
                 _ => panic!("Unsupported dim value for {}: {}", r.name, dim),
             };
 
@@ -1481,9 +1481,10 @@ pub fn gen_clocks<W: Write>(_cfg: &Config, out: &mut W, d: &Device, _path: &Path
     } else {
         return Ok(())
     };
-    writeln!(out, "pub use ::bobbin_common::*;")?;
-    writeln!(out, "pub use ::bobbin_common::tree::*;")?;
-    writeln!(out, "pub use ::hz::Hz;")?;    
+    // writeln!(out, "pub use ::bobbin_common::*;")?;
+    writeln!(out, "use ::bobbin_mcu::clock::Clock;")?;    
+    writeln!(out, "use ::bobbin_mcu::tree::ClockFor;")?;
+    writeln!(out, "use ::bobbin_mcu::hz::Hz;")?;    
     writeln!(out, "")?;
     writeln!(out, "#[derive(Default)]")?;
     writeln!(out, "pub struct Clocks<CP: ClockProvider> {{ provider: CP }}")?;
@@ -1588,7 +1589,7 @@ pub fn gen_peripheral_clock_gates<W: Write>(_cfg: &Config, out: &mut W, d: &Devi
     for ref gate in c.gates.iter() {
         if let &Some(ref gate_type) = &gate.gate_type {
             let p_type = to_camel(&p.name);
-            let g_type = format!("::bobbin_common::gate::Gate{}", to_camel(gate_type));
+            let g_type = format!("::bobbin_mcu::gate::Gate{}", to_camel(gate_type));
             let g_name = format!("gate_{}", gate_type.to_lowercase());
 
 
