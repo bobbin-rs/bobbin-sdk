@@ -25,6 +25,14 @@ pub fn field_getter(name: &str) -> String {
     }
 }
 
+pub fn field_reader(name: &str) -> String {
+    format!("read_{}", field_name(name))
+}
+
+pub fn field_writer(name: &str) -> String {
+    format!("write_{}", field_name(name))
+}
+
 pub fn field_setter(name: &str) -> String {
     format!("set_{}", field_name(name))
 }

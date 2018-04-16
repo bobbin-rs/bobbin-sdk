@@ -6,7 +6,7 @@ use std::collections::{HashSet, HashMap};
 
 use {Access, Device, PeripheralGroup, Peripheral, Descriptor, Register, Cluster, Field, Interrupt, Exception, Clock};
 
-use super::{size_type, field_getter, field_setter, field_with, field_test, field_reg, field_ptr, field_mut, field_name, to_camel, gen_doc};
+use super::{size_type, field_getter, field_setter, field_writer, field_with, field_test, field_reg, field_ptr, field_mut, field_name, to_camel, gen_doc};
 
 pub type SignalMap = HashMap<String, (String, String, String)>;
 
@@ -1048,7 +1048,7 @@ pub fn gen_descriptor<W: Write>(out: &mut W, _p_type: &str, desc: &Descriptor) -
                 try!(writeln!(out, ""));
             }
             if r_access.is_writable() {
-                try!(gen_doc(out, 0, &format!("Write the {} register.", r.name.to_uppercase())));
+                try!(gen_doc(out, 0, &format!("Set the {} register.", r.name.to_uppercase())));
                 try!(writeln!(out, "  #[inline] pub fn {}<I: Into<{}>, {}: FnOnce({}) -> {}>(&self, index: I, f: {}) -> &mut Self {{", r_setter, i_type, r_typevar, r_type, r_type, r_typevar));
                 try!(writeln!(out, "      let index: usize = index.into().value() as usize;"));
                 try!(writeln!(out, "      unsafe {{"));
@@ -1132,6 +1132,7 @@ pub fn gen_register_methods<W: Write>(out: &mut W, p_type: &str, regs: &[Registe
         let r_mut = field_mut(&r.name);
         let r_getter = field_getter(&r.name);
         let r_setter = field_setter(&r.name);
+        let r_writer = field_writer(&r.name);
         let r_with = field_with(&r.name);
         let r_access = r.access.or(access).unwrap();
         let r_offset = r.offset;        
@@ -1144,14 +1145,14 @@ pub fn gen_register_methods<W: Write>(out: &mut W, p_type: &str, regs: &[Registe
 
         if let Some(dim) = r.dim {
             let r_incr = r.dim_increment.unwrap();
-            let r_shift = match r_incr {
-                1 => format!("(index)"),
-                2 => format!("(index << 1)"),
-                4 => format!("(index << 2)"),
-                8 => format!("(index << 3)"),
-                16 => format!("(index << 4)"),
-                _ => format!("(index * {})", r_incr),
-            };  
+            // let r_shift = match r_incr {
+            //     1 => format!("(index)"),
+            //     2 => format!("(index << 1)"),
+            //     4 => format!("(index << 2)"),
+            //     8 => format!("(index << 3)"),
+            //     16 => format!("(index << 4)"),
+            //     _ => format!("(index * {})", r_incr),
+            // };  
             let i_type = match dim {
                 1...32 => format!("bits::R{}", dim),
                 64 => format!("bits::U6"),
@@ -1161,40 +1162,41 @@ pub fn gen_register_methods<W: Write>(out: &mut W, p_type: &str, regs: &[Registe
             };
 
             try!(gen_doc(out, 4, &format!("Get the {} Register.", r.name.to_uppercase())));
-            try!(writeln!(out, "    #[inline] pub fn {}(&self) -> ::register::RegisterArray<{}, {}> {{ ", r_reg, r_type, i_type));
-            try!(writeln!(out, "        ::register::RegisterArray::new(self.0 as *mut {}, 0x{:x}, 0x{:x})", r_type, r_offset, r_incr));
+            try!(writeln!(out, "    #[inline] pub fn {}(&self) -> RegisterArray<{}, {}> {{ ", r_reg, r_type, i_type));
+            try!(writeln!(out, "        RegisterArray::new(self.0 as *mut {}, 0x{:x}, 0x{:x})", r_type, r_offset, r_incr));
             try!(writeln!(out, "    }}"));
             try!(writeln!(out, ""));
 
 
             try!(gen_doc(out, 4, &format!("Get the *mut pointer for the {} register.", r.name.to_uppercase())));
             try!(writeln!(out, "    #[inline] pub fn {}<I: Into<{}>>(&self, index: I) -> *mut {} {{ ", r_mut, i_type, r_type));
-            try!(writeln!(out, "        let index: usize = index.into().value() as usize;"));
-            try!(writeln!(out, "        (self.0 + 0x{:x} + {}) as *mut {}", r_offset, r_shift, r_type));
+            try!(writeln!(out, "        self.{}().ptr(index.into())", r_reg));
             try!(writeln!(out, "    }}"));
             try!(writeln!(out, ""));
 
             try!(gen_doc(out, 4, &format!("Get the *const pointer for the {} register.", r.name.to_uppercase())));
             try!(writeln!(out, "    #[inline] pub fn {}<I: Into<{}>>(&self, index: I) -> *const {} {{ ", r_ptr, i_type, r_type));
-            try!(writeln!(out, "           self.{}(index)", r_mut));
+            try!(writeln!(out, "        self.{}().ptr(index.into())", r_reg));
             try!(writeln!(out, "    }}"));
             try!(writeln!(out, ""));
 
             if r_access.is_readable() {
                 try!(gen_doc(out, 4, &format!("Read the {} register.", r.name.to_uppercase())));
                 try!(writeln!(out, "    #[inline] pub fn {}<I: Into<{}>>(&self, index: I) -> {} {{ ", r_getter, i_type, r_type));
-                try!(writeln!(out, "        unsafe {{"));
-                try!(writeln!(out, "            read_volatile(self.{}(index))", r_ptr));
-                try!(writeln!(out, "        }}"));
+                try!(writeln!(out, "        self.{}().read(index.into())", r_reg));
                 try!(writeln!(out, "    }}"));
                 try!(writeln!(out, ""));
             }
             if r_access.is_writable() {
                 try!(gen_doc(out, 4, &format!("Write the {} register.", r.name.to_uppercase())));
+                try!(writeln!(out, "    #[inline] pub fn {}<I: Into<{}>>(&self, index: I, value: {}) -> &Self {{", r_writer, i_type, r_type));
+                try!(writeln!(out, "        self.{}().write(index.into(), value);", r_reg));
+                try!(writeln!(out, "        self"));
+                try!(writeln!(out, "    }}"));
+                try!(writeln!(out, ""));                
+                try!(gen_doc(out, 4, &format!("Set the {} register.", r.name.to_uppercase())));
                 try!(writeln!(out, "    #[inline] pub fn {}<I: Into<{}>, {}: FnOnce({}) -> {}>(&self, index: I, f: {}) -> &Self {{", r_setter, i_type, r_typevar, r_type, r_type, r_typevar));
-                try!(writeln!(out, "        unsafe {{"));
-                try!(writeln!(out, "            write_volatile(self.{}(index), f({}(0)));", r_mut, r_type)); 
-                try!(writeln!(out, "        }}"));
+                try!(writeln!(out, "        self.{}().set(index.into(), f);", r_reg));
                 try!(writeln!(out, "        self"));
                 try!(writeln!(out, "    }}"));
                 try!(writeln!(out, ""));
@@ -1202,47 +1204,48 @@ pub fn gen_register_methods<W: Write>(out: &mut W, p_type: &str, regs: &[Registe
             if r_access.is_readable() && r_access.is_writable() {
                 try!(gen_doc(out, 4, &format!("Modify the {} register.", r.name.to_uppercase())));
                 try!(writeln!(out, "    #[inline] pub fn {}<I: Into<{}> + Copy, {}: FnOnce({}) -> {}>(&self, index: I, f: {}) -> &Self {{", r_with, i_type, r_typevar, r_type, r_type, r_typevar));
-                try!(writeln!(out, "        unsafe {{"));
-                try!(writeln!(out, "            write_volatile(self.{}(index), f(self.{}(index)));", r_mut, r_getter)); 
-                try!(writeln!(out, "        }}"));
+                try!(writeln!(out, "        self.{}().with(index.into(), f);", r_reg));
                 try!(writeln!(out, "        self"));
                 try!(writeln!(out, "    }}"));       
                 try!(writeln!(out, "")); 
             }            
         } else {
             try!(gen_doc(out, 4, &format!("Get the {} Register.", r.name.to_uppercase())));
-            try!(writeln!(out, "    #[inline] pub fn {}(&self) -> ::register::Register<{}> {{ ", r_reg, r_type));
-            try!(writeln!(out, "        ::register::Register::new(self.0 as *mut {}, 0x{:x})",  r_type, r_offset));
+            try!(writeln!(out, "    #[inline] pub fn {}(&self) -> Register<{}> {{ ", r_reg, r_type));
+            try!(writeln!(out, "        Register::new(self.0 as *mut {}, 0x{:x})",  r_type, r_offset));
             try!(writeln!(out, "    }}"));
             try!(writeln!(out, ""));
             
             try!(gen_doc(out, 4, &format!("Get the *mut pointer for the {} register.", r.name.to_uppercase())));
             try!(writeln!(out, "    #[inline] pub fn {}(&self) -> *mut {} {{ ", r_mut, r_type));
-            try!(writeln!(out, "        (self.0 + 0x{:x}) as *mut {}", r_offset, r_type));
+            try!(writeln!(out, "        self.{}().ptr()", r_reg));
             try!(writeln!(out, "    }}"));
             try!(writeln!(out, ""));
             
             try!(gen_doc(out, 4, &format!("Get the *const pointer for the {} register.", r.name.to_uppercase())));
             try!(writeln!(out, "    #[inline] pub fn {}(&self) -> *const {} {{ ", r_ptr, r_type));
-            try!(writeln!(out, "           self.{}()", r_mut));            
+            try!(writeln!(out, "        self.{}().ptr()", r_reg));
             try!(writeln!(out, "    }}"));
             try!(writeln!(out, "")); 
 
             if r_access.is_readable() {
                 try!(gen_doc(out, 4, &format!("Read the {} register.", r.name.to_uppercase())));
                 try!(writeln!(out, "    #[inline] pub fn {}(&self) -> {} {{ ", r_getter, r_type));
-                try!(writeln!(out, "        unsafe {{"));
-                try!(writeln!(out, "            read_volatile(self.{}())", r_ptr));
-                try!(writeln!(out, "        }}"));
+                try!(writeln!(out, "        self.{}().read()", r_reg));
                 try!(writeln!(out, "    }}"));
                 try!(writeln!(out, ""));
             }
             if r_access.is_writable() {
                 try!(gen_doc(out, 4, &format!("Write the {} register.", r.name.to_uppercase())));
+                try!(writeln!(out, "    #[inline] pub fn {}(&self, value: {}) -> &Self {{ ", r_writer, r_type));
+                try!(writeln!(out, "        self.{}().write(value);", r_reg));
+                try!(writeln!(out, "        self"));
+                try!(writeln!(out, "    }}"));
+                try!(writeln!(out, ""));
+
+                try!(gen_doc(out, 4, &format!("Set the {} register.", r.name.to_uppercase())));
                 try!(writeln!(out, "    #[inline] pub fn {}<{}: FnOnce({}) -> {}>(&self, f: {}) -> &Self {{", r_setter, r_typevar, r_type, r_type, r_typevar));
-                try!(writeln!(out, "        unsafe {{"));
-                try!(writeln!(out, "            write_volatile(self.{}(), f({}(0)));", r_mut, r_type));                    
-                try!(writeln!(out, "        }}"));
+                try!(writeln!(out, "        self.{}().set(f);", r_reg));
                 try!(writeln!(out, "        self"));
                 try!(writeln!(out, "    }}"));                
                 try!(writeln!(out, ""));
@@ -1250,9 +1253,7 @@ pub fn gen_register_methods<W: Write>(out: &mut W, p_type: &str, regs: &[Registe
             if r_access.is_readable() && r_access.is_writable() {
                 try!(gen_doc(out, 4, &format!("Modify the {} register.", r.name.to_uppercase())));
                 try!(writeln!(out, "    #[inline] pub fn {}<{}: FnOnce({}) -> {}>(&self, f: {}) -> &Self {{", r_with, r_typevar, r_type, r_type, r_typevar));
-                try!(writeln!(out, "        unsafe {{"));
-                try!(writeln!(out, "            write_volatile(self.{}(), f(self.{}()));", r_mut, r_getter));                    
-                try!(writeln!(out, "        }}"));
+                try!(writeln!(out, "        self.{}().with(f);", r_reg));
                 try!(writeln!(out, "        self"));
                 try!(writeln!(out, "    }}"));               
                 try!(writeln!(out, ""));
