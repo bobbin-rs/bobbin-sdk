@@ -5,5 +5,4 @@ extern crate bobbin_bits;
 extern crate bobbin_mcu;
 extern crate bobbin_hal;
 extern crate sam_common;
-pub use sam_common::*;
 

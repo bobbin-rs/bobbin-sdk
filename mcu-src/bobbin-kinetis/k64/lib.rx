@@ -10,13 +10,13 @@
     )
 
     (crate
-        (module (name nvic))
-        (module (name scb))
-        (module (name systick))
+        ;(module (name nvic))
+        ;(module (name scb))
+        ;(module (name systick))
         ;(module (name mpu))
-        (module (name fpu))
-        (module (name dcb))
-        (module (name itm))        
+        ;(module (name fpu))
+        ;(module (name dcb))
+        ;(module (name itm))        
     )    
 
 
