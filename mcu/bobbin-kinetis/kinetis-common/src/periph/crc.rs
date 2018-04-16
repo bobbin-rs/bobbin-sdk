@@ -1,14 +1,12 @@
 
-#[allow(unused_imports)] use bobbin_common::*;
-
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="CRC Peripheral"]
 pub struct CrcPeriph(pub usize); 
 
 impl CrcPeriph {
     #[doc="Get the DATA Register."]
-    #[inline] pub fn data_reg(&self) -> Register<Data> { 
-        Register::new(self.0 as *mut Data, 0x0)
+    #[inline] pub fn data_reg(&self) -> ::bobbin_mcu::register::Register<Data> { 
+        ::bobbin_mcu::register::Register::new(self.0 as *mut Data, 0x0)
     }
 
     #[doc="Get the *mut pointer for the DATA register."]
@@ -45,8 +43,8 @@ impl CrcPeriph {
     }
 
     #[doc="Get the DATAL Register."]
-    #[inline] pub fn datal_reg(&self) -> Register<Datal> { 
-        Register::new(self.0 as *mut Datal, 0x0)
+    #[inline] pub fn datal_reg(&self) -> ::bobbin_mcu::register::Register<Datal> { 
+        ::bobbin_mcu::register::Register::new(self.0 as *mut Datal, 0x0)
     }
 
     #[doc="Get the *mut pointer for the DATAL register."]
@@ -83,8 +81,8 @@ impl CrcPeriph {
     }
 
     #[doc="Get the DATALL Register."]
-    #[inline] pub fn datall_reg(&self) -> Register<Datall> { 
-        Register::new(self.0 as *mut Datall, 0x0)
+    #[inline] pub fn datall_reg(&self) -> ::bobbin_mcu::register::Register<Datall> { 
+        ::bobbin_mcu::register::Register::new(self.0 as *mut Datall, 0x0)
     }
 
     #[doc="Get the *mut pointer for the DATALL register."]
@@ -121,8 +119,8 @@ impl CrcPeriph {
     }
 
     #[doc="Get the DATALU Register."]
-    #[inline] pub fn datalu_reg(&self) -> Register<Datalu> { 
-        Register::new(self.0 as *mut Datalu, 0x1)
+    #[inline] pub fn datalu_reg(&self) -> ::bobbin_mcu::register::Register<Datalu> { 
+        ::bobbin_mcu::register::Register::new(self.0 as *mut Datalu, 0x1)
     }
 
     #[doc="Get the *mut pointer for the DATALU register."]
@@ -159,8 +157,8 @@ impl CrcPeriph {
     }
 
     #[doc="Get the DATAH Register."]
-    #[inline] pub fn datah_reg(&self) -> Register<Datah> { 
-        Register::new(self.0 as *mut Datah, 0x2)
+    #[inline] pub fn datah_reg(&self) -> ::bobbin_mcu::register::Register<Datah> { 
+        ::bobbin_mcu::register::Register::new(self.0 as *mut Datah, 0x2)
     }
 
     #[doc="Get the *mut pointer for the DATAH register."]
@@ -197,8 +195,8 @@ impl CrcPeriph {
     }
 
     #[doc="Get the DATAHL Register."]
-    #[inline] pub fn datahl_reg(&self) -> Register<Datahl> { 
-        Register::new(self.0 as *mut Datahl, 0x2)
+    #[inline] pub fn datahl_reg(&self) -> ::bobbin_mcu::register::Register<Datahl> { 
+        ::bobbin_mcu::register::Register::new(self.0 as *mut Datahl, 0x2)
     }
 
     #[doc="Get the *mut pointer for the DATAHL register."]
@@ -235,8 +233,8 @@ impl CrcPeriph {
     }
 
     #[doc="Get the DATAHU Register."]
-    #[inline] pub fn datahu_reg(&self) -> Register<Datahu> { 
-        Register::new(self.0 as *mut Datahu, 0x3)
+    #[inline] pub fn datahu_reg(&self) -> ::bobbin_mcu::register::Register<Datahu> { 
+        ::bobbin_mcu::register::Register::new(self.0 as *mut Datahu, 0x3)
     }
 
     #[doc="Get the *mut pointer for the DATAHU register."]
@@ -273,8 +271,8 @@ impl CrcPeriph {
     }
 
     #[doc="Get the GPOLY Register."]
-    #[inline] pub fn gpoly_reg(&self) -> Register<Gpoly> { 
-        Register::new(self.0 as *mut Gpoly, 0x4)
+    #[inline] pub fn gpoly_reg(&self) -> ::bobbin_mcu::register::Register<Gpoly> { 
+        ::bobbin_mcu::register::Register::new(self.0 as *mut Gpoly, 0x4)
     }
 
     #[doc="Get the *mut pointer for the GPOLY register."]
@@ -311,8 +309,8 @@ impl CrcPeriph {
     }
 
     #[doc="Get the CTRL Register."]
-    #[inline] pub fn ctrl_reg(&self) -> Register<Ctrl> { 
-        Register::new(self.0 as *mut Ctrl, 0x8)
+    #[inline] pub fn ctrl_reg(&self) -> ::bobbin_mcu::register::Register<Ctrl> { 
+        ::bobbin_mcu::register::Register::new(self.0 as *mut Ctrl, 0x8)
     }
 
     #[doc="Get the *mut pointer for the CTRL register."]
@@ -355,7 +353,7 @@ impl CrcPeriph {
 pub struct Data(pub u32);
 impl Data {
     #[doc="CRC Low Lower Byte"]
-    #[inline] pub fn ll(&self) -> bits::U8 {
+    #[inline] pub fn ll(&self) -> ::bobbin_bits::U8 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
@@ -365,8 +363,8 @@ impl Data {
     }
 
     #[doc="Sets the LL field."]
-    #[inline] pub fn set_ll<V: Into<bits::U8>>(mut self, value: V) -> Self {
-        let value: bits::U8 = value.into();
+    #[inline] pub fn set_ll<V: Into<::bobbin_bits::U8>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U8 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0xff << 0);
         self.0 |= value << 0;
@@ -374,7 +372,7 @@ impl Data {
     }
 
     #[doc="CRC Low Upper Byte"]
-    #[inline] pub fn lu(&self) -> bits::U8 {
+    #[inline] pub fn lu(&self) -> ::bobbin_bits::U8 {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0xff) as u8) } // [15:8]
     }
 
@@ -384,8 +382,8 @@ impl Data {
     }
 
     #[doc="Sets the LU field."]
-    #[inline] pub fn set_lu<V: Into<bits::U8>>(mut self, value: V) -> Self {
-        let value: bits::U8 = value.into();
+    #[inline] pub fn set_lu<V: Into<::bobbin_bits::U8>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U8 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0xff << 8);
         self.0 |= value << 8;
@@ -393,7 +391,7 @@ impl Data {
     }
 
     #[doc="CRC High Lower Byte"]
-    #[inline] pub fn hl(&self) -> bits::U8 {
+    #[inline] pub fn hl(&self) -> ::bobbin_bits::U8 {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xff) as u8) } // [23:16]
     }
 
@@ -403,8 +401,8 @@ impl Data {
     }
 
     #[doc="Sets the HL field."]
-    #[inline] pub fn set_hl<V: Into<bits::U8>>(mut self, value: V) -> Self {
-        let value: bits::U8 = value.into();
+    #[inline] pub fn set_hl<V: Into<::bobbin_bits::U8>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U8 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0xff << 16);
         self.0 |= value << 16;
@@ -412,7 +410,7 @@ impl Data {
     }
 
     #[doc="CRC High Upper Byte"]
-    #[inline] pub fn hu(&self) -> bits::U8 {
+    #[inline] pub fn hu(&self) -> ::bobbin_bits::U8 {
         unsafe { ::core::mem::transmute(((self.0 >> 24) & 0xff) as u8) } // [31:24]
     }
 
@@ -422,8 +420,8 @@ impl Data {
     }
 
     #[doc="Sets the HU field."]
-    #[inline] pub fn set_hu<V: Into<bits::U8>>(mut self, value: V) -> Self {
-        let value: bits::U8 = value.into();
+    #[inline] pub fn set_hu<V: Into<::bobbin_bits::U8>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U8 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0xff << 24);
         self.0 |= value << 24;
@@ -462,7 +460,7 @@ impl ::core::fmt::Debug for Data {
 pub struct Datal(pub u16);
 impl Datal {
     #[doc="DATAL stores the lower 16 bits of the 16/32 bit CRC"]
-    #[inline] pub fn datal(&self) -> bits::U16 {
+    #[inline] pub fn datal(&self) -> ::bobbin_bits::U16 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffff) as u16) } // [15:0]
     }
 
@@ -472,8 +470,8 @@ impl Datal {
     }
 
     #[doc="Sets the DATAL field."]
-    #[inline] pub fn set_datal<V: Into<bits::U16>>(mut self, value: V) -> Self {
-        let value: bits::U16 = value.into();
+    #[inline] pub fn set_datal<V: Into<::bobbin_bits::U16>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U16 = value.into();
         let value: u16 = value.into();
         self.0 &= !(0xffff << 0);
         self.0 |= value << 0;
@@ -509,7 +507,7 @@ impl ::core::fmt::Debug for Datal {
 pub struct Datall(pub u8);
 impl Datall {
     #[doc="CRCLL stores the first 8 bits of the 32 bit DATA"]
-    #[inline] pub fn datall(&self) -> bits::U8 {
+    #[inline] pub fn datall(&self) -> ::bobbin_bits::U8 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
@@ -519,8 +517,8 @@ impl Datall {
     }
 
     #[doc="Sets the DATALL field."]
-    #[inline] pub fn set_datall<V: Into<bits::U8>>(mut self, value: V) -> Self {
-        let value: bits::U8 = value.into();
+    #[inline] pub fn set_datall<V: Into<::bobbin_bits::U8>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U8 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0xff << 0);
         self.0 |= value << 0;
@@ -556,7 +554,7 @@ impl ::core::fmt::Debug for Datall {
 pub struct Datalu(pub u8);
 impl Datalu {
     #[doc="DATALL stores the second 8 bits of the 32 bit CRC"]
-    #[inline] pub fn datalu(&self) -> bits::U8 {
+    #[inline] pub fn datalu(&self) -> ::bobbin_bits::U8 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
@@ -566,8 +564,8 @@ impl Datalu {
     }
 
     #[doc="Sets the DATALU field."]
-    #[inline] pub fn set_datalu<V: Into<bits::U8>>(mut self, value: V) -> Self {
-        let value: bits::U8 = value.into();
+    #[inline] pub fn set_datalu<V: Into<::bobbin_bits::U8>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U8 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0xff << 0);
         self.0 |= value << 0;
@@ -603,7 +601,7 @@ impl ::core::fmt::Debug for Datalu {
 pub struct Datah(pub u16);
 impl Datah {
     #[doc="DATAH stores the high 16 bits of the 16/32 bit CRC"]
-    #[inline] pub fn datah(&self) -> bits::U16 {
+    #[inline] pub fn datah(&self) -> ::bobbin_bits::U16 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffff) as u16) } // [15:0]
     }
 
@@ -613,8 +611,8 @@ impl Datah {
     }
 
     #[doc="Sets the DATAH field."]
-    #[inline] pub fn set_datah<V: Into<bits::U16>>(mut self, value: V) -> Self {
-        let value: bits::U16 = value.into();
+    #[inline] pub fn set_datah<V: Into<::bobbin_bits::U16>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U16 = value.into();
         let value: u16 = value.into();
         self.0 &= !(0xffff << 0);
         self.0 |= value << 0;
@@ -650,7 +648,7 @@ impl ::core::fmt::Debug for Datah {
 pub struct Datahl(pub u8);
 impl Datahl {
     #[doc="DATAHL stores the third 8 bits of the 32 bit CRC"]
-    #[inline] pub fn datahl(&self) -> bits::U8 {
+    #[inline] pub fn datahl(&self) -> ::bobbin_bits::U8 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
@@ -660,8 +658,8 @@ impl Datahl {
     }
 
     #[doc="Sets the DATAHL field."]
-    #[inline] pub fn set_datahl<V: Into<bits::U8>>(mut self, value: V) -> Self {
-        let value: bits::U8 = value.into();
+    #[inline] pub fn set_datahl<V: Into<::bobbin_bits::U8>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U8 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0xff << 0);
         self.0 |= value << 0;
@@ -697,7 +695,7 @@ impl ::core::fmt::Debug for Datahl {
 pub struct Datahu(pub u8);
 impl Datahu {
     #[doc="DATAHU stores the fourth 8 bits of the 32 bit CRC"]
-    #[inline] pub fn datahu(&self) -> bits::U8 {
+    #[inline] pub fn datahu(&self) -> ::bobbin_bits::U8 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
@@ -707,8 +705,8 @@ impl Datahu {
     }
 
     #[doc="Sets the DATAHU field."]
-    #[inline] pub fn set_datahu<V: Into<bits::U8>>(mut self, value: V) -> Self {
-        let value: bits::U8 = value.into();
+    #[inline] pub fn set_datahu<V: Into<::bobbin_bits::U8>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U8 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0xff << 0);
         self.0 |= value << 0;
@@ -744,7 +742,7 @@ impl ::core::fmt::Debug for Datahu {
 pub struct Gpoly(pub u32);
 impl Gpoly {
     #[doc="Low Polynominal Half-word"]
-    #[inline] pub fn low(&self) -> bits::U16 {
+    #[inline] pub fn low(&self) -> ::bobbin_bits::U16 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffff) as u16) } // [15:0]
     }
 
@@ -754,8 +752,8 @@ impl Gpoly {
     }
 
     #[doc="Sets the LOW field."]
-    #[inline] pub fn set_low<V: Into<bits::U16>>(mut self, value: V) -> Self {
-        let value: bits::U16 = value.into();
+    #[inline] pub fn set_low<V: Into<::bobbin_bits::U16>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U16 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0xffff << 0);
         self.0 |= value << 0;
@@ -763,7 +761,7 @@ impl Gpoly {
     }
 
     #[doc="High Polynominal Half-word"]
-    #[inline] pub fn high(&self) -> bits::U16 {
+    #[inline] pub fn high(&self) -> ::bobbin_bits::U16 {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xffff) as u16) } // [31:16]
     }
 
@@ -773,8 +771,8 @@ impl Gpoly {
     }
 
     #[doc="Sets the HIGH field."]
-    #[inline] pub fn set_high<V: Into<bits::U16>>(mut self, value: V) -> Self {
-        let value: bits::U16 = value.into();
+    #[inline] pub fn set_high<V: Into<::bobbin_bits::U16>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U16 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0xffff << 16);
         self.0 |= value << 16;
@@ -811,7 +809,7 @@ impl ::core::fmt::Debug for Gpoly {
 pub struct Ctrl(pub u32);
 impl Ctrl {
     #[doc="TCRC"]
-    #[inline] pub fn tcrc(&self) -> bits::U1 {
+    #[inline] pub fn tcrc(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 24) & 0x1) as u8) } // [24]
     }
 
@@ -821,8 +819,8 @@ impl Ctrl {
     }
 
     #[doc="Sets the TCRC field."]
-    #[inline] pub fn set_tcrc<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_tcrc<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 24);
         self.0 |= value << 24;
@@ -830,7 +828,7 @@ impl Ctrl {
     }
 
     #[doc="Write CRC Data Register As Seed"]
-    #[inline] pub fn was(&self) -> bits::U1 {
+    #[inline] pub fn was(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 25) & 0x1) as u8) } // [25]
     }
 
@@ -840,8 +838,8 @@ impl Ctrl {
     }
 
     #[doc="Sets the WAS field."]
-    #[inline] pub fn set_was<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_was<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 25);
         self.0 |= value << 25;
@@ -849,7 +847,7 @@ impl Ctrl {
     }
 
     #[doc="Complement Read Of CRC Data Register"]
-    #[inline] pub fn fxor(&self) -> bits::U1 {
+    #[inline] pub fn fxor(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 26) & 0x1) as u8) } // [26]
     }
 
@@ -859,8 +857,8 @@ impl Ctrl {
     }
 
     #[doc="Sets the FXOR field."]
-    #[inline] pub fn set_fxor<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_fxor<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 26);
         self.0 |= value << 26;
@@ -868,7 +866,7 @@ impl Ctrl {
     }
 
     #[doc="Type Of Transpose For Read"]
-    #[inline] pub fn totr(&self) -> bits::U2 {
+    #[inline] pub fn totr(&self) -> ::bobbin_bits::U2 {
         unsafe { ::core::mem::transmute(((self.0 >> 28) & 0x3) as u8) } // [29:28]
     }
 
@@ -878,8 +876,8 @@ impl Ctrl {
     }
 
     #[doc="Sets the TOTR field."]
-    #[inline] pub fn set_totr<V: Into<bits::U2>>(mut self, value: V) -> Self {
-        let value: bits::U2 = value.into();
+    #[inline] pub fn set_totr<V: Into<::bobbin_bits::U2>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U2 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x3 << 28);
         self.0 |= value << 28;
@@ -887,7 +885,7 @@ impl Ctrl {
     }
 
     #[doc="Type Of Transpose For Writes"]
-    #[inline] pub fn tot(&self) -> bits::U2 {
+    #[inline] pub fn tot(&self) -> ::bobbin_bits::U2 {
         unsafe { ::core::mem::transmute(((self.0 >> 30) & 0x3) as u8) } // [31:30]
     }
 
@@ -897,8 +895,8 @@ impl Ctrl {
     }
 
     #[doc="Sets the TOT field."]
-    #[inline] pub fn set_tot<V: Into<bits::U2>>(mut self, value: V) -> Self {
-        let value: bits::U2 = value.into();
+    #[inline] pub fn set_tot<V: Into<::bobbin_bits::U2>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U2 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x3 << 30);
         self.0 |= value << 30;

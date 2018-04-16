@@ -1,6 +1,4 @@
 
-#[allow(unused_imports)] use bobbin_common::*;
-
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="GPIO Peripheral"]
 pub struct GpioPeriph(pub usize); 
@@ -9,8 +7,8 @@ pub struct GpioCh { pub periph: GpioPeriph, pub index: usize }
 
 impl GpioPeriph {
     #[doc="Get the PDOR Register."]
-    #[inline] pub fn pdor_reg(&self) -> Register<Pdor> { 
-        Register::new(self.0 as *mut Pdor, 0x0)
+    #[inline] pub fn pdor_reg(&self) -> ::bobbin_mcu::register::Register<Pdor> { 
+        ::bobbin_mcu::register::Register::new(self.0 as *mut Pdor, 0x0)
     }
 
     #[doc="Get the *mut pointer for the PDOR register."]
@@ -47,8 +45,8 @@ impl GpioPeriph {
     }
 
     #[doc="Get the PSOR Register."]
-    #[inline] pub fn psor_reg(&self) -> Register<Psor> { 
-        Register::new(self.0 as *mut Psor, 0x4)
+    #[inline] pub fn psor_reg(&self) -> ::bobbin_mcu::register::Register<Psor> { 
+        ::bobbin_mcu::register::Register::new(self.0 as *mut Psor, 0x4)
     }
 
     #[doc="Get the *mut pointer for the PSOR register."]
@@ -74,8 +72,8 @@ impl GpioPeriph {
     }
 
     #[doc="Get the PCOR Register."]
-    #[inline] pub fn pcor_reg(&self) -> Register<Pcor> { 
-        Register::new(self.0 as *mut Pcor, 0x8)
+    #[inline] pub fn pcor_reg(&self) -> ::bobbin_mcu::register::Register<Pcor> { 
+        ::bobbin_mcu::register::Register::new(self.0 as *mut Pcor, 0x8)
     }
 
     #[doc="Get the *mut pointer for the PCOR register."]
@@ -101,8 +99,8 @@ impl GpioPeriph {
     }
 
     #[doc="Get the PTOR Register."]
-    #[inline] pub fn ptor_reg(&self) -> Register<Ptor> { 
-        Register::new(self.0 as *mut Ptor, 0xc)
+    #[inline] pub fn ptor_reg(&self) -> ::bobbin_mcu::register::Register<Ptor> { 
+        ::bobbin_mcu::register::Register::new(self.0 as *mut Ptor, 0xc)
     }
 
     #[doc="Get the *mut pointer for the PTOR register."]
@@ -128,8 +126,8 @@ impl GpioPeriph {
     }
 
     #[doc="Get the PDIR Register."]
-    #[inline] pub fn pdir_reg(&self) -> Register<Pdir> { 
-        Register::new(self.0 as *mut Pdir, 0x10)
+    #[inline] pub fn pdir_reg(&self) -> ::bobbin_mcu::register::Register<Pdir> { 
+        ::bobbin_mcu::register::Register::new(self.0 as *mut Pdir, 0x10)
     }
 
     #[doc="Get the *mut pointer for the PDIR register."]
@@ -148,8 +146,8 @@ impl GpioPeriph {
     }
 
     #[doc="Get the PDDR Register."]
-    #[inline] pub fn pddr_reg(&self) -> Register<Pddr> { 
-        Register::new(self.0 as *mut Pddr, 0x14)
+    #[inline] pub fn pddr_reg(&self) -> ::bobbin_mcu::register::Register<Pddr> { 
+        ::bobbin_mcu::register::Register::new(self.0 as *mut Pddr, 0x14)
     }
 
     #[doc="Get the *mut pointer for the PDDR register."]
@@ -186,8 +184,8 @@ impl GpioPeriph {
     }
 
     #[doc="Get the PIDR Register."]
-    #[inline] pub fn pidr_reg(&self) -> Register<Pidr> { 
-        Register::new(self.0 as *mut Pidr, 0x18)
+    #[inline] pub fn pidr_reg(&self) -> ::bobbin_mcu::register::Register<Pidr> { 
+        ::bobbin_mcu::register::Register::new(self.0 as *mut Pidr, 0x18)
     }
 
     #[doc="Get the *mut pointer for the PIDR register."]
@@ -230,21 +228,21 @@ impl GpioPeriph {
 pub struct Pdor(pub u32);
 impl Pdor {
     #[doc="Port Data Output"]
-    #[inline] pub fn pdo<I: Into<bits::R32>>(&self, index: I) -> bits::U1 {
+    #[inline] pub fn pdo<I: Into<::bobbin_bits::R32>>(&self, index: I) -> ::bobbin_bits::U1 {
         let index: usize = index.into().value() as usize;
         let shift: usize = 0 + index;
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
     #[doc="Returns true if PDO != 0"]
-    #[inline] pub fn test_pdo<I: Into<bits::R32>>(&self, index: I) -> bool{
+    #[inline] pub fn test_pdo<I: Into<::bobbin_bits::R32>>(&self, index: I) -> bool{
         self.pdo(index) != 0
     }
 
     #[doc="Sets the PDO field."]
-    #[inline] pub fn set_pdo<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+    #[inline] pub fn set_pdo<I: Into<::bobbin_bits::R32>, V: Into<::bobbin_bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
-        let value: bits::U1 = value.into();
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         let shift: usize = 0 + index;
         self.0 &= !(0x1 << shift);
@@ -312,21 +310,21 @@ impl ::core::fmt::Debug for Pdor {
 pub struct Psor(pub u32);
 impl Psor {
     #[doc="Port Set Output"]
-    #[inline] pub fn ptso<I: Into<bits::R32>>(&self, index: I) -> bits::U1 {
+    #[inline] pub fn ptso<I: Into<::bobbin_bits::R32>>(&self, index: I) -> ::bobbin_bits::U1 {
         let index: usize = index.into().value() as usize;
         let shift: usize = 0 + index;
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
     #[doc="Returns true if PTSO != 0"]
-    #[inline] pub fn test_ptso<I: Into<bits::R32>>(&self, index: I) -> bool{
+    #[inline] pub fn test_ptso<I: Into<::bobbin_bits::R32>>(&self, index: I) -> bool{
         self.ptso(index) != 0
     }
 
     #[doc="Sets the PTSO field."]
-    #[inline] pub fn set_ptso<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+    #[inline] pub fn set_ptso<I: Into<::bobbin_bits::R32>, V: Into<::bobbin_bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
-        let value: bits::U1 = value.into();
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         let shift: usize = 0 + index;
         self.0 &= !(0x1 << shift);
@@ -394,21 +392,21 @@ impl ::core::fmt::Debug for Psor {
 pub struct Pcor(pub u32);
 impl Pcor {
     #[doc="Port Clear Output"]
-    #[inline] pub fn ptco<I: Into<bits::R32>>(&self, index: I) -> bits::U1 {
+    #[inline] pub fn ptco<I: Into<::bobbin_bits::R32>>(&self, index: I) -> ::bobbin_bits::U1 {
         let index: usize = index.into().value() as usize;
         let shift: usize = 0 + index;
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
     #[doc="Returns true if PTCO != 0"]
-    #[inline] pub fn test_ptco<I: Into<bits::R32>>(&self, index: I) -> bool{
+    #[inline] pub fn test_ptco<I: Into<::bobbin_bits::R32>>(&self, index: I) -> bool{
         self.ptco(index) != 0
     }
 
     #[doc="Sets the PTCO field."]
-    #[inline] pub fn set_ptco<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+    #[inline] pub fn set_ptco<I: Into<::bobbin_bits::R32>, V: Into<::bobbin_bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
-        let value: bits::U1 = value.into();
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         let shift: usize = 0 + index;
         self.0 &= !(0x1 << shift);
@@ -476,21 +474,21 @@ impl ::core::fmt::Debug for Pcor {
 pub struct Ptor(pub u32);
 impl Ptor {
     #[doc="Port Toggle Output"]
-    #[inline] pub fn ptto<I: Into<bits::R32>>(&self, index: I) -> bits::U1 {
+    #[inline] pub fn ptto<I: Into<::bobbin_bits::R32>>(&self, index: I) -> ::bobbin_bits::U1 {
         let index: usize = index.into().value() as usize;
         let shift: usize = 0 + index;
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
     #[doc="Returns true if PTTO != 0"]
-    #[inline] pub fn test_ptto<I: Into<bits::R32>>(&self, index: I) -> bool{
+    #[inline] pub fn test_ptto<I: Into<::bobbin_bits::R32>>(&self, index: I) -> bool{
         self.ptto(index) != 0
     }
 
     #[doc="Sets the PTTO field."]
-    #[inline] pub fn set_ptto<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+    #[inline] pub fn set_ptto<I: Into<::bobbin_bits::R32>, V: Into<::bobbin_bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
-        let value: bits::U1 = value.into();
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         let shift: usize = 0 + index;
         self.0 &= !(0x1 << shift);
@@ -558,21 +556,21 @@ impl ::core::fmt::Debug for Ptor {
 pub struct Pdir(pub u32);
 impl Pdir {
     #[doc="Port Data Input"]
-    #[inline] pub fn pdi<I: Into<bits::R32>>(&self, index: I) -> bits::U1 {
+    #[inline] pub fn pdi<I: Into<::bobbin_bits::R32>>(&self, index: I) -> ::bobbin_bits::U1 {
         let index: usize = index.into().value() as usize;
         let shift: usize = 0 + index;
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
     #[doc="Returns true if PDI != 0"]
-    #[inline] pub fn test_pdi<I: Into<bits::R32>>(&self, index: I) -> bool{
+    #[inline] pub fn test_pdi<I: Into<::bobbin_bits::R32>>(&self, index: I) -> bool{
         self.pdi(index) != 0
     }
 
     #[doc="Sets the PDI field."]
-    #[inline] pub fn set_pdi<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+    #[inline] pub fn set_pdi<I: Into<::bobbin_bits::R32>, V: Into<::bobbin_bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
-        let value: bits::U1 = value.into();
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         let shift: usize = 0 + index;
         self.0 &= !(0x1 << shift);
@@ -640,21 +638,21 @@ impl ::core::fmt::Debug for Pdir {
 pub struct Pddr(pub u32);
 impl Pddr {
     #[doc="Port Data Direction"]
-    #[inline] pub fn pdd<I: Into<bits::R32>>(&self, index: I) -> bits::U1 {
+    #[inline] pub fn pdd<I: Into<::bobbin_bits::R32>>(&self, index: I) -> ::bobbin_bits::U1 {
         let index: usize = index.into().value() as usize;
         let shift: usize = 0 + index;
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
     #[doc="Returns true if PDD != 0"]
-    #[inline] pub fn test_pdd<I: Into<bits::R32>>(&self, index: I) -> bool{
+    #[inline] pub fn test_pdd<I: Into<::bobbin_bits::R32>>(&self, index: I) -> bool{
         self.pdd(index) != 0
     }
 
     #[doc="Sets the PDD field."]
-    #[inline] pub fn set_pdd<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+    #[inline] pub fn set_pdd<I: Into<::bobbin_bits::R32>, V: Into<::bobbin_bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
-        let value: bits::U1 = value.into();
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         let shift: usize = 0 + index;
         self.0 &= !(0x1 << shift);
@@ -722,21 +720,21 @@ impl ::core::fmt::Debug for Pddr {
 pub struct Pidr(pub u32);
 impl Pidr {
     #[doc="Port Input Disable"]
-    #[inline] pub fn pid<I: Into<bits::R32>>(&self, index: I) -> bits::U1 {
+    #[inline] pub fn pid<I: Into<::bobbin_bits::R32>>(&self, index: I) -> ::bobbin_bits::U1 {
         let index: usize = index.into().value() as usize;
         let shift: usize = 0 + index;
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
     #[doc="Returns true if PID != 0"]
-    #[inline] pub fn test_pid<I: Into<bits::R32>>(&self, index: I) -> bool{
+    #[inline] pub fn test_pid<I: Into<::bobbin_bits::R32>>(&self, index: I) -> bool{
         self.pid(index) != 0
     }
 
     #[doc="Sets the PID field."]
-    #[inline] pub fn set_pid<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+    #[inline] pub fn set_pid<I: Into<::bobbin_bits::R32>, V: Into<::bobbin_bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
-        let value: bits::U1 = value.into();
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         let shift: usize = 0 + index;
         self.0 &= !(0x1 << shift);

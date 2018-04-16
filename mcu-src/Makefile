@@ -21,7 +21,7 @@ bobbin-ambiq: apollo2
 bobbin-silabs: efm32pg12
 
 bobbin-cortexm:
-	$(CHIP) $(CHIP_ARGS) $@/mod.rx ../mcu/$@/src/periph/mod.rs
+	$(CHIP) --crate --cargo-template template $@/lib.rx ../mcu/$@/
 	
 kinetis-common:
 	$(CHIP) $(CHIP_ARGS) bobbin-kinetis/$@/mod.rx ../mcu/bobbin-kinetis/$@/src/periph/mod.rs

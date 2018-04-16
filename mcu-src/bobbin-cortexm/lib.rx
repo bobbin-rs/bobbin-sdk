@@ -1,5 +1,5 @@
 (device
-    (name CORTEXM)
+    (name bobbin-cortexm)
     (description "Cortex-M Common Peripherals")
     (peripheral (include "periph/nvic.rx"))
     (peripheral (include "periph/scb.rx"))

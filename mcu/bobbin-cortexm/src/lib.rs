@@ -1,9 +1,18 @@
 #![no_std]
-#![feature(asm)]
 
-extern crate bobbin_common;
+extern crate bobbin_bits;
+#[macro_use] extern crate bobbin_mcu;
+extern crate bobbin_hal;
 
-pub mod periph;
 pub mod ext;
+pub mod nvic;
+pub mod scb;
+pub mod systick;
+pub mod mpu;
+pub mod fpu;
+pub mod dcb;
+pub mod itm;
+pub mod dwt;
+pub mod sig;
+pub mod pin;
 
-pub use ext::*;

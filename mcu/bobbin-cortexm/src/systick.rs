@@ -1,144 +1,160 @@
-#[allow(unused_imports)] use bobbin_common::*;
-
 
 periph!( SYSTICK, Systick, SYSTICK_PERIPH, SystickPeriph, SYSTICK_OWNED, SYSTICK_REF_COUNT, 0xe000e000, 0x00, 0x02);
 
-
-#[allow(unused_imports)] use bobbin_common::*;
 
 #[doc="System Timer, SysTick"]
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct SystickPeriph(pub usize);
 impl SystickPeriph {
+    #[doc="Get the CSR Register."]
+    #[inline] pub fn csr_reg(&self) -> ::bobbin_mcu::register::Register<Csr> { 
+        ::bobbin_mcu::register::Register::new(self.0 as *mut Csr, 0x10)
+    }
+
     #[doc="Get the *mut pointer for the CSR register."]
     #[inline] pub fn csr_mut(&self) -> *mut Csr { 
-        (self.0 + 0x10) as *mut Csr
+        self.csr_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the CSR register."]
     #[inline] pub fn csr_ptr(&self) -> *const Csr { 
-           self.csr_mut()
+        self.csr_reg().ptr()
     }
 
     #[doc="Read the CSR register."]
     #[inline] pub fn csr(&self) -> Csr { 
-        unsafe {
-            read_volatile(self.csr_ptr())
-        }
+        self.csr_reg().read()
     }
 
     #[doc="Write the CSR register."]
+    #[inline] pub fn write_csr(&self, value: Csr) -> &Self { 
+        self.csr_reg().write(value);
+        self
+    }
+
+    #[doc="Set the CSR register."]
     #[inline] pub fn set_csr<F: FnOnce(Csr) -> Csr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr_mut(), f(Csr(0)));
-        }
+        self.csr_reg().set(f);
         self
     }
 
     #[doc="Modify the CSR register."]
     #[inline] pub fn with_csr<F: FnOnce(Csr) -> Csr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.csr_mut(), f(self.csr()));
-        }
+        self.csr_reg().with(f);
         self
+    }
+
+    #[doc="Get the RVR Register."]
+    #[inline] pub fn rvr_reg(&self) -> ::bobbin_mcu::register::Register<Rvr> { 
+        ::bobbin_mcu::register::Register::new(self.0 as *mut Rvr, 0x14)
     }
 
     #[doc="Get the *mut pointer for the RVR register."]
     #[inline] pub fn rvr_mut(&self) -> *mut Rvr { 
-        (self.0 + 0x14) as *mut Rvr
+        self.rvr_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the RVR register."]
     #[inline] pub fn rvr_ptr(&self) -> *const Rvr { 
-           self.rvr_mut()
+        self.rvr_reg().ptr()
     }
 
     #[doc="Read the RVR register."]
     #[inline] pub fn rvr(&self) -> Rvr { 
-        unsafe {
-            read_volatile(self.rvr_ptr())
-        }
+        self.rvr_reg().read()
     }
 
     #[doc="Write the RVR register."]
+    #[inline] pub fn write_rvr(&self, value: Rvr) -> &Self { 
+        self.rvr_reg().write(value);
+        self
+    }
+
+    #[doc="Set the RVR register."]
     #[inline] pub fn set_rvr<F: FnOnce(Rvr) -> Rvr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.rvr_mut(), f(Rvr(0)));
-        }
+        self.rvr_reg().set(f);
         self
     }
 
     #[doc="Modify the RVR register."]
     #[inline] pub fn with_rvr<F: FnOnce(Rvr) -> Rvr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.rvr_mut(), f(self.rvr()));
-        }
+        self.rvr_reg().with(f);
         self
+    }
+
+    #[doc="Get the CVR Register."]
+    #[inline] pub fn cvr_reg(&self) -> ::bobbin_mcu::register::Register<Cvr> { 
+        ::bobbin_mcu::register::Register::new(self.0 as *mut Cvr, 0x18)
     }
 
     #[doc="Get the *mut pointer for the CVR register."]
     #[inline] pub fn cvr_mut(&self) -> *mut Cvr { 
-        (self.0 + 0x18) as *mut Cvr
+        self.cvr_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the CVR register."]
     #[inline] pub fn cvr_ptr(&self) -> *const Cvr { 
-           self.cvr_mut()
+        self.cvr_reg().ptr()
     }
 
     #[doc="Read the CVR register."]
     #[inline] pub fn cvr(&self) -> Cvr { 
-        unsafe {
-            read_volatile(self.cvr_ptr())
-        }
+        self.cvr_reg().read()
     }
 
     #[doc="Write the CVR register."]
+    #[inline] pub fn write_cvr(&self, value: Cvr) -> &Self { 
+        self.cvr_reg().write(value);
+        self
+    }
+
+    #[doc="Set the CVR register."]
     #[inline] pub fn set_cvr<F: FnOnce(Cvr) -> Cvr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.cvr_mut(), f(Cvr(0)));
-        }
+        self.cvr_reg().set(f);
         self
     }
 
     #[doc="Modify the CVR register."]
     #[inline] pub fn with_cvr<F: FnOnce(Cvr) -> Cvr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.cvr_mut(), f(self.cvr()));
-        }
+        self.cvr_reg().with(f);
         self
+    }
+
+    #[doc="Get the CALIB Register."]
+    #[inline] pub fn calib_reg(&self) -> ::bobbin_mcu::register::Register<Calib> { 
+        ::bobbin_mcu::register::Register::new(self.0 as *mut Calib, 0x1c)
     }
 
     #[doc="Get the *mut pointer for the CALIB register."]
     #[inline] pub fn calib_mut(&self) -> *mut Calib { 
-        (self.0 + 0x1c) as *mut Calib
+        self.calib_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the CALIB register."]
     #[inline] pub fn calib_ptr(&self) -> *const Calib { 
-           self.calib_mut()
+        self.calib_reg().ptr()
     }
 
     #[doc="Read the CALIB register."]
     #[inline] pub fn calib(&self) -> Calib { 
-        unsafe {
-            read_volatile(self.calib_ptr())
-        }
+        self.calib_reg().read()
     }
 
     #[doc="Write the CALIB register."]
+    #[inline] pub fn write_calib(&self, value: Calib) -> &Self { 
+        self.calib_reg().write(value);
+        self
+    }
+
+    #[doc="Set the CALIB register."]
     #[inline] pub fn set_calib<F: FnOnce(Calib) -> Calib>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.calib_mut(), f(Calib(0)));
-        }
+        self.calib_reg().set(f);
         self
     }
 
     #[doc="Modify the CALIB register."]
     #[inline] pub fn with_calib<F: FnOnce(Calib) -> Calib>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.calib_mut(), f(self.calib()));
-        }
+        self.calib_reg().with(f);
         self
     }
 
@@ -149,7 +165,7 @@ impl SystickPeriph {
 pub struct Csr(pub u32);
 impl Csr {
     #[doc="Returns 1 if timer counted to 0 since last time this was read."]
-    #[inline] pub fn countflag(&self) -> bits::U1 {
+    #[inline] pub fn countflag(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1) as u8) } // [16]
     }
 
@@ -159,8 +175,8 @@ impl Csr {
     }
 
     #[doc="Sets the COUNTFLAG field."]
-    #[inline] pub fn set_countflag<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_countflag<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 16);
         self.0 |= value << 16;
@@ -168,7 +184,7 @@ impl Csr {
     }
 
     #[doc="Indicates the clock source: 0 = external clock, 1 = processor clock."]
-    #[inline] pub fn clksource(&self) -> bits::U1 {
+    #[inline] pub fn clksource(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
@@ -178,8 +194,8 @@ impl Csr {
     }
 
     #[doc="Sets the CLKSOURCE field."]
-    #[inline] pub fn set_clksource<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_clksource<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 2);
         self.0 |= value << 2;
@@ -187,7 +203,7 @@ impl Csr {
     }
 
     #[doc="Enables SysTick exception request: 0 = counting down to zero does not assert the SysTick exception request, 1 = counting down to zero asserts the SysTick exception request."]
-    #[inline] pub fn tickint(&self) -> bits::U1 {
+    #[inline] pub fn tickint(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
@@ -197,8 +213,8 @@ impl Csr {
     }
 
     #[doc="Sets the TICKINT field."]
-    #[inline] pub fn set_tickint<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_tickint<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 1);
         self.0 |= value << 1;
@@ -206,7 +222,7 @@ impl Csr {
     }
 
     #[doc="Enables the counter: 0 = counter disabled, 1 = counter enabled."]
-    #[inline] pub fn enable(&self) -> bits::U1 {
+    #[inline] pub fn enable(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
@@ -216,8 +232,8 @@ impl Csr {
     }
 
     #[doc="Sets the ENABLE field."]
-    #[inline] pub fn set_enable<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_enable<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 0);
         self.0 |= value << 0;
@@ -256,7 +272,7 @@ impl ::core::fmt::Debug for Csr {
 pub struct Rvr(pub u32);
 impl Rvr {
     #[doc="Value to load into the SYST_CVR register when the counter is enabled and when it reaches 0"]
-    #[inline] pub fn reload(&self) -> bits::U24 {
+    #[inline] pub fn reload(&self) -> ::bobbin_bits::U24 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffffff) as u32) } // [23:0]
     }
 
@@ -266,8 +282,8 @@ impl Rvr {
     }
 
     #[doc="Sets the RELOAD field."]
-    #[inline] pub fn set_reload<V: Into<bits::U24>>(mut self, value: V) -> Self {
-        let value: bits::U24 = value.into();
+    #[inline] pub fn set_reload<V: Into<::bobbin_bits::U24>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U24 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0xffffff << 0);
         self.0 |= value << 0;
@@ -303,7 +319,7 @@ impl ::core::fmt::Debug for Rvr {
 pub struct Cvr(pub u32);
 impl Cvr {
     #[doc="Reads return the current value of the SysTick counter. A write of any value clears the field to 0, and also clears the SYST_CSR COUNTFLAG bit to 0."]
-    #[inline] pub fn current(&self) -> bits::U24 {
+    #[inline] pub fn current(&self) -> ::bobbin_bits::U24 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffffff) as u32) } // [23:0]
     }
 
@@ -313,8 +329,8 @@ impl Cvr {
     }
 
     #[doc="Sets the CURRENT field."]
-    #[inline] pub fn set_current<V: Into<bits::U24>>(mut self, value: V) -> Self {
-        let value: bits::U24 = value.into();
+    #[inline] pub fn set_current<V: Into<::bobbin_bits::U24>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U24 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0xffffff << 0);
         self.0 |= value << 0;
@@ -350,7 +366,7 @@ impl ::core::fmt::Debug for Cvr {
 pub struct Calib(pub u32);
 impl Calib {
     #[doc="Indicates whether the device provides a reference clock to the processor"]
-    #[inline] pub fn noref(&self) -> bits::U1 {
+    #[inline] pub fn noref(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 31) & 0x1) as u8) } // [31]
     }
 
@@ -360,8 +376,8 @@ impl Calib {
     }
 
     #[doc="Sets the NOREF field."]
-    #[inline] pub fn set_noref<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_noref<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 31);
         self.0 |= value << 31;
@@ -369,7 +385,7 @@ impl Calib {
     }
 
     #[doc="Indicates whether the TENMS value is exact: 0 = TENMS value is exact, 1 = TENMS value is inexact, or not given."]
-    #[inline] pub fn skew(&self) -> bits::U1 {
+    #[inline] pub fn skew(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 30) & 0x1) as u8) } // [30]
     }
 
@@ -379,8 +395,8 @@ impl Calib {
     }
 
     #[doc="Sets the SKEW field."]
-    #[inline] pub fn set_skew<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_skew<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 30);
         self.0 |= value << 30;
@@ -388,7 +404,7 @@ impl Calib {
     }
 
     #[doc="Reload value for 10ms (100Hz) timing, subject to system clock skew errors."]
-    #[inline] pub fn tenms(&self) -> bits::U24 {
+    #[inline] pub fn tenms(&self) -> ::bobbin_bits::U24 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffffff) as u32) } // [23:0]
     }
 
@@ -398,8 +414,8 @@ impl Calib {
     }
 
     #[doc="Sets the TENMS field."]
-    #[inline] pub fn set_tenms<V: Into<bits::U24>>(mut self, value: V) -> Self {
-        let value: bits::U24 = value.into();
+    #[inline] pub fn set_tenms<V: Into<::bobbin_bits::U24>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U24 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0xffffff << 0);
         self.0 |= value << 0;

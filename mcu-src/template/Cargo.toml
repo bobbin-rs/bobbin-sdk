@@ -1,5 +1,5 @@
 [package]
-name = "bobbin-cortexm"
+name = "%name%"
 version = "0.1.0"
 
 [dependencies]
@@ -9,4 +9,3 @@ bobbin-hal = { path = "../../lib/bobbin-hal" }
 
 [features]
 default = []
-

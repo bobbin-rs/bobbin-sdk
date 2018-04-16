@@ -1,6 +1,4 @@
 
-#[allow(unused_imports)] use bobbin_common::*;
-
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="LPIT Peripheral"]
 pub struct LpitPeriph(pub usize); 
@@ -9,8 +7,8 @@ pub struct LpitCh { pub periph: LpitPeriph, pub index: usize }
 
 impl LpitPeriph {
     #[doc="Get the VERID Register."]
-    #[inline] pub fn verid_reg(&self) -> Register<Verid> { 
-        Register::new(self.0 as *mut Verid, 0x0)
+    #[inline] pub fn verid_reg(&self) -> ::bobbin_mcu::register::Register<Verid> { 
+        ::bobbin_mcu::register::Register::new(self.0 as *mut Verid, 0x0)
     }
 
     #[doc="Get the *mut pointer for the VERID register."]
@@ -29,8 +27,8 @@ impl LpitPeriph {
     }
 
     #[doc="Get the PARAM Register."]
-    #[inline] pub fn param_reg(&self) -> Register<Param> { 
-        Register::new(self.0 as *mut Param, 0x4)
+    #[inline] pub fn param_reg(&self) -> ::bobbin_mcu::register::Register<Param> { 
+        ::bobbin_mcu::register::Register::new(self.0 as *mut Param, 0x4)
     }
 
     #[doc="Get the *mut pointer for the PARAM register."]
@@ -49,8 +47,8 @@ impl LpitPeriph {
     }
 
     #[doc="Get the MCR Register."]
-    #[inline] pub fn mcr_reg(&self) -> Register<Mcr> { 
-        Register::new(self.0 as *mut Mcr, 0x8)
+    #[inline] pub fn mcr_reg(&self) -> ::bobbin_mcu::register::Register<Mcr> { 
+        ::bobbin_mcu::register::Register::new(self.0 as *mut Mcr, 0x8)
     }
 
     #[doc="Get the *mut pointer for the MCR register."]
@@ -87,8 +85,8 @@ impl LpitPeriph {
     }
 
     #[doc="Get the MSR Register."]
-    #[inline] pub fn msr_reg(&self) -> Register<Msr> { 
-        Register::new(self.0 as *mut Msr, 0xc)
+    #[inline] pub fn msr_reg(&self) -> ::bobbin_mcu::register::Register<Msr> { 
+        ::bobbin_mcu::register::Register::new(self.0 as *mut Msr, 0xc)
     }
 
     #[doc="Get the *mut pointer for the MSR register."]
@@ -125,8 +123,8 @@ impl LpitPeriph {
     }
 
     #[doc="Get the MIER Register."]
-    #[inline] pub fn mier_reg(&self) -> Register<Mier> { 
-        Register::new(self.0 as *mut Mier, 0x10)
+    #[inline] pub fn mier_reg(&self) -> ::bobbin_mcu::register::Register<Mier> { 
+        ::bobbin_mcu::register::Register::new(self.0 as *mut Mier, 0x10)
     }
 
     #[doc="Get the *mut pointer for the MIER register."]
@@ -163,8 +161,8 @@ impl LpitPeriph {
     }
 
     #[doc="Get the SETTEN Register."]
-    #[inline] pub fn setten_reg(&self) -> Register<Setten> { 
-        Register::new(self.0 as *mut Setten, 0x14)
+    #[inline] pub fn setten_reg(&self) -> ::bobbin_mcu::register::Register<Setten> { 
+        ::bobbin_mcu::register::Register::new(self.0 as *mut Setten, 0x14)
     }
 
     #[doc="Get the *mut pointer for the SETTEN register."]
@@ -201,8 +199,8 @@ impl LpitPeriph {
     }
 
     #[doc="Get the CLRTEN Register."]
-    #[inline] pub fn clrten_reg(&self) -> Register<Clrten> { 
-        Register::new(self.0 as *mut Clrten, 0x18)
+    #[inline] pub fn clrten_reg(&self) -> ::bobbin_mcu::register::Register<Clrten> { 
+        ::bobbin_mcu::register::Register::new(self.0 as *mut Clrten, 0x18)
     }
 
     #[doc="Get the *mut pointer for the CLRTEN register."]
@@ -239,97 +237,97 @@ impl LpitPeriph {
     }
 
     #[doc="Get the TVAL Register."]
-    #[inline] pub fn tval_reg(&self) -> RegisterArray<Tval, bits::R4> { 
-        RegisterArray::new(self.0 as *mut Tval, 0x20, 0x10)
+    #[inline] pub fn tval_reg(&self) -> ::bobbin_mcu::register::RegisterArray<Tval, ::bobbin_bits::R4> { 
+        ::bobbin_mcu::register::RegisterArray::new(self.0 as *mut Tval, 0x20, 0x10)
     }
 
     #[doc="Get the *mut pointer for the TVAL register."]
-    #[inline] pub fn tval_mut<I: Into<bits::R4>>(&self, index: I) -> *mut Tval { 
+    #[inline] pub fn tval_mut<I: Into<::bobbin_bits::R4>>(&self, index: I) -> *mut Tval { 
         self.tval_reg().ptr(index.into())
     }
 
     #[doc="Get the *const pointer for the TVAL register."]
-    #[inline] pub fn tval_ptr<I: Into<bits::R4>>(&self, index: I) -> *const Tval { 
+    #[inline] pub fn tval_ptr<I: Into<::bobbin_bits::R4>>(&self, index: I) -> *const Tval { 
         self.tval_reg().ptr(index.into())
     }
 
     #[doc="Read the TVAL register."]
-    #[inline] pub fn tval<I: Into<bits::R4>>(&self, index: I) -> Tval { 
+    #[inline] pub fn tval<I: Into<::bobbin_bits::R4>>(&self, index: I) -> Tval { 
         self.tval_reg().read(index.into())
     }
 
     #[doc="Write the TVAL register."]
-    #[inline] pub fn write_tval<I: Into<bits::R4>>(&self, index: I, value: Tval) -> &Self {
+    #[inline] pub fn write_tval<I: Into<::bobbin_bits::R4>>(&self, index: I, value: Tval) -> &Self {
         self.tval_reg().write(index.into(), value);
         self
     }
 
     #[doc="Set the TVAL register."]
-    #[inline] pub fn set_tval<I: Into<bits::R4>, F: FnOnce(Tval) -> Tval>(&self, index: I, f: F) -> &Self {
+    #[inline] pub fn set_tval<I: Into<::bobbin_bits::R4>, F: FnOnce(Tval) -> Tval>(&self, index: I, f: F) -> &Self {
         self.tval_reg().set(index.into(), f);
         self
     }
 
     #[doc="Modify the TVAL register."]
-    #[inline] pub fn with_tval<I: Into<bits::R4> + Copy, F: FnOnce(Tval) -> Tval>(&self, index: I, f: F) -> &Self {
+    #[inline] pub fn with_tval<I: Into<::bobbin_bits::R4> + Copy, F: FnOnce(Tval) -> Tval>(&self, index: I, f: F) -> &Self {
         self.tval_reg().with(index.into(), f);
         self
     }
 
     #[doc="Get the CVAL Register."]
-    #[inline] pub fn cval_reg(&self) -> RegisterArray<Cval, bits::R4> { 
-        RegisterArray::new(self.0 as *mut Cval, 0x24, 0x10)
+    #[inline] pub fn cval_reg(&self) -> ::bobbin_mcu::register::RegisterArray<Cval, ::bobbin_bits::R4> { 
+        ::bobbin_mcu::register::RegisterArray::new(self.0 as *mut Cval, 0x24, 0x10)
     }
 
     #[doc="Get the *mut pointer for the CVAL register."]
-    #[inline] pub fn cval_mut<I: Into<bits::R4>>(&self, index: I) -> *mut Cval { 
+    #[inline] pub fn cval_mut<I: Into<::bobbin_bits::R4>>(&self, index: I) -> *mut Cval { 
         self.cval_reg().ptr(index.into())
     }
 
     #[doc="Get the *const pointer for the CVAL register."]
-    #[inline] pub fn cval_ptr<I: Into<bits::R4>>(&self, index: I) -> *const Cval { 
+    #[inline] pub fn cval_ptr<I: Into<::bobbin_bits::R4>>(&self, index: I) -> *const Cval { 
         self.cval_reg().ptr(index.into())
     }
 
     #[doc="Read the CVAL register."]
-    #[inline] pub fn cval<I: Into<bits::R4>>(&self, index: I) -> Cval { 
+    #[inline] pub fn cval<I: Into<::bobbin_bits::R4>>(&self, index: I) -> Cval { 
         self.cval_reg().read(index.into())
     }
 
     #[doc="Get the TCTRL Register."]
-    #[inline] pub fn tctrl_reg(&self) -> RegisterArray<Tctrl, bits::R4> { 
-        RegisterArray::new(self.0 as *mut Tctrl, 0x28, 0x10)
+    #[inline] pub fn tctrl_reg(&self) -> ::bobbin_mcu::register::RegisterArray<Tctrl, ::bobbin_bits::R4> { 
+        ::bobbin_mcu::register::RegisterArray::new(self.0 as *mut Tctrl, 0x28, 0x10)
     }
 
     #[doc="Get the *mut pointer for the TCTRL register."]
-    #[inline] pub fn tctrl_mut<I: Into<bits::R4>>(&self, index: I) -> *mut Tctrl { 
+    #[inline] pub fn tctrl_mut<I: Into<::bobbin_bits::R4>>(&self, index: I) -> *mut Tctrl { 
         self.tctrl_reg().ptr(index.into())
     }
 
     #[doc="Get the *const pointer for the TCTRL register."]
-    #[inline] pub fn tctrl_ptr<I: Into<bits::R4>>(&self, index: I) -> *const Tctrl { 
+    #[inline] pub fn tctrl_ptr<I: Into<::bobbin_bits::R4>>(&self, index: I) -> *const Tctrl { 
         self.tctrl_reg().ptr(index.into())
     }
 
     #[doc="Read the TCTRL register."]
-    #[inline] pub fn tctrl<I: Into<bits::R4>>(&self, index: I) -> Tctrl { 
+    #[inline] pub fn tctrl<I: Into<::bobbin_bits::R4>>(&self, index: I) -> Tctrl { 
         self.tctrl_reg().read(index.into())
     }
 
     #[doc="Write the TCTRL register."]
-    #[inline] pub fn write_tctrl<I: Into<bits::R4>>(&self, index: I, value: Tctrl) -> &Self {
+    #[inline] pub fn write_tctrl<I: Into<::bobbin_bits::R4>>(&self, index: I, value: Tctrl) -> &Self {
         self.tctrl_reg().write(index.into(), value);
         self
     }
 
     #[doc="Set the TCTRL register."]
-    #[inline] pub fn set_tctrl<I: Into<bits::R4>, F: FnOnce(Tctrl) -> Tctrl>(&self, index: I, f: F) -> &Self {
+    #[inline] pub fn set_tctrl<I: Into<::bobbin_bits::R4>, F: FnOnce(Tctrl) -> Tctrl>(&self, index: I, f: F) -> &Self {
         self.tctrl_reg().set(index.into(), f);
         self
     }
 
     #[doc="Modify the TCTRL register."]
-    #[inline] pub fn with_tctrl<I: Into<bits::R4> + Copy, F: FnOnce(Tctrl) -> Tctrl>(&self, index: I, f: F) -> &Self {
+    #[inline] pub fn with_tctrl<I: Into<::bobbin_bits::R4> + Copy, F: FnOnce(Tctrl) -> Tctrl>(&self, index: I, f: F) -> &Self {
         self.tctrl_reg().with(index.into(), f);
         self
     }
@@ -341,7 +339,7 @@ impl LpitPeriph {
 pub struct Verid(pub u32);
 impl Verid {
     #[doc="Feature Number"]
-    #[inline] pub fn feature(&self) -> bits::U16 {
+    #[inline] pub fn feature(&self) -> ::bobbin_bits::U16 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffff) as u16) } // [15:0]
     }
 
@@ -351,8 +349,8 @@ impl Verid {
     }
 
     #[doc="Sets the FEATURE field."]
-    #[inline] pub fn set_feature<V: Into<bits::U16>>(mut self, value: V) -> Self {
-        let value: bits::U16 = value.into();
+    #[inline] pub fn set_feature<V: Into<::bobbin_bits::U16>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U16 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0xffff << 0);
         self.0 |= value << 0;
@@ -360,7 +358,7 @@ impl Verid {
     }
 
     #[doc="Minor Version Number"]
-    #[inline] pub fn minor(&self) -> bits::U8 {
+    #[inline] pub fn minor(&self) -> ::bobbin_bits::U8 {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0xff) as u8) } // [23:16]
     }
 
@@ -370,8 +368,8 @@ impl Verid {
     }
 
     #[doc="Sets the MINOR field."]
-    #[inline] pub fn set_minor<V: Into<bits::U8>>(mut self, value: V) -> Self {
-        let value: bits::U8 = value.into();
+    #[inline] pub fn set_minor<V: Into<::bobbin_bits::U8>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U8 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0xff << 16);
         self.0 |= value << 16;
@@ -379,7 +377,7 @@ impl Verid {
     }
 
     #[doc="Major Version Number"]
-    #[inline] pub fn major(&self) -> bits::U8 {
+    #[inline] pub fn major(&self) -> ::bobbin_bits::U8 {
         unsafe { ::core::mem::transmute(((self.0 >> 24) & 0xff) as u8) } // [31:24]
     }
 
@@ -389,8 +387,8 @@ impl Verid {
     }
 
     #[doc="Sets the MAJOR field."]
-    #[inline] pub fn set_major<V: Into<bits::U8>>(mut self, value: V) -> Self {
-        let value: bits::U8 = value.into();
+    #[inline] pub fn set_major<V: Into<::bobbin_bits::U8>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U8 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0xff << 24);
         self.0 |= value << 24;
@@ -428,7 +426,7 @@ impl ::core::fmt::Debug for Verid {
 pub struct Param(pub u32);
 impl Param {
     #[doc="Number of Timer Channels"]
-    #[inline] pub fn channel(&self) -> bits::U8 {
+    #[inline] pub fn channel(&self) -> ::bobbin_bits::U8 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
@@ -438,8 +436,8 @@ impl Param {
     }
 
     #[doc="Sets the CHANNEL field."]
-    #[inline] pub fn set_channel<V: Into<bits::U8>>(mut self, value: V) -> Self {
-        let value: bits::U8 = value.into();
+    #[inline] pub fn set_channel<V: Into<::bobbin_bits::U8>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U8 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0xff << 0);
         self.0 |= value << 0;
@@ -447,7 +445,7 @@ impl Param {
     }
 
     #[doc="Number of External Trigger Inputs"]
-    #[inline] pub fn ext_trig(&self) -> bits::U8 {
+    #[inline] pub fn ext_trig(&self) -> ::bobbin_bits::U8 {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0xff) as u8) } // [15:8]
     }
 
@@ -457,8 +455,8 @@ impl Param {
     }
 
     #[doc="Sets the EXT_TRIG field."]
-    #[inline] pub fn set_ext_trig<V: Into<bits::U8>>(mut self, value: V) -> Self {
-        let value: bits::U8 = value.into();
+    #[inline] pub fn set_ext_trig<V: Into<::bobbin_bits::U8>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U8 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0xff << 8);
         self.0 |= value << 8;
@@ -495,7 +493,7 @@ impl ::core::fmt::Debug for Param {
 pub struct Mcr(pub u32);
 impl Mcr {
     #[doc="Module Clock Enable"]
-    #[inline] pub fn m_cen(&self) -> bits::U1 {
+    #[inline] pub fn m_cen(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
@@ -505,8 +503,8 @@ impl Mcr {
     }
 
     #[doc="Sets the M_CEN field."]
-    #[inline] pub fn set_m_cen<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_m_cen<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 0);
         self.0 |= value << 0;
@@ -514,7 +512,7 @@ impl Mcr {
     }
 
     #[doc="Software Reset Bit"]
-    #[inline] pub fn sw_rst(&self) -> bits::U1 {
+    #[inline] pub fn sw_rst(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
@@ -524,8 +522,8 @@ impl Mcr {
     }
 
     #[doc="Sets the SW_RST field."]
-    #[inline] pub fn set_sw_rst<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_sw_rst<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 1);
         self.0 |= value << 1;
@@ -533,7 +531,7 @@ impl Mcr {
     }
 
     #[doc="DOZE Mode Enable Bit"]
-    #[inline] pub fn doze_en(&self) -> bits::U1 {
+    #[inline] pub fn doze_en(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
@@ -543,8 +541,8 @@ impl Mcr {
     }
 
     #[doc="Sets the DOZE_EN field."]
-    #[inline] pub fn set_doze_en<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_doze_en<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 2);
         self.0 |= value << 2;
@@ -552,7 +550,7 @@ impl Mcr {
     }
 
     #[doc="Debug Enable Bit"]
-    #[inline] pub fn dbg_en(&self) -> bits::U1 {
+    #[inline] pub fn dbg_en(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
@@ -562,8 +560,8 @@ impl Mcr {
     }
 
     #[doc="Sets the DBG_EN field."]
-    #[inline] pub fn set_dbg_en<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_dbg_en<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 3);
         self.0 |= value << 3;
@@ -602,21 +600,21 @@ impl ::core::fmt::Debug for Mcr {
 pub struct Msr(pub u32);
 impl Msr {
     #[doc="Channel n Timer Interrupt Flag"]
-    #[inline] pub fn tif<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
+    #[inline] pub fn tif<I: Into<::bobbin_bits::R4>>(&self, index: I) -> ::bobbin_bits::U1 {
         let index: usize = index.into().value() as usize;
         let shift: usize = 0 + index;
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
     #[doc="Returns true if TIF != 0"]
-    #[inline] pub fn test_tif<I: Into<bits::R4>>(&self, index: I) -> bool{
+    #[inline] pub fn test_tif<I: Into<::bobbin_bits::R4>>(&self, index: I) -> bool{
         self.tif(index) != 0
     }
 
     #[doc="Sets the TIF field."]
-    #[inline] pub fn set_tif<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+    #[inline] pub fn set_tif<I: Into<::bobbin_bits::R4>, V: Into<::bobbin_bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
-        let value: bits::U1 = value.into();
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         let shift: usize = 0 + index;
         self.0 &= !(0x1 << shift);
@@ -656,21 +654,21 @@ impl ::core::fmt::Debug for Msr {
 pub struct Mier(pub u32);
 impl Mier {
     #[doc="Channel n Timer Interrupt Enable"]
-    #[inline] pub fn tie<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
+    #[inline] pub fn tie<I: Into<::bobbin_bits::R4>>(&self, index: I) -> ::bobbin_bits::U1 {
         let index: usize = index.into().value() as usize;
         let shift: usize = 0 + index;
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
     #[doc="Returns true if TIE != 0"]
-    #[inline] pub fn test_tie<I: Into<bits::R4>>(&self, index: I) -> bool{
+    #[inline] pub fn test_tie<I: Into<::bobbin_bits::R4>>(&self, index: I) -> bool{
         self.tie(index) != 0
     }
 
     #[doc="Sets the TIE field."]
-    #[inline] pub fn set_tie<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+    #[inline] pub fn set_tie<I: Into<::bobbin_bits::R4>, V: Into<::bobbin_bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
-        let value: bits::U1 = value.into();
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         let shift: usize = 0 + index;
         self.0 &= !(0x1 << shift);
@@ -710,21 +708,21 @@ impl ::core::fmt::Debug for Mier {
 pub struct Setten(pub u32);
 impl Setten {
     #[doc="Set Timer n Enable"]
-    #[inline] pub fn set_t_en<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
+    #[inline] pub fn set_t_en<I: Into<::bobbin_bits::R4>>(&self, index: I) -> ::bobbin_bits::U1 {
         let index: usize = index.into().value() as usize;
         let shift: usize = 0 + index;
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
     #[doc="Returns true if SET_T_EN != 0"]
-    #[inline] pub fn test_set_t_en<I: Into<bits::R4>>(&self, index: I) -> bool{
+    #[inline] pub fn test_set_t_en<I: Into<::bobbin_bits::R4>>(&self, index: I) -> bool{
         self.set_t_en(index) != 0
     }
 
     #[doc="Sets the SET_T_EN field."]
-    #[inline] pub fn set_set_t_en<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+    #[inline] pub fn set_set_t_en<I: Into<::bobbin_bits::R4>, V: Into<::bobbin_bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
-        let value: bits::U1 = value.into();
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         let shift: usize = 0 + index;
         self.0 &= !(0x1 << shift);
@@ -764,21 +762,21 @@ impl ::core::fmt::Debug for Setten {
 pub struct Clrten(pub u32);
 impl Clrten {
     #[doc="Clear Timer n Enable"]
-    #[inline] pub fn clr_t_en<I: Into<bits::R4>>(&self, index: I) -> bits::U1 {
+    #[inline] pub fn clr_t_en<I: Into<::bobbin_bits::R4>>(&self, index: I) -> ::bobbin_bits::U1 {
         let index: usize = index.into().value() as usize;
         let shift: usize = 0 + index;
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
     #[doc="Returns true if CLR_T_EN != 0"]
-    #[inline] pub fn test_clr_t_en<I: Into<bits::R4>>(&self, index: I) -> bool{
+    #[inline] pub fn test_clr_t_en<I: Into<::bobbin_bits::R4>>(&self, index: I) -> bool{
         self.clr_t_en(index) != 0
     }
 
     #[doc="Sets the CLR_T_EN field."]
-    #[inline] pub fn set_clr_t_en<I: Into<bits::R4>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+    #[inline] pub fn set_clr_t_en<I: Into<::bobbin_bits::R4>, V: Into<::bobbin_bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
-        let value: bits::U1 = value.into();
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         let shift: usize = 0 + index;
         self.0 &= !(0x1 << shift);
@@ -818,7 +816,7 @@ impl ::core::fmt::Debug for Clrten {
 pub struct Tval(pub u32);
 impl Tval {
     #[doc="Timer Value"]
-    #[inline] pub fn tmr_val(&self) -> bits::U32 {
+    #[inline] pub fn tmr_val(&self) -> ::bobbin_bits::U32 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffffffff) as u32) } // [31:0]
     }
 
@@ -828,8 +826,8 @@ impl Tval {
     }
 
     #[doc="Sets the TMR_VAL field."]
-    #[inline] pub fn set_tmr_val<V: Into<bits::U32>>(mut self, value: V) -> Self {
-        let value: bits::U32 = value.into();
+    #[inline] pub fn set_tmr_val<V: Into<::bobbin_bits::U32>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U32 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0xffffffff << 0);
         self.0 |= value << 0;
@@ -864,7 +862,7 @@ impl ::core::fmt::Debug for Tval {
 pub struct Cval(pub u32);
 impl Cval {
     #[doc="Current Timer Value"]
-    #[inline] pub fn tmr_cur_val(&self) -> bits::U32 {
+    #[inline] pub fn tmr_cur_val(&self) -> ::bobbin_bits::U32 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffffffff) as u32) } // [31:0]
     }
 
@@ -874,8 +872,8 @@ impl Cval {
     }
 
     #[doc="Sets the TMR_CUR_VAL field."]
-    #[inline] pub fn set_tmr_cur_val<V: Into<bits::U32>>(mut self, value: V) -> Self {
-        let value: bits::U32 = value.into();
+    #[inline] pub fn set_tmr_cur_val<V: Into<::bobbin_bits::U32>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U32 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0xffffffff << 0);
         self.0 |= value << 0;
@@ -910,7 +908,7 @@ impl ::core::fmt::Debug for Cval {
 pub struct Tctrl(pub u32);
 impl Tctrl {
     #[doc="Timer Enable"]
-    #[inline] pub fn t_en(&self) -> bits::U1 {
+    #[inline] pub fn t_en(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
@@ -920,8 +918,8 @@ impl Tctrl {
     }
 
     #[doc="Sets the T_EN field."]
-    #[inline] pub fn set_t_en<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_t_en<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 0);
         self.0 |= value << 0;
@@ -929,7 +927,7 @@ impl Tctrl {
     }
 
     #[doc="Chain Channel"]
-    #[inline] pub fn chain(&self) -> bits::U1 {
+    #[inline] pub fn chain(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
@@ -939,8 +937,8 @@ impl Tctrl {
     }
 
     #[doc="Sets the CHAIN field."]
-    #[inline] pub fn set_chain<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_chain<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 1);
         self.0 |= value << 1;
@@ -948,7 +946,7 @@ impl Tctrl {
     }
 
     #[doc="Timer Operation Mode"]
-    #[inline] pub fn mode(&self) -> bits::U2 {
+    #[inline] pub fn mode(&self) -> ::bobbin_bits::U2 {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x3) as u8) } // [3:2]
     }
 
@@ -958,8 +956,8 @@ impl Tctrl {
     }
 
     #[doc="Sets the MODE field."]
-    #[inline] pub fn set_mode<V: Into<bits::U2>>(mut self, value: V) -> Self {
-        let value: bits::U2 = value.into();
+    #[inline] pub fn set_mode<V: Into<::bobbin_bits::U2>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U2 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x3 << 2);
         self.0 |= value << 2;
@@ -967,7 +965,7 @@ impl Tctrl {
     }
 
     #[doc="Timer Start On Trigger"]
-    #[inline] pub fn tsot(&self) -> bits::U1 {
+    #[inline] pub fn tsot(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1) as u8) } // [16]
     }
 
@@ -977,8 +975,8 @@ impl Tctrl {
     }
 
     #[doc="Sets the TSOT field."]
-    #[inline] pub fn set_tsot<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_tsot<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 16);
         self.0 |= value << 16;
@@ -986,7 +984,7 @@ impl Tctrl {
     }
 
     #[doc="Timer Stop On Interrupt"]
-    #[inline] pub fn tsoi(&self) -> bits::U1 {
+    #[inline] pub fn tsoi(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 17) & 0x1) as u8) } // [17]
     }
 
@@ -996,8 +994,8 @@ impl Tctrl {
     }
 
     #[doc="Sets the TSOI field."]
-    #[inline] pub fn set_tsoi<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_tsoi<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 17);
         self.0 |= value << 17;
@@ -1005,7 +1003,7 @@ impl Tctrl {
     }
 
     #[doc="Timer Reload On Trigger"]
-    #[inline] pub fn trot(&self) -> bits::U1 {
+    #[inline] pub fn trot(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 18) & 0x1) as u8) } // [18]
     }
 
@@ -1015,8 +1013,8 @@ impl Tctrl {
     }
 
     #[doc="Sets the TROT field."]
-    #[inline] pub fn set_trot<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_trot<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 18);
         self.0 |= value << 18;
@@ -1024,7 +1022,7 @@ impl Tctrl {
     }
 
     #[doc="Trigger Source"]
-    #[inline] pub fn trg_src(&self) -> bits::U1 {
+    #[inline] pub fn trg_src(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 23) & 0x1) as u8) } // [23]
     }
 
@@ -1034,8 +1032,8 @@ impl Tctrl {
     }
 
     #[doc="Sets the TRG_SRC field."]
-    #[inline] pub fn set_trg_src<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_trg_src<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 23);
         self.0 |= value << 23;
@@ -1043,7 +1041,7 @@ impl Tctrl {
     }
 
     #[doc="Trigger Select"]
-    #[inline] pub fn trg_sel(&self) -> bits::U4 {
+    #[inline] pub fn trg_sel(&self) -> ::bobbin_bits::U4 {
         unsafe { ::core::mem::transmute(((self.0 >> 24) & 0xf) as u8) } // [27:24]
     }
 
@@ -1053,8 +1051,8 @@ impl Tctrl {
     }
 
     #[doc="Sets the TRG_SEL field."]
-    #[inline] pub fn set_trg_sel<V: Into<bits::U4>>(mut self, value: V) -> Self {
-        let value: bits::U4 = value.into();
+    #[inline] pub fn set_trg_sel<V: Into<::bobbin_bits::U4>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U4 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0xf << 24);
         self.0 |= value << 24;

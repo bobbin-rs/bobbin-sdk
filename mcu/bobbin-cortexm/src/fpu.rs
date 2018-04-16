@@ -1,144 +1,160 @@
-#[allow(unused_imports)] use bobbin_common::*;
-
 
 periph!( FPU, Fpu, FPU_PERIPH, FpuPeriph, FPU_OWNED, FPU_REF_COUNT, 0xe000e000, 0x00, 0x04);
 
-
-#[allow(unused_imports)] use bobbin_common::*;
 
 #[doc="FPU"]
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct FpuPeriph(pub usize);
 impl FpuPeriph {
+    #[doc="Get the CPACR Register."]
+    #[inline] pub fn cpacr_reg(&self) -> ::bobbin_mcu::register::Register<Cpacr> { 
+        ::bobbin_mcu::register::Register::new(self.0 as *mut Cpacr, 0xd88)
+    }
+
     #[doc="Get the *mut pointer for the CPACR register."]
     #[inline] pub fn cpacr_mut(&self) -> *mut Cpacr { 
-        (self.0 + 0xd88) as *mut Cpacr
+        self.cpacr_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the CPACR register."]
     #[inline] pub fn cpacr_ptr(&self) -> *const Cpacr { 
-           self.cpacr_mut()
+        self.cpacr_reg().ptr()
     }
 
     #[doc="Read the CPACR register."]
     #[inline] pub fn cpacr(&self) -> Cpacr { 
-        unsafe {
-            read_volatile(self.cpacr_ptr())
-        }
+        self.cpacr_reg().read()
     }
 
     #[doc="Write the CPACR register."]
+    #[inline] pub fn write_cpacr(&self, value: Cpacr) -> &Self { 
+        self.cpacr_reg().write(value);
+        self
+    }
+
+    #[doc="Set the CPACR register."]
     #[inline] pub fn set_cpacr<F: FnOnce(Cpacr) -> Cpacr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.cpacr_mut(), f(Cpacr(0)));
-        }
+        self.cpacr_reg().set(f);
         self
     }
 
     #[doc="Modify the CPACR register."]
     #[inline] pub fn with_cpacr<F: FnOnce(Cpacr) -> Cpacr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.cpacr_mut(), f(self.cpacr()));
-        }
+        self.cpacr_reg().with(f);
         self
+    }
+
+    #[doc="Get the FPCCR Register."]
+    #[inline] pub fn fpccr_reg(&self) -> ::bobbin_mcu::register::Register<Fpccr> { 
+        ::bobbin_mcu::register::Register::new(self.0 as *mut Fpccr, 0xf34)
     }
 
     #[doc="Get the *mut pointer for the FPCCR register."]
     #[inline] pub fn fpccr_mut(&self) -> *mut Fpccr { 
-        (self.0 + 0xf34) as *mut Fpccr
+        self.fpccr_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the FPCCR register."]
     #[inline] pub fn fpccr_ptr(&self) -> *const Fpccr { 
-           self.fpccr_mut()
+        self.fpccr_reg().ptr()
     }
 
     #[doc="Read the FPCCR register."]
     #[inline] pub fn fpccr(&self) -> Fpccr { 
-        unsafe {
-            read_volatile(self.fpccr_ptr())
-        }
+        self.fpccr_reg().read()
     }
 
     #[doc="Write the FPCCR register."]
+    #[inline] pub fn write_fpccr(&self, value: Fpccr) -> &Self { 
+        self.fpccr_reg().write(value);
+        self
+    }
+
+    #[doc="Set the FPCCR register."]
     #[inline] pub fn set_fpccr<F: FnOnce(Fpccr) -> Fpccr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.fpccr_mut(), f(Fpccr(0)));
-        }
+        self.fpccr_reg().set(f);
         self
     }
 
     #[doc="Modify the FPCCR register."]
     #[inline] pub fn with_fpccr<F: FnOnce(Fpccr) -> Fpccr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.fpccr_mut(), f(self.fpccr()));
-        }
+        self.fpccr_reg().with(f);
         self
+    }
+
+    #[doc="Get the FPCAR Register."]
+    #[inline] pub fn fpcar_reg(&self) -> ::bobbin_mcu::register::Register<Fpcar> { 
+        ::bobbin_mcu::register::Register::new(self.0 as *mut Fpcar, 0xf38)
     }
 
     #[doc="Get the *mut pointer for the FPCAR register."]
     #[inline] pub fn fpcar_mut(&self) -> *mut Fpcar { 
-        (self.0 + 0xf38) as *mut Fpcar
+        self.fpcar_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the FPCAR register."]
     #[inline] pub fn fpcar_ptr(&self) -> *const Fpcar { 
-           self.fpcar_mut()
+        self.fpcar_reg().ptr()
     }
 
     #[doc="Read the FPCAR register."]
     #[inline] pub fn fpcar(&self) -> Fpcar { 
-        unsafe {
-            read_volatile(self.fpcar_ptr())
-        }
+        self.fpcar_reg().read()
     }
 
     #[doc="Write the FPCAR register."]
+    #[inline] pub fn write_fpcar(&self, value: Fpcar) -> &Self { 
+        self.fpcar_reg().write(value);
+        self
+    }
+
+    #[doc="Set the FPCAR register."]
     #[inline] pub fn set_fpcar<F: FnOnce(Fpcar) -> Fpcar>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.fpcar_mut(), f(Fpcar(0)));
-        }
+        self.fpcar_reg().set(f);
         self
     }
 
     #[doc="Modify the FPCAR register."]
     #[inline] pub fn with_fpcar<F: FnOnce(Fpcar) -> Fpcar>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.fpcar_mut(), f(self.fpcar()));
-        }
+        self.fpcar_reg().with(f);
         self
+    }
+
+    #[doc="Get the FPDSCR Register."]
+    #[inline] pub fn fpdscr_reg(&self) -> ::bobbin_mcu::register::Register<Fpdscr> { 
+        ::bobbin_mcu::register::Register::new(self.0 as *mut Fpdscr, 0xf3c)
     }
 
     #[doc="Get the *mut pointer for the FPDSCR register."]
     #[inline] pub fn fpdscr_mut(&self) -> *mut Fpdscr { 
-        (self.0 + 0xf3c) as *mut Fpdscr
+        self.fpdscr_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the FPDSCR register."]
     #[inline] pub fn fpdscr_ptr(&self) -> *const Fpdscr { 
-           self.fpdscr_mut()
+        self.fpdscr_reg().ptr()
     }
 
     #[doc="Read the FPDSCR register."]
     #[inline] pub fn fpdscr(&self) -> Fpdscr { 
-        unsafe {
-            read_volatile(self.fpdscr_ptr())
-        }
+        self.fpdscr_reg().read()
     }
 
     #[doc="Write the FPDSCR register."]
+    #[inline] pub fn write_fpdscr(&self, value: Fpdscr) -> &Self { 
+        self.fpdscr_reg().write(value);
+        self
+    }
+
+    #[doc="Set the FPDSCR register."]
     #[inline] pub fn set_fpdscr<F: FnOnce(Fpdscr) -> Fpdscr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.fpdscr_mut(), f(Fpdscr(0)));
-        }
+        self.fpdscr_reg().set(f);
         self
     }
 
     #[doc="Modify the FPDSCR register."]
     #[inline] pub fn with_fpdscr<F: FnOnce(Fpdscr) -> Fpdscr>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.fpdscr_mut(), f(self.fpdscr()));
-        }
+        self.fpdscr_reg().with(f);
         self
     }
 
@@ -149,7 +165,7 @@ impl FpuPeriph {
 pub struct Cpacr(pub u32);
 impl Cpacr {
     #[doc="CP10 Access privileges"]
-    #[inline] pub fn cp10(&self) -> bits::U2 {
+    #[inline] pub fn cp10(&self) -> ::bobbin_bits::U2 {
         unsafe { ::core::mem::transmute(((self.0 >> 20) & 0x3) as u8) } // [21:20]
     }
 
@@ -159,8 +175,8 @@ impl Cpacr {
     }
 
     #[doc="Sets the CP10 field."]
-    #[inline] pub fn set_cp10<V: Into<bits::U2>>(mut self, value: V) -> Self {
-        let value: bits::U2 = value.into();
+    #[inline] pub fn set_cp10<V: Into<::bobbin_bits::U2>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U2 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x3 << 20);
         self.0 |= value << 20;
@@ -168,7 +184,7 @@ impl Cpacr {
     }
 
     #[doc="CP11 Access privileges"]
-    #[inline] pub fn cp11(&self) -> bits::U2 {
+    #[inline] pub fn cp11(&self) -> ::bobbin_bits::U2 {
         unsafe { ::core::mem::transmute(((self.0 >> 22) & 0x3) as u8) } // [23:22]
     }
 
@@ -178,8 +194,8 @@ impl Cpacr {
     }
 
     #[doc="Sets the CP11 field."]
-    #[inline] pub fn set_cp11<V: Into<bits::U2>>(mut self, value: V) -> Self {
-        let value: bits::U2 = value.into();
+    #[inline] pub fn set_cp11<V: Into<::bobbin_bits::U2>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U2 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x3 << 22);
         self.0 |= value << 22;
@@ -216,7 +232,7 @@ impl ::core::fmt::Debug for Cpacr {
 pub struct Fpccr(pub u32);
 impl Fpccr {
     #[doc="Gets the ASPEN field."]
-    #[inline] pub fn aspen(&self) -> bits::U1 {
+    #[inline] pub fn aspen(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 31) & 0x1) as u8) } // [31]
     }
 
@@ -226,8 +242,8 @@ impl Fpccr {
     }
 
     #[doc="Sets the ASPEN field."]
-    #[inline] pub fn set_aspen<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_aspen<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 31);
         self.0 |= value << 31;
@@ -235,7 +251,7 @@ impl Fpccr {
     }
 
     #[doc="Gets the LSPEN field."]
-    #[inline] pub fn lspen(&self) -> bits::U1 {
+    #[inline] pub fn lspen(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 30) & 0x1) as u8) } // [30]
     }
 
@@ -245,8 +261,8 @@ impl Fpccr {
     }
 
     #[doc="Sets the LSPEN field."]
-    #[inline] pub fn set_lspen<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_lspen<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 30);
         self.0 |= value << 30;
@@ -254,7 +270,7 @@ impl Fpccr {
     }
 
     #[doc="Gets the MONRDY field."]
-    #[inline] pub fn monrdy(&self) -> bits::U1 {
+    #[inline] pub fn monrdy(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
     }
 
@@ -264,8 +280,8 @@ impl Fpccr {
     }
 
     #[doc="Sets the MONRDY field."]
-    #[inline] pub fn set_monrdy<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_monrdy<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 8);
         self.0 |= value << 8;
@@ -273,7 +289,7 @@ impl Fpccr {
     }
 
     #[doc="Gets the BFRDY field."]
-    #[inline] pub fn bfrdy(&self) -> bits::U1 {
+    #[inline] pub fn bfrdy(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
@@ -283,8 +299,8 @@ impl Fpccr {
     }
 
     #[doc="Sets the BFRDY field."]
-    #[inline] pub fn set_bfrdy<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_bfrdy<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 6);
         self.0 |= value << 6;
@@ -292,7 +308,7 @@ impl Fpccr {
     }
 
     #[doc="Gets the MMRDY field."]
-    #[inline] pub fn mmrdy(&self) -> bits::U1 {
+    #[inline] pub fn mmrdy(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
@@ -302,8 +318,8 @@ impl Fpccr {
     }
 
     #[doc="Sets the MMRDY field."]
-    #[inline] pub fn set_mmrdy<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_mmrdy<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 5);
         self.0 |= value << 5;
@@ -311,7 +327,7 @@ impl Fpccr {
     }
 
     #[doc="Gets the HFRDY field."]
-    #[inline] pub fn hfrdy(&self) -> bits::U1 {
+    #[inline] pub fn hfrdy(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
@@ -321,8 +337,8 @@ impl Fpccr {
     }
 
     #[doc="Sets the HFRDY field."]
-    #[inline] pub fn set_hfrdy<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_hfrdy<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 4);
         self.0 |= value << 4;
@@ -330,7 +346,7 @@ impl Fpccr {
     }
 
     #[doc="Gets the THREAD field."]
-    #[inline] pub fn thread(&self) -> bits::U1 {
+    #[inline] pub fn thread(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
@@ -340,8 +356,8 @@ impl Fpccr {
     }
 
     #[doc="Sets the THREAD field."]
-    #[inline] pub fn set_thread<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_thread<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 3);
         self.0 |= value << 3;
@@ -349,7 +365,7 @@ impl Fpccr {
     }
 
     #[doc="Gets the USER field."]
-    #[inline] pub fn user(&self) -> bits::U1 {
+    #[inline] pub fn user(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
@@ -359,8 +375,8 @@ impl Fpccr {
     }
 
     #[doc="Sets the USER field."]
-    #[inline] pub fn set_user<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_user<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 1);
         self.0 |= value << 1;
@@ -368,7 +384,7 @@ impl Fpccr {
     }
 
     #[doc="Gets the LSPACT field."]
-    #[inline] pub fn lspact(&self) -> bits::U1 {
+    #[inline] pub fn lspact(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
@@ -378,8 +394,8 @@ impl Fpccr {
     }
 
     #[doc="Sets the LSPACT field."]
-    #[inline] pub fn set_lspact<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_lspact<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 0);
         self.0 |= value << 0;
@@ -423,7 +439,7 @@ impl ::core::fmt::Debug for Fpccr {
 pub struct Fpcar(pub u32);
 impl Fpcar {
     #[doc="Gets the ADDRESS field."]
-    #[inline] pub fn address(&self) -> bits::U29 {
+    #[inline] pub fn address(&self) -> ::bobbin_bits::U29 {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1fffffff) as u32) } // [31:3]
     }
 
@@ -433,8 +449,8 @@ impl Fpcar {
     }
 
     #[doc="Sets the ADDRESS field."]
-    #[inline] pub fn set_address<V: Into<bits::U29>>(mut self, value: V) -> Self {
-        let value: bits::U29 = value.into();
+    #[inline] pub fn set_address<V: Into<::bobbin_bits::U29>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U29 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1fffffff << 3);
         self.0 |= value << 3;
@@ -470,7 +486,7 @@ impl ::core::fmt::Debug for Fpcar {
 pub struct Fpdscr(pub u32);
 impl Fpdscr {
     #[doc="Gets the AHP field."]
-    #[inline] pub fn ahp(&self) -> bits::U1 {
+    #[inline] pub fn ahp(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 26) & 0x1) as u8) } // [26]
     }
 
@@ -480,8 +496,8 @@ impl Fpdscr {
     }
 
     #[doc="Sets the AHP field."]
-    #[inline] pub fn set_ahp<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_ahp<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 26);
         self.0 |= value << 26;
@@ -489,7 +505,7 @@ impl Fpdscr {
     }
 
     #[doc="Gets the DN field."]
-    #[inline] pub fn dn(&self) -> bits::U1 {
+    #[inline] pub fn dn(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 25) & 0x1) as u8) } // [25]
     }
 
@@ -499,8 +515,8 @@ impl Fpdscr {
     }
 
     #[doc="Sets the DN field."]
-    #[inline] pub fn set_dn<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_dn<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 25);
         self.0 |= value << 25;
@@ -508,7 +524,7 @@ impl Fpdscr {
     }
 
     #[doc="Gets the FZ field."]
-    #[inline] pub fn fz(&self) -> bits::U1 {
+    #[inline] pub fn fz(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 24) & 0x1) as u8) } // [24]
     }
 
@@ -518,8 +534,8 @@ impl Fpdscr {
     }
 
     #[doc="Sets the FZ field."]
-    #[inline] pub fn set_fz<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_fz<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 24);
         self.0 |= value << 24;
@@ -527,7 +543,7 @@ impl Fpdscr {
     }
 
     #[doc="Gets the RMODE field."]
-    #[inline] pub fn rmode(&self) -> bits::U2 {
+    #[inline] pub fn rmode(&self) -> ::bobbin_bits::U2 {
         unsafe { ::core::mem::transmute(((self.0 >> 22) & 0x3) as u8) } // [23:22]
     }
 
@@ -537,8 +553,8 @@ impl Fpdscr {
     }
 
     #[doc="Sets the RMODE field."]
-    #[inline] pub fn set_rmode<V: Into<bits::U2>>(mut self, value: V) -> Self {
-        let value: bits::U2 = value.into();
+    #[inline] pub fn set_rmode<V: Into<::bobbin_bits::U2>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U2 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x3 << 22);
         self.0 |= value << 22;

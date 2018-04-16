@@ -1,249 +1,274 @@
-#[allow(unused_imports)] use bobbin_common::*;
-
 
 periph!( NVIC, Nvic, NVIC_PERIPH, NvicPeriph, NVIC_OWNED, NVIC_REF_COUNT, 0xe000e000, 0x00, 0x00);
 
-
-#[allow(unused_imports)] use bobbin_common::*;
 
 #[doc="Nested Vectored Interrupt Controller"]
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct NvicPeriph(pub usize);
 impl NvicPeriph {
+    #[doc="Get the ISER Register."]
+    #[inline] pub fn iser_reg(&self) -> ::bobbin_mcu::register::RegisterArray<Iser, ::bobbin_bits::R8> { 
+        ::bobbin_mcu::register::RegisterArray::new(self.0 as *mut Iser, 0x100, 0x4)
+    }
+
     #[doc="Get the *mut pointer for the ISER register."]
-    #[inline] pub fn iser_mut<I: Into<bits::R8>>(&self, index: I) -> *mut Iser { 
-        let index: usize = index.into().value() as usize;
-        (self.0 + 0x100 + (index << 2)) as *mut Iser
+    #[inline] pub fn iser_mut<I: Into<::bobbin_bits::R8>>(&self, index: I) -> *mut Iser { 
+        self.iser_reg().ptr(index.into())
     }
 
     #[doc="Get the *const pointer for the ISER register."]
-    #[inline] pub fn iser_ptr<I: Into<bits::R8>>(&self, index: I) -> *const Iser { 
-           self.iser_mut(index)
+    #[inline] pub fn iser_ptr<I: Into<::bobbin_bits::R8>>(&self, index: I) -> *const Iser { 
+        self.iser_reg().ptr(index.into())
     }
 
     #[doc="Read the ISER register."]
-    #[inline] pub fn iser<I: Into<bits::R8>>(&self, index: I) -> Iser { 
-        unsafe {
-            read_volatile(self.iser_ptr(index))
-        }
+    #[inline] pub fn iser<I: Into<::bobbin_bits::R8>>(&self, index: I) -> Iser { 
+        self.iser_reg().read(index.into())
     }
 
     #[doc="Write the ISER register."]
-    #[inline] pub fn set_iser<I: Into<bits::R8>, F: FnOnce(Iser) -> Iser>(&self, index: I, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.iser_mut(index), f(Iser(0)));
-        }
+    #[inline] pub fn write_iser<I: Into<::bobbin_bits::R8>>(&self, index: I, value: Iser) -> &Self {
+        self.iser_reg().write(index.into(), value);
+        self
+    }
+
+    #[doc="Set the ISER register."]
+    #[inline] pub fn set_iser<I: Into<::bobbin_bits::R8>, F: FnOnce(Iser) -> Iser>(&self, index: I, f: F) -> &Self {
+        self.iser_reg().set(index.into(), f);
         self
     }
 
     #[doc="Modify the ISER register."]
-    #[inline] pub fn with_iser<I: Into<bits::R8> + Copy, F: FnOnce(Iser) -> Iser>(&self, index: I, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.iser_mut(index), f(self.iser(index)));
-        }
+    #[inline] pub fn with_iser<I: Into<::bobbin_bits::R8> + Copy, F: FnOnce(Iser) -> Iser>(&self, index: I, f: F) -> &Self {
+        self.iser_reg().with(index.into(), f);
         self
     }
 
+    #[doc="Get the ICER Register."]
+    #[inline] pub fn icer_reg(&self) -> ::bobbin_mcu::register::RegisterArray<Icer, ::bobbin_bits::R8> { 
+        ::bobbin_mcu::register::RegisterArray::new(self.0 as *mut Icer, 0x180, 0x4)
+    }
+
     #[doc="Get the *mut pointer for the ICER register."]
-    #[inline] pub fn icer_mut<I: Into<bits::R8>>(&self, index: I) -> *mut Icer { 
-        let index: usize = index.into().value() as usize;
-        (self.0 + 0x180 + (index << 2)) as *mut Icer
+    #[inline] pub fn icer_mut<I: Into<::bobbin_bits::R8>>(&self, index: I) -> *mut Icer { 
+        self.icer_reg().ptr(index.into())
     }
 
     #[doc="Get the *const pointer for the ICER register."]
-    #[inline] pub fn icer_ptr<I: Into<bits::R8>>(&self, index: I) -> *const Icer { 
-           self.icer_mut(index)
+    #[inline] pub fn icer_ptr<I: Into<::bobbin_bits::R8>>(&self, index: I) -> *const Icer { 
+        self.icer_reg().ptr(index.into())
     }
 
     #[doc="Read the ICER register."]
-    #[inline] pub fn icer<I: Into<bits::R8>>(&self, index: I) -> Icer { 
-        unsafe {
-            read_volatile(self.icer_ptr(index))
-        }
+    #[inline] pub fn icer<I: Into<::bobbin_bits::R8>>(&self, index: I) -> Icer { 
+        self.icer_reg().read(index.into())
     }
 
     #[doc="Write the ICER register."]
-    #[inline] pub fn set_icer<I: Into<bits::R8>, F: FnOnce(Icer) -> Icer>(&self, index: I, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.icer_mut(index), f(Icer(0)));
-        }
+    #[inline] pub fn write_icer<I: Into<::bobbin_bits::R8>>(&self, index: I, value: Icer) -> &Self {
+        self.icer_reg().write(index.into(), value);
+        self
+    }
+
+    #[doc="Set the ICER register."]
+    #[inline] pub fn set_icer<I: Into<::bobbin_bits::R8>, F: FnOnce(Icer) -> Icer>(&self, index: I, f: F) -> &Self {
+        self.icer_reg().set(index.into(), f);
         self
     }
 
     #[doc="Modify the ICER register."]
-    #[inline] pub fn with_icer<I: Into<bits::R8> + Copy, F: FnOnce(Icer) -> Icer>(&self, index: I, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.icer_mut(index), f(self.icer(index)));
-        }
+    #[inline] pub fn with_icer<I: Into<::bobbin_bits::R8> + Copy, F: FnOnce(Icer) -> Icer>(&self, index: I, f: F) -> &Self {
+        self.icer_reg().with(index.into(), f);
         self
     }
 
+    #[doc="Get the ISPR Register."]
+    #[inline] pub fn ispr_reg(&self) -> ::bobbin_mcu::register::RegisterArray<Ispr, ::bobbin_bits::R8> { 
+        ::bobbin_mcu::register::RegisterArray::new(self.0 as *mut Ispr, 0x200, 0x4)
+    }
+
     #[doc="Get the *mut pointer for the ISPR register."]
-    #[inline] pub fn ispr_mut<I: Into<bits::R8>>(&self, index: I) -> *mut Ispr { 
-        let index: usize = index.into().value() as usize;
-        (self.0 + 0x200 + (index << 2)) as *mut Ispr
+    #[inline] pub fn ispr_mut<I: Into<::bobbin_bits::R8>>(&self, index: I) -> *mut Ispr { 
+        self.ispr_reg().ptr(index.into())
     }
 
     #[doc="Get the *const pointer for the ISPR register."]
-    #[inline] pub fn ispr_ptr<I: Into<bits::R8>>(&self, index: I) -> *const Ispr { 
-           self.ispr_mut(index)
+    #[inline] pub fn ispr_ptr<I: Into<::bobbin_bits::R8>>(&self, index: I) -> *const Ispr { 
+        self.ispr_reg().ptr(index.into())
     }
 
     #[doc="Read the ISPR register."]
-    #[inline] pub fn ispr<I: Into<bits::R8>>(&self, index: I) -> Ispr { 
-        unsafe {
-            read_volatile(self.ispr_ptr(index))
-        }
+    #[inline] pub fn ispr<I: Into<::bobbin_bits::R8>>(&self, index: I) -> Ispr { 
+        self.ispr_reg().read(index.into())
     }
 
     #[doc="Write the ISPR register."]
-    #[inline] pub fn set_ispr<I: Into<bits::R8>, F: FnOnce(Ispr) -> Ispr>(&self, index: I, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.ispr_mut(index), f(Ispr(0)));
-        }
+    #[inline] pub fn write_ispr<I: Into<::bobbin_bits::R8>>(&self, index: I, value: Ispr) -> &Self {
+        self.ispr_reg().write(index.into(), value);
+        self
+    }
+
+    #[doc="Set the ISPR register."]
+    #[inline] pub fn set_ispr<I: Into<::bobbin_bits::R8>, F: FnOnce(Ispr) -> Ispr>(&self, index: I, f: F) -> &Self {
+        self.ispr_reg().set(index.into(), f);
         self
     }
 
     #[doc="Modify the ISPR register."]
-    #[inline] pub fn with_ispr<I: Into<bits::R8> + Copy, F: FnOnce(Ispr) -> Ispr>(&self, index: I, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.ispr_mut(index), f(self.ispr(index)));
-        }
+    #[inline] pub fn with_ispr<I: Into<::bobbin_bits::R8> + Copy, F: FnOnce(Ispr) -> Ispr>(&self, index: I, f: F) -> &Self {
+        self.ispr_reg().with(index.into(), f);
         self
     }
 
+    #[doc="Get the ICPR Register."]
+    #[inline] pub fn icpr_reg(&self) -> ::bobbin_mcu::register::RegisterArray<Icpr, ::bobbin_bits::R8> { 
+        ::bobbin_mcu::register::RegisterArray::new(self.0 as *mut Icpr, 0x280, 0x4)
+    }
+
     #[doc="Get the *mut pointer for the ICPR register."]
-    #[inline] pub fn icpr_mut<I: Into<bits::R8>>(&self, index: I) -> *mut Icpr { 
-        let index: usize = index.into().value() as usize;
-        (self.0 + 0x280 + (index << 2)) as *mut Icpr
+    #[inline] pub fn icpr_mut<I: Into<::bobbin_bits::R8>>(&self, index: I) -> *mut Icpr { 
+        self.icpr_reg().ptr(index.into())
     }
 
     #[doc="Get the *const pointer for the ICPR register."]
-    #[inline] pub fn icpr_ptr<I: Into<bits::R8>>(&self, index: I) -> *const Icpr { 
-           self.icpr_mut(index)
+    #[inline] pub fn icpr_ptr<I: Into<::bobbin_bits::R8>>(&self, index: I) -> *const Icpr { 
+        self.icpr_reg().ptr(index.into())
     }
 
     #[doc="Read the ICPR register."]
-    #[inline] pub fn icpr<I: Into<bits::R8>>(&self, index: I) -> Icpr { 
-        unsafe {
-            read_volatile(self.icpr_ptr(index))
-        }
+    #[inline] pub fn icpr<I: Into<::bobbin_bits::R8>>(&self, index: I) -> Icpr { 
+        self.icpr_reg().read(index.into())
     }
 
     #[doc="Write the ICPR register."]
-    #[inline] pub fn set_icpr<I: Into<bits::R8>, F: FnOnce(Icpr) -> Icpr>(&self, index: I, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.icpr_mut(index), f(Icpr(0)));
-        }
+    #[inline] pub fn write_icpr<I: Into<::bobbin_bits::R8>>(&self, index: I, value: Icpr) -> &Self {
+        self.icpr_reg().write(index.into(), value);
+        self
+    }
+
+    #[doc="Set the ICPR register."]
+    #[inline] pub fn set_icpr<I: Into<::bobbin_bits::R8>, F: FnOnce(Icpr) -> Icpr>(&self, index: I, f: F) -> &Self {
+        self.icpr_reg().set(index.into(), f);
         self
     }
 
     #[doc="Modify the ICPR register."]
-    #[inline] pub fn with_icpr<I: Into<bits::R8> + Copy, F: FnOnce(Icpr) -> Icpr>(&self, index: I, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.icpr_mut(index), f(self.icpr(index)));
-        }
+    #[inline] pub fn with_icpr<I: Into<::bobbin_bits::R8> + Copy, F: FnOnce(Icpr) -> Icpr>(&self, index: I, f: F) -> &Self {
+        self.icpr_reg().with(index.into(), f);
         self
     }
 
+    #[doc="Get the IABR Register."]
+    #[inline] pub fn iabr_reg(&self) -> ::bobbin_mcu::register::RegisterArray<Iabr, ::bobbin_bits::R8> { 
+        ::bobbin_mcu::register::RegisterArray::new(self.0 as *mut Iabr, 0x280, 0x4)
+    }
+
     #[doc="Get the *mut pointer for the IABR register."]
-    #[inline] pub fn iabr_mut<I: Into<bits::R8>>(&self, index: I) -> *mut Iabr { 
-        let index: usize = index.into().value() as usize;
-        (self.0 + 0x280 + (index << 2)) as *mut Iabr
+    #[inline] pub fn iabr_mut<I: Into<::bobbin_bits::R8>>(&self, index: I) -> *mut Iabr { 
+        self.iabr_reg().ptr(index.into())
     }
 
     #[doc="Get the *const pointer for the IABR register."]
-    #[inline] pub fn iabr_ptr<I: Into<bits::R8>>(&self, index: I) -> *const Iabr { 
-           self.iabr_mut(index)
+    #[inline] pub fn iabr_ptr<I: Into<::bobbin_bits::R8>>(&self, index: I) -> *const Iabr { 
+        self.iabr_reg().ptr(index.into())
     }
 
     #[doc="Read the IABR register."]
-    #[inline] pub fn iabr<I: Into<bits::R8>>(&self, index: I) -> Iabr { 
-        unsafe {
-            read_volatile(self.iabr_ptr(index))
-        }
+    #[inline] pub fn iabr<I: Into<::bobbin_bits::R8>>(&self, index: I) -> Iabr { 
+        self.iabr_reg().read(index.into())
     }
 
     #[doc="Write the IABR register."]
-    #[inline] pub fn set_iabr<I: Into<bits::R8>, F: FnOnce(Iabr) -> Iabr>(&self, index: I, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.iabr_mut(index), f(Iabr(0)));
-        }
+    #[inline] pub fn write_iabr<I: Into<::bobbin_bits::R8>>(&self, index: I, value: Iabr) -> &Self {
+        self.iabr_reg().write(index.into(), value);
+        self
+    }
+
+    #[doc="Set the IABR register."]
+    #[inline] pub fn set_iabr<I: Into<::bobbin_bits::R8>, F: FnOnce(Iabr) -> Iabr>(&self, index: I, f: F) -> &Self {
+        self.iabr_reg().set(index.into(), f);
         self
     }
 
     #[doc="Modify the IABR register."]
-    #[inline] pub fn with_iabr<I: Into<bits::R8> + Copy, F: FnOnce(Iabr) -> Iabr>(&self, index: I, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.iabr_mut(index), f(self.iabr(index)));
-        }
+    #[inline] pub fn with_iabr<I: Into<::bobbin_bits::R8> + Copy, F: FnOnce(Iabr) -> Iabr>(&self, index: I, f: F) -> &Self {
+        self.iabr_reg().with(index.into(), f);
         self
     }
 
+    #[doc="Get the IPR Register."]
+    #[inline] pub fn ipr_reg(&self) -> ::bobbin_mcu::register::RegisterArray<Ipr, ::bobbin_bits::R8> { 
+        ::bobbin_mcu::register::RegisterArray::new(self.0 as *mut Ipr, 0x400, 0x4)
+    }
+
     #[doc="Get the *mut pointer for the IPR register."]
-    #[inline] pub fn ipr_mut<I: Into<bits::R8>>(&self, index: I) -> *mut Ipr { 
-        let index: usize = index.into().value() as usize;
-        (self.0 + 0x400 + (index << 2)) as *mut Ipr
+    #[inline] pub fn ipr_mut<I: Into<::bobbin_bits::R8>>(&self, index: I) -> *mut Ipr { 
+        self.ipr_reg().ptr(index.into())
     }
 
     #[doc="Get the *const pointer for the IPR register."]
-    #[inline] pub fn ipr_ptr<I: Into<bits::R8>>(&self, index: I) -> *const Ipr { 
-           self.ipr_mut(index)
+    #[inline] pub fn ipr_ptr<I: Into<::bobbin_bits::R8>>(&self, index: I) -> *const Ipr { 
+        self.ipr_reg().ptr(index.into())
     }
 
     #[doc="Read the IPR register."]
-    #[inline] pub fn ipr<I: Into<bits::R8>>(&self, index: I) -> Ipr { 
-        unsafe {
-            read_volatile(self.ipr_ptr(index))
-        }
+    #[inline] pub fn ipr<I: Into<::bobbin_bits::R8>>(&self, index: I) -> Ipr { 
+        self.ipr_reg().read(index.into())
     }
 
     #[doc="Write the IPR register."]
-    #[inline] pub fn set_ipr<I: Into<bits::R8>, F: FnOnce(Ipr) -> Ipr>(&self, index: I, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.ipr_mut(index), f(Ipr(0)));
-        }
+    #[inline] pub fn write_ipr<I: Into<::bobbin_bits::R8>>(&self, index: I, value: Ipr) -> &Self {
+        self.ipr_reg().write(index.into(), value);
+        self
+    }
+
+    #[doc="Set the IPR register."]
+    #[inline] pub fn set_ipr<I: Into<::bobbin_bits::R8>, F: FnOnce(Ipr) -> Ipr>(&self, index: I, f: F) -> &Self {
+        self.ipr_reg().set(index.into(), f);
         self
     }
 
     #[doc="Modify the IPR register."]
-    #[inline] pub fn with_ipr<I: Into<bits::R8> + Copy, F: FnOnce(Ipr) -> Ipr>(&self, index: I, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.ipr_mut(index), f(self.ipr(index)));
-        }
+    #[inline] pub fn with_ipr<I: Into<::bobbin_bits::R8> + Copy, F: FnOnce(Ipr) -> Ipr>(&self, index: I, f: F) -> &Self {
+        self.ipr_reg().with(index.into(), f);
         self
+    }
+
+    #[doc="Get the STIR Register."]
+    #[inline] pub fn stir_reg(&self) -> ::bobbin_mcu::register::Register<Stir> { 
+        ::bobbin_mcu::register::Register::new(self.0 as *mut Stir, 0xf00)
     }
 
     #[doc="Get the *mut pointer for the STIR register."]
     #[inline] pub fn stir_mut(&self) -> *mut Stir { 
-        (self.0 + 0xf00) as *mut Stir
+        self.stir_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the STIR register."]
     #[inline] pub fn stir_ptr(&self) -> *const Stir { 
-           self.stir_mut()
+        self.stir_reg().ptr()
     }
 
     #[doc="Read the STIR register."]
     #[inline] pub fn stir(&self) -> Stir { 
-        unsafe {
-            read_volatile(self.stir_ptr())
-        }
+        self.stir_reg().read()
     }
 
     #[doc="Write the STIR register."]
+    #[inline] pub fn write_stir(&self, value: Stir) -> &Self { 
+        self.stir_reg().write(value);
+        self
+    }
+
+    #[doc="Set the STIR register."]
     #[inline] pub fn set_stir<F: FnOnce(Stir) -> Stir>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.stir_mut(), f(Stir(0)));
-        }
+        self.stir_reg().set(f);
         self
     }
 
     #[doc="Modify the STIR register."]
     #[inline] pub fn with_stir<F: FnOnce(Stir) -> Stir>(&self, f: F) -> &Self {
-        unsafe {
-            write_volatile(self.stir_mut(), f(self.stir()));
-        }
+        self.stir_reg().with(f);
         self
     }
 
@@ -254,21 +279,21 @@ impl NvicPeriph {
 pub struct Iser(pub u32);
 impl Iser {
     #[doc="Interrupt set-enable bits"]
-    #[inline] pub fn setena<I: Into<bits::R32>>(&self, index: I) -> bits::U1 {
+    #[inline] pub fn setena<I: Into<::bobbin_bits::R32>>(&self, index: I) -> ::bobbin_bits::U1 {
         let index: usize = index.into().value() as usize;
         let shift: usize = 0 + index;
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
     #[doc="Returns true if SETENA != 0"]
-    #[inline] pub fn test_setena<I: Into<bits::R32>>(&self, index: I) -> bool{
+    #[inline] pub fn test_setena<I: Into<::bobbin_bits::R32>>(&self, index: I) -> bool{
         self.setena(index) != 0
     }
 
     #[doc="Sets the SETENA field."]
-    #[inline] pub fn set_setena<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+    #[inline] pub fn set_setena<I: Into<::bobbin_bits::R32>, V: Into<::bobbin_bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
-        let value: bits::U1 = value.into();
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         let shift: usize = 0 + index;
         self.0 &= !(0x1 << shift);
@@ -336,21 +361,21 @@ impl ::core::fmt::Debug for Iser {
 pub struct Icer(pub u32);
 impl Icer {
     #[doc="Interrupt clear-enable bits"]
-    #[inline] pub fn clrena<I: Into<bits::R32>>(&self, index: I) -> bits::U1 {
+    #[inline] pub fn clrena<I: Into<::bobbin_bits::R32>>(&self, index: I) -> ::bobbin_bits::U1 {
         let index: usize = index.into().value() as usize;
         let shift: usize = 0 + index;
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
     #[doc="Returns true if CLRENA != 0"]
-    #[inline] pub fn test_clrena<I: Into<bits::R32>>(&self, index: I) -> bool{
+    #[inline] pub fn test_clrena<I: Into<::bobbin_bits::R32>>(&self, index: I) -> bool{
         self.clrena(index) != 0
     }
 
     #[doc="Sets the CLRENA field."]
-    #[inline] pub fn set_clrena<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+    #[inline] pub fn set_clrena<I: Into<::bobbin_bits::R32>, V: Into<::bobbin_bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
-        let value: bits::U1 = value.into();
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         let shift: usize = 0 + index;
         self.0 &= !(0x1 << shift);
@@ -418,21 +443,21 @@ impl ::core::fmt::Debug for Icer {
 pub struct Ispr(pub u32);
 impl Ispr {
     #[doc="Interrupt set-pending bits"]
-    #[inline] pub fn setpend<I: Into<bits::R32>>(&self, index: I) -> bits::U1 {
+    #[inline] pub fn setpend<I: Into<::bobbin_bits::R32>>(&self, index: I) -> ::bobbin_bits::U1 {
         let index: usize = index.into().value() as usize;
         let shift: usize = 0 + index;
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
     #[doc="Returns true if SETPEND != 0"]
-    #[inline] pub fn test_setpend<I: Into<bits::R32>>(&self, index: I) -> bool{
+    #[inline] pub fn test_setpend<I: Into<::bobbin_bits::R32>>(&self, index: I) -> bool{
         self.setpend(index) != 0
     }
 
     #[doc="Sets the SETPEND field."]
-    #[inline] pub fn set_setpend<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+    #[inline] pub fn set_setpend<I: Into<::bobbin_bits::R32>, V: Into<::bobbin_bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
-        let value: bits::U1 = value.into();
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         let shift: usize = 0 + index;
         self.0 &= !(0x1 << shift);
@@ -500,21 +525,21 @@ impl ::core::fmt::Debug for Ispr {
 pub struct Icpr(pub u32);
 impl Icpr {
     #[doc="Interrupt clear-pending bits"]
-    #[inline] pub fn clrpend<I: Into<bits::R32>>(&self, index: I) -> bits::U1 {
+    #[inline] pub fn clrpend<I: Into<::bobbin_bits::R32>>(&self, index: I) -> ::bobbin_bits::U1 {
         let index: usize = index.into().value() as usize;
         let shift: usize = 0 + index;
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
     #[doc="Returns true if CLRPEND != 0"]
-    #[inline] pub fn test_clrpend<I: Into<bits::R32>>(&self, index: I) -> bool{
+    #[inline] pub fn test_clrpend<I: Into<::bobbin_bits::R32>>(&self, index: I) -> bool{
         self.clrpend(index) != 0
     }
 
     #[doc="Sets the CLRPEND field."]
-    #[inline] pub fn set_clrpend<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+    #[inline] pub fn set_clrpend<I: Into<::bobbin_bits::R32>, V: Into<::bobbin_bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
-        let value: bits::U1 = value.into();
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         let shift: usize = 0 + index;
         self.0 &= !(0x1 << shift);
@@ -582,21 +607,21 @@ impl ::core::fmt::Debug for Icpr {
 pub struct Iabr(pub u32);
 impl Iabr {
     #[doc="Interrupt clear-pending bits"]
-    #[inline] pub fn active<I: Into<bits::R32>>(&self, index: I) -> bits::U1 {
+    #[inline] pub fn active<I: Into<::bobbin_bits::R32>>(&self, index: I) -> ::bobbin_bits::U1 {
         let index: usize = index.into().value() as usize;
         let shift: usize = 0 + index;
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
     #[doc="Returns true if ACTIVE != 0"]
-    #[inline] pub fn test_active<I: Into<bits::R32>>(&self, index: I) -> bool{
+    #[inline] pub fn test_active<I: Into<::bobbin_bits::R32>>(&self, index: I) -> bool{
         self.active(index) != 0
     }
 
     #[doc="Sets the ACTIVE field."]
-    #[inline] pub fn set_active<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+    #[inline] pub fn set_active<I: Into<::bobbin_bits::R32>, V: Into<::bobbin_bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
-        let value: bits::U1 = value.into();
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         let shift: usize = 0 + index;
         self.0 &= !(0x1 << shift);
@@ -664,21 +689,21 @@ impl ::core::fmt::Debug for Iabr {
 pub struct Ipr(pub u32);
 impl Ipr {
     #[doc="Interrupt Priority"]
-    #[inline] pub fn pri<I: Into<bits::R4>>(&self, index: I) -> bits::U8 {
+    #[inline] pub fn pri<I: Into<::bobbin_bits::R4>>(&self, index: I) -> ::bobbin_bits::U8 {
         let index: usize = index.into().value() as usize;
         let shift: usize = 0 + (index << 3);
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0xff) as u8) } // [7:0]
     }
 
     #[doc="Returns true if PRI != 0"]
-    #[inline] pub fn test_pri<I: Into<bits::R4>>(&self, index: I) -> bool{
+    #[inline] pub fn test_pri<I: Into<::bobbin_bits::R4>>(&self, index: I) -> bool{
         self.pri(index) != 0
     }
 
     #[doc="Sets the PRI field."]
-    #[inline] pub fn set_pri<I: Into<bits::R4>, V: Into<bits::U8>>(mut self, index: I, value: V) -> Self {
+    #[inline] pub fn set_pri<I: Into<::bobbin_bits::R4>, V: Into<::bobbin_bits::U8>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
-        let value: bits::U8 = value.into();
+        let value: ::bobbin_bits::U8 = value.into();
         let value: u32 = value.into();
         let shift: usize = 0 + (index << 3);
         self.0 &= !(0xff << shift);
@@ -718,7 +743,7 @@ impl ::core::fmt::Debug for Ipr {
 pub struct Stir(pub u32);
 impl Stir {
     #[doc="Interrupt ID of the interrupt to trigger, in the range 0-239."]
-    #[inline] pub fn intid(&self) -> bits::U8 {
+    #[inline] pub fn intid(&self) -> ::bobbin_bits::U8 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
@@ -728,8 +753,8 @@ impl Stir {
     }
 
     #[doc="Sets the INTID field."]
-    #[inline] pub fn set_intid<V: Into<bits::U8>>(mut self, value: V) -> Self {
-        let value: bits::U8 = value.into();
+    #[inline] pub fn set_intid<V: Into<::bobbin_bits::U8>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U8 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0xff << 0);
         self.0 |= value << 0;
