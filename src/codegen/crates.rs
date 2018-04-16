@@ -171,7 +171,7 @@ pub fn gen_crate<W: Write>(cfg: Config, _out: &mut W, d: &Device) -> Result<()> 
             writeln!(out, "pub mod clock;")?;
             let mut clk_out = File::create(clk_path.clone().join("mod.rs"))?;
             gen_clocks_mod(&cfg,  &mut clk_out, d, &clk_path)?;
-            writeln!(out, "pub use clock::*;")?;
+            // writeln!(out, "pub use clock::*;")?;
             writeln!(out, "")?;
         }
 
