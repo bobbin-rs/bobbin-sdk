@@ -6,7 +6,7 @@ use std::collections::{HashSet, HashMap};
 
 use {Access, Device, PeripheralGroup, Peripheral, Descriptor, Register, Cluster, Field, Interrupt, Exception, Clock};
 
-use super::{size_type, field_getter, field_setter, field_with, field_test, field_ptr, field_mut, field_name, to_camel, gen_doc};
+use super::{size_type, field_getter, field_setter, field_with, field_test, field_reg, field_ptr, field_mut, field_name, to_camel, gen_doc};
 
 pub type SignalMap = HashMap<String, (String, String, String)>;
 
@@ -1127,6 +1127,7 @@ pub fn gen_register_methods<W: Write>(out: &mut W, p_type: &str, regs: &[Registe
 
     for r in regs.iter() {  
         let r_type = format!("{}", to_camel(&r.name));
+        let r_reg = field_reg(&r.name);
         let r_ptr = field_ptr(&r.name);
         let r_mut = field_mut(&r.name);
         let r_getter = field_getter(&r.name);
@@ -1158,6 +1159,13 @@ pub fn gen_register_methods<W: Write>(out: &mut W, p_type: &str, regs: &[Registe
                 256 => format!("bits::U8"),
                 _ => panic!("Unsupported dim value for {}: {}", r.name, dim),
             };
+
+            try!(gen_doc(out, 4, &format!("Get the {} Register.", r.name.to_uppercase())));
+            try!(writeln!(out, "    #[inline] pub fn {}(&self) -> ::register::RegisterArray<{}, {}> {{ ", r_reg, r_type, i_type));
+            try!(writeln!(out, "        ::register::RegisterArray::new(self.0 as *mut {}, 0x{:x}, 0x{:x})", r_type, r_offset, r_incr));
+            try!(writeln!(out, "    }}"));
+            try!(writeln!(out, ""));
+
 
             try!(gen_doc(out, 4, &format!("Get the *mut pointer for the {} register.", r.name.to_uppercase())));
             try!(writeln!(out, "    #[inline] pub fn {}<I: Into<{}>>(&self, index: I) -> *mut {} {{ ", r_mut, i_type, r_type));
@@ -1202,6 +1210,12 @@ pub fn gen_register_methods<W: Write>(out: &mut W, p_type: &str, regs: &[Registe
                 try!(writeln!(out, "")); 
             }            
         } else {
+            try!(gen_doc(out, 4, &format!("Get the {} Register.", r.name.to_uppercase())));
+            try!(writeln!(out, "    #[inline] pub fn {}(&self) -> ::register::Register<{}> {{ ", r_reg, r_type));
+            try!(writeln!(out, "        ::register::Register::new(self.0 as *mut {}, 0x{:x})",  r_type, r_offset));
+            try!(writeln!(out, "    }}"));
+            try!(writeln!(out, ""));
+            
             try!(gen_doc(out, 4, &format!("Get the *mut pointer for the {} register.", r.name.to_uppercase())));
             try!(writeln!(out, "    #[inline] pub fn {}(&self) -> *mut {} {{ ", r_mut, r_type));
             try!(writeln!(out, "        (self.0 + 0x{:x}) as *mut {}", r_offset, r_type));
