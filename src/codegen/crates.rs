@@ -162,19 +162,6 @@ pub fn gen_crate<W: Write>(cfg: Config, _out: &mut W, d: &Device) -> Result<()> 
         // // writeln!(out, "pub use mcu::*;")?;
         writeln!(out, "")?;
 
-        if d.clocks.is_some() {
-            let clk_path = src_path.join("clock/");
-            if !clk_path.exists() {
-                fs::create_dir(&clk_path)?;
-            }    
-
-            writeln!(out, "pub mod clock;")?;
-            let mut clk_out = File::create(clk_path.clone().join("mod.rs"))?;
-            gen_clocks_mod(&cfg,  &mut clk_out, d, &clk_path)?;
-            // writeln!(out, "pub use clock::*;")?;
-            writeln!(out, "")?;
-        }
-
     }
     Ok(())
 }
@@ -333,30 +320,35 @@ pub fn gen_mcu_mod<W: Write>(cfg: &modules::Config, out: &mut W, d: &Device, pat
     let signals = gen_signals_mod(&cfg, out, d, path)?;
     gen_pins_mod(&cfg, out, d, path, &signals)?;
 
-    if d.interrupt_count.is_some() {
-        gen_interrupts_mod(&cfg, out, d, path)?; 
+    if d.interrupt_count.is_none() {
+        return Ok(());
+    } 
+
+    gen_interrupts_mod(&cfg, out, d, path)?; 
+
+
+    if d.clocks.is_some() {
+        let clk_path = path.join("clock.rs");
+        writeln!(out, "pub mod clock;")?;
+        let mut clk_out = File::create(&clk_path)?;
+        gen_clocks_mod(&cfg,  &mut clk_out, d, &clk_path)?;
+        writeln!(out, "")?;
     }
-
-    return Ok(());
-
-
-    // writeln!(p_out, "pub use mcu::pin;")?;
-    // writeln!(p_out, "pub use mcu::sig;")?;
-    // writeln!(p_out, "pub use mcu::irq;")?;
-
-    // // Generate MCU and peripheral accessors
+    // Generate MCU and peripheral accessors
 
     // writeln!(p_out, "pub use mcu::{};", mcu_type)?;
 
-    // writeln!(out, "")?;   
-    // writeln!(out, "#[derive(Debug, Default)]")?;
-    // writeln!(out, "pub struct {} {{}}", mcu_type)?;
-    // writeln!(out, "")?;   
+    writeln!(out, "")?;   
+    writeln!(out, "#[derive(Debug, Default)]")?;
+    writeln!(out, "pub struct {} {{}}", mcu_type)?;
+    writeln!(out, "")?;   
 
-    // writeln!(out, "impl Mcu for {} {{", mcu_type)?;
-    // writeln!(out, "    fn id(&self) -> &'static str {{ {:?} }}", d.name)?;
-    // writeln!(out, "}}")?;
-    // writeln!(out, "")?;
+    writeln!(out, "impl ::bobbin_mcu::mcu::Mcu for {} {{", mcu_type)?;
+    writeln!(out, "    fn id(&self) -> &'static str {{ {:?} }}", d.name)?;
+    writeln!(out, "}}")?;
+    writeln!(out, "")?;
+
+    // Don't generate accessors for now        
 
     // writeln!(out, "impl {} {{", mcu_type)?;
     // for p in d.peripherals.iter() {

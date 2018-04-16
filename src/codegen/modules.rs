@@ -169,7 +169,7 @@ pub fn gen_exceptions<W: Write>(_cfg: &Config, out: &mut W, exceptions: &Vec<Exc
     try!(writeln!(out,"}}"));    
     Ok(())
 }
-pub fn gen_interrupts<W: Write>(cfg: &Config, out: &mut W, d: &Device, interrupt_count: u64) -> Result<()> {
+pub fn gen_interrupts<W: Write>(_cfg: &Config, out: &mut W, d: &Device, interrupt_count: u64) -> Result<()> {
     let mut interrupts: Vec<Option<&Interrupt>> = Vec::with_capacity(interrupt_count as usize);
 
     try!(writeln!(out, "//! Interrupts"));
@@ -749,7 +749,7 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, d: &Device, pg:
 
     Ok(())
 }
-pub fn gen_peripheral_group_impl<W: Write>(cfg: &Config, out: &mut W, pg: &PeripheralGroup) -> Result<()> {
+pub fn gen_peripheral_group_impl<W: Write>(_cfg: &Config, out: &mut W, pg: &PeripheralGroup) -> Result<()> {
     let pg_name = if let Some(ref prototype) = pg.prototype {
         if let Some(ref name) = prototype.group_name {
             format!("{}", name)
@@ -843,29 +843,29 @@ pub fn gen_peripheral<W: Write>(cfg: &Config, out: &mut W, d: &Device, p: &Perip
         try!(writeln!(out, ""));
     }
     
-    // Generate Links
+    // // Generate Links
 
-    let gen_link_traits = false;
+    // let gen_link_traits = false;
 
-    if gen_link_traits {
-        let p_size = size_type(p.size.or(Some(32)).unwrap());
-        for link in p.links.iter() {
-            try!(writeln!(out, "pub trait {} {{", to_camel(&link.name)));
-            try!(writeln!(out, "    fn {}(&self) -> {};", field_getter(&link.name), p_size));
-            try!(writeln!(out, "    fn {}(&self, value: {});", field_setter(&link.name), p_size));
-            try!(writeln!(out, "}}"));
-            try!(writeln!(out, ""));
-            try!(writeln!(out, "impl {} {{", to_camel(&p.name)));
-            try!(writeln!(out, "    #[inline] pub fn {}<P: {}>(&self, p: &P) -> {} {{", field_getter(&link.name), to_camel(&link.name), p_size));
-            try!(writeln!(out, "        p.{}()", field_getter(&link.name)));
-            try!(writeln!(out, "    }}"));
-            try!(writeln!(out, "    #[inline] pub fn {}<P: {}>(&self, p: &P, value: {}) {{", field_setter(&link.name), to_camel(&link.name), p_size));
-            try!(writeln!(out, "        p.{}(value)", field_setter(&link.name)));
-            try!(writeln!(out, "    }}"));
-            try!(writeln!(out, "}}"));
-            try!(writeln!(out, ""));
-        }
-    }
+    // if gen_link_traits {
+    //     let p_size = size_type(p.size.or(Some(32)).unwrap());
+    //     for link in p.links.iter() {
+    //         try!(writeln!(out, "pub trait {} {{", to_camel(&link.name)));
+    //         try!(writeln!(out, "    fn {}(&self) -> {};", field_getter(&link.name), p_size));
+    //         try!(writeln!(out, "    fn {}(&self, value: {});", field_setter(&link.name), p_size));
+    //         try!(writeln!(out, "}}"));
+    //         try!(writeln!(out, ""));
+    //         try!(writeln!(out, "impl {} {{", to_camel(&p.name)));
+    //         try!(writeln!(out, "    #[inline] pub fn {}<P: {}>(&self, p: &P) -> {} {{", field_getter(&link.name), to_camel(&link.name), p_size));
+    //         try!(writeln!(out, "        p.{}()", field_getter(&link.name)));
+    //         try!(writeln!(out, "    }}"));
+    //         try!(writeln!(out, "    #[inline] pub fn {}<P: {}>(&self, p: &P, value: {}) {{", field_setter(&link.name), to_camel(&link.name), p_size));
+    //         try!(writeln!(out, "        p.{}(value)", field_setter(&link.name)));
+    //         try!(writeln!(out, "    }}"));
+    //         try!(writeln!(out, "}}"));
+    //         try!(writeln!(out, ""));
+    //     }
+    // }
 
     // {
     //     // Generate Links
@@ -917,7 +917,7 @@ pub fn gen_peripheral<W: Write>(cfg: &Config, out: &mut W, d: &Device, p: &Perip
     Ok(())    
 }
 
-pub fn gen_peripheral_impl<W: Write>(cfg: &Config, out: &mut W, p: &Peripheral) -> Result<()> {
+pub fn gen_peripheral_impl<W: Write>(_cfg: &Config, out: &mut W, p: &Peripheral) -> Result<()> {
     let p_type = format!("{}Periph", to_camel(&p.group_name.as_ref().unwrap()));
     let ch_type = format!("{}Ch", to_camel(&p.group_name.as_ref().unwrap()));
 
