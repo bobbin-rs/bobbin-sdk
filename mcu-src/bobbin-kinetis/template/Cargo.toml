@@ -11,4 +11,3 @@ kinetis-common = { path = "../kinetis-common" }
 
 [features]
 default = []
-logger = ["kinetis-common/logger"]
