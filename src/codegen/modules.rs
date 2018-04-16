@@ -573,6 +573,17 @@ pub fn gen_peripheral_group<W: Write>(cfg: &Config, out: &mut W, d: &Device, pg:
     // }       
 
 
+    if pg.modules.len() > 0 {
+        for m in pg.modules.iter() {
+            if let Some(ref use_as) = m._as {
+                try!(writeln!(out, "pub use {} as {};", m.name, use_as));
+            } else {
+                try!(writeln!(out, "pub use {};", m.name));
+            }
+        }
+        try!(writeln!(out, ""));                
+    }
+
     for (i, p) in pg.peripherals.iter().enumerate() {
         if p.features.len() > 0 {
             try!(writeln!(out, "#[cfg(any("));
