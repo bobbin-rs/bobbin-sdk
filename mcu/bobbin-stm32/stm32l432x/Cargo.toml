@@ -7,6 +7,9 @@ build = "build.rs"
 bobbin-build = { path = "../../../lib/bobbin-build/" }
 
 [dependencies]
+bobbin-bits = "0.1.1"
+bobbin-mcu = { path = "../../../lib/bobbin-mcu" }
+bobbin-hal = { path = "../../../lib/bobbin-hal" }
 stm32-common = { path = "../stm32-common" }
 
 [features]

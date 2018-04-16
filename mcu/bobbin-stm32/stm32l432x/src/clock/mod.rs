@@ -1,6 +1,6 @@
-pub use ::bobbin_common::*;
-pub use ::bobbin_common::tree::*;
-pub use ::hz::Hz;
+use ::bobbin_mcu::clock::Clock;
+use ::bobbin_mcu::tree::ClockFor;
+use ::bobbin_mcu::hz::Hz;
 
 #[derive(Default)]
 pub struct Clocks<CP: ClockProvider> { provider: CP }
