@@ -58,6 +58,7 @@ pub trait RegisterArray
 macro_rules! register {
     ($rid:ident, $rty:ident, $rval:ty, $raddr:expr) => {
         pub const $rid: $rty = $rty {};
+        #[derive(Debug, Clone, Copy, PartialEq, Eq)]
         pub struct $rty {}
         impl Register for $rty { 
             type Value = $rval;
@@ -70,6 +71,7 @@ macro_rules! register {
 macro_rules! register_array {
     ($rid:ident, $rty:ident, $rval:ty, $raddr:expr, $rdim:ty, $incr:expr) => {
         pub const $rid: $rty = $rty {};
+        #[derive(Debug, Clone, Copy, PartialEq, Eq)]
         pub struct $rty {}
         impl RegisterArray for $rty { 
             type Value = $rval;
@@ -88,6 +90,18 @@ mod tests {
 
     register!(GPIOA_MODER, GpioaModer, u32, 0x1000_0000);
     register_array!(REG_ARR, RegArr, u32, 0x1000_0000, isize, 0x10);
+
+    struct Periph {}
+    impl Periph {
+        pub fn gpioa_moder_register(&self) -> GpioaModer { GPIOA_MODER }
+        pub fn gpioa_moder(&self) -> u32 { GPIOA_MODER.read() }
+        pub fn gpioa_moder_ptr(&self) -> *mut u32 { GPIOA_MODER.ptr() }
+        pub fn read_gpioa_moder(&self) -> u32 { GPIOA_MODER.read() }
+        pub fn write_gpioa_moder(&self, value: u32) -> &Self { GPIOA_MODER.write(value); self }
+        pub fn set_gpioa_moder<F: FnOnce(u32)->u32>(&self, f: F) -> &Self { GPIOA_MODER.set(f); self }
+        pub fn with_gpioa_moder<F: FnOnce(u32)->u32>(&self, f: F) -> &Self { GPIOA_MODER.with(f); self }
+    }
+
 
     #[test]
     fn test_ptr() {
