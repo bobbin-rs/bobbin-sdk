@@ -23,7 +23,7 @@ impl<T: Copy + Default> Register<T> {
     }
 
     #[inline]
-    pub fn ptr(&self) -> *mut T { unsafe { self.base.offset(self.offset as isize) } }
+    pub fn ptr(&self) -> *mut T { unsafe { (self.base as *mut u8).offset(self.offset as isize) as *mut T } }
 
     #[inline]
     pub fn read(&self) -> T { unsafe { read_volatile(self.ptr()) } }
