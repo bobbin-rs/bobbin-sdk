@@ -1,12 +1,25 @@
-#[allow(unused_imports)] use ::bobbin_common::*;
+
+::bobbin_mcu::periph!( GCLK, Gclk, GCLK_PERIPH, GclkPeriph, GCLK_OWNED, GCLK_REF_COUNT, 0x40000c00, 0x00, 0x00);
+
+
+// Gate { name: None, gate_type: Some("EN"), periph: Some("PM"), register: Some("APBAMASK"), field: Some("GCLK"), description: None }
+impl ::bobbin_mcu::gate::GateEn for Gclk {
+    #[inline]
+    fn gate_en(&self) -> ::bobbin_bits::U1 { ::pm::PM.apbamask().gclk() }
+    #[inline]
+    fn set_gate_en<V: Into<::bobbin_bits::U1>>(&self, value: V) -> &Self {
+        ::pm::PM.with_apbamask(|r| r.set_gclk(value));
+        self
+    }
+}
 
 #[doc="Generic Clock Generator"]
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct GclkPeriph(pub usize);
 impl GclkPeriph {
     #[doc="Get the CLKCTRL Register."]
-    #[inline] pub fn clkctrl_reg(&self) -> Register<Clkctrl> { 
-        Register::new(self.0 as *mut Clkctrl, 0x2)
+    #[inline] pub fn clkctrl_reg(&self) -> ::bobbin_mcu::register::Register<Clkctrl> { 
+        ::bobbin_mcu::register::Register::new(self.0 as *mut Clkctrl, 0x2)
     }
 
     #[doc="Get the *mut pointer for the CLKCTRL register."]
@@ -43,8 +56,8 @@ impl GclkPeriph {
     }
 
     #[doc="Get the CLKCTRL_ID Register."]
-    #[inline] pub fn clkctrl_id_reg(&self) -> Register<ClkctrlId> { 
-        Register::new(self.0 as *mut ClkctrlId, 0x2)
+    #[inline] pub fn clkctrl_id_reg(&self) -> ::bobbin_mcu::register::Register<ClkctrlId> { 
+        ::bobbin_mcu::register::Register::new(self.0 as *mut ClkctrlId, 0x2)
     }
 
     #[doc="Get the *mut pointer for the CLKCTRL_ID register."]
@@ -81,8 +94,8 @@ impl GclkPeriph {
     }
 
     #[doc="Get the CTRL Register."]
-    #[inline] pub fn ctrl_reg(&self) -> Register<Ctrl> { 
-        Register::new(self.0 as *mut Ctrl, 0x0)
+    #[inline] pub fn ctrl_reg(&self) -> ::bobbin_mcu::register::Register<Ctrl> { 
+        ::bobbin_mcu::register::Register::new(self.0 as *mut Ctrl, 0x0)
     }
 
     #[doc="Get the *mut pointer for the CTRL register."]
@@ -119,8 +132,8 @@ impl GclkPeriph {
     }
 
     #[doc="Get the GENCTRL Register."]
-    #[inline] pub fn genctrl_reg(&self) -> Register<Genctrl> { 
-        Register::new(self.0 as *mut Genctrl, 0x4)
+    #[inline] pub fn genctrl_reg(&self) -> ::bobbin_mcu::register::Register<Genctrl> { 
+        ::bobbin_mcu::register::Register::new(self.0 as *mut Genctrl, 0x4)
     }
 
     #[doc="Get the *mut pointer for the GENCTRL register."]
@@ -157,8 +170,8 @@ impl GclkPeriph {
     }
 
     #[doc="Get the GENCTRL_ID Register."]
-    #[inline] pub fn genctrl_id_reg(&self) -> Register<GenctrlId> { 
-        Register::new(self.0 as *mut GenctrlId, 0x4)
+    #[inline] pub fn genctrl_id_reg(&self) -> ::bobbin_mcu::register::Register<GenctrlId> { 
+        ::bobbin_mcu::register::Register::new(self.0 as *mut GenctrlId, 0x4)
     }
 
     #[doc="Get the *mut pointer for the GENCTRL_ID register."]
@@ -195,8 +208,8 @@ impl GclkPeriph {
     }
 
     #[doc="Get the GENDIV Register."]
-    #[inline] pub fn gendiv_reg(&self) -> Register<Gendiv> { 
-        Register::new(self.0 as *mut Gendiv, 0x8)
+    #[inline] pub fn gendiv_reg(&self) -> ::bobbin_mcu::register::Register<Gendiv> { 
+        ::bobbin_mcu::register::Register::new(self.0 as *mut Gendiv, 0x8)
     }
 
     #[doc="Get the *mut pointer for the GENDIV register."]
@@ -233,8 +246,8 @@ impl GclkPeriph {
     }
 
     #[doc="Get the GENDIV_ID Register."]
-    #[inline] pub fn gendiv_id_reg(&self) -> Register<GendivId> { 
-        Register::new(self.0 as *mut GendivId, 0x8)
+    #[inline] pub fn gendiv_id_reg(&self) -> ::bobbin_mcu::register::Register<GendivId> { 
+        ::bobbin_mcu::register::Register::new(self.0 as *mut GendivId, 0x8)
     }
 
     #[doc="Get the *mut pointer for the GENDIV_ID register."]
@@ -271,8 +284,8 @@ impl GclkPeriph {
     }
 
     #[doc="Get the STATUS Register."]
-    #[inline] pub fn status_reg(&self) -> Register<Status> { 
-        Register::new(self.0 as *mut Status, 0x1)
+    #[inline] pub fn status_reg(&self) -> ::bobbin_mcu::register::Register<Status> { 
+        ::bobbin_mcu::register::Register::new(self.0 as *mut Status, 0x1)
     }
 
     #[doc="Get the *mut pointer for the STATUS register."]
@@ -297,7 +310,7 @@ impl GclkPeriph {
 pub struct Clkctrl(pub u16);
 impl Clkctrl {
     #[doc="Generic Clock Selection ID"]
-    #[inline] pub fn id(&self) -> bits::U6 {
+    #[inline] pub fn id(&self) -> ::bobbin_bits::U6 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x3f) as u8) } // [5:0]
     }
 
@@ -307,8 +320,8 @@ impl Clkctrl {
     }
 
     #[doc="Sets the ID field."]
-    #[inline] pub fn set_id<V: Into<bits::U6>>(mut self, value: V) -> Self {
-        let value: bits::U6 = value.into();
+    #[inline] pub fn set_id<V: Into<::bobbin_bits::U6>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U6 = value.into();
         let value: u16 = value.into();
         self.0 &= !(0x3f << 0);
         self.0 |= value << 0;
@@ -316,7 +329,7 @@ impl Clkctrl {
     }
 
     #[doc="Generic Clock Generator"]
-    #[inline] pub fn gen(&self) -> bits::U4 {
+    #[inline] pub fn gen(&self) -> ::bobbin_bits::U4 {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0xf) as u8) } // [11:8]
     }
 
@@ -326,8 +339,8 @@ impl Clkctrl {
     }
 
     #[doc="Sets the GEN field."]
-    #[inline] pub fn set_gen<V: Into<bits::U4>>(mut self, value: V) -> Self {
-        let value: bits::U4 = value.into();
+    #[inline] pub fn set_gen<V: Into<::bobbin_bits::U4>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U4 = value.into();
         let value: u16 = value.into();
         self.0 &= !(0xf << 8);
         self.0 |= value << 8;
@@ -335,7 +348,7 @@ impl Clkctrl {
     }
 
     #[doc="Clock Enable"]
-    #[inline] pub fn clken(&self) -> bits::U1 {
+    #[inline] pub fn clken(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 14) & 0x1) as u8) } // [14]
     }
 
@@ -345,8 +358,8 @@ impl Clkctrl {
     }
 
     #[doc="Sets the CLKEN field."]
-    #[inline] pub fn set_clken<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_clken<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u16 = value.into();
         self.0 &= !(0x1 << 14);
         self.0 |= value << 14;
@@ -354,7 +367,7 @@ impl Clkctrl {
     }
 
     #[doc="Write Lock"]
-    #[inline] pub fn wrtlock(&self) -> bits::U1 {
+    #[inline] pub fn wrtlock(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 15) & 0x1) as u8) } // [15]
     }
 
@@ -364,8 +377,8 @@ impl Clkctrl {
     }
 
     #[doc="Sets the WRTLOCK field."]
-    #[inline] pub fn set_wrtlock<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_wrtlock<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u16 = value.into();
         self.0 &= !(0x1 << 15);
         self.0 |= value << 15;
@@ -404,7 +417,7 @@ impl ::core::fmt::Debug for Clkctrl {
 pub struct ClkctrlId(pub u8);
 impl ClkctrlId {
     #[doc="Generic Clock Selection ID"]
-    #[inline] pub fn id(&self) -> bits::U6 {
+    #[inline] pub fn id(&self) -> ::bobbin_bits::U6 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x3f) as u8) } // [5:0]
     }
 
@@ -414,8 +427,8 @@ impl ClkctrlId {
     }
 
     #[doc="Sets the ID field."]
-    #[inline] pub fn set_id<V: Into<bits::U6>>(mut self, value: V) -> Self {
-        let value: bits::U6 = value.into();
+    #[inline] pub fn set_id<V: Into<::bobbin_bits::U6>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U6 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x3f << 0);
         self.0 |= value << 0;
@@ -451,7 +464,7 @@ impl ::core::fmt::Debug for ClkctrlId {
 pub struct Ctrl(pub u8);
 impl Ctrl {
     #[doc="Software Reset"]
-    #[inline] pub fn swrst(&self) -> bits::U1 {
+    #[inline] pub fn swrst(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
@@ -461,8 +474,8 @@ impl Ctrl {
     }
 
     #[doc="Sets the SWRST field."]
-    #[inline] pub fn set_swrst<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_swrst<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x1 << 0);
         self.0 |= value << 0;
@@ -498,7 +511,7 @@ impl ::core::fmt::Debug for Ctrl {
 pub struct Genctrl(pub u32);
 impl Genctrl {
     #[doc="Generic Clock Generator Selection"]
-    #[inline] pub fn id(&self) -> bits::U4 {
+    #[inline] pub fn id(&self) -> ::bobbin_bits::U4 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xf) as u8) } // [3:0]
     }
 
@@ -508,8 +521,8 @@ impl Genctrl {
     }
 
     #[doc="Sets the ID field."]
-    #[inline] pub fn set_id<V: Into<bits::U4>>(mut self, value: V) -> Self {
-        let value: bits::U4 = value.into();
+    #[inline] pub fn set_id<V: Into<::bobbin_bits::U4>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U4 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0xf << 0);
         self.0 |= value << 0;
@@ -517,7 +530,7 @@ impl Genctrl {
     }
 
     #[doc="Source Select"]
-    #[inline] pub fn src(&self) -> bits::U5 {
+    #[inline] pub fn src(&self) -> ::bobbin_bits::U5 {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1f) as u8) } // [12:8]
     }
 
@@ -527,8 +540,8 @@ impl Genctrl {
     }
 
     #[doc="Sets the SRC field."]
-    #[inline] pub fn set_src<V: Into<bits::U5>>(mut self, value: V) -> Self {
-        let value: bits::U5 = value.into();
+    #[inline] pub fn set_src<V: Into<::bobbin_bits::U5>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U5 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1f << 8);
         self.0 |= value << 8;
@@ -536,7 +549,7 @@ impl Genctrl {
     }
 
     #[doc="Generic Clock Generator Enable"]
-    #[inline] pub fn genen(&self) -> bits::U1 {
+    #[inline] pub fn genen(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1) as u8) } // [16]
     }
 
@@ -546,8 +559,8 @@ impl Genctrl {
     }
 
     #[doc="Sets the GENEN field."]
-    #[inline] pub fn set_genen<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_genen<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 16);
         self.0 |= value << 16;
@@ -555,7 +568,7 @@ impl Genctrl {
     }
 
     #[doc="Improve Duty Cycle"]
-    #[inline] pub fn idc(&self) -> bits::U1 {
+    #[inline] pub fn idc(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 17) & 0x1) as u8) } // [17]
     }
 
@@ -565,8 +578,8 @@ impl Genctrl {
     }
 
     #[doc="Sets the IDC field."]
-    #[inline] pub fn set_idc<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_idc<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 17);
         self.0 |= value << 17;
@@ -574,7 +587,7 @@ impl Genctrl {
     }
 
     #[doc="Output Off Value"]
-    #[inline] pub fn oov(&self) -> bits::U1 {
+    #[inline] pub fn oov(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 18) & 0x1) as u8) } // [18]
     }
 
@@ -584,8 +597,8 @@ impl Genctrl {
     }
 
     #[doc="Sets the OOV field."]
-    #[inline] pub fn set_oov<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_oov<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 18);
         self.0 |= value << 18;
@@ -593,7 +606,7 @@ impl Genctrl {
     }
 
     #[doc="Output Enable"]
-    #[inline] pub fn oe(&self) -> bits::U1 {
+    #[inline] pub fn oe(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 19) & 0x1) as u8) } // [19]
     }
 
@@ -603,8 +616,8 @@ impl Genctrl {
     }
 
     #[doc="Sets the OE field."]
-    #[inline] pub fn set_oe<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_oe<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 19);
         self.0 |= value << 19;
@@ -612,7 +625,7 @@ impl Genctrl {
     }
 
     #[doc="Divide Selection"]
-    #[inline] pub fn divsel(&self) -> bits::U1 {
+    #[inline] pub fn divsel(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 20) & 0x1) as u8) } // [20]
     }
 
@@ -622,8 +635,8 @@ impl Genctrl {
     }
 
     #[doc="Sets the DIVSEL field."]
-    #[inline] pub fn set_divsel<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_divsel<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 20);
         self.0 |= value << 20;
@@ -631,7 +644,7 @@ impl Genctrl {
     }
 
     #[doc="Run in Standby"]
-    #[inline] pub fn runstdby(&self) -> bits::U1 {
+    #[inline] pub fn runstdby(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 21) & 0x1) as u8) } // [21]
     }
 
@@ -641,8 +654,8 @@ impl Genctrl {
     }
 
     #[doc="Sets the RUNSTDBY field."]
-    #[inline] pub fn set_runstdby<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_runstdby<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 21);
         self.0 |= value << 21;
@@ -685,7 +698,7 @@ impl ::core::fmt::Debug for Genctrl {
 pub struct GenctrlId(pub u8);
 impl GenctrlId {
     #[doc="Generic Clock Generator Selection"]
-    #[inline] pub fn id(&self) -> bits::U4 {
+    #[inline] pub fn id(&self) -> ::bobbin_bits::U4 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xf) as u8) } // [3:0]
     }
 
@@ -695,8 +708,8 @@ impl GenctrlId {
     }
 
     #[doc="Sets the ID field."]
-    #[inline] pub fn set_id<V: Into<bits::U4>>(mut self, value: V) -> Self {
-        let value: bits::U4 = value.into();
+    #[inline] pub fn set_id<V: Into<::bobbin_bits::U4>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U4 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0xf << 0);
         self.0 |= value << 0;
@@ -732,7 +745,7 @@ impl ::core::fmt::Debug for GenctrlId {
 pub struct Gendiv(pub u32);
 impl Gendiv {
     #[doc="Generic Clock Generator Selection"]
-    #[inline] pub fn id(&self) -> bits::U4 {
+    #[inline] pub fn id(&self) -> ::bobbin_bits::U4 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xf) as u8) } // [3:0]
     }
 
@@ -742,8 +755,8 @@ impl Gendiv {
     }
 
     #[doc="Sets the ID field."]
-    #[inline] pub fn set_id<V: Into<bits::U4>>(mut self, value: V) -> Self {
-        let value: bits::U4 = value.into();
+    #[inline] pub fn set_id<V: Into<::bobbin_bits::U4>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U4 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0xf << 0);
         self.0 |= value << 0;
@@ -751,7 +764,7 @@ impl Gendiv {
     }
 
     #[doc="Division Factor"]
-    #[inline] pub fn div(&self) -> bits::U16 {
+    #[inline] pub fn div(&self) -> ::bobbin_bits::U16 {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0xffff) as u16) } // [23:8]
     }
 
@@ -761,8 +774,8 @@ impl Gendiv {
     }
 
     #[doc="Sets the DIV field."]
-    #[inline] pub fn set_div<V: Into<bits::U16>>(mut self, value: V) -> Self {
-        let value: bits::U16 = value.into();
+    #[inline] pub fn set_div<V: Into<::bobbin_bits::U16>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U16 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0xffff << 8);
         self.0 |= value << 8;
@@ -799,7 +812,7 @@ impl ::core::fmt::Debug for Gendiv {
 pub struct GendivId(pub u8);
 impl GendivId {
     #[doc="Generic Clock Generator Selection"]
-    #[inline] pub fn id(&self) -> bits::U4 {
+    #[inline] pub fn id(&self) -> ::bobbin_bits::U4 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xf) as u8) } // [3:0]
     }
 
@@ -809,8 +822,8 @@ impl GendivId {
     }
 
     #[doc="Sets the ID field."]
-    #[inline] pub fn set_id<V: Into<bits::U4>>(mut self, value: V) -> Self {
-        let value: bits::U4 = value.into();
+    #[inline] pub fn set_id<V: Into<::bobbin_bits::U4>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U4 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0xf << 0);
         self.0 |= value << 0;
@@ -846,7 +859,7 @@ impl ::core::fmt::Debug for GendivId {
 pub struct Status(pub u8);
 impl Status {
     #[doc="Synchronization Busy Status"]
-    #[inline] pub fn syncbusy(&self) -> bits::U1 {
+    #[inline] pub fn syncbusy(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
@@ -856,8 +869,8 @@ impl Status {
     }
 
     #[doc="Sets the SYNCBUSY field."]
-    #[inline] pub fn set_syncbusy<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_syncbusy<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x1 << 7);
         self.0 |= value << 7;

@@ -1,7 +1,9 @@
 pub use clock::*;
 pub use systick_ext::SystickHz;
 use gclk::*;
-use bobbin_common::bits::*;
+use bobbin_bits::*;
+use bobbin_mcu::clock::Clock;
+use bobbin_mcu::hz::Hz;
 
 
 macro_rules! impl_gclk {
@@ -139,7 +141,7 @@ impl <XOSC: Clock, XOSC32K: Clock> ClockProvider for DynamicClock<XOSC, XOSC32K>
 }
 
 impl <XOSC: Clock, XOSC32K: Clock> SystickHz for DynamicClock<XOSC, XOSC32K> {
-    fn systick_hz(&self, ) -> Hz {
+    fn systick_hz(&self) -> Hz {
         self.gclkgen0()
     }
 }

@@ -80,7 +80,7 @@ macro_rules! periph_irq {
 #[macro_export]
 macro_rules! periph_signal {
     ($ty:path, $sty:ident) => {
-        signal!($ty, $sty);
+        $crate::signal!($ty, $sty);
     }
 }
 #[macro_export]
@@ -115,7 +115,7 @@ macro_rules! pin {
             }
         }        
 
-        impl PeriphPin<$base_type> for $ty {
+        impl $crate::pin::PeriphPin<$base_type> for $ty {
             #[inline(always)]
             fn periph_pin(&self) -> &$base_type {
                 &$base_id
@@ -245,7 +245,7 @@ macro_rules! channel_irq {
 #[macro_export]
 macro_rules! channel_signal {
     ($ty:path, $sty:ident) => {
-        signal!($ty, $sty);
+        $crate::signal!($ty, $sty);
     }
 }
 

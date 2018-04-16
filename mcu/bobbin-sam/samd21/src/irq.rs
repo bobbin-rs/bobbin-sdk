@@ -1,37 +1,35 @@
 //! Interrupts
 
-#[allow(unused_imports)] use ::bobbin_common::*;
-
 pub type Handler = unsafe extern "C" fn();
 
-irq_number!(IRQ_0, Irq0, 0);
-irq_number!(IRQ_1, Irq1, 1);
-irq_number!(IRQ_2, Irq2, 2);
-irq_number!(IRQ_3, Irq3, 3);
-irq_number!(IRQ_4, Irq4, 4);
-irq_number!(IRQ_5, Irq5, 5);
-irq_number!(IRQ_6, Irq6, 6);
-irq_number!(IRQ_7, Irq7, 7);
-irq_number!(IRQ_8, Irq8, 8);
-irq_number!(IRQ_9, Irq9, 9);
-irq_number!(IRQ_10, Irq10, 10);
-irq_number!(IRQ_11, Irq11, 11);
-irq_number!(IRQ_12, Irq12, 12);
-irq_number!(IRQ_13, Irq13, 13);
-irq_number!(IRQ_14, Irq14, 14);
-irq_number!(IRQ_15, Irq15, 15);
-irq_number!(IRQ_16, Irq16, 16);
-irq_number!(IRQ_17, Irq17, 17);
-irq_number!(IRQ_18, Irq18, 18);
-irq_number!(IRQ_19, Irq19, 19);
-irq_number!(IRQ_20, Irq20, 20);
-irq_number!(IRQ_21, Irq21, 21);
-irq_number!(IRQ_22, Irq22, 22);
-irq_number!(IRQ_23, Irq23, 23);
-irq_number!(IRQ_24, Irq24, 24);
-irq_number!(IRQ_25, Irq25, 25);
-irq_number!(IRQ_26, Irq26, 26);
-irq_number!(IRQ_27, Irq27, 27);
+::bobbin_mcu::irq_number!(IRQ_0, Irq0, 0);
+::bobbin_mcu::irq_number!(IRQ_1, Irq1, 1);
+::bobbin_mcu::irq_number!(IRQ_2, Irq2, 2);
+::bobbin_mcu::irq_number!(IRQ_3, Irq3, 3);
+::bobbin_mcu::irq_number!(IRQ_4, Irq4, 4);
+::bobbin_mcu::irq_number!(IRQ_5, Irq5, 5);
+::bobbin_mcu::irq_number!(IRQ_6, Irq6, 6);
+::bobbin_mcu::irq_number!(IRQ_7, Irq7, 7);
+::bobbin_mcu::irq_number!(IRQ_8, Irq8, 8);
+::bobbin_mcu::irq_number!(IRQ_9, Irq9, 9);
+::bobbin_mcu::irq_number!(IRQ_10, Irq10, 10);
+::bobbin_mcu::irq_number!(IRQ_11, Irq11, 11);
+::bobbin_mcu::irq_number!(IRQ_12, Irq12, 12);
+::bobbin_mcu::irq_number!(IRQ_13, Irq13, 13);
+::bobbin_mcu::irq_number!(IRQ_14, Irq14, 14);
+::bobbin_mcu::irq_number!(IRQ_15, Irq15, 15);
+::bobbin_mcu::irq_number!(IRQ_16, Irq16, 16);
+::bobbin_mcu::irq_number!(IRQ_17, Irq17, 17);
+::bobbin_mcu::irq_number!(IRQ_18, Irq18, 18);
+::bobbin_mcu::irq_number!(IRQ_19, Irq19, 19);
+::bobbin_mcu::irq_number!(IRQ_20, Irq20, 20);
+::bobbin_mcu::irq_number!(IRQ_21, Irq21, 21);
+::bobbin_mcu::irq_number!(IRQ_22, Irq22, 22);
+::bobbin_mcu::irq_number!(IRQ_23, Irq23, 23);
+::bobbin_mcu::irq_number!(IRQ_24, Irq24, 24);
+::bobbin_mcu::irq_number!(IRQ_25, Irq25, 25);
+::bobbin_mcu::irq_number!(IRQ_26, Irq26, 26);
+::bobbin_mcu::irq_number!(IRQ_27, Irq27, 27);
 
 extern "C" {
    fn DEFAULT_HANDLER();
@@ -356,25 +354,25 @@ pub static mut INTERRUPTS: [Option<Handler>; 28] = [
     Some(IRQ_27_HANDLER),
 ];
 
-irq_type!(IRQ_DMA, IrqDma);
+::bobbin_mcu::irq_type!(IRQ_DMA, IrqDma);
 
-irq!(::dmac::Dmac, IrqDma, Irq6);
-irq!(::adc::Adc, IrqAdc, Irq23);
-irq_type!(IRQ_ADC, IrqAdc);
-irq!(::dac::Dac, IrqDac, Irq25);
-irq_type!(IRQ_DAC, IrqDac);
-irq!(::tcc::Tcc0, IrqTcc, Irq15);
-irq!(::tcc::Tcc1, IrqTcc, Irq16);
-irq!(::tcc::Tcc2, IrqTcc, Irq17);
-irq_type!(IRQ_TCC, IrqTcc);
-irq!(::tc::Tc3, IrqTc, Irq18);
-irq!(::tc::Tc4, IrqTc, Irq19);
-irq!(::tc::Tc5, IrqTc, Irq20);
-irq_type!(IRQ_TC, IrqTc);
-irq!(::sercom::Sercom0, IrqSercom, Irq9);
-irq!(::sercom::Sercom1, IrqSercom, Irq10);
-irq!(::sercom::Sercom2, IrqSercom, Irq11);
-irq!(::sercom::Sercom3, IrqSercom, Irq12);
-irq!(::sercom::Sercom4, IrqSercom, Irq13);
-irq!(::sercom::Sercom5, IrqSercom, Irq14);
-irq_type!(IRQ_SERCOM, IrqSercom);
+::bobbin_mcu::irq!(::dmac::Dmac, IrqDma, Irq6);
+::bobbin_mcu::irq!(::adc::Adc, IrqAdc, Irq23);
+::bobbin_mcu::irq_type!(IRQ_ADC, IrqAdc);
+::bobbin_mcu::irq!(::dac::Dac, IrqDac, Irq25);
+::bobbin_mcu::irq_type!(IRQ_DAC, IrqDac);
+::bobbin_mcu::irq!(::tcc::Tcc0, IrqTcc, Irq15);
+::bobbin_mcu::irq!(::tcc::Tcc1, IrqTcc, Irq16);
+::bobbin_mcu::irq!(::tcc::Tcc2, IrqTcc, Irq17);
+::bobbin_mcu::irq_type!(IRQ_TCC, IrqTcc);
+::bobbin_mcu::irq!(::tc::Tc3, IrqTc, Irq18);
+::bobbin_mcu::irq!(::tc::Tc4, IrqTc, Irq19);
+::bobbin_mcu::irq!(::tc::Tc5, IrqTc, Irq20);
+::bobbin_mcu::irq_type!(IRQ_TC, IrqTc);
+::bobbin_mcu::irq!(::sercom::Sercom0, IrqSercom, Irq9);
+::bobbin_mcu::irq!(::sercom::Sercom1, IrqSercom, Irq10);
+::bobbin_mcu::irq!(::sercom::Sercom2, IrqSercom, Irq11);
+::bobbin_mcu::irq!(::sercom::Sercom3, IrqSercom, Irq12);
+::bobbin_mcu::irq!(::sercom::Sercom4, IrqSercom, Irq13);
+::bobbin_mcu::irq!(::sercom::Sercom5, IrqSercom, Irq14);
+::bobbin_mcu::irq_type!(IRQ_SERCOM, IrqSercom);

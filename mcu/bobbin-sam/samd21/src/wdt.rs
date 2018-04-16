@@ -1,12 +1,25 @@
-#[allow(unused_imports)] use ::bobbin_common::*;
+
+::bobbin_mcu::periph!( WDT, Wdt, WDT_PERIPH, WdtPeriph, WDT_OWNED, WDT_REF_COUNT, 0x40001000, 0x00, 0x04);
+
+
+// Gate { name: None, gate_type: Some("EN"), periph: Some("PM"), register: Some("APBAMASK"), field: Some("WDT"), description: None }
+impl ::bobbin_mcu::gate::GateEn for Wdt {
+    #[inline]
+    fn gate_en(&self) -> ::bobbin_bits::U1 { ::pm::PM.apbamask().wdt() }
+    #[inline]
+    fn set_gate_en<V: Into<::bobbin_bits::U1>>(&self, value: V) -> &Self {
+        ::pm::PM.with_apbamask(|r| r.set_wdt(value));
+        self
+    }
+}
 
 #[doc="Watchdog Timer"]
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct WdtPeriph(pub usize);
 impl WdtPeriph {
     #[doc="Get the CLEAR Register."]
-    #[inline] pub fn clear_reg(&self) -> Register<Clear> { 
-        Register::new(self.0 as *mut Clear, 0x8)
+    #[inline] pub fn clear_reg(&self) -> ::bobbin_mcu::register::Register<Clear> { 
+        ::bobbin_mcu::register::Register::new(self.0 as *mut Clear, 0x8)
     }
 
     #[doc="Get the *mut pointer for the CLEAR register."]
@@ -32,8 +45,8 @@ impl WdtPeriph {
     }
 
     #[doc="Get the CONFIG Register."]
-    #[inline] pub fn config_reg(&self) -> Register<Config> { 
-        Register::new(self.0 as *mut Config, 0x1)
+    #[inline] pub fn config_reg(&self) -> ::bobbin_mcu::register::Register<Config> { 
+        ::bobbin_mcu::register::Register::new(self.0 as *mut Config, 0x1)
     }
 
     #[doc="Get the *mut pointer for the CONFIG register."]
@@ -70,8 +83,8 @@ impl WdtPeriph {
     }
 
     #[doc="Get the CTRL Register."]
-    #[inline] pub fn ctrl_reg(&self) -> Register<Ctrl> { 
-        Register::new(self.0 as *mut Ctrl, 0x0)
+    #[inline] pub fn ctrl_reg(&self) -> ::bobbin_mcu::register::Register<Ctrl> { 
+        ::bobbin_mcu::register::Register::new(self.0 as *mut Ctrl, 0x0)
     }
 
     #[doc="Get the *mut pointer for the CTRL register."]
@@ -108,8 +121,8 @@ impl WdtPeriph {
     }
 
     #[doc="Get the EWCTRL Register."]
-    #[inline] pub fn ewctrl_reg(&self) -> Register<Ewctrl> { 
-        Register::new(self.0 as *mut Ewctrl, 0x2)
+    #[inline] pub fn ewctrl_reg(&self) -> ::bobbin_mcu::register::Register<Ewctrl> { 
+        ::bobbin_mcu::register::Register::new(self.0 as *mut Ewctrl, 0x2)
     }
 
     #[doc="Get the *mut pointer for the EWCTRL register."]
@@ -146,8 +159,8 @@ impl WdtPeriph {
     }
 
     #[doc="Get the INTENCLR Register."]
-    #[inline] pub fn intenclr_reg(&self) -> Register<Intenclr> { 
-        Register::new(self.0 as *mut Intenclr, 0x4)
+    #[inline] pub fn intenclr_reg(&self) -> ::bobbin_mcu::register::Register<Intenclr> { 
+        ::bobbin_mcu::register::Register::new(self.0 as *mut Intenclr, 0x4)
     }
 
     #[doc="Get the *mut pointer for the INTENCLR register."]
@@ -184,8 +197,8 @@ impl WdtPeriph {
     }
 
     #[doc="Get the INTENSET Register."]
-    #[inline] pub fn intenset_reg(&self) -> Register<Intenset> { 
-        Register::new(self.0 as *mut Intenset, 0x5)
+    #[inline] pub fn intenset_reg(&self) -> ::bobbin_mcu::register::Register<Intenset> { 
+        ::bobbin_mcu::register::Register::new(self.0 as *mut Intenset, 0x5)
     }
 
     #[doc="Get the *mut pointer for the INTENSET register."]
@@ -222,8 +235,8 @@ impl WdtPeriph {
     }
 
     #[doc="Get the INTFLAG Register."]
-    #[inline] pub fn intflag_reg(&self) -> Register<Intflag> { 
-        Register::new(self.0 as *mut Intflag, 0x6)
+    #[inline] pub fn intflag_reg(&self) -> ::bobbin_mcu::register::Register<Intflag> { 
+        ::bobbin_mcu::register::Register::new(self.0 as *mut Intflag, 0x6)
     }
 
     #[doc="Get the *mut pointer for the INTFLAG register."]
@@ -260,8 +273,8 @@ impl WdtPeriph {
     }
 
     #[doc="Get the STATUS Register."]
-    #[inline] pub fn status_reg(&self) -> Register<Status> { 
-        Register::new(self.0 as *mut Status, 0x7)
+    #[inline] pub fn status_reg(&self) -> ::bobbin_mcu::register::Register<Status> { 
+        ::bobbin_mcu::register::Register::new(self.0 as *mut Status, 0x7)
     }
 
     #[doc="Get the *mut pointer for the STATUS register."]
@@ -286,7 +299,7 @@ impl WdtPeriph {
 pub struct Clear(pub u8);
 impl Clear {
     #[doc="Watchdog Clear"]
-    #[inline] pub fn clear(&self) -> bits::U8 {
+    #[inline] pub fn clear(&self) -> ::bobbin_bits::U8 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
@@ -296,8 +309,8 @@ impl Clear {
     }
 
     #[doc="Sets the CLEAR field."]
-    #[inline] pub fn set_clear<V: Into<bits::U8>>(mut self, value: V) -> Self {
-        let value: bits::U8 = value.into();
+    #[inline] pub fn set_clear<V: Into<::bobbin_bits::U8>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U8 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0xff << 0);
         self.0 |= value << 0;
@@ -333,7 +346,7 @@ impl ::core::fmt::Debug for Clear {
 pub struct Config(pub u8);
 impl Config {
     #[doc="Time-Out Period"]
-    #[inline] pub fn per(&self) -> bits::U4 {
+    #[inline] pub fn per(&self) -> ::bobbin_bits::U4 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xf) as u8) } // [3:0]
     }
 
@@ -343,8 +356,8 @@ impl Config {
     }
 
     #[doc="Sets the PER field."]
-    #[inline] pub fn set_per<V: Into<bits::U4>>(mut self, value: V) -> Self {
-        let value: bits::U4 = value.into();
+    #[inline] pub fn set_per<V: Into<::bobbin_bits::U4>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U4 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0xf << 0);
         self.0 |= value << 0;
@@ -352,7 +365,7 @@ impl Config {
     }
 
     #[doc="Window Mode Time-Out Period"]
-    #[inline] pub fn window(&self) -> bits::U4 {
+    #[inline] pub fn window(&self) -> ::bobbin_bits::U4 {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0xf) as u8) } // [7:4]
     }
 
@@ -362,8 +375,8 @@ impl Config {
     }
 
     #[doc="Sets the WINDOW field."]
-    #[inline] pub fn set_window<V: Into<bits::U4>>(mut self, value: V) -> Self {
-        let value: bits::U4 = value.into();
+    #[inline] pub fn set_window<V: Into<::bobbin_bits::U4>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U4 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0xf << 4);
         self.0 |= value << 4;
@@ -400,7 +413,7 @@ impl ::core::fmt::Debug for Config {
 pub struct Ctrl(pub u8);
 impl Ctrl {
     #[doc="Enable"]
-    #[inline] pub fn enable(&self) -> bits::U1 {
+    #[inline] pub fn enable(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
@@ -410,8 +423,8 @@ impl Ctrl {
     }
 
     #[doc="Sets the ENABLE field."]
-    #[inline] pub fn set_enable<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_enable<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x1 << 1);
         self.0 |= value << 1;
@@ -419,7 +432,7 @@ impl Ctrl {
     }
 
     #[doc="Watchdog Timer Window Mode Enable"]
-    #[inline] pub fn wen(&self) -> bits::U1 {
+    #[inline] pub fn wen(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
@@ -429,8 +442,8 @@ impl Ctrl {
     }
 
     #[doc="Sets the WEN field."]
-    #[inline] pub fn set_wen<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_wen<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x1 << 2);
         self.0 |= value << 2;
@@ -438,7 +451,7 @@ impl Ctrl {
     }
 
     #[doc="Always-On"]
-    #[inline] pub fn alwayson(&self) -> bits::U1 {
+    #[inline] pub fn alwayson(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
@@ -448,8 +461,8 @@ impl Ctrl {
     }
 
     #[doc="Sets the ALWAYSON field."]
-    #[inline] pub fn set_alwayson<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_alwayson<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x1 << 7);
         self.0 |= value << 7;
@@ -487,7 +500,7 @@ impl ::core::fmt::Debug for Ctrl {
 pub struct Ewctrl(pub u8);
 impl Ewctrl {
     #[doc="Early Warning Interrupt Time Offset"]
-    #[inline] pub fn ewoffset(&self) -> bits::U4 {
+    #[inline] pub fn ewoffset(&self) -> ::bobbin_bits::U4 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xf) as u8) } // [3:0]
     }
 
@@ -497,8 +510,8 @@ impl Ewctrl {
     }
 
     #[doc="Sets the EWOFFSET field."]
-    #[inline] pub fn set_ewoffset<V: Into<bits::U4>>(mut self, value: V) -> Self {
-        let value: bits::U4 = value.into();
+    #[inline] pub fn set_ewoffset<V: Into<::bobbin_bits::U4>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U4 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0xf << 0);
         self.0 |= value << 0;
@@ -534,7 +547,7 @@ impl ::core::fmt::Debug for Ewctrl {
 pub struct Intenclr(pub u8);
 impl Intenclr {
     #[doc="Early Warning Interrupt Enable"]
-    #[inline] pub fn ew(&self) -> bits::U1 {
+    #[inline] pub fn ew(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
@@ -544,8 +557,8 @@ impl Intenclr {
     }
 
     #[doc="Sets the EW field."]
-    #[inline] pub fn set_ew<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_ew<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x1 << 0);
         self.0 |= value << 0;
@@ -581,7 +594,7 @@ impl ::core::fmt::Debug for Intenclr {
 pub struct Intenset(pub u8);
 impl Intenset {
     #[doc="Early Warning Interrupt Enable"]
-    #[inline] pub fn ew(&self) -> bits::U1 {
+    #[inline] pub fn ew(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
@@ -591,8 +604,8 @@ impl Intenset {
     }
 
     #[doc="Sets the EW field."]
-    #[inline] pub fn set_ew<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_ew<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x1 << 0);
         self.0 |= value << 0;
@@ -628,7 +641,7 @@ impl ::core::fmt::Debug for Intenset {
 pub struct Intflag(pub u8);
 impl Intflag {
     #[doc="Early Warning"]
-    #[inline] pub fn ew(&self) -> bits::U1 {
+    #[inline] pub fn ew(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
@@ -638,8 +651,8 @@ impl Intflag {
     }
 
     #[doc="Sets the EW field."]
-    #[inline] pub fn set_ew<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_ew<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x1 << 0);
         self.0 |= value << 0;
@@ -675,7 +688,7 @@ impl ::core::fmt::Debug for Intflag {
 pub struct Status(pub u8);
 impl Status {
     #[doc="Synchronization Busy"]
-    #[inline] pub fn syncbusy(&self) -> bits::U1 {
+    #[inline] pub fn syncbusy(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
@@ -685,8 +698,8 @@ impl Status {
     }
 
     #[doc="Sets the SYNCBUSY field."]
-    #[inline] pub fn set_syncbusy<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_syncbusy<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x1 << 7);
         self.0 |= value << 7;

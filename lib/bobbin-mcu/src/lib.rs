@@ -5,7 +5,7 @@
 #[macro_use]
 extern crate std;
 
-extern crate bobbin_hz as hz;
+pub extern crate bobbin_hz as hz;
 extern crate bobbin_bits as bits;
 pub extern crate bobbin_tree as tree;
 
@@ -57,3 +57,8 @@ pub trait GetPeriphInstance<T> {
     fn get_periph_instance(&self, index: usize) -> Option<T>;
     fn get_periph_instance_count(&self) -> usize;
 }
+
+pub trait En {
+    fn en(&self) -> bits::U1;
+    fn set_en<V: Into<bits::U1>>(&self, value: V);
+}    

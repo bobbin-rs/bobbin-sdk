@@ -1,4 +1,27 @@
-#[allow(unused_imports)] use ::bobbin_common::*;
+::bobbin_mcu::periph!( PORTA, Porta, PORTA_PERIPH, PortPeriph, PORTA_OWNED, PORTA_REF_COUNT, 0x41004400, 0x00, 0x0f);
+::bobbin_mcu::periph!( PORTB, Portb, PORTB_PERIPH, PortPeriph, PORTB_OWNED, PORTB_REF_COUNT, 0x41004480, 0x01, 0x10);
+
+// Gate { name: None, gate_type: Some("EN"), periph: Some("PM"), register: Some("APBBMASK"), field: Some("PORT"), description: None }
+impl ::bobbin_mcu::gate::GateEn for Porta {
+    #[inline]
+    fn gate_en(&self) -> ::bobbin_bits::U1 { ::pm::PM.apbbmask().port() }
+    #[inline]
+    fn set_gate_en<V: Into<::bobbin_bits::U1>>(&self, value: V) -> &Self {
+        ::pm::PM.with_apbbmask(|r| r.set_port(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("EN"), periph: Some("PM"), register: Some("APBBMASK"), field: Some("PORT"), description: None }
+impl ::bobbin_mcu::gate::GateEn for Portb {
+    #[inline]
+    fn gate_en(&self) -> ::bobbin_bits::U1 { ::pm::PM.apbbmask().port() }
+    #[inline]
+    fn set_gate_en<V: Into<::bobbin_bits::U1>>(&self, value: V) -> &Self {
+        ::pm::PM.with_apbbmask(|r| r.set_port(value));
+        self
+    }
+}
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="PORT Peripheral"]
@@ -8,8 +31,8 @@ pub struct PortPin { pub port: PortPeriph, pub index: usize }
 
 impl PortPeriph {
     #[doc="Get the CTRL Register."]
-    #[inline] pub fn ctrl_reg(&self) -> Register<Ctrl> { 
-        Register::new(self.0 as *mut Ctrl, 0x24)
+    #[inline] pub fn ctrl_reg(&self) -> ::bobbin_mcu::register::Register<Ctrl> { 
+        ::bobbin_mcu::register::Register::new(self.0 as *mut Ctrl, 0x24)
     }
 
     #[doc="Get the *mut pointer for the CTRL register."]
@@ -46,8 +69,8 @@ impl PortPeriph {
     }
 
     #[doc="Get the DIR Register."]
-    #[inline] pub fn dir_reg(&self) -> Register<Dir> { 
-        Register::new(self.0 as *mut Dir, 0x0)
+    #[inline] pub fn dir_reg(&self) -> ::bobbin_mcu::register::Register<Dir> { 
+        ::bobbin_mcu::register::Register::new(self.0 as *mut Dir, 0x0)
     }
 
     #[doc="Get the *mut pointer for the DIR register."]
@@ -84,8 +107,8 @@ impl PortPeriph {
     }
 
     #[doc="Get the DIRCLR Register."]
-    #[inline] pub fn dirclr_reg(&self) -> Register<Dirclr> { 
-        Register::new(self.0 as *mut Dirclr, 0x4)
+    #[inline] pub fn dirclr_reg(&self) -> ::bobbin_mcu::register::Register<Dirclr> { 
+        ::bobbin_mcu::register::Register::new(self.0 as *mut Dirclr, 0x4)
     }
 
     #[doc="Get the *mut pointer for the DIRCLR register."]
@@ -122,8 +145,8 @@ impl PortPeriph {
     }
 
     #[doc="Get the DIRSET Register."]
-    #[inline] pub fn dirset_reg(&self) -> Register<Dirset> { 
-        Register::new(self.0 as *mut Dirset, 0x8)
+    #[inline] pub fn dirset_reg(&self) -> ::bobbin_mcu::register::Register<Dirset> { 
+        ::bobbin_mcu::register::Register::new(self.0 as *mut Dirset, 0x8)
     }
 
     #[doc="Get the *mut pointer for the DIRSET register."]
@@ -160,8 +183,8 @@ impl PortPeriph {
     }
 
     #[doc="Get the DIRTGL Register."]
-    #[inline] pub fn dirtgl_reg(&self) -> Register<Dirtgl> { 
-        Register::new(self.0 as *mut Dirtgl, 0xc)
+    #[inline] pub fn dirtgl_reg(&self) -> ::bobbin_mcu::register::Register<Dirtgl> { 
+        ::bobbin_mcu::register::Register::new(self.0 as *mut Dirtgl, 0xc)
     }
 
     #[doc="Get the *mut pointer for the DIRTGL register."]
@@ -198,8 +221,8 @@ impl PortPeriph {
     }
 
     #[doc="Get the IN Register."]
-    #[inline] pub fn in_reg(&self) -> Register<In> { 
-        Register::new(self.0 as *mut In, 0x20)
+    #[inline] pub fn in_reg(&self) -> ::bobbin_mcu::register::Register<In> { 
+        ::bobbin_mcu::register::Register::new(self.0 as *mut In, 0x20)
     }
 
     #[doc="Get the *mut pointer for the IN register."]
@@ -218,8 +241,8 @@ impl PortPeriph {
     }
 
     #[doc="Get the OUT Register."]
-    #[inline] pub fn out_reg(&self) -> Register<Out> { 
-        Register::new(self.0 as *mut Out, 0x10)
+    #[inline] pub fn out_reg(&self) -> ::bobbin_mcu::register::Register<Out> { 
+        ::bobbin_mcu::register::Register::new(self.0 as *mut Out, 0x10)
     }
 
     #[doc="Get the *mut pointer for the OUT register."]
@@ -256,8 +279,8 @@ impl PortPeriph {
     }
 
     #[doc="Get the OUTCLR Register."]
-    #[inline] pub fn outclr_reg(&self) -> Register<Outclr> { 
-        Register::new(self.0 as *mut Outclr, 0x14)
+    #[inline] pub fn outclr_reg(&self) -> ::bobbin_mcu::register::Register<Outclr> { 
+        ::bobbin_mcu::register::Register::new(self.0 as *mut Outclr, 0x14)
     }
 
     #[doc="Get the *mut pointer for the OUTCLR register."]
@@ -294,8 +317,8 @@ impl PortPeriph {
     }
 
     #[doc="Get the OUTSET Register."]
-    #[inline] pub fn outset_reg(&self) -> Register<Outset> { 
-        Register::new(self.0 as *mut Outset, 0x18)
+    #[inline] pub fn outset_reg(&self) -> ::bobbin_mcu::register::Register<Outset> { 
+        ::bobbin_mcu::register::Register::new(self.0 as *mut Outset, 0x18)
     }
 
     #[doc="Get the *mut pointer for the OUTSET register."]
@@ -332,8 +355,8 @@ impl PortPeriph {
     }
 
     #[doc="Get the OUTTGL Register."]
-    #[inline] pub fn outtgl_reg(&self) -> Register<Outtgl> { 
-        Register::new(self.0 as *mut Outtgl, 0x1c)
+    #[inline] pub fn outtgl_reg(&self) -> ::bobbin_mcu::register::Register<Outtgl> { 
+        ::bobbin_mcu::register::Register::new(self.0 as *mut Outtgl, 0x1c)
     }
 
     #[doc="Get the *mut pointer for the OUTTGL register."]
@@ -370,84 +393,84 @@ impl PortPeriph {
     }
 
     #[doc="Get the PINCFG Register."]
-    #[inline] pub fn pincfg_reg(&self) -> RegisterArray<Pincfg, bits::R32> { 
-        RegisterArray::new(self.0 as *mut Pincfg, 0x40, 0x1)
+    #[inline] pub fn pincfg_reg(&self) -> ::bobbin_mcu::register::RegisterArray<Pincfg, ::bobbin_bits::R32> { 
+        ::bobbin_mcu::register::RegisterArray::new(self.0 as *mut Pincfg, 0x40, 0x1)
     }
 
     #[doc="Get the *mut pointer for the PINCFG register."]
-    #[inline] pub fn pincfg_mut<I: Into<bits::R32>>(&self, index: I) -> *mut Pincfg { 
+    #[inline] pub fn pincfg_mut<I: Into<::bobbin_bits::R32>>(&self, index: I) -> *mut Pincfg { 
         self.pincfg_reg().ptr(index.into())
     }
 
     #[doc="Get the *const pointer for the PINCFG register."]
-    #[inline] pub fn pincfg_ptr<I: Into<bits::R32>>(&self, index: I) -> *const Pincfg { 
+    #[inline] pub fn pincfg_ptr<I: Into<::bobbin_bits::R32>>(&self, index: I) -> *const Pincfg { 
         self.pincfg_reg().ptr(index.into())
     }
 
     #[doc="Read the PINCFG register."]
-    #[inline] pub fn pincfg<I: Into<bits::R32>>(&self, index: I) -> Pincfg { 
+    #[inline] pub fn pincfg<I: Into<::bobbin_bits::R32>>(&self, index: I) -> Pincfg { 
         self.pincfg_reg().read(index.into())
     }
 
     #[doc="Write the PINCFG register."]
-    #[inline] pub fn write_pincfg<I: Into<bits::R32>>(&self, index: I, value: Pincfg) -> &Self {
+    #[inline] pub fn write_pincfg<I: Into<::bobbin_bits::R32>>(&self, index: I, value: Pincfg) -> &Self {
         self.pincfg_reg().write(index.into(), value);
         self
     }
 
     #[doc="Set the PINCFG register."]
-    #[inline] pub fn set_pincfg<I: Into<bits::R32>, F: FnOnce(Pincfg) -> Pincfg>(&self, index: I, f: F) -> &Self {
+    #[inline] pub fn set_pincfg<I: Into<::bobbin_bits::R32>, F: FnOnce(Pincfg) -> Pincfg>(&self, index: I, f: F) -> &Self {
         self.pincfg_reg().set(index.into(), f);
         self
     }
 
     #[doc="Modify the PINCFG register."]
-    #[inline] pub fn with_pincfg<I: Into<bits::R32> + Copy, F: FnOnce(Pincfg) -> Pincfg>(&self, index: I, f: F) -> &Self {
+    #[inline] pub fn with_pincfg<I: Into<::bobbin_bits::R32> + Copy, F: FnOnce(Pincfg) -> Pincfg>(&self, index: I, f: F) -> &Self {
         self.pincfg_reg().with(index.into(), f);
         self
     }
 
     #[doc="Get the PMUX Register."]
-    #[inline] pub fn pmux_reg(&self) -> RegisterArray<Pmux, bits::R16> { 
-        RegisterArray::new(self.0 as *mut Pmux, 0x30, 0x1)
+    #[inline] pub fn pmux_reg(&self) -> ::bobbin_mcu::register::RegisterArray<Pmux, ::bobbin_bits::R16> { 
+        ::bobbin_mcu::register::RegisterArray::new(self.0 as *mut Pmux, 0x30, 0x1)
     }
 
     #[doc="Get the *mut pointer for the PMUX register."]
-    #[inline] pub fn pmux_mut<I: Into<bits::R16>>(&self, index: I) -> *mut Pmux { 
+    #[inline] pub fn pmux_mut<I: Into<::bobbin_bits::R16>>(&self, index: I) -> *mut Pmux { 
         self.pmux_reg().ptr(index.into())
     }
 
     #[doc="Get the *const pointer for the PMUX register."]
-    #[inline] pub fn pmux_ptr<I: Into<bits::R16>>(&self, index: I) -> *const Pmux { 
+    #[inline] pub fn pmux_ptr<I: Into<::bobbin_bits::R16>>(&self, index: I) -> *const Pmux { 
         self.pmux_reg().ptr(index.into())
     }
 
     #[doc="Read the PMUX register."]
-    #[inline] pub fn pmux<I: Into<bits::R16>>(&self, index: I) -> Pmux { 
+    #[inline] pub fn pmux<I: Into<::bobbin_bits::R16>>(&self, index: I) -> Pmux { 
         self.pmux_reg().read(index.into())
     }
 
     #[doc="Write the PMUX register."]
-    #[inline] pub fn write_pmux<I: Into<bits::R16>>(&self, index: I, value: Pmux) -> &Self {
+    #[inline] pub fn write_pmux<I: Into<::bobbin_bits::R16>>(&self, index: I, value: Pmux) -> &Self {
         self.pmux_reg().write(index.into(), value);
         self
     }
 
     #[doc="Set the PMUX register."]
-    #[inline] pub fn set_pmux<I: Into<bits::R16>, F: FnOnce(Pmux) -> Pmux>(&self, index: I, f: F) -> &Self {
+    #[inline] pub fn set_pmux<I: Into<::bobbin_bits::R16>, F: FnOnce(Pmux) -> Pmux>(&self, index: I, f: F) -> &Self {
         self.pmux_reg().set(index.into(), f);
         self
     }
 
     #[doc="Modify the PMUX register."]
-    #[inline] pub fn with_pmux<I: Into<bits::R16> + Copy, F: FnOnce(Pmux) -> Pmux>(&self, index: I, f: F) -> &Self {
+    #[inline] pub fn with_pmux<I: Into<::bobbin_bits::R16> + Copy, F: FnOnce(Pmux) -> Pmux>(&self, index: I, f: F) -> &Self {
         self.pmux_reg().with(index.into(), f);
         self
     }
 
     #[doc="Get the WRCONFIG Register."]
-    #[inline] pub fn wrconfig_reg(&self) -> Register<Wrconfig> { 
-        Register::new(self.0 as *mut Wrconfig, 0x28)
+    #[inline] pub fn wrconfig_reg(&self) -> ::bobbin_mcu::register::Register<Wrconfig> { 
+        ::bobbin_mcu::register::Register::new(self.0 as *mut Wrconfig, 0x28)
     }
 
     #[doc="Get the *mut pointer for the WRCONFIG register."]
@@ -479,7 +502,7 @@ impl PortPeriph {
 pub struct Ctrl(pub u32);
 impl Ctrl {
     #[doc="Input Sampling Mode"]
-    #[inline] pub fn sampling(&self) -> bits::U32 {
+    #[inline] pub fn sampling(&self) -> ::bobbin_bits::U32 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffffffff) as u32) } // [31:0]
     }
 
@@ -489,8 +512,8 @@ impl Ctrl {
     }
 
     #[doc="Sets the SAMPLING field."]
-    #[inline] pub fn set_sampling<V: Into<bits::U32>>(mut self, value: V) -> Self {
-        let value: bits::U32 = value.into();
+    #[inline] pub fn set_sampling<V: Into<::bobbin_bits::U32>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U32 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0xffffffff << 0);
         self.0 |= value << 0;
@@ -525,21 +548,21 @@ impl ::core::fmt::Debug for Ctrl {
 pub struct Dir(pub u32);
 impl Dir {
     #[doc="Port Data Direction"]
-    #[inline] pub fn dir<I: Into<bits::R32>>(&self, index: I) -> bits::U1 {
+    #[inline] pub fn dir<I: Into<::bobbin_bits::R32>>(&self, index: I) -> ::bobbin_bits::U1 {
         let index: usize = index.into().value() as usize;
         let shift: usize = 0 + index;
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
     #[doc="Returns true if DIR != 0"]
-    #[inline] pub fn test_dir<I: Into<bits::R32>>(&self, index: I) -> bool{
+    #[inline] pub fn test_dir<I: Into<::bobbin_bits::R32>>(&self, index: I) -> bool{
         self.dir(index) != 0
     }
 
     #[doc="Sets the DIR field."]
-    #[inline] pub fn set_dir<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+    #[inline] pub fn set_dir<I: Into<::bobbin_bits::R32>, V: Into<::bobbin_bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
-        let value: bits::U1 = value.into();
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         let shift: usize = 0 + index;
         self.0 &= !(0x1 << shift);
@@ -607,21 +630,21 @@ impl ::core::fmt::Debug for Dir {
 pub struct Dirclr(pub u32);
 impl Dirclr {
     #[doc="Port Data Direction Clear"]
-    #[inline] pub fn dirclr<I: Into<bits::R32>>(&self, index: I) -> bits::U1 {
+    #[inline] pub fn dirclr<I: Into<::bobbin_bits::R32>>(&self, index: I) -> ::bobbin_bits::U1 {
         let index: usize = index.into().value() as usize;
         let shift: usize = 0 + index;
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
     #[doc="Returns true if DIRCLR != 0"]
-    #[inline] pub fn test_dirclr<I: Into<bits::R32>>(&self, index: I) -> bool{
+    #[inline] pub fn test_dirclr<I: Into<::bobbin_bits::R32>>(&self, index: I) -> bool{
         self.dirclr(index) != 0
     }
 
     #[doc="Sets the DIRCLR field."]
-    #[inline] pub fn set_dirclr<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+    #[inline] pub fn set_dirclr<I: Into<::bobbin_bits::R32>, V: Into<::bobbin_bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
-        let value: bits::U1 = value.into();
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         let shift: usize = 0 + index;
         self.0 &= !(0x1 << shift);
@@ -689,21 +712,21 @@ impl ::core::fmt::Debug for Dirclr {
 pub struct Dirset(pub u32);
 impl Dirset {
     #[doc="Port Data Direction Set"]
-    #[inline] pub fn dirset<I: Into<bits::R32>>(&self, index: I) -> bits::U1 {
+    #[inline] pub fn dirset<I: Into<::bobbin_bits::R32>>(&self, index: I) -> ::bobbin_bits::U1 {
         let index: usize = index.into().value() as usize;
         let shift: usize = 0 + index;
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
     #[doc="Returns true if DIRSET != 0"]
-    #[inline] pub fn test_dirset<I: Into<bits::R32>>(&self, index: I) -> bool{
+    #[inline] pub fn test_dirset<I: Into<::bobbin_bits::R32>>(&self, index: I) -> bool{
         self.dirset(index) != 0
     }
 
     #[doc="Sets the DIRSET field."]
-    #[inline] pub fn set_dirset<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+    #[inline] pub fn set_dirset<I: Into<::bobbin_bits::R32>, V: Into<::bobbin_bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
-        let value: bits::U1 = value.into();
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         let shift: usize = 0 + index;
         self.0 &= !(0x1 << shift);
@@ -771,21 +794,21 @@ impl ::core::fmt::Debug for Dirset {
 pub struct Dirtgl(pub u32);
 impl Dirtgl {
     #[doc="Port Data Direction Toggle"]
-    #[inline] pub fn dirtgl<I: Into<bits::R32>>(&self, index: I) -> bits::U1 {
+    #[inline] pub fn dirtgl<I: Into<::bobbin_bits::R32>>(&self, index: I) -> ::bobbin_bits::U1 {
         let index: usize = index.into().value() as usize;
         let shift: usize = 0 + index;
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
     #[doc="Returns true if DIRTGL != 0"]
-    #[inline] pub fn test_dirtgl<I: Into<bits::R32>>(&self, index: I) -> bool{
+    #[inline] pub fn test_dirtgl<I: Into<::bobbin_bits::R32>>(&self, index: I) -> bool{
         self.dirtgl(index) != 0
     }
 
     #[doc="Sets the DIRTGL field."]
-    #[inline] pub fn set_dirtgl<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+    #[inline] pub fn set_dirtgl<I: Into<::bobbin_bits::R32>, V: Into<::bobbin_bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
-        let value: bits::U1 = value.into();
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         let shift: usize = 0 + index;
         self.0 &= !(0x1 << shift);
@@ -853,21 +876,21 @@ impl ::core::fmt::Debug for Dirtgl {
 pub struct In(pub u32);
 impl In {
     #[doc="Port Data Input Value"]
-    #[inline] pub fn _in<I: Into<bits::R32>>(&self, index: I) -> bits::U1 {
+    #[inline] pub fn _in<I: Into<::bobbin_bits::R32>>(&self, index: I) -> ::bobbin_bits::U1 {
         let index: usize = index.into().value() as usize;
         let shift: usize = 0 + index;
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
     #[doc="Returns true if IN != 0"]
-    #[inline] pub fn test_in<I: Into<bits::R32>>(&self, index: I) -> bool{
+    #[inline] pub fn test_in<I: Into<::bobbin_bits::R32>>(&self, index: I) -> bool{
         self._in(index) != 0
     }
 
     #[doc="Sets the IN field."]
-    #[inline] pub fn set_in<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+    #[inline] pub fn set_in<I: Into<::bobbin_bits::R32>, V: Into<::bobbin_bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
-        let value: bits::U1 = value.into();
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         let shift: usize = 0 + index;
         self.0 &= !(0x1 << shift);
@@ -935,21 +958,21 @@ impl ::core::fmt::Debug for In {
 pub struct Out(pub u32);
 impl Out {
     #[doc="Port Data Output Value"]
-    #[inline] pub fn out<I: Into<bits::R32>>(&self, index: I) -> bits::U1 {
+    #[inline] pub fn out<I: Into<::bobbin_bits::R32>>(&self, index: I) -> ::bobbin_bits::U1 {
         let index: usize = index.into().value() as usize;
         let shift: usize = 0 + index;
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
     #[doc="Returns true if OUT != 0"]
-    #[inline] pub fn test_out<I: Into<bits::R32>>(&self, index: I) -> bool{
+    #[inline] pub fn test_out<I: Into<::bobbin_bits::R32>>(&self, index: I) -> bool{
         self.out(index) != 0
     }
 
     #[doc="Sets the OUT field."]
-    #[inline] pub fn set_out<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+    #[inline] pub fn set_out<I: Into<::bobbin_bits::R32>, V: Into<::bobbin_bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
-        let value: bits::U1 = value.into();
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         let shift: usize = 0 + index;
         self.0 &= !(0x1 << shift);
@@ -1017,21 +1040,21 @@ impl ::core::fmt::Debug for Out {
 pub struct Outclr(pub u32);
 impl Outclr {
     #[doc="Port Data Output Value Clear"]
-    #[inline] pub fn outclr<I: Into<bits::R32>>(&self, index: I) -> bits::U1 {
+    #[inline] pub fn outclr<I: Into<::bobbin_bits::R32>>(&self, index: I) -> ::bobbin_bits::U1 {
         let index: usize = index.into().value() as usize;
         let shift: usize = 0 + index;
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
     #[doc="Returns true if OUTCLR != 0"]
-    #[inline] pub fn test_outclr<I: Into<bits::R32>>(&self, index: I) -> bool{
+    #[inline] pub fn test_outclr<I: Into<::bobbin_bits::R32>>(&self, index: I) -> bool{
         self.outclr(index) != 0
     }
 
     #[doc="Sets the OUTCLR field."]
-    #[inline] pub fn set_outclr<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+    #[inline] pub fn set_outclr<I: Into<::bobbin_bits::R32>, V: Into<::bobbin_bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
-        let value: bits::U1 = value.into();
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         let shift: usize = 0 + index;
         self.0 &= !(0x1 << shift);
@@ -1099,21 +1122,21 @@ impl ::core::fmt::Debug for Outclr {
 pub struct Outset(pub u32);
 impl Outset {
     #[doc="Port Data Output Value Set"]
-    #[inline] pub fn outset<I: Into<bits::R32>>(&self, index: I) -> bits::U1 {
+    #[inline] pub fn outset<I: Into<::bobbin_bits::R32>>(&self, index: I) -> ::bobbin_bits::U1 {
         let index: usize = index.into().value() as usize;
         let shift: usize = 0 + index;
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
     #[doc="Returns true if OUTSET != 0"]
-    #[inline] pub fn test_outset<I: Into<bits::R32>>(&self, index: I) -> bool{
+    #[inline] pub fn test_outset<I: Into<::bobbin_bits::R32>>(&self, index: I) -> bool{
         self.outset(index) != 0
     }
 
     #[doc="Sets the OUTSET field."]
-    #[inline] pub fn set_outset<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+    #[inline] pub fn set_outset<I: Into<::bobbin_bits::R32>, V: Into<::bobbin_bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
-        let value: bits::U1 = value.into();
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         let shift: usize = 0 + index;
         self.0 &= !(0x1 << shift);
@@ -1181,21 +1204,21 @@ impl ::core::fmt::Debug for Outset {
 pub struct Outtgl(pub u32);
 impl Outtgl {
     #[doc="Port Data Output Value Toggle"]
-    #[inline] pub fn outtgl<I: Into<bits::R32>>(&self, index: I) -> bits::U1 {
+    #[inline] pub fn outtgl<I: Into<::bobbin_bits::R32>>(&self, index: I) -> ::bobbin_bits::U1 {
         let index: usize = index.into().value() as usize;
         let shift: usize = 0 + index;
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0x1) as u8) } // [0]
     }
 
     #[doc="Returns true if OUTTGL != 0"]
-    #[inline] pub fn test_outtgl<I: Into<bits::R32>>(&self, index: I) -> bool{
+    #[inline] pub fn test_outtgl<I: Into<::bobbin_bits::R32>>(&self, index: I) -> bool{
         self.outtgl(index) != 0
     }
 
     #[doc="Sets the OUTTGL field."]
-    #[inline] pub fn set_outtgl<I: Into<bits::R32>, V: Into<bits::U1>>(mut self, index: I, value: V) -> Self {
+    #[inline] pub fn set_outtgl<I: Into<::bobbin_bits::R32>, V: Into<::bobbin_bits::U1>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
-        let value: bits::U1 = value.into();
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         let shift: usize = 0 + index;
         self.0 &= !(0x1 << shift);
@@ -1263,7 +1286,7 @@ impl ::core::fmt::Debug for Outtgl {
 pub struct Pincfg(pub u8);
 impl Pincfg {
     #[doc="Peripheral Multiplexer Enable"]
-    #[inline] pub fn pmuxen(&self) -> bits::U1 {
+    #[inline] pub fn pmuxen(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
@@ -1273,8 +1296,8 @@ impl Pincfg {
     }
 
     #[doc="Sets the PMUXEN field."]
-    #[inline] pub fn set_pmuxen<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_pmuxen<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x1 << 0);
         self.0 |= value << 0;
@@ -1282,7 +1305,7 @@ impl Pincfg {
     }
 
     #[doc="Input Enable"]
-    #[inline] pub fn inen(&self) -> bits::U1 {
+    #[inline] pub fn inen(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
@@ -1292,8 +1315,8 @@ impl Pincfg {
     }
 
     #[doc="Sets the INEN field."]
-    #[inline] pub fn set_inen<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_inen<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x1 << 1);
         self.0 |= value << 1;
@@ -1301,7 +1324,7 @@ impl Pincfg {
     }
 
     #[doc="Pull Enable"]
-    #[inline] pub fn pullen(&self) -> bits::U1 {
+    #[inline] pub fn pullen(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
@@ -1311,8 +1334,8 @@ impl Pincfg {
     }
 
     #[doc="Sets the PULLEN field."]
-    #[inline] pub fn set_pullen<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_pullen<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x1 << 2);
         self.0 |= value << 2;
@@ -1320,7 +1343,7 @@ impl Pincfg {
     }
 
     #[doc="Output Driver Strength Selection"]
-    #[inline] pub fn drvstr(&self) -> bits::U1 {
+    #[inline] pub fn drvstr(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
@@ -1330,8 +1353,8 @@ impl Pincfg {
     }
 
     #[doc="Sets the DRVSTR field."]
-    #[inline] pub fn set_drvstr<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_drvstr<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x1 << 6);
         self.0 |= value << 6;
@@ -1370,21 +1393,21 @@ impl ::core::fmt::Debug for Pincfg {
 pub struct Pmux(pub u8);
 impl Pmux {
     #[doc="Peripheral Multiplexing Even"]
-    #[inline] pub fn pmux<I: Into<bits::R2>>(&self, index: I) -> bits::U4 {
+    #[inline] pub fn pmux<I: Into<::bobbin_bits::R2>>(&self, index: I) -> ::bobbin_bits::U4 {
         let index: usize = index.into().value() as usize;
         let shift: usize = 0 + (index << 2);
         unsafe { ::core::mem::transmute(((self.0 >> shift) & 0xf) as u8) } // [3:0]
     }
 
     #[doc="Returns true if PMUX != 0"]
-    #[inline] pub fn test_pmux<I: Into<bits::R2>>(&self, index: I) -> bool{
+    #[inline] pub fn test_pmux<I: Into<::bobbin_bits::R2>>(&self, index: I) -> bool{
         self.pmux(index) != 0
     }
 
     #[doc="Sets the PMUX field."]
-    #[inline] pub fn set_pmux<I: Into<bits::R2>, V: Into<bits::U4>>(mut self, index: I, value: V) -> Self {
+    #[inline] pub fn set_pmux<I: Into<::bobbin_bits::R2>, V: Into<::bobbin_bits::U4>>(mut self, index: I, value: V) -> Self {
         let index: usize = index.into().value() as usize;
-        let value: bits::U4 = value.into();
+        let value: ::bobbin_bits::U4 = value.into();
         let value: u8 = value.into();
         let shift: usize = 0 + (index << 2);
         self.0 &= !(0xf << shift);
@@ -1422,7 +1445,7 @@ impl ::core::fmt::Debug for Pmux {
 pub struct Wrconfig(pub u32);
 impl Wrconfig {
     #[doc="Pin Mask for Multiple Pin Configuration"]
-    #[inline] pub fn pinmask(&self) -> bits::U16 {
+    #[inline] pub fn pinmask(&self) -> ::bobbin_bits::U16 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xffff) as u16) } // [15:0]
     }
 
@@ -1432,8 +1455,8 @@ impl Wrconfig {
     }
 
     #[doc="Sets the PINMASK field."]
-    #[inline] pub fn set_pinmask<V: Into<bits::U16>>(mut self, value: V) -> Self {
-        let value: bits::U16 = value.into();
+    #[inline] pub fn set_pinmask<V: Into<::bobbin_bits::U16>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U16 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0xffff << 0);
         self.0 |= value << 0;
@@ -1441,7 +1464,7 @@ impl Wrconfig {
     }
 
     #[doc="Peripheral Multiplexer Enable"]
-    #[inline] pub fn pmuxen(&self) -> bits::U1 {
+    #[inline] pub fn pmuxen(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1) as u8) } // [16]
     }
 
@@ -1451,8 +1474,8 @@ impl Wrconfig {
     }
 
     #[doc="Sets the PMUXEN field."]
-    #[inline] pub fn set_pmuxen<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_pmuxen<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 16);
         self.0 |= value << 16;
@@ -1460,7 +1483,7 @@ impl Wrconfig {
     }
 
     #[doc="Input Enable"]
-    #[inline] pub fn inen(&self) -> bits::U1 {
+    #[inline] pub fn inen(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 17) & 0x1) as u8) } // [17]
     }
 
@@ -1470,8 +1493,8 @@ impl Wrconfig {
     }
 
     #[doc="Sets the INEN field."]
-    #[inline] pub fn set_inen<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_inen<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 17);
         self.0 |= value << 17;
@@ -1479,7 +1502,7 @@ impl Wrconfig {
     }
 
     #[doc="Pull Enable"]
-    #[inline] pub fn pullen(&self) -> bits::U1 {
+    #[inline] pub fn pullen(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 18) & 0x1) as u8) } // [18]
     }
 
@@ -1489,8 +1512,8 @@ impl Wrconfig {
     }
 
     #[doc="Sets the PULLEN field."]
-    #[inline] pub fn set_pullen<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_pullen<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 18);
         self.0 |= value << 18;
@@ -1498,7 +1521,7 @@ impl Wrconfig {
     }
 
     #[doc="Output Driver Strength Selection"]
-    #[inline] pub fn drvstr(&self) -> bits::U1 {
+    #[inline] pub fn drvstr(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 22) & 0x1) as u8) } // [22]
     }
 
@@ -1508,8 +1531,8 @@ impl Wrconfig {
     }
 
     #[doc="Sets the DRVSTR field."]
-    #[inline] pub fn set_drvstr<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_drvstr<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 22);
         self.0 |= value << 22;
@@ -1517,7 +1540,7 @@ impl Wrconfig {
     }
 
     #[doc="Peripheral Multiplexing"]
-    #[inline] pub fn pmux(&self) -> bits::U4 {
+    #[inline] pub fn pmux(&self) -> ::bobbin_bits::U4 {
         unsafe { ::core::mem::transmute(((self.0 >> 24) & 0xf) as u8) } // [27:24]
     }
 
@@ -1527,8 +1550,8 @@ impl Wrconfig {
     }
 
     #[doc="Sets the PMUX field."]
-    #[inline] pub fn set_pmux<V: Into<bits::U4>>(mut self, value: V) -> Self {
-        let value: bits::U4 = value.into();
+    #[inline] pub fn set_pmux<V: Into<::bobbin_bits::U4>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U4 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0xf << 24);
         self.0 |= value << 24;
@@ -1536,7 +1559,7 @@ impl Wrconfig {
     }
 
     #[doc="Write PMUX"]
-    #[inline] pub fn wrpmux(&self) -> bits::U1 {
+    #[inline] pub fn wrpmux(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 28) & 0x1) as u8) } // [28]
     }
 
@@ -1546,8 +1569,8 @@ impl Wrconfig {
     }
 
     #[doc="Sets the WRPMUX field."]
-    #[inline] pub fn set_wrpmux<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_wrpmux<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 28);
         self.0 |= value << 28;
@@ -1555,7 +1578,7 @@ impl Wrconfig {
     }
 
     #[doc="Write PINCFG"]
-    #[inline] pub fn wrpincfg(&self) -> bits::U1 {
+    #[inline] pub fn wrpincfg(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 30) & 0x1) as u8) } // [30]
     }
 
@@ -1565,8 +1588,8 @@ impl Wrconfig {
     }
 
     #[doc="Sets the WRPINCFG field."]
-    #[inline] pub fn set_wrpincfg<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_wrpincfg<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 30);
         self.0 |= value << 30;
@@ -1574,7 +1597,7 @@ impl Wrconfig {
     }
 
     #[doc="Half-Word Select"]
-    #[inline] pub fn hwsel(&self) -> bits::U1 {
+    #[inline] pub fn hwsel(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 31) & 0x1) as u8) } // [31]
     }
 
@@ -1584,8 +1607,8 @@ impl Wrconfig {
     }
 
     #[doc="Sets the HWSEL field."]
-    #[inline] pub fn set_hwsel<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_hwsel<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 31);
         self.0 |= value << 31;
