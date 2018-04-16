@@ -28,6 +28,32 @@ pub trait Register {
     }
 }
 
+pub trait RegisterArray {
+    type Value: Copy + Default;
+    type Index: Copy;
+    const ADDR: *mut Self::Value;
+    const DIM: Self::Index;
+    const INCR: isize;
+
+    fn ptr(&self) -> *mut Self::Value { Self::ADDR }
+
+    fn read(&self) -> Self::Value { unsafe { rw::read(Self::ADDR) } }
+
+    fn write(&self, value: Self::Value) { unsafe { rw::write(Self::ADDR, value) } }
+
+    fn with<F: FnOnce(Self::Value) -> Self::Value>(&self, f: F) {
+        self.write(f(self.read()))
+    }
+
+    fn set<F: FnOnce(Self::Value) -> Self::Value>(&self, f: F) {
+        self.write(f(Self::Value::default()))
+    }
+
+    fn clear(&self) {
+        self.write(Self::Value::default())
+    }
+}
+
 #[macro_export]
 macro_rules! register {
     ($rid:ident, $rty:ident, $rval:ty, $raddr:expr) => {
