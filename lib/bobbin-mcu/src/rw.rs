@@ -22,41 +22,41 @@ pub unsafe fn write_volatile<T>(addr: *mut T, value: T) {
 
 
 #[inline]
-pub fn read<T>(addr: usize) -> T {
+pub fn read<T>(addr: *const T) -> T {
     unsafe { read_volatile(addr as *const T) }
 }
 
 #[inline]
-pub fn read_u32(addr: usize) -> u32 {
+pub fn read_u32(addr: *const u32) -> u32 {
     read(addr)
 }
 
 #[inline]
-pub fn read_u16(addr: usize) -> u16 {
+pub fn read_u16(addr: *const u16) -> u16 {
     read(addr)
 }
 
 #[inline]
-pub fn read_u8(addr: usize) -> u8 {
+pub fn read_u8(addr: *const u8) -> u8 {
     read(addr)
 }
 
 #[inline]
-pub fn write<T>(addr: usize, value: T) {
+pub fn write<T>(addr: *mut T, value: T) {
     unsafe { write_volatile(addr as *mut T, value) }
 }
 
 #[inline]
-pub fn write_u32(addr: usize, value: u32) {
+pub fn write_u32(addr: *mut u32, value: u32) {
     write(addr, value)
 }
 
 #[inline]
-pub fn write_u16(addr: usize, value: u16) {
+pub fn write_u16(addr: *mut u16, value: u16) {
     write(addr, value)
 }
 
 #[inline]
-pub fn write_u8(addr: usize, value: u8) {
+pub fn write_u8(addr: *mut u8, value: u8) {
     write(addr, value)
 }    

@@ -1,4 +1,5 @@
 #![no_std]
+#![feature(const_fn)]
 
 #[cfg(not(target_os="none"))]
 #[macro_use]
@@ -10,6 +11,7 @@ pub extern crate bobbin_tree as tree;
 
 pub mod mcu;
 pub mod clock;
+pub mod register;
 pub mod periph;
 pub mod pin;
 pub mod channel;
