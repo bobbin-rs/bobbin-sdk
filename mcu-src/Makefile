@@ -21,10 +21,10 @@ bobbin-ambiq: apollo2
 bobbin-silabs: efm32pg12
 
 bobbin-cortexm:
-	$(CHIP) --crate --cargo-template template $@/lib.rx ../mcu/$@/
+	$(CHIP) --crate --cargo-template bobbin-cortexm/template $@/lib.rx ../mcu/$@/
 	
 kinetis-common:
-	$(CHIP) $(CHIP_ARGS) bobbin-kinetis/$@/mod.rx ../mcu/bobbin-kinetis/$@/src/periph/mod.rs
+	$(CHIP) --crate --cargo-template bobbin-kinetis/kinetis-common/template bobbin-kinetis/$@/lib.rx ../mcu/bobbin-kinetis/$@/
 
 k20:
 	$(CHIP) $(KINETIS_ARGS) bobbin-kinetis/$@/lib.rx ../mcu/bobbin-kinetis/$@/
@@ -39,13 +39,13 @@ s32:
 	$(CHIP) $(KINETIS_ARGS) bobbin-kinetis/$@/lib.rx ../mcu/bobbin-kinetis/$@/
 
 sam-common:
-	$(CHIP) $(CHIP_ARGS) bobbin-sam/$@/mod.rx ../mcu/bobbin-sam/$@/src/periph/mod.rs
+	$(CHIP) --crate --cargo-template bobbin-sam/sam-common/template bobbin-sam/$@/lib.rx ../mcu/bobbin-sam/$@/
 
 samd21:
 	$(CHIP) $(SAM_ARGS) bobbin-sam/$@/lib.rx ../mcu/bobbin-sam/$@/
 
 stm32-common:
-	$(CHIP) $(CHIP_ARGS) bobbin-stm32/$@/mod.rx ../mcu/bobbin-stm32/$@/src/periph/mod.rs
+	$(CHIP) --crate --cargo-template bobbin-stm32/stm32-common/template bobbin-stm32/$@/lib.rx ../mcu/bobbin-stm32/$@/
 
 stm32f10x:
 	$(CHIP) $(STM32_ARGS) bobbin-stm32/$@/lib.rx ../mcu/bobbin-stm32/$@/

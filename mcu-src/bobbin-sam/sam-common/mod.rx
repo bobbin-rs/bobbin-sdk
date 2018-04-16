@@ -1,5 +1,0 @@
-(device
-    (crate
-        (name bobbin_cortexm)
-    )    
-)

@@ -1,8 +1,12 @@
 [package]
 name = "sam-common"
 version = "0.1.0"
-authors = ["Jonathan Soo <jcsoo@agora.com>"]
 
 [dependencies]
-bobbin-common = { path = "../../../lib/bobbin-common" }
-bobbin-cortexm = { path = "../../bobbin-cortexm" }
+bobbin-bits = "0.1.1"
+bobbin-mcu = { path = "../../../lib/bobbin-mcu" }
+bobbin-hal = { path = "../../../lib/bobbin-hal" }
+
+[features]
+default = []
+
