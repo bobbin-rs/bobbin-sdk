@@ -752,8 +752,8 @@ pub fn gen_peripheral_group_impl<W: Write>(cfg: &Config, out: &mut W, pg: &Perip
     let ch_type = format!("{}Ch", to_camel(&pg_name));
 
 
-    try!(writeln!(out, "#[allow(unused_imports)] use {}::*;", cfg.common));
-    try!(writeln!(out, ""));
+    // try!(writeln!(out, "#[allow(unused_imports)] use {}::*;", cfg.common));
+    // try!(writeln!(out, ""));
 
     // Generate Periphal Group Impl
 
@@ -810,8 +810,8 @@ pub fn gen_peripheral<W: Write>(cfg: &Config, out: &mut W, d: &Device, p: &Perip
     let pg_type = format!("{}Periph", to_camel(&p.group_name.as_ref().unwrap()));
 
     
-    try!(writeln!(out, "#[allow(unused_imports)] use {}::*;", cfg.common));
-    try!(writeln!(out, ""));
+    // try!(writeln!(out, "#[allow(unused_imports)] use {}::*;", cfg.common));
+    // try!(writeln!(out, ""));
 
     if p.modules.len() > 0 {
         for m in p.modules.iter() {
@@ -920,8 +920,8 @@ pub fn gen_peripheral_impl<W: Write>(cfg: &Config, out: &mut W, p: &Peripheral) 
     //     }
     // }
 
-    try!(writeln!(out, "#[allow(unused_imports)] use {}::*;", cfg.common));
-    try!(writeln!(out, ""));
+    // try!(writeln!(out, "#[allow(unused_imports)] use {}::*;", cfg.common));
+    // try!(writeln!(out, ""));
 
     if let Some(ref desc) = p.description {
         try!(gen_doc(out, 0, desc));
@@ -1154,16 +1154,16 @@ pub fn gen_register_methods<W: Write>(out: &mut W, p_type: &str, regs: &[Registe
             //     _ => format!("(index * {})", r_incr),
             // };  
             let i_type = match dim {
-                1...32 => format!("bits::R{}", dim),
-                64 => format!("bits::U6"),
-                128 => format!("bits::U7"),
-                256 => format!("bits::U8"),
+                1...32 => format!("::bobbin_bits::R{}", dim),
+                64 => format!("::bobbin_bits::U6"),
+                128 => format!("::bobbin_bits::U7"),
+                256 => format!("::bobbin_bits::U8"),
                 _ => panic!("Unsupported dim value for {}: {}", r.name, dim),
             };
 
             try!(gen_doc(out, 4, &format!("Get the {} Register.", r.name.to_uppercase())));
-            try!(writeln!(out, "    #[inline] pub fn {}(&self) -> RegisterArray<{}, {}> {{ ", r_reg, r_type, i_type));
-            try!(writeln!(out, "        RegisterArray::new(self.0 as *mut {}, 0x{:x}, 0x{:x})", r_type, r_offset, r_incr));
+            try!(writeln!(out, "    #[inline] pub fn {}(&self) -> ::bobbin_mcu::register::RegisterArray<{}, {}> {{ ", r_reg, r_type, i_type));
+            try!(writeln!(out, "        ::bobbin_mcu::register::RegisterArray::new(self.0 as *mut {}, 0x{:x}, 0x{:x})", r_type, r_offset, r_incr));
             try!(writeln!(out, "    }}"));
             try!(writeln!(out, ""));
 
@@ -1211,8 +1211,8 @@ pub fn gen_register_methods<W: Write>(out: &mut W, p_type: &str, regs: &[Registe
             }            
         } else {
             try!(gen_doc(out, 4, &format!("Get the {} Register.", r.name.to_uppercase())));
-            try!(writeln!(out, "    #[inline] pub fn {}(&self) -> Register<{}> {{ ", r_reg, r_type));
-            try!(writeln!(out, "        Register::new(self.0 as *mut {}, 0x{:x})",  r_type, r_offset));
+            try!(writeln!(out, "    #[inline] pub fn {}(&self) -> ::bobbin_mcu::register::Register<{}> {{ ", r_reg, r_type));
+            try!(writeln!(out, "        ::bobbin_mcu::register::Register::new(self.0 as *mut {}, 0x{:x})",  r_type, r_offset));
             try!(writeln!(out, "    }}"));
             try!(writeln!(out, ""));
             
@@ -1357,7 +1357,7 @@ pub fn gen_field<W: Write>(out: &mut W, f: &Field, size: &str, _access: Option<A
     } else {
         format!("[{}]", f_lo)
     };    
-    let field_type = format!("bits::U{}", f_width);
+    let field_type = format!("::bobbin_bits::U{}", f_width);
 
     let min_size = if f_width <= 8 {
         "u8"
@@ -1371,7 +1371,7 @@ pub fn gen_field<W: Write>(out: &mut W, f: &Field, size: &str, _access: Option<A
         let f_incr = f.dim_increment.unwrap();
         let f_getter = field_getter(&f.name.replace("%s","x"));
         let f_setter = field_setter(&f.name.replace("%s","x"));
-        let i_type = format!("bits::R{}", dim);
+        let i_type = format!("::bobbin_bits::R{}", dim);
 
         if let Some(ref desc) = f.description {
             try!(gen_doc(out, 4, desc));
@@ -1623,9 +1623,9 @@ pub fn gen_peripheral_clock_gates<W: Write>(_cfg: &Config, out: &mut W, d: &Devi
             writeln!(out, "// {:?}", gate)?;
             writeln!(out, "impl {} for {} {{", g_type, p_type)?;
             writeln!(out, "    #[inline]",)?;
-            writeln!(out, "    fn {}(&self) -> bits::U1 {{ {}::{}.{}().{}() }}", g_name, pg_name, p_name, r_name, f_name)?;
+            writeln!(out, "    fn {}(&self) -> ::bobbin_bits::U1 {{ {}::{}.{}().{}() }}", g_name, pg_name, p_name, r_name, f_name)?;
             writeln!(out, "    #[inline]",)?;
-            writeln!(out, "    fn set_{}<V: Into<bits::U1>>(&self, value: V) -> &Self {{", g_name)?;
+            writeln!(out, "    fn set_{}<V: Into<::bobbin_bits::U1>>(&self, value: V) -> &Self {{", g_name)?;
             writeln!(out, "        {}::{}.with_{}(|r| r.set_{}(value));",  pg_name, p_name, r_name, f_name)?;
             writeln!(out, "        self")?;            
             writeln!(out, "    }}")?;            
