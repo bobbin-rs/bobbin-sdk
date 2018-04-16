@@ -27,5 +27,4 @@ pub mod pin;
 pub mod irq;
 
 pub mod clock;
-pub use clock::*;
 
