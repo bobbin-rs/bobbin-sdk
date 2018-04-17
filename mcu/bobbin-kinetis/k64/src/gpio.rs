@@ -1,10 +1,10 @@
 pub use kinetis_common::gpio::*;
 
-::bobbin_mcu::periph!( GPIOA, Gpioa, GPIOA_PERIPH, GpioPeriph, GPIOA_OWNED, GPIOA_REF_COUNT, 0x400ff000, 0x00, 0x1f);
-::bobbin_mcu::periph!( GPIOB, Gpiob, GPIOB_PERIPH, GpioPeriph, GPIOB_OWNED, GPIOB_REF_COUNT, 0x400ff040, 0x01, 0x20);
-::bobbin_mcu::periph!( GPIOC, Gpioc, GPIOC_PERIPH, GpioPeriph, GPIOC_OWNED, GPIOC_REF_COUNT, 0x400ff080, 0x02, 0x21);
-::bobbin_mcu::periph!( GPIOD, Gpiod, GPIOD_PERIPH, GpioPeriph, GPIOD_OWNED, GPIOD_REF_COUNT, 0x400ff0c0, 0x03, 0x22);
-::bobbin_mcu::periph!( GPIOE, Gpioe, GPIOE_PERIPH, GpioPeriph, GPIOE_OWNED, GPIOE_REF_COUNT, 0x400ff100, 0x04, 0x23);
+::bobbin_mcu::periph!( GPIOA, Gpioa, GPIOA_PERIPH, GpioPeriph, GPIOA_OWNED, GPIOA_REF_COUNT, 0x400ff000, 0x00, 0x1e);
+::bobbin_mcu::periph!( GPIOB, Gpiob, GPIOB_PERIPH, GpioPeriph, GPIOB_OWNED, GPIOB_REF_COUNT, 0x400ff040, 0x01, 0x1f);
+::bobbin_mcu::periph!( GPIOC, Gpioc, GPIOC_PERIPH, GpioPeriph, GPIOC_OWNED, GPIOC_REF_COUNT, 0x400ff080, 0x02, 0x20);
+::bobbin_mcu::periph!( GPIOD, Gpiod, GPIOD_PERIPH, GpioPeriph, GPIOD_OWNED, GPIOD_REF_COUNT, 0x400ff0c0, 0x03, 0x21);
+::bobbin_mcu::periph!( GPIOE, Gpioe, GPIOE_PERIPH, GpioPeriph, GPIOE_OWNED, GPIOE_REF_COUNT, 0x400ff100, 0x04, 0x22);
 
 ::bobbin_mcu::channel!(PA0, Pa0, pa0, GPIOA, Gpioa, PA0_CH, GpioCh, GPIOA_PERIPH, PA0_OWNED, PA0_REF_COUNT, 0);
 ::bobbin_mcu::channel!(PA1, Pa1, pa1, GPIOA, Gpioa, PA1_CH, GpioCh, GPIOA_PERIPH, PA1_OWNED, PA1_REF_COUNT, 1);

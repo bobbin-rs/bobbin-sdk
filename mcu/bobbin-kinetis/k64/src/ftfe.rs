@@ -1,4 +1,4 @@
-::bobbin_mcu::periph!( FTFE, Ftfe, FTFE_PERIPH, FtfePeriph, FTFE_OWNED, FTFE_REF_COUNT, 0x40020000, 0x00, 0x08);
+::bobbin_mcu::periph!( FTFE, Ftfe, FTFE_PERIPH, FtfePeriph, FTFE_OWNED, FTFE_REF_COUNT, 0x40020000, 0x00, 0x07);
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="FTFE Peripheral"]

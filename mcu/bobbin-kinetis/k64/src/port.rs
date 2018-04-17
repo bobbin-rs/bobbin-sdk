@@ -1,10 +1,10 @@
 pub use kinetis_common::port::*;
 
-::bobbin_mcu::periph!( PORTA, Porta, PORTA_PERIPH, PortPeriph, PORTA_OWNED, PORTA_REF_COUNT, 0x40049000, 0x00, 0x24);
-::bobbin_mcu::periph!( PORTB, Portb, PORTB_PERIPH, PortPeriph, PORTB_OWNED, PORTB_REF_COUNT, 0x4004a000, 0x01, 0x25);
-::bobbin_mcu::periph!( PORTC, Portc, PORTC_PERIPH, PortPeriph, PORTC_OWNED, PORTC_REF_COUNT, 0x4004b000, 0x02, 0x26);
-::bobbin_mcu::periph!( PORTD, Portd, PORTD_PERIPH, PortPeriph, PORTD_OWNED, PORTD_REF_COUNT, 0x4004c000, 0x03, 0x27);
-::bobbin_mcu::periph!( PORTE, Porte, PORTE_PERIPH, PortPeriph, PORTE_OWNED, PORTE_REF_COUNT, 0x4004d000, 0x04, 0x28);
+::bobbin_mcu::periph!( PORTA, Porta, PORTA_PERIPH, PortPeriph, PORTA_OWNED, PORTA_REF_COUNT, 0x40049000, 0x00, 0x23);
+::bobbin_mcu::periph!( PORTB, Portb, PORTB_PERIPH, PortPeriph, PORTB_OWNED, PORTB_REF_COUNT, 0x4004a000, 0x01, 0x24);
+::bobbin_mcu::periph!( PORTC, Portc, PORTC_PERIPH, PortPeriph, PORTC_OWNED, PORTC_REF_COUNT, 0x4004b000, 0x02, 0x25);
+::bobbin_mcu::periph!( PORTD, Portd, PORTD_PERIPH, PortPeriph, PORTD_OWNED, PORTD_REF_COUNT, 0x4004c000, 0x03, 0x26);
+::bobbin_mcu::periph!( PORTE, Porte, PORTE_PERIPH, PortPeriph, PORTE_OWNED, PORTE_REF_COUNT, 0x4004d000, 0x04, 0x27);
 
 pub trait LinkGpio<T> {
     fn gpio(&self) -> T;
@@ -84,6 +84,4 @@ impl ::bobbin_mcu::gate::GateEn for Porte {
         self
     }
 }
-
-pub struct PortPin { pub port: PortPeriph, pub index: usize }
 

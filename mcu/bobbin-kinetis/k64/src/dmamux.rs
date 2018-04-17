@@ -1,6 +1,6 @@
 pub use kinetis_common::dmamux::*;
 
-::bobbin_mcu::periph!( DMAMUX, Dmamux, DMAMUX_PERIPH, DmamuxPeriph, DMAMUX_OWNED, DMAMUX_REF_COUNT, 0x40021000, 0x00, 0x09);
+::bobbin_mcu::periph!( DMAMUX, Dmamux, DMAMUX_PERIPH, DmamuxPeriph, DMAMUX_OWNED, DMAMUX_REF_COUNT, 0x40021000, 0x00, 0x08);
 
 // Gate { name: None, gate_type: Some("EN"), periph: Some("SIM"), register: Some("SCGC6"), field: Some("DMAMUX"), description: None }
 impl ::bobbin_mcu::gate::GateEn for Dmamux {

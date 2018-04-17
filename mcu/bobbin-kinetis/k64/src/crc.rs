@@ -1,6 +1,6 @@
 pub use kinetis_common::crc::*;
 
-::bobbin_mcu::periph!( CRC, Crc, CRC_PERIPH, CrcPeriph, CRC_OWNED, CRC_REF_COUNT, 0x40032000, 0x00, 0x06);
+::bobbin_mcu::periph!( CRC, Crc, CRC_PERIPH, CrcPeriph, CRC_OWNED, CRC_REF_COUNT, 0x40032000, 0x00, 0x05);
 
 // Gate { name: None, gate_type: Some("EN"), periph: Some("SIM"), register: Some("SCGC6"), field: Some("CRC"), description: None }
 impl ::bobbin_mcu::gate::GateEn for Crc {

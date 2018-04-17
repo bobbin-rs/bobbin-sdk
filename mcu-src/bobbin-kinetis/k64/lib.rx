@@ -8,17 +8,19 @@
         (variant (name K64FN1M0) (link "k64fn1m0.ld"))
         (variant (name K64FX512) (link "k64fx512.ld"))
     )
-
     (crate
-        ;(module (name nvic))
-        ;(module (name scb))
-        ;(module (name systick))
-        ;(module (name mpu))
-        ;(module (name fpu))
-        ;(module (name dcb))
-        ;(module (name itm))        
+        (name "kinetis-common")
+        (module (name bobbin_bits))
+        (module (name bobbin_mcu))
+        (module (name bobbin_hal))
+        (module (name nvic))
+        (module (name scb))
+        (module (name systick))
+        (module (name mpu))
+        (module (name fpu))
+        (module (name dcb))
+        (module (name itm))
     )    
-
 
     (clocks
         (input (name EXTAL) (min 3000000) (max 32000000))
@@ -41,7 +43,7 @@
 
     (peripheral (include "periph/sim.rx"))
     (peripheral (include "periph/mcg.rx"))
-    (peripheral (include "periph/mpu.rx"))
+    ;(peripheral (include "periph/mpu.rx"))
     (peripheral (include "periph/osc.rx"))
     (peripheral (include "periph/rcm.rx"))
     (peripheral (include "periph/enet.rx"))

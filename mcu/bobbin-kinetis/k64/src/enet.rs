@@ -1,5 +1,5 @@
 
-::bobbin_mcu::periph!( ENET, Enet, ENET_PERIPH, EnetPeriph, ENET_OWNED, ENET_REF_COUNT, 0x400c0000, 0x00, 0x05);
+::bobbin_mcu::periph!( ENET, Enet, ENET_PERIPH, EnetPeriph, ENET_OWNED, ENET_REF_COUNT, 0x400c0000, 0x00, 0x04);
 
 
 // Gate { name: None, gate_type: Some("EN"), periph: Some("SIM"), register: Some("SCGC2"), field: Some("ENET"), description: None }

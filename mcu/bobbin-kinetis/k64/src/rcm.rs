@@ -1,5 +1,5 @@
 
-::bobbin_mcu::periph!( RCM, Rcm, RCM_PERIPH, RcmPeriph, RCM_OWNED, RCM_REF_COUNT, 0x4007f000, 0x00, 0x04);
+::bobbin_mcu::periph!( RCM, Rcm, RCM_PERIPH, RcmPeriph, RCM_OWNED, RCM_REF_COUNT, 0x4007f000, 0x00, 0x03);
 
 
 #[doc="Reset Control Module"]

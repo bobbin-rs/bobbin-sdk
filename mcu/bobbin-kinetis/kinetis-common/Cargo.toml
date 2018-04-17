@@ -3,9 +3,7 @@ name = "kinetis-common"
 version = "0.1.0"
 
 [dependencies]
-bobbin-bits = "0.1.1"
-bobbin-mcu = { path = "../../../lib/bobbin-mcu" }
-bobbin-hal = { path = "../../../lib/bobbin-hal" }
+bobbin-cortexm = { path = "../../bobbin-cortexm" }
 
 [features]
 default = []

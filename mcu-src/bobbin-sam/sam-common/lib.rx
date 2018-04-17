@@ -1,3 +1,12 @@
 (device
     (name sam-common)
+    (crate
+        (name "bobbin-cortexm")
+        (module (name bobbin_bits))
+        (module (name bobbin_mcu))
+        (module (name bobbin_hal))
+        (module (name nvic))
+        (module (name scb))
+        (module (name systick))
+    )        
 )

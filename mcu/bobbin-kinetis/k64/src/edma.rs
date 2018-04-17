@@ -1,6 +1,6 @@
 pub use kinetis_common::edma::*;
 
-::bobbin_mcu::periph!( DMA, Dma, DMA_PERIPH, EdmaPeriph, DMA_OWNED, DMA_REF_COUNT, 0x40008000, 0x00, 0x0a);
+::bobbin_mcu::periph!( DMA, Dma, DMA_PERIPH, EdmaPeriph, DMA_OWNED, DMA_REF_COUNT, 0x40008000, 0x00, 0x09);
 
 ::bobbin_mcu::channel!(DMA0, Dma0, dma0, DMA, Dma, DMA0_CH, EdmaCh, DMA_PERIPH, DMA0_OWNED, DMA0_REF_COUNT, 0);
 ::bobbin_mcu::channel!(DMA1, Dma1, dma1, DMA, Dma, DMA1_CH, EdmaCh, DMA_PERIPH, DMA1_OWNED, DMA1_REF_COUNT, 1);

@@ -1,16 +1,20 @@
 #![no_std]
 #![feature(asm, naked_functions, linkage, core_intrinsics, global_asm, used, use_extern_macros)]
-
-extern crate bobbin_bits;
-extern crate bobbin_mcu;
-extern crate bobbin_hal;
-extern crate kinetis_common;
-
+pub extern crate kinetis_common;
+pub use kinetis_common::bobbin_bits;
+pub use kinetis_common::bobbin_mcu;
+pub use kinetis_common::bobbin_hal;
+pub use kinetis_common::nvic;
+pub use kinetis_common::scb;
+pub use kinetis_common::systick;
+pub use kinetis_common::mpu;
+pub use kinetis_common::fpu;
+pub use kinetis_common::dcb;
+pub use kinetis_common::itm;
 
 pub mod ext;
 pub mod sim;
 pub mod mcg;
-pub mod mpu;
 pub mod osc;
 pub mod rcm;
 pub mod enet;

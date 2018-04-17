@@ -7,7 +7,10 @@
         (variant (name SAMD21x18) (link "samd21x18.ld"))
     )
     (crate
-        (name "bobbin-cortexm")
+        (name "sam-common")
+        (module (name bobbin_bits))
+        (module (name bobbin_mcu))
+        (module (name bobbin_hal))
         (module (name nvic))
         (module (name scb))
         (module (name systick))

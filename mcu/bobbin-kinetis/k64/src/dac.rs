@@ -1,5 +1,5 @@
-::bobbin_mcu::periph!( DAC0, Dac0, DAC0_PERIPH, DacPeriph, DAC0_OWNED, DAC0_REF_COUNT, 0x400cc000, 0x00, 0x1d);
-::bobbin_mcu::periph!( DAC1, Dac1, DAC1_PERIPH, DacPeriph, DAC1_OWNED, DAC1_REF_COUNT, 0x400cd000, 0x01, 0x1e);
+::bobbin_mcu::periph!( DAC0, Dac0, DAC0_PERIPH, DacPeriph, DAC0_OWNED, DAC0_REF_COUNT, 0x400cc000, 0x00, 0x1c);
+::bobbin_mcu::periph!( DAC1, Dac1, DAC1_PERIPH, DacPeriph, DAC1_OWNED, DAC1_REF_COUNT, 0x400cd000, 0x01, 0x1d);
 
 // Gate { name: None, gate_type: Some("EN"), periph: Some("SIM"), register: Some("SCGC2"), field: Some("DAC0"), description: None }
 impl ::bobbin_mcu::gate::GateEn for Dac0 {
