@@ -5,7 +5,6 @@ extern crate bobbin_bits;
 extern crate bobbin_mcu;
 extern crate bobbin_hal;
 extern crate sam_common;
-pub use sam_common::*;
 
 
 pub mod ext;
@@ -25,6 +24,14 @@ pub mod sercom;
 pub mod sig;
 pub mod pin;
 pub mod irq;
-
 pub mod clock;
+
+
+#[derive(Debug, Default)]
+pub struct Samd21 {}
+
+impl ::bobbin_mcu::mcu::Mcu for Samd21 {
+    fn id(&self) -> &'static str { "SAMD21" }
+}
+
 

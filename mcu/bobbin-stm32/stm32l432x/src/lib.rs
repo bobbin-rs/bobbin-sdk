@@ -34,6 +34,14 @@ pub mod adc;
 pub mod sig;
 pub mod pin;
 pub mod irq;
-
 pub mod clock;
+
+
+#[derive(Debug, Default)]
+pub struct Stm32l432x {}
+
+impl ::bobbin_mcu::mcu::Mcu for Stm32l432x {
+    fn id(&self) -> &'static str { "STM32L432x" }
+}
+
 

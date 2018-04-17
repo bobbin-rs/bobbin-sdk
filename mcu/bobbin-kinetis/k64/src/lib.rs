@@ -34,6 +34,14 @@ pub mod adc;
 pub mod sig;
 pub mod pin;
 pub mod irq;
-
 pub mod clock;
+
+
+#[derive(Debug, Default)]
+pub struct K64 {}
+
+impl ::bobbin_mcu::mcu::Mcu for K64 {
+    fn id(&self) -> &'static str { "K64" }
+}
+
 
