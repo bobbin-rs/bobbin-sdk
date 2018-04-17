@@ -67,12 +67,13 @@ pub fn gen_mod<W: Write>(cfg: &Config, out: &mut W, d: &Device, path: &Path) -> 
 
     for c in d.crates.iter() {
         // NOTE: crates now need to be imported from crate root
-        try!(writeln!(out, "extern crate {};", c.name));
+        let c_name = c.name.replace("-","_");
+        try!(writeln!(out, "extern crate {};", c_name));
         for m in c.modules.iter() {
             if let Some(ref use_as) = m._as {
-                try!(writeln!(out, "pub use {}::{} as {};", c.name, m.name, use_as));
+                try!(writeln!(out, "pub use {}::{} as {};", c_name, m.name, use_as));
             } else {
-                try!(writeln!(out, "pub use {}::{};", c.name, m.name));
+                try!(writeln!(out, "pub use {}::{};", c_name, m.name));
             }
         }
         try!(writeln!(out, ""));

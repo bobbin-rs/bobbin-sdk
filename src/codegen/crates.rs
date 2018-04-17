@@ -96,17 +96,18 @@ pub fn gen_crate<W: Write>(cfg: Config, _out: &mut W, d: &Device) -> Result<()> 
 
         let mut wrote_crate = false;
         for c in d.crates.iter() {
-            if c.name != "" {
+            let c_name = c.name.replace("-","_");
+            if c_name != "" {
                 if let Some(ref use_as) = c._as {
-                    try!(writeln!(out, "pub extern crate {} as {};", c.name, use_as));
+                    try!(writeln!(out, "pub extern crate {} as {};", c_name, use_as));
                 } else {
-                    try!(writeln!(out, "pub extern crate {};", c.name));
+                    try!(writeln!(out, "pub extern crate {};", c_name));
                 }                            
             }
             let c_name = if let Some(ref use_as) = c._as {
                 use_as
             } else {
-                &c.name
+                &c_name
             };
             for m in c.modules.iter() {
                 let m_name = if c_name != "" { format!("{}::{}", c_name, m.name) } else { format!("{}", m.name) };

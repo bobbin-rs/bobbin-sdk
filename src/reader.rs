@@ -294,7 +294,7 @@ fn read_crate(ctx: &Context, s: &[Sexp]) -> Result<Crate, ReadError> {
     for s in s.iter() {
         match s {
             &Sexp::List(ref arr, _, _) => match arr[0].symbol() {
-                Some("name") => c.name = String::from(try!(expect_symbol(ctx, &arr[1]))),
+                Some("name") => c.name = String::from(try!(expect_string_or_symbol(ctx, &arr[1]))),
                 Some("as") => c._as = Some(String::from(try!(expect_string_or_symbol(ctx, &arr[1])))),                
                 Some("module") => c.modules.push(try!(read_module(ctx, &arr[1..]))),
                 Some("version") => c.version = Some(String::from(try!(expect_string(ctx, &arr[1])))),                
