@@ -1,4 +1,4 @@
-use periph::nvic::NvicPeriph;
+use nvic::NvicPeriph;
 
 impl NvicPeriph {
     /// Returns `true` if IRQ `irq` is enabled.

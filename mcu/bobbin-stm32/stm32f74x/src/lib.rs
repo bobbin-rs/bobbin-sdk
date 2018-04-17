@@ -14,6 +14,7 @@ pub use bobbin_cortexm::mpu;
 pub use bobbin_cortexm::fpu;
 pub use bobbin_cortexm::dcb;
 pub use bobbin_cortexm::itm;
+pub use bobbin_cortexm::ext::dispatch;
 
 pub mod ext;
 pub mod rcc;

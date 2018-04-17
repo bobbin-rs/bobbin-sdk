@@ -1,6 +1,6 @@
 // pub mod dma;
 // pub mod dma_f3;
-// pub mod gpio;
+pub mod gpio;
 // pub mod lpuart;
 // pub mod usart;
 // pub mod usart_f24;

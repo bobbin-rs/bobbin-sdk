@@ -65,6 +65,7 @@
         (module (name fpu))
         (module (name dcb))
         (module (name itm))
+        (module (name "ext::dispatch"))
     )
     (peripheral (include "periph/rcc.rx"))
     (peripheral (include "periph/flash.rx"))

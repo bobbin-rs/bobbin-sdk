@@ -1,5 +1,5 @@
 
-periph!( SCB, Scb, SCB_PERIPH, ScbPeriph, SCB_OWNED, SCB_REF_COUNT, 0xe000e000, 0x00, 0x01);
+::bobbin_mcu::periph!( SCB, Scb, SCB_PERIPH, ScbPeriph, SCB_OWNED, SCB_REF_COUNT, 0xe000e000, 0x00, 0x01);
 
 
 #[doc="System Control Block"]

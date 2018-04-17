@@ -1,5 +1,5 @@
 
-periph!( DWT, Dwt, DWT_PERIPH, DwtPeriph, DWT_OWNED, DWT_REF_COUNT, 0xe0001000, 0x00, 0x07);
+::bobbin_mcu::periph!( DWT, Dwt, DWT_PERIPH, DwtPeriph, DWT_OWNED, DWT_REF_COUNT, 0xe0001000, 0x00, 0x07);
 
 
 #[doc="Debug Core Block"]

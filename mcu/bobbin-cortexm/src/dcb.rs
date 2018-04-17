@@ -1,5 +1,5 @@
 
-periph!( DCB, Dcb, DCB_PERIPH, DcbPeriph, DCB_OWNED, DCB_REF_COUNT, 0xe000edf0, 0x00, 0x05);
+::bobbin_mcu::periph!( DCB, Dcb, DCB_PERIPH, DcbPeriph, DCB_OWNED, DCB_REF_COUNT, 0xe000edf0, 0x00, 0x05);
 
 
 #[doc="Debug Core Block"]

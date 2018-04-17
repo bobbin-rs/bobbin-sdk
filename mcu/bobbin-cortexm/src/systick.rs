@@ -1,5 +1,5 @@
 
-periph!( SYSTICK, Systick, SYSTICK_PERIPH, SystickPeriph, SYSTICK_OWNED, SYSTICK_REF_COUNT, 0xe000e000, 0x00, 0x02);
+::bobbin_mcu::periph!( SYSTICK, Systick, SYSTICK_PERIPH, SystickPeriph, SYSTICK_OWNED, SYSTICK_REF_COUNT, 0xe000e000, 0x00, 0x02);
 
 
 #[doc="System Timer, SysTick"]

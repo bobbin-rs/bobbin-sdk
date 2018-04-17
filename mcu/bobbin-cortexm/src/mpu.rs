@@ -1,5 +1,5 @@
 
-periph!( MPU, Mpu, MPU_PERIPH, MpuPeriph, MPU_OWNED, MPU_REF_COUNT, 0xe000ed90, 0x00, 0x03);
+::bobbin_mcu::periph!( MPU, Mpu, MPU_PERIPH, MpuPeriph, MPU_OWNED, MPU_REF_COUNT, 0xe000ed90, 0x00, 0x03);
 
 
 #[doc="Memory Protection Unit"]

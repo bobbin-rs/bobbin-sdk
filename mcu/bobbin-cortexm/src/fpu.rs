@@ -1,5 +1,5 @@
 
-periph!( FPU, Fpu, FPU_PERIPH, FpuPeriph, FPU_OWNED, FPU_REF_COUNT, 0xe000e000, 0x00, 0x04);
+::bobbin_mcu::periph!( FPU, Fpu, FPU_PERIPH, FpuPeriph, FPU_OWNED, FPU_REF_COUNT, 0xe000e000, 0x00, 0x04);
 
 
 #[doc="FPU"]

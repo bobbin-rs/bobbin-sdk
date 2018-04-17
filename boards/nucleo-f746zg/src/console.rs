@@ -1,9 +1,10 @@
-pub use bobbin_sys::console::*;
+use bobbin_sys::console::*;
+use bobbin_mcu::AsPeriph;
 
-use mcu::rcc::*;
+use mcu::ext::rcc::DedicatedClock;
 use mcu::usart::*;
 use mcu::pin::*;
-use mcu::AsPeriph;
+
 
 pub const USART: Usart3 = USART3;
 const USART_TX: Pd8 = PD8;

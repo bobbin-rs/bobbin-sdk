@@ -1,5 +1,5 @@
 
-periph!( ITM, Itm, ITM_PERIPH, ItmPeriph, ITM_OWNED, ITM_REF_COUNT, 0xe0000000, 0x00, 0x06);
+::bobbin_mcu::periph!( ITM, Itm, ITM_PERIPH, ItmPeriph, ITM_OWNED, ITM_REF_COUNT, 0xe0000000, 0x00, 0x06);
 
 
 #[doc="ITM"]

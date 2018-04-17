@@ -1,5 +1,5 @@
 
-periph!( NVIC, Nvic, NVIC_PERIPH, NvicPeriph, NVIC_OWNED, NVIC_REF_COUNT, 0xe000e000, 0x00, 0x00);
+::bobbin_mcu::periph!( NVIC, Nvic, NVIC_PERIPH, NvicPeriph, NVIC_OWNED, NVIC_REF_COUNT, 0xe000e000, 0x00, 0x00);
 
 
 #[doc="Nested Vectored Interrupt Controller"]

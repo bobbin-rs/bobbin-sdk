@@ -4,13 +4,15 @@
 #[cfg(target_os="none")]
 pub extern crate cortex_m_rt;
 pub extern crate bobbin_sys;
+pub extern crate bobbin_hal;
+pub extern crate bobbin_mcu;
 pub extern crate stm32f74x as mcu;
 
 pub use bobbin_sys::{system, memory, heap, print, println};
 #[cfg(feature="logger")]
 pub use bobbin_sys::logger;
 
-pub use mcu::bobbin_common as common;
+// pub use mcu::bobbin_common as common;
 
 #[cfg(target_os="none")]
 pub use cortex_m_rt::default_handler;
@@ -59,12 +61,12 @@ default_handler!(Dispatcher::handle_exception);
 #[derive(Debug, Default)]
 pub struct NucleoF746zg {}
 
-impl common::board::Board for NucleoF746zg {
-   type Mcu = mcu::Stm32f74x;
-   fn id(&self) -> &'static str { "nucleo-f746zg" }
-   fn mcu(&self) -> Self::Mcu { Self::Mcu::default() }
-}
+// impl common::board::Board for NucleoF746zg {
+//    type Mcu = mcu::Stm32f74x;
+//    fn id(&self) -> &'static str { "nucleo-f746zg" }
+//    fn mcu(&self) -> Self::Mcu { Self::Mcu::default() }
+// }
 
-pub const fn board() -> NucleoF746zg { NucleoF746zg{} }
+// pub const fn board() -> NucleoF746zg { NucleoF746zg{} }
 
-pub type Board = NucleoF746zg;
+// pub type Board = NucleoF746zg;

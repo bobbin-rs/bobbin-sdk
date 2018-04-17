@@ -1,4 +1,5 @@
-// pub mod rcc;
+pub mod rcc;
+pub mod clock;
 // pub mod flash;
 // pub mod pwr;
 // pub mod syscfg;
@@ -37,4 +38,4 @@
 // pub mod gpio;
 // pub mod usart;
 // pub mod dma;
-// pub mod clock;
+

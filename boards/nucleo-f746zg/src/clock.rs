@@ -1,5 +1,9 @@
-pub use mcu::clock::*;
-pub use mcu::ext::clock::DynamicClock;
+use bobbin_mcu::hz::Hz;
+use bobbin_mcu::clock::Clock;
+
+use mcu::clock::*;
+// use mcu::ext::rcc::DedicatedClock;
+use mcu::ext::clock::DynamicClock;
 // use core::marker::PhantomData;
 
 pub fn init() {

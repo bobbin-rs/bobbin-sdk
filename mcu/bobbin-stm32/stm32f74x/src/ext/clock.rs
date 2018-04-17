@@ -1,8 +1,13 @@
-pub use ::clock::*;
-pub use systick_ext::SystickHz;
+// use ::clock::*;
+use bobbin_cortexm::ext::systick::SystickHz;
+use bobbin_mcu::hz::Hz;
+use bobbin_mcu::clock::{Clock, ClockSource};
+use bobbin_bits::*;
 
-use mcu::rcc::{RCC, DedicatedClock, ClockSource};
-use bobbin_common::bits::*;
+use ext::rcc::DedicatedClock;
+
+use rcc::RCC;
+use clock::ClockProvider;
 
 #[derive(Default)]
 pub struct DynamicClock<OSC: Clock, OSC32: Clock>(OSC, OSC32);
@@ -132,19 +137,19 @@ impl<OSC: Clock, OSC32: Clock> ClockProvider for DynamicClock<OSC, OSC32> {
         }
     }    
 
-    impl_clock_source!(::mcu::usart::USART1, usart1, pclk2);
-    impl_clock_source!(::mcu::usart::USART2, usart2, pclk1);
-    impl_clock_source!(::mcu::usart::USART3, usart3, pclk1);
-    impl_clock_source!(::mcu::usart::UART4, uart4, pclk1);
-    impl_clock_source!(::mcu::usart::UART5, uart5, pclk1);
-    impl_clock_source!(::mcu::usart::USART6, usart6, pclk2);
-    impl_clock_source!(::mcu::usart::UART7, uart7, pclk1);
-    impl_clock_source!(::mcu::usart::UART8, uart8, pclk1);
+    impl_clock_source!(::usart::USART1, usart1, pclk2);
+    impl_clock_source!(::usart::USART2, usart2, pclk1);
+    impl_clock_source!(::usart::USART3, usart3, pclk1);
+    impl_clock_source!(::usart::UART4, uart4, pclk1);
+    impl_clock_source!(::usart::UART5, uart5, pclk1);
+    impl_clock_source!(::usart::USART6, usart6, pclk2);
+    impl_clock_source!(::usart::UART7, uart7, pclk1);
+    impl_clock_source!(::usart::UART8, uart8, pclk1);
 
-    impl_clock_source!(::mcu::i2c::I2C1, i2c1, pclk1);
-    impl_clock_source!(::mcu::i2c::I2C2, i2c2, pclk1);
-    impl_clock_source!(::mcu::i2c::I2C3, i2c3, pclk1);
-    impl_clock_source!(::mcu::i2c::I2C4, i2c4, pclk1);
+    impl_clock_source!(::i2c::I2C1, i2c1, pclk1);
+    impl_clock_source!(::i2c::I2C2, i2c2, pclk1);
+    impl_clock_source!(::i2c::I2C3, i2c3, pclk1);
+    impl_clock_source!(::i2c::I2C4, i2c4, pclk1);
     
 }
 

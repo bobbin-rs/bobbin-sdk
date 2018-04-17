@@ -1,6 +1,5 @@
-pub use periph::rcc::*;
-pub use bobbin_common::clock::ClockSource;
-pub use bobbin_common::bits::U2;
+use bobbin_bits::U2;
+use bobbin_mcu::clock::ClockSource;
 
 #[repr(u8)]
 pub enum DedicatedClock {
