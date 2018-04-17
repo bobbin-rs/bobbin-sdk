@@ -7,13 +7,15 @@ extern crate examples;
 
 use board::console::USART;
 
-use board::mcu::dispatch::{HandleException, Exception, Guard};
+use board::mcu::ext::dispatch::{HandleException, Exception, Guard};
 use board::System;
-use board::common::sys::ring::*;
+use board::bobbin_sys::ring::*;
 
-use board::common::irq::*;
+use board::bobbin_mcu::irq::*;
 use board::mcu::irq::*;
 use board::mcu::usart::*;
+
+use board::bobbin_hal::serial::*;
 
 // use core::cell::UnsafeCell;
 

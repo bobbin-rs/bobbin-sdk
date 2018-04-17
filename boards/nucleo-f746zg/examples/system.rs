@@ -10,13 +10,15 @@ pub extern "C" fn main() -> ! {
 
     println!("Running System");
     println!("MCU: {:?}", sys.mcu());
-    println!("Memory: {:?}", sys.memory());
+    // println!("Memory: {:?}", sys.memory());
     println!("Heap: {:?}", sys.heap());
     println!("Dispatcher: {:?}", sys.dispatcher());
 
     sys.run(|sys| {
         loop {
-            sys.console().write(b"Tick\n");
+            if let Some(c) = sys.console() {
+                c.write(b"Tick\n");
+            }
             board::delay(500);
         }
     })

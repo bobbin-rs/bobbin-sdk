@@ -34,7 +34,7 @@ impl ConsoleWriter {
 impl hal::blocking::serial::Write<u8> for ConsoleWriter {
     type Error = ();
     fn bwrite_all(&mut self, buf: &[u8]) -> Result<(), Self::Error> {
-        use board::common::hal::serial::SerialTx;
+        use board::bobbin_hal::serial::SerialTx;
         board::console::USART.write(buf);
         Ok(())
     }
