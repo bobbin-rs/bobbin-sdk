@@ -6,6 +6,10 @@ extern crate bobbin_mcu;
 extern crate bobbin_hal;
 extern crate sam_common;
 
+pub extern crate bobbin_cortexm;
+pub use bobbin_cortexm::nvic;
+pub use bobbin_cortexm::scb;
+pub use bobbin_cortexm::systick;
 
 pub mod ext;
 pub mod gclk;

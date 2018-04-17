@@ -7,9 +7,10 @@
         (variant (name SAMD21x18) (link "samd21x18.ld"))
     )
     (crate
-        ;(module (name nvic))
-        ;(module (name scb))
-        ;(module (name systick))
+        (name "bobbin-cortexm")
+        (module (name nvic))
+        (module (name scb))
+        (module (name systick))
     )    
 
     (clocks

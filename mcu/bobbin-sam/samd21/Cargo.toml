@@ -10,6 +10,7 @@ bobbin-build = { path = "../../../lib/bobbin-build/" }
 bobbin-bits = "0.1.1"
 bobbin-mcu = { path = "../../../lib/bobbin-mcu" }
 bobbin-hal = { path = "../../../lib/bobbin-hal" }
+bobbin-cortexm = { path = "../../bobbin-cortexm" }
 sam-common = { path = "../sam-common" }
 
 [features]
