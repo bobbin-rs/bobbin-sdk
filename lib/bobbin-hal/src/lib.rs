@@ -1,6 +1,9 @@
 #![no_std]
 #![feature(const_fn)]
 
+pub mod configure;
+pub mod enabled;
+
 pub mod analog;
 pub mod can;
 pub mod crc;

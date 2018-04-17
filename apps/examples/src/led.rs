@@ -1,5 +1,5 @@
-use common::hal::delay::*;
-use common::hal::led::*;
+use bobbin_hal::delay::*;
+use bobbin_hal::led::*;
 
 pub struct BlinkLed<LED: Led, DEL: Delay> {
     led: LED,

@@ -1,7 +1,15 @@
 use bobbin_sys::console::*;
 use bobbin_mcu::AsPeriph;
+use bobbin_mcu::clock::ClockSource;
+use bobbin_mcu::gate::GateEn;
+use bobbin_mcu::pin::{PortGateEn, ConnectTo, Pin};
+use bobbin_hal::configure::Configure;
+use bobbin_hal::enabled::Enabled;
+
+use bobbin_mcu::pin::SetSource;
 
 use mcu::ext::rcc::DedicatedClock;
+// use mcu::ext::gpio::SetSource;
 use mcu::usart::*;
 use mcu::pin::*;
 

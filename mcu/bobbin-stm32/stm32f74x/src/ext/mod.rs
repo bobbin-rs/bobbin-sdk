@@ -1,3 +1,5 @@
+pub use stm32_common::ext::*;
+
 pub mod rcc;
 pub mod clock;
 // pub mod flash;

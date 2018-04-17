@@ -1,11 +1,13 @@
+pub use bobbin_cortexm::ext::*;
+
 // pub mod dma;
 // pub mod dma_f3;
 pub mod gpio;
 // pub mod lpuart;
-// pub mod usart;
+pub mod usart;
 // pub mod usart_f24;
 // pub mod tim_bas;
-// pub mod tim_gen;
+pub mod tim_gen;
 // pub mod tim_adv;
 // pub mod lptim;
 // pub mod crc;

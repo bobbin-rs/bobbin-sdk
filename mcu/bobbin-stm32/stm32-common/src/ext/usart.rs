@@ -3,7 +3,7 @@ pub use bobbin_hal::configure::*;
 pub use bobbin_hal::enabled::*;
 pub use bobbin_hal::serial::*;
 // pub use bobbin_common::{Irq, Poll};
-pub use periph::usart::*;
+pub use usart::*;
 
 // use bobbin_common::sys::ring::*;
 // use bobbin_cortexm::hal::nvic;

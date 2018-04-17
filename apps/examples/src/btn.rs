@@ -1,6 +1,6 @@
-use common::hal::delay::*;
-use common::hal::led::*;
-use common::hal::btn::*;
+use bobbin_hal::delay::*;
+use bobbin_hal::led::*;
+use bobbin_hal::btn::*;
 
 pub struct BtnExample<BTN: Btn, LED: Led, DEL: Delay> {
     btn: BTN,

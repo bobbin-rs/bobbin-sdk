@@ -1,3 +1,5 @@
+use bobbin_mcu::pin::Pin;
+use bobbin_mcu::gate::GateEn;
 pub use mcu::pin::*;
 pub use bobbin_hal::btn::*;
 

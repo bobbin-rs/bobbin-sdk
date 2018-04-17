@@ -7,7 +7,7 @@ extern crate nucleo_f746zg as board;
 extern crate examples;
 
 use board::mcu::systick::SYSTICK;
-use board::mcu::systick_ext::SystickHz;
+use board::mcu::ext::systick::SystickHz;
 use board::mcu::scb::SCB;
 
 use board::mcu::dispatch::{HandleException, Exception};

@@ -1,6 +1,6 @@
 #![no_std]
 
-#![macro_use] extern crate bobbin_common as common;
+extern crate bobbin_hal;
 extern crate embedded_hal;
 
 pub mod tick;

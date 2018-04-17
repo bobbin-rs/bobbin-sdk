@@ -6,7 +6,12 @@ extern crate nucleo_f746zg as board;
 
 // LED0 = PB0;
 
-use board::mcu::pin::*;
+use board::bobbin_mcu::pin::Pin;
+use board::bobbin_mcu::gate::GateEn;
+// use board::bobbin_hal::digital::DigitalOutput;
+// use board::mcu::gpio::GpioPin;
+use board::mcu::pin::PB0;
+use board::mcu::ext::gpio::DigitalOutput;
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {

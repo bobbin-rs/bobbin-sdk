@@ -1,5 +1,5 @@
-use common::hal::delay::*;
-use common::hal::analog::*;
+use bobbin_hal::delay::*;
+use bobbin_hal::analog::*;
 
 pub struct DacExample<DAC: AnalogWrite<u8>, DEL: Delay> {
     dac: DAC,

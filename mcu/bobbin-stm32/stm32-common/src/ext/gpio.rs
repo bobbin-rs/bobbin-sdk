@@ -1,7 +1,7 @@
-use gpio::*;
-use bobbin_hal::digital::{DigitalInput, DigitalOutput};
+pub use gpio::*;
+pub use bobbin_hal::digital::{DigitalInput, DigitalOutput};
 use bobbin_bits::*;
-use bobbin_mcu::pin::SetSource;
+pub use bobbin_mcu::pin::SetSource;
 
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]

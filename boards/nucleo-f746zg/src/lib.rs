@@ -3,10 +3,13 @@
 
 #[cfg(target_os="none")]
 pub extern crate cortex_m_rt;
-pub extern crate bobbin_sys;
-pub extern crate bobbin_hal;
-pub extern crate bobbin_mcu;
 pub extern crate stm32f74x as mcu;
+pub extern crate bobbin_sys;
+pub extern crate bobbin_mcu;
+pub extern crate bobbin_hal;
+// pub use mcu::bobbin_mcu;
+// pub use mcu::bobbin_hal;
+
 
 pub use bobbin_sys::{system, memory, heap, print, println};
 #[cfg(feature="logger")]

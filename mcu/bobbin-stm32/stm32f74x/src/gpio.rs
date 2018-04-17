@@ -375,5 +375,3 @@ impl ::bobbin_mcu::gate::GateSleepEn for Gpiok {
     }
 }
 
-pub struct GpioPin { pub port: GpioPeriph, pub index: usize }
-
