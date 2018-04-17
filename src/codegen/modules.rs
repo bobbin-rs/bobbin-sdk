@@ -774,23 +774,25 @@ pub fn gen_peripheral_group_impl<W: Write>(_cfg: &Config, out: &mut W, pg: &Peri
         try!(gen_doc(out, 0, &format!("{} Peripheral", pg.name.to_uppercase())));
         try!(writeln!(out, "pub struct {}(pub usize); ", pg_type));
         try!(writeln!(out, ""));        
+
+        let mut pin_count = 0;
+        for p in pg.peripherals.iter() {
+            pin_count += p.pins.len();
+        }
+
+        if pg.has_pins || pin_count > 0 {
+            let pin_type = format!("{}Pin", to_camel(&pg_name));
+            try!(writeln!(out, "pub struct {} {{ pub port: {}, pub index: usize }}", pin_type, pg_type));
+            try!(writeln!(out, ""));
+        }
+
+        if pg.has_channels {
+            try!(writeln!(out, "pub struct {} {{ pub periph: {}, pub index: usize }}", ch_type, pg_type));
+            try!(writeln!(out, ""));
+        }        
     }
 
-    let mut pin_count = 0;
-    for p in pg.peripherals.iter() {
-        pin_count += p.pins.len();
-    }
 
-    if pg.has_pins || pin_count > 0 {
-        let pin_type = format!("{}Pin", to_camel(&pg_name));
-        try!(writeln!(out, "pub struct {} {{ pub port: {}, pub index: usize }}", pin_type, pg_type));
-        try!(writeln!(out, ""));
-    }
-
-    if pg.has_channels {
-        try!(writeln!(out, "pub struct {} {{ pub periph: {}, pub index: usize }}", ch_type, pg_type));
-        try!(writeln!(out, ""));
-    }
 
     let p0 = if let Some(ref p0) = pg.prototype {
         p0
@@ -1494,8 +1496,7 @@ pub fn gen_clocks<W: Write>(_cfg: &Config, out: &mut W, d: &Device, _path: &Path
         return Ok(())
     };
     // writeln!(out, "pub use ::bobbin_common::*;")?;
-    writeln!(out, "use ::bobbin_mcu::clock::Clock;")?;    
-    writeln!(out, "use ::bobbin_mcu::tree::ClockFor;")?;
+    writeln!(out, "use ::bobbin_mcu::clock::{{Clock, ClockFor}};")?;    
     writeln!(out, "use ::bobbin_mcu::hz::Hz;")?;    
     writeln!(out, "")?;
     writeln!(out, "#[derive(Default)]")?;
