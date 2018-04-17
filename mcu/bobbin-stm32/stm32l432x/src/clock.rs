@@ -1,5 +1,4 @@
-use ::bobbin_mcu::clock::Clock;
-use ::bobbin_mcu::tree::ClockFor;
+use ::bobbin_mcu::clock::{Clock, ClockFor};
 use ::bobbin_mcu::hz::Hz;
 
 #[derive(Default)]

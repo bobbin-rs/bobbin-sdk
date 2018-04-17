@@ -7,7 +7,7 @@ extern crate std;
 
 pub extern crate bobbin_hz as hz;
 extern crate bobbin_bits as bits;
-pub extern crate bobbin_tree as tree;
+// pub extern crate bobbin_tree as tree;
 
 #[macro_use]
 mod macros;

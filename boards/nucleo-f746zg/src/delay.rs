@@ -1,7 +1,7 @@
 use mcu::tim_gen::*;
 use mcu::ext::tim_gen::Delay;
 use mcu::ext::tim_gen::SetPrescale;
-use bobbin_mcu::tree::ClockFor;
+use bobbin_mcu::clock::ClockFor;
 use bobbin_mcu::gate::GateEn;
 use clock::*;
 

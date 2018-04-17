@@ -7,16 +7,8 @@ pub trait Clock : Default {
 }
 
 pub trait ClockFor<T> {
-    fn clock_for(T) -> Hz;    
+    fn clock_for(&self, T) -> Hz;    
 }
-
-// pub trait ClockFor<P> 
-// where 
-//     Self::Out : Clock
-// {
-//     type Out;
-//     fn clock_for(&self, _p: &P) -> Self::Out { Self::Out::default() }
-// }
 
 pub trait Millis {
     /// Returns the number of milliseconds modulo 2^32 since the clock was started.
