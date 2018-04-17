@@ -15,11 +15,11 @@ version = "0.4.0"
 [dependencies.bobbin-sys]
 path = " ../../../../lib/bobbin-sys/"
 
-[dependencies.bobbin-hal]
-path = " ../../../../lib/bobbin-hal/"
+# [dependencies.bobbin-hal]
+# path = " ../../../../lib/bobbin-hal/"
 
-[dependencies.bobbin-mcu]
-path = " ../../../../lib/bobbin-mcu/"
+# [dependencies.bobbin-mcu]
+# path = " ../../../../lib/bobbin-mcu/"
 
 
 [dev-dependencies]

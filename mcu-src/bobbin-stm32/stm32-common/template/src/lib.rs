@@ -1,6 +1,8 @@
 #![no_std]
 
-extern crate bobbin_bits;
-extern crate bobbin_mcu;
-extern crate bobbin_hal;
+// pub extern crate bobbin_cortexm;
+
+// pub use bobbin_cortexm::bobbin_bits;
+// pub use bobbin_cortexm::bobbin_mcu;
+// pub use bobbin_cortexm::bobbin_hal;
 

@@ -1,10 +1,22 @@
 #![no_std]
 
-pub extern crate bobbin_cortexm;
+// pub extern crate bobbin_cortexm;
 
+// pub use bobbin_cortexm::bobbin_bits;
+// pub use bobbin_cortexm::bobbin_mcu;
+// pub use bobbin_cortexm::bobbin_hal;
+
+pub extern crate bobbin_cortexm;
 pub use bobbin_cortexm::bobbin_bits;
 pub use bobbin_cortexm::bobbin_mcu;
 pub use bobbin_cortexm::bobbin_hal;
+pub use bobbin_cortexm::nvic;
+pub use bobbin_cortexm::scb;
+pub use bobbin_cortexm::systick;
+pub use bobbin_cortexm::mpu;
+pub use bobbin_cortexm::fpu;
+pub use bobbin_cortexm::dcb;
+pub use bobbin_cortexm::itm;
 
 pub mod ext;
 pub mod exti;

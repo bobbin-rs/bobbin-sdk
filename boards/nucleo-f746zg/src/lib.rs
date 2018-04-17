@@ -5,10 +5,12 @@
 pub extern crate cortex_m_rt;
 pub extern crate stm32f74x as mcu;
 pub extern crate bobbin_sys;
-pub extern crate bobbin_mcu;
-pub extern crate bobbin_hal;
-// pub use mcu::bobbin_mcu;
-// pub use mcu::bobbin_hal;
+// pub extern crate bobbin_mcu;
+// pub extern crate bobbin_hal;
+
+pub use mcu::bobbin_bits;
+pub use mcu::bobbin_mcu;
+pub use mcu::bobbin_hal;
 
 
 pub use bobbin_sys::{system, memory, heap, print, println};
@@ -56,7 +58,7 @@ pub type Memory = memory::Memory;
 pub type Heap = heap::Heap;
 #[cfg(feature="logger")]
 pub type Logger = logger::Logger;
-pub type Dispatcher = mcu::dispatch::Dispatcher<mcu::dispatch::ExcHandlers8>;
+pub type Dispatcher = mcu::ext::dispatch::Dispatcher<mcu::ext::dispatch::ExcHandlers8>;
 
 #[cfg(target_os="none")]
 default_handler!(Dispatcher::handle_exception);

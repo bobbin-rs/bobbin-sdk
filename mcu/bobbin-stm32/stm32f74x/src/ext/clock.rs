@@ -1,5 +1,5 @@
 // use ::clock::*;
-use bobbin_cortexm::ext::systick::SystickHz;
+use ext::systick::SystickHz;
 use bobbin_mcu::hz::Hz;
 use bobbin_mcu::clock::{Clock, ClockSource};
 use bobbin_bits::*;

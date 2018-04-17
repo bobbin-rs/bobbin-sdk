@@ -1,10 +1,12 @@
 //! Extends the ```chip::systick``` module.
 //! See [4.4. System timer, SysTick](http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dui0552a/Babieigh.html)
 
+use bobbin_bits::*;
 use bobbin_hal::timer::*;
 use bobbin_mcu::hz::Hz;
+
 use systick::*;
-use bobbin_bits::*;
+
 
 pub trait SystickHz {
     fn systick_hz(&self) -> Hz;
