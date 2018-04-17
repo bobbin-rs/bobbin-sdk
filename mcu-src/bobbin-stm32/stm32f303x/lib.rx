@@ -10,6 +10,21 @@
         (variant (name STM32F303xD) (link "f303xd.ld"))
         (variant (name STM32F303xE) (link "f303xe.ld"))
     )
+
+    (crate
+        (name "stm32-common")
+        (module (name bobbin_bits))
+        (module (name bobbin_mcu))
+        (module (name bobbin_hal))
+        (module (name nvic))
+        (module (name scb))
+        (module (name systick))
+        (module (name mpu))
+        (module (name fpu))
+        (module (name dcb))
+        (module (name itm))
+    )
+
     (clocks
         (input (name OSC) (min 4000000) (max 26000000))
         (input (name OSC32) (min 32768) (max 32768))
@@ -58,16 +73,6 @@
         (output (name ADC12))
         (output (name ADC34))
     )    
-    (crate
-        (name "bobbin-cortexm")
-        (module (name nvic))
-        (module (name scb))
-        (module (name systick))
-        (module (name mpu))
-        (module (name fpu))
-        (module (name dcb))
-        (module (name itm))
-    )
 
     (peripheral (include "periph/rcc.rx"))
     (peripheral (include "periph/syscfg.rx"))

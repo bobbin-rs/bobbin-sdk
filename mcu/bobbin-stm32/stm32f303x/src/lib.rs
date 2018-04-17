@@ -1,19 +1,17 @@
 #![no_std]
 #![feature(asm, naked_functions, linkage, core_intrinsics, global_asm, used, use_extern_macros)]
 
-extern crate bobbin_bits;
-extern crate bobbin_mcu;
-extern crate bobbin_hal;
-extern crate stm32_common;
-
-pub extern crate bobbin_cortexm;
-pub use bobbin_cortexm::nvic;
-pub use bobbin_cortexm::scb;
-pub use bobbin_cortexm::systick;
-pub use bobbin_cortexm::mpu;
-pub use bobbin_cortexm::fpu;
-pub use bobbin_cortexm::dcb;
-pub use bobbin_cortexm::itm;
+pub extern crate stm32_common;
+pub use stm32_common::bobbin_bits;
+pub use stm32_common::bobbin_mcu;
+pub use stm32_common::bobbin_hal;
+pub use stm32_common::nvic;
+pub use stm32_common::scb;
+pub use stm32_common::systick;
+pub use stm32_common::mpu;
+pub use stm32_common::fpu;
+pub use stm32_common::dcb;
+pub use stm32_common::itm;
 
 pub mod ext;
 pub mod rcc;

@@ -185,5 +185,3 @@ impl ::bobbin_mcu::gate::GateEn for Gpioh {
     }
 }
 
-pub struct GpioPin { pub port: GpioPeriph, pub index: usize }
-

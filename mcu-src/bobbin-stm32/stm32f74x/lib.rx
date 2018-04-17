@@ -11,6 +11,21 @@
         (variant (name STM32F76xxG) (link "stm32f6xxG.ld"))
         (variant (name STM32F76xxI) (link "stm32f6xxI.ld"))
     )
+    
+    (crate
+        (name "stm32-common")
+        (module (name bobbin_bits))
+        (module (name bobbin_mcu))
+        (module (name bobbin_hal))
+        (module (name nvic))
+        (module (name scb))
+        (module (name systick))
+        (module (name mpu))
+        (module (name fpu))
+        (module (name dcb))
+        (module (name itm))
+    )
+
     (clocks
         (input (name OSC) (min 4000000) (max 26000000))
         (input (name OSC32) (min 32768) (max 32768))
@@ -56,19 +71,7 @@
         (output (name I2C3))
         (output (name I2C4))
     )
-    (crate
-        (name "stm32-common")
-        (module (name bobbin_bits))
-        (module (name bobbin_mcu))
-        (module (name bobbin_hal))
-        (module (name nvic))
-        (module (name scb))
-        (module (name systick))
-        (module (name mpu))
-        (module (name fpu))
-        (module (name dcb))
-        (module (name itm))
-    )
+
     (peripheral (include "periph/rcc.rx"))
     (peripheral (include "periph/flash.rx"))
     (peripheral (include "periph/pwr.rx"))

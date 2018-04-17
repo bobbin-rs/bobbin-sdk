@@ -3,8 +3,12 @@
     (size 0x20)
     (interrupt-count 84)
     (description "STM32L432x")
+    
     (crate
-        (name "bobbin-cortexm")        
+        (name "stm32-common")
+        (module (name bobbin_bits))
+        (module (name bobbin_mcu))
+        (module (name bobbin_hal))
         (module (name nvic))
         (module (name scb))
         (module (name systick))
@@ -12,7 +16,6 @@
         (module (name fpu))
         (module (name dcb))
         (module (name itm))
-        (module (name dwt))
     )
 
     (peripheral (include "periph/flash.rx"))
