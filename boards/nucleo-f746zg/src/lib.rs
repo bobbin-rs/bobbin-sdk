@@ -45,7 +45,7 @@ pub fn init() -> System {
         ::led::init();
         ::btn::init();
         ::ms_tick::init();
-        ::delay::init();
+        // ::delay::init();
         #[cfg(feature="logger")]
         Logger::init();          
     })
