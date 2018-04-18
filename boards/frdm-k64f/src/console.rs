@@ -1,8 +1,5 @@
-pub use bobbin_sys::console::*;
+use prelude::*;
 
-// use common::periph::AsPeriph;
-use common::configure::Configure;
-use mcu::enabled::Enabled;
 use mcu::uart::*;
 use mcu::pin::*;
 use clock::*;

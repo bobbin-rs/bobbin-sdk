@@ -12,33 +12,26 @@ doc = false
 features = []
 version = "0.4.0"
 
-[dev-dependencies.log]
-version = "0.4"
-default-features = false
+[dependencies.bobbin-sys]
+path = " ../../../../lib/bobbin-sys/"
+
+[dev-dependencies]
+examples = { path = "../../apps/examples" }
+embedded-hal = "0.1.2"
 
 [profile.dev]
 panic = "abort"
 opt-level = "s"
-codegen-units = 1
 incremental = false
 lto = true
-#debug = false
 
 [profile.release]
 panic = "abort"
 debug = true
 lto = true
 
-[features]
-logger = ["bobbin-sys/logger"]
-
-[dev-dependencies]
-examples = { path = "../../apps/examples" }
-embedded-hal = "0.1.2"
 
 [dependencies.k64]
 path = "../../mcu/bobbin-kinetis/k64"
 features = ["K64FN1M0"]
 
-[dependencies.bobbin-sys]
-path = " ../../../../lib/bobbin-sys/"

@@ -1,7 +1,7 @@
-pub use common::hal::led::*;
+use prelude::*;
+
 use mcu::gpio::*;
 use mcu::pin::*;
-pub use common::hal::digital::DigitalOutput;
 
 pub const LED0: LedHigh<GpioCh> = LedHigh::new(PB22_CH);
 pub const LED1: LedHigh<GpioCh> = LedHigh::new(PB21_CH);

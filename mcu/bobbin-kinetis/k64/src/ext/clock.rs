@@ -1,10 +1,12 @@
-pub use ::clock::*;
-pub use systick_ext::SystickHz;
+use ext::systick::SystickHz;
+use bobbin_mcu::hz::Hz;
+use bobbin_mcu::clock::Clock;
+use bobbin_bits::*;
 
-use bobbin_common::bits::*;
-use mcu::sim::SIM;
-use mcu::osc::OSC;
-use mcu::mcg::MCG;
+use clock::ClockProvider;
+use sim::SIM;
+use osc::OSC;
+use mcg::MCG;
 
 #[derive(Default)]
 pub struct DynamicClock<EXTAL: Clock, EXTAL32: Clock>(EXTAL, EXTAL32);

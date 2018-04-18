@@ -1,8 +1,7 @@
+use prelude::*;
+
 use mcu::pin::*;
 use mcu::gpio::*;
-pub use common::hal::btn::*;
-
-pub use common::hal::digital::DigitalInput;
 
 pub const BTN0: Pc6 = PC6;
 pub const BTN0_PT: Ptc6 = PTC6;

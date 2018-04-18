@@ -1,5 +1,5 @@
-pub use bobbin_common::hal::digital::*;
-pub use periph::gpio::*;
+pub use bobbin_hal::digital::*;
+pub use gpio::*;
 
 pub enum Dir {
     In = 0,

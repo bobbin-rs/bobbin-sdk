@@ -1,7 +1,7 @@
-pub use bobbin_common::configure::*;
-pub use bobbin_common::enabled::*;
+pub use bobbin_hal::configure::*;
+pub use bobbin_hal::enabled::*;
 pub use bobbin_hal::serial::*;
-pub use periph::uart::*;
+pub use uart::*;
 
 #[derive(Debug, Default)]
 pub struct Config {

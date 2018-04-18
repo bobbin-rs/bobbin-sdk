@@ -1,5 +1,7 @@
-pub use mcu::clock::*;
-pub use mcu::ext::clock::*;
+use prelude::*;
+
+use mcu::clock::*;
+use mcu::ext::clock::*;
 
 pub fn init() {
     clock_init::init();
