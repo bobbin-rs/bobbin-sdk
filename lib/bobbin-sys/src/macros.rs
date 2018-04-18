@@ -21,3 +21,12 @@ macro_rules! println {
     };
 }
 
+#[macro_export]
+macro_rules! abort {
+    ($s:expr) => {
+        $crate::console::write_str("# ABORT: ");
+        $crate::console::write_str($s);
+        loop {}
+    };
+}
+
