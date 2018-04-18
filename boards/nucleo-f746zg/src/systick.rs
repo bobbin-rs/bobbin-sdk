@@ -1,7 +1,7 @@
 use ::core::cell::UnsafeCell;
 use ::core::ptr;
 
-static mut SYSTICK_COUNTER: UnsafeCell<u32> = UnsafeCell::new(0);
+static mut SYSTICK_COUNTER: UnsafeCell<u32> = UnsafeCell::new(u32::max_value() - 2500);
 
 pub const SYSTICK: Systick = Systick;
 pub struct Systick;
@@ -24,17 +24,24 @@ impl Systick {
         st.set_enabled(false);
     }
 
+    #[inline]
     pub fn counter(&self) -> u32 {
         unsafe { ptr::read_volatile(SYSTICK_COUNTER.get()) }
     }
 
+    #[inline]
     fn incr_counter(&self) {
         unsafe { ptr::write_volatile(SYSTICK_COUNTER.get(), self.counter().wrapping_add(1)) }
     }
 
+    #[inline]
+    pub fn ticks_since(&self, t: u32) -> u32 {
+        self.counter().wrapping_sub(t)
+    }
+
     pub fn delay(&self, ms: u32) {
-        let deadline = self.counter().wrapping_add(ms);
-        while self.counter() != deadline {}        
+        let t = self.counter();
+        while self.ticks_since(t) < ms {}
     }
 
     fn handle_exception() {
