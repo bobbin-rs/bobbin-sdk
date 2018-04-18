@@ -1,3 +1,5 @@
+use prelude::*;
+
 pub use mcu::clock::*;
 pub use mcu::ext::clock::DynamicClock;
 

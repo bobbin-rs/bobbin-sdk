@@ -1,3 +1,10 @@
+pub use sam_common::ext::*;
+
+pub mod clock;
+pub mod port;
+pub mod sercom;
+
+
 // pub mod gclk;
 // pub mod nvmctrl;
 // pub mod pm;

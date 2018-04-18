@@ -1,6 +1,6 @@
-pub use common::hal::led::*;
-pub use mcu::pin::*;
-pub use mcu::port::*;
+use prelude::*;
+
+use mcu::pin::*;
 
 pub const LED0: LedHigh<PortPin> = LedHigh::new(PA17_PIN);
 

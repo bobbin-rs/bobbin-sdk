@@ -1,7 +1,5 @@
-pub use common::hal::btn::*;
-pub use mcu::pin::*;
-pub use mcu::port::*;
-
+use prelude::*;
+use mcu::pin::*;
 
 pub fn init() {
     PA11.port().gate_enable();

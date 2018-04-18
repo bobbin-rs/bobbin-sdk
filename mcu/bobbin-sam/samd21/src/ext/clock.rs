@@ -1,5 +1,6 @@
-pub use clock::*;
-pub use systick_ext::SystickHz;
+use clock::*;
+use ext::systick::SystickHz;
+
 use gclk::*;
 use bobbin_bits::*;
 use bobbin_mcu::clock::Clock;

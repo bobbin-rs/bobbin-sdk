@@ -1,10 +1,10 @@
-pub use periph::sercom::*;
-pub use bobbin_common::configure::*;
-pub use bobbin_common::enabled::*;
+pub use sercom::*;
+pub use bobbin_hal::configure::*;
+pub use bobbin_hal::enabled::*;
 pub use bobbin_hal::serial::*;
 // pub use super::pm::PmEnabled;
 
-use bobbin_common::bits::*;
+use bobbin_bits::*;
 
 pub mod i2c;
 pub mod spi;
