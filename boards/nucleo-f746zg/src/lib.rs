@@ -13,7 +13,7 @@ pub use mcu::bobbin_mcu;
 pub use mcu::bobbin_hal;
 
 
-pub use bobbin_sys::{system, memory, heap, print, println};
+pub use bobbin_sys::{system, memory, heap, print, println, abort};
 #[cfg(feature="logger")]
 pub use bobbin_sys::logger;
 
