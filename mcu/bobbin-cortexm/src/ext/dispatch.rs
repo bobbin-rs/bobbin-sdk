@@ -90,7 +90,7 @@ impl From<Exception> for u8 {
 }
 
 pub trait HandleException {
-    unsafe fn handle_exception(&self, exc: Exception);
+    unsafe fn handle_exception(&self, exc: u8);
 }
 
 #[derive(Clone, Copy)]
@@ -247,19 +247,11 @@ impl<T: Default + ExceptionHandlers> Dispatcher<T> {
         for handler in exc_handlers.iter() {
             if let Some(handler) = handler {
                 if handler.exc_num == exc_num {
-                    (*handler.handler).handle_exception(Exception::from(exc_num));
+                    (*handler.handler).handle_exception(exc_num);
                     handled = true;
                 }
             }
         }
-        // for i in 0..exc_handlers.len() {
-        //     if let Some(handler) = exc_handlers[i] {                    
-        //         if handler.exc_num == exc_num {
-        //             (*handler.handler).handle_exception(Exception::from(exc_num));
-        //             handled = true;
-        //         }
-        //     }
-        // }
         handled
     }
 }
