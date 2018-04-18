@@ -1,5 +1,5 @@
-use ::rcc;
-use ::flash;
+use rcc;
+use flash;
 
 pub fn enable_pll_external_mode() {
     let rcc = rcc::RCC;

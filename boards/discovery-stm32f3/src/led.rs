@@ -1,4 +1,6 @@
-pub use common::hal::led::*;
+use ::prelude::*;
+
+pub use bobbin_hal::led::*;
 pub use mcu::pin::*;
 pub use mcu::gpio::*;
 

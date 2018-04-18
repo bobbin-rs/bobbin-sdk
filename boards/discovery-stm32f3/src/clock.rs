@@ -1,8 +1,11 @@
-pub use mcu::clock::*;
-pub use mcu::systick_ext::SystickHz;
+use prelude::*;
+
+use mcu::clock::*;
+use mcu::ext::systick::SystickHz;
 use mcu::rcc::*;
+use mcu::ext::rcc::*;
 use mcu::{tim_adv, tim_gen, i2c, usart};
-use ::common::bits::*;
+use bobbin_bits::*;
 
 pub fn init() {
     ::mcu::ext::clock::enable_pll_external_mode();

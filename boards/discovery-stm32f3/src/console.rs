@@ -1,7 +1,8 @@
-pub use bobbin_sys::console::*;
-use mcu::bobbin_common::periph::AsPeriph;
+use ::prelude::*;
 
-use mcu::rcc::*;
+use bobbin_mcu::periph::AsPeriph;
+
+use mcu::ext::rcc::*;
 use mcu::usart::*;
 use mcu::pin::*;
 // use ::clock::*;

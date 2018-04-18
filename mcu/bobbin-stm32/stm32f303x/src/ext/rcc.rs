@@ -1,7 +1,7 @@
-pub use periph::rcc::*;
-pub use bobbin_common::clock::ClockSource;
-use mcu::{rcc, tim_adv, tim_gen, i2c, usart};
-use bobbin_common::bits::*;
+pub use rcc::*;
+pub use bobbin_mcu::clock::ClockSource;
+use {rcc, tim_adv, tim_gen, i2c, usart};
+use bobbin_bits::*;
 
 
 #[repr(u8)]
