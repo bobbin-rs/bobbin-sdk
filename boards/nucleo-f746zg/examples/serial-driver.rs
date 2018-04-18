@@ -2,12 +2,13 @@
 #![no_main]
 #![feature(asm, nll)]
 
+#[macro_use]
 extern crate nucleo_f746zg as board;
 extern crate examples;
 
 use board::console::USART;
 
-use board::mcu::ext::dispatch::{HandleException, Exception, Guard};
+use board::mcu::ext::dispatch::{HandleException, Guard};
 use board::System;
 use board::bobbin_sys::ring::*;
 
@@ -80,7 +81,11 @@ impl SerialDriver {
         
         let irq_number = usart.irq_number_for(IRQ_USART);
         let handler = heap.new(SerialHandler::new(usart, tx_reader, rx_writer));
-        let guard = sys.dispatcher_mut().register_irq_handler(irq_number, handler).unwrap();        
+        let guard = if let Ok(guard) = sys.dispatcher_mut().register_irq_handler(irq_number, handler) {
+            guard
+        } else {
+            abort!("Unable to register IRQ handler");
+        };
         Self { guard, tx_ring, rx_ring }
     }
 
@@ -149,7 +154,7 @@ impl SerialHandler {
 }
 
 impl HandleException for SerialHandler {
-    unsafe fn handle_exception(&self, _: Exception) {
+    unsafe fn handle_exception(&self, _: u8) {
         if self.usart.can_tx() {
             if let Some(b) = self.reader.get() {
                 self.usart.tx(b);

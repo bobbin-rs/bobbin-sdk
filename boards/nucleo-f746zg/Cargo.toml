@@ -30,6 +30,7 @@ embedded-hal = "0.1.2"
 panic = "abort"
 opt-level = "s"
 incremental = false
+debug = false
 lto = true
 
 [profile.release]
