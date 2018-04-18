@@ -55,10 +55,12 @@ pub type System = system::System<
         Mcu,
         Clock,
         Dispatcher,
+        Tick,
 >;
 
 pub type Mcu = mcu::Stm32f74x;
 pub type Clock = clock::SystemClock;
+pub type Tick = mcu::ext::ms_tick::MsTick;
 pub type Memory = memory::Memory;
 pub type Heap = heap::Heap;
 #[cfg(feature="logger")]

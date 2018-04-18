@@ -6,13 +6,14 @@ extern crate nucleo_f746zg as board;
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
-    let sys = board::init();
-
-    println!("Running Console");
-    loop {
-        if let Some(console) = sys.console() {
-            console.write(b"Tick...\r\n");
+    let mut sys = board::init();
+    sys.run(|sys| {
+        println!("Running Console");
+        loop {
+            if let Some(console) = sys.console() {
+                console.write(b"Tick...\r\n");
+            }
+            board::delay(500);
         }
-        board::delay(500);
-    }
+    })
 }

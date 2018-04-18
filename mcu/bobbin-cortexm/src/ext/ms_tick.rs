@@ -10,6 +10,7 @@ pub enum Error {
 static mut MS_TICKS: UnsafeCell<u32> = UnsafeCell::new(u32::max_value() - 2500);
 
 pub const MS_TICK: MsTick = MsTick;
+#[derive(Default)]
 pub struct MsTick;
 
 impl MsTick {

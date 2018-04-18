@@ -23,26 +23,29 @@ impl Default for Config {
 }
 
 #[must_use]
-pub struct System<MCU, CLK, DIS> 
+pub struct System<MCU, CLK, DIS, TCK> 
 where
     MCU: Default,
     CLK: Default,
     DIS: Default,
+    TCK: Default,
 {
     mcu: MCU,
     memory: Memory,
     heap: Heap,
     clock: CLK,
+    tick: TCK,
     #[cfg(feature="logger")]
     logger: Logger,
     dispatcher: DIS,
 }
 
-impl<MCU, CLK, DIS> System<MCU, CLK, DIS> 
+impl<MCU, CLK, DIS, TCK> System<MCU, CLK, DIS, TCK> 
 where
     MCU: Default,
     CLK: Default,
     DIS: Default,
+    TCK: Default,
 {
 
     pub fn init<F: FnOnce()>(f: F) -> Self {
@@ -56,6 +59,7 @@ where
             memory: Memory {},
             heap: Heap {},
             clock: CLK::default(),
+            tick: TCK::default(),
             #[cfg(feature="logger")]
             logger: Logger::default(),
             dispatcher: DIS::default(),
@@ -113,6 +117,10 @@ where
         &self.clock
     }
 
+    pub fn tick(&self) -> &TCK {
+        &self.tick
+    }
+
     pub fn console(&self) -> Option<&Console> {
         console_ref()
     }
@@ -138,11 +146,12 @@ where
     }
 }
 
-impl<MCU, CLK, DIS> Drop for System<MCU, CLK, DIS> 
+impl<MCU, CLK, DIS, TCK> Drop for System<MCU, CLK, DIS, TCK> 
 where
     MCU: Default,
     CLK: Default,
     DIS: Default,
+    TCK: Default,
 {
     fn drop(&mut self) {
         Self::unlock();
