@@ -33,7 +33,7 @@ pub mod console;
 pub mod led;
 pub mod btn;
 pub mod delay;
-pub mod systick;
+pub mod ms_tick;
 
 pub use delay::delay;
 
@@ -44,7 +44,7 @@ pub fn init() -> System {
         ::console::init();
         ::led::init();
         ::btn::init();
-        ::systick::init();
+        ::ms_tick::init();
         ::delay::init();
         #[cfg(feature="logger")]
         Logger::init();          

@@ -1,4 +1,4 @@
-use ::systick::SYSTICK;
+use ::ms_tick::MS_TICK;
 
 // use mcu::tim_gen::*;
 // use mcu::ext::tim_gen::Delay;
@@ -26,8 +26,7 @@ pub fn init() {
 }
 
 pub fn delay(ms: u32) { 
-    let deadline = SYSTICK.counter().wrapping_add(ms);
-    while SYSTICK.counter() != deadline {}
+    MS_TICK.delay(ms);
     
     // TIM.gate_enable();
     // let tim_clk: u32 = SystemClock::default().clock_for(TIM).into();
