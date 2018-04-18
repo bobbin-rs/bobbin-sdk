@@ -1,5 +1,5 @@
 use core::fmt::Arguments;
-use ::console::{write_str, write_u32};
+use ::bobbin_console::{write_str, write_u32};
 
 #[lang = "panic_fmt"]
 unsafe extern "C" fn panic_fmt(_msg: Arguments,

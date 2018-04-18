@@ -6,10 +6,7 @@ pub fn init() {
     ::delay::init();
     ::console::init();
     ::led::init();
-    ::btn::init();
-
-    #[cfg(feature="logger")]
-    ::Logger::init();             
+    ::btn::init();         
 }
 
 pub fn mcu_init() {
