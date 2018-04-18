@@ -34,7 +34,7 @@ impl<'a, T: 'a> Ring<'a, T> {
 
     #[inline]
     fn phy(&self, index: usize) -> usize {
-        index & (self.cap - 1)
+        index & (self.cap.wrapping_sub(1))
     }
 
     fn phy_slice(&self) -> &[T] {
@@ -148,10 +148,10 @@ impl<'a, T: 'a + Copy> Ring<'a, T> {
     }
 
     pub fn write(&self, buf: &[T]) -> usize {
-        let mut i = 0;
+        let mut i: usize = 0;
         for b in buf.iter() {
             if let Some(_) = self.put(*b) {
-                i += 1;
+                i = i.wrapping_add(1);
             }
         }
         i
@@ -168,11 +168,11 @@ impl<'a, T: 'a + Copy> Ring<'a, T> {
     }
 
     pub fn read(&self, buf: &mut [T]) -> usize {
-        let mut i = 0;
+        let mut i: usize = 0;
         for b in buf.iter_mut() {
             if let Some(v) = self.get() {
                 *b = v;
-                i += 1;
+                i = i.wrapping_add(1);
             }
         }
         i

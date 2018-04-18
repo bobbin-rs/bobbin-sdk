@@ -145,8 +145,8 @@ impl Heap {
     pub fn try_slice<T: Copy>(&mut self, val: T, len: usize) -> Result<&'static mut [T], Error> {
         Ok({
             let dst = unsafe { self.try_slice_uninitialized(len)? };
-            for i in 0..len { 
-                dst[i] = val;
+            for v in dst.iter_mut() { 
+                *v = val;
             }
             dst
         })
@@ -155,8 +155,8 @@ impl Heap {
     #[inline]
     pub fn slice<T: Copy>(&mut self, val: T, len: usize) -> &'static mut [T] {
         let dst = unsafe { self.slice_uninitialized(len) };
-        for i in 0..len { 
-            dst[i] = val;
+        for v in dst.iter_mut() { 
+            *v = val;
         }
         dst
     }    
@@ -248,6 +248,6 @@ pub unsafe fn align_offset(ptr: *const (), align: usize) -> usize {
     if offset == 0 {
         0
     } else {
-        align - offset
+        align.wrapping_sub(offset)
     }
 }
