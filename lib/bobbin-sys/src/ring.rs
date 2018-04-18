@@ -92,16 +92,16 @@ impl<'a, T: 'a> Ring<'a, T> {
     }
 
     #[inline]
-    pub fn incr_head(&self) -> usize {
+    fn incr_head(&self) -> usize {
         let head = self.head().wrapping_add(1);
-        assert!(self.len() <= self.cap());
+        // assert!(self.len() <= self.cap());
         unsafe { ptr::replace(self.head.get(), head) }
     }
 
     #[inline]
-    pub fn incr_tail(&self) -> usize {
+    fn incr_tail(&self) -> usize {
         let tail = self.tail().wrapping_add(1);
-        assert!(self.tail() <= self.head());
+        // assert!(self.tail() <= self.head());
         unsafe { ptr::replace(self.tail.get(), tail) }
     }
 
@@ -149,11 +149,9 @@ impl<'a, T: 'a + Copy> Ring<'a, T> {
 
     pub fn write(&self, buf: &[T]) -> usize {
         let mut i = 0;
-        while i < buf.len() {
-            if let Some(_) = self.put(buf[i]) {
+        for b in buf.iter() {
+            if let Some(_) = self.put(*b) {
                 i += 1;
-            } else {
-                break
             }
         }
         i
@@ -171,12 +169,10 @@ impl<'a, T: 'a + Copy> Ring<'a, T> {
 
     pub fn read(&self, buf: &mut [T]) -> usize {
         let mut i = 0;
-        while i < buf.len() {
+        for b in buf.iter_mut() {
             if let Some(v) = self.get() {
-                buf[i] = v;
+                *b = v;
                 i += 1;
-            } else {
-                break
             }
         }
         i
@@ -196,9 +192,9 @@ impl<'a, T: 'a> Reader<'a, T> {
         self.inner.tail_elt()
     }
 
-    pub fn incr_tail(&self) -> usize {
-        self.inner.incr_tail()
-    }
+    // pub fn incr_tail(&self) -> usize {
+    //     self.inner.incr_tail()
+    // }
 }
 
 impl<'a, T: 'a + Copy> Reader<'a, T> {
@@ -227,9 +223,9 @@ impl<'a, T: 'a> Writer<'a, T> {
         self.inner.head_elt()
     }
 
-    pub fn incr_head(&self) -> usize {
-        self.inner.incr_head()
-    }    
+    // pub fn incr_head(&self) -> usize {
+    //     self.inner.incr_head()
+    // }    
 }
 
 impl<'a, T: 'a + Copy> Writer<'a, T> {
