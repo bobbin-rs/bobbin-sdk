@@ -14,10 +14,11 @@ pub extern "C" fn main() -> ! {
         unsafe { DATA[i] = i as u8; }
     }
 
-    println!("Memory Test");
-    println!("{:?}", sys.memory());
+    // println!("Memory Test");
+    // println!("{:?}", sys.memory());
 
     let heap = sys.heap_mut();
+    println!("Initial Heap: {:?}", heap);
 
     unsafe { heap.extend(4096) }
 
