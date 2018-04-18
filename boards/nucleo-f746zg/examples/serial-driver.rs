@@ -18,6 +18,8 @@ use board::mcu::usart::*;
 
 use board::bobbin_hal::serial::*;
 
+use board::bobbin_sys::heap::Error;
+
 // use core::cell::UnsafeCell;
 
 #[no_mangle]
@@ -25,8 +27,11 @@ pub extern "C" fn main() -> ! {
     let mut sys = board::init();
 
     unsafe { sys.heap_mut().extend(1024) };
-    let mut s = SerialDriver::new(&mut sys, USART);
-
+    let mut s = if let Ok(s) = SerialDriver::new(&mut sys, USART) {
+        s
+    } else {
+        abort!("Unable to create SerialDriver");
+    };
     s.write_all(b"Serial Driver Echo Test\r\n");        
     let mut buf = [0u8; 64];
     loop {
@@ -65,28 +70,27 @@ pub struct SerialDriver {
 }
 
 impl SerialDriver {
-    pub fn new<U: Into<UsartPeriph> + Irq<IrqUsart>>(sys: &mut System, usart: U) -> Self {
+    pub fn new<U: Into<UsartPeriph> + Irq<IrqUsart>>(sys: &mut System, usart: U) -> Result<Self, Error> {
         Self::new_with_config(sys, usart, Config::default())
     }
 
-    pub fn new_with_config<U: Into<UsartPeriph> + Irq<IrqUsart>>(sys: &mut System, usart: U, cfg: Config) -> Self {
+    pub fn new_with_config<U: Into<UsartPeriph> + Irq<IrqUsart>>(sys: &mut System, usart: U, cfg: Config) -> Result<Self, Error> {
         let heap = sys.heap_mut();
-        let tx_buf = heap.slice(0u8, cfg.tx_len);
-        let tx_ring = heap.new(Ring::new(tx_buf));
-        let tx_reader = heap.new(tx_ring.reader());
+        let tx_buf = heap.try_slice(0u8, cfg.tx_len)?;
+        let tx_ring = heap.try_new(Ring::new(tx_buf))?;
+        let tx_reader = heap.try_new(tx_ring.reader())?;
 
-        let rx_buf = heap.slice(0u8, cfg.rx_len);
-        let rx_ring = heap.new(Ring::new(rx_buf));
-        let rx_writer = heap.new(rx_ring.writer());
-        
+        let rx_buf = heap.try_slice(0u8, cfg.rx_len)?;
+        let rx_ring = heap.try_new(Ring::new(rx_buf))?;
+        let rx_writer = heap.try_new(rx_ring.writer())?;
         let irq_number = usart.irq_number_for(IRQ_USART);
-        let handler = heap.new(SerialHandler::new(usart, tx_reader, rx_writer));
+        let handler = heap.try_new(SerialHandler::new(usart, tx_reader, rx_writer))?;
         let guard = if let Ok(guard) = sys.dispatcher_mut().register_irq_handler(irq_number, handler) {
             guard
         } else {
             abort!("Unable to register IRQ handler");
         };
-        Self { guard, tx_ring, rx_ring }
+        Ok(Self { guard, tx_ring, rx_ring })
     }
 
     #[inline]
