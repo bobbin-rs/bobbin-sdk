@@ -1,8 +1,11 @@
-pub use ::clock::*;
-pub use systick_ext::SystickHz;
+use ext::systick::SystickHz;
+use bobbin_mcu::hz::Hz;
+use bobbin_mcu::clock::{Clock, ClockSource};
+use bobbin_bits::*;
 
-use mcu::rcc::*;
-use bobbin_common::bits::*;
+use ext::rcc::*;
+use clock::ClockProvider;
+use rcc::RCC;
 
 macro_rules! impl_usart_clock_source {
     ($periph:path, $id:ident, $default:ident) => {
@@ -165,17 +168,17 @@ impl<OSC: Clock, OSC32: Clock> ClockProvider for DynamicClock<OSC, OSC32> {
         }
     }    
 
-    impl_usart_clock_source!(::mcu::usart::USART1, usart1, pclk1);
-    impl_usart_clock_source!(::mcu::usart::USART2, usart2, pclk1);
-    impl_usart_clock_source!(::mcu::usart::USART3, usart3, pclk1);
-    impl_usart_clock_source!(::mcu::lpuart::LPUART1, lpuart1, pclk1);
+    impl_usart_clock_source!(::usart::USART1, usart1, pclk1);
+    impl_usart_clock_source!(::usart::USART2, usart2, pclk1);
+    impl_usart_clock_source!(::usart::USART3, usart3, pclk1);
+    impl_usart_clock_source!(::lpuart::LPUART1, lpuart1, pclk1);
 
-    impl_i2c_clock_source!(::mcu::i2c::I2C1, i2c1, pclk1);
-    impl_i2c_clock_source!(::mcu::i2c::I2C2, i2c2, pclk1);
-    impl_i2c_clock_source!(::mcu::i2c::I2C3, i2c3, pclk1);
+    impl_i2c_clock_source!(::i2c::I2C1, i2c1, pclk1);
+    impl_i2c_clock_source!(::i2c::I2C2, i2c2, pclk1);
+    impl_i2c_clock_source!(::i2c::I2C3, i2c3, pclk1);
 
-    impl_lptim_clock_source!(::mcu::lptim::LPTIM1, lptim1, pclk2);
-    impl_lptim_clock_source!(::mcu::lptim::LPTIM2, lptim2, pclk2);   
+    impl_lptim_clock_source!(::lptim::LPTIM1, lptim1, pclk2);
+    impl_lptim_clock_source!(::lptim::LPTIM2, lptim2, pclk2);   
 }
 
 impl<OSC: Clock, OSC32: Clock> SystickHz for DynamicClock<OSC, OSC32> {
@@ -186,8 +189,8 @@ impl<OSC: Clock, OSC32: Clock> SystickHz for DynamicClock<OSC, OSC32> {
 
 
 pub mod clock_init {
-    use mcu::rcc::RCC;
-    use mcu::flash::FLASH;
+    use rcc::RCC;
+    use flash::FLASH;
 
     // Main System Clock = 80 MHz
     // APB2 = 80 MHz

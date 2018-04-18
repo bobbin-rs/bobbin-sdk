@@ -1,3 +1,5 @@
+use bobbin_mcu::clock::*;
+
 pub use mcu::clock::*;
 pub use mcu::ext::clock::{DynamicClock, clock_init};
 

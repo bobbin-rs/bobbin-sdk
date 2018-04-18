@@ -1,5 +1,8 @@
+use bobbin_mcu::pin::Pin;
+use bobbin_mcu::gate::GateEn;
 pub use mcu::pin::*;
-pub use common::hal::btn::*;
+pub use bobbin_hal::btn::*;
+
 
 // BTN0 / PA12 / D2 - Active Low
 

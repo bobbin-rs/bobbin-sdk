@@ -1,6 +1,9 @@
-pub use common::hal::led::*;
+pub use bobbin_hal::led::*;
+pub use bobbin_mcu::pin::Pin;
+pub use bobbin_mcu::gate::GateEn;
 pub use mcu::pin::*;
 pub use mcu::gpio::*;
+pub use mcu::ext::gpio::*;
 
 pub const LED0: LedHigh<GpioPin> = LedHigh::new(PB3_PIN);
 

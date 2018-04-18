@@ -1,6 +1,6 @@
-pub use periph::rcc::*;
-use stm32_common::bobbin_common::bits::*;
-pub use stm32_common::bobbin_common::clock::ClockSource;
+pub use rcc::*;
+use bobbin_bits::*;
+use bobbin_mcu::clock::ClockSource;
 
 #[repr(u8)]
 pub enum UsartClock {

@@ -6,22 +6,16 @@
 pub extern crate cortex_m_rt;
 pub extern crate stm32f74x as mcu;
 pub extern crate bobbin_sys;
-// pub extern crate bobbin_mcu;
-// pub extern crate bobbin_hal;
 
 pub use mcu::bobbin_bits;
 pub use mcu::bobbin_mcu;
 pub use mcu::bobbin_hal;
 
-
+#[cfg(target_os="none")]
+pub use cortex_m_rt::{default_handler, exception};
 pub use bobbin_sys::{system, memory, heap, print, println, abort};
 #[cfg(feature="logger")]
 pub use bobbin_sys::logger;
-
-// pub use mcu::bobbin_common as common;
-
-#[cfg(target_os="none")]
-pub use cortex_m_rt::{default_handler, exception};
 
 #[cfg(target_os="none")]
 mod lang_items;
