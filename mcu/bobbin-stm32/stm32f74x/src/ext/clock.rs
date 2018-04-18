@@ -19,8 +19,8 @@ impl<OSC: Clock, OSC32: Clock> DynamicClock<OSC, OSC32> {
             U1::B0 => self.hsi(),
             U1::B1 => self.hse(),
         };
-        let vco = (vco_in / cfgr.pllm().into_u32()).reduced() * cfgr.plln().into_u32();
-        (vco / cfgr.pllq().into_u32()).reduced()
+        let vco = (vco_in / cfgr.pllm().into_u32()).normalized() * cfgr.plln().into_u32();
+        (vco / cfgr.pllq().into_u32()).normalized()
     }    
 }
 
@@ -46,8 +46,8 @@ impl<OSC: Clock, OSC32: Clock> ClockProvider for DynamicClock<OSC, OSC32> {
             U1::B0 => self.lsi(),
             U1::B1 => self.hse(),
         };
-        let vco = (vco_in / cfgr.pllm().into_u32()).reduced() * cfgr.plln().into_u32();
-        (vco / (2 * (cfgr.pllp().into_u32() + 1))).reduced()
+        let vco = (vco_in / cfgr.pllm().into_u32()).normalized();
+        (vco  * cfgr.plln().into_u32() / (2 * (cfgr.pllp().into_u32() + 1))).normalized()
     }
 
 
