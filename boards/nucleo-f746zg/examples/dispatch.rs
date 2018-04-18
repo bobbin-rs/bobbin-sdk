@@ -10,7 +10,7 @@ use board::mcu::systick::SYSTICK;
 use board::mcu::ext::systick::SystickHz;
 use board::mcu::scb::SCB;
 
-use board::mcu::dispatch::{HandleException, Exception};
+use board::mcu::ext::dispatch::{HandleException};
 
 use core::cell::UnsafeCell;
 
@@ -22,8 +22,12 @@ pub extern "C" fn main() -> ! {
     // println!("{:?}", sys.dispatcher());
 
     let p = PendSVHandler::new();
-    let p = sys.dispatcher_mut().register_pendsv_handler(&p).unwrap();
-    // println!("{:?}", sys.dispatcher());
+    let p = if let Ok(p) = sys.dispatcher_mut().register_pendsv_handler(&p) {
+        p
+    } else {
+        abort!("Unable to register PendSVHandler");
+    };
+    // // println!("{:?}", sys.dispatcher());
 
     let reload_value = (sys.clock().systick_hz() / 1000).as_u32() - 1;
     SYSTICK.set_reload_value(reload_value);
@@ -32,15 +36,23 @@ pub extern "C" fn main() -> ! {
 
     
     let t = TickHandler::new();    
-    let t = sys.dispatcher_mut().register_systick_handler(&t).unwrap();
-    // println!("{:?}", sys.dispatcher());
+    let t = if let Ok(t) = sys.dispatcher_mut().register_systick_handler(&t) {
+        t
+    } else {
+        abort!("Unable to register TickHandler 1");
+    };
+    // // println!("{:?}", sys.dispatcher());
 
     board::delay(100);
 
     let t2 = TickHandler::new();    
-    let t2 = sys.dispatcher_mut().register_systick_handler(&t2).unwrap();
+    let t2 = if let Ok(t2) = sys.dispatcher_mut().register_systick_handler(&t2) {
+        t2
+    } else {
+        abort!("Unable to register TickHandler 2");
+    };
 
-    // println!("{:?}", sys.dispatcher());
+    // // println!("{:?}", sys.dispatcher());
 
     sys.run(|sys| loop {
         // println!("tick: {} {} {}", t.count(), t2.count(), p.count());
@@ -55,7 +67,6 @@ pub extern "C" fn main() -> ! {
         }
         board::delay(1000);        
     })
-
 }
 
 
@@ -75,7 +86,7 @@ impl TickHandler {
 }
 
 impl HandleException for TickHandler {
-    unsafe fn handle_exception(&self, _exc: Exception) {        
+    unsafe fn handle_exception(&self, _: u8) {        
         *self.count.get() += 1;
         if *self.count.get() % 1000 == 0 {
             SCB.with_icsr(|r| r.set_pendsvset(1));
@@ -99,7 +110,7 @@ impl PendSVHandler {
 }
 
 impl HandleException for PendSVHandler {
-    unsafe fn handle_exception(&self, _exc: Exception) {
+    unsafe fn handle_exception(&self, _: u8) {
         *self.count.get() += 1;
     }
 }
