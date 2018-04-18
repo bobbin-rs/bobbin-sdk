@@ -1,6 +1,4 @@
-use bobbin_sys::prelude::*;
-use bobbin_mcu::prelude::*;
-use bobbin_hal::prelude::*;
+use ::prelude::*;
 
 use mcu::ext::rcc::DedicatedClock;
 // use mcu::ext::gpio::SetSource;
