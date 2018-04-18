@@ -2,6 +2,7 @@
 #![feature(asm, lang_items, use_extern_macros, core_intrinsics, const_fn)]
 
 #[cfg(target_os="none")]
+#[macro_use]
 pub extern crate cortex_m_rt;
 pub extern crate stm32f74x as mcu;
 pub extern crate bobbin_sys;
@@ -20,7 +21,7 @@ pub use bobbin_sys::logger;
 // pub use mcu::bobbin_common as common;
 
 #[cfg(target_os="none")]
-pub use cortex_m_rt::default_handler;
+pub use cortex_m_rt::{default_handler, exception};
 
 #[cfg(target_os="none")]
 mod lang_items;
@@ -32,6 +33,7 @@ pub mod console;
 pub mod led;
 pub mod btn;
 pub mod delay;
+pub mod systick;
 
 pub use delay::delay;
 
@@ -42,6 +44,7 @@ pub fn init() -> System {
         ::console::init();
         ::led::init();
         ::btn::init();
+        ::systick::init();
         ::delay::init();
         #[cfg(feature="logger")]
         Logger::init();          

@@ -1,12 +1,14 @@
-use mcu::tim_gen::*;
-use mcu::ext::tim_gen::Delay;
-use mcu::ext::tim_gen::SetPrescale;
-use bobbin_mcu::clock::ClockFor;
-use bobbin_mcu::gate::GateEn;
-use clock::*;
+use ::systick::SYSTICK;
 
-pub const TIM: Tim14 = TIM14;
-pub const TIM_PRESCALE: u16 = 41999;
+// use mcu::tim_gen::*;
+// use mcu::ext::tim_gen::Delay;
+// use mcu::ext::tim_gen::SetPrescale;
+// use bobbin_mcu::clock::ClockFor;
+// use bobbin_mcu::gate::GateEn;
+// use clock::*;
+
+// pub const TIM: Tim14 = TIM14;
+// pub const TIM_PRESCALE: u16 = 41999;
 
 // PLL Mode with 8Mhz External Oscillator
 //   168Mhz System Clock
@@ -20,15 +22,18 @@ pub const TIM_PRESCALE: u16 = 41999;
 // Set auto_reload to ms x 2
 
 pub fn init() {
-    TIM.gate_enable();
+    // TIM.gate_enable();
 }
 
 pub fn delay(ms: u32) { 
-    TIM.gate_enable();
-    let tim_clk: u32 = SystemClock::default().clock_for(TIM).into();
-    TIM
-        .set_prescale(((tim_clk / 2000) - 1) as u16)
-        .delay((ms << 1) as u16);
+    let deadline = SYSTICK.counter().wrapping_add(ms);
+    while SYSTICK.counter() != deadline {}
+    
+    // TIM.gate_enable();
+    // let tim_clk: u32 = SystemClock::default().clock_for(TIM).into();
+    // TIM
+    //     .set_prescale(((tim_clk / 2000) - 1) as u16)
+    //     .delay((ms << 1) as u16);
 }
 
 impl ::bobbin_hal::delay::Delay for ::NucleoF746zg {
