@@ -27,7 +27,7 @@ pub use cortex_m_rt::{default_handler, exception};
 mod lang_items;
 
 pub mod prelude;
-pub mod cache;
+pub mod startup;
 pub mod clock;
 pub mod tick;
 pub mod console;
@@ -39,15 +39,7 @@ pub use delay::delay;
 
 pub fn init() -> System {    
     system::System::init(|| {
-        ::cache::init();
-        ::clock::init();
-        ::tick::init();
-        ::console::init();
-        ::led::init();
-        ::btn::init();
-        // ::delay::init();
-        #[cfg(feature="logger")]
-        Logger::init();          
+        ::startup::init(); 
     })
 }
 
