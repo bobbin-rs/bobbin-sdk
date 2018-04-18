@@ -68,12 +68,12 @@ where
 
     #[inline]
     fn enable_interrupts() {
-        // unsafe { asm!("cpsie i") }
+        unsafe { asm!("cpsie i") }
     }
 
     #[inline]
     fn disable_interrupts() {
-        // unsafe { asm!("cpsid i") }
+        unsafe { asm!("cpsid i") }
     }
 
     fn locked() -> bool {

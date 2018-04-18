@@ -1,4 +1,5 @@
 #![no_std]
+#![feature(asm)]
 
 #[cfg(feature="logger")]
 extern crate log;
