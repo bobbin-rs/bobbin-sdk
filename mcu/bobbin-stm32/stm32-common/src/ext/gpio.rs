@@ -222,6 +222,7 @@ impl DigitalOutput for GpioPin {
 }
 
 impl SetSource for GpioPin {
+    #[inline]
     fn set_source(&self, src: u8) {
         if src > 0 {
             self.mode_alt_fn(src as usize);
