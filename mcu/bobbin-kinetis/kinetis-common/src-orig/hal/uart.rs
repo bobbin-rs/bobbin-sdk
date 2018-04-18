@@ -1,10 +1,10 @@
 pub use bobbin_common::configure::*;
 pub use bobbin_common::enabled::*;
-pub use bobbin_common::hal::serial::*;
+pub use bobbin_hal::serial::*;
 
 
 use bobbin_common::{Irq, Poll};
-use bobbin_common::sys::ring::Ring;
+use bobbin_sys::ring::Ring;
 use bobbin_cortexm::hal::scb::SCB;
 use bobbin_cortexm::hal::nvic;
 use bobbin_cortexm::wfi;

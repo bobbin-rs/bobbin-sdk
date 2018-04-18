@@ -1,4 +1,4 @@
-pub use bobbin_common::hal::serial::*;
+pub use bobbin_hal::serial::*;
 pub use bobbin_common::enabled::*;
 pub use ::chip::usart::*;
 pub use ::hal::cmu::CmuEnabled;

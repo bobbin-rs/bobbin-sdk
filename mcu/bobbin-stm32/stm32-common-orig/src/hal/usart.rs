@@ -1,11 +1,11 @@
-pub use bobbin_common::sys::console::Putc;
+pub use bobbin_sys::console::Putc;
 pub use bobbin_common::configure::*;
 pub use bobbin_common::enabled::*;
-pub use bobbin_common::hal::serial::*;
+pub use bobbin_hal::serial::*;
 // pub use bobbin_common::{Irq, Poll};
 pub use chip::usart::*;
 
-use bobbin_common::sys::ring::*;
+use bobbin_sys::ring::*;
 // use bobbin_cortexm::hal::nvic;
 // use bobbin_cortexm::hal::scb::*;
 

@@ -1,4 +1,4 @@
-pub use bobbin_common::hal::timer::*;
+pub use bobbin_hal::timer::*;
 pub use chip::pwm::*;
 pub use super::sysctl::SysctlEnabled;
 

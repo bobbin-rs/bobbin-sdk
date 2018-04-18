@@ -1,5 +1,5 @@
 pub use periph::dac::*;
-pub use bobbin_common::hal::analog::AnalogWrite;
+pub use bobbin_hal::analog::AnalogWrite;
 use bobbin_common::bits::*;
 
 impl DacPeriph {

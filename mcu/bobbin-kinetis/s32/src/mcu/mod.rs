@@ -1,4 +1,4 @@
-pub use ::bobbin_common::mcu::*;
+pub use ::bobbin_mcu::*;
 use ::bobbin_common::owned::*;
 
 pub mod sim;

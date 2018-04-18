@@ -1,4 +1,4 @@
-pub use bobbin_common::hal::timer::*;
+pub use bobbin_hal::timer::*;
 pub use bobbin_common::Channel;
 pub use chip::timer::*;
 pub use core::ops::Deref;

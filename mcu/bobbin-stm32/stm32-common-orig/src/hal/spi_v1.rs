@@ -1,6 +1,6 @@
 pub use bobbin_common::configure::*;
 pub use bobbin_common::enabled::*;
-pub use bobbin_common::hal::spi::*;
+pub use bobbin_hal::spi::*;
 pub use ::chip::spi_v1::*;
 
 use bobbin_common::bits::*;

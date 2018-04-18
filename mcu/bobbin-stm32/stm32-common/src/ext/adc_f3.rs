@@ -1,5 +1,5 @@
 use bobbin_common::bits::*;
-pub use bobbin_common::hal::analog::AnalogRead;
+pub use bobbin_hal::analog::AnalogRead;
 pub use ::periph::adc_f3::*;
 
 #[derive(Debug, PartialEq, Eq, Clone, Copy)]

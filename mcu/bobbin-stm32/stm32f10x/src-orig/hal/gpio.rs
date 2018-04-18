@@ -1,5 +1,5 @@
 pub use bobbin_common::Pin;
-pub use bobbin_common::hal::digital::*;
+pub use bobbin_hal::digital::*;
 pub use chip::gpio::*;
 pub use super::rcc::RccEnabled;
 

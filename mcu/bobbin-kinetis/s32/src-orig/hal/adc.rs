@@ -1,5 +1,5 @@
 use bobbin_common::bits::*;
-pub use bobbin_common::hal::analog::AnalogRead;
+pub use bobbin_hal::analog::AnalogRead;
 pub use chip::adc::*;
 pub use super::pcc::{PccClockSource, PccEnabled};
 

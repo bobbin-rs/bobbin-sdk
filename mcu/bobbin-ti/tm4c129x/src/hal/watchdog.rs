@@ -1,5 +1,5 @@
 pub use bobbin_common::enabled::*;
-pub use bobbin_common::hal::watchdog::*;
+pub use bobbin_hal::watchdog::*;
 pub use chip::watchdog::*;
 pub use super::sysctl::{SysctlEnabled, SysctlReady};
 
@@ -9,7 +9,7 @@ impl Unlock for WatchdogPeriph {
     }
 }
 
-impl ::bobbin_common::hal::watchdog::Lock for WatchdogPeriph {
+impl ::bobbin_hal::watchdog::Lock for WatchdogPeriph {
     fn lock(&self) -> &Self {
         self.set_lock(|r| r.set_lock(0x00000000))
     }

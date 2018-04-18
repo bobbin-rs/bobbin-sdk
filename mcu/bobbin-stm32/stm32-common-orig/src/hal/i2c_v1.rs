@@ -1,4 +1,4 @@
-pub use bobbin_common::hal::i2c::*;
+pub use bobbin_hal::i2c::*;
 pub use bobbin_common::configure::*;
 pub use bobbin_common::enabled::*;
 pub use ::chip::i2c_v1::*;

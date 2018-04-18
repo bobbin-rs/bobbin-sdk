@@ -1,4 +1,4 @@
-pub use ::bobbin_common::mcu::*;
+pub use ::bobbin_mcu::*;
 
 pub mod rcc;
 pub mod dac;

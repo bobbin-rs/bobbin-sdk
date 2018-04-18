@@ -1,4 +1,4 @@
-pub use bobbin_common::hal::watchdog::*;
+pub use bobbin_hal::watchdog::*;
 pub use chip::wdog::*;
 
 impl Unlock for Wdog {

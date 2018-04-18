@@ -1,11 +1,11 @@
 pub use bobbin_common::configure::*;
 pub use bobbin_common::enabled::*;
-pub use bobbin_common::hal::spi::*;
+pub use bobbin_hal::spi::*;
 
 
-use bobbin_common::sys::ring::Ring;
+use bobbin_sys::ring::Ring;
 use bobbin_common::{Irq, Poll};
-use bobbin_common::hal::digital::DigitalOutput;
+use bobbin_hal::digital::DigitalOutput;
 use bobbin_cortexm::wfi;
 use bobbin_cortexm::hal::nvic;
 use bobbin_cortexm::hal::scb::SCB;

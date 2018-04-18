@@ -1,4 +1,4 @@
-pub use bobbin_common::hal::i2c::*;
+pub use bobbin_hal::i2c::*;
 pub use bobbin_common::configure::*;
 pub use bobbin_common::enabled::*;
 pub use ::chip::i2c_v2::*;
@@ -6,7 +6,7 @@ pub use ::chip::i2c_v2::*;
 use bobbin_common::bits::*;
 
 // use bobbin_common::{Irq, Poll};
-use bobbin_common::sys::ring::Ring;
+use bobbin_sys::ring::Ring;
 use bobbin_cortexm::wfi;
 // use bobbin_cortexm::hal::nvic;
 // use bobbin_cortexm::hal::scb::*;

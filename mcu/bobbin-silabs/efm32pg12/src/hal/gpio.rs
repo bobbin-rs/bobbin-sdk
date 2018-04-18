@@ -1,4 +1,4 @@
-pub use bobbin_common::hal::digital::*;
+pub use bobbin_hal::digital::*;
 pub use bobbin_common::{AltFn, Pin};
 pub use ::chip::gpio::*;
 
