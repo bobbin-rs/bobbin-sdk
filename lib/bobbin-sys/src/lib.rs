@@ -8,6 +8,7 @@ extern crate bobbin_hal;
 #[macro_use]
 mod macros;
 
+pub mod prelude;
 pub mod console;
 pub mod heap;
 pub mod memory;

@@ -5,6 +5,8 @@ pub extern crate bobbin_bits;
 pub extern crate bobbin_mcu;
 pub extern crate bobbin_hal;
 
+pub mod prelude;
+
 pub mod ext;
 pub mod nvic;
 pub mod scb;

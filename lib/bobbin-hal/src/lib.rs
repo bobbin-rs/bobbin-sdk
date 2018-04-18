@@ -1,6 +1,8 @@
 #![no_std]
 #![feature(const_fn)]
 
+pub mod prelude;
+
 pub mod configure;
 pub mod enabled;
 

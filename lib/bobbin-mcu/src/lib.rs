@@ -12,6 +12,8 @@ extern crate bobbin_bits as bits;
 #[macro_use]
 mod macros;
 
+pub mod prelude;
+
 pub mod mcu;
 pub mod clock;
 pub mod register;
