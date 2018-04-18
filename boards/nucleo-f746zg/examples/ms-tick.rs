@@ -9,7 +9,7 @@ pub extern "C" fn main() -> ! {
     let mut sys = board::init();
     sys.run(|sys| {
         println!("Running MsTick");
-        let mt = ::board::ms_tick::MS_TICK;
+        let mt = sys.tick();
         loop {
             if let Some(c) = sys.console() {
                 c.write(b"Tick: ");

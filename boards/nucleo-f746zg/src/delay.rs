@@ -1,4 +1,4 @@
-use ::ms_tick::MS_TICK;
+use ::tick::MS_TICK;
 
 // use mcu::tim_gen::*;
 // use mcu::ext::tim_gen::Delay;

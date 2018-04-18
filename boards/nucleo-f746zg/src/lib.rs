@@ -29,11 +29,11 @@ mod lang_items;
 pub mod prelude;
 pub mod cache;
 pub mod clock;
+pub mod tick;
 pub mod console;
 pub mod led;
 pub mod btn;
 pub mod delay;
-pub mod ms_tick;
 
 pub use delay::delay;
 
@@ -41,10 +41,10 @@ pub fn init() -> System {
     system::System::init(|| {
         ::cache::init();
         ::clock::init();
+        ::tick::init();
         ::console::init();
         ::led::init();
         ::btn::init();
-        ::ms_tick::init();
         // ::delay::init();
         #[cfg(feature="logger")]
         Logger::init();          

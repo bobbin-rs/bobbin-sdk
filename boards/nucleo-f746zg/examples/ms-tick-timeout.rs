@@ -8,9 +8,9 @@ extern crate nucleo_f746zg as board;
 pub extern "C" fn main() -> ! {
     let mut sys = board::init();
 
-    sys.run(|_| {
+    sys.run(|sys| {
         println!("Running MsTick Timeout");
-        let mt = ::board::ms_tick::MS_TICK;
+        let mt = sys.tick();
 
         println!("Expect OK after 500ms");
         let now = mt.counter();
