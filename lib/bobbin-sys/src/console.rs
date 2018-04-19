@@ -3,10 +3,8 @@ use bobbin_hal::serial::SerialTx;
 use core::fmt::{self, Write};
 
 pub const DIGITS: &[u8; 16] = b"0123456789abcdef";    
-// pub static mut CONSOLE: Option<(&'static ConsoleWrite, ConsoleMode)> = None;
 
-pub static mut CONSOLE: Option<Console<'static>> = None;
-
+static mut CONSOLE: Option<Console<'static>> = None;
 
 #[derive(Debug, PartialEq, Eq, Clone, Copy)]
 pub enum ConsoleMode {
@@ -29,25 +27,35 @@ impl<T: SerialTx<u8>> ConsoleWrite for T {
 }
 
 
-pub fn set_console(console: Console<'static>) {
-    unsafe { CONSOLE = Some(console) }
-}
-
 #[derive(Clone)]
 pub struct Console<'a>(&'a ConsoleWrite, ConsoleMode);
 
 impl<'a> Console<'a> {
+
+    pub fn borrow() -> Option<&'static Console<'static>> {
+        unsafe { CONSOLE.as_ref() }
+    }    
+
+    pub fn set(console: Console<'static>) {
+        unsafe { CONSOLE = Some(console) }
+    }
+
     pub fn new(other: &'a ConsoleWrite, mode: ConsoleMode) -> Self {
         Console(other, mode)
     }
 
-    #[inline]
     pub fn write(&self, buf: &[u8]) {
         match self.1 {
             ConsoleMode::Raw => self.0.write(buf),
             ConsoleMode::Cooked => self.write_cooked(buf),
         }
     }
+
+    pub fn writeln(&self, buf: &[u8]) {
+        self.write(buf);
+        self.write(b"\n");
+    }
+
 
     pub fn write_cooked(&self, buf: &[u8]) {
         for byte in buf {
@@ -87,10 +95,6 @@ impl<'a> fmt::Write for Console<'a> {
         self.0.write(s.as_bytes());
         Ok(())
     }
-}
-
-pub fn console_ref() -> Option<&'static Console<'static>> {
-    unsafe { CONSOLE.as_ref() }
 }
 
 #[doc(hidden)]

@@ -1,5 +1,6 @@
 use heap::Heap;
 use tick::Tick;
+use console::Console;
 
 struct SystemToken;
 static mut SYSTEM_TOKEN: Option<SystemToken> = Some(SystemToken);
@@ -62,6 +63,10 @@ impl<MCU, CLK> System<MCU, CLK> {
 
     pub fn tick_mut(&mut self) -> &mut Tick {
         &mut self.tick
+    }
+
+    pub fn console(&self) -> Option<&'static Console<'static>> {
+        Console::borrow()
     }
 
 }

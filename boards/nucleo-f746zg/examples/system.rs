@@ -23,7 +23,9 @@ pub extern "C" fn main() -> ! {
     
     brd.run(|brd| loop {
         led.toggle();
-        println!("Tick...");        
+        if let Some(c) = brd.console() {
+            c.writeln(b"Tick...");
+        }
         brd.tick().delay(1000);
     })
 }
