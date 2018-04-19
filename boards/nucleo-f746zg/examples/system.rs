@@ -5,6 +5,7 @@
 #[macro_use]
 extern crate nucleo_f746zg as board;
 
+use board::bobbin_sys::board::Board;
 use board::prelude::*;
 
 #[no_mangle]
@@ -20,10 +21,9 @@ pub extern "C" fn main() -> ! {
     // let h = sys.heap_mut();
     // let _ = h.new(0u8);
     
-    let sys = brd.sys();
-    sys.run(|sys| loop {
+    brd.run(|brd| loop {
         led.toggle();
         println!("Tick...");        
-        sys.tick().delay(1000);
+        brd.tick().delay(1000);
     })
 }
