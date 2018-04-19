@@ -27,38 +27,25 @@ pub mod tick;
 pub mod console;
 pub mod led;
 pub mod btn;
-pub mod delay;
+// pub mod delay;
 
-pub use delay::delay;
+// pub use delay::delay;
 
-pub fn init() -> Board {
-    Board {
-        system: system::System::init(|| {
-            ::startup::init(); 
-        })
-    }
-}
+pub use startup::init;
 
-pub type System = system::System<
-        Mcu,
-        Clock,
-        Dispatcher,
-        Tick,
->;
+pub type System = system::System<Mcu, Clk>;
 
 pub type Mcu = mcu::Stm32f74x;
-pub type Clock = clock::SystemClock;
-pub type Tick = mcu::ext::ms_tick::MsTick;
-pub type Memory = memory::Memory;
+pub type Clk = clock::SystemClock;
 pub type Heap = heap::Heap;
+
 #[cfg(feature="logger")]
 pub type Logger = logger::Logger;
 pub type Dispatcher = mcu::ext::dispatch::Dispatcher<mcu::ext::dispatch::ExcHandlers8>;
 
-#[cfg(target_os="none")]
-default_handler!(Dispatcher::handle_exception);
+// #[cfg(target_os="none")]
+// default_handler!(Dispatcher::handle_exception);
 
-#[derive(Default)]
 pub struct NucleoF746zg {
     system: System,
 }

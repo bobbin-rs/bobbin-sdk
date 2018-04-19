@@ -38,8 +38,8 @@ impl Heap {
         }
     }
 
-    pub unsafe fn extend(&mut self, size: usize) {
-        HEAP_END = HEAP_START.offset(size as isize);
+    pub unsafe fn extend(size: usize)  {
+        HEAP_END = HEAP_END.offset(size as isize);
     }
 
     #[inline]
