@@ -1,5 +1,6 @@
 use heap::Heap;
 use tick::Tick;
+use irq_dispatch::{IrqDispatcher, IrqHandler};
 use console::Console;
 
 struct SystemToken;
@@ -10,25 +11,32 @@ pub struct System<MCU, CLK> {
     clk: CLK,
     heap: Heap,
     tick: Tick,
+    dispatcher: IrqDispatcher,
     _private: ()
 }
 
 impl<MCU, CLK> System<MCU, CLK> {
     pub fn take(mcu: MCU, clk: CLK) -> Self {
         unsafe { while let None = SYSTEM_TOKEN.take() {} }
+        let mut heap = Heap::take();
+        let tick = Tick::take();
+        let irq_handlers: &mut [Option<IrqHandler>]  = heap.slice(None, 8);
+        let dispatcher = IrqDispatcher::init(irq_handlers.as_mut_ptr(), irq_handlers.len());
         System {
             mcu,
             clk,
-            heap: Heap::take(),
-            tick: Tick::take(),
+            heap,
+            tick,
+            dispatcher,
             _private: (),
         }
     }
 
     pub fn release(system: Self) -> (MCU, CLK) {
-        let System { mcu, clk, heap, tick, _private } = system;
+        let System { mcu, clk, heap, tick, dispatcher, _private } = system;
         Tick::release(tick);
         Heap::release(heap);
+        IrqDispatcher::release(dispatcher);
         unsafe { SYSTEM_TOKEN = Some(SystemToken) }
         (mcu, clk)
     }

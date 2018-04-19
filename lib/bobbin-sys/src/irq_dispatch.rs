@@ -45,14 +45,12 @@ impl IrqDispatcher {
         IrqDispatcher { _private: () }
     }
 
-    pub fn init<E: EnableDisableIrq>(ptr: *mut Option<IrqHandler>, len: usize, enable_disable: &'static E) -> Self {
+    pub fn init(ptr: *mut Option<IrqHandler>, len: usize) -> Self {
         unsafe { 
             while let None = IRQ_TOKEN {} 
             IRQ_HANDLERS_PTR = ptr;
-            IRQ_HANDLERS_LEN = len;
-            IRQ_ENABLE_DISABLE = Some(enable_disable);
-        }
-        
+            IRQ_HANDLERS_LEN = len;            
+        }        
         IrqDispatcher { _private: () }
     }
 
@@ -66,6 +64,10 @@ impl IrqDispatcher {
             slice::from_raw_parts_mut(IRQ_HANDLERS_PTR, IRQ_HANDLERS_LEN)
         }       
     }    
+
+    pub fn set_enable_disable<E: EnableDisableIrq>(enable_disable: &'static E) {
+        unsafe { IRQ_ENABLE_DISABLE = Some(enable_disable) }
+    }
 
     fn irq_enable_disable() -> Option<&'static EnableDisableIrq> {
         unsafe { IRQ_ENABLE_DISABLE }
@@ -228,7 +230,8 @@ mod tests {
         static mut HANDLERS: [Option<IrqHandler>; 4] =[None; 4];
         static mut IRQ_MGR: IrqManager = IrqManager { enabled: Cell::new(0) };
         let mut irq_d = unsafe {
-            IrqDispatcher::init(HANDLERS.as_mut_ptr(), HANDLERS.len(), &IRQ_MGR)
+            IrqDispatcher::set_enable_disable(&IRQ_MGR);
+            IrqDispatcher::init(HANDLERS.as_mut_ptr(), HANDLERS.len())            
         };
         assert_eq!(IrqDispatcher::slots(), 4);
         let d = Driver { count: Cell::new(0) };
