@@ -55,3 +55,13 @@ default_handler!(Dispatcher::handle_exception);
 
 #[derive(Debug, Default)]
 pub struct ArduinoZero {}
+
+impl bobbin_sys::board::Board for ArduinoZero {
+   type Mcu = mcu::Samd21;
+   fn id(&self) -> &'static str { "arduino-zero" }
+   fn mcu(&self) -> Self::Mcu { Self::Mcu::default() }
+}
+
+pub const fn board() -> ArduinoZero { ArduinoZero{} }
+
+pub type Board = ArduinoZero;

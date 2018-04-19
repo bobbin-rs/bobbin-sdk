@@ -22,7 +22,7 @@ pub fn init() {
 
 }
 
-impl GetLed for ::FrdmK64f {
+impl GetLed for ::Board {
     fn get_led(&self, index: usize) -> &Led {
         match index {
             0 => &LED0,
@@ -34,7 +34,7 @@ impl GetLed for ::FrdmK64f {
     fn get_led_count(&self) -> usize { 3 }
 }
 
-impl ::FrdmK64f {
+impl ::Board {
     pub fn led0(&self) -> LedHigh<GpioCh> { LedHigh::new(PB22_CH) }
     pub fn led1(&self) -> LedHigh<GpioCh> { LedHigh::new(PB21_CH) }
     pub fn led2(&self) -> LedHigh<GpioCh> { LedHigh::new(PE26_CH) }

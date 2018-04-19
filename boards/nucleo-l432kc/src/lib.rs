@@ -60,12 +60,12 @@ default_handler!(Dispatcher::handle_exception);
 #[derive(Debug, Default)]
 pub struct NucleoL432kc {}
 
-// impl bobbin_mcu::Board for NucleoL432kc {
-//    type Mcu = mcu::Stm32l432x;
-//    fn id(&self) -> &'static str { "nucleo-l432kc" }
-//    fn mcu(&self) -> Self::Mcu { Self::Mcu::default() }
-// }
+impl bobbin_sys::board::Board for NucleoL432kc {
+   type Mcu = mcu::Stm32l432x;
+   fn id(&self) -> &'static str { "nucleo-l432kc" }
+   fn mcu(&self) -> Self::Mcu { Self::Mcu::default() }
+}
 
-// pub const fn board() -> NucleoL432kc { NucleoL432kc{} }
+pub const fn board() -> NucleoL432kc { NucleoL432kc{} }
 
-// pub type Board = NucleoL432kc;
+pub type Board = NucleoL432kc;

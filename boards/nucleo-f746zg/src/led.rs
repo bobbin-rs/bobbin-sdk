@@ -20,7 +20,7 @@ pub fn init() {
     PB14.mode_output();
 }
 
-impl GetLed for ::NucleoF746zg {
+impl GetLed for ::Board {
     fn get_led(&self, index: usize) -> &Led {
         match index {
             0 => &LED0,
@@ -32,7 +32,7 @@ impl GetLed for ::NucleoF746zg {
     fn get_led_count(&self) -> usize { 3 }
 }
 
-impl ::NucleoF746zg {
+impl ::Board {
     pub fn led0(&self) -> LedHigh<GpioPin> { LedHigh::new(PB0_PIN) }
     pub fn led1(&self) -> LedHigh<GpioPin> { LedHigh::new(PB7_PIN) }
     pub fn led2(&self) -> LedHigh<GpioPin> { LedHigh::new(PB14_PIN) }

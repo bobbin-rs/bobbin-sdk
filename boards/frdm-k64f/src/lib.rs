@@ -60,12 +60,12 @@ default_handler!(Dispatcher::handle_exception);
 #[derive(Debug, Default)]
 pub struct FrdmK64f {}
 
-// impl common::board::Board for FrdmK64f {
-//    type Mcu = mcu::K64;
-//    fn id(&self) -> &'static str { "frdm-k64f" }
-//    fn mcu(&self) -> Self::Mcu { Self::Mcu::default() }
-// }
+impl bobbin_sys::board::Board for FrdmK64f {
+   type Mcu = mcu::K64;
+   fn id(&self) -> &'static str { "frdm-k64f" }
+   fn mcu(&self) -> Self::Mcu { Self::Mcu::default() }
+}
 
-// pub const fn board() -> FrdmK64f { FrdmK64f{} }
+pub const fn board() -> FrdmK64f { FrdmK64f{} }
 
-// pub type Board = FrdmK64f;
+pub type Board = FrdmK64f;

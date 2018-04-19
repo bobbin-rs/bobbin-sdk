@@ -8,6 +8,6 @@ pub fn init() {
     BTN0.mode_input().pull_down();
 }
 
-impl ::DiscoveryStm32f3 {
+impl ::Board {
     pub fn btn0(&self) -> BtnHigh<GpioPin> { BtnHigh::new(PA0_PIN) }
 }

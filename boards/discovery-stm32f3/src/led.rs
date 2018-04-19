@@ -68,7 +68,7 @@ pub fn init() {
     PE13.mode_output();
 }
 
-impl GetLed for ::DiscoveryStm32f3 {
+impl GetLed for ::Board {
     fn get_led(&self, index: usize) -> &Led {
         match index {
             0 => &LED0,
@@ -85,7 +85,7 @@ impl GetLed for ::DiscoveryStm32f3 {
     fn get_led_count(&self) -> usize { 8 }
 }
 
-impl ::DiscoveryStm32f3 {
+impl ::Board {
     pub fn led0(&self) -> LedHigh<GpioPin> { LedHigh::new(PE9_PIN) }
     pub fn led1(&self) -> LedHigh<GpioPin> { LedHigh::new(PE8_PIN) }
     pub fn led2(&self) -> LedHigh<GpioPin> { LedHigh::new(PE10_PIN) }

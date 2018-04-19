@@ -9,7 +9,7 @@ pub fn init() {
     PA17.set_mode_output();
 }
 
-impl GetLed for ::ArduinoZero {
+impl GetLed for ::Board {
     fn get_led(&self, index: usize) -> &Led {
         match index {
             0 => &LED0,
@@ -19,7 +19,7 @@ impl GetLed for ::ArduinoZero {
     fn get_led_count(&self) -> usize { 1 }
 }
 
-impl ::ArduinoZero {
+impl ::Board {
     pub fn led0(&self) -> LedHigh<PortPin> {
         LedHigh::new(PA17_PIN)
     }

@@ -14,6 +14,6 @@ pub fn init() {
 }
 pub use mcu::pin::*;
 
-impl ::NucleoL432kc {
+impl ::Board {
     pub fn btn0(&self) -> BtnLow<GpioPin> { BtnLow::new(PA12_PIN) }
 }

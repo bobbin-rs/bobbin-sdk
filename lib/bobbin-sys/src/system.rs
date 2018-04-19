@@ -117,8 +117,12 @@ where
         &self.clock
     }
 
-    pub fn tick(&self) -> &TCK {
+    pub fn tick_ref(&self) -> &TCK {
         &self.tick
+    }
+
+    pub fn tick(&self) -> TCK {
+        TCK::default()
     }
 
     pub fn console(&self) -> Option<&Console> {

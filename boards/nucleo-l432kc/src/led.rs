@@ -12,7 +12,7 @@ pub fn init() {
     PB3.mode_output();
 }
 
-impl GetLed for ::NucleoL432kc {
+impl GetLed for ::Board {
     fn get_led(&self, index: usize) -> &Led {
         match index {
             0 => &LED0,
@@ -22,6 +22,6 @@ impl GetLed for ::NucleoL432kc {
     fn get_led_count(&self) -> usize { 1 }
 }
 
-impl ::NucleoL432kc {
+impl ::Board {
     pub fn led0(&self) -> LedHigh<GpioPin> { LedHigh::new(PB3_PIN) }
 }

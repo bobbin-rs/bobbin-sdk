@@ -10,6 +10,6 @@ pub fn init() {
     BTN0.mode_input().pull_down();
 }
 
-impl ::NucleoF746zg {
+impl ::Board {
     pub fn btn0(&self) -> BtnHigh<GpioPin> { BtnHigh::new(PC13_PIN) }
 }

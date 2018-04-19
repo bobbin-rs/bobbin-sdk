@@ -59,12 +59,12 @@ default_handler!(Dispatcher::handle_exception);
 #[derive(Debug, Default)]
 pub struct NucleoF746zg {}
 
-// impl common::board::Board for NucleoF746zg {
-//    type Mcu = mcu::Stm32f74x;
-//    fn id(&self) -> &'static str { "nucleo-f746zg" }
-//    fn mcu(&self) -> Self::Mcu { Self::Mcu::default() }
-// }
+impl bobbin_sys::board::Board for NucleoF746zg {
+   type Mcu = mcu::Stm32f74x;
+   fn id(&self) -> &'static str { "nucleo-f746zg" }
+   fn mcu(&self) -> Self::Mcu { Self::Mcu::default() }
+}
 
-// pub const fn board() -> NucleoF746zg { NucleoF746zg{} }
+pub const fn board() -> NucleoF746zg { NucleoF746zg{} }
 
-// pub type Board = NucleoF746zg;
+pub type Board = NucleoF746zg;

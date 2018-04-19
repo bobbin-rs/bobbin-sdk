@@ -22,7 +22,7 @@ pub fn init() {
 }
 
 
-impl ::FrdmK64f {
+impl ::Board {
     pub fn btn0(&self) -> BtnLow<GpioCh> { BtnLow::new(PC6_CH) }
     pub fn btn1(&self) -> BtnLow<GpioCh> { BtnLow::new(PA4_CH) }
 }
