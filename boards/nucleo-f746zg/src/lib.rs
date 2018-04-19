@@ -50,21 +50,15 @@ pub struct NucleoF746zg {
     system: System,
 }
 
-impl NucleoF746zg {
-    pub fn sys(&mut self) -> &mut System {
+impl bobbin_sys::board::Board for NucleoF746zg {
+    type System = System;
+    fn id(&self) -> &'static str { "nucleo-f746zg" }
+    fn sys(&self) -> &System {
+        &self.system
+    }
+    fn sys_mut(&mut self) -> &mut System {
         &mut self.system
     }
-}
-
-impl bobbin_sys::board::Board for NucleoF746zg {
-   type System = System;
-   fn id(&self) -> &'static str { "nucleo-f746zg" }
-   fn sys(&self) -> &System {
-       &self.system
-   }
-   fn sys_mut(&mut self) -> &mut System {
-       &mut self.system
-   }
 }
 
 impl ::core::ops::Deref for NucleoF746zg {

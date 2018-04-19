@@ -64,7 +64,4 @@ impl<MCU, CLK> System<MCU, CLK> {
         &mut self.tick
     }
 
-    pub fn run<T, F: FnMut(&Self)->T>(&mut self, mut f: F) -> T {
-        f(&*self)
-    }
 }
