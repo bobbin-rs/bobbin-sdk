@@ -7,11 +7,23 @@ pub enum Error {
 
 static mut TICKS: UnsafeCell<u32> = UnsafeCell::new(u32::max_value() - 2500);
 
-pub const TICK: Tick = Tick;
-#[derive(Default)]
-pub struct Tick;
+struct TickToken;
+static mut TICK_TOKEN: Option<TickToken> = Some(TickToken);
+
+pub struct Tick {
+    _private: ()
+}
 
 impl Tick {
+    pub fn take() -> Tick {
+        unsafe { while let None = TICK_TOKEN {} }
+        Tick { _private: () }
+    }
+
+    pub fn release(_tick: Tick) {
+        unsafe { TICK_TOKEN = Some(TickToken) }
+    }
+
     #[inline]
     pub fn incr_ticks() {
         unsafe { ptr::write_volatile(TICKS.get(), ptr::read_volatile(TICKS.get()).wrapping_add(1)) }
@@ -71,11 +83,11 @@ impl<'a> ::bobbin_hal::delay::Delay for &'a Tick {
     }
 }
 
-pub trait GetTick {
-    fn enable_tick(&self, ms_hz: u32);
-    fn disable_tick(&self);
-    fn tick(&self) -> &Tick {
-        &TICK
-    }
-}
+// pub trait GetTick {
+//     fn enable_tick(&self, ms_hz: u32);
+//     fn disable_tick(&self);
+//     fn tick(&self) -> &Tick {
+//         &TICK
+//     }
+// }
 

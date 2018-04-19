@@ -1,91 +1,35 @@
-use console::{Console, console_ref};
+use heap::Heap;
+use tick::Tick;
 
-#[cfg(feature="logger")]
-use logger::Logger;
+struct SystemToken;
+static mut SYSTEM_TOKEN: Option<SystemToken> = Some(SystemToken);
 
-use core::cell::UnsafeCell;
-
-static mut SYSTEM_DATA: UnsafeCell<SystemData> = UnsafeCell::new(SystemData { locked: false });
-
-struct SystemData {
-    locked: bool,
-}
-
-pub struct Config {
-}
-
-impl Default for Config {
-    fn default() -> Config {
-        Config {}
-    }
-}
-
-#[must_use]
-#[derive(Default)]
-pub struct System<MCU, CLK, DIS, TCK> 
-where
-    MCU: Default,
-    CLK: Default,
-    DIS: Default,
-    TCK: Default,
-{
+pub struct System<MCU, CLK> {
     mcu: MCU,
-    clock: CLK,
-    tick: TCK,
-    #[cfg(feature="logger")]
-    logger: Logger,
-    dispatcher: DIS,
+    clk: CLK,
+    heap: Heap,
+    tick: Tick,
+    _private: ()
 }
 
-impl<MCU, CLK, DIS, TCK> System<MCU, CLK, DIS, TCK> 
-where
-    MCU: Default,
-    CLK: Default,
-    DIS: Default,
-    TCK: Default,
-{
-
-    pub fn init<F: FnOnce()>(f: F) -> Self {
-        Self::disable_interrupts();
-        Self::lock();
-
-        f();
-
+impl<MCU, CLK> System<MCU, CLK> {
+    pub fn take(mcu: MCU, clk: CLK) -> Self {
+        unsafe { while let None = SYSTEM_TOKEN.take() {} }
         System {
-            mcu: MCU::default(),
-            clock: CLK::default(),
-            tick: TCK::default(),
-            #[cfg(feature="logger")]
-            logger: Logger::default(),
-            dispatcher: DIS::default(),
+            mcu,
+            clk,
+            heap: Heap::take(),
+            tick: Tick::take(),
+            _private: (),
         }
     }
 
-    fn data() -> &'static mut SystemData {
-        unsafe { &mut *SYSTEM_DATA.get() }
-    }
-
-    #[inline]
-    fn enable_interrupts() {
-        unsafe { asm!("cpsie i") }
-    }
-
-    #[inline]
-    fn disable_interrupts() {
-        unsafe { asm!("cpsid i") }
-    }
-
-    fn locked() -> bool {
-        Self::data().locked    
-    }
-
-    fn lock() {
-        while Self::locked() {}
-        Self::data().locked = true;
-    }
-
-    fn unlock() {
-        Self::data().locked = false;
+    pub fn release(system: Self) -> (MCU, CLK) {
+        let System { mcu, clk, heap, tick, _private } = system;
+        Tick::release(tick);
+        Heap::release(heap);
+        unsafe { SYSTEM_TOKEN = Some(SystemToken) }
+        (mcu, clk)
     }
 
     pub fn mcu(&self) -> &MCU {
@@ -96,52 +40,31 @@ where
         &mut self.mcu
     }
 
-    pub fn clock(&self) -> &CLK {
-        &self.clock
+    pub fn clk(&self) -> &CLK {
+        &self.clk
     }
 
-    pub fn tick_ref(&self) -> &TCK {
+    pub fn clk_mut(&mut self) -> &mut CLK {
+        &mut self.clk
+    }
+
+    pub fn heap(&self) -> &Heap {
+        &self.heap
+    }
+
+    pub fn heap_mut(&mut self) -> &mut Heap {
+        &mut self.heap
+    }
+
+    pub fn tick(&self) -> &Tick {
         &self.tick
     }
 
-    pub fn tick(&self) -> TCK {
-        TCK::default()
+    pub fn tick_mut(&mut self) -> &mut Tick {
+        &mut self.tick
     }
 
-    pub fn console(&self) -> Option<&Console> {
-        console_ref()
-    }
-
-    #[cfg(feature="logger")]
-    pub fn logger(&self) -> &Logger {
-        &self.logger
-    }
-
-    pub fn dispatcher(&self) -> &DIS {
-        &self.dispatcher
-    }
-
-    pub fn dispatcher_mut(&mut self) -> &mut DIS {
-        &mut self.dispatcher
-    }
-
-    pub fn run<T, F: FnOnce(&Self) -> T>(&mut self, f: F) -> T {
-        Self::enable_interrupts();
-        let ret = f(self);
-        Self::disable_interrupts();
-        ret
-    }
-}
-
-impl<MCU, CLK, DIS, TCK> Drop for System<MCU, CLK, DIS, TCK> 
-where
-    MCU: Default,
-    CLK: Default,
-    DIS: Default,
-    TCK: Default,
-{
-    fn drop(&mut self) {
-        Self::unlock();
-        Self::enable_interrupts()
+    pub fn run<T, F: FnMut(&Self)->T>(&mut self, mut f: F) -> T {
+        f(&*self)
     }
 }

@@ -6,7 +6,8 @@ extern "C" {
     static mut _estack: u32;
 }
 
-static mut HEAP: Heap = Heap {};
+struct HeapToken;
+static mut HEAP_TOKEN: Option<HeapToken> = Some(HeapToken);
 static mut HEAP_START: *mut u8 = unsafe { &_sheap as *const u32 as *mut u8 };
 static mut HEAP_END: *mut u8 = unsafe { &_sheap as *const u32 as *mut u8 };
 
@@ -16,14 +17,27 @@ pub enum Error {
     InvalidAlign,
 }
 
-pub trait GetHeap {
-    fn heap(&mut self) -> &mut Heap { unsafe { &mut HEAP } }
+// pub trait GetHeap {
+//     fn heap(&mut self) -> &mut Heap { unsafe { &mut HEAP } }
+// }
+
+
+pub struct Heap {
+    _private: (),
 }
 
-#[derive(Default)]
-pub struct Heap {}
-
 impl Heap {
+    pub fn take() -> Heap {
+        unsafe { while let None = HEAP_TOKEN {} }
+        Heap { _private: () }        
+    }
+
+    pub fn release(_heap: Heap)  {
+        unsafe {
+            HEAP_TOKEN = Some(HeapToken)
+        }
+    }
+
     pub unsafe fn extend(&mut self, size: usize) {
         HEAP_END = HEAP_START.offset(size as isize);
     }
