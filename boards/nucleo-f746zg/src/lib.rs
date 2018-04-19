@@ -57,11 +57,8 @@ impl NucleoF746zg {
 }
 
 impl bobbin_sys::board::Board for NucleoF746zg {
-   type Mcu = mcu::Stm32f74x;
-   type Clk = clock::SystemClock;
+   type System = System;
    fn id(&self) -> &'static str { "nucleo-f746zg" }
-   fn mcu(&self) -> Self::Mcu { Self::Mcu::default() }
-   fn clk(&self)-> Self::Clk { Self::Clk::default() }
    fn sys(&self) -> &System {
        &self.system
    }
@@ -83,6 +80,5 @@ impl ::core::ops::DerefMut for NucleoF746zg {
     }
 }
 
-// pub const fn board() -> NucleoF746zg { NucleoF746zg{} }
 
 pub type Board = NucleoF746zg;
