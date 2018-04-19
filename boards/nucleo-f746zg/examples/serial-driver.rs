@@ -6,9 +6,10 @@
 extern crate nucleo_f746zg as board;
 extern crate examples;
 
-use board::console::USART;
+use board::bobbin_sys::board::Board;
+use board::bobbin_sys::irq_dispatch::{HandleIrq, Guard};
 
-use board::mcu::ext::dispatch::{HandleException, Guard};
+use board::console::USART;
 use board::System;
 use board::bobbin_sys::ring::*;
 
@@ -24,29 +25,32 @@ use board::bobbin_sys::heap::Error;
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
-    let mut sys = board::init();
+    let mut brd = board::init();
 
-    unsafe { sys.heap_mut().extend(1024) };
-    let mut s = if let Ok(s) = SerialDriver::new(&mut sys, USART) {
+    let mut s = if let Ok(s) = SerialDriver::new(&mut brd, USART) {
         s
     } else {
         abort!("Unable to create SerialDriver");
-    };
-    s.write_all(b"Serial Driver Echo Test\r\n");        
-    let mut buf = [0u8; 64];
-    loop {
-        let n = s.read(&mut buf);
-        if n > 0 {
-            for b in &buf[..n] {
-                if *b == 13 {
-                    s.write_all(b"\r\n");
-                } else {
-                    s.write_all(&[*b]);
+    };    
+    brd.run(|_| {
+        unsafe { asm!("cpsie i") }
+        s.write_all(b"Serial Driver Echo Test\r\n");        
+            let mut buf = [0u8; 64];
+            loop {
+                let n = s.read(&mut buf);
+                if n > 0 {
+                    for b in &buf[..n] {
+                        if *b == 13 {
+                            s.write_all(b"\r\n");
+                        } else {
+                            s.write_all(&[*b]);
+                        }
+                    }
                 }
+                s.sleep();
             }
-        }
-        s.sleep();
-    }
+    })
+    
 }
 
 pub struct Config {
@@ -83,9 +87,9 @@ impl SerialDriver {
         let rx_buf = heap.try_slice(0u8, cfg.rx_len)?;
         let rx_ring = heap.try_new(Ring::new(rx_buf))?;
         let rx_writer = heap.try_new(rx_ring.writer())?;
-        let irq_number = usart.irq_number_for(IRQ_USART);
+        let irq_number = usart.irq_number_for(IRQ_USART);        
         let handler = heap.try_new(SerialHandler::new(usart, tx_reader, rx_writer))?;
-        let guard = if let Ok(guard) = sys.dispatcher_mut().register_irq_handler(irq_number, handler) {
+        let guard = if let Ok(guard) = sys.dispatcher_mut().register_handler(irq_number, handler) {
             guard
         } else {
             abort!("Unable to register IRQ handler");
@@ -157,8 +161,8 @@ impl SerialHandler {
     }
 }
 
-impl HandleException for SerialHandler {
-    unsafe fn handle_exception(&self, _: u8) {
+impl HandleIrq for SerialHandler {
+    fn handle_irq(&self, _: u8) {        
         if self.usart.can_tx() {
             if let Some(b) = self.reader.get() {
                 self.usart.tx(b);

@@ -73,6 +73,14 @@ impl<MCU, CLK> System<MCU, CLK> {
         &mut self.tick
     }
 
+    pub fn dispatcher(&self) -> &IrqDispatcher {
+        &self.dispatcher
+    }
+
+    pub fn dispatcher_mut(&mut self) -> &mut IrqDispatcher {
+        &mut self.dispatcher
+    }
+
     pub fn console(&self) -> Option<&'static Console<'static>> {
         Console::borrow()
     }
