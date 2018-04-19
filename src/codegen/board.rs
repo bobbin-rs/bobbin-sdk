@@ -106,7 +106,7 @@ pub fn gen_board<W: Write>(cfg: Config, _out: &mut W, b: &Board) -> Result<()> {
         writeln!(out, "#[derive(Debug, Default)]")?;
         writeln!(out, "pub struct {} {{}}", board_ty)?;
         writeln!(out, "")?;
-        writeln!(out, "impl common::board::Board for {} {{", board_ty)?;
+        writeln!(out, "impl bobbin_sys::board::Board for {} {{", board_ty)?;
         writeln!(out, "   type Mcu = mcu::{};", mcu_ty)?;
         writeln!(out, "   fn id(&self) -> &'static str {{ {:?} }}", b.name)?;
         writeln!(out, "   fn mcu(&self) -> Self::Mcu {{ Self::Mcu::default() }}")?;
