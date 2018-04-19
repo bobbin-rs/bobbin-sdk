@@ -1,5 +1,3 @@
-use memory::Memory;
-use heap::Heap;
 use console::{Console, console_ref};
 
 #[cfg(feature="logger")]
@@ -32,8 +30,6 @@ where
     TCK: Default,
 {
     mcu: MCU,
-    memory: Memory,
-    heap: Heap,
     clock: CLK,
     tick: TCK,
     #[cfg(feature="logger")]
@@ -57,8 +53,6 @@ where
 
         System {
             mcu: MCU::default(),
-            memory: Memory {},
-            heap: Heap {},
             clock: CLK::default(),
             tick: TCK::default(),
             #[cfg(feature="logger")]
@@ -100,18 +94,6 @@ where
 
     pub fn mcu_mut(&mut self) -> &mut MCU {
         &mut self.mcu
-    }
-
-    pub fn memory(&self) -> &Memory {
-        &self.memory
-    }
-
-    pub fn heap(&self) -> &Heap {
-        &self.heap
-    }
-
-    pub fn heap_mut(&mut self) -> &mut Heap {
-        &mut self.heap
     }
 
     pub fn clock(&self) -> &CLK {

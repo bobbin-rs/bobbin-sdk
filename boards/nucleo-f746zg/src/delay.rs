@@ -1,8 +1,8 @@
-use ::tick::MS_TICK;
+use ::tick::TICK;
 
 pub fn init() {
 }
 
 pub fn delay(ms: u32) { 
-    MS_TICK.delay(ms);
+    TICK.delay(ms);
 }

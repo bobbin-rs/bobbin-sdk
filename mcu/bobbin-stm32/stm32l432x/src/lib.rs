@@ -5,6 +5,7 @@ pub extern crate stm32_common;
 pub use stm32_common::bobbin_bits;
 pub use stm32_common::bobbin_mcu;
 pub use stm32_common::bobbin_hal;
+pub use stm32_common::bobbin_sys;
 pub use stm32_common::nvic;
 pub use stm32_common::scb;
 pub use stm32_common::systick;

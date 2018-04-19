@@ -4,21 +4,23 @@
 #[macro_use]
 extern crate nucleo_f746zg as board;
 
-use ::board::prelude::*;
+use board::prelude::*;
+use board::bobbin_sys::board::*;
 
 static mut DATA: [u8; 1024] = [0u8; 1024];
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
-    let mut sys = board::init();
-    match run(&mut sys) {
+    let brd = board::init();
+    let mut mcu = brd.mcu();
+    match run(&mut mcu) {
         Ok(_) => println!("Ok"),
         Err(_) => println!("Error"),
     }
     loop {}
 }
 
-pub fn run(sys: &mut board::System) -> Result<(), Error> {
+pub fn run(mcu: &mut GetHeap) -> Result<(), Error> {
     for i in 0..1024 {
         unsafe { DATA[i] = i as u8; }
     }
@@ -26,7 +28,7 @@ pub fn run(sys: &mut board::System) -> Result<(), Error> {
     // println!("Memory Test");
     // println!("{:?}", sys.memory());
 
-    let heap = sys.heap_mut();
+    let heap = mcu.heap();
     // println!("Initial Heap: {:?}", heap);
 
     unsafe { heap.extend(4096) }

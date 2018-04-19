@@ -4,8 +4,7 @@
 pub extern crate bobbin_bits;
 pub extern crate bobbin_mcu;
 pub extern crate bobbin_hal;
-
-pub mod prelude;
+pub extern crate bobbin_sys;
 
 pub mod ext;
 pub mod nvic;
@@ -19,3 +18,11 @@ pub mod dwt;
 pub mod sig;
 pub mod pin;
 
+pub const CORTEXM: Cortexm = Cortexm {};
+pub struct Cortexm {}
+
+impl Cortexm {
+    pub fn is_cortexm(&self) -> bool {
+        true
+    }
+}

@@ -6,6 +6,7 @@ extern "C" {
     static mut _estack: u32;
 }
 
+static mut HEAP: Heap = Heap {};
 static mut HEAP_START: *mut u8 = unsafe { &_sheap as *const u32 as *mut u8 };
 static mut HEAP_END: *mut u8 = unsafe { &_sheap as *const u32 as *mut u8 };
 
@@ -13,6 +14,10 @@ static mut HEAP_END: *mut u8 = unsafe { &_sheap as *const u32 as *mut u8 };
 pub enum Error {
     OutOfSpace,
     InvalidAlign,
+}
+
+pub trait GetHeap {
+    fn heap(&mut self) -> &mut Heap { unsafe { &mut HEAP } }
 }
 
 #[derive(Default)]

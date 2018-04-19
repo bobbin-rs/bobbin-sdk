@@ -5,6 +5,7 @@ pub extern crate stm32_common;
 pub use stm32_common::bobbin_bits;
 pub use stm32_common::bobbin_mcu;
 pub use stm32_common::bobbin_hal;
+pub use stm32_common::bobbin_sys;
 pub use stm32_common::nvic;
 pub use stm32_common::scb;
 pub use stm32_common::systick;
@@ -59,6 +60,8 @@ pub mod irq;
 pub mod clock;
 
 
+pub const STM32F74X: Stm32f74x = Stm32f74x {};
+
 #[derive(Debug, Default)]
 pub struct Stm32f74x {}
 
@@ -66,4 +69,9 @@ impl ::bobbin_mcu::mcu::Mcu for Stm32f74x {
     fn id(&self) -> &'static str { "STM32F74x" }
 }
 
-
+impl ::core::ops::Deref for Stm32f74x {
+    type Target = stm32_common::Stm32;
+    fn deref(&self) -> &Self::Target {
+        &stm32_common::STM32
+    }
+}

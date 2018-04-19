@@ -1,5 +1,10 @@
 (device
     (name bobbin-cortexm)
+    (crate (name "bobbin-bits"))
+    (crate (name "bobbin-mcu"))
+    (crate (name "bobbin-hal"))
+    (crate (name "bobbin-sys"))
+
     (description "Cortex-M Common Peripherals")
     (peripheral (include "periph/nvic.rx"))
     (peripheral (include "periph/scb.rx"))

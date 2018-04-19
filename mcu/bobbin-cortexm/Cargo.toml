@@ -6,6 +6,7 @@ version = "0.1.0"
 bobbin-bits = "0.1.1"
 bobbin-mcu = { path = "../../lib/bobbin-mcu" }
 bobbin-hal = { path = "../../lib/bobbin-hal" }
+bobbin-sys = { path = "../../lib/bobbin-sys" }
 
 [features]
 default = []

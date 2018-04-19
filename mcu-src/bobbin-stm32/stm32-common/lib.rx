@@ -5,6 +5,7 @@
         (module (name bobbin_bits))
         (module (name bobbin_mcu))
         (module (name bobbin_hal))
+        (module (name bobbin_sys))
         (module (name nvic))
         (module (name scb))
         (module (name systick))

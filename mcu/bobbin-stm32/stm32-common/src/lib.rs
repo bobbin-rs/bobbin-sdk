@@ -3,6 +3,7 @@ pub extern crate bobbin_cortexm;
 pub use bobbin_cortexm::bobbin_bits;
 pub use bobbin_cortexm::bobbin_mcu;
 pub use bobbin_cortexm::bobbin_hal;
+pub use bobbin_cortexm::bobbin_sys;
 pub use bobbin_cortexm::nvic;
 pub use bobbin_cortexm::scb;
 pub use bobbin_cortexm::systick;
@@ -42,3 +43,16 @@ pub mod dac;
 pub mod sig;
 pub mod pin;
 
+pub const STM32: Stm32 = Stm32 {};
+pub struct Stm32 {}
+
+impl Stm32 {
+    pub fn is_stm32() -> bool { true }
+}
+
+impl ::core::ops::Deref for Stm32 {
+    type Target = bobbin_cortexm::Cortexm;
+    fn deref(&self) -> &Self::Target {
+        &bobbin_cortexm::CORTEXM
+    }
+}
