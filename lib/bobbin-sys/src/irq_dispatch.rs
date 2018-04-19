@@ -12,7 +12,7 @@ struct IrqToken;
 static mut IRQ_TOKEN: Option<IrqToken> = Some(IrqToken);
 static mut IRQ_HANDLERS_PTR: *mut Option<IrqHandler> = ptr::null_mut();
 static mut IRQ_HANDLERS_LEN: usize = 0;
-static mut IRQ_ENABLE_DISABLE: Option<&'static EnableDisableIrq> = None;
+static mut IRQ_ENABLE_DISABLE: Option<fn(u8, bool)> = None;
 
 pub trait EnableDisableIrq {
     fn enable_irq(&self, irq: u8);
@@ -65,23 +65,23 @@ impl IrqDispatcher {
         }       
     }    
 
-    pub fn set_enable_disable<E: EnableDisableIrq>(enable_disable: &'static E) {
+    pub fn set_enable_disable(enable_disable: fn(u8, bool)) {
         unsafe { IRQ_ENABLE_DISABLE = Some(enable_disable) }
     }
 
-    fn irq_enable_disable() -> Option<&'static EnableDisableIrq> {
+    fn irq_enable_disable() -> Option<fn(u8, bool)> {
         unsafe { IRQ_ENABLE_DISABLE }
     }
 
     pub fn enable_irq(irq_num: u8) {
         if let Some(enable_disable) = Self::irq_enable_disable() {
-            enable_disable.enable_irq(irq_num)
+            enable_disable(irq_num, true)
         }
     }
 
     pub fn disable_irq(irq_num: u8) {
         if let Some(enable_disable) = Self::irq_enable_disable() {
-            enable_disable.disable_irq(irq_num)
+            enable_disable(irq_num, false)
         }
     }
 
@@ -185,23 +185,6 @@ mod tests {
     use super::*;
     use core::cell::Cell;
 
-    struct IrqManager {
-        enabled: Cell<u32>,
-    }
-
-    impl IrqManager {
-        fn enabled(&self) -> u32 { self.enabled.get() }
-    }
-
-    impl EnableDisableIrq for IrqManager {
-        fn enable_irq(&self, irq_num: u8) {
-            self.enabled.set(self.enabled.get() | 1 << irq_num);
-        }
-        fn disable_irq(&self, irq_num: u8) {
-            self.enabled.set(self.enabled.get() & !(1 << irq_num));
-        }
-    }
-
     struct Driver {
         count: Cell<usize>
     }
@@ -228,9 +211,20 @@ mod tests {
     #[test]
     fn test_dispatcher() {
         static mut HANDLERS: [Option<IrqHandler>; 4] =[None; 4];
-        static mut IRQ_MGR: IrqManager = IrqManager { enabled: Cell::new(0) };
+        static mut IRQ_MGR: u8 = 0;
+
+        fn enable_disable(irq: u8, value: bool) {
+            unsafe { 
+                if value {
+                    IRQ_MGR |= 1 << irq;
+                } else {
+                    IRQ_MGR &= !(1 << irq);
+                }
+            }
+        }
+        IrqDispatcher::set_enable_disable(enable_disable);
         let mut irq_d = unsafe {
-            IrqDispatcher::set_enable_disable(&IRQ_MGR);
+            
             IrqDispatcher::init(HANDLERS.as_mut_ptr(), HANDLERS.len())            
         };
         assert_eq!(IrqDispatcher::slots(), 4);
@@ -239,7 +233,7 @@ mod tests {
         {
             let g = irq_d.register_handler(1, &d).unwrap();
             assert_eq!(IrqDispatcher::slots_used(), 1);
-            unsafe { assert_eq!(IRQ_MGR.enabled(), 1 << 1); }
+            unsafe { assert_eq!(IRQ_MGR, 1 << 1); }
 
 
             assert_eq!(IrqDispatcher::dispatch(1), true);
@@ -250,7 +244,7 @@ mod tests {
             assert_eq!(g.count(), 2);
         }
         assert_eq!(IrqDispatcher::slots_used(), 0);
-        unsafe { assert_eq!(IRQ_MGR.enabled(), 0); }
+        unsafe { assert_eq!(IRQ_MGR, 0); }
         assert_eq!(d.count(), 2);
         
     }
