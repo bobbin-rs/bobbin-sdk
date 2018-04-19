@@ -15,6 +15,7 @@ pub enum Error {
     InvalidAlign,
 }
 
+#[derive(Default)]
 pub struct Heap {}
 
 impl Heap {

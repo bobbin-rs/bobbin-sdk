@@ -23,6 +23,7 @@ impl Default for Config {
 }
 
 #[must_use]
+#[derive(Default)]
 pub struct System<MCU, CLK, DIS, TCK> 
 where
     MCU: Default,

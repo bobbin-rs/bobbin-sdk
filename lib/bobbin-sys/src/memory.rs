@@ -1,6 +1,7 @@
 use ::core::ops::Range;
 use ::core::fmt;
 
+#[derive(Default)]
 pub struct Memory {}
 
 impl Memory {

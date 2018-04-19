@@ -31,10 +31,12 @@ pub mod delay;
 
 pub use delay::delay;
 
-pub fn init() -> System {    
-    system::System::init(|| {
-        ::startup::init(); 
-    })
+pub fn init() -> Board {
+    Board {
+        system: system::System::init(|| {
+            ::startup::init(); 
+        })
+    }
 }
 
 pub type System = system::System<
@@ -56,8 +58,16 @@ pub type Dispatcher = mcu::ext::dispatch::Dispatcher<mcu::ext::dispatch::ExcHand
 #[cfg(target_os="none")]
 default_handler!(Dispatcher::handle_exception);
 
-#[derive(Debug, Default)]
-pub struct NucleoF746zg {}
+#[derive(Default)]
+pub struct NucleoF746zg {
+    system: System,
+}
+
+impl NucleoF746zg {
+    pub fn sys(&mut self) -> &mut System {
+        &mut self.system
+    }
+}
 
 impl bobbin_sys::board::Board for NucleoF746zg {
    type Mcu = mcu::Stm32f74x;
@@ -65,6 +75,6 @@ impl bobbin_sys::board::Board for NucleoF746zg {
    fn mcu(&self) -> Self::Mcu { Self::Mcu::default() }
 }
 
-pub const fn board() -> NucleoF746zg { NucleoF746zg{} }
+// pub const fn board() -> NucleoF746zg { NucleoF746zg{} }
 
 pub type Board = NucleoF746zg;
