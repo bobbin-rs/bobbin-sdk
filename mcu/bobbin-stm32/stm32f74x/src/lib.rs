@@ -60,8 +60,6 @@ pub mod irq;
 pub mod clock;
 
 
-pub const STM32F74X: Stm32f74x = Stm32f74x {};
-
 #[derive(Debug, Default)]
 pub struct Stm32f74x {}
 
@@ -69,9 +67,5 @@ impl ::bobbin_mcu::mcu::Mcu for Stm32f74x {
     fn id(&self) -> &'static str { "STM32F74x" }
 }
 
-impl ::core::ops::Deref for Stm32f74x {
-    type Target = stm32_common::Stm32;
-    fn deref(&self) -> &Self::Target {
-        &stm32_common::STM32
-    }
-}
+pub type Mcu = Stm32f74x;
+
