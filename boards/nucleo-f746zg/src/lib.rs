@@ -54,7 +54,7 @@ fn handle_exception() {
         return
     } else {
         ::bobbin_sys::console::write(b"Unhandled Exception: 0x");
-        ::bobbin_sys::console::write_u32(exc as u32, 16);
+        ::bobbin_sys::console::write_u8_hex(exc);
         ::bobbin_sys::console::write(b"\r\n");
         unsafe { asm!("bkpt") };
         loop {}
