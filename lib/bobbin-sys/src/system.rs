@@ -20,7 +20,11 @@ impl<MCU, CLK> System<MCU, CLK> {
         unsafe { while let None = SYSTEM_TOKEN.take() {} }
         let mut heap = Heap::take();
         let tick = Tick::take();
-        let irq_handlers: &mut [Option<IrqHandler>]  = heap.slice(None, 8);
+        let irq_handlers: &mut [Option<IrqHandler>] = if let Ok(s) = heap.try_slice(None, 8) {
+            s
+        } else {
+            &mut []
+        };
         let dispatcher = IrqDispatcher::init(irq_handlers.as_mut_ptr(), irq_handlers.len());
         System {
             mcu,
