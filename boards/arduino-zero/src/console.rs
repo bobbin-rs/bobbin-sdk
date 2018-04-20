@@ -37,5 +37,5 @@ pub fn init() {
             .set_rxpo(3)
         )        
         .set_enabled(true);
-    set_console(Console::new(SERCOM.as_periph(), ConsoleMode::Cooked));    
+    Console::set(Console::new(SERCOM.as_periph(), ConsoleMode::Cooked));
 }

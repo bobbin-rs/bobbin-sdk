@@ -4,9 +4,8 @@
 #[cfg(target_os="none")]
 #[macro_use]
 pub extern crate cortex_m_rt;
-pub extern crate samd21 as mcu;
-
 pub extern crate bobbin_sys;
+pub extern crate samd21 as mcu;
 
 pub use mcu::bobbin_bits;
 pub use mcu::bobbin_mcu;
@@ -14,7 +13,7 @@ pub use mcu::bobbin_hal;
 
 #[cfg(target_os="none")]
 pub use cortex_m_rt::{default_handler, exception};
-pub use bobbin_sys::{system, memory, heap, print, println, abort};
+pub use bobbin_sys::{system, memory, heap, irq_dispatch, print, println, abort};
 
 #[cfg(target_os="none")]
 mod lang_items;
@@ -26,42 +25,59 @@ pub mod tick;
 pub mod console;
 pub mod led;
 pub mod btn;
-pub mod delay;
 
-pub use delay::delay;
+pub use startup::init;
 
-pub fn init() -> System {    
-    system::System::init(|| {
-        ::startup::init(); 
-    })
-}
-
-pub type System = system::System<
-        Mcu,
-        Clock,
-        Dispatcher,
-        Tick,
->;
+pub type System = system::System<Mcu, Clk>;
 
 pub type Mcu = mcu::Samd21;
-pub type Clock = clock::SystemClock;
-pub type Tick = mcu::ext::ms_tick::MsTick;
-pub type Memory = memory::Memory;
+pub type Clk = clock::SystemClock;
 pub type Heap = heap::Heap;
-pub type Dispatcher = mcu::ext::dispatch::Dispatcher<mcu::ext::dispatch::ExcHandlers8>;
+pub type Dispatcher = irq_dispatch::IrqDispatcher<Mcu>;
 
 #[cfg(target_os="none")]
-default_handler!(Dispatcher::handle_exception);
+default_handler!(handle_exception);
 
-#[derive(Debug, Default)]
-pub struct ArduinoZero {}
-
-impl bobbin_sys::board::Board for ArduinoZero {
-   type Mcu = mcu::Samd21;
-   fn id(&self) -> &'static str { "arduino-zero" }
-   fn mcu(&self) -> Self::Mcu { Self::Mcu::default() }
+fn handle_exception() {
+    use prelude::GetActiveIrq;
+    let exc = Mcu::get_active_irq();
+    if exc > 16 && Dispatcher::dispatch(exc.wrapping_sub(16)) {
+        return
+    } else {
+        ::bobbin_sys::console::write(b"Unhandled Exception: 0x");
+        ::bobbin_sys::console::write_u8_hex(exc);
+        ::bobbin_sys::console::write(b"\r\n");
+        unsafe { asm!("bkpt") };
+        loop {}
+    }
 }
 
-pub const fn board() -> ArduinoZero { ArduinoZero{} }
+pub struct ArduinoZero {
+    system: System,
+}
+
+impl bobbin_sys::board::Board for ArduinoZero {
+    type System = System;
+    fn id(&self) -> &'static str { "arduino-zero" }
+    fn sys(&self) -> &System {
+        &self.system
+    }
+    fn sys_mut(&mut self) -> &mut System {
+        &mut self.system
+    }
+}
+
+impl ::core::ops::Deref for ArduinoZero {
+    type Target = System;
+    fn deref(&self) -> &Self::Target {
+        &self.system
+    }
+}
+
+impl ::core::ops::DerefMut for ArduinoZero {
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.system
+    }
+}
 
 pub type Board = ArduinoZero;

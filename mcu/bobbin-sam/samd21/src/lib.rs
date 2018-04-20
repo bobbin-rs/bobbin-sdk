@@ -36,4 +36,5 @@ impl ::bobbin_mcu::mcu::Mcu for Samd21 {
     fn id(&self) -> &'static str { "SAMD21" }
 }
 
+pub type Mcu = Samd21;
 

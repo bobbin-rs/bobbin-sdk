@@ -1,3 +1,5 @@
+use bobbin_bits::U4;
+
 use port::*;
 use bobbin_mcu::pin::SetSource;
 
@@ -38,11 +40,11 @@ impl PortPin {
         self
     }
 
-    pub fn set_pmux(&self, value: usize) -> &Self {
+    pub fn set_pmux<V: Into<U4>>(&self, value: V) -> &Self {
         let pin = self.index;
         let pin_row = pin >> 1;
         let pin_col = pin & 1;        
-        self.port.with_pmux(pin_row, |r| r.set_pmux(pin_col, value as u8));
+        self.port.with_pmux(pin_row, |r| r.set_pmux(pin_col, value));
         self
     }
 
@@ -54,7 +56,7 @@ impl PortPin {
         self.set_dir_output().set_input_enabled(false).set_pmux_enabled(false).set_pmux(0)
     }
 
-    pub fn set_mode_pmux(&self, value: usize) -> &Self {
+    pub fn set_mode_pmux<V: Into<U4>>(&self, value: V) -> &Self {
         self.set_pmux_enabled(true).set_pmux(value)
     }
 }
@@ -84,8 +86,8 @@ impl DigitalOutput for PortPin {
 }
 
 impl SetSource for PortPin {
-    fn set_source(&self, src: u8) {
-        self.set_mode_pmux(src as usize);
+    fn set_source<V: Into<U4>>(&self, src: V) {
+        self.set_mode_pmux(src);
     }
 }
 // pub trait ModePad0<SIG, PERIPH> {
