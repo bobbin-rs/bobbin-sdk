@@ -1,4 +1,4 @@
-pub trait Mcu : IrqEnable + GetActiveIrq {
+pub trait Mcu : IrqEnable + GetActiveIrq + Sleep {
     fn id(&self) -> &'static str;
 }
 
