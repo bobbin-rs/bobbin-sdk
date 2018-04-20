@@ -1,11 +1,12 @@
+use bits::*;
 use signal::SignalType;
 use periph::Periph;
 use gate::GateEn;
 
 pub trait PinSource<STY: SignalType, SRC> {
-    fn alt_fn(&self) -> u8;
+    fn alt_fn(&self) -> U4;
     #[inline]
-    fn alt_fn_for(&self, _src: SRC) -> u8 { self.alt_fn() }
+    fn alt_fn_for(&self, _src: SRC) -> U4 { self.alt_fn() }
 }
 
 pub trait Pin<P: Periph> {
@@ -18,7 +19,7 @@ pub trait PeriphPin<PIN> {
 }
 
 pub trait SetSource {
-    fn set_source(&self, src: u8);
+    fn set_source<V: Into<U4>>(&self, src: V);
 }
 
 pub trait ConnectTo<STY: SignalType, SRC, PIN> {

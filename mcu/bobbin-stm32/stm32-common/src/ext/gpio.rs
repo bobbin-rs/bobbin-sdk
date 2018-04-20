@@ -107,11 +107,11 @@ impl GpioPin {
     }
     
     #[inline]
-    pub fn set_alt_fn(&self, value: usize) -> &Self {
+    pub fn set_alt_fn<V: Into<U4>>(&self, value: V) -> &Self {
         if self.index < 8 {
-            self.port.with_afrl(|r| r.set_afrl(self.index, value as u32));
+            self.port.with_afrl(|r| r.set_afrl(self.index, value));
         } else {
-            self.port.with_afrh(|r| r.set_afrh(self.index - 8, value as u32));
+            self.port.with_afrh(|r| r.set_afrh(self.index - 8, value));
         };
         self
     }
@@ -127,7 +127,7 @@ impl GpioPin {
     }
 
     #[inline]
-    pub fn mode_alt_fn(&self, af: usize) -> &Self {
+    pub fn mode_alt_fn<V: Into<U4>>(&self, af: V) -> &Self {
         self.set_mode(Mode::AltFn).set_alt_fn(af)
     }
 
@@ -223,11 +223,11 @@ impl DigitalOutput for GpioPin {
 
 impl SetSource for GpioPin {
     #[inline]
-    fn set_source(&self, src: u8) {
-        if src > 0 {
-            self.mode_alt_fn(src as usize);
-        } else {
-            self.set_alt_fn(src as usize);
-        }
+    fn set_source<V: Into<U4>>(&self, src: V) {
+        // if src > 0 {
+            self.mode_alt_fn(src);
+        // } else {
+        //     self.set_alt_fn(src);
+        // }
     }
 }

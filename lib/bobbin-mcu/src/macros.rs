@@ -161,7 +161,7 @@ macro_rules! pin {
 macro_rules! pin_source {
     ($pin_ty:ident, $src:path, $sty:path, $num:expr) => {
         impl $crate::pin::PinSource<$sty, $src> for $pin_ty {
-            fn alt_fn(&self) -> u8 { $num}
+            fn alt_fn(&self) -> ::bobbin_bits::U4 { $num }
         }
     };
 }
