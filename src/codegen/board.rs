@@ -91,31 +91,36 @@ pub fn gen_board<W: Write>(cfg: Config, _out: &mut W, b: &Board) -> Result<()> {
                 let board_name = b.name.replace("-","_");
                 copy_file_with(&src, &dst, |s| s
                     .replace("%imports%", &imports)
-                    .replace("%board%", &board_name)
+                    .replace("%board%", &b.name)
+                    .replace("%board_name%", &board_name)
+                    .replace("%board_type%", &board_ty)
                     .replace("%mcu_type%", &mcu_ty)
                 )?;
             }
         }
     }
 
-    {
+    // {
 
 
-        let mut out = OpenOptions::new().append(true).open(out_path.join("src/lib.rs"))?;
-        writeln!(out, "")?;
-        writeln!(out, "#[derive(Debug, Default)]")?;
-        writeln!(out, "pub struct {} {{}}", board_ty)?;
-        writeln!(out, "")?;
-        writeln!(out, "impl bobbin_sys::board::Board for {} {{", board_ty)?;
-        writeln!(out, "   type Mcu = mcu::{};", mcu_ty)?;
-        writeln!(out, "   fn id(&self) -> &'static str {{ {:?} }}", b.name)?;
-        writeln!(out, "   fn mcu(&self) -> Self::Mcu {{ Self::Mcu::default() }}")?;
-        writeln!(out, "}}")?;
-        writeln!(out, "")?;
-        writeln!(out, "pub const fn board() -> {} {{ {}{{}} }}", board_ty, board_ty)?;
-        writeln!(out, "")?;
-        writeln!(out, "pub type Board = {};", board_ty)?;
-    }
+    //     let mut out = OpenOptions::new().append(true).open(out_path.join("src/lib.rs"))?;
+    //     writeln!(out, "")?;
+    //     writeln!(out, "#[derive(Debug, Default)]")?;
+    //     writeln!(out, "pub struct {} {{", board_ty)?;
+    //     writeln!(out, "   system: System,")?;
+    //     writeln!(out, "}}")?;
+    //     writeln!(out, "")?;
+    //     writeln!(out, "impl bobbin_sys::board::Board for {} {{", board_ty)?;
+    //     writeln!(out, "   type System = System;")?;
+    //     writeln!(out, "   fn id(&self) -> &'static str {{ {:?} }}", b.name)?;
+    //     writeln!(out, "   fn sys(&self) -> &Self::System {{ &self.system }}")?;
+    //     writeln!(out, "   fn sys_mut(&self) -> &mut Self::System {{ &mut self.system }}")?;
+    //     writeln!(out, "}}")?;
+    //     writeln!(out, "")?;
+    //     writeln!(out, "")?;
+        
+    //     writeln!(out, "pub type Board = {};", board_ty)?;
+    // }
 
     Ok(())
 }
