@@ -427,12 +427,13 @@ pub fn gen_pins<W: Write>(_cfg: &Config, out: &mut W, d: &Device, signals: &Sign
                 for af in pin.altfns.iter() {
                     let sig = to_camel(&af.signal);
                     if let Some(&(ref src_mod, ref src_type, ref sig_type)) = signals.get(&sig) {
+                        let af_index = format!("::bobbin_bits::U4::B{:04b}", af.index);
                         try!(writeln!(out, "   ::bobbin_mcu::pin_source!({}, super::{}::{}, super::sig::{}, {});",
                             ty,
                             src_mod,
                             src_type,
                             sig_type,
-                            af.index,
+                            af_index,
                         ));
                     } else {
                         // println!("Error: Signal {} has not been defined.", sig);
@@ -520,16 +521,17 @@ pub fn gen_signals<W: Write>(_cfg: &Config, out: &mut W, d: &Device) -> Result<S
         for p in &pg.peripherals {
             for pin in p.pins.iter() {
                 let pin_type = to_camel(&pin.name);
-                let pin_index = pin.index.unwrap();
+                // let pin_index = pin.index.unwrap();
                 for af in pin.altfns.iter() {
                     let sig = &af.signal;
                     if let Some(&(ref src_mod, ref src_type, ref sig_type)) = signals.get(sig) {
-                        try!(writeln!(out, "::bobbin_mcu::pin_source!({}, super::{}::{}, {}, {}",
+                        let af_index = format!("::bobbin_bits::U4::B{:04b}", af.index);
+                        try!(writeln!(out, "::bobbin_mcu::pin_source!({}, super::{}::{}, {}, {})",
                             pin_type,
                             src_mod,
                             src_type,
                             sig_type,
-                            pin_index,
+                            af_index,
                         ));
                     } else {
                         // println!("Error: Signal {} has not been defined.", sig);

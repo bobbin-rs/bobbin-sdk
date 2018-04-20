@@ -349,6 +349,8 @@ pub fn gen_mcu_mod<W: Write>(cfg: &modules::Config, out: &mut W, d: &Device, pat
     writeln!(out, "}}")?;
     writeln!(out, "")?;
 
+    writeln!(out, "pub type Mcu = {};", mcu_type)?;
+
     // Don't generate accessors for now        
 
     // writeln!(out, "impl {} {{", mcu_type)?;
