@@ -43,16 +43,3 @@ pub mod dac;
 pub mod sig;
 pub mod pin;
 
-pub const STM32: Stm32 = Stm32 {};
-pub struct Stm32 {}
-
-impl Stm32 {
-    pub fn is_stm32() -> bool { true }
-}
-
-impl ::core::ops::Deref for Stm32 {
-    type Target = bobbin_cortexm::Cortexm;
-    fn deref(&self) -> &Self::Target {
-        &bobbin_cortexm::CORTEXM
-    }
-}

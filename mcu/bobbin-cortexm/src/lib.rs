@@ -18,11 +18,3 @@ pub mod dwt;
 pub mod sig;
 pub mod pin;
 
-pub const CORTEXM: Cortexm = Cortexm {};
-pub struct Cortexm {}
-
-impl Cortexm {
-    pub fn is_cortexm(&self) -> bool {
-        true
-    }
-}
