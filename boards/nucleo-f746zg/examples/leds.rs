@@ -4,12 +4,14 @@
 extern crate nucleo_f746zg as board;
 extern crate examples;
 
+use board::prelude::*;
+use examples::leds::BlinkLeds;
+
 #[no_mangle]
 pub extern "C" fn main() -> ! {
-    let _ = board::init();    
-    
-    let b = board::board();
-    let leds = [b.led0(), b.led1(), b.led2()];
-    let app = examples::leds::BlinkLeds::new(&leds, b, 500);
-    app.run()    
+    board::init().run(|brd| {
+        let leds = [brd.led0(), brd.led1(), brd.led2()];
+        let tick = brd.tick();
+        BlinkLeds::new(&leds, tick, 500).run()
+    })
 }

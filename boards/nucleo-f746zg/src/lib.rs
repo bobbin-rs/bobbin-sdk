@@ -4,8 +4,8 @@
 #[cfg(target_os="none")]
 #[macro_use]
 pub extern crate cortex_m_rt;
-pub extern crate stm32f74x as mcu;
 pub extern crate bobbin_sys;
+pub extern crate stm32f74x as mcu;
 
 pub use mcu::bobbin_bits;
 pub use mcu::bobbin_mcu;
@@ -27,9 +27,6 @@ pub mod tick;
 pub mod console;
 pub mod led;
 pub mod btn;
-// pub mod delay;
-
-// pub use delay::delay;
 
 pub use startup::init;
 
@@ -87,6 +84,5 @@ impl ::core::ops::DerefMut for NucleoF746zg {
         &mut self.system
     }
 }
-
 
 pub type Board = NucleoF746zg;
