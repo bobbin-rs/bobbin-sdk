@@ -26,7 +26,6 @@ impl<T: SerialTx<u8>> ConsoleWrite for T {
     }
 }
 
-
 #[derive(Clone)]
 pub struct Console<'a>(&'a ConsoleWrite, ConsoleMode);
 
@@ -88,7 +87,37 @@ impl<'a> Console<'a> {
             self.write(&buf[i..])
         }
     }
+
+    pub fn write_u8_hex(&self, v: u8) {
+        self.write(&u8_to_hex(v));
+    }
+
+    pub fn write_u16_hex(&self, v: u16) {
+        self.write(&u16_to_hex(v));
+    }
+
+    pub fn write_u32_hex(&self, v: u32) {
+        self.write(&u32_to_hex(v));
+    }
 }
+
+#[inline]
+fn u8_to_hex(c: u8) -> [u8; 2] {
+    [DIGITS[((c >> 4) & 0xf) as usize], DIGITS[(c & 0xf) as usize]]
+}
+
+#[inline]
+fn u16_to_hex(c: u16) -> [u8; 4] {
+    let (a, b) = (u8_to_hex((c >> 8) as u8), u8_to_hex(c as u8));
+    [a[0], a[1], b[0], b[1]]
+}
+
+#[inline]
+fn u32_to_hex(c: u32) -> [u8; 8] {
+    let (a, b) = (u16_to_hex((c >> 16) as u16), u16_to_hex(c as u16));
+    [a[0], a[1], a[2], a[3], b[0], b[1], b[2], b[3]]
+}
+    
 
 impl<'a> fmt::Write for Console<'a> {
     fn write_str(&mut self, s: &str) -> fmt::Result {        
@@ -131,5 +160,26 @@ pub fn write(buf: &[u8]) {
 pub fn write_u32(v: u32, base: u32) {
     with_console(|c| {
         c.write_u32(v, base);
+    });
+}
+
+#[doc(hidden)]
+pub fn write_u8_hex(v: u8) {
+    with_console(|c| {
+        c.write_u8_hex(v);
+    });
+}
+
+#[doc(hidden)]
+pub fn write_u16_hex(v: u16) {
+    with_console(|c| {
+        c.write_u16_hex(v);
+    });
+}
+
+#[doc(hidden)]
+pub fn write_u32_hex(v: u32) {
+    with_console(|c| {
+        c.write_u32_hex(v);
     });
 }
