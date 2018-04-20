@@ -1,7 +1,11 @@
-pub trait Mcu {
+pub trait Mcu : IrqEnable + GetActiveIrq {
     fn id(&self) -> &'static str;
 }
-    
+
+pub trait GetActiveIrq {
+    fn get_active_irq() -> u8;
+}
+
 pub trait IrqEnable {
     fn irq_enabled(u8) -> bool;
     fn irq_enable(u8);
