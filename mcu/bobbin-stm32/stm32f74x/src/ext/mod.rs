@@ -1,8 +1,16 @@
 pub use stm32_common::ext::*;
-pub use bobbin_sys::{heap, tick};
+
+use bobbin_mcu::mcu::IrqEnable;
+use nvic::NVIC;
 
 pub mod rcc;
 pub mod clock;
+
+impl IrqEnable for ::Mcu {
+    fn irq_enabled(irq: u8) -> bool { NVIC.enabled(irq) }
+    fn irq_enable(irq: u8) { NVIC.set_enabled(irq, true); }
+    fn irq_disable(irq: u8) { NVIC.set_enabled(irq, false); }
+}
 
 // impl Cortexm for ::Stm32f74x {}
 

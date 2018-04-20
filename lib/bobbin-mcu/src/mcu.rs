@@ -1,5 +1,11 @@
-pub trait Mcu : Default {
+pub trait Mcu {
     fn id(&self) -> &'static str;
+}
+    
+pub trait IrqEnable {
+    fn irq_enabled(u8) -> bool;
+    fn irq_enable(u8);
+    fn irq_disable(u8);
 }
 
 pub trait Get<T> {
