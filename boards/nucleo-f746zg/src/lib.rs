@@ -49,8 +49,15 @@ default_handler!(handle_exception);
 fn handle_exception() {
     use mcu::scb::SCB;
     use bobbin_sys::irq_dispatch::IrqDispatcher;    
-    if !IrqDispatcher::dispatch(SCB.icsr().vectactive().value() - 16) {
-        abort!("Unhandled Exception");
+    let exc =  SCB.icsr().vectactive().value();
+    if exc > 16 && IrqDispatcher::dispatch(exc.wrapping_sub(16)) {
+        return
+    } else {
+        ::bobbin_sys::console::write(b"Unhandled Exception: 0x");
+        ::bobbin_sys::console::write_u32(exc as u32, 16);
+        ::bobbin_sys::console::write(b"\r\n");
+        unsafe { asm!("bkpt") };
+        loop {}
     }
 }
 
