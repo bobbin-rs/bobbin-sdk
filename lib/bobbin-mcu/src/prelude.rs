@@ -1,6 +1,7 @@
 pub use ::mcu::*;
 pub use ::clock::*;
 pub use ::gate::*;
+pub use ::irq::*;
 pub use ::register::*;
 pub use ::signal::*;
 pub use ::periph::*;

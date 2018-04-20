@@ -9,7 +9,7 @@ use board::prelude::*;
 use board::console::USART;
 // use board::System;
 
-use board::bobbin_mcu::irq::*;
+// use board::bobbin_mcu::irq::*;
 use board::mcu::irq::*;
 use board::mcu::usart::*;
 
