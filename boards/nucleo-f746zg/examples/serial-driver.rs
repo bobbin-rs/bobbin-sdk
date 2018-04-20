@@ -7,15 +7,10 @@ extern crate examples;
 
 use board::prelude::*;
 use board::console::USART;
-// use board::System;
 
-// use board::bobbin_mcu::irq::*;
-use board::mcu::irq::*;
-use board::mcu::usart::*;
-
+use board::mcu::irq::IRQ_USART;
+use board::mcu::usart::UsartPeriph;
 use board::bobbin_sys::heap::Error;
-
-// use core::cell::UnsafeCell;
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
