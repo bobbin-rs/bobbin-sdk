@@ -1,7 +1,10 @@
+use bobbin_mcu::mcu::Mcu;
+
 use core::ops::Deref;
 use core::ptr;
 use core::slice;
 use core::fmt;
+use core::marker::PhantomData;
 
 #[derive(Debug)]
 pub enum Error {
@@ -12,7 +15,6 @@ struct IrqToken;
 static mut IRQ_TOKEN: Option<IrqToken> = Some(IrqToken);
 static mut IRQ_HANDLERS_PTR: *mut Option<IrqHandler> = ptr::null_mut();
 static mut IRQ_HANDLERS_LEN: usize = 0;
-static mut IRQ_ENABLE_DISABLE: Option<fn(u8, bool)> = None;
 
 pub trait EnableDisableIrq {
     fn enable_irq(&self, irq: u8);
@@ -35,14 +37,14 @@ impl IrqHandler {
     }
 }
 
-pub struct IrqDispatcher {
-    _private: (),
+pub struct IrqDispatcher<MCU: Mcu> {
+    _phantom: PhantomData<MCU>,
 }
 
-impl IrqDispatcher {
+impl<MCU: Mcu> IrqDispatcher<MCU> {
     pub fn take() -> Self {
         unsafe { while let None = IRQ_TOKEN {} }
-        IrqDispatcher { _private: () }
+        IrqDispatcher { _phantom: PhantomData }
     }
 
     pub fn init(ptr: *mut Option<IrqHandler>, len: usize) -> Self {
@@ -51,10 +53,10 @@ impl IrqDispatcher {
             IRQ_HANDLERS_PTR = ptr;
             IRQ_HANDLERS_LEN = len;            
         }        
-        IrqDispatcher { _private: () }
+        IrqDispatcher { _phantom: PhantomData }
     }
 
-    pub fn release(_: IrqDispatcher) {
+    pub fn release(_: Self) {
         unsafe { IRQ_TOKEN = Some(IrqToken) }
     }
 
@@ -65,24 +67,12 @@ impl IrqDispatcher {
         }       
     }    
 
-    pub fn set_enable_disable(enable_disable: fn(u8, bool)) {
-        unsafe { IRQ_ENABLE_DISABLE = Some(enable_disable) }
-    }
-
-    fn irq_enable_disable() -> Option<fn(u8, bool)> {
-        unsafe { IRQ_ENABLE_DISABLE }
-    }
-
     pub fn enable_irq(irq_num: u8) {
-        if let Some(enable_disable) = Self::irq_enable_disable() {
-            enable_disable(irq_num, true)
-        }
+        MCU::irq_enable(irq_num);
     }
 
     pub fn disable_irq(irq_num: u8) {
-        if let Some(enable_disable) = Self::irq_enable_disable() {
-            enable_disable(irq_num, false)
-        }
+        MCU::irq_disable(irq_num);
     }
 
     pub fn slots() -> usize {
@@ -105,7 +95,7 @@ impl IrqDispatcher {
         count
     }
 
-    pub fn register_handler<'h, H: 'static + HandleIrq>(&mut self, irq_num: u8, handler: &'h H) -> Result<Guard<'h, H>, Error> {        
+    pub fn register_handler<'h, H: 'static + HandleIrq>(&mut self, irq_num: u8, handler: &'h H) -> Result<Guard<'h, H, MCU>, Error> {        
         for h in Self::handlers().iter_mut() {
             if h.is_none() {
                 *h = Some(IrqHandler::new(irq_num, handler));
@@ -150,30 +140,31 @@ impl IrqDispatcher {
 
 #[must_use]
 #[derive(Debug)]
-pub struct Guard<'a, H: 'a> {
+pub struct Guard<'a, H: 'a, MCU: Mcu> {
     handler: &'a H,
+    _phantom: PhantomData<MCU>,
 }
 
-impl<'a, H: 'a> Guard<'a, H> {
+impl<'a, H: 'a, MCU: Mcu> Guard<'a, H, MCU> {
     fn new(handler: &'a H) -> Self {
-        Guard { handler }
+        Guard { handler, _phantom: PhantomData }
     }
 }
 
-impl<'a, H: 'a> Drop for Guard<'a, H> {
+impl<'a, H: 'a, MCU: Mcu> Drop for Guard<'a, H, MCU> {
     fn drop(&mut self) {
-        IrqDispatcher::unregister_handler(self.handler as *const H as *const u8)
+        IrqDispatcher::<MCU>::unregister_handler(self.handler as *const H as *const u8)
     }
 }
 
-impl<'a, H: 'a> Deref for Guard<'a, H> {
+impl<'a, H: 'a, MCU: Mcu> Deref for Guard<'a, H, MCU> {
     type Target = H;
     fn deref(&self) -> &H {
         self.handler
     }
 }
 
-impl fmt::Debug for IrqDispatcher {
+impl<MCU: Mcu> fmt::Debug for IrqDispatcher<MCU> {
     fn fmt(&self, out: &mut fmt::Formatter) -> fmt::Result {
         write!(out, "IrqDispatcher {{ slots: {} used: {} }}", Self::slots(), Self::slots_used())?;
         Ok(())

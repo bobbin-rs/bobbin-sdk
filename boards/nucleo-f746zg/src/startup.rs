@@ -1,11 +1,4 @@
 use {Board, System, Mcu, Clk, Heap};
-use bobbin_sys::irq_dispatch::IrqDispatcher;
-use mcu::nvic::NVIC;
-
-
-fn enable_disable(irq: u8, value: bool) {
-    NVIC.set_enabled(irq, value);
-}
 
 pub fn init() -> Board {
     mcu_init();
@@ -23,8 +16,6 @@ pub fn init() -> Board {
 
     let mcu = Mcu {};
     let clk = Clk::default();
-
-    IrqDispatcher::set_enable_disable(enable_disable);
 
     Board {
         system: System::take(mcu, clk),

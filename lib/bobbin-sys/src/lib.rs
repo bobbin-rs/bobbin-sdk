@@ -4,6 +4,7 @@
 #[cfg(feature="logger")]
 extern crate log;
 
+extern crate bobbin_mcu;
 extern crate bobbin_hal;
 
 #[macro_use]

@@ -13,7 +13,7 @@ pub use mcu::bobbin_hal;
 
 #[cfg(target_os="none")]
 pub use cortex_m_rt::{default_handler, exception};
-pub use bobbin_sys::{system, memory, heap, print, println, abort};
+pub use bobbin_sys::{system, memory, heap, irq_dispatch, print, println, abort};
 #[cfg(feature="logger")]
 pub use bobbin_sys::logger;
 
@@ -41,16 +41,15 @@ pub type Heap = heap::Heap;
 
 #[cfg(feature="logger")]
 pub type Logger = logger::Logger;
-pub type Dispatcher = mcu::ext::dispatch::Dispatcher<mcu::ext::dispatch::ExcHandlers8>;
+pub type Dispatcher = irq_dispatch::IrqDispatcher<Mcu>;
 
 #[cfg(target_os="none")]
 default_handler!(handle_exception);
 
 fn handle_exception() {
-    use mcu::scb::SCB;
-    use bobbin_sys::irq_dispatch::IrqDispatcher;    
-    let exc =  SCB.icsr().vectactive().value();
-    if exc > 16 && IrqDispatcher::dispatch(exc.wrapping_sub(16)) {
+    use prelude::GetActiveIrq;
+    let exc = Mcu::get_active_irq();
+    if exc > 16 && Dispatcher::dispatch(exc.wrapping_sub(16)) {
         return
     } else {
         ::bobbin_sys::console::write(b"Unhandled Exception: 0x");

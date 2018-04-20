@@ -3,6 +3,10 @@ pub mod systick;
 pub mod dispatch;
 pub mod ms_tick;
 
+pub fn get_active_irq() -> u8 {
+    ::scb::SCB.icsr().vectactive().value()
+}
+
 // use bobbin_sys::{heap, tick};
 
 // impl heap::GetHeap for ::Cortexm {}

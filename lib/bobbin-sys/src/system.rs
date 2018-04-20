@@ -1,3 +1,5 @@
+use bobbin_mcu::mcu::Mcu;
+
 use heap::Heap;
 use tick::Tick;
 use irq_dispatch::{IrqDispatcher, IrqHandler};
@@ -6,16 +8,16 @@ use console::Console;
 struct SystemToken;
 static mut SYSTEM_TOKEN: Option<SystemToken> = Some(SystemToken);
 
-pub struct System<MCU, CLK> {
+pub struct System<MCU: Mcu, CLK> {
     mcu: MCU,
     clk: CLK,
     heap: Heap,
     tick: Tick,
-    dispatcher: IrqDispatcher,
+    dispatcher: IrqDispatcher<MCU>,
     _private: ()
 }
 
-impl<MCU, CLK> System<MCU, CLK> {
+impl<MCU: Mcu, CLK> System<MCU, CLK> {
     pub fn take(mcu: MCU, clk: CLK) -> Self {
         unsafe { while let None = SYSTEM_TOKEN.take() {} }
         let mut heap = Heap::take();
@@ -77,11 +79,11 @@ impl<MCU, CLK> System<MCU, CLK> {
         &mut self.tick
     }
 
-    pub fn dispatcher(&self) -> &IrqDispatcher {
+    pub fn dispatcher(&self) -> &IrqDispatcher<MCU> {
         &self.dispatcher
     }
 
-    pub fn dispatcher_mut(&mut self) -> &mut IrqDispatcher {
+    pub fn dispatcher_mut(&mut self) -> &mut IrqDispatcher<MCU> {
         &mut self.dispatcher
     }
 

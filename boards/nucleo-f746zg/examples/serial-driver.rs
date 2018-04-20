@@ -67,7 +67,7 @@ impl Default for Config {
 }
 
 pub struct SerialDriver {
-    guard: Guard<'static, SerialHandler>,
+    guard: Guard<'static, SerialHandler, board::Mcu>,
     tx_ring: &'static Ring<'static, u8>,
     rx_ring: &'static Ring<'static, u8>,
 }
