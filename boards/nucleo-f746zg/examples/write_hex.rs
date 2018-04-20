@@ -3,7 +3,7 @@
 
 extern crate nucleo_f746zg as board;
 
-use board::bobbin_sys::board::Board;
+use board::prelude::*;
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
