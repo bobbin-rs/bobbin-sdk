@@ -1,5 +1,5 @@
 #![no_std]
-#![feature(const_fn)]
+#![feature(const_fn, core_intrinsics)]
 
 #[cfg(not(target_os="none"))]
 #[macro_use]

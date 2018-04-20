@@ -9,6 +9,8 @@ use ext::rcc::DedicatedClock;
 use rcc::RCC;
 use clock::ClockProvider;
 
+use ::core::intrinsics::abort;
+
 #[derive(Default)]
 pub struct DynamicClock<OSC: Clock, OSC32: Clock>(OSC, OSC32);
 
@@ -55,7 +57,7 @@ impl<OSC: Clock, OSC32: Clock> ClockProvider for DynamicClock<OSC, OSC32> {
     fn pll48clk(&self) -> Hz {
         match RCC.dckcfgr2().ck48msel() {
             U1::B0 => self.pllq(),
-            U1::B1 => unimplemented!(),
+            U1::B1 => unsafe { abort() },
         }
     }
 
@@ -64,7 +66,7 @@ impl<OSC: Clock, OSC32: Clock> ClockProvider for DynamicClock<OSC, OSC32> {
             U2::B00 => self.hsi(),
             U2::B01 => self.hse(),
             U2::B10 => self.pllclk(),
-            U2::B11 => panic!("Invalid value for RCC_CFGR[SWS]"),
+            U2::B11 => unsafe { abort() },
         }
     }
 
