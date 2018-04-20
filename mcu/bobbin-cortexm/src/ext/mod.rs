@@ -3,8 +3,18 @@ pub mod systick;
 pub mod dispatch;
 pub mod ms_tick;
 
+#[inline]
 pub fn get_active_irq() -> u8 {
     ::scb::SCB.icsr().vectactive().value()
+}
+
+#[inline]
+pub fn sleep() {
+    unsafe { asm!("
+        cpsid i
+        wfi
+        cpsie i
+    ")}
 }
 
 // use bobbin_sys::{heap, tick};

@@ -24,9 +24,17 @@ macro_rules! println {
 #[macro_export]
 macro_rules! abort {
     ($s:expr) => {
-        $crate::console::write_str("# ABORT: ");
         $crate::console::write_str($s);
-        loop {}
+        $crate::console::write_str("\n");
+        abort!()
     };
+    () => {
+        $crate::console::write_str("# ABORT at ");
+        $crate::console::write_str(file!());
+        $crate::console::write_str(":");
+        $crate::console::write_u32(line!(), 10);
+        $crate::console::write_str("\n");
+        loop {}
+    };    
 }
 

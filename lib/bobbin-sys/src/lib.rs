@@ -19,6 +19,7 @@ pub mod irq_dispatch;
 pub mod ring;
 pub mod system;
 pub mod board;
+pub mod unwrap_or_abort;
 
 #[cfg(feature="logger")]
 pub mod logger;

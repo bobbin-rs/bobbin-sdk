@@ -12,6 +12,10 @@ pub trait IrqEnable {
     fn irq_disable(u8);
 }
 
+pub trait Sleep {
+    fn sleep();
+}
+
 pub trait Get<T> {
     fn get(&self) -> T;
 }

@@ -6,18 +6,13 @@
 extern crate nucleo_f746zg as board;
 extern crate examples;
 
-use board::bobbin_sys::board::Board;
-use board::bobbin_sys::irq_dispatch::{HandleIrq, Guard};
-
+use board::prelude::*;
 use board::console::USART;
 use board::System;
-use board::bobbin_sys::ring::*;
 
 use board::bobbin_mcu::irq::*;
 use board::mcu::irq::*;
 use board::mcu::usart::*;
-
-use board::bobbin_hal::serial::*;
 
 use board::bobbin_sys::heap::Error;
 
@@ -26,12 +21,7 @@ use board::bobbin_sys::heap::Error;
 #[no_mangle]
 pub extern "C" fn main() -> ! {
     let mut brd = board::init();
-
-    let mut s = if let Ok(s) = SerialDriver::new(&mut brd, USART) {
-        s
-    } else {
-        abort!("Unable to create SerialDriver");
-    };    
+    let mut s = SerialDriver::new(&mut brd, USART).unwrap_or_abort("Unable to create serial driver");
     brd.run(|_| {        
         s.write_all(b"Serial Driver Echo Test\r\n");      
         let mut buf = [0u8; 64];
@@ -88,21 +78,13 @@ impl SerialDriver {
         let rx_writer = heap.try_new(rx_ring.writer())?;
         let irq_number = usart.irq_number_for(IRQ_USART);        
         let handler = heap.try_new(SerialHandler::new(usart, tx_reader, rx_writer))?;
-        let guard = if let Ok(guard) = sys.dispatcher_mut().register_handler(irq_number, handler) {
-            guard
-        } else {
-            abort!("Unable to register IRQ handler");
-        };
+        let guard = sys.dispatcher_mut().register_handler(irq_number, handler).unwrap_or_abort("Unable to register IRQ handler");
         Ok(Self { guard, tx_ring, rx_ring })
     }
 
     #[inline]
     fn sleep(&self) {
-        unsafe { asm!("
-            cpsid i
-            wfi
-            cpsie i
-        ")}
+        board::Mcu::sleep()
     }    
 
     pub fn write_all(&mut self, buf: &[u8]) -> usize {                
