@@ -43,8 +43,17 @@ pub type Heap = heap::Heap;
 pub type Logger = logger::Logger;
 pub type Dispatcher = mcu::ext::dispatch::Dispatcher<mcu::ext::dispatch::ExcHandlers8>;
 
-// #[cfg(target_os="none")]
-// default_handler!(Dispatcher::handle_exception);
+#[cfg(target_os="none")]
+default_handler!(handle_exception);
+
+fn handle_exception() {
+    use mcu::scb::SCB;
+    use bobbin_sys::irq_dispatch::IrqDispatcher;
+    abort!("HERE");
+    if !IrqDispatcher::dispatch(SCB.icsr().vectactive().value()) {
+        abort!("Unhandled Exception");
+    }
+}
 
 pub struct NucleoF746zg {
     system: System,

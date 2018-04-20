@@ -5,7 +5,8 @@ use mcu::nvic::NVIC;
 use {println, print};
 
 fn enable_disable(irq: u8, value: bool) {
-    NVIC.set_enabled(irq + 16, value);
+    println!("enable {}, {}", irq, value);
+    NVIC.set_enabled(irq, value);
 }
 
 pub fn init() -> Board {

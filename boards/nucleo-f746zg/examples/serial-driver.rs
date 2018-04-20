@@ -32,23 +32,23 @@ pub extern "C" fn main() -> ! {
     } else {
         abort!("Unable to create SerialDriver");
     };    
-    brd.run(|_| {
-        unsafe { asm!("cpsie i") }
-        s.write_all(b"Serial Driver Echo Test\r\n");        
-            let mut buf = [0u8; 64];
-            loop {
-                let n = s.read(&mut buf);
-                if n > 0 {
-                    for b in &buf[..n] {
-                        if *b == 13 {
-                            s.write_all(b"\r\n");
-                        } else {
-                            s.write_all(&[*b]);
-                        }
+    brd.run(|sys| {        
+        println!("{:?}", ::board::mcu::nvic::NVIC.enabled(39));
+        s.write_all(b"Serial Driver Echo Test\r\n");      
+        let mut buf = [0u8; 64];
+        loop {
+            let n = s.read(&mut buf);
+            if n > 0 {
+                for b in &buf[..n] {
+                    if *b == 13 {
+                        s.write_all(b"\r\n");
+                    } else {
+                        s.write_all(&[*b]);
                     }
                 }
-                s.sleep();
             }
+            s.sleep();
+        }
     })
     
 }
@@ -88,6 +88,7 @@ impl SerialDriver {
         let rx_ring = heap.try_new(Ring::new(rx_buf))?;
         let rx_writer = heap.try_new(rx_ring.writer())?;
         let irq_number = usart.irq_number_for(IRQ_USART);        
+        println!("irq_number: {}", irq_number);
         let handler = heap.try_new(SerialHandler::new(usart, tx_reader, rx_writer))?;
         let guard = if let Ok(guard) = sys.dispatcher_mut().register_handler(irq_number, handler) {
             guard
@@ -106,10 +107,10 @@ impl SerialDriver {
         ")}
     }    
 
-    pub fn write_all(&mut self, buf: &[u8]) -> usize {        
+    pub fn write_all(&mut self, buf: &[u8]) -> usize {                
         let mut n = 0;
         while n < buf.len() {            
-            let sent = self.write(&buf[n..]);
+            let sent = self.write(&buf[n..]);            
             if sent == 0 {
                 self.sleep();
             } else {
@@ -121,7 +122,7 @@ impl SerialDriver {
 
     pub fn write(&mut self, buf: &[u8]) -> usize {
         let len = self.tx_ring.write(buf);
-        self.guard.tx_start();
+        self.guard.tx_start();        
         len
     }
 
@@ -162,7 +163,7 @@ impl SerialHandler {
 }
 
 impl HandleIrq for SerialHandler {
-    fn handle_irq(&self, _: u8) {        
+    fn handle_irq(&self, _: u8) {              
         if self.usart.can_tx() {
             if let Some(b) = self.reader.get() {
                 self.usart.tx(b);
