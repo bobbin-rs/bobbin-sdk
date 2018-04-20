@@ -2,13 +2,12 @@
 #![no_main]
 #![feature(asm, nll)]
 
-#[macro_use]
 extern crate nucleo_f746zg as board;
 extern crate examples;
 
 use board::prelude::*;
 use board::console::USART;
-use board::System;
+// use board::System;
 
 use board::bobbin_mcu::irq::*;
 use board::mcu::irq::*;
@@ -21,7 +20,9 @@ use board::bobbin_sys::heap::Error;
 #[no_mangle]
 pub extern "C" fn main() -> ! {
     let mut brd = board::init();
-    let mut s = SerialDriver::new(&mut brd, USART).unwrap_or_abort("Unable to create serial driver");
+    // let irq_number = USART.irq_number_for(IRQ_USART);      
+    // let usart = USART.as_periph();  
+    let mut s: SerialDriver<_, UsartPeriph> = SerialDriver::new(&mut brd, USART, IRQ_USART).unwrap_or_abort("Unable to create serial driver");
     brd.run(|_| {        
         s.write_all(b"Serial Driver Echo Test\r\n");      
         let mut buf = [0u8; 64];
@@ -38,9 +39,17 @@ pub extern "C" fn main() -> ! {
             }
             s.sleep();
         }
-    })
-    
+    })    
 }
+
+pub struct EchoApp {
+
+}
+
+impl EchoApp {
+
+}
+
 
 pub struct Config {
     pub tx_len: usize,
@@ -56,18 +65,31 @@ impl Default for Config {
     }
 }
 
-pub struct SerialDriver {
-    guard: Guard<'static, SerialHandler, board::Mcu>,
+pub struct SerialDriver<MCU, USART> 
+where
+    MCU: Mcu,
+    USART: 'static + SerialTx<u8> + SerialTxIrq + SerialRx<u8> + SerialRxIrq + Sync,
+{
+    guard: Guard<'static, SerialHandler<USART>, MCU>,
     tx_ring: &'static Ring<'static, u8>,
     rx_ring: &'static Ring<'static, u8>,
 }
 
-impl SerialDriver {
-    pub fn new<U: Into<UsartPeriph> + Irq<IrqUsart>>(sys: &mut System, usart: U) -> Result<Self, Error> {
-        Self::new_with_config(sys, usart, Config::default())
+impl<MCU, USART> SerialDriver<MCU, USART> 
+where
+    MCU: Mcu,
+    USART: 'static + SerialTx<u8> + SerialTxIrq + SerialRx<u8> + SerialRxIrq + Sync,
+{
+    pub fn new<CLK, U: Into<USART> + Irq<I>, I: IrqType>(sys: &mut System<MCU, CLK>, usart: U, irq_type: I) -> Result<Self, Error> 
+    {
+        Self::new_with_config(sys, usart, irq_type, Config::default())
     }
 
-    pub fn new_with_config<U: Into<UsartPeriph> + Irq<IrqUsart>>(sys: &mut System, usart: U, cfg: Config) -> Result<Self, Error> {
+    pub fn new_with_config<CLK, U: Into<USART> + Irq<I>, I: IrqType>(sys: &mut System<MCU, CLK>, usart: U, _irq_type: I, cfg: Config) -> Result<Self, Error> 
+    {
+        // let irq_number = USART.irq_number_for(irq_type);
+        let irq_number = <U as Irq<I>>::Output::irq_number();
+
         let heap = sys.heap_mut();
         let tx_buf = heap.try_slice(0u8, cfg.tx_len)?;
         let tx_ring = heap.try_new(Ring::new(tx_buf))?;
@@ -75,8 +97,7 @@ impl SerialDriver {
 
         let rx_buf = heap.try_slice(0u8, cfg.rx_len)?;
         let rx_ring = heap.try_new(Ring::new(rx_buf))?;
-        let rx_writer = heap.try_new(rx_ring.writer())?;
-        let irq_number = usart.irq_number_for(IRQ_USART);        
+        let rx_writer = heap.try_new(rx_ring.writer())?;        
         let handler = heap.try_new(SerialHandler::new(usart, tx_reader, rx_writer))?;
         let guard = sys.dispatcher_mut().register_handler(irq_number, handler).unwrap_or_abort("Unable to register IRQ handler");
         Ok(Self { guard, tx_ring, rx_ring })
@@ -113,14 +134,14 @@ impl SerialDriver {
     }    
 }
 
-pub struct SerialHandler {
-    usart: UsartPeriph,
+pub struct SerialHandler<P: SerialTx<u8> + SerialTxIrq + SerialRx<u8> + SerialRxIrq + Sync> {
+    usart: P,
     reader: &'static Reader<'static, u8>,
     writer: &'static Writer<'static, u8>,
 }
 
-impl SerialHandler {
-    pub fn new<U: Into<UsartPeriph>>(usart: U, reader: &'static Reader<'static, u8>, writer: &'static Writer<'static, u8>) -> Self {
+impl<P: SerialTx<u8> + SerialTxIrq + SerialRx<u8> + SerialRxIrq + Sync> SerialHandler<P> {
+    pub fn new<U: Into<P>>(usart: U, reader: &'static Reader<'static, u8>, writer: &'static Writer<'static, u8>) -> Self {
         let usart = usart.into();
         Self { usart, reader, writer }
     }
@@ -142,7 +163,7 @@ impl SerialHandler {
     }
 }
 
-impl HandleIrq for SerialHandler {
+impl<P: SerialTx<u8> + SerialTxIrq + SerialRx<u8> + SerialRxIrq + Sync> HandleIrq for SerialHandler<P> {
     fn handle_irq(&self, _: u8) {              
         if self.usart.can_tx() {
             if let Some(b) = self.reader.get() {
@@ -158,8 +179,8 @@ impl HandleIrq for SerialHandler {
                 self.rx_stop();
             }
         }        
-        if self.usart.isr().test_ore() {
-            self.usart.with_icr(|r| r.set_orecf(1));
-        }
+        // if self.usart.isr().test_ore() {
+        //     self.usart.with_icr(|r| r.set_orecf(1));
+        // }
     }
 }
