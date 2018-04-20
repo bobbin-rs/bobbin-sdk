@@ -2,10 +2,8 @@ use {Board, System, Mcu, Clk, Heap};
 use bobbin_sys::irq_dispatch::IrqDispatcher;
 use mcu::nvic::NVIC;
 
-use {println, print};
 
 fn enable_disable(irq: u8, value: bool) {
-    println!("enable {}, {}", irq, value);
     NVIC.set_enabled(irq, value);
 }
 

@@ -48,9 +48,8 @@ default_handler!(handle_exception);
 
 fn handle_exception() {
     use mcu::scb::SCB;
-    use bobbin_sys::irq_dispatch::IrqDispatcher;
-    abort!("HERE");
-    if !IrqDispatcher::dispatch(SCB.icsr().vectactive().value()) {
+    use bobbin_sys::irq_dispatch::IrqDispatcher;    
+    if !IrqDispatcher::dispatch(SCB.icsr().vectactive().value() - 16) {
         abort!("Unhandled Exception");
     }
 }

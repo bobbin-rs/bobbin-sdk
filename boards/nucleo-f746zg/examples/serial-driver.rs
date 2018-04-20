@@ -32,8 +32,7 @@ pub extern "C" fn main() -> ! {
     } else {
         abort!("Unable to create SerialDriver");
     };    
-    brd.run(|sys| {        
-        println!("{:?}", ::board::mcu::nvic::NVIC.enabled(39));
+    brd.run(|_| {        
         s.write_all(b"Serial Driver Echo Test\r\n");      
         let mut buf = [0u8; 64];
         loop {
@@ -88,7 +87,6 @@ impl SerialDriver {
         let rx_ring = heap.try_new(Ring::new(rx_buf))?;
         let rx_writer = heap.try_new(rx_ring.writer())?;
         let irq_number = usart.irq_number_for(IRQ_USART);        
-        println!("irq_number: {}", irq_number);
         let handler = heap.try_new(SerialHandler::new(usart, tx_reader, rx_writer))?;
         let guard = if let Ok(guard) = sys.dispatcher_mut().register_handler(irq_number, handler) {
             guard
