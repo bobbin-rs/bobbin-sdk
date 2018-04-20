@@ -4,12 +4,14 @@
 extern crate discovery_stm32f3 as board;
 extern crate examples;
 
+use board::prelude::*;
+use examples::leds::BlinkLeds;
+
 #[no_mangle]
 pub extern "C" fn main() -> ! {
-    let _ = board::init();    
-    
-    let b = board::board();
-    let leds = [b.led0(), b.led1(), b.led2(), b.led3(), b.led4(), b.led5(), b.led6(), b.led7()];
-    let app = examples::leds::BlinkLeds::new(&leds, b, 100);
-    app.run()    
+    board::init().run(|brd| {
+        let leds = [brd.led0(), brd.led1(), brd.led2(), brd.led3(), brd.led4(), brd.led5(), brd.led6(), brd.led7()];
+        let tick = brd.tick();
+        BlinkLeds::new(&leds, tick, 500).run()
+    })
 }
