@@ -51,4 +51,5 @@ impl ::bobbin_mcu::mcu::Mcu for Stm32l432x {
     fn id(&self) -> &'static str { "STM32L432x" }
 }
 
+pub type Mcu = Stm32l432x;
 

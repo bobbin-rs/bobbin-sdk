@@ -1,9 +1,6 @@
 use ::prelude::*;
 
-pub use bobbin_sys::console::*;
-use ::bobbin_mcu::periph::AsPeriph;
-
-use mcu::ext::rcc::*;
+use mcu::ext::rcc::UsartClock;
 use mcu::usart::*;
 use mcu::pin::*;
 
@@ -29,5 +26,5 @@ pub fn init() {
         .set_config(|c| c.set_baud(USART_BAUD, USART_CLOCK))
         .enable();
 
-    set_console(Console::new(USART.as_periph(), ConsoleMode::Cooked));
+    Console::set(Console::new(USART.as_periph(), ConsoleMode::Cooked));
 }

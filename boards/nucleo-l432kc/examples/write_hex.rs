@@ -1,7 +1,7 @@
 #![no_std]
 #![no_main]
 
-extern crate nucleo_f746zg as board;
+extern crate nucleo_l432kc as board;
 
 use board::prelude::*;
 

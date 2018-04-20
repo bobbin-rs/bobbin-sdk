@@ -4,16 +4,17 @@
 #[macro_use]
 extern crate nucleo_l432kc as board;
 
+use board::prelude::*;
+
 #[no_mangle]
 pub extern "C" fn main() -> ! {
-    let mut sys = board::init();
-    sys.run(|sys| {
+    board::init().run(|brd| {
         println!("Running Console");
         loop {
-            if let Some(console) = sys.console() {
+            if let Some(console) = brd.console() {
                 console.write(b"Tick...\r\n");
             }
-            board::delay(500);
+            brd.tick().delay(500);
         }
     })
 }
