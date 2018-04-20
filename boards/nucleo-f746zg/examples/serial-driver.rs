@@ -15,10 +15,35 @@ use board::bobbin_sys::heap::Error;
 #[no_mangle]
 pub extern "C" fn main() -> ! {
     let mut brd = board::init();
-    // let irq_number = USART.irq_number_for(IRQ_USART);      
-    // let usart = USART.as_periph();  
-    let mut s: SerialDriver<_, UsartPeriph> = SerialDriver::new(&mut brd, USART, IRQ_USART).unwrap_or_abort("Unable to create serial driver");
-    brd.run(|_| {        
+
+    let mut app: EchoApp<_, UsartPeriph> = EchoApp::new(&mut brd, USART, IRQ_USART).unwrap_or_abort("Unable to create app");
+
+    brd.run(|_| app.run())
+
+}
+
+pub struct EchoApp<MCU, USART> 
+where
+    MCU: Mcu,
+    USART: 'static + SerialTx<u8> + SerialTxIrq + SerialRx<u8> + SerialRxIrq + Sync,
+{
+    s: SerialDriver<MCU, USART>,
+}
+
+impl<MCU, USART> EchoApp<MCU, USART> 
+where
+    MCU: Mcu,
+    USART: 'static + SerialTx<u8> + SerialTxIrq + SerialRx<u8> + SerialRxIrq + Sync,
+{
+    pub fn new<CLK, U: Into<USART> + Irq<I>, I: IrqType>(sys: &mut System<MCU, CLK>, usart: U, irq_type: I) -> Result<Self, Error> {
+        Ok(
+            EchoApp {
+                s: SerialDriver::new(sys, usart, irq_type)?,
+            }
+        )
+    }
+    pub fn run(&mut self) -> ! {
+        let s = &mut self.s;
         s.write_all(b"Serial Driver Echo Test\r\n");      
         let mut buf = [0u8; 64];
         loop {
@@ -33,16 +58,8 @@ pub extern "C" fn main() -> ! {
                 }
             }
             s.sleep();
-        }
-    })    
-}
-
-pub struct EchoApp {
-
-}
-
-impl EchoApp {
-
+        }        
+    }
 }
 
 
