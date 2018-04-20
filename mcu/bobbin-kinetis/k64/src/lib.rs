@@ -48,4 +48,5 @@ impl ::bobbin_mcu::mcu::Mcu for K64 {
     fn id(&self) -> &'static str { "K64" }
 }
 
+pub type Mcu = K64;
 

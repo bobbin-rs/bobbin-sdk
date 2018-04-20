@@ -1,6 +1,5 @@
 #![no_std]
 #![no_main]
-#![feature(asm)]
 
 extern crate nucleo_f746zg as board;
 extern crate examples;

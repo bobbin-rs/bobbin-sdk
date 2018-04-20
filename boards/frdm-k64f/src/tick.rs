@@ -1,13 +1,18 @@
-pub use mcu::ext::ms_tick::*;
+use mcu::systick::SYSTICK;
+use mcu::ext::systick::{SystickHz, ClockSource};
+use bobbin_sys::tick::Tick;
+use Clk;
 
-exception!(SYS_TICK, MsTick::handle_exception);
+exception!(SYS_TICK, Tick::incr_ticks);
 
 pub fn init() {
-    use mcu::systick::SYSTICK;
-    use mcu::ext::systick::{SystickHz, ClockSource};
+    
 
-    let reload_value = (::Clock::default().systick_hz() / 1000).as_u32() - 1;  
-    SYSTICK.set_clock_source(ClockSource::Internal);    
-  
-    MS_TICK.enable(reload_value);    
+    let ms_hz = (Clk::default().systick_hz() / 1000).as_u32() - 1;    
+    let st = SYSTICK;
+    st.set_clock_source(ClockSource::Internal);    
+    st.set_reload_value(ms_hz);
+    st.set_current_value(ms_hz);
+    st.set_enabled(true);
+    st.set_tick_interrupt(true);   
 }

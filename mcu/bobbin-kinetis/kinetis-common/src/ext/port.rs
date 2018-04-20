@@ -23,11 +23,11 @@ pub enum Pull {
 }
 
 impl PortPin {
-    pub fn mux(&self) -> usize {
-        self.port.pcr(self.index).mux() as usize
+    pub fn mux(&self) -> U3 {
+        self.port.pcr(self.index).mux().into()
     }
-    pub fn set_mux(&self, value: usize) -> &Self {
-        self.port.with_pcr(self.index, |r| r.set_mux(value as u32));
+    pub fn set_mux<V: Into<U3>>(&self, value: V) -> &Self {
+        self.port.with_pcr(self.index, |r| r.set_mux(value));
         self
     }
 
@@ -94,7 +94,8 @@ impl PortPin {
 
 
 impl SetSource for PortPin {
-    fn set_source(&self, src: u8) {
-        self.set_mux(src as usize);
+    fn set_source<V: Into<U4>>(&self, src: V) {
+        let src: u8 = src.into().value();
+        self.set_mux(src);
     }
 }

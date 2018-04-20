@@ -5,162 +5,19 @@
 extern crate frdm_k64f as board;
 extern crate examples;
 
+use board::prelude::*;
 use board::console::UART;
+use board::mcu::irq::IRQ_UART;
+use board::mcu::uart::UartPeriph;
 
-use board::mcu::dispatch::{HandleException, Exception, Guard};
-use board::System;
-use board::common::sys::ring::*;
-
-use board::common::irq::*;
-use board::mcu::irq::*;
-use board::mcu::uart::*;
-
-// use core::cell::UnsafeCell;
+use examples::serial_driver::EchoApp;
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
-    let mut sys = board::init();
+    let mut brd = board::init();
 
-    unsafe { sys.heap_mut().extend(1024) };
-    let mut s = SerialDriver::new(&mut sys, UART);
+    let mut app: EchoApp<_, UartPeriph> = EchoApp::new(&mut brd, UART, IRQ_UART).unwrap_or_abort("Unable to create app");
 
-    s.write_all(b"Serial Driver Echo Test\r\n");        
-    let mut buf = [0u8; 64];
-    loop {
-        let n = s.read(&mut buf);
-        if n > 0 {
-            for b in &buf[..n] {
-                if *b == 13 {
-                    s.write_all(b"\r\n");
-                } else {
-                    s.write_all(&[*b]);
-                }
-            }
-        }
-        s.sleep();
-    }
-}
+    brd.run(|_| app.run())
 
-pub struct Config {
-    pub tx_len: usize,
-    pub rx_len: usize,
-}
-
-impl Default for Config {
-    fn default() -> Config {
-        Config {
-            tx_len: 64,
-            rx_len: 64,
-        }
-    }
-}
-
-pub struct SerialDriver {
-    guard: Guard<'static, SerialHandler>,
-    tx_ring: &'static Ring<'static, u8>,
-    rx_ring: &'static Ring<'static, u8>,
-}
-
-impl SerialDriver {
-    pub fn new<U: Into<UartPeriph> + Irq<IrqUart>>(sys: &mut System, uart: U) -> Self {
-        Self::new_with_config(sys, uart, Config::default())
-    }
-
-    pub fn new_with_config<U: Into<UartPeriph> + Irq<IrqUart>>(sys: &mut System, uart: U, cfg: Config) -> Self {
-        let heap = sys.heap_mut();
-        let tx_buf = heap.slice(0u8, cfg.tx_len);
-        let tx_ring = heap.new(Ring::new(tx_buf));
-        let tx_reader = heap.new(tx_ring.reader());
-
-        let rx_buf = heap.slice(0u8, cfg.rx_len);
-        let rx_ring = heap.new(Ring::new(rx_buf));
-        let rx_writer = heap.new(rx_ring.writer());
-        
-        let irq_number = uart.irq_number_for(IRQ_UART);
-        let handler = heap.new(SerialHandler::new(uart, tx_reader, rx_writer));
-        let guard = sys.dispatcher_mut().register_irq_handler(irq_number, handler).unwrap();        
-        Self { guard, tx_ring, rx_ring }
-    }
-
-    #[inline]
-    fn sleep(&self) {
-        unsafe { asm!("
-            cpsid i
-            wfi
-            cpsie i
-        ")}
-    }    
-
-    pub fn write_all(&mut self, buf: &[u8]) -> usize {        
-        let mut n = 0;
-        while n < buf.len() {            
-            let sent = self.write(&buf[n..]);
-            if sent == 0 {
-                self.sleep();
-            } else {
-                n += sent;
-            }
-        }
-        n
-    }
-
-    pub fn write(&mut self, buf: &[u8]) -> usize {
-        let len = self.tx_ring.write(buf);
-        self.guard.tx_start();
-        len
-    }
-
-    pub fn read(&mut self, buf: &mut [u8]) -> usize {
-        let len = self.rx_ring.read(buf);
-        self.guard.rx_start();
-        len
-    }    
-}
-
-pub struct SerialHandler {
-    uart: UartPeriph,
-    reader: &'static Reader<'static, u8>,
-    writer: &'static Writer<'static, u8>,
-}
-
-impl SerialHandler {
-    pub fn new<U: Into<UartPeriph>>(uart: U, reader: &'static Reader<'static, u8>, writer: &'static Writer<'static, u8>) -> Self {
-        let uart = uart.into();
-        Self { uart, reader, writer }
-    }
-
-    pub fn tx_start(&self) {
-        self.uart.enable_tx_irq();
-    }
-
-    pub fn tx_stop(&self) {
-        self.uart.disable_tx_irq();
-    }
-
-    pub fn rx_start(&self) {
-        self.uart.enable_rx_irq();
-    }
-
-    pub fn rx_stop(&self) {
-        self.uart.disable_rx_irq();
-    }
-}
-
-impl HandleException for SerialHandler {
-    unsafe fn handle_exception(&self, _: Exception) {
-        if self.uart.can_tx() {
-            if let Some(b) = self.reader.get() {
-                self.uart.tx(b);
-            } else {
-                self.tx_stop();
-            }
-        }
-        if self.uart.can_rx() {
-            if self.writer.rem() > 0 {
-                self.writer.put(self.uart.rx());
-            } else {
-                self.rx_stop();
-            }
-        }        
-    }
 }

@@ -23,5 +23,5 @@ pub fn init() {
     UART
         .set_config(|c| c.set_baud_divisor(baud_div as u16))
         .set_enabled(true);
-    set_console(Console::new(UART.as_periph(), ConsoleMode::Cooked));
+    Console::set(Console::new(UART.as_periph(), ConsoleMode::Cooked));
 }
