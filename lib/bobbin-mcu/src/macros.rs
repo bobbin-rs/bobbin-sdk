@@ -1,3 +1,4 @@
+/// Defines a peripheral instance.
 #[macro_export]
 macro_rules! periph {
     ($id:ident, $ty:ident, $pid:ident, $pty:ident, $owned:ident, $ref_count:ident, $base:expr, $index: expr, $ord:expr) => {
@@ -68,6 +69,7 @@ macro_rules! periph {
     )
 }
 
+/// Associates an interrupt number with a peripheral and interrupt type.
 #[macro_export]
 macro_rules! periph_irq {
     ($pty:ident, $ity:ident, $irq:ident) => {
@@ -77,12 +79,15 @@ macro_rules! periph_irq {
     }
 }
 
+/// Associates a signal with a peripheral.
 #[macro_export]
 macro_rules! periph_signal {
     ($ty:path, $sty:ident) => {
         $crate::signal!($ty, $sty);
     }
 }
+
+/// Defines a Pin instance.
 #[macro_export]
 macro_rules! pin {
     ($id:ident, $ty:ident, $meth:ident, $port_id:ident, $port_type:ident, $base_id:ident, $base_type:ident, $base_port:ident, $owned:ident, $ref_count: ident, $index:expr) => {
@@ -157,6 +162,7 @@ macro_rules! pin {
     }
 }
 
+/// Associates a signal and signal type with a pin, including an Alternate Function selector for that source.
 #[macro_export]
 macro_rules! pin_source {
     ($pin_ty:ident, $src:path, $sty:path, $num:expr) => {
@@ -166,6 +172,7 @@ macro_rules! pin_source {
     };
 }
 
+/// Defines a Channel.
 #[macro_export]
 macro_rules! channel {
     ($id:ident, $ty:ident, $meth:ident, $periph_id:ident, $periph_type:ident, $base_id:ident, $base_type:ident, $base_periph:ident, $owned:ident, $ref_count: ident, $index:expr) => (    
@@ -233,6 +240,7 @@ macro_rules! channel {
     )
 }
 
+/// Associates an interrupt number with a Channel and Interrupt Type.
 #[macro_export]
 macro_rules! channel_irq {
     ($cty:ident, $ity:ident, $irq:ident) => {
@@ -242,6 +250,7 @@ macro_rules! channel_irq {
     }
 }
 
+/// Associates a signal and signal type with a Channel.
 #[macro_export]
 macro_rules! channel_signal {
     ($ty:path, $sty:ident) => {
@@ -249,6 +258,7 @@ macro_rules! channel_signal {
     }
 }
 
+/// Associates a source and source type with a Channel, including a selector number.
 #[macro_export]
 macro_rules! channel_source {
     ($cty:ident, $src:ident, $sty:ident, $num:expr) => {
@@ -257,6 +267,8 @@ macro_rules! channel_source {
         }
     };
 }
+
+/// Defines a signal type.
 #[macro_export]
 macro_rules! signal_type {
     ($id:ident, $ty:ident) => {
@@ -267,6 +279,7 @@ macro_rules! signal_type {
     }
 }
 
+/// Defines a signal.
 #[macro_export]
 macro_rules! signal {
     ($ty:path, $sty:ident) => {
@@ -274,6 +287,7 @@ macro_rules! signal {
     }
 }
 
+/// Defines an interrupt number.
 #[macro_export]
 macro_rules! irq_number {
     ($id:ident, $ty:ident, $num:expr) => {
@@ -286,6 +300,7 @@ macro_rules! irq_number {
     }    
 }
 
+/// Defines an interrupt type.
 #[macro_export]
 macro_rules! irq_type {
     ($id:ident, $ty:ident) => {
@@ -297,6 +312,7 @@ macro_rules! irq_type {
     };
 }
 
+/// Associates an interrupt number with a peripheral or channel and interrupt type.
 #[macro_export]
 macro_rules! irq {
     ($ty:path, $ity:ident, $inum:ident ) => {
