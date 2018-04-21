@@ -1,1 +1,3 @@
-# bobbin-mcu
+# mcu
+
+Bobbin MCU support crates
