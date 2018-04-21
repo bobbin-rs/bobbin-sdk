@@ -1,6 +1,6 @@
 MAKE = make
 
-SUBDIRS = rfm69 rfm95 cortex-m
+SUBDIRS = rfm69 rfm95
 
 TESTDIRS = $(SUBDIRS:%=test-%)
 
