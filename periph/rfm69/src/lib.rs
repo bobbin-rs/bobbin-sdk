@@ -1415,14 +1415,13 @@ impl<RW: TryReadWrite> Rfm69<RW> {
 }
 
 pub mod types {
-    use ::bobbin_bits as bits;
 
 #[doc="FIFO read/write access"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Fifo(pub u8);
 impl Fifo {
     #[doc="FIFO data input/output"]
-    #[inline] pub fn fifo(&self) -> bits::U8 {
+    #[inline] pub fn fifo(&self) -> ::bobbin_bits::U8 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
@@ -1432,8 +1431,8 @@ impl Fifo {
     }
 
     #[doc="Sets the FIFO field."]
-    #[inline] pub fn set_fifo<V: Into<bits::U8>>(mut self, value: V) -> Self {
-        let value: bits::U8 = value.into();
+    #[inline] pub fn set_fifo<V: Into<::bobbin_bits::U8>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U8 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0xff << 0);
         self.0 |= value << 0;
@@ -1469,7 +1468,7 @@ impl ::core::fmt::Debug for Fifo {
 pub struct Opmode(pub u8);
 impl Opmode {
     #[doc="Controls the automatic Sequencer (see section 4.2 ): 0 -> Operating mode as selected with Mode bits in RegOpMode is automatically reached with the Sequencer 1 -> Mode is forced by the user"]
-    #[inline] pub fn sequencer_off(&self) -> bits::U1 {
+    #[inline] pub fn sequencer_off(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
@@ -1479,8 +1478,8 @@ impl Opmode {
     }
 
     #[doc="Sets the SEQUENCER_OFF field."]
-    #[inline] pub fn set_sequencer_off<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_sequencer_off<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x1 << 7);
         self.0 |= value << 7;
@@ -1488,7 +1487,7 @@ impl Opmode {
     }
 
     #[doc="Enables Listen mode, should be enabled whilst in Standby mode: 0 → Off (see section 4.3) 1 → On"]
-    #[inline] pub fn listen_on(&self) -> bits::U1 {
+    #[inline] pub fn listen_on(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
@@ -1498,8 +1497,8 @@ impl Opmode {
     }
 
     #[doc="Sets the LISTEN_ON field."]
-    #[inline] pub fn set_listen_on<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_listen_on<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x1 << 6);
         self.0 |= value << 6;
@@ -1507,7 +1506,7 @@ impl Opmode {
     }
 
     #[doc="Aborts Listen mode when set together with ListenOn=0 See section 4.3.4 for details Always reads 0."]
-    #[inline] pub fn listen_abort(&self) -> bits::U1 {
+    #[inline] pub fn listen_abort(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
@@ -1517,8 +1516,8 @@ impl Opmode {
     }
 
     #[doc="Sets the LISTEN_ABORT field."]
-    #[inline] pub fn set_listen_abort<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_listen_abort<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x1 << 5);
         self.0 |= value << 5;
@@ -1526,7 +1525,7 @@ impl Opmode {
     }
 
     #[doc="Transceiver’s operating modes: 000 → Sleep mode (SLEEP) 001 → Standby mode (STDBY) 010 → Frequency Synthesizer mode (FS) 011 → Transmitter mode (TX) 100 → Receiver mode (RX) others → reserved; Reads the value corresponding to the current module mode"]
-    #[inline] pub fn mode(&self) -> bits::U3 {
+    #[inline] pub fn mode(&self) -> ::bobbin_bits::U3 {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x7) as u8) } // [4:2]
     }
 
@@ -1536,8 +1535,8 @@ impl Opmode {
     }
 
     #[doc="Sets the MODE field."]
-    #[inline] pub fn set_mode<V: Into<bits::U3>>(mut self, value: V) -> Self {
-        let value: bits::U3 = value.into();
+    #[inline] pub fn set_mode<V: Into<::bobbin_bits::U3>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U3 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x7 << 2);
         self.0 |= value << 2;
@@ -1576,7 +1575,7 @@ impl ::core::fmt::Debug for Opmode {
 pub struct Datamodul(pub u8);
 impl Datamodul {
     #[doc="Data processing mode: 00 → Packet mode 01 → reserved 10 → Continuous mode with bit synchronizer 11 → Continuous mode without bit synchronizer"]
-    #[inline] pub fn data_mode(&self) -> bits::U2 {
+    #[inline] pub fn data_mode(&self) -> ::bobbin_bits::U2 {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x3) as u8) } // [6:5]
     }
 
@@ -1586,8 +1585,8 @@ impl Datamodul {
     }
 
     #[doc="Sets the DATA_MODE field."]
-    #[inline] pub fn set_data_mode<V: Into<bits::U2>>(mut self, value: V) -> Self {
-        let value: bits::U2 = value.into();
+    #[inline] pub fn set_data_mode<V: Into<::bobbin_bits::U2>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U2 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x3 << 5);
         self.0 |= value << 5;
@@ -1595,7 +1594,7 @@ impl Datamodul {
     }
 
     #[doc="Modulation scheme: 00 → FSK 01 → OOK 10 - 11 → reserved"]
-    #[inline] pub fn modulation_type(&self) -> bits::U2 {
+    #[inline] pub fn modulation_type(&self) -> ::bobbin_bits::U2 {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x3) as u8) } // [4:3]
     }
 
@@ -1605,8 +1604,8 @@ impl Datamodul {
     }
 
     #[doc="Sets the MODULATION_TYPE field."]
-    #[inline] pub fn set_modulation_type<V: Into<bits::U2>>(mut self, value: V) -> Self {
-        let value: bits::U2 = value.into();
+    #[inline] pub fn set_modulation_type<V: Into<::bobbin_bits::U2>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U2 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x3 << 3);
         self.0 |= value << 3;
@@ -1614,7 +1613,7 @@ impl Datamodul {
     }
 
     #[doc="Gets the MODULATION_SHAPING field."]
-    #[inline] pub fn modulation_shaping(&self) -> bits::U2 {
+    #[inline] pub fn modulation_shaping(&self) -> ::bobbin_bits::U2 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x3) as u8) } // [1:0]
     }
 
@@ -1624,8 +1623,8 @@ impl Datamodul {
     }
 
     #[doc="Sets the MODULATION_SHAPING field."]
-    #[inline] pub fn set_modulation_shaping<V: Into<bits::U2>>(mut self, value: V) -> Self {
-        let value: bits::U2 = value.into();
+    #[inline] pub fn set_modulation_shaping<V: Into<::bobbin_bits::U2>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U2 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x3 << 0);
         self.0 |= value << 0;
@@ -1662,7 +1661,7 @@ impl ::core::fmt::Debug for Datamodul {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Bitratemsb(pub u8);
 impl Bitratemsb {
-    #[inline] pub fn bitrate(&self) -> bits::U8 {
+    #[inline] pub fn bitrate(&self) -> ::bobbin_bits::U8 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
@@ -1672,8 +1671,8 @@ impl Bitratemsb {
     }
 
     #[doc="Sets the BITRATE field."]
-    #[inline] pub fn set_bitrate<V: Into<bits::U8>>(mut self, value: V) -> Self {
-        let value: bits::U8 = value.into();
+    #[inline] pub fn set_bitrate<V: Into<::bobbin_bits::U8>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U8 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0xff << 0);
         self.0 |= value << 0;
@@ -1708,7 +1707,7 @@ impl ::core::fmt::Debug for Bitratemsb {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Bitratelsb(pub u8);
 impl Bitratelsb {
-    #[inline] pub fn bitrate(&self) -> bits::U8 {
+    #[inline] pub fn bitrate(&self) -> ::bobbin_bits::U8 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
@@ -1718,8 +1717,8 @@ impl Bitratelsb {
     }
 
     #[doc="Sets the BITRATE field."]
-    #[inline] pub fn set_bitrate<V: Into<bits::U8>>(mut self, value: V) -> Self {
-        let value: bits::U8 = value.into();
+    #[inline] pub fn set_bitrate<V: Into<::bobbin_bits::U8>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U8 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0xff << 0);
         self.0 |= value << 0;
@@ -1754,7 +1753,7 @@ impl ::core::fmt::Debug for Bitratelsb {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Fdevmsb(pub u8);
 impl Fdevmsb {
-    #[inline] pub fn fdev(&self) -> bits::U5 {
+    #[inline] pub fn fdev(&self) -> ::bobbin_bits::U5 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1f) as u8) } // [4:0]
     }
 
@@ -1764,8 +1763,8 @@ impl Fdevmsb {
     }
 
     #[doc="Sets the FDEV field."]
-    #[inline] pub fn set_fdev<V: Into<bits::U5>>(mut self, value: V) -> Self {
-        let value: bits::U5 = value.into();
+    #[inline] pub fn set_fdev<V: Into<::bobbin_bits::U5>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U5 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x1f << 0);
         self.0 |= value << 0;
@@ -1800,7 +1799,7 @@ impl ::core::fmt::Debug for Fdevmsb {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Fdevlsb(pub u8);
 impl Fdevlsb {
-    #[inline] pub fn fdev(&self) -> bits::U8 {
+    #[inline] pub fn fdev(&self) -> ::bobbin_bits::U8 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
@@ -1810,8 +1809,8 @@ impl Fdevlsb {
     }
 
     #[doc="Sets the FDEV field."]
-    #[inline] pub fn set_fdev<V: Into<bits::U8>>(mut self, value: V) -> Self {
-        let value: bits::U8 = value.into();
+    #[inline] pub fn set_fdev<V: Into<::bobbin_bits::U8>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U8 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0xff << 0);
         self.0 |= value << 0;
@@ -1846,7 +1845,7 @@ impl ::core::fmt::Debug for Fdevlsb {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Frfmsb(pub u8);
 impl Frfmsb {
-    #[inline] pub fn frf(&self) -> bits::U8 {
+    #[inline] pub fn frf(&self) -> ::bobbin_bits::U8 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
@@ -1856,8 +1855,8 @@ impl Frfmsb {
     }
 
     #[doc="Sets the FRF field."]
-    #[inline] pub fn set_frf<V: Into<bits::U8>>(mut self, value: V) -> Self {
-        let value: bits::U8 = value.into();
+    #[inline] pub fn set_frf<V: Into<::bobbin_bits::U8>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U8 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0xff << 0);
         self.0 |= value << 0;
@@ -1892,7 +1891,7 @@ impl ::core::fmt::Debug for Frfmsb {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Frfmid(pub u8);
 impl Frfmid {
-    #[inline] pub fn frf(&self) -> bits::U8 {
+    #[inline] pub fn frf(&self) -> ::bobbin_bits::U8 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
@@ -1902,8 +1901,8 @@ impl Frfmid {
     }
 
     #[doc="Sets the FRF field."]
-    #[inline] pub fn set_frf<V: Into<bits::U8>>(mut self, value: V) -> Self {
-        let value: bits::U8 = value.into();
+    #[inline] pub fn set_frf<V: Into<::bobbin_bits::U8>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U8 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0xff << 0);
         self.0 |= value << 0;
@@ -1938,7 +1937,7 @@ impl ::core::fmt::Debug for Frfmid {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Frflsb(pub u8);
 impl Frflsb {
-    #[inline] pub fn frf(&self) -> bits::U8 {
+    #[inline] pub fn frf(&self) -> ::bobbin_bits::U8 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
@@ -1948,8 +1947,8 @@ impl Frflsb {
     }
 
     #[doc="Sets the FRF field."]
-    #[inline] pub fn set_frf<V: Into<bits::U8>>(mut self, value: V) -> Self {
-        let value: bits::U8 = value.into();
+    #[inline] pub fn set_frf<V: Into<::bobbin_bits::U8>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U8 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0xff << 0);
         self.0 |= value << 0;
@@ -1984,7 +1983,7 @@ impl ::core::fmt::Debug for Frflsb {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Osc1(pub u8);
 impl Osc1 {
-    #[inline] pub fn rc_cal_start(&self) -> bits::U1 {
+    #[inline] pub fn rc_cal_start(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
@@ -1994,15 +1993,15 @@ impl Osc1 {
     }
 
     #[doc="Sets the RC_CAL_START field."]
-    #[inline] pub fn set_rc_cal_start<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_rc_cal_start<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x1 << 7);
         self.0 |= value << 7;
         self
     }
 
-    #[inline] pub fn rc_cal_done(&self) -> bits::U1 {
+    #[inline] pub fn rc_cal_done(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
@@ -2012,8 +2011,8 @@ impl Osc1 {
     }
 
     #[doc="Sets the RC_CAL_DONE field."]
-    #[inline] pub fn set_rc_cal_done<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_rc_cal_done<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x1 << 6);
         self.0 |= value << 6;
@@ -2049,7 +2048,7 @@ impl ::core::fmt::Debug for Osc1 {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Afcctrl(pub u8);
 impl Afcctrl {
-    #[inline] pub fn afc_low_beta_on(&self) -> bits::U1 {
+    #[inline] pub fn afc_low_beta_on(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
@@ -2059,8 +2058,8 @@ impl Afcctrl {
     }
 
     #[doc="Sets the AFC_LOW_BETA_ON field."]
-    #[inline] pub fn set_afc_low_beta_on<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_afc_low_beta_on<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x1 << 5);
         self.0 |= value << 5;
@@ -2095,7 +2094,7 @@ impl ::core::fmt::Debug for Afcctrl {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Listen1(pub u8);
 impl Listen1 {
-    #[inline] pub fn listen_resol_idle(&self) -> bits::U2 {
+    #[inline] pub fn listen_resol_idle(&self) -> ::bobbin_bits::U2 {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x3) as u8) } // [7:6]
     }
 
@@ -2105,15 +2104,15 @@ impl Listen1 {
     }
 
     #[doc="Sets the LISTEN_RESOL_IDLE field."]
-    #[inline] pub fn set_listen_resol_idle<V: Into<bits::U2>>(mut self, value: V) -> Self {
-        let value: bits::U2 = value.into();
+    #[inline] pub fn set_listen_resol_idle<V: Into<::bobbin_bits::U2>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U2 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x3 << 6);
         self.0 |= value << 6;
         self
     }
 
-    #[inline] pub fn listen_resol_rx(&self) -> bits::U2 {
+    #[inline] pub fn listen_resol_rx(&self) -> ::bobbin_bits::U2 {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x3) as u8) } // [5:4]
     }
 
@@ -2123,15 +2122,15 @@ impl Listen1 {
     }
 
     #[doc="Sets the LISTEN_RESOL_RX field."]
-    #[inline] pub fn set_listen_resol_rx<V: Into<bits::U2>>(mut self, value: V) -> Self {
-        let value: bits::U2 = value.into();
+    #[inline] pub fn set_listen_resol_rx<V: Into<::bobbin_bits::U2>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U2 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x3 << 4);
         self.0 |= value << 4;
         self
     }
 
-    #[inline] pub fn listen_criteria(&self) -> bits::U1 {
+    #[inline] pub fn listen_criteria(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
@@ -2141,15 +2140,15 @@ impl Listen1 {
     }
 
     #[doc="Sets the LISTEN_CRITERIA field."]
-    #[inline] pub fn set_listen_criteria<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_listen_criteria<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x1 << 3);
         self.0 |= value << 3;
         self
     }
 
-    #[inline] pub fn listen_end(&self) -> bits::U2 {
+    #[inline] pub fn listen_end(&self) -> ::bobbin_bits::U2 {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x3) as u8) } // [2:1]
     }
 
@@ -2159,8 +2158,8 @@ impl Listen1 {
     }
 
     #[doc="Sets the LISTEN_END field."]
-    #[inline] pub fn set_listen_end<V: Into<bits::U2>>(mut self, value: V) -> Self {
-        let value: bits::U2 = value.into();
+    #[inline] pub fn set_listen_end<V: Into<::bobbin_bits::U2>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U2 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x3 << 1);
         self.0 |= value << 1;
@@ -2198,7 +2197,7 @@ impl ::core::fmt::Debug for Listen1 {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Listen2(pub u8);
 impl Listen2 {
-    #[inline] pub fn listen_coef_idle(&self) -> bits::U8 {
+    #[inline] pub fn listen_coef_idle(&self) -> ::bobbin_bits::U8 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
@@ -2208,8 +2207,8 @@ impl Listen2 {
     }
 
     #[doc="Sets the LISTEN_COEF_IDLE field."]
-    #[inline] pub fn set_listen_coef_idle<V: Into<bits::U8>>(mut self, value: V) -> Self {
-        let value: bits::U8 = value.into();
+    #[inline] pub fn set_listen_coef_idle<V: Into<::bobbin_bits::U8>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U8 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0xff << 0);
         self.0 |= value << 0;
@@ -2244,7 +2243,7 @@ impl ::core::fmt::Debug for Listen2 {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Listen3(pub u8);
 impl Listen3 {
-    #[inline] pub fn listen_coef_rx(&self) -> bits::U8 {
+    #[inline] pub fn listen_coef_rx(&self) -> ::bobbin_bits::U8 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
@@ -2254,8 +2253,8 @@ impl Listen3 {
     }
 
     #[doc="Sets the LISTEN_COEF_RX field."]
-    #[inline] pub fn set_listen_coef_rx<V: Into<bits::U8>>(mut self, value: V) -> Self {
-        let value: bits::U8 = value.into();
+    #[inline] pub fn set_listen_coef_rx<V: Into<::bobbin_bits::U8>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U8 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0xff << 0);
         self.0 |= value << 0;
@@ -2289,7 +2288,7 @@ impl ::core::fmt::Debug for Listen3 {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Version(pub u8);
 impl Version {
-    #[inline] pub fn version(&self) -> bits::U8 {
+    #[inline] pub fn version(&self) -> ::bobbin_bits::U8 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
@@ -2299,8 +2298,8 @@ impl Version {
     }
 
     #[doc="Sets the VERSION field."]
-    #[inline] pub fn set_version<V: Into<bits::U8>>(mut self, value: V) -> Self {
-        let value: bits::U8 = value.into();
+    #[inline] pub fn set_version<V: Into<::bobbin_bits::U8>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U8 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0xff << 0);
         self.0 |= value << 0;
@@ -2335,7 +2334,7 @@ impl ::core::fmt::Debug for Version {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Palevel(pub u8);
 impl Palevel {
-    #[inline] pub fn pa0_on(&self) -> bits::U1 {
+    #[inline] pub fn pa0_on(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
@@ -2345,15 +2344,15 @@ impl Palevel {
     }
 
     #[doc="Sets the PA0_ON field."]
-    #[inline] pub fn set_pa0_on<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_pa0_on<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x1 << 7);
         self.0 |= value << 7;
         self
     }
 
-    #[inline] pub fn pa1_on(&self) -> bits::U1 {
+    #[inline] pub fn pa1_on(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
@@ -2363,15 +2362,15 @@ impl Palevel {
     }
 
     #[doc="Sets the PA1_ON field."]
-    #[inline] pub fn set_pa1_on<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_pa1_on<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x1 << 6);
         self.0 |= value << 6;
         self
     }
 
-    #[inline] pub fn pa2_on(&self) -> bits::U1 {
+    #[inline] pub fn pa2_on(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
@@ -2381,15 +2380,15 @@ impl Palevel {
     }
 
     #[doc="Sets the PA2_ON field."]
-    #[inline] pub fn set_pa2_on<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_pa2_on<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x1 << 5);
         self.0 |= value << 5;
         self
     }
 
-    #[inline] pub fn output_power(&self) -> bits::U5 {
+    #[inline] pub fn output_power(&self) -> ::bobbin_bits::U5 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1f) as u8) } // [4:0]
     }
 
@@ -2399,8 +2398,8 @@ impl Palevel {
     }
 
     #[doc="Sets the OUTPUT_POWER field."]
-    #[inline] pub fn set_output_power<V: Into<bits::U5>>(mut self, value: V) -> Self {
-        let value: bits::U5 = value.into();
+    #[inline] pub fn set_output_power<V: Into<::bobbin_bits::U5>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U5 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x1f << 0);
         self.0 |= value << 0;
@@ -2438,7 +2437,7 @@ impl ::core::fmt::Debug for Palevel {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Paramp(pub u8);
 impl Paramp {
-    #[inline] pub fn pa_ramo(&self) -> bits::U4 {
+    #[inline] pub fn pa_ramo(&self) -> ::bobbin_bits::U4 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xf) as u8) } // [3:0]
     }
 
@@ -2448,8 +2447,8 @@ impl Paramp {
     }
 
     #[doc="Sets the PA_RAMO field."]
-    #[inline] pub fn set_pa_ramo<V: Into<bits::U4>>(mut self, value: V) -> Self {
-        let value: bits::U4 = value.into();
+    #[inline] pub fn set_pa_ramo<V: Into<::bobbin_bits::U4>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U4 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0xf << 0);
         self.0 |= value << 0;
@@ -2484,7 +2483,7 @@ impl ::core::fmt::Debug for Paramp {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ocp(pub u8);
 impl Ocp {
-    #[inline] pub fn ocp_on(&self) -> bits::U1 {
+    #[inline] pub fn ocp_on(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
@@ -2494,15 +2493,15 @@ impl Ocp {
     }
 
     #[doc="Sets the OCP_ON field."]
-    #[inline] pub fn set_ocp_on<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_ocp_on<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x1 << 4);
         self.0 |= value << 4;
         self
     }
 
-    #[inline] pub fn ocp_trim(&self) -> bits::U4 {
+    #[inline] pub fn ocp_trim(&self) -> ::bobbin_bits::U4 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xf) as u8) } // [3:0]
     }
 
@@ -2512,8 +2511,8 @@ impl Ocp {
     }
 
     #[doc="Sets the OCP_TRIM field."]
-    #[inline] pub fn set_ocp_trim<V: Into<bits::U4>>(mut self, value: V) -> Self {
-        let value: bits::U4 = value.into();
+    #[inline] pub fn set_ocp_trim<V: Into<::bobbin_bits::U4>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U4 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0xf << 0);
         self.0 |= value << 0;
@@ -2549,7 +2548,7 @@ impl ::core::fmt::Debug for Ocp {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Lna(pub u8);
 impl Lna {
-    #[inline] pub fn lna_zin(&self) -> bits::U1 {
+    #[inline] pub fn lna_zin(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
@@ -2559,15 +2558,15 @@ impl Lna {
     }
 
     #[doc="Sets the LNA_ZIN field."]
-    #[inline] pub fn set_lna_zin<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_lna_zin<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x1 << 7);
         self.0 |= value << 7;
         self
     }
 
-    #[inline] pub fn lna_current_gain(&self) -> bits::U3 {
+    #[inline] pub fn lna_current_gain(&self) -> ::bobbin_bits::U3 {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x7) as u8) } // [5:3]
     }
 
@@ -2577,15 +2576,15 @@ impl Lna {
     }
 
     #[doc="Sets the LNA_CURRENT_GAIN field."]
-    #[inline] pub fn set_lna_current_gain<V: Into<bits::U3>>(mut self, value: V) -> Self {
-        let value: bits::U3 = value.into();
+    #[inline] pub fn set_lna_current_gain<V: Into<::bobbin_bits::U3>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U3 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x7 << 3);
         self.0 |= value << 3;
         self
     }
 
-    #[inline] pub fn lna_gain_select(&self) -> bits::U3 {
+    #[inline] pub fn lna_gain_select(&self) -> ::bobbin_bits::U3 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x7) as u8) } // [2:0]
     }
 
@@ -2595,8 +2594,8 @@ impl Lna {
     }
 
     #[doc="Sets the LNA_GAIN_SELECT field."]
-    #[inline] pub fn set_lna_gain_select<V: Into<bits::U3>>(mut self, value: V) -> Self {
-        let value: bits::U3 = value.into();
+    #[inline] pub fn set_lna_gain_select<V: Into<::bobbin_bits::U3>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U3 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x7 << 0);
         self.0 |= value << 0;
@@ -2633,7 +2632,7 @@ impl ::core::fmt::Debug for Lna {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Rxbw(pub u8);
 impl Rxbw {
-    #[inline] pub fn dcc_freq(&self) -> bits::U3 {
+    #[inline] pub fn dcc_freq(&self) -> ::bobbin_bits::U3 {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x7) as u8) } // [7:5]
     }
 
@@ -2643,15 +2642,15 @@ impl Rxbw {
     }
 
     #[doc="Sets the DCC_FREQ field."]
-    #[inline] pub fn set_dcc_freq<V: Into<bits::U3>>(mut self, value: V) -> Self {
-        let value: bits::U3 = value.into();
+    #[inline] pub fn set_dcc_freq<V: Into<::bobbin_bits::U3>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U3 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x7 << 5);
         self.0 |= value << 5;
         self
     }
 
-    #[inline] pub fn rx_bw_mant(&self) -> bits::U2 {
+    #[inline] pub fn rx_bw_mant(&self) -> ::bobbin_bits::U2 {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x3) as u8) } // [4:3]
     }
 
@@ -2661,15 +2660,15 @@ impl Rxbw {
     }
 
     #[doc="Sets the RX_BW_MANT field."]
-    #[inline] pub fn set_rx_bw_mant<V: Into<bits::U2>>(mut self, value: V) -> Self {
-        let value: bits::U2 = value.into();
+    #[inline] pub fn set_rx_bw_mant<V: Into<::bobbin_bits::U2>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U2 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x3 << 3);
         self.0 |= value << 3;
         self
     }
 
-    #[inline] pub fn rx_bw_exp(&self) -> bits::U2 {
+    #[inline] pub fn rx_bw_exp(&self) -> ::bobbin_bits::U2 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x3) as u8) } // [1:0]
     }
 
@@ -2679,8 +2678,8 @@ impl Rxbw {
     }
 
     #[doc="Sets the RX_BW_EXP field."]
-    #[inline] pub fn set_rx_bw_exp<V: Into<bits::U2>>(mut self, value: V) -> Self {
-        let value: bits::U2 = value.into();
+    #[inline] pub fn set_rx_bw_exp<V: Into<::bobbin_bits::U2>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U2 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x3 << 0);
         self.0 |= value << 0;
@@ -2717,7 +2716,7 @@ impl ::core::fmt::Debug for Rxbw {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Afcbw(pub u8);
 impl Afcbw {
-    #[inline] pub fn dcc_freq_afc(&self) -> bits::U7 {
+    #[inline] pub fn dcc_freq_afc(&self) -> ::bobbin_bits::U7 {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x7f) as u8) } // [11:5]
     }
 
@@ -2727,15 +2726,15 @@ impl Afcbw {
     }
 
     #[doc="Sets the DCC_FREQ_AFC field."]
-    #[inline] pub fn set_dcc_freq_afc<V: Into<bits::U7>>(mut self, value: V) -> Self {
-        let value: bits::U7 = value.into();
+    #[inline] pub fn set_dcc_freq_afc<V: Into<::bobbin_bits::U7>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U7 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x7f << 5);
         self.0 |= value << 5;
         self
     }
 
-    #[inline] pub fn rx_bw_mant_afc(&self) -> bits::U2 {
+    #[inline] pub fn rx_bw_mant_afc(&self) -> ::bobbin_bits::U2 {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x3) as u8) } // [4:3]
     }
 
@@ -2745,15 +2744,15 @@ impl Afcbw {
     }
 
     #[doc="Sets the RX_BW_MANT_AFC field."]
-    #[inline] pub fn set_rx_bw_mant_afc<V: Into<bits::U2>>(mut self, value: V) -> Self {
-        let value: bits::U2 = value.into();
+    #[inline] pub fn set_rx_bw_mant_afc<V: Into<::bobbin_bits::U2>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U2 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x3 << 3);
         self.0 |= value << 3;
         self
     }
 
-    #[inline] pub fn rx_bw_exp_afc(&self) -> bits::U3 {
+    #[inline] pub fn rx_bw_exp_afc(&self) -> ::bobbin_bits::U3 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x7) as u8) } // [2:0]
     }
 
@@ -2763,8 +2762,8 @@ impl Afcbw {
     }
 
     #[doc="Sets the RX_BW_EXP_AFC field."]
-    #[inline] pub fn set_rx_bw_exp_afc<V: Into<bits::U3>>(mut self, value: V) -> Self {
-        let value: bits::U3 = value.into();
+    #[inline] pub fn set_rx_bw_exp_afc<V: Into<::bobbin_bits::U3>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U3 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x7 << 0);
         self.0 |= value << 0;
@@ -2801,7 +2800,7 @@ impl ::core::fmt::Debug for Afcbw {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ookpeak(pub u8);
 impl Ookpeak {
-    #[inline] pub fn ook_thresh_type(&self) -> bits::U2 {
+    #[inline] pub fn ook_thresh_type(&self) -> ::bobbin_bits::U2 {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x3) as u8) } // [7:6]
     }
 
@@ -2811,15 +2810,15 @@ impl Ookpeak {
     }
 
     #[doc="Sets the OOK_THRESH_TYPE field."]
-    #[inline] pub fn set_ook_thresh_type<V: Into<bits::U2>>(mut self, value: V) -> Self {
-        let value: bits::U2 = value.into();
+    #[inline] pub fn set_ook_thresh_type<V: Into<::bobbin_bits::U2>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U2 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x3 << 6);
         self.0 |= value << 6;
         self
     }
 
-    #[inline] pub fn ook_peak_thresh_step(&self) -> bits::U3 {
+    #[inline] pub fn ook_peak_thresh_step(&self) -> ::bobbin_bits::U3 {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x7) as u8) } // [5:3]
     }
 
@@ -2829,15 +2828,15 @@ impl Ookpeak {
     }
 
     #[doc="Sets the OOK_PEAK_THRESH_STEP field."]
-    #[inline] pub fn set_ook_peak_thresh_step<V: Into<bits::U3>>(mut self, value: V) -> Self {
-        let value: bits::U3 = value.into();
+    #[inline] pub fn set_ook_peak_thresh_step<V: Into<::bobbin_bits::U3>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U3 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x7 << 3);
         self.0 |= value << 3;
         self
     }
 
-    #[inline] pub fn ook_peak_thresh_dec(&self) -> bits::U3 {
+    #[inline] pub fn ook_peak_thresh_dec(&self) -> ::bobbin_bits::U3 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x7) as u8) } // [2:0]
     }
 
@@ -2847,8 +2846,8 @@ impl Ookpeak {
     }
 
     #[doc="Sets the OOK_PEAK_THRESH_DEC field."]
-    #[inline] pub fn set_ook_peak_thresh_dec<V: Into<bits::U3>>(mut self, value: V) -> Self {
-        let value: bits::U3 = value.into();
+    #[inline] pub fn set_ook_peak_thresh_dec<V: Into<::bobbin_bits::U3>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U3 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x7 << 0);
         self.0 |= value << 0;
@@ -2885,7 +2884,7 @@ impl ::core::fmt::Debug for Ookpeak {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ookavg(pub u8);
 impl Ookavg {
-    #[inline] pub fn ook_average_thresh_filt(&self) -> bits::U2 {
+    #[inline] pub fn ook_average_thresh_filt(&self) -> ::bobbin_bits::U2 {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x3) as u8) } // [7:6]
     }
 
@@ -2895,8 +2894,8 @@ impl Ookavg {
     }
 
     #[doc="Sets the OOK_AVERAGE_THRESH_FILT field."]
-    #[inline] pub fn set_ook_average_thresh_filt<V: Into<bits::U2>>(mut self, value: V) -> Self {
-        let value: bits::U2 = value.into();
+    #[inline] pub fn set_ook_average_thresh_filt<V: Into<::bobbin_bits::U2>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U2 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x3 << 6);
         self.0 |= value << 6;
@@ -2931,7 +2930,7 @@ impl ::core::fmt::Debug for Ookavg {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Ookfix(pub u8);
 impl Ookfix {
-    #[inline] pub fn ook_fixed_thresh(&self) -> bits::U8 {
+    #[inline] pub fn ook_fixed_thresh(&self) -> ::bobbin_bits::U8 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
@@ -2941,8 +2940,8 @@ impl Ookfix {
     }
 
     #[doc="Sets the OOK_FIXED_THRESH field."]
-    #[inline] pub fn set_ook_fixed_thresh<V: Into<bits::U8>>(mut self, value: V) -> Self {
-        let value: bits::U8 = value.into();
+    #[inline] pub fn set_ook_fixed_thresh<V: Into<::bobbin_bits::U8>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U8 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0xff << 0);
         self.0 |= value << 0;
@@ -2977,7 +2976,7 @@ impl ::core::fmt::Debug for Ookfix {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Afcfei(pub u8);
 impl Afcfei {
-    #[inline] pub fn fei_done(&self) -> bits::U1 {
+    #[inline] pub fn fei_done(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
@@ -2987,15 +2986,15 @@ impl Afcfei {
     }
 
     #[doc="Sets the FEI_DONE field."]
-    #[inline] pub fn set_fei_done<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_fei_done<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x1 << 6);
         self.0 |= value << 6;
         self
     }
 
-    #[inline] pub fn fei_start(&self) -> bits::U1 {
+    #[inline] pub fn fei_start(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
@@ -3005,15 +3004,15 @@ impl Afcfei {
     }
 
     #[doc="Sets the FEI_START field."]
-    #[inline] pub fn set_fei_start<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_fei_start<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x1 << 5);
         self.0 |= value << 5;
         self
     }
 
-    #[inline] pub fn afc_done(&self) -> bits::U1 {
+    #[inline] pub fn afc_done(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
@@ -3023,15 +3022,15 @@ impl Afcfei {
     }
 
     #[doc="Sets the AFC_DONE field."]
-    #[inline] pub fn set_afc_done<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_afc_done<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x1 << 4);
         self.0 |= value << 4;
         self
     }
 
-    #[inline] pub fn afc_autoclear_on(&self) -> bits::U1 {
+    #[inline] pub fn afc_autoclear_on(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
@@ -3041,15 +3040,15 @@ impl Afcfei {
     }
 
     #[doc="Sets the AFC_AUTOCLEAR_ON field."]
-    #[inline] pub fn set_afc_autoclear_on<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_afc_autoclear_on<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x1 << 3);
         self.0 |= value << 3;
         self
     }
 
-    #[inline] pub fn afc_auto_on(&self) -> bits::U1 {
+    #[inline] pub fn afc_auto_on(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
@@ -3059,15 +3058,15 @@ impl Afcfei {
     }
 
     #[doc="Sets the AFC_AUTO_ON field."]
-    #[inline] pub fn set_afc_auto_on<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_afc_auto_on<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x1 << 2);
         self.0 |= value << 2;
         self
     }
 
-    #[inline] pub fn afc_clear(&self) -> bits::U1 {
+    #[inline] pub fn afc_clear(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
@@ -3077,15 +3076,15 @@ impl Afcfei {
     }
 
     #[doc="Sets the AFC_CLEAR field."]
-    #[inline] pub fn set_afc_clear<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_afc_clear<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x1 << 1);
         self.0 |= value << 1;
         self
     }
 
-    #[inline] pub fn afc_start(&self) -> bits::U1 {
+    #[inline] pub fn afc_start(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
@@ -3095,8 +3094,8 @@ impl Afcfei {
     }
 
     #[doc="Sets the AFC_START field."]
-    #[inline] pub fn set_afc_start<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_afc_start<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x1 << 0);
         self.0 |= value << 0;
@@ -3137,7 +3136,7 @@ impl ::core::fmt::Debug for Afcfei {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Afcmsb(pub u8);
 impl Afcmsb {
-    #[inline] pub fn afc_value(&self) -> bits::U8 {
+    #[inline] pub fn afc_value(&self) -> ::bobbin_bits::U8 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
@@ -3147,8 +3146,8 @@ impl Afcmsb {
     }
 
     #[doc="Sets the AFC_VALUE field."]
-    #[inline] pub fn set_afc_value<V: Into<bits::U8>>(mut self, value: V) -> Self {
-        let value: bits::U8 = value.into();
+    #[inline] pub fn set_afc_value<V: Into<::bobbin_bits::U8>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U8 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0xff << 0);
         self.0 |= value << 0;
@@ -3183,7 +3182,7 @@ impl ::core::fmt::Debug for Afcmsb {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Afclsb(pub u8);
 impl Afclsb {
-    #[inline] pub fn afc_value(&self) -> bits::U8 {
+    #[inline] pub fn afc_value(&self) -> ::bobbin_bits::U8 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
@@ -3193,8 +3192,8 @@ impl Afclsb {
     }
 
     #[doc="Sets the AFC_VALUE field."]
-    #[inline] pub fn set_afc_value<V: Into<bits::U8>>(mut self, value: V) -> Self {
-        let value: bits::U8 = value.into();
+    #[inline] pub fn set_afc_value<V: Into<::bobbin_bits::U8>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U8 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0xff << 0);
         self.0 |= value << 0;
@@ -3229,7 +3228,7 @@ impl ::core::fmt::Debug for Afclsb {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Feimsb(pub u8);
 impl Feimsb {
-    #[inline] pub fn fei_value(&self) -> bits::U8 {
+    #[inline] pub fn fei_value(&self) -> ::bobbin_bits::U8 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
@@ -3239,8 +3238,8 @@ impl Feimsb {
     }
 
     #[doc="Sets the FEI_VALUE field."]
-    #[inline] pub fn set_fei_value<V: Into<bits::U8>>(mut self, value: V) -> Self {
-        let value: bits::U8 = value.into();
+    #[inline] pub fn set_fei_value<V: Into<::bobbin_bits::U8>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U8 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0xff << 0);
         self.0 |= value << 0;
@@ -3275,7 +3274,7 @@ impl ::core::fmt::Debug for Feimsb {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Feilsb(pub u8);
 impl Feilsb {
-    #[inline] pub fn fei_value(&self) -> bits::U8 {
+    #[inline] pub fn fei_value(&self) -> ::bobbin_bits::U8 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
@@ -3285,8 +3284,8 @@ impl Feilsb {
     }
 
     #[doc="Sets the FEI_VALUE field."]
-    #[inline] pub fn set_fei_value<V: Into<bits::U8>>(mut self, value: V) -> Self {
-        let value: bits::U8 = value.into();
+    #[inline] pub fn set_fei_value<V: Into<::bobbin_bits::U8>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U8 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0xff << 0);
         self.0 |= value << 0;
@@ -3321,7 +3320,7 @@ impl ::core::fmt::Debug for Feilsb {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Rssiconfig(pub u8);
 impl Rssiconfig {
-    #[inline] pub fn rssi_done(&self) -> bits::U1 {
+    #[inline] pub fn rssi_done(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
@@ -3331,15 +3330,15 @@ impl Rssiconfig {
     }
 
     #[doc="Sets the RSSI_DONE field."]
-    #[inline] pub fn set_rssi_done<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_rssi_done<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x1 << 1);
         self.0 |= value << 1;
         self
     }
 
-    #[inline] pub fn rssi_start(&self) -> bits::U1 {
+    #[inline] pub fn rssi_start(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
@@ -3349,8 +3348,8 @@ impl Rssiconfig {
     }
 
     #[doc="Sets the RSSI_START field."]
-    #[inline] pub fn set_rssi_start<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_rssi_start<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x1 << 0);
         self.0 |= value << 0;
@@ -3386,7 +3385,7 @@ impl ::core::fmt::Debug for Rssiconfig {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Rssivalue(pub u8);
 impl Rssivalue {
-    #[inline] pub fn rssi_value(&self) -> bits::U8 {
+    #[inline] pub fn rssi_value(&self) -> ::bobbin_bits::U8 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
@@ -3396,8 +3395,8 @@ impl Rssivalue {
     }
 
     #[doc="Sets the RSSI_VALUE field."]
-    #[inline] pub fn set_rssi_value<V: Into<bits::U8>>(mut self, value: V) -> Self {
-        let value: bits::U8 = value.into();
+    #[inline] pub fn set_rssi_value<V: Into<::bobbin_bits::U8>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U8 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0xff << 0);
         self.0 |= value << 0;
@@ -3432,7 +3431,7 @@ impl ::core::fmt::Debug for Rssivalue {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Diomapping1(pub u8);
 impl Diomapping1 {
-    #[inline] pub fn dio0_mapping(&self) -> bits::U2 {
+    #[inline] pub fn dio0_mapping(&self) -> ::bobbin_bits::U2 {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x3) as u8) } // [7:6]
     }
 
@@ -3442,15 +3441,15 @@ impl Diomapping1 {
     }
 
     #[doc="Sets the DIO0_MAPPING field."]
-    #[inline] pub fn set_dio0_mapping<V: Into<bits::U2>>(mut self, value: V) -> Self {
-        let value: bits::U2 = value.into();
+    #[inline] pub fn set_dio0_mapping<V: Into<::bobbin_bits::U2>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U2 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x3 << 6);
         self.0 |= value << 6;
         self
     }
 
-    #[inline] pub fn dio1_mapping(&self) -> bits::U2 {
+    #[inline] pub fn dio1_mapping(&self) -> ::bobbin_bits::U2 {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x3) as u8) } // [5:4]
     }
 
@@ -3460,15 +3459,15 @@ impl Diomapping1 {
     }
 
     #[doc="Sets the DIO1_MAPPING field."]
-    #[inline] pub fn set_dio1_mapping<V: Into<bits::U2>>(mut self, value: V) -> Self {
-        let value: bits::U2 = value.into();
+    #[inline] pub fn set_dio1_mapping<V: Into<::bobbin_bits::U2>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U2 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x3 << 4);
         self.0 |= value << 4;
         self
     }
 
-    #[inline] pub fn dio2_mapping(&self) -> bits::U2 {
+    #[inline] pub fn dio2_mapping(&self) -> ::bobbin_bits::U2 {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x3) as u8) } // [3:2]
     }
 
@@ -3478,15 +3477,15 @@ impl Diomapping1 {
     }
 
     #[doc="Sets the DIO2_MAPPING field."]
-    #[inline] pub fn set_dio2_mapping<V: Into<bits::U2>>(mut self, value: V) -> Self {
-        let value: bits::U2 = value.into();
+    #[inline] pub fn set_dio2_mapping<V: Into<::bobbin_bits::U2>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U2 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x3 << 2);
         self.0 |= value << 2;
         self
     }
 
-    #[inline] pub fn dio3_mapping(&self) -> bits::U2 {
+    #[inline] pub fn dio3_mapping(&self) -> ::bobbin_bits::U2 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x3) as u8) } // [1:0]
     }
 
@@ -3496,8 +3495,8 @@ impl Diomapping1 {
     }
 
     #[doc="Sets the DIO3_MAPPING field."]
-    #[inline] pub fn set_dio3_mapping<V: Into<bits::U2>>(mut self, value: V) -> Self {
-        let value: bits::U2 = value.into();
+    #[inline] pub fn set_dio3_mapping<V: Into<::bobbin_bits::U2>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U2 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x3 << 0);
         self.0 |= value << 0;
@@ -3535,7 +3534,7 @@ impl ::core::fmt::Debug for Diomapping1 {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Diomapping2(pub u8);
 impl Diomapping2 {
-    #[inline] pub fn dio4_mapping(&self) -> bits::U2 {
+    #[inline] pub fn dio4_mapping(&self) -> ::bobbin_bits::U2 {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x3) as u8) } // [7:6]
     }
 
@@ -3545,15 +3544,15 @@ impl Diomapping2 {
     }
 
     #[doc="Sets the DIO4_MAPPING field."]
-    #[inline] pub fn set_dio4_mapping<V: Into<bits::U2>>(mut self, value: V) -> Self {
-        let value: bits::U2 = value.into();
+    #[inline] pub fn set_dio4_mapping<V: Into<::bobbin_bits::U2>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U2 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x3 << 6);
         self.0 |= value << 6;
         self
     }
 
-    #[inline] pub fn dio5_mapping(&self) -> bits::U2 {
+    #[inline] pub fn dio5_mapping(&self) -> ::bobbin_bits::U2 {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x3) as u8) } // [5:4]
     }
 
@@ -3563,15 +3562,15 @@ impl Diomapping2 {
     }
 
     #[doc="Sets the DIO5_MAPPING field."]
-    #[inline] pub fn set_dio5_mapping<V: Into<bits::U2>>(mut self, value: V) -> Self {
-        let value: bits::U2 = value.into();
+    #[inline] pub fn set_dio5_mapping<V: Into<::bobbin_bits::U2>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U2 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x3 << 4);
         self.0 |= value << 4;
         self
     }
 
-    #[inline] pub fn clk_out(&self) -> bits::U2 {
+    #[inline] pub fn clk_out(&self) -> ::bobbin_bits::U2 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x3) as u8) } // [1:0]
     }
 
@@ -3581,8 +3580,8 @@ impl Diomapping2 {
     }
 
     #[doc="Sets the CLK_OUT field."]
-    #[inline] pub fn set_clk_out<V: Into<bits::U2>>(mut self, value: V) -> Self {
-        let value: bits::U2 = value.into();
+    #[inline] pub fn set_clk_out<V: Into<::bobbin_bits::U2>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U2 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x3 << 0);
         self.0 |= value << 0;
@@ -3619,7 +3618,7 @@ impl ::core::fmt::Debug for Diomapping2 {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Irqflags1(pub u8);
 impl Irqflags1 {
-    #[inline] pub fn mode_ready(&self) -> bits::U1 {
+    #[inline] pub fn mode_ready(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
@@ -3629,15 +3628,15 @@ impl Irqflags1 {
     }
 
     #[doc="Sets the MODE_READY field."]
-    #[inline] pub fn set_mode_ready<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_mode_ready<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x1 << 7);
         self.0 |= value << 7;
         self
     }
 
-    #[inline] pub fn rx_ready(&self) -> bits::U1 {
+    #[inline] pub fn rx_ready(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
@@ -3647,15 +3646,15 @@ impl Irqflags1 {
     }
 
     #[doc="Sets the RX_READY field."]
-    #[inline] pub fn set_rx_ready<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_rx_ready<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x1 << 6);
         self.0 |= value << 6;
         self
     }
 
-    #[inline] pub fn tx_ready(&self) -> bits::U1 {
+    #[inline] pub fn tx_ready(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
@@ -3665,15 +3664,15 @@ impl Irqflags1 {
     }
 
     #[doc="Sets the TX_READY field."]
-    #[inline] pub fn set_tx_ready<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_tx_ready<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x1 << 5);
         self.0 |= value << 5;
         self
     }
 
-    #[inline] pub fn pll_lock(&self) -> bits::U1 {
+    #[inline] pub fn pll_lock(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
@@ -3683,15 +3682,15 @@ impl Irqflags1 {
     }
 
     #[doc="Sets the PLL_LOCK field."]
-    #[inline] pub fn set_pll_lock<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_pll_lock<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x1 << 4);
         self.0 |= value << 4;
         self
     }
 
-    #[inline] pub fn rssi(&self) -> bits::U1 {
+    #[inline] pub fn rssi(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
@@ -3701,15 +3700,15 @@ impl Irqflags1 {
     }
 
     #[doc="Sets the RSSI field."]
-    #[inline] pub fn set_rssi<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_rssi<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x1 << 3);
         self.0 |= value << 3;
         self
     }
 
-    #[inline] pub fn timeout(&self) -> bits::U1 {
+    #[inline] pub fn timeout(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
@@ -3719,15 +3718,15 @@ impl Irqflags1 {
     }
 
     #[doc="Sets the TIMEOUT field."]
-    #[inline] pub fn set_timeout<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_timeout<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x1 << 2);
         self.0 |= value << 2;
         self
     }
 
-    #[inline] pub fn auto_mode(&self) -> bits::U1 {
+    #[inline] pub fn auto_mode(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
@@ -3737,15 +3736,15 @@ impl Irqflags1 {
     }
 
     #[doc="Sets the AUTO_MODE field."]
-    #[inline] pub fn set_auto_mode<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_auto_mode<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x1 << 1);
         self.0 |= value << 1;
         self
     }
 
-    #[inline] pub fn sync_address_match(&self) -> bits::U1 {
+    #[inline] pub fn sync_address_match(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
@@ -3755,8 +3754,8 @@ impl Irqflags1 {
     }
 
     #[doc="Sets the SYNC_ADDRESS_MATCH field."]
-    #[inline] pub fn set_sync_address_match<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_sync_address_match<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x1 << 0);
         self.0 |= value << 0;
@@ -3798,7 +3797,7 @@ impl ::core::fmt::Debug for Irqflags1 {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Irqflags2(pub u8);
 impl Irqflags2 {
-    #[inline] pub fn fifo_full(&self) -> bits::U1 {
+    #[inline] pub fn fifo_full(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
@@ -3808,15 +3807,15 @@ impl Irqflags2 {
     }
 
     #[doc="Sets the FIFO_FULL field."]
-    #[inline] pub fn set_fifo_full<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_fifo_full<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x1 << 7);
         self.0 |= value << 7;
         self
     }
 
-    #[inline] pub fn fifo_not_empty(&self) -> bits::U1 {
+    #[inline] pub fn fifo_not_empty(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
@@ -3826,15 +3825,15 @@ impl Irqflags2 {
     }
 
     #[doc="Sets the FIFO_NOT_EMPTY field."]
-    #[inline] pub fn set_fifo_not_empty<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_fifo_not_empty<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x1 << 6);
         self.0 |= value << 6;
         self
     }
 
-    #[inline] pub fn fifo_level(&self) -> bits::U1 {
+    #[inline] pub fn fifo_level(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
@@ -3844,15 +3843,15 @@ impl Irqflags2 {
     }
 
     #[doc="Sets the FIFO_LEVEL field."]
-    #[inline] pub fn set_fifo_level<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_fifo_level<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x1 << 5);
         self.0 |= value << 5;
         self
     }
 
-    #[inline] pub fn fifo_overrun(&self) -> bits::U1 {
+    #[inline] pub fn fifo_overrun(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
@@ -3862,15 +3861,15 @@ impl Irqflags2 {
     }
 
     #[doc="Sets the FIFO_OVERRUN field."]
-    #[inline] pub fn set_fifo_overrun<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_fifo_overrun<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x1 << 4);
         self.0 |= value << 4;
         self
     }
 
-    #[inline] pub fn packet_sent(&self) -> bits::U1 {
+    #[inline] pub fn packet_sent(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
@@ -3880,15 +3879,15 @@ impl Irqflags2 {
     }
 
     #[doc="Sets the PACKET_SENT field."]
-    #[inline] pub fn set_packet_sent<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_packet_sent<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x1 << 3);
         self.0 |= value << 3;
         self
     }
 
-    #[inline] pub fn payload_ready(&self) -> bits::U1 {
+    #[inline] pub fn payload_ready(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
@@ -3898,15 +3897,15 @@ impl Irqflags2 {
     }
 
     #[doc="Sets the PAYLOAD_READY field."]
-    #[inline] pub fn set_payload_ready<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_payload_ready<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x1 << 2);
         self.0 |= value << 2;
         self
     }
 
-    #[inline] pub fn crc_ok(&self) -> bits::U1 {
+    #[inline] pub fn crc_ok(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
@@ -3916,8 +3915,8 @@ impl Irqflags2 {
     }
 
     #[doc="Sets the CRC_OK field."]
-    #[inline] pub fn set_crc_ok<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_crc_ok<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x1 << 1);
         self.0 |= value << 1;
@@ -3958,7 +3957,7 @@ impl ::core::fmt::Debug for Irqflags2 {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Rssithresh(pub u8);
 impl Rssithresh {
-    #[inline] pub fn rssi_threshold(&self) -> bits::U8 {
+    #[inline] pub fn rssi_threshold(&self) -> ::bobbin_bits::U8 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
@@ -3968,8 +3967,8 @@ impl Rssithresh {
     }
 
     #[doc="Sets the RSSI_THRESHOLD field."]
-    #[inline] pub fn set_rssi_threshold<V: Into<bits::U8>>(mut self, value: V) -> Self {
-        let value: bits::U8 = value.into();
+    #[inline] pub fn set_rssi_threshold<V: Into<::bobbin_bits::U8>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U8 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0xff << 0);
         self.0 |= value << 0;
@@ -4004,7 +4003,7 @@ impl ::core::fmt::Debug for Rssithresh {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Rxtimeout1(pub u8);
 impl Rxtimeout1 {
-    #[inline] pub fn timeout_rx_start(&self) -> bits::U8 {
+    #[inline] pub fn timeout_rx_start(&self) -> ::bobbin_bits::U8 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
@@ -4014,8 +4013,8 @@ impl Rxtimeout1 {
     }
 
     #[doc="Sets the TIMEOUT_RX_START field."]
-    #[inline] pub fn set_timeout_rx_start<V: Into<bits::U8>>(mut self, value: V) -> Self {
-        let value: bits::U8 = value.into();
+    #[inline] pub fn set_timeout_rx_start<V: Into<::bobbin_bits::U8>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U8 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0xff << 0);
         self.0 |= value << 0;
@@ -4050,7 +4049,7 @@ impl ::core::fmt::Debug for Rxtimeout1 {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Rxtimeout2(pub u8);
 impl Rxtimeout2 {
-    #[inline] pub fn timeout_rssi_thresh(&self) -> bits::U8 {
+    #[inline] pub fn timeout_rssi_thresh(&self) -> ::bobbin_bits::U8 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
@@ -4060,8 +4059,8 @@ impl Rxtimeout2 {
     }
 
     #[doc="Sets the TIMEOUT_RSSI_THRESH field."]
-    #[inline] pub fn set_timeout_rssi_thresh<V: Into<bits::U8>>(mut self, value: V) -> Self {
-        let value: bits::U8 = value.into();
+    #[inline] pub fn set_timeout_rssi_thresh<V: Into<::bobbin_bits::U8>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U8 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0xff << 0);
         self.0 |= value << 0;
@@ -4096,7 +4095,7 @@ impl ::core::fmt::Debug for Rxtimeout2 {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Preamblemsb(pub u8);
 impl Preamblemsb {
-    #[inline] pub fn preamble_size(&self) -> bits::U8 {
+    #[inline] pub fn preamble_size(&self) -> ::bobbin_bits::U8 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
@@ -4106,8 +4105,8 @@ impl Preamblemsb {
     }
 
     #[doc="Sets the PREAMBLE_SIZE field."]
-    #[inline] pub fn set_preamble_size<V: Into<bits::U8>>(mut self, value: V) -> Self {
-        let value: bits::U8 = value.into();
+    #[inline] pub fn set_preamble_size<V: Into<::bobbin_bits::U8>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U8 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0xff << 0);
         self.0 |= value << 0;
@@ -4142,7 +4141,7 @@ impl ::core::fmt::Debug for Preamblemsb {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Preamblelsb(pub u8);
 impl Preamblelsb {
-    #[inline] pub fn preamble_size(&self) -> bits::U8 {
+    #[inline] pub fn preamble_size(&self) -> ::bobbin_bits::U8 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
@@ -4152,8 +4151,8 @@ impl Preamblelsb {
     }
 
     #[doc="Sets the PREAMBLE_SIZE field."]
-    #[inline] pub fn set_preamble_size<V: Into<bits::U8>>(mut self, value: V) -> Self {
-        let value: bits::U8 = value.into();
+    #[inline] pub fn set_preamble_size<V: Into<::bobbin_bits::U8>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U8 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0xff << 0);
         self.0 |= value << 0;
@@ -4188,7 +4187,7 @@ impl ::core::fmt::Debug for Preamblelsb {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Syncconfig(pub u8);
 impl Syncconfig {
-    #[inline] pub fn sync_on(&self) -> bits::U1 {
+    #[inline] pub fn sync_on(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
@@ -4198,15 +4197,15 @@ impl Syncconfig {
     }
 
     #[doc="Sets the SYNC_ON field."]
-    #[inline] pub fn set_sync_on<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_sync_on<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x1 << 7);
         self.0 |= value << 7;
         self
     }
 
-    #[inline] pub fn fifo_fill_condition(&self) -> bits::U1 {
+    #[inline] pub fn fifo_fill_condition(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
@@ -4216,15 +4215,15 @@ impl Syncconfig {
     }
 
     #[doc="Sets the FIFO_FILL_CONDITION field."]
-    #[inline] pub fn set_fifo_fill_condition<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_fifo_fill_condition<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x1 << 6);
         self.0 |= value << 6;
         self
     }
 
-    #[inline] pub fn sync_size(&self) -> bits::U3 {
+    #[inline] pub fn sync_size(&self) -> ::bobbin_bits::U3 {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x7) as u8) } // [5:3]
     }
 
@@ -4234,15 +4233,15 @@ impl Syncconfig {
     }
 
     #[doc="Sets the SYNC_SIZE field."]
-    #[inline] pub fn set_sync_size<V: Into<bits::U3>>(mut self, value: V) -> Self {
-        let value: bits::U3 = value.into();
+    #[inline] pub fn set_sync_size<V: Into<::bobbin_bits::U3>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U3 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x7 << 3);
         self.0 |= value << 3;
         self
     }
 
-    #[inline] pub fn sync_tol(&self) -> bits::U3 {
+    #[inline] pub fn sync_tol(&self) -> ::bobbin_bits::U3 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x7) as u8) } // [2:0]
     }
 
@@ -4252,8 +4251,8 @@ impl Syncconfig {
     }
 
     #[doc="Sets the SYNC_TOL field."]
-    #[inline] pub fn set_sync_tol<V: Into<bits::U3>>(mut self, value: V) -> Self {
-        let value: bits::U3 = value.into();
+    #[inline] pub fn set_sync_tol<V: Into<::bobbin_bits::U3>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U3 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x7 << 0);
         self.0 |= value << 0;
@@ -4291,7 +4290,7 @@ impl ::core::fmt::Debug for Syncconfig {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Syncvalue(pub u8);
 impl Syncvalue {
-    #[inline] pub fn sync_value(&self) -> bits::U8 {
+    #[inline] pub fn sync_value(&self) -> ::bobbin_bits::U8 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
@@ -4301,8 +4300,8 @@ impl Syncvalue {
     }
 
     #[doc="Sets the SYNC_VALUE field."]
-    #[inline] pub fn set_sync_value<V: Into<bits::U8>>(mut self, value: V) -> Self {
-        let value: bits::U8 = value.into();
+    #[inline] pub fn set_sync_value<V: Into<::bobbin_bits::U8>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U8 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0xff << 0);
         self.0 |= value << 0;
@@ -4337,7 +4336,7 @@ impl ::core::fmt::Debug for Syncvalue {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Packetconfig1(pub u8);
 impl Packetconfig1 {
-    #[inline] pub fn packet_format(&self) -> bits::U1 {
+    #[inline] pub fn packet_format(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
@@ -4347,15 +4346,15 @@ impl Packetconfig1 {
     }
 
     #[doc="Sets the PACKET_FORMAT field."]
-    #[inline] pub fn set_packet_format<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_packet_format<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x1 << 7);
         self.0 |= value << 7;
         self
     }
 
-    #[inline] pub fn dc_free(&self) -> bits::U2 {
+    #[inline] pub fn dc_free(&self) -> ::bobbin_bits::U2 {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x3) as u8) } // [6:5]
     }
 
@@ -4365,15 +4364,15 @@ impl Packetconfig1 {
     }
 
     #[doc="Sets the DC_FREE field."]
-    #[inline] pub fn set_dc_free<V: Into<bits::U2>>(mut self, value: V) -> Self {
-        let value: bits::U2 = value.into();
+    #[inline] pub fn set_dc_free<V: Into<::bobbin_bits::U2>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U2 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x3 << 5);
         self.0 |= value << 5;
         self
     }
 
-    #[inline] pub fn crc_on(&self) -> bits::U1 {
+    #[inline] pub fn crc_on(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
@@ -4383,15 +4382,15 @@ impl Packetconfig1 {
     }
 
     #[doc="Sets the CRC_ON field."]
-    #[inline] pub fn set_crc_on<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_crc_on<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x1 << 4);
         self.0 |= value << 4;
         self
     }
 
-    #[inline] pub fn crc_auto_clear_off(&self) -> bits::U1 {
+    #[inline] pub fn crc_auto_clear_off(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
@@ -4401,15 +4400,15 @@ impl Packetconfig1 {
     }
 
     #[doc="Sets the CRC_AUTO_CLEAR_OFF field."]
-    #[inline] pub fn set_crc_auto_clear_off<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_crc_auto_clear_off<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x1 << 3);
         self.0 |= value << 3;
         self
     }
 
-    #[inline] pub fn address_filtering(&self) -> bits::U2 {
+    #[inline] pub fn address_filtering(&self) -> ::bobbin_bits::U2 {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x3) as u8) } // [2:1]
     }
 
@@ -4419,8 +4418,8 @@ impl Packetconfig1 {
     }
 
     #[doc="Sets the ADDRESS_FILTERING field."]
-    #[inline] pub fn set_address_filtering<V: Into<bits::U2>>(mut self, value: V) -> Self {
-        let value: bits::U2 = value.into();
+    #[inline] pub fn set_address_filtering<V: Into<::bobbin_bits::U2>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U2 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x3 << 1);
         self.0 |= value << 1;
@@ -4459,7 +4458,7 @@ impl ::core::fmt::Debug for Packetconfig1 {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Payloadlength(pub u8);
 impl Payloadlength {
-    #[inline] pub fn payload_length(&self) -> bits::U8 {
+    #[inline] pub fn payload_length(&self) -> ::bobbin_bits::U8 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
@@ -4469,8 +4468,8 @@ impl Payloadlength {
     }
 
     #[doc="Sets the PAYLOAD_LENGTH field."]
-    #[inline] pub fn set_payload_length<V: Into<bits::U8>>(mut self, value: V) -> Self {
-        let value: bits::U8 = value.into();
+    #[inline] pub fn set_payload_length<V: Into<::bobbin_bits::U8>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U8 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0xff << 0);
         self.0 |= value << 0;
@@ -4505,7 +4504,7 @@ impl ::core::fmt::Debug for Payloadlength {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Nodeadrs(pub u8);
 impl Nodeadrs {
-    #[inline] pub fn node_address(&self) -> bits::U8 {
+    #[inline] pub fn node_address(&self) -> ::bobbin_bits::U8 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
@@ -4515,8 +4514,8 @@ impl Nodeadrs {
     }
 
     #[doc="Sets the NODE_ADDRESS field."]
-    #[inline] pub fn set_node_address<V: Into<bits::U8>>(mut self, value: V) -> Self {
-        let value: bits::U8 = value.into();
+    #[inline] pub fn set_node_address<V: Into<::bobbin_bits::U8>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U8 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0xff << 0);
         self.0 |= value << 0;
@@ -4551,7 +4550,7 @@ impl ::core::fmt::Debug for Nodeadrs {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Broadcastadrs(pub u8);
 impl Broadcastadrs {
-    #[inline] pub fn broadcast_address(&self) -> bits::U8 {
+    #[inline] pub fn broadcast_address(&self) -> ::bobbin_bits::U8 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
@@ -4561,8 +4560,8 @@ impl Broadcastadrs {
     }
 
     #[doc="Sets the BROADCAST_ADDRESS field."]
-    #[inline] pub fn set_broadcast_address<V: Into<bits::U8>>(mut self, value: V) -> Self {
-        let value: bits::U8 = value.into();
+    #[inline] pub fn set_broadcast_address<V: Into<::bobbin_bits::U8>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U8 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0xff << 0);
         self.0 |= value << 0;
@@ -4597,7 +4596,7 @@ impl ::core::fmt::Debug for Broadcastadrs {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Automodes(pub u8);
 impl Automodes {
-    #[inline] pub fn enter_condition(&self) -> bits::U3 {
+    #[inline] pub fn enter_condition(&self) -> ::bobbin_bits::U3 {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x7) as u8) } // [7:5]
     }
 
@@ -4607,15 +4606,15 @@ impl Automodes {
     }
 
     #[doc="Sets the ENTER_CONDITION field."]
-    #[inline] pub fn set_enter_condition<V: Into<bits::U3>>(mut self, value: V) -> Self {
-        let value: bits::U3 = value.into();
+    #[inline] pub fn set_enter_condition<V: Into<::bobbin_bits::U3>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U3 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x7 << 5);
         self.0 |= value << 5;
         self
     }
 
-    #[inline] pub fn exit_condition(&self) -> bits::U3 {
+    #[inline] pub fn exit_condition(&self) -> ::bobbin_bits::U3 {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x7) as u8) } // [4:2]
     }
 
@@ -4625,15 +4624,15 @@ impl Automodes {
     }
 
     #[doc="Sets the EXIT_CONDITION field."]
-    #[inline] pub fn set_exit_condition<V: Into<bits::U3>>(mut self, value: V) -> Self {
-        let value: bits::U3 = value.into();
+    #[inline] pub fn set_exit_condition<V: Into<::bobbin_bits::U3>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U3 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x7 << 2);
         self.0 |= value << 2;
         self
     }
 
-    #[inline] pub fn intermediate_mode(&self) -> bits::U2 {
+    #[inline] pub fn intermediate_mode(&self) -> ::bobbin_bits::U2 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x3) as u8) } // [1:0]
     }
 
@@ -4643,8 +4642,8 @@ impl Automodes {
     }
 
     #[doc="Sets the INTERMEDIATE_MODE field."]
-    #[inline] pub fn set_intermediate_mode<V: Into<bits::U2>>(mut self, value: V) -> Self {
-        let value: bits::U2 = value.into();
+    #[inline] pub fn set_intermediate_mode<V: Into<::bobbin_bits::U2>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U2 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x3 << 0);
         self.0 |= value << 0;
@@ -4681,7 +4680,7 @@ impl ::core::fmt::Debug for Automodes {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Fifothresh(pub u8);
 impl Fifothresh {
-    #[inline] pub fn tx_start_condition(&self) -> bits::U1 {
+    #[inline] pub fn tx_start_condition(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
@@ -4691,15 +4690,15 @@ impl Fifothresh {
     }
 
     #[doc="Sets the TX_START_CONDITION field."]
-    #[inline] pub fn set_tx_start_condition<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_tx_start_condition<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x1 << 7);
         self.0 |= value << 7;
         self
     }
 
-    #[inline] pub fn fifo_threshold(&self) -> bits::U7 {
+    #[inline] pub fn fifo_threshold(&self) -> ::bobbin_bits::U7 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x7f) as u8) } // [6:0]
     }
 
@@ -4709,8 +4708,8 @@ impl Fifothresh {
     }
 
     #[doc="Sets the FIFO_THRESHOLD field."]
-    #[inline] pub fn set_fifo_threshold<V: Into<bits::U7>>(mut self, value: V) -> Self {
-        let value: bits::U7 = value.into();
+    #[inline] pub fn set_fifo_threshold<V: Into<::bobbin_bits::U7>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U7 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x7f << 0);
         self.0 |= value << 0;
@@ -4746,7 +4745,7 @@ impl ::core::fmt::Debug for Fifothresh {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Packetconfig2(pub u8);
 impl Packetconfig2 {
-    #[inline] pub fn inter_packet_rx_delay(&self) -> bits::U4 {
+    #[inline] pub fn inter_packet_rx_delay(&self) -> ::bobbin_bits::U4 {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0xf) as u8) } // [7:4]
     }
 
@@ -4756,15 +4755,15 @@ impl Packetconfig2 {
     }
 
     #[doc="Sets the INTER_PACKET_RX_DELAY field."]
-    #[inline] pub fn set_inter_packet_rx_delay<V: Into<bits::U4>>(mut self, value: V) -> Self {
-        let value: bits::U4 = value.into();
+    #[inline] pub fn set_inter_packet_rx_delay<V: Into<::bobbin_bits::U4>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U4 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0xf << 4);
         self.0 |= value << 4;
         self
     }
 
-    #[inline] pub fn restart_rx(&self) -> bits::U1 {
+    #[inline] pub fn restart_rx(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
@@ -4774,15 +4773,15 @@ impl Packetconfig2 {
     }
 
     #[doc="Sets the RESTART_RX field."]
-    #[inline] pub fn set_restart_rx<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_restart_rx<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x1 << 2);
         self.0 |= value << 2;
         self
     }
 
-    #[inline] pub fn auto_rx_restart_on(&self) -> bits::U1 {
+    #[inline] pub fn auto_rx_restart_on(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
@@ -4792,15 +4791,15 @@ impl Packetconfig2 {
     }
 
     #[doc="Sets the AUTO_RX_RESTART_ON field."]
-    #[inline] pub fn set_auto_rx_restart_on<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_auto_rx_restart_on<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x1 << 1);
         self.0 |= value << 1;
         self
     }
 
-    #[inline] pub fn aes_on(&self) -> bits::U1 {
+    #[inline] pub fn aes_on(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
@@ -4810,8 +4809,8 @@ impl Packetconfig2 {
     }
 
     #[doc="Sets the AES_ON field."]
-    #[inline] pub fn set_aes_on<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_aes_on<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x1 << 0);
         self.0 |= value << 0;
@@ -4849,7 +4848,7 @@ impl ::core::fmt::Debug for Packetconfig2 {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Aeskey(pub u8);
 impl Aeskey {
-    #[inline] pub fn aes_key(&self) -> bits::U8 {
+    #[inline] pub fn aes_key(&self) -> ::bobbin_bits::U8 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
@@ -4859,8 +4858,8 @@ impl Aeskey {
     }
 
     #[doc="Sets the AES_KEY field."]
-    #[inline] pub fn set_aes_key<V: Into<bits::U8>>(mut self, value: V) -> Self {
-        let value: bits::U8 = value.into();
+    #[inline] pub fn set_aes_key<V: Into<::bobbin_bits::U8>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U8 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0xff << 0);
         self.0 |= value << 0;
@@ -4895,7 +4894,7 @@ impl ::core::fmt::Debug for Aeskey {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Temp1(pub u8);
 impl Temp1 {
-    #[inline] pub fn temp_meas_start(&self) -> bits::U1 {
+    #[inline] pub fn temp_meas_start(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
@@ -4905,15 +4904,15 @@ impl Temp1 {
     }
 
     #[doc="Sets the TEMP_MEAS_START field."]
-    #[inline] pub fn set_temp_meas_start<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_temp_meas_start<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x1 << 3);
         self.0 |= value << 3;
         self
     }
 
-    #[inline] pub fn temp_meas_running(&self) -> bits::U1 {
+    #[inline] pub fn temp_meas_running(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
@@ -4923,8 +4922,8 @@ impl Temp1 {
     }
 
     #[doc="Sets the TEMP_MEAS_RUNNING field."]
-    #[inline] pub fn set_temp_meas_running<V: Into<bits::U1>>(mut self, value: V) -> Self {
-        let value: bits::U1 = value.into();
+    #[inline] pub fn set_temp_meas_running<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U1 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0x1 << 2);
         self.0 |= value << 2;
@@ -4960,7 +4959,7 @@ impl ::core::fmt::Debug for Temp1 {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Temp2(pub u8);
 impl Temp2 {
-    #[inline] pub fn temp_value(&self) -> bits::U8 {
+    #[inline] pub fn temp_value(&self) -> ::bobbin_bits::U8 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
@@ -4970,8 +4969,8 @@ impl Temp2 {
     }
 
     #[doc="Sets the TEMP_VALUE field."]
-    #[inline] pub fn set_temp_value<V: Into<bits::U8>>(mut self, value: V) -> Self {
-        let value: bits::U8 = value.into();
+    #[inline] pub fn set_temp_value<V: Into<::bobbin_bits::U8>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U8 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0xff << 0);
         self.0 |= value << 0;
@@ -5006,7 +5005,7 @@ impl ::core::fmt::Debug for Temp2 {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Testlna(pub u8);
 impl Testlna {
-    #[inline] pub fn sensitivity_boost(&self) -> bits::U8 {
+    #[inline] pub fn sensitivity_boost(&self) -> ::bobbin_bits::U8 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
@@ -5016,8 +5015,8 @@ impl Testlna {
     }
 
     #[doc="Sets the SENSITIVITY_BOOST field."]
-    #[inline] pub fn set_sensitivity_boost<V: Into<bits::U8>>(mut self, value: V) -> Self {
-        let value: bits::U8 = value.into();
+    #[inline] pub fn set_sensitivity_boost<V: Into<::bobbin_bits::U8>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U8 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0xff << 0);
         self.0 |= value << 0;
@@ -5052,7 +5051,7 @@ impl ::core::fmt::Debug for Testlna {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Testpa1(pub u8);
 impl Testpa1 {
-    #[inline] pub fn pa20dbm1(&self) -> bits::U8 {
+    #[inline] pub fn pa20dbm1(&self) -> ::bobbin_bits::U8 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
@@ -5062,8 +5061,8 @@ impl Testpa1 {
     }
 
     #[doc="Sets the PA20DBM1 field."]
-    #[inline] pub fn set_pa20dbm1<V: Into<bits::U8>>(mut self, value: V) -> Self {
-        let value: bits::U8 = value.into();
+    #[inline] pub fn set_pa20dbm1<V: Into<::bobbin_bits::U8>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U8 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0xff << 0);
         self.0 |= value << 0;
@@ -5098,7 +5097,7 @@ impl ::core::fmt::Debug for Testpa1 {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Testpa2(pub u8);
 impl Testpa2 {
-    #[inline] pub fn pa20dbm2(&self) -> bits::U8 {
+    #[inline] pub fn pa20dbm2(&self) -> ::bobbin_bits::U8 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
@@ -5108,8 +5107,8 @@ impl Testpa2 {
     }
 
     #[doc="Sets the PA20DBM2 field."]
-    #[inline] pub fn set_pa20dbm2<V: Into<bits::U8>>(mut self, value: V) -> Self {
-        let value: bits::U8 = value.into();
+    #[inline] pub fn set_pa20dbm2<V: Into<::bobbin_bits::U8>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U8 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0xff << 0);
         self.0 |= value << 0;
@@ -5144,7 +5143,7 @@ impl ::core::fmt::Debug for Testpa2 {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Testdagc(pub u8);
 impl Testdagc {
-    #[inline] pub fn continuous_dagc(&self) -> bits::U8 {
+    #[inline] pub fn continuous_dagc(&self) -> ::bobbin_bits::U8 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
@@ -5154,8 +5153,8 @@ impl Testdagc {
     }
 
     #[doc="Sets the CONTINUOUS_DAGC field."]
-    #[inline] pub fn set_continuous_dagc<V: Into<bits::U8>>(mut self, value: V) -> Self {
-        let value: bits::U8 = value.into();
+    #[inline] pub fn set_continuous_dagc<V: Into<::bobbin_bits::U8>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U8 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0xff << 0);
         self.0 |= value << 0;
@@ -5190,7 +5189,7 @@ impl ::core::fmt::Debug for Testdagc {
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
 pub struct Testafc(pub u8);
 impl Testafc {
-    #[inline] pub fn low_beta_afc_offset(&self) -> bits::U8 {
+    #[inline] pub fn low_beta_afc_offset(&self) -> ::bobbin_bits::U8 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xff) as u8) } // [7:0]
     }
 
@@ -5200,8 +5199,8 @@ impl Testafc {
     }
 
     #[doc="Sets the LOW_BETA_AFC_OFFSET field."]
-    #[inline] pub fn set_low_beta_afc_offset<V: Into<bits::U8>>(mut self, value: V) -> Self {
-        let value: bits::U8 = value.into();
+    #[inline] pub fn set_low_beta_afc_offset<V: Into<::bobbin_bits::U8>>(mut self, value: V) -> Self {
+        let value: ::bobbin_bits::U8 = value.into();
         let value: u8 = value.into();
         self.0 &= !(0xff << 0);
         self.0 |= value << 0;
@@ -5235,5 +5234,3 @@ impl ::core::fmt::Debug for Testafc {
 
 }
 
-pub mod ext;
-pub use ext::*;
