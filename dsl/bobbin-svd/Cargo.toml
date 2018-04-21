@@ -1,0 +1,12 @@
+[package]
+name = "bobbin-svd"
+description = "Bobbin SVD Importer"
+version = "0.1.0"
+authors = ["Jonathan Soo <jcsoo@agora.com>"]
+
+[dependencies]
+bobbin-chip = { path = "../bobbin-chip" }
+xml-rs = "0.3"
+clap = "2.*"
+regex = "0.2"
+lazy_static = "0.2.2"
