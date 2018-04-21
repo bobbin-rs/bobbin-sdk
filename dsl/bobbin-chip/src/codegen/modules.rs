@@ -235,6 +235,7 @@ pub fn gen_interrupts<W: Write>(_cfg: &Config, out: &mut W, d: &Device, interrup
         try!(writeln!(out, "#[naked]"));
         try!(writeln!(out, "#[no_mangle]"));
         try!(writeln!(out, "extern \"C\" fn IRQ_{}_HANDLER() {{", i));
+        try!(writeln!(out, "    #[cfg(target_os=\"none\")]"));
         try!(writeln!(out, "    unsafe {{"));
         try!(writeln!(out, "        asm!(\"b DEFAULT_HANDLER\" :::: \"volatile\");"));
         try!(writeln!(out, "        ::core::intrinsics::unreachable();"));
