@@ -1,5 +1,5 @@
 [package]
-name = "arduino-zero"
+name = "%name%"
 version = "0.1.0"
 authors = ["Jonathan Soo <jcsoo@agora.com>"]
 
@@ -16,7 +16,7 @@ version = "0.4.0"
 path = " ../../../../lib/bobbin-sys/"
 
 [dev-dependencies]
-examples = { path = "../../apps/examples" }
+examples = { path = "../../app/examples" }
 embedded-hal = "0.1.2"
 
 [profile.dev]
@@ -29,9 +29,4 @@ lto = true
 panic = "abort"
 debug = true
 lto = true
-
-
-[dependencies.samd21]
-path = "../../mcu/bobbin-sam/samd21"
-features = ["SAMD21x18"]
 

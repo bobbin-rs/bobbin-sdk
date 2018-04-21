@@ -1,7 +1,7 @@
 CHIP=bobbin-chip
 CHIP_ARGS_THUMBV6=--board --cargo-template template-thumbv6/
 CHIP_ARGS_THUMBV7=--board --cargo-template template-thumbv7/
-BOARD_DST=../boards
+BOARD_DST=../board
 
 all: arduino-zero frdm-k64f nucleo-l432kc nucleo-f746zg can-cam
 

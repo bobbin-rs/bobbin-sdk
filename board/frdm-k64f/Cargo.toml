@@ -1,5 +1,5 @@
 [package]
-name = "nucleo-l432kc"
+name = "frdm-k64f"
 version = "0.1.0"
 authors = ["Jonathan Soo <jcsoo@agora.com>"]
 
@@ -16,7 +16,7 @@ version = "0.4.0"
 path = " ../../../../lib/bobbin-sys/"
 
 [dev-dependencies]
-examples = { path = "../../apps/examples" }
+examples = { path = "../../app/examples" }
 embedded-hal = "0.1.2"
 
 [profile.dev]
@@ -31,7 +31,7 @@ debug = true
 lto = true
 
 
-[dependencies.stm32l432x]
-path = "../../mcu/bobbin-stm32/stm32l432x"
-features = ["STM32L432xC"]
+[dependencies.k64]
+path = "../../mcu/bobbin-kinetis/k64"
+features = ["K64FN1M0"]
 

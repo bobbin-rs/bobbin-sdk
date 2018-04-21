@@ -1,5 +1,5 @@
 [package]
-name = "%name%"
+name = "discovery-stm32f3"
 version = "0.1.0"
 authors = ["Jonathan Soo <jcsoo@agora.com>"]
 
@@ -16,7 +16,7 @@ version = "0.4.0"
 path = " ../../../../lib/bobbin-sys/"
 
 [dev-dependencies]
-examples = { path = "../../apps/examples" }
+examples = { path = "../../app/examples" }
 embedded-hal = "0.1.2"
 
 [profile.dev]
@@ -29,4 +29,9 @@ lto = true
 panic = "abort"
 debug = true
 lto = true
+
+
+[dependencies.stm32f3x]
+path = "../../mcu/bobbin-stm32/stm32f303x"
+features = ["STM32F303xC"]
 

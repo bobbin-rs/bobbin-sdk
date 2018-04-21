@@ -1,5 +1,5 @@
 [package]
-name = "discovery-stm32f3"
+name = "feather-m0"
 version = "0.1.0"
 authors = ["Jonathan Soo <jcsoo@agora.com>"]
 
@@ -12,16 +12,10 @@ doc = false
 features = []
 version = "0.4.0"
 
-[dependencies.bobbin-sys]
-path = " ../../../../lib/bobbin-sys/"
-
-[dev-dependencies]
-examples = { path = "../../apps/examples" }
-embedded-hal = "0.1.2"
-
 [profile.dev]
 panic = "abort"
 opt-level = "s"
+codegen-units = 1
 incremental = false
 lto = true
 
@@ -30,8 +24,11 @@ panic = "abort"
 debug = true
 lto = true
 
+[dev-dependencies]
+examples = { path = "../../app/examples" }
+embedded-hal = "0.1.2"
 
-[dependencies.stm32f3x]
-path = "../../mcu/bobbin-stm32/stm32f303x"
-features = ["STM32F303xC"]
+[dependencies.samd21]
+path = "../../mcu/bobbin-sam/samd21"
+features = ["SAMD21x18"]
 
