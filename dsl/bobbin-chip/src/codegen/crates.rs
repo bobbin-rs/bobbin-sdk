@@ -76,7 +76,19 @@ pub fn gen_crate<W: Write>(cfg: Config, _out: &mut W, d: &Device) -> Result<()> 
             dst.write(&data.as_bytes())?;
         }
     }
-    
+
+    // Copy Makefile from template
+    {
+        let make_src = cfg.cargo_template.join("Makefile");
+        if make_src.exists() {
+            let mut src = File::open(make_src)?;
+            let mut data = String::new();
+            src.read_to_string(&mut data)?;    
+            let make_dst = cfg.out_path.join("Makefile");
+            let mut dst = File::create(make_dst)?;
+            dst.write(&data.as_bytes())?;
+        }
+    }
 
     let src_path = cfg.out_path.join("src");
     if !src_path.exists() {
