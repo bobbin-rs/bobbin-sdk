@@ -1,6 +1,18 @@
+//! *bobbin-hz* provides a simple integer fraction type useful for representing
+//! frequencies used in clock calculations. A set of math operations is provided 
+//! that avoids divides where possible, minimizing rounding errors.
+//! 
+//! The representation is simple: a numerator and denominator, both `u32`. Care should
+//! be taken to avoid overflowing either the numerator or denominator during a sequence of
+//! operations; if this is likely, use either `reduce()` (which finds and divides by the GCD)
+//! or `normalize()` (which performs a full division of the numerator by the denominator).
+//! 
+//! This crate is designed for `#![no_std]` operation.
+
 #![no_std]
 #![feature(const_fn)]
 
+/// A fractional representation of a frequency.
 #[derive(Debug, Clone, Copy)]
 pub struct Hz {
     num: u32,
@@ -8,62 +20,89 @@ pub struct Hz {
 }
 
 impl Hz {
+    /// Returns the zero value.
     pub const fn zero() -> Hz {
         Hz::from_num(0)
     }
 
+    /// Returns a value `num / 1`.
     pub const fn from_num(num: u32) -> Hz {
         Hz::from_num_den((num, 1))
     }
 
+    /// Returns a value `1 / den`.
+    /// 
+    /// Note: this may be removed from the api to avoid
+    /// divide by zero checks.
     pub const fn from_den(den: u32) -> Hz {
         Hz::from_num_den((1, den))
     }
 
+    /// Returns the fraction `num / den`.
+    /// 
+    /// Note: this may be removed from the api to avoid
+    /// divide by zero checks.
     pub const fn from_num_den(num_den: (u32, u32)) -> Hz {
         Hz { num: num_den.0, den: num_den.1 }
     }
 
+    /// Returns the numerator of the fraction.
     pub const fn num(&self) -> u32 {
         self.num
     }
 
+    /// Returns the denominator of the fraction.
     pub const fn den(&self) -> u32 {
         self.den
     }
 
+    /// Returns the numerator and denominator as (num, den).
     pub const fn num_den(&self) -> (u32, u32) {
         (self.num, self.den)
     }
 
+    /// Returns the value normalized so that the denominator
+    /// is 1.
     pub const fn normalized(&self) -> Hz {
         Hz::from_num(self.num / self.den)
     }
 
+    /// Returns the value as a f32.
     pub const fn as_f32(&self) -> f32 {
         self.num as f32 / self.den as f32
     }
 
+    /// Returns the value as a normalized u32.
     pub const fn as_u32(&self) -> u32 {
         self.normalized().num()
     }
 
+    /// Performs a checked multiplication by `rhs`, returning None
+    /// if the value would overflow.
     pub fn checked_mul(&self, rhs: u32) -> Option<Hz> {
         self.num.checked_mul(rhs).map(|num| Hz::from_num_den((num, self.den)))
     }
 
+    /// Performs a checked division by `rhs`, returning None
+    /// if the value would overflow.
     pub fn checked_div(&self, rhs: u32) -> Option<Hz> {
         self.den.checked_mul(rhs).map(|den| Hz::from_num_den((self.num, den)))
     }
 
+    /// Performs a checked normalization, returning None
+    /// if the value would overflow.
     pub fn checked_normalized(&self) -> Option<Hz> {
         self.num.checked_div(self.den).map(Hz::from_num)
     }
 
+    /// Performs a checked normalization and conversion to u32, returning None
+    /// if the value would overflow
     pub fn checked_as_u32(&self) -> Option<u32> {
         self.checked_normalized().map(|v| v.num())
     }    
 
+    /// Returns the value with the numerator and denominator each
+    /// divided by the greatest common denominator.
     pub fn reduced(&self) -> Self {
         let gcd = self.gcd();
         let num = self.num / gcd;
@@ -71,10 +110,12 @@ impl Hz {
         Hz { num, den }
     }
 
+    /// Returns the value with the numerator and denominator switched.
     pub fn invert(&self) -> Self {
         Hz { num: self.den, den: self.num }
     }
 
+    /// Finds the greatest common denominator using Stein's algorithm.
     #[inline]
     fn gcd(&self) -> u32 {
         // Use Stein's algorithm
