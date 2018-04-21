@@ -1,4 +1,4 @@
-pub use periph::crc_24::*;
+use crc_24::*;
 
 impl CrcPeriph {
     pub fn reset(&self) -> &Self {    

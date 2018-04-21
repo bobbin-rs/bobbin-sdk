@@ -1,9 +1,0 @@
-pub mod rcc;
-pub mod syscfg;
-pub mod flash;
-pub mod pwr;
-pub mod rtc;
-pub mod i2c;
-pub mod spi;
-pub mod c_adc;
-pub mod dac;

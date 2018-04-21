@@ -1,8 +1,8 @@
-pub use bobbin_common::configure::*;
-pub use bobbin_common::enabled::*;
-pub use bobbin_hal::serial::*;
+use bobbin_common::configure::*;
+use bobbin_common::enabled::*;
+use bobbin_hal::serial::*;
 use core::fmt::{self, Write};
-pub use periph::lpuart::*;
+use lpuart::*;
 
 use bobbin_common::bits::*;
 

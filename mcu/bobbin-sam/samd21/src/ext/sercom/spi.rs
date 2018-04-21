@@ -1,5 +1,5 @@
-pub use bobbin_hal::spi::*;
-pub use sercom::*;
+// use bobbin_hal::spi::*;
+use sercom::*;
 use gclk;
 
 impl SercomPeriph {

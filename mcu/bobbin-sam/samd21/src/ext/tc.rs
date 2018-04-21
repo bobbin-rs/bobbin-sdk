@@ -1,6 +1,6 @@
-pub use periph::tc::*;
-pub use bobbin_common::gate::GateEn;
-pub use bobbin_hal::timer::*;
+use periph::tc::*;
+use bobbin_common::gate::GateEn;
+use bobbin_hal::timer::*;
 
 #[derive(Debug, PartialEq, Eq, Clone, Copy)]
 pub enum Prescsync {

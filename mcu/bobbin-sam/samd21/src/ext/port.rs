@@ -4,8 +4,8 @@ use port::*;
 use bobbin_mcu::pin::SetSource;
 
 // pub use bobbin_common::{Pin, AltFn};
-pub use bobbin_hal::analog::*;
-pub use bobbin_hal::digital::*;
+// use bobbin_hal::analog::*;
+use bobbin_hal::digital::*;
 
 // use chip::sig::{SignalPad0, SignalPad1, SignalPad2, SignalPad3};
 // use chip::sig::{SignalWo0, SignalWo1, SignalWo2, SignalWo3, SignalWo4, SignalWo5, SignalWo6, SignalWo7};

@@ -1,5 +1,5 @@
-pub use bobbin_hal::timer::*;
-pub use periph::lptim::*;
+use bobbin_hal::timer::*;
+use lptim::*;
 
 impl LptimPeriph {
     pub fn enabled(&self) -> bool {

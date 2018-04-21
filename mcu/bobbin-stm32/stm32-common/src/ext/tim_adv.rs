@@ -1,4 +1,4 @@
-pub use periph::tim_adv::*;
+use tim_adv::*;
 use bobbin_common::bits::*;
 
 pub enum Direction {

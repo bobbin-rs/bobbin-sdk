@@ -1,4 +1,4 @@
-pub use periph::dma_f3::*;
+use dma_f3::*;
 // use bobbin_common::Channel;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]

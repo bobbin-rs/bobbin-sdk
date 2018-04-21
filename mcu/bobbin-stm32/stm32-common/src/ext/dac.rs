@@ -1,6 +1,6 @@
-pub use periph::dac::*;
-pub use bobbin_hal::analog::AnalogWrite;
-pub use bobbin_common::enabled::Enabled;
+use dac::*;
+use bobbin_hal::analog::AnalogWrite;
+use bobbin_common::enabled::Enabled;
 use bobbin_common::bits::*;
 
 impl DacPeriph {

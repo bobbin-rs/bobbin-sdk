@@ -1,6 +1,6 @@
-pub use rcc::*;
-pub use bobbin_mcu::clock::ClockSource;
-use {rcc, tim_adv, tim_gen, i2c, usart};
+use rcc::*;
+use bobbin_mcu::clock::ClockSource;
+use {tim_adv, tim_gen, i2c, usart};
 use bobbin_bits::*;
 
 
@@ -37,10 +37,10 @@ macro_rules! impl_usart_clocksource {
     ($periph:path, $getter:ident, $setter:ident) => {
         impl ClockSource<UsartClock> for $periph {
             fn clock_source(&self) -> UsartClock {
-                rcc::RCC.cfgr3().$getter().into()
+                RCC.cfgr3().$getter().into()
             }
             fn set_clock_source(&self, clk: UsartClock) -> &Self {
-                rcc::RCC.with_cfgr3(|r| r.$setter(clk));
+                RCC.with_cfgr3(|r| r.$setter(clk));
                 self
             }
         }        
@@ -81,10 +81,10 @@ macro_rules! impl_i2c_clocksource {
     ($periph:path, $getter:ident, $setter:ident) => {
         impl ClockSource<I2cClock> for $periph {
             fn clock_source(&self) -> I2cClock {
-                rcc::RCC.cfgr3().$getter().into()
+                RCC.cfgr3().$getter().into()
             }
             fn set_clock_source(&self, clk: I2cClock) -> &Self {
-                rcc::RCC.with_cfgr3(|r| r.$setter(clk));
+                RCC.with_cfgr3(|r| r.$setter(clk));
                 self
             }
         }        
@@ -124,10 +124,10 @@ macro_rules! impl_tim_clocksource {
     ($periph:path, $getter:ident, $setter:ident) => {
         impl ClockSource<TimClock> for $periph {
             fn clock_source(&self) -> TimClock {
-                rcc::RCC.cfgr3().$getter().into()
+                RCC.cfgr3().$getter().into()
             }
             fn set_clock_source(&self, clk: TimClock) -> &Self {
-                rcc::RCC.with_cfgr3(|r| r.$setter(clk));
+                RCC.with_cfgr3(|r| r.$setter(clk));
                 self
             }
         }        

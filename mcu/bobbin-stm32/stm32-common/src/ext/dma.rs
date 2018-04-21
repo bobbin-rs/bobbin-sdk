@@ -1,4 +1,4 @@
-pub use periph::dma::*;
+use dma::*;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum Burst {

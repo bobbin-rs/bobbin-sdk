@@ -4,16 +4,10 @@ members = [
     "bobbin-kinetis/*/",
     "bobbin-sam/*/",
     "bobbin-stm32/*/",
-    "bobbin-ti/*/",
-    "bobbin-ambiq/*",
-    "bobbin-silabs/*",
 ]
 
 exclude = [
     "bobbin-kinetis/target/",
     "bobbin-sam/target/",
     "bobbin-stm32/target/",
-    "bobbin-ti/target/",
-    "bobbin-ambiq/target/",
-    "bobbin-silabs/target/",
 ]

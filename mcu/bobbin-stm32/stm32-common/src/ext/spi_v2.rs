@@ -1,7 +1,7 @@
-pub use bobbin_common::configure::*;
-pub use bobbin_common::enabled::*;
-pub use bobbin_hal::spi::*;
-pub use periph::spi_v2::*;
+use bobbin_common::configure::*;
+use bobbin_common::enabled::*;
+use bobbin_hal::spi::*;
+use spi_v2::*;
 
 
 // use bobbin_sys::ring::Ring;

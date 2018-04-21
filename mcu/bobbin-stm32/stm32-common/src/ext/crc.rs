@@ -1,4 +1,4 @@
-pub use periph::crc::*;
+use crc::*;
 
 #[derive(Debug, Clone, Copy)]
 pub enum PolySize {

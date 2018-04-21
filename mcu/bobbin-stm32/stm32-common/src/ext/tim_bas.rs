@@ -1,8 +1,8 @@
-pub use periph::tim_bas::*;
-// pub use bobbin_common::{Irq, Poll};
-pub use bobbin_common::enabled::*;
-pub use bobbin_hal::timer::*;
-pub use core::ops::Deref;
+use tim_bas::*;
+// use bobbin_common::{Irq, Poll};
+use bobbin_common::enabled::*;
+use bobbin_hal::timer::*;
+use core::ops::Deref;
 
 // use core::ptr;
 use core::cell::Cell;

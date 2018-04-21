@@ -1,4 +1,3 @@
-// use ::clock::*;
 use ext::systick::SystickHz;
 use bobbin_mcu::hz::Hz;
 use bobbin_mcu::clock::{Clock, ClockSource};

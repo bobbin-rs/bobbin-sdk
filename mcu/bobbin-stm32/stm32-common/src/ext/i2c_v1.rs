@@ -1,7 +1,7 @@
-pub use bobbin_hal::i2c::*;
-pub use bobbin_common::configure::*;
-pub use bobbin_common::enabled::*;
-pub use ::periph::i2c_v1::*;
+use bobbin_hal::i2c::*;
+use bobbin_common::configure::*;
+use bobbin_common::enabled::*;
+use i2c_v1::*;
 
 use bobbin_common::bits::*;
 

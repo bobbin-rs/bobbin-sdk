@@ -1,6 +1,6 @@
 use bobbin_common::bits::*;
-pub use bobbin_hal::analog::AnalogRead;
-pub use ::periph::adc_f1::*;
+use bobbin_hal::analog::AnalogRead;
+use adc_f1::*;
 
 impl AdcPeriph {
     pub fn set_enabled(&self, value: bool) -> &Self {

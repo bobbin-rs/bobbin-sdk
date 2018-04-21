@@ -1,6 +1,6 @@
 use bobbin_common::bits::*;
-pub use bobbin_hal::analog::AnalogRead;
-pub use ::periph::adc_l0::*;
+use bobbin_hal::analog::AnalogRead;
+use adc_l0::*;
 
 #[derive(Debug, PartialEq, Eq, Clone, Copy)]
 pub enum Resolution {

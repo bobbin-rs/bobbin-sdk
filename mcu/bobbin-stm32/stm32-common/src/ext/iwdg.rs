@@ -1,4 +1,4 @@
-pub use periph::iwdg::*;
+use iwdg::*;
 
 #[derive(Debug, PartialEq, Eq, Clone, Copy)]
 pub enum Prescaler {

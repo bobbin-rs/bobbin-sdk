@@ -1,5 +1,5 @@
-pub use bobbin_hal::timer::*;
-pub use tim_gen::*;
+use bobbin_hal::timer::*;
+use tim_gen::*;
 
 pub enum Direction {
     Up = 0,

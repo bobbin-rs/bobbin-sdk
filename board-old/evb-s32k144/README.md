@@ -1,1 +1,0 @@
-# Bobbin: S32K144EVB

@@ -1,6 +1,6 @@
 #![allow(non_camel_case_types)]
 
-pub use periph::gclk::*;
+use gclk::*;
 
 #[derive(Debug, PartialEq, Eq, Clone, Copy)]
 pub enum ClockSource {

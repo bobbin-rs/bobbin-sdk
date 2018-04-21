@@ -1,4 +1,4 @@
-pub use rcc::*;
+use rcc::*;
 use bobbin_bits::*;
 use bobbin_mcu::clock::ClockSource;
 
@@ -35,10 +35,10 @@ macro_rules! impl_usart_clocksource {
     ($periph:path, $getter:ident, $setter:ident) => {
         impl ClockSource<UsartClock> for $periph {
             fn clock_source(&self) -> UsartClock {
-                ::rcc::RCC.ccipr().$getter().into()
+                RCC.ccipr().$getter().into()
             }
             fn set_clock_source(&self, clk: UsartClock) -> &Self {
-                ::rcc::RCC.with_ccipr(|r| r.$setter(clk));
+                RCC.with_ccipr(|r| r.$setter(clk));
                 self
             }
         }        
@@ -81,10 +81,10 @@ macro_rules! impl_i2c_clocksource {
     ($periph:path, $getter:ident, $setter:ident) => {
         impl ClockSource<I2cClock> for $periph {
             fn clock_source(&self) -> I2cClock {
-                ::rcc::RCC.ccipr().$getter().into()
+                RCC.ccipr().$getter().into()
             }
             fn set_clock_source(&self, clk: I2cClock) -> &Self {
-                ::rcc::RCC.with_ccipr(|r| r.$setter(clk));
+                RCC.with_ccipr(|r| r.$setter(clk));
                 self
             }
         }        
@@ -127,10 +127,10 @@ macro_rules! impl_lptim_clocksource {
     ($periph:path, $getter:ident, $setter:ident) => {
         impl ClockSource<LptimClock> for $periph {
             fn clock_source(&self) -> LptimClock {
-                ::rcc::RCC.ccipr().$getter().into()
+                RCC.ccipr().$getter().into()
             }
             fn set_clock_source(&self, clk: LptimClock) -> &Self {
-                ::rcc::RCC.with_ccipr(|r| r.$setter(clk));
+                RCC.with_ccipr(|r| r.$setter(clk));
                 self
             }
         }        

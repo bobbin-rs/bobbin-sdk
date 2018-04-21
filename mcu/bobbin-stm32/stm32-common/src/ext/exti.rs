@@ -1,4 +1,4 @@
-pub use periph::exti::*;
+use exti::*;
 
 impl ExtiCh {
     pub fn set_interrupt_mask(&self, value: bool) -> &Self {

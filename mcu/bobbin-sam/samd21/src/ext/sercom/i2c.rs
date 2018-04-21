@@ -1,5 +1,5 @@
-pub use bobbin_hal::i2c::*;
-pub use sercom::*;
+use bobbin_hal::i2c::*;
+use sercom::*;
 
 use gclk;
 

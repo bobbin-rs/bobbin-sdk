@@ -1,6 +1,6 @@
-pub use periph::adc::*;
+use periph::adc::*;
 use bobbin_common::bits::*;
-pub use bobbin_hal::analog::AnalogRead;
+use bobbin_hal::analog::AnalogRead;
 
 use gclk;
 

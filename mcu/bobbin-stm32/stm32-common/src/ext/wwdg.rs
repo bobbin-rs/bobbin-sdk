@@ -1,5 +1,4 @@
-pub use periph::wwdg::*;
-
+use wwdg::*;
 
 pub const T_MAX: u32 = 0x7f;
 pub const T_MIN: u32 = 0x40;
