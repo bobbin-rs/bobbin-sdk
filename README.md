@@ -16,3 +16,5 @@ Additional Repositories
 
 - [Bobbin Bits](https://github.com/bobbin-rs/bobbin-bits/) - Small bit fields and ranged integers for Rust
 - [Bobbin CLI](https://github.com/bobbin-rs/bobbin-cli/) - A Rust command line tool to simplify embedded development and deployment.
+
+_Please Note: This project is under heavy development and all APIs are subject to change._
