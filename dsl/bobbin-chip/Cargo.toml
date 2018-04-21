@@ -6,5 +6,5 @@ authors = ["Jonathan Soo <jcsoo@agora.com>"]
 [dependencies]
 clap = "2.*"
 error-chain = "0.10"
-bobbin-sexp = { git = "https://github.com/bobbin-rs/bobbin-sexp" }
-bobbin-sexp-tokenizer = { git = "https://github.com/bobbin-rs/bobbin-sexp" }
+bobbin-sexp = { path = "../bobbin-sexp/sexp" }
+bobbin-sexp-tokenizer = { path = "../bobbin-sexp/sexp-tokenizer" }
