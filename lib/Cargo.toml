@@ -1,0 +1,8 @@
+[workspace]
+members = [
+    "bobbin-build",
+    "bobbin-hal",
+    "bobbin-hz",
+    "bobbin-mcu",
+    "bobbin-sys",
+]
