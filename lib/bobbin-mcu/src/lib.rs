@@ -1,3 +1,21 @@
+//! `bobbin-mcu` defines a set of data types used to represent the internal
+//! components and relationships within an embedded MCU. This includes:
+//! 
+//! - Registers
+//! - Peripherals
+//! - Pins
+//! - Pin Assignments
+//! - Channels
+//! - Clocks
+//! - Clock Gates
+//! - Interrupts
+//! 
+//! These data types and macros are designed to be used by [bobbin-chip](../.../bobbin-chip/index.html)
+//! to automatically generate MCU crates. They can also be used by HAL, driver and application crates
+//! for compile-time checking and discovery of internal MCU relationships and metadata and applications
+//! such as automatic IRQ lookup for drivers, dynamic clock introspection, ownership and reference counting, 
+//! and other useful tasks.
+
 #![no_std]
 #![feature(const_fn, core_intrinsics)]
 
