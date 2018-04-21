@@ -1,3 +1,8 @@
+//! This create defines Hardware Abstraction Layer traits used within the Bobbin
+//! project. Typically, MCU crates implement these traits for peripherals,
+//! pins, and channels, and higher-level drivers and applications consume these
+//! traits.
+
 #![no_std]
 #![feature(const_fn)]
 

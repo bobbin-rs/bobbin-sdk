@@ -4,9 +4,14 @@
 #[macro_use]
 extern crate discovery_stm32f3 as board;
 
+use board::prelude::*;
+
 #[no_mangle]
 pub extern "C" fn main() -> ! {
-    let _ = board::init();
-    println!("Running");
-    loop {}
+    let mut brd = board::init();
+    brd.run(|brd| {
+        println!("[start] Running tests for {}", brd.id());
+        println!("[done]");
+        loop {}
+    })
 }
