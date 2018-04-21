@@ -1,0 +1,2 @@
+[workspace]
+members = ["bobbin-sexp/sexp", "bobbin-sexp/sexp-tokenizer", "bobbin-chip", "bobbin-svd"]
