@@ -8,6 +8,7 @@ pub fn get_active_irq() -> u8 {
 
 #[inline]
 pub fn sleep() {
+    #[cfg(target_os="none")]
     unsafe { asm!("
         cpsid i
         wfi

@@ -1,6 +1,6 @@
 MAKE = make
 
-SUBDIRS = sam-common samd21
+SUBDIRS = bobbin-cortexm bobbin-kinetis bobbin-sam bobbin-stm32
 
 CLEANDIRS = $(SUBDIRS:%=clean-%)
 

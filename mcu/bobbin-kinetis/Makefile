@@ -1,6 +1,17 @@
-.phony: chip
+MAKE = make
 
-chip:
-	@make -C kinetis-common chip
-	@make -C k64-chip chip
-	@make -C kl26-chip chip
+SUBDIRS = kinetis-common k64
+
+CLEANDIRS = $(SUBDIRS:%=clean-%)
+
+.PHONY: build test clean $(SUBDIRS) $(TESTDIRS) $(CLEANDIRS)
+
+build: $(SUBDIRS)
+
+$(SUBDIRS):
+	$(MAKE) -C $@
+
+clean: $(CLEANDIRS)
+
+$(CLEANDIRS):
+	$(MAKE) -C $(@:clean-%=%) clean

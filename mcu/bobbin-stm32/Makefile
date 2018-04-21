@@ -1,6 +1,6 @@
 MAKE = make
 
-SUBDIRS = sam-common samd21
+SUBDIRS = stm32-common stm32f74x stm32f303x stm32l432x
 
 CLEANDIRS = $(SUBDIRS:%=clean-%)
 
