@@ -177,7 +177,6 @@ pub fn gen_periph<W: Write>(cfg: Config, _out: &mut W, p: &Peripheral) -> Result
         writeln!(out, "")?;                
 
         writeln!(out, "pub mod types {{")?;
-        writeln!(out, "    use ::bobbin_bits as bits;")?;
         writeln!(out, "")?;                
         gen_register_types(&mut out, &p.registers, p.size, p.access)?;
         // for r in p.registers.iter() {
