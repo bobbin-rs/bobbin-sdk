@@ -1,5 +1,7 @@
-//! These traits abstract reading and writing analog values (typically voltages)
+//! Traits abstracting reading and writing analog values (typically voltages)
 //! and are implemented by ADC and DAC channels.
+//! 
+//! TODO: Add Error to trait
 
 /// AnalogRead abstracts sampling and reading an ADC channel producing samples of type `T`.
 /// Proper operation requires a `start()`, waiting for `is_complete()` to be true, and then

@@ -1,3 +1,5 @@
+//! Exports all bobbin-hal traits for convenience.
+
 pub use ::analog::*;
 pub use ::btn::*;
 pub use ::can::*;

@@ -1,3 +1,8 @@
+//! Traits for interacting with hardware or software CRC providers.
+//! 
+//! TODO: Properly document and test the various types of CRCs, perhaps
+//! providing a default software implementation.
+
 pub const CRC_32: u32 = 0x04C11DB7;
 pub const CRC_32_START: u32 = 0xFFFFFFFF;
 pub const CRC_16: u16 = 0x8005;
