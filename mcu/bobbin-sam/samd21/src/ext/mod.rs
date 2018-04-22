@@ -3,6 +3,7 @@ pub use sam_common::ext::*;
 pub mod clock;
 pub mod port;
 pub mod sercom;
+pub mod flash;
 
 use bobbin_mcu::mcu::{GetActiveIrq, IrqEnable, Sleep};
 use nvic::NVIC;
