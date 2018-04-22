@@ -127,6 +127,33 @@ impl<'a> Console<'a> {
     pub fn write_u32_hex(&self, v: u32) {
         self.write(&u32_to_hex(v));
     }
+
+    pub unsafe fn dump_ptr(&self, ptr: *const u8, len: usize) {
+        self.dump_slice(::core::slice::from_raw_parts(ptr, len))
+    }
+
+    /// Dump a byte slice to the console.
+    pub fn dump_slice(&self, data: &[u8]) {
+        let addr = data.as_ptr() as usize;
+        for (i, d) in data.iter().enumerate() {
+            if i % 32 == 0 {
+                if i > 0 {
+                    self.write(b"\n");
+                }
+                self.write_u32_hex((addr + i) as u32);
+                self.write(b": ");
+            }
+            if i % 16 == 0 {
+                self.write(b" ");
+            }
+            if i % 4 == 0 {
+                self.write(b" ");
+            }
+            self.write_u8_hex(*d);
+        }
+        self.write(b"\n");
+    }
+
 }
 
 #[inline]
