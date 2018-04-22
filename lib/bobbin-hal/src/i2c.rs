@@ -18,12 +18,12 @@ pub trait I2cTransfer<T> {
     }
 
     /// A blocking write of `reg` and `value` to `addr` in a single I2C transaction.
-    fn write_reg(&self, addr: T, reg: T, value: T) -> &Self {
+    fn write_reg(&self, addr: T, reg: u8, value: u8) -> &Self {
         self.write(addr, &[reg, value])
     }
 
     /// A blocking write of `reg` to `addr` followed by a blocking read of one byte from `addr`.
-    fn read_reg(&self, addr: T, reg: T) -> T {
+    fn read_reg(&self, addr: T, reg: u8) -> u8 {
         let mut buf = [0u8];
         self.transfer(addr, &[reg], &mut buf);
         buf[0]
