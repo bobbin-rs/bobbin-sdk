@@ -2,7 +2,7 @@
 
 use std::env;
 use std::io;
-use std::fs::{self, File};
+use std::fs;
 use std::path::{PathBuf, Path};
 
 /// Searches for a linker script in `link/` based on enabled Cargo features and copies it to the top
