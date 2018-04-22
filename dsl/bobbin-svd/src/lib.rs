@@ -1,3 +1,4 @@
+//! This application reads SVD files and converts them to the bobbin-dsl s-expression based format.
 #![allow(dead_code, unused_imports)]
 
 extern crate bobbin_chip as chip;

@@ -16,7 +16,7 @@ use std::collections::{HashSet, HashMap};
 use clap::{Arg, App};
 
 fn main() {
-    let matches = App::new("svd2chip")
+    let matches = App::new("bobbin-svd")
         .arg(Arg::with_name("input"))
         .arg(Arg::with_name("output"))
         .get_matches();
