@@ -1,4 +1,3 @@
-use bobbin_sys::irq_dispatch::EnableDisableIrq;
 use nvic::NvicPeriph;
 
 impl NvicPeriph {
@@ -49,14 +48,4 @@ impl NvicPeriph {
     pub fn trigger_interrupt(&self, irq: u8) {
         self.set_stir(|r| r.set_intid(irq));
     }
-}
-
-impl EnableDisableIrq for NvicPeriph {
-    fn enable_irq(&self, irq: u8) {
-        self.set_enabled(irq - 16, true);
-    }
-    fn disable_irq(&self, irq: u8) {
-        self.set_enabled(irq - 16, false);
-    }
-
 }
