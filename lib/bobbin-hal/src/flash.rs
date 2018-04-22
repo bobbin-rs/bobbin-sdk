@@ -60,14 +60,14 @@ pub trait FlashErase {
 pub trait FlashWrite {
     /// Put the device into write mode. `write_end()` must be called when writing is done.
     fn write_begin(&self);
-    /// Start writing `len` bytes from `addr` to flash memory.
-    fn write_start(&self, addr: *mut u8, len: usize) -> Result<(), FlashError>;
+    /// Start writing `len` bytes from `buf` to `addr`.
+    fn write_start(&self, dst: *mut u8, src: &[u8]) -> Result<(), FlashError>;
     /// Returns true if the current write is complete;
     fn write_complete(&self) -> bool;
     /// Busy wait for the write to complete;
     fn write_wait(&self);
     /// Write `len` bytes from `addr` to flash memory and wait for the write to complete.
-    fn write(&self, addr: *mut u8, len: usize) -> Result<(), FlashError>;
+    fn write(&self, dst: *mut u8, src: &[u8]) -> Result<(), FlashError>;
     /// Exit write mode. Behavior is undefined if the device is not currently in write mode or
     /// if a write is pending.
     fn write_end(&self);

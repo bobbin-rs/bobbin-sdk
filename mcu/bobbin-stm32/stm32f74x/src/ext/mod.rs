@@ -1,10 +1,12 @@
 pub use stm32_common::ext::*;
 
+pub mod rcc;
+pub mod clock;
+pub mod flash;
+
 use bobbin_mcu::mcu::{GetActiveIrq, IrqEnable, Sleep};
 use nvic::NVIC;
 
-pub mod rcc;
-pub mod clock;
 
 impl GetActiveIrq for ::Mcu {
     fn get_active_irq() -> u8 {
