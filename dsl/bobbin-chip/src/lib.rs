@@ -95,7 +95,7 @@ pub enum TopLevel {
     Peripheral(Peripheral),
 }
 
-/// A physical board containing an MCU and external components.
+/// A system containing a MCU and external components.
 #[derive(Debug, Default)]
 pub struct Board {
     pub name: String,
@@ -109,7 +109,7 @@ pub struct Board {
     pub clocks: Vec<Clock>,
 }
 
-/// An MCU Device with peripherals.
+/// A device with peripherals.
 #[derive(Debug, Default)]
 pub struct Device {
     pub vendor: Option<String>,
@@ -171,24 +171,24 @@ pub struct Variant {
     pub description: Option<String>,
 }
 
-#[derive(Debug, Default)] 
-pub struct Connection {
-    pub device_a: String,
-    pub signal_a: String,
-    pub device_b: String,
-    pub signal_b: String,
-}
+// #[derive(Debug, Default)] 
+// pub struct Connection {
+//     pub device_a: String,
+//     pub signal_a: String,
+//     pub device_b: String,
+//     pub signal_b: String,
+// }
 
-#[derive(Debug, Default)] 
-pub struct Path {
-    pub path_elements: Vec<PathElement>,
-}
+// #[derive(Debug, Default)] 
+// pub struct Path {
+//     pub path_elements: Vec<PathElement>,
+// }
 
-#[derive(Debug, Default)] 
-pub struct PathElement {
-    pub device: String,
-    pub signal: String,
-}
+// #[derive(Debug, Default)] 
+// pub struct PathElement {
+//     pub device: String,
+//     pub signal: String,
+// }
 
 /// A Rust crate to reference. Will result in an `extern crate` statement during code generation.
 #[derive(Debug, Default)] 
@@ -363,9 +363,12 @@ pub struct Signal {
     pub description: Option<String>,
 }
 
+/// A device exception
 #[derive(Debug, Clone, Default)]
 pub struct Exception {    
+    /// The name of this exception
     pub name: String,
+    /// Text describing this exception.
     pub description: Option<String>,
 }
 
@@ -493,7 +496,7 @@ pub struct Region {
     pub description: Option<String>,
 }
 
-/// A logical pin of an MCU.
+/// A logical pin of a MCU.
 #[derive(Debug, Clone, Default)]
 pub struct Pin {
     /// The symbolic name of the pin.
@@ -552,6 +555,30 @@ pub struct Channel {
     pub interrupts: Vec<Interrupt>,
 }
 
+/// A collection of clock inputs, sources and outputs.
+/// 
+/// ```
+/// (clocks
+///     (input (name OSC) (min 4000000) (max 26000000))
+///     (input (name OSC32) (min 32768) (max 32768))
+///
+///     (source (name HSI16) (speed 16000000))
+///     (source (name HSE) (input (name OSC)))
+///     (source (name MSI))
+///     (source (name LSI) (speed 32000))
+///     (source (name LSE) (input (name OSC32)))
+///     (output (name PLLCLK))
+///     (output (name PLL48CLK))
+///     (output (name SYSCLK) (max 216000000))
+///     (output (name HCLK))
+///     (output (name SYSTICK))
+///     (output (name PCLK1))
+///     (output (name PCLK2))
+///     (output (name TIM_PCLK1))
+///     (output (name TIM_PCLK2))
+///     ...
+/// )
+/// ```
 #[derive(Debug, Clone, Default)]
 pub struct Clocks {
     pub inputs: Vec<Clock>,
@@ -598,6 +625,20 @@ impl Clock {
     }
 }
 
+/// A clock gate.
+/// 
+/// A clock gate controls whether a clock is connected to the corresponding peripheral.
+/// 
+///  Example:
+/// 
+/// ```
+/// (clock
+///     (input (name PCLK1))
+///     (gate (type RST) (periph RCC) (register APB1RSTR1) (field DAC1RST))
+///     (gate (type EN) (periph RCC) (register APB1ENR1) (field DAC1EN))
+///     (gate (type SLEEP_EN) (periph RCC) (register APB1SMENR1) (field DAC1SMEN))
+/// )     
+/// ```
 #[derive(Debug, Clone, Default)]
 pub struct Gate {
     pub name: Option<String>,
@@ -810,6 +851,7 @@ impl Field {
     }      
 }
 
+#[doc(hidden)]
 pub struct DimIter<'a> {
     index: u64,
     name: &'a str,
