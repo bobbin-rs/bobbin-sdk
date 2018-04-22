@@ -21,6 +21,7 @@ pub mod spi;
 pub mod timer;
 pub mod watchdog;
 pub mod delay;
+pub mod flash;
 
 pub mod led;
 pub mod btn;
