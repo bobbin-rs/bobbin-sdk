@@ -1,3 +1,21 @@
+//! Interrupt dispatcher
+//! 
+//! This module implements a global singleton that operates as a interrupt
+//! dispatcher supporting dynamic registration and unregistration of
+//! interrupt handlers. 
+//! 
+//! Interrupt handlers implement the `HandleIrq` trait and then are registered
+//! using `register_handler()`, which returns a guard object. The handler may
+//! be accessed using the guard object, which automatically unregisters the handler
+//! when it is dropped.
+//! 
+//! Multiple handlers can be registered for a single interrupt. An interrupt is automatically
+//! enabled as soon as a handler is registered and is disabled as soon as the 
+//! last handler has been unregistered.
+//! 
+//! The global singleton is designed to be initialized by the [System](../system/index.html)
+//! and most operations are not available in Run mode.
+
 use bobbin_mcu::mcu::Mcu;
 
 use core::ops::Deref;
@@ -6,8 +24,10 @@ use core::slice;
 use core::fmt;
 use core::marker::PhantomData;
 
+/// Error returned by the interrupt dispatcher.
 #[derive(Debug)]
 pub enum Error {
+    /// The dispatcher was unable to register the handler for the interrupt.
     IrqUnavailable(u8)
 }
 
@@ -16,12 +36,15 @@ static mut IRQ_TOKEN: Option<IrqToken> = Some(IrqToken);
 static mut IRQ_HANDLERS_PTR: *mut Option<IrqHandler> = ptr::null_mut();
 static mut IRQ_HANDLERS_LEN: usize = 0;
 
-pub trait EnableDisableIrq {
-    fn enable_irq(&self, irq: u8);
-    fn disable_irq(&self, irq: u8);
-}
+// pub trait EnableDisableIrq {
+//     fn enable_irq(&self, irq: u8);
+//     fn disable_irq(&self, irq: u8);
+// }
 
+/// Handle an interrupt.
 pub trait HandleIrq : Sync {
+    /// Handle an interrupt. The interrupt number is provided for handlers that support
+    /// more than interrupt.
     fn handle_irq(&self, irq: u8);
 }
 
@@ -37,16 +60,22 @@ impl IrqHandler {
     }
 }
 
+/// The interrupt dispatcher singleton.
 pub struct IrqDispatcher<MCU: Mcu> {
     _phantom: PhantomData<MCU>,
 }
 
 impl<MCU: Mcu> IrqDispatcher<MCU> {
+    /// Acquire the global interrupt dispatcher singleton.
     pub fn take() -> Self {
         unsafe { while let None = IRQ_TOKEN {} }
         IrqDispatcher { _phantom: PhantomData }
     }
 
+    /// Initialize the global interrupt dispatcher singleton with
+    /// a list of IrqHandlers. 
+    /// 
+    /// NOTE: should be unsafe or accept &'static instead.
     pub fn init(ptr: *mut Option<IrqHandler>, len: usize) -> Self {
         unsafe { 
             while let None = IRQ_TOKEN {} 
@@ -56,10 +85,14 @@ impl<MCU: Mcu> IrqDispatcher<MCU> {
         IrqDispatcher { _phantom: PhantomData }
     }
 
+    /// Release the global interrupt dispatcher.
     pub fn release(_: Self) {
         unsafe { IRQ_TOKEN = Some(IrqToken) }
     }
 
+    /// Returns a reference to the list of interrupt handlers.
+    /// 
+    /// NOTE: should be private?
     #[inline]
     pub fn handlers() -> &'static mut [Option<IrqHandler>] {
         unsafe {
@@ -67,22 +100,27 @@ impl<MCU: Mcu> IrqDispatcher<MCU> {
         }       
     }    
 
+    /// Enable interrupt `irq_num`.
     pub fn enable_irq(irq_num: u8) {
         MCU::irq_enable(irq_num);
     }
 
+    /// Disable interrupt `irq_num`.
     pub fn disable_irq(irq_num: u8) {
         MCU::irq_disable(irq_num);
     }
 
+    /// Returns the total number of handler slots.
     pub fn slots() -> usize {
         Self::handlers().iter().count()
     }
 
+    /// Returns the number of handler slots used.
     pub fn slots_used() -> usize {
         Self::handlers().iter().filter(|h| h.is_some()).count()
     }
 
+    /// Returns the number of handler slots used by handlers for interrupt number `irq_num`.
     pub fn slots_for_irq(irq_num: u8) -> usize {
         let mut count = 0;
         for h in Self::handlers().iter() {
@@ -95,6 +133,8 @@ impl<MCU: Mcu> IrqDispatcher<MCU> {
         count
     }
 
+    /// Register a handler for interrupt number `irq_num`. The handler is automatically unregistered
+    /// when the guard is dropped.
     pub fn register_handler<'h, H: 'static + HandleIrq>(&mut self, irq_num: u8, handler: &'h H) -> Result<Guard<'h, H, MCU>, Error> {        
         for h in Self::handlers().iter_mut() {
             if h.is_none() {
@@ -123,6 +163,9 @@ impl<MCU: Mcu> IrqDispatcher<MCU> {
         }        
     }
 
+    /// Execute all interrupt handlers registered for `irq_num`. Returns
+    /// `true` if the interrupt has been handled by at least one handler,
+    /// `false` if the interrupt was not handled.
     #[inline]
     pub fn dispatch(irq_num: u8) -> bool {
         let mut handled: bool = false;        
@@ -138,6 +181,8 @@ impl<MCU: Mcu> IrqDispatcher<MCU> {
     }    
 }
 
+/// A handle to a registered interrupt handler. Provides access to the interrupt handler and
+/// automatically unregisters the handler when dropped.
 #[must_use]
 #[derive(Debug)]
 pub struct Guard<'a, H: 'a, MCU: Mcu> {

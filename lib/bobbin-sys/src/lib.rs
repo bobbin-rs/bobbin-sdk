@@ -15,7 +15,7 @@ pub mod prelude;
 pub mod console;
 pub mod heap;
 pub mod tick;
-pub mod memory;
+// pub mod memory;
 pub mod irq_dispatch;
 pub mod ring;
 pub mod system;
