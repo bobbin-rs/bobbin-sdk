@@ -1,3 +1,4 @@
+//! This example shows usage of the MB85RC FRAM device using I2C and the embedded-hal API.
 use embedded_hal::blocking::i2c;
 
 use core::fmt;

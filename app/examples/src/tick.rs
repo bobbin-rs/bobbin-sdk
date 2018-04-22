@@ -1,3 +1,5 @@
+//! A simple application that outputs a message to the console periodically.
+
 #[allow(unused_imports)]
 
 use embedded_hal::blocking::serial::Write;

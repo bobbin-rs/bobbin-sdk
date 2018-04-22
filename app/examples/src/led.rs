@@ -1,3 +1,4 @@
+//! This application uses a simple delay timer to blink a LED.
 use bobbin_hal::delay::*;
 use bobbin_hal::led::*;
 

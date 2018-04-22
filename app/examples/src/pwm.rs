@@ -1,3 +1,5 @@
+//! This example shows the usage of a PWM output, gradually fading a LED
+//! in and out.
 #[allow(unused_imports)]
 
 use embedded_hal::PwmPin;

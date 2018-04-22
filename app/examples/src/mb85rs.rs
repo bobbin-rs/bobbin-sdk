@@ -1,3 +1,4 @@
+//! This example shows usage of the MB85RS FRAM device using SPI and the embedded-hal API.
 use embedded_hal::blocking::spi;
 use embedded_hal::digital;
 use core::fmt;

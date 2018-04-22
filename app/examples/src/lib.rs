@@ -1,3 +1,4 @@
+//! This crate contains sample cross-platform applications using bobbin-hal and embedded-hal.
 #![no_std]
 
 extern crate bobbin_hal;

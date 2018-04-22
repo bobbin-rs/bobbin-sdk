@@ -1,3 +1,7 @@
+//! An example showing how to use bobbin-hal to create and instantiate an interrupt-driven serial
+//! driver. This version assumes that the serial device and tx / rx pins have already been enabled 
+//! and configured.
+//! 
 use bobbin_mcu::prelude::*;
 use bobbin_hal::prelude::*;
 use bobbin_sys::prelude::*;

@@ -1,3 +1,5 @@
+//! This application blinks a LED at different speeds depending on whether a button
+//! is active.
 use bobbin_hal::delay::*;
 use bobbin_hal::led::*;
 use bobbin_hal::btn::*;

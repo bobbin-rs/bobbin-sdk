@@ -1,3 +1,4 @@
+//! This example outputs a simple triangle wave to the DAC.
 use bobbin_hal::delay::*;
 use bobbin_hal::analog::*;
 

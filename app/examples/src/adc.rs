@@ -1,3 +1,5 @@
+//! This example reads an ADC periodically and outputs the value to the console.
+
 use bobbin_hal::delay::*;
 use bobbin_hal::analog::*;
 use core::fmt;
