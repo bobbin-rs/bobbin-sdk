@@ -15,3 +15,4 @@ pub use ::serial::*;
 pub use ::spi::*;
 pub use ::timer::*;
 pub use ::watchdog::*;
+pub use flash::*;

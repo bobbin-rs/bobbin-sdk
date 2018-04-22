@@ -6,10 +6,8 @@
 extern crate nucleo_f746zg as board;
 
 use board::prelude::*;
-
 use core::slice;
 use board::mcu::flash::*;
-use board::bobbin_hal::flash::*;
 
 pub const FLASH_ADDR: *mut u8 = 0x0801_0000 as *mut u8;
 pub const FLASH_LEN: usize = 0x100;
