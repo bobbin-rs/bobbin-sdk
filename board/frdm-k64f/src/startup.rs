@@ -1,4 +1,7 @@
 use {Board, System, Mcu, Clk, Heap};
+use bobbin_hal::flash::*;
+use mcu::ftfe::{FtfePeriph, FTFE};
+
 use core::ptr;
 
 pub const WDOG_STCTRLH: *mut u16 = 0x4005_2000 as *mut u16;
@@ -39,4 +42,11 @@ pub fn mcu_init() {
 
 pub fn heap_init() {
     unsafe { Heap::extend(4096) }
+}
+
+impl GetFlash for Board {
+    type Output = ::mcu::ftfe::FtfePeriph;
+    fn flash(&self) -> &FtfePeriph {
+        &FTFE
+    }
 }

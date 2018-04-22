@@ -1,4 +1,6 @@
 use {Board, System, Mcu, Clk, Heap};
+use bobbin_hal::flash::*;
+use mcu::nvmctrl::{NvmctrlPeriph, NVMCTRL};
 
 pub fn init() -> Board {
     mcu_init();
@@ -27,4 +29,11 @@ pub fn mcu_init() {
 
 pub fn heap_init() {
     unsafe { Heap::extend(4096) }
+}
+
+impl GetFlash for Board {
+    type Output = ::mcu::nvmctrl::NvmctrlPeriph;
+    fn flash(&self) -> &NvmctrlPeriph {
+        &NVMCTRL
+    }
 }
