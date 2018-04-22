@@ -1,30 +1,51 @@
+//! A simple S-expression tokenizer, extended to recognize rust-style numbers.
 #![no_std]
-//extern crate core;
 
 pub mod reader;
 pub mod writer;
 
+/// A Sexp Token
 #[derive(Debug, Clone, PartialEq)]
 pub enum Token<'a> {
+    /// A whitespace token
     WhiteSpace(&'a str),
+    /// A symbol token
     Symbol(&'a str),
+    /// A string token
     String(&'a str),
+    /// A number token
     Number(&'a str),
+    /// A u8 token
     U8(&'a str, u8),
+    /// A u16 token
     U16(&'a str, u16),
+    /// A u32 token
     U32(&'a str, u32),
+    /// A u64 token
     U64(&'a str, u64),
+    /// An i8 token
     I8(&'a str, i8),
+    /// An i16 token
     I16(&'a str, i16),
+    /// An i32 token
     I32(&'a str, i32),
+    /// An i64 token
     I64(&'a str, i64),
+    /// A f32 token
     F32(&'a str, f32),
+    /// A f64 token
     F64(&'a str, f64),
+    /// A list start (open parenthesis) token
     ListStart(&'a str),
+    /// A list end (close parenthesis) token
     ListEnd(&'a str),
+    /// A comment token
     Comment(&'a str),
+    /// An Error token
     Error(&'a str, &'static str),
+    /// A document start token
     DocStart(&'a str),
+    /// A document end token
     DocEnd(&'a str),
 }
 

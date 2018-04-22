@@ -3,9 +3,11 @@ use Sexp;
 use Token;
 use tokenizer::reader::*;
 
+/// A parsing error
 #[derive(Debug, PartialEq, Eq)]
 pub struct ParseError(String); 
 
+/// Parse the byte slice `buf`, returning the top-level Sexp or an error.
 pub fn parse<'a>(buf: &'a [u8]) -> Result<Sexp<'a>, ParseError> {
     let mut stack: Vec<Vec<Sexp>> = Vec::new();
     let mut top: Vec<Sexp> = Vec::new();

@@ -16,6 +16,7 @@ enum ReadState {
     Done,
 }
 
+/// A reader object that produces a stream of tokens.
 pub struct BufReader<'a> {
     buf: &'a [u8],
     pos: usize,
@@ -23,14 +24,17 @@ pub struct BufReader<'a> {
 }
 
 impl<'a> BufReader<'a> {
+    /// Returns a new BufReader from the byte slice `buf`.
     pub fn new(buf: &'a [u8]) -> Self {
         BufReader { buf: buf, pos: 0, state: ReadState::Init }
     }
 
+    /// Returns the current read position in bytes
     pub fn pos(&self) -> usize {
         self.pos
     }
 
+    /// Returns the current read line
     pub fn line(&self) -> usize {
         let mut line = 0;
         for i in 0..self.pos {
@@ -41,10 +45,12 @@ impl<'a> BufReader<'a> {
         line
     }
 
+    /// Returns the position of the token `t`
     pub fn pos_of(&self, t: &Token<'a>) -> usize {
         (t.as_ref().as_ptr() as usize) - (self.buf.as_ptr() as usize)
     }
 
+    /// Returns the line of the token `t`
     pub fn line_of(&self, t: &Token<'a>) -> usize {
         let p = self.pos_of(t);
         let mut line = 1;
@@ -56,6 +62,7 @@ impl<'a> BufReader<'a> {
         line        
     }
 
+    /// Returns the length in bytes.
     pub fn len(&self) -> usize {
         self.buf.len() - self.pos
     }
@@ -70,6 +77,7 @@ impl<'a> BufReader<'a> {
         }
     }
 
+    /// Read the next token from the reader, returning None if done.
     pub fn read(&mut self) -> Option<Token<'a>> {
         use self::ReadState::*;
         use self::Token::*;
