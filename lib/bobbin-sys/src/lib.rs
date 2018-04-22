@@ -1,3 +1,4 @@
+//! This crate provides services useful for building embedded applications.
 #![no_std]
 #![feature(asm)]
 

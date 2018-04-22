@@ -1,19 +1,34 @@
+//! Console support
+//! 
+//! The console supports writing byte slices and strings and can optionally
+//! convert `\n` to `\r\n` for terminal output. It is implemented as a type
+//! `Console` as well as a global singleton that can be set for use as
+//! the default console used by `print!` and `println!`.
+//! 
+//! No serialization is performed by the console, so simultaneous calls may 
+//! potentially be interleaved.
 use bobbin_hal::serial::SerialTx;
 
 use core::fmt::{self, Write};
 
-pub const DIGITS: &[u8; 16] = b"0123456789abcdef";    
+const DIGITS: &[u8; 16] = b"0123456789abcdef";    
 
 static mut CONSOLE: Option<Console<'static>> = None;
 
+/// Describes the console operating mode.
 #[derive(Debug, PartialEq, Eq, Clone, Copy)]
 pub enum ConsoleMode {
+    /// All output is passed directly to underlying device.
     Raw,
+    /// `\n` in the output is converted to `\r\n`.
     Cooked,
 }
 
+/// Traits that must be implemented by the device used by the console for output.
 pub trait ConsoleWrite {
+    /// Write a byte slice to the console, translating according to ConsoleMode.
     fn write(&self, buf: &[u8]);
+    /// Write a single byte to the console, translating according to ConsoleMode.
     fn putc(&self, b: u8);
 }
 
@@ -26,23 +41,28 @@ impl<T: SerialTx<u8>> ConsoleWrite for T {
     }
 }
 
+/// A basic console driver.
 #[derive(Clone)]
 pub struct Console<'a>(&'a ConsoleWrite, ConsoleMode);
 
 impl<'a> Console<'a> {
-
+    /// Borrow a reference to the global console singleton.
     pub fn borrow() -> Option<&'static Console<'static>> {
         unsafe { CONSOLE.as_ref() }
     }    
 
+    /// Set `console` as the global console singleton.
     pub fn set(console: Console<'static>) {
         unsafe { CONSOLE = Some(console) }
     }
 
+    /// Create a new console using `other` as the underlying output
+    /// device and `mode` as the console mode.
     pub fn new(other: &'a ConsoleWrite, mode: ConsoleMode) -> Self {
         Console(other, mode)
     }
 
+    /// Write a byte string to the console using the current mode, possibly blocking.
     pub fn write(&self, buf: &[u8]) {
         match self.1 {
             ConsoleMode::Raw => self.0.write(buf),
@@ -50,12 +70,14 @@ impl<'a> Console<'a> {
         }
     }
 
+    /// Write a byte string to the console using the current modewith a newline appended, 
+    /// possibly blocking.
     pub fn writeln(&self, buf: &[u8]) {
         self.write(buf);
         self.write(b"\n");
     }
 
-
+    /// Write a byte string to the console, translating `\n` to `\r\n`.
     pub fn write_cooked(&self, buf: &[u8]) {
         for byte in buf {
             if *byte == b'\n' {
@@ -65,6 +87,9 @@ impl<'a> Console<'a> {
         }        
     }
 
+    /// Write `v` to the console as a string of base `base`.
+    /// 
+    /// NOTE: Only base 10 and base 16 are currently supported.
     pub fn write_u32(&self, mut v: u32, base: u32) {
         let mut buf = [0u8; 6];
         let mut i = buf.len();
@@ -88,14 +113,17 @@ impl<'a> Console<'a> {
         }
     }
 
+    /// Write `v` to the console as a 2 byte lower case hex string.
     pub fn write_u8_hex(&self, v: u8) {
         self.write(&u8_to_hex(v));
     }
 
+    /// Write `v` to the console as a 4 byte lower case hex string.
     pub fn write_u16_hex(&self, v: u16) {
         self.write(&u16_to_hex(v));
     }
 
+    /// Write `v` to the console as an 8 byte lower case hex string.
     pub fn write_u32_hex(&self, v: u32) {
         self.write(&u32_to_hex(v));
     }
