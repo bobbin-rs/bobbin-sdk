@@ -5,6 +5,7 @@ use nvic::NVIC;
 
 pub mod rcc;
 pub mod clock;
+pub mod flash;
 
 impl GetActiveIrq for ::Mcu {
     fn get_active_irq() -> u8 {

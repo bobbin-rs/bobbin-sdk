@@ -5,38 +5,36 @@
 #[macro_use]
 extern crate discovery_stm32f3 as board;
 
-extern "C" {
-    static mut _stext: u32;
-}
-
+use board::prelude::*;
 use core::slice;
 use board::mcu::flash::*;
 
-pub const FLASH_ADDR: *mut u32 = 0x0800_4000 as *mut u32;
+pub const FLASH_ADDR: *mut u8 = 0x0800_4000 as *mut u8;
 pub const FLASH_LEN: usize = 0x100;
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
     let _ = board::init();
 
-    println!("Flash Test");
     dump(FLASH_ADDR as *const u8, FLASH_LEN);    
     {
         println!("flash erase {:p}", FLASH_ADDR);
-        FLASH.unlocked(|f| f.flash_erase(FLASH_ADDR));
+        FLASH.erase_begin();
+        FLASH.erase(FLASH_ADDR, 0);
+        FLASH.erase_end();
         println!("flash erase done")
     }
     dump(FLASH_ADDR as *const u8, FLASH_LEN);    
     {
         println!("Flash write");
-        let mut buf = [0u16; 0x100 / 2];
+        let mut buf = [0u8; 0x100];
         for i in 0..buf.len() {
-            buf[i] = i as u16;
+            buf[i] = i as u8;
         }
-        FLASH.unlocked(|f| {
-            f.flash_write(FLASH_ADDR as *mut u16, &buf);
-        });
-        dump(FLASH_ADDR as *const u8, buf.len() * 2);    
+        FLASH.write_begin();
+        FLASH.write(FLASH_ADDR as *mut u8, &buf).unwrap_or_abort("Error writing flash");
+        FLASH.write_end();
+        dump(FLASH_ADDR as *const u8, buf.len());    
     }
     println!("done");
     loop {}
@@ -62,84 +60,3 @@ fn dump(ptr: *const u8, len: usize) {
     }
     println!("");
 }
-
-pub trait FlashLockUnlock {
-    fn flash_locked(&self) -> bool;
-    fn flash_unlock(&self);
-    fn flash_lock(&self);
-    fn unlocked<T, F: FnOnce(&Self)->T>(&self, f: F) -> T {
-        self.flash_unlock();
-        let ret = f(self);
-        self.flash_lock();
-        ret
-    }
-}
-
-pub trait FlashBusy {
-    fn flash_busy(&self) -> bool;
-}
-
-pub trait FlashErase {
-    fn flash_erase(&self, addr: *const u32);
-}
-
-pub trait FlashWrite<T> {
-    fn flash_write(&self, addr: *mut T, data: &[T]) -> usize;
-}
-
-pub const KEY1: u32 = 0x45670123;
-pub const KEY2: u32 = 0xCDEF89AB;
-
-impl FlashLockUnlock for FlashPeriph {
-    fn flash_locked(&self) -> bool {
-        self.cr().test_lock()
-    }
-
-    fn flash_lock(&self) {
-        self.with_cr(|r| r.set_lock(1));
-    }
-
-    fn flash_unlock(&self) {
-        self.set_keyr(|r| r.set_fkeyr(KEY1));
-        self.set_keyr(|r| r.set_fkeyr(KEY2));
-    }
-}
-
-impl FlashBusy for FlashPeriph {
-    fn flash_busy(&self) -> bool {
-        self.sr().test_bsy()
-    }
-}
-
-impl FlashErase for FlashPeriph {    
-    fn flash_erase(&self, addr: *const u32) {
-        while self.flash_busy() {}
-        let addr = addr as u32;
-        self.with_cr(|r| r.set_per(1));
-        self.set_ar(|r| r.set_far(addr));
-        self.with_cr(|r| r.set_strt(1));
-        unsafe { asm!("nop")}
-        while self.flash_busy() {}
-        self.with_sr(|r| r.set_eop(1));
-        self.with_cr(|r| r.set_per(0));
-    }
-}
-
-
-impl FlashWrite<u16> for FlashPeriph {
-    fn flash_write(&self, addr: *mut u16, data: &[u16]) -> usize {
-        while self.flash_busy() {}
-        self.with_cr(|r| r.set_pg(1));
-        let mut i = 0;
-        while i < data.len() {
-            unsafe {
-                *addr.offset(i as isize) = data[i];
-                i += 1;
-            }
-            while self.flash_busy() {}
-        }
-        self.with_cr(|r| r.set_pg(0));
-        data.len()
-    }
-}
-
