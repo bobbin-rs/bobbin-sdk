@@ -41,46 +41,12 @@ impl FlashBusy for FlashPeriph {
     }
 }
 
-// impl FlashWrite<u16> for FlashPeriph {
-//     fn flash_write(&self, addr: *mut u16, data: &[u16]) -> usize {
-//         while self.flash_busy() {}
-//         self.with_cr(|r| r.set_pg(1).set_psize(0b01));
-//         for i in 0..data.len() {
-//             unsafe {
-//                 *addr.offset(i as isize) = data[i];
-//                 asm!("dsb");
-//             }
-//             while self.flash_busy() {}
-//         }
-//         self.with_cr(|r| r.set_pg(0));        
-//         data.len()
-//     }
-// }
-
-
-// impl FlashWrite<u32> for FlashPeriph {
-//     fn flash_write(&self, addr: *mut u32, data: &[u32]) -> usize {
-//         while self.flash_busy() {}
-//         self.with_cr(|r| r.set_pg(1).set_psize(0b10));
-//         for i in 0..data.len() {
-//             unsafe {
-//                 *addr.offset(i as isize) = data[i];
-//                 asm!("dsb");
-//             }
-//             while self.flash_busy() {}
-//         }
-//         self.with_cr(|r| r.set_pg(0));
-//         data.len()
-//     }
-// }
-
-
 impl FlashErase for FlashPeriph {
     fn erase_begin(&self) {
         self.flash_unlock();
     }
 
-    fn erase_start(&self, addr: *mut u8, _: usize) -> Result<(), FlashError> {
+    fn erase_start(&self, addr: *mut u8) -> Result<(), FlashError> {
         // ignore length for now
         let addr = addr as u32;
         let pnb = if addr & 0x7ff == 0 && addr >= 0x0800_0000 && addr <= 0x0803_F800 {
@@ -94,15 +60,6 @@ impl FlashErase for FlashPeriph {
 
     fn erase_complete(&self) -> bool {
         return !self.flash_busy()
-    }
-
-    fn erase_wait(&self) {
-        while !self.erase_complete() {}
-    }
-
-    fn erase(&self, addr: *mut u8, len: usize) {
-        self.erase_start(addr, len);
-        self.erase_wait();
     }
 
     fn erase_end(&self){
@@ -138,35 +95,8 @@ impl FlashWrite for FlashPeriph {
     fn write_complete(&self) -> bool {
         !self.flash_busy()
     }
-    fn write_wait(&self) {
-        while !self.write_complete() {}
-    }
-    fn write(&self, dst: *mut u8, src: &[u8]) -> Result<(), FlashError> {
-        self.write_start(dst, src)?;
-        self.write_wait();        
-        Ok(())
-    }
     fn write_end(&self) {
         self.with_cr(|r| r.set_pg(0));        
         self.flash_lock();
     }
 }
-// impl FlashWrite<u32> for FlashPeriph {
-//     fn flash_write(&self, addr: *mut u32, data: &[u32]) -> usize {
-//         while self.flash_busy() {}
-//         self.with_cr(|r| r.set_pg(1));
-//         let mut i = 0;
-//         while i < data.len() {
-//             unsafe {
-//                 *addr.offset(i as isize) = data[i];
-//                 i += 1;
-//                 *addr.offset(i as isize) = data[i];
-//                 i += 1;
-//             }
-//             while self.flash_busy() {}
-//         }
-//         self.with_cr(|r| r.set_pg(0));
-//         data.len()
-//     }
-// }
-

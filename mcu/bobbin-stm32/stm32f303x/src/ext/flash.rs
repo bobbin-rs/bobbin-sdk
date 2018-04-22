@@ -46,7 +46,7 @@ impl FlashErase for FlashPeriph {
         self.flash_unlock();
     }
 
-    fn erase_start(&self, addr: *mut u8, _: usize) -> Result<(), FlashError> {
+    fn erase_start(&self, addr: *mut u8) -> Result<(), FlashError> {
         // ignore length for now
         self.with_sr(|r| r.set_eop(1));
         self.with_cr(|r| r.set_per(1));
@@ -58,15 +58,6 @@ impl FlashErase for FlashPeriph {
 
     fn erase_complete(&self) -> bool {
         return !self.flash_busy()
-    }
-
-    fn erase_wait(&self) {
-        while !self.erase_complete() {}
-    }
-
-    fn erase(&self, addr: *mut u8, len: usize) {
-        self.erase_start(addr, len);
-        self.erase_wait();
     }
 
     fn erase_end(&self){
@@ -103,14 +94,6 @@ impl FlashWrite for FlashPeriph {
     }
     fn write_complete(&self) -> bool {
         !self.flash_busy()
-    }
-    fn write_wait(&self) {
-        while !self.write_complete() {}
-    }
-    fn write(&self, dst: *mut u8, src: &[u8]) -> Result<(), FlashError> {
-        self.write_start(dst, src)?;
-        self.write_wait();        
-        Ok(())
     }
     fn write_end(&self) {
         self.with_cr(|r| r.set_pg(0));        
