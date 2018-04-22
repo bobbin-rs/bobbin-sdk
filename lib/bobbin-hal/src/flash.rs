@@ -88,3 +88,10 @@ pub trait FlashWrite {
     /// if a write is pending.
     fn write_end(&self) {}
 }
+
+pub trait Flash : FlashErase + FlashWrite {}
+
+pub trait GetFlash {
+    type Output: Flash;
+    fn flash(&self) -> &Self::Output;
+}

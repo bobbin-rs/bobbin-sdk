@@ -77,3 +77,5 @@ impl FlashWrite for FtfePeriph {
         !self.flash_busy()
     }
 }
+
+impl Flash for FtfePeriph {}

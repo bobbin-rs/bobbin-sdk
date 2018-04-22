@@ -100,3 +100,5 @@ impl FlashWrite for FlashPeriph {
         self.flash_lock();
     }
 }
+
+impl Flash for FlashPeriph {}

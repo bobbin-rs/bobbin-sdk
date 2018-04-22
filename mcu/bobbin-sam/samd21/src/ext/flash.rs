@@ -53,3 +53,5 @@ impl FlashWrite for NvmctrlPeriph {
         !self.flash_busy()
     }
 }
+
+impl Flash for NvmctrlPeriph {}

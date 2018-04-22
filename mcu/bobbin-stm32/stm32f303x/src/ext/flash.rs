@@ -101,3 +101,4 @@ impl FlashWrite for FlashPeriph {
     }
 }
 
+impl Flash for FlashPeriph {}
