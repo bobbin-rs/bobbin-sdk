@@ -1,6 +1,7 @@
 pub use kinetis_common::ext::*;
 
 pub mod clock;
+pub mod flash;
 
 use bobbin_mcu::mcu::{GetActiveIrq, IrqEnable, Sleep};
 use nvic::NVIC;

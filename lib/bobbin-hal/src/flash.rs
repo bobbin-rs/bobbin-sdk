@@ -45,7 +45,7 @@ pub trait FlashInfo {
 /// Erase a section of flash memory.
 pub trait FlashErase {
     /// Put the device into erase mode. `erase_end()` must be called when erasing is done.
-    fn erase_begin(&self);
+    fn erase_begin(&self) {}
     /// Starts the erase process for the page beginning at `addr`. The device must have
     /// previously be put in erase mode using `erase_begin()`.
     fn erase_start(&self, addr: *mut u8) -> Result<(), FlashError>;
@@ -63,13 +63,13 @@ pub trait FlashErase {
     }
     /// Exit erase mode. Behavior is undefined if the device is not currently in erase mode or if
     /// an erase is pending.
-    fn erase_end(&self);
+    fn erase_end(&self) {}
 }
 
 /// Write bytes to flash memory.
 pub trait FlashWrite {
     /// Put the device into write mode. `write_end()` must be called when writing is done.
-    fn write_begin(&self);
+    fn write_begin(&self) {}
     /// Start writing `len` bytes from `buf` to `addr`.
     fn write_start(&self, dst: *mut u8, src: &[u8]) -> Result<(), FlashError>;
     /// Returns true if the current write is complete;
@@ -86,5 +86,5 @@ pub trait FlashWrite {
     }
     /// Exit write mode. Behavior is undefined if the device is not currently in write mode or
     /// if a write is pending.
-    fn write_end(&self);
+    fn write_end(&self) {}
 }
