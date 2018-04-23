@@ -1,6 +1,6 @@
 //! This crate provides services useful for building embedded applications.
 #![no_std]
-#![feature(asm)]
+#![feature(asm, no_debug)]
 
 #[cfg(feature="logger")]
 extern crate log;

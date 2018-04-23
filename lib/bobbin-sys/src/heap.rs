@@ -27,7 +27,9 @@ extern "C" {
 
 struct HeapToken;
 static mut HEAP_TOKEN: Option<HeapToken> = Some(HeapToken);
+#[no_debug]
 static mut HEAP_START: *mut u8 = unsafe { &_sheap as *const u32 as *mut u8 };
+#[no_debug]
 static mut HEAP_END: *mut u8 = unsafe { &_sheap as *const u32 as *mut u8 };
 
 /// An error resulting from a heap operation.
