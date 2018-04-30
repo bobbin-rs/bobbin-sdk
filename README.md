@@ -25,6 +25,9 @@ Why is Bobbin designed the way it is? See [Goals](./doc/Goals.md).
 
 What makes Bobbin special? See [Features](./doc/Features.md).
 
+## Hardware
+
+See a list of supported [Hardware](./doc/Hardware.md).
 
 ## Quick Start
 
