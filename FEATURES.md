@@ -42,16 +42,19 @@
    peripheral architecture.
 
 - Clocks 
-   - Each MCU crate has a `ClockProvider` trait that defines all of the clocks for the MCU
+   - Each MCU crate has a trait that defines all of the clocks for the MCU
    - Most peripherals have traits specify the MCU clock that is the input for the peripheral.
    - Most MCU crates provide a dynamic clock implementation that supports run-time clock calculation
    for MCU clocks and peripherals.
    - This allows writing drivers and applications that can perform clock-related configuration
    across peripherals, MCUs, external clock sources, and even run-time changes.
+   - Most crates also provide basic clock initialization that supports configuring the clock in
+   a high-performance mode. Future crates will provide more sophisticated clock drivers that support
+   full runtime configuration of the clock subsystem.
 
 - Gates
    - Peripherals also support `Gates`, which enable or disable input clocks for the peripheral.
-   - Often there are additional gates for `Reset`, which resets the peripheral, and other types of
+   - Often there are additional gates such as `Reset`, which resets the peripheral, and other types of
    gates that allow the peripheral to run in sleep or low power modes.
    - These peripheral gate traits make it possible to enable or disable the peripheral by updating the
    appropriate bit in the register of the clock control peripheral for the MCU.
@@ -65,3 +68,41 @@
    General and Error interrupts.
    - These traits support writing drivers and applications that can self-register appropriate interrupts based
    on the MCU and specific peripheral being used.
+
+- MCU Traits
+   - Additional traits can be implemented for MCUs to allow MCU-agnostic and even architecture-agnostic devices 
+   and applications. For instance, current MCU crates implement traits for enabling / disabling interrupts globally 
+   as well as enabling / disabling specific interrupts.
+
+- Introspection
+   - All peripheral registers have Debug output traits implemented, showing the register value as well as values of individual fields.
+
+- Ownership and Reference Counting
+   - All peripherals, pins, and channels have static variables and methods defined to support ownership and reference counts. The MCU crate itself does not use these traits, but they can be used by higher-level crates or by drivers and applications to ensure that peripherals, pins, and channels are used according to some policy or to implement automatic resource management.
+
+## Board Crates
+
+- Configuration
+   - Use the specific MCU crate and variant that is on the board. This sets up the appropriate linker configuration
+   - Includes a script for OpenOCD or other debugging tools as needed.
+   - Set up the dynamic clock driver with the specific external clocks used on the board.
+   - Defines the standard console, usually one connected to an on-board debugger.
+   - Defines on-board LEDs and buttons
+   - Defines aliases from MCU pin IDs to connector-specific IDs - for instance, Arduino pin names.
+   - Board-specific initialization of clocks and peripherals
+   - Optionally, include higher-level drivers for external on-board peripherals.
+
+- System Services
+   - Console - `printf!` macros as well as low-level console output methods.
+   - Clock - access is provided to the dynamic clock provider for the board.
+   - Heap - a simple allocate-only heap allocator is provided for applications and drivers that don't want to
+   depend on the `alloc` crate. This allocator returns raw pointers and &'static mut references and does
+   not support freeing objects. The allocator is only available during board intialization and does not allow
+   allocation during runtime.
+   - Timer - a basic millisecond timer is instantiated and made available to drivers and applications
+   that need basic timekeeping for delays and timeouts. Future versions of this timer will support registering
+   one-shot and periodic tick callback handlers.
+   - Interrupt Dispatcher - a dynamic interrupt dispatcher allows drivers and applications to register
+   interrupt handlers at run time. Guards are used to ensure that handlers are automatically unregistered
+   and disabled when they they are dropped. This makes it possible to safely write interrupt handlers that are stored on the stack instead of in statically allocated memory.
+   - Collectively, these system services make it possible to write portable drivers and applications that can run on many different boards and MCUs. In most cases, some amount of configuration will be needed to select the specific peripherals and pins to be used, but that configuration may be checked at compile time to ensure consistency.
