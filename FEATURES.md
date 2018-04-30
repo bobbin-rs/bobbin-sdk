@@ -41,7 +41,7 @@
    - Channels allow writing drivers and applications that abstract at boundaries that reflect the underlying
    peripheral architecture.
 
-- Clocks and Gates
+- Clocks 
    - Each MCU crate has a `ClockProvider` trait that defines all of the clocks for the MCU
    - Most peripherals have traits specify the MCU clock that is the input for the peripheral.
    - Most MCU crates provide a dynamic clock implementation that supports run-time clock calculation
@@ -49,6 +49,7 @@
    - This allows writing drivers and applications that can perform clock-related configuration
    across peripherals, MCUs, external clock sources, and even run-time changes.
 
+- Gates
    - Peripherals also support `Gates`, which enable or disable input clocks for the peripheral.
    - Often there are additional gates for `Reset`, which resets the peripheral, and other types of
    gates that allow the peripheral to run in sleep or low power modes.
