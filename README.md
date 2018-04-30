@@ -17,13 +17,14 @@ Additional Repositories
 - [Bobbin Bits](https://github.com/bobbin-rs/bobbin-bits/) - Small bit fields and ranged integers for Rust
 - [Bobbin CLI](https://github.com/bobbin-rs/bobbin-cli/) - A Rust command line tool to simplify embedded development and deployment.
 
+## Goals
+
+Why is Bobbin designed the way it is? See [Goals](./doc/Goals.md).
+
 ## Features
 
 What makes Bobbin special? See [Features](./doc/Features.md).
 
-## Philosophy
-
-Why is Bobbin designed the way it is? See [Philosoph](./doc/Philosophy.md).
 
 ## Quick Start
 

@@ -1,4 +1,4 @@
-# Philosophy / Goals
+# Goals
 
 > If a problem cannot be solved, enlarge it. - Dwight D. Eisenhower
 
@@ -37,17 +37,5 @@ usage in that domain; Go took that a step further by making concurrency easy whi
 packaging and deployment with single-binary application.
 
 Bobbin does the same by making the problem bigger. The goal isn't just to make it possible to
-program MCUs with rust; embedded programming in Rust needs to be better (much better) than 
-using vendor SDKs, code generation tools, and proprietary IDEs.
-
-## Leverage the type system
-
-## Provide easy low level access to peripherals
-
-MCUs are organized the way they are in order to solve problems that MCU vendors have; whether
-that organization makes sense for the end user is incidental. Because of that, the lowest
-layer should be the simplest and have the least policy; they should map directly to what is
-available without making judgements on what is and isn't allowed.
-
-More opinionated layers using Rust's type system to enforce some notion of correctness should be
-layered on top of these lowest level APIs.
+program MCUs with Rust; embedded programming in Rust needs to be better (much better) than 
+using vendor SDKs, code generation tools, and IDEs.
