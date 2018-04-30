@@ -1,8 +1,8 @@
 # Hardware Support
 
-> **NOTE:** In order to prepare for an initial preview release, the number of supported
-> boards and MCUs has been pared to a minimum. In the next few months, a large number
-> of MCUs and boards will be updated to the current standard and released.
+> **NOTE:** In order to focus on an initial preview release, the number of supported
+> boards and MCUs has been kept to a minimum. In the next few months, many of the MCUs
+> and boards listed below will be updated to the current standard and released.
 
 ## Initial Targets
 
