@@ -19,10 +19,18 @@ Additional Repositories
 
 ## Features
 
-What makes Bobbin special? See [FEATURES](./FEATURES.md).
+What makes Bobbin special? See [Features](./doc/Features.md).
+
+## Philosophy
+
+Why is Bobbin designed the way it is? See [Philosoph](./doc/Philosophy.md).
 
 ## Quick Start
 
-Get started with a MCU or Board crate example. See [QUICKSTART](./QUICKSTART.md).
+Get started with a MCU or Board crate example. See [Quick Start](./doc/Quickstart.md).
+
+## More Documentation
+
+More documentation in available the [doc](doc/) directory.
 
 _Please Note: This project is under heavy development and all APIs are subject to change._

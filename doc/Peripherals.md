@@ -21,12 +21,15 @@ Each peripheral in the MCU has a corresponding constant that is the name of the 
 
 Each module also defines single **Periph** type named using the base name in camelcase + `Periph`, as well as a type for each register.
 
-The contents might look like this:
+You can picture the modules looking like this:
 
 ```
 mod wwdg {
-    // Instance Types
+    // Instance Constants
     pub const WWDG: Wwdg = Wwdg {};
+
+    // Instance Types
+    pub struct Wwdg {}    
 
     // Periph Types
     pub struct WwdgPeriph { ... }
@@ -38,10 +41,15 @@ mod wwdg {
 }
 
 mod gpio {
-    // Instance Types
+    // Instance Constants
     pub const GPIOA: Gpioa = Gpioa {};
     pub const GPIOB: Gpiob = Gpiob {};
     pub const GPIOC: Gpioc = Gpioc {};
+
+    // Instance Types
+    pub const Gpioa {}
+    pub const Gpiob {}
+    pub const Gpioc {}
 
     // Periph Types
     pub struct GpioPeriph { ... }
@@ -58,7 +66,7 @@ mod gpio {
 
 ### Periph Methods
 
-Each peripheral has several methods defined for each associated registers. The WwdgPeriph has these methods for the CFR register, which contains values of type `Cfr`:
+Each peripheral has several methods defined for each associated registers. The WwdgPeriph has the following methods for the CFR register, which contains values of type `Cfr`:
 
 - `cfg(&self) -> Cfr` - reads the register value
 - `write_cfg(&self, value: Cfr) -> &Self` - writes the register value
@@ -180,8 +188,8 @@ if DMA0.scr(3).test_mburst() {
 
 ### Indexed Fields
 
-Many registers contain arrays of fields. Similar to indexed registers, you access a specific element by
-using the same field methods with an additional `index` parameter.
+Registers similarly may contain arrays of fields. Each field methods includes an `index` parameter that lets you
+indicate which item you ar accessing.
 
 For instance the STM32 GPIO.MODER register contains an array of 16 2-bit fields, also named `moder`. The Moder type has the follosing methods:
 
