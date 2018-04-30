@@ -1,0 +1,28 @@
+[package]
+name = "bobbin-stm32f746zg-example"
+version = "0.1.0"
+authors = ["Jonathan Soo <jcsoo@agora.com>"]
+
+[[bin]]
+name = "main"
+path = "src/main.rs"
+doc = false
+
+[dependencies.cortex-m-rt]
+features = []
+version = "0.4.0"
+
+[dependencies.stm32f74x]
+path = "../../mcu/bobbin-stm32/stm32f74x"
+features = ["STM32F74xxG"]
+
+[profile.dev]
+panic = "abort"
+opt-level = "s"
+incremental = false
+lto = true
+
+[profile.release]
+panic = "abort"
+debug = true
+lto = true
