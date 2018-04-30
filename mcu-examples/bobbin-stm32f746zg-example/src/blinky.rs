@@ -5,8 +5,6 @@ extern crate cortex_m_rt;
 extern crate panic_abort;
 extern crate stm32f74x as mcu;
 
-// LED0 = PB0;
-
 use mcu::bobbin_mcu::prelude::*;
 use mcu::bobbin_hal::prelude::*;
 use mcu::pin::*;
