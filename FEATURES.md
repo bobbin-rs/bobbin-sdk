@@ -106,3 +106,6 @@
    interrupt handlers at run time. Guards are used to ensure that handlers are automatically unregistered
    and disabled when they they are dropped. This makes it possible to safely write interrupt handlers that are stored on the stack instead of in statically allocated memory.
    - Collectively, these system services make it possible to write portable drivers and applications that can run on many different boards and MCUs. In most cases, some amount of configuration will be needed to select the specific peripherals and pins to be used, but that configuration may be checked at compile time to ensure consistency.
+
+- Examples
+   - Each board crate comes with a set of examples

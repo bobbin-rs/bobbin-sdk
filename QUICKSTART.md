@@ -7,6 +7,12 @@ You can use a MCU crate directly. You will need to use cortex-m-rt as your runti
 Steps:
 
 - Create a new application crate
+
+```
+$ cargo new bobbin-stm32f746zg-example
+```
+
+
 - Add a new binary section
 - Add MCU crate dependency and variant
 - Add cortex-m-rt dependency
@@ -174,3 +180,129 @@ Hello, World
 
 Board crates include a runtime and tools to make development easier including a serial console, dynamic clock,
 dynamic interrupt dispatcher, and basic heap.
+
+Create a new application crate
+
+```
+$ bobbin new bobbin-nucleo-f746zg-example
+```
+
+- Copy .cargo/config
+- Copy openocd.cfg
+- Update Cargo.toml to add the binaries and dependencies
+- Update the profiles
+
+```
+[package]
+name = "bobbin-nucleo-f746zg-example"
+version = "0.1.0"
+authors = ["Jonathan Soo <jcsoo@agora.com>"]
+
+[[bin]]
+name = "blinky"
+path = "src/blinky.rs"
+doc = false
+
+[[bin]]
+name = "console"
+path = "src/console.rs"
+doc = false
+
+[dependencies]
+nucleo-f746zg = { path = "../../board/nucleo-f746zg" }
+
+[profile.dev]
+panic = "abort"
+opt-level = "s"
+incremental = false
+lto = true
+
+[profile.release]
+panic = "abort"
+opt-level = "s"
+debug = true
+incremental = false
+lto = true
+```
+
+First, let's write a new blinky.rs example. It looks similar to the MCU crate example except that we are using the board's LED method.
+
+```
+#![no_std]
+
+extern crate nucleo_f746zg as board;
+
+use board::prelude::*;
+
+fn main() {
+    // Initialize the board and get the System.
+    let mut sys = board::init();
+
+    // Application initialization goes here. Interrupts are disabled.
+
+    // Enable interrupts and enter the main loop.
+    sys.run(|sys| loop {
+        sys.led0().toggle(); // Toggle LED0        
+        sys.tick().delay(500); // Delay 500ms
+    })
+}
+```
+
+Build and run it (use Control-C to exit):
+
+```
+$ bobbin run --bin blinky
+   Compiling bobbin-nucleo-f746zg-example v0.1.0 (file:///Users/jcsoo/bobbin-dev/bobbin-dev/board-examples/bobbin-nucleo-f746zg-example)
+    Finished dev [optimized + debuginfo] target(s) in 1.49 secs
+   text	   data	    bss	    dec	    hex	filename
+   3734	    468	     24	   4226	   1082	target/thumbv7em-none-eabihf/debug/blinky
+     Loading target/thumbv7em-none-eabihf/debug/blinky
+    Complete Successfully flashed device
+      Loader Load Complete
+     Console Opening Console
+^C
+```
+
+`console.rs` example is even simpler.
+
+```
+#![no_std]
+
+// Use the println! macro
+#[macro_use]
+extern crate nucleo_f746zg as board;
+
+use board::prelude::*;
+
+fn main() {
+    // Initialize the board and get the System.
+    let mut sys = board::init();
+
+    // Application initialization goes here. Interrupts are disabled.
+
+    // Enable interrupts and enter the main loop.
+    sys.run(|sys| loop {
+        println!("Hello, World"); // Print "Hello, World"
+        sys.tick().delay(500); // Delay 500ms
+    })
+}
+```
+
+Build and run it (use Control-C to exit):
+
+```
+$ bobbin run --bin console
+    Finished dev [optimized + debuginfo] target(s) in 0.04 secs
+   text	   data	    bss	    dec	    hex	filename
+   3756	    468	     24	   4248	   1098	target/thumbv7em-none-eabihf/debug/console
+     Loading target/thumbv7em-none-eabihf/debug/console
+    Complete Successfully flashed device
+      Loader Load Complete
+     Console Opening Console
+Hello, World
+Hello, World
+Hello, World
+Hello, World
+...
+^C
+```
