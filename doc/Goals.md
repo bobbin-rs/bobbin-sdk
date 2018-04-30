@@ -29,12 +29,12 @@ languages make it easier to switch between vendors.
 On the other hand, the Rust community has a big interest in having a ecosystem that deals with
 these issues.
 
-The history of computing shows that big gains are often made by languages that make their 
-problems bigger and find a way to solve them. Python decided to make "batteries included"
-so that users could tackle a broad set of problems with just the standard library; Ruby as
-a community embraced all aspects of writing web application servers and achieved widespread
-usage in that domain; Go took that a step further by making concurrency easy while solving 
-packaging and deployment with single-binary application.
+The history of computing shows that big gains are often made by projects that make their 
+problems bigger than they used to be and then solve them. Python decided to make "batteries 
+included" so that users could tackle a broad set of problems with just the standard library. 
+Ruby On Rails embraced all aspects of writing web application servers and achieved widespread
+usage in that domain. Go took that a step further by making concurrency easy while solving 
+packaging and deployment with single-binary applications.
 
 Bobbin does the same by making the problem bigger. The goal isn't just to make it possible to
 program MCUs with Rust; embedded programming in Rust needs to be better (much better) than 
