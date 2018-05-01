@@ -302,10 +302,65 @@ fn main() {
 ```
 
 
-
-
 - Ownership and Reference Counting
    - All peripherals, pins, and channels have static variables and methods defined to support ownership and reference counts. The MCU crate itself does not use these traits, but they can be used by higher-level crates or by drivers and applications to ensure that peripherals, pins, and channels are used according to some policy or to implement automatic resource management.
+
+```
+use board::prelude::*;
+use board::mcu::tim_gen::*;
+use board::mcu::pin::*;
+
+#[no_mangle]
+pub extern "C" fn main() -> ! {
+    board::init().run(|_| {
+        println!("Tim3::owned():     {}", Tim3::owned_mut());
+        println!("Tim3::ref_count(): {}", Tim3::ref_count());        
+        {
+
+            println!("  -- acquire Tim3");
+            let _tim = Tim3::acquire().unwrap();
+            {
+                println!("  -- acquire Tim3Ch1");
+                let _ch1 = Tim3Ch1::acquire().unwrap();
+                println!("Tim3::owned():     {}", Tim3::owned_mut());
+                println!("Tim3::ref_count(): {}", Tim3::ref_count());
+
+                println!("  -- acquire Tim3Ch2");
+                let _ch2 = Tim3Ch2::acquire().unwrap();
+                println!("Tim3::owned():     {}", Tim3::owned_mut());
+                println!("Tim3::ref_count(): {}", Tim3::ref_count());
+
+                println!("  -- drop Tim3Ch1 and Tim3Ch2");
+            }
+            println!("Tim3::owned():     {}", Tim3::owned_mut());
+            println!("Tim3::ref_count(): {}", Tim3::ref_count());
+            println!("  -- drop Tim3");
+        }
+        println!("Tim3::owned():     {}", Tim3::owned_mut());
+        println!("Tim3::ref_count(): {}", Tim3::ref_count());
+        loop {}
+    })
+}
+
+// should produce the following output
+
+Tim3::owned():     false
+Tim3::ref_count(): 0
+  -- acquire Tim3
+  -- acquire Tim3Ch1
+Tim3::owned():     true
+Tim3::ref_count(): 1
+  -- acquire Tim3Ch2
+Tim3::owned():     true
+Tim3::ref_count(): 2
+  -- drop Tim3Ch1 and Tim3Ch2
+Tim3::owned():     true
+Tim3::ref_count(): 0
+  -- drop Tim3
+Tim3::owned():     false
+Tim3::ref_count(): 0
+
+```
 
 ## Board Crates
 
