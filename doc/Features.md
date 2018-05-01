@@ -21,6 +21,17 @@
    - Variants can also be used to enable / disable specific peripherals and peripheral features
    at compile time.
 
+- Channels
+   - Some peripherals contain groups of sub-components that are partially or fully independent.
+   - ADC, DAC, Timers, DMAs are common examples
+   - Channels allow those sub-components to be treated as first class
+       - Channels can have signals assigned so that pins can be connected to them (ADC, DAC and Timers use this).
+       - Interrupts can be assigned to channels where appropriate.
+       - Traits can be implemented for channels as well as for peripherals.
+   - Channels allow writing drivers and applications that abstract at boundaries that reflect the underlying
+   peripheral architecture.
+
+
 - Pins and Signals
    - Pins and Signals allow compile-time type-checked connections between MCU pins and the peripherals they are
    associated with.
@@ -31,15 +42,74 @@
    - Pins and Signals allow writing drivers and applications that support type-checked configuration of user-supplied
    peripherals and pins across MCUs.
 
-- Channels
-   - Some peripherals contain groups of sub-components that are partially or fully independent.
-   - ADC, DAC, Timers, DMAs are common examples
-   - Channels allow those sub-components to be treated as first class
-       - Channels can have signals assigned so that pins can be connected to them (ADC, DAC and Timers use this).
-       - Interrupts can be assigned to channels where appropriate.
-       - Traits can be implemented for channels as well as for peripherals.
-   - Channels allow writing drivers and applications that abstract at boundaries that reflect the underlying
-   peripheral architecture.
+
+Example: Connect TX and RX pins to a USART.
+
+```
+use board::prelude::*;
+use mcu::usart::*;
+use mcu::pins::*;
+
+const USART: Usart3 = USART3;
+const USART_TX: Pd8 = PD8;
+const USART_RX: Pd9 = PD9;
+
+fn main() {
+
+    // Connect USART_TX and USART_RX to USART
+    //   - will fail at compile time if invalid
+
+    USART_TX.connect(USART); 
+    USART_RX.connect(USART); 
+
+    // Continue using USART
+
+}
+```
+
+Example: Connect a pin to a timer channel.
+
+```
+use board::prelude::*;
+use board::mcu::pin::*;
+use board::mcu::tim_gen::*;
+
+// PWM output on PB0 / TIM3_CH3
+
+const TIM: Tim3 = TIM3;
+const TIM_CH: Tim3Ch3 = TIM3_CH3;
+const TIM_PIN: Pb0 = PB0;
+
+fn main() {
+
+    // Connect TIM_PIN to TIM_CH
+    //   - will fail at compile time if invalid
+
+    TIM_PIN.connect_to(TIM_CH);
+
+    // Continue using TIM_CH
+}
+```
+
+Example: Connecting a pin to an ADC channel.
+```
+use board::prelude::*;
+use board::mcu::pin::*;
+use board::mcu::adc::*;
+
+const ADC_CH: Adc1Ch3 = ADC1_CH3;
+const ADC_PIN: Pa3 = PA3;
+
+fn main() {
+
+    // Connect ADC_PIN to ADC_CH
+    //    - will fail at compile time if invalid
+
+    ADC_PIN.connect_to(ADC_CH);
+
+    // Continue using ADC_CH
+}
+```
 
 - Clocks 
    - Each MCU crate has a trait that defines all of the clocks for the MCU
@@ -60,6 +130,119 @@
    appropriate bit in the register of the clock control peripheral for the MCU.
    - This allows writing drivers and applications that can enable or disable peripherals as needed.
 
+Example: Print the input clock for the selected timer.
+
+```
+use board::prelude::*;
+use board::prelude::*;
+use board::mcu::tim_gen::*;
+
+const TIM: Tim3 = TIM3;
+
+fn main() {
+    // Assume board::clock() returns a system clock handle
+
+    let clk = board::clock();
+    let tim_hz = clk.clock_for(TIM);
+
+    println!("Timer Input Clock: {}", tim_hz.as_u32());
+}
+
+```
+
+Example: Enable a Timer Peripheral
+
+```
+use board::prelude::*;
+use board::mcu::tim_gen::*;
+
+const TIM: Tim3 = TIM3;
+
+fn main() {
+
+    // Enable TIM clock gate
+
+    TIM.gate_enable();
+
+    // continue working with TIM
+
+}
+
+```
+
+Example: Enable an ADC and pin
+
+```
+use board::prelude::*;
+use board::mcu::pin::*;
+use board::mcu::adc::*;
+
+const ADC_CH: Adc1Ch3 = ADC1_CH3;
+const ADC_PIN: Pa3 = PA3;
+
+fn main() {
+
+    // Enable the peripheral that the ADC channel belongs to
+
+    ADC_CH.periph().gate_enable();
+
+    // Enable the port that the ADC Pin belongs to
+
+    ADC_PIN.port().gate_enable();
+
+    // Continue using ADC_CH
+}
+
+```
+
+Example: Enable and connect USART, TX and RX pins. Configure the USART baud rate.
+```
+use board::prelude::*:
+use mcu::usart::*;
+use mcu::pins::*;
+
+const USART: Usart3 = USART3;
+const USART_TX: Pd8 = PD8;
+const USART_RX: Pd9 = PD9;
+const USART_BAUD: u32 = 115_200;
+
+fn main() {
+
+    // Enable USART Clock
+
+    USART.gate_enable();
+
+    // Enable TX and RX ports Clock
+    //   - The TX and RX port are the same in this case so it gets enabled twice, which is OK.
+    //   - also could use the method port_gate_enable() to do the same thing.
+
+    USART_TX.port().gate_enable();
+    USART_RX.port().gate_enable();
+
+    // Connect the TX and RX pins to the USART
+    //   - fails at compile time if invalid
+
+    USART_TX.connect(USART);
+    USART_RX.connect(USART);
+
+    // Get the USART input clock
+    //   - Assume board::clock() returns a system clock handle
+
+    let clk = board::clock();
+    let usart_hz = clk.clock_for(USART);
+    
+    // Set the baud clock for the USART.
+    USART.set_baud_clock(USART_BAUD, usart_hz.as_u32());
+
+    // Enable the USART 
+
+    USART.enable();
+
+    // Continue using USART
+
+}
+```
+
 - Interrupts
    - Each MCU crate defines a list of valid interrupts and defines default handlers that can be overridden
    using the cortex-m-rt interrupt handler macros.
@@ -68,6 +251,29 @@
    General and Error interrupts.
    - These traits support writing drivers and applications that can self-register appropriate interrupts based
    on the MCU and specific peripheral being used.
+
+Example: Print the interrupt number for the USART
+
+```
+use board::prelude::*:
+use mcu::usart::*;
+use mcu::irq::*;
+
+const USART: Usart3 = USART3;
+
+fn main() {
+
+    // Get the interrupt number for the USART.
+    //   - peripherals may have more than one type of interrupt, so IRQ_USART
+    //     must be specified.
+    
+    let irq_num = USART.irq_number_for(IRQ_USART);
+
+    println!("USART: Interrupt {}", irq_num);
+}
+
+```
+
 
 - MCU Traits
    - Additional traits can be implemented for MCUs to allow MCU-agnostic and even architecture-agnostic devices 
