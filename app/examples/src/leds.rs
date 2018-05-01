@@ -1,4 +1,4 @@
-//! This application uses a display timer to cycle through a array of LEDs.
+//! This application uses a delay timer to cycle through a array of LEDs.
 use bobbin_hal::delay::Delay;
 use bobbin_hal::led::*;
 
