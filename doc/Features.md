@@ -122,14 +122,6 @@ fn main() {
    a high-performance mode. Future crates will provide more sophisticated clock drivers that support
    full runtime configuration of the clock subsystem.
 
-- Gates
-   - Peripherals also support `Gates`, which enable or disable input clocks for the peripheral.
-   - Often there are additional gates such as `Reset`, which resets the peripheral, and other types of
-   gates that allow the peripheral to run in sleep or low power modes.
-   - These peripheral gate traits make it possible to enable or disable the peripheral by updating the
-   appropriate bit in the register of the clock control peripheral for the MCU.
-   - This allows writing drivers and applications that can enable or disable peripherals as needed.
-
 Example: Print the input clock for the selected timer.
 
 ```
@@ -149,6 +141,15 @@ fn main() {
 }
 
 ```
+
+- Gates
+   - Peripherals also support `Gates`, which enable or disable input clocks for the peripheral.
+   - Often there are additional gates such as `Reset`, which resets the peripheral, and other types of
+   gates that allow the peripheral to run in sleep or low power modes.
+   - These peripheral gate traits make it possible to enable or disable the peripheral by updating the
+   appropriate bit in the register of the clock control peripheral for the MCU.
+   - This allows writing drivers and applications that can enable or disable peripherals as needed.
+
 
 Example: Enable a Timer Peripheral
 
@@ -266,14 +267,13 @@ fn main() {
     // Get the interrupt number for the USART.
     //   - peripherals may have more than one type of interrupt, so IRQ_USART
     //     must be specified.
-    
+
     let irq_num = USART.irq_number_for(IRQ_USART);
 
     println!("USART: Interrupt {}", irq_num);
 }
 
 ```
-
 
 - MCU Traits
    - Additional traits can be implemented for MCUs to allow MCU-agnostic and even architecture-agnostic devices 
@@ -282,6 +282,27 @@ fn main() {
 
 - Introspection
    - All peripheral registers have Debug output traits implemented, showing the register value as well as values of individual fields.
+
+```
+
+use board::prelude::*;
+use board::mcu::usart::USART3;
+
+fn main() {
+    println!("USART3.CR1:   {:?}", USART3.cr1());
+    println!("USART3.CR2:   {:?}", USART3.cr2());
+    println!("USART3.BRR:   {:?}", USART3.brr());
+
+    // produces the following output similar to the following
+    //
+    // USART3.CR1:   [0x0000000d te re ue]
+    // USART3.CR2:   [0x00000000]
+    // USART3.BRR:   [0x0000008a div_mantissa=0x8 div_fraction=0xa]
+}
+```
+
+
+
 
 - Ownership and Reference Counting
    - All peripherals, pins, and channels have static variables and methods defined to support ownership and reference counts. The MCU crate itself does not use these traits, but they can be used by higher-level crates or by drivers and applications to ensure that peripherals, pins, and channels are used according to some policy or to implement automatic resource management.
