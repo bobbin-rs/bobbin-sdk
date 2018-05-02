@@ -1,16 +1,14 @@
 #![no_std]
 #![feature(asm, lang_items, use_extern_macros, core_intrinsics, const_fn)]
 
-pub extern crate cortex_m_rt;
-pub extern crate bobbin_sys;
+extern crate panic_abort;
+extern crate cortex_m_rt;
 pub extern crate stm32f74x as mcu;
 
 pub use mcu::bobbin_bits;
 pub use mcu::bobbin_mcu;
 pub use mcu::bobbin_hal;
-
-#[cfg(target_os="none")]
-mod lang_items;
+pub use mcu::bobbin_sys;
 
 pub mod prelude;
 pub mod clock;
@@ -18,8 +16,6 @@ pub mod clock;
 pub mod led;
 pub mod btn;
 pub mod sys;
-
-use cortex_m_rt::{default_handler, exception};
 
 pub use bobbin_sys::{print, println, abort};
 pub use sys::init;
@@ -29,8 +25,7 @@ pub type Board = NucleoF746zg;
 
 pub struct NucleoF746zg {}
 
-#[cfg(target_os="none")]
-default_handler!(handle_exception);
+cortex_m_rt::default_handler!(handle_exception);
 
 fn handle_exception() {
     use prelude::GetActiveIrq;
@@ -46,7 +41,7 @@ fn handle_exception() {
     }
 }
 
-exception!(SYS_TICK, bobbin_sys::tick::Tick::incr_ticks);
+cortex_m_rt::exception!(SYS_TICK, bobbin_sys::tick::Tick::incr_ticks);
 
 
 
