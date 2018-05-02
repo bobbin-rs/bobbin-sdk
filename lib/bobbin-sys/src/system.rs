@@ -44,7 +44,8 @@ impl<S: SystemProvider> System<S> {
     /// Initializes and returns the global system singleton. This function will also initialize and
     /// acquire the global singletons used by System.
     pub fn take() -> Self {
-        unsafe { while let None = SYSTEM_TOKEN.take() {} }
+        unsafe { asm!("cpsid i "); }
+        unsafe { while let None = SYSTEM_TOKEN.take() {} }        
 
         let provider = S::init();
         let mcu = S::init_mcu();
@@ -147,7 +148,10 @@ impl<S: SystemProvider> System<S> {
     }
 
     pub fn run<T, F: FnOnce(&Self) -> T>(&mut self, f: F) -> T {
-        f(&*self)
+        unsafe { asm!("cpsie i"); }
+        let ret = f(&*self);
+        unsafe { asm!("cpsid i"); }
+        ret
     }
 }
 
