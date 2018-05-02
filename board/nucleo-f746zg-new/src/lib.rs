@@ -32,7 +32,9 @@ pub mod sys_new;
 
 pub use startup::init;
 
-pub type System = system::System<Mcu, Clk>;
+use system::SystemProvider;
+
+// pub type System = system::System<Mcu, Clk>;
 
 pub type Mcu = mcu::Stm32f74x;
 pub type Clk = clock::SystemClock;
@@ -59,35 +61,15 @@ fn handle_exception() {
     }
 }
 
-pub struct NucleoF746zg {
-    system: System,
-}
-
-impl bobbin_sys::board::Board for NucleoF746zg {
-    type System = System;
-    fn id(&self) -> &'static str { "nucleo-f746zg" }
-    fn sys(&self) -> &System {
-        &self.system
-    }
-    fn sys_mut(&mut self) -> &mut System {
-        &mut self.system
-    }
-}
-
-impl ::core::ops::Deref for NucleoF746zg {
-    type Target = System;
-    fn deref(&self) -> &Self::Target {
-        &self.system
-    }
-}
-
-impl ::core::ops::DerefMut for NucleoF746zg {
-    fn deref_mut(&mut self) -> &mut Self::Target {
-        &mut self.system
-    }
-}
+pub struct NucleoF746zg {}
 
 pub type Board = NucleoF746zg;
+
+impl SystemProvider for Board {
+    type Mcu = mcu::Stm32f74x;
+    type Clk = clock::SystemClock;
+}
+
 
 // New System
 

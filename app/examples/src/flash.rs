@@ -1,12 +1,10 @@
-use bobbin_mcu::prelude::*;
 use bobbin_hal::prelude::*;
 use bobbin_sys::prelude::*;
 
-pub fn run<MCU: Mcu, CLK, B: Board<System=System<MCU, CLK>> + GetFlash>(mut brd: B, flash_addr: *mut u8, flash_len: usize) -> ! 
+pub fn run<S: SystemProvider + GetFlash>(mut sys: System<S>, flash_addr: *mut u8, flash_len: usize) -> ! 
 {
-    brd.run(|brd| {
-        let flash = brd.flash();
-        let sys: &B::System = brd.sys();
+    sys.run(|sys| {
+        let flash = sys.flash();
         if let Some(console) = sys.console() {
             console.writeln(b"Erasing Flash");
 

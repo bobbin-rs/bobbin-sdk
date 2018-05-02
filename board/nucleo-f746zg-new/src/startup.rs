@@ -1,8 +1,9 @@
-use {Board, System, Mcu, Clk, Heap};
+use {Board, Mcu, Clk, Heap};
+use bobbin_sys::system::System;
 use bobbin_hal::flash::*;
 use mcu::flash::{FlashPeriph, FLASH};
 
-pub fn init() -> Board {
+pub fn init() -> System<Board> {
     mcu_init();
     heap_init();
     
@@ -16,12 +17,10 @@ pub fn init() -> Board {
     #[cfg(feature="logger")]
     ::Logger::init();             
 
+    let brd = Board {};
     let mcu = Mcu {};
     let clk = Clk::default();
-
-    Board {
-        system: System::take(mcu, clk),
-    }
+    System::take(brd, mcu, clk)
 }
 
 pub fn mcu_init() {
