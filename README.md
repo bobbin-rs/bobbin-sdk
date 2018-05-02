@@ -1,7 +1,7 @@
-# The Bobbin Project
+# Bobbin SDK
 
-This repository contains components of the Bobbin Project, a multi-platform SDK for
-embedded systems development in the [Rust](https://www.rust-lang.org/en-US/) programming language.
+This repository contains Bobbin SDK, a multi-platform Software Development Kit for
+embedded systems development using the [Rust](https://www.rust-lang.org/en-US/) programming language.
 
 Core Components
 
