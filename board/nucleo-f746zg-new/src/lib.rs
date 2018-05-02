@@ -28,6 +28,7 @@ pub mod tick;
 pub mod console;
 pub mod led;
 pub mod btn;
+pub mod sys_new;
 
 pub use startup::init;
 
@@ -87,3 +88,13 @@ impl ::core::ops::DerefMut for NucleoF746zg {
 }
 
 pub type Board = NucleoF746zg;
+
+// New System
+
+// use bobbin_sys_new::System;
+
+pub fn sys_init() -> bobbin_sys_new::System<Board> {
+    bobbin_sys_new::System::init()
+}
+
+
