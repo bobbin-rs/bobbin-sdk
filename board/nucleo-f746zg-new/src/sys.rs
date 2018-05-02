@@ -4,10 +4,13 @@ use bobbin_sys::tick::Tick;
 
 use {Board, Mcu};
 
+use mcu::clock::Clocks;
+use mcu::ext::clock::*;
+
 use bobbin_hal::flash::*;
 use mcu::flash::{FlashPeriph, FLASH};
 
-pub type Clk = ::clock::SystemClock;
+pub type Clk = Clocks<DynamicClock<Osc8m, Osc32k>>;
 pub type Dispatcher = ::bobbin_sys::irq_dispatch::IrqDispatcher<Mcu>;
 
 impl SystemProvider for Board {
@@ -29,7 +32,16 @@ impl SystemProvider for Board {
     }
 
     fn init_clk() -> Self::Clk {
-        ::clock::init();
+        // 8 MHz External Clock
+        // VCO = 432MHz
+        // PLL = 216MHz
+        // PLLQ = 48MHz
+        // SYSCLK = 216MHz
+        // AHB = 216MHz
+        // APB1 = 54MHz
+        // APB2 = 108MHz 
+
+        enable_pll_hse_bypass_mode(8, 432, 0b00, 9);
         Self::Clk::default()
     }
 

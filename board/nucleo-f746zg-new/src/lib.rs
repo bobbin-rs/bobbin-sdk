@@ -6,7 +6,6 @@ extern crate cortex_m_rt;
 pub extern crate stm32f74x as mcu;
 
 pub mod prelude;
-pub mod clock;
 pub mod led;
 pub mod btn;
 pub mod sys;
