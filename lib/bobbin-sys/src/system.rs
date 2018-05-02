@@ -20,7 +20,9 @@ pub trait SystemProvider {
     fn init_clk() -> Self::Clk;
     fn init_heap() -> Heap;
     fn init_tick(&Self::Clk) -> Tick;
-    fn init_console(&Self::Clk);
+    fn init_console(&Self::Clk, &mut Heap) {}
+    fn init_led(&Self::Clk, &mut Heap) {}
+    fn init_btn(&Self::Clk, &mut Heap) {}
 }
 
 
@@ -55,7 +57,9 @@ impl<S: SystemProvider> System<S> {
         };
         let dispatcher = IrqDispatcher::init(irq_handlers.as_mut_ptr(), irq_handlers.len());
 
-        S::init_console(&clk);
+        S::init_console(&clk, &mut heap);
+        S::init_led(&clk, &mut heap);
+        S::init_btn(&clk, &mut heap);
 
         System {
             provider,

@@ -4,17 +4,15 @@
 #[macro_use]
 extern crate nucleo_f746zg as board;
 
-use board::prelude::*;
-
 #[no_mangle]
 pub extern "C" fn main() -> ! {
-    board::init().run(|brd| {
+    board::init().run(|sys| {
         println!("Running Console");
         loop {
-            if let Some(console) = brd.console() {
+            if let Some(console) = sys.console() {
                 console.write(b"Tick...\r\n");
             }
-            brd.tick().delay(500);
+            sys.tick().delay(500);
         }
     })
 }

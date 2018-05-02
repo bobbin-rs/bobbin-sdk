@@ -1,7 +1,7 @@
 use {Board, Heap};
 use bobbin_sys::system::System;
-use bobbin_hal::flash::*;
-use mcu::flash::{FlashPeriph, FLASH};
+// use bobbin_hal::flash::*;
+// use mcu::flash::{FlashPeriph, FLASH};
 
 pub fn init() -> System<Board> {
     // mcu_init();
@@ -34,11 +34,4 @@ pub fn mcu_init() {
 
 pub fn heap_init() {
     unsafe { Heap::extend(4096) }
-}
-
-impl GetFlash for Board {
-    type Output = ::mcu::flash::FlashPeriph;
-    fn flash(&self) -> &FlashPeriph {
-        &FLASH
-    }
 }

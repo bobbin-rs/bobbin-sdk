@@ -1,5 +1,14 @@
 use bobbin_sys::system::{System, SystemProvider};
-use {Board, Mcu, Clk, Heap, Tick};
+use bobbin_sys::heap::Heap;
+use bobbin_sys::tick::Tick;
+
+use {Board, Mcu};
+
+use bobbin_hal::flash::*;
+use mcu::flash::{FlashPeriph, FLASH};
+
+pub type Clk = ::clock::SystemClock;
+pub type Dispatcher = ::bobbin_sys::irq_dispatch::IrqDispatcher<Mcu>;
 
 impl SystemProvider for Board {
     type Mcu = Mcu;
@@ -43,7 +52,7 @@ impl SystemProvider for Board {
         Tick::take()
     }
 
-    fn init_console(_clk: &Self::Clk) {
+    fn init_console(_: &Self::Clk, _: &mut Heap) {
         use prelude::*;
         use mcu::ext::rcc::DedicatedClock;
         use mcu::usart::*;
@@ -72,10 +81,23 @@ impl SystemProvider for Board {
 
         Console::set(Console::new(USART.as_periph(), ConsoleMode::Cooked));
     }
+
+    fn init_led(_: &Self::Clk, _: &mut Heap) {
+        ::led::init();
+    }
+
+    fn init_btn(_: &Self::Clk, _: &mut Heap) {
+        ::btn::init();
+    }
+}
+
+impl GetFlash for Board {
+    type Output = ::mcu::flash::FlashPeriph;
+    fn flash(&self) -> &FlashPeriph {
+        &FLASH
+    }
 }
 
 pub fn init() -> System<Board> {
-    ::led::init();
-    ::btn::init();
     System::take()
 }
