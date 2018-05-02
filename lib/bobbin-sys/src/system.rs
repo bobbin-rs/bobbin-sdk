@@ -6,7 +6,7 @@ use bobbin_mcu::mcu::Mcu;
 
 use heap::Heap;
 use tick::Tick;
-use irq_dispatch::{IrqDispatcher, IrqHandler};
+use irq_dispatch::IrqDispatcher;
 use console::Console;
 
 struct SystemToken;
@@ -20,7 +20,8 @@ pub trait SystemProvider {
     fn init_mcu() -> Self::Mcu;
     fn init_clk() -> Self::Clk;
     fn init_heap() -> Heap;
-    fn init_tick(&Self::Clk) -> Tick;
+    fn init_dispatcher() -> IrqDispatcher<Self::Mcu>;
+    fn init_tick(&Self::Clk) -> Tick;    
     fn init_console(&Self::Clk, &mut Heap) {}
     fn init_led(&Self::Clk, &mut Heap) {}
     fn init_btn(&Self::Clk, &mut Heap) {}
@@ -49,14 +50,15 @@ impl<S: SystemProvider> System<S> {
         let mcu = S::init_mcu();
         let clk = S::init_clk();
         let mut heap = S::init_heap();
+        let dispatcher = S::init_dispatcher();
         let tick = S::init_tick(&clk);
         
-        let irq_handlers: &mut [Option<IrqHandler>] = if let Ok(s) = heap.try_slice(None, 8) {
-            s
-        } else {
-            &mut []
-        };
-        let dispatcher = IrqDispatcher::init(irq_handlers.as_mut_ptr(), irq_handlers.len());
+        // let irq_handlers: &mut [Option<IrqHandler>] = if let Ok(s) = heap.try_slice(None, 8) {
+        //     s
+        // } else {
+        //     &mut []
+        // };
+        // let dispatcher = IrqDispatcher::init(irq_handlers.as_mut_ptr(), irq_handlers.len());
 
         S::init_console(&clk, &mut heap);
         S::init_led(&clk, &mut heap);

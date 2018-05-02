@@ -1,6 +1,7 @@
 use bobbin_sys::system::{System, SystemProvider};
 use bobbin_sys::heap::Heap;
 use bobbin_sys::tick::Tick;
+use bobbin_sys::irq_dispatch::{IrqDispatcher, IrqHandler};
 
 use {Board, Mcu};
 
@@ -48,6 +49,11 @@ impl SystemProvider for Board {
 
     fn init_heap() -> Heap {
         unsafe { Heap::take().extended(4096) }
+    }
+
+    fn init_dispatcher() -> IrqDispatcher<Self::Mcu> {
+        static mut HANDLERS: [Option<IrqHandler>; 8] = [None; 8];
+        unsafe { IrqDispatcher::init(HANDLERS.as_mut_ptr(), HANDLERS.len()) }
     }
 
     fn init_tick(clk: &Self::Clk) -> Tick {
