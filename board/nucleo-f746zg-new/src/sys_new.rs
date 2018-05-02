@@ -2,11 +2,12 @@
 
 use Board;
 use bobbin_sys_new as sys;
+use ::mcu::usart::*;
 
 impl sys::SystemProvider for Board {
     type McuProvider = Mcu;
     type ClockProvider = Clk;
-    type ConsoleProvider = con::Con;
+    type ConsoleProvider = con::Con<Usart3>;
     type TickProvider = Tck;
     type HeapProvider = Heap;
     type IrqDispatchProvider = IrqDispatch;
@@ -32,9 +33,11 @@ impl sys::HeapProvider for Heap {
 pub mod con {
     use super::*;
     use ::prelude::*;
-    use ::mcu::ext::rcc::DedicatedClock;
+    use ::mcu::ext::rcc::{DedicatedClock};
     use ::mcu::usart::*;
     use ::mcu::pin::*;       
+    use core::marker::PhantomData;
+    use core::ops::Deref;
 
     const USART: Usart3 = USART3;
     const USART_TX: Pd8 = PD8;
@@ -42,9 +45,17 @@ pub mod con {
     const USART_CLOCK: u32 = 16_000_000; // Use HSI Clock
     const USART_BAUD: u32 = 115_200;
             
-    pub struct Con {}
+    pub struct Con<T> 
+    where
+        T: Deref<Target=UsartPeriph> + ClockSource<DedicatedClock> + GateEn + Default
+    {
+        usart: T
+    }
 
-    impl sys::ConsoleProvider for Con {
+    impl<T> sys::ConsoleProvider for Con<T> 
+    where
+        T: Deref<Target=UsartPeriph> + ClockSource<DedicatedClock> + GateEn + Default
+    {
         fn init<M: sys::McuProvider, C: sys::ClockProvider, H: sys::HeapProvider>(mcu: &mut sys::Mcu<M>, clk: &mut sys::Clocks<C>, mem: &mut sys::Heap<H>) -> Self {            
             USART_TX
                 .port_gate_enable()
@@ -54,13 +65,14 @@ pub mod con {
                 .port_gate_enable()
                 .connect_to(USART);
 
-            USART
+            let usart = T::default();
+            usart
                 .set_clock_source(DedicatedClock::Hsi)
                 .gate_enable()
                 .set_config(|c| c.set_baud_clock(USART_BAUD, USART_CLOCK))
                 .enable();
             
-            Self {}
+            Self { usart  }
         }
 
         fn write(&self, buf: &[u8]) {
