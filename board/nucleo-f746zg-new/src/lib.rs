@@ -5,7 +5,7 @@
 #[macro_use]
 pub extern crate cortex_m_rt;
 pub extern crate bobbin_sys;
-pub extern crate bobbin_sys_new;
+// pub extern crate bobbin_sys_new;
 pub extern crate stm32f74x as mcu;
 
 pub use mcu::bobbin_bits;
@@ -14,7 +14,7 @@ pub use mcu::bobbin_hal;
 
 #[cfg(target_os="none")]
 pub use cortex_m_rt::{default_handler, exception};
-pub use bobbin_sys::{system, memory, heap, irq_dispatch, print, println, abort};
+pub use bobbin_sys::{system, memory, heap, tick, irq_dispatch, print, println, abort};
 #[cfg(feature="logger")]
 pub use bobbin_sys::logger;
 
@@ -24,21 +24,22 @@ mod lang_items;
 pub mod prelude;
 pub mod startup;
 pub mod clock;
-pub mod tick;
+// pub mod tick;
 pub mod console;
 pub mod led;
 pub mod btn;
-pub mod sys_new;
+// pub mod sys_new;
 
 pub use startup::init;
 
-use system::SystemProvider;
+use system::{SystemProvider};
 
 // pub type System = system::System<Mcu, Clk>;
 
 pub type Mcu = mcu::Stm32f74x;
 pub type Clk = clock::SystemClock;
 pub type Heap = heap::Heap;
+pub type Tick = tick::Tick;
 
 #[cfg(feature="logger")]
 pub type Logger = logger::Logger;
@@ -68,15 +69,45 @@ pub type Board = NucleoF746zg;
 impl SystemProvider for Board {
     type Mcu = mcu::Stm32f74x;
     type Clk = clock::SystemClock;
+
+    fn init() -> Self {
+        Self {}
+    }
+
+    fn init_mcu() -> Self::Mcu {
+        use mcu::scb::*;
+        // Enable Instruction Cache
+        SCB.set_iciallu(|r| r);
+        unsafe { asm!("dsb") }
+        unsafe { asm!("isb") }
+        SCB.with_ccr(|r| r.set_ic(1));
+        Self::Mcu::default()
+    }
+
+    fn init_clk() -> Self::Clk {
+        clock::init();
+        Self::Clk::default()
+    }
+
+    fn init_heap() -> Heap {
+        unsafe { Heap::extend(4096) }
+        Heap::take()
+    }
+
+    fn init_tick(clk: &Self::Clk) -> Tick {
+        use mcu::systick::SYSTICK;
+        use mcu::ext::systick::SystickHz;
+
+        let ms_hz = (clk.systick_hz() / 1000).as_u32() - 1;    
+        let st = SYSTICK;
+        st.set_reload_value(ms_hz);
+        st.set_current_value(ms_hz);
+        st.set_enabled(true);
+        st.set_tick_interrupt(true);           
+
+        Tick::take()
+    }
+
 }
-
-
-// New System
-
-// use bobbin_sys_new::System;
-
-pub fn sys_init() -> bobbin_sys_new::System<Board> {
-    bobbin_sys_new::System::init()
-}
-
+exception!(SYS_TICK, Tick::incr_ticks);
 

@@ -14,7 +14,12 @@ static mut SYSTEM_TOKEN: Option<SystemToken> = Some(SystemToken);
 
 pub trait SystemProvider {
     type Mcu: Mcu;
-    type Clk; 
+    type Clk;
+    fn init() -> Self;
+    fn init_mcu() -> Self::Mcu;
+    fn init_clk() -> Self::Clk;
+    fn init_heap() -> Heap;
+    fn init_tick(&Self::Clk) -> Tick;
 }
 
 
@@ -33,10 +38,15 @@ pub struct System<S: SystemProvider> {
 impl<S: SystemProvider> System<S> {
     /// Initializes and returns the global system singleton. This function will also initialize and
     /// acquire the global singletons used by System.
-    pub fn take(provider: S, mcu: S::Mcu, clk: S::Clk) -> Self {
+    pub fn take() -> Self {
         unsafe { while let None = SYSTEM_TOKEN.take() {} }
-        let mut heap = Heap::take();
-        let tick = Tick::take();
+
+        let provider = S::init();
+        let mcu = S::init_mcu();
+        let clk = S::init_clk();
+        let mut heap = S::init_heap();
+        let tick = S::init_tick(&clk);
+        
         let irq_handlers: &mut [Option<IrqHandler>] = if let Ok(s) = heap.try_slice(None, 8) {
             s
         } else {
@@ -55,13 +65,15 @@ impl<S: SystemProvider> System<S> {
     }
 
     /// Releases the global system singleton as well as the global singletons used by System.
-    pub fn release(system: Self) -> (S, S::Mcu, S::Clk) {
+    pub fn release(system: Self) {
         let System { provider, mcu, clk, heap, tick, dispatcher, _private } = system;
+        let _ = provider;
+        let _ = mcu;
+        let _ = clk;
         Tick::release(tick);
         Heap::release(heap);
         IrqDispatcher::release(dispatcher);
         unsafe { SYSTEM_TOKEN = Some(SystemToken) }
-        (provider, mcu, clk)
     }
 
     /// Returns a shared reference to the global MCU singleton.
