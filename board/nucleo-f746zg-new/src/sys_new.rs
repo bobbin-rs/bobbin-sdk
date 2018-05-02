@@ -6,7 +6,7 @@ use bobbin_sys_new as sys;
 impl sys::SystemProvider for Board {
     type McuProvider = Mcu;
     type ClockProvider = Clk;
-    type ConsoleProvider = Con;
+    type ConsoleProvider = con::Con;
     type TickProvider = Tck;
     type HeapProvider = Heap;
     type IrqDispatchProvider = IrqDispatch;
@@ -29,11 +29,43 @@ impl sys::HeapProvider for Heap {
     fn init() -> Self { Self {} }    
 }
 
-pub struct Con {}
+pub mod con {
+    use super::*;
+    use ::prelude::*;
+    use ::mcu::ext::rcc::DedicatedClock;
+    use ::mcu::usart::*;
+    use ::mcu::pin::*;       
 
-impl sys::ConsoleProvider for Con {
-    fn init<M: sys::McuProvider, C: sys::ClockProvider, H: sys::HeapProvider>(mcu: &mut sys::Mcu<M>, clk: &mut sys::Clocks<C>, mem: &mut sys::Heap<H>) -> Self {
-        Self {}
+    const USART: Usart3 = USART3;
+    const USART_TX: Pd8 = PD8;
+    const USART_RX: Pd9 = PD9;
+    const USART_CLOCK: u32 = 16_000_000; // Use HSI Clock
+    const USART_BAUD: u32 = 115_200;
+            
+    pub struct Con {}
+
+    impl sys::ConsoleProvider for Con {
+        fn init<M: sys::McuProvider, C: sys::ClockProvider, H: sys::HeapProvider>(mcu: &mut sys::Mcu<M>, clk: &mut sys::Clocks<C>, mem: &mut sys::Heap<H>) -> Self {            
+            USART_TX
+                .port_gate_enable()
+                .connect_to(USART);
+
+            USART_RX
+                .port_gate_enable()
+                .connect_to(USART);
+
+            USART
+                .set_clock_source(DedicatedClock::Hsi)
+                .gate_enable()
+                .set_config(|c| c.set_baud_clock(USART_BAUD, USART_CLOCK))
+                .enable();
+            
+            Self {}
+        }
+
+        fn write(&self, buf: &[u8]) {
+            <UsartPeriph as SerialTx<u8>>::write(USART.as_periph(), buf);
+        }
     }
 }
 
