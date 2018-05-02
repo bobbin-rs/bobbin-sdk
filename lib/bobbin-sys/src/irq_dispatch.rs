@@ -22,6 +22,7 @@ use core::ops::Deref;
 use core::ptr;
 use core::slice;
 use core::fmt;
+use core::mem;
 use core::marker::PhantomData;
 
 /// Error returned by the interrupt dispatcher.
@@ -148,10 +149,10 @@ impl<MCU: Mcu> IrqDispatcher<MCU> {
 
     /// Register a handler for interrupt number `irq_num`. The handler is automatically unregistered
     /// when the guard is dropped.
-    pub fn register_handler<'h, H: 'static + HandleIrq>(&mut self, irq_num: u8, handler: &'h H) -> Result<Guard<'h, H, MCU>, Error> {        
+    pub fn register_handler<'h, H: 'h + HandleIrq>(&mut self, irq_num: u8, handler: &'h H) -> Result<Guard<'h, H, MCU>, Error> {        
         for h in Self::handlers().iter_mut() {
             if h.is_none() {
-                *h = Some(IrqHandler::new(irq_num, handler));
+                *h = Some(IrqHandler::new(irq_num, unsafe { mem::transmute(handler as *const HandleIrq) }));
                 Self::enable_irq(irq_num);
                 return Ok(Guard::new(handler))
             }

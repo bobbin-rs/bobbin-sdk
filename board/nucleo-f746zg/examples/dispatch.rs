@@ -22,7 +22,10 @@ pub extern "C" fn main() -> ! {
     tim.set_auto_reload((sys.clk().clock_for(tim).as_u32() / 1000) as u16);    
 
     let h_irq = tim.irq_number_for(IRQ_TIM);
-    let h = TimHandler::new(tim);
+    let mut buf = [0u8; 16];
+
+    let h = TimHandler::new(tim, &mut buf);
+    
     let _h = sys.dispatcher_mut().register_handler(h_irq, &h).unwrap();
 
     sys.run(|sys| {
@@ -38,14 +41,15 @@ pub extern "C" fn main() -> ! {
 
 use core::cell::UnsafeCell;
 
-pub struct TimHandler {
+pub struct TimHandler<'a> {
     tim: TimGenPeriph,
+    buf: &'a mut [u8],
     count: UnsafeCell<u32>,
 }
 
-impl TimHandler {
-    pub fn new<T: Into<TimGenPeriph>>(tim: T) -> Self {
-        TimHandler { tim: tim.into(), count: UnsafeCell::new(0) }
+impl<'a> TimHandler<'a> {
+    pub fn new<T: Into<TimGenPeriph>>(tim: T, buf: &'a mut [u8]) -> Self {
+        TimHandler { tim: tim.into(), buf, count: UnsafeCell::new(0) }
     }
     pub fn count(&self) -> u32 { 
         unsafe { *self.count.get() }
@@ -55,11 +59,11 @@ impl TimHandler {
     }
 }
 
-impl HandleIrq for TimHandler {
+impl<'a> HandleIrq for TimHandler<'a> {
     fn handle_irq(&self, _: u8) {
         self.tim.set_sr(|r| r);
         self.tick()
     }
 }
 
-unsafe impl Sync for TimHandler {}
+unsafe impl<'a> Sync for TimHandler<'a> {}
