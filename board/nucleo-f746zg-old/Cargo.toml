@@ -12,8 +12,8 @@ doc = false
 features = []
 version = "0.4.0"
 
-[dependencies.panic-abort]
-version = "0.1.1"
+[dependencies.bobbin-sys]
+path = " ../../../../lib/bobbin-sys/"
 
 [dev-dependencies]
 examples = { path = "../../app/examples" }
