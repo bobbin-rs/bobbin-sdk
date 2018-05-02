@@ -31,7 +31,7 @@ impl Tick {
 
     /// Increment the global tick counter. Usually called from a timer interrupt.
     #[inline]
-    pub fn incr_ticks() {
+    pub fn tick() {
         unsafe { ptr::write_volatile(TICKS.get(), ptr::read_volatile(TICKS.get()).wrapping_add(1)) }
     }
 

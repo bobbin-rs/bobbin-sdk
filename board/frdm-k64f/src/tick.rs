@@ -3,7 +3,7 @@ use mcu::ext::systick::{SystickHz, ClockSource};
 use bobbin_sys::tick::Tick;
 use Clk;
 
-exception!(SYS_TICK, Tick::incr_ticks);
+exception!(SYS_TICK, Tick::tick);
 
 pub fn init() {
     

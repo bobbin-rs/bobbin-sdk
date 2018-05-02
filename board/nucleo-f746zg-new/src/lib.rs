@@ -41,4 +41,4 @@ fn handle_exception() {
     }
 }
 
-cortex_m_rt::exception!(SYS_TICK, bobbin_sys::tick::Tick::incr_ticks);
+cortex_m_rt::exception!(SYS_TICK, bobbin_sys::tick::Tick::tick);

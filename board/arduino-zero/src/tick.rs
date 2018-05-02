@@ -3,7 +3,7 @@ use mcu::ext::systick::SystickHz;
 use bobbin_sys::tick::Tick;
 use Clk;
 
-exception!(SYS_TICK, Tick::incr_ticks);
+exception!(SYS_TICK, Tick::tick);
 
 pub fn init() {
     let ms_hz = (Clk::default().systick_hz() / 1000).as_u32() - 1;    
