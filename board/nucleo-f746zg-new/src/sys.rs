@@ -22,12 +22,7 @@ impl SystemProvider for Board {
     }
 
     fn init_mcu() -> Self::Mcu {
-        use mcu::scb::*;
-        // Enable Instruction Cache
-        SCB.set_iciallu(|r| r);
-        unsafe { asm!("dsb") }
-        unsafe { asm!("isb") }
-        SCB.with_ccr(|r| r.set_ic(1));
+        ::mcu::ext::enable_instruction_cache();
         Self::Mcu::default()
     }
 
