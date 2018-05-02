@@ -3,7 +3,6 @@
 
 use bobbin_bits::*;
 use bobbin_hal::timer::*;
-use bobbin_mcu::hz::Hz;
 use bobbin_mcu::clock::ClockFor;
 
 use systick::*;
@@ -26,10 +25,6 @@ pub fn enable_systick_external<C: ClockFor<Systick>>(clk: &C) {
     st.set_current_value(ms_hz);
     st.set_enabled(true);
     st.set_tick_interrupt(true);           
-}
-
-pub trait SystickHz {
-    fn systick_hz(&self) -> Hz;
 }
 
 /// The clock source to be used by self.

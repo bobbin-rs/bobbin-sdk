@@ -3,7 +3,6 @@ use bobbin_mcu::hz::Hz;
 use bobbin_mcu::clock::{Clock, ClockFor, ClockSource};
 
 use clock::*;
-use ext::systick::SystickHz;
 use rcc::*;
 use ext::rcc::*;
 use {tim_adv, tim_gen, i2c, usart};
@@ -218,12 +217,6 @@ impl<OSC: Clock, OSC32: Clock> ClockProvider for DynamicClock<OSC, OSC32> {
     impl_tim_clock_source!(tim_gen::TIM15, tim15, pclk2);
     impl_tim_clock_source!(tim_gen::TIM16, tim16, pclk2);
     impl_tim_clock_source!(tim_adv::TIM20, tim20, pclk2);
-}
-
-impl<OSC: Clock, OSC32: Clock> SystickHz for DynamicClock<OSC, OSC32> {
-    fn systick_hz(&self) -> Hz {
-        self.systick()
-    }
 }
 
 impl<CP> ClockFor<::systick::Systick> for Clocks<CP> where CP: ClockProvider {

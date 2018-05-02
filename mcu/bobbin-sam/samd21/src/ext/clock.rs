@@ -3,7 +3,6 @@ use bobbin_mcu::clock::{Clock, ClockFor};
 use bobbin_mcu::hz::Hz;
 
 use clock::*;
-use ext::systick::SystickHz;
 
 use gclk::*;
 use {gclk, sysctrl, nvmctrl, pm};
@@ -154,12 +153,6 @@ impl <XOSC: Clock, XOSC32K: Clock> ClockProvider for DynamicClock<XOSC, XOSC32K>
     impl_gclk!(gclk_ptc, U6::B100100); // 0x24
     impl_gclk!(gclk_i2s_0, U6::B100101); // 0x25
     impl_gclk!(gclk_i2s_1, U6::B100110); // 0x26
-}
-
-impl <XOSC: Clock, XOSC32K: Clock> SystickHz for DynamicClock<XOSC, XOSC32K> {
-    fn systick_hz(&self) -> Hz {
-        self.gclkgen0()
-    }
 }
 
 impl<CP> ClockFor<::systick::Systick> for Clocks<CP> where CP: ClockProvider {
