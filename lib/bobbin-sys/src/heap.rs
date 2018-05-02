@@ -27,10 +27,13 @@ extern "C" {
 
 struct HeapToken;
 static mut HEAP_TOKEN: Option<HeapToken> = Some(HeapToken);
-#[no_debug]
-static mut HEAP_START: *mut u8 = unsafe { &_sheap as *const u32 as *mut u8 };
-#[no_debug]
-static mut HEAP_END: *mut u8 = unsafe { &_sheap as *const u32 as *mut u8 };
+static mut HEAP: Option<Heap> = None;
+
+
+// #[no_debug]
+// static mut HEAP_START: *mut u8 = unsafe { &_sheap as *const u32 as *mut u8 };
+// #[no_debug]
+// static mut HEAP_END: *mut u8 = unsafe { &_sheap as *const u32 as *mut u8 };
 
 /// An error resulting from a heap operation.
 #[derive(Debug)]
@@ -46,49 +49,63 @@ pub enum Error {
 
 /// An alloc-only allocator.
 pub struct Heap {
+    ptr: *mut u8,
+    end: *mut u8,
     _private: (),
 }
 
 impl Heap {
     /// Acquire the global heap singleton, busy waiting if it is not available.
     pub fn take() -> Heap {
-        unsafe { while let None = HEAP_TOKEN {} }
-        Heap { _private: () }        
+        unsafe { 
+            while let None = HEAP_TOKEN {}
+            if let Some(heap) = HEAP.take() {
+                heap
+            } else {
+                Heap { 
+                    ptr: &_sheap as *const u32 as *mut u8,
+                    end: &_sheap as *const u32 as *mut u8,
+                    _private: (),
+                }
+            }
+        }
     }
 
     /// Release the global heap singleton.
-    pub fn release(_heap: Heap)  {
+    pub fn release(heap: Heap)  {
         unsafe {
-            HEAP_TOKEN = Some(HeapToken)
+            HEAP = Some(heap);
+            HEAP_TOKEN = Some(HeapToken);
         }
     }
 
     /// Extend the global heap by `size`. The caller is responsinble for ensuring that
     /// the limits are safe for the application and device.
-    pub unsafe fn extend(size: usize)  {
-        HEAP_END = HEAP_END.offset(size as isize);
+    pub unsafe fn extended(mut self, size: usize) -> Self {
+        self.end = self.end.offset(size as isize);
+        self
     }
 
     /// Returns the heap pointer, which is the address of the next byte available for allocation.
     pub fn ptr(&self) -> *mut u8 {
-        unsafe { HEAP_START }
+        self.ptr
     }
 
     // Sets the heap pointer, which is the address of the next byte available for allocation.
     fn set_ptr(&mut self, ptr: *mut u8) {
-        unsafe { HEAP_START = ptr }
+        self.ptr = ptr
     }
 
     /// Returns the heap end pointer, which is the address of the byte after the last byte
     /// available for allocation.
     pub fn end(&self) -> *mut u8 {
-        unsafe { HEAP_END }
+        self.end
     }
 
     /// Sets the heap end pointer, which is the address of the byte after the last byte available
     /// for allocation.
     fn set_end(&mut self, ptr: *mut u8) {
-        unsafe { HEAP_END = ptr }
+        self.end = ptr;
     }
 
     /// Returns the size of the heap in bytes.

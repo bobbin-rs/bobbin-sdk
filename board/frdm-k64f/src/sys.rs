@@ -47,8 +47,7 @@ impl SystemProvider for Board {
     }
 
     fn init_heap() -> Heap {
-        unsafe { Heap::extend(4096) }
-        Heap::take()
+        unsafe { Heap::take().extended(4096) }
     }
 
     fn init_tick(clk: &Self::Clk) -> Tick {
