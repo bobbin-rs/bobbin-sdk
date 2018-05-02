@@ -1,10 +1,10 @@
 use ext::systick::SystickHz;
 use bobbin_mcu::hz::Hz;
-use bobbin_mcu::clock::{Clock, ClockSource};
+use bobbin_mcu::clock::{Clock, ClockFor, ClockSource};
 use bobbin_bits::*;
 
 use ext::rcc::*;
-use clock::ClockProvider;
+use clock::*;
 use rcc::RCC;
 
 macro_rules! impl_usart_clock_source {
@@ -199,6 +199,9 @@ impl<OSC: Clock, OSC32: Clock> SystickHz for DynamicClock<OSC, OSC32> {
     }
 }
 
+impl<CP> ClockFor<::systick::Systick> for Clocks<CP> where CP: ClockProvider {
+    fn clock_for(&self, _: ::systick::Systick) -> Hz { self.systick() }
+}
 
 pub mod clock_init {
     use rcc::RCC;

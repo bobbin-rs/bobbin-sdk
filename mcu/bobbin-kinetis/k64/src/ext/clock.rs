@@ -1,9 +1,9 @@
 use ext::systick::SystickHz;
 use bobbin_mcu::hz::Hz;
-use bobbin_mcu::clock::Clock;
+use bobbin_mcu::clock::{Clock, ClockFor};
 use bobbin_bits::*;
 
-use clock::ClockProvider;
+use clock::{ Clocks, ClockProvider};
 use sim::SIM;
 use osc::OSC;
 use mcg::MCG;
@@ -194,6 +194,10 @@ impl<EXTAL: Clock, EXTAL32: Clock> SystickHz for DynamicClock<EXTAL, EXTAL32> {
     fn systick_hz(&self) -> Hz {
         self.systick()
     }
+}
+
+impl<CP> ClockFor<::systick::Systick> for Clocks<CP> where CP: ClockProvider {
+    fn clock_for(&self, _: ::systick::Systick) -> Hz { self.system() }
 }
 
 

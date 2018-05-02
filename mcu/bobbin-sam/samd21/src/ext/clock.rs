@@ -1,5 +1,5 @@
 use bobbin_bits::*;
-use bobbin_mcu::clock::Clock;
+use bobbin_mcu::clock::{Clock, ClockFor};
 use bobbin_mcu::hz::Hz;
 
 use clock::*;
@@ -161,6 +161,11 @@ impl <XOSC: Clock, XOSC32K: Clock> SystickHz for DynamicClock<XOSC, XOSC32K> {
         self.gclkgen0()
     }
 }
+
+impl<CP> ClockFor<::systick::Systick> for Clocks<CP> where CP: ClockProvider {
+    fn clock_for(&self, _: ::systick::Systick) -> Hz { self.gclkgen0() }
+}
+
 
 const VARIANT_MCK: u32 = 48_000_000;
 const VARIANT_MAINOSC: u32 = 32_768;

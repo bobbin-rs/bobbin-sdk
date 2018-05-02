@@ -1,6 +1,6 @@
 use ext::systick::SystickHz;
 use bobbin_mcu::hz::Hz;
-use bobbin_mcu::clock::{Clock, ClockSource};
+use bobbin_mcu::clock::{Clock, ClockFor, ClockSource};
 use bobbin_bits::*;
 
 use ext::rcc::DedicatedClock;
@@ -8,7 +8,7 @@ use ext::rcc::DedicatedClock;
 use rcc::RCC;
 use flash::FLASH;
 use pwr::PWR;
-use clock::ClockProvider;
+use clock::*;
 
 use ::core::intrinsics::abort;
 
@@ -172,6 +172,10 @@ impl<OSC: Clock, OSC32: Clock> SystickHz for DynamicClock<OSC, OSC32> {
     fn systick_hz(&self) -> Hz {
         self.systick()
     }
+}
+
+impl<CP> ClockFor<::systick::Systick> for Clocks<CP> where CP: ClockProvider {
+    fn clock_for(&self, _: ::systick::Systick) -> Hz { self.systick() }
 }
 
 pub fn enable_pll_hse_bypass_mode(m: u32, n: u32, p: u32, q: u32) {

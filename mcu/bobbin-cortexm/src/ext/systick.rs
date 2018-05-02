@@ -4,9 +4,29 @@
 use bobbin_bits::*;
 use bobbin_hal::timer::*;
 use bobbin_mcu::hz::Hz;
+use bobbin_mcu::clock::ClockFor;
 
 use systick::*;
 
+pub fn enable_systick_internal<C: ClockFor<Systick>>(clk: &C) {    
+    let ms_hz = (clk.clock_for(SYSTICK) / 1000).as_u32() - 1;    
+    let st = SYSTICK;
+    st.set_clock_source(ClockSource::Internal);
+    st.set_reload_value(ms_hz);
+    st.set_current_value(ms_hz);
+    st.set_enabled(true);
+    st.set_tick_interrupt(true);           
+}
+
+pub fn enable_systick_external<C: ClockFor<Systick>>(clk: &C) {    
+    let ms_hz = (clk.clock_for(SYSTICK) / 1000).as_u32() - 1;    
+    let st = SYSTICK;
+    st.set_clock_source(ClockSource::External);
+    st.set_reload_value(ms_hz);
+    st.set_current_value(ms_hz);
+    st.set_enabled(true);
+    st.set_tick_interrupt(true);           
+}
 
 pub trait SystickHz {
     fn systick_hz(&self) -> Hz;

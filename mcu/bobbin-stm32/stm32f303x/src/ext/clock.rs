@@ -1,6 +1,6 @@
 use bobbin_bits::*;
 use bobbin_mcu::hz::Hz;
-use bobbin_mcu::clock::{Clock, ClockSource};
+use bobbin_mcu::clock::{Clock, ClockFor, ClockSource};
 
 use clock::*;
 use ext::systick::SystickHz;
@@ -226,6 +226,9 @@ impl<OSC: Clock, OSC32: Clock> SystickHz for DynamicClock<OSC, OSC32> {
     }
 }
 
+impl<CP> ClockFor<::systick::Systick> for Clocks<CP> where CP: ClockProvider {
+    fn clock_for(&self, _: ::systick::Systick) -> Hz { self.systick() }
+}
 
 pub fn enable_pll_external_mode() {
     let rcc = rcc::RCC;

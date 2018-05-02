@@ -51,17 +51,9 @@ impl SystemProvider for Board {
     }
 
     fn init_tick(clk: &Self::Clk) -> Tick {
-        use mcu::systick::SYSTICK;
-        use mcu::ext::systick::{SystickHz, ClockSource};
-
-        let ms_hz = (clk.systick_hz() / 1000).as_u32() - 1;    
-        let st = SYSTICK;
-        st.set_clock_source(ClockSource::Internal);
-        st.set_reload_value(ms_hz);
-        st.set_current_value(ms_hz);
-        st.set_enabled(true);
-        st.set_tick_interrupt(true);           
-
+        use mcu::ext::systick;
+        
+        systick::enable_systick_internal(clk);
         Tick::take()
     }
 
