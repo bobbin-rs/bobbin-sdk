@@ -103,7 +103,6 @@ pub unsafe extern "C" fn DH_TRAMPOLINE() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_0_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -114,7 +113,6 @@ extern "C" fn IRQ_0_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_1_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -125,7 +123,6 @@ extern "C" fn IRQ_1_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_2_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -136,7 +133,6 @@ extern "C" fn IRQ_2_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_3_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -147,7 +143,6 @@ extern "C" fn IRQ_3_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_4_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -158,7 +153,6 @@ extern "C" fn IRQ_4_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_5_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -169,7 +163,6 @@ extern "C" fn IRQ_5_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_6_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -180,7 +173,6 @@ extern "C" fn IRQ_6_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_7_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -191,7 +183,6 @@ extern "C" fn IRQ_7_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_8_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -202,7 +193,6 @@ extern "C" fn IRQ_8_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_9_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -213,7 +203,6 @@ extern "C" fn IRQ_9_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_10_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -224,7 +213,6 @@ extern "C" fn IRQ_10_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_11_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -235,7 +223,6 @@ extern "C" fn IRQ_11_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_12_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -246,7 +233,6 @@ extern "C" fn IRQ_12_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_13_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -257,7 +243,6 @@ extern "C" fn IRQ_13_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_14_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -268,7 +253,6 @@ extern "C" fn IRQ_14_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_15_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -279,7 +263,6 @@ extern "C" fn IRQ_15_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_16_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -290,7 +273,6 @@ extern "C" fn IRQ_16_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_17_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -301,7 +283,6 @@ extern "C" fn IRQ_17_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_18_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -312,7 +293,6 @@ extern "C" fn IRQ_18_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_19_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -323,7 +303,6 @@ extern "C" fn IRQ_19_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_20_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -334,7 +313,6 @@ extern "C" fn IRQ_20_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_21_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -345,7 +323,6 @@ extern "C" fn IRQ_21_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_22_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -356,7 +333,6 @@ extern "C" fn IRQ_22_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_23_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -367,7 +343,6 @@ extern "C" fn IRQ_23_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_24_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -378,7 +353,6 @@ extern "C" fn IRQ_24_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_25_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -389,7 +363,6 @@ extern "C" fn IRQ_25_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_26_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -400,7 +373,6 @@ extern "C" fn IRQ_26_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_27_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -411,7 +383,6 @@ extern "C" fn IRQ_27_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_28_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -422,7 +393,6 @@ extern "C" fn IRQ_28_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_29_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -433,7 +403,6 @@ extern "C" fn IRQ_29_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_30_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -444,7 +413,6 @@ extern "C" fn IRQ_30_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_31_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -455,7 +423,6 @@ extern "C" fn IRQ_31_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_32_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -466,7 +433,6 @@ extern "C" fn IRQ_32_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_33_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -477,7 +443,6 @@ extern "C" fn IRQ_33_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_34_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -488,7 +453,6 @@ extern "C" fn IRQ_34_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_35_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -499,7 +463,6 @@ extern "C" fn IRQ_35_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_36_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -510,7 +473,6 @@ extern "C" fn IRQ_36_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_37_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -521,7 +483,6 @@ extern "C" fn IRQ_37_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_38_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -532,7 +493,6 @@ extern "C" fn IRQ_38_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_39_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -543,7 +503,6 @@ extern "C" fn IRQ_39_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_40_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -554,7 +513,6 @@ extern "C" fn IRQ_40_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_41_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -565,7 +523,6 @@ extern "C" fn IRQ_41_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_42_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -576,7 +533,6 @@ extern "C" fn IRQ_42_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_43_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -587,7 +543,6 @@ extern "C" fn IRQ_43_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_44_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -598,7 +553,6 @@ extern "C" fn IRQ_44_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_45_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -609,7 +563,6 @@ extern "C" fn IRQ_45_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_46_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -620,7 +573,6 @@ extern "C" fn IRQ_46_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_47_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -631,7 +583,6 @@ extern "C" fn IRQ_47_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_48_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -642,7 +593,6 @@ extern "C" fn IRQ_48_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_49_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -653,7 +603,6 @@ extern "C" fn IRQ_49_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_50_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -664,7 +613,6 @@ extern "C" fn IRQ_50_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_51_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -675,7 +623,6 @@ extern "C" fn IRQ_51_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_52_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -686,7 +633,6 @@ extern "C" fn IRQ_52_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_53_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -697,7 +643,6 @@ extern "C" fn IRQ_53_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_54_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -708,7 +653,6 @@ extern "C" fn IRQ_54_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_55_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -719,7 +663,6 @@ extern "C" fn IRQ_55_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_56_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -730,7 +673,6 @@ extern "C" fn IRQ_56_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_57_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -741,7 +683,6 @@ extern "C" fn IRQ_57_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_58_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -752,7 +693,6 @@ extern "C" fn IRQ_58_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_59_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -763,7 +703,6 @@ extern "C" fn IRQ_59_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_60_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -774,7 +713,6 @@ extern "C" fn IRQ_60_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_61_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -785,7 +723,6 @@ extern "C" fn IRQ_61_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_62_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -796,7 +733,6 @@ extern "C" fn IRQ_62_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_63_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -807,7 +743,6 @@ extern "C" fn IRQ_63_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_64_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -818,7 +753,6 @@ extern "C" fn IRQ_64_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_65_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -829,7 +763,6 @@ extern "C" fn IRQ_65_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_66_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -840,7 +773,6 @@ extern "C" fn IRQ_66_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_67_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -851,7 +783,6 @@ extern "C" fn IRQ_67_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_68_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -862,7 +793,6 @@ extern "C" fn IRQ_68_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_69_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -873,7 +803,6 @@ extern "C" fn IRQ_69_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_70_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -884,7 +813,6 @@ extern "C" fn IRQ_70_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_71_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -895,7 +823,6 @@ extern "C" fn IRQ_71_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_72_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -906,7 +833,6 @@ extern "C" fn IRQ_72_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_73_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -917,7 +843,6 @@ extern "C" fn IRQ_73_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_74_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -928,7 +853,6 @@ extern "C" fn IRQ_74_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_75_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -939,7 +863,6 @@ extern "C" fn IRQ_75_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_76_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -950,7 +873,6 @@ extern "C" fn IRQ_76_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_77_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -961,7 +883,6 @@ extern "C" fn IRQ_77_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_78_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -972,7 +893,6 @@ extern "C" fn IRQ_78_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_79_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -983,7 +903,6 @@ extern "C" fn IRQ_79_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_80_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -994,7 +913,6 @@ extern "C" fn IRQ_80_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_81_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -1005,7 +923,6 @@ extern "C" fn IRQ_81_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_82_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -1016,7 +933,6 @@ extern "C" fn IRQ_82_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_83_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -1027,7 +943,6 @@ extern "C" fn IRQ_83_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_84_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -1038,7 +953,6 @@ extern "C" fn IRQ_84_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_85_HANDLER() {
-    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
