@@ -10,7 +10,7 @@ pub fn init() -> System<Board> {
     // ::clock::init();
     // ::tick::init();
     
-    ::console::init();
+    // ::console::init();
     ::led::init();
     ::btn::init();
 

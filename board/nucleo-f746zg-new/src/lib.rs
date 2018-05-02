@@ -24,17 +24,12 @@ mod lang_items;
 pub mod prelude;
 pub mod startup;
 pub mod clock;
-// pub mod tick;
-pub mod console;
+
 pub mod led;
 pub mod btn;
-// pub mod sys_new;
+pub mod sys;
 
-pub use startup::init;
-
-use system::{SystemProvider};
-
-// pub type System = system::System<Mcu, Clk>;
+pub use sys::init;
 
 pub type Mcu = mcu::Stm32f74x;
 pub type Clk = clock::SystemClock;
@@ -62,52 +57,9 @@ fn handle_exception() {
     }
 }
 
-pub struct NucleoF746zg {}
+exception!(SYS_TICK, Tick::incr_ticks);
 
+pub struct NucleoF746zg {}
 pub type Board = NucleoF746zg;
 
-impl SystemProvider for Board {
-    type Mcu = mcu::Stm32f74x;
-    type Clk = clock::SystemClock;
-
-    fn init() -> Self {
-        Self {}
-    }
-
-    fn init_mcu() -> Self::Mcu {
-        use mcu::scb::*;
-        // Enable Instruction Cache
-        SCB.set_iciallu(|r| r);
-        unsafe { asm!("dsb") }
-        unsafe { asm!("isb") }
-        SCB.with_ccr(|r| r.set_ic(1));
-        Self::Mcu::default()
-    }
-
-    fn init_clk() -> Self::Clk {
-        clock::init();
-        Self::Clk::default()
-    }
-
-    fn init_heap() -> Heap {
-        unsafe { Heap::extend(4096) }
-        Heap::take()
-    }
-
-    fn init_tick(clk: &Self::Clk) -> Tick {
-        use mcu::systick::SYSTICK;
-        use mcu::ext::systick::SystickHz;
-
-        let ms_hz = (clk.systick_hz() / 1000).as_u32() - 1;    
-        let st = SYSTICK;
-        st.set_reload_value(ms_hz);
-        st.set_current_value(ms_hz);
-        st.set_enabled(true);
-        st.set_tick_interrupt(true);           
-
-        Tick::take()
-    }
-
-}
-exception!(SYS_TICK, Tick::incr_ticks);
 
