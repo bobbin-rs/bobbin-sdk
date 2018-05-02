@@ -5,8 +5,6 @@
 extern crate arduino_zero as board;
 extern crate examples;
 
-use board::prelude::*;
-
 #[no_mangle]
 pub extern "C" fn main() -> ! {
     board::init().run(|brd| {

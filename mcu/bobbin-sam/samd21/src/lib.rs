@@ -5,6 +5,7 @@ pub extern crate sam_common;
 pub use sam_common::bobbin_bits;
 pub use sam_common::bobbin_mcu;
 pub use sam_common::bobbin_hal;
+pub use sam_common::bobbin_sys;
 pub use sam_common::nvic;
 pub use sam_common::scb;
 pub use sam_common::systick;
