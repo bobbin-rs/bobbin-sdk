@@ -6,111 +6,60 @@
 extern crate nucleo_f746zg as board;
 extern crate examples;
 
-use board::mcu::systick::SYSTICK;
-use board::mcu::ext::systick::SystickHz;
-use board::mcu::scb::SCB;
-
-use board::mcu::ext::dispatch::{HandleException};
-
-use core::cell::UnsafeCell;
+use board::prelude::*;
+use board::mcu::irq::IRQ_TIM;
+use board::mcu::tim_gen::*;
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
     let mut sys = board::init();
-    println!("Dispatch Test");
 
-    // println!("{:?}", sys.dispatcher());
-
-    let p = PendSVHandler::new();
-    let p = if let Ok(p) = sys.dispatcher_mut().register_pendsv_handler(&p) {
-        p
-    } else {
-        abort!("Unable to register PendSVHandler");
-    };
-    // // println!("{:?}", sys.dispatcher());
-
-    let reload_value = (sys.clock().systick_hz() / 1000).as_u32() - 1;
-    SYSTICK.set_reload_value(reload_value);
-    SYSTICK.set_current_value(reload_value);
-    SYSTICK.set_enabled(true);        
-
+    println!("Interrupt Dispatch Test");
     
-    let t = TickHandler::new();    
-    let t = if let Ok(t) = sys.dispatcher_mut().register_systick_handler(&t) {
-        t
-    } else {
-        abort!("Unable to register TickHandler 1");
-    };
-    // // println!("{:?}", sys.dispatcher());
+    let tim = TIM3;
 
-    board::delay(100);
+    tim.gate_enable();
+    tim.set_auto_reload((sys.clk().clock_for(tim).as_u32() / 1000) as u16);    
 
-    let t2 = TickHandler::new();    
-    let t2 = if let Ok(t2) = sys.dispatcher_mut().register_systick_handler(&t2) {
-        t2
-    } else {
-        abort!("Unable to register TickHandler 2");
-    };
+    let h_irq = tim.irq_number_for(IRQ_TIM);
+    let h = TimHandler::new(tim);
+    let _h = sys.dispatcher_mut().register_handler(h_irq, &h).unwrap();
 
-    // // println!("{:?}", sys.dispatcher());
-
-    sys.run(|sys| loop {
-        // println!("tick: {} {} {}", t.count(), t2.count(), p.count());
-        if let Some(c) = sys.console() {
-            c.write(b"Tick: ");
-            c.write_u32(t.count(), 10);
-            c.write(b" ");
-            c.write_u32(t2.count(), 10);
-            c.write(b" ");
-            c.write_u32(p.count(), 10);
-            c.write(b"\n");
+    sys.run(|sys| {
+        tim
+            .with_dier(|r| r.set_uie(1))
+            .set_enabled(true);
+        loop {
+            println!("{} {}", tim.cnt(), h.count());
+            sys.tick().delay(500);
         }
-        board::delay(1000);        
     })
 }
 
+use core::cell::UnsafeCell;
 
-
-pub struct TickHandler {
+pub struct TimHandler {
+    tim: TimGenPeriph,
     count: UnsafeCell<u32>,
 }
 
-impl TickHandler {
-    pub fn new() -> Self {
-        Self { count: UnsafeCell::new(0) }
+impl TimHandler {
+    pub fn new<T: Into<TimGenPeriph>>(tim: T) -> Self {
+        TimHandler { tim: tim.into(), count: UnsafeCell::new(0) }
     }
-
-    pub fn count(&self) -> u32 {
-        unsafe { * self.count.get() }
+    pub fn count(&self) -> u32 { 
+        unsafe { *self.count.get() }
     }
-}
-
-impl HandleException for TickHandler {
-    unsafe fn handle_exception(&self, _: u8) {        
-        *self.count.get() += 1;
-        if *self.count.get() % 1000 == 0 {
-            SCB.with_icsr(|r| r.set_pendsvset(1));
-        }
+    pub fn tick(&self) {
+        unsafe { *self.count.get() += 1 }
     }
 }
 
-pub struct PendSVHandler {
-    count: UnsafeCell<u32>,
-}
-
-impl PendSVHandler {
-    pub fn new() -> Self {
-        Self { count: UnsafeCell::new(0) }
-    }
-
-    pub fn count(&self) -> u32 {
-        unsafe { * self.count.get() }
-    }
-    
-}
-
-impl HandleException for PendSVHandler {
-    unsafe fn handle_exception(&self, _: u8) {
-        *self.count.get() += 1;
+impl HandleIrq for TimHandler {
+    fn handle_irq(&self, _: u8) {
+        self.tim.set_sr(|r| r);
+        self.tick()
     }
 }
+
+unsafe impl Sync for TimHandler {}
