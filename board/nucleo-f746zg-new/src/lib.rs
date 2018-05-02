@@ -1,5 +1,5 @@
 #![no_std]
-#![feature(asm, lang_items, use_extern_macros, core_intrinsics, const_fn)]
+#![feature(asm, use_extern_macros)]
 
 extern crate panic_abort;
 extern crate cortex_m_rt;
