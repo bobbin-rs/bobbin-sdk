@@ -2,11 +2,16 @@
 #![no_main]
 
 #[macro_use]
-extern crate %board% as board;
+extern crate %board_name% as board;
+
+use board::prelude::*;
 
 #[no_mangle]
 pub extern "C" fn main() -> ! {
-    board::init();
-    println!("Running");
-    loop {}
+    let mut brd = board::init();
+    brd.run(|brd| {
+        println!("[start] Running tests for {}", brd.id());
+        println!("[done]");
+        loop {}
+    })
 }

@@ -4,6 +4,7 @@ pub extern crate kinetis_common;
 pub use kinetis_common::bobbin_bits;
 pub use kinetis_common::bobbin_mcu;
 pub use kinetis_common::bobbin_hal;
+pub use kinetis_common::bobbin_sys;
 pub use kinetis_common::nvic;
 pub use kinetis_common::scb;
 pub use kinetis_common::systick;

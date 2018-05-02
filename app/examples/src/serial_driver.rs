@@ -20,7 +20,7 @@ where
     MCU: Mcu,
     USART: 'static + SerialTx<u8> + SerialTxIrq + SerialRx<u8> + SerialRxIrq + Sync,
 {
-    pub fn new<CLK, U: Into<USART> + Irq<I>, I: IrqType>(sys: &mut System<MCU, CLK>, usart: U, irq_type: I) -> Result<Self, Error> {
+    pub fn new<S: SystemProvider, U: Into<USART> + Irq<I>, I: IrqType>(sys: &mut System<S>, usart: U, irq_type: I) -> Result<Self, Error> {
         Ok(
             EchoApp {
                 s: SerialDriver::new(sys, usart, irq_type)?,
@@ -64,7 +64,7 @@ impl Default for Config {
 
 pub struct SerialDriver<MCU, USART> 
 where
-    MCU: Mcu,
+    MCU: Mcu,    
     USART: 'static + SerialTx<u8> + SerialTxIrq + SerialRx<u8> + SerialRxIrq + Sync,
 {
     guard: Guard<'static, SerialHandler<USART>, MCU>,
@@ -77,12 +77,12 @@ where
     MCU: Mcu,
     USART: 'static + SerialTx<u8> + SerialTxIrq + SerialRx<u8> + SerialRxIrq + Sync,
 {
-    pub fn new<CLK, U: Into<USART> + Irq<I>, I: IrqType>(sys: &mut System<MCU, CLK>, usart: U, irq_type: I) -> Result<Self, Error> 
+    pub fn new<S: SystemProvider<Mcu=MCU>, U: Into<USART> + Irq<I>, I: IrqType>(sys: &mut System<S>, usart: U, irq_type: I) -> Result<Self, Error> 
     {
         Self::new_with_config(sys, usart, irq_type, Config::default())
     }
 
-    pub fn new_with_config<CLK, U: Into<USART> + Irq<I>, I: IrqType>(sys: &mut System<MCU, CLK>, usart: U, _irq_type: I, cfg: Config) -> Result<Self, Error> 
+    pub fn new_with_config<S: SystemProvider<Mcu=MCU>, U: Into<USART> + Irq<I>, I: IrqType>(sys: &mut System<S>, usart: U, _irq_type: I, cfg: Config) -> Result<Self, Error> 
     {
         // let irq_number = USART.irq_number_for(irq_type);
         let irq_number = <U as Irq<I>>::Output::irq_number();
