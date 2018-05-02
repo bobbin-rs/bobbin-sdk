@@ -4,8 +4,6 @@
 extern crate nucleo_l432kc as board;
 extern crate examples;
 
-use board::prelude::*;
-
 #[no_mangle]
 pub extern "C" fn main() -> ! {
     board::init().run(|brd| {

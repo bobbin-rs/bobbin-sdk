@@ -9,6 +9,18 @@ use osc::OSC;
 use mcg::MCG;
 
 #[derive(Default)]
+pub struct Extal50m {}
+impl Clock for Extal50m {
+    fn hz() -> Hz { Hz::from_num(50_000_000) }
+}
+
+#[derive(Default)]
+pub struct Extal32k {}
+impl Clock for Extal32k {
+    fn hz() -> Hz { Hz::from_num(32767) }
+}
+
+#[derive(Default)]
 pub struct DynamicClock<EXTAL: Clock, EXTAL32: Clock>(EXTAL, EXTAL32);
 
 impl<EXTAL: Clock, EXTAL32: Clock> DynamicClock<EXTAL, EXTAL32> {

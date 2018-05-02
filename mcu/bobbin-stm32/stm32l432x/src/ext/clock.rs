@@ -47,6 +47,18 @@ macro_rules! impl_lptim_clock_source {
 }
 
 #[derive(Default)]
+pub struct Osc8m {}
+impl Clock for Osc8m {
+    fn hz() -> Hz { Hz::from_num(8_000_000) }
+}
+
+#[derive(Default)]
+pub struct Osc32k {}
+impl Clock for Osc32k {
+    fn hz() -> Hz { Hz::from_num(32768) }
+}
+
+#[derive(Default)]
 pub struct DynamicClock<OSC: Clock, OSC32: Clock>(OSC, OSC32);
 
 impl<OSC: Clock, OSC32: Clock> DynamicClock<OSC, OSC32> {
