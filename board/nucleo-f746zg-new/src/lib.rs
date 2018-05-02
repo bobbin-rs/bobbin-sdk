@@ -25,7 +25,7 @@ pub type Board = NucleoF746zg;
 pub struct NucleoF746zg {}
 
 impl bobbin_sys::board::Board for NucleoF746zg {
-    fn id() -> &'static str { "nucleo-f746zg" }    
+    fn id(&self) -> &'static str { "nucleo-f746zg" }    
 }
 
 cortex_m_rt::default_handler!(bobbin_sys::irq_dispatch::IrqDispatcher::<Mcu>::handle_exception);
