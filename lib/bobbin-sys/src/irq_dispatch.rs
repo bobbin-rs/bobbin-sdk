@@ -90,6 +90,19 @@ impl<MCU: Mcu> IrqDispatcher<MCU> {
         unsafe { IRQ_TOKEN = Some(IrqToken) }
     }
 
+    pub fn handle_exception() {
+        let exc = MCU::get_active_irq();
+        if exc > 16 && Self::dispatch(exc.wrapping_sub(16)) {
+            return
+        } else {
+            // ::bobbin_sys::console::write(b"Unhandled Exception: 0x");
+            // ::bobbin_sys::console::write_u8_hex(exc);
+            // ::bobbin_sys::console::write(b"\r\n");
+            unsafe { asm!("bkpt") };
+            loop {}
+        }
+    }
+
     /// Returns a reference to the list of interrupt handlers.
     /// 
     /// NOTE: should be private?
@@ -215,6 +228,8 @@ impl<MCU: Mcu> fmt::Debug for IrqDispatcher<MCU> {
         Ok(())
     }
 }
+
+
 
 #[cfg(test)]
 mod tests {

@@ -15,6 +15,7 @@ static mut SYSTEM_TOKEN: Option<SystemToken> = Some(SystemToken);
 pub trait SystemProvider {
     type Mcu: Mcu;
     type Clk;
+
     fn init() -> Self;
     fn init_mcu() -> Self::Mcu;
     fn init_clk() -> Self::Clk;
