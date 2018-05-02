@@ -9,9 +9,7 @@ pub extern "C" fn main() -> ! {
     board::init().run(|sys| {
         println!("Running Console");
         loop {
-            if let Some(console) = sys.console() {
-                console.write(b"Tick...\r\n");
-            }
+            sys.console().write(b"Tick...\r\n");
             sys.tick().delay(500);
         }
     })

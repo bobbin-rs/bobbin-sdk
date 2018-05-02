@@ -135,8 +135,12 @@ impl<S: SystemProvider> System<S> {
     }
 
     /// Returns a shared reference to the global Console.
-    pub fn console(&self) -> Option<&'static Console<'static>> {
-        Console::borrow()
+    pub fn console(&self) -> &'static Console<'static> {
+        if let Some(console) = Console::borrow() {
+            console
+        } else {
+            loop {}
+        }
     }
 
     pub fn run<T, F: FnOnce(&Self) -> T>(&mut self, f: F) -> T {
