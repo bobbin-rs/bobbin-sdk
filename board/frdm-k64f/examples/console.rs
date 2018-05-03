@@ -1,5 +1,6 @@
 #![no_std]
 #![no_main]
+#![feature(asm)]
 
 #[macro_use]
 extern crate frdm_k64f as board;
