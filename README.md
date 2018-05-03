@@ -21,6 +21,10 @@ Additional Repositories
 
 Why is Bobbin designed the way it is? See [Goals](./doc/Goals.md).
 
+## Fitting In
+
+How does Bobbin fit in with the rest of the Rust Embedded ecosystem? See [Fitting In](./doc/FittingIn.md)
+
 ## Features
 
 What makes Bobbin special? See [Features](./doc/Features.md).
