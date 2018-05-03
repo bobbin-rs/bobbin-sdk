@@ -133,14 +133,11 @@ After initialization is complete, you can run your application by passing a clos
 
 ```
 fn main() {
-    let mut sys = board::init(); // `let mut` used here becuase we will need to call method using &mut self later. 
-
-    // Initialize system here. All interrupts are disabled.
+    let mut sys = board::init();
 
     // Run the system
 
     sys.run(|sys| {
-        // Within the closure, you have access to &sys
         println!("Starting Up...");
         loop {
             println!("Hello, World...);
