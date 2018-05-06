@@ -2,15 +2,21 @@
 
 use ::core::cell::UnsafeCell;
 use ::core::ptr;
+use ::core::mem;
+use ::core::slice;
+use core::marker::PhantomData;
 
 pub enum Error {
-    Timeout
+    Timeout,
+    NoHandlerSlots,
 }
 
 static mut TICKS: UnsafeCell<u32> = UnsafeCell::new(u32::max_value() - 2500);
 
 struct TickToken;
 static mut TICK_TOKEN: Option<TickToken> = Some(TickToken);
+static mut TICK_HANDLERS_PTR: *mut Option<*const HandleTick> = ptr::null_mut();
+static mut TICK_HANDLERS_LEN: usize = 0;
 
 /// Global singleton providing a millisecond tick counter.
 pub struct Tick {
@@ -29,10 +35,46 @@ impl Tick {
         unsafe { TICK_TOKEN = Some(TickToken) }
     }
 
+    pub fn init(ptr: *mut Option<*const HandleTick>, len: usize) -> Self {
+        unsafe { 
+            while let None = TICK_TOKEN {} 
+            TICK_HANDLERS_PTR = ptr;
+            TICK_HANDLERS_LEN = len;            
+        }        
+        Tick { _private: () }
+    }
+
+    #[inline]
+    fn handlers() -> &'static mut [Option<*const HandleTick>] {
+        unsafe {
+            slice::from_raw_parts_mut(TICK_HANDLERS_PTR, TICK_HANDLERS_LEN)
+        }       
+    }
+
+    pub fn register<'a>(&mut self, handler: &'a HandleTick) -> Result<TickGuard<'a>, Error> {
+        let handler = unsafe { mem::transmute(handler as *const HandleTick) };
+        for slot in Self::handlers().iter_mut() {
+            if slot.is_none() {
+                *slot = Some(handler);
+                return Ok(TickGuard::new(handler))
+            }
+        }
+        Err(Error::NoHandlerSlots)
+    }    
+
     /// Increment the global tick counter. Usually called from a timer interrupt.
     #[inline]
-    pub fn tick() {
-        unsafe { ptr::write_volatile(TICKS.get(), ptr::read_volatile(TICKS.get()).wrapping_add(1)) }
+    pub fn tick() {        
+        let ticks = unsafe { 
+            let ticks = ptr::read_volatile(TICKS.get()).wrapping_add(1);
+            ptr::write_volatile(TICKS.get(), ticks);
+            ticks
+        };
+        for h in Self::handlers() {
+            if let Some(h) = h {
+                unsafe { (&*(*h)).handle_tick(ticks) }
+            }
+        }
     }
 
     /// Returns the value of the global tick counter.
@@ -96,11 +138,29 @@ impl<'a> ::bobbin_hal::delay::Delay for &'a Tick {
     }
 }
 
-// pub trait GetTick {
-//     fn enable_tick(&self, ms_hz: u32);
-//     fn disable_tick(&self);
-//     fn tick(&self) -> &Tick {
-//         &TICK
-//     }
-// }
+pub struct TickGuard<'a> {
+    handler: *const HandleTick,
+    _phantom: PhantomData<&'a HandleTick>
+}
 
+impl<'a> TickGuard<'a> {
+    fn new(handler: *const HandleTick) -> Self {
+        TickGuard { handler, _phantom: PhantomData }
+    }
+}
+
+impl<'a> Drop for TickGuard<'a> {
+    fn drop(&mut self) {
+        for slot in Tick::handlers().iter_mut() {
+            if let Some(handler) = slot {
+                if self.handler == *handler {
+                    *slot = None;
+                }
+            }
+        }
+    }
+}
+
+pub trait HandleTick {
+    fn handle_tick(&self, counter: u32);
+}
