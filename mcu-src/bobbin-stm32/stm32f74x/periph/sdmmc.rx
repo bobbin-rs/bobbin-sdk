@@ -1,10 +1,10 @@
 (peripheral
     (group-name SDMMC)
-    (name SDMMC1)
+    (name SDMMC)
     (address 0x40012c00)
     (description "Secure digital input/output interface")
     (interrupt
-        (name SDMMC1)
+        (name SDMMC)
         (value 49)
         (description "SDMMC1 global interrupt")
     )
