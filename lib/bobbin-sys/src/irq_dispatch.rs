@@ -17,7 +17,7 @@
 //! and most operations are not available in Run mode.
 
 use bobbin_mcu::mcu::Mcu;
-use bobbin_mcu::irq::{Irq, IrqMain, IRQ_MAIN};
+use bobbin_mcu::irq::{Irq, IrqType, IrqMain, IRQ_MAIN};
 
 use core::ops::Deref;
 use core::ptr;
@@ -161,11 +161,17 @@ impl<MCU: Mcu> IrqDispatcher<MCU> {
         Err(Error::IrqUnavailable(irq_num))
     }
 
-    /// Register a handler for interrupt number `irq_num`. The handler is automatically unregistered
+    /// Register a handler for interrupt type `irq_type` of peripheral `periph`. The handler is automatically unregistered
     /// when the guard is dropped.
-    pub fn register_periph_handler<'h, P: Irq<IrqMain>, H: 'h + HandleIrq>(&mut self, p: P, handler: &'h H) -> Result<Guard<'h, H, MCU>, Error> {        
-        let irq_num = p.irq_number_for(IRQ_MAIN);
+    pub fn register_periph_type_handler<'h, P: Irq<I>, I: IrqType, H: 'h + HandleIrq>(&mut self, periph: P, irq_type: I, handler: &'h H) -> Result<Guard<'h, H, MCU>, Error> {        
+        let irq_num = periph.irq_number_for(irq_type);
         self.register_handler(irq_num, handler)
+    }
+
+    /// Register a handler for the main interrupt handler for `periph`. The handler is automatically unregistered
+    /// when the guard is dropped.
+    pub fn register_periph_handler<'h, P: Irq<IrqMain>, H: 'h + HandleIrq>(&mut self, periph: P, handler: &'h H) -> Result<Guard<'h, H, MCU>, Error> {        
+        self.register_periph_type_handler(periph, IRQ_MAIN, handler)
     }
 
     fn unregister_handler(handler: *const u8) {
