@@ -1,8 +1,10 @@
+use bobbin_mcu::prelude::*;
 use bobbin_sys::prelude::*;
+use core::marker::PhantomData;
 use core::cell::UnsafeCell;
 
 pub fn run_with_sys<S: SystemProvider>(mut sys: System<S>) -> ! {
-    let ticker = Ticker::new();
+    let ticker = Ticker::<S::Mcu>::new();
     let pender = Pender::new();
 
     let _guard_tick = match sys.tick_mut().register(&ticker) {
@@ -31,13 +33,14 @@ pub fn run_with_sys<S: SystemProvider>(mut sys: System<S>) -> ! {
     })    
 }
 
-pub struct Ticker {
+pub struct Ticker<MCU: Mcu> {
     counter: UnsafeCell<u32>,
+    _phantom: PhantomData<MCU>,
 }
 
-impl Ticker {
+impl<MCU: Mcu> Ticker<MCU> {
     pub fn new() -> Self {
-        Self { counter: UnsafeCell::new(0) }        
+        Self { counter: UnsafeCell::new(0), _phantom: PhantomData }        
     }
 
     pub fn counter(&self) -> u32 {
@@ -45,11 +48,12 @@ impl Ticker {
     }
 }
 
-impl HandleTick for Ticker {
+impl<MCU: Mcu> HandleTick for Ticker<MCU> {
     fn handle_tick(&self, c: u32) {
         if c % 1000 == 0 {
             println!("... tick");
             unsafe { (*self.counter.get()) += 1 }
+            MCU::pend();
         }
     }
 }
@@ -69,7 +73,7 @@ impl Pender {
 
 impl HandlePend for Pender {
     fn handle_pend(&self) {
-        println!("pend {}", self.counter());
+        println!("... pend {}", self.counter());
         unsafe { (*self.counter.get()) += 1 }
     }
 }
