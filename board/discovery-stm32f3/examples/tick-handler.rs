@@ -1,7 +1,7 @@
 #![no_std]
 #![no_main]
 
-extern crate nucleo_f746zg as board;
+extern crate discovery_stm32f3 as board;
 extern crate examples;
 
 #[no_mangle]

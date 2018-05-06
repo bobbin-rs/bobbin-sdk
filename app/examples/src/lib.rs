@@ -3,7 +3,7 @@
 
 extern crate bobbin_hal;
 extern crate bobbin_mcu;
-extern crate bobbin_sys;
+#[macro_use] extern crate bobbin_sys;
 extern crate embedded_hal;
 
 pub mod tick;
@@ -15,6 +15,7 @@ pub mod adc;
 pub mod dac;
 // pub mod serial_driver;
 pub mod flash;
+pub mod tick_handler;
 
 pub mod mb85rc;
 pub mod mb85rs;

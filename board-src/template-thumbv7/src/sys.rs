@@ -1,6 +1,6 @@
 use bobbin_sys::system::{System, SystemProvider};
 use bobbin_sys::heap::Heap;
-use bobbin_sys::tick::Tick;
+use bobbin_sys::tick::{Tick, HandleTick};
 use bobbin_sys::irq_dispatch::{IrqDispatcher, IrqHandler};
 
 use {Board, Mcu};
@@ -41,9 +41,10 @@ impl SystemProvider for Board {
 
     fn init_tick(clk: &Self::Clk) -> Tick {
         use mcu::ext::systick;
+        static mut HANDLERS: [Option<*const HandleTick>; 8] = [None; 8];
         
         systick::enable_systick_external(clk);
-        Tick::take()
+        unsafe { Tick::init(HANDLERS.as_mut_ptr(), HANDLERS.len()) }
     }
 
     fn init_console(_: &Self::Clk, _: &mut Heap) {

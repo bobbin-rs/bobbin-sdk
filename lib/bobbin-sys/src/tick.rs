@@ -6,6 +6,7 @@ use ::core::mem;
 use ::core::slice;
 use core::marker::PhantomData;
 
+#[derive(Debug)]
 pub enum Error {
     Timeout,
     NoHandlerSlots,

@@ -1,7 +1,7 @@
 #![no_std]
 #![no_main]
 
-extern crate nucleo_f746zg as board;
+extern crate frdm_k64f as board;
 extern crate examples;
 
 #[no_mangle]
