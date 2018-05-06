@@ -11,8 +11,11 @@ pub fn get_active_irq() -> u8 {
 pub fn enable_instruction_cache() {
     // Enable Instruction Cache
     SCB.set_iciallu(|r| r);
-    unsafe { asm!("dsb") }
-    unsafe { asm!("isb") }
+    #[cfg(target_os="none")]
+    unsafe { 
+        asm!("dsb");
+        asm!("isb");
+    }
     SCB.with_ccr(|r| r.set_ic(1));    
 }
 
