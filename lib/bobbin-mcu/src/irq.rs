@@ -35,3 +35,5 @@ pub trait Irq<IT: IrqType> : Default {
 #[derive(Default, Debug)]
 pub struct IrqMain {}
 impl IrqType for IrqMain {}
+
+pub const IRQ_MAIN: IrqMain = IrqMain {};

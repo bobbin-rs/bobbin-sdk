@@ -7,7 +7,6 @@ extern crate nucleo_f746zg as board;
 extern crate examples;
 
 use board::prelude::*;
-use board::mcu::irq::IRQ_TIM;
 use board::mcu::tim_gen::*;
 
 #[no_mangle]
@@ -21,7 +20,7 @@ pub extern "C" fn main() -> ! {
     tim.gate_enable();
     tim.set_auto_reload((sys.clk().clock_for(tim).as_u32() / 1000) as u16);    
 
-    let h_irq = tim.irq_number_for(IRQ_TIM);
+    let h_irq = tim.irq_number_for(IRQ_MAIN);
     let mut buf = [0u8; 16];
 
     let h = TimHandler::new(tim, &mut buf);
