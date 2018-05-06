@@ -31,3 +31,7 @@ pub trait Irq<IT: IrqType> : Default {
     /// Returns the interrupt number associated with the IRQ Type and peripheral.
     fn irq_number_for(&self, IT) -> u8 { Self::Output::irq_number() }
 }
+
+#[derive(Default, Debug)]
+pub struct IrqMain {}
+impl IrqType for IrqMain {}

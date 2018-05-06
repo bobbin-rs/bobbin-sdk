@@ -45,6 +45,7 @@ pub unsafe extern "C" fn DH_TRAMPOLINE() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_0_HANDLER() {
+    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -55,6 +56,7 @@ extern "C" fn IRQ_0_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_1_HANDLER() {
+    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -65,6 +67,7 @@ extern "C" fn IRQ_1_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_2_HANDLER() {
+    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -75,6 +78,7 @@ extern "C" fn IRQ_2_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_3_HANDLER() {
+    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -85,6 +89,7 @@ extern "C" fn IRQ_3_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_4_HANDLER() {
+    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -95,6 +100,7 @@ extern "C" fn IRQ_4_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_5_HANDLER() {
+    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -105,6 +111,7 @@ extern "C" fn IRQ_5_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_6_HANDLER() {
+    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -115,6 +122,7 @@ extern "C" fn IRQ_6_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_7_HANDLER() {
+    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -125,6 +133,7 @@ extern "C" fn IRQ_7_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_8_HANDLER() {
+    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -135,6 +144,7 @@ extern "C" fn IRQ_8_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_9_HANDLER() {
+    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -145,6 +155,7 @@ extern "C" fn IRQ_9_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_10_HANDLER() {
+    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -155,6 +166,7 @@ extern "C" fn IRQ_10_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_11_HANDLER() {
+    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -165,6 +177,7 @@ extern "C" fn IRQ_11_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_12_HANDLER() {
+    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -175,6 +188,7 @@ extern "C" fn IRQ_12_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_13_HANDLER() {
+    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -185,6 +199,7 @@ extern "C" fn IRQ_13_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_14_HANDLER() {
+    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -195,6 +210,7 @@ extern "C" fn IRQ_14_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_15_HANDLER() {
+    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -205,6 +221,7 @@ extern "C" fn IRQ_15_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_16_HANDLER() {
+    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -215,6 +232,7 @@ extern "C" fn IRQ_16_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_17_HANDLER() {
+    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -225,6 +243,7 @@ extern "C" fn IRQ_17_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_18_HANDLER() {
+    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -235,6 +254,7 @@ extern "C" fn IRQ_18_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_19_HANDLER() {
+    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -245,6 +265,7 @@ extern "C" fn IRQ_19_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_20_HANDLER() {
+    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -255,6 +276,7 @@ extern "C" fn IRQ_20_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_21_HANDLER() {
+    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -265,6 +287,7 @@ extern "C" fn IRQ_21_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_22_HANDLER() {
+    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -275,6 +298,7 @@ extern "C" fn IRQ_22_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_23_HANDLER() {
+    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -285,6 +309,7 @@ extern "C" fn IRQ_23_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_24_HANDLER() {
+    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -295,6 +320,7 @@ extern "C" fn IRQ_24_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_25_HANDLER() {
+    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -305,6 +331,7 @@ extern "C" fn IRQ_25_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_26_HANDLER() {
+    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -315,6 +342,7 @@ extern "C" fn IRQ_26_HANDLER() {
 #[naked]
 #[no_mangle]
 extern "C" fn IRQ_27_HANDLER() {
+    #[cfg(target_os="none")]
     unsafe {
         asm!("b DEFAULT_HANDLER" :::: "volatile");
         ::core::intrinsics::unreachable();
@@ -356,23 +384,43 @@ pub static mut INTERRUPTS: [Option<Handler>; 28] = [
 
 ::bobbin_mcu::irq_type!(IRQ_DMA, IrqDma);
 
+::bobbin_mcu::irq!(::dmac::Dmac, ::bobbin_mcu::irq::IrqMain, Irq6);
 ::bobbin_mcu::irq!(::dmac::Dmac, IrqDma, Irq6);
+::bobbin_mcu::irq!(::adc::Adc, ::bobbin_mcu::irq::IrqMain, Irq23);
 ::bobbin_mcu::irq!(::adc::Adc, IrqAdc, Irq23);
 ::bobbin_mcu::irq_type!(IRQ_ADC, IrqAdc);
+::bobbin_mcu::irq!(::dac::Dac, ::bobbin_mcu::irq::IrqMain, Irq25);
 ::bobbin_mcu::irq!(::dac::Dac, IrqDac, Irq25);
 ::bobbin_mcu::irq_type!(IRQ_DAC, IrqDac);
+::bobbin_mcu::irq!(::tcc::Tcc0, ::bobbin_mcu::irq::IrqMain, Irq15);
 ::bobbin_mcu::irq!(::tcc::Tcc0, IrqTcc, Irq15);
+::bobbin_mcu::irq!(::tcc::Tcc1, ::bobbin_mcu::irq::IrqMain, Irq16);
 ::bobbin_mcu::irq!(::tcc::Tcc1, IrqTcc, Irq16);
+::bobbin_mcu::irq!(::tcc::Tcc2, ::bobbin_mcu::irq::IrqMain, Irq17);
 ::bobbin_mcu::irq!(::tcc::Tcc2, IrqTcc, Irq17);
 ::bobbin_mcu::irq_type!(IRQ_TCC, IrqTcc);
+::bobbin_mcu::irq!(::tc::Tc3, ::bobbin_mcu::irq::IrqMain, Irq18);
 ::bobbin_mcu::irq!(::tc::Tc3, IrqTc, Irq18);
+::bobbin_mcu::irq!(::tc::Tc4, ::bobbin_mcu::irq::IrqMain, Irq19);
 ::bobbin_mcu::irq!(::tc::Tc4, IrqTc, Irq19);
+::bobbin_mcu::irq!(::tc::Tc5, ::bobbin_mcu::irq::IrqMain, Irq20);
 ::bobbin_mcu::irq!(::tc::Tc5, IrqTc, Irq20);
 ::bobbin_mcu::irq_type!(IRQ_TC, IrqTc);
+::bobbin_mcu::irq!(::sercom::Sercom0, ::bobbin_mcu::irq::IrqMain, Irq9);
 ::bobbin_mcu::irq!(::sercom::Sercom0, IrqSercom, Irq9);
+::bobbin_mcu::irq!(::sercom::Sercom1, ::bobbin_mcu::irq::IrqMain, Irq10);
 ::bobbin_mcu::irq!(::sercom::Sercom1, IrqSercom, Irq10);
+::bobbin_mcu::irq!(::sercom::Sercom2, ::bobbin_mcu::irq::IrqMain, Irq11);
 ::bobbin_mcu::irq!(::sercom::Sercom2, IrqSercom, Irq11);
+::bobbin_mcu::irq!(::sercom::Sercom3, ::bobbin_mcu::irq::IrqMain, Irq12);
 ::bobbin_mcu::irq!(::sercom::Sercom3, IrqSercom, Irq12);
+::bobbin_mcu::irq!(::sercom::Sercom4, ::bobbin_mcu::irq::IrqMain, Irq13);
 ::bobbin_mcu::irq!(::sercom::Sercom4, IrqSercom, Irq13);
+::bobbin_mcu::irq!(::sercom::Sercom5, ::bobbin_mcu::irq::IrqMain, Irq14);
 ::bobbin_mcu::irq!(::sercom::Sercom5, IrqSercom, Irq14);
 ::bobbin_mcu::irq_type!(IRQ_SERCOM, IrqSercom);
+::bobbin_mcu::irq!(::nvmctrl::Nvmctrl, ::bobbin_mcu::irq::IrqMain, Irq5);
+::bobbin_mcu::irq!(::pm::Pm, ::bobbin_mcu::irq::IrqMain, Irq0);
+::bobbin_mcu::irq!(::sysctrl::Sysctrl, ::bobbin_mcu::irq::IrqMain, Irq1);
+::bobbin_mcu::irq!(::wdt::Wdt, ::bobbin_mcu::irq::IrqMain, Irq2);
+::bobbin_mcu::irq!(::rtc::Rtc, ::bobbin_mcu::irq::IrqMain, Irq3);

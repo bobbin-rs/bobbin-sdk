@@ -315,7 +315,7 @@ macro_rules! irq_type {
 /// Associates an interrupt number with a peripheral or channel and interrupt type.
 #[macro_export]
 macro_rules! irq {
-    ($ty:path, $ity:ident, $inum:ident ) => {
+    ($ty:path, $ity:path, $inum:ident ) => {
         impl $crate::irq::Irq<$ity> for $ty { type Output = $inum; }        
     }
 }

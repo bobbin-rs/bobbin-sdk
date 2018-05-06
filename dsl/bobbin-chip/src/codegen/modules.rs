@@ -324,7 +324,11 @@ pub fn gen_interrupts<W: Write>(_cfg: &Config, out: &mut W, d: &Device, interrup
         let mut use_local_irq_type = false;
         let pg_mod = pg.name.to_lowercase();
         for p in pg.peripherals.iter() {
+            let mut p_first = true;
             for irq in p.interrupts.iter() {
+                if p_first {
+                    try!(writeln!(out, "::bobbin_mcu::irq!(::{}::{}, {}, Irq{});", pg_mod, to_camel(&p.name), "::bobbin_mcu::irq::IrqMain", irq.value));                    
+                }
                 if irq.types.len() == 0 {
                     try!(writeln!(out, "::bobbin_mcu::irq!(::{}::{}, Irq{}, Irq{});", pg_mod, to_camel(&p.name), to_camel(&pg.name), irq.value));
                     use_local_irq_type = true;
@@ -332,16 +336,22 @@ pub fn gen_interrupts<W: Write>(_cfg: &Config, out: &mut W, d: &Device, interrup
                 for itype in irq.types.iter() {
                     try!(writeln!(out, "::bobbin_mcu::irq!(::{}::{}, Irq{}, Irq{});",  pg_mod, to_camel(&p.name), to_camel(&itype), irq.value));
                 }
+                p_first = false;
             }
             for ch in p.channels.iter() {
+                let mut ch_first = true;
                 for irq in ch.interrupts.iter() {
+                    if ch_first {
+                        try!(writeln!(out, "::bobbin_mcu::irq!(::{}::{}, {}, Irq{});",  pg_mod, to_camel(&ch.name), "::bobbin_mcu::irq::IrqMain", irq.value));                        
+                    }
                     if irq.types.len() == 0 {
-                        try!(writeln!(out, "::bobbin_mcu::irq!(::{}::{}, Irq{}, Irq{});",  pg_mod, to_camel(&p.name), to_camel(&pg.name), irq.value));
+                        try!(writeln!(out, "::bobbin_mcu::irq!(::{}::{}, Irq{}, Irq{});",  pg_mod, to_camel(&ch.name), to_camel(&pg.name), irq.value));
                         use_local_irq_type = true;
                     }
                     for itype in irq.types.iter() {
                         try!(writeln!(out, "::bobbin_mcu::irq!(::{}::{}, Irq{}, Irq{});",  pg_mod, to_camel(&ch.name), to_camel(&itype), irq.value));
                     }
+                    ch_first = false;                    
                 }
             }
         }
@@ -356,7 +366,12 @@ pub fn gen_interrupts<W: Write>(_cfg: &Config, out: &mut W, d: &Device, interrup
     for p in d.peripherals.iter() {
         let p_mod = p.group_name.as_ref().unwrap().to_lowercase();
         let mut use_local_irq_type = false;    
+        let mut p_first = true;
         for irq in p.interrupts.iter() {
+            if p_first {
+                try!(writeln!(out, "::bobbin_mcu::irq!(::{}::{}, {}, Irq{});", p_mod, to_camel(&p.name), "::bobbin_mcu::irq::IrqMain", irq.value));                
+            }
+            // NOTE: why is this loop different?
             for itype in irq.types.iter() {
                 if irq.types.len() == 0 {
                     try!(writeln!(out, "::bobbin_mcu::irq!(::{}::{}, Irq{}, Irq{});", p_mod, to_camel(&p.name), to_camel(&p.name), irq.value));
@@ -364,16 +379,22 @@ pub fn gen_interrupts<W: Write>(_cfg: &Config, out: &mut W, d: &Device, interrup
                 }            
                 try!(writeln!(out, "::bobbin_mcu::irq!(::{}::{}, {}, Irq{});", p_mod, to_camel(&p.name), to_camel(&itype), irq.value));
             }
+            p_first = false;
         }
         for ch in p.channels.iter() {
+            let mut ch_first = true;            
             for irq in ch.interrupts.iter() {
+                if ch_first {
+                    try!(writeln!(out, "::bobbin_mcu::irq!(::{}::{}, {}, Irq{});", p_mod, to_camel(&ch.name), "::bobbin_mcu::irq::IrqMain", irq.value));
+                }
                 if irq.types.len() == 0 {
-                    try!(writeln!(out, "::bobbin_mcu::irq!(::{}::{}, Irq{}, Irq{});", p_mod, to_camel(&p.name), to_camel(&p.name), irq.value));
+                    try!(writeln!(out, "::bobbin_mcu::irq!(::{}::{}, Irq{}, Irq{});", p_mod, to_camel(&ch.name), to_camel(&p.name), irq.value));
                     use_local_irq_type = true;
                 }            
                 for itype in irq.types.iter() {
                     try!(writeln!(out, "::bobbin_mcu::irq!(::{}::{}, Irq{}, Irq{});", p_mod, to_camel(&ch.name), to_camel(&itype), irq.value));
                 }
+                ch_first = false;
             }
         }
         if use_local_irq_type {
