@@ -1,6 +1,7 @@
 use bobbin_sys::system::{System, SystemProvider};
 use bobbin_sys::heap::Heap;
 use bobbin_sys::tick::{Tick, HandleTick};
+use bobbin_sys::pend::{Pend, HandlePend};
 use bobbin_sys::irq_dispatch::{IrqDispatcher, IrqHandler};
 
 use {Board, Mcu};

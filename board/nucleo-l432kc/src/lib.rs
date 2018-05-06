@@ -29,3 +29,4 @@ impl bobbin_sys::board::Board for NucleoL432kc {
 
 cortex_m_rt::default_handler!(bobbin_sys::irq_dispatch::IrqDispatcher::<Mcu>::handle_exception);
 cortex_m_rt::exception!(SYS_TICK, bobbin_sys::tick::Tick::tick);
+cortex_m_rt::exception!(PENDSV, bobbin_sys::pend::Pend::pend);

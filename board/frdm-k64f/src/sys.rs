@@ -1,6 +1,7 @@
 use bobbin_sys::system::{System, SystemProvider};
 use bobbin_sys::heap::Heap;
 use bobbin_sys::tick::Tick;
+use bobbin_sys::pend::{Pend, HandlePend};
 use bobbin_sys::irq_dispatch::{IrqDispatcher, IrqHandler};
 
 use {Board, Mcu};
@@ -61,6 +62,11 @@ impl SystemProvider for Board {
         
         systick::enable_systick_internal(clk);
         Tick::take()
+    }
+
+    fn init_pend() -> Pend {
+        static mut HANDLERS: [Option<*const HandlePend>; 8] = [None; 8];
+        unsafe { Pend::init(HANDLERS.as_mut_ptr(), HANDLERS.len()) }
     }
 
     fn init_console(clk: &Self::Clk, _: &mut Heap) {
