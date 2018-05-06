@@ -6,6 +6,7 @@ use bobbin_mcu::mcu::Mcu;
 
 use heap::Heap;
 use tick::Tick;
+use pend::Pend;
 use irq_dispatch::IrqDispatcher;
 use console::Console;
 
@@ -21,6 +22,7 @@ pub trait SystemProvider {
     fn init_clk() -> Self::Clk;
     fn init_heap() -> Heap;
     fn init_dispatcher() -> IrqDispatcher<Self::Mcu>;
+    fn init_pend() -> Pend;
     fn init_tick(&Self::Clk) -> Tick;    
     fn init_console(&Self::Clk, &mut Heap) {}
     fn init_led(&Self::Clk, &mut Heap) {}
@@ -36,6 +38,7 @@ pub struct System<S: SystemProvider> {
     clk: S::Clk,
     heap: Heap,
     tick: Tick,
+    pend: Pend,
     dispatcher: IrqDispatcher<S::Mcu>,
     _private: ()
 }
@@ -52,13 +55,7 @@ impl<S: SystemProvider> System<S> {
         let mut heap = S::init_heap();
         let dispatcher = S::init_dispatcher();
         let tick = S::init_tick(&clk);
-        
-        // let irq_handlers: &mut [Option<IrqHandler>] = if let Ok(s) = heap.try_slice(None, 8) {
-        //     s
-        // } else {
-        //     &mut []
-        // };
-        // let dispatcher = IrqDispatcher::init(irq_handlers.as_mut_ptr(), irq_handlers.len());
+        let pend = S::init_pend();
 
         S::init_console(&clk, &mut heap);
         S::init_led(&clk, &mut heap);
@@ -70,6 +67,7 @@ impl<S: SystemProvider> System<S> {
             clk,
             heap,
             tick,
+            pend,
             dispatcher,
             _private: (),
         }
@@ -77,12 +75,13 @@ impl<S: SystemProvider> System<S> {
 
     /// Releases the global system singleton as well as the global singletons used by System.
     pub fn release(system: Self) {
-        let System { provider, mcu, clk, heap, tick, dispatcher, _private } = system;
+        let System { provider, mcu, clk, heap, tick, pend, dispatcher, _private } = system;
         let _ = provider;
         let _ = mcu;
         let _ = clk;
         Tick::release(tick);
-        Heap::release(heap);
+        Pend::release(pend);
+        Heap::release(heap);        
         IrqDispatcher::release(dispatcher);
         unsafe { SYSTEM_TOKEN = Some(SystemToken) }
     }
@@ -125,6 +124,16 @@ impl<S: SystemProvider> System<S> {
     /// Returns a mutable reference to the global Tick singleton.
     pub fn tick_mut(&mut self) -> &mut Tick {
         &mut self.tick
+    }
+
+    /// Returns a shared reference to the global Pend singleton.
+    pub fn pend(&self) -> &Pend {
+        &self.pend
+    }
+
+    /// Returns a mutable reference to the global Pend singleton.
+    pub fn pend_mut(&mut self) -> &mut Pend {
+        &mut self.pend
     }
 
     /// Returns a shared reference to the global Interrupt Dispatcher.
