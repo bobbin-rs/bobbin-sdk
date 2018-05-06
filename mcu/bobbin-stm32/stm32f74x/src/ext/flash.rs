@@ -84,6 +84,7 @@ impl FlashWrite for FlashPeriph {
         for i in 0..src.len() {
             unsafe {
                 *dst.offset(i as isize) = src[i];
+                #[cfg(target_os="none")]
                 asm!("dsb");
             }
             while self.flash_busy() {}
