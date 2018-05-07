@@ -2,9 +2,10 @@ use bobbin_sys::prelude::*;
 use bobbin_ipc::flag::*;
 use bobbin_ipc::counter::*;
 use bobbin_ipc::semaphore::*;
+use bobbin_ipc::mailbox::*;
 
 pub fn run_with_sys<S: SystemProvider>(mut sys: System<S>) -> ! {
-    {
+    if true {
         println!("Flag Example");
         // Flag Example
         let flag_bool: &mut bool = sys.heap_mut().new(false);
@@ -29,7 +30,7 @@ pub fn run_with_sys<S: SystemProvider>(mut sys: System<S>) -> ! {
         });
     }
 
-    {
+    if true {
         println!("Counter Example");
         let counter: &mut u32 = sys.heap_mut().new(0);
         let (counter_getter, counter_setter) = counter_pair(counter);
@@ -50,7 +51,7 @@ pub fn run_with_sys<S: SystemProvider>(mut sys: System<S>) -> ! {
         })        
     }
 
-    {
+    if true {
         println!("Semaphore Example");
         let (sem_head, sem_tail): (&mut u32, &mut u32) = (sys.heap_mut().new(0u32), sys.heap_mut().new(0u32));
         let (sem_incr, sem_decr) = semaphore_pair(sem_head, sem_tail);
@@ -63,12 +64,37 @@ pub fn run_with_sys<S: SystemProvider>(mut sys: System<S>) -> ! {
             }
         };
         sys.run(|_| {
-            for i in 0..5 {
+            for i in 0..15 {
                 while sem_decr.get() == 0 {}
                 sem_decr.decr(1);
                 println!("Tick... {}", i);
             }
         })
+    }
+
+    if true {
+        println!("Mailbox Example");
+        let mb: &'static mut Mailbox<Message> = sys.heap_mut().new(Mailbox::new(Message { id: 0, value: 0}));
+        let (mb_tx, mb_rx) = mailbox_pair(mb);
+        let mb_task = MailboxTask { mb_tx, counter: ::core::cell::Cell::new(0) };
+        let _mb_guard = match sys.tick_mut().register(&mb_task) {
+            Ok(guard) => guard,
+            Err(_) => {
+                println!("Unable to register mailbox task");
+                loop {}
+            }
+        };
+
+        sys.run(|_| {
+            for _ in 0..5 {
+                while !mb_rx.can_recv() {}
+                if let Some(msg) = mb_rx.borrow() {
+                    println!("id: {}, value: {}", msg.id, msg.value);
+                    mb_rx.recv();
+                }
+            }
+        })
+
     }
 
 
@@ -107,7 +133,29 @@ pub struct SemaphoreTask {
 impl HandleTick for SemaphoreTask {
     fn handle_tick(&self, c: u32) {
         if c % 500 == 0 {
-            self.sem_incr.incr(1);
+            self.sem_incr.incr(3);
         }
+    }
+}
+
+pub struct Message {
+    pub id: u32,
+    pub value: u32,
+}
+
+pub struct MailboxTask {
+    mb_tx: MailboxSender<'static, Message>,
+    counter: ::core::cell::Cell<u32>,
+}
+
+impl HandleTick for MailboxTask {
+    fn handle_tick(&self, c: u32) {
+        if c % 500 == 0 {
+            if let Some(msg) = self.mb_tx.borrow_mut() {
+                *msg = Message { id: self.counter.get(), value: c };
+                self.mb_tx.send();
+            }
+            self.counter.set(self.counter.get().wrapping_add(1));
+        }        
     }
 }
