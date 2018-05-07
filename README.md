@@ -3,14 +3,24 @@
 This repository contains Bobbin SDK, a multi-platform Software Development Kit for
 embedded systems development using the [Rust](https://www.rust-lang.org/en-US/) programming language.
 
-Core Components
+## Organization
 
-- [Bobbin DSL](./dsl/) - A DSL for describing MCUs, Boards and Peripherals
-- [Bobbin Lib](./lib/) - Rust crates used by generated Bobbin MCU and Board crates.
-- [Bobbin MCU](./mcu/) - Rust MCU Support crates
-- [Bobbin Periph](./periph/) - Rust crates describing non-MCU peripherals
-- [Bobbin Board](./board/) - Rust Board Support crates
-- [Bobbin App](./app/) - Sample cross-platform rust applications
+- [DSL](./dsl/) - A DSL for describing MCUs, Boards and Peripherals
+- [Lib](./lib/) - Rust crates used by generated Bobbin MCU and Board crates.
+    - [Bobbin Build](./lib/bobbin-build/) - Build-time Tools
+    - [Bobbin Hz](./lib/bobbin-hz/) - Fractional Frequency Calculations
+    - [Bobbin MCU](./lib/bobbin-ipc/) - MCU Traits and Macros
+    - [Bobbin HAL](./lib/bobbin-hal/) - Hardware Abstraction Layer
+    - [Bobbin Sys](./lib/bobbin-sys/) - System Abstraction Layer
+    - [Bobbin IPC](./lib/bobbin-ipc/) - Simple IPC primitives
+- [MCU](./mcu/) - MCU support crates
+- [MCU Source](./mcu-src/) - MCU source crates
+- [MCU Examples](./mcu-examples/) - MCU usage examples
+- [Periph](./periph/) - Rust crates describing non-MCU peripherals
+- [Board](./board/) - Rust board support crates
+- [Board Source](./board-src/) - Rust board source crates
+- [Board Examples](./board-examples/) - Board usage examples
+- [App](./app/) - Sample cross-platform rust applications
 
 Additional Repositories
 
@@ -36,5 +46,3 @@ Get started with a MCU or Board crate example. See [Quick Start](./doc/Quickstar
 ## More Documentation
 
 More documentation in available the [doc](doc/) directory.
-
-_Please Note: This project is under heavy development and all APIs are subject to change._
