@@ -13,13 +13,14 @@ embedded systems development using the [Rust](https://www.rust-lang.org/en-US/) 
     - [Bobbin HAL](./lib/bobbin-hal/) - Hardware Abstraction Layer
     - [Bobbin Sys](./lib/bobbin-sys/) - System Abstraction Layer
     - [Bobbin IPC](./lib/bobbin-ipc/) - Simple IPC primitives
-- [MCU](./mcu/) - MCU support crates
-- [MCU Source](./mcu-src/) - MCU source crates
+- [MCU](./mcu/) - MCU crates
+- [MCU Source](./mcu-src/) - MCU crate source files
 - [MCU Examples](./mcu-examples/) - MCU usage examples
-- [Periph](./periph/) - Rust crates describing non-MCU peripherals
 - [Board](./board/) - Rust board support crates
-- [Board Source](./board-src/) - Rust board source crates
+- [Board Source](./board-src/) - Board crate source files
 - [Board Examples](./board-examples/) - Board usage examples
+- [Periph](./periph/) - Non-MCU peripheral crates
+- [Periph Source](./periph-src/) - Peripheral crate source files
 - [App](./app/) - Sample cross-platform rust applications
 
 Additional Repositories
