@@ -5,4 +5,5 @@ members = [
     "bobbin-hz",
     "bobbin-mcu",
     "bobbin-sys",
+    "bobbin-ipc",
 ]
