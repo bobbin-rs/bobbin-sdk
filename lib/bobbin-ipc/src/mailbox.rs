@@ -30,7 +30,7 @@ impl<'a, T: Send + 'a> MailboxSender<'a, T> {
     }
 
     pub fn can_send(&self) -> bool {
-        self.mailbox().flag == false
+        unsafe { ptr::read_volatile(&self.mailbox().flag) == false }
     }
 
     pub fn borrow(&self) -> Option<&T> {
@@ -49,7 +49,7 @@ impl<'a, T: Send + 'a> MailboxSender<'a, T> {
     }    
     pub fn send(&self) {
         if self.can_send() {            
-            self.mailbox_mut().flag = true;
+            unsafe { ptr::write_volatile(&mut self.mailbox_mut().flag, true) }
         }
     }    
 }
@@ -69,7 +69,7 @@ impl<'a, T: Send + 'a> MailboxReceiver<'a, T> {
     }
 
     pub fn can_recv(&self) -> bool {
-        self.mailbox().flag == true
+        unsafe { ptr::read_volatile(&self.mailbox().flag)  == true }
     }
     pub fn borrow(&self) -> Option<&T> {
         if self.can_recv() {
@@ -87,7 +87,7 @@ impl<'a, T: Send + 'a> MailboxReceiver<'a, T> {
     }      
     pub fn recv(&self) {
         if self.can_recv() {        
-            self.mailbox_mut().flag = false;
+            unsafe { ptr::write_volatile(&mut self.mailbox_mut().flag, false) };
         }
     }    
 }
