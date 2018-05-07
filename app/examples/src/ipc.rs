@@ -3,9 +3,10 @@ use bobbin_ipc::flag::*;
 use bobbin_ipc::counter::*;
 use bobbin_ipc::semaphore::*;
 use bobbin_ipc::mailbox::*;
+use bobbin_ipc::fifo::*;
 
 pub fn run_with_sys<S: SystemProvider>(mut sys: System<S>) -> ! {
-    if true {
+    if false {
         println!("Flag Example");
         // Flag Example
         let flag_bool: &mut bool = sys.heap_mut().new(false);
@@ -30,7 +31,7 @@ pub fn run_with_sys<S: SystemProvider>(mut sys: System<S>) -> ! {
         });
     }
 
-    if true {
+    if false {
         println!("Counter Example");
         let counter: &mut u32 = sys.heap_mut().new(0);
         let (counter_getter, counter_setter) = counter_pair(counter);
@@ -51,7 +52,7 @@ pub fn run_with_sys<S: SystemProvider>(mut sys: System<S>) -> ! {
         })        
     }
 
-    if true {
+    if false {
         println!("Semaphore Example");
         let (sem_head, sem_tail): (&mut u32, &mut u32) = (sys.heap_mut().new(0u32), sys.heap_mut().new(0u32));
         let (sem_incr, sem_decr) = semaphore_pair(sem_head, sem_tail);
@@ -72,7 +73,7 @@ pub fn run_with_sys<S: SystemProvider>(mut sys: System<S>) -> ! {
         })
     }
 
-    if true {
+    if false {
         println!("Mailbox Example");
         let mb: &'static mut Mailbox<Message> = sys.heap_mut().new(Mailbox::new(Message { id: 0, value: 0}));
         let (mb_tx, mb_rx) = mailbox_pair(mb);
@@ -95,6 +96,29 @@ pub fn run_with_sys<S: SystemProvider>(mut sys: System<S>) -> ! {
             }
         })
 
+    }
+
+    if true {
+        println!("FIFO Example");
+        let mut fifo_head = FifoHeader::new();
+        let mut fifo_data = [0u32; 8];
+        let (fifo_send, fifo_recv) = fifo_pair(&mut fifo_head, &mut fifo_data);
+        let fifo_task = FifoTask { fifo_send };
+        let _fifo_guard = match sys.tick_mut().register(&fifo_task) {
+            Ok(guard) => guard,
+            Err(_) => {
+                println!("Unable to register mailbox task");
+                loop {}
+            }
+        };    
+        sys.run(|_| {
+            for _ in 0..5 {
+                while fifo_recv.len() == 0 {}
+                if let Some(msg) = fifo_recv.recv() {
+                    println!("Recv: {}", msg);
+                }
+            }
+        })            
     }
 
 
@@ -157,5 +181,19 @@ impl HandleTick for MailboxTask {
             }
             self.counter.set(self.counter.get().wrapping_add(1));
         }        
+    }
+}
+
+pub struct FifoTask {
+    fifo_send: FifoSender<'static, u32>,
+}
+
+impl HandleTick for FifoTask {
+    fn handle_tick(&self, c: u32) {
+        if c % 500 == 0 {
+            if let None = self.fifo_send.send(c) {
+                println!("send");
+            }
+        }
     }
 }
