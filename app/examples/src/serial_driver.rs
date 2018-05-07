@@ -2,6 +2,9 @@
 //! driver. This version assumes that the serial device and tx / rx pins have already been enabled 
 //! and configured.
 //! 
+//! 
+//! NOTE - needs to be modified to use updated interrupt registration API
+//! 
 use bobbin_mcu::prelude::*;
 use bobbin_hal::prelude::*;
 use bobbin_sys::prelude::*;
