@@ -7,3 +7,4 @@ Crates used by Bobbin Board and MCU support crates.
 - [bobbin-hz](./bobbin-hz/) - Fractional clock calculations crate
 - [bobbin-mcu](./bobbin-mcu/) - Bobbin MCU Abstraction Layer crate
 - [bobbin-sys](./bobbin-sys) - Bobbin System Services crate
+- [bobbin-ipc](./bobbin-ipc) - Simple IPC primitives
