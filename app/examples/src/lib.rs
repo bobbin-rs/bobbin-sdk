@@ -4,6 +4,7 @@
 extern crate bobbin_hal;
 extern crate bobbin_mcu;
 #[macro_use] extern crate bobbin_sys;
+extern crate bobbin_ipc;
 extern crate embedded_hal;
 
 pub mod tick;
