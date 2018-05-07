@@ -1,17 +1,26 @@
 use core::{mem, ptr, cmp, slice};
+use core::cell::UnsafeCell;
 use core::marker::PhantomData;
 
-struct FifoHeader {
-    head: u32,
-    tail: u32,
+pub struct FifoHeader {
+    head: UnsafeCell<u32>,
+    tail: UnsafeCell<u32>,
     size: u32,
     cap: u32,
 }
 
 impl FifoHeader {
-    fn new(size: u32) -> Self {
-        let cap = 1 << (31 - size.leading_zeros());
-        FifoHeader { head: 0u32.wrapping_sub(64), tail: 0u32.wrapping_sub(64), size, cap }
+    pub fn new() -> Self {
+        FifoHeader { head: UnsafeCell::new(0), tail: UnsafeCell::new(0), size: 0, cap: 0 }
+    }
+
+    fn set_size(&mut self, size: u32) {
+        self.size = size;
+        self.cap = 1 << (31 - size.leading_zeros());
+        unsafe {
+            *self.head.get() = 0u32.wrapping_sub(64);
+            *self.tail.get() = 0u32.wrapping_sub(64);
+        }
     }
 
     fn cap(&self) -> u32 {
@@ -19,7 +28,7 @@ impl FifoHeader {
     }
 
     fn len(&self) -> u32 {
-        self.head.wrapping_sub(self.tail)
+        self.head().wrapping_sub(self.tail())
     }
 
     fn rem(&self) -> u32 {
@@ -27,36 +36,38 @@ impl FifoHeader {
     }
 
     fn phy(&self, index: u32) -> u32 {
-        index & (self.cap.wrapping_sub(1))
+        index & (self.cap().wrapping_sub(1))
     }
 
     fn head(&self) -> u32 {
-        self.head
+        unsafe { ptr::read_volatile(self.head.get()) }
     }
 
     fn head_incr(&mut self, value: u32) -> u32 {
-        let value = self.head.wrapping_add(value);
-        mem::replace(&mut self.head, value)
+        let value = self.head().wrapping_add(value);
+        unsafe { mem::replace(&mut *self.head.get(), value) }
     }
 
     fn tail(&self) -> u32 {
-        self.tail
+        unsafe { ptr::read_volatile(self.tail.get()) }
     }
 
     fn tail_incr(&mut self, value: u32) -> u32 {
-        let value = self.tail.wrapping_add(value);
-        mem::replace(&mut self.tail, value)
+        let value = self.tail().wrapping_add(value);
+        unsafe { mem::replace(&mut *self.tail.get(), value) }
     }
 }
 
 pub struct FifoSender<'a, T: Send + 'a> {
+    hdr: *mut FifoHeader,
     ptr: *mut T,
     _phantom: PhantomData<&'a mut T>,
 }
 
 impl<'a, T: Send + 'a> FifoSender<'a, T> {
     fn hdr_ptr(&self) -> *mut FifoHeader {
-        unsafe { (self.ptr as *mut u8).offset(-(mem::size_of::<FifoHeader>() as isize)) as *mut FifoHeader }
+        self.hdr
+        // unsafe { (self.ptr as *mut u8).offset(-(mem::size_of::<FifoHeader>() as isize)) as *mut FifoHeader }
     }
     fn hdr(&self) -> &FifoHeader {
         unsafe { &*self.hdr_ptr() }
@@ -141,13 +152,15 @@ impl<'a, T: Send + Copy + 'a> FifoSender<'a, T> {
 }
 
 pub struct FifoReceiver<'a, T: Send + 'a> {
+    hdr: *mut FifoHeader,    
     ptr: *mut T,
     _phantom: PhantomData<&'a mut T>,
 }
 
 impl<'a, T: Send + 'a> FifoReceiver<'a, T> {
     fn hdr_ptr(&self) -> *mut FifoHeader {
-        unsafe { (self.ptr as *mut u8).offset(-(mem::size_of::<FifoHeader>() as isize)) as *mut FifoHeader }
+        self.hdr
+        // unsafe { (self.ptr as *mut u8).offset(-(mem::size_of::<FifoHeader>() as isize)) as *mut FifoHeader }
     }
     fn hdr(&self) -> &FifoHeader {
         unsafe { &*self.hdr_ptr() }
@@ -246,10 +259,11 @@ impl<'a, T: Send + Copy + 'a> FifoReceiver<'a, T> {
 }
 
 
-pub fn fifo_pair<'a, T: Send + 'a>(data: &mut [T]) -> (FifoSender<'a, T>, FifoReceiver<'a, T>) {
+pub fn fifo_pair<'a, T: Send + 'a>(header: &mut FifoHeader, data: &mut [T]) -> (FifoSender<'a, T>, FifoReceiver<'a, T>) {
+    header.set_size(data.len() as u32);
     (
-        FifoSender { ptr: data.as_mut_ptr(), _phantom: PhantomData },
-        FifoReceiver { ptr: data.as_mut_ptr(), _phantom: PhantomData },
+        FifoSender { hdr: header, ptr: data.as_mut_ptr(), _phantom: PhantomData },
+        FifoReceiver { hdr: header, ptr: data.as_mut_ptr(), _phantom: PhantomData },
     )
 }
 
@@ -258,12 +272,9 @@ mod tests {
     use super::*;
     #[test]
     fn test_fifo() {
-        let mut fifo = (FifoHeader::new(8), [0u8; 8]);
-        let head_ptr = &mut fifo.0 as *mut FifoHeader;
-        let data_ptr = fifo.1.as_mut_ptr();
-        let (fifo_send, fifo_recv) = fifo_pair(&mut fifo.1);
-        assert_eq!(fifo_send.hdr_ptr(), head_ptr);
-        assert_eq!(fifo_send.ptr, data_ptr);
+        let mut fifo_head = FifoHeader::new();
+        let mut fifo_data = [0u8; 8];
+        let (fifo_send, fifo_recv) = fifo_pair(&mut fifo_head, &mut fifo_data);
 
         for i in 0..8 {
             assert_eq!(fifo_send.send(i as u8), None)
@@ -311,10 +322,9 @@ mod tests {
     }
     #[test]
     fn test_fifo_slice() {
-        let mut fifo = (FifoHeader::new(8), [0u8; 8]);
-        let head_ptr = &mut fifo.0 as *mut FifoHeader;
-        let data_ptr = fifo.1.as_mut_ptr();
-        let (fifo_send, fifo_recv) = fifo_pair(&mut fifo.1);    
+        let mut fifo_head = FifoHeader::new();
+        let mut fifo_data = [0u8; 8];
+        let (fifo_send, fifo_recv) = fifo_pair(&mut fifo_head, &mut fifo_data);
 
         assert_eq!(fifo_send.hdr().phy(fifo_send.hdr().head()), 0);
         assert_eq!(fifo_send.hdr().phy(fifo_send.hdr().tail()), 0);
@@ -339,7 +349,7 @@ mod tests {
         assert_eq!(a.len(), 6);
         assert_eq!(b.len(), 2);
 
-        for i in 0..6 {
+        for _ in 0..6 {
             fifo_send.send(0);
             fifo_recv.recv();
         }
