@@ -6,7 +6,7 @@ use bobbin_ipc::mailbox::*;
 use bobbin_ipc::fifo::*;
 
 pub fn run_with_sys<S: SystemProvider>(mut sys: System<S>) -> ! {
-    if false {
+    if true {
         println!("Flag Example");
         // Flag Example
         let flag_bool: &mut bool = sys.heap_mut().new(false);
@@ -31,7 +31,7 @@ pub fn run_with_sys<S: SystemProvider>(mut sys: System<S>) -> ! {
         });
     }
 
-    if false {
+    if true {
         println!("Counter Example");
         let counter: &mut u32 = sys.heap_mut().new(0);
         let (counter_getter, counter_setter) = counter_pair(counter);
@@ -52,7 +52,7 @@ pub fn run_with_sys<S: SystemProvider>(mut sys: System<S>) -> ! {
         })        
     }
 
-    if false {
+    if true {
         println!("Semaphore Example");
         let (sem_head, sem_tail): (&mut u32, &mut u32) = (sys.heap_mut().new(0u32), sys.heap_mut().new(0u32));
         let (sem_incr, sem_decr) = semaphore_pair(sem_head, sem_tail);
@@ -73,7 +73,7 @@ pub fn run_with_sys<S: SystemProvider>(mut sys: System<S>) -> ! {
         })
     }
 
-    if false {
+    if true {
         println!("Mailbox Example");
         let mb: &'static mut Mailbox<Message> = sys.heap_mut().new(Mailbox::new(Message { id: 0, value: 0}));
         let (mb_tx, mb_rx) = mailbox_pair(mb);
@@ -191,9 +191,7 @@ pub struct FifoTask {
 impl HandleTick for FifoTask {
     fn handle_tick(&self, c: u32) {
         if c % 500 == 0 {
-            if let None = self.fifo_send.send(c) {
-                println!("send");
-            }
+            self.fifo_send.send(c);
         }
     }
 }
