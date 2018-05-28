@@ -71,8 +71,6 @@ use mcu::pin::*;
 pub const LED: Pb0 = PB0;
 
 fn main() {
-    mcu::ext::init();
-    
     LED
         .port_gate_enable()
         .mode_output();

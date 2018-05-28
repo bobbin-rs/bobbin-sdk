@@ -17,10 +17,7 @@ const USART_RX: Pd9 = PD9;
 const USART_CLOCK: u32 = 16_000_000; // Use HSI Clock
 const USART_BAUD: u32 = 115_200;
 
-fn main() {
-    // Initialize the MCU (enable instruction cache, disable watchdogs, etc.)
-    mcu::ext::init();
-    
+fn main() {   
     USART_TX
         .port_gate_enable() // Enable the clock for the port associated with this pin.
         .connect_to(USART); // Connect the pin to the USART that we are using.

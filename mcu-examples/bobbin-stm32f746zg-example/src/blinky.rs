@@ -13,9 +13,6 @@ use mcu::pin::*;
 pub const LED: Pb0 = PB0;
 
 fn main() {
-    // Initialize the MCU (enable instruction cache, disable watchdogs, etc.)
-    mcu::ext::init();
-    
     LED
         .port_gate_enable() // Enable the port associated with this pin.
         .mode_output(); // Set this port to digital output.
