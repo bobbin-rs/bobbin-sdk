@@ -52,6 +52,18 @@ lto = true
 
 ```
 
+Add a `.cargo/config` file:
+
+```
+[target.thumbv7em-none-eabihf]
+rustflags = [
+  "-C", "link-arg=-Tlink.x",
+  "-C", "linker=arm-none-eabi-ld",
+  "-Z", "linker-flavor=ld",
+]
+```
+
+
 Set up simple blinky.rs that blinks LEDs
 
 ```
