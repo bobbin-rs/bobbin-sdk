@@ -1,9 +1,9 @@
 use bobbin_hal::i2c::*;
-use bobbin_common::configure::*;
-use bobbin_common::enabled::*;
+use bobbin_hal::configure::*;
+use bobbin_hal::enabled::*;
 
 use i2c_v2::*;
-use bobbin_common::bits::*;
+use bobbin_bits::*;
 
 // use bobbin_common::{Irq, Poll};
 // use bobbin_sys::ring::Ring;
