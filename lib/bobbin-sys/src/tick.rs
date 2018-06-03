@@ -151,12 +151,16 @@ impl<'a> TickGuard<'a> {
 }
 
 impl<'a> Drop for TickGuard<'a> {
-    fn drop(&mut self) {
+    fn drop(&mut self) {        
         for slot in Tick::handlers().iter_mut() {
+            let mut remove = false;
             if let Some(handler) = slot {
                 if self.handler == *handler {
-                    *slot = None;
+                    remove = true;
                 }
+            }
+            if remove {
+                *slot = None;
             }
         }
     }

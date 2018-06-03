@@ -85,10 +85,14 @@ impl<'a> PendGuard<'a> {
 impl<'a> Drop for PendGuard<'a> {
     fn drop(&mut self) {
         for slot in Pend::handlers().iter_mut() {
+            let mut remove = false;
             if let Some(handler) = slot {
                 if self.handler == *handler {
-                    *slot = None;
+                    remove = true;
                 }
+            }
+            if remove {
+                *slot = None;
             }
         }
     }
