@@ -1,0 +1,37 @@
+pub use ::stm32_common::tim_gen::*;
+
+::bobbin_mcu::periph!( TIM2, Tim2, TIM2_PERIPH, TimGenPeriph, TIM2_OWNED, TIM2_REF_COUNT, 0x40000000, 0x00, 0x10);
+::bobbin_mcu::periph!( TIM3, Tim3, TIM3_PERIPH, TimGenPeriph, TIM3_OWNED, TIM3_REF_COUNT, 0x40000400, 0x01, 0x11);
+::bobbin_mcu::periph!( TIM4, Tim4, TIM4_PERIPH, TimGenPeriph, TIM4_OWNED, TIM4_REF_COUNT, 0x40000800, 0x02, 0x12);
+::bobbin_mcu::periph!( TIM5, Tim5, TIM5_PERIPH, TimGenPeriph, TIM5_OWNED, TIM5_REF_COUNT, 0x40000c00, 0x03, 0x13);
+::bobbin_mcu::periph!( TIM9, Tim9, TIM9_PERIPH, TimGenPeriph, TIM9_OWNED, TIM9_REF_COUNT, 0x40014000, 0x04, 0x14);
+::bobbin_mcu::periph!( TIM10, Tim10, TIM10_PERIPH, TimGenPeriph, TIM10_OWNED, TIM10_REF_COUNT, 0x40014400, 0x05, 0x15);
+::bobbin_mcu::periph!( TIM11, Tim11, TIM11_PERIPH, TimGenPeriph, TIM11_OWNED, TIM11_REF_COUNT, 0x40014800, 0x06, 0x16);
+::bobbin_mcu::periph!( TIM12, Tim12, TIM12_PERIPH, TimGenPeriph, TIM12_OWNED, TIM12_REF_COUNT, 0x40001800, 0x07, 0x17);
+::bobbin_mcu::periph!( TIM13, Tim13, TIM13_PERIPH, TimGenPeriph, TIM13_OWNED, TIM13_REF_COUNT, 0x40001c00, 0x08, 0x18);
+::bobbin_mcu::periph!( TIM14, Tim14, TIM14_PERIPH, TimGenPeriph, TIM14_OWNED, TIM14_REF_COUNT, 0x40002000, 0x09, 0x19);
+
+::bobbin_mcu::channel!(TIM2_CH1, Tim2Ch1, tim2_ch1, TIM2, Tim2, TIM2_CH1_CH, TimGenCh, TIM2_PERIPH, TIM2_CH1_OWNED, TIM2_CH1_REF_COUNT, 0);
+::bobbin_mcu::channel!(TIM2_CH2, Tim2Ch2, tim2_ch2, TIM2, Tim2, TIM2_CH2_CH, TimGenCh, TIM2_PERIPH, TIM2_CH2_OWNED, TIM2_CH2_REF_COUNT, 1);
+::bobbin_mcu::channel!(TIM2_CH3, Tim2Ch3, tim2_ch3, TIM2, Tim2, TIM2_CH3_CH, TimGenCh, TIM2_PERIPH, TIM2_CH3_OWNED, TIM2_CH3_REF_COUNT, 2);
+::bobbin_mcu::channel!(TIM2_CH4, Tim2Ch4, tim2_ch4, TIM2, Tim2, TIM2_CH4_CH, TimGenCh, TIM2_PERIPH, TIM2_CH4_OWNED, TIM2_CH4_REF_COUNT, 3);
+::bobbin_mcu::channel!(TIM3_CH1, Tim3Ch1, tim3_ch1, TIM3, Tim3, TIM3_CH1_CH, TimGenCh, TIM3_PERIPH, TIM3_CH1_OWNED, TIM3_CH1_REF_COUNT, 0);
+::bobbin_mcu::channel!(TIM3_CH2, Tim3Ch2, tim3_ch2, TIM3, Tim3, TIM3_CH2_CH, TimGenCh, TIM3_PERIPH, TIM3_CH2_OWNED, TIM3_CH2_REF_COUNT, 1);
+::bobbin_mcu::channel!(TIM3_CH3, Tim3Ch3, tim3_ch3, TIM3, Tim3, TIM3_CH3_CH, TimGenCh, TIM3_PERIPH, TIM3_CH3_OWNED, TIM3_CH3_REF_COUNT, 2);
+::bobbin_mcu::channel!(TIM3_CH4, Tim3Ch4, tim3_ch4, TIM3, Tim3, TIM3_CH4_CH, TimGenCh, TIM3_PERIPH, TIM3_CH4_OWNED, TIM3_CH4_REF_COUNT, 3);
+::bobbin_mcu::channel!(TIM4_CH1, Tim4Ch1, tim4_ch1, TIM4, Tim4, TIM4_CH1_CH, TimGenCh, TIM4_PERIPH, TIM4_CH1_OWNED, TIM4_CH1_REF_COUNT, 0);
+::bobbin_mcu::channel!(TIM4_CH2, Tim4Ch2, tim4_ch2, TIM4, Tim4, TIM4_CH2_CH, TimGenCh, TIM4_PERIPH, TIM4_CH2_OWNED, TIM4_CH2_REF_COUNT, 1);
+::bobbin_mcu::channel!(TIM4_CH3, Tim4Ch3, tim4_ch3, TIM4, Tim4, TIM4_CH3_CH, TimGenCh, TIM4_PERIPH, TIM4_CH3_OWNED, TIM4_CH3_REF_COUNT, 2);
+::bobbin_mcu::channel!(TIM4_CH4, Tim4Ch4, tim4_ch4, TIM4, Tim4, TIM4_CH4_CH, TimGenCh, TIM4_PERIPH, TIM4_CH4_OWNED, TIM4_CH4_REF_COUNT, 3);
+::bobbin_mcu::channel!(TIM5_CH1, Tim5Ch1, tim5_ch1, TIM5, Tim5, TIM5_CH1_CH, TimGenCh, TIM5_PERIPH, TIM5_CH1_OWNED, TIM5_CH1_REF_COUNT, 0);
+::bobbin_mcu::channel!(TIM5_CH2, Tim5Ch2, tim5_ch2, TIM5, Tim5, TIM5_CH2_CH, TimGenCh, TIM5_PERIPH, TIM5_CH2_OWNED, TIM5_CH2_REF_COUNT, 1);
+::bobbin_mcu::channel!(TIM5_CH3, Tim5Ch3, tim5_ch3, TIM5, Tim5, TIM5_CH3_CH, TimGenCh, TIM5_PERIPH, TIM5_CH3_OWNED, TIM5_CH3_REF_COUNT, 2);
+::bobbin_mcu::channel!(TIM5_CH4, Tim5Ch4, tim5_ch4, TIM5, Tim5, TIM5_CH4_CH, TimGenCh, TIM5_PERIPH, TIM5_CH4_OWNED, TIM5_CH4_REF_COUNT, 3);
+::bobbin_mcu::channel!(TIM9_CH1, Tim9Ch1, tim9_ch1, TIM9, Tim9, TIM9_CH1_CH, TimGenCh, TIM9_PERIPH, TIM9_CH1_OWNED, TIM9_CH1_REF_COUNT, 0);
+::bobbin_mcu::channel!(TIM9_CH2, Tim9Ch2, tim9_ch2, TIM9, Tim9, TIM9_CH2_CH, TimGenCh, TIM9_PERIPH, TIM9_CH2_OWNED, TIM9_CH2_REF_COUNT, 1);
+::bobbin_mcu::channel!(TIM10_CH1, Tim10Ch1, tim10_ch1, TIM10, Tim10, TIM10_CH1_CH, TimGenCh, TIM10_PERIPH, TIM10_CH1_OWNED, TIM10_CH1_REF_COUNT, 0);
+::bobbin_mcu::channel!(TIM11_CH1, Tim11Ch1, tim11_ch1, TIM11, Tim11, TIM11_CH1_CH, TimGenCh, TIM11_PERIPH, TIM11_CH1_OWNED, TIM11_CH1_REF_COUNT, 0);
+::bobbin_mcu::channel!(TIM12_CH1, Tim12Ch1, tim12_ch1, TIM12, Tim12, TIM12_CH1_CH, TimGenCh, TIM12_PERIPH, TIM12_CH1_OWNED, TIM12_CH1_REF_COUNT, 0);
+::bobbin_mcu::channel!(TIM12_CH2, Tim12Ch2, tim12_ch2, TIM12, Tim12, TIM12_CH2_CH, TimGenCh, TIM12_PERIPH, TIM12_CH2_OWNED, TIM12_CH2_REF_COUNT, 1);
+::bobbin_mcu::channel!(TIM13_CH1, Tim13Ch1, tim13_ch1, TIM13, Tim13, TIM13_CH1_CH, TimGenCh, TIM13_PERIPH, TIM13_CH1_OWNED, TIM13_CH1_REF_COUNT, 0);
+::bobbin_mcu::channel!(TIM14_CH1, Tim14Ch1, tim14_ch1, TIM14, Tim14, TIM14_CH1_CH, TimGenCh, TIM14_PERIPH, TIM14_CH1_OWNED, TIM14_CH1_REF_COUNT, 0);

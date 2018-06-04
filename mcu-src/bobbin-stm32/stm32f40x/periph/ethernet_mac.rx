@@ -1,5 +1,5 @@
 (peripheral
-    (group-name ETHERNET)
+    (group-name ETHERNET_MAC)
     (name ETHERNET_MAC)
     (address 0x40028000)
     (description "Ethernet: media access control (MAC)")
