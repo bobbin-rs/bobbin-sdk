@@ -1,0 +1,11 @@
+(board
+    (name nucleo-f429zi)
+    (mcu stm32f42x)
+    (target thumbv7em-none-eabihf)
+    (crate 
+        (name stm32f42x) 
+        (as mcu)
+        (path "../../mcu/bobbin-stm32/stm32f42x")
+        (feature STM32F42xxI)
+    )
+)

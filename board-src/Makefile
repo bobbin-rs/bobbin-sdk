@@ -16,6 +16,9 @@ frdm-k64f: frdm-k64f.rx
 nucleo-l432kc: nucleo-l432kc.rx
 	$(CHIP) $(CHIP_ARGS_THUMBV7) $< $(BOARD_DST)/$@/
 
+nucleo-f429zi: nucleo-f429zi.rx
+	$(CHIP) $(CHIP_ARGS_THUMBV7) $< $(BOARD_DST)/$@/
+
 nucleo-f746zg: nucleo-f746zg.rx
 	$(CHIP) $(CHIP_ARGS_THUMBV7) $< $(BOARD_DST)/$@/
 
