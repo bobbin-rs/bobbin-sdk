@@ -7,6 +7,8 @@
 ::bobbin_mcu::signal_type!(I2C_SCL, SigI2cScl);
 ::bobbin_mcu::signal_type!(I2C_SDA, SigI2cSda);
 ::bobbin_mcu::signal_type!(I2C_SMBAL, SigI2cSmbal);
+::bobbin_mcu::signal_type!(CAN_TX, SigCanTx);
+::bobbin_mcu::signal_type!(CAN_RX, SigCanRx);
 ::bobbin_mcu::signal_type!(TX, SigTx);
 ::bobbin_mcu::signal_type!(RX, SigRx);
 ::bobbin_mcu::signal_type!(CTS, SigCts);
@@ -136,15 +138,21 @@
 ::bobbin_mcu::periph_signal!(super::spi::Spi6, SigSpiSck);
 
 // I2C
-::bobbin_mcu::periph_signal!(super::i2c::I2c3, SigI2cScl);
-::bobbin_mcu::periph_signal!(super::i2c::I2c3, SigI2cSda);
-::bobbin_mcu::periph_signal!(super::i2c::I2c3, SigI2cSmbal);
-::bobbin_mcu::periph_signal!(super::i2c::I2c2, SigI2cScl);
-::bobbin_mcu::periph_signal!(super::i2c::I2c2, SigI2cSda);
-::bobbin_mcu::periph_signal!(super::i2c::I2c2, SigI2cSmbal);
 ::bobbin_mcu::periph_signal!(super::i2c::I2c1, SigI2cScl);
 ::bobbin_mcu::periph_signal!(super::i2c::I2c1, SigI2cSda);
 ::bobbin_mcu::periph_signal!(super::i2c::I2c1, SigI2cSmbal);
+::bobbin_mcu::periph_signal!(super::i2c::I2c2, SigI2cScl);
+::bobbin_mcu::periph_signal!(super::i2c::I2c2, SigI2cSda);
+::bobbin_mcu::periph_signal!(super::i2c::I2c2, SigI2cSmbal);
+::bobbin_mcu::periph_signal!(super::i2c::I2c3, SigI2cScl);
+::bobbin_mcu::periph_signal!(super::i2c::I2c3, SigI2cSda);
+::bobbin_mcu::periph_signal!(super::i2c::I2c3, SigI2cSmbal);
+
+// CAN
+::bobbin_mcu::periph_signal!(super::can::Can1, SigCanTx);
+::bobbin_mcu::periph_signal!(super::can::Can1, SigCanRx);
+::bobbin_mcu::periph_signal!(super::can::Can2, SigCanTx);
+::bobbin_mcu::periph_signal!(super::can::Can2, SigCanRx);
 
 // GPIO
 

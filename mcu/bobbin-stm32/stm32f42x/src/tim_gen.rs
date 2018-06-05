@@ -35,3 +35,333 @@ pub use ::stm32_common::tim_gen::*;
 ::bobbin_mcu::channel!(TIM12_CH2, Tim12Ch2, tim12_ch2, TIM12, Tim12, TIM12_CH2_CH, TimGenCh, TIM12_PERIPH, TIM12_CH2_OWNED, TIM12_CH2_REF_COUNT, 1);
 ::bobbin_mcu::channel!(TIM13_CH1, Tim13Ch1, tim13_ch1, TIM13, Tim13, TIM13_CH1_CH, TimGenCh, TIM13_PERIPH, TIM13_CH1_OWNED, TIM13_CH1_REF_COUNT, 0);
 ::bobbin_mcu::channel!(TIM14_CH1, Tim14Ch1, tim14_ch1, TIM14, Tim14, TIM14_CH1_CH, TimGenCh, TIM14_PERIPH, TIM14_CH1_OWNED, TIM14_CH1_REF_COUNT, 0);
+// Gate { name: None, gate_type: Some("RST"), periph: Some("RCC"), register: Some("APB1RSTR"), field: Some("TIM2RST"), description: None }
+impl ::bobbin_mcu::gate::GateRst for Tim2 {
+    #[inline]
+    fn gate_rst(&self) -> ::bobbin_bits::U1 { ::rcc::RCC.apb1rstr().tim2rst() }
+    #[inline]
+    fn set_gate_rst<V: Into<::bobbin_bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_apb1rstr(|r| r.set_tim2rst(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("EN"), periph: Some("RCC"), register: Some("APB1ENR"), field: Some("TIM2EN"), description: None }
+impl ::bobbin_mcu::gate::GateEn for Tim2 {
+    #[inline]
+    fn gate_en(&self) -> ::bobbin_bits::U1 { ::rcc::RCC.apb1enr().tim2en() }
+    #[inline]
+    fn set_gate_en<V: Into<::bobbin_bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_apb1enr(|r| r.set_tim2en(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("SLEEP_EN"), periph: Some("RCC"), register: Some("APB1LPENR"), field: Some("TIM2LPEN"), description: None }
+impl ::bobbin_mcu::gate::GateSleepEn for Tim2 {
+    #[inline]
+    fn gate_sleep_en(&self) -> ::bobbin_bits::U1 { ::rcc::RCC.apb1lpenr().tim2lpen() }
+    #[inline]
+    fn set_gate_sleep_en<V: Into<::bobbin_bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_apb1lpenr(|r| r.set_tim2lpen(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("RST"), periph: Some("RCC"), register: Some("APB1RSTR"), field: Some("TIM3RST"), description: None }
+impl ::bobbin_mcu::gate::GateRst for Tim3 {
+    #[inline]
+    fn gate_rst(&self) -> ::bobbin_bits::U1 { ::rcc::RCC.apb1rstr().tim3rst() }
+    #[inline]
+    fn set_gate_rst<V: Into<::bobbin_bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_apb1rstr(|r| r.set_tim3rst(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("EN"), periph: Some("RCC"), register: Some("APB1ENR"), field: Some("TIM3EN"), description: None }
+impl ::bobbin_mcu::gate::GateEn for Tim3 {
+    #[inline]
+    fn gate_en(&self) -> ::bobbin_bits::U1 { ::rcc::RCC.apb1enr().tim3en() }
+    #[inline]
+    fn set_gate_en<V: Into<::bobbin_bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_apb1enr(|r| r.set_tim3en(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("SLEEP_EN"), periph: Some("RCC"), register: Some("APB1LPENR"), field: Some("TIM3LPEN"), description: None }
+impl ::bobbin_mcu::gate::GateSleepEn for Tim3 {
+    #[inline]
+    fn gate_sleep_en(&self) -> ::bobbin_bits::U1 { ::rcc::RCC.apb1lpenr().tim3lpen() }
+    #[inline]
+    fn set_gate_sleep_en<V: Into<::bobbin_bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_apb1lpenr(|r| r.set_tim3lpen(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("RST"), periph: Some("RCC"), register: Some("APB1RSTR"), field: Some("TIM4RST"), description: None }
+impl ::bobbin_mcu::gate::GateRst for Tim4 {
+    #[inline]
+    fn gate_rst(&self) -> ::bobbin_bits::U1 { ::rcc::RCC.apb1rstr().tim4rst() }
+    #[inline]
+    fn set_gate_rst<V: Into<::bobbin_bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_apb1rstr(|r| r.set_tim4rst(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("EN"), periph: Some("RCC"), register: Some("APB1ENR"), field: Some("TIM4EN"), description: None }
+impl ::bobbin_mcu::gate::GateEn for Tim4 {
+    #[inline]
+    fn gate_en(&self) -> ::bobbin_bits::U1 { ::rcc::RCC.apb1enr().tim4en() }
+    #[inline]
+    fn set_gate_en<V: Into<::bobbin_bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_apb1enr(|r| r.set_tim4en(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("SLEEP_EN"), periph: Some("RCC"), register: Some("APB1LPENR"), field: Some("TIM4LPEN"), description: None }
+impl ::bobbin_mcu::gate::GateSleepEn for Tim4 {
+    #[inline]
+    fn gate_sleep_en(&self) -> ::bobbin_bits::U1 { ::rcc::RCC.apb1lpenr().tim4lpen() }
+    #[inline]
+    fn set_gate_sleep_en<V: Into<::bobbin_bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_apb1lpenr(|r| r.set_tim4lpen(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("RST"), periph: Some("RCC"), register: Some("APB1RSTR"), field: Some("TIM5RST"), description: None }
+impl ::bobbin_mcu::gate::GateRst for Tim5 {
+    #[inline]
+    fn gate_rst(&self) -> ::bobbin_bits::U1 { ::rcc::RCC.apb1rstr().tim5rst() }
+    #[inline]
+    fn set_gate_rst<V: Into<::bobbin_bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_apb1rstr(|r| r.set_tim5rst(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("EN"), periph: Some("RCC"), register: Some("APB1ENR"), field: Some("TIM5EN"), description: None }
+impl ::bobbin_mcu::gate::GateEn for Tim5 {
+    #[inline]
+    fn gate_en(&self) -> ::bobbin_bits::U1 { ::rcc::RCC.apb1enr().tim5en() }
+    #[inline]
+    fn set_gate_en<V: Into<::bobbin_bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_apb1enr(|r| r.set_tim5en(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("SLEEP_EN"), periph: Some("RCC"), register: Some("APB1LPENR"), field: Some("TIM5LPEN"), description: None }
+impl ::bobbin_mcu::gate::GateSleepEn for Tim5 {
+    #[inline]
+    fn gate_sleep_en(&self) -> ::bobbin_bits::U1 { ::rcc::RCC.apb1lpenr().tim5lpen() }
+    #[inline]
+    fn set_gate_sleep_en<V: Into<::bobbin_bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_apb1lpenr(|r| r.set_tim5lpen(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("RST"), periph: Some("RCC"), register: Some("APB2RSTR"), field: Some("TIM9RST"), description: None }
+impl ::bobbin_mcu::gate::GateRst for Tim9 {
+    #[inline]
+    fn gate_rst(&self) -> ::bobbin_bits::U1 { ::rcc::RCC.apb2rstr().tim9rst() }
+    #[inline]
+    fn set_gate_rst<V: Into<::bobbin_bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_apb2rstr(|r| r.set_tim9rst(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("EN"), periph: Some("RCC"), register: Some("APB2ENR"), field: Some("TIM9EN"), description: None }
+impl ::bobbin_mcu::gate::GateEn for Tim9 {
+    #[inline]
+    fn gate_en(&self) -> ::bobbin_bits::U1 { ::rcc::RCC.apb2enr().tim9en() }
+    #[inline]
+    fn set_gate_en<V: Into<::bobbin_bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_apb2enr(|r| r.set_tim9en(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("SLEEP_EN"), periph: Some("RCC"), register: Some("APB2LPENR"), field: Some("TIM9LPEN"), description: None }
+impl ::bobbin_mcu::gate::GateSleepEn for Tim9 {
+    #[inline]
+    fn gate_sleep_en(&self) -> ::bobbin_bits::U1 { ::rcc::RCC.apb2lpenr().tim9lpen() }
+    #[inline]
+    fn set_gate_sleep_en<V: Into<::bobbin_bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_apb2lpenr(|r| r.set_tim9lpen(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("RST"), periph: Some("RCC"), register: Some("APB2RSTR"), field: Some("TIM10RST"), description: None }
+impl ::bobbin_mcu::gate::GateRst for Tim10 {
+    #[inline]
+    fn gate_rst(&self) -> ::bobbin_bits::U1 { ::rcc::RCC.apb2rstr().tim10rst() }
+    #[inline]
+    fn set_gate_rst<V: Into<::bobbin_bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_apb2rstr(|r| r.set_tim10rst(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("EN"), periph: Some("RCC"), register: Some("APB2ENR"), field: Some("TIM10EN"), description: None }
+impl ::bobbin_mcu::gate::GateEn for Tim10 {
+    #[inline]
+    fn gate_en(&self) -> ::bobbin_bits::U1 { ::rcc::RCC.apb2enr().tim10en() }
+    #[inline]
+    fn set_gate_en<V: Into<::bobbin_bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_apb2enr(|r| r.set_tim10en(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("SLEEP_EN"), periph: Some("RCC"), register: Some("APB2LPENR"), field: Some("TIM10LPEN"), description: None }
+impl ::bobbin_mcu::gate::GateSleepEn for Tim10 {
+    #[inline]
+    fn gate_sleep_en(&self) -> ::bobbin_bits::U1 { ::rcc::RCC.apb2lpenr().tim10lpen() }
+    #[inline]
+    fn set_gate_sleep_en<V: Into<::bobbin_bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_apb2lpenr(|r| r.set_tim10lpen(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("RST"), periph: Some("RCC"), register: Some("APB2RSTR"), field: Some("TIM11RST"), description: None }
+impl ::bobbin_mcu::gate::GateRst for Tim11 {
+    #[inline]
+    fn gate_rst(&self) -> ::bobbin_bits::U1 { ::rcc::RCC.apb2rstr().tim11rst() }
+    #[inline]
+    fn set_gate_rst<V: Into<::bobbin_bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_apb2rstr(|r| r.set_tim11rst(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("EN"), periph: Some("RCC"), register: Some("APB2ENR"), field: Some("TIM11EN"), description: None }
+impl ::bobbin_mcu::gate::GateEn for Tim11 {
+    #[inline]
+    fn gate_en(&self) -> ::bobbin_bits::U1 { ::rcc::RCC.apb2enr().tim11en() }
+    #[inline]
+    fn set_gate_en<V: Into<::bobbin_bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_apb2enr(|r| r.set_tim11en(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("SLEEP_EN"), periph: Some("RCC"), register: Some("APB2LPENR"), field: Some("TIM11LPEN"), description: None }
+impl ::bobbin_mcu::gate::GateSleepEn for Tim11 {
+    #[inline]
+    fn gate_sleep_en(&self) -> ::bobbin_bits::U1 { ::rcc::RCC.apb2lpenr().tim11lpen() }
+    #[inline]
+    fn set_gate_sleep_en<V: Into<::bobbin_bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_apb2lpenr(|r| r.set_tim11lpen(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("RST"), periph: Some("RCC"), register: Some("APB1RSTR"), field: Some("TIM12RST"), description: None }
+impl ::bobbin_mcu::gate::GateRst for Tim12 {
+    #[inline]
+    fn gate_rst(&self) -> ::bobbin_bits::U1 { ::rcc::RCC.apb1rstr().tim12rst() }
+    #[inline]
+    fn set_gate_rst<V: Into<::bobbin_bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_apb1rstr(|r| r.set_tim12rst(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("EN"), periph: Some("RCC"), register: Some("APB1ENR"), field: Some("TIM12EN"), description: None }
+impl ::bobbin_mcu::gate::GateEn for Tim12 {
+    #[inline]
+    fn gate_en(&self) -> ::bobbin_bits::U1 { ::rcc::RCC.apb1enr().tim12en() }
+    #[inline]
+    fn set_gate_en<V: Into<::bobbin_bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_apb1enr(|r| r.set_tim12en(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("SLEEP_EN"), periph: Some("RCC"), register: Some("APB1LPENR"), field: Some("TIM12LPEN"), description: None }
+impl ::bobbin_mcu::gate::GateSleepEn for Tim12 {
+    #[inline]
+    fn gate_sleep_en(&self) -> ::bobbin_bits::U1 { ::rcc::RCC.apb1lpenr().tim12lpen() }
+    #[inline]
+    fn set_gate_sleep_en<V: Into<::bobbin_bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_apb1lpenr(|r| r.set_tim12lpen(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("RST"), periph: Some("RCC"), register: Some("APB1RSTR"), field: Some("TIM13RST"), description: None }
+impl ::bobbin_mcu::gate::GateRst for Tim13 {
+    #[inline]
+    fn gate_rst(&self) -> ::bobbin_bits::U1 { ::rcc::RCC.apb1rstr().tim13rst() }
+    #[inline]
+    fn set_gate_rst<V: Into<::bobbin_bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_apb1rstr(|r| r.set_tim13rst(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("EN"), periph: Some("RCC"), register: Some("APB1ENR"), field: Some("TIM13EN"), description: None }
+impl ::bobbin_mcu::gate::GateEn for Tim13 {
+    #[inline]
+    fn gate_en(&self) -> ::bobbin_bits::U1 { ::rcc::RCC.apb1enr().tim13en() }
+    #[inline]
+    fn set_gate_en<V: Into<::bobbin_bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_apb1enr(|r| r.set_tim13en(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("SLEEP_EN"), periph: Some("RCC"), register: Some("APB1LPENR"), field: Some("TIM13LPEN"), description: None }
+impl ::bobbin_mcu::gate::GateSleepEn for Tim13 {
+    #[inline]
+    fn gate_sleep_en(&self) -> ::bobbin_bits::U1 { ::rcc::RCC.apb1lpenr().tim13lpen() }
+    #[inline]
+    fn set_gate_sleep_en<V: Into<::bobbin_bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_apb1lpenr(|r| r.set_tim13lpen(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("RST"), periph: Some("RCC"), register: Some("APB1RSTR"), field: Some("TIM14RST"), description: None }
+impl ::bobbin_mcu::gate::GateRst for Tim14 {
+    #[inline]
+    fn gate_rst(&self) -> ::bobbin_bits::U1 { ::rcc::RCC.apb1rstr().tim14rst() }
+    #[inline]
+    fn set_gate_rst<V: Into<::bobbin_bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_apb1rstr(|r| r.set_tim14rst(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("EN"), periph: Some("RCC"), register: Some("APB1ENR"), field: Some("TIM14EN"), description: None }
+impl ::bobbin_mcu::gate::GateEn for Tim14 {
+    #[inline]
+    fn gate_en(&self) -> ::bobbin_bits::U1 { ::rcc::RCC.apb1enr().tim14en() }
+    #[inline]
+    fn set_gate_en<V: Into<::bobbin_bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_apb1enr(|r| r.set_tim14en(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("SLEEP_EN"), periph: Some("RCC"), register: Some("APB1LPENR"), field: Some("TIM14LPEN"), description: None }
+impl ::bobbin_mcu::gate::GateSleepEn for Tim14 {
+    #[inline]
+    fn gate_sleep_en(&self) -> ::bobbin_bits::U1 { ::rcc::RCC.apb1lpenr().tim14lpen() }
+    #[inline]
+    fn set_gate_sleep_en<V: Into<::bobbin_bits::U1>>(&self, value: V) -> &Self {
+        ::rcc::RCC.with_apb1lpenr(|r| r.set_tim14lpen(value));
+        self
+    }
+}
+

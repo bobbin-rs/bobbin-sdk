@@ -35,12 +35,15 @@ pub mod tim_adv;
 pub mod adc;
 pub mod spi;
 pub mod i2c;
+pub mod can;
 pub mod gpio;
 pub mod usart;
 pub mod dma;
 pub mod sig;
 pub mod pin;
 pub mod irq;
+pub mod clock;
+
 
 #[derive(Debug, Default)]
 pub struct Stm32f42x {}
