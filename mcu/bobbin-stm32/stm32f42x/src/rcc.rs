@@ -4011,17 +4011,17 @@ impl ::core::fmt::Debug for Ahb3enr {
 pub struct Apb1enr(pub u32);
 impl Apb1enr {
     #[doc="UART8 clock enable"]
-    #[inline] pub fn uart8enr(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn uart8en(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 31) & 0x1) as u8) } // [31]
     }
 
-    #[doc="Returns true if UART8ENR != 0"]
-    #[inline] pub fn test_uart8enr(&self) -> bool {
-        self.uart8enr() != 0
+    #[doc="Returns true if UART8EN != 0"]
+    #[inline] pub fn test_uart8en(&self) -> bool {
+        self.uart8en() != 0
     }
 
-    #[doc="Sets the UART8ENR field."]
-    #[inline] pub fn set_uart8enr<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the UART8EN field."]
+    #[inline] pub fn set_uart8en<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 31);
@@ -4030,17 +4030,17 @@ impl Apb1enr {
     }
 
     #[doc="UART7 clock enable"]
-    #[inline] pub fn uart7enr(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn uart7en(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 30) & 0x1) as u8) } // [30]
     }
 
-    #[doc="Returns true if UART7ENR != 0"]
-    #[inline] pub fn test_uart7enr(&self) -> bool {
-        self.uart7enr() != 0
+    #[doc="Returns true if UART7EN != 0"]
+    #[inline] pub fn test_uart7en(&self) -> bool {
+        self.uart7en() != 0
     }
 
-    #[doc="Sets the UART7ENR field."]
-    #[inline] pub fn set_uart7enr<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the UART7EN field."]
+    #[inline] pub fn set_uart7en<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 30);
@@ -4503,8 +4503,8 @@ impl ::core::fmt::Display for Apb1enr {
 impl ::core::fmt::Debug for Apb1enr {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
         try!(write!(f, "[0x{:08x}", self.0));
-        if self.uart8enr() != 0 { try!(write!(f, " uart8enr"))}
-        if self.uart7enr() != 0 { try!(write!(f, " uart7enr"))}
+        if self.uart8en() != 0 { try!(write!(f, " uart8en"))}
+        if self.uart7en() != 0 { try!(write!(f, " uart7en"))}
         if self.dacen() != 0 { try!(write!(f, " dacen"))}
         if self.pwren() != 0 { try!(write!(f, " pwren"))}
         if self.can2en() != 0 { try!(write!(f, " can2en"))}

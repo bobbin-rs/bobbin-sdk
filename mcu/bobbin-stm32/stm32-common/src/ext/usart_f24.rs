@@ -1,8 +1,10 @@
-use bobbin_common::configure::*;
-use bobbin_common::enabled::*;
+use bobbin_hal::configure::*;
+use bobbin_hal::enabled::*;
 use bobbin_hal::serial::*;
+
+use usart_f24::*;
+
 use core::fmt::{self, Write};
-use periph::usart_f24::*;
 
 #[derive(Debug)]
 pub struct Config {
@@ -35,6 +37,10 @@ impl Config {
     // USARTDIV = 2 * 36Mhz / 115,200 = 625
     // let brr = (apb_hz / baud_hz) as u16;    
     pub fn set_baud(self, baud: u32, clock: u32) -> Self {
+        self.set_brr(clock / baud)
+    }
+
+    pub fn set_baud_clock(self, baud: u32, clock: u32) -> Self {
         self.set_brr(clock / baud)
     }
 

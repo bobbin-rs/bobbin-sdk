@@ -1012,14 +1012,14 @@
         (reset-value 0x0)
         (description "APB1 peripheral clock enable register")
         (field
-            (name UART8ENR)
+            (name UART8EN)
             (bit-offset 31)
             (bit-width 1)
             (description "UART8 clock enable")
 
         )
         (field
-            (name UART7ENR)
+            (name UART7EN)
             (bit-offset 30)
             (bit-width 1)
             (description "UART7 clock enable")
