@@ -1,9 +1,8 @@
-use bobbin_common::configure::*;
-use bobbin_common::enabled::*;
+use bobbin_hal::configure::*;
+use bobbin_hal::enabled::*;
 use bobbin_hal::spi::*;
 use spi_v1::*;
-
-use bobbin_common::bits::*;
+use bobbin_bits::*;
 
 #[derive(Debug, PartialEq, Eq, Clone, Copy)]
 pub enum FrameSize {
@@ -149,3 +148,27 @@ impl SpiRx<u16> for SpiPeriph {
         self.dr().dr().into()
     }
 }
+
+impl SpiRead for SpiPeriph {
+    fn read(&self, rx: &mut[u8]) {
+        for i in 0..rx.len() {
+            while !self.can_tx() {}
+            self.tx(0xffu8);
+            while !self.can_rx() {}
+            rx[i] = self.rx();
+        }
+    }
+}
+
+impl SpiWrite for SpiPeriph {
+    fn write(&self, tx: &[u8]) {
+        for i in 0..tx.len() {
+            while !self.can_tx() {}
+            self.tx(tx[i]);
+            while !self.can_rx() {}
+            let _: u8 = self.rx();
+        }
+    }
+}
+
+impl SpiTransfer for SpiPeriph {}

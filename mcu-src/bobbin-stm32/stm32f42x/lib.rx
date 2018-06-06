@@ -63,7 +63,26 @@
     (peripheral (include "periph/ethernet_mac.rx"))
     (peripheral (include "periph/ethernet_ptp.rx"))
     (peripheral (include "periph/ethernet_dma.rx"))
-    (peripheral (include "periph/dac.rx"))
+    ;(peripheral (include "periph/dac.rx"))
+
+
+    (peripheral-group
+        (name DAC)
+        (module (name "::stm32_common::dac::*"))
+        (peripheral
+            (name DAC)
+            (address 0x40007400)
+            (description "Digital-to-analog converter")
+            (clock
+                (input (name PCLK1))
+                (gate (type RST) (periph RCC) (register APB1RSTR) (field DACRST))
+                (gate (type EN) (periph RCC) (register APB1ENR) (field DACEN))
+                (gate (type SLEEP_EN) (periph RCC) (register APB1LPENR) (field DACLPEN))
+            )
+            (channel (name DAC_CH1) (index 0) (signal (name DAC_OUT1) (type DAC)))
+            (channel (name DAC_CH2) (index 1) (signal (name DAC_OUT2) (type DAC)))
+        )
+    )
 
     (peripheral-group
         (name IWDG)
@@ -995,7 +1014,7 @@
     )
     (peripheral-group
         (name I2C)
-        (module (name "::stm32_common::i2c_v1::*"))
+        (module (name "::stm32_common::i2c_v2::*"))
         (peripheral
             (name I2C1)
             (address 0x40005400)
@@ -1207,6 +1226,7 @@
                 (altfn 15 EVENTOUT)
             )
             (pin (name PA4) (index 4)
+                (altfn 0 DAC_OUT1)
                 (altfn 0 ADC1_IN4)
                 (altfn 0 ADC2_IN4)
                 (altfn 5 SPI1_NSS)
@@ -1219,6 +1239,7 @@
                 (altfn 15 EVENTOUT)
             )
             (pin (name PA5) (index 5)
+                (altfn 0 DAC_OUT2)
                 (altfn 0 ADC1_IN5)
                 (altfn 0 ADC2_IN5)
                 (altfn 1 TIM2_CH1)
@@ -2415,7 +2436,7 @@
             (address 0x40004400)
             (clock
                 (input (name PCLK1))
-                (gate (type RST) (periph RCC) (register APB1RSTR) (field UART2RST))
+                (gate (type RST) (periph RCC) (register APB1RSTR) (field USART2RST))
                 (gate (type EN) (periph RCC) (register APB1ENR) (field USART2EN))
                 (gate (type SLEEP_EN) (periph RCC) (register APB1LPENR) (field USART2LPEN))
             )                                    
@@ -2436,7 +2457,7 @@
             (address 0x40004800)
             (clock
                 (input (name PCLK1))
-                (gate (type RST) (periph RCC) (register APB1RSTR) (field UART3RST))
+                (gate (type RST) (periph RCC) (register APB1RSTR) (field USART3RST))
                 (gate (type EN) (periph RCC) (register APB1ENR) (field USART3EN))
                 (gate (type SLEEP_EN) (periph RCC) (register APB1LPENR) (field USART3LPEN))
             )            

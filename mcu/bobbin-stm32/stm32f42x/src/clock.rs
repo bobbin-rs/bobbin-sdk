@@ -51,6 +51,10 @@ pub trait ClockProvider : Default {
     fn eth_macrmii(&self) -> Hz { unimplemented!() }
 }
 
+impl<CP> ClockFor<::dac::Dac> for Clocks<CP> where CP: ClockProvider {
+    fn clock_for(&self, _: ::dac::Dac) -> Hz { self.pclk1() }
+}
+
 impl<CP> ClockFor<::iwdg::Iwdg> for Clocks<CP> where CP: ClockProvider {
     fn clock_for(&self, _: ::iwdg::Iwdg) -> Hz { self.lsi() }
 }

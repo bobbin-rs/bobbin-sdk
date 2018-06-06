@@ -42,13 +42,13 @@ impl ::bobbin_mcu::gate::GateSleepEn for Usart1 {
     }
 }
 
-// Gate { name: None, gate_type: Some("RST"), periph: Some("RCC"), register: Some("APB1RSTR"), field: Some("UART2RST"), description: None }
+// Gate { name: None, gate_type: Some("RST"), periph: Some("RCC"), register: Some("APB1RSTR"), field: Some("USART2RST"), description: None }
 impl ::bobbin_mcu::gate::GateRst for Usart2 {
     #[inline]
-    fn gate_rst(&self) -> ::bobbin_bits::U1 { ::rcc::RCC.apb1rstr().uart2rst() }
+    fn gate_rst(&self) -> ::bobbin_bits::U1 { ::rcc::RCC.apb1rstr().usart2rst() }
     #[inline]
     fn set_gate_rst<V: Into<::bobbin_bits::U1>>(&self, value: V) -> &Self {
-        ::rcc::RCC.with_apb1rstr(|r| r.set_uart2rst(value));
+        ::rcc::RCC.with_apb1rstr(|r| r.set_usart2rst(value));
         self
     }
 }
@@ -75,13 +75,13 @@ impl ::bobbin_mcu::gate::GateSleepEn for Usart2 {
     }
 }
 
-// Gate { name: None, gate_type: Some("RST"), periph: Some("RCC"), register: Some("APB1RSTR"), field: Some("UART3RST"), description: None }
+// Gate { name: None, gate_type: Some("RST"), periph: Some("RCC"), register: Some("APB1RSTR"), field: Some("USART3RST"), description: None }
 impl ::bobbin_mcu::gate::GateRst for Usart3 {
     #[inline]
-    fn gate_rst(&self) -> ::bobbin_bits::U1 { ::rcc::RCC.apb1rstr().uart3rst() }
+    fn gate_rst(&self) -> ::bobbin_bits::U1 { ::rcc::RCC.apb1rstr().usart3rst() }
     #[inline]
     fn set_gate_rst<V: Into<::bobbin_bits::U1>>(&self, value: V) -> &Self {
-        ::rcc::RCC.with_apb1rstr(|r| r.set_uart3rst(value));
+        ::rcc::RCC.with_apb1rstr(|r| r.set_usart3rst(value));
         self
     }
 }

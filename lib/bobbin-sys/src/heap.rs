@@ -20,7 +20,7 @@
 use ::core::{mem, ptr, slice, str, fmt};
 
 extern "C" {
-    static mut _sheap: u32;
+    static mut __sheap: u32;
     static mut _eheap: u32;
     static mut _estack: u32;
 }
@@ -63,8 +63,8 @@ impl Heap {
                 heap
             } else {
                 Heap { 
-                    ptr: &_sheap as *const u32 as *mut u8,
-                    end: &_sheap as *const u32 as *mut u8,
+                    ptr: &__sheap as *const u32 as *mut u8,
+                    end: &__sheap as *const u32 as *mut u8,
                     _private: (),
                 }
             }

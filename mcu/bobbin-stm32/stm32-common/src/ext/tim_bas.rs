@@ -1,8 +1,7 @@
 use tim_bas::*;
 // use bobbin_common::{Irq, Poll};
-use bobbin_common::enabled::*;
+use bobbin_hal::enabled::*;
 use bobbin_hal::timer::*;
-use core::ops::Deref;
 
 // use core::ptr;
 use core::cell::Cell;
@@ -11,6 +10,7 @@ impl TimBasPeriph {
     pub fn one_pulse_mode(&self) -> bool {
         self.cr1().opm() != 0
     }
+
     pub fn set_one_pulse_mode(&self, value: bool) -> &Self {
         let value = if value { 1 } else { 0 };
         self.with_cr1(|r| r.set_opm(value));
@@ -41,7 +41,6 @@ impl StartUp<u16> for TimBasPeriph {
     }
 }
 
-
 impl StartUpOnce<u16> for TimBasPeriph {
     fn start_up_once(&self, period: u16) -> &Self {
         self
@@ -53,9 +52,6 @@ impl StartUpOnce<u16> for TimBasPeriph {
     }
 }
 
-
-
-
 impl Enabled for TimBasPeriph {
     fn enabled(&self) -> bool {
         self.cr1().cen() != 0
@@ -66,7 +62,6 @@ impl Enabled for TimBasPeriph {
         self
     }
 }
-
 
 impl Timeout for TimBasPeriph {
     fn test_timeout(&self) -> bool {
@@ -112,7 +107,6 @@ impl SetCounter<u16> for TimBasPeriph {
         self.set_cnt(|r| r.set_cnt(value))        
     }
 }
-
 
 pub struct TimBasCounter {
     tim: TimBasPeriph,

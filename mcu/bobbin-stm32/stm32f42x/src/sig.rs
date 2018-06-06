@@ -1,3 +1,4 @@
+::bobbin_mcu::signal_type!(DAC, SigDac);
 ::bobbin_mcu::signal_type!(TIM, SigTim);
 ::bobbin_mcu::signal_type!(ADC, SigAdc);
 ::bobbin_mcu::signal_type!(SPI_NSS, SigSpiNss);
@@ -14,6 +15,10 @@
 ::bobbin_mcu::signal_type!(CTS, SigCts);
 ::bobbin_mcu::signal_type!(RTS, SigRts);
 ::bobbin_mcu::signal_type!(CK, SigCk);
+
+// DAC
+::bobbin_mcu::channel_signal!(super::dac::DacCh1, SigDac);
+::bobbin_mcu::channel_signal!(super::dac::DacCh2, SigDac);
 
 // IWDG
 

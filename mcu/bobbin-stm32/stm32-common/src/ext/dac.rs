@@ -1,7 +1,7 @@
-use dac::*;
 use bobbin_hal::analog::AnalogWrite;
-use bobbin_common::enabled::Enabled;
-use bobbin_common::bits::*;
+use bobbin_hal::enabled::Enabled;
+use bobbin_bits::*;
+use dac::*;
 
 impl DacPeriph {
     pub fn set_data_u12<V1: Into<U12>, V2: Into<U12>>(&self, data_1: V1, data_2: V2) -> &Self {
@@ -12,7 +12,6 @@ impl DacPeriph {
         self.set_dhr8rd(|r| r.set_daccdhr(0, data_1).set_daccdhr(1, data_2))
     }
 }
-
 
 impl Enabled for DacCh {
     fn enabled(&self) -> bool {
