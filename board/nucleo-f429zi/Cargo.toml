@@ -10,25 +10,25 @@ doc = false
 
 [dependencies.cortex-m-rt]
 features = []
-version = "0.4.0"
+version = "0.5.1"
 
 [dependencies.panic-abort]
 version = "0.2.0"
 
 [dev-dependencies]
 examples = { path = "../../app/examples" }
-embedded-hal = "0.1.2"
+embedded-hal = "0.2.1"
 
 [profile.dev]
 panic = "abort"
 opt-level = "s"
 incremental = false
-lto = true
+#lto = true
 
 [profile.release]
 panic = "abort"
 debug = true
-lto = true
+#lto = true
 
 
 [dependencies.stm32f42x]

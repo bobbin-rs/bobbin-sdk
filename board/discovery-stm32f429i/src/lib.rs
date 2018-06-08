@@ -28,15 +28,11 @@ impl bobbin_sys::board::Board for DiscoveryStm32f429i {
     fn id(&self) -> &'static str { "discovery-stm32f429i" }
 }
 
-fn default_handler(_irq: i16) {
-    bobbin_sys::irq_dispatch::IrqDispatcher::<Mcu>::handle_exception()
-}
-
 fn hard_fault(_ef: &ExceptionFrame) -> ! {
     loop {}
 }
 
-cortex_m_rt::exception!(*, default_handler);
+cortex_m_rt::exception!(*, bobbin_sys::irq_dispatch::IrqDispatcher::<Mcu>::handle_exception);
 cortex_m_rt::exception!(HardFault, hard_fault);
 cortex_m_rt::exception!(SysTick, bobbin_sys::tick::Tick::tick);
 cortex_m_rt::exception!(PendSV, bobbin_sys::pend::Pend::pend);

@@ -7,7 +7,7 @@ extern crate discovery_stm32f429i as board;
 extern crate examples;
 
 use board::mcu::systick::SYSTICK;
-use board::mcu::systick_ext::SystickHz;
+// use board::mcu::systick_ext::SystickHz;
 use board::mcu::scb::SCB;
 
 use board::mcu::dispatch::{HandleException, Exception};
@@ -28,16 +28,16 @@ pub extern "C" fn main() -> ! {
     let reload_value = (sys.clock().systick_hz() / 1000).as_u32() - 1;
     SYSTICK.set_reload_value(reload_value);
     SYSTICK.set_current_value(reload_value);
-    SYSTICK.set_enabled(true);        
+    SYSTICK.set_enabled(true);
 
-    
-    let t = TickHandler::new();    
+
+    let t = TickHandler::new();
     let t = sys.dispatcher_mut().register_systick_handler(&t).unwrap();
     // println!("{:?}", sys.dispatcher());
 
-    board::delay(100);
+    sys.tick().delay_ms(100);
 
-    let t2 = TickHandler::new();    
+    let t2 = TickHandler::new();
     let t2 = sys.dispatcher_mut().register_systick_handler(&t2).unwrap();
 
     // println!("{:?}", sys.dispatcher());
@@ -53,7 +53,7 @@ pub extern "C" fn main() -> ! {
             c.write_u32(p.count(), 10);
             c.write(b"\n");
         }
-        board::delay(1000);        
+        sys.tick().delay_ms(1000);
     })
 
 }
