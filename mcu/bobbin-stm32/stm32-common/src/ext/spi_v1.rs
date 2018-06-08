@@ -64,7 +64,17 @@ impl Config {
     pub fn set_cpha(mut self, value: bool) -> Self {
         self.cr1 = self.cr1.set_cpha(value);
         self
-    }    
+    }
+
+    pub fn set_msb_first(self) -> Self {
+        self.cr1.set_lsbfirst(false);
+        self
+    }
+
+    pub fn set_lsb_first(self) -> Self {
+        self.cr1.set_lsbfirst(true);
+        self
+    }
 }
 
 impl Configure<Config> for SpiPeriph {

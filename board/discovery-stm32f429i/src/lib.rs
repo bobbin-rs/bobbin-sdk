@@ -29,6 +29,8 @@ impl bobbin_sys::board::Board for DiscoveryStm32f429i {
 }
 
 fn hard_fault(_ef: &ExceptionFrame) -> ! {
+    println!("Hard fault!");
+
     loop {}
 }
 

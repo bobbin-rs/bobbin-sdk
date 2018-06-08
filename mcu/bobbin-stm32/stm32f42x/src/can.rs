@@ -1,5 +1,5 @@
-::bobbin_mcu::periph!( CAN1, Can1, CAN1_PERIPH, CanPeriph, CAN1_OWNED, CAN1_REF_COUNT, 0x40006400, 0x00, 0x2a);
-::bobbin_mcu::periph!( CAN2, Can2, CAN2_PERIPH, CanPeriph, CAN2_OWNED, CAN2_REF_COUNT, 0x40006800, 0x01, 0x2b);
+::bobbin_mcu::periph!( CAN1, Can1, CAN1_PERIPH, CanPeriph, CAN1_OWNED, CAN1_REF_COUNT, 0x40006400, 0x00, 0x2f);
+::bobbin_mcu::periph!( CAN2, Can2, CAN2_PERIPH, CanPeriph, CAN2_OWNED, CAN2_REF_COUNT, 0x40006800, 0x01, 0x30);
 
 // Gate { name: None, gate_type: Some("RST"), periph: Some("RCC"), register: Some("APB1RSTR"), field: Some("CAN1RST"), description: None }
 impl ::bobbin_mcu::gate::GateRst for Can1 {

@@ -1,15 +1,15 @@
 pub use ::stm32_common::tim_gen::*;
 
-::bobbin_mcu::periph!( TIM2, Tim2, TIM2_PERIPH, TimGenPeriph, TIM2_OWNED, TIM2_REF_COUNT, 0x40000000, 0x00, 0x10);
-::bobbin_mcu::periph!( TIM3, Tim3, TIM3_PERIPH, TimGenPeriph, TIM3_OWNED, TIM3_REF_COUNT, 0x40000400, 0x01, 0x11);
-::bobbin_mcu::periph!( TIM4, Tim4, TIM4_PERIPH, TimGenPeriph, TIM4_OWNED, TIM4_REF_COUNT, 0x40000800, 0x02, 0x12);
-::bobbin_mcu::periph!( TIM5, Tim5, TIM5_PERIPH, TimGenPeriph, TIM5_OWNED, TIM5_REF_COUNT, 0x40000c00, 0x03, 0x13);
-::bobbin_mcu::periph!( TIM9, Tim9, TIM9_PERIPH, TimGenPeriph, TIM9_OWNED, TIM9_REF_COUNT, 0x40014000, 0x04, 0x14);
-::bobbin_mcu::periph!( TIM10, Tim10, TIM10_PERIPH, TimGenPeriph, TIM10_OWNED, TIM10_REF_COUNT, 0x40014400, 0x05, 0x15);
-::bobbin_mcu::periph!( TIM11, Tim11, TIM11_PERIPH, TimGenPeriph, TIM11_OWNED, TIM11_REF_COUNT, 0x40014800, 0x06, 0x16);
-::bobbin_mcu::periph!( TIM12, Tim12, TIM12_PERIPH, TimGenPeriph, TIM12_OWNED, TIM12_REF_COUNT, 0x40001800, 0x07, 0x17);
-::bobbin_mcu::periph!( TIM13, Tim13, TIM13_PERIPH, TimGenPeriph, TIM13_OWNED, TIM13_REF_COUNT, 0x40001c00, 0x08, 0x18);
-::bobbin_mcu::periph!( TIM14, Tim14, TIM14_PERIPH, TimGenPeriph, TIM14_OWNED, TIM14_REF_COUNT, 0x40002000, 0x09, 0x19);
+::bobbin_mcu::periph!( TIM2, Tim2, TIM2_PERIPH, TimGenPeriph, TIM2_OWNED, TIM2_REF_COUNT, 0x40000000, 0x00, 0x15);
+::bobbin_mcu::periph!( TIM3, Tim3, TIM3_PERIPH, TimGenPeriph, TIM3_OWNED, TIM3_REF_COUNT, 0x40000400, 0x01, 0x16);
+::bobbin_mcu::periph!( TIM4, Tim4, TIM4_PERIPH, TimGenPeriph, TIM4_OWNED, TIM4_REF_COUNT, 0x40000800, 0x02, 0x17);
+::bobbin_mcu::periph!( TIM5, Tim5, TIM5_PERIPH, TimGenPeriph, TIM5_OWNED, TIM5_REF_COUNT, 0x40000c00, 0x03, 0x18);
+::bobbin_mcu::periph!( TIM9, Tim9, TIM9_PERIPH, TimGenPeriph, TIM9_OWNED, TIM9_REF_COUNT, 0x40014000, 0x04, 0x19);
+::bobbin_mcu::periph!( TIM10, Tim10, TIM10_PERIPH, TimGenPeriph, TIM10_OWNED, TIM10_REF_COUNT, 0x40014400, 0x05, 0x1a);
+::bobbin_mcu::periph!( TIM11, Tim11, TIM11_PERIPH, TimGenPeriph, TIM11_OWNED, TIM11_REF_COUNT, 0x40014800, 0x06, 0x1b);
+::bobbin_mcu::periph!( TIM12, Tim12, TIM12_PERIPH, TimGenPeriph, TIM12_OWNED, TIM12_REF_COUNT, 0x40001800, 0x07, 0x1c);
+::bobbin_mcu::periph!( TIM13, Tim13, TIM13_PERIPH, TimGenPeriph, TIM13_OWNED, TIM13_REF_COUNT, 0x40001c00, 0x08, 0x1d);
+::bobbin_mcu::periph!( TIM14, Tim14, TIM14_PERIPH, TimGenPeriph, TIM14_OWNED, TIM14_REF_COUNT, 0x40002000, 0x09, 0x1e);
 
 ::bobbin_mcu::channel!(TIM2_CH1, Tim2Ch1, tim2_ch1, TIM2, Tim2, TIM2_CH1_CH, TimGenCh, TIM2_PERIPH, TIM2_CH1_OWNED, TIM2_CH1_REF_COUNT, 0);
 ::bobbin_mcu::channel!(TIM2_CH2, Tim2Ch2, tim2_ch2, TIM2, Tim2, TIM2_CH2_CH, TimGenCh, TIM2_PERIPH, TIM2_CH2_OWNED, TIM2_CH2_REF_COUNT, 1);

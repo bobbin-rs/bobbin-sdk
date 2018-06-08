@@ -19,6 +19,7 @@ pub mod flash;
 pub mod tick_handler;
 pub mod pend_handler;
 pub mod ipc;
+pub mod lcd;
 
 pub mod mb85rc;
 pub mod mb85rs;

@@ -1,7 +1,7 @@
 pub use ::stm32_common::dma::*;
 
-::bobbin_mcu::periph!( DMA1, Dma1, DMA1_PERIPH, DmaPeriph, DMA1_OWNED, DMA1_REF_COUNT, 0x40026000, 0x00, 0x3f);
-::bobbin_mcu::periph!( DMA2, Dma2, DMA2_PERIPH, DmaPeriph, DMA2_OWNED, DMA2_REF_COUNT, 0x40026400, 0x01, 0x40);
+::bobbin_mcu::periph!( DMA1, Dma1, DMA1_PERIPH, DmaPeriph, DMA1_OWNED, DMA1_REF_COUNT, 0x40026000, 0x00, 0x44);
+::bobbin_mcu::periph!( DMA2, Dma2, DMA2_PERIPH, DmaPeriph, DMA2_OWNED, DMA2_REF_COUNT, 0x40026400, 0x01, 0x45);
 
 ::bobbin_mcu::channel!(DMA1_STREAM0, Dma1Stream0, dma1_stream0, DMA1, Dma1, DMA1_STREAM0_CH, DmaCh, DMA1_PERIPH, DMA1_STREAM0_OWNED, DMA1_STREAM0_REF_COUNT, 0);
 ::bobbin_mcu::channel!(DMA1_STREAM1, Dma1Stream1, dma1_stream1, DMA1, Dma1, DMA1_STREAM1_CH, DmaCh, DMA1_PERIPH, DMA1_STREAM1_OWNED, DMA1_STREAM1_REF_COUNT, 1);

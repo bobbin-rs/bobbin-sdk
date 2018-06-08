@@ -11,6 +11,7 @@ doc = false
 [dependencies]
 cortex-m-rt = "0.5.1"
 panic-abort = "0.2.0"
+embedded-hal = "0.2.1"
 
 [profile.dev]
 panic = "abort"

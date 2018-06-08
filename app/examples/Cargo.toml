@@ -8,4 +8,4 @@ bobbin-mcu = { path = "../../lib/bobbin-mcu"}
 bobbin-hal = { path = "../../lib/bobbin-hal"}
 bobbin-sys = { path = "../../lib/bobbin-sys"}
 bobbin-ipc = { path = "../../lib/bobbin-ipc"}
-embedded-hal = "0.1.2"
+embedded-hal = "0.2.1"
