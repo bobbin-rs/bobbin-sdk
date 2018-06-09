@@ -63,13 +63,11 @@
     (peripheral (include "periph/ethernet_mac.rx"))
     (peripheral (include "periph/ethernet_ptp.rx"))
     (peripheral (include "periph/ethernet_dma.rx"))
-    (peripheral (include "periph/fsmc.rx"))
-    (peripheral (include "periph/sdio.rx"))
-    (peripheral (include "periph/rtc.rx"))
-    (peripheral (include "periph/ltdc.rx"))
-    (peripheral (include "periph/dma2d.rx"))
-    ;(peripheral (include "periph/dac.rx"))
-
+    ;(peripheral (include "periph/fsmc.rx"))
+    ;(peripheral (include "periph/sdio.rx"))
+    ;(peripheral (include "periph/rtc.rx"))
+    ;(peripheral (include "periph/ltdc.rx"))
+    ;(peripheral (include "periph/dma2d.rx"))
 
     (peripheral-group
         (name DAC)

@@ -8,20 +8,23 @@ name = "main"
 path = "src/main.rs"
 doc = false
 
-[dependencies]
-cortex-m-rt = "0.5.1"
-panic-abort = "0.2.0"
-embedded-hal = "0.2.1"
+[dependencies.cortex-m-rt]
+features = []
+version = "0.4.0"
+
+[dependencies.panic-abort]
+version = "0.2.0"
+
 
 [profile.dev]
 panic = "abort"
 opt-level = "s"
 incremental = false
-#lto = true
+lto = true
 
 [profile.release]
 panic = "abort"
-#lto = true
+lto = true
 
 [dev-dependencies.examples]
 path = "../../app/examples"

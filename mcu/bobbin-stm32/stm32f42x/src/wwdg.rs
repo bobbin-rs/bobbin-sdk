@@ -1,6 +1,6 @@
 pub use ::stm32_common::wwdg::*;
 
-::bobbin_mcu::periph!( WWDG, Wwdg, WWDG_PERIPH, WwdgPeriph, WWDG_OWNED, WWDG_REF_COUNT, 0x40002c00, 0x00, 0x10);
+::bobbin_mcu::periph!( WWDG, Wwdg, WWDG_PERIPH, WwdgPeriph, WWDG_OWNED, WWDG_REF_COUNT, 0x40002c00, 0x00, 0x0b);
 
 // Gate { name: None, gate_type: Some("RST"), periph: Some("RCC"), register: Some("APB1RSTR"), field: Some("WWDGRST"), description: None }
 impl ::bobbin_mcu::gate::GateRst for Wwdg {

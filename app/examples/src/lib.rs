@@ -14,7 +14,7 @@ pub mod leds;
 pub mod pwm;
 pub mod adc;
 pub mod dac;
-//pub mod serial_driver;
+pub mod serial_driver;
 pub mod flash;
 pub mod tick_handler;
 pub mod pend_handler;

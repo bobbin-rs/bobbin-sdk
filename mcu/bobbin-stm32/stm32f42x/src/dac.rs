@@ -1,6 +1,6 @@
 pub use ::stm32_common::dac::*;
 
-::bobbin_mcu::periph!( DAC, Dac, DAC_PERIPH, DacPeriph, DAC_OWNED, DAC_REF_COUNT, 0x40007400, 0x00, 0x0e);
+::bobbin_mcu::periph!( DAC, Dac, DAC_PERIPH, DacPeriph, DAC_OWNED, DAC_REF_COUNT, 0x40007400, 0x00, 0x09);
 
 ::bobbin_mcu::channel!(DAC_CH1, DacCh1, dac_ch1, DAC, Dac, DAC_CH1_CH, DacCh, DAC_PERIPH, DAC_CH1_OWNED, DAC_CH1_REF_COUNT, 0);
 ::bobbin_mcu::channel!(DAC_CH2, DacCh2, dac_ch2, DAC, Dac, DAC_CH2_CH, DacCh, DAC_PERIPH, DAC_CH2_OWNED, DAC_CH2_REF_COUNT, 1);

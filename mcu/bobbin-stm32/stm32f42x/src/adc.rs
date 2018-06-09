@@ -1,8 +1,8 @@
 pub use ::stm32_common::adc_f24::*;
 
-::bobbin_mcu::periph!( ADC1, Adc1, ADC1_PERIPH, AdcPeriph, ADC1_OWNED, ADC1_REF_COUNT, 0x40012000, 0x00, 0x21);
-::bobbin_mcu::periph!( ADC2, Adc2, ADC2_PERIPH, AdcPeriph, ADC2_OWNED, ADC2_REF_COUNT, 0x40012100, 0x01, 0x22);
-::bobbin_mcu::periph!( ADC3, Adc3, ADC3_PERIPH, AdcPeriph, ADC3_OWNED, ADC3_REF_COUNT, 0x40012200, 0x02, 0x23);
+::bobbin_mcu::periph!( ADC1, Adc1, ADC1_PERIPH, AdcPeriph, ADC1_OWNED, ADC1_REF_COUNT, 0x40012000, 0x00, 0x1c);
+::bobbin_mcu::periph!( ADC2, Adc2, ADC2_PERIPH, AdcPeriph, ADC2_OWNED, ADC2_REF_COUNT, 0x40012100, 0x01, 0x1d);
+::bobbin_mcu::periph!( ADC3, Adc3, ADC3_PERIPH, AdcPeriph, ADC3_OWNED, ADC3_REF_COUNT, 0x40012200, 0x02, 0x1e);
 
 ::bobbin_mcu::channel!(ADC1_CH0, Adc1Ch0, adc1_ch0, ADC1, Adc1, ADC1_CH0_CH, AdcCh, ADC1_PERIPH, ADC1_CH0_OWNED, ADC1_CH0_REF_COUNT, 0);
 ::bobbin_mcu::channel!(ADC1_CH1, Adc1Ch1, adc1_ch1, ADC1, Adc1, ADC1_CH1_CH, AdcCh, ADC1_PERIPH, ADC1_CH1_OWNED, ADC1_CH1_REF_COUNT, 1);

@@ -1,6 +1,6 @@
 pub use ::stm32_common::exti::*;
 
-::bobbin_mcu::periph!( EXTI, Exti, EXTI_PERIPH, ExtiPeriph, EXTI_OWNED, EXTI_REF_COUNT, 0x40013c00, 0x00, 0x12);
+::bobbin_mcu::periph!( EXTI, Exti, EXTI_PERIPH, ExtiPeriph, EXTI_OWNED, EXTI_REF_COUNT, 0x40013c00, 0x00, 0x0d);
 
 ::bobbin_mcu::channel!(EXTI_LINE0, ExtiLine0, exti_line0, EXTI, Exti, EXTI_LINE0_CH, ExtiCh, EXTI_PERIPH, EXTI_LINE0_OWNED, EXTI_LINE0_REF_COUNT, 0);
 ::bobbin_mcu::channel!(EXTI_LINE1, ExtiLine1, exti_line1, EXTI, Exti, EXTI_LINE1_CH, ExtiCh, EXTI_PERIPH, EXTI_LINE1_OWNED, EXTI_LINE1_REF_COUNT, 1);

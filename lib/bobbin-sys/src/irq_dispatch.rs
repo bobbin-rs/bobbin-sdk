@@ -92,8 +92,9 @@ impl<MCU: Mcu> IrqDispatcher<MCU> {
         unsafe { IRQ_TOKEN = Some(IrqToken) }
     }
 
-    pub fn handle_exception(exc: i16) {
-        if exc > 16 && Self::dispatch(exc.wrapping_sub(16) as u8) {
+    pub fn handle_exception() {
+        let exc = MCU::get_active_irq();
+        if exc > 16 && Self::dispatch(exc.wrapping_sub(16)) {
             return
         } else {
             // ::bobbin_sys::console::write(b"Unhandled Exception: 0x");
