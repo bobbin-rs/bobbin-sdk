@@ -6,29 +6,27 @@ use core::fmt;
 
 use core::marker::PhantomData;
 
-pub struct AdcExample<T, OUT: fmt::Write, ADC: AnalogRead<T>, DEL: Delay> {
-    out: OUT,
+pub struct AdcExample<T, ADC: AnalogRead<T>, DEL: Delay> {
     adc: ADC,
     del: DEL,
     delay_ms: u32,
     _phantom: PhantomData<T>,
 }
 
-impl<T, OUT, ADC, DEL> AdcExample<T, OUT, ADC, DEL> 
+impl<T, ADC, DEL> AdcExample<T, ADC, DEL>
 where
     T: fmt::Display,
-    OUT: fmt::Write,
     ADC: AnalogRead<T>,
     DEL: Delay
 {
-    pub fn new(out: OUT, adc: ADC, del: DEL, delay_ms: u32, _value: T) -> Self {
-        Self { out, adc, del, delay_ms, _phantom: PhantomData }
+    pub fn new(adc: ADC, del: DEL, delay_ms: u32, _value: T) -> Self {
+        Self { adc, del, delay_ms, _phantom: PhantomData }
     }
 
     pub fn run(&mut self) -> ! {
         loop {
             let v: T = self.adc.analog_read();
-            let _ = writeln!(self.out, "{}", v);
+            println!("!{}", v);
             self.del.delay_ms(self.delay_ms);
         }
     }

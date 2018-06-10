@@ -49,8 +49,6 @@ impl<OSC: Clock, OSC32: Clock> ClockProvider for DynamicClock<OSC, OSC32> {
         (vco  * cfgr.plln().into_u32() / (2 * (cfgr.pllp().into_u32() + 1))).normalized()
     }
 
-
-
     fn pll48clk(&self) -> Hz {
         self.pllq()
     }

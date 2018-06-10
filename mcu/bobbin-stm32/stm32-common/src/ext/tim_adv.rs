@@ -1,5 +1,5 @@
 use tim_adv::*;
-use bobbin_common::bits::*;
+use bobbin_bits::*;
 
 pub enum Direction {
     Up = 0,
@@ -156,8 +156,6 @@ impl TimAdvPeriph {
     pub fn set_main_output_enable(&self, value: bool) -> &Self {
         self.with_bdtr(|r| r.set_moe(value))
     }
-
-
 }
 
 impl TimAdvCh {

@@ -1,4 +1,4 @@
-use bobbin_common::bits::*;
+use bobbin_bits::*;
 use bobbin_hal::analog::AnalogRead;
 use adc_f24::*;
 

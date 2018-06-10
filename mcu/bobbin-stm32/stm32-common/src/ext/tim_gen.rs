@@ -108,7 +108,11 @@ impl TimGenPeriph {
 
     pub fn set_capture_compare(&self, index: usize, value: u32) -> &Self {
         self.set_ccr(index, |r| r.set_ccrl(value))
-    }    
+    }
+
+    pub fn set_main_output_enable(&self, value: bool) -> &Self {
+        self.with_bdtr(|r| r.set_moe(value))
+    }
 }
 
 impl TimGenCh {

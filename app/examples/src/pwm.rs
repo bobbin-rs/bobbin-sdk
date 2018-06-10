@@ -3,20 +3,20 @@
 #[allow(unused_imports)]
 
 use embedded_hal::PwmPin;
-use embedded_hal::blocking::delay::DelayMs;
+use bobbin_hal::delay::*;
 
-pub struct Pwm<PIN: PwmPin, TIM: DelayMs<u16>> {
+pub struct Pwm<PIN: PwmPin, TIM: Delay> {
     pin: PIN,
     tim: TIM,
-    delay_ms: u16,
+    delay_ms: u32,
 }
 
 impl<PIN, TIM> Pwm<PIN, TIM> 
 where
     PIN: PwmPin<Duty=u16>,
-    TIM: DelayMs<u16>,
+    TIM: Delay,
 {
-    pub fn new(pin: PIN, tim: TIM, delay_ms: u16) -> Self {
+    pub fn new(pin: PIN, tim: TIM, delay_ms: u32) -> Self {
         Self { pin, tim, delay_ms }
     }
 

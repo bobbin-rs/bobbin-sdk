@@ -615,13 +615,13 @@
             (description "USART 4 reset")
         )
         (field
-            (name UART3RST)
+            (name USART3RST)
             (bit-offset 18)
             (bit-width 1)
             (description "USART 3 reset")
         )        
         (field
-            (name UART2RST)
+            (name USART2RST)
             (bit-offset 17)
             (bit-width 1)
             (description "USART 2 reset")

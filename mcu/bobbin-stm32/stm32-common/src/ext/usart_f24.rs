@@ -116,3 +116,23 @@ impl SerialRx<u8> for UsartPeriph {
         self.dr().dr().value() as u8
     }
 }
+
+impl SerialTxIrq for UsartPeriph {
+    fn tx_irq(&self) -> bool {
+        self.cr1().test_txeie()
+    }
+
+    fn set_tx_irq(&self, value: bool) -> &Self {
+        self.with_cr1(|r| r.set_txeie(value))
+    }
+}
+
+impl SerialRxIrq for UsartPeriph {
+    fn rx_irq(&self) -> bool {
+        self.cr1().test_rxneie()
+    }
+
+    fn set_rx_irq(&self, value: bool) -> &Self {
+        self.with_cr1(|r| r.set_rxneie(value))
+    }
+}

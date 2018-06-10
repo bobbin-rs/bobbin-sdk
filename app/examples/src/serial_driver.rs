@@ -23,7 +23,7 @@ where
     MCU: Mcu,
     USART: 'static + SerialTx<u8> + SerialTxIrq + SerialRx<u8> + SerialRxIrq + Sync,
 {
-    pub fn new<S: SystemProvider, U: Into<USART> + Irq<I>, I: IrqType>(sys: &mut System<S>, usart: U, irq_type: I) -> Result<Self, Error> {
+    pub fn new<S: SystemProvider<Mcu=MCU>, U: Into<USART> + Irq<I>, I: IrqType>(sys: &mut System<S>, usart: U, irq_type: I) -> Result<Self, Error> {
         Ok(
             EchoApp {
                 s: SerialDriver::new(sys, usart, irq_type)?,

@@ -1,0 +1,35 @@
+[package]
+authors = ["Andrey Tkachenko <andreytkachenko64@gmail.com>"]
+name = "discovery-stm32f429i"
+version = "0.1.0"
+
+[[bin]]
+name = "main"
+path = "src/main.rs"
+doc = false
+
+[dependencies.cortex-m-rt]
+features = []
+version = "0.4.0"
+
+[dependencies.panic-abort]
+version = "0.2.0"
+
+
+[profile.dev]
+panic = "abort"
+opt-level = "s"
+incremental = false
+lto = true
+
+[profile.release]
+panic = "abort"
+lto = true
+
+[dev-dependencies.examples]
+path = "../../app/examples"
+embedded-hal = "0.2.1"
+
+[dependencies.stm32f42x]
+features = ["STM32F42xxI"]
+path = "../../mcu/bobbin-stm32/stm32f42x"

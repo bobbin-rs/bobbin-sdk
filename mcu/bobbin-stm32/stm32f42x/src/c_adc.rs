@@ -1,5 +1,5 @@
 
-::bobbin_mcu::periph!( C_ADC, CAdc, C_ADC_PERIPH, CAdcPeriph, C_ADC_OWNED, C_ADC_REF_COUNT, 0x40012300, 0x00, 0x09);
+::bobbin_mcu::periph!( C_ADC, CAdc, C_ADC_PERIPH, CAdcPeriph, C_ADC_OWNED, C_ADC_REF_COUNT, 0x40012300, 0x00, 0x08);
 
 
 #[doc="Common ADC registers"]
