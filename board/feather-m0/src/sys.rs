@@ -61,9 +61,9 @@ impl SystemProvider for Board {
         use mcu::sercom::*;
         use mcu::gclk;
                 
-        const SERCOM: Sercom5 = SERCOM5;
-        const SERCOM_TX: Pb22 = PB22;
-        const SERCOM_RX: Pb23 = PB23;
+        const SERCOM: Sercom0 = SERCOM0;
+        const SERCOM_TX: Pa10 = PA10;
+        const SERCOM_RX: Pa11 = PA11;
         const SERCOM_BAUD: u32 = 115200;
 
         SERCOM.gate_enable();
@@ -72,7 +72,7 @@ impl SystemProvider for Board {
         // Set GCLK_GEN0 as source for SERCOM
 
         gclk::GCLK.set_clkctrl(|r| r
-            .set_id(0x14 + 5) // ID corresponds to SERCOM
+            .set_id(0x14 + 0) // ID corresponds to SERCOM
             .set_gen(0x0)
             .set_clken(1)
         );
