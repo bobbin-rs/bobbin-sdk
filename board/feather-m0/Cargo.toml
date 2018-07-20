@@ -1,0 +1,37 @@
+[package]
+name = "feather-m0"
+version = "0.1.0"
+authors = ["Jonathan Soo <jcsoo@agora.com>"]
+
+[[bin]]
+name = "main"
+path = "src/main.rs"
+doc = false
+
+[dependencies.cortex-m-rt]
+features = []
+version = "0.4.0"
+
+[dependencies.panic-abort]
+version = "0.2.0"
+
+[dev-dependencies]
+examples = { path = "../../app/examples" }
+embedded-hal = "0.1.2"
+
+[profile.dev]
+panic = "abort"
+opt-level = "s"
+incremental = false
+lto = true
+
+[profile.release]
+panic = "abort"
+debug = true
+lto = true
+
+
+[dependencies.samd21]
+path = "../../mcu/bobbin-sam/samd21"
+features = ["SAMD21x18"]
+
