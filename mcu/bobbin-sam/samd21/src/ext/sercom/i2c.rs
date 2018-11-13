@@ -9,6 +9,11 @@ pub enum TxMode {
     Read = 1,
 }
 
+#[derive(Debug, PartialEq, Eq, Clone, Copy)]
+pub enum SercomError {    
+    Timeout(&'static str),
+}
+
 impl SercomPeriph {
     pub fn index(&self) -> usize {
         match self.0 {
@@ -83,6 +88,12 @@ impl SercomPeriph {
         while s.syncbusy().sysop() != 0 {}        
     }
 
+    pub fn disable_i2c(&self) {
+        let s = self.i2cm();
+        // Enable the I²C master mode
+        s.with_ctrla(|r| r.set_enable(0));
+    }
+
     pub fn set_nack(&self) {
         self.i2cm().with_ctrlb(|r| r.set_ackact(1));
     }
@@ -151,6 +162,131 @@ impl SercomPeriph {
     pub fn bus_owner(&self) -> bool {
         self.i2cm().status().busstate() == 0x2
     }
+
+    pub fn try_start_tx(&self, addr: u8, rw: TxMode, timeout: u32) -> Result<bool, SercomError> {
+        let s = self.i2cm();
+        let addr = (addr << 1) | rw as u8;
+        //let addr = addr | rw as u8;
+        let mut n = timeout;
+        while n > 0 && !self.bus_idle() && !self.bus_owner() {
+            n -= 1;
+        }
+        if n == 0 {
+            return Err(SercomError::Timeout("try_start_tx 1"))
+        }
+        s.with_addr(|r| r.set_addr(addr));
+        match rw {
+            TxMode::Write => {
+                // wait until master busy flag clear
+                let mut n = timeout;
+                while n > 0 && s.intflag().mb() == 0 {
+                    n -= 1;
+                }
+                if n == 0 {
+                    return Err(SercomError::Timeout("try_start_tx 2"))
+                }
+            },
+            TxMode::Read => {
+                // wait until slave busy flag clear
+                let mut n = timeout;
+                while n > 0 && s.intflag().sb() == 0 {
+                    // If the slave NACKS the address, the MB bit will be set.
+                    // In that case, send a stop condition and return 0.
+                    if s.intflag().mb() != 0 {
+                        s.with_ctrlb(|r| r.set_cmd(3)); // stop condition
+                        // return Err(SercomError::Timeout("stop condition"));
+                        return Ok(false)
+                    }
+                    n -= 1;
+                }
+                if n == 0 {
+                    return Err(SercomError::Timeout("try_start_tx 3"))                    
+                }
+            },            
+        }
+        Ok(s.status().rxnack() == 0)
+    }
+
+    pub fn try_transfer(&self, addr: u8, write_buf: &[u8], read_buf: &mut [u8], timeout: u32) -> Result<&Self, SercomError> {
+        let read_len = read_buf.len();
+        let mut n = timeout;
+        while n > 0 && !self.bus_idle() {
+            n -= 1;
+        }
+        if n == 0 {
+            return Err(SercomError::Timeout("try_transfer bus_idle"))
+        }
+        self.set_ack();
+        if !self.try_start_tx(addr, TxMode::Write, timeout)? {
+            return Err(SercomError::Timeout("try_start_tx failed"));
+        }
+        for b in write_buf.iter() {
+            if !self.send_data(*b) {
+                self.set_cmd(0x3); // Stop
+                panic!("error writing data");
+            }                
+        }
+        while !self.i2cm().intflag().mb() == 0 {}
+
+        if read_len > 0 {
+            self.set_cmd(0x1); // Repeated Start
+
+            if !self.start_tx(addr, TxMode::Read) {
+                panic!("error starting tx");
+            }              
+
+            let len = read_buf.len();
+
+            for i in 0..len-1 {
+                read_buf[i]= self.read_data();
+                self.set_ack();
+                self.set_cmd(0x2); // Acknowledge
+            }
+            read_buf[len-1] = self.read_data();        
+            self.set_nack();
+            while !self.i2cm().intflag().sb() == 0 {}
+        }
+        self.set_cmd(0x3); // Stop
+        Ok(self)
+    }        
+
+    pub fn try_write(&self, addr: u8, write_buf: &[u8], timeout: u32) -> Result<&Self, SercomError> {
+        while !self.bus_idle() {}
+        self.set_ack();
+        if !self.start_tx(addr, TxMode::Write) {
+            self.set_cmd(0x3); // Stop
+            panic!("error starting tx");
+        }
+        for b in write_buf.iter() {
+            if !self.send_data(*b) {
+                self.set_cmd(0x3); // Stop
+                panic!("error sending data");
+            }        
+        }
+        self.set_cmd(0x3); // Stop    
+        Ok(self)
+    }
+
+    pub fn try_read(&self, addr: u8, read_buf: &mut[u8], timeout: u32) -> Result<&Self, SercomError> {
+        while !self.bus_idle() {}
+        self.set_ack();
+        if !self.start_tx(addr, TxMode::Read) {
+            panic!("error starting tx");
+        }              
+
+        let len = read_buf.len();
+
+        for i in 0..len-1 {
+            read_buf[i]= self.read_data();
+            self.set_ack();
+            self.set_cmd(0x2); // Acknowledge
+        }
+        read_buf[len-1]= self.read_data();
+        self.set_nack();
+        self.set_cmd(0x3); // Stop
+        Ok(self)
+    }
+
 }
 
 impl I2cTransfer<u8> for SercomPeriph {
