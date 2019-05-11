@@ -26,7 +26,6 @@ pub mod port;
 pub mod sercom;
 pub mod sig;
 pub mod pin;
-pub mod irq;
 pub mod clock;
 
 

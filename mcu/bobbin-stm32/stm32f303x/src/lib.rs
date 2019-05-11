@@ -37,7 +37,6 @@ pub mod tim_adv;
 pub mod dma;
 pub mod sig;
 pub mod pin;
-pub mod irq;
 pub mod clock;
 
 

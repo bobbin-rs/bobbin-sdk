@@ -38,7 +38,6 @@ pub mod port;
 pub mod adc;
 pub mod sig;
 pub mod pin;
-pub mod irq;
 pub mod clock;
 
 
