@@ -3,6 +3,10 @@
 This repository contains Bobbin SDK, a multi-platform Software Development Kit for
 embedded systems development using the [Rust](https://www.rust-lang.org/en-US/) programming language.
 
+NOTE (May 11, 2019) - IRQ handling needs to be revamped to be compatible with cortex-m-rt, and has 
+temporarily been removed from MCU codegen. The design of the board support crates also need to be
+updated to use cortex-m-rt attributes instead of macros.
+
 ## Organization
 
 - [DSL](./dsl/) - A DSL for describing MCUs, Boards and Peripherals
