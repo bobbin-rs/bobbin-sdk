@@ -1,5 +1,5 @@
 #![no_std]
-#![feature(asm, naked_functions, linkage, core_intrinsics, global_asm, used, use_extern_macros)]
+#![feature(asm, naked_functions, linkage, core_intrinsics, global_asm)]
 
 pub extern crate stm32_common;
 pub use stm32_common::bobbin_bits;
@@ -56,7 +56,7 @@ pub mod usart;
 pub mod dma;
 pub mod sig;
 pub mod pin;
-pub mod irq;
+// pub mod irq;
 pub mod clock;
 
 

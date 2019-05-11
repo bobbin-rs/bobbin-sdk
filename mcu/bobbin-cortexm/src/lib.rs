@@ -1,5 +1,5 @@
 #![no_std]
-#![feature(asm, use_extern_macros)]
+#![feature(asm)]
 
 pub extern crate bobbin_bits;
 pub extern crate bobbin_mcu;

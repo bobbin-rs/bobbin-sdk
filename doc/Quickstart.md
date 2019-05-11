@@ -30,7 +30,7 @@ path = "src/blinky.rs"
 doc = false
 
 [dependencies]
-cortex-m-rt = "0.4.0"
+cortex-m-rt = "0.6"
 panic-abort = "0.1.1"
 
 [dependencies.stm32f74x]
@@ -58,8 +58,7 @@ Add a `.cargo/config` file:
 [target.thumbv7em-none-eabihf]
 rustflags = [
   "-C", "link-arg=-Tlink.x",
-  "-C", "linker=arm-none-eabi-ld",
-  "-Z", "linker-flavor=ld",
+  "-C", "linker=rust-lld",
 ]
 ```
 

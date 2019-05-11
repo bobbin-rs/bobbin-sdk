@@ -337,7 +337,9 @@ pub fn gen_mcu_mod<W: Write>(cfg: &modules::Config, out: &mut W, d: &Device, pat
         return Ok(());
     } 
 
-    gen_interrupts_mod(&cfg, out, d, path)?; 
+    // NOTE: Temporarily disabling interrupt module generation 
+    //
+    // gen_interrupts_mod(&cfg, out, d, path)?; 
 
 
     if d.clocks.is_some() {

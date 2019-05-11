@@ -1,10 +1,12 @@
 #![no_std]
+#![no_main]
 #![feature(asm)]
 
 extern crate cortex_m_rt; // use the cortex-m-rt crate
 extern crate panic_abort; // abort on panic
 extern crate stm32f74x as mcu; // use the MCU crate
 
+use cortex_m_rt::entry;
 use mcu::bobbin_mcu::prelude::*;
 use mcu::bobbin_hal::prelude::*;
 use mcu::pin::*;
@@ -17,7 +19,8 @@ const USART_RX: Pd9 = PD9;
 const USART_CLOCK: u32 = 16_000_000; // Use HSI Clock
 const USART_BAUD: u32 = 115_200;
 
-fn main() {   
+#[entry]
+unsafe fn main() -> ! {   
     USART_TX
         .port_gate_enable() // Enable the clock for the port associated with this pin.
         .connect_to(USART); // Connect the pin to the USART that we are using.
@@ -34,6 +37,6 @@ fn main() {
 
     loop {
         USART.write(b"Hello, World\r\n"); // Write a byte slice. Use `\r\n` for a newline.
-        for _ in 0..10_000_000 { unsafe { asm!("nop") }}
+        for _ in 0..10_000_000 { asm!("nop") }
     }    
 }
