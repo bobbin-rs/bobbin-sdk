@@ -1,0 +1,867 @@
+(device
+    (name ATSAMD51J19A)
+    (vendor "Microchip Technology Inc.")
+    (size 0x20)
+    (access read-write)
+    (description "Microchip ATSAMD51J19A device: Cortex-M4 Microcontroller with 512KB Flash, 192KB SRAM, 64-pin package")
+    (peripheral-group
+        ; signature: 336283531ab97047
+        (name AC)
+        (prototype "periph/ac.rx")
+        (peripheral
+            (name AC)
+            (address 0x42002000)
+            (interrupt
+                (name AC)
+                (value 122)
+            )
+        )
+    )
+    (peripheral-group
+        ; signature: b2c6b053586dd2cc
+        (name ADC)
+        (prototype "periph/adc.rx")
+        (peripheral
+            (name ADC0)
+            (address 0x43001c00)
+            (interrupt
+                (name ADC0_OTHER)
+                (value 118)
+            )
+            (interrupt
+                (name ADC0_RESRDY)
+                (value 119)
+            )
+        )
+        (peripheral
+            (name ADC1)
+            (address 0x43002000)
+            (interrupt
+                (name ADC1_OTHER)
+                (value 120)
+            )
+            (interrupt
+                (name ADC1_RESRDY)
+                (value 121)
+            )
+        )
+    )
+    (peripheral-group
+        ; signature: 2ceb3f725b29a863
+        (name AES)
+        (prototype "periph/aes.rx")
+        (peripheral
+            (name AES)
+            (address 0x42002400)
+            (interrupt
+                (name AES)
+                (value 130)
+            )
+        )
+    )
+    (peripheral-group
+        ; signature: c5c80f21c7793514
+        (name CCL)
+        (prototype "periph/ccl.rx")
+        (peripheral
+            (name CCL)
+            (address 0x42003800)
+        )
+    )
+    (peripheral-group
+        ; signature: ab0f6649909c5c5b
+        (name CMCC)
+        (prototype "periph/cmcc.rx")
+        (peripheral
+            (name CMCC)
+            (address 0x41006000)
+        )
+    )
+    (peripheral-group
+        ; signature: d44947bc9dedbd07
+        (name DAC)
+        (prototype "periph/dac.rx")
+        (peripheral
+            (name DAC)
+            (address 0x43002400)
+            (interrupt
+                (name DAC_OTHER)
+                (value 123)
+            )
+            (interrupt
+                (name DAC_EMPTY_0)
+                (value 124)
+            )
+            (interrupt
+                (name DAC_EMPTY_1)
+                (value 125)
+            )
+            (interrupt
+                (name DAC_RESRDY_0)
+                (value 126)
+            )
+            (interrupt
+                (name DAC_RESRDY_1)
+                (value 127)
+            )
+        )
+    )
+    (peripheral-group
+        ; signature: 945c10d1d43a56f4
+        (name DMAC)
+        (prototype "periph/dmac.rx")
+        (peripheral
+            (name DMAC)
+            (address 0x4100a000)
+            (interrupt
+                (name DMAC_0)
+                (value 31)
+            )
+            (interrupt
+                (name DMAC_1)
+                (value 32)
+            )
+            (interrupt
+                (name DMAC_2)
+                (value 33)
+            )
+            (interrupt
+                (name DMAC_3)
+                (value 34)
+            )
+            (interrupt
+                (name DMAC_OTHER)
+                (value 35)
+            )
+        )
+    )
+    (peripheral-group
+        ; signature: d3ea6473609091c6
+        (name DSU)
+        (prototype "periph/dsu.rx")
+        (peripheral
+            (name DSU)
+            (address 0x41002000)
+        )
+    )
+    (peripheral-group
+        ; signature: 46ba2f271062112f
+        (name EIC)
+        (prototype "periph/eic.rx")
+        (peripheral
+            (name EIC)
+            (address 0x40002800)
+            (interrupt
+                (name EIC_EXTINT_0)
+                (value 12)
+            )
+            (interrupt
+                (name EIC_EXTINT_1)
+                (value 13)
+            )
+            (interrupt
+                (name EIC_EXTINT_2)
+                (value 14)
+            )
+            (interrupt
+                (name EIC_EXTINT_3)
+                (value 15)
+            )
+            (interrupt
+                (name EIC_EXTINT_4)
+                (value 16)
+            )
+            (interrupt
+                (name EIC_EXTINT_5)
+                (value 17)
+            )
+            (interrupt
+                (name EIC_EXTINT_6)
+                (value 18)
+            )
+            (interrupt
+                (name EIC_EXTINT_7)
+                (value 19)
+            )
+            (interrupt
+                (name EIC_EXTINT_8)
+                (value 20)
+            )
+            (interrupt
+                (name EIC_EXTINT_9)
+                (value 21)
+            )
+            (interrupt
+                (name EIC_EXTINT_10)
+                (value 22)
+            )
+            (interrupt
+                (name EIC_EXTINT_11)
+                (value 23)
+            )
+            (interrupt
+                (name EIC_EXTINT_12)
+                (value 24)
+            )
+            (interrupt
+                (name EIC_EXTINT_13)
+                (value 25)
+            )
+            (interrupt
+                (name EIC_EXTINT_14)
+                (value 26)
+            )
+            (interrupt
+                (name EIC_EXTINT_15)
+                (value 27)
+            )
+        )
+    )
+    (peripheral-group
+        ; signature: 8d563fcfb90b66d4
+        (name EVSYS)
+        (prototype "periph/evsys.rx")
+        (peripheral
+            (name EVSYS)
+            (address 0x4100e000)
+            (interrupt
+                (name EVSYS_0)
+                (value 36)
+            )
+            (interrupt
+                (name EVSYS_1)
+                (value 37)
+            )
+            (interrupt
+                (name EVSYS_2)
+                (value 38)
+            )
+            (interrupt
+                (name EVSYS_3)
+                (value 39)
+            )
+            (interrupt
+                (name EVSYS_OTHER)
+                (value 40)
+            )
+        )
+    )
+    (peripheral-group
+        ; signature: eaa68f4e6ea932b2
+        (name FREQM)
+        (prototype "periph/freqm.rx")
+        (peripheral
+            (name FREQM)
+            (address 0x40002c00)
+            (interrupt
+                (name FREQM)
+                (value 28)
+            )
+        )
+    )
+    (peripheral-group
+        ; signature: 7b6fbb70359c1e3a
+        (name GCLK)
+        (prototype "periph/gclk.rx")
+        (peripheral
+            (name GCLK)
+            (address 0x40001c00)
+        )
+    )
+    (peripheral-group
+        ; signature: d1fba762150c532c
+        (name ADC1)
+        (prototype "periph/adc1.rx")
+        (peripheral
+            (name HMATRIX)
+            (address 0x4100c000)
+        )
+    )
+    (peripheral-group
+        ; signature: 4c906bb59f2079d0
+        (name ICM)
+        (prototype "periph/icm.rx")
+        (peripheral
+            (name ICM)
+            (address 0x42002c00)
+            (interrupt
+                (name ICM)
+                (value 132)
+            )
+        )
+    )
+    (peripheral-group
+        ; signature: e4be333ba5886f28
+        (name I2S)
+        (prototype "periph/i2s.rx")
+        (peripheral
+            (name I2S)
+            (address 0x43002800)
+            (interrupt
+                (name I2S)
+                (value 128)
+            )
+        )
+    )
+    (peripheral-group
+        ; signature: 7efcf0c1ba550b0c
+        (name MCLK)
+        (prototype "periph/mclk.rx")
+        (peripheral
+            (name MCLK)
+            (address 0x40000800)
+            (interrupt
+                (name MCLK)
+                (value 1)
+            )
+        )
+    )
+    (peripheral-group
+        ; signature: aae7ba010d54d2ea
+        (name NVMCTRL)
+        (prototype "periph/nvmctrl.rx")
+        (peripheral
+            (name NVMCTRL)
+            (address 0x41004000)
+            (interrupt
+                (name NVMCTRL_0)
+                (value 29)
+            )
+            (interrupt
+                (name NVMCTRL_1)
+                (value 30)
+            )
+        )
+    )
+    (peripheral-group
+        ; signature: aa835e9535e01232
+        (name OSCCTRL)
+        (prototype "periph/oscctrl.rx")
+        (peripheral
+            (name OSCCTRL)
+            (address 0x40001000)
+            (interrupt
+                (name OSCCTRL_XOSC0)
+                (value 2)
+            )
+            (interrupt
+                (name OSCCTRL_XOSC1)
+                (value 3)
+            )
+            (interrupt
+                (name OSCCTRL_DFLL)
+                (value 4)
+            )
+            (interrupt
+                (name OSCCTRL_DPLL0)
+                (value 5)
+            )
+            (interrupt
+                (name OSCCTRL_DPLL1)
+                (value 6)
+            )
+        )
+    )
+    (peripheral-group
+        ; signature: 8ab0892cc8fe44cd
+        (name OSC32KCTRL)
+        (prototype "periph/osc32kctrl.rx")
+        (peripheral
+            (name OSC32KCTRL)
+            (address 0x40001400)
+            (interrupt
+                (name OSC32KCTRL)
+                (value 7)
+            )
+        )
+    )
+    (peripheral-group
+        ; signature: dea21fde6fb65975
+        (name PAC)
+        (prototype "periph/pac.rx")
+        (peripheral
+            (name PAC)
+            (address 0x40000000)
+            (interrupt
+                (name PAC)
+                (value 41)
+            )
+        )
+    )
+    (peripheral-group
+        ; signature: 2d50b39e09e5c9ca
+        (name PCC)
+        (prototype "periph/pcc.rx")
+        (peripheral
+            (name PCC)
+            (address 0x43002c00)
+            (interrupt
+                (name PCC)
+                (value 129)
+            )
+        )
+    )
+    (peripheral-group
+        ; signature: 1c784362461788b8
+        (name PDEC)
+        (prototype "periph/pdec.rx")
+        (peripheral
+            (name PDEC)
+            (address 0x42001c00)
+            (interrupt
+                (name PDEC_OTHER)
+                (value 115)
+            )
+            (interrupt
+                (name PDEC_MC0)
+                (value 116)
+            )
+            (interrupt
+                (name PDEC_MC1)
+                (value 117)
+            )
+        )
+    )
+    (peripheral-group
+        ; signature: 98e31d88b97052e4
+        (name PM)
+        (prototype "periph/pm.rx")
+        (peripheral
+            (name PM)
+            (address 0x40000400)
+            (interrupt
+                (name PM)
+                (value 0)
+            )
+        )
+    )
+    (peripheral-group
+        ; signature: cc232b4a2d9c2ccb
+        (name PORT)
+        (prototype "periph/port.rx")
+        (peripheral
+            (name PORT)
+            (address 0x41008000)
+        )
+    )
+    (peripheral-group
+        ; signature: 1544530e26adfc58
+        (name QSPI)
+        (prototype "periph/qspi.rx")
+        (peripheral
+            (name QSPI)
+            (address 0x42003400)
+            (interrupt
+                (name QSPI)
+                (value 134)
+            )
+        )
+    )
+    (peripheral-group
+        ; signature: e6aa8a87908f3df7
+        (name RAMECC)
+        (prototype "periph/ramecc.rx")
+        (peripheral
+            (name RAMECC)
+            (address 0x41020000)
+            (interrupt
+                (name RAMECC)
+                (value 45)
+            )
+        )
+    )
+    (peripheral-group
+        ; signature: 41877163c64eb653
+        (name RSTC)
+        (prototype "periph/rstc.rx")
+        (peripheral
+            (name RSTC)
+            (address 0x40000c00)
+        )
+    )
+    (peripheral-group
+        ; signature: 13496402d4eed6f1
+        (name RTC)
+        (prototype "periph/rtc.rx")
+        (peripheral
+            (name RTC)
+            (address 0x40002400)
+            (interrupt
+                (name RTC)
+                (value 11)
+            )
+        )
+    )
+    (peripheral-group
+        ; signature: 37a7e8dee5dabf9b
+        (name SDHC)
+        (prototype "periph/sdhc.rx")
+        (peripheral
+            (name SDHC0)
+            (address 0x45000000)
+            (interrupt
+                (name SDHC0)
+                (value 135)
+            )
+        )
+    )
+    (peripheral-group
+        ; signature: b6827ec3bca2cbce
+        (name SERCOM)
+        (prototype "periph/sercom.rx")
+        (peripheral
+            (name SERCOM0)
+            (address 0x40003000)
+            (interrupt
+                (name SERCOM0_0)
+                (value 46)
+            )
+            (interrupt
+                (name SERCOM0_1)
+                (value 47)
+            )
+            (interrupt
+                (name SERCOM0_2)
+                (value 48)
+            )
+            (interrupt
+                (name SERCOM0_OTHER)
+                (value 49)
+            )
+        )
+        (peripheral
+            (name SERCOM1)
+            (address 0x40003400)
+            (interrupt
+                (name SERCOM1_0)
+                (value 50)
+            )
+            (interrupt
+                (name SERCOM1_1)
+                (value 51)
+            )
+            (interrupt
+                (name SERCOM1_2)
+                (value 52)
+            )
+            (interrupt
+                (name SERCOM1_OTHER)
+                (value 53)
+            )
+        )
+        (peripheral
+            (name SERCOM2)
+            (address 0x41012000)
+            (interrupt
+                (name SERCOM2_0)
+                (value 54)
+            )
+            (interrupt
+                (name SERCOM2_1)
+                (value 55)
+            )
+            (interrupt
+                (name SERCOM2_2)
+                (value 56)
+            )
+            (interrupt
+                (name SERCOM2_OTHER)
+                (value 57)
+            )
+        )
+        (peripheral
+            (name SERCOM3)
+            (address 0x41014000)
+            (interrupt
+                (name SERCOM3_0)
+                (value 58)
+            )
+            (interrupt
+                (name SERCOM3_1)
+                (value 59)
+            )
+            (interrupt
+                (name SERCOM3_2)
+                (value 60)
+            )
+            (interrupt
+                (name SERCOM3_OTHER)
+                (value 61)
+            )
+        )
+        (peripheral
+            (name SERCOM4)
+            (address 0x43000000)
+            (interrupt
+                (name SERCOM4_0)
+                (value 62)
+            )
+            (interrupt
+                (name SERCOM4_1)
+                (value 63)
+            )
+            (interrupt
+                (name SERCOM4_2)
+                (value 64)
+            )
+            (interrupt
+                (name SERCOM4_OTHER)
+                (value 65)
+            )
+        )
+        (peripheral
+            (name SERCOM5)
+            (address 0x43000400)
+            (interrupt
+                (name SERCOM5_0)
+                (value 66)
+            )
+            (interrupt
+                (name SERCOM5_1)
+                (value 67)
+            )
+            (interrupt
+                (name SERCOM5_2)
+                (value 68)
+            )
+            (interrupt
+                (name SERCOM5_OTHER)
+                (value 69)
+            )
+        )
+    )
+    (peripheral-group
+        ; signature: 921cbcb6ad95eb58
+        (name SUPC)
+        (prototype "periph/supc.rx")
+        (peripheral
+            (name SUPC)
+            (address 0x40001800)
+            (interrupt
+                (name SUPC_OTHER)
+                (value 8)
+            )
+            (interrupt
+                (name SUPC_BODDET)
+                (value 9)
+            )
+        )
+    )
+    (peripheral-group
+        ; signature: b2a7e2389fe477c9
+        (name TC)
+        (prototype "periph/tc.rx")
+        (peripheral
+            (name TC0)
+            (address 0x40003800)
+            (interrupt
+                (name TC0)
+                (value 107)
+            )
+        )
+        (peripheral
+            (name TC1)
+            (address 0x40003c00)
+            (interrupt
+                (name TC1)
+                (value 108)
+            )
+        )
+        (peripheral
+            (name TC2)
+            (address 0x4101a000)
+            (interrupt
+                (name TC2)
+                (value 109)
+            )
+        )
+        (peripheral
+            (name TC3)
+            (address 0x4101c000)
+            (interrupt
+                (name TC3)
+                (value 110)
+            )
+        )
+        (peripheral
+            (name TC4)
+            (address 0x42001400)
+            (interrupt
+                (name TC4)
+                (value 111)
+            )
+        )
+        (peripheral
+            (name TC5)
+            (address 0x42001800)
+            (interrupt
+                (name TC5)
+                (value 112)
+            )
+        )
+    )
+    (peripheral-group
+        ; signature: 5c1d346f4d09ba44
+        (name TCC)
+        (prototype "periph/tcc.rx")
+        (peripheral
+            (name TCC0)
+            (address 0x41016000)
+            (interrupt
+                (name TCC0_OTHER)
+                (value 85)
+            )
+            (interrupt
+                (name TCC0_MC0)
+                (value 86)
+            )
+            (interrupt
+                (name TCC0_MC1)
+                (value 87)
+            )
+            (interrupt
+                (name TCC0_MC2)
+                (value 88)
+            )
+            (interrupt
+                (name TCC0_MC3)
+                (value 89)
+            )
+            (interrupt
+                (name TCC0_MC4)
+                (value 90)
+            )
+            (interrupt
+                (name TCC0_MC5)
+                (value 91)
+            )
+        )
+        (peripheral
+            (name TCC1)
+            (address 0x41018000)
+            (interrupt
+                (name TCC1_OTHER)
+                (value 92)
+            )
+            (interrupt
+                (name TCC1_MC0)
+                (value 93)
+            )
+            (interrupt
+                (name TCC1_MC1)
+                (value 94)
+            )
+            (interrupt
+                (name TCC1_MC2)
+                (value 95)
+            )
+            (interrupt
+                (name TCC1_MC3)
+                (value 96)
+            )
+        )
+        (peripheral
+            (name TCC2)
+            (address 0x42000c00)
+            (interrupt
+                (name TCC2_OTHER)
+                (value 97)
+            )
+            (interrupt
+                (name TCC2_MC0)
+                (value 98)
+            )
+            (interrupt
+                (name TCC2_MC1)
+                (value 99)
+            )
+            (interrupt
+                (name TCC2_MC2)
+                (value 100)
+            )
+        )
+        (peripheral
+            (name TCC3)
+            (address 0x42001000)
+            (interrupt
+                (name TCC3_OTHER)
+                (value 101)
+            )
+            (interrupt
+                (name TCC3_MC0)
+                (value 102)
+            )
+            (interrupt
+                (name TCC3_MC1)
+                (value 103)
+            )
+        )
+        (peripheral
+            (name TCC4)
+            (address 0x43001000)
+            (interrupt
+                (name TCC4_OTHER)
+                (value 104)
+            )
+            (interrupt
+                (name TCC4_MC0)
+                (value 105)
+            )
+            (interrupt
+                (name TCC4_MC1)
+                (value 106)
+            )
+        )
+    )
+    (peripheral-group
+        ; signature: 6ebad3715ece13b7
+        (name TRNG)
+        (prototype "periph/trng.rx")
+        (peripheral
+            (name TRNG)
+            (address 0x42002800)
+            (interrupt
+                (name TRNG)
+                (value 131)
+            )
+        )
+    )
+    (peripheral-group
+        ; signature: ef4503f665b0537e
+        (name USB)
+        (prototype "periph/usb.rx")
+        (peripheral
+            (name USB)
+            (address 0x41000000)
+            (interrupt
+                (name USB_OTHER)
+                (value 80)
+            )
+            (interrupt
+                (name USB_SOF_HSOF)
+                (value 81)
+            )
+            (interrupt
+                (name USB_TRCPT0)
+                (value 82)
+            )
+            (interrupt
+                (name USB_TRCPT1)
+                (value 83)
+            )
+        )
+    )
+    (peripheral-group
+        ; signature: b88258245a216128
+        (name WDT)
+        (prototype "periph/wdt.rx")
+        (peripheral
+            (name WDT)
+            (address 0x40002000)
+            (interrupt
+                (name WDT)
+                (value 10)
+            )
+        )
+    )
+)

@@ -1,0 +1,26 @@
+(peripheral
+    ; signature: d1fba762150c532c
+    (group-name ADC1)
+    (address-block
+        (offset 0x0)
+        (size 0x180)
+        (usage registers)
+    )
+    (description "HSB Matrix")
+    (register
+        (name "PRAS%S")
+        (offset 0x80)
+        (size 0x20)
+        (description "Priority A for Slave")
+        (dim 16)
+        (dim-increment 8)
+    )
+    (register
+        (name "PRBS%S")
+        (offset 0x84)
+        (size 0x20)
+        (description "Priority B for Slave")
+        (dim 16)
+        (dim-increment 8)
+    )
+)
