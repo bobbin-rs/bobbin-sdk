@@ -30,15 +30,15 @@ impl PortPin {
     //     self
     // }
 
-    // pub fn set_dir_output(&self) -> &Self {
-    //     self.port.set_dirset(|r| r.set_dirset(self.index, 1));
-    //     self
-    // }
+    pub fn set_dir_output(&self) -> &Self {
+        self.port.set_dirset(|r| r.set_dirset(self.index, 1));
+        self
+    }
 
-    // pub fn set_dir_input(&self) -> &Self {
-    //     self.port.set_dirclr(|r| r.set_dirclr(self.index, 1));
-    //     self
-    // }
+    pub fn set_dir_input(&self) -> &Self {
+        self.port.set_dirclr(|r| r.set_dirclr(self.index, 1));
+        self
+    }
 
     // pub fn set_pmux<V: Into<U4>>(&self, value: V) -> &Self {
     //     let pin = self.index;
@@ -81,7 +81,9 @@ impl DigitalOutput for PortPin {
         self
     }
     fn toggle_output(&self) -> &Self {
-        self.set_output(!self.output())
+        self.port.set_outtgl(|r| r.set_outtgl(self.index, 1));
+        self
+        // self.set_output(!self.output())
     }    
 }
 

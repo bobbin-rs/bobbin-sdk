@@ -13,7 +13,8 @@ use samd51::pin::PA23;
 
 #[entry]
 fn main() -> ! {
-    PORTA.set_dirset(|r| r.set_dirset(23, 1));
+    // PORTA.set_dirset(|r| r.set_dirset(23, 1));
+    PA23.set_output(true);
 
     loop {
         for _ in 0..1_000_000 {
