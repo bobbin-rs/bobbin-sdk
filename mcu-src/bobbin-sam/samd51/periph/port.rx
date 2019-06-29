@@ -343,7 +343,7 @@
         )
     )
     (register
-        (name "PMUX0_")
+        (name "PMUX0")
         (offset 0x30)
         (size 0x8)
         (description "Peripheral Multiplexing - Group 0")
@@ -503,14 +503,14 @@
         )
     )
     (register
-        (name "PMUX1_")
+        (name "PMUX1")
         (offset 0xb0)
         (description "Peripheral Multiplexing - Group 1")
         (dim 16)
         (dim-increment 1)
     )
     (register
-        (name "PINCFG0_")
+        (name "PINCFG0")
         (offset 0x40)
         (size 0x8)
         (description "Pin Configuration - Group 0")
@@ -542,7 +542,7 @@
         )
     )
     (register
-        (name "PINCFG1_")
+        (name "PINCFG1")
         (offset 0xc0)
         (description "Pin Configuration - Group 1")
         (dim 32)
