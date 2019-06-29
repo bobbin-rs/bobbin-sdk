@@ -19,6 +19,9 @@ cortex-m-rt = "0.6"
 cortex-m = "0.6"
 panic-abort = "0.3"
 
+[dependencies.samd21]
+path = "../../mcu/bobbin-sam/samd21"
+
 [profile.dev]
 panic = "abort"
 opt-level = "s"
