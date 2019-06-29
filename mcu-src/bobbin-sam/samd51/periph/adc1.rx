@@ -8,7 +8,7 @@
     )
     (description "HSB Matrix")
     (register
-        (name "PRAS%S")
+        (name "PRAS")
         (offset 0x80)
         (size 0x20)
         (description "Priority A for Slave")
@@ -16,7 +16,7 @@
         (dim-increment 8)
     )
     (register
-        (name "PRBS%S")
+        (name "PRBS")
         (offset 0x84)
         (size 0x20)
         (description "Priority B for Slave")

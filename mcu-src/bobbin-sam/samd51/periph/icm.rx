@@ -415,7 +415,7 @@
         )
     )
     (register
-        (name "UIHVAL%S")
+        (name "UIHVAL")
         (offset 0x38)
         (size 0x20)
         (access write-only)

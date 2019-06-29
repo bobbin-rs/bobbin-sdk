@@ -644,7 +644,7 @@
             )
         )
         (register
-            (name "EPCFG%S")
+            (name "EPCFG")
             (offset 0x100)
             (size 0x8)
             (description "DEVICE End Point Configuration")
@@ -670,7 +670,7 @@
             )
         )
         (register
-            (name "EPSTATUSCLR%S")
+            (name "EPSTATUSCLR")
             (offset 0x104)
             (size 0x8)
             (access write-only)
@@ -728,7 +728,7 @@
             )
         )
         (register
-            (name "EPSTATUSSET%S")
+            (name "EPSTATUSSET")
             (offset 0x105)
             (size 0x8)
             (access write-only)
@@ -786,7 +786,7 @@
             )
         )
         (register
-            (name "EPSTATUS%S")
+            (name "EPSTATUS")
             (offset 0x106)
             (size 0x8)
             (access read-only)
@@ -844,7 +844,7 @@
             )
         )
         (register
-            (name "EPINTFLAG%S")
+            (name "EPINTFLAG")
             (offset 0x107)
             (size 0x8)
             (description "DEVICE End Point Interrupt Flag")
@@ -894,7 +894,7 @@
             )
         )
         (register
-            (name "EPINTENCLR%S")
+            (name "EPINTENCLR")
             (offset 0x108)
             (size 0x8)
             (description "DEVICE End Point Interrupt Clear Flag")
@@ -944,7 +944,7 @@
             )
         )
         (register
-            (name "EPINTENSET%S")
+            (name "EPINTENSET")
             (offset 0x109)
             (size 0x8)
             (description "DEVICE End Point Interrupt Set Flag")
@@ -1529,7 +1529,7 @@
             )
         )
         (register
-            (name "PCFG%S")
+            (name "PCFG")
             (offset 0x100)
             (size 0x8)
             (description "HOST End Point Configuration")
@@ -1555,7 +1555,7 @@
             )
         )
         (register
-            (name "BINTERVAL%S")
+            (name "BINTERVAL")
             (offset 0x103)
             (size 0x8)
             (description "HOST Bus Access Period of Pipe")
@@ -1569,7 +1569,7 @@
             )
         )
         (register
-            (name "PSTATUSCLR%S")
+            (name "PSTATUSCLR")
             (offset 0x104)
             (size 0x8)
             (access write-only)
@@ -1613,7 +1613,7 @@
             )
         )
         (register
-            (name "PSTATUSSET%S")
+            (name "PSTATUSSET")
             (offset 0x105)
             (size 0x8)
             (access write-only)
@@ -1657,7 +1657,7 @@
             )
         )
         (register
-            (name "PSTATUS%S")
+            (name "PSTATUS")
             (offset 0x106)
             (size 0x8)
             (access read-only)
@@ -1701,7 +1701,7 @@
             )
         )
         (register
-            (name "PINTFLAG%S")
+            (name "PINTFLAG")
             (offset 0x107)
             (size 0x8)
             (description "HOST Pipe Interrupt Flag")
@@ -1745,7 +1745,7 @@
             )
         )
         (register
-            (name "PINTENCLR%S")
+            (name "PINTENCLR")
             (offset 0x108)
             (size 0x8)
             (description "HOST Pipe Interrupt Flag Clear")
@@ -1789,7 +1789,7 @@
             )
         )
         (register
-            (name "PINTENSET%S")
+            (name "PINTENSET")
             (offset 0x109)
             (size 0x8)
             (description "HOST Pipe Interrupt Flag Set")

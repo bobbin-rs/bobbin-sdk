@@ -50,7 +50,7 @@
         )
     )
     (register
-        (name "CLKCTRL%S")
+        (name "CLKCTRL")
         (offset 0x4)
         (size 0x20)
         (description "Clock Unit n Control")

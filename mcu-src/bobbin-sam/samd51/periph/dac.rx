@@ -365,7 +365,7 @@
         )
     )
     (register
-        (name "DACCTRL%S")
+        (name "DACCTRL")
         (offset 0xc)
         (size 0x10)
         (description "DAC n Control")
@@ -436,7 +436,7 @@
         )
     )
     (register
-        (name "DATA%S")
+        (name "DATA")
         (offset 0x10)
         (size 0x10)
         (access write-only)
@@ -452,7 +452,7 @@
         )
     )
     (register
-        (name "DATABUF%S")
+        (name "DATABUF")
         (offset 0x14)
         (size 0x10)
         (access write-only)
@@ -480,7 +480,7 @@
         )
     )
     (register
-        (name "RESULT%S")
+        (name "RESULT")
         (offset 0x1c)
         (size 0x10)
         (access read-only)

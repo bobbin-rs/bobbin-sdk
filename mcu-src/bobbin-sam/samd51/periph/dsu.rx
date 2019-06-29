@@ -198,7 +198,7 @@
         )
     )
     (register
-        (name "DCC%S")
+        (name "DCC")
         (offset 0x10)
         (size 0x20)
         (description "Debug Communication Channel n")
@@ -347,7 +347,7 @@
         )
     )
     (register
-        (name "DCFG%S")
+        (name "DCFG")
         (offset 0xf0)
         (size 0x20)
         (description "Device Configuration")

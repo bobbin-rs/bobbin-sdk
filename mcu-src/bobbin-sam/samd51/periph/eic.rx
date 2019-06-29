@@ -180,7 +180,7 @@
         )
     )
     (register
-        (name "CONFIG%S")
+        (name "CONFIG")
         (offset 0x1c)
         (size 0x20)
         (description "External Interrupt Sense Configuration")

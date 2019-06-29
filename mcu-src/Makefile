@@ -10,7 +10,7 @@ build: bobbin-cortexm bobbin-kinetis bobbin-sam bobbin-stm32
 
 bobbin-kinetis: kinetis-common k64
 
-bobbin-sam: sam-common samd21
+bobbin-sam: sam-common samd21 samd51
 
 bobbin-stm32: stm32-common stm32f303x stm32f40x stm32f42x stm32l432x stm32f74x
 
@@ -27,6 +27,9 @@ sam-common:
 	$(CHIP) --crate --cargo-template bobbin-sam/sam-common/template bobbin-sam/$@/lib.rx ../mcu/bobbin-sam/$@/
 
 samd21:
+	$(CHIP) $(SAM_ARGS) bobbin-sam/$@/lib.rx ../mcu/bobbin-sam/$@/
+
+samd51:
 	$(CHIP) $(SAM_ARGS) bobbin-sam/$@/lib.rx ../mcu/bobbin-sam/$@/
 
 stm32-common:

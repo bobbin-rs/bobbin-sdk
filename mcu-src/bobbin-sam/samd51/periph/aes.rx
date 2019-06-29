@@ -313,7 +313,7 @@
         )
     )
     (register
-        (name "KEYWORD%S")
+        (name "KEYWORD")
         (offset 0xc)
         (size 0x20)
         (access write-only)
@@ -328,7 +328,7 @@
         (description "Indata")
     )
     (register
-        (name "INTVECTV%S")
+        (name "INTVECTV")
         (offset 0x3c)
         (size 0x20)
         (access write-only)
@@ -337,7 +337,7 @@
         (dim-increment 4)
     )
     (register
-        (name "HASHKEY%S")
+        (name "HASHKEY")
         (offset 0x5c)
         (size 0x20)
         (description "Hash key n")
@@ -345,7 +345,7 @@
         (dim-increment 4)
     )
     (register
-        (name "GHASH%S")
+        (name "GHASH")
         (offset 0x6c)
         (size 0x20)
         (description "Galois Hash n")

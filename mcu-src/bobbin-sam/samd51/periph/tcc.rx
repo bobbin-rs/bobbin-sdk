@@ -2163,7 +2163,7 @@
         )
     )
     (register
-        (name "CC%S")
+        (name "CC")
         (offset 0x44)
         (size 0x20)
         (description "Compare and Capture")
@@ -2177,7 +2177,7 @@
         )
     )
     (register
-        (name "CC%S_DITH4")
+        (name "CC_DITH4")
         (offset 0x44)
         (size 0x20)
         (description "Compare and Capture")
@@ -2197,7 +2197,7 @@
         )
     )
     (register
-        (name "CC%S_DITH5")
+        (name "CC_DITH5")
         (offset 0x44)
         (size 0x20)
         (description "Compare and Capture")
@@ -2217,7 +2217,7 @@
         )
     )
     (register
-        (name "CC%S_DITH6")
+        (name "CC_DITH6")
         (offset 0x44)
         (size 0x20)
         (description "Compare and Capture")
@@ -2409,7 +2409,7 @@
         )
     )
     (register
-        (name "CCBUF%S")
+        (name "CCBUF")
         (offset 0x70)
         (size 0x20)
         (description "Compare and Capture Buffer")
@@ -2423,7 +2423,7 @@
         )
     )
     (register
-        (name "CCBUF%S_DITH4")
+        (name "CCBUF_DITH4")
         (offset 0x70)
         (size 0x20)
         (description "Compare and Capture Buffer")
@@ -2443,7 +2443,7 @@
         )
     )
     (register
-        (name "CCBUF%S_DITH5")
+        (name "CCBUF_DITH5")
         (offset 0x70)
         (size 0x20)
         (description "Compare and Capture Buffer")
@@ -2463,7 +2463,7 @@
         )
     )
     (register
-        (name "CCBUF%S_DITH6")
+        (name "CCBUF_DITH6")
         (offset 0x70)
         (size 0x20)
         (description "Compare and Capture Buffer")

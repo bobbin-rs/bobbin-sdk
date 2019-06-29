@@ -1379,7 +1379,7 @@
         )
     )
     (register
-        (name "CHCTRLA%S")
+        (name "CHCTRLA")
         (offset 0x40)
         (size 0x20)
         (description "Channel n Control A")
@@ -1549,7 +1549,7 @@
         )
     )
     (register
-        (name "CHCTRLB%S")
+        (name "CHCTRLB")
         (offset 0x44)
         (size 0x8)
         (description "Channel n Control B")
@@ -1578,7 +1578,7 @@
         )
     )
     (register
-        (name "CHPRILVL%S")
+        (name "CHPRILVL")
         (offset 0x45)
         (size 0x8)
         (description "Channel n Priority Level")
@@ -1632,7 +1632,7 @@
         )
     )
     (register
-        (name "CHEVCTRL%S")
+        (name "CHEVCTRL")
         (offset 0x46)
         (size 0x8)
         (description "Channel n Event Control")
@@ -1714,7 +1714,7 @@
         )
     )
     (register
-        (name "CHINTENCLR%S")
+        (name "CHINTENCLR")
         (offset 0x4c)
         (size 0x8)
         (description "Channel n Interrupt Enable Clear")
@@ -1740,7 +1740,7 @@
         )
     )
     (register
-        (name "CHINTENSET%S")
+        (name "CHINTENSET")
         (offset 0x4d)
         (size 0x8)
         (description "Channel n Interrupt Enable Set")
@@ -1766,7 +1766,7 @@
         )
     )
     (register
-        (name "CHINTFLAG%S")
+        (name "CHINTFLAG")
         (offset 0x4e)
         (size 0x8)
         (description "Channel n Interrupt Flag Status and Clear")
@@ -1792,7 +1792,7 @@
         )
     )
     (register
-        (name "CHSTATUS%S")
+        (name "CHSTATUS")
         (offset 0x4f)
         (size 0x8)
         (description "Channel n Status")

@@ -1,9 +1,24 @@
 (device
-    (name ATSAMD51J19A)
+    ;(name ATSAMD51J19A)
+    (name SAMD51)   
     (vendor "Microchip Technology Inc.")
     (size 0x20)
     (access read-write)
     (description "Microchip ATSAMD51J19A device: Cortex-M4 Microcontroller with 512KB Flash, 192KB SRAM, 64-pin package")
+    (variants
+        (variant (name SAMD51x19) (link "samd51x19.ld"))
+    )    
+    (crate
+        (name "sam-common")
+        (module (name bobbin_bits))
+        (module (name bobbin_mcu))
+        (module (name bobbin_hal))
+        (module (name bobbin_sys))
+        (module (name nvic))
+        (module (name scb))
+        (module (name systick))
+    )    
+
     (peripheral-group
         ; signature: 336283531ab97047
         (name AC)

@@ -634,7 +634,7 @@
         )
     )
     (register
-        (name "PBLDATA%S")
+        (name "PBLDATA")
         (offset 0x1c)
         (size 0x20)
         (access read-only)

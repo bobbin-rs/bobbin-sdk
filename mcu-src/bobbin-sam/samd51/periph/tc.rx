@@ -676,7 +676,7 @@
             )
         )
         (register
-            (name "CC%S")
+            (name "CC")
             (offset 0x1c)
             (size 0x8)
             (description "COUNT8 Compare and Capture")
@@ -703,7 +703,7 @@
             )
         )
         (register
-            (name "CCBUF%S")
+            (name "CCBUF")
             (offset 0x30)
             (size 0x8)
             (description "COUNT8 Compare and Capture Buffer")
@@ -1373,7 +1373,7 @@
             )
         )
         (register
-            (name "CC%S")
+            (name "CC")
             (offset 0x1c)
             (size 0x10)
             (description "COUNT16 Compare and Capture")
@@ -1387,7 +1387,7 @@
             )
         )
         (register
-            (name "CCBUF%S")
+            (name "CCBUF")
             (offset 0x30)
             (size 0x10)
             (description "COUNT16 Compare and Capture Buffer")
@@ -2057,7 +2057,7 @@
             )
         )
         (register
-            (name "CC%S")
+            (name "CC")
             (offset 0x1c)
             (size 0x20)
             (description "COUNT32 Compare and Capture")
@@ -2071,7 +2071,7 @@
             )
         )
         (register
-            (name "CCBUF%S")
+            (name "CCBUF")
             (offset 0x30)
             (size 0x20)
             (description "COUNT32 Compare and Capture Buffer")

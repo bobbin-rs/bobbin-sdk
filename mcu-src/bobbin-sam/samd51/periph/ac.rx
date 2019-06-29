@@ -280,7 +280,7 @@
         )
     )
     (register
-        (name "SCALER%S")
+        (name "SCALER")
         (offset 0xc)
         (size 0x8)
         (description "Scaler n")
@@ -294,7 +294,7 @@
         )
     )
     (register
-        (name "COMPCTRL%S")
+        (name "COMPCTRL")
         (offset 0x10)
         (size 0x20)
         (description "Comparator Control n")

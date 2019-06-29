@@ -728,7 +728,7 @@
             )
         )
         (register
-            (name "COMP%S")
+            (name "COMP")
             (offset 0x20)
             (size 0x20)
             (description "MODE0 Compare n Value")
@@ -742,7 +742,7 @@
             )
         )
         (register
-            (name "GP%S")
+            (name "GP")
             (offset 0x40)
             (size 0x20)
             (description "General Purpose")
@@ -1008,7 +1008,7 @@
             )
         )
         (register
-            (name "BKUP%S")
+            (name "BKUP")
             (offset 0x80)
             (size 0x20)
             (description "Backup")
@@ -1810,7 +1810,7 @@
             )
         )
         (register
-            (name "COMP%S")
+            (name "COMP")
             (offset 0x20)
             (size 0x10)
             (description "MODE1 Compare n Value")
@@ -1824,7 +1824,7 @@
             )
         )
         (register
-            (name "GP%S")
+            (name "GP")
             (offset 0x40)
             (size 0x20)
             (description "General Purpose")
@@ -2090,7 +2090,7 @@
             )
         )
         (register
-            (name "BKUP%S")
+            (name "BKUP")
             (offset 0x80)
             (size 0x20)
             (description "Backup")
@@ -2877,7 +2877,7 @@
             )
         )
         (register
-            (name "ALARM%S")
+            (name "ALARM")
             (offset 0x20)
             (size 0x20)
             (description "MODE2 Alarm n Value")
@@ -2931,7 +2931,7 @@
             )
         )
         (register
-            (name "MASK%S")
+            (name "MASK")
             (offset 0x24)
             (size 0x8)
             (description "MODE2 Alarm n Mask")
@@ -2980,7 +2980,7 @@
             )
         )
         (register
-            (name "GP%S")
+            (name "GP")
             (offset 0x40)
             (size 0x20)
             (description "General Purpose")
@@ -3291,7 +3291,7 @@
             )
         )
         (register
-            (name "BKUP%S")
+            (name "BKUP")
             (offset 0x80)
             (size 0x20)
             (description "Backup")

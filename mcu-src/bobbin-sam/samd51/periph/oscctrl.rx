@@ -490,7 +490,7 @@
         )
     )
     (register
-        (name "XOSCCTRL%S")
+        (name "XOSCCTRL")
         (offset 0x14)
         (size 0x20)
         (reset-value 0x80)
@@ -733,7 +733,7 @@
         )
     )
     (register
-        (name "DPLLCTRLA%S")
+        (name "DPLLCTRLA")
         (offset 0x30)
         (size 0x8)
         (reset-value 0x80)
@@ -760,7 +760,7 @@
         )
     )
     (register
-        (name "DPLLRATIO%S")
+        (name "DPLLRATIO")
         (offset 0x34)
         (size 0x20)
         (description "DPLL Ratio Control")
@@ -780,7 +780,7 @@
         )
     )
     (register
-        (name "DPLLCTRLB%S")
+        (name "DPLLCTRLB")
         (offset 0x38)
         (size 0x20)
         (reset-value 0x20)
@@ -882,7 +882,7 @@
         )
     )
     (register
-        (name "DPLLSYNCBUSY%S")
+        (name "DPLLSYNCBUSY")
         (offset 0x3c)
         (size 0x20)
         (access read-only)
@@ -905,7 +905,7 @@
         )
     )
     (register
-        (name "DPLLSTATUS%S")
+        (name "DPLLSTATUS")
         (offset 0x40)
         (size 0x20)
         (access read-only)

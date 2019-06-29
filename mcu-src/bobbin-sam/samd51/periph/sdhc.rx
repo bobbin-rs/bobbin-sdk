@@ -317,7 +317,7 @@
         )
     )
     (register
-        (name "RR%S")
+        (name "RR")
         (offset 0x10)
         (size 0x20)
         (access read-only)
@@ -4125,7 +4125,7 @@
         )
     )
     (register
-        (name "ASAR%S")
+        (name "ASAR")
         (offset 0x58)
         (size 0x20)
         (description "ADMA System Address n")
@@ -4139,7 +4139,7 @@
         )
     )
     (register
-        (name "PVR%S")
+        (name "PVR")
         (offset 0x60)
         (size 0x10)
         (description "Preset Value n")

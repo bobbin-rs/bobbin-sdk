@@ -770,7 +770,7 @@
         )
     )
     (register
-        (name "CC%S")
+        (name "CC")
         (offset 0x20)
         (size 0x20)
         (description "Channel n Compare Value")
@@ -784,7 +784,7 @@
         )
     )
     (register
-        (name "CCBUF%S")
+        (name "CCBUF")
         (offset 0x30)
         (size 0x20)
         (description "Channel Compare Buffer Value")

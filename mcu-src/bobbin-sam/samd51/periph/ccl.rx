@@ -33,7 +33,7 @@
         )
     )
     (register
-        (name "SEQCTRL%S")
+        (name "SEQCTRL")
         (offset 0x4)
         (size 0x8)
         (description "SEQ Control x")
@@ -72,7 +72,7 @@
         )
     )
     (register
-        (name "LUTCTRL%S")
+        (name "LUTCTRL")
         (offset 0x8)
         (size 0x20)
         (description "LUT Control x")

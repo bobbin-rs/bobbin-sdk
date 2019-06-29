@@ -838,7 +838,7 @@
         )
     )
     (register
-        (name "GENCTRL%S")
+        (name "GENCTRL")
         (offset 0x20)
         (size 0x20)
         (description "Generic Clock Generator Control")
@@ -939,11 +939,12 @@
         )
     )
     (register
-        (name "PCHCTRL%S")
+        (name "PCHCTRL")
         (offset 0x80)
         (size 0x20)
         (description "Peripheral Clock Control")
-        (dim 48)
+        ;(dim 48)
+        (dim 64)
         (dim-increment 4)
         (field
             (name GEN)

@@ -571,7 +571,7 @@
         )
     )
     (register
-        (name "CHANNEL%S")
+        (name "CHANNEL")
         (offset 0x20)
         (size 0x20)
         (reset-value 0x8000)
@@ -645,7 +645,7 @@
         )
     )
     (register
-        (name "CHINTENCLR%S")
+        (name "CHINTENCLR")
         (offset 0x24)
         (size 0x8)
         (description "Channel n Interrupt Enable Clear")
@@ -665,7 +665,7 @@
         )
     )
     (register
-        (name "CHINTENSET%S")
+        (name "CHINTENSET")
         (offset 0x25)
         (size 0x8)
         (description "Channel n Interrupt Enable Set")
@@ -685,7 +685,7 @@
         )
     )
     (register
-        (name "CHINTFLAG%S")
+        (name "CHINTFLAG")
         (offset 0x26)
         (size 0x8)
         (description "Channel n Interrupt Flag Status and Clear")
@@ -705,7 +705,7 @@
         )
     )
     (register
-        (name "CHSTATUS%S")
+        (name "CHSTATUS")
         (offset 0x27)
         (size 0x8)
         (access read-only)
@@ -728,18 +728,18 @@
             (description "Busy Channel")
         )
     )
-    (register
-        (name "USER%S")
-        (offset 0x120)
-        (size 0x20)
-        (description "User Multiplexer n")
-        (dim 67)
-        (dim-increment 4)
-        (field
-            (name CHANNEL)
-            (bit-offset 0)
-            (bit-width 6)
-            (description "Channel Event Selection")
-        )
-    )
+;    (register
+;        (name "USER")
+;        (offset 0x120)
+;        (size 0x20)
+;        (description "User Multiplexer n")
+;        (dim 67)
+;        (dim-increment 4)
+;        (field
+;            (name CHANNEL)
+;            (bit-offset 0)
+;            (bit-width 6)
+;            (description "Channel Event Selection")
+;        )
+;    )
 )
