@@ -1,434 +1,437 @@
-::bobbin_mcu::periph!( PORT, Port, PORT_PERIPH, PortPeriph, PORT_OWNED, PORT_REF_COUNT, 0x41008000, 0x00, 0x18);
+::bobbin_mcu::periph!( PORTA, Porta, PORTA_PERIPH, PortPeriph, PORTA_OWNED, PORTA_REF_COUNT, 0x41008000, 0x00, 0x18);
+::bobbin_mcu::periph!( PORTB, Portb, PORTB_PERIPH, PortPeriph, PORTB_OWNED, PORTB_REF_COUNT, 0x41008080, 0x01, 0x19);
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="PORT Peripheral"]
 pub struct PortPeriph(pub usize); 
 
+pub struct PortPin { pub port: PortPeriph, pub index: usize }
+
 impl PortPeriph {
     #[doc="Get the DIR Register."]
-    #[inline] pub fn dir_reg(&self) -> ::bobbin_mcu::register::RegisterArray<Dir, ::bobbin_bits::R2> { 
-        ::bobbin_mcu::register::RegisterArray::new(self.0 as *mut Dir, 0x0, 0x80)
+    #[inline] pub fn dir_reg(&self) -> ::bobbin_mcu::register::Register<Dir> { 
+        ::bobbin_mcu::register::Register::new(self.0 as *mut Dir, 0x0)
     }
 
     #[doc="Get the *mut pointer for the DIR register."]
-    #[inline] pub fn dir_mut<I: Into<::bobbin_bits::R2>>(&self, index: I) -> *mut Dir { 
-        self.dir_reg().ptr(index.into())
+    #[inline] pub fn dir_mut(&self) -> *mut Dir { 
+        self.dir_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the DIR register."]
-    #[inline] pub fn dir_ptr<I: Into<::bobbin_bits::R2>>(&self, index: I) -> *const Dir { 
-        self.dir_reg().ptr(index.into())
+    #[inline] pub fn dir_ptr(&self) -> *const Dir { 
+        self.dir_reg().ptr()
     }
 
     #[doc="Read the DIR register."]
-    #[inline] pub fn dir<I: Into<::bobbin_bits::R2>>(&self, index: I) -> Dir { 
-        self.dir_reg().read(index.into())
+    #[inline] pub fn dir(&self) -> Dir { 
+        self.dir_reg().read()
     }
 
     #[doc="Write the DIR register."]
-    #[inline] pub fn write_dir<I: Into<::bobbin_bits::R2>>(&self, index: I, value: Dir) -> &Self {
-        self.dir_reg().write(index.into(), value);
+    #[inline] pub fn write_dir(&self, value: Dir) -> &Self { 
+        self.dir_reg().write(value);
         self
     }
 
     #[doc="Set the DIR register."]
-    #[inline] pub fn set_dir<I: Into<::bobbin_bits::R2>, F: FnOnce(Dir) -> Dir>(&self, index: I, f: F) -> &Self {
-        self.dir_reg().set(index.into(), f);
+    #[inline] pub fn set_dir<F: FnOnce(Dir) -> Dir>(&self, f: F) -> &Self {
+        self.dir_reg().set(f);
         self
     }
 
     #[doc="Modify the DIR register."]
-    #[inline] pub fn with_dir<I: Into<::bobbin_bits::R2> + Copy, F: FnOnce(Dir) -> Dir>(&self, index: I, f: F) -> &Self {
-        self.dir_reg().with(index.into(), f);
+    #[inline] pub fn with_dir<F: FnOnce(Dir) -> Dir>(&self, f: F) -> &Self {
+        self.dir_reg().with(f);
         self
     }
 
     #[doc="Get the DIRCLR Register."]
-    #[inline] pub fn dirclr_reg(&self) -> ::bobbin_mcu::register::RegisterArray<Dirclr, ::bobbin_bits::R2> { 
-        ::bobbin_mcu::register::RegisterArray::new(self.0 as *mut Dirclr, 0x4, 0x80)
+    #[inline] pub fn dirclr_reg(&self) -> ::bobbin_mcu::register::Register<Dirclr> { 
+        ::bobbin_mcu::register::Register::new(self.0 as *mut Dirclr, 0x4)
     }
 
     #[doc="Get the *mut pointer for the DIRCLR register."]
-    #[inline] pub fn dirclr_mut<I: Into<::bobbin_bits::R2>>(&self, index: I) -> *mut Dirclr { 
-        self.dirclr_reg().ptr(index.into())
+    #[inline] pub fn dirclr_mut(&self) -> *mut Dirclr { 
+        self.dirclr_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the DIRCLR register."]
-    #[inline] pub fn dirclr_ptr<I: Into<::bobbin_bits::R2>>(&self, index: I) -> *const Dirclr { 
-        self.dirclr_reg().ptr(index.into())
+    #[inline] pub fn dirclr_ptr(&self) -> *const Dirclr { 
+        self.dirclr_reg().ptr()
     }
 
     #[doc="Read the DIRCLR register."]
-    #[inline] pub fn dirclr<I: Into<::bobbin_bits::R2>>(&self, index: I) -> Dirclr { 
-        self.dirclr_reg().read(index.into())
+    #[inline] pub fn dirclr(&self) -> Dirclr { 
+        self.dirclr_reg().read()
     }
 
     #[doc="Write the DIRCLR register."]
-    #[inline] pub fn write_dirclr<I: Into<::bobbin_bits::R2>>(&self, index: I, value: Dirclr) -> &Self {
-        self.dirclr_reg().write(index.into(), value);
+    #[inline] pub fn write_dirclr(&self, value: Dirclr) -> &Self { 
+        self.dirclr_reg().write(value);
         self
     }
 
     #[doc="Set the DIRCLR register."]
-    #[inline] pub fn set_dirclr<I: Into<::bobbin_bits::R2>, F: FnOnce(Dirclr) -> Dirclr>(&self, index: I, f: F) -> &Self {
-        self.dirclr_reg().set(index.into(), f);
+    #[inline] pub fn set_dirclr<F: FnOnce(Dirclr) -> Dirclr>(&self, f: F) -> &Self {
+        self.dirclr_reg().set(f);
         self
     }
 
     #[doc="Modify the DIRCLR register."]
-    #[inline] pub fn with_dirclr<I: Into<::bobbin_bits::R2> + Copy, F: FnOnce(Dirclr) -> Dirclr>(&self, index: I, f: F) -> &Self {
-        self.dirclr_reg().with(index.into(), f);
+    #[inline] pub fn with_dirclr<F: FnOnce(Dirclr) -> Dirclr>(&self, f: F) -> &Self {
+        self.dirclr_reg().with(f);
         self
     }
 
     #[doc="Get the DIRSET Register."]
-    #[inline] pub fn dirset_reg(&self) -> ::bobbin_mcu::register::RegisterArray<Dirset, ::bobbin_bits::R2> { 
-        ::bobbin_mcu::register::RegisterArray::new(self.0 as *mut Dirset, 0x8, 0x80)
+    #[inline] pub fn dirset_reg(&self) -> ::bobbin_mcu::register::Register<Dirset> { 
+        ::bobbin_mcu::register::Register::new(self.0 as *mut Dirset, 0x8)
     }
 
     #[doc="Get the *mut pointer for the DIRSET register."]
-    #[inline] pub fn dirset_mut<I: Into<::bobbin_bits::R2>>(&self, index: I) -> *mut Dirset { 
-        self.dirset_reg().ptr(index.into())
+    #[inline] pub fn dirset_mut(&self) -> *mut Dirset { 
+        self.dirset_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the DIRSET register."]
-    #[inline] pub fn dirset_ptr<I: Into<::bobbin_bits::R2>>(&self, index: I) -> *const Dirset { 
-        self.dirset_reg().ptr(index.into())
+    #[inline] pub fn dirset_ptr(&self) -> *const Dirset { 
+        self.dirset_reg().ptr()
     }
 
     #[doc="Read the DIRSET register."]
-    #[inline] pub fn dirset<I: Into<::bobbin_bits::R2>>(&self, index: I) -> Dirset { 
-        self.dirset_reg().read(index.into())
+    #[inline] pub fn dirset(&self) -> Dirset { 
+        self.dirset_reg().read()
     }
 
     #[doc="Write the DIRSET register."]
-    #[inline] pub fn write_dirset<I: Into<::bobbin_bits::R2>>(&self, index: I, value: Dirset) -> &Self {
-        self.dirset_reg().write(index.into(), value);
+    #[inline] pub fn write_dirset(&self, value: Dirset) -> &Self { 
+        self.dirset_reg().write(value);
         self
     }
 
     #[doc="Set the DIRSET register."]
-    #[inline] pub fn set_dirset<I: Into<::bobbin_bits::R2>, F: FnOnce(Dirset) -> Dirset>(&self, index: I, f: F) -> &Self {
-        self.dirset_reg().set(index.into(), f);
+    #[inline] pub fn set_dirset<F: FnOnce(Dirset) -> Dirset>(&self, f: F) -> &Self {
+        self.dirset_reg().set(f);
         self
     }
 
     #[doc="Modify the DIRSET register."]
-    #[inline] pub fn with_dirset<I: Into<::bobbin_bits::R2> + Copy, F: FnOnce(Dirset) -> Dirset>(&self, index: I, f: F) -> &Self {
-        self.dirset_reg().with(index.into(), f);
+    #[inline] pub fn with_dirset<F: FnOnce(Dirset) -> Dirset>(&self, f: F) -> &Self {
+        self.dirset_reg().with(f);
         self
     }
 
     #[doc="Get the DIRTGL Register."]
-    #[inline] pub fn dirtgl_reg(&self) -> ::bobbin_mcu::register::RegisterArray<Dirtgl, ::bobbin_bits::R2> { 
-        ::bobbin_mcu::register::RegisterArray::new(self.0 as *mut Dirtgl, 0xc, 0x80)
+    #[inline] pub fn dirtgl_reg(&self) -> ::bobbin_mcu::register::Register<Dirtgl> { 
+        ::bobbin_mcu::register::Register::new(self.0 as *mut Dirtgl, 0xc)
     }
 
     #[doc="Get the *mut pointer for the DIRTGL register."]
-    #[inline] pub fn dirtgl_mut<I: Into<::bobbin_bits::R2>>(&self, index: I) -> *mut Dirtgl { 
-        self.dirtgl_reg().ptr(index.into())
+    #[inline] pub fn dirtgl_mut(&self) -> *mut Dirtgl { 
+        self.dirtgl_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the DIRTGL register."]
-    #[inline] pub fn dirtgl_ptr<I: Into<::bobbin_bits::R2>>(&self, index: I) -> *const Dirtgl { 
-        self.dirtgl_reg().ptr(index.into())
+    #[inline] pub fn dirtgl_ptr(&self) -> *const Dirtgl { 
+        self.dirtgl_reg().ptr()
     }
 
     #[doc="Read the DIRTGL register."]
-    #[inline] pub fn dirtgl<I: Into<::bobbin_bits::R2>>(&self, index: I) -> Dirtgl { 
-        self.dirtgl_reg().read(index.into())
+    #[inline] pub fn dirtgl(&self) -> Dirtgl { 
+        self.dirtgl_reg().read()
     }
 
     #[doc="Write the DIRTGL register."]
-    #[inline] pub fn write_dirtgl<I: Into<::bobbin_bits::R2>>(&self, index: I, value: Dirtgl) -> &Self {
-        self.dirtgl_reg().write(index.into(), value);
+    #[inline] pub fn write_dirtgl(&self, value: Dirtgl) -> &Self { 
+        self.dirtgl_reg().write(value);
         self
     }
 
     #[doc="Set the DIRTGL register."]
-    #[inline] pub fn set_dirtgl<I: Into<::bobbin_bits::R2>, F: FnOnce(Dirtgl) -> Dirtgl>(&self, index: I, f: F) -> &Self {
-        self.dirtgl_reg().set(index.into(), f);
+    #[inline] pub fn set_dirtgl<F: FnOnce(Dirtgl) -> Dirtgl>(&self, f: F) -> &Self {
+        self.dirtgl_reg().set(f);
         self
     }
 
     #[doc="Modify the DIRTGL register."]
-    #[inline] pub fn with_dirtgl<I: Into<::bobbin_bits::R2> + Copy, F: FnOnce(Dirtgl) -> Dirtgl>(&self, index: I, f: F) -> &Self {
-        self.dirtgl_reg().with(index.into(), f);
+    #[inline] pub fn with_dirtgl<F: FnOnce(Dirtgl) -> Dirtgl>(&self, f: F) -> &Self {
+        self.dirtgl_reg().with(f);
         self
     }
 
     #[doc="Get the OUT Register."]
-    #[inline] pub fn out_reg(&self) -> ::bobbin_mcu::register::RegisterArray<Out, ::bobbin_bits::R2> { 
-        ::bobbin_mcu::register::RegisterArray::new(self.0 as *mut Out, 0x10, 0x80)
+    #[inline] pub fn out_reg(&self) -> ::bobbin_mcu::register::Register<Out> { 
+        ::bobbin_mcu::register::Register::new(self.0 as *mut Out, 0x10)
     }
 
     #[doc="Get the *mut pointer for the OUT register."]
-    #[inline] pub fn out_mut<I: Into<::bobbin_bits::R2>>(&self, index: I) -> *mut Out { 
-        self.out_reg().ptr(index.into())
+    #[inline] pub fn out_mut(&self) -> *mut Out { 
+        self.out_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the OUT register."]
-    #[inline] pub fn out_ptr<I: Into<::bobbin_bits::R2>>(&self, index: I) -> *const Out { 
-        self.out_reg().ptr(index.into())
+    #[inline] pub fn out_ptr(&self) -> *const Out { 
+        self.out_reg().ptr()
     }
 
     #[doc="Read the OUT register."]
-    #[inline] pub fn out<I: Into<::bobbin_bits::R2>>(&self, index: I) -> Out { 
-        self.out_reg().read(index.into())
+    #[inline] pub fn out(&self) -> Out { 
+        self.out_reg().read()
     }
 
     #[doc="Write the OUT register."]
-    #[inline] pub fn write_out<I: Into<::bobbin_bits::R2>>(&self, index: I, value: Out) -> &Self {
-        self.out_reg().write(index.into(), value);
+    #[inline] pub fn write_out(&self, value: Out) -> &Self { 
+        self.out_reg().write(value);
         self
     }
 
     #[doc="Set the OUT register."]
-    #[inline] pub fn set_out<I: Into<::bobbin_bits::R2>, F: FnOnce(Out) -> Out>(&self, index: I, f: F) -> &Self {
-        self.out_reg().set(index.into(), f);
+    #[inline] pub fn set_out<F: FnOnce(Out) -> Out>(&self, f: F) -> &Self {
+        self.out_reg().set(f);
         self
     }
 
     #[doc="Modify the OUT register."]
-    #[inline] pub fn with_out<I: Into<::bobbin_bits::R2> + Copy, F: FnOnce(Out) -> Out>(&self, index: I, f: F) -> &Self {
-        self.out_reg().with(index.into(), f);
+    #[inline] pub fn with_out<F: FnOnce(Out) -> Out>(&self, f: F) -> &Self {
+        self.out_reg().with(f);
         self
     }
 
     #[doc="Get the OUTCLR Register."]
-    #[inline] pub fn outclr_reg(&self) -> ::bobbin_mcu::register::RegisterArray<Outclr, ::bobbin_bits::R2> { 
-        ::bobbin_mcu::register::RegisterArray::new(self.0 as *mut Outclr, 0x14, 0x80)
+    #[inline] pub fn outclr_reg(&self) -> ::bobbin_mcu::register::Register<Outclr> { 
+        ::bobbin_mcu::register::Register::new(self.0 as *mut Outclr, 0x14)
     }
 
     #[doc="Get the *mut pointer for the OUTCLR register."]
-    #[inline] pub fn outclr_mut<I: Into<::bobbin_bits::R2>>(&self, index: I) -> *mut Outclr { 
-        self.outclr_reg().ptr(index.into())
+    #[inline] pub fn outclr_mut(&self) -> *mut Outclr { 
+        self.outclr_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the OUTCLR register."]
-    #[inline] pub fn outclr_ptr<I: Into<::bobbin_bits::R2>>(&self, index: I) -> *const Outclr { 
-        self.outclr_reg().ptr(index.into())
+    #[inline] pub fn outclr_ptr(&self) -> *const Outclr { 
+        self.outclr_reg().ptr()
     }
 
     #[doc="Read the OUTCLR register."]
-    #[inline] pub fn outclr<I: Into<::bobbin_bits::R2>>(&self, index: I) -> Outclr { 
-        self.outclr_reg().read(index.into())
+    #[inline] pub fn outclr(&self) -> Outclr { 
+        self.outclr_reg().read()
     }
 
     #[doc="Write the OUTCLR register."]
-    #[inline] pub fn write_outclr<I: Into<::bobbin_bits::R2>>(&self, index: I, value: Outclr) -> &Self {
-        self.outclr_reg().write(index.into(), value);
+    #[inline] pub fn write_outclr(&self, value: Outclr) -> &Self { 
+        self.outclr_reg().write(value);
         self
     }
 
     #[doc="Set the OUTCLR register."]
-    #[inline] pub fn set_outclr<I: Into<::bobbin_bits::R2>, F: FnOnce(Outclr) -> Outclr>(&self, index: I, f: F) -> &Self {
-        self.outclr_reg().set(index.into(), f);
+    #[inline] pub fn set_outclr<F: FnOnce(Outclr) -> Outclr>(&self, f: F) -> &Self {
+        self.outclr_reg().set(f);
         self
     }
 
     #[doc="Modify the OUTCLR register."]
-    #[inline] pub fn with_outclr<I: Into<::bobbin_bits::R2> + Copy, F: FnOnce(Outclr) -> Outclr>(&self, index: I, f: F) -> &Self {
-        self.outclr_reg().with(index.into(), f);
+    #[inline] pub fn with_outclr<F: FnOnce(Outclr) -> Outclr>(&self, f: F) -> &Self {
+        self.outclr_reg().with(f);
         self
     }
 
     #[doc="Get the OUTSET Register."]
-    #[inline] pub fn outset_reg(&self) -> ::bobbin_mcu::register::RegisterArray<Outset, ::bobbin_bits::R2> { 
-        ::bobbin_mcu::register::RegisterArray::new(self.0 as *mut Outset, 0x18, 0x80)
+    #[inline] pub fn outset_reg(&self) -> ::bobbin_mcu::register::Register<Outset> { 
+        ::bobbin_mcu::register::Register::new(self.0 as *mut Outset, 0x18)
     }
 
     #[doc="Get the *mut pointer for the OUTSET register."]
-    #[inline] pub fn outset_mut<I: Into<::bobbin_bits::R2>>(&self, index: I) -> *mut Outset { 
-        self.outset_reg().ptr(index.into())
+    #[inline] pub fn outset_mut(&self) -> *mut Outset { 
+        self.outset_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the OUTSET register."]
-    #[inline] pub fn outset_ptr<I: Into<::bobbin_bits::R2>>(&self, index: I) -> *const Outset { 
-        self.outset_reg().ptr(index.into())
+    #[inline] pub fn outset_ptr(&self) -> *const Outset { 
+        self.outset_reg().ptr()
     }
 
     #[doc="Read the OUTSET register."]
-    #[inline] pub fn outset<I: Into<::bobbin_bits::R2>>(&self, index: I) -> Outset { 
-        self.outset_reg().read(index.into())
+    #[inline] pub fn outset(&self) -> Outset { 
+        self.outset_reg().read()
     }
 
     #[doc="Write the OUTSET register."]
-    #[inline] pub fn write_outset<I: Into<::bobbin_bits::R2>>(&self, index: I, value: Outset) -> &Self {
-        self.outset_reg().write(index.into(), value);
+    #[inline] pub fn write_outset(&self, value: Outset) -> &Self { 
+        self.outset_reg().write(value);
         self
     }
 
     #[doc="Set the OUTSET register."]
-    #[inline] pub fn set_outset<I: Into<::bobbin_bits::R2>, F: FnOnce(Outset) -> Outset>(&self, index: I, f: F) -> &Self {
-        self.outset_reg().set(index.into(), f);
+    #[inline] pub fn set_outset<F: FnOnce(Outset) -> Outset>(&self, f: F) -> &Self {
+        self.outset_reg().set(f);
         self
     }
 
     #[doc="Modify the OUTSET register."]
-    #[inline] pub fn with_outset<I: Into<::bobbin_bits::R2> + Copy, F: FnOnce(Outset) -> Outset>(&self, index: I, f: F) -> &Self {
-        self.outset_reg().with(index.into(), f);
+    #[inline] pub fn with_outset<F: FnOnce(Outset) -> Outset>(&self, f: F) -> &Self {
+        self.outset_reg().with(f);
         self
     }
 
     #[doc="Get the OUTTGL Register."]
-    #[inline] pub fn outtgl_reg(&self) -> ::bobbin_mcu::register::RegisterArray<Outtgl, ::bobbin_bits::R2> { 
-        ::bobbin_mcu::register::RegisterArray::new(self.0 as *mut Outtgl, 0x1c, 0x80)
+    #[inline] pub fn outtgl_reg(&self) -> ::bobbin_mcu::register::Register<Outtgl> { 
+        ::bobbin_mcu::register::Register::new(self.0 as *mut Outtgl, 0x1c)
     }
 
     #[doc="Get the *mut pointer for the OUTTGL register."]
-    #[inline] pub fn outtgl_mut<I: Into<::bobbin_bits::R2>>(&self, index: I) -> *mut Outtgl { 
-        self.outtgl_reg().ptr(index.into())
+    #[inline] pub fn outtgl_mut(&self) -> *mut Outtgl { 
+        self.outtgl_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the OUTTGL register."]
-    #[inline] pub fn outtgl_ptr<I: Into<::bobbin_bits::R2>>(&self, index: I) -> *const Outtgl { 
-        self.outtgl_reg().ptr(index.into())
+    #[inline] pub fn outtgl_ptr(&self) -> *const Outtgl { 
+        self.outtgl_reg().ptr()
     }
 
     #[doc="Read the OUTTGL register."]
-    #[inline] pub fn outtgl<I: Into<::bobbin_bits::R2>>(&self, index: I) -> Outtgl { 
-        self.outtgl_reg().read(index.into())
+    #[inline] pub fn outtgl(&self) -> Outtgl { 
+        self.outtgl_reg().read()
     }
 
     #[doc="Write the OUTTGL register."]
-    #[inline] pub fn write_outtgl<I: Into<::bobbin_bits::R2>>(&self, index: I, value: Outtgl) -> &Self {
-        self.outtgl_reg().write(index.into(), value);
+    #[inline] pub fn write_outtgl(&self, value: Outtgl) -> &Self { 
+        self.outtgl_reg().write(value);
         self
     }
 
     #[doc="Set the OUTTGL register."]
-    #[inline] pub fn set_outtgl<I: Into<::bobbin_bits::R2>, F: FnOnce(Outtgl) -> Outtgl>(&self, index: I, f: F) -> &Self {
-        self.outtgl_reg().set(index.into(), f);
+    #[inline] pub fn set_outtgl<F: FnOnce(Outtgl) -> Outtgl>(&self, f: F) -> &Self {
+        self.outtgl_reg().set(f);
         self
     }
 
     #[doc="Modify the OUTTGL register."]
-    #[inline] pub fn with_outtgl<I: Into<::bobbin_bits::R2> + Copy, F: FnOnce(Outtgl) -> Outtgl>(&self, index: I, f: F) -> &Self {
-        self.outtgl_reg().with(index.into(), f);
+    #[inline] pub fn with_outtgl<F: FnOnce(Outtgl) -> Outtgl>(&self, f: F) -> &Self {
+        self.outtgl_reg().with(f);
         self
     }
 
     #[doc="Get the IN Register."]
-    #[inline] pub fn in_reg(&self) -> ::bobbin_mcu::register::RegisterArray<In, ::bobbin_bits::R2> { 
-        ::bobbin_mcu::register::RegisterArray::new(self.0 as *mut In, 0x20, 0x80)
+    #[inline] pub fn in_reg(&self) -> ::bobbin_mcu::register::Register<In> { 
+        ::bobbin_mcu::register::Register::new(self.0 as *mut In, 0x20)
     }
 
     #[doc="Get the *mut pointer for the IN register."]
-    #[inline] pub fn in_mut<I: Into<::bobbin_bits::R2>>(&self, index: I) -> *mut In { 
-        self.in_reg().ptr(index.into())
+    #[inline] pub fn in_mut(&self) -> *mut In { 
+        self.in_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the IN register."]
-    #[inline] pub fn in_ptr<I: Into<::bobbin_bits::R2>>(&self, index: I) -> *const In { 
-        self.in_reg().ptr(index.into())
+    #[inline] pub fn in_ptr(&self) -> *const In { 
+        self.in_reg().ptr()
     }
 
     #[doc="Read the IN register."]
-    #[inline] pub fn _in<I: Into<::bobbin_bits::R2>>(&self, index: I) -> In { 
-        self.in_reg().read(index.into())
+    #[inline] pub fn _in(&self) -> In { 
+        self.in_reg().read()
     }
 
     #[doc="Get the CTRL Register."]
-    #[inline] pub fn ctrl_reg(&self) -> ::bobbin_mcu::register::RegisterArray<Ctrl, ::bobbin_bits::R2> { 
-        ::bobbin_mcu::register::RegisterArray::new(self.0 as *mut Ctrl, 0x24, 0x80)
+    #[inline] pub fn ctrl_reg(&self) -> ::bobbin_mcu::register::Register<Ctrl> { 
+        ::bobbin_mcu::register::Register::new(self.0 as *mut Ctrl, 0x24)
     }
 
     #[doc="Get the *mut pointer for the CTRL register."]
-    #[inline] pub fn ctrl_mut<I: Into<::bobbin_bits::R2>>(&self, index: I) -> *mut Ctrl { 
-        self.ctrl_reg().ptr(index.into())
+    #[inline] pub fn ctrl_mut(&self) -> *mut Ctrl { 
+        self.ctrl_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the CTRL register."]
-    #[inline] pub fn ctrl_ptr<I: Into<::bobbin_bits::R2>>(&self, index: I) -> *const Ctrl { 
-        self.ctrl_reg().ptr(index.into())
+    #[inline] pub fn ctrl_ptr(&self) -> *const Ctrl { 
+        self.ctrl_reg().ptr()
     }
 
     #[doc="Read the CTRL register."]
-    #[inline] pub fn ctrl<I: Into<::bobbin_bits::R2>>(&self, index: I) -> Ctrl { 
-        self.ctrl_reg().read(index.into())
+    #[inline] pub fn ctrl(&self) -> Ctrl { 
+        self.ctrl_reg().read()
     }
 
     #[doc="Write the CTRL register."]
-    #[inline] pub fn write_ctrl<I: Into<::bobbin_bits::R2>>(&self, index: I, value: Ctrl) -> &Self {
-        self.ctrl_reg().write(index.into(), value);
+    #[inline] pub fn write_ctrl(&self, value: Ctrl) -> &Self { 
+        self.ctrl_reg().write(value);
         self
     }
 
     #[doc="Set the CTRL register."]
-    #[inline] pub fn set_ctrl<I: Into<::bobbin_bits::R2>, F: FnOnce(Ctrl) -> Ctrl>(&self, index: I, f: F) -> &Self {
-        self.ctrl_reg().set(index.into(), f);
+    #[inline] pub fn set_ctrl<F: FnOnce(Ctrl) -> Ctrl>(&self, f: F) -> &Self {
+        self.ctrl_reg().set(f);
         self
     }
 
     #[doc="Modify the CTRL register."]
-    #[inline] pub fn with_ctrl<I: Into<::bobbin_bits::R2> + Copy, F: FnOnce(Ctrl) -> Ctrl>(&self, index: I, f: F) -> &Self {
-        self.ctrl_reg().with(index.into(), f);
+    #[inline] pub fn with_ctrl<F: FnOnce(Ctrl) -> Ctrl>(&self, f: F) -> &Self {
+        self.ctrl_reg().with(f);
         self
     }
 
     #[doc="Get the WRCONFIG Register."]
-    #[inline] pub fn wrconfig_reg(&self) -> ::bobbin_mcu::register::RegisterArray<Wrconfig, ::bobbin_bits::R2> { 
-        ::bobbin_mcu::register::RegisterArray::new(self.0 as *mut Wrconfig, 0x28, 0x80)
+    #[inline] pub fn wrconfig_reg(&self) -> ::bobbin_mcu::register::Register<Wrconfig> { 
+        ::bobbin_mcu::register::Register::new(self.0 as *mut Wrconfig, 0x28)
     }
 
     #[doc="Get the *mut pointer for the WRCONFIG register."]
-    #[inline] pub fn wrconfig_mut<I: Into<::bobbin_bits::R2>>(&self, index: I) -> *mut Wrconfig { 
-        self.wrconfig_reg().ptr(index.into())
+    #[inline] pub fn wrconfig_mut(&self) -> *mut Wrconfig { 
+        self.wrconfig_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the WRCONFIG register."]
-    #[inline] pub fn wrconfig_ptr<I: Into<::bobbin_bits::R2>>(&self, index: I) -> *const Wrconfig { 
-        self.wrconfig_reg().ptr(index.into())
+    #[inline] pub fn wrconfig_ptr(&self) -> *const Wrconfig { 
+        self.wrconfig_reg().ptr()
     }
 
     #[doc="Write the WRCONFIG register."]
-    #[inline] pub fn write_wrconfig<I: Into<::bobbin_bits::R2>>(&self, index: I, value: Wrconfig) -> &Self {
-        self.wrconfig_reg().write(index.into(), value);
+    #[inline] pub fn write_wrconfig(&self, value: Wrconfig) -> &Self { 
+        self.wrconfig_reg().write(value);
         self
     }
 
     #[doc="Set the WRCONFIG register."]
-    #[inline] pub fn set_wrconfig<I: Into<::bobbin_bits::R2>, F: FnOnce(Wrconfig) -> Wrconfig>(&self, index: I, f: F) -> &Self {
-        self.wrconfig_reg().set(index.into(), f);
+    #[inline] pub fn set_wrconfig<F: FnOnce(Wrconfig) -> Wrconfig>(&self, f: F) -> &Self {
+        self.wrconfig_reg().set(f);
         self
     }
 
     #[doc="Get the EVCTRL Register."]
-    #[inline] pub fn evctrl_reg(&self) -> ::bobbin_mcu::register::RegisterArray<Evctrl, ::bobbin_bits::R2> { 
-        ::bobbin_mcu::register::RegisterArray::new(self.0 as *mut Evctrl, 0x2c, 0x80)
+    #[inline] pub fn evctrl_reg(&self) -> ::bobbin_mcu::register::Register<Evctrl> { 
+        ::bobbin_mcu::register::Register::new(self.0 as *mut Evctrl, 0x2c)
     }
 
     #[doc="Get the *mut pointer for the EVCTRL register."]
-    #[inline] pub fn evctrl_mut<I: Into<::bobbin_bits::R2>>(&self, index: I) -> *mut Evctrl { 
-        self.evctrl_reg().ptr(index.into())
+    #[inline] pub fn evctrl_mut(&self) -> *mut Evctrl { 
+        self.evctrl_reg().ptr()
     }
 
     #[doc="Get the *const pointer for the EVCTRL register."]
-    #[inline] pub fn evctrl_ptr<I: Into<::bobbin_bits::R2>>(&self, index: I) -> *const Evctrl { 
-        self.evctrl_reg().ptr(index.into())
+    #[inline] pub fn evctrl_ptr(&self) -> *const Evctrl { 
+        self.evctrl_reg().ptr()
     }
 
     #[doc="Read the EVCTRL register."]
-    #[inline] pub fn evctrl<I: Into<::bobbin_bits::R2>>(&self, index: I) -> Evctrl { 
-        self.evctrl_reg().read(index.into())
+    #[inline] pub fn evctrl(&self) -> Evctrl { 
+        self.evctrl_reg().read()
     }
 
     #[doc="Write the EVCTRL register."]
-    #[inline] pub fn write_evctrl<I: Into<::bobbin_bits::R2>>(&self, index: I, value: Evctrl) -> &Self {
-        self.evctrl_reg().write(index.into(), value);
+    #[inline] pub fn write_evctrl(&self, value: Evctrl) -> &Self { 
+        self.evctrl_reg().write(value);
         self
     }
 
     #[doc="Set the EVCTRL register."]
-    #[inline] pub fn set_evctrl<I: Into<::bobbin_bits::R2>, F: FnOnce(Evctrl) -> Evctrl>(&self, index: I, f: F) -> &Self {
-        self.evctrl_reg().set(index.into(), f);
+    #[inline] pub fn set_evctrl<F: FnOnce(Evctrl) -> Evctrl>(&self, f: F) -> &Self {
+        self.evctrl_reg().set(f);
         self
     }
 
     #[doc="Modify the EVCTRL register."]
-    #[inline] pub fn with_evctrl<I: Into<::bobbin_bits::R2> + Copy, F: FnOnce(Evctrl) -> Evctrl>(&self, index: I, f: F) -> &Self {
-        self.evctrl_reg().with(index.into(), f);
+    #[inline] pub fn with_evctrl<F: FnOnce(Evctrl) -> Evctrl>(&self, f: F) -> &Self {
+        self.evctrl_reg().with(f);
         self
     }
 

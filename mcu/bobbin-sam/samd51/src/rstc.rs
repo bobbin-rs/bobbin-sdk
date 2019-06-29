@@ -1,4 +1,4 @@
-::bobbin_mcu::periph!( RSTC, Rstc, RSTC_PERIPH, RstcPeriph, RSTC_OWNED, RSTC_REF_COUNT, 0x40000c00, 0x00, 0x1b);
+::bobbin_mcu::periph!( RSTC, Rstc, RSTC_PERIPH, RstcPeriph, RSTC_OWNED, RSTC_REF_COUNT, 0x40000c00, 0x00, 0x1c);
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="RSTC Peripheral"]

@@ -1,8 +1,8 @@
-::bobbin_mcu::periph!( TCC0, Tcc0, TCC0_PERIPH, TccPeriph, TCC0_OWNED, TCC0_REF_COUNT, 0x41016000, 0x00, 0x2b);
-::bobbin_mcu::periph!( TCC1, Tcc1, TCC1_PERIPH, TccPeriph, TCC1_OWNED, TCC1_REF_COUNT, 0x41018000, 0x01, 0x2c);
-::bobbin_mcu::periph!( TCC2, Tcc2, TCC2_PERIPH, TccPeriph, TCC2_OWNED, TCC2_REF_COUNT, 0x42000c00, 0x02, 0x2d);
-::bobbin_mcu::periph!( TCC3, Tcc3, TCC3_PERIPH, TccPeriph, TCC3_OWNED, TCC3_REF_COUNT, 0x42001000, 0x03, 0x2e);
-::bobbin_mcu::periph!( TCC4, Tcc4, TCC4_PERIPH, TccPeriph, TCC4_OWNED, TCC4_REF_COUNT, 0x43001000, 0x04, 0x2f);
+::bobbin_mcu::periph!( TCC0, Tcc0, TCC0_PERIPH, TccPeriph, TCC0_OWNED, TCC0_REF_COUNT, 0x41016000, 0x00, 0x2c);
+::bobbin_mcu::periph!( TCC1, Tcc1, TCC1_PERIPH, TccPeriph, TCC1_OWNED, TCC1_REF_COUNT, 0x41018000, 0x01, 0x2d);
+::bobbin_mcu::periph!( TCC2, Tcc2, TCC2_PERIPH, TccPeriph, TCC2_OWNED, TCC2_REF_COUNT, 0x42000c00, 0x02, 0x2e);
+::bobbin_mcu::periph!( TCC3, Tcc3, TCC3_PERIPH, TccPeriph, TCC3_OWNED, TCC3_REF_COUNT, 0x42001000, 0x03, 0x2f);
+::bobbin_mcu::periph!( TCC4, Tcc4, TCC4_PERIPH, TccPeriph, TCC4_OWNED, TCC4_REF_COUNT, 0x43001000, 0x04, 0x30);
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="TCC Peripheral"]

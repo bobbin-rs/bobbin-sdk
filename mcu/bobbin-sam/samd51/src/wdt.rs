@@ -1,4 +1,4 @@
-::bobbin_mcu::periph!( WDT, Wdt, WDT_PERIPH, WdtPeriph, WDT_OWNED, WDT_REF_COUNT, 0x40002000, 0x00, 0x32);
+::bobbin_mcu::periph!( WDT, Wdt, WDT_PERIPH, WdtPeriph, WDT_OWNED, WDT_REF_COUNT, 0x40002000, 0x00, 0x33);
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="WDT Peripheral"]

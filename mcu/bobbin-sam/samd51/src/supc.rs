@@ -1,4 +1,4 @@
-::bobbin_mcu::periph!( SUPC, Supc, SUPC_PERIPH, SupcPeriph, SUPC_OWNED, SUPC_REF_COUNT, 0x40001800, 0x00, 0x24);
+::bobbin_mcu::periph!( SUPC, Supc, SUPC_PERIPH, SupcPeriph, SUPC_OWNED, SUPC_REF_COUNT, 0x40001800, 0x00, 0x25);
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="SUPC Peripheral"]

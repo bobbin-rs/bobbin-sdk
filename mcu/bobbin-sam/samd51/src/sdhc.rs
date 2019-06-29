@@ -1,4 +1,4 @@
-::bobbin_mcu::periph!( SDHC0, Sdhc0, SDHC0_PERIPH, SdhcPeriph, SDHC0_OWNED, SDHC0_REF_COUNT, 0x45000000, 0x00, 0x1d);
+::bobbin_mcu::periph!( SDHC0, Sdhc0, SDHC0_PERIPH, SdhcPeriph, SDHC0_OWNED, SDHC0_REF_COUNT, 0x45000000, 0x00, 0x1e);
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="SDHC Peripheral"]

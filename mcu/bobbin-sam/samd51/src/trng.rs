@@ -1,4 +1,4 @@
-::bobbin_mcu::periph!( TRNG, Trng, TRNG_PERIPH, TrngPeriph, TRNG_OWNED, TRNG_REF_COUNT, 0x42002800, 0x00, 0x30);
+::bobbin_mcu::periph!( TRNG, Trng, TRNG_PERIPH, TrngPeriph, TRNG_OWNED, TRNG_REF_COUNT, 0x42002800, 0x00, 0x31);
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="TRNG Peripheral"]

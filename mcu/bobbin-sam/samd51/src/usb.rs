@@ -1,4 +1,4 @@
-::bobbin_mcu::periph!( USB, Usb, USB_PERIPH, UsbPeriph, USB_OWNED, USB_REF_COUNT, 0x41000000, 0x00, 0x31);
+::bobbin_mcu::periph!( USB, Usb, USB_PERIPH, UsbPeriph, USB_OWNED, USB_REF_COUNT, 0x41000000, 0x00, 0x32);
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="USB Peripheral"]

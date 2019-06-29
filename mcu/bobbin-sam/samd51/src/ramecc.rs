@@ -1,4 +1,4 @@
-::bobbin_mcu::periph!( RAMECC, Ramecc, RAMECC_PERIPH, RameccPeriph, RAMECC_OWNED, RAMECC_REF_COUNT, 0x41020000, 0x00, 0x1a);
+::bobbin_mcu::periph!( RAMECC, Ramecc, RAMECC_PERIPH, RameccPeriph, RAMECC_OWNED, RAMECC_REF_COUNT, 0x41020000, 0x00, 0x1b);
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="RAMECC Peripheral"]

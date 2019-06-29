@@ -1,4 +1,4 @@
-::bobbin_mcu::periph!( QSPI, Qspi, QSPI_PERIPH, QspiPeriph, QSPI_OWNED, QSPI_REF_COUNT, 0x42003400, 0x00, 0x19);
+::bobbin_mcu::periph!( QSPI, Qspi, QSPI_PERIPH, QspiPeriph, QSPI_OWNED, QSPI_REF_COUNT, 0x42003400, 0x00, 0x1a);
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="QSPI Peripheral"]

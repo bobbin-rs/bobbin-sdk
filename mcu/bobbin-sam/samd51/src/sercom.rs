@@ -1,9 +1,9 @@
-::bobbin_mcu::periph!( SERCOM0, Sercom0, SERCOM0_PERIPH, SercomPeriph, SERCOM0_OWNED, SERCOM0_REF_COUNT, 0x40003000, 0x00, 0x1e);
-::bobbin_mcu::periph!( SERCOM1, Sercom1, SERCOM1_PERIPH, SercomPeriph, SERCOM1_OWNED, SERCOM1_REF_COUNT, 0x40003400, 0x01, 0x1f);
-::bobbin_mcu::periph!( SERCOM2, Sercom2, SERCOM2_PERIPH, SercomPeriph, SERCOM2_OWNED, SERCOM2_REF_COUNT, 0x41012000, 0x02, 0x20);
-::bobbin_mcu::periph!( SERCOM3, Sercom3, SERCOM3_PERIPH, SercomPeriph, SERCOM3_OWNED, SERCOM3_REF_COUNT, 0x41014000, 0x03, 0x21);
-::bobbin_mcu::periph!( SERCOM4, Sercom4, SERCOM4_PERIPH, SercomPeriph, SERCOM4_OWNED, SERCOM4_REF_COUNT, 0x43000000, 0x04, 0x22);
-::bobbin_mcu::periph!( SERCOM5, Sercom5, SERCOM5_PERIPH, SercomPeriph, SERCOM5_OWNED, SERCOM5_REF_COUNT, 0x43000400, 0x05, 0x23);
+::bobbin_mcu::periph!( SERCOM0, Sercom0, SERCOM0_PERIPH, SercomPeriph, SERCOM0_OWNED, SERCOM0_REF_COUNT, 0x40003000, 0x00, 0x1f);
+::bobbin_mcu::periph!( SERCOM1, Sercom1, SERCOM1_PERIPH, SercomPeriph, SERCOM1_OWNED, SERCOM1_REF_COUNT, 0x40003400, 0x01, 0x20);
+::bobbin_mcu::periph!( SERCOM2, Sercom2, SERCOM2_PERIPH, SercomPeriph, SERCOM2_OWNED, SERCOM2_REF_COUNT, 0x41012000, 0x02, 0x21);
+::bobbin_mcu::periph!( SERCOM3, Sercom3, SERCOM3_PERIPH, SercomPeriph, SERCOM3_OWNED, SERCOM3_REF_COUNT, 0x41014000, 0x03, 0x22);
+::bobbin_mcu::periph!( SERCOM4, Sercom4, SERCOM4_PERIPH, SercomPeriph, SERCOM4_OWNED, SERCOM4_REF_COUNT, 0x43000000, 0x04, 0x23);
+::bobbin_mcu::periph!( SERCOM5, Sercom5, SERCOM5_PERIPH, SercomPeriph, SERCOM5_OWNED, SERCOM5_REF_COUNT, 0x43000400, 0x05, 0x24);
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="SERCOM Peripheral"]
