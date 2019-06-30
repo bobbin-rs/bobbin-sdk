@@ -19,6 +19,11 @@ name = "console"
 path = "src/console.rs"
 doc = false
 
+[[bin]]
+name = "clock"
+path = "src/clock.rs"
+doc = false
+
 [dependencies]
 cortex-m-rt = "0.6"
 cortex-m = "0.6"
