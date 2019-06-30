@@ -9,16 +9,15 @@ name = "blinky"
 path = "src/blinky.rs"
 doc = false
 
-
 [[bin]]
 name = "serial"
 path = "src/serial.rs"
 doc = false
 
-#[[bin]]
-#name = "console"
-#path = "src/console.rs"
-#doc = false
+[[bin]]
+name = "console"
+path = "src/console.rs"
+doc = false
 
 [dependencies]
 cortex-m-rt = "0.6"

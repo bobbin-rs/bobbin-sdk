@@ -7,6 +7,9 @@ use cortex_m::asm;
 
 use samd51::bobbin_mcu::prelude::*;
 use samd51::bobbin_hal::prelude::*;
+use samd51::bobbin_sys::prelude::*;
+use samd51::bobbin_sys::{print, println};
+
 use samd51::port::PORTB;
 use samd51::sercom::SERCOM5;
 use samd51::pin::PA23;
@@ -50,12 +53,15 @@ fn main() -> ! {
         .set_txpo(0x0);
     SERCOM5.configure(cfg);
     SERCOM5.set_enabled(true);
+    Console::set(Console::new(SERCOM5.as_periph(), ConsoleMode::Cooked));
 
+    let mut i = 0u32;
     loop {
         for _ in 0..1_000_000 {
             asm::nop();
         }
         PA23.toggle_output();
-        SERCOM5.write("Hello, World\n".as_bytes());
+        println!("Hello, World {}", i);
+        i = i.wrapping_add(1);
     }
 }
