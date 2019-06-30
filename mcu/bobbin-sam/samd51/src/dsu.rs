@@ -1,4 +1,4 @@
-::bobbin_mcu::periph!( DSU, Dsu, DSU_PERIPH, DsuPeriph, DSU_OWNED, DSU_REF_COUNT, 0x41002000, 0x00, 0x08);
+::bobbin_mcu::periph!( DSU, Dsu, DSU_PERIPH, DsuPeriph, DSU_OWNED, DSU_REF_COUNT, 0x41002000, 0x00, 0x09);
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="DSU Peripheral"]

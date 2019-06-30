@@ -1,4 +1,4 @@
-::bobbin_mcu::periph!( DMAC, Dmac, DMAC_PERIPH, DmacPeriph, DMAC_OWNED, DMAC_REF_COUNT, 0x4100a000, 0x00, 0x07);
+::bobbin_mcu::periph!( DMAC, Dmac, DMAC_PERIPH, DmacPeriph, DMAC_OWNED, DMAC_REF_COUNT, 0x4100a000, 0x00, 0x08);
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="DMAC Peripheral"]

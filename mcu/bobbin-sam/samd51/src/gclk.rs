@@ -1,4 +1,4 @@
-::bobbin_mcu::periph!( GCLK, Gclk, GCLK_PERIPH, GclkPeriph, GCLK_OWNED, GCLK_REF_COUNT, 0x40001c00, 0x00, 0x0c);
+::bobbin_mcu::periph!( GCLK, Gclk, GCLK_PERIPH, GclkPeriph, GCLK_OWNED, GCLK_REF_COUNT, 0x40001c00, 0x00, 0x0d);
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="GCLK Peripheral"]

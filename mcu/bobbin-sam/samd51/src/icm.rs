@@ -1,4 +1,4 @@
-::bobbin_mcu::periph!( ICM, Icm, ICM_PERIPH, IcmPeriph, ICM_OWNED, ICM_REF_COUNT, 0x42002c00, 0x00, 0x0e);
+::bobbin_mcu::periph!( ICM, Icm, ICM_PERIPH, IcmPeriph, ICM_OWNED, ICM_REF_COUNT, 0x42002c00, 0x00, 0x0f);
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="ICM Peripheral"]

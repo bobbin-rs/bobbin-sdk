@@ -11,6 +11,7 @@ pub use sam_common::scb;
 pub use sam_common::systick;
 
 pub mod ext;
+pub mod mclk;
 pub mod ac;
 pub mod adc;
 pub mod aes;
@@ -26,7 +27,6 @@ pub mod gclk;
 pub mod adc1;
 pub mod icm;
 pub mod i2s;
-pub mod mclk;
 pub mod nvmctrl;
 pub mod oscctrl;
 pub mod osc32kctrl;

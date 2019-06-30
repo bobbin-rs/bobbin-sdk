@@ -1,4 +1,4 @@
-::bobbin_mcu::periph!( HMATRIX, Hmatrix, HMATRIX_PERIPH, Adc1Periph, HMATRIX_OWNED, HMATRIX_REF_COUNT, 0x4100c000, 0x00, 0x0d);
+::bobbin_mcu::periph!( HMATRIX, Hmatrix, HMATRIX_PERIPH, Adc1Periph, HMATRIX_OWNED, HMATRIX_REF_COUNT, 0x4100c000, 0x00, 0x0e);
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="ADC1 Peripheral"]

@@ -1,6 +1,28 @@
 ::bobbin_mcu::periph!( PORTA, Porta, PORTA_PERIPH, PortPeriph, PORTA_OWNED, PORTA_REF_COUNT, 0x41008000, 0x00, 0x18);
 ::bobbin_mcu::periph!( PORTB, Portb, PORTB_PERIPH, PortPeriph, PORTB_OWNED, PORTB_REF_COUNT, 0x41008080, 0x01, 0x19);
 
+// Gate { name: None, gate_type: Some("EN"), periph: Some("MCLK"), register: Some("APBBMASK"), field: Some("PORT"), description: None }
+impl ::bobbin_mcu::gate::GateEn for Porta {
+    #[inline]
+    fn gate_en(&self) -> ::bobbin_bits::U1 { ::mclk::MCLK.apbbmask().port() }
+    #[inline]
+    fn set_gate_en<V: Into<::bobbin_bits::U1>>(&self, value: V) -> &Self {
+        ::mclk::MCLK.with_apbbmask(|r| r.set_port(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("EN"), periph: Some("MCLK"), register: Some("APBBMASK"), field: Some("PORT"), description: None }
+impl ::bobbin_mcu::gate::GateEn for Portb {
+    #[inline]
+    fn gate_en(&self) -> ::bobbin_bits::U1 { ::mclk::MCLK.apbbmask().port() }
+    #[inline]
+    fn set_gate_en<V: Into<::bobbin_bits::U1>>(&self, value: V) -> &Self {
+        ::mclk::MCLK.with_apbbmask(|r| r.set_port(value));
+        self
+    }
+}
+
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="PORT Peripheral"]
 pub struct PortPeriph(pub usize); 
@@ -435,155 +457,79 @@ impl PortPeriph {
         self
     }
 
-    #[doc="Get the PMUX0 Register."]
-    #[inline] pub fn pmux0_reg(&self) -> ::bobbin_mcu::register::RegisterArray<Pmux0, ::bobbin_bits::R16> { 
-        ::bobbin_mcu::register::RegisterArray::new(self.0 as *mut Pmux0, 0x30, 0x1)
+    #[doc="Get the PMUX Register."]
+    #[inline] pub fn pmux_reg(&self) -> ::bobbin_mcu::register::RegisterArray<Pmux, ::bobbin_bits::R32> { 
+        ::bobbin_mcu::register::RegisterArray::new(self.0 as *mut Pmux, 0x30, 0x1)
     }
 
-    #[doc="Get the *mut pointer for the PMUX0 register."]
-    #[inline] pub fn pmux0_mut<I: Into<::bobbin_bits::R16>>(&self, index: I) -> *mut Pmux0 { 
-        self.pmux0_reg().ptr(index.into())
+    #[doc="Get the *mut pointer for the PMUX register."]
+    #[inline] pub fn pmux_mut<I: Into<::bobbin_bits::R32>>(&self, index: I) -> *mut Pmux { 
+        self.pmux_reg().ptr(index.into())
     }
 
-    #[doc="Get the *const pointer for the PMUX0 register."]
-    #[inline] pub fn pmux0_ptr<I: Into<::bobbin_bits::R16>>(&self, index: I) -> *const Pmux0 { 
-        self.pmux0_reg().ptr(index.into())
+    #[doc="Get the *const pointer for the PMUX register."]
+    #[inline] pub fn pmux_ptr<I: Into<::bobbin_bits::R32>>(&self, index: I) -> *const Pmux { 
+        self.pmux_reg().ptr(index.into())
     }
 
-    #[doc="Read the PMUX0 register."]
-    #[inline] pub fn pmux0<I: Into<::bobbin_bits::R16>>(&self, index: I) -> Pmux0 { 
-        self.pmux0_reg().read(index.into())
+    #[doc="Read the PMUX register."]
+    #[inline] pub fn pmux<I: Into<::bobbin_bits::R32>>(&self, index: I) -> Pmux { 
+        self.pmux_reg().read(index.into())
     }
 
-    #[doc="Write the PMUX0 register."]
-    #[inline] pub fn write_pmux0<I: Into<::bobbin_bits::R16>>(&self, index: I, value: Pmux0) -> &Self {
-        self.pmux0_reg().write(index.into(), value);
+    #[doc="Write the PMUX register."]
+    #[inline] pub fn write_pmux<I: Into<::bobbin_bits::R32>>(&self, index: I, value: Pmux) -> &Self {
+        self.pmux_reg().write(index.into(), value);
         self
     }
 
-    #[doc="Set the PMUX0 register."]
-    #[inline] pub fn set_pmux0<I: Into<::bobbin_bits::R16>, F: FnOnce(Pmux0) -> Pmux0>(&self, index: I, f: F) -> &Self {
-        self.pmux0_reg().set(index.into(), f);
+    #[doc="Set the PMUX register."]
+    #[inline] pub fn set_pmux<I: Into<::bobbin_bits::R32>, F: FnOnce(Pmux) -> Pmux>(&self, index: I, f: F) -> &Self {
+        self.pmux_reg().set(index.into(), f);
         self
     }
 
-    #[doc="Modify the PMUX0 register."]
-    #[inline] pub fn with_pmux0<I: Into<::bobbin_bits::R16> + Copy, F: FnOnce(Pmux0) -> Pmux0>(&self, index: I, f: F) -> &Self {
-        self.pmux0_reg().with(index.into(), f);
+    #[doc="Modify the PMUX register."]
+    #[inline] pub fn with_pmux<I: Into<::bobbin_bits::R32> + Copy, F: FnOnce(Pmux) -> Pmux>(&self, index: I, f: F) -> &Self {
+        self.pmux_reg().with(index.into(), f);
         self
     }
 
-    #[doc="Get the PMUX1 Register."]
-    #[inline] pub fn pmux1_reg(&self) -> ::bobbin_mcu::register::RegisterArray<Pmux1, ::bobbin_bits::R16> { 
-        ::bobbin_mcu::register::RegisterArray::new(self.0 as *mut Pmux1, 0xb0, 0x1)
+    #[doc="Get the PINCFG Register."]
+    #[inline] pub fn pincfg_reg(&self) -> ::bobbin_mcu::register::RegisterArray<Pincfg, ::bobbin_bits::R32> { 
+        ::bobbin_mcu::register::RegisterArray::new(self.0 as *mut Pincfg, 0x40, 0x1)
     }
 
-    #[doc="Get the *mut pointer for the PMUX1 register."]
-    #[inline] pub fn pmux1_mut<I: Into<::bobbin_bits::R16>>(&self, index: I) -> *mut Pmux1 { 
-        self.pmux1_reg().ptr(index.into())
+    #[doc="Get the *mut pointer for the PINCFG register."]
+    #[inline] pub fn pincfg_mut<I: Into<::bobbin_bits::R32>>(&self, index: I) -> *mut Pincfg { 
+        self.pincfg_reg().ptr(index.into())
     }
 
-    #[doc="Get the *const pointer for the PMUX1 register."]
-    #[inline] pub fn pmux1_ptr<I: Into<::bobbin_bits::R16>>(&self, index: I) -> *const Pmux1 { 
-        self.pmux1_reg().ptr(index.into())
+    #[doc="Get the *const pointer for the PINCFG register."]
+    #[inline] pub fn pincfg_ptr<I: Into<::bobbin_bits::R32>>(&self, index: I) -> *const Pincfg { 
+        self.pincfg_reg().ptr(index.into())
     }
 
-    #[doc="Read the PMUX1 register."]
-    #[inline] pub fn pmux1<I: Into<::bobbin_bits::R16>>(&self, index: I) -> Pmux1 { 
-        self.pmux1_reg().read(index.into())
+    #[doc="Read the PINCFG register."]
+    #[inline] pub fn pincfg<I: Into<::bobbin_bits::R32>>(&self, index: I) -> Pincfg { 
+        self.pincfg_reg().read(index.into())
     }
 
-    #[doc="Write the PMUX1 register."]
-    #[inline] pub fn write_pmux1<I: Into<::bobbin_bits::R16>>(&self, index: I, value: Pmux1) -> &Self {
-        self.pmux1_reg().write(index.into(), value);
+    #[doc="Write the PINCFG register."]
+    #[inline] pub fn write_pincfg<I: Into<::bobbin_bits::R32>>(&self, index: I, value: Pincfg) -> &Self {
+        self.pincfg_reg().write(index.into(), value);
         self
     }
 
-    #[doc="Set the PMUX1 register."]
-    #[inline] pub fn set_pmux1<I: Into<::bobbin_bits::R16>, F: FnOnce(Pmux1) -> Pmux1>(&self, index: I, f: F) -> &Self {
-        self.pmux1_reg().set(index.into(), f);
+    #[doc="Set the PINCFG register."]
+    #[inline] pub fn set_pincfg<I: Into<::bobbin_bits::R32>, F: FnOnce(Pincfg) -> Pincfg>(&self, index: I, f: F) -> &Self {
+        self.pincfg_reg().set(index.into(), f);
         self
     }
 
-    #[doc="Modify the PMUX1 register."]
-    #[inline] pub fn with_pmux1<I: Into<::bobbin_bits::R16> + Copy, F: FnOnce(Pmux1) -> Pmux1>(&self, index: I, f: F) -> &Self {
-        self.pmux1_reg().with(index.into(), f);
-        self
-    }
-
-    #[doc="Get the PINCFG0 Register."]
-    #[inline] pub fn pincfg0_reg(&self) -> ::bobbin_mcu::register::RegisterArray<Pincfg0, ::bobbin_bits::R32> { 
-        ::bobbin_mcu::register::RegisterArray::new(self.0 as *mut Pincfg0, 0x40, 0x1)
-    }
-
-    #[doc="Get the *mut pointer for the PINCFG0 register."]
-    #[inline] pub fn pincfg0_mut<I: Into<::bobbin_bits::R32>>(&self, index: I) -> *mut Pincfg0 { 
-        self.pincfg0_reg().ptr(index.into())
-    }
-
-    #[doc="Get the *const pointer for the PINCFG0 register."]
-    #[inline] pub fn pincfg0_ptr<I: Into<::bobbin_bits::R32>>(&self, index: I) -> *const Pincfg0 { 
-        self.pincfg0_reg().ptr(index.into())
-    }
-
-    #[doc="Read the PINCFG0 register."]
-    #[inline] pub fn pincfg0<I: Into<::bobbin_bits::R32>>(&self, index: I) -> Pincfg0 { 
-        self.pincfg0_reg().read(index.into())
-    }
-
-    #[doc="Write the PINCFG0 register."]
-    #[inline] pub fn write_pincfg0<I: Into<::bobbin_bits::R32>>(&self, index: I, value: Pincfg0) -> &Self {
-        self.pincfg0_reg().write(index.into(), value);
-        self
-    }
-
-    #[doc="Set the PINCFG0 register."]
-    #[inline] pub fn set_pincfg0<I: Into<::bobbin_bits::R32>, F: FnOnce(Pincfg0) -> Pincfg0>(&self, index: I, f: F) -> &Self {
-        self.pincfg0_reg().set(index.into(), f);
-        self
-    }
-
-    #[doc="Modify the PINCFG0 register."]
-    #[inline] pub fn with_pincfg0<I: Into<::bobbin_bits::R32> + Copy, F: FnOnce(Pincfg0) -> Pincfg0>(&self, index: I, f: F) -> &Self {
-        self.pincfg0_reg().with(index.into(), f);
-        self
-    }
-
-    #[doc="Get the PINCFG1 Register."]
-    #[inline] pub fn pincfg1_reg(&self) -> ::bobbin_mcu::register::RegisterArray<Pincfg1, ::bobbin_bits::R32> { 
-        ::bobbin_mcu::register::RegisterArray::new(self.0 as *mut Pincfg1, 0xc0, 0x1)
-    }
-
-    #[doc="Get the *mut pointer for the PINCFG1 register."]
-    #[inline] pub fn pincfg1_mut<I: Into<::bobbin_bits::R32>>(&self, index: I) -> *mut Pincfg1 { 
-        self.pincfg1_reg().ptr(index.into())
-    }
-
-    #[doc="Get the *const pointer for the PINCFG1 register."]
-    #[inline] pub fn pincfg1_ptr<I: Into<::bobbin_bits::R32>>(&self, index: I) -> *const Pincfg1 { 
-        self.pincfg1_reg().ptr(index.into())
-    }
-
-    #[doc="Read the PINCFG1 register."]
-    #[inline] pub fn pincfg1<I: Into<::bobbin_bits::R32>>(&self, index: I) -> Pincfg1 { 
-        self.pincfg1_reg().read(index.into())
-    }
-
-    #[doc="Write the PINCFG1 register."]
-    #[inline] pub fn write_pincfg1<I: Into<::bobbin_bits::R32>>(&self, index: I, value: Pincfg1) -> &Self {
-        self.pincfg1_reg().write(index.into(), value);
-        self
-    }
-
-    #[doc="Set the PINCFG1 register."]
-    #[inline] pub fn set_pincfg1<I: Into<::bobbin_bits::R32>, F: FnOnce(Pincfg1) -> Pincfg1>(&self, index: I, f: F) -> &Self {
-        self.pincfg1_reg().set(index.into(), f);
-        self
-    }
-
-    #[doc="Modify the PINCFG1 register."]
-    #[inline] pub fn with_pincfg1<I: Into<::bobbin_bits::R32> + Copy, F: FnOnce(Pincfg1) -> Pincfg1>(&self, index: I, f: F) -> &Self {
-        self.pincfg1_reg().with(index.into(), f);
+    #[doc="Modify the PINCFG register."]
+    #[inline] pub fn with_pincfg<I: Into<::bobbin_bits::R32> + Copy, F: FnOnce(Pincfg) -> Pincfg>(&self, index: I, f: F) -> &Self {
+        self.pincfg_reg().with(index.into(), f);
         self
     }
 
@@ -1883,10 +1829,10 @@ impl ::core::fmt::Debug for Evctrl {
     }
 }
 
-#[doc="Peripheral Multiplexing - Group 0"]
+#[doc="Peripheral Multiplexing"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
-pub struct Pmux0(pub u8);
-impl Pmux0 {
+pub struct Pmux(pub u8);
+impl Pmux {
     #[doc="Peripheral Multiplexing for Even-Numbered Pin"]
     #[inline] pub fn pmuxe(&self) -> ::bobbin_bits::U4 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0xf) as u8) } // [3:0]
@@ -1927,20 +1873,20 @@ impl Pmux0 {
 
 }
 
-impl From<u8> for Pmux0 {
+impl From<u8> for Pmux {
     #[inline]
     fn from(other: u8) -> Self {
-         Pmux0(other)
+         Pmux(other)
     }
 }
 
-impl ::core::fmt::Display for Pmux0 {
+impl ::core::fmt::Display for Pmux {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
     }
 }
 
-impl ::core::fmt::Debug for Pmux0 {
+impl ::core::fmt::Debug for Pmux {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
         try!(write!(f, "[0x{:08x}", self.0));
         if self.pmuxe() != 0 { try!(write!(f, " pmuxe=0x{:x}", self.pmuxe()))}
@@ -1950,37 +1896,10 @@ impl ::core::fmt::Debug for Pmux0 {
     }
 }
 
-#[doc="Peripheral Multiplexing - Group 1"]
+#[doc="Pin Configuration"]
 #[derive(Default, Clone, Copy, PartialEq, Eq)]
-pub struct Pmux1(pub u32);
-impl Pmux1 {
-}
-
-impl From<u32> for Pmux1 {
-    #[inline]
-    fn from(other: u32) -> Self {
-         Pmux1(other)
-    }
-}
-
-impl ::core::fmt::Display for Pmux1 {
-    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-         self.0.fmt(f)
-    }
-}
-
-impl ::core::fmt::Debug for Pmux1 {
-    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-        try!(write!(f, "[0x{:08x}", self.0));
-        try!(write!(f, "]"));
-        Ok(())
-    }
-}
-
-#[doc="Pin Configuration - Group 0"]
-#[derive(Default, Clone, Copy, PartialEq, Eq)]
-pub struct Pincfg0(pub u8);
-impl Pincfg0 {
+pub struct Pincfg(pub u8);
+impl Pincfg {
     #[doc="Peripheral Multiplexer Enable"]
     #[inline] pub fn pmuxen(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
@@ -2059,53 +1978,26 @@ impl Pincfg0 {
 
 }
 
-impl From<u8> for Pincfg0 {
+impl From<u8> for Pincfg {
     #[inline]
     fn from(other: u8) -> Self {
-         Pincfg0(other)
+         Pincfg(other)
     }
 }
 
-impl ::core::fmt::Display for Pincfg0 {
+impl ::core::fmt::Display for Pincfg {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
          self.0.fmt(f)
     }
 }
 
-impl ::core::fmt::Debug for Pincfg0 {
+impl ::core::fmt::Debug for Pincfg {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
         try!(write!(f, "[0x{:08x}", self.0));
         if self.pmuxen() != 0 { try!(write!(f, " pmuxen"))}
         if self.inen() != 0 { try!(write!(f, " inen"))}
         if self.pullen() != 0 { try!(write!(f, " pullen"))}
         if self.drvstr() != 0 { try!(write!(f, " drvstr"))}
-        try!(write!(f, "]"));
-        Ok(())
-    }
-}
-
-#[doc="Pin Configuration - Group 1"]
-#[derive(Default, Clone, Copy, PartialEq, Eq)]
-pub struct Pincfg1(pub u32);
-impl Pincfg1 {
-}
-
-impl From<u32> for Pincfg1 {
-    #[inline]
-    fn from(other: u32) -> Self {
-         Pincfg1(other)
-    }
-}
-
-impl ::core::fmt::Display for Pincfg1 {
-    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-         self.0.fmt(f)
-    }
-}
-
-impl ::core::fmt::Debug for Pincfg1 {
-    fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
-        try!(write!(f, "[0x{:08x}", self.0));
         try!(write!(f, "]"));
         Ok(())
     }

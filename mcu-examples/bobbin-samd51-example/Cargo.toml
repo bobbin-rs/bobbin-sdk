@@ -9,6 +9,12 @@ name = "blinky"
 path = "src/blinky.rs"
 doc = false
 
+
+[[bin]]
+name = "serial"
+path = "src/serial.rs"
+doc = false
+
 #[[bin]]
 #name = "console"
 #path = "src/console.rs"

@@ -5,6 +5,72 @@
 ::bobbin_mcu::periph!( SERCOM4, Sercom4, SERCOM4_PERIPH, SercomPeriph, SERCOM4_OWNED, SERCOM4_REF_COUNT, 0x43000000, 0x04, 0x23);
 ::bobbin_mcu::periph!( SERCOM5, Sercom5, SERCOM5_PERIPH, SercomPeriph, SERCOM5_OWNED, SERCOM5_REF_COUNT, 0x43000400, 0x05, 0x24);
 
+// Gate { name: None, gate_type: Some("EN"), periph: Some("MCLK"), register: Some("APBAMASK"), field: Some("SERCOM0"), description: None }
+impl ::bobbin_mcu::gate::GateEn for Sercom0 {
+    #[inline]
+    fn gate_en(&self) -> ::bobbin_bits::U1 { ::mclk::MCLK.apbamask().sercom0() }
+    #[inline]
+    fn set_gate_en<V: Into<::bobbin_bits::U1>>(&self, value: V) -> &Self {
+        ::mclk::MCLK.with_apbamask(|r| r.set_sercom0(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("EN"), periph: Some("MCLK"), register: Some("APBAMASK"), field: Some("SERCOM1"), description: None }
+impl ::bobbin_mcu::gate::GateEn for Sercom1 {
+    #[inline]
+    fn gate_en(&self) -> ::bobbin_bits::U1 { ::mclk::MCLK.apbamask().sercom1() }
+    #[inline]
+    fn set_gate_en<V: Into<::bobbin_bits::U1>>(&self, value: V) -> &Self {
+        ::mclk::MCLK.with_apbamask(|r| r.set_sercom1(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("EN"), periph: Some("MCLK"), register: Some("APBBMASK"), field: Some("SERCOM2"), description: None }
+impl ::bobbin_mcu::gate::GateEn for Sercom2 {
+    #[inline]
+    fn gate_en(&self) -> ::bobbin_bits::U1 { ::mclk::MCLK.apbbmask().sercom2() }
+    #[inline]
+    fn set_gate_en<V: Into<::bobbin_bits::U1>>(&self, value: V) -> &Self {
+        ::mclk::MCLK.with_apbbmask(|r| r.set_sercom2(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("EN"), periph: Some("MCLK"), register: Some("APBBMASK"), field: Some("SERCOM3"), description: None }
+impl ::bobbin_mcu::gate::GateEn for Sercom3 {
+    #[inline]
+    fn gate_en(&self) -> ::bobbin_bits::U1 { ::mclk::MCLK.apbbmask().sercom3() }
+    #[inline]
+    fn set_gate_en<V: Into<::bobbin_bits::U1>>(&self, value: V) -> &Self {
+        ::mclk::MCLK.with_apbbmask(|r| r.set_sercom3(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("EN"), periph: Some("MCLK"), register: Some("APBDMASK"), field: Some("SERCOM4"), description: None }
+impl ::bobbin_mcu::gate::GateEn for Sercom4 {
+    #[inline]
+    fn gate_en(&self) -> ::bobbin_bits::U1 { ::mclk::MCLK.apbdmask().sercom4() }
+    #[inline]
+    fn set_gate_en<V: Into<::bobbin_bits::U1>>(&self, value: V) -> &Self {
+        ::mclk::MCLK.with_apbdmask(|r| r.set_sercom4(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("EN"), periph: Some("MCLK"), register: Some("APBDMASK"), field: Some("SERCOM5"), description: None }
+impl ::bobbin_mcu::gate::GateEn for Sercom5 {
+    #[inline]
+    fn gate_en(&self) -> ::bobbin_bits::U1 { ::mclk::MCLK.apbdmask().sercom5() }
+    #[inline]
+    fn set_gate_en<V: Into<::bobbin_bits::U1>>(&self, value: V) -> &Self {
+        ::mclk::MCLK.with_apbdmask(|r| r.set_sercom5(value));
+        self
+    }
+}
+
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="SERCOM Peripheral"]
 pub struct SercomPeriph(pub usize); 

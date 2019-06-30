@@ -1,4 +1,4 @@
-::bobbin_mcu::periph!( I2S, I2s, I2S_PERIPH, I2sPeriph, I2S_OWNED, I2S_REF_COUNT, 0x43002800, 0x00, 0x0f);
+::bobbin_mcu::periph!( I2S, I2s, I2S_PERIPH, I2sPeriph, I2S_OWNED, I2S_REF_COUNT, 0x43002800, 0x00, 0x10);
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="I2S Peripheral"]

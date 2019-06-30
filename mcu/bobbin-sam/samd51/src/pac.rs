@@ -642,17 +642,17 @@ impl ::core::fmt::Debug for Intenset {
 pub struct Intflagahb(pub u32);
 impl Intflagahb {
     #[doc="FLASH"]
-    #[inline] pub fn flash_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn flash(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Returns true if FLASH_ != 0"]
-    #[inline] pub fn test_flash_(&self) -> bool {
-        self.flash_() != 0
+    #[doc="Returns true if FLASH != 0"]
+    #[inline] pub fn test_flash(&self) -> bool {
+        self.flash() != 0
     }
 
-    #[doc="Sets the FLASH_ field."]
-    #[inline] pub fn set_flash_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the FLASH field."]
+    #[inline] pub fn set_flash<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 0);
@@ -661,17 +661,17 @@ impl Intflagahb {
     }
 
     #[doc="FLASH_ALT"]
-    #[inline] pub fn flash_alt_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn flash_alt(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="Returns true if FLASH_ALT_ != 0"]
-    #[inline] pub fn test_flash_alt_(&self) -> bool {
-        self.flash_alt_() != 0
+    #[doc="Returns true if FLASH_ALT != 0"]
+    #[inline] pub fn test_flash_alt(&self) -> bool {
+        self.flash_alt() != 0
     }
 
-    #[doc="Sets the FLASH_ALT_ field."]
-    #[inline] pub fn set_flash_alt_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the FLASH_ALT field."]
+    #[inline] pub fn set_flash_alt<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 1);
@@ -680,17 +680,17 @@ impl Intflagahb {
     }
 
     #[doc="SEEPROM"]
-    #[inline] pub fn seeprom_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn seeprom(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="Returns true if SEEPROM_ != 0"]
-    #[inline] pub fn test_seeprom_(&self) -> bool {
-        self.seeprom_() != 0
+    #[doc="Returns true if SEEPROM != 0"]
+    #[inline] pub fn test_seeprom(&self) -> bool {
+        self.seeprom() != 0
     }
 
-    #[doc="Sets the SEEPROM_ field."]
-    #[inline] pub fn set_seeprom_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the SEEPROM field."]
+    #[inline] pub fn set_seeprom<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 2);
@@ -699,17 +699,17 @@ impl Intflagahb {
     }
 
     #[doc="RAMCM4S"]
-    #[inline] pub fn ramcm4s_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn ramcm4s(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="Returns true if RAMCM4S_ != 0"]
-    #[inline] pub fn test_ramcm4s_(&self) -> bool {
-        self.ramcm4s_() != 0
+    #[doc="Returns true if RAMCM4S != 0"]
+    #[inline] pub fn test_ramcm4s(&self) -> bool {
+        self.ramcm4s() != 0
     }
 
-    #[doc="Sets the RAMCM4S_ field."]
-    #[inline] pub fn set_ramcm4s_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the RAMCM4S field."]
+    #[inline] pub fn set_ramcm4s<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 3);
@@ -718,17 +718,17 @@ impl Intflagahb {
     }
 
     #[doc="RAMPPPDSU"]
-    #[inline] pub fn rampppdsu_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn rampppdsu(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="Returns true if RAMPPPDSU_ != 0"]
-    #[inline] pub fn test_rampppdsu_(&self) -> bool {
-        self.rampppdsu_() != 0
+    #[doc="Returns true if RAMPPPDSU != 0"]
+    #[inline] pub fn test_rampppdsu(&self) -> bool {
+        self.rampppdsu() != 0
     }
 
-    #[doc="Sets the RAMPPPDSU_ field."]
-    #[inline] pub fn set_rampppdsu_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the RAMPPPDSU field."]
+    #[inline] pub fn set_rampppdsu<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 4);
@@ -737,17 +737,17 @@ impl Intflagahb {
     }
 
     #[doc="RAMDMAWR"]
-    #[inline] pub fn ramdmawr_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn ramdmawr(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="Returns true if RAMDMAWR_ != 0"]
-    #[inline] pub fn test_ramdmawr_(&self) -> bool {
-        self.ramdmawr_() != 0
+    #[doc="Returns true if RAMDMAWR != 0"]
+    #[inline] pub fn test_ramdmawr(&self) -> bool {
+        self.ramdmawr() != 0
     }
 
-    #[doc="Sets the RAMDMAWR_ field."]
-    #[inline] pub fn set_ramdmawr_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the RAMDMAWR field."]
+    #[inline] pub fn set_ramdmawr<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 5);
@@ -756,17 +756,17 @@ impl Intflagahb {
     }
 
     #[doc="RAMDMACICM"]
-    #[inline] pub fn ramdmacicm_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn ramdmacicm(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="Returns true if RAMDMACICM_ != 0"]
-    #[inline] pub fn test_ramdmacicm_(&self) -> bool {
-        self.ramdmacicm_() != 0
+    #[doc="Returns true if RAMDMACICM != 0"]
+    #[inline] pub fn test_ramdmacicm(&self) -> bool {
+        self.ramdmacicm() != 0
     }
 
-    #[doc="Sets the RAMDMACICM_ field."]
-    #[inline] pub fn set_ramdmacicm_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the RAMDMACICM field."]
+    #[inline] pub fn set_ramdmacicm<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 6);
@@ -775,17 +775,17 @@ impl Intflagahb {
     }
 
     #[doc="HPB0"]
-    #[inline] pub fn hpb0_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn hpb0(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="Returns true if HPB0_ != 0"]
-    #[inline] pub fn test_hpb0_(&self) -> bool {
-        self.hpb0_() != 0
+    #[doc="Returns true if HPB0 != 0"]
+    #[inline] pub fn test_hpb0(&self) -> bool {
+        self.hpb0() != 0
     }
 
-    #[doc="Sets the HPB0_ field."]
-    #[inline] pub fn set_hpb0_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the HPB0 field."]
+    #[inline] pub fn set_hpb0<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 7);
@@ -794,17 +794,17 @@ impl Intflagahb {
     }
 
     #[doc="HPB1"]
-    #[inline] pub fn hpb1_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn hpb1(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
     }
 
-    #[doc="Returns true if HPB1_ != 0"]
-    #[inline] pub fn test_hpb1_(&self) -> bool {
-        self.hpb1_() != 0
+    #[doc="Returns true if HPB1 != 0"]
+    #[inline] pub fn test_hpb1(&self) -> bool {
+        self.hpb1() != 0
     }
 
-    #[doc="Sets the HPB1_ field."]
-    #[inline] pub fn set_hpb1_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the HPB1 field."]
+    #[inline] pub fn set_hpb1<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 8);
@@ -813,17 +813,17 @@ impl Intflagahb {
     }
 
     #[doc="HPB2"]
-    #[inline] pub fn hpb2_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn hpb2(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
     }
 
-    #[doc="Returns true if HPB2_ != 0"]
-    #[inline] pub fn test_hpb2_(&self) -> bool {
-        self.hpb2_() != 0
+    #[doc="Returns true if HPB2 != 0"]
+    #[inline] pub fn test_hpb2(&self) -> bool {
+        self.hpb2() != 0
     }
 
-    #[doc="Sets the HPB2_ field."]
-    #[inline] pub fn set_hpb2_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the HPB2 field."]
+    #[inline] pub fn set_hpb2<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 9);
@@ -832,17 +832,17 @@ impl Intflagahb {
     }
 
     #[doc="HPB3"]
-    #[inline] pub fn hpb3_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn hpb3(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x1) as u8) } // [10]
     }
 
-    #[doc="Returns true if HPB3_ != 0"]
-    #[inline] pub fn test_hpb3_(&self) -> bool {
-        self.hpb3_() != 0
+    #[doc="Returns true if HPB3 != 0"]
+    #[inline] pub fn test_hpb3(&self) -> bool {
+        self.hpb3() != 0
     }
 
-    #[doc="Sets the HPB3_ field."]
-    #[inline] pub fn set_hpb3_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the HPB3 field."]
+    #[inline] pub fn set_hpb3<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 10);
@@ -851,17 +851,17 @@ impl Intflagahb {
     }
 
     #[doc="PUKCC"]
-    #[inline] pub fn pukcc_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn pukcc(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 11) & 0x1) as u8) } // [11]
     }
 
-    #[doc="Returns true if PUKCC_ != 0"]
-    #[inline] pub fn test_pukcc_(&self) -> bool {
-        self.pukcc_() != 0
+    #[doc="Returns true if PUKCC != 0"]
+    #[inline] pub fn test_pukcc(&self) -> bool {
+        self.pukcc() != 0
     }
 
-    #[doc="Sets the PUKCC_ field."]
-    #[inline] pub fn set_pukcc_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the PUKCC field."]
+    #[inline] pub fn set_pukcc<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 11);
@@ -870,17 +870,17 @@ impl Intflagahb {
     }
 
     #[doc="SDHC0"]
-    #[inline] pub fn sdhc0_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn sdhc0(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 12) & 0x1) as u8) } // [12]
     }
 
-    #[doc="Returns true if SDHC0_ != 0"]
-    #[inline] pub fn test_sdhc0_(&self) -> bool {
-        self.sdhc0_() != 0
+    #[doc="Returns true if SDHC0 != 0"]
+    #[inline] pub fn test_sdhc0(&self) -> bool {
+        self.sdhc0() != 0
     }
 
-    #[doc="Sets the SDHC0_ field."]
-    #[inline] pub fn set_sdhc0_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the SDHC0 field."]
+    #[inline] pub fn set_sdhc0<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 12);
@@ -889,17 +889,17 @@ impl Intflagahb {
     }
 
     #[doc="QSPI"]
-    #[inline] pub fn qspi_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn qspi(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 14) & 0x1) as u8) } // [14]
     }
 
-    #[doc="Returns true if QSPI_ != 0"]
-    #[inline] pub fn test_qspi_(&self) -> bool {
-        self.qspi_() != 0
+    #[doc="Returns true if QSPI != 0"]
+    #[inline] pub fn test_qspi(&self) -> bool {
+        self.qspi() != 0
     }
 
-    #[doc="Sets the QSPI_ field."]
-    #[inline] pub fn set_qspi_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the QSPI field."]
+    #[inline] pub fn set_qspi<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 14);
@@ -908,17 +908,17 @@ impl Intflagahb {
     }
 
     #[doc="BKUPRAM"]
-    #[inline] pub fn bkupram_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn bkupram(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 15) & 0x1) as u8) } // [15]
     }
 
-    #[doc="Returns true if BKUPRAM_ != 0"]
-    #[inline] pub fn test_bkupram_(&self) -> bool {
-        self.bkupram_() != 0
+    #[doc="Returns true if BKUPRAM != 0"]
+    #[inline] pub fn test_bkupram(&self) -> bool {
+        self.bkupram() != 0
     }
 
-    #[doc="Sets the BKUPRAM_ field."]
-    #[inline] pub fn set_bkupram_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the BKUPRAM field."]
+    #[inline] pub fn set_bkupram<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 15);
@@ -944,21 +944,21 @@ impl ::core::fmt::Display for Intflagahb {
 impl ::core::fmt::Debug for Intflagahb {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
         try!(write!(f, "[0x{:08x}", self.0));
-        if self.flash_() != 0 { try!(write!(f, " flash_"))}
-        if self.flash_alt_() != 0 { try!(write!(f, " flash_alt_"))}
-        if self.seeprom_() != 0 { try!(write!(f, " seeprom_"))}
-        if self.ramcm4s_() != 0 { try!(write!(f, " ramcm4s_"))}
-        if self.rampppdsu_() != 0 { try!(write!(f, " rampppdsu_"))}
-        if self.ramdmawr_() != 0 { try!(write!(f, " ramdmawr_"))}
-        if self.ramdmacicm_() != 0 { try!(write!(f, " ramdmacicm_"))}
-        if self.hpb0_() != 0 { try!(write!(f, " hpb0_"))}
-        if self.hpb1_() != 0 { try!(write!(f, " hpb1_"))}
-        if self.hpb2_() != 0 { try!(write!(f, " hpb2_"))}
-        if self.hpb3_() != 0 { try!(write!(f, " hpb3_"))}
-        if self.pukcc_() != 0 { try!(write!(f, " pukcc_"))}
-        if self.sdhc0_() != 0 { try!(write!(f, " sdhc0_"))}
-        if self.qspi_() != 0 { try!(write!(f, " qspi_"))}
-        if self.bkupram_() != 0 { try!(write!(f, " bkupram_"))}
+        if self.flash() != 0 { try!(write!(f, " flash"))}
+        if self.flash_alt() != 0 { try!(write!(f, " flash_alt"))}
+        if self.seeprom() != 0 { try!(write!(f, " seeprom"))}
+        if self.ramcm4s() != 0 { try!(write!(f, " ramcm4s"))}
+        if self.rampppdsu() != 0 { try!(write!(f, " rampppdsu"))}
+        if self.ramdmawr() != 0 { try!(write!(f, " ramdmawr"))}
+        if self.ramdmacicm() != 0 { try!(write!(f, " ramdmacicm"))}
+        if self.hpb0() != 0 { try!(write!(f, " hpb0"))}
+        if self.hpb1() != 0 { try!(write!(f, " hpb1"))}
+        if self.hpb2() != 0 { try!(write!(f, " hpb2"))}
+        if self.hpb3() != 0 { try!(write!(f, " hpb3"))}
+        if self.pukcc() != 0 { try!(write!(f, " pukcc"))}
+        if self.sdhc0() != 0 { try!(write!(f, " sdhc0"))}
+        if self.qspi() != 0 { try!(write!(f, " qspi"))}
+        if self.bkupram() != 0 { try!(write!(f, " bkupram"))}
         try!(write!(f, "]"));
         Ok(())
     }
@@ -969,17 +969,17 @@ impl ::core::fmt::Debug for Intflagahb {
 pub struct Intflaga(pub u32);
 impl Intflaga {
     #[doc="PAC"]
-    #[inline] pub fn pac_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn pac(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Returns true if PAC_ != 0"]
-    #[inline] pub fn test_pac_(&self) -> bool {
-        self.pac_() != 0
+    #[doc="Returns true if PAC != 0"]
+    #[inline] pub fn test_pac(&self) -> bool {
+        self.pac() != 0
     }
 
-    #[doc="Sets the PAC_ field."]
-    #[inline] pub fn set_pac_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the PAC field."]
+    #[inline] pub fn set_pac<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 0);
@@ -988,17 +988,17 @@ impl Intflaga {
     }
 
     #[doc="PM"]
-    #[inline] pub fn pm_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn pm(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="Returns true if PM_ != 0"]
-    #[inline] pub fn test_pm_(&self) -> bool {
-        self.pm_() != 0
+    #[doc="Returns true if PM != 0"]
+    #[inline] pub fn test_pm(&self) -> bool {
+        self.pm() != 0
     }
 
-    #[doc="Sets the PM_ field."]
-    #[inline] pub fn set_pm_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the PM field."]
+    #[inline] pub fn set_pm<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 1);
@@ -1007,17 +1007,17 @@ impl Intflaga {
     }
 
     #[doc="MCLK"]
-    #[inline] pub fn mclk_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn mclk(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="Returns true if MCLK_ != 0"]
-    #[inline] pub fn test_mclk_(&self) -> bool {
-        self.mclk_() != 0
+    #[doc="Returns true if MCLK != 0"]
+    #[inline] pub fn test_mclk(&self) -> bool {
+        self.mclk() != 0
     }
 
-    #[doc="Sets the MCLK_ field."]
-    #[inline] pub fn set_mclk_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the MCLK field."]
+    #[inline] pub fn set_mclk<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 2);
@@ -1026,17 +1026,17 @@ impl Intflaga {
     }
 
     #[doc="RSTC"]
-    #[inline] pub fn rstc_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn rstc(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="Returns true if RSTC_ != 0"]
-    #[inline] pub fn test_rstc_(&self) -> bool {
-        self.rstc_() != 0
+    #[doc="Returns true if RSTC != 0"]
+    #[inline] pub fn test_rstc(&self) -> bool {
+        self.rstc() != 0
     }
 
-    #[doc="Sets the RSTC_ field."]
-    #[inline] pub fn set_rstc_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the RSTC field."]
+    #[inline] pub fn set_rstc<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 3);
@@ -1045,17 +1045,17 @@ impl Intflaga {
     }
 
     #[doc="OSCCTRL"]
-    #[inline] pub fn oscctrl_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn oscctrl(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="Returns true if OSCCTRL_ != 0"]
-    #[inline] pub fn test_oscctrl_(&self) -> bool {
-        self.oscctrl_() != 0
+    #[doc="Returns true if OSCCTRL != 0"]
+    #[inline] pub fn test_oscctrl(&self) -> bool {
+        self.oscctrl() != 0
     }
 
-    #[doc="Sets the OSCCTRL_ field."]
-    #[inline] pub fn set_oscctrl_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the OSCCTRL field."]
+    #[inline] pub fn set_oscctrl<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 4);
@@ -1064,17 +1064,17 @@ impl Intflaga {
     }
 
     #[doc="OSC32KCTRL"]
-    #[inline] pub fn osc32kctrl_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn osc32kctrl(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="Returns true if OSC32KCTRL_ != 0"]
-    #[inline] pub fn test_osc32kctrl_(&self) -> bool {
-        self.osc32kctrl_() != 0
+    #[doc="Returns true if OSC32KCTRL != 0"]
+    #[inline] pub fn test_osc32kctrl(&self) -> bool {
+        self.osc32kctrl() != 0
     }
 
-    #[doc="Sets the OSC32KCTRL_ field."]
-    #[inline] pub fn set_osc32kctrl_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the OSC32KCTRL field."]
+    #[inline] pub fn set_osc32kctrl<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 5);
@@ -1083,17 +1083,17 @@ impl Intflaga {
     }
 
     #[doc="SUPC"]
-    #[inline] pub fn supc_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn supc(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="Returns true if SUPC_ != 0"]
-    #[inline] pub fn test_supc_(&self) -> bool {
-        self.supc_() != 0
+    #[doc="Returns true if SUPC != 0"]
+    #[inline] pub fn test_supc(&self) -> bool {
+        self.supc() != 0
     }
 
-    #[doc="Sets the SUPC_ field."]
-    #[inline] pub fn set_supc_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the SUPC field."]
+    #[inline] pub fn set_supc<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 6);
@@ -1102,17 +1102,17 @@ impl Intflaga {
     }
 
     #[doc="GCLK"]
-    #[inline] pub fn gclk_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn gclk(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="Returns true if GCLK_ != 0"]
-    #[inline] pub fn test_gclk_(&self) -> bool {
-        self.gclk_() != 0
+    #[doc="Returns true if GCLK != 0"]
+    #[inline] pub fn test_gclk(&self) -> bool {
+        self.gclk() != 0
     }
 
-    #[doc="Sets the GCLK_ field."]
-    #[inline] pub fn set_gclk_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the GCLK field."]
+    #[inline] pub fn set_gclk<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 7);
@@ -1121,17 +1121,17 @@ impl Intflaga {
     }
 
     #[doc="WDT"]
-    #[inline] pub fn wdt_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn wdt(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
     }
 
-    #[doc="Returns true if WDT_ != 0"]
-    #[inline] pub fn test_wdt_(&self) -> bool {
-        self.wdt_() != 0
+    #[doc="Returns true if WDT != 0"]
+    #[inline] pub fn test_wdt(&self) -> bool {
+        self.wdt() != 0
     }
 
-    #[doc="Sets the WDT_ field."]
-    #[inline] pub fn set_wdt_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the WDT field."]
+    #[inline] pub fn set_wdt<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 8);
@@ -1140,17 +1140,17 @@ impl Intflaga {
     }
 
     #[doc="RTC"]
-    #[inline] pub fn rtc_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn rtc(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
     }
 
-    #[doc="Returns true if RTC_ != 0"]
-    #[inline] pub fn test_rtc_(&self) -> bool {
-        self.rtc_() != 0
+    #[doc="Returns true if RTC != 0"]
+    #[inline] pub fn test_rtc(&self) -> bool {
+        self.rtc() != 0
     }
 
-    #[doc="Sets the RTC_ field."]
-    #[inline] pub fn set_rtc_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the RTC field."]
+    #[inline] pub fn set_rtc<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 9);
@@ -1159,17 +1159,17 @@ impl Intflaga {
     }
 
     #[doc="EIC"]
-    #[inline] pub fn eic_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn eic(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x1) as u8) } // [10]
     }
 
-    #[doc="Returns true if EIC_ != 0"]
-    #[inline] pub fn test_eic_(&self) -> bool {
-        self.eic_() != 0
+    #[doc="Returns true if EIC != 0"]
+    #[inline] pub fn test_eic(&self) -> bool {
+        self.eic() != 0
     }
 
-    #[doc="Sets the EIC_ field."]
-    #[inline] pub fn set_eic_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the EIC field."]
+    #[inline] pub fn set_eic<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 10);
@@ -1178,17 +1178,17 @@ impl Intflaga {
     }
 
     #[doc="FREQM"]
-    #[inline] pub fn freqm_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn freqm(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 11) & 0x1) as u8) } // [11]
     }
 
-    #[doc="Returns true if FREQM_ != 0"]
-    #[inline] pub fn test_freqm_(&self) -> bool {
-        self.freqm_() != 0
+    #[doc="Returns true if FREQM != 0"]
+    #[inline] pub fn test_freqm(&self) -> bool {
+        self.freqm() != 0
     }
 
-    #[doc="Sets the FREQM_ field."]
-    #[inline] pub fn set_freqm_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the FREQM field."]
+    #[inline] pub fn set_freqm<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 11);
@@ -1197,17 +1197,17 @@ impl Intflaga {
     }
 
     #[doc="SERCOM0"]
-    #[inline] pub fn sercom0_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn sercom0(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 12) & 0x1) as u8) } // [12]
     }
 
-    #[doc="Returns true if SERCOM0_ != 0"]
-    #[inline] pub fn test_sercom0_(&self) -> bool {
-        self.sercom0_() != 0
+    #[doc="Returns true if SERCOM0 != 0"]
+    #[inline] pub fn test_sercom0(&self) -> bool {
+        self.sercom0() != 0
     }
 
-    #[doc="Sets the SERCOM0_ field."]
-    #[inline] pub fn set_sercom0_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the SERCOM0 field."]
+    #[inline] pub fn set_sercom0<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 12);
@@ -1216,17 +1216,17 @@ impl Intflaga {
     }
 
     #[doc="SERCOM1"]
-    #[inline] pub fn sercom1_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn sercom1(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 13) & 0x1) as u8) } // [13]
     }
 
-    #[doc="Returns true if SERCOM1_ != 0"]
-    #[inline] pub fn test_sercom1_(&self) -> bool {
-        self.sercom1_() != 0
+    #[doc="Returns true if SERCOM1 != 0"]
+    #[inline] pub fn test_sercom1(&self) -> bool {
+        self.sercom1() != 0
     }
 
-    #[doc="Sets the SERCOM1_ field."]
-    #[inline] pub fn set_sercom1_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the SERCOM1 field."]
+    #[inline] pub fn set_sercom1<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 13);
@@ -1235,17 +1235,17 @@ impl Intflaga {
     }
 
     #[doc="TC0"]
-    #[inline] pub fn tc0_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn tc0(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 14) & 0x1) as u8) } // [14]
     }
 
-    #[doc="Returns true if TC0_ != 0"]
-    #[inline] pub fn test_tc0_(&self) -> bool {
-        self.tc0_() != 0
+    #[doc="Returns true if TC0 != 0"]
+    #[inline] pub fn test_tc0(&self) -> bool {
+        self.tc0() != 0
     }
 
-    #[doc="Sets the TC0_ field."]
-    #[inline] pub fn set_tc0_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the TC0 field."]
+    #[inline] pub fn set_tc0<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 14);
@@ -1254,17 +1254,17 @@ impl Intflaga {
     }
 
     #[doc="TC1"]
-    #[inline] pub fn tc1_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn tc1(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 15) & 0x1) as u8) } // [15]
     }
 
-    #[doc="Returns true if TC1_ != 0"]
-    #[inline] pub fn test_tc1_(&self) -> bool {
-        self.tc1_() != 0
+    #[doc="Returns true if TC1 != 0"]
+    #[inline] pub fn test_tc1(&self) -> bool {
+        self.tc1() != 0
     }
 
-    #[doc="Sets the TC1_ field."]
-    #[inline] pub fn set_tc1_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the TC1 field."]
+    #[inline] pub fn set_tc1<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 15);
@@ -1290,22 +1290,22 @@ impl ::core::fmt::Display for Intflaga {
 impl ::core::fmt::Debug for Intflaga {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
         try!(write!(f, "[0x{:08x}", self.0));
-        if self.pac_() != 0 { try!(write!(f, " pac_"))}
-        if self.pm_() != 0 { try!(write!(f, " pm_"))}
-        if self.mclk_() != 0 { try!(write!(f, " mclk_"))}
-        if self.rstc_() != 0 { try!(write!(f, " rstc_"))}
-        if self.oscctrl_() != 0 { try!(write!(f, " oscctrl_"))}
-        if self.osc32kctrl_() != 0 { try!(write!(f, " osc32kctrl_"))}
-        if self.supc_() != 0 { try!(write!(f, " supc_"))}
-        if self.gclk_() != 0 { try!(write!(f, " gclk_"))}
-        if self.wdt_() != 0 { try!(write!(f, " wdt_"))}
-        if self.rtc_() != 0 { try!(write!(f, " rtc_"))}
-        if self.eic_() != 0 { try!(write!(f, " eic_"))}
-        if self.freqm_() != 0 { try!(write!(f, " freqm_"))}
-        if self.sercom0_() != 0 { try!(write!(f, " sercom0_"))}
-        if self.sercom1_() != 0 { try!(write!(f, " sercom1_"))}
-        if self.tc0_() != 0 { try!(write!(f, " tc0_"))}
-        if self.tc1_() != 0 { try!(write!(f, " tc1_"))}
+        if self.pac() != 0 { try!(write!(f, " pac"))}
+        if self.pm() != 0 { try!(write!(f, " pm"))}
+        if self.mclk() != 0 { try!(write!(f, " mclk"))}
+        if self.rstc() != 0 { try!(write!(f, " rstc"))}
+        if self.oscctrl() != 0 { try!(write!(f, " oscctrl"))}
+        if self.osc32kctrl() != 0 { try!(write!(f, " osc32kctrl"))}
+        if self.supc() != 0 { try!(write!(f, " supc"))}
+        if self.gclk() != 0 { try!(write!(f, " gclk"))}
+        if self.wdt() != 0 { try!(write!(f, " wdt"))}
+        if self.rtc() != 0 { try!(write!(f, " rtc"))}
+        if self.eic() != 0 { try!(write!(f, " eic"))}
+        if self.freqm() != 0 { try!(write!(f, " freqm"))}
+        if self.sercom0() != 0 { try!(write!(f, " sercom0"))}
+        if self.sercom1() != 0 { try!(write!(f, " sercom1"))}
+        if self.tc0() != 0 { try!(write!(f, " tc0"))}
+        if self.tc1() != 0 { try!(write!(f, " tc1"))}
         try!(write!(f, "]"));
         Ok(())
     }
@@ -1316,17 +1316,17 @@ impl ::core::fmt::Debug for Intflaga {
 pub struct Intflagb(pub u32);
 impl Intflagb {
     #[doc="USB"]
-    #[inline] pub fn usb_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn usb(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Returns true if USB_ != 0"]
-    #[inline] pub fn test_usb_(&self) -> bool {
-        self.usb_() != 0
+    #[doc="Returns true if USB != 0"]
+    #[inline] pub fn test_usb(&self) -> bool {
+        self.usb() != 0
     }
 
-    #[doc="Sets the USB_ field."]
-    #[inline] pub fn set_usb_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the USB field."]
+    #[inline] pub fn set_usb<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 0);
@@ -1335,17 +1335,17 @@ impl Intflagb {
     }
 
     #[doc="DSU"]
-    #[inline] pub fn dsu_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn dsu(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="Returns true if DSU_ != 0"]
-    #[inline] pub fn test_dsu_(&self) -> bool {
-        self.dsu_() != 0
+    #[doc="Returns true if DSU != 0"]
+    #[inline] pub fn test_dsu(&self) -> bool {
+        self.dsu() != 0
     }
 
-    #[doc="Sets the DSU_ field."]
-    #[inline] pub fn set_dsu_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the DSU field."]
+    #[inline] pub fn set_dsu<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 1);
@@ -1354,17 +1354,17 @@ impl Intflagb {
     }
 
     #[doc="NVMCTRL"]
-    #[inline] pub fn nvmctrl_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn nvmctrl(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="Returns true if NVMCTRL_ != 0"]
-    #[inline] pub fn test_nvmctrl_(&self) -> bool {
-        self.nvmctrl_() != 0
+    #[doc="Returns true if NVMCTRL != 0"]
+    #[inline] pub fn test_nvmctrl(&self) -> bool {
+        self.nvmctrl() != 0
     }
 
-    #[doc="Sets the NVMCTRL_ field."]
-    #[inline] pub fn set_nvmctrl_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the NVMCTRL field."]
+    #[inline] pub fn set_nvmctrl<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 2);
@@ -1373,17 +1373,17 @@ impl Intflagb {
     }
 
     #[doc="CMCC"]
-    #[inline] pub fn cmcc_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn cmcc(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="Returns true if CMCC_ != 0"]
-    #[inline] pub fn test_cmcc_(&self) -> bool {
-        self.cmcc_() != 0
+    #[doc="Returns true if CMCC != 0"]
+    #[inline] pub fn test_cmcc(&self) -> bool {
+        self.cmcc() != 0
     }
 
-    #[doc="Sets the CMCC_ field."]
-    #[inline] pub fn set_cmcc_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the CMCC field."]
+    #[inline] pub fn set_cmcc<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 3);
@@ -1392,17 +1392,17 @@ impl Intflagb {
     }
 
     #[doc="PORT"]
-    #[inline] pub fn port_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn port(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="Returns true if PORT_ != 0"]
-    #[inline] pub fn test_port_(&self) -> bool {
-        self.port_() != 0
+    #[doc="Returns true if PORT != 0"]
+    #[inline] pub fn test_port(&self) -> bool {
+        self.port() != 0
     }
 
-    #[doc="Sets the PORT_ field."]
-    #[inline] pub fn set_port_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the PORT field."]
+    #[inline] pub fn set_port<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 4);
@@ -1411,17 +1411,17 @@ impl Intflagb {
     }
 
     #[doc="DMAC"]
-    #[inline] pub fn dmac_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn dmac(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="Returns true if DMAC_ != 0"]
-    #[inline] pub fn test_dmac_(&self) -> bool {
-        self.dmac_() != 0
+    #[doc="Returns true if DMAC != 0"]
+    #[inline] pub fn test_dmac(&self) -> bool {
+        self.dmac() != 0
     }
 
-    #[doc="Sets the DMAC_ field."]
-    #[inline] pub fn set_dmac_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the DMAC field."]
+    #[inline] pub fn set_dmac<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 5);
@@ -1430,17 +1430,17 @@ impl Intflagb {
     }
 
     #[doc="HMATRIX"]
-    #[inline] pub fn hmatrix_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn hmatrix(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="Returns true if HMATRIX_ != 0"]
-    #[inline] pub fn test_hmatrix_(&self) -> bool {
-        self.hmatrix_() != 0
+    #[doc="Returns true if HMATRIX != 0"]
+    #[inline] pub fn test_hmatrix(&self) -> bool {
+        self.hmatrix() != 0
     }
 
-    #[doc="Sets the HMATRIX_ field."]
-    #[inline] pub fn set_hmatrix_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the HMATRIX field."]
+    #[inline] pub fn set_hmatrix<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 6);
@@ -1449,17 +1449,17 @@ impl Intflagb {
     }
 
     #[doc="EVSYS"]
-    #[inline] pub fn evsys_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn evsys(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="Returns true if EVSYS_ != 0"]
-    #[inline] pub fn test_evsys_(&self) -> bool {
-        self.evsys_() != 0
+    #[doc="Returns true if EVSYS != 0"]
+    #[inline] pub fn test_evsys(&self) -> bool {
+        self.evsys() != 0
     }
 
-    #[doc="Sets the EVSYS_ field."]
-    #[inline] pub fn set_evsys_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the EVSYS field."]
+    #[inline] pub fn set_evsys<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 7);
@@ -1468,17 +1468,17 @@ impl Intflagb {
     }
 
     #[doc="SERCOM2"]
-    #[inline] pub fn sercom2_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn sercom2(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
     }
 
-    #[doc="Returns true if SERCOM2_ != 0"]
-    #[inline] pub fn test_sercom2_(&self) -> bool {
-        self.sercom2_() != 0
+    #[doc="Returns true if SERCOM2 != 0"]
+    #[inline] pub fn test_sercom2(&self) -> bool {
+        self.sercom2() != 0
     }
 
-    #[doc="Sets the SERCOM2_ field."]
-    #[inline] pub fn set_sercom2_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the SERCOM2 field."]
+    #[inline] pub fn set_sercom2<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 9);
@@ -1487,17 +1487,17 @@ impl Intflagb {
     }
 
     #[doc="SERCOM3"]
-    #[inline] pub fn sercom3_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn sercom3(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x1) as u8) } // [10]
     }
 
-    #[doc="Returns true if SERCOM3_ != 0"]
-    #[inline] pub fn test_sercom3_(&self) -> bool {
-        self.sercom3_() != 0
+    #[doc="Returns true if SERCOM3 != 0"]
+    #[inline] pub fn test_sercom3(&self) -> bool {
+        self.sercom3() != 0
     }
 
-    #[doc="Sets the SERCOM3_ field."]
-    #[inline] pub fn set_sercom3_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the SERCOM3 field."]
+    #[inline] pub fn set_sercom3<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 10);
@@ -1506,17 +1506,17 @@ impl Intflagb {
     }
 
     #[doc="TCC0"]
-    #[inline] pub fn tcc0_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn tcc0(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 11) & 0x1) as u8) } // [11]
     }
 
-    #[doc="Returns true if TCC0_ != 0"]
-    #[inline] pub fn test_tcc0_(&self) -> bool {
-        self.tcc0_() != 0
+    #[doc="Returns true if TCC0 != 0"]
+    #[inline] pub fn test_tcc0(&self) -> bool {
+        self.tcc0() != 0
     }
 
-    #[doc="Sets the TCC0_ field."]
-    #[inline] pub fn set_tcc0_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the TCC0 field."]
+    #[inline] pub fn set_tcc0<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 11);
@@ -1525,17 +1525,17 @@ impl Intflagb {
     }
 
     #[doc="TCC1"]
-    #[inline] pub fn tcc1_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn tcc1(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 12) & 0x1) as u8) } // [12]
     }
 
-    #[doc="Returns true if TCC1_ != 0"]
-    #[inline] pub fn test_tcc1_(&self) -> bool {
-        self.tcc1_() != 0
+    #[doc="Returns true if TCC1 != 0"]
+    #[inline] pub fn test_tcc1(&self) -> bool {
+        self.tcc1() != 0
     }
 
-    #[doc="Sets the TCC1_ field."]
-    #[inline] pub fn set_tcc1_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the TCC1 field."]
+    #[inline] pub fn set_tcc1<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 12);
@@ -1544,17 +1544,17 @@ impl Intflagb {
     }
 
     #[doc="TC2"]
-    #[inline] pub fn tc2_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn tc2(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 13) & 0x1) as u8) } // [13]
     }
 
-    #[doc="Returns true if TC2_ != 0"]
-    #[inline] pub fn test_tc2_(&self) -> bool {
-        self.tc2_() != 0
+    #[doc="Returns true if TC2 != 0"]
+    #[inline] pub fn test_tc2(&self) -> bool {
+        self.tc2() != 0
     }
 
-    #[doc="Sets the TC2_ field."]
-    #[inline] pub fn set_tc2_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the TC2 field."]
+    #[inline] pub fn set_tc2<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 13);
@@ -1563,17 +1563,17 @@ impl Intflagb {
     }
 
     #[doc="TC3"]
-    #[inline] pub fn tc3_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn tc3(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 14) & 0x1) as u8) } // [14]
     }
 
-    #[doc="Returns true if TC3_ != 0"]
-    #[inline] pub fn test_tc3_(&self) -> bool {
-        self.tc3_() != 0
+    #[doc="Returns true if TC3 != 0"]
+    #[inline] pub fn test_tc3(&self) -> bool {
+        self.tc3() != 0
     }
 
-    #[doc="Sets the TC3_ field."]
-    #[inline] pub fn set_tc3_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the TC3 field."]
+    #[inline] pub fn set_tc3<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 14);
@@ -1582,17 +1582,17 @@ impl Intflagb {
     }
 
     #[doc="RAMECC"]
-    #[inline] pub fn ramecc_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn ramecc(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1) as u8) } // [16]
     }
 
-    #[doc="Returns true if RAMECC_ != 0"]
-    #[inline] pub fn test_ramecc_(&self) -> bool {
-        self.ramecc_() != 0
+    #[doc="Returns true if RAMECC != 0"]
+    #[inline] pub fn test_ramecc(&self) -> bool {
+        self.ramecc() != 0
     }
 
-    #[doc="Sets the RAMECC_ field."]
-    #[inline] pub fn set_ramecc_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the RAMECC field."]
+    #[inline] pub fn set_ramecc<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 16);
@@ -1618,21 +1618,21 @@ impl ::core::fmt::Display for Intflagb {
 impl ::core::fmt::Debug for Intflagb {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
         try!(write!(f, "[0x{:08x}", self.0));
-        if self.usb_() != 0 { try!(write!(f, " usb_"))}
-        if self.dsu_() != 0 { try!(write!(f, " dsu_"))}
-        if self.nvmctrl_() != 0 { try!(write!(f, " nvmctrl_"))}
-        if self.cmcc_() != 0 { try!(write!(f, " cmcc_"))}
-        if self.port_() != 0 { try!(write!(f, " port_"))}
-        if self.dmac_() != 0 { try!(write!(f, " dmac_"))}
-        if self.hmatrix_() != 0 { try!(write!(f, " hmatrix_"))}
-        if self.evsys_() != 0 { try!(write!(f, " evsys_"))}
-        if self.sercom2_() != 0 { try!(write!(f, " sercom2_"))}
-        if self.sercom3_() != 0 { try!(write!(f, " sercom3_"))}
-        if self.tcc0_() != 0 { try!(write!(f, " tcc0_"))}
-        if self.tcc1_() != 0 { try!(write!(f, " tcc1_"))}
-        if self.tc2_() != 0 { try!(write!(f, " tc2_"))}
-        if self.tc3_() != 0 { try!(write!(f, " tc3_"))}
-        if self.ramecc_() != 0 { try!(write!(f, " ramecc_"))}
+        if self.usb() != 0 { try!(write!(f, " usb"))}
+        if self.dsu() != 0 { try!(write!(f, " dsu"))}
+        if self.nvmctrl() != 0 { try!(write!(f, " nvmctrl"))}
+        if self.cmcc() != 0 { try!(write!(f, " cmcc"))}
+        if self.port() != 0 { try!(write!(f, " port"))}
+        if self.dmac() != 0 { try!(write!(f, " dmac"))}
+        if self.hmatrix() != 0 { try!(write!(f, " hmatrix"))}
+        if self.evsys() != 0 { try!(write!(f, " evsys"))}
+        if self.sercom2() != 0 { try!(write!(f, " sercom2"))}
+        if self.sercom3() != 0 { try!(write!(f, " sercom3"))}
+        if self.tcc0() != 0 { try!(write!(f, " tcc0"))}
+        if self.tcc1() != 0 { try!(write!(f, " tcc1"))}
+        if self.tc2() != 0 { try!(write!(f, " tc2"))}
+        if self.tc3() != 0 { try!(write!(f, " tc3"))}
+        if self.ramecc() != 0 { try!(write!(f, " ramecc"))}
         try!(write!(f, "]"));
         Ok(())
     }
@@ -1643,17 +1643,17 @@ impl ::core::fmt::Debug for Intflagb {
 pub struct Intflagc(pub u32);
 impl Intflagc {
     #[doc="TCC2"]
-    #[inline] pub fn tcc2_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn tcc2(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="Returns true if TCC2_ != 0"]
-    #[inline] pub fn test_tcc2_(&self) -> bool {
-        self.tcc2_() != 0
+    #[doc="Returns true if TCC2 != 0"]
+    #[inline] pub fn test_tcc2(&self) -> bool {
+        self.tcc2() != 0
     }
 
-    #[doc="Sets the TCC2_ field."]
-    #[inline] pub fn set_tcc2_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the TCC2 field."]
+    #[inline] pub fn set_tcc2<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 3);
@@ -1662,17 +1662,17 @@ impl Intflagc {
     }
 
     #[doc="TCC3"]
-    #[inline] pub fn tcc3_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn tcc3(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="Returns true if TCC3_ != 0"]
-    #[inline] pub fn test_tcc3_(&self) -> bool {
-        self.tcc3_() != 0
+    #[doc="Returns true if TCC3 != 0"]
+    #[inline] pub fn test_tcc3(&self) -> bool {
+        self.tcc3() != 0
     }
 
-    #[doc="Sets the TCC3_ field."]
-    #[inline] pub fn set_tcc3_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the TCC3 field."]
+    #[inline] pub fn set_tcc3<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 4);
@@ -1681,17 +1681,17 @@ impl Intflagc {
     }
 
     #[doc="TC4"]
-    #[inline] pub fn tc4_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn tc4(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="Returns true if TC4_ != 0"]
-    #[inline] pub fn test_tc4_(&self) -> bool {
-        self.tc4_() != 0
+    #[doc="Returns true if TC4 != 0"]
+    #[inline] pub fn test_tc4(&self) -> bool {
+        self.tc4() != 0
     }
 
-    #[doc="Sets the TC4_ field."]
-    #[inline] pub fn set_tc4_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the TC4 field."]
+    #[inline] pub fn set_tc4<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 5);
@@ -1700,17 +1700,17 @@ impl Intflagc {
     }
 
     #[doc="TC5"]
-    #[inline] pub fn tc5_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn tc5(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="Returns true if TC5_ != 0"]
-    #[inline] pub fn test_tc5_(&self) -> bool {
-        self.tc5_() != 0
+    #[doc="Returns true if TC5 != 0"]
+    #[inline] pub fn test_tc5(&self) -> bool {
+        self.tc5() != 0
     }
 
-    #[doc="Sets the TC5_ field."]
-    #[inline] pub fn set_tc5_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the TC5 field."]
+    #[inline] pub fn set_tc5<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 6);
@@ -1719,17 +1719,17 @@ impl Intflagc {
     }
 
     #[doc="PDEC"]
-    #[inline] pub fn pdec_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn pdec(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="Returns true if PDEC_ != 0"]
-    #[inline] pub fn test_pdec_(&self) -> bool {
-        self.pdec_() != 0
+    #[doc="Returns true if PDEC != 0"]
+    #[inline] pub fn test_pdec(&self) -> bool {
+        self.pdec() != 0
     }
 
-    #[doc="Sets the PDEC_ field."]
-    #[inline] pub fn set_pdec_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the PDEC field."]
+    #[inline] pub fn set_pdec<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 7);
@@ -1738,17 +1738,17 @@ impl Intflagc {
     }
 
     #[doc="AC"]
-    #[inline] pub fn ac_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn ac(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
     }
 
-    #[doc="Returns true if AC_ != 0"]
-    #[inline] pub fn test_ac_(&self) -> bool {
-        self.ac_() != 0
+    #[doc="Returns true if AC != 0"]
+    #[inline] pub fn test_ac(&self) -> bool {
+        self.ac() != 0
     }
 
-    #[doc="Sets the AC_ field."]
-    #[inline] pub fn set_ac_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the AC field."]
+    #[inline] pub fn set_ac<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 8);
@@ -1757,17 +1757,17 @@ impl Intflagc {
     }
 
     #[doc="AES"]
-    #[inline] pub fn aes_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn aes(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
     }
 
-    #[doc="Returns true if AES_ != 0"]
-    #[inline] pub fn test_aes_(&self) -> bool {
-        self.aes_() != 0
+    #[doc="Returns true if AES != 0"]
+    #[inline] pub fn test_aes(&self) -> bool {
+        self.aes() != 0
     }
 
-    #[doc="Sets the AES_ field."]
-    #[inline] pub fn set_aes_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the AES field."]
+    #[inline] pub fn set_aes<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 9);
@@ -1776,17 +1776,17 @@ impl Intflagc {
     }
 
     #[doc="TRNG"]
-    #[inline] pub fn trng_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn trng(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x1) as u8) } // [10]
     }
 
-    #[doc="Returns true if TRNG_ != 0"]
-    #[inline] pub fn test_trng_(&self) -> bool {
-        self.trng_() != 0
+    #[doc="Returns true if TRNG != 0"]
+    #[inline] pub fn test_trng(&self) -> bool {
+        self.trng() != 0
     }
 
-    #[doc="Sets the TRNG_ field."]
-    #[inline] pub fn set_trng_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the TRNG field."]
+    #[inline] pub fn set_trng<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 10);
@@ -1795,17 +1795,17 @@ impl Intflagc {
     }
 
     #[doc="ICM"]
-    #[inline] pub fn icm_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn icm(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 11) & 0x1) as u8) } // [11]
     }
 
-    #[doc="Returns true if ICM_ != 0"]
-    #[inline] pub fn test_icm_(&self) -> bool {
-        self.icm_() != 0
+    #[doc="Returns true if ICM != 0"]
+    #[inline] pub fn test_icm(&self) -> bool {
+        self.icm() != 0
     }
 
-    #[doc="Sets the ICM_ field."]
-    #[inline] pub fn set_icm_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the ICM field."]
+    #[inline] pub fn set_icm<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 11);
@@ -1814,17 +1814,17 @@ impl Intflagc {
     }
 
     #[doc="PUKCC"]
-    #[inline] pub fn pukcc_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn pukcc(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 12) & 0x1) as u8) } // [12]
     }
 
-    #[doc="Returns true if PUKCC_ != 0"]
-    #[inline] pub fn test_pukcc_(&self) -> bool {
-        self.pukcc_() != 0
+    #[doc="Returns true if PUKCC != 0"]
+    #[inline] pub fn test_pukcc(&self) -> bool {
+        self.pukcc() != 0
     }
 
-    #[doc="Sets the PUKCC_ field."]
-    #[inline] pub fn set_pukcc_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the PUKCC field."]
+    #[inline] pub fn set_pukcc<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 12);
@@ -1833,17 +1833,17 @@ impl Intflagc {
     }
 
     #[doc="QSPI"]
-    #[inline] pub fn qspi_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn qspi(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 13) & 0x1) as u8) } // [13]
     }
 
-    #[doc="Returns true if QSPI_ != 0"]
-    #[inline] pub fn test_qspi_(&self) -> bool {
-        self.qspi_() != 0
+    #[doc="Returns true if QSPI != 0"]
+    #[inline] pub fn test_qspi(&self) -> bool {
+        self.qspi() != 0
     }
 
-    #[doc="Sets the QSPI_ field."]
-    #[inline] pub fn set_qspi_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the QSPI field."]
+    #[inline] pub fn set_qspi<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 13);
@@ -1852,17 +1852,17 @@ impl Intflagc {
     }
 
     #[doc="CCL"]
-    #[inline] pub fn ccl_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn ccl(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 14) & 0x1) as u8) } // [14]
     }
 
-    #[doc="Returns true if CCL_ != 0"]
-    #[inline] pub fn test_ccl_(&self) -> bool {
-        self.ccl_() != 0
+    #[doc="Returns true if CCL != 0"]
+    #[inline] pub fn test_ccl(&self) -> bool {
+        self.ccl() != 0
     }
 
-    #[doc="Sets the CCL_ field."]
-    #[inline] pub fn set_ccl_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the CCL field."]
+    #[inline] pub fn set_ccl<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 14);
@@ -1888,18 +1888,18 @@ impl ::core::fmt::Display for Intflagc {
 impl ::core::fmt::Debug for Intflagc {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
         try!(write!(f, "[0x{:08x}", self.0));
-        if self.tcc2_() != 0 { try!(write!(f, " tcc2_"))}
-        if self.tcc3_() != 0 { try!(write!(f, " tcc3_"))}
-        if self.tc4_() != 0 { try!(write!(f, " tc4_"))}
-        if self.tc5_() != 0 { try!(write!(f, " tc5_"))}
-        if self.pdec_() != 0 { try!(write!(f, " pdec_"))}
-        if self.ac_() != 0 { try!(write!(f, " ac_"))}
-        if self.aes_() != 0 { try!(write!(f, " aes_"))}
-        if self.trng_() != 0 { try!(write!(f, " trng_"))}
-        if self.icm_() != 0 { try!(write!(f, " icm_"))}
-        if self.pukcc_() != 0 { try!(write!(f, " pukcc_"))}
-        if self.qspi_() != 0 { try!(write!(f, " qspi_"))}
-        if self.ccl_() != 0 { try!(write!(f, " ccl_"))}
+        if self.tcc2() != 0 { try!(write!(f, " tcc2"))}
+        if self.tcc3() != 0 { try!(write!(f, " tcc3"))}
+        if self.tc4() != 0 { try!(write!(f, " tc4"))}
+        if self.tc5() != 0 { try!(write!(f, " tc5"))}
+        if self.pdec() != 0 { try!(write!(f, " pdec"))}
+        if self.ac() != 0 { try!(write!(f, " ac"))}
+        if self.aes() != 0 { try!(write!(f, " aes"))}
+        if self.trng() != 0 { try!(write!(f, " trng"))}
+        if self.icm() != 0 { try!(write!(f, " icm"))}
+        if self.pukcc() != 0 { try!(write!(f, " pukcc"))}
+        if self.qspi() != 0 { try!(write!(f, " qspi"))}
+        if self.ccl() != 0 { try!(write!(f, " ccl"))}
         try!(write!(f, "]"));
         Ok(())
     }
@@ -1910,17 +1910,17 @@ impl ::core::fmt::Debug for Intflagc {
 pub struct Intflagd(pub u32);
 impl Intflagd {
     #[doc="SERCOM4"]
-    #[inline] pub fn sercom4_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn sercom4(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Returns true if SERCOM4_ != 0"]
-    #[inline] pub fn test_sercom4_(&self) -> bool {
-        self.sercom4_() != 0
+    #[doc="Returns true if SERCOM4 != 0"]
+    #[inline] pub fn test_sercom4(&self) -> bool {
+        self.sercom4() != 0
     }
 
-    #[doc="Sets the SERCOM4_ field."]
-    #[inline] pub fn set_sercom4_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the SERCOM4 field."]
+    #[inline] pub fn set_sercom4<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 0);
@@ -1929,17 +1929,17 @@ impl Intflagd {
     }
 
     #[doc="SERCOM5"]
-    #[inline] pub fn sercom5_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn sercom5(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="Returns true if SERCOM5_ != 0"]
-    #[inline] pub fn test_sercom5_(&self) -> bool {
-        self.sercom5_() != 0
+    #[doc="Returns true if SERCOM5 != 0"]
+    #[inline] pub fn test_sercom5(&self) -> bool {
+        self.sercom5() != 0
     }
 
-    #[doc="Sets the SERCOM5_ field."]
-    #[inline] pub fn set_sercom5_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the SERCOM5 field."]
+    #[inline] pub fn set_sercom5<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 1);
@@ -1948,17 +1948,17 @@ impl Intflagd {
     }
 
     #[doc="TCC4"]
-    #[inline] pub fn tcc4_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn tcc4(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="Returns true if TCC4_ != 0"]
-    #[inline] pub fn test_tcc4_(&self) -> bool {
-        self.tcc4_() != 0
+    #[doc="Returns true if TCC4 != 0"]
+    #[inline] pub fn test_tcc4(&self) -> bool {
+        self.tcc4() != 0
     }
 
-    #[doc="Sets the TCC4_ field."]
-    #[inline] pub fn set_tcc4_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the TCC4 field."]
+    #[inline] pub fn set_tcc4<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 4);
@@ -1967,17 +1967,17 @@ impl Intflagd {
     }
 
     #[doc="ADC0"]
-    #[inline] pub fn adc0_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn adc0(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="Returns true if ADC0_ != 0"]
-    #[inline] pub fn test_adc0_(&self) -> bool {
-        self.adc0_() != 0
+    #[doc="Returns true if ADC0 != 0"]
+    #[inline] pub fn test_adc0(&self) -> bool {
+        self.adc0() != 0
     }
 
-    #[doc="Sets the ADC0_ field."]
-    #[inline] pub fn set_adc0_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the ADC0 field."]
+    #[inline] pub fn set_adc0<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 7);
@@ -1986,17 +1986,17 @@ impl Intflagd {
     }
 
     #[doc="ADC1"]
-    #[inline] pub fn adc1_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn adc1(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
     }
 
-    #[doc="Returns true if ADC1_ != 0"]
-    #[inline] pub fn test_adc1_(&self) -> bool {
-        self.adc1_() != 0
+    #[doc="Returns true if ADC1 != 0"]
+    #[inline] pub fn test_adc1(&self) -> bool {
+        self.adc1() != 0
     }
 
-    #[doc="Sets the ADC1_ field."]
-    #[inline] pub fn set_adc1_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the ADC1 field."]
+    #[inline] pub fn set_adc1<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 8);
@@ -2005,17 +2005,17 @@ impl Intflagd {
     }
 
     #[doc="DAC"]
-    #[inline] pub fn dac_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn dac(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
     }
 
-    #[doc="Returns true if DAC_ != 0"]
-    #[inline] pub fn test_dac_(&self) -> bool {
-        self.dac_() != 0
+    #[doc="Returns true if DAC != 0"]
+    #[inline] pub fn test_dac(&self) -> bool {
+        self.dac() != 0
     }
 
-    #[doc="Sets the DAC_ field."]
-    #[inline] pub fn set_dac_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the DAC field."]
+    #[inline] pub fn set_dac<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 9);
@@ -2024,17 +2024,17 @@ impl Intflagd {
     }
 
     #[doc="I2S"]
-    #[inline] pub fn i2s_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn i2s(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x1) as u8) } // [10]
     }
 
-    #[doc="Returns true if I2S_ != 0"]
-    #[inline] pub fn test_i2s_(&self) -> bool {
-        self.i2s_() != 0
+    #[doc="Returns true if I2S != 0"]
+    #[inline] pub fn test_i2s(&self) -> bool {
+        self.i2s() != 0
     }
 
-    #[doc="Sets the I2S_ field."]
-    #[inline] pub fn set_i2s_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the I2S field."]
+    #[inline] pub fn set_i2s<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 10);
@@ -2043,17 +2043,17 @@ impl Intflagd {
     }
 
     #[doc="PCC"]
-    #[inline] pub fn pcc_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn pcc(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 11) & 0x1) as u8) } // [11]
     }
 
-    #[doc="Returns true if PCC_ != 0"]
-    #[inline] pub fn test_pcc_(&self) -> bool {
-        self.pcc_() != 0
+    #[doc="Returns true if PCC != 0"]
+    #[inline] pub fn test_pcc(&self) -> bool {
+        self.pcc() != 0
     }
 
-    #[doc="Sets the PCC_ field."]
-    #[inline] pub fn set_pcc_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the PCC field."]
+    #[inline] pub fn set_pcc<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 11);
@@ -2079,14 +2079,14 @@ impl ::core::fmt::Display for Intflagd {
 impl ::core::fmt::Debug for Intflagd {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
         try!(write!(f, "[0x{:08x}", self.0));
-        if self.sercom4_() != 0 { try!(write!(f, " sercom4_"))}
-        if self.sercom5_() != 0 { try!(write!(f, " sercom5_"))}
-        if self.tcc4_() != 0 { try!(write!(f, " tcc4_"))}
-        if self.adc0_() != 0 { try!(write!(f, " adc0_"))}
-        if self.adc1_() != 0 { try!(write!(f, " adc1_"))}
-        if self.dac_() != 0 { try!(write!(f, " dac_"))}
-        if self.i2s_() != 0 { try!(write!(f, " i2s_"))}
-        if self.pcc_() != 0 { try!(write!(f, " pcc_"))}
+        if self.sercom4() != 0 { try!(write!(f, " sercom4"))}
+        if self.sercom5() != 0 { try!(write!(f, " sercom5"))}
+        if self.tcc4() != 0 { try!(write!(f, " tcc4"))}
+        if self.adc0() != 0 { try!(write!(f, " adc0"))}
+        if self.adc1() != 0 { try!(write!(f, " adc1"))}
+        if self.dac() != 0 { try!(write!(f, " dac"))}
+        if self.i2s() != 0 { try!(write!(f, " i2s"))}
+        if self.pcc() != 0 { try!(write!(f, " pcc"))}
         try!(write!(f, "]"));
         Ok(())
     }
@@ -2097,17 +2097,17 @@ impl ::core::fmt::Debug for Intflagd {
 pub struct Statusa(pub u32);
 impl Statusa {
     #[doc="PAC APB Protect Enable"]
-    #[inline] pub fn pac_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn pac(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Returns true if PAC_ != 0"]
-    #[inline] pub fn test_pac_(&self) -> bool {
-        self.pac_() != 0
+    #[doc="Returns true if PAC != 0"]
+    #[inline] pub fn test_pac(&self) -> bool {
+        self.pac() != 0
     }
 
-    #[doc="Sets the PAC_ field."]
-    #[inline] pub fn set_pac_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the PAC field."]
+    #[inline] pub fn set_pac<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 0);
@@ -2116,17 +2116,17 @@ impl Statusa {
     }
 
     #[doc="PM APB Protect Enable"]
-    #[inline] pub fn pm_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn pm(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="Returns true if PM_ != 0"]
-    #[inline] pub fn test_pm_(&self) -> bool {
-        self.pm_() != 0
+    #[doc="Returns true if PM != 0"]
+    #[inline] pub fn test_pm(&self) -> bool {
+        self.pm() != 0
     }
 
-    #[doc="Sets the PM_ field."]
-    #[inline] pub fn set_pm_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the PM field."]
+    #[inline] pub fn set_pm<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 1);
@@ -2135,17 +2135,17 @@ impl Statusa {
     }
 
     #[doc="MCLK APB Protect Enable"]
-    #[inline] pub fn mclk_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn mclk(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="Returns true if MCLK_ != 0"]
-    #[inline] pub fn test_mclk_(&self) -> bool {
-        self.mclk_() != 0
+    #[doc="Returns true if MCLK != 0"]
+    #[inline] pub fn test_mclk(&self) -> bool {
+        self.mclk() != 0
     }
 
-    #[doc="Sets the MCLK_ field."]
-    #[inline] pub fn set_mclk_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the MCLK field."]
+    #[inline] pub fn set_mclk<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 2);
@@ -2154,17 +2154,17 @@ impl Statusa {
     }
 
     #[doc="RSTC APB Protect Enable"]
-    #[inline] pub fn rstc_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn rstc(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="Returns true if RSTC_ != 0"]
-    #[inline] pub fn test_rstc_(&self) -> bool {
-        self.rstc_() != 0
+    #[doc="Returns true if RSTC != 0"]
+    #[inline] pub fn test_rstc(&self) -> bool {
+        self.rstc() != 0
     }
 
-    #[doc="Sets the RSTC_ field."]
-    #[inline] pub fn set_rstc_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the RSTC field."]
+    #[inline] pub fn set_rstc<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 3);
@@ -2173,17 +2173,17 @@ impl Statusa {
     }
 
     #[doc="OSCCTRL APB Protect Enable"]
-    #[inline] pub fn oscctrl_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn oscctrl(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="Returns true if OSCCTRL_ != 0"]
-    #[inline] pub fn test_oscctrl_(&self) -> bool {
-        self.oscctrl_() != 0
+    #[doc="Returns true if OSCCTRL != 0"]
+    #[inline] pub fn test_oscctrl(&self) -> bool {
+        self.oscctrl() != 0
     }
 
-    #[doc="Sets the OSCCTRL_ field."]
-    #[inline] pub fn set_oscctrl_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the OSCCTRL field."]
+    #[inline] pub fn set_oscctrl<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 4);
@@ -2192,17 +2192,17 @@ impl Statusa {
     }
 
     #[doc="OSC32KCTRL APB Protect Enable"]
-    #[inline] pub fn osc32kctrl_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn osc32kctrl(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="Returns true if OSC32KCTRL_ != 0"]
-    #[inline] pub fn test_osc32kctrl_(&self) -> bool {
-        self.osc32kctrl_() != 0
+    #[doc="Returns true if OSC32KCTRL != 0"]
+    #[inline] pub fn test_osc32kctrl(&self) -> bool {
+        self.osc32kctrl() != 0
     }
 
-    #[doc="Sets the OSC32KCTRL_ field."]
-    #[inline] pub fn set_osc32kctrl_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the OSC32KCTRL field."]
+    #[inline] pub fn set_osc32kctrl<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 5);
@@ -2211,17 +2211,17 @@ impl Statusa {
     }
 
     #[doc="SUPC APB Protect Enable"]
-    #[inline] pub fn supc_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn supc(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="Returns true if SUPC_ != 0"]
-    #[inline] pub fn test_supc_(&self) -> bool {
-        self.supc_() != 0
+    #[doc="Returns true if SUPC != 0"]
+    #[inline] pub fn test_supc(&self) -> bool {
+        self.supc() != 0
     }
 
-    #[doc="Sets the SUPC_ field."]
-    #[inline] pub fn set_supc_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the SUPC field."]
+    #[inline] pub fn set_supc<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 6);
@@ -2230,17 +2230,17 @@ impl Statusa {
     }
 
     #[doc="GCLK APB Protect Enable"]
-    #[inline] pub fn gclk_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn gclk(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="Returns true if GCLK_ != 0"]
-    #[inline] pub fn test_gclk_(&self) -> bool {
-        self.gclk_() != 0
+    #[doc="Returns true if GCLK != 0"]
+    #[inline] pub fn test_gclk(&self) -> bool {
+        self.gclk() != 0
     }
 
-    #[doc="Sets the GCLK_ field."]
-    #[inline] pub fn set_gclk_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the GCLK field."]
+    #[inline] pub fn set_gclk<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 7);
@@ -2249,17 +2249,17 @@ impl Statusa {
     }
 
     #[doc="WDT APB Protect Enable"]
-    #[inline] pub fn wdt_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn wdt(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
     }
 
-    #[doc="Returns true if WDT_ != 0"]
-    #[inline] pub fn test_wdt_(&self) -> bool {
-        self.wdt_() != 0
+    #[doc="Returns true if WDT != 0"]
+    #[inline] pub fn test_wdt(&self) -> bool {
+        self.wdt() != 0
     }
 
-    #[doc="Sets the WDT_ field."]
-    #[inline] pub fn set_wdt_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the WDT field."]
+    #[inline] pub fn set_wdt<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 8);
@@ -2268,17 +2268,17 @@ impl Statusa {
     }
 
     #[doc="RTC APB Protect Enable"]
-    #[inline] pub fn rtc_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn rtc(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
     }
 
-    #[doc="Returns true if RTC_ != 0"]
-    #[inline] pub fn test_rtc_(&self) -> bool {
-        self.rtc_() != 0
+    #[doc="Returns true if RTC != 0"]
+    #[inline] pub fn test_rtc(&self) -> bool {
+        self.rtc() != 0
     }
 
-    #[doc="Sets the RTC_ field."]
-    #[inline] pub fn set_rtc_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the RTC field."]
+    #[inline] pub fn set_rtc<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 9);
@@ -2287,17 +2287,17 @@ impl Statusa {
     }
 
     #[doc="EIC APB Protect Enable"]
-    #[inline] pub fn eic_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn eic(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x1) as u8) } // [10]
     }
 
-    #[doc="Returns true if EIC_ != 0"]
-    #[inline] pub fn test_eic_(&self) -> bool {
-        self.eic_() != 0
+    #[doc="Returns true if EIC != 0"]
+    #[inline] pub fn test_eic(&self) -> bool {
+        self.eic() != 0
     }
 
-    #[doc="Sets the EIC_ field."]
-    #[inline] pub fn set_eic_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the EIC field."]
+    #[inline] pub fn set_eic<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 10);
@@ -2306,17 +2306,17 @@ impl Statusa {
     }
 
     #[doc="FREQM APB Protect Enable"]
-    #[inline] pub fn freqm_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn freqm(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 11) & 0x1) as u8) } // [11]
     }
 
-    #[doc="Returns true if FREQM_ != 0"]
-    #[inline] pub fn test_freqm_(&self) -> bool {
-        self.freqm_() != 0
+    #[doc="Returns true if FREQM != 0"]
+    #[inline] pub fn test_freqm(&self) -> bool {
+        self.freqm() != 0
     }
 
-    #[doc="Sets the FREQM_ field."]
-    #[inline] pub fn set_freqm_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the FREQM field."]
+    #[inline] pub fn set_freqm<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 11);
@@ -2325,17 +2325,17 @@ impl Statusa {
     }
 
     #[doc="SERCOM0 APB Protect Enable"]
-    #[inline] pub fn sercom0_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn sercom0(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 12) & 0x1) as u8) } // [12]
     }
 
-    #[doc="Returns true if SERCOM0_ != 0"]
-    #[inline] pub fn test_sercom0_(&self) -> bool {
-        self.sercom0_() != 0
+    #[doc="Returns true if SERCOM0 != 0"]
+    #[inline] pub fn test_sercom0(&self) -> bool {
+        self.sercom0() != 0
     }
 
-    #[doc="Sets the SERCOM0_ field."]
-    #[inline] pub fn set_sercom0_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the SERCOM0 field."]
+    #[inline] pub fn set_sercom0<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 12);
@@ -2344,17 +2344,17 @@ impl Statusa {
     }
 
     #[doc="SERCOM1 APB Protect Enable"]
-    #[inline] pub fn sercom1_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn sercom1(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 13) & 0x1) as u8) } // [13]
     }
 
-    #[doc="Returns true if SERCOM1_ != 0"]
-    #[inline] pub fn test_sercom1_(&self) -> bool {
-        self.sercom1_() != 0
+    #[doc="Returns true if SERCOM1 != 0"]
+    #[inline] pub fn test_sercom1(&self) -> bool {
+        self.sercom1() != 0
     }
 
-    #[doc="Sets the SERCOM1_ field."]
-    #[inline] pub fn set_sercom1_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the SERCOM1 field."]
+    #[inline] pub fn set_sercom1<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 13);
@@ -2363,17 +2363,17 @@ impl Statusa {
     }
 
     #[doc="TC0 APB Protect Enable"]
-    #[inline] pub fn tc0_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn tc0(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 14) & 0x1) as u8) } // [14]
     }
 
-    #[doc="Returns true if TC0_ != 0"]
-    #[inline] pub fn test_tc0_(&self) -> bool {
-        self.tc0_() != 0
+    #[doc="Returns true if TC0 != 0"]
+    #[inline] pub fn test_tc0(&self) -> bool {
+        self.tc0() != 0
     }
 
-    #[doc="Sets the TC0_ field."]
-    #[inline] pub fn set_tc0_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the TC0 field."]
+    #[inline] pub fn set_tc0<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 14);
@@ -2382,17 +2382,17 @@ impl Statusa {
     }
 
     #[doc="TC1 APB Protect Enable"]
-    #[inline] pub fn tc1_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn tc1(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 15) & 0x1) as u8) } // [15]
     }
 
-    #[doc="Returns true if TC1_ != 0"]
-    #[inline] pub fn test_tc1_(&self) -> bool {
-        self.tc1_() != 0
+    #[doc="Returns true if TC1 != 0"]
+    #[inline] pub fn test_tc1(&self) -> bool {
+        self.tc1() != 0
     }
 
-    #[doc="Sets the TC1_ field."]
-    #[inline] pub fn set_tc1_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the TC1 field."]
+    #[inline] pub fn set_tc1<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 15);
@@ -2418,22 +2418,22 @@ impl ::core::fmt::Display for Statusa {
 impl ::core::fmt::Debug for Statusa {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
         try!(write!(f, "[0x{:08x}", self.0));
-        if self.pac_() != 0 { try!(write!(f, " pac_"))}
-        if self.pm_() != 0 { try!(write!(f, " pm_"))}
-        if self.mclk_() != 0 { try!(write!(f, " mclk_"))}
-        if self.rstc_() != 0 { try!(write!(f, " rstc_"))}
-        if self.oscctrl_() != 0 { try!(write!(f, " oscctrl_"))}
-        if self.osc32kctrl_() != 0 { try!(write!(f, " osc32kctrl_"))}
-        if self.supc_() != 0 { try!(write!(f, " supc_"))}
-        if self.gclk_() != 0 { try!(write!(f, " gclk_"))}
-        if self.wdt_() != 0 { try!(write!(f, " wdt_"))}
-        if self.rtc_() != 0 { try!(write!(f, " rtc_"))}
-        if self.eic_() != 0 { try!(write!(f, " eic_"))}
-        if self.freqm_() != 0 { try!(write!(f, " freqm_"))}
-        if self.sercom0_() != 0 { try!(write!(f, " sercom0_"))}
-        if self.sercom1_() != 0 { try!(write!(f, " sercom1_"))}
-        if self.tc0_() != 0 { try!(write!(f, " tc0_"))}
-        if self.tc1_() != 0 { try!(write!(f, " tc1_"))}
+        if self.pac() != 0 { try!(write!(f, " pac"))}
+        if self.pm() != 0 { try!(write!(f, " pm"))}
+        if self.mclk() != 0 { try!(write!(f, " mclk"))}
+        if self.rstc() != 0 { try!(write!(f, " rstc"))}
+        if self.oscctrl() != 0 { try!(write!(f, " oscctrl"))}
+        if self.osc32kctrl() != 0 { try!(write!(f, " osc32kctrl"))}
+        if self.supc() != 0 { try!(write!(f, " supc"))}
+        if self.gclk() != 0 { try!(write!(f, " gclk"))}
+        if self.wdt() != 0 { try!(write!(f, " wdt"))}
+        if self.rtc() != 0 { try!(write!(f, " rtc"))}
+        if self.eic() != 0 { try!(write!(f, " eic"))}
+        if self.freqm() != 0 { try!(write!(f, " freqm"))}
+        if self.sercom0() != 0 { try!(write!(f, " sercom0"))}
+        if self.sercom1() != 0 { try!(write!(f, " sercom1"))}
+        if self.tc0() != 0 { try!(write!(f, " tc0"))}
+        if self.tc1() != 0 { try!(write!(f, " tc1"))}
         try!(write!(f, "]"));
         Ok(())
     }
@@ -2444,17 +2444,17 @@ impl ::core::fmt::Debug for Statusa {
 pub struct Statusb(pub u32);
 impl Statusb {
     #[doc="USB APB Protect Enable"]
-    #[inline] pub fn usb_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn usb(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Returns true if USB_ != 0"]
-    #[inline] pub fn test_usb_(&self) -> bool {
-        self.usb_() != 0
+    #[doc="Returns true if USB != 0"]
+    #[inline] pub fn test_usb(&self) -> bool {
+        self.usb() != 0
     }
 
-    #[doc="Sets the USB_ field."]
-    #[inline] pub fn set_usb_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the USB field."]
+    #[inline] pub fn set_usb<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 0);
@@ -2463,17 +2463,17 @@ impl Statusb {
     }
 
     #[doc="DSU APB Protect Enable"]
-    #[inline] pub fn dsu_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn dsu(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="Returns true if DSU_ != 0"]
-    #[inline] pub fn test_dsu_(&self) -> bool {
-        self.dsu_() != 0
+    #[doc="Returns true if DSU != 0"]
+    #[inline] pub fn test_dsu(&self) -> bool {
+        self.dsu() != 0
     }
 
-    #[doc="Sets the DSU_ field."]
-    #[inline] pub fn set_dsu_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the DSU field."]
+    #[inline] pub fn set_dsu<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 1);
@@ -2482,17 +2482,17 @@ impl Statusb {
     }
 
     #[doc="NVMCTRL APB Protect Enable"]
-    #[inline] pub fn nvmctrl_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn nvmctrl(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 2) & 0x1) as u8) } // [2]
     }
 
-    #[doc="Returns true if NVMCTRL_ != 0"]
-    #[inline] pub fn test_nvmctrl_(&self) -> bool {
-        self.nvmctrl_() != 0
+    #[doc="Returns true if NVMCTRL != 0"]
+    #[inline] pub fn test_nvmctrl(&self) -> bool {
+        self.nvmctrl() != 0
     }
 
-    #[doc="Sets the NVMCTRL_ field."]
-    #[inline] pub fn set_nvmctrl_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the NVMCTRL field."]
+    #[inline] pub fn set_nvmctrl<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 2);
@@ -2501,17 +2501,17 @@ impl Statusb {
     }
 
     #[doc="CMCC APB Protect Enable"]
-    #[inline] pub fn cmcc_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn cmcc(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="Returns true if CMCC_ != 0"]
-    #[inline] pub fn test_cmcc_(&self) -> bool {
-        self.cmcc_() != 0
+    #[doc="Returns true if CMCC != 0"]
+    #[inline] pub fn test_cmcc(&self) -> bool {
+        self.cmcc() != 0
     }
 
-    #[doc="Sets the CMCC_ field."]
-    #[inline] pub fn set_cmcc_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the CMCC field."]
+    #[inline] pub fn set_cmcc<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 3);
@@ -2520,17 +2520,17 @@ impl Statusb {
     }
 
     #[doc="PORT APB Protect Enable"]
-    #[inline] pub fn port_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn port(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="Returns true if PORT_ != 0"]
-    #[inline] pub fn test_port_(&self) -> bool {
-        self.port_() != 0
+    #[doc="Returns true if PORT != 0"]
+    #[inline] pub fn test_port(&self) -> bool {
+        self.port() != 0
     }
 
-    #[doc="Sets the PORT_ field."]
-    #[inline] pub fn set_port_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the PORT field."]
+    #[inline] pub fn set_port<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 4);
@@ -2539,17 +2539,17 @@ impl Statusb {
     }
 
     #[doc="DMAC APB Protect Enable"]
-    #[inline] pub fn dmac_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn dmac(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="Returns true if DMAC_ != 0"]
-    #[inline] pub fn test_dmac_(&self) -> bool {
-        self.dmac_() != 0
+    #[doc="Returns true if DMAC != 0"]
+    #[inline] pub fn test_dmac(&self) -> bool {
+        self.dmac() != 0
     }
 
-    #[doc="Sets the DMAC_ field."]
-    #[inline] pub fn set_dmac_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the DMAC field."]
+    #[inline] pub fn set_dmac<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 5);
@@ -2558,17 +2558,17 @@ impl Statusb {
     }
 
     #[doc="HMATRIX APB Protect Enable"]
-    #[inline] pub fn hmatrix_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn hmatrix(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="Returns true if HMATRIX_ != 0"]
-    #[inline] pub fn test_hmatrix_(&self) -> bool {
-        self.hmatrix_() != 0
+    #[doc="Returns true if HMATRIX != 0"]
+    #[inline] pub fn test_hmatrix(&self) -> bool {
+        self.hmatrix() != 0
     }
 
-    #[doc="Sets the HMATRIX_ field."]
-    #[inline] pub fn set_hmatrix_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the HMATRIX field."]
+    #[inline] pub fn set_hmatrix<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 6);
@@ -2577,17 +2577,17 @@ impl Statusb {
     }
 
     #[doc="EVSYS APB Protect Enable"]
-    #[inline] pub fn evsys_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn evsys(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="Returns true if EVSYS_ != 0"]
-    #[inline] pub fn test_evsys_(&self) -> bool {
-        self.evsys_() != 0
+    #[doc="Returns true if EVSYS != 0"]
+    #[inline] pub fn test_evsys(&self) -> bool {
+        self.evsys() != 0
     }
 
-    #[doc="Sets the EVSYS_ field."]
-    #[inline] pub fn set_evsys_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the EVSYS field."]
+    #[inline] pub fn set_evsys<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 7);
@@ -2596,17 +2596,17 @@ impl Statusb {
     }
 
     #[doc="SERCOM2 APB Protect Enable"]
-    #[inline] pub fn sercom2_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn sercom2(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
     }
 
-    #[doc="Returns true if SERCOM2_ != 0"]
-    #[inline] pub fn test_sercom2_(&self) -> bool {
-        self.sercom2_() != 0
+    #[doc="Returns true if SERCOM2 != 0"]
+    #[inline] pub fn test_sercom2(&self) -> bool {
+        self.sercom2() != 0
     }
 
-    #[doc="Sets the SERCOM2_ field."]
-    #[inline] pub fn set_sercom2_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the SERCOM2 field."]
+    #[inline] pub fn set_sercom2<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 9);
@@ -2615,17 +2615,17 @@ impl Statusb {
     }
 
     #[doc="SERCOM3 APB Protect Enable"]
-    #[inline] pub fn sercom3_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn sercom3(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x1) as u8) } // [10]
     }
 
-    #[doc="Returns true if SERCOM3_ != 0"]
-    #[inline] pub fn test_sercom3_(&self) -> bool {
-        self.sercom3_() != 0
+    #[doc="Returns true if SERCOM3 != 0"]
+    #[inline] pub fn test_sercom3(&self) -> bool {
+        self.sercom3() != 0
     }
 
-    #[doc="Sets the SERCOM3_ field."]
-    #[inline] pub fn set_sercom3_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the SERCOM3 field."]
+    #[inline] pub fn set_sercom3<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 10);
@@ -2634,17 +2634,17 @@ impl Statusb {
     }
 
     #[doc="TCC0 APB Protect Enable"]
-    #[inline] pub fn tcc0_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn tcc0(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 11) & 0x1) as u8) } // [11]
     }
 
-    #[doc="Returns true if TCC0_ != 0"]
-    #[inline] pub fn test_tcc0_(&self) -> bool {
-        self.tcc0_() != 0
+    #[doc="Returns true if TCC0 != 0"]
+    #[inline] pub fn test_tcc0(&self) -> bool {
+        self.tcc0() != 0
     }
 
-    #[doc="Sets the TCC0_ field."]
-    #[inline] pub fn set_tcc0_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the TCC0 field."]
+    #[inline] pub fn set_tcc0<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 11);
@@ -2653,17 +2653,17 @@ impl Statusb {
     }
 
     #[doc="TCC1 APB Protect Enable"]
-    #[inline] pub fn tcc1_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn tcc1(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 12) & 0x1) as u8) } // [12]
     }
 
-    #[doc="Returns true if TCC1_ != 0"]
-    #[inline] pub fn test_tcc1_(&self) -> bool {
-        self.tcc1_() != 0
+    #[doc="Returns true if TCC1 != 0"]
+    #[inline] pub fn test_tcc1(&self) -> bool {
+        self.tcc1() != 0
     }
 
-    #[doc="Sets the TCC1_ field."]
-    #[inline] pub fn set_tcc1_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the TCC1 field."]
+    #[inline] pub fn set_tcc1<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 12);
@@ -2672,17 +2672,17 @@ impl Statusb {
     }
 
     #[doc="TC2 APB Protect Enable"]
-    #[inline] pub fn tc2_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn tc2(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 13) & 0x1) as u8) } // [13]
     }
 
-    #[doc="Returns true if TC2_ != 0"]
-    #[inline] pub fn test_tc2_(&self) -> bool {
-        self.tc2_() != 0
+    #[doc="Returns true if TC2 != 0"]
+    #[inline] pub fn test_tc2(&self) -> bool {
+        self.tc2() != 0
     }
 
-    #[doc="Sets the TC2_ field."]
-    #[inline] pub fn set_tc2_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the TC2 field."]
+    #[inline] pub fn set_tc2<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 13);
@@ -2691,17 +2691,17 @@ impl Statusb {
     }
 
     #[doc="TC3 APB Protect Enable"]
-    #[inline] pub fn tc3_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn tc3(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 14) & 0x1) as u8) } // [14]
     }
 
-    #[doc="Returns true if TC3_ != 0"]
-    #[inline] pub fn test_tc3_(&self) -> bool {
-        self.tc3_() != 0
+    #[doc="Returns true if TC3 != 0"]
+    #[inline] pub fn test_tc3(&self) -> bool {
+        self.tc3() != 0
     }
 
-    #[doc="Sets the TC3_ field."]
-    #[inline] pub fn set_tc3_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the TC3 field."]
+    #[inline] pub fn set_tc3<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 14);
@@ -2710,17 +2710,17 @@ impl Statusb {
     }
 
     #[doc="RAMECC APB Protect Enable"]
-    #[inline] pub fn ramecc_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn ramecc(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 16) & 0x1) as u8) } // [16]
     }
 
-    #[doc="Returns true if RAMECC_ != 0"]
-    #[inline] pub fn test_ramecc_(&self) -> bool {
-        self.ramecc_() != 0
+    #[doc="Returns true if RAMECC != 0"]
+    #[inline] pub fn test_ramecc(&self) -> bool {
+        self.ramecc() != 0
     }
 
-    #[doc="Sets the RAMECC_ field."]
-    #[inline] pub fn set_ramecc_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the RAMECC field."]
+    #[inline] pub fn set_ramecc<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 16);
@@ -2746,21 +2746,21 @@ impl ::core::fmt::Display for Statusb {
 impl ::core::fmt::Debug for Statusb {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
         try!(write!(f, "[0x{:08x}", self.0));
-        if self.usb_() != 0 { try!(write!(f, " usb_"))}
-        if self.dsu_() != 0 { try!(write!(f, " dsu_"))}
-        if self.nvmctrl_() != 0 { try!(write!(f, " nvmctrl_"))}
-        if self.cmcc_() != 0 { try!(write!(f, " cmcc_"))}
-        if self.port_() != 0 { try!(write!(f, " port_"))}
-        if self.dmac_() != 0 { try!(write!(f, " dmac_"))}
-        if self.hmatrix_() != 0 { try!(write!(f, " hmatrix_"))}
-        if self.evsys_() != 0 { try!(write!(f, " evsys_"))}
-        if self.sercom2_() != 0 { try!(write!(f, " sercom2_"))}
-        if self.sercom3_() != 0 { try!(write!(f, " sercom3_"))}
-        if self.tcc0_() != 0 { try!(write!(f, " tcc0_"))}
-        if self.tcc1_() != 0 { try!(write!(f, " tcc1_"))}
-        if self.tc2_() != 0 { try!(write!(f, " tc2_"))}
-        if self.tc3_() != 0 { try!(write!(f, " tc3_"))}
-        if self.ramecc_() != 0 { try!(write!(f, " ramecc_"))}
+        if self.usb() != 0 { try!(write!(f, " usb"))}
+        if self.dsu() != 0 { try!(write!(f, " dsu"))}
+        if self.nvmctrl() != 0 { try!(write!(f, " nvmctrl"))}
+        if self.cmcc() != 0 { try!(write!(f, " cmcc"))}
+        if self.port() != 0 { try!(write!(f, " port"))}
+        if self.dmac() != 0 { try!(write!(f, " dmac"))}
+        if self.hmatrix() != 0 { try!(write!(f, " hmatrix"))}
+        if self.evsys() != 0 { try!(write!(f, " evsys"))}
+        if self.sercom2() != 0 { try!(write!(f, " sercom2"))}
+        if self.sercom3() != 0 { try!(write!(f, " sercom3"))}
+        if self.tcc0() != 0 { try!(write!(f, " tcc0"))}
+        if self.tcc1() != 0 { try!(write!(f, " tcc1"))}
+        if self.tc2() != 0 { try!(write!(f, " tc2"))}
+        if self.tc3() != 0 { try!(write!(f, " tc3"))}
+        if self.ramecc() != 0 { try!(write!(f, " ramecc"))}
         try!(write!(f, "]"));
         Ok(())
     }
@@ -2771,17 +2771,17 @@ impl ::core::fmt::Debug for Statusb {
 pub struct Statusc(pub u32);
 impl Statusc {
     #[doc="TCC2 APB Protect Enable"]
-    #[inline] pub fn tcc2_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn tcc2(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 3) & 0x1) as u8) } // [3]
     }
 
-    #[doc="Returns true if TCC2_ != 0"]
-    #[inline] pub fn test_tcc2_(&self) -> bool {
-        self.tcc2_() != 0
+    #[doc="Returns true if TCC2 != 0"]
+    #[inline] pub fn test_tcc2(&self) -> bool {
+        self.tcc2() != 0
     }
 
-    #[doc="Sets the TCC2_ field."]
-    #[inline] pub fn set_tcc2_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the TCC2 field."]
+    #[inline] pub fn set_tcc2<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 3);
@@ -2790,17 +2790,17 @@ impl Statusc {
     }
 
     #[doc="TCC3 APB Protect Enable"]
-    #[inline] pub fn tcc3_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn tcc3(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="Returns true if TCC3_ != 0"]
-    #[inline] pub fn test_tcc3_(&self) -> bool {
-        self.tcc3_() != 0
+    #[doc="Returns true if TCC3 != 0"]
+    #[inline] pub fn test_tcc3(&self) -> bool {
+        self.tcc3() != 0
     }
 
-    #[doc="Sets the TCC3_ field."]
-    #[inline] pub fn set_tcc3_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the TCC3 field."]
+    #[inline] pub fn set_tcc3<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 4);
@@ -2809,17 +2809,17 @@ impl Statusc {
     }
 
     #[doc="TC4 APB Protect Enable"]
-    #[inline] pub fn tc4_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn tc4(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 5) & 0x1) as u8) } // [5]
     }
 
-    #[doc="Returns true if TC4_ != 0"]
-    #[inline] pub fn test_tc4_(&self) -> bool {
-        self.tc4_() != 0
+    #[doc="Returns true if TC4 != 0"]
+    #[inline] pub fn test_tc4(&self) -> bool {
+        self.tc4() != 0
     }
 
-    #[doc="Sets the TC4_ field."]
-    #[inline] pub fn set_tc4_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the TC4 field."]
+    #[inline] pub fn set_tc4<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 5);
@@ -2828,17 +2828,17 @@ impl Statusc {
     }
 
     #[doc="TC5 APB Protect Enable"]
-    #[inline] pub fn tc5_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn tc5(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 6) & 0x1) as u8) } // [6]
     }
 
-    #[doc="Returns true if TC5_ != 0"]
-    #[inline] pub fn test_tc5_(&self) -> bool {
-        self.tc5_() != 0
+    #[doc="Returns true if TC5 != 0"]
+    #[inline] pub fn test_tc5(&self) -> bool {
+        self.tc5() != 0
     }
 
-    #[doc="Sets the TC5_ field."]
-    #[inline] pub fn set_tc5_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the TC5 field."]
+    #[inline] pub fn set_tc5<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 6);
@@ -2847,17 +2847,17 @@ impl Statusc {
     }
 
     #[doc="PDEC APB Protect Enable"]
-    #[inline] pub fn pdec_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn pdec(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="Returns true if PDEC_ != 0"]
-    #[inline] pub fn test_pdec_(&self) -> bool {
-        self.pdec_() != 0
+    #[doc="Returns true if PDEC != 0"]
+    #[inline] pub fn test_pdec(&self) -> bool {
+        self.pdec() != 0
     }
 
-    #[doc="Sets the PDEC_ field."]
-    #[inline] pub fn set_pdec_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the PDEC field."]
+    #[inline] pub fn set_pdec<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 7);
@@ -2866,17 +2866,17 @@ impl Statusc {
     }
 
     #[doc="AC APB Protect Enable"]
-    #[inline] pub fn ac_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn ac(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
     }
 
-    #[doc="Returns true if AC_ != 0"]
-    #[inline] pub fn test_ac_(&self) -> bool {
-        self.ac_() != 0
+    #[doc="Returns true if AC != 0"]
+    #[inline] pub fn test_ac(&self) -> bool {
+        self.ac() != 0
     }
 
-    #[doc="Sets the AC_ field."]
-    #[inline] pub fn set_ac_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the AC field."]
+    #[inline] pub fn set_ac<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 8);
@@ -2885,17 +2885,17 @@ impl Statusc {
     }
 
     #[doc="AES APB Protect Enable"]
-    #[inline] pub fn aes_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn aes(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
     }
 
-    #[doc="Returns true if AES_ != 0"]
-    #[inline] pub fn test_aes_(&self) -> bool {
-        self.aes_() != 0
+    #[doc="Returns true if AES != 0"]
+    #[inline] pub fn test_aes(&self) -> bool {
+        self.aes() != 0
     }
 
-    #[doc="Sets the AES_ field."]
-    #[inline] pub fn set_aes_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the AES field."]
+    #[inline] pub fn set_aes<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 9);
@@ -2904,17 +2904,17 @@ impl Statusc {
     }
 
     #[doc="TRNG APB Protect Enable"]
-    #[inline] pub fn trng_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn trng(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x1) as u8) } // [10]
     }
 
-    #[doc="Returns true if TRNG_ != 0"]
-    #[inline] pub fn test_trng_(&self) -> bool {
-        self.trng_() != 0
+    #[doc="Returns true if TRNG != 0"]
+    #[inline] pub fn test_trng(&self) -> bool {
+        self.trng() != 0
     }
 
-    #[doc="Sets the TRNG_ field."]
-    #[inline] pub fn set_trng_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the TRNG field."]
+    #[inline] pub fn set_trng<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 10);
@@ -2923,17 +2923,17 @@ impl Statusc {
     }
 
     #[doc="ICM APB Protect Enable"]
-    #[inline] pub fn icm_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn icm(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 11) & 0x1) as u8) } // [11]
     }
 
-    #[doc="Returns true if ICM_ != 0"]
-    #[inline] pub fn test_icm_(&self) -> bool {
-        self.icm_() != 0
+    #[doc="Returns true if ICM != 0"]
+    #[inline] pub fn test_icm(&self) -> bool {
+        self.icm() != 0
     }
 
-    #[doc="Sets the ICM_ field."]
-    #[inline] pub fn set_icm_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the ICM field."]
+    #[inline] pub fn set_icm<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 11);
@@ -2942,17 +2942,17 @@ impl Statusc {
     }
 
     #[doc="PUKCC APB Protect Enable"]
-    #[inline] pub fn pukcc_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn pukcc(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 12) & 0x1) as u8) } // [12]
     }
 
-    #[doc="Returns true if PUKCC_ != 0"]
-    #[inline] pub fn test_pukcc_(&self) -> bool {
-        self.pukcc_() != 0
+    #[doc="Returns true if PUKCC != 0"]
+    #[inline] pub fn test_pukcc(&self) -> bool {
+        self.pukcc() != 0
     }
 
-    #[doc="Sets the PUKCC_ field."]
-    #[inline] pub fn set_pukcc_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the PUKCC field."]
+    #[inline] pub fn set_pukcc<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 12);
@@ -2961,17 +2961,17 @@ impl Statusc {
     }
 
     #[doc="QSPI APB Protect Enable"]
-    #[inline] pub fn qspi_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn qspi(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 13) & 0x1) as u8) } // [13]
     }
 
-    #[doc="Returns true if QSPI_ != 0"]
-    #[inline] pub fn test_qspi_(&self) -> bool {
-        self.qspi_() != 0
+    #[doc="Returns true if QSPI != 0"]
+    #[inline] pub fn test_qspi(&self) -> bool {
+        self.qspi() != 0
     }
 
-    #[doc="Sets the QSPI_ field."]
-    #[inline] pub fn set_qspi_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the QSPI field."]
+    #[inline] pub fn set_qspi<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 13);
@@ -2980,17 +2980,17 @@ impl Statusc {
     }
 
     #[doc="CCL APB Protect Enable"]
-    #[inline] pub fn ccl_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn ccl(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 14) & 0x1) as u8) } // [14]
     }
 
-    #[doc="Returns true if CCL_ != 0"]
-    #[inline] pub fn test_ccl_(&self) -> bool {
-        self.ccl_() != 0
+    #[doc="Returns true if CCL != 0"]
+    #[inline] pub fn test_ccl(&self) -> bool {
+        self.ccl() != 0
     }
 
-    #[doc="Sets the CCL_ field."]
-    #[inline] pub fn set_ccl_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the CCL field."]
+    #[inline] pub fn set_ccl<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 14);
@@ -3016,18 +3016,18 @@ impl ::core::fmt::Display for Statusc {
 impl ::core::fmt::Debug for Statusc {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
         try!(write!(f, "[0x{:08x}", self.0));
-        if self.tcc2_() != 0 { try!(write!(f, " tcc2_"))}
-        if self.tcc3_() != 0 { try!(write!(f, " tcc3_"))}
-        if self.tc4_() != 0 { try!(write!(f, " tc4_"))}
-        if self.tc5_() != 0 { try!(write!(f, " tc5_"))}
-        if self.pdec_() != 0 { try!(write!(f, " pdec_"))}
-        if self.ac_() != 0 { try!(write!(f, " ac_"))}
-        if self.aes_() != 0 { try!(write!(f, " aes_"))}
-        if self.trng_() != 0 { try!(write!(f, " trng_"))}
-        if self.icm_() != 0 { try!(write!(f, " icm_"))}
-        if self.pukcc_() != 0 { try!(write!(f, " pukcc_"))}
-        if self.qspi_() != 0 { try!(write!(f, " qspi_"))}
-        if self.ccl_() != 0 { try!(write!(f, " ccl_"))}
+        if self.tcc2() != 0 { try!(write!(f, " tcc2"))}
+        if self.tcc3() != 0 { try!(write!(f, " tcc3"))}
+        if self.tc4() != 0 { try!(write!(f, " tc4"))}
+        if self.tc5() != 0 { try!(write!(f, " tc5"))}
+        if self.pdec() != 0 { try!(write!(f, " pdec"))}
+        if self.ac() != 0 { try!(write!(f, " ac"))}
+        if self.aes() != 0 { try!(write!(f, " aes"))}
+        if self.trng() != 0 { try!(write!(f, " trng"))}
+        if self.icm() != 0 { try!(write!(f, " icm"))}
+        if self.pukcc() != 0 { try!(write!(f, " pukcc"))}
+        if self.qspi() != 0 { try!(write!(f, " qspi"))}
+        if self.ccl() != 0 { try!(write!(f, " ccl"))}
         try!(write!(f, "]"));
         Ok(())
     }
@@ -3038,17 +3038,17 @@ impl ::core::fmt::Debug for Statusc {
 pub struct Statusd(pub u32);
 impl Statusd {
     #[doc="SERCOM4 APB Protect Enable"]
-    #[inline] pub fn sercom4_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn sercom4(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 0) & 0x1) as u8) } // [0]
     }
 
-    #[doc="Returns true if SERCOM4_ != 0"]
-    #[inline] pub fn test_sercom4_(&self) -> bool {
-        self.sercom4_() != 0
+    #[doc="Returns true if SERCOM4 != 0"]
+    #[inline] pub fn test_sercom4(&self) -> bool {
+        self.sercom4() != 0
     }
 
-    #[doc="Sets the SERCOM4_ field."]
-    #[inline] pub fn set_sercom4_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the SERCOM4 field."]
+    #[inline] pub fn set_sercom4<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 0);
@@ -3057,17 +3057,17 @@ impl Statusd {
     }
 
     #[doc="SERCOM5 APB Protect Enable"]
-    #[inline] pub fn sercom5_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn sercom5(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 1) & 0x1) as u8) } // [1]
     }
 
-    #[doc="Returns true if SERCOM5_ != 0"]
-    #[inline] pub fn test_sercom5_(&self) -> bool {
-        self.sercom5_() != 0
+    #[doc="Returns true if SERCOM5 != 0"]
+    #[inline] pub fn test_sercom5(&self) -> bool {
+        self.sercom5() != 0
     }
 
-    #[doc="Sets the SERCOM5_ field."]
-    #[inline] pub fn set_sercom5_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the SERCOM5 field."]
+    #[inline] pub fn set_sercom5<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 1);
@@ -3076,17 +3076,17 @@ impl Statusd {
     }
 
     #[doc="TCC4 APB Protect Enable"]
-    #[inline] pub fn tcc4_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn tcc4(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 4) & 0x1) as u8) } // [4]
     }
 
-    #[doc="Returns true if TCC4_ != 0"]
-    #[inline] pub fn test_tcc4_(&self) -> bool {
-        self.tcc4_() != 0
+    #[doc="Returns true if TCC4 != 0"]
+    #[inline] pub fn test_tcc4(&self) -> bool {
+        self.tcc4() != 0
     }
 
-    #[doc="Sets the TCC4_ field."]
-    #[inline] pub fn set_tcc4_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the TCC4 field."]
+    #[inline] pub fn set_tcc4<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 4);
@@ -3095,17 +3095,17 @@ impl Statusd {
     }
 
     #[doc="ADC0 APB Protect Enable"]
-    #[inline] pub fn adc0_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn adc0(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 7) & 0x1) as u8) } // [7]
     }
 
-    #[doc="Returns true if ADC0_ != 0"]
-    #[inline] pub fn test_adc0_(&self) -> bool {
-        self.adc0_() != 0
+    #[doc="Returns true if ADC0 != 0"]
+    #[inline] pub fn test_adc0(&self) -> bool {
+        self.adc0() != 0
     }
 
-    #[doc="Sets the ADC0_ field."]
-    #[inline] pub fn set_adc0_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the ADC0 field."]
+    #[inline] pub fn set_adc0<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 7);
@@ -3114,17 +3114,17 @@ impl Statusd {
     }
 
     #[doc="ADC1 APB Protect Enable"]
-    #[inline] pub fn adc1_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn adc1(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 8) & 0x1) as u8) } // [8]
     }
 
-    #[doc="Returns true if ADC1_ != 0"]
-    #[inline] pub fn test_adc1_(&self) -> bool {
-        self.adc1_() != 0
+    #[doc="Returns true if ADC1 != 0"]
+    #[inline] pub fn test_adc1(&self) -> bool {
+        self.adc1() != 0
     }
 
-    #[doc="Sets the ADC1_ field."]
-    #[inline] pub fn set_adc1_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the ADC1 field."]
+    #[inline] pub fn set_adc1<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 8);
@@ -3133,17 +3133,17 @@ impl Statusd {
     }
 
     #[doc="DAC APB Protect Enable"]
-    #[inline] pub fn dac_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn dac(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 9) & 0x1) as u8) } // [9]
     }
 
-    #[doc="Returns true if DAC_ != 0"]
-    #[inline] pub fn test_dac_(&self) -> bool {
-        self.dac_() != 0
+    #[doc="Returns true if DAC != 0"]
+    #[inline] pub fn test_dac(&self) -> bool {
+        self.dac() != 0
     }
 
-    #[doc="Sets the DAC_ field."]
-    #[inline] pub fn set_dac_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the DAC field."]
+    #[inline] pub fn set_dac<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 9);
@@ -3152,17 +3152,17 @@ impl Statusd {
     }
 
     #[doc="I2S APB Protect Enable"]
-    #[inline] pub fn i2s_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn i2s(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 10) & 0x1) as u8) } // [10]
     }
 
-    #[doc="Returns true if I2S_ != 0"]
-    #[inline] pub fn test_i2s_(&self) -> bool {
-        self.i2s_() != 0
+    #[doc="Returns true if I2S != 0"]
+    #[inline] pub fn test_i2s(&self) -> bool {
+        self.i2s() != 0
     }
 
-    #[doc="Sets the I2S_ field."]
-    #[inline] pub fn set_i2s_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the I2S field."]
+    #[inline] pub fn set_i2s<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 10);
@@ -3171,17 +3171,17 @@ impl Statusd {
     }
 
     #[doc="PCC APB Protect Enable"]
-    #[inline] pub fn pcc_(&self) -> ::bobbin_bits::U1 {
+    #[inline] pub fn pcc(&self) -> ::bobbin_bits::U1 {
         unsafe { ::core::mem::transmute(((self.0 >> 11) & 0x1) as u8) } // [11]
     }
 
-    #[doc="Returns true if PCC_ != 0"]
-    #[inline] pub fn test_pcc_(&self) -> bool {
-        self.pcc_() != 0
+    #[doc="Returns true if PCC != 0"]
+    #[inline] pub fn test_pcc(&self) -> bool {
+        self.pcc() != 0
     }
 
-    #[doc="Sets the PCC_ field."]
-    #[inline] pub fn set_pcc_<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
+    #[doc="Sets the PCC field."]
+    #[inline] pub fn set_pcc<V: Into<::bobbin_bits::U1>>(mut self, value: V) -> Self {
         let value: ::bobbin_bits::U1 = value.into();
         let value: u32 = value.into();
         self.0 &= !(0x1 << 11);
@@ -3207,14 +3207,14 @@ impl ::core::fmt::Display for Statusd {
 impl ::core::fmt::Debug for Statusd {
     fn fmt(&self, f: &mut ::core::fmt::Formatter) -> ::core::fmt::Result {
         try!(write!(f, "[0x{:08x}", self.0));
-        if self.sercom4_() != 0 { try!(write!(f, " sercom4_"))}
-        if self.sercom5_() != 0 { try!(write!(f, " sercom5_"))}
-        if self.tcc4_() != 0 { try!(write!(f, " tcc4_"))}
-        if self.adc0_() != 0 { try!(write!(f, " adc0_"))}
-        if self.adc1_() != 0 { try!(write!(f, " adc1_"))}
-        if self.dac_() != 0 { try!(write!(f, " dac_"))}
-        if self.i2s_() != 0 { try!(write!(f, " i2s_"))}
-        if self.pcc_() != 0 { try!(write!(f, " pcc_"))}
+        if self.sercom4() != 0 { try!(write!(f, " sercom4"))}
+        if self.sercom5() != 0 { try!(write!(f, " sercom5"))}
+        if self.tcc4() != 0 { try!(write!(f, " tcc4"))}
+        if self.adc0() != 0 { try!(write!(f, " adc0"))}
+        if self.adc1() != 0 { try!(write!(f, " adc1"))}
+        if self.dac() != 0 { try!(write!(f, " dac"))}
+        if self.i2s() != 0 { try!(write!(f, " i2s"))}
+        if self.pcc() != 0 { try!(write!(f, " pcc"))}
         try!(write!(f, "]"));
         Ok(())
     }

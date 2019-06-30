@@ -1,4 +1,4 @@
-::bobbin_mcu::periph!( AES, Aes, AES_PERIPH, AesPeriph, AES_OWNED, AES_REF_COUNT, 0x42002400, 0x00, 0x03);
+::bobbin_mcu::periph!( AES, Aes, AES_PERIPH, AesPeriph, AES_OWNED, AES_REF_COUNT, 0x42002400, 0x00, 0x04);
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="AES Peripheral"]

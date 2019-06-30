@@ -1,4 +1,4 @@
-::bobbin_mcu::periph!( AC, Ac, AC_PERIPH, AcPeriph, AC_OWNED, AC_REF_COUNT, 0x42002000, 0x00, 0x00);
+::bobbin_mcu::periph!( AC, Ac, AC_PERIPH, AcPeriph, AC_OWNED, AC_REF_COUNT, 0x42002000, 0x00, 0x01);
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="AC Peripheral"]

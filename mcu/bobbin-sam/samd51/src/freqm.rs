@@ -1,4 +1,4 @@
-::bobbin_mcu::periph!( FREQM, Freqm, FREQM_PERIPH, FreqmPeriph, FREQM_OWNED, FREQM_REF_COUNT, 0x40002c00, 0x00, 0x0b);
+::bobbin_mcu::periph!( FREQM, Freqm, FREQM_PERIPH, FreqmPeriph, FREQM_OWNED, FREQM_REF_COUNT, 0x40002c00, 0x00, 0x0c);
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="FREQM Peripheral"]

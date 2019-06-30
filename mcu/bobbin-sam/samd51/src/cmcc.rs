@@ -1,4 +1,4 @@
-::bobbin_mcu::periph!( CMCC, Cmcc, CMCC_PERIPH, CmccPeriph, CMCC_OWNED, CMCC_REF_COUNT, 0x41006000, 0x00, 0x05);
+::bobbin_mcu::periph!( CMCC, Cmcc, CMCC_PERIPH, CmccPeriph, CMCC_OWNED, CMCC_REF_COUNT, 0x41006000, 0x00, 0x06);
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="CMCC Peripheral"]

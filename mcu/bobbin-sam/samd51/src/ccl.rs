@@ -1,4 +1,4 @@
-::bobbin_mcu::periph!( CCL, Ccl, CCL_PERIPH, CclPeriph, CCL_OWNED, CCL_REF_COUNT, 0x42003800, 0x00, 0x04);
+::bobbin_mcu::periph!( CCL, Ccl, CCL_PERIPH, CclPeriph, CCL_OWNED, CCL_REF_COUNT, 0x42003800, 0x00, 0x05);
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="CCL Peripheral"]

@@ -1,4 +1,4 @@
-::bobbin_mcu::periph!( DAC, Dac, DAC_PERIPH, DacPeriph, DAC_OWNED, DAC_REF_COUNT, 0x43002400, 0x00, 0x06);
+::bobbin_mcu::periph!( DAC, Dac, DAC_PERIPH, DacPeriph, DAC_OWNED, DAC_REF_COUNT, 0x43002400, 0x00, 0x07);
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="DAC Peripheral"]

@@ -1,5 +1,5 @@
-::bobbin_mcu::periph!( ADC0, Adc0, ADC0_PERIPH, AdcPeriph, ADC0_OWNED, ADC0_REF_COUNT, 0x43001c00, 0x00, 0x01);
-::bobbin_mcu::periph!( ADC1, Adc1, ADC1_PERIPH, AdcPeriph, ADC1_OWNED, ADC1_REF_COUNT, 0x43002000, 0x01, 0x02);
+::bobbin_mcu::periph!( ADC0, Adc0, ADC0_PERIPH, AdcPeriph, ADC0_OWNED, ADC0_REF_COUNT, 0x43001c00, 0x00, 0x02);
+::bobbin_mcu::periph!( ADC1, Adc1, ADC1_PERIPH, AdcPeriph, ADC1_OWNED, ADC1_REF_COUNT, 0x43002000, 0x01, 0x03);
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="ADC Peripheral"]

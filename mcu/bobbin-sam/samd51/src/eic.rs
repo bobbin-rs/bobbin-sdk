@@ -1,4 +1,4 @@
-::bobbin_mcu::periph!( EIC, Eic, EIC_PERIPH, EicPeriph, EIC_OWNED, EIC_REF_COUNT, 0x40002800, 0x00, 0x09);
+::bobbin_mcu::periph!( EIC, Eic, EIC_PERIPH, EicPeriph, EIC_OWNED, EIC_REF_COUNT, 0x40002800, 0x00, 0x0a);
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="EIC Peripheral"]

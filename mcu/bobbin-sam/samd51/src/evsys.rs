@@ -1,4 +1,4 @@
-::bobbin_mcu::periph!( EVSYS, Evsys, EVSYS_PERIPH, EvsysPeriph, EVSYS_OWNED, EVSYS_REF_COUNT, 0x4100e000, 0x00, 0x0a);
+::bobbin_mcu::periph!( EVSYS, Evsys, EVSYS_PERIPH, EvsysPeriph, EVSYS_OWNED, EVSYS_REF_COUNT, 0x4100e000, 0x00, 0x0b);
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="EVSYS Peripheral"]
