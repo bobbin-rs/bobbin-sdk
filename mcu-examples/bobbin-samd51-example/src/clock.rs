@@ -17,6 +17,7 @@ use samd51::gclk::{self, GCLK};
 use samd51::nvmctrl::NVMCTRL;
 use samd51::mclk::MCLK;
 use samd51::oscctrl::OSCCTRL;
+use samd51::cmcc::CMCC;
 
 // LED Pin D13 = a23
 
@@ -61,7 +62,16 @@ use samd51::oscctrl::OSCCTRL;
 //
 //  Set MCLK CPU Divider to 1 (120MHz)
 //   - MCLK.CPUDIV = 1 (Divide by 1)
-
+// 
+//  Enable Cache
+//   
+// 11.6.2
+// On reset, the cache controller data entries are all invalidated, and the cache is disabled. The cache is transparent to processor operations. 
+// The cache controller is activated through the use of its configuration registers. The configuration interface is memory mapped in the APB bus.
+// Use the following sequence to enable the cache controller:
+// -  Verify that the CMCC is disabled, reading the value of the SR.CSTS.
+// - Enable the CMCC by writing '1' in CTRL.CEN. The MODULE is disabled by writing a '0' in CTRL.CEN.
+//
 #[entry]
 fn main() -> ! {
     // Enable LED Output
@@ -121,6 +131,9 @@ fn main() -> ! {
 
     MCLK.with_cpudiv(|r| r.set_div(1));
 
+    // Enable Cache
+
+    CMCC.set_ctrl(|r| r.set_cen(1));
 
     // Use clockgen 0 for SERCOM5
 
