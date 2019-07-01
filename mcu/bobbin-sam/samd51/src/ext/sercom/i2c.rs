@@ -16,13 +16,14 @@ pub enum SercomError {
 
 impl SercomPeriph {
     pub fn index(&self) -> usize {
+        // PHCTRL Index
         match self.0 {
-            0x42000800 => 0,
-            0x42000c00 => 1,
-            0x42001000 => 2,
-            0x42001400 => 3,
-            0x42001800 => 4,
-            0x42001c00 => 5,
+            0x40003000 => 7,
+            0x40003400 => 8,
+            0x41012000 => 23,
+            0x41014000 => 24,
+            0x43000000 => 34,
+            0x43000400 => 35,
             _ => unimplemented!(),
         }
     }
@@ -32,14 +33,13 @@ impl SercomPeriph {
 
         // Set GCLK_GEN0 as source for SERCOM
 
-        gclk::GCLK.set_clkctrl(|_| gclk::Clkctrl(0)
-            .set_id(0x14 + self.index())
+        gclk::GCLK.set_pchctrl(self.index(), |_| gclk::Pchctrl(0)
             .set_gen(0x0)
-            .set_clken(1)
+            .set_chen(1)
         );
 
-        // Wait for synchronization
-        while gclk::GCLK.status().syncbusy() != 0 {}
+        // // Wait for synchronization
+        // while gclk::GCLK.status().syncbusy() != 0 {}
 
         // Disable the SERCOM module
         s.with_ctrla(|r| r.set_enable(0));
@@ -135,7 +135,12 @@ impl SercomPeriph {
 
     pub fn send_data(&self, data: u8) -> bool {
         let s = self.i2cm();
-        s.set_data(|_| i2cm::Data(data));
+
+        // limit to 8 bit data transfers for now
+
+        // s.set_data(|_| i2cm::Data(data));
+
+        s.set_data(|_| i2cm::Data(data.into()));
         // Wait transmission successful
         while s.intflag().mb() == 0 {
             // If a bus error occurs, the MB bit may never be set.
@@ -250,7 +255,7 @@ impl SercomPeriph {
         Ok(self)
     }        
 
-    pub fn try_write(&self, addr: u8, write_buf: &[u8], timeout: u32) -> Result<&Self, SercomError> {
+    pub fn try_write(&self, addr: u8, write_buf: &[u8], _timeout: u32) -> Result<&Self, SercomError> {
         while !self.bus_idle() {}
         self.set_ack();
         if !self.start_tx(addr, TxMode::Write) {
@@ -267,7 +272,7 @@ impl SercomPeriph {
         Ok(self)
     }
 
-    pub fn try_read(&self, addr: u8, read_buf: &mut[u8], timeout: u32) -> Result<&Self, SercomError> {
+    pub fn try_read(&self, addr: u8, read_buf: &mut[u8], _timeout: u32) -> Result<&Self, SercomError> {
         while !self.bus_idle() {}
         self.set_ack();
         if !self.start_tx(addr, TxMode::Read) {

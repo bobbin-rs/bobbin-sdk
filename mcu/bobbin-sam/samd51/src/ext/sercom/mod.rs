@@ -6,11 +6,11 @@ use bobbin_hal::serial::*;
 
 use bobbin_bits::*;
 
-// pub mod i2c;
-// pub mod spi;
+pub mod i2c;
+//pub mod spi;
 
-// pub use self::i2c::*;
-// pub use self::spi::*;
+pub use self::i2c::*;
+//pub use self::spi::*;
 
 
 // NOTE: Before usage, power up and set clocks
