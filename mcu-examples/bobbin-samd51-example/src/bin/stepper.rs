@@ -43,11 +43,14 @@ fn main() -> ! {
     pca.init().unwrap();
 
     pca.set_pwm_freq(1600).unwrap();
+    pca.set(2, true).unwrap();
+    pca.set(7, true).unwrap();
+
     let mut i = 0i32;
-    let delay = 100000;    
+    let delay = 12000;    
     loop {
         LED0.toggle_output();
-        if true {
+        if false {
             microstep(&pca, i);
         } else {
             full_step(&pca, i);
@@ -78,10 +81,13 @@ fn microstep(pca: &Pca9685, i: i32) {
     pca.set_pwm(2, ocra * 16, 4096 - ocra * 16).unwrap();
     pca.set_pwm(7, ocrb * 16, 4096 - ocrb * 16).unwrap();
 
-    pca.set(3, a2).unwrap();
-    pca.set(5, b1).unwrap();
-    pca.set(4, a1).unwrap();
-    pca.set(6, b2).unwrap();
+    pca.set4(3, a2, a1, b1, b2).unwrap();
+    // if i % 4 == 0 {
+        // pca.set(3, a2).unwrap();
+        // pca.set(4, a1).unwrap();
+        // pca.set(5, b1).unwrap();
+        // pca.set(6, b2).unwrap();
+    // }
 }
 
 fn mag(i: i32) -> u16 {
@@ -97,9 +103,7 @@ fn mag(i: i32) -> u16 {
     }
 }
 fn full_step(pca: &Pca9685, i: i32) {
-    let i = i / 8;
-    pca.set(2, true).unwrap();
-    pca.set(7, true).unwrap();
+    // let i = i / 8;
     let (a2, b1, a1, b2) = match i % 4 {
         0 => (true, false, false, false),
         1 => (false, true, false, false),
@@ -108,10 +112,11 @@ fn full_step(pca: &Pca9685, i: i32) {
         _ => unimplemented!()
     };
     // println!("a2: {} b1: {} a1: {} b2: {}", a2, b1, a1, b2);
-    pca.set(3, a2).unwrap();
-    pca.set(5, b1).unwrap();
-    pca.set(4, a1).unwrap();
-    pca.set(6, b2).unwrap();
+    pca.set4(3, a2, a1, b1, b2).unwrap();
+    // pca.set(3, a2).unwrap();
+    // pca.set(5, b1).unwrap();
+    // pca.set(4, a1).unwrap();
+    // pca.set(6, b2).unwrap();
 }
 
 pub struct Pca9685 {
@@ -175,6 +180,7 @@ impl Pca9685 {
         self.write_reg(MODE2, OUTDRV)?;
         self.write_reg(MODE1, ALLCALL)?;
         let mode1 = self.read_reg(MODE1)? & !SLEEP;
+        let mode1 = mode1 | AI;
         self.write_reg(MODE1, mode1)?;
         Ok(())
     }
@@ -195,6 +201,37 @@ impl Pca9685 {
     pub fn set(&self, channel: u8, on: bool) -> Result<(), SercomError>  {
         let (on, off) = if on { (4096, 0) } else { (0, 4096) };
         self.set_pwm(channel, on, off)
+        // let offset = 4 * channel;
+
+        // let data = [LED0_ON_L + offset, on as u8, (on >> 8) as u8, off as u8, (off >> 8) as u8];
+        // self.i2c.try_transfer(self.addr.into(), &data, &mut [], self.timeout)?;
+
+        // let data = [LED0_ON_L + offset, on as u8, (on >> 8) as u8];
+        // self.i2c.try_transfer(self.addr.into(), &data, &mut [], self.timeout)?;
+        // let data = [LED0_OFF_L + offset, off as u8, (off >> 8) as u8];
+        // self.i2c.try_transfer(self.addr.into(), &data, &mut [], self.timeout)?;
+
+        // self.write_reg(LED0_ON_L + offset, on as u8)?;
+        // self.write_reg(LED0_ON_H + offset, (on >> 8) as u8)?;
+        // self.write_reg(LED0_OFF_L + offset, off as u8)?;
+        // self.write_reg(LED0_OFF_H + offset, (off >> 8) as u8)?;
+        // Ok(())
+    }
+
+    pub fn set4(&self, channel: u8, on0: bool, on1: bool, on2: bool, on3: bool) -> Result<(), SercomError>  {
+        let (on0, off0) = if on0 { (4096, 0) } else { (0, 4096) };
+        let (on1, off1) = if on1 { (4096, 0) } else { (0, 4096) };
+        let (on2, off2) = if on2 { (4096, 0) } else { (0, 4096) };
+        let (on3, off3) = if on3 { (4096, 0) } else { (0, 4096) };
+        let offset = 4 * channel;
+        let data = [LED0_ON_L + offset, 
+            on0 as u8, (on0 >> 8) as u8, off0 as u8, (off0 >> 8) as u8,
+            on1 as u8, (on1 >> 8) as u8, off1 as u8, (off1 >> 8) as u8,
+            on2 as u8, (on2 >> 8) as u8, off2 as u8, (off2 >> 8) as u8,
+            on3 as u8, (on3 >> 8) as u8, off3 as u8, (off3 >> 8) as u8,
+        ];
+        self.i2c.try_transfer(self.addr.into(), &data, &mut [], self.timeout)?;
+        Ok(())
     }
 
     pub fn set_pwm_freq(&self, freq_hz: u32) -> Result<(), SercomError> {
@@ -216,10 +253,13 @@ impl Pca9685 {
     pub fn set_pwm(&self, channel: u8, on: u16, off: u16) -> Result<(), SercomError> {
         // println!("{}/{}: {} {}", self.addr, channel, on, off);
         let offset = 4 * channel;
-        self.write_reg(LED0_ON_L + offset, on as u8)?;
-        self.write_reg(LED0_ON_H + offset, (on >> 8) as u8)?;
-        self.write_reg(LED0_OFF_L + offset, off as u8)?;
-        self.write_reg(LED0_OFF_H + offset, (off >> 8) as u8)?;
+        let data = [LED0_ON_L + offset, on as u8, (on >> 8) as u8, off as u8, (off >> 8) as u8];
+        self.i2c.try_transfer(self.addr.into(), &data, &mut [], self.timeout)?;
+
+        // self.write_reg(LED0_ON_L + offset, on as u8)?;
+        // self.write_reg(LED0_ON_H + offset, (on >> 8) as u8)?;
+        // self.write_reg(LED0_OFF_L + offset, off as u8)?;
+        // self.write_reg(LED0_OFF_H + offset, (off >> 8) as u8)?;
         Ok(())
     }
 
@@ -267,6 +307,7 @@ pub const ALL_LED_OFF_H      :u8 =  0xFD;
 
 pub const RESTART            :u8 = 0x80;
 pub const SLEEP              :u8 = 0x10;
+pub const AI                 :u8 = 0x20;
 pub const ALLCALL            :u8 = 0x01;
 pub const INVRT              :u8 = 0x10;
 pub const OUTDRV             :u8 = 0x04;
