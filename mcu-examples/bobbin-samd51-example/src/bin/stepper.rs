@@ -47,6 +47,7 @@ fn main() -> ! {
     pca.set(7, true).unwrap();
 
     let mut i = 0u32;
+    let delay = 120000;
     loop {
         LED0.toggle_output();
         let (a2, b1, a1, b2) = match i % 4 {
@@ -62,7 +63,7 @@ fn main() -> ! {
         pca.set(4, a1).unwrap();
         pca.set(6, b2).unwrap();
 
-        for _ in 0..5_000 {
+        for _ in 0..delay {
             asm::nop();
         }
         i = i.wrapping_add(1);
