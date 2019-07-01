@@ -4,6 +4,61 @@
 ::bobbin_mcu::periph!( TCC3, Tcc3, TCC3_PERIPH, TccPeriph, TCC3_OWNED, TCC3_REF_COUNT, 0x42001000, 0x03, 0x2f);
 ::bobbin_mcu::periph!( TCC4, Tcc4, TCC4_PERIPH, TccPeriph, TCC4_OWNED, TCC4_REF_COUNT, 0x43001000, 0x04, 0x30);
 
+// Gate { name: None, gate_type: Some("EN"), periph: Some("MCLK"), register: Some("APBBMASK"), field: Some("TCC0"), description: None }
+impl ::bobbin_mcu::gate::GateEn for Tcc0 {
+    #[inline]
+    fn gate_en(&self) -> ::bobbin_bits::U1 { ::mclk::MCLK.apbbmask().tcc0() }
+    #[inline]
+    fn set_gate_en<V: Into<::bobbin_bits::U1>>(&self, value: V) -> &Self {
+        ::mclk::MCLK.with_apbbmask(|r| r.set_tcc0(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("EN"), periph: Some("MCLK"), register: Some("APBBMASK"), field: Some("TCC1"), description: None }
+impl ::bobbin_mcu::gate::GateEn for Tcc1 {
+    #[inline]
+    fn gate_en(&self) -> ::bobbin_bits::U1 { ::mclk::MCLK.apbbmask().tcc1() }
+    #[inline]
+    fn set_gate_en<V: Into<::bobbin_bits::U1>>(&self, value: V) -> &Self {
+        ::mclk::MCLK.with_apbbmask(|r| r.set_tcc1(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("EN"), periph: Some("MCLK"), register: Some("APBCMASK"), field: Some("TCC2"), description: None }
+impl ::bobbin_mcu::gate::GateEn for Tcc2 {
+    #[inline]
+    fn gate_en(&self) -> ::bobbin_bits::U1 { ::mclk::MCLK.apbcmask().tcc2() }
+    #[inline]
+    fn set_gate_en<V: Into<::bobbin_bits::U1>>(&self, value: V) -> &Self {
+        ::mclk::MCLK.with_apbcmask(|r| r.set_tcc2(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("EN"), periph: Some("MCLK"), register: Some("APBCMASK"), field: Some("TCC3"), description: None }
+impl ::bobbin_mcu::gate::GateEn for Tcc3 {
+    #[inline]
+    fn gate_en(&self) -> ::bobbin_bits::U1 { ::mclk::MCLK.apbcmask().tcc3() }
+    #[inline]
+    fn set_gate_en<V: Into<::bobbin_bits::U1>>(&self, value: V) -> &Self {
+        ::mclk::MCLK.with_apbcmask(|r| r.set_tcc3(value));
+        self
+    }
+}
+
+// Gate { name: None, gate_type: Some("EN"), periph: Some("MCLK"), register: Some("APBDMASK"), field: Some("TCC4"), description: None }
+impl ::bobbin_mcu::gate::GateEn for Tcc4 {
+    #[inline]
+    fn gate_en(&self) -> ::bobbin_bits::U1 { ::mclk::MCLK.apbdmask().tcc4() }
+    #[inline]
+    fn set_gate_en<V: Into<::bobbin_bits::U1>>(&self, value: V) -> &Self {
+        ::mclk::MCLK.with_apbdmask(|r| r.set_tcc4(value));
+        self
+    }
+}
+
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc="TCC Peripheral"]
 pub struct TccPeriph(pub usize); 

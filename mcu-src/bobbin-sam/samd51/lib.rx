@@ -763,6 +763,9 @@
         (peripheral
             (name TC0)
             (address 0x40003800)
+            (clock
+                (gate (type EN) (periph MCLK) (register APBAMASK) (field TC0))
+            )               
             (interrupt
                 (name TC0)
                 (value 107)
@@ -771,6 +774,9 @@
         (peripheral
             (name TC1)
             (address 0x40003c00)
+            (clock
+                (gate (type EN) (periph MCLK) (register APBAMASK) (field TC1))
+            )               
             (interrupt
                 (name TC1)
                 (value 108)
@@ -779,6 +785,9 @@
         (peripheral
             (name TC2)
             (address 0x4101a000)
+            (clock
+                (gate (type EN) (periph MCLK) (register APBBMASK) (field TC2))
+            )               
             (interrupt
                 (name TC2)
                 (value 109)
@@ -787,6 +796,9 @@
         (peripheral
             (name TC3)
             (address 0x4101c000)
+            (clock
+                (gate (type EN) (periph MCLK) (register APBBMASK) (field TC3))
+            )               
             (interrupt
                 (name TC3)
                 (value 110)
@@ -795,6 +807,9 @@
         (peripheral
             (name TC4)
             (address 0x42001400)
+            (clock
+                (gate (type EN) (periph MCLK) (register APBCMASK) (field TC4))
+            )               
             (interrupt
                 (name TC4)
                 (value 111)
@@ -803,6 +818,9 @@
         (peripheral
             (name TC5)
             (address 0x42001800)
+            (clock
+                (gate (type EN) (periph MCLK) (register APBCMASK) (field TC5))
+            )               
             (interrupt
                 (name TC5)
                 (value 112)
@@ -816,6 +834,9 @@
         (peripheral
             (name TCC0)
             (address 0x41016000)
+            (clock
+                (gate (type EN) (periph MCLK) (register APBBMASK) (field TCC0))
+            )               
             (interrupt
                 (name TCC0_OTHER)
                 (value 85)
@@ -848,6 +869,9 @@
         (peripheral
             (name TCC1)
             (address 0x41018000)
+            (clock
+                (gate (type EN) (periph MCLK) (register APBBMASK) (field TCC1))
+            )               
             (interrupt
                 (name TCC1_OTHER)
                 (value 92)
@@ -872,6 +896,9 @@
         (peripheral
             (name TCC2)
             (address 0x42000c00)
+            (clock
+                (gate (type EN) (periph MCLK) (register APBCMASK) (field TCC2))
+            )               
             (interrupt
                 (name TCC2_OTHER)
                 (value 97)
@@ -892,6 +919,9 @@
         (peripheral
             (name TCC3)
             (address 0x42001000)
+            (clock
+                (gate (type EN) (periph MCLK) (register APBCMASK) (field TCC3))
+            )               
             (interrupt
                 (name TCC3_OTHER)
                 (value 101)
@@ -908,6 +938,9 @@
         (peripheral
             (name TCC4)
             (address 0x43001000)
+            (clock
+                (gate (type EN) (periph MCLK) (register APBDMASK) (field TCC4))
+            )               
             (interrupt
                 (name TCC4_OTHER)
                 (value 104)
