@@ -1,27 +1,27 @@
 #![no_std]
-#![no_main]
 
-extern crate bobbin_samd51_example;
-use cortex_m_rt::entry;
 use cortex_m::asm;
-
+use cortex_m::interrupt;
+use core::panic::PanicInfo;
+pub use samd51::bobbin_sys::{print, println};
+pub use samd51 as mcu;
 use samd51::bobbin_mcu::prelude::*;
 use samd51::bobbin_hal::prelude::*;
 use samd51::bobbin_sys::prelude::*;
-use samd51::bobbin_sys::{print, println};
-use samd51::ext::clock;
 
+use samd51::ext::clock;
 use samd51::port::PORTB;
 use samd51::sercom::SERCOM5;
-use samd51::pin::PA23;
+use samd51::pin::{Pa23, PA23};
 use samd51::gclk::{self, GCLK};
 
-// use gclk0
+pub const LED0: Pa23 = PA23;
 
-
-#[entry]
-fn main() -> ! {
+pub fn init() {
     clock::run_120mhz();
+    for _ in 0..1000 {
+        asm::nop();
+    }
 
     // Enable LED Output
     PA23.set_output(true);
@@ -51,15 +51,11 @@ fn main() -> ! {
     SERCOM5.configure(cfg);
     SERCOM5.set_enabled(true);
     Console::set(Console::new(SERCOM5.as_periph(), ConsoleMode::Cooked));
+}
 
-    println!("running loop");
-    let mut i = 0u32;
-    loop {
-        for _ in 0..1_000_000 {
-            asm::nop();
-        }
-        PA23.toggle_output();
-        println!("Hello, World {}", i);
-        i = i.wrapping_add(1);
-    }
+#[panic_handler]
+fn panic(info: &PanicInfo) -> ! {
+    interrupt::disable();
+    println!("{}", info);
+    loop {}
 }

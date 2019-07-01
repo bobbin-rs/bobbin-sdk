@@ -7,7 +7,7 @@ edition = "2018"
 [dependencies]
 cortex-m-rt = "0.6"
 cortex-m = "0.6"
-panic-abort = "0.3"
+#panic-abort = "0.3"
 
 [dependencies.samd51]
 path = "../../mcu/bobbin-sam/samd51"
