@@ -33,7 +33,7 @@ fn main() -> ! {
 
     // set baud rate
 
-    let baud_divider = 100;
+    let baud_divider = 20;
     let addr = 0x60;
     SERCOM2.init_i2c(baud_divider);
     SERCOM2.enable_i2c();
@@ -42,9 +42,9 @@ fn main() -> ! {
     pca.reset().unwrap();
     pca.init().unwrap();
 
-    pca.set_pwm_freq(1000).unwrap();
+    pca.set_pwm_freq(1600).unwrap();
     let mut i = 0i32;
-    let delay = 5000;    
+    let delay = 100000;    
     loop {
         LED0.toggle_output();
         if true {
@@ -70,10 +70,10 @@ fn microstep(pca: &Pca9685, i: i32) {
         _ => unimplemented!()
     };
 
-    let ocra = mag(i);
     let ocrb = mag(i + 8);
+    let ocra = mag(i);
 
-    // println!("i: {} orca: {} orcb: {} a2: {} b1: {} a1: {} b2: {}", i, ocra, ocrb, a2, b1, a1, b2);
+    // println!("i: {:>4} orca: {:>4} orcb: {:>4} a2: {:8} b1: {:8} a1: {:8} b2: {:8}", i, ocra, ocrb, a2, b1, a1, b2);
 
     pca.set_pwm(2, ocra * 16, 4096 - ocra * 16).unwrap();
     pca.set_pwm(7, ocrb * 16, 4096 - ocrb * 16).unwrap();
