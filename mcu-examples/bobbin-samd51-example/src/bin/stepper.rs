@@ -41,33 +41,64 @@ fn main() -> ! {
     println!("Initializing PCA9685");
     pca.reset().unwrap();
     pca.init().unwrap();
+
     pca.set_pwm_freq(1000).unwrap();
-
-    pca.set(2, true).unwrap();
-    pca.set(7, true).unwrap();
-
     let mut i = 0u32;
     let delay = 120000;
     loop {
         LED0.toggle_output();
-        let (a2, b1, a1, b2) = match i % 4 {
-            0 => (true, false, false, false),
-            1 => (false, true, false, false),
-            2 => (false, false, true, false),
-            3 => (false, false, false, true),
-            _ => unimplemented!()
-        };
-        // println!("a2: {} b1: {} a1: {} b2: {}", a2, b1, a1, b2);
-        pca.set(3, a2).unwrap();
-        pca.set(5, b1).unwrap();
-        pca.set(4, a1).unwrap();
-        pca.set(6, b2).unwrap();
+        microstep(&pca, i);
 
+        // full_step(&pca, i);
         for _ in 0..delay {
             asm::nop();
         }
         i = i.wrapping_add(1);
-    }
+    }        
+}
+
+fn microstep(pca: &Pca9685, i: u32) {
+    const STEPS: [u16; 9] = [0, 50, 98, 142, 180, 212, 236, 250, 255];
+
+    let (a2, b1, a1, b2) = match i % 8 {
+        0 => (true, false, false, false),
+        1 => (true, true, false, false),
+        2 => (false, true, false, false),
+        3 => (false, true, true, false),
+        4 => (false, false, true, false),
+        5 => (false, false, true, true),
+        6 => (false, false, false, true),
+        7 => (true, false, false, true),
+        _ => unimplemented!()
+    };
+    // println!("a2: {} b1: {} a1: {} b2: {}", a2, b1, a1, b2);
+    let ocra = STEPS[8 - currentstep];
+    let ocrb = STEPS[currentstep];
+
+    pca.set_pwm(2, ocra * 16, ocrb * 16).unwrap();
+    pca.set_pwm(7, ocrb * 16, ocra * 16).unwrap();
+
+    pca.set(3, a2).unwrap();
+    pca.set(5, b1).unwrap();
+    pca.set(4, a1).unwrap();
+    pca.set(6, b2).unwrap();
+}
+
+fn full_step(pca: &Pca9685, i: u32) {
+    pca.set(2, true).unwrap();
+    pca.set(7, true).unwrap();
+    let (a2, b1, a1, b2) = match i % 4 {
+        0 => (true, false, false, false),
+        1 => (false, true, false, false),
+        2 => (false, false, true, false),
+        3 => (false, false, false, true),
+        _ => unimplemented!()
+    };
+    // println!("a2: {} b1: {} a1: {} b2: {}", a2, b1, a1, b2);
+    pca.set(3, a2).unwrap();
+    pca.set(5, b1).unwrap();
+    pca.set(4, a1).unwrap();
+    pca.set(6, b2).unwrap();
 }
 
 pub struct Pca9685 {
