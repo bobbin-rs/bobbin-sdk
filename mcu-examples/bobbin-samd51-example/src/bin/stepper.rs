@@ -43,13 +43,15 @@ fn main() -> ! {
     pca.init().unwrap();
 
     pca.set_pwm_freq(1000).unwrap();
-    let mut i = 0u32;
-    let delay = 120000;
+    let mut i = 0i32;
+    let delay = 5000;    
     loop {
         LED0.toggle_output();
-        microstep(&pca, i);
-
-        // full_step(&pca, i);
+        if true {
+            microstep(&pca, i);
+        } else {
+            full_step(&pca, i);
+        }
         for _ in 0..delay {
             asm::nop();
         }
@@ -57,26 +59,24 @@ fn main() -> ! {
     }        
 }
 
-fn microstep(pca: &Pca9685, i: u32) {
-    const STEPS: [u16; 9] = [0, 50, 98, 142, 180, 212, 236, 250, 255];
+fn microstep(pca: &Pca9685, i: i32) {
+    // i from 0.64
 
-    let (a2, b1, a1, b2) = match i % 8 {
-        0 => (true, false, false, false),
-        1 => (true, true, false, false),
-        2 => (false, true, false, false),
-        3 => (false, true, true, false),
-        4 => (false, false, true, false),
-        5 => (false, false, true, true),
-        6 => (false, false, false, true),
-        7 => (true, false, false, true),
+    let (a2, b1, a1, b2) = match (i / 8) % 4 {
+        0 => (true, true, false, false),
+        1 => (false, true, true, false),
+        2 => (false, false, true, true),
+        3 => (true, false, false, true),
         _ => unimplemented!()
     };
-    // println!("a2: {} b1: {} a1: {} b2: {}", a2, b1, a1, b2);
-    let ocra = STEPS[8 - currentstep];
-    let ocrb = STEPS[currentstep];
 
-    pca.set_pwm(2, ocra * 16, ocrb * 16).unwrap();
-    pca.set_pwm(7, ocrb * 16, ocra * 16).unwrap();
+    let ocra = mag(i);
+    let ocrb = mag(i + 8);
+
+    // println!("i: {} orca: {} orcb: {} a2: {} b1: {} a1: {} b2: {}", i, ocra, ocrb, a2, b1, a1, b2);
+
+    pca.set_pwm(2, ocra * 16, 4096 - ocra * 16).unwrap();
+    pca.set_pwm(7, ocrb * 16, 4096 - ocrb * 16).unwrap();
 
     pca.set(3, a2).unwrap();
     pca.set(5, b1).unwrap();
@@ -84,7 +84,20 @@ fn microstep(pca: &Pca9685, i: u32) {
     pca.set(6, b2).unwrap();
 }
 
-fn full_step(pca: &Pca9685, i: u32) {
+fn mag(i: i32) -> u16 {
+    const STEPS: [u16; 9] = [0, 50, 98, 142, 180, 212, 236, 250, 255];
+
+    let phase = (i % 32) as usize;
+    match phase {
+        0..=7 => STEPS[phase],
+        8..=15 => STEPS[16 - phase],
+        16..=23 => STEPS[phase - 16],
+        24..=31 => STEPS[32 - phase],
+        _ => panic!("Phase {} out of bounds", phase)
+    }
+}
+fn full_step(pca: &Pca9685, i: i32) {
+    let i = i / 8;
     pca.set(2, true).unwrap();
     pca.set(7, true).unwrap();
     let (a2, b1, a1, b2) = match i % 4 {
