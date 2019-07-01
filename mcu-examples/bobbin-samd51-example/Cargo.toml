@@ -4,31 +4,6 @@ version = "0.1.0"
 authors = ["Jonathan Soo <jcsoo@agora.com>"]
 edition = "2018"
 
-[[bin]]
-name = "blinky"
-path = "src/blinky.rs"
-doc = false
-
-[[bin]]
-name = "serial"
-path = "src/serial.rs"
-doc = false
-
-[[bin]]
-name = "console"
-path = "src/console.rs"
-doc = false
-
-[[bin]]
-name = "clock"
-path = "src/clock.rs"
-doc = false
-
-[[bin]]
-name = "pca9685"
-path = "src/pca9685.rs"
-doc = false
-
 [dependencies]
 cortex-m-rt = "0.6"
 cortex-m = "0.6"
