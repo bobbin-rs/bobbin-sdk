@@ -47,7 +47,7 @@ fn main() -> ! {
     pca.set(7, true).unwrap();
 
     let mut i = 0i32;
-    let delay = 12000;    
+    let delay = 16000;    
     loop {
         LED0.toggle_output();
         if false {
