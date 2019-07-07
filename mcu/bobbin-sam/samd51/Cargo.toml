@@ -10,6 +10,7 @@ bobbin-build = { path = "../../../lib/bobbin-build/" }
 sam-common = { path = "../sam-common" }
 
 [features]
+no-heap = [ "sam-common/no-heap" ]
 default = []
 
 SAMD51x19 = []

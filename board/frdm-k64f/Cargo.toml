@@ -33,5 +33,5 @@ lto = true
 
 [dependencies.k64]
 path = "../../mcu/bobbin-kinetis/k64"
-features = ["K64FN1M0"]
+features = ["K64FN1M0", "no-heap"]
 

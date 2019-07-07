@@ -4,7 +4,7 @@ use bobbin_bits::*;
 
 use ext::rcc::*;
 use clock::*;
-use rcc::{self, RCC};
+use rcc::RCC;
 
 macro_rules! impl_usart_clock_source {
     ($periph:path, $id:ident, $default:ident) => {
@@ -15,7 +15,7 @@ macro_rules! impl_usart_clock_source {
                 UsartClock::Hsi16 => self.hsi16(),
                 UsartClock::Lse => self.lse(),
             }
-        }
+        }        
     };
 }
 
@@ -28,7 +28,7 @@ macro_rules! impl_i2c_clock_source {
                 I2cClock::Sysclk => self.sysclk(),
                 I2cClock::Hsi16 => self.hsi16(),
             }
-        }
+        }        
     };
 }
 
@@ -41,63 +41,8 @@ macro_rules! impl_lptim_clock_source {
                 LptimClock::Hsi16 => self.hsi16(),
                 LptimClock::Lse => self.lse(),
             }
-        }
+        }        
     };
-}
-
-fn pll_p(val: U5) -> u32 {
-    let val = val.into_u32();
-    if val == 0 {
-        unreachable!();
-    }
-
-    val + 1
-}
-
-fn pll_rq(val: U3) -> u32 {
-    match val {
-        U3::B000 => unimplemented!(),
-        U3::B001 => 2,
-        U3::B010 => 3,
-        U3::B011 => 4,
-        U3::B100 => 5,
-        U3::B101 => 6,
-        U3::B110 => 7,
-        U3::B111 => 8,
-    }
-}
-
-fn pllm(cfgr: rcc::Pllcfgr) -> u32 {
-    1 + cfgr.pllm().into_u32()
-}
-
-fn saim(_cfgr: rcc::Pllsai1cfgr) -> u32 {
-    1
-}
-
-macro_rules! pll_clk {
-    ($id:ident, $cfg:ident, $divreg:ident, $mulfun:ident, $divfun:ident) => {
-        fn $id(&self) -> Hz {
-            let cfgr = RCC.$cfg();
-
-            let plln = cfgr.plln().into_u32();
-            let pllm = $mulfun(cfgr);
-            let divisor = $divfun(cfgr.$divreg());
-
-            // PLLSCFGR.PLLSRC selects clock source for both for PLL and PLLSAI1
-            let v = match RCC.pllcfgr().pllsrc() {
-                U2::B00 => Hz::from(0),
-                U2::B01 => self.msi(),
-                U2::B10 => self.hsi16(),
-                U2::B11 => self.hse(),
-            };
-
-            let vco_clock = v * (plln / pllm);
-            let freq = vco_clock / divisor;
-
-            freq
-        }
-    }
 }
 
 #[derive(Default)]
@@ -132,7 +77,7 @@ impl<OSC: Clock, OSC32: Clock> DynamicClock<OSC, OSC32> {
             U4::B1011 => 48_000_000,
             _ => 0,
         })
-    }
+    }    
 }
 
 fn freq_prescaler_lookup(val: U4) -> u32 {
@@ -159,10 +104,34 @@ impl<OSC: Clock, OSC32: Clock> ClockProvider for DynamicClock<OSC, OSC32> {
     type Osc = OSC;
     type Osc32 = OSC32;
 
-    pll_clk!(pllclk, pllcfgr, pllr, pllm, pll_rq);
-    pll_clk!(pllsai1rclk, pllsai1cfgr, pllr, saim, pll_rq);
-    pll_clk!(pllsai1qclk, pllsai1cfgr, pllq, saim, pll_rq);
-    pll_clk!(pllsai1pclk, pllsai1cfgr, pllp, saim, pll_p);
+    fn pllclk(&self) -> Hz {
+        let cfgr = RCC.pllcfgr();
+
+        let plln = cfgr.plln().into_u32();
+        let pllm = 1 + cfgr.pllm().into_u32();
+        let pllr = match cfgr.pllr() {
+            U3::B000 => loop {},
+            U3::B001 => 2,
+            U3::B010 => 3,
+            U3::B011 => 4,
+            U3::B100 => 5,
+            U3::B101 => 6,
+            U3::B110 => 7,
+            U3::B111 => 8,
+        };
+
+        let v = match cfgr.pllsrc() {
+            U2::B00 => Hz::from(0),
+            U2::B01 => self.msi(),
+            U2::B10 => self.hsi16(),
+            U2::B11 => self.hse(),
+        };
+
+        let vco_clock = v * (plln / pllm);
+        let r = vco_clock / pllr;
+
+        r
+    }
 
     fn sysclk(&self) -> Hz {
         match RCC.cfgr().sws() {
@@ -235,71 +204,7 @@ impl<OSC: Clock, OSC32: Clock> ClockProvider for DynamicClock<OSC, OSC32> {
             v if (v as u8) < 0b100  => self.pclk2(),
             _ => self.pclk2() << 1,
         }
-    }
-
-    fn lsi(&self) -> Hz {
-        // RM0434 page 215
-        // LSI2 is used as clock source for LSI by-default, if switched on.
-        // LSI1 is selected as clock source if LSI2 is switched off and LSI1 is switched on.
-        if RCC.csr().lsi2on() == U1::B1 {
-            self.lsi2()
-        } else {
-            if RCC.csr().lsi1on() == U1::B1 {
-                self.lsi1()
-            } else {
-                Hz::from(0)
-            }
-        }
-    }
-
-    fn rtcclk(&self) -> Hz {
-        // RM0434, page 265
-        match RCC.bdcr().rtcsel() {
-            U2::B00 => Hz::from(0),
-            U2::B01 => self.lse(),
-            U2::B10 => self.lsi(),
-            U2::B11 => self.hse() >> 5, // HSE oscillator clock divided by 32 used as RTC clock
-        }
-    }
-
-    fn rng(&self) -> Hz {
-        // RM0434, page 262
-        match RCC.ccipr().rngsel() {
-            U2::B00 => self.clk48(),
-            U2::B01 => self.lsi(),
-            U2::B10 => self.lse(),
-            U2::B11 => unreachable!(),
-        }
-    }
-
-    fn adc(&self) -> Hz {
-        // RM0434, page 262
-        match RCC.ccipr().adcsel() {
-            U2::B00 => Hz::from(0),
-            U2::B01 => self.pllsai1rclk(),
-            U2::B10 => self.pllclk(),
-            U2::B11 => self.sysclk(),
-        }
-    }
-
-    fn clk48(&self) -> Hz {
-        // RM0434, page 262
-        match RCC.ccipr().clk48sel() {
-            U2::B00 => self.hsi48(),
-            U2::B01 => self.pllsai1qclk(),
-            U2::B10 => self.pllclk(),
-            U2::B11 => self.msi(),
-        }
-    }
-
-    fn sai1(&self) -> Hz {
-        match RCC.ccipr().sai1sel() {
-            U2::B00 => self.pllsai1pclk(),
-            U2::B01 => self.pllclk(),
-            U2::B10 => self.hsi16(),
-            U2::B11 => unimplemented!(), // External clock frequency is not specified
-        }
-    }
+    }    
 
     impl_usart_clock_source!(::usart::USART1, usart1, pclk1);
     impl_usart_clock_source!(::lpuart::LPUART1, lpuart1, pclk1);
@@ -308,7 +213,7 @@ impl<OSC: Clock, OSC32: Clock> ClockProvider for DynamicClock<OSC, OSC32> {
     impl_i2c_clock_source!(::i2c::I2C3, i2c3, pclk1);
 
     impl_lptim_clock_source!(::lptim::LPTIM1, lptim1, pclk2);
-    impl_lptim_clock_source!(::lptim::LPTIM2, lptim2, pclk2);
+    impl_lptim_clock_source!(::lptim::LPTIM2, lptim2, pclk2);   
 }
 
 impl<CP> ClockFor<::systick::Systick> for Clocks<CP> where CP: ClockProvider {
@@ -317,7 +222,6 @@ impl<CP> ClockFor<::systick::Systick> for Clocks<CP> where CP: ClockProvider {
 
 pub mod clock_init {
     use rcc::RCC;
-    use pwr::PWR;
     use flash::FLASH;
 
 
@@ -398,3 +302,4 @@ pub mod clock_init {
         while RCC.bdcr().lserdy() == 0 {}
     }
 }
+

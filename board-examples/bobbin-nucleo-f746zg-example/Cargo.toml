@@ -16,6 +16,10 @@ doc = false
 [dependencies]
 nucleo-f746zg = { path = "../../board/nucleo-f746zg" }
 
+[features]
+no-heap = [ "nucleo-f746zg/no-heap" ]
+default = [ "no-heap" ]
+
 [dependencies.cortex-m-rt]
 features = []
 version = "0.6"

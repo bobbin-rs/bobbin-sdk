@@ -33,5 +33,5 @@ lto = true
 
 [dependencies.stm32l432x]
 path = "../../mcu/bobbin-stm32/stm32l432x"
-features = ["STM32L432xC"]
+features = ["STM32L432xC", "no-heap"]
 

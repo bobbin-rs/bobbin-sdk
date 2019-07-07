@@ -33,5 +33,5 @@ lto = true
 
 [dependencies.samd21]
 path = "../../mcu/bobbin-sam/samd21"
-features = ["SAMD21x18"]
+features = ["SAMD21x18", "no-heap"]
 

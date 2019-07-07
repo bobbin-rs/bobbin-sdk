@@ -10,6 +10,7 @@ bobbin-build = { path = "../../../lib/bobbin-build/" }
 stm32-common = { path = "../stm32-common" }
 
 [features]
+no-heap = [ "stm32-common/no-heap" ]
 default = []
 
 STM32F405xE = []

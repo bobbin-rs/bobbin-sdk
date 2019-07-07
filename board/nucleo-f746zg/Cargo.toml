@@ -33,5 +33,5 @@ lto = true
 
 [dependencies.stm32f74x]
 path = "../../mcu/bobbin-stm32/stm32f74x"
-features = ["STM32F74xxG"]
+features = ["STM32F74xxG", "no-heap"]
 
