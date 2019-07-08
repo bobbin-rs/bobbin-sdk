@@ -1,0 +1,26 @@
+[package]
+name = "bobbin-stm32wb55xg-example"
+version = "0.1.0"
+authors = ["Evgenii P. <eupn@pm.me>"]
+edition = "2018"
+
+[dependencies]
+cortex-m-rt = "0.6"
+cortex-m = "0.6"
+panic-halt = "0.2"
+
+[dependencies.stm32wb55xx]
+path = "../../mcu/bobbin-stm32/stm32wb55xx"
+features = ["STM32WB55xG"]
+
+[profile.dev]
+opt-level = "s"
+incremental = false
+lto = true
+
+[profile.release]
+panic = "abort"
+opt-level = "s"
+debug = true
+incremental = false
+lto = true
