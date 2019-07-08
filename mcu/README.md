@@ -14,6 +14,7 @@
     - [stm32f74x](./stm32f74x/) - STM32F74x / STM32F76x MCU Support
     - [stm32f303x](./stm32f303x/) - STM32F303x MCU Support
     - [stm32l432x](./stm32l432x/) - STM32L432x MCU Support
+    - [stm32wb55xx](./stm32wb55xx/) - STM32WB55xx MCU Support
 
 MCU crates depend on vendor-common crates which then depend on architecture-common crates. Currently only Cortex-M0+, M3, M4 and M7 processors are supported but MSP430 and RISCV support is planned.
 

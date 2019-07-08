@@ -1,6 +1,6 @@
 MAKE = make
 
-SUBDIRS = stm32-common stm32f74x stm32f303x stm32f40x stm32f42x stm32l432x
+SUBDIRS = stm32-common stm32f74x stm32f303x stm32f40x stm32f42x stm32l432x stm32wb55xx
 
 CLEANDIRS = $(SUBDIRS:%=clean-%)
 
