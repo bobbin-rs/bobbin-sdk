@@ -40,6 +40,7 @@ pub trait ClockProvider : Default {
     fn lsi1(&self) -> Hz { Hz::from_num(32000) }
     fn lsi2(&self) -> Hz { Hz::from_num(32000) }
     fn lse(&self) -> Hz { self.osc32() }
+    fn lsi(&self) -> Hz { unimplemented!() }
     fn pllclk(&self) -> Hz { unimplemented!() }
     fn pllsai1clk(&self) -> Hz { unimplemented!() }
     fn sysclk(&self) -> Hz { unimplemented!() }

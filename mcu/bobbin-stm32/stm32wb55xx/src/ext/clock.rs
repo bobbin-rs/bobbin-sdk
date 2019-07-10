@@ -204,7 +204,32 @@ impl<OSC: Clock, OSC32: Clock> ClockProvider for DynamicClock<OSC, OSC32> {
             v if (v as u8) < 0b100  => self.pclk2(),
             _ => self.pclk2() << 1,
         }
-    }    
+    }
+
+    fn lsi(&self) -> Hz {
+        // RM0434 page 215
+        // LSI2 is used as clock source for LSI by-default, if switched on.
+        // LSI1 is selected as clock source if LSI2 is switched off and LSI1 is switched on.
+        if RCC.csr().lsi2on() == U1::B1 {
+            self.lsi2()
+        } else {
+            if RCC.csr().lsi1on() == U1::B1 {
+                self.lsi1()
+            } else {
+                Hz::from(0)
+            }
+        }
+    }
+
+    fn rtcclk(&self) -> Hz {
+        // RM0434, page 265
+        match RCC.bdcr().rtcsel() {
+            U2::B00 => Hz::from(0),
+            U2::B01 => self.lse(),
+            U2::B10 => self.lsi(),
+            U2::B11 => self.hse() >> 5, // HSE oscillator clock divided by 32 used as RTC clock
+        }
+    }
 
     impl_usart_clock_source!(::usart::USART1, usart1, pclk1);
     impl_usart_clock_source!(::lpuart::LPUART1, lpuart1, pclk1);
