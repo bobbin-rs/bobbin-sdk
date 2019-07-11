@@ -30,13 +30,13 @@
         (input (name OSC) (min 32000000) (max 32000000))
         (input (name OSC32) (min 32768) (max 32768))
 
-        (source (name HSI16) (speed 16000000))              ; 16 MHz high accuracy on-chip RC oscillator
+        (source (name HSI16) (speed 16000000))                 ; 16 MHz high accuracy on-chip RC oscillator
 
         ; RC 48 MHz internal clock sources to drive the USB FS & TRNG
         (source (name HSI48) (speed 48000000))
 
         (source (name HSE) (input (name OSC)))
-        (source (name MSI))                                 ; 100 KHz to 48 MHz multiple speed on-chip low power oscillator
+        (source (name MSI))                                    ; 100 KHz to 48 MHz multiple speed on-chip low power oscillator
 
         ; 32 kHz low speed internal RC which may drives the IWDG
         ; and optionally the RTC used for Auto-wakeup from Stop and Standby modes
@@ -60,7 +60,9 @@
         (output (name PLLCLK))                              ; PLL /R output, can run up to 64 MHz
 
         ; PLLSAI1
-        (output (name PLLSAI1CLK))                          ; PLLSAI1 /R output, can run up to 64 MHz
+        (output (name PLLSAI1RCLK))                         ; PLLSAI1 /R output, can run up to 64 MHz
+        (output (name PLLSAI1QCLK))                         ; PLLSAI1 /Q output, can run up to 64 MHz
+        (output (name PLLSAI1PCLK))                         ; PLLSAI1 /P output, can run up to 64 MHz
 
         (output (name SYSCLK) (max 64000000))               ; Can be driven by HSI16, MSI and PLL
 
@@ -78,8 +80,6 @@
         (output (name TIM_PCLK1))
         (output (name TIM_PCLK2))
 
-        (output (name USB_TRNG))                            ; Clock for USB and TRNG
-
         (output (name RF))
         (output (name RF_WKUP))
 
@@ -89,6 +89,10 @@
         (output (name I2C3))
         (output (name LPTIM1))
         (output (name LPTIM2))
+        (output (name RNG))
+        (output (name ADC))
+        (output (name CLK48))
+        (output (name SAI1))
     )
 
     (peripheral (include "periph/flash.rx"))
@@ -371,7 +375,7 @@
             (name RNG)
             (address 0x50060800)
             (clock
-                (input (name USB_TRNG))
+                (input (name RNG))
                 (gate (type RST) (periph RCC) (register AHB3RSTR) (field RNGRST))
                 (gate (type EN) (periph RCC) (register AHB3ENR) (field RNGEN))
                 (gate (type SLEEP_EN) (periph RCC) (register AHB3SMENR) (field RNGSMEN))
@@ -1058,7 +1062,7 @@
             (name USART1)
             (address 0x40013800)
             (clock
-                (input (name PCLK2))
+                (input (name USART1))
                 (gate (type RST) (periph RCC) (register APB2RSTR) (field USART1RST))
                 (gate (type EN) (periph RCC) (register APB2ENR) (field USART1EN))
                 (gate (type SLEEP_EN) (periph RCC) (register APB2SMENR) (field USART1SMEN))
