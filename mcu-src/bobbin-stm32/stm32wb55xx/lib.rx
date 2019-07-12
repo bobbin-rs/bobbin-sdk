@@ -1189,50 +1189,177 @@
             (name EXTI)
             (address 0x40010400)
             (description "External interrupt/event controller")
-            (interrupt
-                (name PVD)
-                (value 1)
-                (description "PVD through EXTI[16] (C1IMR2[20])")
+            (channel (name EXTI_LINE0) (index 0)
+                (interrupt
+                    (name EXTI0)
+                    (value 6)
+                    (type EXTI)
+                    (description "EXTI line 0 interrupt through EXTI[0]")
+                )
             )
-            (interrupt
-                (name EXTI0)
-                (value 6)
-                (description "EXTI line 0 interrupt through EXTI[0]")
+            (channel (name EXTI_LINE1) (index 1)
+                (interrupt
+                    (name EXTI1)
+                    (value 7)
+                    (type EXTI)
+                    (description "EXTI line 1 interrupt through EXTI[1]")
+                )
             )
-            (interrupt
-                (name EXTI1)
-                (value 7)
-                (description "EXTI line 0 interrupt through EXTI[1]")
+            (channel (name EXTI_LINE2) (index 2)
+                (interrupt
+                    (name EXTI2)
+                    (value 8)
+                    (type EXTI)
+                    (description "EXTI line 2 interrupt through EXTI[2]")
+                )
             )
-            (interrupt
-                (name EXTI2)
-                (value 8)
-                (description "EXTI line 0 interrupt through EXTI[2]")
+            (channel (name EXTI_LINE3) (index 3)
+                (interrupt
+                    (name EXTI3)
+                    (value 9)
+                    (type EXTI)
+                    (description "EXTI line 3 interrupt through EXTI[3]")
+                )
             )
-            (interrupt
-                (name EXTI3)
-                (value 9)
-                (description "EXTI line 0 interrupt through EXTI[3]")
+            (channel (name EXTI_LINE4) (index 4)
+                (interrupt
+                    (name EXTI4)
+                    (value 10)
+                    (type EXTI)
+                    (description "EXTI line 4 interrupt through EXTI[4]")
+                )
             )
-            (interrupt
-                (name EXTI4)
-                (value 10)
-                (description "EXTI line 0 interrupt through EXTI[4]")
+            (channel (name EXTI_LINE5) (index 5)
+                (interrupt
+                    (name EXTI5)
+                    (value 23)
+                    (type EXTI)
+                    (description "EXTI line 5 interrupt through EXTI[9:5]")
+                )
             )
-            (interrupt
-                (name C2SEV)
-                (value 21)
-                (description "CPU2 SEV through EXTI[40]")
+            (channel (name EXTI_LINE6) (index 6)
+                (interrupt
+                    (name EXTI6)
+                    (value 23)
+                    (type EXTI)
+                    (description "EXTI line 6 interrupt through EXTI[9:5]")
+                )
             )
-            (interrupt
-                (name EXTI5_9)
-                (value 23)
-                (description "EXTI line [9:5] interrupt through EXTI[9:5]")
+            (channel (name EXTI_LINE7) (index 7)
+                (interrupt
+                    (name EXTI7)
+                    (value 23)
+                    (type EXTI)
+                    (description "EXTI line 7 interrupt through EXTI[9:5]")
+                )
             )
-            (interrupt
-                (name EXTI10_15)
-                (value 40)
-                (description "EXTI line [15:10] interrupt through EXTI[15:10]")
+            (channel (name EXTI_LINE8) (index 8)
+                (interrupt
+                    (name EXTI8)
+                    (value 23)
+                    (type EXTI)
+                    (description "EXTI line 8 interrupt through EXTI[9:5]")
+                )
+            )
+            (channel (name EXTI_LINE9) (index 9)
+                (interrupt
+                    (name EXTI9)
+                    (value 23)
+                    (type EXTI)
+                    (description "EXTI line 9 interrupt through EXTI[9:5]")
+                )
+            )
+            (channel (name EXTI_LINE10) (index 10)
+                (interrupt
+                    (name EXTI10)
+                    (value 40)
+                    (type EXTI)
+                    (description "EXTI line 10 interrupt through EXTI[15:10]")
+                )
+            )
+            (channel (name EXTI_LINE11) (index 11)
+                (interrupt
+                    (name EXTI11)
+                    (value 40)
+                    (type EXTI)
+                    (description "EXTI line 11 interrupt through EXTI[15:10]")
+                )
+            )
+            (channel (name EXTI_LINE12) (index 12)
+                (interrupt
+                    (name EXTI12)
+                    (value 40)
+                    (type EXTI)
+                    (description "EXTI line 12 interrupt through EXTI[15:10]")
+                )
+            )
+            (channel (name EXTI_LINE13) (index 13)
+                (interrupt
+                    (name EXTI13)
+                    (value 40)
+                    (type EXTI)
+                    (description "EXTI line 13 interrupt through EXTI[15:10]")
+                )
+            )
+            (channel (name EXTI_LINE14) (index 14)
+                (interrupt
+                    (name EXTI14)
+                    (value 40)
+                    (type EXTI)
+                    (description "EXTI line 14 interrupt through EXTI[15:10]")
+                )
+            )
+            (channel (name EXTI_LINE15) (index 15)
+                (interrupt
+                    (name EXTI15)
+                    (value 40)
+                    (type EXTI)
+                    (description "EXTI line 15 interrupt through EXTI[15:10]")
+                )
+            )
+            (channel (name EXTI_LINE16) (index 16)
+                (interrupt
+                    (name EXTI16)
+                    (type EXTI)
+                    (value 1)
+                    (description "PVD through EXTI[16] (C1IMR2[20])")
+                )
+            )
+
+            ; Channels without interrupts
+            (channel (name EXTI_LINE17) (index 17))
+            (channel (name EXTI_LINE18) (index 18))
+            (channel (name EXTI_LINE19) (index 19))
+            
+            (channel (name EXTI_LINE20) (index 20))
+            (channel (name EXTI_LINE21) (index 21))
+            (channel (name EXTI_LINE22) (index 22))
+            (channel (name EXTI_LINE23) (index 23))
+            (channel (name EXTI_LINE24) (index 24))
+            (channel (name EXTI_LINE25) (index 25))
+            (channel (name EXTI_LINE26) (index 26))
+            (channel (name EXTI_LINE27) (index 27))
+            (channel (name EXTI_LINE28) (index 28))
+            (channel (name EXTI_LINE29) (index 29))
+            
+            (channel (name EXTI_LINE30) (index 30))
+            (channel (name EXTI_LINE31) (index 31))
+            (channel (name EXTI_LINE32) (index 32))
+            (channel (name EXTI_LINE33) (index 33))
+            (channel (name EXTI_LINE34) (index 34))
+            (channel (name EXTI_LINE35) (index 35))
+            (channel (name EXTI_LINE36) (index 36))
+            (channel (name EXTI_LINE37) (index 37))
+            (channel (name EXTI_LINE38) (index 38))
+            (channel (name EXTI_LINE39) (index 39))
+
+            (channel (name EXTI_LINE40) (index 40)
+                (interrupt
+                    (name EXTI40)
+                    (value 21)
+                    (type EXTI)
+                    (description "CPU2 SEV through EXTI[40]")
+                )
             )
         )
     )
@@ -1380,6 +1507,7 @@
             (address 0x40000000)
             (interrupt
                 (name TIM2)
+                (type TIM)
                 (value 28)
                 (description "TIM2 global interrupt")
             )
@@ -1407,7 +1535,6 @@
     )
 
     (peripheral-group
-        ; signature: d9a73ac8a82289fd
         (name TIM1)
         (prototype "periph/tim1.rx")
         (peripheral
@@ -1415,21 +1542,25 @@
             (address 0x40012c00)
             (interrupt
                 (name TIM1_BRK)
+                (type BRK)
                 (value 24)
                 (description "Timer 1 break interrupt")
             )
             (interrupt
                 (name TIM1_UP)
+                (type UP)
                 (value 25)
                 (description "Timer 1 Update")
             )
             (interrupt
                 (name TIM1_TRG_COM_TIM17)
                 (value 26)
+                (type TRG_COM)
                 (description "TIM1 Trigger and Commutation interrupts and TIM17 global interrupt")
             )
             (interrupt
                 (name TIM1_CC)
+                (type CC)
                 (value 27)
                 (description "TIM1 Capture Compare interrupt")
             )
@@ -1447,7 +1578,6 @@
     )
 
     (peripheral-group
-        ; signature: e9b939ab8acf9c9f
         (name USB)
         (prototype "periph/usb.rx")
         (peripheral
@@ -1455,11 +1585,13 @@
             (address 0x40006800)
             (interrupt
                 (name USB_HP)
+                (type USB)
                 (value 19)
                 (description "USB high priority interrupt")
             )
             (interrupt
                 (name USB_LP)
+                (type USB)
                 (value 20)
                 (description "USB low priority interrupt (including USB wakeup)")
             )
@@ -1507,7 +1639,6 @@
     )
 
     (peripheral-group
-        ; signature: 41d61df002ecfd2a
         (name IPCC)
         (prototype "periph/ipcc.rx")
         (peripheral
@@ -1515,11 +1646,13 @@
             (address 0x58000c00)
             (interrupt
                 (name IPCC_C1_RX_IT)
+                (type RX)
                 (value 44)
                 (description "IPCC CPU1 RX occupied interrupt")
             )
             (interrupt
                 (name IPCC_C1_TX_IT)
+                (type TX)
                 (value 45)
                 (description "IPCC CPU1 TX free interrupt")
             )
