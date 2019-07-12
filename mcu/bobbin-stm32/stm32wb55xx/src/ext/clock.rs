@@ -15,7 +15,7 @@ macro_rules! impl_usart_clock_source {
                 UsartClock::Hsi16 => self.hsi16(),
                 UsartClock::Lse => self.lse(),
             }
-        }        
+        }
     };
 }
 
@@ -28,7 +28,7 @@ macro_rules! impl_i2c_clock_source {
                 I2cClock::Sysclk => self.sysclk(),
                 I2cClock::Hsi16 => self.hsi16(),
             }
-        }        
+        }
     };
 }
 
@@ -41,7 +41,7 @@ macro_rules! impl_lptim_clock_source {
                 LptimClock::Hsi16 => self.hsi16(),
                 LptimClock::Lse => self.lse(),
             }
-        }        
+        }
     };
 }
 
@@ -132,7 +132,7 @@ impl<OSC: Clock, OSC32: Clock> DynamicClock<OSC, OSC32> {
             U4::B1011 => 48_000_000,
             _ => 0,
         })
-    }    
+    }
 }
 
 fn freq_prescaler_lookup(val: U4) -> u32 {
@@ -308,7 +308,7 @@ impl<OSC: Clock, OSC32: Clock> ClockProvider for DynamicClock<OSC, OSC32> {
     impl_i2c_clock_source!(::i2c::I2C3, i2c3, pclk1);
 
     impl_lptim_clock_source!(::lptim::LPTIM1, lptim1, pclk2);
-    impl_lptim_clock_source!(::lptim::LPTIM2, lptim2, pclk2);   
+    impl_lptim_clock_source!(::lptim::LPTIM2, lptim2, pclk2);
 }
 
 impl<CP> ClockFor<::systick::Systick> for Clocks<CP> where CP: ClockProvider {
@@ -317,6 +317,7 @@ impl<CP> ClockFor<::systick::Systick> for Clocks<CP> where CP: ClockProvider {
 
 pub mod clock_init {
     use rcc::RCC;
+    use pwr::PWR;
     use flash::FLASH;
 
 
@@ -379,6 +380,21 @@ pub mod clock_init {
 
         // Set APB2 prescaler
         RCC.with_cfgr(|r| r.set_ppre2(1));
+
+        // Enable backup domain access
+        PWR.with_cr1(|cr1| cr1.set_dbp(1));
+
+        // Reset backup domain
+        RCC.with_bdcr(|bdcr| bdcr.set_bdrst(1));
+        RCC.with_bdcr(|bdcr| bdcr.set_bdrst(0));
+
+        // Set LSE drive capability to LOW
+        RCC.with_bdcr(|bdcr| bdcr.set_lsedrv(0));
+
+        // Enable LSE
+        RCC.with_bdcr(|bdcr| bdcr.set_lseon(1));
+
+        // Wait till LSE is ready
+        while RCC.bdcr().lserdy() == 0 {}
     }
 }
-
