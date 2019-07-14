@@ -1,8 +1,9 @@
 #![no_std]
-#![feature(use_extern_macros)]
 
 extern crate panic_abort;
 extern crate cortex_m_rt;
+use cortex_m_rt::exception;
+
 pub extern crate stm32l432x as mcu;
 
 pub mod prelude;
@@ -27,6 +28,17 @@ impl bobbin_sys::board::Board for NucleoL432kc {
     fn id(&self) -> &'static str { "nucleo-l432kc" }    
 }
 
-cortex_m_rt::default_handler!(bobbin_sys::irq_dispatch::IrqDispatcher::<Mcu>::handle_exception);
-cortex_m_rt::exception!(SYS_TICK, bobbin_sys::tick::Tick::tick);
-cortex_m_rt::exception!(PENDSV, bobbin_sys::pend::Pend::pend);
+#[exception]
+fn DefaultHandler(_irqn: i16) {
+    bobbin_sys::irq_dispatch::IrqDispatcher::<Mcu>::handle_exception();
+}
+
+#[exception]
+fn SysTick() {
+    bobbin_sys::tick::Tick::tick();
+}
+
+#[exception]
+fn PendSV() {
+    bobbin_sys::pend::Pend::pend();
+}
