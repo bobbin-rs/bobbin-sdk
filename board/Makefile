@@ -1,6 +1,6 @@
 MAKE = make
 
-SUBDIRS = arduino-zero frdm-k64f nucleo-f746zg nucleo-l432kc discovery-stm32f3
+SUBDIRS = arduino-zero discovery-stm32f3 discovery-stm32f429i feather-m0 nucleo-f429zi nucleo-f746zg nucleo-l432kc
 
 TESTDIRS = test-arduino-zero test-frdm-k64f test-nucleo-f746zg test-nucleo-l432kc test-discovery-stm32f3
 
