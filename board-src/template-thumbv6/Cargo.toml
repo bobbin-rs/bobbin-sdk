@@ -30,3 +30,6 @@ panic = "abort"
 debug = true
 lto = true
 
+[features]
+no-heap = []
+default = ["no-heap"]

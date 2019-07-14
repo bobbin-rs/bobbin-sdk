@@ -1,4 +1,5 @@
 use bobbin_sys::system::{System, SystemProvider};
+#[cfg(not(feature = "no-heap"))]
 use bobbin_sys::heap::Heap;
 use bobbin_sys::tick::{Tick, HandleTick};
 use bobbin_sys::pend::{Pend, HandlePend};
@@ -31,6 +32,7 @@ impl SystemProvider for Board {
         Self::Clk::default()
     }
 
+    #[cfg(not(feature = "no-heap"))]
     fn init_heap() -> Heap {
         unsafe { Heap::take().extended(4096) }
     }
@@ -48,14 +50,31 @@ impl SystemProvider for Board {
         unsafe { Tick::init(HANDLERS.as_mut_ptr(), HANDLERS.len()) }
     }
 
+    #[cfg(not(feature = "no-heap"))]
     fn init_console(_: &Self::Clk, _: &mut Heap) {
     }
 
+    #[cfg(feature = "no-heap")]
+    fn init_console(_: &Self::Clk) {
+    }
+
+    #[cfg(not(feature = "no-heap"))]
     fn init_led(_: &Self::Clk, _: &mut Heap) {
         ::led::init();
     }
 
+    #[cfg(feature = "no-heap")]
+    fn init_led(_: &Self::Clk) {
+        ::led::init();
+    }
+
+    #[cfg(not(feature = "no-heap"))]
     fn init_btn(_: &Self::Clk, _: &mut Heap) {
+        ::btn::init();
+    }
+
+    #[cfg(feature = "no-heap")]
+    fn init_btn(_: &Self::Clk) {
         ::btn::init();
     }
 }
