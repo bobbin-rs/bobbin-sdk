@@ -222,6 +222,7 @@ impl<CP> ClockFor<::systick::Systick> for Clocks<CP> where CP: ClockProvider {
 
 pub mod clock_init {
     use rcc::RCC;
+    use pwr::PWR;
     use flash::FLASH;
 
 
