@@ -9,5 +9,6 @@ bobbin-hal = { path = "../../lib/bobbin-hal" }
 bobbin-sys = { path = "../../lib/bobbin-sys" }
 
 [features]
+no-heap = ["bobbin-sys/no-heap"]
 default = []
 

@@ -1,5 +1,6 @@
 pub use board::*;
 pub use console::*;
+#[cfg(not(feature = "no-heap"))]
 pub use heap::*;
 pub use irq_dispatch::*;
 pub use ring::*;

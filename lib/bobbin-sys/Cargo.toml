@@ -16,3 +16,4 @@ optional = true
 
 [features]
 logger = ["log"]
+no-heap = []

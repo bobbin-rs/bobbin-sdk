@@ -13,6 +13,7 @@ mod macros;
 
 pub mod prelude;
 pub mod console;
+#[cfg(not(feature = "no-heap"))]
 pub mod heap;
 pub mod tick;
 pub mod pend;
