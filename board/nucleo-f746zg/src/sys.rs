@@ -1,4 +1,5 @@
 use bobbin_sys::system::{System, SystemProvider};
+#[cfg(not(feature = "no-heap"))]
 use bobbin_sys::heap::Heap;
 use bobbin_sys::tick::{Tick, HandleTick};
 use bobbin_sys::pend::{Pend, HandlePend};
@@ -13,6 +14,36 @@ use mcu::flash::{FlashPeriph, FLASH};
 
 pub type Clk = Clocks<DynamicClock<Osc8m, Osc32k>>;
 pub type Dispatcher = ::bobbin_sys::irq_dispatch::IrqDispatcher<Mcu>;
+
+fn init_console_helper(_: &<Board as SystemProvider>::Clk) {
+    use prelude::*;
+    use mcu::ext::rcc::DedicatedClock;
+    use mcu::usart::*;
+    use mcu::pin::*;
+
+
+    const USART: Usart3 = USART3;
+    const USART_TX: Pd8 = PD8;
+    const USART_RX: Pd9 = PD9;
+    const USART_CLOCK: u32 = 16_000_000; // Use HSI Clock
+    const USART_BAUD: u32 = 115_200;
+
+    USART_TX
+        .port_gate_enable()
+        .connect_to(USART);
+
+    USART_RX
+        .port_gate_enable()
+        .connect_to(USART);
+
+    USART
+        .set_clock_source(DedicatedClock::Hsi)
+        .gate_enable()
+        .set_config(|c| c.set_baud_clock(USART_BAUD, USART_CLOCK))
+        .enable();
+
+    Console::set(Console::new(USART.as_periph(), ConsoleMode::Cooked));
+}
 
 impl SystemProvider for Board {
     type Mcu = Mcu;
@@ -41,6 +72,7 @@ impl SystemProvider for Board {
         Self::Clk::default()
     }
 
+    #[cfg(not(feature = "no-heap"))]
     fn init_heap() -> Heap {
         unsafe { Heap::take().extended(4096) }
     }
@@ -63,41 +95,33 @@ impl SystemProvider for Board {
         unsafe { Pend::init(HANDLERS.as_mut_ptr(), HANDLERS.len()) }
     }
 
-    fn init_console(_: &Self::Clk, _: &mut Heap) {
-        use prelude::*;
-        use mcu::ext::rcc::DedicatedClock;
-        use mcu::usart::*;
-        use mcu::pin::*;
-
-
-        const USART: Usart3 = USART3;
-        const USART_TX: Pd8 = PD8;
-        const USART_RX: Pd9 = PD9;
-        const USART_CLOCK: u32 = 16_000_000; // Use HSI Clock
-        const USART_BAUD: u32 = 115_200;
-
-        USART_TX
-            .port_gate_enable()
-            .connect_to(USART);
-
-        USART_RX
-            .port_gate_enable()
-            .connect_to(USART);
-
-        USART
-            .set_clock_source(DedicatedClock::Hsi)
-            .gate_enable()
-            .set_config(|c| c.set_baud_clock(USART_BAUD, USART_CLOCK))
-            .enable();
-
-        Console::set(Console::new(USART.as_periph(), ConsoleMode::Cooked));
+    #[cfg(not(feature = "no-heap"))]
+    fn init_console(clk: &Self::Clk, _: &mut Heap) {
+        init_console_helper(clk);
     }
 
+    #[cfg(feature = "no-heap")]
+    fn init_console(clk: &Self::Clk) {
+        init_console_helper(clk);
+    }
+
+    #[cfg(not(feature = "no-heap"))]
     fn init_led(_: &Self::Clk, _: &mut Heap) {
         ::led::init();
     }
 
+    #[cfg(feature = "no-heap")]
+    fn init_led(_: &Self::Clk) {
+        ::led::init();
+    }
+
+    #[cfg(not(feature = "no-heap"))]
     fn init_btn(_: &Self::Clk, _: &mut Heap) {
+        ::btn::init();
+    }
+
+    #[cfg(feature = "no-heap")]
+    fn init_btn(_: &Self::Clk) {
         ::btn::init();
     }
 }

@@ -30,6 +30,10 @@ lto = true
 path = "../../app/examples"
 embedded-hal = "0.2.1"
 
+[features]
+no-heap = []
+default = ["no-heap"]
+
 [dependencies.stm32f42x]
 features = ["STM32F42xxI", "no-heap"]
 path = "../../mcu/bobbin-stm32/stm32f42x"

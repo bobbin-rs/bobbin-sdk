@@ -1,4 +1,5 @@
 use bobbin_sys::system::{System, SystemProvider};
+#[cfg(not(feature = "no-heap"))]
 use bobbin_sys::heap::Heap;
 use bobbin_sys::tick::{Tick, HandleTick};
 use bobbin_sys::pend::{Pend, HandlePend};
@@ -14,6 +15,45 @@ use mcu::nvmctrl::{NvmctrlPeriph, NVMCTRL};
 
 pub type Clk = Clocks<DynamicClock<Osc48m, Osc32k>>;
 pub type Dispatcher = ::bobbin_sys::irq_dispatch::IrqDispatcher<Mcu>;
+
+fn init_console_helper(clk: &<Board as SystemProvider>::Clk) {
+    use prelude::*;
+    use mcu::pin::*;
+    use mcu::sercom::*;
+    use mcu::gclk;
+
+    const SERCOM: Sercom0 = SERCOM0;
+    const SERCOM_TX: Pa10 = PA10;
+    const SERCOM_RX: Pa11 = PA11;
+    const SERCOM_BAUD: u32 = 115200;
+
+    SERCOM.gate_enable();
+    SERCOM_RX.port().gate_enable();
+    SERCOM_TX.port().gate_enable();
+    // Set GCLK_GEN0 as source for SERCOM
+
+    gclk::GCLK.set_clkctrl(|r| r
+        .set_id(0x14 + 0) // ID corresponds to SERCOM
+        .set_gen(0x0)
+        .set_clken(1)
+    );
+    // Wait for synchronization
+    while gclk::GCLK.status().syncbusy() != 0 {}
+
+    // Set Pin Configuration
+    SERCOM_TX.connect_to(SERCOM);
+    SERCOM_RX.connect_to(SERCOM);
+
+    SERCOM
+        .set_config(|c| c
+            .set_mode_usart_int()
+            .set_baud_clock(SERCOM_BAUD, clk.clock_for(SERCOM).as_u32())
+            .set_txpo(1)
+            .set_rxpo(3)
+        )
+        .set_enabled(true);
+    Console::set(Console::new(SERCOM.as_periph(), ConsoleMode::Cooked));
+}
 
 impl SystemProvider for Board {
     type Mcu = Mcu;
@@ -33,6 +73,7 @@ impl SystemProvider for Board {
         Self::Clk::default()
     }
 
+    #[cfg(not(feature = "no-heap"))]
     fn init_heap() -> Heap {
         unsafe { Heap::take().extended(4096) }
     }
@@ -55,50 +96,33 @@ impl SystemProvider for Board {
         unsafe { Pend::init(HANDLERS.as_mut_ptr(), HANDLERS.len()) }
     }
 
+    #[cfg(not(feature = "no-heap"))]
     fn init_console(clk: &Self::Clk, _: &mut Heap) {
-        use prelude::*;
-        use mcu::pin::*;
-        use mcu::sercom::*;
-        use mcu::gclk;
-                
-        const SERCOM: Sercom0 = SERCOM0;
-        const SERCOM_TX: Pa10 = PA10;
-        const SERCOM_RX: Pa11 = PA11;
-        const SERCOM_BAUD: u32 = 115200;
-
-        SERCOM.gate_enable();
-        SERCOM_RX.port().gate_enable();
-        SERCOM_TX.port().gate_enable();
-        // Set GCLK_GEN0 as source for SERCOM
-
-        gclk::GCLK.set_clkctrl(|r| r
-            .set_id(0x14 + 0) // ID corresponds to SERCOM
-            .set_gen(0x0)
-            .set_clken(1)
-        );
-        // Wait for synchronization
-        while gclk::GCLK.status().syncbusy() != 0 {}
-
-        // Set Pin Configuration
-        SERCOM_TX.connect_to(SERCOM);
-        SERCOM_RX.connect_to(SERCOM);
-
-        SERCOM
-            .set_config(|c| c
-                .set_mode_usart_int()
-                .set_baud_clock(SERCOM_BAUD, clk.clock_for(SERCOM).as_u32())
-                .set_txpo(1)
-                .set_rxpo(3)
-            )        
-            .set_enabled(true);
-        Console::set(Console::new(SERCOM.as_periph(), ConsoleMode::Cooked));
+        init_console_helper(clk);
     }
 
+    #[cfg(feature = "no-heap")]
+    fn init_console(clk: &Self::Clk) {
+        init_console_helper(clk);
+    }
+
+    #[cfg(not(feature = "no-heap"))]
     fn init_led(_: &Self::Clk, _: &mut Heap) {
         ::led::init();
     }
 
+    #[cfg(feature = "no-heap")]
+    fn init_led(_: &Self::Clk) {
+        ::led::init();
+    }
+
+    #[cfg(not(feature = "no-heap"))]
     fn init_btn(_: &Self::Clk, _: &mut Heap) {
+        ::btn::init();
+    }
+
+    #[cfg(feature = "no-heap")]
+    fn init_btn(_: &Self::Clk) {
         ::btn::init();
     }
 }

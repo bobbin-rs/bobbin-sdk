@@ -30,6 +30,9 @@ panic = "abort"
 debug = true
 lto = true
 
+[features]
+no-heap = []
+default = ["no-heap"]
 
 [dependencies.stm32l432x]
 path = "../../mcu/bobbin-stm32/stm32l432x"

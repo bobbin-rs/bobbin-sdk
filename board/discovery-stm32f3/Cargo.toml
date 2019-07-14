@@ -30,6 +30,9 @@ panic = "abort"
 debug = true
 lto = true
 
+[features]
+no-heap = []
+default = ["no-heap"]
 
 [dependencies.stm32f3x]
 path = "../../mcu/bobbin-stm32/stm32f303x"

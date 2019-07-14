@@ -1,4 +1,5 @@
 use bobbin_sys::system::{System, SystemProvider};
+#[cfg(not(feature = "no-heap"))]
 use bobbin_sys::heap::Heap;
 use bobbin_sys::tick::Tick;
 use bobbin_sys::pend::{Pend, HandlePend};
@@ -14,6 +15,31 @@ use mcu::ftfe::{FtfePeriph, FTFE};
 
 pub type Clk = Clocks<DynamicClock<Extal50m, Extal32k>>;
 pub type Dispatcher = ::bobbin_sys::irq_dispatch::IrqDispatcher<Mcu>;
+
+fn init_console_helper(clk: &<Board as SystemProvider>::Clk) {
+    use prelude::*;
+    use mcu::uart::*;
+    use mcu::pin::*;
+
+    const UART: Uart0 = UART0;
+    const UART_RX: Ptb16 = PTB16;
+    const UART_TX: Ptb17 = PTB17;
+    const UART_BAUD: u32 = 115_200;
+
+    // Enable Clocks
+    UART.gate_enable();
+    UART_TX.port().gate_enable();
+    UART_RX.port().gate_enable();
+
+    UART_TX.connect_to(UART);
+    UART_RX.connect_to(UART);
+
+    let baud_div = clk.clock_for(UART).as_u32() / (16 * UART_BAUD);
+    UART
+        .set_config(|c| c.set_baud_divisor(baud_div as u16))
+        .set_enabled(true);
+    Console::set(Console::new(UART.as_periph(), ConsoleMode::Cooked));
+}
 
 impl SystemProvider for Board {
     type Mcu = Mcu;
@@ -48,6 +74,7 @@ impl SystemProvider for Board {
         Self::Clk::default()
     }
 
+    #[cfg(not(feature = "no-heap"))]
     fn init_heap() -> Heap {
         unsafe { Heap::take().extended(4096) }
     }
@@ -69,36 +96,33 @@ impl SystemProvider for Board {
         unsafe { Pend::init(HANDLERS.as_mut_ptr(), HANDLERS.len()) }
     }
 
+    #[cfg(not(feature = "no-heap"))]
     fn init_console(clk: &Self::Clk, _: &mut Heap) {
-        use prelude::*;
-        use mcu::uart::*;
-        use mcu::pin::*;
-
-        const UART: Uart0 = UART0;
-        const UART_RX: Ptb16 = PTB16;
-        const UART_TX: Ptb17 = PTB17;
-        const UART_BAUD: u32 = 115_200;
-
-        // Enable Clocks
-        UART.gate_enable();
-        UART_TX.port().gate_enable();
-        UART_RX.port().gate_enable();
-
-        UART_TX.connect_to(UART);
-        UART_RX.connect_to(UART);
-
-        let baud_div = clk.clock_for(UART).as_u32() / (16 * UART_BAUD);
-        UART
-            .set_config(|c| c.set_baud_divisor(baud_div as u16))
-            .set_enabled(true);
-        Console::set(Console::new(UART.as_periph(), ConsoleMode::Cooked));        
+        init_console_helper(clk);
     }
 
+    #[cfg(feature = "no-heap")]
+    fn init_console(clk: &Self::Clk) {
+        init_console_helper(clk);
+    }
+
+    #[cfg(not(feature = "no-heap"))]
     fn init_led(_: &Self::Clk, _: &mut Heap) {
         ::led::init();
     }
 
+    #[cfg(feature = "no-heap")]
+    fn init_led(_: &Self::Clk) {
+        ::led::init();
+    }
+
+    #[cfg(not(feature = "no-heap"))]
     fn init_btn(_: &Self::Clk, _: &mut Heap) {
+        ::btn::init();
+    }
+
+    #[cfg(feature = "no-heap")]
+    fn init_btn(_: &Self::Clk) {
         ::btn::init();
     }
 }
