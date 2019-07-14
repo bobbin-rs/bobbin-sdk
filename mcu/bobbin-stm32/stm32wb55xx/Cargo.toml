@@ -1,0 +1,17 @@
+[package]
+name = "stm32wb55xx"
+version = "0.1.0"
+build = "build.rs"
+
+[build-dependencies]
+bobbin-build = { path = "../../../lib/bobbin-build/" }
+
+[dependencies]
+stm32-common = { path = "../stm32-common" }
+
+[features]
+default = []
+
+STM32WB55xC = []
+STM32WB55xE = []
+STM32WB55xG = []

@@ -1,0 +1,24 @@
+(peripheral
+    ; signature: 61a514b5dc607e17
+    (group-name FPU_CPACR)
+    (address-block
+        (offset 0x0)
+        (size 0x5)
+        (usage registers)
+    )
+    (description "Floating point unit CPACR")
+    (register
+        (name CPACR)
+        (offset 0x0)
+        (size 0x20)
+        (access read-write)
+        (reset-value 0x0)
+        (description "Coprocessor access control register")
+        (field
+            (name CP)
+            (bit-offset 20)
+            (bit-width 4)
+            (description "CP")
+        )
+    )
+)

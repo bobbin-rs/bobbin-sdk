@@ -1,0 +1,5 @@
+(peripheral
+    (include "./gpioc.rx")
+    ; signature: d1fba762150c532c
+    (group-name GPIOC)
+)

@@ -12,7 +12,7 @@ bobbin-kinetis: kinetis-common k64
 
 bobbin-sam: sam-common samd21 samd51
 
-bobbin-stm32: stm32-common stm32f303x stm32f40x stm32f42x stm32l432x stm32f74x
+bobbin-stm32: stm32-common stm32f303x stm32f40x stm32f42x stm32l432x stm32f74x stm32wb55xx
 
 bobbin-cortexm:
 	$(CHIP) --crate --cargo-template bobbin-cortexm/template $@/lib.rx ../mcu/$@/
@@ -48,4 +48,7 @@ stm32l432x:
 	$(CHIP) $(STM32_ARGS) bobbin-stm32/$@/lib.rx ../mcu/bobbin-stm32/$@/
 
 stm32f74x:
+	$(CHIP) $(STM32_ARGS) bobbin-stm32/$@/lib.rx ../mcu/bobbin-stm32/$@/
+
+stm32wb55xx:
 	$(CHIP) $(STM32_ARGS) bobbin-stm32/$@/lib.rx ../mcu/bobbin-stm32/$@/
