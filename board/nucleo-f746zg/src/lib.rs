@@ -29,8 +29,8 @@ impl bobbin_sys::board::Board for NucleoF746zg {
 }
 
 #[exception]
-fn DefaultHandler(_irqn: i16) {
-    bobbin_sys::irq_dispatch::IrqDispatcher::<Mcu>::handle_exception();
+fn DefaultHandler(irqn: i16) {
+    bobbin_sys::irq_dispatch::IrqDispatcher::<Mcu>::handle_irq(irqn);
 }
 
 #[exception]
