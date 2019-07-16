@@ -1,9 +1,5 @@
-pub trait Mcu : IrqEnable + GetActiveIrq + Pend + Sleep {
+pub trait Mcu : IrqEnable + Pend + Sleep {
     fn id(&self) -> &'static str;
-}
-
-pub trait GetActiveIrq {
-    fn get_active_irq() -> u8;
 }
 
 pub trait IrqEnable {

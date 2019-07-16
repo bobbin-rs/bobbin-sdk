@@ -53,11 +53,11 @@ pub trait HandleIrq : Sync {
 #[derive(Clone, Copy)]
 pub struct IrqHandler {
     irq_num: u8,
-    handler: *const HandleIrq,
+    handler: *const dyn HandleIrq,
 }
 
 impl IrqHandler {
-    fn new(irq_num: u8, handler: *const HandleIrq, ) -> Self {
+    fn new(irq_num: u8, handler: *const dyn HandleIrq, ) -> Self {
         Self { irq_num, handler }
     }
 }
@@ -92,9 +92,10 @@ impl<MCU: Mcu> IrqDispatcher<MCU> {
         unsafe { IRQ_TOKEN = Some(IrqToken) }
     }
 
-    pub fn handle_exception() {
-        let exc = MCU::get_active_irq();
-        if exc > 16 && Self::dispatch(exc.wrapping_sub(16)) {
+    pub fn handle_irq(irqn: i16) {
+        assert!(irqn < 255);
+
+        if (irqn + 16) < 256 && irqn > 0 && Self::dispatch(irqn as u8) {
             return
         } else {
             // ::bobbin_sys::console::write(b"Unhandled Exception: 0x");
@@ -153,7 +154,7 @@ impl<MCU: Mcu> IrqDispatcher<MCU> {
     pub fn register_handler<'h, H: 'h + HandleIrq>(&mut self, irq_num: u8, handler: &'h H) -> Result<Guard<'h, H, MCU>, Error> {        
         for h in Self::handlers().iter_mut() {
             if h.is_none() {
-                *h = Some(IrqHandler::new(irq_num, unsafe { mem::transmute(handler as *const HandleIrq) }));
+                *h = Some(IrqHandler::new(irq_num, unsafe { mem::transmute(handler as *const dyn HandleIrq) }));
                 Self::enable_irq(irq_num);
                 return Ok(Guard::new(handler))
             }

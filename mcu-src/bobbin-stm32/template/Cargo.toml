@@ -8,6 +8,8 @@ bobbin-build = { path = "../../../lib/bobbin-build/" }
 
 [dependencies]
 stm32-common = { path = "../stm32-common" }
+cortex-m = "0.6"
+cortex-m-rt = "0.6"
 
 [features]
 default = []

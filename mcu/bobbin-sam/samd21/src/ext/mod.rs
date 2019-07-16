@@ -5,15 +5,9 @@ pub mod port;
 pub mod sercom;
 pub mod flash;
 
-use bobbin_mcu::mcu::{GetActiveIrq, IrqEnable, Pend, Sleep};
+use bobbin_mcu::mcu::{IrqEnable, Pend, Sleep};
 use nvic::NVIC;
 use scb::SCB;
-
-impl GetActiveIrq for ::Mcu {
-    fn get_active_irq() -> u8 {
-        get_active_irq()
-    }
-}
 
 impl IrqEnable for ::Mcu {
     fn irq_enabled(irq: u8) -> bool { NVIC.enabled(irq) }
